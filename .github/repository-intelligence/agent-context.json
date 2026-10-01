@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "5f1cd7fc046e1bb206010c395dc061b2ea408dad7796fe115dac246c14d3bba7",
+    "digest": "37b688e8c87f43fb715c0fef20456cbb3ba878f7515a09aea48b87f1d76b29cb",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -44,7 +44,7 @@
       {
         "path": ".github/workflows/navigation.yml",
         "identity_mode": "content",
-        "sha256": "6e1f624cc47f76585e642deb121e8643668f2b4f290c49b56545bb6f6f854778"
+        "sha256": "74c01c9b31aaa8c53404877b455696eb103011278b2bf34b69a1a40a52215885"
       },
       {
         "path": "AGENTS.md",
@@ -64,7 +64,7 @@
       {
         "path": "README.md",
         "identity_mode": "content",
-        "sha256": "0339a3ef8287399acd0ead82cbe0cc1e9f5d94895e88bb82e5bcbab44ba9d14a"
+        "sha256": "a504947f7cc0a3f8dfd020ae8c176678e11ca6f4a843565b6ac9a001eafdbbfc"
       },
       {
         "path": "REPOSITORIES.md",
@@ -74,17 +74,22 @@
       {
         "path": "SITE-CONTENT-REVIEW.md",
         "identity_mode": "content",
-        "sha256": "1948ff6cd63614d0a9e75ccc168a4aa78c17a8e514d00f60556e685c6bba3891"
+        "sha256": "d22afc4d07138f1719cc3183b36f4e3c3b536536e60c0c981bef72a359621a36"
       },
       {
         "path": "SITE-OPERATIONS.md",
         "identity_mode": "content",
-        "sha256": "5618a23cfb3ce098e5bffa3ae01650c60fd11eadbdfce78b09b0c7dbbb03f055"
+        "sha256": "db9c02de59aac6e85a61b44e52a71f298c9812477c9f4ba777b9499a206a722c"
       },
       {
         "path": "SITE-ROADMAP.md",
         "identity_mode": "content",
-        "sha256": "2bbbf87c9278b3223ff2cd1866fe4877134964d3928a2c182e17770fb3bec14e"
+        "sha256": "16c50b2e6a9838b2e869093aefc4dd99ff51390eb21494d8c0a518f17fcfd4b4"
+      },
+      {
+        "path": "SITE-SOURCE-AUDIT.md",
+        "identity_mode": "content",
+        "sha256": "c035a62f9aa859c3b4e22704625ceb9cb8c300ac9dc831de804f3f4252f55906"
       },
       {
         "path": "docs/.nojekyll",
@@ -103,18 +108,30 @@
         "identity_mode": "existence"
       },
       {
+        "path": "docs/theme.js",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "docs/writing.html",
+        "identity_mode": "existence"
+      },
+      {
         "path": "review/site-v1-preview.html",
         "identity_mode": "existence"
       },
       {
         "path": "review/site-v1-review.json",
         "identity_mode": "content",
-        "sha256": "02cc493f12cb100955ff0f6ad8d34f0b3aed5a4a00068ad6e693bd2ab1629183"
+        "sha256": "4c425743180313b4e791bdc351a03b8586e5b15d8b08bff561986c7a2ebca4ed"
       },
       {
         "path": "tests/test_repository_intelligence.py",
         "identity_mode": "content",
         "sha256": "6e7fb7644655a7d7f77a91914dbdb3f6113e6cca5cceb3687e4a586135e77cd1"
+      },
+      {
+        "path": "tests/theme.test.cjs",
+        "identity_mode": "existence"
       },
       {
         "path": "tools/RI-LICENSE.md",
@@ -314,6 +331,13 @@
     {
       "path": "SITE-ROADMAP.md",
       "title": "Vitalii Oborskyi — site and publishing roadmap",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "SITE-SOURCE-AUDIT.md",
+      "title": "Source audit for the first-site revision",
       "instructions": [
         "AGENTS.md"
       ]

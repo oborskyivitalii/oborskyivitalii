@@ -13,6 +13,7 @@ Contributors and agents: start with [CONTRIBUTING](CONTRIBUTING.md) and [AGENTS]
 The first site candidate is in [docs/index.html](docs/index.html), with a
 [standalone review preview](review/site-v1-preview.html), a
 [content/rights review](SITE-CONTENT-REVIEW.md) and
+[claim/publication source audit](SITE-SOURCE-AUDIT.md), plus
 [preview, launch and article instructions](SITE-OPERATIONS.md).
 The personal website is not yet published. Current work is tracked in
 [Issues](https://github.com/oborskyivitalii/oborskyivitalii/issues).

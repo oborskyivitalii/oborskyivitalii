@@ -6,8 +6,9 @@ This is a reviewable candidate, not a deployment or maintainer approval.
 ## Intent alignment
 
 The first version has an author entry point, two clearly separated research
-directions and their repository links, topic navigation, six published-article
-links, one public PMDay speaker announcement, bounded acknowledgements and
+directions and their repository links, topic navigation, nine selected works and
+a full index of 23 works, a separately dated Thinking Systems platform edition,
+three public talk/workshop records, seven bounded acknowledgements and
 reuse/correction information. It does not depend on full Quartz/PDF migration.
 The new PMDay article and slide/PDF edition remain #2, outside the public directory.
 
@@ -16,6 +17,12 @@ The questions have no recorded answer. Public-release URL/language and
 editorial/rights decisions remain in #1/#8/#7.
 
 ## Source and rights inventory
+
+The requested follow-up expands the catalog and acknowledgements. Its complete
+claim-to-source and 23-work inventory is [SITE-SOURCE-AUDIT](SITE-SOURCE-AUDIT.md),
+including platform-specific dates, weaker/private evidence and discovery-link
+corrections. The original six-entry baseline below remains historical review
+evidence, not the complete current catalog.
 
 Only titles, dates, format/language metadata and links are indexed. No external
 article bodies, figures, logos, portraits, slides, PDFs, web fonts or private
@@ -45,9 +52,17 @@ determination or automatic publication approval.
 
 ## Validation and remaining release work
 
+The optional visitor-theme script selects light from 07:00 to 19:00 in the
+device's own time zone and dark otherwise. Day/Night overrides are saved locally;
+Auto restores the clock rule. No location service, analytics, remote runtime or
+package dependency is introduced. Without JavaScript, CSS uses the device's
+light/dark preference. Theme controls are hidden until they become functional.
+Print styles use a light palette. Behavioral tests include real differing time
+zones, boundaries, storage failure, manual persistence and returning to the tab.
+
 - HTML/local-link/fragment and public-directory checks are recorded in the PR.
 - Original-public pages above were retrieved through public web search; source
-  metadata was checked without relying on search snippets as article substance.
+metadata was checked without relying on search snippets as article substance.
 - Actual browser visual review on desktop/mobile is still pending. The runtime
   has no working local browser binary, and the cloud browser cannot visit local
   HTTP or file URLs. A standalone review preview is supplied outside `docs/`;
@@ -57,8 +72,10 @@ determination or automatic publication approval.
   and preview parity. The reviewer found a Git-checkout/worktree RI portability
   defect; the correction was independently **Confirmed** at site policy tree
   `aa586fa407091c93af62213c5881d8286f492fcc` using actual checkouts/worktrees.
-  The public files retain the hashes of the inspected content; no further material
-  static/content defect was found. This does not complete browser or release review.
+  That confirmation describes the previous first-site candidate. The requested
+  theme/catalog/acknowledgement revision changes public bytes and needs its own
+  independent review; the prior confirmation is not carried forward automatically.
+  Browser/release review remains pending.
 - Record maintainer URL/language/editorial/rights choices, merge, enable Pages,
   inspect the live deployed site and record the deployed commit before closing #1.
 

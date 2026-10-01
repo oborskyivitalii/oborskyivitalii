@@ -4,15 +4,16 @@
   "visual_review": "pending: browser unavailable for local preview",
   "files": {
     "docs/.nojekyll": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
-    "docs/credits.html": "83ed942fb8416ba95705621c5987a2835b3358e8c61f3ac303e72342e33c6f98",
-    "docs/index.html": "4f3a61eb3ad3093fc5e616ebf01eb0c3e767cf1ff12a41572608980484ccb264",
-    "docs/styles.css": "ff4c022291656f3bc64a07bbbbbe491592bfbbd8c0296b074cf5c81f9acbe0eb"
+    "docs/credits.html": "7e33c0212a9fbd33c02a8ab8dd71c6189c22561e1f85ccc2e885931324ae86c9",
+    "docs/index.html": "3b631a02324b75af3d4ca81cd9609fc3102d44ddef6358120f1b137530d95e60",
+    "docs/styles.css": "78081645be2d8ee081a50af62d438d6b541068a7361dd9b28d58ebeac809bba8",
+    "docs/theme.js": "d88a5127094b2d4c129de190ed10bd71e2c35cc85052a747411e7fa8d50d01dd",
+    "docs/writing.html": "fd8e51d7a6db7f188e89de6e2b0a109b0e16f3eeb670ae45602439b218ecbb9e"
   },
   "structural_checks": "passed",
+  "theme_behavior": "six behavioral tests passed; visual inspection pending",
+  "source_audit": "SITE-SOURCE-AUDIT.md",
   "independent_review": {
-    "reviewer": "/root/independent_workflow_review",
-    "static_content": "no further material defect found",
-    "ri_portability": "Confirmed at policy tree aa586fa407091c93af62213c5881d8286f492fcc",
-    "browser_and_release_review": "pending"
+    "status": "pending for this revised candidate; prior confirmation is historical"
   }
 }

@@ -20,5 +20,7 @@ jobs:
           persist-credentials: false
       - name: Run bounded adapter checks
         run: python3 -m unittest discover -s tests -p 'test_*.py'
+      - name: Check visitor theme behavior
+        run: node --test tests/theme.test.cjs
       - name: Verify current-source context
         run: python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify

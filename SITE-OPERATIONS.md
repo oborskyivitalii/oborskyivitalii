@@ -6,14 +6,17 @@ Next publication: [PMDay #2](https://github.com/oborskyivitalii/oborskyivitalii/
 
 ## Implementation boundary
 
-The first version is static HTML/CSS in `docs/`. It needs no build, JavaScript,
-Node dependency or runtime service. GitHub Pages publishes only that directory;
+The first version is static HTML/CSS with a small visitor-theme script in `docs/`.
+It needs no build, package dependency or runtime service. Node's built-in test
+runner checks the theme in CI; it is not a website build or deployment dependency.
+GitHub Pages publishes only that directory;
 root process files, drafts and review artifacts are not website content.
 Keep the profile README and use relative internal URLs. The preview provisionally
 uses English and the current project Pages URL; no permanent choice is inferred.
 
 The homepage owns a short author description, two research routes, selected
-publication links and bounded acknowledgements. It links external article editions
+publication links and bounded acknowledgements. `docs/writing.html` indexes
+23 works, including earlier delivery/PMO and AI strategy writing. It links external article editions
 without importing their body text, figures or platform assets. The site-wide license
 decision remains [rights #7](https://github.com/oborskyivitalii/oborskyivitalii/issues/7);
 the credits page describes that current state without licensing sibling research.
@@ -27,13 +30,24 @@ python3 -m http.server 8765 --bind 127.0.0.1 --directory docs
 ```
 
 Open `http://127.0.0.1:8765/`. Inspect desktop and mobile widths, keyboard
-navigation, all section links, external publication links and `credits.html`.
+navigation, all section links, external publication links, `writing.html` and
+`credits.html`. Check Day/Night and Auto on each page, long article titles and
+print output. Auto uses the device's local clock: light from 07:00 to 19:00,
+dark otherwise; a saved manual choice takes priority. Storage failures keep the
+in-tab choice usable, and no-JavaScript visitors get their OS light/dark preference.
 Browser inspection belongs in review; Python is only a local file server.
+
+Theme behavior checks (Node 18+ built-in modules, no install):
+
+```bash
+node --test tests/theme.test.cjs
+```
 
 ## Launch
 
 1. Review the concrete homepage and rights/attribution inventory in
-   [SITE-CONTENT-REVIEW](SITE-CONTENT-REVIEW.md); record the URL/language and
+   [SITE-CONTENT-REVIEW](SITE-CONTENT-REVIEW.md) and
+   [source audit](SITE-SOURCE-AUDIT.md); record the URL/language and
    editorial/publication decision in #1/#8. Resolve omissions there rather than
    silently inventing a decision.
 2. Merge the site PR and any site-local workflow dependency; verify the accepted
