@@ -1,0 +1,19 @@
+{
+  "kind": "Review-only fixed-theme copies; not visual QA or a deployment",
+  "generator": "tools/build_site_previews.cjs",
+  "sources": {
+    "docs/styles.css": "78081645be2d8ee081a50af62d438d6b541068a7361dd9b28d58ebeac809bba8",
+    "docs/index.html": "3b631a02324b75af3d4ca81cd9609fc3102d44ddef6358120f1b137530d95e60",
+    "docs/writing.html": "431bbc2fa49c19befad37185b6f7aca670757d170b877780a509680d12ab221f",
+    "docs/credits.html": "7e33c0212a9fbd33c02a8ab8dd71c6189c22561e1f85ccc2e885931324ae86c9"
+  },
+  "files": {
+    "review/site-v1-20261001-day.html": "5fbf940e442f63d3c5762969f5cb201c0a9d049c7c65fd2ad96ce36b7b4cb4f5",
+    "review/site-v1-20261001-night.html": "87db0978c08ba683d14391c0cf6a8384bd1d4875304d32825dd3a6ce65e62eda",
+    "review/site-v1-20261001-writing-day.html": "fc1964492a3b15e2db90775c1b9420c890bcdfbf28ee7ac3418967de62209951",
+    "review/site-v1-20261001-writing-night.html": "4e2a9e9f60f693c25c2988fb9143ad740513534928a5bc9901b209d9fc39979f",
+    "review/site-v1-20261001-credits-day.html": "8cefff062695ba55a5030733d1c80abe7ef22e53c010f85d14b002210026d06f",
+    "review/site-v1-20261001-credits-night.html": "df4fde4ff8e24f512548a4ecd7687de5758b48da9bc1d7d1b0b076e4a0d6091d"
+  },
+  "transformations": "Inline exact public CSS; fixed theme; no script; visible theme links; local navigation remapped; review-only notice/title. Public main content and external URLs preserved."
+}

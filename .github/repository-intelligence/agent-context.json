@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "68d3d18253933c7b40c7501ced8eb8bb9634bf038a9d1db2cb4c7d209c51c12c",
+    "digest": "1f0b2188962f4bc7b16d91893846aa66918bd2fbfc30544d2dc0b6184a790d5c",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -44,7 +44,7 @@
       {
         "path": ".github/workflows/navigation.yml",
         "identity_mode": "content",
-        "sha256": "74c01c9b31aaa8c53404877b455696eb103011278b2bf34b69a1a40a52215885"
+        "sha256": "8fbc5110f16bab0e48decf1f69277cc2047318b9862b31d3cec0bcd8a4ab8fbf"
       },
       {
         "path": "AGENTS.md",
@@ -64,7 +64,7 @@
       {
         "path": "README.md",
         "identity_mode": "content",
-        "sha256": "a504947f7cc0a3f8dfd020ae8c176678e11ca6f4a843565b6ac9a001eafdbbfc"
+        "sha256": "36e73961b5d0f18b9dd9f2569f332c0ee3b8bd6fab1ac70da9f3e55e1af1f1c2"
       },
       {
         "path": "REPOSITORIES.md",
@@ -74,17 +74,17 @@
       {
         "path": "SITE-CONTENT-REVIEW.md",
         "identity_mode": "content",
-        "sha256": "438cf0ba4d9a0298f8c1e9709aa1890bc442231e6b8571b9a66c2353c7e85f63"
+        "sha256": "97134a2d975d04ded29ccc0d5600ab45155e57311b3136eb80a708652dfa635f"
       },
       {
         "path": "SITE-OPERATIONS.md",
         "identity_mode": "content",
-        "sha256": "db9c02de59aac6e85a61b44e52a71f298c9812477c9f4ba777b9499a206a722c"
+        "sha256": "d6c52152ef59c5e38ec242606916f8ba467f1d93b5577fcbf85a8cc5d0472426"
       },
       {
         "path": "SITE-ROADMAP.md",
         "identity_mode": "content",
-        "sha256": "16c50b2e6a9838b2e869093aefc4dd99ff51390eb21494d8c0a518f17fcfd4b4"
+        "sha256": "ce4b75a9240d4aec7e637441b94853959459dbc7690594c5590fa2dfdaee12be"
       },
       {
         "path": "SITE-SOURCE-AUDIT.md",
@@ -116,13 +116,46 @@
         "identity_mode": "existence"
       },
       {
+        "path": "review/site-v1-20261001-credits-day.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261001-credits-night.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261001-day.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261001-night.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261001-writing-day.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261001-writing-night.html",
+        "identity_mode": "existence"
+      },
+      {
         "path": "review/site-v1-preview.html",
         "identity_mode": "existence"
       },
       {
         "path": "review/site-v1-review.json",
         "identity_mode": "content",
-        "sha256": "1ae0ba57c4473432e50234dc7f78e679e5bfda1942ad8e687b34201b816e697a"
+        "sha256": "9a59e16f3e4276eb73692e250ac59e4e1dbdc4ae83bc83815b231523374e94a4"
+      },
+      {
+        "path": "review/site-v1-static-previews.json",
+        "identity_mode": "content",
+        "sha256": "0a4f1acecd783260263a1d03532de1e7b659c3bcdf814a330db67325ac0c4b01"
+      },
+      {
+        "path": "tests/preview.test.cjs",
+        "identity_mode": "existence"
       },
       {
         "path": "tests/test_repository_intelligence.py",
@@ -142,6 +175,10 @@
         "path": "tools/RI-NOTICE.md",
         "identity_mode": "content",
         "sha256": "e512235d9027a6bbfa8fa72743f3a40050aef252f579ec5fb6e825115738b2b6"
+      },
+      {
+        "path": "tools/build_site_previews.cjs",
+        "identity_mode": "existence"
       },
       {
         "path": "tools/repository_intelligence.py",
@@ -345,6 +382,13 @@
     {
       "path": "review/site-v1-review.json",
       "title": "review/site-v1-review.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-v1-static-previews.json",
+      "title": "review/site-v1-static-previews.json",
       "instructions": [
         "AGENTS.md"
       ]

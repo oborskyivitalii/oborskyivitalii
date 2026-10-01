@@ -29,5 +29,12 @@
       "URL and language decisions",
       "Dependency integration, merge and deployed-site checks"
     ]
+  },
+  "review_handoff": {
+    "checked_date": "2026-10-01",
+    "kind": "Six newly named self-contained fixed-theme review copies; public files unchanged",
+    "manifest": "review/site-v1-static-previews.json",
+    "checks": "Three implementer-authored parity/navigation/manifest tests passed; not a new independent confirmation",
+    "visual_review": "Still pending; no browser inspection claimed"
   }
 }

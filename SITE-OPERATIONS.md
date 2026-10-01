@@ -23,6 +23,25 @@ the credits page describes that current state without licensing sibling research
 
 ## Preview
 
+For a file viewer that cannot run JavaScript or keep the public directory together,
+use the review-only fixed-theme copies. They embed the exact public CSS and expose
+Day/Night as ordinary links. Homepage, the complete 23-work archive and credits
+each have a Day and Night copy; local navigation stays inside those six files.
+These copies are not the Auto-mode demonstration, browser QA or deployment.
+The original `review/site-v1-preview.html` remains a JS-enabled homepage preview.
+
+```bash
+node tools/build_site_previews.cjs
+node tools/build_site_previews.cjs --check
+node --test tests/preview.test.cjs
+```
+
+Open `review/site-v1-20261001-day.html` or
+`review/site-v1-20261001-night.html`; the full catalog is
+`review/site-v1-20261001-writing-day.html` (or its `night` counterpart).
+`review/site-v1-static-previews.json` records the exact source/output hashes.
+Keep all six HTML files together for page/theme navigation after downloading.
+
 From the repository root:
 
 ```bash

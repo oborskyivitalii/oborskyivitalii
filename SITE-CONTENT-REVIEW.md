@@ -91,4 +91,23 @@ zones, boundaries, storage failure, manual persistence and returning to the tab.
 - Record maintainer URL/language/editorial/rights choices, merge, enable Pages,
   inspect the live deployed site and record the deployed commit before closing #1.
 
+## Preview handoff correction — 2026-10-01
+
+The maintainer could not see the revised site in the supplied preview. The
+original review file contains only the homepage; its full catalog is a relative
+link and its theme control requires JavaScript. The viewer's actual script/cache
+behavior is not established. Six newly named, review-only copies now provide
+Day/Night for the homepage, complete writing index and credits, with embedded
+public CSS and visible ordinary theme links. Each copy labels its fixed theme;
+it is not an Auto demonstration or a deployed edition. Keep all six files
+together for local navigation, or use the individual direct artifact links.
+
+`tools/build_site_previews.cjs` deterministically exports these copies;
+`review/site-v1-static-previews.json` records exact input/output hashes. Three
+additional implementer-authored tests check public main-content/CSS/external-link
+parity, all six copies' local navigation/fragments and manifest/fail-visible
+behavior. The previous independent confirmation remains limited to its recorded
+candidate. This handoff correction does not modify any public file or claim new
+independent/browser/release acceptance.
+
 See [SITE-OPERATIONS](SITE-OPERATIONS.md) for exact preview/launch/article steps.

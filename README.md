@@ -11,7 +11,11 @@ I write about AI-assisted software delivery and how to design, evaluate, and con
 Contributors and agents: start with [CONTRIBUTING](CONTRIBUTING.md) and [AGENTS](AGENTS.md).
 
 The first site candidate is in [docs/index.html](docs/index.html), with a
-[standalone review preview](review/site-v1-preview.html), a
+[Day review](review/site-v1-20261001-day.html),
+[Night review](review/site-v1-20261001-night.html) and
+[complete writing-index review](review/site-v1-20261001-writing-day.html)
+that do not require JavaScript. The
+[original interactive homepage preview](review/site-v1-preview.html),
 [content/rights review](SITE-CONTENT-REVIEW.md) and
 [claim/publication source audit](SITE-SOURCE-AUDIT.md), plus
 [preview, launch and article instructions](SITE-OPERATIONS.md).
