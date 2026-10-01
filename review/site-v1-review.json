@@ -14,6 +14,20 @@
   "theme_behavior": "six behavioral tests passed; visual inspection pending",
   "source_audit": "SITE-SOURCE-AUDIT.md",
   "independent_review": {
-    "status": "pending for this revised candidate; prior confirmation is historical"
+    "status": "Confirmed for static/content/behavior scope",
+    "reviewer": "/root/independent_workflow_review",
+    "checked_date": "2026-10-01",
+    "reviewed_local_commit": "d73aff423bb7a6521009d3da0117506aaf7f2f20",
+    "reviewed_tree": "55d31302523c0a9d87c6a3743ec6e47ff58cbaae",
+    "equivalent_remote_commit": "9446b6bcc568bef0c4cfa136892624981950f032",
+    "scope": "Full revised diff; six Node and 18 Python tests independently run; original interaction sources and bounded publication metadata; HTML/local navigation; preview parity; six public hashes; CSS fallback/print rules; fresh RI in worktree and ordinary checkout",
+    "source_limits": "Traceability metadata inspected from implementer-supplied cached primary excerpt; later destination not retrievable. Atlassian official indexed edited date independently checked; current discussion reader omits dates.",
+    "remote_ci": "Identical reviewed tree and successful navigation/theme/RI checks on equivalent remote commit separately verified by implementer",
+    "remaining": [
+      "Actual desktop/mobile/print visual review",
+      "Human editorial and rights acceptance",
+      "URL and language decisions",
+      "Dependency integration, merge and deployed-site checks"
+    ]
   }
 }

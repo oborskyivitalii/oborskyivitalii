@@ -72,10 +72,22 @@ zones, boundaries, storage failure, manual persistence and returning to the tab.
   and preview parity. The reviewer found a Git-checkout/worktree RI portability
   defect; the correction was independently **Confirmed** at site policy tree
   `aa586fa407091c93af62213c5881d8286f492fcc` using actual checkouts/worktrees.
-  That confirmation describes the previous first-site candidate. The requested
-  theme/catalog/acknowledgement revision changes public bytes and needs its own
-  independent review; the prior confirmation is not carried forward automatically.
-  Browser/release review remains pending.
+  That confirmation describes the previous first-site candidate.
+- The same independent reviewer separately **Confirmed** the requested
+  theme/catalog/acknowledgement revision at local commit
+  `d73aff423bb7a6521009d3da0117506aaf7f2f20`, tree
+  `55d31302523c0a9d87c6a3743ec6e47ff58cbaae`, on 2026-10-01. The reviewer
+  independently executed six Node behavioral tests and 18 Python tests;
+  inspected the original interaction records, bounded publication metadata,
+  HTML/local navigation, preview parity, all six public hashes, CSS fallback/print
+  rules and RI freshness in worktree and ordinary checkout. The source correction
+  distinguishes cached Traceability metadata from later reader access limits and
+  independently indexed Atlassian edited-date metadata from the current reader.
+  This is static/content/behavior confirmation; actual browser visual review and
+  human editorial/rights/release decisions remain pending. The corresponding
+  remote candidate is `9446b6bcc568bef0c4cfa136892624981950f032`; its identical
+  tree and successful navigation/theme/RI CI were separately checked by the
+  implementer. Subsequent review-record-only commits do not expand this scope.
 - Record maintainer URL/language/editorial/rights choices, merge, enable Pages,
   inspect the live deployed site and record the deployed commit before closing #1.
 

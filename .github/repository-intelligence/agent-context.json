@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "ed5c8dfafa5cd4b9be1de3543de1e3e1821a2531a6e382cf2d6d7ee0820693a7",
+    "digest": "68d3d18253933c7b40c7501ced8eb8bb9634bf038a9d1db2cb4c7d209c51c12c",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -74,7 +74,7 @@
       {
         "path": "SITE-CONTENT-REVIEW.md",
         "identity_mode": "content",
-        "sha256": "2b32079c622a7b94dc6c1fa4519742425d3fd9b5702f7b9da4a9bc3fb0722170"
+        "sha256": "438cf0ba4d9a0298f8c1e9709aa1890bc442231e6b8571b9a66c2353c7e85f63"
       },
       {
         "path": "SITE-OPERATIONS.md",
@@ -122,7 +122,7 @@
       {
         "path": "review/site-v1-review.json",
         "identity_mode": "content",
-        "sha256": "a6d6a3b2df493cfc46e9c45f961937800ba156123b6451bb325c621c680813b5"
+        "sha256": "1ae0ba57c4473432e50234dc7f78e679e5bfda1942ad8e687b34201b816e697a"
       },
       {
         "path": "tests/test_repository_intelligence.py",
