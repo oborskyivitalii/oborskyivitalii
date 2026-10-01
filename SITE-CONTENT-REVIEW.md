@@ -62,7 +62,7 @@ zones, boundaries, storage failure, manual persistence and returning to the tab.
 
 - HTML/local-link/fragment and public-directory checks are recorded in the PR.
 - Original-public pages above were retrieved through public web search; source
-metadata was checked without relying on search snippets as article substance.
+  metadata was checked without relying on search snippets as article substance.
 - Actual browser visual review on desktop/mobile is still pending. The runtime
   has no working local browser binary, and the cloud browser cannot visit local
   HTTP or file URLs. A standalone review preview is supplied outside `docs/`;

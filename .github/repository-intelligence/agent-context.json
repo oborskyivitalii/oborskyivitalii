@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "37b688e8c87f43fb715c0fef20456cbb3ba878f7515a09aea48b87f1d76b29cb",
+    "digest": "ed5c8dfafa5cd4b9be1de3543de1e3e1821a2531a6e382cf2d6d7ee0820693a7",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -74,7 +74,7 @@
       {
         "path": "SITE-CONTENT-REVIEW.md",
         "identity_mode": "content",
-        "sha256": "d22afc4d07138f1719cc3183b36f4e3c3b536536e60c0c981bef72a359621a36"
+        "sha256": "2b32079c622a7b94dc6c1fa4519742425d3fd9b5702f7b9da4a9bc3fb0722170"
       },
       {
         "path": "SITE-OPERATIONS.md",
@@ -89,7 +89,7 @@
       {
         "path": "SITE-SOURCE-AUDIT.md",
         "identity_mode": "content",
-        "sha256": "c035a62f9aa859c3b4e22704625ceb9cb8c300ac9dc831de804f3f4252f55906"
+        "sha256": "1cb384fcffc618b8672b98768726e1258331fa1c19fddb783281ec412e5e8742"
       },
       {
         "path": "docs/.nojekyll",
@@ -122,7 +122,7 @@
       {
         "path": "review/site-v1-review.json",
         "identity_mode": "content",
-        "sha256": "4c425743180313b4e791bdc351a03b8586e5b15d8b08bff561986c7a2ebca4ed"
+        "sha256": "a6d6a3b2df493cfc46e9c45f961937800ba156123b6451bb325c621c680813b5"
       },
       {
         "path": "tests/test_repository_intelligence.py",
