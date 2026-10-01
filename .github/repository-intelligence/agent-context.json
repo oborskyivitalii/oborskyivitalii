@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "0abbd9a27bc234b438b64b275d89b3fefef01e62f153342d8c93c4b6b117eaa2",
+    "digest": "e37291454d139f92e1d8047b4b36a12511d11ddeb5678992c73ff106d48dd04b",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -79,7 +79,7 @@
       {
         "path": "tests/test_repository_intelligence.py",
         "identity_mode": "content",
-        "sha256": "40212d2afd569554b645f4f5eeedacc27a6ab354eb313157d3d74f6763de1cd5"
+        "sha256": "6e7fb7644655a7d7f77a91914dbdb3f6113e6cca5cceb3687e4a586135e77cd1"
       },
       {
         "path": "tools/RI-LICENSE.md",
@@ -94,13 +94,13 @@
       {
         "path": "tools/repository_intelligence.py",
         "identity_mode": "content",
-        "sha256": "7905f08fd44b7cf8708f68df609d820f1c12536672bdfe0d5bbe59d1e76865a0"
+        "sha256": "d9cc389b40586783ee1632adbffb2cca62a262a8c89b4bb7b504c47d7822637e"
       }
     ]
   },
   "producer": {
     "path": "tools/repository_intelligence.py",
-    "sha256": "7905f08fd44b7cf8708f68df609d820f1c12536672bdfe0d5bbe59d1e76865a0",
+    "sha256": "d9cc389b40586783ee1632adbffb2cca62a262a8c89b4bb7b504c47d7822637e",
     "config_path": ".github/repository-intelligence-config.json",
     "config_sha256": "af19127170a64e41ff0f2c2127424c7a77c66b28c979d0f9d1a3595be2f41d6c"
   },
