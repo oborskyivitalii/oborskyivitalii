@@ -26,8 +26,8 @@ Status is `planned`, `active`, `blocked`, or `done`. A milestone is `done` only 
 
 | ID | Deliverable | Status | Acceptance evidence |
 | --- | --- | --- | --- |
-| M0 | Choose URL/language and approve first-version scope | planned | Decisions recorded; no draft mistaken for a public edition |
-| M1 | Minimal personal site: about, two research strands/projects, topical publication/talk index | planned | Real Pages preview inspected on desktop/mobile; verified links and factual copy; no unreviewed social-proof claims |
+| M0 | Choose URL/language and approve first-version scope | active | Questions recorded in #1/#8; English/current project path remain provisional preview assumptions |
+| M1 | Minimal personal site: about, two research strands/projects, topical publication/talk index | active | [Static candidate](docs/index.html) and [standalone preview](review/site-v1-preview.html) prepared; [source/rights review](SITE-CONTENT-REVIEW.md) records checks and remaining visual/release decisions. Not deployed. |
 | M2 | First new publication: PMDay explanatory article and versioned slide/PDF page | planned | Article and exact deck edition reviewed; exported PDF inspected; sources, rights, and two project links checked; explicit publication decision |
 | M3 | Lean Markdown → HTML/PDF publishing path for this site | planned | Reuses or pins reviewed components without copying UA's whole framework/CI; staging, draft isolation, source identity, rejection-path tests and visual PDF review demonstrated |
 | M4 | Finish Subprime's existing article/PDF adaptation in its own PR | planned | Review [Subprime #46](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis/pull/46) at its live head; test required figures/assets and real outputs, retain its source/review governance; separate decision on merge |

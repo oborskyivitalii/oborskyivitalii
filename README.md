@@ -10,4 +10,9 @@ I write about AI-assisted software delivery and how to design, evaluate, and con
 
 Contributors and agents: start with [CONTRIBUTING](CONTRIBUTING.md) and [AGENTS](AGENTS.md).
 
-This repository currently hosts my GitHub profile README and the site plan. The personal website is not yet published. Current work is tracked in [Issues](https://github.com/oborskyivitalii/oborskyivitalii/issues).
+The first site candidate is in [docs/index.html](docs/index.html), with a
+[standalone review preview](review/site-v1-preview.html), a
+[content/rights review](SITE-CONTENT-REVIEW.md) and
+[preview, launch and article instructions](SITE-OPERATIONS.md).
+The personal website is not yet published. Current work is tracked in
+[Issues](https://github.com/oborskyivitalii/oborskyivitalii/issues).

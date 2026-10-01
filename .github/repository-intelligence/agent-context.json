@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "e37291454d139f92e1d8047b4b36a12511d11ddeb5678992c73ff106d48dd04b",
+    "digest": "5f1cd7fc046e1bb206010c395dc061b2ea408dad7796fe115dac246c14d3bba7",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -64,7 +64,7 @@
       {
         "path": "README.md",
         "identity_mode": "content",
-        "sha256": "65f9bd0ba252c9a9982fbf7bef551122c6985a5891fd24f6a16a02f6531eb9fa"
+        "sha256": "0339a3ef8287399acd0ead82cbe0cc1e9f5d94895e88bb82e5bcbab44ba9d14a"
       },
       {
         "path": "REPOSITORIES.md",
@@ -72,9 +72,44 @@
         "sha256": "3378a096e6fb8857424037323a5d80d1231471a6fb98a5362a7b3401d3af340a"
       },
       {
+        "path": "SITE-CONTENT-REVIEW.md",
+        "identity_mode": "content",
+        "sha256": "1948ff6cd63614d0a9e75ccc168a4aa78c17a8e514d00f60556e685c6bba3891"
+      },
+      {
+        "path": "SITE-OPERATIONS.md",
+        "identity_mode": "content",
+        "sha256": "5618a23cfb3ce098e5bffa3ae01650c60fd11eadbdfce78b09b0c7dbbb03f055"
+      },
+      {
         "path": "SITE-ROADMAP.md",
         "identity_mode": "content",
-        "sha256": "eb926ade5d2ab1e0a5f6a4a83ae2e00cbc8a1ab97e453a5d7160de79b82f71db"
+        "sha256": "2bbbf87c9278b3223ff2cd1866fe4877134964d3928a2c182e17770fb3bec14e"
+      },
+      {
+        "path": "docs/.nojekyll",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "docs/credits.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "docs/index.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "docs/styles.css",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-preview.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-review.json",
+        "identity_mode": "content",
+        "sha256": "02cc493f12cb100955ff0f6ad8d34f0b3aed5a4a00068ad6e693bd2ab1629183"
       },
       {
         "path": "tests/test_repository_intelligence.py",
@@ -263,8 +298,29 @@
       ]
     },
     {
+      "path": "SITE-CONTENT-REVIEW.md",
+      "title": "Site v1 content and release review",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "SITE-OPERATIONS.md",
+      "title": "First site: preview, launch and the next publication",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "SITE-ROADMAP.md",
       "title": "Vitalii Oborskyi — site and publishing roadmap",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-v1-review.json",
+      "title": "review/site-v1-review.json",
       "instructions": [
         "AGENTS.md"
       ]
