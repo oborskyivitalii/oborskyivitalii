@@ -6,6 +6,7 @@ const path = require("node:path");
 const { buildPreviews, renderPage, filename, digest } = require("../tools/build_site_previews.cjs");
 const root = path.resolve(__dirname, "..");
 const css = fs.readFileSync(path.join(root, "docs/styles.css"), "utf8");
+const portrait = fs.readFileSync(path.join(root, "docs/assets/vitalii-oborskyi.jpg"));
 const files = buildPreviews();
 const htmlFiles = Object.keys(files).filter((file) => file.endsWith(".html"));
 
@@ -17,7 +18,9 @@ test("six fixed-theme copies preserve actual main content, CSS and external sour
       const html = files[`review/${filename(page, theme)}`];
       assert.ok(html.includes(`<html lang="en" data-theme="${theme}">`));
       assert.ok(html.includes(`<style>\n${css}</style>`));
-      assert.doesNotMatch(html, /<script\b|<link\b[^>]*stylesheet|<select\b|class="theme-control" hidden/);
+      const executableCheck = html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g, "");
+      assert.doesNotMatch(executableCheck, /<script\b|<link\b[^>]*stylesheet|<select\b|class="theme-control" hidden/);
+      assert.ok(html.includes('<meta name="robots" content="noindex, nofollow">'));
       assert.ok(html.includes('aria-label="Review theme"'));
       assert.ok(html.includes('aria-current="page"'));
       const main = (text) => text.match(/<main\b[\s\S]*?<\/main>/)[0];
@@ -28,7 +31,9 @@ test("six fixed-theme copies preserve actual main content, CSS and external sour
         }
         return attribute;
       });
-      assert.equal(restoreLinks(main(html)), main(source));
+      const restored = restoreLinks(main(html)).replace(`src="data:image/jpeg;base64,${portrait.toString("base64")}"`, 'src="assets/vitalii-oborskyi.jpg"');
+      assert.equal(restored, main(source));
+      if (page === "index") assert.ok(html.includes(`src="data:image/jpeg;base64,${portrait.toString("base64")}"`));
       const external = (text) => [...text.matchAll(/href="(https:\/\/[^"]+)"/g)].map((match) => match[1]);
       assert.deepEqual(external(html), external(source));
       const count = [...html.matchAll(/class="publication-title"/g)].length;
@@ -53,8 +58,8 @@ test("every local preview link and fragment resolves within the six-page handoff
 });
 
 test("manifest records exact inputs/outputs and unknown source shapes fail visibly", () => {
-  const manifest = JSON.parse(files["review/site-v1-static-previews.json"]);
-  assert.equal(Object.keys(manifest.sources).length, 4);
+  const manifest = JSON.parse(files["review/site-v1-static-previews-v2.json"]);
+  assert.equal(Object.keys(manifest.sources).length, 5);
   assert.equal(Object.keys(manifest.files).length, 6);
   for (const [file, hash] of Object.entries(manifest.sources)) assert.equal(digest(fs.readFileSync(path.join(root, file))), hash);
   for (const [file, hash] of Object.entries(manifest.files)) assert.equal(digest(files[file]), hash);

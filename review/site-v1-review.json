@@ -4,16 +4,35 @@
   "visual_review": "pending: browser unavailable for local preview",
   "files": {
     "docs/.nojekyll": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
-    "docs/credits.html": "7e33c0212a9fbd33c02a8ab8dd71c6189c22561e1f85ccc2e885931324ae86c9",
-    "docs/index.html": "3b631a02324b75af3d4ca81cd9609fc3102d44ddef6358120f1b137530d95e60",
-    "docs/styles.css": "78081645be2d8ee081a50af62d438d6b541068a7361dd9b28d58ebeac809bba8",
+    "docs/assets/vitalii-oborskyi.jpg": "5321e48f08b075cb1cbd522d0f36bc01276aece65d1a04cf09102aa5dd2b59bc",
+    "docs/credits.html": "6944438f6ebe83f8a49deb4095135659d068d52cbef89fb6f07756199029767d",
+    "docs/index.html": "b27d121c0acb57efdd97203c8dffdfe6bcf5d50bfd07dc0fad327936f057cbfd",
+    "docs/styles.css": "57dafa9f08574a15205eecfd9ed88932e7fc1f9900c0935d1271bfd78a4a7acf",
     "docs/theme.js": "d88a5127094b2d4c129de190ed10bd71e2c35cc85052a747411e7fa8d50d01dd",
-    "docs/writing.html": "431bbc2fa49c19befad37185b6f7aca670757d170b877780a509680d12ab221f"
+    "docs/writing.html": "ea274d1149f13b52ca0166956d5ddbc5b5caaa891a1ed62e594737861386bdc2"
   },
   "structural_checks": "passed",
   "theme_behavior": "six behavioral tests passed; visual inspection pending",
   "source_audit": "SITE-SOURCE-AUDIT.md",
   "independent_review": {
+    "status": "pending for current portrait/language/SEO edition",
+    "previous_scope": "Previous confirmation above is historical; public bytes changed",
+    "remaining": [
+      "Fresh independent/editorial review",
+      "Actual desktop/mobile/print visual review",
+      "Human portrait and publication rights acceptance",
+      "Stable URL decision",
+      "Dependency integration, merge and deployed-site checks"
+    ]
+  },
+  "review_handoff": {
+    "checked_date": "2026-10-01",
+    "kind": "v2 fixed Day/Night copies with exact CSS, portrait and non-executable metadata; earlier previews historical",
+    "manifest": "review/site-v1-static-previews-v2.json",
+    "checks": "Three preview and four content tests passed; not independent confirmation",
+    "visual_review": "Pending; no browser inspection claimed"
+  },
+  "previous_independent_review": {
     "status": "Confirmed for static/content/behavior scope",
     "reviewer": "/root/independent_workflow_review",
     "checked_date": "2026-10-01",
@@ -26,15 +45,22 @@
     "remaining": [
       "Actual desktop/mobile/print visual review",
       "Human editorial and rights acceptance",
-      "URL and language decisions",
+      "Historical: URL/language decisions were open at that review; English is now confirmed",
       "Dependency integration, merge and deployed-site checks"
     ]
   },
-  "review_handoff": {
-    "checked_date": "2026-10-01",
-    "kind": "Six newly named self-contained fixed-theme review copies; public files unchanged",
-    "manifest": "review/site-v1-static-previews.json",
-    "checks": "Three implementer-authored parity/navigation/manifest tests passed; not a new independent confirmation",
-    "visual_review": "Still pending; no browser inspection claimed"
+  "current_checks": {
+    "node_tests": 13,
+    "python_tests": 18,
+    "preview_export": "fresh v2 manifest; five source inputs and six fixed-theme review pages",
+    "content": "English interface; 20 English and 3 Ukrainian editions; seven public files; portrait and metadata checks passed",
+    "machine_languages": [
+      "en",
+      "uk"
+    ],
+    "visible_language_labels": [
+      "EN",
+      "UA"
+    ]
   }
 }

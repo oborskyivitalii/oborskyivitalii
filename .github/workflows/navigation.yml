@@ -24,7 +24,7 @@ jobs:
         run: node --test tests/theme.test.cjs
       - name: Check self-contained review handoff
         run: |
-          node --test tests/preview.test.cjs
+          node --test tests/preview.test.cjs tests/content.test.cjs
           node tools/build_site_previews.cjs --check
       - name: Verify current-source context
         run: python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify

@@ -6,7 +6,7 @@ Checked 2026-10-01. Owning intent: [launch #1](https://github.com/oborskyivitali
 
 The maintainer requested two themes and a review of [Public Profile & Achievements](https://medium.com/@undersmoker/public-profile-achievements-vitalii-oborskyi-7c2f4ec34e7e), including older articles and exact links for interaction claims. The profile and UA's [external-recognition ledger](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/main/content/history/external-recognition.md) / [talks history](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/main/content/history/talks.md) are discovery inputs. Original public pages/comments establish bounded wording. Personal metrics, screenshots, private exchanges and stronger promotional interpretations are not independent proof.
 
-Only factual publication metadata, links and short bounded acknowledgements are added. No article text, figures, logos, portraits, recording, PDF or slide asset is imported. Existing UA/Subprime definitions, research/source states and upstream published content are not edited. Original titles can express historical article theses; the site index does not restate those as universal verified findings.
+The original catalog revision added only factual publication metadata, links and short bounded acknowledgements. The later portrait/English/SEO iteration below additionally uses the explicitly supplied author photo and self-reported career context. No external article body, figure, logo, recording, PDF or slide asset is imported. Existing UA/Subprime definitions, research/source states and upstream published content are not edited. Original titles can express historical article theses; the site index does not restate those as universal verified findings.
 
 ## Interaction claims and exact evidence
 
@@ -62,4 +62,25 @@ All works are by Vitalii Oborskyi; bylines and source dates were inspected. The 
 
 ## Acceptance and limits
 
-This audit implements the maintainer's explicitly requested verified-link/attribution treatment; it does not propose changes to UA/Subprime framework meaning. Source discovery corrections are routed to the owning UA provenance follow-up issue rather than silently rewriting its ledger here. The site issue remains the task/decision entry point. Browser visual inspection, human editorial/rights acceptance and URL/language/deployment decisions remain required for actual release. Independent review of the changed candidate is recorded separately after review, not self-confirmed here.
+This audit implements the maintainer's explicitly requested verified-link/attribution treatment; it does not propose changes to UA/Subprime framework meaning. Source discovery corrections are routed to the owning UA provenance follow-up issue rather than silently rewriting its ledger here. The site issue remains the task/decision entry point. English is now confirmed; browser visual inspection, human editorial/rights acceptance and URL/deployment decisions remain required for actual release. Independent review of the changed candidate is recorded separately after review, not self-confirmed here.
+
+## Portrait, English interface and SEO follow-up — 2026-10-01
+
+The maintainer explicitly requested the supplied portrait, a richer bounded bio,
+English UI, language-separated materials and keyword optimization. The same
+request authorizes removing overclaim from a proposed Medium revision, not
+deleting or publishing changes to the live Medium profile. Original intent and
+the proposed source treatment were appended to #1/#7/#8 before implementation.
+
+| Input | Checked treatment | Limits / owner |
+| --- | --- | --- |
+| Supplied `IMG_0431.jpeg` | Exact 100,768-byte JPEG, 960×887; no pixel editing or retouching. Local image dimensions/alt and fluid sizing; same bytes embedded in v2 review copies. Metadata inspection found no GPS tags. | User requested use, but photographer rights/general reuse are not independently established. Human asset/rights acceptance remains #7; this does not grant visitors a reuse license. |
+| Public Medium career profile | Qualitative first-person 20+ years in IT, QA/project-management/PMO/delivery progression and practical resource/risk/organizational work. | Self-reported context, not independent employment verification. No current employer/title, portfolio counts, traffic/upvote figures or quantified impact imported. |
+| UA living vocabulary | Root AGENTS and relevant specification/glossary/control-plane owners inspected read-only at live main `345c8f50745e5fde1303d0d7952634f7899220c9`. Short explanations link to those owners. | No new definition, term-coinage claim, adoption evidence or certification. Thinking System is an engineering category, not a control/maturity guarantee; AI Control Plane need not be a central service. |
+| Publication languages | 20 English and 3 Ukrainian original articles; visible EN/UA labels, machine `en`/`uk`, Ukrainian text language markup. Titles/dates/URLs preserved, including the separate LinkedIn edition and edited-date distinction. | Catalog groups are not translated equivalent pages; no fabricated hreflang. |
+| Talk languages | PMDay grouped as Ukrainian. Corning and Betelgeuse retained as other talks with explicit unconfirmed language. | The language of a post/title or the speaker's fluency is not evidence of spoken event language. Maintainer confirmation may resolve these later. |
+| Keywords and page metadata | Natural visible topic copy and links, unique titles/descriptions, author/page/article-list JSON-LD, image alt/dimensions; [keyword map](SITE-SEO.md) names existing owners and release-dependent follow-up. | No search-volume/ranking claim, hidden keyword list or provisional absolute site identity. Draft status is not indexing. |
+| Medium overclaim | [Complete replacement draft](drafts/medium-profile-revision-20261001.html) narrows all seven interactions to their public action, removes unsupported metrics/validation/adoption claims and keeps bounded career context. | Live Medium is unchanged. No private messages, advisor role, corporate endorsement, formal Team Topologies integration or measured Corning/Risch adoption asserted. |
+
+The new public edition needs fresh review; the previous independent outcome is
+retained as historical evidence rather than being promoted to these changed bytes.

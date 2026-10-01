@@ -12,9 +12,10 @@ three public talk/workshop records, seven bounded acknowledgements and
 reuse/correction information. It does not depend on full Quartz/PDF migration.
 The new PMDay article and slide/PDF edition remain #2, outside the public directory.
 
-English and the existing project Pages path are provisional preview assumptions.
-The questions have no recorded answer. Public-release URL/language and
-editorial/rights decisions remain in #1/#8/#7.
+The maintainer confirmed English UI on 2026-10-01. The permanent Pages path is
+still undecided. Public-release URL and editorial/rights decisions remain in
+#1/#8/#7. The current candidate additionally includes the supplied portrait,
+bounded career context, EN/UA edition groups and search/topic metadata.
 
 ## Source and rights inventory
 
@@ -24,9 +25,10 @@ including platform-specific dates, weaker/private evidence and discovery-link
 corrections. The original six-entry baseline below remains historical review
 evidence, not the complete current catalog.
 
-Only titles, dates, format/language metadata and links are indexed. No external
-article bodies, figures, logos, portraits, slides, PDFs, web fonts or private
-correspondence are imported.
+Only titles, dates, format/language metadata and links are indexed from external
+publications. The portrait is the maintainer's supplied photo, not an imported
+platform asset. No external article body, figure, logo, slide, PDF, web font or
+private correspondence is imported.
 
 | Public item | Original record | Checked treatment |
 | --- | --- | --- |
@@ -40,10 +42,11 @@ correspondence are imported.
 | Markus Kopko | [Original public post](https://www.linkedin.com/posts/markuskleinpmp_uncertainty-architecture-why-ai-governance-activity-7462053122773827584-mKwf) | Describes the public CPMAI/control-theory mapping; does not claim PMI endorsement, certification or validation of all UA claims. |
 | Arkadiy Dobkin | [Public UA provenance note](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/main/content/research/notes/thinking-systems-formulation-provenance-arkadiy-dobkin.md) | First-person credit for formulation, explicitly grounded in maintainer-attested provenance. Not independent proof of coinage, co-authorship, validation or EPAM endorsement. No private exchange quoted. |
 
-The homepage bio is deliberately limited to the maintainer's public work areas.
-It does not introduce current employer, portfolio size, client names or private
-career/communication details. Recent publications lacking a verified original
-edition URL in this pass are not fabricated into the selected index.
+The homepage bio adds qualitative self-reported career context from the public
+profile: more than 20 years in IT, quality engineering, project management,
+PMO/delivery and resource/risk/organizational work. It does not introduce current
+employer, portfolio size, client names, quantified results or private
+career/communication details. No unverified edition URL is fabricated.
 
 The credits page reflects the absence of a site-wide license decision. The
 Apache-2.0 notice for the separate RI tooling does not license the site or its
@@ -88,7 +91,10 @@ zones, boundaries, storage failure, manual persistence and returning to the tab.
   remote candidate is `9446b6bcc568bef0c4cfa136892624981950f032`; its identical
   tree and successful navigation/theme/RI CI were separately checked by the
   implementer. Subsequent review-record-only commits do not expand this scope.
-- Record maintainer URL/language/editorial/rights choices, merge, enable Pages,
+- The portrait/English/SEO revision changes the public bytes. Both independent
+  confirmations above are historical and do not confirm this edition. Fresh
+  independent/editorial/rights acceptance is not claimed by implementer tests.
+- Record maintainer URL/editorial/rights choices, merge, enable Pages,
   inspect the live deployed site and record the deployed commit before closing #1.
 
 ## Preview handoff correction — 2026-10-01
@@ -111,3 +117,33 @@ candidate. This handoff correction does not modify any public file or claim new
 independent/browser/release acceptance.
 
 See [SITE-OPERATIONS](SITE-OPERATIONS.md) for exact preview/launch/article steps.
+
+## Current portrait/language/SEO edition — 2026-10-01
+
+Current review files are the six `site-v1-20261001-v2-*.html` copies, exported by
+the same bounded helper with `review/site-v1-static-previews-v2.json`. They embed
+the exact current CSS and, on the homepage, the unretouched supplied JPEG. Earlier
+previews/manifests remain historical. Review copies have no executable theme
+script and use fixed Day/Night links; non-executable JSON-LD metadata is retained.
+They are marked noindex and stay outside `docs/`.
+
+English is an explicit maintainer decision, not an assumption. EN/UA visible
+labels separate 20 English and 3 Ukrainian article editions; machine codes are
+`en`/`uk`. PMDay is Ukrainian; Corning and Betelgeuse spoken languages remain
+unconfirmed. Original titles, platform dates and URLs are preserved. Article-list
+schema uses Atlassian's edited date only as `dateModified`.
+
+[SITE-SEO](SITE-SEO.md) maps the actual vocabulary to visible content/owners and
+records the implemented metadata, author identity, topics and deferred
+URL-dependent canonical/social-image/sitemap work. It promises no ranking or
+indexing outcome. The [complete Medium replacement](drafts/medium-profile-revision-20261001.html)
+is a review draft outside the public directory; Medium itself was not edited or
+deleted. It removes stronger validation/adoption interpretations and unsupported
+metrics rather than just amending the profile's introductory paragraph.
+
+Implementer checks: six theme tests, three handoff tests, four public-content/
+metadata/language/asset tests and 18 Python tests. Preview hashes, local resource
+targets and draft isolation are checked. These are not desktop/mobile/print
+browser inspection or human asset-rights acceptance. The current public manifest
+has seven files including the 100,768-byte portrait. Fresh review, stable URL,
+rights/editorial decision, integration/merge and actual deployment remain open.

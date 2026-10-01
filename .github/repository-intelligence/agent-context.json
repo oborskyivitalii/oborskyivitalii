@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "1f0b2188962f4bc7b16d91893846aa66918bd2fbfc30544d2dc0b6184a790d5c",
+    "digest": "ca1dc96fbb0560bdb4ae4dd22f9fdb6dd24b139a18a87a7cd67b3a4031986e5f",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -39,12 +39,12 @@
       {
         "path": ".github/repository-intelligence-config.json",
         "identity_mode": "content",
-        "sha256": "af19127170a64e41ff0f2c2127424c7a77c66b28c979d0f9d1a3595be2f41d6c"
+        "sha256": "74d88bb9c3ffd39a26b1dc2de0e0d8695350c3915714f96ae6bf69d02c14a405"
       },
       {
         "path": ".github/workflows/navigation.yml",
         "identity_mode": "content",
-        "sha256": "8fbc5110f16bab0e48decf1f69277cc2047318b9862b31d3cec0bcd8a4ab8fbf"
+        "sha256": "b5691a78472811ec67e5f4962cfa7d3788c4c6732425b11013e4115a07c5999a"
       },
       {
         "path": "AGENTS.md",
@@ -64,7 +64,7 @@
       {
         "path": "README.md",
         "identity_mode": "content",
-        "sha256": "36e73961b5d0f18b9dd9f2569f332c0ee3b8bd6fab1ac70da9f3e55e1af1f1c2"
+        "sha256": "933582cb5a37e5fad33511f4abf5dfcabd5300a3cbeb9b1d34f948ba2934b947"
       },
       {
         "path": "REPOSITORIES.md",
@@ -74,25 +74,34 @@
       {
         "path": "SITE-CONTENT-REVIEW.md",
         "identity_mode": "content",
-        "sha256": "97134a2d975d04ded29ccc0d5600ab45155e57311b3136eb80a708652dfa635f"
+        "sha256": "811767ad54d650c409d4efd865e0719ba6edec3d91897c9286743629975ab71a"
       },
       {
         "path": "SITE-OPERATIONS.md",
         "identity_mode": "content",
-        "sha256": "d6c52152ef59c5e38ec242606916f8ba467f1d93b5577fcbf85a8cc5d0472426"
+        "sha256": "3c0a4e07cba9dec5755e64a73eec786717d6da4bfa862724579bc24ba174b2ca"
       },
       {
         "path": "SITE-ROADMAP.md",
         "identity_mode": "content",
-        "sha256": "ce4b75a9240d4aec7e637441b94853959459dbc7690594c5590fa2dfdaee12be"
+        "sha256": "09d780cd835459b25533c0c806bb389fa25902a7818b0c9f269c662ed89c5dbf"
+      },
+      {
+        "path": "SITE-SEO.md",
+        "identity_mode": "content",
+        "sha256": "67bdc42d0936b24b57cf35d1544cea57fa0c8ed785dc3fac1c0067dcdb2398b4"
       },
       {
         "path": "SITE-SOURCE-AUDIT.md",
         "identity_mode": "content",
-        "sha256": "1cb384fcffc618b8672b98768726e1258331fa1c19fddb783281ec412e5e8742"
+        "sha256": "e561ecae92c4df8ec61db30f40c28e222a8e5e7999fa91feb6de64fc80fbb348"
       },
       {
         "path": "docs/.nojekyll",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "docs/assets/vitalii-oborskyi.jpg",
         "identity_mode": "existence"
       },
       {
@@ -116,6 +125,10 @@
         "identity_mode": "existence"
       },
       {
+        "path": "drafts/medium-profile-revision-20261001.html",
+        "identity_mode": "existence"
+      },
+      {
         "path": "review/site-v1-20261001-credits-day.html",
         "identity_mode": "existence"
       },
@@ -129,6 +142,30 @@
       },
       {
         "path": "review/site-v1-20261001-night.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261001-v2-credits-day.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261001-v2-credits-night.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261001-v2-day.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261001-v2-night.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261001-v2-writing-day.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261001-v2-writing-night.html",
         "identity_mode": "existence"
       },
       {
@@ -146,12 +183,21 @@
       {
         "path": "review/site-v1-review.json",
         "identity_mode": "content",
-        "sha256": "9a59e16f3e4276eb73692e250ac59e4e1dbdc4ae83bc83815b231523374e94a4"
+        "sha256": "53dd336b804b8abd44d23df74b7caaff3b0c43989bae780d36728c00a2061462"
+      },
+      {
+        "path": "review/site-v1-static-previews-v2.json",
+        "identity_mode": "content",
+        "sha256": "5aa5eb6e85ceb2c2e645325bc1e26cc0e6e809e25e594c186cf139da363a91d5"
       },
       {
         "path": "review/site-v1-static-previews.json",
         "identity_mode": "content",
         "sha256": "0a4f1acecd783260263a1d03532de1e7b659c3bcdf814a330db67325ac0c4b01"
+      },
+      {
+        "path": "tests/content.test.cjs",
+        "identity_mode": "existence"
       },
       {
         "path": "tests/preview.test.cjs",
@@ -191,9 +237,20 @@
     "path": "tools/repository_intelligence.py",
     "sha256": "d9cc389b40586783ee1632adbffb2cca62a262a8c89b4bb7b504c47d7822637e",
     "config_path": ".github/repository-intelligence-config.json",
-    "config_sha256": "af19127170a64e41ff0f2c2127424c7a77c66b28c979d0f9d1a3595be2f41d6c"
+    "config_sha256": "74d88bb9c3ffd39a26b1dc2de0e0d8695350c3915714f96ae6bf69d02c14a405"
   },
   "owners": [
+    {
+      "concern": "search discoverability and topic map",
+      "path": "SITE-SEO.md",
+      "queries": [
+        "SEO",
+        "keywords",
+        "search visibility",
+        "ключові слова",
+        "оптимізація сайту"
+      ]
+    },
     {
       "concern": "agent operation",
       "path": "AGENTS.md",
@@ -373,6 +430,13 @@
       ]
     },
     {
+      "path": "SITE-SEO.md",
+      "title": "Search discoverability and topic map",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "SITE-SOURCE-AUDIT.md",
       "title": "Source audit for the first-site revision",
       "instructions": [
@@ -382,6 +446,13 @@
     {
       "path": "review/site-v1-review.json",
       "title": "review/site-v1-review.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-v1-static-previews-v2.json",
+      "title": "review/site-v1-static-previews-v2.json",
       "instructions": [
         "AGENTS.md"
       ]

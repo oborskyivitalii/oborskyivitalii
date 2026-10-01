@@ -11,13 +11,16 @@ I write about AI-assisted software delivery and how to design, evaluate, and con
 Contributors and agents: start with [CONTRIBUTING](CONTRIBUTING.md) and [AGENTS](AGENTS.md).
 
 The first site candidate is in [docs/index.html](docs/index.html), with a
-[Day review](review/site-v1-20261001-day.html),
-[Night review](review/site-v1-20261001-night.html) and
-[complete writing-index review](review/site-v1-20261001-writing-day.html)
-that do not require JavaScript. The
-[original interactive homepage preview](review/site-v1-preview.html),
+[Day review with portrait](review/site-v1-20261001-v2-day.html),
+[Night review with portrait](review/site-v1-20261001-v2-night.html) and
+[complete writing-index review](review/site-v1-20261001-v2-writing-day.html)
+that do not require JavaScript. See the
 [content/rights review](SITE-CONTENT-REVIEW.md) and
 [claim/publication source audit](SITE-SOURCE-AUDIT.md), plus
-[preview, launch and article instructions](SITE-OPERATIONS.md).
+[preview, launch and article instructions](SITE-OPERATIONS.md),
+[keyword/content map](SITE-SEO.md) and
+[Medium profile replacement draft](drafts/medium-profile-revision-20261001.html).
+The English interface labels original English/Ukrainian editions EN/UA; earlier
+preview files are historical, not the current portrait/SEO revision.
 The personal website is not yet published. Current work is tracked in
 [Issues](https://github.com/oborskyivitalii/oborskyivitalii/issues).

@@ -18,6 +18,11 @@
   ],
   "owners": [
     {
+      "concern": "search discoverability and topic map",
+      "path": "SITE-SEO.md",
+      "queries": ["SEO", "keywords", "search visibility", "ключові слова", "оптимізація сайту"]
+    },
+    {
       "concern": "agent operation",
       "path": "AGENTS.md",
       "queries": [

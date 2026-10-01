@@ -18,7 +18,8 @@ The initial two research strands are **how AI changes software delivery** (gener
 
 - [x] Confirmed on 2026-10-01: the personal GitHub App installation includes this public repository. Before this roadmap, it contained only the default profile `README.md`; it had no site, `AGENTS.md`, license or enabled Pages site. This roadmap is the first project document, not a deployed website.
 - [ ] Choose the permanent Pages URL **before** deployment or sharing stable public links; a reversible local preview may proceed while this choice is open. Current `oborskyivitalii/oborskyivitalii` is the special profile-README repository. If kept as the site repository, its default project-site URL will be `https://oborskyivitalii.github.io/oborskyivitalii/` once Pages is configured. Renaming it to `oborskyivitalii.github.io` enables the shorter user-site URL `https://oborskyivitalii.github.io/`, but its README would no longer be the special GitHub-profile README. Recommendation: rename before the site build if the short URL matters more; the maintainer makes this choice. No rename is performed by this plan.
-- [ ] Select the site's primary language and whether a Ukrainian PMDay article has a separate English edition. Do not invent or machine-publish a translation.
+- [x] Primary interface language: English, explicitly requested by the maintainer on 2026-10-01. Original English/Ukrainian editions are separately labelled EN/UA (`en`/`uk` in machine metadata).
+- [ ] Decide whether the future Ukrainian PMDay article has a separate English edition. Do not invent or machine-publish a translation; two other talk languages remain unconfirmed.
 
 ## Milestones
 
@@ -27,7 +28,7 @@ Status is `planned`, `active`, `blocked`, or `done`. A milestone is `done` only 
 | ID | Deliverable | Status | Acceptance evidence |
 | --- | --- | --- | --- |
 | M0 | Choose URL/language and approve first-version scope | active | Questions recorded in #1/#8; English/current project path remain provisional preview assumptions |
-| M1 | Minimal personal site: about, two research strands/projects, topical publication/talk index | active | [Static candidate](docs/index.html) and [standalone preview](review/site-v1-preview.html) prepared; [source/rights review](SITE-CONTENT-REVIEW.md) records checks and remaining visual/release decisions. Not deployed. |
+| M1 | Minimal personal site: about, two research strands/projects, topical publication/talk index | active | [Static candidate](docs/index.html) and [current portrait-inclusive preview](review/site-v1-20261001-v2-day.html) prepared; [source/rights review](SITE-CONTENT-REVIEW.md) records checks and remaining visual/release decisions. Not deployed. |
 | M2 | First new publication: PMDay explanatory article and versioned slide/PDF page | planned | Article and exact deck edition reviewed; exported PDF inspected; sources, rights, and two project links checked; explicit publication decision |
 | M3 | Lean Markdown → HTML/PDF publishing path for this site | planned | Reuses or pins reviewed components without copying UA's whole framework/CI; staging, draft isolation, source identity, rejection-path tests and visual PDF review demonstrated |
 | M4 | Finish Subprime's existing article/PDF adaptation in its own PR | planned | Review [Subprime #46](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis/pull/46) at its live head; test required figures/assets and real outputs, retain its source/review governance; separate decision on merge |
@@ -40,7 +41,7 @@ M1's reversible preview can start while M0 choices are open; public links and de
 
 The maintainer's current priority is **first useful public site, then the new PMDay article**. Start with [launch #1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1): a small static homepage, two research routes, selected existing public editions and precise acknowledgements. Inspect desktop/mobile output and rights, record URL/language, then merge and deploy. Proceed to [PMDay #2](https://github.com/oborskyivitalii/oborskyivitalii/issues/2): blueprint, manuscript, chosen slide/PDF edition, review and publication. Quartz/PDF migration #5, full harness #6 and Subprime #48 continue separately.
 
-The first preview assumes English and the current repository's project Pages path. These are provisional implementation assumptions because the URL/language questions have no recorded answer. No rename, permanent URL decision, site-wide license decision or public release is inferred from the preview.
+English is now confirmed by the maintainer; the current repository's project Pages path remains provisional. No rename, permanent URL decision, site-wide license decision or public release is inferred from the preview.
 
 ## Work tracking and original intent
 
@@ -56,7 +57,7 @@ Issues #1–#8 now cover launch, PMDay, workflow, RI, publishing migration, cros
 
 ### M1 — credible first site
 
-Create a short, evidence-checked bio and clear routes to UA, Subprime, articles, and talks. Catalog items by topic and format with title, publication date, status and **actual** published URL; drafts are not publications. Prefer an English first-version site for a broad professional audience only if approved under M0. Avoid importing every manuscript or running all of UA's research CI as a prerequisite.
+Create a short, evidence-checked bio and clear routes to UA, Subprime, articles, and talks. Catalog items by topic and format with title, publication date, status and **actual** published URL; drafts are not publications. Use the confirmed English interface and separately label actual English/Ukrainian editions. Avoid importing every manuscript or running all of UA's research CI as a prerequisite.
 
 Public recognition deserves its own restrained area: link the underlying public statement and identify what happened (recommendation, reshare, comment, mapping, invited talk, advisory role). Start with independently checkable records for Markus Kopko and Arkadiy Dobkin, then others as warranted. Never turn a reshare into endorsement of all UA claims, attribute PMI/EPAM institutional support from a person's role, or borrow a quote beyond its scope. UA's [recognition ledger](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/main/content/history/external-recognition.md) is a discovery starting point, not a substitute for the original link and exact wording.
 
@@ -88,5 +89,6 @@ The repository-wide content license remains undecided in [rights #7](https://git
 | 2026-10-01 | Live backlog audit: 25 new issues across three repositories; all 9 pre-existing Draft PRs linked; two contributor inputs triaged | Workflow/AGENTS and local RI proposed in separate Draft PRs. Site build, publishing migrations, full harness and deployment remain in their issues. |
 | 2026-10-01 | First-site PR #10 revision: visitor-local Day/Night with manual choice, 23-work writing index and exact public interaction sources | Intent and source report appended to launch #1; source audit records narrower claims and platform dates. Browser/editorial/rights/URL/language and deployment acceptance stay open. |
 | 2026-10-01 | Corrected the review handoff after the maintainer could not see the updated site | Six freshly named self-contained Day/Night copies cover home, all 23 works and credits without JavaScript; source parity/navigation/hash checks added. Public bytes and release acceptance remain unchanged. |
+| 2026-10-01 | Confirmed English UI; added the supplied portrait, bounded career context, EN/UA edition groups, meaningful topic/schema metadata and a keyword map; prepared a full Medium profile replacement | [SEO/content map](SITE-SEO.md), [v2 preview](review/site-v1-20261001-v2-day.html), [Medium draft](drafts/medium-profile-revision-20261001.html). This changes public bytes; the previous independent confirmation is historical, not current acceptance. Medium itself is unchanged; URL, visual/editorial/rights review and deployment remain open. |
 
 For each later session: recheck current heads, linked issues and open PRs; update the affected milestone, checked evidence and unresolved decisions here; link the resulting PR/commit. Keep task details and discussion in the owning issue.
