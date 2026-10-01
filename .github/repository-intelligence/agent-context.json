@@ -14,17 +14,17 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "2d71553bc068323f5854dbe8afa32aff0a1a37fcf979a35915f7aae90ec6d0ae",
+    "digest": "0abbd9a27bc234b438b64b275d89b3fefef01e62f153342d8c93c4b6b117eaa2",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
         "identity_mode": "content",
-        "sha256": "590b9c7c880362a567d846446446221bf8e83e9467947d6682f571a7b3df6e79"
+        "sha256": "e11097914b4abc03399c82e01eecc5074a833fbea4c5e65de23c051159753bfd"
       },
       {
         "path": ".github/ISSUE_TEMPLATE/work-item.md",
         "identity_mode": "content",
-        "sha256": "27f249a761eedde45993444a67bb4bb0f5f59e231b94085125f3d102708b5ef8"
+        "sha256": "644f1eca4b593d50c0f38f3ba0551f1c6fb89989a5744e196afdb05e5b55389c"
       },
       {
         "path": ".github/REPOSITORY-INTELLIGENCE.md",
@@ -49,7 +49,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "f866a38d03b00b0d9003fb423f511a3910ea0d2d087cab119f643527bc13c51a"
+        "sha256": "97b288eefc5b9d2278e5711a0e8112871c73492a84a6deaf043b9b1b39bb7723"
       },
       {
         "path": "BACKLOG.md",
@@ -59,7 +59,7 @@
       {
         "path": "CONTRIBUTING.md",
         "identity_mode": "content",
-        "sha256": "5ff63a6d66089e45cd24d3e9ba2aebf4d2276c6b69c84029841af72f42bf8473"
+        "sha256": "0cceb63babe52921690b2fc2539510a1c6731b9fc571709dc329aa099f801867"
       },
       {
         "path": "README.md",
@@ -74,7 +74,7 @@
       {
         "path": "SITE-ROADMAP.md",
         "identity_mode": "content",
-        "sha256": "29bb9ab98dda3a79c4701ae287784d60543a5b9d5bd6c7bd8b1ce6c795ef8d28"
+        "sha256": "eb926ade5d2ab1e0a5f6a4a83ae2e00cbc8a1ab97e453a5d7160de79b82f71db"
       },
       {
         "path": "tests/test_repository_intelligence.py",

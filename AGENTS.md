@@ -31,6 +31,12 @@ Use an issue for every substantive task. Preserve initial intent; append dated
 decisions and scope changes. Reuse existing inputs rather than duplicating them.
 A mechanical fix may record the exception in its PR.
 
+An issue records intent; PRs and commits implement it. For materially unclear
+requested issue intent, ask focused questions and mark provisional assumptions
+and open choices. Check execution against the owning issue before editing, during
+review and before closure, following CONTRIBUTING. Existing decisions and routine
+authorized work do not require repeated permission.
+
 New reports, expert input, hypotheses, data and material feedback need a bounded
 original-input/affected-research report for maintainer review before substantive
 integration, as specified in CONTRIBUTING. Route conceptual changes to the
@@ -67,5 +73,6 @@ Do not self-confirm an independent review.
 Report actual refs, affected owners, local checks, live CI and remaining decisions.
 Merged, independently reviewed, published and deployed are distinct states.
 Repository renaming, enabling Pages and public release need the applicable
-maintainer decision after concrete preview/rights checks. Current task
-authorization permits workflow/RI implementation, not deployment.
+maintainer decision after concrete preview/rights checks. Reassess scope against
+the current request and still-applicable prior decisions. Only an explicit new
+decision supersedes an earlier limit; green CI does not authorize publication.

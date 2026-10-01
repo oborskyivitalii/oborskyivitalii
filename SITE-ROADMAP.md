@@ -1,6 +1,6 @@
 # Vitalii Oborskyi — site and publishing roadmap
 
-Status: planning. Started: 2026-10-01. This document tracks decisions and verified deliveries; it does not authorize automatic publication, PR merges, or changes to the other repositories.
+Status: first-site preparation. Started: 2026-10-01. This document tracks decisions and verified deliveries; it does not authorize automatic publication, PR merges, or changes to the other repositories.
 
 ## Purpose and boundaries
 
@@ -17,7 +17,7 @@ The initial two research strands are **how AI changes software delivery** (gener
 ## Current baseline and naming decision
 
 - [x] Confirmed on 2026-10-01: the personal GitHub App installation includes this public repository. Before this roadmap, it contained only the default profile `README.md`; it had no site, `AGENTS.md`, license or enabled Pages site. This roadmap is the first project document, not a deployed website.
-- [ ] Choose the permanent Pages URL **before** building or sharing links. Current `oborskyivitalii/oborskyivitalii` is the special profile-README repository. If kept as the site repository, its default project-site URL will be `https://oborskyivitalii.github.io/oborskyivitalii/` once Pages is configured. Renaming it to `oborskyivitalii.github.io` enables the shorter user-site URL `https://oborskyivitalii.github.io/`, but its README would no longer be the special GitHub-profile README. Recommendation: rename before the site build if the short URL matters more; the maintainer makes this choice. No rename is performed by this plan.
+- [ ] Choose the permanent Pages URL **before** deployment or sharing stable public links; a reversible local preview may proceed while this choice is open. Current `oborskyivitalii/oborskyivitalii` is the special profile-README repository. If kept as the site repository, its default project-site URL will be `https://oborskyivitalii.github.io/oborskyivitalii/` once Pages is configured. Renaming it to `oborskyivitalii.github.io` enables the shorter user-site URL `https://oborskyivitalii.github.io/`, but its README would no longer be the special GitHub-profile README. Recommendation: rename before the site build if the short URL matters more; the maintainer makes this choice. No rename is performed by this plan.
 - [ ] Select the site's primary language and whether a Ukrainian PMDay article has a separate English edition. Do not invent or machine-publish a translation.
 
 ## Milestones
@@ -34,13 +34,19 @@ Status is `planned`, `active`, `blocked`, or `done`. A milestone is `done` only 
 | M5 | Cross-repository agent navigation and a small test harness | active | Issue/agent rules and lean local RI proposed in Draft PRs; full migration harness remains #6. Scoped owners, verified source identity and no pooled authority |
 | M6 | Rights/provenance checks and stable release operation | planned | Per-item license/attribution inventory, code/content/third-party exceptions, broken-link and edition checks; approved site deployment and links back from UA/Subprime; video added only when available |
 
-M1 can start after M0; M2 needs the first useful page and a rights review, **not** a universal publication engine. M3 and M4 can proceed independently after that release. M5 follows an observed cross-repository navigation need and pilot tasks. M6 starts with rights inventory before M2; automated checks and release operation finish later. Do not make the first article wait for M3–M5.
+M1's reversible preview can start while M0 choices are open; public links and deployment need those choices recorded. M2 needs the first useful page and a rights review, **not** a universal publication engine. M3 and M4 can proceed independently after that release. M5 follows an observed cross-repository navigation need and pilot tasks. M6 starts with rights inventory before M2; automated checks and release operation finish later. Do not make the first article wait for M3–M5.
+
+### Immediate execution sequence — 2026-10-01
+
+The maintainer's current priority is **first useful public site, then the new PMDay article**. Start with [launch #1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1): a small static homepage, two research routes, selected existing public editions and precise acknowledgements. Inspect desktop/mobile output and rights, record URL/language, then merge and deploy. Proceed to [PMDay #2](https://github.com/oborskyivitalii/oborskyivitalii/issues/2): blueprint, manuscript, chosen slide/PDF edition, review and publication. Quartz/PDF migration #5, full harness #6 and Subprime #48 continue separately.
+
+The first preview assumes English and the current repository's project Pages path. These are provisional implementation assumptions because the URL/language questions have no recorded answer. No rename, permanent URL decision, site-wide license decision or public release is inferred from the preview.
 
 ## Work tracking and original intent
 
 The maintainer authorized issue workflow in all three repositories on 2026-10-01. Each repository implements it under its own contributor/agent owner; this site does not override sibling rules. [CONTRIBUTING](CONTRIBUTING.md#issue-intake-and-durable-intent) owns site intake, reports and closure. [REPOSITORIES](REPOSITORIES.md) maps ownership and [BACKLOG](BACKLOG.md) indexes the dated audit and milestone issues.
 
-Preserve initial intent, append approved decisions and compare acceptance with the result. Research/source input needs an original-input and affected-use report for maintainer review before substantive integration. Task status remains separate from the owning research/evidence records.
+Issues preserve intent: clarify material uncertainty with questions, append dated decisions, and compare PR/commit execution with acceptance before edits, review and closure. Research/source input needs an original-input and affected-use report for maintainer review before substantive integration. Task status remains separate from the owning research/evidence records.
 
 Implementation PRs use non-closing references while acceptance remains. Completion comments belong in both PR and issue; close only after the accepted result is merged/checked and required decisions/reviews are satisfied, or record an explicit reject/defer/supersede disposition. Strictly mechanical exceptions follow CONTRIBUTING. New issues capture prior ideas without inventing retrospective approval.
 
