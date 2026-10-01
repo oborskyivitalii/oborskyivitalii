@@ -1,31 +1,28 @@
 ---
 name: Work item
-about: Record an idea or action with its original intent, checks, and decisions
+about: Preserve the intent and checks for a repository or publication task
 title: ""
-labels: ""
-assignees: ""
 ---
 
 ## Original intent
 
-<!-- What outcome was requested, by whom, and when? Preserve this section when the scope evolves. -->
+What do we want to change, why, and where did the idea/request originate?
 
-## Why / owner
+## Owner and scope
 
-<!-- Why now? Which repository owns the result? Link related work in the other repositories rather than copying it. -->
-
-## Proposed scope and open questions
-
-<!-- Separate what is agreed from options that still need a decision. -->
+Repository/paths, task type, current ref, exclusions, dependencies and open decisions.
 
 ## Acceptance checks
 
-- [ ] 
+- [ ] Observable outcome:
+- [ ] Required review/decision:
+- [ ] Required validation:
 
-## Evidence and decisions
+## Plan, decisions and implementation
 
-<!-- Link original sources, reviewed outputs, explicit decisions, and any deliberate departures from the original intent. An issue is not a verified research finding or approval to publish. -->
+Next step and related issue/PR links. Preserve initial intent; append approved changes.
 
-## Related PRs
+## Completion evidence
 
-<!-- PRs can reference this issue. Close the issue only after its acceptance checks are met. -->
+Merged ref/edition; outcome versus intent; checks/review; deviations; remaining work.
+Leave open while required publication, deployment or cross-repository results remain.

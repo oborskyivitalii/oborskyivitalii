@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "output": ".github/repository-intelligence/agent-context.json",
+  "glossaries": [],
+  "registries": [],
+  "cross_repository": [
+    {
+      "repository": "UncertaintyArchitectureGroup/uncertainty-architecture",
+      "concern": "UA specification and research owners",
+      "url": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/main/AGENTS.md"
+    },
+    {
+      "repository": "UncertaintyArchitectureGroup/The-Subprime-Code-Crisis",
+      "concern": "Subprime evidence and operational synthesis",
+      "url": "https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis/blob/main/AGENTS.md"
+    }
+  ],
+  "owners": [
+    {
+      "concern": "agent operation",
+      "path": "AGENTS.md",
+      "queries": [
+        "agent workflow",
+        "агент"
+      ]
+    },
+    {
+      "concern": "task intake and closure",
+      "path": "CONTRIBUTING.md",
+      "queries": [
+        "issue workflow",
+        "backlog",
+        "ішью",
+        "беклог"
+      ]
+    },
+    {
+      "concern": "author profile entry point",
+      "path": "README.md",
+      "queries": [
+        "author",
+        "about",
+        "профіль",
+        "про автора"
+      ]
+    },
+    {
+      "concern": "milestone sequence",
+      "path": "SITE-ROADMAP.md",
+      "queries": [
+        "roadmap",
+        "milestones",
+        "план сайту"
+      ]
+    },
+    {
+      "concern": "publication and migration backlog",
+      "path": "BACKLOG.md",
+      "queries": [
+        "publication",
+        "pmday",
+        "publisher",
+        "pdf",
+        "quartz",
+        "публікація",
+        "пдф"
+      ]
+    },
+    {
+      "concern": "canonical research ownership",
+      "path": "REPOSITORIES.md",
+      "queries": [
+        "cross repository",
+        "research owners",
+        "migration",
+        "міграція",
+        "дослідження"
+      ]
+    },
+    {
+      "concern": "navigation projection",
+      "path": ".github/REPOSITORY-INTELLIGENCE.md",
+      "queries": [
+        "repository intelligence",
+        "RI adapter",
+        "навігація репо"
+      ]
+    }
+  ]
+}
