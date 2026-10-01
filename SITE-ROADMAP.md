@@ -44,6 +44,8 @@ An issue should make the intended outcome inspectable before implementation: **w
 
 Link each implementation PR to its issue. Use `Refs #N` while work or a decision remains open; use `Closes #N` only when merging that PR really satisfies the issue's acceptance checks. Before closing, compare the delivered diff and review evidence with the original intent and record deliberate deviations. Small unplanned fixes and dependency updates need no ceremonial issue. Do not retroactively present issues created today as pre-existing decisions.
 
+Initial actionable issues: [site launch and scope #1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1) (M0–M1) and [PMDay article #2](https://github.com/oborskyivitalii/oborskyivitalii/issues/2) (M2). The remaining milestones stay in this roadmap until a specific next outcome is ready to track; an open issue is not acceptance evidence.
+
 ## Detailed work packages and review gates
 
 ### M1 — credible first site
