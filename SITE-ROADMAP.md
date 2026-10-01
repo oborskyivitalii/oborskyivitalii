@@ -1,6 +1,6 @@
 # Vitalii Oborskyi — site and publishing roadmap
 
-Status: planning. Started: 2026-10-01. This document tracks decisions and verified deliveries; it does not authorize automatic publication, PR merges, or changes to the other repositories.
+Status: first-site preparation. Started: 2026-10-01. This document tracks decisions and verified deliveries; it does not authorize automatic publication, PR merges, or changes to the other repositories.
 
 ## Purpose and boundaries
 
@@ -17,7 +17,7 @@ The initial two research strands are **how AI changes software delivery** (gener
 ## Current baseline and naming decision
 
 - [x] Confirmed on 2026-10-01: the personal GitHub App installation includes this public repository. Before this roadmap, it contained only the default profile `README.md`; it had no site, `AGENTS.md`, license or enabled Pages site. This roadmap is the first project document, not a deployed website.
-- [ ] Choose the permanent Pages URL **before** building or sharing links. Current `oborskyivitalii/oborskyivitalii` is the special profile-README repository. If kept as the site repository, its default project-site URL will be `https://oborskyivitalii.github.io/oborskyivitalii/` once Pages is configured. Renaming it to `oborskyivitalii.github.io` enables the shorter user-site URL `https://oborskyivitalii.github.io/`, but its README would no longer be the special GitHub-profile README. Recommendation: rename before the site build if the short URL matters more; the maintainer makes this choice. No rename is performed by this plan.
+- [ ] Choose the permanent Pages URL **before** deployment or sharing stable public links; a reversible local preview may proceed while this choice is open. Current `oborskyivitalii/oborskyivitalii` is the special profile-README repository. If kept as the site repository, its default project-site URL will be `https://oborskyivitalii.github.io/oborskyivitalii/` once Pages is configured. Renaming it to `oborskyivitalii.github.io` enables the shorter user-site URL `https://oborskyivitalii.github.io/`, but its README would no longer be the special GitHub-profile README. Recommendation: rename before the site build if the short URL matters more; the maintainer makes this choice. No rename is performed by this plan.
 - [ ] Select the site's primary language and whether a Ukrainian PMDay article has a separate English edition. Do not invent or machine-publish a translation.
 
 ## Milestones
@@ -31,20 +31,26 @@ Status is `planned`, `active`, `blocked`, or `done`. A milestone is `done` only 
 | M2 | First new publication: PMDay explanatory article and versioned slide/PDF page | planned | Article and exact deck edition reviewed; exported PDF inspected; sources, rights, and two project links checked; explicit publication decision |
 | M3 | Lean Markdown → HTML/PDF publishing path for this site | planned | Reuses or pins reviewed components without copying UA's whole framework/CI; staging, draft isolation, source identity, rejection-path tests and visual PDF review demonstrated |
 | M4 | Finish Subprime's existing article/PDF adaptation in its own PR | planned | Review [Subprime #46](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis/pull/46) at its live head; test required figures/assets and real outputs, retain its source/review governance; separate decision on merge |
-| M5 | Cross-repository agent navigation and a small test harness | planned | Scoped `AGENTS.md` in each owner; read-only, ref-aware pointers and owner-routing test cases; no pooled authority, cloned UA RI graph or cross-repository write token by default |
+| M5 | Cross-repository agent navigation and a small test harness | active | Issue/agent rules and lean local RI proposed in Draft PRs; full migration harness remains #6. Scoped owners, verified source identity and no pooled authority |
 | M6 | Rights/provenance checks and stable release operation | planned | Per-item license/attribution inventory, code/content/third-party exceptions, broken-link and edition checks; approved site deployment and links back from UA/Subprime; video added only when available |
 
-M1 can start after M0; M2 needs the first useful page and a rights review, **not** a universal publication engine. M3 and M4 can proceed independently after that release. M5 follows an observed cross-repository navigation need and pilot tasks. M6 starts with rights inventory before M2; automated checks and release operation finish later. Do not make the first article wait for M3–M5.
+M1's reversible preview can start while M0 choices are open; public links and deployment need those choices recorded. M2 needs the first useful page and a rights review, **not** a universal publication engine. M3 and M4 can proceed independently after that release. M5 follows an observed cross-repository navigation need and pilot tasks. M6 starts with rights inventory before M2; automated checks and release operation finish later. Do not make the first article wait for M3–M5.
+
+### Immediate execution sequence — 2026-10-01
+
+The maintainer's current priority is **first useful public site, then the new PMDay article**. Start with [launch #1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1): a small static homepage, two research routes, selected existing public editions and precise acknowledgements. Inspect desktop/mobile output and rights, record URL/language, then merge and deploy. Proceed to [PMDay #2](https://github.com/oborskyivitalii/oborskyivitalii/issues/2): blueprint, manuscript, chosen slide/PDF edition, review and publication. Quartz/PDF migration #5, full harness #6 and Subprime #48 continue separately.
+
+The first preview assumes English and the current repository's project Pages path. These are provisional implementation assumptions because the URL/language questions have no recorded answer. No rename, permanent URL decision, site-wide license decision or public release is inferred from the preview.
 
 ## Work tracking and original intent
 
-Use GitHub Issues as the actionable backlog **for this site**. This roadmap summarizes milestones and decisions; it is not a competing task list. A cross-project publication belongs here; a UA framework/research change belongs in UA; Subprime evidence and report work belongs in Subprime. Create or reference issues in those repositories under their own contribution rules; this site document cannot impose a mandatory workflow on them. Link related issues across repositories instead of copying the same task three times.
+The maintainer authorized issue workflow in all three repositories on 2026-10-01. Each repository implements it under its own contributor/agent owner; this site does not override sibling rules. [CONTRIBUTING](CONTRIBUTING.md#issue-intake-and-durable-intent) owns site intake, reports and closure. [REPOSITORIES](REPOSITORIES.md) maps ownership and [BACKLOG](BACKLOG.md) indexes the dated audit and milestone issues.
 
-An issue should make the intended outcome inspectable before implementation: **why this matters / original request**, proposed scope and open questions, observable acceptance checks, evidence or source links, and decisions still needed. Keep the original request visible when scope evolves; add a dated decision or comment rather than silently rewriting history. For external papers or expert conversations, an issue is an intake and triage record, not a verified finding or permission to republish a private exchange. Follow the owning repository's evidence, provenance, and approval rules.
+Issues preserve intent: clarify material uncertainty with questions, append dated decisions, and compare PR/commit execution with acceptance before edits, review and closure. Research/source input needs an original-input and affected-use report for maintainer review before substantive integration. Task status remains separate from the owning research/evidence records.
 
-For site work, reference the owning issue from each implementation PR (use the full `owner/repo#N` reference across repositories). In UA and Subprime, follow their own PR rules and reference an issue when one exists. A plain reference keeps an unfinished issue open; reserve GitHub's `Closes #N` / `Closes owner/repo#N` keyword for a PR whose merge into the default branch satisfies every acceptance check, since it automatically closes the issue. Before closing, compare the delivered diff and review evidence with the original intent and record deliberate deviations. Small unplanned fixes and dependency updates need no ceremonial issue. Do not retroactively present issues created today as pre-existing decisions.
+Implementation PRs use non-closing references while acceptance remains. Completion comments belong in both PR and issue; close only after the accepted result is merged/checked and required decisions/reviews are satisfied, or record an explicit reject/defer/supersede disposition. Strictly mechanical exceptions follow CONTRIBUTING. New issues capture prior ideas without inventing retrospective approval.
 
-Initial actionable issues: [site launch and scope #1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1) (M0–M1) and [PMDay article #2](https://github.com/oborskyivitalii/oborskyivitalii/issues/2) (M2). The remaining milestones stay in this roadmap until a specific next outcome is ready to track; an open issue is not acceptance evidence.
+Issues #1–#8 now cover launch, PMDay, workflow, RI, publishing migration, cross-repository harness, rights and possible three-site architecture. [The milestone mapping](BACKLOG.md#milestone-issue-sequence) links Subprime #48 and UA #133 as dependencies. An open issue is not acceptance evidence.
 
 ## Detailed work packages and review gates
 
@@ -62,22 +68,23 @@ Prepare a concise article connecting the talk's two parts: **how** AI changes th
 
 ### M3–M4 — publication tooling, scoped to owners
 
-UA already has Quartz/PDF and project-specific publication packaging. Assess reusable rendering functions and versioned dependencies, then build a thin site adapter with only the formats this site actually needs. Keep article Markdown read-only to the renderer and outputs separate from sources. Support preview drafts without exposing them as published editions. Do not copy UA's Repository Intelligence, research registers, heavyweight CI, or slide-specific checks into an ordinary website build.
+UA already has Quartz/PDF and project-specific publication packaging. [Publishing #5](https://github.com/oborskyivitalii/oborskyivitalii/issues/5) inventories reusable components and pins required mechanics. Keep article Markdown read-only to the renderer and outputs separate; review previews must not become public editions. The lean RI navigation adapter is separate from website rendering; UA's full graph, research registers, heavyweight CI and slide-specific checks are not website prerequisites.
 
 Subprime #46 is a separate Draft adaptation that already stages a pinned UA Quartz engine and tests text/tables/code. Review its live state instead of recreating it. Its stated unsupported figures, Mermaid, raw HTML and relative assets must either receive scoped support with integration/visual tests **when needed by a real Subprime article** or fail visibly. Source verification, independent review, rights, and publication approval still belong to Subprime.
 
 ### M5 — agents without a cross-repository super-authority
 
-Keep each repository's root and nested `AGENTS.md` authoritative **only for that repository**. Add a compact site-specific `AGENTS.md` after the content boundaries and build commands exist. A read-only catalog may point to repository URL, ref/commit, owner document, content status and link, with an explicit missing/stale state; do not silently present a cross-repo snapshot as current. Pilot tasks: locate the owner of a Thinking Systems term, a Subprime evidence claim, and the PMDay article; ensure agents cite the correct repo and do not promote a blog summary into research authority. First test this navigation manually, then automate observable errors. No cross-repository write credentials or shared approval bypass.
+Keep each repository's root/nested `AGENTS.md` local to that repository. [AGENTS](AGENTS.md) now defines the proposed site route and [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) describes the bounded local adapter, source hashes and fallback. Subprime has its own adaptation in #52; UA retains its full RI. [Harness #6](https://github.com/oborskyivitalii/oborskyivitalii/issues/6) remains open for adapter-pin/edition and cross-repository migration checks. Navigation tests cannot promote a summary into research authority or establish remote review state.
 
 ### M6 — licenses, assets and release quality
 
-Keep the site's current `No license` choice until a scoped notice is reviewed. Inventory every original article/slide, adapted UA or Subprime material, generated image, chart, third-party PDF, font, quote and code dependency before assigning licenses. UA currently separates CC BY 4.0 documentation from Apache 2.0 code; Subprime uses CC BY-SA 4.0. Their licenses do not automatically become one license for this mixed site. Record author/owner, source URL, permitted use, required attribution, license or exception, and publication decision per item. Automate objective checks (missing notice, attribution URL, broken links, stale digest/edition); a machine cannot decide whether a quote, endorsement or right is legally sufficient. Publish only after human editorial, rights and rendered-page review.
+The repository-wide content license remains undecided in [rights #7](https://github.com/oborskyivitalii/oborskyivitalii/issues/7). The RI code component has an explicit [Apache-2.0 notice](tools/RI-NOTICE.md); it does not license the entire site. Inventory articles/slides, adaptations, charts, third-party assets, fonts, quotes and code before release. UA documentation uses CC BY 4.0 and code Apache-2.0; Subprime content uses CC BY-SA 4.0. Record owner/source/allowed use/attribution/license exception and edition decision per item. Objective manifest checks support human editorial/rights/output review, not legal-clearance claims.
 
 ## Progress ledger
 
 | Date | Outcome | Evidence / next open decision |
 | --- | --- | --- |
 | 2026-10-01 | Personal installation and initial structure checked; roadmap added as the first project document | Decide repo name/URL and initial language (M0). No site, article, deployment, PR transfer or license change has been made. |
+| 2026-10-01 | Live backlog audit: 25 new issues across three repositories; all 9 pre-existing Draft PRs linked; two contributor inputs triaged | Workflow/AGENTS and local RI proposed in separate Draft PRs. Site build, publishing migrations, full harness and deployment remain in their issues. |
 
 For each later session: recheck current heads, linked issues and open PRs; update the affected milestone, checked evidence and unresolved decisions here; link the resulting PR/commit. Keep task details and discussion in the owning issue.
