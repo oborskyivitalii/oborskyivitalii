@@ -1,5 +1,29 @@
 # Site visual review and proposed direction
 
+
+## Current v5 — implemented and rendered
+
+The instructed V1–V5 follow-up is implemented. The [all-page gallery](review/site-v1-20261002-v5-index.html)
+shows all five pages in Day/Night with real desktop/mobile captures and native-scroll
+recordings; [execution evidence](review/sol-visual-v5-20261002/EXECUTION.md) records
+source hashes, tests and observed limits.
+
+Artistic assessment from the actual renders: the paper/graphite/cyan/amber language
+now has open scene regions and visibly different near/middle/distant elements.
+The still portrait anchors Home; Research separates control and verification;
+Writing has a legible stack of planes; Talks uses widening ribbons; Credits is
+sparser and calmer. Local translucent text patches leave reading clear while
+revealing scene crossings. Camera travel changes relative depth rather than only
+panning a flat picture. Motion remains scroll/topic-driven, with no idle loop.
+
+The real sampled contrast check covers 40 views/4,368 glyph-center samples: normal
+text minimum 5.450:1 and large text 6.848:1. All five routes were observed at desktop
+and mobile widths in both themes. This is implementer review in headless Chromium,
+not complete accessibility certification or independent release acceptance.
+
+The follow-up assessment and v4 checkpoints below are historical source/planning
+evidence. Their browser-block and static-only statements do not describe v5.
+
 ## Visual follow-up — 2026-10-02
 
 The maintainer reports an almost invisible background, insufficient depth and a
@@ -50,7 +74,7 @@ handoff. That dated amendment supersedes static-only Talks/Credits and identical
 geometry across routes. Everything in the v4 checkpoint below remains an accurate
 record of the current implementation, not acceptance of this requested follow-up.
 
-## Current v4 source implementation — visual acceptance pending
+## Historical v4 source implementation — visual acceptance was pending
 
 Six asymmetric Day/Night native facets replace both circular portrait
 pseudo-elements behind the unchanged cutout. Home follows the new seven-stop

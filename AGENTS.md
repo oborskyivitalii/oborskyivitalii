@@ -71,6 +71,13 @@ and the source findings in [SITE-VISUAL-REVIEW](SITE-VISUAL-REVIEW.md).
 The owning intent is [launch #1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1);
 continue the existing site PR and preserve unrelated newer work.
 
+The V1–V5 candidate is implemented in v5. Start with the
+[all-page gallery](review/site-v1-20261002-v5-index.html) and
+[execution/capture evidence](review/sol-visual-v5-20261002/EXECUTION.md);
+do not restart the implementation from the historical v4 planning checkpoint.
+The gallery/export generator verifies capture source hashes before admitting
+images. If public bytes change, refresh affected visual evidence before handoff.
+
 - Background geometry must remain visibly present in the composition. Use local
   translucent reading surfaces and open scene areas; avoid near-opaque panels
   covering whole sections. Change background alpha, never the opacity of text or

@@ -14,7 +14,7 @@ function visit(options={}) {
     requestAnimationFrame:fn=>{const id=++serial;pending.set(id,fn);return id;},cancelAnimationFrame:id=>pending.delete(id),
     addEventListener:(name,fn)=>{events[name]=fn;},getComputedStyle:()=>({getPropertyValue:name=>({"--accent":"#075d7b","--systems":"#895710","--paper":"#f8f7f3"})[name]})};
   const makeStop=([id,top],hidden=false)=>({hidden,dataset:{spaceStop:id},getClientRects:()=>hidden?[]:[{}],getBoundingClientRect:()=>({top:top-window.scrollY,height:300})});
-  const keys=options.page==="research"?["intro","research","lenses","topics","acknowledgements"]:["hero","research","help","writing","acknowledgements","about","contact"];
+  const keys=Object.keys(model.pageStops[options.page||"index"]||{});
   let stops=(options.stops||keys.map((id,i)=>[id,i*1100])).map(pair=>makeStop(pair));
   let resultRects=options.empty?[]:options.coincident?[[1000,1000]]:options.single?[[1000,1160]]:[[1000,1160],[1800,1960]];
   const results={querySelectorAll:()=>resultRects.map(([top,bottom])=>({hidden:false,getClientRects:()=>[{}],getBoundingClientRect:()=>({top:top-window.scrollY,bottom:bottom-window.scrollY})}))};
@@ -62,14 +62,30 @@ test("system reduced motion overrides saved On; initial Off uses overview and sa
   page.click();page.settle();assert.equal(page.stored(),"off");const fixed=page.trace();
   page.media.matches=true;page.media.change();page.settle();page.media.matches=false;page.media.change();page.settle();assert.equal(page.trace(),fixed);
 });
-test("Research uses its named mappings; Talks/Credits/unknown pages stay at a finite overview",()=>{
-  const research=visit({page:"research"});research.settle();const first=research.trace();research.scroll(1100);research.settle();assert.notEqual(research.trace(),first);
-  for(const page of["talks","credits","unknown"]) {
-    const state=visit({page});state.settle();const initial=state.trace();state.scroll(9000);assert.equal(state.pending.size,0);assert.equal(state.trace(),initial);
+test("Research, Talks and Credits have bounded reversible native paths; unknown/degenerate stops stay still",()=>{
+  for(const page of["research","talks","credits"]) {
+    const state=visit({page});state.settle();const initial=state.trace();state.scroll(1100);state.settle();assert.notEqual(state.trace(),initial,page);
+    state.scroll(0);state.settle();assert.equal(state.trace(),initial,page);
   }
+  const unknown=visit({page:"unknown"});unknown.settle();unknown.scroll(9000);assert.equal(unknown.pending.size,0);
   for(const stops of[[],[["unknown",100]],[["research",0]],[["hero",0],["research",0]]]) {
     const state=visit({stops});state.settle();const initial=state.trace();state.scroll(9000);state.settle();assert.equal(state.trace(),initial);
   }
+});
+
+test("each route projects a distinct world, uses three depth bands, and finite initial poses match disabled motion",()=>{
+  const signatures=new Set();
+  for(const page of Object.keys(model.initialPoses)) {
+    const world=model.worldFor(page),shapes=model.projectedWorld(world,model.poses[model.initialPoses[page]],1440,900);
+    signatures.add(JSON.stringify(shapes));
+    assert.ok(world.faces.some(f=>f.band==="near"));assert.ok(world.faces.some(f=>f.band==="middle"));assert.ok(world.lines.some(s=>s.band==="distant"));
+    assert.ok(shapes.every(s=>s.points.flat().every(Number.isFinite)));
+    for(let i=1;i<shapes.length;i++)assert.ok(shapes[i-1].depth>=shapes[i].depth,"faces/lines share depth ordering");
+    const off=visit({page,saved:"off"});off.settle();
+    const reduced=visit({page,saved:"on",reduced:true,scrollY:4000});reduced.settle();assert.equal(off.trace(),reduced.trace());
+  }
+  assert.equal(signatures.size,5);
+  for(const page of["talks","credits"]){const off=visit({page,saved:"off"});off.settle();const frozen=off.trace();off.scroll(1500);off.mutate();off.settle();assert.equal(off.trace(),frozen);}
 });
 test("Writing uses finite topic paths in result bounds, handles short/empty results and scroll interrupts focus",()=>{
   const page=visit({page:"writing"});page.settle();const overview=page.trace();
@@ -93,6 +109,8 @@ test("near-plane clipping preserves crossing segments, inputs, and every allowli
   const a=[0,0,-1],b=[2,3,2],copy=JSON.stringify([a,b]);
   assert.equal(model.clipSegment([0,0,-2],[2,3,-1]),null);
   assert.deepEqual(model.clipSegment(a,b),[[1,1.5,.5],b]);assert.deepEqual(model.clipSegment(b,a),[b,[1,1.5,.5]]);assert.equal(JSON.stringify([a,b]),copy);
+  const polygon=[[0,0,-1],[2,0,2],[2,2,2],[0,2,-1]],original=JSON.stringify(polygon);
+  const clipped=model.clipPolygon(polygon);assert.equal(clipped.length,4);assert.ok(clipped.every(p=>p[2]>=.5));assert.equal(JSON.stringify(polygon),original);
   for(const paths of Object.values(model.topicPaths))for(const id of paths)assert.ok([...model.poses[id].position,...model.poses[id].target].every(Number.isFinite));
   const unavailable=visit({noCanvas:true});assert.equal(unavailable.button.hidden,true);assert.equal(unavailable.pending.size,0);assert.equal(unavailable.scene.dataset.ready,undefined);
 });

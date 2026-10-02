@@ -1,4 +1,4 @@
-/* One illustrative world. Native scroll/topic choices move the camera; never the pointer. */
+/* Related faceted worlds. Native scroll/topic choices move the camera; never the pointer. */
 (() => {
   "use strict";
   const add = (a, b) => a.map((v, i) => v + b[i]);
@@ -15,6 +15,15 @@
     else if (b[2] < near) b = lerp(b, a, (near - b[2]) / (a[2] - b[2]));
     return [a, b];
   }
+  function clipPolygon(points,near=.5) {
+    const result=[];
+    for(let i=0;i<points.length;i++) {
+      const a=points[i],b=points[(i+1)%points.length],insideA=a[2]>=near,insideB=b[2]>=near;
+      if(insideA)result.push(a);
+      if(insideA!==insideB)result.push(lerp(a,b,(near-a[2])/(b[2]-a[2])));
+    }
+    return result;
+  }
   // Node positions and topology adapted from the reviewed, uncalibrated blueprint.
   const nodes = {
     intent:[-4,1,0], controller:[-1,1.6,.8], actuators:[1.7,1.8,1.4], process:[4.7,.9,2.2],
@@ -27,28 +36,32 @@
     ["evaluation","controller",[[-.4,-2.8,-.7],[-3.1,-1.6,-.4],[-3.1,1.6,.8]]],
     ["work","generation"], ["generation","verification"], ["verification","release"]
   ]; // Deliberately no causal edge between the two research motifs.
-  const planes = [
-    { points:[[-5.2,2.3,-.6],[5.6,2.3,1.4],[6.8,-2.5,2.3],[-4,-3.1,-1.2]], color:"cyan" },
-    { points:[[-6.8,5.2,-6.6],[3,5.2,-4],[3,3.5,-3],[-6.8,3.5,-5.8]], color:"cyan" },
-    { points:[[5,-2,4],[7,-1,5],[8,-3,6],[6,-4,5]], color:"amber" }
-  ];
   const poses = {
-    overview:{position:[12,9,22],target:[0,1,-1]},
-    control:{position:[7,5,13],target:[1.4,1.2,.9]},
-    help:{position:[10,7,18],target:[.7,.8,-.5]},
-    feedback:{position:[9,2.6,10],target:[2,-1,1]},
-    context:{position:[-2,6,20],target:[-2,0,-1]},
-    closing:{position:[9,8,20],target:[0,1,-1]},
+    overview:{position:[11,6.5,17.5],target:[0,.4,-.5]},
+    researchOverview:{position:[7,8,17],target:[-.5,1.4,-1.5]},
+    control:{position:[7.5,4.5,14],target:[1.1,.7,.5]},
+    help:{position:[4.5,7,17],target:[.7,.5,-.5]},
+    feedback:{position:[8,3,14],target:[1.5,-.5,1]},
+    context:{position:[-4,6,17],target:[-1,.5,-1]},
+    closing:{position:[10,8,18],target:[.5,.5,-1]},
     // Explicit finite paths around the named nodes, rather than unresolved pose IDs.
     verification:{position:[5,9,8],target:[-1.3,4.5,-4.4]},
     verificationEnd:{position:[7,8,9],target:[-.3,4.5,-4.1]},
     controller:{position:[4,5,10],target:[-1,1.6,.8]},
-    controllerEnd:{position:[1,5,12],target:[-1,1.6,.8]}
+    controllerEnd:{position:[1,5,12],target:[-1,1.6,.8]},
+    library:{position:[10,6,17],target:[0,.2,0]},
+    libraryEnd:{position:[-4,4,16],target:[1,-.4,-1]},
+    signal:{position:[10,5,17],target:[1,.5,-1]},
+    signalEnd:{position:[4,7,16],target:[2,-.5,0]},
+    network:{position:[11,7,18],target:[0,.5,-1]},
+    networkEnd:{position:[8,6,17],target:[.6,0,-.4]}
   };
-  const topicPaths = { all:["overview","closing"], strategy:["overview","closing"], systems:["control","feedback"], delivery:["verification","verificationEnd"], leadership:["controller","controllerEnd"] };
+  const topicPaths = { all:["library","libraryEnd"], strategy:["library","closing"], systems:["control","feedback"], delivery:["verification","verificationEnd"], leadership:["controller","controllerEnd"] };
   const pageStops = {
     index:{hero:"overview",research:"control",help:"help",writing:"feedback",acknowledgements:"context",about:"closing",contact:"closing"},
-    research:{intro:"overview",research:"control",lenses:"overview",topics:"overview",acknowledgements:"context"}
+    research:{intro:"researchOverview",research:"verification",lenses:"control",topics:"feedback",acknowledgements:"context"},
+    talks:{intro:"signal",talks:"signalEnd",continue:"closing"},
+    credits:{intro:"network",preferences:"networkEnd",contact:"closing"}
   };
   const segments = [];
   for (const [from,to,via=[]] of edges) {
@@ -61,8 +74,89 @@
     segments.push({a:gates[g][i],b:gates[g][(i+1)%4],color:"amber"});
     if(g) segments.push({a:gates[g-1][i],b:gates[g][i],color:"amber"});
   }
-  // Export only pure geometry helpers to Node checks; no runtime dependency or debug UI.
-  if (typeof module !== "undefined" && module.exports) module.exports = {clipSegment,mix,poses,topicPaths,pageStops,nodes,edges,segments};
+  const initialPoses={index:"overview",research:"researchOverview",writing:"library",talks:"signal",credits:"network"};
+  const cubeFaces=[[0,1,2,3],[4,7,6,5],[0,4,5,1],[3,2,6,7],[0,3,7,4],[1,5,6,2]];
+  const unitCorners=[[-1,-1,-1],[1,-1,-1],[1,1,-1],[-1,1,-1],[-1,-1,1],[1,-1,1],[1,1,1],[-1,1,1]];
+  function worldFor(page) {
+    const faces=[],lines=[];
+    const face=(points,color="cyan",band="middle")=>faces.push({points,color,band});
+    const line=(a,b,color="cyan",band="middle",arrow=false)=>lines.push({a,b,color,band,arrow});
+    const box=(center,size,color="cyan",band="middle")=>{
+      const vertices=unitCorners.map(v=>add(center,v.map((x,i)=>x*(Array.isArray(size)?size[i]:size))));
+      for(const indices of cubeFaces)face(indices.map(i=>vertices[i]),color,band);
+    };
+    const path=(points,color="cyan",band="middle")=>{for(let i=1;i<points.length;i++)line(points[i-1],points[i],color,band);};
+    // Quiet distant frames and large cropped foreground wedges are shared materials,
+    // not telemetry, research results, or representations of named people.
+    for(const z of[-13,-9,-5])path([[-10,6,z],[10,6,z],[10,-5,z],[-10,-5,z],[-10,6,z]],"cyan","distant");
+    path([[-10,-5,-13],[-10,-5,-5],[10,-5,-5],[10,-5,-13]],"cyan","distant");
+    const wedge=[[8.5,-5,7],[13,2,9],[8.5,6,6],[6,1,5],[10,0,11]].map(p=>page==="credits"?[p[0]+1,p[1]*.72,p[2]-1]:p);
+    for(const indices of[[0,1,4],[1,2,4],[2,3,4],[3,0,4],[0,3,2],[0,2,1]])face(indices.map(i=>wedge[i]),"cyan","near");
+    face([[-12,-5,7],[-8,-2,6],[-7,-6,9],[-11,-8,10]],"amber","near");
+    if(page==="writing") {
+      // A stack of offset, solid-edged planes; the archive has its own spatial identity.
+      for(let i=0;i<6;i++) {
+        const z=-5+i*1.55,x=-2+i*.7,y=1.4-i*.55;
+        box([x,y,z],[3.4,.10,2.05],i===3?"amber":"cyan");
+        path([[x-3.0,y+.12,z-1.55],[x+1.8,y+.12,z-1.55],[x+2.8,y+.12,z+.7]],i===3?"amber":"cyan");
+      }
+      path([[-5,1.6,-6],[-5,-1.5,4],[3,-1.5,5]],"amber");
+    } else if(page==="talks") {
+      // Outward, widening ribbons; no simulated audio or flashing stage effect.
+      for(let i=0;i<4;i++) {
+        const y=-2+i*1.6,z=-3+i*.75;
+        face([[-4,y,z],[-1,y+.45,z+.3],[7,y+1.5,z+2.4],[9,y+.7,z+3],[-1,y-.2,z+.6]],i===1?"amber":"cyan");
+        path([[-5,y,z],[-1,y+.2,z+.45],[4,y+.8,z+1.5],[10,y+.95,z+3]],i===1?"amber":"cyan");
+      }
+      box([-4,.7,-2],.6,"amber");
+    } else if(page==="credits") {
+      // Sparse abstract relationships. The topology intentionally does not map to people.
+      const points=[[-4,2,-3],[0,3,-1],[4,1,0],[1,-2,2],[-3,-1,0],[5,-2,-3]];
+      for(const [a,b] of[[0,1],[1,2],[2,3],[3,4],[4,0],[2,5]])line(points[a],points[b],a===3?"amber":"cyan");
+      points.forEach((p,i)=>box(p,i===1?.65:.38,i===3?"amber":"cyan"));
+    } else {
+      // Separate control/feedback and generation/verification structures, with no causal join.
+      faces.push({points:[[-5.2,2.3,-.6],[5.6,2.3,1.4],[6.8,-2.5,2.3],[-4,-3.1,-1.2]],color:"cyan",band:"middle"});
+      for(const s of segments)line(s.a,s.b,s.color,"middle",s.arrow);
+      for(const [id,p] of Object.entries(nodes))box(p,id==="process"?.65:.38,id==="evaluation"||id==="verification"?"amber":"cyan");
+      for(const gate of gates)face(gate,"amber");
+      if(page==="research") {
+        face([[-7,5.8,-6.8],[3,5.8,-4],[3,3.1,-4],[-7,3.1,-6.8]],"cyan");
+        path([[-5.4,-3.3,-1.5],[-5.4,2.8,-.5],[5.6,2.8,1.8]],"amber");
+      }
+    }
+    return {faces,lines};
+  }
+  function projectedWorld(world,current,width,height) {
+    const forward=normalize(sub(current.target,current.position)),right=normalize(cross(forward,[0,1,0])),up=cross(right,forward);
+    const camera=point=>{const delta=sub(point,current.position);return [dot(delta,right),dot(delta,up),dot(delta,forward)];};
+    const focal=height/(2*Math.tan(Math.PI/8));
+    const project=p=>[width*(width<=640?.69:.66)+p[0]*focal/p[2],height*.48-p[1]*focal/p[2]];
+    const shapes=[];
+    for(const f of world.faces) {
+      const points=clipPolygon(f.points.map(camera));
+      if(points.length<3)continue;
+      const normal=normalize(cross(sub(f.points[1],f.points[0]),sub(f.points[2],f.points[0])));
+      const shade=.5+.5*Math.abs(dot(normal,normalize([-.6,.8,1])));
+      const depth=points.reduce((v,p)=>v+p[2],0)/points.length;
+      shapes.push({kind:"face",points:points.map(project),depth,color:f.color,band:f.band,
+        tint:(f.band==="near"?.16:.08)+shade*(f.band==="near"?.16:.13),alpha:f.band==="near"?.88:.82,
+        edgeAlpha:f.band==="near"?.55:.46,lineWidth:f.band==="near"?1.6:1});
+    }
+    for(const s of world.lines) {
+      const clipped=clipSegment(camera(s.a),camera(s.b));if(!clipped)continue;
+      shapes.push({kind:"line",points:clipped.map(project),depth:(clipped[0][2]+clipped[1][2])/2,
+        color:s.color,alpha:s.band==="distant"?.2:.65,lineWidth:s.band==="distant"?.7:1.2,arrow:s.arrow});
+    }
+    // Faces AND edges participate in one painter order; near facets occlude distant lines.
+    return shapes.sort((a,b)=>b.depth-a.depth);
+  }
+  function blendColor(a,b,t) {
+    const rgb=hex=>hex.replace("#","").match(/.{2}/g).map(v=>parseInt(v,16));
+    return "#"+lerp(rgb(a),rgb(b),t).map(v=>Math.round(v).toString(16).padStart(2,"0")).join("");
+  }
+  // Export the same pure composition/projection for checks and the no-Canvas SVG producer.
+  if (typeof module !== "undefined" && module.exports) module.exports = {clipSegment,clipPolygon,mix,poses,topicPaths,pageStops,initialPoses,nodes,edges,segments,worldFor,projectedWorld,blendColor};
   if (typeof document === "undefined") return;
   const canvas = document.getElementById("space-canvas");
   const control = document.getElementById("space-motion");
@@ -79,16 +173,18 @@
   try { choice=localStorage.getItem(key); } catch { /* In-tab controls remain useful. */ }
   let enabled=choice!=="off" && !reduced.matches, printing=false, pending=null;
   let width=1,height=1,ratio=1,stops=[],bounds=null,focus="all",localProgress=0;
-  let current=poses.overview, animation=null, writingAnchor=null;
+  const initial=initialPoses[page]||"overview",world=worldFor(page);
+  let current=poses[initial], animation=null, writingAnchor=null;
   let colors={cyan:"#075d7b",amber:"#895710",paper:"#f8f7f3"};
-  const pose = id => narrow.matches ? mix(poses.overview,poses[id],.58) : poses[id];
+  const pose = id => narrow.matches ? mix(poses[initial],poses[id],.66) : poses[id];
   const pathPose = () => { const [a,b]=topicPaths[focus]; return mix(pose(a),pose(b),localProgress); };
   function visible(el) { return !el.hidden && el.getClientRects().length>0; }
   function measure() {
     width=Math.max(1,window.innerWidth);height=Math.max(1,window.innerHeight);
     ratio=Math.min(1.5,window.devicePixelRatio||1);
     canvas.width=Math.round(width*ratio);canvas.height=Math.round(height*ratio);
-    stops=[...document.querySelectorAll("[data-space-stop]")].filter(el=>visible(el) && pageStops[page]?.[el.dataset.spaceStop]).map(el=>({id:pageStops[page][el.dataset.spaceStop],y:Math.max(0,el.getBoundingClientRect().top+window.scrollY-height*.22)}));
+    const maxScroll=Math.max(0,document.documentElement.scrollHeight-height);
+    stops=[...document.querySelectorAll("[data-space-stop]")].filter(el=>visible(el) && pageStops[page]?.[el.dataset.spaceStop]).map(el=>({id:pageStops[page][el.dataset.spaceStop],y:Math.min(maxScroll,Math.max(0,el.getBoundingClientRect().top+window.scrollY-height*.22))}));
     // Coincident stops cannot define a flight interval. Never use document height as a substitute.
     stops=stops.filter((stop,i,all)=>i===0 || stop.y>all[i-1].y+.5);
     bounds=null;
@@ -142,36 +238,21 @@
     animation={from:current,to:target,start:null};schedule();
   }
   function draw() {
-    const forward=normalize(sub(current.target,current.position)),right=normalize(cross(forward,[0,1,0])),up=cross(right,forward);
-    const camera = point => {const delta=sub(point,current.position);return [dot(delta,right),dot(delta,up),dot(delta,forward)];};
-    const focal=height/(2*Math.tan(Math.PI/8));
-    const project = p => [width*.62+p[0]*focal/p[2],height*.5-p[1]*focal/p[2]];
-    ctx.setTransform(ratio,0,0,ratio,0,0);ctx.clearRect(0,0,width,height);ctx.lineWidth=1;
-    // Triangulate the uncalibrated, noncoplanar quad inputs. Conservatively omit a near-crossing face.
-    const faces=planes.flatMap(p=>[[p.points[0],p.points[1],p.points[2]],[p.points[0],p.points[2],p.points[3]]].map(points=>({points:points.map(camera),color:p.color})));
-    faces.sort((a,b)=>b.points.reduce((v,p)=>v+p[2],0)-a.points.reduce((v,p)=>v+p[2],0));
-    for(const face of faces) {
-      if(face.points.some(p=>p[2]<.5))continue;
-      const points=face.points.map(project);ctx.beginPath();ctx.moveTo(...points[0]);for(const p of points.slice(1))ctx.lineTo(...p);ctx.closePath();
-      ctx.fillStyle=colors[face.color];ctx.globalAlpha=.07;ctx.fill();ctx.strokeStyle=colors[face.color];ctx.globalAlpha=.25;ctx.stroke();
-    }
-    function segment(a,b,color,arrow=false,alpha=.6) {
-      const clipped=clipSegment(camera(a),camera(b));if(!clipped)return;
-      const [from,to]=clipped.map(project);ctx.strokeStyle=colors[color];ctx.globalAlpha=alpha;
-      ctx.beginPath();ctx.moveTo(...from);ctx.lineTo(...to);ctx.stroke();
-      if(arrow) {
+    ctx.setTransform(ratio,0,0,ratio,0,0);ctx.clearRect(0,0,width,height);
+    for(const shape of projectedWorld(world,current,width,height)) {
+      const [from,...rest]=shape.points,to=rest[0];
+      ctx.beginPath();ctx.moveTo(...from);for(const p of rest)ctx.lineTo(...p);
+      ctx.lineWidth=shape.lineWidth;ctx.strokeStyle=colors[shape.color];
+      if(shape.kind==="face") {
+        ctx.closePath();ctx.fillStyle=blendColor(colors.paper,colors[shape.color],shape.tint);
+        ctx.globalAlpha=shape.alpha;ctx.fill();ctx.globalAlpha=shape.edgeAlpha;ctx.stroke();
+      } else {ctx.globalAlpha=shape.alpha;ctx.stroke();}
+      if(shape.arrow) {
         const dx=to[0]-from[0],dy=to[1]-from[1],length=Math.hypot(dx,dy);
-        if(length<10)return;
+        if(length<10)continue;
         const size=5,ux=dx/length,uy=dy/length;
         ctx.beginPath();ctx.moveTo(to[0]-ux*size-uy*size*.55,to[1]-uy*size+ux*size*.55);ctx.lineTo(...to);ctx.lineTo(to[0]-ux*size+uy*size*.55,to[1]-uy*size-ux*size*.55);ctx.stroke();
       }
-    }
-    for(const s of segments)segment(s.a,s.b,s.color,s.arrow);
-    for(const [id,p] of Object.entries(nodes)) {
-      const size=id==="process"?.43:.24;
-      const corners=[[-1,-1,-1],[1,-1,-1],[1,1,-1],[-1,1,-1],[-1,-1,1],[1,-1,1],[1,1,1],[-1,1,1]].map(v=>add(p,v.map(x=>x*size)));
-      const color=id==="evaluation" || id==="verification"?"amber":"cyan";
-      for(const [a,b] of [[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]])segment(corners[a],corners[b],color,false,.72);
     }
     ctx.globalAlpha=1;scene.dataset.ready="true";
   }

@@ -2,7 +2,16 @@
 
 ## Next visual iteration — maintainer request, 2026-10-02
 
-**Current task: prepare the next Sol tasks and durable agent guidance.** This
+**Execution checkpoint — v5:** the maintainer subsequently instructed Sol to
+review and implement these tasks and deliver every page. V1–V5 code, observed
+browser cases and complete exports are implemented in the existing Draft PR #10.
+Start with the [all-page gallery](review/site-v1-20261002-v5-index.html) and
+[current execution/evidence](review/sol-visual-v5-20261002/EXECUTION.md). The
+checklist below remains the original acceptance contract; recorded limits and
+human/release acceptance are explicit in that checkpoint. Native-scroll/topic
+motion is retained; no ambient choice is needed to use the candidate.
+
+**Historical preparation task: prepare the next Sol tasks and durable agent guidance.** This
 amendment records that work; V1–V5 below remain implementation tasks, not completed
 features. Owner: [#1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1),
 [input record](https://github.com/oborskyivitalii/oborskyivitalii/issues/1#issuecomment-5956133140).

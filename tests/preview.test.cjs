@@ -11,7 +11,7 @@ const files = buildPreviews();
 const htmlFiles = Object.keys(files).filter((file) => file.endsWith(".html"));
 
 test("ten fixed-theme copies preserve actual main content, CSS and external source links", () => {
-  assert.equal(htmlFiles.length, 15);
+  assert.equal(htmlFiles.length, 16);
   for (const page of pages) {
     const source = fs.readFileSync(path.join(root, `docs/${page}.html`), "utf8");
     for (const theme of ["light", "dark"]) {
@@ -42,7 +42,7 @@ test("ten fixed-theme copies preserve actual main content, CSS and external sour
   }
 });
 
-test("every local preview link and fragment resolves within the fifteen-page handoff", () => {
+test("every local page/gallery link and fragment resolves within the complete handoff", () => {
   for (const file of htmlFiles) {
     const html = files[file];
     const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
@@ -52,8 +52,8 @@ test("every local preview link and fragment resolves within the fifteen-page han
       const [pathQuery, fragment] = href.split("#");
       const [base] = pathQuery.split("?");
       const target = base ? `review/${base}` : file;
-      assert.ok(htmlFiles.includes(target), `${file}: missing ${href}`);
-      if (fragment) assert.ok(files[target].includes(`id="${fragment}"`), `${file}: missing fragment ${href}`);
+      assert.ok(htmlFiles.includes(target) || fs.existsSync(path.join(root,target)), `${file}: missing ${href}`);
+      if (fragment) assert.ok(files[target]?.includes(`id="${fragment}"`), `${file}: missing fragment ${href}`);
     }
   }
 });
@@ -71,9 +71,9 @@ test("fixed and interactive rewriters retain query/hash intent, including the of
 });
 
 test("manifest records exact inputs/outputs and unknown source shapes fail visibly", () => {
-  const manifest = JSON.parse(files["review/site-v1-static-previews-v4.json"]);
+  const manifest = JSON.parse(files["review/site-v1-static-previews-v5.json"]);
   assert.equal(Object.keys(manifest.sources).length, 10);
-  assert.equal(Object.keys(manifest.files).length, 15);
+  assert.equal(Object.keys(manifest.files).length, 16);
   for (const [file, hash] of Object.entries(manifest.sources)) assert.equal(digest(fs.readFileSync(path.join(root, file))), hash);
   for (const [file, hash] of Object.entries(manifest.files)) assert.equal(digest(files[file]), hash);
   assert.deepEqual(buildPreviews(), files);
