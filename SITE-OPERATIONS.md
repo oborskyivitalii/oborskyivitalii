@@ -1,5 +1,16 @@
 # First site: preview, launch and the next publication
 
+## Next candidate plan — 2026-10-02
+
+The instructions and v3 outputs below describe the existing implemented edition.
+For the next iteration use [SOL-HANDOFF](SOL-HANDOFF.md): five exact English
+featured works, eight discussion entries, offers/contact, faceted portrait and
+scroll/topic-only motion. No updated public output is claimed by this planning
+commit. Sol must create a new named review edition, update both generators and
+remove obsolete mouse-motion instructions when the candidate is implemented.
+Browser/release acceptance remains separate. English is settled; the permanent
+URL and applicable rights/publication decision remain #8/#7.
+
 Owning intent: [launch #1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1).
 URL/language decision: [#8](https://github.com/oborskyivitalii/oborskyivitalii/issues/8).
 Next publication: [PMDay #2](https://github.com/oborskyivitalii/oborskyivitalii/issues/2).

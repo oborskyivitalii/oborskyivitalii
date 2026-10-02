@@ -1,5 +1,21 @@
 # Vitalii Oborskyi — site and publishing roadmap
 
+## Reviewed next iteration — 2026-10-02
+
+[SOL-HANDOFF](SOL-HANDOFF.md) now owns the next Sol execution sequence in Draft
+PR #10. Its [final review](review/sol-plan-20261002/FINAL-REVIEW.md) reconciles the
+latest #1 intent: two buyer problems, seven-section Home, five exact English
+featured works, eight bounded public-discussion entries, three offers, useful
+contact/booking placeholder, facets and scroll/topic-only scene movement.
+The existing four-featured/seven-discussion edition below remains the code
+baseline, not the new acceptance target. Candidate implementation is pending.
+
+Free [SEO evidence](review/sol-plan-20261002/SEO-EVIDENCE.md) supplements the
+48-query hypotheses; it does not establish site traffic or executive demand.
+#8 owns release URL/indexing; #2 remains the next publication; #11 owns later
+guides and measurement. These guides, paid tools and migrations are not launch
+prerequisites. M1 remains active; all new-plan work is tracked in #1/PR #10.
+
 Status: first-site preparation. Started: 2026-10-01. This document tracks decisions and verified deliveries; it does not authorize automatic publication, PR merges, or changes to the other repositories.
 
 ## Purpose and boundaries

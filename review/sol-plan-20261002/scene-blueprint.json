@@ -1,0 +1,590 @@
+{
+  "schemaVersion": 1,
+  "status": "planning-only, uncalibrated in browser",
+  "scope": "Decorative geometry inspired by the author research; not a simulation or canonical research diagram",
+  "units": "arbitrary world units; y up; position/target use same coordinates",
+  "themes": {
+    "day": {
+      "paper": "#f8f7f3",
+      "ink": "#142632",
+      "muted": "#4b5c69",
+      "line": "#cdd6da",
+      "cyan": "#075d7b",
+      "amber": "#895710",
+      "facets": [
+        "#e7ece8",
+        "#dce9eb",
+        "#cddfe3",
+        "#eae1ce",
+        "#bfd4da",
+        "#eff0e9"
+      ]
+    },
+    "night": {
+      "paper": "#0b0f14",
+      "ink": "#f4f7fa",
+      "muted": "#adb8c5",
+      "line": "#344454",
+      "cyan": "#28c7f7",
+      "amber": "#f5b61c",
+      "facets": [
+        "#1c252e",
+        "#142f3b",
+        "#1c3f4c",
+        "#332e21",
+        "#235164",
+        "#253038"
+      ]
+    }
+  },
+  "portrait": {
+    "viewBox": [
+      0,
+      0,
+      500,
+      550
+    ],
+    "polygons": [
+      [
+        [
+          55,
+          116
+        ],
+        [
+          302,
+          30
+        ],
+        [
+          447,
+          157
+        ],
+        [
+          279,
+          277
+        ],
+        [
+          28,
+          217
+        ]
+      ],
+      [
+        [
+          143,
+          75
+        ],
+        [
+          360,
+          92
+        ],
+        [
+          465,
+          281
+        ],
+        [
+          336,
+          430
+        ],
+        [
+          192,
+          321
+        ]
+      ],
+      [
+        [
+          148,
+          178
+        ],
+        [
+          329,
+          131
+        ],
+        [
+          421,
+          349
+        ],
+        [
+          211,
+          455
+        ],
+        [
+          96,
+          327
+        ]
+      ],
+      [
+        [
+          365,
+          157
+        ],
+        [
+          491,
+          269
+        ],
+        [
+          433,
+          447
+        ],
+        [
+          345,
+          330
+        ]
+      ],
+      [
+        [
+          23,
+          208
+        ],
+        [
+          121,
+          177
+        ],
+        [
+          178,
+          331
+        ],
+        [
+          73,
+          381
+        ]
+      ],
+      [
+        [
+          40,
+          415
+        ],
+        [
+          325,
+          379
+        ],
+        [
+          466,
+          475
+        ],
+        [
+          198,
+          539
+        ],
+        [
+          30,
+          480
+        ]
+      ]
+    ],
+    "rule": "All facets behind unchanged existing cutout. No circles, ellipses, halo or pointer motion."
+  },
+  "nodes": [
+    {
+      "id": "intent",
+      "label": "Intent",
+      "position": [
+        -4,
+        1,
+        0
+      ],
+      "cluster": "systems"
+    },
+    {
+      "id": "controller",
+      "label": "Operating model / controller",
+      "position": [
+        -1,
+        1.6,
+        0.8
+      ],
+      "cluster": "systems"
+    },
+    {
+      "id": "actuators",
+      "label": "Actuators",
+      "position": [
+        1.7,
+        1.8,
+        1.4
+      ],
+      "cluster": "systems"
+    },
+    {
+      "id": "process",
+      "label": "Model-mediated process",
+      "position": [
+        4.7,
+        0.9,
+        2.2
+      ],
+      "cluster": "systems"
+    },
+    {
+      "id": "outcome",
+      "label": "Outcome",
+      "position": [
+        5.9,
+        -1,
+        2.6
+      ],
+      "cluster": "systems"
+    },
+    {
+      "id": "evaluation",
+      "label": "Evaluation",
+      "position": [
+        2,
+        -1.7,
+        -0.1
+      ],
+      "cluster": "systems"
+    },
+    {
+      "id": "reference",
+      "label": "Reference criteria",
+      "position": [
+        -1.5,
+        -2.3,
+        -1.4
+      ],
+      "cluster": "systems"
+    },
+    {
+      "id": "work",
+      "label": "Work input",
+      "position": [
+        -6,
+        4.5,
+        -6
+      ],
+      "cluster": "delivery"
+    },
+    {
+      "id": "generation",
+      "label": "Generation",
+      "position": [
+        -3.8,
+        4.5,
+        -5.2
+      ],
+      "cluster": "delivery"
+    },
+    {
+      "id": "verification",
+      "label": "Verification capacity",
+      "position": [
+        -1.3,
+        4.5,
+        -4.4
+      ],
+      "cluster": "delivery"
+    },
+    {
+      "id": "release",
+      "label": "Release",
+      "position": [
+        1.8,
+        4.5,
+        -3.6
+      ],
+      "cluster": "delivery"
+    }
+  ],
+  "edges": [
+    {
+      "source": "intent",
+      "target": "controller",
+      "kind": "intent",
+      "directed": true
+    },
+    {
+      "source": "controller",
+      "target": "actuators",
+      "kind": "control",
+      "directed": true
+    },
+    {
+      "source": "actuators",
+      "target": "process",
+      "kind": "action",
+      "directed": true
+    },
+    {
+      "source": "process",
+      "target": "outcome",
+      "kind": "output",
+      "directed": true
+    },
+    {
+      "source": "outcome",
+      "target": "evaluation",
+      "kind": "measurement",
+      "directed": true
+    },
+    {
+      "source": "evaluation",
+      "target": "controller",
+      "kind": "feedback",
+      "directed": true,
+      "via": [
+        [
+          -0.4,
+          -2.8,
+          -0.7
+        ],
+        [
+          -3.1,
+          -1.6,
+          -0.4
+        ],
+        [
+          -3.1,
+          1.6,
+          0.8
+        ]
+      ]
+    },
+    {
+      "source": "reference",
+      "target": "evaluation",
+      "kind": "criteria",
+      "directed": true
+    },
+    {
+      "source": "work",
+      "target": "generation",
+      "kind": "work",
+      "directed": true
+    },
+    {
+      "source": "generation",
+      "target": "verification",
+      "kind": "work",
+      "directed": true
+    },
+    {
+      "source": "verification",
+      "target": "release",
+      "kind": "accepted work",
+      "directed": true
+    }
+  ],
+  "planes": [
+    {
+      "id": "control-plane",
+      "vertices": [
+        [
+          -5.2,
+          2.3,
+          -0.6
+        ],
+        [
+          5.6,
+          2.3,
+          1.4
+        ],
+        [
+          6.8,
+          -2.5,
+          2.3
+        ],
+        [
+          -4,
+          -3.1,
+          -1.2
+        ]
+      ],
+      "color": "cyan"
+    },
+    {
+      "id": "delivery-plane",
+      "vertices": [
+        [
+          -6.8,
+          5.2,
+          -6.6
+        ],
+        [
+          3,
+          5.2,
+          -4
+        ],
+        [
+          3,
+          3.5,
+          -3
+        ],
+        [
+          -6.8,
+          3.5,
+          -5.8
+        ]
+      ],
+      "color": "cyan"
+    },
+    {
+      "id": "near-facet",
+      "vertices": [
+        [
+          5,
+          -2,
+          4
+        ],
+        [
+          7,
+          -1,
+          5
+        ],
+        [
+          8,
+          -3,
+          6
+        ],
+        [
+          6,
+          -4,
+          5
+        ]
+      ],
+      "color": "amber"
+    }
+  ],
+  "camera": {
+    "worldUp": [
+      0,
+      1,
+      0
+    ],
+    "near": 0.5,
+    "far": 100,
+    "fovYDegrees": 45,
+    "poses": [
+      {
+        "id": "overview",
+        "section": "hero",
+        "position": [
+          12,
+          9,
+          22
+        ],
+        "target": [
+          0,
+          1,
+          -1
+        ]
+      },
+      {
+        "id": "control",
+        "section": "research",
+        "position": [
+          7,
+          5,
+          13
+        ],
+        "target": [
+          1.4,
+          1.2,
+          0.9
+        ]
+      },
+      {
+        "id": "help",
+        "section": "help",
+        "position": [
+          10,
+          7,
+          18
+        ],
+        "target": [
+          0.7,
+          0.8,
+          -0.5
+        ]
+      },
+      {
+        "id": "feedback",
+        "section": "writing",
+        "position": [
+          9,
+          2.6,
+          10
+        ],
+        "target": [
+          2,
+          -1,
+          1
+        ]
+      },
+      {
+        "id": "context",
+        "section": "acknowledgements",
+        "position": [
+          -2,
+          6,
+          20
+        ],
+        "target": [
+          -2,
+          0,
+          -1
+        ]
+      },
+      {
+        "id": "closing",
+        "section": "about",
+        "position": [
+          9,
+          8,
+          20
+        ],
+        "target": [
+          0,
+          1,
+          -1
+        ]
+      },
+      {
+        "id": "contact",
+        "section": "contact",
+        "position": [
+          9,
+          8,
+          20
+        ],
+        "target": [
+          0,
+          1,
+          -1
+        ]
+      }
+    ],
+    "roll": 0,
+    "interpolation": "interpolate camera position and target; derive basis with fixed worldUp; calibrate mobile separately"
+  },
+  "interaction": {
+    "pointerInfluence": false,
+    "hoverInfluence": false,
+    "autoplay": false,
+    "scroll": "native; semantic section-local progress",
+    "anchorClick": "native scroll only; no second camera transition",
+    "topicFocus": {
+      "systems": "control",
+      "delivery": "verification",
+      "leadership": "controller",
+      "strategy": "overview",
+      "all": "overview"
+    },
+    "focusPathsNote": "verification/controller focus paths need authoring around those named nodes; pose names alone are not a complete renderer",
+    "topicClick": "explicit site:scene-focus; short transition; scroll interrupts; focus persists without timer",
+    "yearLanguage": "filter content only, preserve scene focus",
+    "motionOff": "freeze current frame; initial load uses overview",
+    "reducedMotion": "overrides saved On; no camera movement",
+    "hiddenOrPrint": "cancel pending frames",
+    "idle": "no RAF loop after settling",
+    "themeChange": "colors only; preserve camera"
+  },
+  "sources": [
+    {
+      "label": "Current source tree",
+      "tree": "73eb81c61e0a0762b637a07b308d9cd610a1886f"
+    },
+    {
+      "label": "User-supplied control-theory article",
+      "file": "01-Uncertainty-Architecture-Why-AI-Governance-is-Actually-Control-Theory.md"
+    }
+  ]
+}

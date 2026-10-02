@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "bd9b2b69201aa685cdaf11757fa91b13ca70d6b3363968c83e7ac97935212b42",
+    "digest": "8ca7430a765d3adcbe1672ed97f536f7a62e570c106b07ae40c3fd992d5ccd62",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -39,7 +39,7 @@
       {
         "path": ".github/repository-intelligence-config.json",
         "identity_mode": "content",
-        "sha256": "55f97705f3dabfb2a92420df7379b650a4ddd5d818a255e982282879c9a666c8"
+        "sha256": "15f73732fc08d97be5f2f0f346ebc49d18310e6df8e83ce37f4577cbcad35428"
       },
       {
         "path": ".github/workflows/navigation.yml",
@@ -54,7 +54,7 @@
       {
         "path": "BACKLOG.md",
         "identity_mode": "content",
-        "sha256": "00abd20f5cccd013b72aec07c8e8cfc0d237dc8d8dc774df6720b955d4e7c623"
+        "sha256": "82974c5c72083e64f65fab1d2069d661604d1ddb6ec7fe1270e733a20acb3760"
       },
       {
         "path": "CONTRIBUTING.md",
@@ -79,17 +79,17 @@
       {
         "path": "SITE-OPERATIONS.md",
         "identity_mode": "content",
-        "sha256": "8a7a1b2b174ce22598723ed9b3d4c9b57ce205fd68d5fb293c1d3213916b0a4d"
+        "sha256": "2daa6df24ba7c1c8f3840909deffbe469f9dcad8584473983b41bd15624588e8"
       },
       {
         "path": "SITE-ROADMAP.md",
         "identity_mode": "content",
-        "sha256": "5d1f901fd1e50bacf6970cdbe44b99951d25b9c0581dce46b2184c6422a80ab7"
+        "sha256": "76a8391481b0e28e8fba36a45281cd9ce1bb3324b9ab0d462773d1051dbba6b8"
       },
       {
         "path": "SITE-SEO.md",
         "identity_mode": "content",
-        "sha256": "4829f46484ccdc5d3ac495c5247d5cc8bbb95d7538099069fe3f74ccdabba43b"
+        "sha256": "d0194983f1f168ef87ad5fa979450bed9d0b43e59f542287aa513ee45f9ed099"
       },
       {
         "path": "SITE-SOURCE-AUDIT.md",
@@ -100,6 +100,11 @@
         "path": "SITE-VISUAL-REVIEW.md",
         "identity_mode": "content",
         "sha256": "edf35f0d528963011d6f06b4d40151b4a4f3aa51f21ca3f11b0e6aa6128d8da1"
+      },
+      {
+        "path": "SOL-HANDOFF.md",
+        "identity_mode": "content",
+        "sha256": "a95a88b5da5d606d84ffc895162c1774e1bb4124d1525938165fe3b6f7ed0e01"
       },
       {
         "path": "docs/.nojekyll",
@@ -164,6 +169,61 @@
       {
         "path": "review/build_visual_proposal.cjs",
         "identity_mode": "existence"
+      },
+      {
+        "path": "review/seo-20261002/autocomplete-observations.json",
+        "identity_mode": "content",
+        "sha256": "cb48a72d7d3e7fed46b0656b017ad2d71aedcf813f9af361b91c6304833901e5"
+      },
+      {
+        "path": "review/seo-20261002/free-sources.json",
+        "identity_mode": "content",
+        "sha256": "4ceadfed3282fb4e06c73f19eea8760df0ab17eb5c2c1ed748f8d94429580ebe"
+      },
+      {
+        "path": "review/seo-20261002/keyword-evidence.json",
+        "identity_mode": "content",
+        "sha256": "db1d4cd246f58eeb63a651814a162d667b748e3f60989458ba2b46204c1fcc11"
+      },
+      {
+        "path": "review/seo-20261002/keyword-metrics.json",
+        "identity_mode": "content",
+        "sha256": "c70be15009871678f03c098df163b39b30428246396a55dfe4bf69678b329638"
+      },
+      {
+        "path": "review/seo-20261002/keyword-seeds.txt",
+        "identity_mode": "content",
+        "sha256": "cb6040461412368c24156b01a617af6efb5419c88c28f497bc751472803d54e5"
+      },
+      {
+        "path": "review/seo-20261002/raw/google-autocomplete.json",
+        "identity_mode": "content",
+        "sha256": "a2db19bdb5d8ea376060147aeb64d6717f73a049826c4aca28a99f9b8c63ec89"
+      },
+      {
+        "path": "review/seo-20261002/raw/rankspot-batch1.json",
+        "identity_mode": "content",
+        "sha256": "014369adc7a773b048201f1a762c2400a310dfbf9a6a23680bdaf49e5074483f"
+      },
+      {
+        "path": "review/seo-20261002/raw/rankspot-batch2.json",
+        "identity_mode": "content",
+        "sha256": "b21a84dfd518cc8c647373f05d9264f5ca0f05ed0ab2caafe2f62e823c28e259"
+      },
+      {
+        "path": "review/seo-20261002/raw/rankspot-batch3.json",
+        "identity_mode": "content",
+        "sha256": "3bc5763ca1421bee64300dcb795451b4ad83aa3c4edb3e59d403166c9fa9d062"
+      },
+      {
+        "path": "review/seo-20261002/raw/rankspot-batch4.json",
+        "identity_mode": "content",
+        "sha256": "3fa2b0a134d95a8eed929a8cc1761f736a02adda41b1879e4f8a5792e4a2618e"
+      },
+      {
+        "path": "review/seo-20261002/raw/rankspot-batch5.json",
+        "identity_mode": "content",
+        "sha256": "6f9ef85ff5c49b14d19533f604c95bbe96d502e7151ce1a75ea0a7f2c186a65f"
       },
       {
         "path": "review/site-v1-20261001-credits-day.html",
@@ -325,6 +385,57 @@
         "identity_mode": "existence"
       },
       {
+        "path": "review/sol-plan-20261002/CONTENT-AND-CONVERSION-BRIEF.md",
+        "identity_mode": "content",
+        "sha256": "046f8c9625f421b873888f39c789f5f7b89a213e57cdb213ce6f90d52dd6e11d"
+      },
+      {
+        "path": "review/sol-plan-20261002/FINAL-REVIEW.md",
+        "identity_mode": "content",
+        "sha256": "a9720e6ead2e2121a77b6abac1fdb8a99ed631b19890967990e9246374582aad"
+      },
+      {
+        "path": "review/sol-plan-20261002/INPUT-PROVENANCE.json",
+        "identity_mode": "content",
+        "sha256": "5f3f399695f36ff1d1395e969cf7903894ee6dec2495994be99067b04d28e637"
+      },
+      {
+        "path": "review/sol-plan-20261002/SEO-BUYER-INTENT.md",
+        "identity_mode": "content",
+        "sha256": "398374322a483c528db625080d130c1dcd06c0ff912540d526bb788ac433a357"
+      },
+      {
+        "path": "review/sol-plan-20261002/SEO-EVIDENCE.md",
+        "identity_mode": "content",
+        "sha256": "a6afd50bd0f47e57eeb3dbd5194b857334e1b5fda3c1bf8227bbf48059ab4d18"
+      },
+      {
+        "path": "review/sol-plan-20261002/SEO-QUERY-MAP.csv",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/sol-plan-20261002/VISUAL-SPEC.md",
+        "identity_mode": "content",
+        "sha256": "18507cc8d6b4bf69288307b04b09cb6bfb328e21ac0c050d128a02330ae6a5c0"
+      },
+      {
+        "path": "review/sol-plan-20261002/art-direction.svg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/sol-plan-20261002/portrait-facets-day.svg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/sol-plan-20261002/portrait-facets-night.svg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/sol-plan-20261002/scene-blueprint.json",
+        "identity_mode": "content",
+        "sha256": "5fa444595a5cd45a028131963cd63c4e71d6576ee65abd28b123394ca28d9a9e"
+      },
+      {
         "path": "tests/archive.test.cjs",
         "identity_mode": "existence"
       },
@@ -379,9 +490,20 @@
     "path": "tools/repository_intelligence.py",
     "sha256": "d9cc389b40586783ee1632adbffb2cca62a262a8c89b4bb7b504c47d7822637e",
     "config_path": ".github/repository-intelligence-config.json",
-    "config_sha256": "55f97705f3dabfb2a92420df7379b650a4ddd5d818a255e982282879c9a666c8"
+    "config_sha256": "15f73732fc08d97be5f2f0f346ebc49d18310e6df8e83ce37f4577cbcad35428"
   },
   "owners": [
+    {
+      "concern": "next site iteration and Sol execution",
+      "path": "SOL-HANDOFF.md",
+      "queries": [
+        "Sol",
+        "execution plan",
+        "final plan review",
+        "план для сол",
+        "фінальне ревью"
+      ]
+    },
     {
       "concern": "site visual direction and review proposals",
       "path": "SITE-VISUAL-REVIEW.md",
@@ -605,6 +727,90 @@
       ]
     },
     {
+      "path": "SOL-HANDOFF.md",
+      "title": "Sol execution plan — reviewed 2026-10-02",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/seo-20261002/autocomplete-observations.json",
+      "title": "review/seo-20261002/autocomplete-observations.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/seo-20261002/free-sources.json",
+      "title": "review/seo-20261002/free-sources.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/seo-20261002/keyword-evidence.json",
+      "title": "review/seo-20261002/keyword-evidence.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/seo-20261002/keyword-metrics.json",
+      "title": "review/seo-20261002/keyword-metrics.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/seo-20261002/keyword-seeds.txt",
+      "title": "review/seo-20261002/keyword-seeds.txt",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/seo-20261002/raw/google-autocomplete.json",
+      "title": "review/seo-20261002/raw/google-autocomplete.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/seo-20261002/raw/rankspot-batch1.json",
+      "title": "review/seo-20261002/raw/rankspot-batch1.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/seo-20261002/raw/rankspot-batch2.json",
+      "title": "review/seo-20261002/raw/rankspot-batch2.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/seo-20261002/raw/rankspot-batch3.json",
+      "title": "review/seo-20261002/raw/rankspot-batch3.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/seo-20261002/raw/rankspot-batch4.json",
+      "title": "review/seo-20261002/raw/rankspot-batch4.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/seo-20261002/raw/rankspot-batch5.json",
+      "title": "review/seo-20261002/raw/rankspot-batch5.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "review/site-v1-offline-bundle-v3.json",
       "title": "review/site-v1-offline-bundle-v3.json",
       "instructions": [
@@ -649,6 +855,55 @@
     {
       "path": "review/site-visual-proposal-20261002.json",
       "title": "review/site-visual-proposal-20261002.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/sol-plan-20261002/CONTENT-AND-CONVERSION-BRIEF.md",
+      "title": "Author, research and client conversations — content brief for Sol",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/sol-plan-20261002/FINAL-REVIEW.md",
+      "title": "Final review of the Sol work plan",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/sol-plan-20261002/INPUT-PROVENANCE.json",
+      "title": "review/sol-plan-20261002/INPUT-PROVENANCE.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/sol-plan-20261002/SEO-BUYER-INTENT.md",
+      "title": "Buyer search intent and SEO plan for Sol",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/sol-plan-20261002/SEO-EVIDENCE.md",
+      "title": "Free SEO evidence and implementation treatment",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/sol-plan-20261002/VISUAL-SPEC.md",
+      "title": "Visual implementation specification",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/sol-plan-20261002/scene-blueprint.json",
+      "title": "review/sol-plan-20261002/scene-blueprint.json",
       "instructions": [
         "AGENTS.md"
       ]

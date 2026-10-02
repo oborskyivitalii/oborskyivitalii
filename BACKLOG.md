@@ -1,5 +1,18 @@
 # Issue backlog audit — 2026-10-01
 
+## Current execution checkpoint — 2026-10-02
+
+The dated audit below is historical. Current work is in Draft PR #9 (workflow/RI,
+#3/#4) and stacked Draft PR #10 (site #1, release/rights #7/#8). The maintainer
+requested a final plan review before a Sol implementation turn. The reviewed
+[SOL-HANDOFF](SOL-HANDOFF.md) is now the execution entry point, with
+[findings and source-input report](review/sol-plan-20261002/FINAL-REVIEW.md).
+
+Sequence: revised candidate #1/PR #10 → applicable #7/#8 review and release →
+PMDay #2 → distinct guides/measurement #11 after an overlap check. Publisher #5
+and harness #6 stay separate. English and the five-work selection are settled.
+No issue is closed and no merge/publication is implied by this planning record.
+
 ## Snapshot and limits
 
 Inspected default-branch tip: `ae6a28391566097bbf1eced6bb013ab70b48fd82`.

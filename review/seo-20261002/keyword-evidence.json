@@ -1,0 +1,4501 @@
+{
+  "as_of": "2026-10-02",
+  "integration_state": {
+    "checked_at": "2026-10-02T09:19:14.767006+00:00",
+    "semrush_installed": true,
+    "hypd_installed": true,
+    "callable_tools_exposed": true,
+    "semrush_result": "no_api_units",
+    "semrush_metrics_returned": false,
+    "semrush_action_url": "https://www.semrush.com/mcp-access",
+    "hypd_result": "Google Ads account connection and selection required",
+    "hypd_available_google_ads_accounts": 0,
+    "hypd_metrics_returned": false,
+    "hypd_action_url": "https://app.hypd.ai/sources?manage=google-ads",
+    "next_step": "Use the measured terms and intent mapping in this report. No purchase required for this evidence pack. Additional measurement can use available free quotas; do not retry exhausted free limits.",
+    "data_integrity": "New metrics are provider-reported estimates from RankSpot, whose site says Google Ads is its source. No-data results are normalized to null. Direct Google Autocomplete observations remain qualitative. Historical published estimates remain separate.",
+    "free_route": {
+      "provider": "RankSpot public free checker",
+      "succeeded": true,
+      "free_checks_used": 5,
+      "free_checks_remaining_returned": 0,
+      "free_window_reset_returned": "2026-10-03T00:00:00.000Z",
+      "purchase_performed": false,
+      "account_created": false,
+      "hypd_retry_result": "Requires connected Google Ads account; no metric results",
+      "google_trends_result": "HTTP 429; no time series"
+    }
+  },
+  "status": "Free provider measurements and direct Google Autocomplete collected; no direct Google Ads export or first-party site analytics",
+  "language": "English",
+  "target": "Enterprise software teams and IT services buyers: AI adoption outcomes and production agent controls",
+  "geography": "Exploratory English-language terms: 20 United States keyword checks; 5 United Kingdom checks. Markets chosen as working baselines for international enterprise content, not user-confirmed market prioritization. Autocomplete uses country hints only.",
+  "counts": {
+    "original_queries": 48,
+    "seed_terms": 18,
+    "published_estimate_terms": 3,
+    "direct_google_metric_terms": 0,
+    "free_provider_country_keyword_results": 25,
+    "free_provider_unique_terms": 20,
+    "free_provider_numeric_results": 17,
+    "free_provider_no_data_results": 8,
+    "autocomplete_requests": 56,
+    "autocomplete_unique_inputs": 28,
+    "autocomplete_suggestion_occurrences": 492,
+    "autocomplete_unique_suggestions": 256
+  },
+  "sources": [
+    {
+      "id": "G1",
+      "name": "Google Keyword Planner — historical metrics",
+      "url": "https://support.google.com/google-ads/answer/3022575?hl=en",
+      "type": "Official metric definitions",
+      "note": "Historical searches are rounded estimates, include close variants, and depend on period, location and network. Ads competition is not organic keyword difficulty."
+    },
+    {
+      "id": "G2",
+      "name": "Google Trends — data definitions",
+      "url": "https://support.google.com/trends/answer/4365533?hl=en",
+      "type": "Official metric definitions",
+      "note": "Sampled and normalized interest, not absolute monthly searches. Low-volume terms may show zero. No keyword time series retrieved in this session."
+    },
+    {
+      "id": "G3",
+      "name": "Google Search Console — search performance",
+      "url": "https://support.google.com/webmasters/answer/7576553?hl=en-EN",
+      "type": "Official metric definitions",
+      "note": "Queries, impressions and clicks concern the selected property. They do not measure the whole market."
+    },
+    {
+      "id": "M1",
+      "name": "Search Engine Land — published keyword estimates",
+      "url": "https://searchengineland.com/spot-emerging-category-search-data-484393",
+      "type": "Published third-party volume estimates",
+      "note": "US/UK database snapshot, July 2026. Numeric table retrieved from indexed article text. Direct page fetch returned 403. No raw export inspected; upstream provider not confirmed from accessible primary text. A republished version attributes the data to SE Rating; this attribution is not required for the analysis."
+    },
+    {
+      "id": "V1",
+      "name": "IBM — agentic governance",
+      "url": "https://www.ibm.com/think/insights/agentic-ai-governance-playbook",
+      "type": "Observed publisher vocabulary",
+      "note": "Supports the phrase and its operating-control context. Does not establish search volume."
+    },
+    {
+      "id": "V2",
+      "name": "IBM — agent governance",
+      "url": "https://www.ibm.com/think/insights/ai-agent-governance",
+      "type": "Observed publisher vocabulary",
+      "note": "Supports the term used by IBM. No search analytics."
+    },
+    {
+      "id": "V3",
+      "name": "McKinsey — AI operating models",
+      "url": "https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/scaling-the-ai-native-telco",
+      "type": "Observed publisher vocabulary",
+      "note": "AI operating model terminology. Sector-specific article; keyword is not proof of demand in software services."
+    },
+    {
+      "id": "V4",
+      "name": "McKinsey — agentic operating models",
+      "url": "https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/telcos-ai-inflection-point-what-leaders-do-to-capture-value",
+      "type": "Observed publisher vocabulary",
+      "note": "Agentic AI operating model terminology. No keyword volume."
+    },
+    {
+      "id": "V5",
+      "name": "Faros — productivity paradox",
+      "url": "https://www.faros.ai/research/ai-productivity-paradox",
+      "type": "Observed publisher vocabulary",
+      "note": "Name used in the 2025 research. Used only as vocabulary evidence; no claim that its historical findings describe all organizations today."
+    },
+    {
+      "id": "V6",
+      "name": "DX — engineering ROI",
+      "url": "https://getdx.com/blog/ai-roi-engineering/",
+      "type": "Observed publisher vocabulary",
+      "note": "Engineering-specific ROI language matches the user's intended problem. No search volume."
+    },
+    {
+      "id": "V7",
+      "name": "DX — coding assistant costs and ROI",
+      "url": "https://getdx.com/blog/ai-coding-assistant-pricing/",
+      "type": "Observed publisher vocabulary",
+      "note": "Coding-tool ROI terminology. No keyword volume."
+    },
+    {
+      "id": "V8",
+      "name": "DORA — AI dependency and workflow constraints",
+      "url": "https://dora.dev/insights/managing-ai-dependency/",
+      "type": "Observed publisher vocabulary",
+      "note": "Code review bottleneck language in AI adoption context. Does not prove that review is every team's constraint."
+    },
+    {
+      "id": "V9",
+      "name": "DORA — AI and the SDLC",
+      "url": "https://dora.dev/insights/balancing-ai-tensions/",
+      "type": "Observed publisher vocabulary",
+      "note": "AI adoption and AI-assisted software development terminology. Qualitative workflow evidence, not search analytics."
+    },
+    {
+      "id": "V10",
+      "name": "Google Cloud — production agents",
+      "url": "https://cloud.google.com/resources/core-concepts-ai-agents",
+      "type": "Observed publisher vocabulary",
+      "note": "Production deployment and reliability context; no search-volume claim."
+    },
+    {
+      "id": "V11",
+      "name": "Google Cloud — production readiness",
+      "url": "https://cloud.google.com/blog/products/ai-machine-learning/how-to-build-ai-agents-with-google-managed-mcp-servers",
+      "type": "Observed publisher vocabulary",
+      "note": "Production-ready agent phrase. Likely implementation/tutorial intent is an analyst judgment."
+    },
+    {
+      "id": "V12",
+      "name": "Google Cloud — continuous evaluation",
+      "url": "https://cloud.google.com/blog/topics/developers-practitioners/from-vibe-checks-to-continuous-evaluation-engineering-reliable-ai-agents",
+      "type": "Observed publisher vocabulary",
+      "note": "Reliability and evaluation phrases; no demand metric."
+    },
+    {
+      "id": "V13",
+      "name": "FinOps Foundation — cost management",
+      "url": "https://data.finops.org/",
+      "type": "Observed publisher vocabulary",
+      "note": "AI cost-management terminology; broad infrastructure/FinOps intent needs qualification."
+    },
+    {
+      "id": "F01",
+      "title": "RankSpot — Free Keyword Search Volume Checker",
+      "url": "https://www.rankspot.ai/free-tools/keyword-search-volume",
+      "type": "Provider methodology and public free form",
+      "retrieved_on": "2026-10-02",
+      "note": "Provider says Google Ads data, average monthly search volume over the last 12 months for the selected country. Raw responses do not expose exact period start/end, last refresh, or upstream provider. Treat as provider-reported estimates, not a direct Google export. Advertising competition is not organic keyword difficulty."
+    },
+    {
+      "id": "F02",
+      "title": "Google Autocomplete — observed responses",
+      "url": "https://suggestqueries.google.com/complete/search",
+      "type": "Direct Google suggestions",
+      "retrieved_on": "2026-10-02",
+      "note": "56 public endpoint requests, hl=en, requested gl=us/gb, client=firefox, no signed-in session. gl is a country hint, not proof of local IP or population representativeness. Suggestions have no monthly volume."
+    },
+    {
+      "id": "F03",
+      "title": "How Google autocomplete predictions work",
+      "url": "https://support.google.com/websearch/answer/7368877?hl=en",
+      "type": "Official definitions",
+      "retrieved_on": "2026-10-02",
+      "note": "Predictions can reflect real searches and word patterns found across the web. They do not simply list the most popular queries. Absence is not proof of no demand."
+    },
+    {
+      "id": "F04",
+      "title": "Semrush — free Keyword Search Volume Checker",
+      "url": "https://www.semrush.com/free-tools/keyword-search-volume-checker/",
+      "type": "Free alternative verified on provider website",
+      "retrieved_on": "2026-10-02",
+      "note": "No signup/payment stated for free checker. Site client requires reCAPTCHA for metric requests. No per-keyword metrics obtained here; paid connector blockage does not imply free website unavailable."
+    },
+    {
+      "id": "F05",
+      "title": "SEO.AI — Keyword Search Volume",
+      "url": "https://seo.ai/tools/keyword-search-volume",
+      "type": "Free alternative verified on provider website",
+      "retrieved_on": "2026-10-02",
+      "note": "Public free tool, client requires reCAPTCHA. No per-keyword results obtained. Public description says proprietary algorithms and third-party data; not treated as direct Google export."
+    },
+    {
+      "id": "F06",
+      "title": "Ahrefs — Free Keyword Generator",
+      "url": "https://ahrefs.com/keyword-generator",
+      "type": "Free alternative verified on provider website",
+      "retrieved_on": "2026-10-02",
+      "note": "Provider advertises free keyword ideas and metrics. No submitted-query results obtained this session."
+    },
+    {
+      "id": "F07",
+      "title": "SE Ranking — Free Keyword Search Volume Checker",
+      "url": "https://seranking.com/keyword-search-volume-checker.html",
+      "type": "Free alternative verified on provider website",
+      "retrieved_on": "2026-10-02",
+      "note": "Provider advertises free individual-query volume. No submitted-query results obtained this session."
+    },
+    {
+      "id": "F08",
+      "title": "Google Trends FAQ",
+      "url": "https://support.google.com/trends/answer/4365533?hl=en",
+      "type": "Official definitions",
+      "retrieved_on": "2026-10-02",
+      "note": "Relative sampled, normalized interest, not absolute counts. Direct Trends explore request returned HTTP 429; no time series obtained."
+    },
+    {
+      "id": "F09",
+      "title": "Google Ads — Use Keyword Planner",
+      "url": "https://support.google.com/google-ads/answer/7337243?hl=en",
+      "type": "Official access requirements",
+      "retrieved_on": "2026-10-02",
+      "note": "Current documentation requires completion of account setup with billing information for basic access. Not needed for the working RankSpot route."
+    },
+    {
+      "id": "F10",
+      "title": "McKinsey — The key to AI value is hiding in plain sight: Your operating model",
+      "url": "https://www.mckinsey.com/capabilities/people-and-organization/our-insights/the-key-to-ai-value-is-hiding-in-plain-sight-your-operating-model",
+      "type": "Publisher vocabulary / relevance evidence only",
+      "published_on": "2026-09-09",
+      "note": "Connects operating-model design and AI value for senior leaders. Does not establish keyword volume or buyer identity."
+    },
+    {
+      "id": "F11",
+      "title": "Faros — AI Productivity Paradox",
+      "url": "https://www.faros.ai/research/ai-productivity-paradox",
+      "type": "Publisher vocabulary / relevance evidence only",
+      "retrieved_on": "2026-10-02",
+      "note": "Engineering-specific use of productivity paradox framing. Does not establish search volume."
+    },
+    {
+      "id": "F12",
+      "title": "Microsoft — Govern and secure AI agents across the organization",
+      "url": "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ai-agents/governance-security-across-organization",
+      "type": "Publisher vocabulary / relevance evidence only",
+      "retrieved_on": "2026-10-02",
+      "note": "Uses governance and accountability language for enterprise agents. Does not establish search volume."
+    },
+    {
+      "id": "F13",
+      "title": "DX — The cost of implementing AI in engineering",
+      "url": "https://getdx.com/blog/ai-roi-engineering/",
+      "type": "Publisher vocabulary / relevance evidence only",
+      "retrieved_on": "2026-10-02",
+      "note": "Supports cost/ROI and engineering context, not exact demand for the phrase AI ROI for engineering."
+    },
+    {
+      "id": "F14",
+      "title": "Treendly — AI Governance Framework, United States",
+      "url": "https://treendly.com/trend/ai-governance-framework?geo=US",
+      "type": "Secondary public provider snapshot",
+      "retrieved_on": "2026-10-02",
+      "note": "Public page displays 3,600/month; exact measurement window not disclosed. Retained as cross-source difference versus RankSpot 4,400, not merged/averaged."
+    },
+    {
+      "id": "F15",
+      "title": "Treendly — AI Governance, United States",
+      "url": "https://treendly.com/trend/ai-governance",
+      "type": "Secondary public provider snapshot",
+      "retrieved_on": "2026-10-02",
+      "note": "Public page displays 12,100/month; differs from old July snapshot (3,200). Do not combine these as a trend because methods/windows are not aligned."
+    }
+  ],
+  "seeds": [
+    {
+      "id": "K01",
+      "keyword": "ai governance consultant",
+      "priority_by_business_fit": "P0",
+      "intent_inferred": "Commercial discovery",
+      "proposed_content_owner": "Home help/contact",
+      "source_id": "M1",
+      "evidence_status": "Free provider check completed; see per-country result (estimate or no_data)",
+      "fit_note_uk": "Пошук консультанта; перевірити, чи користувач очікує operational governance, а не правову сертифікацію.",
+      "published_volume_us": 170,
+      "published_volume_uk": 40,
+      "published_kd_us": 22,
+      "published_kd_uk": 15,
+      "published_period": "2026-07",
+      "direct_google_monthly_searches": null,
+      "measured_in_user_account": false,
+      "latest_free_metric_results": [
+        {
+          "keyword": "ai governance consultant",
+          "country": "United States",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch3.json",
+          "retrieved_at": "2026-10-02T09:30:40.489502+00:00",
+          "monthly_searches_estimate": null,
+          "status": "no_data",
+          "provider_raw_volume": 0,
+          "cpc_usd_provider_estimate": null,
+          "paid_ads_competition": null,
+          "paid_ads_competition_index": null,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": 0
+        }
+      ],
+      "autocomplete_observations": [
+        {
+          "input": "ai governance consultant",
+          "country_hint": "us",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai governance consultant"
+        },
+        {
+          "input": "ai governance consultant",
+          "country_hint": "gb",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai governance consultant"
+        }
+      ]
+    },
+    {
+      "id": "K02",
+      "keyword": "ai governance framework",
+      "priority_by_business_fit": "P1",
+      "intent_inferred": "Framework research",
+      "proposed_content_owner": "Research; production guide",
+      "source_id": "M1",
+      "evidence_status": "Free provider check completed; see per-country result (estimate or no_data)",
+      "fit_note_uk": "Широкий інтерес до фреймворків; сильне змішування з compliance.",
+      "published_volume_us": 3600,
+      "published_volume_uk": 260,
+      "published_kd_us": 64,
+      "published_kd_uk": 32,
+      "published_period": "2026-07",
+      "direct_google_monthly_searches": null,
+      "measured_in_user_account": false,
+      "latest_free_metric_results": [
+        {
+          "keyword": "ai governance framework",
+          "country": "United States",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch3.json",
+          "retrieved_at": "2026-10-02T09:30:40.489502+00:00",
+          "monthly_searches_estimate": 4400,
+          "status": "provider_reported_estimate",
+          "provider_raw_volume": 4400,
+          "cpc_usd_provider_estimate": 48.53,
+          "paid_ads_competition": "LOW",
+          "paid_ads_competition_index": 32,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [
+            18100,
+            14800,
+            3600,
+            1000,
+            1300,
+            1300,
+            1900,
+            1300,
+            1600,
+            1300,
+            1600,
+            1600
+          ],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": -91
+        }
+      ],
+      "autocomplete_observations": [
+        {
+          "input": "ai governance framework",
+          "country_hint": "us",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai governance framework"
+        },
+        {
+          "input": "ai governance framework",
+          "country_hint": "gb",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai governance framework"
+        },
+        {
+          "input": "ai governance",
+          "country_hint": "us",
+          "position_in_response_not_volume_rank": 4,
+          "suggestion": "ai governance framework"
+        },
+        {
+          "input": "ai governance",
+          "country_hint": "gb",
+          "position_in_response_not_volume_rank": 4,
+          "suggestion": "ai governance framework"
+        }
+      ]
+    },
+    {
+      "id": "K03",
+      "keyword": "ai governance",
+      "priority_by_business_fit": "P2",
+      "intent_inferred": "Broad category",
+      "proposed_content_owner": "Supporting copy",
+      "source_id": "M1",
+      "evidence_status": "Direct Google Autocomplete observed; current volume not measured",
+      "fit_note_uk": "Контекстна категорія; надто широка для єдиного головного запиту.",
+      "published_volume_us": 3200,
+      "published_volume_uk": 760,
+      "published_kd_us": 68,
+      "published_kd_uk": 25,
+      "published_period": "2026-07",
+      "direct_google_monthly_searches": null,
+      "measured_in_user_account": false,
+      "latest_free_metric_results": [],
+      "autocomplete_observations": [
+        {
+          "input": "ai governance",
+          "country_hint": "us",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai governance"
+        },
+        {
+          "input": "ai governance",
+          "country_hint": "gb",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai governance"
+        }
+      ]
+    },
+    {
+      "id": "K04",
+      "keyword": "agentic AI governance",
+      "priority_by_business_fit": "P0",
+      "intent_inferred": "Production controls",
+      "proposed_content_owner": "Production guide; Home summary",
+      "source_id": "V1",
+      "evidence_status": "Free provider check completed; see per-country result (estimate or no_data)",
+      "fit_note_uk": "Прямий зв’язок із межами автономності, відповідальністю та контролем дій.",
+      "published_volume_us": null,
+      "published_volume_uk": null,
+      "published_kd_us": null,
+      "published_kd_uk": null,
+      "published_period": null,
+      "direct_google_monthly_searches": null,
+      "measured_in_user_account": false,
+      "latest_free_metric_results": [
+        {
+          "keyword": "agentic ai governance",
+          "country": "United States",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch2.json",
+          "retrieved_at": "2026-10-02T09:30:30.009808+00:00",
+          "monthly_searches_estimate": 210,
+          "status": "provider_reported_estimate",
+          "provider_raw_volume": 210,
+          "cpc_usd_provider_estimate": 46.84,
+          "paid_ads_competition": "MEDIUM",
+          "paid_ads_competition_index": 44,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [
+            70,
+            90,
+            90,
+            70,
+            140,
+            170,
+            390,
+            170,
+            260,
+            260,
+            320,
+            390
+          ],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": 457
+        }
+      ],
+      "autocomplete_observations": [
+        {
+          "input": "agentic ai governance",
+          "country_hint": "us",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "agentic ai governance"
+        },
+        {
+          "input": "agentic ai governance",
+          "country_hint": "gb",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "agentic ai governance"
+        }
+      ]
+    },
+    {
+      "id": "K05",
+      "keyword": "AI agent governance",
+      "priority_by_business_fit": "P0",
+      "intent_inferred": "Production controls",
+      "proposed_content_owner": "Production guide",
+      "source_id": "V2",
+      "evidence_status": "Free provider check completed; see per-country result (estimate or no_data)",
+      "fit_note_uk": "Близький варіант попереднього терміна; одна змістовна сторінка.",
+      "published_volume_us": null,
+      "published_volume_uk": null,
+      "published_kd_us": null,
+      "published_kd_uk": null,
+      "published_period": null,
+      "direct_google_monthly_searches": null,
+      "measured_in_user_account": false,
+      "latest_free_metric_results": [
+        {
+          "keyword": "ai agent governance",
+          "country": "United States",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch1.json",
+          "retrieved_at": "2026-10-02T09:28:57.709024+00:00",
+          "monthly_searches_estimate": 260,
+          "status": "provider_reported_estimate",
+          "provider_raw_volume": 260,
+          "cpc_usd_provider_estimate": 60.66,
+          "paid_ads_competition": "MEDIUM",
+          "paid_ads_competition_index": 41,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [
+            210,
+            140,
+            110,
+            110,
+            170,
+            170,
+            390,
+            260,
+            320,
+            260,
+            320,
+            480
+          ],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": 129
+        },
+        {
+          "keyword": "ai agent governance",
+          "country": "United Kingdom",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch5.json",
+          "retrieved_at": "2026-10-02T09:31:02.020451+00:00",
+          "monthly_searches_estimate": null,
+          "status": "no_data",
+          "provider_raw_volume": 0,
+          "cpc_usd_provider_estimate": null,
+          "paid_ads_competition": null,
+          "paid_ads_competition_index": null,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": 0
+        }
+      ],
+      "autocomplete_observations": [
+        {
+          "input": "ai agent governance",
+          "country_hint": "us",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai agent governance"
+        },
+        {
+          "input": "ai agent governance",
+          "country_hint": "gb",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai agent governance"
+        }
+      ]
+    },
+    {
+      "id": "K06",
+      "keyword": "AI operating model",
+      "priority_by_business_fit": "P0",
+      "intent_inferred": "Organizational design",
+      "proposed_content_owner": "Home help/contact",
+      "source_id": "V3",
+      "evidence_status": "Free provider check completed; see per-country result (estimate or no_data)",
+      "fit_note_uk": "Ролі, decision rights, робочі процеси та модель впровадження.",
+      "published_volume_us": null,
+      "published_volume_uk": null,
+      "published_kd_us": null,
+      "published_kd_uk": null,
+      "published_period": null,
+      "direct_google_monthly_searches": null,
+      "measured_in_user_account": false,
+      "latest_free_metric_results": [
+        {
+          "keyword": "ai operating model",
+          "country": "United States",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch1.json",
+          "retrieved_at": "2026-10-02T09:28:57.709024+00:00",
+          "monthly_searches_estimate": 110,
+          "status": "provider_reported_estimate",
+          "provider_raw_volume": 110,
+          "cpc_usd_provider_estimate": 16.99,
+          "paid_ads_competition": "MEDIUM",
+          "paid_ads_competition_index": 54,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [
+            170,
+            50,
+            70,
+            30,
+            70,
+            90,
+            110,
+            110,
+            140,
+            140,
+            140,
+            140
+          ],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": -18
+        },
+        {
+          "keyword": "ai operating model",
+          "country": "United Kingdom",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch5.json",
+          "retrieved_at": "2026-10-02T09:31:02.020451+00:00",
+          "monthly_searches_estimate": 50,
+          "status": "provider_reported_estimate",
+          "provider_raw_volume": 50,
+          "cpc_usd_provider_estimate": 35.95,
+          "paid_ads_competition": "MEDIUM",
+          "paid_ads_competition_index": 56,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [
+            70,
+            40,
+            50,
+            40,
+            40,
+            50,
+            70,
+            50,
+            50,
+            70,
+            50,
+            70
+          ],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": 0
+        }
+      ],
+      "autocomplete_observations": [
+        {
+          "input": "ai operating model",
+          "country_hint": "us",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai operating model"
+        },
+        {
+          "input": "ai operating model",
+          "country_hint": "gb",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai operating model"
+        }
+      ]
+    },
+    {
+      "id": "K07",
+      "keyword": "agentic AI operating model",
+      "priority_by_business_fit": "P0",
+      "intent_inferred": "Organizational design",
+      "proposed_content_owner": "Home; production guide",
+      "source_id": "V4",
+      "evidence_status": "Direct Google Autocomplete observed; current volume not measured",
+      "fit_note_uk": "Міст між архітектурою агентів і організаційною відповідальністю.",
+      "published_volume_us": null,
+      "published_volume_uk": null,
+      "published_kd_us": null,
+      "published_kd_uk": null,
+      "published_period": null,
+      "direct_google_monthly_searches": null,
+      "measured_in_user_account": false,
+      "latest_free_metric_results": [],
+      "autocomplete_observations": [
+        {
+          "input": "agentic ai operating model",
+          "country_hint": "us",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "agentic ai operating model"
+        },
+        {
+          "input": "agentic ai operating model",
+          "country_hint": "gb",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "agentic ai operating model"
+        }
+      ]
+    },
+    {
+      "id": "K08",
+      "keyword": "AI productivity paradox",
+      "priority_by_business_fit": "P0",
+      "intent_inferred": "Problem diagnosis",
+      "proposed_content_owner": "Delivery guide",
+      "source_id": "V5",
+      "evidence_status": "Free provider check completed; see per-country result (estimate or no_data)",
+      "fit_note_uk": "Влучний опис розриву між активністю розробників і результатом організації.",
+      "published_volume_us": null,
+      "published_volume_uk": null,
+      "published_kd_us": null,
+      "published_kd_uk": null,
+      "published_period": null,
+      "direct_google_monthly_searches": null,
+      "measured_in_user_account": false,
+      "latest_free_metric_results": [
+        {
+          "keyword": "ai productivity paradox",
+          "country": "United States",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch1.json",
+          "retrieved_at": "2026-10-02T09:28:57.709024+00:00",
+          "monthly_searches_estimate": 140,
+          "status": "provider_reported_estimate",
+          "provider_raw_volume": 140,
+          "cpc_usd_provider_estimate": 18.2,
+          "paid_ads_competition": "LOW",
+          "paid_ads_competition_index": 10,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [
+            40,
+            70,
+            110,
+            50,
+            70,
+            110,
+            140,
+            210,
+            170,
+            320,
+            140,
+            140
+          ],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": 250
+        },
+        {
+          "keyword": "ai productivity paradox",
+          "country": "United Kingdom",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch5.json",
+          "retrieved_at": "2026-10-02T09:31:02.020451+00:00",
+          "monthly_searches_estimate": null,
+          "status": "no_data",
+          "provider_raw_volume": 0,
+          "cpc_usd_provider_estimate": null,
+          "paid_ads_competition": null,
+          "paid_ads_competition_index": null,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": 0
+        }
+      ],
+      "autocomplete_observations": [
+        {
+          "input": "ai productivity paradox",
+          "country_hint": "us",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai productivity paradox"
+        },
+        {
+          "input": "ai productivity paradox",
+          "country_hint": "gb",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai productivity paradox"
+        }
+      ]
+    },
+    {
+      "id": "K09",
+      "keyword": "AI ROI for engineering",
+      "priority_by_business_fit": "P0",
+      "intent_inferred": "Value measurement",
+      "proposed_content_owner": "Delivery guide",
+      "source_id": "V6",
+      "evidence_status": "Free provider check completed; see per-country result (estimate or no_data)",
+      "fit_note_uk": "Точніше для цільових software-команд, ніж загальне AI ROI.",
+      "published_volume_us": null,
+      "published_volume_uk": null,
+      "published_kd_us": null,
+      "published_kd_uk": null,
+      "published_period": null,
+      "direct_google_monthly_searches": null,
+      "measured_in_user_account": false,
+      "latest_free_metric_results": [
+        {
+          "keyword": "ai roi for engineering",
+          "country": "United States",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch3.json",
+          "retrieved_at": "2026-10-02T09:30:40.489502+00:00",
+          "monthly_searches_estimate": null,
+          "status": "no_data",
+          "provider_raw_volume": 0,
+          "cpc_usd_provider_estimate": null,
+          "paid_ads_competition": null,
+          "paid_ads_competition_index": null,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": 0
+        }
+      ],
+      "autocomplete_observations": []
+    },
+    {
+      "id": "K10",
+      "keyword": "AI coding tool ROI",
+      "priority_by_business_fit": "P0",
+      "intent_inferred": "Value measurement",
+      "proposed_content_owner": "Delivery guide",
+      "source_id": "V7",
+      "evidence_status": "Free provider check completed; see per-country result (estimate or no_data)",
+      "fit_note_uk": "Зіставлення вигоди, повних витрат, якості та delivery outcomes.",
+      "published_volume_us": null,
+      "published_volume_uk": null,
+      "published_kd_us": null,
+      "published_kd_uk": null,
+      "published_period": null,
+      "direct_google_monthly_searches": null,
+      "measured_in_user_account": false,
+      "latest_free_metric_results": [
+        {
+          "keyword": "ai coding tool roi",
+          "country": "United States",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch3.json",
+          "retrieved_at": "2026-10-02T09:30:40.489502+00:00",
+          "monthly_searches_estimate": null,
+          "status": "no_data",
+          "provider_raw_volume": 0,
+          "cpc_usd_provider_estimate": null,
+          "paid_ads_competition": null,
+          "paid_ads_competition_index": null,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": 0
+        }
+      ],
+      "autocomplete_observations": []
+    },
+    {
+      "id": "K11",
+      "keyword": "code review bottlenecks",
+      "priority_by_business_fit": "P1",
+      "intent_inferred": "Workflow diagnosis",
+      "proposed_content_owner": "Delivery guide; existing writing",
+      "source_id": "V8",
+      "evidence_status": "Direct Google Autocomplete observed; current volume not measured",
+      "fit_note_uk": "Використовувати в контексті ШІ; сама фраза не специфічна для ШІ.",
+      "published_volume_us": null,
+      "published_volume_uk": null,
+      "published_kd_us": null,
+      "published_kd_uk": null,
+      "published_period": null,
+      "direct_google_monthly_searches": null,
+      "measured_in_user_account": false,
+      "latest_free_metric_results": [],
+      "autocomplete_observations": [
+        {
+          "input": "code review bottlenecks",
+          "country_hint": "us",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "code review bottlenecks"
+        },
+        {
+          "input": "code review bottlenecks",
+          "country_hint": "gb",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "code review bottlenecks"
+        }
+      ]
+    },
+    {
+      "id": "K12",
+      "keyword": "AI-assisted software development",
+      "priority_by_business_fit": "P1",
+      "intent_inferred": "Delivery practices",
+      "proposed_content_owner": "Writing; delivery guide",
+      "source_id": "V9",
+      "evidence_status": "Direct Google Autocomplete observed; current volume not measured",
+      "fit_note_uk": "Усталена тематична категорія; широкий інформаційний намір.",
+      "published_volume_us": null,
+      "published_volume_uk": null,
+      "published_kd_us": null,
+      "published_kd_uk": null,
+      "published_period": null,
+      "direct_google_monthly_searches": null,
+      "measured_in_user_account": false,
+      "latest_free_metric_results": [],
+      "autocomplete_observations": [
+        {
+          "input": "ai-assisted software development",
+          "country_hint": "us",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai-assisted software development"
+        },
+        {
+          "input": "ai-assisted software development",
+          "country_hint": "gb",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai-assisted software development"
+        }
+      ]
+    },
+    {
+      "id": "K13",
+      "keyword": "AI agents in production",
+      "priority_by_business_fit": "P0",
+      "intent_inferred": "Production delivery",
+      "proposed_content_owner": "Production guide",
+      "source_id": "V10",
+      "evidence_status": "Free provider check completed; see per-country result (estimate or no_data)",
+      "fit_note_uk": "Стисле формулювання з первинного матеріалу про production deployment; це ще не спостережений запит покупця.",
+      "published_volume_us": null,
+      "published_volume_uk": null,
+      "published_kd_us": null,
+      "published_kd_uk": null,
+      "published_period": null,
+      "direct_google_monthly_searches": null,
+      "measured_in_user_account": false,
+      "latest_free_metric_results": [
+        {
+          "keyword": "ai agents in production",
+          "country": "United States",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch2.json",
+          "retrieved_at": "2026-10-02T09:30:30.009808+00:00",
+          "monthly_searches_estimate": 20,
+          "status": "provider_reported_estimate",
+          "provider_raw_volume": 20,
+          "cpc_usd_provider_estimate": 13.28,
+          "paid_ads_competition": "MEDIUM",
+          "paid_ads_competition_index": 51,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [
+            20,
+            20,
+            20,
+            20,
+            30,
+            30,
+            50,
+            20,
+            20,
+            30,
+            10,
+            10
+          ],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": -50
+        }
+      ],
+      "autocomplete_observations": [
+        {
+          "input": "ai agents in production",
+          "country_hint": "us",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai agents in production"
+        },
+        {
+          "input": "ai agents in production",
+          "country_hint": "gb",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai agents in production"
+        }
+      ]
+    },
+    {
+      "id": "K14",
+      "keyword": "production-ready AI agents",
+      "priority_by_business_fit": "P1",
+      "intent_inferred": "Readiness and implementation",
+      "proposed_content_owner": "Production guide section",
+      "source_id": "V11",
+      "evidence_status": "Observed phrase",
+      "fit_note_uk": "Значна ймовірність tutorial/tool intent; перевірити видачу для цільової країни.",
+      "published_volume_us": null,
+      "published_volume_uk": null,
+      "published_kd_us": null,
+      "published_kd_uk": null,
+      "published_period": null,
+      "direct_google_monthly_searches": null,
+      "measured_in_user_account": false,
+      "latest_free_metric_results": [],
+      "autocomplete_observations": []
+    },
+    {
+      "id": "K15",
+      "keyword": "reliable AI agents",
+      "priority_by_business_fit": "P1",
+      "intent_inferred": "Reliability engineering",
+      "proposed_content_owner": "Production guide section",
+      "source_id": "V12",
+      "evidence_status": "Direct Google Autocomplete observed; current volume not measured",
+      "fit_note_uk": "Контроль якості та поведінки; здебільшого технічний намір.",
+      "published_volume_us": null,
+      "published_volume_uk": null,
+      "published_kd_us": null,
+      "published_kd_uk": null,
+      "published_period": null,
+      "direct_google_monthly_searches": null,
+      "measured_in_user_account": false,
+      "latest_free_metric_results": [],
+      "autocomplete_observations": [
+        {
+          "input": "reliable ai agents",
+          "country_hint": "us",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "reliable ai agents"
+        },
+        {
+          "input": "reliable ai agents",
+          "country_hint": "gb",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "reliable ai agents"
+        }
+      ]
+    },
+    {
+      "id": "K16",
+      "keyword": "continuous evaluation",
+      "priority_by_business_fit": "P1",
+      "intent_inferred": "Evaluation practices",
+      "proposed_content_owner": "Production guide section",
+      "source_id": "V12",
+      "evidence_status": "Direct Google Autocomplete observed; current volume not measured",
+      "fit_note_uk": "Потребує явного контексту AI agents; широка фраза не є окремою цільовою сторінкою.",
+      "published_volume_us": null,
+      "published_volume_uk": null,
+      "published_kd_us": null,
+      "published_kd_uk": null,
+      "published_period": null,
+      "direct_google_monthly_searches": null,
+      "measured_in_user_account": false,
+      "latest_free_metric_results": [],
+      "autocomplete_observations": [
+        {
+          "input": "continuous evaluation",
+          "country_hint": "us",
+          "position_in_response_not_volume_rank": 2,
+          "suggestion": "continuous evaluation"
+        },
+        {
+          "input": "continuous evaluation",
+          "country_hint": "gb",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "continuous evaluation"
+        }
+      ],
+      "new_recommendation_uk": "Не використовувати як самостійний цільовий термін: підказки про security clearance та освіту. Для технічного змісту використовувати LLM evaluation або явно вказувати контекст AI agents."
+    },
+    {
+      "id": "K17",
+      "keyword": "AI cost management",
+      "priority_by_business_fit": "P2",
+      "intent_inferred": "Cost control",
+      "proposed_content_owner": "Production guide supporting copy",
+      "source_id": "V13",
+      "evidence_status": "Free provider check completed; see per-country result (estimate or no_data)",
+      "fit_note_uk": "Не підміняти operational control послугами GPU/cloud procurement.",
+      "published_volume_us": null,
+      "published_volume_uk": null,
+      "published_kd_us": null,
+      "published_kd_uk": null,
+      "published_period": null,
+      "direct_google_monthly_searches": null,
+      "measured_in_user_account": false,
+      "latest_free_metric_results": [
+        {
+          "keyword": "ai cost management",
+          "country": "United States",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch4.json",
+          "retrieved_at": "2026-10-02T09:30:49.963257+00:00",
+          "monthly_searches_estimate": 70,
+          "status": "provider_reported_estimate",
+          "provider_raw_volume": 70,
+          "cpc_usd_provider_estimate": 50.35,
+          "paid_ads_competition": "MEDIUM",
+          "paid_ads_competition_index": 51,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [
+            10,
+            30,
+            10,
+            10,
+            20,
+            30,
+            110,
+            50,
+            70,
+            90,
+            170,
+            140
+          ],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": 1300
+        }
+      ],
+      "autocomplete_observations": [
+        {
+          "input": "ai cost management",
+          "country_hint": "us",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai cost management"
+        },
+        {
+          "input": "ai cost management",
+          "country_hint": "gb",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai cost management"
+        }
+      ]
+    },
+    {
+      "id": "K18",
+      "keyword": "AI adoption",
+      "priority_by_business_fit": "P2",
+      "intent_inferred": "Broad category",
+      "proposed_content_owner": "Supporting copy",
+      "source_id": "V9",
+      "evidence_status": "Direct Google Autocomplete observed; current volume not measured",
+      "fit_note_uk": "Контекст, а не доказ вузького попиту на delivery assessment.",
+      "published_volume_us": null,
+      "published_volume_uk": null,
+      "published_kd_us": null,
+      "published_kd_uk": null,
+      "published_period": null,
+      "direct_google_monthly_searches": null,
+      "measured_in_user_account": false,
+      "latest_free_metric_results": [],
+      "autocomplete_observations": [
+        {
+          "input": "ai adoption",
+          "country_hint": "us",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai adoption"
+        },
+        {
+          "input": "ai adoption",
+          "country_hint": "gb",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai adoption"
+        }
+      ]
+    }
+  ],
+  "original_query_audit": [
+    {
+      "index": "0",
+      "id": "Q01",
+      "cluster": "adoption_value",
+      "priority_by_fit": "P0",
+      "persona": "CEO/COO/CFO",
+      "search_intent": "symptom",
+      "query_en": "why AI adoption is not delivering ROI",
+      "content_owner": "proposed ai-adoption-delivery-gains.html; launch Home summary",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "S1;S3;B1",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Залишити як редакційні питання; перевіряти попит через короткі початкові терміни.",
+        "seed_ids": [
+          "K08",
+          "K09",
+          "K10",
+          "K18"
+        ]
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "1",
+      "id": "Q02",
+      "cluster": "adoption_value",
+      "priority_by_fit": "P0",
+      "persona": "CEO/COO/CFO",
+      "search_intent": "symptom",
+      "query_en": "AI tools not improving developer productivity",
+      "content_owner": "proposed ai-adoption-delivery-gains.html; launch Home summary",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "S1;S3;B1",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Залишити як редакційні питання; перевіряти попит через короткі початкові терміни.",
+        "seed_ids": [
+          "K08",
+          "K09",
+          "K10",
+          "K18"
+        ]
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "2",
+      "id": "Q03",
+      "cluster": "adoption_value",
+      "priority_by_fit": "P0",
+      "persona": "CEO/COO/CFO",
+      "search_intent": "diagnosis",
+      "query_en": "AI productivity gains not improving software delivery",
+      "content_owner": "proposed ai-adoption-delivery-gains.html; launch Home summary",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "S1;S3;B1",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Залишити як редакційні питання; перевіряти попит через короткі початкові терміни.",
+        "seed_ids": [
+          "K08",
+          "K09",
+          "K10",
+          "K18"
+        ]
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "3",
+      "id": "Q04",
+      "cluster": "adoption_value",
+      "priority_by_fit": "P0",
+      "persona": "CEO/COO/CFO",
+      "search_intent": "diagnosis",
+      "query_en": "how to measure ROI of AI coding assistants",
+      "content_owner": "proposed ai-adoption-delivery-gains.html; launch Home summary",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "S1;S3;B1",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Залишити як редакційні питання; перевіряти попит через короткі початкові терміни.",
+        "seed_ids": [
+          "K08",
+          "K09",
+          "K10",
+          "K18"
+        ]
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "4",
+      "id": "Q05",
+      "cluster": "adoption_value",
+      "priority_by_fit": "P0",
+      "persona": "CEO/COO/CFO",
+      "search_intent": "symptom",
+      "query_en": "AI adoption costs rising without business value",
+      "content_owner": "proposed ai-adoption-delivery-gains.html; launch Home summary",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "S1;S3;B1",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Залишити як редакційні питання; перевіряти попит через короткі початкові терміни.",
+        "seed_ids": [
+          "K08",
+          "K09",
+          "K10",
+          "K18"
+        ]
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "5",
+      "id": "Q06",
+      "cluster": "adoption_value",
+      "priority_by_fit": "P0",
+      "persona": "CEO/COO/CFO",
+      "search_intent": "solution",
+      "query_en": "how to improve enterprise AI adoption outcomes",
+      "content_owner": "proposed ai-adoption-delivery-gains.html; launch Home summary",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "S1;S3;B1",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Залишити як редакційні питання; перевіряти попит через короткі початкові терміни.",
+        "seed_ids": [
+          "K08",
+          "K09",
+          "K10",
+          "K18"
+        ]
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "6",
+      "id": "Q07",
+      "cluster": "verification_quality",
+      "priority_by_fit": "P0",
+      "persona": "CTO/VP Engineering",
+      "search_intent": "diagnosis",
+      "query_en": "AI code review bottleneck",
+      "content_owner": "proposed ai-adoption-delivery-gains.html; launch Home summary",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "S2;B1;O2",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Об’єднати в delivery/verification розділ; не вважати довгі речення окремими підтвердженими ключами.",
+        "seed_ids": [
+          "K11",
+          "K12",
+          "K08"
+        ]
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "7",
+      "id": "Q08",
+      "cluster": "verification_quality",
+      "priority_by_fit": "P0",
+      "persona": "CTO/VP Engineering",
+      "search_intent": "symptom",
+      "query_en": "AI coding assistants increase review workload",
+      "content_owner": "proposed ai-adoption-delivery-gains.html; launch Home summary",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "S2;B1;O2",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Об’єднати в delivery/verification розділ; не вважати довгі речення окремими підтвердженими ключами.",
+        "seed_ids": [
+          "K11",
+          "K12",
+          "K08"
+        ]
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "8",
+      "id": "Q09",
+      "cluster": "verification_quality",
+      "priority_by_fit": "P0",
+      "persona": "CTO/VP Engineering",
+      "search_intent": "diagnosis",
+      "query_en": "AI generated code technical debt",
+      "content_owner": "proposed ai-adoption-delivery-gains.html; launch Home summary",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "S2;B1;O2",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Об’єднати в delivery/verification розділ; не вважати довгі речення окремими підтвердженими ключами.",
+        "seed_ids": [
+          "K11",
+          "K12",
+          "K08"
+        ]
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "9",
+      "id": "Q10",
+      "cluster": "verification_quality",
+      "priority_by_fit": "P0",
+      "persona": "CTO/VP Engineering",
+      "search_intent": "solution",
+      "query_en": "how to govern AI generated code",
+      "content_owner": "proposed ai-adoption-delivery-gains.html; launch Home summary",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "S2;B1;O2",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Об’єднати в delivery/verification розділ; не вважати довгі речення окремими підтвердженими ключами.",
+        "seed_ids": [
+          "K11",
+          "K12",
+          "K08"
+        ]
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "10",
+      "id": "Q11",
+      "cluster": "verification_quality",
+      "priority_by_fit": "P0",
+      "persona": "CTO/VP Engineering",
+      "search_intent": "solution",
+      "query_en": "AI assisted SDLC governance",
+      "content_owner": "proposed ai-adoption-delivery-gains.html; launch Home summary",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "S2;B1;O2",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Об’єднати в delivery/verification розділ; не вважати довгі речення окремими підтвердженими ключами.",
+        "seed_ids": [
+          "K11",
+          "K12",
+          "K08"
+        ]
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "11",
+      "id": "Q12",
+      "cluster": "verification_quality",
+      "priority_by_fit": "P0",
+      "persona": "CTO/VP Engineering",
+      "search_intent": "symptom",
+      "query_en": "more AI code but slower software delivery",
+      "content_owner": "proposed ai-adoption-delivery-gains.html; launch Home summary",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "S2;B1;O2",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Об’єднати в delivery/verification розділ; не вважати довгі речення окремими підтвердженими ключами.",
+        "seed_ids": [
+          "K11",
+          "K12",
+          "K08"
+        ]
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "12",
+      "id": "Q13",
+      "cluster": "agents_production",
+      "priority_by_fit": "P0",
+      "persona": "CTO/AI program lead",
+      "search_intent": "symptom",
+      "query_en": "why AI agents fail in production",
+      "content_owner": "proposed agentic-ai-production-governance.html; launch Home summary",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "S3;S4;B1",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Один кластер production governance з розділами readiness та reliability.",
+        "seed_ids": [
+          "K04",
+          "K05",
+          "K13",
+          "K14",
+          "K15",
+          "K16"
+        ]
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "13",
+      "id": "Q14",
+      "cluster": "agents_production",
+      "priority_by_fit": "P0",
+      "persona": "CTO/AI program lead",
+      "search_intent": "symptom",
+      "query_en": "AI agent unpredictable behavior in production",
+      "content_owner": "proposed agentic-ai-production-governance.html; launch Home summary",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "S3;S4;B1",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Один кластер production governance з розділами readiness та reliability.",
+        "seed_ids": [
+          "K04",
+          "K05",
+          "K13",
+          "K14",
+          "K15",
+          "K16"
+        ]
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "14",
+      "id": "Q15",
+      "cluster": "agents_production",
+      "priority_by_fit": "P0",
+      "persona": "CTO/AI program lead",
+      "search_intent": "solution",
+      "query_en": "how to control autonomous AI agents",
+      "content_owner": "proposed agentic-ai-production-governance.html; launch Home summary",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "S3;S4;B1",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Один кластер production governance з розділами readiness та reliability.",
+        "seed_ids": [
+          "K04",
+          "K05",
+          "K13",
+          "K14",
+          "K15",
+          "K16"
+        ]
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "15",
+      "id": "Q16",
+      "cluster": "agents_production",
+      "priority_by_fit": "P0",
+      "persona": "CTO/AI program lead",
+      "search_intent": "solution",
+      "query_en": "AI agent production readiness",
+      "content_owner": "proposed agentic-ai-production-governance.html; launch Home summary",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "S3;S4;B1",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Один кластер production governance з розділами readiness та reliability.",
+        "seed_ids": [
+          "K04",
+          "K05",
+          "K13",
+          "K14",
+          "K15",
+          "K16"
+        ]
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "16",
+      "id": "Q17",
+      "cluster": "agents_production",
+      "priority_by_fit": "P0",
+      "persona": "CTO/AI program lead",
+      "search_intent": "solution",
+      "query_en": "human oversight of AI agents",
+      "content_owner": "proposed agentic-ai-production-governance.html; launch Home summary",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "S3;S4;B1",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Один кластер production governance з розділами readiness та reliability.",
+        "seed_ids": [
+          "K04",
+          "K05",
+          "K13",
+          "K14",
+          "K15",
+          "K16"
+        ]
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "17",
+      "id": "Q18",
+      "cluster": "agents_production",
+      "priority_by_fit": "P0",
+      "persona": "CTO/AI program lead",
+      "search_intent": "diagnosis",
+      "query_en": "AI pilot to production challenges",
+      "content_owner": "proposed agentic-ai-production-governance.html; launch Home summary",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "S3;S4;B1",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Один кластер production governance з розділами readiness та reliability.",
+        "seed_ids": [
+          "K04",
+          "K05",
+          "K13",
+          "K14",
+          "K15",
+          "K16"
+        ]
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "18",
+      "id": "Q19",
+      "cluster": "agent_cost_actions",
+      "priority_by_fit": "P1",
+      "persona": "CTO/COO/platform lead",
+      "search_intent": "symptom",
+      "query_en": "AI agent cost overruns",
+      "content_owner": "proposed agentic-ai-production-governance.html; launch Home summary",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "S3;B1",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Підрозділи про runtime costs, authority та escalation; кількісних даних для точних фраз немає.",
+        "seed_ids": [
+          "K04",
+          "K05",
+          "K17"
+        ]
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "19",
+      "id": "Q20",
+      "cluster": "agent_cost_actions",
+      "priority_by_fit": "P1",
+      "persona": "CTO/COO/platform lead",
+      "search_intent": "solution",
+      "query_en": "how to stop runaway AI agent loops",
+      "content_owner": "proposed agentic-ai-production-governance.html; launch Home summary",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "S3;B1",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Підрозділи про runtime costs, authority та escalation; кількісних даних для точних фраз немає.",
+        "seed_ids": [
+          "K04",
+          "K05",
+          "K17"
+        ]
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "20",
+      "id": "Q21",
+      "cluster": "agent_cost_actions",
+      "priority_by_fit": "P1",
+      "persona": "CTO/COO/platform lead",
+      "search_intent": "solution",
+      "query_en": "AI agent cost governance",
+      "content_owner": "proposed agentic-ai-production-governance.html; launch Home summary",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "S3;B1",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Підрозділи про runtime costs, authority та escalation; кількісних даних для точних фраз немає.",
+        "seed_ids": [
+          "K04",
+          "K05",
+          "K17"
+        ]
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "21",
+      "id": "Q22",
+      "cluster": "agent_cost_actions",
+      "priority_by_fit": "P1",
+      "persona": "CTO/COO/platform lead",
+      "search_intent": "symptom",
+      "query_en": "AI agents taking unintended actions",
+      "content_owner": "proposed agentic-ai-production-governance.html; launch Home summary",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "S3;B1",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Підрозділи про runtime costs, authority та escalation; кількісних даних для точних фраз немає.",
+        "seed_ids": [
+          "K04",
+          "K05",
+          "K17"
+        ]
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "22",
+      "id": "Q23",
+      "cluster": "agent_cost_actions",
+      "priority_by_fit": "P1",
+      "persona": "CTO/COO/platform lead",
+      "search_intent": "solution",
+      "query_en": "AI agent permissions and approval controls",
+      "content_owner": "proposed agentic-ai-production-governance.html; launch Home summary",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "S3;B1",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Підрозділи про runtime costs, authority та escalation; кількісних даних для точних фраз немає.",
+        "seed_ids": [
+          "K04",
+          "K05",
+          "K17"
+        ]
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "23",
+      "id": "Q24",
+      "cluster": "agent_cost_actions",
+      "priority_by_fit": "P1",
+      "persona": "CTO/COO/platform lead",
+      "search_intent": "diagnosis",
+      "query_en": "who is accountable for AI agents in production",
+      "content_owner": "proposed agentic-ai-production-governance.html; launch Home summary",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "S3;B1",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Підрозділи про runtime costs, authority та escalation; кількісних даних для точних фраз немає.",
+        "seed_ids": [
+          "K04",
+          "K05",
+          "K17"
+        ]
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "24",
+      "id": "Q25",
+      "cluster": "advisory_operating_model",
+      "priority_by_fit": "P0",
+      "persona": "CTO/CIO/COO",
+      "search_intent": "provider",
+      "query_en": "AI delivery governance consulting",
+      "content_owner": "index.html#help; index.html#contact",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "B1;S3;O1",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Комерційне формулювання пропозиції; виміряний proxy не переносити на всі consulting-варіанти.",
+        "seed_ids": [
+          "K01",
+          "K06",
+          "K07"
+        ]
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "25",
+      "id": "Q26",
+      "cluster": "advisory_operating_model",
+      "priority_by_fit": "P0",
+      "persona": "CTO/CIO/COO",
+      "search_intent": "provider",
+      "query_en": "AI operating model consulting",
+      "content_owner": "index.html#help; index.html#contact",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "B1;S3;O1",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Комерційне формулювання пропозиції; виміряний proxy не переносити на всі consulting-варіанти.",
+        "seed_ids": [
+          "K01",
+          "K06",
+          "K07"
+        ]
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "26",
+      "id": "Q27",
+      "cluster": "advisory_operating_model",
+      "priority_by_fit": "P0",
+      "persona": "CTO/CIO/COO",
+      "search_intent": "provider",
+      "query_en": "agentic AI governance consulting",
+      "content_owner": "index.html#help; index.html#contact",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "B1;S3;O1",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Комерційне формулювання пропозиції; виміряний proxy не переносити на всі consulting-варіанти.",
+        "seed_ids": [
+          "K01",
+          "K06",
+          "K07"
+        ]
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "27",
+      "id": "Q28",
+      "cluster": "advisory_operating_model",
+      "priority_by_fit": "P0",
+      "persona": "CTO/CIO/COO",
+      "search_intent": "solution",
+      "query_en": "agentic AI operating model",
+      "content_owner": "index.html#help; index.html#contact",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "B1;S3;O1",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Комерційне формулювання пропозиції; виміряний proxy не переносити на всі consulting-варіанти.",
+        "seed_ids": [
+          "K01",
+          "K06",
+          "K07"
+        ]
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "28",
+      "id": "Q29",
+      "cluster": "advisory_operating_model",
+      "priority_by_fit": "P0",
+      "persona": "CTO/CIO/COO",
+      "search_intent": "provider",
+      "query_en": "AI adoption assessment for software teams",
+      "content_owner": "index.html#help; index.html#contact",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "B1;S3;O1",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Комерційне формулювання пропозиції; виміряний proxy не переносити на всі consulting-варіанти.",
+        "seed_ids": [
+          "K01",
+          "K06",
+          "K07"
+        ]
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "29",
+      "id": "Q30",
+      "cluster": "advisory_operating_model",
+      "priority_by_fit": "P0",
+      "persona": "CTO/CIO/COO",
+      "search_intent": "provider",
+      "query_en": "AI assisted SDLC assessment",
+      "content_owner": "index.html#help; index.html#contact",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "B1;S3;O1",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Комерційне формулювання пропозиції; виміряний proxy не переносити на всі consulting-варіанти.",
+        "seed_ids": [
+          "K01",
+          "K06",
+          "K07"
+        ]
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "30",
+      "id": "Q31",
+      "cluster": "it_services_pmo",
+      "priority_by_fit": "P1",
+      "persona": "services CEO/COO/PMO lead",
+      "search_intent": "solution",
+      "query_en": "AI adoption for IT services companies",
+      "content_owner": "proposed ai-adoption-delivery-gains.html; launch Home summary",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "B1",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Аудиторія та прикладні розділи; не оголошувати окремим виміряним SEO-кластером.",
+        "seed_ids": [
+          "K06",
+          "K07",
+          "K09"
+        ]
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "31",
+      "id": "Q32",
+      "cluster": "it_services_pmo",
+      "priority_by_fit": "P1",
+      "persona": "services CEO/COO/PMO lead",
+      "search_intent": "diagnosis",
+      "query_en": "AI impact on software services margins",
+      "content_owner": "proposed ai-adoption-delivery-gains.html; launch Home summary",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "B1",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Аудиторія та прикладні розділи; не оголошувати окремим виміряним SEO-кластером.",
+        "seed_ids": [
+          "K06",
+          "K07",
+          "K09"
+        ]
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "32",
+      "id": "Q33",
+      "cluster": "it_services_pmo",
+      "priority_by_fit": "P1",
+      "persona": "services CEO/COO/PMO lead",
+      "search_intent": "solution",
+      "query_en": "AI delivery transformation",
+      "content_owner": "proposed ai-adoption-delivery-gains.html; launch Home summary",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "B1",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Аудиторія та прикладні розділи; не оголошувати окремим виміряним SEO-кластером.",
+        "seed_ids": [
+          "K06",
+          "K07",
+          "K09"
+        ]
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "33",
+      "id": "Q34",
+      "cluster": "it_services_pmo",
+      "priority_by_fit": "P1",
+      "persona": "services CEO/COO/PMO lead",
+      "search_intent": "solution",
+      "query_en": "PMO transformation with AI",
+      "content_owner": "proposed ai-adoption-delivery-gains.html; launch Home summary",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "B1",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Аудиторія та прикладні розділи; не оголошувати окремим виміряним SEO-кластером.",
+        "seed_ids": [
+          "K06",
+          "K07",
+          "K09"
+        ]
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "34",
+      "id": "Q35",
+      "cluster": "it_services_pmo",
+      "priority_by_fit": "P1",
+      "persona": "services CEO/COO/PMO lead",
+      "search_intent": "solution",
+      "query_en": "AI adoption across software delivery teams",
+      "content_owner": "proposed ai-adoption-delivery-gains.html; launch Home summary",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "B1",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Аудиторія та прикладні розділи; не оголошувати окремим виміряним SEO-кластером.",
+        "seed_ids": [
+          "K06",
+          "K07",
+          "K09"
+        ]
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "35",
+      "id": "Q36",
+      "cluster": "it_services_pmo",
+      "priority_by_fit": "P1",
+      "persona": "services CEO/COO/PMO lead",
+      "search_intent": "diagnosis",
+      "query_en": "AI productivity client pricing pressure IT services",
+      "content_owner": "proposed ai-adoption-delivery-gains.html; launch Home summary",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "B1",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Аудиторія та прикладні розділи; не оголошувати окремим виміряним SEO-кластером.",
+        "seed_ids": [
+          "K06",
+          "K07",
+          "K09"
+        ]
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "36",
+      "id": "Q37",
+      "cluster": "workflow_differentiation",
+      "priority_by_fit": "P2",
+      "persona": "services CEO/strategy lead",
+      "search_intent": "solution",
+      "query_en": "AI native workflow protection",
+      "content_owner": "existing English Moat article via featured card; no new launch page",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "B1",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Другорядна тема існуючої статті Moat; окреме acquisition-просування поки не обґрунтоване.",
+        "seed_ids": []
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "37",
+      "id": "Q38",
+      "cluster": "workflow_differentiation",
+      "priority_by_fit": "P2",
+      "persona": "services CEO/strategy lead",
+      "search_intent": "diagnosis",
+      "query_en": "AI workflow intellectual property",
+      "content_owner": "existing English Moat article via featured card; no new launch page",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "B1",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Другорядна тема існуючої статті Moat; окреме acquisition-просування поки не обґрунтоване.",
+        "seed_ids": []
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "38",
+      "id": "Q39",
+      "cluster": "workflow_differentiation",
+      "priority_by_fit": "P2",
+      "persona": "services CEO/strategy lead",
+      "search_intent": "solution",
+      "query_en": "AI services competitive differentiation",
+      "content_owner": "existing English Moat article via featured card; no new launch page",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "B1",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Другорядна тема існуючої статті Moat; окреме acquisition-просування поки не обґрунтоване.",
+        "seed_ids": []
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "39",
+      "id": "Q40",
+      "cluster": "workflow_differentiation",
+      "priority_by_fit": "P2",
+      "persona": "services CEO/strategy lead",
+      "search_intent": "diagnosis",
+      "query_en": "AI workflow moat",
+      "content_owner": "existing English Moat article via featured card; no new launch page",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "B1",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Другорядна тема існуючої статті Moat; окреме acquisition-просування поки не обґрунтоване.",
+        "seed_ids": []
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "40",
+      "id": "Q41",
+      "cluster": "workflow_differentiation",
+      "priority_by_fit": "P2",
+      "persona": "services CEO/strategy lead",
+      "search_intent": "solution",
+      "query_en": "protecting company knowledge in AI workflows",
+      "content_owner": "existing English Moat article via featured card; no new launch page",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "B1",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Другорядна тема існуючої статті Moat; окреме acquisition-просування поки не обґрунтоване.",
+        "seed_ids": []
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "41",
+      "id": "Q42",
+      "cluster": "workflow_differentiation",
+      "priority_by_fit": "P2",
+      "persona": "services CEO/strategy lead",
+      "search_intent": "solution",
+      "query_en": "reusable AI adoption practices across teams",
+      "content_owner": "existing English Moat article via featured card; no new launch page",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "B1",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Другорядна тема існуючої статті Moat; окреме acquisition-просування поки не обґрунтоване.",
+        "seed_ids": []
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "42",
+      "id": "Q43",
+      "cluster": "author_research",
+      "priority_by_fit": "preserve",
+      "persona": "referred buyer/research reader",
+      "search_intent": "credibility",
+      "query_en": "Vitalii Oborskyi AI governance",
+      "content_owner": "research.html and original research/publication links",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "B1;maintainer research",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Зберегти для авторської/брендової навігації та research; не прирівнювати до небрандового покупецького попиту.",
+        "seed_ids": []
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "43",
+      "id": "Q44",
+      "cluster": "author_research",
+      "priority_by_fit": "preserve",
+      "persona": "referred buyer/research reader",
+      "search_intent": "credibility",
+      "query_en": "Uncertainty Architecture Thinking Systems",
+      "content_owner": "research.html and original research/publication links",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "B1;maintainer research",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Зберегти для авторської/брендової навігації та research; не прирівнювати до небрандового покупецького попиту.",
+        "seed_ids": []
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "44",
+      "id": "Q45",
+      "cluster": "author_research",
+      "priority_by_fit": "preserve",
+      "persona": "referred buyer/research reader",
+      "search_intent": "credibility",
+      "query_en": "The Subprime Code Crisis",
+      "content_owner": "research.html and original research/publication links",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "B1;maintainer research",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Зберегти для авторської/брендової навігації та research; не прирівнювати до небрандового покупецького попиту.",
+        "seed_ids": []
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "45",
+      "id": "Q46",
+      "cluster": "author_research",
+      "priority_by_fit": "preserve",
+      "persona": "referred buyer/research reader",
+      "search_intent": "research",
+      "query_en": "control theory for AI systems",
+      "content_owner": "research.html and original research/publication links",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "B1;maintainer research",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Зберегти для авторської/брендової навігації та research; не прирівнювати до небрандового покупецького попиту.",
+        "seed_ids": []
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "46",
+      "id": "Q47",
+      "cluster": "author_research",
+      "priority_by_fit": "preserve",
+      "persona": "referred buyer/research reader",
+      "search_intent": "research",
+      "query_en": "Theory of Constraints AI software delivery",
+      "content_owner": "research.html and original research/publication links",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "B1;maintainer research",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Зберегти для авторської/брендової навігації та research; не прирівнювати до небрандового покупецького попиту.",
+        "seed_ids": []
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    },
+    {
+      "index": "47",
+      "id": "Q48",
+      "cluster": "author_research",
+      "priority_by_fit": "preserve",
+      "persona": "referred buyer/research reader",
+      "search_intent": "research",
+      "query_en": "socio technical systems AI operating models",
+      "content_owner": "research.html and original research/publication links",
+      "status": "query hypothesis; demand unmeasured",
+      "supporting_vocabulary_sources": "B1;maintainer research",
+      "monthly_volume": "not measured",
+      "keyword_difficulty": "not measured",
+      "next_validation": "reader language; locale-specific keyword data if available; post-launch Search Console",
+      "review": {
+        "action": "Зберегти для авторської/брендової навігації та research; не прирівнювати до небрандового покупецького попиту.",
+        "seed_ids": []
+      },
+      "demand_status": "Original hypothesis; no direct Google search metrics obtained",
+      "reviewed_on": "2026-10-02",
+      "latest_validation_note": "This exact long question has not been volume-measured. Refer to measured seed terms; never transfer seed volume to a long question."
+    }
+  ],
+  "free_keyword_metrics": [
+    {
+      "keyword": "ai governance consulting",
+      "country": "United States",
+      "provider": "RankSpot",
+      "provider_source_claim": "Google Ads",
+      "source_id": "F01",
+      "raw_file": "raw/rankspot-batch1.json",
+      "retrieved_at": "2026-10-02T09:28:57.709024+00:00",
+      "monthly_searches_estimate": 140,
+      "status": "provider_reported_estimate",
+      "provider_raw_volume": 140,
+      "cpc_usd_provider_estimate": 33.9,
+      "paid_ads_competition": "MEDIUM",
+      "paid_ads_competition_index": 57,
+      "organic_keyword_difficulty": null,
+      "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+      "upstream_refresh_date": null,
+      "language_targeting_returned": null,
+      "history_values_as_returned": [
+        210,
+        90,
+        70,
+        50,
+        70,
+        140,
+        320,
+        140,
+        170,
+        170,
+        170,
+        140
+      ],
+      "history_month_labels": null,
+      "provider_trend_percent_not_used_for_ranking": -33
+    },
+    {
+      "keyword": "ai agent governance",
+      "country": "United States",
+      "provider": "RankSpot",
+      "provider_source_claim": "Google Ads",
+      "source_id": "F01",
+      "raw_file": "raw/rankspot-batch1.json",
+      "retrieved_at": "2026-10-02T09:28:57.709024+00:00",
+      "monthly_searches_estimate": 260,
+      "status": "provider_reported_estimate",
+      "provider_raw_volume": 260,
+      "cpc_usd_provider_estimate": 60.66,
+      "paid_ads_competition": "MEDIUM",
+      "paid_ads_competition_index": 41,
+      "organic_keyword_difficulty": null,
+      "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+      "upstream_refresh_date": null,
+      "language_targeting_returned": null,
+      "history_values_as_returned": [
+        210,
+        140,
+        110,
+        110,
+        170,
+        170,
+        390,
+        260,
+        320,
+        260,
+        320,
+        480
+      ],
+      "history_month_labels": null,
+      "provider_trend_percent_not_used_for_ranking": 129
+    },
+    {
+      "keyword": "ai operating model",
+      "country": "United States",
+      "provider": "RankSpot",
+      "provider_source_claim": "Google Ads",
+      "source_id": "F01",
+      "raw_file": "raw/rankspot-batch1.json",
+      "retrieved_at": "2026-10-02T09:28:57.709024+00:00",
+      "monthly_searches_estimate": 110,
+      "status": "provider_reported_estimate",
+      "provider_raw_volume": 110,
+      "cpc_usd_provider_estimate": 16.99,
+      "paid_ads_competition": "MEDIUM",
+      "paid_ads_competition_index": 54,
+      "organic_keyword_difficulty": null,
+      "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+      "upstream_refresh_date": null,
+      "language_targeting_returned": null,
+      "history_values_as_returned": [
+        170,
+        50,
+        70,
+        30,
+        70,
+        90,
+        110,
+        110,
+        140,
+        140,
+        140,
+        140
+      ],
+      "history_month_labels": null,
+      "provider_trend_percent_not_used_for_ranking": -18
+    },
+    {
+      "keyword": "ai productivity paradox",
+      "country": "United States",
+      "provider": "RankSpot",
+      "provider_source_claim": "Google Ads",
+      "source_id": "F01",
+      "raw_file": "raw/rankspot-batch1.json",
+      "retrieved_at": "2026-10-02T09:28:57.709024+00:00",
+      "monthly_searches_estimate": 140,
+      "status": "provider_reported_estimate",
+      "provider_raw_volume": 140,
+      "cpc_usd_provider_estimate": 18.2,
+      "paid_ads_competition": "LOW",
+      "paid_ads_competition_index": 10,
+      "organic_keyword_difficulty": null,
+      "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+      "upstream_refresh_date": null,
+      "language_targeting_returned": null,
+      "history_values_as_returned": [
+        40,
+        70,
+        110,
+        50,
+        70,
+        110,
+        140,
+        210,
+        170,
+        320,
+        140,
+        140
+      ],
+      "history_month_labels": null,
+      "provider_trend_percent_not_used_for_ranking": 250
+    },
+    {
+      "keyword": "ai developer productivity",
+      "country": "United States",
+      "provider": "RankSpot",
+      "provider_source_claim": "Google Ads",
+      "source_id": "F01",
+      "raw_file": "raw/rankspot-batch1.json",
+      "retrieved_at": "2026-10-02T09:28:57.709024+00:00",
+      "monthly_searches_estimate": 50,
+      "status": "provider_reported_estimate",
+      "provider_raw_volume": 50,
+      "cpc_usd_provider_estimate": 0,
+      "paid_ads_competition": "LOW",
+      "paid_ads_competition_index": 13,
+      "organic_keyword_difficulty": null,
+      "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+      "upstream_refresh_date": null,
+      "language_targeting_returned": null,
+      "history_values_as_returned": [
+        20,
+        20,
+        30,
+        10,
+        20,
+        10,
+        30,
+        50,
+        70,
+        90,
+        140,
+        110
+      ],
+      "history_month_labels": null,
+      "provider_trend_percent_not_used_for_ranking": 450
+    },
+    {
+      "keyword": "agentic ai governance",
+      "country": "United States",
+      "provider": "RankSpot",
+      "provider_source_claim": "Google Ads",
+      "source_id": "F01",
+      "raw_file": "raw/rankspot-batch2.json",
+      "retrieved_at": "2026-10-02T09:30:30.009808+00:00",
+      "monthly_searches_estimate": 210,
+      "status": "provider_reported_estimate",
+      "provider_raw_volume": 210,
+      "cpc_usd_provider_estimate": 46.84,
+      "paid_ads_competition": "MEDIUM",
+      "paid_ads_competition_index": 44,
+      "organic_keyword_difficulty": null,
+      "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+      "upstream_refresh_date": null,
+      "language_targeting_returned": null,
+      "history_values_as_returned": [
+        70,
+        90,
+        90,
+        70,
+        140,
+        170,
+        390,
+        170,
+        260,
+        260,
+        320,
+        390
+      ],
+      "history_month_labels": null,
+      "provider_trend_percent_not_used_for_ranking": 457
+    },
+    {
+      "keyword": "ai agents in production",
+      "country": "United States",
+      "provider": "RankSpot",
+      "provider_source_claim": "Google Ads",
+      "source_id": "F01",
+      "raw_file": "raw/rankspot-batch2.json",
+      "retrieved_at": "2026-10-02T09:30:30.009808+00:00",
+      "monthly_searches_estimate": 20,
+      "status": "provider_reported_estimate",
+      "provider_raw_volume": 20,
+      "cpc_usd_provider_estimate": 13.28,
+      "paid_ads_competition": "MEDIUM",
+      "paid_ads_competition_index": 51,
+      "organic_keyword_difficulty": null,
+      "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+      "upstream_refresh_date": null,
+      "language_targeting_returned": null,
+      "history_values_as_returned": [
+        20,
+        20,
+        20,
+        20,
+        30,
+        30,
+        50,
+        20,
+        20,
+        30,
+        10,
+        10
+      ],
+      "history_month_labels": null,
+      "provider_trend_percent_not_used_for_ranking": -50
+    },
+    {
+      "keyword": "ai roi measurement",
+      "country": "United States",
+      "provider": "RankSpot",
+      "provider_source_claim": "Google Ads",
+      "source_id": "F01",
+      "raw_file": "raw/rankspot-batch2.json",
+      "retrieved_at": "2026-10-02T09:30:30.009808+00:00",
+      "monthly_searches_estimate": null,
+      "status": "no_data",
+      "provider_raw_volume": 0,
+      "cpc_usd_provider_estimate": null,
+      "paid_ads_competition": null,
+      "paid_ads_competition_index": null,
+      "organic_keyword_difficulty": null,
+      "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+      "upstream_refresh_date": null,
+      "language_targeting_returned": null,
+      "history_values_as_returned": [],
+      "history_month_labels": null,
+      "provider_trend_percent_not_used_for_ranking": 0
+    },
+    {
+      "keyword": "ai developer productivity metrics",
+      "country": "United States",
+      "provider": "RankSpot",
+      "provider_source_claim": "Google Ads",
+      "source_id": "F01",
+      "raw_file": "raw/rankspot-batch2.json",
+      "retrieved_at": "2026-10-02T09:30:30.009808+00:00",
+      "monthly_searches_estimate": null,
+      "status": "no_data",
+      "provider_raw_volume": 0,
+      "cpc_usd_provider_estimate": null,
+      "paid_ads_competition": null,
+      "paid_ads_competition_index": null,
+      "organic_keyword_difficulty": null,
+      "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+      "upstream_refresh_date": null,
+      "language_targeting_returned": null,
+      "history_values_as_returned": [],
+      "history_month_labels": null,
+      "provider_trend_percent_not_used_for_ranking": 0
+    },
+    {
+      "keyword": "ai governance consulting services",
+      "country": "United States",
+      "provider": "RankSpot",
+      "provider_source_claim": "Google Ads",
+      "source_id": "F01",
+      "raw_file": "raw/rankspot-batch2.json",
+      "retrieved_at": "2026-10-02T09:30:30.009808+00:00",
+      "monthly_searches_estimate": 10,
+      "status": "provider_reported_estimate",
+      "provider_raw_volume": 10,
+      "cpc_usd_provider_estimate": 20.74,
+      "paid_ads_competition": "MEDIUM",
+      "paid_ads_competition_index": 36,
+      "organic_keyword_difficulty": null,
+      "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+      "upstream_refresh_date": null,
+      "language_targeting_returned": null,
+      "history_values_as_returned": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        70
+      ],
+      "history_month_labels": null,
+      "provider_trend_percent_not_used_for_ranking": 0
+    },
+    {
+      "keyword": "ai governance framework",
+      "country": "United States",
+      "provider": "RankSpot",
+      "provider_source_claim": "Google Ads",
+      "source_id": "F01",
+      "raw_file": "raw/rankspot-batch3.json",
+      "retrieved_at": "2026-10-02T09:30:40.489502+00:00",
+      "monthly_searches_estimate": 4400,
+      "status": "provider_reported_estimate",
+      "provider_raw_volume": 4400,
+      "cpc_usd_provider_estimate": 48.53,
+      "paid_ads_competition": "LOW",
+      "paid_ads_competition_index": 32,
+      "organic_keyword_difficulty": null,
+      "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+      "upstream_refresh_date": null,
+      "language_targeting_returned": null,
+      "history_values_as_returned": [
+        18100,
+        14800,
+        3600,
+        1000,
+        1300,
+        1300,
+        1900,
+        1300,
+        1600,
+        1300,
+        1600,
+        1600
+      ],
+      "history_month_labels": null,
+      "provider_trend_percent_not_used_for_ranking": -91
+    },
+    {
+      "keyword": "ai governance consultant",
+      "country": "United States",
+      "provider": "RankSpot",
+      "provider_source_claim": "Google Ads",
+      "source_id": "F01",
+      "raw_file": "raw/rankspot-batch3.json",
+      "retrieved_at": "2026-10-02T09:30:40.489502+00:00",
+      "monthly_searches_estimate": null,
+      "status": "no_data",
+      "provider_raw_volume": 0,
+      "cpc_usd_provider_estimate": null,
+      "paid_ads_competition": null,
+      "paid_ads_competition_index": null,
+      "organic_keyword_difficulty": null,
+      "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+      "upstream_refresh_date": null,
+      "language_targeting_returned": null,
+      "history_values_as_returned": [],
+      "history_month_labels": null,
+      "provider_trend_percent_not_used_for_ranking": 0
+    },
+    {
+      "keyword": "ai coding tool roi",
+      "country": "United States",
+      "provider": "RankSpot",
+      "provider_source_claim": "Google Ads",
+      "source_id": "F01",
+      "raw_file": "raw/rankspot-batch3.json",
+      "retrieved_at": "2026-10-02T09:30:40.489502+00:00",
+      "monthly_searches_estimate": null,
+      "status": "no_data",
+      "provider_raw_volume": 0,
+      "cpc_usd_provider_estimate": null,
+      "paid_ads_competition": null,
+      "paid_ads_competition_index": null,
+      "organic_keyword_difficulty": null,
+      "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+      "upstream_refresh_date": null,
+      "language_targeting_returned": null,
+      "history_values_as_returned": [],
+      "history_month_labels": null,
+      "provider_trend_percent_not_used_for_ranking": 0
+    },
+    {
+      "keyword": "ai roi for engineering",
+      "country": "United States",
+      "provider": "RankSpot",
+      "provider_source_claim": "Google Ads",
+      "source_id": "F01",
+      "raw_file": "raw/rankspot-batch3.json",
+      "retrieved_at": "2026-10-02T09:30:40.489502+00:00",
+      "monthly_searches_estimate": null,
+      "status": "no_data",
+      "provider_raw_volume": 0,
+      "cpc_usd_provider_estimate": null,
+      "paid_ads_competition": null,
+      "paid_ads_competition_index": null,
+      "organic_keyword_difficulty": null,
+      "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+      "upstream_refresh_date": null,
+      "language_targeting_returned": null,
+      "history_values_as_returned": [],
+      "history_month_labels": null,
+      "provider_trend_percent_not_used_for_ranking": 0
+    },
+    {
+      "keyword": "ai adoption challenges",
+      "country": "United States",
+      "provider": "RankSpot",
+      "provider_source_claim": "Google Ads",
+      "source_id": "F01",
+      "raw_file": "raw/rankspot-batch3.json",
+      "retrieved_at": "2026-10-02T09:30:40.489502+00:00",
+      "monthly_searches_estimate": 90,
+      "status": "provider_reported_estimate",
+      "provider_raw_volume": 90,
+      "cpc_usd_provider_estimate": 33.81,
+      "paid_ads_competition": "LOW",
+      "paid_ads_competition_index": 12,
+      "organic_keyword_difficulty": null,
+      "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+      "upstream_refresh_date": null,
+      "language_targeting_returned": null,
+      "history_values_as_returned": [
+        170,
+        90,
+        20,
+        10,
+        30,
+        70,
+        260,
+        70,
+        110,
+        40,
+        90,
+        50
+      ],
+      "history_month_labels": null,
+      "provider_trend_percent_not_used_for_ranking": -71
+    },
+    {
+      "keyword": "ai agent reliability",
+      "country": "United States",
+      "provider": "RankSpot",
+      "provider_source_claim": "Google Ads",
+      "source_id": "F01",
+      "raw_file": "raw/rankspot-batch4.json",
+      "retrieved_at": "2026-10-02T09:30:49.963257+00:00",
+      "monthly_searches_estimate": 10,
+      "status": "provider_reported_estimate",
+      "provider_raw_volume": 10,
+      "cpc_usd_provider_estimate": 26.6,
+      "paid_ads_competition": "LOW",
+      "paid_ads_competition_index": 28,
+      "organic_keyword_difficulty": null,
+      "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+      "upstream_refresh_date": null,
+      "language_targeting_returned": null,
+      "history_values_as_returned": [
+        10,
+        10,
+        10,
+        10,
+        10,
+        20,
+        30,
+        10,
+        10,
+        20,
+        10,
+        30
+      ],
+      "history_month_labels": null,
+      "provider_trend_percent_not_used_for_ranking": 200
+    },
+    {
+      "keyword": "ai agent guardrails",
+      "country": "United States",
+      "provider": "RankSpot",
+      "provider_source_claim": "Google Ads",
+      "source_id": "F01",
+      "raw_file": "raw/rankspot-batch4.json",
+      "retrieved_at": "2026-10-02T09:30:49.963257+00:00",
+      "monthly_searches_estimate": 70,
+      "status": "provider_reported_estimate",
+      "provider_raw_volume": 70,
+      "cpc_usd_provider_estimate": 23.98,
+      "paid_ads_competition": "MEDIUM",
+      "paid_ads_competition_index": 52,
+      "organic_keyword_difficulty": null,
+      "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+      "upstream_refresh_date": null,
+      "language_targeting_returned": null,
+      "history_values_as_returned": [
+        40,
+        50,
+        30,
+        30,
+        50,
+        70,
+        110,
+        110,
+        140,
+        110,
+        70,
+        110
+      ],
+      "history_month_labels": null,
+      "provider_trend_percent_not_used_for_ranking": 175
+    },
+    {
+      "keyword": "llm evaluation",
+      "country": "United States",
+      "provider": "RankSpot",
+      "provider_source_claim": "Google Ads",
+      "source_id": "F01",
+      "raw_file": "raw/rankspot-batch4.json",
+      "retrieved_at": "2026-10-02T09:30:49.963257+00:00",
+      "monthly_searches_estimate": 1000,
+      "status": "provider_reported_estimate",
+      "provider_raw_volume": 1000,
+      "cpc_usd_provider_estimate": 20.37,
+      "paid_ads_competition": "MEDIUM",
+      "paid_ads_competition_index": 40,
+      "organic_keyword_difficulty": null,
+      "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+      "upstream_refresh_date": null,
+      "language_targeting_returned": null,
+      "history_values_as_returned": [
+        1600,
+        1000,
+        880,
+        720,
+        880,
+        880,
+        1300,
+        1000,
+        880,
+        1000,
+        1300,
+        1000
+      ],
+      "history_month_labels": null,
+      "provider_trend_percent_not_used_for_ranking": -37
+    },
+    {
+      "keyword": "llm observability",
+      "country": "United States",
+      "provider": "RankSpot",
+      "provider_source_claim": "Google Ads",
+      "source_id": "F01",
+      "raw_file": "raw/rankspot-batch4.json",
+      "retrieved_at": "2026-10-02T09:30:49.963257+00:00",
+      "monthly_searches_estimate": 590,
+      "status": "provider_reported_estimate",
+      "provider_raw_volume": 590,
+      "cpc_usd_provider_estimate": 27.85,
+      "paid_ads_competition": "MEDIUM",
+      "paid_ads_competition_index": 47,
+      "organic_keyword_difficulty": null,
+      "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+      "upstream_refresh_date": null,
+      "language_targeting_returned": null,
+      "history_values_as_returned": [
+        720,
+        720,
+        590,
+        390,
+        590,
+        480,
+        1000,
+        590,
+        590,
+        590,
+        590,
+        480
+      ],
+      "history_month_labels": null,
+      "provider_trend_percent_not_used_for_ranking": -33
+    },
+    {
+      "keyword": "ai cost management",
+      "country": "United States",
+      "provider": "RankSpot",
+      "provider_source_claim": "Google Ads",
+      "source_id": "F01",
+      "raw_file": "raw/rankspot-batch4.json",
+      "retrieved_at": "2026-10-02T09:30:49.963257+00:00",
+      "monthly_searches_estimate": 70,
+      "status": "provider_reported_estimate",
+      "provider_raw_volume": 70,
+      "cpc_usd_provider_estimate": 50.35,
+      "paid_ads_competition": "MEDIUM",
+      "paid_ads_competition_index": 51,
+      "organic_keyword_difficulty": null,
+      "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+      "upstream_refresh_date": null,
+      "language_targeting_returned": null,
+      "history_values_as_returned": [
+        10,
+        30,
+        10,
+        10,
+        20,
+        30,
+        110,
+        50,
+        70,
+        90,
+        170,
+        140
+      ],
+      "history_month_labels": null,
+      "provider_trend_percent_not_used_for_ranking": 1300
+    },
+    {
+      "keyword": "ai governance consulting",
+      "country": "United Kingdom",
+      "provider": "RankSpot",
+      "provider_source_claim": "Google Ads",
+      "source_id": "F01",
+      "raw_file": "raw/rankspot-batch5.json",
+      "retrieved_at": "2026-10-02T09:31:02.020451+00:00",
+      "monthly_searches_estimate": 40,
+      "status": "provider_reported_estimate",
+      "provider_raw_volume": 40,
+      "cpc_usd_provider_estimate": 17.25,
+      "paid_ads_competition": "MEDIUM",
+      "paid_ads_competition_index": 50,
+      "organic_keyword_difficulty": null,
+      "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+      "upstream_refresh_date": null,
+      "language_targeting_returned": null,
+      "history_values_as_returned": [
+        20,
+        20,
+        10,
+        10,
+        30,
+        40,
+        70,
+        50,
+        70,
+        30,
+        50,
+        50
+      ],
+      "history_month_labels": null,
+      "provider_trend_percent_not_used_for_ranking": 150
+    },
+    {
+      "keyword": "ai agent governance",
+      "country": "United Kingdom",
+      "provider": "RankSpot",
+      "provider_source_claim": "Google Ads",
+      "source_id": "F01",
+      "raw_file": "raw/rankspot-batch5.json",
+      "retrieved_at": "2026-10-02T09:31:02.020451+00:00",
+      "monthly_searches_estimate": null,
+      "status": "no_data",
+      "provider_raw_volume": 0,
+      "cpc_usd_provider_estimate": null,
+      "paid_ads_competition": null,
+      "paid_ads_competition_index": null,
+      "organic_keyword_difficulty": null,
+      "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+      "upstream_refresh_date": null,
+      "language_targeting_returned": null,
+      "history_values_as_returned": [],
+      "history_month_labels": null,
+      "provider_trend_percent_not_used_for_ranking": 0
+    },
+    {
+      "keyword": "ai operating model",
+      "country": "United Kingdom",
+      "provider": "RankSpot",
+      "provider_source_claim": "Google Ads",
+      "source_id": "F01",
+      "raw_file": "raw/rankspot-batch5.json",
+      "retrieved_at": "2026-10-02T09:31:02.020451+00:00",
+      "monthly_searches_estimate": 50,
+      "status": "provider_reported_estimate",
+      "provider_raw_volume": 50,
+      "cpc_usd_provider_estimate": 35.95,
+      "paid_ads_competition": "MEDIUM",
+      "paid_ads_competition_index": 56,
+      "organic_keyword_difficulty": null,
+      "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+      "upstream_refresh_date": null,
+      "language_targeting_returned": null,
+      "history_values_as_returned": [
+        70,
+        40,
+        50,
+        40,
+        40,
+        50,
+        70,
+        50,
+        50,
+        70,
+        50,
+        70
+      ],
+      "history_month_labels": null,
+      "provider_trend_percent_not_used_for_ranking": 0
+    },
+    {
+      "keyword": "ai productivity paradox",
+      "country": "United Kingdom",
+      "provider": "RankSpot",
+      "provider_source_claim": "Google Ads",
+      "source_id": "F01",
+      "raw_file": "raw/rankspot-batch5.json",
+      "retrieved_at": "2026-10-02T09:31:02.020451+00:00",
+      "monthly_searches_estimate": null,
+      "status": "no_data",
+      "provider_raw_volume": 0,
+      "cpc_usd_provider_estimate": null,
+      "paid_ads_competition": null,
+      "paid_ads_competition_index": null,
+      "organic_keyword_difficulty": null,
+      "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+      "upstream_refresh_date": null,
+      "language_targeting_returned": null,
+      "history_values_as_returned": [],
+      "history_month_labels": null,
+      "provider_trend_percent_not_used_for_ranking": 0
+    },
+    {
+      "keyword": "ai developer productivity",
+      "country": "United Kingdom",
+      "provider": "RankSpot",
+      "provider_source_claim": "Google Ads",
+      "source_id": "F01",
+      "raw_file": "raw/rankspot-batch5.json",
+      "retrieved_at": "2026-10-02T09:31:02.020451+00:00",
+      "monthly_searches_estimate": null,
+      "status": "no_data",
+      "provider_raw_volume": 0,
+      "cpc_usd_provider_estimate": null,
+      "paid_ads_competition": null,
+      "paid_ads_competition_index": null,
+      "organic_keyword_difficulty": null,
+      "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+      "upstream_refresh_date": null,
+      "language_targeting_returned": null,
+      "history_values_as_returned": [],
+      "history_month_labels": null,
+      "provider_trend_percent_not_used_for_ranking": 0
+    }
+  ],
+  "selected_keywords": [
+    {
+      "keyword": "ai agent governance",
+      "priority_by_business_fit": "P0",
+      "priority_is_analyst_judgment": true,
+      "proposed_content_owner": "Production guide",
+      "intent_inferred_uk": "Контроль агентів у production",
+      "recommendation_uk": "Сильний змістовний збіг із повноваженнями, межами дій, ескалацією та відповідальністю. Покупці не виділені в загальній частотності.",
+      "metric_results": [
+        {
+          "keyword": "ai agent governance",
+          "country": "United States",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch1.json",
+          "retrieved_at": "2026-10-02T09:28:57.709024+00:00",
+          "monthly_searches_estimate": 260,
+          "status": "provider_reported_estimate",
+          "provider_raw_volume": 260,
+          "cpc_usd_provider_estimate": 60.66,
+          "paid_ads_competition": "MEDIUM",
+          "paid_ads_competition_index": 41,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [
+            210,
+            140,
+            110,
+            110,
+            170,
+            170,
+            390,
+            260,
+            320,
+            260,
+            320,
+            480
+          ],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": 129
+        },
+        {
+          "keyword": "ai agent governance",
+          "country": "United Kingdom",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch5.json",
+          "retrieved_at": "2026-10-02T09:31:02.020451+00:00",
+          "monthly_searches_estimate": null,
+          "status": "no_data",
+          "provider_raw_volume": 0,
+          "cpc_usd_provider_estimate": null,
+          "paid_ads_competition": null,
+          "paid_ads_competition_index": null,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": 0
+        }
+      ],
+      "autocomplete_observations": [
+        {
+          "input": "ai agent governance",
+          "country_hint": "us",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai agent governance"
+        },
+        {
+          "input": "ai agent governance",
+          "country_hint": "gb",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai agent governance"
+        }
+      ]
+    },
+    {
+      "keyword": "agentic ai governance",
+      "priority_by_business_fit": "P0",
+      "priority_is_analyst_judgment": true,
+      "proposed_content_owner": "Production guide",
+      "intent_inferred_uk": "Контроль агентів у production",
+      "recommendation_uk": "Варіант для тієї самої сторінки. Не підсумовувати частотності близьких фраз як унікальну аудиторію.",
+      "metric_results": [
+        {
+          "keyword": "agentic ai governance",
+          "country": "United States",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch2.json",
+          "retrieved_at": "2026-10-02T09:30:30.009808+00:00",
+          "monthly_searches_estimate": 210,
+          "status": "provider_reported_estimate",
+          "provider_raw_volume": 210,
+          "cpc_usd_provider_estimate": 46.84,
+          "paid_ads_competition": "MEDIUM",
+          "paid_ads_competition_index": 44,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [
+            70,
+            90,
+            90,
+            70,
+            140,
+            170,
+            390,
+            170,
+            260,
+            260,
+            320,
+            390
+          ],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": 457
+        }
+      ],
+      "autocomplete_observations": [
+        {
+          "input": "agentic ai governance",
+          "country_hint": "us",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "agentic ai governance"
+        },
+        {
+          "input": "agentic ai governance",
+          "country_hint": "gb",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "agentic ai governance"
+        }
+      ]
+    },
+    {
+      "keyword": "ai operating model",
+      "priority_by_business_fit": "P0",
+      "priority_is_analyst_judgment": true,
+      "proposed_content_owner": "Home / advisory",
+      "intent_inferred_uk": "Модель роботи та відповідальності",
+      "recommendation_uk": "Найпряміший міст до ролей, процесів, decision rights і delivery. США 110, Британія 50; це не доказ пошуку саме C-level.",
+      "metric_results": [
+        {
+          "keyword": "ai operating model",
+          "country": "United States",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch1.json",
+          "retrieved_at": "2026-10-02T09:28:57.709024+00:00",
+          "monthly_searches_estimate": 110,
+          "status": "provider_reported_estimate",
+          "provider_raw_volume": 110,
+          "cpc_usd_provider_estimate": 16.99,
+          "paid_ads_competition": "MEDIUM",
+          "paid_ads_competition_index": 54,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [
+            170,
+            50,
+            70,
+            30,
+            70,
+            90,
+            110,
+            110,
+            140,
+            140,
+            140,
+            140
+          ],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": -18
+        },
+        {
+          "keyword": "ai operating model",
+          "country": "United Kingdom",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch5.json",
+          "retrieved_at": "2026-10-02T09:31:02.020451+00:00",
+          "monthly_searches_estimate": 50,
+          "status": "provider_reported_estimate",
+          "provider_raw_volume": 50,
+          "cpc_usd_provider_estimate": 35.95,
+          "paid_ads_competition": "MEDIUM",
+          "paid_ads_competition_index": 56,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [
+            70,
+            40,
+            50,
+            40,
+            40,
+            50,
+            70,
+            50,
+            50,
+            70,
+            50,
+            70
+          ],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": 0
+        }
+      ],
+      "autocomplete_observations": [
+        {
+          "input": "ai operating model",
+          "country_hint": "us",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai operating model"
+        },
+        {
+          "input": "ai operating model",
+          "country_hint": "gb",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai operating model"
+        }
+      ]
+    },
+    {
+      "keyword": "ai governance consulting",
+      "priority_by_business_fit": "P0",
+      "priority_is_analyst_judgment": true,
+      "proposed_content_owner": "Home / advisory",
+      "intent_inferred_uk": "Пошук допомоги",
+      "recommendation_uk": "Комерційна фраза. Пояснити фокус на operational governance, delivery та production, щоб відрізнити послугу від compliance-аудиту.",
+      "metric_results": [
+        {
+          "keyword": "ai governance consulting",
+          "country": "United States",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch1.json",
+          "retrieved_at": "2026-10-02T09:28:57.709024+00:00",
+          "monthly_searches_estimate": 140,
+          "status": "provider_reported_estimate",
+          "provider_raw_volume": 140,
+          "cpc_usd_provider_estimate": 33.9,
+          "paid_ads_competition": "MEDIUM",
+          "paid_ads_competition_index": 57,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [
+            210,
+            90,
+            70,
+            50,
+            70,
+            140,
+            320,
+            140,
+            170,
+            170,
+            170,
+            140
+          ],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": -33
+        },
+        {
+          "keyword": "ai governance consulting",
+          "country": "United Kingdom",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch5.json",
+          "retrieved_at": "2026-10-02T09:31:02.020451+00:00",
+          "monthly_searches_estimate": 40,
+          "status": "provider_reported_estimate",
+          "provider_raw_volume": 40,
+          "cpc_usd_provider_estimate": 17.25,
+          "paid_ads_competition": "MEDIUM",
+          "paid_ads_competition_index": 50,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [
+            20,
+            20,
+            10,
+            10,
+            30,
+            40,
+            70,
+            50,
+            70,
+            30,
+            50,
+            50
+          ],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": 150
+        }
+      ],
+      "autocomplete_observations": [
+        {
+          "input": "ai governance consulting",
+          "country_hint": "us",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai governance consulting"
+        },
+        {
+          "input": "ai governance consulting",
+          "country_hint": "gb",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai governance consulting"
+        }
+      ]
+    },
+    {
+      "keyword": "ai productivity paradox",
+      "priority_by_business_fit": "P0",
+      "priority_is_analyst_judgment": true,
+      "proposed_content_owner": "Delivery guide",
+      "intent_inferred_uk": "Витрати на ШІ без покращення delivery",
+      "recommendation_uk": "Влучний інформаційний вхід до діагностики. Це фраза про проблему, а не готовність купити консультацію.",
+      "metric_results": [
+        {
+          "keyword": "ai productivity paradox",
+          "country": "United States",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch1.json",
+          "retrieved_at": "2026-10-02T09:28:57.709024+00:00",
+          "monthly_searches_estimate": 140,
+          "status": "provider_reported_estimate",
+          "provider_raw_volume": 140,
+          "cpc_usd_provider_estimate": 18.2,
+          "paid_ads_competition": "LOW",
+          "paid_ads_competition_index": 10,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [
+            40,
+            70,
+            110,
+            50,
+            70,
+            110,
+            140,
+            210,
+            170,
+            320,
+            140,
+            140
+          ],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": 250
+        },
+        {
+          "keyword": "ai productivity paradox",
+          "country": "United Kingdom",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch5.json",
+          "retrieved_at": "2026-10-02T09:31:02.020451+00:00",
+          "monthly_searches_estimate": null,
+          "status": "no_data",
+          "provider_raw_volume": 0,
+          "cpc_usd_provider_estimate": null,
+          "paid_ads_competition": null,
+          "paid_ads_competition_index": null,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": 0
+        }
+      ],
+      "autocomplete_observations": [
+        {
+          "input": "ai productivity paradox",
+          "country_hint": "us",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai productivity paradox"
+        },
+        {
+          "input": "ai productivity paradox",
+          "country_hint": "gb",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai productivity paradox"
+        }
+      ]
+    },
+    {
+      "keyword": "ai adoption challenges",
+      "priority_by_business_fit": "P1",
+      "priority_is_analyst_judgment": true,
+      "proposed_content_owner": "Delivery guide",
+      "intent_inferred_uk": "Проблеми впровадження",
+      "recommendation_uk": "Ширший інтерес: у матеріалі звузити до enterprise software delivery та IT services.",
+      "metric_results": [
+        {
+          "keyword": "ai adoption challenges",
+          "country": "United States",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch3.json",
+          "retrieved_at": "2026-10-02T09:30:40.489502+00:00",
+          "monthly_searches_estimate": 90,
+          "status": "provider_reported_estimate",
+          "provider_raw_volume": 90,
+          "cpc_usd_provider_estimate": 33.81,
+          "paid_ads_competition": "LOW",
+          "paid_ads_competition_index": 12,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [
+            170,
+            90,
+            20,
+            10,
+            30,
+            70,
+            260,
+            70,
+            110,
+            40,
+            90,
+            50
+          ],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": -71
+        }
+      ],
+      "autocomplete_observations": [
+        {
+          "input": "ai adoption challenges",
+          "country_hint": "us",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai adoption challenges"
+        },
+        {
+          "input": "ai adoption challenges",
+          "country_hint": "gb",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai adoption challenges"
+        }
+      ]
+    },
+    {
+      "keyword": "ai developer productivity",
+      "priority_by_business_fit": "P1",
+      "priority_is_analyst_judgment": true,
+      "proposed_content_owner": "Delivery guide",
+      "intent_inferred_uk": "Результативність engineering",
+      "recommendation_uk": "Додати контекст team outcomes, review, rework і повної вартості; запит також може стосуватися інструментів та досліджень.",
+      "metric_results": [
+        {
+          "keyword": "ai developer productivity",
+          "country": "United States",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch1.json",
+          "retrieved_at": "2026-10-02T09:28:57.709024+00:00",
+          "monthly_searches_estimate": 50,
+          "status": "provider_reported_estimate",
+          "provider_raw_volume": 50,
+          "cpc_usd_provider_estimate": 0,
+          "paid_ads_competition": "LOW",
+          "paid_ads_competition_index": 13,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [
+            20,
+            20,
+            30,
+            10,
+            20,
+            10,
+            30,
+            50,
+            70,
+            90,
+            140,
+            110
+          ],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": 450
+        },
+        {
+          "keyword": "ai developer productivity",
+          "country": "United Kingdom",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch5.json",
+          "retrieved_at": "2026-10-02T09:31:02.020451+00:00",
+          "monthly_searches_estimate": null,
+          "status": "no_data",
+          "provider_raw_volume": 0,
+          "cpc_usd_provider_estimate": null,
+          "paid_ads_competition": null,
+          "paid_ads_competition_index": null,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": 0
+        }
+      ],
+      "autocomplete_observations": [
+        {
+          "input": "ai developer productivity",
+          "country_hint": "us",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai developer productivity"
+        },
+        {
+          "input": "ai developer productivity",
+          "country_hint": "gb",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai developer productivity"
+        }
+      ]
+    },
+    {
+      "keyword": "ai agent guardrails",
+      "priority_by_business_fit": "P1",
+      "priority_is_analyst_judgment": true,
+      "proposed_content_owner": "Production guide",
+      "intent_inferred_uk": "Технічні межі поведінки",
+      "recommendation_uk": "Корисна допоміжна фраза; очікування часто технічні. Guardrails не зводити до всього контуру governance.",
+      "metric_results": [
+        {
+          "keyword": "ai agent guardrails",
+          "country": "United States",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch4.json",
+          "retrieved_at": "2026-10-02T09:30:49.963257+00:00",
+          "monthly_searches_estimate": 70,
+          "status": "provider_reported_estimate",
+          "provider_raw_volume": 70,
+          "cpc_usd_provider_estimate": 23.98,
+          "paid_ads_competition": "MEDIUM",
+          "paid_ads_competition_index": 52,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [
+            40,
+            50,
+            30,
+            30,
+            50,
+            70,
+            110,
+            110,
+            140,
+            110,
+            70,
+            110
+          ],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": 175
+        }
+      ],
+      "autocomplete_observations": [
+        {
+          "input": "ai agent guardrails",
+          "country_hint": "us",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai agent guardrails"
+        },
+        {
+          "input": "ai agent guardrails",
+          "country_hint": "gb",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai agent guardrails"
+        }
+      ]
+    },
+    {
+      "keyword": "ai agents in production",
+      "priority_by_business_fit": "P1",
+      "priority_is_analyst_judgment": true,
+      "proposed_content_owner": "Production guide",
+      "intent_inferred_uk": "Введення в експлуатацію",
+      "recommendation_uk": "Підходить до readiness, eval gates, спостереження та корекції. Значна частина наміру — навчання та реалізація.",
+      "metric_results": [
+        {
+          "keyword": "ai agents in production",
+          "country": "United States",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch2.json",
+          "retrieved_at": "2026-10-02T09:30:30.009808+00:00",
+          "monthly_searches_estimate": 20,
+          "status": "provider_reported_estimate",
+          "provider_raw_volume": 20,
+          "cpc_usd_provider_estimate": 13.28,
+          "paid_ads_competition": "MEDIUM",
+          "paid_ads_competition_index": 51,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [
+            20,
+            20,
+            20,
+            20,
+            30,
+            30,
+            50,
+            20,
+            20,
+            30,
+            10,
+            10
+          ],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": -50
+        }
+      ],
+      "autocomplete_observations": [
+        {
+          "input": "ai agents in production",
+          "country_hint": "us",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai agents in production"
+        },
+        {
+          "input": "ai agents in production",
+          "country_hint": "gb",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai agents in production"
+        }
+      ]
+    },
+    {
+      "keyword": "ai governance consulting services",
+      "priority_by_business_fit": "P1",
+      "priority_is_analyst_judgment": true,
+      "proposed_content_owner": "Home / advisory",
+      "intent_inferred_uk": "Пошук допомоги",
+      "recommendation_uk": "Підтверджена підказка і мала ненульова оцінка. Варіант основної consulting-фрази, не окрема сторінка.",
+      "metric_results": [
+        {
+          "keyword": "ai governance consulting services",
+          "country": "United States",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch2.json",
+          "retrieved_at": "2026-10-02T09:30:30.009808+00:00",
+          "monthly_searches_estimate": 10,
+          "status": "provider_reported_estimate",
+          "provider_raw_volume": 10,
+          "cpc_usd_provider_estimate": 20.74,
+          "paid_ads_competition": "MEDIUM",
+          "paid_ads_competition_index": 36,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            70
+          ],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": 0
+        }
+      ],
+      "autocomplete_observations": [
+        {
+          "input": "ai governance consultant",
+          "country_hint": "us",
+          "position_in_response_not_volume_rank": 9,
+          "suggestion": "ai governance consulting services"
+        },
+        {
+          "input": "ai governance consultant",
+          "country_hint": "gb",
+          "position_in_response_not_volume_rank": 9,
+          "suggestion": "ai governance consulting services"
+        },
+        {
+          "input": "ai governance consulting",
+          "country_hint": "us",
+          "position_in_response_not_volume_rank": 3,
+          "suggestion": "ai governance consulting services"
+        },
+        {
+          "input": "ai governance consulting",
+          "country_hint": "gb",
+          "position_in_response_not_volume_rank": 3,
+          "suggestion": "ai governance consulting services"
+        }
+      ]
+    },
+    {
+      "keyword": "ai agent reliability",
+      "priority_by_business_fit": "P1",
+      "priority_is_analyst_judgment": true,
+      "proposed_content_owner": "Production guide",
+      "intent_inferred_uk": "Надійність агентів",
+      "recommendation_uk": "Низька оцінка та домішка вакансій у підказках. Використовувати як допоміжний термін у змісті.",
+      "metric_results": [
+        {
+          "keyword": "ai agent reliability",
+          "country": "United States",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch4.json",
+          "retrieved_at": "2026-10-02T09:30:49.963257+00:00",
+          "monthly_searches_estimate": 10,
+          "status": "provider_reported_estimate",
+          "provider_raw_volume": 10,
+          "cpc_usd_provider_estimate": 26.6,
+          "paid_ads_competition": "LOW",
+          "paid_ads_competition_index": 28,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            20,
+            30,
+            10,
+            10,
+            20,
+            10,
+            30
+          ],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": 200
+        }
+      ],
+      "autocomplete_observations": [
+        {
+          "input": "ai agent reliability",
+          "country_hint": "us",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai agent reliability"
+        },
+        {
+          "input": "ai agent reliability",
+          "country_hint": "gb",
+          "position_in_response_not_volume_rank": 4,
+          "suggestion": "ai agent reliability"
+        }
+      ]
+    },
+    {
+      "keyword": "ai cost management",
+      "priority_by_business_fit": "P1",
+      "priority_is_analyst_judgment": true,
+      "proposed_content_owner": "Delivery / cost section",
+      "intent_inferred_uk": "Економіка впровадження",
+      "recommendation_uk": "Широка фраза з FinOps та інфраструктурним наміром; звузити до вартості перевірки, переробок і експлуатації.",
+      "metric_results": [
+        {
+          "keyword": "ai cost management",
+          "country": "United States",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch4.json",
+          "retrieved_at": "2026-10-02T09:30:49.963257+00:00",
+          "monthly_searches_estimate": 70,
+          "status": "provider_reported_estimate",
+          "provider_raw_volume": 70,
+          "cpc_usd_provider_estimate": 50.35,
+          "paid_ads_competition": "MEDIUM",
+          "paid_ads_competition_index": 51,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [
+            10,
+            30,
+            10,
+            10,
+            20,
+            30,
+            110,
+            50,
+            70,
+            90,
+            170,
+            140
+          ],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": 1300
+        }
+      ],
+      "autocomplete_observations": [
+        {
+          "input": "ai cost management",
+          "country_hint": "us",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai cost management"
+        },
+        {
+          "input": "ai cost management",
+          "country_hint": "gb",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai cost management"
+        }
+      ]
+    },
+    {
+      "keyword": "llm evaluation",
+      "priority_by_business_fit": "P2",
+      "priority_is_analyst_judgment": true,
+      "proposed_content_owner": "Technical supporting content",
+      "intent_inferred_uk": "Вимірювання якості",
+      "recommendation_uk": "Великий технічний інтерес. Корисно для пояснення eval gates та якості рішень, але не робити єдиним входом для керівника.",
+      "metric_results": [
+        {
+          "keyword": "llm evaluation",
+          "country": "United States",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch4.json",
+          "retrieved_at": "2026-10-02T09:30:49.963257+00:00",
+          "monthly_searches_estimate": 1000,
+          "status": "provider_reported_estimate",
+          "provider_raw_volume": 1000,
+          "cpc_usd_provider_estimate": 20.37,
+          "paid_ads_competition": "MEDIUM",
+          "paid_ads_competition_index": 40,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [
+            1600,
+            1000,
+            880,
+            720,
+            880,
+            880,
+            1300,
+            1000,
+            880,
+            1000,
+            1300,
+            1000
+          ],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": -37
+        }
+      ],
+      "autocomplete_observations": [
+        {
+          "input": "llm evaluation",
+          "country_hint": "us",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "llm evaluation"
+        },
+        {
+          "input": "llm evaluation",
+          "country_hint": "gb",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "llm evaluation"
+        }
+      ]
+    },
+    {
+      "keyword": "llm observability",
+      "priority_by_business_fit": "P2",
+      "priority_is_analyst_judgment": true,
+      "proposed_content_owner": "Technical supporting content",
+      "intent_inferred_uk": "Контроль у production",
+      "recommendation_uk": "Технічний термін з інструментальним наміром. Поєднати з тим, хто реагує на сигнали та має право коригувати систему.",
+      "metric_results": [
+        {
+          "keyword": "llm observability",
+          "country": "United States",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch4.json",
+          "retrieved_at": "2026-10-02T09:30:49.963257+00:00",
+          "monthly_searches_estimate": 590,
+          "status": "provider_reported_estimate",
+          "provider_raw_volume": 590,
+          "cpc_usd_provider_estimate": 27.85,
+          "paid_ads_competition": "MEDIUM",
+          "paid_ads_competition_index": 47,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [
+            720,
+            720,
+            590,
+            390,
+            590,
+            480,
+            1000,
+            590,
+            590,
+            590,
+            590,
+            480
+          ],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": -33
+        }
+      ],
+      "autocomplete_observations": [
+        {
+          "input": "llm observability",
+          "country_hint": "us",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "llm observability"
+        },
+        {
+          "input": "llm observability",
+          "country_hint": "gb",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "llm observability"
+        }
+      ]
+    },
+    {
+      "keyword": "ai governance framework",
+      "priority_by_business_fit": "P2",
+      "priority_is_analyst_judgment": true,
+      "proposed_content_owner": "Research / framework page",
+      "intent_inferred_uk": "Широкий фреймворк",
+      "recommendation_uk": "Найбільша частотність у вибірці, але змішані compliance, policy та навчальні потреби. Органічну складність не виміряно.",
+      "metric_results": [
+        {
+          "keyword": "ai governance framework",
+          "country": "United States",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch3.json",
+          "retrieved_at": "2026-10-02T09:30:40.489502+00:00",
+          "monthly_searches_estimate": 4400,
+          "status": "provider_reported_estimate",
+          "provider_raw_volume": 4400,
+          "cpc_usd_provider_estimate": 48.53,
+          "paid_ads_competition": "LOW",
+          "paid_ads_competition_index": 32,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [
+            18100,
+            14800,
+            3600,
+            1000,
+            1300,
+            1300,
+            1900,
+            1300,
+            1600,
+            1300,
+            1600,
+            1600
+          ],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": -91
+        }
+      ],
+      "autocomplete_observations": [
+        {
+          "input": "ai governance framework",
+          "country_hint": "us",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai governance framework"
+        },
+        {
+          "input": "ai governance framework",
+          "country_hint": "gb",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai governance framework"
+        },
+        {
+          "input": "ai governance",
+          "country_hint": "us",
+          "position_in_response_not_volume_rank": 4,
+          "suggestion": "ai governance framework"
+        },
+        {
+          "input": "ai governance",
+          "country_hint": "gb",
+          "position_in_response_not_volume_rank": 4,
+          "suggestion": "ai governance framework"
+        }
+      ]
+    },
+    {
+      "keyword": "ai roi measurement",
+      "priority_by_business_fit": "Supporting",
+      "priority_is_analyst_judgment": true,
+      "proposed_content_owner": "Delivery guide section",
+      "intent_inferred_uk": "Вимірювання результату",
+      "recommendation_uk": "Є Google Autocomplete; RankSpot повернув No data. Можна використати як тему секції, без заяв про виміряний обсяг.",
+      "metric_results": [
+        {
+          "keyword": "ai roi measurement",
+          "country": "United States",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch2.json",
+          "retrieved_at": "2026-10-02T09:30:30.009808+00:00",
+          "monthly_searches_estimate": null,
+          "status": "no_data",
+          "provider_raw_volume": 0,
+          "cpc_usd_provider_estimate": null,
+          "paid_ads_competition": null,
+          "paid_ads_competition_index": null,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": 0
+        }
+      ],
+      "autocomplete_observations": [
+        {
+          "input": "ai roi measurement",
+          "country_hint": "us",
+          "position_in_response_not_volume_rank": 2,
+          "suggestion": "ai roi measurement"
+        },
+        {
+          "input": "ai roi measurement",
+          "country_hint": "gb",
+          "position_in_response_not_volume_rank": 2,
+          "suggestion": "ai roi measurement"
+        }
+      ]
+    },
+    {
+      "keyword": "ai developer productivity metrics",
+      "priority_by_business_fit": "Supporting",
+      "priority_is_analyst_judgment": true,
+      "proposed_content_owner": "Delivery guide section",
+      "intent_inferred_uk": "Вимірювання результату",
+      "recommendation_uk": "Є Google Autocomplete; RankSpot повернув No data. Не присвоювати цій фразі частотність батьківського запиту.",
+      "metric_results": [
+        {
+          "keyword": "ai developer productivity metrics",
+          "country": "United States",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch2.json",
+          "retrieved_at": "2026-10-02T09:30:30.009808+00:00",
+          "monthly_searches_estimate": null,
+          "status": "no_data",
+          "provider_raw_volume": 0,
+          "cpc_usd_provider_estimate": null,
+          "paid_ads_competition": null,
+          "paid_ads_competition_index": null,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": 0
+        }
+      ],
+      "autocomplete_observations": [
+        {
+          "input": "ai developer productivity",
+          "country_hint": "us",
+          "position_in_response_not_volume_rank": 6,
+          "suggestion": "ai developer productivity metrics"
+        },
+        {
+          "input": "ai developer productivity",
+          "country_hint": "gb",
+          "position_in_response_not_volume_rank": 6,
+          "suggestion": "ai developer productivity metrics"
+        }
+      ]
+    },
+    {
+      "keyword": "ai governance consultant",
+      "priority_by_business_fit": "Recheck",
+      "priority_is_analyst_judgment": true,
+      "proposed_content_owner": "Home supporting variant",
+      "intent_inferred_uk": "Неузгоджені дані",
+      "recommendation_uk": "Старий публічний snapshot давав 170 у США; поточний RankSpot — No data. Це розбіжність джерел, не доказ падіння до нуля.",
+      "metric_results": [
+        {
+          "keyword": "ai governance consultant",
+          "country": "United States",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch3.json",
+          "retrieved_at": "2026-10-02T09:30:40.489502+00:00",
+          "monthly_searches_estimate": null,
+          "status": "no_data",
+          "provider_raw_volume": 0,
+          "cpc_usd_provider_estimate": null,
+          "paid_ads_competition": null,
+          "paid_ads_competition_index": null,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": 0
+        }
+      ],
+      "autocomplete_observations": [
+        {
+          "input": "ai governance consultant",
+          "country_hint": "us",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai governance consultant"
+        },
+        {
+          "input": "ai governance consultant",
+          "country_hint": "gb",
+          "position_in_response_not_volume_rank": 1,
+          "suggestion": "ai governance consultant"
+        }
+      ]
+    },
+    {
+      "keyword": "ai coding tool roi",
+      "priority_by_business_fit": "Editorial only",
+      "priority_is_analyst_judgment": true,
+      "proposed_content_owner": "Delivery guide section",
+      "intent_inferred_uk": "Авторське формулювання",
+      "recommendation_uk": "Підказок не отримано, RankSpot — No data. Залишити як змістовне питання, а не доведене SEO-ядро.",
+      "metric_results": [
+        {
+          "keyword": "ai coding tool roi",
+          "country": "United States",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch3.json",
+          "retrieved_at": "2026-10-02T09:30:40.489502+00:00",
+          "monthly_searches_estimate": null,
+          "status": "no_data",
+          "provider_raw_volume": 0,
+          "cpc_usd_provider_estimate": null,
+          "paid_ads_competition": null,
+          "paid_ads_competition_index": null,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": 0
+        }
+      ],
+      "autocomplete_observations": []
+    },
+    {
+      "keyword": "ai roi for engineering",
+      "priority_by_business_fit": "Editorial only",
+      "priority_is_analyst_judgment": true,
+      "proposed_content_owner": "Delivery guide section",
+      "intent_inferred_uk": "Авторське формулювання",
+      "recommendation_uk": "Є тематична лексика в DX, але немає підказок і виміряної частотності в цій перевірці. Не видавати заголовок видавця за попит.",
+      "metric_results": [
+        {
+          "keyword": "ai roi for engineering",
+          "country": "United States",
+          "provider": "RankSpot",
+          "provider_source_claim": "Google Ads",
+          "source_id": "F01",
+          "raw_file": "raw/rankspot-batch3.json",
+          "retrieved_at": "2026-10-02T09:30:40.489502+00:00",
+          "monthly_searches_estimate": null,
+          "status": "no_data",
+          "provider_raw_volume": 0,
+          "cpc_usd_provider_estimate": null,
+          "paid_ads_competition": null,
+          "paid_ads_competition_index": null,
+          "organic_keyword_difficulty": null,
+          "average_window": "Last 12 months, per provider documentation; exact dates not returned",
+          "upstream_refresh_date": null,
+          "language_targeting_returned": null,
+          "history_values_as_returned": [],
+          "history_month_labels": null,
+          "provider_trend_percent_not_used_for_ranking": 0
+        }
+      ],
+      "autocomplete_observations": []
+    }
+  ],
+  "limitations": [
+    "All source queries and metric retrievals took place on 2026-10-02; the exact underlying measurement window/refresh date is not returned.",
+    "Provider estimates are not exact search counts, visits, unique people, leads, or searches specifically from C-level executives.",
+    "Closely related keywords may overlap. Their volumes must not be added into unique market size.",
+    "No data is unknown, not proof of zero demand.",
+    "Autocomplete order and occurrence frequency are not keyword popularity metrics; gl is a locale hint only.",
+    "RankSpot competition/CPC describe advertising; organic keyword difficulty was not measured.",
+    "History values have no month labels. The reported trend is retained raw but not described as YoY or used for prioritization.",
+    "A single working free metric provider is the main dataset. Third-party snapshots can disagree; do not average different methods and windows.",
+    "Search-result review supplies intent clues and publisher vocabulary, not a localized, exhaustive Google rank audit."
+  ]
+}

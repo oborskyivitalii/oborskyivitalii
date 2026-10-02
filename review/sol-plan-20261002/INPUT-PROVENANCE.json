@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-02",
+  "source_package": "sol-site-plan-20261002.zip, edition 3 (stored version 2)",
+  "source_package_sha256": "4cc441094f87b581cdda96b9a527b2a54cbb1555e14e42b8b3230389a13251ca",
+  "source_manifest": [
+    {
+      "file": "CONTENT-AND-CONVERSION-BRIEF.md",
+      "bytes": 25808,
+      "sha256": "4f7f48ef80ed7829ef095d2cbd8ff09ce42c37a02f3a1b8ac17b911bd4c789b8"
+    },
+    {
+      "file": "ISSUE-1-INTENT-AMENDMENT.md",
+      "bytes": 9839,
+      "sha256": "47d1c2f8ab8fa4bde1bea57bcf6d9f1a0bac3cae14ace6e9d13fda0bee36ddff"
+    },
+    {
+      "file": "SEO-BUYER-INTENT.md",
+      "bytes": 28654,
+      "sha256": "048ac81dd014b56406968faa278dba3482fc6a0f4285de80e0787a4d049e5346"
+    },
+    {
+      "file": "SEO-QUERY-MAP.csv",
+      "bytes": 15169,
+      "sha256": "34efc6be3fd5441ceb3d057c7908daea446f9d1a06d2968a9eec7b6f2a7ffbcd"
+    },
+    {
+      "file": "SEO-TASK-UPDATES.md",
+      "bytes": 15306,
+      "sha256": "b8e8458c63cb3e7f535186949d6bc68d08818d5139b8a02adf34809cc038c036"
+    },
+    {
+      "file": "SOL-HANDOFF.md",
+      "bytes": 42565,
+      "sha256": "7b11ea9eaf9eb3eb6e6b1826b3d3463e88da4f3b367b685d7f14e600c1ddc385"
+    },
+    {
+      "file": "art-direction.png",
+      "bytes": 101796,
+      "sha256": "27c7acea5801ab246a7052f1ec5730d3e9c2c078e256384a36d9b43f19dcb443"
+    },
+    {
+      "file": "art-direction.svg",
+      "bytes": 15939,
+      "sha256": "afe1202878a81c9e7fac522cbe425c61783e242b0c31a8ba49877b94ed51c6f9"
+    },
+    {
+      "file": "portrait-facets-day.svg",
+      "bytes": 1037,
+      "sha256": "89a401ee4fa309a04b79b9d1717910fb3b09e19c14ee80ddce39bcaad7d7bc15"
+    },
+    {
+      "file": "portrait-facets-night.svg",
+      "bytes": 1039,
+      "sha256": "bb9ddf6485512f0340350b18948a70e05195d4fb9abb16f8db7933bcbaadbeca"
+    },
+    {
+      "file": "scene-blueprint.json",
+      "bytes": 10009,
+      "sha256": "5fa444595a5cd45a028131963cd63c4e71d6576ee65abd28b123394ca28d9a9e"
+    }
+  ],
+  "treatment": "Selected original SVG/JSON/CSV inputs copied byte-for-byte. Content/SEO briefs receive dated amendments; VISUAL-SPEC is an explicitly revised extract. The old long handoff, issue-body copies and duplicate PNG are not new canonical owners. Source Executive Brief PDF is not included.",
+  "website_baseline_commit": "d1ec195f34182b54c76fb04b0b95e2a2138926ef",
+  "website_baseline_tree": "73eb81c61e0a0762b637a07b308d9cd610a1886f"
+}

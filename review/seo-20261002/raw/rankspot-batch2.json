@@ -1,0 +1,117 @@
+{
+  "source_url": "https://www.rankspot.ai/api/tools/keyword-search-volume",
+  "source_methodology_url": "https://www.rankspot.ai/free-tools/keyword-search-volume",
+  "payload": {
+    "keywords": [
+      "agentic ai governance",
+      "ai agents in production",
+      "ai roi measurement",
+      "ai developer productivity metrics",
+      "ai governance consulting services"
+    ],
+    "country": "us"
+  },
+  "retrieved_at": "2026-10-02T09:30:30.009808+00:00",
+  "status": 200,
+  "data": {
+    "data": {
+      "country": "United States",
+      "keywords": [
+        {
+          "keyword": "agentic ai governance",
+          "volume": 210,
+          "noData": false,
+          "cpc": 46.84,
+          "competition": "MEDIUM",
+          "competitionIndex": 44,
+          "trend": 457,
+          "history": [
+            70,
+            90,
+            90,
+            70,
+            140,
+            170,
+            390,
+            170,
+            260,
+            260,
+            320,
+            390
+          ]
+        },
+        {
+          "keyword": "ai agents in production",
+          "volume": 20,
+          "noData": false,
+          "cpc": 13.28,
+          "competition": "MEDIUM",
+          "competitionIndex": 51,
+          "trend": -50,
+          "history": [
+            20,
+            20,
+            20,
+            20,
+            30,
+            30,
+            50,
+            20,
+            20,
+            30,
+            10,
+            10
+          ]
+        },
+        {
+          "keyword": "ai roi measurement",
+          "volume": 0,
+          "noData": true,
+          "cpc": 0,
+          "competition": "UNKNOWN",
+          "competitionIndex": 0,
+          "trend": 0,
+          "history": []
+        },
+        {
+          "keyword": "ai developer productivity metrics",
+          "volume": 0,
+          "noData": true,
+          "cpc": 0,
+          "competition": "UNKNOWN",
+          "competitionIndex": 0,
+          "trend": 0,
+          "history": []
+        },
+        {
+          "keyword": "ai governance consulting services",
+          "volume": 10,
+          "noData": false,
+          "cpc": 20.74,
+          "competition": "MEDIUM",
+          "competitionIndex": 36,
+          "trend": 0,
+          "history": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            70
+          ]
+        }
+      ]
+    },
+    "rateLimit": {
+      "limit": 5,
+      "remaining": 3,
+      "resetAt": "2026-10-03T00:00:00.000Z"
+    }
+  }
+}

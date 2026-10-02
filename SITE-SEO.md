@@ -1,5 +1,21 @@
 # Search discoverability and topic map
 
+## Evidence and next-iteration amendment — 2026-10-02
+
+The latest [free-source evidence](review/sol-plan-20261002/SEO-EVIDENCE.md) adds
+25 country/keyword checks for 20 phrases (17 positive provider estimates, 8
+explicit no-data results) and 56 Google autocomplete requests. Earlier claims
+below that no volume was measured describe the preceding stage. Null means
+unknown; paid-ad competition is not organic difficulty; this is not Search
+Console data, direct Google Ads export, or proof of C-level demand.
+
+The [buyer/page plan](review/sol-plan-20261002/SEO-BUYER-INTENT.md) and
+[SOL-HANDOFF](SOL-HANDOFF.md) govern the proposed change: Home uses precise
+problem/offer language; Research explains the two directions; Writing preserves
+all editions; later guides belong to #11 after launch/PMDay #2. No public copy
+or metadata changes are made in this planning commit. Actual canonicals/social
+URLs/sitemap and indexing checks still follow the #8 release decision.
+
 Owning intent: [launch #1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1).
 Decision recorded 2026-10-01: the maintainer wants an English site, visibly
 separated English/Ukrainian editions, a portrait, and search coverage of the

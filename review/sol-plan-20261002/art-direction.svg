@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1660" height="1190" viewBox="0 0 1660 1190"><title>Spatial research site: design blueprint</title><desc>Planning drawing, not a screenshot. Two faceted portrait backdrops and three camera studies of the same research-inspired graph.</desc>
+<rect x="0" y="0" width="1660" height="1190" fill="#f8f7f3"/>
+<text x="44" y="66.16" font-family="DejaVu Sans, sans-serif" font-size="38" font-weight="700" fill="#142632">A spatial map of the research</text>
+<text x="45" y="106.76" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#4b5c69">Design blueprint for Sol  /  02 Oct 2026  /  Not a site screenshot</text>
+<rect x="44" y="145" width="505" height="429" fill="#f8f7f3" stroke="#cdd6da"/>
+<text x="66" y="179.94" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="700" fill="#142632">DAY / PORTRAIT FACETS</text>
+<polygon points="170.20,272.60 328.28,221.00 421.08,297.20 313.56,369.20 152.92,333.20" fill="#e7ece8" stroke="#cdd6da"/>
+<polygon points="226.52,248.00 365.40,258.20 432.60,371.60 350.04,461.00 257.88,395.60" fill="#dce9eb" stroke="#cdd6da"/>
+<polygon points="229.72,309.80 345.56,281.60 404.44,412.40 270.04,476.00 196.44,399.20" fill="#cddfe3" stroke="#cdd6da"/>
+<polygon points="368.60,297.20 449.24,364.40 412.12,471.20 355.80,401.00" fill="#eae1ce" stroke="#cdd6da"/>
+<polygon points="149.72,327.80 212.44,309.20 248.92,401.60 181.72,431.60" fill="#bfd4da" stroke="#cdd6da"/>
+<polygon points="160.60,452.00 343.00,430.40 433.24,488.00 261.72,526.40 154.20,491.00" fill="#eff0e9" stroke="#cdd6da"/>
+<text x="66" y="549.12" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#4b5c69">Place the existing cutout above these planes.</text>
+<rect x="574" y="145" width="505" height="429" fill="#0b0f14" stroke="#344454"/>
+<text x="596" y="179.94" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="700" fill="#f4f7fa">NIGHT / PORTRAIT FACETS</text>
+<polygon points="700.20,272.60 858.28,221.00 951.08,297.20 843.56,369.20 682.92,333.20" fill="#1c252e" stroke="#344454"/>
+<polygon points="756.52,248.00 895.40,258.20 962.60,371.60 880.04,461.00 787.88,395.60" fill="#142f3b" stroke="#344454"/>
+<polygon points="759.72,309.80 875.56,281.60 934.44,412.40 800.04,476.00 726.44,399.20" fill="#1c3f4c" stroke="#344454"/>
+<polygon points="898.60,297.20 979.24,364.40 942.12,471.20 885.80,401.00" fill="#332e21" stroke="#344454"/>
+<polygon points="679.72,327.80 742.44,309.20 778.92,401.60 711.72,431.60" fill="#235164" stroke="#344454"/>
+<polygon points="690.60,452.00 873.00,430.40 963.24,488.00 791.72,526.40 684.20,491.00" fill="#253038" stroke="#344454"/>
+<text x="596" y="549.12" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#adb8c5">Place the existing cutout above these planes.</text>
+<text x="1120" y="179.76" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="700" fill="#142632">ART DIRECTION</text>
+<text x="1120" y="223.76" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#142632">Asymmetric, faceted silhouette.</text>
+<text x="1120" y="258.76" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#142632">Cool planes + one warm accent.</text>
+<text x="1120" y="293.76" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#142632">No circular halo or orbit.</text>
+<text x="1120" y="328.76" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#142632">Keep the person still.</text>
+<text x="1120" y="363.76" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#142632">No mouse-driven camera.</text>
+<polyline points="1120.00,401.00 1602.00,401.00" fill="none" stroke="#cdd6da" stroke-width="1"/>
+<text x="1120" y="440.58" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="700" fill="#142632">Movement comes from reading:</text>
+<text x="1120" y="476.94" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#142632">scroll + meaningful in-page navigation.</text>
+<text x="1120" y="514.76" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#142632">One world. Several camera positions.</text>
+<text x="44" y="621.58" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="700" fill="#142632">SCENE STUDIES / THE SAME TOPOLOGY, THREE VIEWPOINTS</text>
+<rect x="44" y="650" width="505" height="305" fill="#0b0f14" stroke="#344454"/>
+<defs><clipPath id="frame-0"><rect x="44" y="650" width="505" height="305"/></clipPath></defs><g clip-path="url(#frame-0)">
+<polygon points="235.04,781.88 360.27,808.00 370.57,890.01 254.52,845.90" fill="#0f2934" stroke="#144658"/>
+<polygon points="258.89,735.51 351.43,745.99 345.79,771.14 254.62,755.30" fill="#0f2934" stroke="#144658"/>
+<polygon points="332.66,888.35 361.08,888.99 371.75,937.16 341.35,931.82" fill="#2c2615" stroke="#514116"/>
+<polyline points="243.92,801.83 272.05,802.15" fill="none" stroke="#1d81a1" stroke-width="2"/>
+<polygon points="272.05,802.15 264.91,805.76 265.00,798.37" fill="#1d81a1"/>
+<polyline points="272.05,802.15 302.56,806.99" fill="none" stroke="#1d81a1" stroke-width="2"/>
+<polygon points="302.56,806.99 294.97,809.52 296.13,802.23" fill="#1d81a1"/>
+<polyline points="302.56,806.99 340.68,831.40" fill="none" stroke="#1d81a1" stroke-width="2"/>
+<polygon points="340.68,831.40 332.71,830.69 336.70,824.47" fill="#1d81a1"/>
+<polyline points="340.68,831.40 355.96,866.51" fill="none" stroke="#1d81a1" stroke-width="2"/>
+<polygon points="355.96,866.51 349.74,861.48 356.51,858.53" fill="#1d81a1"/>
+<polyline points="355.96,866.51 315.50,848.78" fill="none" stroke="#1d81a1" stroke-width="2"/>
+<polygon points="315.50,848.78 323.48,848.25 320.51,855.01" fill="#1d81a1"/>
+<polyline points="315.50,848.78 290.06,853.29 257.79,833.94 247.33,798.33 272.05,802.15" fill="none" stroke="#f5b61c" stroke-width="2"/>
+<polygon points="272.05,802.15 264.47,804.71 265.60,797.41" fill="#f5b61c"/>
+<polyline points="282.03,841.51 315.50,848.78" fill="none" stroke="#1d81a1" stroke-width="2"/>
+<polygon points="315.50,848.78 307.78,850.89 309.35,843.67" fill="#1d81a1"/>
+<polyline points="262.96,744.55 279.75,747.31" fill="none" stroke="#1d81a1" stroke-width="2"/>
+<polygon points="279.75,747.31 272.15,749.80 273.35,742.51" fill="#1d81a1"/>
+<polyline points="279.75,747.31 301.73,750.64" fill="none" stroke="#1d81a1" stroke-width="2"/>
+<polygon points="301.73,750.64 294.16,753.23 295.27,745.93" fill="#1d81a1"/>
+<polyline points="301.73,750.64 333.93,755.01" fill="none" stroke="#1d81a1" stroke-width="2"/>
+<polygon points="333.93,755.01 326.41,757.72 327.40,750.39" fill="#1d81a1"/>
+<polygon points="239.92,797.83 247.92,797.83 247.92,805.83 239.92,805.83" fill="#28c7f7"/>
+<polygon points="268.05,798.15 276.05,798.15 276.05,806.15 268.05,806.15" fill="#28c7f7"/>
+<polygon points="298.56,802.99 306.56,802.99 306.56,810.99 298.56,810.99" fill="#28c7f7"/>
+<polygon points="336.68,827.40 344.68,827.40 344.68,835.40 336.68,835.40" fill="#28c7f7"/>
+<polygon points="351.96,862.51 359.96,862.51 359.96,870.51 351.96,870.51" fill="#28c7f7"/>
+<polygon points="311.50,844.78 319.50,844.78 319.50,852.78 311.50,852.78" fill="#f5b61c"/>
+<polygon points="278.03,837.51 286.03,837.51 286.03,845.51 278.03,845.51" fill="#28c7f7"/>
+<polygon points="258.96,740.55 266.96,740.55 266.96,748.55 258.96,748.55" fill="#28c7f7"/>
+<polygon points="275.75,743.31 283.75,743.31 283.75,751.31 275.75,751.31" fill="#28c7f7"/>
+<polygon points="295.73,744.64 307.73,744.64 307.73,756.64 295.73,756.64" fill="#f5b61c"/>
+<polygon points="329.93,751.01 337.93,751.01 337.93,759.01 329.93,759.01" fill="#28c7f7"/>
+</g>
+<text x="60" y="676.48" font-family="DejaVu Sans, sans-serif" font-size="14" font-weight="700" fill="#adb8c5">01 / OVERVIEW</text>
+<text x="44" y="990.76" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="700" fill="#142632">Hero: the whole structure</text>
+<rect x="574" y="650" width="505" height="305" fill="#0b0f14" stroke="#344454"/>
+<defs><clipPath id="frame-1"><rect x="574" y="650" width="505" height="305"/></clipPath></defs><g clip-path="url(#frame-1)">
+<polygon points="713.98,759.56 942.51,791.05 964.87,950.83 748.86,863.34" fill="#0f2934" stroke="#144658"/>
+<polygon points="756.67,697.24 905.31,695.95 897.64,736.53 750.42,726.26" fill="#0f2934" stroke="#144658"/>
+<polygon points="894.87,953.88 969.90,966.88 1005.85,1088.38 918.14,1050.31" fill="#2c2615" stroke="#514116"/>
+<polyline points="727.89,791.31 773.40,788.50" fill="none" stroke="#1d81a1" stroke-width="2"/>
+<polygon points="773.40,788.50 766.55,792.63 766.09,785.25" fill="#1d81a1"/>
+<polyline points="773.40,788.50 828.24,793.84" fill="none" stroke="#1d81a1" stroke-width="2"/>
+<polygon points="828.24,793.84 820.82,796.83 821.54,789.47" fill="#1d81a1"/>
+<polyline points="828.24,793.84 905.04,837.36" fill="none" stroke="#1d81a1" stroke-width="2"/>
+<polygon points="905.04,837.36 897.05,837.08 900.69,830.65" fill="#1d81a1"/>
+<polyline points="905.04,837.36 937.61,906.34" fill="none" stroke="#1d81a1" stroke-width="2"/>
+<polygon points="937.61,906.34 931.24,901.50 937.92,898.34" fill="#1d81a1"/>
+<polyline points="937.61,906.34 849.73,868.38" fill="none" stroke="#1d81a1" stroke-width="2"/>
+<polygon points="849.73,868.38 857.70,867.80 854.78,874.59" fill="#1d81a1"/>
+<polyline points="849.73,868.38 805.78,875.41 752.42,844.31 731.47,783.74 773.40,788.50" fill="none" stroke="#f5b61c" stroke-width="2"/>
+<polygon points="773.40,788.50 765.94,791.37 766.77,784.03" fill="#f5b61c"/>
+<polyline points="792.43,855.86 849.73,868.38" fill="none" stroke="#1d81a1" stroke-width="2"/>
+<polygon points="849.73,868.38 842.00,870.48 843.58,863.26" fill="#1d81a1"/>
+<polyline points="762.53,709.33 787.54,710.01" fill="none" stroke="#1d81a1" stroke-width="2"/>
+<polygon points="787.54,710.01 780.35,713.51 780.55,706.13" fill="#1d81a1"/>
+<polyline points="787.54,710.01 822.08,710.87" fill="none" stroke="#1d81a1" stroke-width="2"/>
+<polygon points="822.08,710.87 814.89,714.39 815.08,707.00" fill="#1d81a1"/>
+<polyline points="822.08,710.87 876.10,712.06" fill="none" stroke="#1d81a1" stroke-width="2"/>
+<polygon points="876.10,712.06 868.92,715.60 869.08,708.21" fill="#1d81a1"/>
+<polygon points="723.89,787.31 731.89,787.31 731.89,795.31 723.89,795.31" fill="#28c7f7"/>
+<polygon points="769.40,784.50 777.40,784.50 777.40,792.50 769.40,792.50" fill="#28c7f7"/>
+<polygon points="824.24,789.84 832.24,789.84 832.24,797.84 824.24,797.84" fill="#28c7f7"/>
+<polygon points="901.04,833.36 909.04,833.36 909.04,841.36 901.04,841.36" fill="#28c7f7"/>
+<polygon points="933.61,902.34 941.61,902.34 941.61,910.34 933.61,910.34" fill="#28c7f7"/>
+<polygon points="845.73,864.38 853.73,864.38 853.73,872.38 845.73,872.38" fill="#f5b61c"/>
+<polygon points="788.43,851.86 796.43,851.86 796.43,859.86 788.43,859.86" fill="#28c7f7"/>
+<polygon points="758.53,705.33 766.53,705.33 766.53,713.33 758.53,713.33" fill="#28c7f7"/>
+<polygon points="783.54,706.01 791.54,706.01 791.54,714.01 783.54,714.01" fill="#28c7f7"/>
+<polygon points="816.08,704.87 828.08,704.87 828.08,716.87 816.08,716.87" fill="#f5b61c"/>
+<polygon points="872.10,708.06 880.10,708.06 880.10,716.06 872.10,716.06" fill="#28c7f7"/>
+</g>
+<text x="590" y="676.48" font-family="DejaVu Sans, sans-serif" font-size="14" font-weight="700" fill="#adb8c5">02 / CONTROL</text>
+<text x="574" y="990.76" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="700" fill="#142632">Research: approach the loop</text>
+<rect x="1104" y="650" width="505" height="305" fill="#0b0f14" stroke="#344454"/>
+<defs><clipPath id="frame-2"><rect x="1104" y="650" width="505" height="305"/></clipPath></defs><g clip-path="url(#frame-2)">
+<polygon points="1250.85,696.37 1468.23,702.84 1484.25,917.74 1286.31,813.23" fill="#0f2934" stroke="#144658"/>
+<polygon points="1316.45,641.42 1463.58,613.65 1448.21,662.63 1307.61,672.66" fill="#0f2934" stroke="#144658"/>
+<polygon points="1380.00,904.75 1447.71,920.24 1472.64,1098.60 1390.91,1028.73" fill="#2c2615" stroke="#514116"/>
+<polyline points="1259.34,728.85 1293.30,718.82" fill="none" stroke="#1d81a1" stroke-width="2"/>
+<polygon points="1293.30,718.82 1287.55,724.37 1285.45,717.29" fill="#1d81a1"/>
+<polyline points="1293.30,718.82 1340.34,717.41" fill="none" stroke="#1d81a1" stroke-width="2"/>
+<polygon points="1340.34,717.41 1333.35,721.32 1333.13,713.93" fill="#1d81a1"/>
+<polyline points="1340.34,717.41 1414.18,763.05" fill="none" stroke="#1d81a1" stroke-width="2"/>
+<polygon points="1414.18,763.05 1406.21,762.46 1410.09,756.17" fill="#1d81a1"/>
+<polyline points="1414.18,763.05 1447.63,853.42" fill="none" stroke="#1d81a1" stroke-width="2"/>
+<polygon points="1447.63,853.42 1441.70,848.05 1448.63,845.48" fill="#1d81a1"/>
+<polyline points="1447.63,853.42 1375.63,817.05" fill="none" stroke="#1d81a1" stroke-width="2"/>
+<polygon points="1375.63,817.05 1383.63,816.96 1380.30,823.55" fill="#1d81a1"/>
+<polyline points="1375.63,817.05 1335.87,826.62 1284.44,789.54 1256.09,716.28 1293.30,718.82" fill="none" stroke="#f5b61c" stroke-width="2"/>
+<polygon points="1293.30,718.82 1285.97,722.02 1286.48,714.65" fill="#f5b61c"/>
+<polyline points="1327.21,806.06 1375.63,817.05" fill="none" stroke="#1d81a1" stroke-width="2"/>
+<polygon points="1375.63,817.05 1367.89,819.09 1369.53,811.88" fill="#1d81a1"/>
+<polyline points="1319.83,653.09 1341.03,649.36" fill="none" stroke="#1d81a1" stroke-width="2"/>
+<polygon points="1341.03,649.36 1334.68,654.22 1333.40,646.95" fill="#1d81a1"/>
+<polyline points="1341.03,649.36 1372.55,644.29" fill="none" stroke="#1d81a1" stroke-width="2"/>
+<polygon points="1372.55,644.29 1366.13,649.07 1364.96,641.77" fill="#1d81a1"/>
+<polyline points="1372.55,644.29 1427.22,636.46" fill="none" stroke="#1d81a1" stroke-width="2"/>
+<polygon points="1427.22,636.46 1420.72,641.12 1419.67,633.81" fill="#1d81a1"/>
+<polygon points="1255.34,724.85 1263.34,724.85 1263.34,732.85 1255.34,732.85" fill="#28c7f7"/>
+<polygon points="1289.30,714.82 1297.30,714.82 1297.30,722.82 1289.30,722.82" fill="#28c7f7"/>
+<polygon points="1336.34,713.41 1344.34,713.41 1344.34,721.41 1336.34,721.41" fill="#28c7f7"/>
+<polygon points="1410.18,759.05 1418.18,759.05 1418.18,767.05 1410.18,767.05" fill="#28c7f7"/>
+<polygon points="1443.63,849.42 1451.63,849.42 1451.63,857.42 1443.63,857.42" fill="#28c7f7"/>
+<polygon points="1371.63,813.05 1379.63,813.05 1379.63,821.05 1371.63,821.05" fill="#f5b61c"/>
+<polygon points="1323.21,802.06 1331.21,802.06 1331.21,810.06 1323.21,810.06" fill="#28c7f7"/>
+<polygon points="1315.83,649.09 1323.83,649.09 1323.83,657.09 1315.83,657.09" fill="#28c7f7"/>
+<polygon points="1337.03,645.36 1345.03,645.36 1345.03,653.36 1337.03,653.36" fill="#28c7f7"/>
+<polygon points="1366.55,638.29 1378.55,638.29 1378.55,650.29 1366.55,650.29" fill="#f5b61c"/>
+<polygon points="1423.22,632.46 1431.22,632.46 1431.22,640.46 1423.22,640.46" fill="#28c7f7"/>
+</g>
+<text x="1120" y="676.48" font-family="DejaVu Sans, sans-serif" font-size="14" font-weight="700" fill="#adb8c5">03 / FEEDBACK</text>
+<text x="1104" y="990.76" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="700" fill="#142632">Writing: follow the return path</text>
+<text x="44" y="1049.76" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#142632">Amber return: evaluation → controller. Upper branch: generation → verification → release.</text>
+<text x="44" y="1086.76" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#142632">World geometry stays fixed. Scroll changes the viewpoint; the pointer has no effect.</text>
+<text x="44" y="1131.12" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="400" fill="#4b5c69">This diagram exposes the geometry. In the site, preserve clear text zones and calibrate every viewport.</text>
+</svg>
