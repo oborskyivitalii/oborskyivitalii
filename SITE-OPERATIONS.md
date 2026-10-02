@@ -1,8 +1,8 @@
 # First site: candidate, review and release
 
-## Current v5 candidate — 2026-10-02
+## Current v6 candidate — 2026-10-02
 
-The instructed S0–S4 implementation is in Draft PR #10. [Execution/evidence](review/sol-visual-v5-20261002/EXECUTION.md)
+The camera/recursive-geometry/people-context iteration is in Draft PR #10. [Execution/evidence](review/sol-visual-v6-20261002/EXECUTION.md)
 records source/behavior/export checks, actual browser captures and observed limits. Implementation
 is distinct from independent review, editorial/rights acceptance, merge and deployment.
 The approved contract remains [SOL-HANDOFF](SOL-HANDOFF.md). Owning issues:
@@ -20,17 +20,17 @@ Thinking Systems LinkedIn rendition: 28 linked renditions, not unique works.
 Talks retains three existing public records with unchanged language bounds.
 Original JPEG/WebP bytes remain unchanged; native facets are behind the cutout.
 
-## Inspect v5
+## Inspect v6
 
-Start with the [all-page gallery](review/site-v1-20261002-v5-index.html): all five
+Start with the [all-page gallery](review/site-v1-20261002-v6-index.html): all five
 interactive pages, fixed Day/Night, desktop/mobile screenshots and recordings.
 
-- [Interactive Home](review/site-v1-20261002-v5-interactive.html).
-- [Day](review/site-v1-20261002-v5-day.html) / [Night](review/site-v1-20261002-v5-night.html).
-- [Writing](review/site-v1-20261002-v5-writing-day.html), plus Night/interactive variants.
+- [Interactive Home](review/site-v1-20261002-v6-interactive.html).
+- [Day](review/site-v1-20261002-v6-day.html) / [Night](review/site-v1-20261002-v6-night.html).
+- [Writing](review/site-v1-20261002-v6-writing-day.html), plus Night/interactive variants.
 - Research/Talks/Credits each have the same three variants: 15 page copies plus the all-page gallery.
-- [Offline package](review/site-v1-20261002-v5.zip): extract all, open index.html for the gallery.
-- [Preview hashes](review/site-v1-static-previews-v5.json), [bundle hashes](review/site-v1-offline-bundle-v5.json)
+- [Offline package](review/site-v1-20261002-v6.zip): extract all, open index.html for the gallery.
+- [Preview hashes](review/site-v1-static-previews-v6.json), [bundle hashes](review/site-v1-offline-bundle-v6.json)
   and [public-source record](review/site-v1-review.json).
 
 Keep extracted/downloaded pages together for local navigation. Ten fixed-theme
@@ -47,14 +47,14 @@ clock: Day 07:00–18:59, Night otherwise; manual choice persists, storage failu
 still works in-tab. Escape closes the disclosure and returns focus to its summary.
 Anchor clearance follows the actual header height when JS runs, with CSS fallback.
 
-The single decorative world has a UA feedback motif and separate verification
-passage; neither is a canonical research diagram, simulation or measured bottleneck.
+The shared sculptural language has a knotted feedback motif and a separate recursive
+verification structure; neither is a canonical research diagram, simulation or measured bottleneck.
 Native scroll follows named Home/Research sections. Writing Topic chooses its
 finite path within visible result bounds; Year/Language only change results.
 Remeasuring that block retains local path progress, including empty-result
 restoration; the next native scroll resumes from that progress without a reset.
 Talks/Credits use their short named paths; unknown pages are static. Pointer/hover never moves the camera.
-Frames coalesce and settle within 150ms of the last target change; then RAF stops.
+Frames coalesce and settle within 80ms of the last target change; then RAF stops.
 Off freezes the current pose; initial Off/reduced starts at that route’s composed pose. Reduced
 motion overrides saved On. Theme/resize/layout/hidden/print return cannot move a
 frozen pose; hidden/print cancels pending movement. No Canvas retains the route-specific
@@ -95,19 +95,19 @@ Capture actual screenshots and a short motion recording or a genuine observed-st
 interaction log, stating browser/viewport and any unperformed cases. Do not infer
 measured frame rate or full accessibility from source/VM tests.
 
-**Current browser evidence:** [v5 capture record](review/site-v1-20261002-v5-captures/captures.json)
+**Current browser evidence:** [v6 capture record](review/site-v1-20261002-v6-captures/captures.json)
 contains the observed 1440×900/390×844 Day/Night matrix, behavior checks, 360px,
-200% CSS zoom, no-JS/Canvas, short-route and real recording results. [Sampled contrast](review/site-v1-20261002-v5-captures/contrast.json)
+200% CSS zoom, no-JS/Canvas, short-route and real recording results. [Sampled contrast](review/site-v1-20261002-v6-captures/contrast.json)
 passed 4.5:1 normal / 3:1 large text across 4,368 points. Headless Chromium/mobile
 emulation and simulated print lifecycle are explicit; real phone hardware, native
 browser zoom UI, native hidden-tab switching and print dialog remain unobserved.
 The v4 block is preserved in its historical execution record. Optional reproduction
-uses the installed Playwright/pngjs paths in [v5 execution](review/sol-visual-v5-20261002/EXECUTION.md);
+uses the installed Playwright/pngjs paths in [v6 execution](review/sol-visual-v6-20261002/EXECUTION.md);
 no browser tooling is a production site dependency.
 
 ## Release and subsequent work
 
-1. Review the concrete v5 content/assets; record editorial/rights acceptance in #7
+1. Review the concrete v6 content/assets; record editorial/rights acceptance in #7
    and the permanent URL/hosting choice in #8. English and candidate photo use are settled.
 2. Complete correct absolute canonical/social/image URLs and sitemap for that
    actual URL, including the Writing query canonical policy; update candidate tests.

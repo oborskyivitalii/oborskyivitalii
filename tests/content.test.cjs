@@ -11,6 +11,17 @@ const plainTitle = html => html.replace(/<span class="publication-arrow"[^>]*>[\
   .replace(/<[^>]*>/g, "").replace(/&(amp|quot|apos|lt|gt);/g,
     (_, entity) => ({amp: "&", quot: '"', apos: "'", lt: "<", gt: ">"})[entity]);
 
+test("each existing discussion entry has professional context and its own LinkedIn profile, preserving public evidence links",()=>{
+  for(const page of["index","research"]) {
+    const entries=[...pages[page].matchAll(/<h3><a href="(https:\/\/www.linkedin.com\/in\/[^\"]+)">([^<]+)<\/a><\/h3><p class="person-context">([^<]+)<\/p>/g)];
+    assert.equal(entries.length,8);
+    assert.equal(new Set(entries.map(e=>e[1])).size,8,"do not assign one profile to multiple identities");
+    assert.equal((pages[page].match(/https:\/\/www.linkedin.com\/posts\//g)||[]).length,9);
+    assert.ok(entries.find(e=>e[2]==="Michael Risch")[1].includes("michael-risch-ab8b423"),"do not conflate the law professor");
+    assert.equal(entries.find(e=>e[2]==="Arkadiy Dobkin")[3],"Principal Founder &amp; Executive Chairman · EPAM");
+  }
+});
+
 test("English UI has distinct useful metadata and non-executable accurate page schemas", () => {
   const titles = [];
   for (const html of Object.values(pages)) {
@@ -122,7 +133,7 @@ test("Home provides the agreed reader path, precise public actions and a real co
   const home = pages.index;
   const stops = [...home.matchAll(/data-space-stop="([^"]+)"/g)].map(m => m[1]);
   assert.deepEqual(stops, ["hero","research","help","writing","acknowledgements","about","contact"]);
-  for (const person of ["Arkadiy Dobkin","Maximiliano Armesto","Markus Kopko","Christophe Kolb &amp; Taller","Michael Risch","Matthew Skelton","Rod Montgomery","Otman Basir"]) assert.ok(home.includes(`<h3>${person}</h3>`));
+  for (const person of ["Arkadiy Dobkin","Maximiliano Armesto","Markus Kopko","Christophe Kolb &amp; Taller","Michael Risch","Matthew Skelton","Rod Montgomery","Otman Basir"]) assert.ok(home.includes(`>${person}</a></h3>`));
   assert.ok(home.includes('href="#contact">Discuss your AI challenge'));
   assert.ok(home.includes("Direct booking will be available here."));
   assert.ok(home.includes('href="https://www.linkedin.com/in/vitaliioborskyi/">Arrange a conversation'));

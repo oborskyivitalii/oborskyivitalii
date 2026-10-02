@@ -1,6 +1,24 @@
 # Site v1 content and release review
 
-## Current v4 candidate — implementation, not acceptance
+## Current v6 — camera journeys and recursive sculpture
+
+The maintainer rejected v5's slow linear motion and simple forms. v6 follows
+smooth cylindrical splines around more intricate compositions, with changes of
+angle, height and distance. Recursive tetrahedral structures and branching
+contours share the existing cyan/amber palette. Writing uses helicoidal strata;
+Talks uses an outward loop; Credits uses an abstract recursive network.
+Home/Research now give the eight existing discussion entries LinkedIn profiles
+and evidence-bounded professional context. Employer gaps are documented in
+[SITE-SOURCE-AUDIT](SITE-SOURCE-AUDIT.md), not filled by inference.
+
+[All five pages](review/site-v1-20261002-v6-index.html) and
+[execution/evidence](review/sol-visual-v6-20261002/EXECUTION.md) own current
+checks, browser observations and limits. Native scroll/topic behavior, Off/reduced
+freeze and idle stop remain. No merge, release or new independent review.
+The checkpoints below describe their historical editions.
+
+
+## Historical v4 candidate — implementation, not acceptance
 
 The instructed seven-section Home, two buyer situations, three bounded offers,
 five exact EN selections, eight precise public-discussion entries and useful

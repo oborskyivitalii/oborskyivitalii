@@ -1,5 +1,23 @@
 # Sol execution plan — reviewed 2026-10-02
 
+## Latest amendment — v6, 2026-10-02
+
+The maintainer rejects v5's slow, linear movement and primitive shapes. Replace
+it with a scroll-driven journey between viewpoints around intricate 3D
+compositions, including bounded fractal/recursive detail. Angles, height and
+distance must visibly change while the reader keeps native wheel/touch/keyboard
+scroll. Retain Off/reduced freeze, no idle autoplay and archive reflow behavior.
+
+Add concise verified professional roles/organizations and LinkedIn profile links
+to the existing eight public discussion entries in Home and Research. Preserve
+exact contribution records and avoid institutional endorsement. An unverified
+employer must remain absent. Update #1 and Draft #10 with the source/intent,
+implementation and checks. Deliver all five routes, both themes and mobile,
+genuine motion recordings and a fresh v6 gallery/offline package. v5 remains
+historical evidence; it is not the accepted visual direction.
+
+[Current implementation/evidence](review/sol-visual-v6-20261002/EXECUTION.md).
+
 ## Next visual iteration — maintainer request, 2026-10-02
 
 **Execution checkpoint — v5:** the maintainer subsequently instructed Sol to

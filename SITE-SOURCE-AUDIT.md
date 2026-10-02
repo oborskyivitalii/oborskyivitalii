@@ -161,3 +161,29 @@ the proposed source treatment were appended to #1/#7/#8 before implementation.
 
 The new public edition needs fresh review; the previous independent outcome is
 retained as historical evidence rather than being promoted to these changed bytes.
+
+## Professional context amendment — 2026-10-02, v6
+
+Requested treatment: identify the existing public-discussion participants by
+concise role/organization and their own LinkedIn profile. No additional
+contribution, adoption or institutional endorsement claim is introduced.
+Public sources were retrieved/searched on 2026-10-02. Direct LinkedIn profiles
+sometimes return 999; indexed profile titles and original posts are used only
+for the fields they actually expose. Employer gaps remain absent from public copy.
+
+| Existing entry | Public context added | Identity / evidence | Access / limit |
+| --- | --- | --- | --- |
+| Arkadiy Dobkin | Principal Founder & Executive Chairman, EPAM | [Profile](https://www.linkedin.com/in/arkadiydobkin/); [EPAM current leadership](https://www.epam.com/about/who-we-are/leadership/board-of-directors/arkadiy-dobkin) | Official leadership lists the current title; do not call him current CEO. |
+| Maximiliano Armesto | Chief Technology Officer, Taller | [Profile](https://www.linkedin.com/in/maximiliano-armesto/); [Taller leadership](https://taller.ai/about) | Original company page and indexed LinkedIn agree. |
+| Markus Kopko | Founder, PMotion.ai; CPMAI Lead Coach | [Profile](https://www.linkedin.com/in/markuskleinpmp/); [IIL author biography](https://blog.iil.com/authors/markus-kopko/); [public CPMAI headline](https://www.linkedin.com/posts/markuskleinpmp_projectmanagement-cpmai-aigovernance-activity-7425508473217601536-Rd8s) | Do not infer employment by PMI from standards participation. |
+| Christophe Kolb / Taller | Founder & CEO, Taller | [Profile](https://www.linkedin.com/in/christophekolb/); [Taller leadership](https://taller.ai/about) | Role identifies the person; the existing group entry/public explainer remain distinct records. |
+| Michael Risch | Senior Project Manager | [Exact indexed profile](https://de.linkedin.com/in/michael-risch-ab8b423); [existing contribution](https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g) | Indexed exact-profile title supplies role. Current employer not exposed reliably; omitted. The Villanova law professor at /in/mrisch is a namesake, not this person. Historical 3con employment is not used as current. |
+| Matthew Skelton | Founder, Conflux; co-author of Team Topologies | [Profile](https://www.linkedin.com/in/matthewskelton/); [author biography](https://confluxbooks.com/matthew-skelton); [Conflux public profile](https://www.linkedin.com/company/confluxhq/) | Affiliation/authorship context, not endorsement or client evidence. |
+| Rod Montgomery | AI Platform & Developer Acceleration, Corning | [Profile](https://www.linkedin.com/in/roderickm/); [public directory headline](https://www.linkedin.com/pub/dir/Rod/Montgomery); [exact hosting record](https://www.linkedin.com/posts/roderickm_one-of-the-highlights-of-our-recent-learn-al-palooza-activity-7480960628980072448-FBm4) | Keep current public headline; do not import contact-broker titles or private employer detail. |
+| Otman Basir | Professor, Electrical & Computer Engineering, University of Waterloo | [Profile](https://www.linkedin.com/in/otman-basir-ba1258178/); [Waterloo faculty record](https://uwaterloo.ca/electrical-computer-engineering/profile/obasir) | Exact faculty profile supports department/rank. Directory snippets mixing adjacent faculty entries were excluded. |
+
+Affected owner: this site's Home/Research context and source audit. Existing eight
+contribution summaries, their exact public-record links, formulation provenance,
+research statuses and publication identities are preserved. Upstream UA/Subprime
+claims and protocols are unchanged. This is the maintainer's explicitly requested
+bounded profile context, not new research evidence integration.

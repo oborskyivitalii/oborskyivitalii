@@ -4,7 +4,7 @@
 const fs=require("node:fs"),path=require("node:path"),http=require("node:http"),assert=require("node:assert/strict"),crypto=require("node:crypto");
 const os=require("node:os");
 const {chromium}=require(process.env.SITE_REVIEW_PLAYWRIGHT||"playwright");
-const root=path.resolve(__dirname,".."),out=path.join(root,"review/site-v1-20261002-v5-captures");
+const root=path.resolve(__dirname,".."),out=path.join(root,"review/site-v1-20261002-v6-captures");
 const pages=["index","research","writing","talks","credits"],digest=value=>crypto.createHash("sha256").update(value).digest("hex");
 const publicSources=()=>Object.fromEntries([".nojekyll","archive.js","credits.html","index.html","research.html","space.js","styles.css","talks.html","theme.js","writing.html","assets/vitalii-oborskyi.jpg","assets/vitalii-oborskyi-cutout.webp"].map(p=>[`docs/${p}`,digest(fs.readFileSync(path.join(root,"docs",p)))]));
 const mime={".html":"text/html",".js":"text/javascript",".css":"text/css",".webp":"image/webp",".jpg":"image/jpeg",".json":"application/json",".webm":"video/webm",".png":"image/png"};
@@ -102,28 +102,28 @@ async function behavior() {
   return results;
 }
 async function recordings() {
-  const temporaryVideos=fs.mkdtempSync(path.join(os.tmpdir(),"site-v5-video-"));
+  const temporaryVideos=fs.mkdtempSync(path.join(os.tmpdir(),"site-v6-video-"));
   for(const route of pages) {
     const ctx=await context("night",{width:1440,height:900},{recordVideo:{dir:temporaryVideos,size:{width:1440,height:900}}}),page=await ctx.newPage();
     await visit(page,route);await page.waitForTimeout(450);
     const max=await page.evaluate(()=>document.documentElement.scrollHeight-innerHeight);
-    for(let i=0;i<4;i++){await page.mouse.wheel(0,Math.ceil(max/4));await page.waitForTimeout(280);}
-    await page.waitForTimeout(350);await page.mouse.wheel(0,-max);await page.waitForTimeout(450);
+    for(let i=0;i<32;i++){await page.mouse.wheel(0,Math.ceil(max/32));await page.waitForTimeout(65);}
+    await page.waitForTimeout(350);for(let i=0;i<24;i++){await page.mouse.wheel(0,-Math.ceil(max/24));await page.waitForTimeout(65);}await page.waitForTimeout(450);
     if(route==="writing"){await page.locator("#archive-topic").selectOption("delivery");await page.waitForTimeout(450);}
-    const video=page.video();await ctx.close();fs.copyFileSync(await video.path(),path.join(out,`${route}-motion.webm`));
+    const video=page.video();await ctx.close();require("./compact_site_recordings.cjs").compact(await video.path(),path.join(out,`${route}-motion.webm`));
   }
   fs.rmSync(temporaryVideos,{recursive:true,force:true});
 }
 (async()=>{
   fs.mkdirSync(out,{recursive:true});await new Promise(resolve=>server.listen(0,"127.0.0.1",resolve));base=`http://127.0.0.1:${server.address().port}`;
   try {
-    browser=await chromium.launch({headless:true});const sources=publicSources();
-    const checkpoint=path.resolve(root,"../v5-capture-checkpoint.json"),saved=fs.existsSync(checkpoint)?JSON.parse(fs.readFileSync(checkpoint,"utf8")):null;
+    browser=await chromium.launch({headless:true,...(process.env.SITE_REVIEW_CHROMIUM?{executablePath:process.env.SITE_REVIEW_CHROMIUM}:{})});const sources=publicSources();
+    const checkpoint=path.resolve(root,"../v6-capture-checkpoint.json"),saved=fs.existsSync(checkpoint)?JSON.parse(fs.readFileSync(checkpoint,"utf8")):null;
     if(saved && JSON.stringify(saved.public_sources)===JSON.stringify(sources) && saved.views.length===20)summary.push(...saved.views);
     else {await matrix();fs.writeFileSync(checkpoint,JSON.stringify({public_sources:sources,views:summary},null,2)+"\n");}
     const checks=await behavior();await recordings();assert.deepEqual(publicSources(),sources,"source changed during capture");
     const files=Object.fromEntries(fs.readdirSync(out).filter(name=>/\.(png|webm)$/.test(name)).map(name=>[name,digest(fs.readFileSync(path.join(out,name)))]));
-    fs.writeFileSync(path.join(out,"captures.json"),JSON.stringify({edition:"v5",captured_at:new Date().toISOString(),baseline_ref:"ad3eab4d7d49664d809a39683a4a22fd9f2bf8f1",source_state:"candidate working tree; exact public_sources hashes",browser:browser.version(),public_sources:sources,views:summary,checks,files,limits:["Headless Linux Chromium; mobile viewport/touch emulation, not physical phone hardware.","200% CSS zoom tested; native browser zoom UI not tested.","Native hidden-tab switching and a real print dialog not observed; print lifecycle dispatched and print CSS inspected separately.","Frame callback timings include review instrumentation and are observations of this machine, not a device/FPS guarantee."]},null,2)+"\n");
+    fs.writeFileSync(path.join(out,"captures.json"),JSON.stringify({edition:"v6",captured_at:new Date().toISOString(),baseline_ref:"33806f116c38aa0c99f84468c5be944ed5aa9440",source_state:"candidate working tree; exact public_sources hashes",browser:browser.version(),public_sources:sources,views:summary,checks,files,recording_delivery:require("./compact_site_recordings.cjs").delivery,limits:["Headless Linux Chromium; mobile viewport/touch emulation, not physical phone hardware.","200% CSS zoom tested; native browser zoom UI not tested.","Native hidden-tab switching and a real print dialog not observed; print lifecycle dispatched and print CSS inspected separately.","Frame callback timings include review instrumentation and are observations of this machine, not a device/FPS guarantee."]},null,2)+"\n");
     fs.rmSync(checkpoint);
     process.stdout.write("Complete browser matrix, behavior and five real motion recordings saved.\n");
   } finally {if(browser)await browser.close();server.close();}

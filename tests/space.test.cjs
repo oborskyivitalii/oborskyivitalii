@@ -46,6 +46,15 @@ test("pointer, hover and focus events on any device do not move the camera or sc
     assert.equal(page.events.pointermove,undefined);assert.equal(page.events.pointerout,undefined);
   }
 });
+test("continuous scrolling moves the camera on each frame before the gesture ends",()=>{
+  const page=visit();page.settle();let prior=page.trace();
+  for(let i=1;i<=12;i++) {
+    page.scroll(150+i*60);page.frame();
+    assert.notEqual(page.trace(),prior,"new scroll input must not restart an empty t=0 frame");
+    prior=page.trace();assert.equal(page.pending.size,1,"gesture still has a bounded follow-up");
+  }
+  page.settle();assert.equal(page.pending.size,0);
+});
 test("Off freezes a mid-transition pose through theme, layout, resize, hidden and print returns",()=>{
   const page=visit({blockedStorage:true});page.settle();page.scroll(1900);page.frame();page.frame();page.frame();const moving=page.trace();
   page.click();page.settle();assert.equal(page.trace(),moving);assert.equal(page.button["aria-pressed"],"false");
@@ -124,4 +133,34 @@ test("Writing keeps its local path progress on the first scroll after reflow and
   page.layout([]);page.settle();page.layout([[1000,1160]]);page.settle();
   page.scroll(1500);assert.equal(page.pending.size,0,"restoring a shorter result block must retain saved local progress");
   page.scroll(1450);page.settle();assert.notEqual(page.trace(),before,"a real new scroll still controls the active topic path");
+});
+
+test("curved camera journeys go around the sculpture, remain continuous, and keep exact endpoints",()=>{
+  for(const ids of [...Object.values(model.topicPaths),...Object.values(model.pageStops).map(s=>Object.values(s))])for(const mobile of[false,true]) {
+    const start=model.journeyPose(ids,0,mobile),end=model.journeyPose(ids,1,mobile);
+    assert.deepEqual(start,model.poses[ids[0]]);
+    const linear=model.mix(start,end,.5),middle=model.journeyPose(ids,.5,mobile);
+    if(ids[0]!==ids.at(-1))assert.ok(Math.hypot(...middle.position.map((v,i)=>v-linear.position[i]))>1,"travel is not a flat straight chord");
+    for(let i=0;i<=120;i++) {
+      const pose=model.journeyPose(ids,i/120,mobile);
+      assert.ok([...pose.position,...pose.target].every(Number.isFinite));
+      assert.ok(Math.hypot(pose.position[0],pose.position[2])>=11,"camera cannot cut through sculpture core");
+      const shapes=model.projectedWorld(model.worldFor("index"),pose,1440,900);
+      assert.ok(shapes.every(s=>s.points.flat().every(Number.isFinite)));
+    }
+    for(let i=1;i<ids.length-1;i++) {
+      const t=i/(ids.length-1),left=model.journeyPose(ids,t-1e-5,mobile),right=model.journeyPose(ids,t+1e-5,mobile);
+      assert.ok(Math.hypot(...left.position.map((v,j)=>v-right.position[j]))<.01,"no position jump at semantic stops");
+    }
+    if(!mobile)assert.deepEqual(end,model.poses[ids.at(-1)]);
+  }
+});
+
+test("recursive worlds are deterministic and complexity stays bounded on all routes",()=>{
+  for(const page of Object.keys(model.initialPoses)) {
+    const world=model.worldFor(page);
+    assert.deepEqual(world,model.worldFor(page));
+    assert.ok(world.faces.filter(f=>f.points.length===3).length>=64,"recursive tetrahedron detail exists");
+    assert.ok(world.faces.length+world.lines.length<1600,"recursive branching has a fixed budget");
+  }
 });

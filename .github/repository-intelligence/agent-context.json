@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "b754082bf98e59df613845ade577bc9dc3ffb0879c7c0ca6dd886229f2c21cf0",
+    "digest": "485709353dadd5cb983c2c5c2b196079a74be892975c218eb944cac892029dc8",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -49,7 +49,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "06021e205796bcb5ecf381061eebbd9add2b45ec7ab123b0715b5bc409eb2153"
+        "sha256": "4301ac1280887b6bfd830047de79facca25234faadf20a40ad1ed597367cc77e"
       },
       {
         "path": "BACKLOG.md",
@@ -74,17 +74,17 @@
       {
         "path": "SITE-CONTENT-REVIEW.md",
         "identity_mode": "content",
-        "sha256": "2c41f16da5e44ee64656462d7a8de1a787a4ba4fc2209f9c4e914165109f7b40"
+        "sha256": "bd17913ca0fa87e86e605497f8526a37c274942770cfae5095c86af6a8980935"
       },
       {
         "path": "SITE-OPERATIONS.md",
         "identity_mode": "content",
-        "sha256": "f64ddca61a504e14d8112cc23255f051b09b7eb8b947355f6ce1798de071429b"
+        "sha256": "d2330d129deae3e252f9dda4354be6a22077ffd9fb200e762493eb49b39b83ef"
       },
       {
         "path": "SITE-ROADMAP.md",
         "identity_mode": "content",
-        "sha256": "01c53fb8654e7e99570d62a6dddac14cd0db02ab5861e59b0a20fd3d035e1f98"
+        "sha256": "dddfa6be4a9d7118baa471e8a56001008e47a5ae74c5bb30bab6c00480347034"
       },
       {
         "path": "SITE-SEO.md",
@@ -94,17 +94,17 @@
       {
         "path": "SITE-SOURCE-AUDIT.md",
         "identity_mode": "content",
-        "sha256": "7aa2cc9c545913ba8ae55a6ad6e5e928707dd7e4e6b769f7e0e2cd8c4b414673"
+        "sha256": "2132b882c0315cdb5921340cfd3d86292d377dc4faabbcdae272b41e0345fdb8"
       },
       {
         "path": "SITE-VISUAL-REVIEW.md",
         "identity_mode": "content",
-        "sha256": "52053deba1f877b51a9527e45ee0037c190d7c27d1322023c0bb44a96678ab84"
+        "sha256": "bf122bf079718b034222a2dc446c7768b7d20051785766bbd4f0af5ab02b520f"
       },
       {
         "path": "SOL-HANDOFF.md",
         "identity_mode": "content",
-        "sha256": "81e6bd70727fe42284442754e5614b9db3805e4ced02fc70331ff79076de5d29"
+        "sha256": "e60cb1f6ed5cd8a919035764ddee11fc1874fa7497978c5c95790edf72582b62"
       },
       {
         "path": "docs/.nojekyll",
@@ -697,6 +697,296 @@
         "identity_mode": "existence"
       },
       {
+        "path": "review/site-v1-20261002-v6-captures/captures.json",
+        "identity_mode": "content",
+        "sha256": "0493f8a3405e400f76918926822a392498e78d0e914fdb7e030e6eeeaec8ab96"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/contrast.json",
+        "identity_mode": "content",
+        "sha256": "f448d6c71af9e59208c75613d2cd541a4d371939566ed528e9eed822570837a0"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/credits-day-desktop-gallery.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/credits-day-desktop.png",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/credits-day-mobile-gallery.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/credits-day-mobile.png",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/credits-motion.webm",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/credits-night-desktop-gallery.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/credits-night-desktop.png",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/credits-night-mobile-gallery.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/credits-night-mobile.png",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/desktop-contact-sheet.png",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/index-day-desktop-gallery.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/index-day-desktop.png",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/index-day-lower.png",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/index-day-mobile-gallery.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/index-day-mobile.png",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/index-motion.webm",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/index-night-desktop-gallery.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/index-night-desktop.png",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/index-night-lower.png",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/index-night-mobile-gallery.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/index-night-mobile.png",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/mobile-contact-sheet.png",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/research-day-desktop-gallery.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/research-day-desktop.png",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/research-day-lower.png",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/research-day-mobile-gallery.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/research-day-mobile.png",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/research-motion.webm",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/research-night-desktop-gallery.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/research-night-desktop.png",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/research-night-lower.png",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/research-night-mobile-gallery.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/research-night-mobile.png",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/talks-day-desktop-gallery.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/talks-day-desktop.png",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/talks-day-mobile-gallery.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/talks-day-mobile.png",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/talks-motion.webm",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/talks-night-desktop-gallery.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/talks-night-desktop.png",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/talks-night-mobile-gallery.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/talks-night-mobile.png",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/writing-day-desktop-gallery.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/writing-day-desktop.png",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/writing-day-lower.png",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/writing-day-mobile-gallery.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/writing-day-mobile.png",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/writing-motion.webm",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/writing-night-desktop-gallery.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/writing-night-desktop.png",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/writing-night-lower.png",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/writing-night-mobile-gallery.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-captures/writing-night-mobile.png",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-credits-day.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-credits-interactive.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-credits-night.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-day.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-index.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-interactive.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-night.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-research-day.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-research-interactive.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-research-night.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-talks-day.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-talks-interactive.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-talks-night.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-writing-day.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-writing-interactive.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6-writing-night.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v6.zip",
+        "identity_mode": "existence"
+      },
+      {
         "path": "review/site-v1-offline-bundle-v3.json",
         "identity_mode": "content",
         "sha256": "82b24ccae48d37ff14b7a4fc2122bdd7e96c42fbadfd1d14c48971bb410b1695"
@@ -712,13 +1002,18 @@
         "sha256": "b2ed7bdb69ea7b9bfd7ce6d7f0f664fda4a15b21650d7b1493db041b7b2cf998"
       },
       {
+        "path": "review/site-v1-offline-bundle-v6.json",
+        "identity_mode": "content",
+        "sha256": "f3c9aa7625546c17d4f98689358ab7bf4bf049257a8380b32b722555e8b7c285"
+      },
+      {
         "path": "review/site-v1-preview.html",
         "identity_mode": "existence"
       },
       {
         "path": "review/site-v1-review.json",
         "identity_mode": "content",
-        "sha256": "ad81c2060a09847d930cffb1d6f0400af161d1eb0513d92c2b9f9a7882c59db3"
+        "sha256": "47e2a160464b76a75d56f0257ee37239a8dae54b6bae4a33b143e4afc8e30fa3"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -739,6 +1034,11 @@
         "path": "review/site-v1-static-previews-v5.json",
         "identity_mode": "content",
         "sha256": "78cff08f80977c654646e7926d2cfdf0d64dc7129606b1f35b2af2aee63eda11"
+      },
+      {
+        "path": "review/site-v1-static-previews-v6.json",
+        "identity_mode": "content",
+        "sha256": "965e5327a37453638955f5b94c9f14a7f8dba11b5ad8ae684409ba955e38f884"
       },
       {
         "path": "review/site-v1-static-previews.json",
@@ -905,6 +1205,11 @@
         "sha256": "60ae917afff69e90c5d816e1426c9fae585b79743a2284e1c6bd56ec4b47b925"
       },
       {
+        "path": "review/sol-visual-v6-20261002/EXECUTION.md",
+        "identity_mode": "content",
+        "sha256": "f9ed7feb579cd668b2e85c05b8a5502301ac818b49e145ad74f9a3c024288bd9"
+      },
+      {
         "path": "tests/archive.test.cjs",
         "identity_mode": "existence"
       },
@@ -946,12 +1251,12 @@
       {
         "path": "tools/build_site_bundle.py",
         "identity_mode": "content",
-        "sha256": "c5dce55428e5e89552b92e45f2ab38ce1456c89ec6ddbb5049741f173bb2a33d"
+        "sha256": "bab13878de8141222dbf9281d98e8a757179e9da6edf1e6c8827ace0c213e6f2"
       },
       {
         "path": "tools/build_site_contact_sheets.py",
         "identity_mode": "content",
-        "sha256": "69631891d76926f262578f341d0824edf38c5e91c77bdd9c58ffd4d43db21ca1"
+        "sha256": "d608b33ef16e94644611e29e0e96365c41912b7fd3d8d59a9bc43c2d66b42446"
       },
       {
         "path": "tools/build_site_previews.cjs",
@@ -963,6 +1268,10 @@
       },
       {
         "path": "tools/check_site_contrast.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/compact_site_recordings.cjs",
         "identity_mode": "existence"
       },
       {
@@ -1318,6 +1627,20 @@
       ]
     },
     {
+      "path": "review/site-v1-20261002-v6-captures/captures.json",
+      "title": "review/site-v1-20261002-v6-captures/captures.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-v1-20261002-v6-captures/contrast.json",
+      "title": "review/site-v1-20261002-v6-captures/contrast.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "review/site-v1-offline-bundle-v3.json",
       "title": "review/site-v1-offline-bundle-v3.json",
       "instructions": [
@@ -1334,6 +1657,13 @@
     {
       "path": "review/site-v1-offline-bundle-v5.json",
       "title": "review/site-v1-offline-bundle-v5.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-v1-offline-bundle-v6.json",
+      "title": "review/site-v1-offline-bundle-v6.json",
       "instructions": [
         "AGENTS.md"
       ]
@@ -1369,6 +1699,13 @@
     {
       "path": "review/site-v1-static-previews-v5.json",
       "title": "review/site-v1-static-previews-v5.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-v1-static-previews-v6.json",
+      "title": "review/site-v1-static-previews-v6.json",
       "instructions": [
         "AGENTS.md"
       ]
@@ -1565,6 +1902,13 @@
     {
       "path": "review/sol-visual-v5-20261002/EXECUTION.md",
       "title": "V1–V5 visual implementation — 2026-10-02",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/sol-visual-v6-20261002/EXECUTION.md",
+      "title": "v6 camera / sculpture / professional context — 2026-10-02",
       "instructions": [
         "AGENTS.md"
       ]

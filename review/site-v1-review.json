@@ -1,26 +1,26 @@
 {
   "checked_date": "2026-10-02",
   "public_directory": "docs",
-  "visual_review": "implementer observed actual Chromium desktop/mobile Day/Night matrix; limits in v5 captures/execution",
+  "visual_review": "implementer observed actual Chromium desktop/mobile Day/Night matrix; limits in v6 captures/execution",
   "files": {
     "docs/.nojekyll": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
     "docs/archive.js": "5b11a8e0fd8f2ecbed57809ea956ee3470148aac604e64decc188ba8f755209c",
-    "docs/credits.html": "1bae7a461bce3afe23e4941856afd974d1da634a119aa03a0a5dceccf529d51a",
-    "docs/index.html": "41f498ba6d46186dfc737dbc178f7f9077da05bd1bfc7e98a5cf0955c0bf26cf",
-    "docs/research.html": "812035eb246933d4cd538fea6eb18b81ae128bdee242c5e5dbe797022c427ef6",
-    "docs/space.js": "cce5a9f48deb7c003d5ec1d57f6dfb15d71f3b716517000c4a20f0365d18aa9e",
-    "docs/styles.css": "acad772908b935955203dcc7401976b1f28a91e6cf1204520ec58181ab12c2f9",
-    "docs/talks.html": "1555d0b39f321e3b77489f6bc2591a7364bf86964ca20f1eddb4b7decce6afba",
-    "docs/theme.js": "a1987c61608672a1643289efaf3238ab315ad47b54b704fa04884d20ec479cd8",
-    "docs/writing.html": "32cb9ea4b2fbedbebe45e6b794c64d5014fc1f257bd2d4b5dac2d0f8413ce3da",
+    "docs/assets/vitalii-oborskyi-cutout.webp": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae",
     "docs/assets/vitalii-oborskyi.jpg": "5321e48f08b075cb1cbd522d0f36bc01276aece65d1a04cf09102aa5dd2b59bc",
-    "docs/assets/vitalii-oborskyi-cutout.webp": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae"
+    "docs/credits.html": "0415b8d8e03107b6c21de6d281c04691421ba20179569138cd2a6b8855319ab8",
+    "docs/index.html": "7a6702fe22805443878e23f7fdbc2d04b6d9dc250b10d2997041dfaecdef187b",
+    "docs/research.html": "ee2e8ce8d95f9ce6045e4b40309a73ca64aa332b99a30d3d4bc7fc9f16d4f942",
+    "docs/space.js": "34f2b2cbb94d484bcaf6e917019636f86b7e49f744608ee7039b3bd6eb487043",
+    "docs/styles.css": "792cbc1abffddc6b97e096acdbf71f0c13f9b8156267bd913fa2e31e209630e1",
+    "docs/talks.html": "deb184f8656bacbe72b3546e74f29e4a05972e70d123600ca02ead34b5fea817",
+    "docs/theme.js": "a1987c61608672a1643289efaf3238ab315ad47b54b704fa04884d20ec479cd8",
+    "docs/writing.html": "7475ae0821a020df7f9f31813789022f388dd2006b364cec8f69e0daacd0246e"
   },
   "structural_checks": "passed: five pages; exact frozen 27 primary identities and secondary LinkedIn date/URL; five EN selections, eight bounded entries; IDs/ARIA/contact/navigation/resources; draft isolation",
-  "theme_behavior": "32 Node tests: 6 theme, 10 scene, 6 archive, 5 content, 5 exports; observed browser cases separately recorded for v5",
+  "theme_behavior": "36 Node tests: 6 theme, 13 scene, 6 archive, 6 content, 5 exports; observed browser cases separately recorded for v6",
   "source_audit": "SITE-SOURCE-AUDIT.md",
   "independent_review": {
-    "status": "pending independent/editorial/rights acceptance for v5; implementer browser checks are recorded",
+    "status": "pending independent/editorial/rights acceptance for v6; implementer browser checks are recorded",
     "remaining": [
       "Physical-device/native zoom/hidden-tab/print-dialog inspection remains unobserved",
       "Independent/editorial candidate review",
@@ -31,11 +31,11 @@
   },
   "review_handoff": {
     "checked_date": "2026-10-02",
-    "kind": "v5: fifteen page copies plus all-page gallery, real captures and five motion recordings",
-    "manifest": "review/site-v1-static-previews-v5.json",
-    "bundle_manifest": "review/site-v1-offline-bundle-v5.json",
+    "kind": "v6: fifteen page copies plus all-page gallery, real captures and five motion recordings",
+    "manifest": "review/site-v1-static-previews-v6.json",
+    "bundle_manifest": "review/site-v1-offline-bundle-v6.json",
     "indexing_scope": "review renditions noindex; offline site/ exact docs bytes",
-    "visual_review": "observed headless browser cases; see review/sol-visual-v5-20261002/EXECUTION.md"
+    "visual_review": "observed headless browser cases; see review/sol-visual-v6-20261002/EXECUTION.md"
   },
   "previous_independent_review": {
     "status": "Confirmed for static/content/behavior scope",
@@ -55,10 +55,10 @@
     ]
   },
   "current_checks": {
-    "node_tests": 32,
+    "node_tests": 36,
     "python_tests": 18,
     "preview_export": "15 page copies plus one gallery; exact source/evidence hashes verified",
-    "content": "Five English pages; five selected EN works; eight bounded public discussions; 27 primary records (20 EN/7 UA) plus one EN secondary rendition; 12 public files",
+    "content": "Five English pages; five selected EN works; eight bounded public discussions; 27 primary records (20 EN/7 UA) plus one EN secondary rendition; 12 public files; eight distinct LinkedIn identities and verified professional context; employer gap omitted",
     "machine_languages": [
       "en",
       "uk"
@@ -76,5 +76,5 @@
     },
     "visual_browser_QA": "observed 1440x900/390x844 Day/Night, 360px, 200% CSS zoom, native scroll, controls, fallback and archive; remaining physical/native UI cases explicit"
   },
-  "edition": "v5"
+  "edition": "v6"
 }

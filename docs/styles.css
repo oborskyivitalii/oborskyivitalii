@@ -266,3 +266,7 @@ body[data-page="writing"] .publication {background:color-mix(in srgb,var(--paper
   .publication,.research-card,.ack-grid article {break-inside:avoid}
   a {text-decoration:underline}
 }
+
+/* Professional context accompanies the exact public contribution record. */
+.ack-leads .person-context,.ack-compact .person-context,.ack-grid .person-context {font-size:14px;line-height:1.5;color:var(--muted);margin:0 0 14px}
+.ack-leads h3 a,.ack-compact h3 a,.ack-grid h3 a {color:inherit;text-decoration-thickness:1px;text-underline-offset:.22em}

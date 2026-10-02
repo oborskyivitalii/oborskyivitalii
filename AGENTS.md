@@ -71,9 +71,12 @@ and the source findings in [SITE-VISUAL-REVIEW](SITE-VISUAL-REVIEW.md).
 The owning intent is [launch #1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1);
 continue the existing site PR and preserve unrelated newer work.
 
-The V1–V5 candidate is implemented in v5. Start with the
-[all-page gallery](review/site-v1-20261002-v5-index.html) and
-[execution/capture evidence](review/sol-visual-v5-20261002/EXECUTION.md);
+The maintainer rejected v5's primitive forms and slow linear movement. The next
+candidate is v6: smooth camera journeys around recursive sculptures, with changes
+of angle, height and distance. Read the latest amendment in SOL-HANDOFF before
+using historical v5 evidence. Start with the
+[all-page gallery](review/site-v1-20261002-v6-index.html) and
+[execution/capture evidence](review/sol-visual-v6-20261002/EXECUTION.md);
 do not restart the implementation from the historical v4 planning checkpoint.
 The gallery/export generator verifies capture source hashes before admitting
 images. If public bytes change, refresh affected visual evidence before handoff.
@@ -86,6 +89,14 @@ images. If public bytes change, refresh affected visual evidence before handoff.
   overlap and differential movement. Existing 3D projection or an animation loop
   alone is not visual acceptance. Start with the existing renderer; choose another
   only for a demonstrated limitation, not because the requirement says "3D".
+- Use bounded recursive detail and intricate silhouettes, rather than collections
+  of simple cubes. Camera paths must curve around the composition and respond
+  clearly to ordinary scrolling. Verify continuity, safe distance, clipping and
+  exact reversible endpoints; preserve native scrolling and idle stopping.
+- For existing public discussion entries include concise verified role/company
+  context and the exact LinkedIn profile. Keep the original contribution link.
+  Do not infer an employer or conflate namesakes. Record source date and access
+  limits in SITE-SOURCE-AUDIT; affiliations never imply endorsement.
 - Home, Research, Writing, Talks and Credits share palette, geometry, materials
   and motion language, with motifs related to each page's content. The maintainer's
   new requirement supersedes the old permanent static Talks/Credits exception.
