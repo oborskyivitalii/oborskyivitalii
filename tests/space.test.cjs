@@ -156,11 +156,37 @@ test("curved camera journeys go around the sculpture, remain continuous, and kee
   }
 });
 
-test("recursive worlds are deterministic and complexity stays bounded on all routes",()=>{
+test("thematic still lifes have distinct solid subjects and a bounded desktop/mobile budget",()=>{
+  const silhouettes=new Set();
   for(const page of Object.keys(model.initialPoses)) {
     const world=model.worldFor(page);
     assert.deepEqual(world,model.worldFor(page));
-    assert.ok(world.faces.filter(f=>f.points.length===3).length>=64,"recursive tetrahedron detail exists");
-    assert.ok(world.faces.length+world.lines.length<1600,"recursive branching has a fixed budget");
+    assert.equal(world.objects.filter(o=>o.band!=="distant").length,3,"three authored subject families, with a quieter distant echo");
+    const primary=world.faces.filter(f=>f.object===world.objects[0].name).flatMap(f=>f.points);
+    const low=[0,1,2].map(i=>Math.min(...primary.map(p=>p[i]))),high=[0,1,2].map(i=>Math.max(...primary.map(p=>p[i])));
+    assert.ok(high.every((v,i)=>v-low[i]>.25),"the hero object has depth, not just a flat sprite");
+    silhouettes.add(JSON.stringify(primary.map(p=>p.map((v,i)=>+((v-low[i])/(high[i]-low[i])).toFixed(4)))));
+    for(const candidate of[world,model.worldFor(page,true)]) {
+      assert.ok(candidate.faces.length+candidate.lines.length<1600,"geometry is constructed once within a fixed budget");
+      assert.ok(candidate.faces.every(f=>f.tint>=0&&f.tint<=1&&f.points.flat().every(Number.isFinite)));
+    }
+    const small=model.worldFor(page,true);
+    assert.ok(small.faces.length+small.lines.length<world.faces.length+world.lines.length,"mobile reduces tessellation");
+  }
+  assert.equal(silhouettes.size,5,"no shared dominant object disguised by translation or scaling");
+});
+
+test("primary subjects retain a readable viewport presence along every page and topic journey",()=>{
+  for(const page of Object.keys(model.initialPoses))for(const mobile of[false,true]) {
+    const world=model.worldFor(page,mobile),width=mobile?390:1440,height=mobile?844:900;
+    const paths=page==="writing"?Object.values(model.topicPaths):[Object.values(model.pageStops[page])];
+    for(const ids of paths)for(let i=0;i<=24;i++) {
+      const shapes=model.projectedWorld(world,model.journeyPose(ids,i/24,mobile),width,height).filter(s=>s.object===world.objects[0].name);
+      assert.ok(shapes.length,"principal motif survives clipping");
+      const pts=shapes.flatMap(s=>s.points),xs=pts.map(p=>p[0]),ys=pts.map(p=>p[1]);
+      const x=Math.min(...xs),X=Math.max(...xs),y=Math.min(...ys),Y=Math.max(...ys);
+      const visible=Math.max(0,Math.min(width,X)-Math.max(0,x))*Math.max(0,Math.min(height,Y)-Math.max(0,y))/((X-x)*(Y-y));
+      assert.ok(visible>.8,`${page} ${mobile?'mobile':'desktop'} ${ids[0]} at ${i}/24: subject exits the viewport (${visible})`);
+    }
   }
 });

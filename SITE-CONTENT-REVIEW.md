@@ -1,6 +1,25 @@
 # Site v1 content and release review
 
-## Current v6 — camera journeys and recursive sculpture
+## Current v7 — subjects belong to their page
+
+The maintainer rejected v6's interchangeable abstract forms. v7 uses a floating
+still life for each route, sharing cyan metal, bronze accents, paper, faceted
+lighting and scroll-driven perspective. Home has a compass, stairs and arch;
+Research has a gyroscope, branching hypotheses and verification frames; Writing
+has a modeled open book, curved loose pages and a solid letterpress A; Talks has
+a microphone, wave fronts and screen; Credits has quotation marks, source links
+and bookmarked source cards. Recursive detail remains in Research's branching
+hypotheses. The scene is decorative; it does not depict accepted research results.
+
+[All five pages](review/site-v1-20261002-v7-index.html) and
+[execution/evidence](review/sol-visual-v7-20261002/EXECUTION.md) hold the current
+candidate. Public text, LinkedIn identities/contribution boundaries, publication
+inventory and portrait bytes remain as verified in v6. Native scrolling, Off/
+reduced freeze, idle stop, filters/history/reflow and print behavior remain.
+Opening composition, mobile framing and static fallbacks are updated together.
+PR #10 remains Draft; maintainer visual acceptance and launch decisions stay open.
+
+## Historical v6 — camera journeys and recursive sculpture
 
 The maintainer rejected v5's slow linear motion and simple forms. v6 follows
 smooth cylindrical splines around more intricate compositions, with changes of

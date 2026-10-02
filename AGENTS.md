@@ -71,12 +71,14 @@ and the source findings in [SITE-VISUAL-REVIEW](SITE-VISUAL-REVIEW.md).
 The owning intent is [launch #1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1);
 continue the existing site PR and preserve unrelated newer work.
 
-The maintainer rejected v5's primitive forms and slow linear movement. The next
-candidate is v6: smooth camera journeys around recursive sculptures, with changes
-of angle, height and distance. Read the latest amendment in SOL-HANDOFF before
-using historical v5 evidence. Start with the
-[all-page gallery](review/site-v1-20261002-v6-index.html) and
-[execution/capture evidence](review/sol-visual-v6-20261002/EXECUTION.md);
+The maintainer rejected v6's repeated abstract scenery. The current candidate is
+v7: three recognizable subject families per page, arranged as related floating
+still lifes. Writing must read as books/pages/letterforms; changing topology or
+adding recursive detail alone does not establish page identity. Share materials,
+lighting, edge treatment and camera language, rather than a dominant object.
+Read the latest amendment in SOL-HANDOFF. Start with the
+[all-page gallery](review/site-v1-20261002-v7-index.html) and
+[execution/capture evidence](review/sol-visual-v7-20261002/EXECUTION.md);
 do not restart the implementation from the historical v4 planning checkpoint.
 The gallery/export generator verifies capture source hashes before admitting
 images. If public bytes change, refresh affected visual evidence before handoff.
@@ -89,8 +91,10 @@ images. If public bytes change, refresh affected visual evidence before handoff.
   overlap and differential movement. Existing 3D projection or an animation loop
   alone is not visual acceptance. Start with the existing renderer; choose another
   only for a demonstrated limitation, not because the requirement says "3D".
-- Use bounded recursive detail and intricate silhouettes, rather than collections
-  of simple cubes. Camera paths must curve around the composition and respond
+- Model useful subject details: page curvature/bindings, solid letterforms,
+  microphone grille/yoke, compass facets and architectural frames. Recursive
+  detail belongs where it supports the subject, not on every page. Camera paths
+  must curve around the composition and respond
   clearly to ordinary scrolling. Verify continuity, safe distance, clipping and
   exact reversible endpoints; preserve native scrolling and idle stopping.
 - For existing public discussion entries include concise verified role/company

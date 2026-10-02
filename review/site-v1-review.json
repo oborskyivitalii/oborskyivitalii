@@ -1,26 +1,26 @@
 {
   "checked_date": "2026-10-02",
   "public_directory": "docs",
-  "visual_review": "implementer observed actual Chromium desktop/mobile Day/Night matrix; limits in v6 captures/execution",
+  "visual_review": "implementer observed actual Chromium desktop/mobile Day/Night matrix; limits in v7 captures/execution",
   "files": {
     "docs/.nojekyll": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
     "docs/archive.js": "5b11a8e0fd8f2ecbed57809ea956ee3470148aac604e64decc188ba8f755209c",
     "docs/assets/vitalii-oborskyi-cutout.webp": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae",
     "docs/assets/vitalii-oborskyi.jpg": "5321e48f08b075cb1cbd522d0f36bc01276aece65d1a04cf09102aa5dd2b59bc",
-    "docs/credits.html": "0415b8d8e03107b6c21de6d281c04691421ba20179569138cd2a6b8855319ab8",
-    "docs/index.html": "7a6702fe22805443878e23f7fdbc2d04b6d9dc250b10d2997041dfaecdef187b",
-    "docs/research.html": "ee2e8ce8d95f9ce6045e4b40309a73ca64aa332b99a30d3d4bc7fc9f16d4f942",
-    "docs/space.js": "34f2b2cbb94d484bcaf6e917019636f86b7e49f744608ee7039b3bd6eb487043",
-    "docs/styles.css": "792cbc1abffddc6b97e096acdbf71f0c13f9b8156267bd913fa2e31e209630e1",
-    "docs/talks.html": "deb184f8656bacbe72b3546e74f29e4a05972e70d123600ca02ead34b5fea817",
+    "docs/credits.html": "07e2e19b26680bebe1cfa83c46a44ec7cf5e659a8ab819deedbc09b4be2215ba",
+    "docs/index.html": "d381cb1c2052688328db2ff07238b9359f0713de4a0fb8d1eb3b3bdba5bb421f",
+    "docs/research.html": "5a1284a5e22e33629d146097dce755e38b021b589e4f4fa4205681c18b66d319",
+    "docs/space.js": "c68f583c22983a3a11b01ad43679ccf68fbd8cea22dc4070991d36b04364a6a2",
+    "docs/styles.css": "4f31d68348ca8fece3373a4ba4e33f88ac50f6c10a6ef0affc7c52c4b4396bbd",
+    "docs/talks.html": "60b09d61b9a6df5166e848969845d436103060fbf7b969552eaafbceeeb8c176",
     "docs/theme.js": "a1987c61608672a1643289efaf3238ab315ad47b54b704fa04884d20ec479cd8",
-    "docs/writing.html": "7475ae0821a020df7f9f31813789022f388dd2006b364cec8f69e0daacd0246e"
+    "docs/writing.html": "09f78dedfd480327acbd601907dc203a3e55de944010be6ae683bb64556db1dd"
   },
   "structural_checks": "passed: five pages; exact frozen 27 primary identities and secondary LinkedIn date/URL; five EN selections, eight bounded entries; IDs/ARIA/contact/navigation/resources; draft isolation",
-  "theme_behavior": "36 Node tests: 6 theme, 13 scene, 6 archive, 6 content, 5 exports; observed browser cases separately recorded for v6",
+  "theme_behavior": "37 Node tests: 6 theme, 14 scene, 6 archive, 6 content, 5 exports; observed browser cases separately recorded for v7",
   "source_audit": "SITE-SOURCE-AUDIT.md",
   "independent_review": {
-    "status": "pending independent/editorial/rights acceptance for v6; implementer browser checks are recorded",
+    "status": "pending independent/editorial/rights acceptance for v7; implementer browser checks are recorded",
     "remaining": [
       "Physical-device/native zoom/hidden-tab/print-dialog inspection remains unobserved",
       "Independent/editorial candidate review",
@@ -31,11 +31,11 @@
   },
   "review_handoff": {
     "checked_date": "2026-10-02",
-    "kind": "v6: fifteen page copies plus all-page gallery, real captures and five motion recordings",
-    "manifest": "review/site-v1-static-previews-v6.json",
-    "bundle_manifest": "review/site-v1-offline-bundle-v6.json",
+    "kind": "v7: fifteen page copies plus all-page gallery, real captures and five motion recordings",
+    "manifest": "review/site-v1-static-previews-v7.json",
+    "bundle_manifest": "review/site-v1-offline-bundle-v7.json",
     "indexing_scope": "review renditions noindex; offline site/ exact docs bytes",
-    "visual_review": "observed headless browser cases; see review/sol-visual-v6-20261002/EXECUTION.md"
+    "visual_review": "observed headless browser cases; see review/sol-visual-v7-20261002/EXECUTION.md"
   },
   "previous_independent_review": {
     "status": "Confirmed for static/content/behavior scope",
@@ -55,7 +55,7 @@
     ]
   },
   "current_checks": {
-    "node_tests": 36,
+    "node_tests": 37,
     "python_tests": 18,
     "preview_export": "15 page copies plus one gallery; exact source/evidence hashes verified",
     "content": "Five English pages; five selected EN works; eight bounded public discussions; 27 primary records (20 EN/7 UA) plus one EN secondary rendition; 12 public files; eight distinct LinkedIn identities and verified professional context; employer gap omitted",
@@ -74,7 +74,8 @@
       "source_original_unchanged": true,
       "derivative": "AI-assisted transparent cutout, web encoding; not exact foreground pixel identity"
     },
-    "visual_browser_QA": "observed 1440x900/390x844 Day/Night, 360px, 200% CSS zoom, native scroll, controls, fallback and archive; remaining physical/native UI cases explicit"
+    "visual_browser_QA": "observed 1440x900/390x844 Day/Night, 360px, 200% CSS zoom, native scroll, controls, fallback and archive; remaining physical/native UI cases explicit",
+    "scene": "Five thematic still lifes; distinct primary solid geometry, bounded desktop/mobile complexity, primary-object framing across every route/topic path"
   },
-  "edition": "v6"
+  "edition": "v7"
 }

@@ -1,4 +1,4 @@
-/* Related faceted worlds. Native scroll/topic choices move the camera; never the pointer. */
+/* Thematic faceted still lifes. Native scroll/topic choices move the camera; never the pointer. */
 (() => {
   "use strict";
   const add = (a, b) => a.map((v, i) => v + b[i]);
@@ -46,38 +46,26 @@
     }
     return result;
   }
-  // Node positions and topology adapted from the reviewed, uncalibrated blueprint.
-  const nodes = {
-    intent:[-4,1,0], controller:[-1,1.6,.8], actuators:[1.7,1.8,1.4], process:[4.7,.9,2.2],
-    outcome:[5.9,-1,2.6], evaluation:[2,-1.7,-.1], reference:[-1.5,-2.3,-1.4],
-    work:[-6,4.5,-6], generation:[-3.8,4.5,-5.2], verification:[-1.3,4.5,-4.4], release:[1.8,4.5,-3.6]
-  };
-  const edges = [
-    ["intent","controller"], ["controller","actuators"], ["actuators","process"],
-    ["process","outcome"], ["outcome","evaluation"], ["reference","evaluation"],
-    ["evaluation","controller",[[-.4,-2.8,-.7],[-3.1,-1.6,-.4],[-3.1,1.6,.8]]],
-    ["work","generation"], ["generation","verification"], ["verification","release"]
-  ]; // Deliberately no causal edge between the two research motifs.
   const poses = {
     overview:{position:[12,7,17],target:[0,.4,-.5]},
     researchOverview:{position:[13,9,15],target:[-.5,1.4,-1.5]},
-    control:{position:[-12,4,11],target:[-1,.6,0]},
-    help:{position:[-8,11,14],target:[.7,.5,-.5]},
-    feedback:{position:[9,2.2,12],target:[1,-.5,1]},
-    context:{position:[-14,6,12],target:[-1,.5,-1]},
-    closing:{position:[4,10,19],target:[.5,.5,-1]},
-    // Explicit finite paths around the named nodes, rather than unresolved pose IDs.
-    verification:{position:[-8,10,11],target:[2,2,-3]},
-    verificationEnd:{position:[11,4,10],target:[2,2,-3]},
-    controller:{position:[-10,3,12],target:[-1,1,0]},
-    controllerEnd:{position:[12,9,11],target:[-1,1,0]},
+    control:{position:[-12,4,11],target:[3,.6,0]},
+    help:{position:[-8,11,14],target:[3,.5,-.5]},
+    feedback:{position:[9,2.2,12],target:[3,2,1]},
+    context:{position:[-14,6,12],target:[3,.5,-1]},
+    closing:{position:[4,10,19],target:[1,.5,-1]},
+    // Finite side views of the authored subjects.
+    verification:{position:[-8,10,11],target:[4,0,0]},
+    verificationEnd:{position:[11,4,10],target:[4,0,0]},
+    controller:{position:[-10,3,12],target:[3,1,0]},
+    controllerEnd:{position:[12,9,11],target:[3,1,0]},
     library:{position:[12,7,16],target:[0,.2,0]},
-    libraryMid:{position:[-12,10,11],target:[0,1,0]},
-    libraryEnd:{position:[-8,2,14],target:[1,-.4,-1]},
+    libraryMid:{position:[-12,8,16],target:[3,1,0]},
+    libraryEnd:{position:[-8,2,17],target:[3,-.4,0]},
     signal:{position:[12,5,16],target:[1,.5,-1]},
     signalEnd:{position:[-12,9,12],target:[2,-.5,0]},
     network:{position:[12,7,17],target:[0,.5,-1]},
-    networkEnd:{position:[-11,4,13],target:[.6,0,-.4]}
+    networkEnd:{position:[-11,4,13],target:[4,0,-.4]}
   };
   const topicPaths = { all:["library","libraryMid","libraryEnd"], strategy:["library","help","closing"], systems:["control","help","feedback"], delivery:["verification","researchOverview","verificationEnd"], leadership:["controller","help","controllerEnd"] };
   const pageStops = {
@@ -86,101 +74,232 @@
     talks:{intro:"signal",talks:"signalEnd",continue:"closing"},
     credits:{intro:"network",preferences:"networkEnd",contact:"closing"}
   };
-  const segments = [];
-  for (const [from,to,via=[]] of edges) {
-    const points = [nodes[from],...via,nodes[to]];
-    for (let i=1;i<points.length;i++) segments.push({a:points[i-1],b:points[i],color:from==="evaluation"?"amber":"cyan",arrow:i===points.length-1});
-  }
-  // An authored narrowing verification passage; not a measured bottleneck.
-  const gates = [[-2.8,4.5,-4.9,1.05],[-1.3,4.5,-4.4,.43],[.2,4.5,-4,1.0]].map(([x,y,z,r]) => [[x,y-r,z-r],[x,y+r,z-r],[x,y+r,z+r],[x,y-r,z+r]]);
-  for (let g=0;g<gates.length;g++) for (let i=0;i<4;i++) {
-    segments.push({a:gates[g][i],b:gates[g][(i+1)%4],color:"amber"});
-    if(g) segments.push({a:gates[g-1][i],b:gates[g][i],color:"amber"});
-  }
   const initialPoses={index:"overview",research:"researchOverview",writing:"library",talks:"signal",credits:"network"};
+  // A small sculptural vocabulary, arranged as a different still life per route.
+  // Geometry is built once. All faces, contours and engraving use one camera/light.
   function worldFor(page,compact=false) {
-    const faces=[],lines=[];
-    const face=(points,color="cyan",band="middle",opacity=.82)=>faces.push({points,color,band,opacity});
-    const line=(a,b,color="cyan",band="middle",arrow=false)=>lines.push({a,b,color,band,arrow});
-    const path=(points,color="cyan",band="middle")=>{for(let i=1;i<points.length;i++)line(points[i-1],points[i],color,band);};
-    // Sculptural, bounded recursion, not a model of research results or people.
-    const rotate=(p,angle)=>[p[0]*Math.cos(angle)-p[2]*Math.sin(angle),p[1],p[0]*Math.sin(angle)+p[2]*Math.cos(angle)];
-    const tetra=(center,size,depth,color="cyan",band="middle")=>{
-      const corners=[[1,1,1],[-1,-1,1],[-1,1,-1],[1,-1,-1]].map(p=>add(center,p.map(v=>v*size)));
-      if(depth){for(const c of corners)tetra(lerp(center,c,.5),size*.5,depth-1,color,band);return;}
-      for(const ix of[[0,1,2],[0,3,1],[0,2,3],[1,3,2]])face(ix.map(i=>corners[i]),color,band,.52);
+    const faces=[],lines=[],objects=[];
+    const rotate=(p,r)=>{
+      let [x,y,z]=p,[a,b,c]=r;
+      [y,z]=[y*Math.cos(a)-z*Math.sin(a),y*Math.sin(a)+z*Math.cos(a)];
+      [x,z]=[x*Math.cos(b)+z*Math.sin(b),-x*Math.sin(b)+z*Math.cos(b)];
+      return [x*Math.cos(c)-y*Math.sin(c),x*Math.sin(c)+y*Math.cos(c),z];
     };
-    const branch=(root,dir,length,depth,color="cyan",band="middle")=>{
-      const end=add(root,normalize(dir).map(v=>v*length));line(root,end,color,band);
-      if(!depth)return;
-      for(const sign of[-1,1])branch(end,rotate([dir[0]+sign*.45,dir[1]*.8+.24,dir[2]],sign*.7),length*.62,depth-1,color,band);
-    };
-    // Faceted tubular knots with negative space and cross-section ribs.
-    const knot=(center,scale,color="cyan",band="middle",turns=2)=>{
-      const count=compact?48:72,sides=4,points=[];
-      const at=t=>[(2+.68*Math.cos(3*t))*Math.cos(turns*t),.95*Math.sin(3*t),(2+.68*Math.cos(3*t))*Math.sin(turns*t)];
-      for(let i=0;i<count;i++) {
-        const t=i/count*2*Math.PI,p=at(t),tangent=normalize(sub(at(t+.01),at(t-.01))),u=normalize(cross(tangent,[0,1,0])),v=cross(tangent,u);
-        points.push(Array.from({length:sides},(_,j)=>add(center,add(p,add(u.map(x=>x*.16*Math.cos(j/sides*2*Math.PI)),v.map(x=>x*.16*Math.sin(j/sides*2*Math.PI)))).map(x=>x*scale))));
-      }
-      for(let i=0;i<count;i++)for(let j=0;j<sides;j++)face([points[i][j],points[(i+1)%count][j],points[(i+1)%count][(j+1)%sides],points[i][(j+1)%sides]],color,band,.8);
-    };
-    for(const x of[-9,9])branch([x,-5,-10],[x>0?-.4:.4,1,0],5,3,"cyan","distant");
-    // Cropped near ornament makes parallax legible without a broad masking plane.
-    tetra([9,-3,5],2.7,compact?1:2,"cyan","near");
-    branch([-9,-4,4],[.5,1,.2],3.8,3,"amber","near");
-    if(page==="writing") {
-      // A helicoidal archive: each stratum contains smaller echoing contours.
-      for(let layer=0;layer<8;layer++) {
-        const y=-3+layer*.8,angle=layer*.22;
-        const count=compact?20:32;
-        for(let ring=0;ring<(compact?2:3);ring++) {
-          const r=4-ring*.65,points=Array.from({length:count+1},(_,i)=>add(rotate([Math.cos(i/count*2*Math.PI)*r,y,Math.sin(i/count*2*Math.PI)*r*.65],angle),[0,0,-1]));
-          path(points,layer===4?"amber":"cyan");
-          if(!ring)for(let i=0;i<count;i++)face([points[i],points[i+1],add(points[i+1],[0,.1,0]),add(points[i],[0,.1,0])],layer===4?"amber":"cyan");
-        }
-      }
-      tetra([0,.5,-1],1.6,2,"amber");
-    } else if(page==="talks") {
-      knot([0,.4,-1],1.5,"cyan","middle",1);
-      for(let i=0;i<5;i++)branch([-4,-1+i*.6,-3],[1,.35,Math.sin(i)*.6],3.5,3,i===2?"amber":"cyan");
-    } else if(page==="credits") {
-      tetra([0,0,-1],3.3,compact?2:3,"cyan");
-      branch([-4,-3,0],[.5,1,0],3.2,4,"amber");
-      branch([4,-3,-3],[-.6,1,.2],3.2,4,"cyan");
-    } else {
-      // Loop and recursive passage stay separate; no scientific causal link.
-      knot([-2,0,0],1.5,"cyan");
-      tetra([4,2.2,-4],2.2,2,"amber");
-      branch([4,-1,-4],[0,1,.15],2.7,4,"amber");
-      if(page==="research")knot([4,2.2,-4],.8,"amber","middle",1);
+    function object(name,center,rotation,scale,band,build) {
+      const firstFace=faces.length,firstLine=lines.length;
+      const point=p=>add(center,rotate(p.map(v=>v*scale),rotation));
+      const face=(points,color="cyan",tone=.2,edge=.36)=>faces.push({points:points.map(point),color,band,opacity:1,tone,edgeAlpha:edge,object:name});
+      const line=(a,b,color="cyan",alpha=.58,width=1)=>lines.push({a:point(a),b:point(b),color,band,opacity:alpha,width,object:name});
+      const path=(points,color="cyan",alpha=.58,width=1)=>{for(let i=1;i<points.length;i++)line(points[i-1],points[i],color,alpha,width);};
+      const poly=(points,depth,color="cyan",tone=.24)=>{
+        const front=points.map(([x,y])=>[x,y,depth/2]),back=points.map(([x,y])=>[x,y,-depth/2]);
+        face(back.slice().reverse(),color,tone*.7);face(front,color,tone);
+        for(let i=0;i<points.length;i++){const j=(i+1)%points.length;face([front[i],back[i],back[j],front[j]],color,tone*1.7);}
+      };
+      const box=(c,size,color="cyan",tone=.2)=>{
+        const corners=[[-1,-1,-1],[1,-1,-1],[1,1,-1],[-1,1,-1],[-1,-1,1],[1,-1,1],[1,1,1],[-1,1,1]].map(p=>add(c,p.map((v,i)=>v*size[i]/2)));
+        for(const ix of[[0,3,2,1],[4,5,6,7],[0,1,5,4],[2,3,7,6],[1,2,6,5],[3,0,4,7]])face(ix.map(i=>corners[i]),color,tone);
+      };
+      const ring=(center,radius,tube,rotation=[0,0,0],color="cyan",arc=Math.PI*2)=>{
+        const n=compact?24:40,sides=4;
+        const at=(i,j)=>add(center,rotate([(radius+tube*Math.cos(j/sides*2*Math.PI))*Math.cos(i/n*arc),(radius+tube*Math.cos(j/sides*2*Math.PI))*Math.sin(i/n*arc),tube*Math.sin(j/sides*2*Math.PI)],rotation));
+        for(let i=0;i<n;i++)for(let j=0;j<sides;j++)face([at(i,j),at(i+1,j),at(i+1,j+1),at(i,j+1)],color,.29,.12);
+        path(Array.from({length:n+1},(_,i)=>at(i,0)),color,.66);
+        path(Array.from({length:n+1},(_,i)=>at(i,2)),color,.52);
+      };
+      const ball=(center,r,color="amber")=>{
+        const vertices=[[r,0,0],[-r,0,0],[0,r,0],[0,-r,0],[0,0,r],[0,0,-r]].map(p=>add(p,center));
+        for(const ix of[[0,2,4],[2,1,4],[1,3,4],[3,0,4],[2,0,5],[1,2,5],[3,1,5],[0,3,5]])face(ix.map(i=>vertices[i]),color,.32,.3);
+      };
+      const paper=(center,w,h,bend=.25,tilt=0,color="cyan",text=true)=>{
+        const at=(x,y)=>add(center,rotate([x,y,bend*Math.sin((y/h+.5)*Math.PI)+.08*x*x],[0,tilt,0]));
+        const n=compact?5:8;
+        for(let i=0;i<n;i++){const y=-h/2+h*i/n,Y=y+h/n;face([at(-w/2,y),at(w/2,y),at(w/2,Y),at(-w/2,Y)],color,.055,0);}
+        path([at(-w/2,-h/2),...Array.from({length:n+1},(_,i)=>at(-w/2,-h/2+h*i/n)),at(w/2,h/2),...Array.from({length:n+1},(_,i)=>at(w/2,h/2-h*i/n)),at(-w/2,-h/2)],color,.55);
+        if(text)for(let row=0;row<6;row++){const y=h*.28-row*h*.095;line(add(at(-w*.32,y),[0,0,.015]),add(at(w*(row===5?.03:.29),y),[0,0,.015]),color,row===0?.48:.2,row===0?1.5:.8);}
+      };
+      build({face,line,path,poly,box,ring,ball,paper});
+      objects.push({name,band,firstFace,faceCount:faces.length-firstFace,firstLine,lineCount:lines.length-firstLine});
     }
-    const light=normalize([-.6,.8,1]);
+    const openBook=({face,line,path})=>{
+      const n=compact?6:10;
+      for(const sign of[-1,1]) {
+        const at=(t,y,leaf)=>[sign*t*2.65,y,.58*t+.3*Math.sin(t*Math.PI)-leaf*.062];
+        // Boards, page block and individual curled leaves; the central gutter is real depth.
+        const board=(t,y)=>[sign*t*2.83,y,.58*t+.3*Math.sin(t*Math.PI)-.34];
+        for(let i=0;i<n;i++) {
+          face([board(i/n,-2.2),board((i+1)/n,-2.2),board((i+1)/n,2.2),board(i/n,2.2)],"cyan",.31,0);
+          face([board(i/n,-2.2),board((i+1)/n,-2.2),add(board((i+1)/n,-2.2),[0,0,-.08]),add(board(i/n,-2.2),[0,0,-.08])],"cyan",.48,.15);
+        }
+        path(Array.from({length:n+1},(_,i)=>board(i/n,2.2)),"cyan",.6);
+        path(Array.from({length:n+1},(_,i)=>board(i/n,-2.2)),"cyan",.6);
+        for(const leaf of[4,3,2,1,0]) {
+          const edge=Array.from({length:n+1},(_,i)=>at(i/n,-2.05,leaf));path(edge,"cyan",.3,.8);
+          path(Array.from({length:n+1},(_,i)=>at(i/n,2.05,leaf)),"cyan",.28,.8);
+          line(at(1,-2.05,leaf),at(1,2.05,leaf),"cyan",.34,.8);
+        }
+        for(let i=0;i<n;i++)face([at(i/n,-2.05,0),at((i+1)/n,-2.05,0),at((i+1)/n,2.05,0),at(i/n,2.05,0)],"cyan",.04,0);
+        for(let row=0;row<9;row++) {
+          const y=1.45-row*.29,end=row===8?.7:.88;
+          path(Array.from({length:7},(_,i)=>add(at(.14+(end-.14)*i/6,y,0),[0,0,.018])),"cyan",row===0?.46:.23,row===0?1.8:.8);
+        }
+        if(sign===1)face([at(.76,2.12,-.25),at(.85,2.12,-.25),at(.85,-2.55,-.25),at(.805,-2.38,-.25),at(.76,-2.55,-.25)],"amber",.43,.55);
+      }
+      line([0,-2.18,-.2],[0,2.18,-.2],"amber",.65,1.4);
+    };
+    const letters=({poly,box})=>{
+      // Separate solid strokes leave the A's counter genuinely open in 3D.
+      poly([[-1.25,-1.65],[-.76,-1.65],[.08,1.17],[-.1,1.8],[-.43,1.8]],.3,"amber",.37);
+      poly([[.72,-1.65],[1.23,-1.65],[.14,1.8],[-.34,1.8]],.3,"amber",.37);
+      box([-.03,-.48,0],[1.28,.25,.3],"amber",.42);
+      box([-1.0,-1.64,0],[.9,.18,.4],"amber",.37);box([.97,-1.64,0],[.9,.18,.4],"amber",.37);
+    };
+    const sheets=({paper})=>{
+      paper([-.24,-.22,-.5],2.5,3.25,.35,-.16,"cyan",false);
+      paper([.15,0,-.22],2.5,3.25,.42,.06,"cyan",false);
+      paper([.45,.24,.12],2.5,3.25,.6,.28,"cyan");
+    };
+    const compass=({ring,face,line,ball})=>{
+      ring([0,0,0],2.35,.09);ring([0,0,-.22],2.12,.035);
+      for(let i=0;i<32;i++){const a=i*Math.PI/16,r=i%4?2.13:1.93;line([r*Math.sin(a),r*Math.cos(a),.03],[2.26*Math.sin(a),2.26*Math.cos(a),.03],"cyan",i%4?.27:.65);}
+      for(let i=0;i<4;i++){
+        const a=i*Math.PI/2,tip=[Math.sin(a)*1.86,Math.cos(a)*1.86,.04],left=[Math.sin(a-.8)*.47,Math.cos(a-.8)*.47,.04],right=[Math.sin(a+.8)*.47,Math.cos(a+.8)*.47,.04];
+        face([left,tip,[0,0,.38]],i===0?"amber":"cyan",.26);face([tip,right,[0,0,.38]],i===0?"amber":"cyan",.48);
+      }
+      ball([0,0,.42],.13,"amber");
+    };
+    const steps=({box,line})=>{
+      for(let i=0;i<7;i++){const y=-2.6+i*.62,x=-2.2+i*.72,z=Math.sin(i*.45)*.6;box([x,y,z],[1.25,.2,1.9],i===6?"amber":"cyan",.2);line([x-.58,y+.12,z+.91],[x+.58,y+.12,z+.91],"amber",.42);}
+    };
+    const arch=({box,face,line})=>{
+      box([-1.5,-1.15,0],[.4,3.5,.65],"cyan",.22);box([1.5,-1.15,0],[.4,3.5,.65],"cyan",.22);
+      for(let i=0;i<14;i++){
+        const a=i/14*Math.PI,b=(i+1)/14*Math.PI;
+        const section=z=>[[1.7*Math.cos(a),.6+1.7*Math.sin(a),z],[1.7*Math.cos(b),.6+1.7*Math.sin(b),z],[1.3*Math.cos(b),.6+1.3*Math.sin(b),z],[1.3*Math.cos(a),.6+1.3*Math.sin(a),z]];
+        face(section(.325),i===6?"amber":"cyan",.27);face(section(-.325).reverse(),"cyan",.18);
+        face([section(.325)[0],section(-.325)[0],section(-.325)[1],section(.325)[1]],"cyan",.33);
+        face([section(.325)[2],section(-.325)[2],section(-.325)[3],section(.325)[3]],"cyan",.3);
+      }
+      line([-1.5,-2.8,0],[1.5,-2.8,0],"amber",.35);
+    };
+    const gyroscope=({ring,line,ball})=>{
+      ring([0,0,0],2.75,.075,[0,0,0]);ring([0,0,0],2.35,.085,[.72,.4,.22]);ring([0,0,0],1.85,.08,[-.63,.9,0],"amber");
+      line([0,-3.1,0],[0,3.1,0],"cyan",.52);ball([0,0,0],.54,"amber");
+      for(const y of[-2.75,2.75])ball([0,y,0],.12,"cyan");
+    };
+    const hypotheses=({line,ball})=>{
+      function grow(start,dir,length,depth) {
+        const end=add(start,normalize(dir).map(x=>x*length));line(start,end,depth%2?"cyan":"amber",.56,depth?1.35:.85);
+        if(!depth){ball(end,.085,"cyan");return;}
+        for(const sign of[-1,1])grow(end,[dir[0]*.5+sign*.85,dir[1]*.7+.25,dir[2]+sign*.35],length*.69,depth-1);
+      }
+      grow([0,-2.8,0],[0,1,0],2,compact?3:4);
+    };
+    const gates=({box,line})=>{
+      for(let layer=0;layer<4;layer++){
+        const z=layer*1.25-1.9,scale=layer===2?.78:1,c=layer===2?"amber":"cyan",h=2.1*scale,w=1.65*scale;
+        box([-w,0,z],[.2,h*2,.2],c,.28);box([w,0,z],[.2,h*2,.2],c,.28);box([0,h,z],[2*w+.2,.2,.2],c,.28);box([0,-h,z],[2*w+.2,.2,.2],c,.28);
+      }
+      for(const y of[-.65,0,.65])line([0,y,-2.7],[0,y,2.7],"amber",.42);
+    };
+    const microphone=({face,path,line,box,ring})=>{
+      // A capsule grille inside a separate yoke; not an audio visualization.
+      const n=compact?12:20,levels=[[-1.25,.28],[-1.1,.58],[-.85,.72],[.85,.72],[1.1,.58],[1.25,.28]];
+      const at=(level,j)=>[levels[level][1]*Math.cos(j/n*Math.PI*2),levels[level][0]+.9,levels[level][1]*Math.sin(j/n*Math.PI*2)];
+      for(let k=0;k<levels.length-1;k++)for(let j=0;j<n;j++)face([at(k,j),at(k,j+1),at(k+1,j+1),at(k+1,j)],"cyan",.26,.1);
+      for(let j=0;j<n;j++)path(levels.map((_,k)=>at(k,j)),"cyan",.37,.85);
+      for(let y=-.55;y<=1.65;y+=.22){const r=y<-.18?.57:y>1.68?.57:.735;path(Array.from({length:n+1},(_,j)=>[r*Math.cos(j/n*2*Math.PI),y,r*Math.sin(j/n*2*Math.PI)]),"cyan",.4,.8);}
+      box([-1.04,-.25,0],[.18,1.8,.25],"amber",.37);box([1.04,-.25,0],[.18,1.8,.25],"amber",.37);box([0,-1.12,0],[2.2,.2,.25],"amber",.36);
+      box([0,-2,0],[.19,1.7,.19],"cyan",.32);ring([0,-2.87,0],1.05,.12,[Math.PI/2,0,0]);line([0,-2.8,0],[0,-1.15,0],"cyan",.6);
+    };
+    const soundwaves=({face,path})=>{
+      for(let k=0;k<4;k++) {
+        const r=1.15+k*.7,z=-k*.35,n=compact?12:20;
+        const at=(i,inner)=>{const a=-.92+i/n*1.84;return [Math.cos(a)*(r-inner),Math.sin(a)*(r-inner),z];};
+        for(let i=0;i<n;i++)face([at(i,0),at(i+1,0),at(i+1,.1),at(i,.1)],k===1?"amber":"cyan",.28,.05);
+        path(Array.from({length:n+1},(_,i)=>at(i,0)),k===1?"amber":"cyan",.55);
+      }
+    };
+    const screen=({box,face,line})=>{
+      box([0,.35,0],[4.15,2.65,.18],"cyan",.12);
+      for(const x of[-2.13,2.13])box([x,.35,.06],[.15,2.88,.24],"cyan",.3);
+      for(const y of[-1.05,1.76])box([0,y,.06],[4.4,.14,.24],"cyan",.3);
+      face([[-.3,-.18,.16],[-.3,1,.16],[.72,.4,.16]],"amber",.4,.6);
+      box([0,-1.85,-.1],[.16,1.5,.16],"cyan",.22);line([-1.55,-2.68,-.1],[1.55,-2.68,-.1],"cyan",.58);
+    };
+    const quotes=({poly})=>{
+      for(const x of[-1.05,.95])poly([[x-.55,.1],[x+.45,.1],[x+.45,1.32],[x-.7,1.32],[x-.7,.2],[x-.4,-.6],[x+.1,-1.15],[x+.52,-.94],[x+.05,-.4]],.38,"amber",.33);
+    };
+    const links=({face,path})=>{
+      function link(center,rotation,color) {
+        const n=compact?28:44,outer=[],inner=[];
+        for(let i=0;i<n;i++){const a=i/n*Math.PI*2,c=Math.cos(a),s=Math.sin(a);outer.push(add(center,rotate([c*1.55,s*.9,0],rotation)));inner.push(add(center,rotate([c*1.23,s*.57,0],rotation)));}
+        for(let i=0;i<n;i++){const j=(i+1)%n,front=p=>add(p,rotate([0,0,.14],rotation)),back=p=>add(p,rotate([0,0,-.14],rotation));face([front(outer[i]),front(outer[j]),front(inner[j]),front(inner[i])],color,.26,.1);face([back(outer[i]),back(outer[j]),front(outer[j]),front(outer[i])],color,.39,.07);face([back(inner[i]),back(inner[j]),front(inner[j]),front(inner[i])],color,.39,.07);}
+        path([...outer,outer[0]].map(p=>add(p,rotate([0,0,.14],rotation))),color,.6);path([...inner,inner[0]].map(p=>add(p,rotate([0,0,.14],rotation))),color,.56);
+      }
+      link([-.95,.3,.1],[0,0,-.3],"cyan");link([.95,-.3,0],[-.65,-.25,.15],"amber");
+    };
+    const sourceTabs=({paper,box,face})=>{
+      paper([0,0,0],2.45,3.05,.07,0,"cyan");
+      face([[.45,1.57,.05],[1,1.57,.05],[1,.62,.1],[.72,.85,.1],[.45,.62,.1]],"amber",.45);
+      box([-1.25,0,-.14],[.09,3.3,.12],"cyan",.25);
+    };
+    const distant=(name,fn)=>object(name,[-5.4,2.2,-7],[.12,-.22,.25],.64,"distant",fn);
+    if(page==="writing") {
+      object("open-book",[3.3,.35,.1],[-.25,.38,-.19],1.07,"middle",openBook);
+      object("loose-pages",[5.7,3.7,-4.1],[.1,.18,.32],.86,"middle",sheets);
+      object("letterpress-A",[6.8,-2.4,3.9],[.12,.28,-.23],.8,"near",letters);
+      distant("distant-pages",sheets);
+    } else if(page==="talks") {
+      object("microphone",[2.25,.5,.2],[.08,-.18,-.22],1.52,"middle",microphone);
+      object("sound-waves",[4.4,.6,-2.4],[.1,-.4,.1],1.25,"middle",soundwaves);
+      object("presentation-screen",[6.6,-3.1,3.5],[.1,.2,.14],.86,"near",screen);
+      distant("distant-wavefronts",soundwaves);
+    } else if(page==="credits") {
+      object("quotation-marks",[5.7,2.2,-1.2],[.08,.36,-.1],1.32,"middle",quotes);
+      object("source-links",[6.5,-2.4,2.7],[.15,.25,-.24],1.04,"near",links);
+      object("source-card",[-3.8,-1.3,-3.5],[.22,.18,-.22],.92,"middle",sourceTabs);
+      distant("distant-source-tabs",sourceTabs);
+    } else if(page==="research") {
+      object("gyroscope",[3.4,1.1,-.9],[.05,-.3,.1],1.08,"middle",gyroscope);
+      object("verification-gates",[6.3,-2.8,3.5],[.15,-.5,-.08],.97,"near",gates);
+      object("hypothesis-tree",[5.3,3,-4.1],[0,-.2,-.25],.87,"middle",hypotheses);
+      distant("distant-hypotheses",hypotheses);
+    } else {
+      object("compass",[5.2,4.0,-5.4],[.08,.3,-.3],1.04,"middle",compass);
+      object("architectural-arch",[6.5,-3.6,4.2],[.1,-.36,-.06],1.11,"near",arch);
+      object("ascending-steps",[-4.7,-.8,1],[.13,-.32,-.05],1.03,"middle",steps);
+      distant("distant-arch",arch);
+    }
+    const light=normalize([-.55,.85,1]);
     for(const f of faces) {
       const normal=normalize(cross(sub(f.points[1],f.points[0]),sub(f.points[2],f.points[0])));
-      const shade=.5+.5*Math.abs(dot(normal,light));
-      f.tint=(f.band==="near"?.16:.08)+shade*(f.band==="near"?.16:.13);
+      const shade=.65+.5*Math.abs(dot(normal,light));
+      f.tint=Math.min(.63,f.tone*shade);
+      // Paper catches neutral light in both themes; metal keeps its cyan/bronze tint.
+      if(f.tone<.1){f.fillColor="sheet";f.tint=.6+shade*.1;}
+      if(f.band==="distant"){f.tint*=.4;f.edgeAlpha*=.27;}
     }
-    return {faces,lines};
+    return {faces,lines,objects};
   }
   function projectedWorld(world,current,width,height) {
     const forward=normalize(sub(current.target,current.position)),right=normalize(cross(forward,[0,1,0])),up=cross(right,forward);
     const camera=point=>{const delta=sub(point,current.position);return [dot(delta,right),dot(delta,up),dot(delta,forward)];};
-    const focal=height/(2*Math.tan(Math.PI/8));
-    const project=p=>[width*(width<=640?.69:.66)+p[0]*focal/p[2],height*.48-p[1]*focal/p[2]];
+    const focal=(width<=640?Math.min(height,width*1.15):height)/(2*Math.tan(Math.PI/8));
+    const project=p=>[width*(width<=640?.42:.66)+p[0]*focal/p[2],height*.48-p[1]*focal/p[2]];
     const shapes=[];
     for(const f of world.faces) {
       const points=clipPolygon(f.points.map(camera));
       if(points.length<3)continue;
       const depth=points.reduce((v,p)=>v+p[2],0)/points.length;
-      shapes.push({kind:"face",points:points.map(project),depth,color:f.color,band:f.band,
-        tint:f.tint,alpha:f.opacity??.82,
-        edgeAlpha:f.band==="near"?.55:.46,lineWidth:f.band==="near"?1.6:1});
+      shapes.push({kind:"face",points:points.map(project),depth,color:f.color,band:f.band,object:f.object,
+        tint:f.tint,fillColor:f.fillColor,alpha:f.opacity??.82,
+        edgeAlpha:f.edgeAlpha??(f.band==="near"?.55:.46),lineWidth:f.band==="near"?1.4:1});
     }
     for(const s of world.lines) {
       const clipped=clipSegment(camera(s.a),camera(s.b));if(!clipped)continue;
-      shapes.push({kind:"line",points:clipped.map(project),depth:(clipped[0][2]+clipped[1][2])/2,
-        color:s.color,alpha:s.band==="distant"?.2:.65,lineWidth:s.band==="distant"?.7:1.2,arrow:s.arrow});
+      shapes.push({kind:"line",points:clipped.map(project),depth:(clipped[0][2]+clipped[1][2])/2,object:s.object,
+        color:s.color,alpha:(s.opacity??.65)*(s.band==="distant"?.3:1),lineWidth:s.width??(s.band==="distant"?.7:1.2),arrow:s.arrow});
     }
     // Faces AND edges participate in one painter order; near facets occlude distant lines.
     return shapes.sort((a,b)=>b.depth-a.depth);
@@ -190,7 +309,7 @@
     return "#"+lerp(rgb(a),rgb(b),t).map(v=>Math.round(v).toString(16).padStart(2,"0")).join("");
   }
   // Export the same pure composition/projection for checks and the no-Canvas SVG producer.
-  if (typeof module !== "undefined" && module.exports) module.exports = {clipSegment,clipPolygon,mix,journeyPose,poses,topicPaths,pageStops,initialPoses,nodes,edges,segments,worldFor,projectedWorld,blendColor};
+  if (typeof module !== "undefined" && module.exports) module.exports = {clipSegment,clipPolygon,mix,journeyPose,poses,topicPaths,pageStops,initialPoses,worldFor,projectedWorld,blendColor};
   if (typeof document === "undefined") return;
   const canvas = document.getElementById("space-canvas");
   const control = document.getElementById("space-motion");
@@ -235,9 +354,9 @@
   }
   function readColors() {
     const css=window.getComputedStyle(document.documentElement);
-    colors={cyan:css.getPropertyValue("--accent").trim(),amber:css.getPropertyValue("--systems").trim(),paper:css.getPropertyValue("--paper").trim()};
+    colors={cyan:css.getPropertyValue("--accent").trim(),amber:css.getPropertyValue("--systems").trim(),paper:css.getPropertyValue("--paper").trim(),sheet:(css.getPropertyValue("--scene-sheet")||"#fffefa").trim()};
     fillColors.clear();
-    for(const f of world.faces)fillColors.set(`${f.color}:${f.tint}`,blendColor(colors.paper,colors[f.color],f.tint));
+    for(const f of world.faces)fillColors.set(`${f.fillColor||f.color}:${f.tint}`,blendColor(colors.paper,colors[f.fillColor||f.color],f.tint));
   }
   function scrollPose() {
     if (page==="writing") {
@@ -282,8 +401,11 @@
       ctx.beginPath();ctx.moveTo(...from);for(const p of rest)ctx.lineTo(...p);
       ctx.lineWidth=shape.lineWidth;ctx.strokeStyle=colors[shape.color];
       if(shape.kind==="face") {
-        ctx.closePath();ctx.fillStyle=fillColors.get(`${shape.color}:${shape.tint}`);
-        ctx.globalAlpha=shape.alpha;ctx.fill();ctx.globalAlpha=shape.edgeAlpha;ctx.stroke();
+        ctx.closePath();ctx.fillStyle=fillColors.get(`${shape.fillColor||shape.color}:${shape.tint}`);
+        ctx.globalAlpha=shape.alpha;ctx.fill();
+        // Join adjacent paper facets without dark antialias seams.
+        if(shape.edgeAlpha===0){ctx.strokeStyle=ctx.fillStyle;ctx.lineWidth=.65;}else ctx.globalAlpha=shape.edgeAlpha;
+        ctx.stroke();
       } else {ctx.globalAlpha=shape.alpha;ctx.stroke();}
       if(shape.arrow) {
         const dx=to[0]-from[0],dy=to[1]-from[1],length=Math.hypot(dx,dy);

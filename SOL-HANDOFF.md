@@ -1,6 +1,40 @@
 # Sol execution plan — reviewed 2026-10-02
 
-## Latest amendment — v6, 2026-10-02
+## Latest amendment — v7, 2026-10-02
+
+The maintainer rejected v6 because the scenery lost its connection to each page:
+the repeated abstract objects felt interchangeable. Explicit example: Writing
+should contain floating 3D books, letters and pages. This supersedes v6's emphasis
+on recursive complexity as sufficient visual identity. The instruction authorizes
+creative implementation in the existing Draft PR #10; #1 retains the original
+[intent amendment](https://github.com/oborskyivitalii/oborskyivitalii/issues/1#issuecomment-5958821286).
+
+Art direction: an author's study in suspension. Cyan metal, bronze accents and
+light-catching paper; one faceted material/light/edge/projection language. Three
+principal subject families per route, with smaller distant echoes of its own
+subjects, not a shared ornamental filler:
+
+| Route | Subject families |
+| --- | --- |
+| Home | Compass, ascending steps, architectural arch: orientation and building. |
+| Research | Gyroscope, branching hypotheses, verification frames: control, alternatives and review. |
+| Writing | Open book, loose curved sheets, extruded letterpress A. |
+| Talks | Microphone, sound-wave fronts, presentation screen. |
+| Credits | Quotation marks, interlocking source links, bookmarked source cards. |
+
+These are decorative metaphors, not canonical research diagrams, live data,
+audio or endorsements. Preserve all public copy, identities, portrait and local
+preferences. Retain scroll-driven curved travel, Off/reduced freeze, no pointer
+or idle animation, finite paths and archive reflow/history/print behavior.
+Check actual rendered opening/middle/end views, both themes, mobile and actual
+scroll recordings. Inspect recognizable silhouettes and framing, not just mesh
+counts. Deliver v7 gallery/ZIP plus all five standalone interactive HTML links.
+
+[Current execution and evidence](review/sol-visual-v7-20261002/EXECUTION.md).
+v6 and earlier exports remain historical; their green tests are not acceptance
+of a visual direction the maintainer rejected.
+
+## Historical amendment — v6, 2026-10-02
 
 The maintainer rejects v5's slow, linear movement and primitive shapes. Replace
 it with a scroll-driven journey between viewpoints around intricate 3D

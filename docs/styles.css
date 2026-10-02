@@ -1,6 +1,6 @@
 :root {
   --paper:#f8f7f3; --ink:#142632; --muted:#4b5c69; --line:#cdd6da;
-  --accent:#075d7b; --systems:#895710; --tint:#eff2ef;
+  --accent:#075d7b; --systems:#895710; --tint:#eff2ef; --scene-sheet:#fffefa;
   --portrait-start:#deebeb; --portrait-end:#f4edde;
   --facet-1:#e7ece8;--facet-2:#dce9eb;--facet-3:#cddfe3;--facet-4:#eae1ce;--facet-5:#bfd4da;--facet-6:#eff0e9;
   --button-bg:#142632; --button-ink:#fff;
@@ -10,7 +10,7 @@
 }
 :root[data-theme="dark"] {
   --paper:#0b0f14; --ink:#f4f7fa; --muted:#adb8c5; --line:#344454;
-  --accent:#28c7f7; --systems:#f5b61c; --tint:#141c26;
+  --accent:#28c7f7; --systems:#f5b61c; --tint:#141c26; --scene-sheet:#8797a1;
   --portrait-start:#152732; --portrait-end:#24251e;
   --facet-1:#1c252e;--facet-2:#142f3b;--facet-3:#1c3f4c;--facet-4:#332e21;--facet-5:#235164;--facet-6:#253038;
   --button-bg:#28c7f7; --button-ink:#0b0f14; color-scheme:dark;
@@ -19,7 +19,7 @@
 @media(prefers-color-scheme:dark) {
   :root:not([data-theme]) {
     --paper:#0b0f14; --ink:#f4f7fa; --muted:#adb8c5; --line:#344454;
-    --accent:#28c7f7; --systems:#f5b61c; --tint:#141c26;
+    --accent:#28c7f7; --systems:#f5b61c; --tint:#141c26; --scene-sheet:#8797a1;
     --portrait-start:#152732; --portrait-end:#24251e;
     --facet-1:#1c252e;--facet-2:#142f3b;--facet-3:#1c3f4c;--facet-4:#332e21;--facet-5:#235164;--facet-6:#253038;
     --button-bg:#28c7f7; --button-ink:#0b0f14; color-scheme:dark;
@@ -173,7 +173,15 @@ h2 {font-size:clamp(30px,3.4vw,40px);font-weight:720;letter-spacing:-.035em;line
 .archive-intro {padding-block:60px 32px}
 .archive-intro h1 {font-size:clamp(40px,5.7vw,72px)}
 .archive-intro .hero-description {max-width:720px}
+/* Keep a composed opening for the floating subject at the right of each route. */
+@media(min-width:1000px) {
+  .archive-intro>h1 {max-width:790px;font-size:64px}
+  .archive-intro>.hero-description {max-width:640px}
+  body[data-page="credits"] .credits-page {max-width:1160px}
+  .credits-page>p {max-width:730px}
+}
 .archive-filters {display:flex;flex-wrap:wrap;align-items:end;gap:18px;padding-block:24px 4px}
+.archive-filters,.archive-heading,.archive-count,.topic-nav {width:fit-content;max-width:100%}
 .archive-filters label {display:grid;gap:8px;font-size:13px;color:var(--muted)}
 .archive-filters select {min-width:130px;font-size:14px}
 .year-heading {display:flex;align-items:center;gap:24px}
@@ -212,6 +220,9 @@ body[data-page="writing"] .publication {background:color-mix(in srgb,var(--paper
   .publication {grid-template-columns:165px minmax(0,1fr);gap:24px}
 }
 @media(max-width:640px) {
+  /* Match the mobile camera framing for the static 1440×900 projection too. */
+  .space-scene .space-fallback {width:min(184vw,160vh);height:min(115vw,100vh);left:calc(42vw - min(121.44vw,105.6vh));top:calc(48vh - min(55.2vw,48vh))}
+  .archive-intro>h1 {padding-inline:0;margin-inline:0}
   html {scroll-padding-top:var(--header-clearance,112px)}
   .wrap,.year-landing {width:calc(100% - 40px)}
   body[data-page="writing"] #archive-results {width:calc(100% - 40px)}

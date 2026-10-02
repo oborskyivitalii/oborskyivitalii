@@ -10,8 +10,10 @@ function fallback(page) {
     const d=s.points.map((p,i)=>(i?"L":"M")+p.map(number).join(" ")).join(" ")+(s.kind==="face"?"Z":"");
     const ink=s.color==="amber"?"var(--systems)":"var(--accent)";
     if(s.kind==="face") {
-      const fill=blendColor("#f8f7f3",s.color==="amber"?"#895710":"#075d7b",s.tint);
-      return `<path d="${d}" fill="${fill}" style="stroke:${ink};fill:color-mix(in srgb,var(--paper) ${number((1-s.tint)*100)}%,${ink})" fill-opacity="${s.alpha}" stroke-opacity="${s.edgeAlpha}" stroke-width="${s.lineWidth}"/>`;
+      const pigment=s.fillColor==="sheet"?"var(--scene-sheet)":ink;
+      const fill=blendColor("#f8f7f3",s.fillColor==="sheet"?"#fffefa":s.color==="amber"?"#895710":"#075d7b",s.tint);
+      const paint=`color-mix(in srgb,var(--paper) ${number((1-s.tint)*100)}%,${pigment})`;
+      return `<path d="${d}" fill="${fill}" style="stroke:${s.edgeAlpha===0?paint:ink};fill:${paint}" fill-opacity="${s.alpha}" stroke-opacity="${s.edgeAlpha===0?s.alpha:s.edgeAlpha}" stroke-width="${s.edgeAlpha===0?.65:s.lineWidth}"/>`;
     }
     return `<path d="${d}" fill="none" style="stroke:${ink}" stroke-opacity="${s.alpha}" stroke-width="${s.lineWidth}"/>`;
   });

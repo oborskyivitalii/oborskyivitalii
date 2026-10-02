@@ -33,7 +33,7 @@ for(const device of ['desktop','mobile'])for(const theme of ['light','dark']){
 }
 await browser.close();const failures=results.flatMap(r=>r.failures.map(f=>({route:r.route,theme:r.theme,device:r.device,position:r.position,...f})));
 require('node:assert/strict').deepEqual(sourceHashes(),sources,'public source changed during contrast capture');
-fs.writeFileSync(root+'/review/site-v1-20261002-v6-captures/contrast.json',JSON.stringify({method:'Chromium rendered backgrounds with text paint hidden without layout changes; sampled glyph-center composited pixels, using computed original text color. Desktop start/middle/end plus mobile start in both themes. Sampled check, not complete WCAG certification.',sources,views:results,failures:failures.length},null,2)+'\n');
+fs.writeFileSync(root+'/review/site-v1-20261002-v7-captures/contrast.json',JSON.stringify({method:'Chromium rendered backgrounds with text paint hidden without layout changes; sampled glyph-center composited pixels, using computed original text color. Desktop start/middle/end plus mobile start in both themes. Sampled check, not complete WCAG certification.',sources,views:results,failures:failures.length},null,2)+'\n');
 process.stdout.write(JSON.stringify({views:results.length,samples:results.reduce((n,r)=>n+r.samples,0),min_normal:Math.min(...results.map(r=>r.min_normal).filter(Boolean)),min_large:Math.min(...results.map(r=>r.min_large).filter(Boolean)),failures:failures.slice(0,10)},null,2)+'\n');
 if(failures.length)process.exitCode=1;
 })().catch(e=>{process.stderr.write(e.stack);process.exitCode=1;});
