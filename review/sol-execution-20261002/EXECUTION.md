@@ -58,13 +58,14 @@ live Medium, repository name, site-wide license, main branch or Pages setting ch
 
 ## Available validation
 
-- 30 Node tests: 6 theme, 8 scene, 6 archive, 5 content and 5 exports.
+- 31 Node tests: 6 theme, 9 scene, 6 archive, 5 content and 5 exports.
 - 18 existing Python RI/adapter tests.
 - Fixed independent inventory and asset checks; five English pages; resolving
   IDs, ARIA, local resources/fragments; exact five-work selection and contact.
 - Reversible/coalesced/idle scene; no pointer frames; near-plane crossing;
   all five page roles; Off/reduced across themes/layout/lifecycle; unknown/zero/
-  one/coincident stops, empty and one-record Writing; topic/scroll precedence.
+  one/coincident stops, empty and one-record Writing; topic/scroll precedence;
+  retained Writing progress on the first scroll after reflow/empty restoration.
 - Query/hash precedence, preserved other filters, visible empty landing, old
   topic-year fragments, hashchange/popstate/back/forward/Reset and print-all.
 - Fifteen self-contained v4 copies and deterministic ZIP freshness; exact source
@@ -75,6 +76,29 @@ live Medium, repository name, site-wide license, main branch or Pages setting ch
 
 Tests establish source and modeled behavior. They do not establish observed
 browser motion, contrast, measured FPS or full accessibility compliance.
+
+## Follow-up reconciliation — 2026-10-02
+
+While a parallel implementation was being prepared, the live branch advanced to
+`cc473070119792ea2eedb4a6998231fdf13e3f69`, tree
+`a6c6ad3dd98150566c35ed1c71dde8a7003c61d1`. That published v4 implementation was
+retained and its 30 Node / 18 Python checks rerun successfully. An unpublished
+alternative was not substituted and no force push was used.
+
+A focused S3 regression exposed a Writing camera discontinuity: after a result
+list changed height, the next scroll event recomputed absolute progress even at
+the unchanged scroll position. Restoring a shorter list after zero results could
+also reset progress. The added test failed against that live source and passes
+with a progress anchor at remeasurement. Scroll remains bounded by the visible
+result span, and a real subsequent scroll still moves along the active topic path.
+The existing topic, freeze, fallback and lifecycle checks continue to pass.
+
+This is a mechanical correction within the already instructed S3 contract. Public
+copy, archive identities, research meaning, assets and the published v4 design are
+unchanged. Interactive copies, ZIP and current hash records were regenerated;
+RI was rebuilt last. The final 31 Node / 18 Python result is the current count.
+The final pushed commit/tree and its CI result are recorded in PR #10 and issue #1.
+This follow-up verification does not constitute independent candidate acceptance.
 
 ## Browser capability and unperformed matrix
 

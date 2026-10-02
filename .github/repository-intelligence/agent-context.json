@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "ad9150e7d626ba026009b99cac9636d96ab63fee1eabe9bc7f7b51c6e41836cb",
+    "digest": "efbf0fff205a07573b45fffb6aff52daf0b6e92634f42dab52f6f963c8b8a3f4",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -74,12 +74,12 @@
       {
         "path": "SITE-CONTENT-REVIEW.md",
         "identity_mode": "content",
-        "sha256": "265f7582fe0cea8e3a2c8a2e8ed65529851c0f24ebb69b4dcf4c682c627f03bf"
+        "sha256": "2c41f16da5e44ee64656462d7a8de1a787a4ba4fc2209f9c4e914165109f7b40"
       },
       {
         "path": "SITE-OPERATIONS.md",
         "identity_mode": "content",
-        "sha256": "61fe226ac0a52625fdb9ac8e57af0e901010ee964c9012cbafec61980e44dc47"
+        "sha256": "9c632a2002f80a525f34d21ec7d49ed1e292d1f715f823513c5a7e503ed25e14"
       },
       {
         "path": "SITE-ROADMAP.md",
@@ -414,7 +414,7 @@
       {
         "path": "review/site-v1-offline-bundle-v4.json",
         "identity_mode": "content",
-        "sha256": "abecf39c0dc380c87b98b8b64f31608c326b4b189499b4910dedc7274a03c082"
+        "sha256": "b352c0a59ad1fd8289164e131bf8166eb1ecc752045e2a23d1d48107af6f608b"
       },
       {
         "path": "review/site-v1-preview.html",
@@ -423,7 +423,7 @@
       {
         "path": "review/site-v1-review.json",
         "identity_mode": "content",
-        "sha256": "062e7d96cfae8e7080a15cb1277075f333cde003375c6e7e16d3626fbbb24a41"
+        "sha256": "5eb7af7662a42f5c9af6b46fa786c54fb6af0f1bb220cd768df9790c85252e5d"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -438,7 +438,7 @@
       {
         "path": "review/site-v1-static-previews-v4.json",
         "identity_mode": "content",
-        "sha256": "af63ab58da6818badaaf9f8ee37cc93868089be680b85cf91db737aa40bee6e8"
+        "sha256": "8ee4edb015d51730432a2cf629d9708e2a98b8e37c34659e29770f3ab968de73"
       },
       {
         "path": "review/site-v1-static-previews.json",
@@ -476,7 +476,7 @@
       {
         "path": "review/sol-execution-20261002/EXECUTION.md",
         "identity_mode": "content",
-        "sha256": "84c7eef19e51f495589d3c2d73844e765c0be803fc7a1908ae46524529bda26d"
+        "sha256": "64730c1c3a770f3ae0a92b66b735e7e572534ec0fce5ece91d8100cf2b2281e8"
       },
       {
         "path": "review/sol-plan-20261002/CONTENT-AND-CONVERSION-BRIEF.md",

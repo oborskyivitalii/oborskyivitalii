@@ -10,14 +10,14 @@
     "docs/credits.html": "e467e8456ac809908b7961826b4e6de0e02a2a085bac49a2e64afa7b7bfcb689",
     "docs/index.html": "f481d2aa57449aafcd6c679dc0d7d94683a1deb6f94e9eed1d228bbe1d15ab0f",
     "docs/research.html": "0e2d1b26908e4a249300a51460b342f75e7e11613905e3e2df17fd64de52fdc2",
-    "docs/space.js": "b9d76fc2cc9f48365b889fc5804fea4b52c84e9d6073e884744af43400c6ff11",
+    "docs/space.js": "6917dde4e109eacbd4822474bef5ec3cd2a19f60f5ff4b143f05cfd019097111",
     "docs/styles.css": "7ff211f848d09e31ad5df0502d0b38037f452cb43c1efd2be74a7fa6dba49389",
     "docs/talks.html": "97abd6bf8838159e176090c52a2dae973a33e923a1d0bc7e2d5aa62ad4f92bc1",
     "docs/theme.js": "a1987c61608672a1643289efaf3238ab315ad47b54b704fa04884d20ec479cd8",
     "docs/writing.html": "387e0e9bde00f7a5cf0e8f1fbbfb2df94a4ea42618b9268e159c61982680afd4"
   },
   "structural_checks": "passed: five pages; exact frozen 27 primary identities and secondary LinkedIn date/URL; five EN selections, eight bounded entries; IDs/ARIA/contact/navigation/resources; draft isolation",
-  "theme_behavior": "30 Node tests: 6 theme, 8 scene, 6 archive, 5 content, 5 exports; modeled behavior, not browser QA",
+  "theme_behavior": "31 Node tests: 6 theme, 9 scene, 6 archive, 5 content, 5 exports; modeled behavior, not browser QA",
   "source_audit": "SITE-SOURCE-AUDIT.md",
   "independent_review": {
     "status": "pending for current v4 public implementation; plan reviews do not accept implementation",
@@ -55,7 +55,7 @@
     ]
   },
   "current_checks": {
-    "node_tests": 30,
+    "node_tests": 31,
     "python_tests": 18,
     "preview_export": "15 review pages; ten source inputs; hashes fresh",
     "content": "Five English pages; five selected EN works; eight bounded public discussions; 27 primary records (20 EN/7 UA) plus one EN secondary rendition; 12 public files",

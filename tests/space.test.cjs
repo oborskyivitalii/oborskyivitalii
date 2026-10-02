@@ -96,3 +96,14 @@ test("near-plane clipping preserves crossing segments, inputs, and every allowli
   for(const paths of Object.values(model.topicPaths))for(const id of paths)assert.ok([...model.poses[id].position,...model.poses[id].target].every(Number.isFinite));
   const unavailable=visit({noCanvas:true});assert.equal(unavailable.button.hidden,true);assert.equal(unavailable.pending.size,0);assert.equal(unavailable.scene.dataset.ready,undefined);
 });
+
+test("Writing keeps its local path progress on the first scroll after reflow and empty-result restoration",()=>{
+  const page=visit({page:"writing"});
+  page.event("site:scene-focus",{focus:"systems",reason:"initial"});page.settle();
+  page.scroll(1500);page.settle();const before=page.trace();
+  page.layout([[400,560],[2800,2960]]);page.settle();assert.equal(page.trace(),before);
+  page.scroll(1500);assert.equal(page.pending.size,0,"remeasure must not remap an unchanged scroll position to a different camera");
+  page.layout([]);page.settle();page.layout([[1000,1160]]);page.settle();
+  page.scroll(1500);assert.equal(page.pending.size,0,"restoring a shorter result block must retain saved local progress");
+  page.scroll(1450);page.settle();assert.notEqual(page.trace(),before,"a real new scroll still controls the active topic path");
+});

@@ -8,7 +8,7 @@ contact are implemented. The fixed 27-primary-plus-one-secondary inventory and
 original JPEG/WebP hashes pass. Research meanings remain with UA/Subprime;
 no unverified numerical achievements or client/endorsement claims are imported.
 
-30 Node and 18 Python tests, v4 HTML/ZIP source parity, native topic/year targets,
+31 Node and 18 Python tests, v4 HTML/ZIP source parity, native topic/year targets,
 query/hash/history state, Off/reduced and RI checks are recorded in
 [execution](review/sol-execution-20261002/EXECUTION.md). Actual browser acceptance
 is blocked in this session; independent implementation/editorial/rights review

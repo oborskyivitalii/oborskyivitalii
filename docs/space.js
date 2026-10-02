@@ -79,7 +79,7 @@
   try { choice=localStorage.getItem(key); } catch { /* In-tab controls remain useful. */ }
   let enabled=choice!=="off" && !reduced.matches, printing=false, pending=null;
   let width=1,height=1,ratio=1,stops=[],bounds=null,focus="all",localProgress=0;
-  let current=poses.overview, animation=null;
+  let current=poses.overview, animation=null, writingAnchor=null;
   let colors={cyan:"#075d7b",amber:"#895710",paper:"#f8f7f3"};
   const pose = id => narrow.matches ? mix(poses.overview,poses[id],.58) : poses[id];
   const pathPose = () => { const [a,b]=topicPaths[focus]; return mix(pose(a),pose(b),localProgress); };
@@ -100,6 +100,7 @@
         const start=Math.max(0,first.top+window.scrollY-height*.22),end=last.bottom+window.scrollY-height*.22;
         if (end>start+.5) bounds={start,end};
       }
+      writingAnchor={y:window.scrollY,progress:localProgress};
     }
   }
   function readColors() {
@@ -109,7 +110,18 @@
   function scrollPose() {
     if (page==="writing") {
       if (!bounds) return current;
-      localProgress=clamp((window.scrollY-bounds.start)/(bounds.end-bounds.start));return pathPose();
+      const {start,end}=bounds,y=window.scrollY,a=writingAnchor;
+      if(!a || (a.progress===0 && a.y<=start) || (a.progress===1 && a.y>=end)) {
+        localProgress=clamp((y-start)/(end-start));
+      } else if(a.y>start && a.y<end) {
+        // Keep the reader's last progress while both ends follow visible results.
+        localProgress=clamp(y<=a.y ? a.progress*(y-start)/(a.y-start) : a.progress+(1-a.progress)*(y-a.y)/(end-a.y));
+      } else {
+        // A restored short block may no longer surround the reader. Resume from
+        // the saved progress using its visible span, never total document height.
+        localProgress=clamp(a.progress+(y-a.y)/(end-start));
+      }
+      return pathPose();
     }
     if (!pageStops[page] || stops.length<2) return current;
     if(window.scrollY<=stops[0].y) return pose(stops[0].id);

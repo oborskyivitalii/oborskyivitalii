@@ -48,6 +48,8 @@ The single decorative world has a UA feedback motif and separate verification
 passage; neither is a canonical research diagram, simulation or measured bottleneck.
 Native scroll follows named Home/Research sections. Writing Topic chooses its
 finite path within visible result bounds; Year/Language only change results.
+Remeasuring that block retains local path progress, including empty-result
+restoration; the next native scroll resumes from that progress without a reset.
 Talks/Credits/unknown pages are static overview. Pointer/hover never moves the camera.
 Frames coalesce and settle within 150ms of the last target change; then RAF stops.
 Off freezes the current pose; initial Off/reduced starts at overview. Reduced
