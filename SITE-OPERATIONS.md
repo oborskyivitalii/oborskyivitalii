@@ -68,6 +68,12 @@ node --test tests/theme.test.cjs
 
 ## Launch
 
+The [2026-10-02 visual proposal](SITE-VISUAL-REVIEW.md) is a separate review artifact
+with native Day/Night controls and an embedded cutout. It is not the current
+public edition or Auto-mode test. If the maintainer selects that direction,
+apply it consistently to the public pages, optimize the derived image and refresh
+the public review/handoff before completing the launch checks below.
+
 1. Review the concrete homepage and rights/attribution inventory in
    [SITE-CONTENT-REVIEW](SITE-CONTENT-REVIEW.md) and
    [source audit](SITE-SOURCE-AUDIT.md) and [SEO map](SITE-SEO.md); record the URL and

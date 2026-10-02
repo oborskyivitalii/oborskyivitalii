@@ -92,3 +92,13 @@ The repository-wide content license remains undecided in [rights #7](https://git
 | 2026-10-01 | Confirmed English UI; added the supplied portrait, bounded career context, EN/UA edition groups, meaningful topic/schema metadata and a keyword map; prepared a full Medium profile replacement | [SEO/content map](SITE-SEO.md), [v2 preview](review/site-v1-20261001-v2-day.html), [Medium draft](drafts/medium-profile-revision-20261001.html). This changes public bytes; the previous independent confirmation is historical, not current acceptance. Medium itself is unchanged; URL, visual/editorial/rights review and deployment remain open. |
 
 For each later session: recheck current heads, linked issues and open PRs; update the affected milestone, checked evidence and unresolved decisions here; link the resulting PR/commit. Keep task details and discussion in the owning issue.
+
+### Visual proposal — 2026-10-02
+
+The maintainer requested background removal and a design review informed by the
+presentation, retaining Day and Night. A [source-bounded review](SITE-VISUAL-REVIEW.md),
+transparent cutout, illustrative comparison and [native HTML proposal](review/site-visual-proposal-20261002.html)
+are prepared outside `docs/`. Public files and existing theme/SEO/publication data
+remain unchanged. Current iteration acceptance is a concrete reviewable proposal,
+not implicit approval of a public redesign. Browser, likeness/design, rights and
+release decisions remain separate; see launch #1 and PR #10.

@@ -22,5 +22,8 @@ that do not require JavaScript. See the
 [Medium profile replacement draft](drafts/medium-profile-revision-20261001.html).
 The English interface labels original English/Ukrainian editions EN/UA; earlier
 preview files are historical, not the current portrait/SEO revision.
+The separate [visual review](SITE-VISUAL-REVIEW.md) proposes presentation-derived
+styling and an integrated cutout in a [Day/Night concept](review/site-visual-proposal-20261002.html).
+This proposal does not change the public candidate.
 The personal website is not yet published. Current work is tracked in
 [Issues](https://github.com/oborskyivitalii/oborskyivitalii/issues).

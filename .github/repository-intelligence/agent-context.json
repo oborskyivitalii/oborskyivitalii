@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "ca1dc96fbb0560bdb4ae4dd22f9fdb6dd24b139a18a87a7cd67b3a4031986e5f",
+    "digest": "8aaa5b2de5f6413e46c7f12fc3867f9f39e29785c12e5271bf23241aee11b269",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -39,7 +39,7 @@
       {
         "path": ".github/repository-intelligence-config.json",
         "identity_mode": "content",
-        "sha256": "74d88bb9c3ffd39a26b1dc2de0e0d8695350c3915714f96ae6bf69d02c14a405"
+        "sha256": "55f97705f3dabfb2a92420df7379b650a4ddd5d818a255e982282879c9a666c8"
       },
       {
         "path": ".github/workflows/navigation.yml",
@@ -64,7 +64,7 @@
       {
         "path": "README.md",
         "identity_mode": "content",
-        "sha256": "933582cb5a37e5fad33511f4abf5dfcabd5300a3cbeb9b1d34f948ba2934b947"
+        "sha256": "1febb972e775591fdb5fe52ef54ed851c6554f19370b12c97e140cc064784dc6"
       },
       {
         "path": "REPOSITORIES.md",
@@ -79,12 +79,12 @@
       {
         "path": "SITE-OPERATIONS.md",
         "identity_mode": "content",
-        "sha256": "3c0a4e07cba9dec5755e64a73eec786717d6da4bfa862724579bc24ba174b2ca"
+        "sha256": "f861ed815572652cd1c0cbdb1dc970423e534de6e60c523edd79fb7573b12658"
       },
       {
         "path": "SITE-ROADMAP.md",
         "identity_mode": "content",
-        "sha256": "09d780cd835459b25533c0c806bb389fa25902a7818b0c9f269c662ed89c5dbf"
+        "sha256": "46d2afad4d775e1ebc6f8849c8941cfbb92f99c5a061f77207b7045616818300"
       },
       {
         "path": "SITE-SEO.md",
@@ -95,6 +95,11 @@
         "path": "SITE-SOURCE-AUDIT.md",
         "identity_mode": "content",
         "sha256": "e561ecae92c4df8ec61db30f40c28e222a8e5e7999fa91feb6de64fc80fbb348"
+      },
+      {
+        "path": "SITE-VISUAL-REVIEW.md",
+        "identity_mode": "content",
+        "sha256": "6c1e5c9ce599e55e2150628804ed4f8b922255ababf6f8b00fb20ce737123a10"
       },
       {
         "path": "docs/.nojekyll",
@@ -126,6 +131,18 @@
       },
       {
         "path": "drafts/medium-profile-revision-20261001.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/assets/site-day-night-concept-20261002.png",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/assets/vitalii-oborskyi-cutout-20261002.png",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/build_visual_proposal.cjs",
         "identity_mode": "existence"
       },
       {
@@ -196,6 +213,24 @@
         "sha256": "0a4f1acecd783260263a1d03532de1e7b659c3bcdf814a330db67325ac0c4b01"
       },
       {
+        "path": "review/site-visual-concept-prompt.txt",
+        "identity_mode": "content",
+        "sha256": "b668428809a18ee2241d9adc1eed43c104f016e7bfc6ed4cf905e94afbc087fd"
+      },
+      {
+        "path": "review/site-visual-proposal-20261002.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-visual-proposal-20261002.json",
+        "identity_mode": "content",
+        "sha256": "db76e512daa361a7e5d2ad0bcc481957c07e028220a4bc7192aba9f9bbf89a6c"
+      },
+      {
+        "path": "review/site-visual-proposal.css",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tests/content.test.cjs",
         "identity_mode": "existence"
       },
@@ -237,9 +272,21 @@
     "path": "tools/repository_intelligence.py",
     "sha256": "d9cc389b40586783ee1632adbffb2cca62a262a8c89b4bb7b504c47d7822637e",
     "config_path": ".github/repository-intelligence-config.json",
-    "config_sha256": "74d88bb9c3ffd39a26b1dc2de0e0d8695350c3915714f96ae6bf69d02c14a405"
+    "config_sha256": "55f97705f3dabfb2a92420df7379b650a4ddd5d818a255e982282879c9a666c8"
   },
   "owners": [
+    {
+      "concern": "site visual direction and review proposals",
+      "path": "SITE-VISUAL-REVIEW.md",
+      "queries": [
+        "visual review",
+        "design proposal",
+        "portrait cutout",
+        "візуальний стиль",
+        "дизайн сайту",
+        "фото"
+      ]
+    },
     {
       "concern": "search discoverability and topic map",
       "path": "SITE-SEO.md",
@@ -444,6 +491,13 @@
       ]
     },
     {
+      "path": "SITE-VISUAL-REVIEW.md",
+      "title": "Site visual review and proposed direction",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "review/site-v1-review.json",
       "title": "review/site-v1-review.json",
       "instructions": [
@@ -460,6 +514,20 @@
     {
       "path": "review/site-v1-static-previews.json",
       "title": "review/site-v1-static-previews.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-visual-concept-prompt.txt",
+      "title": "review/site-visual-concept-prompt.txt",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-visual-proposal-20261002.json",
+      "title": "review/site-visual-proposal-20261002.json",
       "instructions": [
         "AGENTS.md"
       ]
