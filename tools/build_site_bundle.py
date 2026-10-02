@@ -6,14 +6,14 @@ import sys
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-OUTPUT = ROOT / "review/site-v1-20261002-v3.zip"
-MANIFEST = ROOT / "review/site-v1-offline-bundle-v3.json"
+OUTPUT = ROOT / "review/site-v1-20261002-v4.zip"
+MANIFEST = ROOT / "review/site-v1-offline-bundle-v4.json"
 
 
 def build():
     inputs = {}
     for folder, prefix in [(ROOT / "docs", "site"), (ROOT / "review", "review")]:
-        candidates = sorted(folder.rglob("*")) if prefix == "site" else sorted(folder.glob("site-v1-20261002-v3-*.html"))
+        candidates = sorted(folder.rglob("*")) if prefix == "site" else sorted(folder.glob("site-v1-20261002-v4-*.html"))
         for file in candidates:
             if file.is_file():
                 inputs[f"{prefix}/{file.relative_to(folder).as_posix()}"] = file.read_bytes()
@@ -21,11 +21,14 @@ def build():
         "Updated author site review, 2026-10-02. Not deployed or browser-QA approved.\n"
         "Extract this whole ZIP, then open site/index.html in your browser.\n"
         "Home, Research, Writing and Talks share the same theme and motion controls.\n"
-        "Scroll or move a mouse for perspective; Motion switches movement off.\n"
-        "Writing filters by topic/year/language and supports shareable queries.\n"
-        "If your viewer blocks JavaScript, open review/site-v1-20261002-v3-day.html\n"
-        "or review/site-v1-20261002-v3-night.html. Keep the extracted files together.\n"
+        "Native scrolling moves the Home/Research scene; Writing topics choose its bounded path.\n"
+        "Pointer/hover do not move it. Motion Off freezes the current view; reduced motion wins.\n"
+        "Talks/Credits stay at a static overview. Theme changes only recolor the view.\n"
+        "Writing filters by topic/year/language; queries, fragments and history restore visible state.\n"
+        "If your viewer blocks JavaScript, open review/site-v1-20261002-v4-day.html\n"
+        "or review/site-v1-20261002-v4-night.html. Keep the extracted files together.\n"
         "Static copies show all articles with year/topic navigation.\n"
+        "site/ retains exact production-source bytes; review/ contains noindex renditions.\n"
     ).encode()
     import io
     result = io.BytesIO()
@@ -39,6 +42,7 @@ def build():
     manifest = {
         "kind": "Offline site/review handoff, not deployment or visual acceptance",
         "generator": "tools/build_site_bundle.py",
+        "indexing_scope": "site/ retains exact docs bytes; separate review/ HTML is noindex, nofollow",
         "zip_sha256": hashlib.sha256(payload).hexdigest(),
         "entries": {name: hashlib.sha256(content).hexdigest() for name, content in sorted(inputs.items())},
     }

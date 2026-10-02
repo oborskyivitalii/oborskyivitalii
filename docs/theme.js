@@ -50,6 +50,20 @@
       try { localStorage.setItem(storageKey, mode); } catch { /* Choice still works in this tab. */ }
       refresh();
     });
+    const appearance = document.querySelector?.(".appearance");
+    appearance?.addEventListener("keydown", event => {
+      if (event.key === "Escape") {
+        appearance.open = false;
+        appearance.querySelector("summary").focus();
+      }
+    });
+    const header = document.querySelector?.(".site-header");
+    if (header) {
+      const clearance = () => document.documentElement.style.setProperty("--header-clearance", `${Math.ceil(header.getBoundingClientRect().height + 16)}px`);
+      clearance();
+      window.addEventListener("resize", clearance, { passive: true });
+      if (window.ResizeObserver) new window.ResizeObserver(clearance).observe(header);
+    }
   }
 
   if (document.readyState === "loading") {

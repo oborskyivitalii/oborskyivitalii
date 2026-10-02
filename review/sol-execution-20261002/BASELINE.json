@@ -1,0 +1,209 @@
+{
+  "baseline_commit": "4d2d805c99916837a25a58e5d6606d38bafe6a14",
+  "baseline_tree": "ed5f3b753398d15112c64ff28beb1ce796b2e1c5",
+  "primary": [
+    {
+      "title": "Субпрайм-криза коду — чому AI-асистенти роблять нас повільнішими (Частина 2)",
+      "url": "https://dou.ua/forums/topic/60177/",
+      "language": "uk",
+      "date": "2026-06-17",
+      "date_kind": "datePublished"
+    },
+    {
+      "title": "AI, the Externalization of Reasoning, and the Verification Crisis",
+      "url": "https://medium.com/agileinsider/ai-the-externalization-of-reasoning-and-the-verification-crisis-4f5046f9f0d0",
+      "language": "en",
+      "date": "2026-06-12",
+      "date_kind": "datePublished"
+    },
+    {
+      "title": "Субпрайм-криза коду: чому AI-асистенти роблять нас повільнішими — і дані це доводять",
+      "url": "https://dou.ua/forums/topic/57846/",
+      "language": "uk",
+      "date": "2026-02-10",
+      "date_kind": "datePublished"
+    },
+    {
+      "title": "Ілюзія економії: чому заміна розробників на AI — це шлях до технічного дефолту",
+      "url": "https://dou.ua/forums/topic/57244/",
+      "language": "uk",
+      "date": "2026-01-05",
+      "date_kind": "datePublished"
+    },
+    {
+      "title": "Uncertainty Architecture: Thinking Systems, When the Controlled Object Changes",
+      "url": "https://generativeai.pub/uncertainty-architecture-thinking-systems-when-the-controlled-object-changes-21275fe2f3db",
+      "language": "en",
+      "date": "2026-08-30",
+      "date_kind": "datePublished"
+    },
+    {
+      "title": "Uncertainty Architecture: Beyond Embeddings — Neuro-Symbolic Verification of Semantic Drift in LLMs",
+      "url": "https://generativeai.pub/uncertainty-architecture-beyond-embeddings-neuro-symbolic-verification-of-semantic-drift-in-llms-69822872825b",
+      "language": "en",
+      "date": "2026-06-10",
+      "date_kind": "datePublished"
+    },
+    {
+      "title": "Reinventing Control Theory One Feature at a Time: The Fallacy of Agentic Loops",
+      "url": "https://www.linkedin.com/pulse/reinventing-control-theory-one-feature-time-fallacy-agentic-oborskyi-vkwve/",
+      "language": "en",
+      "date": "2026-06-10",
+      "date_kind": "datePublished"
+    },
+    {
+      "title": "AI-Native Workflows Have a Moat Problem",
+      "url": "https://aiadvances.org/ai-native-workflows-have-a-moat-problem-49992bcc3088",
+      "language": "en",
+      "date": "2026-07-01",
+      "date_kind": "datePublished"
+    },
+    {
+      "title": "Uncertainty Architecture: Why AI Governance is Actually Control Theory",
+      "url": "https://pub.towardsai.net/uncertainty-architecture-why-ai-governance-is-actually-control-theory-511f3e73ed6e",
+      "language": "en",
+      "date": "2025-12-13",
+      "date_kind": "datePublished"
+    },
+    {
+      "title": "Uncertainty Architecture: A Modern Approach to Designing LLM Applications",
+      "url": "https://pub.towardsai.net/uncertainty-architecture-a-modern-approach-to-designing-llm-applications-2fe196188fac",
+      "language": "en",
+      "date": "2025-11-22",
+      "date_kind": "datePublished"
+    },
+    {
+      "title": "Архітектура невизначеності: сучасний підхід до проєктування LLM-застосунків",
+      "url": "https://dou.ua/forums/topic/56606/",
+      "language": "uk",
+      "date": "2025-11-18",
+      "date_kind": "datePublished"
+    },
+    {
+      "title": "On-Device LLM or Cloud API? A Practical Checklist for Product Owners and Architects",
+      "url": "https://medium.com/data-science-collective/on-device-llm-or-cloud-api-a-practical-checklist-for-product-owners-and-architects-30386f00f148",
+      "language": "en",
+      "date": "2025-09-06",
+      "date_kind": "datePublished"
+    },
+    {
+      "title": "On-device LLM чи API з хмари? Чекліст для продактів і архітекторів",
+      "url": "https://dou.ua/forums/topic/55461/",
+      "language": "uk",
+      "date": "2025-09-03",
+      "date_kind": "datePublished"
+    },
+    {
+      "title": "Architecting Uncertainty: A Modern Guide to LLM-Based Software",
+      "url": "https://medium.com/data-science-collective/architecting-uncertainty-a-modern-guide-to-llm-based-software-504695a82567",
+      "language": "en",
+      "date": "2025-07-29",
+      "date_kind": "datePublished"
+    },
+    {
+      "title": "🧠 Beyond the Buzzwords: An AI Prompt to Audit Any Professional Profile — Including Your Own",
+      "url": "https://medium.com/data-science-collective/beyond-the-buzzwords-an-ai-prompt-to-audit-any-professional-profile-including-your-own-211b112696ef",
+      "language": "en",
+      "date": "2025-07-03",
+      "date_kind": "datePublished"
+    },
+    {
+      "title": "ШІ-бейджики, а не трансформація: чому delivery без наскрізних зв’язків — це ілюзія прогресу",
+      "url": "https://dou.ua/forums/topic/54329/",
+      "language": "uk",
+      "date": "2025-06-18",
+      "date_kind": "datePublished"
+    },
+    {
+      "title": "AI Integration and the Traceability Gap: Atlassian vs. Competitors",
+      "url": "https://ai.gopubby.com/ai-integration-and-the-traceability-gap-atlassian-vs-competitors-61beb155ddda",
+      "language": "en",
+      "date": "2025-06-16",
+      "date_kind": "datePublished"
+    },
+    {
+      "title": "Traceability for Atlassian: The Missing AI Enabler - Open Letter (1pager)",
+      "url": "https://community.atlassian.com/forums/discussion/3036514/traceability-for-atlassian-the-missing-ai-enabler-open-letter-1pager",
+      "language": "en",
+      "date": "2025-06-03",
+      "date_kind": "dateModified"
+    },
+    {
+      "title": "PMO: Value Creator or Bureaucratic Overhead?",
+      "url": "https://medium.com/agileinsider/pmo-value-creator-or-bureaucratic-overhead-dc4abcc38dfc",
+      "language": "en",
+      "date": "2025-05-31",
+      "date_kind": "datePublished"
+    },
+    {
+      "title": "AI-Driven Enhancements to Project Risk Management in the PMO",
+      "url": "https://generativeai.pub/ai-driven-enhancements-to-project-risk-management-in-the-pmo-c074ca0b8ec2",
+      "language": "en",
+      "date": "2025-05-05",
+      "date_kind": "datePublished"
+    },
+    {
+      "title": "Story Points vs. Time-Based Estimation: What Does Research Say?",
+      "url": "https://medium.com/agileinsider/story-points-vs-time-based-estimation-what-does-research-say-84613cc91c7f",
+      "language": "en",
+      "date": "2025-04-30",
+      "date_kind": "datePublished"
+    },
+    {
+      "title": "How AI Reveals Your Delivery Critical Path in 5 Steps",
+      "url": "https://medium.com/data-science-collective/how-ai-reveals-your-delivery-critical-path-in-5-steps-b3e8264189e2",
+      "language": "en",
+      "date": "2025-04-23",
+      "date_kind": "datePublished"
+    },
+    {
+      "title": "Terraforming Your Organization: A Data-Driven Journey from Chaos to Stability of Human and AI",
+      "url": "https://medium.com/@undersmoker/terraforming-your-organization-a-data-driven-journey-from-chaos-to-stability-of-human-and-ai-84790092d2df",
+      "language": "en",
+      "date": "2025-04-03",
+      "date_kind": "datePublished"
+    },
+    {
+      "title": "Ласкаво просимо в епоху кіберпанку: коли корпорації диктують етику штучного інтелекту",
+      "url": "https://dou.ua/forums/topic/53714/",
+      "language": "uk",
+      "date": "2025-05-07",
+      "date_kind": "datePublished"
+    },
+    {
+      "title": "Welcome to the Cyberpunk Era: When Corporations Dictate AI Ethics",
+      "url": "https://medium.com/data-science-collective/welcome-to-the-cyberpunk-era-when-corporations-dictate-ai-ethics-29c139c8776b",
+      "language": "en",
+      "date": "2025-04-24",
+      "date_kind": "datePublished"
+    },
+    {
+      "title": "AI Dilemmas: 25 Key Challenges in Ethics, Technology, and Society",
+      "url": "https://medium.com/@undersmoker/ai-dilemmas-25-key-challenges-in-ethics-technology-and-society-3f732eeb6b21",
+      "language": "en",
+      "date": "2025-04-23",
+      "date_kind": "datePublished"
+    },
+    {
+      "title": "Europe’s Silent Revolution: How Industry 4.0 Is Powering AI-Driven, Hyper-Flexible Manufacturing",
+      "url": "https://medium.com/@undersmoker/europes-silent-revolution-how-industry-4-0-is-powering-ai-driven-hyper-flexible-manufacturing-d0fa214966bd",
+      "language": "en",
+      "date": "2025-04-23",
+      "date_kind": "datePublished"
+    }
+  ],
+  "secondary": [
+    {
+      "title": "Uncertainty Architecture: Thinking Systems - When the Controlled Object Changes",
+      "url": "https://www.linkedin.com/pulse/thinking-systems-when-controlled-object-changes-vitalii-oborskyi-6k4we",
+      "language": "en",
+      "date": "2026-08-27",
+      "date_kind": "datePublished",
+      "title_source": "SITE-SOURCE-AUDIT.md, separately verified LinkedIn rendition"
+    }
+  ],
+  "assets": {
+    "docs/assets/vitalii-oborskyi-cutout.webp": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae",
+    "docs/assets/vitalii-oborskyi.jpg": "5321e48f08b075cb1cbd522d0f36bc01276aece65d1a04cf09102aa5dd2b59bc"
+  }
+}

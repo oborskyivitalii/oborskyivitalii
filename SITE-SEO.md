@@ -1,6 +1,6 @@
 # Search discoverability and topic map
 
-## Evidence and next-iteration amendment — 2026-10-02
+## Evidence and v4 implementation — 2026-10-02
 
 The latest [free-source evidence](review/sol-plan-20261002/SEO-EVIDENCE.md) adds
 25 country/keyword checks for 20 phrases (17 positive provider estimates, 8
@@ -10,10 +10,9 @@ unknown; paid-ad competition is not organic difficulty; this is not Search
 Console data, direct Google Ads export, or proof of C-level demand.
 
 The [buyer/page plan](review/sol-plan-20261002/SEO-BUYER-INTENT.md) and
-[SOL-HANDOFF](SOL-HANDOFF.md) govern the proposed change: Home uses precise
+[SOL-HANDOFF](SOL-HANDOFF.md) govern the implemented candidate: Home uses precise
 problem/offer language; Research explains the two directions; Writing preserves
-all editions; later guides belong to #11 after launch/PMDay #2. No public copy
-or metadata changes are made in this planning commit. Actual canonicals/social
+all editions; later guides belong to #11 after launch/PMDay #2. Public Home/Research copy and page-specific metadata now reflect the reviewed buyer problems and bounded offer. Actual canonicals/social
 URLs/sitemap and indexing checks still follow the #8 release decision.
 
 Independent-review clarification, 2026-10-02: the archive has 27 primary records
@@ -29,8 +28,11 @@ positive-result shortlist. The shortlist is not the full collection request set.
 Owning intent: [launch #1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1).
 Decision recorded 2026-10-01: the maintainer wants an English site, visibly
 separated English/Ukrainian editions, a portrait, and search coverage of the
-research vocabulary. This is an editorial keyword map, not measured search
-volume, proof of expertise, a ranking forecast or a new research glossary.
+research vocabulary. The original clusters below remain editorial vocabulary; the separately identified provider estimates are limited evidence, not qualified-buyer demand, a ranking forecast or a new research glossary.
+
+## Current buyer routes
+
+Home names adoption without delivery gains and agents difficult to control/own in production; Help defines three bounded engagement formats. Research explains AI agent governance/control theory alongside delivery/verification/TOC. Writing retains original editions; no new service/guide page is fabricated. The #11 guides still follow launch and PMDay. CPC and other provider advertising data are unused by public content and both exporters. Browser acceptance is currently blocked; canonicals/social URLs/sitemap still need #8.
 
 ## Keyword clusters and content owners
 
@@ -45,7 +47,7 @@ not repeat the entire list on every page or add hidden keyword text.
 | Constraints and flow | Theory of Constraints; TOC; delivery bottlenecks | system throughput; verification capacity; work in progress; local optimization; Goldratt | [Homepage delivery route](docs/index.html#delivery), [research lenses](docs/research.html#lenses), [Subprime interpretation](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis/blob/main/report/02_broken_mechanics.md). TOC is explicitly a methodological lens in Subprime's live README, not measurement of an AI effect or UA runtime constraints. No TOC certification, novelty or validation claim. |
 | Architecture | AI architecture; LLM application architecture; Thinking Systems architecture | agentic system architecture; probabilistic software; non-deterministic systems; model-mediated behavior | [UA research route](docs/research.html#systems), architecting/modern-approach/agentic-loop articles in [architecture writing](docs/writing.html#topic-systems). “Agentic” is not a synonym for all Thinking Systems. |
 | Research vocabulary | Uncertainty Architecture; Thinking Systems; Model Judgment; Consequential Runtime Responsibility | Judgment Node; Uncertainty Boundary; AI Control Plane | [Visible topic explanations](docs/research.html#topics) link the [living UA glossary](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/main/00-doctrine/glossary.md). UA owns the engineering meanings. No claim of originating the phrase Thinking Systems or of an accepted industry standard. |
-| Operating models | AI operating models; socio-technical systems; socio-technical stack | human–AI teams; decision rights; evaluation ownership; organizational design; PMO and delivery governance | [Homepage/about](docs/index.html#about) and [leadership/operating-model articles](docs/writing.html#topic-leadership). Roles and technical controls must be considered together; no claimed institutional adoption. |
+| Operating models | AI operating models; socio-technical systems; socio-technical stack | human–AI teams; decision rights; evaluation ownership; organizational design; PMO and delivery governance | [Homepage/help](docs/index.html#help), [Research operating models](docs/research.html#topics) and [leadership/operating-model articles](docs/writing.html#topic-leadership). Roles and technical controls must be considered together; no claimed institutional adoption. |
 | Delivery and verification | The Subprime Code Crisis; AI-assisted software delivery; software verification | AI-assisted SDLC; verification capacity; system understanding; code ownership; technical debt; AI coding assistants | [Subprime research route](docs/research.html#delivery), [English and Ukrainian delivery editions](docs/writing.html#topic-delivery). This is evidence-governed research synthesis, not a universal claim that AI improves or worsens productivity. |
 | Evaluation and release | semantic drift; neuro-symbolic verification; AI evaluation | evaluation gates; release evidence; fallback; escalation; rollback; operating envelope | Beyond Embeddings and control-theory articles in [architecture writing](docs/writing.html#topic-systems); current details remain in [UA](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture). Not every supporting term yet has a dedicated site article. |
 | Product and strategy | AI product architecture; AI-native workflows | on-device LLM vs cloud API; product owners; AI strategy; AI workflow defensibility | [Architecture](docs/writing.html#topic-systems) and [AI/product strategy](docs/writing.html#topic-strategy). Keep these as supporting topics rather than diluting the site's central governance/architecture/delivery focus. |
@@ -60,7 +62,7 @@ for a useful explanation. The PMDay article remains [#2](https://github.com/obor
 - Distinct descriptive titles, descriptions, one H1 per page, meaningful topic
   headings, readable explanatory text and crawlable publication/research links.
 - Author identity via `ProfilePage`/`Person`, and a `CollectionPage` with an
-  `ItemList` of the 27 linked article editions. Dates/languages refer to those
+  `ItemList` of the 27 primary archive records; the additional LinkedIn rendition remains outside it. Dates/languages refer to those
   original editions; Atlassian's edited date is `dateModified`, not invented
   publication metadata. Structured data does not establish validation, authorship
   of a term, a rich result or a guaranteed ranking.
@@ -79,7 +81,7 @@ for a useful explanation. The PMDay article remains [#2](https://github.com/obor
   descriptions, a useful heading, author topic metadata and this ninth cluster.
   Primary background and current Subprime source support are documented in
   SITE-SOURCE-AUDIT. No hidden keyword list or scientific acceptance is implied.
-- Four featured editions on Home; dedicated Research/Writing/Talks pages with
+- Five exact selected English works on Home, eight bounded public discussion entries and a working contact invitation; dedicated Research/Writing/Talks pages with
   shared navigation. Writing groups by year/topic in ordinary crawlable HTML;
   optional query filters preserve the original URLs, titles, dates and languages.
   The decorative Canvas scene does not contain publication content or replace it.

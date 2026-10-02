@@ -1,5 +1,27 @@
 # Site v1 content and release review
 
+## Current v4 candidate — implementation, not acceptance
+
+The instructed seven-section Home, two buyer situations, three bounded offers,
+five exact EN selections, eight precise public-discussion entries and useful
+contact are implemented. The fixed 27-primary-plus-one-secondary inventory and
+original JPEG/WebP hashes pass. Research meanings remain with UA/Subprime;
+no unverified numerical achievements or client/endorsement claims are imported.
+
+30 Node and 18 Python tests, v4 HTML/ZIP source parity, native topic/year targets,
+query/hash/history state, Off/reduced and RI checks are recorded in
+[execution](review/sol-execution-20261002/EXECUTION.md). Actual browser acceptance
+is blocked in this session; independent implementation/editorial/rights review
+remains pending. The earlier independent confirmations and records below are
+historical at their own refs. No fresh independent confirmation is self-assigned.
+
+Current outputs: [interactive](review/site-v1-20261002-v4-interactive.html),
+[Day](review/site-v1-20261002-v4-day.html), [Night](review/site-v1-20261002-v4-night.html),
+[offline bundle](review/site-v1-20261002-v4.zip). Source hashes are in
+review/site-v1-review.json; preview/bundle manifests use v4 names.
+
+## Historical records — earlier editions
+
 ## Current applied edition — 2026-10-02
 
 Intent amendment is recorded in #1 before implementation. Home is an author card

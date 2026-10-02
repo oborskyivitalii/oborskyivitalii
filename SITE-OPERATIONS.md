@@ -1,153 +1,120 @@
-# First site: preview, launch and the next publication
+# First site: candidate, review and release
 
-## Next candidate plan — 2026-10-02
+## Current v4 candidate — 2026-10-02
 
-The instructions and v3 outputs below describe the existing implemented edition.
-For the next iteration use [SOL-HANDOFF](SOL-HANDOFF.md): five exact English
-featured works, eight discussion entries, offers/contact, faceted portrait and
-scroll/topic-only motion. No updated public output is claimed by this planning
-commit. Sol must create a new named review edition, update both generators and
-remove obsolete mouse-motion instructions when the candidate is implemented.
-The independent-review correction also covers Credits' Display preferences,
-visible topic/year fragment destinations and fixed archive identity checks:
-27 primary records (20 EN, 7 UA), plus the separate Thinking Systems LinkedIn
-rendition. The primary ItemList remains 27; all linked renditions total 28.
-Browser/release acceptance remains separate. English is settled; the permanent
-URL and applicable rights/publication decision remain #8/#7.
+The instructed S0–S4 implementation is in Draft PR #10. [Execution/evidence](review/sol-execution-20261002/EXECUTION.md)
+records source/behavior/export checks and the fresh browser block. Implementation
+is distinct from independent review, editorial/rights acceptance, merge and deployment.
+The approved contract remains [SOL-HANDOFF](SOL-HANDOFF.md). Owning issues:
+[launch #1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1),
+[rights #7](https://github.com/oborskyivitalii/oborskyivitalii/issues/7),
+[URL/hosting #8](https://github.com/oborskyivitalii/oborskyivitalii/issues/8).
 
-Second independent-review clarification, 2026-10-02: the shared scene must also
-have explicit secondary-page and zero/one-stop/empty-result behavior; use the
-small mapping and finite fallback rules in the current VISUAL-SPEC. Preview
-HTML renditions carry noindex. The offline ZIP's `site/` entries retain exact
-`docs/` source bytes, while its separate `review/` renditions are noindex; do not
-add noindex to production to satisfy older blanket review-output wording below.
-Ancillary CPC advertising data stays in review evidence and is not consumed by
-the site's source or export producers.
+Five static pages, CSS and three optional native scripts remain the entire runtime.
+No site build, installed site package, remote font/service or analytics. Only docs/
+is the proposed Pages source; drafts/review/process content stays outside it.
+Home follows Hero → Research → Help → five selected EN works → eight bounded
+public discussion entries → About → Contact. Research holds details/source links.
+Writing preserves 27 primary records (20 EN/7 UA) plus the separately dated
+Thinking Systems LinkedIn rendition: 28 linked renditions, not unique works.
+Talks retains three existing public records with unchanged language bounds.
+Original JPEG/WebP bytes remain unchanged; native facets are behind the cutout.
 
-Owning intent: [launch #1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1).
-URL/language decision: [#8](https://github.com/oborskyivitalii/oborskyivitalii/issues/8).
-Next publication: [PMDay #2](https://github.com/oborskyivitalii/oborskyivitalii/issues/2).
+## Inspect v4
 
-## Implementation boundary
+- [Interactive Home](review/site-v1-20261002-v4-interactive.html).
+- [Day](review/site-v1-20261002-v4-day.html) / [Night](review/site-v1-20261002-v4-night.html).
+- [Writing](review/site-v1-20261002-v4-writing-day.html), plus Night/interactive variants.
+- Research/Talks/Credits each have the same three variants: 15 copies in total.
+- [Offline package](review/site-v1-20261002-v4.zip): extract all, open site/index.html.
+- [Preview hashes](review/site-v1-static-previews-v4.json), [bundle hashes](review/site-v1-offline-bundle-v4.json)
+  and [public-source record](review/site-v1-review.json).
 
-The first version is static HTML/CSS in `docs/` with three small optional browser
-scripts: visitor-local themes, decorative spatial perspective and archive filters.
-There is no site build, installed package, external font, analytics or runtime
-service. Node/Python run bounded developer checks and produce review handoffs;
-they are not website runtime dependencies. Pages publishes only `docs/`, keeping
-process, drafts and review artifacts out of the public site. English is confirmed;
-the permanent Pages URL and site-wide rights decision remain #8/#7.
+Keep extracted/downloaded pages together for local navigation. Ten fixed-theme
+copies show complete static HTML/SVG without executable scripts. Five interactive
+copies inline exact scripts and retain Auto/Day/Night, Appearance/Motion and filters.
+All review renditions are noindex. The package's separate site/ entries retain
+exact docs/ production bytes; they do not acquire review noindex. v1/v2/v3 and
+concept/proposal outputs are history, not the current candidate.
 
-Navigation is **Home · Research · Writing · Talks**, with Credits in the footer.
-Home contains the author/About, two directions, four selected articles and four
-source-bounded attributions. Research retains detailed terminology, control
-theory/TOC lenses and all seven conversations. Writing indexes **27 platform
-editions (20 EN/7 UA)** by year and topic; optional filters intersect topic/year/
-language and preserve query state in the URL. All items remain ordinary readable
-HTML without scripts. Talks retains three public event records and exact language
-bounds. No original article body, figures or recordings are copied into the site.
+## Behavior and acceptance procedure
 
-The supplied original JPEG is retained unchanged. The displayed image is an
-AI-assisted transparent derivative, optimized to a 55,458-byte WebP, with alt text
-and dimensions. Public credits disclose that treatment. Rights/likeness review is
-not replaced by compression, behavioral tests or the illustrative concept board.
+Appearance is a labelled native disclosure. Auto follows the visitor's local
+clock: Day 07:00–18:59, Night otherwise; manual choice persists, storage failure
+still works in-tab. Escape closes the disclosure and returns focus to its summary.
+Anchor clearance follows the actual header height when JS runs, with CSS fallback.
 
-## Current preview and checks
+The single decorative world has a UA feedback motif and separate verification
+passage; neither is a canonical research diagram, simulation or measured bottleneck.
+Native scroll follows named Home/Research sections. Writing Topic chooses its
+finite path within visible result bounds; Year/Language only change results.
+Talks/Credits/unknown pages are static overview. Pointer/hover never moves the camera.
+Frames coalesce and settle within 150ms of the last target change; then RAF stops.
+Off freezes the current pose; initial Off/reduced starts at overview. Reduced
+motion overrides saved On. Theme/resize/layout/hidden/print return cannot move a
+frozen pose; hidden/print cancels pending movement. No Canvas retains the same-world
+static SVG. No scripts keeps all articles and useful native topic/year destinations.
 
-The current self-contained files are `review/site-v1-20261002-v3-*.html`.
-Open `review/site-v1-20261002-v3-interactive.html` for the actual five-page design
-with exact inlined public scripts and remapped navigation. Auto/Day/Night, Motion
-and archive filters require a script-capable browser. The file links to fixed
-Day/Night alternatives when the viewer blocks scripts. Fixed copies inline exact
-CSS/WebP, retain the complete catalog and year/topic navigation, and use a static
-vector background. They do not demonstrate movement, filtering or Auto.
+Archive state: valid query first, recognized topic/year fragment overrides its
+respective filter dimension. Other filters remain. A filtered-out target reaches
+a visible topic/year heading and empty explanation. Controls/Reset reconcile the
+fragment, and history/hash restoration synchronizes the form/results/scene.
+Printing shows all primary records and the additional rendition, then restores filters.
 
-- `review/site-v1-20261002-v3-day.html` / `-night.html`: updated homepage.
-- `review/site-v1-20261002-v3-writing-day.html`: complete catalog, with Night and
-  interactive counterparts.
-- Research, Talks and Credits also have each of those three variants.
-- `review/site-v1-static-previews-v3.json`: ten source hashes and 15 output hashes.
-- `review/site-v1-20261002-v3.zip`: extract all files; open `site/index.html` in a
-  browser, or the contained review alternatives. Entry hashes are in
-  `review/site-v1-offline-bundle-v3.json`.
-
-Keep the extracted files together for navigation. All review copies are noindex,
-outside the public directory. Earlier v1/v2/proposal artifacts are historical.
-No generated mockup is an actual browser screenshot; these exports are inspectable
-outputs, not browser visual QA or deployment.
-
-```bash
+```sh
 node tools/build_site_previews.cjs
 python3 tools/build_site_bundle.py
 node --test tests/theme.test.cjs tests/space.test.cjs tests/archive.test.cjs tests/content.test.cjs tests/preview.test.cjs
 node tools/build_site_previews.cjs --check
 python3 tools/build_site_bundle.py --check
+python3 -m unittest discover -s tests -p 'test_*.py'
+python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json build
+python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify
+git diff --check
 ```
 
-For a local web-server review:
+For a permitted local browser:
 
-```bash
+```sh
 python3 -m http.server 8765 --bind 127.0.0.1 --directory docs
 ```
 
-Open `http://127.0.0.1:8765/`. Inspect actual desktop/mobile/keyboard/print output,
-all page and section links, original edition URLs and long titles. Check Auto:
-Day 07:00–18:59, Night 19:00–06:59 in the visitor's local clock; saved manual choice
-wins, and storage failure remains usable in-tab. No scripts uses OS color preference.
+Open http://127.0.0.1:8765/. Inspect all five pages at 1440×900/390×844 Day/Night,
+360px and 200% desktop zoom. Verify portrait/three scene views, readable long EN/UA
+titles, keyboard/focus/touch/native scroll, anchor clearance, reverse scroll,
+Off/reduced, theme-only repaint, no-JS/Canvas failure, hidden/print return and idle.
+On Writing test all topic/year fragments, Research's leadership link, conflicts
+with queries, empty/one result, Reset/hashchange/back/forward and full print restoration.
+Capture actual screenshots and a short motion recording or a genuine observed-state
+interaction log, stating browser/viewport and any unperformed cases. Do not infer
+measured frame rate or full accessibility from source/VM tests.
 
-Scroll/section navigation moves the perspective through linked rings/branches and
-a narrow flow throat; mouse adds bounded parallax. Motion can be switched Off;
-reduced motion wins over saved On. Touch/mobile pointer motion is ignored, pixel
-ratio is capped, frames are coalesced and there is no idle loop. Hidden/printing
-states pause drawing. No Canvas leaves a static SVG. This is decorative geometry,
-not measured telemetry, a scientific simulation or a canonical research diagram.
-Print shows all archive entries, then restores filters after print.
+**Current browser gate:** installed Chromium is absent and its official download
+failed; cloud Chrome rejected the local candidate with net::ERR_BLOCKED_BY_CLIENT.
+No browser matrix, screenshot or motion observation is claimed. [The current log](review/sol-execution-20261002/BROWSER-CHECK.json)
+retains the exact limitation; complete this review in a permitted browser.
 
-The previous browser access block remains: current desktop/mobile/keyboard/print
-rendering and measured performance are **pending**. Do not attempt a workaround
-or label source/VM behavioral checks as actual browser QA. RI commands remain in
-`.github/REPOSITORY-INTELLIGENCE.md`.
+## Release and subsequent work
 
-## Launch
+1. Review the concrete v4 content/assets; record editorial/rights acceptance in #7
+   and the permanent URL/hosting choice in #8. English and candidate photo use are settled.
+2. Complete correct absolute canonical/social/image URLs and sitemap for that
+   actual URL, including the Writing query canonical policy; update candidate tests.
+   Keep review noindex outside docs/. No provisional permanent identity is invented.
+3. With explicit integration/release authorization, merge #9 first, retarget #10
+   to main, inspect the new diff and rerun checks; then merge the accepted candidate.
+4. Configure authorized Pages source main:/docs using an available capability or
+   Settings → Pages → Deploy from a branch → main → /docs. Verify the served files,
+   deployed commit, live URL, links and robots/indexability before closing #1/#8.
+5. Search Console owner verification and real query measurement follow available access.
 
-The maintainer authorized applying the design and page separation on 2026-10-02.
-The [visual record](SITE-VISUAL-REVIEW.md) now describes the applied candidate and
-preserves the earlier proposal as history. The release decisions below remain.
+Keeping the current repository yields project URL
+https://oborskyivitalii.github.io/oborskyivitalii/ after Pages is configured.
+A root URL requires the separate rename/profile-README decision. No rename,
+Pages configuration, merge or deployment is performed by this implementation.
+A missing scheduler URL keeps the agreed visible placeholder and active LinkedIn route.
 
-1. Review the concrete homepage and rights/attribution inventory in
-   [SITE-CONTENT-REVIEW](SITE-CONTENT-REVIEW.md) and
-   [source audit](SITE-SOURCE-AUDIT.md) and [SEO map](SITE-SEO.md); record the URL and
-   editorial/publication decision in #1/#8. English is already confirmed. Resolve omissions there rather than
-   silently inventing a decision.
-2. Merge the site PR and any site-local workflow dependency; verify the accepted
-   files on `main`. UA/Subprime workflow PRs are not site deployment prerequisites.
-3. In GitHub **Settings → Pages**, choose **Deploy from a branch**, **main**,
-   **/docs**, then save. This needs repository administration/maintainer access;
-   the current GitHub connector supports content and PR writes, not this setting.
-4. Verify the successful Pages build, the live homepage and mobile navigation.
-   Record the deployed commit and public URL in #1 before closing it.
-
-Expected URL if the current name is kept:
-`https://oborskyivitalii.github.io/oborskyivitalii/`.
-Do not put provisional canonical URLs in public metadata. If the repo is renamed,
-update repo links and record the profile README disposition before release.
-Once the stable URL is recorded, complete the absolute canonical/social-image/
-sitemap metadata and update the candidate-stage tests as described in SITE-SEO.
-
-GitHub's [Pages source guidance](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
-and [site naming rules](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages)
-were checked on 2026-10-01.
-
-## PMDay next
-
-After launch, clarify the article's audience/language and intended explanation in
-#2, then write a blueprint and manuscript. Select the exact UA PR #113 slide/PDF
-edition, inspect its actual output and rights, and review the article against it.
-Only the accepted page and edition assets go into `docs/`. A small static article
-page can ship before a general Markdown/PDF adapter. Keep editable manuscripts
-outside `docs/`; do not copy the one-talk generator/tests into the site's runtime.
-Link the released page from the writing index after publication acceptance.
-Video is a later update when its public edition exists.
-
-Quartz/PDF migration #5, full cross-repository harness #6 and Subprime #48 remain
-independent follow-ups. The initial launch is not acceptance of those migrations.
+After launch, PMDay #2 owns the blueprint/manuscript and selected, inspected slide/PDF
+edition; do not infer UA PR #113 release. Video follows its actual published edition.
+Later original delivery/production guides and manual measurement belong to #11.
+Quartz/PDF #5, cross-repository harness #6 and Subprime publishing remain independent.

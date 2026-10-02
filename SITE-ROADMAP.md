@@ -1,20 +1,18 @@
 # Vitalii Oborskyi — site and publishing roadmap
 
-## Reviewed next iteration — 2026-10-02
+## Current v4 execution — 2026-10-02
 
-[SOL-HANDOFF](SOL-HANDOFF.md) now owns the next Sol execution sequence in Draft
-PR #10. Its [final review](review/sol-plan-20261002/FINAL-REVIEW.md) reconciles the
-latest #1 intent: two buyer problems, seven-section Home, five exact English
-featured works, eight bounded public-discussion entries, three offers, useful
-contact/booking placeholder, facets and scroll/topic-only scene movement.
-The existing four-featured/seven-discussion edition below remains the code
-baseline, not the new acceptance target. Candidate implementation is pending.
+The instructed [SOL-HANDOFF](SOL-HANDOFF.md) has a concrete v4 candidate in Draft
+PR #10: two buyer problems, seven-section Home, five exact EN works, eight bounded
+public discussion entries, three offers, contact, native facets and scroll/topic-only
+scene. [Execution and evidence](review/sol-execution-20261002/EXECUTION.md) records
+preserved archive/assets, tests/exports and the fresh browser access block.
+Implementation and available checks are complete; browser/editorial/rights/URL,
+base integration and deployed acceptance remain. M1 stays active.
 
-Free [SEO evidence](review/sol-plan-20261002/SEO-EVIDENCE.md) supplements the
-48-query hypotheses; it does not establish site traffic or executive demand.
-#8 owns release URL/indexing; #2 remains the next publication; #11 owns later
-guides and measurement. These guides, paid tools and migrations are not launch
-prerequisites. M1 remains active; all new-plan work is tracked in #1/PR #10.
+Free SEO evidence refines wording; #11 guides/measurement remain after launch and
+PMDay #2. #5/#6 publishing/harness migrations are independent. Earlier v3 progress
+entries below are historical and do not define the current counts or motion.
 
 Status: first-site preparation. Started: 2026-10-01. This document tracks decisions and verified deliveries; it does not authorize automatic publication, PR merges, or changes to the other repositories.
 
@@ -44,7 +42,7 @@ Status is `planned`, `active`, `blocked`, or `done`. A milestone is `done` only 
 | ID | Deliverable | Status | Acceptance evidence |
 | --- | --- | --- | --- |
 | M0 | Choose URL/language and approve first-version scope | active | English confirmed; dated scope amendments in #1, permanent URL decision still open in #8 |
-| M1 | Minimal personal site: about, two research strands/projects, topical publication/talk index | active | [Applied candidate](docs/index.html) and [current interactive preview](review/site-v1-20261002-v3-interactive.html); five pages, four featured/27 indexed editions and optional spatial motion. [Source/rights review](SITE-CONTENT-REVIEW.md) records checks and remaining browser/release acceptance. Not deployed. |
+| M1 | Minimal personal site: about, two research strands/projects, topical publication/talk index | active | [Applied candidate](docs/index.html) and [current interactive preview](review/site-v1-20261002-v4-interactive.html); five pages, five EN selections, eight bounded discussions, 27 primary records plus one secondary rendition and scroll/topic-only motion. [Source/rights review](SITE-CONTENT-REVIEW.md) records checks and remaining browser/release acceptance. Not deployed. |
 | M2 | First new publication: PMDay explanatory article and versioned slide/PDF page | planned | Article and exact deck edition reviewed; exported PDF inspected; sources, rights, and two project links checked; explicit publication decision |
 | M3 | Lean Markdown → HTML/PDF publishing path for this site | planned | Reuses or pins reviewed components without copying UA's whole framework/CI; staging, draft isolation, source identity, rejection-path tests and visual PDF review demonstrated |
 | M4 | Finish Subprime's existing article/PDF adaptation in its own PR | planned | Review [Subprime #46](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis/pull/46) at its live head; test required figures/assets and real outputs, retain its source/review governance; separate decision on merge |
@@ -119,7 +117,7 @@ remain unchanged. Current iteration acceptance is a concrete reviewable proposal
 not implicit approval of a public redesign. Browser, likeness/design, rights and
 release decisions remain separate; see launch #1 and PR #10.
 
-### Applied design and navigation — 2026-10-02
+### Historical v3 design and navigation — 2026-10-02
 
 The subsequent maintainer request authorizes fixing the visual findings and
 separating the homepage from the catalog. Draft PR #10 now applies the design to
@@ -130,8 +128,12 @@ conversations and vocabulary; Writing adds four verified Ukrainian DOU editions,
 giving 27 platform editions grouped by year/topic with language filters. TOC is
 explicitly covered as a delivery lens, distinct from UA control constraints.
 
-Current [offline handoff](review/site-v1-20261002-v3.zip), [v3 manifest](review/site-v1-static-previews-v3.json)
+Historical [offline handoff](review/site-v1-20261002-v3.zip), [v3 manifest](review/site-v1-static-previews-v3.json)
 and [review record](SITE-CONTENT-REVIEW.md) supersede earlier previews for current
 inspection. The original proposal remains historical. Intent/outcomes/checks are
 recorded in #1/PR #10. M1 remains active for browser/editorial/rights/URL, integration
 and deployed-edition verification; no sibling migration or release is inferred.
+
+### S0–S4 candidate execution — v4, 2026-10-02
+
+The reviewed contract is implemented under #1/PR #10. [v4 package](review/site-v1-20261002-v4.zip) and [execution record](review/sol-execution-20261002/EXECUTION.md) identify the actual source/behavior/export result and pending browser/release acceptance. Earlier outputs and published identities remain intact. No merge, deployment, license/URL choice or sibling edit is inferred.

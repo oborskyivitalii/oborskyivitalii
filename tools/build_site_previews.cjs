@@ -13,16 +13,18 @@ function filename(page, theme) {
   if (!pages.includes(page) || !Object.hasOwn(themes, theme)) {
     throw new Error("Unknown preview page or theme");
   }
-  return `site-v1-20261002-v3-${page === "index" ? "" : page + "-"}${themes[theme]}.html`;
+  return `site-v1-20261002-v4-${page === "index" ? "" : page + "-"}${themes[theme]}.html`;
 }
 
 function rewriteLinks(html, theme, interactive = false) {
   return html.replace(/href="([^"]+)"/g, (attribute, value) => {
     if (value.startsWith("https://") || value.startsWith("#")) return attribute;
-    const [base, ...fragment] = value.split("#");
+    const suffixAt = value.search(/[?#]/);
+    const base = suffixAt < 0 ? value : value.slice(0, suffixAt);
+    const suffix = suffixAt < 0 ? "" : value.slice(suffixAt);
     const page = { "./": "index", ...Object.fromEntries(pages.map(p => [p + ".html", p])) }[base];
     if (!page) throw new Error(`Unexpected local link: ${value}`);
-    return `href="${interactive ? interactiveFilename(page) : filename(page, theme)}${fragment.length ? "#" + fragment.join("#") : ""}"`;
+    return `href="${interactive ? interactiveFilename(page) : filename(page, theme)}${suffix}"`;
   });
 }
 
@@ -59,7 +61,7 @@ function digest(content) {
 
 function interactiveFilename(page) {
   if (!pages.includes(page)) throw new Error("Unknown interactive page");
-  return `site-v1-20261002-v3-${page === "index" ? "" : page + "-"}interactive.html`;
+  return `site-v1-20261002-v4-${page === "index" ? "" : page + "-"}interactive.html`;
 }
 
 function renderInteractive(source, css, page, portrait, scripts) {
@@ -96,7 +98,7 @@ function buildPreviews() {
     }
     files[`review/${interactiveFilename(page)}`] = renderInteractive(source, css, page, portrait, scripts);
   }
-  files["review/site-v1-static-previews-v3.json"] = JSON.stringify({
+  files["review/site-v1-static-previews-v4.json"] = JSON.stringify({
     kind: "Review-only ten fixed-theme and five interactive copies; not visual QA or a deployment",
     generator: "tools/build_site_previews.cjs",
     sources,
@@ -122,4 +124,4 @@ if (require.main === module) {
   process.stdout.write(check ? "Fifteen review pages and their source/hash manifest are fresh.\n" : "Exported ten fixed-theme and five interactive self-contained pages.\n");
 }
 
-module.exports = { buildPreviews, renderPage, filename, digest, pages, interactiveFilename };
+module.exports = { buildPreviews, renderPage, renderInteractive, filename, digest, pages, interactiveFilename };

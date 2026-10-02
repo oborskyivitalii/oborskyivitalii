@@ -1,41 +1,41 @@
 {
   "checked_date": "2026-10-02",
   "public_directory": "docs",
-  "visual_review": "pending: browser unavailable for local preview",
+  "visual_review": "blocked: current cloud browser returned net::ERR_BLOCKED_BY_CLIENT for localhost; Chromium install failed; no actual matrix performed",
   "files": {
     "docs/.nojekyll": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
-    "docs/archive.js": "20ac1b1155306d9984ede1f52d09d791e99b1c3228ce469c0193eb1ef898428a",
+    "docs/archive.js": "5b11a8e0fd8f2ecbed57809ea956ee3470148aac604e64decc188ba8f755209c",
     "docs/assets/vitalii-oborskyi-cutout.webp": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae",
     "docs/assets/vitalii-oborskyi.jpg": "5321e48f08b075cb1cbd522d0f36bc01276aece65d1a04cf09102aa5dd2b59bc",
-    "docs/credits.html": "6d9d6c9a449489ec5fd225c31c468a030bcc33719e3a0660d16df82347112969",
-    "docs/index.html": "f94e4d3692b06b32cd3afc1cce1e5c4b2f1038cdc3f85c29c2d52cb4c3764527",
-    "docs/research.html": "7cfe557679f4328229fd4eb8267829f5c62e91c699cd478ca71c8dfff0f2cbe2",
-    "docs/space.js": "e60024fb1da627f87efbd68bad12386933f925dbfa5f6ab4c502df846ee3f5e3",
-    "docs/styles.css": "19a79bb5c076b60714e360815b67af702ff0505953b1c0c6fea54d67ea838b43",
-    "docs/talks.html": "54a31e701aeb528c814b536ce46f57098e4fd43ae3c6b9558eef2b46b357f08f",
-    "docs/theme.js": "d88a5127094b2d4c129de190ed10bd71e2c35cc85052a747411e7fa8d50d01dd",
-    "docs/writing.html": "62b887f0557691edeaeb6875b7d12236d19a5e33eaf239eac221a4710ec50959"
+    "docs/credits.html": "e467e8456ac809908b7961826b4e6de0e02a2a085bac49a2e64afa7b7bfcb689",
+    "docs/index.html": "f481d2aa57449aafcd6c679dc0d7d94683a1deb6f94e9eed1d228bbe1d15ab0f",
+    "docs/research.html": "0e2d1b26908e4a249300a51460b342f75e7e11613905e3e2df17fd64de52fdc2",
+    "docs/space.js": "b9d76fc2cc9f48365b889fc5804fea4b52c84e9d6073e884744af43400c6ff11",
+    "docs/styles.css": "7ff211f848d09e31ad5df0502d0b38037f452cb43c1efd2be74a7fa6dba49389",
+    "docs/talks.html": "97abd6bf8838159e176090c52a2dae973a33e923a1d0bc7e2d5aa62ad4f92bc1",
+    "docs/theme.js": "a1987c61608672a1643289efaf3238ab315ad47b54b704fa04884d20ec479cd8",
+    "docs/writing.html": "387e0e9bde00f7a5cf0e8f1fbbfb2df94a4ea42618b9268e159c61982680afd4"
   },
-  "structural_checks": "passed: five pages; IDs/ARIA/navigation/resources; edition/schema identity; draft isolation",
-  "theme_behavior": "six theme, four spatial-scene and three archive behavioral checks passed; not browser QA",
+  "structural_checks": "passed: five pages; exact frozen 27 primary identities and secondary LinkedIn date/URL; five EN selections, eight bounded entries; IDs/ARIA/contact/navigation/resources; draft isolation",
+  "theme_behavior": "30 Node tests: 6 theme, 8 scene, 6 archive, 5 content, 5 exports; modeled behavior, not browser QA",
   "source_audit": "SITE-SOURCE-AUDIT.md",
   "independent_review": {
-    "status": "pending for current multi-page, cutout, spatial scene and expanded archive edition",
-    "previous_scope": "Recorded previous independent confirmations are historical; this edition changes public bytes",
+    "status": "pending for current v4 public implementation; plan reviews do not accept implementation",
     "remaining": [
-      "Fresh independent/editorial review",
-      "Actual desktop/mobile/print visual review",
-      "Human portrait and publication rights acceptance",
-      "Stable URL decision",
-      "Dependency integration, merge and deployed-site checks"
+      "Actual browser matrix and motion/portrait inspection",
+      "Independent/editorial candidate review",
+      "Human portrait/publication rights acceptance",
+      "Permanent URL and URL-dependent metadata",
+      "Authorized dependency integration, merge and deployed-site verification"
     ]
   },
   "review_handoff": {
     "checked_date": "2026-10-02",
-    "kind": "v3: ten fixed Day/Night and five interactive self-contained pages; earlier editions historical",
-    "manifest": "review/site-v1-static-previews-v3.json",
-    "checks": "four export/content-parity/resource tests; not browser QA",
-    "visual_review": "Pending; previous browser access block not bypassed"
+    "kind": "v4: ten fixed Day/Night plus five interactive self-contained copies; all earlier editions retained",
+    "manifest": "review/site-v1-static-previews-v4.json",
+    "bundle_manifest": "review/site-v1-offline-bundle-v4.json",
+    "indexing_scope": "review renditions noindex; offline site/ exact docs bytes",
+    "visual_review": "blocked; see review/sol-execution-20261002/BROWSER-CHECK.json"
   },
   "previous_independent_review": {
     "status": "Confirmed for static/content/behavior scope",
@@ -55,10 +55,10 @@
     ]
   },
   "current_checks": {
-    "node_tests": 21,
+    "node_tests": 30,
     "python_tests": 18,
     "preview_export": "15 review pages; ten source inputs; hashes fresh",
-    "content": "Five English pages; four featured; 27 original editions, 20 EN and 7 UA; 12 public files",
+    "content": "Five English pages; five selected EN works; eight bounded public discussions; 27 primary records (20 EN/7 UA) plus one EN secondary rendition; 12 public files",
     "machine_languages": [
       "en",
       "uk"
@@ -74,6 +74,7 @@
       "source_original_unchanged": true,
       "derivative": "AI-assisted transparent cutout, web encoding; not exact foreground pixel identity"
     },
-    "visual_browser_QA": "pending"
-  }
+    "visual_browser_QA": "blocked; unperformed"
+  },
+  "edition": "v4"
 }

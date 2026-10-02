@@ -27,7 +27,7 @@ test("ten fixed-theme copies preserve actual main content, CSS and external sour
       const restoreLinks = (text) => text.replace(/href="([^"]+)"/g, (attribute, value) => {
         for (const original of ["./", "research.html", "writing.html", "talks.html", "credits.html"]) {
           const target = filename(original === "./" ? "index" : original.replace(".html", ""), theme);
-          if (value === target || value.startsWith(target + "#")) return `href="${original}${value.slice(target.length)}"`;
+          if (value === target || value.startsWith(target + "#") || value.startsWith(target + "?")) return `href="${original}${value.slice(target.length)}"`;
         }
         return attribute;
       });
@@ -37,7 +37,7 @@ test("ten fixed-theme copies preserve actual main content, CSS and external sour
       const external = (text) => [...text.matchAll(/href="(https:\/\/[^"]+)"/g)].map((match) => match[1]);
       assert.deepEqual(external(html), external(source));
       const count = [...html.matchAll(/class="publication-title"/g)].length;
-      assert.equal(count, page === "index" ? 4 : page === "writing" ? 27 : 0);
+      assert.equal(count, page === "index" ? 5 : page === "writing" ? 27 : 0);
     }
   }
 });
@@ -49,7 +49,8 @@ test("every local preview link and fragment resolves within the fifteen-page han
     assert.equal(ids.length, new Set(ids).size);
     for (const [, href] of html.matchAll(/href="([^"]+)"/g)) {
       if (href.startsWith("https://")) continue;
-      const [base, fragment] = href.split("#");
+      const [pathQuery, fragment] = href.split("#");
+      const [base] = pathQuery.split("?");
       const target = base ? `review/${base}` : file;
       assert.ok(htmlFiles.includes(target), `${file}: missing ${href}`);
       if (fragment) assert.ok(files[target].includes(`id="${fragment}"`), `${file}: missing fragment ${href}`);
@@ -57,8 +58,20 @@ test("every local preview link and fragment resolves within the fifteen-page han
   }
 });
 
+test("fixed and interactive rewriters retain query/hash intent, including the offline bundle's copies", () => {
+  const source=fs.readFileSync(path.join(root,"docs/index.html"),"utf8").replace('href="writing.html"','href="writing.html?topic=systems&amp;language=uk#year-2025"');
+  for (const theme of ["light","dark"]) {
+    const html=renderPage(source,css,"index",theme,portrait);
+    assert.ok(html.includes(`href="${filename("writing",theme)}?topic=systems&amp;language=uk#year-2025"`));
+  }
+  const {renderInteractive}=require("../tools/build_site_previews.cjs");
+  const scripts=Object.fromEntries(["theme","space","archive"].map(name=>[name,fs.readFileSync(path.join(root,`docs/${name}.js`),"utf8")]));
+  const html=renderInteractive(source,css,"index",portrait,scripts);
+  assert.ok(html.includes(`href="${interactiveFilename("writing")}?topic=systems&amp;language=uk#year-2025"`));
+});
+
 test("manifest records exact inputs/outputs and unknown source shapes fail visibly", () => {
-  const manifest = JSON.parse(files["review/site-v1-static-previews-v3.json"]);
+  const manifest = JSON.parse(files["review/site-v1-static-previews-v4.json"]);
   assert.equal(Object.keys(manifest.sources).length, 10);
   assert.equal(Object.keys(manifest.files).length, 15);
   for (const [file, hash] of Object.entries(manifest.sources)) assert.equal(digest(fs.readFileSync(path.join(root, file))), hash);

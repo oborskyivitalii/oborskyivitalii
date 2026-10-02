@@ -79,3 +79,7 @@ closing. Parent tasks remain open for unfulfilled dependencies.
 
 Cross-repository research ownership and migration routes:
 [Repository map](REPOSITORIES.md).
+
+## S0–S4 execution checkpoint — 2026-10-02
+
+Launch #1 / Draft PR #10 now has the [v4 implementation and evidence](review/sol-execution-20261002/EXECUTION.md). Available checks/exports are complete; actual browser, editorial/rights, #8 URL/release and #9 integration remain. This checkpoint does not close launch or authorize publication. PMDay #2 and later #11 guides follow launch; no new duplicate task is created.

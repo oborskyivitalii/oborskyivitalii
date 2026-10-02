@@ -67,8 +67,16 @@ test("27 language-labelled editions match article schema and retain a useful tim
     assert.equal(item[row[2].includes("· edited") ? "dateModified" : "datePublished"], date);
     if (row[2].includes("· edited")) assert.equal(item.datePublished, undefined);
   }
-  assert.equal(articleRows(pages.index).length, 4);
-  assert.equal(articleRows(pages.index).filter(r => r[1] === "uk").length, 1);
+  const featured = articleRows(pages.index);
+  assert.equal(featured.length, 5);
+  assert.ok(featured.every(r => r[1] === "en"));
+  const frozen = require("../review/sol-execution-20261002/BASELINE.json");
+  const actual = items.map(({item}) => ({title:item.name,url:item.url,language:item.inLanguage,date:item.dateModified || item.datePublished,date_kind:item.dateModified ? "dateModified" : "datePublished"}));
+  assert.deepEqual(actual, frozen.primary);
+  const expected = ["21275fe2f3db", "4f5046f9f0d0", "agentic-oborskyi-vkwve", "69822872825b", "49992bcc3088"];
+  assert.ok(featured.every((row,i) => row[2].includes(expected[i])));
+  assert.ok(pages.writing.includes(frozen.secondary[0].url));
+  assert.ok(pages.writing.includes("LinkedIn edition · 27 Aug 2026"));
 });
 
 test("portrait is a real sized local asset and ambiguous talk languages stay explicit", () => {
@@ -108,4 +116,21 @@ test("page IDs, ARIA targets, local resources and fragments resolve without draf
   const expected = [".nojekyll", "archive.js", "assets", "credits.html", "index.html", "research.html", "space.js", "styles.css", "talks.html", "theme.js", "writing.html"];
   assert.deepEqual(fs.readdirSync(root).sort(), expected);
   assert.deepEqual(fs.readdirSync(path.join(root, "assets")).sort(), ["vitalii-oborskyi-cutout.webp", "vitalii-oborskyi.jpg"]);
+});
+
+test("Home provides the agreed reader path, precise public actions and a real contact alternative", () => {
+  const home = pages.index;
+  const stops = [...home.matchAll(/data-space-stop="([^"]+)"/g)].map(m => m[1]);
+  assert.deepEqual(stops, ["hero","research","help","writing","acknowledgements","about","contact"]);
+  for (const person of ["Arkadiy Dobkin","Maximiliano Armesto","Markus Kopko","Christophe Kolb &amp; Taller","Michael Risch","Matthew Skelton","Rod Montgomery","Otman Basir"]) assert.ok(home.includes(`<h3>${person}</h3>`));
+  assert.ok(home.includes('href="#contact">Discuss your AI challenge'));
+  assert.ok(home.includes("Direct booking will be available here."));
+  assert.ok(home.includes('href="https://www.linkedin.com/in/vitaliioborskyi/">Arrange a conversation'));
+  assert.doesNotMatch(home,/href="#"|Trusted by|CPC|RankSpot|4400|4,400/);
+  for (const text of ["human understanding, verification and ownership","people, evidence, authority and correction","Much remains to develop and test","outputs depend on the agreed engagement"]) assert.ok(home.includes(text));
+  for (const page of Object.values(pages)) assert.ok(page.includes('href="./#contact">Contact</a>'));
+  const css=fs.readFileSync(path.join(root,"styles.css"),"utf8");
+  assert.doesNotMatch(css,/\.portrait-composition::(?:before|after)/);
+  const {createHash}=require("node:crypto");
+  for (const [file,hash] of Object.entries(require("../review/sol-execution-20261002/BASELINE.json").assets)) assert.equal(createHash("sha256").update(fs.readFileSync(path.resolve(root,"..",file))).digest("hex"),hash);
 });

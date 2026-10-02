@@ -1,5 +1,34 @@
 # Source audit for the first-site revision
 
+## v4 source treatment and preservation — 2026-10-02
+
+The maintainer instructed the exact treatment already reviewed in
+[the content brief](review/sol-plan-20261002/CONTENT-AND-CONVERSION-BRIEF.md) and its
+independent plan reviews. This execution reuses that provenance rather than
+claiming to freshly re-audit every public source. Qualitative delivery/verification,
+agent runtime control and operating-model offers use the accepted input report;
+the Executive Brief PDF and its unverified quantitative achievements stay private.
+
+All 27 primary title/URL/date/date-kind/language identities and the additional
+Thinking Systems LinkedIn URL/date are unchanged against the fixed
+[baseline](review/sol-execution-20261002/BASELINE.json). The primary ItemList stays
+27 (20 EN/7 UA); all linked renditions total 28 (21 EN/7 UA). JPEG and alpha WebP
+hashes are unchanged. No article bodies, platform figures or private exchanges
+are copied. Eight public-discussion entries now appear on Home/Research.
+
+| New/expanded public treatment | Exact source | Provenance and boundary |
+| --- | --- | --- |
+| Dobkin recommended the full Thinking Systems reading and extended the argument toward addressable problems, domain-specific bounding architecture and runtime control. | [Original public post](https://www.linkedin.com/posts/arkadiydobkin_uncertainty-architecture-thinking-systems-activity-7500661925790240768--I1H) | Retrieved in the 2026-10-02 plan review and independently checked there; reused in this execution. Separate formulation credit remains linked to its own provenance. No EPAM endorsement/client/adoption claim. |
+| Armesto supported the changed-object framing, boundaries/evidence/authority/correction and human judgment. | [Original public post](https://www.linkedin.com/posts/maximiliano-armesto_uncertainty-architecture-thinking-systems-activity-7498756197647441920-8REu) | Same reviewed intake, reused rather than claimed freshly retrieved. Public support does not validate every claim or establish paid engagement. |
+
+The other six treatments retain the exact sources and bounded scope in the audit
+below. Current source/editorial/rights acceptance remains separate under #7;
+old independent confirmations are not promoted to new public bytes. No source,
+research status or glossary in UA/Subprime is edited. Raw/normalized SEO evidence,
+planning inputs and prior output/asset editions remain unchanged.
+
+## Historical records — earlier editions
+
 ## Archive/navigation and TOC amendment — 2026-10-02
 
 The maintainer explicitly requests the applied redesign, a fuller archive and

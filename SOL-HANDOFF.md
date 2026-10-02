@@ -1,5 +1,18 @@
 # Sol execution plan — reviewed 2026-10-02
 
+## Execution checkpoint — v4, 2026-10-02
+
+The maintainer instructed this plan. Candidate code and available checks/exports
+are now implemented; [execution/evidence](review/sol-execution-20261002/EXECUTION.md)
+records S0–S4 outcomes and preserved identities. Actual browser matrix is blocked
+and unperformed; independent/editorial/rights/URL/base-integration/release gates
+remain. Current review is [v4](review/site-v1-20261002-v4-interactive.html).
+The original checklist below is retained as the approved acceptance contract,
+not a claim that implementation is still absent or browser checks have passed.
+Resume remaining acceptance from the execution record; do not repeat implemented work.
+
+## Approved execution contract — historical planning text
+
 **Execution scope: candidate implementation after the maintainer's execution instruction.**
 The [latest independent review](review/sol-plan-20261002/SECOND-INDEPENDENT-REVIEW.md) records
 the readiness verdict and correction checks. This plan and its inputs do not implement

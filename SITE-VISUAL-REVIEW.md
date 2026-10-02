@@ -1,5 +1,33 @@
 # Site visual review and proposed direction
 
+## Current v4 source implementation — visual acceptance pending
+
+Six asymmetric Day/Night native facets replace both circular portrait
+pseudo-elements behind the unchanged cutout. Home follows the new seven-stop
+sequence, five selected works and compact three-lead/five-short public discussion.
+Appearance uses a native disclosure; controls retain 44px minimum height and
+anchor clearance uses the measured header height when JS runs.
+
+The renderer now contains 11 positioned nodes with separate UA feedback and
+narrowing verification motifs, triangulated translucent faces, directed links,
+near-plane segment clipping, fixed world-up and explicit finite topic paths.
+Home/Research have semantic section-local paths; Writing uses result bounds;
+Talks/Credits remain overview. All pointer/hover camera influence is removed.
+Off/reduced freezes the pose; no idle loop or invented scientific meaning.
+The same-world static SVG is projected from that overview geometry.
+
+The 150ms settling and shorter mobile path are code-level choices. Their actual
+motion/contrast/portrait quality still needs the specified browser matrix. Current
+Browser Use rejected localhost with net::ERR_BLOCKED_BY_CLIENT; official Chromium
+installation failed. No screenshot or browser-calibration claim is made.
+[Execution and remaining acceptance](review/sol-execution-20261002/EXECUTION.md).
+Current outputs are [v4 interactive](review/site-v1-20261002-v4-interactive.html),
+[Day](review/site-v1-20261002-v4-day.html), [Night](review/site-v1-20261002-v4-night.html)
+and [bundle](review/site-v1-20261002-v4.zip). Everything below describes earlier
+recorded editions, including their pointer-motion implementation and old counts.
+
+## Historical records — earlier editions
+
 ## Applied candidate — 2026-10-02
 
 The maintainer's next request explicitly authorizes fixing the findings and
