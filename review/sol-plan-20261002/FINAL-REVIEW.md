@@ -1,5 +1,13 @@
 # Final review of the Sol work plan
 
+**Historical author/planning review.** The later
+[independent review](INDEPENDENT-REVIEW.md) and its three original reports record
+the separately requested substantive assessment and correction re-review. Its
+archive clarification supersedes the shorthand “27 editions” below: preserve
+27 primary records plus the separately dated Thinking Systems LinkedIn rendition.
+This original verdict is not independent confirmation and does not supersede
+the later findings.
+
 2026-10-02. Reviewer: Codex, current planning/review session.
 **Verdict: ready to execute the revised candidate plan after the maintainer's
 execution instruction. The existing website PR is not accepted for release.**

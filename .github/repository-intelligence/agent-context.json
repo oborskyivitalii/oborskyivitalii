@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "8ca7430a765d3adcbe1672ed97f536f7a62e570c106b07ae40c3fd992d5ccd62",
+    "digest": "2968d568ee20a649121e7b015e4cf95092ffcd1a09dbfa9b16d338ef992595d0",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -79,7 +79,7 @@
       {
         "path": "SITE-OPERATIONS.md",
         "identity_mode": "content",
-        "sha256": "2daa6df24ba7c1c8f3840909deffbe469f9dcad8584473983b41bd15624588e8"
+        "sha256": "cd49da15466aab593c4baff00652505dcb18d4bdec4478dd54ef24af2865a825"
       },
       {
         "path": "SITE-ROADMAP.md",
@@ -89,7 +89,7 @@
       {
         "path": "SITE-SEO.md",
         "identity_mode": "content",
-        "sha256": "d0194983f1f168ef87ad5fa979450bed9d0b43e59f542287aa513ee45f9ed099"
+        "sha256": "81f6b5e46c71012cc6653571147e131abcecfd1737de5c9800748c489c2c39a9"
       },
       {
         "path": "SITE-SOURCE-AUDIT.md",
@@ -104,7 +104,7 @@
       {
         "path": "SOL-HANDOFF.md",
         "identity_mode": "content",
-        "sha256": "a95a88b5da5d606d84ffc895162c1774e1bb4124d1525938165fe3b6f7ed0e01"
+        "sha256": "b443772ff29666656a09d47ea3618b255df60def29b2d4d3bd3eab9cd1227110"
       },
       {
         "path": "docs/.nojekyll",
@@ -171,6 +171,11 @@
         "identity_mode": "existence"
       },
       {
+        "path": "review/seo-20261002/COLLECTION-MANIFEST.json",
+        "identity_mode": "content",
+        "sha256": "3c143f83b3407d0f3884406991d7daab98f6f94bebe6b48513b9daaeea64a813"
+      },
+      {
         "path": "review/seo-20261002/autocomplete-observations.json",
         "identity_mode": "content",
         "sha256": "cb48a72d7d3e7fed46b0656b017ad2d71aedcf813f9af361b91c6304833901e5"
@@ -183,12 +188,12 @@
       {
         "path": "review/seo-20261002/keyword-evidence.json",
         "identity_mode": "content",
-        "sha256": "db1d4cd246f58eeb63a651814a162d667b748e3f60989458ba2b46204c1fcc11"
+        "sha256": "b7592684363558c5454d02d373eaaee150a62cba42d549f3dbded11975533832"
       },
       {
         "path": "review/seo-20261002/keyword-metrics.json",
         "identity_mode": "content",
-        "sha256": "c70be15009871678f03c098df163b39b30428246396a55dfe4bf69678b329638"
+        "sha256": "ff97e677b9e3526e4a0351896746f3ca81dc5be8466a86e22bc051631d852189"
       },
       {
         "path": "review/seo-20261002/keyword-seeds.txt",
@@ -387,12 +392,17 @@
       {
         "path": "review/sol-plan-20261002/CONTENT-AND-CONVERSION-BRIEF.md",
         "identity_mode": "content",
-        "sha256": "046f8c9625f421b873888f39c789f5f7b89a213e57cdb213ce6f90d52dd6e11d"
+        "sha256": "97132e3f2e03fdf82e6149b8d1004f90da51c9d97fa72e2ee83b46b539369a93"
       },
       {
         "path": "review/sol-plan-20261002/FINAL-REVIEW.md",
         "identity_mode": "content",
-        "sha256": "a9720e6ead2e2121a77b6abac1fdb8a99ed631b19890967990e9246374582aad"
+        "sha256": "14ec77549aee54b866d88472eb9772cab57a5941fa4079940ca49eaadd06a021"
+      },
+      {
+        "path": "review/sol-plan-20261002/INDEPENDENT-REVIEW.md",
+        "identity_mode": "content",
+        "sha256": "4b39b7e0dfe0cadf6230115d1ca01944f0f4a9b1e06428f73da51ff59e947d8d"
       },
       {
         "path": "review/sol-plan-20261002/INPUT-PROVENANCE.json",
@@ -402,12 +412,12 @@
       {
         "path": "review/sol-plan-20261002/SEO-BUYER-INTENT.md",
         "identity_mode": "content",
-        "sha256": "398374322a483c528db625080d130c1dcd06c0ff912540d526bb788ac433a357"
+        "sha256": "e7e304ee827fa0816808a0be4d44dc55eb09f62230e16bc9abaafacd9e102a5a"
       },
       {
         "path": "review/sol-plan-20261002/SEO-EVIDENCE.md",
         "identity_mode": "content",
-        "sha256": "a6afd50bd0f47e57eeb3dbd5194b857334e1b5fda3c1bf8227bbf48059ab4d18"
+        "sha256": "f0ae3d1ac080b2b04a610000e0d93c87776fe724dce6b53ae88101cf94646e6b"
       },
       {
         "path": "review/sol-plan-20261002/SEO-QUERY-MAP.csv",
@@ -416,11 +426,46 @@
       {
         "path": "review/sol-plan-20261002/VISUAL-SPEC.md",
         "identity_mode": "content",
-        "sha256": "18507cc8d6b4bf69288307b04b09cb6bfb328e21ac0c050d128a02330ae6a5c0"
+        "sha256": "b241a45ae893c24bc613f3cbdb73471fd1e86e4fa24d5ce79cc0ada57490b041"
       },
       {
         "path": "review/sol-plan-20261002/art-direction.svg",
         "identity_mode": "existence"
+      },
+      {
+        "path": "review/sol-plan-20261002/independent/CORRECTION-MANIFEST.json",
+        "identity_mode": "content",
+        "sha256": "e5aa11ad5c36abe7997b12edc3e2afd8b968baffba69de0d51f1b367a48bb475"
+      },
+      {
+        "path": "review/sol-plan-20261002/independent/content-rereview.md",
+        "identity_mode": "content",
+        "sha256": "9623f100fe0d24c274f1fee4d7445a6a0608d43eb58b8cd8c04ec4826e97891e"
+      },
+      {
+        "path": "review/sol-plan-20261002/independent/content-review.md",
+        "identity_mode": "content",
+        "sha256": "601f5b98d7098bf823fa8565af4aa4d0e9549932780999f0999ae39b7afba547"
+      },
+      {
+        "path": "review/sol-plan-20261002/independent/evidence-rereview.md",
+        "identity_mode": "content",
+        "sha256": "b1aea3707954c8c410963a0f4d6bc8436dad7cdac4482b2e19a07bb9b51e344e"
+      },
+      {
+        "path": "review/sol-plan-20261002/independent/evidence-review.md",
+        "identity_mode": "content",
+        "sha256": "d3e0302cdd81b9df990329f7104b09fb96a380dd68d5c141c60073d462215b93"
+      },
+      {
+        "path": "review/sol-plan-20261002/independent/execution-rereview.md",
+        "identity_mode": "content",
+        "sha256": "b100f6a58350323760beb11686b700e9ee7f4af4701f6639fd6a82e0c559ba1d"
+      },
+      {
+        "path": "review/sol-plan-20261002/independent/execution-review.md",
+        "identity_mode": "content",
+        "sha256": "5d84c0486e08088b1bb4ecbac6c29f8a08ebf0bb69fe54eeac184209ad2726ae"
       },
       {
         "path": "review/sol-plan-20261002/portrait-facets-day.svg",
@@ -734,6 +779,13 @@
       ]
     },
     {
+      "path": "review/seo-20261002/COLLECTION-MANIFEST.json",
+      "title": "review/seo-20261002/COLLECTION-MANIFEST.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "review/seo-20261002/autocomplete-observations.json",
       "title": "review/seo-20261002/autocomplete-observations.json",
       "instructions": [
@@ -874,6 +926,13 @@
       ]
     },
     {
+      "path": "review/sol-plan-20261002/INDEPENDENT-REVIEW.md",
+      "title": "Independent substantive review of the Sol plan",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "review/sol-plan-20261002/INPUT-PROVENANCE.json",
       "title": "review/sol-plan-20261002/INPUT-PROVENANCE.json",
       "instructions": [
@@ -897,6 +956,55 @@
     {
       "path": "review/sol-plan-20261002/VISUAL-SPEC.md",
       "title": "Visual implementation specification",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/sol-plan-20261002/independent/CORRECTION-MANIFEST.json",
+      "title": "review/sol-plan-20261002/independent/CORRECTION-MANIFEST.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/sol-plan-20261002/independent/content-rereview.md",
+      "title": "Independent content correction re-review",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/sol-plan-20261002/independent/content-review.md",
+      "title": "Independent content and intent review — Sol plan",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/sol-plan-20261002/independent/evidence-rereview.md",
+      "title": "review/sol-plan-20261002/independent/evidence-rereview.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/sol-plan-20261002/independent/evidence-review.md",
+      "title": "review/sol-plan-20261002/independent/evidence-review.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/sol-plan-20261002/independent/execution-rereview.md",
+      "title": "Independent execution correction re-review",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/sol-plan-20261002/independent/execution-review.md",
+      "title": "Independent execution and visual-contract review",
       "instructions": [
         "AGENTS.md"
       ]

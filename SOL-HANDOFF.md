@@ -1,7 +1,8 @@
 # Sol execution plan — reviewed 2026-10-02
 
-**Ready for candidate implementation after the maintainer's execution instruction.**
-This commit records the final plan review and its inputs. It does not implement
+**Execution scope: candidate implementation after the maintainer's execution instruction.**
+The [independent review](review/sol-plan-20261002/INDEPENDENT-REVIEW.md) records
+the readiness verdict and correction checks. This plan and its inputs do not implement
 the new homepage, approve PR #10 for merge, or release the site.
 
 Owner: [launch #1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1).
@@ -21,13 +22,19 @@ launch issue or silently replace its history.
    to reset onto. Later planning commits and other work must be retained.
 2. Use an isolated checkout/worktree of the live #10 head. Check local changes
    before editing. Do not assume a scratch path from a previous chat still exists.
-3. Read the [final review](review/sol-plan-20261002/FINAL-REVIEW.md),
+3. Read the [independent review](review/sol-plan-20261002/INDEPENDENT-REVIEW.md),
+   the earlier [author review](review/sol-plan-20261002/FINAL-REVIEW.md),
    [content brief](review/sol-plan-20261002/CONTENT-AND-CONVERSION-BRIEF.md),
    [visual specification](review/sol-plan-20261002/VISUAL-SPEC.md),
    [current SEO evidence](review/sol-plan-20261002/SEO-EVIDENCE.md), and
    [buyer/page strategy](review/sol-plan-20261002/SEO-BUYER-INTENT.md).
-4. Record a baseline: 27 archive editions and their title/URL/date/language/schema
-   identities; current public assets; source/rights records; current checks.
+4. Freeze a baseline of the 27 primary archive records (20 EN, 7 UA):
+   title/URL/date/date-kind/language identities, plus the separate Thinking
+   Systems LinkedIn rendition URL and date (2026-08-27). Its primary Generative
+   AI rendition is dated 2026-08-30. Record schema scope, public assets,
+   source/rights records and current checks. Keep this expected inventory
+   independent of the edited HTML/schema; comparing those only to each other
+   cannot establish preservation.
    Preserve unrelated changes. Reconcile material live differences before editing.
 
 The issue's dated maintainer decisions own scope; this file owns the execution
@@ -50,7 +57,7 @@ The reader should recognize a problem before needing to understand UA terminolog
 | Home sequence | Hero → Research/problem space → Help → Selected writing → Public discussion → About → Contact. Keep existing `#acknowledgements` usable for discussion; introduce `#help` and `#contact`. |
 | Offer | Three bounded forms of work: delivery/verification diagnosis; architecture/runtime-governance review; SDLC/QA/operating-model workshop. Example outputs depend on an agreed scope. No invented cases, guarantees or numerical achievements. |
 | Selected writing | Exactly five English works, in the brief's order: Thinking Systems; Externalization; Agentic Loops; Beyond Embeddings; Moat. Separate platform renditions do not occupy another featured slot. |
-| Archive | Preserve all 27 platform editions (20 EN, 7 UA), original title/URL/date, edited-date distinction, separate Thinking Systems platform dates and truthful structured data. These are not 27 unique works. |
+| Archive | Preserve 27 primary records (20 EN, 7 UA), plus the separately dated Thinking Systems LinkedIn rendition. Freeze original title/URL/date/date-kind/language identities. The existing ItemList covers the 27 primary records; the secondary link remains outside it. There are 28 linked platform renditions (21 EN, 7 UA), not 28 primary records or unique works. |
 | Public discussion | Eight person/group entries: Dobkin, Armesto, Kopko, Kolb/Taller, Risch, Skelton, Montgomery, Basir. Each describes the exact public action with its source. Dobkin's public recommendation/extension and formulation credit remain distinct. No institutional endorsement or client claim. |
 | Contact | `Discuss your AI challenge` → `#contact`; working `https://www.linkedin.com/in/vitaliioborskyi/`. Visible booking-unavailable message until a URL is supplied. No dead scheduler button, invented email, duration, price or slots. |
 | Navigation | Home · Research · Writing · Talks; Credits/contact in footer. Optional non-sticky local row: Research · Writing · Work with me (`#help`). Preserve existing useful fragments and query links. |
@@ -88,9 +95,13 @@ all five pages, `docs/writing.html`, `SITE-SOURCE-AUDIT.md`, `SITE-SEO.md`.
 - [ ] Update page-specific titles/descriptions/social text to the actual content.
   The existing proposed titles are a baseline; do not turn the largest volume
   phrase into the homepage topic when its intent is a poor fit.
-- [ ] Verify link/fragment/schema and 27-edition parity. Update obsolete tests
-  that assert four featured works including one Ukrainian card: assert the five
-  exact English edition identities instead. Keep the full archive invariant.
+- [ ] Verify links/fragments and compare all 27 primary identities with the fixed
+  S0 inventory, including the edited-date distinction. Assert the secondary
+  Thinking Systems LinkedIn URL/date separately. Check primary HTML/schema
+  agreement and ItemList count 27 without adding a 28th row to repair wording.
+  Reconcile public count labels with this scope. Update obsolete four-featured
+  tests to assert the five exact English identities; optional Home placement of
+  the secondary rendition does not make its archive retention optional.
 
 Done when a first-time reader can identify the author, two problems, relevant
 work, a useful article and a working contact route from static HTML.
@@ -120,7 +131,8 @@ acceptance as pending; do not claim the concept drawing proves this result.
 ### S3 — motion and archive interaction
 
 Primary files: `docs/space.js`, `docs/archive.js`, `docs/writing.html`,
-`tests/space.test.cjs`, `tests/archive.test.cjs`.
+`docs/credits.html`, `tests/space.test.cjs`, `tests/archive.test.cjs`,
+`tests/content.test.cjs`.
 
 - [ ] Remove pointer state/listeners/camera influence on every device. Rewrite
   the old pointer-oriented test contract; test that dispatched pointer/hover
@@ -136,11 +148,26 @@ Primary files: `docs/space.js`, `docs/archive.js`, `docs/writing.html`,
   delivery→verification, leadership→controller, strategy/All→overview. Year and
   language changes do not start a new flight. Scroll interrupts the topic
   transition; focus persists without a return timer.
-- [ ] Synchronize URL-restored filter state and focus on browser navigation
-  (`popstate` where applicable); baseline `archive.js` has initialization and
-  `replaceState`, but no popstate handler. Preserve native topic/year anchors,
-  intersection filters, empty state, print-all and post-print restoration.
-- [ ] Remove duplicate navigation only when an accessible alternative remains.
+- [ ] Preserve stable `#topic-*` / `#year-*` destinations before hiding duplicate
+  navigation: current topic IDs sit on the very links that would be hidden.
+  Use visible semantic targets or an equivalent accessible resolver, retaining
+  useful native anchors without JS. An ID on a hidden element is not sufficient.
+- [ ] Define URL precedence consistently: parse valid query filters, then let a
+  recognized topic/year fragment override that one filter dimension. Keep the
+  remaining filters and show a visible topic/year heading and empty-state
+  explanation if their intersection is empty. Synchronize form, results, URL
+  and scene focus on initial load, `hashchange` and browser history restoration
+  (`popstate`). Filter changes/Reset must clear or reconcile a conflicting
+  fragment so reload/back/forward cannot restore a different visible state.
+  Preserve print-all and post-print restoration; no-JS shows the full catalog.
+- [ ] Test visible landing from Research's `writing.html#topic-leadership`, all
+  four topic fragments and year anchors with JS on/off, conflicting query/hash,
+  a filtered-out destination, hash changes and back/forward. Assert a usable
+  visible destination, not just ID existence. Remove duplicate navigation only
+  after this accessible alternative works.
+- [ ] Update Credits' Display preferences to describe the implemented native
+  scroll/topic triggers, Off/reduced behavior and static fallback. Preserve
+  portrait/derivative attribution; remove the obsolete pointer-motion claim.
   No global click interception, scroll hijacking, new engine or extra service.
 
 Done when targeted behavioral tests cover these actual risks and the browser
@@ -157,9 +184,12 @@ shows stable transitions in both directions, while idle and reduced/off stay sti
   Record browser, viewport, result and any unperformed checks. Do not claim a
   measured frame rate or full accessibility conformance without measurements.
 - [ ] Produce a new named review edition (v4 if still unused). Update BOTH
-  preview and bundle generators, manifests, tests and links. Preserve v3 as
+  preview and bundle generators, their manifests, `review/site-v1-review.json`,
+  tests and links. Preserve v3 as
   history; do not silently overwrite it. Remove the old bundle's instruction to
-  move a mouse. All review output stays noindex and outside `docs/`.
+  move a mouse and check Credits/display-preference prose against actual behavior.
+  Verify any new local query/fragment links through both export rewriters.
+  All review output stays noindex and outside `docs/`.
 - [ ] Update `SITE-OPERATIONS.md`, `SITE-CONTENT-REVIEW.md`, `SITE-SOURCE-AUDIT.md`,
   `SITE-VISUAL-REVIEW.md`, `SITE-SEO.md`, `SITE-ROADMAP.md` and the PR description
   to distinguish implemented results from remaining decisions. Refresh RI last.

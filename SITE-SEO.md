@@ -16,6 +16,16 @@ all editions; later guides belong to #11 after launch/PMDay #2. No public copy
 or metadata changes are made in this planning commit. Actual canonicals/social
 URLs/sitemap and indexing checks still follow the #8 release decision.
 
+Independent-review clarification, 2026-10-02: the archive has 27 primary records
+(20 EN, 7 UA) plus one separately dated Thinking Systems LinkedIn rendition.
+The existing primary ItemList has 27 entries; all linked renditions total 28
+(21 EN, 7 UA). Older shorthand below does not redefine that preservation unit.
+CPC currency is unknown in the retained provider evidence. The normalized field
+is `cpc_provider_estimate` with `cpc_currency: null`; no USD or GBP is inferred.
+The [collection manifest](review/seo-20261002/COLLECTION-MANIFEST.json) distinguishes
+the 18 historical seeds, 20 provider inputs, 28 autocomplete inputs and 15-term
+positive-result shortlist. The shortlist is not the full collection request set.
+
 Owning intent: [launch #1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1).
 Decision recorded 2026-10-01: the maintainer wants an English site, visibly
 separated English/Ukrainian editions, a portrait, and search coverage of the

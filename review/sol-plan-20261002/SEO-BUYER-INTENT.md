@@ -77,7 +77,7 @@ Do not create a page for every keyword variant. Keep one clear primary purpose p
 |---|---|---|---|
 | `index.html` | Author, two buyer problems, fit and contact | AI Delivery Governance & Agentic Systems \| Vitalii Oborskyi | Author H1; plain-English problem framing; research bridge; three bounded offers; five agreed English works; public discussion; contact. |
 | `research.html` | Explain the research and its sources | AI Architecture & Delivery Research \| Vitalii Oborskyi | UA, Subprime, control theory, Theory of Constraints and socio-technical systems in meaningful context. Link each direction to its owner and relevant reading/help. |
-| `writing.html` | Browse editions by topic, time and language | Writing on AI Governance & Software Delivery \| Vitalii Oborskyi | Preserve all 27 current editions and EN/UA distinction. Brief topic introductions; normal HTML links. Do not pretend this index contains the full external articles. |
+| `writing.html` | Browse editions by topic, time and language | Writing on AI Governance & Software Delivery \| Vitalii Oborskyi | Preserve 27 primary records (20 EN, 7 UA) plus the separately dated Thinking Systems LinkedIn rendition. Brief topic introductions; normal HTML links. Do not pretend this index contains the full external articles. |
 | `talks.html` | Find actual talks and their materials | Talks on AI Architecture & Delivery \| Vitalii Oborskyi | Accurate event, topic and original-language labels. No invented appearances or video. |
 | Proposed `ai-adoption-delivery-gains.html` | Answer the delivery/ROI problem | AI Adoption Without Delivery Gains \| Vitalii Oborskyi | Original diagnostic guide, not a copied Medium excerpt; link Subprime, Externalization and a scoped delivery conversation. |
 | Proposed `agentic-ai-production-governance.html` | Answer the agent production problem | AI Agents in Production: Governance & Control \| Vitalii Oborskyi | Original operating-model guide; link UA, Thinking Systems, Agentic Loops and a scoped architecture/ownership conversation. |
@@ -225,7 +225,7 @@ The strategic choice is made here: two buyer problems, a precise offer, an Engli
 - [ ] The fundamental-shift introduction and the two bounded research theses survive the SEO rewrite.
 - [ ] Titles/descriptions and visible copy are page-specific; no hidden keyword list or stuffed headings.
 - [ ] Research terms remain explained and linked; commercial search language does not redefine UA/Subprime.
-- [ ] All five agreed English featured works and 27 archive editions remain; no unverified numerical achievements, clients or outcomes are added.
+- [ ] All five agreed English featured works, 27 primary archive records (20 EN, 7 UA) and the separate Thinking Systems LinkedIn rendition remain. The primary ItemList covers 27 records; all linked renditions total 28 (21 EN, 7 UA). Preserve primary and secondary identities against the fixed baseline, with clear counting units. No unverified numerical achievements, clients or outcomes are added.
 - [ ] CTA reaches a useful contact section; booking remains clearly unavailable until a real URL is supplied.
 - [ ] Future `SITE-SEO.md` records the query families as hypotheses and maps them to actual implemented pages. Content/source/operations records reflect what actually changed.
 - [ ] Release indexing checks remain under #8; guide publication and demand validation are follow-up work, not fake completed pages or a new launch blocker.

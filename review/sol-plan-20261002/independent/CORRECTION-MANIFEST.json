@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-02",
+  "original_reviewed_head": "0c329dc1da5b8d89ce918383a4a6c5299526ab31",
+  "scope": "Plan/text/evidence-annotation correction set for independent re-review. Public website, raw replies, original CSV/SVG/scene and upstream research remain unchanged. Review reports, summary and generated RI are separate records.",
+  "files": [
+    {
+      "path": "SITE-OPERATIONS.md",
+      "bytes": 8502,
+      "sha256": "cd49da15466aab593c4baff00652505dcb18d4bdec4478dd54ef24af2865a825"
+    },
+    {
+      "path": "SITE-SEO.md",
+      "bytes": 11497,
+      "sha256": "81f6b5e46c71012cc6653571147e131abcecfd1737de5c9800748c489c2c39a9"
+    },
+    {
+      "path": "SOL-HANDOFF.md",
+      "bytes": 19151,
+      "sha256": "b443772ff29666656a09d47ea3618b255df60def29b2d4d3bd3eab9cd1227110"
+    },
+    {
+      "path": "review/seo-20261002/COLLECTION-MANIFEST.json",
+      "bytes": 7671,
+      "sha256": "3c143f83b3407d0f3884406991d7daab98f6f94bebe6b48513b9daaeea64a813"
+    },
+    {
+      "path": "review/seo-20261002/keyword-evidence.json",
+      "bytes": 192071,
+      "sha256": "b7592684363558c5454d02d373eaaee150a62cba42d549f3dbded11975533832"
+    },
+    {
+      "path": "review/seo-20261002/keyword-metrics.json",
+      "bytes": 23623,
+      "sha256": "ff97e677b9e3526e4a0351896746f3ca81dc5be8466a86e22bc051631d852189"
+    },
+    {
+      "path": "review/sol-plan-20261002/CONTENT-AND-CONVERSION-BRIEF.md",
+      "bytes": 27244,
+      "sha256": "97132e3f2e03fdf82e6149b8d1004f90da51c9d97fa72e2ee83b46b539369a93"
+    },
+    {
+      "path": "review/sol-plan-20261002/FINAL-REVIEW.md",
+      "bytes": 10340,
+      "sha256": "14ec77549aee54b866d88472eb9772cab57a5941fa4079940ca49eaadd06a021"
+    },
+    {
+      "path": "review/sol-plan-20261002/SEO-BUYER-INTENT.md",
+      "bytes": 29663,
+      "sha256": "e7e304ee827fa0816808a0be4d44dc55eb09f62230e16bc9abaafacd9e102a5a"
+    },
+    {
+      "path": "review/sol-plan-20261002/SEO-EVIDENCE.md",
+      "bytes": 8794,
+      "sha256": "f0ae3d1ac080b2b04a610000e0d93c87776fe724dce6b53ae88101cf94646e6b"
+    },
+    {
+      "path": "review/sol-plan-20261002/VISUAL-SPEC.md",
+      "bytes": 23908,
+      "sha256": "b241a45ae893c24bc613f3cbdb73471fd1e86e4fa24d5ce79cc0ada57490b041"
+    }
+  ]
+}

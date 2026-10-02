@@ -1,0 +1,274 @@
+{
+  "date": "2026-10-02",
+  "purpose": "Reproduce collection populations from retained inputs, including explicit no-data results. This is a labeling correction, not a new collection.",
+  "historical_seed_inventory": {
+    "source": "keyword-evidence.json#/seeds",
+    "count": 18,
+    "role": "Historical seed hypotheses and analysis; not the current selected_keywords ownership map.",
+    "terms": [
+      {
+        "id": "K01",
+        "keyword": "ai governance consultant"
+      },
+      {
+        "id": "K02",
+        "keyword": "ai governance framework"
+      },
+      {
+        "id": "K03",
+        "keyword": "ai governance"
+      },
+      {
+        "id": "K04",
+        "keyword": "agentic AI governance"
+      },
+      {
+        "id": "K05",
+        "keyword": "AI agent governance"
+      },
+      {
+        "id": "K06",
+        "keyword": "AI operating model"
+      },
+      {
+        "id": "K07",
+        "keyword": "agentic AI operating model"
+      },
+      {
+        "id": "K08",
+        "keyword": "AI productivity paradox"
+      },
+      {
+        "id": "K09",
+        "keyword": "AI ROI for engineering"
+      },
+      {
+        "id": "K10",
+        "keyword": "AI coding tool ROI"
+      },
+      {
+        "id": "K11",
+        "keyword": "code review bottlenecks"
+      },
+      {
+        "id": "K12",
+        "keyword": "AI-assisted software development"
+      },
+      {
+        "id": "K13",
+        "keyword": "AI agents in production"
+      },
+      {
+        "id": "K14",
+        "keyword": "production-ready AI agents"
+      },
+      {
+        "id": "K15",
+        "keyword": "reliable AI agents"
+      },
+      {
+        "id": "K16",
+        "keyword": "continuous evaluation"
+      },
+      {
+        "id": "K17",
+        "keyword": "AI cost management"
+      },
+      {
+        "id": "K18",
+        "keyword": "AI adoption"
+      }
+    ]
+  },
+  "provider_requests": {
+    "source": "raw/rankspot-batch*.json",
+    "unique_phrase_count": 20,
+    "country_phrase_request_count": 25,
+    "positive_estimate_count": 17,
+    "no_data_count": 8,
+    "unique_phrases": [
+      "ai governance consulting",
+      "ai agent governance",
+      "ai operating model",
+      "ai productivity paradox",
+      "ai developer productivity",
+      "agentic ai governance",
+      "ai agents in production",
+      "ai roi measurement",
+      "ai developer productivity metrics",
+      "ai governance consulting services",
+      "ai governance framework",
+      "ai governance consultant",
+      "ai coding tool roi",
+      "ai roi for engineering",
+      "ai adoption challenges",
+      "ai agent reliability",
+      "ai agent guardrails",
+      "llm evaluation",
+      "llm observability",
+      "ai cost management"
+    ],
+    "batches": [
+      {
+        "raw_file": "raw/rankspot-batch1.json",
+        "requested_country": "US",
+        "returned_country": "United States",
+        "keywords": [
+          "ai governance consulting",
+          "ai agent governance",
+          "ai operating model",
+          "ai productivity paradox",
+          "ai developer productivity"
+        ]
+      },
+      {
+        "raw_file": "raw/rankspot-batch2.json",
+        "requested_country": "us",
+        "returned_country": "United States",
+        "keywords": [
+          "agentic ai governance",
+          "ai agents in production",
+          "ai roi measurement",
+          "ai developer productivity metrics",
+          "ai governance consulting services"
+        ]
+      },
+      {
+        "raw_file": "raw/rankspot-batch3.json",
+        "requested_country": "us",
+        "returned_country": "United States",
+        "keywords": [
+          "ai governance framework",
+          "ai governance consultant",
+          "ai coding tool roi",
+          "ai roi for engineering",
+          "ai adoption challenges"
+        ]
+      },
+      {
+        "raw_file": "raw/rankspot-batch4.json",
+        "requested_country": "us",
+        "returned_country": "United States",
+        "keywords": [
+          "ai agent reliability",
+          "ai agent guardrails",
+          "llm evaluation",
+          "llm observability",
+          "ai cost management"
+        ]
+      },
+      {
+        "raw_file": "raw/rankspot-batch5.json",
+        "requested_country": "uk",
+        "returned_country": "United Kingdom",
+        "keywords": [
+          "ai governance consulting",
+          "ai agent governance",
+          "ai operating model",
+          "ai productivity paradox",
+          "ai developer productivity"
+        ]
+      }
+    ]
+  },
+  "autocomplete_requests": {
+    "source": "raw/google-autocomplete.json",
+    "unique_input_count": 28,
+    "request_count": 56,
+    "country_hints": [
+      "us",
+      "gb"
+    ],
+    "language_parameter": "en",
+    "inputs": [
+      "ai governance consultant",
+      "ai governance framework",
+      "ai governance",
+      "agentic ai governance",
+      "ai agent governance",
+      "ai operating model",
+      "agentic ai operating model",
+      "ai productivity paradox",
+      "ai roi for engineering",
+      "ai coding tool roi",
+      "code review bottlenecks",
+      "ai-assisted software development",
+      "ai agents in production",
+      "production-ready ai agents",
+      "reliable ai agents",
+      "continuous evaluation",
+      "ai cost management",
+      "ai adoption",
+      "ai roi",
+      "ai developer productivity",
+      "ai governance consulting",
+      "ai agent reliability",
+      "llm evaluation",
+      "llm observability",
+      "ai adoption challenges",
+      "ai agent guardrails",
+      "ai roi measurement",
+      "measure ai productivity"
+    ],
+    "interpretation": "Country hints and response positions do not measure geolocated demand or popularity."
+  },
+  "positive_us_shortlist": {
+    "file": "keyword-seeds.txt",
+    "count": 15,
+    "terms": [
+      "ai agent governance",
+      "agentic ai governance",
+      "ai operating model",
+      "ai governance consulting",
+      "ai productivity paradox",
+      "ai adoption challenges",
+      "ai developer productivity",
+      "ai agent guardrails",
+      "ai agents in production",
+      "ai governance consulting services",
+      "ai agent reliability",
+      "ai cost management",
+      "llm evaluation",
+      "llm observability",
+      "ai governance framework"
+    ],
+    "role": "Positive US provider results only. Historical filename retained for provenance; not the complete provider request list and not a reproducible input list by itself. No-data terms remain in provider_requests."
+  },
+  "unchanged_source_files": [
+    {
+      "file": "raw/google-autocomplete.json",
+      "bytes": 88654,
+      "sha256": "a2db19bdb5d8ea376060147aeb64d6717f73a049826c4aca28a99f9b8c63ec89"
+    },
+    {
+      "file": "raw/rankspot-batch1.json",
+      "bytes": 3005,
+      "sha256": "014369adc7a773b048201f1a762c2400a310dfbf9a6a23680bdaf49e5074483f"
+    },
+    {
+      "file": "raw/rankspot-batch2.json",
+      "bytes": 2590,
+      "sha256": "b21a84dfd518cc8c647373f05d9264f5ca0f05ed0ab2caafe2f62e823c28e259"
+    },
+    {
+      "file": "raw/rankspot-batch3.json",
+      "bytes": 2371,
+      "sha256": "3bc5763ca1421bee64300dcb795451b4ad83aa3c4edb3e59d403166c9fa9d062"
+    },
+    {
+      "file": "raw/rankspot-batch4.json",
+      "bytes": 2974,
+      "sha256": "3fa2b0a134d95a8eed929a8cc1761f736a02adda41b1879e4f8a5792e4a2618e"
+    },
+    {
+      "file": "raw/rankspot-batch5.json",
+      "bytes": 2345,
+      "sha256": "6f9ef85ff5c49b14d19533f604c95bbe96d502e7151ce1a75ea0a7f2c186a65f"
+    },
+    {
+      "file": "keyword-seeds.txt",
+      "bytes": 334,
+      "sha256": "cb6040461412368c24156b01a617af6efb5419c88c28f497bc751472803d54e5"
+    }
+  ]
+}

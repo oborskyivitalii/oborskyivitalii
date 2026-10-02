@@ -63,6 +63,8 @@
 
 Writing: у JS-режимі одна зрозуміла панель Topic / Year / Language + результат і Reset. Рік залишається структурою архіву. Дублюючі швидкі topic/year links можна сховати лише після успішної ініціалізації форми. Не вводити пошук чи нову CMS в цій ітерації. Прямі `#topic-*`, `#year-*` і query-посилання мають зберегти поведінку.
 
+Уточнення незалежного рев'ю 2026-10-02: нинішні `#topic-*` IDs розташовані саме на links, які планується сховати. Спочатку забезпечити видимі семантичні цілі або доступний resolver; існування ID у прихованому блоці недостатнє. Без JS нативні якорі ведуть до видимого вмісту повного каталогу. У JS спершу застосовуються валідні query-фільтри, потім відомий topic/year fragment замінює відповідний вимір фільтра. Інші фільтри зберігаються; порожній перетин показує видиму назву теми/року й пояснення empty state. Початкове завантаження, `hashchange` і `popstate` узгоджують форму, результати, URL та scene focus. Зміна фільтра/Reset прибирає або узгоджує суперечливий fragment. Перевірити перехід із Research до `writing.html#topic-leadership`, усі чотири теми, роки, query/hash-конфлікт і back/forward із JS та нативні цілі без JS.
+
 ## 6. Точний контракт взаємодії
 
 ### Scroll
@@ -95,6 +97,7 @@ Writing: у JS-режимі одна зрозуміла панель Topic / Yea
 
 - Відокремити geometry/camera data, state reduction, projection/clipping і drawing усередині малого модуля; не будувати універсальний рушій презентацій.
 - Дані-заготовка — `scene-blueprint.json`: вузли, ребра, площини, напрямки, ракурси, палітра й interaction policy. Координати умовні, **не перевірені на всіх viewport**. Sol адаптує їх під композицію.
+- `control-plane` і `delivery-plane` мають не цілком компланарні вершини. Якщо clipping/culling вимагає пласкої грані, вирівняти або тріангулювати її; не припускати, що назва `plane` вже гарантує потрібну геометрію.
 - Renderer: camera basis через position + target + world-up; near-plane clipping сегментів до проєкції. Для площин — clip або консервативна геометрія, що не перетинає near plane. Заданий граф не має взаємопроникних площин; depth sort придатний як перший варіант.
 - CSS із наявними Day/Night tokens. Стрілки показують напрямок навіть без кольору. Публічні підписи компонентів не потрібні на декоративному тлі; їх значення вже пояснюється в HTML.
 - Не тягнути JSON через мережу, якщо це ламає offline review. Можна вбудувати перевірені дані у малий native script; оновити генератор self-contained preview, якщо з'являється окремий runtime-файл.
@@ -109,3 +112,4 @@ Writing: у JS-режимі одна зрозуміла панель Topic / Yea
 - The conceptual controller/operating-model label is a decorative simplification, not a canonical equivalence or a claim that control guarantees stability.
 - Calibrate 1440×900 and 390×844 Day/Night, 360px width and 200% desktop zoom on real HTML. The concept drawing does not establish contrast or movement quality.
 - Keep native scroll. Browser URL restoration must synchronize archive filters and scene focus; the baseline has no `popstate` synchronization.
+- Reconcile Credits' Display preferences and all new preview/bundle instructions with scroll/topic-only motion, Off/reduced and static fallback. Remove the old pointer-motion explanation while retaining portrait/derivative credits.

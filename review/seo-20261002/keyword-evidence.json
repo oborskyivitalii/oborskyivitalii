@@ -314,7 +314,8 @@
           "monthly_searches_estimate": null,
           "status": "no_data",
           "provider_raw_volume": 0,
-          "cpc_usd_provider_estimate": null,
+          "cpc_provider_estimate": null,
+          "cpc_currency": null,
           "paid_ads_competition": null,
           "paid_ads_competition_index": null,
           "organic_keyword_difficulty": null,
@@ -369,7 +370,8 @@
           "monthly_searches_estimate": 4400,
           "status": "provider_reported_estimate",
           "provider_raw_volume": 4400,
-          "cpc_usd_provider_estimate": 48.53,
+          "cpc_provider_estimate": 48.53,
+          "cpc_currency": null,
           "paid_ads_competition": "LOW",
           "paid_ads_competition_index": 32,
           "organic_keyword_difficulty": null,
@@ -481,7 +483,8 @@
           "monthly_searches_estimate": 210,
           "status": "provider_reported_estimate",
           "provider_raw_volume": 210,
-          "cpc_usd_provider_estimate": 46.84,
+          "cpc_provider_estimate": 46.84,
+          "cpc_currency": null,
           "paid_ads_competition": "MEDIUM",
           "paid_ads_competition_index": 44,
           "organic_keyword_difficulty": null,
@@ -549,7 +552,8 @@
           "monthly_searches_estimate": 260,
           "status": "provider_reported_estimate",
           "provider_raw_volume": 260,
-          "cpc_usd_provider_estimate": 60.66,
+          "cpc_provider_estimate": 60.66,
+          "cpc_currency": null,
           "paid_ads_competition": "MEDIUM",
           "paid_ads_competition_index": 41,
           "organic_keyword_difficulty": null,
@@ -584,7 +588,8 @@
           "monthly_searches_estimate": null,
           "status": "no_data",
           "provider_raw_volume": 0,
-          "cpc_usd_provider_estimate": null,
+          "cpc_provider_estimate": null,
+          "cpc_currency": null,
           "paid_ads_competition": null,
           "paid_ads_competition_index": null,
           "organic_keyword_difficulty": null,
@@ -639,7 +644,8 @@
           "monthly_searches_estimate": 110,
           "status": "provider_reported_estimate",
           "provider_raw_volume": 110,
-          "cpc_usd_provider_estimate": 16.99,
+          "cpc_provider_estimate": 16.99,
+          "cpc_currency": null,
           "paid_ads_competition": "MEDIUM",
           "paid_ads_competition_index": 54,
           "organic_keyword_difficulty": null,
@@ -674,7 +680,8 @@
           "monthly_searches_estimate": 50,
           "status": "provider_reported_estimate",
           "provider_raw_volume": 50,
-          "cpc_usd_provider_estimate": 35.95,
+          "cpc_provider_estimate": 35.95,
+          "cpc_currency": null,
           "paid_ads_competition": "MEDIUM",
           "paid_ads_competition_index": 56,
           "organic_keyword_difficulty": null,
@@ -774,7 +781,8 @@
           "monthly_searches_estimate": 140,
           "status": "provider_reported_estimate",
           "provider_raw_volume": 140,
-          "cpc_usd_provider_estimate": 18.2,
+          "cpc_provider_estimate": 18.2,
+          "cpc_currency": null,
           "paid_ads_competition": "LOW",
           "paid_ads_competition_index": 10,
           "organic_keyword_difficulty": null,
@@ -809,7 +817,8 @@
           "monthly_searches_estimate": null,
           "status": "no_data",
           "provider_raw_volume": 0,
-          "cpc_usd_provider_estimate": null,
+          "cpc_provider_estimate": null,
+          "cpc_currency": null,
           "paid_ads_competition": null,
           "paid_ads_competition_index": null,
           "organic_keyword_difficulty": null,
@@ -864,7 +873,8 @@
           "monthly_searches_estimate": null,
           "status": "no_data",
           "provider_raw_volume": 0,
-          "cpc_usd_provider_estimate": null,
+          "cpc_provider_estimate": null,
+          "cpc_currency": null,
           "paid_ads_competition": null,
           "paid_ads_competition_index": null,
           "organic_keyword_difficulty": null,
@@ -906,7 +916,8 @@
           "monthly_searches_estimate": null,
           "status": "no_data",
           "provider_raw_volume": 0,
-          "cpc_usd_provider_estimate": null,
+          "cpc_provider_estimate": null,
+          "cpc_currency": null,
           "paid_ads_competition": null,
           "paid_ads_competition_index": null,
           "organic_keyword_difficulty": null,
@@ -1012,7 +1023,8 @@
           "monthly_searches_estimate": 20,
           "status": "provider_reported_estimate",
           "provider_raw_volume": 20,
-          "cpc_usd_provider_estimate": 13.28,
+          "cpc_provider_estimate": 13.28,
+          "cpc_currency": null,
           "paid_ads_competition": "MEDIUM",
           "paid_ads_competition_index": 51,
           "organic_keyword_difficulty": null,
@@ -1164,7 +1176,8 @@
           "monthly_searches_estimate": 70,
           "status": "provider_reported_estimate",
           "provider_raw_volume": 70,
-          "cpc_usd_provider_estimate": 50.35,
+          "cpc_provider_estimate": 50.35,
+          "cpc_currency": null,
           "paid_ads_competition": "MEDIUM",
           "paid_ads_competition_index": 51,
           "organic_keyword_difficulty": null,
@@ -2475,7 +2488,8 @@
       "monthly_searches_estimate": 140,
       "status": "provider_reported_estimate",
       "provider_raw_volume": 140,
-      "cpc_usd_provider_estimate": 33.9,
+      "cpc_provider_estimate": 33.9,
+      "cpc_currency": null,
       "paid_ads_competition": "MEDIUM",
       "paid_ads_competition_index": 57,
       "organic_keyword_difficulty": null,
@@ -2510,7 +2524,8 @@
       "monthly_searches_estimate": 260,
       "status": "provider_reported_estimate",
       "provider_raw_volume": 260,
-      "cpc_usd_provider_estimate": 60.66,
+      "cpc_provider_estimate": 60.66,
+      "cpc_currency": null,
       "paid_ads_competition": "MEDIUM",
       "paid_ads_competition_index": 41,
       "organic_keyword_difficulty": null,
@@ -2545,7 +2560,8 @@
       "monthly_searches_estimate": 110,
       "status": "provider_reported_estimate",
       "provider_raw_volume": 110,
-      "cpc_usd_provider_estimate": 16.99,
+      "cpc_provider_estimate": 16.99,
+      "cpc_currency": null,
       "paid_ads_competition": "MEDIUM",
       "paid_ads_competition_index": 54,
       "organic_keyword_difficulty": null,
@@ -2580,7 +2596,8 @@
       "monthly_searches_estimate": 140,
       "status": "provider_reported_estimate",
       "provider_raw_volume": 140,
-      "cpc_usd_provider_estimate": 18.2,
+      "cpc_provider_estimate": 18.2,
+      "cpc_currency": null,
       "paid_ads_competition": "LOW",
       "paid_ads_competition_index": 10,
       "organic_keyword_difficulty": null,
@@ -2615,7 +2632,8 @@
       "monthly_searches_estimate": 50,
       "status": "provider_reported_estimate",
       "provider_raw_volume": 50,
-      "cpc_usd_provider_estimate": 0,
+      "cpc_provider_estimate": 0,
+      "cpc_currency": null,
       "paid_ads_competition": "LOW",
       "paid_ads_competition_index": 13,
       "organic_keyword_difficulty": null,
@@ -2650,7 +2668,8 @@
       "monthly_searches_estimate": 210,
       "status": "provider_reported_estimate",
       "provider_raw_volume": 210,
-      "cpc_usd_provider_estimate": 46.84,
+      "cpc_provider_estimate": 46.84,
+      "cpc_currency": null,
       "paid_ads_competition": "MEDIUM",
       "paid_ads_competition_index": 44,
       "organic_keyword_difficulty": null,
@@ -2685,7 +2704,8 @@
       "monthly_searches_estimate": 20,
       "status": "provider_reported_estimate",
       "provider_raw_volume": 20,
-      "cpc_usd_provider_estimate": 13.28,
+      "cpc_provider_estimate": 13.28,
+      "cpc_currency": null,
       "paid_ads_competition": "MEDIUM",
       "paid_ads_competition_index": 51,
       "organic_keyword_difficulty": null,
@@ -2720,7 +2740,8 @@
       "monthly_searches_estimate": null,
       "status": "no_data",
       "provider_raw_volume": 0,
-      "cpc_usd_provider_estimate": null,
+      "cpc_provider_estimate": null,
+      "cpc_currency": null,
       "paid_ads_competition": null,
       "paid_ads_competition_index": null,
       "organic_keyword_difficulty": null,
@@ -2742,7 +2763,8 @@
       "monthly_searches_estimate": null,
       "status": "no_data",
       "provider_raw_volume": 0,
-      "cpc_usd_provider_estimate": null,
+      "cpc_provider_estimate": null,
+      "cpc_currency": null,
       "paid_ads_competition": null,
       "paid_ads_competition_index": null,
       "organic_keyword_difficulty": null,
@@ -2764,7 +2786,8 @@
       "monthly_searches_estimate": 10,
       "status": "provider_reported_estimate",
       "provider_raw_volume": 10,
-      "cpc_usd_provider_estimate": 20.74,
+      "cpc_provider_estimate": 20.74,
+      "cpc_currency": null,
       "paid_ads_competition": "MEDIUM",
       "paid_ads_competition_index": 36,
       "organic_keyword_difficulty": null,
@@ -2799,7 +2822,8 @@
       "monthly_searches_estimate": 4400,
       "status": "provider_reported_estimate",
       "provider_raw_volume": 4400,
-      "cpc_usd_provider_estimate": 48.53,
+      "cpc_provider_estimate": 48.53,
+      "cpc_currency": null,
       "paid_ads_competition": "LOW",
       "paid_ads_competition_index": 32,
       "organic_keyword_difficulty": null,
@@ -2834,7 +2858,8 @@
       "monthly_searches_estimate": null,
       "status": "no_data",
       "provider_raw_volume": 0,
-      "cpc_usd_provider_estimate": null,
+      "cpc_provider_estimate": null,
+      "cpc_currency": null,
       "paid_ads_competition": null,
       "paid_ads_competition_index": null,
       "organic_keyword_difficulty": null,
@@ -2856,7 +2881,8 @@
       "monthly_searches_estimate": null,
       "status": "no_data",
       "provider_raw_volume": 0,
-      "cpc_usd_provider_estimate": null,
+      "cpc_provider_estimate": null,
+      "cpc_currency": null,
       "paid_ads_competition": null,
       "paid_ads_competition_index": null,
       "organic_keyword_difficulty": null,
@@ -2878,7 +2904,8 @@
       "monthly_searches_estimate": null,
       "status": "no_data",
       "provider_raw_volume": 0,
-      "cpc_usd_provider_estimate": null,
+      "cpc_provider_estimate": null,
+      "cpc_currency": null,
       "paid_ads_competition": null,
       "paid_ads_competition_index": null,
       "organic_keyword_difficulty": null,
@@ -2900,7 +2927,8 @@
       "monthly_searches_estimate": 90,
       "status": "provider_reported_estimate",
       "provider_raw_volume": 90,
-      "cpc_usd_provider_estimate": 33.81,
+      "cpc_provider_estimate": 33.81,
+      "cpc_currency": null,
       "paid_ads_competition": "LOW",
       "paid_ads_competition_index": 12,
       "organic_keyword_difficulty": null,
@@ -2935,7 +2963,8 @@
       "monthly_searches_estimate": 10,
       "status": "provider_reported_estimate",
       "provider_raw_volume": 10,
-      "cpc_usd_provider_estimate": 26.6,
+      "cpc_provider_estimate": 26.6,
+      "cpc_currency": null,
       "paid_ads_competition": "LOW",
       "paid_ads_competition_index": 28,
       "organic_keyword_difficulty": null,
@@ -2970,7 +2999,8 @@
       "monthly_searches_estimate": 70,
       "status": "provider_reported_estimate",
       "provider_raw_volume": 70,
-      "cpc_usd_provider_estimate": 23.98,
+      "cpc_provider_estimate": 23.98,
+      "cpc_currency": null,
       "paid_ads_competition": "MEDIUM",
       "paid_ads_competition_index": 52,
       "organic_keyword_difficulty": null,
@@ -3005,7 +3035,8 @@
       "monthly_searches_estimate": 1000,
       "status": "provider_reported_estimate",
       "provider_raw_volume": 1000,
-      "cpc_usd_provider_estimate": 20.37,
+      "cpc_provider_estimate": 20.37,
+      "cpc_currency": null,
       "paid_ads_competition": "MEDIUM",
       "paid_ads_competition_index": 40,
       "organic_keyword_difficulty": null,
@@ -3040,7 +3071,8 @@
       "monthly_searches_estimate": 590,
       "status": "provider_reported_estimate",
       "provider_raw_volume": 590,
-      "cpc_usd_provider_estimate": 27.85,
+      "cpc_provider_estimate": 27.85,
+      "cpc_currency": null,
       "paid_ads_competition": "MEDIUM",
       "paid_ads_competition_index": 47,
       "organic_keyword_difficulty": null,
@@ -3075,7 +3107,8 @@
       "monthly_searches_estimate": 70,
       "status": "provider_reported_estimate",
       "provider_raw_volume": 70,
-      "cpc_usd_provider_estimate": 50.35,
+      "cpc_provider_estimate": 50.35,
+      "cpc_currency": null,
       "paid_ads_competition": "MEDIUM",
       "paid_ads_competition_index": 51,
       "organic_keyword_difficulty": null,
@@ -3110,7 +3143,8 @@
       "monthly_searches_estimate": 40,
       "status": "provider_reported_estimate",
       "provider_raw_volume": 40,
-      "cpc_usd_provider_estimate": 17.25,
+      "cpc_provider_estimate": 17.25,
+      "cpc_currency": null,
       "paid_ads_competition": "MEDIUM",
       "paid_ads_competition_index": 50,
       "organic_keyword_difficulty": null,
@@ -3145,7 +3179,8 @@
       "monthly_searches_estimate": null,
       "status": "no_data",
       "provider_raw_volume": 0,
-      "cpc_usd_provider_estimate": null,
+      "cpc_provider_estimate": null,
+      "cpc_currency": null,
       "paid_ads_competition": null,
       "paid_ads_competition_index": null,
       "organic_keyword_difficulty": null,
@@ -3167,7 +3202,8 @@
       "monthly_searches_estimate": 50,
       "status": "provider_reported_estimate",
       "provider_raw_volume": 50,
-      "cpc_usd_provider_estimate": 35.95,
+      "cpc_provider_estimate": 35.95,
+      "cpc_currency": null,
       "paid_ads_competition": "MEDIUM",
       "paid_ads_competition_index": 56,
       "organic_keyword_difficulty": null,
@@ -3202,7 +3238,8 @@
       "monthly_searches_estimate": null,
       "status": "no_data",
       "provider_raw_volume": 0,
-      "cpc_usd_provider_estimate": null,
+      "cpc_provider_estimate": null,
+      "cpc_currency": null,
       "paid_ads_competition": null,
       "paid_ads_competition_index": null,
       "organic_keyword_difficulty": null,
@@ -3224,7 +3261,8 @@
       "monthly_searches_estimate": null,
       "status": "no_data",
       "provider_raw_volume": 0,
-      "cpc_usd_provider_estimate": null,
+      "cpc_provider_estimate": null,
+      "cpc_currency": null,
       "paid_ads_competition": null,
       "paid_ads_competition_index": null,
       "organic_keyword_difficulty": null,
@@ -3241,7 +3279,7 @@
       "keyword": "ai agent governance",
       "priority_by_business_fit": "P0",
       "priority_is_analyst_judgment": true,
-      "proposed_content_owner": "Production guide",
+      "proposed_content_owner": "Production guide (#11; after launch and PMDay #2 overlap check)",
       "intent_inferred_uk": "Контроль агентів у production",
       "recommendation_uk": "Сильний змістовний збіг із повноваженнями, межами дій, ескалацією та відповідальністю. Покупці не виділені в загальній частотності.",
       "metric_results": [
@@ -3256,7 +3294,8 @@
           "monthly_searches_estimate": 260,
           "status": "provider_reported_estimate",
           "provider_raw_volume": 260,
-          "cpc_usd_provider_estimate": 60.66,
+          "cpc_provider_estimate": 60.66,
+          "cpc_currency": null,
           "paid_ads_competition": "MEDIUM",
           "paid_ads_competition_index": 41,
           "organic_keyword_difficulty": null,
@@ -3291,7 +3330,8 @@
           "monthly_searches_estimate": null,
           "status": "no_data",
           "provider_raw_volume": 0,
-          "cpc_usd_provider_estimate": null,
+          "cpc_provider_estimate": null,
+          "cpc_currency": null,
           "paid_ads_competition": null,
           "paid_ads_competition_index": null,
           "organic_keyword_difficulty": null,
@@ -3316,13 +3356,19 @@
           "position_in_response_not_volume_rank": 1,
           "suggestion": "ai agent governance"
         }
-      ]
+      ],
+      "owner_scope": {
+        "primary_route": "agentic-ai-production-governance.html",
+        "route_status": "proposed, not created or published",
+        "owning_issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/11"
+      },
+      "secondary_mention_scope": "Concise relevant Home problem/help wording may be used at launch; this does not create the proposed guide."
     },
     {
       "keyword": "agentic ai governance",
       "priority_by_business_fit": "P0",
       "priority_is_analyst_judgment": true,
-      "proposed_content_owner": "Production guide",
+      "proposed_content_owner": "Production guide (#11; after launch and PMDay #2 overlap check)",
       "intent_inferred_uk": "Контроль агентів у production",
       "recommendation_uk": "Варіант для тієї самої сторінки. Не підсумовувати частотності близьких фраз як унікальну аудиторію.",
       "metric_results": [
@@ -3337,7 +3383,8 @@
           "monthly_searches_estimate": 210,
           "status": "provider_reported_estimate",
           "provider_raw_volume": 210,
-          "cpc_usd_provider_estimate": 46.84,
+          "cpc_provider_estimate": 46.84,
+          "cpc_currency": null,
           "paid_ads_competition": "MEDIUM",
           "paid_ads_competition_index": 44,
           "organic_keyword_difficulty": null,
@@ -3375,13 +3422,19 @@
           "position_in_response_not_volume_rank": 1,
           "suggestion": "agentic ai governance"
         }
-      ]
+      ],
+      "owner_scope": {
+        "primary_route": "agentic-ai-production-governance.html",
+        "route_status": "proposed, not created or published",
+        "owning_issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/11"
+      },
+      "secondary_mention_scope": "Concise relevant Home problem/help wording may be used at launch; this does not create the proposed guide."
     },
     {
       "keyword": "ai operating model",
       "priority_by_business_fit": "P0",
       "priority_is_analyst_judgment": true,
-      "proposed_content_owner": "Home / advisory",
+      "proposed_content_owner": "Home / help (existing launch page)",
       "intent_inferred_uk": "Модель роботи та відповідальності",
       "recommendation_uk": "Найпряміший міст до ролей, процесів, decision rights і delivery. США 110, Британія 50; це не доказ пошуку саме C-level.",
       "metric_results": [
@@ -3396,7 +3449,8 @@
           "monthly_searches_estimate": 110,
           "status": "provider_reported_estimate",
           "provider_raw_volume": 110,
-          "cpc_usd_provider_estimate": 16.99,
+          "cpc_provider_estimate": 16.99,
+          "cpc_currency": null,
           "paid_ads_competition": "MEDIUM",
           "paid_ads_competition_index": 54,
           "organic_keyword_difficulty": null,
@@ -3431,7 +3485,8 @@
           "monthly_searches_estimate": 50,
           "status": "provider_reported_estimate",
           "provider_raw_volume": 50,
-          "cpc_usd_provider_estimate": 35.95,
+          "cpc_provider_estimate": 35.95,
+          "cpc_currency": null,
           "paid_ads_competition": "MEDIUM",
           "paid_ads_competition_index": 56,
           "organic_keyword_difficulty": null,
@@ -3469,13 +3524,18 @@
           "position_in_response_not_volume_rank": 1,
           "suggestion": "ai operating model"
         }
-      ]
+      ],
+      "owner_scope": {
+        "primary_route": "docs/index.html",
+        "route_status": "S1 launch candidate",
+        "owning_issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/1"
+      }
     },
     {
       "keyword": "ai governance consulting",
       "priority_by_business_fit": "P0",
       "priority_is_analyst_judgment": true,
-      "proposed_content_owner": "Home / advisory",
+      "proposed_content_owner": "Home / help (existing launch page)",
       "intent_inferred_uk": "Пошук допомоги",
       "recommendation_uk": "Комерційна фраза. Пояснити фокус на operational governance, delivery та production, щоб відрізнити послугу від compliance-аудиту.",
       "metric_results": [
@@ -3490,7 +3550,8 @@
           "monthly_searches_estimate": 140,
           "status": "provider_reported_estimate",
           "provider_raw_volume": 140,
-          "cpc_usd_provider_estimate": 33.9,
+          "cpc_provider_estimate": 33.9,
+          "cpc_currency": null,
           "paid_ads_competition": "MEDIUM",
           "paid_ads_competition_index": 57,
           "organic_keyword_difficulty": null,
@@ -3525,7 +3586,8 @@
           "monthly_searches_estimate": 40,
           "status": "provider_reported_estimate",
           "provider_raw_volume": 40,
-          "cpc_usd_provider_estimate": 17.25,
+          "cpc_provider_estimate": 17.25,
+          "cpc_currency": null,
           "paid_ads_competition": "MEDIUM",
           "paid_ads_competition_index": 50,
           "organic_keyword_difficulty": null,
@@ -3563,13 +3625,18 @@
           "position_in_response_not_volume_rank": 1,
           "suggestion": "ai governance consulting"
         }
-      ]
+      ],
+      "owner_scope": {
+        "primary_route": "docs/index.html",
+        "route_status": "S1 launch candidate",
+        "owning_issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/1"
+      }
     },
     {
       "keyword": "ai productivity paradox",
       "priority_by_business_fit": "P0",
       "priority_is_analyst_judgment": true,
-      "proposed_content_owner": "Delivery guide",
+      "proposed_content_owner": "Delivery guide (#11; after launch and PMDay #2 overlap check)",
       "intent_inferred_uk": "Витрати на ШІ без покращення delivery",
       "recommendation_uk": "Влучний інформаційний вхід до діагностики. Це фраза про проблему, а не готовність купити консультацію.",
       "metric_results": [
@@ -3584,7 +3651,8 @@
           "monthly_searches_estimate": 140,
           "status": "provider_reported_estimate",
           "provider_raw_volume": 140,
-          "cpc_usd_provider_estimate": 18.2,
+          "cpc_provider_estimate": 18.2,
+          "cpc_currency": null,
           "paid_ads_competition": "LOW",
           "paid_ads_competition_index": 10,
           "organic_keyword_difficulty": null,
@@ -3619,7 +3687,8 @@
           "monthly_searches_estimate": null,
           "status": "no_data",
           "provider_raw_volume": 0,
-          "cpc_usd_provider_estimate": null,
+          "cpc_provider_estimate": null,
+          "cpc_currency": null,
           "paid_ads_competition": null,
           "paid_ads_competition_index": null,
           "organic_keyword_difficulty": null,
@@ -3644,13 +3713,19 @@
           "position_in_response_not_volume_rank": 1,
           "suggestion": "ai productivity paradox"
         }
-      ]
+      ],
+      "owner_scope": {
+        "primary_route": "ai-adoption-delivery-gains.html",
+        "route_status": "proposed, not created or published",
+        "owning_issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/11"
+      },
+      "secondary_mention_scope": "Concise relevant Home problem/help wording may be used at launch; this does not create the proposed guide."
     },
     {
       "keyword": "ai adoption challenges",
       "priority_by_business_fit": "P1",
       "priority_is_analyst_judgment": true,
-      "proposed_content_owner": "Delivery guide",
+      "proposed_content_owner": "Delivery guide (#11; after launch and PMDay #2 overlap check)",
       "intent_inferred_uk": "Проблеми впровадження",
       "recommendation_uk": "Ширший інтерес: у матеріалі звузити до enterprise software delivery та IT services.",
       "metric_results": [
@@ -3665,7 +3740,8 @@
           "monthly_searches_estimate": 90,
           "status": "provider_reported_estimate",
           "provider_raw_volume": 90,
-          "cpc_usd_provider_estimate": 33.81,
+          "cpc_provider_estimate": 33.81,
+          "cpc_currency": null,
           "paid_ads_competition": "LOW",
           "paid_ads_competition_index": 12,
           "organic_keyword_difficulty": null,
@@ -3703,13 +3779,19 @@
           "position_in_response_not_volume_rank": 1,
           "suggestion": "ai adoption challenges"
         }
-      ]
+      ],
+      "owner_scope": {
+        "primary_route": "ai-adoption-delivery-gains.html",
+        "route_status": "proposed, not created or published",
+        "owning_issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/11"
+      },
+      "secondary_mention_scope": "Concise relevant Home problem/help wording may be used at launch; this does not create the proposed guide."
     },
     {
       "keyword": "ai developer productivity",
       "priority_by_business_fit": "P1",
       "priority_is_analyst_judgment": true,
-      "proposed_content_owner": "Delivery guide",
+      "proposed_content_owner": "Delivery guide (#11; after launch and PMDay #2 overlap check)",
       "intent_inferred_uk": "Результативність engineering",
       "recommendation_uk": "Додати контекст team outcomes, review, rework і повної вартості; запит також може стосуватися інструментів та досліджень.",
       "metric_results": [
@@ -3724,7 +3806,8 @@
           "monthly_searches_estimate": 50,
           "status": "provider_reported_estimate",
           "provider_raw_volume": 50,
-          "cpc_usd_provider_estimate": 0,
+          "cpc_provider_estimate": 0,
+          "cpc_currency": null,
           "paid_ads_competition": "LOW",
           "paid_ads_competition_index": 13,
           "organic_keyword_difficulty": null,
@@ -3759,7 +3842,8 @@
           "monthly_searches_estimate": null,
           "status": "no_data",
           "provider_raw_volume": 0,
-          "cpc_usd_provider_estimate": null,
+          "cpc_provider_estimate": null,
+          "cpc_currency": null,
           "paid_ads_competition": null,
           "paid_ads_competition_index": null,
           "organic_keyword_difficulty": null,
@@ -3784,13 +3868,19 @@
           "position_in_response_not_volume_rank": 1,
           "suggestion": "ai developer productivity"
         }
-      ]
+      ],
+      "owner_scope": {
+        "primary_route": "ai-adoption-delivery-gains.html",
+        "route_status": "proposed, not created or published",
+        "owning_issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/11"
+      },
+      "secondary_mention_scope": "Concise relevant Home problem/help wording may be used at launch; this does not create the proposed guide."
     },
     {
       "keyword": "ai agent guardrails",
       "priority_by_business_fit": "P1",
       "priority_is_analyst_judgment": true,
-      "proposed_content_owner": "Production guide",
+      "proposed_content_owner": "Production guide (#11; after launch and PMDay #2 overlap check)",
       "intent_inferred_uk": "Технічні межі поведінки",
       "recommendation_uk": "Корисна допоміжна фраза; очікування часто технічні. Guardrails не зводити до всього контуру governance.",
       "metric_results": [
@@ -3805,7 +3895,8 @@
           "monthly_searches_estimate": 70,
           "status": "provider_reported_estimate",
           "provider_raw_volume": 70,
-          "cpc_usd_provider_estimate": 23.98,
+          "cpc_provider_estimate": 23.98,
+          "cpc_currency": null,
           "paid_ads_competition": "MEDIUM",
           "paid_ads_competition_index": 52,
           "organic_keyword_difficulty": null,
@@ -3843,13 +3934,19 @@
           "position_in_response_not_volume_rank": 1,
           "suggestion": "ai agent guardrails"
         }
-      ]
+      ],
+      "owner_scope": {
+        "primary_route": "agentic-ai-production-governance.html",
+        "route_status": "proposed, not created or published",
+        "owning_issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/11"
+      },
+      "secondary_mention_scope": "Concise relevant Home problem/help wording may be used at launch; this does not create the proposed guide."
     },
     {
       "keyword": "ai agents in production",
       "priority_by_business_fit": "P1",
       "priority_is_analyst_judgment": true,
-      "proposed_content_owner": "Production guide",
+      "proposed_content_owner": "Production guide (#11; after launch and PMDay #2 overlap check)",
       "intent_inferred_uk": "Введення в експлуатацію",
       "recommendation_uk": "Підходить до readiness, eval gates, спостереження та корекції. Значна частина наміру — навчання та реалізація.",
       "metric_results": [
@@ -3864,7 +3961,8 @@
           "monthly_searches_estimate": 20,
           "status": "provider_reported_estimate",
           "provider_raw_volume": 20,
-          "cpc_usd_provider_estimate": 13.28,
+          "cpc_provider_estimate": 13.28,
+          "cpc_currency": null,
           "paid_ads_competition": "MEDIUM",
           "paid_ads_competition_index": 51,
           "organic_keyword_difficulty": null,
@@ -3902,13 +4000,19 @@
           "position_in_response_not_volume_rank": 1,
           "suggestion": "ai agents in production"
         }
-      ]
+      ],
+      "owner_scope": {
+        "primary_route": "agentic-ai-production-governance.html",
+        "route_status": "proposed, not created or published",
+        "owning_issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/11"
+      },
+      "secondary_mention_scope": "Concise relevant Home problem/help wording may be used at launch; this does not create the proposed guide."
     },
     {
       "keyword": "ai governance consulting services",
       "priority_by_business_fit": "P1",
       "priority_is_analyst_judgment": true,
-      "proposed_content_owner": "Home / advisory",
+      "proposed_content_owner": "Home / help (existing launch page)",
       "intent_inferred_uk": "Пошук допомоги",
       "recommendation_uk": "Підтверджена підказка і мала ненульова оцінка. Варіант основної consulting-фрази, не окрема сторінка.",
       "metric_results": [
@@ -3923,7 +4027,8 @@
           "monthly_searches_estimate": 10,
           "status": "provider_reported_estimate",
           "provider_raw_volume": 10,
-          "cpc_usd_provider_estimate": 20.74,
+          "cpc_provider_estimate": 20.74,
+          "cpc_currency": null,
           "paid_ads_competition": "MEDIUM",
           "paid_ads_competition_index": 36,
           "organic_keyword_difficulty": null,
@@ -3973,13 +4078,18 @@
           "position_in_response_not_volume_rank": 3,
           "suggestion": "ai governance consulting services"
         }
-      ]
+      ],
+      "owner_scope": {
+        "primary_route": "docs/index.html",
+        "route_status": "S1 launch candidate",
+        "owning_issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/1"
+      }
     },
     {
       "keyword": "ai agent reliability",
       "priority_by_business_fit": "P1",
       "priority_is_analyst_judgment": true,
-      "proposed_content_owner": "Production guide",
+      "proposed_content_owner": "Production guide (#11; after launch and PMDay #2 overlap check)",
       "intent_inferred_uk": "Надійність агентів",
       "recommendation_uk": "Низька оцінка та домішка вакансій у підказках. Використовувати як допоміжний термін у змісті.",
       "metric_results": [
@@ -3994,7 +4104,8 @@
           "monthly_searches_estimate": 10,
           "status": "provider_reported_estimate",
           "provider_raw_volume": 10,
-          "cpc_usd_provider_estimate": 26.6,
+          "cpc_provider_estimate": 26.6,
+          "cpc_currency": null,
           "paid_ads_competition": "LOW",
           "paid_ads_competition_index": 28,
           "organic_keyword_difficulty": null,
@@ -4032,15 +4143,21 @@
           "position_in_response_not_volume_rank": 4,
           "suggestion": "ai agent reliability"
         }
-      ]
+      ],
+      "owner_scope": {
+        "primary_route": "agentic-ai-production-governance.html",
+        "route_status": "proposed, not created or published",
+        "owning_issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/11"
+      },
+      "secondary_mention_scope": "Concise relevant Home problem/help wording may be used at launch; this does not create the proposed guide."
     },
     {
       "keyword": "ai cost management",
       "priority_by_business_fit": "P1",
       "priority_is_analyst_judgment": true,
-      "proposed_content_owner": "Delivery / cost section",
+      "proposed_content_owner": "Production guide (#11; after launch and PMDay #2 overlap check)",
       "intent_inferred_uk": "Економіка впровадження",
-      "recommendation_uk": "Широка фраза з FinOps та інфраструктурним наміром; звузити до вартості перевірки, переробок і експлуатації.",
+      "recommendation_uk": "Широка фраза з FinOps та інфраструктурним наміром; основний контекст — межі витрат агентів у production, спостереження та відповідальність. Вартість перевірки й переробок може згадуватися в delivery-контексті, але не створює другого основного власника фрази.",
       "metric_results": [
         {
           "keyword": "ai cost management",
@@ -4053,7 +4170,8 @@
           "monthly_searches_estimate": 70,
           "status": "provider_reported_estimate",
           "provider_raw_volume": 70,
-          "cpc_usd_provider_estimate": 50.35,
+          "cpc_provider_estimate": 50.35,
+          "cpc_currency": null,
           "paid_ads_competition": "MEDIUM",
           "paid_ads_competition_index": 51,
           "organic_keyword_difficulty": null,
@@ -4091,13 +4209,19 @@
           "position_in_response_not_volume_rank": 1,
           "suggestion": "ai cost management"
         }
-      ]
+      ],
+      "owner_scope": {
+        "primary_route": "agentic-ai-production-governance.html",
+        "route_status": "proposed, not created or published",
+        "owning_issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/11"
+      },
+      "secondary_mention_scope": "Concise relevant Home problem/help wording may be used at launch; this does not create the proposed guide."
     },
     {
       "keyword": "llm evaluation",
       "priority_by_business_fit": "P2",
       "priority_is_analyst_judgment": true,
-      "proposed_content_owner": "Technical supporting content",
+      "proposed_content_owner": "Research (existing page; no new launch page)",
       "intent_inferred_uk": "Вимірювання якості",
       "recommendation_uk": "Великий технічний інтерес. Корисно для пояснення eval gates та якості рішень, але не робити єдиним входом для керівника.",
       "metric_results": [
@@ -4112,7 +4236,8 @@
           "monthly_searches_estimate": 1000,
           "status": "provider_reported_estimate",
           "provider_raw_volume": 1000,
-          "cpc_usd_provider_estimate": 20.37,
+          "cpc_provider_estimate": 20.37,
+          "cpc_currency": null,
           "paid_ads_competition": "MEDIUM",
           "paid_ads_competition_index": 40,
           "organic_keyword_difficulty": null,
@@ -4150,13 +4275,19 @@
           "position_in_response_not_volume_rank": 1,
           "suggestion": "llm evaluation"
         }
-      ]
+      ],
+      "owner_scope": {
+        "primary_route": "docs/research.html",
+        "route_status": "S1 launch candidate",
+        "owning_issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/1"
+      },
+      "secondary_mention_scope": "Writing may link relevant existing technical editions; the archive is not the full article text."
     },
     {
       "keyword": "llm observability",
       "priority_by_business_fit": "P2",
       "priority_is_analyst_judgment": true,
-      "proposed_content_owner": "Technical supporting content",
+      "proposed_content_owner": "Research (existing page; no new launch page)",
       "intent_inferred_uk": "Контроль у production",
       "recommendation_uk": "Технічний термін з інструментальним наміром. Поєднати з тим, хто реагує на сигнали та має право коригувати систему.",
       "metric_results": [
@@ -4171,7 +4302,8 @@
           "monthly_searches_estimate": 590,
           "status": "provider_reported_estimate",
           "provider_raw_volume": 590,
-          "cpc_usd_provider_estimate": 27.85,
+          "cpc_provider_estimate": 27.85,
+          "cpc_currency": null,
           "paid_ads_competition": "MEDIUM",
           "paid_ads_competition_index": 47,
           "organic_keyword_difficulty": null,
@@ -4209,13 +4341,19 @@
           "position_in_response_not_volume_rank": 1,
           "suggestion": "llm observability"
         }
-      ]
+      ],
+      "owner_scope": {
+        "primary_route": "docs/research.html",
+        "route_status": "S1 launch candidate",
+        "owning_issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/1"
+      },
+      "secondary_mention_scope": "Writing may link relevant existing technical editions; the archive is not the full article text."
     },
     {
       "keyword": "ai governance framework",
       "priority_by_business_fit": "P2",
       "priority_is_analyst_judgment": true,
-      "proposed_content_owner": "Research / framework page",
+      "proposed_content_owner": "Research (existing page; no new launch page)",
       "intent_inferred_uk": "Широкий фреймворк",
       "recommendation_uk": "Найбільша частотність у вибірці, але змішані compliance, policy та навчальні потреби. Органічну складність не виміряно.",
       "metric_results": [
@@ -4230,7 +4368,8 @@
           "monthly_searches_estimate": 4400,
           "status": "provider_reported_estimate",
           "provider_raw_volume": 4400,
-          "cpc_usd_provider_estimate": 48.53,
+          "cpc_provider_estimate": 48.53,
+          "cpc_currency": null,
           "paid_ads_competition": "LOW",
           "paid_ads_competition_index": 32,
           "organic_keyword_difficulty": null,
@@ -4280,13 +4419,18 @@
           "position_in_response_not_volume_rank": 4,
           "suggestion": "ai governance framework"
         }
-      ]
+      ],
+      "owner_scope": {
+        "primary_route": "docs/research.html",
+        "route_status": "S1 launch candidate",
+        "owning_issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/1"
+      }
     },
     {
       "keyword": "ai roi measurement",
       "priority_by_business_fit": "Supporting",
       "priority_is_analyst_judgment": true,
-      "proposed_content_owner": "Delivery guide section",
+      "proposed_content_owner": "Delivery guide (#11; after launch and PMDay #2 overlap check)",
       "intent_inferred_uk": "Вимірювання результату",
       "recommendation_uk": "Є Google Autocomplete; RankSpot повернув No data. Можна використати як тему секції, без заяв про виміряний обсяг.",
       "metric_results": [
@@ -4301,7 +4445,8 @@
           "monthly_searches_estimate": null,
           "status": "no_data",
           "provider_raw_volume": 0,
-          "cpc_usd_provider_estimate": null,
+          "cpc_provider_estimate": null,
+          "cpc_currency": null,
           "paid_ads_competition": null,
           "paid_ads_competition_index": null,
           "organic_keyword_difficulty": null,
@@ -4326,13 +4471,19 @@
           "position_in_response_not_volume_rank": 2,
           "suggestion": "ai roi measurement"
         }
-      ]
+      ],
+      "owner_scope": {
+        "primary_route": "ai-adoption-delivery-gains.html",
+        "route_status": "proposed, not created or published",
+        "owning_issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/11"
+      },
+      "secondary_mention_scope": "Concise relevant Home problem/help wording may be used at launch; this does not create the proposed guide."
     },
     {
       "keyword": "ai developer productivity metrics",
       "priority_by_business_fit": "Supporting",
       "priority_is_analyst_judgment": true,
-      "proposed_content_owner": "Delivery guide section",
+      "proposed_content_owner": "Delivery guide (#11; after launch and PMDay #2 overlap check)",
       "intent_inferred_uk": "Вимірювання результату",
       "recommendation_uk": "Є Google Autocomplete; RankSpot повернув No data. Не присвоювати цій фразі частотність батьківського запиту.",
       "metric_results": [
@@ -4347,7 +4498,8 @@
           "monthly_searches_estimate": null,
           "status": "no_data",
           "provider_raw_volume": 0,
-          "cpc_usd_provider_estimate": null,
+          "cpc_provider_estimate": null,
+          "cpc_currency": null,
           "paid_ads_competition": null,
           "paid_ads_competition_index": null,
           "organic_keyword_difficulty": null,
@@ -4372,13 +4524,19 @@
           "position_in_response_not_volume_rank": 6,
           "suggestion": "ai developer productivity metrics"
         }
-      ]
+      ],
+      "owner_scope": {
+        "primary_route": "ai-adoption-delivery-gains.html",
+        "route_status": "proposed, not created or published",
+        "owning_issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/11"
+      },
+      "secondary_mention_scope": "Concise relevant Home problem/help wording may be used at launch; this does not create the proposed guide."
     },
     {
       "keyword": "ai governance consultant",
       "priority_by_business_fit": "Recheck",
       "priority_is_analyst_judgment": true,
-      "proposed_content_owner": "Home supporting variant",
+      "proposed_content_owner": "Home / help (existing launch page)",
       "intent_inferred_uk": "Неузгоджені дані",
       "recommendation_uk": "Старий публічний snapshot давав 170 у США; поточний RankSpot — No data. Це розбіжність джерел, не доказ падіння до нуля.",
       "metric_results": [
@@ -4393,7 +4551,8 @@
           "monthly_searches_estimate": null,
           "status": "no_data",
           "provider_raw_volume": 0,
-          "cpc_usd_provider_estimate": null,
+          "cpc_provider_estimate": null,
+          "cpc_currency": null,
           "paid_ads_competition": null,
           "paid_ads_competition_index": null,
           "organic_keyword_difficulty": null,
@@ -4418,13 +4577,18 @@
           "position_in_response_not_volume_rank": 1,
           "suggestion": "ai governance consultant"
         }
-      ]
+      ],
+      "owner_scope": {
+        "primary_route": "docs/index.html",
+        "route_status": "S1 launch candidate",
+        "owning_issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/1"
+      }
     },
     {
       "keyword": "ai coding tool roi",
       "priority_by_business_fit": "Editorial only",
       "priority_is_analyst_judgment": true,
-      "proposed_content_owner": "Delivery guide section",
+      "proposed_content_owner": "Delivery guide (#11; after launch and PMDay #2 overlap check)",
       "intent_inferred_uk": "Авторське формулювання",
       "recommendation_uk": "Підказок не отримано, RankSpot — No data. Залишити як змістовне питання, а не доведене SEO-ядро.",
       "metric_results": [
@@ -4439,7 +4603,8 @@
           "monthly_searches_estimate": null,
           "status": "no_data",
           "provider_raw_volume": 0,
-          "cpc_usd_provider_estimate": null,
+          "cpc_provider_estimate": null,
+          "cpc_currency": null,
           "paid_ads_competition": null,
           "paid_ads_competition_index": null,
           "organic_keyword_difficulty": null,
@@ -4451,13 +4616,19 @@
           "provider_trend_percent_not_used_for_ranking": 0
         }
       ],
-      "autocomplete_observations": []
+      "autocomplete_observations": [],
+      "owner_scope": {
+        "primary_route": "ai-adoption-delivery-gains.html",
+        "route_status": "proposed, not created or published",
+        "owning_issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/11"
+      },
+      "secondary_mention_scope": "Concise relevant Home problem/help wording may be used at launch; this does not create the proposed guide."
     },
     {
       "keyword": "ai roi for engineering",
       "priority_by_business_fit": "Editorial only",
       "priority_is_analyst_judgment": true,
-      "proposed_content_owner": "Delivery guide section",
+      "proposed_content_owner": "Delivery guide (#11; after launch and PMDay #2 overlap check)",
       "intent_inferred_uk": "Авторське формулювання",
       "recommendation_uk": "Є тематична лексика в DX, але немає підказок і виміряної частотності в цій перевірці. Не видавати заголовок видавця за попит.",
       "metric_results": [
@@ -4472,7 +4643,8 @@
           "monthly_searches_estimate": null,
           "status": "no_data",
           "provider_raw_volume": 0,
-          "cpc_usd_provider_estimate": null,
+          "cpc_provider_estimate": null,
+          "cpc_currency": null,
           "paid_ads_competition": null,
           "paid_ads_competition_index": null,
           "organic_keyword_difficulty": null,
@@ -4484,7 +4656,13 @@
           "provider_trend_percent_not_used_for_ranking": 0
         }
       ],
-      "autocomplete_observations": []
+      "autocomplete_observations": [],
+      "owner_scope": {
+        "primary_route": "ai-adoption-delivery-gains.html",
+        "route_status": "proposed, not created or published",
+        "owning_issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/11"
+      },
+      "secondary_mention_scope": "Concise relevant Home problem/help wording may be used at launch; this does not create the proposed guide."
     }
   ],
   "limitations": [
@@ -4496,6 +4674,14 @@
     "RankSpot competition/CPC describe advertising; organic keyword difficulty was not measured.",
     "History values have no month labels. The reported trend is retained raw but not described as YoY or used for prioritization.",
     "A single working free metric provider is the main dataset. Third-party snapshots can disagree; do not average different methods and windows.",
-    "Search-result review supplies intent clues and publisher vocabulary, not a localized, exhaustive Google rank audit."
-  ]
+    "Search-result review supplies intent clues and publisher vocabulary, not a localized, exhaustive Google rank audit.",
+    "CPC currency is not established by the retained raw replies or method source; cpc_currency is null and the numeric value is not suitable for currency comparisons or budgeting."
+  ],
+  "normalization_amendment_2026_10_02": {
+    "reason": "Independent evidence review E1–E3 against planning head 0c329dc1da5b8d89ce918383a4a6c5299526ab31.",
+    "cpc": "Renamed cpc_usd_provider_estimate to cpc_provider_estimate and added cpc_currency=null in every normalized copy. Raw replies have no currency; neither USD nor GBP is established. Raw values and noData-to-null treatment are unchanged.",
+    "selection": "selected_keywords supplies current primary owners consistent with SEO-EVIDENCE.md. seeds retains historical analysis/owner labels; it is not the current implementation mapping.",
+    "populations": "See COLLECTION-MANIFEST.json: 18 historical seeds, 20 provider input phrases (25 country/phrase requests), 28 autocomplete inputs (56 requests), 15 positive US result terms in keyword-seeds.txt. The TXT is a shortlist, not the full query set.",
+    "raw_evidence": "All raw responses are retained byte-for-byte; no collection call was repeated."
+  }
 }

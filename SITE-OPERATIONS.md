@@ -8,6 +8,10 @@ featured works, eight discussion entries, offers/contact, faceted portrait and
 scroll/topic-only motion. No updated public output is claimed by this planning
 commit. Sol must create a new named review edition, update both generators and
 remove obsolete mouse-motion instructions when the candidate is implemented.
+The independent-review correction also covers Credits' Display preferences,
+visible topic/year fragment destinations and fixed archive identity checks:
+27 primary records (20 EN, 7 UA), plus the separate Thinking Systems LinkedIn
+rendition. The primary ItemList remains 27; all linked renditions total 28.
 Browser/release acceptance remains separate. English is settled; the permanent
 URL and applicable rights/publication decision remain #8/#7.
 
