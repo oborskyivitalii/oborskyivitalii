@@ -1,22 +1,27 @@
 {
-  "checked_date": "2026-10-01",
+  "checked_date": "2026-10-02",
   "public_directory": "docs",
   "visual_review": "pending: browser unavailable for local preview",
   "files": {
     "docs/.nojekyll": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "docs/archive.js": "20ac1b1155306d9984ede1f52d09d791e99b1c3228ce469c0193eb1ef898428a",
+    "docs/assets/vitalii-oborskyi-cutout.webp": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae",
     "docs/assets/vitalii-oborskyi.jpg": "5321e48f08b075cb1cbd522d0f36bc01276aece65d1a04cf09102aa5dd2b59bc",
-    "docs/credits.html": "6944438f6ebe83f8a49deb4095135659d068d52cbef89fb6f07756199029767d",
-    "docs/index.html": "b27d121c0acb57efdd97203c8dffdfe6bcf5d50bfd07dc0fad327936f057cbfd",
-    "docs/styles.css": "57dafa9f08574a15205eecfd9ed88932e7fc1f9900c0935d1271bfd78a4a7acf",
+    "docs/credits.html": "6d9d6c9a449489ec5fd225c31c468a030bcc33719e3a0660d16df82347112969",
+    "docs/index.html": "f94e4d3692b06b32cd3afc1cce1e5c4b2f1038cdc3f85c29c2d52cb4c3764527",
+    "docs/research.html": "7cfe557679f4328229fd4eb8267829f5c62e91c699cd478ca71c8dfff0f2cbe2",
+    "docs/space.js": "e60024fb1da627f87efbd68bad12386933f925dbfa5f6ab4c502df846ee3f5e3",
+    "docs/styles.css": "19a79bb5c076b60714e360815b67af702ff0505953b1c0c6fea54d67ea838b43",
+    "docs/talks.html": "54a31e701aeb528c814b536ce46f57098e4fd43ae3c6b9558eef2b46b357f08f",
     "docs/theme.js": "d88a5127094b2d4c129de190ed10bd71e2c35cc85052a747411e7fa8d50d01dd",
-    "docs/writing.html": "ea274d1149f13b52ca0166956d5ddbc5b5caaa891a1ed62e594737861386bdc2"
+    "docs/writing.html": "62b887f0557691edeaeb6875b7d12236d19a5e33eaf239eac221a4710ec50959"
   },
-  "structural_checks": "passed",
-  "theme_behavior": "six behavioral tests passed; visual inspection pending",
+  "structural_checks": "passed: five pages; IDs/ARIA/navigation/resources; edition/schema identity; draft isolation",
+  "theme_behavior": "six theme, four spatial-scene and three archive behavioral checks passed; not browser QA",
   "source_audit": "SITE-SOURCE-AUDIT.md",
   "independent_review": {
-    "status": "pending for current portrait/language/SEO edition",
-    "previous_scope": "Previous confirmation above is historical; public bytes changed",
+    "status": "pending for current multi-page, cutout, spatial scene and expanded archive edition",
+    "previous_scope": "Recorded previous independent confirmations are historical; this edition changes public bytes",
     "remaining": [
       "Fresh independent/editorial review",
       "Actual desktop/mobile/print visual review",
@@ -26,11 +31,11 @@
     ]
   },
   "review_handoff": {
-    "checked_date": "2026-10-01",
-    "kind": "v2 fixed Day/Night copies with exact CSS, portrait and non-executable metadata; earlier previews historical",
-    "manifest": "review/site-v1-static-previews-v2.json",
-    "checks": "Three preview and four content tests passed; not independent confirmation",
-    "visual_review": "Pending; no browser inspection claimed"
+    "checked_date": "2026-10-02",
+    "kind": "v3: ten fixed Day/Night and five interactive self-contained pages; earlier editions historical",
+    "manifest": "review/site-v1-static-previews-v3.json",
+    "checks": "four export/content-parity/resource tests; not browser QA",
+    "visual_review": "Pending; previous browser access block not bypassed"
   },
   "previous_independent_review": {
     "status": "Confirmed for static/content/behavior scope",
@@ -50,10 +55,10 @@
     ]
   },
   "current_checks": {
-    "node_tests": 13,
+    "node_tests": 21,
     "python_tests": 18,
-    "preview_export": "fresh v2 manifest; five source inputs and six fixed-theme review pages",
-    "content": "English interface; 20 English and 3 Ukrainian editions; seven public files; portrait and metadata checks passed",
+    "preview_export": "15 review pages; ten source inputs; hashes fresh",
+    "content": "Five English pages; four featured; 27 original editions, 20 EN and 7 UA; 12 public files",
     "machine_languages": [
       "en",
       "uk"
@@ -61,6 +66,14 @@
     "visible_language_labels": [
       "EN",
       "UA"
-    ]
+    ],
+    "portrait": {
+      "webp_bytes": 55458,
+      "width": 780,
+      "height": 721,
+      "source_original_unchanged": true,
+      "derivative": "AI-assisted transparent cutout, web encoding; not exact foreground pixel identity"
+    },
+    "visual_browser_QA": "pending"
   }
 }

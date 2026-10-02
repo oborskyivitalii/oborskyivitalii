@@ -6,73 +6,89 @@ Next publication: [PMDay #2](https://github.com/oborskyivitalii/oborskyivitalii/
 
 ## Implementation boundary
 
-The first version is static HTML/CSS with a small visitor-theme script in `docs/`.
-It needs no build, package dependency or runtime service. Node's built-in test
-runner checks the theme in CI; it is not a website build or deployment dependency.
-GitHub Pages publishes only that directory;
-root process files, drafts and review artifacts are not website content.
-Keep the profile README and use relative internal URLs. English is the maintainer's
-confirmed interface language. The permanent Pages URL remains undecided; no
-repository rename or public release is inferred.
+The first version is static HTML/CSS in `docs/` with three small optional browser
+scripts: visitor-local themes, decorative spatial perspective and archive filters.
+There is no site build, installed package, external font, analytics or runtime
+service. Node/Python run bounded developer checks and produce review handoffs;
+they are not website runtime dependencies. Pages publishes only `docs/`, keeping
+process, drafts and review artifacts out of the public site. English is confirmed;
+the permanent Pages URL and site-wide rights decision remain #8/#7.
 
-The homepage owns a short author description, two research routes, selected
-publication links and bounded acknowledgements. `docs/writing.html` indexes
-23 works (20 English, 3 Ukrainian), including earlier delivery/PMO and AI strategy writing. It links external article editions
-without importing their body text, figures or platform assets. The site-wide license
-decision remains [rights #7](https://github.com/oborskyivitalii/oborskyivitalii/issues/7);
-the credits page describes that current state without licensing sibling research.
+Navigation is **Home · Research · Writing · Talks**, with Credits in the footer.
+Home contains the author/About, two directions, four selected articles and four
+source-bounded attributions. Research retains detailed terminology, control
+theory/TOC lenses and all seven conversations. Writing indexes **27 platform
+editions (20 EN/7 UA)** by year and topic; optional filters intersect topic/year/
+language and preserve query state in the URL. All items remain ordinary readable
+HTML without scripts. Talks retains three public event records and exact language
+bounds. No original article body, figures or recordings are copied into the site.
 
-## Preview
+The supplied original JPEG is retained unchanged. The displayed image is an
+AI-assisted transparent derivative, optimized to a 55,458-byte WebP, with alt text
+and dimensions. Public credits disclose that treatment. Rights/likeness review is
+not replaced by compression, behavioral tests or the illustrative concept board.
 
-For a file viewer that cannot run JavaScript or keep the public directory together,
-use the review-only fixed-theme copies. They embed the exact public CSS and expose
-Day/Night as ordinary links. Homepage, the complete 23-work archive and credits
-each have a Day and Night copy; local navigation stays inside those six files.
-The current v2 homepage copies also embed the exact supplied portrait. All review
-copies are marked noindex and are outside the proposed public source directory.
-These copies are not the Auto-mode demonstration, browser QA or deployment.
-The original `review/site-v1-preview.html` and the earlier fixed-theme copies
-remain historical; they do not represent the current portrait/language/SEO revision.
+## Current preview and checks
+
+The current self-contained files are `review/site-v1-20261002-v3-*.html`.
+Open `review/site-v1-20261002-v3-interactive.html` for the actual five-page design
+with exact inlined public scripts and remapped navigation. Auto/Day/Night, Motion
+and archive filters require a script-capable browser. The file links to fixed
+Day/Night alternatives when the viewer blocks scripts. Fixed copies inline exact
+CSS/WebP, retain the complete catalog and year/topic navigation, and use a static
+vector background. They do not demonstrate movement, filtering or Auto.
+
+- `review/site-v1-20261002-v3-day.html` / `-night.html`: updated homepage.
+- `review/site-v1-20261002-v3-writing-day.html`: complete catalog, with Night and
+  interactive counterparts.
+- Research, Talks and Credits also have each of those three variants.
+- `review/site-v1-static-previews-v3.json`: ten source hashes and 15 output hashes.
+- `review/site-v1-20261002-v3.zip`: extract all files; open `site/index.html` in a
+  browser, or the contained review alternatives. Entry hashes are in
+  `review/site-v1-offline-bundle-v3.json`.
+
+Keep the extracted files together for navigation. All review copies are noindex,
+outside the public directory. Earlier v1/v2/proposal artifacts are historical.
+No generated mockup is an actual browser screenshot; these exports are inspectable
+outputs, not browser visual QA or deployment.
 
 ```bash
 node tools/build_site_previews.cjs
+python3 tools/build_site_bundle.py
+node --test tests/theme.test.cjs tests/space.test.cjs tests/archive.test.cjs tests/content.test.cjs tests/preview.test.cjs
 node tools/build_site_previews.cjs --check
-node --test tests/preview.test.cjs tests/content.test.cjs
+python3 tools/build_site_bundle.py --check
 ```
 
-Open `review/site-v1-20261001-v2-day.html` or
-`review/site-v1-20261001-v2-night.html`; the full catalog is
-`review/site-v1-20261001-v2-writing-day.html` (or its `night` counterpart).
-`review/site-v1-static-previews-v2.json` records the exact source/output hashes.
-Keep all six HTML files together for page/theme navigation after downloading.
-
-From the repository root:
+For a local web-server review:
 
 ```bash
 python3 -m http.server 8765 --bind 127.0.0.1 --directory docs
 ```
 
-Open `http://127.0.0.1:8765/`. Inspect desktop and mobile widths, keyboard
-navigation, all section links, external publication links, `writing.html` and
-`credits.html`. Check Day/Night and Auto on each page, long article titles and
-print output. Auto uses the device's local clock: light from 07:00 to 19:00,
-dark otherwise; a saved manual choice takes priority. Storage failures keep the
-in-tab choice usable, and no-JavaScript visitors get their OS light/dark preference.
-Browser inspection belongs in review; Python is only a local file server.
+Open `http://127.0.0.1:8765/`. Inspect actual desktop/mobile/keyboard/print output,
+all page and section links, original edition URLs and long titles. Check Auto:
+Day 07:00–18:59, Night 19:00–06:59 in the visitor's local clock; saved manual choice
+wins, and storage failure remains usable in-tab. No scripts uses OS color preference.
 
-Theme behavior checks (Node 18+ built-in modules, no install):
+Scroll/section navigation moves the perspective through linked rings/branches and
+a narrow flow throat; mouse adds bounded parallax. Motion can be switched Off;
+reduced motion wins over saved On. Touch/mobile pointer motion is ignored, pixel
+ratio is capped, frames are coalesced and there is no idle loop. Hidden/printing
+states pause drawing. No Canvas leaves a static SVG. This is decorative geometry,
+not measured telemetry, a scientific simulation or a canonical research diagram.
+Print shows all archive entries, then restores filters after print.
 
-```bash
-node --test tests/theme.test.cjs
-```
+The previous browser access block remains: current desktop/mobile/keyboard/print
+rendering and measured performance are **pending**. Do not attempt a workaround
+or label source/VM behavioral checks as actual browser QA. RI commands remain in
+`.github/REPOSITORY-INTELLIGENCE.md`.
 
 ## Launch
 
-The [2026-10-02 visual proposal](SITE-VISUAL-REVIEW.md) is a separate review artifact
-with native Day/Night controls and an embedded cutout. It is not the current
-public edition or Auto-mode test. If the maintainer selects that direction,
-apply it consistently to the public pages, optimize the derived image and refresh
-the public review/handoff before completing the launch checks below.
+The maintainer authorized applying the design and page separation on 2026-10-02.
+The [visual record](SITE-VISUAL-REVIEW.md) now describes the applied candidate and
+preserves the earlier proposal as history. The release decisions below remain.
 
 1. Review the concrete homepage and rights/attribution inventory in
    [SITE-CONTENT-REVIEW](SITE-CONTENT-REVIEW.md) and

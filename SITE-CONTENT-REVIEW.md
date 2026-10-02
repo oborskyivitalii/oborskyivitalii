@@ -1,5 +1,42 @@
 # Site v1 content and release review
 
+## Current applied edition — 2026-10-02
+
+Intent amendment is recorded in #1 before implementation. Home is an author card
+with About, two research directions, four selected editions and four bounded
+attributions. Research keeps the detailed vocabulary and all seven conversations;
+Writing lists 27 original platform editions (20 EN/7 UA) under year/topic headings,
+with progressive year/topic/language filters. Talks has the three original event
+records and the existing language bounds. Credits describes the AI-assisted
+portrait derivative and local theme/motion preferences. All five pages share
+navigation, explicit current-page state, skip link and Day/Night styling.
+
+The previous source records below remain historical. Current checked expansion
+and TOC treatment are in SITE-SOURCE-AUDIT. Four original DOU headers/bylines/dates
+were inspected; no article body or unverified risk-management entry is added.
+TOC is a delivery-system interpretation lens, distinct from UA constraints;
+existing Subprime methodology/audit statuses are not changed or promoted.
+
+Implementer verification: 21 Node tests (6 theme, 4 spatial behavior, 3 archive,
+4 content, 4 export) and 18 Python adapter tests; original 23 edition identities
+plus alternate link preserved; four new dated UA editions; full local/ARIA/label
+navigation; 15 self-contained exports and deterministic offline ZIP; twelve
+public-file hashes, preview/source freshness and RI freshness. Exact-head CI
+is recorded in PR/issue after branch upload, not inferred from local checks.
+
+The scene has actual perspective/scroll changes, idle/visibility/print control,
+reduced-motion and saved-Off behavior; no Canvas keeps a static vector fallback.
+The archive remains readable without scripts and prints all entries. These tests
+exercise behavior/source structure, **not browser rendering, measured performance
+or full accessibility**. Browser desktop/mobile/keyboard/print inspection remains
+pending because the prior access block was not bypassed. No current independent
+confirmation or editorial/rights/release acceptance is asserted. Earlier reviewer
+confirmations refer only to their exact recorded editions. Keep PR Draft/#1 open.
+
+Current preview/source hashes are in `review/site-v1-review.json` and
+`review/site-v1-static-previews-v3.json`; current bundle entry hashes are in
+`review/site-v1-offline-bundle-v3.json`. Earlier previews are historical.
+
 Checked 2026-10-01 for [launch #1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1).
 This is a reviewable candidate, not a deployment or maintainer approval.
 

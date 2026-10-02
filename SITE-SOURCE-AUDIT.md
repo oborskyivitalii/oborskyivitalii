@@ -1,5 +1,53 @@
 # Source audit for the first-site revision
 
+## Archive/navigation and TOC amendment — 2026-10-02
+
+The maintainer explicitly requests the applied redesign, a fuller archive and
+control-theory/Theory-of-Constraints discoverability. The original 23 records and
+separately dated Thinking Systems alternate link retain their identity. Four
+additional Ukrainian DOU editions were opened individually: header, exact title,
+byline Vitalii Oborskyi and platform date were inspected. Metadata only is added;
+article bodies and historical theses are not endorsed or imported as new research.
+
+| Additional edition | Date | Original source / checked evidence |
+| --- | --- | --- |
+| Архітектура невизначеності: сучасний підхід до проєктування LLM-застосунків | 2025-11-18 | [DOU](https://dou.ua/forums/topic/56606/), original header/byline/date. Distinct from the English November 22 edition. |
+| On-device LLM чи API з хмари? Чекліст для продактів і архітекторів | 2025-09-03 | [DOU](https://dou.ua/forums/topic/55461/), original header/byline/date. Distinct from the English September 6 edition. |
+| ШІ-бейджики, а не трансформація: чому delivery без наскрізних зв’язків — це ілюзія прогресу | 2025-06-18 | [DOU](https://dou.ua/forums/topic/54329/), original header/byline/date. Its exact original title is retained. |
+| Ласкаво просимо в епоху кіберпанку: коли корпорації диктують етику штучного інтелекту | 2025-05-07 | [DOU](https://dou.ua/forums/topic/53714/), original header/byline/date. Distinct from the English April 24 edition. |
+
+There are now **27 indexed platform editions: 20 English and 7 Ukrainian**.
+Related editions are not asserted to be exact translations or 27 distinct works.
+The profile's risk-management DOU link did not retrieve in this pass; do not
+invent metadata. The author's current Medium listing and profile were inspected
+again for discovery; no unverified extra entries or performance metrics are added.
+
+TOC source support: searched the complete local Subprime Markdown tree for
+Theory of Constraints/TOC/Goldratt and inspected current live
+[Subprime README](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis/blob/main/README.md).
+It explicitly lists Goldratt's TOC under methodology/theory used to interpret
+delivery behavior rather than measure AI effects. Existing references include
+`report/01_the_illusion.md`, `report/02_broken_mechanics.md`, `REFERENCES.md`,
+`evidence/SOURCES.md` (M-1984-01) and `evidence/methodology/README.md`.
+Registry audit/research statuses are unchanged, including the registered source's
+not-started audit. The linked [TOCICO introduction](https://learningcenter.tocico.org/courses/what-is-the-theory-of-constraints-basics-workshop)
+provides primary background for the throughput/bottleneck lens. Site copy says
+Subprime *uses this lens*, not that this validates its empirical conclusions.
+UA runtime constraints/control theory and Goldratt's TOC remain distinct.
+
+Attribution wording/source URLs are retained: four selected records on Home,
+all seven on Research, event host sources on Talks. Original articles are kept
+crawlable in ordinary HTML; filtering and spatial geometry are optional UI.
+No scientific definition, source status, employer/certification or corporate
+endorsement is added. Sibling repositories and live Medium remain unchanged.
+
+The cutout is an AI-assisted derivative; WebP encoding/resizing is ordinary asset
+optimization, not further creative editing. Its original PNG/source photograph
+remain available unchanged. The public credits now disclose the derivative;
+general photographic reuse/rights acceptance stays open in #7.
+
+The earlier sections below preserve their historical check dates and counts.
+
 Checked 2026-10-01. Owning intent: [launch #1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1); implementation: [PR #10](https://github.com/oborskyivitalii/oborskyivitalii/pull/10).
 
 ## Input and method

@@ -27,8 +27,8 @@ Status is `planned`, `active`, `blocked`, or `done`. A milestone is `done` only 
 
 | ID | Deliverable | Status | Acceptance evidence |
 | --- | --- | --- | --- |
-| M0 | Choose URL/language and approve first-version scope | active | Questions recorded in #1/#8; English/current project path remain provisional preview assumptions |
-| M1 | Minimal personal site: about, two research strands/projects, topical publication/talk index | active | [Static candidate](docs/index.html) and [current portrait-inclusive preview](review/site-v1-20261001-v2-day.html) prepared; [source/rights review](SITE-CONTENT-REVIEW.md) records checks and remaining visual/release decisions. Not deployed. |
+| M0 | Choose URL/language and approve first-version scope | active | English confirmed; dated scope amendments in #1, permanent URL decision still open in #8 |
+| M1 | Minimal personal site: about, two research strands/projects, topical publication/talk index | active | [Applied candidate](docs/index.html) and [current interactive preview](review/site-v1-20261002-v3-interactive.html); five pages, four featured/27 indexed editions and optional spatial motion. [Source/rights review](SITE-CONTENT-REVIEW.md) records checks and remaining browser/release acceptance. Not deployed. |
 | M2 | First new publication: PMDay explanatory article and versioned slide/PDF page | planned | Article and exact deck edition reviewed; exported PDF inspected; sources, rights, and two project links checked; explicit publication decision |
 | M3 | Lean Markdown → HTML/PDF publishing path for this site | planned | Reuses or pins reviewed components without copying UA's whole framework/CI; staging, draft isolation, source identity, rejection-path tests and visual PDF review demonstrated |
 | M4 | Finish Subprime's existing article/PDF adaptation in its own PR | planned | Review [Subprime #46](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis/pull/46) at its live head; test required figures/assets and real outputs, retain its source/review governance; separate decision on merge |
@@ -102,3 +102,20 @@ are prepared outside `docs/`. Public files and existing theme/SEO/publication da
 remain unchanged. Current iteration acceptance is a concrete reviewable proposal,
 not implicit approval of a public redesign. Browser, likeness/design, rights and
 release decisions remain separate; see launch #1 and PR #10.
+
+### Applied design and navigation — 2026-10-02
+
+The subsequent maintainer request authorizes fixing the visual findings and
+separating the homepage from the catalog. Draft PR #10 now applies the design to
+Home, Research, Writing, Talks and Credits, with an optimized transparent portrait
+and optional perspective background that follows scrolling/sections. Home keeps
+four featured editions and four bounded attributions; Research retains all seven
+conversations and vocabulary; Writing adds four verified Ukrainian DOU editions,
+giving 27 platform editions grouped by year/topic with language filters. TOC is
+explicitly covered as a delivery lens, distinct from UA control constraints.
+
+Current [offline handoff](review/site-v1-20261002-v3.zip), [v3 manifest](review/site-v1-static-previews-v3.json)
+and [review record](SITE-CONTENT-REVIEW.md) supersede earlier previews for current
+inspection. The original proposal remains historical. Intent/outcomes/checks are
+recorded in #1/PR #10. M1 remains active for browser/editorial/rights/URL, integration
+and deployed-edition verification; no sibling migration or release is inferred.

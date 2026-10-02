@@ -1,5 +1,47 @@
 # Site visual review and proposed direction
 
+## Applied candidate — 2026-10-02
+
+The maintainer's next request explicitly authorizes fixing the findings and
+splitting navigation. The design is now applied consistently in `docs/`, with
+Home, Research, Writing and Talks plus Credits. Home has four featured editions,
+four selected exact-source attributions and the author/research introduction.
+Research retains all seven bounded conversations and the living vocabulary;
+Writing has 27 editions grouped by year and topic with optional language filters.
+
+The hero uses the transparent derivative as a 780×721, 55,458-byte WebP. Original
+JPEG and full PNG remain unchanged. Sans-serif hierarchy, readable metadata,
+flattened project routes and Day/Night cyan/amber tokens apply to all pages.
+The homepage questions now sit below the integrated bust; mobile source rules
+place a small portrait beside the name.
+
+`docs/space.js` projects 96 nodes, linked rings, branching paths and a narrow
+flow throat into a decorative perspective scene. Scroll moves the viewpoint
+between section positions; mouse movement adds bounded parallax. It is not an
+actual scientific diagram, measured telemetry or simulation. The scene draws
+only on demand, coalesces events into one pending frame, caps pixel ratio at 1.5,
+ignores touch/mobile pointer motion, pauses when hidden/printing and respects
+saved Off plus reduced motion. A static SVG remains when Canvas is unavailable.
+Theme changes redraw both animated and static states. No animation library,
+external font, service or package dependency is added to the site.
+
+Current handoff: [interactive](review/site-v1-20261002-v3-interactive.html),
+[Day](review/site-v1-20261002-v3-day.html),
+[Night](review/site-v1-20261002-v3-night.html),
+[catalog](review/site-v1-20261002-v3-writing-day.html) and the
+[offline bundle](review/site-v1-20261002-v3.zip). These derive from current pages,
+not the illustrative raster board. Browser desktop/mobile/keyboard/print QA
+remains pending; the prior access block was not bypassed. Candidate implementation
+does not authorize merge, Pages, URL selection or release.
+
+The original proposal/findings below are **historical at their recorded ref**.
+Their "public unchanged" and pending-application statements describe that earlier
+iteration, not the applied candidate. The old generator now checks stored-output
+integrity only; reproduce its original behavior from local commit
+`585aa52b12d7b8ab11ea90c105281f2e109a510e` (equivalent remote
+`75d3911890303d60dfa44271f8f88d0f154cd368`). Current generation belongs to
+`tools/build_site_previews.cjs` and `tools/build_site_bundle.py`.
+
 Date: 2026-10-02. Owning intent: [launch #1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1).
 Implementation context: Draft [PR #10](https://github.com/oborskyivitalii/oborskyivitalii/pull/10).
 The maintainer requested an integrated portrait with background removal and a

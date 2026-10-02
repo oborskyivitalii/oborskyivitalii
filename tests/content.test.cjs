@@ -4,9 +4,9 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 const root = path.resolve(__dirname, "../docs");
-const pages = Object.fromEntries(["index", "writing", "credits"].map(name => [name, fs.readFileSync(path.join(root, name + ".html"), "utf8")]));
+const pages = Object.fromEntries(["index", "research", "writing", "talks", "credits"].map(name => [name, fs.readFileSync(path.join(root, name + ".html"), "utf8")]));
 const schema = html => JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
-const articleRows = html => [...html.matchAll(/<li class="publication" data-language="(en|uk)">([\s\S]*?)<\/li>/g)];
+const articleRows = html => [...html.matchAll(/<li class="publication" data-language="(en|uk)"[^>]*>([\s\S]*?)<\/li>/g)];
 const plainTitle = html => html.replace(/<span class="publication-arrow"[^>]*>[\s\S]*?<\/span>/g, "")
   .replace(/<[^>]*>/g, "").replace(/&(amp|quot|apos|lt|gt);/g,
     (_, entity) => ({amp: "&", quot: '"', apos: "'", lt: "<", gt: ">"})[entity]);
@@ -25,7 +25,7 @@ test("English UI has distinct useful metadata and non-executable accurate page s
     assert.ok(html.includes(`name="twitter:title" content="${title}"`));
     assert.doesNotMatch(html, /name="keywords"|rel="canonical"|hreflang=|property="og:url"|property="og:image"|noindex/);
     const scripts = [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/g)];
-    assert.equal(scripts.length, 2);
+    assert.equal(scripts.length, html === pages.writing ? 4 : 3);
     assert.equal(scripts.filter(s => s[1] === ' src="theme.js"').length, 1);
     assert.equal(scripts.filter(s => s[1] === ' type="application/ld+json"').length, 1);
     const data = schema(html);
@@ -33,25 +33,28 @@ test("English UI has distinct useful metadata and non-executable accurate page s
     assert.equal(data.inLanguage, "en");
     titles.push(title);
   }
-  assert.equal(new Set(titles).size, 3);
+  assert.equal(new Set(titles).size, 5);
   assert.equal(schema(pages.index)["@type"], "ProfilePage");
   assert.equal(schema(pages.index).mainEntity.name, "Vitalii Oborskyi");
   assert.equal(schema(pages.index).mainEntity.sameAs.length, 3);
 });
 
-test("20 English and 3 Ukrainian editions remain language-separated and match article schema", () => {
+test("27 language-labelled editions match article schema and retain a useful time/topic hierarchy", () => {
   const rows = articleRows(pages.writing);
-  assert.equal(rows.length, 23);
+  assert.equal(rows.length, 27);
   assert.equal(rows.filter(r => r[1] === "en").length, 20);
-  assert.equal(rows.filter(r => r[1] === "uk").length, 3);
-  assert.ok(pages.writing.includes('id="english-articles"'));
-  assert.ok(pages.writing.includes('id="ukrainian-articles"'));
+  assert.equal(rows.filter(r => r[1] === "uk").length, 7);
+  assert.ok(pages.writing.includes('id="year-2026"'));
+  assert.ok(pages.writing.includes('id="year-2025"'));
+  for (const topic of ["delivery", "systems", "leadership", "strategy"]) assert.ok(pages.writing.includes(`id="topic-${topic}"`));
   for (const row of rows) {
     assert.ok(row[2].includes(row[1] === "uk" ? 'lang="uk">UA · Українська' : "EN · English"));
     if (row[1] === "uk") assert.ok(row[2].includes('<span lang="uk">'));
   }
   const items = schema(pages.writing).mainEntity.itemListElement;
   assert.equal(items.length, rows.length);
+  assert.deepEqual(items.map(item => item.item.url), rows.map(row => row[2].match(/class="publication-title" href="([^"]+)"/)[1]));
+  assert.deepEqual(items.map(item => item.position), rows.map((_, index) => index + 1));
   for (const row of rows) {
     const url = row[2].match(/class="publication-title" href="([^"]+)"/)[1];
     const item = items.find(i => i.item.url === url)?.item;
@@ -64,8 +67,8 @@ test("20 English and 3 Ukrainian editions remain language-separated and match ar
     assert.equal(item[row[2].includes("· edited") ? "dateModified" : "datePublished"], date);
     if (row[2].includes("· edited")) assert.equal(item.datePublished, undefined);
   }
-  assert.equal(articleRows(pages.index).length, 9);
-  assert.equal(articleRows(pages.index).filter(r => r[1] === "uk").length, 2);
+  assert.equal(articleRows(pages.index).length, 4);
+  assert.equal(articleRows(pages.index).filter(r => r[1] === "uk").length, 1);
 });
 
 test("portrait is a real sized local asset and ambiguous talk languages stay explicit", () => {
@@ -73,9 +76,12 @@ test("portrait is a real sized local asset and ambiguous talk languages stay exp
   assert.equal(photo[0], 0xff);
   assert.equal(photo[1], 0xd8);
   assert.ok(photo.length < 200000);
-  assert.match(pages.index, /<img src="assets\/vitalii-oborskyi.jpg" alt="Portrait of Vitalii Oborskyi" width="960" height="887"/);
-  assert.equal([...pages.index.matchAll(/<article class="publication" data-language="unconfirmed">/g)].length, 2);
-  assert.ok(pages.index.includes('id="ukrainian-talks"'));
+  const cutout = fs.readFileSync(path.join(root,"assets/vitalii-oborskyi-cutout.webp"));
+  assert.equal(cutout.subarray(8,12).toString(), "WEBP");
+  assert.ok(cutout.length < 80000);
+  assert.match(pages.index, /<img src="assets\/vitalii-oborskyi-cutout.webp" alt="Portrait of Vitalii Oborskyi with the background removed" width="780" height="721"/);
+  assert.equal([...pages.talks.matchAll(/<article class="publication" data-language="unconfirmed">/g)].length, 2);
+  assert.ok(pages.talks.includes('id="ukrainian-talks"'));
 });
 
 test("page IDs, ARIA targets, local resources and fragments resolve without draft leakage", () => {
@@ -99,7 +105,7 @@ test("page IDs, ARIA targets, local resources and fragments resolve without draf
       if (fragment) assert.ok(ids.get(target)?.has(fragment), value);
     }
   }
-  const expected = [".nojekyll", "assets", "credits.html", "index.html", "styles.css", "theme.js", "writing.html"];
+  const expected = [".nojekyll", "archive.js", "assets", "credits.html", "index.html", "research.html", "space.js", "styles.css", "talks.html", "theme.js", "writing.html"];
   assert.deepEqual(fs.readdirSync(root).sort(), expected);
-  assert.deepEqual(fs.readdirSync(path.join(root, "assets")), ["vitalii-oborskyi.jpg"]);
+  assert.deepEqual(fs.readdirSync(path.join(root, "assets")).sort(), ["vitalii-oborskyi-cutout.webp", "vitalii-oborskyi.jpg"]);
 });

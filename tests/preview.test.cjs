@@ -3,16 +3,16 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
-const { buildPreviews, renderPage, filename, digest } = require("../tools/build_site_previews.cjs");
+const { buildPreviews, renderPage, filename, digest, pages, interactiveFilename } = require("../tools/build_site_previews.cjs");
 const root = path.resolve(__dirname, "..");
 const css = fs.readFileSync(path.join(root, "docs/styles.css"), "utf8");
-const portrait = fs.readFileSync(path.join(root, "docs/assets/vitalii-oborskyi.jpg"));
+const portrait = fs.readFileSync(path.join(root, "docs/assets/vitalii-oborskyi-cutout.webp"));
 const files = buildPreviews();
 const htmlFiles = Object.keys(files).filter((file) => file.endsWith(".html"));
 
-test("six fixed-theme copies preserve actual main content, CSS and external source links", () => {
-  assert.equal(htmlFiles.length, 6);
-  for (const page of ["index", "writing", "credits"]) {
+test("ten fixed-theme copies preserve actual main content, CSS and external source links", () => {
+  assert.equal(htmlFiles.length, 15);
+  for (const page of pages) {
     const source = fs.readFileSync(path.join(root, `docs/${page}.html`), "utf8");
     for (const theme of ["light", "dark"]) {
       const html = files[`review/${filename(page, theme)}`];
@@ -25,24 +25,24 @@ test("six fixed-theme copies preserve actual main content, CSS and external sour
       assert.ok(html.includes('aria-current="page"'));
       const main = (text) => text.match(/<main\b[\s\S]*?<\/main>/)[0];
       const restoreLinks = (text) => text.replace(/href="([^"]+)"/g, (attribute, value) => {
-        for (const original of ["./", "writing.html", "credits.html"]) {
+        for (const original of ["./", "research.html", "writing.html", "talks.html", "credits.html"]) {
           const target = filename(original === "./" ? "index" : original.replace(".html", ""), theme);
           if (value === target || value.startsWith(target + "#")) return `href="${original}${value.slice(target.length)}"`;
         }
         return attribute;
       });
-      const restored = restoreLinks(main(html)).replace(`src="data:image/jpeg;base64,${portrait.toString("base64")}"`, 'src="assets/vitalii-oborskyi.jpg"');
-      assert.equal(restored, main(source));
-      if (page === "index") assert.ok(html.includes(`src="data:image/jpeg;base64,${portrait.toString("base64")}"`));
+      const restored = restoreLinks(main(html)).replace(`src="data:image/webp;base64,${portrait.toString("base64")}"`, 'src="assets/vitalii-oborskyi-cutout.webp"');
+      assert.equal(restored, main(source).replace(/<form id="archive-filters"[\s\S]*?<\/form>/, ""));
+      if (page === "index") assert.ok(html.includes(`src="data:image/webp;base64,${portrait.toString("base64")}"`));
       const external = (text) => [...text.matchAll(/href="(https:\/\/[^"]+)"/g)].map((match) => match[1]);
       assert.deepEqual(external(html), external(source));
       const count = [...html.matchAll(/class="publication-title"/g)].length;
-      assert.equal(count, page === "index" ? 9 : page === "writing" ? 23 : 0);
+      assert.equal(count, page === "index" ? 4 : page === "writing" ? 27 : 0);
     }
   }
 });
 
-test("every local preview link and fragment resolves within the six-page handoff", () => {
+test("every local preview link and fragment resolves within the fifteen-page handoff", () => {
   for (const file of htmlFiles) {
     const html = files[file];
     const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
@@ -58,12 +58,26 @@ test("every local preview link and fragment resolves within the six-page handoff
 });
 
 test("manifest records exact inputs/outputs and unknown source shapes fail visibly", () => {
-  const manifest = JSON.parse(files["review/site-v1-static-previews-v2.json"]);
-  assert.equal(Object.keys(manifest.sources).length, 5);
-  assert.equal(Object.keys(manifest.files).length, 6);
+  const manifest = JSON.parse(files["review/site-v1-static-previews-v3.json"]);
+  assert.equal(Object.keys(manifest.sources).length, 10);
+  assert.equal(Object.keys(manifest.files).length, 15);
   for (const [file, hash] of Object.entries(manifest.sources)) assert.equal(digest(fs.readFileSync(path.join(root, file))), hash);
   for (const [file, hash] of Object.entries(manifest.files)) assert.equal(digest(files[file]), hash);
   assert.deepEqual(buildPreviews(), files);
   assert.throws(() => filename("index", "auto"), /Unknown/);
   assert.throws(() => renderPage("<html></html>", css, "index", "light"), /source marker/);
+});
+
+test("interactive copies contain exact executable sources after their required DOM and embed all resources", () => {
+  for (const page of pages) {
+    const html = files[`review/${interactiveFilename(page)}`];
+    assert.doesNotMatch(html, /<script[^>]*src=|<link[^>]*stylesheet|src="assets\//);
+    for (const name of ["theme", "space", ...(page === "writing" ? ["archive"] : [])]) {
+      const source = fs.readFileSync(path.join(root, `docs/${name}.js`), "utf8");
+      const position = html.indexOf(`<script>\n${source}</script>`);
+      assert.ok(position >= 0);
+      if (name !== "theme") assert.ok(position > html.indexOf("</main>"));
+    }
+    assert.ok(html.includes('<meta name="robots" content="noindex, nofollow">'));
+  }
 });

@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "8aaa5b2de5f6413e46c7f12fc3867f9f39e29785c12e5271bf23241aee11b269",
+    "digest": "bd9b2b69201aa685cdaf11757fa91b13ca70d6b3363968c83e7ac97935212b42",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -44,7 +44,7 @@
       {
         "path": ".github/workflows/navigation.yml",
         "identity_mode": "content",
-        "sha256": "b5691a78472811ec67e5f4962cfa7d3788c4c6732425b11013e4115a07c5999a"
+        "sha256": "cc2c56c8780712bd9080a0d2ff8236ec11740b1f2c73e545b2cfe6ffbefd094a"
       },
       {
         "path": "AGENTS.md",
@@ -64,7 +64,7 @@
       {
         "path": "README.md",
         "identity_mode": "content",
-        "sha256": "1febb972e775591fdb5fe52ef54ed851c6554f19370b12c97e140cc064784dc6"
+        "sha256": "d31d1db7310c6a6b19e033bc58c701f4dcba2080b1a7d38e6731bdd8aab5dbe5"
       },
       {
         "path": "REPOSITORIES.md",
@@ -74,35 +74,43 @@
       {
         "path": "SITE-CONTENT-REVIEW.md",
         "identity_mode": "content",
-        "sha256": "811767ad54d650c409d4efd865e0719ba6edec3d91897c9286743629975ab71a"
+        "sha256": "9b39ede1d1f182b1f34199b1c88758d161091076aff72de88e4d7fe5197fe135"
       },
       {
         "path": "SITE-OPERATIONS.md",
         "identity_mode": "content",
-        "sha256": "f861ed815572652cd1c0cbdb1dc970423e534de6e60c523edd79fb7573b12658"
+        "sha256": "8a7a1b2b174ce22598723ed9b3d4c9b57ce205fd68d5fb293c1d3213916b0a4d"
       },
       {
         "path": "SITE-ROADMAP.md",
         "identity_mode": "content",
-        "sha256": "46d2afad4d775e1ebc6f8849c8941cfbb92f99c5a061f77207b7045616818300"
+        "sha256": "5d1f901fd1e50bacf6970cdbe44b99951d25b9c0581dce46b2184c6422a80ab7"
       },
       {
         "path": "SITE-SEO.md",
         "identity_mode": "content",
-        "sha256": "67bdc42d0936b24b57cf35d1544cea57fa0c8ed785dc3fac1c0067dcdb2398b4"
+        "sha256": "4829f46484ccdc5d3ac495c5247d5cc8bbb95d7538099069fe3f74ccdabba43b"
       },
       {
         "path": "SITE-SOURCE-AUDIT.md",
         "identity_mode": "content",
-        "sha256": "e561ecae92c4df8ec61db30f40c28e222a8e5e7999fa91feb6de64fc80fbb348"
+        "sha256": "0a0d36cbd8deaaa6924570b9823248b18c06b60c8658cbb3ce1f2b8a07c48d66"
       },
       {
         "path": "SITE-VISUAL-REVIEW.md",
         "identity_mode": "content",
-        "sha256": "6c1e5c9ce599e55e2150628804ed4f8b922255ababf6f8b00fb20ce737123a10"
+        "sha256": "edf35f0d528963011d6f06b4d40151b4a4f3aa51f21ca3f11b0e6aa6128d8da1"
       },
       {
         "path": "docs/.nojekyll",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "docs/archive.js",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "docs/assets/vitalii-oborskyi-cutout.webp",
         "identity_mode": "existence"
       },
       {
@@ -118,7 +126,19 @@
         "identity_mode": "existence"
       },
       {
+        "path": "docs/research.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "docs/space.js",
+        "identity_mode": "existence"
+      },
+      {
         "path": "docs/styles.css",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "docs/talks.html",
         "identity_mode": "existence"
       },
       {
@@ -194,18 +214,92 @@
         "identity_mode": "existence"
       },
       {
+        "path": "review/site-v1-20261002-v3-credits-day.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v3-credits-interactive.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v3-credits-night.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v3-day.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v3-interactive.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v3-night.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v3-research-day.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v3-research-interactive.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v3-research-night.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v3-talks-day.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v3-talks-interactive.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v3-talks-night.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v3-writing-day.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v3-writing-interactive.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v3-writing-night.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261002-v3.zip",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-offline-bundle-v3.json",
+        "identity_mode": "content",
+        "sha256": "82b24ccae48d37ff14b7a4fc2122bdd7e96c42fbadfd1d14c48971bb410b1695"
+      },
+      {
         "path": "review/site-v1-preview.html",
         "identity_mode": "existence"
       },
       {
         "path": "review/site-v1-review.json",
         "identity_mode": "content",
-        "sha256": "53dd336b804b8abd44d23df74b7caaff3b0c43989bae780d36728c00a2061462"
+        "sha256": "1e835f1e8553e1c68288cf426ab38e8016fbdcb00efa2f1cc4c23edc4b83ce61"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
         "identity_mode": "content",
         "sha256": "5aa5eb6e85ceb2c2e645325bc1e26cc0e6e809e25e594c186cf139da363a91d5"
+      },
+      {
+        "path": "review/site-v1-static-previews-v3.json",
+        "identity_mode": "content",
+        "sha256": "10813fa2c8c5719087ba4a46bb394558a1aa171513cddb74a98b0c5c7647c140"
       },
       {
         "path": "review/site-v1-static-previews.json",
@@ -231,11 +325,19 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tests/archive.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tests/content.test.cjs",
         "identity_mode": "existence"
       },
       {
         "path": "tests/preview.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/space.test.cjs",
         "identity_mode": "existence"
       },
       {
@@ -256,6 +358,11 @@
         "path": "tools/RI-NOTICE.md",
         "identity_mode": "content",
         "sha256": "e512235d9027a6bbfa8fa72743f3a40050aef252f579ec5fb6e825115738b2b6"
+      },
+      {
+        "path": "tools/build_site_bundle.py",
+        "identity_mode": "content",
+        "sha256": "d7297daaf32d30fd449e58d39b7133e5254d139c74303e382e9771ed4b11fa4b"
       },
       {
         "path": "tools/build_site_previews.cjs",
@@ -498,6 +605,13 @@
       ]
     },
     {
+      "path": "review/site-v1-offline-bundle-v3.json",
+      "title": "review/site-v1-offline-bundle-v3.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "review/site-v1-review.json",
       "title": "review/site-v1-review.json",
       "instructions": [
@@ -507,6 +621,13 @@
     {
       "path": "review/site-v1-static-previews-v2.json",
       "title": "review/site-v1-static-previews-v2.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-v1-static-previews-v3.json",
+      "title": "review/site-v1-static-previews-v3.json",
       "instructions": [
         "AGENTS.md"
       ]
@@ -549,6 +670,13 @@
     {
       "path": "tools/RI-NOTICE.md",
       "title": "Repository Intelligence component notice",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "tools/build_site_bundle.py",
+      "title": "tools/build_site_bundle.py",
       "instructions": [
         "AGENTS.md"
       ]
