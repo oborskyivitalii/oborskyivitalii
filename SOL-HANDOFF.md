@@ -1,5 +1,166 @@
 # Sol execution plan — reviewed 2026-10-02
 
+## Next visual iteration — maintainer request, 2026-10-02
+
+**Current task: prepare the next Sol tasks and durable agent guidance.** This
+amendment records that work; V1–V5 below remain implementation tasks, not completed
+features. Owner: [#1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1),
+[input record](https://github.com/oborskyivitalii/oborskyivitalii/issues/1#issuecomment-5956133140).
+Continue [Draft PR #10](https://github.com/oborskyivitalii/oborskyivitalii/pull/10).
+Inspected head: `cfa48f1c7b61b4bc373087d4cb3b58f3812d8bbc`; its parent
+`cc473070119792ea2eedb4a6998231fdf13e3f69` implements v4, and the latest commit
+preserves Writing progress after result reflow. Recover the live tip before work.
+
+The maintainer reports that white text blocks hide the moving background, depth
+looks insufficient, and the delivered view exposes only Home. Required outcome:
+visible dimensional scenery, readable translucent surfaces, related but
+content-specific motifs across all five pages, and an easy way to inspect them.
+[Source findings and artistic assessment](SITE-VISUAL-REVIEW.md#visual-follow-up--2026-10-02)
+distinguish inspected code from visual hypotheses. No new rendered-site review
+was possible in this planning session: local browser executables are absent.
+
+### Precedence and open choice
+
+- This amendment supersedes the earlier static-only Talks/Credits rule and the
+  restriction to unchanged geometry on every route. Use one shared design system
+  and renderer with bounded page variants, not five unrelated effects.
+- Keep the seven-section Home, the approved English copy, five featured works,
+  eight precise discussion entries, 27 primary archive identities plus the
+  separately dated LinkedIn rendition, portrait bytes, links and research owners.
+  This is visual iteration, not another content/SEO rewrite.
+- Existing native-scroll/topic-only motion remains the default; no cursor camera,
+  idle loop, autorotation or entry flight is inferred. **Open optional choice:**
+  should scenery also move gently while the reader is stationary? Recommend
+  scroll-only for a reading site. If the maintainer selects ambient movement,
+  explicitly amend the idle/frame-budget contract before implementing it.
+- All known routes need a meaningful motion path when native scroll exists.
+  If a short route fits entirely in a viewport, show its composed static pose;
+  do not add spacer height or intercept scrolling. Record this case in the
+  preview; persistent motion there depends on the optional ambient decision.
+  Other visual tasks can proceed without that decision.
+- Day/Night/Auto, Off/reduced freeze, no-JS/Canvas content, print, hidden-tab pause,
+  archive reflow correction and existing release decisions stay in force.
+  Historical v3/v4 files and old review verdicts stay versioned as evidence.
+
+### V1 — reveal the scene while protecting reading
+
+Files: `docs/styles.css`, existing page wrappers in `docs/*.html` as needed.
+
+- [ ] Replace broad 95–96% opaque section/hero masks with named, theme-specific
+  background-alpha tokens. Leave transparent gutters, transitions and useful
+  openings inside the content composition, not only tiny outer margins.
+- [ ] Put stronger protection locally behind paragraphs, archive rows and form
+  controls. Trial 72–86% opacity on broad reading surfaces, with denser local
+  patches where needed; these are calibration starting points, not fixed targets.
+  Never lower parent/text opacity. Blur is optional and must not erase the scene
+  or make scrolling expensive; provide a usable unblurred fallback.
+- [ ] Tune scene alpha and surface alpha together. Confirm readable normal text
+  at a minimum 4.5:1 target and large text at 3:1 at the brightest/darkest scene
+  crossings, including muted metadata, links and focus states. Inspect actual
+  composited backgrounds, not only the base palette.
+
+Done: Home and a dense Writing view show clear geometry in both themes without
+the reader needing to hunt for it, while text remains comfortably readable.
+
+### V2 — make depth convincing
+
+Files: `docs/space.js`, scene styles and existing static SVG fallbacks.
+
+- [ ] Reuse the actual camera/projection implementation. Establish three visible
+  depth bands: a quiet distant structure, the principal middle motif, and one
+  larger cropped foreground facet placed in free space.
+- [ ] Differentiate scale, edge weight, face shading and distance contrast;
+  resolve overlap/depth ordering for the chosen translucent material. Do not
+  simply draw every edge over every face or rely on more tiny wireframe cubes.
+- [ ] Calibrate camera position AND look-at changes so a normal scroll visibly
+  changes perspective and relative positions. Keep landmarks recognizable,
+  fixed world-up, stable clipping and restrained travel; no full-scene flat pan
+  or scale-only substitute. The portrait remains still.
+- [ ] Review start/middle/end frames and a real capture before applying the same
+  treatment to all routes. If Canvas projection meets the result, retain it.
+  Record a concrete quality/performance failure before adding a new renderer.
+
+Done: the still frames already suggest volume, and the recording shows distinct
+near/far movement without disturbing reading. A green geometry test is insufficient.
+
+### V3 — compose every page as part of the same site
+
+Shared invariants: warm-paper/graphite Day/Night palette, cyan/amber accents,
+faceted planes, restrained directed lines, common projection/lighting, and the
+same motion timing. Variants below are artistic proposals to calibrate, not
+scientific models. Keep one small renderer with page configuration.
+
+| Route | Page-specific motif and composition | Motion emphasis |
+| --- | --- | --- |
+| Home | Broad view joining the separate control and verification motifs; open space around the unchanged portrait and CTA. | Seven existing semantic stops; clear near/mid/far shifts. |
+| Research | Two distinct spatial structures: feedback/control and generation/verification passage. | Move between them at relevant existing sections; no invented causal edge or implied guaranteed stability. |
+| Writing | Layered planes and ordered paths suggesting a body of work, with quieter space behind the long reading list. | Retain systems/delivery/leadership/strategy focus and bounded result progress; page identity must differ visibly from Home, not only by color. |
+| Talks | Broader outward ribbons or signal paths built from the same facets and lines. | A short, bounded path through existing introduction/talk content; no simulated audio, flashing stage effect or automatic video. |
+| Credits | A sparse, spacious network of common geometric elements. | The calmest short path across existing content; nodes do not represent people, partnerships, clients or endorsement. |
+
+- [ ] Make the background visible on each route, including its opening and lower
+  content areas. Do not hide it entirely under archive rows or Credits' wrapper.
+- [ ] Use explicit page/stop names and finite poses. Replace the known-route
+  static-only fallback for Talks/Credits; retain safe unknown-page/zero-interval
+  behavior. Preserve Writing progress on reflow, empty results and restoration.
+- [ ] Align the no-JS/Canvas SVG with each motif and theme. Off/reduced freezes
+  the current pose; initial disabled state shows the corresponding composed
+  static view. Update old tests expecting one identical overview if necessary.
+
+Done: all five pages are recognizable as one site but distinguishable by motif
+and composition; changing page title or accent color alone does not meet this.
+
+### V4 — verify motion and reading on actual pages
+
+Files: `docs/space.js`, relevant existing tests, review evidence.
+
+- [ ] Preserve native wheel/touch/keyboard/anchor behavior; pointer/hover/focus
+  alone must not move the camera. No idle RAF work under the retained default.
+- [ ] Check Off/reduced while moving, theme/resize/filter changes while frozen,
+  hidden/print return, no-JS and missing Canvas. Reduced motion takes precedence.
+- [ ] Inspect all five routes at 1440×900 and 390×844 in Day/Night, plus 360px
+  width and 200% desktop zoom for overflow/control access. Review scroll and
+  at least one Writing topic switch; confirm the latest reflow fix survives.
+- [ ] Record frame-cost observations on the tested devices/viewport. Reduce
+  density/DPR/blur or use a simpler fallback if required; do not infer smoothness
+  or a frame-rate claim from unit tests. No new test framework is needed.
+
+Done: no jumping, clipping flashes, text collisions, scroll blocking or runaway
+frames in observed cases. Report unobserved cases instead of claiming acceptance.
+
+### V5 — deliver a reviewable whole site
+
+Files: `tools/build_site_previews.cjs`, `tools/build_site_bundle.py`, next review
+edition, `SITE-OPERATIONS.md` and completion evidence.
+
+- [ ] Produce the next versioned exports (v5 if still unused) and one review-only
+  index linking **Home, Research, Writing, Talks and Credits**, each in Day,
+  Night and interactive form. Navigation must work after extraction as well as
+  in any supported preview surface. Do not deliver just Home or GitHub source
+  links and call that an interactive site.
+- [ ] Add a contact sheet of actual desktop renders (five pages × two themes),
+  mobile renders for the same routes/themes, and a short actual motion recording
+  per page or one clearly chaptered recording. Include lower-page views where
+  useful. Label route/theme/viewport/commit; these must come from real HTML.
+- [ ] Keep fixed-theme static previews explicitly labelled as such; they cannot
+  demonstrate motion. Supply the working interactive entry plus the offline ZIP.
+  Keep gallery, captures and review metadata outside public `docs/`.
+- [ ] Run applicable existing content/motion/export checks, regenerate/verify
+  RI, and record exact local/CI results and browser coverage in #1/PR #10.
+  Preserve old artifacts and archive/portrait identities. Keep Draft until
+  remaining acceptance is resolved; this task does not merge or publish.
+
+Done: the maintainer can inspect the entire candidate without guessing filenames,
+installing dependencies or mistaking a concept picture for the implementation.
+If browser access is unavailable, complete authorized code/export work, document
+the current failure and leave the capture/visual checks pending; do not fabricate
+screenshots. This limitation does not require redoing the already completed v4.
+
+**Execution order:** V1 and a small V2 proof on Home/Writing → V3 all-page variants
+→ V4 actual browser checks → V5 complete handoff. Report each checkpoint once.
+The earlier S0–S4 contract below describes the implemented v4 and retained content
+requirements; follow the precedence above for this visual iteration.
+
 ## Execution checkpoint — v4, 2026-10-02
 
 The maintainer instructed this plan. Candidate code and available checks/exports

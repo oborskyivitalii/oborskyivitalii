@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "efbf0fff205a07573b45fffb6aff52daf0b6e92634f42dab52f6f963c8b8a3f4",
+    "digest": "44dd283f42d0ac268cded9c68302349fa514e13be588aa949e10158a6908fb9b",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -49,7 +49,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "97b288eefc5b9d2278e5711a0e8112871c73492a84a6deaf043b9b1b39bb7723"
+        "sha256": "84ed2478c28bca113326c6b61c09665066a8fd5727b615e87d801cf6c6473fc3"
       },
       {
         "path": "BACKLOG.md",
@@ -99,12 +99,12 @@
       {
         "path": "SITE-VISUAL-REVIEW.md",
         "identity_mode": "content",
-        "sha256": "336a60cfb79a8423529ea8a801c378cafb47cf029ac2b3b18a5968ed2b994970"
+        "sha256": "6f79594410eec766a249b3f11ac8868996a82edb3bc465c41406e5cb397ed800"
       },
       {
         "path": "SOL-HANDOFF.md",
         "identity_mode": "content",
-        "sha256": "f2d860d9164ebd389da41fd2423ac0f223e8233d1d3903908f852d1aa103133e"
+        "sha256": "f6401632b379dd886f0ace176502134b99d015d91de71f1e7ae7a2411d4afd73"
       },
       {
         "path": "docs/.nojekyll",
@@ -520,7 +520,7 @@
       {
         "path": "review/sol-plan-20261002/VISUAL-SPEC.md",
         "identity_mode": "content",
-        "sha256": "e7cea431f3cecd59967752cb70a1f6c1c9a49946a7590d9306ff1dff35c10204"
+        "sha256": "228e33e4cd9d931895064a94c4f0d2d648d109e8f4f5cc0274a7cb2afbf9154f"
       },
       {
         "path": "review/sol-plan-20261002/art-direction.svg",

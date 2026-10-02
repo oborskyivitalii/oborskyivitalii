@@ -1,5 +1,55 @@
 # Site visual review and proposed direction
 
+## Visual follow-up — 2026-10-02
+
+The maintainer reports an almost invisible background, insufficient depth and a
+Home-only review experience. This assessment inspected actual v4 source at
+`cfa48f1c7b61b4bc373087d4cb3b58f3812d8bbc`, latest commits, five page files,
+shared CSS/renderer, prior visual specification and PR/issue evidence. Current
+Playwright Chromium/Firefox/WebKit executable paths are absent. **This is a
+source-grounded artistic recommendation, not a new visual/browser acceptance.**
+
+### Confirmed source findings
+
+| Finding | Source evidence | Implication |
+| --- | --- | --- |
+| The reading layer largely conceals the scene. | `docs/styles.css`: broad section/archive/Credits masks use paper at 96%, hero copy 95%; `.space-scene` opacity is .55, .45 on mobile. Typical renderer line alpha is .6 and face fill alpha .07. | A typical line under a 96% mask has an approximate effective alpha of `.6 × .55 × .04 = .0132`; a face `.07 × .55 × .04 = .00154`. These are compositing estimates, not pixel/contrast measurements. Overlapping surfaces can suppress the result further. |
+| A 3D projection already exists. | `docs/space.js`: positioned 3D nodes, camera position/target, perspective division and clipped segments. | The defect is not absence of 3D math. Visibility, depth cues, composition and camera calibration need work before another library. |
+| Depth hierarchy is weakly encoded. | Most strokes share `lineWidth=1`; faces are very faint; faces are sorted, then all segments and wireframe nodes are drawn above them. | Uniform wireframe emphasis and indiscriminate overlap can flatten the scene. Review controlled foreground/middle/distant forms and deliberate translucent materials. |
+| Two known routes are permanently still. | `pageStops` contains Home and Research; Writing has a separate path; the scroll listener returns for Talks/Credits. The old spec explicitly requires static overview. | This is previous intended behavior, now superseded by the maintainer's all-page motion request when there is native scroll range. |
+| Secondary pages exist, but their review is hard to discover. | Five `docs/*.html` routes and fifteen v4 exports are in the tree. The PR handoff foregrounds three Home links and a ZIP, without a single visual gallery. | The missing deliverable is an accessible overview of the implemented pages, not five pages that must be invented from scratch. |
+
+### Artistic judgment and proposed direction
+
+The useful direction is an editorial research site with a visible spatial identity.
+Readability and a strong background can coexist when the composition reserves
+space for each. Lowering every panel's alpha uniformly is insufficient: a dense
+wireframe behind every paragraph can become visual noise. Use local translucent
+text protection, open scene areas, and fewer, larger depth landmarks.
+
+Keep warm paper / graphite, cyan / amber and asymmetric facets. Make the nearest
+facet clearly larger and stronger, the central motif legible, and the distant
+structure softer. Use overlap, restrained face shading and different projected
+speeds under camera movement. An actual scroll should reveal depth without
+requiring the visitor to stare at tiny line changes. Avoid a generic field of
+particles, heavy frosted-glass cards or an unrelated animation on each page.
+
+Home gives the broad view; Research emphasizes the two research motifs; Writing
+uses quieter ordered layers; Talks suggests outward communication; Credits uses
+a sparse related network. This is one design grammar with page-specific geometry,
+not five unrelated worlds, and none of these motifs carries factual evidence.
+
+The accepted interaction baseline is still scroll/topic-only. Ambient movement
+while stationary remains an explicit optional choice; it must not be silently
+added to compensate for hidden scenery. A short page with no native scroll range
+keeps a composed still view under that baseline, without manufactured spacing.
+
+The [V1–V5 Sol tasks](SOL-HANDOFF.md#next-visual-iteration--maintainer-request-2026-10-02)
+define the implementation sequence, page matrix and real screenshot/motion
+handoff. That dated amendment supersedes static-only Talks/Credits and identical
+geometry across routes. Everything in the v4 checkpoint below remains an accurate
+record of the current implementation, not acceptance of this requested follow-up.
+
 ## Current v4 source implementation — visual acceptance pending
 
 Six asymmetric Day/Night native facets replace both circular portrait

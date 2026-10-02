@@ -63,6 +63,38 @@ work and green CI do not complete the parent.
 - Use pinned publishing adapters with upstream license/upgrade records; do not
   copy UA or Subprime CI wholesale or create a heavy service without a measured need.
 
+## Site visual work — maintainer direction, 2026-10-02
+
+For layout, background or motion changes, first read the current follow-up in
+[SOL-HANDOFF](SOL-HANDOFF.md#next-visual-iteration--maintainer-request-2026-10-02)
+and the source findings in [SITE-VISUAL-REVIEW](SITE-VISUAL-REVIEW.md).
+The owning intent is [launch #1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1);
+continue the existing site PR and preserve unrelated newer work.
+
+- Background geometry must remain visibly present in the composition. Use local
+  translucent reading surfaces and open scene areas; avoid near-opaque panels
+  covering whole sections. Change background alpha, never the opacity of text or
+  controls. Check contrast against the actual scene in both Day and Night.
+- Depth must be perceptible: foreground, middle and distant elements, perspective,
+  overlap and differential movement. Existing 3D projection or an animation loop
+  alone is not visual acceptance. Start with the existing renderer; choose another
+  only for a demonstrated limitation, not because the requirement says "3D".
+- Home, Research, Writing, Talks and Credits share palette, geometry, materials
+  and motion language, with motifs related to each page's content. The maintainer's
+  new requirement supersedes the old permanent static Talks/Credits exception.
+  Decorative motifs must not imply research results, telemetry or endorsement.
+- Retain native-scroll/topic-driven motion, no pointer camera and no idle loop
+  unless explicitly changed. A request for more visible movement does not by
+  itself authorize autoplay. Off/reduced freezes the current pose; preserve
+  hidden/print cancellation, mobile bounds and a useful no-JS/Canvas fallback.
+  Short-page/no-scroll handling and the optional ambient mode are described in
+  the handoff; never add empty content merely to manufacture scroll distance.
+- Present every changed route through one working preview index, in both themes,
+  with desktop/mobile views and real motion evidence. A Home-only link, concept
+  picture, source test or GitHub HTML source page is not an all-page visual review.
+  Record the actual inspected ref, viewports and limitations. If rendering is
+  unavailable, complete independent work and leave visual acceptance explicit.
+
 ## Review and completion
 
 Keep substantive PRs Draft during iteration. Obtain independent review for

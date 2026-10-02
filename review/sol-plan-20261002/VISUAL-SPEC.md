@@ -1,5 +1,12 @@
 # Visual implementation specification
 
+> Later maintainer amendment, 2026-10-02: the root
+> [V1–V5 visual follow-up](../../SOL-HANDOFF.md#next-visual-iteration--maintainer-request-2026-10-02)
+> supersedes this document's static-only Talks/Credits rule and identical geometry
+> across routes. Follow the new transparency, depth, page-variant and all-page
+> preview requirements. This original planning text remains historical; retained
+> scroll/topic-only motion and accessibility rules still apply.
+
 2026-10-02. Extracted from the reviewed edition-3 planning package. This is an uncalibrated design input, not implementation or browser acceptance. The root [Sol plan](../../SOL-HANDOFF.md) owns execution order, current acceptance and corrections. Paths to the blueprint and SVG inputs below are relative to this folder; public code paths are repository-root-relative. Preserve existing `#acknowledgements` links for the public-discussion section.
 
 ## 3. Що зараз заважає
