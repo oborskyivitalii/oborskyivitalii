@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "2968d568ee20a649121e7b015e4cf95092ffcd1a09dbfa9b16d338ef992595d0",
+    "digest": "e99bd742f771164bb96254e24708561cb068edefdcdf977e500b502d9bd33cd1",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -79,7 +79,7 @@
       {
         "path": "SITE-OPERATIONS.md",
         "identity_mode": "content",
-        "sha256": "cd49da15466aab593c4baff00652505dcb18d4bdec4478dd54ef24af2865a825"
+        "sha256": "b7aeaec3efe7859746eb0301e6e338d6c422226161d55b0a70e3158d8263b796"
       },
       {
         "path": "SITE-ROADMAP.md",
@@ -104,7 +104,7 @@
       {
         "path": "SOL-HANDOFF.md",
         "identity_mode": "content",
-        "sha256": "b443772ff29666656a09d47ea3618b255df60def29b2d4d3bd3eab9cd1227110"
+        "sha256": "e176d4fd08444689dd12dc15e86ace6e3fec372e7089ff452f881c82e1b37e33"
       },
       {
         "path": "docs/.nojekyll",
@@ -410,6 +410,11 @@
         "sha256": "5f3f399695f36ff1d1395e969cf7903894ee6dec2495994be99067b04d28e637"
       },
       {
+        "path": "review/sol-plan-20261002/SECOND-INDEPENDENT-REVIEW.md",
+        "identity_mode": "content",
+        "sha256": "ce22b3f6d9ea7d0490dae82682abfd02094ee925d03e24c88896cb9f504cf169"
+      },
+      {
         "path": "review/sol-plan-20261002/SEO-BUYER-INTENT.md",
         "identity_mode": "content",
         "sha256": "e7e304ee827fa0816808a0be4d44dc55eb09f62230e16bc9abaafacd9e102a5a"
@@ -417,7 +422,7 @@
       {
         "path": "review/sol-plan-20261002/SEO-EVIDENCE.md",
         "identity_mode": "content",
-        "sha256": "f0ae3d1ac080b2b04a610000e0d93c87776fe724dce6b53ae88101cf94646e6b"
+        "sha256": "0b04a66aa448f001f6f536249f73416113884f4e2242d660c8917bf33b255dad"
       },
       {
         "path": "review/sol-plan-20261002/SEO-QUERY-MAP.csv",
@@ -426,11 +431,36 @@
       {
         "path": "review/sol-plan-20261002/VISUAL-SPEC.md",
         "identity_mode": "content",
-        "sha256": "b241a45ae893c24bc613f3cbdb73471fd1e86e4fa24d5ce79cc0ada57490b041"
+        "sha256": "e7cea431f3cecd59967752cb70a1f6c1c9a49946a7590d9306ff1dff35c10204"
       },
       {
         "path": "review/sol-plan-20261002/art-direction.svg",
         "identity_mode": "existence"
+      },
+      {
+        "path": "review/sol-plan-20261002/independent-round2/CORRECTION-MANIFEST.json",
+        "identity_mode": "content",
+        "sha256": "d15f83bfb197c65fe7ff36bffe2f7f4bf10673c4a6057b03e4c819b7e86d8c19"
+      },
+      {
+        "path": "review/sol-plan-20261002/independent-round2/plan-evidence-rereview.md",
+        "identity_mode": "content",
+        "sha256": "3deb11ba6843af82cef5c2833c5a3841c44b408310c7e828db3176bcde537aa2"
+      },
+      {
+        "path": "review/sol-plan-20261002/independent-round2/plan-evidence-review.md",
+        "identity_mode": "content",
+        "sha256": "2281640a63b39b10e130e5d7ed068551ab4b7d8f87cbcd444e7ac510ee72b3fa"
+      },
+      {
+        "path": "review/sol-plan-20261002/independent-round2/reader-research-rereview.md",
+        "identity_mode": "content",
+        "sha256": "fe9c4ccd59ad6e19fd8a6d2130f92d760f49ddf640898501c0f7bdfb6602ea18"
+      },
+      {
+        "path": "review/sol-plan-20261002/independent-round2/reader-research-review.md",
+        "identity_mode": "content",
+        "sha256": "902347d66bbdb0d2d8e0760fcb567cbcc7f240a75b7f8a8b4ce7f8ec16476b52"
       },
       {
         "path": "review/sol-plan-20261002/independent/CORRECTION-MANIFEST.json",
@@ -940,6 +970,13 @@
       ]
     },
     {
+      "path": "review/sol-plan-20261002/SECOND-INDEPENDENT-REVIEW.md",
+      "title": "Second independent substantive review",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "review/sol-plan-20261002/SEO-BUYER-INTENT.md",
       "title": "Buyer search intent and SEO plan for Sol",
       "instructions": [
@@ -956,6 +993,41 @@
     {
       "path": "review/sol-plan-20261002/VISUAL-SPEC.md",
       "title": "Visual implementation specification",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/sol-plan-20261002/independent-round2/CORRECTION-MANIFEST.json",
+      "title": "review/sol-plan-20261002/independent-round2/CORRECTION-MANIFEST.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/sol-plan-20261002/independent-round2/plan-evidence-rereview.md",
+      "title": "Bounded independent re-review — execution and evidence contract",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/sol-plan-20261002/independent-round2/plan-evidence-review.md",
+      "title": "Second independent review — execution, evidence and decision relevance",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/sol-plan-20261002/independent-round2/reader-research-rereview.md",
+      "title": "Independent reader and research re-review — 2026-10-02",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/sol-plan-20261002/independent-round2/reader-research-review.md",
+      "title": "Second independent review — reader value, research meaning and offer",
       "instructions": [
         "AGENTS.md"
       ]

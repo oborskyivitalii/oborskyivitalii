@@ -15,6 +15,15 @@ rendition. The primary ItemList remains 27; all linked renditions total 28.
 Browser/release acceptance remains separate. English is settled; the permanent
 URL and applicable rights/publication decision remain #8/#7.
 
+Second independent-review clarification, 2026-10-02: the shared scene must also
+have explicit secondary-page and zero/one-stop/empty-result behavior; use the
+small mapping and finite fallback rules in the current VISUAL-SPEC. Preview
+HTML renditions carry noindex. The offline ZIP's `site/` entries retain exact
+`docs/` source bytes, while its separate `review/` renditions are noindex; do not
+add noindex to production to satisfy older blanket review-output wording below.
+Ancillary CPC advertising data stays in review evidence and is not consumed by
+the site's source or export producers.
+
 Owning intent: [launch #1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1).
 URL/language decision: [#8](https://github.com/oborskyivitalii/oborskyivitalii/issues/8).
 Next publication: [PMDay #2](https://github.com/oborskyivitalii/oborskyivitalii/issues/2).

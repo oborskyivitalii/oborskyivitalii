@@ -22,6 +22,13 @@ It records input for #1/#8/#11; it is not a public traffic or client-demand clai
   organic keyword difficulty, Search Console data or localized ranking audit was
   obtained. Paid connector access problems do not invalidate these free results.
 
+CPC means estimated advertiser **cost per click**. It arrived as an ancillary
+field alongside search volume; it is not a currency, a site price or project
+spending. The current page priorities and public copy do not use CPC or ad
+competition. Preserve the evidence for audit, but keep these unused advertising
+fields out of the organic-search decision summary and website content. No paid
+campaign or advertising budget is part of this plan.
+
 Normalized data: [keyword-metrics.json](../seo-20261002/keyword-metrics.json).
 Raw evidence: [five provider responses and autocomplete](../seo-20261002/raw/).
 Full original-query audit and analyst selection:

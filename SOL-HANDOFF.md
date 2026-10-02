@@ -1,7 +1,7 @@
 # Sol execution plan — reviewed 2026-10-02
 
 **Execution scope: candidate implementation after the maintainer's execution instruction.**
-The [independent review](review/sol-plan-20261002/INDEPENDENT-REVIEW.md) records
+The [latest independent review](review/sol-plan-20261002/SECOND-INDEPENDENT-REVIEW.md) records
 the readiness verdict and correction checks. This plan and its inputs do not implement
 the new homepage, approve PR #10 for merge, or release the site.
 
@@ -22,7 +22,8 @@ launch issue or silently replace its history.
    to reset onto. Later planning commits and other work must be retained.
 2. Use an isolated checkout/worktree of the live #10 head. Check local changes
    before editing. Do not assume a scratch path from a previous chat still exists.
-3. Read the [independent review](review/sol-plan-20261002/INDEPENDENT-REVIEW.md),
+3. Read the [second independent review](review/sol-plan-20261002/SECOND-INDEPENDENT-REVIEW.md),
+   the [first independent review](review/sol-plan-20261002/INDEPENDENT-REVIEW.md),
    the earlier [author review](review/sol-plan-20261002/FINAL-REVIEW.md),
    [content brief](review/sol-plan-20261002/CONTENT-AND-CONVERSION-BRIEF.md),
    [visual specification](review/sol-plan-20261002/VISUAL-SPEC.md),
@@ -123,6 +124,11 @@ Primary files: `docs/styles.css`, `docs/index.html`, shared static SVG fallback,
 - [ ] Calibrate all seven Home stops, including Help and Contact, and the shorter
   mobile path. Do not conflate the decorative controller with the entire canonical
   operating model. No invented causal edge joins UA and Subprime.
+- [ ] Apply the shared-page scene contract in VISUAL-SPEC: explicit page identity;
+  named Research stops reuse finite poses; Talks/Credits use a static overview;
+  Writing uses its topic path within visible result bounds. Define unknown-stop,
+  unknown-page, zero/one-stop and empty-result fallbacks before animation. Do not
+  index Home poses by another page's ordinal position or total document height.
 
 Done when actual Day/Night HTML has a readable faceted portrait and three visibly
 distinct useful scene views. If browser inspection is blocked, record S2 visual
@@ -143,6 +149,12 @@ Primary files: `docs/space.js`, `docs/archive.js`, `docs/writing.html`,
 - [ ] Off/reduced freezes the current pose, initial Off uses overview. Theme,
   resize, filter layout, hidden return and print return must preserve a disabled
   pose. Reduced motion overrides saved On. Theme changes only recolor.
+- [ ] Check the renderer on all five pages, including unknown/unmapped stops,
+  zero/one valid stop, an empty archive and coincident result bounds. These cases
+  keep a finite static pose without division by zero or a document-height flight.
+  Layout/filter changes preserve topic focus and the last pose if no interval
+  remains; explicit topic changes retain the bounded focus behavior when motion
+  is enabled. Off/reduced still overrides every fallback and topic transition.
 - [ ] Integrate an allowlisted `site:scene-focus` event after a topic change,
   including initialized query state and Reset. Systems→control,
   delivery→verification, leadership→controller, strategy/All→overview. Year and
@@ -178,6 +190,8 @@ shows stable transitions in both directions, while idle and reduced/off stay sti
 - [ ] Inspect actual HTML at 1440×900 and 390×844 in Day/Night, plus 360px and 200%
   desktop zoom. Check keyboard/focus, touch/native scroll, long EN/UA titles,
   anchor clearance, no-JS/Canvas failure, reduced/Off, hidden/print and idle.
+  Include the shared scene on Research/Talks/Credits and empty/short Writing
+  results; the Home composition alone cannot establish five-page behavior.
 - [ ] Record screenshots and a short motion recording when supported. Otherwise
   record a reproducible browser interaction log with observed states and the
   capture limitation; screenshots/unit tests alone do not prove motion quality.
@@ -189,7 +203,10 @@ shows stable transitions in both directions, while idle and reduced/off stay sti
   history; do not silently overwrite it. Remove the old bundle's instruction to
   move a mouse and check Credits/display-preference prose against actual behavior.
   Verify any new local query/fragment links through both export rewriters.
-  All review output stays noindex and outside `docs/`.
+  Preview HTML renditions stay noindex and outside `docs/`. The offline bundle's
+  `site/` folder retains exact production-source bytes; its separate `review/`
+  renditions are noindex. Record that distinction instead of injecting noindex
+  into production to make a blanket review-output statement true.
 - [ ] Update `SITE-OPERATIONS.md`, `SITE-CONTENT-REVIEW.md`, `SITE-SOURCE-AUDIT.md`,
   `SITE-VISUAL-REVIEW.md`, `SITE-SEO.md`, `SITE-ROADMAP.md` and the PR description
   to distinguish implemented results from remaining decisions. Refresh RI last.
