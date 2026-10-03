@@ -24,6 +24,11 @@ async function state(page){return page.evaluate(()=>{
   return {ready:scene.dataset.ready==='true',phase:scene.dataset.phase,camera:scene.dataset.camera,quality:scene.dataset.quality,scrollY,scrollRange:document.documentElement.scrollHeight-innerHeight,fallback:getComputedStyle(document.querySelector('.space-fallback')).visibility!=='hidden',motion:{hidden:motion.hidden,disabled:motion.disabled,label:motion.textContent},overflow,overflowing,activeElement:{tag:document.activeElement.tagName,id:document.activeElement.id,class:document.activeElement.className},h1:document.querySelectorAll('h1').length,paints:window.__quality?.paints||0,callbacks:window.__quality?.callbacks||0};
 });}
 async function settled(page){await page.waitForTimeout(180);return state(page);}
+async function foregroundReady(page){
+  await page.bringToFront();const start=Date.now();
+  await page.waitForFunction(()=>document.querySelector('.space-scene').dataset.ready==='true',null,{polling:50,timeout:3000});
+  return {foreground:true,elapsedMs:Date.now()-start,timeoutMs:3000};
+}
 function readable(s){assert.equal(s.h1,1);assert.equal(s.overflow,false,'horizontal overflow');}
 function frozen(a,b){assert.equal(b.phase,a.phase,'frozen ambient phase');assert.equal(b.camera,a.camera,'frozen camera');assert.equal(b.paints,a.paints,'no paints while frozen');assert.equal(b.callbacks,a.callbacks,'no RAF callbacks while frozen');}
 async function atStart(page,camera){
@@ -93,6 +98,7 @@ async function ctaStates(page){
   return rows;
 }
 async function normal(page,scenario){
+  const startup=await foregroundReady(page);
   const a=await settled(page),probeStart=Date.now();readable(a);assert.equal(a.ready,true);
   // A cold engine can miss one short sampling window. Require a real next paint,
   // using bounded timer polling that does not add RAFs to the measured renderer.
@@ -130,7 +136,7 @@ async function normal(page,scenario){
   await page.evaluate(()=>document.documentElement.style.zoom='');
   const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa']).analyze();
   assert.deepEqual(axe.violations,[],'axe violations');
-  return {positiveProbe:true,probe:{elapsedMs:probeElapsedMs,paints:b.paints-a.paints},off:true,print:true,syntheticVisibility:true,keyboard:true,keyboardShortcut,reverse:true,forward:travel.range>1&&travel.target>1?'camera changed':'short page',travel:{...travel,settledY:forward.scrollY},archive:scenario.route==='writing'?true:'not applicable',zoom:true,zoomLimit:'CSS zoom; native browser zoom untested',cta,axePasses:axe.passes.length};
+  return {positiveProbe:true,startup,probe:{elapsedMs:probeElapsedMs,paints:b.paints-a.paints},off:true,print:true,syntheticVisibility:true,keyboard:true,keyboardShortcut,reverse:true,forward:travel.range>1&&travel.target>1?'camera changed':'short page',travel:{...travel,settledY:forward.scrollY},archive:scenario.route==='writing'?true:'not applicable',zoom:true,zoomLimit:'CSS zoom; native browser zoom untested',cta,axePasses:axe.passes.length};
 }
 async function failure(page,mode){
   let a=await settled(page);readable(a);

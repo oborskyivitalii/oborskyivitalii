@@ -21,7 +21,7 @@ inputs and remain outside this site work.
   as acceptance of changed source.
 
 Local suites initially passed 58 Node + 18 Python tests; the staging increment
-now passes all 68 Node + 18 Python tests. SEO-PRESERVATION records the exact
+now passes all 69 Node + 18 Python tests. SEO-PRESERVATION records the exact
 reversible source comparison. Hosted staging and independent acceptance remain
 pending; actual source-bound CI and root inspection are recorded below.
 
@@ -99,6 +99,20 @@ covered text. The 4.5/3 thresholds and public CSS/content are unchanged. Old
 verify the correction and actual open controls. No independent acceptance is
 inferred. [CSSOM checkVisibility](https://drafts.csswg.org/cssom-view/#dom-element-checkvisibility)
 defines the opted-in visibility/opacity checks.
+
+Expanded source `1b36642` passed build/static, 40 native Windows and 20 macOS
+cases, captures and the loopback Pages model. Its 80 contrast views/8,288 samples
+have zero failures (normal minimum 5.519, large 3.897); all 53 media hashes and
+the current public inputs were verified. Root inspected both new 20-view contact
+sheets. The PR Linux run completed 390 cases but failed its first two WebKit
+Home Day readiness assertions after a fixed 180 ms (no paint/callback, no script
+errors; useful fallback remained). Other scenarios passed. The maintained normal
+fixture now foregrounds the headless tab and waits up to the existing capture
+readiness bound of 3,000 ms before asserting readiness, then still requires a
+positive ambient paint within 1,500 ms. Its regression requires the bound and
+propagation of an unmet deadline. No runtime/public byte, matrix case, contrast/
+performance budget or failure-mode assertion changes. Fresh exact-source CI is
+required; this is not a waiver of the failed run or a physical-device claim.
 
 The token is supplied only by the callee's protected environment; repository
 secrets are not inherited into PR code. One exact dummy user:pass URL detector

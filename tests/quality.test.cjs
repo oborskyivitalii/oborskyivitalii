@@ -125,3 +125,11 @@ test('contrast sampling ignores cached closed-details text and occluded pixels b
   assert.equal(probe({open:true,cssVisible:false}).length,0,'CSS-invisible text is not painted');
   assert.equal(probe({open:true,covered:true}).length,0,'text covered by the sticky header is not its foreground');
 });
+test('normal browser startup foregrounds the test tab and waits on real readiness with a strict bound',async()=>{
+  const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),source=fs.readFileSync(path.join(__dirname,'../tools/quality/functional.cjs'),'utf8');
+  const start=source.indexOf('async function foregroundReady(page)'),end=source.indexOf('\nfunction readable',start);assert.ok(start>=0&&end>start);
+  const fn=vm.runInNewContext(source.slice(start,end)+'\nforegroundReady',{Date:{now:()=>100}}),calls=[];
+  const page={bringToFront:async()=>calls.push('foreground'),waitForFunction:async(predicate,arg,options)=>{calls.push('readiness');assert.equal(arg,null);assert.equal(options.polling,50);assert.equal(options.timeout,3000);assert.match(predicate.toString(),/dataset\.ready==='true'/);}};
+  const r=await fn(page);assert.equal(r.foreground,true);assert.equal(r.timeoutMs,3000);assert.deepEqual(calls,['foreground','readiness']);
+  await assert.rejects(()=>fn({...page,waitForFunction:async()=>{throw Error('Controlled startup deadline');}}),/startup deadline/,'unready scenes still fail, not skip or silently retry');
+});
