@@ -1,6 +1,34 @@
 # Sol execution plan — reviewed 2026-10-02
 
-## Latest amendment — v7, 2026-10-02
+## Current v8 — living thematic environments, 2026-10-03
+
+The maintainer explicitly superseded the v7 still-life and no-idle-motion limits.
+Symbols now form finite recursive environments; native scroll flies through
+successive open structures. Each route uses eight thematic symbols, three symbol
+scales and one cyan/bronze/paper material language. A bounded 48-second ambient
+loop articulates immutable geometry even without scroll. The camera remains
+scroll/topic-controlled. Off/reduced freezes the displayed camera and ambient
+phase; hidden/print pauses without catch-up. Mobile reduces detail and repaint
+frequency. No pointer camera, extra scroll spacing or new runtime dependency.
+
+[All five pages](review/site-v1-20261003-v8-index.html) ·
+[Execution and checks](review/sol-visual-v8-20261003/EXECUTION.md) ·
+[Rules, formulas and original graphics sources](review/sol-visual-v8-20261003/DESIGN.md).
+Public content/identity and portrait bytes are preserved except the Credits
+paragraph explaining the newly authorized motion. Historical editions below are
+evidence of their own revisions. Draft #10 and launch #1 remain open for visual
+acceptance and the previously recorded release decisions.
+
+Intent is recorded before implementation in [issue #1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1#issuecomment-5964354028).
+The 2026-10-03 direct request settles the previously optional ambient decision.
+Test that the structure changes at a fixed camera, closes in both position and
+velocity, and cannot grow/drift over time. Replace whole-hero-in-frame/orbital
+camera expectations with finite, continuous passage through openings. Preserve
+native archive reflow/history/print behavior. Deliver every standalone HTML,
+not only Home or a contact sheet. Earlier no-idle rules below are historical.
+
+
+## Historical amendment — v7, 2026-10-02
 
 The maintainer rejected v6 because the scenery lost its connection to each page:
 the repeated abstract objects felt interchangeable. Explicit example: Writing

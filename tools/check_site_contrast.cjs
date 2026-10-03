@@ -14,6 +14,7 @@ for(const device of ['desktop','mobile'])for(const theme of ['light','dark']){
   const max=await page.evaluate(()=>document.documentElement.scrollHeight-innerHeight);
   for(const position of device==='desktop'?['start','middle','end']:['start']){
    await page.evaluate(y=>window.scrollTo({top:y,behavior:'instant'}),position==='start'?0:position==='end'?max:max*.5);await page.waitForTimeout(220);
+   await page.evaluate(()=>document.querySelector("#space-motion").click());
    const samples=await page.evaluate(()=>{
     const samples=[],walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),canvas=document.createElement('canvas'),ctx=canvas.getContext('2d');let node;
     while(node=walker.nextNode()){
@@ -25,6 +26,7 @@ for(const device of ['desktop','mobile'])for(const theme of ['light','dark']){
    });
    const style=await page.addStyleTag({content:'* {color:transparent!important;-webkit-text-fill-color:transparent!important;text-shadow:none!important;text-decoration-color:transparent!important}'});
    const png=PNG.sync.read(await page.screenshot());await style.evaluate(el=>el.remove());
+   await page.evaluate(()=>document.querySelector("#space-motion").click());
    const measured=samples.map(s=>{const offset=(s.y*png.width+s.x)*4,bg=[...png.data.slice(offset,offset+3)],a=lum(s.foreground),b=lum(bg);return {...s,background:bg,ratio:(Math.max(a,b)+.05)/(Math.min(a,b)+.05)};});
    const min=measured.reduce((a,b)=>a.ratio<b.ratio?a:b),normal=measured.filter(s=>s.target===4.5),large=measured.filter(s=>s.target===3),failures=measured.filter(s=>s.ratio<s.target);
    results.push({route,theme,device,position,samples:measured.length,min_normal:normal.length?Math.min(...normal.map(s=>s.ratio)):null,min_large:large.length?Math.min(...large.map(s=>s.ratio)):null,minimum:min,failures});
@@ -33,7 +35,7 @@ for(const device of ['desktop','mobile'])for(const theme of ['light','dark']){
 }
 await browser.close();const failures=results.flatMap(r=>r.failures.map(f=>({route:r.route,theme:r.theme,device:r.device,position:r.position,...f})));
 require('node:assert/strict').deepEqual(sourceHashes(),sources,'public source changed during contrast capture');
-fs.writeFileSync(root+'/review/site-v1-20261002-v7-captures/contrast.json',JSON.stringify({method:'Chromium rendered backgrounds with text paint hidden without layout changes; sampled glyph-center composited pixels, using computed original text color. Desktop start/middle/end plus mobile start in both themes. Sampled check, not complete WCAG certification.',sources,views:results,failures:failures.length},null,2)+'\n');
+fs.writeFileSync(root+'/review/site-v1-20261003-v8-captures/contrast.json',JSON.stringify({method:'Chromium rendered backgrounds with motion frozen per sample and text paint hidden without layout changes; sampled glyph-center composited pixels, using computed original text color. Desktop start/middle/end plus mobile start in both themes. Sampled check, not complete WCAG certification.',sources,views:results,failures:failures.length},null,2)+'\n');
 process.stdout.write(JSON.stringify({views:results.length,samples:results.reduce((n,r)=>n+r.samples,0),min_normal:Math.min(...results.map(r=>r.min_normal).filter(Boolean)),min_large:Math.min(...results.map(r=>r.min_large).filter(Boolean)),failures:failures.slice(0,10)},null,2)+'\n');
 if(failures.length)process.exitCode=1;
 })().catch(e=>{process.stderr.write(e.stack);process.exitCode=1;});

@@ -137,7 +137,8 @@ test("Home provides the agreed reader path, precise public actions and a real co
   assert.ok(home.includes('href="#contact">Discuss your AI challenge'));
   assert.ok(home.includes("Direct booking will be available here."));
   assert.ok(home.includes('href="https://www.linkedin.com/in/vitaliioborskyi/">Arrange a conversation'));
-  assert.doesNotMatch(home,/href="#"|Trusted by|CPC|RankSpot|4400|4,400/);
+  // Generated decorative coordinates/opacity decimals are not author claims.
+  assert.doesNotMatch(home.replace(/<svg\b[\s\S]*?<\/svg>/g,""),/href="#"|Trusted by|CPC|RankSpot|4400|4,400/);
   for (const text of ["human understanding, verification and ownership","people, evidence, authority and correction","Much remains to develop and test","outputs depend on the agreed engagement"]) assert.ok(home.includes(text));
   for (const page of Object.values(pages)) assert.ok(page.includes('href="./#contact">Contact</a>'));
   const css=fs.readFileSync(path.join(root,"styles.css"),"utf8");

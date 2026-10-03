@@ -1,5 +1,15 @@
 # Source audit for the first-site revision
 
+## v8 visual-only source treatment — 2026-10-03
+
+The current revision changes scene geometry, motion and its Credits explanation.
+Publication/people/research source identities and portrait bytes retain their
+previously audited scope. [Graphics source note](review/sol-visual-v8-20261003/DESIGN.md)
+records directly reviewed original L-system and creative-coding loop explanations.
+They inform an original, finite recursive renderer; no external artwork, noise
+library, research assertion or third-party implementation is copied into the site.
+
+
 ## v4 source treatment and preservation — 2026-10-02
 
 The maintainer instructed the exact treatment already reviewed in

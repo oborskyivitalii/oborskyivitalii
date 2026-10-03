@@ -1,4 +1,4 @@
-/* Thematic faceted still lifes. Native scroll/topic choices move the camera; never the pointer. */
+/* Living thematic grammars. Scroll controls the camera; a bounded loop articulates the world. */
 (() => {
   "use strict";
   const add = (a, b) => a.map((v, i) => v + b[i]);
@@ -10,10 +10,10 @@
   const mix = (a, b, t) => ({ position: lerp(a.position, b.position, t), target: lerp(a.target, b.target, t) });
   const clamp = v => Math.max(0, Math.min(1, v));
   const spline=(a,b,c,d,t)=>b.map((v,i)=>.5*((2*v)+(-a[i]+c[i])*t+(2*a[i]-5*v+4*c[i]-d[i])*t*t+(-a[i]+3*v-3*c[i]+d[i])*t*t*t));
-  // Interpolate an orbit in cylindrical coordinates. A straight chord would cut
-  // through the sculpture; this path keeps its distance while changing viewpoint.
+  const LOOP_MS=48000;
+  // Authored spline waypoints pass through the open centres of successive structures.
   function journeyPose(ids,progress,mobile=false) {
-    const path=ids.map(id=>mobile?mix(poses[ids[0]],poses[id],.72):poses[id]);
+    const path=ids.map(id=>poses[id]);
     return curveThrough(path,progress);
   }
   function curveThrough(path,progress) {
@@ -21,15 +21,8 @@
     const p=clamp(progress)*(path.length-1),i=Math.min(path.length-2,Math.floor(p)),t=p-i;
     if(t===0)return path[i];
     if(t===1)return path[i+1];
-    const polar=[];
-    for(const pose of path) {
-      const [x,y,z]=pose.position;let angle=Math.atan2(x,z);
-      if(polar.length){const last=polar.at(-1)[0];while(angle-last>Math.PI)angle-=2*Math.PI;while(angle-last<-Math.PI)angle+=2*Math.PI;}
-      polar.push([angle,Math.hypot(x,z),y]);
-    }
     const indices=[Math.max(0,i-1),i,i+1,Math.min(path.length-1,i+2)];
-    const [angle,radius,y]=spline(...indices.map(j=>polar[j]),t),r=Math.max(11,radius);
-    return {position:[Math.sin(angle)*r,y,Math.cos(angle)*r],target:spline(...indices.map(j=>path[j].target),t)};
+    return {position:spline(...indices.map(j=>path[j].position),t),target:spline(...indices.map(j=>path[j].target),t)};
   }
   function clipSegment(a, b, near = .5) {
     if (a[2] < near && b[2] < near) return null;
@@ -47,36 +40,35 @@
     return result;
   }
   const poses = {
-    overview:{position:[12,7,17],target:[0,.4,-.5]},
-    researchOverview:{position:[13,9,15],target:[-.5,1.4,-1.5]},
-    control:{position:[-12,4,11],target:[3,.6,0]},
-    help:{position:[-8,11,14],target:[3,.5,-.5]},
-    feedback:{position:[9,2.2,12],target:[3,2,1]},
-    context:{position:[-14,6,12],target:[3,.5,-1]},
-    closing:{position:[4,10,19],target:[1,.5,-1]},
-    // Finite side views of the authored subjects.
-    verification:{position:[-8,10,11],target:[4,0,0]},
-    verificationEnd:{position:[11,4,10],target:[4,0,0]},
-    controller:{position:[-10,3,12],target:[3,1,0]},
-    controllerEnd:{position:[12,9,11],target:[3,1,0]},
-    library:{position:[12,7,16],target:[0,.2,0]},
-    libraryMid:{position:[-12,8,16],target:[3,1,0]},
-    libraryEnd:{position:[-8,2,17],target:[3,-.4,0]},
-    signal:{position:[12,5,16],target:[1,.5,-1]},
-    signalEnd:{position:[-12,9,12],target:[2,-.5,0]},
-    network:{position:[12,7,17],target:[0,.5,-1]},
-    networkEnd:{position:[-11,4,13],target:[4,0,-.4]}
+    overview:{position:[6,4,24],target:[0,0,-5]},
+    researchOverview:{position:[5,4,23],target:[0,0,-5]},
+    control:{position:[-1,1,3],target:[-2,1,-25]},
+    help:{position:[2,-1,-14],target:[-2,1,-33]},
+    feedback:{position:[-1,-2,-32],target:[2,-1,-55]},
+    context:{position:[3,1,-45],target:[1,0,-69]},
+    closing:{position:[-2,2,-64],target:[0,0,-82]},
+    verification:{position:[2,2,4],target:[-2,1,-26]},
+    verificationEnd:{position:[-1,2,-60],target:[0,0,-80]},
+    controller:{position:[4,2,22],target:[0,0,-5]},
+    controllerEnd:{position:[1,-2,-63],target:[0,0,-81]},
+    library:{position:[5,3,24],target:[0,0,-5]},
+    libraryMid:{position:[-1,1,-18],target:[-2,1,-35]},
+    libraryEnd:{position:[2,-1,-63],target:[0,0,-81]},
+    signal:{position:[5,3,24],target:[0,0,-5]},
+    signalEnd:{position:[-1,1,-28],target:[2,-1,-55]},
+    network:{position:[5,4,24],target:[0,0,-5]},
+    networkEnd:{position:[1,-1,-30],target:[2,-1,-54]}
   };
-  const topicPaths = { all:["library","libraryMid","libraryEnd"], strategy:["library","help","closing"], systems:["control","help","feedback"], delivery:["verification","researchOverview","verificationEnd"], leadership:["controller","help","controllerEnd"] };
+  const topicPaths = { all:["library","control","libraryMid","feedback","libraryEnd"], strategy:["library","help","closing"], systems:["researchOverview","control","feedback","closing"], delivery:["library","verification","libraryMid","verificationEnd"], leadership:["controller","help","controllerEnd"] };
   const pageStops = {
     index:{hero:"overview",research:"control",help:"help",writing:"feedback",acknowledgements:"context",about:"closing",contact:"closing"},
-    research:{intro:"researchOverview",research:"verification",lenses:"control",topics:"feedback",acknowledgements:"context"},
+    research:{intro:"researchOverview",research:"verification",lenses:"help",topics:"feedback",acknowledgements:"closing"},
     talks:{intro:"signal",talks:"signalEnd",continue:"closing"},
     credits:{intro:"network",preferences:"networkEnd",contact:"closing"}
   };
   const initialPoses={index:"overview",research:"researchOverview",writing:"library",talks:"signal",credits:"network"};
-  // A small sculptural vocabulary, arranged as a different still life per route.
-  // Geometry is built once. All faces, contours and engraving use one camera/light.
+  // Finite recursive grammars use modeled symbols as their terminal geometry.
+  // Immutable geometry is built once; every animated pose is evaluated from it.
   function worldFor(page,compact=false) {
     const faces=[],lines=[],objects=[];
     const rotate=(p,r)=>{
@@ -85,6 +77,7 @@
       [x,z]=[x*Math.cos(b)+z*Math.sin(b),-x*Math.sin(b)+z*Math.cos(b)];
       return [x*Math.cos(c)-y*Math.sin(c),x*Math.sin(c)+y*Math.cos(c),z];
     };
+    let detail=0,metadata={};
     function object(name,center,rotation,scale,band,build) {
       const firstFace=faces.length,firstLine=lines.length;
       const point=p=>add(center,rotate(p.map(v=>v*scale),rotation));
@@ -101,7 +94,7 @@
         for(const ix of[[0,3,2,1],[4,5,6,7],[0,1,5,4],[2,3,7,6],[1,2,6,5],[3,0,4,7]])face(ix.map(i=>corners[i]),color,tone);
       };
       const ring=(center,radius,tube,rotation=[0,0,0],color="cyan",arc=Math.PI*2)=>{
-        const n=compact?24:40,sides=4;
+        const n=detail?8:compact?12:20,sides=3;
         const at=(i,j)=>add(center,rotate([(radius+tube*Math.cos(j/sides*2*Math.PI))*Math.cos(i/n*arc),(radius+tube*Math.cos(j/sides*2*Math.PI))*Math.sin(i/n*arc),tube*Math.sin(j/sides*2*Math.PI)],rotation));
         for(let i=0;i<n;i++)for(let j=0;j<sides;j++)face([at(i,j),at(i+1,j),at(i+1,j+1),at(i,j+1)],color,.29,.12);
         path(Array.from({length:n+1},(_,i)=>at(i,0)),color,.66);
@@ -113,16 +106,16 @@
       };
       const paper=(center,w,h,bend=.25,tilt=0,color="cyan",text=true)=>{
         const at=(x,y)=>add(center,rotate([x,y,bend*Math.sin((y/h+.5)*Math.PI)+.08*x*x],[0,tilt,0]));
-        const n=compact?5:8;
+        const n=detail?2:compact?3:5;
         for(let i=0;i<n;i++){const y=-h/2+h*i/n,Y=y+h/n;face([at(-w/2,y),at(w/2,y),at(w/2,Y),at(-w/2,Y)],color,.055,0);}
         path([at(-w/2,-h/2),...Array.from({length:n+1},(_,i)=>at(-w/2,-h/2+h*i/n)),at(w/2,h/2),...Array.from({length:n+1},(_,i)=>at(w/2,h/2-h*i/n)),at(-w/2,-h/2)],color,.55);
         if(text)for(let row=0;row<6;row++){const y=h*.28-row*h*.095;line(add(at(-w*.32,y),[0,0,.015]),add(at(w*(row===5?.03:.29),y),[0,0,.015]),color,row===0?.48:.2,row===0?1.5:.8);}
       };
       build({face,line,path,poly,box,ring,ball,paper});
-      objects.push({name,band,firstFace,faceCount:faces.length-firstFace,firstLine,lineCount:lines.length-firstLine});
+      objects.push({name,center,scale,band,...metadata,firstFace,faceCount:faces.length-firstFace,firstLine,lineCount:lines.length-firstLine});
     }
     const openBook=({face,line,path})=>{
-      const n=compact?6:10;
+      const n=detail?2:compact?3:5;
       for(const sign of[-1,1]) {
         const at=(t,y,leaf)=>[sign*t*2.65,y,.58*t+.3*Math.sin(t*Math.PI)-leaf*.062];
         // Boards, page block and individual curled leaves; the central gutter is real depth.
@@ -133,15 +126,15 @@
         }
         path(Array.from({length:n+1},(_,i)=>board(i/n,2.2)),"cyan",.6);
         path(Array.from({length:n+1},(_,i)=>board(i/n,-2.2)),"cyan",.6);
-        for(const leaf of[4,3,2,1,0]) {
+        for(const leaf of(detail?[2,0]:[4,2,0])) {
           const edge=Array.from({length:n+1},(_,i)=>at(i/n,-2.05,leaf));path(edge,"cyan",.3,.8);
           path(Array.from({length:n+1},(_,i)=>at(i/n,2.05,leaf)),"cyan",.28,.8);
           line(at(1,-2.05,leaf),at(1,2.05,leaf),"cyan",.34,.8);
         }
         for(let i=0;i<n;i++)face([at(i/n,-2.05,0),at((i+1)/n,-2.05,0),at((i+1)/n,2.05,0),at(i/n,2.05,0)],"cyan",.04,0);
-        for(let row=0;row<9;row++) {
+        for(let row=0;row<(detail?3:5);row++) {
           const y=1.45-row*.29,end=row===8?.7:.88;
-          path(Array.from({length:7},(_,i)=>add(at(.14+(end-.14)*i/6,y,0),[0,0,.018])),"cyan",row===0?.46:.23,row===0?1.8:.8);
+          path(Array.from({length:4},(_,i)=>add(at(.14+(end-.14)*i/3,y,0),[0,0,.018])),"cyan",row===0?.46:.23,row===0?1.8:.8);
         }
         if(sign===1)face([at(.76,2.12,-.25),at(.85,2.12,-.25),at(.85,-2.55,-.25),at(.805,-2.38,-.25),at(.76,-2.55,-.25)],"amber",.43,.55);
       }
@@ -193,7 +186,7 @@
         if(!depth){ball(end,.085,"cyan");return;}
         for(const sign of[-1,1])grow(end,[dir[0]*.5+sign*.85,dir[1]*.7+.25,dir[2]+sign*.35],length*.69,depth-1);
       }
-      grow([0,-2.8,0],[0,1,0],2,compact?3:4);
+      grow([0,-2.8,0],[0,1,0],2,detail?1:2);
     };
     const gates=({box,line})=>{
       for(let layer=0;layer<4;layer++){
@@ -204,17 +197,17 @@
     };
     const microphone=({face,path,line,box,ring})=>{
       // A capsule grille inside a separate yoke; not an audio visualization.
-      const n=compact?12:20,levels=[[-1.25,.28],[-1.1,.58],[-.85,.72],[.85,.72],[1.1,.58],[1.25,.28]];
+      const n=detail?6:compact?8:12,levels=[[-1.25,.28],[-1.1,.58],[-.85,.72],[.85,.72],[1.1,.58],[1.25,.28]];
       const at=(level,j)=>[levels[level][1]*Math.cos(j/n*Math.PI*2),levels[level][0]+.9,levels[level][1]*Math.sin(j/n*Math.PI*2)];
       for(let k=0;k<levels.length-1;k++)for(let j=0;j<n;j++)face([at(k,j),at(k,j+1),at(k+1,j+1),at(k+1,j)],"cyan",.26,.1);
       for(let j=0;j<n;j++)path(levels.map((_,k)=>at(k,j)),"cyan",.37,.85);
-      for(let y=-.55;y<=1.65;y+=.22){const r=y<-.18?.57:y>1.68?.57:.735;path(Array.from({length:n+1},(_,j)=>[r*Math.cos(j/n*2*Math.PI),y,r*Math.sin(j/n*2*Math.PI)]),"cyan",.4,.8);}
+      for(let y=-.55;y<=1.65;y+=(detail?.44:.22)){const r=y<-.18?.57:y>1.68?.57:.735;path(Array.from({length:n+1},(_,j)=>[r*Math.cos(j/n*2*Math.PI),y,r*Math.sin(j/n*2*Math.PI)]),"cyan",.4,.8);}
       box([-1.04,-.25,0],[.18,1.8,.25],"amber",.37);box([1.04,-.25,0],[.18,1.8,.25],"amber",.37);box([0,-1.12,0],[2.2,.2,.25],"amber",.36);
       box([0,-2,0],[.19,1.7,.19],"cyan",.32);ring([0,-2.87,0],1.05,.12,[Math.PI/2,0,0]);line([0,-2.8,0],[0,-1.15,0],"cyan",.6);
     };
     const soundwaves=({face,path})=>{
       for(let k=0;k<4;k++) {
-        const r=1.15+k*.7,z=-k*.35,n=compact?12:20;
+        const r=1.15+k*.7,z=-k*.35,n=detail?6:compact?8:12;
         const at=(i,inner)=>{const a=-.92+i/n*1.84;return [Math.cos(a)*(r-inner),Math.sin(a)*(r-inner),z];};
         for(let i=0;i<n;i++)face([at(i,0),at(i+1,0),at(i+1,.1),at(i,.1)],k===1?"amber":"cyan",.28,.05);
         path(Array.from({length:n+1},(_,i)=>at(i,0)),k===1?"amber":"cyan",.55);
@@ -232,7 +225,7 @@
     };
     const links=({face,path})=>{
       function link(center,rotation,color) {
-        const n=compact?28:44,outer=[],inner=[];
+        const n=detail?8:compact?12:18,outer=[],inner=[];
         for(let i=0;i<n;i++){const a=i/n*Math.PI*2,c=Math.cos(a),s=Math.sin(a);outer.push(add(center,rotate([c*1.55,s*.9,0],rotation)));inner.push(add(center,rotate([c*1.23,s*.57,0],rotation)));}
         for(let i=0;i<n;i++){const j=(i+1)%n,front=p=>add(p,rotate([0,0,.14],rotation)),back=p=>add(p,rotate([0,0,-.14],rotation));face([front(outer[i]),front(outer[j]),front(inner[j]),front(inner[i])],color,.26,.1);face([back(outer[i]),back(outer[j]),front(outer[j]),front(outer[i])],color,.39,.07);face([back(inner[i]),back(inner[j]),front(inner[j]),front(inner[i])],color,.39,.07);}
         path([...outer,outer[0]].map(p=>add(p,rotate([0,0,.14],rotation))),color,.6);path([...inner,inner[0]].map(p=>add(p,rotate([0,0,.14],rotation))),color,.56);
@@ -244,32 +237,81 @@
       face([[.45,1.57,.05],[1,1.57,.05],[1,.62,.1],[.72,.85,.1],[.45,.62,.1]],"amber",.45);
       box([-1.25,0,-.14],[.09,3.3,.12],"cyan",.25);
     };
-    const distant=(name,fn)=>object(name,[-5.4,2.2,-7],[.12,-.22,.25],.64,"distant",fn);
-    if(page==="writing") {
-      object("open-book",[3.3,.35,.1],[-.25,.38,-.19],1.07,"middle",openBook);
-      object("loose-pages",[5.7,3.7,-4.1],[.1,.18,.32],.86,"middle",sheets);
-      object("letterpress-A",[6.8,-2.4,3.9],[.12,.28,-.23],.8,"near",letters);
-      distant("distant-pages",sheets);
-    } else if(page==="talks") {
-      object("microphone",[2.25,.5,.2],[.08,-.18,-.22],1.52,"middle",microphone);
-      object("sound-waves",[4.4,.6,-2.4],[.1,-.4,.1],1.25,"middle",soundwaves);
-      object("presentation-screen",[6.6,-3.1,3.5],[.1,.2,.14],.86,"near",screen);
-      distant("distant-wavefronts",soundwaves);
-    } else if(page==="credits") {
-      object("quotation-marks",[5.7,2.2,-1.2],[.08,.36,-.1],1.32,"middle",quotes);
-      object("source-links",[6.5,-2.4,2.7],[.15,.25,-.24],1.04,"near",links);
-      object("source-card",[-3.8,-1.3,-3.5],[.22,.18,-.22],.92,"middle",sourceTabs);
-      distant("distant-source-tabs",sourceTabs);
-    } else if(page==="research") {
-      object("gyroscope",[3.4,1.1,-.9],[.05,-.3,.1],1.08,"middle",gyroscope);
-      object("verification-gates",[6.3,-2.8,3.5],[.15,-.5,-.08],.97,"near",gates);
-      object("hypothesis-tree",[5.3,3,-4.1],[0,-.2,-.25],.87,"middle",hypotheses);
-      distant("distant-hypotheses",hypotheses);
-    } else {
-      object("compass",[5.2,4.0,-5.4],[.08,.3,-.3],1.04,"middle",compass);
-      object("architectural-arch",[6.5,-3.6,4.2],[.1,-.36,-.06],1.11,"near",arch);
-      object("ascending-steps",[-4.7,-.8,1],[.13,-.32,-.05],1.03,"middle",steps);
-      distant("distant-arch",arch);
+    const closedBook=({box,line})=>{
+      box([0,0,0],[2.35,3.15,.5],"cyan",.045);
+      for(const z of[-.32,.32])box([0,0,z],[2.55,3.35,.12],"cyan",.32);
+      box([-1.22,0,0],[.2,3.35,.7],"amber",.34);
+      for(const y of[-1,-.75,.8,1.05])line([-1.34,y,.36],[-1.08,y,.36],"amber",.65);
+    };
+    const scroll=({paper,ring})=>{
+      paper([0,0,0],2.2,2.7,.24,0);
+      for(const y of[-1.35,1.35])ring([0,y,.1],.34,.1,[0,Math.PI/2,0],"amber");
+    };
+    const bracket=({poly})=>{
+      for(const sign of[-1,1])poly([[sign*.6,-1.5],[sign*1.1,-1.5],[sign*1.1,1.5],[sign*.6,1.5],[sign*.6,1.22],[sign*.84,1.22],[sign*.84,-1.22],[sign*.6,-1.22]],.22,"amber",.3);
+    };
+    const quill=({face,line})=>{
+      face([[0,-1.8,0],[-.85,.3,.1],[-.55,1.7,.22],[.45,1.15,.22],[.66,.35,.1]],"cyan",.065,.6);
+      line([0,-2,0],[-.22,1.65,.28],"amber",.75,1.5);
+      for(let i=0;i<4;i++)line([-.1,-.2+i*.4,.17],[-.7,.12+i*.38,.18],"cyan",.3);
+    };
+    const prism=({face,line})=>{
+      const a=[[-1.3,-1,0],[1.3,-1,0],[0,1.5,0]],b=a.map(p=>add(p,[0,0,-1]));
+      face(a,"cyan",.12);face(b.slice().reverse(),"cyan",.2);
+      for(let i=0;i<3;i++)face([a[i],b[i],b[(i+1)%3],a[(i+1)%3]],i===0?"amber":"cyan",.32);
+      line([-2.2,0,.5],[2.2,0,.5],"amber",.5);
+    };
+    const lens=({ring,face})=>{
+      ring([0,0,0],1.55,.12);ring([0,0,-.3],1.45,.06,[0,0,0],"amber");
+      for(let i=0;i<8;i++){const a=i*Math.PI/4,b=(i+1)*Math.PI/4;face([[0,0,.34],[1.4*Math.cos(a),1.4*Math.sin(a),0],[1.4*Math.cos(b),1.4*Math.sin(b),0]],"cyan",.075,0);}
+    };
+    const balance=({box,line,face})=>{
+      box([0,-.3,0],[.14,2.8,.2],"cyan",.3);box([0,1,0],[3.5,.12,.2],"amber",.3);
+      for(const x of[-1.4,1.4]){line([x,1,0],[x,-.3,0]);face([[x-.65,-.3,0],[x+.65,-.3,0],[x,-.75,.2]],"cyan",.2);}
+    };
+    const bridge=({box})=>{box([0,0,0],[3.8,.22,1.1],"cyan",.25);for(const x of[-1.5,1.5])box([x,-.9,0],[.22,1.8,1.1],"amber",.28);};
+    const bubble=({poly})=>poly([[-1.6,-.65],[-.65,-.65],[-1.2,-1.35],[.2,-.65],[1.6,-.65],[1.6,1.2],[-1.6,1.2]],.28,"cyan",.08);
+    const slide=({paper,face})=>{paper([0,0,0],3.1,2,.05,0);face([[-.35,-.4,.12],[-.35,.6,.12],[.55,.1,.12]],"amber",.4);};
+    const podium=({box})=>{box([0,0,0],[1.8,2.6,.7],"cyan",.2);box([0,1.4,.2],[2.45,.2,1.3],"amber",.3);};
+    const asterisk=({box})=>{box([0,0,0],[.2,2.6,.22],"amber",.34);box([0,0,0],[2.6,.2,.22],"amber",.34);box([0,0,0],[.2,.2,2.6],"cyan",.3);};
+    const footnote=({box})=>{box([0,0,0],[.3,2.4,.24],"amber",.33);box([-.3,1.04,0],[.7,.24,.24],"amber",.33);box([0,-1.2,0],[1.25,.24,.24],"amber",.33);};
+    const vocabulary={
+      index:[["arch",arch],["stairs",steps],["bridge",bridge],["compass",compass],["book",closedBook],["lens",lens],["prism",prism],["threshold",bracket]],
+      research:[["lens",lens],["prism",prism],["feedback",gyroscope],["hypotheses",hypotheses],["balance",balance],["gate",bracket],["aperture",compass],["evidence",sourceTabs]],
+      writing:[["open-book",openBook],["closed-book",closedBook],["pages",sheets],["scroll",scroll],["letter-A",letters],["quill",quill],["parenthesis",bracket],["quotation",quotes]],
+      talks:[["slide",slide],["speech",bubble],["wave",soundwaves],["microphone",microphone],["podium",podium],["screen",screen],["word",letters],["dialogue",quotes]],
+      credits:[["source",sourceTabs],["citation",quotes],["link",links],["footnote",footnote],["reference",bracket],["asterisk",asterisk],["edition",closedBook],["excerpt",scroll]]
+    };
+    const words=vocabulary[page]||vocabulary.index;
+    const roots=[[0,0,-5],[-2,1,-31],[2,-1,-57],[0,0,-83]];
+    // Each parent repeats a smaller two/three-way spatial figure. Fixed depth,
+    // fixed topology and deterministic substitutions: no per-frame growth/randomness.
+    function grow(center,scale,depth,angle,root,index,parent=null) {
+      const symbolIndex=depth===0?(index+root)%2:depth===1?2+(index+root)%2:4+(index+root)%4,[symbol,build]=words[symbolIndex];
+      detail=depth||root>0?1:0;
+      const name=`${symbol}-${root}-${objects.length}`;
+      metadata={symbol,depth,root,rootCenter:roots[root],parent,phase:index*.71+root*1.9};
+      object(name,center,[.16*Math.sin(angle),.32*Math.cos(angle),angle-Math.PI/2],scale,root>1?"distant":depth===0?"near":"middle",build);
+      if(depth===2)return;
+      const branches=2,step=depth===0?1.12:.85;
+      for(let j=0;j<branches;j++) {
+        const a=angle+(j-(branches-1)/2)*step;
+        const distance=scale*(depth===0?3.6:3.2);
+        const next=add(center,[Math.cos(a)*distance,Math.sin(a)*distance,Math.sin(a*2+root)*scale*.85]);
+        grow(next,scale*.43,depth+1,a,root,index*3+j+1,name);
+      }
+    }
+    for(let root=0;root<roots.length;root++) {
+      const n=compact?5:7;
+      for(let i=0;i<n;i++) {
+        let a=i/n*Math.PI*2+root*.24,r=6.5,x,y,z;
+        if(page==="writing") {a=-.15*Math.PI+i/(n-1)*1.3*Math.PI;x=Math.cos(a)*r;y=Math.sin(a)*r*.87;z=Math.cos(a*2)*.7;}
+        else if(page==="research") {x=Math.cos(a)*r;y=Math.sin(a)*r*(i%2?.88:1.12);z=Math.sin(a*2)*1.7;}
+        else if(page==="talks") {a=-.35*Math.PI+i/(n-1)*1.7*Math.PI;x=Math.cos(a)*r*1.18;y=Math.sin(a)*r*.65;z=Math.sin(a*2)*2.6;}
+        else if(page==="credits") {x=Math.cos(a)*r;y=Math.sin(a*2)*r*.57;z=Math.sin(a)*2.1;}
+        else {a=-.12*Math.PI+i/(n-1)*1.24*Math.PI;x=Math.cos(a)*r;y=Math.sin(a)*r;z=Math.cos(a)*1.6;}
+        grow(add(roots[root],[x,y,z]),root===0?.82:.9,0,a,root,i);
+      }
     }
     const light=normalize([-.55,.85,1]);
     for(const f of faces) {
@@ -278,28 +320,58 @@
       f.tint=Math.min(.63,f.tone*shade);
       // Paper catches neutral light in both themes; metal keeps its cyan/bronze tint.
       if(f.tone<.1){f.fillColor="sheet";f.tint=.6+shade*.1;}
-      if(f.band==="distant"){f.tint*=.4;f.edgeAlpha*=.27;}
     }
     return {faces,lines,objects};
   }
-  function projectedWorld(world,current,width,height) {
+  function loopTransform(object,time=0) {
+    const phase=((time%LOOP_MS)+LOOP_MS)%LOOP_MS/LOOP_MS*Math.PI*2;
+    const root=object.rootCenter,center=object.center,p=object.phase;
+    const breathe=1+.024*Math.sin(phase+object.root*.8);
+    const a=.045*Math.sin(phase+object.root*1.2),b=.065*Math.sin(phase*2+p);
+    const ca=Math.cos(a),sa=Math.sin(a),cb=Math.cos(b),sb=Math.sin(b);
+    const dx=.12*Math.sin(phase*2+p),dy=.16*Math.cos(phase+p),dz=.12*Math.sin(phase+p);
+    // Absolute transforms of immutable points: closure holds for position and
+    // velocity, and geometry cannot drift or accumulate integration error.
+    return point=>{
+      const qx=point[0]-center[0],qy=point[1]-center[1],qz=point[2]-center[2];
+      const x=qx*cb+qz*sb,y=qy,z=-qx*sb+qz*cb;
+      const X=(center[0]-root[0])*breathe+x+dx,Y=(center[1]-root[1])*breathe+y+dy;
+      return [root[0]+X*ca-Y*sa,root[1]+X*sa+Y*ca,center[2]+z+dz];
+    };
+  }
+  function projectedWorld(world,current,width,height,time=0) {
     const forward=normalize(sub(current.target,current.position)),right=normalize(cross(forward,[0,1,0])),up=cross(right,forward);
-    const camera=point=>{const delta=sub(point,current.position);return [dot(delta,right),dot(delta,up),dot(delta,forward)];};
+    const camera=point=>{const x=point[0]-current.position[0],y=point[1]-current.position[1],z=point[2]-current.position[2];return [x*right[0]+y*right[1]+z*right[2],x*up[0]+y*up[1]+z*up[2],x*forward[0]+y*forward[1]+z*forward[2]];};
     const focal=(width<=640?Math.min(height,width*1.15):height)/(2*Math.tan(Math.PI/8));
     const project=p=>[width*(width<=640?.42:.66)+p[0]*focal/p[2],height*.48-p[1]*focal/p[2]];
-    const shapes=[];
+    const shapes=[],transforms=new Map(),lod=new Map();
+    for(const o of world.objects){
+      const depth=camera(o.center)[2],size=o.scale*focal/Math.max(.5,depth);
+      // Fixed screen-size LOD: distant recursive leaves become visible naturally
+      // on approach. A culled motif incurs no per-vertex projection or drawing.
+      const threshold=o.depth===2?(width<=640?3.4:3):o.depth===1?2:0;
+      if(depth < -o.scale*5 || size<threshold)continue;
+      transforms.set(o.name,loopTransform(o,time));
+      lod.set(o.name,threshold?clamp((size-threshold)/2):1);
+    }
+    const visible=pts=>!pts.every(p=>p[0]<-8)&&!pts.every(p=>p[0]>width+8)&&!pts.every(p=>p[1]<-8)&&!pts.every(p=>p[1]>height+8);
     for(const f of world.faces) {
-      const points=clipPolygon(f.points.map(camera));
+      const transform=transforms.get(f.object);if(!transform)continue;
+      const points=clipPolygon(f.points.map(p=>camera(transform(p))));
       if(points.length<3)continue;
-      const depth=points.reduce((v,p)=>v+p[2],0)/points.length;
-      shapes.push({kind:"face",points:points.map(project),depth,color:f.color,band:f.band,object:f.object,
-        tint:f.tint,fillColor:f.fillColor,alpha:f.opacity??.82,
-        edgeAlpha:f.edgeAlpha??(f.band==="near"?.55:.46),lineWidth:f.band==="near"?1.4:1});
+      const depth=points.reduce((v,p)=>v+p[2],0)/points.length,projected=points.map(project);
+      if(!visible(projected))continue;
+      const haze=Math.max(.1,Math.min(1,1-(depth-22)/100))*lod.get(f.object);
+      shapes.push({kind:"face",points:projected,depth,color:f.color,band:f.band,object:f.object,
+        tint:f.tint,fillColor:f.fillColor,alpha:(f.opacity??.82)*haze,
+        edgeAlpha:(f.edgeAlpha??.36)*haze,lineWidth:depth<12?1.25:.85});
     }
     for(const s of world.lines) {
-      const clipped=clipSegment(camera(s.a),camera(s.b));if(!clipped)continue;
-      shapes.push({kind:"line",points:clipped.map(project),depth:(clipped[0][2]+clipped[1][2])/2,object:s.object,
-        color:s.color,alpha:(s.opacity??.65)*(s.band==="distant"?.3:1),lineWidth:s.width??(s.band==="distant"?.7:1.2),arrow:s.arrow});
+      const transform=transforms.get(s.object);if(!transform)continue;
+      const clipped=clipSegment(camera(transform(s.a)),camera(transform(s.b)));if(!clipped)continue;
+      const projected=clipped.map(project),depth=(clipped[0][2]+clipped[1][2])/2;if(!visible(projected))continue;
+      shapes.push({kind:"line",points:projected,depth,object:s.object,
+        color:s.color,alpha:(s.opacity??.65)*Math.max(.1,Math.min(1,1-(depth-22)/100))*lod.get(s.object),lineWidth:s.width??1,arrow:s.arrow});
     }
     // Faces AND edges participate in one painter order; near facets occlude distant lines.
     return shapes.sort((a,b)=>b.depth-a.depth);
@@ -309,7 +381,7 @@
     return "#"+lerp(rgb(a),rgb(b),t).map(v=>Math.round(v).toString(16).padStart(2,"0")).join("");
   }
   // Export the same pure composition/projection for checks and the no-Canvas SVG producer.
-  if (typeof module !== "undefined" && module.exports) module.exports = {clipSegment,clipPolygon,mix,journeyPose,poses,topicPaths,pageStops,initialPoses,worldFor,projectedWorld,blendColor};
+  if (typeof module !== "undefined" && module.exports) module.exports = {LOOP_MS,loopTransform,clipSegment,clipPolygon,mix,journeyPose,poses,topicPaths,pageStops,initialPoses,worldFor,projectedWorld,blendColor};
   if (typeof document === "undefined") return;
   const canvas = document.getElementById("space-canvas");
   const control = document.getElementById("space-motion");
@@ -326,10 +398,11 @@
   try { choice=localStorage.getItem(key); } catch { /* In-tab controls remain useful. */ }
   let enabled=choice!=="off" && !reduced.matches, printing=false, pending=null;
   let width=1,height=1,ratio=1,stops=[],bounds=null,focus="all",localProgress=0;
-  const initial=initialPoses[page]||"overview",world=worldFor(page,narrow.matches),fillColors=new Map();
-  let current=poses[initial], animation=null, writingAnchor=null;
+  const initial=initialPoses[page]||"overview",fillColors=new Map();
+  let compact=narrow.matches,world=worldFor(page,compact),ambientTime=0,lastFrame=null,lastDraw=null;
+  let current=poses[initial], animation=null, writingAnchor=null,displayedTime=0,displayedCamera=current;
   let colors={cyan:"#075d7b",amber:"#895710",paper:"#f8f7f3"};
-  const pose = id => narrow.matches ? mix(poses[initial],poses[id],.66) : poses[id];
+  const pose = id => poses[id];
   const pathPose = () => journeyPose(topicPaths[focus],localProgress,narrow.matches);
   function visible(el) { return !el.hidden && el.getClientRects().length>0; }
   function measure() {
@@ -385,7 +458,8 @@
   }
   function cancel() {
     if(pending!==null)window.cancelAnimationFrame(pending);
-    pending=null;animation=null;
+    pending=null;animation=null;lastFrame=null;lastDraw=null;
+    ambientTime=displayedTime;current=displayedCamera;
   }
   function moveTo(target) {
     if (document.hidden || printing || !enabled) return;
@@ -396,7 +470,7 @@
   }
   function draw() {
     ctx.setTransform(ratio,0,0,ratio,0,0);ctx.clearRect(0,0,width,height);
-    for(const shape of projectedWorld(world,current,width,height)) {
+    for(const shape of projectedWorld(world,current,width,height,ambientTime)) {
       const [from,...rest]=shape.points,to=rest[0];
       ctx.beginPath();ctx.moveTo(...from);for(const p of rest)ctx.lineTo(...p);
       ctx.lineWidth=shape.lineWidth;ctx.strokeStyle=colors[shape.color];
@@ -414,10 +488,15 @@
         ctx.beginPath();ctx.moveTo(to[0]-ux*size-uy*size*.55,to[1]-uy*size+ux*size*.55);ctx.lineTo(...to);ctx.lineTo(to[0]-ux*size+uy*size*.55,to[1]-uy*size-ux*size*.55);ctx.stroke();
       }
     }
-    ctx.globalAlpha=1;scene.dataset.ready="true";
+    ctx.globalAlpha=1;scene.dataset.ready="true";displayedTime=ambientTime;displayedCamera=current;
+    scene.dataset.phase=String(ambientTime);scene.dataset.camera=JSON.stringify(current);
   }
   function frame(time) {
     pending=null;if(document.hidden || printing)return;
+    const moving=!!animation;
+    const delta=lastFrame===null?0:Math.min(80,Math.max(0,time-lastFrame));lastFrame=time;
+    const living=enabled&&Object.hasOwn(initialPoses,page);
+    if(living)ambientTime=(ambientTime+delta)%LOOP_MS;
     if(animation && enabled) {
       const dt=Math.min(40,Math.max(1,time-(animation.last??time-1000/60)));
       animation.elapsed+=dt;animation.last=time;
@@ -425,7 +504,10 @@
       current=done?animation.to:curveThrough([current,animation.to],1-Math.exp(-dt/24));
       if(done)animation=null;
     }
-    draw();if(animation)schedule();
+    // No offscreen catch-up. Ambient repaint is capped at 24fps / 16fps mobile;
+    // native scroll transitions repaint immediately for responsive camera travel.
+    if(moving||lastDraw===null||time-lastDraw>=(compact?62.5:1000/24)||!living){draw();lastDraw=time;}
+    if(animation||living)schedule();
   }
   function updateControl() {
     control.hidden=false;control.disabled=reduced.matches;control.setAttribute("aria-pressed",String(enabled));
@@ -433,6 +515,7 @@
   }
   function preferenceChanged() {
     const was=enabled;enabled=choice!=="off" && !reduced.matches;
+    if(enabled&&!was)lastFrame=null;
     if(!enabled)cancel();else if(!was)moveTo(page==="writing" && !bounds?pathPose():scrollPose());
     updateControl();schedule();
   }
@@ -454,7 +537,10 @@
     const target=pathPose();
     if(event.detail.reason==="initial"){current=target;animation=null;schedule();}else moveTo(target);
   });
-  const resize=()=>{measure();schedule();}; // Layout never changes a frozen pose or starts a flight.
+  const resize=()=>{
+    if(compact!==narrow.matches){compact=narrow.matches;world=worldFor(page,compact);readColors();}
+    measure();lastDraw=null;schedule();
+  }; // Layout never changes a frozen camera/ambient phase or starts a flight.
   window.addEventListener("site:archive-layout",resize);
   window.addEventListener("resize",resize,{passive:true});
   window.addEventListener("load",resize,{once:true});

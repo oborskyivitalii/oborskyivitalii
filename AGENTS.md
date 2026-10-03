@@ -71,17 +71,16 @@ and the source findings in [SITE-VISUAL-REVIEW](SITE-VISUAL-REVIEW.md).
 The owning intent is [launch #1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1);
 continue the existing site PR and preserve unrelated newer work.
 
-The maintainer rejected v6's repeated abstract scenery. The current candidate is
-v7: three recognizable subject families per page, arranged as related floating
-still lifes. Writing must read as books/pages/letterforms; changing topology or
-adding recursive detail alone does not establish page identity. Share materials,
-lighting, edge treatment and camera language, rather than a dominant object.
-Read the latest amendment in SOL-HANDOFF. Start with the
-[all-page gallery](review/site-v1-20261002-v7-index.html) and
-[execution/capture evidence](review/sol-visual-v7-20261002/EXECUTION.md);
-do not restart the implementation from the historical v4 planning checkpoint.
-The gallery/export generator verifies capture source hashes before admitting
-images. If public bytes change, refresh affected visual evidence before handoff.
+The current direction is v8: thematic symbols form recursive spatial environments,
+with camera flight through/between structures. The maintainer's 2026-10-03 request
+explicitly authorizes slow autonomous motion and supersedes v7's isolated still
+lifes and earlier no-idle-loop restriction. Read the latest SOL-HANDOFF amendment
+and [formulas/sources](review/sol-visual-v8-20261003/DESIGN.md). Keep topology finite
+and motion periodic from immutable rest geometry; no cumulative random walk.
+Start with the [all-page gallery](review/site-v1-20261003-v8-index.html) and
+[execution/capture evidence](review/sol-visual-v8-20261003/EXECUTION.md).
+The exporter verifies capture source hashes before admitting images. Refresh
+changed-source visual evidence before handoff.
 
 - Background geometry must remain visibly present in the composition. Use local
   translucent reading surfaces and open scene areas; avoid near-opaque panels
@@ -93,10 +92,10 @@ images. If public bytes change, refresh affected visual evidence before handoff.
   only for a demonstrated limitation, not because the requirement says "3D".
 - Model useful subject details: page curvature/bindings, solid letterforms,
   microphone grille/yoke, compass facets and architectural frames. Recursive
-  detail belongs where it supports the subject, not on every page. Camera paths
-  must curve around the composition and respond
+  composition must preserve recognizable page-specific symbols. Camera paths
+  must pass through open structures and respond
   clearly to ordinary scrolling. Verify continuity, safe distance, clipping and
-  exact reversible endpoints; preserve native scrolling and idle stopping.
+  exact reversible camera endpoints; preserve native scrolling and bounded ambient motion.
 - For existing public discussion entries include concise verified role/company
   context and the exact LinkedIn profile. Keep the original contribution link.
   Do not infer an employer or conflate namesakes. Record source date and access
@@ -105,12 +104,12 @@ images. If public bytes change, refresh affected visual evidence before handoff.
   and motion language, with motifs related to each page's content. The maintainer's
   new requirement supersedes the old permanent static Talks/Credits exception.
   Decorative motifs must not imply research results, telemetry or endorsement.
-- Retain native-scroll/topic-driven motion, no pointer camera and no idle loop
-  unless explicitly changed. A request for more visible movement does not by
-  itself authorize autoplay. Off/reduced freezes the current pose; preserve
-  hidden/print cancellation, mobile bounds and a useful no-JS/Canvas fallback.
-  Short-page/no-scroll handling and the optional ambient mode are described in
-  the handoff; never add empty content merely to manufacture scroll distance.
+- Retain native-scroll/topic-driven camera travel, with no pointer camera. The
+  explicitly authorized 48-second ambient cycle moves the structure at idle.
+  Off/reduced freezes BOTH displayed pose and ambient phase; hidden/print pauses
+  without catch-up. Cap repaint work, use bounded mobile detail and retain a
+  useful no-JS/Canvas fallback. A short page still breathes without extra content
+  or spacer height. Scroll and ambient motion have separate responsibilities.
 - Present every changed route through one working preview index, in both themes,
   with desktop/mobile views and real motion evidence. A Home-only link, concept
   picture, source test or GitHub HTML source page is not an all-page visual review.
