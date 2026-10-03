@@ -1,5 +1,18 @@
 # First site: candidate, review and release
 
+## Current handoff and status — 2026-10-03
+
+[Issue #14](https://github.com/oborskyivitalii/oborskyivitalii/issues/14) prepares
+the next visual/contrast/SEO increment in Draft PR #10; read
+[v11 Sol tasks](review/sol-visual-v11-20261003/SOL-TASKS.md). No public file changes
+in this preparation. The existing runtime and maintained release tooling at
+`0333c4d` have [verified candidate evidence](https://github.com/oborskyivitalii/oborskyivitalii/pull/10#issuecomment-5970991843),
+including the 24-second cycle. Earlier v8/pipeline-pending descriptions below
+are historical. New implementation must refresh source-bound exports/captures
+and evidence, retain unchanged #13 budgets and keep genuine device/rights/hosting
+requirements open. The full release gate's missing external review/device record
+is not satisfied by this planning handoff. No merge or deployment is requested.
+
 ## Required future release checks — 2026-10-03
 
 [SITE-RELEASE-GATES](SITE-RELEASE-GATES.md), owned by #13, defines recurring

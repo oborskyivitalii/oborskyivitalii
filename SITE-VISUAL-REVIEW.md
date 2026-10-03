@@ -1,5 +1,18 @@
 # Site visual review and proposed direction
 
+## Approved next direction — 2026-10-03
+
+[Issue #14](https://github.com/oborskyivitalii/oborskyivitalii/issues/14) and
+[v11 Sol tasks](review/sol-visual-v11-20261003/SOL-TASKS.md) record the accepted
+executive-oriented direction, original concept and exact 70% fog calibration.
+Make atmosphere stronger than the shown reference; repair Day text contrast
+first; refine hierarchy/palette/wordmark while preserving the five living worlds,
+24-second cycle, source-bound content and SEO. Defocus is a measured optional
+far-field enhancement. The concept is not a full-site implementation or evidence.
+Continue Draft PR #10; this preparation changes no public bytes. The completed
+`0333c4d` renderer/evidence is the baseline; older “current v8” descriptions below
+are historical. Read the task's visual/contrast/SEO acceptance before editing.
+
 ## Current v8 — living thematic environments, 2026-10-03
 
 The maintainer explicitly superseded the v7 still-life and no-idle-motion limits.

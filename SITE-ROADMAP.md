@@ -1,5 +1,18 @@
 # Vitalii Oborskyi — site and publishing roadmap
 
+## Next approved site increment — 2026-10-03
+
+[#14](https://github.com/oborskyivitalii/oborskyivitalii/issues/14) owns
+[the v11 Sol handoff](review/sol-visual-v11-20261003/SOL-TASKS.md): Day contrast,
+70% reference fog, stronger atmosphere, executive presentation and SEO preservation.
+Implementation continues in Draft PR #10, stacked on #9. This is prepared work.
+Runtime/gate implementation and evidence at `0333c4d` are already
+[recorded as complete for that candidate](https://github.com/oborskyivitalii/oborskyivitalii/pull/10#issuecomment-5970991843);
+older pending engineering summaries below are historical. New public changes
+need new evidence under #12/#13. Physical-device, visual/editorial/rights and
+#8 hosting/release decisions remain open; PMDay #2 and later guides #11 keep
+their existing sequence. No merge or publication is requested by this handoff.
+
 ## Engineering and release follow-up — 2026-10-03
 
 The v8 [audit](review/site-audit-v8-20261003/REPORT.md) is complete under #12;

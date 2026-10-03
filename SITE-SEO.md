@@ -1,5 +1,17 @@
 # Search discoverability and topic map
 
+## Preservation requirement for the next visual iteration — 2026-10-03
+
+The maintainer explicitly requires existing SEO work to survive text/layout
+changes in [#14](https://github.com/oborskyivitalii/oborskyivitalii/issues/14).
+[Sol tasks](review/sol-visual-v11-20261003/SOL-TASKS.md#7-s4--preserve-seo-and-meaning-through-the-copylayout-changes)
+define the semantic before/after mapping and exact edition/source invariants;
+[the five-page baseline](review/sol-visual-v11-20261003/seo-baseline.json) records
+the actual `0333c4d` candidate. Keep this document and the linked buyer/query plans
+as owners. The short design mockup does not replace reviewed production copy.
+No public copy or metadata changes in this preparation; #8 still owns permanent
+URL/indexing and #11 still owns later guides/demand validation.
+
 ## Evidence and v4 implementation — 2026-10-02
 
 The latest [free-source evidence](review/sol-plan-20261002/SEO-EVIDENCE.md) adds

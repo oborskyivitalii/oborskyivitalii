@@ -1,0 +1,3162 @@
+{
+  "schemaVersion": 1,
+  "status": "frozen planning baseline; not a post-change acceptance report",
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "sourceCommit": "0333c4d2b2318850fd56312d83fb63ca468f01a4",
+  "sourceTree": "a607b35db240a0441c37a909838b4c4a3296be25",
+  "recordedDate": "2026-10-03",
+  "extraction": "Python standard-library HTMLParser; static DOM order; whitespace-normalized text excluding script/style/svg/template, hidden and aria-hidden=true. Computed CSS visibility/contrast is not evaluated. All meta/link/schema fields and publication records retained separately.",
+  "comparisonPolicy": "Exact source/publication identity and inventory; semantic mapping for approved copy/heading/metadata changes; no assertion of keyword-count equality.",
+  "pages": [
+    {
+      "path": "docs/index.html",
+      "sha256": "5ebcab6dd9b33cccaff5dc8f80ceeb45c37892d27d89b636e2ddef0055a7541b",
+      "bytes": 46423,
+      "documentLanguage": "en",
+      "title": [
+        "Vitalii Oborskyi | AI Delivery Governance & Agentic Operating Models"
+      ],
+      "meta": [
+        {
+          "charset": "utf-8"
+        },
+        {
+          "name": "viewport",
+          "content": "width=device-width, initial-scale=1"
+        },
+        {
+          "name": "description",
+          "content": "AI adoption without delivery gains? Agents hard to control in production? Research and practical work on AI delivery governance, verification and operating models."
+        },
+        {
+          "name": "color-scheme",
+          "content": "light dark"
+        },
+        {
+          "name": "author",
+          "content": "Vitalii Oborskyi"
+        },
+        {
+          "property": "og:site_name",
+          "content": "Vitalii Oborskyi"
+        },
+        {
+          "property": "og:type",
+          "content": "website"
+        },
+        {
+          "property": "og:title",
+          "content": "Vitalii Oborskyi | AI Delivery Governance & Agentic Operating Models"
+        },
+        {
+          "property": "og:description",
+          "content": "AI adoption without delivery gains? Agents hard to control in production? Research and practical work on AI delivery governance, verification and operating models."
+        },
+        {
+          "name": "twitter:card",
+          "content": "summary"
+        },
+        {
+          "name": "twitter:title",
+          "content": "Vitalii Oborskyi | AI Delivery Governance & Agentic Operating Models"
+        },
+        {
+          "name": "twitter:description",
+          "content": "AI adoption without delivery gains? Agents hard to control in production? Research and practical work on AI delivery governance, verification and operating models."
+        }
+      ],
+      "headLinks": [
+        {
+          "rel": "stylesheet",
+          "href": "styles.css"
+        },
+        {
+          "rel": "icon",
+          "href": "assets/favicon.svg",
+          "type": "image/svg+xml"
+        }
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "attributes": {
+            "id": "author-name"
+          },
+          "text": "Vitalii Oborskyi ."
+        },
+        {
+          "tag": "h2",
+          "attributes": {
+            "id": "research-title"
+          },
+          "text": "Two questions behind the work."
+        },
+        {
+          "tag": "h3",
+          "attributes": {},
+          "text": "How do we rebalance AI-assisted delivery?"
+        },
+        {
+          "tag": "h3",
+          "attributes": {},
+          "text": "How do we engineer systems that rely on model judgment?"
+        },
+        {
+          "tag": "h2",
+          "attributes": {
+            "id": "help-title"
+          },
+          "text": "Start with the decision you need to make."
+        },
+        {
+          "tag": "h3",
+          "attributes": {},
+          "text": "“We bought AI tools. Delivery is not improving.”"
+        },
+        {
+          "tag": "h3",
+          "attributes": {},
+          "text": "“The demo works. Production is hard to control.”"
+        },
+        {
+          "tag": "h3",
+          "attributes": {},
+          "text": "“Our process and roles have not caught up with AI.”"
+        },
+        {
+          "tag": "h2",
+          "attributes": {
+            "id": "writing-title"
+          },
+          "text": "Five ways into the work."
+        },
+        {
+          "tag": "h2",
+          "attributes": {
+            "id": "ack-title"
+          },
+          "text": "How others have engaged with the work."
+        },
+        {
+          "tag": "h3",
+          "attributes": {},
+          "text": "Arkadiy Dobkin"
+        },
+        {
+          "tag": "h3",
+          "attributes": {},
+          "text": "Maximiliano Armesto"
+        },
+        {
+          "tag": "h3",
+          "attributes": {},
+          "text": "Markus Kopko"
+        },
+        {
+          "tag": "h3",
+          "attributes": {},
+          "text": "Christophe Kolb & Taller"
+        },
+        {
+          "tag": "h3",
+          "attributes": {},
+          "text": "Michael Risch"
+        },
+        {
+          "tag": "h3",
+          "attributes": {},
+          "text": "Matthew Skelton"
+        },
+        {
+          "tag": "h3",
+          "attributes": {},
+          "text": "Rod Montgomery"
+        },
+        {
+          "tag": "h3",
+          "attributes": {},
+          "text": "Otman Basir"
+        },
+        {
+          "tag": "h2",
+          "attributes": {
+            "id": "about-title"
+          },
+          "text": "From quality engineering to delivery leadership."
+        },
+        {
+          "tag": "h2",
+          "attributes": {
+            "id": "contact-title"
+          },
+          "text": "Working through one of these problems?"
+        },
+        {
+          "tag": "h3",
+          "attributes": {},
+          "text": "Book a conversation"
+        }
+      ],
+      "anchors": [
+        "space-canvas",
+        "theme-mode",
+        "space-motion",
+        "main",
+        "author-name",
+        "facet-1",
+        "facet-2",
+        "facet-3",
+        "facet-4",
+        "facet-5",
+        "facet-6",
+        "research",
+        "research-title",
+        "delivery",
+        "systems",
+        "help",
+        "help-title",
+        "writing",
+        "writing-title",
+        "acknowledgements",
+        "ack-title",
+        "about",
+        "about-title",
+        "contact",
+        "contact-title"
+      ],
+      "links": [
+        {
+          "class": "skip-link",
+          "href": "#main",
+          "text": "Skip to content"
+        },
+        {
+          "class": "wordmark",
+          "href": "./",
+          "aria-label": "Vitalii Oborskyi, home",
+          "text": "Vitalii Oborskyi"
+        },
+        {
+          "href": "./",
+          "aria-current": "page",
+          "text": "Home"
+        },
+        {
+          "href": "research.html",
+          "text": "Research"
+        },
+        {
+          "href": "writing.html",
+          "text": "Writing"
+        },
+        {
+          "href": "talks.html",
+          "text": "Talks"
+        },
+        {
+          "class": "button",
+          "href": "#contact",
+          "text": "Discuss your AI challenge"
+        },
+        {
+          "class": "text-link",
+          "href": "#research",
+          "text": "Explore the research"
+        },
+        {
+          "href": "#research",
+          "text": "Research"
+        },
+        {
+          "href": "#writing",
+          "text": "Writing"
+        },
+        {
+          "href": "#help",
+          "text": "Work with me"
+        },
+        {
+          "class": "text-link",
+          "href": "research.html#delivery",
+          "text": "Explore delivery research ↗"
+        },
+        {
+          "class": "text-link",
+          "href": "https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis",
+          "text": "Methods & evidence ↗"
+        },
+        {
+          "href": "https://medium.com/agileinsider/ai-the-externalization-of-reasoning-and-the-verification-crisis-4f5046f9f0d0",
+          "text": "Externalization & the verification crisis"
+        },
+        {
+          "class": "text-link",
+          "href": "research.html#systems",
+          "text": "Explore systems research ↗"
+        },
+        {
+          "class": "text-link",
+          "href": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture",
+          "text": "Living specification ↗"
+        },
+        {
+          "href": "https://generativeai.pub/uncertainty-architecture-thinking-systems-when-the-controlled-object-changes-21275fe2f3db",
+          "text": "Thinking Systems"
+        },
+        {
+          "href": "#contact",
+          "text": "Discuss your AI challenge →"
+        },
+        {
+          "class": "publication-title",
+          "href": "https://generativeai.pub/uncertainty-architecture-thinking-systems-when-the-controlled-object-changes-21275fe2f3db",
+          "text": "Uncertainty Architecture: Thinking Systems, When the Controlled Object Changes"
+        },
+        {
+          "href": "https://www.linkedin.com/pulse/thinking-systems-when-controlled-object-changes-vitalii-oborskyi-6k4we",
+          "text": "LinkedIn edition · 27 Aug 2026"
+        },
+        {
+          "class": "publication-title",
+          "href": "https://medium.com/agileinsider/ai-the-externalization-of-reasoning-and-the-verification-crisis-4f5046f9f0d0",
+          "text": "AI, the Externalization of Reasoning, and the Verification Crisis"
+        },
+        {
+          "class": "publication-title",
+          "href": "https://www.linkedin.com/pulse/reinventing-control-theory-one-feature-time-fallacy-agentic-oborskyi-vkwve/",
+          "text": "Reinventing Control Theory One Feature at a Time: The Fallacy of Agentic Loops"
+        },
+        {
+          "class": "publication-title",
+          "href": "https://generativeai.pub/uncertainty-architecture-beyond-embeddings-neuro-symbolic-verification-of-semantic-drift-in-llms-69822872825b",
+          "text": "Uncertainty Architecture: Beyond Embeddings — Neuro-Symbolic Verification of Semantic Drift in LLMs"
+        },
+        {
+          "class": "publication-title",
+          "href": "https://aiadvances.org/ai-native-workflows-have-a-moat-problem-49992bcc3088",
+          "text": "AI-Native Workflows Have a Moat Problem"
+        },
+        {
+          "class": "text-link archive-link",
+          "href": "writing.html",
+          "text": "Browse the complete EN / UA archive ↗"
+        },
+        {
+          "href": "https://www.linkedin.com/in/arkadiydobkin/",
+          "text": "Arkadiy Dobkin"
+        },
+        {
+          "href": "https://www.linkedin.com/posts/arkadiydobkin_uncertainty-architecture-thinking-systems-activity-7500661925790240768--I1H",
+          "text": "Public record ↗"
+        },
+        {
+          "href": "https://www.linkedin.com/in/maximiliano-armesto/",
+          "text": "Maximiliano Armesto"
+        },
+        {
+          "href": "https://www.linkedin.com/posts/maximiliano-armesto_uncertainty-architecture-thinking-systems-activity-7498756197647441920-8REu",
+          "text": "Public record ↗"
+        },
+        {
+          "href": "https://www.linkedin.com/in/markuskleinpmp/",
+          "text": "Markus Kopko"
+        },
+        {
+          "href": "https://www.linkedin.com/posts/markuskleinpmp_uncertainty-architecture-why-ai-governance-activity-7462053122773827584-mKwf",
+          "text": "Public record ↗"
+        },
+        {
+          "href": "https://www.linkedin.com/in/christophekolb/",
+          "text": "Christophe Kolb & Taller"
+        },
+        {
+          "href": "https://www.linkedin.com/posts/christophekolb_the-probability-control-theory-of-agentic-activity-7460778173597786114-rWAh",
+          "text": "Public record ↗"
+        },
+        {
+          "href": "https://www.linkedin.com/posts/taller-technologies_llms-and-control-theory-activity-7482866825244889089-tIsK",
+          "text": "Taller’s visual explainer ↗"
+        },
+        {
+          "href": "https://www.linkedin.com/in/michael-risch-ab8b423/",
+          "text": "Michael Risch"
+        },
+        {
+          "href": "https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g",
+          "text": "Public record ↗"
+        },
+        {
+          "href": "https://www.linkedin.com/in/matthewskelton/",
+          "text": "Matthew Skelton"
+        },
+        {
+          "href": "https://www.linkedin.com/posts/vitaliioborskyi_ua-1-ugcPost-7461016808725164033-pQg_/",
+          "text": "Public record ↗"
+        },
+        {
+          "href": "https://www.linkedin.com/in/roderickm/",
+          "text": "Rod Montgomery"
+        },
+        {
+          "href": "https://www.linkedin.com/posts/roderickm_one-of-the-highlights-of-our-recent-learn-al-palooza-activity-7480960628980072448-FBm4",
+          "text": "Public record ↗"
+        },
+        {
+          "href": "https://www.linkedin.com/in/otman-basir-ba1258178/",
+          "text": "Otman Basir"
+        },
+        {
+          "href": "https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g",
+          "text": "Public record ↗"
+        },
+        {
+          "href": "https://arxiv.org/abs/2512.16873",
+          "text": "Related paper ↗"
+        },
+        {
+          "href": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/main/content/research/notes/thinking-systems-formulation-provenance-arkadiy-dobkin.md",
+          "text": "the provenance note records its scope"
+        },
+        {
+          "class": "text-link",
+          "href": "research.html#acknowledgements",
+          "text": "Full discussion & source context ↗"
+        },
+        {
+          "class": "text-link",
+          "href": "https://www.linkedin.com/in/vitaliioborskyi/",
+          "text": "LinkedIn ↗"
+        },
+        {
+          "class": "text-link",
+          "href": "https://github.com/oborskyivitalii",
+          "text": "GitHub ↗"
+        },
+        {
+          "class": "text-link",
+          "href": "https://medium.com/@undersmoker",
+          "text": "Medium ↗"
+        },
+        {
+          "class": "button",
+          "href": "https://www.linkedin.com/in/vitaliioborskyi/",
+          "text": "Arrange a conversation on LinkedIn"
+        },
+        {
+          "href": "./#about",
+          "text": "About"
+        },
+        {
+          "href": "./#contact",
+          "text": "Contact"
+        },
+        {
+          "href": "credits.html",
+          "text": "Reuse & credits"
+        },
+        {
+          "href": "#main",
+          "text": "Back to top ↑"
+        }
+      ],
+      "languageAnnotations": [],
+      "times": [
+        {
+          "datetime": "2026-08-30",
+          "text": "30 Aug 2026"
+        },
+        {
+          "datetime": "2026-06-12",
+          "text": "12 Jun 2026"
+        },
+        {
+          "datetime": "2026-06-10",
+          "text": "10 Jun 2026"
+        },
+        {
+          "datetime": "2026-06-10",
+          "text": "10 Jun 2026"
+        },
+        {
+          "datetime": "2026-07-01",
+          "text": "1 Jul 2026"
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/vitalii-oborskyi-cutout.webp",
+          "alt": "Portrait of Vitalii Oborskyi with the background removed",
+          "width": "780",
+          "height": "721",
+          "style": "max-width:100%;height:auto",
+          "decoding": "async",
+          "fetchpriority": "high"
+        }
+      ],
+      "jsonLd": [
+        {
+          "@context": "https://schema.org",
+          "@type": "ProfilePage",
+          "name": "Vitalii Oborskyi — AI governance and architecture",
+          "inLanguage": "en",
+          "mainEntity": {
+            "@type": "Person",
+            "@id": "#vitalii-oborskyi",
+            "name": "Vitalii Oborskyi",
+            "description": "Delivery leader, researcher and author working on AI governance, architecture and socio-technical operating models.",
+            "sameAs": [
+              "https://www.linkedin.com/in/vitaliioborskyi/",
+              "https://github.com/oborskyivitalii",
+              "https://medium.com/@undersmoker"
+            ],
+            "knowsAbout": [
+              "AI governance",
+              "AI architecture",
+              "Uncertainty Architecture",
+              "Thinking Systems",
+              "AI operating models",
+              "AI-assisted software delivery",
+              "Socio-technical systems",
+              "Control theory",
+              "Theory of Constraints"
+            ]
+          }
+        }
+      ],
+      "publicationRecords": [
+        {
+          "attributes": {
+            "class": "publication",
+            "data-language": "en"
+          },
+          "text": "30 Aug 2026 EN · English · Article · Generative AI Uncertainty Architecture: Thinking Systems, When the Controlled Object Changes LinkedIn edition · 27 Aug 2026 What changes when consequential runtime responsibility depends on model judgment.",
+          "links": [
+            {
+              "class": "publication-title",
+              "href": "https://generativeai.pub/uncertainty-architecture-thinking-systems-when-the-controlled-object-changes-21275fe2f3db",
+              "text": "Uncertainty Architecture: Thinking Systems, When the Controlled Object Changes"
+            },
+            {
+              "href": "https://www.linkedin.com/pulse/thinking-systems-when-controlled-object-changes-vitalii-oborskyi-6k4we",
+              "text": "LinkedIn edition · 27 Aug 2026"
+            }
+          ],
+          "times": [
+            {
+              "datetime": "2026-08-30",
+              "text": "30 Aug 2026"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "class": "publication",
+            "data-language": "en"
+          },
+          "text": "12 Jun 2026 EN · English · Article · Agile Insider AI, the Externalization of Reasoning, and the Verification Crisis Why faster generation raises questions of human understanding and verification.",
+          "links": [
+            {
+              "class": "publication-title",
+              "href": "https://medium.com/agileinsider/ai-the-externalization-of-reasoning-and-the-verification-crisis-4f5046f9f0d0",
+              "text": "AI, the Externalization of Reasoning, and the Verification Crisis"
+            }
+          ],
+          "times": [
+            {
+              "datetime": "2026-06-12",
+              "text": "12 Jun 2026"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "class": "publication",
+            "data-language": "en"
+          },
+          "text": "10 Jun 2026 EN · English · Article · LinkedIn Reinventing Control Theory One Feature at a Time: The Fallacy of Agentic Loops A control-theory perspective on agentic loops and engineering control.",
+          "links": [
+            {
+              "class": "publication-title",
+              "href": "https://www.linkedin.com/pulse/reinventing-control-theory-one-feature-time-fallacy-agentic-oborskyi-vkwve/",
+              "text": "Reinventing Control Theory One Feature at a Time: The Fallacy of Agentic Loops"
+            }
+          ],
+          "times": [
+            {
+              "datetime": "2026-06-10",
+              "text": "10 Jun 2026"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "class": "publication",
+            "data-language": "en"
+          },
+          "text": "10 Jun 2026 EN · English · Article · Generative AI Uncertainty Architecture: Beyond Embeddings — Neuro-Symbolic Verification of Semantic Drift in LLMs A bounded technical example of semantic verification within a wider control architecture.",
+          "links": [
+            {
+              "class": "publication-title",
+              "href": "https://generativeai.pub/uncertainty-architecture-beyond-embeddings-neuro-symbolic-verification-of-semantic-drift-in-llms-69822872825b",
+              "text": "Uncertainty Architecture: Beyond Embeddings — Neuro-Symbolic Verification of Semantic Drift in LLMs"
+            }
+          ],
+          "times": [
+            {
+              "datetime": "2026-06-10",
+              "text": "10 Jun 2026"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "class": "publication",
+            "data-language": "en"
+          },
+          "text": "1 Jul 2026 EN · English · Article · AI Advances AI-Native Workflows Have a Moat Problem Where durable differentiation can sit in AI-native workflows.",
+          "links": [
+            {
+              "class": "publication-title",
+              "href": "https://aiadvances.org/ai-native-workflows-have-a-moat-problem-49992bcc3088",
+              "text": "AI-Native Workflows Have a Moat Problem"
+            }
+          ],
+          "times": [
+            {
+              "datetime": "2026-07-01",
+              "text": "1 Jul 2026"
+            }
+          ]
+        }
+      ],
+      "bodyText": "Skip to content Vitalii Oborskyi Home Research Writing Talks Appearance Display follows your browser’s color preference. Animated motion needs JavaScript. AI delivery governance & agentic operating models Vitalii Oborskyi . AI tools everywhere. Better delivery? Harder to tell. I help software organizations investigate why AI adoption is not improving delivery, rebalance review and ownership, and define controls for agentic systems in production. For enterprise software teams and IT services companies. Discuss your AI challenge Explore the research AI is a fundamental shift: an attempt to delegate parts of thinking to machines. I study what that changes in software delivery and the systems we design. My work draws on more than 20 years across quality engineering, project management, PMO and delivery leadership. Research Writing Work with me 01 / Research Two questions behind the work. What happens when machines generate faster than people can understand and verify? And what changes when the software itself relies on model judgment? 01 / How we build How do we rebalance AI-assisted delivery? I see the AI-assisted SDLC as structurally unbalanced where generation accelerates faster than human understanding, verification and ownership. More output can coexist with review queues, rework and fragile maintenance. The Subprime Code Crisis investigates this gap and what it would take to rebalance the work. My working position is that existing playbooks do not yet offer a generally validated recipe for resolving it. Explore delivery research ↗ Methods & evidence ↗ Start with Externalization & the verification crisis . 02 / What we build and operate How do we engineer systems that rely on model judgment? Uncertainty Architecture studies what I call Thinking Systems: software in which consequential runtime responsibilities depend partly on probabilistic model judgment. This is where I see the fullest expression of today's AI potential — and some of its hardest engineering problems. The engineering object includes people, evidence, authority and correction mechanisms, alongside software. It needs development lifecycles and operating models suited to uncertainty. Much remains to develop and test. Explore systems research ↗ Living specification ↗ Start with Thinking Systems . 02 / Where I can help Start with the decision you need to make. Delivery / Diagnosis “We bought AI tools. Delivery is not improving.” Assess the delivery flow, review and verification capacity, rework, knowledge dependencies and costs. Investigate the actual constraint. Possible output: a problem/risk map and prioritized experiments or changes to test. Architecture / Runtime governance “The demo works. Production is hard to control.” Review delegated judgment, permissions, limits, evaluation evidence, cost ownership, escalation and corrective action. Possible output: a control/ownership sketch and explicit unresolved release questions. SDLC / QA / Operating model “Our process and roles have not caught up with AI.” Work through requirements, evaluation, release decisions and human capacity in a focused workshop. Possible output: draft role and decision boundaries, learning routines and an improvement backlog. The first conversation determines fit and scope; outputs depend on the agreed engagement. Discuss your AI challenge → 03 / Selected writing Five ways into the work. Thinking Systems for architecture; Externalization for generation and verification; Moat for strategic differentiation. All five selected editions are English. 30 Aug 2026 EN · English · Article · Generative AI Uncertainty Architecture: Thinking Systems, When the Controlled Object Changes LinkedIn edition · 27 Aug 2026 What changes when consequential runtime responsibility depends on model judgment. 12 Jun 2026 EN · English · Article · Agile Insider AI, the Externalization of Reasoning, and the Verification Crisis Why faster generation raises questions of human understanding and verification. 10 Jun 2026 EN · English · Article · LinkedIn Reinventing Control Theory One Feature at a Time: The Fallacy of Agentic Loops A control-theory perspective on agentic loops and engineering control. 10 Jun 2026 EN · English · Article · Generative AI Uncertainty Architecture: Beyond Embeddings — Neuro-Symbolic Verification of Semantic Drift in LLMs A bounded technical example of semantic verification within a wider control architecture. 1 Jul 2026 EN · English · Article · AI Advances AI-Native Workflows Have a Moat Problem Where durable differentiation can sit in AI-native workflows. Browse the complete EN / UA archive ↗ 04 / Public discussion & responses How others have engaged with the work. Public recommendations, interpretations and discussion of Uncertainty Architecture. Arkadiy Dobkin Principal Founder & Executive Chairman · EPAM Recommended a full reading of Thinking Systems and extended the argument toward new addressable problems, domain-specific bounding architecture and runtime control. Public record ↗ Maximiliano Armesto Chief Technology Officer · Taller Supported the changed-engineering-object framing, emphasizing boundaries, evidence, authority, correction loops and the return of human judgment. Public record ↗ Markus Kopko Founder · PMotion.ai; CPMAI Lead Coach Connected UA’s control-theory framing with CPMAI practices, roles and governance gates. Public record ↗ Christophe Kolb & Taller Founder & CEO · Taller Cited UA in an explanation of agentic-system control and developed a public visual explanation drawing on it. Public record ↗ Taller’s visual explainer ↗ Michael Risch Senior Project Manager Developed an operational interpretation linking UA to roles, evaluation signals and governance practices. Public record ↗ Matthew Skelton Founder · Conflux; co-author of Team Topologies Offered public encouragement for the research’s development. Public record ↗ Rod Montgomery AI Platform & Developer Acceleration · Corning Hosted the Corning Learn-AI-Palooza discussion and reflected on system-level risks, teams and ownership. Public record ↗ Otman Basir Professor, Electrical & Computer Engineering · University of Waterloo Brought related control-theoretic research into the public discussion of UA. Public record ↗ Related paper ↗ I separately credit Arkadiy Dobkin for the formulation “Thinking Systems”; the provenance note records its scope . Full discussion & source context ↗ 05 / About From quality engineering to delivery leadership. My work has included building delivery functions, resource planning, risk governance and organizational design. It shapes the questions I bring to AI: what teams need to understand, how decisions are made, and who owns the outcome. I write for architects, engineering and delivery leaders, product owners and PMO practitioners. This site connects the publications and living research behind that work. LinkedIn ↗ GitHub ↗ Medium ↗ 06 / Contact Working through one of these problems? Bring a system, a delivery bottleneck, or a question you cannot yet frame. We can discuss where the uncertainty sits and what a useful next step could look like. Research collaboration, speaking invitations and professional opportunities are welcome too. Book a conversation Direct booking will be available here. In the meantime, message me on LinkedIn to arrange a conversation. Arrange a conversation on LinkedIn © 2026 Vitalii Oborskyi About Contact Reuse & credits Back to top ↑"
+    },
+    {
+      "path": "docs/research.html",
+      "sha256": "2b37c950be256a653280e79c0775ebd1750cd8dc76d2ef68c0f3f25ea2d84c3a",
+      "bytes": 46106,
+      "documentLanguage": "en",
+      "title": [
+        "Research | AI Agent Governance & Delivery Systems | Vitalii Oborskyi"
+      ],
+      "meta": [
+        {
+          "charset": "utf-8"
+        },
+        {
+          "name": "viewport",
+          "content": "width=device-width, initial-scale=1"
+        },
+        {
+          "name": "description",
+          "content": "Research on AI agent governance, control theory, Thinking Systems and AI-assisted delivery: human understanding, verification, authority and operating models."
+        },
+        {
+          "name": "color-scheme",
+          "content": "light dark"
+        },
+        {
+          "name": "author",
+          "content": "Vitalii Oborskyi"
+        },
+        {
+          "property": "og:site_name",
+          "content": "Vitalii Oborskyi"
+        },
+        {
+          "property": "og:type",
+          "content": "website"
+        },
+        {
+          "property": "og:title",
+          "content": "Research | AI Agent Governance & Delivery Systems | Vitalii Oborskyi"
+        },
+        {
+          "property": "og:description",
+          "content": "Research on AI agent governance, control theory, Thinking Systems and AI-assisted delivery: human understanding, verification, authority and operating models."
+        },
+        {
+          "name": "twitter:card",
+          "content": "summary"
+        },
+        {
+          "name": "twitter:title",
+          "content": "Research | AI Agent Governance & Delivery Systems | Vitalii Oborskyi"
+        },
+        {
+          "name": "twitter:description",
+          "content": "Research on AI agent governance, control theory, Thinking Systems and AI-assisted delivery: human understanding, verification, authority and operating models."
+        }
+      ],
+      "headLinks": [
+        {
+          "rel": "stylesheet",
+          "href": "styles.css"
+        },
+        {
+          "rel": "icon",
+          "href": "assets/favicon.svg",
+          "type": "image/svg+xml"
+        }
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "attributes": {},
+          "text": "Two systems. One engineering perspective."
+        },
+        {
+          "tag": "h2",
+          "attributes": {
+            "id": "research-title"
+          },
+          "text": "Two directions, connected."
+        },
+        {
+          "tag": "h3",
+          "attributes": {},
+          "text": "The Subprime Code Crisis"
+        },
+        {
+          "tag": "h3",
+          "attributes": {},
+          "text": "Uncertainty Architecture"
+        },
+        {
+          "tag": "h2",
+          "attributes": {
+            "id": "lenses-title"
+          },
+          "text": "Feedback meets flow."
+        },
+        {
+          "tag": "h3",
+          "attributes": {},
+          "text": "Control theory"
+        },
+        {
+          "tag": "h3",
+          "attributes": {},
+          "text": "Theory of Constraints (TOC)"
+        },
+        {
+          "tag": "h2",
+          "attributes": {
+            "id": "topics-title"
+          },
+          "text": "AI governance, architecture & operating models."
+        },
+        {
+          "tag": "h3",
+          "attributes": {},
+          "text": "Thinking Systems & Model Judgment"
+        },
+        {
+          "tag": "h3",
+          "attributes": {},
+          "text": "AI Control Plane & runtime control"
+        },
+        {
+          "tag": "h3",
+          "attributes": {},
+          "text": "Consequential Runtime Responsibility"
+        },
+        {
+          "tag": "h3",
+          "attributes": {},
+          "text": "Socio-technical AI operating models"
+        },
+        {
+          "tag": "h2",
+          "attributes": {
+            "id": "ack-title"
+          },
+          "text": "Research develops in conversation."
+        },
+        {
+          "tag": "h3",
+          "attributes": {},
+          "text": "Markus Kopko"
+        },
+        {
+          "tag": "h3",
+          "attributes": {},
+          "text": "Arkadiy Dobkin"
+        },
+        {
+          "tag": "h3",
+          "attributes": {},
+          "text": "Maximiliano Armesto"
+        },
+        {
+          "tag": "h3",
+          "attributes": {},
+          "text": "Christophe Kolb & Taller"
+        },
+        {
+          "tag": "h3",
+          "attributes": {},
+          "text": "Michael Risch"
+        },
+        {
+          "tag": "h3",
+          "attributes": {},
+          "text": "Matthew Skelton"
+        },
+        {
+          "tag": "h3",
+          "attributes": {},
+          "text": "Otman Basir"
+        },
+        {
+          "tag": "h3",
+          "attributes": {},
+          "text": "Rod Montgomery"
+        }
+      ],
+      "anchors": [
+        "space-canvas",
+        "theme-mode",
+        "space-motion",
+        "main",
+        "research",
+        "research-title",
+        "delivery",
+        "systems",
+        "lenses",
+        "lenses-title",
+        "topics",
+        "topics-title",
+        "acknowledgements",
+        "ack-title"
+      ],
+      "links": [
+        {
+          "class": "skip-link",
+          "href": "#main",
+          "text": "Skip to content"
+        },
+        {
+          "class": "wordmark",
+          "href": "./",
+          "aria-label": "Vitalii Oborskyi, home",
+          "text": "Vitalii Oborskyi"
+        },
+        {
+          "href": "./",
+          "text": "Home"
+        },
+        {
+          "href": "research.html",
+          "aria-current": "page",
+          "text": "Research"
+        },
+        {
+          "href": "writing.html",
+          "text": "Writing"
+        },
+        {
+          "href": "talks.html",
+          "text": "Talks"
+        },
+        {
+          "href": "#research",
+          "text": "Projects"
+        },
+        {
+          "href": "#lenses",
+          "text": "Control & constraints"
+        },
+        {
+          "href": "#topics",
+          "text": "Vocabulary"
+        },
+        {
+          "href": "#acknowledgements",
+          "text": "Conversations"
+        },
+        {
+          "class": "text-link",
+          "href": "https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis",
+          "text": "Explore the research"
+        },
+        {
+          "class": "text-link",
+          "href": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture",
+          "text": "Explore the framework"
+        },
+        {
+          "class": "text-link",
+          "href": "https://pub.towardsai.net/uncertainty-architecture-why-ai-governance-is-actually-control-theory-511f3e73ed6e",
+          "text": "Read the control-theory article ↗"
+        },
+        {
+          "class": "text-link",
+          "href": "https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis/blob/main/report/02_broken_mechanics.md",
+          "text": "Read the delivery-system interpretation ↗"
+        },
+        {
+          "href": "https://learningcenter.tocico.org/courses/what-is-the-theory-of-constraints-basics-workshop",
+          "text": "TOC background · TOCICO"
+        },
+        {
+          "class": "text-link",
+          "href": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/main/00-doctrine/glossary.md#thinking-system",
+          "text": "Read the current UA vocabulary"
+        },
+        {
+          "class": "text-link",
+          "href": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/main/02-ai-control-plane/README.md",
+          "text": "Explore the control capabilities"
+        },
+        {
+          "class": "text-link",
+          "href": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/main/00-doctrine/glossary.md#consequential-runtime-responsibility",
+          "text": "Read the responsibility boundary"
+        },
+        {
+          "class": "text-link",
+          "href": "writing.html#topic-leadership",
+          "text": "Read about operating models & delivery"
+        },
+        {
+          "href": "https://www.linkedin.com/in/markuskleinpmp/",
+          "text": "Markus Kopko"
+        },
+        {
+          "class": "text-link",
+          "href": "https://www.linkedin.com/posts/markuskleinpmp_uncertainty-architecture-why-ai-governance-activity-7462053122773827584-mKwf",
+          "text": "Read the public record"
+        },
+        {
+          "href": "https://www.linkedin.com/in/arkadiydobkin/",
+          "text": "Arkadiy Dobkin"
+        },
+        {
+          "href": "https://www.linkedin.com/posts/arkadiydobkin_uncertainty-architecture-thinking-systems-activity-7500661925790240768--I1H",
+          "text": "Public record ↗"
+        },
+        {
+          "href": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/main/content/research/notes/thinking-systems-formulation-provenance-arkadiy-dobkin.md",
+          "text": "“Thinking Systems” provenance"
+        },
+        {
+          "href": "https://www.linkedin.com/in/maximiliano-armesto/",
+          "text": "Maximiliano Armesto"
+        },
+        {
+          "href": "https://www.linkedin.com/posts/maximiliano-armesto_uncertainty-architecture-thinking-systems-activity-7498756197647441920-8REu",
+          "text": "Public record ↗"
+        },
+        {
+          "href": "https://www.linkedin.com/in/christophekolb/",
+          "text": "Christophe Kolb & Taller"
+        },
+        {
+          "class": "text-link",
+          "href": "https://www.linkedin.com/posts/christophekolb_the-probability-control-theory-of-agentic-activity-7460778173597786114-rWAh",
+          "text": "Read the public record"
+        },
+        {
+          "href": "https://www.linkedin.com/posts/taller-technologies_llms-and-control-theory-activity-7482866825244889089-tIsK",
+          "text": "Taller’s public visual explainer"
+        },
+        {
+          "href": "https://www.linkedin.com/in/michael-risch-ab8b423/",
+          "text": "Michael Risch"
+        },
+        {
+          "class": "text-link",
+          "href": "https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g",
+          "text": "Read the public record"
+        },
+        {
+          "href": "https://www.linkedin.com/in/matthewskelton/",
+          "text": "Matthew Skelton"
+        },
+        {
+          "class": "text-link",
+          "href": "https://www.linkedin.com/posts/vitaliioborskyi_ua-1-ugcPost-7461016808725164033-pQg_/",
+          "text": "Read the public record"
+        },
+        {
+          "href": "https://www.linkedin.com/in/otman-basir-ba1258178/",
+          "text": "Otman Basir"
+        },
+        {
+          "class": "text-link",
+          "href": "https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g",
+          "text": "Read the public record"
+        },
+        {
+          "href": "https://arxiv.org/abs/2512.16873",
+          "text": "Related paper"
+        },
+        {
+          "href": "https://www.linkedin.com/in/roderickm/",
+          "text": "Rod Montgomery"
+        },
+        {
+          "class": "text-link",
+          "href": "https://www.linkedin.com/posts/roderickm_one-of-the-highlights-of-our-recent-learn-al-palooza-activity-7480960628980072448-FBm4",
+          "text": "Read the public record"
+        },
+        {
+          "href": "./#about",
+          "text": "About"
+        },
+        {
+          "href": "./#contact",
+          "text": "Contact"
+        },
+        {
+          "href": "credits.html",
+          "text": "Reuse & credits"
+        },
+        {
+          "href": "#main",
+          "text": "Back to top ↑"
+        }
+      ],
+      "languageAnnotations": [],
+      "times": [],
+      "images": [],
+      "jsonLd": [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Research directions",
+          "inLanguage": "en",
+          "description": "AI architecture, control theory, Theory of Constraints and socio-technical operating models."
+        }
+      ],
+      "publicationRecords": [],
+      "bodyText": "Skip to content Vitalii Oborskyi Home Research Writing Talks Appearance Display follows your browser’s color preference. Animated motion needs JavaScript. Research / Living questions Two systems. One engineering perspective. How we deliver software, and how we govern systems whose behavior relies on model judgment — including AI agents in production. Projects Control & constraints Vocabulary Conversations 01 / Research Two directions, connected. 01 How we deliver software The Subprime Code Crisis What happens across review, testing, security and maintenance when generating code gets easier? This research synthesis studies AI-assisted software delivery as a complete system: verification capacity, code quality, technical debt and long-term ownership, with an inspectable evidence library and adaptable operating protocols. Verification capacity System throughput Long-term ownership Explore the research 02 What we build Uncertainty Architecture How do we design and operate software whose behavior depends on probabilistic Model Judgment? Uncertainty Architecture develops an engineering vocabulary and draft specification for Thinking Systems, AI control architecture, evaluation, decision authority, runtime control and correction. Model judgment Control architecture Release & runtime evidence Explore the framework The repositories hold the living research and its sources. My articles connect the ideas across both directions. Two engineering lenses Feedback meets flow. Control theory What do we observe, who can act, and how do we correct behavior? My AI governance writing connects feedback, operating boundaries and corrective action to the design of model-mediated systems. Read the control-theory article ↗ Theory of Constraints (TOC) Where is the bottleneck, and does speeding up one step improve the whole system? The Subprime Code Crisis uses Goldratt’s Theory of Constraints as a lens for verification capacity, work in progress and delivery throughput. Read the delivery-system interpretation ↗ TOC background · TOCICO Research themes AI governance, architecture & operating models. The technical system and the human operating model have to work together. These are the questions behind my writing. Thinking Systems & Model Judgment In UA, Thinking Systems are identified by material runtime responsibilities that depend partly on probabilistic Model Judgment. The category is about an engineering condition, not consciousness or a guarantee of reliability. Judgment Nodes locate where model judgment influences behavior; Uncertainty Boundaries connect deterministic responsibilities with that judgment. Read the current UA vocabulary AI Control Plane & runtime control AI control theory connects boundaries, evidence, decision authority and effective corrective action. UA's AI Control Plane is a distributed capability model across software, evaluation, release decisions and human workflows — not necessarily a central platform. Explore the control capabilities Consequential Runtime Responsibility Which model-mediated outputs, decisions or actions can materially affect outcomes, constraints, authority or downstream people and systems? That question helps connect AI architecture with evaluation, release evidence and accountability. Read the responsibility boundary Socio-technical AI operating models I study the socio-technical stack around AI: how team roles, review practices, decision rights, evaluation and incident ownership fit together. AI governance is not only a model setting; it also concerns how people operate and change the system. Read about operating models & delivery Public discussion & responses Research develops in conversation. Markus Kopko Founder · PMotion.ai; CPMAI Lead Coach Connected the UA control-theory framing with CPMAI practices in a public discussion of constraints, sensors, roles and governance gates. Read the public record Arkadiy Dobkin Principal Founder & Executive Chairman · EPAM Recommended a full reading of Thinking Systems and extended the argument toward new addressable problems, domain-specific bounding architecture and runtime control. Public record ↗ Separate formulation credit: “Thinking Systems” provenance . Maximiliano Armesto Chief Technology Officer · Taller Supported the changed-engineering-object framing, emphasizing boundaries, evidence, authority, correction loops and the return of human judgment. Public record ↗ Christophe Kolb & Taller Founder & CEO · Taller Christophe cited UA in his explanation of agentic-system control. Taller’s public visual explainer also draws on UA to connect probability distributions, control signals and feedback. Read the public record Taller’s public visual explainer Michael Risch Senior Project Manager Developed a public operational interpretation of UA, connecting control loops to roles such as Prompt Steward and Evaluation Owner, evaluation signals and governance practices. Read the public record Matthew Skelton Founder · Conflux; co-author of Team Topologies Offered public encouragement for UA’s development in a comment on the project’s milestone summary. Read the public record Otman Basir Professor, Electrical & Computer Engineering · University of Waterloo Shared his Social Responsibility Stack paper in the public discussion of UA under Michael Risch’s post, bringing a related control-theoretic perspective into the conversation. Read the public record Related paper Rod Montgomery AI Platform & Developer Acceleration · Corning Hosted the Corning Learn-AI-Palooza discussion and publicly reflected on UA’s relevance to system-level risks, team behavior, ownership and governance. Read the public record © 2026 Vitalii Oborskyi About Contact Reuse & credits Back to top ↑"
+    },
+    {
+      "path": "docs/writing.html",
+      "sha256": "6dd77aefe1fd0ae9862ee75547fe930148c2feeeb60c402d8ee607db73d65d6b",
+      "bytes": 72811,
+      "documentLanguage": "en",
+      "title": [
+        "Writing | AI Architecture, Delivery & Operating Models | Vitalii Oborskyi"
+      ],
+      "meta": [
+        {
+          "charset": "utf-8"
+        },
+        {
+          "name": "viewport",
+          "content": "width=device-width, initial-scale=1"
+        },
+        {
+          "name": "description",
+          "content": "English and Ukrainian articles by Vitalii Oborskyi on AI architecture, verification, delivery and operating models. Original platform titles, dates and edition links."
+        },
+        {
+          "name": "color-scheme",
+          "content": "light dark"
+        },
+        {
+          "name": "author",
+          "content": "Vitalii Oborskyi"
+        },
+        {
+          "property": "og:site_name",
+          "content": "Vitalii Oborskyi"
+        },
+        {
+          "property": "og:type",
+          "content": "website"
+        },
+        {
+          "property": "og:title",
+          "content": "Writing | AI Architecture, Delivery & Operating Models | Vitalii Oborskyi"
+        },
+        {
+          "property": "og:description",
+          "content": "English and Ukrainian articles by Vitalii Oborskyi on AI architecture, verification, delivery and operating models. Original platform titles, dates and edition links."
+        },
+        {
+          "name": "twitter:card",
+          "content": "summary"
+        },
+        {
+          "name": "twitter:title",
+          "content": "Writing | AI Architecture, Delivery & Operating Models | Vitalii Oborskyi"
+        },
+        {
+          "name": "twitter:description",
+          "content": "English and Ukrainian articles by Vitalii Oborskyi on AI architecture, verification, delivery and operating models. Original platform titles, dates and edition links."
+        }
+      ],
+      "headLinks": [
+        {
+          "rel": "stylesheet",
+          "href": "styles.css"
+        },
+        {
+          "rel": "icon",
+          "href": "assets/favicon.svg",
+          "type": "image/svg+xml"
+        }
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "attributes": {},
+          "text": "Follow the questions. Find your next read."
+        },
+        {
+          "tag": "h2",
+          "attributes": {
+            "id": "topic-delivery",
+            "class": "topic-landing"
+          },
+          "text": "AI-assisted delivery Browse articles ↓"
+        },
+        {
+          "tag": "h2",
+          "attributes": {
+            "id": "topic-systems",
+            "class": "topic-landing"
+          },
+          "text": "AI architecture & control Browse articles ↓"
+        },
+        {
+          "tag": "h2",
+          "attributes": {
+            "id": "topic-leadership",
+            "class": "topic-landing"
+          },
+          "text": "Operating models & leadership Browse articles ↓"
+        },
+        {
+          "tag": "h2",
+          "attributes": {
+            "id": "topic-strategy",
+            "class": "topic-landing"
+          },
+          "text": "AI strategy & society Browse articles ↓"
+        },
+        {
+          "tag": "h2",
+          "attributes": {
+            "id": "archive-heading",
+            "class": "archive-heading",
+            "hidden": null
+          },
+          "text": ""
+        },
+        {
+          "tag": "h2",
+          "attributes": {
+            "id": "year-2026",
+            "class": "year-landing"
+          },
+          "text": "2026 archive"
+        },
+        {
+          "tag": "h2",
+          "attributes": {
+            "id": "year-2026-title"
+          },
+          "text": "2026"
+        },
+        {
+          "tag": "h3",
+          "attributes": {
+            "id": "topic-delivery-2026",
+            "class": "writing-topic"
+          },
+          "text": "AI-assisted delivery"
+        },
+        {
+          "tag": "h3",
+          "attributes": {
+            "id": "topic-systems-2026",
+            "class": "writing-topic"
+          },
+          "text": "AI architecture & control"
+        },
+        {
+          "tag": "h3",
+          "attributes": {
+            "id": "topic-strategy-2026",
+            "class": "writing-topic"
+          },
+          "text": "AI strategy & society"
+        },
+        {
+          "tag": "h2",
+          "attributes": {
+            "id": "year-2025",
+            "class": "year-landing"
+          },
+          "text": "2025 archive"
+        },
+        {
+          "tag": "h2",
+          "attributes": {
+            "id": "year-2025-title"
+          },
+          "text": "2025"
+        },
+        {
+          "tag": "h3",
+          "attributes": {
+            "id": "topic-systems-2025",
+            "class": "writing-topic"
+          },
+          "text": "AI architecture & control"
+        },
+        {
+          "tag": "h3",
+          "attributes": {
+            "id": "topic-leadership-2025",
+            "class": "writing-topic"
+          },
+          "text": "Operating models & leadership"
+        },
+        {
+          "tag": "h3",
+          "attributes": {
+            "id": "topic-strategy-2025",
+            "class": "writing-topic"
+          },
+          "text": "AI strategy & society"
+        }
+      ],
+      "anchors": [
+        "space-canvas",
+        "theme-mode",
+        "space-motion",
+        "main",
+        "archive-filters",
+        "archive-topic",
+        "archive-year",
+        "archive-language",
+        "topic-delivery",
+        "topic-systems",
+        "topic-leadership",
+        "topic-strategy",
+        "archive-heading",
+        "archive-count",
+        "archive-empty",
+        "year-2026",
+        "archive-results",
+        "results-year-2026",
+        "year-2026-title",
+        "topic-delivery-2026",
+        "topic-systems-2026",
+        "topic-strategy-2026",
+        "year-2025",
+        "results-year-2025",
+        "year-2025-title",
+        "topic-systems-2025",
+        "topic-leadership-2025",
+        "topic-strategy-2025"
+      ],
+      "links": [
+        {
+          "class": "skip-link",
+          "href": "#main",
+          "text": "Skip to content"
+        },
+        {
+          "class": "wordmark",
+          "href": "./",
+          "aria-label": "Vitalii Oborskyi, home",
+          "text": "Vitalii Oborskyi"
+        },
+        {
+          "href": "./",
+          "text": "Home"
+        },
+        {
+          "href": "research.html",
+          "text": "Research"
+        },
+        {
+          "href": "writing.html",
+          "aria-current": "page",
+          "text": "Writing"
+        },
+        {
+          "href": "talks.html",
+          "text": "Talks"
+        },
+        {
+          "href": "#topic-delivery",
+          "data-filter-topic": "delivery",
+          "text": "AI-assisted delivery"
+        },
+        {
+          "href": "#topic-systems",
+          "data-filter-topic": "systems",
+          "text": "AI architecture & control"
+        },
+        {
+          "href": "#topic-leadership",
+          "data-filter-topic": "leadership",
+          "text": "Operating models & leadership"
+        },
+        {
+          "href": "#topic-strategy",
+          "data-filter-topic": "strategy",
+          "text": "AI strategy & society"
+        },
+        {
+          "href": "#year-2026",
+          "text": "2026"
+        },
+        {
+          "href": "#year-2025",
+          "text": "2025"
+        },
+        {
+          "href": "#topic-delivery-2026",
+          "text": "Browse articles ↓"
+        },
+        {
+          "href": "#topic-systems-2026",
+          "text": "Browse articles ↓"
+        },
+        {
+          "href": "#topic-leadership-2025",
+          "text": "Browse articles ↓"
+        },
+        {
+          "href": "#topic-strategy-2026",
+          "text": "Browse articles ↓"
+        },
+        {
+          "class": "publication-title",
+          "href": "https://dou.ua/forums/topic/60177/",
+          "text": "Субпрайм-криза коду — чому AI-асистенти роблять нас повільнішими (Частина 2)"
+        },
+        {
+          "class": "publication-title",
+          "href": "https://medium.com/agileinsider/ai-the-externalization-of-reasoning-and-the-verification-crisis-4f5046f9f0d0",
+          "text": "AI, the Externalization of Reasoning, and the Verification Crisis"
+        },
+        {
+          "class": "publication-title",
+          "href": "https://dou.ua/forums/topic/57846/",
+          "text": "Субпрайм-криза коду: чому AI-асистенти роблять нас повільнішими — і дані це доводять"
+        },
+        {
+          "class": "publication-title",
+          "href": "https://dou.ua/forums/topic/57244/",
+          "text": "Ілюзія економії: чому заміна розробників на AI — це шлях до технічного дефолту"
+        },
+        {
+          "class": "publication-title",
+          "href": "https://generativeai.pub/uncertainty-architecture-thinking-systems-when-the-controlled-object-changes-21275fe2f3db",
+          "text": "Uncertainty Architecture: Thinking Systems, When the Controlled Object Changes"
+        },
+        {
+          "href": "https://www.linkedin.com/pulse/thinking-systems-when-controlled-object-changes-vitalii-oborskyi-6k4we",
+          "text": "LinkedIn edition · 27 Aug 2026"
+        },
+        {
+          "class": "publication-title",
+          "href": "https://generativeai.pub/uncertainty-architecture-beyond-embeddings-neuro-symbolic-verification-of-semantic-drift-in-llms-69822872825b",
+          "text": "Uncertainty Architecture: Beyond Embeddings — Neuro-Symbolic Verification of Semantic Drift in LLMs"
+        },
+        {
+          "class": "publication-title",
+          "href": "https://www.linkedin.com/pulse/reinventing-control-theory-one-feature-time-fallacy-agentic-oborskyi-vkwve/",
+          "text": "Reinventing Control Theory One Feature at a Time: The Fallacy of Agentic Loops"
+        },
+        {
+          "class": "publication-title",
+          "href": "https://aiadvances.org/ai-native-workflows-have-a-moat-problem-49992bcc3088",
+          "text": "AI-Native Workflows Have a Moat Problem"
+        },
+        {
+          "class": "publication-title",
+          "href": "https://pub.towardsai.net/uncertainty-architecture-why-ai-governance-is-actually-control-theory-511f3e73ed6e",
+          "text": "Uncertainty Architecture: Why AI Governance is Actually Control Theory"
+        },
+        {
+          "class": "publication-title",
+          "href": "https://pub.towardsai.net/uncertainty-architecture-a-modern-approach-to-designing-llm-applications-2fe196188fac",
+          "text": "Uncertainty Architecture: A Modern Approach to Designing LLM Applications"
+        },
+        {
+          "class": "publication-title",
+          "href": "https://dou.ua/forums/topic/56606/",
+          "text": "Архітектура невизначеності: сучасний підхід до проєктування LLM-застосунків"
+        },
+        {
+          "class": "publication-title",
+          "href": "https://medium.com/data-science-collective/on-device-llm-or-cloud-api-a-practical-checklist-for-product-owners-and-architects-30386f00f148",
+          "text": "On-Device LLM or Cloud API? A Practical Checklist for Product Owners and Architects"
+        },
+        {
+          "class": "publication-title",
+          "href": "https://dou.ua/forums/topic/55461/",
+          "text": "On-device LLM чи API з хмари? Чекліст для продактів і архітекторів"
+        },
+        {
+          "class": "publication-title",
+          "href": "https://medium.com/data-science-collective/architecting-uncertainty-a-modern-guide-to-llm-based-software-504695a82567",
+          "text": "Architecting Uncertainty: A Modern Guide to LLM-Based Software"
+        },
+        {
+          "class": "publication-title",
+          "href": "https://medium.com/data-science-collective/beyond-the-buzzwords-an-ai-prompt-to-audit-any-professional-profile-including-your-own-211b112696ef",
+          "text": "🧠 Beyond the Buzzwords: An AI Prompt to Audit Any Professional Profile — Including Your Own"
+        },
+        {
+          "class": "publication-title",
+          "href": "https://dou.ua/forums/topic/54329/",
+          "text": "ШІ-бейджики, а не трансформація: чому delivery без наскрізних зв’язків — це ілюзія прогресу"
+        },
+        {
+          "class": "publication-title",
+          "href": "https://ai.gopubby.com/ai-integration-and-the-traceability-gap-atlassian-vs-competitors-61beb155ddda",
+          "text": "AI Integration and the Traceability Gap: Atlassian vs. Competitors"
+        },
+        {
+          "class": "publication-title",
+          "href": "https://community.atlassian.com/forums/discussion/3036514/traceability-for-atlassian-the-missing-ai-enabler-open-letter-1pager",
+          "text": "Traceability for Atlassian: The Missing AI Enabler - Open Letter (1pager)"
+        },
+        {
+          "class": "publication-title",
+          "href": "https://medium.com/agileinsider/pmo-value-creator-or-bureaucratic-overhead-dc4abcc38dfc",
+          "text": "PMO: Value Creator or Bureaucratic Overhead?"
+        },
+        {
+          "class": "publication-title",
+          "href": "https://generativeai.pub/ai-driven-enhancements-to-project-risk-management-in-the-pmo-c074ca0b8ec2",
+          "text": "AI-Driven Enhancements to Project Risk Management in the PMO"
+        },
+        {
+          "class": "publication-title",
+          "href": "https://medium.com/agileinsider/story-points-vs-time-based-estimation-what-does-research-say-84613cc91c7f",
+          "text": "Story Points vs. Time-Based Estimation: What Does Research Say?"
+        },
+        {
+          "class": "publication-title",
+          "href": "https://medium.com/data-science-collective/how-ai-reveals-your-delivery-critical-path-in-5-steps-b3e8264189e2",
+          "text": "How AI Reveals Your Delivery Critical Path in 5 Steps"
+        },
+        {
+          "class": "publication-title",
+          "href": "https://medium.com/@undersmoker/terraforming-your-organization-a-data-driven-journey-from-chaos-to-stability-of-human-and-ai-84790092d2df",
+          "text": "Terraforming Your Organization: A Data-Driven Journey from Chaos to Stability of Human and AI"
+        },
+        {
+          "class": "publication-title",
+          "href": "https://dou.ua/forums/topic/53714/",
+          "text": "Ласкаво просимо в епоху кіберпанку: коли корпорації диктують етику штучного інтелекту"
+        },
+        {
+          "class": "publication-title",
+          "href": "https://medium.com/data-science-collective/welcome-to-the-cyberpunk-era-when-corporations-dictate-ai-ethics-29c139c8776b",
+          "text": "Welcome to the Cyberpunk Era: When Corporations Dictate AI Ethics"
+        },
+        {
+          "class": "publication-title",
+          "href": "https://medium.com/@undersmoker/ai-dilemmas-25-key-challenges-in-ethics-technology-and-society-3f732eeb6b21",
+          "text": "AI Dilemmas: 25 Key Challenges in Ethics, Technology, and Society"
+        },
+        {
+          "class": "publication-title",
+          "href": "https://medium.com/@undersmoker/europes-silent-revolution-how-industry-4-0-is-powering-ai-driven-hyper-flexible-manufacturing-d0fa214966bd",
+          "text": "Europe’s Silent Revolution: How Industry 4.0 Is Powering AI-Driven, Hyper-Flexible Manufacturing"
+        },
+        {
+          "href": "./#about",
+          "text": "About"
+        },
+        {
+          "href": "./#contact",
+          "text": "Contact"
+        },
+        {
+          "href": "credits.html",
+          "text": "Reuse & credits"
+        },
+        {
+          "href": "#main",
+          "text": "Back to top ↑"
+        }
+      ],
+      "languageAnnotations": [
+        {
+          "tag": "span",
+          "lang": "uk",
+          "text": "UA · Українська"
+        },
+        {
+          "tag": "span",
+          "lang": "uk",
+          "text": "Субпрайм-криза коду — чому AI-асистенти роблять нас повільнішими (Частина 2)"
+        },
+        {
+          "tag": "span",
+          "lang": "uk",
+          "text": "UA · Українська"
+        },
+        {
+          "tag": "span",
+          "lang": "uk",
+          "text": "Субпрайм-криза коду: чому AI-асистенти роблять нас повільнішими — і дані це доводять"
+        },
+        {
+          "tag": "span",
+          "lang": "uk",
+          "text": "UA · Українська"
+        },
+        {
+          "tag": "span",
+          "lang": "uk",
+          "text": "Ілюзія економії: чому заміна розробників на AI — це шлях до технічного дефолту"
+        },
+        {
+          "tag": "span",
+          "lang": "uk",
+          "text": "UA · Українська"
+        },
+        {
+          "tag": "span",
+          "lang": "uk",
+          "text": "Архітектура невизначеності: сучасний підхід до проєктування LLM-застосунків"
+        },
+        {
+          "tag": "span",
+          "lang": "uk",
+          "text": "UA · Українська"
+        },
+        {
+          "tag": "span",
+          "lang": "uk",
+          "text": "On-device LLM чи API з хмари? Чекліст для продактів і архітекторів"
+        },
+        {
+          "tag": "span",
+          "lang": "uk",
+          "text": "UA · Українська"
+        },
+        {
+          "tag": "span",
+          "lang": "uk",
+          "text": "ШІ-бейджики, а не трансформація: чому delivery без наскрізних зв’язків — це ілюзія прогресу"
+        },
+        {
+          "tag": "span",
+          "lang": "uk",
+          "text": "UA · Українська"
+        },
+        {
+          "tag": "span",
+          "lang": "uk",
+          "text": "Ласкаво просимо в епоху кіберпанку: коли корпорації диктують етику штучного інтелекту"
+        }
+      ],
+      "times": [
+        {
+          "datetime": "2026-06-17",
+          "text": "17 Jun 2026"
+        },
+        {
+          "datetime": "2026-06-12",
+          "text": "12 Jun 2026"
+        },
+        {
+          "datetime": "2026-02-10",
+          "text": "10 Feb 2026"
+        },
+        {
+          "datetime": "2026-01-05",
+          "text": "5 Jan 2026"
+        },
+        {
+          "datetime": "2026-08-30",
+          "text": "30 Aug 2026"
+        },
+        {
+          "datetime": "2026-06-10",
+          "text": "10 Jun 2026"
+        },
+        {
+          "datetime": "2026-06-10",
+          "text": "10 Jun 2026"
+        },
+        {
+          "datetime": "2026-07-01",
+          "text": "1 Jul 2026"
+        },
+        {
+          "datetime": "2025-12-13",
+          "text": "13 Dec 2025"
+        },
+        {
+          "datetime": "2025-11-22",
+          "text": "22 Nov 2025"
+        },
+        {
+          "datetime": "2025-11-18",
+          "text": "18 Nov 2025"
+        },
+        {
+          "datetime": "2025-09-06",
+          "text": "6 Sep 2025"
+        },
+        {
+          "datetime": "2025-09-03",
+          "text": "3 Sept 2025"
+        },
+        {
+          "datetime": "2025-07-29",
+          "text": "29 Jul 2025"
+        },
+        {
+          "datetime": "2025-07-03",
+          "text": "3 Jul 2025"
+        },
+        {
+          "datetime": "2025-06-18",
+          "text": "18 Jun 2025"
+        },
+        {
+          "datetime": "2025-06-16",
+          "text": "16 Jun 2025"
+        },
+        {
+          "datetime": "2025-06-03",
+          "text": "3 Jun 2025 · edited"
+        },
+        {
+          "datetime": "2025-05-31",
+          "text": "31 May 2025"
+        },
+        {
+          "datetime": "2025-05-05",
+          "text": "5 May 2025"
+        },
+        {
+          "datetime": "2025-04-30",
+          "text": "30 Apr 2025"
+        },
+        {
+          "datetime": "2025-04-23",
+          "text": "23 Apr 2025"
+        },
+        {
+          "datetime": "2025-04-03",
+          "text": "3 Apr 2025"
+        },
+        {
+          "datetime": "2025-05-07",
+          "text": "7 May 2025"
+        },
+        {
+          "datetime": "2025-04-24",
+          "text": "24 Apr 2025"
+        },
+        {
+          "datetime": "2025-04-23",
+          "text": "23 Apr 2025"
+        },
+        {
+          "datetime": "2025-04-23",
+          "text": "23 Apr 2025"
+        }
+      ],
+      "images": [],
+      "jsonLd": [
+        {
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": "Articles by Vitalii Oborskyi",
+          "inLanguage": "en",
+          "author": {
+            "@type": "Person",
+            "name": "Vitalii Oborskyi"
+          },
+          "mainEntity": {
+            "@type": "ItemList",
+            "numberOfItems": 27,
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                  "@type": "Article",
+                  "name": "Субпрайм-криза коду — чому AI-асистенти роблять нас повільнішими (Частина 2)",
+                  "url": "https://dou.ua/forums/topic/60177/",
+                  "inLanguage": "uk",
+                  "author": {
+                    "@type": "Person",
+                    "name": "Vitalii Oborskyi"
+                  },
+                  "datePublished": "2026-06-17"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                  "@type": "Article",
+                  "name": "AI, the Externalization of Reasoning, and the Verification Crisis",
+                  "url": "https://medium.com/agileinsider/ai-the-externalization-of-reasoning-and-the-verification-crisis-4f5046f9f0d0",
+                  "inLanguage": "en",
+                  "author": {
+                    "@type": "Person",
+                    "name": "Vitalii Oborskyi"
+                  },
+                  "datePublished": "2026-06-12"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                  "@type": "Article",
+                  "name": "Субпрайм-криза коду: чому AI-асистенти роблять нас повільнішими — і дані це доводять",
+                  "url": "https://dou.ua/forums/topic/57846/",
+                  "inLanguage": "uk",
+                  "author": {
+                    "@type": "Person",
+                    "name": "Vitalii Oborskyi"
+                  },
+                  "datePublished": "2026-02-10"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 4,
+                "item": {
+                  "@type": "Article",
+                  "name": "Ілюзія економії: чому заміна розробників на AI — це шлях до технічного дефолту",
+                  "url": "https://dou.ua/forums/topic/57244/",
+                  "inLanguage": "uk",
+                  "author": {
+                    "@type": "Person",
+                    "name": "Vitalii Oborskyi"
+                  },
+                  "datePublished": "2026-01-05"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 5,
+                "item": {
+                  "@type": "Article",
+                  "name": "Uncertainty Architecture: Thinking Systems, When the Controlled Object Changes",
+                  "url": "https://generativeai.pub/uncertainty-architecture-thinking-systems-when-the-controlled-object-changes-21275fe2f3db",
+                  "inLanguage": "en",
+                  "author": {
+                    "@type": "Person",
+                    "name": "Vitalii Oborskyi"
+                  },
+                  "datePublished": "2026-08-30"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 6,
+                "item": {
+                  "@type": "Article",
+                  "name": "Uncertainty Architecture: Beyond Embeddings — Neuro-Symbolic Verification of Semantic Drift in LLMs",
+                  "url": "https://generativeai.pub/uncertainty-architecture-beyond-embeddings-neuro-symbolic-verification-of-semantic-drift-in-llms-69822872825b",
+                  "inLanguage": "en",
+                  "author": {
+                    "@type": "Person",
+                    "name": "Vitalii Oborskyi"
+                  },
+                  "datePublished": "2026-06-10"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 7,
+                "item": {
+                  "@type": "Article",
+                  "name": "Reinventing Control Theory One Feature at a Time: The Fallacy of Agentic Loops",
+                  "url": "https://www.linkedin.com/pulse/reinventing-control-theory-one-feature-time-fallacy-agentic-oborskyi-vkwve/",
+                  "inLanguage": "en",
+                  "author": {
+                    "@type": "Person",
+                    "name": "Vitalii Oborskyi"
+                  },
+                  "datePublished": "2026-06-10"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 8,
+                "item": {
+                  "@type": "Article",
+                  "name": "AI-Native Workflows Have a Moat Problem",
+                  "url": "https://aiadvances.org/ai-native-workflows-have-a-moat-problem-49992bcc3088",
+                  "inLanguage": "en",
+                  "author": {
+                    "@type": "Person",
+                    "name": "Vitalii Oborskyi"
+                  },
+                  "datePublished": "2026-07-01"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 9,
+                "item": {
+                  "@type": "Article",
+                  "name": "Uncertainty Architecture: Why AI Governance is Actually Control Theory",
+                  "url": "https://pub.towardsai.net/uncertainty-architecture-why-ai-governance-is-actually-control-theory-511f3e73ed6e",
+                  "inLanguage": "en",
+                  "author": {
+                    "@type": "Person",
+                    "name": "Vitalii Oborskyi"
+                  },
+                  "datePublished": "2025-12-13"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 10,
+                "item": {
+                  "@type": "Article",
+                  "name": "Uncertainty Architecture: A Modern Approach to Designing LLM Applications",
+                  "url": "https://pub.towardsai.net/uncertainty-architecture-a-modern-approach-to-designing-llm-applications-2fe196188fac",
+                  "inLanguage": "en",
+                  "author": {
+                    "@type": "Person",
+                    "name": "Vitalii Oborskyi"
+                  },
+                  "datePublished": "2025-11-22"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 11,
+                "item": {
+                  "@type": "Article",
+                  "name": "Архітектура невизначеності: сучасний підхід до проєктування LLM-застосунків",
+                  "url": "https://dou.ua/forums/topic/56606/",
+                  "inLanguage": "uk",
+                  "author": {
+                    "@type": "Person",
+                    "name": "Vitalii Oborskyi"
+                  },
+                  "datePublished": "2025-11-18"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 12,
+                "item": {
+                  "@type": "Article",
+                  "name": "On-Device LLM or Cloud API? A Practical Checklist for Product Owners and Architects",
+                  "url": "https://medium.com/data-science-collective/on-device-llm-or-cloud-api-a-practical-checklist-for-product-owners-and-architects-30386f00f148",
+                  "inLanguage": "en",
+                  "author": {
+                    "@type": "Person",
+                    "name": "Vitalii Oborskyi"
+                  },
+                  "datePublished": "2025-09-06"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 13,
+                "item": {
+                  "@type": "Article",
+                  "name": "On-device LLM чи API з хмари? Чекліст для продактів і архітекторів",
+                  "url": "https://dou.ua/forums/topic/55461/",
+                  "inLanguage": "uk",
+                  "author": {
+                    "@type": "Person",
+                    "name": "Vitalii Oborskyi"
+                  },
+                  "datePublished": "2025-09-03"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 14,
+                "item": {
+                  "@type": "Article",
+                  "name": "Architecting Uncertainty: A Modern Guide to LLM-Based Software",
+                  "url": "https://medium.com/data-science-collective/architecting-uncertainty-a-modern-guide-to-llm-based-software-504695a82567",
+                  "inLanguage": "en",
+                  "author": {
+                    "@type": "Person",
+                    "name": "Vitalii Oborskyi"
+                  },
+                  "datePublished": "2025-07-29"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 15,
+                "item": {
+                  "@type": "Article",
+                  "name": "🧠 Beyond the Buzzwords: An AI Prompt to Audit Any Professional Profile — Including Your Own",
+                  "url": "https://medium.com/data-science-collective/beyond-the-buzzwords-an-ai-prompt-to-audit-any-professional-profile-including-your-own-211b112696ef",
+                  "inLanguage": "en",
+                  "author": {
+                    "@type": "Person",
+                    "name": "Vitalii Oborskyi"
+                  },
+                  "datePublished": "2025-07-03"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 16,
+                "item": {
+                  "@type": "Article",
+                  "name": "ШІ-бейджики, а не трансформація: чому delivery без наскрізних зв’язків — це ілюзія прогресу",
+                  "url": "https://dou.ua/forums/topic/54329/",
+                  "inLanguage": "uk",
+                  "author": {
+                    "@type": "Person",
+                    "name": "Vitalii Oborskyi"
+                  },
+                  "datePublished": "2025-06-18"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 17,
+                "item": {
+                  "@type": "Article",
+                  "name": "AI Integration and the Traceability Gap: Atlassian vs. Competitors",
+                  "url": "https://ai.gopubby.com/ai-integration-and-the-traceability-gap-atlassian-vs-competitors-61beb155ddda",
+                  "inLanguage": "en",
+                  "author": {
+                    "@type": "Person",
+                    "name": "Vitalii Oborskyi"
+                  },
+                  "datePublished": "2025-06-16"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 18,
+                "item": {
+                  "@type": "Article",
+                  "name": "Traceability for Atlassian: The Missing AI Enabler - Open Letter (1pager)",
+                  "url": "https://community.atlassian.com/forums/discussion/3036514/traceability-for-atlassian-the-missing-ai-enabler-open-letter-1pager",
+                  "inLanguage": "en",
+                  "author": {
+                    "@type": "Person",
+                    "name": "Vitalii Oborskyi"
+                  },
+                  "dateModified": "2025-06-03"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 19,
+                "item": {
+                  "@type": "Article",
+                  "name": "PMO: Value Creator or Bureaucratic Overhead?",
+                  "url": "https://medium.com/agileinsider/pmo-value-creator-or-bureaucratic-overhead-dc4abcc38dfc",
+                  "inLanguage": "en",
+                  "author": {
+                    "@type": "Person",
+                    "name": "Vitalii Oborskyi"
+                  },
+                  "datePublished": "2025-05-31"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 20,
+                "item": {
+                  "@type": "Article",
+                  "name": "AI-Driven Enhancements to Project Risk Management in the PMO",
+                  "url": "https://generativeai.pub/ai-driven-enhancements-to-project-risk-management-in-the-pmo-c074ca0b8ec2",
+                  "inLanguage": "en",
+                  "author": {
+                    "@type": "Person",
+                    "name": "Vitalii Oborskyi"
+                  },
+                  "datePublished": "2025-05-05"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 21,
+                "item": {
+                  "@type": "Article",
+                  "name": "Story Points vs. Time-Based Estimation: What Does Research Say?",
+                  "url": "https://medium.com/agileinsider/story-points-vs-time-based-estimation-what-does-research-say-84613cc91c7f",
+                  "inLanguage": "en",
+                  "author": {
+                    "@type": "Person",
+                    "name": "Vitalii Oborskyi"
+                  },
+                  "datePublished": "2025-04-30"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 22,
+                "item": {
+                  "@type": "Article",
+                  "name": "How AI Reveals Your Delivery Critical Path in 5 Steps",
+                  "url": "https://medium.com/data-science-collective/how-ai-reveals-your-delivery-critical-path-in-5-steps-b3e8264189e2",
+                  "inLanguage": "en",
+                  "author": {
+                    "@type": "Person",
+                    "name": "Vitalii Oborskyi"
+                  },
+                  "datePublished": "2025-04-23"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 23,
+                "item": {
+                  "@type": "Article",
+                  "name": "Terraforming Your Organization: A Data-Driven Journey from Chaos to Stability of Human and AI",
+                  "url": "https://medium.com/@undersmoker/terraforming-your-organization-a-data-driven-journey-from-chaos-to-stability-of-human-and-ai-84790092d2df",
+                  "inLanguage": "en",
+                  "author": {
+                    "@type": "Person",
+                    "name": "Vitalii Oborskyi"
+                  },
+                  "datePublished": "2025-04-03"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 24,
+                "item": {
+                  "@type": "Article",
+                  "name": "Ласкаво просимо в епоху кіберпанку: коли корпорації диктують етику штучного інтелекту",
+                  "url": "https://dou.ua/forums/topic/53714/",
+                  "inLanguage": "uk",
+                  "author": {
+                    "@type": "Person",
+                    "name": "Vitalii Oborskyi"
+                  },
+                  "datePublished": "2025-05-07"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 25,
+                "item": {
+                  "@type": "Article",
+                  "name": "Welcome to the Cyberpunk Era: When Corporations Dictate AI Ethics",
+                  "url": "https://medium.com/data-science-collective/welcome-to-the-cyberpunk-era-when-corporations-dictate-ai-ethics-29c139c8776b",
+                  "inLanguage": "en",
+                  "author": {
+                    "@type": "Person",
+                    "name": "Vitalii Oborskyi"
+                  },
+                  "datePublished": "2025-04-24"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 26,
+                "item": {
+                  "@type": "Article",
+                  "name": "AI Dilemmas: 25 Key Challenges in Ethics, Technology, and Society",
+                  "url": "https://medium.com/@undersmoker/ai-dilemmas-25-key-challenges-in-ethics-technology-and-society-3f732eeb6b21",
+                  "inLanguage": "en",
+                  "author": {
+                    "@type": "Person",
+                    "name": "Vitalii Oborskyi"
+                  },
+                  "datePublished": "2025-04-23"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 27,
+                "item": {
+                  "@type": "Article",
+                  "name": "Europe’s Silent Revolution: How Industry 4.0 Is Powering AI-Driven, Hyper-Flexible Manufacturing",
+                  "url": "https://medium.com/@undersmoker/europes-silent-revolution-how-industry-4-0-is-powering-ai-driven-hyper-flexible-manufacturing-d0fa214966bd",
+                  "inLanguage": "en",
+                  "author": {
+                    "@type": "Person",
+                    "name": "Vitalii Oborskyi"
+                  },
+                  "datePublished": "2025-04-23"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "publicationRecords": [
+        {
+          "attributes": {
+            "class": "publication",
+            "data-language": "uk",
+            "data-topic": "delivery",
+            "data-year": "2026"
+          },
+          "text": "17 Jun 2026 UA · Українська · Article · DOU Субпрайм-криза коду — чому AI-асистенти роблять нас повільнішими (Частина 2)",
+          "links": [
+            {
+              "class": "publication-title",
+              "href": "https://dou.ua/forums/topic/60177/",
+              "text": "Субпрайм-криза коду — чому AI-асистенти роблять нас повільнішими (Частина 2)"
+            }
+          ],
+          "times": [
+            {
+              "datetime": "2026-06-17",
+              "text": "17 Jun 2026"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "class": "publication",
+            "data-language": "en",
+            "data-topic": "delivery",
+            "data-year": "2026"
+          },
+          "text": "12 Jun 2026 EN · English · Article · Agile Insider AI, the Externalization of Reasoning, and the Verification Crisis",
+          "links": [
+            {
+              "class": "publication-title",
+              "href": "https://medium.com/agileinsider/ai-the-externalization-of-reasoning-and-the-verification-crisis-4f5046f9f0d0",
+              "text": "AI, the Externalization of Reasoning, and the Verification Crisis"
+            }
+          ],
+          "times": [
+            {
+              "datetime": "2026-06-12",
+              "text": "12 Jun 2026"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "class": "publication",
+            "data-language": "uk",
+            "data-topic": "delivery",
+            "data-year": "2026"
+          },
+          "text": "10 Feb 2026 UA · Українська · Article · DOU Субпрайм-криза коду: чому AI-асистенти роблять нас повільнішими — і дані це доводять",
+          "links": [
+            {
+              "class": "publication-title",
+              "href": "https://dou.ua/forums/topic/57846/",
+              "text": "Субпрайм-криза коду: чому AI-асистенти роблять нас повільнішими — і дані це доводять"
+            }
+          ],
+          "times": [
+            {
+              "datetime": "2026-02-10",
+              "text": "10 Feb 2026"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "class": "publication",
+            "data-language": "uk",
+            "data-topic": "delivery",
+            "data-year": "2026"
+          },
+          "text": "5 Jan 2026 UA · Українська · Article · DOU Ілюзія економії: чому заміна розробників на AI — це шлях до технічного дефолту",
+          "links": [
+            {
+              "class": "publication-title",
+              "href": "https://dou.ua/forums/topic/57244/",
+              "text": "Ілюзія економії: чому заміна розробників на AI — це шлях до технічного дефолту"
+            }
+          ],
+          "times": [
+            {
+              "datetime": "2026-01-05",
+              "text": "5 Jan 2026"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "class": "publication",
+            "data-language": "en",
+            "data-topic": "systems",
+            "data-year": "2026"
+          },
+          "text": "30 Aug 2026 EN · English · Article · Generative AI Uncertainty Architecture: Thinking Systems, When the Controlled Object Changes LinkedIn edition · 27 Aug 2026",
+          "links": [
+            {
+              "class": "publication-title",
+              "href": "https://generativeai.pub/uncertainty-architecture-thinking-systems-when-the-controlled-object-changes-21275fe2f3db",
+              "text": "Uncertainty Architecture: Thinking Systems, When the Controlled Object Changes"
+            },
+            {
+              "href": "https://www.linkedin.com/pulse/thinking-systems-when-controlled-object-changes-vitalii-oborskyi-6k4we",
+              "text": "LinkedIn edition · 27 Aug 2026"
+            }
+          ],
+          "times": [
+            {
+              "datetime": "2026-08-30",
+              "text": "30 Aug 2026"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "class": "publication",
+            "data-language": "en",
+            "data-topic": "systems",
+            "data-year": "2026"
+          },
+          "text": "10 Jun 2026 EN · English · Article · Generative AI Uncertainty Architecture: Beyond Embeddings — Neuro-Symbolic Verification of Semantic Drift in LLMs",
+          "links": [
+            {
+              "class": "publication-title",
+              "href": "https://generativeai.pub/uncertainty-architecture-beyond-embeddings-neuro-symbolic-verification-of-semantic-drift-in-llms-69822872825b",
+              "text": "Uncertainty Architecture: Beyond Embeddings — Neuro-Symbolic Verification of Semantic Drift in LLMs"
+            }
+          ],
+          "times": [
+            {
+              "datetime": "2026-06-10",
+              "text": "10 Jun 2026"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "class": "publication",
+            "data-language": "en",
+            "data-topic": "systems",
+            "data-year": "2026"
+          },
+          "text": "10 Jun 2026 EN · English · Article · LinkedIn Reinventing Control Theory One Feature at a Time: The Fallacy of Agentic Loops",
+          "links": [
+            {
+              "class": "publication-title",
+              "href": "https://www.linkedin.com/pulse/reinventing-control-theory-one-feature-time-fallacy-agentic-oborskyi-vkwve/",
+              "text": "Reinventing Control Theory One Feature at a Time: The Fallacy of Agentic Loops"
+            }
+          ],
+          "times": [
+            {
+              "datetime": "2026-06-10",
+              "text": "10 Jun 2026"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "class": "publication",
+            "data-language": "en",
+            "data-topic": "strategy",
+            "data-year": "2026"
+          },
+          "text": "1 Jul 2026 EN · English · Article · AI Advances AI-Native Workflows Have a Moat Problem",
+          "links": [
+            {
+              "class": "publication-title",
+              "href": "https://aiadvances.org/ai-native-workflows-have-a-moat-problem-49992bcc3088",
+              "text": "AI-Native Workflows Have a Moat Problem"
+            }
+          ],
+          "times": [
+            {
+              "datetime": "2026-07-01",
+              "text": "1 Jul 2026"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "class": "publication",
+            "data-language": "en",
+            "data-topic": "systems",
+            "data-year": "2025"
+          },
+          "text": "13 Dec 2025 EN · English · Article · Towards AI Uncertainty Architecture: Why AI Governance is Actually Control Theory",
+          "links": [
+            {
+              "class": "publication-title",
+              "href": "https://pub.towardsai.net/uncertainty-architecture-why-ai-governance-is-actually-control-theory-511f3e73ed6e",
+              "text": "Uncertainty Architecture: Why AI Governance is Actually Control Theory"
+            }
+          ],
+          "times": [
+            {
+              "datetime": "2025-12-13",
+              "text": "13 Dec 2025"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "class": "publication",
+            "data-language": "en",
+            "data-topic": "systems",
+            "data-year": "2025"
+          },
+          "text": "22 Nov 2025 EN · English · Article · Towards AI Uncertainty Architecture: A Modern Approach to Designing LLM Applications",
+          "links": [
+            {
+              "class": "publication-title",
+              "href": "https://pub.towardsai.net/uncertainty-architecture-a-modern-approach-to-designing-llm-applications-2fe196188fac",
+              "text": "Uncertainty Architecture: A Modern Approach to Designing LLM Applications"
+            }
+          ],
+          "times": [
+            {
+              "datetime": "2025-11-22",
+              "text": "22 Nov 2025"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "class": "publication",
+            "data-language": "uk",
+            "data-topic": "systems",
+            "data-year": "2025"
+          },
+          "text": "18 Nov 2025 UA · Українська · Article · DOU Архітектура невизначеності: сучасний підхід до проєктування LLM-застосунків",
+          "links": [
+            {
+              "class": "publication-title",
+              "href": "https://dou.ua/forums/topic/56606/",
+              "text": "Архітектура невизначеності: сучасний підхід до проєктування LLM-застосунків"
+            }
+          ],
+          "times": [
+            {
+              "datetime": "2025-11-18",
+              "text": "18 Nov 2025"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "class": "publication",
+            "data-language": "en",
+            "data-topic": "systems",
+            "data-year": "2025"
+          },
+          "text": "6 Sep 2025 EN · English · Article · Data Science Collective On-Device LLM or Cloud API? A Practical Checklist for Product Owners and Architects",
+          "links": [
+            {
+              "class": "publication-title",
+              "href": "https://medium.com/data-science-collective/on-device-llm-or-cloud-api-a-practical-checklist-for-product-owners-and-architects-30386f00f148",
+              "text": "On-Device LLM or Cloud API? A Practical Checklist for Product Owners and Architects"
+            }
+          ],
+          "times": [
+            {
+              "datetime": "2025-09-06",
+              "text": "6 Sep 2025"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "class": "publication",
+            "data-language": "uk",
+            "data-topic": "systems",
+            "data-year": "2025"
+          },
+          "text": "3 Sept 2025 UA · Українська · Article · DOU On-device LLM чи API з хмари? Чекліст для продактів і архітекторів",
+          "links": [
+            {
+              "class": "publication-title",
+              "href": "https://dou.ua/forums/topic/55461/",
+              "text": "On-device LLM чи API з хмари? Чекліст для продактів і архітекторів"
+            }
+          ],
+          "times": [
+            {
+              "datetime": "2025-09-03",
+              "text": "3 Sept 2025"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "class": "publication",
+            "data-language": "en",
+            "data-topic": "systems",
+            "data-year": "2025"
+          },
+          "text": "29 Jul 2025 EN · English · Article · Data Science Collective Architecting Uncertainty: A Modern Guide to LLM-Based Software",
+          "links": [
+            {
+              "class": "publication-title",
+              "href": "https://medium.com/data-science-collective/architecting-uncertainty-a-modern-guide-to-llm-based-software-504695a82567",
+              "text": "Architecting Uncertainty: A Modern Guide to LLM-Based Software"
+            }
+          ],
+          "times": [
+            {
+              "datetime": "2025-07-29",
+              "text": "29 Jul 2025"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "class": "publication",
+            "data-language": "en",
+            "data-topic": "leadership",
+            "data-year": "2025"
+          },
+          "text": "3 Jul 2025 EN · English · Article · Data Science Collective 🧠 Beyond the Buzzwords: An AI Prompt to Audit Any Professional Profile — Including Your Own",
+          "links": [
+            {
+              "class": "publication-title",
+              "href": "https://medium.com/data-science-collective/beyond-the-buzzwords-an-ai-prompt-to-audit-any-professional-profile-including-your-own-211b112696ef",
+              "text": "🧠 Beyond the Buzzwords: An AI Prompt to Audit Any Professional Profile — Including Your Own"
+            }
+          ],
+          "times": [
+            {
+              "datetime": "2025-07-03",
+              "text": "3 Jul 2025"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "class": "publication",
+            "data-language": "uk",
+            "data-topic": "leadership",
+            "data-year": "2025"
+          },
+          "text": "18 Jun 2025 UA · Українська · Article · DOU ШІ-бейджики, а не трансформація: чому delivery без наскрізних зв’язків — це ілюзія прогресу",
+          "links": [
+            {
+              "class": "publication-title",
+              "href": "https://dou.ua/forums/topic/54329/",
+              "text": "ШІ-бейджики, а не трансформація: чому delivery без наскрізних зв’язків — це ілюзія прогресу"
+            }
+          ],
+          "times": [
+            {
+              "datetime": "2025-06-18",
+              "text": "18 Jun 2025"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "class": "publication",
+            "data-language": "en",
+            "data-topic": "leadership",
+            "data-year": "2025"
+          },
+          "text": "16 Jun 2025 EN · English · Article · Medium AI Integration and the Traceability Gap: Atlassian vs. Competitors",
+          "links": [
+            {
+              "class": "publication-title",
+              "href": "https://ai.gopubby.com/ai-integration-and-the-traceability-gap-atlassian-vs-competitors-61beb155ddda",
+              "text": "AI Integration and the Traceability Gap: Atlassian vs. Competitors"
+            }
+          ],
+          "times": [
+            {
+              "datetime": "2025-06-16",
+              "text": "16 Jun 2025"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "class": "publication",
+            "data-language": "en",
+            "data-topic": "leadership",
+            "data-year": "2025"
+          },
+          "text": "3 Jun 2025 · edited EN · English · Article · Atlassian Community Traceability for Atlassian: The Missing AI Enabler - Open Letter (1pager)",
+          "links": [
+            {
+              "class": "publication-title",
+              "href": "https://community.atlassian.com/forums/discussion/3036514/traceability-for-atlassian-the-missing-ai-enabler-open-letter-1pager",
+              "text": "Traceability for Atlassian: The Missing AI Enabler - Open Letter (1pager)"
+            }
+          ],
+          "times": [
+            {
+              "datetime": "2025-06-03",
+              "text": "3 Jun 2025 · edited"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "class": "publication",
+            "data-language": "en",
+            "data-topic": "leadership",
+            "data-year": "2025"
+          },
+          "text": "31 May 2025 EN · English · Article · Agile Insider PMO: Value Creator or Bureaucratic Overhead?",
+          "links": [
+            {
+              "class": "publication-title",
+              "href": "https://medium.com/agileinsider/pmo-value-creator-or-bureaucratic-overhead-dc4abcc38dfc",
+              "text": "PMO: Value Creator or Bureaucratic Overhead?"
+            }
+          ],
+          "times": [
+            {
+              "datetime": "2025-05-31",
+              "text": "31 May 2025"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "class": "publication",
+            "data-language": "en",
+            "data-topic": "leadership",
+            "data-year": "2025"
+          },
+          "text": "5 May 2025 EN · English · Article · Generative AI AI-Driven Enhancements to Project Risk Management in the PMO",
+          "links": [
+            {
+              "class": "publication-title",
+              "href": "https://generativeai.pub/ai-driven-enhancements-to-project-risk-management-in-the-pmo-c074ca0b8ec2",
+              "text": "AI-Driven Enhancements to Project Risk Management in the PMO"
+            }
+          ],
+          "times": [
+            {
+              "datetime": "2025-05-05",
+              "text": "5 May 2025"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "class": "publication",
+            "data-language": "en",
+            "data-topic": "leadership",
+            "data-year": "2025"
+          },
+          "text": "30 Apr 2025 EN · English · Article · Agile Insider Story Points vs. Time-Based Estimation: What Does Research Say?",
+          "links": [
+            {
+              "class": "publication-title",
+              "href": "https://medium.com/agileinsider/story-points-vs-time-based-estimation-what-does-research-say-84613cc91c7f",
+              "text": "Story Points vs. Time-Based Estimation: What Does Research Say?"
+            }
+          ],
+          "times": [
+            {
+              "datetime": "2025-04-30",
+              "text": "30 Apr 2025"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "class": "publication",
+            "data-language": "en",
+            "data-topic": "leadership",
+            "data-year": "2025"
+          },
+          "text": "23 Apr 2025 EN · English · Article · Data Science Collective How AI Reveals Your Delivery Critical Path in 5 Steps",
+          "links": [
+            {
+              "class": "publication-title",
+              "href": "https://medium.com/data-science-collective/how-ai-reveals-your-delivery-critical-path-in-5-steps-b3e8264189e2",
+              "text": "How AI Reveals Your Delivery Critical Path in 5 Steps"
+            }
+          ],
+          "times": [
+            {
+              "datetime": "2025-04-23",
+              "text": "23 Apr 2025"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "class": "publication",
+            "data-language": "en",
+            "data-topic": "leadership",
+            "data-year": "2025"
+          },
+          "text": "3 Apr 2025 EN · English · Article · Medium Terraforming Your Organization: A Data-Driven Journey from Chaos to Stability of Human and AI",
+          "links": [
+            {
+              "class": "publication-title",
+              "href": "https://medium.com/@undersmoker/terraforming-your-organization-a-data-driven-journey-from-chaos-to-stability-of-human-and-ai-84790092d2df",
+              "text": "Terraforming Your Organization: A Data-Driven Journey from Chaos to Stability of Human and AI"
+            }
+          ],
+          "times": [
+            {
+              "datetime": "2025-04-03",
+              "text": "3 Apr 2025"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "class": "publication",
+            "data-language": "uk",
+            "data-topic": "strategy",
+            "data-year": "2025"
+          },
+          "text": "7 May 2025 UA · Українська · Article · DOU Ласкаво просимо в епоху кіберпанку: коли корпорації диктують етику штучного інтелекту",
+          "links": [
+            {
+              "class": "publication-title",
+              "href": "https://dou.ua/forums/topic/53714/",
+              "text": "Ласкаво просимо в епоху кіберпанку: коли корпорації диктують етику штучного інтелекту"
+            }
+          ],
+          "times": [
+            {
+              "datetime": "2025-05-07",
+              "text": "7 May 2025"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "class": "publication",
+            "data-language": "en",
+            "data-topic": "strategy",
+            "data-year": "2025"
+          },
+          "text": "24 Apr 2025 EN · English · Article · Data Science Collective Welcome to the Cyberpunk Era: When Corporations Dictate AI Ethics",
+          "links": [
+            {
+              "class": "publication-title",
+              "href": "https://medium.com/data-science-collective/welcome-to-the-cyberpunk-era-when-corporations-dictate-ai-ethics-29c139c8776b",
+              "text": "Welcome to the Cyberpunk Era: When Corporations Dictate AI Ethics"
+            }
+          ],
+          "times": [
+            {
+              "datetime": "2025-04-24",
+              "text": "24 Apr 2025"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "class": "publication",
+            "data-language": "en",
+            "data-topic": "strategy",
+            "data-year": "2025"
+          },
+          "text": "23 Apr 2025 EN · English · Article · Medium AI Dilemmas: 25 Key Challenges in Ethics, Technology, and Society",
+          "links": [
+            {
+              "class": "publication-title",
+              "href": "https://medium.com/@undersmoker/ai-dilemmas-25-key-challenges-in-ethics-technology-and-society-3f732eeb6b21",
+              "text": "AI Dilemmas: 25 Key Challenges in Ethics, Technology, and Society"
+            }
+          ],
+          "times": [
+            {
+              "datetime": "2025-04-23",
+              "text": "23 Apr 2025"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "class": "publication",
+            "data-language": "en",
+            "data-topic": "strategy",
+            "data-year": "2025"
+          },
+          "text": "23 Apr 2025 EN · English · Article · Medium Europe’s Silent Revolution: How Industry 4.0 Is Powering AI-Driven, Hyper-Flexible Manufacturing",
+          "links": [
+            {
+              "class": "publication-title",
+              "href": "https://medium.com/@undersmoker/europes-silent-revolution-how-industry-4-0-is-powering-ai-driven-hyper-flexible-manufacturing-d0fa214966bd",
+              "text": "Europe’s Silent Revolution: How Industry 4.0 Is Powering AI-Driven, Hyper-Flexible Manufacturing"
+            }
+          ],
+          "times": [
+            {
+              "datetime": "2025-04-23",
+              "text": "23 Apr 2025"
+            }
+          ]
+        }
+      ],
+      "bodyText": "Skip to content Vitalii Oborskyi Home Research Writing Talks Appearance Display follows your browser’s color preference. Animated motion needs JavaScript. Writing / Original published editions Follow the questions. Find your next read. 27 primary archive records: 20 English and 7 Ukrainian, plus a separate English LinkedIn rendition. Browse AI architecture, delivery, operating models and strategy; each link keeps its original title, date and language. AI-assisted delivery AI architecture & control Operating models & leadership AI strategy & society 2026 2025 AI-assisted delivery Browse articles ↓ AI architecture & control Browse articles ↓ Operating models & leadership Browse articles ↓ AI strategy & society Browse articles ↓ 27 primary archive records · 20 EN / 7 UA · plus one linked EN rendition. The catalog contains 28 linked platform renditions (21 EN / 7 UA), including the separately dated Thinking Systems LinkedIn link. Dates belong to the linked platform edition. “Edited” marks a last-updated date. Related articles are not assumed to be translations. 2026 archive 2026 8 editions AI-assisted delivery 17 Jun 2026 UA · Українська · Article · DOU Субпрайм-криза коду — чому AI-асистенти роблять нас повільнішими (Частина 2) 12 Jun 2026 EN · English · Article · Agile Insider AI, the Externalization of Reasoning, and the Verification Crisis 10 Feb 2026 UA · Українська · Article · DOU Субпрайм-криза коду: чому AI-асистенти роблять нас повільнішими — і дані це доводять 5 Jan 2026 UA · Українська · Article · DOU Ілюзія економії: чому заміна розробників на AI — це шлях до технічного дефолту AI architecture & control 30 Aug 2026 EN · English · Article · Generative AI Uncertainty Architecture: Thinking Systems, When the Controlled Object Changes LinkedIn edition · 27 Aug 2026 10 Jun 2026 EN · English · Article · Generative AI Uncertainty Architecture: Beyond Embeddings — Neuro-Symbolic Verification of Semantic Drift in LLMs 10 Jun 2026 EN · English · Article · LinkedIn Reinventing Control Theory One Feature at a Time: The Fallacy of Agentic Loops AI strategy & society 1 Jul 2026 EN · English · Article · AI Advances AI-Native Workflows Have a Moat Problem 2025 archive 2025 19 editions AI architecture & control 13 Dec 2025 EN · English · Article · Towards AI Uncertainty Architecture: Why AI Governance is Actually Control Theory 22 Nov 2025 EN · English · Article · Towards AI Uncertainty Architecture: A Modern Approach to Designing LLM Applications 18 Nov 2025 UA · Українська · Article · DOU Архітектура невизначеності: сучасний підхід до проєктування LLM-застосунків 6 Sep 2025 EN · English · Article · Data Science Collective On-Device LLM or Cloud API? A Practical Checklist for Product Owners and Architects 3 Sept 2025 UA · Українська · Article · DOU On-device LLM чи API з хмари? Чекліст для продактів і архітекторів 29 Jul 2025 EN · English · Article · Data Science Collective Architecting Uncertainty: A Modern Guide to LLM-Based Software Operating models & leadership 3 Jul 2025 EN · English · Article · Data Science Collective 🧠 Beyond the Buzzwords: An AI Prompt to Audit Any Professional Profile — Including Your Own 18 Jun 2025 UA · Українська · Article · DOU ШІ-бейджики, а не трансформація: чому delivery без наскрізних зв’язків — це ілюзія прогресу 16 Jun 2025 EN · English · Article · Medium AI Integration and the Traceability Gap: Atlassian vs. Competitors 3 Jun 2025 · edited EN · English · Article · Atlassian Community Traceability for Atlassian: The Missing AI Enabler - Open Letter (1pager) 31 May 2025 EN · English · Article · Agile Insider PMO: Value Creator or Bureaucratic Overhead? 5 May 2025 EN · English · Article · Generative AI AI-Driven Enhancements to Project Risk Management in the PMO 30 Apr 2025 EN · English · Article · Agile Insider Story Points vs. Time-Based Estimation: What Does Research Say? 23 Apr 2025 EN · English · Article · Data Science Collective How AI Reveals Your Delivery Critical Path in 5 Steps 3 Apr 2025 EN · English · Article · Medium Terraforming Your Organization: A Data-Driven Journey from Chaos to Stability of Human and AI AI strategy & society 7 May 2025 UA · Українська · Article · DOU Ласкаво просимо в епоху кіберпанку: коли корпорації диктують етику штучного інтелекту 24 Apr 2025 EN · English · Article · Data Science Collective Welcome to the Cyberpunk Era: When Corporations Dictate AI Ethics 23 Apr 2025 EN · English · Article · Medium AI Dilemmas: 25 Key Challenges in Ethics, Technology, and Society 23 Apr 2025 EN · English · Article · Medium Europe’s Silent Revolution: How Industry 4.0 Is Powering AI-Driven, Hyper-Flexible Manufacturing © 2026 Vitalii Oborskyi About Contact Reuse & credits Back to top ↑"
+    },
+    {
+      "path": "docs/talks.html",
+      "sha256": "ec79117e6d6cbf48dedc7e8f8b08626f9690b17d631a42d375314a77690474e6",
+      "bytes": 39925,
+      "documentLanguage": "en",
+      "title": [
+        "Talks & Workshops | Vitalii Oborskyi"
+      ],
+      "meta": [
+        {
+          "charset": "utf-8"
+        },
+        {
+          "name": "viewport",
+          "content": "width=device-width, initial-scale=1"
+        },
+        {
+          "name": "description",
+          "content": "Public talks and workshops on Uncertainty Architecture and software delivery: PMDay, Corning Learn-AI-Palooza and Betelgeuse, with language and original sources."
+        },
+        {
+          "name": "color-scheme",
+          "content": "light dark"
+        },
+        {
+          "name": "author",
+          "content": "Vitalii Oborskyi"
+        },
+        {
+          "property": "og:site_name",
+          "content": "Vitalii Oborskyi"
+        },
+        {
+          "property": "og:type",
+          "content": "website"
+        },
+        {
+          "property": "og:title",
+          "content": "Talks & Workshops | Vitalii Oborskyi"
+        },
+        {
+          "property": "og:description",
+          "content": "Public talks and workshops on Uncertainty Architecture and software delivery: PMDay, Corning Learn-AI-Palooza and Betelgeuse, with language and original sources."
+        },
+        {
+          "name": "twitter:card",
+          "content": "summary"
+        },
+        {
+          "name": "twitter:title",
+          "content": "Talks & Workshops | Vitalii Oborskyi"
+        },
+        {
+          "name": "twitter:description",
+          "content": "Public talks and workshops on Uncertainty Architecture and software delivery: PMDay, Corning Learn-AI-Palooza and Betelgeuse, with language and original sources."
+        }
+      ],
+      "headLinks": [
+        {
+          "rel": "stylesheet",
+          "href": "styles.css"
+        },
+        {
+          "rel": "icon",
+          "href": "assets/favicon.svg",
+          "type": "image/svg+xml"
+        }
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "attributes": {},
+          "text": "Questions are better in conversation."
+        },
+        {
+          "tag": "h2",
+          "attributes": {
+            "id": "talks-title"
+          },
+          "text": "Talks & workshops."
+        },
+        {
+          "tag": "h3",
+          "attributes": {
+            "id": "ukrainian-talks",
+            "class": "writing-topic"
+          },
+          "text": "Ukrainian-language talks"
+        },
+        {
+          "tag": "h3",
+          "attributes": {
+            "class": "talk-title",
+            "lang": "uk"
+          },
+          "text": "Uncertainty Architecture: Перезапуск SDLC"
+        },
+        {
+          "tag": "h3",
+          "attributes": {
+            "id": "other-talks",
+            "class": "writing-topic"
+          },
+          "text": "Other talks & workshops"
+        },
+        {
+          "tag": "h3",
+          "attributes": {
+            "class": "talk-title"
+          },
+          "text": "Designing Non-Deterministic Systems"
+        },
+        {
+          "tag": "h3",
+          "attributes": {
+            "class": "talk-title"
+          },
+          "text": "Uncertainty Architecture & software delivery"
+        }
+      ],
+      "anchors": [
+        "space-canvas",
+        "theme-mode",
+        "space-motion",
+        "main",
+        "talks",
+        "talks-title",
+        "ukrainian-talks",
+        "other-talks"
+      ],
+      "links": [
+        {
+          "class": "skip-link",
+          "href": "#main",
+          "text": "Skip to content"
+        },
+        {
+          "class": "wordmark",
+          "href": "./",
+          "aria-label": "Vitalii Oborskyi, home",
+          "text": "Vitalii Oborskyi"
+        },
+        {
+          "href": "./",
+          "text": "Home"
+        },
+        {
+          "href": "research.html",
+          "text": "Research"
+        },
+        {
+          "href": "writing.html",
+          "text": "Writing"
+        },
+        {
+          "href": "talks.html",
+          "aria-current": "page",
+          "text": "Talks"
+        },
+        {
+          "href": "#ukrainian-talks",
+          "text": "UA · Ukrainian"
+        },
+        {
+          "href": "#other-talks",
+          "text": "Other talks & workshops"
+        },
+        {
+          "class": "text-link",
+          "href": "https://ua.linkedin.com/posts/pmday_we-are-glad-to-introduce-new-speaker-of-activity-7493632835547889664-67od",
+          "text": "Speaker announcement"
+        },
+        {
+          "class": "text-link",
+          "href": "https://www.linkedin.com/posts/roderickm_one-of-the-highlights-of-our-recent-learn-al-palooza-activity-7480960628980072448-FBm4",
+          "text": "Host’s public reflection"
+        },
+        {
+          "class": "text-link",
+          "href": "https://www.linkedin.com/posts/vitaliioborskyi_github-uncertaintyarchitecturegroupuncertainty-architecture-activity-7477275989761384448-k8J9/",
+          "text": "Read the public follow-up"
+        },
+        {
+          "class": "text-link",
+          "href": "writing.html",
+          "text": "Explore the writing ↗"
+        },
+        {
+          "href": "./#about",
+          "text": "About"
+        },
+        {
+          "href": "./#contact",
+          "text": "Contact"
+        },
+        {
+          "href": "credits.html",
+          "text": "Reuse & credits"
+        },
+        {
+          "href": "#main",
+          "text": "Back to top ↑"
+        }
+      ],
+      "languageAnnotations": [
+        {
+          "tag": "span",
+          "lang": "uk",
+          "text": "UA · Українська"
+        },
+        {
+          "tag": "h3",
+          "lang": "uk",
+          "text": "Uncertainty Architecture: Перезапуск SDLC"
+        }
+      ],
+      "times": [],
+      "images": [],
+      "jsonLd": [
+        {
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": "Talks and workshops",
+          "inLanguage": "en",
+          "description": "Original public announcements and follow-ups, with bounded edition and language information."
+        }
+      ],
+      "publicationRecords": [
+        {
+          "attributes": {
+            "class": "publication",
+            "data-language": "uk"
+          },
+          "text": "UA Online PMDay 2026 Autumn UA · Українська Talk Uncertainty Architecture: Перезапуск SDLC Speaker announcement",
+          "links": [
+            {
+              "class": "text-link",
+              "href": "https://ua.linkedin.com/posts/pmday_we-are-glad-to-introduce-new-speaker-of-activity-7493632835547889664-67od",
+              "text": "Speaker announcement"
+            }
+          ],
+          "times": []
+        },
+        {
+          "attributes": {
+            "class": "publication",
+            "data-language": "unconfirmed"
+          },
+          "text": "Corning · Learn-AI-Palooza Technical workshop Language unconfirmed Designing Non-Deterministic Systems Host’s public reflection",
+          "links": [
+            {
+              "class": "text-link",
+              "href": "https://www.linkedin.com/posts/roderickm_one-of-the-highlights-of-our-recent-learn-al-palooza-activity-7480960628980072448-FBm4",
+              "text": "Host’s public reflection"
+            }
+          ],
+          "times": []
+        },
+        {
+          "attributes": {
+            "class": "publication",
+            "data-language": "unconfirmed"
+          },
+          "text": "Betelgeuse · QA Україна Community talk Language unconfirmed Uncertainty Architecture & software delivery Read the public follow-up",
+          "links": [
+            {
+              "class": "text-link",
+              "href": "https://www.linkedin.com/posts/vitaliioborskyi_github-uncertaintyarchitecturegroupuncertainty-architecture-activity-7477275989761384448-k8J9/",
+              "text": "Read the public follow-up"
+            }
+          ],
+          "times": []
+        }
+      ],
+      "bodyText": "Skip to content Vitalii Oborskyi Home Research Writing Talks Appearance Display follows your browser’s color preference. Animated motion needs JavaScript. Talks & workshops Questions are better in conversation. Public announcements and follow-ups on AI architecture, delivery and the engineering work around non-deterministic systems. Talks Talks & workshops. UA · Ukrainian Other talks & workshops Ukrainian-language talks UA Online PMDay 2026 Autumn UA · Українська Talk Uncertainty Architecture: Перезапуск SDLC Speaker announcement Other talks & workshops The links below are public write-ups. The presentation language has not yet been confirmed in this index. Corning · Learn-AI-Palooza Technical workshop Language unconfirmed Designing Non-Deterministic Systems Host’s public reflection Betelgeuse · QA Україна Community talk Language unconfirmed Uncertainty Architecture & software delivery Read the public follow-up Continue with the original articles. Explore the writing ↗ © 2026 Vitalii Oborskyi About Contact Reuse & credits Back to top ↑"
+    },
+    {
+      "path": "docs/credits.html",
+      "sha256": "31b647cbb90d769e979576bca084bc7c9bdfae70c8be5166751a0529860edebc",
+      "bytes": 31705,
+      "documentLanguage": "en",
+      "title": [
+        "Credits & Reuse | Vitalii Oborskyi"
+      ],
+      "meta": [
+        {
+          "charset": "utf-8"
+        },
+        {
+          "name": "viewport",
+          "content": "width=device-width, initial-scale=1"
+        },
+        {
+          "name": "description",
+          "content": "Sources, author-portrait attribution, publication rights and display preferences for Vitalii Oborskyi’s research and writing site."
+        },
+        {
+          "name": "color-scheme",
+          "content": "light dark"
+        },
+        {
+          "name": "author",
+          "content": "Vitalii Oborskyi"
+        },
+        {
+          "property": "og:site_name",
+          "content": "Vitalii Oborskyi"
+        },
+        {
+          "property": "og:type",
+          "content": "website"
+        },
+        {
+          "property": "og:title",
+          "content": "Credits & Reuse | Vitalii Oborskyi"
+        },
+        {
+          "property": "og:description",
+          "content": "Sources, author-portrait attribution, publication rights and display preferences for Vitalii Oborskyi’s research and writing site."
+        },
+        {
+          "name": "twitter:card",
+          "content": "summary"
+        },
+        {
+          "name": "twitter:title",
+          "content": "Credits & Reuse | Vitalii Oborskyi"
+        },
+        {
+          "name": "twitter:description",
+          "content": "Sources, author-portrait attribution, publication rights and display preferences for Vitalii Oborskyi’s research and writing site."
+        }
+      ],
+      "headLinks": [
+        {
+          "rel": "stylesheet",
+          "href": "styles.css"
+        },
+        {
+          "rel": "icon",
+          "href": "assets/favicon.svg",
+          "type": "image/svg+xml"
+        }
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "attributes": {},
+          "text": "Reuse & credits."
+        },
+        {
+          "tag": "h2",
+          "attributes": {},
+          "text": "Linked publications"
+        },
+        {
+          "tag": "h2",
+          "attributes": {},
+          "text": "Website material"
+        },
+        {
+          "tag": "h2",
+          "attributes": {},
+          "text": "Author portrait"
+        },
+        {
+          "tag": "h2",
+          "attributes": {},
+          "text": "Language labels"
+        },
+        {
+          "tag": "h2",
+          "attributes": {
+            "data-space-stop": "preferences"
+          },
+          "text": "Display preferences"
+        },
+        {
+          "tag": "h2",
+          "attributes": {},
+          "text": "Research and acknowledgements"
+        },
+        {
+          "tag": "h2",
+          "attributes": {
+            "data-space-stop": "contact"
+          },
+          "text": "Corrections and contact"
+        }
+      ],
+      "anchors": [
+        "space-canvas",
+        "theme-mode",
+        "space-motion",
+        "main"
+      ],
+      "links": [
+        {
+          "class": "skip-link",
+          "href": "#main",
+          "text": "Skip to content"
+        },
+        {
+          "class": "wordmark",
+          "href": "./",
+          "aria-label": "Vitalii Oborskyi, home",
+          "text": "Vitalii Oborskyi"
+        },
+        {
+          "href": "./",
+          "text": "Home"
+        },
+        {
+          "href": "research.html",
+          "text": "Research"
+        },
+        {
+          "href": "writing.html",
+          "text": "Writing"
+        },
+        {
+          "href": "talks.html",
+          "text": "Talks"
+        },
+        {
+          "href": "https://github.com/oborskyivitalii/oborskyivitalii/issues",
+          "text": "open an issue"
+        },
+        {
+          "href": "https://www.linkedin.com/in/vitaliioborskyi/",
+          "text": "contact me on LinkedIn"
+        },
+        {
+          "href": "./#about",
+          "text": "About"
+        },
+        {
+          "href": "./#contact",
+          "text": "Contact"
+        },
+        {
+          "href": "credits.html",
+          "text": "Reuse & credits"
+        },
+        {
+          "href": "#main",
+          "text": "Back to top ↑"
+        }
+      ],
+      "languageAnnotations": [],
+      "times": [],
+      "images": [],
+      "jsonLd": [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Credits and reuse",
+          "inLanguage": "en",
+          "description": "Publication sources, author portrait, display preferences and reuse boundaries."
+        }
+      ],
+      "publicationRecords": [],
+      "bodyText": "Skip to content Vitalii Oborskyi Home Research Writing Talks Appearance Display follows your browser’s color preference. Animated motion needs JavaScript. Publication information Reuse & credits. Linked publications The writing index links to the original published articles. Those editions retain their own terms and credits. The index does not reproduce the article text, illustrations, slides or PDFs. Website material © 2026 Vitalii Oborskyi. No general reuse license has been granted for this website's original text or design. Please contact me about reuse. Individual publications and repository components may carry their own licenses. Author portrait The author supplied the source photograph for this site. The displayed portrait is an AI-assisted background-removal derivative, optimized as a transparent WebP image. It is not claimed to preserve every foreground pixel. No general reuse permission for the photograph is granted here; contact me before using it elsewhere. Language labels The website interface is English. Publication-language labels use EN for English and UA for Ukrainian; machine-readable language codes are en and uk. UA in a project name means Uncertainty Architecture. A platform edition is not automatically a translation; unconfirmed talk languages are labelled explicitly. Display preferences Auto uses your device's local time: Day from 07:00 until 19:00, Night otherwise. You can choose either theme yourself. Theme and motion preferences are stored locally in your browser; no location request, account or analytics is involved. The decorative spatial background follows native scrolling on each page, and topic choices in Writing. The thematic structures also move gently in a repeating cycle while you read. Motion off freezes both the camera and the structures; your reduced-motion preference overrides a saved On choice. Theme changes only recolor that view. No measurement or scientific simulation is represented. Without JavaScript, your device's light/dark preference and a static geometric background supply the fallback. Research and acknowledgements Uncertainty Architecture and The Subprime Code Crisis maintain their own research, evidence and attribution records. The acknowledgements identify specific contributions and public discussions. They do not imply endorsement by PMI, EPAM or another institution. Corrections and contact If you spot an incorrect link, date or attribution, please open an issue or contact me on LinkedIn . © 2026 Vitalii Oborskyi About Contact Reuse & credits Back to top ↑"
+    }
+  ]
+}

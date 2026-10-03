@@ -1,5 +1,16 @@
 # Agent guidance for personal publications
 
+## Current visual task — 2026-10-03
+
+For the next visual increment, read [SOL-HANDOFF](SOL-HANDOFF.md) and
+[v11 Sol tasks](review/sol-visual-v11-20261003/SOL-TASKS.md), owned by #14 in Draft
+PR #10. The maintainer approved stronger atmosphere, the exact demonstrated fog
+slider at 70%, executive composition/identity, Day-theme contrast repair and
+preservation of existing SEO/content. The dated task supersedes conflicting older
+visual advice below; retain the existing 24-second motion and #12/#13 contracts.
+This handoff is planning only. Re-read live refs/feedback and do not infer new
+implementation or release acceptance from historical candidate evidence.
+
 ## Authority and scope
 
 This repository owns Vitalii Oborskyi's author profile, cross-project publication

@@ -1,5 +1,23 @@
 # Sol execution plan — reviewed 2026-10-02
 
+## Current follow-up: executive presentation and readable themes — 2026-10-03
+
+[Issue #14](https://github.com/oborskyivitalii/oborskyivitalii/issues/14) owns the
+maintainer-approved next iteration. Continue Draft PR #10 from the live head;
+[v11 Sol tasks](review/sol-visual-v11-20261003/SOL-TASKS.md) contain the complete
+input/scope report, exact 70% reference-slider fog formula, stronger atmospheric
+background, optional measured far-field defocus, executive composition/palette
+and wordmark, **Day-theme contrast repair first**, and SEO/content preservation.
+The retained concept, design settings and five-page SEO baseline are linked there.
+This is prepared work, not an implemented visual change; public files are unchanged.
+
+Latest implemented source before this handoff is `0333c4d2b2318850fd56312d83fb63ca468f01a4`.
+[Its verified source/evidence completion](https://github.com/oborskyivitalii/oborskyivitalii/pull/10#issuecomment-5970991843)
+supersedes older pending-runtime/pipeline summaries below. Preserve the current
+24-second bounded cycle, scroll/freeze behavior and all #12/#13 budgets/gates.
+Old results do not validate changed public bytes. Keep #7/#8/device/release
+decisions explicit and the PR Draft; no merge or deployment is requested.
+
 ## Release-pipeline requirement — maintainer request, 2026-10-03
 
 The maintainer now requires the demonstrated audit to become recurring checks for
