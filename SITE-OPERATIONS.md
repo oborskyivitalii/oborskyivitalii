@@ -1,5 +1,27 @@
 # First site: candidate, review and release
 
+## Current implementation and staging setup — 2026-10-03
+
+Executive design source `9c12900` is implemented in Draft PR #10. Read the current
+[execution record](review/sol-visual-v11-20261003/EXECUTION.md); older candidate and
+planning summaries below are historical. Cloudflare staging code is implemented
+in `.github/workflows/site-staging.yml` and `tools/staging/`, called only after the
+required PR aggregate by `site-checks.yml`. [SITE-STAGING](SITE-STAGING.md) contains
+the exact secure environment setup, ownership, pin provenance and recovery limits.
+There is no configured Cloudflare account/token or live URL yet. Do not report
+the controlled Pages model as a deployment. Production/merge/domain/payment and
+independent/device/rights acceptance remain separate.
+
+Only the frozen 13-file public inventory plus `_headers`, a real `404.html` and
+non-sensitive revision metadata are uploaded. Public HTML/CSS/JS/portrait bytes
+are unchanged by packaging. The stable alias is updated only after the separate
+version passes hosted smoke; promotion is serialized and rechecks the live PR tip.
+The previous verified package is retained as an immutable Actions artifact for
+90 days; expired/unverifiable recovery blocks new promotion. Failed stable smoke
+automatically reuploads/rechecks that exact previous package where one exists.
+No project/DNS/production deletion or cleanup is automated. Retain the current and
+previous review versions; any older cleanup is a separate bounded owner action.
+
 ## Browser staging amendment — 2026-10-03
 
 The maintainer now requests hosted staging as part of the current site work.

@@ -26,6 +26,9 @@ on:
       public_digest:
         description: Deterministic public file manifest digest
         value: ${{ jobs.build.outputs.public_digest }}
+      gate_artifact_id:
+        description: Immutable successful PR aggregate manifest artifact
+        value: ${{ jobs.gate.outputs.artifact_id }}
   workflow_dispatch:
     inputs:
       candidate_sha:
@@ -159,6 +162,7 @@ jobs:
       - name: Assert full three-engine matrix
         run: |
           node tools/quality/artifact.cjs verify quality-artifact/public quality-artifact/artifact.json
+          node tools/staging/selftest.cjs
           node tools/quality/functional.cjs
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: always()
@@ -295,6 +299,8 @@ jobs:
     needs: [build, static, linux, native, performance, captures]
     runs-on: ubuntu-24.04
     timeout-minutes: 10
+    outputs:
+      artifact_id: ${{ steps.gate_upload.outputs.artifact-id }}
     env:
       SITE_JOB_RESULTS: ${{ toJSON(needs) }}
       SITE_EXPECTED_PUBLIC_DIGEST: ${{ needs.build.outputs.public_digest }}
@@ -344,7 +350,8 @@ jobs:
             unset SITE_RELEASE_EVIDENCE
             node tools/quality/validate.cjs quality-artifact
           fi
-      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+      - id: gate_upload
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: always()
         with:
           name: site-gate-${{ github.run_id }}

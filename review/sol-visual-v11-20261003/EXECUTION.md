@@ -20,9 +20,65 @@ inputs and remain outside this site work.
 - New v10 review edition: historical v9 outputs/evidence are preserved, not reused
   as acceptance of changed source.
 
-Local suites: all 58 Node tests and 18 Python tests passed. SEO-PRESERVATION
-records the exact reversible semantic/source check. CI browsers/captures/
-performance, hosted staging and current-source visual review are pending.
+Local suites initially passed 58 Node + 18 Python tests; the staging increment
+now passes all 66 Node + 18 Python tests. SEO-PRESERVATION records the exact
+reversible source comparison. Hosted staging and independent acceptance remain
+pending; actual source-bound CI and root inspection are recorded below.
+
+## First actual source-bound CI and visual inspection
+
+Design commit `9c12900`, [full evidence run](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37153498373):
+build, 390 Linux Chromium/Firefox/WebKit cases, 40 native Windows cases, 20 macOS
+WebKit cases, performance and captures passed. Static stopped on 59 new v10
+manifest SHA values detected as entropy candidates, not a proven credential.
+Both producers' freshness/byte checks passed, every detector hash was matched to
+its precise metadata line, and 59 exact path/type/hash entries were appended to
+the existing registry. Previous entries, scanner rules and budgets are unchanged;
+fresh CI must verify this correction. The full release gate remains unsatisfied.
+
+The capture ZIP's recorded SHA256 and all 53 recorded image/video hashes plus
+all 13 public input hashes were verified locally. Root inspected the 20-view
+desktop/mobile contact sheets, Home desktop/Talks mobile Day details and three
+actual video frames per route (15 total). Foreground, author/portrait, controls
+and publication text remain readable; backgrounds remain visible in open regions.
+This is root inspection, not an independent acceptance decision.
+
+The actual composited-pixel sampler passed 40 views/4,418 samples in both themes;
+minimum normal-text ratio 4.570, large text 3.897. Normal/hover/focus CTA states are
+included in the maintained three-engine checks. This sampled lab result is not
+complete WCAG or physical-device certification. No old v9 captures are reused.
+
+The performance archive's recorded ZIP hash and validators were checked locally:
+30 Lighthouse samples, all 15 motion profiles and the 300-second mobile Home
+soak pass the unchanged budgets. Median performance 97–100; mobile LCP
+1.185–1.431 s, TBT 82.5–183 ms, CLS 0–.0565; desktop LCP .342–.419 s. Mobile
+CPU×4 painted callback p95 is 10.4–15.6 ms at idle / 11.4–13.3 ms scrolling;
+idle callback busy time 6.18–9.12%. Forced-GC soak heap delta −225,756 bytes,
+no runtime errors. These are instrumented lab observations, not device/FPS
+guarantees or evidence of the eventual hosted origin.
+
+## Staging implementation increment
+
+`tools/staging/` and the post-PR-gate reusable workflow implement the separate
+noindex/404/revision package, exact public-byte checks, bounded hosted HTTP and
+browser smoke, current-tip rejection, serialized candidate→stable promotion,
+last-verified immutable-package recovery and one GitHub Deployment/PR status.
+Initial project creation is opt-in secure configuration; permission/quota errors
+stop and existing projects are not converted. Eight controlled local tests pass;
+a maintained loopback Pages model will exercise the real browser code in CI.
+Its result is explicitly synthetic and cannot authorize a deployment.
+
+The token is supplied only by the callee's protected environment; repository
+secrets are not inherited into PR code. One exact dummy user:pass URL detector
+finding is retained as a negative unit-test false positive: userinfo is rejected
+before requests, and the fixture is never used to authenticate. Scanner rules
+are unchanged; this exact test/registry entry still needs independent review.
+
+Cloudflare account/token configuration is still missing. [Secure setup](../../SITE-STAGING.md)
+records the exact environment/variable names and protection/ownership/recovery
+limits. No live URL, provider provisioning, hosted-origin success or demonstrated
+provider rollback is claimed. Full production, independent/device/rights and
+maintainer visual acceptance remain open; PR #10 stays Draft on #9.
 
 ## Contrast and blur decision
 

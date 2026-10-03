@@ -1,5 +1,17 @@
 # Search discoverability and topic map
 
+## Executive redesign preservation — implemented 2026-10-03
+
+Source `9c12900` changes Home's problem-led H1, bounded author lead and Help/
+Research order plus decorative SVG/identity. The exact reversible comparison in
+`tools/check_site_seo.cjs` reconstructs all five pre-redesign pages and checks
+their complete non-decorative HTML against immutable `0333c4d`. [Semantic mapping](review/sol-visual-v11-20261003/SEO-PRESERVATION.md)
+records the declared differences. All metadata, schema, original publication/
+contribution/source links, edition/date/language boundaries, meaningful copy and
+portrait bytes remain. This is preservation, not new demand/ranking evidence.
+Staging headers are added outside docs/; no staging canonical or noindex is
+inserted into production pages. Permanent-origin/indexing decisions stay with #8.
+
 ## Preservation requirement for the next visual iteration — 2026-10-03
 
 The maintainer explicitly requires existing SEO work to survive text/layout

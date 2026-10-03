@@ -1,5 +1,17 @@
 # Sol execution plan — reviewed 2026-10-02
 
+## Implemented executive increment — 2026-10-03
+
+The maintainer's “Зроби” is being implemented, not just planned. Visual source
+`9c12900` in Draft PR #10 has exact 70% fog, stronger cheap atmosphere on the
+existing 24-second phase, semantic Day/Night text/CTA controls, problem-led H1,
+visible author identity, Help before Research and the restrained existing vo.
+identity. [Execution](review/sol-visual-v11-20261003/EXECUTION.md) and
+[SEO mapping](review/sol-visual-v11-20261003/SEO-PRESERVATION.md) own current status.
+Cloudflare staging code is the next implementation increment; [secure setup](SITE-STAGING.md)
+is required before a real URL can be claimed. Existing public bytes are no longer
+the `0333c4d` baseline. Historical evidence below is not new-source acceptance.
+
 ## Browser staging amendment — 2026-10-03
 
 The maintainer now requests hosted staging as part of the current site work.

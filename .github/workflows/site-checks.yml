@@ -17,3 +17,26 @@ jobs:
     with:
       candidate_sha: ${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
       full: false
+  staging:
+    needs: checks
+    if: >-
+      vars.SITE_STAGING_ENABLED == 'true' &&
+      github.repository == 'oborskyivitalii/oborskyivitalii' &&
+      (github.event_name == 'workflow_dispatch' ||
+       (github.event.pull_request.number == 10 &&
+        github.event.pull_request.head.repo.full_name == github.repository &&
+        github.event.pull_request.head.ref == 'work/site-v1-20261001'))
+    permissions:
+      contents: read
+      actions: read
+      deployments: write
+      pull-requests: write
+    uses: ./.github/workflows/site-staging.yml
+    with:
+      candidate_sha: ${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
+      public_artifact_id: ${{ needs.checks.outputs.artifact_id }}
+      public_digest: ${{ needs.checks.outputs.public_digest }}
+      upload_digest: ${{ needs.checks.outputs.artifact_upload_digest }}
+      gate_artifact_id: ${{ needs.checks.outputs.gate_artifact_id }}
+    # Only the callee job's protected staging environment supplies its token.
+    # Do not inherit all repository secrets into a PR checkout.

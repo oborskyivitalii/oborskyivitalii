@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "789c63f5183f1fb11f3c57fba8018f9fc8be56ceee4c50ca7667d3331334cb90",
+    "digest": "1e95d7b3492ff518bc864969a200481dc4a4bddda35129de419aebba1cd5c8e7",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -54,17 +54,22 @@
       {
         "path": ".github/workflows/site-checks.yml",
         "identity_mode": "content",
-        "sha256": "ebeef4adfb93fca15f282f49f010886033d768dde7a04b655fc557fc3974421d"
+        "sha256": "139dc06d5d1d2d96317c7d3d249404a4fe8e6a213e330472ddaeadbec0e25a49"
       },
       {
         "path": ".github/workflows/site-release-checks.yml",
         "identity_mode": "content",
-        "sha256": "dd2b3bd3bd2a83d9b6bcd07e9bf51aed34a5a55b56da550e35c3d9733faba0cb"
+        "sha256": "ac850caed8210af5835009f29be0c19d6150eae68b9cb73eda0df8f5a2aebfb4"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
         "identity_mode": "content",
         "sha256": "bbf485e8f1c4aa70725c9670fc192a700030479cc282b1fd2098d70fcbc3849b"
+      },
+      {
+        "path": ".github/workflows/site-staging.yml",
+        "identity_mode": "content",
+        "sha256": "1e43a196095d34cedaa8caee7c1d19b83508dfbbb7b185d317c4e04d3df60db0"
       },
       {
         "path": ".gitignore",
@@ -73,7 +78,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "08c3d163319de025a6826539e7536066dd219b5c7ab0950a313bb94886011aa5"
+        "sha256": "fc4a1c803fab039932331ca85e297500d3df40923685d9d6cedfb50cffe9b994"
       },
       {
         "path": "BACKLOG.md",
@@ -103,7 +108,7 @@
       {
         "path": "SITE-OPERATIONS.md",
         "identity_mode": "content",
-        "sha256": "769080378e5fba804b3bb580fcf110a22de94c9d701898b157a4d02bd2c6883b"
+        "sha256": "93ad22cd0da703a1f38373553d8afa89d6eef65a8d8f3f4aaacc14cce2bfcaaf"
       },
       {
         "path": "SITE-RELEASE-GATES.md",
@@ -118,7 +123,7 @@
       {
         "path": "SITE-SEO.md",
         "identity_mode": "content",
-        "sha256": "eecb6b595deb42a928e4bea8a37069dec10dc0c2665db91a205bfaaf3c147981"
+        "sha256": "ace41b1d784803cfd4d90269fdf34485606cba80417ffba3a4ea199108fc8b78"
       },
       {
         "path": "SITE-SOURCE-AUDIT.md",
@@ -128,17 +133,17 @@
       {
         "path": "SITE-STAGING.md",
         "identity_mode": "content",
-        "sha256": "9d9ce2e34c96a640ca8c71528393c4fb45b2ddbfe59d80c836dd9140c852a777"
+        "sha256": "08a96b74176c64fc3d5595109cbbbda8647da088e2f91b7c6a185c1620fc9465"
       },
       {
         "path": "SITE-VISUAL-REVIEW.md",
         "identity_mode": "content",
-        "sha256": "5735dd9ce88d944cdb7d79d2b368a56939f88d7ed0b91d9ffc0378351efa5380"
+        "sha256": "8dbbab1d7da4b0595c8cee9bbda61c2bdfddf6efca0ea301a1f05d749727510b"
       },
       {
         "path": "SOL-HANDOFF.md",
         "identity_mode": "content",
-        "sha256": "0702208e7918d0d4a22f27f0da43d1072bb7e5da48670ab3f4624c91a9820153"
+        "sha256": "8ffa17740bf0626405b80b09f8312b9a8cd8311651a680b0f7507bfb919d322b"
       },
       {
         "path": "docs/.nojekyll",
@@ -2225,7 +2230,7 @@
       {
         "path": "review/sol-visual-v11-20261003/EXECUTION.md",
         "identity_mode": "content",
-        "sha256": "5731d70ce0ba91d0990b5ed560749ef6a449ec795fac754794c6eac813a92efe"
+        "sha256": "03d0f7588e4e0aeb44ee1994876be17126a8fef7e94547847cfd86ab18e9f446"
       },
       {
         "path": "review/sol-visual-v11-20261003/INPUT-MANIFEST.json",
@@ -2312,6 +2317,10 @@
       },
       {
         "path": "tests/space.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/staging.test.cjs",
         "identity_mode": "existence"
       },
       {
@@ -2423,7 +2432,7 @@
       {
         "path": "tools/quality/secrets-baseline.json",
         "identity_mode": "content",
-        "sha256": "cfb895890d4ddcc5cb228ec7f5efed4f3f11c20859bc7670b7f174838b2b6a20"
+        "sha256": "8baa6d0c99d72754e07fa62e29ab8d0ff23302951a0013d58e7ebc1534cacc73"
       },
       {
         "path": "tools/quality/security-rules.yml",
@@ -2474,6 +2483,22 @@
         "path": "tools/repository_intelligence.py",
         "identity_mode": "content",
         "sha256": "ed9d72444817b2c6f9f03bf908a28db6c5440dc540fc81f60df95cf9acf46e51"
+      },
+      {
+        "path": "tools/staging/hosted.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/staging/package.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/staging/selftest.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/staging/state.cjs",
+        "identity_mode": "existence"
       }
     ]
   },
@@ -2676,6 +2701,13 @@
     {
       "path": ".github/workflows/site-runtime-checks.yml",
       "title": ".github/workflows/site-runtime-checks.yml",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".github/workflows/site-staging.yml",
+      "title": ".github/workflows/site-staging.yml",
       "instructions": [
         "AGENTS.md"
       ]

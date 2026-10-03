@@ -1,5 +1,18 @@
 # Site visual review and proposed direction
 
+## Current executive implementation — 2026-10-03
+
+The new source is `9c12900`, not the older planning/v8 descriptions below. See
+[execution](review/sol-visual-v11-20261003/EXECUTION.md) for exact fog/atmosphere,
+composition, contrast, browser evidence and pending acceptance. The v10 review
+exports preserve historical v9 evidence separately. Root inspected all 20 actual
+opening views (both themes, 1440×900/390×844), 15 extracted recording frames and
+the Home/Talks Day details. The CI sampler checked 40 views and 4,418 glyph-center
+background points, with zero failures; minima 4.57 normal and 3.90 large text.
+Sampling is not complete WCAG certification or independent visual acceptance.
+Actual hosted-origin and physical-device checks remain pending, not inferred from
+the controlled loopback staging model. No blur or new renderer was added.
+
 ## Approved next direction — 2026-10-03
 
 [Issue #14](https://github.com/oborskyivitalii/oborskyivitalii/issues/14) and

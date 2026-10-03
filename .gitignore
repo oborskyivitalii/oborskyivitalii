@@ -7,3 +7,6 @@ tools/quality/toolchain/venv
 quality-results/
 quality-artifact/
 quality-reports/
+staging-package/
+staging-rollback/
+staging-reports/
