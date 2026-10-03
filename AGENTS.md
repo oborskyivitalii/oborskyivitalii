@@ -5,8 +5,8 @@
 The visual increment is implemented at `9c12900` in Draft PR #10: exact slider-70
 fog, stronger phase-linked atmosphere, executive composition and semantic
 Day/Night contrast. Read the current [execution record](review/sol-visual-v11-20261003/EXECUTION.md)
-and [SEO mapping](review/sol-visual-v11-20261003/SEO-PRESERVATION.md). The next
-increment adds verified-artifact staging code and controlled tests. Read the
+and [SEO mapping](review/sol-visual-v11-20261003/SEO-PRESERVATION.md). Verified-artifact
+staging code and controlled tests are implemented. Read the
 secure setup in [SITE-STAGING](SITE-STAGING.md). Cloudflare authorization and a
 real hosted URL are still missing; never invent them or treat the loopback model
 as hosted evidence. Earlier planning/v8/v9 summaries below are historical.

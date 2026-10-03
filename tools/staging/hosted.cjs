@@ -59,8 +59,11 @@ async function appearance(page,theme){
   await page.evaluate(()=>scrollTo({top:500,behavior:'instant'}));await page.waitForTimeout(200);assert.deepEqual(await sceneState(page),before,'hosted Off did not hold exact pose/phase/atmosphere');
   const savedTheme=theme==='light'?'dark':'light';await page.locator('#theme-mode').selectOption(savedTheme);assert.deepEqual(await sceneState(page),before,'theme change lost frozen atmosphere/pose');
   await page.keyboard.press('Escape');assert.equal(await page.locator('.appearance').evaluate(el=>el.open),false);assert.equal(await page.locator('.appearance summary').evaluate(el=>el===document.activeElement),true);
-  await page.reload();assert.equal(await page.locator('html').getAttribute('data-theme'),savedTheme);assert.match(await page.locator('#space-motion').innerText(),/off/i);
-  await page.locator('.appearance summary').click();await page.locator('#theme-mode').selectOption('auto');
+  await page.reload();assert.equal(await page.locator('html').getAttribute('data-theme'),savedTheme);
+  // Reload closes native details. Inspect the visible control after reopening,
+  // rather than reading an empty innerText from its non-rendered subtree.
+  await page.locator('.appearance summary').click();assert.match(await page.locator('#space-motion').innerText(),/off/i);
+  await page.locator('#theme-mode').selectOption('auto');
   const auto=await page.evaluate(()=>({actual:document.documentElement.dataset.theme,expected:new Date().getHours()>=7&&new Date().getHours()<19?'light':'dark'}));assert.equal(auto.actual,auto.expected,'visitor-local Auto');
   await page.locator('#space-motion').click();await page.locator('#theme-mode').selectOption(theme);await page.keyboard.press('Escape');
   return {theme,savedTheme,persistence:true,off:true,atmosphereFreeze:true,themeWhileFrozen:true,autoLocalHour:true,escapeFocus:true};

@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "1e95d7b3492ff518bc864969a200481dc4a4bddda35129de419aebba1cd5c8e7",
+    "digest": "f1151f68855e0bcd8e0ac874fe8fa47bbd1f32ae92589ffe15ad4d168de950b5",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -78,7 +78,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "fc4a1c803fab039932331ca85e297500d3df40923685d9d6cedfb50cffe9b994"
+        "sha256": "8ed5297ff8cb4e0687b0d5f12beff5342c085ff3bf0783226a26fcd975f4681d"
       },
       {
         "path": "BACKLOG.md",
@@ -143,7 +143,7 @@
       {
         "path": "SOL-HANDOFF.md",
         "identity_mode": "content",
-        "sha256": "8ffa17740bf0626405b80b09f8312b9a8cd8311651a680b0f7507bfb919d322b"
+        "sha256": "ff3f805d8ae53cb540dec338efdd3cd34eb51c5808f7a5558e9d1b075e2e64d8"
       },
       {
         "path": "docs/.nojekyll",
@@ -2230,7 +2230,7 @@
       {
         "path": "review/sol-visual-v11-20261003/EXECUTION.md",
         "identity_mode": "content",
-        "sha256": "03d0f7588e4e0aeb44ee1994876be17126a8fef7e94547847cfd86ab18e9f446"
+        "sha256": "c30b89ad2f8f7bdc720dbb571219b29f418102bbb7de676e4e496372659501a5"
       },
       {
         "path": "review/sol-visual-v11-20261003/INPUT-MANIFEST.json",

@@ -68,6 +68,18 @@ stop and existing projects are not converted. Eight controlled local tests pass;
 a maintained loopback Pages model will exercise the real browser code in CI.
 Its result is explicitly synthetic and cannot authorize a deployment.
 
+Combined-source `920fe2f` PR run
+[37154826154](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37154826154)
+and full run
+[37154879431](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37154879431)
+passed build/static, including the exact false-positive registry corrections.
+The new Pages browser model stopped before the existing functional matrix:
+after reload it read `innerText` from the closed native Appearance details,
+which correctly returned an empty string. The follow-up reopens the menu before
+checking the visible persisted Off state; persistence/freeze assertions remain.
+No public file changed. Fresh CI is required; latest exact-source results belong
+in PR #10/#8/#14, not an invented hosted or independent acceptance record.
+
 The token is supplied only by the callee's protected environment; repository
 secrets are not inherited into PR code. One exact dummy user:pass URL detector
 finding is retained as a negative unit-test false positive: userinfo is rejected

@@ -8,8 +8,10 @@ existing 24-second phase, semantic Day/Night text/CTA controls, problem-led H1,
 visible author identity, Help before Research and the restrained existing vo.
 identity. [Execution](review/sol-visual-v11-20261003/EXECUTION.md) and
 [SEO mapping](review/sol-visual-v11-20261003/SEO-PRESERVATION.md) own current status.
-Cloudflare staging code is the next implementation increment; [secure setup](SITE-STAGING.md)
-is required before a real URL can be claimed. Existing public bytes are no longer
+Cloudflare staging code and controlled tests are implemented; [secure setup](SITE-STAGING.md)
+is still required before a real URL can be claimed. Fresh CI exercises the hosted
+smoke code against a loopback Pages model, explicitly not a real deployment.
+Existing public bytes are no longer
 the `0333c4d` baseline. Historical evidence below is not new-source acceptance.
 
 ## Browser staging amendment — 2026-10-03
