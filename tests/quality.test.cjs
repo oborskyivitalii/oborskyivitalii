@@ -109,3 +109,19 @@ test('current v10 capture input is byte-verified once; stale editions and tamper
     fs.writeFileSync(media,bytes);fs.writeFileSync(raw,JSON.stringify({files:{'../outside.png':digest(bytes)}}));assert.throws(()=>readEvidence([raw,report],true));
   }finally{fs.rmSync(dir,{recursive:true,force:true});}
 });
+test('contrast sampling ignores cached closed-details text and occluded pixels but admits visible controls',()=>{
+  const vm=require('node:vm'),{collectSamples}=require('../tools/check_site_contrast.cjs');
+  function probe({open=false,summaryText=false,cssVisible=true,covered=false}={}){
+    const summary={tagName:'SUMMARY',contains:el=>el===summary},details={open,children:[summary],parentElement:null};
+    const element=summaryText?summary:{contains:el=>el===element};
+    Object.assign(element,{closest:selector=>selector==='details'?details:null,checkVisibility:options=>{assert.equal(options.opacityProperty,true);assert.equal(options.visibilityProperty,true);assert.equal(options.contentVisibilityAuto,true);return cssVisible;},getClientRects:()=>[{}]});
+    const node={parentElement:element,textContent:summaryText?'Appearance':'Theme'},ctx={clearRect(){},fillRect(){},getImageData:()=>({data:[67,89,98,255]})};let visited=false;
+    const document={body:{},createTreeWalker:()=>({nextNode:()=>{if(visited)return null;visited=true;return node;}}),createElement:()=>({getContext:()=>ctx}),createRange:()=>({setStart(){},setEnd(){},getBoundingClientRect:()=>({x:20,y:30,width:10,height:12})}),elementFromPoint:()=>covered?{}:element};
+    return vm.runInNewContext('('+collectSamples.toString()+')()',{document,NodeFilter:{SHOW_TEXT:4},getComputedStyle:()=>({fontSize:'12px',fontWeight:'400',color:'rgb(67,89,98)'}),innerWidth:200,innerHeight:100});
+  }
+  assert.equal(probe().length,0,'closed details may retain boxes but do not paint body text');
+  assert.equal(probe({open:true}).length,1,'visible Theme control is actually measured');
+  assert.equal(probe({summaryText:true}).length,2,'closed details summary remains visible');
+  assert.equal(probe({open:true,cssVisible:false}).length,0,'CSS-invisible text is not painted');
+  assert.equal(probe({open:true,covered:true}).length,0,'text covered by the sticky header is not its foreground');
+});

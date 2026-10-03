@@ -21,7 +21,7 @@ inputs and remain outside this site work.
   as acceptance of changed source.
 
 Local suites initially passed 58 Node + 18 Python tests; the staging increment
-now passes all 67 Node + 18 Python tests. SEO-PRESERVATION records the exact
+now passes all 68 Node + 18 Python tests. SEO-PRESERVATION records the exact
 reversible source comparison. Hosted staging and independent acceptance remain
 pending; actual source-bound CI and root inspection are recorded below.
 
@@ -86,6 +86,19 @@ and byte-verifies only the current v10 record, without counting its raw metadata
 as a duplicate source-bound report. A regression checks single admission and
 rejection of missing/current-versus-old/tampered media records. No release budget
 or external independent/device requirement is relaxed; fresh full CI is required.
+
+Repeated full capture run on `5ab5b46` produced a 4.4775 ratio for hidden `Theme`
+text in closed native Appearance details (Home Day desktop/middle). Its parent
+retained Range geometry while that text was not painted; the menu's actual open
+surface is opaque paper. The sampler now uses CSS/native-details visibility and
+point occlusion before admitting text, explicitly tests both closed and open
+Appearance (80 views), and asserts Theme is admitted only when open. Controlled
+regressions cover cached closed boxes, visible summary/control, CSS-hidden and
+covered text. The 4.5/3 thresholds and public CSS/content are unchanged. Old
+40-view results above are historical, not the final expanded check; fresh CI must
+verify the correction and actual open controls. No independent acceptance is
+inferred. [CSSOM checkVisibility](https://drafts.csswg.org/cssom-view/#dom-element-checkvisibility)
+defines the opted-in visibility/opacity checks.
 
 The token is supplied only by the callee's protected environment; repository
 secrets are not inherited into PR code. One exact dummy user:pass URL detector
