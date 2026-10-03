@@ -13,7 +13,7 @@ const plainTitle = html => html.replace(/<span class="publication-arrow"[^>]*>[\
 
 test("each existing discussion entry has professional context and its own LinkedIn profile, preserving public evidence links",()=>{
   for(const page of["index","research"]) {
-    const entries=[...pages[page].matchAll(/<h3><a href="(https:\/\/www.linkedin.com\/in\/[^\"]+)">([^<]+)<\/a><\/h3><p class="person-context">([^<]+)<\/p>/g)];
+    const entries=[...pages[page].matchAll(/<h3><a href="(https:\/\/www.linkedin.com\/in\/[^"]+)">([^<]+)<\/a><\/h3><p class="person-context">([^<]+)<\/p>/g)];
     assert.equal(entries.length,8);
     assert.equal(new Set(entries.map(e=>e[1])).size,8,"do not assign one profile to multiple identities");
     assert.equal((pages[page].match(/https:\/\/www.linkedin.com\/posts\//g)||[]).length,9);

@@ -70,7 +70,7 @@ test("unknown URL values and blocked history do not disable the local archive",(
   const page=visit("",true);page.change("year","2025");assert.equal(page.shown().length,19);
 });
 test("without scripts every topic/year fragment belongs to visible semantic HTML, not hidden navigation",()=>{
-  for(const topic of["delivery","systems","leadership","strategy"])assert.match(html,new RegExp(`<h2 id="topic-${topic}" class="topic-landing">[^<]+<a href="[^\"]+">Browse articles ↓</a></h2>`));
+  for(const topic of["delivery","systems","leadership","strategy"])assert.match(html,new RegExp(`<h2 id="topic-${topic}" class="topic-landing">[^<]+<a href="[^"]+">Browse articles ↓</a></h2>`));
   for(const year of["2026","2025"])assert.match(html,new RegExp(`<h2 id="year-${year}" class="year-landing">${year} archive</h2>`));
   assert.equal([...html.matchAll(/<li class="publication"[^>]*\bhidden/g)].length,0);
 });

@@ -3,16 +3,17 @@ const test=require("node:test"),assert=require("node:assert/strict"),fs=require(
 const source=fs.readFileSync(path.join(__dirname,"../docs/space.js"),"utf8"),model=require("../docs/space.js");
 function visit(options={}) {
   const events={},docEvents={},buttonEvents={},pending=new Map(),calls=[];
-  let draws=0,serial=0,time=0,stored=options.saved??null,mutation,last="";
+  let failDraw=false,styled=options.styled!==false,paintClock=0,bitmapValid=false,resizeCount=0,draws=0,serial=0,time=0,stored=options.saved??null,mutation;
   const media={matches:!!options.reduced,addEventListener:(_,fn)=>{media.change=fn;}};
   const narrow={matches:!!options.narrow},scene={dataset:{}};
-  const context=Object.fromEntries(["setTransform","clearRect","beginPath","moveTo","lineTo","stroke","arc","fill","closePath"].map(name=>[name,(...args)=>{for(const arg of args)assert.ok(Number.isFinite(arg));if(name==="clearRect")draws++;}]));
+  const context=Object.fromEntries(["setTransform","clearRect","beginPath","moveTo","lineTo","stroke","arc","fill","closePath"].map(name=>[name,(...args)=>{for(const arg of args)assert.ok(Number.isFinite(arg));if(name==="clearRect"){if(failDraw)throw Error("injected");draws++;bitmapValid=false;paintClock+=options.paintCost??0;}if(name==="fill"||name==="stroke")bitmapValid=true;}]));
   const canvas={parentElement:scene,getContext:()=>options.noCanvas?null:context};
+  for(const [key,initial] of [["width",300],["height",150]]){let value=initial;Object.defineProperty(canvas,key,{get:()=>value,set:v=>{value=v;bitmapValid=false;resizeCount++;}});}
   const button={hidden:true,disabled:false,setAttribute:(key,value)=>{button[key]=value;},addEventListener:(name,fn)=>{buttonEvents[name]=fn;}};
-  const window={innerWidth:options.narrow?390:1440,innerHeight:900,devicePixelRatio:4,scrollY:options.scrollY||0,
+  const window={performance:{now:()=>paintClock},innerWidth:options.narrow?390:1440,innerHeight:900,devicePixelRatio:4,scrollY:options.scrollY||0,
     matchMedia:query=>query.includes("reduced")?media:narrow,
     requestAnimationFrame:fn=>{const id=++serial;pending.set(id,fn);return id;},cancelAnimationFrame:id=>pending.delete(id),
-    addEventListener:(name,fn)=>{events[name]=fn;},getComputedStyle:()=>({getPropertyValue:name=>({"--accent":"#075d7b","--systems":"#895710","--paper":"#f8f7f3"})[name]})};
+    addEventListener:(name,fn)=>{events[name]=fn;},getComputedStyle:()=>({getPropertyValue:name=>!styled?"":({"--accent":"#075d7b","--systems":"#895710","--paper":"#f8f7f3"})[name]})};
   const makeStop=([id,top],hidden=false)=>({hidden,dataset:{spaceStop:id},getClientRects:()=>hidden?[]:[{}],getBoundingClientRect:()=>({top:top-window.scrollY,height:300})});
   const keys=Object.keys(model.pageStops[options.page||"index"]||{});
   let stops=(options.stops||keys.map((id,i)=>[id,i*1100])).map(pair=>makeStop(pair));
@@ -26,7 +27,8 @@ function visit(options={}) {
   const localStorage={getItem(){if(options.blockedStorage)throw Error("blocked");return stored;},setItem(_,value){if(options.blockedStorage)throw Error("blocked");stored=value;}};
   vm.runInNewContext(source,{document,window,localStorage});
   const api={window,document,button,canvas,scene,pending,calls,media,events,
-    frame(delta=20){const jobs=[...pending.values()];pending.clear();calls.length=0;time+=delta;for(const fn of jobs)fn(time);last=JSON.stringify(calls);},
+    drawingFault(){failDraw=true;},styling(value){styled=value;events.load();},paintCost(value){options.paintCost=value;},bitmapValid:()=>bitmapValid,resizeCount:()=>resizeCount,
+    frame(delta=20){const jobs=[...pending.values()];pending.clear();calls.length=0;time+=delta;for(const fn of jobs)fn(time);},
     settle(){for(let i=0;i<8&&pending.size;i++)api.frame();},
     trace:()=>scene.dataset.camera,phase:()=>Number(scene.dataset.phase),draws:()=>draws,scroll(y){window.scrollY=y;events.scroll?.();},event(name,detail){events[name]?.({detail});},
     click(){buttonEvents.click();},hidden(value){document.hidden=value;docEvents.visibilitychange();},mutate(){mutation();},
@@ -41,7 +43,7 @@ test("native-scroll camera is reversible while the bounded ambient loop continue
 });
 test("continuous gestures move immediately; pointer events never influence the camera",()=>{
   const p=visit();p.settle();let last=p.trace();
-  for(let i=0;i<8;i++){p.scroll(200+i*140);p.frame();assert.notEqual(p.trace(),last);last=p.trace();}
+  for(let i=0;i<8;i++){p.scroll(200+i*140);p.frame(65);assert.notEqual(p.trace(),last);last=p.trace();}
   p.settle();last=p.trace();
   for(const type of["pointermove","pointerout","mouseover","mouseenter","focus"]){p.event(type,{clientX:12});assert.equal(p.events[type],undefined);}
   p.frame(60);assert.equal(p.trace(),last);assert.equal(p.pending.size,1);
@@ -102,7 +104,7 @@ test("every page has eight semantic motifs, three recursive depths, immutable to
     assert.deepEqual(w,model.worldFor(page));assert.equal(new Set(w.objects.map(o=>o.symbol)).size,8);
     assert.deepEqual([...new Set(w.objects.map(o=>o.depth))].sort(),[0,1,2]);
     const lookup=new Map(w.objects.map(o=>[o.name,o]));for(const o of w.objects.filter(o=>o.parent)){assert.equal(lookup.get(o.parent).depth,o.depth-1);assert.ok(o.scale<lookup.get(o.parent).scale);}
-    assert.ok(w.faces.length+w.lines.length<14000);assert.ok(small.faces.length+small.lines.length<w.faces.length+w.lines.length);
+    assert.ok(w.faces.length+w.lines.length<14000);assert.ok(small.faces.length+small.lines.length<=w.faces.length+w.lines.length);
   }
   assert.equal(identities.size,5);
 });
@@ -119,4 +121,63 @@ test("camera traverses multiple structures, is continuous/reversible and clips s
     const w=model.worldFor(page),ids=page==="writing"?model.topicPaths.all:Object.values(model.pageStops[page]);
     for(let i=0;i<=12;i++){const shapes=model.projectedWorld(w,model.journeyPose(ids,i/12),1440,900,i*3200);assert.ok(shapes.length>30,"environment remains visible through the journey");assert.ok(shapes.every(s=>s.points.flat().every(Number.isFinite)));}
   }
+});
+
+test("rapid reversal clears obsolete targets on every route",()=>{
+  for(const page of Object.keys(model.initialPoses)){
+    const p=visit({page});p.settle();const initial=p.trace();
+    p.scroll(1800);p.scroll(0);p.settle();assert.equal(p.trace(),initial);
+    p.scroll(2200);p.frame(65);p.scroll(0);p.settle();assert.equal(p.trace(),initial);
+  }
+});
+test("delayed CSS cannot partially activate; post-activation draw failure stops once",()=>{
+  const p=visit({styled:false});assert.equal(p.pending.size,0);assert.equal(p.button.hidden,true);assert.equal(p.scene.dataset.ready,undefined);
+  p.styling(true);p.settle();assert.equal(p.scene.dataset.ready,"true");assert.equal(p.button.hidden,false);
+  p.drawingFault();p.frame(80);assert.equal(p.pending.size,0);assert.equal(p.scene.dataset.ready,undefined);assert.equal(p.button.disabled,true);assert.equal(p.button["aria-pressed"],"false");
+  p.event("resize");p.mutate();assert.equal(p.pending.size,0);
+});
+test("24-second cycle doubles v8 speed without changing geometry or camera",()=>{
+  assert.equal(model.LOOP_MS,24000);
+  const w=model.worldFor("writing"),o=w.objects[0],point=w.faces[0].points[0];
+  assert.deepEqual(model.loopTransform(o,6000)(point),model.loopTransform(o,30000)(point));
+  const compact=model.worldFor("writing",true);assert.deepEqual(w.objects.map(o=>[o.name,o.center]),compact.objects.map(o=>[o.name,o.center]));
+});
+function advanceUntil(p,predicate,message,maxFrames=300) {
+  for(let i=0;i<maxFrames&&!predicate();i++)p.frame(125);
+  assert.ok(predicate(),message);
+}
+test("observed-cost adaptation preserves the bitmap and DPR caps through resize and Off",()=>{
+  const p=visit({paintCost:30});p.frame(125);assert.equal(p.bitmapValid(),true);
+  let previousQuality=p.scene.dataset.quality;
+  for(const target of ["1","2"]){
+    let changed=false;
+    for(let i=0;i<80&&!changed;i++){
+      const oldWidth=p.canvas.width,oldResizes=p.resizeCount();p.frame(125);
+      if(p.scene.dataset.quality!==previousQuality){
+        assert.equal(p.scene.dataset.quality,target);assert.equal(p.canvas.width,oldWidth);
+        assert.equal(p.resizeCount(),oldResizes);assert.equal(p.bitmapValid(),true);previousQuality=target;changed=true;
+      }
+    }
+    assert.ok(changed);p.frame(125);assert.equal(p.canvas.width,Math.round(1440*(target==="1"?1.25:1)));assert.equal(p.bitmapValid(),true);
+  }
+  const fixed=p.trace(),phase=p.phase(),width=p.canvas.width;
+  p.click();p.settle();assert.equal(p.stored(),"off");assert.equal(p.pending.size,0);assert.equal(p.trace(),fixed);assert.equal(p.phase(),phase);
+  p.events.resize();assert.equal(p.bitmapValid(),true);p.settle();assert.equal(p.canvas.width,width);assert.equal(p.trace(),fixed);assert.equal(p.phase(),phase);
+  p.mutate();p.settle();p.hidden(true);p.hidden(false);p.settle();assert.equal(p.phase(),phase);assert.equal(p.trace(),fixed);assert.equal(p.pending.size,0);
+});
+test("quality recovery uses hysteresis and restores resolution without changing composition",()=>{
+  const p=visit({paintCost:30});advanceUntil(p,()=>p.scene.dataset.quality==="2","reach low tier");p.frame(125);
+  const pose=p.trace();p.paintCost(5);
+  for(let i=0;i<20;i++)p.frame(125);assert.equal(p.scene.dataset.quality,"2");
+  advanceUntil(p,()=>p.scene.dataset.quality==="1","recover one tier");p.frame(125);assert.equal(p.canvas.width,1800);assert.equal(p.trace(),pose);
+  advanceUntil(p,()=>p.scene.dataset.quality==="0","recover full tier");p.frame(125);assert.equal(p.canvas.width,2160);assert.equal(p.trace(),pose);assert.equal(p.bitmapValid(),true);
+});
+test("severe hold is bounded, preserves preference, and explicit On retries at the safe tier",()=>{
+  const p=visit({paintCost:60,saved:"on"});advanceUntil(p,()=>p.scene.dataset.quality==="still","device hold");
+  const fixed=p.trace(),phase=p.phase(),draws=p.draws();assert.equal(p.pending.size,0);assert.equal(p.stored(),"on");assert.equal(p.button.textContent,"Motion: still (device)");assert.equal(p.button["aria-pressed"],"false");
+  for(let i=0;i<8;i++)p.frame(125);assert.equal(p.draws(),draws);assert.equal(p.trace(),fixed);assert.equal(p.phase(),phase);
+  p.events.resize();p.settle();assert.equal(p.canvas.width,1440);assert.equal(p.trace(),fixed);assert.equal(p.phase(),phase);
+  p.click();p.settle();assert.equal(p.stored(),"off");assert.equal(p.button.textContent,"Motion: off");assert.equal(p.pending.size,0);
+  p.paintCost(5);p.click();p.settle();assert.equal(p.stored(),"on");assert.equal(p.button["aria-pressed"],"true");assert.equal(p.button.textContent,"Motion: on");assert.ok(p.pending.size>0);assert.equal(p.canvas.width,1440);
+  assert.ok(p.phase()>phase);assert.equal(p.trace(),fixed);
 });

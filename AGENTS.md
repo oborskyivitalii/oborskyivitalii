@@ -105,7 +105,7 @@ changed-source visual evidence before handoff.
   new requirement supersedes the old permanent static Talks/Credits exception.
   Decorative motifs must not imply research results, telemetry or endorsement.
 - Retain native-scroll/topic-driven camera travel, with no pointer camera. The
-  explicitly authorized 48-second ambient cycle moves the structure at idle.
+  explicitly authorized 24-second ambient cycle moves the structure at idle.
   Off/reduced freezes BOTH displayed pose and ambient phase; hidden/print pauses
   without catch-up. Cap repaint work, use bounded mobile detail and retain a
   useful no-JS/Canvas fallback. A short page still breathes without extra content
@@ -115,6 +115,15 @@ changed-source visual evidence before handoff.
   picture, source test or GitHub HTML source page is not an all-page visual review.
   Record the actual inspected ref, viewports and limitations. If rendering is
   unavailable, complete independent work and leave visual acceptance explicit.
+
+## Implementation checkpoint — maintainer direction, 2026-10-03
+
+The maintainer additionally requested twice-fast passive movement on all routes:
+24 seconds replaces 48 seconds; repaint cadence and scroll timing are separate.
+Runtime fixes/lightweight fallback and focused regressions are now being implemented
+under #12. Read `review/site-engineering-v9-20261003/CHECKPOINT.md` before resuming.
+#13 full release tooling, browser/performance remeasurement, refreshed exports and
+RI remain unfinished; do not reinterpret the runtime-only workflow as that gate.
 
 ## Review and completion
 

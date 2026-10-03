@@ -46,7 +46,6 @@ button {cursor:pointer}
 .site-header nav a[aria-current] {border-color:var(--accent);font-weight:650}
 .display-controls {display:flex;align-items:center;gap:10px}
 .appearance {position:relative;font-size:13px}
-.appearance:has(.theme-control[hidden]):has(#space-motion[hidden]) {display:none}
 .appearance summary {cursor:pointer;min-height:44px;padding:10px 0;list-style-position:inside}
 .appearance summary:focus-visible {outline:3px solid var(--accent);outline-offset:4px}
 .appearance[open] .display-controls {position:absolute;right:0;top:48px;z-index:6;background:var(--paper);padding:18px;border:1px solid var(--line);border-radius:6px;box-shadow:0 10px 30px #0002;min-width:270px}
@@ -61,7 +60,6 @@ select,.motion-control,.filter-reset {min-height:44px;background:var(--paper);co
 .space-fallback {opacity:1}
 /* Protect the reading block, leaving the section and its gutters open to the world. */
 .section,.archive-intro,.credits-page,.hero-copy,.shift-intro {background:transparent}
-.hero-copy {background:var(--paper);background:color-mix(in srgb,var(--paper) var(--surface-open),transparent)}
 .section-heading,.archive-intro>h1,.archive-intro>.hero-description,.shift-intro>p,
 .research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,
 .ack-grid article,.about-grid>div,.contact-grid>div,.publication,.credits-page>p,
@@ -70,18 +68,14 @@ select,.motion-control,.filter-reset {min-height:44px;background:var(--paper);co
   background:var(--paper);
   background:color-mix(in srgb,var(--paper) var(--surface-reading),transparent);
 }
-.section-heading {width:fit-content;max-width:100%;padding:14px 18px;margin-left:-18px}
 .archive-intro>h1,.archive-intro>.hero-description {width:fit-content;max-width:100%;padding:8px 16px;margin-left:-16px}
 .shift-intro>p {padding:16px}
-.research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,.ack-grid article {padding:24px 22px}
 .about-grid>div,.contact-grid>div {padding:18px 22px}
-.publication {background:color-mix(in srgb,var(--paper) var(--surface-row),transparent);padding-inline:20px;margin-bottom:12px}
 .credits-page>p {padding:14px 18px;margin-inline:-18px}
-.section-note {width:fit-content;padding:8px 12px}
 .section-nav,.topic-nav {padding-inline:14px}
 .site-footer,.next-route {padding-inline:18px}
 .hero {display:grid;grid-template-columns:1.16fr .84fr;align-items:end;gap:0 40px;padding-top:54px}
-.hero-copy {align-self:center;padding-bottom:34px}
+.hero-copy {background:var(--paper);background:color-mix(in srgb,var(--paper) var(--surface-open),transparent);align-self:center;padding-bottom:34px}
 .eyebrow {display:flex;align-items:center;gap:12px;font-size:12px;font-weight:650;line-height:1.6;letter-spacing:.08em;text-transform:uppercase;margin:0 0 20px;color:var(--muted)}
 .accent-line {width:28px;height:2px;background:var(--accent);flex:0 0 auto}
 h1,h2,h3,p {overflow-wrap:break-word}
@@ -114,7 +108,7 @@ h1 {font-size:clamp(52px,6.8vw,91px);font-weight:750;line-height:1.02;letter-spa
 .section-nav {display:flex;flex-wrap:wrap;gap:8px 26px;padding-block:14px;border-block:1px solid var(--line);font-size:13px;font-weight:600}
 .section-nav a {display:inline-flex;align-items:center;min-height:44px;text-decoration:none}
 .section {padding-block:58px;border-top:1px solid var(--line)}
-.section-heading {margin-bottom:32px}
+.section-heading {width:fit-content;max-width:100%;padding:14px 18px;margin-left:-18px;margin-bottom:32px}
 h2 {font-size:clamp(30px,3.4vw,40px);font-weight:720;letter-spacing:-.035em;line-height:1.2;margin:0}
 .section-heading>p:last-child:not(.eyebrow) {color:var(--muted);font-size:16px;max-width:780px;margin:14px 0 0}
 .research-grid,.topic-grid,.ack-grid,.about-grid {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px 44px}
@@ -146,11 +140,11 @@ h2 {font-size:clamp(30px,3.4vw,40px);font-weight:720;letter-spacing:-.035em;line
 .text-link span {margin-left:10px}
 .topic-card {border-top:1px solid var(--line);padding-top:22px}
 .topic-card h3 {font-size:21px;line-height:1.4;font-weight:650;letter-spacing:-.015em;margin:0 0 18px}
-.section-note {margin:20px 0 0;max-width:850px;color:var(--muted);font-size:14px}
+.section-note {width:fit-content;padding:8px 12px;margin:20px 0 0;max-width:850px;color:var(--muted);font-size:14px}
 .topic-nav {display:flex;flex-wrap:wrap;gap:8px 24px;margin-bottom:24px}
 .topic-nav a {font-size:13px;font-weight:600;text-decoration:none;border-bottom:1px solid var(--line);padding-block:10px}
 .publication-list {list-style:none;margin:0;padding:0}
-.publication {display:grid;grid-template-columns:200px minmax(0,1fr);gap:36px;align-items:start;border-top:1px solid var(--line);padding-block:24px}
+.publication {background:color-mix(in srgb,var(--paper) var(--surface-row),transparent);padding-inline:20px;margin-bottom:12px;display:grid;grid-template-columns:200px minmax(0,1fr);gap:36px;align-items:start;border-top:1px solid var(--line);padding-block:24px}
 .publication-meta {display:flex;flex-direction:column;gap:7px;font-size:13px;color:var(--muted)}
 .publication-meta time {font-weight:650;color:var(--ink);font-size:13px}
 .publication-title {display:flex;align-items:start;justify-content:space-between;gap:24px;font-size:clamp(20px,2vw,23px);font-weight:550;line-height:1.5;letter-spacing:-.018em;text-decoration:none}
@@ -204,7 +198,6 @@ h2 {font-size:clamp(30px,3.4vw,40px);font-weight:720;letter-spacing:-.035em;line
 .credits-page p {color:var(--muted)}
 /* Later component rules supply spacing; these retain local reading protection. */
 .research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,.ack-grid article {padding:24px 22px}
-.publication {padding-inline:20px}
 .eyebrow,.audience,.writing-topic,.credits-page h2 {width:fit-content;background:color-mix(in srgb,var(--paper) var(--surface-reading),transparent)}
 body[data-page="writing"] #archive-results {width:min(1010px,calc(100% - 80px));margin-inline:auto}
 body[data-page="writing"] .publication {background:color-mix(in srgb,var(--paper) var(--surface-row),transparent)}
@@ -246,7 +239,7 @@ body[data-page="writing"] .publication {background:color-mix(in srgb,var(--paper
   .hero .research-note {grid-row:6;grid-template-columns:1fr;gap:24px;padding-block:25px}
   .section {padding-block:40px}
   .research-grid,.topic-grid,.ack-grid,.about-grid,.help-grid,.ack-leads,.ack-compact,.contact-grid {grid-template-columns:1fr;gap:28px}
-  .publication {grid-template-columns:1fr;gap:12px;padding-block:20px}
+  .publication {grid-template-columns:1fr;gap:12px;padding-block:20px;padding-inline:16px}
   .publication-meta {flex-direction:row;flex-wrap:wrap;gap:8px 14px}
   .publication-title {font-size:21px;gap:16px}
   .section-nav {gap:4px 18px}
@@ -257,7 +250,6 @@ body[data-page="writing"] .publication {background:color-mix(in srgb,var(--paper
   .site-footer p {flex-basis:100%}
   .section-heading {padding:10px 12px;margin-left:-12px}
   .research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,.ack-grid article {padding:20px 16px}
-  .publication {padding-inline:16px}
   .hero-lead,.hero-description,.hero .audience {background:color-mix(in srgb,var(--paper) var(--surface-reading),transparent)}
   .booking-placeholder {padding-left:20px}
 }

@@ -1,23 +1,14 @@
 "use strict";
 // The no-JS/Canvas scene is a projection of the actual route's initial world.
 const fs=require("node:fs"),path=require("node:path");
-const {worldFor,projectedWorld,poses,initialPoses,blendColor}=require("../docs/space.js");
+const {worldFor,projectedWorld,poses,initialPoses}=require("../docs/space.js");
 const pages=Object.keys(initialPoses),root=path.resolve(__dirname,"..");
-const number=v=>v.toFixed(2);
 function fallback(page) {
-  const shapes=projectedWorld(worldFor(page),poses[initialPoses[page]],1440,900);
-  const tags=shapes.map(s=>{
-    const d=s.points.map((p,i)=>(i?"L":"M")+p.map(number).join(" ")).join(" ")+(s.kind==="face"?"Z":"");
-    const ink=s.color==="amber"?"var(--systems)":"var(--accent)";
-    if(s.kind==="face") {
-      const pigment=s.fillColor==="sheet"?"var(--scene-sheet)":ink;
-      const fill=blendColor("#f8f7f3",s.fillColor==="sheet"?"#fffefa":s.color==="amber"?"#895710":"#075d7b",s.tint);
-      const paint=`color-mix(in srgb,var(--paper) ${number((1-s.tint)*100)}%,${pigment})`;
-      return `<path d="${d}" fill="${fill}" style="stroke:${s.edgeAlpha===0?paint:ink};fill:${paint}" fill-opacity="${s.alpha}" stroke-opacity="${s.edgeAlpha===0?s.alpha:s.edgeAlpha}" stroke-width="${s.edgeAlpha===0?.65:s.lineWidth}"/>`;
-    }
-    return `<path d="${d}" fill="none" style="stroke:${ink}" stroke-opacity="${s.alpha}" stroke-width="${s.lineWidth}"/>`;
-  });
-  return `<svg class="space-fallback" data-motif="${page}" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">${tags.join("")}</svg>`;
+ const world=worldFor(page,true),objects=new Set(world.objects.filter(o=>o.root===0&&o.depth<=1).map(o=>o.name));
+ const shapes=projectedWorld(world,poses[initialPoses[page]],1440,900).filter(s=>objects.has(s.object)),groups=new Map(),number=v=>v.toFixed(2);
+ for(const shape of shapes){const key=`${shape.object}:${shape.color}:${shape.kind}`;if(!groups.has(key))groups.set(key,{shape,paths:[]});const group=groups.get(key);if(shape.kind==="face"&&group.paths.length>=8)continue;group.paths.push(shape.points.map((p,i)=>(i?"L":"M")+p.map(number).join(" ")).join(" ")+(shape.kind==="face"?"Z":""));}
+ const tags=[...groups.values()].map(({shape,paths})=>{const ink=shape.color==="amber"?"var(--systems)":"var(--accent)";return `<path d="${paths.join(" ")}" style="stroke:${ink};fill:${shape.kind==="face"?"var(--paper)":"none"}" stroke-opacity="${shape.kind==="face"? .24: .5}" stroke-width="${shape.kind==="face"? .7:1}"/>`;});
+ return `<svg class="space-fallback" data-motif="${page}" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">${tags.join("")}</svg>`;
 }
 function update(check=false) {
   for(const page of pages) {

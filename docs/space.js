@@ -10,9 +10,10 @@
   const mix = (a, b, t) => ({ position: lerp(a.position, b.position, t), target: lerp(a.target, b.target, t) });
   const clamp = v => Math.max(0, Math.min(1, v));
   const spline=(a,b,c,d,t)=>b.map((v,i)=>.5*((2*v)+(-a[i]+c[i])*t+(2*a[i]-5*v+4*c[i]-d[i])*t*t+(-a[i]+3*v-3*c[i]+d[i])*t*t*t));
-  const LOOP_MS=48000;
+  const LOOP_MS=24000;
+  const owns=(value,key)=>Object.prototype.hasOwnProperty.call(value,key);
   // Authored spline waypoints pass through the open centres of successive structures.
-  function journeyPose(ids,progress,mobile=false) {
+  function journeyPose(ids,progress) {
     const path=ids.map(id=>poses[id]);
     return curveThrough(path,progress);
   }
@@ -109,7 +110,7 @@
         const n=detail?2:compact?3:5;
         for(let i=0;i<n;i++){const y=-h/2+h*i/n,Y=y+h/n;face([at(-w/2,y),at(w/2,y),at(w/2,Y),at(-w/2,Y)],color,.055,0);}
         path([at(-w/2,-h/2),...Array.from({length:n+1},(_,i)=>at(-w/2,-h/2+h*i/n)),at(w/2,h/2),...Array.from({length:n+1},(_,i)=>at(w/2,h/2-h*i/n)),at(-w/2,-h/2)],color,.55);
-        if(text)for(let row=0;row<6;row++){const y=h*.28-row*h*.095;line(add(at(-w*.32,y),[0,0,.015]),add(at(w*(row===5?.03:.29),y),[0,0,.015]),color,row===0?.48:.2,row===0?1.5:.8);}
+        if(text)for(let row=0;row<6;row++){const y=h*.28-row*h*.095;line(add(at(-w*.32,y),[0,0,.015]),add(at(w*(row===5? .03: .29),y),[0,0,.015]),color,row===0? .48: .2,row===0?1.5: .8);}
       };
       build({face,line,path,poly,box,ring,ball,paper});
       objects.push({name,center,scale,band,...metadata,firstFace,faceCount:faces.length-firstFace,firstLine,lineCount:lines.length-firstLine});
@@ -133,8 +134,8 @@
         }
         for(let i=0;i<n;i++)face([at(i/n,-2.05,0),at((i+1)/n,-2.05,0),at((i+1)/n,2.05,0),at(i/n,2.05,0)],"cyan",.04,0);
         for(let row=0;row<(detail?3:5);row++) {
-          const y=1.45-row*.29,end=row===8?.7:.88;
-          path(Array.from({length:4},(_,i)=>add(at(.14+(end-.14)*i/3,y,0),[0,0,.018])),"cyan",row===0?.46:.23,row===0?1.8:.8);
+          const y=1.45-row*.29,end=.88;
+          path(Array.from({length:4},(_,i)=>add(at(.14+(end-.14)*i/3,y,0),[0,0,.018])),"cyan",row===0? .46: .23,row===0?1.8: .8);
         }
         if(sign===1)face([at(.76,2.12,-.25),at(.85,2.12,-.25),at(.85,-2.55,-.25),at(.805,-2.38,-.25),at(.76,-2.55,-.25)],"amber",.43,.55);
       }
@@ -154,7 +155,7 @@
     };
     const compass=({ring,face,line,ball})=>{
       ring([0,0,0],2.35,.09);ring([0,0,-.22],2.12,.035);
-      for(let i=0;i<32;i++){const a=i*Math.PI/16,r=i%4?2.13:1.93;line([r*Math.sin(a),r*Math.cos(a),.03],[2.26*Math.sin(a),2.26*Math.cos(a),.03],"cyan",i%4?.27:.65);}
+      for(let i=0;i<32;i++){const a=i*Math.PI/16,r=i%4?2.13:1.93;line([r*Math.sin(a),r*Math.cos(a),.03],[2.26*Math.sin(a),2.26*Math.cos(a),.03],"cyan",i%4? .27: .65);}
       for(let i=0;i<4;i++){
         const a=i*Math.PI/2,tip=[Math.sin(a)*1.86,Math.cos(a)*1.86,.04],left=[Math.sin(a-.8)*.47,Math.cos(a-.8)*.47,.04],right=[Math.sin(a+.8)*.47,Math.cos(a+.8)*.47,.04];
         face([left,tip,[0,0,.38]],i===0?"amber":"cyan",.26);face([tip,right,[0,0,.38]],i===0?"amber":"cyan",.48);
@@ -182,18 +183,11 @@
     };
     const hypotheses=({line,ball})=>{
       function grow(start,dir,length,depth) {
-        const end=add(start,normalize(dir).map(x=>x*length));line(start,end,depth%2?"cyan":"amber",.56,depth?1.35:.85);
+        const end=add(start,normalize(dir).map(x=>x*length));line(start,end,depth%2?"cyan":"amber",.56,depth?1.35: .85);
         if(!depth){ball(end,.085,"cyan");return;}
         for(const sign of[-1,1])grow(end,[dir[0]*.5+sign*.85,dir[1]*.7+.25,dir[2]+sign*.35],length*.69,depth-1);
       }
       grow([0,-2.8,0],[0,1,0],2,detail?1:2);
-    };
-    const gates=({box,line})=>{
-      for(let layer=0;layer<4;layer++){
-        const z=layer*1.25-1.9,scale=layer===2?.78:1,c=layer===2?"amber":"cyan",h=2.1*scale,w=1.65*scale;
-        box([-w,0,z],[.2,h*2,.2],c,.28);box([w,0,z],[.2,h*2,.2],c,.28);box([0,h,z],[2*w+.2,.2,.2],c,.28);box([0,-h,z],[2*w+.2,.2,.2],c,.28);
-      }
-      for(const y of[-.65,0,.65])line([0,y,-2.7],[0,y,2.7],"amber",.42);
     };
     const microphone=({face,path,line,box,ring})=>{
       // A capsule grille inside a separate yoke; not an audio visualization.
@@ -201,7 +195,7 @@
       const at=(level,j)=>[levels[level][1]*Math.cos(j/n*Math.PI*2),levels[level][0]+.9,levels[level][1]*Math.sin(j/n*Math.PI*2)];
       for(let k=0;k<levels.length-1;k++)for(let j=0;j<n;j++)face([at(k,j),at(k,j+1),at(k+1,j+1),at(k+1,j)],"cyan",.26,.1);
       for(let j=0;j<n;j++)path(levels.map((_,k)=>at(k,j)),"cyan",.37,.85);
-      for(let y=-.55;y<=1.65;y+=(detail?.44:.22)){const r=y<-.18?.57:y>1.68?.57:.735;path(Array.from({length:n+1},(_,j)=>[r*Math.cos(j/n*2*Math.PI),y,r*Math.sin(j/n*2*Math.PI)]),"cyan",.4,.8);}
+      for(let y=-.55;y<=1.65;y+=(detail? .44: .22)){const r=y<-.18? .57:y>1.68? .57: .735;path(Array.from({length:n+1},(_,j)=>[r*Math.cos(j/n*2*Math.PI),y,r*Math.sin(j/n*2*Math.PI)]),"cyan",.4,.8);}
       box([-1.04,-.25,0],[.18,1.8,.25],"amber",.37);box([1.04,-.25,0],[.18,1.8,.25],"amber",.37);box([0,-1.12,0],[2.2,.2,.25],"amber",.36);
       box([0,-2,0],[.19,1.7,.19],"cyan",.32);ring([0,-2.87,0],1.05,.12,[Math.PI/2,0,0]);line([0,-2.8,0],[0,-1.15,0],"cyan",.6);
     };
@@ -293,7 +287,7 @@
       metadata={symbol,depth,root,rootCenter:roots[root],parent,phase:index*.71+root*1.9};
       object(name,center,[.16*Math.sin(angle),.32*Math.cos(angle),angle-Math.PI/2],scale,root>1?"distant":depth===0?"near":"middle",build);
       if(depth===2)return;
-      const branches=2,step=depth===0?1.12:.85;
+      const branches=2,step=depth===0?1.12: .85;
       for(let j=0;j<branches;j++) {
         const a=angle+(j-(branches-1)/2)*step;
         const distance=scale*(depth===0?3.6:3.2);
@@ -302,15 +296,15 @@
       }
     }
     for(let root=0;root<roots.length;root++) {
-      const n=compact?5:7;
+      const n=7; // Macro positions and IDs survive all quality tiers.
       for(let i=0;i<n;i++) {
         let a=i/n*Math.PI*2+root*.24,r=6.5,x,y,z;
         if(page==="writing") {a=-.15*Math.PI+i/(n-1)*1.3*Math.PI;x=Math.cos(a)*r;y=Math.sin(a)*r*.87;z=Math.cos(a*2)*.7;}
-        else if(page==="research") {x=Math.cos(a)*r;y=Math.sin(a)*r*(i%2?.88:1.12);z=Math.sin(a*2)*1.7;}
+        else if(page==="research") {x=Math.cos(a)*r;y=Math.sin(a)*r*(i%2? .88:1.12);z=Math.sin(a*2)*1.7;}
         else if(page==="talks") {a=-.35*Math.PI+i/(n-1)*1.7*Math.PI;x=Math.cos(a)*r*1.18;y=Math.sin(a)*r*.65;z=Math.sin(a*2)*2.6;}
         else if(page==="credits") {x=Math.cos(a)*r;y=Math.sin(a*2)*r*.57;z=Math.sin(a)*2.1;}
         else {a=-.12*Math.PI+i/(n-1)*1.24*Math.PI;x=Math.cos(a)*r;y=Math.sin(a)*r;z=Math.cos(a)*1.6;}
-        grow(add(roots[root],[x,y,z]),root===0?.82:.9,0,a,root,i);
+        grow(add(roots[root],[x,y,z]),root===0? .82: .9,0,a,root,i);
       }
     }
     const light=normalize([-.55,.85,1]);
@@ -320,6 +314,15 @@
       f.tint=Math.min(.63,f.tone*shade);
       // Paper catches neutral light in both themes; metal keeps its cyan/bronze tint.
       if(f.tone<.1){f.fillColor="sheet";f.tint=.6+shade*.1;}
+    }
+    // Index shared vertices once; adjacent facets reuse one transformation.
+    for(const o of objects) {
+      const points=[],lookup=new Map();
+      const index=p=>{const key=p.join(",");if(!lookup.has(key)){lookup.set(key,points.length);points.push(p);}return lookup.get(key);};
+      for(let i=o.firstFace;i<o.firstFace+o.faceCount;i++)faces[i].indices=faces[i].points.map(index);
+      for(let i=o.firstLine;i<o.firstLine+o.lineCount;i++)lines[i].indices=[index(lines[i].a),index(lines[i].b)];
+      o.points=points;
+      o.radius=Math.max(...points.map(p=>Math.hypot(...sub(p,o.center))))+2.3;
     }
     return {faces,lines,objects};
   }
@@ -339,42 +342,46 @@
       return [root[0]+X*ca-Y*sa,root[1]+X*sa+Y*ca,center[2]+z+dz];
     };
   }
-  function projectedWorld(world,current,width,height,time=0) {
+  function projectedWorld(world,current,width,height,time=0,tier=0) {
     const forward=normalize(sub(current.target,current.position)),right=normalize(cross(forward,[0,1,0])),up=cross(right,forward);
     const camera=point=>{const x=point[0]-current.position[0],y=point[1]-current.position[1],z=point[2]-current.position[2];return [x*right[0]+y*right[1]+z*right[2],x*up[0]+y*up[1]+z*up[2],x*forward[0]+y*forward[1]+z*forward[2]];};
     const focal=(width<=640?Math.min(height,width*1.15):height)/(2*Math.tan(Math.PI/8));
-    const project=p=>[width*(width<=640?.42:.66)+p[0]*focal/p[2],height*.48-p[1]*focal/p[2]];
-    const shapes=[],transforms=new Map(),lod=new Map();
-    for(const o of world.objects){
-      const depth=camera(o.center)[2],size=o.scale*focal/Math.max(.5,depth);
-      // Fixed screen-size LOD: distant recursive leaves become visible naturally
-      // on approach. A culled motif incurs no per-vertex projection or drawing.
-      const threshold=o.depth===2?(width<=640?3.4:3):o.depth===1?2:0;
-      if(depth < -o.scale*5 || size<threshold)continue;
-      transforms.set(o.name,loopTransform(o,time));
-      lod.set(o.name,threshold?clamp((size-threshold)/2):1);
-    }
+    const cx=width*(width<=640? .42: .66),cy=height*.48;
+    const project=p=>[cx+p[0]*focal/p[2],cy-p[1]*focal/p[2]];
+    const shapes=[];
     const visible=pts=>!pts.every(p=>p[0]<-8)&&!pts.every(p=>p[0]>width+8)&&!pts.every(p=>p[1]<-8)&&!pts.every(p=>p[1]>height+8);
-    for(const f of world.faces) {
-      const transform=transforms.get(f.object);if(!transform)continue;
-      const points=clipPolygon(f.points.map(p=>camera(transform(p))));
-      if(points.length<3)continue;
-      const depth=points.reduce((v,p)=>v+p[2],0)/points.length,projected=points.map(project);
-      if(!visible(projected))continue;
-      const haze=Math.max(.1,Math.min(1,1-(depth-22)/100))*lod.get(f.object);
-      shapes.push({kind:"face",points:projected,depth,color:f.color,band:f.band,object:f.object,
-        tint:f.tint,fillColor:f.fillColor,alpha:(f.opacity??.82)*haze,
-        edgeAlpha:(f.edgeAlpha??.36)*haze,lineWidth:depth<12?1.25:.85});
+    // Conservative frustum bounds include the complete motion envelope.
+    const planes=[[-1,0,(width+8-cx)/focal],[1,0,(cx+8)/focal],[0,-1,(cy+8)/focal],[0,1,(height+8-cy)/focal]];
+    for(const o of world.objects) {
+      const center=camera(o.center),depth=center[2],size=o.scale*focal/Math.max(.5,depth);
+      const threshold=o.depth===2?(width<=640?3.4:3)*(tier+1):o.depth===1?2:0;
+      if(depth+o.radius<.5 || size<threshold || planes.some(p=>dot(p,center)<-o.radius*Math.hypot(...p)))continue;
+      const transform=loopTransform(o,time),vertices=o.points.map(p=>camera(transform(p)));
+      const fade=threshold?clamp((size-threshold)/2):1;
+      appendObject(world,o,vertices,project,visible,fade,shapes);
     }
-    for(const s of world.lines) {
-      const transform=transforms.get(s.object);if(!transform)continue;
-      const clipped=clipSegment(camera(transform(s.a)),camera(transform(s.b)));if(!clipped)continue;
-      const projected=clipped.map(project),depth=(clipped[0][2]+clipped[1][2])/2;if(!visible(projected))continue;
-      shapes.push({kind:"line",points:projected,depth,object:s.object,
-        color:s.color,alpha:(s.opacity??.65)*Math.max(.1,Math.min(1,1-(depth-22)/100))*lod.get(s.object),lineWidth:s.width??1,arrow:s.arrow});
-    }
-    // Faces AND edges participate in one painter order; near facets occlude distant lines.
     return shapes.sort((a,b)=>b.depth-a.depth);
+  }
+  function appendObject(world,o,vertices,project,visible,fade,shapes) {
+    for(let i=o.firstFace;i<o.firstFace+o.faceCount;i++) {
+      const f=world.faces[i],rest=f.indices.map(j=>vertices[j]);
+      const points=rest.every(p=>p[2]>=.5)?rest:clipPolygon(rest);
+      if(points.length<3)continue;
+      const z=points.reduce((v,p)=>v+p[2],0)/points.length,projected=points.map(project);
+      if(!visible(projected))continue;
+      const haze=Math.max(.1,Math.min(1,1-(z-22)/100))*fade;
+      shapes.push({kind:"face",points:projected,depth:z,color:f.color,band:f.band,object:f.object,
+        tint:f.tint,fillColor:f.fillColor,alpha:(f.opacity?? .82)*haze,
+        edgeAlpha:(f.edgeAlpha?? .36)*haze,lineWidth:z<12?1.25: .85});
+    }
+    for(let i=o.firstLine;i<o.firstLine+o.lineCount;i++) {
+      const line=world.lines[i],clipped=clipSegment(vertices[line.indices[0]],vertices[line.indices[1]]);
+      if(!clipped)continue;
+      const projected=clipped.map(project),z=(clipped[0][2]+clipped[1][2])/2;
+      if(!visible(projected))continue;
+      shapes.push({kind:"line",points:projected,depth:z,object:line.object,color:line.color,
+        alpha:(line.opacity?? .65)*Math.max(.1,Math.min(1,1-(z-22)/100))*fade,lineWidth:line.width??1,arrow:line.arrow});
+    }
   }
   function blendColor(a,b,t) {
     const rgb=hex=>hex.replace("#","").match(/.{2}/g).map(v=>parseInt(v,16));
@@ -396,10 +403,12 @@
   const key="vo.motion";
   let choice=null;
   try { choice=localStorage.getItem(key); } catch { /* In-tab controls remain useful. */ }
-  let enabled=choice!=="off" && !reduced.matches, printing=false, pending=null;
+  let enabled=choice!=="off" && !reduced.matches, printing=false, pending=null,initialized=false,failed=false;
   let width=1,height=1,ratio=1,stops=[],bounds=null,focus="all",localProgress=0;
   const initial=initialPoses[page]||"overview",fillColors=new Map();
   let compact=narrow.matches,world=worldFor(page,compact),ambientTime=0,lastFrame=null,lastDraw=null;
+  let tier=0,slow=0,fast=0,lastQualityChange=0,hold=false;
+  const clock=()=>window.performance?.now()??Date.now();
   let current=poses[initial], animation=null, writingAnchor=null,displayedTime=0,displayedCamera=current;
   let colors={cyan:"#075d7b",amber:"#895710",paper:"#f8f7f3"};
   const pose = id => poses[id];
@@ -407,8 +416,7 @@
   function visible(el) { return !el.hidden && el.getClientRects().length>0; }
   function measure() {
     width=Math.max(1,window.innerWidth);height=Math.max(1,window.innerHeight);
-    ratio=Math.min(1.5,window.devicePixelRatio||1);
-    canvas.width=Math.round(width*ratio);canvas.height=Math.round(height*ratio);
+    ratio=Math.min(tier===2?1:tier===1?1.25:1.5,window.devicePixelRatio||1);
     const maxScroll=Math.max(0,document.documentElement.scrollHeight-height);
     stops=[...document.querySelectorAll("[data-space-stop]")].filter(el=>visible(el) && pageStops[page]?.[el.dataset.spaceStop]).map(el=>({id:pageStops[page][el.dataset.spaceStop],y:Math.min(maxScroll,Math.max(0,el.getBoundingClientRect().top+window.scrollY-height*.22))}));
     // Coincident stops cannot define a flight interval. Never use document height as a substitute.
@@ -427,9 +435,12 @@
   }
   function readColors() {
     const css=window.getComputedStyle(document.documentElement);
-    colors={cyan:css.getPropertyValue("--accent").trim(),amber:css.getPropertyValue("--systems").trim(),paper:css.getPropertyValue("--paper").trim(),sheet:(css.getPropertyValue("--scene-sheet")||"#fffefa").trim()};
-    fillColors.clear();
-    for(const f of world.faces)fillColors.set(`${f.fillColor||f.color}:${f.tint}`,blendColor(colors.paper,colors[f.fillColor||f.color],f.tint));
+    const next={cyan:css.getPropertyValue("--accent").trim(),amber:css.getPropertyValue("--systems").trim(),paper:css.getPropertyValue("--paper").trim(),sheet:(css.getPropertyValue("--scene-sheet")||"#fffefa").trim()};
+    if(!Object.values(next).every(v=>/^#[0-9a-f]{6}$/i.test(v)))return false;
+    const fills=new Map();
+    for(const f of world.faces)fills.set((f.fillColor||f.color)+":"+f.tint,blendColor(next.paper,next[f.fillColor||f.color],f.tint));
+    colors=next;fillColors.clear();for(const [key,value] of fills)fillColors.set(key,value);
+    return true;
   }
   function scrollPose() {
     if (page==="writing") {
@@ -454,7 +465,7 @@
     return journeyPose(stops.map(s=>s.id),(i+t)/(stops.length-1),narrow.matches);
   }
   function schedule() {
-    if(pending===null && !document.hidden && !printing) pending=window.requestAnimationFrame(frame);
+    if(initialized && !failed && pending===null && !document.hidden && !printing) pending=window.requestAnimationFrame(frame);
   }
   function cancel() {
     if(pending!==null)window.cancelAnimationFrame(pending);
@@ -462,15 +473,18 @@
     ambientTime=displayedTime;current=displayedCamera;
   }
   function moveTo(target) {
-    if (document.hidden || printing || !enabled) return;
-    if(Math.hypot(...sub(current.position,target.position),...sub(current.target,target.target))<1e-6) return;
+    if (!initialized || failed || hold || document.hidden || printing || !enabled) return;
+    if(Math.hypot(...sub(current.position,target.position),...sub(current.target,target.target))<1e-6){animation=null;return;}
     // Retarget without resetting the frame clock. Resetting start on every scroll
     // event would keep the camera at t=0 during a continuous wheel/touch gesture.
     animation={to:target,last:animation?.last??null,elapsed:0};schedule();
   }
   function draw() {
+    // Resize only inside the protected paint, retaining the last valid bitmap.
+    const w=Math.round(width*ratio),h=Math.round(height*ratio);
+    if(canvas.width!==w || canvas.height!==h){canvas.width=w;canvas.height=h;}
     ctx.setTransform(ratio,0,0,ratio,0,0);ctx.clearRect(0,0,width,height);
-    for(const shape of projectedWorld(world,current,width,height,ambientTime)) {
+    for(const shape of projectedWorld(world,current,width,height,ambientTime,tier)) {
       const [from,...rest]=shape.points,to=rest[0];
       ctx.beginPath();ctx.moveTo(...from);for(const p of rest)ctx.lineTo(...p);
       ctx.lineWidth=shape.lineWidth;ctx.strokeStyle=colors[shape.color];
@@ -491,27 +505,44 @@
     ctx.globalAlpha=1;scene.dataset.ready="true";displayedTime=ambientTime;displayedCamera=current;
     scene.dataset.phase=String(ambientTime);scene.dataset.camera=JSON.stringify(current);
   }
+  function fail() {
+    failed=true;cancel();delete scene.dataset.ready;scene.dataset.state="fallback";
+    control.hidden=false;control.disabled=true;control.setAttribute("aria-pressed","false");control.textContent="Motion: unavailable";
+  }
+  function quality(cost,time) {
+    if(cost>25){slow++;fast=0;}else if(cost<10){fast++;slow=Math.max(0,slow-1);}else{slow=Math.max(0,slow-1);fast=0;}
+    if(time-lastQualityChange<2500)return;
+    if(slow>=8 && tier<2){tier++;slow=fast=0;lastQualityChange=time;ratio=Math.min(tier===2?1:1.25,window.devicePixelRatio||1);}
+    else if(slow>=16 && tier===2 && cost>50){hold=true;cancel();updateControl();}
+    else if(fast>=100 && tier>0){tier--;ratio=Math.min(tier===1?1.25:1.5,window.devicePixelRatio||1);slow=fast=0;lastQualityChange=time;}
+    scene.dataset.quality=hold?"still":String(tier);
+  }
   function frame(time) {
-    pending=null;if(document.hidden || printing)return;
-    const moving=!!animation;
+    pending=null;if(document.hidden || printing || !initialized || failed)return;
     const delta=lastFrame===null?0:Math.min(80,Math.max(0,time-lastFrame));lastFrame=time;
-    const living=enabled&&Object.hasOwn(initialPoses,page);
+    const living=enabled&&!hold&&owns(initialPoses,page);
     if(living)ambientTime=(ambientTime+delta)%LOOP_MS;
-    if(animation && enabled) {
+    if(animation && enabled && !hold) {
       const dt=Math.min(40,Math.max(1,time-(animation.last??time-1000/60)));
       animation.elapsed+=dt;animation.last=time;
       const done=animation.elapsed>=80;
       current=done?animation.to:curveThrough([current,animation.to],1-Math.exp(-dt/24));
       if(done)animation=null;
     }
-    // No offscreen catch-up. Ambient repaint is capped at 24fps / 16fps mobile;
-    // native scroll transitions repaint immediately for responsive camera travel.
-    if(moving||lastDraw===null||time-lastDraw>=(compact?62.5:1000/24)||!living){draw();lastDraw=time;}
-    if(animation||living)schedule();
+    // Latest scroll targets survive the shared bounded paint cadence.
+    const interval=tier===2?125:tier===1?100:(compact?62.5:1000/24);
+    if(lastDraw===null||time-lastDraw>=interval||!living) {
+      const start=clock();
+      try{draw();}catch{fail();return;}
+      lastDraw=time;
+      if(living)quality(clock()-start,time);
+    }
+    if(animation||living&&!hold)schedule();
   }
   function updateControl() {
-    control.hidden=false;control.disabled=reduced.matches;control.setAttribute("aria-pressed",String(enabled));
-    control.textContent=reduced.matches?"Motion: reduced":enabled?"Motion: on":"Motion: off";
+    if(failed)return;
+    control.hidden=false;control.disabled=reduced.matches;control.setAttribute("aria-pressed",String(enabled&&!hold));
+    control.textContent=reduced.matches?"Motion: reduced":!enabled?"Motion: off":hold?"Motion: still (device)":"Motion: on";
   }
   function preferenceChanged() {
     const was=enabled;enabled=choice!=="off" && !reduced.matches;
@@ -521,6 +552,7 @@
   }
   control.addEventListener("click",()=>{
     choice=enabled?"off":"on";
+    if(choice==="on" && hold){hold=false;slow=fast=0;lastFrame=null;}
     try{localStorage.setItem(key,choice);}catch{/* In-tab preference still applies. */}
     preferenceChanged();
   });
@@ -531,13 +563,15 @@
     moveTo(scrollPose());
   },{passive:true});
   window.addEventListener("site:scene-focus",event=>{
-    if(page!=="writing" || !Object.hasOwn(topicPaths,event.detail?.focus))return;
+    if(page!=="writing" || !owns(topicPaths,event.detail?.focus))return;
     focus=event.detail.focus;measure();
     if(!enabled)return;
     const target=pathPose();
     if(event.detail.reason==="initial"){current=target;animation=null;schedule();}else moveTo(target);
   });
   const resize=()=>{
+    if(!initialized){initialize();return;}
+    if(failed)return;
     if(compact!==narrow.matches){compact=narrow.matches;world=worldFor(page,compact);readColors();}
     measure();lastDraw=null;schedule();
   }; // Layout never changes a frozen camera/ambient phase or starts a flight.
@@ -549,13 +583,22 @@
   window.addEventListener("afterprint",()=>{printing=false;resize();});
   if(reduced.addEventListener)reduced.addEventListener("change",preferenceChanged);
   window.addEventListener("storage",event=>{if(event.key===key || event.key===null){try{choice=localStorage.getItem(key);}catch{choice=null;}preferenceChanged();}});
-  if(window.MutationObserver)new window.MutationObserver(()=>{readColors();schedule();}).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+  if(window.MutationObserver)new window.MutationObserver(()=>{if(!initialized){initialize();return;}if(!failed && readColors())schedule();}).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
   if(window.ResizeObserver)new window.ResizeObserver(resize).observe(document.querySelector("main"));
-  measure();readColors();
-  if(enabled) {
-    if(page==="writing")current=pathPose();
-    else if(stops.length===1)current=pose(stops[0].id);
-    else current=scrollPose();
+  // Stylesheet load/error is authoritative, including early WebKit deferral.
+  function initialize() {
+    if(initialized || failed || !readColors())return;
+    measure();initialized=true;scene.dataset.state="active";
+    if(enabled) {
+      if(page==="writing")current=pathPose();
+      else if(stops.length===1)current=pose(stops[0].id);
+      else current=scrollPose();
+    }
+    updateControl();schedule();
   }
-  updateControl();schedule();
+  const stylesheet=document.querySelector('link[rel="stylesheet"]');
+  stylesheet?.addEventListener?.("load",initialize,{once:true});
+  stylesheet?.addEventListener?.("error",()=>{if(!initialized)fail();},{once:true});
+  canvas.addEventListener?.("contextlost",fail);
+  initialize();
 })();
