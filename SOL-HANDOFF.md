@@ -552,3 +552,19 @@ identities; actual local/CI/browser evidence; source/editorial review state; and
 the concrete remaining release decisions. Separate implemented, reviewed, merged
 and deployed states. Finish the authorized candidate work before asking for a
 decision that only affects release.
+
+## v9 engineering amendment — 2026-10-03
+
+The maintainer authorized the #12 audit remediation and #13 recurring release
+checks, and doubled passive motion on every page. The ambient period is now
+24 seconds. Runtime checkpoint 461ac38eff9180a35bcecf2aeecff966505a954d passed
+the focused runtime CI; its independent review is in the v9 engineering folder.
+
+Maintained tools/quality, exact-source artifact manifests, locked scanners,
+strict functional/performance validators, PR/reusable release workflows and an
+inactive same-artifact Pages template are implemented in the v9 candidate.
+Forty-three Node and eighteen Python tests passed locally. v9 preview and offline
+producers replace v8 as the current edition; preserve historical v8 evidence.
+The full browser/performance/capture runs remain pending CI. Physical-device
+and hosted-origin gates remain explicit; no merge or publication is authorized
+by these implementation results. Read the current checkpoint before resuming.

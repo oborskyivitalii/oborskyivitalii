@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "69770aadd3e6002ac7801954af49ffc2f9cfb5e892db41a34e419cf43a19db51",
+    "digest": "31c55c7e1ed759750a4ed769bd5c90ec447df725667a2f56c21a704491b1d7bd",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -47,9 +47,33 @@
         "sha256": "cc2c56c8780712bd9080a0d2ff8236ec11740b1f2c73e545b2cfe6ffbefd094a"
       },
       {
+        "path": ".github/workflows/site-candidate-evidence.yml",
+        "identity_mode": "content",
+        "sha256": "4f29bb722c296a012d79850b504f2a47369f450a0449f65804a277369ca5406e"
+      },
+      {
+        "path": ".github/workflows/site-checks.yml",
+        "identity_mode": "content",
+        "sha256": "ebeef4adfb93fca15f282f49f010886033d768dde7a04b655fc557fc3974421d"
+      },
+      {
+        "path": ".github/workflows/site-release-checks.yml",
+        "identity_mode": "content",
+        "sha256": "240fa8331d2114f90f4ba96a91ea78a12732cc16437f26c7f5c225ac0f458e72"
+      },
+      {
+        "path": ".github/workflows/site-runtime-checks.yml",
+        "identity_mode": "content",
+        "sha256": "bbf485e8f1c4aa70725c9670fc192a700030479cc282b1fd2098d70fcbc3849b"
+      },
+      {
+        "path": ".gitignore",
+        "identity_mode": "existence"
+      },
+      {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "43b49f379cc207ea0b90adc498bbdcd196dcd023afaae8c5977dbc9a0e52c6a1"
+        "sha256": "cfd61d61db9b4c6080a237e526fa14b7a71384768930946ac2267329832a8596"
       },
       {
         "path": "BACKLOG.md",
@@ -84,7 +108,7 @@
       {
         "path": "SITE-RELEASE-GATES.md",
         "identity_mode": "content",
-        "sha256": "affbb91d60db669ae162fa57ca2179048ad091f43da4a072094083dda0f326a3"
+        "sha256": "f9fa1f92be4d61440abe44d2a5353edea349ff4a65698477189c37a1b5fb940b"
       },
       {
         "path": "SITE-ROADMAP.md",
@@ -109,7 +133,7 @@
       {
         "path": "SOL-HANDOFF.md",
         "identity_mode": "content",
-        "sha256": "d18d2dc167cbb30e5483a5c49bfb22dec207da492d1a94fc2ace6fd43a2ccb8a"
+        "sha256": "088a012ea1313bb20a63ec954212030818953ea38ff42a59ab264cba31ade3b7"
       },
       {
         "path": "docs/.nojekyll",
@@ -117,6 +141,10 @@
       },
       {
         "path": "docs/archive.js",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "docs/assets/favicon.svg",
         "identity_mode": "existence"
       },
       {
@@ -445,6 +473,26 @@
         "path": "review/site-audit-v8-20261003/toolchain/requirements.txt",
         "identity_mode": "content",
         "sha256": "9de0b8b6d25edabdcb1959c07ff65c225e8f096a6eb0f128f51e7582d802e9a4"
+      },
+      {
+        "path": "review/site-engineering-v9-20261003/CHECKPOINT.md",
+        "identity_mode": "content",
+        "sha256": "f51179bece19e6d5e5c3622027c54b52eff051e29e1fcd4e5398b107e5f1e5ee"
+      },
+      {
+        "path": "review/site-engineering-v9-20261003/DEPLOYMENT.md",
+        "identity_mode": "content",
+        "sha256": "636aeb79071d58d5b0ee3df148ca26624fff422de088fc1c4501fe1f8fe75f1a"
+      },
+      {
+        "path": "review/site-engineering-v9-20261003/INDEPENDENT-PIPELINE.md",
+        "identity_mode": "content",
+        "sha256": "fbfa2c0bbde1b4b7e31a235afc0c5ca3fe27090cafccc9e6f785f91ee4e1814a"
+      },
+      {
+        "path": "review/site-engineering-v9-20261003/INDEPENDENT-RUNTIME.md",
+        "identity_mode": "content",
+        "sha256": "4b4504040e5bb61c66529dbbff1b2425b5cd463743e6fa6e8269b1a3b52081cf"
       },
       {
         "path": "review/site-v1-20261001-credits-day.html",
@@ -1779,6 +1827,70 @@
         "identity_mode": "existence"
       },
       {
+        "path": "review/site-v1-20261003-v9-credits-day.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261003-v9-credits-interactive.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261003-v9-credits-night.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261003-v9-day.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261003-v9-index.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261003-v9-interactive.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261003-v9-night.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261003-v9-research-day.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261003-v9-research-interactive.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261003-v9-research-night.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261003-v9-talks-day.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261003-v9-talks-interactive.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261003-v9-talks-night.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261003-v9-writing-day.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261003-v9-writing-interactive.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261003-v9-writing-night.html",
+        "identity_mode": "existence"
+      },
+      {
         "path": "review/site-v1-offline-bundle-v3.json",
         "identity_mode": "content",
         "sha256": "82b24ccae48d37ff14b7a4fc2122bdd7e96c42fbadfd1d14c48971bb410b1695"
@@ -1809,13 +1921,18 @@
         "sha256": "751667f60b836e4af2895acd4ce0d9bbf2f1d5f2c7570d050c5865193d6786a3"
       },
       {
+        "path": "review/site-v1-offline-bundle-v9.json",
+        "identity_mode": "content",
+        "sha256": "66db96af9792468b40cd7700d086813534d1300cce3f7b79a06695523f40eb6f"
+      },
+      {
         "path": "review/site-v1-preview.html",
         "identity_mode": "existence"
       },
       {
         "path": "review/site-v1-review.json",
         "identity_mode": "content",
-        "sha256": "c34569630c66138501c15226353774d6d59f1f49fd85240d4b7fb7610a3a9938"
+        "sha256": "fff7d3bb3800b41439e64353ee17b5fad373a5b7bd269a410cd87b2deb8031e9"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -1851,6 +1968,11 @@
         "path": "review/site-v1-static-previews-v8.json",
         "identity_mode": "content",
         "sha256": "d8a936e818a9129febce2f0cd5c55a2133b043d95c5ea516e90d16a0eeb3dc94"
+      },
+      {
+        "path": "review/site-v1-static-previews-v9.json",
+        "identity_mode": "content",
+        "sha256": "c5423e51b5271b0e01d52aa5be39732b7a0b3e533cecd86dc267987a7fb9a294"
       },
       {
         "path": "review/site-v1-static-previews.json",
@@ -2049,6 +2171,10 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tests/quality.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tests/space.test.cjs",
         "identity_mode": "existence"
       },
@@ -2078,12 +2204,12 @@
       {
         "path": "tools/build_site_bundle.py",
         "identity_mode": "content",
-        "sha256": "0fa6a208de2dba79bd26fd1a7a8d5497a6af7edb360dc79798da6f5225087e5f"
+        "sha256": "064710f81f684d88f14ce008c18fe9d36555c533d16d54b302014d411115c0f0"
       },
       {
         "path": "tools/build_site_contact_sheets.py",
         "identity_mode": "content",
-        "sha256": "55abf10c1553ffe8fd953407e6c203cdfffd15e52339ce2616bbb1219e0ce388"
+        "sha256": "ae3e35cbd03cb39a478cf8ab1e254ba7e9c5f5e4fa147824f60798193f8fcf60"
       },
       {
         "path": "tools/build_site_previews.cjs",
@@ -2102,15 +2228,118 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tools/quality/README.md",
+        "identity_mode": "content",
+        "sha256": "63e4f4fca8045d0c344e6fd7474033b4092200ab6f93493f16f4e3a34716a1fb"
+      },
+      {
+        "path": "tools/quality/advisory-exceptions.json",
+        "identity_mode": "content",
+        "sha256": "3e8e02cd4871d81f04562c7709fd7f875f7ac7f45dfc9df0b9317d4eba218e1f"
+      },
+      {
+        "path": "tools/quality/artifact.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/budgets.json",
+        "identity_mode": "content",
+        "sha256": "c7f35f0390d472d5a943ff134d193969cab37b6f582f3766efe71012e9e0904b"
+      },
+      {
+        "path": "tools/quality/common.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/deploy-pages.example.yml",
+        "identity_mode": "content",
+        "sha256": "0765b00108a729455751759b998282d4d09b013cbf99104f7acd8dd18d44d939"
+      },
+      {
+        "path": "tools/quality/eslint.config.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/exceptions.json",
+        "identity_mode": "content",
+        "sha256": "4c4ad9578157a01f59eda2f51ce232dbbbe9dfc4811646ab8bb7dd903eea57cb"
+      },
+      {
+        "path": "tools/quality/functional.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/lighthouse.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/motion.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/scanners.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/secrets-baseline.json",
+        "identity_mode": "content",
+        "sha256": "4bcd19c997caf37b9e1007717e471908589eb10292562f5bb64a7d8665eb0084"
+      },
+      {
+        "path": "tools/quality/security-rules.yml",
+        "identity_mode": "content",
+        "sha256": "2fcea6e6de768e226d25778ed5bd3d4eb984016699af929ed06068d833c8fac3"
+      },
+      {
+        "path": "tools/quality/selftest.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/serve.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/stylelint.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/stylelint.config.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/toolchain/package-lock.json",
+        "identity_mode": "content",
+        "sha256": "54466f796f3295144bdb2df71087988e13aa3886bf9cfede6f37a4f918b61052"
+      },
+      {
+        "path": "tools/quality/toolchain/package.json",
+        "identity_mode": "content",
+        "sha256": "2d19024075cdf77d7cbc017d109922c85c26952461440d87db07ef88f4420c3b"
+      },
+      {
+        "path": "tools/quality/toolchain/requirements.txt",
+        "identity_mode": "content",
+        "sha256": "6ffc757fae57f9ba6c53bd0eff83d9ebb495791a6c0ca8b221bbcc28f8d001b8"
+      },
+      {
+        "path": "tools/quality/triage-secrets.py",
+        "identity_mode": "content",
+        "sha256": "5a3ef05811b6643f51a25616ed368be01f5bcc56814691c88fc939db802ddfa0"
+      },
+      {
+        "path": "tools/quality/validate.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tools/repository_intelligence.py",
         "identity_mode": "content",
-        "sha256": "d9cc389b40586783ee1632adbffb2cca62a262a8c89b4bb7b504c47d7822637e"
+        "sha256": "ed9d72444817b2c6f9f03bf908a28db6c5440dc540fc81f60df95cf9acf46e51"
       }
     ]
   },
   "producer": {
     "path": "tools/repository_intelligence.py",
-    "sha256": "d9cc389b40586783ee1632adbffb2cca62a262a8c89b4bb7b504c47d7822637e",
+    "sha256": "ed9d72444817b2c6f9f03bf908a28db6c5440dc540fc81f60df95cf9acf46e51",
     "config_path": ".github/repository-intelligence-config.json",
     "config_sha256": "b8085835d7bbc208ae683badf4876e73adf7ee928068887c4d6b4a06dce403e8"
   },
@@ -2279,6 +2508,34 @@
     {
       "path": ".github/workflows/navigation.yml",
       "title": ".github/workflows/navigation.yml",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".github/workflows/site-candidate-evidence.yml",
+      "title": ".github/workflows/site-candidate-evidence.yml",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".github/workflows/site-checks.yml",
+      "title": ".github/workflows/site-checks.yml",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".github/workflows/site-release-checks.yml",
+      "title": ".github/workflows/site-release-checks.yml",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".github/workflows/site-runtime-checks.yml",
+      "title": ".github/workflows/site-runtime-checks.yml",
       "instructions": [
         "AGENTS.md"
       ]
@@ -2648,6 +2905,34 @@
       ]
     },
     {
+      "path": "review/site-engineering-v9-20261003/CHECKPOINT.md",
+      "title": "v9 engineering checkpoint — 2026-10-03",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-engineering-v9-20261003/DEPLOYMENT.md",
+      "title": "Prepared deployment dependency, activation still owned by #8",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-engineering-v9-20261003/INDEPENDENT-PIPELINE.md",
+      "title": "Independent pipeline review — #13",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-engineering-v9-20261003/INDEPENDENT-RUNTIME.md",
+      "title": "Independent runtime review — v9 recovered sources",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "review/site-v1-20261002-v5-captures/captures.json",
       "title": "review/site-v1-20261002-v5-captures/captures.json",
       "instructions": [
@@ -2746,6 +3031,13 @@
       ]
     },
     {
+      "path": "review/site-v1-offline-bundle-v9.json",
+      "title": "review/site-v1-offline-bundle-v9.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "review/site-v1-review.json",
       "title": "review/site-v1-review.json",
       "instructions": [
@@ -2797,6 +3089,13 @@
     {
       "path": "review/site-v1-static-previews-v8.json",
       "title": "review/site-v1-static-previews-v8.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-v1-static-previews-v9.json",
+      "title": "review/site-v1-static-previews-v9.json",
       "instructions": [
         "AGENTS.md"
       ]
@@ -3056,6 +3355,83 @@
     {
       "path": "tools/build_site_contact_sheets.py",
       "title": "tools/build_site_contact_sheets.py",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "tools/quality/README.md",
+      "title": "Repeatable site checks",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "tools/quality/advisory-exceptions.json",
+      "title": "tools/quality/advisory-exceptions.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "tools/quality/budgets.json",
+      "title": "tools/quality/budgets.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "tools/quality/deploy-pages.example.yml",
+      "title": "tools/quality/deploy-pages.example.yml",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "tools/quality/exceptions.json",
+      "title": "tools/quality/exceptions.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "tools/quality/secrets-baseline.json",
+      "title": "tools/quality/secrets-baseline.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "tools/quality/security-rules.yml",
+      "title": "tools/quality/security-rules.yml",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "tools/quality/toolchain/package-lock.json",
+      "title": "tools/quality/toolchain/package-lock.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "tools/quality/toolchain/package.json",
+      "title": "tools/quality/toolchain/package.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "tools/quality/toolchain/requirements.txt",
+      "title": "tools/quality/toolchain/requirements.txt",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "tools/quality/triage-secrets.py",
+      "title": "tools/quality/triage-secrets.py",
       "instructions": [
         "AGENTS.md"
       ]

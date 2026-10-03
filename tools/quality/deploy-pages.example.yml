@@ -1,0 +1,60 @@
+# INACTIVE EXAMPLE. #8 activates only after host/URL/rights/release decisions.
+# Copy into .github/workflows only at authorized hosting activation.
+name: Deploy checked site artifact
+on:
+  workflow_dispatch:
+    inputs:
+      candidate_sha:
+        required: true
+        type: string
+      evidence_artifact_id:
+        required: true
+        type: string
+      evidence_run_id:
+        required: true
+        type: string
+permissions:
+  contents: read
+  actions: read
+jobs:
+  checks:
+    uses: ./.github/workflows/site-release-checks.yml
+    with:
+      candidate_sha: ${{ inputs.candidate_sha }}
+      full: true
+      evidence_artifact_id: ${{ inputs.evidence_artifact_id }}
+      evidence_run_id: ${{ inputs.evidence_run_id }}
+  deploy:
+    needs: checks
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    env:
+      SITE_EXPECTED_PUBLIC_DIGEST: ${{ needs.checks.outputs.public_digest }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ inputs.candidate_sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          artifact-ids: ${{ needs.checks.outputs.artifact_id }}
+          path: tested-site
+          merge-multiple: true
+      - name: Verify immutable tested bytes, without rebuilding
+        run: node tools/quality/artifact.cjs verify tested-site/public tested-site/artifact.json
+      - uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
+        with:
+          path: tested-site/public
+      - id: deploy
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
+# #8 must add the owned-origin passive scan, host checks, served-byte smoke and
+# reviewed recovery before activating. This example is not production-ready.

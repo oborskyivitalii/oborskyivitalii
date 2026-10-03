@@ -5,9 +5,12 @@ Runtime fixes: [#12](https://github.com/oborskyivitalii/oborskyivitalii/issues/1
 and [S1–S4](review/site-audit-v8-20261003/SOL-TASKS.md).
 Execution: Draft PR #10. Hosting activation: #8; launch/rights: #1/#7.
 
-**Status, 2026-10-03: specified for implementation, not enabled.** The present
-workflow only runs existing tests/export/RI checks. The v8 audit is a completed
-baseline; its known defects still need fixing. This document records the new
+**Status, 2026-10-03: implemented in the v9 candidate, validation in progress.**
+Maintained commands are in `tools/quality/`; PR and reusable release workflows
+bind checks to a single public artifact. See the v9 engineering checkpoint for
+actual results and independent review. Browser/performance measurements,
+physical-device acceptance and hosting activation remain pending. The v8 audit
+is an immutable baseline. This document records the new
 maintainer requirement that repeatable checks become mandatory for future releases.
 It supersedes the earlier optional-small-CI wording in S4 and the old operational
 instruction to publish automatically from a branch without these gates.
@@ -108,7 +111,7 @@ Playwright WebKit is not branded Safari. Device profiles and CPU slowdown do not
 certify real iOS/Android behavior. Record the tested versions; do not infer a
 minimum historical browser version. Basic content must remain useful when optional
 enhancements are unavailable. Retain v8's motifs, stable macro composition,
-native scrolling and bounded 48-second ambient cycle on capable devices.
+native scrolling and the explicitly authorized 24-second ambient cycle on capable devices.
 
 ## Performance budgets and measurement validity
 

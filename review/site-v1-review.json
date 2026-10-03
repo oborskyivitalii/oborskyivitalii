@@ -1,26 +1,27 @@
 {
   "checked_date": "2026-10-03",
   "public_directory": "docs",
-  "visual_review": "v8: actual Chromium desktop/mobile Day/Night captures and ambient/scroll recordings; observed limits in execution record",
+  "visual_review": "v9 exports refreshed; actual browser captures and final visual acceptance pending CI",
   "files": {
     "docs/.nojekyll": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
     "docs/archive.js": "5b11a8e0fd8f2ecbed57809ea956ee3470148aac604e64decc188ba8f755209c",
+    "docs/assets/favicon.svg": "c28b28c5d6b61a89612c8aa1b3c787ff855e25e3e9dd69e9fbd0569e0da89a6e",
     "docs/assets/vitalii-oborskyi-cutout.webp": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae",
     "docs/assets/vitalii-oborskyi.jpg": "5321e48f08b075cb1cbd522d0f36bc01276aece65d1a04cf09102aa5dd2b59bc",
-    "docs/credits.html": "a133ede2e7dff6b74350b3876f622afd36b4d836c4e1461c5dc23aa5687453e3",
-    "docs/index.html": "d74e7d6741e95f8aa7c5cd35db592d4a7ad043dd5f6a1e8d6e72a99f065b27ca",
-    "docs/research.html": "9a7c585034646ef780797ad36ea4792539a052e1f50cf94a51e5a377561931f6",
-    "docs/space.js": "42107634d48ffeb861a60440efc05c83cc677f3d3c91e76fb75af41eb03f497d",
-    "docs/styles.css": "4f31d68348ca8fece3373a4ba4e33f88ac50f6c10a6ef0affc7c52c4b4396bbd",
-    "docs/talks.html": "3f4c6f93ba51c60f64a2e675e7599b754f3b5c30e6555679a7657ef1de586757",
+    "docs/credits.html": "8eea1be637105d748097082de95c5f3ff8f2613244d21bd9b32bc19ccb59a4ef",
+    "docs/index.html": "56f377bf21c08ca6d33b9c3c59377088bed2055bc85d7cd19b611f2e4e3da821",
+    "docs/research.html": "5c4742788e46848beda3a2d8b768fb582a39b00bc217d174deb856cc8c835303",
+    "docs/space.js": "8c6c95a1a94a9d993388fb451a29b223953d1da33b7562dc27977f32beeb1f42",
+    "docs/styles.css": "19601a62e3d2aa3e275618af69394a3e4aaddc12c428529540efb4cf6e69bebf",
+    "docs/talks.html": "6827088f21c88a4963bd2af8ce984491e295e66434980032a2cde3d773ef557c",
     "docs/theme.js": "a1987c61608672a1643289efaf3238ab315ad47b54b704fa04884d20ec479cd8",
-    "docs/writing.html": "6cd6c573137a1a2f7ac7dabfba26c81e53bb5706fced2a4b926bc7baa995d6c3"
+    "docs/writing.html": "c21f050be92fc1f5d26eaf3f61d3a43179f2f23f0ed7b890965fa945ef3ee3d3"
   },
   "structural_checks": "passed: five pages; exact frozen 27 primary identities and secondary LinkedIn date/URL; five EN selections, eight bounded entries; IDs/ARIA/contact/navigation/resources; draft isolation",
-  "theme_behavior": "33 Node tests (6 theme, 10 scene, 6 archive, 6 content, 5 export); actual browser behavior recorded separately",
+  "theme_behavior": "43 Node regressions passed locally; actual v9 browser matrix pending CI",
   "source_audit": "SITE-SOURCE-AUDIT.md",
   "independent_review": {
-    "status": "pending maintainer/editorial/rights acceptance for v8; implementer checks recorded",
+    "status": "Runtime independently reviewed; pipeline review and maintainer/editorial/rights acceptance remain open for v9",
     "remaining": [
       "Physical-device/native zoom/hidden-tab/print-dialog inspection remains unobserved",
       "Independent/editorial candidate review",
@@ -31,11 +32,11 @@
   },
   "review_handoff": {
     "checked_date": "2026-10-03",
-    "kind": "v8: fifteen page copies, gallery, real captures and five ambient/flight recordings",
-    "manifest": "review/site-v1-static-previews-v8.json",
-    "bundle_manifest": "review/site-v1-offline-bundle-v8.json",
+    "kind": "v9: fifteen page copies and all-page gallery; current real captures pending",
+    "manifest": "review/site-v1-static-previews-v9.json",
+    "bundle_manifest": "review/site-v1-offline-bundle-v9.json",
     "indexing_scope": "review noindex; offline site/ retains exact docs bytes",
-    "visual_review": "review/sol-visual-v8-20261003/EXECUTION.md"
+    "visual_review": "review/site-engineering-v9-20261003/CHECKPOINT.md"
   },
   "previous_independent_review": {
     "status": "Confirmed for static/content/behavior scope",
@@ -55,11 +56,27 @@
     ]
   },
   "current_checks": {
+    "node_tests": 43,
+    "python_tests": 18,
+    "preview_export": "15 page copies plus all-page gallery; source/evidence hashes and offline bundle freshness verified locally",
+    "browser": "pending v9 CI captures; v8 measurements are historical",
+    "sampled_contrast": "pending current v9 measurement"
+  },
+  "edition": "v9",
+  "previous_v8_checks": {
     "node_tests": 33,
     "python_tests": 18,
     "preview_export": "15 page copies plus gallery; source/evidence hashes verified",
     "browser": "review/site-v1-20261003-v8-captures/captures.json",
     "sampled_contrast": "40 views; 4374 samples; normal text min 4.553:1; large text min 6.848:1; no failures"
   },
-  "edition": "v7"
+  "previous_v8_handoff": {
+    "checked_date": "2026-10-03",
+    "kind": "v8: fifteen page copies, gallery, real captures and five ambient/flight recordings",
+    "manifest": "review/site-v1-static-previews-v8.json",
+    "bundle_manifest": "review/site-v1-offline-bundle-v8.json",
+    "indexing_scope": "review noindex; offline site/ retains exact docs bytes",
+    "visual_review": "review/sol-visual-v8-20261003/EXECUTION.md"
+  },
+  "previous_v8_visual_review": "v8: actual Chromium desktop/mobile Day/Night captures and ambient/scroll recordings; observed limits in execution record"
 }

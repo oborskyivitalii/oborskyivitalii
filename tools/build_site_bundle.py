@@ -1,23 +1,23 @@
 """Deterministic offline review handoff; no deployment or external dependency."""
 import hashlib
 import json
-from pathlib import Path
 import sys
 import zipfile
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-OUTPUT = ROOT.parent / "deliverables/site-v1-20261003-v8.zip"
-MANIFEST = ROOT / "review/site-v1-offline-bundle-v8.json"
+OUTPUT = ROOT.parent / "deliverables/site-v1-20261003-v9.zip"
+MANIFEST = ROOT / "review/site-v1-offline-bundle-v9.json"
 
 
 def build():
     inputs = {}
     for folder, prefix in [(ROOT / "docs", "site"), (ROOT / "review", "review")]:
-        candidates = sorted(folder.rglob("*")) if prefix == "site" else sorted(folder.glob("site-v1-20261003-v8-*.html"))
+        candidates = sorted(folder.rglob("*")) if prefix == "site" else sorted(folder.glob("site-v1-20261003-v9-*.html"))
         for file in candidates:
             if file.is_file():
                 inputs[f"{prefix}/{file.relative_to(folder).as_posix()}"] = file.read_bytes()
-    capture_dir = ROOT / "review/site-v1-20261003-v8-captures"
+    capture_dir = ROOT / "review/site-v1-20261003-v9-captures"
     capture_manifest = capture_dir / "captures.json"
     if capture_manifest.exists():
         admitted = ["captures.json", *json.loads(capture_manifest.read_text())["files"]]
@@ -27,20 +27,20 @@ def build():
     inputs["index.html"] = (
         '<!doctype html><html lang="en"><meta charset="utf-8">'
         '<meta name="robots" content="noindex,nofollow">'
-        '<meta http-equiv="refresh" content="0;url=review/site-v1-20261003-v8-index.html">'
-        '<title>All five pages</title><a href="review/site-v1-20261003-v8-index.html">'
+        '<meta http-equiv="refresh" content="0;url=review/site-v1-20261003-v9-index.html">'
+        '<title>All five pages</title><a href="review/site-v1-20261003-v9-index.html">'
         'Open all five pages, Day/Night, mobile views and recordings</a></html>\n'
     ).encode()
     inputs["OPEN-ME.txt"] = (
-        "Author site v8 review, 2026-10-03. Review candidate, not deployment.\n"
+        "Author site v9 review, 2026-10-03. Review candidate, not deployment.\n"
         "Extract this whole ZIP, then open index.html for the all-page gallery.\n"
         "Home, Research, Writing, Talks and Credits share theme and motion controls.\n"
         "Native scrolling moves each page's related motif; Writing topics select its path.\n"
         "Pointer/hover do not move it. Motion Off freezes the current view; reduced motion wins.\n"
-        "The structures breathe in a 48-second loop, even on short pages. Themes recolor the view.\n"
+        "The structures breathe in a 24-second loop, even on short pages. Themes recolor the view.\n"
         "Writing filters by topic/year/language; queries, fragments and history restore visible state.\n"
-        "If your viewer blocks JavaScript, open review/site-v1-20261003-v8-day.html\n"
-        "or review/site-v1-20261003-v8-night.html. Keep the extracted files together.\n"
+        "If your viewer blocks JavaScript, open review/site-v1-20261003-v9-day.html\n"
+        "or review/site-v1-20261003-v9-night.html. Keep the extracted files together.\n"
         "Static copies show all articles with year/topic navigation.\n"
         "site/ retains exact production-source bytes; review/ contains noindex renditions.\n"
     ).encode()

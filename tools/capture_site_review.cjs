@@ -1,16 +1,20 @@
 "use strict";
-// Optional browser review, not a production dependency or a CI requirement.
+// Review capture of the verified public artifact; no production dependency.
 // SITE_REVIEW_PLAYWRIGHT points to an installed Playwright module when not on NODE_PATH.
 const fs=require("node:fs"),path=require("node:path"),http=require("node:http"),assert=require("node:assert/strict"),crypto=require("node:crypto");
 const os=require("node:os");
 const {chromium}=require(process.env.SITE_REVIEW_PLAYWRIGHT||"playwright");
-const root=path.resolve(__dirname,".."),out=path.join(root,"review/site-v1-20261003-v8-captures");
+const root=path.resolve(__dirname,".."),out=path.join(root,"review/site-v1-20261003-v9-captures");
+const publicRoot=path.resolve(process.env.SITE_PUBLIC_DIR||path.join(root,"docs"));
 const pages=["index","research","writing","talks","credits"],digest=value=>crypto.createHash("sha256").update(value).digest("hex");
-const publicSources=()=>Object.fromEntries([".nojekyll","archive.js","credits.html","index.html","research.html","space.js","styles.css","talks.html","theme.js","writing.html","assets/vitalii-oborskyi.jpg","assets/vitalii-oborskyi-cutout.webp"].map(p=>[`docs/${p}`,digest(fs.readFileSync(path.join(root,"docs",p)))]));
-const mime={".html":"text/html",".js":"text/javascript",".css":"text/css",".webp":"image/webp",".jpg":"image/jpeg",".json":"application/json",".webm":"video/webm",".png":"image/png"};
+const publicSources=()=>Object.fromEntries([".nojekyll","archive.js","credits.html","index.html","research.html","space.js","styles.css","talks.html","theme.js","writing.html","assets/favicon.svg","assets/vitalii-oborskyi.jpg","assets/vitalii-oborskyi-cutout.webp"].map(p=>[`docs/${p}`,digest(fs.readFileSync(path.join(publicRoot,p)))]));
+const mime={".html":"text/html",".js":"text/javascript",".css":"text/css",".svg":"image/svg+xml",".webp":"image/webp",".jpg":"image/jpeg",".json":"application/json",".webm":"video/webm",".png":"image/png"};
 const server=http.createServer((req,res)=>{
-  const filename=path.resolve(root,"."+new URL(req.url,"http://localhost").pathname);
-  if(!filename.startsWith(root+path.sep)||!fs.existsSync(filename)||!fs.statSync(filename).isFile()){res.writeHead(404);res.end();return;}
+  const requestPath=new URL(req.url,"http://localhost").pathname;
+  const sourceRoot=requestPath.startsWith('/docs/')?publicRoot:root;
+  const relative=requestPath.startsWith('/docs/')?requestPath.slice(5):requestPath;
+  const filename=path.resolve(sourceRoot,"."+relative);
+  if(!filename.startsWith(sourceRoot+path.sep)||!fs.existsSync(filename)||!fs.statSync(filename).isFile()){res.writeHead(404);res.end();return;}
   res.setHeader("Content-Type",mime[path.extname(filename)]||"application/octet-stream");fs.createReadStream(filename).pipe(res);
 });
 function instrument() {
@@ -51,10 +55,13 @@ async function matrix() {
       const max=await page.evaluate(()=>document.documentElement.scrollHeight-innerHeight);
       await page.mouse.wheel(0,Math.max(250,Math.round(max*.45)));await idle(page);
       assert.notEqual(await pixelTrace(page),first,`${route} must move with native scroll`);
+      const hasScroll=max>1&&await page.evaluate(()=>scrollY)>0;
+      if(hasScroll)assert.notEqual(await poseTrace(page),camera,`${route} forward scroll moves camera`);
+      else assert.equal(await poseTrace(page),camera,`${route} short page keeps camera`);
       if(device==="desktop" && ["index","research","writing"].includes(route))await page.screenshot({path:path.join(out,`${route}-${theme}-lower.png`)});
       const frameTimes=await page.evaluate(()=>window.__review.frames);
       frameTimes.sort((a,b)=>a-b);
-      summary.push({route,theme,device,viewport,...dimensions,native_scroll_changed_scene:true,ambient_changes_pixels:true,idle_camera_stays_fixed:true,frame_callback_ms:{count:frameTimes.length,p50:frameTimes[Math.floor(frameTimes.length*.5)]||0,p95:frameTimes[Math.floor(frameTimes.length*.95)]||0,max:Math.max(...frameTimes)}});
+      summary.push({route,theme,device,viewport,...dimensions,scene_pixels_changed_after_scroll:true,native_scroll_has_range:hasScroll,native_scroll_changes_camera:hasScroll,ambient_changes_pixels:true,idle_camera_stays_fixed:true,frame_callback_ms:{count:frameTimes.length,p50:frameTimes[Math.floor(frameTimes.length*.5)]||0,p95:frameTimes[Math.floor(frameTimes.length*.95)]||0,max:Math.max(...frameTimes)}});
       process.stdout.write(`${route} ${theme} ${device}: captured; scroll/ambient/overflow passed\n`);
     }
     await ctx.close();
@@ -102,7 +109,7 @@ async function behavior() {
   return results;
 }
 async function recordings() {
-  const temporaryVideos=fs.mkdtempSync(path.join(os.tmpdir(),"site-v8-video-"));
+  const temporaryVideos=fs.mkdtempSync(path.join(os.tmpdir(),"site-v9-video-"));
   for(const route of pages) {
     const ctx=await context("night",{width:1440,height:900},{recordVideo:{dir:temporaryVideos,size:{width:1440,height:900}}}),page=await ctx.newPage();
     await visit(page,route);await page.waitForTimeout(2000);
@@ -127,13 +134,10 @@ async function recordings() {
       prior.recording_delivery=require("./compact_site_recordings.cjs").delivery;prior.recorded_at=new Date().toISOString();
       fs.writeFileSync(file,JSON.stringify(prior,null,2)+"\n");process.stdout.write("Five actual recordings refreshed; source-matched matrix and checks retained.\n");return;
     }
-    const checkpoint=path.resolve(root,"../v8-capture-checkpoint.json"),saved=fs.existsSync(checkpoint)?JSON.parse(fs.readFileSync(checkpoint,"utf8")):null;
-    if(saved && JSON.stringify(saved.public_sources)===JSON.stringify(sources) && saved.views.length===20)summary.push(...saved.views);
-    else {await matrix();fs.writeFileSync(checkpoint,JSON.stringify({public_sources:sources,views:summary},null,2)+"\n");}
+    await matrix();
     const checks=await behavior();await recordings();assert.deepEqual(publicSources(),sources,"source changed during capture");
     const files=Object.fromEntries(fs.readdirSync(out).filter(name=>/\.(png|webm)$/.test(name)).map(name=>[name,digest(fs.readFileSync(path.join(out,name)))]));
-    fs.writeFileSync(path.join(out,"captures.json"),JSON.stringify({edition:"v8",captured_at:new Date().toISOString(),baseline_ref:"6b2d13ef291dac90c423cbf93e448eab00bc2818",source_state:"candidate working tree; exact public_sources hashes",browser:browser.version(),public_sources:sources,views:summary,checks,files,recording_delivery:require("./compact_site_recordings.cjs").delivery,limits:["Headless Linux Chromium; mobile viewport/touch emulation, not physical phone hardware.","200% CSS zoom tested; native browser zoom UI not tested.","Native hidden-tab switching and a real print dialog not observed; print lifecycle dispatched and print CSS inspected separately.","Frame callback timings include review instrumentation and are observations of this machine, not a device/FPS guarantee."]},null,2)+"\n");
-    fs.rmSync(checkpoint);
+    fs.writeFileSync(path.join(out,"captures.json"),JSON.stringify({edition:"v9",captured_at:new Date().toISOString(),baseline_ref:process.env.SITE_CANDIDATE_SHA||"candidate working tree",source_state:"candidate working tree; exact public_sources hashes",browser:browser.version(),public_sources:sources,views:summary,checks,files,recording_delivery:require("./compact_site_recordings.cjs").delivery,limits:["Headless Linux Chromium; mobile viewport/touch emulation, not physical phone hardware.","200% CSS zoom tested; native browser zoom UI not tested.","Native hidden-tab switching and a real print dialog not observed; print lifecycle dispatched and print CSS inspected separately.","Frame callback timings include review instrumentation and are observations of this machine, not a device/FPS guarantee."]},null,2)+"\n");
     process.stdout.write("Complete browser matrix, behavior and five real motion recordings saved.\n");
   } finally {if(browser)await browser.close();server.close();}
 })().catch(error=>{process.stderr.write(error.stack+"\n");process.exitCode=1;});

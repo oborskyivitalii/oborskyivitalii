@@ -1,0 +1,9 @@
+{
+  "owner": "Vitalii Oborskyi",
+  "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/13",
+  "reviewBy": "2026-11-03",
+  "reason": "Existing contrast sampler remains complex; all runtime cognitive-complexity findings fixed. Exact message limits debt until this non-runtime tool is modularized. No correctness/security suppression.",
+  "complexity": [
+    {"path": "tools/check_site_contrast.cjs", "rule": "sonarjs/cognitive-complexity", "message": "Refactor this function to reduce its Cognitive Complexity from 40 to the 25 allowed."}
+  ]
+}

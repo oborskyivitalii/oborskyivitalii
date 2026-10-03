@@ -1,7 +1,7 @@
 "use strict";
 // Review-only delivery encoding of actual Chromium captures; not generated motion.
 const fs=require("node:fs"),path=require("node:path"),crypto=require("node:crypto"),{execFileSync}=require("node:child_process");
-const out=path.resolve(__dirname,"../review/site-v1-20261003-v8-captures");
+const out=path.resolve(__dirname,"../review/site-v1-20261003-v9-captures");
 function compact(source,target) {
   const temporary=target+".compact.webm";
   execFileSync(process.env.SITE_REVIEW_FFMPEG||"ffmpeg",["-hide_banner","-loglevel","error","-y","-i",source,"-vf","scale=960:600","-c:v","libvpx-vp9","-b:v","450k","-maxrate","450k","-bufsize","900k","-crf","32","-deadline","realtime","-cpu-used","6","-an",temporary],{stdio:"pipe"});

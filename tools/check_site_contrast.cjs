@@ -17,7 +17,7 @@ for(const device of ['desktop','mobile'])for(const theme of ['light','dark']){
    await page.evaluate(()=>document.querySelector("#space-motion").click());
    const samples=await page.evaluate(()=>{
     const samples=[],walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),canvas=document.createElement('canvas'),ctx=canvas.getContext('2d');let node;
-    while(node=walker.nextNode()){
+    while((node=walker.nextNode())){
      const el=node.parentElement;if(!el||el.closest('script,style,svg,option')||!el.getClientRects().length||!node.textContent.trim())continue;
      const css=getComputedStyle(el),size=parseFloat(css.fontSize),target=size>=24||(size>=18.66&&parseInt(css.fontWeight)>=700)?3:4.5;
      ctx.clearRect(0,0,1,1);ctx.fillStyle=css.color;ctx.fillRect(0,0,1,1);const foreground=[...ctx.getImageData(0,0,1,1).data].slice(0,3);
@@ -35,7 +35,7 @@ for(const device of ['desktop','mobile'])for(const theme of ['light','dark']){
 }
 await browser.close();const failures=results.flatMap(r=>r.failures.map(f=>({route:r.route,theme:r.theme,device:r.device,position:r.position,...f})));
 require('node:assert/strict').deepEqual(sourceHashes(),sources,'public source changed during contrast capture');
-fs.writeFileSync(root+'/review/site-v1-20261003-v8-captures/contrast.json',JSON.stringify({method:'Chromium rendered backgrounds with motion frozen per sample and text paint hidden without layout changes; sampled glyph-center composited pixels, using computed original text color. Desktop start/middle/end plus mobile start in both themes. Sampled check, not complete WCAG certification.',sources,views:results,failures:failures.length},null,2)+'\n');
+fs.writeFileSync(root+'/review/site-v1-20261003-v9-captures/contrast.json',JSON.stringify({method:'Chromium rendered backgrounds with motion frozen per sample and text paint hidden without layout changes; sampled glyph-center composited pixels, using computed original text color. Desktop start/middle/end plus mobile start in both themes. Sampled check, not complete WCAG certification.',sources,views:results,failures:failures.length},null,2)+'\n');
 process.stdout.write(JSON.stringify({views:results.length,samples:results.reduce((n,r)=>n+r.samples,0),min_normal:Math.min(...results.map(r=>r.min_normal).filter(Boolean)),min_large:Math.min(...results.map(r=>r.min_large).filter(Boolean)),failures:failures.slice(0,10)},null,2)+'\n');
 if(failures.length)process.exitCode=1;
 })().catch(e=>{process.stderr.write(e.stack);process.exitCode=1;});

@@ -48,7 +48,7 @@ test("every local page/gallery link and fragment resolves within the complete ha
     const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
     assert.equal(ids.length, new Set(ids).size);
     for (const [, href] of html.matchAll(/href="([^"]+)"/g)) {
-      if (href.startsWith("https://")) continue;
+      if (href.startsWith("https://") || href.startsWith("data:image/svg+xml;base64,")) continue;
       const [pathQuery, fragment] = href.split("#");
       const [base] = pathQuery.split("?");
       const target = base ? `review/${base}` : file;
@@ -71,8 +71,8 @@ test("fixed and interactive rewriters retain query/hash intent, including the of
 });
 
 test("manifest records exact inputs/outputs and unknown source shapes fail visibly", () => {
-  const manifest = JSON.parse(files["review/site-v1-static-previews-v8.json"]);
-  assert.equal(Object.keys(manifest.sources).length, 10);
+  const manifest = JSON.parse(files["review/site-v1-static-previews-v9.json"]);
+  assert.equal(Object.keys(manifest.sources).length, 11);
   assert.equal(Object.keys(manifest.files).length, 16);
   for (const [file, hash] of Object.entries(manifest.sources)) assert.equal(digest(fs.readFileSync(path.join(root, file))), hash);
   for (const [file, hash] of Object.entries(manifest.files)) assert.equal(digest(files[file]), hash);

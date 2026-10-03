@@ -67,3 +67,37 @@ than assume they exist or passed. Functional.cjs was the final interrupted write
 
 Physical iPhone/iPad and modest Android, native OS/browser measurements, final
 visual review, hosted-origin security and production activation remain pending.
+
+## Recovered implementation update
+
+The exact remote runtime checkpoint 461ac38eff9180a35bcecf2aeecff966505a954d
+passed GitHub run 37112006925 (Site runtime regressions). Independent runtime
+review is recorded in INDEPENDENT-RUNTIME.md. The existing export/navigation
+workflow on that runtime-only head still failed the stale v8 producer contract;
+that failure was retained and addressed by the v9 migration below.
+
+The executor recovered. Maintained tools/quality and PR/reusable full release
+workflows are now implemented, with locks, exact artifact/source identities,
+coverage checks, reviewed exceptions, Linux three-engine cases, Windows/macOS
+smokes, three-run Lighthouse medians, sustained motion/soak probes and strict
+aggregate validation. Controlled full/PR fixtures prove missing/failed jobs,
+profiles, samples, reports and device records fail closed. A deployment template
+is inactive; hosting activation remains #8.
+
+The current v9 candidate has 43 passing Node tests and 18 passing Python tests.
+Generators/tests now target v9, with an all-page gallery, fixed and interactive
+HTML copies and an offline exact-public-byte bundle. Home also constrains the
+portrait SVG without CSS; all main landmarks are keyboard-focusable for skip
+navigation. Old v8 capture results remain historical. Current real browser
+captures, CLS/performance remeasurement and final visual acceptance are pending
+CI. Local browsers cannot create their required sockets in this executor.
+
+Full release acceptance requires the physical iOS/Android records and independent
+source-bound review evidence supplied as a separately uploaded immutable artifact
+and upload-run ID; the record is not embedded in the candidate's own commit tree.
+Missing records intentionally fail the release
+gate. Security/quality commands must run after final RI refresh; source/hash
+metadata false positives require exact manual classification, never blanket
+scanner ignores. See INDEPENDENT-PIPELINE.md for observed independent checks
+and explicit limits. No issue closure, merge, release or host activation follows
+from this checkpoint.

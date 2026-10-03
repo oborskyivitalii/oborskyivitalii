@@ -120,23 +120,26 @@ changed-source visual evidence before handoff.
 
 The maintainer additionally requested twice-fast passive movement on all routes:
 24 seconds replaces 48 seconds; repaint cadence and scroll timing are separate.
-Runtime fixes/lightweight fallback and focused regressions are now being implemented
-under #12. Read `review/site-engineering-v9-20261003/CHECKPOINT.md` before resuming.
-#13 full release tooling, browser/performance remeasurement, refreshed exports and
-RI remain unfinished; do not reinterpret the runtime-only workflow as that gate.
+Runtime fixes/lightweight fallback and focused regressions are implemented under
+#12. Read `review/site-engineering-v9-20261003/CHECKPOINT.md` before resuming.
+#13 maintained release tooling and v9 exports are implemented and under validation.
+Browser/performance remeasurement, visual acceptance and physical-device/host
+evidence remain pending; the runtime-only workflow does not establish that gate.
 
 ## Review and completion
 
 For the post-v8 engineering audit and optimization request (2026-10-03), read
 [audit #12 and Sol tasks](review/site-audit-v8-20261003/SOL-TASKS.md) and its linked
-baseline evidence. The audit is complete; the reported fixes remain unimplemented.
+baseline evidence. The audit is complete; runtime remediation is recorded in the
+v9 engineering checkpoint and independently reviewed runtime record.
 Preserve the accepted visual direction while correcting the measured reliability
 and performance findings. Do not turn scanner counts or emulation into an
 unqualified security, Safari, physical-device or performance guarantee.
 
 The maintainer's follow-up makes recurring release checks required. Read
 [SITE-RELEASE-GATES](SITE-RELEASE-GATES.md), owned by #13, together with #12's
-remediation tasks. The contract is specified, not yet implemented. Future release
+remediation tasks. Maintained tooling/workflows implement the contract; actual
+full-run evidence and physical-device/release acceptance remain open. Future release
 work must bind security, quality, performance and platform evidence to the exact
 deployable artifact and block missing/failed mandatory checks. #8 owns activation
 of a gated deployment; direct branch publication must not bypass the checks.

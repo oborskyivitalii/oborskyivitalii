@@ -1,0 +1,14 @@
+name: Site candidate evidence
+on:
+  pull_request:
+    types: [labeled]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  evidence:
+    if: github.event.label.name == 'site-release-candidate'
+    uses: ./.github/workflows/site-release-checks.yml
+    with:
+      candidate_sha: ${{ github.event.pull_request.head.sha }}
+      full: true
