@@ -18,23 +18,30 @@ const server=http.createServer((req,res)=>{
   res.setHeader("Content-Type",mime[path.extname(filename)]||"application/octet-stream");fs.createReadStream(filename).pipe(res);
 });
 function instrument() {
-  window.__review={frames:[],draws:0,vertices:[]};
+  window.__review={frames:[],draws:0};
   const raf=window.requestAnimationFrame;
   window.requestAnimationFrame=fn=>raf(time=>{const start=performance.now();fn(time);window.__review.frames.push(performance.now()-start);});
   const proto=CanvasRenderingContext2D.prototype,clear=proto.clearRect;
-  proto.clearRect=function(...args){window.__review.draws++;window.__review.vertices=[];return clear.apply(this,args);};
-  const state=new WeakMap(),begin=proto.beginPath,close=proto.closePath,stroke=proto.stroke;
-  proto.beginPath=function(){state.set(this,{points:[],closed:false});return begin.call(this);};
-  proto.closePath=function(){state.get(this).closed=true;return close.call(this);};
-  proto.stroke=function(){const s=state.get(this);if(s&&(s.closed||s.points.length===2))window.__review.vertices.push(...s.points);return stroke.call(this);};
-  // Pixel-sized arrowheads vary with resize, while the world vertices encode the pose.
-  for(const name of["moveTo","lineTo"]){const original=proto[name];proto[name]=function(x,y){state.get(this)?.points.push([x/innerWidth,y/innerHeight]);return original.call(this,x,y);};}
+  proto.clearRect=function(...args){window.__review.draws++;return clear.apply(this,args);};
 }
 const poseTrace=async page=>page.locator(".space-scene").getAttribute("data-camera");
 const pixelTrace=page=>page.evaluate(()=>document.getElementById("space-canvas").toDataURL());
 const idle=page=>page.waitForTimeout(230);
 const overflow=page=>page.evaluate(()=>({width:innerWidth,scrollWidth:document.documentElement.scrollWidth,overflow:document.documentElement.scrollWidth>innerWidth+1}));
 const summary=[];let browser,base;
+async function nextPaint(page) {
+  const before=await page.evaluate(()=>({draws:window.__review.draws,phase:document.querySelector('.space-scene').dataset.phase}));
+  const start=Date.now();
+  try {
+    await page.waitForFunction(count=>window.__review.draws>count,before.draws,{polling:50,timeout:1500});
+  }catch(error){
+    const observed=await page.evaluate(()=>({draws:window.__review.draws,callbacks:window.__review.frames.length,hidden:document.hidden,motion:document.querySelector('#space-motion').textContent,scene:{...document.querySelector('.space-scene').dataset}}));
+    throw Error(`No next ambient paint: ${JSON.stringify({before,elapsedMs:Date.now()-start,observed})}`,{cause:error});
+  }
+  const after=await page.evaluate(()=>({draws:window.__review.draws,phase:document.querySelector('.space-scene').dataset.phase}));
+  assert.ok(after.draws>before.draws,'ambient drawing continues');assert.notEqual(after.phase,before.phase,'ambient phase advances');
+  return {elapsedMs:Date.now()-start,paints:after.draws-before.draws};
+}
 async function visit(page,route){await page.goto(`${base}/docs/${route}.html`);await idle(page);assert.equal(await page.locator(".space-scene").getAttribute("data-ready"),"true");}
 async function context(theme,viewport,extra={}) {
   const ctx=await browser.newContext({viewport,...extra});
@@ -50,7 +57,7 @@ async function matrix() {
     for(const route of pages) {
       await visit(page,route);assert.deepEqual(errors,[],`${route} runtime errors`);const first=await pixelTrace(page);
       const dimensions=await overflow(page);assert.equal(dimensions.overflow,false,`${route} ${theme} ${device} horizontal overflow`);
-      const camera=await poseTrace(page),runs=await page.evaluate(()=>window.__review.draws);await idle(page);assert.ok(await page.evaluate(()=>window.__review.draws)>runs,"ambient drawing continues");assert.equal(await poseTrace(page),camera,"idle camera stays fixed");assert.notEqual(await pixelTrace(page),first,"geometry moves without scrolling");
+      const camera=await poseTrace(page),ambientProbe=await nextPaint(page);assert.equal(await poseTrace(page),camera,"idle camera stays fixed");assert.notEqual(await pixelTrace(page),first,"geometry moves without scrolling");
       await page.screenshot({path:path.join(out,`${route}-${theme}-${device}.png`)});
       const max=await page.evaluate(()=>document.documentElement.scrollHeight-innerHeight);
       await page.mouse.wheel(0,Math.max(250,Math.round(max*.45)));await idle(page);
@@ -61,7 +68,7 @@ async function matrix() {
       if(device==="desktop" && ["index","research","writing"].includes(route))await page.screenshot({path:path.join(out,`${route}-${theme}-lower.png`)});
       const frameTimes=await page.evaluate(()=>window.__review.frames);
       frameTimes.sort((a,b)=>a-b);
-      summary.push({route,theme,device,viewport,...dimensions,scene_pixels_changed_after_scroll:true,native_scroll_has_range:hasScroll,native_scroll_changes_camera:hasScroll,ambient_changes_pixels:true,idle_camera_stays_fixed:true,frame_callback_ms:{count:frameTimes.length,p50:frameTimes[Math.floor(frameTimes.length*.5)]||0,p95:frameTimes[Math.floor(frameTimes.length*.95)]||0,max:Math.max(...frameTimes)}});
+      summary.push({route,theme,device,viewport,...dimensions,scene_pixels_changed_after_scroll:true,native_scroll_has_range:hasScroll,native_scroll_changes_camera:hasScroll,ambient_changes_pixels:true,ambientProbe,idle_camera_stays_fixed:true,frame_callback_ms:{count:frameTimes.length,p50:frameTimes[Math.floor(frameTimes.length*.5)]||0,p95:frameTimes[Math.floor(frameTimes.length*.95)]||0,max:Math.max(...frameTimes)}});
       process.stdout.write(`${route} ${theme} ${device}: captured; scroll/ambient/overflow passed\n`);
     }
     await ctx.close();
@@ -79,7 +86,7 @@ async function behavior() {
     await page.evaluate(()=>window.dispatchEvent(new Event("beforeprint")));await page.mouse.wheel(0,300);await page.evaluate(()=>window.dispatchEvent(new Event("afterprint")));await idle(page);assert.equal(await poseTrace(page),fixed,`${route} print return preserves frozen pose`);
     await page.keyboard.press("Escape");assert.equal(await page.locator(".appearance").evaluate(el=>el.open),false);assert.equal(await page.locator(".appearance summary").evaluate(el=>el===document.activeElement),true);
     await page.setViewportSize({width:1440,height:900});await page.locator(".appearance summary").click();await page.locator("#space-motion").click();await idle(page);
-    const still=await poseTrace(page),runs=await page.evaluate(()=>window.__review.draws);await page.mouse.move(200,200);await page.mouse.move(1100,600);await idle(page);assert.equal(await poseTrace(page),still);assert.ok(await page.evaluate(()=>window.__review.draws)>runs);
+    const still=await poseTrace(page);await page.mouse.move(200,200);await page.mouse.move(1100,600);await nextPaint(page);assert.equal(await poseTrace(page),still);
     results[route]="Off during movement, theme/resize/print freeze, Escape/focus and pointer neutrality passed";
   }
   // Writing reflow/restoration, real history and print behavior.
