@@ -127,6 +127,15 @@ function aggregate({manifest:m,sizes,reports,jobs,full=false,releaseEvidence}){
   return {schema:1,kind:full?'release-manifest':'pr-gate',pass:true,...m,jobs,checkedReports:reports.map(x=>({kind:x.kind,platform:x.environment?.platform})),checkedAt:new Date().toISOString(),hostedOrigin:'pending #8',deploymentAuthorized:false};
 }
 function files(dir){return fs.readdirSync(dir).flatMap(name=>{const p=path.join(dir,name);return fs.statSync(p).isDirectory()?files(p):[p];});}
+function readEvidence(evidenceFiles,full=false){
+  const read=p=>JSON.parse(fs.readFileSync(p)),suffix=path.join('site-v1-20261003-v10-captures','captures.json');
+  const reports=evidenceFiles.filter(x=>/\/(lint|security|advisories|functional|lighthouse|motion|captures)\.json$/.test(x.split(path.sep).join('/'))&&!x.endsWith(suffix)).map(read);
+  if(full){
+    const file=evidenceFiles.find(x=>x.endsWith(suffix));assert.ok(file,'missing capture byte record');const actual=read(file),claimed=reports.find(x=>x.kind==='captures');assert.deepEqual(actual.files,claimed?.files);
+    for(const [name,hash]of Object.entries(actual.files)){assert.equal(path.basename(name),name);assert.match(hash,/^[0-9a-f]{64}$/);assert.equal(require('./artifact.cjs').digest(fs.readFileSync(path.join(path.dirname(file),name))),hash,'capture bytes differ');}
+  }
+  return reports;
+}
 function main(){
   const dir=path.resolve(process.argv[2]),full=process.argv.includes('--full'),read=p=>JSON.parse(fs.readFileSync(p));
   const m=read(path.join(dir,'artifact.json')),sizes=read(path.join(dir,'sizes.json'));
@@ -136,11 +145,7 @@ function main(){
   if(process.env.SITE_CANDIDATE_SHA)assert.equal(m.candidateCommit,process.env.SITE_CANDIDATE_SHA);
   require('./artifact.cjs').verify(path.join(dir,'public'),m);
   const evidenceFiles=files(path.join(dir,'reports'));
-  const reports=evidenceFiles.filter(x=>/\/(lint|security|advisories|functional|lighthouse|motion|captures)\.json$/.test(x.split(path.sep).join('/'))&&!x.endsWith(path.join('site-v1-20261003-v9-captures','captures.json'))).map(read);
-  if(full){
-    const file=evidenceFiles.find(x=>x.endsWith(path.join('site-v1-20261003-v9-captures','captures.json')));assert.ok(file,'missing capture byte record');const actual=read(file),claimed=reports.find(x=>x.kind==='captures');assert.deepEqual(actual.files,claimed?.files);
-    for(const [name,hash]of Object.entries(actual.files)){assert.equal(path.basename(name),name);assert.match(hash,/^[0-9a-f]{64}$/);assert.equal(require('./artifact.cjs').digest(fs.readFileSync(path.join(path.dirname(file),name))),hash,'capture bytes differ');}
-  }
+  const reports=readEvidence(evidenceFiles,full);
   const evidence=process.env.SITE_RELEASE_EVIDENCE?read(process.env.SITE_RELEASE_EVIDENCE):undefined;
   const result=aggregate({manifest:m,sizes,reports,jobs:JSON.parse(process.env.SITE_JOB_RESULTS||'{}'),full,releaseEvidence:evidence});
   result.githubArtifact={id:process.env.SITE_ARTIFACT_ID||null,uploadDigest:process.env.SITE_UPLOAD_DIGEST||null};
@@ -154,4 +159,4 @@ function failureReport(error){
   fs.writeFileSync(path.join(dir,'release-manifest.json'),JSON.stringify(result,null,2)+'\n');
 }
 if(require.main===module){try{main();}catch(e){console.error('Site gate failed: '+e.message);try{failureReport(e);}catch{ /* A missing artifact is already a gate failure. */ }process.exitCode=1;}}
-module.exports={lighthouse,motion,functional,aggregate,scanner,sourceReport};
+module.exports={lighthouse,motion,functional,aggregate,scanner,sourceReport,readEvidence};

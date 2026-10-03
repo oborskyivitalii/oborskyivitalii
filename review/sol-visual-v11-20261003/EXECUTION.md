@@ -21,7 +21,7 @@ inputs and remain outside this site work.
   as acceptance of changed source.
 
 Local suites initially passed 58 Node + 18 Python tests; the staging increment
-now passes all 66 Node + 18 Python tests. SEO-PRESERVATION records the exact
+now passes all 67 Node + 18 Python tests. SEO-PRESERVATION records the exact
 reversible source comparison. Hosted staging and independent acceptance remain
 pending; actual source-bound CI and root inspection are recorded below.
 
@@ -79,6 +79,13 @@ which correctly returned an empty string. The follow-up reopens the menu before
 checking the visible persisted Off state; persistence/freeze assertions remain.
 No public file changed. Fresh CI is required; latest exact-source results belong
 in PR #10/#8/#14, not an invented hosted or independent acceptance record.
+
+Final verification also found the full-gate capture reader still selected the
+historical v9 directory while the new producer emits v10. The reader now selects
+and byte-verifies only the current v10 record, without counting its raw metadata
+as a duplicate source-bound report. A regression checks single admission and
+rejection of missing/current-versus-old/tampered media records. No release budget
+or external independent/device requirement is relaxed; fresh full CI is required.
 
 The token is supplied only by the callee's protected environment; repository
 secrets are not inherited into PR code. One exact dummy user:pass URL detector

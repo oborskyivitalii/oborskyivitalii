@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "f1151f68855e0bcd8e0ac874fe8fa47bbd1f32ae92589ffe15ad4d168de950b5",
+    "digest": "f0640be96c5f91701e360be19869d5a964339f024912e928b2b2720c563c3e12",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -2230,7 +2230,7 @@
       {
         "path": "review/sol-visual-v11-20261003/EXECUTION.md",
         "identity_mode": "content",
-        "sha256": "c30b89ad2f8f7bdc720dbb571219b29f418102bbb7de676e4e496372659501a5"
+        "sha256": "99b2e936a74c891b6a5c811b6b2376c71df948a6e9cc2ee1070882f6dfb099f6"
       },
       {
         "path": "review/sol-visual-v11-20261003/INPUT-MANIFEST.json",

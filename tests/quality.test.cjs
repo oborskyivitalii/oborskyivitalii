@@ -93,3 +93,19 @@ test('complete controlled full-release fixture passes, missing native/capture/de
   const cases=[x=>x.reports.splice(4,1),x=>x.reports.push(structuredClone(x.reports[6])),x=>x.reports.at(-1).views.pop(),x=>delete x.reports.at(-1).files['writing-motion.webm'],x=>x.reports.at(-1).files['writing-motion.webm']=true,x=>x.releaseEvidence.iosSafari.pass=false,x=>delete x.releaseEvidence.androidChrome.device];
   for(const mutate of cases){const x=fullFixture();mutate(x);assert.throws(()=>aggregate(x));}
 });
+test('current v10 capture input is byte-verified once; stale editions and tampered media fail closed',()=>{
+  const fs=require('node:fs'),path=require('node:path'),os=require('node:os');
+  const {digest}=require('../tools/quality/artifact.cjs'),{readEvidence}=require('../tools/quality/validate.cjs');
+  const dir=fs.mkdtempSync(path.join(os.tmpdir(),'site-capture-reader-')),mediaDir=path.join(dir,'review/site-v1-20261003-v10-captures');
+  try{
+    fs.mkdirSync(mediaDir,{recursive:true});const media=path.join(mediaDir,'index-day-desktop.png'),bytes=Buffer.from('controlled byte fixture; not an actual capture');fs.writeFileSync(media,bytes);
+    const actual={files:{'index-day-desktop.png':digest(bytes)}},raw=path.join(mediaDir,'captures.json'),report=path.join(dir,'captures.json');
+    fs.writeFileSync(raw,JSON.stringify(actual));fs.writeFileSync(report,JSON.stringify({...identity,kind:'captures',pass:true,...actual}));
+    assert.equal(readEvidence([raw,report],true).length,1,'raw media metadata is not a second source-bound report');
+    assert.throws(()=>readEvidence([report],true),/missing capture byte record/);
+    const old=path.join(dir,'review/site-v1-20261003-v9-captures/captures.json');fs.mkdirSync(path.dirname(old),{recursive:true});fs.writeFileSync(old,JSON.stringify(actual));
+    assert.throws(()=>readEvidence([old,report],true),/missing capture byte record/,'historical v9 cannot substitute for current v10');
+    fs.writeFileSync(media,'tampered media');assert.throws(()=>readEvidence([raw,report],true),/capture bytes differ/);
+    fs.writeFileSync(media,bytes);fs.writeFileSync(raw,JSON.stringify({files:{'../outside.png':digest(bytes)}}));assert.throws(()=>readEvidence([raw,report],true));
+  }finally{fs.rmSync(dir,{recursive:true,force:true});}
+});
