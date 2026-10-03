@@ -132,7 +132,9 @@ test("page IDs, ARIA targets, local resources and fragments resolve without draf
 test("Home provides the agreed reader path, precise public actions and a real contact alternative", () => {
   const home = pages.index;
   const stops = [...home.matchAll(/data-space-stop="([^"]+)"/g)].map(m => m[1]);
-  assert.deepEqual(stops, ["hero","research","help","writing","acknowledgements","about","contact"]);
+  assert.deepEqual(stops, ["hero","help","research","writing","acknowledgements","about","contact"]);
+  assert.match(home,/<h1 id="author-name">AI tools everywhere\./);
+  assert.ok(home.includes('Vitalii Oborskyi · Delivery leader, researcher &amp; author.'));
   for (const person of ["Arkadiy Dobkin","Maximiliano Armesto","Markus Kopko","Christophe Kolb &amp; Taller","Michael Risch","Matthew Skelton","Rod Montgomery","Otman Basir"]) assert.ok(home.includes(`>${person}</a></h3>`));
   assert.ok(home.includes('href="#contact">Discuss your AI challenge'));
   assert.ok(home.includes("Direct booking will be available here."));

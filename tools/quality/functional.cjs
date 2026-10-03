@@ -73,6 +73,25 @@ async function archive(page){
   await page.goBack();assert.equal(await page.locator('#archive-language').inputValue(),'all');
   await page.goForward();assert.equal(await page.locator('#archive-language').inputValue(),'uk');
 }
+async function ctaStates(page){
+  const rows=[],buttons=page.locator('a.button');
+  for(let i=0;i<await buttons.count();i++){
+    const button=buttons.nth(i);
+    for(const state of ['normal','hover','focus']){
+      await page.mouse.move(0,0);await button.evaluate(el=>el.blur());
+      if(state==='hover')await button.hover();
+      if(state==='focus')await button.evaluate(el=>el.focus());
+      const row=await button.evaluate(el=>{
+        const css=getComputedStyle(el),rgb=v=>v.match(/[\d.]+/g).slice(0,3).map(Number);
+        const luminance=c=>c.map(x=>{const v=x/255;return v<=.04045?v/12.92:((v+.055)/1.055)**2.4;}).reduce((n,x,i)=>n+x*[.2126,.7152,.0722][i],0);
+        const foreground=rgb(css.color),background=rgb(css.backgroundColor),a=luminance(foreground),b=luminance(background);
+        return {text:el.textContent.trim(),theme:document.documentElement.dataset.theme,foreground,background,ratio:(Math.max(a,b)+.05)/(Math.min(a,b)+.05)};
+      });
+      assert.ok(row.ratio>=4.5,`CTA ${state} contrast ${row.ratio}`);rows.push({...row,state});
+    }
+  }
+  return rows;
+}
 async function normal(page,scenario){
   const a=await settled(page),probeStart=Date.now();readable(a);assert.equal(a.ready,true);
   // A cold engine can miss one short sampling window. Require a real next paint,
@@ -99,8 +118,10 @@ async function normal(page,scenario){
   else assert.equal(forward.camera,a.camera,'short page keeps camera');
   assert.equal((await atStart(page,a.camera)).camera,a.camera,'midflight reverse endpoint');
   await freezeControls(page);
+  const cta=await ctaStates(page);
   await page.locator('#theme-mode').selectOption(scenario.theme==='light'?'dark':'light');
   assert.equal(await page.locator('html').getAttribute('data-theme'),scenario.theme==='light'?'dark':'light');
+  cta.push(...await ctaStates(page));
   if(scenario.route==='writing')await archive(page);
   // CSS zoom approximates layout; native browser zoom remains a separate smoke check.
   await page.evaluate(()=>document.documentElement.style.zoom='2');
@@ -109,7 +130,7 @@ async function normal(page,scenario){
   await page.evaluate(()=>document.documentElement.style.zoom='');
   const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa']).analyze();
   assert.deepEqual(axe.violations,[],'axe violations');
-  return {positiveProbe:true,probe:{elapsedMs:probeElapsedMs,paints:b.paints-a.paints},off:true,print:true,syntheticVisibility:true,keyboard:true,keyboardShortcut,reverse:true,forward:travel.range>1&&travel.target>1?'camera changed':'short page',travel:{...travel,settledY:forward.scrollY},archive:scenario.route==='writing'?true:'not applicable',zoom:true,zoomLimit:'CSS zoom; native browser zoom untested',axePasses:axe.passes.length};
+  return {positiveProbe:true,probe:{elapsedMs:probeElapsedMs,paints:b.paints-a.paints},off:true,print:true,syntheticVisibility:true,keyboard:true,keyboardShortcut,reverse:true,forward:travel.range>1&&travel.target>1?'camera changed':'short page',travel:{...travel,settledY:forward.scrollY},archive:scenario.route==='writing'?true:'not applicable',zoom:true,zoomLimit:'CSS zoom; native browser zoom untested',cta,axePasses:axe.passes.length};
 }
 async function failure(page,mode){
   let a=await settled(page);readable(a);

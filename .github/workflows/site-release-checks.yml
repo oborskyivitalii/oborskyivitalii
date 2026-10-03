@@ -67,6 +67,8 @@ jobs:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           ref: ${{ inputs.candidate_sha }}
+          # SEO reconciliation reads the immutable pre-redesign source edition.
+          fetch-depth: 0
           persist-credentials: false
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
         with:
@@ -79,6 +81,7 @@ jobs:
           node -e "require('node:assert/strict').match(process.env.SITE_CANDIDATE_SHA,/^[0-9a-f]{40}$/)"
           test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
           node --test tests/*.test.cjs
+          node tools/check_site_seo.cjs
           python -m unittest discover -s tests -p 'test_*.py'
           node tools/build_scene_fallbacks.cjs --check
           node tools/build_site_previews.cjs --check
@@ -277,14 +280,15 @@ jobs:
           node tools/quality/artifact.cjs verify quality-artifact/public quality-artifact/artifact.json
           node tools/capture_site_review.cjs
           python tools/build_site_contact_sheets.py
-          node -e "const c=require('./review/site-v1-20261003-v9-captures/captures.json');require('./tools/quality/common.cjs').report('captures',c)"
+          node tools/check_site_contrast.cjs
+          node -e "const c=require('./review/site-v1-20261003-v10-captures/captures.json');require('./tools/quality/common.cjs').report('captures',c)"
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: always()
         with:
           name: site-reports-captures-${{ github.run_id }}
           path: |
             quality-reports/
-            review/site-v1-20261003-v9-captures/
+            review/site-v1-20261003-v10-captures/
           retention-days: 30
   gate:
     if: always()

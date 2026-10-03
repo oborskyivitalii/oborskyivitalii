@@ -16,7 +16,13 @@
   const smooth=v=>{const t=clamp(v);return t*t*(3-2*t);};
   // Atmospheric perspective: a continuous loss of contrast into the page's
   // background, shared by surfaces, seams and outlines; no per-face blur/filter.
-  const depthVisibility=z=>1-.94*smooth((z-12)/88);
+  // Exactly the accepted reference slider at 70: blend visibility curves,
+  // not uniform opacity and not a second fog pass.
+  const depthVisibility=z=>.30*(1-.94*smooth((z-12)/88))+.70*(1-.975*smooth((z-8)/56));
+  const atmosphereState=time=>{
+    const phase=((time%LOOP_MS)+LOOP_MS)%LOOP_MS/LOOP_MS*Math.PI*2;
+    return {x:6*Math.sin(phase),y:3*Math.cos(phase),light:.015*Math.sin(phase)};
+  };
   const followCamera=(from,to,dt)=>mix(from,to,1-Math.exp(-Math.max(0,dt)/32));
   const cadenceFor=(cost,compact,camera=false)=>rates.find(rate=>cost*rate<=(camera?(compact ? 0.4 : 0.55):(compact ? 0.17 : 0.38))*1000)||rates.at(-1);
   function nextDeadline(deadline,time,interval) {
@@ -73,7 +79,7 @@
   };
   const topicPaths = { all:["library","control","libraryMid","feedback","libraryEnd"], strategy:["library","help","closing"], systems:["researchOverview","control","feedback","closing"], delivery:["library","verification","libraryMid","verificationEnd"], leadership:["controller","help","controllerEnd"] };
   const pageStops = {
-    index:{hero:"overview",research:"control",help:"help",writing:"feedback",acknowledgements:"context",about:"closing",contact:"closing"},
+    index:{hero:"overview",help:"control",research:"help",writing:"feedback",acknowledgements:"context",about:"closing",contact:"closing"},
     research:{intro:"researchOverview",research:"verification",lenses:"help",topics:"feedback",acknowledgements:"closing"},
     talks:{intro:"signal",talks:"signalEnd",continue:"closing"},
     credits:{intro:"network",preferences:"networkEnd",contact:"closing"}
@@ -460,7 +466,7 @@
     return "#"+lerp(rgb(a),rgb(b),t).map(v=>Math.round(v).toString(16).padStart(2,"0")).join("");
   }
   // Export the same pure composition/projection for checks and the no-Canvas SVG producer.
-  if (typeof module !== "undefined" && module.exports) module.exports = {LOOP_MS,loopTransform,clipSegment,clipPolygon,mix,followCamera,depthVisibility,cadenceFor,nextDeadline,cameraVertices,projectedFace,journeyPose,poses,topicPaths,pageStops,initialPoses,worldFor,projectedWorld,blendColor};
+  if (typeof module !== "undefined" && module.exports) module.exports = {LOOP_MS,loopTransform,atmosphereState,clipSegment,clipPolygon,mix,followCamera,depthVisibility,cadenceFor,nextDeadline,cameraVertices,projectedFace,journeyPose,poses,topicPaths,pageStops,initialPoses,worldFor,projectedWorld,blendColor};
   if (typeof document === "undefined") return;
   const canvas = document.getElementById("space-canvas");
   const control = document.getElementById("space-motion");
@@ -589,6 +595,10 @@
         ctx.beginPath();ctx.moveTo(to[0]-ux*size-uy*size*.55,to[1]-uy*size+ux*size*.55);ctx.lineTo(...to);ctx.lineTo(to[0]-ux*size+uy*size*.55,to[1]-uy*size-ux*size*.55);ctx.stroke();
       }
     }
+    const air=atmosphereState(ambientTime);
+    scene.style?.setProperty("--air-x",air.x.toFixed(3)+"px");
+    scene.style?.setProperty("--air-y",air.y.toFixed(3)+"px");
+    scene.style?.setProperty("--air-light",air.light.toFixed(5));
     ctx.globalAlpha=1;scene.dataset.ready="true";displayedTime=ambientTime;displayedCamera=current;displayedTier=detailTier;
     scene.dataset.phase=String(ambientTime);scene.dataset.camera=JSON.stringify(current);scene.dataset.detail=String(detailTier);
   }

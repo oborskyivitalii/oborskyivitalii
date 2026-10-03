@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "377d85d088912927b39ab4731c6becf25a693a59e551dc4e7ec066a00083a4e6",
+    "digest": "789c63f5183f1fb11f3c57fba8018f9fc8be56ceee4c50ca7667d3331334cb90",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -59,7 +59,7 @@
       {
         "path": ".github/workflows/site-release-checks.yml",
         "identity_mode": "content",
-        "sha256": "fe8d2085fc170d55f6a225d9515ef7503e9abeab6f834ddad0260a99d034fcba"
+        "sha256": "dd2b3bd3bd2a83d9b6bcd07e9bf51aed34a5a55b56da550e35c3d9733faba0cb"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
@@ -1546,6 +1546,70 @@
         "identity_mode": "existence"
       },
       {
+        "path": "review/site-v1-20261003-v10-credits-day.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261003-v10-credits-interactive.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261003-v10-credits-night.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261003-v10-day.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261003-v10-index.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261003-v10-interactive.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261003-v10-night.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261003-v10-research-day.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261003-v10-research-interactive.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261003-v10-research-night.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261003-v10-talks-day.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261003-v10-talks-interactive.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261003-v10-talks-night.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261003-v10-writing-day.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261003-v10-writing-interactive.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261003-v10-writing-night.html",
+        "identity_mode": "existence"
+      },
+      {
         "path": "review/site-v1-20261003-v8-captures/captures.json",
         "identity_mode": "content",
         "sha256": "71f33bd5904fa7b6595267c2a92409a4340e37338c12338d572e6ab9d1c11c79"
@@ -1896,6 +1960,11 @@
         "identity_mode": "existence"
       },
       {
+        "path": "review/site-v1-offline-bundle-v10.json",
+        "identity_mode": "content",
+        "sha256": "dbac8f1816f237edd0ad6cf6b41e6be13f9afa0141ddb066413a29e3969ef0a1"
+      },
+      {
         "path": "review/site-v1-offline-bundle-v3.json",
         "identity_mode": "content",
         "sha256": "82b24ccae48d37ff14b7a4fc2122bdd7e96c42fbadfd1d14c48971bb410b1695"
@@ -1938,6 +2007,11 @@
         "path": "review/site-v1-review.json",
         "identity_mode": "content",
         "sha256": "72a12e742ddf66d1ec68770dcb69a4553713265bdeb175a24d6c0c33ac4a4f7b"
+      },
+      {
+        "path": "review/site-v1-static-previews-v10.json",
+        "identity_mode": "content",
+        "sha256": "52220834969162d415867393f78c2979ba353cee41f7ee16580f03f89f7c174d"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -2149,6 +2223,11 @@
         "sha256": "2ee6b2072152267a801a1958f9ba0765f7978727135ec4e973aa72b19c87b2ff"
       },
       {
+        "path": "review/sol-visual-v11-20261003/EXECUTION.md",
+        "identity_mode": "content",
+        "sha256": "5731d70ce0ba91d0990b5ed560749ef6a449ec795fac754794c6eac813a92efe"
+      },
+      {
         "path": "review/sol-visual-v11-20261003/INPUT-MANIFEST.json",
         "identity_mode": "content",
         "sha256": "1c1a48a1d333a381b48a9e2e632abc85b0efe3b31ab98623611912f26db71e54"
@@ -2157,6 +2236,11 @@
         "path": "review/sol-visual-v11-20261003/PREPARATION-CHECKS.md",
         "identity_mode": "content",
         "sha256": "de344b289c7ad65a8d848b83e9a45bf0bc747b9943f582029dd65ba86f0926ed"
+      },
+      {
+        "path": "review/sol-visual-v11-20261003/SEO-PRESERVATION.md",
+        "identity_mode": "content",
+        "sha256": "cc5a284b444c810f22e7550f7c72072894f3903d198cbfd744cfac2d95b7b90a"
       },
       {
         "path": "review/sol-visual-v11-20261003/SOL-TASKS.md",
@@ -2215,6 +2299,10 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tests/executive.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tests/preview.test.cjs",
         "identity_mode": "existence"
       },
@@ -2252,12 +2340,12 @@
       {
         "path": "tools/build_site_bundle.py",
         "identity_mode": "content",
-        "sha256": "064710f81f684d88f14ce008c18fe9d36555c533d16d54b302014d411115c0f0"
+        "sha256": "959007f7b9ea634aa6f69d091590c95fa1334eab0a8f8613ba15e3d927c1ef45"
       },
       {
         "path": "tools/build_site_contact_sheets.py",
         "identity_mode": "content",
-        "sha256": "ae3e35cbd03cb39a478cf8ab1e254ba7e9c5f5e4fa147824f60798193f8fcf60"
+        "sha256": "2b4b1ca9cea0ce6a5befe7b15fd55f849d4ae6f4b6575adcd3d4aede60ed7aa4"
       },
       {
         "path": "tools/build_site_previews.cjs",
@@ -2269,6 +2357,10 @@
       },
       {
         "path": "tools/check_site_contrast.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/check_site_seo.cjs",
         "identity_mode": "existence"
       },
       {
@@ -3044,6 +3136,13 @@
       ]
     },
     {
+      "path": "review/site-v1-offline-bundle-v10.json",
+      "title": "review/site-v1-offline-bundle-v10.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "review/site-v1-offline-bundle-v3.json",
       "title": "review/site-v1-offline-bundle-v3.json",
       "instructions": [
@@ -3095,6 +3194,13 @@
     {
       "path": "review/site-v1-review.json",
       "title": "review/site-v1-review.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-v1-static-previews-v10.json",
+      "title": "review/site-v1-static-previews-v10.json",
       "instructions": [
         "AGENTS.md"
       ]
@@ -3359,6 +3465,13 @@
       ]
     },
     {
+      "path": "review/sol-visual-v11-20261003/EXECUTION.md",
+      "title": "Executive site implementation checkpoint — 2026-10-03",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "review/sol-visual-v11-20261003/INPUT-MANIFEST.json",
       "title": "review/sol-visual-v11-20261003/INPUT-MANIFEST.json",
       "instructions": [
@@ -3368,6 +3481,13 @@
     {
       "path": "review/sol-visual-v11-20261003/PREPARATION-CHECKS.md",
       "title": "Handoff preparation checks — 2026-10-03",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/sol-visual-v11-20261003/SEO-PRESERVATION.md",
+      "title": "SEO/content reconciliation — implementation, 2026-10-03",
       "instructions": [
         "AGENTS.md"
       ]

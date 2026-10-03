@@ -227,14 +227,21 @@ test("crossing the near plane cannot jump a face's centroid, fog or depth order"
 });
 test("fog is bounded, smooth and monotone and surfaces/outlines use the same depth factor",()=>{
   let previous=1;
-  for(let z=-10;z<=120;z+=.1){const v=model.depthVisibility(z);assert.ok(v>=.06-1e-12&&v<=1);assert.ok(v<=previous+1e-12);previous=v;}
-  assert.equal(model.depthVisibility(12),1);assert.ok(Math.abs(model.depthVisibility(100)-.06)<1e-12);
-  for(const edge of[12,100])assert.ok(Math.abs(model.depthVisibility(edge-1e-3)-model.depthVisibility(edge+1e-3))<1e-8);
+  for(let z=-10;z<=120;z+=.1){const v=model.depthVisibility(z);assert.ok(v>=.0355-1e-12&&v<=1);assert.ok(v<=previous+1e-12);previous=v;}
+  assert.equal(model.depthVisibility(8),1);assert.ok(Math.abs(model.depthVisibility(100)-.0355)<1e-12);
+  for(const edge of[8,100])assert.ok(Math.abs(model.depthVisibility(edge-1e-3)-model.depthVisibility(edge+1e-3))<1e-8);
+  for(const sample of require('../review/sol-visual-v11-20261003/design-settings.json').fog.samples)assert.ok(Math.abs(model.depthVisibility(sample.cameraDepth)-sample.acceptedVisibility)<1e-11);
   const w=model.worldFor("writing");w.objects=w.objects.filter(o=>o.depth===0);
   for(const shape of model.projectedWorld(w,model.poses.library,1440,900,6000).filter(s=>s.kind==="face")){
     const f=w.faces[shape.material],haze=model.depthVisibility(shape.depth);
     assert.ok(Math.abs(shape.alpha-(f.opacity??.82)*haze)<1e-12);assert.ok(Math.abs(shape.edgeAlpha-(f.edgeAlpha??.36)*haze)<1e-12);
   }
+});
+test("atmosphere shares the finite 24-second phase with continuous position and velocity",()=>{
+  for(const time of [0,175,6000,18345,23999])assert.deepEqual(model.atmosphereState(time),model.atmosphereState(time+model.LOOP_MS));
+  const a=model.atmosphereState(-.01),b=model.atmosphereState(.01);
+  for(const key of ['x','y','light'])assert.ok(Math.abs(a[key]-b[key])<.0001);
+  assert.doesNotMatch(source,/setInterval|\.animate\(/);
 });
 test("all pulse envelopes preserve inverse transforms, conservative bounds and immutable rest coordinates",()=>{
   for(const page of Object.keys(model.initialPoses)){

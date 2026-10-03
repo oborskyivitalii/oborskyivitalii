@@ -4,7 +4,7 @@
 const fs=require("node:fs"),path=require("node:path"),http=require("node:http"),assert=require("node:assert/strict"),crypto=require("node:crypto");
 const os=require("node:os");
 const {chromium}=require(process.env.SITE_REVIEW_PLAYWRIGHT||"playwright");
-const root=path.resolve(__dirname,".."),out=path.join(root,"review/site-v1-20261003-v9-captures");
+const root=path.resolve(__dirname,".."),out=path.join(root,"review/site-v1-20261003-v10-captures");
 const publicRoot=path.resolve(process.env.SITE_PUBLIC_DIR||path.join(root,"docs"));
 const pages=["index","research","writing","talks","credits"],digest=value=>crypto.createHash("sha256").update(value).digest("hex");
 const publicSources=()=>Object.fromEntries([".nojekyll","archive.js","credits.html","index.html","research.html","space.js","styles.css","talks.html","theme.js","writing.html","assets/favicon.svg","assets/vitalii-oborskyi.jpg","assets/vitalii-oborskyi-cutout.webp"].map(p=>[`docs/${p}`,digest(fs.readFileSync(path.join(publicRoot,p)))]));
@@ -136,7 +136,7 @@ async function behavior() {
   return results;
 }
 async function recordings() {
-  const temporaryVideos=fs.mkdtempSync(path.join(os.tmpdir(),"site-v9-video-"));
+  const temporaryVideos=fs.mkdtempSync(path.join(os.tmpdir(),"site-v10-video-"));
   for(const route of pages) {
     const ctx=await context("night",{width:1440,height:900},{recordVideo:{dir:temporaryVideos,size:{width:1440,height:900}}}),page=await ctx.newPage();
     await visit(page,route);await page.waitForTimeout(2000);
@@ -164,7 +164,7 @@ async function recordings() {
     await matrix();
     const checks=await behavior();await recordings();assert.deepEqual(publicSources(),sources,"source changed during capture");
     const files=Object.fromEntries(fs.readdirSync(out).filter(name=>/\.(png|webm)$/.test(name)).map(name=>[name,digest(fs.readFileSync(path.join(out,name)))]));
-    fs.writeFileSync(path.join(out,"captures.json"),JSON.stringify({edition:"v9",captured_at:new Date().toISOString(),baseline_ref:process.env.SITE_CANDIDATE_SHA||"candidate working tree",source_state:"candidate working tree; exact public_sources hashes",browser:browser.version(),public_sources:sources,views:summary,checks,files,recording_delivery:require("./compact_site_recordings.cjs").delivery,limits:["Headless Linux Chromium; mobile viewport/touch emulation, not physical phone hardware.","200% CSS zoom tested; native browser zoom UI not tested.","Native hidden-tab switching and a real print dialog not observed; print lifecycle dispatched and print CSS inspected separately.","Frame callback timings include review instrumentation and are observations of this machine, not a device/FPS guarantee."]},null,2)+"\n");
+    fs.writeFileSync(path.join(out,"captures.json"),JSON.stringify({edition:"v10",captured_at:new Date().toISOString(),baseline_ref:process.env.SITE_CANDIDATE_SHA||"candidate working tree",source_state:"candidate working tree; exact public_sources hashes",browser:browser.version(),public_sources:sources,views:summary,checks,files,recording_delivery:require("./compact_site_recordings.cjs").delivery,limits:["Headless Linux Chromium; mobile viewport/touch emulation, not physical phone hardware.","200% CSS zoom tested; native browser zoom UI not tested.","Native hidden-tab switching and a real print dialog not observed; print lifecycle dispatched and print CSS inspected separately.","Frame callback timings include review instrumentation and are observations of this machine, not a device/FPS guarantee."]},null,2)+"\n");
     process.stdout.write("Complete browser matrix, behavior and five real motion recordings saved.\n");
   } finally {if(browser)await browser.close();server.close();}
 })().catch(error=>{process.stderr.write(error.stack+"\n");process.exitCode=1;});
