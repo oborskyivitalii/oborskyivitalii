@@ -1,5 +1,16 @@
 # Vitalii Oborskyi — site and publishing roadmap
 
+## Engineering and release follow-up — 2026-10-03
+
+The v8 [audit](review/site-audit-v8-20261003/REPORT.md) is complete under #12;
+its runtime fixes remain pending in [Sol tasks](review/site-audit-v8-20261003/SOL-TASKS.md).
+The maintainer requires these checks to recur in future production releases.
+New [issue #13](https://github.com/oborskyivitalii/oborskyivitalii/issues/13) owns
+[the release contract](SITE-RELEASE-GATES.md): fix/reverify → implement PR/full
+release gates → #7/#8 acceptance and gated activation → deployed-edition checks.
+Draft PR #10 remains the implementation vehicle. This is a prepared task, not
+enabled pipeline or deployment; earlier completed-iteration entries are historical.
+
 ## Current v8 — living thematic environments, 2026-10-03
 
 The maintainer explicitly superseded the v7 still-life and no-idle-motion limits.

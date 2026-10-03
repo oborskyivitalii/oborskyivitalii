@@ -1,5 +1,16 @@
 # Sol execution plan — reviewed 2026-10-02
 
+## Release-pipeline requirement — maintainer request, 2026-10-03
+
+The maintainer now requires the demonstrated audit to become recurring checks for
+future production releases. [Issue #13](https://github.com/oborskyivitalii/oborskyivitalii/issues/13)
+and [SITE-RELEASE-GATES](SITE-RELEASE-GATES.md) own the implementation contract.
+First fix #12's S1–S4 findings, then promote validated reproducers and measurements
+into maintained PR/release checks. Continue Draft PR #10 while it is the active
+candidate. The new contract supersedes S4's earlier optional-small-CI scope.
+This preparation implements neither those fixes nor the new pipeline. Keep #8's
+hosting activation separate, while preparing same-artifact deployment gating.
+
 ## Latest engineering follow-up — maintainer request, 2026-10-03
 
 The maintainer likes the general v8 result and requested established-tool and
@@ -523,7 +534,7 @@ the actual URL decision under #8, then test correct absolute values.
 | [#7](https://github.com/oborskyivitalii/oborskyivitalii/issues/7) | Review actual candidate sources, portrait/derivative attribution and rights; record license scope. Supplied photo is authorized for the candidate, so do not repeatedly ask to use it. Do not invent a broad reuse license. |
 | [#8](https://github.com/oborskyivitalii/oborskyivitalii/issues/8) | Choose permanent URL/hosting before publication; English is already settled. After that choice, implement canonicals/social URLs/images/sitemap and query canonical policy before deployment. Review metadata must not leak noindex into production. |
 | #9 → #10 | Only after applicable merge/release authorization: merge #9 first, retarget #10 to main, inspect resulting diff and rerun checks. Rebase if needed without discarding newer work; do not treat old-base CI as new-base acceptance. |
-| #8 deployment | Configure the authorized Pages source main:/docs through an available approved capability or record the exact owner action. Verify live URL, served files, deployed commit, links and robots/indexability; then record release evidence in #1/#8. Search Console verification/measurement follows available owner access. Search-engine indexing timing is not a reason to claim failed deployment or to hold back unrelated work. |
+| #8 deployment | After hosting activation is authorized, deploy the exact public artifact through #13's required release gate. If Pages is selected, configure Actions-based deployment rather than automatic branch publication. Verify live URL, served digests, deployed commit, links, headers and robots/indexability; then record release evidence in #1/#8/#13. Search Console verification/measurement follows available owner access. Search-engine indexing timing is not a reason to claim failed deployment or to hold back unrelated work. |
 | [#2](https://github.com/oborskyivitalii/oborskyivitalii/issues/2) | Next publication after first launch: PMDay blueprint/manuscript and the selected, inspected slide/PDF edition. Do not assume v33 is still the latest or release UA PR #113 by implication. |
 | [#11](https://github.com/oborskyivitalii/oborskyivitalii/issues/11) | Later original delivery and production-governance guides. Check PMDay overlap first. Manual query/page/conversation review about 4–6 weeks after indexing; no automation has been created. |
 | #5 / #6 | Publisher migration and broader cross-repository harness are independent follow-ups, not launch or PMDay prerequisites. |

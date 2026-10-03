@@ -1,5 +1,16 @@
 # Issue backlog audit — 2026-10-01
 
+## Engineering follow-up — 2026-10-03
+
+- [#12](https://github.com/oborskyivitalii/oborskyivitalii/issues/12): completed v8
+  audit; [S1–S4 runtime fixes and re-verification](review/site-audit-v8-20261003/SOL-TASKS.md) remain pending.
+- [#13](https://github.com/oborskyivitalii/oborskyivitalii/issues/13): turn that
+  evidence into recurring security/quality/performance/platform release checks;
+  [implementation contract](SITE-RELEASE-GATES.md) is prepared, not implemented.
+- Continue Draft PR #10, then the existing #7/#8 launch acceptance and gated
+  deployment sequence. These tasks do not duplicate cross-repository harness #6
+  or publishing migration #5.
+
 ## Current execution checkpoint — 2026-10-02
 
 The dated audit below is historical. Current work is in Draft PR #9 (workflow/RI,

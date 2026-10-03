@@ -18,6 +18,18 @@
   ],
   "owners": [
     {
+      "concern": "site security, quality, performance and platform release gates",
+      "path": "SITE-RELEASE-GATES.md",
+      "queries": [
+        "release pipeline",
+        "quality gates",
+        "security audit",
+        "performance budget",
+        "пайплайн релізу",
+        "перевірки перед релізом"
+      ]
+    },
+    {
       "concern": "next site iteration and Sol execution",
       "path": "SOL-HANDOFF.md",
       "queries": [

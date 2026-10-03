@@ -8,6 +8,13 @@ and current live issue/PR state first. Audit baseline is remote
 `1bec5de6726283a830c97979350c3b8b25d7c28c`. Audit files are evidence, not a new
 rendering implementation. Preserve newer unrelated work and historical v8 evidence.
 
+**Maintainer amendment, 2026-10-03:** recurring production release checks are now
+required under [issue #13](https://github.com/oborskyivitalii/oborskyivitalii/issues/13)
+and [SITE-RELEASE-GATES](../../SITE-RELEASE-GATES.md). S1–S4 below remain the concrete
+runtime remediation sequence; the release contract expands S4's earlier small-CI
+suggestion. Continue PR #10, fix and remeasure first, then implement the reusable
+gates. Preserve the original v8 reports and create new candidate results separately.
+
 The maintainer likes the general design. Preserve eight thematic motifs per route,
 recognizable recursive environments, native scroll-through camera, periodic
 48-second ambient articulation, Day/Night, content/links and useful static display.
@@ -91,10 +98,11 @@ do not label callback cadence as display FPS or battery measurements.
    breakpoints and print. Do not automatically reorder specificity warnings.
 3. Correct Writing's generic-div ARIA label; inspect decorative wordmark naming
    and provide a local favicon. Test unfiltered and filtered archive states.
-4. Turn a small useful subset of the demonstrated audit into pinned CI checks:
-   parser/undefined/unused errors, reviewed security rules, source/asset budgets,
-   targeted regressions and an available-engine smoke test. Keep full performance
-   runs separate if runner noise makes a score unsuitable as a hard gate.
+4. Implement the required PR and release stages from
+   [SITE-RELEASE-GATES](../../SITE-RELEASE-GATES.md): pinned security/quality tools,
+   deterministic budgets, all three browser engines, release OS coverage, repeated
+   startup and sustained-motion measurements, and same-artifact deployment gating.
+   Raw metric gates, coverage and valid evidence matter more than a single score.
 5. Record scope-based scanner suppressions with reasons. Scanner alarms on trusted
    VM fixtures or styling conventions are not confirmed runtime vulnerabilities.
 
@@ -112,3 +120,6 @@ do not label callback cadence as display FPS or battery measurements.
   physical-device claim. Say exactly if it was not performed.
 - Update #12 and PR #10 with intent versus outcome; no merge, deployment, URL or
   licensing decision is implied. Keep launch #1's separate release acceptance.
+- Implement and report the reusable checks under #13 after the fix regressions
+  are valid. Prove that missing reports, invalid probes and controlled failures
+  block release; keep physical-device/hosted-origin evidence honest and explicit.

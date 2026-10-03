@@ -125,6 +125,15 @@ Preserve the accepted visual direction while correcting the measured reliability
 and performance findings. Do not turn scanner counts or emulation into an
 unqualified security, Safari, physical-device or performance guarantee.
 
+The maintainer's follow-up makes recurring release checks required. Read
+[SITE-RELEASE-GATES](SITE-RELEASE-GATES.md), owned by #13, together with #12's
+remediation tasks. The contract is specified, not yet implemented. Future release
+work must bind security, quality, performance and platform evidence to the exact
+deployable artifact and block missing/failed mandatory checks. #8 owns activation
+of a gated deployment; direct branch publication must not bypass the checks.
+Keep historical audit results separate from new runs and record completed
+increments in their issue and PR so interruption does not erase progress.
+
 Keep substantive PRs Draft during iteration. Obtain independent review for
 substantive cross-repository process/adapter changes and editorial/rights review
 for releases. Record reviewer identity/materials/outcome and unresolved items.

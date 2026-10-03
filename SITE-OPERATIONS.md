@@ -1,5 +1,13 @@
 # First site: candidate, review and release
 
+## Required future release checks — 2026-10-03
+
+[SITE-RELEASE-GATES](SITE-RELEASE-GATES.md), owned by #13, defines recurring
+security, quality, performance and platform checks plus the deployment dependency.
+It is a Sol implementation task; the current CI still contains only the existing
+tests/export/RI jobs. Resolve #12's measured defects before calling the candidate
+ready. Passing those older jobs alone cannot satisfy the new release contract.
+
 ## Current v8 candidate — 2026-10-03
 
 The living thematic-fractal iteration is in Draft PR #10. [Execution/evidence](review/sol-visual-v8-20261003/EXECUTION.md)
@@ -119,9 +127,13 @@ physical-device, native hidden-tab or print-dialog acceptance.
    Keep review noindex outside docs/. No provisional permanent identity is invented.
 3. With explicit integration/release authorization, merge #9 first, retarget #10
    to main, inspect the new diff and rerun checks; then merge the accepted candidate.
-4. Configure authorized Pages source main:/docs using an available capability or
-   Settings → Pages → Deploy from a branch → main → /docs. Verify the served files,
-   deployed commit, live URL, links and robots/indexability before closing #1/#8.
+4. Once hosting/activation is authorized under #8, deploy the exact public artifact
+   that passed #13's required release checks. If Pages is selected, use an
+   Actions-based deployment depending on the successful release gate; automatic
+   branch publication would bypass it. Package only the public docs/ files.
+   Verify served digests, deployed commit, live URL, links, HTTPS/headers and
+   robots/indexability; complete post-deploy smoke/recovery checks before
+   declaring the release healthy or closing #1/#8.
 5. Search Console owner verification and real query measurement follow available access.
 
 Keeping the current repository yields project URL

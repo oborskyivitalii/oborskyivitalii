@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "abd468c08532af1538ba288d278debe69ef5a420c0376a70173d6eb1fc01e968",
+    "digest": "69770aadd3e6002ac7801954af49ffc2f9cfb5e892db41a34e419cf43a19db51",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -39,7 +39,7 @@
       {
         "path": ".github/repository-intelligence-config.json",
         "identity_mode": "content",
-        "sha256": "15f73732fc08d97be5f2f0f346ebc49d18310e6df8e83ce37f4577cbcad35428"
+        "sha256": "b8085835d7bbc208ae683badf4876e73adf7ee928068887c4d6b4a06dce403e8"
       },
       {
         "path": ".github/workflows/navigation.yml",
@@ -49,12 +49,12 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "b63eb94e7fb9096128e8ab4f53705769cbee1877b96c99732944aba9c2fa5694"
+        "sha256": "43b49f379cc207ea0b90adc498bbdcd196dcd023afaae8c5977dbc9a0e52c6a1"
       },
       {
         "path": "BACKLOG.md",
         "identity_mode": "content",
-        "sha256": "893b118fd26896931fa244e648442584c726d1b9ccad39da76a977008b11eef0"
+        "sha256": "d7e309b16c9e67a266dabeedeb98ca93b96d282e75d6b55ba7cd37b3f3b05442"
       },
       {
         "path": "CONTRIBUTING.md",
@@ -79,12 +79,17 @@
       {
         "path": "SITE-OPERATIONS.md",
         "identity_mode": "content",
-        "sha256": "688e614c7501ffad933116303cd5358cf3197e03a38b2ccee0be4205fdf05e3c"
+        "sha256": "7e877b78775e359d8a7f6b689b15c0b2b2542e8275f0b2f76ac65bcba7b33dd8"
+      },
+      {
+        "path": "SITE-RELEASE-GATES.md",
+        "identity_mode": "content",
+        "sha256": "affbb91d60db669ae162fa57ca2179048ad091f43da4a072094083dda0f326a3"
       },
       {
         "path": "SITE-ROADMAP.md",
         "identity_mode": "content",
-        "sha256": "4769bd66184747986a49e52829c73903591a35d5157330ffef02ec3dbec553cf"
+        "sha256": "42feb4731f9df82e03e2a0285673843669d651e1922a2a7eccad5d19bc0c9575"
       },
       {
         "path": "SITE-SEO.md",
@@ -104,7 +109,7 @@
       {
         "path": "SOL-HANDOFF.md",
         "identity_mode": "content",
-        "sha256": "efb71effbbbcc50ee9cf582317381f271b07aaec8d2faad106be39d00b3b89cd"
+        "sha256": "d18d2dc167cbb30e5483a5c49bfb22dec207da492d1a94fc2ace6fd43a2ccb8a"
       },
       {
         "path": "docs/.nojekyll",
@@ -248,7 +253,7 @@
       {
         "path": "review/site-audit-v8-20261003/SOL-TASKS.md",
         "identity_mode": "content",
-        "sha256": "d423fa33a843830644c7f868dd8a705ed56761c494dca942c85c8867e0c72592"
+        "sha256": "cc42bc827f763b88fbdd025c65225c52d349d8a1ae7514695d670cf5d48ba8d4"
       },
       {
         "path": "review/site-audit-v8-20261003/check-css-readiness.cjs",
@@ -2107,9 +2112,21 @@
     "path": "tools/repository_intelligence.py",
     "sha256": "d9cc389b40586783ee1632adbffb2cca62a262a8c89b4bb7b504c47d7822637e",
     "config_path": ".github/repository-intelligence-config.json",
-    "config_sha256": "15f73732fc08d97be5f2f0f346ebc49d18310e6df8e83ce37f4577cbcad35428"
+    "config_sha256": "b8085835d7bbc208ae683badf4876e73adf7ee928068887c4d6b4a06dce403e8"
   },
   "owners": [
+    {
+      "concern": "site security, quality, performance and platform release gates",
+      "path": "SITE-RELEASE-GATES.md",
+      "queries": [
+        "release pipeline",
+        "quality gates",
+        "security audit",
+        "performance budget",
+        "пайплайн релізу",
+        "перевірки перед релізом"
+      ]
+    },
     {
       "concern": "next site iteration and Sol execution",
       "path": "SOL-HANDOFF.md",
@@ -2311,6 +2328,13 @@
     {
       "path": "SITE-OPERATIONS.md",
       "title": "First site: candidate, review and release",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "SITE-RELEASE-GATES.md",
+      "title": "Site release checks — Sol implementation contract",
       "instructions": [
         "AGENTS.md"
       ]
