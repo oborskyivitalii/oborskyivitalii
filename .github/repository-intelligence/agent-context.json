@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "3413a71ae2c79dcc55edf50755fa85e486be540d4de8679158acbbc87214c902",
+    "digest": "377d85d088912927b39ab4731c6becf25a693a59e551dc4e7ec066a00083a4e6",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -73,7 +73,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "aa4bb71005c1676c78d1293f9d9adf1a1e09aba54aa616a55b4c1ac4647d0a8f"
+        "sha256": "08c3d163319de025a6826539e7536066dd219b5c7ab0950a313bb94886011aa5"
       },
       {
         "path": "BACKLOG.md",
@@ -103,12 +103,12 @@
       {
         "path": "SITE-OPERATIONS.md",
         "identity_mode": "content",
-        "sha256": "f9fbfaba4c80e3bcb6fe0b3bdb83d9b1e95fccf744ee6403e7ca026d7577a1dd"
+        "sha256": "769080378e5fba804b3bb580fcf110a22de94c9d701898b157a4d02bd2c6883b"
       },
       {
         "path": "SITE-RELEASE-GATES.md",
         "identity_mode": "content",
-        "sha256": "6f1fc5456eb33b6e9e577a0110692c30a61d7e6b13b69df9af21725934005593"
+        "sha256": "414165599e6fb4569f552cd76a08fa542c3fb0a0e0a012ed7d9d60ba72c72f2d"
       },
       {
         "path": "SITE-ROADMAP.md",
@@ -126,6 +126,11 @@
         "sha256": "d0b1cebe7c79e11776c9041719280aaa199dbbebea997812dce2d2410add777e"
       },
       {
+        "path": "SITE-STAGING.md",
+        "identity_mode": "content",
+        "sha256": "9d9ce2e34c96a640ca8c71528393c4fb45b2ddbfe59d80c836dd9140c852a777"
+      },
+      {
         "path": "SITE-VISUAL-REVIEW.md",
         "identity_mode": "content",
         "sha256": "5735dd9ce88d944cdb7d79d2b368a56939f88d7ed0b91d9ffc0378351efa5380"
@@ -133,7 +138,7 @@
       {
         "path": "SOL-HANDOFF.md",
         "identity_mode": "content",
-        "sha256": "7abf8912adce59992e4d54fe6a97be79c05b8c098c74a4c2c68129e9218657b1"
+        "sha256": "0702208e7918d0d4a22f27f0da43d1072bb7e5da48670ab3f4624c91a9820153"
       },
       {
         "path": "docs/.nojekyll",
@@ -2656,6 +2661,13 @@
     {
       "path": "SITE-SOURCE-AUDIT.md",
       "title": "Source audit for the first-site revision",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "SITE-STAGING.md",
+      "title": "Browser staging — Sol implementation plan",
       "instructions": [
         "AGENTS.md"
       ]

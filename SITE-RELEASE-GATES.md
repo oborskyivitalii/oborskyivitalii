@@ -1,5 +1,19 @@
 # Site release checks — Sol implementation contract
 
+## Browser staging amendment — 2026-10-03
+
+The maintainer now requests hosted staging as part of the current site work.
+Read [SITE-STAGING](SITE-STAGING.md): #8 owns hosting, #14 owns the visual
+iteration, and Draft PR #10 implements both. Set up a dedicated test host and
+return one working whole-site URL plus a version URL. Cloudflare Pages Direct
+Upload through the existing CI is the recommended default. Establish the baseline
+preview early, then update it as the design progresses. This authorizes staging
+setup/updates and supersedes earlier blanket no-deployment wording for staging
+only. Production/merge/domain/payment decisions remain separate. Preserve #13's
+production gate; staging uses successful PR checks and hosted smoke checks so
+missing final device/visual acceptance does not block the review environment.
+This amendment is a plan, not a claim that hosting has already been provisioned.
+
 Owner: [issue #13](https://github.com/oborskyivitalii/oborskyivitalii/issues/13).
 Runtime fixes: [#12](https://github.com/oborskyivitalii/oborskyivitalii/issues/12)
 and [S1–S4](review/site-audit-v8-20261003/SOL-TASKS.md).
