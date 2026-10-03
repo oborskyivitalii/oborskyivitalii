@@ -61,6 +61,20 @@ test('paint intervals use actual painted callback starts and expose a cheap but 
   const none=summarize({frames:[],elapsed:1000,start:0,end:1000,longTasks:[]},'off');
   assert.equal(none.paintRateHz,0);assert.deepEqual(none.paintIntervalsMs,{count:0,p50:null,p95:null,max:null});
 });
+test('capture camera settling requires two real stable paints and rejects stalls/nonconvergence',async()=>{
+  const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
+  const source=fs.readFileSync(path.join(__dirname,'../tools/capture_site_review.cjs'),'utf8');
+  const start=source.indexOf('async function settledCamera(page)'),end=source.indexOf('\nasync function visit(',start);
+  assert.ok(start>=0&&end>start);
+  function probe(mode){
+    let time=0,paints=0;const poses=['start','moving-1','moving-2','end','end','end'];
+    const context={Date:{now:()=>time},poseTrace:async()=>mode==='changing'?String(paints):poses[Math.min(paints,poses.length-1)],nextPaint:async(_,timeout)=>{assert.ok(timeout>0&&timeout<=1500);if(mode==='stalled')throw Error('Controlled no next paint');time+=Math.min(100,timeout);paints++;}};
+    const fn=vm.runInNewContext(source.slice(start,end)+'\nsettledCamera',context);
+    return {run:()=>fn({}),paints:()=>paints};
+  }
+  const stable=probe('stable');assert.equal(await stable.run(),'end');assert.equal(stable.paints(),5);
+  await assert.rejects(probe('changing').run(),/did not settle/);await assert.rejects(probe('stalled').run(),/no next paint/);
+});
 function fullFixture(){
   const x=fixture();x.full=true;for(const job of ['native','performance','captures'])x.jobs[job]={result:'success'};
   for(const [platform,engines]of [['win32',['chromium','firefox']],['darwin',['webkit']]]){

@@ -63,3 +63,17 @@ source/artifact identity, independent outcome, captures and remaining limitation
 are recorded in #12/#1 and PR #10 after verification. v9 export filenames remain
 the maintained handoff interface; historical 4c3589f handoff/evidence are preserved
 separately. No merge, deployment or physical-device acceptance is implied.
+
+### First exact-source CI and capture follow-up
+
+Candidate `db68dffcee3043425105b96704ce7cae59a16bc1` started full run
+[37133169239](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37133169239).
+Build/static and native Windows/macOS smoke passed; its 20 opening captures
+passed. The later pointer-neutrality check sampled an unfinished camera flight
+after only 230 ms, then mistook continuing convergence for pointer movement.
+Capture tooling now requires two genuinely painted frames with identical camera
+state, within a bounded three-second convergence window, before pointer/reflow
+comparisons. Exact pose assertions and mandatory positive paint probes remain;
+controlled tests reject stalled paints and nonconverging camera state. The public
+renderer and artifact digest remain unchanged. The corrected tool commit requires
+a new exact-source full run; this first partial run is retained as history.

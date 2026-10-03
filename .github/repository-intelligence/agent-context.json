@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "0b1017b15def39d3adab83a26d614b32219bacab50b4dabf0b5c46a1e74744c1",
+    "digest": "1998ca4f8df03dad449e9d049d9e041908fa9f102405c8328514168cee48a474",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -2136,7 +2136,7 @@
       {
         "path": "review/sol-visual-v10-20261003/CHECKPOINT.md",
         "identity_mode": "content",
-        "sha256": "b145a6d25e57469745d0e14be67c7e999f24fa09f3e9bb216c131cf2dffe616d"
+        "sha256": "119b3762a3d292a90a8ba552705868a6dcc79a119acb7bc2b747876e0f1fb228"
       },
       {
         "path": "review/sol-visual-v10-20261003/INDEPENDENT-REVIEW.md",

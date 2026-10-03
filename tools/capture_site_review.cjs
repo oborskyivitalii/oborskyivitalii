@@ -29,11 +29,11 @@ const pixelTrace=page=>page.evaluate(()=>document.getElementById("space-canvas")
 const idle=page=>page.waitForTimeout(230);
 const overflow=page=>page.evaluate(()=>({width:innerWidth,scrollWidth:document.documentElement.scrollWidth,overflow:document.documentElement.scrollWidth>innerWidth+1}));
 const summary=[];let browser,base;
-async function nextPaint(page) {
+async function nextPaint(page,timeout=1500) {
   const before=await page.evaluate(()=>({draws:window.__review.draws,phase:document.querySelector('.space-scene').dataset.phase}));
   const start=Date.now();
   try {
-    await page.waitForFunction(count=>window.__review.draws>count,before.draws,{polling:50,timeout:1500});
+    await page.waitForFunction(count=>window.__review.draws>count,before.draws,{polling:50,timeout});
   }catch(error){
     const observed=await page.evaluate(()=>({draws:window.__review.draws,callbacks:window.__review.frames.length,hidden:document.hidden,motion:document.querySelector('#space-motion').textContent,scene:{...document.querySelector('.space-scene').dataset}}));
     throw Error(`No next ambient paint: ${JSON.stringify({before,elapsedMs:Date.now()-start,observed})}`,{cause:error});
@@ -41,6 +41,16 @@ async function nextPaint(page) {
   const after=await page.evaluate(()=>({draws:window.__review.draws,phase:document.querySelector('.space-scene').dataset.phase}));
   assert.ok(after.draws>before.draws,'ambient drawing continues');assert.notEqual(after.phase,before.phase,'ambient phase advances');
   return {elapsedMs:Date.now()-start,paints:after.draws-before.draws};
+}
+async function settledCamera(page) {
+  const start=Date.now();let previous=await poseTrace(page),same=0;
+  while(true){
+    const remaining=3000-(Date.now()-start);
+    if(remaining<=0)throw Error("Camera did not settle within 3000ms");
+    await nextPaint(page,Math.min(1500,remaining));
+    const current=await poseTrace(page);same=current===previous?same+1:0;previous=current;
+    if(same>=2)return current;
+  }
 }
 async function visit(page,route){
   await page.goto(`${base}/docs/${route}.html`);await page.bringToFront();
@@ -96,12 +106,12 @@ async function behavior() {
     await page.evaluate(()=>window.dispatchEvent(new Event("beforeprint")));await page.mouse.wheel(0,300);await page.evaluate(()=>window.dispatchEvent(new Event("afterprint")));await idle(page);assert.equal(await poseTrace(page),fixed,`${route} print return preserves frozen pose`);
     await page.keyboard.press("Escape");assert.equal(await page.locator(".appearance").evaluate(el=>el.open),false);assert.equal(await page.locator(".appearance summary").evaluate(el=>el===document.activeElement),true);
     await page.setViewportSize({width:1440,height:900});await page.locator(".appearance summary").click();await page.locator("#space-motion").click();await idle(page);
-    const still=await poseTrace(page);await page.mouse.move(200,200);await page.mouse.move(1100,600);await nextPaint(page);assert.equal(await poseTrace(page),still);
+    const still=await settledCamera(page);await page.mouse.move(200,200);await page.mouse.move(1100,600);await nextPaint(page);assert.equal(await poseTrace(page),still);
     results[route]="Off during movement, theme/resize/print freeze, Escape/focus and pointer neutrality passed";
   }
   // Writing reflow/restoration, real history and print behavior.
   await visit(page,"writing");await page.locator("#archive-topic").selectOption("systems");await idle(page);await page.mouse.wheel(0,1000);await idle(page);
-  const before=await poseTrace(page);await page.locator("#archive-year").selectOption("2025");await idle(page);assert.equal(await poseTrace(page),before,"year-only reflow keeps progress");
+  const before=await settledCamera(page);await page.locator("#archive-year").selectOption("2025");await idle(page);assert.equal(await poseTrace(page),before,"year-only reflow keeps progress");
   await page.evaluate(()=>window.dispatchEvent(new Event("scroll")));await idle(page);assert.equal(await poseTrace(page),before,"first unchanged scroll does not reset progress");
   await page.locator("#archive-topic").selectOption("delivery");await page.locator("#archive-language").selectOption("uk");await idle(page);assert.equal(await page.locator("#archive-empty").isVisible(),true);
   await page.evaluate(()=>window.dispatchEvent(new Event("beforeprint")));assert.equal(await page.locator("li.publication:visible").count(),27);await page.evaluate(()=>window.dispatchEvent(new Event("afterprint")));assert.equal(await page.locator("li.publication:visible").count(),0);
