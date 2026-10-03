@@ -45,13 +45,21 @@ test('Lighthouse uses all three metric medians and rejects missing/mislabeled ru
   const profile=structuredClone(r);profile.rows[0].configSettings.formFactor='desktop';assert.throws(()=>lighthouse(profile));
   const fail=structuredClone(r);fail.rows[1].metrics['largest-contentful-paint'].numericValue=10000;assert.throws(()=>lighthouse(fail));
 });
-function measurement(kind,startMs=0){const zero=['off','reduced'].includes(kind),elapsedMs=kind==='idle'?30000:1000;return {kind,elapsedMs,window:{startMs,endMs:startMs+elapsedMs},callbacks:zero?0:1,paints:zero?0:1,rawFrames:zero?[]:[{time:startMs+1,started:startMs+1,duration:10,painted:true}],paintCallbackMs:{p50:zero?null:10,p95:zero?null:10,max:zero?null:10},callbackBusyPercent:zero?0:10/elapsedMs*100,state:'active'};}
+function measurement(kind,startMs=0){const zero=['off','reduced'].includes(kind),elapsedMs=kind==='idle'?30000:1000;return {kind,elapsedMs,window:{startMs,endMs:startMs+elapsedMs},callbacks:zero?0:1,paints:zero?0:1,rawFrames:zero?[]:[{time:startMs+1,started:startMs+1,duration:10,painted:true}],paintRateHz:zero?0:1000/elapsedMs,paintIntervalsMs:{count:0,p50:null,p95:null,max:null},paintCallbackMs:{p50:zero?null:10,p95:zero?null:10,max:zero?null:10},callbackBusyPercent:zero?0:10/elapsedMs*100,state:'active'};}
 function motionFixture(){return {samples:budgets.routes.flatMap(route=>[[1440,1],[390,1],[390,4]].map(([width,rate])=>({route,width,rate,positiveProbe:true,errors:[],measurements:['idle','scroll','off','reduced'].map(kind=>measurement(kind))}))),soak:{route:'writing',durationSeconds:300,chunks:Array.from({length:10},(_,i)=>measurement('idle',i*30000)),off:measurement('off',300000),errors:[],startHeapBytes:100,endHeapBytes:110}};}
 test('motion requires positive paints, every profile, real raw samples and settled zero work',()=>{
   const r=motionFixture();
   assert.equal(motion(r),true);
-  const mutate=[x=>x.samples[0].positiveProbe=false,x=>x.samples.pop(),x=>x.samples[0].measurements[2].callbacks=1,x=>x.samples[2].measurements[0].paintCallbackMs.p95=40,x=>x.samples[2].measurements[0].rawFrames[0].duration=1000,x=>x.soak.chunks.pop(),x=>x.soak.chunks[1]=structuredClone(x.soak.chunks[0])];
+  const mutate=[x=>x.samples[0].positiveProbe=false,x=>x.samples.pop(),x=>x.samples[0].measurements[2].callbacks=1,x=>x.samples[2].measurements[0].paintCallbackMs.p95=40,x=>x.samples[2].measurements[0].rawFrames[0].duration=1000,x=>x.samples[0].measurements[0].paintIntervalsMs.p95=1,x=>x.samples[0].measurements[0].paintRateHz=30,x=>x.soak.chunks.pop(),x=>x.soak.chunks[1]=structuredClone(x.soak.chunks[0])];
   for(const fn of mutate){const x=structuredClone(r);fn(x);assert.throws(()=>motion(x));}
+});
+test('paint intervals use actual painted callback starts and expose a cheap but uneven trace',()=>{
+  const {summarize}=require('../tools/quality/motion.cjs');
+  const frames=[{time:0,started:1,duration:1,painted:true},{time:16,started:17,duration:.1,painted:false},{time:33,started:34,duration:2,painted:true},{time:83,started:84,duration:3,painted:true},{time:116,started:117,duration:4,painted:true}];
+  const row=summarize({frames,elapsed:1000,start:0,end:1000,longTasks:[]},'idle');
+  assert.deepEqual(row.paintIntervalsMs,{count:3,p50:33,p95:50,max:50});assert.equal(row.paintRateHz,4);assert.equal(row.paintCallbackMs.p95,4);
+  const none=summarize({frames:[],elapsed:1000,start:0,end:1000,longTasks:[]},'off');
+  assert.equal(none.paintRateHz,0);assert.deepEqual(none.paintIntervalsMs,{count:0,p50:null,p95:null,max:null});
 });
 function fullFixture(){
   const x=fixture();x.full=true;for(const job of ['native','performance','captures'])x.jobs[job]={result:'success'};

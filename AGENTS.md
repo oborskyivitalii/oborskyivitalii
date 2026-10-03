@@ -128,6 +128,12 @@ evidence remain pending; the runtime-only workflow does not establish that gate.
 
 ## Review and completion
 
+For the subsequent 2026-10-03 request about uneven animation, distance haze,
+periodic pulse and optimization, read the latest SOL-HANDOFF amendment and
+[depth/motion checkpoint](review/sol-visual-v10-20261003/CHECKPOINT.md).
+Maintain exact-source review and all existing release budgets; old v9 results
+are a baseline, not evidence for the changed renderer.
+
 For the post-v8 engineering audit and optimization request (2026-10-03), read
 [audit #12 and Sol tasks](review/site-audit-v8-20261003/SOL-TASKS.md) and its linked
 baseline evidence. The audit is complete; runtime remediation is recorded in the

@@ -488,7 +488,18 @@ body[data-page="writing"] .publication {background:color-mix(in srgb,var(--paper
   const clamp = v => Math.max(0, Math.min(1, v));
   const spline=(a,b,c,d,t)=>b.map((v,i)=>.5*((2*v)+(-a[i]+c[i])*t+(2*a[i]-5*v+4*c[i]-d[i])*t*t+(-a[i]+3*v-3*c[i]+d[i])*t*t*t));
   const LOOP_MS=24000;
+  const rates=[30,20,15,12,10,7.5];
   const owns=(value,key)=>Object.prototype.hasOwnProperty.call(value,key);
+  const smooth=v=>{const t=clamp(v);return t*t*(3-2*t);};
+  // Atmospheric perspective: a continuous loss of contrast into the page's
+  // background, shared by surfaces, seams and outlines; no per-face blur/filter.
+  const depthVisibility=z=>1-.94*smooth((z-12)/88);
+  const followCamera=(from,to,dt)=>mix(from,to,1-Math.exp(-Math.max(0,dt)/32));
+  const cadenceFor=(cost,compact,camera=false)=>rates.find(rate=>cost*rate<=(camera?(compact ? 0.4 : 0.55):(compact ? 0.17 : 0.38))*1000)||rates.at(-1);
+  function nextDeadline(deadline,time,interval) {
+    const next=(deadline??time)+interval;
+    return next<=time+.5?time+interval:next;
+  }
   // Authored spline waypoints pass through the open centres of successive structures.
   function journeyPose(ids,progress) {
     const path=ids.map(id=>poses[id]);
@@ -822,25 +833,37 @@ body[data-page="writing"] .publication {background:color-mix(in srgb,var(--paper
   function loopTransform(object,time=0) {
     const phase=((time%LOOP_MS)+LOOP_MS)%LOOP_MS/LOOP_MS*Math.PI*2;
     const root=object.rootCenter,center=object.center,p=object.phase;
-    const breathe=1+.024*Math.sin(phase+object.root*.8);
+    const breathe=1+.065*Math.sin(phase+object.root*.8);
+    const pulse=1+.04*Math.sin(phase*2+object.root*.8);
     const a=.045*Math.sin(phase+object.root*1.2),b=.065*Math.sin(phase*2+p);
     const ca=Math.cos(a),sa=Math.sin(a),cb=Math.cos(b),sb=Math.sin(b);
     const dx=.12*Math.sin(phase*2+p),dy=.16*Math.cos(phase+p),dz=.12*Math.sin(phase+p);
     // Absolute transforms of immutable points: closure holds for position and
     // velocity, and geometry cannot drift or accumulate integration error.
+    const X=(center[0]-root[0])*breathe+dx,Y=(center[1]-root[1])*breathe+dy;
+    const animatedCenter=[root[0]+X*ca-Y*sa,root[1]+X*sa+Y*ca,root[2]+(center[2]-root[2])*breathe+dz];
+    const matrix=[pulse*ca*cb,-pulse*sa,pulse*ca*sb,pulse*sa*cb,pulse*ca,pulse*sa*sb,-pulse*sb,0,pulse*cb];
     const transform=point=>{
-      const qx=point[0]-center[0],qy=point[1]-center[1],qz=point[2]-center[2];
-      const x=qx*cb+qz*sb,y=qy,z=-qx*sb+qz*cb;
-      const X=(center[0]-root[0])*breathe+x+dx,Y=(center[1]-root[1])*breathe+y+dy;
-      return [root[0]+X*ca-Y*sa,root[1]+X*sa+Y*ca,center[2]+z+dz];
+      const x=point[0]-center[0],y=point[1]-center[1],z=point[2]-center[2];
+      return [animatedCenter[0]+matrix[0]*x+matrix[1]*y+matrix[2]*z,animatedCenter[1]+matrix[3]*x+matrix[4]*y+matrix[5]*z,animatedCenter[2]+matrix[6]*x+matrix[8]*z];
     };
+    transform.matrix=matrix;transform.center=animatedCenter;transform.scale=pulse;
     transform.inverse=point=>{
-      const X=point[0]-root[0],Y=point[1]-root[1];
-      const x=X*ca+Y*sa-(center[0]-root[0])*breathe-dx;
-      const y=-X*sa+Y*ca-(center[1]-root[1])*breathe-dy,z=point[2]-center[2]-dz;
+      const X=point[0]-animatedCenter[0],Y=point[1]-animatedCenter[1];
+      const x=(X*ca+Y*sa)/pulse,y=(-X*sa+Y*ca)/pulse,z=(point[2]-animatedCenter[2])/pulse;
       return [center[0]+x*cb-z*sb,center[1]+y,center[2]+x*sb+z*cb];
     };
     return transform;
+  }
+  function cameraVertices(o,transform,center,right,up,forward) {
+    // Compose the object and camera matrices once. Each shared rest vertex
+    // produces one camera-space vector rather than a temporary world vector.
+    const a=transform.matrix,m=[];
+    for(const axis of [right,up,forward])for(let j=0;j<3;j++)m.push(axis[0]*a[j]+axis[1]*a[j+3]+axis[2]*a[j+6]);
+    return o.points.map(p=>{
+      const x=p[0]-o.center[0],y=p[1]-o.center[1],z=p[2]-o.center[2];
+      return [center[0]+m[0]*x+m[1]*y+m[2]*z,center[1]+m[3]*x+m[4]*y+m[5]*z,center[2]+m[6]*x+m[7]*y+m[8]*z];
+    });
   }
   function projectedWorld(world,current,width,height,time=0,tier=0) {
     const forward=normalize(sub(current.target,current.position)),right=normalize(cross(forward,[0,1,0])),up=cross(right,forward);
@@ -853,12 +876,13 @@ body[data-page="writing"] .publication {background:color-mix(in srgb,var(--paper
     // Conservative frustum bounds include the complete motion envelope.
     const planes=[[-1,0,(width+8-cx)/focal],[1,0,(cx+8)/focal],[0,-1,(cy+8)/focal],[0,1,(height+8-cy)/focal]].map(p=>({normal:p,length:Math.hypot(...p)}));
     for(const o of world.objects) {
-      const center=camera(o.center),depth=center[2],size=o.scale*focal/Math.max(.5,depth);
+      const transform=loopTransform(o,time),center=camera(transform.center),radius=o.radius*transform.scale;
+      const depth=center[2],size=o.scale*transform.scale*focal/Math.max(.5,depth);
       const threshold=o.depth===2?(width<=640?3.4:3)*(tier+1):o.depth===1?2:0;
-      if(depth+o.radius<.5 || size<threshold || planes.some(p=>dot(p.normal,center)<-o.radius*p.length))continue;
-      const transform=loopTransform(o,time),vertices=o.points.map(p=>camera(transform(p)));
+      if(depth+radius<.5 || size<threshold || planes.some(p=>dot(p.normal,center)<-radius*p.length))continue;
+      const vertices=cameraVertices(o,transform,center,right,up,forward);
       const projected=vertices.map(p=>p[2]>=.5?project(p):null);
-      const fade=threshold?clamp((size-threshold)/2):1;
+      const fade=threshold?smooth((size-threshold)/2):1;
       appendObject(world,o,vertices,projected,project,visible,fade,shapes,transform.inverse(current.position));
     }
     return shapes.sort((a,b)=>b.depth-a.depth);
@@ -873,16 +897,18 @@ body[data-page="writing"] .publication {background:color-mix(in srgb,var(--paper
     return [x,y,z,x*points[0][0]+y*points[0][1]+z*points[0][2]];
   }
   function projectedFace(f,vertices,screen,project) {
-    const points=[];let z=0;
+    // Clipping changes vertex count. Sorting uses the continuous original face
+    // centroid so an extra near-plane intersection cannot reorder it abruptly.
+    const points=[],z=f.indices.reduce((sum,index)=>sum+vertices[index][2],0)/f.indices.length;
     for(const index of f.indices){
       if(!screen[index]){
         const clipped=clipPolygon(f.indices.map(j=>vertices[j]));
         if(clipped.length<3)return null;
-        return {points:clipped.map(project),depth:clipped.reduce((sum,p)=>sum+p[2],0)/clipped.length};
+        return {points:clipped.map(project),depth:z};
       }
-      points.push(screen[index]);z+=vertices[index][2];
+      points.push(screen[index]);
     }
-    return {points,depth:z/f.indices.length};
+    return {points,depth:z};
   }
   function appendObject(world,o,vertices,screen,project,visible,fade,shapes,eye) {
     for(let i=o.firstFace;i<o.firstFace+o.faceCount;i++) {
@@ -892,7 +918,7 @@ body[data-page="writing"] .publication {background:color-mix(in srgb,var(--paper
       if(!face)continue;
       const z=face.depth,projected=face.points;
       if(!visible(projected))continue;
-      const haze=Math.max(.1,Math.min(1,1-(z-22)/100))*fade;
+      const haze=depthVisibility(z)*fade;
       shapes.push({kind:"face",points:projected,depth:z,color:f.color,band:f.band,object:f.object,material:i,
         tint:f.tint,fillColor:f.fillColor,alpha:(f.opacity?? .82)*haze,
         edgeAlpha:(f.edgeAlpha?? .36)*haze,lineWidth:z<12?1.25: .85});
@@ -903,7 +929,7 @@ body[data-page="writing"] .publication {background:color-mix(in srgb,var(--paper
       const projected=unclipped?[screen[a],screen[b]]:clipped.map(project),z=(clipped[0][2]+clipped[1][2])/2;
       if(!visible(projected))continue;
       shapes.push({kind:"line",points:projected,depth:z,object:line.object,color:line.color,
-        alpha:(line.opacity?? .65)*Math.max(.1,Math.min(1,1-(z-22)/100))*fade,lineWidth:line.width??1,arrow:line.arrow});
+        alpha:(line.opacity?? .65)*depthVisibility(z)*fade,lineWidth:line.width??1,arrow:line.arrow});
     }
   }
   function blendColor(a,b,t) {
@@ -911,7 +937,7 @@ body[data-page="writing"] .publication {background:color-mix(in srgb,var(--paper
     return "#"+lerp(rgb(a),rgb(b),t).map(v=>Math.round(v).toString(16).padStart(2,"0")).join("");
   }
   // Export the same pure composition/projection for checks and the no-Canvas SVG producer.
-  if (typeof module !== "undefined" && module.exports) module.exports = {LOOP_MS,loopTransform,clipSegment,clipPolygon,mix,journeyPose,poses,topicPaths,pageStops,initialPoses,worldFor,projectedWorld,blendColor};
+  if (typeof module !== "undefined" && module.exports) module.exports = {LOOP_MS,loopTransform,clipSegment,clipPolygon,mix,followCamera,depthVisibility,cadenceFor,nextDeadline,cameraVertices,projectedFace,journeyPose,poses,topicPaths,pageStops,initialPoses,worldFor,projectedWorld,blendColor};
   if (typeof document === "undefined") return;
   const canvas = document.getElementById("space-canvas");
   const control = document.getElementById("space-motion");
@@ -930,7 +956,8 @@ body[data-page="writing"] .publication {background:color-mix(in srgb,var(--paper
   let width=1,height=1,ratio=1,stops=[],bounds=null,focus="all",localProgress=0;
   const initial=initialPoses[page]||"overview";
   let faceColors=[];
-  let compact=narrow.matches,world=worldFor(page,compact),ambientTime=0,lastFrame=null,lastDraw=null;
+  let compact=narrow.matches,world=worldFor(page,compact),ambientTime=0,lastFrame=null,nextDraw=null;
+  let idleRate=30,costAverage=0,costSamples=0,cadenceSlow=0,cadenceFast=0,lastCadenceChange=0,detailTier=0,displayedTier=0;
   let tier=0,slow=0,fast=0,lastQualityChange=0,hold=false;
   const clock=()=>window.performance?.now()??Date.now();
   let current=poses[initial], animation=null, writingAnchor=null,displayedTime=0,displayedCamera=current;
@@ -1000,22 +1027,23 @@ body[data-page="writing"] .publication {background:color-mix(in srgb,var(--paper
   }
   function cancel() {
     if(pending!==null)window.cancelAnimationFrame(pending);
-    pending=null;animation=null;lastFrame=null;lastDraw=null;
-    ambientTime=displayedTime;current=displayedCamera;
+    pending=null;animation=null;lastFrame=null;nextDraw=null;
+    ambientTime=displayedTime;current=displayedCamera;detailTier=displayedTier;
   }
   function moveTo(target) {
     if (!initialized || failed || hold || document.hidden || printing || !enabled) return;
     if(Math.hypot(...sub(current.position,target.position),...sub(current.target,target.target))<1e-6){animation=null;return;}
     // Retarget without resetting the frame clock. Resetting start on every scroll
     // event would keep the camera at t=0 during a continuous wheel/touch gesture.
-    animation={to:target,last:animation?.last??null,elapsed:0};schedule();
+    if(!animation)nextDraw=null;
+    animation={to:target,last:animation?.last??null};schedule();
   }
   function draw() {
     // Resize only inside the protected paint, retaining the last valid bitmap.
     const w=Math.round(width*ratio),h=Math.round(height*ratio);
     if(canvas.width!==w || canvas.height!==h){canvas.width=w;canvas.height=h;}
     ctx.setTransform(ratio,0,0,ratio,0,0);ctx.clearRect(0,0,width,height);
-    const shapes=projectedWorld(world,current,width,height,ambientTime,tier);
+    const shapes=projectedWorld(world,current,width,height,ambientTime,detailTier);
     for(let index=0;index<shapes.length;index++) {
       const shape=shapes[index];
       if(compact&&shape.kind==="line"&&!shape.arrow){index=drawLineRun(shapes,index);continue;}
@@ -1038,18 +1066,18 @@ body[data-page="writing"] .publication {background:color-mix(in srgb,var(--paper
         ctx.beginPath();ctx.moveTo(to[0]-ux*size-uy*size*.55,to[1]-uy*size+ux*size*.55);ctx.lineTo(...to);ctx.lineTo(to[0]-ux*size+uy*size*.55,to[1]-uy*size-ux*size*.55);ctx.stroke();
       }
     }
-    ctx.globalAlpha=1;scene.dataset.ready="true";displayedTime=ambientTime;displayedCamera=current;
-    scene.dataset.phase=String(ambientTime);scene.dataset.camera=JSON.stringify(current);
+    ctx.globalAlpha=1;scene.dataset.ready="true";displayedTime=ambientTime;displayedCamera=current;displayedTier=detailTier;
+    scene.dataset.phase=String(ambientTime);scene.dataset.camera=JSON.stringify(current);scene.dataset.detail=String(detailTier);
   }
-  // Small mobile details share a bounded opacity step. Batch only consecutive
-  // lines with the same material; face/line painter order remains unchanged.
+  // Preserve continuous opacity; group only adjacent compatible lines whose
+  // opacity differs by less than 1/256. No visible 16-step fade quantization.
   function drawLineRun(shapes,index) {
-    const first=shapes[index],alpha=Math.round(first.alpha*16)/16;
+    const first=shapes[index],alpha=first.alpha;
     ctx.beginPath();ctx.lineWidth=first.lineWidth;ctx.strokeStyle=colors[first.color];ctx.globalAlpha=alpha;
     let end=index;
     while(end<shapes.length){
       const shape=shapes[end];
-      if(shape.kind!=="line"||shape.arrow||shape.color!==first.color||shape.lineWidth!==first.lineWidth||Math.round(shape.alpha*16)/16!==alpha)break;
+      if(shape.kind!=="line"||shape.arrow||shape.color!==first.color||shape.lineWidth!==first.lineWidth||Math.abs(shape.alpha-alpha)>1/256)break;
       const [from,to]=shape.points;ctx.moveTo(from[0],from[1]);ctx.lineTo(to[0],to[1]);end++;
     }
     ctx.stroke();return end-1;
@@ -1058,7 +1086,22 @@ body[data-page="writing"] .publication {background:color-mix(in srgb,var(--paper
     failed=true;cancel();delete scene.dataset.ready;scene.dataset.state="fallback";
     control.hidden=false;control.disabled=true;control.setAttribute("aria-pressed","false");control.textContent="Motion: unavailable";
   }
+  function adaptCadence(cost,time) {
+    // Ignore the one-time initial paint for cadence estimation. Adapt to actual
+    // cost before considering a slower detail tier; retain a strict mobile idle
+    // share with headroom. Sustained votes/cooldown prevent threshold oscillation.
+    if(costSamples++>0){
+      costAverage=costAverage===0?cost:costAverage*.8+cost*.2;
+      const desired=cadenceFor(costAverage,compact);
+      if(desired<idleRate){cadenceSlow++;cadenceFast=0;}
+      else if(desired>idleRate && costAverage*desired<(compact ? 0.145 : 0.32)*1000){cadenceFast++;cadenceSlow=0;}
+      else cadenceSlow=cadenceFast=0;
+      if(cadenceSlow>=5 && time-lastCadenceChange>=400){idleRate=desired;lastCadenceChange=time;cadenceSlow=cadenceFast=0;nextDraw=null;}
+      else if(cadenceFast>=60 && time-lastCadenceChange>=2500){idleRate=rates[rates.indexOf(idleRate)-1];lastCadenceChange=time;cadenceSlow=cadenceFast=0;nextDraw=null;}
+    }
+  }
   function quality(cost,time) {
+    adaptCadence(cost,time);scene.dataset.cadence=String(idleRate);
     if(cost>25){slow++;fast=0;}else if(cost<10){fast++;slow=Math.max(0,slow-1);}else{slow=Math.max(0,slow-1);fast=0;}
     if(time-lastQualityChange<2500)return;
     if(slow>=8 && tier<2){tier++;slow=fast=0;lastQualityChange=time;ratio=pixelRatio();}
@@ -1070,20 +1113,23 @@ body[data-page="writing"] .publication {background:color-mix(in srgb,var(--paper
     pending=null;if(document.hidden || printing || !initialized || failed)return;
     const delta=lastFrame===null?0:Math.min(80,Math.max(0,time-lastFrame));lastFrame=time;
     const living=enabled&&!hold&&owns(initialPoses,page);
-    if(living)ambientTime=(ambientTime+delta)%LOOP_MS;
+    if(living){ambientTime=(ambientTime+delta)%LOOP_MS;detailTier+=(tier-detailTier)*(1-Math.exp(-delta/180));}
     if(animation && enabled && !hold) {
-      const dt=Math.min(40,Math.max(1,time-(animation.last??time-1000/60)));
-      animation.elapsed+=dt;animation.last=time;
-      const done=animation.elapsed>=80;
-      current=done?animation.to:curveThrough([current,animation.to],1-Math.exp(-dt/24));
+      const dt=animation.last===null?delta:Math.min(80,Math.max(0,time-animation.last));
+      animation.last=time;
+      current=followCamera(current,animation.to,dt);
+      const done=Math.hypot(...sub(current.position,animation.to.position),...sub(current.target,animation.to.target))<1e-5;
+      if(done)current=animation.to;
       if(done)animation=null;
     }
-    // Latest scroll targets survive the shared bounded paint cadence.
-    const interval=tier===2?125:tier===1?100:(compact?62.5:1000/24);
-    if(lastDraw===null||time-lastDraw>=interval||!living) {
+    // Camera response gets a temporary, cost-bounded higher cadence. Deadlines
+    // retain fractional phase instead of rounding every frame down to 20/15Hz.
+    const cameraRate=Math.min([30,20,15][tier],cadenceFor(costAverage,compact,true));
+    const interval=1000/(animation?Math.max(idleRate,cameraRate):idleRate);
+    if(nextDraw===null||time+.5>=nextDraw||!living) {
       const start=clock();
       try{draw();}catch{fail();return;}
-      lastDraw=time;
+      nextDraw=nextDeadline(nextDraw,time,interval);
       if(living)quality(clock()-start,time);
     }
     if(animation||living&&!hold)schedule();
@@ -1114,7 +1160,7 @@ body[data-page="writing"] .publication {background:color-mix(in srgb,var(--paper
   window.addEventListener("site:scene-focus",event=>{
     if(page!=="writing" || !owns(topicPaths,event.detail?.focus))return;
     focus=event.detail.focus;measure();
-    if(!enabled)return;
+    if(!enabled || hold || document.hidden || printing)return;
     const target=pathPose();
     if(event.detail.reason==="initial"){current=target;animation=null;schedule();}else moveTo(target);
   });
@@ -1122,7 +1168,7 @@ body[data-page="writing"] .publication {background:color-mix(in srgb,var(--paper
     if(!initialized){initialize();return;}
     if(failed)return;
     if(compact!==narrow.matches){compact=narrow.matches;world=worldFor(page,compact);readColors();}
-    measure();lastDraw=null;schedule();
+    measure();nextDraw=null;schedule();
   }; // Layout never changes a frozen camera/ambient phase or starts a flight.
   window.addEventListener("site:archive-layout",resize);
   window.addEventListener("resize",resize,{passive:true});

@@ -34,6 +34,12 @@ function measure(row,kind,zero){
   const percentile=p=>painted.length?painted[Math.min(painted.length-1,Math.floor(painted.length*p))]:null;
   const actual={p50:percentile(.5),p95:percentile(.95),max:painted.length?painted.at(-1):null};
   assert.deepEqual(row.paintCallbackMs,actual,'declared paint metrics differ from raw samples');
+  const paintStarts=row.rawFrames.filter(x=>x.painted).map(x=>x.started);
+  const gaps=paintStarts.slice(1).map((x,i)=>x-paintStarts[i]).sort((a,b)=>a-b);
+  assert.ok(gaps.every(x=>x>=0),'unordered paint starts');
+  const gapPercentile=p=>gaps.length?gaps[Math.min(gaps.length-1,Math.floor(gaps.length*p))]:null;
+  assert.deepEqual(row.paintIntervalsMs,{count:gaps.length,p50:gapPercentile(.5),p95:gapPercentile(.95),max:gaps.at(-1)??null},'declared paint gaps differ from raw samples');
+  assert.ok(Number.isFinite(row.paintRateHz)&&Math.abs(row.paintRateHz-row.paints/row.elapsedMs*1000)<1e-8,'declared paint rate differs from raw samples');
   const actualBusy=row.rawFrames.reduce((n,x)=>n+x.duration,0)/row.elapsedMs*100;
   assert.ok(Math.abs(row.callbackBusyPercent-actualBusy)<1e-8,'declared busy time differs from raw samples');
   assert.ok(Number.isFinite(row.callbackBusyPercent)&&row.callbackBusyPercent>=0);

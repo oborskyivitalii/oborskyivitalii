@@ -16,14 +16,18 @@ function installProbe(){
 function summarize(data,kind){
   const painted=data.frames.filter(x=>x.painted),values=painted.map(x=>x.duration).sort((a,b)=>a-b);
   const percentile=p=>values.length?values[Math.min(values.length-1,Math.floor(values.length*p))]:null;
-  return {kind,elapsedMs:data.elapsed,window:{startMs:data.start,endMs:data.end},quality:data.quality,state:data.state,motion:data.motion,callbacks:data.frames.length,paints:painted.length,paintCallbackMs:{p50:percentile(.5),p95:percentile(.95),max:values.at(-1)??null},callbackBusyPercent:data.frames.reduce((a,x)=>a+x.duration,0)/data.elapsed*100,rawFrames:data.frames,rawLongTasks:data.longTasks,errors:data.errors||[]};
+  // Real callback start gaps reveal undersampling/jitter that a cheap paint-cost
+  // percentile alone cannot detect. These are lab paint intervals, not display FPS.
+  const gaps=painted.slice(1).map((x,i)=>x.started-painted[i].started).sort((a,b)=>a-b);
+  const gapPercentile=p=>gaps.length?gaps[Math.min(gaps.length-1,Math.floor(gaps.length*p))]:null;
+  return {kind,elapsedMs:data.elapsed,window:{startMs:data.start,endMs:data.end},quality:data.quality,cadence:data.cadence,state:data.state,motion:data.motion,callbacks:data.frames.length,paints:painted.length,paintRateHz:painted.length/data.elapsed*1000,paintIntervalsMs:{count:gaps.length,p50:gapPercentile(.5),p95:gapPercentile(.95),max:gaps.at(-1)??null},paintCallbackMs:{p50:percentile(.5),p95:percentile(.95),max:values.at(-1)??null},callbackBusyPercent:data.frames.reduce((a,x)=>a+x.duration,0)/data.elapsed*100,rawFrames:data.frames,rawLongTasks:data.longTasks,errors:data.errors||[]};
 }
 async function collect(page,kind,duration){
   await page.evaluate(()=>{window.__qualityMotion.frames=[];window.__qualityMotion.longTasks=[];window.__qualityStart=performance.now();});
   if(kind==='scroll')await page.evaluate(()=>{const start=performance.now();window.__qualityScroll=setInterval(()=>{const p=((performance.now()-start)%2000)/1000;scrollTo({top:(p<1?p:2-p)*(document.documentElement.scrollHeight-innerHeight),behavior:'instant'});},60);});
   await page.waitForTimeout(duration);
   if(kind==='scroll')await page.evaluate(()=>clearInterval(window.__qualityScroll));
-  const data=await page.evaluate(()=>{const end=performance.now(),start=window.__qualityStart;return {...window.__qualityMotion,start,end,elapsed:end-start,quality:document.querySelector('.space-scene').dataset.quality,state:document.querySelector('.space-scene').dataset.state,motion:document.querySelector('#space-motion').textContent};});
+  const data=await page.evaluate(()=>{const end=performance.now(),start=window.__qualityStart;return {...window.__qualityMotion,start,end,elapsed:end-start,quality:document.querySelector('.space-scene').dataset.quality,cadence:document.querySelector('.space-scene').dataset.cadence,state:document.querySelector('.space-scene').dataset.state,motion:document.querySelector('#space-motion').textContent};});
   return summarize(data,kind);
 }
 async function sample(browser,url,route,profile){
@@ -62,7 +66,7 @@ async function main(){
     browser=await toolRequire('playwright').chromium.launch(launchOptions('chromium'));details.browser=browser.version();
     for(const profile of [{width:1440,rate:1},{width:390,rate:1},{width:390,rate:4}])for(const route of routes){
       samples.push(await sample(browser,url,route,profile));report('motion',details);
-      process.stdout.write(JSON.stringify({...profile,route,measurements:samples.at(-1).measurements.map(({kind,paints,paintCallbackMs,callbackBusyPercent,quality})=>({kind,paints,paintCallbackMs,callbackBusyPercent,quality}))})+'\n');
+      process.stdout.write(JSON.stringify({...profile,route,measurements:samples.at(-1).measurements.map(({kind,paints,paintRateHz,paintIntervalsMs,paintCallbackMs,callbackBusyPercent,quality,cadence})=>({kind,paints,paintRateHz,paintIntervalsMs,paintCallbackMs,callbackBusyPercent,quality,cadence}))})+'\n');
     }
     const heaviest=[...samples.filter(x=>x.width===390&&x.rate===4)].sort((a,b)=>b.measurements[0].paintCallbackMs.p95-a.measurements[0].paintCallbackMs.p95)[0].route;
     details.soak=await soak(browser,url,heaviest);report('motion',details);

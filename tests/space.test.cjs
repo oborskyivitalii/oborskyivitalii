@@ -29,7 +29,7 @@ function visit(options={}) {
   const api={window,document,button,canvas,scene,pending,calls,media,events,
     drawingFault(){failDraw=true;},styling(value){styled=value;events.load();},paintCost(value){options.paintCost=value;},bitmapValid:()=>bitmapValid,resizeCount:()=>resizeCount,
     frame(delta=20){const jobs=[...pending.values()];pending.clear();calls.length=0;time+=delta;for(const fn of jobs)fn(time);},
-    settle(){for(let i=0;i<8&&pending.size;i++)api.frame();},
+    settle(){for(let i=0;i<12&&pending.size;i++)api.frame(60);},
     trace:()=>scene.dataset.camera,phase:()=>Number(scene.dataset.phase),draws:()=>draws,scroll(y){window.scrollY=y;events.scroll?.();},event(name,detail){events[name]?.({detail});},
     click(){buttonEvents.click();},hidden(value){document.hidden=value;docEvents.visibilitychange();},mutate(){mutation();},
     layout(rects){resultRects=rects;events["site:archive-layout"]();},stops(value){stops=value.map(pair=>makeStop(pair));events.resize();},stored:()=>stored};
@@ -64,8 +64,12 @@ test("reduced overrides saved On; Off persists; hidden and print pause without e
   const before=p.phase();p.events.beforeprint();p.frame(120000);p.events.afterprint();p.frame();assert.equal(p.phase(),before);
   p.click();p.settle();assert.equal(p.stored(),"off");p.media.matches=true;p.media.change();p.media.matches=false;p.media.change();p.settle();assert.equal(p.pending.size,0);
 });
-test("ambient redraw work is capped and no-Canvas/unknown routes do not start a continuous loop",()=>{
-  for(const narrow of[false,true]){const p=visit({narrow});p.settle();const n=p.draws();for(let i=0;i<60;i++)p.frame(1000/60);assert.ok(p.draws()-n<=(narrow?16:24));assert.ok(p.draws()>n);}
+test("cheap ambient paints reach 30Hz at both 60/120Hz RAF; a stall never causes a paint burst",()=>{
+  for(const narrow of[false,true])for(const fps of[60,120]){
+    const p=visit({narrow});p.settle();const n=p.draws();for(let i=0;i<fps;i++)p.frame(1000/fps);
+    assert.ok(p.draws()-n>=29&&p.draws()-n<=31,`30Hz at ${fps}Hz, compact=${narrow}`);
+    const before=p.draws();p.frame(1000);assert.equal(p.draws(),before+1);
+  }
   const missing=visit({noCanvas:true});assert.equal(missing.pending.size,0);assert.equal(missing.button.hidden,true);
   const unknown=visit({page:"unknown"});unknown.settle();unknown.scroll(5000);assert.equal(unknown.pending.size,0);
 });
@@ -184,4 +188,88 @@ test("severe hold is bounded, preserves preference, and explicit On retries at t
   p.click();p.settle();assert.equal(p.stored(),"off");assert.equal(p.button.textContent,"Motion: off");assert.equal(p.pending.size,0);
   p.paintCost(5);p.click();p.settle();assert.equal(p.stored(),"on");assert.equal(p.button["aria-pressed"],"true");assert.equal(p.button.textContent,"Motion: on");assert.ok(p.pending.size>0);assert.equal(p.canvas.width,1440);
   assert.ok(p.phase()>phase);assert.equal(p.trace(),fixed);
+});
+
+test("camera convergence depends on elapsed time, not the RAF frequency",()=>{
+  const target=model.poses.closing,from=model.poses.overview,poses=[];
+  for(const fps of[30,60,120]){
+    let p=from;for(let i=0;i<fps/5;i++)p=model.followCamera(p,target,1000/fps);poses.push(p);
+  }
+  for(const p of poses)for(const key of["position","target"])for(let i=0;i<3;i++)assert.ok(Math.abs(p[key][i]-poses[0][key][i])<1e-10);
+  assert.deepEqual(model.followCamera(from,target,0),from);
+});
+test("the live RAF camera uses actual elapsed time from its first scroll frame",()=>{
+  const reference=visit();reference.settle();reference.scroll(1800);reference.settle();const target=JSON.parse(reference.trace());
+  for(const fps of[30,60,120]){
+    const p=visit();p.settle();const start=JSON.parse(p.trace()),phase=p.phase();p.scroll(1800);
+    for(let i=0;i<fps/5;i++)p.frame(1000/fps);
+    const actual=JSON.parse(p.trace()),expected=model.followCamera(start,target,p.phase()-phase);
+    for(const key of["position","target"])for(let i=0;i<3;i++)assert.ok(Math.abs(actual[key][i]-expected[key][i])<1e-10,`live camera at ${fps}Hz`);
+  }
+});
+test("Writing initialization events cannot change a held, hidden or printing camera",()=>{
+  const held=visit({page:"writing",paintCost:60});advanceUntil(held,()=>held.scene.dataset.quality==="still","Writing device hold");
+  const fixed=held.trace(),phase=held.phase();held.event("site:scene-focus",{focus:"leadership",reason:"initial"});held.settle();
+  assert.equal(held.trace(),fixed);assert.equal(held.phase(),phase);assert.equal(held.pending.size,0);
+  for(const mode of["hidden","print"]){
+    const p=visit({page:"writing"});p.settle();const camera=p.trace();
+    if(mode==="hidden")p.hidden(true);else p.events.beforeprint();
+    p.event("site:scene-focus",{focus:"leadership",reason:"initial"});assert.equal(p.pending.size,0);
+    if(mode==="hidden")p.hidden(false);else p.events.afterprint();
+    p.frame();assert.equal(p.trace(),camera);
+  }
+});
+test("crossing the near plane cannot jump a face's centroid, fog or depth order",()=>{
+  const rest=[[-1,-1,.5],[1,-1,1.4],[1,1,2.9],[-1,1,2]],f={indices:[0,1,2,3]},project=p=>[p[0]/p[2],p[1]/p[2]];
+  const face=delta=>{const v=rest.map(p=>[p[0],p[1],p[2]+delta]);return model.projectedFace(f,v,v.map(p=>p[2]>=.5?project(p):null),project);};
+  const a=face(-1e-8),b=face(1e-8);assert.equal(a.points.length,5);assert.equal(b.points.length,4);
+  assert.ok(Math.abs(a.depth-b.depth)<3e-8);assert.ok(Math.abs(model.depthVisibility(a.depth)-model.depthVisibility(b.depth))<1e-8);
+});
+test("fog is bounded, smooth and monotone and surfaces/outlines use the same depth factor",()=>{
+  let previous=1;
+  for(let z=-10;z<=120;z+=.1){const v=model.depthVisibility(z);assert.ok(v>=.06-1e-12&&v<=1);assert.ok(v<=previous+1e-12);previous=v;}
+  assert.equal(model.depthVisibility(12),1);assert.ok(Math.abs(model.depthVisibility(100)-.06)<1e-12);
+  for(const edge of[12,100])assert.ok(Math.abs(model.depthVisibility(edge-1e-3)-model.depthVisibility(edge+1e-3))<1e-8);
+  const w=model.worldFor("writing");w.objects=w.objects.filter(o=>o.depth===0);
+  for(const shape of model.projectedWorld(w,model.poses.library,1440,900,6000).filter(s=>s.kind==="face")){
+    const f=w.faces[shape.material],haze=model.depthVisibility(shape.depth);
+    assert.ok(Math.abs(shape.alpha-(f.opacity??.82)*haze)<1e-12);assert.ok(Math.abs(shape.edgeAlpha-(f.edgeAlpha??.36)*haze)<1e-12);
+  }
+});
+test("all pulse envelopes preserve inverse transforms, conservative bounds and immutable rest coordinates",()=>{
+  for(const page of Object.keys(model.initialPoses)){
+    const w=model.worldFor(page),before=JSON.stringify(w);
+    for(const o of w.objects)for(const t of[0,3000,6000,9000,12000,18000,21000]){
+      const transform=model.loopTransform(o,t);assert.ok(transform.scale>=.96-1e-12&&transform.scale<=1.04+1e-12);
+      for(const point of[o.points[0],o.points.at(-1)]){
+        const moved=transform(point),recovered=transform.inverse(moved);
+        assert.ok(recovered.every((v,i)=>Math.abs(v-point[i])<1e-10));
+        assert.ok(Math.hypot(...moved.map((v,i)=>v-transform.center[i]))<=o.radius*transform.scale+1e-10);
+      }
+    }
+    assert.equal(JSON.stringify(w),before);
+  }
+});
+test("composed object/camera matrix matches independent world-space point projection",()=>{
+  const right=[.6,0,.8],up=[0,1,0],forward=[-.8,0,.6],eye=[4,2,23],dot=(p,a)=>p.reduce((s,v,i)=>s+(v-eye[i])*a[i],0);
+  for(const page of Object.keys(model.initialPoses))for(const o of model.worldFor(page).objects.filter((_,i)=>i%17===0))for(const time of[0,3000,9000]){
+    const transform=model.loopTransform(o,time),center=[right,up,forward].map(a=>dot(transform.center,a));
+    const actual=model.cameraVertices(o,transform,center,right,up,forward);
+    for(let i=0;i<o.points.length;i++){const point=transform(o.points[i]),expected=[right,up,forward].map(a=>dot(point,a));assert.ok(actual[i].every((v,j)=>Math.abs(v-expected[j])<1e-10));}
+  }
+});
+test("mobile cadence responds to sustained cost with recovery headroom and no threshold oscillation",()=>{
+  assert.equal(model.cadenceFor(4,true),30);assert.equal(model.cadenceFor(8,true),20);assert.equal(model.cadenceFor(14,true),12);
+  assert.equal(model.cadenceFor(8,true,true),30);assert.equal(model.cadenceFor(14,true,true),20);
+  const p=visit({narrow:true,paintCost:8});advanceUntil(p,()=>p.scene.dataset.cadence==="20","cost-aware 20Hz");
+  for(let i=0;i<20;i++){p.paintCost(i%2?8:8.4);p.frame(125);assert.equal(p.scene.dataset.cadence,"20");}
+  p.paintCost(4);for(let i=0;i<10;i++)p.frame(125);assert.equal(p.scene.dataset.cadence,"20");
+  advanceUntil(p,()=>p.scene.dataset.cadence==="30","cheap paints recover one cadence step");assert.equal(p.scene.dataset.quality,"0");
+});
+test("detail fades across a tier change and Off freezes the exact displayed detail",()=>{
+  const p=visit({paintCost:30});advanceUntil(p,()=>p.scene.dataset.quality==="1","reach first tier");
+  p.frame(20);const first=Number(p.scene.dataset.detail);assert.ok(first>=0&&first<1);
+  for(let i=0;i<8;i++)p.frame(20);const next=Number(p.scene.dataset.detail);assert.ok(next>first&&next<1);
+  const fixed=p.scene.dataset.detail,phase=p.phase();p.click();p.settle();p.mutate();p.events.resize();p.settle();
+  assert.equal(p.scene.dataset.detail,fixed);assert.equal(p.phase(),phase);assert.equal(p.pending.size,0);
 });

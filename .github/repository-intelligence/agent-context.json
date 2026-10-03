@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "cd9324a4fdad9cadc42c9c5aaba955cba678b91bab64b905cbb0c020cfde72d9",
+    "digest": "0b1017b15def39d3adab83a26d614b32219bacab50b4dabf0b5c46a1e74744c1",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -73,7 +73,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "cfd61d61db9b4c6080a237e526fa14b7a71384768930946ac2267329832a8596"
+        "sha256": "cf8d19389119d28c3419f968786233baad7b8ba07de62e703683c2bd15d094fd"
       },
       {
         "path": "BACKLOG.md",
@@ -108,7 +108,7 @@
       {
         "path": "SITE-RELEASE-GATES.md",
         "identity_mode": "content",
-        "sha256": "f9fa1f92be4d61440abe44d2a5353edea349ff4a65698477189c37a1b5fb940b"
+        "sha256": "6f1fc5456eb33b6e9e577a0110692c30a61d7e6b13b69df9af21725934005593"
       },
       {
         "path": "SITE-ROADMAP.md",
@@ -133,7 +133,7 @@
       {
         "path": "SOL-HANDOFF.md",
         "identity_mode": "content",
-        "sha256": "088a012ea1313bb20a63ec954212030818953ea38ff42a59ab264cba31ade3b7"
+        "sha256": "0de5a2e10801ea6ac58b84008176fc3d6a0e4084e5a4060adec259bd70bf7b93"
       },
       {
         "path": "docs/.nojekyll",
@@ -1923,7 +1923,7 @@
       {
         "path": "review/site-v1-offline-bundle-v9.json",
         "identity_mode": "content",
-        "sha256": "377312fff69d4b88585abb63107c06642c4c9df7fd5c7c8a3532d0c00b5ef498"
+        "sha256": "7eb0f1c1ed3f415e2665f1c72bf6c9d12c10914b22f60add524f6fb1b83a6bc4"
       },
       {
         "path": "review/site-v1-preview.html",
@@ -1972,7 +1972,7 @@
       {
         "path": "review/site-v1-static-previews-v9.json",
         "identity_mode": "content",
-        "sha256": "865713b66e123eeb3446101e8a88861fc0324ad55185c1eeb8c02c84fdd014ab"
+        "sha256": "7747d96c8f253f20df3a72152d602000893054776a76470f897d3e1adc428b30"
       },
       {
         "path": "review/site-v1-static-previews.json",
@@ -2134,6 +2134,16 @@
         "sha256": "5fa444595a5cd45a028131963cd63c4e71d6576ee65abd28b123394ca28d9a9e"
       },
       {
+        "path": "review/sol-visual-v10-20261003/CHECKPOINT.md",
+        "identity_mode": "content",
+        "sha256": "b145a6d25e57469745d0e14be67c7e999f24fa09f3e9bb216c131cf2dffe616d"
+      },
+      {
+        "path": "review/sol-visual-v10-20261003/INDEPENDENT-REVIEW.md",
+        "identity_mode": "content",
+        "sha256": "2ee6b2072152267a801a1958f9ba0765f7978727135ec4e973aa72b19c87b2ff"
+      },
+      {
         "path": "review/sol-visual-v5-20261002/EXECUTION.md",
         "identity_mode": "content",
         "sha256": "60ae917afff69e90c5d816e1426c9fae585b79743a2284e1c6bd56ec4b47b925"
@@ -2283,7 +2293,7 @@
       {
         "path": "tools/quality/secrets-baseline.json",
         "identity_mode": "content",
-        "sha256": "00a8caeb20f4ad10521c0a7db2a4ebe8488efcf4f82e8b7238191338dc287fdf"
+        "sha256": "7d1efdb12fa54dde12bed5a312370ab293161e3b98998683e290d58bfbac86c2"
       },
       {
         "path": "tools/quality/security-rules.yml",
@@ -3285,6 +3295,20 @@
     {
       "path": "review/sol-plan-20261002/scene-blueprint.json",
       "title": "review/sol-plan-20261002/scene-blueprint.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/sol-visual-v10-20261003/CHECKPOINT.md",
+      "title": "Depth, pulse and stable animation — 2026-10-03",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/sol-visual-v10-20261003/INDEPENDENT-REVIEW.md",
+      "title": "Independent depth/motion source review — 2026-10-03",
       "instructions": [
         "AGENTS.md"
       ]

@@ -134,6 +134,11 @@ desktop. A failed/missing run makes the sample incomplete, not optimistically gr
 | Mobile ×4 painted-callback p95 ≤33 ms; idle animation callback time ≤20% of sampled elapsed time | Initial sustained-motion release budgets, separately for every route; any lower quality tier has explicit reviewed budgets and visual evidence. |
 | Settled Motion off/reduced | Zero ongoing animation paints/callbacks; explicit settling interval and observation window. |
 
+Motion reports also retain actual painted callback-start gaps (p50/p95/max) and
+paint rate, recomputed from raw samples by the validator. These diagnose cheap
+but uneven/undersampled animation; callback intervals are lab measurements, not
+physical display FPS. The existing release thresholds above are unchanged.
+
 Retain the baseline's desktop/mobile/mobile×4 idle and scroll scenarios, then add
 a bounded release soak (initially five minutes on the heaviest route). Retain raw
 frame samples, long-task/error/control state and available comparable heap samples.

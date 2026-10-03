@@ -568,3 +568,15 @@ producers replace v8 as the current edition; preserve historical v8 evidence.
 The full browser/performance/capture runs remain pending CI. Physical-device
 and hosted-origin gates remain explicit; no merge or publication is authorized
 by these implementation results. Read the current checkpoint before resuming.
+
+## Depth and motion amendment — 2026-10-03
+
+The maintainer reports uneven animation on some routes and explicitly requests
+camera-distance haze, pulsing recursive structures, stability and optimization
+on all five pages. This extends the existing #12 runtime and #1 visual scope;
+it preserves the 24-second ambient period, page motifs and native-scroll paths.
+Read [the new checkpoint](review/sol-visual-v10-20261003/CHECKPOINT.md), including
+the exact old CI baseline and limits, before continuing. Do not reuse v9's
+performance/capture results as proof of the changed renderer. Local browser
+launch is currently blocked by the execution sandbox; new actual browser
+measurements and captures run in the maintained GitHub release workflow.
