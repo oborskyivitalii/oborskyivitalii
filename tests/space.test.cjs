@@ -92,7 +92,11 @@ test("loop closes in position and velocity, stays bounded, and never mutates res
       const at=t=>model.loopTransform(o,t)(point),start=at(0),end=at(model.LOOP_MS);
       assert.deepEqual(start,end);const h=.01,left=at(-h),right=at(h),endLeft=at(model.LOOP_MS-h),endRight=at(model.LOOP_MS+h);
       for(let j=0;j<3;j++)assert.ok(Math.abs((right[j]-left[j])-(endRight[j]-endLeft[j]))<1e-9);
-      for(let t=0;t<model.LOOP_MS;t+=1000){const p=at(t);assert.ok(p.every(Number.isFinite));assert.ok(Math.hypot(...p.map((v,i)=>v-point[i]))<2.2);}
+      for(let t=0;t<model.LOOP_MS;t+=1000){
+        const transform=model.loopTransform(o,t),p=transform(point),rest=transform.inverse(p);
+        assert.ok(p.every(Number.isFinite));assert.ok(Math.hypot(...p.map((v,i)=>v-point[i]))<2.2);
+        assert.ok(rest.every((v,i)=>Math.abs(v-point[i])<1e-10),'inverse recovers immutable coordinates for culling');
+      }
     }
     assert.equal(JSON.stringify(world),original);
   }

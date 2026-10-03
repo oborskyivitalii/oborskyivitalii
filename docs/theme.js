@@ -51,8 +51,9 @@
       refresh();
     });
     const appearance = document.querySelector?.(".appearance");
-    appearance?.addEventListener("keydown", event => {
-      if (event.key === "Escape") {
+    if (appearance) document.addEventListener("keydown", event => {
+      // Safari mouse activation may leave focus outside the open details.
+      if (event.key === "Escape" && appearance.open) {
         appearance.open = false;
         appearance.querySelector("summary").focus();
       }

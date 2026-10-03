@@ -322,13 +322,7 @@
       }
     }
     const light=normalize([-.55,.85,1]);
-    for(const f of faces) {
-      const normal=normalize(cross(sub(f.points[1],f.points[0]),sub(f.points[2],f.points[0])));
-      const shade=.65+.5*Math.abs(dot(normal,light));
-      f.tint=Math.min(.63,f.tone*shade);
-      // Paper catches neutral light in both themes; metal keeps its cyan/bronze tint.
-      if(f.tone<.1){f.fillColor="sheet";f.tint=.6+shade*.1;}
-    }
+    for(const f of faces)prepareFace(f,light);
     // Index shared vertices once; adjacent facets reuse one transformation.
     for(const o of objects) {
       const points=[],lookup=new Map();
@@ -340,6 +334,14 @@
     }
     return {faces,lines,objects};
   }
+  function prepareFace(f,light) {
+    const normal=normalize(cross(sub(f.points[1],f.points[0]),sub(f.points[2],f.points[0])));
+    const shade=.65+.5*Math.abs(dot(normal,light));
+    f.tint=Math.min(.63,f.tone*shade);
+    if(f.oneSided)f.plane=facePlane(f.points);
+    // Paper catches neutral light in both themes; metal keeps its cyan/bronze tint.
+    if(f.tone<.1){f.fillColor="sheet";f.tint=.6+shade*.1;}
+  }
   function loopTransform(object,time=0) {
     const phase=((time%LOOP_MS)+LOOP_MS)%LOOP_MS/LOOP_MS*Math.PI*2;
     const root=object.rootCenter,center=object.center,p=object.phase;
@@ -349,12 +351,19 @@
     const dx=.12*Math.sin(phase*2+p),dy=.16*Math.cos(phase+p),dz=.12*Math.sin(phase+p);
     // Absolute transforms of immutable points: closure holds for position and
     // velocity, and geometry cannot drift or accumulate integration error.
-    return point=>{
+    const transform=point=>{
       const qx=point[0]-center[0],qy=point[1]-center[1],qz=point[2]-center[2];
       const x=qx*cb+qz*sb,y=qy,z=-qx*sb+qz*cb;
       const X=(center[0]-root[0])*breathe+x+dx,Y=(center[1]-root[1])*breathe+y+dy;
       return [root[0]+X*ca-Y*sa,root[1]+X*sa+Y*ca,center[2]+z+dz];
     };
+    transform.inverse=point=>{
+      const X=point[0]-root[0],Y=point[1]-root[1];
+      const x=X*ca+Y*sa-(center[0]-root[0])*breathe-dx;
+      const y=-X*sa+Y*ca-(center[1]-root[1])*breathe-dy,z=point[2]-center[2]-dz;
+      return [center[0]+x*cb-z*sb,center[1]+y,center[2]+x*sb+z*cb];
+    };
+    return transform;
   }
   function projectedWorld(world,current,width,height,time=0,tier=0) {
     const forward=normalize(sub(current.target,current.position)),right=normalize(cross(forward,[0,1,0])),up=cross(right,forward);
@@ -373,26 +382,38 @@
       const transform=loopTransform(o,time),vertices=o.points.map(p=>camera(transform(p)));
       const projected=vertices.map(p=>p[2]>=.5?project(p):null);
       const fade=threshold?clamp((size-threshold)/2):1;
-      appendObject(world,o,vertices,projected,project,visible,fade,shapes);
+      appendObject(world,o,vertices,projected,project,visible,fade,shapes,transform.inverse(current.position));
     }
     return shapes.sort((a,b)=>b.depth-a.depth);
   }
-  function facing(points) {
-    // Newell's normal also handles a concave glyph's first reflex corner.
+  function facePlane(points) {
+    // Cache Newell's plane in immutable world coordinates, including concave glyphs.
     let x=0,y=0,z=0;
     for(let i=0;i<points.length;i++){
       const a=points[i],b=points[(i+1)%points.length];
       x+=(a[1]-b[1])*(a[2]+b[2]);y+=(a[2]-b[2])*(a[0]+b[0]);z+=(a[0]-b[0])*(a[1]+b[1]);
     }
-    return x*points[0][0]+y*points[0][1]+z*points[0][2]>0;
+    return [x,y,z,x*points[0][0]+y*points[0][1]+z*points[0][2]];
   }
-  function appendObject(world,o,vertices,screen,project,visible,fade,shapes) {
+  function projectedFace(f,vertices,screen,project) {
+    const points=[];let z=0;
+    for(const index of f.indices){
+      if(!screen[index]){
+        const clipped=clipPolygon(f.indices.map(j=>vertices[j]));
+        if(clipped.length<3)return null;
+        return {points:clipped.map(project),depth:clipped.reduce((sum,p)=>sum+p[2],0)/clipped.length};
+      }
+      points.push(screen[index]);z+=vertices[index][2];
+    }
+    return {points,depth:z/f.indices.length};
+  }
+  function appendObject(world,o,vertices,screen,project,visible,fade,shapes,eye) {
     for(let i=o.firstFace;i<o.firstFace+o.faceCount;i++) {
-      const f=world.faces[i],rest=f.indices.map(j=>vertices[j]);
-      if(f.oneSided&&!facing(rest))continue;
-      const unclipped=rest.every(p=>p[2]>=.5),points=unclipped?rest:clipPolygon(rest);
-      if(points.length<3)continue;
-      const z=points.reduce((v,p)=>v+p[2],0)/points.length,projected=unclipped?f.indices.map(j=>screen[j]):points.map(project);
+      const f=world.faces[i],plane=f.plane;
+      if(plane&&plane[0]*eye[0]+plane[1]*eye[1]+plane[2]*eye[2]<=plane[3])continue;
+      const face=projectedFace(f,vertices,screen,project);
+      if(!face)continue;
+      const z=face.depth,projected=face.points;
       if(!visible(projected))continue;
       const haze=Math.max(.1,Math.min(1,1-(z-22)/100))*fade;
       shapes.push({kind:"face",points:projected,depth:z,color:f.color,band:f.band,object:f.object,material:i,
@@ -439,10 +460,13 @@
   let colors={cyan:"#075d7b",amber:"#895710",paper:"#f8f7f3"};
   const pose = id => poses[id];
   const pathPose = () => journeyPose(topicPaths[focus],localProgress,narrow.matches);
+  // The decorative mobile bitmap uses one physical pixel per CSS pixel.
+  // Text and controls retain their native resolution; timing is independent.
+  const pixelRatio=()=>Math.min(compact||tier===2?1:tier===1?1.25:1.5,window.devicePixelRatio||1);
   function visible(el) { return !el.hidden && el.getClientRects().length>0; }
   function measure() {
     width=Math.max(1,window.innerWidth);height=Math.max(1,window.innerHeight);
-    ratio=Math.min(tier===2?1:tier===1?1.25:1.5,window.devicePixelRatio||1);
+    ratio=pixelRatio();
     const maxScroll=Math.max(0,document.documentElement.scrollHeight-height);
     stops=[...document.querySelectorAll("[data-space-stop]")].filter(el=>visible(el) && pageStops[page]?.[el.dataset.spaceStop]).map(el=>({id:pageStops[page][el.dataset.spaceStop],y:Math.min(maxScroll,Math.max(0,el.getBoundingClientRect().top+window.scrollY-height*.22))}));
     // Coincident stops cannot define a flight interval. Never use document height as a substitute.
@@ -526,7 +550,9 @@
         ctx.globalAlpha=shape.alpha;ctx.fill();
         // Join adjacent paper facets without dark antialias seams.
         if(shape.edgeAlpha===0){ctx.strokeStyle=ctx.fillStyle;ctx.lineWidth=.65;}else ctx.globalAlpha=shape.edgeAlpha;
-        ctx.stroke();
+        // Curved mobile motifs retain explicit outlines (rings, grilles,
+        // waves and links); omit their faint internal facet strokes.
+        if(!compact||shape.edgeAlpha===0||world.faces[shape.material].edgeAlpha>.12)ctx.stroke();
       } else {ctx.globalAlpha=shape.alpha;ctx.stroke();}
       if(shape.arrow) {
         const dx=to[0]-from[0],dy=to[1]-from[1],length=Math.hypot(dx,dy);
@@ -558,9 +584,9 @@
   function quality(cost,time) {
     if(cost>25){slow++;fast=0;}else if(cost<10){fast++;slow=Math.max(0,slow-1);}else{slow=Math.max(0,slow-1);fast=0;}
     if(time-lastQualityChange<2500)return;
-    if(slow>=8 && tier<2){tier++;slow=fast=0;lastQualityChange=time;ratio=Math.min(tier===2?1:1.25,window.devicePixelRatio||1);}
+    if(slow>=8 && tier<2){tier++;slow=fast=0;lastQualityChange=time;ratio=pixelRatio();}
     else if(slow>=16 && tier===2 && cost>50){hold=true;cancel();updateControl();}
-    else if(fast>=100 && tier>0){tier--;ratio=Math.min(tier===1?1.25:1.5,window.devicePixelRatio||1);slow=fast=0;lastQualityChange=time;}
+    else if(fast>=100 && tier>0){tier--;ratio=pixelRatio();slow=fast=0;lastQualityChange=time;}
     scene.dataset.quality=hold?"still":String(tier);
   }
   function frame(time) {

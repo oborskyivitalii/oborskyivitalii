@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "ac73425c003cd55882aca70532cc8fcf2912d3a2645f49f9c9c91b1db033e04d",
+    "digest": "c1aece42783907a0ca2c0dc54aa3d40508b6b3ee13329678b4fbcbdac55b49f4",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -477,7 +477,7 @@
       {
         "path": "review/site-engineering-v9-20261003/CHECKPOINT.md",
         "identity_mode": "content",
-        "sha256": "8153880894e5f1635e3aa7b4512ec173cc14dfa2e0e35c4088e8cd53af5ed81e"
+        "sha256": "de9a134c49b5c12f681f02429815c9ef0e12b960c1b94f6c5642ee399d4c8937"
       },
       {
         "path": "review/site-engineering-v9-20261003/DEPLOYMENT.md",
@@ -1923,7 +1923,7 @@
       {
         "path": "review/site-v1-offline-bundle-v9.json",
         "identity_mode": "content",
-        "sha256": "21f6af71875b3df3c152df4ac85616ee3953eeb676d6745f80934e84d39c3231"
+        "sha256": "0c57dabf9cf7b4f7888ac716bec701fc9f47263584777a4b4964da677aa482a3"
       },
       {
         "path": "review/site-v1-preview.html",
@@ -1932,7 +1932,7 @@
       {
         "path": "review/site-v1-review.json",
         "identity_mode": "content",
-        "sha256": "ebf28753ae13df26fb3407c527f427d0109d6e1953e9f8c3d4175e3bbb1dc590"
+        "sha256": "166777eafc80f6f8396508db95eea0611d581fcff4087903ca202e82b898d980"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -1972,7 +1972,7 @@
       {
         "path": "review/site-v1-static-previews-v9.json",
         "identity_mode": "content",
-        "sha256": "8e98042d672b21865d15e52ec25785189cbd4a2722df92dec59f91284b18a591"
+        "sha256": "57bfa01772acd4290411d2b957bc781dde5434e4b82c91913cacacdda233907a"
       },
       {
         "path": "review/site-v1-static-previews.json",
@@ -2283,7 +2283,7 @@
       {
         "path": "tools/quality/secrets-baseline.json",
         "identity_mode": "content",
-        "sha256": "818d03f1d812101d6d1340a23ddc88a2107d3491576bac09f6d24cab017d37df"
+        "sha256": "4e99ebddd1255ab1e398e55e7c59b5a2d60c7359d16eaa005e100756f77ac4f4"
       },
       {
         "path": "tools/quality/security-rules.yml",

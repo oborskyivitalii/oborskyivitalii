@@ -227,6 +227,9 @@ body[data-page="writing"] .publication {background:color-mix(in srgb,var(--paper
   .appearance[open] .display-controls {position:fixed;top:var(--header-clearance,112px);left:20px;right:20px;min-width:0;flex-wrap:wrap}
   .display-controls .theme-control {max-width:100%;flex-wrap:wrap}
   .display-controls select {min-width:0;max-width:100%}
+  h1,h2,h3,p,a,li,.audience {overflow-wrap:anywhere}
+  .eyebrow,.audience,.writing-topic,.credits-page h2,.button,.text-link {max-width:100%}
+  .button>span:first-child,.publication-title>span:first-child {min-width:0}
   .hero {grid-template-columns:minmax(0,1fr) min(29vw,140px);gap:0 16px;padding-top:34px}
   .hero-copy {display:contents}
   .hero .eyebrow {grid-row:1;grid-column:1/-1}

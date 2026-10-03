@@ -139,3 +139,47 @@ lines are batched with opacity steps of 1/16. Initial mobile projected shapes
 fall from 3414–6252 to roughly 1987–2938; this is pure-model work counting, not
 measured display smoothness. The 24-second periodic animation and bounded paint
 cadence remain separate. Fresh real browser performance/captures are required.
+
+## Second complete observation and final efficiency correction
+
+Source 8dbbdfab6640a057f126f1371a9582fcdb70c9b8, full run 37119527805:
+build, static scanners and captures passed. Runtime 37119517730 and navigation
+37119517719 passed. Linux passed 359/390, Windows 24/40, macOS 0/20. Every one
+of the 330 Linux fallback/capability cases passed. All macOS failures occurred
+at Escape closing Appearance; mouse activation can leave keyboard focus outside
+the details element. The document-level guarded Escape handler now closes the
+open menu and returns focus to its summary; its regression fails on the old source.
+Remaining mobile normal failures were horizontal overflow at 200% CSS zoom.
+Long labels/headings can now wrap inside their available width. Failed states
+retain overflowing element rectangles and the active element for diagnosis.
+One cold Linux WebKit case saw no new paint during a 180 ms observation. Its
+functional probe now timer-polls for a real next paint within 1500 ms and records
+elapsed time and positive paint delta; phase and fixed-camera assertions remain.
+This does not change the performance probes, budgets or Off/reduced checks.
+
+Actual mobile Lighthouse three-run median TBT was Home 404 ms, Research 473 ms,
+Writing 215 ms, Talks 302 ms, Credits 118 ms. All LCP medians were below 1390 ms;
+CLS was zero except Writing 0.0565. Desktop TBT medians were 0–12 ms. The 200 ms
+TBT budget remains unchanged, so four mobile routes still failed this candidate.
+All 15 actual motion profiles passed. Mobile CPU x4 idle painted callback p95
+was 15.6/18.9/14.8/17.2/16.2 ms (route order above); idle callback busy share was
+17.59/18.98/15.79/17.57/16.39%. Every Off/reduced sample had zero paints and RAF
+callbacks. Research's 300-second soak passed ten contiguous 30-second windows;
+forced-GC heap increased 860,992 bytes, which is not a zero-leak guarantee.
+
+The final correction caches immutable Newell planes and transforms the camera
+back into each object's rest coordinates once, instead of calculating each
+closed face's camera-space normal every frame. Indexed projection avoids temporary
+face-coordinate arrays in the unclipped path. A 700-case old/new comparison
+covering all routes, both viewport classes, journey positions, phases and quality
+tiers found exactly identical projected shapes and coordinates (not a browser
+performance measurement). Mobile rendering uses one bitmap pixel per CSS pixel
+and omits faint internal facet strokes on rings, grilles, waves and links that
+retain explicit outlines. Paper seam strokes, all facets and macro topology remain. Text/controls,
+the 24-second cycle, native-scroll travel and paint cadence are unchanged. Fresh
+browser measurements and source-bound visual inspection must verify the result.
+
+The 8dbbdfa capture artifact's 53 files and 13 public source hashes were verified;
+all-route desktop/mobile contact sheets and selected full-size mobile images were
+inspected. The independent reviewer also inspected mobile openings. These remain
+historical evidence for 8dbbdfa, not visual acceptance of the next candidate.

@@ -19,7 +19,9 @@ function capability(mode){
 }
 async function state(page){return page.evaluate(()=>{
   const scene=document.querySelector('.space-scene'),motion=document.querySelector('#space-motion');
-  return {ready:scene.dataset.ready==='true',phase:scene.dataset.phase,camera:scene.dataset.camera,quality:scene.dataset.quality,scrollY,scrollRange:document.documentElement.scrollHeight-innerHeight,fallback:getComputedStyle(document.querySelector('.space-fallback')).visibility!=='hidden',motion:{hidden:motion.hidden,disabled:motion.disabled,label:motion.textContent},overflow:document.documentElement.scrollWidth>innerWidth+1,h1:document.querySelectorAll('h1').length,paints:window.__quality?.paints||0,callbacks:window.__quality?.callbacks||0};
+  const overflow=document.documentElement.scrollWidth>innerWidth+1;
+  const overflowing=overflow?[...document.querySelectorAll('body *')].filter(el=>!el.closest('.space-scene')&&el.getClientRects().length).map(el=>{const r=el.getBoundingClientRect();return {tag:el.tagName,id:el.id,class:el.className,left:r.left,right:r.right,text:el.textContent?.trim().slice(0,70)};}).filter(r=>r.left< -1||r.right>innerWidth+1).slice(0,30):[];
+  return {ready:scene.dataset.ready==='true',phase:scene.dataset.phase,camera:scene.dataset.camera,quality:scene.dataset.quality,scrollY,scrollRange:document.documentElement.scrollHeight-innerHeight,fallback:getComputedStyle(document.querySelector('.space-fallback')).visibility!=='hidden',motion:{hidden:motion.hidden,disabled:motion.disabled,label:motion.textContent},overflow,overflowing,activeElement:{tag:document.activeElement.tagName,id:document.activeElement.id,class:document.activeElement.className},h1:document.querySelectorAll('h1').length,paints:window.__quality?.paints||0,callbacks:window.__quality?.callbacks||0};
 });}
 async function settled(page){await page.waitForTimeout(180);return state(page);}
 function readable(s){assert.equal(s.h1,1);assert.equal(s.overflow,false,'horizontal overflow');}
@@ -72,7 +74,12 @@ async function archive(page){
   await page.goForward();assert.equal(await page.locator('#archive-language').inputValue(),'uk');
 }
 async function normal(page,scenario){
-  const a=await settled(page),b=await settled(page);readable(a);assert.equal(a.ready,true);assert.ok(b.paints>a.paints,'positive ambient paint probe');
+  const a=await settled(page),probeStart=Date.now();readable(a);assert.equal(a.ready,true);
+  // A cold engine can miss one short sampling window. Require a real next paint,
+  // using bounded timer polling that does not add RAFs to the measured renderer.
+  await page.waitForFunction(before=>window.__quality.paints>before,a.paints,{polling:50,timeout:1500});
+  const b=await state(page),probeElapsedMs=Date.now()-probeStart;
+  assert.ok(b.paints>a.paints,'positive ambient paint probe');
   assert.notEqual(b.phase,a.phase);assert.equal(b.camera,a.camera);
   // Safari's default macOS navigation uses Option-Tab for links.
   const keyboardShortcut=process.platform==='darwin'&&scenario.engine==='webkit'?'Alt+Tab':'Tab';
@@ -102,7 +109,7 @@ async function normal(page,scenario){
   await page.evaluate(()=>document.documentElement.style.zoom='');
   const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa']).analyze();
   assert.deepEqual(axe.violations,[],'axe violations');
-  return {positiveProbe:true,off:true,print:true,syntheticVisibility:true,keyboard:true,keyboardShortcut,reverse:true,forward:travel.range>1&&travel.target>1?'camera changed':'short page',travel:{...travel,settledY:forward.scrollY},archive:scenario.route==='writing'?true:'not applicable',zoom:true,zoomLimit:'CSS zoom; native browser zoom untested',axePasses:axe.passes.length};
+  return {positiveProbe:true,probe:{elapsedMs:probeElapsedMs,paints:b.paints-a.paints},off:true,print:true,syntheticVisibility:true,keyboard:true,keyboardShortcut,reverse:true,forward:travel.range>1&&travel.target>1?'camera changed':'short page',travel:{...travel,settledY:forward.scrollY},archive:scenario.route==='writing'?true:'not applicable',zoom:true,zoomLimit:'CSS zoom; native browser zoom untested',axePasses:axe.passes.length};
 }
 async function failure(page,mode){
   let a=await settled(page);readable(a);

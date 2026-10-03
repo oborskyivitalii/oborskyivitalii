@@ -16,9 +16,11 @@ function visit(hour, options = {}) {
   let parsed = false;
   const control = { value: "", parentElement: { hidden: true },
     addEventListener: (name, listener) => { controlEvents[name] = listener; } };
+  const summary={focus(){document.activeElement=summary;}},appearance={open:false,querySelector:()=>summary,addEventListener(){}};
   const document = {
     readyState: "loading", hidden: false, documentElement: { dataset: {} },
     getElementById: () => parsed ? control : null,
+    querySelector: selector => options.appearance&&selector===".appearance"?appearance:null,
     addEventListener: (name, listener) => { documentEvents[name] = listener; },
   };
   const storage = {
@@ -38,7 +40,8 @@ function visit(hour, options = {}) {
   parsed = true;
   documentEvents.DOMContentLoaded();
   return {
-    document, control, firstTheme, pending,
+    document, control, firstTheme, pending, appearance, summary,
+    key(key) { documentEvents.keydown?.({key}); },
     theme: () => document.documentElement.dataset.theme,
     saved: () => saved,
     choose(value) { control.value = value; controlEvents.change(); },
@@ -98,6 +101,14 @@ test("returning to the tab refreshes Auto; storage changes sync existing tabs", 
   assert.equal(page.control.value, "light");
   page.external(null, null); assert.equal(page.theme(), "dark");
   page.external("light", "unrelated"); assert.equal(page.theme(), "dark");
+});
+
+test("Escape closes Appearance when a Safari mouse click leaves focus in the page", () => {
+  const page=visit(12,{appearance:true}),main={};page.document.activeElement=main;
+  page.key("Escape");assert.equal(page.document.activeElement,main);
+  page.appearance.open=true;page.key("ArrowDown");assert.equal(page.appearance.open,true);
+  page.key("Escape");assert.equal(page.appearance.open,false);assert.equal(page.document.activeElement,page.summary);
+  page.document.activeElement=main;page.key("Escape");assert.equal(page.document.activeElement,main);
 });
 
 test("the same instant follows different visitor time zones", () => {
