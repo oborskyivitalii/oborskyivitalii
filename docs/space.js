@@ -82,42 +82,41 @@
     function object(name,center,rotation,scale,band,build) {
       const firstFace=faces.length,firstLine=lines.length;
       const point=p=>add(center,rotate(p.map(v=>v*scale),rotation));
-      const face=(points,color="cyan",tone=.2,edge=.36)=>faces.push({points:points.map(point),color,band,opacity:1,tone,edgeAlpha:edge,object:name});
+      const face=(points,color="cyan",tone=.2,edge=.36,closed=false)=>faces.push({points:points.map(point),color,band,opacity:1,tone,edgeAlpha:edge,object:name,...(compact&&closed?{oneSided:true}:{})});
       const line=(a,b,color="cyan",alpha=.58,width=1)=>lines.push({a:point(a),b:point(b),color,band,opacity:alpha,width,object:name});
-      const path=(points,color="cyan",alpha=.58,width=1)=>{for(let i=1;i<points.length;i++)line(points[i-1],points[i],color,alpha,width);};
+      const path=(points,color="cyan",alpha=.58,width=1)=>{for(let i=1;i<points.length;i++)if(!compact||!points[i].every((v,j)=>v===points[i-1][j]))line(points[i-1],points[i],color,alpha,width);};
       const poly=(points,depth,color="cyan",tone=.24)=>{
+        if(compact&&points.reduce((sum,p,i)=>sum+p[0]*points[(i+1)%points.length][1]-points[(i+1)%points.length][0]*p[1],0)<0)points=points.slice().reverse();
         const front=points.map(([x,y])=>[x,y,depth/2]),back=points.map(([x,y])=>[x,y,-depth/2]);
-        face(back.slice().reverse(),color,tone*.7);face(front,color,tone);
-        for(let i=0;i<points.length;i++){const j=(i+1)%points.length;face([front[i],back[i],back[j],front[j]],color,tone*1.7);}
+        face(back.slice().reverse(),color,tone*.7,.36,true);face(front,color,tone,.36,true);
+        for(let i=0;i<points.length;i++){const j=(i+1)%points.length;face([front[i],back[i],back[j],front[j]],color,tone*1.7,.36,true);}
       };
       const box=(c,size,color="cyan",tone=.2)=>{
         const corners=[[-1,-1,-1],[1,-1,-1],[1,1,-1],[-1,1,-1],[-1,-1,1],[1,-1,1],[1,1,1],[-1,1,1]].map(p=>add(c,p.map((v,i)=>v*size[i]/2)));
-        for(const ix of[[0,3,2,1],[4,5,6,7],[0,1,5,4],[2,3,7,6],[1,2,6,5],[3,0,4,7]])face(ix.map(i=>corners[i]),color,tone);
+        for(const ix of[[0,3,2,1],[4,5,6,7],[0,1,5,4],[2,3,7,6],[1,2,6,5],[3,0,4,7]])face(ix.map(i=>corners[i]),color,tone,.36,true);
       };
       const ring=(center,radius,tube,rotation=[0,0,0],color="cyan",arc=Math.PI*2)=>{
-        const n=detail?8:compact?12:20,sides=3;
+        const n=compact?(detail?4:8):detail?8:20,sides=3;
         const at=(i,j)=>add(center,rotate([(radius+tube*Math.cos(j/sides*2*Math.PI))*Math.cos(i/n*arc),(radius+tube*Math.cos(j/sides*2*Math.PI))*Math.sin(i/n*arc),tube*Math.sin(j/sides*2*Math.PI)],rotation));
-        for(let i=0;i<n;i++)for(let j=0;j<sides;j++)face([at(i,j),at(i+1,j),at(i+1,j+1),at(i,j+1)],color,.29,.12);
+        for(let i=0;i<n;i++)for(let j=0;j<sides;j++)face([at(i,j),at(i+1,j),at(i+1,j+1),at(i,j+1)],color,.29,.12,true);
         path(Array.from({length:n+1},(_,i)=>at(i,0)),color,.66);
         path(Array.from({length:n+1},(_,i)=>at(i,2)),color,.52);
       };
       const ball=(center,r,color="amber")=>{
         const vertices=[[r,0,0],[-r,0,0],[0,r,0],[0,-r,0],[0,0,r],[0,0,-r]].map(p=>add(p,center));
-        for(const ix of[[0,2,4],[2,1,4],[1,3,4],[3,0,4],[2,0,5],[1,2,5],[3,1,5],[0,3,5]])face(ix.map(i=>vertices[i]),color,.32,.3);
+        for(const ix of[[0,2,4],[2,1,4],[1,3,4],[3,0,4],[2,0,5],[1,2,5],[3,1,5],[0,3,5]])face(ix.map(i=>vertices[i]),color,.32,.3,true);
       };
       const paper=(center,w,h,bend=.25,tilt=0,color="cyan",text=true)=>{
         const at=(x,y)=>add(center,rotate([x,y,bend*Math.sin((y/h+.5)*Math.PI)+.08*x*x],[0,tilt,0]));
-        const n=detail?2:compact?3:5;
+        const n=compact?(detail?1:3):detail?2:5;
         for(let i=0;i<n;i++){const y=-h/2+h*i/n,Y=y+h/n;face([at(-w/2,y),at(w/2,y),at(w/2,Y),at(-w/2,Y)],color,.055,0);}
         path([at(-w/2,-h/2),...Array.from({length:n+1},(_,i)=>at(-w/2,-h/2+h*i/n)),at(w/2,h/2),...Array.from({length:n+1},(_,i)=>at(w/2,h/2-h*i/n)),at(-w/2,-h/2)],color,.55);
-        if(text)for(let row=0;row<6;row++){const y=h*.28-row*h*.095;line(add(at(-w*.32,y),[0,0,.015]),add(at(w*(row===5? .03: .29),y),[0,0,.015]),color,row===0? .48: .2,row===0?1.5: .8);}
+        if(text)for(let row=0;row<(compact&&detail?2:6);row++){const y=h*.28-row*h*.095;line(add(at(-w*.32,y),[0,0,.015]),add(at(w*(row===5? .03: .29),y),[0,0,.015]),color,row===0? .48: .2,row===0?1.5: .8);}
       };
       build({face,line,path,poly,box,ring,ball,paper});
       objects.push({name,center,scale,band,...metadata,firstFace,faceCount:faces.length-firstFace,firstLine,lineCount:lines.length-firstLine});
     }
-    const openBook=({face,line,path})=>{
-      const n=detail?2:compact?3:5;
-      for(const sign of[-1,1]) {
+    const bookHalf=({face,line,path},sign,n,rows,segments)=>{
         const at=(t,y,leaf)=>[sign*t*2.65,y,.58*t+.3*Math.sin(t*Math.PI)-leaf*.062];
         // Boards, page block and individual curled leaves; the central gutter is real depth.
         const board=(t,y)=>[sign*t*2.83,y,.58*t+.3*Math.sin(t*Math.PI)-.34];
@@ -133,12 +132,16 @@
           line(at(1,-2.05,leaf),at(1,2.05,leaf),"cyan",.34,.8);
         }
         for(let i=0;i<n;i++)face([at(i/n,-2.05,0),at((i+1)/n,-2.05,0),at((i+1)/n,2.05,0),at(i/n,2.05,0)],"cyan",.04,0);
-        for(let row=0;row<(detail?3:5);row++) {
+        for(let row=0;row<rows;row++) {
           const y=1.45-row*.29,end=.88;
-          path(Array.from({length:4},(_,i)=>add(at(.14+(end-.14)*i/3,y,0),[0,0,.018])),"cyan",row===0? .46: .23,row===0?1.8: .8);
+          path(Array.from({length:segments+1},(_,i)=>add(at(.14+(end-.14)*i/segments,y,0),[0,0,.018])),"cyan",row===0? .46: .23,row===0?1.8: .8);
         }
         if(sign===1)face([at(.76,2.12,-.25),at(.85,2.12,-.25),at(.85,-2.55,-.25),at(.805,-2.38,-.25),at(.76,-2.55,-.25)],"amber",.43,.55);
-      }
+    };
+    const openBook=({face,line,path})=>{
+      const n=compact?(detail?1:3):detail?2:5;
+      const rows=compact&&detail?2:detail?3:5,segments=compact&&detail?1:3;
+      for(const sign of[-1,1])bookHalf({face,line,path},sign,n,rows,segments);
       line([0,-2.18,-.2],[0,2.18,-.2],"amber",.65,1.4);
     };
     const letters=({poly,box})=>{
@@ -155,7 +158,8 @@
     };
     const compass=({ring,face,line,ball})=>{
       ring([0,0,0],2.35,.09);ring([0,0,-.22],2.12,.035);
-      for(let i=0;i<32;i++){const a=i*Math.PI/16,r=i%4?2.13:1.93;line([r*Math.sin(a),r*Math.cos(a),.03],[2.26*Math.sin(a),2.26*Math.cos(a),.03],"cyan",i%4? .27: .65);}
+      const marks=compact?(detail?8:16):32;
+      for(let i=0;i<marks;i++){const a=i*Math.PI*2/marks,r=i%(marks/8)?2.13:1.93;line([r*Math.sin(a),r*Math.cos(a),.03],[2.26*Math.sin(a),2.26*Math.cos(a),.03],"cyan",i%(marks/8)? .27: .65);}
       for(let i=0;i<4;i++){
         const a=i*Math.PI/2,tip=[Math.sin(a)*1.86,Math.cos(a)*1.86,.04],left=[Math.sin(a-.8)*.47,Math.cos(a-.8)*.47,.04],right=[Math.sin(a+.8)*.47,Math.cos(a+.8)*.47,.04];
         face([left,tip,[0,0,.38]],i===0?"amber":"cyan",.26);face([tip,right,[0,0,.38]],i===0?"amber":"cyan",.48);
@@ -167,12 +171,13 @@
     };
     const arch=({box,face,line})=>{
       box([-1.5,-1.15,0],[.4,3.5,.65],"cyan",.22);box([1.5,-1.15,0],[.4,3.5,.65],"cyan",.22);
-      for(let i=0;i<14;i++){
-        const a=i/14*Math.PI,b=(i+1)/14*Math.PI;
+      const segments=compact?(detail?4:8):14;
+      for(let i=0;i<segments;i++){
+        const a=i/segments*Math.PI,b=(i+1)/segments*Math.PI;
         const section=z=>[[1.7*Math.cos(a),.6+1.7*Math.sin(a),z],[1.7*Math.cos(b),.6+1.7*Math.sin(b),z],[1.3*Math.cos(b),.6+1.3*Math.sin(b),z],[1.3*Math.cos(a),.6+1.3*Math.sin(a),z]];
-        face(section(.325),i===6?"amber":"cyan",.27);face(section(-.325).reverse(),"cyan",.18);
-        face([section(.325)[0],section(-.325)[0],section(-.325)[1],section(.325)[1]],"cyan",.33);
-        face([section(.325)[2],section(-.325)[2],section(-.325)[3],section(.325)[3]],"cyan",.3);
+        face(section(.325),i===Math.floor(segments/2)-1?"amber":"cyan",.27,.36,true);face(section(-.325).reverse(),"cyan",.18,.36,true);
+        face([section(.325)[0],section(-.325)[0],section(-.325)[1],section(.325)[1]],"cyan",.33,.36,true);
+        face([section(.325)[2],section(-.325)[2],section(-.325)[3],section(.325)[3]],"cyan",.3,.36,true);
       }
       line([-1.5,-2.8,0],[1.5,-2.8,0],"amber",.35);
     };
@@ -191,17 +196,20 @@
     };
     const microphone=({face,path,line,box,ring})=>{
       // A capsule grille inside a separate yoke; not an audio visualization.
-      const n=detail?6:compact?8:12,levels=[[-1.25,.28],[-1.1,.58],[-.85,.72],[.85,.72],[1.1,.58],[1.25,.28]];
+      const n=compact?(detail?4:8):detail?6:12,levels=[[-1.25,.28],[-1.1,.58],[-.85,.72],[.85,.72],[1.1,.58],[1.25,.28]];
       const at=(level,j)=>[levels[level][1]*Math.cos(j/n*Math.PI*2),levels[level][0]+.9,levels[level][1]*Math.sin(j/n*Math.PI*2)];
-      for(let k=0;k<levels.length-1;k++)for(let j=0;j<n;j++)face([at(k,j),at(k,j+1),at(k+1,j+1),at(k+1,j)],"cyan",.26,.1);
+      for(let k=0;k<levels.length-1;k++)for(let j=0;j<n;j++){
+        const panel=[at(k,j),at(k,j+1),at(k+1,j+1),at(k+1,j)];
+        face(compact?panel.reverse():panel,"cyan",.26,.1,true);
+      }
       for(let j=0;j<n;j++)path(levels.map((_,k)=>at(k,j)),"cyan",.37,.85);
-      for(let y=-.55;y<=1.65;y+=(detail? .44: .22)){const r=y<-.18? .57:y>1.68? .57: .735;path(Array.from({length:n+1},(_,j)=>[r*Math.cos(j/n*2*Math.PI),y,r*Math.sin(j/n*2*Math.PI)]),"cyan",.4,.8);}
+      for(let y=-.55;y<=1.65;y+=(compact&&detail? .73:detail? .44: .22)){const r=y<-.18? .57:y>1.68? .57: .735;path(Array.from({length:n+1},(_,j)=>[r*Math.cos(j/n*2*Math.PI),y,r*Math.sin(j/n*2*Math.PI)]),"cyan",.4,.8);}
       box([-1.04,-.25,0],[.18,1.8,.25],"amber",.37);box([1.04,-.25,0],[.18,1.8,.25],"amber",.37);box([0,-1.12,0],[2.2,.2,.25],"amber",.36);
       box([0,-2,0],[.19,1.7,.19],"cyan",.32);ring([0,-2.87,0],1.05,.12,[Math.PI/2,0,0]);line([0,-2.8,0],[0,-1.15,0],"cyan",.6);
     };
     const soundwaves=({face,path})=>{
       for(let k=0;k<4;k++) {
-        const r=1.15+k*.7,z=-k*.35,n=detail?6:compact?8:12;
+        const r=1.15+k*.7,z=-k*.35,n=compact?(detail?3:8):detail?6:12;
         const at=(i,inner)=>{const a=-.92+i/n*1.84;return [Math.cos(a)*(r-inner),Math.sin(a)*(r-inner),z];};
         for(let i=0;i<n;i++)face([at(i,0),at(i+1,0),at(i+1,.1),at(i,.1)],k===1?"amber":"cyan",.28,.05);
         path(Array.from({length:n+1},(_,i)=>at(i,0)),k===1?"amber":"cyan",.55);
@@ -219,9 +227,15 @@
     };
     const links=({face,path})=>{
       function link(center,rotation,color) {
-        const n=detail?8:compact?12:18,outer=[],inner=[];
+        const n=compact?(detail?6:10):detail?8:18,outer=[],inner=[];
         for(let i=0;i<n;i++){const a=i/n*Math.PI*2,c=Math.cos(a),s=Math.sin(a);outer.push(add(center,rotate([c*1.55,s*.9,0],rotation)));inner.push(add(center,rotate([c*1.23,s*.57,0],rotation)));}
-        for(let i=0;i<n;i++){const j=(i+1)%n,front=p=>add(p,rotate([0,0,.14],rotation)),back=p=>add(p,rotate([0,0,-.14],rotation));face([front(outer[i]),front(outer[j]),front(inner[j]),front(inner[i])],color,.26,.1);face([back(outer[i]),back(outer[j]),front(outer[j]),front(outer[i])],color,.39,.07);face([back(inner[i]),back(inner[j]),front(inner[j]),front(inner[i])],color,.39,.07);}
+        for(let i=0;i<n;i++){
+          const j=(i+1)%n,front=p=>add(p,rotate([0,0,.14],rotation)),back=p=>add(p,rotate([0,0,-.14],rotation));
+          face([front(outer[i]),front(outer[j]),front(inner[j]),front(inner[i])],color,.26,.1,true);
+          face([back(outer[i]),back(outer[j]),front(outer[j]),front(outer[i])],color,.39,.07,true);
+          const innerWall=[back(inner[i]),back(inner[j]),front(inner[j]),front(inner[i])];
+          face(compact?innerWall.reverse():innerWall,color,.39,.07,true);
+        }
         path([...outer,outer[0]].map(p=>add(p,rotate([0,0,.14],rotation))),color,.6);path([...inner,inner[0]].map(p=>add(p,rotate([0,0,.14],rotation))),color,.56);
       }
       link([-.95,.3,.1],[0,0,-.3],"cyan");link([.95,-.3,0],[-.65,-.25,.15],"amber");
@@ -351,33 +365,44 @@
     const shapes=[];
     const visible=pts=>!pts.every(p=>p[0]<-8)&&!pts.every(p=>p[0]>width+8)&&!pts.every(p=>p[1]<-8)&&!pts.every(p=>p[1]>height+8);
     // Conservative frustum bounds include the complete motion envelope.
-    const planes=[[-1,0,(width+8-cx)/focal],[1,0,(cx+8)/focal],[0,-1,(cy+8)/focal],[0,1,(height+8-cy)/focal]];
+    const planes=[[-1,0,(width+8-cx)/focal],[1,0,(cx+8)/focal],[0,-1,(cy+8)/focal],[0,1,(height+8-cy)/focal]].map(p=>({normal:p,length:Math.hypot(...p)}));
     for(const o of world.objects) {
       const center=camera(o.center),depth=center[2],size=o.scale*focal/Math.max(.5,depth);
       const threshold=o.depth===2?(width<=640?3.4:3)*(tier+1):o.depth===1?2:0;
-      if(depth+o.radius<.5 || size<threshold || planes.some(p=>dot(p,center)<-o.radius*Math.hypot(...p)))continue;
+      if(depth+o.radius<.5 || size<threshold || planes.some(p=>dot(p.normal,center)<-o.radius*p.length))continue;
       const transform=loopTransform(o,time),vertices=o.points.map(p=>camera(transform(p)));
+      const projected=vertices.map(p=>p[2]>=.5?project(p):null);
       const fade=threshold?clamp((size-threshold)/2):1;
-      appendObject(world,o,vertices,project,visible,fade,shapes);
+      appendObject(world,o,vertices,projected,project,visible,fade,shapes);
     }
     return shapes.sort((a,b)=>b.depth-a.depth);
   }
-  function appendObject(world,o,vertices,project,visible,fade,shapes) {
+  function facing(points) {
+    // Newell's normal also handles a concave glyph's first reflex corner.
+    let x=0,y=0,z=0;
+    for(let i=0;i<points.length;i++){
+      const a=points[i],b=points[(i+1)%points.length];
+      x+=(a[1]-b[1])*(a[2]+b[2]);y+=(a[2]-b[2])*(a[0]+b[0]);z+=(a[0]-b[0])*(a[1]+b[1]);
+    }
+    return x*points[0][0]+y*points[0][1]+z*points[0][2]>0;
+  }
+  function appendObject(world,o,vertices,screen,project,visible,fade,shapes) {
     for(let i=o.firstFace;i<o.firstFace+o.faceCount;i++) {
       const f=world.faces[i],rest=f.indices.map(j=>vertices[j]);
-      const points=rest.every(p=>p[2]>=.5)?rest:clipPolygon(rest);
+      if(f.oneSided&&!facing(rest))continue;
+      const unclipped=rest.every(p=>p[2]>=.5),points=unclipped?rest:clipPolygon(rest);
       if(points.length<3)continue;
-      const z=points.reduce((v,p)=>v+p[2],0)/points.length,projected=points.map(project);
+      const z=points.reduce((v,p)=>v+p[2],0)/points.length,projected=unclipped?f.indices.map(j=>screen[j]):points.map(project);
       if(!visible(projected))continue;
       const haze=Math.max(.1,Math.min(1,1-(z-22)/100))*fade;
-      shapes.push({kind:"face",points:projected,depth:z,color:f.color,band:f.band,object:f.object,
+      shapes.push({kind:"face",points:projected,depth:z,color:f.color,band:f.band,object:f.object,material:i,
         tint:f.tint,fillColor:f.fillColor,alpha:(f.opacity?? .82)*haze,
         edgeAlpha:(f.edgeAlpha?? .36)*haze,lineWidth:z<12?1.25: .85});
     }
     for(let i=o.firstLine;i<o.firstLine+o.lineCount;i++) {
-      const line=world.lines[i],clipped=clipSegment(vertices[line.indices[0]],vertices[line.indices[1]]);
+      const line=world.lines[i],[a,b]=line.indices,unclipped=screen[a]&&screen[b],clipped=unclipped?[vertices[a],vertices[b]]:clipSegment(vertices[a],vertices[b]);
       if(!clipped)continue;
-      const projected=clipped.map(project),z=(clipped[0][2]+clipped[1][2])/2;
+      const projected=unclipped?[screen[a],screen[b]]:clipped.map(project),z=(clipped[0][2]+clipped[1][2])/2;
       if(!visible(projected))continue;
       shapes.push({kind:"line",points:projected,depth:z,object:line.object,color:line.color,
         alpha:(line.opacity?? .65)*Math.max(.1,Math.min(1,1-(z-22)/100))*fade,lineWidth:line.width??1,arrow:line.arrow});
@@ -405,7 +430,8 @@
   try { choice=localStorage.getItem(key); } catch { /* In-tab controls remain useful. */ }
   let enabled=choice!=="off" && !reduced.matches, printing=false, pending=null,initialized=false,failed=false;
   let width=1,height=1,ratio=1,stops=[],bounds=null,focus="all",localProgress=0;
-  const initial=initialPoses[page]||"overview",fillColors=new Map();
+  const initial=initialPoses[page]||"overview";
+  let faceColors=[];
   let compact=narrow.matches,world=worldFor(page,compact),ambientTime=0,lastFrame=null,lastDraw=null;
   let tier=0,slow=0,fast=0,lastQualityChange=0,hold=false;
   const clock=()=>window.performance?.now()??Date.now();
@@ -438,8 +464,12 @@
     const next={cyan:css.getPropertyValue("--accent").trim(),amber:css.getPropertyValue("--systems").trim(),paper:css.getPropertyValue("--paper").trim(),sheet:(css.getPropertyValue("--scene-sheet")||"#fffefa").trim()};
     if(!Object.values(next).every(v=>/^#[0-9a-f]{6}$/i.test(v)))return false;
     const fills=new Map();
-    for(const f of world.faces)fills.set((f.fillColor||f.color)+":"+f.tint,blendColor(next.paper,next[f.fillColor||f.color],f.tint));
-    colors=next;fillColors.clear();for(const [key,value] of fills)fillColors.set(key,value);
+    const nextFaces=world.faces.map(f=>{
+      const key=(f.fillColor||f.color)+":"+f.tint;
+      if(!fills.has(key))fills.set(key,blendColor(next.paper,next[f.fillColor||f.color],f.tint));
+      return fills.get(key);
+    });
+    colors=next;faceColors=nextFaces;
     return true;
   }
   function scrollPose() {
@@ -484,12 +514,15 @@
     const w=Math.round(width*ratio),h=Math.round(height*ratio);
     if(canvas.width!==w || canvas.height!==h){canvas.width=w;canvas.height=h;}
     ctx.setTransform(ratio,0,0,ratio,0,0);ctx.clearRect(0,0,width,height);
-    for(const shape of projectedWorld(world,current,width,height,ambientTime,tier)) {
-      const [from,...rest]=shape.points,to=rest[0];
-      ctx.beginPath();ctx.moveTo(...from);for(const p of rest)ctx.lineTo(...p);
+    const shapes=projectedWorld(world,current,width,height,ambientTime,tier);
+    for(let index=0;index<shapes.length;index++) {
+      const shape=shapes[index];
+      if(compact&&shape.kind==="line"&&!shape.arrow){index=drawLineRun(shapes,index);continue;}
+      const points=shape.points,from=points[0],to=points[1];
+      ctx.beginPath();ctx.moveTo(from[0],from[1]);for(let i=1;i<points.length;i++)ctx.lineTo(points[i][0],points[i][1]);
       ctx.lineWidth=shape.lineWidth;ctx.strokeStyle=colors[shape.color];
       if(shape.kind==="face") {
-        ctx.closePath();ctx.fillStyle=fillColors.get(`${shape.fillColor||shape.color}:${shape.tint}`);
+        ctx.closePath();ctx.fillStyle=faceColors[shape.material];
         ctx.globalAlpha=shape.alpha;ctx.fill();
         // Join adjacent paper facets without dark antialias seams.
         if(shape.edgeAlpha===0){ctx.strokeStyle=ctx.fillStyle;ctx.lineWidth=.65;}else ctx.globalAlpha=shape.edgeAlpha;
@@ -504,6 +537,19 @@
     }
     ctx.globalAlpha=1;scene.dataset.ready="true";displayedTime=ambientTime;displayedCamera=current;
     scene.dataset.phase=String(ambientTime);scene.dataset.camera=JSON.stringify(current);
+  }
+  // Small mobile details share a bounded opacity step. Batch only consecutive
+  // lines with the same material; face/line painter order remains unchanged.
+  function drawLineRun(shapes,index) {
+    const first=shapes[index],alpha=Math.round(first.alpha*16)/16;
+    ctx.beginPath();ctx.lineWidth=first.lineWidth;ctx.strokeStyle=colors[first.color];ctx.globalAlpha=alpha;
+    let end=index;
+    while(end<shapes.length){
+      const shape=shapes[end];
+      if(shape.kind!=="line"||shape.arrow||shape.color!==first.color||shape.lineWidth!==first.lineWidth||Math.round(shape.alpha*16)/16!==alpha)break;
+      const [from,to]=shape.points;ctx.moveTo(from[0],from[1]);ctx.lineTo(to[0],to[1]);end++;
+    }
+    ctx.stroke();return end-1;
   }
   function fail() {
     failed=true;cancel();delete scene.dataset.ready;scene.dataset.state="fallback";

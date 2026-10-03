@@ -101,3 +101,41 @@ metadata false positives require exact manual classification, never blanket
 scanner ignores. See INDEPENDENT-PIPELINE.md for observed independent checks
 and explicit limits. No issue closure, merge, release or host activation follows
 from this checkpoint.
+
+## First complete CI observation and measured correction
+
+Source 301a2f6169a4d377448032310f58aea76c93a86d, tree
+77b72e5025d4b50e65fe80780ee62ac8708d7869, public artifact digest
+813d77efe71cb8167efd4ea266ad3614e2e3ee4d1477369a949244b2a55f271f.
+Full run 37117031180 retained all failures; no budgets were changed.
+Runtime 37117003609 and navigation 37117003604 passed; full build/static/captures
+passed. Captures bind all 53 retained files; every PNG/contact sheet was inspected
+for the five routes in Day/Night at 1440x900 and 390x844. Historical captures are
+kept outside the candidate tree, so none are represented as new-source evidence.
+
+Mobile Lighthouse medians: Home TBT 2343 ms, Research 2404 ms, Writing 517.5 ms,
+Talks 1174 ms, Credits 165 ms; budget remains 200 ms. All desktop TBT medians were
+0; LCP and median CLS passed. All 30 raw LHR/configurations were independently
+read. Nearly all repeated long tasks were attributed to space.js; exact Canvas
+versus JavaScript task cost is unproven without a retained execution trace.
+Motion/CPU x4/soak did not run because Lighthouse failure stopped their shared
+shell step. They now run as a separate sequential step after Lighthouse, including
+when its budgets fail, and their own failure still blocks the gate.
+
+The next candidate fixes Credits' missing main tabindex and mobile Appearance
+overflow at 200% CSS zoom. The tests use a measured visible-publication scroll
+span for Writing, timer-polled reverse endpoints, and macOS WebKit's native
+Option-Tab link navigation (Apple Safari documentation). They retain actual
+positive-motion, exact freeze, skip/Enter focus and endpoint assertions, and now
+report a failure stack and observed scene/counter/scroll state. Frozen scenes
+settle after allowed one-time layout paints before the no-work observation.
+
+Renderer changes preserve desktop rest geometry, painter order, all macro IDs/
+centres, eight motifs and three recursive scales. Mobile uses fewer tiny curve/
+text segments and correctly oriented front-facing surfaces of closed solids;
+paper remains two-sided. Shared vertices are projected once, frustum plane norms
+and palette/material lookup are cached, and only consecutive compatible mobile
+lines are batched with opacity steps of 1/16. Initial mobile projected shapes
+fall from 3414–6252 to roughly 1987–2938; this is pure-model work counting, not
+measured display smoothness. The 24-second periodic animation and bounded paint
+cadence remain separate. Fresh real browser performance/captures are required.

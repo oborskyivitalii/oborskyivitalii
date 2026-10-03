@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "31c55c7e1ed759750a4ed769bd5c90ec447df725667a2f56c21a704491b1d7bd",
+    "digest": "ac73425c003cd55882aca70532cc8fcf2912d3a2645f49f9c9c91b1db033e04d",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -59,7 +59,7 @@
       {
         "path": ".github/workflows/site-release-checks.yml",
         "identity_mode": "content",
-        "sha256": "240fa8331d2114f90f4ba96a91ea78a12732cc16437f26c7f5c225ac0f458e72"
+        "sha256": "fe8d2085fc170d55f6a225d9515ef7503e9abeab6f834ddad0260a99d034fcba"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
@@ -477,7 +477,7 @@
       {
         "path": "review/site-engineering-v9-20261003/CHECKPOINT.md",
         "identity_mode": "content",
-        "sha256": "f51179bece19e6d5e5c3622027c54b52eff051e29e1fcd4e5398b107e5f1e5ee"
+        "sha256": "8153880894e5f1635e3aa7b4512ec173cc14dfa2e0e35c4088e8cd53af5ed81e"
       },
       {
         "path": "review/site-engineering-v9-20261003/DEPLOYMENT.md",
@@ -1923,7 +1923,7 @@
       {
         "path": "review/site-v1-offline-bundle-v9.json",
         "identity_mode": "content",
-        "sha256": "66db96af9792468b40cd7700d086813534d1300cce3f7b79a06695523f40eb6f"
+        "sha256": "21f6af71875b3df3c152df4ac85616ee3953eeb676d6745f80934e84d39c3231"
       },
       {
         "path": "review/site-v1-preview.html",
@@ -1932,7 +1932,7 @@
       {
         "path": "review/site-v1-review.json",
         "identity_mode": "content",
-        "sha256": "fff7d3bb3800b41439e64353ee17b5fad373a5b7bd269a410cd87b2deb8031e9"
+        "sha256": "ebf28753ae13df26fb3407c527f427d0109d6e1953e9f8c3d4175e3bbb1dc590"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -1972,7 +1972,7 @@
       {
         "path": "review/site-v1-static-previews-v9.json",
         "identity_mode": "content",
-        "sha256": "c5423e51b5271b0e01d52aa5be39732b7a0b3e533cecd86dc267987a7fb9a294"
+        "sha256": "8e98042d672b21865d15e52ec25785189cbd4a2722df92dec59f91284b18a591"
       },
       {
         "path": "review/site-v1-static-previews.json",
@@ -2283,7 +2283,7 @@
       {
         "path": "tools/quality/secrets-baseline.json",
         "identity_mode": "content",
-        "sha256": "4bcd19c997caf37b9e1007717e471908589eb10292562f5bb64a7d8665eb0084"
+        "sha256": "818d03f1d812101d6d1340a23ddc88a2107d3491576bac09f6d24cab017d37df"
       },
       {
         "path": "tools/quality/security-rules.yml",

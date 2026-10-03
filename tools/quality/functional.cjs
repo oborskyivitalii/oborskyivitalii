@@ -19,15 +19,30 @@ function capability(mode){
 }
 async function state(page){return page.evaluate(()=>{
   const scene=document.querySelector('.space-scene'),motion=document.querySelector('#space-motion');
-  return {ready:scene.dataset.ready==='true',phase:scene.dataset.phase,camera:scene.dataset.camera,fallback:getComputedStyle(document.querySelector('.space-fallback')).visibility!=='hidden',motion:{hidden:motion.hidden,disabled:motion.disabled,label:motion.textContent},overflow:document.documentElement.scrollWidth>innerWidth+1,h1:document.querySelectorAll('h1').length,paints:window.__quality?.paints||0,callbacks:window.__quality?.callbacks||0};
+  return {ready:scene.dataset.ready==='true',phase:scene.dataset.phase,camera:scene.dataset.camera,quality:scene.dataset.quality,scrollY,scrollRange:document.documentElement.scrollHeight-innerHeight,fallback:getComputedStyle(document.querySelector('.space-fallback')).visibility!=='hidden',motion:{hidden:motion.hidden,disabled:motion.disabled,label:motion.textContent},overflow:document.documentElement.scrollWidth>innerWidth+1,h1:document.querySelectorAll('h1').length,paints:window.__quality?.paints||0,callbacks:window.__quality?.callbacks||0};
 });}
 async function settled(page){await page.waitForTimeout(180);return state(page);}
 function readable(s){assert.equal(s.h1,1);assert.equal(s.overflow,false,'horizontal overflow');}
-function frozen(a,b){assert.equal(b.phase,a.phase);assert.equal(b.camera,a.camera);assert.equal(b.paints,a.paints);assert.equal(b.callbacks,a.callbacks);}
+function frozen(a,b){assert.equal(b.phase,a.phase,'frozen ambient phase');assert.equal(b.camera,a.camera,'frozen camera');assert.equal(b.paints,a.paints,'no paints while frozen');assert.equal(b.callbacks,a.callbacks,'no RAF callbacks while frozen');}
+async function atStart(page,camera){
+  await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));
+  // Timer polling must not add RAF work to the instrumented scene.
+  await page.waitForFunction(expected=>scrollY===0&&document.querySelector('.space-scene').dataset.camera===expected,camera,{polling:50,timeout:3000});
+  return state(page);
+}
+async function staticSettled(page){
+  let previous=await settled(page);
+  for(let i=0;i<10;i++){
+    const next=await settled(page);
+    if(next.paints===previous.paints&&next.callbacks===previous.callbacks)return next;
+    previous=next;
+  }
+  throw Error('Static scene did not settle after layout');
+}
 async function freezeControls(page){
   await page.locator('.appearance summary').click();
   await page.locator('#space-motion').click();
-  const off=await settled(page);assert.match(off.motion.label,/off/);
+  const off=await staticSettled(page);assert.match(off.motion.label,/off/);
   await page.evaluate(()=>scrollTo({top:600,behavior:'instant'}));frozen(off,await settled(page));
   await page.keyboard.press('Escape');assert.equal(await page.locator('.appearance').evaluate(el=>el.open),false);
   assert.equal(await page.locator('.appearance summary').evaluate(el=>el===document.activeElement),true);
@@ -59,15 +74,23 @@ async function archive(page){
 async function normal(page,scenario){
   const a=await settled(page),b=await settled(page);readable(a);assert.equal(a.ready,true);assert.ok(b.paints>a.paints,'positive ambient paint probe');
   assert.notEqual(b.phase,a.phase);assert.equal(b.camera,a.camera);
-  await page.keyboard.press('Tab');assert.equal(await page.evaluate(()=>document.activeElement.className),'skip-link');
+  // Safari's default macOS navigation uses Option-Tab for links.
+  const keyboardShortcut=process.platform==='darwin'&&scenario.engine==='webkit'?'Alt+Tab':'Tab';
+  await page.keyboard.press(keyboardShortcut);assert.equal(await page.evaluate(()=>document.activeElement.className),'skip-link','skip-link focus');
   await page.keyboard.press('Enter');assert.equal(await page.locator('#main').evaluate(el=>el===document.activeElement),true);
+  await atStart(page,a.camera);
   await page.evaluate(()=>{scrollTo({top:500,behavior:'instant'});scrollTo({top:0,behavior:'instant'});});
-  const reverse=await settled(page);assert.equal(reverse.camera,a.camera,'immediate reverse camera');
-  const travel=await page.evaluate(()=>{scrollTo({top:700,behavior:'instant'});return {range:document.documentElement.scrollHeight-innerHeight,y:scrollY};});
+  const reverse=await atStart(page,a.camera);assert.equal(reverse.camera,a.camera,'reverse camera endpoint');
+  const travel=await page.evaluate(()=>{
+    const range=document.documentElement.scrollHeight-innerHeight,rows=[...document.querySelectorAll('li.publication')].filter(el=>!el.hidden);
+    // Writing's camera starts at the visible publication span, below its introduction.
+    const target=rows.length?rows[0].getBoundingClientRect().top+scrollY-innerHeight*.22+(rows.at(-1).getBoundingClientRect().bottom-rows[0].getBoundingClientRect().top)*.35:range*.6;
+    scrollTo({top:Math.max(0,Math.min(range,target)),behavior:'instant'});return {range,target:Math.max(0,Math.min(range,target)),y:scrollY};
+  });
   const forward=await settled(page);
-  if(travel.range>1&&travel.y>0)assert.notEqual(forward.camera,a.camera,'native forward scroll moves camera');
+  if(travel.range>1&&travel.target>1){assert.ok(forward.scrollY>0,'native scroll reaches the visible journey');assert.notEqual(forward.camera,a.camera,'native forward scroll moves camera');}
   else assert.equal(forward.camera,a.camera,'short page keeps camera');
-  await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));assert.equal((await settled(page)).camera,a.camera,'midflight reverse endpoint');
+  assert.equal((await atStart(page,a.camera)).camera,a.camera,'midflight reverse endpoint');
   await freezeControls(page);
   await page.locator('#theme-mode').selectOption(scenario.theme==='light'?'dark':'light');
   assert.equal(await page.locator('html').getAttribute('data-theme'),scenario.theme==='light'?'dark':'light');
@@ -79,7 +102,7 @@ async function normal(page,scenario){
   await page.evaluate(()=>document.documentElement.style.zoom='');
   const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa']).analyze();
   assert.deepEqual(axe.violations,[],'axe violations');
-  return {positiveProbe:true,off:true,print:true,syntheticVisibility:true,keyboard:true,reverse:true,forward:travel.range>1&&travel.y>0?'camera changed':'short page',archive:scenario.route==='writing'?true:'not applicable',zoom:true,zoomLimit:'CSS zoom; native browser zoom untested',axePasses:axe.passes.length};
+  return {positiveProbe:true,off:true,print:true,syntheticVisibility:true,keyboard:true,keyboardShortcut,reverse:true,forward:travel.range>1&&travel.target>1?'camera changed':'short page',travel:{...travel,settledY:forward.scrollY},archive:scenario.route==='writing'?true:'not applicable',zoom:true,zoomLimit:'CSS zoom; native browser zoom untested',axePasses:axe.passes.length};
 }
 async function failure(page,mode){
   let a=await settled(page);readable(a);
@@ -89,6 +112,7 @@ async function failure(page,mode){
   }
   assert.equal(a.ready,true);
   if(mode==='reduced'){
+    a=await staticSettled(page);
     assert.equal(a.motion.disabled,true);assert.match(a.motion.label,/reduced/);
     await page.evaluate(()=>scrollTo({top:600,behavior:'instant'}));frozen(a,await settled(page));return {reducedFreeze:true};
   }
@@ -121,7 +145,7 @@ async function scenario(browser,url,s){
     return {...s,pass:true,checks,errors,externalRequests:external};
   }catch(e){
     if(release)release();await page.screenshot({path:path.join(out,`${s.engine}-${s.route}-${s.width}-${s.theme}-${s.mode}.png`)}).catch(()=>{});
-    return {...s,pass:false,error:e.message,errors,externalRequests:external};
+    return {...s,pass:false,error:e.message,stack:e.stack,state:await state(page).catch(()=>null),errors,externalRequests:external};
   }finally{await ctx.close();}
 }
 function scenarios(engine,smoke){return routes.flatMap(route=>['light','dark'].flatMap(theme=>[

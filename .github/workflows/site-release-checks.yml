@@ -229,11 +229,15 @@ jobs:
       - run: |
           npm ci --prefix tools/quality/toolchain --ignore-scripts
           tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium
-      - name: Sequential performance samples
+      - name: Verify performance input artifact
         run: |
           node tools/quality/artifact.cjs verify quality-artifact/public quality-artifact/artifact.json
-          node tools/quality/lighthouse.cjs
-          node tools/quality/motion.cjs
+      - name: Lighthouse samples and budgets
+        id: lighthouse
+        run: node tools/quality/lighthouse.cjs
+      - name: Motion, CPU throttling and five-minute soak
+        if: ${{ !cancelled() && steps.lighthouse.outcome != 'skipped' }}
+        run: node tools/quality/motion.cjs
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: always()
         with:
