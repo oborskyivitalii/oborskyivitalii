@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "2898f725e97dc873872dfc556748548970fda010c8b3573498c81eb7306e82bb",
+    "digest": "abd468c08532af1538ba288d278debe69ef5a420c0376a70173d6eb1fc01e968",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -45,30 +45,6 @@
         "path": ".github/workflows/navigation.yml",
         "identity_mode": "content",
         "sha256": "cc2c56c8780712bd9080a0d2ff8236ec11740b1f2c73e545b2cfe6ffbefd094a"
-      },
-      {
-        "path": ".ruff_cache/.gitignore",
-        "identity_mode": "existence"
-      },
-      {
-        "path": ".ruff_cache/0.16.10/11128537396931138717",
-        "identity_mode": "existence"
-      },
-      {
-        "path": ".ruff_cache/0.16.10/12201302508424895574",
-        "identity_mode": "existence"
-      },
-      {
-        "path": ".ruff_cache/0.16.10/13331154289583364773",
-        "identity_mode": "existence"
-      },
-      {
-        "path": ".ruff_cache/0.16.10/18325159472609983779",
-        "identity_mode": "existence"
-      },
-      {
-        "path": ".ruff_cache/CACHEDIR.TAG",
-        "identity_mode": "existence"
       },
       {
         "path": "AGENTS.md",
@@ -267,7 +243,7 @@
       {
         "path": "review/site-audit-v8-20261003/REPRODUCE.md",
         "identity_mode": "content",
-        "sha256": "1de818c60e989686fe62f6b7dc69b3ac1e178e80e26d3400ef2b9727ba9852e2"
+        "sha256": "00c15e4cca32970f3e5651f94a49cbd3b3568c73c74a6a0b77d890a0e12cb08c"
       },
       {
         "path": "review/site-audit-v8-20261003/SOL-TASKS.md",

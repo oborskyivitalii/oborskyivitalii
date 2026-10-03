@@ -46,13 +46,17 @@ do not equate a nonzero lint count with a security failure.
 ```sh
 /tmp/site-v8-audit/node_modules/.bin/eslint --config review/site-audit-v8-20261003/eslint.config.cjs docs/*.js tools/*.cjs tests/*.cjs --format json --output-file review/site-audit-v8-20261003/results/eslint-sonarjs.json
 /tmp/site-v8-audit/node_modules/.bin/stylelint docs/styles.css --config review/site-audit-v8-20261003/stylelint.config.cjs --formatter json --output-file review/site-audit-v8-20261003/results/stylelint.json
-/tmp/site-v8-audit/venv/bin/ruff check --isolated --select E4,E7,E9,F,I,C90 tools tests --output-format json --output-file review/site-audit-v8-20261003/results/ruff.json
+/tmp/site-v8-audit/venv/bin/ruff check --no-cache --isolated --select E4,E7,E9,F,I,C90 tools tests --output-format json --output-file review/site-audit-v8-20261003/results/ruff.json
 /tmp/site-v8-audit/venv/bin/bandit -r tools -f json -o review/site-audit-v8-20261003/results/bandit.json
 /tmp/site-v8-audit/venv/bin/detect-secrets scan --no-verify --exclude-files '^(review/|drafts/)' > review/site-audit-v8-20261003/results/detect-secrets.json
 export SEMGREP_SETTINGS_FILE=/tmp/site-v8-audit/semgrep-settings.yml
 export SEMGREP_LOG_FILE=/tmp/site-v8-audit/semgrep.log
 /tmp/site-v8-audit/venv/bin/semgrep scan --config p/security-audit --metrics off --disable-version-check --jobs 2 --max-target-bytes 5000000 --json --output review/site-audit-v8-20261003/results/semgrep.json docs tools .github/workflows
 ```
+
+Ruff's cache is disabled so an ignored local cache does not enter the RI producer's
+filesystem inventory. Keep other temporary scanner outputs outside the checkout;
+regenerate RI only after all intended report changes are final.
 
 The 5 MB Semgrep limit admits the full HTML pages. Semgrep 1.179.0 partially parses
 valid compressed decimal ternaries. The second scan closes that specific gap:
