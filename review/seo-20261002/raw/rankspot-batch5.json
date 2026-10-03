@@ -1,0 +1,104 @@
+{
+  "source_url": "https://www.rankspot.ai/api/tools/keyword-search-volume",
+  "source_methodology_url": "https://www.rankspot.ai/free-tools/keyword-search-volume",
+  "payload": {
+    "keywords": [
+      "ai governance consulting",
+      "ai agent governance",
+      "ai operating model",
+      "ai productivity paradox",
+      "ai developer productivity"
+    ],
+    "country": "uk"
+  },
+  "retrieved_at": "2026-10-02T09:31:02.020451+00:00",
+  "status": 200,
+  "data": {
+    "data": {
+      "country": "United Kingdom",
+      "keywords": [
+        {
+          "keyword": "ai governance consulting",
+          "volume": 40,
+          "noData": false,
+          "cpc": 17.25,
+          "competition": "MEDIUM",
+          "competitionIndex": 50,
+          "trend": 150,
+          "history": [
+            20,
+            20,
+            10,
+            10,
+            30,
+            40,
+            70,
+            50,
+            70,
+            30,
+            50,
+            50
+          ]
+        },
+        {
+          "keyword": "ai agent governance",
+          "volume": 0,
+          "noData": true,
+          "cpc": 0,
+          "competition": "UNKNOWN",
+          "competitionIndex": 0,
+          "trend": 0,
+          "history": []
+        },
+        {
+          "keyword": "ai operating model",
+          "volume": 50,
+          "noData": false,
+          "cpc": 35.95,
+          "competition": "MEDIUM",
+          "competitionIndex": 56,
+          "trend": 0,
+          "history": [
+            70,
+            40,
+            50,
+            40,
+            40,
+            50,
+            70,
+            50,
+            50,
+            70,
+            50,
+            70
+          ]
+        },
+        {
+          "keyword": "ai productivity paradox",
+          "volume": 0,
+          "noData": true,
+          "cpc": 0,
+          "competition": "UNKNOWN",
+          "competitionIndex": 0,
+          "trend": 0,
+          "history": []
+        },
+        {
+          "keyword": "ai developer productivity",
+          "volume": 0,
+          "noData": true,
+          "cpc": 0,
+          "competition": "UNKNOWN",
+          "competitionIndex": 0,
+          "trend": 0,
+          "history": []
+        }
+      ]
+    },
+    "rateLimit": {
+      "limit": 5,
+      "remaining": 0,
+      "resetAt": "2026-10-03T00:00:00.000Z"
+    }
+  }
+}

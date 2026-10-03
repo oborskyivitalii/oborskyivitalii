@@ -1,0 +1,48 @@
+{
+  "kind": "Review-only visual proposal; not public-site changes, browser QA or release acceptance",
+  "date": "2026-10-02",
+  "public_candidate_remote_head": "ccfa20fb16928ff5dbbc3855b5a3965bcd7286f5",
+  "public_candidate_tree": "2d1a7fd4598f9a2f32c63866ef4a0a3509128f34",
+  "generator": "review/build_visual_proposal.cjs",
+  "sources": {
+    "docs/index.html": "b27d121c0acb57efdd97203c8dffdfe6bcf5d50bfd07dc0fad327936f057cbfd",
+    "docs/styles.css": "57dafa9f08574a15205eecfd9ed88932e7fc1f9900c0935d1271bfd78a4a7acf",
+    "review/site-visual-proposal.css": "978273ce895ebfa7b41a27d5c13f4b75fd5f216675070ec5a8f8aab842a25e47",
+    "review/assets/vitalii-oborskyi-cutout-20261002.png": "af97c7f17efc5f0884f68363beb3013adf06512e4cbdedb9cab5c49ba17ceb33",
+    "review/build_visual_proposal.cjs": "8b055accb5c07056af5834cafdffc6e823e0a13aa229cddfee4563df03f6ed3b"
+  },
+  "files": {
+    "review/site-visual-proposal-20261002.html": "1edeec65628118060cc2e0184d54a7b64752c3aa2c2cbbcb0941ae6315690a54"
+  },
+  "illustrative_board": {
+    "path": "review/assets/site-day-night-concept-20261002.png",
+    "sha256": "c29ba4bef68347a9c764faca9cfdba5392e47d43fe853f7e7084314948dc3fdc",
+    "prompt": "review/site-visual-concept-prompt.txt",
+    "prompt_sha256": "b668428809a18ee2241d9adc1eed43c104f016e7bfc6ed4cf905e94afbc087fd",
+    "kind": "AI illustrative mockup, not actual HTML render or browser QA"
+  },
+  "themes": {
+    "day": {
+      "background": "#f8f7f3",
+      "delivery": "#075d7b",
+      "systems": "#895710"
+    },
+    "night": {
+      "background": "#0b0f14",
+      "delivery": "#28c7f7",
+      "systems": "#f5b61c"
+    }
+  },
+  "portrait": {
+    "source": "docs/assets/vitalii-oborskyi.jpg",
+    "edited_asset": "review/assets/vitalii-oborskyi-cutout-20261002.png",
+    "mode": "built-in imagegen transparent background extraction",
+    "width": 1305,
+    "height": 1206,
+    "bytes": 1456176,
+    "pixel_identity": "AI-assisted derivative, not asserted to be byte/pixel-identical foreground; maintainer likeness/edge review required",
+    "prompt_record": "SITE-VISUAL-REVIEW.md"
+  },
+  "transformations": "Sans-serif hierarchy; transparent portrait on theme-aware geometric backdrop; question block beneath hero; flat two-direction accents; larger body/metadata type. Existing publication URLs, titles, dates and language labels retained. One PNG embedded; native radio controls switch themes; no executable JS; noindex. Current public bytes untouched.",
+  "browser_visual_review": "pending; prior browser access block is not bypassed"
+}

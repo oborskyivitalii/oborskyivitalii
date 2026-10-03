@@ -1,0 +1,527 @@
+{
+  "edition": "v8",
+  "captured_at": "2026-10-03T02:18:49.896Z",
+  "baseline_ref": "6b2d13ef291dac90c423cbf93e448eab00bc2818",
+  "source_state": "candidate working tree; exact public_sources hashes",
+  "browser": "154.0.8037.97",
+  "public_sources": {
+    "docs/.nojekyll": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "docs/archive.js": "5b11a8e0fd8f2ecbed57809ea956ee3470148aac604e64decc188ba8f755209c",
+    "docs/credits.html": "a133ede2e7dff6b74350b3876f622afd36b4d836c4e1461c5dc23aa5687453e3",
+    "docs/index.html": "d74e7d6741e95f8aa7c5cd35db592d4a7ad043dd5f6a1e8d6e72a99f065b27ca",
+    "docs/research.html": "9a7c585034646ef780797ad36ea4792539a052e1f50cf94a51e5a377561931f6",
+    "docs/space.js": "42107634d48ffeb861a60440efc05c83cc677f3d3c91e76fb75af41eb03f497d",
+    "docs/styles.css": "4f31d68348ca8fece3373a4ba4e33f88ac50f6c10a6ef0affc7c52c4b4396bbd",
+    "docs/talks.html": "3f4c6f93ba51c60f64a2e675e7599b754f3b5c30e6555679a7657ef1de586757",
+    "docs/theme.js": "a1987c61608672a1643289efaf3238ab315ad47b54b704fa04884d20ec479cd8",
+    "docs/writing.html": "6cd6c573137a1a2f7ac7dabfba26c81e53bb5706fced2a4b926bc7baa995d6c3",
+    "docs/assets/vitalii-oborskyi.jpg": "5321e48f08b075cb1cbd522d0f36bc01276aece65d1a04cf09102aa5dd2b59bc",
+    "docs/assets/vitalii-oborskyi-cutout.webp": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae"
+  },
+  "views": [
+    {
+      "route": "index",
+      "theme": "day",
+      "device": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "width": 1440,
+      "scrollWidth": 1440,
+      "overflow": false,
+      "native_scroll_changed_scene": true,
+      "ambient_changes_pixels": true,
+      "idle_camera_stays_fixed": true,
+      "frame_callback_ms": {
+        "count": 44,
+        "p50": 33.70000000298023,
+        "p95": 58.79999999701977,
+        "max": 103
+      }
+    },
+    {
+      "route": "research",
+      "theme": "day",
+      "device": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "width": 1440,
+      "scrollWidth": 1440,
+      "overflow": false,
+      "native_scroll_changed_scene": true,
+      "ambient_changes_pixels": true,
+      "idle_camera_stays_fixed": true,
+      "frame_callback_ms": {
+        "count": 47,
+        "p50": 34.600000001490116,
+        "p95": 60.5,
+        "max": 79.30000000447035
+      }
+    },
+    {
+      "route": "writing",
+      "theme": "day",
+      "device": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "width": 1440,
+      "scrollWidth": 1440,
+      "overflow": false,
+      "native_scroll_changed_scene": true,
+      "ambient_changes_pixels": true,
+      "idle_camera_stays_fixed": true,
+      "frame_callback_ms": {
+        "count": 61,
+        "p50": 15.100000001490116,
+        "p95": 27.80000000447035,
+        "max": 43.899999998509884
+      }
+    },
+    {
+      "route": "talks",
+      "theme": "day",
+      "device": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "width": 1440,
+      "scrollWidth": 1440,
+      "overflow": false,
+      "native_scroll_changed_scene": true,
+      "ambient_changes_pixels": true,
+      "idle_camera_stays_fixed": true,
+      "frame_callback_ms": {
+        "count": 54,
+        "p50": 12.400000005960464,
+        "p95": 31.5,
+        "max": 39.80000000447035
+      }
+    },
+    {
+      "route": "credits",
+      "theme": "day",
+      "device": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "width": 1440,
+      "scrollWidth": 1440,
+      "overflow": false,
+      "native_scroll_changed_scene": true,
+      "ambient_changes_pixels": true,
+      "idle_camera_stays_fixed": true,
+      "frame_callback_ms": {
+        "count": 55,
+        "p50": 0.10000000149011612,
+        "p95": 23.100000001490116,
+        "max": 28.799999997019768
+      }
+    },
+    {
+      "route": "index",
+      "theme": "night",
+      "device": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "width": 1440,
+      "scrollWidth": 1440,
+      "overflow": false,
+      "native_scroll_changed_scene": true,
+      "ambient_changes_pixels": true,
+      "idle_camera_stays_fixed": true,
+      "frame_callback_ms": {
+        "count": 57,
+        "p50": 21.299999997019768,
+        "p95": 46.29999999701977,
+        "max": 73.10000000149012
+      }
+    },
+    {
+      "route": "research",
+      "theme": "night",
+      "device": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "width": 1440,
+      "scrollWidth": 1440,
+      "overflow": false,
+      "native_scroll_changed_scene": true,
+      "ambient_changes_pixels": true,
+      "idle_camera_stays_fixed": true,
+      "frame_callback_ms": {
+        "count": 52,
+        "p50": 21.30000000447035,
+        "p95": 37.600000001490116,
+        "max": 41.29999999701977
+      }
+    },
+    {
+      "route": "writing",
+      "theme": "night",
+      "device": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "width": 1440,
+      "scrollWidth": 1440,
+      "overflow": false,
+      "native_scroll_changed_scene": true,
+      "ambient_changes_pixels": true,
+      "idle_camera_stays_fixed": true,
+      "frame_callback_ms": {
+        "count": 65,
+        "p50": 0.10000000149011612,
+        "p95": 30.200000002980232,
+        "max": 44.5
+      }
+    },
+    {
+      "route": "talks",
+      "theme": "night",
+      "device": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "width": 1440,
+      "scrollWidth": 1440,
+      "overflow": false,
+      "native_scroll_changed_scene": true,
+      "ambient_changes_pixels": true,
+      "idle_camera_stays_fixed": true,
+      "frame_callback_ms": {
+        "count": 46,
+        "p50": 20.799999997019768,
+        "p95": 28.599999994039536,
+        "max": 49.599999994039536
+      }
+    },
+    {
+      "route": "credits",
+      "theme": "night",
+      "device": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "width": 1440,
+      "scrollWidth": 1440,
+      "overflow": false,
+      "native_scroll_changed_scene": true,
+      "ambient_changes_pixels": true,
+      "idle_camera_stays_fixed": true,
+      "frame_callback_ms": {
+        "count": 48,
+        "p50": 0.19999999552965164,
+        "p95": 24.200000002980232,
+        "max": 36.600000001490116
+      }
+    },
+    {
+      "route": "index",
+      "theme": "day",
+      "device": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "width": 390,
+      "scrollWidth": 390,
+      "overflow": false,
+      "native_scroll_changed_scene": true,
+      "ambient_changes_pixels": true,
+      "idle_camera_stays_fixed": true,
+      "frame_callback_ms": {
+        "count": 53,
+        "p50": 0.10000000149011612,
+        "p95": 29.200000002980232,
+        "max": 58.79999999701977
+      }
+    },
+    {
+      "route": "research",
+      "theme": "day",
+      "device": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "width": 390,
+      "scrollWidth": 390,
+      "overflow": false,
+      "native_scroll_changed_scene": true,
+      "ambient_changes_pixels": true,
+      "idle_camera_stays_fixed": true,
+      "frame_callback_ms": {
+        "count": 55,
+        "p50": 0.10000000149011612,
+        "p95": 24.299999997019768,
+        "max": 25.299999997019768
+      }
+    },
+    {
+      "route": "writing",
+      "theme": "day",
+      "device": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "width": 390,
+      "scrollWidth": 390,
+      "overflow": false,
+      "native_scroll_changed_scene": true,
+      "ambient_changes_pixels": true,
+      "idle_camera_stays_fixed": true,
+      "frame_callback_ms": {
+        "count": 46,
+        "p50": 0.10000000149011612,
+        "p95": 24.799999997019768,
+        "max": 30.5
+      }
+    },
+    {
+      "route": "talks",
+      "theme": "day",
+      "device": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "width": 390,
+      "scrollWidth": 390,
+      "overflow": false,
+      "native_scroll_changed_scene": true,
+      "ambient_changes_pixels": true,
+      "idle_camera_stays_fixed": true,
+      "frame_callback_ms": {
+        "count": 52,
+        "p50": 0.10000000149011612,
+        "p95": 24.600000001490116,
+        "max": 56.30000000447035
+      }
+    },
+    {
+      "route": "credits",
+      "theme": "day",
+      "device": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "width": 390,
+      "scrollWidth": 390,
+      "overflow": false,
+      "native_scroll_changed_scene": true,
+      "ambient_changes_pixels": true,
+      "idle_camera_stays_fixed": true,
+      "frame_callback_ms": {
+        "count": 48,
+        "p50": 0,
+        "p95": 13.199999995529652,
+        "max": 19.30000000447035
+      }
+    },
+    {
+      "route": "index",
+      "theme": "night",
+      "device": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "width": 390,
+      "scrollWidth": 390,
+      "overflow": false,
+      "native_scroll_changed_scene": true,
+      "ambient_changes_pixels": true,
+      "idle_camera_stays_fixed": true,
+      "frame_callback_ms": {
+        "count": 45,
+        "p50": 0.10000000149011612,
+        "p95": 26.899999998509884,
+        "max": 66.29999999701977
+      }
+    },
+    {
+      "route": "research",
+      "theme": "night",
+      "device": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "width": 390,
+      "scrollWidth": 390,
+      "overflow": false,
+      "native_scroll_changed_scene": true,
+      "ambient_changes_pixels": true,
+      "idle_camera_stays_fixed": true,
+      "frame_callback_ms": {
+        "count": 51,
+        "p50": 0,
+        "p95": 24.5,
+        "max": 32.5
+      }
+    },
+    {
+      "route": "writing",
+      "theme": "night",
+      "device": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "width": 390,
+      "scrollWidth": 390,
+      "overflow": false,
+      "native_scroll_changed_scene": true,
+      "ambient_changes_pixels": true,
+      "idle_camera_stays_fixed": true,
+      "frame_callback_ms": {
+        "count": 47,
+        "p50": 0.10000000149011612,
+        "p95": 25.399999998509884,
+        "max": 34.899999998509884
+      }
+    },
+    {
+      "route": "talks",
+      "theme": "night",
+      "device": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "width": 390,
+      "scrollWidth": 390,
+      "overflow": false,
+      "native_scroll_changed_scene": true,
+      "ambient_changes_pixels": true,
+      "idle_camera_stays_fixed": true,
+      "frame_callback_ms": {
+        "count": 52,
+        "p50": 0,
+        "p95": 19.600000001490116,
+        "max": 34.399999998509884
+      }
+    },
+    {
+      "route": "credits",
+      "theme": "night",
+      "device": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "width": 390,
+      "scrollWidth": 390,
+      "overflow": false,
+      "native_scroll_changed_scene": true,
+      "ambient_changes_pixels": true,
+      "idle_camera_stays_fixed": true,
+      "frame_callback_ms": {
+        "count": 47,
+        "p50": 0.09999999403953552,
+        "p95": 15.5,
+        "max": 22.799999997019768
+      }
+    }
+  ],
+  "checks": {
+    "index": "Off during movement, theme/resize/print freeze, Escape/focus and pointer neutrality passed",
+    "research": "Off during movement, theme/resize/print freeze, Escape/focus and pointer neutrality passed",
+    "writing": "Off during movement, theme/resize/print freeze, Escape/focus and pointer neutrality passed",
+    "talks": "Off during movement, theme/resize/print freeze, Escape/focus and pointer neutrality passed",
+    "credits": "Off during movement, theme/resize/print freeze, Escape/focus and pointer neutrality passed",
+    "writing_archive": "topic motion; year reflow/first scroll; empty results; Reset; conflict hash/query; back/forward; all 27 records on print and filter restoration passed",
+    "narrow": "All five routes in both themes at 360 \u00d7 844; no horizontal overflow and Appearance accessible",
+    "zoom": "All five routes at 200% CSS zoom in Chromium; no overflow. Native browser zoom UI not tested.",
+    "reduced": "All five route-specific initial poses stay still and control is disabled",
+    "nojs": "All five pages readable at 390 \u00d7 844 with SVG, content and native navigation",
+    "noCanvas": "All five route-specific SVGs remain visible; unavailable control stays hidden",
+    "short": "Talks fits 1440 \u00d7 2400: static camera and continuing ambient cycle, no spacer or scroll interception"
+  },
+  "files": {
+    "credits-day-desktop.png": "82287a5ce52071c507c261a49292def8ecff1d3ebeae351e5da882db3f60f3ce",
+    "credits-day-mobile.png": "e83373741b0f917411c6990e89b7bea7986eecfb82484e396eb249decd679008",
+    "credits-motion.webm": "14f55aabc1b6cc2bac80839e5c4b096067c1086acc30e74e1e9e11f00787d863",
+    "credits-night-desktop.png": "e3fdb2e0537a677d596d7a51eb96cfb9b4fe65912c3bd7360fdc934646b46402",
+    "credits-night-mobile.png": "4486461dc90544b3f084d20c5a04a4fc126dda6763020809e395b5f8890469d5",
+    "index-day-desktop.png": "64ebdb949872897cb28ee08feec431cbe09b800b1da86c556cdf1f4a26904180",
+    "index-day-lower.png": "972014d2525f5799e54e3c758ab7417d6f1e20a45caa1282f377afc0c80a1909",
+    "index-day-mobile.png": "c19d57e7797f96904d33baa87e2bb459d2835a47d821b4614460d1f4f4c74761",
+    "index-motion.webm": "f2a49ae66674c315c042cd58e6bad9cb5919ae81260b662de1f3f48241927f52",
+    "index-night-desktop.png": "d836909ac156c76a75aa06c1d8472feae7c027b014557e4115a4f17164a76bb8",
+    "index-night-lower.png": "9844df5ba075f20bb83ded7376755b47a422173eb08f857c147d5c086dd99be5",
+    "index-night-mobile.png": "84a108d996a5303a32a58f9f8b6d3ebd8de8a68e1282a75dcd99971032478c09",
+    "research-day-desktop.png": "48700f4f2cbe22df37951094149a355cdf7b34b8bee6b7d5b637e74aa0161d8c",
+    "research-day-lower.png": "5ba18c750182b2e49e21a3d640672aa00459b30e230c2e945b798e1ecf9e4eb0",
+    "research-day-mobile.png": "c648406f40f802d204da027148c23a1c8b88ffe9bc7db8905739c1dddc4eff5d",
+    "research-motion.webm": "06bf4a0928abe4a6d0ee087ee9c705b52e2c1081ffc694ac0ddccd7370d91553",
+    "research-night-desktop.png": "355a836c88f4b44539d8606d840751bff063bf8a05101c7cbf9daf3d827647e5",
+    "research-night-lower.png": "ee000bd92865f00b588e51f1adb4b72a265bcff41f78c4342c109a338529b1f3",
+    "research-night-mobile.png": "ae1ccdd835c6678889d9900c8269c8bd4a11f740c8dd06c6438f578a42df455a",
+    "talks-day-desktop.png": "ea34155ca78a77cccc965ba1ad6a74c407bccd4fb608294b80502fd2ad0a446a",
+    "talks-day-mobile.png": "f87f157d105e4098508ddbf192bb32c07e253dedb72bcd4aea711b443d720be8",
+    "talks-motion.webm": "a7c7ba2bbbfe0a64f49f337d2220479ecd026c05c38b7789d3bc30f5884ade90",
+    "talks-night-desktop.png": "f2226e45fd4bfb4935d126fbd13a74574248f9130e044f92af56186fc39f63c3",
+    "talks-night-mobile.png": "31b337facc70683a3ff2fdc4e005c3391bd8dde1802c506b00b9e3803f72d880",
+    "writing-day-desktop.png": "e4b9f955362b797d9172c46e5e37b1e09ba54bac5107ba719a3d2ee19ca8f5aa",
+    "writing-day-lower.png": "79f698d285d413c4adb4747a32dd3ac7f2996e409540c26d06a69b4068a2249d",
+    "writing-day-mobile.png": "805c201b4aec50e5f879d25c5696600388009d86ea6c33f66bc44ae244ca8064",
+    "writing-motion.webm": "2840ee8826ee450bc729e4b98dfc95a03a22eb13ef8abc86e42487261b99efe4",
+    "writing-night-desktop.png": "266efbd18f9d49dd8f5d9751ef3fb15b966525f0e97d027d4570e2f628c1da1e",
+    "writing-night-lower.png": "cefb6a8d8cc4123653acf5a8749dd19f5373a2b8d1c91075d2e901a307809b02",
+    "writing-night-mobile.png": "6e891a453ad116d648c8cecc64177031ab85f023eb37b9dedc545f5afbeb6184",
+    "desktop-contact-sheet.png": "893c3314accf89b4251f5ea52501925633e7a159ac4978cd41a0a6275e7c7949",
+    "mobile-contact-sheet.png": "0a342fdc99a597a13ebc29983afa08d4957d94bd873ca6da2ae2ad3f2115b20b",
+    "contrast.json": "ff07013342b0755801d4869b2fffb31ad4211a5b3a05497a79bebf906e0fd12a",
+    "index-day-desktop-gallery.jpg": "4bbece293f631b7341be6eb571c9bc0717cf60cf5119e04a964f61b9f10922e9",
+    "index-day-mobile-gallery.jpg": "a7dcea13fb0b3833a8eb492fbaab426fe4ba49579d998b400e6b1b2bbc202a1b",
+    "index-night-desktop-gallery.jpg": "c69505a8c67653a0603d17cee00ab051798208d06e1d79d32c996255624d986c",
+    "index-night-mobile-gallery.jpg": "f897df88d0f3a37259a0ced8d1ce16503f5d10177be2197e92f68aa2c3e13e6e",
+    "research-day-desktop-gallery.jpg": "f871f03e684e9cfb95d9afcc046640089dd33053a199f3c07f9e78cffa22f91e",
+    "research-day-mobile-gallery.jpg": "1d66aad9b34de3aae9c3b4efb47f601f7c2ad495b13a5d6e9268c595de4f3f07",
+    "research-night-desktop-gallery.jpg": "0f86d834d5928f2906fe775ac13cea5f5679c77fccd4f6503d12e2cfbee0dd7c",
+    "research-night-mobile-gallery.jpg": "49dcaeee8cc66bcd038523f5eef9737e7f17467769ee911d032d9e11703ba0cd",
+    "writing-day-desktop-gallery.jpg": "bb25135e4b46874d8a32ff5f8bff6462f5ba7dc1c5329303c68db0791ddad98f",
+    "writing-day-mobile-gallery.jpg": "3e900e69196895b4f9e7bfa3d86542c85a0f73ea20fcfb6e617f44b4c216b4da",
+    "writing-night-desktop-gallery.jpg": "ae1ddb5ca6a8505e6264eaa13c8f046b89291b59f78b7925cdc66cee58351a80",
+    "writing-night-mobile-gallery.jpg": "31e054766969f0b9efe0af75f08a47c5db2eb4966aebaa86184c880f4f91e27e",
+    "talks-day-desktop-gallery.jpg": "b598320bcd39bd769e4c4ba75bd7aed96b3a0dcacc35632e73c66e5d70a28f7a",
+    "talks-day-mobile-gallery.jpg": "cfa4d86db86369f0db08bb633c78fb55c1558fdbf57359666c9664e054b89e7a",
+    "talks-night-desktop-gallery.jpg": "8efa6fa8b6faec15d212d7cefa2d6d2a12cd9e7d3aa73f2eb2b95a7ffb983bc6",
+    "talks-night-mobile-gallery.jpg": "976e343e4284a1057fa64b6a4ac66721f99caf124dfe68ee4c9cb6f0f643372b",
+    "credits-day-desktop-gallery.jpg": "418f8f11a47b25f92a9fb1fccb39ffcb3dd3a7094e5cb422aa28d06903ca814e",
+    "credits-day-mobile-gallery.jpg": "6cd90be72e2282b25386a0e18e2a020501058ebb14096f31d7e797a22c26792f",
+    "credits-night-desktop-gallery.jpg": "a44256ac8e4bc08f7b636dacb36a07e8c8b460f88fe243c3a2660bfd3f6fb057",
+    "credits-night-mobile-gallery.jpg": "ffcff2fe2e250fc5eb9c13135c1d55591514783375158e12c3539e7da1cfff40"
+  },
+  "recording_delivery": {
+    "dimensions": {
+      "width": 960,
+      "height": 600
+    },
+    "method": "VP9 CRF 32, constrained 450 kbps encoding of actual 1440x900 Chromium recordings; screenshots retain original dimensions. No generated or interpolated frames."
+  },
+  "limits": [
+    "Headless Linux Chromium; mobile viewport/touch emulation, not physical phone hardware.",
+    "200% CSS zoom tested; native browser zoom UI not tested.",
+    "Native hidden-tab switching and a real print dialog not observed; print lifecycle dispatched and print CSS inspected separately.",
+    "Frame callback timings include review instrumentation and are observations of this machine, not a device/FPS guarantee."
+  ],
+  "contact_sheets": "tools/build_site_contact_sheets.py; scaled real browser PNGs with route/theme labels"
+}

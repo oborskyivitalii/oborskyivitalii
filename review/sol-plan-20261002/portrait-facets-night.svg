@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 550" role="img" aria-labelledby="title desc">
+<title id="title">Faceted portrait backdrop — night</title>
+<desc id="desc">Planning asset with six asymmetrical polygon planes. Transparent background. Place behind the existing portrait; no portrait is included.</desc>
+<polygon id="facet-1" points="55,116 302,30 447,157 279,277 28,217" fill="#1c252e" stroke="#344454" stroke-width="1"/>
+<polygon id="facet-2" points="143,75 360,92 465,281 336,430 192,321" fill="#142f3b" stroke="#344454" stroke-width="1"/>
+<polygon id="facet-3" points="148,178 329,131 421,349 211,455 96,327" fill="#1c3f4c" stroke="#344454" stroke-width="1"/>
+<polygon id="facet-4" points="365,157 491,269 433,447 345,330" fill="#332e21" stroke="#344454" stroke-width="1"/>
+<polygon id="facet-5" points="23,208 121,177 178,331 73,381" fill="#235164" stroke="#344454" stroke-width="1"/>
+<polygon id="facet-6" points="40,415 325,379 466,475 198,539 30,480" fill="#253038" stroke="#344454" stroke-width="1"/>
+</svg>

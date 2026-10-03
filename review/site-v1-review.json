@@ -1,0 +1,82 @@
+{
+  "checked_date": "2026-10-03",
+  "public_directory": "docs",
+  "visual_review": "Final public-source local Chromium matrix, behavior and five actual recordings passed; source-bound CI handoff verification pending",
+  "files": {
+    "docs/.nojekyll": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "docs/archive.js": "5b11a8e0fd8f2ecbed57809ea956ee3470148aac604e64decc188ba8f755209c",
+    "docs/assets/favicon.svg": "c28b28c5d6b61a89612c8aa1b3c787ff855e25e3e9dd69e9fbd0569e0da89a6e",
+    "docs/assets/vitalii-oborskyi-cutout.webp": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae",
+    "docs/assets/vitalii-oborskyi.jpg": "5321e48f08b075cb1cbd522d0f36bc01276aece65d1a04cf09102aa5dd2b59bc",
+    "docs/credits.html": "31b647cbb90d769e979576bca084bc7c9bdfae70c8be5166751a0529860edebc",
+    "docs/index.html": "5ebcab6dd9b33cccaff5dc8f80ceeb45c37892d27d89b636e2ddef0055a7541b",
+    "docs/research.html": "2b37c950be256a653280e79c0775ebd1750cd8dc76d2ef68c0f3f25ea2d84c3a",
+    "docs/space.js": "482ac7be7f06133e5a679882e67180977c2b639dde711d3ee0b78131fa0b77cf",
+    "docs/styles.css": "9ec678cb7163b1a359e45ec0e3462338d9997ab368996e0c0cfe9f0581934e56",
+    "docs/talks.html": "ec79117e6d6cbf48dedc7e8f8b08626f9690b17d631a42d375314a77690474e6",
+    "docs/theme.js": "d11f679af05442e8b01024e9a5fe3ba9aff73554f11bd8f3ff692d14f830f8fb",
+    "docs/writing.html": "6dd77aefe1fd0ae9862ee75547fe930148c2feeeb60c402d8ee607db73d65d6b"
+  },
+  "structural_checks": "passed: five pages; exact frozen 27 primary identities and secondary LinkedIn date/URL; five EN selections, eight bounded entries; IDs/ARIA/contact/navigation/resources; draft isolation",
+  "theme_behavior": "44 Node regressions passed, including Escape with focus outside Appearance; native browser rerun pending",
+  "source_audit": "SITE-SOURCE-AUDIT.md",
+  "independent_review": {
+    "status": "Runtime, recurring pipeline and 8dbbdfa mobile optimization independently reviewed; final efficiency/browser corrections under independent review",
+    "remaining": [
+      "Physical-device/native zoom/hidden-tab/print-dialog inspection remains unobserved",
+      "Independent/editorial candidate review",
+      "Human portrait/publication rights acceptance",
+      "Permanent URL and URL-dependent metadata",
+      "Authorized dependency integration, merge and deployed-site verification"
+    ]
+  },
+  "review_handoff": {
+    "checked_date": "2026-10-03",
+    "kind": "v9: fifteen exact-source copies and all-page gallery; final native-select containment and capture-readiness correction",
+    "manifest": "review/site-v1-static-previews-v9.json",
+    "bundle_manifest": "review/site-v1-offline-bundle-v9.json",
+    "indexing_scope": "review noindex; offline site/ retains exact docs bytes",
+    "visual_review": "review/site-engineering-v9-20261003/CHECKPOINT.md"
+  },
+  "previous_independent_review": {
+    "status": "Confirmed for static/content/behavior scope",
+    "reviewer": "/root/independent_workflow_review",
+    "checked_date": "2026-10-01",
+    "reviewed_local_commit": "d73aff423bb7a6521009d3da0117506aaf7f2f20",
+    "reviewed_tree": "55d31302523c0a9d87c6a3743ec6e47ff58cbaae",
+    "equivalent_remote_commit": "9446b6bcc568bef0c4cfa136892624981950f032",
+    "scope": "Full revised diff; six Node and 18 Python tests independently run; original interaction sources and bounded publication metadata; HTML/local navigation; preview parity; six public hashes; CSS fallback/print rules; fresh RI in worktree and ordinary checkout",
+    "source_limits": "Traceability metadata inspected from implementer-supplied cached primary excerpt; later destination not retrievable. Atlassian official indexed edited date independently checked; current discussion reader omits dates.",
+    "remote_ci": "Identical reviewed tree and successful navigation/theme/RI checks on equivalent remote commit separately verified by implementer",
+    "remaining": [
+      "Actual desktop/mobile/print visual review",
+      "Human editorial and rights acceptance",
+      "Historical: URL/language decisions were open at that review; English is now confirmed",
+      "Dependency integration, merge and deployed-site checks"
+    ]
+  },
+  "current_checks": {
+    "node_tests": 44,
+    "python_tests": 18,
+    "preview_export": "15 page copies plus all-page gallery; source/evidence hashes and offline bundle freshness verified locally",
+    "browser": "96f96c9: Windows40/40 and macOS20/20 pass; Linux388/390. Both remaining Writing WebKit zoom cases reproduced and fixed locally; all20 local WebKit normal scenarios now pass. Final exact-source CI pending.",
+    "sampled_contrast": "Fresh final-source sampled contrast pending; no complete WCAG claim"
+  },
+  "edition": "v9",
+  "previous_v8_checks": {
+    "node_tests": 33,
+    "python_tests": 18,
+    "preview_export": "15 page copies plus gallery; source/evidence hashes verified",
+    "browser": "review/site-v1-20261003-v8-captures/captures.json",
+    "sampled_contrast": "40 views; 4374 samples; normal text min 4.553:1; large text min 6.848:1; no failures"
+  },
+  "previous_v8_handoff": {
+    "checked_date": "2026-10-03",
+    "kind": "v8: fifteen page copies, gallery, real captures and five ambient/flight recordings",
+    "manifest": "review/site-v1-static-previews-v8.json",
+    "bundle_manifest": "review/site-v1-offline-bundle-v8.json",
+    "indexing_scope": "review noindex; offline site/ retains exact docs bytes",
+    "visual_review": "review/sol-visual-v8-20261003/EXECUTION.md"
+  },
+  "previous_v8_visual_review": "v8: actual Chromium desktop/mobile Day/Night captures and ambient/scroll recordings; observed limits in execution record"
+}

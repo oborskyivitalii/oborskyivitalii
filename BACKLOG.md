@@ -1,5 +1,29 @@
 # Issue backlog audit — 2026-10-01
 
+## Engineering follow-up — 2026-10-03
+
+- [#12](https://github.com/oborskyivitalii/oborskyivitalii/issues/12): completed v8
+  audit; [S1–S4 runtime fixes and re-verification](review/site-audit-v8-20261003/SOL-TASKS.md) remain pending.
+- [#13](https://github.com/oborskyivitalii/oborskyivitalii/issues/13): turn that
+  evidence into recurring security/quality/performance/platform release checks;
+  [implementation contract](SITE-RELEASE-GATES.md) is prepared, not implemented.
+- Continue Draft PR #10, then the existing #7/#8 launch acceptance and gated
+  deployment sequence. These tasks do not duplicate cross-repository harness #6
+  or publishing migration #5.
+
+## Current execution checkpoint — 2026-10-02
+
+The dated audit below is historical. Current work is in Draft PR #9 (workflow/RI,
+#3/#4) and stacked Draft PR #10 (site #1, release/rights #7/#8). The maintainer
+requested a final plan review before a Sol implementation turn. The reviewed
+[SOL-HANDOFF](SOL-HANDOFF.md) is now the execution entry point, with
+[findings and source-input report](review/sol-plan-20261002/FINAL-REVIEW.md).
+
+Sequence: revised candidate #1/PR #10 → applicable #7/#8 review and release →
+PMDay #2 → distinct guides/measurement #11 after an overlap check. Publisher #5
+and harness #6 stay separate. English and the five-work selection are settled.
+No issue is closed and no merge/publication is implied by this planning record.
+
 ## Snapshot and limits
 
 Inspected default-branch tip: `ae6a28391566097bbf1eced6bb013ab70b48fd82`.
@@ -66,3 +90,7 @@ closing. Parent tasks remain open for unfulfilled dependencies.
 
 Cross-repository research ownership and migration routes:
 [Repository map](REPOSITORIES.md).
+
+## S0–S4 execution checkpoint — 2026-10-02
+
+Launch #1 / Draft PR #10 now has the [v4 implementation and evidence](review/sol-execution-20261002/EXECUTION.md). Available checks/exports are complete; actual browser, editorial/rights, #8 URL/release and #9 integration remain. This checkpoint does not close launch or authorize publication. PMDay #2 and later #11 guides follow launch; no new duplicate task is created.

@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Research on AI agent governance, control theory, Thinking Systems and AI-assisted delivery: human understanding, verification, authority and operating models.">
+  <meta name="color-scheme" content="light dark">
+  <title>Night review — Research | AI Agent Governance &amp; Delivery Systems | Vitalii Oborskyi</title>
+  <meta name="author" content="Vitalii Oborskyi">
+  <meta property="og:site_name" content="Vitalii Oborskyi">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Research | AI Agent Governance &amp; Delivery Systems | Vitalii Oborskyi">
+  <meta property="og:description" content="Research on AI agent governance, control theory, Thinking Systems and AI-assisted delivery: human understanding, verification, authority and operating models.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Research | AI Agent Governance &amp; Delivery Systems | Vitalii Oborskyi">
+  <meta name="twitter:description" content="Research on AI agent governance, control theory, Thinking Systems and AI-assisted delivery: human understanding, verification, authority and operating models.">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Research directions",
+  "inLanguage": "en",
+  "description": "AI architecture, control theory, Theory of Constraints and socio-technical operating models."
+}
+  </script>
+
+
+
+<meta name="robots" content="noindex, nofollow">
+<style>
+:root {
+  --paper:#f8f7f3; --ink:#142632; --muted:#4b5c69; --line:#cdd6da;
+  --accent:#075d7b; --systems:#895710; --tint:#eff2ef;
+  --portrait-start:#deebeb; --portrait-end:#f4edde;
+  --facet-1:#e7ece8;--facet-2:#dce9eb;--facet-3:#cddfe3;--facet-4:#eae1ce;--facet-5:#bfd4da;--facet-6:#eff0e9;
+  --button-bg:#142632; --button-ink:#fff;
+  --surface-open:74%; --surface-reading:83%; --surface-row:84%;
+  --sans:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+:root[data-theme="dark"] {
+  --paper:#0b0f14; --ink:#f4f7fa; --muted:#adb8c5; --line:#344454;
+  --accent:#28c7f7; --systems:#f5b61c; --tint:#141c26;
+  --portrait-start:#152732; --portrait-end:#24251e;
+  --facet-1:#1c252e;--facet-2:#142f3b;--facet-3:#1c3f4c;--facet-4:#332e21;--facet-5:#235164;--facet-6:#253038;
+  --button-bg:#28c7f7; --button-ink:#0b0f14; color-scheme:dark;
+  --surface-open:70%; --surface-reading:84%; --surface-row:84%;
+}
+@media(prefers-color-scheme:dark) {
+  :root:not([data-theme]) {
+    --paper:#0b0f14; --ink:#f4f7fa; --muted:#adb8c5; --line:#344454;
+    --accent:#28c7f7; --systems:#f5b61c; --tint:#141c26;
+    --portrait-start:#152732; --portrait-end:#24251e;
+    --facet-1:#1c252e;--facet-2:#142f3b;--facet-3:#1c3f4c;--facet-4:#332e21;--facet-5:#235164;--facet-6:#253038;
+    --button-bg:#28c7f7; --button-ink:#0b0f14; color-scheme:dark;
+    --surface-open:70%; --surface-reading:84%; --surface-row:84%;
+  }
+}
+* {box-sizing:border-box}
+[hidden] {display:none!important}
+html {scroll-behavior:smooth;scroll-padding-top:var(--header-clearance,110px)}
+body {margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.65;isolation:isolate}
+a {color:inherit;text-underline-offset:.22em}
+a:hover {color:var(--accent)}
+a:focus-visible,select:focus-visible,button:focus-visible {outline:3px solid var(--accent);outline-offset:5px}
+button,select {font:inherit}
+button {cursor:pointer}
+.wrap {width:min(1160px,calc(100% - 80px));margin-inline:auto}
+.skip-link {position:fixed;top:-80px;left:20px;padding:12px;background:var(--button-bg);color:var(--button-ink);z-index:10}
+.skip-link:focus {top:12px}
+.site-header {position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;padding-block:18px;border-bottom:1px solid var(--line);background:var(--paper)}
+.wordmark {display:inline-flex;align-items:center;gap:12px;font-size:14px;font-weight:650;text-decoration:none;white-space:nowrap}
+.monogram {font-size:28px;letter-spacing:-.055em;font-weight:750;line-height:1;color:var(--accent)}
+.site-header nav {display:flex;gap:24px;margin-left:auto;font-size:14px}
+.site-header nav a {display:inline-flex;align-items:center;min-height:44px;text-decoration:none;border-bottom:2px solid transparent}
+.site-header nav a[aria-current] {border-color:var(--accent);font-weight:650}
+.display-controls {display:flex;align-items:center;gap:10px}
+.appearance {position:relative;font-size:13px}
+.appearance:has(.theme-control[hidden]):has(#space-motion[hidden]) {display:none}
+.appearance summary {cursor:pointer;min-height:44px;padding:10px 0;list-style-position:inside}
+.appearance summary:focus-visible {outline:3px solid var(--accent);outline-offset:4px}
+.appearance[open] .display-controls {position:absolute;right:0;top:48px;z-index:6;background:var(--paper);padding:18px;border:1px solid var(--line);border-radius:6px;box-shadow:0 10px 30px #0002;min-width:270px}
+.theme-control {display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
+select,.motion-control,.filter-reset {min-height:44px;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:8px 10px}
+.motion-control,.filter-reset {font-size:12px;white-space:nowrap}
+.space-scene {position:fixed;inset:0;pointer-events:none;z-index:-1;color:var(--accent);overflow:hidden}
+.space-scene svg,.space-scene canvas {position:absolute;inset:0;width:100%;height:100%}
+.space-scene canvas {visibility:hidden}
+.space-scene[data-ready] canvas {visibility:visible}
+.space-scene[data-ready] svg {visibility:hidden}
+.space-fallback {opacity:1}
+/* Protect the reading block, leaving the section and its gutters open to the world. */
+.section,.archive-intro,.credits-page,.hero-copy,.shift-intro {background:transparent}
+.hero-copy {background:var(--paper);background:color-mix(in srgb,var(--paper) var(--surface-open),transparent)}
+.section-heading,.archive-intro>h1,.archive-intro>.hero-description,.shift-intro>p,
+.research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,
+.ack-grid article,.about-grid>div,.contact-grid>div,.publication,.credits-page>p,
+.archive-landings,.archive-heading,.archive-filters,.archive-count,.empty-state,.year-landing,
+.section-note,.section-nav,.topic-nav,.next-route,.site-footer {
+  background:var(--paper);
+  background:color-mix(in srgb,var(--paper) var(--surface-reading),transparent);
+}
+.section-heading {width:fit-content;max-width:100%;padding:14px 18px;margin-left:-18px}
+.archive-intro>h1,.archive-intro>.hero-description {width:fit-content;max-width:100%;padding:8px 16px;margin-left:-16px}
+.shift-intro>p {padding:16px}
+.research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,.ack-grid article {padding:24px 22px}
+.about-grid>div,.contact-grid>div {padding:18px 22px}
+.publication {background:color-mix(in srgb,var(--paper) var(--surface-row),transparent);padding-inline:20px;margin-bottom:12px}
+.credits-page>p {padding:14px 18px;margin-inline:-18px}
+.section-note {width:fit-content;padding:8px 12px}
+.section-nav,.topic-nav {padding-inline:14px}
+.site-footer,.next-route {padding-inline:18px}
+.hero {display:grid;grid-template-columns:1.16fr .84fr;align-items:end;gap:0 40px;padding-top:54px}
+.hero-copy {align-self:center;padding-bottom:34px}
+.eyebrow {display:flex;align-items:center;gap:12px;font-size:12px;font-weight:650;line-height:1.6;letter-spacing:.08em;text-transform:uppercase;margin:0 0 20px;color:var(--muted)}
+.accent-line {width:28px;height:2px;background:var(--accent);flex:0 0 auto}
+h1,h2,h3,p {overflow-wrap:break-word}
+h1 {font-size:clamp(52px,6.8vw,91px);font-weight:750;line-height:1.02;letter-spacing:-.052em;margin:22px 0 26px}
+.accent {color:var(--accent)}
+.hero-lead {font-size:clamp(21px,2.1vw,25px);line-height:1.42;font-weight:580;max-width:540px;margin-bottom:16px}
+.hero-description {font-size:16px;color:var(--muted);max-width:530px;line-height:1.7;margin:0 0 28px}
+.button {display:inline-flex;align-items:center;gap:30px;min-height:44px;padding:12px 20px;background:var(--button-bg);color:var(--button-ink);border-radius:5px;font-size:14px;font-weight:600;text-decoration:none;transition:transform .15s}
+.button:hover {color:var(--button-ink);transform:translateY(-2px)}
+.portrait-composition {position:relative;margin:0;min-width:0;isolation:isolate;align-self:end}
+.portrait-facets {position:absolute;inset:-9% -9% -5%;width:118%;height:114%;z-index:-1}
+.portrait-facets polygon {stroke:var(--line)}
+#facet-1 {fill:var(--facet-1)}
+#facet-2 {fill:var(--facet-2)}
+#facet-3 {fill:var(--facet-3)}
+#facet-4 {fill:var(--facet-4)}
+#facet-5 {fill:var(--facet-5)}
+#facet-6 {fill:var(--facet-6)}
+.portrait-composition img {display:block;width:100%;height:auto;max-height:480px;object-fit:contain;object-position:bottom center}
+.audience {font-size:13px;font-weight:600;color:var(--muted);margin:0 0 24px}
+.hero-actions {display:flex;align-items:center;flex-wrap:wrap;gap:10px 24px}
+.shift-intro {grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:44px;padding-block:30px;border-top:1px solid var(--line)}
+.shift-intro p {margin:0;color:var(--muted);font-size:15px}
+.shift-intro .shift-statement {font-size:21px;line-height:1.4;font-weight:600;color:var(--ink);letter-spacing:-.02em}
+.research-note {grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:44px;border-top:1px solid var(--line);padding:30px 0}
+.note-row {display:grid;gap:9px}
+.note-number {font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--accent)}
+.note-row:last-child .note-number {color:var(--systems)}
+.note-row p {font-size:clamp(19px,1.8vw,23px);font-weight:550;line-height:1.4;letter-spacing:-.02em;max-width:470px;margin:0}
+.section-nav {display:flex;flex-wrap:wrap;gap:8px 26px;padding-block:14px;border-block:1px solid var(--line);font-size:13px;font-weight:600}
+.section-nav a {display:inline-flex;align-items:center;min-height:44px;text-decoration:none}
+.section {padding-block:58px;border-top:1px solid var(--line)}
+.section-heading {margin-bottom:32px}
+h2 {font-size:clamp(30px,3.4vw,40px);font-weight:720;letter-spacing:-.035em;line-height:1.2;margin:0}
+.section-heading>p:last-child:not(.eyebrow) {color:var(--muted);font-size:16px;max-width:780px;margin:14px 0 0}
+.research-grid,.topic-grid,.ack-grid,.about-grid {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px 44px}
+.research-card {display:flex;flex-direction:column;padding:22px 0 0;border-top:2px solid var(--accent)}
+.research-card:last-child {border-color:var(--systems)}
+.card-kicker {font-size:12px;font-weight:650;color:var(--accent);margin:0 0 22px}
+.small-number {margin-right:14px;font-variant-numeric:tabular-nums}
+.research-card:last-child .card-kicker {color:var(--systems)}
+.research-card h3 {font-size:clamp(27px,3vw,34px);font-weight:650;line-height:1.2;letter-spacing:-.025em;margin:0 0 19px}
+.research-card>p:not(.card-kicker),.topic-card p,.ack-grid p,.about-grid p {color:var(--muted);font-size:16px;line-height:1.7;margin:0 0 18px}
+.research-routes {margin-top:auto;display:flex;flex-wrap:wrap;gap:4px 22px}
+.research-card>p.edition-link {font-size:13px;margin:12px 0 0}
+.help-grid,.ack-leads {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
+.help-grid article,.ack-leads article {border-top:1px solid var(--line);padding-top:22px}
+.help-grid h3 {font-size:21px;line-height:1.4;letter-spacing:-.02em;margin:0 0 18px}
+.help-grid p,.ack-leads p,.ack-compact p {color:var(--muted);font-size:15px;line-height:1.7;margin:0 0 16px}
+.help-grid p.card-kicker {font-size:11px;color:var(--accent)}
+.help-grid p.possible-output {font-size:14px}
+.ack-leads h3,.ack-compact h3 {font-size:18px;margin:0 0 10px}
+.ack-compact {display:grid;grid-template-columns:1fr 1fr;gap:18px 44px;margin-top:30px}
+.ack-compact article {border-top:1px solid var(--line);padding-top:18px}
+.ack-compact p {font-size:14px;margin-bottom:6px}
+.mention-links {display:flex;flex-wrap:wrap;gap:8px 20px;font-size:13px}
+.mention-links a {padding-block:6px}
+.writing-summary {color:var(--muted);font-size:14px;margin:12px 0 0}
+.topic-list {display:flex;flex-wrap:wrap;gap:7px;list-style:none;padding:0;margin:auto 0 24px;color:var(--muted);font-size:12px}
+.topic-list li+li::before {content:"/";padding-inline:4px 12px;color:var(--muted)}
+.text-link {display:inline-block;font-size:14px;font-weight:600;line-height:1.5;text-decoration:none;padding-block:8px}
+.text-link span {margin-left:10px}
+.topic-card {border-top:1px solid var(--line);padding-top:22px}
+.topic-card h3 {font-size:21px;line-height:1.4;font-weight:650;letter-spacing:-.015em;margin:0 0 18px}
+.section-note {margin:20px 0 0;max-width:850px;color:var(--muted);font-size:14px}
+.topic-nav {display:flex;flex-wrap:wrap;gap:8px 24px;margin-bottom:24px}
+.topic-nav a {font-size:13px;font-weight:600;text-decoration:none;border-bottom:1px solid var(--line);padding-block:10px}
+.publication-list {list-style:none;margin:0;padding:0}
+.publication {display:grid;grid-template-columns:200px minmax(0,1fr);gap:36px;align-items:start;border-top:1px solid var(--line);padding-block:24px}
+.publication-meta {display:flex;flex-direction:column;gap:7px;font-size:13px;color:var(--muted)}
+.publication-meta time {font-weight:650;color:var(--ink);font-size:13px}
+.publication-title {display:flex;align-items:start;justify-content:space-between;gap:24px;font-size:clamp(20px,2vw,23px);font-weight:550;line-height:1.5;letter-spacing:-.018em;text-decoration:none}
+.publication-arrow {flex:0 0 auto;color:var(--accent);font-size:21px}
+.language-badge {display:inline-block;font-size:12px;font-weight:600;color:var(--muted)}
+.edition-link {font-size:13px;color:var(--muted);margin:10px 0 0}
+.archive-link {margin-top:26px}
+.writing-topic {font-size:13px;font-weight:650;color:var(--muted);margin:32px 0 12px;text-transform:uppercase;letter-spacing:.07em}
+.talk-title {font-size:25px;font-weight:600;line-height:1.4;margin:0 0 12px}
+.ack-grid article {border-top:1px solid var(--line);padding-top:22px}
+.ack-grid h3 {font-size:18px;margin:0 0 12px}
+.about-grid p {margin-bottom:18px}
+.about-links {display:flex;flex-wrap:wrap;gap:12px 24px}
+.about-section>.eyebrow {margin-bottom:26px}
+.next-route {display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-block:28px;border-top:1px solid var(--line)}
+.next-route p {font-size:20px;font-weight:600;margin:0}
+.site-footer {display:flex;flex-wrap:wrap;gap:16px 28px;border-top:1px solid var(--line);padding-block:26px;font-size:12px;color:var(--muted)}
+.site-footer p {margin:0 auto 0 0}
+.site-footer a {text-decoration:none}
+.archive-intro {padding-block:60px 32px}
+.archive-intro h1 {font-size:clamp(40px,5.7vw,72px)}
+.archive-intro .hero-description {max-width:720px}
+.archive-filters {display:flex;flex-wrap:wrap;align-items:end;gap:18px;padding-block:24px 4px}
+.archive-filters label {display:grid;gap:8px;font-size:13px;color:var(--muted)}
+.archive-filters select {min-width:130px;font-size:14px}
+.year-heading {display:flex;align-items:center;gap:24px}
+.year-heading span {font-size:13px;color:var(--muted)}
+.empty-state {border:1px solid var(--line);padding:26px;margin-block:32px}
+.archive-landings {display:flex;flex-wrap:wrap;gap:12px 28px;padding-top:24px}
+.topic-landing,.year-landing {font-size:15px;letter-spacing:0;line-height:1.5;margin:0;padding-block:12px}
+.topic-landing a {display:block;font-size:13px;font-weight:500;margin-top:6px}
+.year-landing {width:min(1160px,calc(100% - 80px));margin-inline:auto;font-size:19px;padding-top:38px}
+.archive-heading {font-size:21px;margin-top:24px;letter-spacing:-.015em}
+.archive-landings,.year-landing {scroll-margin-top:12px}
+.contact-grid {display:grid;grid-template-columns:1fr 1fr;gap:44px}
+.contact-grid p {color:var(--muted);font-size:15px;max-width:520px}
+.booking-placeholder {border-left:2px solid var(--accent);padding:4px 0 4px 30px;align-self:center}
+.booking-placeholder h3 {font-size:22px;margin:0}
+.booking-placeholder .button {font-size:13px;gap:16px}
+.credits-page {max-width:800px;padding-block:60px}
+.credits-page h1 {font-size:clamp(40px,6vw,60px)}
+.credits-page h2 {font-size:21px;letter-spacing:-.01em;margin-top:36px}
+.credits-page p {color:var(--muted)}
+/* Later component rules supply spacing; these retain local reading protection. */
+.research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,.ack-grid article {padding:24px 22px}
+.publication {padding-inline:20px}
+.eyebrow,.audience,.writing-topic,.credits-page h2 {width:fit-content;background:color-mix(in srgb,var(--paper) var(--surface-reading),transparent)}
+body[data-page="writing"] #archive-results {width:min(1010px,calc(100% - 80px));margin-inline:auto}
+body[data-page="writing"] .publication {background:color-mix(in srgb,var(--paper) var(--surface-row),transparent)}
+@media(max-width:1100px) {
+  .site-header {gap:8px 20px}
+  .appearance {margin-left:auto}
+}
+@media(max-width:900px) {
+  .wrap,.year-landing {width:calc(100% - 48px)}
+  body[data-page="writing"] #archive-results {width:calc(100% - 48px)}
+  .hero {gap:0 24px;padding-top:40px}
+  .hero h1 {font-size:clamp(48px,7vw,66px)}
+  .publication {grid-template-columns:165px minmax(0,1fr);gap:24px}
+}
+@media(max-width:640px) {
+  html {scroll-padding-top:var(--header-clearance,112px)}
+  .wrap,.year-landing {width:calc(100% - 40px)}
+  body[data-page="writing"] #archive-results {width:calc(100% - 40px)}
+  .site-header {padding-block:8px;gap:0 14px}
+  .wordmark {font-size:13px}
+  .site-header nav {order:3;flex-basis:100%;margin:0;gap:22px;font-size:13px}
+  .appearance {margin-left:auto}
+  .theme-control {font-size:12px}
+  .hero {grid-template-columns:minmax(0,1fr) min(29vw,140px);gap:0 16px;padding-top:34px}
+  .hero-copy {display:contents}
+  .hero .eyebrow {grid-row:1;grid-column:1/-1}
+  .hero h1 {grid-row:2;grid-column:1;font-size:clamp(32px,9vw,52px);letter-spacing:-.03em;margin:0;align-self:center}
+  .portrait-composition {grid-row:2;grid-column:2;width:100%}
+  .portrait-composition img {max-height:150px}
+  .hero-lead {grid-row:3;grid-column:1/-1;font-size:21px;margin-top:24px}
+  .hero-description {grid-row:4;grid-column:1/-1}
+  .hero .audience {grid-row:5;grid-column:1/-1}
+  .hero-actions {grid-row:6;grid-column:1/-1;margin-bottom:26px}
+  .hero-actions .button {font-size:13px;gap:20px}
+  .shift-intro {grid-row:7;grid-template-columns:1fr;gap:16px;padding-block:25px}
+  .hero .research-note {grid-row:6;grid-template-columns:1fr;gap:24px;padding-block:25px}
+  .section {padding-block:40px}
+  .research-grid,.topic-grid,.ack-grid,.about-grid,.help-grid,.ack-leads,.ack-compact,.contact-grid {grid-template-columns:1fr;gap:28px}
+  .publication {grid-template-columns:1fr;gap:12px;padding-block:20px}
+  .publication-meta {flex-direction:row;flex-wrap:wrap;gap:8px 14px}
+  .publication-title {font-size:21px;gap:16px}
+  .section-nav {gap:4px 18px}
+  .section-nav a {font-size:12px}
+  .archive-intro {padding-top:38px}
+  .archive-filters {gap:12px}
+  .archive-filters label,.archive-filters select {max-width:100%}
+  .site-footer p {flex-basis:100%}
+  .section-heading {padding:10px 12px;margin-left:-12px}
+  .research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,.ack-grid article {padding:20px 16px}
+  .publication {padding-inline:16px}
+  .hero-lead,.hero-description,.hero .audience {background:color-mix(in srgb,var(--paper) var(--surface-reading),transparent)}
+  .booking-placeholder {padding-left:20px}
+}
+@media(prefers-reduced-motion:reduce) {
+  html {scroll-behavior:auto}
+  * {transition:none!important}
+}
+@media print {
+  :root,:root[data-theme],:root:not([data-theme]) {--paper:#fff;--ink:#142632;--muted:#4b5c69;--line:#cdd6da;--accent:#075d7b;--systems:#895710;color-scheme:light}
+  body {background:white}
+  .section-heading,.publication,.credits-page>p {background:white}
+  .wrap {width:100%}
+  .site-header {position:static}
+  .site-header nav,.appearance,.display-controls,.space-scene,.skip-link,.section-nav,.topic-nav,.archive-filters,.archive-landings,.archive-heading,.button {display:none!important}
+  .hero {padding-top:24px}
+  .section {padding-block:28px}
+  .publication,.research-card,.ack-grid article {break-inside:avoid}
+  a {text-decoration:underline}
+}
+</style>
+</head>
+<body data-page="research">
+  <div class="space-scene" aria-hidden="true"><svg class="space-fallback" data-motif="research" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice"><path d="M817.11 479.88 L803.20 141.98" fill="none" style="stroke:var(--accent)" stroke-opacity="0.2" stroke-width="0.7"/><path d="M817.11 479.88 L674.63 577.01" fill="none" style="stroke:var(--accent)" stroke-opacity="0.2" stroke-width="0.7"/><path d="M1469.50 578.64 L817.11 479.88" fill="none" style="stroke:var(--accent)" stroke-opacity="0.2" stroke-width="0.7"/><path d="M753.46 523.27 L730.46 150.21" fill="none" style="stroke:var(--accent)" stroke-opacity="0.2" stroke-width="0.7"/><path d="M803.20 141.98 L1538.56 160.99" fill="none" style="stroke:var(--accent)" stroke-opacity="0.2" stroke-width="0.7"/><path d="M1477.00 647.41 L753.46 523.27" fill="none" style="stroke:var(--accent)" stroke-opacity="0.2" stroke-width="0.7"/><path d="M674.63 577.01 L638.07 160.67" fill="none" style="stroke:var(--accent)" stroke-opacity="0.2" stroke-width="0.7"/><path d="M1538.56 160.99 L1469.50 578.64" fill="none" style="stroke:var(--accent)" stroke-opacity="0.2" stroke-width="0.7"/><path d="M802.52 239.95 L830.10 241.68 L828.99 209.84 L801.18 208.43Z" fill="#cadadc" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 80.90%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M802.52 239.95 L801.18 208.43 L785.20 211.97 L786.72 244.27Z" fill="#cedcde" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 82.74%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M802.52 239.95 L786.72 244.27 L814.85 246.08 L830.10 241.68Z" fill="#ccdbdd" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 81.82%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M730.46 150.21 L1558.05 174.82" fill="none" style="stroke:var(--accent)" stroke-opacity="0.2" stroke-width="0.7"/><path d="M1486.87 737.82 L674.63 577.01" fill="none" style="stroke:var(--accent)" stroke-opacity="0.2" stroke-width="0.7"/><path d="M674.63 577.01 L1486.87 737.82" fill="none" style="stroke:var(--accent)" stroke-opacity="0.2" stroke-width="0.7"/><path d="M1486.87 737.82 L1469.50 578.64" fill="none" style="stroke:var(--accent)" stroke-opacity="0.2" stroke-width="0.7"/><path d="M801.18 208.43 L828.99 209.84 L813.58 213.45 L785.20 211.97Z" fill="#ccdbdd" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 81.82%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M830.10 241.68 L814.85 246.08 L813.58 213.45 L828.99 209.84Z" fill="#cedcde" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 82.74%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M786.72 244.27 L785.20 211.97 L813.58 213.45 L814.85 246.08Z" fill="#cadadc" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 80.90%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M807.92 227.00 L876.38 236.38" fill="none" style="stroke:var(--accent)" stroke-opacity="0.65" stroke-width="1.2"/><path d="M869.05 249.88 L899.01 251.81 L898.51 218.15 L868.27 216.56Z" fill="#cadadc" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 80.90%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M930.52 280.09 L929.98 187.43" fill="none" style="stroke:var(--systems)" stroke-opacity="0.65" stroke-width="1.2"/><path d="M869.05 249.88 L868.27 216.56 L853.16 220.54 L854.11 254.73Z" fill="#cedcde" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 82.74%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M869.05 249.88 L854.11 254.73 L884.74 256.77 L899.01 251.81Z" fill="#ccdbdd" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 81.82%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M868.27 216.56 L898.51 218.15 L884.08 222.21 L853.16 220.54Z" fill="#ccdbdd" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 81.82%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M899.01 251.81 L884.74 256.77 L884.08 222.21 L898.51 218.15Z" fill="#cedcde" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 82.74%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M930.52 280.09 L974.06 264.97" fill="none" style="stroke:var(--systems)" stroke-opacity="0.65" stroke-width="1.2"/><path d="M892.11 296.55 L930.52 280.09" fill="none" style="stroke:var(--systems)" stroke-opacity="0.65" stroke-width="1.2"/><path d="M1558.05 174.82 L1477.00 647.41" fill="none" style="stroke:var(--accent)" stroke-opacity="0.2" stroke-width="0.7"/><path d="M854.11 254.73 L853.16 220.54 L884.08 222.21 L884.74 256.77Z" fill="#cadadc" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 80.90%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M785.86 167.36 L1171.04 195.04 L1162.32 334.29 L790.94 276.89Z" fill="#c9d9db" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 80.33%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M930.52 280.09 L929.98 187.43 L890.41 196.80 L892.11 296.55Z" fill="#e5dbcc" style="stroke:var(--systems);fill:color-mix(in srgb,var(--paper) 82.74%,var(--systems))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M929.98 187.43 L974.34 224.67" fill="none" style="stroke:var(--systems)" stroke-opacity="0.65" stroke-width="1.2"/><path d="M876.38 236.38 L966.92 247.78" fill="none" style="stroke:var(--accent)" stroke-opacity="0.65" stroke-width="1.2"/><path d="M929.98 187.43 L890.41 196.80" fill="none" style="stroke:var(--systems)" stroke-opacity="0.65" stroke-width="1.2"/><path d="M974.06 264.97 L1042.37 294.80" fill="none" style="stroke:var(--systems)" stroke-opacity="0.65" stroke-width="1.2"/><path d="M974.06 264.97 L974.34 224.67" fill="none" style="stroke:var(--systems)" stroke-opacity="0.65" stroke-width="1.2"/><path d="M956.82 261.91 L989.87 264.12 L990.28 228.24 L956.89 226.43Z" fill="#e3d8c8" style="stroke:var(--systems);fill:color-mix(in srgb,var(--paper) 80.90%,var(--systems))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M956.82 261.91 L956.89 226.43 L943.34 230.98 L943.41 267.45Z" fill="#e5dbcc" style="stroke:var(--systems);fill:color-mix(in srgb,var(--paper) 82.74%,var(--systems))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M959.35 271.39 L974.06 264.97" fill="none" style="stroke:var(--systems)" stroke-opacity="0.65" stroke-width="1.2"/><path d="M956.82 261.91 L943.41 267.45 L977.27 269.79 L989.87 264.12Z" fill="#e4daca" style="stroke:var(--systems);fill:color-mix(in srgb,var(--paper) 81.82%,var(--systems))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M892.11 296.55 L959.35 271.39" fill="none" style="stroke:var(--systems)" stroke-opacity="0.65" stroke-width="1.2"/><path d="M890.41 196.80 L892.11 296.55" fill="none" style="stroke:var(--systems)" stroke-opacity="0.65" stroke-width="1.2"/><path d="M974.06 264.97 L974.34 224.67 L959.46 229.81 L959.35 271.39Z" fill="#e5dbcc" style="stroke:var(--systems);fill:color-mix(in srgb,var(--paper) 82.74%,var(--systems))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M1042.37 294.80 L1044.93 199.57" fill="none" style="stroke:var(--systems)" stroke-opacity="0.65" stroke-width="1.2"/><path d="M746.95 606.04 L701.42 350.16" fill="none" style="stroke:var(--systems)" stroke-opacity="0.65" stroke-width="1.2"/><path d="M974.34 224.67 L1044.93 199.57" fill="none" style="stroke:var(--systems)" stroke-opacity="0.65" stroke-width="1.2"/><path d="M895.07 603.11 L928.01 609.42 L927.77 576.51 L894.49 570.53Z" fill="#cadadc" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 80.90%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M956.89 226.43 L990.28 228.24 L977.56 232.91 L943.34 230.98Z" fill="#e4daca" style="stroke:var(--systems);fill:color-mix(in srgb,var(--paper) 81.82%,var(--systems))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M974.34 224.67 L959.46 229.81" fill="none" style="stroke:var(--systems)" stroke-opacity="0.65" stroke-width="1.2"/><path d="M989.87 264.12 L977.27 269.79 L977.56 232.91 L990.28 228.24Z" fill="#e5dbcc" style="stroke:var(--systems);fill:color-mix(in srgb,var(--paper) 82.74%,var(--systems))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M895.07 603.11 L894.49 570.53 L878.79 585.56 L879.55 618.96Z" fill="#cedcde" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 82.74%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M895.07 603.11 L879.55 618.96 L913.30 625.66 L928.01 609.42Z" fill="#ccdbdd" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 81.82%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M943.41 267.45 L943.34 230.98 L977.56 232.91 L977.27 269.79Z" fill="#e3d8c8" style="stroke:var(--systems);fill:color-mix(in srgb,var(--paper) 80.90%,var(--systems))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M959.46 229.81 L959.35 271.39" fill="none" style="stroke:var(--systems)" stroke-opacity="0.65" stroke-width="1.2"/><path d="M890.41 196.80 L959.46 229.81" fill="none" style="stroke:var(--systems)" stroke-opacity="0.65" stroke-width="1.2"/><path d="M638.07 160.67 L1584.81 193.80" fill="none" style="stroke:var(--accent)" stroke-opacity="0.2" stroke-width="0.7"/><path d="M894.49 570.53 L927.77 576.51 L912.89 591.92 L878.79 585.56Z" fill="#ccdbdd" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 81.82%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M928.01 609.42 L913.30 625.66 L912.89 591.92 L927.77 576.51Z" fill="#cedcde" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 82.74%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M1011.84 313.02 L1042.37 294.80" fill="none" style="stroke:var(--systems)" stroke-opacity="0.65" stroke-width="1.2"/><path d="M879.55 618.96 L878.79 585.56 L912.89 591.92 L913.30 625.66Z" fill="#cadadc" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 80.90%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M959.35 271.39 L1011.84 313.02" fill="none" style="stroke:var(--systems)" stroke-opacity="0.65" stroke-width="1.2"/><path d="M1042.37 294.80 L1044.93 199.57 L1013.69 210.29 L1011.84 313.02Z" fill="#e5dbcc" style="stroke:var(--systems);fill:color-mix(in srgb,var(--paper) 82.74%,var(--systems))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M966.92 247.78 L1100.92 262.80" fill="none" style="stroke:var(--accent)" stroke-opacity="0.65" stroke-width="1.2"/><path d="M939.95 644.82 L810.54 573.79" fill="none" style="stroke:var(--systems)" stroke-opacity="0.65" stroke-width="1.2"/><path d="M1044.93 199.57 L1013.69 210.29" fill="none" style="stroke:var(--systems)" stroke-opacity="0.65" stroke-width="1.2"/><path d="M959.46 229.81 L1013.69 210.29" fill="none" style="stroke:var(--systems)" stroke-opacity="0.65" stroke-width="1.2"/><path d="M1086.33 277.70 L1123.81 280.30 L1125.76 241.54 L1087.84 239.40Z" fill="#cadadc" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 80.90%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M749.02 462.52 L782.23 467.46 L780.34 430.81 L746.78 426.28Z" fill="#cadadc" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 80.90%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M1086.33 277.70 L1087.84 239.40 L1077.32 244.77 L1075.88 284.23Z" fill="#cedcde" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 82.74%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M749.02 462.52 L746.78 426.28 L725.28 437.67 L727.84 474.93Z" fill="#cedcde" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 82.74%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M749.02 462.52 L727.84 474.93 L761.84 480.19 L782.23 467.46Z" fill="#ccdbdd" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 81.82%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M1086.33 277.70 L1075.88 284.23 L1114.44 286.99 L1123.81 280.30Z" fill="#ccdbdd" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 81.82%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M903.75 597.66 L1048.29 631.27" fill="none" style="stroke:var(--accent)" stroke-opacity="0.65" stroke-width="1.2"/><path d="M1013.69 210.29 L1011.84 313.02" fill="none" style="stroke:var(--systems)" stroke-opacity="0.65" stroke-width="1.2"/><path d="M746.78 426.28 L780.34 430.81 L759.65 442.49 L725.28 437.67Z" fill="#ccdbdd" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 81.82%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M1087.84 239.40 L1125.76 241.54 L1116.35 247.04 L1077.32 244.77Z" fill="#ccdbdd" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 81.82%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M782.23 467.46 L761.84 480.19 L759.65 442.49 L780.34 430.81Z" fill="#cedcde" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 82.74%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M1123.81 280.30 L1114.44 286.99 L1116.35 247.04 L1125.76 241.54Z" fill="#cedcde" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 82.74%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M810.54 573.79 L771.38 441.44" fill="none" style="stroke:var(--systems)" stroke-opacity="0.65" stroke-width="1.2"/><path d="M727.84 474.93 L725.28 437.67 L759.65 442.49 L761.84 480.19Z" fill="#cadadc" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 80.90%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M1075.88 284.23 L1077.32 244.77 L1116.35 247.04 L1114.44 286.99Z" fill="#cadadc" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 80.90%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M1048.29 631.27 L939.95 644.82" fill="none" style="stroke:var(--systems)" stroke-opacity="0.65" stroke-width="1.2"/><path d="M1584.81 193.80 L1486.87 737.82" fill="none" style="stroke:var(--accent)" stroke-opacity="0.2" stroke-width="0.7"/><path d="M1034.36 636.44 L1073.38 644.00 L1074.85 607.25 L1035.35 600.09Z" fill="#e3d8c8" style="stroke:var(--systems);fill:color-mix(in srgb,var(--paper) 80.90%,var(--systems))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M754.19 452.79 L874.96 455.88" fill="none" style="stroke:var(--accent)" stroke-opacity="0.65" stroke-width="1.2"/><path d="M1034.36 636.44 L1035.35 600.09 L1022.39 618.12 L1021.52 655.48Z" fill="#e5dbcc" style="stroke:var(--systems);fill:color-mix(in srgb,var(--paper) 82.74%,var(--systems))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M1034.36 636.44 L1021.52 655.48 L1061.70 663.57 L1073.38 644.00Z" fill="#e4daca" style="stroke:var(--systems);fill:color-mix(in srgb,var(--paper) 81.82%,var(--systems))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M1035.35 600.09 L1074.85 607.25 L1063.08 625.78 L1022.39 618.12Z" fill="#e4daca" style="stroke:var(--systems);fill:color-mix(in srgb,var(--paper) 81.82%,var(--systems))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M1073.38 644.00 L1061.70 663.57 L1063.08 625.78 L1074.85 607.25Z" fill="#e5dbcc" style="stroke:var(--systems);fill:color-mix(in srgb,var(--paper) 82.74%,var(--systems))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M1021.52 655.48 L1022.39 618.12 L1063.08 625.78 L1061.70 663.57Z" fill="#e3d8c8" style="stroke:var(--systems);fill:color-mix(in srgb,var(--paper) 80.90%,var(--systems))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M771.38 441.44 L874.96 455.88" fill="none" style="stroke:var(--systems)" stroke-opacity="0.65" stroke-width="1.2"/><path d="M865.67 466.49 L903.86 471.98 L903.28 431.64 L864.63 426.65Z" fill="#cadadc" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 80.90%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M714.62 374.38 L1259.97 480.07 L1306.11 809.81 L794.73 615.07Z" fill="#c8d8db" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 80.02%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M865.67 466.49 L864.63 426.65 L845.08 439.23 L846.40 480.32Z" fill="#cedcde" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 82.74%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M865.67 466.49 L846.40 480.32 L885.67 486.21 L903.86 471.98Z" fill="#ccdbdd" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 81.82%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M864.63 426.65 L903.28 431.64 L884.84 444.60 L845.08 439.23Z" fill="#ccdbdd" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 81.82%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M903.86 471.98 L885.67 486.21 L884.84 444.60 L903.28 431.64Z" fill="#cedcde" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 82.74%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M846.40 480.32 L845.08 439.23 L884.84 444.60 L885.67 486.21Z" fill="#cadadc" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 80.90%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M701.42 350.16 L1259.60 456.54" fill="none" style="stroke:var(--systems)" stroke-opacity="0.65" stroke-width="1.2"/><path d="M874.96 455.88 L1009.12 476.74" fill="none" style="stroke:var(--accent)" stroke-opacity="0.65" stroke-width="1.2"/><path d="M184.90 829.53 L366.30 702.60 L291.16 1047.94 L83.18 1112.87Z" fill="#d5c4ab" style="stroke:var(--systems);fill:color-mix(in srgb,var(--paper) 68.22%,var(--systems))" fill-opacity="0.88" stroke-opacity="0.55" stroke-width="1.6"/><path d="M994.68 487.58 L1038.14 493.87 L1039.33 450.28 L995.27 444.56Z" fill="#cadadc" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 80.90%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M1250.63 720.98 L1048.29 631.27" fill="none" style="stroke:var(--accent)" stroke-opacity="0.65" stroke-width="1.2"/><path d="M994.68 487.58 L995.27 444.56 L979.02 458.98 L978.63 503.45Z" fill="#cedcde" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 82.74%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M994.68 487.58 L978.63 503.45 L1023.53 510.23 L1038.14 493.87Z" fill="#ccdbdd" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 81.82%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M995.27 444.56 L1039.33 450.28 L1024.56 465.15 L979.02 458.98Z" fill="#ccdbdd" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 81.82%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M1038.14 493.87 L1023.53 510.23 L1024.56 465.15 L1039.33 450.28Z" fill="#cedcde" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 82.74%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M978.63 503.45 L979.02 458.98 L1024.56 465.15 L1023.53 510.23Z" fill="#cadadc" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 80.90%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M1009.12 476.74 L1182.19 578.31" fill="none" style="stroke:var(--accent)" stroke-opacity="0.65" stroke-width="1.2"/><path d="M1145.73 592.02 L1229.95 606.51 L1236.99 528.17 L1150.51 515.51Z" fill="#cadadc" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 80.90%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M1145.73 592.02 L1150.51 515.51 L1131.08 548.12 L1126.45 629.29Z" fill="#cedcde" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 82.74%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M1145.73 592.02 L1126.45 629.29 L1216.32 645.97 L1229.95 606.51Z" fill="#ccdbdd" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 81.82%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M1226.09 724.19 L1277.92 735.09 L1282.81 690.52 L1230.14 680.21Z" fill="#cadadc" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 80.90%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M1226.09 724.19 L1230.14 680.21 L1222.23 706.30 L1218.13 751.75Z" fill="#cedcde" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 82.74%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M1226.09 724.19 L1218.13 751.75 L1272.05 763.59 L1277.92 735.09Z" fill="#ccdbdd" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 81.82%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M1182.19 578.31 L1250.63 720.98" fill="none" style="stroke:var(--accent)" stroke-opacity="0.65" stroke-width="1.2"/><path d="M1150.51 515.51 L1236.99 528.17 L1223.52 562.75 L1131.08 548.12Z" fill="#ccdbdd" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 81.82%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M1229.95 606.51 L1216.32 645.97 L1223.52 562.75 L1236.99 528.17Z" fill="#cedcde" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 82.74%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M1230.14 680.21 L1282.81 690.52 L1277.06 717.52 L1222.23 706.30Z" fill="#ccdbdd" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 81.82%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M1277.92 735.09 L1272.05 763.59 L1277.06 717.52 L1282.81 690.52Z" fill="#cedcde" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 82.74%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M1218.13 751.75 L1222.23 706.30 L1277.06 717.52 L1272.05 763.59Z" fill="#cadadc" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 80.90%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M1126.45 629.29 L1131.08 548.12 L1223.52 562.75 L1216.32 645.97Z" fill="#cadadc" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 80.90%,var(--accent))" fill-opacity="0.82" stroke-opacity="0.46" stroke-width="1"/><path d="M1403.38 1277.79 L1247.15 683.64 L1564.43 307.01Z" fill="#adc7ce" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 69.07%,var(--accent))" fill-opacity="0.88" stroke-opacity="0.55" stroke-width="1.6"/><path d="M1247.15 683.64 L1403.38 1277.79 L1764.24 1434.90Z" fill="#b2cad0" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 70.97%,var(--accent))" fill-opacity="0.88" stroke-opacity="0.55" stroke-width="1.6"/><path d="M1564.43 307.01 L1247.15 683.64 L1764.24 1434.90Z" fill="#adc7ce" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 68.92%,var(--accent))" fill-opacity="0.88" stroke-opacity="0.55" stroke-width="1.6"/><path d="M1403.38 1277.79 L1564.43 307.01 L2322.52 1085.06Z" fill="#adc7ce" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 69.07%,var(--accent))" fill-opacity="0.88" stroke-opacity="0.55" stroke-width="1.6"/><path d="M1403.38 1277.79 L2322.52 1085.06 L1764.24 1434.90Z" fill="#b9ced3" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 73.68%,var(--accent))" fill-opacity="0.88" stroke-opacity="0.55" stroke-width="1.6"/><path d="M2322.52 1085.06 L1564.43 307.01 L1764.24 1434.90Z" fill="#adc7ce" style="stroke:var(--accent);fill:color-mix(in srgb,var(--paper) 69.02%,var(--accent))" fill-opacity="0.88" stroke-opacity="0.55" stroke-width="1.6"/></svg><canvas id="space-canvas"></canvas></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header wrap"><a class="wordmark" href="site-v1-20261002-v5-night.html" aria-label="Vitalii Oborskyi, home"><span class="monogram" aria-hidden="true">vo.</span><span>Vitalii Oborskyi</span></a><nav aria-label="Main navigation"><a href="site-v1-20261002-v5-night.html">Home</a><a href="site-v1-20261002-v5-research-night.html" aria-current="page">Research</a><a href="site-v1-20261002-v5-writing-night.html">Writing</a><a href="site-v1-20261002-v5-talks-night.html">Talks</a></nav><details class="appearance"><summary>Appearance</summary><div class="display-controls"><nav class="theme-control" aria-label="Review theme"><span>Preview theme</span><a href="site-v1-20261002-v5-research-day.html">Day</a><a href="site-v1-20261002-v5-research-night.html" aria-current="page" style="text-decoration:underline">Night</a></nav></div></details></header>
+<aside class="wrap" aria-label="Review copy" style="padding-block:14px;font-size:13px;color:var(--muted)"><a href="site-v1-20261002-v5-index.html">All five pages</a> · fixed Night review · static background. Motion, filters and Auto run in the interactive copy. Review candidate.</aside>
+<main id="main"><section class="archive-intro wrap" data-space-stop="intro"><p class="eyebrow">Research / Living questions</p><h1>Two systems.<br>One engineering perspective.</h1><p class="hero-description">How we deliver software, and how we govern systems whose behavior relies on model judgment — including AI agents in production.</p></section><nav class="section-nav wrap" aria-label="Research sections"><a href="#research">Projects</a><a href="#lenses">Control &amp; constraints</a><a href="#topics">Vocabulary</a><a href="#acknowledgements">Conversations</a></nav>    <section data-space-stop="research" id="research" class="section wrap" aria-labelledby="research-title">
+      <div class="section-heading"><p class="eyebrow">01 / Research</p><h2 id="research-title">Two directions, connected.</h2></div>
+      <div class="research-grid">
+        <article id="delivery" class="research-card">
+          <p class="card-kicker"><span class="small-number">01</span> How we deliver software</p>
+          <h3>The Subprime<br>Code Crisis</h3>
+          <p>What happens across review, testing, security and maintenance when generating code gets easier? This research synthesis studies AI-assisted software delivery as a complete system: verification capacity, code quality, technical debt and long-term ownership, with an inspectable evidence library and adaptable operating protocols.</p>
+          <ul class="topic-list" aria-label="Delivery research topics"><li>Verification capacity</li><li>System throughput</li><li>Long-term ownership</li></ul>
+          <a class="text-link" href="https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis">Explore the research <span aria-hidden="true">↗</span></a>
+        </article>
+        <article id="systems" class="research-card">
+          <p class="card-kicker"><span class="small-number">02</span> What we build</p>
+          <h3>Uncertainty<br>Architecture</h3>
+          <p>How do we design and operate software whose behavior depends on probabilistic Model Judgment? Uncertainty Architecture develops an engineering vocabulary and draft specification for Thinking Systems, AI control architecture, evaluation, decision authority, runtime control and correction.</p>
+          <ul class="topic-list" aria-label="System research topics"><li>Model judgment</li><li>Control architecture</li><li>Release &amp; runtime evidence</li></ul>
+          <a class="text-link" href="https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture">Explore the framework <span aria-hidden="true">↗</span></a>
+        </article>
+      </div>
+      <p class="section-note">The repositories hold the living research and its sources. My articles connect the ideas across both directions.</p>
+    </section><section id="lenses" class="section wrap" aria-labelledby="lenses-title" data-space-stop="lenses"><div class="section-heading"><p class="eyebrow">Two engineering lenses</p><h2 id="lenses-title">Feedback meets flow.</h2></div><div class="topic-grid"><article class="topic-card"><h3>Control theory</h3><p>What do we observe, who can act, and how do we correct behavior? My AI governance writing connects feedback, operating boundaries and corrective action to the design of model-mediated systems.</p><a class="text-link" href="https://pub.towardsai.net/uncertainty-architecture-why-ai-governance-is-actually-control-theory-511f3e73ed6e">Read the control-theory article ↗</a></article><article class="topic-card"><h3>Theory of Constraints (TOC)</h3><p>Where is the bottleneck, and does speeding up one step improve the whole system? The Subprime Code Crisis uses Goldratt’s Theory of Constraints as a lens for verification capacity, work in progress and delivery throughput.</p><a class="text-link" href="https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis/blob/main/report/02_broken_mechanics.md">Read the delivery-system interpretation ↗</a><p class="edition-link"><a href="https://learningcenter.tocico.org/courses/what-is-the-theory-of-constraints-basics-workshop">TOC background · TOCICO</a></p></article></div></section>    <section data-space-stop="topics" id="topics" class="section wrap" aria-labelledby="topics-title">
+      <div class="section-heading"><p class="eyebrow">Research themes</p><h2 id="topics-title">AI governance, architecture<br>&amp; operating models.</h2><p>The technical system and the human operating model have to work together. These are the questions behind my writing.</p></div>
+      <div class="topic-grid">
+        <article class="topic-card"><h3>Thinking Systems &amp; Model Judgment</h3><p>In UA, Thinking Systems are identified by material runtime responsibilities that depend partly on probabilistic Model Judgment. The category is about an engineering condition, not consciousness or a guarantee of reliability.</p><p>Judgment Nodes locate where model judgment influences behavior; Uncertainty Boundaries connect deterministic responsibilities with that judgment.</p><a class="text-link" href="https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/main/00-doctrine/glossary.md#thinking-system">Read the current UA vocabulary <span aria-hidden="true">↗</span></a></article>
+        <article class="topic-card"><h3>AI Control Plane &amp; runtime control</h3><p>AI control theory connects boundaries, evidence, decision authority and effective corrective action. UA's AI Control Plane is a distributed capability model across software, evaluation, release decisions and human workflows — not necessarily a central platform.</p><a class="text-link" href="https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/main/02-ai-control-plane/README.md">Explore the control capabilities <span aria-hidden="true">↗</span></a></article>
+        <article class="topic-card"><h3>Consequential Runtime Responsibility</h3><p>Which model-mediated outputs, decisions or actions can materially affect outcomes, constraints, authority or downstream people and systems? That question helps connect AI architecture with evaluation, release evidence and accountability.</p><a class="text-link" href="https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/main/00-doctrine/glossary.md#consequential-runtime-responsibility">Read the responsibility boundary <span aria-hidden="true">↗</span></a></article>
+        <article class="topic-card"><h3>Socio-technical AI operating models</h3><p>I study the socio-technical stack around AI: how team roles, review practices, decision rights, evaluation and incident ownership fit together. AI governance is not only a model setting; it also concerns how people operate and change the system.</p><a class="text-link" href="site-v1-20261002-v5-writing-night.html#topic-leadership">Read about operating models &amp; delivery <span aria-hidden="true">↗</span></a></article>
+      </div>
+    </section>    <section data-space-stop="acknowledgements" id="acknowledgements" class="section acknowledgements wrap" aria-labelledby="ack-title">
+      <div class="section-heading"><p class="eyebrow">Public discussion &amp; responses</p><h2 id="ack-title">Research develops in conversation.</h2></div>
+      <div class="ack-grid">
+        <article><h3>Markus Kopko</h3><p>Connected the UA control-theory framing with CPMAI practices in a public discussion of constraints, sensors, roles and governance gates.</p><a class="text-link" href="https://www.linkedin.com/posts/markuskleinpmp_uncertainty-architecture-why-ai-governance-activity-7462053122773827584-mKwf">Read the public record <span aria-hidden="true">↗</span></a></article>
+        <article><h3>Arkadiy Dobkin</h3><p>Recommended a full reading of Thinking Systems and extended the argument toward new addressable problems, domain-specific bounding architecture and runtime control.</p><div class="mention-links"><a href="https://www.linkedin.com/posts/arkadiydobkin_uncertainty-architecture-thinking-systems-activity-7500661925790240768--I1H">Public record ↗</a></div><p class="section-note">Separate formulation credit: <a href="https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/main/content/research/notes/thinking-systems-formulation-provenance-arkadiy-dobkin.md">“Thinking Systems” provenance</a>.</p></article>
+        <article><h3>Maximiliano Armesto</h3><p>Supported the changed-engineering-object framing, emphasizing boundaries, evidence, authority, correction loops and the return of human judgment.</p><div class="mention-links"><a href="https://www.linkedin.com/posts/maximiliano-armesto_uncertainty-architecture-thinking-systems-activity-7498756197647441920-8REu">Public record ↗</a></div></article>
+        <article><h3>Christophe Kolb &amp; Taller</h3><p>Christophe cited UA in his explanation of agentic-system control. Taller’s public visual explainer also draws on UA to connect probability distributions, control signals and feedback.</p><a class="text-link" href="https://www.linkedin.com/posts/christophekolb_the-probability-control-theory-of-agentic-activity-7460778173597786114-rWAh">Read the public record <span aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/posts/taller-technologies_llms-and-control-theory-activity-7482866825244889089-tIsK">Taller’s public visual explainer</a></p></article>
+        <article><h3>Michael Risch</h3><p>Developed a public operational interpretation of UA, connecting control loops to roles such as Prompt Steward and Evaluation Owner, evaluation signals and governance practices.</p><a class="text-link" href="https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g">Read the public record <span aria-hidden="true">↗</span></a></article>
+        <article><h3>Matthew Skelton</h3><p>Offered public encouragement for UA’s development in a comment on the project’s milestone summary.</p><a class="text-link" href="https://www.linkedin.com/posts/vitaliioborskyi_ua-1-ugcPost-7461016808725164033-pQg_/">Read the public record <span aria-hidden="true">↗</span></a></article>
+        <article><h3>Otman Basir</h3><p>Shared his Social Responsibility Stack paper in the public discussion of UA under Michael Risch’s post, bringing a related control-theoretic perspective into the conversation.</p><a class="text-link" href="https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g">Read the public record <span aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://arxiv.org/abs/2512.16873">Related paper</a></p></article>
+        <article><h3>Rod Montgomery</h3><p>Hosted the Corning Learn-AI-Palooza discussion and publicly reflected on UA’s relevance to system-level risks, team behavior, ownership and governance.</p><a class="text-link" href="https://www.linkedin.com/posts/roderickm_one-of-the-highlights-of-our-recent-learn-al-palooza-activity-7480960628980072448-FBm4">Read the public record <span aria-hidden="true">↗</span></a></article>
+      </div>
+    </section></main>
+  <footer class="site-footer wrap"><p>© 2026 Vitalii Oborskyi</p><a href="site-v1-20261002-v5-night.html#about">About</a><a href="site-v1-20261002-v5-night.html#contact">Contact</a><a href="site-v1-20261002-v5-credits-night.html">Reuse &amp; credits</a><a href="#main">Back to top ↑</a></footer>
+</body>
+</html>

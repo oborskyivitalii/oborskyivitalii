@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "routes": ["index", "research", "writing", "talks", "credits"],
+  "htmlRawBytes": 100000,
+  "svgElements": 250,
+  "assetRawBytes": 2000000,
+  "routeGzipBytes": 800000,
+  "lighthouse": {
+    "runs": 3,
+    "profiles": {
+      "mobile": {"screenEmulation": {"mobile": true, "width": 412, "height": 823, "deviceScaleFactor": 1.75, "disabled": false}, "throttling": {"rttMs": 150, "throughputKbps": 1638.4, "cpuSlowdownMultiplier": 4}},
+      "desktop": {"screenEmulation": {"mobile": false, "width": 1350, "height": 940, "deviceScaleFactor": 1, "disabled": false}, "throttling": {"rttMs": 40, "throughputKbps": 10240, "cpuSlowdownMultiplier": 1}}
+    },
+    "mobile": {"largest-contentful-paint": 2500, "total-blocking-time": 200, "cumulative-layout-shift": 0.1},
+    "desktop": {"largest-contentful-paint": 2500, "total-blocking-time": 200, "cumulative-layout-shift": 0.1}
+  },
+  "motion": {"paintCallbackP95Ms": 33, "idleCallbackBusyPercent": 20, "minimumPaints": 1, "soakSeconds": 300}
+}

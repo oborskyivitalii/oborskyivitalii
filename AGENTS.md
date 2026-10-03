@@ -63,7 +63,94 @@ work and green CI do not complete the parent.
 - Use pinned publishing adapters with upstream license/upgrade records; do not
   copy UA or Subprime CI wholesale or create a heavy service without a measured need.
 
+## Site visual work — maintainer direction, 2026-10-02
+
+For layout, background or motion changes, first read the current follow-up in
+[SOL-HANDOFF](SOL-HANDOFF.md#next-visual-iteration--maintainer-request-2026-10-02)
+and the source findings in [SITE-VISUAL-REVIEW](SITE-VISUAL-REVIEW.md).
+The owning intent is [launch #1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1);
+continue the existing site PR and preserve unrelated newer work.
+
+The current direction is v8: thematic symbols form recursive spatial environments,
+with camera flight through/between structures. The maintainer's 2026-10-03 request
+explicitly authorizes slow autonomous motion and supersedes v7's isolated still
+lifes and earlier no-idle-loop restriction. Read the latest SOL-HANDOFF amendment
+and [formulas/sources](review/sol-visual-v8-20261003/DESIGN.md). Keep topology finite
+and motion periodic from immutable rest geometry; no cumulative random walk.
+Start with the [all-page gallery](review/site-v1-20261003-v8-index.html) and
+[execution/capture evidence](review/sol-visual-v8-20261003/EXECUTION.md).
+The exporter verifies capture source hashes before admitting images. Refresh
+changed-source visual evidence before handoff.
+
+- Background geometry must remain visibly present in the composition. Use local
+  translucent reading surfaces and open scene areas; avoid near-opaque panels
+  covering whole sections. Change background alpha, never the opacity of text or
+  controls. Check contrast against the actual scene in both Day and Night.
+- Depth must be perceptible: foreground, middle and distant elements, perspective,
+  overlap and differential movement. Existing 3D projection or an animation loop
+  alone is not visual acceptance. Start with the existing renderer; choose another
+  only for a demonstrated limitation, not because the requirement says "3D".
+- Model useful subject details: page curvature/bindings, solid letterforms,
+  microphone grille/yoke, compass facets and architectural frames. Recursive
+  composition must preserve recognizable page-specific symbols. Camera paths
+  must pass through open structures and respond
+  clearly to ordinary scrolling. Verify continuity, safe distance, clipping and
+  exact reversible camera endpoints; preserve native scrolling and bounded ambient motion.
+- For existing public discussion entries include concise verified role/company
+  context and the exact LinkedIn profile. Keep the original contribution link.
+  Do not infer an employer or conflate namesakes. Record source date and access
+  limits in SITE-SOURCE-AUDIT; affiliations never imply endorsement.
+- Home, Research, Writing, Talks and Credits share palette, geometry, materials
+  and motion language, with motifs related to each page's content. The maintainer's
+  new requirement supersedes the old permanent static Talks/Credits exception.
+  Decorative motifs must not imply research results, telemetry or endorsement.
+- Retain native-scroll/topic-driven camera travel, with no pointer camera. The
+  explicitly authorized 24-second ambient cycle moves the structure at idle.
+  Off/reduced freezes BOTH displayed pose and ambient phase; hidden/print pauses
+  without catch-up. Cap repaint work, use bounded mobile detail and retain a
+  useful no-JS/Canvas fallback. A short page still breathes without extra content
+  or spacer height. Scroll and ambient motion have separate responsibilities.
+- Present every changed route through one working preview index, in both themes,
+  with desktop/mobile views and real motion evidence. A Home-only link, concept
+  picture, source test or GitHub HTML source page is not an all-page visual review.
+  Record the actual inspected ref, viewports and limitations. If rendering is
+  unavailable, complete independent work and leave visual acceptance explicit.
+
+## Implementation checkpoint — maintainer direction, 2026-10-03
+
+The maintainer additionally requested twice-fast passive movement on all routes:
+24 seconds replaces 48 seconds; repaint cadence and scroll timing are separate.
+Runtime fixes/lightweight fallback and focused regressions are implemented under
+#12. Read `review/site-engineering-v9-20261003/CHECKPOINT.md` before resuming.
+#13 maintained release tooling and v9 exports are implemented and under validation.
+Browser/performance remeasurement, visual acceptance and physical-device/host
+evidence remain pending; the runtime-only workflow does not establish that gate.
+
 ## Review and completion
+
+For the subsequent 2026-10-03 request about uneven animation, distance haze,
+periodic pulse and optimization, read the latest SOL-HANDOFF amendment and
+[depth/motion checkpoint](review/sol-visual-v10-20261003/CHECKPOINT.md).
+Maintain exact-source review and all existing release budgets; old v9 results
+are a baseline, not evidence for the changed renderer.
+
+For the post-v8 engineering audit and optimization request (2026-10-03), read
+[audit #12 and Sol tasks](review/site-audit-v8-20261003/SOL-TASKS.md) and its linked
+baseline evidence. The audit is complete; runtime remediation is recorded in the
+v9 engineering checkpoint and independently reviewed runtime record.
+Preserve the accepted visual direction while correcting the measured reliability
+and performance findings. Do not turn scanner counts or emulation into an
+unqualified security, Safari, physical-device or performance guarantee.
+
+The maintainer's follow-up makes recurring release checks required. Read
+[SITE-RELEASE-GATES](SITE-RELEASE-GATES.md), owned by #13, together with #12's
+remediation tasks. Maintained tooling/workflows implement the contract; actual
+full-run evidence and physical-device/release acceptance remain open. Future release
+work must bind security, quality, performance and platform evidence to the exact
+deployable artifact and block missing/failed mandatory checks. #8 owns activation
+of a gated deployment; direct branch publication must not bypass the checks.
+Keep historical audit results separate from new runs and record completed
+increments in their issue and PR so interruption does not erase progress.
 
 Keep substantive PRs Draft during iteration. Obtain independent review for
 substantive cross-repository process/adapter changes and editorial/rights review

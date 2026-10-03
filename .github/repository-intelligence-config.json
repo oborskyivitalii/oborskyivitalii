@@ -18,6 +18,52 @@
   ],
   "owners": [
     {
+      "concern": "site security, quality, performance and platform release gates",
+      "path": "SITE-RELEASE-GATES.md",
+      "queries": [
+        "release pipeline",
+        "quality gates",
+        "security audit",
+        "performance budget",
+        "пайплайн релізу",
+        "перевірки перед релізом"
+      ]
+    },
+    {
+      "concern": "next site iteration and Sol execution",
+      "path": "SOL-HANDOFF.md",
+      "queries": [
+        "Sol",
+        "execution plan",
+        "final plan review",
+        "план для сол",
+        "фінальне ревью"
+      ]
+    },
+    {
+      "concern": "site visual direction and review proposals",
+      "path": "SITE-VISUAL-REVIEW.md",
+      "queries": [
+        "visual review",
+        "design proposal",
+        "portrait cutout",
+        "візуальний стиль",
+        "дизайн сайту",
+        "фото"
+      ]
+    },
+    {
+      "concern": "search discoverability and topic map",
+      "path": "SITE-SEO.md",
+      "queries": [
+        "SEO",
+        "keywords",
+        "search visibility",
+        "ключові слова",
+        "оптимізація сайту"
+      ]
+    },
+    {
       "concern": "agent operation",
       "path": "AGENTS.md",
       "queries": [

@@ -1,0 +1,28 @@
+{
+  "checked_date": "2026-10-02",
+  "timezone": "Europe/Warsaw",
+  "status": "blocked; actual browser matrix unperformed",
+  "attempts": [
+    {
+      "capability": "installed Playwright",
+      "result": "Chromium executable absent; official install failed with invalid/truncated ZIP data"
+    },
+    {
+      "capability": "cloud Chrome via Browser Use",
+      "url": "http://127.0.0.1:8765/",
+      "result": "net::ERR_BLOCKED_BY_CLIENT"
+    }
+  ],
+  "observations": {
+    "screenshots": false,
+    "motion_recording": false,
+    "browser_interaction_acceptance": false
+  },
+  "pending_viewports": [
+    "1440x900 Day/Night",
+    "390x844 Day/Night",
+    "360px",
+    "200% desktop zoom"
+  ],
+  "procedure": "SITE-OPERATIONS.md"
+}

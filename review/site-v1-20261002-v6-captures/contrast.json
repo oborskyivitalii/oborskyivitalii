@@ -1,0 +1,1095 @@
+{
+  "method": "Chromium rendered backgrounds with text paint hidden without layout changes; sampled glyph-center composited pixels, using computed original text color. Desktop start/middle/end plus mobile start in both themes. Sampled check, not complete WCAG certification.",
+  "sources": {
+    "docs/styles.css": "792cbc1abffddc6b97e096acdbf71f0c13f9b8156267bd913fa2e31e209630e1",
+    "docs/space.js": "34f2b2cbb94d484bcaf6e917019636f86b7e49f744608ee7039b3bd6eb487043",
+    "docs/index.html": "7a6702fe22805443878e23f7fdbc2d04b6d9dc250b10d2997041dfaecdef187b",
+    "docs/research.html": "ee2e8ce8d95f9ce6045e4b40309a73ca64aa332b99a30d3d4bc7fc9f16d4f942",
+    "docs/writing.html": "7475ae0821a020df7f9f31813789022f388dd2006b364cec8f69e0daacd0246e",
+    "docs/talks.html": "deb184f8656bacbe72b3546e74f29e4a05972e70d123600ca02ead34b5fea817",
+    "docs/credits.html": "0415b8d8e03107b6c21de6d281c04691421ba20179569138cd2a6b8855319ab8"
+  },
+  "views": [
+    {
+      "route": "index",
+      "theme": "light",
+      "device": "desktop",
+      "position": "start",
+      "samples": 99,
+      "min_normal": 5.292745901662493,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 1185,
+        "y": 769,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "I study what that changes in software delivery and the systems we",
+        "background": [
+          217,
+          227,
+          228
+        ],
+        "ratio": 5.292745901662493
+      },
+      "failures": []
+    },
+    {
+      "route": "index",
+      "theme": "light",
+      "device": "desktop",
+      "position": "middle",
+      "samples": 162,
+      "min_normal": 5.409857936049417,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 671,
+        "y": 392,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "What changes when consequential runtime responsibility depends on",
+        "background": [
+          221,
+          229,
+          229
+        ],
+        "ratio": 5.409857936049417
+      },
+      "failures": []
+    },
+    {
+      "route": "index",
+      "theme": "light",
+      "device": "desktop",
+      "position": "end",
+      "samples": 145,
+      "min_normal": 6.085362989580627,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 1162,
+        "y": 214,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "I write for architects, engineering and delivery leaders, product",
+        "background": [
+          243,
+          240,
+          234
+        ],
+        "ratio": 6.085362989580627
+      },
+      "failures": []
+    },
+    {
+      "route": "research",
+      "theme": "light",
+      "device": "desktop",
+      "position": "start",
+      "samples": 57,
+      "min_normal": 5.703942859358655,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 853,
+        "y": 816,
+        "foreground": [
+          137,
+          87,
+          16
+        ],
+        "target": 4.5,
+        "text": "What we build",
+        "background": [
+          248,
+          247,
+          243
+        ],
+        "ratio": 5.703942859358655
+      },
+      "failures": []
+    },
+    {
+      "route": "research",
+      "theme": "light",
+      "device": "desktop",
+      "position": "middle",
+      "samples": 178,
+      "min_normal": 6.147732215886732,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 786,
+        "y": 514,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "AI control theory connects boundaries, evidence, decision authori",
+        "background": [
+          240,
+          242,
+          239
+        ],
+        "ratio": 6.147732215886732
+      },
+      "failures": []
+    },
+    {
+      "route": "research",
+      "theme": "light",
+      "device": "desktop",
+      "position": "end",
+      "samples": 159,
+      "min_normal": 5.384895377133437,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 1013,
+        "y": 309,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "Offered public encouragement for UA’s development in a comment on",
+        "background": [
+          234,
+          226,
+          213
+        ],
+        "ratio": 5.384895377133437
+      },
+      "failures": []
+    },
+    {
+      "route": "writing",
+      "theme": "light",
+      "device": "desktop",
+      "position": "start",
+      "samples": 104,
+      "min_normal": 6.456730843869602,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 349,
+        "y": 847,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "The catalog contains 28 linked platform renditions (21 EN / 7 UA)",
+        "background": [
+          248,
+          247,
+          243
+        ],
+        "ratio": 6.456730843869602
+      },
+      "failures": []
+    },
+    {
+      "route": "writing",
+      "theme": "light",
+      "device": "desktop",
+      "position": "middle",
+      "samples": 97,
+      "min_normal": 6.456730843869602,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 389,
+        "y": 854,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "· Article · Data Science Collective",
+        "background": [
+          248,
+          247,
+          243
+        ],
+        "ratio": 6.456730843869602
+      },
+      "failures": []
+    },
+    {
+      "route": "writing",
+      "theme": "light",
+      "device": "desktop",
+      "position": "end",
+      "samples": 117,
+      "min_normal": 6.400530981319552,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 290,
+        "y": 263,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "· Article · DOU",
+        "background": [
+          247,
+          246,
+          242
+        ],
+        "ratio": 6.400530981319552
+      },
+      "failures": []
+    },
+    {
+      "route": "talks",
+      "theme": "light",
+      "device": "desktop",
+      "position": "start",
+      "samples": 62,
+      "min_normal": 5.679888160447822,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 331,
+        "y": 392,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "Public announcements and follow-ups on AI architecture, delivery ",
+        "background": [
+          238,
+          232,
+          222
+        ],
+        "ratio": 5.679888160447822
+      },
+      "failures": []
+    },
+    {
+      "route": "talks",
+      "theme": "light",
+      "device": "desktop",
+      "position": "middle",
+      "samples": 94,
+      "min_normal": 6.336694864184668,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 213,
+        "y": 554,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "UA · Українська",
+        "background": [
+          245,
+          245,
+          242
+        ],
+        "ratio": 6.336694864184668
+      },
+      "failures": []
+    },
+    {
+      "route": "talks",
+      "theme": "light",
+      "device": "desktop",
+      "position": "end",
+      "samples": 111,
+      "min_normal": 6.456730843869602,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 1203,
+        "y": 863,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "Back to top ↑",
+        "background": [
+          248,
+          247,
+          243
+        ],
+        "ratio": 6.456730843869602
+      },
+      "failures": []
+    },
+    {
+      "route": "credits",
+      "theme": "light",
+      "device": "desktop",
+      "position": "start",
+      "samples": 123,
+      "min_normal": 5.23305709238678,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 969,
+        "y": 375,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "The writing index links to the original published articles. Those",
+        "background": [
+          215,
+          226,
+          227
+        ],
+        "ratio": 5.23305709238678
+      },
+      "failures": []
+    },
+    {
+      "route": "credits",
+      "theme": "light",
+      "device": "desktop",
+      "position": "middle",
+      "samples": 212,
+      "min_normal": 5.768584304610488,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 827,
+        "y": 259,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "The author supplied the source photograph for this site. The disp",
+        "background": [
+          233,
+          235,
+          231
+        ],
+        "ratio": 5.768584304610488
+      },
+      "failures": []
+    },
+    {
+      "route": "credits",
+      "theme": "light",
+      "device": "desktop",
+      "position": "end",
+      "samples": 198,
+      "min_normal": 5.183730950147606,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 849,
+        "y": 565,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "Uncertainty Architecture and The Subprime Code Crisis maintain th",
+        "background": [
+          214,
+          225,
+          226
+        ],
+        "ratio": 5.183730950147606
+      },
+      "failures": []
+    },
+    {
+      "route": "index",
+      "theme": "dark",
+      "device": "desktop",
+      "position": "start",
+      "samples": 99,
+      "min_normal": 7.966037009840686,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 1185,
+        "y": 769,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "I study what that changes in software delivery and the systems we",
+        "background": [
+          14,
+          36,
+          46
+        ],
+        "ratio": 7.966037009840686
+      },
+      "failures": []
+    },
+    {
+      "route": "index",
+      "theme": "dark",
+      "device": "desktop",
+      "position": "middle",
+      "samples": 162,
+      "min_normal": 8.068105759529749,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 671,
+        "y": 392,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "What changes when consequential runtime responsibility depends on",
+        "background": [
+          13,
+          35,
+          44
+        ],
+        "ratio": 8.068105759529749
+      },
+      "failures": []
+    },
+    {
+      "route": "index",
+      "theme": "dark",
+      "device": "desktop",
+      "position": "end",
+      "samples": 145,
+      "min_normal": 9.180177509389146,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 1162,
+        "y": 214,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "I write for architects, engineering and delivery leaders, product",
+        "background": [
+          19,
+          20,
+          19
+        ],
+        "ratio": 9.180177509389146
+      },
+      "failures": []
+    },
+    {
+      "route": "research",
+      "theme": "dark",
+      "device": "desktop",
+      "position": "start",
+      "samples": 57,
+      "min_normal": 9.5540086257212,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 1211,
+        "y": 83,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "Theme",
+        "background": [
+          11,
+          15,
+          20
+        ],
+        "ratio": 9.5540086257212
+      },
+      "failures": []
+    },
+    {
+      "route": "research",
+      "theme": "dark",
+      "device": "desktop",
+      "position": "middle",
+      "samples": 178,
+      "min_normal": 9.2447857138322,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 786,
+        "y": 514,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "AI control theory connects boundaries, evidence, decision authori",
+        "background": [
+          11,
+          20,
+          26
+        ],
+        "ratio": 9.2447857138322
+      },
+      "failures": []
+    },
+    {
+      "route": "research",
+      "theme": "dark",
+      "device": "desktop",
+      "position": "end",
+      "samples": 159,
+      "min_normal": 7.881791822750238,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 1013,
+        "y": 309,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "Offered public encouragement for UA’s development in a comment on",
+        "background": [
+          39,
+          34,
+          19
+        ],
+        "ratio": 7.881791822750238
+      },
+      "failures": []
+    },
+    {
+      "route": "writing",
+      "theme": "dark",
+      "device": "desktop",
+      "position": "start",
+      "samples": 104,
+      "min_normal": 9.5540086257212,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 1211,
+        "y": 83,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "Theme",
+        "background": [
+          11,
+          15,
+          20
+        ],
+        "ratio": 9.5540086257212
+      },
+      "failures": []
+    },
+    {
+      "route": "writing",
+      "theme": "dark",
+      "device": "desktop",
+      "position": "middle",
+      "samples": 97,
+      "min_normal": 9.5540086257212,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 432,
+        "y": 281,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "19 editions",
+        "background": [
+          11,
+          15,
+          20
+        ],
+        "ratio": 9.5540086257212
+      },
+      "failures": []
+    },
+    {
+      "route": "writing",
+      "theme": "dark",
+      "device": "desktop",
+      "position": "end",
+      "samples": 117,
+      "min_normal": 9.5540086257212,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 437,
+        "y": 58,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "· Article · Medium",
+        "background": [
+          11,
+          15,
+          20
+        ],
+        "ratio": 9.5540086257212
+      },
+      "failures": []
+    },
+    {
+      "route": "talks",
+      "theme": "dark",
+      "device": "desktop",
+      "position": "start",
+      "samples": 62,
+      "min_normal": 8.482336494965061,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 331,
+        "y": 392,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "Public announcements and follow-ups on AI architecture, delivery ",
+        "background": [
+          30,
+          28,
+          19
+        ],
+        "ratio": 8.482336494965061
+      },
+      "failures": []
+    },
+    {
+      "route": "talks",
+      "theme": "dark",
+      "device": "desktop",
+      "position": "middle",
+      "samples": 94,
+      "min_normal": 9.508837620167157,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 213,
+        "y": 554,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "UA · Українська",
+        "background": [
+          10,
+          16,
+          21
+        ],
+        "ratio": 9.508837620167157
+      },
+      "failures": []
+    },
+    {
+      "route": "talks",
+      "theme": "dark",
+      "device": "desktop",
+      "position": "end",
+      "samples": 111,
+      "min_normal": 9.5540086257212,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 1211,
+        "y": 83,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "Theme",
+        "background": [
+          11,
+          15,
+          20
+        ],
+        "ratio": 9.5540086257212
+      },
+      "failures": []
+    },
+    {
+      "route": "credits",
+      "theme": "dark",
+      "device": "desktop",
+      "position": "start",
+      "samples": 123,
+      "min_normal": 7.87288621420848,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 969,
+        "y": 375,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "The writing index links to the original published articles. Those",
+        "background": [
+          14,
+          37,
+          48
+        ],
+        "ratio": 7.87288621420848
+      },
+      "failures": []
+    },
+    {
+      "route": "credits",
+      "theme": "dark",
+      "device": "desktop",
+      "position": "middle",
+      "samples": 212,
+      "min_normal": 8.704085453671752,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 827,
+        "y": 259,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "The author supplied the source photograph for this site. The disp",
+        "background": [
+          17,
+          27,
+          30
+        ],
+        "ratio": 8.704085453671752
+      },
+      "failures": []
+    },
+    {
+      "route": "credits",
+      "theme": "dark",
+      "device": "desktop",
+      "position": "end",
+      "samples": 198,
+      "min_normal": 7.79802769471496,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 849,
+        "y": 565,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "Uncertainty Architecture and The Subprime Code Crisis maintain th",
+        "background": [
+          13,
+          38,
+          49
+        ],
+        "ratio": 7.79802769471496
+      },
+      "failures": []
+    },
+    {
+      "route": "index",
+      "theme": "light",
+      "device": "mobile",
+      "position": "start",
+      "samples": 68,
+      "min_normal": 5.912802756543099,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 75,
+        "y": 499,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "I help software organizations investigate why AI adoption is not ",
+        "background": [
+          234,
+          238,
+          236
+        ],
+        "ratio": 5.912802756543099
+      },
+      "failures": []
+    },
+    {
+      "route": "research",
+      "theme": "light",
+      "device": "mobile",
+      "position": "start",
+      "samples": 47,
+      "min_normal": 5.51146638252917,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 220,
+        "y": 465,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "How we deliver software, and how we govern systems whose behavior",
+        "background": [
+          223,
+          231,
+          231
+        ],
+        "ratio": 5.51146638252917
+      },
+      "failures": []
+    },
+    {
+      "route": "writing",
+      "theme": "light",
+      "device": "mobile",
+      "position": "start",
+      "samples": 53,
+      "min_normal": 5.450136864258563,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 197,
+        "y": 410,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "27 primary archive records: 20 English and 7 Ukrainian, plus a se",
+        "background": [
+          221,
+          230,
+          230
+        ],
+        "ratio": 5.450136864258563
+      },
+      "failures": []
+    },
+    {
+      "route": "talks",
+      "theme": "light",
+      "device": "mobile",
+      "position": "start",
+      "samples": 48,
+      "min_normal": 5.5219685236298,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 24,
+        "y": 410,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "Public announcements and follow-ups on AI architecture, delivery ",
+        "background": [
+          224,
+          231,
+          231
+        ],
+        "ratio": 5.5219685236298
+      },
+      "failures": []
+    },
+    {
+      "route": "credits",
+      "theme": "light",
+      "device": "mobile",
+      "position": "start",
+      "samples": 77,
+      "min_normal": 5.399541027080667,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 325,
+        "y": 431,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "The writing index links to the original published articles. Those",
+        "background": [
+          220,
+          229,
+          229
+        ],
+        "ratio": 5.399541027080667
+      },
+      "failures": []
+    },
+    {
+      "route": "index",
+      "theme": "dark",
+      "device": "mobile",
+      "position": "start",
+      "samples": 68,
+      "min_normal": 8.952524117903307,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 75,
+        "y": 499,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "I help software organizations investigate why AI adoption is not ",
+        "background": [
+          12,
+          24,
+          31
+        ],
+        "ratio": 8.952524117903307
+      },
+      "failures": []
+    },
+    {
+      "route": "research",
+      "theme": "dark",
+      "device": "mobile",
+      "position": "start",
+      "samples": 47,
+      "min_normal": 8.313275283568181,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 220,
+        "y": 465,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "How we deliver software, and how we govern systems whose behavior",
+        "background": [
+          13,
+          32,
+          41
+        ],
+        "ratio": 8.313275283568181
+      },
+      "failures": []
+    },
+    {
+      "route": "writing",
+      "theme": "dark",
+      "device": "mobile",
+      "position": "start",
+      "samples": 53,
+      "min_normal": 8.222893670568576,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 197,
+        "y": 410,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "27 primary archive records: 20 English and 7 Ukrainian, plus a se",
+        "background": [
+          13,
+          33,
+          43
+        ],
+        "ratio": 8.222893670568576
+      },
+      "failures": []
+    },
+    {
+      "route": "talks",
+      "theme": "dark",
+      "device": "mobile",
+      "position": "start",
+      "samples": 48,
+      "min_normal": 8.393410253433377,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 24,
+        "y": 410,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "Public announcements and follow-ups on AI architecture, delivery ",
+        "background": [
+          13,
+          31,
+          40
+        ],
+        "ratio": 8.393410253433377
+      },
+      "failures": []
+    },
+    {
+      "route": "credits",
+      "theme": "dark",
+      "device": "mobile",
+      "position": "start",
+      "samples": 77,
+      "min_normal": 8.141103005871164,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 325,
+        "y": 431,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "The writing index links to the original published articles. Those",
+        "background": [
+          13,
+          34,
+          44
+        ],
+        "ratio": 8.141103005871164
+      },
+      "failures": []
+    }
+  ],
+  "failures": 0
+}

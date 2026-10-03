@@ -1,0 +1,348 @@
+name: Site release checks
+on:
+  workflow_call:
+    inputs:
+      candidate_sha:
+        required: true
+        type: string
+      full:
+        type: boolean
+        default: true
+      evidence_artifact_id:
+        description: Immutable external review/device evidence artifact ID
+        type: string
+        default: ''
+      evidence_run_id:
+        description: Run that uploaded the external evidence in this repository
+        type: string
+        default: ''
+    outputs:
+      artifact_id:
+        description: Immutable tested public artifact ID
+        value: ${{ jobs.build.outputs.artifact_id }}
+      artifact_upload_digest:
+        description: GitHub upload archive SHA256
+        value: ${{ jobs.build.outputs.artifact_upload_digest }}
+      public_digest:
+        description: Deterministic public file manifest digest
+        value: ${{ jobs.build.outputs.public_digest }}
+  workflow_dispatch:
+    inputs:
+      candidate_sha:
+        description: Exact 40-character source commit
+        required: true
+        type: string
+      full:
+        description: Native platforms, performance, devices and review release gates
+        type: boolean
+        default: true
+      evidence_artifact_id:
+        description: External review/device evidence artifact ID, when available
+        type: string
+        default: ''
+      evidence_run_id:
+        description: External evidence upload run ID in this repository
+        type: string
+        default: ''
+permissions:
+  contents: read
+  actions: read
+defaults:
+  run:
+    shell: bash
+env:
+  SITE_CANDIDATE_SHA: ${{ inputs.candidate_sha }}
+  SITE_PUBLIC_DIR: ${{ github.workspace }}/quality-artifact/public
+  SITE_ARTIFACT_MANIFEST: ${{ github.workspace }}/quality-artifact/artifact.json
+  SITE_REPORT_DIR: ${{ github.workspace }}/quality-reports
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    outputs:
+      artifact_id: ${{ steps.upload.outputs.artifact-id }}
+      artifact_upload_digest: ${{ steps.upload.outputs.artifact-digest }}
+      public_digest: ${{ steps.identity.outputs.digest }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ inputs.candidate_sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
+        with:
+          node-version: 24.19.0
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: 3.12.14
+      - name: Validate exact source and regressions
+        run: |
+          node -e "require('node:assert/strict').match(process.env.SITE_CANDIDATE_SHA,/^[0-9a-f]{40}$/)"
+          test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
+          node --test tests/*.test.cjs
+          python -m unittest discover -s tests -p 'test_*.py'
+          node tools/build_scene_fallbacks.cjs --check
+          node tools/build_site_previews.cjs --check
+          python tools/build_site_bundle.py --check
+          python tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify
+      - name: Package public files once and enforce budgets
+        run: node tools/quality/artifact.cjs build quality-artifact
+      - id: identity
+        run: node -e "require('node:fs').appendFileSync(process.env.GITHUB_OUTPUT,'digest='+require('./quality-artifact/artifact.json').artifactDigest+'\n')"
+      - id: upload
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: site-public-${{ github.run_id }}
+          path: quality-artifact/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+  static:
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ inputs.candidate_sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: 3.12.14
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
+        with:
+          name: site-public-${{ github.run_id }}
+          path: quality-artifact
+      - name: Install locked tools
+        run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          python -m venv tools/quality/toolchain/venv
+          tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check -r tools/quality/toolchain/requirements.txt
+      - name: Check artifact and quality
+        run: |
+          node tools/quality/artifact.cjs verify quality-artifact/public quality-artifact/artifact.json
+          node tools/quality/selftest.cjs
+          node tools/quality/scanners.cjs lint
+          node tools/quality/scanners.cjs security
+          node tools/quality/scanners.cjs advisories
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: site-reports-static-${{ github.run_id }}
+          path: quality-reports/
+          retention-days: 30
+  linux:
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ inputs.candidate_sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          name: site-public-${{ github.run_id }}
+          path: quality-artifact
+      - name: Install pinned browsers
+        run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium firefox webkit
+      - name: Assert full three-engine matrix
+        run: |
+          node tools/quality/artifact.cjs verify quality-artifact/public quality-artifact/artifact.json
+          node tools/quality/functional.cjs
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: site-reports-linux-${{ github.run_id }}
+          path: quality-reports/
+          retention-days: 30
+  native:
+    if: inputs.full
+    needs: build
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-2025
+            platform: win32
+            engines: chromium,firefox
+          - os: macos-15
+            platform: darwin
+            engines: webkit
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    env:
+      SITE_AUDIT_ENGINES: ${{ matrix.engines }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ inputs.candidate_sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          name: site-public-${{ github.run_id }}
+          path: quality-artifact
+      - name: Install pinned native engines
+        run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          node tools/quality/toolchain/node_modules/playwright/cli.js install $SITE_AUDIT_ENGINES
+        env:
+          # CLI uses separate engine arguments, unlike the runner's comma list.
+          SITE_AUDIT_ENGINES: ${{ matrix.platform == 'win32' && 'chromium firefox' || 'webkit' }}
+      - name: Native smoke matrix
+        run: |
+          node tools/quality/artifact.cjs verify quality-artifact/public quality-artifact/artifact.json
+          node tools/quality/functional.cjs --smoke
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: site-reports-${{ matrix.platform }}-${{ github.run_id }}
+          path: quality-reports/
+          retention-days: 30
+  performance:
+    if: inputs.full
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ inputs.candidate_sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          name: site-public-${{ github.run_id }}
+          path: quality-artifact
+      - run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium
+      - name: Verify performance input artifact
+        run: |
+          node tools/quality/artifact.cjs verify quality-artifact/public quality-artifact/artifact.json
+      - name: Lighthouse samples and budgets
+        id: lighthouse
+        run: node tools/quality/lighthouse.cjs
+      - name: Motion, CPU throttling and five-minute soak
+        if: ${{ !cancelled() && steps.lighthouse.outcome != 'skipped' }}
+        run: node tools/quality/motion.cjs
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: site-reports-performance-${{ github.run_id }}
+          path: quality-reports/
+          retention-days: 30
+  captures:
+    if: inputs.full
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      SITE_REVIEW_PLAYWRIGHT: ${{ github.workspace }}/tools/quality/toolchain/node_modules/playwright
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ inputs.candidate_sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: 3.12.14
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          name: site-public-${{ github.run_id }}
+          path: quality-artifact
+      - name: Install locked capture tooling
+        run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium
+          python -m pip install Pillow==12.3.0
+          command -v ffmpeg || { sudo apt-get update && sudo apt-get install -y ffmpeg; }
+      - name: Capture all routes and actual motion from tested bytes
+        run: |
+          node tools/quality/artifact.cjs verify quality-artifact/public quality-artifact/artifact.json
+          node tools/capture_site_review.cjs
+          python tools/build_site_contact_sheets.py
+          node -e "const c=require('./review/site-v1-20261003-v9-captures/captures.json');require('./tools/quality/common.cjs').report('captures',c)"
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: site-reports-captures-${{ github.run_id }}
+          path: |
+            quality-reports/
+            review/site-v1-20261003-v9-captures/
+          retention-days: 30
+  gate:
+    if: always()
+    needs: [build, static, linux, native, performance, captures]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      SITE_JOB_RESULTS: ${{ toJSON(needs) }}
+      SITE_EXPECTED_PUBLIC_DIGEST: ${{ needs.build.outputs.public_digest }}
+      SITE_ARTIFACT_ID: ${{ needs.build.outputs.artifact_id }}
+      SITE_UPLOAD_DIGEST: ${{ needs.build.outputs.artifact_upload_digest }}
+      SITE_EVIDENCE_ARTIFACT_ID: ${{ inputs.evidence_artifact_id }}
+      SITE_EVIDENCE_RUN_ID: ${{ inputs.evidence_run_id }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ inputs.candidate_sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          name: site-public-${{ github.run_id }}
+          path: quality-artifact
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          pattern: site-reports-*-${{ github.run_id }}
+          path: quality-artifact/reports
+          merge-multiple: false
+      - name: Validate external evidence identifiers
+        if: inputs.full && inputs.evidence_artifact_id != ''
+        run: node -e "const a=require('node:assert/strict');a.match(process.env.SITE_EVIDENCE_ARTIFACT_ID,/^[0-9]+$/);a.match(process.env.SITE_EVIDENCE_RUN_ID,/^[0-9]+$/)"
+      - name: Download immutable external review/device evidence
+        if: inputs.full && inputs.evidence_artifact_id != ''
+        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          artifact-ids: ${{ inputs.evidence_artifact_id }}
+          run-id: ${{ inputs.evidence_run_id }}
+          repository: ${{ github.repository }}
+          github-token: ${{ github.token }}
+          path: quality-artifact/external-evidence
+      - name: Validate completeness, source identity and mandatory results
+        env:
+          SITE_FULL: ${{ inputs.full }}
+        run: |
+          if [ "$SITE_FULL" = true ]; then
+            if [ -n "$SITE_EVIDENCE_ARTIFACT_ID" ]; then
+              export SITE_RELEASE_EVIDENCE="$GITHUB_WORKSPACE/quality-artifact/external-evidence/release-evidence.json"
+            fi
+            node tools/quality/validate.cjs quality-artifact --full
+          else
+            unset SITE_RELEASE_EVIDENCE
+            node tools/quality/validate.cjs quality-artifact
+          fi
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: site-gate-${{ github.run_id }}
+          path: quality-artifact/release-manifest.json
+          retention-days: 30

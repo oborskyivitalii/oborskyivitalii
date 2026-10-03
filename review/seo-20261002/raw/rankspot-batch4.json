@@ -1,0 +1,143 @@
+{
+  "source_url": "https://www.rankspot.ai/api/tools/keyword-search-volume",
+  "source_methodology_url": "https://www.rankspot.ai/free-tools/keyword-search-volume",
+  "payload": {
+    "keywords": [
+      "ai agent reliability",
+      "ai agent guardrails",
+      "llm evaluation",
+      "llm observability",
+      "ai cost management"
+    ],
+    "country": "us"
+  },
+  "retrieved_at": "2026-10-02T09:30:49.963257+00:00",
+  "status": 200,
+  "data": {
+    "data": {
+      "country": "United States",
+      "keywords": [
+        {
+          "keyword": "ai agent reliability",
+          "volume": 10,
+          "noData": false,
+          "cpc": 26.6,
+          "competition": "LOW",
+          "competitionIndex": 28,
+          "trend": 200,
+          "history": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            20,
+            30,
+            10,
+            10,
+            20,
+            10,
+            30
+          ]
+        },
+        {
+          "keyword": "ai agent guardrails",
+          "volume": 70,
+          "noData": false,
+          "cpc": 23.98,
+          "competition": "MEDIUM",
+          "competitionIndex": 52,
+          "trend": 175,
+          "history": [
+            40,
+            50,
+            30,
+            30,
+            50,
+            70,
+            110,
+            110,
+            140,
+            110,
+            70,
+            110
+          ]
+        },
+        {
+          "keyword": "llm evaluation",
+          "volume": 1000,
+          "noData": false,
+          "cpc": 20.37,
+          "competition": "MEDIUM",
+          "competitionIndex": 40,
+          "trend": -37,
+          "history": [
+            1600,
+            1000,
+            880,
+            720,
+            880,
+            880,
+            1300,
+            1000,
+            880,
+            1000,
+            1300,
+            1000
+          ]
+        },
+        {
+          "keyword": "llm observability",
+          "volume": 590,
+          "noData": false,
+          "cpc": 27.85,
+          "competition": "MEDIUM",
+          "competitionIndex": 47,
+          "trend": -33,
+          "history": [
+            720,
+            720,
+            590,
+            390,
+            590,
+            480,
+            1000,
+            590,
+            590,
+            590,
+            590,
+            480
+          ]
+        },
+        {
+          "keyword": "ai cost management",
+          "volume": 70,
+          "noData": false,
+          "cpc": 50.35,
+          "competition": "MEDIUM",
+          "competitionIndex": 51,
+          "trend": 1300,
+          "history": [
+            10,
+            30,
+            10,
+            10,
+            20,
+            30,
+            110,
+            50,
+            70,
+            90,
+            170,
+            140
+          ]
+        }
+      ]
+    },
+    "rateLimit": {
+      "limit": 5,
+      "remaining": 1,
+      "resetAt": "2026-10-03T00:00:00.000Z"
+    }
+  }
+}
