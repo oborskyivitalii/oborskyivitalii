@@ -1,0 +1,94 @@
+[
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 15,
+      "row": 6
+    },
+    "filename": "/workspace/scratch/9228ec43884b/author-site/tools/build_site_bundle.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import hashlib\nimport json\nimport sys\nimport zipfile\nfrom pathlib import Path\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 8
+          },
+          "location": {
+            "column": 1,
+            "row": 2
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 2
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 2,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "C901",
+    "end_location": {
+      "column": 20,
+      "row": 50
+    },
+    "filename": "/workspace/scratch/9228ec43884b/author-site/tools/repository_intelligence.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 50
+    },
+    "message": "`active_markdown` is too complex (14 > 10)",
+    "name": "complex-structure",
+    "noqa_row": 50,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/complex-structure"
+  },
+  {
+    "cell": null,
+    "code": "C901",
+    "end_location": {
+      "column": 16,
+      "row": 135
+    },
+    "filename": "/workspace/scratch/9228ec43884b/author-site/tools/repository_intelligence.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 135
+    },
+    "message": "`load_config` is too complex (11 > 10)",
+    "name": "complex-structure",
+    "noqa_row": 135,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/complex-structure"
+  },
+  {
+    "cell": null,
+    "code": "C901",
+    "end_location": {
+      "column": 10,
+      "row": 160
+    },
+    "filename": "/workspace/scratch/9228ec43884b/author-site/tools/repository_intelligence.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 160
+    },
+    "message": "`build` is too complex (18 > 10)",
+    "name": "complex-structure",
+    "noqa_row": 160,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/complex-structure"
+  }
+]

@@ -1,0 +1,68 @@
+{
+  "audited_remote_head": "6176cb209a1d46a1ae056c3008c77e20281b6f93",
+  "local_head": "0bc14514ad9e5112cb4c10b7b4f57ef1913d1889",
+  "tree": "1bec5de6726283a830c97979350c3b8b25d7c28c",
+  "files": {
+    "docs/.nojekyll": {
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "bytes": 1,
+      "gzip_bytes": 21
+    },
+    "docs/archive.js": {
+      "sha256": "5b11a8e0fd8f2ecbed57809ea956ee3470148aac604e64decc188ba8f755209c",
+      "bytes": 5241,
+      "gzip_bytes": 1763
+    },
+    "docs/assets/vitalii-oborskyi-cutout.webp": {
+      "sha256": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae",
+      "bytes": 55458,
+      "gzip_bytes": 55302
+    },
+    "docs/assets/vitalii-oborskyi.jpg": {
+      "sha256": "5321e48f08b075cb1cbd522d0f36bc01276aece65d1a04cf09102aa5dd2b59bc",
+      "bytes": 100768,
+      "gzip_bytes": 93582
+    },
+    "docs/credits.html": {
+      "sha256": "a133ede2e7dff6b74350b3876f622afd36b4d836c4e1461c5dc23aa5687453e3",
+      "bytes": 1292304,
+      "gzip_bytes": 198392
+    },
+    "docs/index.html": {
+      "sha256": "d74e7d6741e95f8aa7c5cd35db592d4a7ad043dd5f6a1e8d6e72a99f065b27ca",
+      "bytes": 1784793,
+      "gzip_bytes": 286987
+    },
+    "docs/research.html": {
+      "sha256": "9a7c585034646ef780797ad36ea4792539a052e1f50cf94a51e5a377561931f6",
+      "bytes": 2017090,
+      "gzip_bytes": 315962
+    },
+    "docs/space.js": {
+      "sha256": "42107634d48ffeb861a60440efc05c83cc677f3d3c91e76fb75af41eb03f497d",
+      "bytes": 36119,
+      "gzip_bytes": 12140
+    },
+    "docs/styles.css": {
+      "sha256": "4f31d68348ca8fece3373a4ba4e33f88ac50f6c10a6ef0affc7c52c4b4396bbd",
+      "bytes": 19953,
+      "gzip_bytes": 5014
+    },
+    "docs/talks.html": {
+      "sha256": "3f4c6f93ba51c60f64a2e675e7599b754f3b5c30e6555679a7657ef1de586757",
+      "bytes": 1667631,
+      "gzip_bytes": 260788
+    },
+    "docs/theme.js": {
+      "sha256": "a1987c61608672a1643289efaf3238ab315ad47b54b704fa04884d20ec479cd8",
+      "bytes": 2800,
+      "gzip_bytes": 1075
+    },
+    "docs/writing.html": {
+      "sha256": "6cd6c573137a1a2f7ac7dabfba26c81e53bb5706fced2a4b926bc7baa995d6c3",
+      "bytes": 1356244,
+      "gzip_bytes": 216699
+    }
+  },
+  "gzip_method": "Python zlib.compress(data, wbits=31), default compression level 6. HTTP fixture uses Node gzipSync; compressed sizes differ by implementation."
+}

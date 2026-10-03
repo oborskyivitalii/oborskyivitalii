@@ -1,0 +1,68 @@
+{
+  "lighthouse-talks-desktop.json.gz": {
+    "uncompressed_bytes": 627733,
+    "uncompressed_sha256": "5ef6ab18c6e6bef939bcb01b89b98fc7c5b5cb6811afc370d40b0079d2afe4d2",
+    "gzip_bytes": 198456,
+    "gzip_sha256": "d8ef321bbbc3961265a824b6127cadd447cb053584dfba8d2e182d088ef5bf99"
+  },
+  "lighthouse-credits-mobile.json.gz": {
+    "uncompressed_bytes": 622595,
+    "uncompressed_sha256": "6f5feb9d9dc74ba1c47323a55bc01a062dd02573c8cff5a75849c0a924ba11e6",
+    "gzip_bytes": 186961,
+    "gzip_sha256": "6e31b5520ba7492b54f404c700d71c8444fb7e90bde7f4629104d7bdb5fee8f4"
+  },
+  "lighthouse-index-desktop.json.gz": {
+    "uncompressed_bytes": 969031,
+    "uncompressed_sha256": "c2f296d92356a1e5ee70769d3d74e4338bc1a77019109d3ee273032d69f809e6",
+    "gzip_bytes": 542558,
+    "gzip_sha256": "28367cec72f088e2a67a01b72960ebc52d98538bfc450ca2a1a643d5c3a76787"
+  },
+  "lighthouse-writing-desktop.json.gz": {
+    "uncompressed_bytes": 830005,
+    "uncompressed_sha256": "1c639cecf98303f19f46cad61b7d22f1c03406d5a9db038902d7609dd8f8ffda",
+    "gzip_bytes": 325807,
+    "gzip_sha256": "184d488247edc9145e4ff9cf239f12877fad9f1e006354a8a0ecf399e943eadd"
+  },
+  "lighthouse-research-mobile.json.gz": {
+    "uncompressed_bytes": 750304,
+    "uncompressed_sha256": "c2f3fcb07c742c3a39baaeec6c01f5c920cb54c70e3dfe1dd299209b4c670a22",
+    "gzip_bytes": 278405,
+    "gzip_sha256": "0f683ca9084094fa8dc8b8d7e89ab8d69a21e678199b7dbfa116e95dae735035"
+  },
+  "lighthouse-credits-desktop.json.gz": {
+    "uncompressed_bytes": 651357,
+    "uncompressed_sha256": "b2d1f69e9357fccc1a10095a374681c05aba748540565da89af04d73f82821f1",
+    "gzip_bytes": 204770,
+    "gzip_sha256": "5eb8ef0c1a8abec60ff4ad8e53415ac96b11575ff805f24f132be0b999f020a3"
+  },
+  "lighthouse-writing-mobile.json.gz": {
+    "uncompressed_bytes": 744662,
+    "uncompressed_sha256": "b11dda18a64208f451e028c4b6a2b9153c3618f3ee6081eaa3e7c1fd9a35fc31",
+    "gzip_bytes": 272245,
+    "gzip_sha256": "e434c50f40f186b89f1993e06bed4c7feab7a414afe84914859bb6491e9f37b0"
+  },
+  "lighthouse-research-desktop.json.gz": {
+    "uncompressed_bytes": 860278,
+    "uncompressed_sha256": "1af9cd2ec2ed0ec6493d9a479298980999c531f748c51c27803671530c5f26ec",
+    "gzip_bytes": 457783,
+    "gzip_sha256": "770d0b448a77286fc20a5b044ffe9fca7ab748d8709bccdedbc800c7df156d60"
+  },
+  "lighthouse-index-mobile.json.gz": {
+    "uncompressed_bytes": 915066,
+    "uncompressed_sha256": "ae56dd2a8f909e3d2baed6485e111fc2fcc836303f4a1cdcdc8169754687075a",
+    "gzip_bytes": 502517,
+    "gzip_sha256": "a2c99c387b39fb8b3c9ea2946dc17d60ccf0e4e0f40cb2cde64cccba4a2a7575"
+  },
+  "lighthouse-talks-mobile.json.gz": {
+    "uncompressed_bytes": 575691,
+    "uncompressed_sha256": "a570b1a343309eba9ae12ac7b1b8cb1aaacd7d2ea531fd5cc4be0f1192a4bc80",
+    "gzip_bytes": 151014,
+    "gzip_sha256": "1a66bbe5b00729b15972347f72341325f8f62497d1dac1f69ae12360dc074cd9"
+  },
+  "runtime-performance.json.gz": {
+    "uncompressed_bytes": 1138812,
+    "uncompressed_sha256": "fdeee910c0b255ef4b93cfbf31785a22e6eceed299f49339b90e0af73dbe52b2",
+    "gzip_bytes": 51166,
+    "gzip_sha256": "97ea59f9f98b9a424335f12cf47682cef5008913d9c84e1102a72e649be4f9bb"
+  }
+}

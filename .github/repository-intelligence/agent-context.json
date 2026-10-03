@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "cdcaff73cfecd671cfcfd1fbbdf0c78e0a59bc88f97f4005b2984942c3b53179",
+    "digest": "2898f725e97dc873872dfc556748548970fda010c8b3573498c81eb7306e82bb",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -47,9 +47,33 @@
         "sha256": "cc2c56c8780712bd9080a0d2ff8236ec11740b1f2c73e545b2cfe6ffbefd094a"
       },
       {
+        "path": ".ruff_cache/.gitignore",
+        "identity_mode": "existence"
+      },
+      {
+        "path": ".ruff_cache/0.16.10/11128537396931138717",
+        "identity_mode": "existence"
+      },
+      {
+        "path": ".ruff_cache/0.16.10/12201302508424895574",
+        "identity_mode": "existence"
+      },
+      {
+        "path": ".ruff_cache/0.16.10/13331154289583364773",
+        "identity_mode": "existence"
+      },
+      {
+        "path": ".ruff_cache/0.16.10/18325159472609983779",
+        "identity_mode": "existence"
+      },
+      {
+        "path": ".ruff_cache/CACHEDIR.TAG",
+        "identity_mode": "existence"
+      },
+      {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "af2ffdad7533935e3bee38cf264a0ebbb9d8584572250da545b41185d4c0752b"
+        "sha256": "b63eb94e7fb9096128e8ab4f53705769cbee1877b96c99732944aba9c2fa5694"
       },
       {
         "path": "BACKLOG.md",
@@ -104,7 +128,7 @@
       {
         "path": "SOL-HANDOFF.md",
         "identity_mode": "content",
-        "sha256": "9f9b0e99ece033cd5e56b264ff28b96da9bbccfc92a3b6ea991d00d0a765291d"
+        "sha256": "efb71effbbbcc50ee9cf582317381f271b07aaec8d2faad106be39d00b3b89cd"
       },
       {
         "path": "docs/.nojekyll",
@@ -229,6 +253,217 @@
         "path": "review/seo-20261002/raw/rankspot-batch5.json",
         "identity_mode": "content",
         "sha256": "6f9ef85ff5c49b14d19533f604c95bbe96d502e7151ce1a75ea0a7f2c186a65f"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/INDEPENDENT-REVIEW.md",
+        "identity_mode": "content",
+        "sha256": "01bac72c7e93252cf1230a790f253f429450cd5e973c8047ca43cf86d7ad4dc7"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/REPORT.md",
+        "identity_mode": "content",
+        "sha256": "4b2fba6407da9b2588076f499ba63d40428b790cebe1130d41fe25b28c5d28db"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/REPRODUCE.md",
+        "identity_mode": "content",
+        "sha256": "1de818c60e989686fe62f6b7dc69b3ac1e178e80e26d3400ef2b9727ba9852e2"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/SOL-TASKS.md",
+        "identity_mode": "content",
+        "sha256": "d423fa33a843830644c7f868dd8a705ed56761c494dca942c85c8867e0c72592"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/check-css-readiness.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/eslint.config.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/normalize-semgrep.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/reproduce-v8.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/results/bandit.json",
+        "identity_mode": "content",
+        "sha256": "4a82edc3ab42aeb9282ab202b2d55031d92f615e90c1f71112f35bef3aaca351"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/results/baseline.json",
+        "identity_mode": "content",
+        "sha256": "496bd86bdc8a5fbd5460e30f9e06e893e918e2d17ab3545c4e8f0565d06d6c0a"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/results/browser-matrix-firstattempt.json",
+        "identity_mode": "content",
+        "sha256": "a0712f46d5d05f26603f04b9fff7d16bc870157e29e05386644070387fc4ea01"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/results/browser-matrix.json",
+        "identity_mode": "content",
+        "sha256": "9114c151db699d4dade62ffff8aab31ba44c1ac27833a4cb553f76d1e1dc7bb3"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/results/compressed-results.json",
+        "identity_mode": "content",
+        "sha256": "ca862bfd5a14988002ff0d1de07ba5141851d1d2966297d022120fdc595d3022"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/results/css-readiness.json",
+        "identity_mode": "content",
+        "sha256": "97f4e6cc6fcd6042e575d4263d90b2f11d196a96518f1b7a57c52a3f700df79a"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/results/detect-secrets.json",
+        "identity_mode": "content",
+        "sha256": "45201ec47d55d42ab97e28b113b3f52d26ceb50772c662d91be077372d1d76be"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/results/eslint-sonarjs.json",
+        "identity_mode": "content",
+        "sha256": "719a5d1ef1d7507f3416714e9c8fea8891d19ec361bad1ba37e29e19b03a2a01"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/results/lighthouse-credits-desktop.json.gz",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/results/lighthouse-credits-mobile.json.gz",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/results/lighthouse-index-desktop.json.gz",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/results/lighthouse-index-mobile.json.gz",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/results/lighthouse-research-desktop.json.gz",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/results/lighthouse-research-mobile.json.gz",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/results/lighthouse-summary.json",
+        "identity_mode": "content",
+        "sha256": "9be48cd5cdd9c2b4af7237efeb9b121f9b9d5c6b0d1722dffe0929aa88a038c9"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/results/lighthouse-talks-desktop.json.gz",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/results/lighthouse-talks-mobile.json.gz",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/results/lighthouse-writing-desktop.json.gz",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/results/lighthouse-writing-mobile.json.gz",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/results/node-tests.txt",
+        "identity_mode": "content",
+        "sha256": "99640ad54ca6a900a9155d3e1035dcd100db9522ecaba5e806fb3e6d4363cb93"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/results/python-tests.txt",
+        "identity_mode": "content",
+        "sha256": "1fe7f315750db8ee40b091c7aec3f486ac33afd677c2aaae309cee339d060086"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/results/rapid-reversal.json",
+        "identity_mode": "content",
+        "sha256": "f8c93e572cf1917c6d9acad9e536933c4e379fb94ef8a1679d1a3eb03b047f7c"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/results/ruff.json",
+        "identity_mode": "content",
+        "sha256": "bedc6fdf24f377c09cced2ac43e0a784f94d7a10ddba7115ef433c8af376eacc"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/results/runtime-performance.json.gz",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/results/runtime-summary.json",
+        "identity_mode": "content",
+        "sha256": "19cbba5c8d500d1b87608090b1cd705012ec3cebc133bdfbe72dc0644af645a8"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/results/semgrep-normalization.json",
+        "identity_mode": "content",
+        "sha256": "cdf247d215ebffd74a192352381e08ac2ac1132a4b42fb0e0b4daf5bcda3eff1"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/results/semgrep-normalized.json",
+        "identity_mode": "content",
+        "sha256": "4b9a9c40bb9a513842ad907bcbf6a8859f751b83c31a3b75490b099f5617623b"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/results/semgrep.json",
+        "identity_mode": "content",
+        "sha256": "17646ca6d5b781d2adf75d34f75c791c6d1d67985301e3855f7f45cf99165c6d"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/results/static-summary.json",
+        "identity_mode": "content",
+        "sha256": "473a3a03c949212d9c4afe59414cadfaf5d22a8a1f002c0cf4b03c1e65ac64d2"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/results/stylelint.json",
+        "identity_mode": "content",
+        "sha256": "a38a707c5dbd4f4e44723503540ad210b47cf095cebf374595562caa1d99ce7f"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/results/tool-versions.json",
+        "identity_mode": "content",
+        "sha256": "f5ade022d4f3e25d6c68e141835beb15348dd452c59e2bc7a5bac36c5b1fc6d5"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/run-browser-audit.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/run-lighthouse.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/serve.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/stylelint.config.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/toolchain/package-lock.json",
+        "identity_mode": "content",
+        "sha256": "4ae30b602be941466215290998633cacee835739273363eb2f96be40bed9467a"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/toolchain/package.json",
+        "identity_mode": "content",
+        "sha256": "e2c1b2db636f2d4958610d3f9e0f6c2cac79c61837b9fc690bdb049151f3bedd"
+      },
+      {
+        "path": "review/site-audit-v8-20261003/toolchain/requirements.txt",
+        "identity_mode": "content",
+        "sha256": "9de0b8b6d25edabdcb1959c07ff65c225e8f096a6eb0f128f51e7582d802e9a4"
       },
       {
         "path": "review/site-v1-20261001-credits-day.html",
@@ -2219,6 +2454,195 @@
     {
       "path": "review/seo-20261002/raw/rankspot-batch5.json",
       "title": "review/seo-20261002/raw/rankspot-batch5.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-audit-v8-20261003/INDEPENDENT-REVIEW.md",
+      "title": "Independent v8 code review — 2026-10-03",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-audit-v8-20261003/REPORT.md",
+      "title": "v8 engineering audit — 3 October 2026",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-audit-v8-20261003/REPRODUCE.md",
+      "title": "Reproduce the v8 audit",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-audit-v8-20261003/SOL-TASKS.md",
+      "title": "Sol implementation handoff — v8 engineering audit",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-audit-v8-20261003/results/bandit.json",
+      "title": "review/site-audit-v8-20261003/results/bandit.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-audit-v8-20261003/results/baseline.json",
+      "title": "review/site-audit-v8-20261003/results/baseline.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-audit-v8-20261003/results/browser-matrix-firstattempt.json",
+      "title": "review/site-audit-v8-20261003/results/browser-matrix-firstattempt.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-audit-v8-20261003/results/browser-matrix.json",
+      "title": "review/site-audit-v8-20261003/results/browser-matrix.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-audit-v8-20261003/results/compressed-results.json",
+      "title": "review/site-audit-v8-20261003/results/compressed-results.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-audit-v8-20261003/results/css-readiness.json",
+      "title": "review/site-audit-v8-20261003/results/css-readiness.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-audit-v8-20261003/results/detect-secrets.json",
+      "title": "review/site-audit-v8-20261003/results/detect-secrets.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-audit-v8-20261003/results/eslint-sonarjs.json",
+      "title": "review/site-audit-v8-20261003/results/eslint-sonarjs.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-audit-v8-20261003/results/lighthouse-summary.json",
+      "title": "review/site-audit-v8-20261003/results/lighthouse-summary.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-audit-v8-20261003/results/node-tests.txt",
+      "title": "review/site-audit-v8-20261003/results/node-tests.txt",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-audit-v8-20261003/results/python-tests.txt",
+      "title": "review/site-audit-v8-20261003/results/python-tests.txt",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-audit-v8-20261003/results/rapid-reversal.json",
+      "title": "review/site-audit-v8-20261003/results/rapid-reversal.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-audit-v8-20261003/results/ruff.json",
+      "title": "review/site-audit-v8-20261003/results/ruff.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-audit-v8-20261003/results/runtime-summary.json",
+      "title": "review/site-audit-v8-20261003/results/runtime-summary.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-audit-v8-20261003/results/semgrep-normalization.json",
+      "title": "review/site-audit-v8-20261003/results/semgrep-normalization.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-audit-v8-20261003/results/semgrep-normalized.json",
+      "title": "review/site-audit-v8-20261003/results/semgrep-normalized.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-audit-v8-20261003/results/semgrep.json",
+      "title": "review/site-audit-v8-20261003/results/semgrep.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-audit-v8-20261003/results/static-summary.json",
+      "title": "review/site-audit-v8-20261003/results/static-summary.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-audit-v8-20261003/results/stylelint.json",
+      "title": "review/site-audit-v8-20261003/results/stylelint.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-audit-v8-20261003/results/tool-versions.json",
+      "title": "review/site-audit-v8-20261003/results/tool-versions.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-audit-v8-20261003/toolchain/package-lock.json",
+      "title": "review/site-audit-v8-20261003/toolchain/package-lock.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-audit-v8-20261003/toolchain/package.json",
+      "title": "review/site-audit-v8-20261003/toolchain/package.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-audit-v8-20261003/toolchain/requirements.txt",
+      "title": "review/site-audit-v8-20261003/toolchain/requirements.txt",
       "instructions": [
         "AGENTS.md"
       ]

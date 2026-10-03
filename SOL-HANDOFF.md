@@ -1,5 +1,19 @@
 # Sol execution plan — reviewed 2026-10-02
 
+## Latest engineering follow-up — maintainer request, 2026-10-03
+
+The maintainer likes the general v8 result and requested established-tool and
+agent audits of security, quality, performance and broad device stability.
+[Issue #12](https://github.com/oborskyivitalii/oborskyivitalii/issues/12) owns this
+work. The [audit report](review/site-audit-v8-20261003/REPORT.md) and
+[bounded Sol implementation tasks](review/site-audit-v8-20261003/SOL-TASKS.md)
+record the frozen v8 baseline, actual tools/three-engine evidence, independent
+review, findings and proposed acceptance budgets. Production v8 is unchanged;
+fixes are follow-up work, not a completed optimization. Read this follow-up before
+using earlier implementation-complete statements below. Preserve the visual
+contract; keep release decisions separate.
+
+
 ## Current v8 — living thematic environments, 2026-10-03
 
 The maintainer explicitly superseded the v7 still-life and no-idle-motion limits.

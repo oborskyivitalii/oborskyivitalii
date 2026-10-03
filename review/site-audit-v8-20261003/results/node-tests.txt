@@ -1,0 +1,41 @@
+✔ intersected filters and empty state are useful; Reset restores the fixed complete catalog (8.315406ms)
+✔ queries precede recognized fragments, preserve other dimensions, and reach visible empty targets (14.701754ms)
+✔ filter/Reset clear conflicting hashes; back/forward and hash changes restore form, rows and focus (4.343164ms)
+✔ only Topic/Reset starts a focus transition; printing shows all and restores the previous state (5.529787ms)
+✔ unknown URL values and blocked history do not disable the local archive (4.724723ms)
+✔ without scripts every topic/year fragment belongs to visible semantic HTML, not hidden navigation (2.753171ms)
+✔ each existing discussion entry has professional context and its own LinkedIn profile, preserving public evidence links (2.512148ms)
+✔ English UI has distinct useful metadata and non-executable accurate page schemas (12.619185ms)
+✔ 27 language-labelled editions match article schema and retain a useful time/topic hierarchy (6.893338ms)
+✔ portrait is a real sized local asset and ambiguous talk languages stay explicit (1.727764ms)
+✔ page IDs, ARIA targets, local resources and fragments resolve without draft leakage (9.902499ms)
+✔ Home provides the agreed reader path, precise public actions and a real contact alternative (12.144839ms)
+✔ ten fixed-theme copies preserve actual main content, CSS and external source links (90.119243ms)
+✔ every local page/gallery link and fragment resolves within the complete handoff (118.472483ms)
+✔ fixed and interactive rewriters retain query/hash intent, including the offline bundle's copies (52.060686ms)
+✔ manifest records exact inputs/outputs and unknown source shapes fail visibly (746.359412ms)
+✔ interactive copies contain exact executable sources after their required DOM and embed all resources (11.78033ms)
+✔ native-scroll camera is reversible while the bounded ambient loop continues at idle (673.332531ms)
+✔ continuous gestures move immediately; pointer events never influence the camera (592.289551ms)
+✔ Off freezes the exact displayed camera and phase through theme, resize, layout, hidden and print (578.528086ms)
+✔ reduced overrides saved On; Off persists; hidden and print pause without elapsed-time catch-up (641.354422ms)
+✔ ambient redraw work is capped and no-Canvas/unknown routes do not start a continuous loop (1154.793457ms)
+✔ short/degenerate pages keep their camera and still breathe without manufactured scroll (2653.121031ms)
+✔ Writing topic travel, reflow, empty restoration and unchanged scroll preserve local progress (451.753769ms)
+✔ loop closes in position and velocity, stays bounded, and never mutates rest geometry (354.772077ms)
+✔ every page has eight semantic motifs, three recursive depths, immutable topology and bounded mobile detail (470.501279ms)
+✔ camera traverses multiple structures, is continuous/reversible and clips safely through near planes (543.591232ms)
+✔ Auto uses visitor-local hours and applies before body/control exists (8.403659ms)
+✔ Auto schedules both next boundaries, including tomorrow morning (2.735023ms)
+✔ manual overrides survive clock changes, persist, and Auto resets them (1.350155ms)
+✔ unavailable storage and stale values preserve usable in-tab choices (1.645581ms)
+✔ returning to the tab refreshes Auto; storage changes sync existing tabs (0.894679ms)
+✔ the same instant follows different visitor time zones (121.228167ms)
+ℹ tests 33
+ℹ suites 0
+ℹ pass 33
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8230.143158

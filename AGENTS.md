@@ -118,6 +118,13 @@ changed-source visual evidence before handoff.
 
 ## Review and completion
 
+For the post-v8 engineering audit and optimization request (2026-10-03), read
+[audit #12 and Sol tasks](review/site-audit-v8-20261003/SOL-TASKS.md) and its linked
+baseline evidence. The audit is complete; the reported fixes remain unimplemented.
+Preserve the accepted visual direction while correcting the measured reliability
+and performance findings. Do not turn scanner counts or emulation into an
+unqualified security, Safari, physical-device or performance guarantee.
+
 Keep substantive PRs Draft during iteration. Obtain independent review for
 substantive cross-repository process/adapter changes and editorial/rights review
 for releases. Record reviewer identity/materials/outcome and unresolved items.

@@ -1,0 +1,14 @@
+[
+  {
+    "file": "docs/space.js",
+    "normalization": "Insert one space after ternary ? before a decimal literal; same lines and identical Espree tokens",
+    "tokens": 13884,
+    "identical": true
+  },
+  {
+    "file": "tools/build_scene_fallbacks.cjs",
+    "normalization": "Insert one space after ternary ? before a decimal literal; same lines and identical Espree tokens",
+    "tokens": 509,
+    "identical": true
+  }
+]
