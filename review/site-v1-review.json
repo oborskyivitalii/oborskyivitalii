@@ -1,7 +1,7 @@
 {
   "checked_date": "2026-10-03",
   "public_directory": "docs",
-  "visual_review": "Actual 8dbbdfa Day/Night opening captures inspected on all five routes at desktop/mobile; next candidate changes mobile bitmap resolution and requires fresh captures",
+  "visual_review": "Final public-source local Chromium matrix, behavior and five actual recordings passed; source-bound CI handoff verification pending",
   "files": {
     "docs/.nojekyll": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
     "docs/archive.js": "5b11a8e0fd8f2ecbed57809ea956ee3470148aac604e64decc188ba8f755209c",
@@ -12,7 +12,7 @@
     "docs/index.html": "5ebcab6dd9b33cccaff5dc8f80ceeb45c37892d27d89b636e2ddef0055a7541b",
     "docs/research.html": "2b37c950be256a653280e79c0775ebd1750cd8dc76d2ef68c0f3f25ea2d84c3a",
     "docs/space.js": "482ac7be7f06133e5a679882e67180977c2b639dde711d3ee0b78131fa0b77cf",
-    "docs/styles.css": "41115291a8f1927a4cf00ba318891dd3c98737095b85619cadc7afc7e9567b31",
+    "docs/styles.css": "9ec678cb7163b1a359e45ec0e3462338d9997ab368996e0c0cfe9f0581934e56",
     "docs/talks.html": "ec79117e6d6cbf48dedc7e8f8b08626f9690b17d631a42d375314a77690474e6",
     "docs/theme.js": "d11f679af05442e8b01024e9a5fe3ba9aff73554f11bd8f3ff692d14f830f8fb",
     "docs/writing.html": "6dd77aefe1fd0ae9862ee75547fe930148c2feeeb60c402d8ee607db73d65d6b"
@@ -32,7 +32,7 @@
   },
   "review_handoff": {
     "checked_date": "2026-10-03",
-    "kind": "v9: fifteen exact-source page copies and gallery; fresh final mobile-resolution captures pending",
+    "kind": "v9: fifteen exact-source copies and all-page gallery; final native-select containment and capture-readiness correction",
     "manifest": "review/site-v1-static-previews-v9.json",
     "bundle_manifest": "review/site-v1-offline-bundle-v9.json",
     "indexing_scope": "review noindex; offline site/ retains exact docs bytes",
@@ -59,8 +59,8 @@
     "node_tests": 44,
     "python_tests": 18,
     "preview_export": "15 page copies plus all-page gallery; source/evidence hashes and offline bundle freshness verified locally",
-    "browser": "8dbbdfa: Linux 359/390, Windows 24/40, macOS 0/20; all 330 fallback/capability scenarios pass; native Escape, 200% CSS zoom and one cold positive-probe failure corrected for rerun",
-    "sampled_contrast": "Final bitmap resolution requires fresh capture/contrast measurement"
+    "browser": "96f96c9: Windows40/40 and macOS20/20 pass; Linux388/390. Both remaining Writing WebKit zoom cases reproduced and fixed locally; all20 local WebKit normal scenarios now pass. Final exact-source CI pending.",
+    "sampled_contrast": "Fresh final-source sampled contrast pending; no complete WCAG claim"
   },
   "edition": "v9",
   "previous_v8_checks": {

@@ -42,7 +42,17 @@ async function nextPaint(page) {
   assert.ok(after.draws>before.draws,'ambient drawing continues');assert.notEqual(after.phase,before.phase,'ambient phase advances');
   return {elapsedMs:Date.now()-start,paints:after.draws-before.draws};
 }
-async function visit(page,route){await page.goto(`${base}/docs/${route}.html`);await idle(page);assert.equal(await page.locator(".space-scene").getAttribute("data-ready"),"true");}
+async function visit(page,route){
+  await page.goto(`${base}/docs/${route}.html`);await page.bringToFront();
+  const start=Date.now();
+  try {
+    await page.waitForFunction(()=>document.querySelector('.space-scene').dataset.ready==='true',null,{polling:50,timeout:3000});
+  }catch(error){
+    const observed=await page.evaluate(()=>({draws:window.__review.draws,callbacks:window.__review.frames.length,hidden:document.hidden,motion:document.querySelector('#space-motion').textContent,scene:{...document.querySelector('.space-scene').dataset}}));
+    throw Error(`Scene not ready: ${JSON.stringify({route,elapsedMs:Date.now()-start,observed})}`,{cause:error});
+  }
+  return {elapsedMs:Date.now()-start};
+}
 async function context(theme,viewport,extra={}) {
   const ctx=await browser.newContext({viewport,...extra});
   await ctx.addInitScript(instrument);
@@ -55,7 +65,7 @@ async function matrix() {
     const ctx=await context(theme,viewport,device==="mobile"?{isMobile:true,hasTouch:true}:{});
     const page=await ctx.newPage(),errors=[];page.on("pageerror",error=>errors.push(error.message));
     for(const route of pages) {
-      await visit(page,route);assert.deepEqual(errors,[],`${route} runtime errors`);const first=await pixelTrace(page);
+      const readyProbe=await visit(page,route);assert.deepEqual(errors,[],`${route} runtime errors`);const first=await pixelTrace(page);
       const dimensions=await overflow(page);assert.equal(dimensions.overflow,false,`${route} ${theme} ${device} horizontal overflow`);
       const camera=await poseTrace(page),ambientProbe=await nextPaint(page);assert.equal(await poseTrace(page),camera,"idle camera stays fixed");assert.notEqual(await pixelTrace(page),first,"geometry moves without scrolling");
       await page.screenshot({path:path.join(out,`${route}-${theme}-${device}.png`)});
@@ -68,7 +78,7 @@ async function matrix() {
       if(device==="desktop" && ["index","research","writing"].includes(route))await page.screenshot({path:path.join(out,`${route}-${theme}-lower.png`)});
       const frameTimes=await page.evaluate(()=>window.__review.frames);
       frameTimes.sort((a,b)=>a-b);
-      summary.push({route,theme,device,viewport,...dimensions,scene_pixels_changed_after_scroll:true,native_scroll_has_range:hasScroll,native_scroll_changes_camera:hasScroll,ambient_changes_pixels:true,ambientProbe,idle_camera_stays_fixed:true,frame_callback_ms:{count:frameTimes.length,p50:frameTimes[Math.floor(frameTimes.length*.5)]||0,p95:frameTimes[Math.floor(frameTimes.length*.95)]||0,max:Math.max(...frameTimes)}});
+      summary.push({route,theme,device,viewport,...dimensions,readyProbe,scene_pixels_changed_after_scroll:true,native_scroll_has_range:hasScroll,native_scroll_changes_camera:hasScroll,ambient_changes_pixels:true,ambientProbe,idle_camera_stays_fixed:true,frame_callback_ms:{count:frameTimes.length,p50:frameTimes[Math.floor(frameTimes.length*.5)]||0,p95:frameTimes[Math.floor(frameTimes.length*.95)]||0,max:Math.max(...frameTimes)}});
       process.stdout.write(`${route} ${theme} ${device}: captured; scroll/ambient/overflow passed\n`);
     }
     await ctx.close();

@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "c1aece42783907a0ca2c0dc54aa3d40508b6b3ee13329678b4fbcbdac55b49f4",
+    "digest": "cd9324a4fdad9cadc42c9c5aaba955cba678b91bab64b905cbb0c020cfde72d9",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -477,7 +477,7 @@
       {
         "path": "review/site-engineering-v9-20261003/CHECKPOINT.md",
         "identity_mode": "content",
-        "sha256": "de9a134c49b5c12f681f02429815c9ef0e12b960c1b94f6c5642ee399d4c8937"
+        "sha256": "5865cf966fcc1f5aac953d60f1f16e37db98b3aec4e41ad4cdd90b2a6462b8ca"
       },
       {
         "path": "review/site-engineering-v9-20261003/DEPLOYMENT.md",
@@ -1923,7 +1923,7 @@
       {
         "path": "review/site-v1-offline-bundle-v9.json",
         "identity_mode": "content",
-        "sha256": "0c57dabf9cf7b4f7888ac716bec701fc9f47263584777a4b4964da677aa482a3"
+        "sha256": "377312fff69d4b88585abb63107c06642c4c9df7fd5c7c8a3532d0c00b5ef498"
       },
       {
         "path": "review/site-v1-preview.html",
@@ -1932,7 +1932,7 @@
       {
         "path": "review/site-v1-review.json",
         "identity_mode": "content",
-        "sha256": "166777eafc80f6f8396508db95eea0611d581fcff4087903ca202e82b898d980"
+        "sha256": "72a12e742ddf66d1ec68770dcb69a4553713265bdeb175a24d6c0c33ac4a4f7b"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -1972,7 +1972,7 @@
       {
         "path": "review/site-v1-static-previews-v9.json",
         "identity_mode": "content",
-        "sha256": "57bfa01772acd4290411d2b957bc781dde5434e4b82c91913cacacdda233907a"
+        "sha256": "865713b66e123eeb3446101e8a88861fc0324ad55185c1eeb8c02c84fdd014ab"
       },
       {
         "path": "review/site-v1-static-previews.json",
@@ -2283,7 +2283,7 @@
       {
         "path": "tools/quality/secrets-baseline.json",
         "identity_mode": "content",
-        "sha256": "4e99ebddd1255ab1e398e55e7c59b5a2d60c7359d16eaa005e100756f77ac4f4"
+        "sha256": "00a8caeb20f4ad10521c0a7db2a4ebe8488efcf4f82e8b7238191338dc287fdf"
       },
       {
         "path": "tools/quality/security-rules.yml",

@@ -183,3 +183,37 @@ The 8dbbdfa capture artifact's 53 files and 13 public source hashes were verifie
 all-route desktop/mobile contact sheets and selected full-size mobile images were
 inspected. The independent reviewer also inspected mobile openings. These remain
 historical evidence for 8dbbdfa, not visual acceptance of the next candidate.
+
+## Passing performance and measured final layout correction
+
+Source 96f96c9a07529c93109b68043b3eccbb11e6ae74, full run 37121505094,
+passed all 30 Lighthouse samples/median budgets and all direct motion/soak
+requirements. Mobile median TBT: Home 77 ms, Research 84 ms, Writing 129.5 ms,
+Talks 78 ms, Credits 67 ms. Mobile performance medians were 100/100/98/100/100;
+LCP 1168–1398 ms, CLS 0 except Writing 0.0565. Desktop TBT was 0–13 ms.
+CPU x4 mobile idle painted callback p95 was 10.1–15.2 ms, busy share
+13.00–17.95%; Off/reduced retained zero paints/RAF. Five-minute Home soak
+passed; forced-GC heap increased 903,236 bytes. These remain lab observations.
+Windows passed 40/40 and macOS WebKit 20/20. Linux passed 388/390: only
+Writing in both themes at 390 px and 200% CSS zoom retained horizontal overflow.
+The source-equivalent public bytes at 6b5d55c also passed Lighthouse/native jobs.
+
+Local browser execution was recovered with the pinned WebKit 26.6 / Chromium
+153.0.8010.12 and required dependencies, using an approved wider sandbox for
+their local sockets. Exact WebKit reproduction measured document scrollWidth
+414 at innerWidth 390. The Topic label/form had scrollWidth 187 despite a
+155 px layout box; the select's own box remained 155 px. Changing grid minimums,
+select width, ellipsis or native appearance did not fix the measured overflow.
+Layout containment on the mobile native select reduced document scrollWidth to
+390 and label/form to 155 without hiding page overflow or replacing native
+control appearance. All 20 local WebKit normal scenarios then passed, including
+both previously failing Writing cases. Final source-bound CI remains required.
+
+The capture producer no longer intercepts every path vertex into an unread
+buffer. It retains actual canvas paint/RAF observation, changed pixels/phase and
+fixed idle camera checks. A bounded 1500 ms timer probe requires a real next
+paint; startup separately waits up to 3000 ms for actual renderer readiness.
+Timeouts remain fatal and record counters, scene state, control, visibility and
+elapsed time. Earlier fixed 230 ms observations failed once on a paint and once
+on readiness without enough state to establish their cause. No production phase,
+cadence, layout assertion or performance budget was relaxed by this harness fix.
