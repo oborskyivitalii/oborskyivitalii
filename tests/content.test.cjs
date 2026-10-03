@@ -126,7 +126,7 @@ test("page IDs, ARIA targets, local resources and fragments resolve without draf
   }
   const expected = [".nojekyll", "archive.js", "assets", "credits.html", "index.html", "research.html", "space.js", "styles.css", "talks.html", "theme.js", "writing.html"];
   assert.deepEqual(fs.readdirSync(root).sort(), expected);
-  assert.deepEqual(fs.readdirSync(path.join(root, "assets")).sort(), ["vitalii-oborskyi-cutout.webp", "vitalii-oborskyi.jpg"]);
+  assert.deepEqual(fs.readdirSync(path.join(root, "assets")).sort(), ["favicon.svg", "vitalii-oborskyi-cutout.webp", "vitalii-oborskyi.jpg"]);
 });
 
 test("Home provides the agreed reader path, precise public actions and a real contact alternative", () => {
