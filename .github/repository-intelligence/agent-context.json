@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "e4d5dab837960d8052b9cecc7c03aa25e89b9c76ebb2e85121de9e114367e03f",
+    "digest": "3a36728e519502c9d51143fe3e472ce2bfd3bd15eed083e7e9d145804ab236c0",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -73,7 +73,7 @@
       {
         "path": ".github/workflows/site-runtime-checks.yml",
         "identity_mode": "content",
-        "sha256": "5ba874a782766623b21dd614fbbd0a13a0fa00915ecfe89d22af491285b36651"
+        "sha256": "3ae5d2954b54227399bc6ec33e28d26047d3d54c2bdaffa56a5ecd992b0551da"
       },
       {
         "path": ".github/workflows/site-staging.yml",
@@ -112,7 +112,7 @@
       {
         "path": "SITE-ANALYTICS.md",
         "identity_mode": "content",
-        "sha256": "18e2e97858882b54aa4e4387484fcc96505ed9cb3bc7df884d8dacc5738a34a4"
+        "sha256": "11e7160fb808061322bebe04f72f55386b2aeaa7beb552bc98e8a3e4d91d9b25"
       },
       {
         "path": "SITE-CONTENT-REVIEW.md",
@@ -2787,7 +2787,7 @@
       {
         "path": "tools/quality/README.md",
         "identity_mode": "content",
-        "sha256": "d600566377d046da0b70652cdcf50227fd787a4c34b033abc6005138e48f3f36"
+        "sha256": "0c75596dfd90f5d073409b8d9af8ba433699778be5a5fcb016e24359636caefe"
       },
       {
         "path": "tools/quality/advisory-exceptions.json",

@@ -66,7 +66,21 @@ Disabled defaults produce no analytics asset, loader tag or analytics network ca
 
 Node regressions cover atomic failure, strict settings, immutable retention,
 engine/media byte preservation, duplicate/blocked SDK loading, origin/project
-isolation and export stripping. Each existing functional engine runs thirteen
+isolation and export stripping. Synthetic fixtures explicitly set their own
+disabled/enabled configurations; they remain valid after the actual production
+source is enabled. Missing/malformed settings or a missing enabled adapter must
+fail before replacing coherent output. Source checks reject missing/duplicate
+loader tags, missing verification, missing loader assets and unexpected tracking
+when disabled; checking must not repair the artifact being inspected.
+
+| Required check | Regression and CI/CD wiring |
+| --- | --- |
+| Settings, activation prerequisites and adapter presence | `tests/analytics.test.cjs`, explicitly in `Site runtime regressions`; also in the PR/release build's complete Node suite |
+| Generated loader/verification match the actual source settings | `node tools/site/build.cjs --check`, required by runtime, PR and release workflows before packaging |
+| Enabled navigation, loading failures and origin/offline isolation | Thirteen vendor-stub fixtures per engine in the existing functional jobs; missing or failed assertions block the PR/release aggregate |
+| Actual provider counts, account/property setup and hosted SDK cost | Release-time owner/host checks under #8/#13; synthetic CI does not establish them |
+
+Each existing functional engine runs thirteen
 additional enabled-source fixtures: five entry routes, blocked/delayed SDK, a staging
 origin and five offline entry routes. They check persistent header/Canvas, all
 destinations, history, reload, filters and one vendor request per document. The

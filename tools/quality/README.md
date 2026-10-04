@@ -45,6 +45,11 @@ CSS zoom and synthetic visibility/print events are explicitly limited claims.
 
 Each engine also runs thirteen enabled-source analytics fixtures: five production
 entry routes, a blocked/delayed SDK, a different staging origin and five offline entries.
+`Site runtime regressions` explicitly runs the analytics settings/adapter/export
+suite; PR and release builds include it in `tests/*.test.cjs`. Fixtures use their
+own disabled/enabled settings and remain valid after production activation.
+The required generated-source check rejects loader/verification/asset drift or
+unexpected disabled tracking before the public artifact is packaged.
 The provider URL is intercepted with a local stub; no visitor data is sent.
 These require persistent navigation/history/filters/reload, one vendor load per
 document and zero external offline/staging requests. The aggregate rejects missing

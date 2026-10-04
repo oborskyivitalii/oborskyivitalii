@@ -1,10 +1,12 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),os=require('node:os'),vm=require('node:vm');
 const root=path.resolve(__dirname,'..'),b=require('../tools/site/build.cjs'),analytics=require('../tools/site/analytics.cjs'),snapshot=require('../tools/site/snapshot.cjs'),artifact=require('../tools/quality/artifact.cjs');
+const disabled=()=>({schema:1,provider:'cloudflare',enabled:false,siteURL:null,token:null,searchConsoleVerification:null});
 const enabled=()=>({schema:1,provider:'cloudflare',enabled:true,siteURL:'https://analytics.example.com/author/',token:'a'.repeat(32),searchConsoleVerification:'verification-fixture-'.repeat(2)});
 function fixture(t) {
   const dir=fs.mkdtempSync(path.join(os.tmpdir(),'site-analytics-'));
   for(const name of ['site','tools/site','tools/build_scene_fallbacks.cjs','tools/build_site_previews.cjs']){fs.mkdirSync(path.dirname(path.join(dir,name)),{recursive:true});fs.cpSync(path.join(root,name),path.join(dir,name),{recursive:true});}
+  configure(dir,disabled());
   t.after(()=>fs.rmSync(dir,{recursive:true,force:true}));
   return dir;
 }
@@ -22,13 +24,22 @@ function browser(bytes,url,appendThrows=false) {
   run();
   return {elements,listeners,run};
 }
-test('disabled analytics emits no runtime asset or external script; core HTML parity remains separate',()=>{
-  assert.deepEqual(analytics.compile(root,snapshot.routes.map(id=>id+'.html')),{head:'',assets:{}});
+test('disabled analytics emits no runtime asset or external script regardless of current production settings',t=>{
+  const dir=fixture(t);
+  assert.deepEqual(analytics.compile(dir,snapshot.routes.map(id=>id+'.html')),{head:'',assets:{}});
+});
+test('missing settings or an enabled adapter fail before replacing coherent public output',t=>{
+  const dir=fixture(t);b.build({root:dir});const before=publicFiles(dir),configFile=path.join(dir,'site/analytics.json');
+  fs.rmSync(configFile);assert.throws(()=>b.build({root:dir}),/ENOENT/);assert.deepEqual(publicFiles(dir),before);
+  fs.writeFileSync(configFile,'{');assert.throws(()=>b.build({root:dir}),SyntaxError);assert.deepEqual(publicFiles(dir),before);
+  configure(dir,enabled());fs.rmSync(path.join(dir,'site/integrations/cloudflare.cjs'));
+  assert.throws(()=>b.build({root:dir}),/Cannot find module/);assert.deepEqual(publicFiles(dir),before);
 });
 test('activation validates finite fields and rejects incomplete, noncanonical or unsafe public settings before output replacement',t=>{
   const dir=fixture(t);b.build({root:dir});const before=publicFiles(dir),good=enabled();
   const credentialURL=new URL(good.siteURL);credentialURL.username='fixture';credentialURL.password='fixture';
   const invalid=[
+    null,[],{...good,schema:2},Object.fromEntries(Object.entries(good).filter(([key])=>key!=='enabled')),
     {...good,enabled:'true'},{...good,provider:'other'},{...good,extra:'unclassified'},
     {...good,siteURL:null},{...good,token:null},{...good,token:'api-secret'},
     {...good,searchConsoleVerification:'"><script>alert(1)</script>'},
@@ -39,6 +50,20 @@ test('activation validates finite fields and rejects incomplete, noncanonical or
   configure(dir,{...good,enabled:false,token:null});b.build({root:dir});
   assert.match(fs.readFileSync(path.join(dir,'docs/index.html'),'utf8'),/google-site-verification/);
   assert.equal(b.files(path.join(dir,'docs')).filter(name=>name.endsWith('/analytics.js')).length,0);
+});
+test('source checks reject missing or duplicate loaders, missing verification, asset loss and unexpected disabled tracking',t=>{
+  const dir=fixture(t);configure(dir,enabled());const result=b.build({root:dir}),page=path.join(dir,'docs/writing.html'),html=fs.readFileSync(page,'utf8');
+  const loader=html.match(/^ {2}<script data-site-analytics="cloudflare"[^\n]+\n/m)[0],verification=html.match(/^ {2}<meta name="google-site-verification"[^\n]+\n/m)[0];
+  for(const changed of [html.replace(loader,''),html.replace(loader,loader+loader),html.replace(verification,'')]) {
+    fs.writeFileSync(page,changed);assert.throws(()=>b.build({root:dir,check:true}),/Generated-only output is stale/);assert.equal(fs.readFileSync(page,'utf8'),changed);
+  }
+  fs.writeFileSync(page,html);
+  const asset=path.join(dir,'docs',Object.keys(result.files).find(name=>name.endsWith('/analytics.js'))),bytes=fs.readFileSync(asset);
+  fs.rmSync(asset);assert.throws(()=>b.build({root:dir,check:true}),/Generated-only output is stale/);assert.equal(fs.existsSync(asset),false);
+  fs.writeFileSync(asset,bytes);b.build({root:dir,check:true});
+  configure(dir,disabled());b.build({root:dir});const inactive=fs.readFileSync(page,'utf8');
+  fs.writeFileSync(page,inactive.replace('</head>',loader+'</head>'));
+  assert.throws(()=>b.build({root:dir,check:true}),/Generated-only output is stale/);
 });
 test('one shared immutable adapter covers all five routes and changes metadata without changing the engine or media',t=>{
   const dir=fixture(t),before=b.build({root:dir});configure(dir,enabled());const after=b.build({root:dir});
