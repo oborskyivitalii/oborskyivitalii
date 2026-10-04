@@ -72,3 +72,21 @@ This is implementer review, not an independent security certificate. The full
 production gate must continue to block missing independent/device evidence.
 Staging remains unconfigured. No merge, production, DNS, payment or rights
 acceptance is implied by local/CI results.
+
+## Continuation — opacity serialization, 4 October 2026
+
+The maintainer requested the final interactive HTML with all five routes usable.
+The `d15fbee` evidence run passed performance and macOS WebKit but the Windows
+Firefox mobile Day navigation case failed `no premature full text`. A direct
+browser probe confirmed that CSS serializes opacity `0.9999999` as `1`.
+The incoming fade now stays at or below `0.999` until the renderer reports the
+actual arrival paint. The existing strict timing assertion is retained.
+
+All five interactive copies, the export manifest, offline bundle manifest and
+RI context are regenerated. Local validation passes 76 Node and 18 Python tests,
+SEO preservation, fallback/export/bundle freshness and RI verification.
+The standalone delivery includes embedded route documents and portrait assets;
+opening Home is sufficient for navigating the whole site without a server.
+New browser/CI results are recorded separately in PR #10 and #14; earlier
+performance/native-platform results are baseline evidence, not acceptance of
+the amended runtime. Production, independent and physical-device gates remain.

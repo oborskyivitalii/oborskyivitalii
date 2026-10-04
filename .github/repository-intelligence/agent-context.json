@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "a6f3ead5fe698a509493bf78f6375a0ba1312cd8dfcff3d4e4512331dfba8197",
+    "digest": "44fde342c96d30ace139c7b1e4d8c29e44851199308b7c6ee811a1f273515245",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -526,7 +526,7 @@
       {
         "path": "review/site-surface-review-20261004/REPORT.md",
         "identity_mode": "content",
-        "sha256": "1ef87765871ead611b872578f240faf607b02bf805ee3f00aeb2e2d420a67824"
+        "sha256": "00a6ea1189a440cd1dd25495420ee9652e6a0d83520b7ce44b38abb3b68245fd"
       },
       {
         "path": "review/site-v1-20261001-credits-day.html",
@@ -2060,7 +2060,7 @@
       {
         "path": "review/site-v1-offline-bundle-v11.json",
         "identity_mode": "content",
-        "sha256": "b4e607d3289ceb97b87f11abb9e96453ec8faaf67b3124c7e34a482a70696a6f"
+        "sha256": "2727d8710d23afbd8a9e76aeddaadb0ac9529047d8c2d63fcdfdd41031a52a8f"
       },
       {
         "path": "review/site-v1-offline-bundle-v3.json",
@@ -2114,7 +2114,7 @@
       {
         "path": "review/site-v1-static-previews-v11.json",
         "identity_mode": "content",
-        "sha256": "11fa44a036ee7a52f512a9d303bf48b13223707e5cfc8d1b04063afda6c04c9c"
+        "sha256": "18e2d74006364af51e23df5eb3f1ce774f1eaabcad43cd4b252fe2016991e673"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
