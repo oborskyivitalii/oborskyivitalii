@@ -2,7 +2,6 @@
   "schema": 1,
   "kind": "bounded implementer browser observations; not a reproduced freeze",
   "date": "2026-10-04",
-  "sourceCommit": "da06b6d6e850b49d72d227045f3975213d177a25",
   "surface": "delivered standalone HTML, served by an internal HTTP test fixture",
   "browser": "Chrome; not the user's embedded ChatGPT browser",
   "viewport": {
@@ -62,5 +61,6 @@
     "Controlled first-small-gesture repeat was interrupted by test environment disconnection.",
     "No exact user-device/browser version or stopped-ambient-frame reproduction.",
     "Cadence metadata is not measured display FPS; no user-device performance claim."
-  ]
+  ],
+  "sourceCommitURL": "https://github.com/oborskyivitalii/oborskyivitalii/commit/da06b6d6e850b49d72d227045f3975213d177a25"
 }

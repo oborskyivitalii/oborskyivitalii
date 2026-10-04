@@ -92,6 +92,12 @@ execution environment стало недоступним. Документний 
 subtree identity і новий RI перевіряються окремо; remote CI має перевірити
 projection штатним Python producer. Планування не змінює public bytes.
 
+Початковий static job планувального PR зупинився на одному entropy candidate.
+Source binding сирих спостережень подано як повний публічний commit URL
+замість окремого quoted hexadecimal ID. Той самий точний source лишається
+доступним; scanner rules і secrets baseline не змінюються. Перший failed run
+зберігається, результат повторної перевірки записується у PR/issue.
+
 ## Рекомендація
 
 Зберегти статичні HTML та progressive enhancement. Спочатку завершити R0

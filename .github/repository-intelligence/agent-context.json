@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "49a0e82cca093757203e0667a51ffbe245366bbb9f4f734fab27132dc045015b",
+    "digest": "960108e8f9ecab99bcc3e016d058236b186d51ed7da2b6b867b357a5af3ba6fb",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -496,12 +496,12 @@
       {
         "path": "review/site-engine-plan-20261004/ASSESSMENT.md",
         "identity_mode": "content",
-        "sha256": "72f28abfe3031103fc5af9efa3a042786015f362e3e0201984d7dda541c31944"
+        "sha256": "6267627cebe91e466cf5f5355778c898036cbf42f58f200e8be03ac1073d20be"
       },
       {
         "path": "review/site-engine-plan-20261004/BROWSER-OBSERVATIONS.json",
         "identity_mode": "content",
-        "sha256": "f56e177fd86a397de6c376eb65f6db6282068e6a8dcd3a9fd288332d63990471"
+        "sha256": "4e3292f49338ad68b91617d1512ac918da1590f7f2233e71c3d37ef7bd42ac11"
       },
       {
         "path": "review/site-engine-plan-20261004/PLAN.md",
