@@ -83,3 +83,11 @@ emulation. PR #16 stays Draft; #15/#12 are not closed on this implementation alo
 The next review checkpoint will link exact pushed source and CI runs, distinguish
 technical checks from missing independent/device release evidence, and retain raw
 all-route visual/motion artifacts. Publication remains paused regardless of green CI.
+
+Native WebKit follow-up: the added direct-Writing regression captured its start
+pose after a fixed 260ms while it was still returning from a previous scroll.
+Its exact-endpoint assertion correctly failed against that transient baseline.
+The harness now waits for an unchanged camera across three distinct actual paints
+within the existing bounded settling window, then keeps the same six-gesture,
+exact return and positive-phase assertions. No production runtime or budget was
+changed for this harness correction; the complete exact-source matrix is rerun.

@@ -4,6 +4,17 @@ const routes=['index','research','writing','talks','credits'];
 async function ready(page,id){await page.waitForFunction(id=>document.body.dataset.page===id&&!document.querySelector('#site-content').hasAttribute('aria-busy'),id,{polling:50,timeout:6000});}
 async function move(page,id){await page.locator(`header a[href="${id==='index'?'./':id+'.html'}"]`).first().evaluate(el=>el.click());await ready(page,id);}
 async function camera(page){return page.locator('.space-scene').getAttribute('data-camera');}
+async function settledCamera(page) {
+  await page.evaluate(()=>window.__engineCameraSettling={});
+  await page.waitForFunction(()=>{
+    const scene=document.querySelector('.space-scene'),sample=window.__engineCameraSettling;
+    if(sample.phase===scene.dataset.phase)return false;
+    sample.same=sample.camera===scene.dataset.camera?(sample.same||0)+1:0;
+    sample.phase=scene.dataset.phase;sample.camera=scene.dataset.camera;
+    return sample.same>=2;
+  },null,{polling:50,timeout:3000});
+  return camera(page);
+}
 async function writingGestures(page) {
   await page.waitForFunction(()=>document.querySelector('.space-scene').dataset.travel==='settled',null,{polling:50,timeout:4000});
   const single=await page.evaluate(()=>{
@@ -14,8 +25,10 @@ async function writingGestures(page) {
   for(const filter of [null,single]){
     if(filter)for(const [i,key]of ['topic','year','language'].entries())await page.locator('#archive-'+key).selectOption(filter[i]);
     if(filter)assert.equal(await page.locator('li.publication:visible').count(),1);
-    await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));await page.waitForTimeout(260);
-    const start=await camera(page),phase=await page.locator('.space-scene').getAttribute('data-phase');
+    await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));
+    // Capture a real settled endpoint after distinct paints, including slower
+    // WebKit layout/scroll delivery. A fixed 260ms could retain a transient pose.
+    const start=await settledCamera(page),phase=await page.locator('.space-scene').getAttribute('data-phase');
     let previous=start;
     for(const y of [100,200,400]){
       await page.evaluate(y=>scrollTo({top:y,behavior:'instant'}),y);
@@ -29,8 +42,7 @@ async function writingGestures(page) {
   await page.locator('.filter-reset').evaluate(el=>el.click());
   for(const [key,value]of [['topic','delivery'],['year','2025'],['language','uk']])await page.locator('#archive-'+key).selectOption(value);
   assert.equal(await page.locator('li.publication:visible').count(),0);
-  await page.waitForTimeout(400);
-  const empty=await camera(page),phase=await page.locator('.space-scene').getAttribute('data-phase');
+  const empty=await settledCamera(page),phase=await page.locator('.space-scene').getAttribute('data-phase');
   await page.waitForFunction(phase=>document.querySelector('.space-scene').dataset.phase!==phase,phase,{polling:50,timeout:1500});
   assert.equal(await camera(page),empty,'empty archive keeps camera and breathes');
   await page.locator('.filter-reset').evaluate(el=>el.click());return observations;

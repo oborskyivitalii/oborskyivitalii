@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "d55c17ba84c92666a0656431013b9d7f0ef830174b1e6998f62e9f9e9ea874e7",
+    "digest": "c8270e3e81916516e0ae3ef9a81a5ede5968f5c6c5ae53a731d4dc1e1324fe0f",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -557,7 +557,7 @@
       {
         "path": "review/site-engine-implementation-20261004/EXECUTION.md",
         "identity_mode": "content",
-        "sha256": "6c96f70445ee73398443a8067601cf075876e6c455fb69142bbae06c88f2c933"
+        "sha256": "a19c9288d06b8e1c88b2cec61a5501ae5004b1ef928006d980edc7cedcf9d22a"
       },
       {
         "path": "review/site-engine-implementation-20261004/PARITY-BASELINE.json",
