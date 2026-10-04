@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "44fde342c96d30ace139c7b1e4d8c29e44851199308b7c6ee811a1f273515245",
+    "digest": "35a9c82c97698243e7741e84f855379d8d7db4a67aaf597eb7fc47bed9c98e59",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -526,7 +526,7 @@
       {
         "path": "review/site-surface-review-20261004/REPORT.md",
         "identity_mode": "content",
-        "sha256": "00a6ea1189a440cd1dd25495420ee9652e6a0d83520b7ce44b38abb3b68245fd"
+        "sha256": "a8abc20321c87eb3dc7936baa3de981f126fb0ec0679b9aa1131509add9645d8"
       },
       {
         "path": "review/site-v1-20261001-credits-day.html",
@@ -2534,7 +2534,7 @@
       {
         "path": "tools/quality/secrets-baseline.json",
         "identity_mode": "content",
-        "sha256": "2f38da433e827b28680114a30d29afff6dc515b8d21434826323aef32ec11c4c"
+        "sha256": "89879a6b248118729a2acdec5fd98769c6196d56c705fc1f535e6818fe2e7b0e"
       },
       {
         "path": "tools/quality/security-rules.yml",

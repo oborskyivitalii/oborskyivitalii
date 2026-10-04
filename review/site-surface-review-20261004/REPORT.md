@@ -90,3 +90,11 @@ opening Home is sufficient for navigating the whole site without a server.
 New browser/CI results are recorded separately in PR #10 and #14; earlier
 performance/native-platform results are baseline evidence, not acceptance of
 the amended runtime. Production, independent and physical-device gates remain.
+
+The subsequent static run passed lint, Semgrep and Bandit, then stopped on 13
+new entropy findings in the regenerated preview and offline-bundle manifests.
+Each was matched to its hashed-only finding and recomputed from
+the relevant current file or deterministic ZIP. Exact path/type/hash records
+are appended to the existing baseline; all prior dispositions and scanner
+rules are retained. This is implementer checksum triage; independent review
+is still pending and no credential exception or whole-file exclusion is added.
