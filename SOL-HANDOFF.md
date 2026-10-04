@@ -1,5 +1,21 @@
 # Sol execution plan — reviewed 2026-10-02
 
+## Execution and publication pause — 2026-10-04
+
+The maintainer now authorizes the engine/content plan and Writing fix under
+[#15](https://github.com/oborskyivitalii/oborskyivitalii/issues/15)/#12 in stacked
+Draft [PR #16](https://github.com/oborskyivitalii/oborskyivitalii/pull/16). Read
+[the source/engine contract](site/README.md) and
+[execution record](review/site-engine-implementation-20261004/EXECUTION.md).
+`site/` is authoritative; `docs/` is generated-only. Every #13 mandatory job and
+budget remains. The latest instruction pauses **all publication**, including
+staging, superseding the earlier activation amendment below. Both deployment
+workflow entry points have explicit false guards; configuration alone cannot
+enable publication. No host/account provisioning, upload, production release or
+merge is part of this work. Prepared packages/fixtures do not establish real host,
+physical-device or independent acceptance. Re-enabling hosting needs a later
+maintainer instruction and a separately reviewed change to those guards.
+
 ## New assessment/plan request — 2026-10-04
 
 The maintainer reports Writing's initial scroll sometimes appears stationary

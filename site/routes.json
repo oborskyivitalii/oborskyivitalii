@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "contract": 1,
+  "routes": [
+    {
+      "id": "index",
+      "url": "index.html",
+      "scene": "index",
+      "initialPose": "overview",
+      "stops": {
+        "hero": "overview",
+        "help": "control",
+        "research": "help",
+        "writing": "feedback",
+        "acknowledgements": "context",
+        "about": "closing",
+        "contact": "closing"
+      }
+    },
+    {
+      "id": "research",
+      "url": "research.html",
+      "scene": "research",
+      "initialPose": "researchOverview",
+      "stops": {
+        "intro": "researchOverview",
+        "research": "verification",
+        "lenses": "help",
+        "topics": "feedback",
+        "acknowledgements": "closing"
+      }
+    },
+    {
+      "id": "writing",
+      "url": "writing.html",
+      "scene": "writing",
+      "initialPose": "library",
+      "stops": {}
+    },
+    {
+      "id": "talks",
+      "url": "talks.html",
+      "scene": "talks",
+      "initialPose": "signal",
+      "stops": {
+        "intro": "signal",
+        "talks": "signalEnd",
+        "continue": "closing"
+      }
+    },
+    {
+      "id": "credits",
+      "url": "credits.html",
+      "scene": "credits",
+      "initialPose": "network",
+      "stops": {
+        "intro": "network",
+        "preferences": "networkEnd",
+        "contact": "closing"
+      }
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 'use strict';
 const assert=require('node:assert/strict');
 const routes=['index','research','writing','talks','credits'];
-const checks=['persistentShell','fiveRoutes','metadata','forward','backward','history','historyScroll','archiveLifecycle','rapidNavigation','off','reduced','fetchFallback','headerEdges','flightTiming','earlyScroll','interruptions','retargetOpacity'];
+const checks=['persistentShell','fiveRoutes','metadata','forward','backward','history','historyScroll','archiveLifecycle','rapidNavigation','off','reduced','fetchFallback','headerEdges','flightTiming','earlyScroll','interruptions','retargetOpacity','writingFirstScroll','snapshotPin','versionFallback','digestFallback','offlineEntries'];
 const selector=route=>`a[href="${route==='index'?'./':route+'.html'}"]`;
 async function ready(page,route){
   await page.waitForFunction(route=>document.body.dataset.page===route&&!document.querySelector('#site-content').hasAttribute('aria-busy'),route,{polling:40,timeout:6000});
@@ -52,6 +52,7 @@ async function scenario(browser,url,s){
       await click(page,route);await settled(page);checkTiming(await page.evaluate(()=>window.__flightSamples));
       const state=await page.evaluate(()=>({page:document.body.dataset.page,title:document.title,description:document.querySelector('meta[name="description"]').content,h1:document.querySelectorAll('h1').length,focus:document.activeElement.id,rooms:+document.querySelector('.space-scene').dataset.rooms,direction:document.querySelector('.space-scene').dataset.direction,same:window.__shell.header===document.querySelector('header')&&window.__shell.canvas===document.querySelector('canvas')&&window.__shell.theme===document.querySelector('#theme-mode')&&window.__shell.document===document}));
       assert.equal(state.page,route);assert.ok(state.title.toLowerCase().includes(route==='credits'?'credits':route));assert.ok(state.description.length>20);assert.equal(state.h1,1);assert.equal(state.focus,'main');assert.equal(state.same,true);assert.ok(state.rooms<=3);assert.equal(state.direction,'forward');assert.equal(new URL(page.url()).pathname,'/'+route+'.html');
+      if(route==='writing'){result.writingFirstScroll=await require('./engine-browser.cjs').writingGestures(page);result.checks.writingFirstScroll=true;}
     }
     Object.assign(result.checks,{persistentShell:true,fiveRoutes:true,metadata:true,forward:true,flightTiming:true});
     await click(page,'index');await settled(page);assert.equal(await page.locator('.space-scene').getAttribute('data-camera'),initial);assert.equal(await page.locator('.space-scene').getAttribute('data-direction'),'backward');result.checks.backward=true;
@@ -111,7 +112,12 @@ async function scenario(browser,url,s){
     // An uncached fetch fails once, then the ordinary destination document opens.
     await page.goto(url+'/index.html');
     await page.route('**/research.html',route=>route.request().resourceType()==='fetch'?route.fulfill({status:503,contentType:'text/plain',body:'Controlled unavailable route'}):route.continue());
-    await page.locator(selector('research')).first().click();await page.waitForURL('**/research.html');await page.waitForFunction(()=>document.body.dataset.page==='research');result.checks.fetchFallback=true;
+    await page.locator(selector('research')).first().click();await page.waitForURL('**/research.html');await page.waitForFunction(()=>document.body.dataset.page==='research');result.checks.fetchFallback=true;await page.unroute('**/research.html');
+    const engine=require('./engine-browser.cjs');
+    await engine.snapshotPin(page,url);result.checks.snapshotPin=true;
+    await engine.boundedFallback(page,url,'revision');result.checks.versionFallback=true;
+    await engine.boundedFallback(page,url,'digest');result.checks.digestFallback=true;
+    await engine.offline(browser,s);result.checks.offlineEntries=true;
     assert.deepEqual(errors,[]);result.pass=checks.every(key=>result.checks[key]===true);
   }catch(error){
     result.error=error.message;result.stack=error.stack;

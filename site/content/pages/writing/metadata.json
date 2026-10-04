@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "lang": "en",
+  "title": "Writing | AI Architecture, Delivery & Operating Models | Vitalii Oborskyi",
+  "description": "English and Ukrainian articles by Vitalii Oborskyi on AI architecture, verification, delivery and operating models. Original platform titles, dates and edition links.",
+  "structuredData": {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Articles by Vitalii Oborskyi",
+    "inLanguage": "en",
+    "author": {
+      "@type": "Person",
+      "name": "Vitalii Oborskyi"
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": 27
+    }
+  },
+  "blocks": [
+    "section-1",
+    "results-year-2026",
+    "results-year-2025"
+  ],
+  "catalogList": true
+}

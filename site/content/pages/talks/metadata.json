@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "lang": "en",
+  "title": "Talks & Workshops | Vitalii Oborskyi",
+  "description": "Public talks and workshops on Uncertainty Architecture and software delivery: PMDay, Corning Learn-AI-Palooza and Betelgeuse, with language and original sources.",
+  "structuredData": {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Talks and workshops",
+    "inLanguage": "en",
+    "description": "Original public announcements and follow-ups, with bounded edition and language information."
+  },
+  "blocks": [
+    "intro",
+    "talks"
+  ]
+}

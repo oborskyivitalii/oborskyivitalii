@@ -3,7 +3,7 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
-const { buildPreviews, renderPage, filename, digest, pages, interactiveFilename } = require("../tools/build_site_previews.cjs");
+const { buildPreviews, renderPage, filename, digest, pages, interactiveFilename,sourceForPreview } = require("../tools/build_site_previews.cjs");
 const root = path.resolve(__dirname, "..");
 const css = fs.readFileSync(path.join(root, "docs/styles.css"), "utf8");
 const portrait = fs.readFileSync(path.join(root, "docs/assets/vitalii-oborskyi-cutout.webp"));
@@ -32,7 +32,7 @@ test("ten fixed-theme copies preserve actual main content, CSS and external sour
         return attribute;
       });
       const restored = restoreLinks(main(html)).replace(`src="data:image/webp;base64,${portrait.toString("base64")}"`, 'src="assets/vitalii-oborskyi-cutout.webp"');
-      assert.equal(restored, main(source).replace(/<form id="archive-filters"[\s\S]*?<\/form>/, ""));
+      assert.equal(restored, main(sourceForPreview(source)).replace(/<form id="archive-filters"[\s\S]*?<\/form>/, ""));
       if (page === "index") assert.ok(html.includes(`src="data:image/webp;base64,${portrait.toString("base64")}"`));
       const external = (text) => [...text.matchAll(/href="(https:\/\/[^"]+)"/g)].map((match) => match[1]);
       assert.deepEqual(external(html), external(source));
@@ -72,7 +72,7 @@ test("fixed and interactive rewriters retain query/hash intent, including the of
 
 test("manifest records exact inputs/outputs and unknown source shapes fail visibly", () => {
   const manifest = JSON.parse(files["review/site-v1-static-previews-v11.json"]);
-  assert.equal(Object.keys(manifest.sources).length, 12);
+  assert.equal(Object.keys(manifest.sources).length, 13);
   assert.equal(Object.keys(manifest.files).length, 16);
   for (const [file, hash] of Object.entries(manifest.sources)) assert.equal(digest(fs.readFileSync(path.join(root, file))), hash);
   for (const [file, hash] of Object.entries(manifest.files)) assert.equal(digest(files[file]), hash);

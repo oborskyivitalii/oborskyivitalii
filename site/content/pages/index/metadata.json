@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "lang": "en",
+  "title": "Vitalii Oborskyi | AI Delivery Governance & Agentic Operating Models",
+  "description": "AI adoption without delivery gains? Agents hard to control in production? Research and practical work on AI delivery governance, verification and operating models.",
+  "structuredData": {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "name": "Vitalii Oborskyi — AI governance and architecture",
+    "inLanguage": "en",
+    "mainEntity": {
+      "@type": "Person",
+      "@id": "#vitalii-oborskyi",
+      "name": "Vitalii Oborskyi",
+      "description": "Delivery leader, researcher and author working on AI governance, architecture and socio-technical operating models.",
+      "sameAs": [
+        "https://www.linkedin.com/in/vitaliioborskyi/",
+        "https://github.com/oborskyivitalii",
+        "https://medium.com/@undersmoker"
+      ],
+      "knowsAbout": [
+        "AI governance",
+        "AI architecture",
+        "Uncertainty Architecture",
+        "Thinking Systems",
+        "AI operating models",
+        "AI-assisted software delivery",
+        "Socio-technical systems",
+        "Control theory",
+        "Theory of Constraints"
+      ]
+    }
+  },
+  "blocks": [
+    "hero",
+    "help",
+    "research",
+    "writing",
+    "acknowledgements",
+    "about",
+    "contact"
+  ]
+}

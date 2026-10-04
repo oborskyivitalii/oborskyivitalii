@@ -29,7 +29,8 @@ jobs:
   deploy:
     # The caller also checks same-repo PR #10 / manual dispatch. Environment
     # branch restrictions/reviewer approval are the credential trust boundary.
-    if: github.repository == 'oborskyivitalii/oborskyivitalii'
+    # Publication paused by the maintainer on 2026-10-04; explicit new decision required.
+    if: false && github.repository == 'oborskyivitalii/oborskyivitalii'
     runs-on: ubuntu-24.04
     timeout-minutes: 35
     environment: staging

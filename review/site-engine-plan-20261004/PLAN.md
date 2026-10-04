@@ -2,8 +2,13 @@
 
 Власник: [#15](https://github.com/oborskyivitalii/oborskyivitalii/issues/15).
 [Оцінка бази й симптом Writing](ASSESSMENT.md).
-Дата: 4 жовтня 2026. Статус: **пропозиція до виконання**, не імплементований engine.
-Документний Draft PR стоїть над #10; поточний runtime candidate зберігається.
+Дата: 4 жовтня 2026. **Оновлення: maintainer авторизував виконання R0–E.**
+Реалізація у stacked Draft PR #16; PR #10 зберігає frozen candidate.
+[Execution record](../site-engine-implementation-20261004/EXECUTION.md) та
+[чинний source/engine contract](../../site/README.md) фіксують зроблене й перевірки.
+Початковий план нижче збережено. E реалізовано як пакет/контракт; перевірка
+реального host відкладається за явною забороною будь-якої публікації.
+F залишається окремою пропозицією #13; mandatory jobs не зняті.
 
 ## Результат і обмеження
 

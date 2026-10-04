@@ -7,7 +7,7 @@ const {chromium}=require(process.env.SITE_REVIEW_PLAYWRIGHT||"playwright");
 const root=path.resolve(__dirname,".."),out=path.join(root,"review/site-v1-20261004-v11-captures");
 const publicRoot=path.resolve(process.env.SITE_PUBLIC_DIR||path.join(root,"docs"));
 const pages=["index","research","writing","talks","credits"],digest=value=>crypto.createHash("sha256").update(value).digest("hex");
-const publicSources=()=>Object.fromEntries([".nojekyll","navigation.js","archive.js","credits.html","index.html","research.html","space.js","styles.css","talks.html","theme.js","writing.html","assets/favicon.svg","assets/vitalii-oborskyi.jpg","assets/vitalii-oborskyi-cutout.webp"].map(p=>[`docs/${p}`,digest(fs.readFileSync(path.join(publicRoot,p)))]));
+const publicSources=()=>Object.fromEntries(require('./quality/artifact.cjs').entries(publicRoot).map(p=>['docs/'+p.path,digest(p.bytes)]));
 const mime={".html":"text/html",".js":"text/javascript",".css":"text/css",".svg":"image/svg+xml",".webp":"image/webp",".jpg":"image/jpeg",".json":"application/json",".webm":"video/webm",".png":"image/png"};
 const server=http.createServer((req,res)=>{
   const requestPath=new URL(req.url,"http://localhost").pathname;

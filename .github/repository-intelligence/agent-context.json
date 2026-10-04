@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "960108e8f9ecab99bcc3e016d058236b186d51ed7da2b6b867b357a5af3ba6fb",
+    "digest": "4c1b62f9225ae749f25c0e957740e262f3509d9d0458ba6c8a48e3e5c872b5c3",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -39,7 +39,7 @@
       {
         "path": ".github/repository-intelligence-config.json",
         "identity_mode": "content",
-        "sha256": "523825ace97db591c75c4e14f941eece6c489d556d4a7bee4da90bf0b83c21bd"
+        "sha256": "fc9e61a55162119b9ad290bdb37e9825ebe17e038c3fcd52c5f30013e4c19179"
       },
       {
         "path": ".github/workflows/navigation.yml",
@@ -54,7 +54,7 @@
       {
         "path": ".github/workflows/site-checks.yml",
         "identity_mode": "content",
-        "sha256": "139dc06d5d1d2d96317c7d3d249404a4fe8e6a213e330472ddaeadbec0e25a49"
+        "sha256": "be9c1a7a8f06250cf375814cba644638d990df1e95efe6647e3f8fe6abf674a4"
       },
       {
         "path": ".github/workflows/site-navigation-probe.yml",
@@ -64,17 +64,17 @@
       {
         "path": ".github/workflows/site-release-checks.yml",
         "identity_mode": "content",
-        "sha256": "e2767c374f810b676f3f5afaf2ef8b90a9e2fe1dd6e6c184eeed0eb6f961b049"
+        "sha256": "037405a751e067526c395c618fe2a2f82d3b2ff716f87933a46e1ac8572bd39c"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
         "identity_mode": "content",
-        "sha256": "bbf485e8f1c4aa70725c9670fc192a700030479cc282b1fd2098d70fcbc3849b"
+        "sha256": "5ba874a782766623b21dd614fbbd0a13a0fa00915ecfe89d22af491285b36651"
       },
       {
         "path": ".github/workflows/site-staging.yml",
         "identity_mode": "content",
-        "sha256": "1e43a196095d34cedaa8caee7c1d19b83508dfbbb7b185d317c4e04d3df60db0"
+        "sha256": "2ed264f8506fabc81c5a9f5cb299b1552b7aa30d4a366a44372337a5397ec9b2"
       },
       {
         "path": ".gitignore",
@@ -83,12 +83,12 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "abe57dd52859979b33b8242d9aa409aa43e29ab2a7cf5645fe02455235be9b77"
+        "sha256": "0e32c1b5267c5f39426bdb99fd1ac9a6b4a39b2c89f16a46d9fc8f0acfb896a1"
       },
       {
         "path": "BACKLOG.md",
         "identity_mode": "content",
-        "sha256": "effe5f68f9d0963400fc14f195c870cd8d4ebea096d0ea013772b7e0e309dbe6"
+        "sha256": "1dd79b13b56cd0a9f54ed2266ea482140f4becb98c1d42f789866c8c37d2cde8"
       },
       {
         "path": "CONTRIBUTING.md",
@@ -98,7 +98,7 @@
       {
         "path": "README.md",
         "identity_mode": "content",
-        "sha256": "dbe0eb1002c5c4491e13c18083dc78af657098c33ae4475ad67c148c59c0dfda"
+        "sha256": "aae86afb71c9684357050224d88a64b89793a67dd4abc489d10ab580f746742d"
       },
       {
         "path": "REPOSITORIES.md",
@@ -113,17 +113,17 @@
       {
         "path": "SITE-OPERATIONS.md",
         "identity_mode": "content",
-        "sha256": "93ad22cd0da703a1f38373553d8afa89d6eef65a8d8f3f4aaacc14cce2bfcaaf"
+        "sha256": "427e2df949df27c7e997d561d5bb6a2b4229a8c020c100195d4f40b7f843309a"
       },
       {
         "path": "SITE-RELEASE-GATES.md",
         "identity_mode": "content",
-        "sha256": "414165599e6fb4569f552cd76a08fa542c3fb0a0e0a012ed7d9d60ba72c72f2d"
+        "sha256": "3ca85a9e2a034c226f91d2ca367eeef87f25aabd2d38168d97e18572cbaba122"
       },
       {
         "path": "SITE-ROADMAP.md",
         "identity_mode": "content",
-        "sha256": "ab6c9af47dbc4cb1c848f2ec7640a0fee6dff8d185ad86149ffcd019abfa773e"
+        "sha256": "79169b48896d3e85e0320c9df626b32249f01346a4db9566b1cf5a26e1f5ed46"
       },
       {
         "path": "SITE-SEO.md",
@@ -138,7 +138,7 @@
       {
         "path": "SITE-STAGING.md",
         "identity_mode": "content",
-        "sha256": "08a96b74176c64fc3d5595109cbbbda8647da088e2f91b7c6a185c1620fc9465"
+        "sha256": "b4e2e755fedbc154474e6c4a3e2386db2d0d9e2b80ad12145bf90d1e4cd0174f"
       },
       {
         "path": "SITE-VISUAL-REVIEW.md",
@@ -148,7 +148,7 @@
       {
         "path": "SOL-HANDOFF.md",
         "identity_mode": "content",
-        "sha256": "850f065e23b60d8ea33e441ce4c5299c20d3db910c8ffe2f381fe618cb0337bc"
+        "sha256": "c09adbd97b644c97bb9a8c1294811c4a847179b88a3e5a3abe7d9163d26ee3f6"
       },
       {
         "path": "docs/.nojekyll",
@@ -179,11 +179,68 @@
         "identity_mode": "existence"
       },
       {
+        "path": "docs/media/442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401/favicon.svg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "docs/media/442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401/vitalii-oborskyi-cutout.webp",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "docs/media/442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401/vitalii-oborskyi.jpg",
+        "identity_mode": "existence"
+      },
+      {
         "path": "docs/navigation.js",
         "identity_mode": "existence"
       },
       {
         "path": "docs/research.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "docs/runtime/a017c98cfb8e4c6303738a9c791090a1237b4c75ea48ce43daf84095e728d3c1/archive.js",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "docs/runtime/a017c98cfb8e4c6303738a9c791090a1237b4c75ea48ce43daf84095e728d3c1/navigation.js",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "docs/runtime/a017c98cfb8e4c6303738a9c791090a1237b4c75ea48ce43daf84095e728d3c1/space.js",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "docs/runtime/a017c98cfb8e4c6303738a9c791090a1237b4c75ea48ce43daf84095e728d3c1/styles.css",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "docs/runtime/a017c98cfb8e4c6303738a9c791090a1237b4c75ea48ce43daf84095e728d3c1/theme.js",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "docs/site-revision.json",
+        "identity_mode": "content",
+        "sha256": "3cd461e56040c9b4eba619967df5e19e2592d3ed83426ec01f777e25bbd60cb1"
+      },
+      {
+        "path": "docs/snapshots/05579b83ac1ea4b73cc9194c908c4cbfa1aece0db23ff965bf17ae48f8319194/credits.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "docs/snapshots/202d575f69dc722e0d5a14b6912fc9be48b2e6499c6ee94074c1ec12e06dd08b/writing.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "docs/snapshots/2feb1dd380eded359b93451d5e96260cf3fea1b0e7a560cf6d30cf286ac48f5a/talks.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "docs/snapshots/b18d2701f90f13b8cf60810a37c8f41da4aa4e8e676014a859202f198b905054/index.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "docs/snapshots/bf80276ad344cbd56b78dfe92915ce94494285557f676c36e3f5260bb2cc6f25/research.html",
         "identity_mode": "existence"
       },
       {
@@ -494,6 +551,16 @@
         "sha256": "9de0b8b6d25edabdcb1959c07ff65c225e8f096a6eb0f128f51e7582d802e9a4"
       },
       {
+        "path": "review/site-engine-implementation-20261004/EXECUTION.md",
+        "identity_mode": "content",
+        "sha256": "fdd0b36082ba1e57953ea65bed0af149a1039808ac1115583bda5126a41dc786"
+      },
+      {
+        "path": "review/site-engine-implementation-20261004/PARITY-BASELINE.json",
+        "identity_mode": "content",
+        "sha256": "748fc7a78b0ef00f56c52d3f2a7b28a22df0bfa4d804f409b5e04150c8ba9af6"
+      },
+      {
         "path": "review/site-engine-plan-20261004/ASSESSMENT.md",
         "identity_mode": "content",
         "sha256": "6267627cebe91e466cf5f5355778c898036cbf42f58f200e8be03ac1073d20be"
@@ -506,7 +573,7 @@
       {
         "path": "review/site-engine-plan-20261004/PLAN.md",
         "identity_mode": "content",
-        "sha256": "bc11baead3dc98710ac45b1bee89ba1fd8b97c931053062d53435ff161a7d7ec"
+        "sha256": "2eabfa2f984461650096844add2ae7109768dc81f1182a2a89a8cea1b756b4c3"
       },
       {
         "path": "review/site-engineering-v9-20261003/CHECKPOINT.md",
@@ -2075,7 +2142,7 @@
       {
         "path": "review/site-v1-offline-bundle-v11.json",
         "identity_mode": "content",
-        "sha256": "2727d8710d23afbd8a9e76aeddaadb0ac9529047d8c2d63fcdfdd41031a52a8f"
+        "sha256": "99386f8b571a098c397f9741e2a49af1cbb16ea371eabd36cbc0fc282fc1d931"
       },
       {
         "path": "review/site-v1-offline-bundle-v3.json",
@@ -2129,7 +2196,7 @@
       {
         "path": "review/site-v1-static-previews-v11.json",
         "identity_mode": "content",
-        "sha256": "18e2d74006364af51e23df5eb3f1ce774f1eaabcad43cd4b252fe2016991e673"
+        "sha256": "0c298f55241c1f864ab747c253867f625cdd90c6042c4a584741fb5e19d71cc1"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -2409,6 +2476,208 @@
         "sha256": "b7f04d26962ee76e8677205de15d3095b938b0a6645f96d20494bcb5182a3fe7"
       },
       {
+        "path": "site/README.md",
+        "identity_mode": "content",
+        "sha256": "81e4adc8af6a64af5edf295aff18ab93a7c8dd77b491bba513b8c662911b3b17"
+      },
+      {
+        "path": "site/assets/favicon.svg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/assets/nojekyll",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/assets/vitalii-oborskyi-cutout.webp",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/assets/vitalii-oborskyi.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/content/catalog.json",
+        "identity_mode": "content",
+        "sha256": "60d765a79dececc34050afe081456681ba5bb0e4aa3b5e27f613209b76b97172"
+      },
+      {
+        "path": "site/content/pages/credits/main.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/content/pages/credits/metadata.json",
+        "identity_mode": "content",
+        "sha256": "476266becebc042960ca538da755bc970e3f8145bdd0202de74b580b9cda3850"
+      },
+      {
+        "path": "site/content/pages/index/about.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/content/pages/index/acknowledgements.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/content/pages/index/contact.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/content/pages/index/help.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/content/pages/index/hero.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/content/pages/index/main.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/content/pages/index/metadata.json",
+        "identity_mode": "content",
+        "sha256": "0a7fc94ccfaf3f0725815b1c7a53856f1c0246fe4d5996576e4561aa9308a556"
+      },
+      {
+        "path": "site/content/pages/index/research.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/content/pages/index/writing.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/content/pages/research/acknowledgements.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/content/pages/research/intro.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/content/pages/research/lenses.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/content/pages/research/main.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/content/pages/research/metadata.json",
+        "identity_mode": "content",
+        "sha256": "f36ecd56f9c3f893ae70497a925bebd800e903b498feb3746d188602f910057a"
+      },
+      {
+        "path": "site/content/pages/research/research.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/content/pages/research/topics.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/content/pages/talks/intro.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/content/pages/talks/main.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/content/pages/talks/metadata.json",
+        "identity_mode": "content",
+        "sha256": "8805f40a235690c9cb0fc2b8524c0a02119fd81908aa70752175f06915ab4a18"
+      },
+      {
+        "path": "site/content/pages/talks/talks.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/content/pages/writing/main.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/content/pages/writing/metadata.json",
+        "identity_mode": "content",
+        "sha256": "1421c8bdfe4cabaee10ec42dbc04f63a05146f74d14e25fd7a56e32289a43b23"
+      },
+      {
+        "path": "site/content/pages/writing/results-year-2025.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/content/pages/writing/results-year-2026.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/content/pages/writing/section-1.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/engine/archive.js",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/engine/lifecycle.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/engine/math.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/engine/navigation.js",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/engine/projection.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/engine/styles.css",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/engine/theme.js",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/output-lock.json",
+        "identity_mode": "content",
+        "sha256": "c4b14e14ca25a99bc6de306fa05ee43c6f1bd9fd07c9650a94e539e4ceff218b"
+      },
+      {
+        "path": "site/routes.json",
+        "identity_mode": "content",
+        "sha256": "d6caa59aa69462f83115642a602aea669f48316765b487c09b01f721c933c7fe"
+      },
+      {
+        "path": "site/scenes/paths.json",
+        "identity_mode": "content",
+        "sha256": "d79b51f13b65c09d9dc2c6191c5f384c4ca1d2043d25d2d36f50d0404410e138"
+      },
+      {
+        "path": "site/scenes/world.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/templates/footer.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/templates/head.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/templates/header.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "site/templates/shell.html",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tests/archive.test.cjs",
         "identity_mode": "existence"
       },
@@ -2426,6 +2695,10 @@
       },
       {
         "path": "tests/quality.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/site-engine.test.cjs",
         "identity_mode": "existence"
       },
       {
@@ -2518,6 +2791,10 @@
         "sha256": "0765b00108a729455751759b998282d4d09b013cbf99104f7acd8dd18d44d939"
       },
       {
+        "path": "tools/quality/engine-browser.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tools/quality/eslint.config.cjs",
         "identity_mode": "existence"
       },
@@ -2549,12 +2826,12 @@
       {
         "path": "tools/quality/secrets-baseline.json",
         "identity_mode": "content",
-        "sha256": "89879a6b248118729a2acdec5fd98769c6196d56c705fc1f535e6818fe2e7b0e"
+        "sha256": "362baa540f343daeb9a417ed3f6196580e774f6a72b5f2f7056b9c86f6b343d1"
       },
       {
         "path": "tools/quality/security-rules.yml",
         "identity_mode": "content",
-        "sha256": "2fcea6e6de768e226d25778ed5bd3d4eb984016699af929ed06068d833c8fac3"
+        "sha256": "d14023a34e266f90a2181a5bd0e821fb653de2151fe214d44857dd97eebbe906"
       },
       {
         "path": "tools/quality/selftest.cjs",
@@ -2588,6 +2865,10 @@
         "sha256": "6ffc757fae57f9ba6c53bd0eff83d9ebb495791a6c0ca8b221bbcc28f8d001b8"
       },
       {
+        "path": "tools/quality/triage-engine-checksums.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tools/quality/triage-secrets.py",
         "identity_mode": "content",
         "sha256": "5a3ef05811b6643f51a25616ed368be01f5bcc56814691c88fc939db802ddfa0"
@@ -2599,7 +2880,23 @@
       {
         "path": "tools/repository_intelligence.py",
         "identity_mode": "content",
-        "sha256": "ed9d72444817b2c6f9f03bf908a28db6c5440dc540fc81f60df95cf9acf46e51"
+        "sha256": "77089ea2e33bb865d2f1bec08273ee12b1f61dc5ee5e507507e09cc6e9d430d2"
+      },
+      {
+        "path": "tools/site/build.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/site/evidence-policy.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/site/retain.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/site/snapshot.cjs",
+        "identity_mode": "existence"
       },
       {
         "path": "tools/staging/hosted.cjs",
@@ -2621,9 +2918,9 @@
   },
   "producer": {
     "path": "tools/repository_intelligence.py",
-    "sha256": "ed9d72444817b2c6f9f03bf908a28db6c5440dc540fc81f60df95cf9acf46e51",
+    "sha256": "77089ea2e33bb865d2f1bec08273ee12b1f61dc5ee5e507507e09cc6e9d430d2",
     "config_path": ".github/repository-intelligence-config.json",
-    "config_sha256": "523825ace97db591c75c4e14f941eece6c489d556d4a7bee4da90bf0b83c21bd"
+    "config_sha256": "fc9e61a55162119b9ad290bdb37e9825ebe17e038c3fcd52c5f30013e4c19179"
   },
   "owners": [
     {
@@ -2762,6 +3059,18 @@
         "stationary animation",
         "анімація Writing",
         "перший скрол"
+      ]
+    },
+    {
+      "concern": "static site source, engine contract and incremental generation",
+      "path": "site/README.md",
+      "queries": [
+        "edit site text",
+        "site source",
+        "engine implementation",
+        "snapshot pinning",
+        "редагування тексту",
+        "рушій сайту"
       ]
     }
   ],
@@ -2952,6 +3261,13 @@
     {
       "path": "SOL-HANDOFF.md",
       "title": "Sol execution plan — reviewed 2026-10-02",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/site-revision.json",
+      "title": "docs/site-revision.json",
       "instructions": [
         "AGENTS.md"
       ]
@@ -3225,6 +3541,20 @@
     {
       "path": "review/site-audit-v8-20261003/toolchain/requirements.txt",
       "title": "review/site-audit-v8-20261003/toolchain/requirements.txt",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-engine-implementation-20261004/EXECUTION.md",
+      "title": "Engine and Writing execution — 2026-10-04",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-engine-implementation-20261004/PARITY-BASELINE.json",
+      "title": "review/site-engine-implementation-20261004/PARITY-BASELINE.json",
       "instructions": [
         "AGENTS.md"
       ]
@@ -3778,6 +4108,76 @@
     {
       "path": "review/sol-visual-v8-20261003/EXECUTION.md",
       "title": "v8 execution — living thematic fractals, 2026-10-03",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/README.md",
+      "title": "Static site source and engine contract",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/content/catalog.json",
+      "title": "site/content/catalog.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/content/pages/credits/metadata.json",
+      "title": "site/content/pages/credits/metadata.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/content/pages/index/metadata.json",
+      "title": "site/content/pages/index/metadata.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/content/pages/research/metadata.json",
+      "title": "site/content/pages/research/metadata.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/content/pages/talks/metadata.json",
+      "title": "site/content/pages/talks/metadata.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/content/pages/writing/metadata.json",
+      "title": "site/content/pages/writing/metadata.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/output-lock.json",
+      "title": "site/output-lock.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/routes.json",
+      "title": "site/routes.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/scenes/paths.json",
+      "title": "site/scenes/paths.json",
       "instructions": [
         "AGENTS.md"
       ]

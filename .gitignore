@@ -10,3 +10,5 @@ quality-reports/
 staging-package/
 staging-rollback/
 staging-reports/
+.site-cache/
+.site-build-*/

@@ -49,9 +49,9 @@ test('hosted origin and redirect boundary cannot crawl another site or the produ
 });
 function fetchFixture(f,options={}){
   return async url=>{
-    const u=new URL(url),headers={'x-robots-tag':options.robots||'noindex, nofollow','cache-control':'no-cache, max-age=0, must-revalidate','x-content-type-options':'nosniff'};
+    const u=new URL(url),headers={'x-robots-tag':options.robots||'noindex, nofollow','cache-control':staging.policyHeaders(u.pathname.slice(1))['Cache-Control'],'x-content-type-options':'nosniff'};
     if(u.pathname.endsWith('.html'))return new Response(null,{status:301,headers:{location:u.pathname.slice(0,-5)+(options.dropQuery?'':u.search)}});
-    let file=u.pathname.slice(1)||'index';if(['index','research','writing','talks','credits'].includes(file))file+='.html';
+    let file=u.pathname.slice(1)||'index';if(!path.extname(file)&&fs.existsSync(path.join(f.out,'public',file+'.html')))file+='.html';
     const missing=!fs.existsSync(path.join(f.out,'public',file));if(missing)file=options.spa?'index.html':'404.html';
     const extensions={'.html':'text/html','.css':'text/css','.js':'text/javascript','.svg':'image/svg+xml','.webp':'image/webp','.jpg':'image/jpeg','.json':'application/json'};
     headers['content-type']=extensions[path.extname(file)];const bytes=fs.readFileSync(path.join(f.out,'public',file));
@@ -61,7 +61,7 @@ function fetchFixture(f,options={}){
 test('real-HTTP smoke model checks every served byte, extensionless query redirects, noindex and actual 404',async()=>{
   const f=fixture();try{
     const record=staging.build(f.input,f.out,f.expected),base='https://preview.unit-test-staging.pages.dev';
-    const result=await hosted.httpSmoke(base,record,fetchFixture(f));assert.equal(result.actual404,true);assert.equal(result.queryRedirect,true);assert.equal(result.files.length,14);
+    const result=await hosted.httpSmoke(base,record,fetchFixture(f));assert.equal(result.actual404,true);assert.equal(result.queryRedirect,true);assert.equal(result.files.length,Object.keys(f.source.files).length);
     for(const options of [{robots:'noindex'},{tamper:true},{dropQuery:true},{spa:true}])await assert.rejects(()=>hosted.httpSmoke(base,record,fetchFixture(f,options)));
   }finally{fs.rmSync(f.dir,{recursive:true,force:true});}
 });

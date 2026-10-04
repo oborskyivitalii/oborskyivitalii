@@ -154,6 +154,18 @@
         "анімація Writing",
         "перший скрол"
       ]
+    },
+    {
+      "concern": "static site source, engine contract and incremental generation",
+      "path": "site/README.md",
+      "queries": [
+        "edit site text",
+        "site source",
+        "engine implementation",
+        "snapshot pinning",
+        "редагування тексту",
+        "рушій сайту"
+      ]
     }
   ]
 }

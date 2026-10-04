@@ -1,5 +1,16 @@
 # Agent guidance for personal publications
 
+## Engine execution and publication pause — 2026-10-04
+
+The maintainer explicitly authorizes execution of the engine plan and Writing
+fix in stacked Draft PR #16, owned by #15/#12. This supersedes the planning-only
+boundary below. Read `review/site-engine-plan-20261004/PLAN.md` and its execution
+record. Preserve PR #10's frozen candidate and every #13 mandatory gate/budget.
+The latest instruction forbids **all publication**, including staging: implement
+and test coherent packages locally/with non-deploy CI, without provisioning or
+uploading a host. It supersedes earlier staging activation authorization.
+Independent/physical-device/rights/host acceptance remains separately recorded.
+
 ## Engine/content assessment and Writing intake — 2026-10-04
 
 The maintainer requests assessment and a detailed plan, not a runtime refactor.

@@ -1,0 +1,486 @@
+{
+  "schema": 1,
+  "provenance": "SITE-SOURCE-AUDIT.md",
+  "records": {
+    "publication-01": {
+      "edition": {
+        "@type": "Article",
+        "name": "Субпрайм-криза коду — чому AI-асистенти роблять нас повільнішими (Частина 2)",
+        "url": "https://dou.ua/forums/topic/60177/",
+        "inLanguage": "uk",
+        "author": {
+          "@type": "Person",
+          "name": "Vitalii Oborskyi"
+        },
+        "datePublished": "2026-06-17"
+      },
+      "archiveHTML": "<li class=\"publication\" data-language=\"uk\" data-topic=\"delivery\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\" lang=\"uk\">UA · Українська</span> · Article · DOU</span></div><div><a class=\"publication-title\" href=\"{{URL}}\"><span lang=\"uk\">{{TITLE}}</span><span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a></div></li>"
+    },
+    "publication-02": {
+      "edition": {
+        "@type": "Article",
+        "name": "AI, the Externalization of Reasoning, and the Verification Crisis",
+        "url": "https://medium.com/agileinsider/ai-the-externalization-of-reasoning-and-the-verification-crisis-4f5046f9f0d0",
+        "inLanguage": "en",
+        "author": {
+          "@type": "Person",
+          "name": "Vitalii Oborskyi"
+        },
+        "datePublished": "2026-06-12"
+      },
+      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"delivery\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Agile Insider</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a></div></li>",
+      "featuredHTML": "<li class=\"publication\" data-language=\"en\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Agile Insider</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a><p class=\"writing-summary\">Why faster generation raises questions of human understanding and verification.</p></div></li>"
+    },
+    "publication-03": {
+      "edition": {
+        "@type": "Article",
+        "name": "Субпрайм-криза коду: чому AI-асистенти роблять нас повільнішими — і дані це доводять",
+        "url": "https://dou.ua/forums/topic/57846/",
+        "inLanguage": "uk",
+        "author": {
+          "@type": "Person",
+          "name": "Vitalii Oborskyi"
+        },
+        "datePublished": "2026-02-10"
+      },
+      "archiveHTML": "<li class=\"publication\" data-language=\"uk\" data-topic=\"delivery\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\" lang=\"uk\">UA · Українська</span> · Article · DOU</span></div><div><a class=\"publication-title\" href=\"{{URL}}\"><span lang=\"uk\">{{TITLE}}</span><span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a></div></li>"
+    },
+    "publication-04": {
+      "edition": {
+        "@type": "Article",
+        "name": "Ілюзія економії: чому заміна розробників на AI — це шлях до технічного дефолту",
+        "url": "https://dou.ua/forums/topic/57244/",
+        "inLanguage": "uk",
+        "author": {
+          "@type": "Person",
+          "name": "Vitalii Oborskyi"
+        },
+        "datePublished": "2026-01-05"
+      },
+      "archiveHTML": "<li class=\"publication\" data-language=\"uk\" data-topic=\"delivery\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\" lang=\"uk\">UA · Українська</span> · Article · DOU</span></div><div><a class=\"publication-title\" href=\"{{URL}}\"><span lang=\"uk\">{{TITLE}}</span><span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a></div></li>"
+    },
+    "publication-05": {
+      "edition": {
+        "@type": "Article",
+        "name": "Uncertainty Architecture: Thinking Systems, When the Controlled Object Changes",
+        "url": "https://generativeai.pub/uncertainty-architecture-thinking-systems-when-the-controlled-object-changes-21275fe2f3db",
+        "inLanguage": "en",
+        "author": {
+          "@type": "Person",
+          "name": "Vitalii Oborskyi"
+        },
+        "datePublished": "2026-08-30"
+      },
+      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"systems\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Generative AI</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a><p class=\"edition-link\"><a href=\"{{RENDITION_URL}}\">{{RENDITION_LABEL}} · {{RENDITION_DATE_LABEL}}</a></p></div></li>",
+      "featuredHTML": "<li class=\"publication\" data-language=\"en\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Generative AI</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a><p class=\"edition-link\"><a href=\"{{RENDITION_URL}}\">{{RENDITION_LABEL}} · {{RENDITION_DATE_LABEL}}</a></p><p class=\"writing-summary\">What changes when consequential runtime responsibility depends on model judgment.</p></div></li>",
+      "rendition": {
+        "url": "https://www.linkedin.com/pulse/thinking-systems-when-controlled-object-changes-vitalii-oborskyi-6k4we",
+        "datePublished": "2026-08-27",
+        "inLanguage": "en",
+        "label": "LinkedIn edition"
+      }
+    },
+    "publication-06": {
+      "edition": {
+        "@type": "Article",
+        "name": "Uncertainty Architecture: Beyond Embeddings — Neuro-Symbolic Verification of Semantic Drift in LLMs",
+        "url": "https://generativeai.pub/uncertainty-architecture-beyond-embeddings-neuro-symbolic-verification-of-semantic-drift-in-llms-69822872825b",
+        "inLanguage": "en",
+        "author": {
+          "@type": "Person",
+          "name": "Vitalii Oborskyi"
+        },
+        "datePublished": "2026-06-10"
+      },
+      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"systems\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Generative AI</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a></div></li>",
+      "featuredHTML": "<li class=\"publication\" data-language=\"en\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Generative AI</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a><p class=\"writing-summary\">A bounded technical example of semantic verification within a wider control architecture.</p></div></li>"
+    },
+    "publication-07": {
+      "edition": {
+        "@type": "Article",
+        "name": "Reinventing Control Theory One Feature at a Time: The Fallacy of Agentic Loops",
+        "url": "https://www.linkedin.com/pulse/reinventing-control-theory-one-feature-time-fallacy-agentic-oborskyi-vkwve/",
+        "inLanguage": "en",
+        "author": {
+          "@type": "Person",
+          "name": "Vitalii Oborskyi"
+        },
+        "datePublished": "2026-06-10"
+      },
+      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"systems\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · LinkedIn</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a></div></li>",
+      "featuredHTML": "<li class=\"publication\" data-language=\"en\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · LinkedIn</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a><p class=\"writing-summary\">A control-theory perspective on agentic loops and engineering control.</p></div></li>"
+    },
+    "publication-08": {
+      "edition": {
+        "@type": "Article",
+        "name": "AI-Native Workflows Have a Moat Problem",
+        "url": "https://aiadvances.org/ai-native-workflows-have-a-moat-problem-49992bcc3088",
+        "inLanguage": "en",
+        "author": {
+          "@type": "Person",
+          "name": "Vitalii Oborskyi"
+        },
+        "datePublished": "2026-07-01"
+      },
+      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"strategy\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · AI Advances</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a></div></li>",
+      "featuredHTML": "<li class=\"publication\" data-language=\"en\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · AI Advances</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a><p class=\"writing-summary\">Where durable differentiation can sit in AI-native workflows.</p></div></li>"
+    },
+    "publication-09": {
+      "edition": {
+        "@type": "Article",
+        "name": "Uncertainty Architecture: Why AI Governance is Actually Control Theory",
+        "url": "https://pub.towardsai.net/uncertainty-architecture-why-ai-governance-is-actually-control-theory-511f3e73ed6e",
+        "inLanguage": "en",
+        "author": {
+          "@type": "Person",
+          "name": "Vitalii Oborskyi"
+        },
+        "datePublished": "2025-12-13"
+      },
+      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"systems\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Towards AI</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a></div></li>"
+    },
+    "publication-10": {
+      "edition": {
+        "@type": "Article",
+        "name": "Uncertainty Architecture: A Modern Approach to Designing LLM Applications",
+        "url": "https://pub.towardsai.net/uncertainty-architecture-a-modern-approach-to-designing-llm-applications-2fe196188fac",
+        "inLanguage": "en",
+        "author": {
+          "@type": "Person",
+          "name": "Vitalii Oborskyi"
+        },
+        "datePublished": "2025-11-22"
+      },
+      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"systems\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Towards AI</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a></div></li>"
+    },
+    "publication-11": {
+      "edition": {
+        "@type": "Article",
+        "name": "Архітектура невизначеності: сучасний підхід до проєктування LLM-застосунків",
+        "url": "https://dou.ua/forums/topic/56606/",
+        "inLanguage": "uk",
+        "author": {
+          "@type": "Person",
+          "name": "Vitalii Oborskyi"
+        },
+        "datePublished": "2025-11-18"
+      },
+      "archiveHTML": "<li class=\"publication\" data-language=\"uk\" data-topic=\"systems\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\" lang=\"uk\">UA · Українська</span> · Article · DOU</span></div><div><a class=\"publication-title\" href=\"{{URL}}\"><span lang=\"uk\">{{TITLE}}</span><span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a></div></li>"
+    },
+    "publication-12": {
+      "edition": {
+        "@type": "Article",
+        "name": "On-Device LLM or Cloud API? A Practical Checklist for Product Owners and Architects",
+        "url": "https://medium.com/data-science-collective/on-device-llm-or-cloud-api-a-practical-checklist-for-product-owners-and-architects-30386f00f148",
+        "inLanguage": "en",
+        "author": {
+          "@type": "Person",
+          "name": "Vitalii Oborskyi"
+        },
+        "datePublished": "2025-09-06"
+      },
+      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"systems\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Data Science Collective</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a></div></li>"
+    },
+    "publication-13": {
+      "edition": {
+        "@type": "Article",
+        "name": "On-device LLM чи API з хмари? Чекліст для продактів і архітекторів",
+        "url": "https://dou.ua/forums/topic/55461/",
+        "inLanguage": "uk",
+        "author": {
+          "@type": "Person",
+          "name": "Vitalii Oborskyi"
+        },
+        "datePublished": "2025-09-03"
+      },
+      "archiveHTML": "<li class=\"publication\" data-language=\"uk\" data-topic=\"systems\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\" lang=\"uk\">UA · Українська</span> · Article · DOU</span></div><div><a class=\"publication-title\" href=\"{{URL}}\"><span lang=\"uk\">{{TITLE}}</span><span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a></div></li>",
+      "septemberStyle": "Sept"
+    },
+    "publication-14": {
+      "edition": {
+        "@type": "Article",
+        "name": "Architecting Uncertainty: A Modern Guide to LLM-Based Software",
+        "url": "https://medium.com/data-science-collective/architecting-uncertainty-a-modern-guide-to-llm-based-software-504695a82567",
+        "inLanguage": "en",
+        "author": {
+          "@type": "Person",
+          "name": "Vitalii Oborskyi"
+        },
+        "datePublished": "2025-07-29"
+      },
+      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"systems\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Data Science Collective</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a></div></li>"
+    },
+    "publication-15": {
+      "edition": {
+        "@type": "Article",
+        "name": "🧠 Beyond the Buzzwords: An AI Prompt to Audit Any Professional Profile — Including Your Own",
+        "url": "https://medium.com/data-science-collective/beyond-the-buzzwords-an-ai-prompt-to-audit-any-professional-profile-including-your-own-211b112696ef",
+        "inLanguage": "en",
+        "author": {
+          "@type": "Person",
+          "name": "Vitalii Oborskyi"
+        },
+        "datePublished": "2025-07-03"
+      },
+      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"leadership\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Data Science Collective</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a></div></li>"
+    },
+    "publication-16": {
+      "edition": {
+        "@type": "Article",
+        "name": "ШІ-бейджики, а не трансформація: чому delivery без наскрізних зв’язків — це ілюзія прогресу",
+        "url": "https://dou.ua/forums/topic/54329/",
+        "inLanguage": "uk",
+        "author": {
+          "@type": "Person",
+          "name": "Vitalii Oborskyi"
+        },
+        "datePublished": "2025-06-18"
+      },
+      "archiveHTML": "<li class=\"publication\" data-language=\"uk\" data-topic=\"leadership\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\" lang=\"uk\">UA · Українська</span> · Article · DOU</span></div><div><a class=\"publication-title\" href=\"{{URL}}\"><span lang=\"uk\">{{TITLE}}</span><span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a></div></li>"
+    },
+    "publication-17": {
+      "edition": {
+        "@type": "Article",
+        "name": "AI Integration and the Traceability Gap: Atlassian vs. Competitors",
+        "url": "https://ai.gopubby.com/ai-integration-and-the-traceability-gap-atlassian-vs-competitors-61beb155ddda",
+        "inLanguage": "en",
+        "author": {
+          "@type": "Person",
+          "name": "Vitalii Oborskyi"
+        },
+        "datePublished": "2025-06-16"
+      },
+      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"leadership\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Medium</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a></div></li>"
+    },
+    "publication-18": {
+      "edition": {
+        "@type": "Article",
+        "name": "Traceability for Atlassian: The Missing AI Enabler - Open Letter (1pager)",
+        "url": "https://community.atlassian.com/forums/discussion/3036514/traceability-for-atlassian-the-missing-ai-enabler-open-letter-1pager",
+        "inLanguage": "en",
+        "author": {
+          "@type": "Person",
+          "name": "Vitalii Oborskyi"
+        },
+        "dateModified": "2025-06-03"
+      },
+      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"leadership\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Atlassian Community</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a></div></li>"
+    },
+    "publication-19": {
+      "edition": {
+        "@type": "Article",
+        "name": "PMO: Value Creator or Bureaucratic Overhead?",
+        "url": "https://medium.com/agileinsider/pmo-value-creator-or-bureaucratic-overhead-dc4abcc38dfc",
+        "inLanguage": "en",
+        "author": {
+          "@type": "Person",
+          "name": "Vitalii Oborskyi"
+        },
+        "datePublished": "2025-05-31"
+      },
+      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"leadership\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Agile Insider</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a></div></li>"
+    },
+    "publication-20": {
+      "edition": {
+        "@type": "Article",
+        "name": "AI-Driven Enhancements to Project Risk Management in the PMO",
+        "url": "https://generativeai.pub/ai-driven-enhancements-to-project-risk-management-in-the-pmo-c074ca0b8ec2",
+        "inLanguage": "en",
+        "author": {
+          "@type": "Person",
+          "name": "Vitalii Oborskyi"
+        },
+        "datePublished": "2025-05-05"
+      },
+      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"leadership\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Generative AI</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a></div></li>"
+    },
+    "publication-21": {
+      "edition": {
+        "@type": "Article",
+        "name": "Story Points vs. Time-Based Estimation: What Does Research Say?",
+        "url": "https://medium.com/agileinsider/story-points-vs-time-based-estimation-what-does-research-say-84613cc91c7f",
+        "inLanguage": "en",
+        "author": {
+          "@type": "Person",
+          "name": "Vitalii Oborskyi"
+        },
+        "datePublished": "2025-04-30"
+      },
+      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"leadership\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Agile Insider</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a></div></li>"
+    },
+    "publication-22": {
+      "edition": {
+        "@type": "Article",
+        "name": "How AI Reveals Your Delivery Critical Path in 5 Steps",
+        "url": "https://medium.com/data-science-collective/how-ai-reveals-your-delivery-critical-path-in-5-steps-b3e8264189e2",
+        "inLanguage": "en",
+        "author": {
+          "@type": "Person",
+          "name": "Vitalii Oborskyi"
+        },
+        "datePublished": "2025-04-23"
+      },
+      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"leadership\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Data Science Collective</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a></div></li>"
+    },
+    "publication-23": {
+      "edition": {
+        "@type": "Article",
+        "name": "Terraforming Your Organization: A Data-Driven Journey from Chaos to Stability of Human and AI",
+        "url": "https://medium.com/@undersmoker/terraforming-your-organization-a-data-driven-journey-from-chaos-to-stability-of-human-and-ai-84790092d2df",
+        "inLanguage": "en",
+        "author": {
+          "@type": "Person",
+          "name": "Vitalii Oborskyi"
+        },
+        "datePublished": "2025-04-03"
+      },
+      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"leadership\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Medium</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a></div></li>"
+    },
+    "publication-24": {
+      "edition": {
+        "@type": "Article",
+        "name": "Ласкаво просимо в епоху кіберпанку: коли корпорації диктують етику штучного інтелекту",
+        "url": "https://dou.ua/forums/topic/53714/",
+        "inLanguage": "uk",
+        "author": {
+          "@type": "Person",
+          "name": "Vitalii Oborskyi"
+        },
+        "datePublished": "2025-05-07"
+      },
+      "archiveHTML": "<li class=\"publication\" data-language=\"uk\" data-topic=\"strategy\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\" lang=\"uk\">UA · Українська</span> · Article · DOU</span></div><div><a class=\"publication-title\" href=\"{{URL}}\"><span lang=\"uk\">{{TITLE}}</span><span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a></div></li>"
+    },
+    "publication-25": {
+      "edition": {
+        "@type": "Article",
+        "name": "Welcome to the Cyberpunk Era: When Corporations Dictate AI Ethics",
+        "url": "https://medium.com/data-science-collective/welcome-to-the-cyberpunk-era-when-corporations-dictate-ai-ethics-29c139c8776b",
+        "inLanguage": "en",
+        "author": {
+          "@type": "Person",
+          "name": "Vitalii Oborskyi"
+        },
+        "datePublished": "2025-04-24"
+      },
+      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"strategy\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Data Science Collective</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a></div></li>"
+    },
+    "publication-26": {
+      "edition": {
+        "@type": "Article",
+        "name": "AI Dilemmas: 25 Key Challenges in Ethics, Technology, and Society",
+        "url": "https://medium.com/@undersmoker/ai-dilemmas-25-key-challenges-in-ethics-technology-and-society-3f732eeb6b21",
+        "inLanguage": "en",
+        "author": {
+          "@type": "Person",
+          "name": "Vitalii Oborskyi"
+        },
+        "datePublished": "2025-04-23"
+      },
+      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"strategy\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Medium</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a></div></li>"
+    },
+    "publication-27": {
+      "edition": {
+        "@type": "Article",
+        "name": "Europe’s Silent Revolution: How Industry 4.0 Is Powering AI-Driven, Hyper-Flexible Manufacturing",
+        "url": "https://medium.com/@undersmoker/europes-silent-revolution-how-industry-4-0-is-powering-ai-driven-hyper-flexible-manufacturing-d0fa214966bd",
+        "inLanguage": "en",
+        "author": {
+          "@type": "Person",
+          "name": "Vitalii Oborskyi"
+        },
+        "datePublished": "2025-04-23"
+      },
+      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"strategy\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Medium</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a></div></li>"
+    }
+  },
+  "structuredOrder": [
+    {
+      "record": "publication-01"
+    },
+    {
+      "record": "publication-02"
+    },
+    {
+      "record": "publication-03"
+    },
+    {
+      "record": "publication-04"
+    },
+    {
+      "record": "publication-05"
+    },
+    {
+      "record": "publication-06"
+    },
+    {
+      "record": "publication-07"
+    },
+    {
+      "record": "publication-08"
+    },
+    {
+      "record": "publication-09"
+    },
+    {
+      "record": "publication-10"
+    },
+    {
+      "record": "publication-11"
+    },
+    {
+      "record": "publication-12"
+    },
+    {
+      "record": "publication-13"
+    },
+    {
+      "record": "publication-14"
+    },
+    {
+      "record": "publication-15"
+    },
+    {
+      "record": "publication-16"
+    },
+    {
+      "record": "publication-17"
+    },
+    {
+      "record": "publication-18"
+    },
+    {
+      "record": "publication-19"
+    },
+    {
+      "record": "publication-20"
+    },
+    {
+      "record": "publication-21"
+    },
+    {
+      "record": "publication-22"
+    },
+    {
+      "record": "publication-23"
+    },
+    {
+      "record": "publication-24"
+    },
+    {
+      "record": "publication-25"
+    },
+    {
+      "record": "publication-26"
+    },
+    {
+      "record": "publication-27"
+    }
+  ],
+  "featured": [
+    "publication-05",
+    "publication-02",
+    "publication-07",
+    "publication-06",
+    "publication-08"
+  ]
+}
