@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "84953763d7b42d128226a9331e9535ec4a0657696403d3c722ecd8f060fc039b",
+    "digest": "e4d5dab837960d8052b9cecc7c03aa25e89b9c76ebb2e85121de9e114367e03f",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -112,7 +112,7 @@
       {
         "path": "SITE-ANALYTICS.md",
         "identity_mode": "content",
-        "sha256": "e3ea7ef7068b0d16c396dc0cd3490a6484da2838b46a7e3786ee17b1d86a1ef2"
+        "sha256": "18e2e97858882b54aa4e4387484fcc96505ed9cb3bc7df884d8dacc5738a34a4"
       },
       {
         "path": "SITE-CONTENT-REVIEW.md",
@@ -2787,7 +2787,7 @@
       {
         "path": "tools/quality/README.md",
         "identity_mode": "content",
-        "sha256": "b023d974881280234574cee7e5a73d836260c471cc44bd6e0ea4fd84b5e801cf"
+        "sha256": "d600566377d046da0b70652cdcf50227fd787a4c34b033abc6005138e48f3f36"
       },
       {
         "path": "tools/quality/advisory-exceptions.json",

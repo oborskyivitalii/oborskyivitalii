@@ -99,7 +99,7 @@ function functional(r,platform,engines,smoke){
 }
 function analytics(r,engines) {
   const fixture=require('./analytics-browser.cjs');
-  assert.equal(r.analytics?.length,engines.length*12,'missing enabled analytics fixture matrix');
+  assert.equal(r.analytics?.length,engines.length*13,'missing enabled analytics fixture matrix');
   unique(r.analytics,row=>`${row.engine}/${row.entry}/${row.mode}`);
   for(const engine of engines)for(const expected of fixture.cases(engine)) {
     const row=r.analytics.find(row=>row.engine===engine&&row.entry===expected.entry&&row.mode===expected.mode);
@@ -107,6 +107,7 @@ function analytics(r,engines) {
     for(const key of fixture.checks)assert.equal(row.checks?.[key],true,'missing analytics '+key);
     assert.equal(row.vendorRequests?.length,['staging','offline'].includes(row.mode)?0:2,'unexpected vendor load count');
     for(const url of row.vendorRequests)assert.equal(url,'https://static.cloudflareinsights.com/beacon.min.js');
+    assert.equal(row.readyWhileSDKPending,row.mode==='delayed'?true:'not applicable','missing delayed-SDK independence check');
   }
 }
 function navigation(r,engines) {

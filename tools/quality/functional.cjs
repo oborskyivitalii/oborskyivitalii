@@ -198,7 +198,7 @@ async function main(){
       analytics.push(...await require('./analytics-browser.cjs').run(browser,engine));
       await browser.close();
     }
-  }}finally{server.close();report('functional',{smoke,engines,browsers,modes:smoke?[]:modes,rows,navigation,analytics},rows.length===engines.length*scenarios(engines[0],smoke).length&&rows.every(x=>x.pass)&&navigation.length===engines.length*4&&navigation.every(x=>x.pass)&&analytics.length===engines.length*12&&analytics.every(x=>x.pass));}
+  }}finally{server.close();report('functional',{smoke,engines,browsers,modes:smoke?[]:modes,rows,navigation,analytics},rows.length===engines.length*scenarios(engines[0],smoke).length&&rows.every(x=>x.pass)&&navigation.length===engines.length*4&&navigation.every(x=>x.pass)&&analytics.length===engines.length*13&&analytics.every(x=>x.pass));}
   assert.ok(rows.every(x=>x.pass)&&navigation.every(x=>x.pass)&&analytics.every(x=>x.pass),'Functional scenarios failed');
 }
 if(require.main===module)main().catch(e=>{console.error(e.stack);process.exitCode=1;});

@@ -66,12 +66,16 @@ Disabled defaults produce no analytics asset, loader tag or analytics network ca
 
 Node regressions cover atomic failure, strict settings, immutable retention,
 engine/media byte preservation, duplicate/blocked SDK loading, origin/project
-isolation and export stripping. Each existing functional engine runs twelve
-additional enabled-source fixtures: five entry routes, blocked SDK, a staging
+isolation and export stripping. Each existing functional engine runs thirteen
+additional enabled-source fixtures: five entry routes, blocked/delayed SDK, a staging
 origin and five offline entry routes. They check persistent header/Canvas, all
 destinations, history, reload, filters and one vendor request per document. The
 vendor is stubbed; these tests send no data and do not certify dashboard counts.
 Missing fixture rows/assertions fail the existing aggregate; no #13 job is skipped.
+The delayed-SDK case completes route/history/filter interactions while the SDK
+response is held, then releases it. Navigation waits for DOM readiness using the
+existing runner's 30-second navigation bound; fixture readiness/SDK checks retain
+six seconds. Existing startup, first-paint and performance budgets are unchanged.
 
 Cloudflare's manually embedded SDK is a mutable upstream URL, not a locally pinned
 dependency or a reproducible SRI resource. Activation requires review of that
@@ -98,6 +102,8 @@ tab hiding and an ad blocker; missing beacon data is a known coverage limit.
    reachable; merely rendering the tag does not verify ownership or indexing.
 4. Regenerate public output, review exports, bundle manifests and RI; rerun the
    existing exact-artifact gates. Keep tokens for deployment/access out of source.
+   If scans flag a public beacon/verification identifier, review that exact finding
+   against the owner's public snippet/tag; never add a blanket token exclusion.
 5. After authorized hosting, complete the real-provider checks above and record
    URL, source/artifact identity, tested routes, observed counts and limitations
    in #8/#13. Production release, independent/device/rights acceptance and analytics

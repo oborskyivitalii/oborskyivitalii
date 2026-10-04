@@ -4,9 +4,9 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
 const {root}=require('./common.cjs'),{routes}=require('../site/snapshot.cjs');
 const model='enabled source fixture; vendor stubbed';
 const settings={schema:1,provider:'cloudflare',enabled:true,siteURL:'https://analytics.example.com/author/',token:'a'.repeat(32),searchConsoleVerification:null};
-const modes=['enabled','blocked','staging','offline'];
+const modes=['enabled','blocked','delayed','staging','offline'];
 const checks=['fiveRoutes','persistentShell','history','reload','archive','oneVendorPerDocument','originIsolation','offlineIsolation'];
-function cases(engine){return [...routes.map(entry=>({engine,entry,mode:'enabled'})),{engine,entry:'index',mode:'blocked'},{engine,entry:'index',mode:'staging'},...routes.map(entry=>({engine,entry,mode:'offline'}))];}
+function cases(engine){return [...routes.map(entry=>({engine,entry,mode:'enabled'})),{engine,entry:'index',mode:'blocked'},{engine,entry:'index',mode:'delayed'},{engine,entry:'index',mode:'staging'},...routes.map(entry=>({engine,entry,mode:'offline'}))];}
 async function ready(page,id){await page.waitForFunction(id=>document.body.dataset.page===id&&!document.querySelector('#site-content').hasAttribute('aria-busy'),id,{polling:40,timeout:6000});}
 async function navigate(page,id,producer,offline) {
   const href=offline?producer.interactiveFilename(id):id==='index'?'./':id+'.html';
@@ -14,23 +14,28 @@ async function navigate(page,id,producer,offline) {
 }
 async function vendorState(page,mode) {
   if(['staging','offline'].includes(mode)){assert.equal(await page.locator('#site-cloudflare-beacon').count(),0);return;}
-  await page.waitForFunction(status=>document.querySelector('#site-cloudflare-beacon')?.getAttribute('data-site-analytics-status')===status,mode==='blocked'?'blocked':'loaded',{polling:40,timeout:6000});
+  await page.waitForFunction(status=>document.querySelector('#site-cloudflare-beacon')?.getAttribute('data-site-analytics-status')===status,mode==='blocked'?'blocked':mode==='delayed'?'loading':'loaded',{polling:40,timeout:6000});
   assert.equal(await page.locator('#site-cloudflare-beacon').count(),1);
-  assert.equal(await page.evaluate(()=>window.__vendorFixtureLoads||0),mode==='blocked'?0:1);
+  assert.equal(await page.evaluate(()=>window.__vendorFixtureLoads||0),['blocked','delayed'].includes(mode)?0:1);
 }
 async function scenario(browser,dir,producer,s) {
   const ctx=await browser.newContext({viewport:{width:390,height:844},reducedMotion:'reduce'}),page=await ctx.newPage(),errors=[],requests=[],vendor=[],unexpected=[];
   page.setDefaultTimeout(6000);
+  // Navigation uses the existing runner's 30s bound; readiness/SDK checks keep 6s.
+  page.setDefaultNavigationTimeout(30000);
   const result={...s,model,pass:false,checks:{},errors,vendorRequests:vendor,externalRequests:unexpected};
   const origin=s.mode==='staging'?'https://staging.example.com':'https://analytics.example.com';
   const prefix=origin+'/author/';
+  let releaseVendor;
+  const vendorGate=new Promise(resolve=>releaseVendor=resolve);
+  if(s.mode!=='delayed')releaseVendor();
   page.on('pageerror',error=>errors.push(error.message));page.on('request',request=>requests.push(request.url()));
   await ctx.route('**/*',async route=>{
     const url=new URL(route.request().url());
     if(url.href==='https://static.cloudflareinsights.com/beacon.min.js') {
       vendor.push(url.href);
       if(s.mode==='blocked')await route.abort('failed');
-      else await route.fulfill({contentType:'text/javascript',body:'window.__vendorFixtureLoads=(window.__vendorFixtureLoads||0)+1;'});
+      else {await vendorGate;await route.fulfill({contentType:'text/javascript',body:'window.__vendorFixtureLoads=(window.__vendorFixtureLoads||0)+1;'});}
     } else if(url.href.startsWith(prefix)) {
       const name=decodeURIComponent(url.pathname.slice('/author/'.length))||'index.html',target=path.join(dir,'docs',name);
       assert.ok(!name.includes('..'),'finite fixture path');
@@ -42,7 +47,7 @@ async function scenario(browser,dir,producer,s) {
   });
   try {
     const url=s.mode==='offline'?pathToFileURL(path.join(dir,'review',producer.interactiveFilename(s.entry))).href:prefix+s.entry+'.html';
-    await page.goto(url);await ready(page,s.entry);await vendorState(page,s.mode);
+    await page.goto(url,{waitUntil:'domcontentloaded'});await ready(page,s.entry);await vendorState(page,s.mode);
     await page.evaluate(()=>{window.__analyticsShell={header:document.querySelector('header'),canvas:document.querySelector('canvas')};});
     for(const id of routes) {
       await navigate(page,id,producer,s.mode==='offline');
@@ -53,15 +58,17 @@ async function scenario(browser,dir,producer,s) {
       }
       await vendorState(page,s.mode);
     }
-    await page.goBack();await ready(page,'talks');await page.goForward();await ready(page,'credits');await vendorState(page,s.mode);
+    await page.goBack({waitUntil:'domcontentloaded'});await ready(page,'talks');await page.goForward({waitUntil:'domcontentloaded'});await ready(page,'credits');await vendorState(page,s.mode);
     assert.equal(vendor.length,['staging','offline'].includes(s.mode)?0:1,'one vendor request in a persistent document');
-    await page.reload();await ready(page,'credits');await vendorState(page,s.mode);
+    result.readyWhileSDKPending=s.mode==='delayed'?true:'not applicable';
+    releaseVendor();if(s.mode==='delayed')await vendorState(page,'enabled');
+    await page.reload({waitUntil:'domcontentloaded'});await ready(page,'credits');await vendorState(page,s.mode==='delayed'?'enabled':s.mode);
     assert.equal(vendor.length,['staging','offline'].includes(s.mode)?0:2,'one vendor request after full reload');
     assert.deepEqual(requests.filter(url=>/^https?:/.test(url)&&!url.startsWith(prefix)&&url!=='https://static.cloudflareinsights.com/beacon.min.js'),[]);
     if(s.mode==='offline')assert.deepEqual(requests.filter(url=>/^https?:/.test(url)),[]);
     assert.deepEqual(errors,[]);assert.deepEqual(unexpected,[]);result.checks=Object.fromEntries(checks.map(key=>[key,true]));result.pass=true;
   }catch(error){result.error=error.message;result.stack=error.stack;}
-  finally{await ctx.close();}
+  finally{releaseVendor();await ctx.close();}
   return result;
 }
 async function run(browser,engine) {
