@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "b14ea13d8da8249b97bee55919f85b88a7c403ee0b4aa4d2caeb689aac981ddb",
+    "digest": "572a405a3934b5588763788414be0cdc48c387c71c53f36652ecc682366b67ce",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -516,7 +516,7 @@
       {
         "path": "review/site-navigation-v12-20261004/EXECUTION.md",
         "identity_mode": "content",
-        "sha256": "cb0ba9997a82e6abd3cfebca8dcac09b353b6110943c1345876ec9454eef529d"
+        "sha256": "0a5362369ddad9b6b696d2fb6d00b5d65c1088594d2de65515486949b432ae3d"
       },
       {
         "path": "review/site-navigation-v12-20261004/TASKS.md",
@@ -2055,7 +2055,7 @@
       {
         "path": "review/site-v1-offline-bundle-v11.json",
         "identity_mode": "content",
-        "sha256": "5263d5a8f4b6793e74fe94934002949118b8cdf7e4519dd49c857f9f4d35cb72"
+        "sha256": "de59c87e84e5caca02058ab2f614761ae99355539c93ae21455d62bf7d6eb932"
       },
       {
         "path": "review/site-v1-offline-bundle-v3.json",
@@ -2109,7 +2109,7 @@
       {
         "path": "review/site-v1-static-previews-v11.json",
         "identity_mode": "content",
-        "sha256": "091e0689ceccc8fae7bad7a24d63fc6780e6a01b543d352b6688e6cc3ac20624"
+        "sha256": "c5827479b53598e34114f2ffe81fb0463eaa4334ff38d012e8028dbd20b36a83"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -2529,7 +2529,7 @@
       {
         "path": "tools/quality/secrets-baseline.json",
         "identity_mode": "content",
-        "sha256": "1886fb41ff6f66047754c57266177038d67f05d4d1fcdf992d84ea27486ec312"
+        "sha256": "678d78b5291b07645fec2087c202d30bf2caecbfa128cb1d10a8e7948c50dade"
       },
       {
         "path": "tools/quality/security-rules.yml",

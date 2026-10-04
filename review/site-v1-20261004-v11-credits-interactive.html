@@ -961,7 +961,7 @@ body[data-page="writing"] .publication {background:color-mix(in srgb,var(--paper
   let colors={cyan:"#075d7b",amber:"#895710",paper:"#f8f7f3"};
   const pose = id => routePose(page,poses[id]);
   const pathPose = () => routePose(page,journeyPose(topicPaths[focus],localProgress,narrow.matches));
-  rooms.set(page,{world,faceColors:[]});
+  rooms.set(page,{world,compact,faceColors:[]});
   // The decorative mobile bitmap uses one physical pixel per CSS pixel.
   // Text and controls retain their native resolution; timing is independent.
   const pixelRatio=()=>Math.min(compact||tier===2?1:tier===1?1.25:1.5,window.devicePixelRatio||1);
@@ -1002,7 +1002,10 @@ body[data-page="writing"] .publication {background:color-mix(in srgb,var(--paper
     });
   }
   function roomFor(name) {
-    if(!rooms.has(name)){const room={world:worldFor(name,compact),faceColors:[]};rooms.set(name,room);paintColors(room);}
+    // Reduce actual model/paint work on a slow desktop as well as on mobile.
+    // The same motif IDs, macro positions and recursive topology survive.
+    const detail=compact||detailTier>=.5;
+    if(!rooms.has(name)||rooms.get(name).compact!==detail){const room={world:worldFor(name,detail),compact:detail,faceColors:[]};rooms.set(name,room);paintColors(room);}
     return rooms.get(name);
   }
   function scrollPose() {
@@ -1073,7 +1076,7 @@ body[data-page="writing"] .publication {background:color-mix(in srgb,var(--paper
     const shapes=visibleRooms();
     for(let index=0;index<shapes.length;index++) {
       const shape=shapes[index];
-      if(compact&&shape.kind==="line"&&!shape.arrow){index=drawLineRun(shapes,index);continue;}
+      if(shape.room.compact&&shape.kind==="line"&&!shape.arrow){index=drawLineRun(shapes,index);continue;}
       const points=shape.points,from=points[0],to=points[1];
       ctx.beginPath();ctx.moveTo(from[0],from[1]);for(let i=1;i<points.length;i++)ctx.lineTo(points[i][0],points[i][1]);
       ctx.lineWidth=shape.lineWidth;ctx.strokeStyle=colors[shape.color];
@@ -1084,7 +1087,7 @@ body[data-page="writing"] .publication {background:color-mix(in srgb,var(--paper
         if(shape.edgeAlpha===0){ctx.strokeStyle=ctx.fillStyle;ctx.lineWidth=.65;}else ctx.globalAlpha=shape.edgeAlpha;
         // Curved mobile motifs retain explicit outlines (rings, grilles,
         // waves and links); omit their faint internal facet strokes.
-        if(!compact||shape.edgeAlpha===0||shape.room.world.faces[shape.material].edgeAlpha>.12)ctx.stroke();
+        if(!shape.room.compact||shape.edgeAlpha===0||shape.room.world.faces[shape.material].edgeAlpha>.12)ctx.stroke();
       } else {ctx.globalAlpha=shape.alpha;ctx.stroke();}
       if(shape.arrow) {
         const dx=to[0]-from[0],dy=to[1]-from[1],length=Math.hypot(dx,dy);
@@ -1100,6 +1103,7 @@ body[data-page="writing"] .publication {background:color-mix(in srgb,var(--paper
     ctx.globalAlpha=1;scene.dataset.ready="true";displayedTime=ambientTime;displayedCamera=current;displayedTier=detailTier;
     scene.dataset.phase=String(ambientTime);scene.dataset.camera=JSON.stringify(current);scene.dataset.detail=String(detailTier);
     scene.dataset.route=page;scene.dataset.travel=journey?"flying":"settled";scene.dataset.rooms=String(rooms.size);
+    scene.dataset.geometry=compact||detailTier>=.5?"compact":"full";
   }
   // Preserve continuous opacity; group only adjacent compatible lines whose
   // opacity differs by less than 1/256. No visible 16-step fade quantization.
@@ -1213,7 +1217,7 @@ body[data-page="writing"] .publication {background:color-mix(in srgb,var(--paper
   const resize=()=>{
     if(!initialized){initialize();return;}
     if(failed)return;
-    if(compact!==narrow.matches){compact=narrow.matches;for(const [name,room]of rooms){room.world=worldFor(name,compact);}world=roomFor(page).world;readColors();}
+    if(compact!==narrow.matches){compact=narrow.matches;world=roomFor(page).world;}
     measure();nextDraw=null;schedule();
   }; // Layout never changes a frozen camera/ambient phase or starts a flight.
   window.addEventListener("site:archive-layout",resize);
@@ -1235,9 +1239,9 @@ body[data-page="writing"] .publication {background:color-mix(in srgb,var(--paper
       world=roomFor(page).world;measure();
       const target=pose(initialPoses[page]);
       animation=null;current=from;
+      scene.dataset.direction=target.position[2]<from.position[2]?"forward":"backward";
       if(animate&&this.canTravel()){
         journey={from,to:target,elapsed:0,duration:Math.min(1700,1000+Math.abs(target.position[2]-from.position[2])*2)};
-        scene.dataset.direction=target.position[2]<from.position[2]?"forward":"backward";
       }else{journey=null;current=target;}
       scene.dataset.travel=journey?"flying":"settled";
       observer?.disconnect();observer?.observe(document.querySelector("main"));nextDraw=null;schedule();

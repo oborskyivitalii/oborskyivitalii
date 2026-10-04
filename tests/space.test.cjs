@@ -197,9 +197,10 @@ test("observed-cost adaptation preserves the bitmap and DPR caps through resize 
     assert.ok(changed);p.frame(125);assert.equal(p.canvas.width,Math.round(1440*(target==="1"?1.25:1)));assert.equal(p.bitmapValid(),true);
   }
   const fixed=p.trace(),phase=p.phase(),width=p.canvas.width;
+  assert.equal(p.scene.dataset.geometry,"compact");
   p.click();p.settle();assert.equal(p.stored(),"off");assert.equal(p.pending.size,0);assert.equal(p.trace(),fixed);assert.equal(p.phase(),phase);
   p.events.resize();assert.equal(p.bitmapValid(),true);p.settle();assert.equal(p.canvas.width,width);assert.equal(p.trace(),fixed);assert.equal(p.phase(),phase);
-  p.mutate();p.settle();p.hidden(true);p.hidden(false);p.settle();assert.equal(p.phase(),phase);assert.equal(p.trace(),fixed);assert.equal(p.pending.size,0);
+  p.mutate();p.settle();p.hidden(true);p.hidden(false);p.settle();assert.equal(p.phase(),phase);assert.equal(p.trace(),fixed);assert.equal(p.pending.size,0);assert.equal(p.scene.dataset.geometry,"compact");
 });
 test("quality recovery uses hysteresis and restores resolution without changing composition",()=>{
   const p=visit({paintCost:30});advanceUntil(p,()=>p.scene.dataset.quality==="2","reach low tier");p.frame(125);
@@ -207,6 +208,7 @@ test("quality recovery uses hysteresis and restores resolution without changing 
   for(let i=0;i<20;i++)p.frame(125);assert.equal(p.scene.dataset.quality,"2");
   advanceUntil(p,()=>p.scene.dataset.quality==="1","recover one tier");p.frame(125);assert.equal(p.canvas.width,1800);assert.equal(p.trace(),pose);
   advanceUntil(p,()=>p.scene.dataset.quality==="0","recover full tier");p.frame(125);assert.equal(p.canvas.width,2160);assert.equal(p.trace(),pose);assert.equal(p.bitmapValid(),true);
+  p.settle();assert.equal(p.scene.dataset.geometry,"full");
 });
 test("severe hold is bounded, preserves preference, and explicit On retries at the safe tier",()=>{
   const p=visit({paintCost:60,saved:"on"});advanceUntil(p,()=>p.scene.dataset.quality==="still","device hold");

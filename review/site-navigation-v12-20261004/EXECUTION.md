@@ -67,3 +67,12 @@ now checks Back/Forward scroll restoration as a required navigation result.
 The bounded native Firefox diagnostic is supplemental; it does not replace the
 full platform/performance gate. Final exact-source results belong in PR #10 and
 the owning issues after CI completes.
+
+Native Firefox then confirmed static arrival but sustained two-room painting
+could still exhaust its full desktop detail. Cost adaptation now selects the
+existing compact motif tessellation for a degraded desktop tier as well as for
+mobile; it keeps all object IDs, centers and recursive topology. Line batching
+and hidden closed-face culling follow each room's model detail. Recovery restores
+full detail, while Off retains the exact displayed detail. Direction metadata is
+updated for static destinations as well as flights. Browser readiness observes
+the rendered shell/Canvas instead of depending on visibility of a window export.
