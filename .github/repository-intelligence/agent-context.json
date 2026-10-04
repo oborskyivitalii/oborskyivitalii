@@ -14,8 +14,12 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "4c1b62f9225ae749f25c0e957740e262f3509d9d0458ba6c8a48e3e5c872b5c3",
+    "digest": "d55c17ba84c92666a0656431013b9d7f0ef830174b1e6998f62e9f9e9ea874e7",
     "inputs": [
+      {
+        "path": ".gitattributes",
+        "identity_mode": "existence"
+      },
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
         "identity_mode": "content",
@@ -59,7 +63,7 @@
       {
         "path": ".github/workflows/site-navigation-probe.yml",
         "identity_mode": "content",
-        "sha256": "731e6ca6b462f3ccfa012be8917da65a324b0ec14a0d9a7a1ccbad93eea70a78"
+        "sha256": "b4ad6ed139038e26967189b87533d6413b3f0ec1552fafb9f5329b2c35d80de5"
       },
       {
         "path": ".github/workflows/site-release-checks.yml",
@@ -553,7 +557,7 @@
       {
         "path": "review/site-engine-implementation-20261004/EXECUTION.md",
         "identity_mode": "content",
-        "sha256": "fdd0b36082ba1e57953ea65bed0af149a1039808ac1115583bda5126a41dc786"
+        "sha256": "6c96f70445ee73398443a8067601cf075876e6c455fb69142bbae06c88f2c933"
       },
       {
         "path": "review/site-engine-implementation-20261004/PARITY-BASELINE.json",
