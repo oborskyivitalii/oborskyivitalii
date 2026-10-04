@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "11fb61ccae44c7ecaa5be0f4f7b2eac542106e5f1bb160b9a32b3a6435062f89",
+    "digest": "fb9d4f71dc953cfbfd75a95d4c457824ceb044fb8f192cc2c54b34c320d903a4",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -55,6 +55,11 @@
         "path": ".github/workflows/site-checks.yml",
         "identity_mode": "content",
         "sha256": "139dc06d5d1d2d96317c7d3d249404a4fe8e6a213e330472ddaeadbec0e25a49"
+      },
+      {
+        "path": ".github/workflows/site-navigation-probe.yml",
+        "identity_mode": "content",
+        "sha256": "731e6ca6b462f3ccfa012be8917da65a324b0ec14a0d9a7a1ccbad93eea70a78"
       },
       {
         "path": ".github/workflows/site-release-checks.yml",
@@ -2779,6 +2784,13 @@
     {
       "path": ".github/workflows/site-checks.yml",
       "title": ".github/workflows/site-checks.yml",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".github/workflows/site-navigation-probe.yml",
+      "title": ".github/workflows/site-navigation-probe.yml",
       "instructions": [
         "AGENTS.md"
       ]

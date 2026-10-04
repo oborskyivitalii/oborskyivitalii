@@ -14,10 +14,15 @@ async function scenario(browser,url,s){
   const ctx=await browser.newContext({viewport:{width:s.width,height:s.width===390?844:900}}),page=await ctx.newPage(),errors=[];
   page.on('pageerror',error=>errors.push(error.message));
   await ctx.addInitScript(theme=>localStorage.setItem('vo.theme',theme),s.theme);
+  if(process.env.SITE_NAVIGATION_PROBE==='true')await ctx.addInitScript(()=>{
+    const raf=window.requestAnimationFrame;window.__navigationFrames=[];
+    window.requestAnimationFrame=fn=>raf(time=>{const start=performance.now();fn(time);window.__navigationFrames.push(performance.now()-start);if(window.__navigationFrames.length>128)window.__navigationFrames.shift();});
+  });
   const result={...s,pass:false,checks:{},errors};
   try {
     await page.goto(url+'/index.html');
-    await page.waitForFunction(()=>window.SiteNavigation&&document.querySelector('.space-scene').dataset.ready==='true');
+    await page.bringToFront();
+    await page.waitForFunction(()=>window.SiteNavigation&&document.querySelector('.space-scene').dataset.ready==='true',null,{polling:50,timeout:4000});
     await page.evaluate(()=>{window.__shell={header:document.querySelector('header'),canvas:document.querySelector('canvas'),theme:document.querySelector('#theme-mode'),document};});
     const initial=await page.locator('.space-scene').getAttribute('data-camera');
     for(const route of routes.slice(1)){
@@ -45,9 +50,18 @@ async function scenario(browser,url,s){
     await page.route('**/research.html',route=>route.request().resourceType()==='fetch'?route.fulfill({status:503,contentType:'text/plain',body:'Controlled unavailable route'}):route.continue());
     await page.locator(selector('research')).first().click();await page.waitForURL('**/research.html');await page.waitForFunction(()=>document.body.dataset.page==='research');result.checks.fetchFallback=true;
     assert.deepEqual(errors,[]);result.pass=checks.every(key=>result.checks[key]===true);
-  }catch(error){result.error=error.message;result.stack=error.stack;}
+  }catch(error){
+    result.error=error.message;result.stack=error.stack;
+    result.state=await page.evaluate(()=>({page:document.body.dataset.page,url:location.href,hidden:document.hidden,scene:{...document.querySelector('.space-scene').dataset},motion:document.querySelector('#space-motion').textContent,busy:document.querySelector('#site-content')?.hasAttribute('aria-busy'),scrollY,frames:window.__navigationFrames||[]})).catch(()=>null);
+  }
   finally{await ctx.close();}
   return result;
 }
 function scenarios(engine){return [1440,390].flatMap(width=>['light','dark'].map(theme=>({engine,width,theme})));}
 module.exports={scenario,scenarios,checks};
+if(require.main===module)(async()=>{
+  const {toolRequire,launchOptions,report}=require('./common.cjs'),{start}=require('./serve.cjs');
+  const {server,url}=await start(),browser=await toolRequire('playwright').firefox.launch(launchOptions('firefox'));
+  try{const row=await scenario(browser,url,{engine:'firefox',width:1440,theme:'light'});report('navigation-diagnostic',{browser:browser.version(),row},row.pass);console.log(JSON.stringify(row,null,2));assert.equal(row.pass,true);}
+  finally{await browser.close();server.close();}
+})().catch(error=>{console.error(error.stack);process.exitCode=1;});
