@@ -32,3 +32,13 @@ Implementation contract:
 No research integration, merge, production/DNS/payment changes or inferred hosted
 acceptance. Prior execution evidence is a baseline only. Current evidence and
 remaining limitations will be recorded in EXECUTION.md after validation.
+
+## Arrival / surfaces follow-up — 4 October 2026
+
+See [current review and acceptance](../site-surface-review-20261004/REPORT.md).
+The maintainer rejects hard header/text rectangle edges and text arriving before
+the camera. Use one painted progress timeline, a hidden transit interval, full
+arrival synchronization and full-width header background. Preserve native/history
+and accessibility exceptions. Add repeated-route resource and flight-cost evidence
+to the existing security/stability/performance gates; deliver revised standalone
+files without claiming staging or independent/physical-device acceptance.

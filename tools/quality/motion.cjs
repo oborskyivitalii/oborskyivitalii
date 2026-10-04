@@ -59,6 +59,36 @@ async function soak(browser,url,route){
     return {route,width:390,rate:1,durationSeconds:budgets.soakSeconds,startHeapBytes,endHeapBytes,deltaBytes:endHeapBytes-startHeapBytes,chunks,off,errors,limit:'Synthetic lab soak and forced-GC heap samples detect obvious growth; no universal leak or physical-device claim.'};
   }finally{await ctx.close();}
 }
+async function flights(browser,url,profile){
+  const ctx=await browser.newContext({viewport:{width:profile.width,height:profile.width===390?844:900}});
+  await ctx.addInitScript(installProbe);const page=await ctx.newPage(),errors=[];
+  page.on('pageerror',error=>errors.push(error.message));
+  const cdp=await ctx.newCDPSession(page);await cdp.send('Emulation.setCPUThrottlingRate',{rate:profile.rate});
+  try{
+    await page.goto(url+'/index.html');await page.waitForFunction(()=>document.querySelector('.space-scene').dataset.ready==='true');
+    const rows=[];
+    for(const destination of ['research','writing','talks','credits','index','credits','talks','writing','research','index']){
+      const from=await page.locator('body').getAttribute('data-page');
+      await page.evaluate(destination=>{
+        window.__qualityMotion.frames=[];window.__qualityMotion.longTasks=[];window.__qualityStart=performance.now();
+        document.querySelector(`a[href="${destination==='index'?'./':destination+'.html'}"]`).click();
+      },destination);
+      await page.waitForFunction(destination=>document.body.dataset.page===destination&&!document.querySelector('#site-content').hasAttribute('aria-busy')&&document.querySelector('.space-scene').dataset.travel==='settled',destination,{polling:40,timeout:8000});
+      const data=await page.evaluate(()=>{const end=performance.now(),start=window.__qualityStart;return {...window.__qualityMotion,start,end,elapsed:end-start,state:document.querySelector('.space-scene').dataset.state};});
+      rows.push({from,to:destination,...profile,...summarize(data,'flight')});
+    }
+    await page.locator('#space-motion').evaluate(el=>el.click());await page.waitForTimeout(200);
+    await cdp.send('HeapProfiler.collectGarbage');const before=await cdp.send('Memory.getDOMCounters');
+    for(let i=0;i<40;i++){
+      const destination=routes[(i+1)%routes.length];
+      await page.evaluate(destination=>document.querySelector(`a[href="${destination==='index'?'./':destination+'.html'}"]`).click(),destination);
+      await page.waitForFunction(destination=>document.body.dataset.page===destination&&!document.querySelector('#site-content').hasAttribute('aria-busy'),destination);
+    }
+    await page.evaluate(()=>{window.__qualityMotion.frames=[];window.__qualityMotion.longTasks=[];});
+    await cdp.send('HeapProfiler.collectGarbage');const after=await cdp.send('Memory.getDOMCounters');
+    return {...profile,rows,errors,cycles:40,before,after};
+  }finally{await ctx.close();}
+}
 async function main(){
   const {server,url}=await start(),samples=[];let browser;
   const details={note:'Sequential lab measurements. CPU x4 is synthetic. Callback timing includes JS/Canvas commands, not display FPS or battery usage.',samples};
@@ -68,6 +98,8 @@ async function main(){
       samples.push(await sample(browser,url,route,profile));report('motion',details);
       process.stdout.write(JSON.stringify({...profile,route,measurements:samples.at(-1).measurements.map(({kind,paints,paintRateHz,paintIntervalsMs,paintCallbackMs,callbackBusyPercent,quality,cadence})=>({kind,paints,paintRateHz,paintIntervalsMs,paintCallbackMs,callbackBusyPercent,quality,cadence}))})+'\n');
     }
+    details.journeys=[];
+    for(const profile of [{width:1440,rate:1},{width:390,rate:1},{width:390,rate:4}]){details.journeys.push(await flights(browser,url,profile));report('motion',details);process.stdout.write('Ten route flights measured: '+JSON.stringify(profile)+'\n');}
     const heaviest=[...samples.filter(x=>x.width===390&&x.rate===4)].sort((a,b)=>b.measurements[0].paintCallbackMs.p95-a.measurements[0].paintCallbackMs.p95)[0].route;
     details.soak=await soak(browser,url,heaviest);report('motion',details);
     require('./validate.cjs').motion(report('motion',details));
@@ -76,4 +108,4 @@ async function main(){
   finally{if(browser)await browser.close();server.close();}
 }
 if(require.main===module)main().catch(e=>{console.error(e.stack);process.exitCode=1;});
-module.exports={installProbe,summarize};
+module.exports={installProbe,summarize,flights};

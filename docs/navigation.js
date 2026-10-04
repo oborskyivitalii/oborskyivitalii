@@ -6,7 +6,7 @@
   const embedded=bundle?JSON.parse(bundle.textContent):null;
   const entry=new URL(window.location.href);
   const directory=new URL(".",entry);
-  let page=document.body.dataset.page,serial=0,request=null,effect=null,scrollSave=null;
+  let page=document.body.dataset.page,serial=0,request=null,transition=null,scrollSave=null;
   if(!routes.includes(page)||!window.fetch||!window.DOMParser||!window.history.pushState)return;
   const cache=new Map();
   const content=document.createElement("div");content.id="site-content";
@@ -37,6 +37,7 @@
     const result=new URL(entry);result.search=url.search;result.hash=url.hash;result.searchParams.set("view",next);return result;
   }
   function save() {
+    if(routeFor(new URL(window.location.href))!==page)return;
     try{history.replaceState({...history.state,site:{page,scroll:[window.scrollX,window.scrollY]}},"",window.location.href);}catch{/* Native navigation still works. */}
   }
   function push(url) {
@@ -55,23 +56,40 @@
     if(result.page!==next)throw Error("Unexpected route");
     cache.set(next,result);return result;
   }
+  function clearText() {
+    content.style.removeProperty("opacity");content.style.removeProperty("transform");
+    content.inert=false;
+  }
   function interrupt() {
-    request?.abort();request=null;effect?.cancel();effect=null;
-    content.removeAttribute("aria-busy");
+    const travelling=transition!==null;
+    request?.abort();request=null;
+    window.SiteScene?.detachTravel();transition?.(1);transition=null;
+    clearText();content.removeAttribute("aria-busy");return travelling;
   }
   function motionAllowed() {
     return !document.hidden && window.SiteScene?.canTravel()===true;
   }
-  async function fade(out,animate) {
-    effect?.cancel();effect=null;
-    if(!animate||!content.animate)return;
-    const hidden={opacity:0,transform:"translateY("+(out?"-10px":"12px")+")"};
-    const shown={opacity:1,transform:"translateY(0)"};
-    const active=content.animate(out?[shown,hidden]:[hidden,shown],{duration:out?150:480,easing:out?"ease-in":"cubic-bezier(.2,.7,.2,1)",fill:out?"forwards":"none"});
-    effect=active;
-    try{await active.finished;}catch{/* Superseded navigation or accessibility preference. */}
+  function flight(next,animate,commit,own) {
+    return new Promise((resolve,reject)=>{
+      let mounted=false;
+      transition=progress=>{
+        if(own!==serial){resolve();return;}
+        try {
+          if(progress>=.18&&!mounted){mounted=true;commit();}
+          // Smooth exit, empty tunnel, then arrival. No independent clock/RAF.
+          const t=progress<.18?progress/.18:Math.max(0,(progress-.72)/.28);
+          const eased=t*t*(3-2*t);
+          content.style.opacity=String(progress<.18?1-eased:eased);
+          content.style.transform="translateY("+(progress<.18?-10*eased:12*(1-eased))+"px)";
+          if(progress===1){clearText();transition=null;resolve();}
+        }catch(error){window.SiteScene?.detachTravel();transition=null;reject(error);}
+      };
+      content.inert=true;
+      if(window.SiteScene)window.SiteScene.navigate(next,animate,transition);
+      else transition(1);
+    });
   }
-  function mount(data,url,position,animate) {
+  function mount(data,url,position) {
     window.SiteArchive?.destroy();
     content.replaceChildren(document.importNode(data.main,true),document.importNode(data.footer,true));
     document.body.dataset.page=data.page;page=data.page;
@@ -85,14 +103,11 @@
       if(routeFor(target)===page)link.setAttribute("aria-current","page");else link.removeAttribute("aria-current");
     }
     window.scrollTo({left:position?.[0]||0,top:position?.[1]||0,behavior:"instant"});
-    window.SiteScene?.navigate(page,animate);
     window.SiteArchive?.mount();
     let target=null;
     try{target=url.hash?document.getElementById(decodeURIComponent(url.hash.slice(1))):null;}catch{/* Invalid fragments do not block a page. */}
     if(!position&&target&&target.getClientRects().length)target.scrollIntoView({block:"start",behavior:"instant"});
     window.SiteScene?.refresh();
-    content.querySelector("main").focus({preventScroll:true});
-    announcement.textContent=data.title;
     window.dispatchEvent(new CustomEvent("site:page-ready",{detail:{page}}));
   }
   async function navigate(url,{pop=false,position=null,initial=false}={}) {
@@ -105,19 +120,18 @@
       const data=await read(next,controller.signal);
       if(own!==serial)return;
       const animate=!initial&&motionAllowed();
-      await fade(true,animate);
-      if(own!==serial)return;
-      const destination=address(url,next);
-      if(!pop&&!initial){save();history.pushState({site:{page:next,scroll:[0,0]}},"",destination);}
-      else if(initial)history.replaceState({site:{page:next,scroll:[0,0]}},"",destination);
-      mount(data,destination,position,animate);
-      content.removeAttribute("aria-busy");
-      await fade(false,animate&&motionAllowed());
+      await flight(next,animate,()=>{
+        const destination=address(url,next);
+        if(!pop&&!initial){save();history.pushState({site:{page:next,scroll:[0,0]}},"",destination);}
+        else if(initial)history.replaceState({site:{page:next,scroll:[0,0]}},"",destination);
+        mount(data,destination,position);
+      },own);
+      if(own===serial){content.querySelector("main").focus({preventScroll:true});announcement.textContent=data.title;save();}
     } catch {
       if(own===serial)window.location.assign(address(url,next).href);
     } finally {
       window.clearTimeout(timeout);
-      if(own===serial){content.removeAttribute("aria-busy");request=null;effect?.cancel();effect=null;}
+      if(own===serial){content.removeAttribute("aria-busy");request=null;clearText();}
     }
   }
   document.body.dataset.entryPage=page;
@@ -128,7 +142,7 @@
     const url=new URL(link.href,window.location.href),next=routeFor(url);
     if(!next)return;
     if(next===page){
-      ++serial;interrupt();
+      ++serial;if(interrupt())window.SiteScene?.navigate(page,motionAllowed());
       if(link.getAttribute("href").startsWith("#"))return;
       event.preventDefault();const dest=address(url,next);
       if(dest.href!==window.location.href)push(dest);
@@ -141,17 +155,17 @@
   window.addEventListener("popstate",event=>{
     const url=new URL(window.location.href),next=routeFor(url);
     if(next&&next!==page)navigate(url,{pop:true,position:event.state?.site?.scroll||null});
-    else {++serial;interrupt();if(event.state?.site?.scroll)window.scrollTo({left:event.state.site.scroll[0],top:event.state.site.scroll[1],behavior:"instant"});}
+    else {++serial;if(interrupt())window.SiteScene?.navigate(page,motionAllowed());if(event.state?.site?.scroll)window.scrollTo({left:event.state.site.scroll[0],top:event.state.site.scroll[1],behavior:"instant"});}
   });
-  function finishText(){effect?.cancel();effect=null;}
+  function finishText(){window.SiteScene?.detachTravel();transition?.(1);transition=null;clearText();}
   document.addEventListener("visibilitychange",()=>{if(document.hidden)finishText();});
-  window.addEventListener("beforeprint",finishText);
+  window.addEventListener("beforeprint",()=>{finishText();window.SiteArchive?.print();});
   window.addEventListener("pagehide",save);
   // One write after a gesture preserves Forward as well as Back without
   // flooding history APIs or adding an idle timer / another RAF scheduler.
   window.addEventListener("scroll",()=>{
     window.clearTimeout(scrollSave);
-    scrollSave=window.setTimeout(()=>{scrollSave=null;if(!request&&routeFor(new URL(window.location.href))===page)save();},350);
+    scrollSave=window.setTimeout(()=>{scrollSave=null;save();},350);
   },{passive:true});
   window.addEventListener("site:motion-preference",()=>{if(!motionAllowed())finishText();});
   window.SiteNavigation={push};

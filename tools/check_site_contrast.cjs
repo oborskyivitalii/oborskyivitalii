@@ -79,4 +79,4 @@ async function main(){
  if(failures.length)process.exitCode=1;
 }
 if(require.main===module)main().catch(e=>{console.error(e.stack);process.exitCode=1;});
-module.exports={collectSamples};
+module.exports={collectSamples,matrix};

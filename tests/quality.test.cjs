@@ -24,6 +24,7 @@ test('complete source-bound PR evidence passes; missing and controlled failures 
     x=>x.reports.splice(2,1),
     x=>x.reports[3].navigation.pop(),
     x=>x.reports[3].navigation[0].checks.persistentShell=false,
+    x=>delete x.reports[3].navigation[0].checks.flightTiming,
     x=>x.jobs.linux.result='cancelled',
     x=>x.sizes.rows[0].raw=100001,
     x=>x.reports[3].rows[0].errors.push('synthetic browser error'),
@@ -49,7 +50,7 @@ test('Lighthouse uses all three metric medians and rejects missing/mislabeled ru
   const fail=structuredClone(r);fail.rows[1].metrics['largest-contentful-paint'].numericValue=10000;assert.throws(()=>lighthouse(fail));
 });
 function measurement(kind,startMs=0){const zero=['off','reduced'].includes(kind),elapsedMs=kind==='idle'?30000:1000;return {kind,elapsedMs,window:{startMs,endMs:startMs+elapsedMs},callbacks:zero?0:1,paints:zero?0:1,rawFrames:zero?[]:[{time:startMs+1,started:startMs+1,duration:10,painted:true}],paintRateHz:zero?0:1000/elapsedMs,paintIntervalsMs:{count:0,p50:null,p95:null,max:null},paintCallbackMs:{p50:zero?null:10,p95:zero?null:10,max:zero?null:10},callbackBusyPercent:zero?0:10/elapsedMs*100,state:'active'};}
-function motionFixture(){return {samples:budgets.routes.flatMap(route=>[[1440,1],[390,1],[390,4]].map(([width,rate])=>({route,width,rate,positiveProbe:true,errors:[],measurements:['idle','scroll','off','reduced'].map(kind=>measurement(kind))}))),soak:{route:'writing',durationSeconds:300,chunks:Array.from({length:10},(_,i)=>measurement('idle',i*30000)),off:measurement('off',300000),errors:[],startHeapBytes:100,endHeapBytes:110}};}
+function motionFixture(){return {samples:budgets.routes.flatMap(route=>[[1440,1],[390,1],[390,4]].map(([width,rate])=>({route,width,rate,positiveProbe:true,errors:[],measurements:['idle','scroll','off','reduced'].map(kind=>measurement(kind))}))),journeys:[[1440,1],[390,1],[390,4]].map(([width,rate])=>({width,rate,cycles:40,errors:[],before:{nodes:100,jsEventListeners:20},after:{nodes:100,jsEventListeners:20},rows:['research','writing','talks','credits','index','credits','talks','writing','research','index'].map(to=>({to,...measurement('flight')}))})),soak:{route:'writing',durationSeconds:300,chunks:Array.from({length:10},(_,i)=>measurement('idle',i*30000)),off:measurement('off',300000),errors:[],startHeapBytes:100,endHeapBytes:110}};}
 test('motion requires positive paints, every profile, real raw samples and settled zero work',()=>{
   const r=motionFixture();
   assert.equal(motion(r),true);
@@ -135,4 +136,8 @@ test('normal browser startup foregrounds the test tab and waits on real readines
   const page={bringToFront:async()=>calls.push('foreground'),waitForFunction:async(predicate,arg,options)=>{calls.push('readiness');assert.equal(arg,null);assert.equal(options.polling,50);assert.equal(options.timeout,3000);assert.match(predicate.toString(),/dataset\.ready==='true'/);}};
   const r=await fn(page);assert.equal(r.foreground,true);assert.equal(r.timeoutMs,3000);assert.deepEqual(calls,['foreground','readiness']);
   await assert.rejects(()=>fn({...page,waitForFunction:async()=>{throw Error('Controlled startup deadline');}}),/startup deadline/,'unready scenes still fail, not skip or silently retry');
+});
+
+test('flight measurements and repeated-navigation resources are mandatory',()=>{
+  for(const alter of [r=>delete r.journeys,r=>r.journeys[0].rows.pop(),r=>r.journeys[0].after.nodes++,r=>r.journeys[0].after.jsEventListeners++]){const r=motionFixture();alter(r);assert.throws(()=>motion(r));}
 });

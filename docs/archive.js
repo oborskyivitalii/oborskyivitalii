@@ -1,9 +1,9 @@
 /* Progressive filtering: the complete, dated catalog remains HTML without JS. */
 (() => {
   "use strict";
-  let detach=()=>{};
+  let detach=()=>{},print=()=>{};
   function mount() {
-  detach();
+  detach();print=()=>{};
   const listeners=[];
   const on=(target,name,handler)=>{target.addEventListener(name,handler);listeners.push(()=>target.removeEventListener(name,handler));};
   detach=()=>{for(const remove of listeners)remove();};
@@ -90,15 +90,16 @@
   });
   on(window,"hashchange", () => onNavigation("navigation"));
   on(window,"popstate", () => onNavigation("history"));
-  on(window,"beforeprint", () => {
+  print=() => {
     for (const element of [...rows, ...groups, ...years]) element.hidden = false;
     for (const year of yearValues) document.getElementById(`year-${year}`).hidden = false;
     countLabel.textContent = `${rows.length} primary archive records · all records and the additional LinkedIn rendition shown for printing.`;
     document.getElementById("archive-empty").hidden = true;
-  });
+  };
+  on(window,"beforeprint",print);
   on(window,"afterprint", () => refresh("print-return"));
   onNavigation("initial");
   }
-  window.SiteArchive={mount,destroy:()=>detach()};
+  window.SiteArchive={mount,destroy:()=>detach(),print:()=>print()};
   mount();
 })();

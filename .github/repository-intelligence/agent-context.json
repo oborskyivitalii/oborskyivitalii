@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "572a405a3934b5588763788414be0cdc48c387c71c53f36652ecc682366b67ce",
+    "digest": "d23e737384bab93eb5be666db6e62dcc23b4085941926b1b4593a668ffd40887",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -83,7 +83,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "7df1f6f9699e4ac46319b6fa16556f26bb8a5f100ce69ef0bfbd8cec86100703"
+        "sha256": "9d3427e9722360a480aa8e3e0cbbcee4036a1746c7b4bcd1f91c4bd3704f3060"
       },
       {
         "path": "BACKLOG.md",
@@ -521,7 +521,12 @@
       {
         "path": "review/site-navigation-v12-20261004/TASKS.md",
         "identity_mode": "content",
-        "sha256": "ebee9b479422e551bedf3b4158674ec956d6d674a0e3d72f4903b7c1dd2df7ae"
+        "sha256": "116d5ea22c8e39201e1058df9c55017c2f112d6442e888a095caa6ecde88c6ec"
+      },
+      {
+        "path": "review/site-surface-review-20261004/REPORT.md",
+        "identity_mode": "content",
+        "sha256": "134a3a1c3878d1ab165fbfe71a584b17a909e3e6435c84fd0fc2612225e159b0"
       },
       {
         "path": "review/site-v1-20261001-credits-day.html",
@@ -2055,7 +2060,7 @@
       {
         "path": "review/site-v1-offline-bundle-v11.json",
         "identity_mode": "content",
-        "sha256": "de59c87e84e5caca02058ab2f614761ae99355539c93ae21455d62bf7d6eb932"
+        "sha256": "38b742efb1d903ebd78dc4d7abe7682b43c005ef5963eba3db7cf52e1dce8417"
       },
       {
         "path": "review/site-v1-offline-bundle-v3.json",
@@ -2109,7 +2114,7 @@
       {
         "path": "review/site-v1-static-previews-v11.json",
         "identity_mode": "content",
-        "sha256": "c5827479b53598e34114f2ffe81fb0463eaa4334ff38d012e8028dbd20b36a83"
+        "sha256": "f2af27f77dfe6060074ba8d9239639e3bdf6740b8b68bf3d131d0dcd6dcad8ef"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -2529,7 +2534,7 @@
       {
         "path": "tools/quality/secrets-baseline.json",
         "identity_mode": "content",
-        "sha256": "678d78b5291b07645fec2087c202d30bf2caecbfa128cb1d10a8e7948c50dade"
+        "sha256": "c214cff379e559c7e705bfcc0abee94541bb391827a063d3e90128b823e9abbd"
       },
       {
         "path": "tools/quality/security-rules.yml",
@@ -3225,6 +3230,13 @@
     {
       "path": "review/site-navigation-v12-20261004/TASKS.md",
       "title": "Connected page space — maintainer amendment, 4 October 2026",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-surface-review-20261004/REPORT.md",
+      "title": "Surfaces and synchronized arrival — 4 October 2026",
       "instructions": [
         "AGENTS.md"
       ]

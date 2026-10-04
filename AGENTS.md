@@ -1,5 +1,14 @@
 # Agent guidance for personal publications
 
+## Current surfaces / timing review — 2026-10-04
+
+The maintainer requests full-width header/soft reading edges and text tied to
+painted flight progress: disappear on departure, stay hidden during transit,
+reveal on approach and finish at arrival. Read the
+[current review](review/site-surface-review-20261004/REPORT.md), owned by #14/#12/#13
+in Draft PR #10. Repeat security, stability, startup and flight performance checks;
+refresh all five standalone HTMLs. Prior `f89a204a` evidence is baseline only.
+
 ## Current navigation amendment — 2026-10-04
 
 The maintainer requests persistent header/Canvas navigation, shared angular

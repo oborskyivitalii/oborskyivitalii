@@ -520,6 +520,7 @@
   let tier=0,slow=0,fast=0,lastQualityChange=0,hold=false;
   const clock=()=>window.performance?.now()??Date.now();
   let current=routePose(page,poses[initial]), animation=null, writingAnchor=null,displayedTime=0,displayedCamera=current,journey=null;
+  let travelUpdate=null;
   let colors={cyan:"#075d7b",amber:"#895710",paper:"#f8f7f3"};
   const pose = id => routePose(page,poses[id]);
   const pathPose = () => routePose(page,journeyPose(topicPaths[focus],localProgress,narrow.matches));
@@ -683,6 +684,13 @@
   function fail() {
     failed=true;cancel();delete scene.dataset.ready;scene.dataset.state="fallback";
     control.hidden=false;control.disabled=true;control.setAttribute("aria-pressed","false");control.textContent="Motion: unavailable";
+    reportTravel(1);
+  }
+  function reportTravel(progress) {
+    scene.dataset.progress=String(progress);
+    const update=travelUpdate;
+    if(progress===1)travelUpdate=null;
+    update?.(progress);
   }
   function adaptCadence(cost,time) {
     // Ignore the one-time initial paint for cadence estimation. Adapt to actual
@@ -714,17 +722,20 @@
     else if(fast>=100 && tier>0){tier--;ratio=pixelRatio();slow=fast=0;lastQualityChange=time;}
     scene.dataset.quality=hold?"still":String(tier);
   }
-  function frame(time) {
-    pending=null;if(document.hidden || printing || !initialized || failed)return;
-    const delta=lastFrame===null?0:Math.min(80,Math.max(0,time-lastFrame));lastFrame=time;
-    const living=enabled&&!hold&&owns(initialPoses,page);
-    if(living){ambientTime=(ambientTime+delta)%LOOP_MS;detailTier+=(tier-detailTier)*(1-Math.exp(-delta/180));}
+  function advanceJourney(delta,living) {
     if(journey&&living) {
       journey.elapsed+=delta;
       const t=clamp(journey.elapsed/journey.duration);
       current=mix(journey.from,journey.to,smooth(t));
       if(t===1){current=journey.to;journey=null;}
     }
+  }
+  function frame(time) {
+    pending=null;if(document.hidden || printing || !initialized || failed)return;
+    const delta=lastFrame===null?0:Math.min(80,Math.max(0,time-lastFrame));lastFrame=time;
+    const living=enabled&&!hold&&owns(initialPoses,page);
+    if(living){ambientTime=(ambientTime+delta)%LOOP_MS;detailTier+=(tier-detailTier)*(1-Math.exp(-delta/180));}
+    advanceJourney(delta,living);
     if(animation && enabled && !hold) {
       const dt=animation.last===null?delta:Math.min(80,Math.max(0,time-animation.last));
       animation.last=time;
@@ -740,6 +751,8 @@
     if(nextDraw===null||time+.5>=nextDraw||!living) {
       const start=clock();
       try{draw();}catch{fail();return;}
+      // Text follows the painted camera, including skipped frames and stalls.
+      if(travelUpdate)reportTravel(journey?clamp(journey.elapsed/journey.duration):1);
       nextDraw=nextDeadline(nextDraw,time,interval);
       if(living)quality(clock()-start,time);
     }
@@ -795,7 +808,7 @@
   observer?.observe(document.querySelector("main"));
   window.SiteScene={
     canTravel:()=>initialized&&!failed&&enabled&&!hold&&!printing&&!document.hidden,
-    navigate(next,animate=true){
+    navigate(next,animate=true,update=null){
       if(!owns(initialPoses,next))return;
       const from=displayedCamera;page=next;focus="all";localProgress=0;writingAnchor=null;
       world=roomFor(page).world;measure();
@@ -806,9 +819,12 @@
         journey={from,to:target,elapsed:0,duration:Math.min(1700,1000+Math.abs(target.position[2]-from.position[2])*2)};
       }else{journey=null;current=target;}
       scene.dataset.travel=journey?"flying":"settled";
+      travelUpdate=update;
+      reportTravel(journey?0:1);
       observer?.disconnect();observer?.observe(document.querySelector("main"));nextDraw=null;schedule();
     },
-    refresh(){measure();const target=scrollPose();if(journey)journey.to=target;else moveTo(target);}
+    refresh(){observer?.disconnect();observer?.observe(document.querySelector("main"));measure();const target=scrollPose();if(journey)journey.to=target;else moveTo(target);},
+    detachTravel(){travelUpdate=null;}
   };
   // Stylesheet load/error is authoritative, including early WebKit deferral.
   function initialize() {

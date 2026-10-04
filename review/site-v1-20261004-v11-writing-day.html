@@ -475,7 +475,7 @@
 }
 * {box-sizing:border-box}
 [hidden] {display:none!important}
-html {scroll-behavior:smooth;scroll-padding-top:var(--header-clearance,110px)}
+html {overflow-x:clip;scroll-behavior:smooth;scroll-padding-top:var(--header-clearance,110px)}
 .sr-only {position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
 #site-content {isolation:isolate}
 @media print {#site-content {opacity:1!important;transform:none!important}}
@@ -488,6 +488,7 @@ button {cursor:pointer}
 .wrap {width:min(1160px,calc(100% - 80px));margin-inline:auto}
 .skip-link {position:fixed;top:-80px;left:20px;padding:12px;background:var(--button-bg);color:var(--button-ink);z-index:10}
 .skip-link:focus {top:12px}
+.site-header.wrap {width:100%;padding-inline:max(40px,calc((100% - 1160px)/2));margin-inline:0}
 .site-header {position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;padding-block:18px;border-bottom:1px solid var(--line);background:var(--paper)}
 .wordmark {display:inline-flex;align-items:center;gap:12px;font-size:14px;font-weight:650;text-decoration:none;white-space:nowrap}
 .monogram {font-size:30px;letter-spacing:-.075em;font-weight:750;line-height:1;color:var(--ink)}
@@ -517,13 +518,24 @@ body[data-page="writing"] .space-scene canvas,body[data-page="credits"] .space-s
 .space-fallback {opacity:1}
 /* Protect the reading block, leaving the section and its gutters open to the world. */
 .section,.archive-intro,.credits-page,.hero-copy,.shift-intro {background:transparent}
-.section-heading,.archive-intro>h1,.archive-intro>.hero-description,.shift-intro>p,
+:is(.hero-copy,.section-heading,.archive-intro>h1,.archive-intro>.hero-description,.archive-intro>.eyebrow,.shift-intro>p,
 .research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,
-.ack-grid article,.about-grid>div,.contact-grid>div,.publication,.credits-page>p,
+.ack-grid article,.about-grid>div,.contact-grid>div,.publication,.credits-page>p,.credits-page>h2,
 .archive-landings,.archive-heading,.archive-filters,.archive-count,.empty-state,.year-landing,
-.section-note,.section-nav,.topic-nav,.next-route,.site-footer {
-  color:var(--ink);background:var(--paper);
-  background:color-mix(in srgb,var(--paper) var(--surface-reading),transparent);
+.section-note,.section-nav,.topic-nav,.next-route,.site-footer) {
+  position:relative;isolation:isolate;
+}
+/* The mask feathers only the backdrop beyond the reading area, never glyphs.
+   Static gradients need no backdrop blur, extra bitmap or animation scheduler. */
+:is(.hero-copy,.section-heading,.archive-intro>h1,.archive-intro>.hero-description,.archive-intro>.eyebrow,.shift-intro>p,
+.research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,
+.ack-grid article,.about-grid>div,.contact-grid>div,.publication,.credits-page>p,.credits-page>h2,
+.archive-landings,.archive-heading,.archive-filters,.archive-count,.empty-state,.year-landing,
+.section-note,.section-nav,.topic-nav,.next-route,.site-footer)::before {
+  content:"";position:absolute;inset:-24px;z-index:-1;pointer-events:none;
+  background:var(--paper);background:color-mix(in srgb,var(--paper) var(--reading-alpha,var(--surface-reading)),transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 24px,#000 calc(100% - 24px),transparent),linear-gradient(transparent,#000 24px,#000 calc(100% - 24px),transparent);
+  mask-composite:intersect;
 }
 .archive-intro>h1,.archive-intro>.hero-description {width:fit-content;max-width:100%;padding:8px 16px;margin-left:-16px}
 .shift-intro>p {padding:16px}
@@ -532,7 +544,7 @@ body[data-page="writing"] .space-scene canvas,body[data-page="credits"] .space-s
 .section-nav,.topic-nav {padding-inline:14px}
 .site-footer,.next-route {padding-inline:18px}
 .hero {display:grid;grid-template-columns:1.22fr .78fr;align-items:end;gap:0 44px;padding-top:48px}
-.hero-copy {color:var(--ink);background:var(--paper);background:color-mix(in srgb,var(--paper) var(--surface-open),transparent);align-self:center;padding:16px 18px 34px;margin-left:-18px}
+.hero-copy {--reading-alpha:var(--surface-open);color:var(--ink);align-self:center;padding:16px 18px 34px;margin-left:-18px}
 .eyebrow {display:flex;align-items:center;gap:12px;font-size:12px;font-weight:650;line-height:1.6;letter-spacing:.08em;text-transform:uppercase;margin:0 0 20px;color:var(--muted)}
 .accent-line {width:28px;height:2px;background:var(--accent);flex:0 0 auto}
 h1,h2,h3,p {overflow-wrap:break-word}
@@ -604,7 +616,7 @@ h2 {font-size:clamp(30px,3.4vw,40px);font-weight:720;letter-spacing:-.035em;line
 .topic-nav {display:flex;flex-wrap:wrap;gap:8px 24px;margin-bottom:24px}
 .topic-nav a {font-size:13px;font-weight:600;text-decoration:none;border-bottom:1px solid var(--line);padding-block:10px}
 .publication-list {list-style:none;margin:0;padding:0}
-.publication {background:color-mix(in srgb,var(--paper) var(--surface-row),transparent);padding-inline:20px;margin-bottom:12px;display:grid;grid-template-columns:200px minmax(0,1fr);gap:36px;align-items:start;border-top:1px solid var(--line);padding-block:24px}
+.publication {--reading-alpha:var(--surface-row);padding-inline:20px;margin-bottom:12px;display:grid;grid-template-columns:200px minmax(0,1fr);gap:36px;align-items:start;border-top:1px solid var(--line);padding-block:24px}
 .publication-meta {display:flex;flex-direction:column;gap:7px;font-size:13px;color:var(--muted)}
 .publication-meta time {font-weight:650;color:var(--ink);font-size:13px}
 .publication-title {display:flex;align-items:start;justify-content:space-between;gap:24px;font-size:clamp(20px,2vw,23px);font-weight:550;line-height:1.5;letter-spacing:-.018em;text-decoration:none}
@@ -658,14 +670,15 @@ h2 {font-size:clamp(30px,3.4vw,40px);font-weight:720;letter-spacing:-.035em;line
 .credits-page p {color:var(--muted)}
 /* Later component rules supply spacing; these retain local reading protection. */
 .research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,.ack-grid article {padding:24px 22px}
-.eyebrow,.audience,.writing-topic,.credits-page h2 {width:fit-content;background:color-mix(in srgb,var(--paper) var(--surface-reading),transparent)}
+.eyebrow,.audience,.writing-topic,.credits-page h2 {width:fit-content}
 body[data-page="writing"] #archive-results {width:min(1010px,calc(100% - 80px));margin-inline:auto}
-body[data-page="writing"] .publication {background:color-mix(in srgb,var(--paper) var(--surface-row),transparent)}
+body[data-page="writing"] .publication {--reading-alpha:var(--surface-row)}
 @media(max-width:1100px) {
   .site-header {gap:8px 20px}
   .appearance {margin-left:auto}
 }
 @media(max-width:900px) {
+  .site-header.wrap {padding-inline:24px}
   .wrap,.year-landing {width:calc(100% - 48px)}
   body[data-page="writing"] #archive-results {width:calc(100% - 48px)}
   .hero {gap:0 24px;padding-top:40px}
@@ -673,6 +686,10 @@ body[data-page="writing"] .publication {background:color-mix(in srgb,var(--paper
   .publication {grid-template-columns:165px minmax(0,1fr);gap:24px}
 }
 @media(max-width:640px) {
+  .site-header.wrap {padding-inline:20px}
+  .hero-copy::before {content:none}
+  .hero :is(h1,.hero-lead,.hero-description,.audience,.eyebrow) {position:relative;isolation:isolate}
+  .hero :is(h1,.hero-lead,.hero-description,.audience,.eyebrow)::before {content:"";position:absolute;inset:-18px;z-index:-1;pointer-events:none;background:color-mix(in srgb,var(--paper) 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 18px,#000 calc(100% - 18px),transparent),linear-gradient(transparent,#000 18px,#000 calc(100% - 18px),transparent);mask-composite:intersect}
   /* Match the mobile camera framing for the static 1440×900 projection too. */
   .space-scene .space-fallback {width:min(184vw,160vh);height:min(115vw,100vh);left:calc(42vw - min(121.44vw,105.6vh));top:calc(48vh - min(55.2vw,48vh))}
   .archive-intro>h1 {padding-inline:0;margin-inline:0}
@@ -693,7 +710,7 @@ body[data-page="writing"] .publication {background:color-mix(in srgb,var(--paper
   .hero {grid-template-columns:minmax(0,1fr) min(29vw,140px);gap:0 16px;padding-top:34px}
   .hero-copy {display:contents}
   .hero .eyebrow {grid-row:1;grid-column:1/-1}
-  .hero h1 {grid-row:2;grid-column:1/-1;font-size:clamp(32px,9vw,48px);letter-spacing:-.03em;margin:0;padding-block:10px;align-self:center;background:color-mix(in srgb,var(--paper) 92%,transparent)}
+  .hero h1 {grid-row:2;grid-column:1/-1;font-size:clamp(32px,9vw,48px);letter-spacing:-.03em;margin:0;padding-block:10px;align-self:center}
   .portrait-composition {grid-row:3;grid-column:2;width:100%;margin-block:16px}
   .portrait-composition img {max-height:150px}
   .hero-lead {grid-row:3;grid-column:1;font-size:16px;margin:0;align-self:center}
@@ -717,11 +734,10 @@ body[data-page="writing"] .publication {background:color-mix(in srgb,var(--paper
   .site-footer p {flex-basis:100%}
   .section-heading {padding:10px 12px;margin-left:-12px}
   .research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,.ack-grid article {padding:20px 16px}
-  .hero-lead,.hero-description,.hero .audience {background:color-mix(in srgb,var(--paper) var(--surface-reading),transparent)}
   .booking-placeholder {padding-left:20px}
 }
 @media(prefers-reduced-motion:reduce) {
-  html {scroll-behavior:auto}
+  html {overflow-x:clip;scroll-behavior:auto}
   * {transition:none!important}
 }
 @media print {
@@ -730,6 +746,8 @@ body[data-page="writing"] .publication {background:color-mix(in srgb,var(--paper
   .section-heading,.publication,.credits-page>p {background:white}
   .wrap {width:100%}
   .site-header {position:static}
+  .site-header.wrap {padding-inline:0}
+  main ::before,.site-footer::before {display:none!important}
   .site-header nav,.appearance,.display-controls,.space-scene,.skip-link,.section-nav,.topic-nav,.archive-filters,.archive-landings,.archive-heading,.button {display:none!important}
   .hero {padding-top:24px}
   .section {padding-block:28px}

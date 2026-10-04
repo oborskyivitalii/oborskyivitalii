@@ -321,3 +321,17 @@ test("detail fades across a tier change and Off freezes the exact displayed deta
   const fixed=p.scene.dataset.detail,phase=p.phase();p.click();p.settle();p.mutate();p.events.resize();p.settle();
   assert.equal(p.scene.dataset.detail,fixed);assert.equal(p.phase(),phase);assert.equal(p.pending.size,0);
 });
+test("travel progress is emitted with the displayed camera, retargets cleanly and completes on draw failure",()=>{
+  const p=visit();p.settle();const records=[];
+  p.window.SiteScene.navigate("research",true,value=>records.push({value,camera:p.trace()}));
+  assert.equal(records.length,1);assert.equal(records[0].value,0);
+  for(let i=0;i<30;i++)p.frame(60);
+  assert.equal(records.at(-1).value,1);
+  assert.equal(records.at(-1).camera,p.trace());
+  assert.ok(records.some(x=>x.value>.2&&x.value<.7));
+  assert.ok(records.every((x,i)=>i===0||x.value>=records[i-1].value));
+  const next=[];p.window.SiteScene.navigate("credits",true,value=>next.push(value));p.frame(80);
+  p.window.SiteScene.detachTravel();const detached=next.length;p.frame(80);assert.equal(next.length,detached);
+  p.window.SiteScene.navigate("index",true,value=>next.push(value));p.drawingFault();p.frame(80);
+  assert.equal(next.at(-1),1);assert.equal(p.pending.size,0);
+});

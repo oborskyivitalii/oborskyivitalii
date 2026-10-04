@@ -56,6 +56,15 @@ function motion(r){
       if(m.kind==='idle')assert.ok(m.callbackBusyPercent<=budgets.motion.idleCallbackBusyPercent,`${route} idle busy: ${m.callbackBusyPercent}`);
     }
   }
+  assert.equal(r.journeys?.length,3,'missing flight measurements');unique(r.journeys,x=>`${x.width}/${x.rate}`);
+  for(const [width,rate]of [[1440,1],[390,1],[390,4]]){
+    const flight=r.journeys.find(x=>x.width===width&&x.rate===rate);assert.ok(flight,'missing flight profile');assert.deepEqual(flight.errors,[]);
+    assert.equal(flight.rows.length,10);assert.equal(flight.cycles,40);
+    assert.deepEqual(flight.rows.map(x=>x.to),['research','writing','talks','credits','index','credits','talks','writing','research','index']);
+    for(const row of flight.rows){measure(row,'flight',false);assert.notEqual(row.state,'fallback');}
+    assert.ok(flight.after.jsEventListeners<=flight.before.jsEventListeners,'listeners grow across repeated routes');
+    assert.ok(flight.after.nodes<=flight.before.nodes,'DOM nodes grow across repeated routes');
+  }
   const s=r.soak;assert.ok(budgets.routes.includes(s?.route),'missing soak');assert.ok(s.durationSeconds>=budgets.motion.soakSeconds);assert.equal(s.chunks.length,budgets.motion.soakSeconds/30);assert.deepEqual(s.errors,[]);
   for(const m of s.chunks){assert.ok(m.elapsedMs>=29000,'incomplete soak chunk');measure(m,'idle',false);assert.notEqual(m.state,'fallback');}
   assert.ok(s.chunks.every((x,i)=>i===0||x.window.startMs>=s.chunks[i-1].window.endMs),'overlapping/reused soak windows');
