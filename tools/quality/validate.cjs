@@ -84,6 +84,17 @@ function functional(r,platform,engines,smoke){
     const row=r.rows.find(x=>x.engine===engine&&x.route===route&&x.theme===theme&&x.mode===mode&&x.width===width);assert.ok(row,'missing functional case');assert.equal(row.pass,true,row.error);assert.deepEqual(row.errors,[]);assert.deepEqual(row.externalRequests,[]);
     functionalChecks(mode,route,row.checks);
   }
+  navigation(r,engines);
+  return true;
+}
+function navigation(r,engines) {
+  assert.equal(r.navigation?.length,engines.length*4,'missing navigation matrix');
+  unique(r.navigation,x=>`${x.engine}/${x.width}/${x.theme}`);
+  for(const engine of engines)for(const width of [1440,390])for(const theme of ['light','dark']){
+    const row=r.navigation.find(x=>x.engine===engine&&x.width===width&&x.theme===theme);
+    assert.ok(row,'missing navigation case');assert.equal(row.pass,true,row.error);assert.deepEqual(row.errors,[]);
+    for(const key of require('./navigation.cjs').checks)assert.equal(row.checks?.[key],true,'missing navigation '+key);
+  }
   return true;
 }
 function sourceReport(r,m){
@@ -128,7 +139,7 @@ function aggregate({manifest:m,sizes,reports,jobs,full=false,releaseEvidence}){
 }
 function files(dir){return fs.readdirSync(dir).flatMap(name=>{const p=path.join(dir,name);return fs.statSync(p).isDirectory()?files(p):[p];});}
 function readEvidence(evidenceFiles,full=false){
-  const read=p=>JSON.parse(fs.readFileSync(p)),suffix=path.join('site-v1-20261003-v10-captures','captures.json');
+  const read=p=>JSON.parse(fs.readFileSync(p)),suffix=path.join('site-v1-20261004-v11-captures','captures.json');
   const reports=evidenceFiles.filter(x=>/\/(lint|security|advisories|functional|lighthouse|motion|captures)\.json$/.test(x.split(path.sep).join('/'))&&!x.endsWith(suffix)).map(read);
   if(full){
     const file=evidenceFiles.find(x=>x.endsWith(suffix));assert.ok(file,'missing capture byte record');const actual=read(file),claimed=reports.find(x=>x.kind==='captures');assert.deepEqual(actual.files,claimed?.files);

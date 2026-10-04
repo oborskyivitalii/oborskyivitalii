@@ -36,6 +36,11 @@ checks, all five routes × both themes × Chromium/Firefox/WebKit. Normal views 
 1440×900 and 390×844. Eleven failure/capability modes run at 320px. Assertions
 cover content/overflow, actual paints, controls, reverse scrolling, keyboard,
 archive history/print, storage, delayed/blocked CSS, exceptions and synthetic loss.
+The same engines also run four persistent-navigation cases (both widths/themes),
+covering every route, retained header/Canvas/control identity, forward/backward
+flight, metadata/focus, browser history, Writing mount/detach, rapid navigation,
+Off/reduced motion and an injected fetch failure with native-document recovery.
+Missing cases or assertions fail the aggregate; fixtures exercise those failures.
 CSS zoom and synthetic visibility/print events are explicitly limited claims.
 
 Full release calls add Windows Chromium/Firefox, macOS WebKit, 30 sequential

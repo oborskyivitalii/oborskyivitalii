@@ -6,6 +6,12 @@ const root=path.resolve(__dirname,'..'),baseline='0333c4d2b2318850fd56312d83fb63
 const strip=html=>html.replace(/<svg class="space-fallback"[\s\S]*?<\/svg>/,'[same-world decorative fallback]');
 function restore(html,page){
   let result=html.replace('>vo<span class="monogram-dot">.</span></span>','>vo.</span>');
+  assert.equal(result.split('  <script src="navigation.js" defer></script>\n').length,2,'one declared navigation module');
+  result=result.replace('  <script src="navigation.js" defer></script>\n','');
+  if(page!=='writing'){
+    assert.equal(result.split('  <script src="archive.js" defer></script>\n').length,2,'one route-aware archive module');
+    result=result.replace('  <script src="archive.js" defer></script>\n','');
+  }
   if(page==='index'){
     result=result.replace('<h1 id="author-name">AI tools everywhere.<br><span class="accent">Better delivery?</span><br>Harder to tell.</h1>','<h1 id="author-name">Vitalii<br>Oborskyi<span class="accent">.</span></h1>')
       .replace('<p class="hero-lead">Vitalii Oborskyi · Delivery leader, researcher &amp; author.</p>','<p class="hero-lead">AI tools everywhere.<br>Better delivery? Harder to tell.</p>')

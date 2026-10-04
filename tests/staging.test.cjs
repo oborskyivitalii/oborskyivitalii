@@ -61,7 +61,7 @@ function fetchFixture(f,options={}){
 test('real-HTTP smoke model checks every served byte, extensionless query redirects, noindex and actual 404',async()=>{
   const f=fixture();try{
     const record=staging.build(f.input,f.out,f.expected),base='https://preview.unit-test-staging.pages.dev';
-    const result=await hosted.httpSmoke(base,record,fetchFixture(f));assert.equal(result.actual404,true);assert.equal(result.queryRedirect,true);assert.equal(result.files.length,13);
+    const result=await hosted.httpSmoke(base,record,fetchFixture(f));assert.equal(result.actual404,true);assert.equal(result.queryRedirect,true);assert.equal(result.files.length,14);
     for(const options of [{robots:'noindex'},{tamper:true},{dropQuery:true},{spa:true}])await assert.rejects(()=>hosted.httpSmoke(base,record,fetchFixture(f,options)));
   }finally{fs.rmSync(f.dir,{recursive:true,force:true});}
 });

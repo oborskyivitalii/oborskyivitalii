@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "be6649e8b2185e3cc98a7fe7613ec9e51ebb58954473a319e0038b6e66aae893",
+    "digest": "f4563f712a02a4cc230492931dc0cc525f5102e1e19f560025245581d610eb81",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -59,7 +59,7 @@
       {
         "path": ".github/workflows/site-release-checks.yml",
         "identity_mode": "content",
-        "sha256": "ac850caed8210af5835009f29be0c19d6150eae68b9cb73eda0df8f5a2aebfb4"
+        "sha256": "e2767c374f810b676f3f5afaf2ef8b90a9e2fe1dd6e6c184eeed0eb6f961b049"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
@@ -78,7 +78,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "8ed5297ff8cb4e0687b0d5f12beff5342c085ff3bf0783226a26fcd975f4681d"
+        "sha256": "7df1f6f9699e4ac46319b6fa16556f26bb8a5f100ce69ef0bfbd8cec86100703"
       },
       {
         "path": "BACKLOG.md",
@@ -143,7 +143,7 @@
       {
         "path": "SOL-HANDOFF.md",
         "identity_mode": "content",
-        "sha256": "ff3f805d8ae53cb540dec338efdd3cd34eb51c5808f7a5558e9d1b075e2e64d8"
+        "sha256": "e148a9dc4286f7b853d0d98cdc900cfe1df3eb62d3945ccf2278e5a242ccf16a"
       },
       {
         "path": "docs/.nojekyll",
@@ -171,6 +171,10 @@
       },
       {
         "path": "docs/index.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "docs/navigation.js",
         "identity_mode": "existence"
       },
       {
@@ -503,6 +507,11 @@
         "path": "review/site-engineering-v9-20261003/INDEPENDENT-RUNTIME.md",
         "identity_mode": "content",
         "sha256": "4b4504040e5bb61c66529dbbff1b2425b5cd463743e6fa6e8269b1a3b52081cf"
+      },
+      {
+        "path": "review/site-navigation-v12-20261004/TASKS.md",
+        "identity_mode": "content",
+        "sha256": "ebee9b479422e551bedf3b4158674ec956d6d674a0e3d72f4903b7c1dd2df7ae"
       },
       {
         "path": "review/site-v1-20261001-credits-day.html",
@@ -1965,9 +1974,78 @@
         "identity_mode": "existence"
       },
       {
+        "path": "review/site-v1-20261004-v11-credits-day.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261004-v11-credits-interactive.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261004-v11-credits-night.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261004-v11-day.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261004-v11-index.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261004-v11-interactive.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261004-v11-night.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261004-v11-research-day.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261004-v11-research-interactive.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261004-v11-research-night.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261004-v11-talks-day.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261004-v11-talks-interactive.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261004-v11-talks-night.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261004-v11-writing-day.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261004-v11-writing-interactive.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-v1-20261004-v11-writing-night.html",
+        "identity_mode": "existence"
+      },
+      {
         "path": "review/site-v1-offline-bundle-v10.json",
         "identity_mode": "content",
         "sha256": "dbac8f1816f237edd0ad6cf6b41e6be13f9afa0141ddb066413a29e3969ef0a1"
+      },
+      {
+        "path": "review/site-v1-offline-bundle-v11.json",
+        "identity_mode": "content",
+        "sha256": "c23bbe276faa43bec70b594090483399843823f94356cf41103fe030e1d8eaf6"
       },
       {
         "path": "review/site-v1-offline-bundle-v3.json",
@@ -2017,6 +2095,11 @@
         "path": "review/site-v1-static-previews-v10.json",
         "identity_mode": "content",
         "sha256": "52220834969162d415867393f78c2979ba353cee41f7ee16580f03f89f7c174d"
+      },
+      {
+        "path": "review/site-v1-static-previews-v11.json",
+        "identity_mode": "content",
+        "sha256": "5e592f9917a90ccd78df5d49b5be2f69adeb0e6f8fcc3ee161c979b29a9f1771"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -2349,12 +2432,12 @@
       {
         "path": "tools/build_site_bundle.py",
         "identity_mode": "content",
-        "sha256": "959007f7b9ea634aa6f69d091590c95fa1334eab0a8f8613ba15e3d927c1ef45"
+        "sha256": "c169bde9fdca810527864377aa81535a9a614fb483b4993b74c41fb01436acde"
       },
       {
         "path": "tools/build_site_contact_sheets.py",
         "identity_mode": "content",
-        "sha256": "2b4b1ca9cea0ce6a5befe7b15fd55f849d4ae6f4b6575adcd3d4aede60ed7aa4"
+        "sha256": "339cc18140670d217e0c2df9972c7a93764f047f9eab1da8a9cfed34b7ff5c90"
       },
       {
         "path": "tools/build_site_previews.cjs",
@@ -2379,7 +2462,7 @@
       {
         "path": "tools/quality/README.md",
         "identity_mode": "content",
-        "sha256": "63e4f4fca8045d0c344e6fd7474033b4092200ab6f93493f16f4e3a34716a1fb"
+        "sha256": "9a7c6d35fb10e82e89f5e1957f2c576a2fc3aef4e4d3b46966f04f45660982a0"
       },
       {
         "path": "tools/quality/advisory-exceptions.json",
@@ -2426,13 +2509,17 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tools/quality/navigation.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tools/quality/scanners.cjs",
         "identity_mode": "existence"
       },
       {
         "path": "tools/quality/secrets-baseline.json",
         "identity_mode": "content",
-        "sha256": "8baa6d0c99d72754e07fa62e29ab8d0ff23302951a0013d58e7ebc1534cacc73"
+        "sha256": "fe027d25f0d1bc409d0662d41229842287e9fb2ba00269aa3829de75d69a09e4"
       },
       {
         "path": "tools/quality/security-rules.yml",
@@ -3112,6 +3199,13 @@
       ]
     },
     {
+      "path": "review/site-navigation-v12-20261004/TASKS.md",
+      "title": "Connected page space — maintainer amendment, 4 October 2026",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "review/site-v1-20261002-v5-captures/captures.json",
       "title": "review/site-v1-20261002-v5-captures/captures.json",
       "instructions": [
@@ -3175,6 +3269,13 @@
       ]
     },
     {
+      "path": "review/site-v1-offline-bundle-v11.json",
+      "title": "review/site-v1-offline-bundle-v11.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "review/site-v1-offline-bundle-v3.json",
       "title": "review/site-v1-offline-bundle-v3.json",
       "instructions": [
@@ -3233,6 +3334,13 @@
     {
       "path": "review/site-v1-static-previews-v10.json",
       "title": "review/site-v1-static-previews-v10.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-v1-static-previews-v11.json",
+      "title": "review/site-v1-static-previews-v11.json",
       "instructions": [
         "AGENTS.md"
       ]

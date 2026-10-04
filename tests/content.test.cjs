@@ -36,7 +36,7 @@ test("English UI has distinct useful metadata and non-executable accurate page s
     assert.ok(html.includes(`name="twitter:title" content="${title}"`));
     assert.doesNotMatch(html, /name="keywords"|rel="canonical"|hreflang=|property="og:url"|property="og:image"|noindex/);
     const scripts = [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/g)];
-    assert.equal(scripts.length, html === pages.writing ? 4 : 3);
+    assert.equal(scripts.length, 5);
     assert.equal(scripts.filter(s => s[1] === ' src="theme.js"').length, 1);
     assert.equal(scripts.filter(s => s[1] === ' type="application/ld+json"').length, 1);
     const data = schema(html);
@@ -124,7 +124,7 @@ test("page IDs, ARIA targets, local resources and fragments resolve without draf
       if (fragment) assert.ok(ids.get(target)?.has(fragment), value);
     }
   }
-  const expected = [".nojekyll", "archive.js", "assets", "credits.html", "index.html", "research.html", "space.js", "styles.css", "talks.html", "theme.js", "writing.html"];
+  const expected = [".nojekyll", "archive.js", "assets", "credits.html", "index.html", "navigation.js", "research.html", "space.js", "styles.css", "talks.html", "theme.js", "writing.html"];
   assert.deepEqual(fs.readdirSync(root).sort(), expected);
   assert.deepEqual(fs.readdirSync(path.join(root, "assets")).sort(), ["favicon.svg", "vitalii-oborskyi-cutout.webp", "vitalii-oborskyi.jpg"]);
 });

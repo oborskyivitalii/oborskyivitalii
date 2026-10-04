@@ -315,7 +315,7 @@
       const symbolIndex=depth===0?(index+root)%2:depth===1?2+(index+root)%2:4+(index+root)%4,[symbol,build]=words[symbolIndex];
       detail=depth||root>0?1:0;
       const name=`${symbol}-${root}-${objects.length}`;
-      metadata={symbol,depth,root,rootCenter:roots[root],parent,phase:index*.71+root*1.9};
+      metadata={family:"thematic",symbol,depth,root,rootCenter:roots[root],parent,phase:index*.71+root*1.9};
       object(name,center,[.16*Math.sin(angle),.32*Math.cos(angle),angle-Math.PI/2],scale,root>1?"distant":depth===0?"near":"middle",build);
       if(depth===2)return;
       const branches=2,step=depth===0?1.12: .85;
@@ -337,6 +337,25 @@
         else {a=-.12*Math.PI+i/(n-1)*1.24*Math.PI;x=Math.cos(a)*r;y=Math.sin(a)*r;z=Math.cos(a)*1.6;}
         grow(add(roots[root],[x,y,z]),root===0? .82: .9,0,a,root,i);
       }
+    }
+    sharedGeometry();
+    // A common angular grammar threads every thematic room. Each branch uses
+    // the same finite 1 + 2 + 4 hierarchy and clear camera corridor.
+    function sharedGeometry() {
+    const geometry=[
+      ["cube",h=>h.box([0,0,0],[2,2,2],"cyan",.23)],
+      ["triangle",h=>h.poly([[-1.3,-1],[1.3,-1],[0,1.4]],.65,"amber",.28)],
+      ["octahedron",h=>h.ball([0,0,0],1.45,"cyan")],
+      ["hexagon",h=>h.poly(Array.from({length:6},(_,i)=>[1.35*Math.cos(i*Math.PI/3),1.35*Math.sin(i*Math.PI/3)]),.7,"amber",.2)]
+    ];
+    function branch(center,scale,depth,root,index,parent=null) {
+      const [symbol,build]=geometry[index%geometry.length],name=`shared-${root}-${index}`;
+      metadata={family:"shared",symbol,depth,root,rootCenter:roots[root],parent,phase:index*.71+root*1.9};
+      object(name,center,[.3,.45,index*.6],scale,root>1?"distant":"middle",build);
+      if(depth===2)return;
+      for(let j=0;j<2;j++)branch(add(center,[(j?1:-1)*scale*2.6,scale*1.7,-scale*1.4]),scale*.43,depth+1,root,index*2+j+1,name);
+    }
+    for(let root=0;root<roots.length;root++)for(let side=0;side<2;side++)branch(add(roots[root],[(side?1:-1)*10,side?-3:3,-9]),1.2,0,root,side?8:0);
     }
     const light=normalize([-.55,.85,1]);
     for(const f of faces)prepareFace(f,light);
@@ -465,8 +484,12 @@
     const rgb=hex=>hex.replace("#","").match(/.{2}/g).map(v=>parseInt(v,16));
     return "#"+lerp(rgb(a),rgb(b),t).map(v=>Math.round(v).toString(16).padStart(2,"0")).join("");
   }
+  const routeOrder=["index","research","writing","talks","credits"],roomSpacing=128;
+  const roomOffset=page=>-Math.max(0,routeOrder.indexOf(page))*roomSpacing;
+  const translatePose=(pose,z)=>({position:add(pose.position,[0,0,z]),target:add(pose.target,[0,0,z])});
+  const routePose=(page,pose)=>translatePose(pose,roomOffset(page));
   // Export the same pure composition/projection for checks and the no-Canvas SVG producer.
-  if (typeof module !== "undefined" && module.exports) module.exports = {LOOP_MS,loopTransform,atmosphereState,clipSegment,clipPolygon,mix,followCamera,depthVisibility,cadenceFor,nextDeadline,cameraVertices,projectedFace,journeyPose,poses,topicPaths,pageStops,initialPoses,worldFor,projectedWorld,blendColor};
+  if (typeof module !== "undefined" && module.exports) module.exports = {LOOP_MS,loopTransform,atmosphereState,clipSegment,clipPolygon,mix,followCamera,depthVisibility,cadenceFor,nextDeadline,cameraVertices,projectedFace,journeyPose,poses,topicPaths,pageStops,initialPoses,worldFor,projectedWorld,blendColor,routeOrder,roomSpacing,routePose};
   if (typeof document === "undefined") return;
   const canvas = document.getElementById("space-canvas");
   const control = document.getElementById("space-motion");
@@ -477,22 +500,23 @@
   const scene = canvas.parentElement;
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
   const narrow = window.matchMedia("(max-width: 640px)");
-  const page = document.body.dataset.page;
+  let page = document.body.dataset.page;
   const key="vo.motion";
   let choice=null;
   try { choice=localStorage.getItem(key); } catch { /* In-tab controls remain useful. */ }
   let enabled=choice!=="off" && !reduced.matches, printing=false, pending=null,initialized=false,failed=false;
   let width=1,height=1,ratio=1,stops=[],bounds=null,focus="all",localProgress=0;
   const initial=initialPoses[page]||"overview";
-  let faceColors=[];
+  const rooms=new Map();
   let compact=narrow.matches,world=worldFor(page,compact),ambientTime=0,lastFrame=null,nextDraw=null;
   let idleRate=30,costAverage=0,costSamples=0,cadenceSlow=0,cadenceFast=0,lastCadenceChange=0,detailTier=0,displayedTier=0;
   let tier=0,slow=0,fast=0,lastQualityChange=0,hold=false;
   const clock=()=>window.performance?.now()??Date.now();
-  let current=poses[initial], animation=null, writingAnchor=null,displayedTime=0,displayedCamera=current;
+  let current=routePose(page,poses[initial]), animation=null, writingAnchor=null,displayedTime=0,displayedCamera=current,journey=null;
   let colors={cyan:"#075d7b",amber:"#895710",paper:"#f8f7f3"};
-  const pose = id => poses[id];
-  const pathPose = () => journeyPose(topicPaths[focus],localProgress,narrow.matches);
+  const pose = id => routePose(page,poses[id]);
+  const pathPose = () => routePose(page,journeyPose(topicPaths[focus],localProgress,narrow.matches));
+  rooms.set(page,{world,faceColors:[]});
   // The decorative mobile bitmap uses one physical pixel per CSS pixel.
   // Text and controls retain their native resolution; timing is independent.
   const pixelRatio=()=>Math.min(compact||tier===2?1:tier===1?1.25:1.5,window.devicePixelRatio||1);
@@ -520,18 +544,25 @@
     const css=window.getComputedStyle(document.documentElement);
     const next={cyan:css.getPropertyValue("--accent").trim(),amber:css.getPropertyValue("--systems").trim(),paper:css.getPropertyValue("--paper").trim(),sheet:(css.getPropertyValue("--scene-sheet")||"#fffefa").trim()};
     if(!Object.values(next).every(v=>/^#[0-9a-f]{6}$/i.test(v)))return false;
-    const fills=new Map();
-    const nextFaces=world.faces.map(f=>{
+    colors=next;
+    for(const room of rooms.values())paintColors(room);
+    return true;
+  }
+  function paintColors(room) {
+    const fills=new Map(),next=colors;
+    room.faceColors=room.world.faces.map(f=>{
       const key=(f.fillColor||f.color)+":"+f.tint;
       if(!fills.has(key))fills.set(key,blendColor(next.paper,next[f.fillColor||f.color],f.tint));
       return fills.get(key);
     });
-    colors=next;faceColors=nextFaces;
-    return true;
+  }
+  function roomFor(name) {
+    if(!rooms.has(name)){const room={world:worldFor(name,compact),faceColors:[]};rooms.set(name,room);paintColors(room);}
+    return rooms.get(name);
   }
   function scrollPose() {
     if (page==="writing") {
-      if (!bounds) return current;
+      if (!bounds) return journey?pathPose():current;
       const {start,end}=bounds,y=window.scrollY,a=writingAnchor;
       if(!a || (a.progress===0 && a.y<=start) || (a.progress===1 && a.y>=end)) {
         localProgress=clamp((y-start)/(end-start));
@@ -545,11 +576,11 @@
       }
       return pathPose();
     }
-    if (!pageStops[page] || stops.length<2) return current;
+    if (!pageStops[page] || stops.length<2) return journey?pose(initialPoses[page]):current;
     if(window.scrollY<=stops[0].y) return pose(stops[0].id);
     let i=0;while(i<stops.length-2 && window.scrollY>=stops[i+1].y)i++;
     const a=stops[i],b=stops[i+1],t=clamp((window.scrollY-a.y)/(b.y-a.y));
-    return journeyPose(stops.map(s=>s.id),(i+t)/(stops.length-1),narrow.matches);
+    return routePose(page,journeyPose(stops.map(s=>s.id),(i+t)/(stops.length-1),narrow.matches));
   }
   function schedule() {
     if(initialized && !failed && pending===null && !document.hidden && !printing) pending=window.requestAnimationFrame(frame);
@@ -558,21 +589,43 @@
     if(pending!==null)window.cancelAnimationFrame(pending);
     pending=null;animation=null;lastFrame=null;nextDraw=null;
     ambientTime=displayedTime;current=displayedCamera;detailTier=displayedTier;
+    if(journey){journey.from=current;journey.elapsed=0;}
   }
   function moveTo(target) {
     if (!initialized || failed || hold || document.hidden || printing || !enabled) return;
+    if(journey){journey.to=target;return;}
     if(Math.hypot(...sub(current.position,target.position),...sub(current.target,target.target))<1e-6){animation=null;return;}
     // Retarget without resetting the frame clock. Resetting start on every scroll
     // event would keep the camera at t=0 during a continuous wheel/touch gesture.
     if(!animation)nextDraw=null;
     animation={to:target,last:animation?.last??null};schedule();
   }
+  function visibleRooms() {
+    if(!journey){
+      const room=roomFor(page);
+      for(const name of rooms.keys())if(name!==page)rooms.delete(name);
+      const shapes=projectedWorld(room.world,translatePose(current,-roomOffset(page)),width,height,ambientTime,detailTier);
+      for(const shape of shapes)shape.room=room;
+      return shapes;
+    }
+    // Render at most the two rooms around the camera, including intermediate
+    // rooms on a multi-page flight. Models are lazy and the cache is bounded.
+    const near=Math.max(0,Math.min(routeOrder.length-1,Math.floor((24-current.position[2])/roomSpacing)));
+    const names=[routeOrder[near],routeOrder[Math.min(near+1,routeOrder.length-1)]];
+    const active=[...new Set(names)];
+    const shapes=active.flatMap(name=>{
+      const room=roomFor(name);
+      return projectedWorld(room.world,translatePose(current,-roomOffset(name)),width,height,ambientTime,detailTier).map(shape=>{shape.room=room;return shape;});
+    }).sort((a,b)=>b.depth-a.depth);
+    for(const name of rooms.keys())if(!active.includes(name)&&name!==page)rooms.delete(name);
+    return shapes;
+  }
   function draw() {
     // Resize only inside the protected paint, retaining the last valid bitmap.
     const w=Math.round(width*ratio),h=Math.round(height*ratio);
     if(canvas.width!==w || canvas.height!==h){canvas.width=w;canvas.height=h;}
     ctx.setTransform(ratio,0,0,ratio,0,0);ctx.clearRect(0,0,width,height);
-    const shapes=projectedWorld(world,current,width,height,ambientTime,detailTier);
+    const shapes=visibleRooms();
     for(let index=0;index<shapes.length;index++) {
       const shape=shapes[index];
       if(compact&&shape.kind==="line"&&!shape.arrow){index=drawLineRun(shapes,index);continue;}
@@ -580,13 +633,13 @@
       ctx.beginPath();ctx.moveTo(from[0],from[1]);for(let i=1;i<points.length;i++)ctx.lineTo(points[i][0],points[i][1]);
       ctx.lineWidth=shape.lineWidth;ctx.strokeStyle=colors[shape.color];
       if(shape.kind==="face") {
-        ctx.closePath();ctx.fillStyle=faceColors[shape.material];
+        ctx.closePath();ctx.fillStyle=shape.room.faceColors[shape.material];
         ctx.globalAlpha=shape.alpha;ctx.fill();
         // Join adjacent paper facets without dark antialias seams.
         if(shape.edgeAlpha===0){ctx.strokeStyle=ctx.fillStyle;ctx.lineWidth=.65;}else ctx.globalAlpha=shape.edgeAlpha;
         // Curved mobile motifs retain explicit outlines (rings, grilles,
         // waves and links); omit their faint internal facet strokes.
-        if(!compact||shape.edgeAlpha===0||world.faces[shape.material].edgeAlpha>.12)ctx.stroke();
+        if(!compact||shape.edgeAlpha===0||shape.room.world.faces[shape.material].edgeAlpha>.12)ctx.stroke();
       } else {ctx.globalAlpha=shape.alpha;ctx.stroke();}
       if(shape.arrow) {
         const dx=to[0]-from[0],dy=to[1]-from[1],length=Math.hypot(dx,dy);
@@ -601,6 +654,7 @@
     scene.style?.setProperty("--air-light",air.light.toFixed(5));
     ctx.globalAlpha=1;scene.dataset.ready="true";displayedTime=ambientTime;displayedCamera=current;displayedTier=detailTier;
     scene.dataset.phase=String(ambientTime);scene.dataset.camera=JSON.stringify(current);scene.dataset.detail=String(detailTier);
+    scene.dataset.route=page;scene.dataset.travel=journey?"flying":"settled";scene.dataset.rooms=String(rooms.size);
   }
   // Preserve continuous opacity; group only adjacent compatible lines whose
   // opacity differs by less than 1/256. No visible 16-step fade quantization.
@@ -647,6 +701,12 @@
     const delta=lastFrame===null?0:Math.min(80,Math.max(0,time-lastFrame));lastFrame=time;
     const living=enabled&&!hold&&owns(initialPoses,page);
     if(living){ambientTime=(ambientTime+delta)%LOOP_MS;detailTier+=(tier-detailTier)*(1-Math.exp(-delta/180));}
+    if(journey&&living) {
+      journey.elapsed+=delta;
+      const t=clamp(journey.elapsed/journey.duration);
+      current=mix(journey.from,journey.to,smooth(t));
+      if(t===1){current=journey.to;journey=null;}
+    }
     if(animation && enabled && !hold) {
       const dt=animation.last===null?delta:Math.min(80,Math.max(0,time-animation.last));
       animation.last=time;
@@ -658,7 +718,7 @@
     // Camera response gets a temporary, cost-bounded higher cadence. Deadlines
     // retain fractional phase instead of rounding every frame down to 20/15Hz.
     const cameraRate=Math.min([30,20,15][tier],cadenceFor(costAverage,compact,true));
-    const interval=1000/(animation?Math.max(idleRate,cameraRate):idleRate);
+    const interval=1000/(animation||journey?Math.max(idleRate,cameraRate):idleRate);
     if(nextDraw===null||time+.5>=nextDraw||!living) {
       const start=clock();
       try{draw();}catch{fail();return;}
@@ -677,6 +737,7 @@
     if(enabled&&!was)lastFrame=null;
     if(!enabled)cancel();else if(!was)moveTo(page==="writing" && !bounds?pathPose():scrollPose());
     updateControl();schedule();
+    if(window.dispatchEvent)window.dispatchEvent(new CustomEvent("site:motion-preference"));
   }
   control.addEventListener("click",()=>{
     choice=enabled?"off":"on";
@@ -695,12 +756,12 @@
     focus=event.detail.focus;measure();
     if(!enabled || hold || document.hidden || printing)return;
     const target=pathPose();
-    if(event.detail.reason==="initial"){current=target;animation=null;schedule();}else moveTo(target);
+    if(event.detail.reason==="initial"&&!journey){current=target;animation=null;schedule();}else moveTo(target);
   });
   const resize=()=>{
     if(!initialized){initialize();return;}
     if(failed)return;
-    if(compact!==narrow.matches){compact=narrow.matches;world=worldFor(page,compact);readColors();}
+    if(compact!==narrow.matches){compact=narrow.matches;for(const [name,room]of rooms){room.world=worldFor(name,compact);}world=roomFor(page).world;readColors();}
     measure();nextDraw=null;schedule();
   }; // Layout never changes a frozen camera/ambient phase or starts a flight.
   window.addEventListener("site:archive-layout",resize);
@@ -712,7 +773,24 @@
   if(reduced.addEventListener)reduced.addEventListener("change",preferenceChanged);
   window.addEventListener("storage",event=>{if(event.key===key || event.key===null){try{choice=localStorage.getItem(key);}catch{choice=null;}preferenceChanged();}});
   if(window.MutationObserver)new window.MutationObserver(()=>{if(!initialized){initialize();return;}if(!failed && readColors())schedule();}).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
-  if(window.ResizeObserver)new window.ResizeObserver(resize).observe(document.querySelector("main"));
+  const observer=window.ResizeObserver?new window.ResizeObserver(resize):null;
+  observer?.observe(document.querySelector("main"));
+  window.SiteScene={
+    canTravel:()=>initialized&&!failed&&enabled&&!hold&&!printing&&!document.hidden,
+    navigate(next,animate=true){
+      if(!owns(initialPoses,next))return;
+      const from=displayedCamera;page=next;focus="all";localProgress=0;writingAnchor=null;
+      world=roomFor(page).world;measure();
+      const target=pose(initialPoses[page]);
+      animation=null;current=from;
+      if(animate&&this.canTravel()){
+        journey={from,to:target,elapsed:0,duration:Math.min(1700,1000+Math.abs(target.position[2]-from.position[2])*2)};
+        scene.dataset.direction=target.position[2]<from.position[2]?"forward":"backward";
+      }else{journey=null;current=target;}
+      observer?.disconnect();observer?.observe(document.querySelector("main"));nextDraw=null;schedule();
+    },
+    refresh(){measure();const target=scrollPose();if(journey)journey.to=target;else moveTo(target);}
+  };
   // Stylesheet load/error is authoritative, including early WebKit deferral.
   function initialize() {
     if(initialized || failed || !readColors())return;

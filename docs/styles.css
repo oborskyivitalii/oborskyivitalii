@@ -29,6 +29,9 @@
 * {box-sizing:border-box}
 [hidden] {display:none!important}
 html {scroll-behavior:smooth;scroll-padding-top:var(--header-clearance,110px)}
+.sr-only {position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+#site-content {isolation:isolate}
+@media print {#site-content {opacity:1!important;transform:none!important}}
 body {margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.65;isolation:isolate}
 a {color:inherit;text-underline-offset:.22em}
 a:hover {color:var(--accent)}

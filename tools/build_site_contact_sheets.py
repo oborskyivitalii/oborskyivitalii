@@ -8,7 +8,7 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "review/site-v1-20261003-v10-captures"
+OUT = ROOT / "review/site-v1-20261004-v11-captures"
 PAGES = {"index": "Home", "research": "Research", "writing": "Writing", "talks": "Talks", "credits": "Credits"}
 FONT = ImageFont.truetype("DejaVuSans.ttf", 18)
 

@@ -1,5 +1,14 @@
 # Agent guidance for personal publications
 
+## Current navigation amendment — 2026-10-04
+
+The maintainer requests persistent header/Canvas navigation, shared angular
+fractal geometry and forward/backward flights through the five route spaces.
+Read [current tasks](review/site-navigation-v12-20261004/TASKS.md), owned by #14
+in Draft PR #10. Update #12/#13 regressions and preserve all existing budgets.
+Staging is still unconfigured; provide all five standalone revised HTML files.
+This new work does not inherit visual/performance acceptance from `46381bd3`.
+
 ## Implementation checkpoint — executive design and staging, 2026-10-03
 
 The visual increment is implemented at `9c12900` in Draft PR #10: exact slider-70

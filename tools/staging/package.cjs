@@ -2,7 +2,7 @@
 // Hosting additions stay outside docs/ and cannot silently rewrite tested bytes.
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const artifact=require('../quality/artifact.cjs');
-const publicFiles=['.nojekyll','index.html','research.html','writing.html','talks.html','credits.html','styles.css','theme.js','space.js','archive.js','assets/favicon.svg','assets/vitalii-oborskyi.jpg','assets/vitalii-oborskyi-cutout.webp'].sort();
+const publicFiles=['.nojekyll','index.html','research.html','writing.html','talks.html','credits.html','styles.css','theme.js','space.js','archive.js','navigation.js','assets/favicon.svg','assets/vitalii-oborskyi.jpg','assets/vitalii-oborskyi-cutout.webp'].sort();
 const headers=`/*
   X-Robots-Tag: noindex, nofollow
   Cache-Control: no-cache, max-age=0, must-revalidate

@@ -626,3 +626,14 @@ the exact old CI baseline and limits, before continuing. Do not reuse v9's
 performance/capture results as proof of the changed renderer. Local browser
 launch is currently blocked by the execution sandbox; new actual browser
 measurements and captures run in the maintained GitHub release workflow.
+
+## Persistent navigation and connected spaces — 2026-10-04
+
+The maintainer requests the next increment in Draft PR #10: retain the header and
+Canvas, navigate between five connected thematic rooms, add shared angular fractal
+branches and fade page text during forward/backward flights. Current tasks and
+acceptance are in [the dated navigation task](review/site-navigation-v12-20261004/TASKS.md).
+#14 owns the visual scope; #12/#13 retain runtime and exact-artifact gates. Staging
+is still unconfigured: provide all five self-contained HTML entry files. Each
+contains every route, with a same-file `view` query for offline history/reload.
+Old visual and benchmark records remain historical; do not claim release acceptance.

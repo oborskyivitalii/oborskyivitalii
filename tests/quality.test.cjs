@@ -15,12 +15,15 @@ function fixture(){
   const modes=['no-js','no-canvas','no-raf','no-match-media','blocked-storage','reduced','missing-hasOwn','css-delayed','css-blocked','draw-fault','context-loss'];
   const functional={...identity,pass:true,kind:'functional',environment:{platform:'linux'},engines:['chromium','firefox','webkit'],smoke:false,modes,browsers:['chromium','firefox','webkit'].map(engine=>({engine,version:'fixture',executable:'fixture'})),rows:[]};
   for(const engine of functional.engines)for(const route of budgets.routes)for(const theme of ['light','dark'])for(const [mode,width]of [['normal',1440],['normal',390],...modes.map(x=>[x,320])])functional.rows.push({engine,route,theme,mode,width,pass:true,errors:[],externalRequests:[],checks:checks(mode,route)});
+  functional.navigation=functional.engines.flatMap(engine=>require('../tools/quality/navigation.cjs').scenarios(engine).map(s=>({...s,pass:true,errors:[],checks:Object.fromEntries(require('../tools/quality/navigation.cjs').checks.map(k=>[k,true]))})));
   return {manifest:{...identity,sourceDirty:false},sizes:{pass:true,artifactDigest:identity.artifactDigest,rows:budgets.routes.map(route=>({route,raw:50000,svgNodes:100,totalGzipBytes:10000}))},jobs:{build:{result:'success'},static:{result:'success'},linux:{result:'success'}},reports:[scan('lint',{scannedFiles:30,tools:{eslint:'10',stylelint:'17',ruff:'0.16'}}),scan('security',{semgrep:{files:['docs/space.js'],rules:8,errors:0},bandit:{loc:100,findings:0},secrets:{trackedTextFiles:100}}),scan('advisories',{feedDate:'2026-10-03',npm:{},pythonDependencies:80,runtimeDependencies:'none'}),functional]};
 }
 test('complete source-bound PR evidence passes; missing and controlled failures fail closed',()=>{
   assert.equal(aggregate(fixture()).pass,true);
   const failures=[
     x=>x.reports.splice(2,1),
+    x=>x.reports[3].navigation.pop(),
+    x=>x.reports[3].navigation[0].checks.persistentShell=false,
     x=>x.jobs.linux.result='cancelled',
     x=>x.sizes.rows[0].raw=100001,
     x=>x.reports[3].rows[0].errors.push('synthetic browser error'),
@@ -78,7 +81,7 @@ test('capture camera settling requires two real stable paints and rejects stalls
 function fullFixture(){
   const x=fixture();x.full=true;for(const job of ['native','performance','captures'])x.jobs[job]={result:'success'};
   for(const [platform,engines]of [['win32',['chromium','firefox']],['darwin',['webkit']]]){
-    const f=structuredClone(x.reports[3]);Object.assign(f,{environment:{platform},smoke:true,modes:[],engines,browsers:engines.map(engine=>({engine,version:'controlled fixture',executable:'controlled fixture'})),rows:f.rows.filter(row=>engines.includes(row.engine)&&row.mode==='normal')});x.reports.push(f);
+    const f=structuredClone(x.reports[3]);Object.assign(f,{environment:{platform},smoke:true,modes:[],engines,browsers:engines.map(engine=>({engine,version:'controlled fixture',executable:'controlled fixture'})),navigation:f.navigation.filter(row=>engines.includes(row.engine)),rows:f.rows.filter(row=>engines.includes(row.engine)&&row.mode==='normal')});x.reports.push(f);
   }
   x.reports.push({...identity,pass:true,kind:'lighthouse',...lighthouseFixture()},{...identity,pass:true,kind:'motion',...motionFixture()});
   x.manifest.files=Object.fromEntries(budgets.routes.map(route=>[route+'.html',{sha256:'d'.repeat(64)}]));
@@ -93,10 +96,10 @@ test('complete controlled full-release fixture passes, missing native/capture/de
   const cases=[x=>x.reports.splice(4,1),x=>x.reports.push(structuredClone(x.reports[6])),x=>x.reports.at(-1).views.pop(),x=>delete x.reports.at(-1).files['writing-motion.webm'],x=>x.reports.at(-1).files['writing-motion.webm']=true,x=>x.releaseEvidence.iosSafari.pass=false,x=>delete x.releaseEvidence.androidChrome.device];
   for(const mutate of cases){const x=fullFixture();mutate(x);assert.throws(()=>aggregate(x));}
 });
-test('current v10 capture input is byte-verified once; stale editions and tampered media fail closed',()=>{
+test('current v11 capture input is byte-verified once; stale editions and tampered media fail closed',()=>{
   const fs=require('node:fs'),path=require('node:path'),os=require('node:os');
   const {digest}=require('../tools/quality/artifact.cjs'),{readEvidence}=require('../tools/quality/validate.cjs');
-  const dir=fs.mkdtempSync(path.join(os.tmpdir(),'site-capture-reader-')),mediaDir=path.join(dir,'review/site-v1-20261003-v10-captures');
+  const dir=fs.mkdtempSync(path.join(os.tmpdir(),'site-capture-reader-')),mediaDir=path.join(dir,'review/site-v1-20261004-v11-captures');
   try{
     fs.mkdirSync(mediaDir,{recursive:true});const media=path.join(mediaDir,'index-day-desktop.png'),bytes=Buffer.from('controlled byte fixture; not an actual capture');fs.writeFileSync(media,bytes);
     const actual={files:{'index-day-desktop.png':digest(bytes)}},raw=path.join(mediaDir,'captures.json'),report=path.join(dir,'captures.json');
@@ -104,7 +107,7 @@ test('current v10 capture input is byte-verified once; stale editions and tamper
     assert.equal(readEvidence([raw,report],true).length,1,'raw media metadata is not a second source-bound report');
     assert.throws(()=>readEvidence([report],true),/missing capture byte record/);
     const old=path.join(dir,'review/site-v1-20261003-v9-captures/captures.json');fs.mkdirSync(path.dirname(old),{recursive:true});fs.writeFileSync(old,JSON.stringify(actual));
-    assert.throws(()=>readEvidence([old,report],true),/missing capture byte record/,'historical v9 cannot substitute for current v10');
+    assert.throws(()=>readEvidence([old,report],true),/missing capture byte record/,'historical v9 cannot substitute for current v11');
     fs.writeFileSync(media,'tampered media');assert.throws(()=>readEvidence([raw,report],true),/capture bytes differ/);
     fs.writeFileSync(media,bytes);fs.writeFileSync(raw,JSON.stringify({files:{'../outside.png':digest(bytes)}}));assert.throws(()=>readEvidence([raw,report],true));
   }finally{fs.rmSync(dir,{recursive:true,force:true});}

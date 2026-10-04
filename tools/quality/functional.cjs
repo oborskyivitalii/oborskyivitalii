@@ -187,14 +187,18 @@ function scenarios(engine,smoke){return routes.flatMap(route=>['light','dark'].f
   ...(!smoke?modes.map(mode=>({engine,route,theme,width:320,mode})):[])
 ]));}
 async function main(){
-  const engines=(process.env.SITE_AUDIT_ENGINES||'chromium,firefox,webkit').split(','),smoke=process.argv.includes('--smoke'),rows=[],browsers=[];
+  const engines=(process.env.SITE_AUDIT_ENGINES||'chromium,firefox,webkit').split(','),smoke=process.argv.includes('--smoke'),rows=[],browsers=[],navigation=[];
   const {server,url}=await start();
   try{for(const engine of engines){
     const options=launchOptions(engine),browser=await pw[engine].launch(options);browsers.push({engine,version:browser.version(),executable:options.executablePath||pw[engine].executablePath()});
     try{for(const s of scenarios(engine,smoke)){rows.push(await scenario(browser,url,s));report('functional',{smoke,engines,browsers,modes:smoke?[]:modes,rows},rows.every(x=>x.pass));process.stdout.write(`${engine} ${s.route} ${s.theme} ${s.width} ${s.mode}: ${rows.at(-1).pass?'pass':rows.at(-1).error}\n`);}}
-    finally{await browser.close();}
-  }}finally{server.close();report('functional',{smoke,engines,browsers,modes:smoke?[]:modes,rows},rows.length===engines.length*scenarios(engines[0],smoke).length&&rows.every(x=>x.pass));}
-  assert.ok(rows.every(x=>x.pass),'Functional scenarios failed');
+    finally{
+      const nav=require('./navigation.cjs');
+      for(const s of nav.scenarios(engine)){navigation.push(await nav.scenario(browser,url,s));process.stdout.write(`navigation ${engine} ${s.width} ${s.theme}: ${navigation.at(-1).pass?'pass':navigation.at(-1).error}\n`);}
+      await browser.close();
+    }
+  }}finally{server.close();report('functional',{smoke,engines,browsers,modes:smoke?[]:modes,rows,navigation},rows.length===engines.length*scenarios(engines[0],smoke).length&&rows.every(x=>x.pass)&&navigation.length===engines.length*4&&navigation.every(x=>x.pass));}
+  assert.ok(rows.every(x=>x.pass)&&navigation.every(x=>x.pass),'Functional scenarios failed');
 }
 if(require.main===module)main().catch(e=>{console.error(e.stack);process.exitCode=1;});
 module.exports={scenarios,modes};

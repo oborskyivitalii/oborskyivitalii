@@ -65,14 +65,14 @@ test("fixed and interactive rewriters retain query/hash intent, including the of
     assert.ok(html.includes(`href="${filename("writing",theme)}?topic=systems&amp;language=uk#year-2025"`));
   }
   const {renderInteractive}=require("../tools/build_site_previews.cjs");
-  const scripts=Object.fromEntries(["theme","space","archive"].map(name=>[name,fs.readFileSync(path.join(root,`docs/${name}.js`),"utf8")]));
+  const scripts=Object.fromEntries(["theme","space","archive","navigation"].map(name=>[name,fs.readFileSync(path.join(root,`docs/${name}.js`),"utf8")]));
   const html=renderInteractive(source,css,"index",portrait,scripts);
   assert.ok(html.includes(`href="${interactiveFilename("writing")}?topic=systems&amp;language=uk#year-2025"`));
 });
 
 test("manifest records exact inputs/outputs and unknown source shapes fail visibly", () => {
-  const manifest = JSON.parse(files["review/site-v1-static-previews-v10.json"]);
-  assert.equal(Object.keys(manifest.sources).length, 11);
+  const manifest = JSON.parse(files["review/site-v1-static-previews-v11.json"]);
+  assert.equal(Object.keys(manifest.sources).length, 12);
   assert.equal(Object.keys(manifest.files).length, 16);
   for (const [file, hash] of Object.entries(manifest.sources)) assert.equal(digest(fs.readFileSync(path.join(root, file))), hash);
   for (const [file, hash] of Object.entries(manifest.files)) assert.equal(digest(files[file]), hash);
@@ -85,12 +85,20 @@ test("interactive copies contain exact executable sources after their required D
   for (const page of pages) {
     const html = files[`review/${interactiveFilename(page)}`];
     assert.doesNotMatch(html, /<script[^>]*src=|<link[^>]*stylesheet|src="assets\//);
-    for (const name of ["theme", "space", ...(page === "writing" ? ["archive"] : [])]) {
+    for (const name of ["theme", "space", "archive", "navigation"]) {
       const source = fs.readFileSync(path.join(root, `docs/${name}.js`), "utf8");
       const position = html.indexOf(`<script>\n${source}</script>`);
       assert.ok(position >= 0);
       if (name !== "theme") assert.ok(position > html.indexOf("</main>"));
     }
     assert.ok(html.includes('<meta name="robots" content="noindex, nofollow">'));
+    const payload=JSON.parse(html.match(/<script type="application\/json" id="site-pages">([\s\S]*?)<\/script>/)[1]);
+    assert.deepEqual(Object.keys(payload.pages),pages);
+    for(const route of pages){
+      assert.ok(payload.pages[route].includes(`data-page="${route}"`));
+      assert.ok(payload.pages[route].includes('<main '));
+      assert.doesNotMatch(payload.pages[route],/<script src=|src="assets\//);
+      assert.equal(payload.files[route],interactiveFilename(route));
+    }
   }
 });

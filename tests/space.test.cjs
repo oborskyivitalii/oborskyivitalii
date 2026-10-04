@@ -109,12 +109,31 @@ test("every page has eight semantic motifs, three recursive depths, immutable to
   const identities=new Set();
   for(const page of Object.keys(model.initialPoses)){
     const w=model.worldFor(page),small=model.worldFor(page,true);identities.add(JSON.stringify(w.faces));
-    assert.deepEqual(w,model.worldFor(page));assert.equal(new Set(w.objects.map(o=>o.symbol)).size,8);
+    assert.deepEqual(w,model.worldFor(page));assert.equal(new Set(w.objects.filter(o=>o.family==="thematic").map(o=>o.symbol)).size,8);
     assert.deepEqual([...new Set(w.objects.map(o=>o.depth))].sort(),[0,1,2]);
     const lookup=new Map(w.objects.map(o=>[o.name,o]));for(const o of w.objects.filter(o=>o.parent)){assert.equal(lookup.get(o.parent).depth,o.depth-1);assert.ok(o.scale<lookup.get(o.parent).scale);}
     assert.ok(w.faces.length+w.lines.length<14000);assert.ok(small.faces.length+small.lines.length<=w.faces.length+w.lines.length);
   }
   assert.equal(identities.size,5);
+});
+test("all five worlds share the same multiscale angular geometry beside their own motifs",()=>{
+  const common=page=>model.worldFor(page).objects.filter(o=>o.family==="shared");
+  const first=common("index");
+  assert.equal(first.length,56);assert.equal(new Set(first.map(o=>o.symbol)).size,4);
+  assert.deepEqual([...new Set(first.map(o=>o.depth))].sort(),[0,1,2]);
+  const signature=objects=>objects.map(({name,center,scale,depth,parent,symbol})=>({name,center,scale,depth,parent,symbol}));
+  for(const page of model.routeOrder)assert.deepEqual(signature(common(page)),signature(first));
+});
+test("route flights use one canvas and global space; retarget, Off and hidden preserve the painted pose",()=>{
+  const p=visit();p.settle();const canvas=p.canvas,scene=p.window.SiteScene;
+  scene.navigate("research");p.frame(80);p.frame(80);
+  const flying=JSON.parse(p.trace());assert.ok(flying.position[2]<24);assert.equal(p.scene.dataset.direction,"forward");
+  p.click();p.settle();const frozen=p.trace(),phase=p.phase();p.frame(1000);assert.equal(p.trace(),frozen);assert.equal(p.phase(),phase);assert.equal(p.pending.size,0);
+  p.click();p.frame(80);scene.navigate("index");p.frame(80);assert.equal(p.scene.dataset.direction,"backward");
+  p.hidden(true);const paused=p.trace();p.frame(30000);assert.equal(p.trace(),paused);p.hidden(false);
+  for(let i=0;i<30;i++)p.frame(80);
+  assert.deepEqual(JSON.parse(p.trace()),model.routePose("index",model.poses.overview));assert.equal(p.scene.dataset.travel,"settled");assert.equal(p.canvas,canvas);assert.ok(Number(p.scene.dataset.rooms)<=3);
+  p.click();p.settle();scene.navigate("credits",false);p.settle();assert.equal(p.scene.dataset.route,"credits");assert.equal(p.scene.dataset.travel,"settled");assert.equal(p.pending.size,0);
 });
 test("camera traverses multiple structures, is continuous/reversible and clips safely through near planes",()=>{
   for(const ids of[...Object.values(model.topicPaths),...Object.values(model.pageStops).map(Object.values)]){

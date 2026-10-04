@@ -1,6 +1,12 @@
 /* Progressive filtering: the complete, dated catalog remains HTML without JS. */
 (() => {
   "use strict";
+  let detach=()=>{};
+  function mount() {
+  detach();
+  const listeners=[];
+  const on=(target,name,handler)=>{target.addEventListener(name,handler);listeners.push(()=>target.removeEventListener(name,handler));};
+  detach=()=>{for(const remove of listeners)remove();};
   const form = document.getElementById("archive-filters");
   if (!form) return;
   const controls = Object.fromEntries(["topic", "year", "language"].map(key => [key, document.getElementById(`archive-${key}`)]));
@@ -39,7 +45,7 @@
     // An old fragment must not override a control change on reload.
     url.hash = "";
     if (url.href !== window.location.href) {
-      try { window.history.pushState(null, "", url); } catch { /* Downloaded files still filter locally. */ }
+      try { if(window.SiteNavigation)window.SiteNavigation.push(url);else window.history.pushState(null, "", url); } catch { /* Downloaded files still filter locally. */ }
     }
   }
   function refresh(reason = "layout") {
@@ -75,21 +81,24 @@
   function onNavigation(reason) { restoreURL(); refresh(reason); landOnVisibleTarget(); }
   form.hidden = false;
   for (const nav of document.querySelectorAll("[data-archive-navigation]")) nav.hidden = true;
-  form.addEventListener("change", () => { writeURL(); refresh("filter"); });
-  form.addEventListener("submit", event => event.preventDefault());
-  form.addEventListener("reset", event => {
+  on(form,"change", () => { writeURL(); refresh("filter"); });
+  on(form,"submit", event => event.preventDefault());
+  on(form,"reset", event => {
     event.preventDefault();
     for (const control of Object.values(controls)) control.value = "all";
     writeURL(); refresh("reset");
   });
-  window.addEventListener("hashchange", () => onNavigation("navigation"));
-  window.addEventListener("popstate", () => onNavigation("history"));
-  window.addEventListener("beforeprint", () => {
+  on(window,"hashchange", () => onNavigation("navigation"));
+  on(window,"popstate", () => onNavigation("history"));
+  on(window,"beforeprint", () => {
     for (const element of [...rows, ...groups, ...years]) element.hidden = false;
     for (const year of yearValues) document.getElementById(`year-${year}`).hidden = false;
     countLabel.textContent = `${rows.length} primary archive records · all records and the additional LinkedIn rendition shown for printing.`;
     document.getElementById("archive-empty").hidden = true;
   });
-  window.addEventListener("afterprint", () => refresh("print-return"));
+  on(window,"afterprint", () => refresh("print-return"));
   onNavigation("initial");
+  }
+  window.SiteArchive={mount,destroy:()=>detach()};
+  mount();
 })();
