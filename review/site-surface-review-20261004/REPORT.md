@@ -29,6 +29,8 @@ The browser test waits for the requested media preference to be applied before
 asserting a newly selected static route. Protocol acknowledgement alone can
 precede that update in WebKit; an actual mid-flight preference change correctly
 freezes the last displayed camera instead of requiring an arrival.
+Static-route assertions also wait for the destination's painted route: the
+absence of a flight does not mean the scheduled destination paint has run.
 Print explicitly prepares a newly mounted filtered Writing archive in the same
 print event. Rapid requests abort obsolete fetches and detach obsolete callbacks.
 

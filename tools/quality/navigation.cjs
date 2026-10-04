@@ -7,7 +7,10 @@ async function ready(page,route){
   await page.waitForFunction(route=>document.body.dataset.page===route&&!document.querySelector('#site-content').hasAttribute('aria-busy'),route,{polling:40,timeout:6000});
 }
 async function settled(page){
-  await page.waitForFunction(()=>document.querySelector('.space-scene').dataset.travel==='settled',null,{polling:50,timeout:4000});
+  await page.waitForFunction(()=>{
+    const scene=document.querySelector('.space-scene');
+    return scene.dataset.travel==='settled'&&scene.dataset.route===document.body.dataset.page;
+  },null,{polling:50,timeout:4000});
 }
 async function click(page,route){await page.locator(selector(route)).first().evaluate(el=>el.click());await ready(page,route);}
 function timingProbe(){

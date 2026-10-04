@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "6e86c2be925cbf7e48be7cc9917880abbed989084829d44b51d59ab1c77f2a7c",
+    "digest": "a6f3ead5fe698a509493bf78f6375a0ba1312cd8dfcff3d4e4512331dfba8197",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -526,7 +526,7 @@
       {
         "path": "review/site-surface-review-20261004/REPORT.md",
         "identity_mode": "content",
-        "sha256": "f6cd7dc157e82f6d8303a37d53a9374f0ce15729b90be39e7389724a8a3f6345"
+        "sha256": "1ef87765871ead611b872578f240faf607b02bf805ee3f00aeb2e2d420a67824"
       },
       {
         "path": "review/site-v1-20261001-credits-day.html",
