@@ -41,3 +41,29 @@ path/type/hash; the existing independent-review requirement remains open.
 Staging remains unconfigured as stated by the maintainer. No provider, production,
 domain, payment or merge action occurred. Physical iOS/Android and independent
 review are outstanding; Playwright engines and mobile viewports are not substitutes.
+
+## Measured follow-up
+
+Full run 37167660501 on `f3845c52` passed Linux functional/navigation, macOS
+WebKit functional/navigation, static/security, captures/contrast and all 15 motion
+profiles plus the 300-second soak. It failed Windows Firefox desktop navigation
+and mobile Lighthouse TBT. These failures were not waived or inherited from an
+earlier source. The native Firefox diagnostic run 37168421188 on `d38a3f5`
+identified a device-quality hold during a long backward flight, leaving travel
+marked flying. The raw Home mobile LHR exposed a 302ms scene-construction task.
+
+The follow-up builds each repeated symbol/detail template once, indexes its local
+vertices once and transforms shared vertices per instance. All five full/compact
+worlds were compared to the prior producer: every face/line coordinate and face
+tint stays equal within floating-point tolerance. This removes repeated model
+construction without reducing motif families, recursive depth or the visible
+composition. A device hold during an explicit route flight completes one still
+destination paint and stops; user Off, hidden and print retain exact-frame pause.
+A synthetic overloaded long-flight regression verifies arrival, unchanged ambient
+phase, one final paint and zero pending frames. Existing idle-hold tests remain.
+
+History entries also save a debounced last reading position; the browser matrix
+now checks Back/Forward scroll restoration as a required navigation result.
+The bounded native Firefox diagnostic is supplemental; it does not replace the
+full platform/performance gate. Final exact-source results belong in PR #10 and
+the owning issues after CI completes.

@@ -217,6 +217,17 @@ test("severe hold is bounded, preserves preference, and explicit On retries at t
   p.paintCost(5);p.click();p.settle();assert.equal(p.stored(),"on");assert.equal(p.button["aria-pressed"],"true");assert.equal(p.button.textContent,"Motion: on");assert.ok(p.pending.size>0);assert.equal(p.canvas.width,1440);
   assert.ok(p.phase()>phase);assert.equal(p.trace(),fixed);
 });
+test("device overload during a long route flight finishes with one still destination paint",()=>{
+  const p=visit({paintCost:100,saved:"on"});
+  advanceUntil(p,()=>p.scene.dataset.quality==="2","reach low tier before travelling");
+  p.window.SiteScene.navigate("credits");
+  for(let i=0;i<30&&p.scene.dataset.quality!=="still";i++)p.frame(300);
+  assert.equal(p.scene.dataset.quality,"still");assert.equal(p.scene.dataset.travel,"flying");
+  const phase=p.phase(),draws=p.draws();p.frame(300);
+  assert.equal(p.scene.dataset.travel,"settled");assert.equal(p.phase(),phase);
+  assert.deepEqual(JSON.parse(p.trace()),model.routePose("credits",model.poses.network));
+  assert.equal(p.draws(),draws+1);assert.equal(p.pending.size,0);assert.equal(p.stored(),"on");
+});
 
 test("camera convergence depends on elapsed time, not the RAF frequency",()=>{
   const target=model.poses.closing,from=model.poses.overview,poses=[];

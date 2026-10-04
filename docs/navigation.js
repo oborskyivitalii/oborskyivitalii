@@ -6,7 +6,7 @@
   const embedded=bundle?JSON.parse(bundle.textContent):null;
   const entry=new URL(window.location.href);
   const directory=new URL(".",entry);
-  let page=document.body.dataset.page,serial=0,request=null,effect=null;
+  let page=document.body.dataset.page,serial=0,request=null,effect=null,scrollSave=null;
   if(!routes.includes(page)||!window.fetch||!window.DOMParser||!window.history.pushState)return;
   const cache=new Map();
   const content=document.createElement("div");content.id="site-content";
@@ -40,7 +40,7 @@
     try{history.replaceState({...history.state,site:{page,scroll:[window.scrollX,window.scrollY]}},"",window.location.href);}catch{/* Native navigation still works. */}
   }
   function push(url) {
-    save();history.pushState({site:{page,scroll:[0,0]}},"",url);
+    save();history.pushState({site:{page,scroll:[window.scrollX,window.scrollY]}},"",url);
   }
   async function read(next,signal) {
     if(cache.has(next))return cache.get(next);
@@ -147,6 +147,12 @@
   document.addEventListener("visibilitychange",()=>{if(document.hidden)finishText();});
   window.addEventListener("beforeprint",finishText);
   window.addEventListener("pagehide",save);
+  // One write after a gesture preserves Forward as well as Back without
+  // flooding history APIs or adding an idle timer / another RAF scheduler.
+  window.addEventListener("scroll",()=>{
+    window.clearTimeout(scrollSave);
+    scrollSave=window.setTimeout(()=>{scrollSave=null;if(!request&&routeFor(new URL(window.location.href))===page)save();},350);
+  },{passive:true});
   window.addEventListener("site:motion-preference",()=>{if(!motionAllowed())finishText();});
   window.SiteNavigation={push};
   const first=embedded?routeFor(new URL(window.location.href)):page;

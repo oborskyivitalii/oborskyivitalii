@@ -1,7 +1,7 @@
 'use strict';
 const assert=require('node:assert/strict');
 const routes=['index','research','writing','talks','credits'];
-const checks=['persistentShell','fiveRoutes','metadata','forward','backward','history','archiveLifecycle','rapidNavigation','off','reduced','fetchFallback'];
+const checks=['persistentShell','fiveRoutes','metadata','forward','backward','history','historyScroll','archiveLifecycle','rapidNavigation','off','reduced','fetchFallback'];
 const selector=route=>`a[href="${route==='index'?'./':route+'.html'}"]`;
 async function ready(page,route){
   await page.waitForFunction(route=>document.body.dataset.page===route&&!document.querySelector('#site-content').hasAttribute('aria-busy'),route,{polling:40,timeout:6000});
@@ -33,6 +33,11 @@ async function scenario(browser,url,s){
     Object.assign(result.checks,{persistentShell:true,fiveRoutes:true,metadata:true,forward:true});
     await click(page,'index');await settled(page);assert.equal(await page.locator('.space-scene').getAttribute('data-camera'),initial);assert.equal(await page.locator('.space-scene').getAttribute('data-direction'),'backward');result.checks.backward=true;
     await page.goBack();await ready(page,'credits');await settled(page);await page.goForward();await ready(page,'index');await settled(page);result.checks.history=true;
+    await click(page,'research');await settled(page);await page.evaluate(()=>scrollTo({top:400,behavior:'instant'}));
+    await page.waitForFunction(()=>scrollY>0&&history.state?.site?.scroll?.[1]===scrollY,null,{polling:50,timeout:2000});
+    const position=await page.evaluate(()=>scrollY);
+    await page.goBack();await ready(page,'index');await settled(page);await page.goForward();await ready(page,'research');await settled(page);
+    assert.equal(await page.evaluate(()=>scrollY),position,'Forward restores the last reading position');result.checks.historyScroll=true;
     await page.locator('#space-motion').evaluate(el=>el.click());
     for(const route of ['writing','research','writing'])await click(page,route);
     await page.locator('#archive-topic').selectOption('systems');await page.locator('#archive-language').selectOption('uk');

@@ -89,6 +89,7 @@
   // Immutable geometry is built once; every animated pose is evaluated from it.
   function worldFor(page,compact=false) {
     const faces=[],lines=[],objects=[];
+    const templates=new Map();
     const rotate=(p,r)=>{
       let [x,y,z]=p,[a,b,c]=r;
       [y,z]=[y*Math.cos(a)-z*Math.sin(a),y*Math.sin(a)+z*Math.cos(a)];
@@ -98,7 +99,11 @@
     let detail=0,metadata={};
     function object(name,center,rotation,scale,band,build) {
       const firstFace=faces.length,firstLine=lines.length;
-      const point=p=>add(center,rotate(p.map(v=>v*scale),rotation));
+      const key=metadata.symbol+":"+detail;
+      if(templates.has(key)){instance(templates.get(key));return;}
+      // Build each symbol/detail vocabulary once in local coordinates. Every
+      // repetition transforms its shared vertices once, not once per facet.
+      const point=p=>p;
       const face=(points,color="cyan",tone=.2,edge=.36,closed=false)=>faces.push({points:points.map(point),color,band,opacity:1,tone,edgeAlpha:edge,object:name,...(compact&&closed?{oneSided:true}:{})});
       const line=(a,b,color="cyan",alpha=.58,width=1)=>lines.push({a:point(a),b:point(b),color,band,opacity:alpha,width,object:name});
       const path=(points,color="cyan",alpha=.58,width=1)=>{for(let i=1;i<points.length;i++)if(!compact||!points[i].every((v,j)=>v===points[i-1][j]))line(points[i-1],points[i],color,alpha,width);};
@@ -131,7 +136,18 @@
         if(text)for(let row=0;row<(compact&&detail?2:6);row++){const y=h*.28-row*h*.095;line(add(at(-w*.32,y),[0,0,.015]),add(at(w*(row===5? .03: .29),y),[0,0,.015]),color,row===0? .48: .2,row===0?1.5: .8);}
       };
       build({face,line,path,poly,box,ring,ball,paper});
-      objects.push({name,center,scale,band,...metadata,firstFace,faceCount:faces.length-firstFace,firstLine,lineCount:lines.length-firstLine});
+      const template={faces:faces.splice(firstFace),lines:lines.splice(firstLine),points:[]},lookup=new Map();
+      const index=p=>{const key=p.join(",");if(!lookup.has(key)){lookup.set(key,template.points.length);template.points.push(p);}return lookup.get(key);};
+      for(const f of template.faces)f.indices=f.points.map(index);
+      for(const line of template.lines)line.indices=[index(line.a),index(line.b)];
+      template.radius=Math.max(...template.points.map(p=>Math.hypot(...p)));
+      templates.set(key,template);instance(template);
+      function instance(template) {
+        const points=template.points.map(p=>add(center,rotate(p.map(v=>v*scale),rotation)));
+        for(const f of template.faces)faces.push({...f,points:f.indices.map(i=>points[i]),band,object:name});
+        for(const line of template.lines)lines.push({...line,a:points[line.indices[0]],b:points[line.indices[1]],band,object:name});
+        objects.push({name,center,scale,band,...metadata,firstFace,faceCount:template.faces.length,firstLine,lineCount:template.lines.length,points,radius:template.radius*scale+2.3});
+      }
     }
     const bookHalf=({face,line,path},sign,n,rows,segments)=>{
         const at=(t,y,leaf)=>[sign*t*2.65,y,.58*t+.3*Math.sin(t*Math.PI)-leaf*.062];
@@ -359,15 +375,6 @@
     }
     const light=normalize([-.55,.85,1]);
     for(const f of faces)prepareFace(f,light);
-    // Index shared vertices once; adjacent facets reuse one transformation.
-    for(const o of objects) {
-      const points=[],lookup=new Map();
-      const index=p=>{const key=p.join(",");if(!lookup.has(key)){lookup.set(key,points.length);points.push(p);}return lookup.get(key);};
-      for(let i=o.firstFace;i<o.firstFace+o.faceCount;i++)faces[i].indices=faces[i].points.map(index);
-      for(let i=o.firstLine;i<o.firstLine+o.lineCount;i++)lines[i].indices=[index(lines[i].a),index(lines[i].b)];
-      o.points=points;
-      o.radius=Math.max(...points.map(p=>Math.hypot(...sub(p,o.center))))+2.3;
-    }
     return {faces,lines,objects};
   }
   function prepareFace(f,light) {
@@ -692,7 +699,14 @@
     if(cost>25){slow++;fast=0;}else if(cost<10){fast++;slow=Math.max(0,slow-1);}else{slow=Math.max(0,slow-1);fast=0;}
     if(time-lastQualityChange<2500)return;
     if(slow>=8 && tier<2){tier++;slow=fast=0;lastQualityChange=time;ratio=pixelRatio();}
-    else if(slow>=16 && tier===2 && cost>50){hold=true;cancel();updateControl();}
+    else if(slow>=16 && tier===2 && cost>50){
+      const arrival=journey?.to;
+      hold=true;cancel();
+      // A device hold completes an explicitly requested route with one still
+      // destination paint. User Off/hidden/print still freeze the exact frame.
+      if(arrival){current=arrival;journey=null;schedule();}
+      updateControl();
+    }
     else if(fast>=100 && tier>0){tier--;ratio=pixelRatio();slow=fast=0;lastQualityChange=time;}
     scene.dataset.quality=hold?"still":String(tier);
   }
