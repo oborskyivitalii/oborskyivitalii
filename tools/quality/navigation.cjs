@@ -82,11 +82,13 @@ async function scenario(browser,url,s){
           if(kind==='print')dispatchEvent(new Event('beforeprint'));
           if(kind==='hidden'){Object.defineProperty(document,'hidden',{configurable:true,value:true});document.dispatchEvent(new Event('visibilitychange'));}
         });observer.observe(scene,{attributes:true,attributeFilter:['data-progress']});
-        document.querySelector('header a[href="writing.html"]').click();
+        const link=document.querySelector('header a[href="writing.html"]'),href=link.getAttribute('href');
+        if(kind==='print')link.setAttribute('href','writing.html?topic=systems');
+        link.click();link.setAttribute('href',href);
       },kind);
       await ready(page,'writing');
       assert.equal(await page.locator('#site-content').evaluate(el=>el.inert||getComputedStyle(el).opacity!=='1'),false);
-      if(kind==='print'){assert.equal(await page.locator('li.publication:visible').count(),27);await page.evaluate(()=>dispatchEvent(new Event('afterprint')));}
+      if(kind==='print'){assert.equal(await page.locator('li.publication:visible').count(),27);await page.evaluate(()=>dispatchEvent(new Event('afterprint')));assert.ok(await page.locator('li.publication:visible').count()<27);}
       if(kind==='hidden')await page.evaluate(()=>{delete document.hidden;document.dispatchEvent(new Event('visibilitychange'));});
       if(kind==='off')await page.locator('#space-motion').evaluate(el=>el.click());
       await click(page,'talks');await settled(page);

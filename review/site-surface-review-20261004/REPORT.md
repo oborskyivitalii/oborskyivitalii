@@ -17,6 +17,7 @@ this presentation/runtime scope; no publication claim or edition changes.
 | Hard text-panel edges | Reading surfaces use a flat 86–91% paper rectangle | Feather only the backdrop beyond the protected text area, with static gradient masks; preserve glyph opacity and visible scene |
 | Text arrives before camera | Research fully visible at796ms while scene still flying; independent150/480ms text timers | Renderer reports progress after successful paints; exit0–18%, hidden18–72%, entry72–100%; no extra timer/RAF |
 | Forward loses early scrolling | Scroll400 immediately after page-ready; after750ms history still stores0 | Save matching rendered route positions during flight and after completion; reject saves into a different pending history route |
+| Reduced-motion event race | A route can be requested after the media query changes but before its queued event; cancelled flight stays frozen as flying | Read current media state before travel and avoid cancelling an already stationary route on the redundant event |
 | New main requires renewed resize observation | Persistent observer previously bound before content replacement | Reattach on route refresh; disconnect the previous main |
 
 The text transition follows actual painted progress, not wall time. Capped frame
@@ -50,10 +51,14 @@ maintained gate; existing performance/security thresholds are unchanged.
 ## Acceptance checklist
 
 - [ ] All Node/Python, lint/security/advisory, export/SEO/RI checks.
-- [ ] Current all-page Day/Night desktop/mobile and tablet edge/contrast review.
+- [x] Thirty local Day/Night opening views at390/1024/1440px; no overflow.
+  Mobile decoration containment was corrected after the first candidate exposed
+  a24px overflow; a specific display-contents pseudo-element override and a
+  clipped body formatting context keep feathers outside the scrollable area.
+  Contrast is repeated on the final source by CI.
 - [ ] Three-engine and native-OS functional/navigation cases.
 - [ ]30 startup runs,15 sustained profiles,30 flights and300s soak.
-- [ ] Five updated standalone HTMLs verified in isolated file navigation.
+- [x] Five updated standalone HTMLs pass isolated Chromium navigation/filter/reload.
 - [ ] Independent review, physical iOS/Android and actual hosted-origin evidence.
 
 This is implementer review, not an independent security certificate. The full

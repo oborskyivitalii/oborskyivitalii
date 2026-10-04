@@ -766,7 +766,7 @@
   function preferenceChanged() {
     const was=enabled;enabled=choice!=="off" && !reduced.matches;
     if(enabled&&!was)lastFrame=null;
-    if(!enabled)cancel();else if(!was)moveTo(page==="writing" && !bounds?pathPose():scrollPose());
+    if(!enabled){if(was)cancel();}else if(!was)moveTo(page==="writing" && !bounds?pathPose():scrollPose());
     updateControl();schedule();
     if(window.dispatchEvent)window.dispatchEvent(new CustomEvent("site:motion-preference"));
   }
@@ -807,9 +807,11 @@
   const observer=window.ResizeObserver?new window.ResizeObserver(resize):null;
   observer?.observe(document.querySelector("main"));
   window.SiteScene={
-    canTravel:()=>initialized&&!failed&&enabled&&!hold&&!printing&&!document.hidden,
+    canTravel:()=>initialized&&!failed&&enabled&&!reduced.matches&&!hold&&!printing&&!document.hidden,
     navigate(next,animate=true,update=null){
       if(!owns(initialPoses,next))return;
+      // Media-query state can change before its queued change event is delivered.
+      if(reduced.matches&&enabled){enabled=false;cancel();updateControl();}
       const from=displayedCamera;page=next;focus="all";localProgress=0;writingAnchor=null;
       world=roomFor(page).world;measure();
       const target=pose(initialPoses[page]);

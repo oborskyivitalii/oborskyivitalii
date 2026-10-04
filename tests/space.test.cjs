@@ -335,3 +335,12 @@ test("travel progress is emitted with the displayed camera, retargets cleanly an
   p.window.SiteScene.navigate("index",true,value=>next.push(value));p.drawingFault();p.frame(80);
   assert.equal(next.at(-1),1);assert.equal(p.pending.size,0);
 });
+
+test("a route chosen before the reduced-motion change event paints its static arrival",()=>{
+  const p=visit();p.settle();p.media.matches=true;
+  assert.equal(p.window.SiteScene.canTravel(),false);
+  p.window.SiteScene.navigate("research");p.media.change();p.settle();
+  assert.equal(p.scene.dataset.travel,"settled");
+  assert.deepEqual(JSON.parse(p.trace()),model.routePose("research",model.poses[model.initialPoses.research]));
+  assert.equal(p.pending.size,0);
+});
