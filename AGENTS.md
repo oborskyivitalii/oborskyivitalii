@@ -1,5 +1,18 @@
 # Agent guidance for personal publications
 
+## Analytics preparation and production host — 2026-10-04
+
+The maintainer selects GitHub Pages for production and authorizes preparing
+analytics before the first release under #8. Read [SITE-ANALYTICS](SITE-ANALYTICS.md).
+The focused branch `work/site-analytics-20261004` stacks on PR #16's frozen
+`4d4c609`; preserve #10 and every #13 gate/budget. The shared Cloudflare adapter
+is disabled until the owner supplies an actual production URL and public site
+token. Staging/account setup, activation, merge and all publication remain paused.
+Optional Google verification is only a prepared source field; no property/data
+is claimed. Controlled enabled-source/vendor-stub tests do not establish actual
+reported counts, query-filter behavior or hosted SDK performance. Offline review
+exports must strip tracking; production changes require exact-artifact checks.
+
 ## Engine execution and publication pause — 2026-10-04
 
 The maintainer explicitly authorizes execution of the engine plan and Writing

@@ -1,5 +1,15 @@
 # Browser staging — Sol implementation plan
 
+## Production measurement isolation — 2026-10-04
+
+Production is selected as GitHub Pages; Cloudflare Pages remains future staging.
+[SITE-ANALYTICS](SITE-ANALYTICS.md) documents the prepared production-only adapter.
+Its exact-origin/path guard excludes staging aliases and immutable snapshot URLs;
+review exports strip it. Keep provider-side automatic analytics injection off.
+No account/host is configured and all publication is still paused. When staging
+is later authorized, assert that actual responses/navigation make no beacon
+request; do not infer this hosted result from the controlled fixture alone.
+
 ## Execution and publication pause — 2026-10-04
 
 The maintainer now authorizes the engine/content plan and Writing fix under

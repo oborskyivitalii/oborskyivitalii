@@ -94,7 +94,20 @@ function functional(r,platform,engines,smoke){
     functionalChecks(mode,route,row.checks);
   }
   navigation(r,engines);
+  analytics(r,engines);
   return true;
+}
+function analytics(r,engines) {
+  const fixture=require('./analytics-browser.cjs');
+  assert.equal(r.analytics?.length,engines.length*12,'missing enabled analytics fixture matrix');
+  unique(r.analytics,row=>`${row.engine}/${row.entry}/${row.mode}`);
+  for(const engine of engines)for(const expected of fixture.cases(engine)) {
+    const row=r.analytics.find(row=>row.engine===engine&&row.entry===expected.entry&&row.mode===expected.mode);
+    assert.ok(row,'missing analytics fixture case');assert.equal(row.model,fixture.model);assert.equal(row.pass,true,row.error);assert.deepEqual(row.errors,[]);assert.deepEqual(row.externalRequests,[]);
+    for(const key of fixture.checks)assert.equal(row.checks?.[key],true,'missing analytics '+key);
+    assert.equal(row.vendorRequests?.length,['staging','offline'].includes(row.mode)?0:2,'unexpected vendor load count');
+    for(const url of row.vendorRequests)assert.equal(url,'https://static.cloudflareinsights.com/beacon.min.js');
+  }
 }
 function navigation(r,engines) {
   assert.equal(r.navigation?.length,engines.length*4,'missing navigation matrix');

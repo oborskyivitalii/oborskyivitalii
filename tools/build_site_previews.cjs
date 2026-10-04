@@ -4,13 +4,14 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const { createHash } = require("node:crypto");
+const { stripForPreview } = require("./site/analytics.cjs");
 const root = path.resolve(__dirname, "..");
 const galleryFilename="site-v1-20261004-v11-index.html";
 const pages = ["index", "research", "writing", "talks", "credits"];
 const themes = { light: "day", dark: "night" };
 const controlPattern = /<label class="theme-control" hidden>[\s\S]*?<\/label>/g;
 function sourceForPreview(source) {
-  return source.replace(/\b(href|src)="(runtime|media)\/[a-f0-9]{64}\/([^"]+)"/g,(_,attribute,kind,name)=>`${attribute}="${kind==='media'?'assets/':''}${name}"`);
+  return stripForPreview(source).replace(/\b(href|src)="(runtime|media)\/[a-f0-9]{64}\/([^"]+)"/g,(_,attribute,kind,name)=>`${attribute}="${kind==='media'?'assets/':''}${name}"`);
 }
 
 function filename(page, theme) {
@@ -159,7 +160,7 @@ function buildPreviews() {
     sources,
     evidence,
     files: Object.fromEntries(Object.entries(files).map(([file, content]) => [file, digest(content)])),
-    transformations: "All copies inline exact CSS/WebP, retain JSON-LD/main text/external edition URLs and remap navigation; noindex review notices. Ten fixed-theme copies remove scripts and unavailable controls. Five interactive copies inline exact theme/space/archive/navigation scripts and inert all-route data; originally deferred scripts execute after the DOM. Interactive copies link fixed Day/Night alternatives. Neither export is browser QA.",
+    transformations: "All copies strip optional analytics and Search Console verification, inline exact CSS/WebP, retain JSON-LD/main text/external edition URLs and remap navigation; noindex review notices. Ten fixed-theme copies remove scripts and unavailable controls. Five interactive copies inline exact theme/space/archive/navigation scripts and inert all-route data; originally deferred scripts execute after the DOM. Interactive copies link fixed Day/Night alternatives. Neither export is browser QA.",
   }, null, 2) + "\n";
   return files;
 }
