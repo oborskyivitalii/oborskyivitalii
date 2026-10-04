@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "86ce332bf8db79700c7ee38316210fbbf2227d4f915ca6b3e1366b979cef8d3d",
+    "digest": "c737f917039f67b808e1b60d2d5096875402ce18f45a9b6728bbedd63208f87c",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -526,7 +526,7 @@
       {
         "path": "review/site-surface-review-20261004/REPORT.md",
         "identity_mode": "content",
-        "sha256": "5b8b23940744cd964e25054547e0d8535130be65c91e41bbf61cbfbc82e98ef5"
+        "sha256": "f2e71ec801e28d5c94b038bec15abe289874e2efe74db2a0d3a375d2794eaa2b"
       },
       {
         "path": "review/site-v1-20261001-credits-day.html",
@@ -2060,7 +2060,7 @@
       {
         "path": "review/site-v1-offline-bundle-v11.json",
         "identity_mode": "content",
-        "sha256": "b4a3dbaf2a61d0a8f9a0f6e8833f8046f15a77513ab5f0e8852aa5632722a097"
+        "sha256": "b4e607d3289ceb97b87f11abb9e96453ec8faaf67b3124c7e34a482a70696a6f"
       },
       {
         "path": "review/site-v1-offline-bundle-v3.json",
@@ -2114,7 +2114,7 @@
       {
         "path": "review/site-v1-static-previews-v11.json",
         "identity_mode": "content",
-        "sha256": "002820f59a790a9e4b43e09a5952e5d4c6a6c5b8b96c45a3f20ee9f9c4c64dfb"
+        "sha256": "11fa44a036ee7a52f512a9d303bf48b13223707e5cfc8d1b04063afda6c04c9c"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -2534,7 +2534,7 @@
       {
         "path": "tools/quality/secrets-baseline.json",
         "identity_mode": "content",
-        "sha256": "4802aa67226a067bb71850cf10e5673274a20ee69f36f94d0023ca8a65592a47"
+        "sha256": "2f38da433e827b28680114a30d29afff6dc515b8d21434826323aef32ec11c4c"
       },
       {
         "path": "tools/quality/security-rules.yml",

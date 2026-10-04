@@ -17,6 +17,7 @@ this presentation/runtime scope; no publication claim or edition changes.
 | Hard text-panel edges | Reading surfaces use a flat 86–91% paper rectangle | Feather only the backdrop beyond the protected text area, with static gradient masks; preserve glyph opacity and visible scene |
 | Text arrives before camera | Research fully visible at796ms while scene still flying; independent150/480ms text timers | Renderer reports progress after successful paints; exit0–18%, hidden18–72%, entry72–100%; no extra timer/RAF |
 | Forward loses early scrolling | Scroll400 immediately after page-ready; after750ms history still stores0 | Save matching rendered route positions during flight and after completion; reject saves into a different pending history route |
+| Retargeting flashes hidden text | A second route request cleared the in-flight opacity before starting its next departure | Preserve the displayed departure opacity, including zero; same-route cancellation uses the common flight lifecycle |
 | Reduced-motion event race | A route can be requested after the media query changes but before its queued event; cancelled flight stays frozen as flying | Read current media state before travel and avoid cancelling an already stationary route on the redundant event |
 | New main requires renewed resize observation | Persistent observer previously bound before content replacement | Reattach on route refresh; disconnect the previous main |
 

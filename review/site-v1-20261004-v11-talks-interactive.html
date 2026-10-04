@@ -1473,7 +1473,7 @@ body[data-page="writing"] .publication {--reading-alpha:var(--surface-row)}
   function motionAllowed() {
     return !document.hidden && window.SiteScene?.canTravel()===true;
   }
-  function flight(next,animate,commit,own) {
+  function flight(next,animate,commit,own,departure) {
     return new Promise((resolve,reject)=>{
       let mounted=false;
       transition=progress=>{
@@ -1483,7 +1483,7 @@ body[data-page="writing"] .publication {--reading-alpha:var(--surface-row)}
           // Smooth exit, empty tunnel, then arrival. No independent clock/RAF.
           const t=progress<.18?progress/.18:Math.max(0,(progress-.72)/.28);
           const eased=t*t*(3-2*t);
-          content.style.opacity=String(progress<.18?1-eased:eased);
+          content.style.opacity=String(progress<.18?departure*(1-eased):eased);
           content.style.transform="translateY("+(progress<.18?-10*eased:12*(1-eased))+"px)";
           if(progress===1){clearText();transition=null;resolve();}
         }catch(error){window.SiteScene?.detachTravel();transition=null;reject(error);}
@@ -1516,7 +1516,9 @@ body[data-page="writing"] .publication {--reading-alpha:var(--surface-row)}
   }
   async function navigate(url,{pop=false,position=null,initial=false}={}) {
     const next=routeFor(url);if(!next)return;
+    const departure=Number(content.style.opacity||1);
     const own=++serial;interrupt();
+    content.style.opacity=String(departure);content.inert=departure<1;
     const controller=new AbortController();request=controller;
     const timeout=window.setTimeout(()=>controller.abort(),8000);
     content.setAttribute("aria-busy","true");
@@ -1526,10 +1528,10 @@ body[data-page="writing"] .publication {--reading-alpha:var(--surface-row)}
       const animate=!initial&&motionAllowed();
       await flight(next,animate,()=>{
         const destination=address(url,next);
-        if(!pop&&!initial){save();history.pushState({site:{page:next,scroll:[0,0]}},"",destination);}
+        if(!pop&&!initial&&destination.href!==window.location.href){save();history.pushState({site:{page:next,scroll:[0,0]}},"",destination);}
         else if(initial)history.replaceState({site:{page:next,scroll:[0,0]}},"",destination);
         mount(data,destination,position);
-      },own);
+      },own,departure);
       if(own===serial){content.querySelector("main").focus({preventScroll:true});announcement.textContent=data.title;save();}
     } catch {
       if(own===serial)window.location.assign(address(url,next).href);
@@ -1545,6 +1547,7 @@ body[data-page="writing"] .publication {--reading-alpha:var(--surface-row)}
     if(event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey||!link||link.hasAttribute("download")||(link.target&&link.target!=="_self"))return;
     const url=new URL(link.href,window.location.href),next=routeFor(url);
     if(!next)return;
+    if(next===page&&request){event.preventDefault();navigate(url);return;}
     if(next===page){
       ++serial;if(interrupt())window.SiteScene?.navigate(page,motionAllowed());
       if(link.getAttribute("href").startsWith("#"))return;
@@ -1558,7 +1561,7 @@ body[data-page="writing"] .publication {--reading-alpha:var(--surface-row)}
   });
   window.addEventListener("popstate",event=>{
     const url=new URL(window.location.href),next=routeFor(url);
-    if(next&&next!==page)navigate(url,{pop:true,position:event.state?.site?.scroll||null});
+    if(next&&(next!==page||request))navigate(url,{pop:true,position:event.state?.site?.scroll||null});
     else {++serial;if(interrupt())window.SiteScene?.navigate(page,motionAllowed());if(event.state?.site?.scroll)window.scrollTo({left:event.state.site.scroll[0],top:event.state.site.scroll[1],behavior:"instant"});}
   });
   function finishText(){window.SiteScene?.detachTravel();transition?.(1);transition=null;clearText();}

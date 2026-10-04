@@ -1,7 +1,7 @@
 'use strict';
 const assert=require('node:assert/strict');
 const routes=['index','research','writing','talks','credits'];
-const checks=['persistentShell','fiveRoutes','metadata','forward','backward','history','historyScroll','archiveLifecycle','rapidNavigation','off','reduced','fetchFallback','headerEdges','flightTiming','earlyScroll','interruptions'];
+const checks=['persistentShell','fiveRoutes','metadata','forward','backward','history','historyScroll','archiveLifecycle','rapidNavigation','off','reduced','fetchFallback','headerEdges','flightTiming','earlyScroll','interruptions','retargetOpacity'];
 const selector=route=>`a[href="${route==='index'?'./':route+'.html'}"]`;
 async function ready(page,route){
   await page.waitForFunction(route=>document.body.dataset.page===route&&!document.querySelector('#site-content').hasAttribute('aria-busy'),route,{polling:40,timeout:6000});
@@ -71,6 +71,13 @@ async function scenario(browser,url,s){
     await page.locator('#space-motion').evaluate(el=>el.click());
     await page.evaluate(()=>{document.querySelector('header a[href="research.html"]').click();document.querySelector('header a[href="writing.html"]').click();document.querySelector('header a[href="talks.html"]').click();});
     await ready(page,'talks');await settled(page);await page.waitForTimeout(200);assert.equal(await page.locator('body').getAttribute('data-page'),'talks');result.checks.rapidNavigation=true;
+    await page.locator(selector('research')).first().evaluate(el=>el.click());
+    await page.waitForFunction(()=>document.querySelector('.space-scene').dataset.travel==='flying'&&Number(document.querySelector('.space-scene').dataset.progress)>.3);
+    await page.evaluate(()=>{window.__flightSamples=[];document.querySelector('header a[href="writing.html"]').click();});
+    await ready(page,'writing');await settled(page);
+    const retarget=await page.evaluate(()=>window.__flightSamples.filter(x=>x.progress<.18));
+    assert.ok(retarget.length>0);assert.ok(retarget.every(x=>x.opacity===0),'hidden text stays hidden when retargeting');
+    result.checks.retargetOpacity=true;await click(page,'talks');await settled(page);
     // Exit/arrival interruptions must leave readable, interactive destination content.
     for(const kind of ['off','print','hidden']){
       await page.evaluate(kind=>{
