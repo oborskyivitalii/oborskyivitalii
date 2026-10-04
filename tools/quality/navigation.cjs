@@ -101,7 +101,10 @@ async function scenario(browser,url,s){
       await click(page,'talks');await settled(page);
     }
     result.checks.interruptions=true;
-    await page.emulateMedia({reducedMotion:'reduce'});await click(page,'research');await settled(page);const reduced=await page.locator('.space-scene').getAttribute('data-camera');await page.waitForTimeout(220);assert.equal(await page.locator('.space-scene').getAttribute('data-camera'),reduced);assert.match(await page.locator('#space-motion').textContent(),/reduced/);result.checks.reduced=true;
+    await page.emulateMedia({reducedMotion:'reduce'});
+    // Browser protocol acknowledgement can precede the page's media-query update.
+    await page.waitForFunction(()=>matchMedia('(prefers-reduced-motion: reduce)').matches&&document.querySelector('#space-motion').textContent==='Motion: reduced',null,{polling:40,timeout:2000});
+    await click(page,'research');await settled(page);const reduced=await page.locator('.space-scene').getAttribute('data-camera');await page.waitForTimeout(220);assert.equal(await page.locator('.space-scene').getAttribute('data-camera'),reduced);assert.match(await page.locator('#space-motion').textContent(),/reduced/);result.checks.reduced=true;
     // An uncached fetch fails once, then the ordinary destination document opens.
     await page.goto(url+'/index.html');
     await page.route('**/research.html',route=>route.request().resourceType()==='fetch'?route.fulfill({status:503,contentType:'text/plain',body:'Controlled unavailable route'}):route.continue());

@@ -25,6 +25,10 @@ The text transition follows actual painted progress, not wall time. Capped frame
 steps therefore delay both the camera and text together during stalls. Destination
 content mounts while hidden; header remains usable. Hidden/print/Off/reduced and
 render failure finish text immediately so content cannot remain invisible/inert.
+The browser test waits for the requested media preference to be applied before
+asserting a newly selected static route. Protocol acknowledgement alone can
+precede that update in WebKit; an actual mid-flight preference change correctly
+freezes the last displayed camera instead of requiring an arrival.
 Print explicitly prepares a newly mounted filtered Writing archive in the same
 print event. Rapid requests abort obsolete fetches and detach obsolete callbacks.
 
