@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "kind": "bounded implementer browser observations; not a reproduced freeze",
+  "date": "2026-10-04",
+  "sourceCommit": "da06b6d6e850b49d72d227045f3975213d177a25",
+  "surface": "delivered standalone HTML, served by an internal HTTP test fixture",
+  "browser": "Chrome; not the user's embedded ChatGPT browser",
+  "viewport": {
+    "height": 936,
+    "width": null
+  },
+  "writingArchiveBounds": {
+    "firstRowTop": 1102.21875,
+    "lastRowBottom": 5182.09375,
+    "start": 896.29875,
+    "end": 4976.17375
+  },
+  "observations": [
+    {
+      "state": "after Writing arrival",
+      "scrollY": 0,
+      "phase": 5373.3,
+      "position": [
+        5,
+        3,
+        -232
+      ],
+      "target": [
+        0,
+        0,
+        -261
+      ],
+      "motion": "on",
+      "hidden": false,
+      "quality": "0",
+      "cadence": 7.5,
+      "travel": "settled"
+    },
+    {
+      "state": "after native scroll",
+      "scrollY": 2146,
+      "phase": 9426.499999999996,
+      "position": [
+        -1.3961762896955412,
+        0.9217037375253392,
+        -257.60831111896294
+      ],
+      "target": [
+        -2.203742097574762,
+        1.101871048787381,
+        -283.6157832345224
+      ],
+      "motion": "on",
+      "hidden": false,
+      "quality": "0",
+      "cadence": 7.5,
+      "travel": "settled"
+    }
+  ],
+  "limitations": [
+    "A keyboard scroll attempt timed out; a later native scroll produced the observed second state.",
+    "Controlled first-small-gesture repeat was interrupted by test environment disconnection.",
+    "No exact user-device/browser version or stopped-ambient-frame reproduction.",
+    "Cadence metadata is not measured display FPS; no user-device performance claim."
+  ]
+}

@@ -1,5 +1,26 @@
 # Agent guidance for personal publications
 
+## Engine/content assessment and Writing intake — 2026-10-04
+
+The maintainer requests assessment and a detailed plan, not a runtime refactor.
+[#15](https://github.com/oborskyivitalii/oborskyivitalii/issues/15) owns
+[the staged engine/content plan](review/site-engine-plan-20261004/PLAN.md);
+read its [current-source assessment](review/site-engine-plan-20261004/ASSESSMENT.md)
+first. Planning is a separate Draft PR stacked on #10 so its completed runtime
+candidate is preserved. Diagnose the reported Writing first-scroll hesitation
+under #12/#14 before structural changes; it is not confirmed as a ChatGPT browser
+defect. The visible-archive camera mapping can explain an initial dead range,
+while ambient phase is independent. The controlled small-gesture repeat was
+interrupted by unavailable test execution, so keep the user report open.
+
+Proposed sequence: Writing diagnosis, source/template parity, engine/scene
+boundaries, dependency-aware HTML generation, coherent snapshot publishing.
+Existing shared JS/CSS/assets are already separate; HTML text edits do not
+require front-end compilation. Keep #5 as article/Quartz/PDF owner, #8 hosting,
+and every current #13 gate/budget. Partial generation is not permission to skip
+checks, patch live files or add a CMS. Plan acceptance, runtime implementation,
+independent/device/rights acceptance and publication remain distinct.
+
 ## Current surfaces / timing review — 2026-10-04
 
 The maintainer requests full-width header/soft reading edges and text tied to

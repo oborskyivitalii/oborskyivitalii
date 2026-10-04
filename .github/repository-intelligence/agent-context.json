@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "35a9c82c97698243e7741e84f855379d8d7db4a67aaf597eb7fc47bed9c98e59",
+    "digest": "49a0e82cca093757203e0667a51ffbe245366bbb9f4f734fab27132dc045015b",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -39,7 +39,7 @@
       {
         "path": ".github/repository-intelligence-config.json",
         "identity_mode": "content",
-        "sha256": "b8085835d7bbc208ae683badf4876e73adf7ee928068887c4d6b4a06dce403e8"
+        "sha256": "523825ace97db591c75c4e14f941eece6c489d556d4a7bee4da90bf0b83c21bd"
       },
       {
         "path": ".github/workflows/navigation.yml",
@@ -83,12 +83,12 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "9d3427e9722360a480aa8e3e0cbbcee4036a1746c7b4bcd1f91c4bd3704f3060"
+        "sha256": "abe57dd52859979b33b8242d9aa409aa43e29ab2a7cf5645fe02455235be9b77"
       },
       {
         "path": "BACKLOG.md",
         "identity_mode": "content",
-        "sha256": "d7e309b16c9e67a266dabeedeb98ca93b96d282e75d6b55ba7cd37b3f3b05442"
+        "sha256": "effe5f68f9d0963400fc14f195c870cd8d4ebea096d0ea013772b7e0e309dbe6"
       },
       {
         "path": "CONTRIBUTING.md",
@@ -123,7 +123,7 @@
       {
         "path": "SITE-ROADMAP.md",
         "identity_mode": "content",
-        "sha256": "43f3585be84b3dc42adfe6984b276628f01d31bbcfaa07e335ac58e6e29a37a1"
+        "sha256": "ab6c9af47dbc4cb1c848f2ec7640a0fee6dff8d185ad86149ffcd019abfa773e"
       },
       {
         "path": "SITE-SEO.md",
@@ -148,7 +148,7 @@
       {
         "path": "SOL-HANDOFF.md",
         "identity_mode": "content",
-        "sha256": "e148a9dc4286f7b853d0d98cdc900cfe1df3eb62d3945ccf2278e5a242ccf16a"
+        "sha256": "850f065e23b60d8ea33e441ce4c5299c20d3db910c8ffe2f381fe618cb0337bc"
       },
       {
         "path": "docs/.nojekyll",
@@ -492,6 +492,21 @@
         "path": "review/site-audit-v8-20261003/toolchain/requirements.txt",
         "identity_mode": "content",
         "sha256": "9de0b8b6d25edabdcb1959c07ff65c225e8f096a6eb0f128f51e7582d802e9a4"
+      },
+      {
+        "path": "review/site-engine-plan-20261004/ASSESSMENT.md",
+        "identity_mode": "content",
+        "sha256": "72f28abfe3031103fc5af9efa3a042786015f362e3e0201984d7dda541c31944"
+      },
+      {
+        "path": "review/site-engine-plan-20261004/BROWSER-OBSERVATIONS.json",
+        "identity_mode": "content",
+        "sha256": "f56e177fd86a397de6c376eb65f6db6282068e6a8dcd3a9fd288332d63990471"
+      },
+      {
+        "path": "review/site-engine-plan-20261004/PLAN.md",
+        "identity_mode": "content",
+        "sha256": "bc11baead3dc98710ac45b1bee89ba1fd8b97c931053062d53435ff161a7d7ec"
       },
       {
         "path": "review/site-engineering-v9-20261003/CHECKPOINT.md",
@@ -2608,7 +2623,7 @@
     "path": "tools/repository_intelligence.py",
     "sha256": "ed9d72444817b2c6f9f03bf908a28db6c5440dc540fc81f60df95cf9acf46e51",
     "config_path": ".github/repository-intelligence-config.json",
-    "config_sha256": "b8085835d7bbc208ae683badf4876e73adf7ee928068887c4d6b4a06dce403e8"
+    "config_sha256": "523825ace97db591c75c4e14f941eece6c489d556d4a7bee4da90bf0b83c21bd"
   },
   "owners": [
     {
@@ -2725,6 +2740,28 @@
         "repository intelligence",
         "RI adapter",
         "навігація репо"
+      ]
+    },
+    {
+      "concern": "static site engine, content and incremental generation plan",
+      "path": "review/site-engine-plan-20261004/PLAN.md",
+      "queries": [
+        "site engine",
+        "content assets separation",
+        "incremental publishing",
+        "двигун сайту",
+        "каркас і контент",
+        "інкрементальна генерація"
+      ]
+    },
+    {
+      "concern": "Writing first-scroll observation and current implementation assessment",
+      "path": "review/site-engine-plan-20261004/ASSESSMENT.md",
+      "queries": [
+        "Writing first scroll",
+        "stationary animation",
+        "анімація Writing",
+        "перший скрол"
       ]
     }
   ],
@@ -3188,6 +3225,27 @@
     {
       "path": "review/site-audit-v8-20261003/toolchain/requirements.txt",
       "title": "review/site-audit-v8-20261003/toolchain/requirements.txt",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-engine-plan-20261004/ASSESSMENT.md",
+      "title": "Оцінка каркаса, контенту та раннього скролу Writing",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-engine-plan-20261004/BROWSER-OBSERVATIONS.json",
+      "title": "review/site-engine-plan-20261004/BROWSER-OBSERVATIONS.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-engine-plan-20261004/PLAN.md",
+      "title": "План: статичний сайт із відокремленим двигуном і контентом",
       "instructions": [
         "AGENTS.md"
       ]

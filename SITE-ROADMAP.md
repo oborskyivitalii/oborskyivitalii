@@ -1,5 +1,20 @@
 # Vitalii Oborskyi — site and publishing roadmap
 
+## Engine/content assessment — 2026-10-04
+
+[#15](https://github.com/oborskyivitalii/oborskyivitalii/issues/15) records the
+maintainer's assessment/planning request. Read
+[the actual implementation assessment](review/site-engine-plan-20261004/ASSESSMENT.md)
+and [execution proposal](review/site-engine-plan-20261004/PLAN.md).
+The existing site already shares external JS/CSS/assets; proposed work extracts
+the repeated source shell/content and adds dependency-aware HTML generation.
+
+Diagnose Writing's first-scroll report under #12/#14 first, then stage template
+parity, engine/scenes separation and incremental generation. Hosting still uses
+a complete coherent tested snapshot under #8/#13. This is not a new prerequisite
+for the first site/article and does not replace #5's pinned article adapter.
+No refactor, relaxed checks, production publication or issue closure is claimed.
+
 ## Next approved site increment — 2026-10-03
 
 [#14](https://github.com/oborskyivitalii/oborskyivitalii/issues/14) owns
