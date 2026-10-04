@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "f4563f712a02a4cc230492931dc0cc525f5102e1e19f560025245581d610eb81",
+    "digest": "11fb61ccae44c7ecaa5be0f4f7b2eac542106e5f1bb160b9a32b3a6435062f89",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -507,6 +507,11 @@
         "path": "review/site-engineering-v9-20261003/INDEPENDENT-RUNTIME.md",
         "identity_mode": "content",
         "sha256": "4b4504040e5bb61c66529dbbff1b2425b5cd463743e6fa6e8269b1a3b52081cf"
+      },
+      {
+        "path": "review/site-navigation-v12-20261004/EXECUTION.md",
+        "identity_mode": "content",
+        "sha256": "1eb5e4ce344bb579ff73be773fda2ac2aead8d6820559a85298f64d83b9a8885"
       },
       {
         "path": "review/site-navigation-v12-20261004/TASKS.md",
@@ -2045,7 +2050,7 @@
       {
         "path": "review/site-v1-offline-bundle-v11.json",
         "identity_mode": "content",
-        "sha256": "c23bbe276faa43bec70b594090483399843823f94356cf41103fe030e1d8eaf6"
+        "sha256": "3804ecedacb38e8c6ea7e9e7bc962c41163c13d88d9ffd763cf81423cd9a1b5f"
       },
       {
         "path": "review/site-v1-offline-bundle-v3.json",
@@ -2099,7 +2104,7 @@
       {
         "path": "review/site-v1-static-previews-v11.json",
         "identity_mode": "content",
-        "sha256": "5e592f9917a90ccd78df5d49b5be2f69adeb0e6f8fcc3ee161c979b29a9f1771"
+        "sha256": "bd5275e16a91bba1ecf4b28fece279b9a4fea1cf48e29a9c1024414ecbf30133"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -2519,7 +2524,7 @@
       {
         "path": "tools/quality/secrets-baseline.json",
         "identity_mode": "content",
-        "sha256": "fe027d25f0d1bc409d0662d41229842287e9fb2ba00269aa3829de75d69a09e4"
+        "sha256": "ee5b326f151c90d4cf3c8efdede8d269c1ab84f955f36c53d83b9b83cb170a2a"
       },
       {
         "path": "tools/quality/security-rules.yml",
@@ -3194,6 +3199,13 @@
     {
       "path": "review/site-engineering-v9-20261003/INDEPENDENT-RUNTIME.md",
       "title": "Independent runtime review — v9 recovered sources",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-navigation-v12-20261004/EXECUTION.md",
+      "title": "Connected navigation — execution checkpoint, 4 October 2026",
       "instructions": [
         "AGENTS.md"
       ]

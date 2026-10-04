@@ -135,6 +135,15 @@ test("route flights use one canvas and global space; retarget, Off and hidden pr
   assert.deepEqual(JSON.parse(p.trace()),model.routePose("index",model.poses.overview));assert.equal(p.scene.dataset.travel,"settled");assert.equal(p.canvas,canvas);assert.ok(Number(p.scene.dataset.rooms)<=3);
   p.click();p.settle();scene.navigate("credits",false);p.settle();assert.equal(p.scene.dataset.route,"credits");assert.equal(p.scene.dataset.travel,"settled");assert.equal(p.pending.size,0);
 });
+test("short pages and empty archives finish in their destination room",()=>{
+  const p=visit({empty:true});p.settle();
+  for(const page of ["credits","writing"]){
+    p.window.SiteScene.navigate(page);p.window.SiteScene.refresh();
+    for(let i=0;i<30;i++)p.frame(80);
+    assert.equal(p.scene.dataset.travel,"settled");
+    assert.deepEqual(JSON.parse(p.trace()),model.routePose(page,model.poses[model.initialPoses[page]]));
+  }
+});
 test("camera traverses multiple structures, is continuous/reversible and clips safely through near planes",()=>{
   for(const ids of[...Object.values(model.topicPaths),...Object.values(model.pageStops).map(Object.values)]){
     assert.deepEqual(model.journeyPose(ids,0),model.poses[ids[0]]);assert.deepEqual(model.journeyPose(ids,1),model.poses[ids.at(-1)]);

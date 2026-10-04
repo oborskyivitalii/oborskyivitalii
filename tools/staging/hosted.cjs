@@ -86,11 +86,18 @@ async function normalViews(browser,base){
       const route=routes[i];await page.goto(base+'/'+route+'.html');await page.waitForFunction(()=>document.querySelector('.space-scene').dataset.ready==='true',null,{polling:50,timeout:4000});
       assert.equal(await page.locator('h1').count(),1);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false,'hosted horizontal overflow');
       const phase=(await sceneState(page)).phase;await page.waitForFunction(p=>document.querySelector('.space-scene').dataset.phase!==p,phase,{polling:50,timeout:1500});
-      const controls=await appearance(page,theme),next=routes[(i+1)%routes.length];
+      const controls=await appearance(page,theme),next=routes[(i+1)%routes.length],sourcePath=new URL(page.url()).pathname;
       // Credits is deliberately linked from the footer, not added to the existing header.
       const selector=next==='credits'?'a[href="credits.html"]':'header nav a[href="'+(next==='index'?'./':next+'.html')+'"]';
-      await page.locator(selector).first().click();const destination=new URL(page.url()).pathname;
+      await page.evaluate(()=>{window.__hostedShell={header:document.querySelector('header'),canvas:document.querySelector('canvas')};});
+      await page.locator(selector).first().click();
+      await page.waitForFunction(route=>document.body.dataset.page===route&&!document.querySelector('#site-content').hasAttribute('aria-busy'),next,{polling:50,timeout:5000});
+      const destination=new URL(page.url()).pathname;
       assert.ok((next==='index'?['/','/index','/index.html']:['/'+next,'/'+next+'.html']).includes(destination),'five-page navigation destination');
+      assert.equal(await page.evaluate(()=>window.__hostedShell.header===document.querySelector('header')&&window.__hostedShell.canvas===document.querySelector('canvas')),true,'hosted navigation retains header/canvas');
+      await page.goBack();
+      await page.waitForFunction(route=>document.body.dataset.page===route&&!document.querySelector('#site-content').hasAttribute('aria-busy'),route,{polling:50,timeout:5000});
+      assert.equal(new URL(page.url()).pathname,sourcePath,'extensionless history restoration');
       assert.deepEqual(errors,[]);rows.push({route,width,theme,pass:true,controls,navigation:true,ambient:true,overflow:false});
     }}finally{await context.close();}
   }
@@ -110,7 +117,7 @@ async function fallbacks(browser,base){
   return rows;
 }
 async function browserSmoke(base){
-  const {toolRequire}=require('../quality/common.cjs'),pw=toolRequire('playwright'),browser=await pw.chromium.launch({headless:true});
+  const {toolRequire,launchOptions}=require('../quality/common.cjs'),pw=toolRequire('playwright'),browser=await pw.chromium.launch(launchOptions('chromium'));
   try{
     const views=await normalViews(browser,base),fallback=await fallbacks(browser,base),context=await browser.newContext(),page=await context.newPage();
     try{return {engine:'chromium',version:browser.version(),views,fallback,archive:await archive(page,base),limits:['Headless Linux browser and viewport emulation, not physical phones.','HTTP byte checks retain external publisher/contact targets; no external site is clicked.']};}finally{await context.close();}

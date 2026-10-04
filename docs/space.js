@@ -787,6 +787,7 @@
         journey={from,to:target,elapsed:0,duration:Math.min(1700,1000+Math.abs(target.position[2]-from.position[2])*2)};
         scene.dataset.direction=target.position[2]<from.position[2]?"forward":"backward";
       }else{journey=null;current=target;}
+      scene.dataset.travel=journey?"flying":"settled";
       observer?.disconnect();observer?.observe(document.querySelector("main"));nextDraw=null;schedule();
     },
     refresh(){measure();const target=scrollPose();if(journey)journey.to=target;else moveTo(target);}

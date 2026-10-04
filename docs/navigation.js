@@ -30,7 +30,7 @@
       if(url.pathname===entry.pathname)return routes.includes(url.searchParams.get("view"))?url.searchParams.get("view"):document.body.dataset.entryPage;
       return routes.find(name=>new URL(embedded.files[name],directory).pathname===url.pathname)||null;
     }
-    return routes.find(name=>new URL(name==="index"?"./":name+".html",directory).pathname===url.pathname || new URL(name+".html",directory).pathname===url.pathname)||null;
+    return routes.find(name=>[name,name+".html",...(name==="index"?["./"]:[])].some(file=>new URL(file,directory).pathname===url.pathname))||null;
   }
   function address(url,next) {
     if(!embedded)return url;
