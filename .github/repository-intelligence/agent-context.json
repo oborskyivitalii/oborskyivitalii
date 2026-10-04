@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "328e9065968cd64185b62ef8e4a807e80ac1dd7802e7962c3ce6ace589a894a4",
+    "digest": "86ce332bf8db79700c7ee38316210fbbf2227d4f915ca6b3e1366b979cef8d3d",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -2534,7 +2534,7 @@
       {
         "path": "tools/quality/secrets-baseline.json",
         "identity_mode": "content",
-        "sha256": "21851160767930447c3a459e526a606cb6a85e35f432628621332e7b8be0be7a"
+        "sha256": "4802aa67226a067bb71850cf10e5673274a20ee69f36f94d0023ca8a65592a47"
       },
       {
         "path": "tools/quality/security-rules.yml",
