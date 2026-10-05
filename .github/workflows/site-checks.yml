@@ -20,6 +20,7 @@ jobs:
   staging:
     needs: checks
     if: >-
+      false &&
       vars.SITE_STAGING_ENABLED == 'true' &&
       github.repository == 'oborskyivitalii/oborskyivitalii' &&
       (github.event_name == 'workflow_dispatch' ||
