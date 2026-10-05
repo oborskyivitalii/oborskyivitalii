@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "c5254202a8ea272e30eadf76c3f2ff3a50271a8708cb8da407e9521adbb020d9",
+    "digest": "f68a9b7a84200041e1d0752295a97d18fd3e019fe1cae159dfc3a8ba6d7e11b9",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -87,7 +87,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "49af576b429a4ce2f12f6a052c2f85b0b52033ebaeeb3e632de796c47ab6eacf"
+        "sha256": "2a37d66fe3025138ee8b37066a88eeebce73c42c95de62a50b46f4d2b78248c8"
       },
       {
         "path": "BACKLOG.md",
@@ -152,7 +152,7 @@
       {
         "path": "SITE-STAGING.md",
         "identity_mode": "content",
-        "sha256": "f1cb6214adde77a881f8885de8705a34ece015b534d61b52bc4111795323897c"
+        "sha256": "f1d68069ea6e8288f75dfdc62b0f57f789c4f568cafda242905cdc163a946988"
       },
       {
         "path": "SITE-VISUAL-REVIEW.md",
@@ -878,9 +878,14 @@
         "sha256": "28220161b8ae43319ad612b0d18ae9c72243b60a09d026f344bbc0b29f08d50f"
       },
       {
+        "path": "review/site-sol-continuation-20261005/H2-CLOUDFLARE.md",
+        "identity_mode": "content",
+        "sha256": "4212cf4dcfc39cb45bd3b07e2dc43f01f04d1210119e279b6597f8108962bd70"
+      },
+      {
         "path": "review/site-sol-continuation-20261005/MERGE-RECORD.md",
         "identity_mode": "content",
-        "sha256": "75b07392d7cb501e26a0c6e623133317cdab278279bc040a832a03a534fb12e8"
+        "sha256": "5735a18a61065ee9fa5756433b6eaf95db738f4585dd5290efc90e04e06bdc44"
       },
       {
         "path": "review/site-sol-continuation-20261005/P1.md",
@@ -895,12 +900,12 @@
       {
         "path": "review/site-sol-continuation-20261005/REPORT.md",
         "identity_mode": "content",
-        "sha256": "f8456863c9926d1d691fd81614b1e12ebbe2f7699e49f0abd3bf550239202f26"
+        "sha256": "1b139dbf3ece9f8f8746848149603f733fce1ba8c3cdf5e56a64945562942f7b"
       },
       {
         "path": "review/site-sol-continuation-20261005/SOL-TASKS.md",
         "identity_mode": "content",
-        "sha256": "2c6425e57e11e48f82e55552ffe7b9ad83fc0fe14da94203c370699e89940e14"
+        "sha256": "1b79b5d49dd8ccc0e0955ab7e19d10de94ed4865c8b8b7fe35f9d5f07c695ba3"
       },
       {
         "path": "review/site-sol-continuation-20261005/V1.md",
@@ -4535,6 +4540,13 @@
     {
       "path": "review/site-sol-continuation-20261005/H1.md",
       "title": "H1 — protected-main staging trust, still paused",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/H2-CLOUDFLARE.md",
+      "title": "Cloudflare staging: перевірка плагіна — 5 жовтня 2026",
       "instructions": [
         "AGENTS.md"
       ]

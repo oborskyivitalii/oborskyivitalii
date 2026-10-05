@@ -1,5 +1,22 @@
 # Agent guidance for personal publications
 
+## Cloudflare preparation amendment — 2026-10-05
+
+The maintainer requests inspection and preparation through the newly connected
+Cloudflare plugin. This supersedes older blanket holds on preparatory provider
+configuration. Read the current SITE-STAGING and
+`review/site-sol-continuation-20261005/H2-CLOUDFLARE.md` before hosting work.
+The dedicated `oborskyi-author-ci-staging` Direct Upload project was created;
+Pages read/create/edit access and disabled production/analytics settings are
+verified. The earlier `oborskyi-site-staging` acquired external Git integration
+and deployments during this work; preserve it and do not target it with this CI.
+No assets were uploaded by this execution. Token administration is denied;
+GitHub secrets, Environment and branch protection require the owner. Main is
+currently unprotected. Keep both false deployment guards and the enable variable
+off while current candidate cold Writing fails. Do not use the plugin as a
+shortcut around protected-main/artifact/full-hosted checks or recovery. No DNS,
+custom domain, paid plan or production change is needed for initial staging.
+
 ## Current Sol result and remaining task — 2026-10-05
 
 R1 #20 and H1 #21 are merged into the reviewed candidate Draft #18; #19 is
@@ -13,9 +30,10 @@ remove primary formula glyphs to compensate for native layout.
 Preserve original creation times in same-gesture wheel fixtures; >180ms creation
 gaps deliberately release endpoint ownership. Keep the separate fresh-input and
 middle-history checks, one Canvas/clock, finite grammar and ten-test default.
-Both false hosting guards remain false. Main is currently unprotected; no
-protection/Environment/provider/hosting/analytics setting was activated. Current
-SITE-STAGING uses manual protected-main and schema-2 recovery. Hosting/release,
+Both false hosting guards remain false. Main is currently unprotected; GitHub
+protection/Environment settings were not changed. Cloudflare preparation is
+recorded above and in H2-CLOUDFLARE. SITE-STAGING uses manual protected-main and
+schema-2 recovery. Hosting/release,
 three-engine and independent/device acceptance remain separate.
 
 ## Sol continuation execution — 2026-10-05

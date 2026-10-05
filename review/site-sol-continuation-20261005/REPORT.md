@@ -8,14 +8,19 @@ Writing ще має один провал ліміту, тому #18 не пер
 | --- | --- |
 | R1, PR #20 | Змерджено в #18. Зворотний перехід утримує реальний кінець попередньої сторінки під час mount, arrival і початкового reflow. Новий жест віддає контроль читачеві; історія має власну позицію. Issue #19 закрито як виконаний фікс. |
 | H1, PR #21 | Змерджено в #18 після R1. Staging прив’язаний до точного захищеного main, ручного caller workflow та незмінних артефактів. Старий PR #10 і recovery schema 1 відхиляються. |
-| P1 | Draft: нативний snapshot, instant restore, приховання активного SVG fallback від layout, окремий render feedback. Його початкові холодні провали збережено. |
-| V1 | Draft: правильні нормалі мозку, плавне згасання другорядних деталей, точніші culling bounds, відсікання слабких субпіксельних граней і дешевша фільтрація Writing. Новий атлас і поточні знімки готові. |
+| P1, PR #22 | Draft: нативний snapshot, instant restore, приховання активного SVG fallback від layout, окремий render feedback. Його початкові холодні провали збережено. |
+| V1, PR #23 | Draft: правильні нормалі мозку, плавне згасання другорядних деталей, точніші culling bounds, відсікання слабких субпіксельних граней і дешевша фільтрація Writing. Новий атлас і поточні знімки готові. |
+| H2, PR #24 | Змерджено в #18: перевірено Cloudflare API, створено окремий Direct Upload проєкт `oborskyi-author-ci-staging` і оновлено інструкцію. GitHub secrets/Environment/protection потребують owner дії. |
 
 Готові PR #20 → #21 змерджені **merge commits**, із закріпленим head SHA та
 перевіреними кроками CI. [Точні SHA, дерева й CI](MERGE-RECORD.md).
 Main лишається `2ebdd731d5dcf1e12f43f60dd0b3a6ec49b94684`. Обидва false guards
-збережені; хостинг, Pages/DNS, аналітика, branch protection та Environment не
-активувалися. Повного hosted або незалежного прийняття цієї версії немає.
+збережені; GitHub branch protection та Environment тут не змінювалися. Новий
+Cloudflare CI-проєкт налаштовано без upload; DNS та аналітику не активували.
+Паралельно попередній Pages-проєкт отримав зовнішню Git-інтеграцію і provider
+deployments, включно з автоматичним preview #24. Їх не перезаписували й не
+приймали як full hosted evidence. [Точний стан Cloudflare](H2-CLOUDFLARE.md).
+Повного hosted або незалежного прийняття поточної P1/V1 версії немає.
 
 ## Продуктивність
 
@@ -56,18 +61,25 @@ font-size reflow, нульову висоту, interruption і повернен�
 
 ## Issues та подальша інтеграція
 
-Перевірено всі наявні PR і issues. #20/#21 завершені; #18, P1 і V1 лишаються Draft.
+Перевірено всі наявні PR і issues. #20/#21/#24 завершені; #18/#22/#23 лишаються Draft.
 Старі #9/#10/#16/#17 уже змерджені, #3/#4 закриті раніше. #19 закрито після
 інтеграції R1. #12/#13/#14/#15 лишаються відкритими через продуктивність,
 поточну hosted/release/незалежну перевірку; #8 — через фактичний запуск staging.
 #1/#2/#5/#6/#7/#11 мають окремі невиконані launch/publication/migration/rights/
 content критерії; це продовження їх не виконало і не дає підстав закривати.
 
-Оновлене налаштування: [SITE-STAGING](../../SITE-STAGING.md). Main зараз не
-захищений: інструкція описує майбутнє owner налаштування, ручний запуск і schema-2
-recovery. Реального staging URL поки немає. Повний набір запускається на
-незмінному staging до promotion та на production після deploy; тут лишається
-мінімальний default.
+Оновлене налаштування: [SITE-STAGING](../../SITE-STAGING.md) та
+[плагін і кроки власника](H2-CLOUDFLARE.md). Main зараз не захищений. Плагін
+дозволив прочитати/редагувати/створити Pages; token permission groups повернули
+9109 Unauthorized. GitHub connector не має запису secrets/Environment/protection.
+Власник має створити Pages Edit token для акаунта, зберегти його як secret у
+`staging`, внести account ID та `CLOUDFLARE_PAGES_PROJECT=oborskyi-author-ci-staging`,
+`SITE_STAGING_CREATE_PROJECT=false` і захистити main/Environment.
+У нового CI-проєкту немає deployment чи перевіреного живого alias. Зовнішній
+`oborskyi-site-staging.pages.dev` має provider success, але HTTP/bytes/full gate
+тут не перевірено і його Git source несумісний із підготовленим workflow.
+Повний набір запускається на незмінному staging до promotion та на production
+після deploy; тут лишається мінімальний default.
 
 [Оновлене завдання для Sol](SOL-TASKS.md): P2 — перший нативний layout Writing.
 Після прийняття всіх поточних вікон перевіряти й інтегрувати P1 → V1/P2 → #18;

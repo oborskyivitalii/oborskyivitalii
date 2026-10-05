@@ -2,8 +2,10 @@
 
 Continue from `work/sol-primitive-cost-20261005`, stacked on
 `work/sol-writing-layout-20261005`, with R1 and H1 already integrated into Draft
-#18. Check live heads first. Read REPORT, V1, MERGE-RECORD, root AGENTS and the
-current SITE-STAGING / SITE-CHECK-PROFILES. Do not repeat completed R1 or H1.
+#18. H2 #24 is also merged into #18 and its setup record is merged into these
+Draft branches. Check live heads first. Read REPORT, V1, MERGE-RECORD,
+H2-CLOUDFLARE, root AGENTS and the current SITE-STAGING / SITE-CHECK-PROFILES.
+Do not repeat completed R1, H1 or Cloudflare project creation.
 
 ## P2 — reduce actual first Writing layout cost
 
@@ -53,11 +55,23 @@ review P1 then V1/P2 in dependency order and integrate into #18 with merge commi
 Do not mark #18 release-ready until the remaining current-source release evidence
 is supplied. Keep #12/#13/#14/#15 open for retained hosted/independent criteria.
 
-## H2 — future hosting activation, separate from this code task
+## H3 — hosting activation after performance and owner setup
 
-H1 is implemented and merged into #18; both false guards remain false. Main is
-currently unprotected. Follow the current SITE-STAGING manual protected-main
-runbook only after a hosting instruction. Owner protection/Environment setup,
-provider credentials, real immutable deployment, full hosted gates, recovery and
-status issue #8 still need actual evidence. Do not edit these settings, provision,
-upload or activate hosting/analytics as part of P2. No PR-10/schema-1 shortcut.
+H1 and H2 are implemented and merged into #18; both false guards remain false.
+The latest maintainer instruction authorizes Cloudflare inspection/preparation.
+`oborskyi-author-ci-staging` was created and verified as empty Direct Upload with
+`production-disabled`, no Git source or injected analytics. Do not create it again.
+The older `oborskyi-site-staging` changed externally to automatic Git integration
+and provider deployments, including PR previews; preserve it and never substitute
+it for the compatible CI project. Those builds bypass our artifact/full-gate path
+and are not acceptance. No manual plugin upload shortcut or PR-10/schema-1 recovery.
+
+Main is currently unprotected. The Cloudflare connection denies token permission
+groups (9109); the GitHub connector lacks secret/environment/protection writes.
+Owner steps are exact in H2-CLOUDFLARE / SITE-STAGING: Pages Edit token in staging
+environment secret, account/project variables, create-project=false, main branch
+protection and selected-main Environment. After accepted current-source windows
+and approved main integration, review removal of both false guards and enable
+last; manually dispatch the exact protected-main tip. Actual immutable/stable URL,
+full hosted gates, recovery and issue #8 status still need evidence. Do not activate
+production/analytics or alter DNS as part of P2.
