@@ -66,15 +66,14 @@ test('real-HTTP smoke model checks every served byte, extensionless query redire
   }finally{fs.rmSync(f.dir,{recursive:true,force:true});}
 });
 test('trusted source, dedicated provider project and known rollback metadata fail closed',()=>{
-  const sha='a'.repeat(40),pr={state:'open',head:{repo:{full_name:'oborskyivitalii/oborskyivitalii'},ref:'work/site-v1-20261001',sha}};
-  assert.equal(state.trustedHead(pr,sha),true);
-  for(const mutate of [p=>p.state='closed',p=>p.head.repo.full_name='other/fork',p=>p.head.ref='main',p=>p.head.sha='b'.repeat(40)]){const p=structuredClone(pr);mutate(p);assert.throws(()=>state.trustedHead(p,sha));}
+  const sha='a'.repeat(40);
   const previousProject=process.env.CLOUDFLARE_PAGES_PROJECT;process.env.CLOUDFLARE_PAGES_PROJECT='unit-test-staging';
   try{
     const project={name:'unit-test-staging',production_branch:'production-disabled'};assert.equal(state.projectPolicy(project),true);
     for(const mutation of [{production_branch:'staging'},{source:{type:'github'}},{uses_functions:true},{build_config:{web_analytics_tag:'enabled'}}])assert.throws(()=>state.projectPolicy({...project,...mutation}));
-    const record={source:{sourceCommit:sha,artifactDigest:'c'.repeat(64)},packageDigest:'d'.repeat(64)},previous={schema:1,provider:'cloudflare-pages',project:project.name,sourceCommit:sha,publicDigest:'c'.repeat(64),packageDigest:'d'.repeat(64),packageArtifactId:'123',runId:'456'};
+    const record={source:{sourceCommit:sha,artifactDigest:'c'.repeat(64)},packageDigest:'d'.repeat(64)},previous={schema:2,provider:'cloudflare-pages',project:project.name,sourceBranch:'main',workflow:'.github/workflows/site-checks.yml',sourceCommit:sha,publicDigest:'c'.repeat(64),packageDigest:'d'.repeat(64),packageUploadDigest:'e'.repeat(64),packageArtifactId:'123',runId:'456',runAttempt:'1'};
     assert.equal(state.knownPayload(previous,project.name),true);assert.equal(state.knownPayload(previous,'other-project'),false);assert.equal(state.rollbackRecord(record,previous),true);
+    for(const mutation of [{schema:1},{sourceBranch:'work/site-v1-20261001'},{workflow:'.github/workflows/other.yml'},{runAttempt:null},{packageUploadDigest:null}])assert.equal(state.knownPayload({...previous,...mutation},project.name),false);
     assert.throws(()=>state.rollbackRecord(record,{...previous,packageDigest:'e'.repeat(64)}));assert.throws(()=>state.rollbackRecord(record,null));
   }finally{if(previousProject===undefined)delete process.env.CLOUDFLARE_PAGES_PROJECT;else process.env.CLOUDFLARE_PAGES_PROJECT=previousProject;}
 });
@@ -88,7 +87,9 @@ test('provisioning reuses an existing project and never converts permission/rate
 });
 test('staging workflow depends on successful immutable gates, serializes promotion and never uses privileged PR execution',()=>{
   const caller=fs.readFileSync(path.resolve(__dirname,'../.github/workflows/site-checks.yml'),'utf8'),workflow=fs.readFileSync(path.resolve(__dirname,'../.github/workflows/site-staging.yml'),'utf8');
-  assert.match(caller,/needs: checks/);assert.match(caller,/SITE_STAGING_ENABLED == 'true'/);assert.match(caller,/head.repo.full_name == github.repository/);
+  assert.match(caller,/needs: checks/);assert.match(caller,/SITE_STAGING_ENABLED == 'true'/);assert.match(caller,/github\.event_name == 'workflow_dispatch'/);assert.match(caller,/github\.ref == 'refs\/heads\/main'/);assert.match(caller,/github\.sha == inputs\.candidate_sha/);
+  assert.match(caller,/false &&/);assert.match(workflow,/if: false &&/);assert.doesNotMatch(caller,/pull_request\.number == 10|work\/site-v1-20261001/);
+  assert.match(caller,/issues: write/);assert.match(workflow,/issues: write/);assert.match(workflow,/SITE_GATE_UPLOAD_DIGEST/);assert.match(workflow,/SITE_PACKAGE_UPLOAD_DIGEST/);
   assert.doesNotMatch(caller,/secrets: inherit/,'do not expose all repository secrets');
   assert.match(workflow,/artifact-ids: \$\{\{ inputs.public_artifact_id \}\}/);assert.match(workflow,/artifact-ids: \$\{\{ inputs.gate_artifact_id \}\}/);
   assert.match(workflow,/environment: staging/);assert.match(workflow,/cancel-in-progress: false/);assert.doesNotMatch(workflow,/pull_request_target|--branch=production|gitHubToken:/);

@@ -9,26 +9,28 @@ The maintainer authorizes repository integration and this instruction update.
 staging URL. Keep `SITE_STAGING_ENABLED` absent/false and both explicit false
 guards in `site-checks.yml` and `site-staging.yml` until activation is authorized.
 
-### What must change after the PR stack is merged
+### Prepared manual protected-main path
 
-The previous recipe is pinned to **open PR #10** and
-`work/site-v1-20261001`. It cannot deploy the newer merged engine. This is a code
-dependency, not something an owner can fix by entering a token:
+The H1 source migration is implemented in `tools/staging/trust.cjs`,
+`tools/staging/state.cjs` and both caller/reusable workflows. It accepts only a
+manual `site-checks.yml` dispatch on `refs/heads/main`, with `candidate_sha` equal
+to the caller/workflow SHA and the **live protected main tip**. Before any
+provider call, it verifies the exact repository, workflow, run/attempt, source
+and immutable basic public/gate artifact IDs, names and upload digests. It
+rechecks these identities before candidate registration and stable promotion.
 
-- `tools/staging/state.cjs`: `trustedHead`/`fresh`, recovery-artifact branch
-  validation, deployment registration and the PR comment target still use that
-  fixed PR/branch.
-- `site-checks.yml`: the staging caller allowlist still uses PR #10.
-- Environment rules for `refs/pull/10/merge` belong to that old recipe. Do not
-  install them as the new setup or broaden access to all PRs.
+Recovery records use schema 2, source branch `main`, the caller workflow and
+exact run attempt/package upload digest. A retained recovery run must have
+succeeded; its package must match the recorded public/package digests. Historical
+PR-10/schema-1 recovery is not silently trusted. An existing untracked stable
+alias stops the workflow for owner reconciliation. Deployment status goes to
+hosting issue **#8**, not the closed PR #10. Read the focused
+[H1 execution record](review/site-sol-continuation-20261005/H1.md).
 
-Sol's [H1 task](review/site-followup-20261005/SOL-TASKS.md#h1--staging-after-integration)
-must first migrate these checks together. Recommended first activation is a
-manual workflow on protected `main`, with an explicit candidate SHA that equals
-the approved live main tip. Validate the source/artifact run/repository/branch
-before any provider call, and recheck freshness before alias promotion. A later
-PR-preview mode needs its own explicit same-repository allowlist and environment
-rules. Do not accept an arbitrary branch/SHA supplied by untrusted PR code.
+**Live repository check on 5 October: `main` is not protected.** No protection or
+environment setting was changed here. Source migration and passing fixtures do
+not mean hosting is configured. Do not install `refs/pull/10/merge` or the old
+work branch as new environment rules; no arbitrary PR/branch mode is enabled.
 
 ### Owner configuration, once activation is requested
 
@@ -39,9 +41,10 @@ rules. Do not accept an arbitrary branch/SHA supplied by untrusted PR code.
    the intended account. Store it in the GitHub `staging` environment secret
    below. Never paste it into an issue/chat or commit it. Account-scoped permission
    does not mean project-only permission.
-3. Protect that GitHub environment with the source branch rules matching the
-   reviewed activation workflow (`main` for the proposed manual mode) and an
-   owner reviewer where available. Preserve the separate trust check in code.
+3. Protect `main` with reviewed pull requests and the required current basic/RI
+   checks. Protect the GitHub `staging` environment with a selected **`main`**
+   branch rule and an owner reviewer where available. The live branch API must
+   report `protected:true`; environment restriction alone does not replace it.
 4. Set these existing configuration names, without putting values in source:
 
 | Name | Location | Purpose |
@@ -50,7 +53,7 @@ rules. Do not accept an arbitrary branch/SHA supplied by untrusted PR code.
 | `CLOUDFLARE_ACCOUNT_ID` | `staging` environment variable | Account's 32-character ID. |
 | `CLOUDFLARE_PAGES_PROJECT` | `staging` environment variable | Dedicated Direct Upload project name. No actual project is asserted here. |
 | `SITE_STAGING_CREATE_PROJECT` | `staging` environment variable | `true` only for initial creation of a missing `*-staging` project; otherwise false/absent. |
-| `SITE_STAGING_ENABLED` | Repository Actions variable | Enable last, after authorization, source-guard migration, secure configuration and removal of the two pause guards in a reviewed change. |
+| `SITE_STAGING_ENABLED` | Repository Actions variable | Enable last, after hosting authorization, source integration, protected-main/environment setup and removal of the two pause guards in a reviewed change. |
 
 An existing incompatible project is rejected, never silently converted. Current
 deployment code pins `cloudflare/wrangler-action` to
@@ -59,9 +62,13 @@ not upgrade either dependency. Check actual account limits before provisioning.
 
 ### Required sequence and evidence
 
-1. Run the one basic PR/build profile. Preserve the exact source/tree/public
-   digest and returned immutable artifact/run IDs. Local default is still
-   `node tools/quality/local.cjs`, not the full browser/security matrix.
+1. After activation is separately authorized, open **Actions → Site basic checks
+   → Run workflow**, select branch **main**, and enter its approved full 40-character
+   tip SHA as `candidate_sha`. That dispatch runs the one basic profile and owns
+   the immutable public/gate artifacts consumed by staging. A SHA from an older
+   tip, a PR or another workflow/run/attempt is rejected. Preserve the exact
+   source/tree/public digest and artifact/run IDs. Local default remains
+   `node tools/quality/local.cjs`.
 2. Build the separate staging package from those verified public bytes, adding
    only recorded host files (`_headers`, `404.html`, non-sensitive revision
    metadata). Never upload the repo, `review/`, research attachments or ZIPs.
@@ -73,12 +80,12 @@ not upgrade either dependency. Check actual account limits before provisioning.
    states/failures, Lighthouse, CPU/soak and captures. Missing/failed or mismatched
    evidence blocks promotion. Existing limits remain unchanged. Basic/full
    artifact names are distinct and include profile/run/attempt.
-5. Recheck freshness, promote the identical package to the stable `staging`
+5. Recheck protected-main freshness and source/artifact identity, promote the identical package to the stable `staging`
    alias, then recheck it. Recover the previous verified package on failed alias
    smoke. Uploading to a branch moves its alias; the candidate must therefore
    use a different branch. Serialize promotion and verify retained dependencies.
 6. Record actual stable and immutable URLs, deployment IDs, source SHA, public/
-   package digests and results in #8/the implementation PR. Verify no analytics
+   package digests, run attempt/upload digest and results in #8/the implementation PR. Verify no analytics
    beacon on staging and no staging URL/noindex contamination of production SEO.
 
 Production remains GitHub Pages under #8. Its workflow is still an inactive

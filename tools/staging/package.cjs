@@ -90,4 +90,4 @@ if(require.main===module){
   else if(mode==='verify')verify(path.resolve(input),JSON.parse(fs.readFileSync(path.join(input,'staging-package.json'))),expected);
   else throw Error('Usage: package.cjs build INPUT EMPTY_OUTPUT | verify OUTPUT');
 }
-module.exports={publicFiles,headers,policyHeaders,notFound,sourceGate,additions,checkLinks,build,verify};
+module.exports={publicFiles,headers,policyHeaders,notFound,sourceGate,additions,checkLinks,build,verify,expectedEnvironment};

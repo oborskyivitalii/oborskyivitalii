@@ -2,6 +2,12 @@
 
 ## Sol continuation execution — 2026-10-05
 
+H1 source trust is implemented for exact protected-main manual dispatch; read
+`review/site-sol-continuation-20261005/H1.md` and the current SITE-STAGING runbook.
+Both false guards remain. Main is not yet protected and no hosting/environment
+configuration was changed. New schema-2 recovery and status issue #8 replace the
+legacy PR-10 binding; local fixtures do not establish hosted acceptance.
+
 The maintainer asks Sol to continue the reviewed R1/P1/V1/H1 tasks. R1 is
 implemented with route-scoped end intent and accepted input-tail ownership;
 read `review/site-sol-continuation-20261005/R1.md` and its current evidence.
