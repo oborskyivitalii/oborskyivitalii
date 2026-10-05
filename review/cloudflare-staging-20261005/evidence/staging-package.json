@@ -1,0 +1,561 @@
+{
+  "schema": 1,
+  "kind": "staging-package",
+  "source": {
+    "schema": 1,
+    "sourceCommit": "51611505d941ae2996a87782840da418722451f6",
+    "sourceDirty": false,
+    "sourceTree": "a31dd365393c1dc4d201170494641809f8162a30",
+    "candidateCommit": "51611505d941ae2996a87782840da418722451f6",
+    "files": {
+      ".nojekyll": {
+        "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "raw": 1,
+        "gzip": 21
+      },
+      "archive.js": {
+        "sha256": "f5c6c90851fd4acb4d632c20e82d45a0d9e2de2d993ce94fd5a70d54646e6211",
+        "raw": 5598,
+        "gzip": 1918
+      },
+      "assets/favicon.svg": {
+        "sha256": "a27a6f79b42bfa41fa8a8d3fe39e3c9570bcd992410c91a17d021de4dc28636e",
+        "raw": 303,
+        "gzip": 228
+      },
+      "assets/vitalii-oborskyi-cutout.webp": {
+        "sha256": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae",
+        "raw": 55458,
+        "gzip": 55299
+      },
+      "assets/vitalii-oborskyi.jpg": {
+        "sha256": "5321e48f08b075cb1cbd522d0f36bc01276aece65d1a04cf09102aa5dd2b59bc",
+        "raw": 100768,
+        "gzip": 93959
+      },
+      "credits.html": {
+        "sha256": "d55230fe8c60d8577caebf9311f2f792f45245aa04b0e990a270fe7eca6f2afe",
+        "raw": 42908,
+        "gzip": 12818
+      },
+      "index.html": {
+        "sha256": "5f3ca346bb3589570eff31e05e51d4c3ed3ce8c8779d80c3306de8cdf483c64c",
+        "raw": 57882,
+        "gzip": 17843
+      },
+      "media/442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401/favicon.svg": {
+        "sha256": "a27a6f79b42bfa41fa8a8d3fe39e3c9570bcd992410c91a17d021de4dc28636e",
+        "raw": 303,
+        "gzip": 228
+      },
+      "media/442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401/vitalii-oborskyi-cutout.webp": {
+        "sha256": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae",
+        "raw": 55458,
+        "gzip": 55299
+      },
+      "media/442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401/vitalii-oborskyi.jpg": {
+        "sha256": "5321e48f08b075cb1cbd522d0f36bc01276aece65d1a04cf09102aa5dd2b59bc",
+        "raw": 100768,
+        "gzip": 93959
+      },
+      "navigation.js": {
+        "sha256": "09e7d57b5184d65aa1ef2c2d94511fe6ba89d83dd5c5c9f7ba762d511c1e9399",
+        "raw": 20551,
+        "gzip": 6616
+      },
+      "research.html": {
+        "sha256": "94c0d93cac397654017c717647bd9d832bb85196362b5325236cf0b690eaad4e",
+        "raw": 57225,
+        "gzip": 16194
+      },
+      "runtime/89aa3544002cfa53e1dfc7a519dacee119d9834755446a05d25e02a2372f6812/archive.js": {
+        "sha256": "f5c6c90851fd4acb4d632c20e82d45a0d9e2de2d993ce94fd5a70d54646e6211",
+        "raw": 5598,
+        "gzip": 1918
+      },
+      "runtime/89aa3544002cfa53e1dfc7a519dacee119d9834755446a05d25e02a2372f6812/navigation.js": {
+        "sha256": "09e7d57b5184d65aa1ef2c2d94511fe6ba89d83dd5c5c9f7ba762d511c1e9399",
+        "raw": 20551,
+        "gzip": 6616
+      },
+      "runtime/89aa3544002cfa53e1dfc7a519dacee119d9834755446a05d25e02a2372f6812/space.js": {
+        "sha256": "70d98ab5e9dfcdb8b883bc7abbf1d531c7e8ef2a84c2acb2d40aa2df73cf5432",
+        "raw": 70461,
+        "gzip": 23051
+      },
+      "runtime/89aa3544002cfa53e1dfc7a519dacee119d9834755446a05d25e02a2372f6812/styles.css": {
+        "sha256": "3a53943269188001757a6b3ac1fdee209ea486fa0a287216bd3045002fa4f4ab",
+        "raw": 23580,
+        "gzip": 5992
+      },
+      "runtime/89aa3544002cfa53e1dfc7a519dacee119d9834755446a05d25e02a2372f6812/theme.js": {
+        "sha256": "d11f679af05442e8b01024e9a5fe3ba9aff73554f11bd8f3ff692d14f830f8fb",
+        "raw": 2907,
+        "gzip": 1112
+      },
+      "site-revision.json": {
+        "sha256": "655a7d4355ce6988a0644cbc315e04d38eec18c7cdedb936a512e6ea129e4040",
+        "raw": 1991,
+        "gzip": 832
+      },
+      "snapshots/364ca34eb205d49e7f44a4a78384c634fc12a75c264e979b2c7f6ce7d85efaf1/research.html": {
+        "sha256": "6df8ea755101dd977dae4af51f900bb6416494cab634c00383e9a2257ad5ac4f",
+        "raw": 57315,
+        "gzip": 16206
+      },
+      "snapshots/5466c0968921a941dac2a843e40d30f574d2d3e9f9f42a96df945267ac3fbf26/credits.html": {
+        "sha256": "726fbe74a0a39cebbb6a341261b9d9cde87cde1f18a3f95b29480acd3bbbb4bb",
+        "raw": 42992,
+        "gzip": 12829
+      },
+      "snapshots/583350702053e1803346e21f55e76a89945664e3c6991ea177af286dfc102d68/talks.html": {
+        "sha256": "0887dc913f903ff91542cce4d491ad4dbb640953d09e4cb771df456e4c86eb98",
+        "raw": 51386,
+        "gzip": 15362
+      },
+      "snapshots/d6fc03e1c26ea1c54823af7f3ed47166e981fbac676290a90e9872f9c1585ac7/writing.html": {
+        "sha256": "8f5428514b3bf9af8d6ba498d5f23ac9d0af768d12d484a041bc0c349ac48f4d",
+        "raw": 84149,
+        "gzip": 21777
+      },
+      "snapshots/e7ed0a7fd94cc628cdd9a6875e4529bb9c4e5c4aeb1ff670b03c16c30686309a/index.html": {
+        "sha256": "d31b224f36b5e3a6328e99cfe9389879c8de11a829b7ce34cc61ec7bf91da06e",
+        "raw": 57996,
+        "gzip": 17860
+      },
+      "space.js": {
+        "sha256": "70d98ab5e9dfcdb8b883bc7abbf1d531c7e8ef2a84c2acb2d40aa2df73cf5432",
+        "raw": 70461,
+        "gzip": 23051
+      },
+      "styles.css": {
+        "sha256": "3a53943269188001757a6b3ac1fdee209ea486fa0a287216bd3045002fa4f4ab",
+        "raw": 23580,
+        "gzip": 5992
+      },
+      "talks.html": {
+        "sha256": "a8ad297a874d8afbb6a2d92ea7c491eaf0e96c2bd0129bb3d69a1467ab378a6f",
+        "raw": 51296,
+        "gzip": 15348
+      },
+      "theme.js": {
+        "sha256": "d11f679af05442e8b01024e9a5fe3ba9aff73554f11bd8f3ff692d14f830f8fb",
+        "raw": 2907,
+        "gzip": 1112
+      },
+      "writing.html": {
+        "sha256": "541430ae8f94d082700814fdb5b47fab07842d199d157c3d4905d90f316124d1",
+        "raw": 84065,
+        "gzip": 21765
+      }
+    },
+    "artifactDigest": "324c09ff0526fa2664e34c9f590d550ca7f6613ed53a9862d85e679b12e8df60",
+    "components": {
+      "schema": 1,
+      "contract": 1,
+      "variant": {
+        "id": "base",
+        "contract": 1,
+        "fingerprint": "48153b94fbae4f314eaa11b156df8a20227dec429abfee9e45c14fda4a1f1b2a"
+      },
+      "engine": "89aa3544002cfa53e1dfc7a519dacee119d9834755446a05d25e02a2372f6812",
+      "scenes": "59acc6795c00f7fa56e389c5e072be026dee394f9045a9488c9d12619f058baf",
+      "assets": "442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401",
+      "content": "c6f083d39d101645bed9faf3d24ed996463b4ee05bffd38ce08095cefb522680",
+      "routes": {
+        "index": {
+          "version": "e7ed0a7fd94cc628cdd9a6875e4529bb9c4e5c4aeb1ff670b03c16c30686309a",
+          "url": "snapshots/e7ed0a7fd94cc628cdd9a6875e4529bb9c4e5c4aeb1ff670b03c16c30686309a/index.html",
+          "sha256": "d31b224f36b5e3a6328e99cfe9389879c8de11a829b7ce34cc61ec7bf91da06e"
+        },
+        "research": {
+          "version": "364ca34eb205d49e7f44a4a78384c634fc12a75c264e979b2c7f6ce7d85efaf1",
+          "url": "snapshots/364ca34eb205d49e7f44a4a78384c634fc12a75c264e979b2c7f6ce7d85efaf1/research.html",
+          "sha256": "6df8ea755101dd977dae4af51f900bb6416494cab634c00383e9a2257ad5ac4f"
+        },
+        "writing": {
+          "version": "d6fc03e1c26ea1c54823af7f3ed47166e981fbac676290a90e9872f9c1585ac7",
+          "url": "snapshots/d6fc03e1c26ea1c54823af7f3ed47166e981fbac676290a90e9872f9c1585ac7/writing.html",
+          "sha256": "8f5428514b3bf9af8d6ba498d5f23ac9d0af768d12d484a041bc0c349ac48f4d"
+        },
+        "talks": {
+          "version": "583350702053e1803346e21f55e76a89945664e3c6991ea177af286dfc102d68",
+          "url": "snapshots/583350702053e1803346e21f55e76a89945664e3c6991ea177af286dfc102d68/talks.html",
+          "sha256": "0887dc913f903ff91542cce4d491ad4dbb640953d09e4cb771df456e4c86eb98"
+        },
+        "credits": {
+          "version": "5466c0968921a941dac2a843e40d30f574d2d3e9f9f42a96df945267ac3fbf26",
+          "url": "snapshots/5466c0968921a941dac2a843e40d30f574d2d3e9f9f42a96df945267ac3fbf26/credits.html",
+          "sha256": "726fbe74a0a39cebbb6a341261b9d9cde87cde1f18a3f95b29480acd3bbbb4bb"
+        }
+      }
+    }
+  },
+  "gate": {
+    "schema": 1,
+    "sourceCommit": "51611505d941ae2996a87782840da418722451f6",
+    "sourceDirty": false,
+    "sourceTree": "a31dd365393c1dc4d201170494641809f8162a30",
+    "candidateCommit": "51611505d941ae2996a87782840da418722451f6",
+    "files": {
+      ".nojekyll": {
+        "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "raw": 1,
+        "gzip": 21
+      },
+      "archive.js": {
+        "sha256": "f5c6c90851fd4acb4d632c20e82d45a0d9e2de2d993ce94fd5a70d54646e6211",
+        "raw": 5598,
+        "gzip": 1918
+      },
+      "assets/favicon.svg": {
+        "sha256": "a27a6f79b42bfa41fa8a8d3fe39e3c9570bcd992410c91a17d021de4dc28636e",
+        "raw": 303,
+        "gzip": 228
+      },
+      "assets/vitalii-oborskyi-cutout.webp": {
+        "sha256": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae",
+        "raw": 55458,
+        "gzip": 55299
+      },
+      "assets/vitalii-oborskyi.jpg": {
+        "sha256": "5321e48f08b075cb1cbd522d0f36bc01276aece65d1a04cf09102aa5dd2b59bc",
+        "raw": 100768,
+        "gzip": 93959
+      },
+      "credits.html": {
+        "sha256": "d55230fe8c60d8577caebf9311f2f792f45245aa04b0e990a270fe7eca6f2afe",
+        "raw": 42908,
+        "gzip": 12818
+      },
+      "index.html": {
+        "sha256": "5f3ca346bb3589570eff31e05e51d4c3ed3ce8c8779d80c3306de8cdf483c64c",
+        "raw": 57882,
+        "gzip": 17843
+      },
+      "media/442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401/favicon.svg": {
+        "sha256": "a27a6f79b42bfa41fa8a8d3fe39e3c9570bcd992410c91a17d021de4dc28636e",
+        "raw": 303,
+        "gzip": 228
+      },
+      "media/442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401/vitalii-oborskyi-cutout.webp": {
+        "sha256": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae",
+        "raw": 55458,
+        "gzip": 55299
+      },
+      "media/442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401/vitalii-oborskyi.jpg": {
+        "sha256": "5321e48f08b075cb1cbd522d0f36bc01276aece65d1a04cf09102aa5dd2b59bc",
+        "raw": 100768,
+        "gzip": 93959
+      },
+      "navigation.js": {
+        "sha256": "09e7d57b5184d65aa1ef2c2d94511fe6ba89d83dd5c5c9f7ba762d511c1e9399",
+        "raw": 20551,
+        "gzip": 6616
+      },
+      "research.html": {
+        "sha256": "94c0d93cac397654017c717647bd9d832bb85196362b5325236cf0b690eaad4e",
+        "raw": 57225,
+        "gzip": 16194
+      },
+      "runtime/89aa3544002cfa53e1dfc7a519dacee119d9834755446a05d25e02a2372f6812/archive.js": {
+        "sha256": "f5c6c90851fd4acb4d632c20e82d45a0d9e2de2d993ce94fd5a70d54646e6211",
+        "raw": 5598,
+        "gzip": 1918
+      },
+      "runtime/89aa3544002cfa53e1dfc7a519dacee119d9834755446a05d25e02a2372f6812/navigation.js": {
+        "sha256": "09e7d57b5184d65aa1ef2c2d94511fe6ba89d83dd5c5c9f7ba762d511c1e9399",
+        "raw": 20551,
+        "gzip": 6616
+      },
+      "runtime/89aa3544002cfa53e1dfc7a519dacee119d9834755446a05d25e02a2372f6812/space.js": {
+        "sha256": "70d98ab5e9dfcdb8b883bc7abbf1d531c7e8ef2a84c2acb2d40aa2df73cf5432",
+        "raw": 70461,
+        "gzip": 23051
+      },
+      "runtime/89aa3544002cfa53e1dfc7a519dacee119d9834755446a05d25e02a2372f6812/styles.css": {
+        "sha256": "3a53943269188001757a6b3ac1fdee209ea486fa0a287216bd3045002fa4f4ab",
+        "raw": 23580,
+        "gzip": 5992
+      },
+      "runtime/89aa3544002cfa53e1dfc7a519dacee119d9834755446a05d25e02a2372f6812/theme.js": {
+        "sha256": "d11f679af05442e8b01024e9a5fe3ba9aff73554f11bd8f3ff692d14f830f8fb",
+        "raw": 2907,
+        "gzip": 1112
+      },
+      "site-revision.json": {
+        "sha256": "655a7d4355ce6988a0644cbc315e04d38eec18c7cdedb936a512e6ea129e4040",
+        "raw": 1991,
+        "gzip": 832
+      },
+      "snapshots/364ca34eb205d49e7f44a4a78384c634fc12a75c264e979b2c7f6ce7d85efaf1/research.html": {
+        "sha256": "6df8ea755101dd977dae4af51f900bb6416494cab634c00383e9a2257ad5ac4f",
+        "raw": 57315,
+        "gzip": 16206
+      },
+      "snapshots/5466c0968921a941dac2a843e40d30f574d2d3e9f9f42a96df945267ac3fbf26/credits.html": {
+        "sha256": "726fbe74a0a39cebbb6a341261b9d9cde87cde1f18a3f95b29480acd3bbbb4bb",
+        "raw": 42992,
+        "gzip": 12829
+      },
+      "snapshots/583350702053e1803346e21f55e76a89945664e3c6991ea177af286dfc102d68/talks.html": {
+        "sha256": "0887dc913f903ff91542cce4d491ad4dbb640953d09e4cb771df456e4c86eb98",
+        "raw": 51386,
+        "gzip": 15362
+      },
+      "snapshots/d6fc03e1c26ea1c54823af7f3ed47166e981fbac676290a90e9872f9c1585ac7/writing.html": {
+        "sha256": "8f5428514b3bf9af8d6ba498d5f23ac9d0af768d12d484a041bc0c349ac48f4d",
+        "raw": 84149,
+        "gzip": 21777
+      },
+      "snapshots/e7ed0a7fd94cc628cdd9a6875e4529bb9c4e5c4aeb1ff670b03c16c30686309a/index.html": {
+        "sha256": "d31b224f36b5e3a6328e99cfe9389879c8de11a829b7ce34cc61ec7bf91da06e",
+        "raw": 57996,
+        "gzip": 17860
+      },
+      "space.js": {
+        "sha256": "70d98ab5e9dfcdb8b883bc7abbf1d531c7e8ef2a84c2acb2d40aa2df73cf5432",
+        "raw": 70461,
+        "gzip": 23051
+      },
+      "styles.css": {
+        "sha256": "3a53943269188001757a6b3ac1fdee209ea486fa0a287216bd3045002fa4f4ab",
+        "raw": 23580,
+        "gzip": 5992
+      },
+      "talks.html": {
+        "sha256": "a8ad297a874d8afbb6a2d92ea7c491eaf0e96c2bd0129bb3d69a1467ab378a6f",
+        "raw": 51296,
+        "gzip": 15348
+      },
+      "theme.js": {
+        "sha256": "d11f679af05442e8b01024e9a5fe3ba9aff73554f11bd8f3ff692d14f830f8fb",
+        "raw": 2907,
+        "gzip": 1112
+      },
+      "writing.html": {
+        "sha256": "541430ae8f94d082700814fdb5b47fab07842d199d157c3d4905d90f316124d1",
+        "raw": 84065,
+        "gzip": 21765
+      }
+    },
+    "artifactDigest": "324c09ff0526fa2664e34c9f590d550ca7f6613ed53a9862d85e679b12e8df60",
+    "components": {
+      "schema": 1,
+      "contract": 1,
+      "variant": {
+        "id": "base",
+        "contract": 1,
+        "fingerprint": "48153b94fbae4f314eaa11b156df8a20227dec429abfee9e45c14fda4a1f1b2a"
+      },
+      "engine": "89aa3544002cfa53e1dfc7a519dacee119d9834755446a05d25e02a2372f6812",
+      "scenes": "59acc6795c00f7fa56e389c5e072be026dee394f9045a9488c9d12619f058baf",
+      "assets": "442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401",
+      "content": "c6f083d39d101645bed9faf3d24ed996463b4ee05bffd38ce08095cefb522680",
+      "routes": {
+        "index": {
+          "version": "e7ed0a7fd94cc628cdd9a6875e4529bb9c4e5c4aeb1ff670b03c16c30686309a",
+          "url": "snapshots/e7ed0a7fd94cc628cdd9a6875e4529bb9c4e5c4aeb1ff670b03c16c30686309a/index.html",
+          "sha256": "d31b224f36b5e3a6328e99cfe9389879c8de11a829b7ce34cc61ec7bf91da06e"
+        },
+        "research": {
+          "version": "364ca34eb205d49e7f44a4a78384c634fc12a75c264e979b2c7f6ce7d85efaf1",
+          "url": "snapshots/364ca34eb205d49e7f44a4a78384c634fc12a75c264e979b2c7f6ce7d85efaf1/research.html",
+          "sha256": "6df8ea755101dd977dae4af51f900bb6416494cab634c00383e9a2257ad5ac4f"
+        },
+        "writing": {
+          "version": "d6fc03e1c26ea1c54823af7f3ed47166e981fbac676290a90e9872f9c1585ac7",
+          "url": "snapshots/d6fc03e1c26ea1c54823af7f3ed47166e981fbac676290a90e9872f9c1585ac7/writing.html",
+          "sha256": "8f5428514b3bf9af8d6ba498d5f23ac9d0af768d12d484a041bc0c349ac48f4d"
+        },
+        "talks": {
+          "version": "583350702053e1803346e21f55e76a89945664e3c6991ea177af286dfc102d68",
+          "url": "snapshots/583350702053e1803346e21f55e76a89945664e3c6991ea177af286dfc102d68/talks.html",
+          "sha256": "0887dc913f903ff91542cce4d491ad4dbb640953d09e4cb771df456e4c86eb98"
+        },
+        "credits": {
+          "version": "5466c0968921a941dac2a843e40d30f574d2d3e9f9f42a96df945267ac3fbf26",
+          "url": "snapshots/5466c0968921a941dac2a843e40d30f574d2d3e9f9f42a96df945267ac3fbf26/credits.html",
+          "sha256": "726fbe74a0a39cebbb6a341261b9d9cde87cde1f18a3f95b29480acd3bbbb4bb"
+        }
+      }
+    },
+    "kind": "pr-gate",
+    "profile": "local",
+    "pass": true,
+    "jobs": {
+      "build": {
+        "result": "success"
+      }
+    },
+    "checkedAt": "2026-10-05T22:08:32.612Z",
+    "deploymentAuthorized": false,
+    "githubArtifact": {
+      "id": "11372983963",
+      "uploadDigest": "989e6834ad2a948c4e1b988336ad0b46f9e6b392a97ac650f1a01b82ec71d93f"
+    }
+  },
+  "hostFiles": [
+    "404.html",
+    "_headers",
+    "_staging/revision.json"
+  ],
+  "files": {
+    ".nojekyll": {
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "raw": 1,
+      "gzip": 21
+    },
+    "404.html": {
+      "sha256": "c4eadbf78b272b898e88425ad7fd2510972f602239777f5634366670d6a73fbc",
+      "raw": 564,
+      "gzip": 332
+    },
+    "_headers": {
+      "sha256": "182b5aadff619627240890f3fa4cce8e392fde026d803b542f1469ec46772423",
+      "raw": 595,
+      "gzip": 307
+    },
+    "_staging/revision.json": {
+      "sha256": "e52b4b0d847b4866e14517bf5bf20a5606f57b3eb8192fa867a8f1153dbf01ca",
+      "raw": 277,
+      "gzip": 218
+    },
+    "archive.js": {
+      "sha256": "f5c6c90851fd4acb4d632c20e82d45a0d9e2de2d993ce94fd5a70d54646e6211",
+      "raw": 5598,
+      "gzip": 1918
+    },
+    "assets/favicon.svg": {
+      "sha256": "a27a6f79b42bfa41fa8a8d3fe39e3c9570bcd992410c91a17d021de4dc28636e",
+      "raw": 303,
+      "gzip": 228
+    },
+    "assets/vitalii-oborskyi-cutout.webp": {
+      "sha256": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae",
+      "raw": 55458,
+      "gzip": 55299
+    },
+    "assets/vitalii-oborskyi.jpg": {
+      "sha256": "5321e48f08b075cb1cbd522d0f36bc01276aece65d1a04cf09102aa5dd2b59bc",
+      "raw": 100768,
+      "gzip": 93959
+    },
+    "credits.html": {
+      "sha256": "d55230fe8c60d8577caebf9311f2f792f45245aa04b0e990a270fe7eca6f2afe",
+      "raw": 42908,
+      "gzip": 12818
+    },
+    "index.html": {
+      "sha256": "5f3ca346bb3589570eff31e05e51d4c3ed3ce8c8779d80c3306de8cdf483c64c",
+      "raw": 57882,
+      "gzip": 17843
+    },
+    "media/442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401/favicon.svg": {
+      "sha256": "a27a6f79b42bfa41fa8a8d3fe39e3c9570bcd992410c91a17d021de4dc28636e",
+      "raw": 303,
+      "gzip": 228
+    },
+    "media/442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401/vitalii-oborskyi-cutout.webp": {
+      "sha256": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae",
+      "raw": 55458,
+      "gzip": 55299
+    },
+    "media/442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401/vitalii-oborskyi.jpg": {
+      "sha256": "5321e48f08b075cb1cbd522d0f36bc01276aece65d1a04cf09102aa5dd2b59bc",
+      "raw": 100768,
+      "gzip": 93959
+    },
+    "navigation.js": {
+      "sha256": "09e7d57b5184d65aa1ef2c2d94511fe6ba89d83dd5c5c9f7ba762d511c1e9399",
+      "raw": 20551,
+      "gzip": 6616
+    },
+    "research.html": {
+      "sha256": "94c0d93cac397654017c717647bd9d832bb85196362b5325236cf0b690eaad4e",
+      "raw": 57225,
+      "gzip": 16194
+    },
+    "runtime/89aa3544002cfa53e1dfc7a519dacee119d9834755446a05d25e02a2372f6812/archive.js": {
+      "sha256": "f5c6c90851fd4acb4d632c20e82d45a0d9e2de2d993ce94fd5a70d54646e6211",
+      "raw": 5598,
+      "gzip": 1918
+    },
+    "runtime/89aa3544002cfa53e1dfc7a519dacee119d9834755446a05d25e02a2372f6812/navigation.js": {
+      "sha256": "09e7d57b5184d65aa1ef2c2d94511fe6ba89d83dd5c5c9f7ba762d511c1e9399",
+      "raw": 20551,
+      "gzip": 6616
+    },
+    "runtime/89aa3544002cfa53e1dfc7a519dacee119d9834755446a05d25e02a2372f6812/space.js": {
+      "sha256": "70d98ab5e9dfcdb8b883bc7abbf1d531c7e8ef2a84c2acb2d40aa2df73cf5432",
+      "raw": 70461,
+      "gzip": 23051
+    },
+    "runtime/89aa3544002cfa53e1dfc7a519dacee119d9834755446a05d25e02a2372f6812/styles.css": {
+      "sha256": "3a53943269188001757a6b3ac1fdee209ea486fa0a287216bd3045002fa4f4ab",
+      "raw": 23580,
+      "gzip": 5992
+    },
+    "runtime/89aa3544002cfa53e1dfc7a519dacee119d9834755446a05d25e02a2372f6812/theme.js": {
+      "sha256": "d11f679af05442e8b01024e9a5fe3ba9aff73554f11bd8f3ff692d14f830f8fb",
+      "raw": 2907,
+      "gzip": 1112
+    },
+    "site-revision.json": {
+      "sha256": "655a7d4355ce6988a0644cbc315e04d38eec18c7cdedb936a512e6ea129e4040",
+      "raw": 1991,
+      "gzip": 832
+    },
+    "snapshots/364ca34eb205d49e7f44a4a78384c634fc12a75c264e979b2c7f6ce7d85efaf1/research.html": {
+      "sha256": "6df8ea755101dd977dae4af51f900bb6416494cab634c00383e9a2257ad5ac4f",
+      "raw": 57315,
+      "gzip": 16206
+    },
+    "snapshots/5466c0968921a941dac2a843e40d30f574d2d3e9f9f42a96df945267ac3fbf26/credits.html": {
+      "sha256": "726fbe74a0a39cebbb6a341261b9d9cde87cde1f18a3f95b29480acd3bbbb4bb",
+      "raw": 42992,
+      "gzip": 12829
+    },
+    "snapshots/583350702053e1803346e21f55e76a89945664e3c6991ea177af286dfc102d68/talks.html": {
+      "sha256": "0887dc913f903ff91542cce4d491ad4dbb640953d09e4cb771df456e4c86eb98",
+      "raw": 51386,
+      "gzip": 15362
+    },
+    "snapshots/d6fc03e1c26ea1c54823af7f3ed47166e981fbac676290a90e9872f9c1585ac7/writing.html": {
+      "sha256": "8f5428514b3bf9af8d6ba498d5f23ac9d0af768d12d484a041bc0c349ac48f4d",
+      "raw": 84149,
+      "gzip": 21777
+    },
+    "snapshots/e7ed0a7fd94cc628cdd9a6875e4529bb9c4e5c4aeb1ff670b03c16c30686309a/index.html": {
+      "sha256": "d31b224f36b5e3a6328e99cfe9389879c8de11a829b7ce34cc61ec7bf91da06e",
+      "raw": 57996,
+      "gzip": 17860
+    },
+    "space.js": {
+      "sha256": "70d98ab5e9dfcdb8b883bc7abbf1d531c7e8ef2a84c2acb2d40aa2df73cf5432",
+      "raw": 70461,
+      "gzip": 23051
+    },
+    "styles.css": {
+      "sha256": "3a53943269188001757a6b3ac1fdee209ea486fa0a287216bd3045002fa4f4ab",
+      "raw": 23580,
+      "gzip": 5992
+    },
+    "talks.html": {
+      "sha256": "a8ad297a874d8afbb6a2d92ea7c491eaf0e96c2bd0129bb3d69a1467ab378a6f",
+      "raw": 51296,
+      "gzip": 15348
+    },
+    "theme.js": {
+      "sha256": "d11f679af05442e8b01024e9a5fe3ba9aff73554f11bd8f3ff692d14f830f8fb",
+      "raw": 2907,
+      "gzip": 1112
+    },
+    "writing.html": {
+      "sha256": "541430ae8f94d082700814fdb5b47fab07842d199d157c3d4905d90f316124d1",
+      "raw": 84065,
+      "gzip": 21765
+    }
+  },
+  "packageDigest": "deb2dd16c6efea1eee83df5d01ba954376b16ab9a8e9d8fab6f3e332e0b3d261"
+}

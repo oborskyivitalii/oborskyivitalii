@@ -15,8 +15,9 @@ function responseHeaders(headers,immutable=false){
   const robots=headers.get('x-robots-tag')||'';assert.match(robots,/\bnoindex\b/i);assert.match(robots,/\bnofollow\b/i);
   assert.equal(headers.get('x-content-type-options'),'nosniff');
   const cache=headers.get('cache-control')||'';
-  if(immutable){assert.match(cache,/\bimmutable\b/);assert.match(cache,/max-age=31536000/);assert.doesNotMatch(cache,/no-cache|must-revalidate/);}
-  else{assert.match(cache,/\bno-cache\b/i);assert.ok(!cache.includes('immutable'),'unversioned staging asset marked immutable');}
+  if(immutable){assert.match(cache,/\bimmutable\b/);assert.match(cache,/max-age=31536000/);assert.doesNotMatch(cache,/no-cache|no-store|must-revalidate/i);}
+  // Pages uses stronger no-store for actual 404s (RFC 9111 section 5.2.2.5).
+  else{assert.match(cache,/(?:^|,)\s*no-(?:cache|store)\s*(?:,|$)/i,'unversioned staging response must require revalidation or prohibit storage');assert.doesNotMatch(cache,/\bimmutable\b/i,'unversioned staging asset marked immutable');}
 }
 async function request(url,expectedOrigin,fetcher=fetch){
   let target=new URL(url);
