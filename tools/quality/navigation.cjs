@@ -1,7 +1,7 @@
 'use strict';
 const assert=require('node:assert/strict');
 const routes=['index','research','writing','talks','credits'];
-const checks=['persistentShell','fiveRoutes','metadata','forward','backward','history','historyScroll','archiveLifecycle','rapidNavigation','off','reduced','fetchFallback','headerEdges','flightTiming','earlyScroll','interruptions','retargetOpacity','writingFirstScroll','fullScrollArrival','snapshotPin','versionFallback','digestFallback','offlineEntries','utilityNoFlight'];
+const checks=['persistentShell','fiveRoutes','metadata','forward','backward','history','historyScroll','archiveLifecycle','rapidNavigation','off','reduced','fetchFallback','headerEdges','flightTiming','earlyScroll','interruptions','retargetOpacity','writingFirstScroll','fullScrollArrival','snapshotPin','versionFallback','digestFallback','offlineEntries','utilityNoFlight','reverseEndpoint','endpointTakeover'];
 const selector=route=>`a[href="${route==='index'?'./':route+'.html'}"]`;
 async function ready(page,route){
   await page.waitForFunction(route=>document.body.dataset.page===route&&!document.querySelector('#site-content').hasAttribute('aria-busy'),route,{polling:40,timeout:6000});
@@ -28,6 +28,44 @@ function checkTiming(samples){
   assert.ok(middle.length>2,'observed empty middle');assert.ok(middle.every(x=>x.opacity===0),'text hidden throughout middle');
   assert.ok(samples.some(x=>x.progress>.72&&x.progress<1&&x.opacity>0&&x.opacity<1),'visible arrival fade');
   assert.ok(samples.every(x=>x.progress<=.72||x.progress===1||x.opacity<1),'no premature full text');
+}
+async function reverseEndpoints(page){
+  const rows=[];
+  const range=()=>page.evaluate(()=>({y:scrollY,max:Math.max(0,document.documentElement.scrollHeight-innerHeight)}));
+  for(const motion of ['on','off']){
+    if((await page.locator('#space-motion').getAttribute('aria-pressed'))!==String(motion==='on'))await page.locator('#space-motion').evaluate(el=>el.click());
+    for(const [from,to] of [['talks','writing'],['writing','research'],['research','index']])for(const late of [false,true]){
+      await page.evaluate(route=>document.querySelectorAll('.site-header nav a')[['index','research','writing','talks'].indexOf(route)].click(),from);
+      await ready(page,from);await settled(page);
+      await page.evaluate(({to,late})=>{
+        const grow=()=>{
+          if(document.body.dataset.page!==to)return;
+          const el=document.createElement('div');el.dataset.endpointFixture='true';el.style.height='900px';document.querySelector('footer').append(el);
+          if(to==='writing'){
+            document.querySelector('#archive-topic').value='systems';document.querySelector('#archive-topic').dispatchEvent(new Event('change',{bubbles:true}));
+          }
+        };
+        if(late)window.addEventListener('site:page-ready',()=>setTimeout(grow,80),{once:true});
+        if(!window.SiteNavigation.go(to,{atEnd:true}))throw Error('reverse rejected');
+      },{to,late});
+      await ready(page,to);await settled(page);await page.waitForTimeout(250);
+      const state=await range();assert.ok(Math.abs(state.max-state.y)<=2,`reverse ${from}→${to} ${motion} late=${late}: ${JSON.stringify(state)}`);
+      rows.push({from,to,motion,late,...state});
+    }
+  }
+  // A new reader gesture cancels reconciliation, including later footer growth.
+  await page.evaluate(()=>document.querySelectorAll('.site-header nav a')[3].click());await ready(page,'talks');
+  await page.evaluate(()=>window.SiteNavigation.go('writing',{atEnd:true}));await ready(page,'writing');
+  await page.waitForTimeout(210);await page.mouse.wheel(0,-200);
+  await page.waitForFunction(()=>Math.max(0,document.documentElement.scrollHeight-innerHeight)-scrollY>20);
+  const before=await range();
+  await page.evaluate(()=>{const el=document.createElement('div');el.style.height='900px';document.querySelector('footer').append(el);});
+  await page.waitForTimeout(250);const after=await range();
+  assert.ok(Math.abs(after.y-before.y)<=2,`fresh input must release end intent: ${JSON.stringify({before,after})}`);
+  await page.evaluate(()=>scrollTo({top:400,behavior:'instant'}));await page.waitForTimeout(380);
+  await page.goBack();await ready(page,'talks');await page.goForward();await ready(page,'writing');
+  assert.ok(Math.abs((await range()).y-400)<=2,'history keeps a middle reading position');
+  return {rows,takeover:{before,after},historyMiddle:400};
 }
 async function scenario(browser,url,s){
   const ctx=await browser.newContext({viewport:{width:s.width,height:s.width===390?844:900}}),page=await ctx.newPage(),errors=[];
@@ -65,6 +103,9 @@ async function scenario(browser,url,s){
     const position=await page.evaluate(()=>scrollY);
     await page.goBack();await ready(page,'index');await settled(page);await page.goForward();await ready(page,'research');await settled(page);
     assert.equal(await page.evaluate(()=>scrollY),position,'Forward restores the last reading position');result.checks.historyScroll=true;
+    result.reverseEndpoints=await reverseEndpoints(page);result.checks.reverseEndpoint=true;result.checks.endpointTakeover=true;
+    // The endpoint fixture finishes with Motion Off; resume the original scenario.
+    await page.locator('#space-motion').evaluate(el=>el.click());
     await page.locator('#space-motion').evaluate(el=>el.click());
     for(const route of ['writing','research','writing'])await click(page,route);
     await page.locator('#archive-topic').selectOption('systems');await page.locator('#archive-language').selectOption('uk');
@@ -126,7 +167,7 @@ async function scenario(browser,url,s){
   return result;
 }
 function scenarios(engine){return [1440,390].flatMap(width=>['light','dark'].map(theme=>({engine,width,theme})));}
-module.exports={scenario,scenarios,checks};
+module.exports={scenario,scenarios,checks,reverseEndpoints};
 if(require.main===module)(async()=>{
   const {toolRequire,launchOptions,report}=require('./common.cjs'),{start}=require('./serve.cjs');
   const {server,url}=await start(),browser=await toolRequire('playwright').firefox.launch(launchOptions('firefox'));

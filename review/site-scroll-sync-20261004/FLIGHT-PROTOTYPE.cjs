@@ -86,7 +86,7 @@ function installEndScroll(gateFactory,isEnd,isStart){
       const direction=Math.sign(delta);if(!direction||!available(direction)){clear();return false;}
       const accepted=gate.offer({type,delta,deliberate,...bounds(),now:clock()});
       hint?.style.setProperty('--scroll-intent',String(direction>0?gate.progress():0));
-      if(accepted){const route=neighbor(direction);if(type==='touch'&&touch)touch.consumed=true;clear();return route?window.SiteNavigation.go(route,{atEnd:direction<0}):false;}
+      if(accepted){const route=neighbor(direction);if(type==='touch'&&touch)touch.consumed=true;clear();return route?window.SiteNavigation.go(route,{atEnd:direction<0,input:type}):false;}
       return false;
     }
     input.addEventListener('change',()=>{enabled=input.checked;try{localStorage.setItem('vo.end-scroll',enabled?'on':'off');}catch{/* In-tab preference is enough. */}routeReady();});

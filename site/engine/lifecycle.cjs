@@ -49,6 +49,7 @@ module.exports=function(api) {
     width=Math.max(1,window.innerWidth);height=Math.max(1,window.innerHeight);
     ratio=pixelRatio();
     const maxScroll=Math.max(0,document.documentElement.scrollHeight-height);
+    window.SiteNavigation?.reconcileEndpoint?.(maxScroll);
     const markers=[...document.querySelectorAll("[data-space-stop]")].filter(el=>visible(el) && pageStops[page]?.[el.dataset.spaceStop]).map(el=>({id:pageStops[page][el.dataset.spaceStop],y:Math.max(0,el.getBoundingClientRect().top+window.scrollY-height*.22)}));
     stops=fitScrollStops(markers,maxScroll);
     bounds=null;
@@ -79,6 +80,7 @@ module.exports=function(api) {
   }
   function invalidateLayout(reason) {
     layoutDirty=true;layoutReasons.add(reason);
+    if(failed){window.SiteNavigation?.reconcileEndpoint?.();return;}
     if(!initialized){initialize();return;}if(!failed)schedule();
   }
   // Opt-in measurements emit no timing/JSON work on an ordinary visitor path.
@@ -335,6 +337,7 @@ module.exports=function(api) {
   observeLayout();
   document.fonts?.addEventListener?.("loadingdone",resize);
   window.SiteScene={
+    managesLayout:true,
     canTravel:()=>initialized&&!failed&&enabled&&!reduced.matches&&!hold&&!printing&&!document.hidden,
     navigate(next,animate=true,update=null){
       if(!owns(initialPoses,next))return;
