@@ -1,14 +1,18 @@
 # Sol continuation — 5 October 2026
 
-Start from the latest integrated site tree and read [REPORT](REPORT.md), root
-AGENTS, [check profiles](../../SITE-CHECK-PROFILES.md), and the live owning issues.
+Start from the current head of **Draft [PR #18](https://github.com/oborskyivitalii/oborskyivitalii/pull/18)**,
+branch `work/site-followup-20261005`, and create focused fix branches from it.
+Main contains the accepted older PR stack; this optimization/primitive continuation
+is not merged. Read [REPORT](REPORT.md), root AGENTS,
+[check profiles](../../SITE-CHECK-PROFILES.md), and the live owning issues.
 Do not repeat completed S1–S6. The maintainer authorizes code integration and
 issue maintenance; actual publication remains paused. New independent review
 is not supplied by this implementer review.
 
 ## R1 — deterministic reverse endpoint (first)
 
-Owners #12/#14. Requirement: a deliberate upward edge continuation opens the
+Focused issue [#19](https://github.com/oborskyivitalii/oborskyivitalii/issues/19),
+under owners #12/#14. Requirement: a deliberate upward edge continuation opens the
 previous **primary header route at its real bottom**, every time. Forward
 continuation opens the next route at the top. Credits stays outside the sequence.
 

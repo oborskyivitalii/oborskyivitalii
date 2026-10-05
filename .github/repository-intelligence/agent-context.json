@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "4abf7c9d1482cdb99181f6dcc778b299dd16bd2852e1472ee70665777b2400ba",
+    "digest": "60a545ec96443535ef0473dc2653afc78dedcd2d87331dbb21269e814717e742",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -63,7 +63,7 @@
       {
         "path": ".github/workflows/site-navigation-probe.yml",
         "identity_mode": "content",
-        "sha256": "b4ad6ed139038e26967189b87533d6413b3f0ec1552fafb9f5329b2c35d80de5"
+        "sha256": "ba70e04ac9e1258017a62c9416fca0405d58294d174020e5cb1fe6ad75fa6702"
       },
       {
         "path": ".github/workflows/site-release-checks.yml",
@@ -87,7 +87,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "db97789f2a94b0c83391ee1ba4773a507b3ee726e3e8b092b1debbbd20c05f67"
+        "sha256": "589a426564afbef1bde08674e68728b8065689883f9d2b674888ea1f9acb2068"
       },
       {
         "path": "BACKLOG.md",
@@ -117,7 +117,7 @@
       {
         "path": "SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "210a4bdc52d6cb4b397c756afcfdb192bd4465566b099cac4d1475ab1214320a"
+        "sha256": "794fb647d1a9e812be10cb789b0ed5c1dda8d644ce3eed4ef69f5b54d81c235f"
       },
       {
         "path": "SITE-CONTENT-REVIEW.md",
@@ -162,7 +162,7 @@
       {
         "path": "SOL-HANDOFF.md",
         "identity_mode": "content",
-        "sha256": "442165589096e20428c4f1dda187bb4a132ad10c87f3610e15a936d022f76947"
+        "sha256": "f7f5da546c150be343abb32094dd76d436850283f8056ef7122d47a1e4d9eeb1"
       },
       {
         "path": "docs/.nojekyll",
@@ -655,17 +655,17 @@
       {
         "path": "review/site-followup-20261005/MERGE-RECORD.md",
         "identity_mode": "content",
-        "sha256": "0136dddda62bec8659e2b4932786ed226221d6fa08c3215a61a817af442979bc"
+        "sha256": "015a5d0470ec3fc44056cd990ab9bd0f865914585f337720fd9c7073e512d36d"
       },
       {
         "path": "review/site-followup-20261005/REPORT.md",
         "identity_mode": "content",
-        "sha256": "6af5580f0ee592a7ba155a1ed85a198b79654ea0a8d063331b827c8b5a9df192"
+        "sha256": "707b25e5d9bfcf63bc218ba7a42d7e95998f498590c4f8ab4e89d0fae8455f99"
       },
       {
         "path": "review/site-followup-20261005/SOL-TASKS.md",
         "identity_mode": "content",
-        "sha256": "b2957d147e59cff54111d0f7cc3ed59c5bce806420e52e5a0a90b17b69f57402"
+        "sha256": "97b157d484d84a90243aa89267364a60ed71e28379519ca492b55686971af2bb"
       },
       {
         "path": "review/site-followup-20261005/VALIDATION.md",

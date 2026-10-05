@@ -7,6 +7,11 @@ completed issues, and merging ready code in dependency order. This supersedes
 older push/merge/external issue-posting holds below. Staging and production
 publication remain paused; preserve both false deployment guards.
 Read `review/site-followup-20261005/REPORT.md` and its `SOL-TASKS.md`.
+The accepted older stack #9/#10/#16/#17 is merged. Continue from Draft PR #18,
+`work/site-followup-20261005`, for the newer optimization and mesh edition;
+keep it Draft while idle/cold performance gates fail. Issue #19 owns reverse-end
+repair under #12/#14. Both standalone runtime/navigation diagnostics are manual;
+automatic update checks are the one basic profile and RI freshness only.
 The new shared meshes replace the earlier brain/charts/formulas; retain the finite
 56-instance grammar and existing geometry/performance limits. Reverse edge
 continuation must finish at the previous route's actual native bottom, including

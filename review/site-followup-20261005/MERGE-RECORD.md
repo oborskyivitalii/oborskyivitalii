@@ -35,9 +35,12 @@ specific remaining criteria in [REPORT](REPORT.md). Completion comments are
 present in every merged PR.
 
 The newer local optimization plus expressive-primitives edition is a separate
-**Draft continuation**, not merged into this baseline. Its idle/cold-transition
+**Draft [PR #18](https://github.com/oborskyivitalii/oborskyivitalii/pull/18)**,
+branch `work/site-followup-20261005`, not merged into this baseline. Its idle/cold-transition
 failures are retained in [VALIDATION](VALIDATION.md); [Sol tasks](SOL-TASKS.md)
 define the next repairs. The updated staging runbook belongs to that continuation.
+Focused [issue #19](https://github.com/oborskyivitalii/oborskyivitalii/issues/19)
+tracks deterministic reverse-end navigation under #12/#14. Its runtime fix is pending.
 
 No site host was provisioned or uploaded, no Pages setting or DNS changed, no
 analytics account/token activated and no site deployed. Both publication guards

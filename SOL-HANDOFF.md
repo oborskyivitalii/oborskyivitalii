@@ -4,10 +4,13 @@
 
 Start with [updated Sol tasks](review/site-followup-20261005/SOL-TASKS.md) and
 [the experiment/repository review](review/site-followup-20261005/REPORT.md).
+Use Draft [PR #18](https://github.com/oborskyivitalii/oborskyivitalii/pull/18),
+branch `work/site-followup-20261005`, as the source for focused fixes. The older
+#9/#10/#16/#17 stack is merged; this continuation still fails measured performance.
 The maintainer authorizes ready code merges and completed-issue closure, replacing
 the older merge/push hold. Actual hosting/publication remains paused.
 The stronger shared primitives are implemented. Next: deterministic reverse-end
-landing, cold Writing mount/layout cost, then staging trust-source migration and
+landing (#19), cold Writing mount/layout cost, new-mesh idle cost, then staging trust-source migration and
 full evidence when hosting is authorized. Do not reimplement completed S1–S6 or
 rerun the full suite locally by default. Independent release acceptance remains
 distinct from this implementer review and repository integration.

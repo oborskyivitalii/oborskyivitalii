@@ -17,8 +17,9 @@ The two-width smoke checks primary travel, Talks/Credits boundaries, footer and
 history access, persistent header/Canvas, removed filtering and Motion Off.
 
 `site-checks.yml` runs basic checks once and uploads an immutable artifact and
-basic gate. `site-runtime-checks.yml` is manual diagnostics, avoiding duplicate
-PR runs. `navigation.yml` now checks RI freshness only: its older Python/runtime/
+basic gate. `site-runtime-checks.yml` and the Windows/Firefox
+`site-navigation-probe.yml` are manual diagnostics, avoiding duplicate PR runs.
+`navigation.yml` now checks RI freshness only: its older Python/runtime/
 export suites duplicated the basic/full profiles and are removed from that job.
 All those suites remain in the full release build. `site-staging.yml` uploads a candidate, performs host smoke, then calls
 `site-release-checks.yml` against that exact deployed version with the full suite.
