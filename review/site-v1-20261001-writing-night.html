@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Articles by Vitalii Oborskyi on AI-assisted delivery, AI architecture, PMO, engineering leadership and AI strategy.">
+  <meta name="color-scheme" content="light dark">
+  <title>Night review — Writing — Vitalii Oborskyi</title>
+  
+  
+<style>
+:root {
+  --paper: #f8f7f3;
+  --ink: #152b35;
+  --muted: #4c5e65;
+  --line: #d5dcda;
+  --accent: #a44329;
+  --tint: #ebefeb;
+  --shadow: #e1e6e0;
+  --button-bg: #152b35;
+  --button-ink: #ffffff;
+  --button-hover-ink: #ffffff;
+  color-scheme: light;
+  --serif: Georgia, "Times New Roman", serif;
+  --sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+:root[data-theme="dark"] {
+  --paper: #111e24;
+  --ink: #e9ebe6;
+  --muted: #aebcbe;
+  --line: #344850;
+  --accent: #f09a79;
+  --tint: #1b2c32;
+  --shadow: #25373b;
+  --button-bg: #e9ebe6;
+  --button-ink: #111e24;
+  --button-hover-ink: #111e24;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --paper: #111e24;
+    --ink: #e9ebe6;
+    --muted: #aebcbe;
+    --line: #344850;
+    --accent: #f09a79;
+    --tint: #1b2c32;
+    --shadow: #25373b;
+    --button-bg: #e9ebe6;
+    --button-ink: #111e24;
+    --button-hover-ink: #111e24;
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.65; }
+a { color: inherit; text-underline-offset: .2em; }
+a:hover { color: var(--accent); }
+a:focus-visible, select:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; }
+section, h3 { scroll-margin-top: 28px; }
+.wrap { width: min(1160px, calc(100% - 80px)); margin-inline: auto; }
+.skip-link { position: absolute; top: -70px; left: 20px; padding: 12px; background: var(--button-bg); color: var(--button-ink); z-index: 2; }
+.skip-link:focus { top: 10px; }
+.site-header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; padding-block: 25px; border-bottom: 1px solid var(--line); gap: 20px; }
+.wordmark { display: inline-flex; align-items: center; gap: 13px; text-decoration: none; font-size: 14px; font-weight: 650; white-space: nowrap; }
+.monogram { font-family: var(--serif); font-size: 31px; line-height: 1; letter-spacing: -2px; color: var(--accent); }
+.site-header nav { display: flex; flex-wrap: wrap; gap: 23px; font-size: 14px; margin-left: auto; }
+.site-header nav a { text-decoration: none; padding: 6px 0; }
+.contact-link { font-weight: 650; }
+.theme-control { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; color: var(--muted); }
+.theme-control[hidden] { display: none; }
+.theme-control select { font: inherit; color: var(--ink); background: var(--paper); border: 1px solid var(--muted); border-radius: 3px; padding: 8px 6px; min-height: 40px; }
+.hero { display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; gap: 80px; padding-block: 80px 88px; }
+.eyebrow { display: flex; align-items: center; gap: 12px; font-size: 11px; font-weight: 650; letter-spacing: .12em; text-transform: uppercase; margin: 0 0 20px; color: var(--muted); }
+.accent-line { display: block; width: 28px; height: 2px; background: var(--accent); }
+h1 { font-family: var(--serif); font-size: clamp(62px, 7.5vw, 100px); line-height: .99; letter-spacing: -.065em; font-weight: 400; margin: 28px 0; }
+.accent { color: var(--accent); }
+.hero-lead { font-size: clamp(19px, 2vw, 23px); line-height: 1.5; font-weight: 500; margin-bottom: 16px; }
+.hero-description { max-width: 470px; font-size: 15px; color: var(--muted); margin: 0 0 28px; }
+.button { display: inline-flex; align-items: center; gap: 36px; padding: 13px 20px; background: var(--button-bg); color: var(--button-ink); text-decoration: none; font-size: 14px; font-weight: 550; border-radius: 2px; }
+.button:hover { background: var(--accent); color: var(--button-hover-ink); }
+.research-note { background: var(--tint); border: 1px solid var(--line); padding: 32px 30px 26px; margin-top: 65px; box-shadow: 9px 9px 0 var(--shadow); }
+.note-label { margin: 0 0 25px; font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+.note-row { display: grid; grid-template-columns: 30px 1fr; gap: 16px; padding: 20px 0; border-top: 1px solid var(--line); }
+.note-number { font-size: 11px; color: var(--accent); padding-top: 5px; font-variant-numeric: tabular-nums; }
+.note-row p { font-family: var(--serif); font-size: clamp(22px, 2.2vw, 28px); line-height: 1.4; letter-spacing: -.025em; margin: 0; }
+.note-footer { margin: 20px 0 0; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+.section { padding-block: 64px; border-top: 1px solid var(--line); }
+.section-heading { margin-bottom: 32px; }
+h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(30px, 3.4vw, 42px); line-height: 1.2; letter-spacing: -.035em; margin: 0; }
+.section-heading > p:last-child:not(.eyebrow) { color: var(--muted); font-size: 14px; margin: 14px 0 0; }
+.research-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.research-card { display: flex; flex-direction: column; padding: 30px; border: 1px solid var(--line); border-top: 3px solid var(--ink); }
+.card-kicker { font-size: 12px; color: var(--muted); margin: 0 0 22px; }
+.small-number { color: var(--accent); margin-right: 14px; font-variant-numeric: tabular-nums; }
+.research-card h3 { font-family: var(--serif); font-size: 33px; line-height: 1.15; letter-spacing: -.035em; font-weight: 400; margin: 0 0 19px; }
+.research-card > p:not(.card-kicker) { color: var(--muted); font-size: 14px; margin: 0 0 22px; }
+.topic-list { display: flex; flex-wrap: wrap; gap: 7px; list-style: none; margin: auto 0 24px; padding: 0; }
+.topic-list li { border: 1px solid var(--line); padding: 3px 9px; color: var(--muted); font-size: 10px; border-radius: 20px; }
+.text-link { font-weight: 600; font-size: 13px; text-decoration: none; }
+.text-link span { margin-left: 12px; }
+.section-note { margin: 25px 0 0; color: var(--muted); font-size: 13px; max-width: 770px; }
+.topic-nav { display: flex; flex-wrap: wrap; gap: 9px 25px; margin-bottom: 34px; }
+.topic-nav a { font-size: 12px; font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--line); padding: 6px 0; }
+.topic-nav span { margin-left: 10px; color: var(--accent); }
+.writing-topic { font-size: 12px; font-weight: 600; color: var(--muted); margin: 34px 0 10px; text-transform: uppercase; letter-spacing: .08em; }
+.publication-list { list-style: none; padding: 0; margin: 0; }
+.publication { display: grid; grid-template-columns: 240px 1fr; gap: 40px; border-top: 1px solid var(--line); padding: 22px 0; align-items: start; }
+.publication-meta { display: flex; flex-direction: column; gap: 5px; font-size: 11px; color: var(--muted); }
+.publication-meta time { font-weight: 650; font-size: 12px; color: var(--ink); }
+.publication-title { display: flex; align-items: start; gap: 25px; justify-content: space-between; font-family: var(--serif); font-size: 23px; line-height: 1.4; letter-spacing: -.025em; text-decoration: none; }
+.publication-arrow { font-family: var(--sans); flex: 0 0 auto; font-size: 20px; color: var(--accent); }
+.edition-link { font-size: 12px; color: var(--muted); margin: 10px 0 0; }
+.talk-title { font-family: var(--serif); font-weight: 400; font-size: 26px; line-height: 1.4; margin: 0 0 12px; }
+.ack-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+.ack-grid h3 { font-size: 16px; margin: 0 0 12px; }
+.ack-grid p { font-size: 14px; color: var(--muted); margin: 0 0 17px; }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+.about-grid p { font-size: 14px; color: var(--muted); margin: 0 0 18px; }
+.about-links { display: flex; flex-wrap: wrap; gap: 14px 28px; }
+.site-footer { padding-block: 25px; border-top: 1px solid var(--line); display: flex; gap: 28px; font-size: 11px; color: var(--muted); }
+.site-footer p { margin: 0 auto 0 0; }
+.site-footer a { text-decoration: none; }
+.credits-page { min-height: 65vh; max-width: 760px; padding-block: 60px; }
+.credits-page h1 { font-size: 52px; letter-spacing: -.045em; }
+.credits-page h2 { font-family: var(--sans); font-size: 19px; margin-top: 36px; letter-spacing: 0; font-weight: 600; }
+.credits-page p { font-size: 15px; color: var(--muted); }
+.archive-intro { padding-block: 48px 36px; }
+.archive-intro h1 { font-size: clamp(44px, 6vw, 72px); }
+@media (max-width: 900px) {
+  .wrap { width: calc(100% - 48px); }
+  .hero { gap: 35px; padding-block: 60px; }
+  .research-note { padding: 24px; }
+  .note-row p br { display: none; }
+  .research-card { padding: 24px; }
+  .publication { grid-template-columns: 185px 1fr; gap: 24px; }
+  .ack-grid, .about-grid { gap: 32px; }
+}
+@media (max-width: 640px) {
+  .wrap { width: calc(100% - 40px); }
+  .site-header { flex-direction: column; align-items: flex-start; gap: 16px; padding-block: 20px 16px; }
+  .site-header nav { gap: 24px; font-size: 12px; margin-left: 0; }
+  .hero { grid-template-columns: 1fr; gap: 36px; padding-block: 44px 50px; }
+  h1 { font-size: clamp(58px, 14vw, 82px); margin: 22px 0; }
+  .hero-lead { font-size: 20px; }
+  .hero-description { font-size: 14px; }
+  .research-note { margin: 0 8px 0 0; padding: 24px; }
+  .note-label { font-size: 10px; }
+  .note-row p { font-size: 24px; }
+  .section { padding-block: 44px; }
+  .section-heading { margin-bottom: 25px; }
+  .research-grid, .ack-grid, .about-grid { grid-template-columns: 1fr; gap: 28px; }
+  .research-card h3 { font-size: 32px; }
+  .research-card .topic-list { margin-top: 0; }
+  .publication { grid-template-columns: 1fr; gap: 12px; padding-block: 20px; }
+  .publication-meta { flex-direction: row; flex-wrap: wrap; gap: 5px 14px; }
+  .publication-title { font-size: 22px; gap: 16px; }
+  .writing-topic { line-height: 1.5; }
+  .site-footer { flex-wrap: wrap; gap: 12px 24px; padding-block: 22px; }
+  .site-footer p { flex-basis: 100%; }
+  .credits-page h1 { font-size: 42px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media print {
+  :root, :root[data-theme], :root:not([data-theme]) {
+    --paper: #ffffff; --ink: #152b35; --muted: #4c5e65; --line: #d5dcda;
+    --accent: #a44329; --tint: #ebefeb; color-scheme: light;
+  }
+  body { background: white; }
+  .wrap { width: 100%; }
+  .site-header nav, .button, .skip-link, .theme-control { display: none; }
+  .hero { padding-block: 30px; }
+  .section { padding-block: 30px; }
+  .research-note { box-shadow: none; }
+  a { text-decoration: underline; }
+  .research-card, .publication, .ack-grid article { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header wrap"><a class="wordmark" href="site-v1-20261001-night.html"><span class="monogram" aria-hidden="true">vo.</span>Vitalii Oborskyi</a><nav aria-label="Main navigation"><a href="site-v1-20261001-night.html#research">Research</a><a href="site-v1-20261001-writing-night.html" aria-current="page">Writing</a><a href="site-v1-20261001-night.html#talks">Talks</a><a href="site-v1-20261001-night.html#about">About</a></nav><nav class="theme-control" aria-label="Review theme"><span>Preview theme</span><a href="site-v1-20261001-writing-day.html">Day</a><a href="site-v1-20261001-writing-night.html" aria-current="page" style="text-decoration:underline">Night</a></nav></header>
+<aside class="wrap" aria-label="Review copy" style="padding-block:14px;font-size:12px;color:var(--muted)">Review copy · fixed Night theme · no JavaScript required. This is not the deployed site or an Auto-mode demonstration.</aside>
+  <main id="main" class="wrap">
+    <section class="archive-intro" aria-labelledby="writing-title"><p class="eyebrow">Writing / Original editions</p><h1 id="writing-title">Research, delivery<br>&amp; the human system.</h1><p class="hero-description">My articles connect AI architecture with the way teams deliver, govern and understand software. Earlier writing explores PMO, estimation, risk and the wider effects of AI.</p><nav class="topic-nav" aria-label="Writing topics"><a href="#delivery">AI-assisted delivery</a><a href="#systems">AI systems &amp; architecture</a><a href="#leadership">Delivery leadership &amp; practice</a><a href="#strategy">AI strategy &amp; society</a></nav></section>
+    <section id="delivery" class="section" aria-labelledby="delivery-title">
+      <div class="section-heading"><p class="eyebrow">Research direction</p><h2 id="delivery-title">AI-assisted delivery.</h2></div>
+      <ol class="publication-list">
+        <li class="publication"><div class="publication-meta"><time datetime="2026-06-17">17 Jun 2026</time><span>Article · Ukrainian · DOU</span></div><div><a class="publication-title" href="https://dou.ua/forums/topic/60177/"><span lang="uk">Субпрайм-криза коду — чому AI-асистенти роблять нас повільнішими (Частина 2)</span><span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+        <li class="publication"><div class="publication-meta"><time datetime="2026-06-12">12 Jun 2026</time><span>Article · English · Agile Insider</span></div><div><a class="publication-title" href="https://medium.com/agileinsider/ai-the-externalization-of-reasoning-and-the-verification-crisis-4f5046f9f0d0">AI, the Externalization of Reasoning, and the Verification Crisis<span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+        <li class="publication"><div class="publication-meta"><time datetime="2026-02-10">10 Feb 2026</time><span>Article · Ukrainian · DOU</span></div><div><a class="publication-title" href="https://dou.ua/forums/topic/57846/"><span lang="uk">Субпрайм-криза коду: чому AI-асистенти роблять нас повільнішими — і дані це доводять</span><span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+        <li class="publication"><div class="publication-meta"><time datetime="2026-01-05">5 Jan 2026</time><span>Article · Ukrainian · DOU</span></div><div><a class="publication-title" href="https://dou.ua/forums/topic/57244/"><span lang="uk">Ілюзія економії: чому заміна розробників на AI — це шлях до технічного дефолту</span><span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+      </ol>
+    </section>
+    <section id="systems" class="section" aria-labelledby="systems-title">
+      <div class="section-heading"><p class="eyebrow">Research direction</p><h2 id="systems-title">AI systems &amp; architecture.</h2></div>
+      <ol class="publication-list">
+        <li class="publication"><div class="publication-meta"><time datetime="2026-08-30">30 Aug 2026</time><span>Article · English · Generative AI</span></div><div><a class="publication-title" href="https://generativeai.pub/uncertainty-architecture-thinking-systems-when-the-controlled-object-changes-21275fe2f3db">Uncertainty Architecture: Thinking Systems, When the Controlled Object Changes<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/thinking-systems-when-controlled-object-changes-vitalii-oborskyi-6k4we">LinkedIn edition · 27 Aug 2026</a></p></div></li>
+        <li class="publication"><div class="publication-meta"><time datetime="2026-06-10">10 Jun 2026</time><span>Article · English · LinkedIn</span></div><div><a class="publication-title" href="https://www.linkedin.com/pulse/reinventing-control-theory-one-feature-time-fallacy-agentic-oborskyi-vkwve/">Reinventing Control Theory One Feature at a Time: The Fallacy of Agentic Loops<span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+        <li class="publication"><div class="publication-meta"><time datetime="2026-06-10">10 Jun 2026</time><span>Article · English · Generative AI</span></div><div><a class="publication-title" href="https://generativeai.pub/uncertainty-architecture-beyond-embeddings-neuro-symbolic-verification-of-semantic-drift-in-llms-69822872825b">Uncertainty Architecture: Beyond Embeddings — Neuro-Symbolic Verification of Semantic Drift in LLMs<span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+        <li class="publication"><div class="publication-meta"><time datetime="2025-12-13">13 Dec 2025</time><span>Article · English · Towards AI</span></div><div><a class="publication-title" href="https://pub.towardsai.net/uncertainty-architecture-why-ai-governance-is-actually-control-theory-511f3e73ed6e">Uncertainty Architecture: Why AI Governance is Actually Control Theory<span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+        <li class="publication"><div class="publication-meta"><time datetime="2025-11-22">22 Nov 2025</time><span>Article · English · Towards AI</span></div><div><a class="publication-title" href="https://pub.towardsai.net/uncertainty-architecture-a-modern-approach-to-designing-llm-applications-2fe196188fac">Uncertainty Architecture: A Modern Approach to Designing LLM Applications<span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+        <li class="publication"><div class="publication-meta"><time datetime="2025-09-06">6 Sep 2025</time><span>Article · English · Data Science Collective</span></div><div><a class="publication-title" href="https://medium.com/data-science-collective/on-device-llm-or-cloud-api-a-practical-checklist-for-product-owners-and-architects-30386f00f148">On-Device LLM or Cloud API? A Practical Checklist for Product Owners and Architects<span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+        <li class="publication"><div class="publication-meta"><time datetime="2025-07-29">29 Jul 2025</time><span>Article · English · Data Science Collective</span></div><div><a class="publication-title" href="https://medium.com/data-science-collective/architecting-uncertainty-a-modern-guide-to-llm-based-software-504695a82567">Architecting Uncertainty: A Modern Guide to LLM-Based Software<span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+      </ol>
+    </section>
+    <section id="leadership" class="section" aria-labelledby="leadership-title">
+      <div class="section-heading"><p class="eyebrow">Earlier & broader writing</p><h2 id="leadership-title">Delivery leadership &amp; practice.</h2></div>
+      <ol class="publication-list">
+        <li class="publication"><div class="publication-meta"><time datetime="2025-07-03">3 Jul 2025</time><span>Article · English · Data Science Collective</span></div><div><a class="publication-title" href="https://medium.com/data-science-collective/beyond-the-buzzwords-an-ai-prompt-to-audit-any-professional-profile-including-your-own-211b112696ef">🧠 Beyond the Buzzwords: An AI Prompt to Audit Any Professional Profile — Including Your Own<span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+        <li class="publication"><div class="publication-meta"><time datetime="2025-06-16">16 Jun 2025</time><span>Article · English · Medium</span></div><div><a class="publication-title" href="https://ai.gopubby.com/ai-integration-and-the-traceability-gap-atlassian-vs-competitors-61beb155ddda">AI Integration and the Traceability Gap: Atlassian vs. Competitors<span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+        <li class="publication"><div class="publication-meta"><time datetime="2025-06-03">3 Jun 2025 · edited</time><span>Article · English · Atlassian Community</span></div><div><a class="publication-title" href="https://community.atlassian.com/forums/discussion/3036514/traceability-for-atlassian-the-missing-ai-enabler-open-letter-1pager">Traceability for Atlassian: The Missing AI Enabler - Open Letter (1pager)<span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+        <li class="publication"><div class="publication-meta"><time datetime="2025-05-31">31 May 2025</time><span>Article · English · Agile Insider</span></div><div><a class="publication-title" href="https://medium.com/agileinsider/pmo-value-creator-or-bureaucratic-overhead-dc4abcc38dfc">PMO: Value Creator or Bureaucratic Overhead?<span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+        <li class="publication"><div class="publication-meta"><time datetime="2025-05-05">5 May 2025</time><span>Article · English · Generative AI</span></div><div><a class="publication-title" href="https://generativeai.pub/ai-driven-enhancements-to-project-risk-management-in-the-pmo-c074ca0b8ec2">AI-Driven Enhancements to Project Risk Management in the PMO<span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+        <li class="publication"><div class="publication-meta"><time datetime="2025-04-30">30 Apr 2025</time><span>Article · English · Agile Insider</span></div><div><a class="publication-title" href="https://medium.com/agileinsider/story-points-vs-time-based-estimation-what-does-research-say-84613cc91c7f">Story Points vs. Time-Based Estimation: What Does Research Say?<span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+        <li class="publication"><div class="publication-meta"><time datetime="2025-04-23">23 Apr 2025</time><span>Article · English · Data Science Collective</span></div><div><a class="publication-title" href="https://medium.com/data-science-collective/how-ai-reveals-your-delivery-critical-path-in-5-steps-b3e8264189e2">How AI Reveals Your Delivery Critical Path in 5 Steps<span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+        <li class="publication"><div class="publication-meta"><time datetime="2025-04-03">3 Apr 2025</time><span>Article · English · Medium</span></div><div><a class="publication-title" href="https://medium.com/@undersmoker/terraforming-your-organization-a-data-driven-journey-from-chaos-to-stability-of-human-and-ai-84790092d2df">Terraforming Your Organization: A Data-Driven Journey from Chaos to Stability of Human and AI<span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+      </ol>
+    </section>
+    <section id="strategy" class="section" aria-labelledby="strategy-title">
+      <div class="section-heading"><p class="eyebrow">Earlier & broader writing</p><h2 id="strategy-title">AI strategy &amp; society.</h2></div>
+      <ol class="publication-list">
+        <li class="publication"><div class="publication-meta"><time datetime="2026-07-01">1 Jul 2026</time><span>Article · English · AI Advances</span></div><div><a class="publication-title" href="https://aiadvances.org/ai-native-workflows-have-a-moat-problem-49992bcc3088">AI-Native Workflows Have a Moat Problem<span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+        <li class="publication"><div class="publication-meta"><time datetime="2025-04-24">24 Apr 2025</time><span>Article · English · Data Science Collective</span></div><div><a class="publication-title" href="https://medium.com/data-science-collective/welcome-to-the-cyberpunk-era-when-corporations-dictate-ai-ethics-29c139c8776b">Welcome to the Cyberpunk Era: When Corporations Dictate AI Ethics<span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+        <li class="publication"><div class="publication-meta"><time datetime="2025-04-23">23 Apr 2025</time><span>Article · English · Medium</span></div><div><a class="publication-title" href="https://medium.com/@undersmoker/europes-silent-revolution-how-industry-4-0-is-powering-ai-driven-hyper-flexible-manufacturing-d0fa214966bd">Europe’s Silent Revolution: How Industry 4.0 Is Powering AI-Driven, Hyper-Flexible Manufacturing<span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+        <li class="publication"><div class="publication-meta"><time datetime="2025-04-23">23 Apr 2025</time><span>Article · English · Medium</span></div><div><a class="publication-title" href="https://medium.com/@undersmoker/ai-dilemmas-25-key-challenges-in-ethics-technology-and-society-3f732eeb6b21">AI Dilemmas: 25 Key Challenges in Ethics, Technology, and Society<span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+      </ol>
+    </section>
+  </main>
+  <footer class="site-footer wrap"><p>© 2026 Vitalii Oborskyi</p><a href="site-v1-20261001-credits-night.html">Reuse &amp; credits</a><a href="#main">Back to top ↑</a></footer>
+</body>
+</html>

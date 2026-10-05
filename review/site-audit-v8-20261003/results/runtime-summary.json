@@ -1,0 +1,986 @@
+{
+  "note": "One sequential lab sample per scenario. CPU slowdown is synthetic, not a device model. Callbacks include JS and Canvas commands, not compositor presentation FPS.",
+  "samples": [
+    {
+      "route": "index",
+      "width": 1440,
+      "rate": 1,
+      "measurements": [
+        {
+          "kind": "idle",
+          "elapsedMs": 4020.4000000059605,
+          "callbacks": 204,
+          "paints": 80,
+          "paintsPerSecond": 19.898517560412248,
+          "paintCallbackMs": {
+            "p50": 16.700000002980232,
+            "p95": 25.5,
+            "max": 60.3999999910593
+          },
+          "paintIntervalP95": 50.100000000000364,
+          "callbackBusyPercent": 36.48641926074724,
+          "longTasks": 4,
+          "longTaskMs": 258,
+          "heapBytes": 10982556,
+          "domNodes": 8062
+        },
+        {
+          "kind": "scroll",
+          "elapsedMs": 4036,
+          "callbacks": 205,
+          "paints": 202,
+          "paintsPerSecond": 50.049554013875124,
+          "paintCallbackMs": {
+            "p50": 7.5,
+            "p95": 14.700000002980232,
+            "max": 20
+          },
+          "paintIntervalP95": 33.399999999999636,
+          "callbackBusyPercent": 41.546085235414466,
+          "longTasks": 0,
+          "longTaskMs": 0,
+          "heapBytes": 40515811,
+          "domNodes": 8062
+        },
+        {
+          "kind": "off",
+          "elapsedMs": 1003.5,
+          "callbacks": 0,
+          "paints": 0,
+          "paintsPerSecond": 0,
+          "paintCallbackMs": {
+            "p50": null,
+            "p95": null
+          },
+          "paintIntervalP95": null,
+          "callbackBusyPercent": 0,
+          "longTasks": 0,
+          "longTaskMs": 0,
+          "heapBytes": 34536723,
+          "domNodes": 8062
+        }
+      ],
+      "errors": []
+    },
+    {
+      "route": "research",
+      "width": 1440,
+      "rate": 1,
+      "measurements": [
+        {
+          "kind": "idle",
+          "elapsedMs": 4008.300000011921,
+          "callbacks": 199,
+          "paints": 80,
+          "paintsPerSecond": 19.958585934127203,
+          "paintCallbackMs": {
+            "p50": 17.599999994039536,
+            "p95": 27.400000005960464,
+            "max": 30.700000002980232
+          },
+          "paintIntervalP95": 50.09999999999991,
+          "callbackBusyPercent": 36.5641294367487,
+          "longTasks": 1,
+          "longTaskMs": 51,
+          "heapBytes": 18125375,
+          "domNodes": 9314
+        },
+        {
+          "kind": "scroll",
+          "elapsedMs": 4072.3999999910593,
+          "callbacks": 194,
+          "paints": 180,
+          "paintsPerSecond": 44.199980355661324,
+          "paintCallbackMs": {
+            "p50": 8.399999991059303,
+            "p95": 19.69999998807907,
+            "max": 44.80000001192093
+          },
+          "paintIntervalP95": 49.900000000001455,
+          "callbackBusyPercent": 43.51242510275712,
+          "longTasks": 1,
+          "longTaskMs": 59,
+          "heapBytes": 38102449,
+          "domNodes": 9314
+        },
+        {
+          "kind": "off",
+          "elapsedMs": 1005.7999999970198,
+          "callbacks": 0,
+          "paints": 0,
+          "paintsPerSecond": 0,
+          "paintCallbackMs": {
+            "p50": null,
+            "p95": null
+          },
+          "paintIntervalP95": null,
+          "callbackBusyPercent": 0,
+          "longTasks": 0,
+          "longTaskMs": 0,
+          "heapBytes": 24203530,
+          "domNodes": 9314
+        }
+      ],
+      "errors": []
+    },
+    {
+      "route": "writing",
+      "width": 1440,
+      "rate": 1,
+      "measurements": [
+        {
+          "kind": "idle",
+          "elapsedMs": 4010.5999999940395,
+          "callbacks": 239,
+          "paints": 80,
+          "paintsPerSecond": 19.947140078820848,
+          "paintCallbackMs": {
+            "p50": 11.5,
+            "p95": 15.199999988079071,
+            "max": 19.200000002980232
+          },
+          "paintIntervalP95": 50.100000000000364,
+          "callbackBusyPercent": 23.522664933268025,
+          "longTasks": 1,
+          "longTaskMs": 54,
+          "heapBytes": 18957177,
+          "domNodes": 6709
+        },
+        {
+          "kind": "scroll",
+          "elapsedMs": 4038,
+          "callbacks": 220,
+          "paints": 197,
+          "paintsPerSecond": 48.78652798415057,
+          "paintCallbackMs": {
+            "p50": 8.099999994039536,
+            "p95": 13.799999997019768,
+            "max": 34.8999999910593
+          },
+          "paintIntervalP95": 49.900000000000546,
+          "callbackBusyPercent": 42.59039128052533,
+          "longTasks": 0,
+          "longTaskMs": 0,
+          "heapBytes": 24011725,
+          "domNodes": 6709
+        },
+        {
+          "kind": "off",
+          "elapsedMs": 1009.2999999970198,
+          "callbacks": 0,
+          "paints": 0,
+          "paintsPerSecond": 0,
+          "paintCallbackMs": {
+            "p50": null,
+            "p95": null
+          },
+          "paintIntervalP95": null,
+          "callbackBusyPercent": 0,
+          "longTasks": 0,
+          "longTaskMs": 0,
+          "heapBytes": 34033335,
+          "domNodes": 6709
+        }
+      ],
+      "errors": []
+    },
+    {
+      "route": "talks",
+      "width": 1440,
+      "rate": 1,
+      "measurements": [
+        {
+          "kind": "idle",
+          "elapsedMs": 4002.2000000029802,
+          "callbacks": 233,
+          "paints": 80,
+          "paintsPerSecond": 19.989006046659444,
+          "paintCallbackMs": {
+            "p50": 14.299999997019768,
+            "p95": 20.600000008940697,
+            "max": 38.29999999701977
+          },
+          "paintIntervalP95": 50.100000000000364,
+          "callbackBusyPercent": 30.22587576689008,
+          "longTasks": 1,
+          "longTaskMs": 51,
+          "heapBytes": 8714172,
+          "domNodes": 7824
+        },
+        {
+          "kind": "scroll",
+          "elapsedMs": 4041.3999999910593,
+          "callbacks": 205,
+          "paints": 201,
+          "paintsPerSecond": 49.73524026338513,
+          "paintCallbackMs": {
+            "p50": 8.5,
+            "p95": 17.299999997019768,
+            "max": 32.5
+          },
+          "paintIntervalP95": 33.400000000000546,
+          "callbackBusyPercent": 46.23150393526739,
+          "longTasks": 0,
+          "longTaskMs": 0,
+          "heapBytes": 25377970,
+          "domNodes": 7824
+        },
+        {
+          "kind": "off",
+          "elapsedMs": 1029.8999999910593,
+          "callbacks": 0,
+          "paints": 0,
+          "paintsPerSecond": 0,
+          "paintCallbackMs": {
+            "p50": null,
+            "p95": null
+          },
+          "paintIntervalP95": null,
+          "callbackBusyPercent": 0,
+          "longTasks": 0,
+          "longTaskMs": 0,
+          "heapBytes": 10135905,
+          "domNodes": 7824
+        }
+      ],
+      "errors": []
+    },
+    {
+      "route": "credits",
+      "width": 1440,
+      "rate": 1,
+      "measurements": [
+        {
+          "kind": "idle",
+          "elapsedMs": 4005.7999999970198,
+          "callbacks": 236,
+          "paints": 80,
+          "paintsPerSecond": 19.97104198913064,
+          "paintCallbackMs": {
+            "p50": 12.400000005960464,
+            "p95": 20,
+            "max": 28.299999997019768
+          },
+          "paintIntervalP95": 50.09999999999991,
+          "callbackBusyPercent": 25.944879922194996,
+          "longTasks": 0,
+          "longTaskMs": 0,
+          "heapBytes": 4020580,
+          "domNodes": 5675
+        },
+        {
+          "kind": "scroll",
+          "elapsedMs": 4045.2999999970198,
+          "callbacks": 173,
+          "paints": 168,
+          "paintsPerSecond": 41.5296764146352,
+          "paintCallbackMs": {
+            "p50": 10.800000011920929,
+            "p95": 19.900000005960464,
+            "max": 34.8999999910593
+          },
+          "paintIntervalP95": 49.899999999999636,
+          "callbackBusyPercent": 48.36476898936879,
+          "longTasks": 2,
+          "longTaskMs": 113,
+          "heapBytes": 17520681,
+          "domNodes": 5675
+        },
+        {
+          "kind": "off",
+          "elapsedMs": 1004.7999999970198,
+          "callbacks": 0,
+          "paints": 0,
+          "paintsPerSecond": 0,
+          "paintCallbackMs": {
+            "p50": null,
+            "p95": null
+          },
+          "paintIntervalP95": null,
+          "callbackBusyPercent": 0,
+          "longTasks": 0,
+          "longTaskMs": 0,
+          "heapBytes": 14921600,
+          "domNodes": 5675
+        }
+      ],
+      "errors": []
+    },
+    {
+      "route": "index",
+      "width": 390,
+      "rate": 1,
+      "measurements": [
+        {
+          "kind": "idle",
+          "elapsedMs": 4008.5,
+          "callbacks": 234,
+          "paints": 60,
+          "paintsPerSecond": 14.968192590744668,
+          "paintCallbackMs": {
+            "p50": 8.399999991059303,
+            "p95": 25.700000002980232,
+            "max": 31.399999991059303
+          },
+          "paintIntervalP95": 66.80000000000018,
+          "callbackBusyPercent": 15.000623673129976,
+          "longTasks": 1,
+          "longTaskMs": 65,
+          "heapBytes": 8066110,
+          "domNodes": 8062
+        },
+        {
+          "kind": "scroll",
+          "elapsedMs": 4039.4000000059605,
+          "callbacks": 227,
+          "paints": 224,
+          "paintsPerSecond": 55.45378026431388,
+          "paintCallbackMs": {
+            "p50": 3.5,
+            "p95": 8.799999997019768,
+            "max": 36.599999994039536
+          },
+          "paintIntervalP95": 33.30000000000018,
+          "callbackBusyPercent": 23.85750358820502,
+          "longTasks": 1,
+          "longTaskMs": 58,
+          "heapBytes": 20303211,
+          "domNodes": 8062
+        },
+        {
+          "kind": "off",
+          "elapsedMs": 1003.7000000029802,
+          "callbacks": 0,
+          "paints": 0,
+          "paintsPerSecond": 0,
+          "paintCallbackMs": {
+            "p50": null,
+            "p95": null
+          },
+          "paintIntervalP95": null,
+          "callbackBusyPercent": 0,
+          "longTasks": 0,
+          "longTaskMs": 0,
+          "heapBytes": 14134018,
+          "domNodes": 8062
+        }
+      ],
+      "errors": []
+    },
+    {
+      "route": "research",
+      "width": 390,
+      "rate": 1,
+      "measurements": [
+        {
+          "kind": "idle",
+          "elapsedMs": 4003,
+          "callbacks": 239,
+          "paints": 60,
+          "paintsPerSecond": 14.988758431176617,
+          "paintCallbackMs": {
+            "p50": 8.400000005960464,
+            "p95": 17,
+            "max": 19.899999991059303
+          },
+          "paintIntervalP95": 66.80000000000018,
+          "callbackBusyPercent": 13.217586809371431,
+          "longTasks": 0,
+          "longTaskMs": 0,
+          "heapBytes": 13597791,
+          "domNodes": 9314
+        },
+        {
+          "kind": "scroll",
+          "elapsedMs": 4046.0999999940395,
+          "callbacks": 230,
+          "paints": 201,
+          "paintsPerSecond": 49.67746719070119,
+          "paintCallbackMs": {
+            "p50": 4.100000008940697,
+            "p95": 8.399999991059303,
+            "max": 11.5
+          },
+          "paintIntervalP95": 33.400000000000546,
+          "callbackBusyPercent": 23.52883023566682,
+          "longTasks": 0,
+          "longTaskMs": 0,
+          "heapBytes": 18638475,
+          "domNodes": 9314
+        },
+        {
+          "kind": "off",
+          "elapsedMs": 1005.4000000059605,
+          "callbacks": 0,
+          "paints": 0,
+          "paintsPerSecond": 0,
+          "paintCallbackMs": {
+            "p50": null,
+            "p95": null
+          },
+          "paintIntervalP95": null,
+          "callbackBusyPercent": 0,
+          "longTasks": 0,
+          "longTaskMs": 0,
+          "heapBytes": 21790028,
+          "domNodes": 9314
+        }
+      ],
+      "errors": []
+    },
+    {
+      "route": "writing",
+      "width": 390,
+      "rate": 1,
+      "measurements": [
+        {
+          "kind": "idle",
+          "elapsedMs": 4008.2000000029802,
+          "callbacks": 240,
+          "paints": 60,
+          "paintsPerSecond": 14.969312908526367,
+          "paintCallbackMs": {
+            "p50": 5.5,
+            "p95": 8.399999991059303,
+            "max": 15.399999991059303
+          },
+          "paintIntervalP95": 66.80000000000018,
+          "callbackBusyPercent": 8.84436904196726,
+          "longTasks": 0,
+          "longTaskMs": 0,
+          "heapBytes": 18545894,
+          "domNodes": 6709
+        },
+        {
+          "kind": "scroll",
+          "elapsedMs": 4036.2000000029802,
+          "callbacks": 239,
+          "paints": 231,
+          "paintsPerSecond": 57.23204994792861,
+          "paintCallbackMs": {
+            "p50": 4.5,
+            "p95": 6.5,
+            "max": 17.599999994039536
+          },
+          "paintIntervalP95": 16.800000000000182,
+          "callbackBusyPercent": 25.15732619803802,
+          "longTasks": 0,
+          "longTaskMs": 0,
+          "heapBytes": 17007861,
+          "domNodes": 6709
+        },
+        {
+          "kind": "off",
+          "elapsedMs": 1003.0999999940395,
+          "callbacks": 0,
+          "paints": 0,
+          "paintsPerSecond": 0,
+          "paintCallbackMs": {
+            "p50": null,
+            "p95": null
+          },
+          "paintIntervalP95": null,
+          "callbackBusyPercent": 0,
+          "longTasks": 0,
+          "longTaskMs": 0,
+          "heapBytes": 17372220,
+          "domNodes": 6709
+        }
+      ],
+      "errors": []
+    },
+    {
+      "route": "talks",
+      "width": 390,
+      "rate": 1,
+      "measurements": [
+        {
+          "kind": "idle",
+          "elapsedMs": 4009.5,
+          "callbacks": 240,
+          "paints": 60,
+          "paintsPerSecond": 14.964459408903853,
+          "paintCallbackMs": {
+            "p50": 7.199999988079071,
+            "p95": 13,
+            "max": 17.599999994039536
+          },
+          "paintIntervalP95": 66.70000000000073,
+          "callbackBusyPercent": 11.744606560313326,
+          "longTasks": 0,
+          "longTaskMs": 0,
+          "heapBytes": 11339061,
+          "domNodes": 7824
+        },
+        {
+          "kind": "scroll",
+          "elapsedMs": 4040,
+          "callbacks": 231,
+          "paints": 228,
+          "paintsPerSecond": 56.43564356435643,
+          "paintCallbackMs": {
+            "p50": 3.5,
+            "p95": 10.099999994039536,
+            "max": 21.200000002980232
+          },
+          "paintIntervalP95": 16.80000000000109,
+          "callbackBusyPercent": 25.727722772793605,
+          "longTasks": 1,
+          "longTaskMs": 50,
+          "heapBytes": 16537587,
+          "domNodes": 7824
+        },
+        {
+          "kind": "off",
+          "elapsedMs": 1002.5,
+          "callbacks": 0,
+          "paints": 0,
+          "paintsPerSecond": 0,
+          "paintCallbackMs": {
+            "p50": null,
+            "p95": null
+          },
+          "paintIntervalP95": null,
+          "callbackBusyPercent": 0,
+          "longTasks": 0,
+          "longTaskMs": 0,
+          "heapBytes": 23352264,
+          "domNodes": 7824
+        }
+      ],
+      "errors": []
+    },
+    {
+      "route": "credits",
+      "width": 390,
+      "rate": 1,
+      "measurements": [
+        {
+          "kind": "idle",
+          "elapsedMs": 4011.4000000059605,
+          "callbacks": 239,
+          "paints": 60,
+          "paintsPerSecond": 14.957371491227713,
+          "paintCallbackMs": {
+            "p50": 5.0999999940395355,
+            "p95": 11.200000002980232,
+            "max": 21.799999997019768
+          },
+          "paintIntervalP95": 66.79999999999995,
+          "callbackBusyPercent": 9.036745274835665,
+          "longTasks": 0,
+          "longTaskMs": 0,
+          "heapBytes": 10158560,
+          "domNodes": 5675
+        },
+        {
+          "kind": "scroll",
+          "elapsedMs": 4013.9000000059605,
+          "callbacks": 237,
+          "paints": 235,
+          "paintsPerSecond": 58.54655073610479,
+          "paintCallbackMs": {
+            "p50": 4.299999997019768,
+            "p95": 6.700000002980232,
+            "max": 32.5
+          },
+          "paintIntervalP95": 16.800000000000182,
+          "callbackBusyPercent": 26.226363389120877,
+          "longTasks": 1,
+          "longTaskMs": 60,
+          "heapBytes": 9995424,
+          "domNodes": 5675
+        },
+        {
+          "kind": "off",
+          "elapsedMs": 1005.8999999910593,
+          "callbacks": 0,
+          "paints": 0,
+          "paintsPerSecond": 0,
+          "paintCallbackMs": {
+            "p50": null,
+            "p95": null
+          },
+          "paintIntervalP95": null,
+          "callbackBusyPercent": 0,
+          "longTasks": 0,
+          "longTaskMs": 0,
+          "heapBytes": 17874587,
+          "domNodes": 5675
+        }
+      ],
+      "errors": []
+    },
+    {
+      "route": "index",
+      "width": 390,
+      "rate": 4,
+      "measurements": [
+        {
+          "kind": "idle",
+          "elapsedMs": 4046.7000000029802,
+          "callbacks": 32,
+          "paints": 32,
+          "paintsPerSecond": 7.907677860967315,
+          "paintCallbackMs": {
+            "p50": 43.900000005960464,
+            "p95": 110.90000000596046,
+            "max": 119.40000000596046
+          },
+          "paintIntervalP95": 200,
+          "callbackBusyPercent": 42.429634024593895,
+          "longTasks": 32,
+          "longTaskMs": 3886,
+          "heapBytes": 11894658,
+          "domNodes": 8062
+        },
+        {
+          "kind": "scroll",
+          "elapsedMs": 4269.5999999940395,
+          "callbacks": 66,
+          "paints": 66,
+          "paintsPerSecond": 15.458122540774813,
+          "paintCallbackMs": {
+            "p50": 16.80000001192093,
+            "p95": 41.80000001192093,
+            "max": 56.5
+          },
+          "paintIntervalP95": 116.69999999999982,
+          "callbackBusyPercent": 31.45493723383889,
+          "longTasks": 41,
+          "longTaskMs": 3223,
+          "heapBytes": 13265546,
+          "domNodes": 8062
+        },
+        {
+          "kind": "off",
+          "elapsedMs": 1004.9000000059605,
+          "callbacks": 0,
+          "paints": 0,
+          "paintsPerSecond": 0,
+          "paintCallbackMs": {
+            "p50": null,
+            "p95": null
+          },
+          "paintIntervalP95": null,
+          "callbackBusyPercent": 0,
+          "longTasks": 0,
+          "longTaskMs": 0,
+          "heapBytes": 4445213,
+          "domNodes": 8062
+        }
+      ],
+      "errors": []
+    },
+    {
+      "route": "research",
+      "width": 390,
+      "rate": 4,
+      "measurements": [
+        {
+          "kind": "idle",
+          "elapsedMs": 4070.0999999940395,
+          "callbacks": 37,
+          "paints": 37,
+          "paintsPerSecond": 9.090685732550597,
+          "paintCallbackMs": {
+            "p50": 40.599999994039536,
+            "p95": 82.20000000298023,
+            "max": 137.8999999910593
+          },
+          "paintIntervalP95": 150,
+          "callbackBusyPercent": 41.21520355734639,
+          "longTasks": 37,
+          "longTaskMs": 3996,
+          "heapBytes": 44878807,
+          "domNodes": 9314
+        },
+        {
+          "kind": "scroll",
+          "elapsedMs": 4243.4000000059605,
+          "callbacks": 71,
+          "paints": 63,
+          "paintsPerSecond": 14.846585285363508,
+          "paintCallbackMs": {
+            "p50": 16.400000005960464,
+            "p95": 47.20000000298023,
+            "max": 156
+          },
+          "paintIntervalP95": 116.60000000000036,
+          "callbackBusyPercent": 36.64514304456597,
+          "longTasks": 30,
+          "longTaskMs": 2606,
+          "heapBytes": 14781499,
+          "domNodes": 9314
+        },
+        {
+          "kind": "off",
+          "elapsedMs": 1007,
+          "callbacks": 0,
+          "paints": 0,
+          "paintsPerSecond": 0,
+          "paintCallbackMs": {
+            "p50": null,
+            "p95": null
+          },
+          "paintIntervalP95": null,
+          "callbackBusyPercent": 0,
+          "longTasks": 0,
+          "longTaskMs": 0,
+          "heapBytes": 4727961,
+          "domNodes": 9314
+        }
+      ],
+      "errors": []
+    },
+    {
+      "route": "writing",
+      "width": 390,
+      "rate": 4,
+      "measurements": [
+        {
+          "kind": "idle",
+          "elapsedMs": 4010.2000000029802,
+          "callbacks": 59,
+          "paints": 53,
+          "paintsPerSecond": 13.216298438970778,
+          "paintCallbackMs": {
+            "p50": 27.299999997019768,
+            "p95": 54.20000000298023,
+            "max": 63.19999998807907
+          },
+          "paintIntervalP95": 116.5,
+          "callbackBusyPercent": 39.65388259904487,
+          "longTasks": 52,
+          "longTaskMs": 3854,
+          "heapBytes": 6495280,
+          "domNodes": 6709
+        },
+        {
+          "kind": "scroll",
+          "elapsedMs": 4206.5,
+          "callbacks": 68,
+          "paints": 66,
+          "paintsPerSecond": 15.690003565909901,
+          "paintCallbackMs": {
+            "p50": 19.19999998807907,
+            "p95": 33.30000001192093,
+            "max": 126.70000000298023
+          },
+          "paintIntervalP95": 100,
+          "callbackBusyPercent": 34.109116842556006,
+          "longTasks": 42,
+          "longTaskMs": 3081,
+          "heapBytes": 11388487,
+          "domNodes": 6709
+        },
+        {
+          "kind": "off",
+          "elapsedMs": 1020.2000000029802,
+          "callbacks": 0,
+          "paints": 0,
+          "paintsPerSecond": 0,
+          "paintCallbackMs": {
+            "p50": null,
+            "p95": null
+          },
+          "paintIntervalP95": null,
+          "callbackBusyPercent": 0,
+          "longTasks": 0,
+          "longTaskMs": 0,
+          "heapBytes": 13278650,
+          "domNodes": 6709
+        }
+      ],
+      "errors": []
+    },
+    {
+      "route": "talks",
+      "width": 390,
+      "rate": 4,
+      "measurements": [
+        {
+          "kind": "idle",
+          "elapsedMs": 4017.0999999940395,
+          "callbacks": 50,
+          "paints": 49,
+          "paintsPerSecond": 12.197854173426776,
+          "paintCallbackMs": {
+            "p50": 30.099999994039536,
+            "p95": 56.69999998807907,
+            "max": 66.3999999910593
+          },
+          "paintIntervalP95": 133.30000000000018,
+          "callbackBusyPercent": 39.78740882836112,
+          "longTasks": 49,
+          "longTaskMs": 3957,
+          "heapBytes": 8937497,
+          "domNodes": 7824
+        },
+        {
+          "kind": "scroll",
+          "elapsedMs": 4283.20000000298,
+          "callbacks": 79,
+          "paints": 77,
+          "paintsPerSecond": 17.977213298455926,
+          "paintCallbackMs": {
+            "p50": 15.799999997019768,
+            "p95": 40.6000000089407,
+            "max": 70.5
+          },
+          "paintIntervalP95": 116.69999999999891,
+          "callbackBusyPercent": 35.24234217300724,
+          "longTasks": 33,
+          "longTaskMs": 2554,
+          "heapBytes": 12135826,
+          "domNodes": 7824
+        },
+        {
+          "kind": "off",
+          "elapsedMs": 1006.0999999940395,
+          "callbacks": 0,
+          "paints": 0,
+          "paintsPerSecond": 0,
+          "paintCallbackMs": {
+            "p50": null,
+            "p95": null
+          },
+          "paintIntervalP95": null,
+          "callbackBusyPercent": 0,
+          "longTasks": 0,
+          "longTaskMs": 0,
+          "heapBytes": 4238836,
+          "domNodes": 7824
+        }
+      ],
+      "errors": []
+    },
+    {
+      "route": "credits",
+      "width": 390,
+      "rate": 4,
+      "measurements": [
+        {
+          "kind": "idle",
+          "elapsedMs": 4056.6000000089407,
+          "callbacks": 50,
+          "paints": 45,
+          "paintsPerSecond": 11.093033574890505,
+          "paintCallbackMs": {
+            "p50": 35.1000000089407,
+            "p95": 51.3999999910593,
+            "max": 57.3999999910593
+          },
+          "paintIntervalP95": 133.29999999999973,
+          "callbackBusyPercent": 38.23891928980315,
+          "longTasks": 46,
+          "longTaskMs": 4047,
+          "heapBytes": 9895576,
+          "domNodes": 5675
+        },
+        {
+          "kind": "scroll",
+          "elapsedMs": 4211.29999999702,
+          "callbacks": 49,
+          "paints": 49,
+          "paintsPerSecond": 11.635362002240324,
+          "paintCallbackMs": {
+            "p50": 27.799999997019768,
+            "p95": 87.09999999403954,
+            "max": 107
+          },
+          "paintIntervalP95": 183.29999999999927,
+          "callbackBusyPercent": 37.34951202733298,
+          "longTasks": 45,
+          "longTaskMs": 3899,
+          "heapBytes": 7887496,
+          "domNodes": 5675
+        },
+        {
+          "kind": "off",
+          "elapsedMs": 1005.4000000059605,
+          "callbacks": 0,
+          "paints": 0,
+          "paintsPerSecond": 0,
+          "paintCallbackMs": {
+            "p50": null,
+            "p95": null
+          },
+          "paintIntervalP95": null,
+          "callbackBusyPercent": 0,
+          "longTasks": 0,
+          "longTaskMs": 0,
+          "heapBytes": 15510864,
+          "domNodes": 5675
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "browser": "154.0.8037.97",
+  "soak": {
+    "route": "research",
+    "width": 390,
+    "durationSeconds": 60,
+    "startHeapBytes": 6256964,
+    "endHeapBytes": 4447528,
+    "deltaBytes": -1809436,
+    "chunks": [
+      {
+        "kind": "idle",
+        "elapsedMs": 20011,
+        "callbacks": 1201,
+        "paints": 300,
+        "paintsPerSecond": 14.991754535005747,
+        "paintCallbackMs": {
+          "p50": 7.9000000059604645,
+          "p95": 11.099999994039536,
+          "max": 15.600000008940697
+        },
+        "paintIntervalP95": 66.70000000000073,
+        "callbackBusyPercent": 12.48613262680194,
+        "longTasks": 0,
+        "longTaskMs": 0,
+        "heapBytes": 12529087,
+        "domNodes": 9314
+      },
+      {
+        "kind": "idle",
+        "elapsedMs": 20014.40000000596,
+        "callbacks": 1200,
+        "paints": 300,
+        "paintsPerSecond": 14.989207770400844,
+        "paintCallbackMs": {
+          "p50": 7.100000008940697,
+          "p95": 9.700000002980232,
+          "max": 23.700000002980232
+        },
+        "paintIntervalP95": 66.70000000000437,
+        "callbackBusyPercent": 11.382804380633935,
+        "longTasks": 0,
+        "longTaskMs": 0,
+        "heapBytes": 17941532,
+        "domNodes": 9314
+      },
+      {
+        "kind": "idle",
+        "elapsedMs": 20004.29999999702,
+        "callbacks": 1200,
+        "paints": 300,
+        "paintsPerSecond": 14.99677569322819,
+        "paintCallbackMs": {
+          "p50": 7.299999997019768,
+          "p95": 10.300000011920929,
+          "max": 13.600000008940697
+        },
+        "paintIntervalP95": 66.70000000000437,
+        "callbackBusyPercent": 11.627500086738026,
+        "longTasks": 0,
+        "longTaskMs": 0,
+        "heapBytes": 17856354,
+        "domNodes": 9314
+      }
+    ],
+    "limit": "Short soak and forced-GC heap samples can detect obvious growth, not establish absence of a long-term leak."
+  }
+}

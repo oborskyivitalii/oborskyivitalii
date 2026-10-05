@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "status": "approved direction; implementation and rendered acceptance pending",
+  "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/14",
+  "baselineCommit": "0333c4d2b2318850fd56312d83fb63ca468f01a4",
+  "fog": {
+    "approvedSliderValue": 70,
+    "sliderRange": [
+      0,
+      100
+    ],
+    "depthCoordinate": "camera-space z, as in baseline docs/space.js and reference s.depth",
+    "smoothstep": "t=clamp(x,0,1); s=t*t*(3-2*t)",
+    "oldVisibility": "1-0.94*s((z-12)/88)",
+    "strongVisibility": "1-0.975*s((z-8)/56)",
+    "acceptedVisibility": "0.30*oldVisibility(z)+0.70*strongVisibility(z)",
+    "prototypeAlphaMultiplier": "acceptedVisibility(z)/max(0.001,oldVisibility(z))",
+    "implementationRule": "Replace shared depth visibility coherently; do not apply old fog twice; retain clipping/detail factors; include faces/seams/outlines.",
+    "samples": [
+      {
+        "cameraDepth": 0,
+        "oldVisibility": 1.0,
+        "strongVisibility": 1.0,
+        "acceptedVisibility": 1.0
+      },
+      {
+        "cameraDepth": 8,
+        "oldVisibility": 1.0,
+        "strongVisibility": 1.0,
+        "acceptedVisibility": 1.0
+      },
+      {
+        "cameraDepth": 12,
+        "oldVisibility": 1.0,
+        "strongVisibility": 0.985787172012,
+        "acceptedVisibility": 0.990051020408
+      },
+      {
+        "cameraDepth": 24,
+        "oldVisibility": 0.952329075883,
+        "strongVisibility": 0.806705539359,
+        "acceptedVisibility": 0.850392600316
+      },
+      {
+        "cameraDepth": 40,
+        "oldVisibility": 0.775063861758,
+        "strongVisibility": 0.408746355685,
+        "acceptedVisibility": 0.518641607507
+      },
+      {
+        "cameraDepth": 56,
+        "oldVisibility": 0.53,
+        "strongVisibility": 0.079008746356,
+        "acceptedVisibility": 0.214306122449
+      },
+      {
+        "cameraDepth": 64,
+        "oldVisibility": 0.403230653644,
+        "strongVisibility": 0.025,
+        "acceptedVisibility": 0.138469196093
+      },
+      {
+        "cameraDepth": 80,
+        "oldVisibility": 0.183591284748,
+        "strongVisibility": 0.025,
+        "acceptedVisibility": 0.072577385424
+      },
+      {
+        "cameraDepth": 100,
+        "oldVisibility": 0.06,
+        "strongVisibility": 0.025,
+        "acceptedVisibility": 0.0355
+      },
+      {
+        "cameraDepth": 120,
+        "oldVisibility": 0.06,
+        "strongVisibility": 0.025,
+        "acceptedVisibility": 0.0355
+      }
+    ]
+  },
+  "atmosphere": {
+    "approvedDirection": "visibly stronger broad theme-aware atmosphere than retained reference, without degrading contrast or obscuring all motifs",
+    "referenceOpacity": 0.55,
+    "proposedStartingOpacity": 0.8,
+    "startingOpacityIsExactUserRequirement": false,
+    "layers": "broad gradients / soft horizon; no new dense landscape",
+    "motion": "existing 24-second bounded lifecycle; exact freeze, pause and fallback behavior"
+  },
+  "palette": {
+    "status": "reference starting tokens; actual text/surface pairings require contrast verification",
+    "day": {
+      "paper": "#f3f1ea",
+      "ink": "#172b36",
+      "muted": "#51636b",
+      "accent": "#245866",
+      "bronze": "#927348",
+      "sheet": "#fffdf7",
+      "air": "#c1d4d2",
+      "rule": "#ccd0c9"
+    },
+    "night": {
+      "paper": "#111c22",
+      "ink": "#e6e8e5",
+      "muted": "#afc0c5",
+      "accent": "#78abb0",
+      "bronze": "#b99a6a",
+      "sheet": "#85999e",
+      "air": "#24454f",
+      "rule": "#33464c"
+    }
+  },
+  "defocus": {
+    "required": false,
+    "allowedTrial": "one low-resolution far-field layer on existing cadence",
+    "acceptance": "visible benefit plus unchanged measured budgets; otherwise keep fog-only fallback"
+  },
+  "runtime": {
+    "ambientPeriodMs": 24000,
+    "newDependencies": false,
+    "budgetOwner": "tools/quality/budgets.json",
+    "publicFogSliderRequired": false
+  },
+  "priorityOrder": [
+    "Day-theme contrast",
+    "fog and stronger atmosphere",
+    "executive composition and identity",
+    "SEO/content reconciliation",
+    "current-source checks and all-page handoff"
+  ]
+}

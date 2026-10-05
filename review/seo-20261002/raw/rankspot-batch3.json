@@ -1,0 +1,104 @@
+{
+  "source_url": "https://www.rankspot.ai/api/tools/keyword-search-volume",
+  "source_methodology_url": "https://www.rankspot.ai/free-tools/keyword-search-volume",
+  "payload": {
+    "keywords": [
+      "ai governance framework",
+      "ai governance consultant",
+      "ai coding tool roi",
+      "ai roi for engineering",
+      "ai adoption challenges"
+    ],
+    "country": "us"
+  },
+  "retrieved_at": "2026-10-02T09:30:40.489502+00:00",
+  "status": 200,
+  "data": {
+    "data": {
+      "country": "United States",
+      "keywords": [
+        {
+          "keyword": "ai governance framework",
+          "volume": 4400,
+          "noData": false,
+          "cpc": 48.53,
+          "competition": "LOW",
+          "competitionIndex": 32,
+          "trend": -91,
+          "history": [
+            18100,
+            14800,
+            3600,
+            1000,
+            1300,
+            1300,
+            1900,
+            1300,
+            1600,
+            1300,
+            1600,
+            1600
+          ]
+        },
+        {
+          "keyword": "ai governance consultant",
+          "volume": 0,
+          "noData": true,
+          "cpc": 0,
+          "competition": "UNKNOWN",
+          "competitionIndex": 0,
+          "trend": 0,
+          "history": []
+        },
+        {
+          "keyword": "ai coding tool roi",
+          "volume": 0,
+          "noData": true,
+          "cpc": 0,
+          "competition": "UNKNOWN",
+          "competitionIndex": 0,
+          "trend": 0,
+          "history": []
+        },
+        {
+          "keyword": "ai roi for engineering",
+          "volume": 0,
+          "noData": true,
+          "cpc": 0,
+          "competition": "UNKNOWN",
+          "competitionIndex": 0,
+          "trend": 0,
+          "history": []
+        },
+        {
+          "keyword": "ai adoption challenges",
+          "volume": 90,
+          "noData": false,
+          "cpc": 33.81,
+          "competition": "LOW",
+          "competitionIndex": 12,
+          "trend": -71,
+          "history": [
+            170,
+            90,
+            20,
+            10,
+            30,
+            70,
+            260,
+            70,
+            110,
+            40,
+            90,
+            50
+          ]
+        }
+      ]
+    },
+    "rateLimit": {
+      "limit": 5,
+      "remaining": 2,
+      "resetAt": "2026-10-03T00:00:00.000Z"
+    }
+  }
+}

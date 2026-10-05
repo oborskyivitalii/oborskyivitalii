@@ -1,0 +1,76 @@
+{
+  "eslint_sonarjs": {
+    "total_messages": 58,
+    "by_file": {
+      "docs/space.js": 23,
+      "tests/archive.test.cjs": 3,
+      "tests/content.test.cjs": 4,
+      "tests/preview.test.cjs": 1,
+      "tests/space.test.cjs": 12,
+      "tests/theme.test.cjs": 3,
+      "tools/build_scene_fallbacks.cjs": 2,
+      "tools/build_site_previews.cjs": 3,
+      "tools/capture_site_review.cjs": 3,
+      "tools/check_site_contrast.cjs": 4
+    },
+    "by_rule": {
+      "sonarjs/cognitive-complexity": 11,
+      "no-unused-vars": 3,
+      "sonarjs/no-nested-functions": 1,
+      "sonarjs/no-nested-conditional": 19,
+      "sonarjs/no-unused-vars": 1,
+      "sonarjs/no-dead-store": 2,
+      "sonarjs/no-unenclosed-multiline-block": 12,
+      "sonarjs/code-eval": 3,
+      "no-useless-escape": 2,
+      "sonarjs/super-linear-regex": 1,
+      "sonarjs/no-nested-template-literals": 2,
+      "no-cond-assign": 1
+    }
+  },
+  "stylelint": {
+    "total_messages": 201,
+    "by_rule": {
+      "at-rule-empty-line-before": 6,
+      "comment-empty-line-before": 3,
+      "custom-property-empty-line-before": 2,
+      "declaration-block-no-redundant-longhand-properties": 1,
+      "declaration-block-single-line-max-declarations": 144,
+      "declaration-empty-line-before": 3,
+      "media-feature-range-notation": 4,
+      "no-descending-specificity": 28,
+      "no-duplicate-selectors": 7,
+      "rule-empty-line-before": 2,
+      "value-keyword-case": 1
+    }
+  },
+  "ruff": {
+    "total_messages": 4,
+    "by_code": {
+      "I001": 1,
+      "C901": 3
+    }
+  },
+  "bandit": {
+    "findings": 0
+  },
+  "secrets": {
+    "candidates": 92,
+    "triage": "91 generated source digest/hash fields in RI; one public publication URL identifier test; no credentials confirmed. No verification requests sent. Current tracked tree excluding review and drafts; not full-history scan."
+  },
+  "semgrep": {
+    "primary_findings": 0,
+    "primary_scanned_files": 21,
+    "primary_rules_run": 106,
+    "original_partial_parse_files": [
+      "docs/space.js",
+      "tools/build_scene_fallbacks.cjs"
+    ],
+    "token_equivalent_normalized_rescan": {
+      "files": 2,
+      "rules_run": 22,
+      "findings": 0,
+      "parse_errors": 0
+    }
+  }
+}

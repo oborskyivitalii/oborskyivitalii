@@ -1,0 +1,24 @@
+{
+  "node_packages": {
+    "eslint": "10.12.0",
+    "@eslint/js": "10.0.1",
+    "eslint-plugin-sonarjs": "4.2.2",
+    "globals": "17.13.0",
+    "stylelint": "17.16.0",
+    "stylelint-config-standard": "40.0.0",
+    "lighthouse": "13.5.0",
+    "playwright": "1.63.0",
+    "@axe-core/playwright": "4.13.0"
+  },
+  "python_packages": {
+    "semgrep": "1.179.0",
+    "bandit": "1.9.4",
+    "ruff": "0.16.10",
+    "detect-secrets": "1.5.0"
+  },
+  "os": "Ubuntu 24.04.3 LTS",
+  "node": "24.19.0",
+  "python": "3.12.14",
+  "semgrep_rules": "p/security-audit fetched 2026-10-03. Registry content can change; this is not a pinned rules snapshot.",
+  "baseline": "6176cb209a1d46a1ae056c3008c77e20281b6f93"
+}

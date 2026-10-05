@@ -1,0 +1,51 @@
+name: Site navigation diagnostic
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - docs/navigation.js
+      - docs/space.js
+      - tools/quality/navigation.cjs
+      - .github/workflows/site-navigation-probe.yml
+  workflow_dispatch:
+    inputs:
+      candidate_sha:
+        description: Exact source commit to diagnose
+        required: true
+        type: string
+permissions:
+  contents: read
+jobs:
+  firefox:
+    runs-on: windows-2025
+    timeout-minutes: 10
+    env:
+      SITE_CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
+      SITE_PUBLIC_DIR: ${{ github.workspace }}/quality-artifact/public
+      SITE_ARTIFACT_MANIFEST: ${{ github.workspace }}/quality-artifact/artifact.json
+      SITE_REPORT_DIR: ${{ github.workspace }}/quality-reports
+      SITE_NAVIGATION_PROBE: 'true'
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - name: Validate and copy the exact candidate
+        run: |
+          node -e "require('node:assert/strict').match(process.env.SITE_CANDIDATE_SHA,/^[0-9a-f]{40}$/)"
+          node tools/quality/artifact.cjs build quality-artifact
+      - name: Install pinned Firefox
+        run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          node tools/quality/toolchain/node_modules/playwright/cli.js install firefox
+      - name: Diagnose desktop navigation and retain state on failure
+        run: node tools/quality/navigation.cjs
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: navigation-diagnostic-${{ github.run_id }}
+          path: quality-reports/
+          retention-days: 14

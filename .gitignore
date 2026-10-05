@@ -1,0 +1,12 @@
+node_modules/
+__pycache__/
+.ruff_cache/
+.venv/
+venv/
+tools/quality/toolchain/venv
+quality-results/
+quality-artifact/
+quality-reports/
+staging-package/
+staging-rollback/
+staging-reports/

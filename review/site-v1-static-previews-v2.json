@@ -1,0 +1,20 @@
+{
+  "kind": "Review-only fixed-theme copies; not visual QA or a deployment",
+  "generator": "tools/build_site_previews.cjs",
+  "sources": {
+    "docs/styles.css": "57dafa9f08574a15205eecfd9ed88932e7fc1f9900c0935d1271bfd78a4a7acf",
+    "docs/assets/vitalii-oborskyi.jpg": "5321e48f08b075cb1cbd522d0f36bc01276aece65d1a04cf09102aa5dd2b59bc",
+    "docs/index.html": "b27d121c0acb57efdd97203c8dffdfe6bcf5d50bfd07dc0fad327936f057cbfd",
+    "docs/writing.html": "ea274d1149f13b52ca0166956d5ddbc5b5caaa891a1ed62e594737861386bdc2",
+    "docs/credits.html": "6944438f6ebe83f8a49deb4095135659d068d52cbef89fb6f07756199029767d"
+  },
+  "files": {
+    "review/site-v1-20261001-v2-day.html": "d7ba13ff0ce7c54c24758ed023d4686053bfdb855106d0715334e94b768c9f8a",
+    "review/site-v1-20261001-v2-night.html": "90c580c283eae28e1686d0551bc151f6cbd44d7a0ec78f273441ce69fa38deb6",
+    "review/site-v1-20261001-v2-writing-day.html": "310687b394794d842c9946a87b973663f0654b0b33109e4b8d844dee92f4e48a",
+    "review/site-v1-20261001-v2-writing-night.html": "f14decd7916c02857b89dc32ee902c47739bcce91fe5f68e8dad4da7c7b58152",
+    "review/site-v1-20261001-v2-credits-day.html": "9d0ee7de565c590c434a6d7d81a2bb842dc853554ec15c5f50e283bb760fd127",
+    "review/site-v1-20261001-v2-credits-night.html": "10122678bb7a2e77968fdc2da057782dacdc4b48a652c01c8ed7e469efbddb8e"
+  },
+  "transformations": "Inline exact public CSS and portrait bytes; fixed theme; remove executable theme script but retain JSON-LD; visible theme links; local navigation remapped; review-only noindex notice/title. Public main content and external URLs preserved."
+}

@@ -1,0 +1,143 @@
+{
+  "source_url": "https://www.rankspot.ai/api/tools/keyword-search-volume",
+  "source_methodology_url": "https://www.rankspot.ai/free-tools/keyword-search-volume",
+  "payload": {
+    "keywords": [
+      "ai governance consulting",
+      "ai agent governance",
+      "ai operating model",
+      "ai productivity paradox",
+      "ai developer productivity"
+    ],
+    "country": "US"
+  },
+  "retrieved_at": "2026-10-02T09:28:57.709024+00:00",
+  "status": 200,
+  "data": {
+    "data": {
+      "country": "United States",
+      "keywords": [
+        {
+          "keyword": "ai governance consulting",
+          "volume": 140,
+          "noData": false,
+          "cpc": 33.9,
+          "competition": "MEDIUM",
+          "competitionIndex": 57,
+          "trend": -33,
+          "history": [
+            210,
+            90,
+            70,
+            50,
+            70,
+            140,
+            320,
+            140,
+            170,
+            170,
+            170,
+            140
+          ]
+        },
+        {
+          "keyword": "ai agent governance",
+          "volume": 260,
+          "noData": false,
+          "cpc": 60.66,
+          "competition": "MEDIUM",
+          "competitionIndex": 41,
+          "trend": 129,
+          "history": [
+            210,
+            140,
+            110,
+            110,
+            170,
+            170,
+            390,
+            260,
+            320,
+            260,
+            320,
+            480
+          ]
+        },
+        {
+          "keyword": "ai operating model",
+          "volume": 110,
+          "noData": false,
+          "cpc": 16.99,
+          "competition": "MEDIUM",
+          "competitionIndex": 54,
+          "trend": -18,
+          "history": [
+            170,
+            50,
+            70,
+            30,
+            70,
+            90,
+            110,
+            110,
+            140,
+            140,
+            140,
+            140
+          ]
+        },
+        {
+          "keyword": "ai productivity paradox",
+          "volume": 140,
+          "noData": false,
+          "cpc": 18.2,
+          "competition": "LOW",
+          "competitionIndex": 10,
+          "trend": 250,
+          "history": [
+            40,
+            70,
+            110,
+            50,
+            70,
+            110,
+            140,
+            210,
+            170,
+            320,
+            140,
+            140
+          ]
+        },
+        {
+          "keyword": "ai developer productivity",
+          "volume": 50,
+          "noData": false,
+          "cpc": 0,
+          "competition": "LOW",
+          "competitionIndex": 13,
+          "trend": 450,
+          "history": [
+            20,
+            20,
+            30,
+            10,
+            20,
+            10,
+            30,
+            50,
+            70,
+            90,
+            140,
+            110
+          ]
+        }
+      ]
+    },
+    "rateLimit": {
+      "limit": 5,
+      "remaining": 4,
+      "resetAt": "2026-10-03T00:00:00.000Z"
+    }
+  }
+}

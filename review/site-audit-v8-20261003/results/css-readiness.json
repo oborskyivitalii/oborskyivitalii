@@ -1,0 +1,211 @@
+[
+  {
+    "engine": "chromium",
+    "version": "154.0.8037.97",
+    "condition": "normal",
+    "errors": [],
+    "colorReads": [
+      {
+        "at": 173,
+        "readyState": "interactive",
+        "sheets": 1,
+        "paper": "#f8f7f3",
+        "accent": "#075d7b",
+        "systems": "#895710",
+        "sheet": "#fffefa"
+      }
+    ],
+    "ready": "true",
+    "motionHidden": false,
+    "phase": "413.29999999999995",
+    "h1": "Reuse & credits."
+  },
+  {
+    "engine": "chromium",
+    "version": "154.0.8037.97",
+    "condition": "css-delayed",
+    "errors": [],
+    "colorReads": [
+      {
+        "at": 1624.7000000029802,
+        "readyState": "interactive",
+        "sheets": 1,
+        "paper": "#f8f7f3",
+        "accent": "#075d7b",
+        "systems": "#895710",
+        "sheet": "#fffefa"
+      }
+    ],
+    "ready": "true",
+    "motionHidden": false,
+    "phase": "479.89999999999986",
+    "h1": "Reuse & credits."
+  },
+  {
+    "engine": "chromium",
+    "version": "154.0.8037.97",
+    "condition": "css-blocked",
+    "errors": [
+      {
+        "message": "Cannot read properties of null (reading 'map')",
+        "stack": "TypeError: Cannot read properties of null (reading 'map')\n    at rgb (http://127.0.0.1:41837/space.js:380:54)\n    at blendColor (http://127.0.0.1:41837/space.js:381:21)\n    at readColors (http://127.0.0.1:41837/space.js:432:83)\n    at http://127.0.0.1:41837/space.js:554:13\n    at http://127.0.0.1:41837/space.js:561:3"
+      }
+    ],
+    "colorReads": [
+      {
+        "at": 132.40000000596046,
+        "readyState": "interactive",
+        "sheets": 1,
+        "paper": "",
+        "accent": "",
+        "systems": "",
+        "sheet": ""
+      }
+    ],
+    "ready": "true",
+    "motionHidden": true,
+    "phase": "416.6",
+    "h1": "Reuse & credits."
+  },
+  {
+    "engine": "firefox",
+    "version": "155.0",
+    "condition": "normal",
+    "errors": [],
+    "colorReads": [
+      {
+        "at": 294,
+        "readyState": "interactive",
+        "sheets": 1,
+        "paper": "#f8f7f3",
+        "accent": "#075d7b",
+        "systems": "#895710",
+        "sheet": "#fffefa"
+      }
+    ],
+    "ready": "true",
+    "motionHidden": false,
+    "phase": "399.58",
+    "h1": "Reuse & credits."
+  },
+  {
+    "engine": "firefox",
+    "version": "155.0",
+    "condition": "css-delayed",
+    "errors": [],
+    "colorReads": [
+      {
+        "at": 1629,
+        "readyState": "interactive",
+        "sheets": 1,
+        "paper": "#f8f7f3",
+        "accent": "#075d7b",
+        "systems": "#895710",
+        "sheet": "#fffefa"
+      }
+    ],
+    "ready": "true",
+    "motionHidden": false,
+    "phase": "449.6600000000003",
+    "h1": "Reuse & credits."
+  },
+  {
+    "engine": "firefox",
+    "version": "155.0",
+    "condition": "css-blocked",
+    "errors": [
+      {
+        "message": "can't access property \"map\", hex.replace(...).match(...) is null",
+        "stack": "TypeError: can't access property \"map\", hex.replace(...).match(...) is null\n    at rgb (http://127.0.0.1:41837/space.js:380:40)\n    at blendColor (http://127.0.0.1:41837/space.js:381:21)\n    at readColors (http://127.0.0.1:41837/space.js:432:83)\n    at  (http://127.0.0.1:41837/space.js:554:13)\n    at  (http://127.0.0.1:41837/space.js:561:3)"
+      }
+    ],
+    "colorReads": [
+      {
+        "at": 128,
+        "readyState": "interactive",
+        "sheets": 1,
+        "paper": "",
+        "accent": "",
+        "systems": "",
+        "sheet": ""
+      }
+    ],
+    "ready": "true",
+    "motionHidden": true,
+    "phase": "399.99999999999994",
+    "h1": "Reuse & credits."
+  },
+  {
+    "engine": "webkit",
+    "version": "26.6",
+    "condition": "normal",
+    "errors": [],
+    "colorReads": [
+      {
+        "at": 193,
+        "readyState": "interactive",
+        "sheets": 1,
+        "paper": "#f8f7f3",
+        "accent": "#075d7b",
+        "systems": "#895710",
+        "sheet": "#fffefa"
+      }
+    ],
+    "ready": "true",
+    "motionHidden": false,
+    "phase": "226",
+    "h1": "Reuse & credits."
+  },
+  {
+    "engine": "webkit",
+    "version": "26.6",
+    "condition": "css-delayed",
+    "errors": [
+      {
+        "message": "null is not an object (evaluating 'hex.replace(\"#\",\"\").match(/.{2}/g).map')",
+        "stack": "TypeError: null is not an object (evaluating 'hex.replace(\"#\",\"\").match(/.{2}/g).map')\n    at rgb (http://127.0.0.1:41837/space.js:380:54)\n    at blendColor (http://127.0.0.1:41837/space.js:381:24)\n    at readColors (http://127.0.0.1:41837/space.js:432:93)\n    at unknown (http://127.0.0.1:41837/space.js:554:23)\n    at global code (http://127.0.0.1:41837/space.js:561:3)"
+      }
+    ],
+    "colorReads": [
+      {
+        "at": 164,
+        "readyState": "interactive",
+        "sheets": 0,
+        "paper": "",
+        "accent": "",
+        "systems": "",
+        "sheet": ""
+      }
+    ],
+    "ready": "true",
+    "motionHidden": true,
+    "phase": "228",
+    "h1": "Reuse & credits."
+  },
+  {
+    "engine": "webkit",
+    "version": "26.6",
+    "condition": "css-blocked",
+    "errors": [
+      {
+        "message": "null is not an object (evaluating 'hex.replace(\"#\",\"\").match(/.{2}/g).map')",
+        "stack": "TypeError: null is not an object (evaluating 'hex.replace(\"#\",\"\").match(/.{2}/g).map')\n    at rgb (http://127.0.0.1:41837/space.js:380:54)\n    at blendColor (http://127.0.0.1:41837/space.js:381:24)\n    at readColors (http://127.0.0.1:41837/space.js:432:93)\n    at unknown (http://127.0.0.1:41837/space.js:554:23)\n    at global code (http://127.0.0.1:41837/space.js:561:3)"
+      }
+    ],
+    "colorReads": [
+      {
+        "at": 161,
+        "readyState": "interactive",
+        "sheets": 1,
+        "paper": "",
+        "accent": "",
+        "systems": "",
+        "sheet": ""
+      }
+    ],
+    "ready": "true",
+    "motionHidden": true,
+    "phase": "306",
+    "h1": "Reuse & credits."
+  }
+]

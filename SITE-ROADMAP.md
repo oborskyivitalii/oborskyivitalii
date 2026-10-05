@@ -1,5 +1,100 @@
 # Vitalii Oborskyi — site and publishing roadmap
 
+## Next approved site increment — 2026-10-03
+
+[#14](https://github.com/oborskyivitalii/oborskyivitalii/issues/14) owns
+[the v11 Sol handoff](review/sol-visual-v11-20261003/SOL-TASKS.md): Day contrast,
+70% reference fog, stronger atmosphere, executive presentation and SEO preservation.
+Implementation continues in Draft PR #10, stacked on #9. This is prepared work.
+Runtime/gate implementation and evidence at `0333c4d` are already
+[recorded as complete for that candidate](https://github.com/oborskyivitalii/oborskyivitalii/pull/10#issuecomment-5970991843);
+older pending engineering summaries below are historical. New public changes
+need new evidence under #12/#13. Physical-device, visual/editorial/rights and
+#8 hosting/release decisions remain open; PMDay #2 and later guides #11 keep
+their existing sequence. No merge or publication is requested by this handoff.
+
+## Engineering and release follow-up — 2026-10-03
+
+The v8 [audit](review/site-audit-v8-20261003/REPORT.md) is complete under #12;
+its runtime fixes remain pending in [Sol tasks](review/site-audit-v8-20261003/SOL-TASKS.md).
+The maintainer requires these checks to recur in future production releases.
+New [issue #13](https://github.com/oborskyivitalii/oborskyivitalii/issues/13) owns
+[the release contract](SITE-RELEASE-GATES.md): fix/reverify → implement PR/full
+release gates → #7/#8 acceptance and gated activation → deployed-edition checks.
+Draft PR #10 remains the implementation vehicle. This is a prepared task, not
+enabled pipeline or deployment; earlier completed-iteration entries are historical.
+
+## Current v8 — living thematic environments, 2026-10-03
+
+The maintainer explicitly superseded the v7 still-life and no-idle-motion limits.
+Symbols now form finite recursive environments; native scroll flies through
+successive open structures. Each route uses eight thematic symbols, three symbol
+scales and one cyan/bronze/paper material language. A bounded 48-second ambient
+loop articulates immutable geometry even without scroll. The camera remains
+scroll/topic-controlled. Off/reduced freezes the displayed camera and ambient
+phase; hidden/print pauses without catch-up. Mobile reduces detail and repaint
+frequency. No pointer camera, extra scroll spacing or new runtime dependency.
+
+[All five pages](review/site-v1-20261003-v8-index.html) ·
+[Execution and checks](review/sol-visual-v8-20261003/EXECUTION.md) ·
+[Rules, formulas and original graphics sources](review/sol-visual-v8-20261003/DESIGN.md).
+Public content/identity and portrait bytes are preserved except the Credits
+paragraph explaining the newly authorized motion. Historical editions below are
+evidence of their own revisions. Draft #10 and launch #1 remain open for visual
+acceptance and the previously recorded release decisions.
+
+
+## Historical v7 — subjects belong to their page
+
+The maintainer rejected v6's interchangeable abstract forms. v7 uses a floating
+still life for each route, sharing cyan metal, bronze accents, paper, faceted
+lighting and scroll-driven perspective. Home has a compass, stairs and arch;
+Research has a gyroscope, branching hypotheses and verification frames; Writing
+has a modeled open book, curved loose pages and a solid letterpress A; Talks has
+a microphone, wave fronts and screen; Credits has quotation marks, source links
+and bookmarked source cards. Recursive detail remains in Research's branching
+hypotheses. The scene is decorative; it does not depict accepted research results.
+
+[All five pages](review/site-v1-20261002-v7-index.html) and
+[execution/evidence](review/sol-visual-v7-20261002/EXECUTION.md) hold the current
+candidate. Public text, LinkedIn identities/contribution boundaries, publication
+inventory and portrait bytes remain as verified in v6. Native scrolling, Off/
+reduced freeze, idle stop, filters/history/reflow and print behavior remain.
+Opening composition, mobile framing and static fallbacks are updated together.
+PR #10 remains Draft; maintainer visual acceptance and launch decisions stay open.
+
+## Historical v6 — camera journeys and recursive sculpture
+
+The maintainer rejected v5's slow linear motion and simple forms. v6 follows
+smooth cylindrical splines around more intricate compositions, with changes of
+angle, height and distance. Recursive tetrahedral structures and branching
+contours share the existing cyan/amber palette. Writing uses helicoidal strata;
+Talks uses an outward loop; Credits uses an abstract recursive network.
+Home/Research now give the eight existing discussion entries LinkedIn profiles
+and evidence-bounded professional context. Employer gaps are documented in
+[SITE-SOURCE-AUDIT](SITE-SOURCE-AUDIT.md), not filled by inference.
+
+[All five pages](review/site-v1-20261002-v6-index.html) and
+[execution/evidence](review/sol-visual-v6-20261002/EXECUTION.md) own current
+checks, browser observations and limits. Native scroll/topic behavior, Off/reduced
+freeze and idle stop remain. No merge, release or new independent review.
+The checkpoints below describe their historical editions.
+
+
+## Historical v4 execution — 2026-10-02
+
+The instructed [SOL-HANDOFF](SOL-HANDOFF.md) has a concrete v4 candidate in Draft
+PR #10: two buyer problems, seven-section Home, five exact EN works, eight bounded
+public discussion entries, three offers, contact, native facets and scroll/topic-only
+scene. [Execution and evidence](review/sol-execution-20261002/EXECUTION.md) records
+preserved archive/assets, tests/exports and the fresh browser access block.
+Implementation and available checks are complete; browser/editorial/rights/URL,
+base integration and deployed acceptance remain. M1 stays active.
+
+Free SEO evidence refines wording; #11 guides/measurement remain after launch and
+PMDay #2. #5/#6 publishing/harness migrations are independent. Earlier v3 progress
+entries below are historical and do not define the current counts or motion.
+
 Status: first-site preparation. Started: 2026-10-01. This document tracks decisions and verified deliveries; it does not authorize automatic publication, PR merges, or changes to the other repositories.
 
 ## Purpose and boundaries
@@ -18,7 +113,8 @@ The initial two research strands are **how AI changes software delivery** (gener
 
 - [x] Confirmed on 2026-10-01: the personal GitHub App installation includes this public repository. Before this roadmap, it contained only the default profile `README.md`; it had no site, `AGENTS.md`, license or enabled Pages site. This roadmap is the first project document, not a deployed website.
 - [ ] Choose the permanent Pages URL **before** deployment or sharing stable public links; a reversible local preview may proceed while this choice is open. Current `oborskyivitalii/oborskyivitalii` is the special profile-README repository. If kept as the site repository, its default project-site URL will be `https://oborskyivitalii.github.io/oborskyivitalii/` once Pages is configured. Renaming it to `oborskyivitalii.github.io` enables the shorter user-site URL `https://oborskyivitalii.github.io/`, but its README would no longer be the special GitHub-profile README. Recommendation: rename before the site build if the short URL matters more; the maintainer makes this choice. No rename is performed by this plan.
-- [ ] Select the site's primary language and whether a Ukrainian PMDay article has a separate English edition. Do not invent or machine-publish a translation.
+- [x] Primary interface language: English, explicitly requested by the maintainer on 2026-10-01. Original English/Ukrainian editions are separately labelled EN/UA (`en`/`uk` in machine metadata).
+- [ ] Decide whether the future Ukrainian PMDay article has a separate English edition. Do not invent or machine-publish a translation; two other talk languages remain unconfirmed.
 
 ## Milestones
 
@@ -26,8 +122,8 @@ Status is `planned`, `active`, `blocked`, or `done`. A milestone is `done` only 
 
 | ID | Deliverable | Status | Acceptance evidence |
 | --- | --- | --- | --- |
-| M0 | Choose URL/language and approve first-version scope | planned | Decisions recorded; no draft mistaken for a public edition |
-| M1 | Minimal personal site: about, two research strands/projects, topical publication/talk index | planned | Real Pages preview inspected on desktop/mobile; verified links and factual copy; no unreviewed social-proof claims |
+| M0 | Choose URL/language and approve first-version scope | active | English confirmed; dated scope amendments in #1, permanent URL decision still open in #8 |
+| M1 | Minimal personal site: about, two research strands/projects, topical publication/talk index | active | [Applied candidate](docs/index.html) and [current interactive preview](review/site-v1-20261002-v4-interactive.html); five pages, five EN selections, eight bounded discussions, 27 primary records plus one secondary rendition and scroll/topic-only motion. [Source/rights review](SITE-CONTENT-REVIEW.md) records checks and remaining browser/release acceptance. Not deployed. |
 | M2 | First new publication: PMDay explanatory article and versioned slide/PDF page | planned | Article and exact deck edition reviewed; exported PDF inspected; sources, rights, and two project links checked; explicit publication decision |
 | M3 | Lean Markdown → HTML/PDF publishing path for this site | planned | Reuses or pins reviewed components without copying UA's whole framework/CI; staging, draft isolation, source identity, rejection-path tests and visual PDF review demonstrated |
 | M4 | Finish Subprime's existing article/PDF adaptation in its own PR | planned | Review [Subprime #46](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis/pull/46) at its live head; test required figures/assets and real outputs, retain its source/review governance; separate decision on merge |
@@ -40,7 +136,7 @@ M1's reversible preview can start while M0 choices are open; public links and de
 
 The maintainer's current priority is **first useful public site, then the new PMDay article**. Start with [launch #1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1): a small static homepage, two research routes, selected existing public editions and precise acknowledgements. Inspect desktop/mobile output and rights, record URL/language, then merge and deploy. Proceed to [PMDay #2](https://github.com/oborskyivitalii/oborskyivitalii/issues/2): blueprint, manuscript, chosen slide/PDF edition, review and publication. Quartz/PDF migration #5, full harness #6 and Subprime #48 continue separately.
 
-The first preview assumes English and the current repository's project Pages path. These are provisional implementation assumptions because the URL/language questions have no recorded answer. No rename, permanent URL decision, site-wide license decision or public release is inferred from the preview.
+English is now confirmed by the maintainer; the current repository's project Pages path remains provisional. No rename, permanent URL decision, site-wide license decision or public release is inferred from the preview.
 
 ## Work tracking and original intent
 
@@ -56,7 +152,7 @@ Issues #1–#8 now cover launch, PMDay, workflow, RI, publishing migration, cros
 
 ### M1 — credible first site
 
-Create a short, evidence-checked bio and clear routes to UA, Subprime, articles, and talks. Catalog items by topic and format with title, publication date, status and **actual** published URL; drafts are not publications. Prefer an English first-version site for a broad professional audience only if approved under M0. Avoid importing every manuscript or running all of UA's research CI as a prerequisite.
+Create a short, evidence-checked bio and clear routes to UA, Subprime, articles, and talks. Catalog items by topic and format with title, publication date, status and **actual** published URL; drafts are not publications. Use the confirmed English interface and separately label actual English/Ukrainian editions. Avoid importing every manuscript or running all of UA's research CI as a prerequisite.
 
 Public recognition deserves its own restrained area: link the underlying public statement and identify what happened (recommendation, reshare, comment, mapping, invited talk, advisory role). Start with independently checkable records for Markus Kopko and Arkadiy Dobkin, then others as warranted. Never turn a reshare into endorsement of all UA claims, attribute PMI/EPAM institutional support from a person's role, or borrow a quote beyond its scope. UA's [recognition ledger](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/main/content/history/external-recognition.md) is a discovery starting point, not a substitute for the original link and exact wording.
 
@@ -86,5 +182,39 @@ The repository-wide content license remains undecided in [rights #7](https://git
 | --- | --- | --- |
 | 2026-10-01 | Personal installation and initial structure checked; roadmap added as the first project document | Decide repo name/URL and initial language (M0). No site, article, deployment, PR transfer or license change has been made. |
 | 2026-10-01 | Live backlog audit: 25 new issues across three repositories; all 9 pre-existing Draft PRs linked; two contributor inputs triaged | Workflow/AGENTS and local RI proposed in separate Draft PRs. Site build, publishing migrations, full harness and deployment remain in their issues. |
+| 2026-10-01 | First-site PR #10 revision: visitor-local Day/Night with manual choice, 23-work writing index and exact public interaction sources | Intent and source report appended to launch #1; source audit records narrower claims and platform dates. Browser/editorial/rights/URL/language and deployment acceptance stay open. |
+| 2026-10-01 | Corrected the review handoff after the maintainer could not see the updated site | Six freshly named self-contained Day/Night copies cover home, all 23 works and credits without JavaScript; source parity/navigation/hash checks added. Public bytes and release acceptance remain unchanged. |
+| 2026-10-01 | Confirmed English UI; added the supplied portrait, bounded career context, EN/UA edition groups, meaningful topic/schema metadata and a keyword map; prepared a full Medium profile replacement | [SEO/content map](SITE-SEO.md), [v2 preview](review/site-v1-20261001-v2-day.html), [Medium draft](drafts/medium-profile-revision-20261001.html). This changes public bytes; the previous independent confirmation is historical, not current acceptance. Medium itself is unchanged; URL, visual/editorial/rights review and deployment remain open. |
 
 For each later session: recheck current heads, linked issues and open PRs; update the affected milestone, checked evidence and unresolved decisions here; link the resulting PR/commit. Keep task details and discussion in the owning issue.
+
+### Visual proposal — 2026-10-02
+
+The maintainer requested background removal and a design review informed by the
+presentation, retaining Day and Night. A [source-bounded review](SITE-VISUAL-REVIEW.md),
+transparent cutout, illustrative comparison and [native HTML proposal](review/site-visual-proposal-20261002.html)
+are prepared outside `docs/`. Public files and existing theme/SEO/publication data
+remain unchanged. Current iteration acceptance is a concrete reviewable proposal,
+not implicit approval of a public redesign. Browser, likeness/design, rights and
+release decisions remain separate; see launch #1 and PR #10.
+
+### Historical v3 design and navigation — 2026-10-02
+
+The subsequent maintainer request authorizes fixing the visual findings and
+separating the homepage from the catalog. Draft PR #10 now applies the design to
+Home, Research, Writing, Talks and Credits, with an optimized transparent portrait
+and optional perspective background that follows scrolling/sections. Home keeps
+four featured editions and four bounded attributions; Research retains all seven
+conversations and vocabulary; Writing adds four verified Ukrainian DOU editions,
+giving 27 platform editions grouped by year/topic with language filters. TOC is
+explicitly covered as a delivery lens, distinct from UA control constraints.
+
+Historical [offline handoff](review/site-v1-20261002-v3.zip), [v3 manifest](review/site-v1-static-previews-v3.json)
+and [review record](SITE-CONTENT-REVIEW.md) supersede earlier previews for current
+inspection. The original proposal remains historical. Intent/outcomes/checks are
+recorded in #1/PR #10. M1 remains active for browser/editorial/rights/URL, integration
+and deployed-edition verification; no sibling migration or release is inferred.
+
+### S0–S4 candidate execution — v4, 2026-10-02
+
+The reviewed contract is implemented under #1/PR #10. [v4 package](review/site-v1-20261002-v4.zip) and [execution record](review/sol-execution-20261002/EXECUTION.md) identify the actual source/behavior/export result and pending browser/release acceptance. Earlier outputs and published identities remain intact. No merge, deployment, license/URL choice or sibling edit is inferred.

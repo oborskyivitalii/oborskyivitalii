@@ -1,0 +1,147 @@
+[
+  {
+    "page": "index",
+    "initial": {
+      "position": [
+        6,
+        4,
+        24
+      ],
+      "target": [
+        0,
+        0,
+        -5
+      ]
+    },
+    "afterRapidReversal": {
+      "position": [
+        1.6785956904583008,
+        -0.7076842975206612,
+        -10.872048970698723
+      ],
+      "target": [
+        -2.2722984282494365,
+        1.1361492141247183,
+        -30.839396465815177
+      ]
+    },
+    "scrollY": 0,
+    "matchesInitial": false
+  },
+  {
+    "page": "research",
+    "initial": {
+      "position": [
+        5,
+        4,
+        23
+      ],
+      "target": [
+        0,
+        0,
+        -5
+      ]
+    },
+    "afterRapidReversal": {
+      "position": [
+        2.1422820616078138,
+        -0.5577104522915104,
+        -10.708310290007514
+      ],
+      "target": [
+        -2.2722984282494365,
+        1.1361492141247183,
+        -30.989370311044325
+      ]
+    },
+    "scrollY": 0,
+    "matchesInitial": false
+  },
+  {
+    "page": "writing",
+    "initial": {
+      "position": [
+        5,
+        3,
+        24
+      ],
+      "target": [
+        0,
+        0,
+        -5
+      ]
+    },
+    "afterRapidReversal": {
+      "position": [
+        2,
+        -1,
+        -63
+      ],
+      "target": [
+        0,
+        0,
+        -81
+      ]
+    },
+    "scrollY": 0,
+    "matchesInitial": false
+  },
+  {
+    "page": "talks",
+    "initial": {
+      "position": [
+        5,
+        3,
+        24
+      ],
+      "target": [
+        0,
+        0,
+        -5
+      ]
+    },
+    "afterRapidReversal": {
+      "position": [
+        -1.9463800030052594,
+        1.8362613193087902,
+        -59.81224709241172
+      ],
+      "target": [
+        0.29994769045830205,
+        -0.14997384522915103,
+        -79.01059850939144
+      ]
+    },
+    "scrollY": 0,
+    "matchesInitial": false
+  },
+  {
+    "page": "credits",
+    "initial": {
+      "position": [
+        5,
+        4,
+        24
+      ],
+      "target": [
+        0,
+        0,
+        -5
+      ]
+    },
+    "afterRapidReversal": {
+      "position": [
+        -1.6464323125469575,
+        1.52254879338843,
+        -60.11219478287003
+      ],
+      "target": [
+        0.29994769045830205,
+        -0.14997384522915103,
+        -78.86062466416229
+      ]
+    },
+    "scrollY": 0,
+    "matchesInitial": false
+  }
+]

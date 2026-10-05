@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Vitalii Oborskyi writes about AI-assisted software delivery and the architecture of systems that use probabilistic model judgment.">
+  <meta name="color-scheme" content="light dark">
+  <title>Night review — Vitalii Oborskyi — delivery, architecture &amp; AI systems</title>
+  
+  
+<style>
+:root {
+  --paper: #f8f7f3;
+  --ink: #152b35;
+  --muted: #4c5e65;
+  --line: #d5dcda;
+  --accent: #a44329;
+  --tint: #ebefeb;
+  --shadow: #e1e6e0;
+  --button-bg: #152b35;
+  --button-ink: #ffffff;
+  --button-hover-ink: #ffffff;
+  color-scheme: light;
+  --serif: Georgia, "Times New Roman", serif;
+  --sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+:root[data-theme="dark"] {
+  --paper: #111e24;
+  --ink: #e9ebe6;
+  --muted: #aebcbe;
+  --line: #344850;
+  --accent: #f09a79;
+  --tint: #1b2c32;
+  --shadow: #25373b;
+  --button-bg: #e9ebe6;
+  --button-ink: #111e24;
+  --button-hover-ink: #111e24;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --paper: #111e24;
+    --ink: #e9ebe6;
+    --muted: #aebcbe;
+    --line: #344850;
+    --accent: #f09a79;
+    --tint: #1b2c32;
+    --shadow: #25373b;
+    --button-bg: #e9ebe6;
+    --button-ink: #111e24;
+    --button-hover-ink: #111e24;
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.65; }
+a { color: inherit; text-underline-offset: .2em; }
+a:hover { color: var(--accent); }
+a:focus-visible, select:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; }
+section, h3 { scroll-margin-top: 28px; }
+.wrap { width: min(1160px, calc(100% - 80px)); margin-inline: auto; }
+.skip-link { position: absolute; top: -70px; left: 20px; padding: 12px; background: var(--button-bg); color: var(--button-ink); z-index: 2; }
+.skip-link:focus { top: 10px; }
+.site-header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; padding-block: 25px; border-bottom: 1px solid var(--line); gap: 20px; }
+.wordmark { display: inline-flex; align-items: center; gap: 13px; text-decoration: none; font-size: 14px; font-weight: 650; white-space: nowrap; }
+.monogram { font-family: var(--serif); font-size: 31px; line-height: 1; letter-spacing: -2px; color: var(--accent); }
+.site-header nav { display: flex; flex-wrap: wrap; gap: 23px; font-size: 14px; margin-left: auto; }
+.site-header nav a { text-decoration: none; padding: 6px 0; }
+.contact-link { font-weight: 650; }
+.theme-control { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; color: var(--muted); }
+.theme-control[hidden] { display: none; }
+.theme-control select { font: inherit; color: var(--ink); background: var(--paper); border: 1px solid var(--muted); border-radius: 3px; padding: 8px 6px; min-height: 40px; }
+.hero { display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; gap: 80px; padding-block: 80px 88px; }
+.eyebrow { display: flex; align-items: center; gap: 12px; font-size: 11px; font-weight: 650; letter-spacing: .12em; text-transform: uppercase; margin: 0 0 20px; color: var(--muted); }
+.accent-line { display: block; width: 28px; height: 2px; background: var(--accent); }
+h1 { font-family: var(--serif); font-size: clamp(62px, 7.5vw, 100px); line-height: .99; letter-spacing: -.065em; font-weight: 400; margin: 28px 0; }
+.accent { color: var(--accent); }
+.hero-lead { font-size: clamp(19px, 2vw, 23px); line-height: 1.5; font-weight: 500; margin-bottom: 16px; }
+.hero-description { max-width: 470px; font-size: 15px; color: var(--muted); margin: 0 0 28px; }
+.button { display: inline-flex; align-items: center; gap: 36px; padding: 13px 20px; background: var(--button-bg); color: var(--button-ink); text-decoration: none; font-size: 14px; font-weight: 550; border-radius: 2px; }
+.button:hover { background: var(--accent); color: var(--button-hover-ink); }
+.research-note { background: var(--tint); border: 1px solid var(--line); padding: 32px 30px 26px; margin-top: 65px; box-shadow: 9px 9px 0 var(--shadow); }
+.note-label { margin: 0 0 25px; font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+.note-row { display: grid; grid-template-columns: 30px 1fr; gap: 16px; padding: 20px 0; border-top: 1px solid var(--line); }
+.note-number { font-size: 11px; color: var(--accent); padding-top: 5px; font-variant-numeric: tabular-nums; }
+.note-row p { font-family: var(--serif); font-size: clamp(22px, 2.2vw, 28px); line-height: 1.4; letter-spacing: -.025em; margin: 0; }
+.note-footer { margin: 20px 0 0; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+.section { padding-block: 64px; border-top: 1px solid var(--line); }
+.section-heading { margin-bottom: 32px; }
+h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(30px, 3.4vw, 42px); line-height: 1.2; letter-spacing: -.035em; margin: 0; }
+.section-heading > p:last-child:not(.eyebrow) { color: var(--muted); font-size: 14px; margin: 14px 0 0; }
+.research-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.research-card { display: flex; flex-direction: column; padding: 30px; border: 1px solid var(--line); border-top: 3px solid var(--ink); }
+.card-kicker { font-size: 12px; color: var(--muted); margin: 0 0 22px; }
+.small-number { color: var(--accent); margin-right: 14px; font-variant-numeric: tabular-nums; }
+.research-card h3 { font-family: var(--serif); font-size: 33px; line-height: 1.15; letter-spacing: -.035em; font-weight: 400; margin: 0 0 19px; }
+.research-card > p:not(.card-kicker) { color: var(--muted); font-size: 14px; margin: 0 0 22px; }
+.topic-list { display: flex; flex-wrap: wrap; gap: 7px; list-style: none; margin: auto 0 24px; padding: 0; }
+.topic-list li { border: 1px solid var(--line); padding: 3px 9px; color: var(--muted); font-size: 10px; border-radius: 20px; }
+.text-link { font-weight: 600; font-size: 13px; text-decoration: none; }
+.text-link span { margin-left: 12px; }
+.section-note { margin: 25px 0 0; color: var(--muted); font-size: 13px; max-width: 770px; }
+.topic-nav { display: flex; flex-wrap: wrap; gap: 9px 25px; margin-bottom: 34px; }
+.topic-nav a { font-size: 12px; font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--line); padding: 6px 0; }
+.topic-nav span { margin-left: 10px; color: var(--accent); }
+.writing-topic { font-size: 12px; font-weight: 600; color: var(--muted); margin: 34px 0 10px; text-transform: uppercase; letter-spacing: .08em; }
+.publication-list { list-style: none; padding: 0; margin: 0; }
+.publication { display: grid; grid-template-columns: 240px 1fr; gap: 40px; border-top: 1px solid var(--line); padding: 22px 0; align-items: start; }
+.publication-meta { display: flex; flex-direction: column; gap: 5px; font-size: 11px; color: var(--muted); }
+.publication-meta time { font-weight: 650; font-size: 12px; color: var(--ink); }
+.publication-title { display: flex; align-items: start; gap: 25px; justify-content: space-between; font-family: var(--serif); font-size: 23px; line-height: 1.4; letter-spacing: -.025em; text-decoration: none; }
+.publication-arrow { font-family: var(--sans); flex: 0 0 auto; font-size: 20px; color: var(--accent); }
+.edition-link { font-size: 12px; color: var(--muted); margin: 10px 0 0; }
+.talk-title { font-family: var(--serif); font-weight: 400; font-size: 26px; line-height: 1.4; margin: 0 0 12px; }
+.ack-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+.ack-grid h3 { font-size: 16px; margin: 0 0 12px; }
+.ack-grid p { font-size: 14px; color: var(--muted); margin: 0 0 17px; }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+.about-grid p { font-size: 14px; color: var(--muted); margin: 0 0 18px; }
+.about-links { display: flex; flex-wrap: wrap; gap: 14px 28px; }
+.site-footer { padding-block: 25px; border-top: 1px solid var(--line); display: flex; gap: 28px; font-size: 11px; color: var(--muted); }
+.site-footer p { margin: 0 auto 0 0; }
+.site-footer a { text-decoration: none; }
+.credits-page { min-height: 65vh; max-width: 760px; padding-block: 60px; }
+.credits-page h1 { font-size: 52px; letter-spacing: -.045em; }
+.credits-page h2 { font-family: var(--sans); font-size: 19px; margin-top: 36px; letter-spacing: 0; font-weight: 600; }
+.credits-page p { font-size: 15px; color: var(--muted); }
+.archive-intro { padding-block: 48px 36px; }
+.archive-intro h1 { font-size: clamp(44px, 6vw, 72px); }
+@media (max-width: 900px) {
+  .wrap { width: calc(100% - 48px); }
+  .hero { gap: 35px; padding-block: 60px; }
+  .research-note { padding: 24px; }
+  .note-row p br { display: none; }
+  .research-card { padding: 24px; }
+  .publication { grid-template-columns: 185px 1fr; gap: 24px; }
+  .ack-grid, .about-grid { gap: 32px; }
+}
+@media (max-width: 640px) {
+  .wrap { width: calc(100% - 40px); }
+  .site-header { flex-direction: column; align-items: flex-start; gap: 16px; padding-block: 20px 16px; }
+  .site-header nav { gap: 24px; font-size: 12px; margin-left: 0; }
+  .hero { grid-template-columns: 1fr; gap: 36px; padding-block: 44px 50px; }
+  h1 { font-size: clamp(58px, 14vw, 82px); margin: 22px 0; }
+  .hero-lead { font-size: 20px; }
+  .hero-description { font-size: 14px; }
+  .research-note { margin: 0 8px 0 0; padding: 24px; }
+  .note-label { font-size: 10px; }
+  .note-row p { font-size: 24px; }
+  .section { padding-block: 44px; }
+  .section-heading { margin-bottom: 25px; }
+  .research-grid, .ack-grid, .about-grid { grid-template-columns: 1fr; gap: 28px; }
+  .research-card h3 { font-size: 32px; }
+  .research-card .topic-list { margin-top: 0; }
+  .publication { grid-template-columns: 1fr; gap: 12px; padding-block: 20px; }
+  .publication-meta { flex-direction: row; flex-wrap: wrap; gap: 5px 14px; }
+  .publication-title { font-size: 22px; gap: 16px; }
+  .writing-topic { line-height: 1.5; }
+  .site-footer { flex-wrap: wrap; gap: 12px 24px; padding-block: 22px; }
+  .site-footer p { flex-basis: 100%; }
+  .credits-page h1 { font-size: 42px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media print {
+  :root, :root[data-theme], :root:not([data-theme]) {
+    --paper: #ffffff; --ink: #152b35; --muted: #4c5e65; --line: #d5dcda;
+    --accent: #a44329; --tint: #ebefeb; color-scheme: light;
+  }
+  body { background: white; }
+  .wrap { width: 100%; }
+  .site-header nav, .button, .skip-link, .theme-control { display: none; }
+  .hero { padding-block: 30px; }
+  .section { padding-block: 30px; }
+  .research-note { box-shadow: none; }
+  a { text-decoration: underline; }
+  .research-card, .publication, .ack-grid article { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header wrap">
+    <a class="wordmark" href="site-v1-20261001-night.html" aria-label="Vitalii Oborskyi, home"><span class="monogram" aria-hidden="true">vo.</span>Vitalii Oborskyi</a>
+    <nav aria-label="Main navigation">
+      <a href="#research">Research</a>
+      <a href="#writing">Writing</a>
+      <a href="#talks">Talks</a>
+      <a href="#about">About</a>
+      <a class="contact-link" href="https://www.linkedin.com/in/vitaliioborskyi/">Connect <span aria-hidden="true">↗</span></a>
+    </nav>
+    <nav class="theme-control" aria-label="Review theme"><span>Preview theme</span><a href="site-v1-20261001-day.html">Day</a><a href="site-v1-20261001-night.html" aria-current="page" style="text-decoration:underline">Night</a></nav>
+  </header>
+<aside class="wrap" aria-label="Review copy" style="padding-block:14px;font-size:12px;color:var(--muted)">Review copy · fixed Night theme · no JavaScript required. This is not the deployed site or an Auto-mode demonstration.</aside>
+  <main id="main">
+    <section class="hero wrap" aria-labelledby="author-name">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="accent-line" aria-hidden="true"></span> Delivery · Architecture · AI systems</p>
+        <h1 id="author-name">Vitalii<br>Oborskyi<span class="accent">.</span></h1>
+        <p class="hero-lead">AI changes how we build software.<br>It also changes the systems we build.</p>
+        <p class="hero-description">I write and research at the intersection of software delivery, AI architecture and governance — connecting engineering decisions to the systems and people responsible for them.</p>
+        <a class="button" href="#writing">Explore the writing <span aria-hidden="true">↘</span></a>
+      </div>
+      <aside class="research-note" aria-label="Two research questions">
+        <p class="note-label">Two questions. One engineering problem.</p>
+        <div class="note-row"><span class="note-number">01</span><p>Can we generate faster<br>than we can verify?</p></div>
+        <div class="note-row"><span class="note-number">02</span><p>What changes when software<br>delegates judgment to a model?</p></div>
+        <p class="note-footer">Delivery systems ↔ Product behavior</p>
+      </aside>
+    </section>
+
+    <section id="research" class="section wrap" aria-labelledby="research-title">
+      <div class="section-heading"><p class="eyebrow">01 / Research</p><h2 id="research-title">Two directions, connected.</h2></div>
+      <div class="research-grid">
+        <article id="delivery" class="research-card">
+          <p class="card-kicker"><span class="small-number">01</span> How we deliver software</p>
+          <h3>The Subprime<br>Code Crisis</h3>
+          <p>What happens across review, testing, security and maintenance when generating code gets easier? This project studies AI-assisted delivery as a complete system, with an inspectable evidence library and adaptable operating protocols.</p>
+          <ul class="topic-list" aria-label="Delivery research topics"><li>Verification capacity</li><li>System throughput</li><li>Long-term ownership</li></ul>
+          <a class="text-link" href="https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis">Explore the research <span aria-hidden="true">↗</span></a>
+        </article>
+        <article id="systems" class="research-card">
+          <p class="card-kicker"><span class="small-number">02</span> What we build</p>
+          <h3>Uncertainty<br>Architecture</h3>
+          <p>How do we design and operate software whose behavior depends on probabilistic model judgment? This project develops an engineering vocabulary and patterns for boundaries, evaluation, authority, runtime control and correction.</p>
+          <ul class="topic-list" aria-label="System research topics"><li>Model judgment</li><li>Control architecture</li><li>Release &amp; runtime evidence</li></ul>
+          <a class="text-link" href="https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture">Explore the framework <span aria-hidden="true">↗</span></a>
+        </article>
+      </div>
+      <p class="section-note">The repositories hold the living research and its sources. My articles connect the ideas across both directions.</p>
+    </section>
+
+    <section id="writing" class="section writing-section wrap" aria-labelledby="writing-title">
+      <div class="section-heading"><p class="eyebrow">02 / Writing</p><h2 id="writing-title">Selected publications.</h2><p>Read the original published editions, or explore the <a href="site-v1-20261001-writing-night.html">full writing index</a>.</p></div>
+      <nav class="topic-nav" aria-label="Publication topics"><a href="#delivery-writing">AI-assisted delivery <span aria-hidden="true">↓</span></a><a href="#systems-writing">AI systems &amp; architecture <span aria-hidden="true">↓</span></a></nav>
+
+      <h3 id="delivery-writing" class="writing-topic">AI-assisted delivery</h3>
+      <ol class="publication-list">
+        <li class="publication"><div class="publication-meta"><time datetime="2026-06-12">12 Jun 2026</time><span>Article · English · Agile Insider</span></div><div><a class="publication-title" href="https://medium.com/agileinsider/ai-the-externalization-of-reasoning-and-the-verification-crisis-4f5046f9f0d0">AI, the Externalization of Reasoning, and the Verification Crisis<span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+        <li class="publication"><div class="publication-meta"><time datetime="2026-02-10">10 Feb 2026</time><span>Article · Ukrainian · DOU</span></div><div><a class="publication-title" href="https://dou.ua/forums/topic/57846/"><span lang="uk">Субпрайм-криза коду: чому AI-асистенти роблять нас повільнішими — і дані це доводять</span><span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+        <li class="publication"><div class="publication-meta"><time datetime="2026-01-05">5 Jan 2026</time><span>Article · Ukrainian · DOU</span></div><div><a class="publication-title" href="https://dou.ua/forums/topic/57244/"><span lang="uk">Ілюзія економії: чому заміна розробників на AI — це шлях до технічного дефолту</span><span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+      </ol>
+
+      <h3 id="systems-writing" class="writing-topic">AI systems &amp; architecture</h3>
+      <ol class="publication-list">
+        <li class="publication"><div class="publication-meta"><time datetime="2026-08-30">30 Aug 2026</time><span>Article · English · Generative AI</span></div><div><a class="publication-title" href="https://generativeai.pub/uncertainty-architecture-thinking-systems-when-the-controlled-object-changes-21275fe2f3db">Uncertainty Architecture: Thinking Systems, When the Controlled Object Changes<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/thinking-systems-when-controlled-object-changes-vitalii-oborskyi-6k4we">LinkedIn edition · 27 Aug 2026</a></p></div></li>
+        <li class="publication"><div class="publication-meta"><time datetime="2026-07-01">1 Jul 2026</time><span>Article · English · AI Advances</span></div><div><a class="publication-title" href="https://aiadvances.org/ai-native-workflows-have-a-moat-problem-49992bcc3088">AI-Native Workflows Have a Moat Problem<span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+        <li class="publication"><div class="publication-meta"><time datetime="2025-12-13">13 Dec 2025</time><span>Article · English · Towards AI</span></div><div><a class="publication-title" href="https://pub.towardsai.net/uncertainty-architecture-why-ai-governance-is-actually-control-theory-511f3e73ed6e">Uncertainty Architecture: Why AI Governance is Actually Control Theory<span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+        <li class="publication"><div class="publication-meta"><time datetime="2025-11-22">22 Nov 2025</time><span>Article · English · Towards AI</span></div><div><a class="publication-title" href="https://pub.towardsai.net/uncertainty-architecture-a-modern-approach-to-designing-llm-applications-2fe196188fac">Uncertainty Architecture: A Modern Approach to Designing LLM Applications<span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+        <li class="publication"><div class="publication-meta"><time datetime="2025-09-06">6 Sep 2025</time><span>Article · English · Data Science Collective</span></div><div><a class="publication-title" href="https://medium.com/data-science-collective/on-device-llm-or-cloud-api-a-practical-checklist-for-product-owners-and-architects-30386f00f148">On-Device LLM or Cloud API? A Practical Checklist for Product Owners and Architects<span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+        <li class="publication"><div class="publication-meta"><time datetime="2025-07-29">29 Jul 2025</time><span>Article · English · Data Science Collective</span></div><div><a class="publication-title" href="https://medium.com/data-science-collective/architecting-uncertainty-a-modern-guide-to-llm-based-software-504695a82567">Architecting Uncertainty: A Modern Guide to LLM-Based Software<span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+      </ol>
+
+    </section>
+
+    <section id="talks" class="section wrap" aria-labelledby="talks-title">
+      <div class="section-heading"><p class="eyebrow">03 / Talks</p><h2 id="talks-title">Ideas in discussion.</h2></div>
+      <article class="publication"><div class="publication-meta"><span>UA Online PMDay 2026 Autumn</span><span>Talk · Ukrainian</span></div><div><h3 class="talk-title" lang="uk">Uncertainty Architecture: Перезапуск SDLC</h3><a class="text-link" href="https://ua.linkedin.com/posts/pmday_we-are-glad-to-introduce-new-speaker-of-activity-7493632835547889664-67od">Speaker announcement <span aria-hidden="true">↗</span></a></div></article>
+      <article class="publication"><div class="publication-meta"><span>Corning · Learn-AI-Palooza</span><span>Technical workshop</span></div><div><h3 class="talk-title">Designing Non-Deterministic Systems</h3><a class="text-link" href="https://www.linkedin.com/posts/roderickm_one-of-the-highlights-of-our-recent-learn-al-palooza-activity-7480960628980072448-FBm4">Host’s public reflection <span aria-hidden="true">↗</span></a></div></article>
+      <article class="publication"><div class="publication-meta"><span>Betelgeuse · QA Україна</span><span>Community talk</span></div><div><h3 class="talk-title">Uncertainty Architecture &amp; software delivery</h3><a class="text-link" href="https://www.linkedin.com/posts/vitaliioborskyi_github-uncertaintyarchitecturegroupuncertainty-architecture-activity-7477275989761384448-k8J9/">Read the public follow-up <span aria-hidden="true">↗</span></a></div></article>
+    </section>
+
+    <section id="acknowledgements" class="section acknowledgements wrap" aria-labelledby="ack-title">
+      <div class="section-heading"><p class="eyebrow">04 / Conversations &amp; acknowledgements</p><h2 id="ack-title">Research develops in conversation.</h2></div>
+      <div class="ack-grid">
+        <article><h3>Markus Kopko</h3><p>Connected the UA control-theory framing with CPMAI practices in a public discussion of constraints, sensors, roles and governance gates.</p><a class="text-link" href="https://www.linkedin.com/posts/markuskleinpmp_uncertainty-architecture-why-ai-governance-activity-7462053122773827584-mKwf">Read the public record <span aria-hidden="true">↗</span></a></article>
+        <article><h3>Arkadiy Dobkin</h3><p>I credit Arkadiy for the formulation “Thinking Systems” that helped sharpen this research direction. UA records the attribution and the scope of my engineering definition.</p><a class="text-link" href="https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/main/content/research/notes/thinking-systems-formulation-provenance-arkadiy-dobkin.md">Read the provenance note <span aria-hidden="true">↗</span></a></article>
+        <article><h3>Christophe Kolb &amp; Taller</h3><p>Christophe cited UA in his explanation of agentic-system control. Taller’s public visual explainer also draws on UA to connect probability distributions, control signals and feedback.</p><a class="text-link" href="https://www.linkedin.com/posts/christophekolb_the-probability-control-theory-of-agentic-activity-7460778173597786114-rWAh">Read the public record <span aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/posts/taller-technologies_llms-and-control-theory-activity-7482866825244889089-tIsK">Taller’s public visual explainer</a></p></article>
+        <article><h3>Michael Risch</h3><p>Developed a public operational interpretation of UA, connecting control loops to roles such as Prompt Steward and Evaluation Owner, evaluation signals and governance practices.</p><a class="text-link" href="https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g">Read the public record <span aria-hidden="true">↗</span></a></article>
+        <article><h3>Matthew Skelton</h3><p>Offered public encouragement for UA’s development in a comment on the project’s milestone summary.</p><a class="text-link" href="https://www.linkedin.com/posts/vitaliioborskyi_ua-1-ugcPost-7461016808725164033-pQg_/">Read the public record <span aria-hidden="true">↗</span></a></article>
+        <article><h3>Otman Basir</h3><p>Shared his Social Responsibility Stack paper in the public discussion of UA under Michael Risch’s post, bringing a related control-theoretic perspective into the conversation.</p><a class="text-link" href="https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g">Read the public record <span aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://arxiv.org/abs/2512.16873">Related paper</a></p></article>
+        <article><h3>Rod Montgomery</h3><p>Hosted the Corning Learn-AI-Palooza discussion and publicly reflected on UA’s relevance to system-level risks, team behavior, ownership and governance.</p><a class="text-link" href="https://www.linkedin.com/posts/roderickm_one-of-the-highlights-of-our-recent-learn-al-palooza-activity-7480960628980072448-FBm4">Read the public record <span aria-hidden="true">↗</span></a></article>
+      </div>
+    </section>
+
+    <section id="about" class="section about-section wrap" aria-labelledby="about-title">
+      <p class="eyebrow">05 / About</p>
+      <div class="about-grid"><h2 id="about-title">From delivery questions<br>to engineering research.</h2><div><p>My work brings together software delivery leadership, architecture and the practical governance of AI systems. I am interested in how teams can build useful systems, understand their limits, and keep responsibility clear as the technology changes.</p><p>This site brings my writing and open research together. For a conversation about the work, find me on LinkedIn.</p><div class="about-links"><a class="text-link" href="https://www.linkedin.com/in/vitaliioborskyi/">LinkedIn <span aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/oborskyivitalii">GitHub <span aria-hidden="true">↗</span></a><a class="text-link" href="https://medium.com/@undersmoker/public-profile-achievements-vitalii-oborskyi-7c2f4ec34e7e">Public profile <span aria-hidden="true">↗</span></a></div></div></div>
+    </section>
+  </main>
+  <footer class="site-footer wrap"><p>© 2026 Vitalii Oborskyi</p><a href="site-v1-20261001-credits-night.html">Reuse &amp; credits</a><a href="#main">Back to top <span aria-hidden="true">↑</span></a></footer>
+</body>
+</html>

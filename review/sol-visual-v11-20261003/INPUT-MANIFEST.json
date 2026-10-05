@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "preparedDate": "2026-10-03",
+  "sourceCommit": "0333c4d2b2318850fd56312d83fb63ca468f01a4",
+  "sourceTree": "a607b35db240a0441c37a909838b4c4a3296be25",
+  "publicArtifactDigest": "ee36c6bececcb797aa409418cdb94278b37608d2abf568ecaf0ad69fc8469164",
+  "authorization": "Maintainer direct 2026-10-03 accepted direction and latest Day-contrast/SEO additions, quoted in SOL-TASKS.md and issue #14.",
+  "inputScope": "Site presentation/content/navigation; no new UA/Subprime research claim, protocol or source-status change.",
+  "sourceInputs": [
+    {
+      "path": "SITE-RELEASE-GATES.md",
+      "sha256": "6f1fc5456eb33b6e9e577a0110692c30a61d7e6b13b69df9af21725934005593",
+      "bytes": 16642
+    },
+    {
+      "path": "SITE-SEO.md",
+      "sha256": "318902d2d35e1de796cab3907ab182e7da9e32d6ec4aab5fe36ce333c25c9e39",
+      "bytes": 12357
+    },
+    {
+      "path": "SITE-SOURCE-AUDIT.md",
+      "sha256": "d0b1cebe7c79e11776c9041719280aaa199dbbebea997812dce2d2410add777e",
+      "bytes": 30352
+    },
+    {
+      "path": "SOL-HANDOFF.md",
+      "sha256": "0de5a2e10801ea6ac58b84008176fc3d6a0e4084e5a4060adec259bd70bf7b93",
+      "bytes": 41017
+    },
+    {
+      "path": "docs/.nojekyll",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "bytes": 1
+    },
+    {
+      "path": "docs/archive.js",
+      "sha256": "5b11a8e0fd8f2ecbed57809ea956ee3470148aac604e64decc188ba8f755209c",
+      "bytes": 5241
+    },
+    {
+      "path": "docs/assets/favicon.svg",
+      "sha256": "c28b28c5d6b61a89612c8aa1b3c787ff855e25e3e9dd69e9fbd0569e0da89a6e",
+      "bytes": 233
+    },
+    {
+      "path": "docs/assets/vitalii-oborskyi-cutout.webp",
+      "sha256": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae",
+      "bytes": 55458
+    },
+    {
+      "path": "docs/assets/vitalii-oborskyi.jpg",
+      "sha256": "5321e48f08b075cb1cbd522d0f36bc01276aece65d1a04cf09102aa5dd2b59bc",
+      "bytes": 100768
+    },
+    {
+      "path": "docs/credits.html",
+      "sha256": "31b647cbb90d769e979576bca084bc7c9bdfae70c8be5166751a0529860edebc",
+      "bytes": 31705
+    },
+    {
+      "path": "docs/index.html",
+      "sha256": "5ebcab6dd9b33cccaff5dc8f80ceeb45c37892d27d89b636e2ddef0055a7541b",
+      "bytes": 46423
+    },
+    {
+      "path": "docs/research.html",
+      "sha256": "2b37c950be256a653280e79c0775ebd1750cd8dc76d2ef68c0f3f25ea2d84c3a",
+      "bytes": 46106
+    },
+    {
+      "path": "docs/space.js",
+      "sha256": "4b4affb4c3a38d255fa8f8166701bbc0c16a9985be267ffb80f66bc802b43c0b",
+      "bytes": 46212
+    },
+    {
+      "path": "docs/styles.css",
+      "sha256": "9ec678cb7163b1a359e45ec0e3462338d9997ab368996e0c0cfe9f0581934e56",
+      "bytes": 20171
+    },
+    {
+      "path": "docs/talks.html",
+      "sha256": "ec79117e6d6cbf48dedc7e8f8b08626f9690b17d631a42d375314a77690474e6",
+      "bytes": 39925
+    },
+    {
+      "path": "docs/theme.js",
+      "sha256": "d11f679af05442e8b01024e9a5fe3ba9aff73554f11bd8f3ff692d14f830f8fb",
+      "bytes": 2907
+    },
+    {
+      "path": "docs/writing.html",
+      "sha256": "6dd77aefe1fd0ae9862ee75547fe930148c2feeeb60c402d8ee607db73d65d6b",
+      "bytes": 72811
+    },
+    {
+      "path": "review/sol-plan-20261002/CONTENT-AND-CONVERSION-BRIEF.md",
+      "sha256": "97132e3f2e03fdf82e6149b8d1004f90da51c9d97fa72e2ee83b46b539369a93",
+      "bytes": 27244
+    },
+    {
+      "path": "review/sol-plan-20261002/SEO-BUYER-INTENT.md",
+      "sha256": "e7e304ee827fa0816808a0be4d44dc55eb09f62230e16bc9abaafacd9e102a5a",
+      "bytes": 29663
+    },
+    {
+      "path": "review/sol-plan-20261002/SEO-EVIDENCE.md",
+      "sha256": "0b04a66aa448f001f6f536249f73416113884f4e2242d660c8917bf33b255dad",
+      "bytes": 9237
+    },
+    {
+      "path": "review/sol-plan-20261002/SEO-QUERY-MAP.csv",
+      "sha256": "34efc6be3fd5441ceb3d057c7908daea446f9d1a06d2968a9eec7b6f2a7ffbcd",
+      "bytes": 15169
+    },
+    {
+      "path": "tools/quality/budgets.json",
+      "sha256": "c7f35f0390d472d5a943ff134d193969cab37b6f582f3766efe71012e9e0904b",
+      "bytes": 1007
+    }
+  ],
+  "reference": {
+    "kind": "earlier in-session illustrative Home concept, not production acceptance",
+    "originalName": "author-site-direction.html",
+    "fragment": {
+      "path": "reference-fragment.html",
+      "sha256": "4c7385c88fb6e7a7e32a3fe4b1bbee0a7fbdabab68e07ec3d066363cae2057b2",
+      "bytes": 131631
+    },
+    "standalone": {
+      "path": "reference.html",
+      "sha256": "ba344a25385b5f9a5155d0d508836dc81718767e673191d3fd17e0ce8a774ab8",
+      "bytes": 207879
+    },
+    "exportMethod": "Visualize render.py wrapper; review-only noindex,nofollow added to wrapper; original fragment unchanged.",
+    "originalSliderValue": 100,
+    "approvedSliderValue": 70,
+    "originalAtmosphereOpacity": 0.55,
+    "approvedAtmosphereDirection": "stronger than reference; 0.80 only a proposed starting value",
+    "limitations": [
+      "Home only",
+      "frozen geometry/camera pose",
+      "abbreviated copy",
+      "illustrative navigation",
+      "no production motion/performance/contrast/SEO acceptance"
+    ]
+  },
+  "preparationArtifacts": [
+    {
+      "path": "SOL-TASKS.md",
+      "sha256": "9dc1fc227f86c91018787640a311c4f8ab28aed5dd8ce26788aa6776b4302960",
+      "bytes": 21627
+    },
+    {
+      "path": "design-settings.json",
+      "sha256": "bfd25b5b469832476d2f00440f1e902aa389f9e30638c63d469b282c1d2897d1",
+      "bytes": 4134
+    },
+    {
+      "path": "seo-baseline.json",
+      "sha256": "1877b97a14005602fd79357f5d8f983981515f959c2aed880e40096eb98d090c",
+      "bytes": 131012
+    }
+  ]
+}

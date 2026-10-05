@@ -1,0 +1,191 @@
+name: Verified site staging
+on:
+  workflow_call:
+    inputs:
+      candidate_sha:
+        required: true
+        type: string
+      public_artifact_id:
+        required: true
+        type: string
+      public_digest:
+        required: true
+        type: string
+      upload_digest:
+        required: true
+        type: string
+      gate_artifact_id:
+        required: true
+        type: string
+permissions:
+  contents: read
+  actions: read
+  deployments: write
+  pull-requests: write
+defaults:
+  run:
+    shell: bash
+jobs:
+  deploy:
+    # The caller also checks same-repo PR #10 / manual dispatch. Environment
+    # branch restrictions/reviewer approval are the credential trust boundary.
+    # Publication paused by the maintainer on 2026-10-04; explicit new decision required.
+    if: false && github.repository == 'oborskyivitalii/oborskyivitalii'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    environment: staging
+    concurrency:
+      group: site-staging-${{ github.repository }}
+      cancel-in-progress: false
+    env:
+      SITE_CANDIDATE_SHA: ${{ inputs.candidate_sha }}
+      SITE_ARTIFACT_ID: ${{ inputs.public_artifact_id }}
+      SITE_EXPECTED_PUBLIC_DIGEST: ${{ inputs.public_digest }}
+      SITE_UPLOAD_DIGEST: ${{ inputs.upload_digest }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_PAGES_PROJECT: ${{ vars.CLOUDFLARE_PAGES_PROJECT }}
+      SITE_STAGING_CREATE_PROJECT: ${{ vars.SITE_STAGING_CREATE_PROJECT }}
+      WRANGLER_SEND_METRICS: 'false'
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ inputs.candidate_sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
+        with:
+          node-version: 24.19.0
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
+        with:
+          artifact-ids: ${{ inputs.public_artifact_id }}
+          path: quality-artifact
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          artifact-ids: ${{ inputs.gate_artifact_id }}
+          path: quality-artifact/gate
+      - name: Verify gate, exact public inventory, links and separate host additions
+        run: node tools/staging/package.cjs build quality-artifact staging-package
+      - id: package_upload
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: site-staging-package-${{ github.run_id }}-${{ github.run_attempt }}
+          path: staging-package/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90
+      - id: prepare
+        name: Verify dedicated project, live PR tip and last verified recovery package
+        run: node tools/staging/state.cjs prepare
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        if: steps.prepare.outputs.rollback_artifact_id != ''
+        with:
+          artifact-ids: ${{ steps.prepare.outputs.rollback_artifact_id }}
+          run-id: ${{ steps.prepare.outputs.rollback_run_id }}
+          repository: ${{ github.repository }}
+          github-token: ${{ github.token }}
+          path: staging-rollback
+      - name: Verify previous package before risking the stable alias
+        if: steps.prepare.outputs.rollback_artifact_id != ''
+        run: node tools/staging/state.cjs rollback
+      - name: Install locked hosted browser tools
+        run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium
+      - name: Register non-production GitHub deployment
+        run: node tools/staging/state.cjs register
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          SITE_PACKAGE_ARTIFACT_ID: ${{ steps.package_upload.outputs.artifact-id }}
+      - id: candidate
+        name: Upload immutable candidate (stable alias unchanged)
+        uses: cloudflare/wrangler-action@953926a2e2182532811c01a25e53647d93bf07c0 # v4.1.3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: 4.147.0
+          packageManager: npm
+          command: pages deploy staging-package/public --project-name=${{ vars.CLOUDFLARE_PAGES_PROJECT }} --branch=candidate-${{ inputs.candidate_sha }} --commit-hash=${{ inputs.candidate_sha }} --commit-dirty=false
+      - id: candidate_smoke
+        name: Candidate HTTPS, exact bytes, routing, headers and real browser smoke
+        run: node tools/staging/hosted.cjs "$SITE_VERSION_URL" staging-package staging-reports/candidate.json
+        env:
+          SITE_VERSION_URL: ${{ steps.candidate.outputs.deployment-url }}
+      - name: Verify candidate metadata and reject a newly stale tip before promotion
+        run: |
+          node tools/staging/package.cjs verify staging-package
+          node tools/staging/state.cjs begin
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          SITE_PAGES_DEPLOYMENT_ID: ${{ steps.candidate.outputs.pages-deployment-id }}
+      - id: stable
+        name: Promote identical verified package to the staging alias
+        continue-on-error: true
+        uses: cloudflare/wrangler-action@953926a2e2182532811c01a25e53647d93bf07c0 # v4.1.3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: 4.147.0
+          packageManager: npm
+          command: pages deploy staging-package/public --project-name=${{ vars.CLOUDFLARE_PAGES_PROJECT }} --branch=staging --commit-hash=${{ inputs.candidate_sha }} --commit-dirty=false
+      - id: stable_smoke
+        name: Verify stable preview deployment and smoke the actual alias
+        if: ${{ !cancelled() && steps.stable.outcome == 'success' }}
+        continue-on-error: true
+        run: |
+          node tools/staging/state.cjs verify-stable
+          node tools/staging/hosted.cjs "$SITE_PAGES_ALIAS_URL" staging-package staging-reports/stable.json
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          SITE_PAGES_DEPLOYMENT_ID: ${{ steps.stable.outputs.pages-deployment-id }}
+          SITE_PAGES_ALIAS_URL: ${{ steps.stable.outputs.pages-deployment-alias-url }}
+          SITE_STAGING_STABLE: 'true'
+      - id: rollback
+        name: Restore the last verified package after failed stable promotion
+        if: ${{ !cancelled() && steps.stable.outcome != 'skipped' && steps.stable_smoke.outcome != 'success' && steps.prepare.outputs.rollback_artifact_id != '' }}
+        continue-on-error: true
+        uses: cloudflare/wrangler-action@953926a2e2182532811c01a25e53647d93bf07c0 # v4.1.3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: 4.147.0
+          packageManager: npm
+          command: pages deploy staging-rollback/public --project-name=${{ vars.CLOUDFLARE_PAGES_PROJECT }} --branch=staging --commit-hash=${{ steps.prepare.outputs.rollback_sha }} --commit-dirty=false
+      - id: rollback_smoke
+        name: Recheck restored alias and its previous source identity
+        if: ${{ !cancelled() && steps.rollback.outcome == 'success' }}
+        continue-on-error: true
+        run: |
+          node tools/staging/state.cjs verify-rollback-deployment
+          node tools/staging/hosted.cjs "$SITE_PAGES_ALIAS_URL" staging-rollback staging-reports/rollback.json
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          SITE_PAGES_DEPLOYMENT_ID: ${{ steps.rollback.outputs.pages-deployment-id }}
+          SITE_PAGES_ALIAS_URL: ${{ steps.rollback.outputs.pages-deployment-alias-url }}
+          SITE_STAGING_STABLE: 'true'
+      - name: Record actual result and update the single staging PR comment
+        if: ${{ always() && !cancelled() }}
+        run: node tools/staging/state.cjs finish
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          SITE_STABLE_SMOKE_OUTCOME: ${{ steps.stable_smoke.outcome }}
+          SITE_ROLLBACK_SMOKE_OUTCOME: ${{ steps.rollback_smoke.outcome }}
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: site-staging-reports-${{ github.run_id }}-${{ github.run_attempt }}
+          path: staging-reports/
+          retention-days: 90
+      - name: Fail the candidate even when recovery succeeds
+        if: ${{ always() && !cancelled() }}
+        run: |
+          test "$CANDIDATE_SMOKE" = success
+          test "$STABLE_SMOKE" = success
+        env:
+          CANDIDATE_SMOKE: ${{ steps.candidate_smoke.outcome }}
+          STABLE_SMOKE: ${{ steps.stable_smoke.outcome }}

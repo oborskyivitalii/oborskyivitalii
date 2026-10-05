@@ -1,0 +1,43 @@
+name: Site PR checks
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  workflow_dispatch:
+    inputs:
+      candidate_sha:
+        description: Exact 40-character source commit
+        required: true
+        type: string
+permissions:
+  contents: read
+  actions: read
+jobs:
+  checks:
+    uses: ./.github/workflows/site-release-checks.yml
+    with:
+      candidate_sha: ${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
+      full: false
+  staging:
+    needs: checks
+    if: >-
+      false &&
+      vars.SITE_STAGING_ENABLED == 'true' &&
+      github.repository == 'oborskyivitalii/oborskyivitalii' &&
+      (github.event_name == 'workflow_dispatch' ||
+       (github.event.pull_request.number == 10 &&
+        github.event.pull_request.head.repo.full_name == github.repository &&
+        github.event.pull_request.head.ref == 'work/site-v1-20261001'))
+    permissions:
+      contents: read
+      actions: read
+      deployments: write
+      pull-requests: write
+    uses: ./.github/workflows/site-staging.yml
+    with:
+      candidate_sha: ${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
+      public_artifact_id: ${{ needs.checks.outputs.artifact_id }}
+      public_digest: ${{ needs.checks.outputs.public_digest }}
+      upload_digest: ${{ needs.checks.outputs.artifact_upload_digest }}
+      gate_artifact_id: ${{ needs.checks.outputs.gate_artifact_id }}
+    # Only the callee job's protected staging environment supplies its token.
+    # Do not inherit all repository secrets into a PR checkout.

@@ -1,0 +1,67 @@
+# Original local project rules; CC0-1.0. Reviewed 2026-10-03.
+# Semgrep CE parser-aware checks supplement Bandit/detect-secrets/advisories.
+rules:
+  - id: browser-html-injection
+    languages: [javascript]
+    message: Browser HTML assignment needs explicit trust-boundary review.
+    severity: ERROR
+    paths:
+      include: [docs/**]
+    pattern-either:
+      - pattern: $EL.innerHTML = $VALUE
+      - pattern: $EL.outerHTML = $VALUE
+      - pattern: $EL.insertAdjacentHTML(...)
+      - pattern: document.write(...)
+  - id: browser-code-execution
+    languages: [javascript]
+    message: Dynamic browser code execution is prohibited.
+    severity: ERROR
+    paths:
+      include: [docs/**]
+    pattern-either:
+      - pattern: eval(...)
+      - pattern: new Function(...)
+  - id: browser-external-script
+    languages: [generic]
+    message: Remote scripts extend the public runtime trust boundary; review required.
+    severity: ERROR
+    paths:
+      include: [docs/*.html]
+    pattern-regex: '<script[^>]+src=["\x27](?:https?:)?//'
+  - id: unsafe-workflow-context
+    languages: [generic]
+    message: PR titles/bodies must not be interpolated into shell code.
+    severity: ERROR
+    paths:
+      include: [.github/workflows/**]
+    pattern-regex: '\$\{\{\s*github\.event\.(?:pull_request|issue)\.(?:title|body)'
+  - id: workflow-privileged-pr
+    languages: [generic]
+    message: Privileged pull_request_target cannot execute untrusted candidate code.
+    severity: ERROR
+    paths:
+      include: [.github/workflows/**]
+    pattern-regex: 'pull_request_target:'
+  - id: node-shell-injection
+    languages: [javascript]
+    message: Tool subprocesses must use explicit argv and shell:false.
+    severity: ERROR
+    pattern-either:
+      - pattern: $CP.exec($ARG, ...)
+      - pattern: $CP.execSync($ARG, ...)
+      - pattern: $CP.spawn($CMD, $ARGS, {shell:true, ...})
+      - pattern: $CP.spawnSync($CMD, $ARGS, {shell:true, ...})
+  - id: inline-browser-script
+    languages: [generic]
+    message: Executable inline script or event attribute in public HTML requires review.
+    severity: ERROR
+    paths:
+      include: [docs/*.html]
+    pattern-regex: '<script\s*>|\son(?:error|load|click)\s*='
+  - id: python-shell-execution
+    languages: [python]
+    message: Tooling must not interpolate a shell subprocess.
+    severity: ERROR
+    pattern-either:
+      - pattern: subprocess.$CALL(..., shell=True, ...)
+      - pattern: os.system(...)

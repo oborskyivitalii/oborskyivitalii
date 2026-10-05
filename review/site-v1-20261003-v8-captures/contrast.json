@@ -1,0 +1,1095 @@
+{
+  "method": "Chromium rendered backgrounds with motion frozen per sample and text paint hidden without layout changes; sampled glyph-center composited pixels, using computed original text color. Desktop start/middle/end plus mobile start in both themes. Sampled check, not complete WCAG certification.",
+  "sources": {
+    "docs/styles.css": "4f31d68348ca8fece3373a4ba4e33f88ac50f6c10a6ef0affc7c52c4b4396bbd",
+    "docs/space.js": "42107634d48ffeb861a60440efc05c83cc677f3d3c91e76fb75af41eb03f497d",
+    "docs/index.html": "d74e7d6741e95f8aa7c5cd35db592d4a7ad043dd5f6a1e8d6e72a99f065b27ca",
+    "docs/research.html": "9a7c585034646ef780797ad36ea4792539a052e1f50cf94a51e5a377561931f6",
+    "docs/writing.html": "6cd6c573137a1a2f7ac7dabfba26c81e53bb5706fced2a4b926bc7baa995d6c3",
+    "docs/talks.html": "3f4c6f93ba51c60f64a2e675e7599b754f3b5c30e6555679a7657ef1de586757",
+    "docs/credits.html": "a133ede2e7dff6b74350b3876f622afd36b4d836c4e1461c5dc23aa5687453e3"
+  },
+  "views": [
+    {
+      "route": "index",
+      "theme": "light",
+      "device": "desktop",
+      "position": "start",
+      "samples": 99,
+      "min_normal": 6.456730843869602,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 1220,
+        "y": 819,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "I study what that changes in software delivery and the systems we",
+        "background": [
+          248,
+          247,
+          243
+        ],
+        "ratio": 6.456730843869602
+      },
+      "failures": []
+    },
+    {
+      "route": "index",
+      "theme": "light",
+      "device": "desktop",
+      "position": "middle",
+      "samples": 162,
+      "min_normal": 4.553160504009647,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 1211,
+        "y": 83,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "Theme",
+        "background": [
+          221,
+          208,
+          187
+        ],
+        "ratio": 4.553160504009647
+      },
+      "failures": []
+    },
+    {
+      "route": "index",
+      "theme": "light",
+      "device": "desktop",
+      "position": "end",
+      "samples": 145,
+      "min_normal": 5.799445506488775,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 510,
+        "y": 628,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "Bring a system, a delivery bottleneck, or a question you cannot y",
+        "background": [
+          231,
+          236,
+          235
+        ],
+        "ratio": 5.799445506488775
+      },
+      "failures": []
+    },
+    {
+      "route": "research",
+      "theme": "light",
+      "device": "desktop",
+      "position": "start",
+      "samples": 53,
+      "min_normal": 5.703942859358655,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 853,
+        "y": 865,
+        "foreground": [
+          137,
+          87,
+          16
+        ],
+        "target": 4.5,
+        "text": "What we build",
+        "background": [
+          248,
+          247,
+          243
+        ],
+        "ratio": 5.703942859358655
+      },
+      "failures": []
+    },
+    {
+      "route": "research",
+      "theme": "light",
+      "device": "desktop",
+      "position": "middle",
+      "samples": 163,
+      "min_normal": 5.564330532934397,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 800,
+        "y": 312,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "The technical system and the human operating model have to work t",
+        "background": [
+          229,
+          231,
+          228
+        ],
+        "ratio": 5.564330532934397
+      },
+      "failures": []
+    },
+    {
+      "route": "research",
+      "theme": "light",
+      "device": "desktop",
+      "position": "end",
+      "samples": 159,
+      "min_normal": 5.810446167641006,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 482,
+        "y": 603,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "Shared his Social Responsibility Stack paper in the public discus",
+        "background": [
+          232,
+          236,
+          235
+        ],
+        "ratio": 5.810446167641006
+      },
+      "failures": []
+    },
+    {
+      "route": "writing",
+      "theme": "light",
+      "device": "desktop",
+      "position": "start",
+      "samples": 104,
+      "min_normal": 5.977579673256546,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 721,
+        "y": 430,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "27 primary archive records: 20 English and 7 Ukrainian, plus a se",
+        "background": [
+          236,
+          239,
+          237
+        ],
+        "ratio": 5.977579673256546
+      },
+      "failures": []
+    },
+    {
+      "route": "writing",
+      "theme": "light",
+      "device": "desktop",
+      "position": "middle",
+      "samples": 97,
+      "min_normal": 6.21843942898588,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 1156,
+        "y": 402,
+        "foreground": [
+          7,
+          93,
+          123
+        ],
+        "target": 4.5,
+        "text": "↗",
+        "background": [
+          233,
+          237,
+          236
+        ],
+        "ratio": 6.21843942898588
+      },
+      "failures": []
+    },
+    {
+      "route": "writing",
+      "theme": "light",
+      "device": "desktop",
+      "position": "end",
+      "samples": 117,
+      "min_normal": 5.927876069337105,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 279,
+        "y": 538,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "EN · English",
+        "background": [
+          241,
+          237,
+          229
+        ],
+        "ratio": 5.927876069337105
+      },
+      "failures": []
+    },
+    {
+      "route": "talks",
+      "theme": "light",
+      "device": "desktop",
+      "position": "start",
+      "samples": 65,
+      "min_normal": 6.456730843869602,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 264,
+        "y": 883,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "UA · Українська",
+        "background": [
+          248,
+          247,
+          243
+        ],
+        "ratio": 6.456730843869602
+      },
+      "failures": []
+    },
+    {
+      "route": "talks",
+      "theme": "light",
+      "device": "desktop",
+      "position": "middle",
+      "samples": 94,
+      "min_normal": 6.198466463522944,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 805,
+        "y": 701,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "The links below are public write-ups. The presentation language h",
+        "background": [
+          245,
+          242,
+          237
+        ],
+        "ratio": 6.198466463522944
+      },
+      "failures": []
+    },
+    {
+      "route": "talks",
+      "theme": "light",
+      "device": "desktop",
+      "position": "end",
+      "samples": 111,
+      "min_normal": 5.788507520671259,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 162,
+        "y": 448,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "Technical workshop",
+        "background": [
+          230,
+          236,
+          235
+        ],
+        "ratio": 5.788507520671259
+      },
+      "failures": []
+    },
+    {
+      "route": "credits",
+      "theme": "light",
+      "device": "desktop",
+      "position": "start",
+      "samples": 123,
+      "min_normal": 5.444286563375627,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 680,
+        "y": 401,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "The writing index links to the original published articles. Those",
+        "background": [
+          231,
+          228,
+          219
+        ],
+        "ratio": 5.444286563375627
+      },
+      "failures": []
+    },
+    {
+      "route": "credits",
+      "theme": "light",
+      "device": "desktop",
+      "position": "middle",
+      "samples": 220,
+      "min_normal": 5.627977776306247,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 647,
+        "y": 232,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "The author supplied the source photograph for this site. The disp",
+        "background": [
+          237,
+          231,
+          221
+        ],
+        "ratio": 5.627977776306247
+      },
+      "failures": []
+    },
+    {
+      "route": "credits",
+      "theme": "light",
+      "device": "desktop",
+      "position": "end",
+      "samples": 178,
+      "min_normal": 5.624474103552044,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 588,
+        "y": 696,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "open an issue",
+        "background": [
+          237,
+          231,
+          220
+        ],
+        "ratio": 5.624474103552044
+      },
+      "failures": []
+    },
+    {
+      "route": "index",
+      "theme": "dark",
+      "device": "desktop",
+      "position": "start",
+      "samples": 99,
+      "min_normal": 9.5540086257212,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 462,
+        "y": 542,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "I help software organizations investigate why AI adoption is not ",
+        "background": [
+          11,
+          15,
+          20
+        ],
+        "ratio": 9.5540086257212
+      },
+      "failures": []
+    },
+    {
+      "route": "index",
+      "theme": "dark",
+      "device": "desktop",
+      "position": "middle",
+      "samples": 162,
+      "min_normal": 5.70360377758176,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 1211,
+        "y": 83,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "Theme",
+        "background": [
+          69,
+          56,
+          22
+        ],
+        "ratio": 5.70360377758176
+      },
+      "failures": []
+    },
+    {
+      "route": "index",
+      "theme": "dark",
+      "device": "desktop",
+      "position": "end",
+      "samples": 145,
+      "min_normal": 8.723573229037191,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 510,
+        "y": 628,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "Bring a system, a delivery bottleneck, or a question you cannot y",
+        "background": [
+          12,
+          27,
+          35
+        ],
+        "ratio": 8.723573229037191
+      },
+      "failures": []
+    },
+    {
+      "route": "research",
+      "theme": "dark",
+      "device": "desktop",
+      "position": "start",
+      "samples": 53,
+      "min_normal": 9.5540086257212,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 1211,
+        "y": 83,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "Theme",
+        "background": [
+          11,
+          15,
+          20
+        ],
+        "ratio": 9.5540086257212
+      },
+      "failures": []
+    },
+    {
+      "route": "research",
+      "theme": "dark",
+      "device": "desktop",
+      "position": "middle",
+      "samples": 163,
+      "min_normal": 8.351280444227593,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 1214,
+        "y": 565,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "AI control theory connects boundaries, evidence, decision authori",
+        "background": [
+          24,
+          30,
+          36
+        ],
+        "ratio": 8.351280444227593
+      },
+      "failures": []
+    },
+    {
+      "route": "research",
+      "theme": "dark",
+      "device": "desktop",
+      "position": "end",
+      "samples": 159,
+      "min_normal": 8.351280444227593,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 551,
+        "y": 576,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "Shared his Social Responsibility Stack paper in the public discus",
+        "background": [
+          24,
+          30,
+          36
+        ],
+        "ratio": 8.351280444227593
+      },
+      "failures": []
+    },
+    {
+      "route": "writing",
+      "theme": "dark",
+      "device": "desktop",
+      "position": "start",
+      "samples": 104,
+      "min_normal": 8.960502847829344,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 721,
+        "y": 430,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "27 primary archive records: 20 English and 7 Ukrainian, plus a se",
+        "background": [
+          12,
+          24,
+          30
+        ],
+        "ratio": 8.960502847829344
+      },
+      "failures": []
+    },
+    {
+      "route": "writing",
+      "theme": "dark",
+      "device": "desktop",
+      "position": "middle",
+      "samples": 97,
+      "min_normal": 8.860106586045209,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 1156,
+        "y": 402,
+        "foreground": [
+          40,
+          199,
+          247
+        ],
+        "target": 4.5,
+        "text": "↗",
+        "background": [
+          12,
+          27,
+          35
+        ],
+        "ratio": 8.860106586045209
+      },
+      "failures": []
+    },
+    {
+      "route": "writing",
+      "theme": "dark",
+      "device": "desktop",
+      "position": "end",
+      "samples": 117,
+      "min_normal": 4.811279791311094,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 1424,
+        "y": 83,
+        "foreground": [
+          244,
+          247,
+          250
+        ],
+        "target": 4.5,
+        "text": "Motion: off",
+        "background": [
+          98,
+          111,
+          119
+        ],
+        "ratio": 4.811279791311094
+      },
+      "failures": []
+    },
+    {
+      "route": "talks",
+      "theme": "dark",
+      "device": "desktop",
+      "position": "start",
+      "samples": 65,
+      "min_normal": 9.5540086257212,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 1211,
+        "y": 83,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "Theme",
+        "background": [
+          11,
+          15,
+          20
+        ],
+        "ratio": 9.5540086257212
+      },
+      "failures": []
+    },
+    {
+      "route": "talks",
+      "theme": "dark",
+      "device": "desktop",
+      "position": "middle",
+      "samples": 94,
+      "min_normal": 9.205737727529746,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 805,
+        "y": 701,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "The links below are public write-ups. The presentation language h",
+        "background": [
+          17,
+          20,
+          20
+        ],
+        "ratio": 9.205737727529746
+      },
+      "failures": []
+    },
+    {
+      "route": "talks",
+      "theme": "dark",
+      "device": "desktop",
+      "position": "end",
+      "samples": 111,
+      "min_normal": 8.069298743599418,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 1424,
+        "y": 83,
+        "foreground": [
+          244,
+          247,
+          250
+        ],
+        "target": 4.5,
+        "text": "Motion: off",
+        "background": [
+          92,
+          73,
+          23
+        ],
+        "ratio": 8.069298743599418
+      },
+      "failures": []
+    },
+    {
+      "route": "credits",
+      "theme": "dark",
+      "device": "desktop",
+      "position": "start",
+      "samples": 123,
+      "min_normal": 7.619914155843325,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 680,
+        "y": 401,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "The writing index links to the original published articles. Those",
+        "background": [
+          36,
+          38,
+          29
+        ],
+        "ratio": 7.619914155843325
+      },
+      "failures": []
+    },
+    {
+      "route": "credits",
+      "theme": "dark",
+      "device": "desktop",
+      "position": "middle",
+      "samples": 220,
+      "min_normal": 8.236050944178407,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 647,
+        "y": 232,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "The author supplied the source photograph for this site. The disp",
+        "background": [
+          32,
+          31,
+          20
+        ],
+        "ratio": 8.236050944178407
+      },
+      "failures": []
+    },
+    {
+      "route": "credits",
+      "theme": "dark",
+      "device": "desktop",
+      "position": "end",
+      "samples": 178,
+      "min_normal": 8.210279571723895,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 588,
+        "y": 696,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "open an issue",
+        "background": [
+          33,
+          31,
+          21
+        ],
+        "ratio": 8.210279571723895
+      },
+      "failures": []
+    },
+    {
+      "route": "index",
+      "theme": "light",
+      "device": "mobile",
+      "position": "start",
+      "samples": 68,
+      "min_normal": 6.042844387757817,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 301,
+        "y": 444,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "I help software organizations investigate why AI adoption is not ",
+        "background": [
+          238,
+          240,
+          238
+        ],
+        "ratio": 6.042844387757817
+      },
+      "failures": []
+    },
+    {
+      "route": "research",
+      "theme": "light",
+      "device": "mobile",
+      "position": "start",
+      "samples": 47,
+      "min_normal": 5.912802756543099,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 267,
+        "y": 397,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "How we deliver software, and how we govern systems whose behavior",
+        "background": [
+          234,
+          238,
+          236
+        ],
+        "ratio": 5.912802756543099
+      },
+      "failures": []
+    },
+    {
+      "route": "writing",
+      "theme": "light",
+      "device": "mobile",
+      "position": "start",
+      "samples": 53,
+      "min_normal": 5.6837454208778855,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 40,
+        "y": 492,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "27 primary archive records: 20 English and 7 Ukrainian, plus a se",
+        "background": [
+          228,
+          234,
+          233
+        ],
+        "ratio": 5.6837454208778855
+      },
+      "failures": []
+    },
+    {
+      "route": "talks",
+      "theme": "light",
+      "device": "mobile",
+      "position": "start",
+      "samples": 52,
+      "min_normal": 6.163208923630101,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 77,
+        "y": 370,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "Public announcements and follow-ups on AI architecture, delivery ",
+        "background": [
+          241,
+          242,
+          240
+        ],
+        "ratio": 6.163208923630101
+      },
+      "failures": []
+    },
+    {
+      "route": "credits",
+      "theme": "light",
+      "device": "mobile",
+      "position": "start",
+      "samples": 77,
+      "min_normal": 5.720651850281759,
+      "min_large": 6.847700727061444,
+      "minimum": {
+        "x": 325,
+        "y": 431,
+        "foreground": [
+          75,
+          92,
+          105
+        ],
+        "target": 4.5,
+        "text": "The writing index links to the original published articles. Those",
+        "background": [
+          238,
+          233,
+          223
+        ],
+        "ratio": 5.720651850281759
+      },
+      "failures": []
+    },
+    {
+      "route": "index",
+      "theme": "dark",
+      "device": "mobile",
+      "position": "start",
+      "samples": 68,
+      "min_normal": 9.042025850965167,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 301,
+        "y": 444,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "I help software organizations investigate why AI adoption is not ",
+        "background": [
+          11,
+          23,
+          29
+        ],
+        "ratio": 9.042025850965167
+      },
+      "failures": []
+    },
+    {
+      "route": "research",
+      "theme": "dark",
+      "device": "mobile",
+      "position": "start",
+      "samples": 47,
+      "min_normal": 8.782971312502767,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 142,
+        "y": 397,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "How we deliver software, and how we govern systems whose behavior",
+        "background": [
+          20,
+          25,
+          31
+        ],
+        "ratio": 8.782971312502767
+      },
+      "failures": []
+    },
+    {
+      "route": "writing",
+      "theme": "dark",
+      "device": "mobile",
+      "position": "start",
+      "samples": 53,
+      "min_normal": 7.835749579618161,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 40,
+        "y": 492,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "27 primary archive records: 20 English and 7 Ukrainian, plus a se",
+        "background": [
+          20,
+          37,
+          45
+        ],
+        "ratio": 7.835749579618161
+      },
+      "failures": []
+    },
+    {
+      "route": "talks",
+      "theme": "dark",
+      "device": "mobile",
+      "position": "start",
+      "samples": 52,
+      "min_normal": 8.351280444227593,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 45,
+        "y": 397,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "Public announcements and follow-ups on AI architecture, delivery ",
+        "background": [
+          24,
+          30,
+          36
+        ],
+        "ratio": 8.351280444227593
+      },
+      "failures": []
+    },
+    {
+      "route": "credits",
+      "theme": "dark",
+      "device": "mobile",
+      "position": "start",
+      "samples": 77,
+      "min_normal": 8.08886763660923,
+      "min_large": 9.703539194939252,
+      "minimum": {
+        "x": 217,
+        "y": 431,
+        "foreground": [
+          173,
+          184,
+          197
+        ],
+        "target": 4.5,
+        "text": "The writing index links to the original published articles. Those",
+        "background": [
+          20,
+          34,
+          41
+        ],
+        "ratio": 8.08886763660923
+      },
+      "failures": []
+    }
+  ],
+  "failures": 0
+}

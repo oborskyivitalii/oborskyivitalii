@@ -1,0 +1,122 @@
+[
+  {
+    "id": "F01",
+    "title": "RankSpot — Free Keyword Search Volume Checker",
+    "url": "https://www.rankspot.ai/free-tools/keyword-search-volume",
+    "type": "Provider methodology and public free form",
+    "retrieved_on": "2026-10-02",
+    "note": "Provider says Google Ads data, average monthly search volume over the last 12 months for the selected country. Raw responses do not expose exact period start/end, last refresh, or upstream provider. Treat as provider-reported estimates, not a direct Google export. Advertising competition is not organic keyword difficulty."
+  },
+  {
+    "id": "F02",
+    "title": "Google Autocomplete — observed responses",
+    "url": "https://suggestqueries.google.com/complete/search",
+    "type": "Direct Google suggestions",
+    "retrieved_on": "2026-10-02",
+    "note": "56 public endpoint requests, hl=en, requested gl=us/gb, client=firefox, no signed-in session. gl is a country hint, not proof of local IP or population representativeness. Suggestions have no monthly volume."
+  },
+  {
+    "id": "F03",
+    "title": "How Google autocomplete predictions work",
+    "url": "https://support.google.com/websearch/answer/7368877?hl=en",
+    "type": "Official definitions",
+    "retrieved_on": "2026-10-02",
+    "note": "Predictions can reflect real searches and word patterns found across the web. They do not simply list the most popular queries. Absence is not proof of no demand."
+  },
+  {
+    "id": "F04",
+    "title": "Semrush — free Keyword Search Volume Checker",
+    "url": "https://www.semrush.com/free-tools/keyword-search-volume-checker/",
+    "type": "Free alternative verified on provider website",
+    "retrieved_on": "2026-10-02",
+    "note": "No signup/payment stated for free checker. Site client requires reCAPTCHA for metric requests. No per-keyword metrics obtained here; paid connector blockage does not imply free website unavailable."
+  },
+  {
+    "id": "F05",
+    "title": "SEO.AI — Keyword Search Volume",
+    "url": "https://seo.ai/tools/keyword-search-volume",
+    "type": "Free alternative verified on provider website",
+    "retrieved_on": "2026-10-02",
+    "note": "Public free tool, client requires reCAPTCHA. No per-keyword results obtained. Public description says proprietary algorithms and third-party data; not treated as direct Google export."
+  },
+  {
+    "id": "F06",
+    "title": "Ahrefs — Free Keyword Generator",
+    "url": "https://ahrefs.com/keyword-generator",
+    "type": "Free alternative verified on provider website",
+    "retrieved_on": "2026-10-02",
+    "note": "Provider advertises free keyword ideas and metrics. No submitted-query results obtained this session."
+  },
+  {
+    "id": "F07",
+    "title": "SE Ranking — Free Keyword Search Volume Checker",
+    "url": "https://seranking.com/keyword-search-volume-checker.html",
+    "type": "Free alternative verified on provider website",
+    "retrieved_on": "2026-10-02",
+    "note": "Provider advertises free individual-query volume. No submitted-query results obtained this session."
+  },
+  {
+    "id": "F08",
+    "title": "Google Trends FAQ",
+    "url": "https://support.google.com/trends/answer/4365533?hl=en",
+    "type": "Official definitions",
+    "retrieved_on": "2026-10-02",
+    "note": "Relative sampled, normalized interest, not absolute counts. Direct Trends explore request returned HTTP 429; no time series obtained."
+  },
+  {
+    "id": "F09",
+    "title": "Google Ads — Use Keyword Planner",
+    "url": "https://support.google.com/google-ads/answer/7337243?hl=en",
+    "type": "Official access requirements",
+    "retrieved_on": "2026-10-02",
+    "note": "Current documentation requires completion of account setup with billing information for basic access. Not needed for the working RankSpot route."
+  },
+  {
+    "id": "F10",
+    "title": "McKinsey — The key to AI value is hiding in plain sight: Your operating model",
+    "url": "https://www.mckinsey.com/capabilities/people-and-organization/our-insights/the-key-to-ai-value-is-hiding-in-plain-sight-your-operating-model",
+    "type": "Publisher vocabulary / relevance evidence only",
+    "published_on": "2026-09-09",
+    "note": "Connects operating-model design and AI value for senior leaders. Does not establish keyword volume or buyer identity."
+  },
+  {
+    "id": "F11",
+    "title": "Faros — AI Productivity Paradox",
+    "url": "https://www.faros.ai/research/ai-productivity-paradox",
+    "type": "Publisher vocabulary / relevance evidence only",
+    "retrieved_on": "2026-10-02",
+    "note": "Engineering-specific use of productivity paradox framing. Does not establish search volume."
+  },
+  {
+    "id": "F12",
+    "title": "Microsoft — Govern and secure AI agents across the organization",
+    "url": "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ai-agents/governance-security-across-organization",
+    "type": "Publisher vocabulary / relevance evidence only",
+    "retrieved_on": "2026-10-02",
+    "note": "Uses governance and accountability language for enterprise agents. Does not establish search volume."
+  },
+  {
+    "id": "F13",
+    "title": "DX — The cost of implementing AI in engineering",
+    "url": "https://getdx.com/blog/ai-roi-engineering/",
+    "type": "Publisher vocabulary / relevance evidence only",
+    "retrieved_on": "2026-10-02",
+    "note": "Supports cost/ROI and engineering context, not exact demand for the phrase AI ROI for engineering."
+  },
+  {
+    "id": "F14",
+    "title": "Treendly — AI Governance Framework, United States",
+    "url": "https://treendly.com/trend/ai-governance-framework?geo=US",
+    "type": "Secondary public provider snapshot",
+    "retrieved_on": "2026-10-02",
+    "note": "Public page displays 3,600/month; exact measurement window not disclosed. Retained as cross-source difference versus RankSpot 4,400, not merged/averaged."
+  },
+  {
+    "id": "F15",
+    "title": "Treendly — AI Governance, United States",
+    "url": "https://treendly.com/trend/ai-governance",
+    "type": "Secondary public provider snapshot",
+    "retrieved_on": "2026-10-02",
+    "note": "Public page displays 12,100/month; differs from old July snapshot (3,200). Do not combine these as a trend because methods/windows are not aligned."
+  }
+]
