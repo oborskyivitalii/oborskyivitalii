@@ -3,6 +3,13 @@
 Maintainer amendment, 5 October 2026. Owner #13; navigation/motifs #14 and #12.
 Supersedes older always-full local/PR requirements; all budgets remain unchanged.
 
+Staging is now authorized. The connected provider has uploaded the immutable
+[preview](https://505498da.oborskyi-author-ci-staging.pages.dev) in `oborskyi-author-ci-staging`, from source
+`51611505d941ae2996a87782840da418722451f6` using verified successful basic CI
+artifacts. This bootstrap is separate from protected-main Actions automation;
+the full staging profile has not run and the stable alias has not been promoted.
+See [SITE-STAGING](SITE-STAGING.md) for actual evidence and pending owner setup.
+
 | Profile | When | Work |
 | --- | --- | --- |
 | Local/basic | Local edits and each PR update | Generated-source freshness, standalone executable syntax, footer routes, finite shared motifs, 10 flight/input tests and size/transfer budgets. |
@@ -34,9 +41,12 @@ Local reports cannot satisfy a hosted gate. The analytics adapter fixtures still
 use controlled vendor stubs; they do not establish live dashboard reporting.
 
 Physical Safari/Android and independent/rights acceptance keep their existing
-release role. Hosting activation, production recovery and passive ZAP remain #8
-work. Both staging publication entry points remain paused. No live host run is
-claimed for this local continuation.
+release role. Protected-main Actions setup, stable staging promotion, production
+recovery and passive ZAP remain #8 work. The current change removes the explicit
+staging pause guards; repository opt-in and protected-main/environment checks
+remain. H1 is in Draft #18 rather than main, and GitHub administrative setup is
+pending. Production deployment stays disabled. A live preview or hosted smoke
+does not satisfy the full profile or remove #18's measured performance failures.
 
 ## Reviewed engine continuation, 5 October 2026
 

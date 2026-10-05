@@ -1,0 +1,171 @@
+{
+  "sourceCommit": "51611505d941ae2996a87782840da418722451f6",
+  "publicDigest": "324c09ff0526fa2664e34c9f590d550ca7f6613ed53a9862d85e679b12e8df60",
+  "packageDigest": "deb2dd16c6efea1eee83df5d01ba954376b16ab9a8e9d8fab6f3e332e0b3d261",
+  "origin": "https://505498da.oborskyi-author-ci-staging.pages.dev",
+  "deploymentId": "505498da-a176-4f26-a4c4-6c891ee7dead",
+  "method": "Cloudflare Browser Rendering content API on the deployed preview; recorded injected browser probe",
+  "pass": true,
+  "reports": [
+    {
+      "pass": true,
+      "width": 1440,
+      "engine": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
+      "rows": [
+        {
+          "route": "index",
+          "theme": "light",
+          "overflow": false,
+          "ready": true
+        },
+        {
+          "route": "research",
+          "theme": "light",
+          "overflow": false,
+          "ready": true
+        },
+        {
+          "route": "writing",
+          "theme": "light",
+          "overflow": false,
+          "ready": true
+        },
+        {
+          "route": "talks",
+          "theme": "light",
+          "overflow": false,
+          "ready": true
+        },
+        {
+          "route": "credits",
+          "theme": "light",
+          "overflow": false,
+          "ready": true
+        },
+        {
+          "route": "index",
+          "theme": "dark",
+          "overflow": false,
+          "ready": true
+        },
+        {
+          "route": "research",
+          "theme": "dark",
+          "overflow": false,
+          "ready": true
+        },
+        {
+          "route": "writing",
+          "theme": "dark",
+          "overflow": false,
+          "ready": true
+        },
+        {
+          "route": "talks",
+          "theme": "dark",
+          "overflow": false,
+          "ready": true
+        },
+        {
+          "route": "credits",
+          "theme": "dark",
+          "overflow": false,
+          "ready": true
+        }
+      ],
+      "checks": {
+        "history": true,
+        "ambient": true,
+        "motionOff": true,
+        "archive": true,
+        "footerCredits": true,
+        "persistentShell": true,
+        "noAnalytics": true
+      },
+      "errors": []
+    },
+    {
+      "pass": true,
+      "width": 390,
+      "engine": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
+      "rows": [
+        {
+          "route": "index",
+          "theme": "light",
+          "overflow": false,
+          "ready": true
+        },
+        {
+          "route": "research",
+          "theme": "light",
+          "overflow": false,
+          "ready": true
+        },
+        {
+          "route": "writing",
+          "theme": "light",
+          "overflow": false,
+          "ready": true
+        },
+        {
+          "route": "talks",
+          "theme": "light",
+          "overflow": false,
+          "ready": true
+        },
+        {
+          "route": "credits",
+          "theme": "light",
+          "overflow": false,
+          "ready": true
+        },
+        {
+          "route": "index",
+          "theme": "dark",
+          "overflow": false,
+          "ready": true
+        },
+        {
+          "route": "research",
+          "theme": "dark",
+          "overflow": false,
+          "ready": true
+        },
+        {
+          "route": "writing",
+          "theme": "dark",
+          "overflow": false,
+          "ready": true
+        },
+        {
+          "route": "talks",
+          "theme": "dark",
+          "overflow": false,
+          "ready": true
+        },
+        {
+          "route": "credits",
+          "theme": "dark",
+          "overflow": false,
+          "ready": true
+        }
+      ],
+      "checks": {
+        "history": true,
+        "ambient": true,
+        "motionOff": true,
+        "archive": true,
+        "footerCredits": true,
+        "persistentShell": true,
+        "noAnalytics": true
+      },
+      "errors": []
+    }
+  ],
+  "limits": [
+    "Single provider engine; report.engine is navigator.userAgent, not a verified underlying browser version.",
+    "1440 and 390 pixel viewport emulation, not native Windows/macOS runners or physical Safari/Android devices.",
+    "Runtime error listeners attach after initial loading; assertions cover subsequent scripted interactions.",
+    "Full performance/security/native matrix and stable alias promotion have not run."
+  ]
+}
