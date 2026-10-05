@@ -1,0 +1,13 @@
+{
+  "source": "2762c20418996007ab489dcde68c54f633439aef7725c70c1867d44e9e236eb6",
+  "variant": "Color",
+  "width": 1440,
+  "input": "wheel",
+  "from": "talks",
+  "to": "writing",
+  "flight": "on",
+  "y": 4635,
+  "max": 5498,
+  "gap": 863,
+  "scope": "Original untimestamped round-trip test failed. Isolated 3-repeat endpoint-wheel-diagnostic.json identifies a 195.3ms creation gap, above the documented 180ms fresh-gesture boundary. Retained failure; fixture corrected to exercise queued same-gesture timestamps, source unchanged."
+}

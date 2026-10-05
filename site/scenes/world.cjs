@@ -24,8 +24,8 @@ module.exports=function(math) {
       // repetition transforms its shared vertices once, not once per facet.
       const point=p=>p;
       const face=(points,color="cyan",tone=.2,edge=.36,closed=false)=>faces.push({points:points.map(point),color,band,opacity:1,tone,edgeAlpha:edge,object:name,...(compact&&closed?{oneSided:true}:{})});
-      const line=(a,b,color="cyan",alpha=.58,width=1)=>lines.push({a:point(a),b:point(b),color,band,opacity:alpha,width,object:name});
-      const path=(points,color="cyan",alpha=.58,width=1)=>{for(let i=1;i<points.length;i++)if(!compact||!points[i].every((v,j)=>v===points[i-1][j]))line(points[i-1],points[i],color,alpha,width);};
+      const line=(a,b,color="cyan",alpha=.58,width=1,minScale=0)=>lines.push({a:point(a),b:point(b),color,band,opacity:alpha,width,object:name,...(minScale?{minScale}:{})});
+      const path=(points,color="cyan",alpha=.58,width=1,minScale=0)=>{for(let i=1;i<points.length;i++)if(!compact||!points[i].every((v,j)=>v===points[i-1][j]))line(points[i-1],points[i],color,alpha,width,minScale);};
       const poly=(points,depth,color="cyan",tone=.24)=>{
         if(compact&&points.reduce((sum,p,i)=>sum+p[0]*points[(i+1)%points.length][1]-points[(i+1)%points.length][0]*p[1],0)<0)points=points.slice().reverse();
         const front=points.map(([x,y])=>[x,y,depth/2]),back=points.map(([x,y])=>[x,y,-depth/2]);
@@ -67,7 +67,10 @@ module.exports=function(math) {
         const points=template.points.map(p=>[center[0]+scale*(m[0]*p[0]+m[1]*p[1]+m[2]*p[2]),center[1]+scale*(m[3]*p[0]+m[4]*p[1]+m[5]*p[2]),center[2]+scale*(m[6]*p[0]+m[7]*p[1]+m[8]*p[2])]);
         for(const f of template.faces)faces.push({...f,points:f.indices.map(i=>points[i]),band,object:name});
         for(const line of template.lines)lines.push({...line,a:points[line.indices[0]],b:points[line.indices[1]],band,object:name});
-        objects.push({name,center,scale,band,...metadata,firstFace,faceCount:template.faces.length,firstLine,lineCount:template.lines.length,points,radius:template.radius*scale+2.3});
+        // Culling uses the actual animated centre and uniform pulse scale.
+        // A fixed 2.3-world-unit motion pad inflated tiny copies by several
+        // times and needlessly projected objects outside the viewport.
+        objects.push({name,center,scale,band,...metadata,firstFace,faceCount:template.faces.length,firstLine,lineCount:template.lines.length,points,radius:template.radius*scale+1e-6});
       }
     }
     const bookHalf=({face,line,path},sign,n,rows,segments)=>{
@@ -292,32 +295,32 @@ module.exports=function(math) {
         const rings=[-.92,0,.92].map(lat=>Array.from({length:n},(_,i)=>at(lat,i)));
         for(let i=0;i<n;i++){
           const j=(i+1)%n;
-          face([[side*1.02,-1.52,0],rings[0][j],rings[0][i]],"cyan",.19,.13);
-          face([[side*1.02,2,0],rings[2][i],rings[2][j]],"cyan",.19,.13);
-          for(let k=0;k<2;k++)face([rings[k][i],rings[k][j],rings[k+1][j],rings[k+1][i]],"cyan",.16,.12);
+          face([[side*1.02,-1.52,0],rings[0][i],rings[0][j]],"cyan",.19,.13,true);
+          face([[side*1.02,2,0],rings[2][j],rings[2][i]],"cyan",.19,.13,true);
+          for(let k=0;k<2;k++)face([rings[k+1][i],rings[k+1][j],rings[k][j],rings[k][i]],"cyan",.16,.12,true);
         }
         for(let fold=0;fold<4;fold++)path(Array.from({length:7},(_,i)=>{
           const x=.27+i*.27,y=1.45-fold*.72+.18*Math.sin(i*1.7+fold);
           return [side*x,y,.12+.96*Math.sqrt(Math.max(.03,1-((x-1.02)/1.05)**2-((y-.24)/1.88)**2))];
-        }),"amber",.88,1.45);
+        }),"amber",.88,1.45,fold%2?7:0);
       }
       path([[0,1.88,.2],[-.09,1.12,.6],[.07,.5,.83],[-.07,-.15,.75],[0,-1.23,.25]],"amber",.95,1.8);
       poly([[-.62,-1.38],[-.84,-1.62],[-.62,-1.93],[0,-2.06],[.62,-1.93],[.84,-1.62],[.62,-1.38]],.65,"cyan",.23);
       box([0,-2.12,-.12],[.36,.65,.42],"amber",.32);
-      for(let row=0;row<2;row++)path([[-.6,-1.58-row*.2,.35],[0,-1.74-row*.2,.37],[.6,-1.58-row*.2,.35]],"amber",.68,1.15);
+      for(let row=0;row<2;row++)path([[-.6,-1.58-row*.2,.35],[0,-1.74-row*.2,.37],[.6,-1.58-row*.2,.35]],"amber",.68,1.15,7);
     };
     const axes=({path,line})=>{
       path([[-2.15,1.8,0],[-2.15,-1.65,0],[2.2,-1.65,0]],"cyan",.85,1.5);
-      path([[-2.15,-1.65,0],[-2.15,-1.65,-1.25],[2.2,-1.65,-1.25]],"cyan",.42);
-      path([[-2.32,1.53,0],[-2.15,1.8,0],[-1.98,1.53,0]],"cyan",.85,1.5);
-      path([[1.94,-1.48,0],[2.2,-1.65,0],[1.94,-1.82,0]],"cyan",.85,1.5);
-      for(let y=-.8;y<(detail?-.7:1.6);y+=.8)line([-2.15,y,-.35],[2,y,-.35],"cyan",.22,.7);
+      path([[-2.15,-1.65,0],[-2.15,-1.65,-1.25],[2.2,-1.65,-1.25]],"cyan",.42,1,7);
+      path([[-2.32,1.53,0],[-2.15,1.8,0],[-1.98,1.53,0]],"cyan",.85,1.5,7);
+      path([[1.94,-1.48,0],[2.2,-1.65,0],[1.94,-1.82,0]],"cyan",.85,1.5,7);
+      for(let y=-.8;y<(detail?-.7:1.6);y+=.8)line([-2.15,y,-.35],[2,y,-.35],"cyan",.22,.7,7);
     };
     const lineChart=h=>{
       axes(h);const points=[[-1.8,-1.05,.3],[-1.1,-.2,.3],[-.45,-.55,.3],[.25,.5,.3],[.85,.22,.3],[1.72,1.48,.3]];
       h.path(points,"amber",.98,2.3);
       for(let i=1;i<points.length;i++)h.face([points[i-1],points[i],add(points[i],[0,-.18,-.15]),add(points[i-1],[0,-.18,-.15])],"amber",.36,0);
-      for(const [x,y,z]of points)h.path(detail?[[x-.09,y-.09,z+.02],[x,y+.09,z+.02],[x+.09,y-.09,z+.02]]:[[x-.09,y,z+.02],[x,y+.09,z+.02],[x+.09,y,z+.02],[x,y-.09,z+.02],[x-.09,y,z+.02]],"amber",.95,1.3);
+      for(const [x,y,z]of points)h.path(detail?[[x-.09,y-.09,z+.02],[x,y+.09,z+.02],[x+.09,y-.09,z+.02]]:[[x-.09,y,z+.02],[x,y+.09,z+.02],[x+.09,y,z+.02],[x,y-.09,z+.02],[x-.09,y,z+.02]],"amber",.95,1.3,7);
       h.path([[-1.8,.9,-.6],[-1.1,.45,-.6],[-.45,.2,-.6],[.25,-.3,-.6],[.85,-.62,-.6],[1.72,-.83,-.6]],"cyan",.82,1.5);
     };
     const barChart=h=>{axes(h);for(const [i,height]of [1.05,2.25,1.65,3.05].entries()){
@@ -329,7 +332,7 @@ module.exports=function(math) {
       points.forEach(([x,y],i)=>{
         const z=i%2?.45:-.65,r=.13;
         h.path([[x-r,y,z],[x,y+r,z],[x+r,y,z],[x,y-r,z],[x-r,y,z]],i%2?"amber":"cyan",.96,1.8);
-        if(!detail)h.line([x,y,z],[x,-1.6,z],"cyan",.22,.7);
+        if(!detail)h.line([x,y,z],[x,-1.6,z],"cyan",.22,.7,7);
       });
       h.path([[-1.8,-1.1,.15],[1.85,1.25,.15]],"amber",.68,1.2);
     };
@@ -361,8 +364,8 @@ module.exports=function(math) {
         text('LOG',-1.1,-2.35,.2);text('(',2,-2.42,.22);text('p',2.94,-2.35,.22);text('i',3.9,-2.7,.1);text(')',4.38,-2.42,.22);
       }
       const ends=kind==='attention'?[-4.9,6.4]:[-3.9,5.3],y=kind==='entropy'?-3.1:-2.2;
-      line([ends[0],y,-.55],[ends[1],y,-.55],"cyan",.55,1.2);
-      if(!detail)for(const x of ends)path([[x,y+.38,-.55],[x,y,-.55],[x,y,.32],[x,y+.38,.32]],"cyan",.65,1.2);
+      line([ends[0],y,-.55],[ends[1],y,-.55],"cyan",.55,1.2,7);
+      if(!detail)for(const x of ends)path([[x,y+.38,-.55],[x,y,-.55],[x,y,.32],[x,y+.38,.32]],"cyan",.65,1.2,7);
     };
     const formulas={"attention":"A = softmax(QKᵀ/√dₖ)V","softmax":"pᵢ = exp(zᵢ)/Σⱼ exp(zⱼ)","entropy":"H = −Σᵢ pᵢ log(pᵢ)"};
     const geometry=[

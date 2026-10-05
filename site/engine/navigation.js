@@ -196,7 +196,7 @@
       transition=progress=>{
         if(own!==serial){resolve();return;}
         try {
-          if(progress>=(presentation?.mountAt??.18)&&!mounted){mounted=true;presentation?.prepareMount?.();commit();}
+          if(progress>=(presentation?.mountAt??.18)&&!mounted){mounted=true;commit();}
           if(presentation){
             if(progress===1){clearText();transition=null;resolve();}
             else presentation.present(progress,document.querySelector('.space-scene')?.dataset.direction||'forward',departure);
@@ -219,6 +219,10 @@
     });
   }
   function mount(data,url,position) {
+    // History captured the old reading position before this layout-affecting
+    // write. Clearing the plane before history's scroll read would flush the
+    // old page, then immediately flush the newly mounted archive again.
+    presentation?.prepareMount?.();
     // Clear the presentation transform before DOM writes and landing. The
     // nested scene measurement then reuses that same native layout snapshot.
     const run=()=>mountNative(data,url,position);
@@ -231,7 +235,8 @@
     span('mount-unmount');
     content.replaceChildren(data.main,data.footer);
     document.body.dataset.page=data.page;page=data.page;
-    document.documentElement.lang=data.lang;document.title=data.title;
+    if(document.documentElement.lang!==data.lang)document.documentElement.lang=data.lang;
+    document.title=data.title;
     for(const node of document.head.querySelectorAll(metadata))node.remove();
     document.head.append(...data.metadata);
     const fallback=document.querySelector(".space-fallback");
@@ -286,9 +291,11 @@
       const prepared=prepare(data);
       const animate=!initial&&primaryRoutes.includes(page)&&primaryRoutes.includes(next)&&motionAllowed();
       await flight(next,animate,()=>{
+        const start=window.SiteEngineStages?performance.now():0;
         const destination=address(url,next);
         if(!pop&&!initial&&destination.href!==window.location.href){save();history.pushState({site:{page:next,scroll:[0,0]}},"",destination);}
         else if(initial)history.replaceState({site:{page:next,scroll:[0,0]}},"",destination);
+        if(start){const time=performance.now();window.SiteEngineProbe?.({kind:'stage',part:'mount-history',time,start,duration:time-start,page:next});}
         mount(prepared,destination,position);
       },own,departure);
       // Arrival removes the content transform. Its temporary overflow/offset

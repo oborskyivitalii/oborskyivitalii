@@ -27,8 +27,16 @@ const directory=path.resolve(process.argv[2]),output=path.resolve(process.argv[3
             if(document.body.dataset.page!==to)return;
             const el=document.createElement('div');el.style.height='900px';document.querySelector('footer').append(el);
           },80),{once:true}),to);
+          // Driver round-trips can exceed the actual 180ms gesture boundary
+          // during a slow mount. Queue original creation times for this one
+          // continuous gesture; reverseEndpoints separately checks fresh input.
+          const wheelEpoch=await page.evaluate(()=>{
+            window.wheelTimes=[];addEventListener('wheel',e=>wheelTimes.push(e.timeStamp),{capture:true});
+            return (performance.timeOrigin+performance.now())/1000;
+          });let wheelIndex=0;
+          const wheel=()=>cdp.send('Input.dispatchMouseEvent',{type:'mouseWheel',x:width/2,y:300,deltaX:0,deltaY:-90,timestamp:wheelEpoch+wheelIndex++*.06});
           if(input==='wheel'){
-            await page.mouse.move(width/2,300);await page.mouse.wheel(0,-90);await page.waitForTimeout(60);await page.mouse.wheel(0,-90);
+            await page.mouse.move(width/2,300);await wheel();await page.waitForTimeout(60);await wheel();
           }else if(input==='key')await page.keyboard.down('PageUp');
           else{
             await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:width/2,y:250,id:1}]});
@@ -36,7 +44,7 @@ const directory=path.resolve(process.argv[2]),output=path.resolve(process.argv[3
           }
           for(let tail=0;tail<3;tail++){
             await page.waitForTimeout(60);
-            if(input==='wheel')await page.mouse.wheel(0,-90);
+            if(input==='wheel')await wheel();
             else if(input==='key')await page.keyboard.down('PageUp');
             else await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:width/2,y:390+tail*25,id:1}]});
           }
@@ -46,7 +54,9 @@ const directory=path.resolve(process.argv[2]),output=path.resolve(process.argv[3
           await page.waitForTimeout(260);
           const state=await page.evaluate(()=>({y:scrollY,max:Math.max(0,document.documentElement.scrollHeight-innerHeight)}));
           assert.ok(Math.abs(state.max-state.y)<=2,JSON.stringify({input,from,to,flight,state}));
-          inputs.push({input,from,to,flight,...state});
+          const wheelTimes=input==='wheel'?await page.evaluate(()=>wheelTimes):undefined;
+          if(wheelTimes){assert.equal(wheelTimes.length,5);assert.ok(wheelTimes.slice(1).every((time,i)=>Math.abs(time-wheelTimes[i]-60)<2),'same gesture creation intervals');}
+          inputs.push({input,from,to,flight,...state,wheelTimes});
         }
         rows.at(-1).inputs=inputs;
         await page.emulateMedia({reducedMotion:'reduce'});
@@ -78,6 +88,6 @@ const directory=path.resolve(process.argv[2]),output=path.resolve(process.argv[3
       }
       console.log('Endpoints:',variant,width,'pass');await context.close();
     }
-    fs.mkdirSync(path.dirname(output),{recursive:true});fs.writeFileSync(output,JSON.stringify({browser:browser.version(),rows,scope:'Targeted existing hosted endpoint fixture on both offline variants, two widths; actual wheel/key/touch with Color content flight On/Off, reduced/expiry/short-growth. No full hosted/device claim.'},null,2)+'\n');
+    fs.mkdirSync(path.dirname(output),{recursive:true});fs.writeFileSync(output,JSON.stringify({browser:browser.version(),rows,scope:'Targeted existing hosted endpoint fixture on both offline variants, two widths; trusted CDP wheel with original 60ms gesture timestamps, actual key/touch with Color content flight On/Off, reduced/expiry/short-growth. Fresh-input takeover remains separate. No full hosted/device claim.'},null,2)+'\n');
   }finally{await browser.close();}
 })().catch(e=>{console.error(e.stack);process.exitCode=1;});

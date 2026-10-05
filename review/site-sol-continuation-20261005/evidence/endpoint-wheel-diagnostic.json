@@ -1,0 +1,205 @@
+{
+  "source": "2762c20418996007ab489dcde68c54f633439aef7725c70c1867d44e9e236eb6",
+  "scope": "Isolated wheel creation-time diagnosis, no performance acceptance",
+  "rows": [
+    {
+      "y": 5498,
+      "max": 5498,
+      "events": [
+        {
+          "kind": "navigation-start",
+          "time": 55.20000000298023,
+          "from": "index",
+          "to": "talks"
+        },
+        {
+          "kind": "navigation-ready",
+          "time": 63.899999998509884,
+          "page": "talks"
+        },
+        {
+          "kind": "wheel",
+          "ts": 1205.7000000029802,
+          "at": 1237.7000000029802,
+          "delta": -90
+        },
+        {
+          "kind": "wheel",
+          "ts": 1300.3000000044703,
+          "at": 1321.1000000014901,
+          "delta": -90
+        },
+        {
+          "kind": "navigation-start",
+          "time": 1321.6000000014901,
+          "from": "talks",
+          "to": "writing"
+        },
+        {
+          "kind": "wheel",
+          "ts": 1410.3000000044703,
+          "at": 1521.1000000014901,
+          "delta": -90
+        },
+        {
+          "kind": "wheel",
+          "ts": 1583.7000000029802,
+          "at": 1620.8999999985099,
+          "delta": -90
+        },
+        {
+          "kind": "wheel",
+          "ts": 1685.2000000029802,
+          "at": 1721,
+          "delta": -90
+        },
+        {
+          "kind": "endpoint",
+          "time": 2227.7000000029802,
+          "reason": "reflow",
+          "token": 2,
+          "page": "writing",
+          "maxScroll": 5498,
+          "gap": 863
+        },
+        {
+          "kind": "navigation-ready",
+          "time": 2631.5,
+          "page": "writing"
+        }
+      ]
+    },
+    {
+      "y": 4635,
+      "max": 5498,
+      "events": [
+        {
+          "kind": "navigation-start",
+          "time": 44.400000005960464,
+          "from": "index",
+          "to": "talks"
+        },
+        {
+          "kind": "navigation-ready",
+          "time": 52.70000000298023,
+          "page": "talks"
+        },
+        {
+          "kind": "wheel",
+          "ts": 1187.1000000014901,
+          "at": 1217.9000000059605,
+          "delta": -90
+        },
+        {
+          "kind": "wheel",
+          "ts": 1280.5,
+          "at": 1317.9000000059605,
+          "delta": -90
+        },
+        {
+          "kind": "navigation-start",
+          "time": 1318.3000000044703,
+          "from": "talks",
+          "to": "writing"
+        },
+        {
+          "kind": "wheel",
+          "ts": 1406.6000000014901,
+          "at": 1536.1000000014901,
+          "delta": -90
+        },
+        {
+          "kind": "wheel",
+          "ts": 1601.9000000059605,
+          "at": 1651.4000000059605,
+          "delta": -90
+        },
+        {
+          "kind": "endpoint",
+          "time": 1651.5,
+          "reason": "wheel",
+          "token": 2,
+          "page": "talks"
+        },
+        {
+          "kind": "wheel",
+          "ts": 1714,
+          "at": 1751.3000000044703,
+          "delta": -90
+        },
+        {
+          "kind": "navigation-ready",
+          "time": 2810,
+          "page": "writing"
+        }
+      ]
+    },
+    {
+      "y": 5498,
+      "max": 5498,
+      "events": [
+        {
+          "kind": "navigation-start",
+          "time": 46.900000005960464,
+          "from": "index",
+          "to": "talks"
+        },
+        {
+          "kind": "navigation-ready",
+          "time": 54.30000000447035,
+          "page": "talks"
+        },
+        {
+          "kind": "wheel",
+          "ts": 1199.5,
+          "at": 1228.2000000029802,
+          "delta": -90
+        },
+        {
+          "kind": "wheel",
+          "ts": 1291.6000000014901,
+          "at": 1328,
+          "delta": -90
+        },
+        {
+          "kind": "navigation-start",
+          "time": 1328.4000000059605,
+          "from": "talks",
+          "to": "writing"
+        },
+        {
+          "kind": "wheel",
+          "ts": 1412.2000000029802,
+          "at": 1524.3000000044703,
+          "delta": -90
+        },
+        {
+          "kind": "wheel",
+          "ts": 1591.7000000029802,
+          "at": 1655.5,
+          "delta": -90
+        },
+        {
+          "kind": "wheel",
+          "ts": 1721.7000000029802,
+          "at": 1784.5,
+          "delta": -90
+        },
+        {
+          "kind": "endpoint",
+          "time": 2352.5,
+          "reason": "reflow",
+          "token": 2,
+          "page": "writing",
+          "maxScroll": 5498,
+          "gap": 863
+        },
+        {
+          "kind": "navigation-ready",
+          "time": 2696.4000000059605,
+          "page": "writing"
+        }
+      ]
+    }
+  ]
+}

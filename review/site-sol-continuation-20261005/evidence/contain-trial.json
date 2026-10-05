@@ -1,0 +1,3533 @@
+{
+  "variant": {
+    "id": "color",
+    "contract": 1,
+    "fingerprint": "77f89371819b3560cfe4565558c5439a4c5f4fdafc5f1693b6944d63618810cb"
+  },
+  "source": "a7a836b3e30040e29ff06c521e78da78743237aeea2dfc7771f221d00a4bdf05",
+  "bytes": 672969,
+  "browser": "153.0.8010.12",
+  "gpu": {
+    "devices": [
+      {
+        "vendorId": 65535,
+        "deviceId": 65535,
+        "vendorString": "Google Inc. (Google)",
+        "deviceString": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver-5.0.0)",
+        "driverVendor": "SwANGLE",
+        "driverVersion": "5.0.0"
+      }
+    ],
+    "auxAttributes": {
+      "amdSwitchable": false,
+      "canSupportThreadedTextureMailbox": false,
+      "directRenderingVersion": "",
+      "displayType": "ANGLE_SWIFTSHADER",
+      "glExtensions": "GL_AMD_performance_monitor GL_ANGLE_base_vertex_base_instance_shader_builtin GL_ANGLE_blob_cache GL_ANGLE_client_arrays GL_ANGLE_clip_cull_distance GL_ANGLE_compressed_texture_etc GL_ANGLE_copy_texture_3d GL_ANGLE_depth_texture GL_ANGLE_framebuffer_blit GL_ANGLE_framebuffer_multisample GL_ANGLE_get_image GL_ANGLE_get_serialized_context_string GL_ANGLE_get_tex_level_parameter GL_ANGLE_instanced_arrays GL_ANGLE_memory_object_flags GL_ANGLE_memory_size GL_ANGLE_multi_draw GL_ANGLE_pack_reverse_row_order GL_ANGLE_polygon_mode GL_ANGLE_program_binary_readiness_query GL_ANGLE_program_cache_control GL_ANGLE_read_only_depth_stencil_feedback_loops GL_ANGLE_relaxed_vertex_attribute_type GL_ANGLE_renderability_validation GL_ANGLE_request_extension GL_ANGLE_rgbx_internal_format GL_ANGLE_robust_client_memory GL_ANGLE_robust_fragment_shader_output GL_ANGLE_robust_resource_initialization GL_ANGLE_shader_pixel_local_storage GL_ANGLE_shader_pixel_local_storage_coherent GL_ANGLE_stencil_texturing GL_ANGLE_texture_compression_dxt3 GL_ANGLE_texture_compression_dxt5 GL_ANGLE_texture_multisample GL_ANGLE_texture_usage GL_ANGLE_translated_shader_source GL_ANGLE_vulkan_image GL_ANGLE_yuv_internal_format GL_APPLE_clip_distance GL_ARM_rgba8 GL_ARM_shader_framebuffer_fetch GL_CHROMIUM_bind_generates_resource GL_CHROMIUM_bind_uniform_location GL_CHROMIUM_copy_compressed_texture GL_CHROMIUM_copy_texture GL_CHROMIUM_lose_context GL_EXT_EGL_image_array GL_EXT_EGL_image_external_wrap_modes GL_EXT_EGL_image_storage GL_EXT_base_instance GL_EXT_blend_minmax GL_EXT_buffer_storage GL_EXT_clear_texture GL_EXT_clip_control GL_EXT_clip_cull_distance GL_EXT_color_buffer_float GL_EXT_color_buffer_half_float GL_EXT_compressed_ETC1_RGB8_sub_texture GL_EXT_conservative_depth GL_EXT_copy_image GL_EXT_debug_label GL_EXT_debug_marker GL_EXT_depth_clamp GL_EXT_discard_framebuffer GL_EXT_disjoint_timer_query GL_EXT_draw_buffers GL_EXT_draw_buffers_indexed GL_EXT_draw_elements_base_vertex GL_EXT_float_blend GL_EXT_frag_depth GL_EXT_instanced_arrays GL_EXT_map_buffer_range GL_EXT_memory_object GL_EXT_memory_object_fd GL_EXT_occlusion_query_boolean GL_EXT_polygon_offset_clamp GL_EXT_read_format_bgra GL_EXT_robustness GL_EXT_sRGB GL_EXT_sRGB_write_control GL_EXT_semaphore GL_EXT_semaphore_fd GL_EXT_separate_shader_objects GL_EXT_shader_framebuffer_fetch GL_EXT_shader_framebuffer_fetch_non_coherent GL_EXT_shader_non_constant_global_initializers GL_EXT_shader_texture_lod GL_EXT_shadow_samplers GL_EXT_texture_border_clamp GL_EXT_texture_compression_bptc GL_EXT_texture_compression_dxt1 GL_EXT_texture_compression_rgtc GL_EXT_texture_compression_s3tc_srgb GL_EXT_texture_filter_anisotropic GL_EXT_texture_format_BGRA8888 GL_EXT_texture_lod_bias GL_EXT_texture_mirror_clamp_to_edge GL_EXT_texture_rg GL_EXT_texture_sRGB_R8 GL_EXT_texture_sRGB_RG8 GL_EXT_texture_sRGB_decode GL_EXT_texture_shadow_lod GL_EXT_texture_storage GL_EXT_texture_type_2_10_10_10_REV GL_EXT_unpack_subimage GL_KHR_blend_equation_advanced GL_KHR_debug GL_KHR_robust_buffer_access_behavior GL_KHR_robustness GL_KHR_texture_compression_astc_ldr GL_NV_fence GL_NV_framebuffer_blit GL_NV_pack_subimage GL_NV_pixel_buffer_object GL_NV_polygon_mode GL_NV_read_depth GL_NV_read_depth_stencil GL_NV_read_stencil GL_NV_shader_noperspective_interpolation GL_OES_EGL_image GL_OES_EGL_image_external GL_OES_EGL_image_external_essl3 GL_OES_EGL_sync GL_OES_compressed_ETC1_RGB8_texture GL_OES_compressed_paletted_texture GL_OES_copy_image GL_OES_depth24 GL_OES_depth32 GL_OES_depth_texture GL_OES_depth_texture_cube_map GL_OES_draw_buffers_indexed GL_OES_draw_elements_base_vertex GL_OES_element_index_uint GL_OES_fbo_render_mipmap GL_OES_get_program_binary GL_OES_mapbuffer GL_OES_packed_depth_stencil GL_OES_required_internalformat GL_OES_rgb8_rgba8 GL_OES_sample_shading GL_OES_sample_variables GL_OES_shader_multisample_interpolation GL_OES_standard_derivatives GL_OES_surfaceless_context GL_OES_texture_3D GL_OES_texture_border_clamp GL_OES_texture_float GL_OES_texture_float_linear GL_OES_texture_half_float GL_OES_texture_half_float_linear GL_OES_texture_npot GL_OES_texture_stencil8 GL_OES_texture_storage_multisample_2d_array GL_OES_vertex_array_object GL_OES_vertex_half_float GL_OES_vertex_type_10_10_10_2 GL_OVR_multiview GL_OVR_multiview2 GL_QCOM_texture_lod_bias ",
+      "glImplementationParts": "(gl=egl-angle,angle=swiftshader)",
+      "glRenderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver-5.0.0)",
+      "glResetNotificationStrategy": 33362,
+      "glVendor": "Google Inc. (Google)",
+      "glVersion": "OpenGL ES 3.0 (ANGLE 2.1.28646 git hash: a6bc9eff8444)",
+      "glWsExtensions": "EGL_EXT_create_context_robustness EGL_ANGLE_surface_orientation EGL_KHR_create_context EGL_KHR_image EGL_KHR_image_base EGL_EXT_image_gl_colorspace EGL_KHR_gl_colorspace EGL_KHR_gl_texture_2D_image EGL_KHR_gl_texture_cubemap_image EGL_KHR_gl_renderbuffer_image EGL_KHR_get_all_proc_addresses EGL_KHR_fence_sync EGL_KHR_wait_sync EGL_ANGLE_create_context_webgl_compatibility EGL_CHROMIUM_create_context_bind_generates_resource EGL_KHR_swap_buffers_with_damage EGL_EXT_pixel_format_float EGL_KHR_surfaceless_context EGL_ANGLE_display_texture_share_group EGL_ANGLE_display_semaphore_share_group EGL_ANGLE_create_context_client_arrays EGL_ANGLE_program_cache_control EGL_ANGLE_robust_resource_initialization EGL_ANGLE_create_context_extensions_enabled EGL_ANDROID_blob_cache EGL_ANDROID_recordable EGL_ANGLE_create_context_backwards_compatible EGL_KHR_no_config_context EGL_IMG_context_priority EGL_KHR_create_context_no_error EGL_KHR_reusable_sync EGL_EXT_buffer_age EGL_ANGLE_create_surface_swap_interval EGL_ANGLE_vulkan_image EGL_KHR_partial_update EGL_ANGLE_global_fence_sync EGL_ANGLE_memory_usage_report ",
+      "glWsVendor": "Google Inc. (Google)",
+      "glWsVersion": "1.5 (ANGLE 2.1.28646 git hash: a6bc9eff8444)",
+      "hardwareSupportsVulkan": false,
+      "inProcessGpu": false,
+      "initializationTime": 0.014622,
+      "isAsan": false,
+      "isClangCoverage": false,
+      "jpegDecodeAcceleratorSupported": false,
+      "maxMsaaSamples": "4",
+      "optimus": false,
+      "passthroughCmdDecoder": true,
+      "pixelShaderVersion": "3.00",
+      "processCrashCount": 0,
+      "sandboxed": false,
+      "skiaBackendType": "None",
+      "subpixelFontRendering": true,
+      "targetCpuBits": 64,
+      "vertexShaderVersion": "3.00",
+      "visibilityCallbackCallCount": 0
+    },
+    "featureStatus": {
+      "2d_canvas": "unavailable_software",
+      "direct_rendering_display_compositor": "disabled_off_ok",
+      "gpu_compositing": "disabled_software",
+      "multiple_raster_threads": "enabled_on",
+      "opengl": "disabled_off",
+      "rasterization": "disabled_software",
+      "raw_draw": "disabled_off_ok",
+      "skia_graphite": "disabled_off",
+      "trees_in_viz": "disabled_off",
+      "video_decode": "disabled_software",
+      "video_encode": "disabled_software",
+      "vulkan": "disabled_off",
+      "webgl": "unavailable_software",
+      "webgpu": "unavailable_software",
+      "webgpu_on_vk_via_gl_interop": "disabled_off",
+      "webnn": "unavailable_software"
+    },
+    "driverBugWorkarounds": [],
+    "videoDecoding": [],
+    "videoEncoding": []
+  },
+  "traceDisabled": true,
+  "protocol": "No tracing or sampling profiler. Sequential balanced order; dark Research idle/scroll and identical four native route flights. CPU x4 is synthetic. Trace CPU durations can overlap and do not measure physical display FPS, power or hardware GPU cost.",
+  "rows": [
+    {
+      "profile": {
+        "width": 390,
+        "rate": 4
+      },
+      "surface": "soft",
+      "flight": true,
+      "repeat": 0,
+      "startup": {
+        "fcpMs": 236,
+        "lcpMs": 628,
+        "domReadyMs": 635.2000000029802
+      },
+      "measurements": [
+        {
+          "kind": "idle",
+          "probeVersion": 2,
+          "elapsedMs": 2504.6999999955297,
+          "window": {
+            "startMs": 2451.4000000059605,
+            "endMs": 4956.10000000149
+          },
+          "quality": "0",
+          "cadence": "7.5",
+          "state": "active",
+          "callbacks": 143,
+          "paints": 19,
+          "paintRateHz": 7.585738811048792,
+          "paintIntervalsMs": {
+            "count": 18,
+            "p50": 133.30000000447035,
+            "p95": 134.39999999850988,
+            "max": 134.39999999850988
+          },
+          "paintCallbackMs": {
+            "p50": 14.100000001490116,
+            "p95": 21.5,
+            "max": 21.5
+          },
+          "callbackBusyPercent": 12.161137062701496,
+          "rawFrames": [
+            {
+              "time": 2451.1,
+              "started": 2452.10000000149,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 2467.8,
+              "started": 2468.7000000029802,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 2484.4,
+              "started": 2484.8000000044703,
+              "duration": 16.799999997019768,
+              "painted": true
+            },
+            {
+              "time": 2517.8,
+              "started": 2519.9000000059605,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 2534.4,
+              "started": 2534.9000000059605,
+              "duration": 0.09999999403953552,
+              "painted": false
+            },
+            {
+              "time": 2551.1,
+              "started": 2551.7000000029802,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 2567.8,
+              "started": 2568.60000000149,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 2584.4,
+              "started": 2584.60000000149,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 2601.1,
+              "started": 2601.4000000059605,
+              "duration": 0.5999999940395355,
+              "painted": false
+            },
+            {
+              "time": 2617.8,
+              "started": 2618.10000000149,
+              "duration": 21.5,
+              "painted": true
+            },
+            {
+              "time": 2651.1,
+              "started": 2658.60000000149,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 2667.8,
+              "started": 2668.8000000044703,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 2684.4,
+              "started": 2684.9000000059605,
+              "duration": 0.09999999403953552,
+              "painted": false
+            },
+            {
+              "time": 2701.1,
+              "started": 2701.4000000059605,
+              "duration": 0.29999999701976776,
+              "painted": false
+            },
+            {
+              "time": 2717.8,
+              "started": 2718.3000000044703,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 2734.4,
+              "started": 2734.7000000029802,
+              "duration": 0.7000000029802322,
+              "painted": false
+            },
+            {
+              "time": 2751.1,
+              "started": 2752.5,
+              "duration": 18.80000000447035,
+              "painted": true
+            },
+            {
+              "time": 2784.4,
+              "started": 2788.60000000149,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 2801.1,
+              "started": 2801.7000000029802,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 2817.7,
+              "started": 2818.9000000059605,
+              "duration": 0.09999999403953552,
+              "painted": false
+            },
+            {
+              "time": 2834.4,
+              "started": 2834.9000000059605,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 2851.1,
+              "started": 2851.60000000149,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 2867.7,
+              "started": 2868.10000000149,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 2884.4,
+              "started": 2885.2000000029802,
+              "duration": 14.600000001490116,
+              "painted": true
+            },
+            {
+              "time": 2901.1,
+              "started": 2916.2000000029802,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 2917.7,
+              "started": 2918.7000000029802,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 2934.4,
+              "started": 2934.8000000044703,
+              "duration": 0.7999999970197678,
+              "painted": false
+            },
+            {
+              "time": 2951.1,
+              "started": 2951.5,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 2967.7,
+              "started": 2968.10000000149,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 2984.4,
+              "started": 2984.8000000044703,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 3001.1,
+              "started": 3001.8000000044703,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 3017.8,
+              "started": 3018.10000000149,
+              "duration": 13.100000001490116,
+              "painted": true
+            },
+            {
+              "time": 3051.1,
+              "started": 3052.4000000059605,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 3067.7,
+              "started": 3068.2000000029802,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 3084.4,
+              "started": 3084.9000000059605,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 3101,
+              "started": 3101.7000000029802,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 3117.7,
+              "started": 3118.10000000149,
+              "duration": 0.3999999985098839,
+              "painted": false
+            },
+            {
+              "time": 3134.4,
+              "started": 3135.5,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 3151,
+              "started": 3151.4000000059605,
+              "duration": 13.399999998509884,
+              "painted": true
+            },
+            {
+              "time": 3167.8,
+              "started": 3179.3000000044703,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 3184.4,
+              "started": 3184.9000000059605,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 3201.1,
+              "started": 3201.5,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 3217.7,
+              "started": 3218.10000000149,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 3234.4,
+              "started": 3235.3000000044703,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 3251.1,
+              "started": 3251.4000000059605,
+              "duration": 0.09999999403953552,
+              "painted": false
+            },
+            {
+              "time": 3267.8,
+              "started": 3268.8000000044703,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 3284.5,
+              "started": 3285.10000000149,
+              "duration": 17.5,
+              "painted": true
+            },
+            {
+              "time": 3317.7,
+              "started": 3319.2000000029802,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 3334.4,
+              "started": 3335,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 3351.1,
+              "started": 3352.2000000029802,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 3367.7,
+              "started": 3368.7000000029802,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 3384.4,
+              "started": 3384.9000000059605,
+              "duration": 0.3999999985098839,
+              "painted": false
+            },
+            {
+              "time": 3401.1,
+              "started": 3401.5,
+              "duration": 0.30000000447034836,
+              "painted": false
+            },
+            {
+              "time": 3417.7,
+              "started": 3418.60000000149,
+              "duration": 21,
+              "painted": true
+            },
+            {
+              "time": 3451.1,
+              "started": 3457.5,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 3467.7,
+              "started": 3468,
+              "duration": 0.4000000059604645,
+              "painted": false
+            },
+            {
+              "time": 3484.4,
+              "started": 3485.3000000044703,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 3501.1,
+              "started": 3501.60000000149,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 3517.7,
+              "started": 3518.4000000059605,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 3534.3,
+              "started": 3535,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 3551.1,
+              "started": 3552.10000000149,
+              "duration": 19.700000002980232,
+              "painted": true
+            },
+            {
+              "time": 3584.4,
+              "started": 3590.10000000149,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 3601,
+              "started": 3603.2000000029802,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 3617.7,
+              "started": 3618.2000000029802,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 3634.4,
+              "started": 3635.3000000044703,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 3651,
+              "started": 3651.5,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 3667.7,
+              "started": 3669.10000000149,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 3684.4,
+              "started": 3685.3000000044703,
+              "duration": 18.69999999552965,
+              "painted": true
+            },
+            {
+              "time": 3717.7,
+              "started": 3721.10000000149,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 3734.4,
+              "started": 3735.10000000149,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 3751.1,
+              "started": 3752.8000000044703,
+              "duration": 0.29999999701976776,
+              "painted": false
+            },
+            {
+              "time": 3767.7,
+              "started": 3768.9000000059605,
+              "duration": 0.09999999403953552,
+              "painted": false
+            },
+            {
+              "time": 3784.4,
+              "started": 3785.10000000149,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 3801.1,
+              "started": 3802.10000000149,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 3817.7,
+              "started": 3818.60000000149,
+              "duration": 13.300000004470348,
+              "painted": true
+            },
+            {
+              "time": 3834.4,
+              "started": 3849.8000000044703,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 3851.1,
+              "started": 3851.9000000059605,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 3867.7,
+              "started": 3868.5,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 3884.3,
+              "started": 3885.10000000149,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 3901.1,
+              "started": 3901.9000000059605,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 3917.7,
+              "started": 3918,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 3934.4,
+              "started": 3934.7000000029802,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 3951,
+              "started": 3952.2000000029802,
+              "duration": 14,
+              "painted": true
+            },
+            {
+              "time": 3967.7,
+              "started": 3982.5,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 3984.4,
+              "started": 3985.3000000044703,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 4001.1,
+              "started": 4001.7000000029802,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 4017.7,
+              "started": 4019.2000000029802,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 4034.4,
+              "started": 4034.7000000029802,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 4051,
+              "started": 4051.5,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 4067.7,
+              "started": 4068.8000000044703,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 4084.3,
+              "started": 4084.8000000044703,
+              "duration": 12.600000001490116,
+              "painted": true
+            },
+            {
+              "time": 4101,
+              "started": 4111.60000000149,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 4117.7,
+              "started": 4117.9000000059605,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 4134.4,
+              "started": 4135.30000000447,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 4151,
+              "started": 4151.20000000298,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 4167.7,
+              "started": 4168,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 4184.4,
+              "started": 4184.9000000059605,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 4201.1,
+              "started": 4201.80000000447,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 4217.7,
+              "started": 4218.30000000447,
+              "duration": 12.699999995529652,
+              "painted": true
+            },
+            {
+              "time": 4234.3,
+              "started": 4245.20000000298,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 4251,
+              "started": 4251.80000000447,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 4267.7,
+              "started": 4268.10000000149,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 4284.4,
+              "started": 4284.70000000298,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 4301.1,
+              "started": 4301.9000000059605,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 4317.7,
+              "started": 4318.60000000149,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 4334.4,
+              "started": 4334.80000000447,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 4351,
+              "started": 4351.30000000447,
+              "duration": 12.699999995529652,
+              "painted": true
+            },
+            {
+              "time": 4367.7,
+              "started": 4377.20000000298,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 4384.4,
+              "started": 4384.60000000149,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 4401,
+              "started": 4401.30000000447,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 4417.7,
+              "started": 4417.9000000059605,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 4434.3,
+              "started": 4434.60000000149,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 4451,
+              "started": 4451.4000000059605,
+              "duration": 0.29999999701976776,
+              "painted": false
+            },
+            {
+              "time": 4467.7,
+              "started": 4467.9000000059605,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 4484.4,
+              "started": 4485,
+              "duration": 14.100000001490116,
+              "painted": true
+            },
+            {
+              "time": 4501,
+              "started": 4511.70000000298,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 4517.7,
+              "started": 4517.80000000447,
+              "duration": 0.6999999955296516,
+              "painted": false
+            },
+            {
+              "time": 4534.4,
+              "started": 4535.10000000149,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 4551.1,
+              "started": 4552,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 4567.7,
+              "started": 4568.80000000447,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 4584.3,
+              "started": 4585.20000000298,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 4601,
+              "started": 4601.80000000447,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 4617.7,
+              "started": 4618.20000000298,
+              "duration": 13.200000002980232,
+              "painted": true
+            },
+            {
+              "time": 4634.4,
+              "started": 4647.20000000298,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 4651,
+              "started": 4651.5,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 4667.7,
+              "started": 4668.10000000149,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 4684.3,
+              "started": 4685.10000000149,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 4701.1,
+              "started": 4702.10000000149,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 4717.7,
+              "started": 4718.10000000149,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 4734.3,
+              "started": 4735.30000000447,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 4751,
+              "started": 4751.30000000447,
+              "duration": 14.100000001490116,
+              "painted": true
+            },
+            {
+              "time": 4767.7,
+              "started": 4781.80000000447,
+              "duration": 0.19999999552965164,
+              "painted": false
+            },
+            {
+              "time": 4784.4,
+              "started": 4784.9000000059605,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 4801,
+              "started": 4801.9000000059605,
+              "duration": 0.3999999985098839,
+              "painted": false
+            },
+            {
+              "time": 4817.7,
+              "started": 4818.10000000149,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 4834.4,
+              "started": 4835.10000000149,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 4851,
+              "started": 4851.60000000149,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 4867.7,
+              "started": 4868.4000000059605,
+              "duration": 0.09999999403953552,
+              "painted": false
+            },
+            {
+              "time": 4884.3,
+              "started": 4884.70000000298,
+              "duration": 12.700000002980232,
+              "painted": true
+            },
+            {
+              "time": 4901,
+              "started": 4915.4000000059605,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 4917.7,
+              "started": 4920.80000000447,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 4934.4,
+              "started": 4935.10000000149,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 4951,
+              "started": 4951.80000000447,
+              "duration": 0,
+              "painted": false
+            }
+          ],
+          "rawLongTasks": [],
+          "rawPreparation": [],
+          "preparationMs": {
+            "count": 0,
+            "max": 0,
+            "total": 0
+          },
+          "readyMs": null,
+          "transitionPhase": "unobserved",
+          "errors": [],
+          "models": 2
+        },
+        {
+          "kind": "scroll",
+          "probeVersion": 2,
+          "elapsedMs": 2516.2000000029802,
+          "window": {
+            "startMs": 4972.10000000149,
+            "endMs": 7488.30000000447
+          },
+          "quality": "0",
+          "cadence": "7.5",
+          "state": "active",
+          "callbacks": 139,
+          "paints": 62,
+          "paintRateHz": 24.64033065731125,
+          "paintIntervalsMs": {
+            "count": 61,
+            "p50": 34.19999999552965,
+            "p95": 52.5,
+            "max": 68.70000000298023
+          },
+          "paintCallbackMs": {
+            "p50": 12.199999995529652,
+            "p95": 19.200000002980232,
+            "max": 26.5
+          },
+          "callbackBusyPercent": 32.231142199403514,
+          "rawFrames": [
+            {
+              "time": 4984.3,
+              "started": 4985.30000000447,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 5001,
+              "started": 5001.5,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 5017.7,
+              "started": 5018.5,
+              "duration": 20.200000002980232,
+              "painted": true
+            },
+            {
+              "time": 5067.6,
+              "started": 5072.70000000298,
+              "duration": 0.7000000029802322,
+              "painted": false
+            },
+            {
+              "time": 5084.4,
+              "started": 5087.20000000298,
+              "duration": 12.399999998509884,
+              "painted": true
+            },
+            {
+              "time": 5101,
+              "started": 5113.5,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 5117.7,
+              "started": 5120.9000000059605,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 5134.3,
+              "started": 5134.70000000298,
+              "duration": 15,
+              "painted": true
+            },
+            {
+              "time": 5151,
+              "started": 5165.4000000059605,
+              "duration": 0.09999999403953552,
+              "painted": false
+            },
+            {
+              "time": 5167.6,
+              "started": 5169.30000000447,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 5184.4,
+              "started": 5185,
+              "duration": 16.600000001490116,
+              "painted": true
+            },
+            {
+              "time": 5217.7,
+              "started": 5225.4000000059605,
+              "duration": 0.09999999403953552,
+              "painted": false
+            },
+            {
+              "time": 5234.3,
+              "started": 5235.10000000149,
+              "duration": 13.899999998509884,
+              "painted": true
+            },
+            {
+              "time": 5251,
+              "started": 5263.70000000298,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 5267.6,
+              "started": 5268.30000000447,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 5284.4,
+              "started": 5284.9000000059605,
+              "duration": 16.19999999552965,
+              "painted": true
+            },
+            {
+              "time": 5301,
+              "started": 5316.4000000059605,
+              "duration": 0.09999999403953552,
+              "painted": false
+            },
+            {
+              "time": 5317.6,
+              "started": 5318.9000000059605,
+              "duration": 0.09999999403953552,
+              "painted": false
+            },
+            {
+              "time": 5334.4,
+              "started": 5334.60000000149,
+              "duration": 15.600000001490116,
+              "painted": true
+            },
+            {
+              "time": 5351,
+              "started": 5366.9000000059605,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 5367.6,
+              "started": 5369.20000000298,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 5384.3,
+              "started": 5385.60000000149,
+              "duration": 17.100000001490116,
+              "painted": true
+            },
+            {
+              "time": 5401,
+              "started": 5422.80000000447,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 5417.7,
+              "started": 5422.9000000059605,
+              "duration": 0.7999999970197678,
+              "painted": false
+            },
+            {
+              "time": 5434.3,
+              "started": 5434.60000000149,
+              "duration": 11.800000004470348,
+              "painted": true
+            },
+            {
+              "time": 5451,
+              "started": 5464.4000000059605,
+              "duration": 0.5999999940395355,
+              "painted": false
+            },
+            {
+              "time": 5467.6,
+              "started": 5467.9000000059605,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 5484.3,
+              "started": 5484.9000000059605,
+              "duration": 11.599999994039536,
+              "painted": true
+            },
+            {
+              "time": 5501,
+              "started": 5512.20000000298,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 5517.6,
+              "started": 5518,
+              "duration": 0.20000000298023224,
+              "painted": false
+            },
+            {
+              "time": 5534.3,
+              "started": 5535,
+              "duration": 11.200000002980232,
+              "painted": true
+            },
+            {
+              "time": 5551,
+              "started": 5560.60000000149,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 5567.6,
+              "started": 5568.20000000298,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 5584.3,
+              "started": 5585,
+              "duration": 13.300000004470348,
+              "painted": true
+            },
+            {
+              "time": 5601,
+              "started": 5616.4000000059605,
+              "duration": 0.09999999403953552,
+              "painted": false
+            },
+            {
+              "time": 5617.6,
+              "started": 5620.20000000298,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 5634.3,
+              "started": 5634.60000000149,
+              "duration": 12.800000004470348,
+              "painted": true
+            },
+            {
+              "time": 5651,
+              "started": 5666.70000000298,
+              "duration": 0.5,
+              "painted": false
+            },
+            {
+              "time": 5667.7,
+              "started": 5669,
+              "duration": 17.30000000447035,
+              "painted": true
+            },
+            {
+              "time": 5684.3,
+              "started": 5700,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 5701,
+              "started": 5703.80000000447,
+              "duration": 12.199999995529652,
+              "painted": true
+            },
+            {
+              "time": 5717.6,
+              "started": 5730.4000000059605,
+              "duration": 0.09999999403953552,
+              "painted": false
+            },
+            {
+              "time": 5734.3,
+              "started": 5734.5,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 5750.9,
+              "started": 5751.4000000059605,
+              "duration": 19,
+              "painted": true
+            },
+            {
+              "time": 5784.3,
+              "started": 5785.60000000149,
+              "duration": 0.6000000014901161,
+              "painted": false
+            },
+            {
+              "time": 5801,
+              "started": 5804.20000000298,
+              "duration": 10.100000001490116,
+              "painted": true
+            },
+            {
+              "time": 5817.7,
+              "started": 5828.20000000298,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 5834.3,
+              "started": 5834.9000000059605,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 5851,
+              "started": 5852.5,
+              "duration": 11.300000004470348,
+              "painted": true
+            },
+            {
+              "time": 5867.6,
+              "started": 5876.9000000059605,
+              "duration": 1.1999999955296516,
+              "painted": false
+            },
+            {
+              "time": 5884.3,
+              "started": 5884.5,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 5901,
+              "started": 5901.20000000298,
+              "duration": 9.899999998509884,
+              "painted": true
+            },
+            {
+              "time": 5917.7,
+              "started": 5930.60000000149,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 5934.3,
+              "started": 5934.5,
+              "duration": 7.5,
+              "painted": true
+            },
+            {
+              "time": 5951,
+              "started": 5952.30000000447,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 5967.6,
+              "started": 5967.9000000059605,
+              "duration": 7.299999997019768,
+              "painted": true
+            },
+            {
+              "time": 5984.3,
+              "started": 5985.60000000149,
+              "duration": 1.1000000014901161,
+              "painted": false
+            },
+            {
+              "time": 6000.9,
+              "started": 6001.5,
+              "duration": 8.600000001490116,
+              "painted": true
+            },
+            {
+              "time": 6017.6,
+              "started": 6022.4000000059605,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 6034.3,
+              "started": 6034.60000000149,
+              "duration": 16.100000001490116,
+              "painted": true
+            },
+            {
+              "time": 6051,
+              "started": 6061.9000000059605,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 6067.7,
+              "started": 6068.9000000059605,
+              "duration": 9.199999995529652,
+              "painted": true
+            },
+            {
+              "time": 6084.3,
+              "started": 6091.30000000447,
+              "duration": 0.3999999985098839,
+              "painted": false
+            },
+            {
+              "time": 6101,
+              "started": 6103.10000000149,
+              "duration": 10.100000001490116,
+              "painted": true
+            },
+            {
+              "time": 6117.6,
+              "started": 6130.30000000447,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 6134.3,
+              "started": 6134.60000000149,
+              "duration": 11.600000001490116,
+              "painted": true
+            },
+            {
+              "time": 6151,
+              "started": 6160.4000000059605,
+              "duration": 0.09999999403953552,
+              "painted": false
+            },
+            {
+              "time": 6167.6,
+              "started": 6168.60000000149,
+              "duration": 10.5,
+              "painted": true
+            },
+            {
+              "time": 6184.3,
+              "started": 6193.5,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 6201,
+              "started": 6202.10000000149,
+              "duration": 13.300000004470348,
+              "painted": true
+            },
+            {
+              "time": 6217.6,
+              "started": 6228.9000000059605,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 6234.3,
+              "started": 6234.5,
+              "duration": 19.30000000447035,
+              "painted": true
+            },
+            {
+              "time": 6250.9,
+              "started": 6266.60000000149,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 6267.6,
+              "started": 6274.5,
+              "duration": 19.200000002980232,
+              "painted": true
+            },
+            {
+              "time": 6301,
+              "started": 6308.4000000059605,
+              "duration": 12,
+              "painted": true
+            },
+            {
+              "time": 6317.6,
+              "started": 6334.10000000149,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 6334.2,
+              "started": 6339.70000000298,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 6351,
+              "started": 6352.80000000447,
+              "duration": 12.5,
+              "painted": true
+            },
+            {
+              "time": 6367.7,
+              "started": 6378.70000000298,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 6384.3,
+              "started": 6384.5,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 6400.9,
+              "started": 6401.5,
+              "duration": 11.900000005960464,
+              "painted": true
+            },
+            {
+              "time": 6417.6,
+              "started": 6426.60000000149,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 6434.2,
+              "started": 6434.80000000447,
+              "duration": 11,
+              "painted": true
+            },
+            {
+              "time": 6450.9,
+              "started": 6455.70000000298,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 6467.6,
+              "started": 6468.60000000149,
+              "duration": 7.399999998509884,
+              "painted": true
+            },
+            {
+              "time": 6484.2,
+              "started": 6485.70000000298,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 6500.9,
+              "started": 6502.5,
+              "duration": 7.200000002980232,
+              "painted": true
+            },
+            {
+              "time": 6517.6,
+              "started": 6518.4000000059605,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 6534.3,
+              "started": 6534.9000000059605,
+              "duration": 12.099999994039536,
+              "painted": true
+            },
+            {
+              "time": 6550.9,
+              "started": 6557.60000000149,
+              "duration": 1,
+              "painted": false
+            },
+            {
+              "time": 6567.6,
+              "started": 6568.20000000298,
+              "duration": 6.5,
+              "painted": true
+            },
+            {
+              "time": 6584.2,
+              "started": 6585.30000000447,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 6600.9,
+              "started": 6602.4000000059605,
+              "duration": 7.799999997019768,
+              "painted": true
+            },
+            {
+              "time": 6617.6,
+              "started": 6620.30000000447,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 6634.3,
+              "started": 6634.5,
+              "duration": 7.700000002980232,
+              "painted": true
+            },
+            {
+              "time": 6651,
+              "started": 6659.5,
+              "duration": 0.30000000447034836,
+              "painted": false
+            },
+            {
+              "time": 6667.6,
+              "started": 6668.10000000149,
+              "duration": 9.200000002980232,
+              "painted": true
+            },
+            {
+              "time": 6684.3,
+              "started": 6691.10000000149,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 6700.9,
+              "started": 6701.80000000447,
+              "duration": 11,
+              "painted": true
+            },
+            {
+              "time": 6717.6,
+              "started": 6728.5,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 6734.3,
+              "started": 6735,
+              "duration": 11.700000002980232,
+              "painted": true
+            },
+            {
+              "time": 6750.9,
+              "started": 6764.70000000298,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 6767.6,
+              "started": 6767.9000000059605,
+              "duration": 10.899999998509884,
+              "painted": true
+            },
+            {
+              "time": 6784.3,
+              "started": 6796.10000000149,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 6800.9,
+              "started": 6801.20000000298,
+              "duration": 12.899999998509884,
+              "painted": true
+            },
+            {
+              "time": 6817.6,
+              "started": 6830.4000000059605,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 6834.3,
+              "started": 6834.80000000447,
+              "duration": 12.199999995529652,
+              "painted": true
+            },
+            {
+              "time": 6850.9,
+              "started": 6864.60000000149,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 6867.6,
+              "started": 6867.9000000059605,
+              "duration": 12.899999998509884,
+              "painted": true
+            },
+            {
+              "time": 6884.3,
+              "started": 6896.10000000149,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 6900.9,
+              "started": 6902,
+              "duration": 12.700000002980232,
+              "painted": true
+            },
+            {
+              "time": 6917.6,
+              "started": 6929.4000000059605,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 6934.2,
+              "started": 6934.9000000059605,
+              "duration": 10.899999998509884,
+              "painted": true
+            },
+            {
+              "time": 6950.9,
+              "started": 6961.9000000059605,
+              "duration": 0.7999999970197678,
+              "painted": false
+            },
+            {
+              "time": 6967.6,
+              "started": 6968.5,
+              "duration": 12.900000005960464,
+              "painted": true
+            },
+            {
+              "time": 6984.2,
+              "started": 6994.4000000059605,
+              "duration": 0.09999999403953552,
+              "painted": false
+            },
+            {
+              "time": 7001,
+              "started": 7002.70000000298,
+              "duration": 10.5,
+              "painted": true
+            },
+            {
+              "time": 7017.6,
+              "started": 7027.70000000298,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 7034.3,
+              "started": 7034.5,
+              "duration": 9.200000002980232,
+              "painted": true
+            },
+            {
+              "time": 7050.9,
+              "started": 7065.20000000298,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 7067.6,
+              "started": 7068.30000000447,
+              "duration": 12.100000001490116,
+              "painted": true
+            },
+            {
+              "time": 7084.2,
+              "started": 7099.5,
+              "duration": 1,
+              "painted": false
+            },
+            {
+              "time": 7101,
+              "started": 7101.60000000149,
+              "duration": 14.800000004470348,
+              "painted": true
+            },
+            {
+              "time": 7117.6,
+              "started": 7132.30000000447,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 7134.2,
+              "started": 7134.9000000059605,
+              "duration": 13.699999995529652,
+              "painted": true
+            },
+            {
+              "time": 7151,
+              "started": 7166.30000000447,
+              "duration": 0.8999999985098839,
+              "painted": false
+            },
+            {
+              "time": 7167.6,
+              "started": 7168.10000000149,
+              "duration": 18.100000001490116,
+              "painted": true
+            },
+            {
+              "time": 7200.9,
+              "started": 7206.4000000059605,
+              "duration": 18.799999997019768,
+              "painted": true
+            },
+            {
+              "time": 7234.2,
+              "started": 7249.80000000447,
+              "duration": 15.600000001490116,
+              "painted": true
+            },
+            {
+              "time": 7267.6,
+              "started": 7278.20000000298,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 7284.2,
+              "started": 7284.5,
+              "duration": 12.900000005960464,
+              "painted": true
+            },
+            {
+              "time": 7300.9,
+              "started": 7315.9000000059605,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 7317.5,
+              "started": 7318.20000000298,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 7334.3,
+              "started": 7334.60000000149,
+              "duration": 15.800000004470348,
+              "painted": true
+            },
+            {
+              "time": 7367.6,
+              "started": 7368.30000000447,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 7384.2,
+              "started": 7387.10000000149,
+              "duration": 26.5,
+              "painted": true
+            },
+            {
+              "time": 7417.6,
+              "started": 7434.70000000298,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 7450.9,
+              "started": 7451.60000000149,
+              "duration": 16.30000000447035,
+              "painted": true
+            },
+            {
+              "time": 7467.5,
+              "started": 7486.20000000298,
+              "duration": 0.29999999701976776,
+              "painted": false
+            }
+          ],
+          "rawLongTasks": [
+            {
+              "start": 5018.5,
+              "duration": 54
+            }
+          ],
+          "rawPreparation": [],
+          "preparationMs": {
+            "count": 0,
+            "max": 0,
+            "total": 0
+          },
+          "readyMs": null,
+          "transitionPhase": "unobserved",
+          "errors": [],
+          "models": 2
+        }
+      ],
+      "flights": [
+        {
+          "from": "research",
+          "to": "writing",
+          "kind": "flight",
+          "probeVersion": 2,
+          "elapsedMs": 1446.9000000059605,
+          "window": {
+            "startMs": 7575,
+            "endMs": 9021.90000000596
+          },
+          "quality": "1",
+          "cadence": "7.5",
+          "state": "active",
+          "callbacks": 43,
+          "paints": 17,
+          "paintRateHz": 11.749257032227499,
+          "paintIntervalsMs": {
+            "count": 16,
+            "p50": 83,
+            "p95": 150.10000000149012,
+            "max": 150.10000000149012
+          },
+          "paintCallbackMs": {
+            "p50": 28.400000005960464,
+            "p95": 115.10000000149012,
+            "max": 115.10000000149012
+          },
+          "callbackBusyPercent": 43.00919206541269,
+          "rawFrames": [
+            {
+              "time": 7567.6,
+              "started": 7576.60000000149,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 7584.2,
+              "started": 7632.30000000447,
+              "duration": 30.600000001490116,
+              "painted": true
+            },
+            {
+              "time": 7684.2,
+              "started": 7691.70000000298,
+              "duration": 30.799999997019768,
+              "painted": true
+            },
+            {
+              "time": 7734.2,
+              "started": 7747,
+              "duration": 32.70000000298023,
+              "painted": true
+            },
+            {
+              "time": 7800.8,
+              "started": 7810.20000000298,
+              "duration": 44.399999998509884,
+              "painted": true
+            },
+            {
+              "time": 7867.5,
+              "started": 7880.70000000298,
+              "duration": 58.20000000298023,
+              "painted": true
+            },
+            {
+              "time": 7950.9,
+              "started": 7965.30000000447,
+              "duration": 51.29999999701977,
+              "painted": true
+            },
+            {
+              "time": 8034.2,
+              "started": 8043,
+              "duration": 42.70000000298023,
+              "painted": true
+            },
+            {
+              "time": 8100.9,
+              "started": 8113.5,
+              "duration": 0.4000000059604645,
+              "painted": false
+            },
+            {
+              "time": 8117.5,
+              "started": 8118.10000000149,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 8134.2,
+              "started": 8135,
+              "duration": 28.400000005960464,
+              "painted": true
+            },
+            {
+              "time": 8184.2,
+              "started": 8191.70000000298,
+              "duration": 0.5,
+              "painted": false
+            },
+            {
+              "time": 8200.9,
+              "started": 8201.30000000447,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 8217.5,
+              "started": 8218,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 8234.3,
+              "started": 8234.60000000149,
+              "duration": 115.10000000149012,
+              "painted": true
+            },
+            {
+              "time": 8367.6,
+              "started": 8384.70000000298,
+              "duration": 19.100000001490116,
+              "painted": true
+            },
+            {
+              "time": 8434.2,
+              "started": 8435.80000000447,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 8450.9,
+              "started": 8451.20000000298,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 8467.5,
+              "started": 8468.70000000298,
+              "duration": 16.200000002980232,
+              "painted": true
+            },
+            {
+              "time": 8500.8,
+              "started": 8506.60000000149,
+              "duration": 0.6000000014901161,
+              "painted": false
+            },
+            {
+              "time": 8517.6,
+              "started": 8517.80000000447,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 8534.2,
+              "started": 8535.30000000447,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 8550.9,
+              "started": 8551.70000000298,
+              "duration": 26.5,
+              "painted": true
+            },
+            {
+              "time": 8584.2,
+              "started": 8600.90000000596,
+              "duration": 0.09999999403953552,
+              "painted": false
+            },
+            {
+              "time": 8600.8,
+              "started": 8602.20000000298,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 8617.5,
+              "started": 8618.30000000447,
+              "duration": 0.29999999701976776,
+              "painted": false
+            },
+            {
+              "time": 8634.2,
+              "started": 8634.5,
+              "duration": 25.100000001490116,
+              "painted": true
+            },
+            {
+              "time": 8667.5,
+              "started": 8683.90000000596,
+              "duration": 1,
+              "painted": false
+            },
+            {
+              "time": 8684.2,
+              "started": 8685.90000000596,
+              "duration": 0.09999999403953552,
+              "painted": false
+            },
+            {
+              "time": 8700.8,
+              "started": 8701.70000000298,
+              "duration": 0.3999999985098839,
+              "painted": false
+            },
+            {
+              "time": 8717.5,
+              "started": 8718.10000000149,
+              "duration": 20.700000002980232,
+              "painted": true
+            },
+            {
+              "time": 8750.9,
+              "started": 8761.90000000596,
+              "duration": 0.09999999403953552,
+              "painted": false
+            },
+            {
+              "time": 8767.5,
+              "started": 8768.10000000149,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 8784.2,
+              "started": 8785.10000000149,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 8800.8,
+              "started": 8801.70000000298,
+              "duration": 25.299999997019768,
+              "painted": true
+            },
+            {
+              "time": 8834.2,
+              "started": 8850.40000000596,
+              "duration": 0.09999999403953552,
+              "painted": false
+            },
+            {
+              "time": 8850.8,
+              "started": 8852.5,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 8867.5,
+              "started": 8868.10000000149,
+              "duration": 23.80000000447035,
+              "painted": true
+            },
+            {
+              "time": 8900.8,
+              "started": 8915.20000000298,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 8917.5,
+              "started": 8917.90000000596,
+              "duration": 0.09999999403953552,
+              "painted": false
+            },
+            {
+              "time": 8934.2,
+              "started": 8934.40000000596,
+              "duration": 26.899999998509884,
+              "painted": true
+            },
+            {
+              "time": 8984.2,
+              "started": 9002.60000000149,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 9000.9,
+              "started": 9004.80000000447,
+              "duration": 0.29999999701976776,
+              "painted": false
+            }
+          ],
+          "rawLongTasks": [
+            {
+              "start": 7580.80000000447,
+              "duration": 51
+            },
+            {
+              "start": 7632.20000000298,
+              "duration": 57
+            },
+            {
+              "start": 7691.60000000149,
+              "duration": 54
+            },
+            {
+              "start": 7746.9000000059605,
+              "duration": 59
+            },
+            {
+              "start": 7810.20000000298,
+              "duration": 69
+            },
+            {
+              "start": 7880.60000000149,
+              "duration": 83
+            },
+            {
+              "start": 7964.80000000447,
+              "duration": 77
+            },
+            {
+              "start": 8043,
+              "duration": 69
+            },
+            {
+              "start": 8134.9000000059605,
+              "duration": 55
+            },
+            {
+              "start": 8234.5,
+              "duration": 149
+            },
+            {
+              "start": 8383.90000000596,
+              "duration": 51
+            },
+            {
+              "start": 8934.40000000596,
+              "duration": 67
+            }
+          ],
+          "rawPreparation": [
+            {
+              "kind": "route",
+              "time": 7593.10000000149,
+              "start": 7592.10000000149,
+              "duration": 1,
+              "page": "writing"
+            },
+            {
+              "kind": "model",
+              "time": 7625.4000000059605,
+              "page": "writing",
+              "route": "writing",
+              "compact": true,
+              "start": 7594.4000000059605,
+              "duration": 30.19999999552965,
+              "objects": 252,
+              "vertices": 9398,
+              "faces": 3890,
+              "lines": 3549
+            },
+            {
+              "kind": "layout",
+              "time": 8347.5,
+              "page": "writing",
+              "reasons": [
+                "resize",
+                "archive-focus",
+                "mount"
+              ],
+              "passes": 5,
+              "start": 8296.80000000447,
+              "duration": 50.69999999552965
+            },
+            {
+              "kind": "layout",
+              "time": 8385.90000000596,
+              "page": "writing",
+              "reasons": [
+                "size"
+              ],
+              "passes": 6,
+              "start": 8384.70000000298,
+              "duration": 1.2000000029802322
+            }
+          ],
+          "preparationMs": {
+            "count": 4,
+            "max": 50.69999999552965,
+            "total": 83.09999999403954
+          },
+          "readyMs": 1390.6000000014901,
+          "transitionPhase": "cold",
+          "errors": [],
+          "models": 3
+        },
+        {
+          "from": "writing",
+          "to": "research",
+          "kind": "flight",
+          "probeVersion": 2,
+          "elapsedMs": 1383.8999999985099,
+          "window": {
+            "startMs": 9036.70000000298,
+            "endMs": 10420.60000000149
+          },
+          "quality": "1",
+          "cadence": "7.5",
+          "state": "active",
+          "callbacks": 44,
+          "paints": 18,
+          "paintRateHz": 13.006720138752353,
+          "paintIntervalsMs": {
+            "count": 17,
+            "p50": 66.60000000149012,
+            "p95": 115.79999999701977,
+            "max": 115.79999999701977
+          },
+          "paintCallbackMs": {
+            "p50": 24.399999998509884,
+            "p95": 69,
+            "max": 69
+          },
+          "callbackBusyPercent": 41.83105715616967,
+          "rawFrames": [
+            {
+              "time": 9050.8,
+              "started": 9053.60000000149,
+              "duration": 20.899999998509884,
+              "painted": true
+            },
+            {
+              "time": 9100.8,
+              "started": 9104.10000000149,
+              "duration": 1.2000000029802322,
+              "painted": false
+            },
+            {
+              "time": 9117.5,
+              "started": 9118.20000000298,
+              "duration": 21.399999998509884,
+              "painted": true
+            },
+            {
+              "time": 9150.9,
+              "started": 9165.40000000596,
+              "duration": 0.09999999403953552,
+              "painted": false
+            },
+            {
+              "time": 9167.5,
+              "started": 9168,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 9184.1,
+              "started": 9184.70000000298,
+              "duration": 24.399999998509884,
+              "painted": true
+            },
+            {
+              "time": 9217.5,
+              "started": 9236.40000000596,
+              "duration": 0.7999999970197678,
+              "painted": false
+            },
+            {
+              "time": 9234.2,
+              "started": 9238.10000000149,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 9250.9,
+              "started": 9251.10000000149,
+              "duration": 16.899999998509884,
+              "painted": true
+            },
+            {
+              "time": 9284.2,
+              "started": 9288.90000000596,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 9300.8,
+              "started": 9301.40000000596,
+              "duration": 0.09999999403953552,
+              "painted": false
+            },
+            {
+              "time": 9317.5,
+              "started": 9318.10000000149,
+              "duration": 17.30000000447035,
+              "painted": true
+            },
+            {
+              "time": 9350.9,
+              "started": 9358.20000000298,
+              "duration": 1,
+              "painted": false
+            },
+            {
+              "time": 9367.5,
+              "started": 9368.30000000447,
+              "duration": 0.19999999552965164,
+              "painted": false
+            },
+            {
+              "time": 9384.2,
+              "started": 9384.5,
+              "duration": 19.80000000447035,
+              "painted": true
+            },
+            {
+              "time": 9417.5,
+              "started": 9426,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 9434.1,
+              "started": 9434.80000000447,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 9450.9,
+              "started": 9451.5,
+              "duration": 20.100000001490116,
+              "painted": true
+            },
+            {
+              "time": 9484.1,
+              "started": 9495.70000000298,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 9500.8,
+              "started": 9503,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 9517.5,
+              "started": 9517.80000000447,
+              "duration": 23.100000001490116,
+              "painted": true
+            },
+            {
+              "time": 9550.9,
+              "started": 9565.60000000149,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 9567.5,
+              "started": 9567.80000000447,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 9584.2,
+              "started": 9585.30000000447,
+              "duration": 20.100000001490116,
+              "painted": true
+            },
+            {
+              "time": 9617.4,
+              "started": 9626.40000000596,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 9634.1,
+              "started": 9635,
+              "duration": 0.30000000447034836,
+              "painted": false
+            },
+            {
+              "time": 9650.8,
+              "started": 9651.20000000298,
+              "duration": 19.100000001490116,
+              "painted": true
+            },
+            {
+              "time": 9684.1,
+              "started": 9698.30000000447,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 9700.9,
+              "started": 9701.10000000149,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 9717.5,
+              "started": 9717.80000000447,
+              "duration": 51.69999999552965,
+              "painted": true
+            },
+            {
+              "time": 9817.5,
+              "started": 9824.90000000596,
+              "duration": 62.79999999701977,
+              "painted": true
+            },
+            {
+              "time": 9917.5,
+              "started": 9933.30000000447,
+              "duration": 43.29999999701977,
+              "painted": true
+            },
+            {
+              "time": 9984.2,
+              "started": 9998.80000000447,
+              "duration": 28.69999999552965,
+              "painted": true
+            },
+            {
+              "time": 10034.1,
+              "started": 10051.20000000298,
+              "duration": 0.29999999701976776,
+              "painted": false
+            },
+            {
+              "time": 10050.8,
+              "started": 10052.20000000298,
+              "duration": 41.100000001490116,
+              "painted": true
+            },
+            {
+              "time": 10117.4,
+              "started": 10133.5,
+              "duration": 0.20000000298023224,
+              "painted": false
+            },
+            {
+              "time": 10134.1,
+              "started": 10140.20000000298,
+              "duration": 69,
+              "painted": true
+            },
+            {
+              "time": 10217.5,
+              "started": 10235.30000000447,
+              "duration": 48.399999998509884,
+              "painted": true
+            },
+            {
+              "time": 10300.8,
+              "started": 10312.40000000596,
+              "duration": 0.09999999403953552,
+              "painted": false
+            },
+            {
+              "time": 10317.4,
+              "started": 10319,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 10334.1,
+              "started": 10335,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 10350.8,
+              "started": 10351.10000000149,
+              "duration": 25.899999998509884,
+              "painted": true
+            },
+            {
+              "time": 10400.8,
+              "started": 10415.10000000149,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 10417.4,
+              "started": 10418.80000000447,
+              "duration": 0,
+              "painted": false
+            }
+          ],
+          "rawLongTasks": [
+            {
+              "start": 9184.60000000149,
+              "duration": 50
+            },
+            {
+              "start": 9717.70000000298,
+              "duration": 106
+            },
+            {
+              "start": 9824.30000000447,
+              "duration": 108
+            },
+            {
+              "start": 9933.20000000298,
+              "duration": 64
+            },
+            {
+              "start": 9998.70000000298,
+              "duration": 51
+            },
+            {
+              "start": 10052.20000000298,
+              "duration": 79
+            },
+            {
+              "start": 10140.10000000149,
+              "duration": 95
+            },
+            {
+              "start": 10235.30000000447,
+              "duration": 76
+            },
+            {
+              "start": 10351.10000000149,
+              "duration": 61
+            }
+          ],
+          "rawPreparation": [
+            {
+              "kind": "route",
+              "time": 9040.80000000447,
+              "start": 9038.80000000447,
+              "duration": 2,
+              "page": "research"
+            },
+            {
+              "kind": "layout",
+              "time": 9768.70000000298,
+              "page": "research",
+              "reasons": [
+                "mount"
+              ],
+              "passes": 7,
+              "start": 9754,
+              "duration": 13.800000004470348
+            },
+            {
+              "kind": "layout",
+              "time": 9827.40000000596,
+              "page": "research",
+              "reasons": [
+                "size"
+              ],
+              "passes": 8,
+              "start": 9824.90000000596,
+              "duration": 2.5
+            }
+          ],
+          "preparationMs": {
+            "count": 3,
+            "max": 13.800000004470348,
+            "total": 18.30000000447035
+          },
+          "readyMs": 1348.6999999955297,
+          "transitionPhase": "warm",
+          "errors": [],
+          "models": 3
+        },
+        {
+          "from": "research",
+          "to": "index",
+          "kind": "flight",
+          "probeVersion": 2,
+          "elapsedMs": 1399.0999999940395,
+          "window": {
+            "startMs": 10439.40000000596,
+            "endMs": 11838.5
+          },
+          "quality": "1",
+          "cadence": "7.5",
+          "state": "active",
+          "callbacks": 50,
+          "paints": 18,
+          "paintRateHz": 12.865413480149156,
+          "paintIntervalsMs": {
+            "count": 17,
+            "p50": 78.5,
+            "p95": 100,
+            "max": 100
+          },
+          "paintCallbackMs": {
+            "p50": 23.700000002980232,
+            "p95": 56,
+            "max": 56
+          },
+          "callbackBusyPercent": 33.99328139649899,
+          "rawFrames": [
+            {
+              "time": 10450.8,
+              "started": 10451.30000000447,
+              "duration": 23.100000001490116,
+              "painted": true
+            },
+            {
+              "time": 10500.7,
+              "started": 10504.5,
+              "duration": 1,
+              "painted": false
+            },
+            {
+              "time": 10517.5,
+              "started": 10518.10000000149,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 10534.1,
+              "started": 10534.80000000447,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 10550.7,
+              "started": 10551.30000000447,
+              "duration": 4.100000001490116,
+              "painted": true
+            },
+            {
+              "time": 10567.4,
+              "started": 10574.5,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 10584.1,
+              "started": 10584.80000000447,
+              "duration": 0.19999999552965164,
+              "painted": false
+            },
+            {
+              "time": 10600.8,
+              "started": 10601.10000000149,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 10617.4,
+              "started": 10618.10000000149,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 10634.1,
+              "started": 10634.70000000298,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 10650.7,
+              "started": 10651.10000000149,
+              "duration": 23.700000002980232,
+              "painted": true
+            },
+            {
+              "time": 10684.1,
+              "started": 10698.10000000149,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 10700.8,
+              "started": 10701.10000000149,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 10717.5,
+              "started": 10717.80000000447,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 10734.1,
+              "started": 10734.60000000149,
+              "duration": 18.30000000447035,
+              "painted": true
+            },
+            {
+              "time": 10767.5,
+              "started": 10771,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 10784.1,
+              "started": 10784.60000000149,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 10800.8,
+              "started": 10801.5,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 10817.4,
+              "started": 10818,
+              "duration": 14.700000002980232,
+              "painted": true
+            },
+            {
+              "time": 10850.7,
+              "started": 10854.70000000298,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 10867.4,
+              "started": 10867.60000000149,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 10884.1,
+              "started": 10884.80000000447,
+              "duration": 19.100000001490116,
+              "painted": true
+            },
+            {
+              "time": 10917.4,
+              "started": 10927.30000000447,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 10934.1,
+              "started": 10936.30000000447,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 10950.8,
+              "started": 10951.40000000596,
+              "duration": 18.69999999552965,
+              "painted": true
+            },
+            {
+              "time": 10984,
+              "started": 10993.60000000149,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 11000.8,
+              "started": 11002,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 11017.4,
+              "started": 11018.10000000149,
+              "duration": 16.80000000447035,
+              "painted": true
+            },
+            {
+              "time": 11067.4,
+              "started": 11068.70000000298,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 11084,
+              "started": 11084.30000000447,
+              "duration": 56,
+              "painted": true
+            },
+            {
+              "time": 11167.4,
+              "started": 11176.70000000298,
+              "duration": 27.700000002980232,
+              "painted": true
+            },
+            {
+              "time": 11217.4,
+              "started": 11231.90000000596,
+              "duration": 0.09999999403953552,
+              "painted": false
+            },
+            {
+              "time": 11234.1,
+              "started": 11235.30000000447,
+              "duration": 26.100000001490116,
+              "painted": true
+            },
+            {
+              "time": 11284,
+              "started": 11286.80000000447,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 11300.8,
+              "started": 11302.5,
+              "duration": 36.600000001490116,
+              "painted": true
+            },
+            {
+              "time": 11367.4,
+              "started": 11381,
+              "duration": 51.80000000447035,
+              "painted": true
+            },
+            {
+              "time": 11450.8,
+              "started": 11466.40000000596,
+              "duration": 30.099999994039536,
+              "painted": true
+            },
+            {
+              "time": 11517.4,
+              "started": 11524.70000000298,
+              "duration": 34.79999999701977,
+              "painted": true
+            },
+            {
+              "time": 11567.4,
+              "started": 11586.60000000149,
+              "duration": 0.7000000029802322,
+              "painted": false
+            },
+            {
+              "time": 11584.1,
+              "started": 11588.60000000149,
+              "duration": 1.1000000014901161,
+              "painted": false
+            },
+            {
+              "time": 11600.7,
+              "started": 11601.40000000596,
+              "duration": 27.69999999552965,
+              "painted": true
+            },
+            {
+              "time": 11650.8,
+              "started": 11654,
+              "duration": 0.20000000298023224,
+              "painted": false
+            },
+            {
+              "time": 11667.4,
+              "started": 11667.90000000596,
+              "duration": 0.09999999403953552,
+              "painted": false
+            },
+            {
+              "time": 11684.1,
+              "started": 11684.30000000447,
+              "duration": 20.399999998509884,
+              "painted": true
+            },
+            {
+              "time": 11717.4,
+              "started": 11732.30000000447,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 11734,
+              "started": 11734.70000000298,
+              "duration": 0.29999999701976776,
+              "painted": false
+            },
+            {
+              "time": 11750.7,
+              "started": 11751.40000000596,
+              "duration": 0.09999999403953552,
+              "painted": false
+            },
+            {
+              "time": 11767.4,
+              "started": 11768,
+              "duration": 20.900000005960464,
+              "painted": true
+            },
+            {
+              "time": 11817.4,
+              "started": 11835.5,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 11834.1,
+              "started": 11836.60000000149,
+              "duration": 0.30000000447034836,
+              "painted": false
+            }
+          ],
+          "rawLongTasks": [
+            {
+              "start": 10451.30000000447,
+              "duration": 50
+            },
+            {
+              "start": 11018.10000000149,
+              "duration": 50
+            },
+            {
+              "start": 11084.30000000447,
+              "duration": 92
+            },
+            {
+              "start": 11176.60000000149,
+              "duration": 55
+            },
+            {
+              "start": 11234.90000000596,
+              "duration": 51
+            },
+            {
+              "start": 11302.10000000149,
+              "duration": 77
+            },
+            {
+              "start": 11381,
+              "duration": 83
+            },
+            {
+              "start": 11465.60000000149,
+              "duration": 56
+            },
+            {
+              "start": 11524.60000000149,
+              "duration": 60
+            },
+            {
+              "start": 11601.20000000298,
+              "duration": 52
+            },
+            {
+              "start": 11768,
+              "duration": 65
+            }
+          ],
+          "rawPreparation": [
+            {
+              "kind": "route",
+              "time": 10443.80000000447,
+              "start": 10441.5,
+              "duration": 2.3000000044703484,
+              "page": "index"
+            },
+            {
+              "kind": "layout",
+              "time": 11139,
+              "page": "index",
+              "reasons": [
+                "mount"
+              ],
+              "passes": 9,
+              "start": 11114.90000000596,
+              "duration": 24.099999994039536
+            },
+            {
+              "kind": "layout",
+              "time": 11179.10000000149,
+              "page": "index",
+              "reasons": [
+                "size"
+              ],
+              "passes": 10,
+              "start": 11176.70000000298,
+              "duration": 1.8999999985098839
+            }
+          ],
+          "preparationMs": {
+            "count": 3,
+            "max": 24.099999994039536,
+            "total": 28.299999997019768
+          },
+          "readyMs": 1361.7000000029802,
+          "transitionPhase": "warm",
+          "errors": [],
+          "models": 3
+        },
+        {
+          "from": "index",
+          "to": "research",
+          "kind": "flight",
+          "probeVersion": 2,
+          "elapsedMs": 1348.6999999955297,
+          "window": {
+            "startMs": 11852.90000000596,
+            "endMs": 13201.60000000149
+          },
+          "quality": "1",
+          "cadence": "7.5",
+          "state": "active",
+          "callbacks": 48,
+          "paints": 20,
+          "paintRateHz": 14.829094683818708,
+          "paintIntervalsMs": {
+            "count": 19,
+            "p50": 66.60000000149012,
+            "p95": 87.60000000149012,
+            "max": 87.60000000149012
+          },
+          "paintCallbackMs": {
+            "p50": 22.399999998509884,
+            "p95": 49.79999999701977,
+            "max": 49.79999999701977
+          },
+          "callbackBusyPercent": 35.70104545018869,
+          "rawFrames": [
+            {
+              "time": 11867.4,
+              "started": 11868.10000000149,
+              "duration": 23.5,
+              "painted": true
+            },
+            {
+              "time": 11917.4,
+              "started": 11927.90000000596,
+              "duration": 0.6999999955296516,
+              "painted": false
+            },
+            {
+              "time": 11934.1,
+              "started": 11937.10000000149,
+              "duration": 22.200000002980232,
+              "painted": true
+            },
+            {
+              "time": 11967.4,
+              "started": 11984.10000000149,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 11984.1,
+              "started": 11985.20000000298,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 12000.7,
+              "started": 12001.10000000149,
+              "duration": 21.899999998509884,
+              "painted": true
+            },
+            {
+              "time": 12050.7,
+              "started": 12052.40000000596,
+              "duration": 0.19999999552965164,
+              "painted": false
+            },
+            {
+              "time": 12067.4,
+              "started": 12068.10000000149,
+              "duration": 30.600000001490116,
+              "painted": true
+            },
+            {
+              "time": 12117.4,
+              "started": 12128.90000000596,
+              "duration": 0.09999999403953552,
+              "painted": false
+            },
+            {
+              "time": 12134,
+              "started": 12140.60000000149,
+              "duration": 30.30000000447035,
+              "painted": true
+            },
+            {
+              "time": 12200.7,
+              "started": 12203,
+              "duration": 25.80000000447035,
+              "painted": true
+            },
+            {
+              "time": 12267.4,
+              "started": 12273.80000000447,
+              "duration": 23,
+              "painted": true
+            },
+            {
+              "time": 12317.4,
+              "started": 12325.40000000596,
+              "duration": 0.6999999955296516,
+              "painted": false
+            },
+            {
+              "time": 12334,
+              "started": 12334.90000000596,
+              "duration": 22.399999998509884,
+              "painted": true
+            },
+            {
+              "time": 12384,
+              "started": 12390.5,
+              "duration": 0.6000000014901161,
+              "painted": false
+            },
+            {
+              "time": 12400.7,
+              "started": 12401,
+              "duration": 24.30000000447035,
+              "painted": true
+            },
+            {
+              "time": 12434,
+              "started": 12446.5,
+              "duration": 1.2000000029802322,
+              "painted": false
+            },
+            {
+              "time": 12450.7,
+              "started": 12451,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 12467.4,
+              "started": 12467.60000000149,
+              "duration": 19.600000001490116,
+              "painted": true
+            },
+            {
+              "time": 12500.7,
+              "started": 12517.30000000447,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 12517.4,
+              "started": 12518.40000000596,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 12534.1,
+              "started": 12534.70000000298,
+              "duration": 49.79999999701977,
+              "painted": true
+            },
+            {
+              "time": 12617.4,
+              "started": 12622.30000000447,
+              "duration": 23.299999997019768,
+              "painted": true
+            },
+            {
+              "time": 12667.3,
+              "started": 12668.90000000596,
+              "duration": 0.6999999955296516,
+              "painted": false
+            },
+            {
+              "time": 12684,
+              "started": 12685,
+              "duration": 21.400000005960464,
+              "painted": true
+            },
+            {
+              "time": 12717.4,
+              "started": 12732.20000000298,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 12734,
+              "started": 12734.5,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 12750.7,
+              "started": 12751.30000000447,
+              "duration": 19.399999998509884,
+              "painted": true
+            },
+            {
+              "time": 12784,
+              "started": 12788.20000000298,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 12800.7,
+              "started": 12800.90000000596,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 12817.4,
+              "started": 12817.70000000298,
+              "duration": 22.399999998509884,
+              "painted": true
+            },
+            {
+              "time": 12850.7,
+              "started": 12856.90000000596,
+              "duration": 0.7999999970197678,
+              "painted": false
+            },
+            {
+              "time": 12867.3,
+              "started": 12868.80000000447,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 12884,
+              "started": 12884.80000000447,
+              "duration": 15.100000001490116,
+              "painted": true
+            },
+            {
+              "time": 12900.7,
+              "started": 12918.20000000298,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 12917.3,
+              "started": 12919.30000000447,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 12934,
+              "started": 12934.30000000447,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 12950.7,
+              "started": 12951.40000000596,
+              "duration": 25.099999994039536,
+              "painted": true
+            },
+            {
+              "time": 12984,
+              "started": 12995.40000000596,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 13000.7,
+              "started": 13002.80000000447,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 13017.3,
+              "started": 13018.20000000298,
+              "duration": 16.299999997019768,
+              "painted": true
+            },
+            {
+              "time": 13050.6,
+              "started": 13052.10000000149,
+              "duration": 0.8999999985098839,
+              "painted": false
+            },
+            {
+              "time": 13067.3,
+              "started": 13067.5,
+              "duration": 0.10000000149011612,
+              "painted": false
+            },
+            {
+              "time": 13084,
+              "started": 13084.40000000596,
+              "duration": 22.099999994039536,
+              "painted": true
+            },
+            {
+              "time": 13117.4,
+              "started": 13128.80000000447,
+              "duration": 0.6000000014901161,
+              "painted": false
+            },
+            {
+              "time": 13134.1,
+              "started": 13134.30000000447,
+              "duration": 0,
+              "painted": false
+            },
+            {
+              "time": 13150.6,
+              "started": 13150.90000000596,
+              "duration": 15.899999998509884,
+              "painted": true
+            },
+            {
+              "time": 13184,
+              "started": 13197.20000000298,
+              "duration": 0.10000000149011612,
+              "painted": false
+            }
+          ],
+          "rawLongTasks": [
+            {
+              "start": 11868.10000000149,
+              "duration": 59
+            },
+            {
+              "start": 12001,
+              "duration": 50
+            },
+            {
+              "start": 12068,
+              "duration": 60
+            },
+            {
+              "start": 12139.90000000596,
+              "duration": 62
+            },
+            {
+              "start": 12202.20000000298,
+              "duration": 68
+            },
+            {
+              "start": 12270.70000000298,
+              "duration": 53
+            },
+            {
+              "start": 12334.90000000596,
+              "duration": 54
+            },
+            {
+              "start": 12534.70000000298,
+              "duration": 86
+            }
+          ],
+          "rawPreparation": [
+            {
+              "kind": "route",
+              "time": 11855.90000000596,
+              "start": 11854.20000000298,
+              "duration": 1.7000000029802322,
+              "page": "research"
+            },
+            {
+              "kind": "layout",
+              "time": 12583.5,
+              "page": "research",
+              "reasons": [
+                "mount"
+              ],
+              "passes": 11,
+              "start": 12565.30000000447,
+              "duration": 18.19999999552965
+            },
+            {
+              "kind": "layout",
+              "time": 12623.40000000596,
+              "page": "research",
+              "reasons": [
+                "size"
+              ],
+              "passes": 12,
+              "start": 12622.40000000596,
+              "duration": 1
+            }
+          ],
+          "preparationMs": {
+            "count": 3,
+            "max": 18.19999999552965,
+            "total": 20.899999998509884
+          },
+          "readyMs": 1319.7999999970198,
+          "transitionPhase": "warm",
+          "errors": [],
+          "models": 3
+        }
+      ],
+      "trace": {},
+      "errors": [],
+      "requests": []
+    }
+  ],
+  "groups": [
+    {
+      "width": 390,
+      "surface": "soft",
+      "flight": true,
+      "trials": 1,
+      "kinds": {
+        "idle": {
+          "windows": 1,
+          "pooledCallbackP95Ms": 21.5,
+          "medianWindowP95Ms": 21.5,
+          "windowP95RangeMs": [
+            21.5,
+            21.5
+          ],
+          "medianBusyPercent": 12.161137062701496,
+          "medianPaintRateHz": 7.585738811048792,
+          "medianPaintGapP95Ms": 134.39999999850988,
+          "longTasks": 0
+        },
+        "scroll": {
+          "windows": 1,
+          "pooledCallbackP95Ms": 19.200000002980232,
+          "medianWindowP95Ms": 19.200000002980232,
+          "windowP95RangeMs": [
+            19.200000002980232,
+            19.200000002980232
+          ],
+          "medianBusyPercent": 32.231142199403514,
+          "medianPaintRateHz": 24.64033065731125,
+          "medianPaintGapP95Ms": 52.5,
+          "longTasks": 1
+        },
+        "flight": {
+          "windows": 4,
+          "pooledCallbackP95Ms": 58.20000000298023,
+          "medianWindowP95Ms": 69,
+          "windowP95RangeMs": [
+            49.79999999701977,
+            115.10000000149012
+          ],
+          "medianBusyPercent": 41.83105715616967,
+          "medianPaintRateHz": 13.006720138752353,
+          "medianPaintGapP95Ms": 115.79999999701977,
+          "longTasks": 40
+        }
+      },
+      "pipeline": {
+        "Paint": {
+          "medianCount": 0,
+          "medianDurationMs": 0
+        },
+        "PrePaint": {
+          "medianCount": 0,
+          "medianDurationMs": 0
+        },
+        "Layerize": {
+          "medianCount": 0,
+          "medianDurationMs": 0
+        },
+        "UpdateLayer": {
+          "medianCount": 0,
+          "medianDurationMs": 0
+        },
+        "RasterTask": {
+          "medianCount": 0,
+          "medianDurationMs": 0
+        },
+        "DrawFrame": {
+          "medianCount": 0,
+          "medianDurationMs": 0
+        },
+        "DroppedFrame": {
+          "medianCount": 0,
+          "medianDurationMs": 0
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "browser": "153.0.8010.12",
+  "rows": [
+    {
+      "variant": "Final",
+      "source": "93cf7c1f75ca663c16992ae99ddf96c8402d8eb08fe4f6c3671d9defa46a2d42",
+      "fallback": {
+        "y": 9495,
+        "max": 9495
+      },
+      "zero": {
+        "y": 0,
+        "max": 0
+      },
+      "fallbackVisible": true,
+      "drawFailure": {
+        "display": "block",
+        "visibility": "visible",
+        "rects": 1
+      }
+    },
+    {
+      "variant": "Color-Prototype",
+      "source": "2762c20418996007ab489dcde68c54f633439aef7725c70c1867d44e9e236eb6",
+      "fallback": {
+        "y": 9524,
+        "max": 9524
+      },
+      "zero": {
+        "y": 0,
+        "max": 0
+      },
+      "fallbackVisible": true,
+      "drawFailure": {
+        "display": "block",
+        "visibility": "visible",
+        "rects": 1
+      }
+    },
+    {
+      "interrupted": {
+        "page": "research",
+        "y": 0,
+        "max": 8582
+      }
+    }
+  ],
+  "scope": "Bounded missing-Canvas/font-size/zero-range and interrupted-arrival endpoint checks; controlled conditions, not physical font/device evidence."
+}

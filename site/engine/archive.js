@@ -49,16 +49,25 @@
     }
   }
   function refresh(reason = "layout") {
+    const active = Object.entries(controls).filter(([, control]) => control.value !== "all").map(([key, control]) => [key, control.value]);
+    const visibleYears = new Set();
     let count = 0;
     for (const row of rows) {
-      row.hidden = Object.entries(controls).some(([key, control]) => control.value !== "all" && row.dataset[key] !== control.value);
-      if (!row.hidden) count++;
+      const hidden = active.some(([key, value]) => row.dataset[key] !== value);
+      if (row.hidden !== hidden) row.hidden = hidden;
+      if (!hidden) { count++; visibleYears.add(row.dataset.year); }
     }
-    for (const group of groups) group.hidden = ![...group.querySelectorAll("li.publication")].some(row => !row.hidden);
-    for (const year of years) year.hidden = ![...year.querySelectorAll(".archive-group")].some(group => !group.hidden);
+    for (const group of groups) {
+      const hidden = !group.querySelector("li.publication:not([hidden])");
+      if (group.hidden !== hidden) group.hidden = hidden;
+    }
+    for (const year of years) {
+      const hidden = !year.querySelector(".archive-group:not([hidden])");
+      if (year.hidden !== hidden) year.hidden = hidden;
+    }
     for (const topic of topics) document.getElementById(`topic-${topic}`).hidden = controls.topic.value !== topic;
     for (const year of yearValues) {
-      document.getElementById(`year-${year}`).hidden = controls.year.value !== year && !rows.some(row => !row.hidden && row.dataset.year === year);
+      document.getElementById(`year-${year}`).hidden = controls.year.value !== year && !visibleYears.has(year);
     }
     heading.hidden = false;
     heading.textContent = `${label(controls.topic)} · ${label(controls.year)} · ${label(controls.language)}`;

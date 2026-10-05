@@ -1,0 +1,583 @@
+{
+  "schema": 1,
+  "browser": "153.0.8010.12",
+  "scope": "20 Color opening views (five routes, two themes, two widths) and four base smoke views, Motion Off for stable inspection. Offline Chromium only; no physical-device, contrast, animation or hosted-matrix acceptance.",
+  "atlas": {
+    "source": "64f83d65ba0564e115b62b6dc25424cff9bc5cd4e45027e9e0a6b562ce73ae21",
+    "image": "primitive-atlas.png"
+  },
+  "rows": [
+    {
+      "variant": "Final",
+      "source": "93cf7c1f75ca663c16992ae99ddf96c8402d8eb08fe4f6c3671d9defa46a2d42",
+      "width": 1440,
+      "theme": "light",
+      "route": "index",
+      "state": {
+        "route": "index",
+        "theme": "light",
+        "width": 1440,
+        "scrollWidth": 1440,
+        "header": [
+          "Home",
+          "Research",
+          "Writing",
+          "Talks"
+        ],
+        "credits": true,
+        "motion": "false",
+        "engine": "66086646e7e4f79cbd85f835bb5dd39c25ed864131bbb1d4ff92b14de40a43ce"
+      },
+      "errors": []
+    },
+    {
+      "variant": "Final",
+      "source": "93cf7c1f75ca663c16992ae99ddf96c8402d8eb08fe4f6c3671d9defa46a2d42",
+      "width": 1440,
+      "theme": "dark",
+      "route": "index",
+      "state": {
+        "route": "index",
+        "theme": "dark",
+        "width": 1440,
+        "scrollWidth": 1440,
+        "header": [
+          "Home",
+          "Research",
+          "Writing",
+          "Talks"
+        ],
+        "credits": true,
+        "motion": "false",
+        "engine": "66086646e7e4f79cbd85f835bb5dd39c25ed864131bbb1d4ff92b14de40a43ce"
+      },
+      "errors": []
+    },
+    {
+      "variant": "Final",
+      "source": "93cf7c1f75ca663c16992ae99ddf96c8402d8eb08fe4f6c3671d9defa46a2d42",
+      "width": 390,
+      "theme": "light",
+      "route": "index",
+      "state": {
+        "route": "index",
+        "theme": "light",
+        "width": 390,
+        "scrollWidth": 390,
+        "header": [
+          "Home",
+          "Research",
+          "Writing",
+          "Talks"
+        ],
+        "credits": true,
+        "motion": "false",
+        "engine": "66086646e7e4f79cbd85f835bb5dd39c25ed864131bbb1d4ff92b14de40a43ce"
+      },
+      "errors": []
+    },
+    {
+      "variant": "Final",
+      "source": "93cf7c1f75ca663c16992ae99ddf96c8402d8eb08fe4f6c3671d9defa46a2d42",
+      "width": 390,
+      "theme": "dark",
+      "route": "index",
+      "state": {
+        "route": "index",
+        "theme": "dark",
+        "width": 390,
+        "scrollWidth": 390,
+        "header": [
+          "Home",
+          "Research",
+          "Writing",
+          "Talks"
+        ],
+        "credits": true,
+        "motion": "false",
+        "engine": "66086646e7e4f79cbd85f835bb5dd39c25ed864131bbb1d4ff92b14de40a43ce"
+      },
+      "errors": []
+    },
+    {
+      "variant": "Color-Prototype",
+      "source": "2762c20418996007ab489dcde68c54f633439aef7725c70c1867d44e9e236eb6",
+      "width": 1440,
+      "theme": "light",
+      "route": "index",
+      "state": {
+        "route": "index",
+        "theme": "light",
+        "width": 1440,
+        "scrollWidth": 1440,
+        "header": [
+          "Home",
+          "Research",
+          "Writing",
+          "Talks"
+        ],
+        "credits": true,
+        "motion": "false",
+        "engine": "6028a2700883b04a2808ba07ca49a7a0ce015faefad759081cbe85b0ccdcc995"
+      },
+      "image": "index-light-1440.jpg",
+      "errors": []
+    },
+    {
+      "variant": "Color-Prototype",
+      "source": "2762c20418996007ab489dcde68c54f633439aef7725c70c1867d44e9e236eb6",
+      "width": 1440,
+      "theme": "light",
+      "route": "research",
+      "state": {
+        "route": "research",
+        "theme": "light",
+        "width": 1440,
+        "scrollWidth": 1440,
+        "header": [
+          "Home",
+          "Research",
+          "Writing",
+          "Talks"
+        ],
+        "credits": true,
+        "motion": "false",
+        "engine": "6028a2700883b04a2808ba07ca49a7a0ce015faefad759081cbe85b0ccdcc995"
+      },
+      "image": "research-light-1440.jpg",
+      "errors": []
+    },
+    {
+      "variant": "Color-Prototype",
+      "source": "2762c20418996007ab489dcde68c54f633439aef7725c70c1867d44e9e236eb6",
+      "width": 1440,
+      "theme": "light",
+      "route": "writing",
+      "state": {
+        "route": "writing",
+        "theme": "light",
+        "width": 1440,
+        "scrollWidth": 1440,
+        "header": [
+          "Home",
+          "Research",
+          "Writing",
+          "Talks"
+        ],
+        "credits": true,
+        "motion": "false",
+        "engine": "6028a2700883b04a2808ba07ca49a7a0ce015faefad759081cbe85b0ccdcc995"
+      },
+      "image": "writing-light-1440.jpg",
+      "errors": []
+    },
+    {
+      "variant": "Color-Prototype",
+      "source": "2762c20418996007ab489dcde68c54f633439aef7725c70c1867d44e9e236eb6",
+      "width": 1440,
+      "theme": "light",
+      "route": "talks",
+      "state": {
+        "route": "talks",
+        "theme": "light",
+        "width": 1440,
+        "scrollWidth": 1440,
+        "header": [
+          "Home",
+          "Research",
+          "Writing",
+          "Talks"
+        ],
+        "credits": true,
+        "motion": "false",
+        "engine": "6028a2700883b04a2808ba07ca49a7a0ce015faefad759081cbe85b0ccdcc995"
+      },
+      "image": "talks-light-1440.jpg",
+      "errors": []
+    },
+    {
+      "variant": "Color-Prototype",
+      "source": "2762c20418996007ab489dcde68c54f633439aef7725c70c1867d44e9e236eb6",
+      "width": 1440,
+      "theme": "light",
+      "route": "credits",
+      "state": {
+        "route": "credits",
+        "theme": "light",
+        "width": 1440,
+        "scrollWidth": 1440,
+        "header": [
+          "Home",
+          "Research",
+          "Writing",
+          "Talks"
+        ],
+        "credits": true,
+        "motion": "false",
+        "engine": "6028a2700883b04a2808ba07ca49a7a0ce015faefad759081cbe85b0ccdcc995"
+      },
+      "image": "credits-light-1440.jpg",
+      "errors": []
+    },
+    {
+      "variant": "Color-Prototype",
+      "source": "2762c20418996007ab489dcde68c54f633439aef7725c70c1867d44e9e236eb6",
+      "width": 1440,
+      "theme": "dark",
+      "route": "index",
+      "state": {
+        "route": "index",
+        "theme": "dark",
+        "width": 1440,
+        "scrollWidth": 1440,
+        "header": [
+          "Home",
+          "Research",
+          "Writing",
+          "Talks"
+        ],
+        "credits": true,
+        "motion": "false",
+        "engine": "6028a2700883b04a2808ba07ca49a7a0ce015faefad759081cbe85b0ccdcc995"
+      },
+      "image": "index-dark-1440.jpg",
+      "errors": []
+    },
+    {
+      "variant": "Color-Prototype",
+      "source": "2762c20418996007ab489dcde68c54f633439aef7725c70c1867d44e9e236eb6",
+      "width": 1440,
+      "theme": "dark",
+      "route": "research",
+      "state": {
+        "route": "research",
+        "theme": "dark",
+        "width": 1440,
+        "scrollWidth": 1440,
+        "header": [
+          "Home",
+          "Research",
+          "Writing",
+          "Talks"
+        ],
+        "credits": true,
+        "motion": "false",
+        "engine": "6028a2700883b04a2808ba07ca49a7a0ce015faefad759081cbe85b0ccdcc995"
+      },
+      "image": "research-dark-1440.jpg",
+      "errors": []
+    },
+    {
+      "variant": "Color-Prototype",
+      "source": "2762c20418996007ab489dcde68c54f633439aef7725c70c1867d44e9e236eb6",
+      "width": 1440,
+      "theme": "dark",
+      "route": "writing",
+      "state": {
+        "route": "writing",
+        "theme": "dark",
+        "width": 1440,
+        "scrollWidth": 1440,
+        "header": [
+          "Home",
+          "Research",
+          "Writing",
+          "Talks"
+        ],
+        "credits": true,
+        "motion": "false",
+        "engine": "6028a2700883b04a2808ba07ca49a7a0ce015faefad759081cbe85b0ccdcc995"
+      },
+      "image": "writing-dark-1440.jpg",
+      "errors": []
+    },
+    {
+      "variant": "Color-Prototype",
+      "source": "2762c20418996007ab489dcde68c54f633439aef7725c70c1867d44e9e236eb6",
+      "width": 1440,
+      "theme": "dark",
+      "route": "talks",
+      "state": {
+        "route": "talks",
+        "theme": "dark",
+        "width": 1440,
+        "scrollWidth": 1440,
+        "header": [
+          "Home",
+          "Research",
+          "Writing",
+          "Talks"
+        ],
+        "credits": true,
+        "motion": "false",
+        "engine": "6028a2700883b04a2808ba07ca49a7a0ce015faefad759081cbe85b0ccdcc995"
+      },
+      "image": "talks-dark-1440.jpg",
+      "errors": []
+    },
+    {
+      "variant": "Color-Prototype",
+      "source": "2762c20418996007ab489dcde68c54f633439aef7725c70c1867d44e9e236eb6",
+      "width": 1440,
+      "theme": "dark",
+      "route": "credits",
+      "state": {
+        "route": "credits",
+        "theme": "dark",
+        "width": 1440,
+        "scrollWidth": 1440,
+        "header": [
+          "Home",
+          "Research",
+          "Writing",
+          "Talks"
+        ],
+        "credits": true,
+        "motion": "false",
+        "engine": "6028a2700883b04a2808ba07ca49a7a0ce015faefad759081cbe85b0ccdcc995"
+      },
+      "image": "credits-dark-1440.jpg",
+      "errors": []
+    },
+    {
+      "variant": "Color-Prototype",
+      "source": "2762c20418996007ab489dcde68c54f633439aef7725c70c1867d44e9e236eb6",
+      "width": 390,
+      "theme": "light",
+      "route": "index",
+      "state": {
+        "route": "index",
+        "theme": "light",
+        "width": 390,
+        "scrollWidth": 390,
+        "header": [
+          "Home",
+          "Research",
+          "Writing",
+          "Talks"
+        ],
+        "credits": true,
+        "motion": "false",
+        "engine": "6028a2700883b04a2808ba07ca49a7a0ce015faefad759081cbe85b0ccdcc995"
+      },
+      "image": "index-light-390.jpg",
+      "errors": []
+    },
+    {
+      "variant": "Color-Prototype",
+      "source": "2762c20418996007ab489dcde68c54f633439aef7725c70c1867d44e9e236eb6",
+      "width": 390,
+      "theme": "light",
+      "route": "research",
+      "state": {
+        "route": "research",
+        "theme": "light",
+        "width": 390,
+        "scrollWidth": 390,
+        "header": [
+          "Home",
+          "Research",
+          "Writing",
+          "Talks"
+        ],
+        "credits": true,
+        "motion": "false",
+        "engine": "6028a2700883b04a2808ba07ca49a7a0ce015faefad759081cbe85b0ccdcc995"
+      },
+      "image": "research-light-390.jpg",
+      "errors": []
+    },
+    {
+      "variant": "Color-Prototype",
+      "source": "2762c20418996007ab489dcde68c54f633439aef7725c70c1867d44e9e236eb6",
+      "width": 390,
+      "theme": "light",
+      "route": "writing",
+      "state": {
+        "route": "writing",
+        "theme": "light",
+        "width": 390,
+        "scrollWidth": 390,
+        "header": [
+          "Home",
+          "Research",
+          "Writing",
+          "Talks"
+        ],
+        "credits": true,
+        "motion": "false",
+        "engine": "6028a2700883b04a2808ba07ca49a7a0ce015faefad759081cbe85b0ccdcc995"
+      },
+      "image": "writing-light-390.jpg",
+      "errors": []
+    },
+    {
+      "variant": "Color-Prototype",
+      "source": "2762c20418996007ab489dcde68c54f633439aef7725c70c1867d44e9e236eb6",
+      "width": 390,
+      "theme": "light",
+      "route": "talks",
+      "state": {
+        "route": "talks",
+        "theme": "light",
+        "width": 390,
+        "scrollWidth": 390,
+        "header": [
+          "Home",
+          "Research",
+          "Writing",
+          "Talks"
+        ],
+        "credits": true,
+        "motion": "false",
+        "engine": "6028a2700883b04a2808ba07ca49a7a0ce015faefad759081cbe85b0ccdcc995"
+      },
+      "image": "talks-light-390.jpg",
+      "errors": []
+    },
+    {
+      "variant": "Color-Prototype",
+      "source": "2762c20418996007ab489dcde68c54f633439aef7725c70c1867d44e9e236eb6",
+      "width": 390,
+      "theme": "light",
+      "route": "credits",
+      "state": {
+        "route": "credits",
+        "theme": "light",
+        "width": 390,
+        "scrollWidth": 390,
+        "header": [
+          "Home",
+          "Research",
+          "Writing",
+          "Talks"
+        ],
+        "credits": true,
+        "motion": "false",
+        "engine": "6028a2700883b04a2808ba07ca49a7a0ce015faefad759081cbe85b0ccdcc995"
+      },
+      "image": "credits-light-390.jpg",
+      "errors": []
+    },
+    {
+      "variant": "Color-Prototype",
+      "source": "2762c20418996007ab489dcde68c54f633439aef7725c70c1867d44e9e236eb6",
+      "width": 390,
+      "theme": "dark",
+      "route": "index",
+      "state": {
+        "route": "index",
+        "theme": "dark",
+        "width": 390,
+        "scrollWidth": 390,
+        "header": [
+          "Home",
+          "Research",
+          "Writing",
+          "Talks"
+        ],
+        "credits": true,
+        "motion": "false",
+        "engine": "6028a2700883b04a2808ba07ca49a7a0ce015faefad759081cbe85b0ccdcc995"
+      },
+      "image": "index-dark-390.jpg",
+      "errors": []
+    },
+    {
+      "variant": "Color-Prototype",
+      "source": "2762c20418996007ab489dcde68c54f633439aef7725c70c1867d44e9e236eb6",
+      "width": 390,
+      "theme": "dark",
+      "route": "research",
+      "state": {
+        "route": "research",
+        "theme": "dark",
+        "width": 390,
+        "scrollWidth": 390,
+        "header": [
+          "Home",
+          "Research",
+          "Writing",
+          "Talks"
+        ],
+        "credits": true,
+        "motion": "false",
+        "engine": "6028a2700883b04a2808ba07ca49a7a0ce015faefad759081cbe85b0ccdcc995"
+      },
+      "image": "research-dark-390.jpg",
+      "errors": []
+    },
+    {
+      "variant": "Color-Prototype",
+      "source": "2762c20418996007ab489dcde68c54f633439aef7725c70c1867d44e9e236eb6",
+      "width": 390,
+      "theme": "dark",
+      "route": "writing",
+      "state": {
+        "route": "writing",
+        "theme": "dark",
+        "width": 390,
+        "scrollWidth": 390,
+        "header": [
+          "Home",
+          "Research",
+          "Writing",
+          "Talks"
+        ],
+        "credits": true,
+        "motion": "false",
+        "engine": "6028a2700883b04a2808ba07ca49a7a0ce015faefad759081cbe85b0ccdcc995"
+      },
+      "image": "writing-dark-390.jpg",
+      "errors": []
+    },
+    {
+      "variant": "Color-Prototype",
+      "source": "2762c20418996007ab489dcde68c54f633439aef7725c70c1867d44e9e236eb6",
+      "width": 390,
+      "theme": "dark",
+      "route": "talks",
+      "state": {
+        "route": "talks",
+        "theme": "dark",
+        "width": 390,
+        "scrollWidth": 390,
+        "header": [
+          "Home",
+          "Research",
+          "Writing",
+          "Talks"
+        ],
+        "credits": true,
+        "motion": "false",
+        "engine": "6028a2700883b04a2808ba07ca49a7a0ce015faefad759081cbe85b0ccdcc995"
+      },
+      "image": "talks-dark-390.jpg",
+      "errors": []
+    },
+    {
+      "variant": "Color-Prototype",
+      "source": "2762c20418996007ab489dcde68c54f633439aef7725c70c1867d44e9e236eb6",
+      "width": 390,
+      "theme": "dark",
+      "route": "credits",
+      "state": {
+        "route": "credits",
+        "theme": "dark",
+        "width": 390,
+        "scrollWidth": 390,
+        "header": [
+          "Home",
+          "Research",
+          "Writing",
+          "Talks"
+        ],
+        "credits": true,
+        "motion": "false",
+        "engine": "6028a2700883b04a2808ba07ca49a7a0ce015faefad759081cbe85b0ccdcc995"
+      },
+      "image": "credits-dark-390.jpg",
+      "errors": []
+    }
+  ]
+}

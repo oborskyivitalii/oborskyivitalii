@@ -5,8 +5,8 @@ function visit(query="",historyBlocked=false) {
   const landings=[],emitted=[];
   const element=(data={})=>({hidden:false,events:{},textContent:"",...data,addEventListener(name,fn){this.events[name]=fn;},getClientRects(){return this.hidden?[]:[{height:44}];},scrollIntoView(){landings.push(this);},...data});
   const rows=[...html.matchAll(/<li class="publication" data-language="([^"]+)" data-topic="([^"]+)" data-year="([^"]+)"/g)].map(m=>element({dataset:{language:m[1],topic:m[2],year:m[3]}}));
-  const groups=[...new Set(rows.map(r=>r.dataset.year+":"+r.dataset.topic))].map(key=>element({querySelectorAll:()=>rows.filter(r=>r.dataset.year+":"+r.dataset.topic===key),year:key.split(":")[0],topic:key.split(":")[1]}));
-  const years=["2026","2025"].map(year=>element({querySelectorAll:()=>groups.filter(g=>g.year===year)}));
+  const groups=[...new Set(rows.map(r=>r.dataset.year+":"+r.dataset.topic))].map(key=>element({querySelectorAll:()=>rows.filter(r=>r.dataset.year+":"+r.dataset.topic===key),querySelector:selector=>{assert.equal(selector,"li.publication:not([hidden])");return rows.find(r=>r.dataset.year+":"+r.dataset.topic===key&&!r.hidden)||null;},year:key.split(":")[0],topic:key.split(":")[1]}));
+  const years=["2026","2025"].map(year=>element({querySelectorAll:()=>groups.filter(g=>g.year===year),querySelector:selector=>{assert.equal(selector,".archive-group:not([hidden])");return groups.find(g=>g.year===year&&!g.hidden)||null;}}));
   const ids={};
   for(const key of["topic","year","language"]) {
     const options=[...html.match(new RegExp('<select id="archive-'+key+'">([\\s\\S]*?)</select>'))[1].matchAll(/value="([^"]+)">([^<]+)/g)].map(m=>({value:m[1],textContent:m[2]}));

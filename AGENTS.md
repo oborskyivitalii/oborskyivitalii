@@ -1,5 +1,23 @@
 # Agent guidance for personal publications
 
+## Current Sol result and remaining task — 2026-10-05
+
+R1 #20 and H1 #21 are merged into the reviewed candidate Draft #18; #19 is
+closed as the implemented source fix. Read
+`review/site-sol-continuation-20261005/REPORT.md`, `MERGE-RECORD.md`, `V1.md` and
+`SOL-TASKS.md` before continuing. P1/V1 remain stacked Draft increments. Their
+current Color cold Writing windows are 89.2/67.5/78.9ms; one exceeds 80ms.
+Steady/warm diagnosis does not erase that failure. Next P2 targets first native
+Writing layout (37.7ms in a separate fine-stage run); do not repeat R1/H1 or
+remove primary formula glyphs to compensate for native layout.
+Preserve original creation times in same-gesture wheel fixtures; >180ms creation
+gaps deliberately release endpoint ownership. Keep the separate fresh-input and
+middle-history checks, one Canvas/clock, finite grammar and ten-test default.
+Both false hosting guards remain false. Main is currently unprotected; no
+protection/Environment/provider/hosting/analytics setting was activated. Current
+SITE-STAGING uses manual protected-main and schema-2 recovery. Hosting/release,
+three-engine and independent/device acceptance remain separate.
+
 ## Sol continuation execution — 2026-10-05
 
 H1 source trust is implemented for exact protected-main manual dispatch; read
