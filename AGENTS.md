@@ -1,5 +1,17 @@
 # Agent guidance for personal publications
 
+## Sol continuation execution — 2026-10-05
+
+The maintainer asks Sol to continue the reviewed R1/P1/V1/H1 tasks. R1 is
+implemented with route-scoped end intent and accepted input-tail ownership;
+read `review/site-sol-continuation-20261005/R1.md` and its current evidence.
+Keep normal history restoration, fresh-input takeover, single-clock freeze and
+the ten-test default. P1/V1 performance and H1 trust-source work continue; don't
+infer full hosted or independent release acceptance from focused checks.
+The existing authorization for code/PR/issue updates remains; hosting stays
+paused with both false guards. Preserve #18's current work and retain one
+focused implementation PR per independently reviewable fix.
+
 ## Integration review and next Sol increment — 2026-10-05
 
 The maintainer now authorizes reviewing/updating all site issues and PRs, closing

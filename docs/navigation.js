@@ -11,6 +11,7 @@
   const initialPage=document.body.dataset.page;
   let pinned=null;
   let page=document.body.dataset.page,serial=0,request=null,transition=null,scrollSave=null;
+  let endpoint=null,endpointTimer=null,endpointObserver=null,inputTail=null,lastWheel=-Infinity,lastWheelDirection=0,lastKey=null;
   if(!routes.includes(page)||!window.fetch||!window.DOMParser||!window.history.pushState)return;
   const cache=new Map();
   const content=document.createElement("div");content.id="site-content";
@@ -107,6 +108,8 @@
   }
   function interrupt() {
     const travelling=transition!==null;
+    releaseEndpoint('interrupt');
+    releaseTail();
     request?.abort();request=null;
     window.SiteScene?.detachTravel();transition?.(1);transition=null;
     clearText();content.removeAttribute("aria-busy");return travelling;
@@ -123,6 +126,72 @@
     try{void getComputedStyle(document.documentElement).scrollBehavior;window.scrollTo({left,top,behavior:"auto"});}
     finally{if(value)style.setProperty("scroll-behavior",value,priority);else style.removeProperty("scroll-behavior");}
   }
+  function endpointProbe(reason,detail={}) {
+    window.SiteEngineProbe?.({kind:'endpoint',time:performance.now(),reason,token:endpoint?.own,page,...detail});
+  }
+  function releaseEndpoint(reason) {
+    if(endpoint)endpointProbe(reason);
+    endpoint=null;window.clearTimeout(endpointTimer);endpointTimer=null;
+    endpointObserver?.disconnect();endpointObserver=null;
+  }
+  function releaseTail() {inputTail=null;}
+  function reconcileEndpoint(maxScroll) {
+    if(!endpoint||!endpoint.mounted)return false;
+    if(endpoint.own!==serial||endpoint.page!==page){releaseEndpoint('stale');return false;}
+    if(maxScroll===undefined){
+      const read=()=>reconcileEndpoint(Math.max(0,document.documentElement.scrollHeight-innerHeight));
+      return effects?.measure?effects.measure(read):read();
+    }
+    const gap=maxScroll-window.scrollY;
+    if(Math.abs(gap)>2){restoreScroll(0,maxScroll);endpointProbe('reflow',{maxScroll,gap});}
+    return true;
+  }
+  function mountEndpoint() {
+    if(!endpoint||endpoint.own!==serial||endpoint.page!==page)return;
+    endpoint.mounted=true;
+    // The scene's native measurement invokes reconcileEndpoint before reading
+    // waypoints. Only a missing Canvas/layout engine needs a bounded observer.
+    if(!window.SiteScene?.managesLayout&&window.ResizeObserver){
+      endpointObserver=new ResizeObserver(()=>reconcileEndpoint());
+      endpointObserver.observe(document.body);
+    }
+  }
+  function arriveEndpoint() {
+    if(!endpoint||endpoint.own!==serial)return;
+    endpoint.arrived=true;
+    window.SiteScene?.refresh({sync:true,reason:'arrival-end'});
+    reconcileEndpoint();
+    // Expiry bounds takeover, it never drives correctness or a render clock.
+    const own=endpoint.own;
+    endpointTimer=window.setTimeout(()=>{if(endpoint?.own===own)releaseEndpoint('settled');},1000);
+  }
+  window.addEventListener('wheel',event=>{
+    // Use input creation time, not delayed main-thread dispatch time. A slow
+    // mount cannot turn queued inertia into a supposedly fresh wheel gesture.
+    const now=event.timeStamp>performance.timeOrigin?event.timeStamp-performance.timeOrigin:event.timeStamp,direction=Math.sign(event.deltaY);
+    const fresh=now-lastWheel>180||direction&&lastWheelDirection&&direction!==lastWheelDirection;
+    lastWheel=now;if(direction)lastWheelDirection=direction;
+    if(!event.isTrusted||!event.deltaY)return;
+    if(fresh){releaseEndpoint('wheel');releaseTail();}
+    else if(inputTail?.own===serial&&inputTail.type==='wheel'&&!event.ctrlKey&&!event.metaKey&&!event.altKey&&!event.shiftKey&&Math.abs(event.deltaY)>=Math.abs(event.deltaX)){
+      // Consume only the accepted gesture's tail. It must not scroll an instant
+      // destination before the reader starts a new deliberate gesture.
+      if(event.cancelable)event.preventDefault();
+    }
+  },{passive:false});
+  window.addEventListener('touchstart',event=>{if(event.isTrusted){releaseEndpoint('touch');releaseTail();}},{passive:true});
+  window.addEventListener('pointerdown',event=>{if(event.isTrusted){releaseEndpoint('pointer');releaseTail();}},{passive:true});
+  window.addEventListener('keydown',event=>{
+    const scrolling=['ArrowUp','ArrowDown','PageUp','PageDown','Home','End',' '].includes(event.key);
+    if(scrolling&&!event.repeat)lastKey=event.key;
+    if(!event.isTrusted)return;
+    if(inputTail?.own===serial&&inputTail.type==='key'&&event.repeat&&event.key===inputTail.key){if(event.cancelable)event.preventDefault();return;}
+    if(scrolling&&!event.repeat){releaseEndpoint('key');releaseTail();}
+  });
+  window.addEventListener('keyup',event=>{if(inputTail?.type==='key'&&event.key===inputTail.key)releaseTail();});
+  window.addEventListener('blur',()=>{releaseEndpoint('blur');releaseTail();});
+  window.addEventListener('resize',()=>{if(!window.SiteScene?.managesLayout)reconcileEndpoint();},{passive:true});
+  document.fonts?.addEventListener?.('loadingdone',()=>{if(!window.SiteScene?.managesLayout)reconcileEndpoint();});
   function flight(next,animate,commit,own,departure) {
     return new Promise((resolve,reject)=>{
       let mounted=false;
@@ -168,6 +237,7 @@
     // Apply filters before the native scroll/style flush, so Writing does not
     // lay out the complete archive and immediately lay it out a second time.
     window.SiteArchive?.mount();
+    if(position==="end")mountEndpoint();
     if(position==="end")restoreScroll(0,Math.max(0,document.documentElement.scrollHeight-innerHeight));
     else restoreScroll(position?.[0]||0,position?.[1]||0);
     let target=null;
@@ -183,10 +253,14 @@
     if(window.SiteEngineProbe)window.SiteEngineProbe({kind:'route',time:performance.now(),start,duration:performance.now()-start,page:data.page});
     return result;
   }
-  async function navigate(url,{pop=false,position=null,initial=false}={}) {
+  async function navigate(url,{pop=false,position=null,initial=false,input=null}={}) {
     const next=routeFor(url);if(!next)return;
     const departure=presentation?.departure?.()??Number(content.style.opacity||1);
     const own=++serial;interrupt();
+    if(position==="end")endpoint={own,page:next,mounted:false,arrived:false};
+    if(input==='wheel'||input==='key'){
+      inputTail={own,type:input,key:lastKey};
+    }
     if(presentation)presentation.restoreDeparture(departure);
     else {content.style.opacity=String(departure);content.inert=departure<1;}
     window.SiteEngineProbe?.({kind:'navigation-start',time:performance.now(),from:page,to:next});
@@ -206,9 +280,9 @@
       },own,departure);
       // Arrival removes the content transform. Its temporary overflow/offset
       // must not remain the page's scroll range or semantic waypoint geometry.
-      if(own===serial){if(!presentation?.layoutStableDuringTravel)window.SiteScene?.refresh({reason:'arrival'});content.querySelector("main").focus({preventScroll:true});announcement.textContent=data.title;save();window.SiteEngineProbe?.({kind:'navigation-ready',time:performance.now(),page:next});}
+      if(own===serial){if(!presentation?.layoutStableDuringTravel)window.SiteScene?.refresh({reason:'arrival'});arriveEndpoint();content.querySelector("main").focus({preventScroll:true});announcement.textContent=data.title;save();window.SiteEngineProbe?.({kind:'navigation-ready',time:performance.now(),page:next});}
     } catch {
-      if(own===serial)window.location.assign(address(url,next).href);
+      if(own===serial){releaseEndpoint('failed');releaseTail();window.location.assign(address(url,next).href);}
     } finally {
       window.clearTimeout(timeout);
       if(own===serial){content.removeAttribute("aria-busy");request=null;clearText();}
@@ -240,8 +314,8 @@
   });
   function finishText(){window.SiteScene?.detachTravel();transition?.(1);transition=null;clearText();}
   document.addEventListener("visibilitychange",()=>{if(document.hidden)finishText();});
-  window.addEventListener("beforeprint",()=>{finishText();window.SiteArchive?.print();});
-  window.addEventListener("pagehide",save);
+  window.addEventListener("beforeprint",()=>{releaseEndpoint('print');releaseTail();finishText();window.SiteArchive?.print();});
+  window.addEventListener("pagehide",()=>{save();releaseEndpoint('leave');releaseTail();});
   // One write after a gesture preserves Forward as well as Back without
   // flooding history APIs or adding an idle timer / another RAF scheduler.
   window.addEventListener("scroll",()=>{
@@ -249,9 +323,9 @@
     scrollSave=window.setTimeout(()=>{scrollSave=null;save();},350);
   },{passive:true});
   window.addEventListener("site:motion-preference",()=>{if(!motionAllowed())finishText();});
-  window.SiteNavigation={push,primaryRoutes,contentFlight(value){return presentation?.contentFlight?.(value)??false;},go(next,{atEnd=false}={}){
+  window.SiteNavigation={push,primaryRoutes,reconcileEndpoint,contentFlight(value){return presentation?.contentFlight?.(value)??false;},go(next,{atEnd=false,input=null}={}){
     if(next===page||!primaryRoutes.includes(page)||!primaryRoutes.includes(next)||request||transition)return false;
-    navigate(new URL(embedded?.files[next]||(next==="index"?"./":next+".html"),directory),{position:atEnd?"end":null});return true;
+    navigate(new URL(embedded?.files[next]||(next==="index"?"./":next+".html"),directory),{position:atEnd?"end":null,input});return true;
   }};
   const first=embedded?routeFor(new URL(window.location.href)):page;
   if(first!==page)navigate(new URL(window.location.href),{initial:true});else save();

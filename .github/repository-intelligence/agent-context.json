@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "60a545ec96443535ef0473dc2653afc78dedcd2d87331dbb21269e814717e742",
+    "digest": "88ecade3a24cc638288ae81eaafe284960ee2d359f6080329c0a70cb8c258ccc",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -87,7 +87,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "589a426564afbef1bde08674e68728b8065689883f9d2b674888ea1f9acb2068"
+        "sha256": "183d63c461c9c32b3a257e1577b7c5d4cbe32033d8285eb75793d416e5f1d1ff"
       },
       {
         "path": "BACKLOG.md",
@@ -213,48 +213,48 @@
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/d1bf9959ef1d2bf1a3cd89f61f4894e1204f6d363be0651afe9c6ed136bafa59/archive.js",
+        "path": "docs/runtime/89aa3544002cfa53e1dfc7a519dacee119d9834755446a05d25e02a2372f6812/archive.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/d1bf9959ef1d2bf1a3cd89f61f4894e1204f6d363be0651afe9c6ed136bafa59/navigation.js",
+        "path": "docs/runtime/89aa3544002cfa53e1dfc7a519dacee119d9834755446a05d25e02a2372f6812/navigation.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/d1bf9959ef1d2bf1a3cd89f61f4894e1204f6d363be0651afe9c6ed136bafa59/space.js",
+        "path": "docs/runtime/89aa3544002cfa53e1dfc7a519dacee119d9834755446a05d25e02a2372f6812/space.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/d1bf9959ef1d2bf1a3cd89f61f4894e1204f6d363be0651afe9c6ed136bafa59/styles.css",
+        "path": "docs/runtime/89aa3544002cfa53e1dfc7a519dacee119d9834755446a05d25e02a2372f6812/styles.css",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/d1bf9959ef1d2bf1a3cd89f61f4894e1204f6d363be0651afe9c6ed136bafa59/theme.js",
+        "path": "docs/runtime/89aa3544002cfa53e1dfc7a519dacee119d9834755446a05d25e02a2372f6812/theme.js",
         "identity_mode": "existence"
       },
       {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "5394badbaaa24b4c055cf5b8a711b1f3cb43310e092980eca8faaa8d8b5bf723"
+        "sha256": "655a7d4355ce6988a0644cbc315e04d38eec18c7cdedb936a512e6ea129e4040"
       },
       {
-        "path": "docs/snapshots/2aa1cc451a5a876773cee81ee8db26e107905a2f174a9996ae2b70dbcea5be31/talks.html",
+        "path": "docs/snapshots/364ca34eb205d49e7f44a4a78384c634fc12a75c264e979b2c7f6ce7d85efaf1/research.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/556fd190e68b2cfcbfca72ba1cfead5246cfecc3b273ed6d9744b2765a148180/writing.html",
+        "path": "docs/snapshots/5466c0968921a941dac2a843e40d30f574d2d3e9f9f42a96df945267ac3fbf26/credits.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/65dcf9425ebd4fe652ee646baeed0bcadf8e2a404b96fc06e4aba19a4f2c8c91/index.html",
+        "path": "docs/snapshots/583350702053e1803346e21f55e76a89945664e3c6991ea177af286dfc102d68/talks.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/9ff5d3a57ee5e16d0bde86a75c5cbcecd763a85b15730bb5ac25d790287721f7/research.html",
+        "path": "docs/snapshots/d6fc03e1c26ea1c54823af7f3ed47166e981fbac676290a90e9872f9c1585ac7/writing.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/b9ae0fcbaa6537ce3fc9b2ab0f473c3d1d050432cae1584306d242a35c053bad/credits.html",
+        "path": "docs/snapshots/e7ed0a7fd94cc628cdd9a6875e4529bb9c4e5c4aeb1ff670b03c16c30686309a/index.html",
         "identity_mode": "existence"
       },
       {
@@ -871,6 +871,43 @@
       {
         "path": "review/site-scroll-sync-20261004/export.cjs",
         "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/R1.md",
+        "identity_mode": "content",
+        "sha256": "373496798fc734c2c1965b85ad940f3f6cfc1905a3a971544555816f72651057"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/check-endpoint-failures.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/check-endpoints.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/check-input-tail.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/input-tail-after.json",
+        "identity_mode": "content",
+        "sha256": "ad1c124eb63e8554d9b91cfc4a5fdf252b8775351594eaf3b2b7edb9f395e00f"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/input-tail-before.json",
+        "identity_mode": "content",
+        "sha256": "682903cc09e3c3f3c1e7cd479f7792973b6b2e0f7c75211480eaec057ff2ce73"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/reverse-final.json",
+        "identity_mode": "content",
+        "sha256": "14d23615e4976a7ce2fd1b0bf1f26aca407a5d6e68157db27f1a44cce1b99fc5"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/reverse-first.json",
+        "identity_mode": "content",
+        "sha256": "39dd5b2445f8d0b67f4e2ad3eb4f062001d11182b85e6684280a5c8bf18c8918"
       },
       {
         "path": "review/site-surface-review-20261004/REPORT.md",
@@ -2409,7 +2446,7 @@
       {
         "path": "review/site-v1-offline-bundle-v11.json",
         "identity_mode": "content",
-        "sha256": "64a61ec957ef2c6eb66d6e0e7ca8d18d8285366df2e0d7af91ae82d4aad7c48d"
+        "sha256": "0b0472d498e3e11a1bbaaef76be899dddbc71bd26a20b76e3c44c98e32e11564"
       },
       {
         "path": "review/site-v1-offline-bundle-v3.json",
@@ -2463,7 +2500,7 @@
       {
         "path": "review/site-v1-static-previews-v11.json",
         "identity_mode": "content",
-        "sha256": "4f32ba5dc760f127ce3c0f15217774872d4492ed1935d5eda3b8c01491a263cb"
+        "sha256": "fe563f8ac07c3388f03be5f9e9eaac79f7033f1995df5dd0b18f244a1b55972e"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -2925,7 +2962,7 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "48e73b4b393b599fe3cbbfdc1c2682f1020dc2673934233d0ba9197d210ee1a8"
+        "sha256": "8157755a19cde984574ec8801426db97d274f7ba7f0ccd4afb5afc1fa36f26cd"
       },
       {
         "path": "site/routes.json",
@@ -4173,6 +4210,41 @@
     {
       "path": "review/site-scroll-sync-20261004/check-offline-security.py",
       "title": "review/site-scroll-sync-20261004/check-offline-security.py",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/R1.md",
+      "title": "R1 — reverse endpoint repair",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/input-tail-after.json",
+      "title": "review/site-sol-continuation-20261005/evidence/input-tail-after.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/input-tail-before.json",
+      "title": "review/site-sol-continuation-20261005/evidence/input-tail-before.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/reverse-final.json",
+      "title": "review/site-sol-continuation-20261005/evidence/reverse-final.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/reverse-first.json",
+      "title": "review/site-sol-continuation-20261005/evidence/reverse-first.json",
       "instructions": [
         "AGENTS.md"
       ]
