@@ -18,7 +18,7 @@ from pathlib import Path, PurePosixPath
 
 VERSION = 1
 IGNORED = {".git", "node_modules", "__pycache__", ".venv", "venv", "dist", "public",
-           "quality-artifact", "quality-reports", "quality-results"}
+           "quality-artifact", "quality-reports", "quality-results", ".site-cache"}
 TEXT_SUFFIXES = {".md", ".json", ".toml", ".yml", ".yaml", ".py", ".cff", ".txt"}
 MAX_FILES = 5000
 MAX_FILE_BYTES = 2_000_000

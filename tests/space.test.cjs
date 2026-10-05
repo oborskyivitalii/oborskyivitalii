@@ -1,6 +1,7 @@
 "use strict";
 const test=require("node:test"),assert=require("node:assert/strict"),fs=require("node:fs"),path=require("node:path"),vm=require("node:vm");
-const source=fs.readFileSync(path.join(__dirname,"../docs/space.js"),"utf8"),model=require("../docs/space.js");
+const sourceFile=process.env.SITE_SPACE_SOURCE||path.join(__dirname,"../docs/space.js");
+const source=fs.readFileSync(sourceFile,"utf8"),model=require(sourceFile);
 function visit(options={}) {
   const events={},docEvents={},buttonEvents={},pending=new Map(),calls=[];
   let failDraw=false,styled=options.styled!==false,paintClock=0,bitmapValid=false,resizeCount=0,draws=0,serial=0,time=0,stored=options.saved??null,mutation;
@@ -343,4 +344,15 @@ test("a route chosen before the reduced-motion change event paints its static ar
   assert.equal(p.scene.dataset.travel,"settled");
   assert.deepEqual(JSON.parse(p.trace()),model.routePose("research",model.poses[model.initialPoses.research]));
   assert.equal(p.pending.size,0);
+});
+
+// User-visible regression: archive-bound progress formerly stayed zero here.
+test("Writing responds to the first small gestures before the archive, including after route arrival",()=>{
+  for(const arrival of[false,true])for(const single of[false,true]){
+    const p=visit({page:arrival?"index":"writing",single});
+    if(arrival){p.window.SiteScene.navigate("writing");p.window.SiteScene.refresh();for(let i=0;i<30;i++)p.frame(80);}
+    p.settle();const start=p.trace(),phase=p.phase(),draws=p.draws();let last=start;
+    for(const y of[100,200,400]){p.scroll(y);p.settle();assert.notEqual(p.trace(),last,`first gesture at ${y}px`);last=p.trace();}
+    p.scroll(0);p.settle();assert.equal(p.trace(),start);assert.ok(p.phase()>phase);assert.ok(p.draws()>draws);
+  }
 });

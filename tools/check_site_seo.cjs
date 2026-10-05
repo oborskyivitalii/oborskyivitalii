@@ -5,6 +5,7 @@ const fs=require('node:fs'),path=require('node:path'),assert=require('node:asser
 const root=path.resolve(__dirname,'..'),baseline='0333c4d2b2318850fd56312d83fb63ca468f01a4';
 const strip=html=>html.replace(/<svg class="space-fallback"[\s\S]*?<\/svg>/,'[same-world decorative fallback]');
 function restore(html,page){
+  html=require("./build_site_previews.cjs").sourceForPreview(html).replace(/^ {2}<meta name="site-(?:engine|route|contract)"[^>]+>\n/gm,"");
   let result=html.replace('>vo<span class="monogram-dot">.</span></span>','>vo.</span>');
   assert.equal(result.split('  <script src="navigation.js" defer></script>\n').length,2,'one declared navigation module');
   result=result.replace('  <script src="navigation.js" defer></script>\n','');

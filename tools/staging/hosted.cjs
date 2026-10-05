@@ -11,11 +11,12 @@ function origin(value,project,stable=false){
   if(stable)assert.equal(url.hostname,'staging.'+project+'.pages.dev','not the staging alias');
   return url.origin;
 }
-function responseHeaders(headers){
+function responseHeaders(headers,immutable=false){
   const robots=headers.get('x-robots-tag')||'';assert.match(robots,/\bnoindex\b/i);assert.match(robots,/\bnofollow\b/i);
   assert.equal(headers.get('x-content-type-options'),'nosniff');
-  assert.match(headers.get('cache-control')||'',/\bno-cache\b/i);
-  assert.ok(!(headers.get('cache-control')||'').includes('immutable'),'unversioned staging asset marked immutable');
+  const cache=headers.get('cache-control')||'';
+  if(immutable){assert.match(cache,/\bimmutable\b/);assert.match(cache,/max-age=31536000/);assert.doesNotMatch(cache,/no-cache|must-revalidate/);}
+  else{assert.match(cache,/\bno-cache\b/i);assert.ok(!cache.includes('immutable'),'unversioned staging asset marked immutable');}
 }
 async function request(url,expectedOrigin,fetcher=fetch){
   let target=new URL(url);
@@ -37,9 +38,9 @@ function type(file){
   return /application\/json/i;
 }
 async function httpSmoke(base,record,fetcher=fetch){
-  const files=pkg.publicFiles.filter(x=>x!=='.nojekyll').concat('_staging/revision.json'),rows=[];
+  const files=Object.keys(record.source.files).filter(x=>x!=='.nojekyll').concat('_staging/revision.json'),rows=[];
   for(const file of files){
-    const result=await request(base+'/'+file,base,fetcher);assert.equal(result.response.status,200,file+' HTTP status');responseHeaders(result.response.headers);
+    const result=await request(base+'/'+file,base,fetcher);assert.equal(result.response.status,200,file+' HTTP status');responseHeaders(result.response.headers,require("../site/snapshot.cjs").immutable(file));
     assert.match(result.response.headers.get('content-type')||'',type(file),'content type '+file);
     assert.equal(digest(result.bytes),record.files[file].sha256,'hosted bytes differ '+file);
     rows.push({file,status:result.response.status,url:result.url,sha256:digest(result.bytes)});

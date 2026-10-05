@@ -128,7 +128,7 @@ async function normal(page,scenario){
   await page.locator('#theme-mode').selectOption(scenario.theme==='light'?'dark':'light');
   assert.equal(await page.locator('html').getAttribute('data-theme'),scenario.theme==='light'?'dark':'light');
   cta.push(...await ctaStates(page));
-  if(scenario.route==='writing')await archive(page);
+  if(scenario.route==='writing'){await require('./engine-browser.cjs').writingGestures(page);await archive(page);}
   // CSS zoom approximates layout; native browser zoom remains a separate smoke check.
   await page.evaluate(()=>document.documentElement.style.zoom='2');
   assert.equal(await page.evaluate(()=>Number(getComputedStyle(document.documentElement).zoom)),2);

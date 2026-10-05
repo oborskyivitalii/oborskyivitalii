@@ -7,7 +7,7 @@ const binary=name=>path.join(tools,'node_modules/.bin',name+(process.platform===
 const py=name=>path.join(tools,'venv',process.platform==='win32'?'Scripts':'bin',name);
 const read=file=>JSON.parse(fs.readFileSync(path.join(out,file),'utf8'));
 function lint(){
-  run(binary('eslint'),['--config','tools/quality/eslint.config.cjs','docs','tools','tests','--format','json','--output-file',path.join(out,'eslint.json')]);
+  run(binary('eslint'),['--config','tools/quality/eslint.config.cjs','docs','site','tools','tests','--format','json','--output-file',path.join(out,'eslint.json')]);
   const eslint=read('eslint.json'),warnings=eslint.flatMap(f=>f.messages.filter(m=>m.severity===1).map(m=>({file:path.relative(root,f.filePath).split(path.sep).join('/'),rule:m.ruleId,message:m.message})));
   const policy=require('./exceptions.json');if(new Date(policy.reviewBy)<new Date())throw Error('Lint exceptions expired');
   for(const w of warnings)if(!policy.complexity.some(x=>x.path===w.file&&x.rule===w.rule&&x.message===w.message))throw Error('New complexity debt '+JSON.stringify(w));
@@ -20,11 +20,11 @@ function lint(){
 function security(){
   // Files are scanned at their real paths, including inline HTML. Reports retain
   // coverage/errors. Source snippets are removed before artifact upload.
-  run(py('semgrep'),['scan','--config','tools/quality/security-rules.yml','--metrics','off','--disable-version-check','--jobs','1','--max-target-bytes','5000000','--json','--output',path.join(out,'semgrep.json'),'docs','tools','.github/workflows']);
+  run(py('semgrep'),['scan','--config','tools/quality/security-rules.yml','--metrics','off','--disable-version-check','--jobs','1','--max-target-bytes','5000000','--json','--output',path.join(out,'semgrep.json'),'docs','site','tools','.github/workflows']);
   const semgrep=read('semgrep.json');for(const finding of semgrep.results||[])if(finding.extra)delete finding.extra.lines;
   fs.writeFileSync(path.join(out,'semgrep.json'),JSON.stringify(semgrep,null,2));
   if(semgrep.results?.length||semgrep.errors?.length||!semgrep.paths?.scanned?.length)throw Error('Semgrep findings, errors, or empty coverage');
-  const scanned=new Set(semgrep.paths.scanned),expected=run('git',['ls-files','docs','tools','.github/workflows']).trim().split('\n').filter(f=>/\.(?:js|cjs|html|py)$/.test(f)||f.startsWith('.github/workflows/'));
+  const scanned=new Set(semgrep.paths.scanned),expected=run('git',['ls-files','docs','site','tools','.github/workflows']).trim().split('\n').filter(f=>/\.(?:js|cjs|html|py)$/.test(f)||f.startsWith('.github/workflows/'));
   for(const file of expected)if(!scanned.has(file))throw Error('Unscanned source '+file);
   run(py('bandit'),['-r','tools','-x','tools/quality/toolchain/venv','-f','json','-o',path.join(out,'bandit.json')],[0,1]);const bandit=read('bandit.json');
   for(const finding of bandit.results||[])delete finding.code;fs.writeFileSync(path.join(out,'bandit.json'),JSON.stringify(bandit,null,2));

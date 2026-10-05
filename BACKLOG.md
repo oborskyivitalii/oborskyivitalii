@@ -1,5 +1,35 @@
 # Issue backlog audit — 2026-10-01
 
+## Execution and publication pause — 2026-10-04
+
+The maintainer now authorizes the engine/content plan and Writing fix under
+[#15](https://github.com/oborskyivitalii/oborskyivitalii/issues/15)/#12 in stacked
+Draft [PR #16](https://github.com/oborskyivitalii/oborskyivitalii/pull/16). Read
+[the source/engine contract](site/README.md) and
+[execution record](review/site-engine-implementation-20261004/EXECUTION.md).
+`site/` is authoritative; `docs/` is generated-only. Every #13 mandatory job and
+budget remains. The latest instruction pauses **all publication**, including
+staging, superseding the earlier activation amendment below. Both deployment
+workflow entry points have explicit false guards; configuration alone cannot
+enable publication. No host/account provisioning, upload, production release or
+merge is part of this work. Prepared packages/fixtures do not establish real host,
+physical-device or independent acceptance. Re-enabling hosting needs a later
+maintainer instruction and a separately reviewed change to those guards.
+
+## Engine/content planning intake — 2026-10-04
+
+- [#15](https://github.com/oborskyivitalii/oborskyivitalii/issues/15):
+  [assessment](review/site-engine-plan-20261004/ASSESSMENT.md) and
+  [detailed staged plan](review/site-engine-plan-20261004/PLAN.md) for shared
+  templates, independent content/assets/engine and incremental page generation.
+  Planning only; not a finished engine, CMS, hosting setup or changed release gate.
+- Writing's new first-scroll report stays under #12/#14 and precedes structural
+  changes. Exact-user reproduction remains open.
+- This plan is a separate Draft PR above the existing #10 candidate. #5 remains
+  article/Quartz/PDF owner; #8 hosting and #13 gates are unchanged.
+  A universal publisher or engine refactor is not a new first-launch/article
+  prerequisite. No issue is closed by this assessment.
+
 ## Engineering follow-up — 2026-10-03
 
 - [#12](https://github.com/oborskyivitalii/oborskyivitalii/issues/12): completed v8

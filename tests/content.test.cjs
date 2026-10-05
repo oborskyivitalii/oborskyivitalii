@@ -37,7 +37,7 @@ test("English UI has distinct useful metadata and non-executable accurate page s
     assert.doesNotMatch(html, /name="keywords"|rel="canonical"|hreflang=|property="og:url"|property="og:image"|noindex/);
     const scripts = [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/g)];
     assert.equal(scripts.length, 5);
-    assert.equal(scripts.filter(s => s[1] === ' src="theme.js"').length, 1);
+    assert.equal(scripts.filter(s => /^ src="runtime\/[a-f0-9]{64}\/theme\.js"$/.test(s[1])).length, 1);
     assert.equal(scripts.filter(s => s[1] === ' type="application/ld+json"').length, 1);
     const data = schema(html);
     assert.equal(data["@context"], "https://schema.org");
@@ -98,7 +98,7 @@ test("portrait is a real sized local asset and ambiguous talk languages stay exp
   const cutout = fs.readFileSync(path.join(root,"assets/vitalii-oborskyi-cutout.webp"));
   assert.equal(cutout.subarray(8,12).toString(), "WEBP");
   assert.ok(cutout.length < 80000);
-  assert.match(pages.index, /<img src="assets\/vitalii-oborskyi-cutout.webp" alt="Portrait of Vitalii Oborskyi with the background removed" width="780" height="721"/);
+  assert.match(pages.index, /<img src="media\/[a-f0-9]{64}\/vitalii-oborskyi-cutout.webp" alt="Portrait of Vitalii Oborskyi with the background removed" width="780" height="721"/);
   assert.equal([...pages.talks.matchAll(/<article class="publication" data-language="unconfirmed">/g)].length, 2);
   assert.ok(pages.talks.includes('id="ukrainian-talks"'));
 });
@@ -124,7 +124,7 @@ test("page IDs, ARIA targets, local resources and fragments resolve without draf
       if (fragment) assert.ok(ids.get(target)?.has(fragment), value);
     }
   }
-  const expected = [".nojekyll", "archive.js", "assets", "credits.html", "index.html", "navigation.js", "research.html", "space.js", "styles.css", "talks.html", "theme.js", "writing.html"];
+  const expected = [".nojekyll", "archive.js", "assets", "credits.html", "index.html", "media", "navigation.js", "research.html", "runtime", "site-revision.json", "snapshots", "space.js", "styles.css", "talks.html", "theme.js", "writing.html"];
   assert.deepEqual(fs.readdirSync(root).sort(), expected);
   assert.deepEqual(fs.readdirSync(path.join(root, "assets")).sort(), ["favicon.svg", "vitalii-oborskyi-cutout.webp", "vitalii-oborskyi.jpg"]);
 });

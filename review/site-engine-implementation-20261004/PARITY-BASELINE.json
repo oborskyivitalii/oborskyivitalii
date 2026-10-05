@@ -1,0 +1,20 @@
+{
+  "source": "https://github.com/oborskyivitalii/oborskyivitalii/commit/6041a5801729e561c425092323a12cc8e4062f85",
+  "note": "Exact frozen planning parent public inventory before R0 and source migration; all five legacy HTML and ten rest worlds are checked against it. Runtime assembly, Writing intro and versioned navigation changes are separately verified.",
+  "files": {
+    ".nojekyll": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "archive.js": "f5c6c90851fd4acb4d632c20e82d45a0d9e2de2d993ce94fd5a70d54646e6211",
+    "assets/favicon.svg": "a27a6f79b42bfa41fa8a8d3fe39e3c9570bcd992410c91a17d021de4dc28636e",
+    "assets/vitalii-oborskyi-cutout.webp": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae",
+    "assets/vitalii-oborskyi.jpg": "5321e48f08b075cb1cbd522d0f36bc01276aece65d1a04cf09102aa5dd2b59bc",
+    "credits.html": "3eb7d4c06ed2a56a3b300c07cbe48a3ec7a2ae9f098487bc0a69eb70678b8133",
+    "index.html": "a67d998577a7e1843d0e7af4d5c9e1091e7d0664aa2f79b008a8bc7944ef53e4",
+    "navigation.js": "30c972e2521c379002027ceaabe17c59602971b14b8f2ba81aab3417a4c9876d",
+    "research.html": "199f68aa852afd939bf2f1a2e896f9cfaddce468665728ec9618a6b4966b5116",
+    "space.js": "1d722cf8aa6f056b8ec63b97584f8dde31cc1123f909efa4df0dbf608cfed5d4",
+    "styles.css": "3a53943269188001757a6b3ac1fdee209ea486fa0a287216bd3045002fa4f4ab",
+    "talks.html": "63090a86bbc96491632965439960510f58f75e9ccc47e0aad1b3d1474d6338a7",
+    "theme.js": "d11f679af05442e8b01024e9a5fe3ba9aff73554f11bd8f3ff692d14f830f8fb",
+    "writing.html": "741414cf4e41edb6db7113372d648556a485b394f27ddb0c3c27df6f9e6c741c"
+  }
+}

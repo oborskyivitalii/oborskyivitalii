@@ -1,5 +1,46 @@
 # Sol execution plan — reviewed 2026-10-02
 
+## Execution and publication pause — 2026-10-04
+
+The maintainer now authorizes the engine/content plan and Writing fix under
+[#15](https://github.com/oborskyivitalii/oborskyivitalii/issues/15)/#12 in stacked
+Draft [PR #16](https://github.com/oborskyivitalii/oborskyivitalii/pull/16). Read
+[the source/engine contract](site/README.md) and
+[execution record](review/site-engine-implementation-20261004/EXECUTION.md).
+`site/` is authoritative; `docs/` is generated-only. Every #13 mandatory job and
+budget remains. The latest instruction pauses **all publication**, including
+staging, superseding the earlier activation amendment below. Both deployment
+workflow entry points have explicit false guards; configuration alone cannot
+enable publication. No host/account provisioning, upload, production release or
+merge is part of this work. Prepared packages/fixtures do not establish real host,
+physical-device or independent acceptance. Re-enabling hosting needs a later
+maintainer instruction and a separately reviewed change to those guards.
+
+## New assessment/plan request — 2026-10-04
+
+The maintainer reports Writing's initial scroll sometimes appears stationary
+and asks whether engine/shell can be separate from content/assets so a text edit
+does not rebuild everything. Assessment and repository planning are authorized;
+the structural refactor is a proposal for a later execution decision.
+
+Read [ASSESSMENT](review/site-engine-plan-20261004/ASSESSMENT.md) and
+[the detailed plan](review/site-engine-plan-20261004/PLAN.md), owned by
+[#15](https://github.com/oborskyivitalii/oborskyivitalii/issues/15).
+The first-scroll intake is recorded in #12. Available observations show changing
+phase/camera, but the controlled early-gesture repeat was interrupted; do not
+mark the exact user symptom fixed or blame the ChatGPT preview.
+
+The source baseline is `da06b6d6e850b49d72d227045f3975213d177a25` in #10.
+Its required PR checks and every technical full-run job pass; the production
+aggregate blocks only missing independent/device evidence. A separate planning
+Draft PR preserves that runtime candidate and changes no public bytes.
+
+Future execution order: R0 Writing diagnosis → A+B shared templates/content →
+C engine/scene contract → D dependency-aware generation → E coherent gated
+snapshot. Optional faster evidence policy is a separate #13 proposal.
+English/SEO/editions, existing visual lifecycle and budgets remain; #5 retains
+article rendering, #8 hosting, and #7 rights.
+
 ## Implemented executive increment — 2026-10-03
 
 The maintainer's “Зроби” is being implemented, not just planned. Visual source

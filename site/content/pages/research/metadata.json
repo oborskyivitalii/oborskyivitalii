@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "lang": "en",
+  "title": "Research | AI Agent Governance & Delivery Systems | Vitalii Oborskyi",
+  "description": "Research on AI agent governance, control theory, Thinking Systems and AI-assisted delivery: human understanding, verification, authority and operating models.",
+  "structuredData": {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Research directions",
+    "inLanguage": "en",
+    "description": "AI architecture, control theory, Theory of Constraints and socio-technical operating models."
+  },
+  "blocks": [
+    "intro",
+    "research",
+    "lenses",
+    "topics",
+    "acknowledgements"
+  ]
+}

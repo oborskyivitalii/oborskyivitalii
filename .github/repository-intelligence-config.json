@@ -132,6 +132,40 @@
         "RI adapter",
         "навігація репо"
       ]
+    },
+    {
+      "concern": "static site engine, content and incremental generation plan",
+      "path": "review/site-engine-plan-20261004/PLAN.md",
+      "queries": [
+        "site engine",
+        "content assets separation",
+        "incremental publishing",
+        "двигун сайту",
+        "каркас і контент",
+        "інкрементальна генерація"
+      ]
+    },
+    {
+      "concern": "Writing first-scroll observation and current implementation assessment",
+      "path": "review/site-engine-plan-20261004/ASSESSMENT.md",
+      "queries": [
+        "Writing first scroll",
+        "stationary animation",
+        "анімація Writing",
+        "перший скрол"
+      ]
+    },
+    {
+      "concern": "static site source, engine contract and incremental generation",
+      "path": "site/README.md",
+      "queries": [
+        "edit site text",
+        "site source",
+        "engine implementation",
+        "snapshot pinning",
+        "редагування тексту",
+        "рушій сайту"
+      ]
     }
   ]
 }

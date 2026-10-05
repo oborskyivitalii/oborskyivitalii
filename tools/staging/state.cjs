@@ -99,7 +99,12 @@ async function register(){
   const deployment=await gh('/deployments',{ref:payload.sourceCommit,task:'deploy:staging',auto_merge:false,required_contexts:[],environment:'staging',transient_environment:true,production_environment:false,description:'Verified PR artifact; not production release',payload});
   save(path.join(stateDir,'current.json'),{deploymentId:deployment.id,...payload});await status(deployment.id,'in_progress','Uploading verified candidate; stable alias unchanged');
 }
+function retained(previous,current){
+  for(const [name,info]of Object.entries(previous.source.files).filter(([name])=>require('../site/snapshot.cjs').immutable(name)))assert.deepEqual(current.source.files[name],info,'previous immutable dependency missing '+name);
+  return true;
+}
 async function begin(){
+  if(read(path.join(stateDir,'previous.json')))retained(read('staging-rollback/staging-package.json'),read(recordFile));
   await fresh();const current=read(path.join(stateDir,'current.json')),candidate=await verifyDeployment(process.env.SITE_PAGES_DEPLOYMENT_ID,'candidate-'+process.env.SITE_CANDIDATE_SHA,process.env.SITE_CANDIDATE_SHA);
   const report=successfulReport('staging-reports/candidate.json',current.packageDigest);assert.equal(report.origin,candidate.url);
   save(path.join(stateDir,'current.json'),{...current,candidate});await status(current.deploymentId,'in_progress','Candidate smoke passed; promoting the same package');
@@ -137,4 +142,4 @@ async function main(){
   if(mode==='prepare')return prepare();if(mode==='fresh')return fresh();if(mode==='rollback')return verifyRollback();if(mode==='register')return register();if(mode==='begin')return begin();if(mode==='verify-stable')return verifyStable();if(mode==='verify-rollback-deployment')return verifyRollbackDeployment();if(mode==='finish')return finish();throw Error('Unknown staging state operation');
 }
 if(require.main===module)main().catch(e=>{console.error(e.message);process.exitCode=1;});
-module.exports={configuration,trustedHead,projectPolicy,knownPayload,rollbackRecord,ensureProject};
+module.exports={configuration,trustedHead,projectPolicy,knownPayload,rollbackRecord,ensureProject,retained};

@@ -6,7 +6,7 @@ rules:
     message: Browser HTML assignment needs explicit trust-boundary review.
     severity: ERROR
     paths:
-      include: [docs/**]
+      include: [docs/**, site/engine/**, site/scenes/**]
     pattern-either:
       - pattern: $EL.innerHTML = $VALUE
       - pattern: $EL.outerHTML = $VALUE
@@ -17,7 +17,7 @@ rules:
     message: Dynamic browser code execution is prohibited.
     severity: ERROR
     paths:
-      include: [docs/**]
+      include: [docs/**, site/engine/**, site/scenes/**]
     pattern-either:
       - pattern: eval(...)
       - pattern: new Function(...)
@@ -26,7 +26,7 @@ rules:
     message: Remote scripts extend the public runtime trust boundary; review required.
     severity: ERROR
     paths:
-      include: [docs/*.html]
+      include: [docs/**/*.html, site/**/*.html]
     pattern-regex: '<script[^>]+src=["\x27](?:https?:)?//'
   - id: unsafe-workflow-context
     languages: [generic]
@@ -56,7 +56,7 @@ rules:
     message: Executable inline script or event attribute in public HTML requires review.
     severity: ERROR
     paths:
-      include: [docs/*.html]
+      include: [docs/**/*.html, site/**/*.html]
     pattern-regex: '<script\s*>|\son(?:error|load|click)\s*='
   - id: python-shell-execution
     languages: [python]

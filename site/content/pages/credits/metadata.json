@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "lang": "en",
+  "title": "Credits & Reuse | Vitalii Oborskyi",
+  "description": "Sources, author-portrait attribution, publication rights and display preferences for Vitalii Oborskyi’s research and writing site.",
+  "structuredData": {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Credits and reuse",
+    "inLanguage": "en",
+    "description": "Publication sources, author portrait, display preferences and reuse boundaries."
+  },
+  "blocks": []
+}

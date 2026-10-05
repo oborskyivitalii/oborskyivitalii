@@ -1,9 +1,12 @@
 "use strict";
 // The no-JS/Canvas scene is a projection of the actual route's initial world.
 const fs=require("node:fs"),path=require("node:path");
-const {worldFor,projectedWorld,poses,initialPoses}=require("../docs/space.js");
-const pages=Object.keys(initialPoses),root=path.resolve(__dirname,"..");
+const pages=["index","research","writing","talks","credits"],root=path.resolve(__dirname,"..");
 function fallback(page) {
+ const builder=require("./site/build.cjs");
+ return fromModel(builder.model(root,builder.configuration(root).definitions),page);
+}
+function fromModel({worldFor,projectedWorld,poses,initialPoses},page) {
  const world=worldFor(page,true),objects=new Set(world.objects.filter(o=>o.root===0&&o.depth<=1).map(o=>o.name));
  const shapes=projectedWorld(world,poses[initialPoses[page]],1440,900).filter(s=>objects.has(s.object)),groups=new Map(),number=v=>v.toFixed(2);
  for(const shape of shapes){const key=`${shape.object}:${shape.color}:${shape.kind}`;if(!groups.has(key))groups.set(key,{shape,paths:[]});const group=groups.get(key);if(shape.kind==="face"&&group.paths.length>=8)continue;group.paths.push(shape.points.map((p,i)=>(i?"L":"M")+p.map(number).join(" ")).join(" ")+(shape.kind==="face"?"Z":""));}
@@ -11,6 +14,7 @@ function fallback(page) {
  return `<svg class="space-fallback" data-motif="${page}" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">${tags.join("")}</svg>`;
 }
 function update(check=false) {
+  if(!check){require("./site/build.cjs").build({all:true});return;}
   for(const page of pages) {
     const file=path.join(root,`docs/${page}.html`),source=fs.readFileSync(file,"utf8");
     const svg=fallback(page),pattern=/<svg class="space-fallback"[\s\S]*?<\/svg>/;
@@ -25,4 +29,4 @@ if(require.main===module) {
   update(process.argv[2]==="--check");
   process.stdout.write("Five route-specific scene fallbacks are fresh.\n");
 }
-module.exports={fallback,update};
+module.exports={fallback,fromModel,update};

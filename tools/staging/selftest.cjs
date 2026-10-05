@@ -5,12 +5,12 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
 const artifact=require('../quality/artifact.cjs'),pkg=require('./package.cjs'),hosted=require('./hosted.cjs');
 const types={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.svg':'image/svg+xml','.webp':'image/webp','.jpg':'image/jpeg','.json':'application/json'};
 function start(dir){
-  const headers=Object.fromEntries(pkg.headers.trim().split('\n').slice(1).map(line=>{const i=line.indexOf(':');return [line.slice(0,i).trim(),line.slice(i+1).trim()];}));
+
   const server=http.createServer((req,res)=>{
-    const url=new URL(req.url,'http://127.0.0.1');let relative;
+    const url=new URL(req.url,'http://127.0.0.1');let relative;const headers=pkg.policyHeaders(url.pathname.slice(1));
     try{relative=decodeURIComponent(url.pathname).replace(/^\//,'');}catch{res.writeHead(400).end();return;}
     if(relative.endsWith('.html')){res.writeHead(301,{...headers,Location:'/'+relative.slice(0,-5)+url.search}).end();return;}
-    if(!relative)relative='index';if(['index','research','writing','talks','credits','404'].includes(relative))relative+='.html';
+    if(!relative)relative='index';if(!path.extname(relative)&&fs.existsSync(path.join(dir,relative+'.html')))relative+='.html';
     const target=path.resolve(dir,relative),valid=target.startsWith(dir+path.sep)&&fs.existsSync(target)&&fs.statSync(target).isFile();
     const file=valid?target:path.join(dir,'404.html'),bytes=fs.readFileSync(file);res.writeHead(valid?200:404,{...headers,'Content-Type':types[path.extname(file)]||'application/octet-stream','Content-Length':bytes.length});res.end(bytes);
   });

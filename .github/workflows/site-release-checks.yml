@@ -84,6 +84,7 @@ jobs:
           node -e "require('node:assert/strict').match(process.env.SITE_CANDIDATE_SHA,/^[0-9a-f]{40}$/)"
           test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
           node --test tests/*.test.cjs
+          node tools/site/build.cjs --check
           node tools/check_site_seo.cjs
           python -m unittest discover -s tests -p 'test_*.py'
           node tools/build_scene_fallbacks.cjs --check

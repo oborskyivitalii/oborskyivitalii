@@ -9,6 +9,9 @@ const galleryFilename="site-v1-20261004-v11-index.html";
 const pages = ["index", "research", "writing", "talks", "credits"];
 const themes = { light: "day", dark: "night" };
 const controlPattern = /<label class="theme-control" hidden>[\s\S]*?<\/label>/g;
+function sourceForPreview(source) {
+  return source.replace(/\b(href|src)="(runtime|media)\/[a-f0-9]{64}\/([^"]+)"/g,(_,attribute,kind,name)=>`${attribute}="${kind==='media'?'assets/':''}${name}"`);
+}
 
 function filename(page, theme) {
   if (!pages.includes(page) || !Object.hasOwn(themes, theme)) {
@@ -35,6 +38,7 @@ function inlineIcon(html) {
 }
 
 function renderPage(source, css, page, theme, portrait) {
+  source=sourceForPreview(source);
   filename(page, theme); // Validate before transforming source.
   for (const marker of ['<html lang="en">', '<script src="theme.js"></script>', '<link rel="stylesheet" href="styles.css">']) {
     if (source.split(marker).length !== 2) throw new Error(`Expected one source marker: ${marker}`);
@@ -72,6 +76,7 @@ function interactiveFilename(page) {
 }
 
 function renderInteractive(source, css, page, portrait, scripts, payloads) {
+  source=sourceForPreview(source);
   let html = source.replace('<link rel="stylesheet" href="styles.css">', () => `<style>\n${css}</style>`);
   html = inlineIcon(html);
   html = rewriteLinks(html, "light", true);
@@ -89,8 +94,8 @@ function renderInteractive(source, css, page, portrait, scripts, payloads) {
 }
 
 function routePayloads(portrait) {
-  return {files:Object.fromEntries(pages.map(page=>[page,interactiveFilename(page)])),pages:Object.fromEntries(pages.map(page=>{
-    let source=fs.readFileSync(path.join(root,`docs/${page}.html`),"utf8");
+  return {revision:JSON.parse(fs.readFileSync(path.join(root,'docs/site-revision.json'),'utf8')),files:Object.fromEntries(pages.map(page=>[page,interactiveFilename(page)])),pages:Object.fromEntries(pages.map(page=>{
+    let source=sourceForPreview(fs.readFileSync(path.join(root,`docs/${page}.html`),"utf8"));
     // Route data is inert. Only the persistent document runs executable scripts.
     source=source.replace(/<script src="[^"]+"[^>]*><\/script>/g,"").replace('<link rel="stylesheet" href="styles.css">',"");
     source=inlineIcon(source).replace('src="assets/vitalii-oborskyi-cutout.webp"',()=>`src="data:image/webp;base64,${portrait.toString("base64")}"`);
@@ -118,7 +123,7 @@ function buildPreviews() {
   const css = fs.readFileSync(path.join(root, "docs/styles.css"), "utf8");
   const portrait = fs.readFileSync(path.join(root, "docs/assets/vitalii-oborskyi-cutout.webp"));
   const files = {};
-  const sources = { "docs/assets/favicon.svg":digest(fs.readFileSync(path.join(root,"docs/assets/favicon.svg"))), "docs/styles.css": digest(css), "docs/assets/vitalii-oborskyi-cutout.webp": digest(portrait) };
+  const sources = { "docs/site-revision.json":digest(fs.readFileSync(path.join(root,"docs/site-revision.json"))), "docs/assets/favicon.svg":digest(fs.readFileSync(path.join(root,"docs/assets/favicon.svg"))), "docs/styles.css": digest(css), "docs/assets/vitalii-oborskyi-cutout.webp": digest(portrait) };
   const scripts = {};
   for (const name of ["theme", "space", "archive", "navigation"]) {
     scripts[name] = fs.readFileSync(path.join(root, `docs/${name}.js`), "utf8");
@@ -175,4 +180,4 @@ if (require.main === module) {
   process.stdout.write(check ? "Fifteen page copies, all-page gallery and source/evidence hashes are fresh.\n" : "Exported ten static pages, five interactive pages and the all-page gallery.\n");
 }
 
-module.exports = { buildPreviews, renderPage, renderInteractive, filename, digest, pages, interactiveFilename,galleryFilename };
+module.exports = { buildPreviews, renderPage, renderInteractive, filename, digest, pages, interactiveFilename,galleryFilename,sourceForPreview };

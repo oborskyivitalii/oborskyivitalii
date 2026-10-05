@@ -18,7 +18,9 @@ jobs:
       - name: Focused runtime, content and archive regressions
         run: node --test tests/theme.test.cjs tests/space.test.cjs tests/archive.test.cjs tests/content.test.cjs
       - name: Check deterministic lightweight fallback
-        run: node tools/build_scene_fallbacks.cjs --check
+        run: |
+          node tools/site/build.cjs --check
+          node tools/build_scene_fallbacks.cjs --check
       - name: Enforce page and decorative DOM budgets
         run: |
           node - <<'JS'
