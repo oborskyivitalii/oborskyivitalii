@@ -1,5 +1,22 @@
 # Agent guidance for personal publications
 
+## Cloudflare preparation amendment — 2026-10-05
+
+The maintainer requests inspection and preparation through the newly connected
+Cloudflare plugin. This supersedes older blanket holds on preparatory provider
+configuration. Read the current SITE-STAGING and
+`review/site-sol-continuation-20261005/H2-CLOUDFLARE.md` before hosting work.
+The dedicated `oborskyi-author-ci-staging` Direct Upload project was created;
+Pages read/create/edit access and disabled production/analytics settings are
+verified. The earlier `oborskyi-site-staging` acquired external Git integration
+and deployments during this work; preserve it and do not target it with this CI.
+No assets have been deployed. Token administration is denied by the connection;
+GitHub secrets, Environment and branch protection require the owner. Main is
+currently unprotected. Keep both false deployment guards and the enable variable
+off while current candidate cold Writing fails. Do not use the plugin as a
+shortcut around protected-main/artifact/full-hosted checks or recovery. No DNS,
+custom domain, paid plan or production change is needed for initial staging.
+
 ## Sol continuation execution — 2026-10-05
 
 H1 source trust is implemented for exact protected-main manual dispatch; read

@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "1ee94df56a6790887abb4db4e934689c29e5dfb16ccd650d9f0170a869955ef5",
+    "digest": "7f8285469bc8a32303e82a5788e545700107ba65cbe84a25f48e61b2da01eb00",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -87,7 +87,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "e30f8d15b9849b4d4223369a5d9c82fba10fd3bf8f14780ed10b836302f7115e"
+        "sha256": "248a6f84488debbf488780e307f0a5a05e9db826ba6463992757d0d461368756"
       },
       {
         "path": "BACKLOG.md",
@@ -152,7 +152,7 @@
       {
         "path": "SITE-STAGING.md",
         "identity_mode": "content",
-        "sha256": "f1cb6214adde77a881f8885de8705a34ece015b534d61b52bc4111795323897c"
+        "sha256": "f1d68069ea6e8288f75dfdc62b0f57f789c4f568cafda242905cdc163a946988"
       },
       {
         "path": "SITE-VISUAL-REVIEW.md",
@@ -876,6 +876,11 @@
         "path": "review/site-sol-continuation-20261005/H1.md",
         "identity_mode": "content",
         "sha256": "28220161b8ae43319ad612b0d18ae9c72243b60a09d026f344bbc0b29f08d50f"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/H2-CLOUDFLARE.md",
+        "identity_mode": "content",
+        "sha256": "4212cf4dcfc39cb45bd3b07e2dc43f01f04d1210119e279b6597f8108962bd70"
       },
       {
         "path": "review/site-sol-continuation-20261005/R1.md",
@@ -4230,6 +4235,13 @@
     {
       "path": "review/site-sol-continuation-20261005/H1.md",
       "title": "H1 — protected-main staging trust, still paused",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/H2-CLOUDFLARE.md",
+      "title": "Cloudflare staging: перевірка плагіна — 5 жовтня 2026",
       "instructions": [
         "AGENTS.md"
       ]

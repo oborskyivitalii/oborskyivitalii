@@ -4,10 +4,24 @@
 
 Owner: [#8](https://github.com/oborskyivitalii/oborskyivitalii/issues/8). Full
 checks: [#13](https://github.com/oborskyivitalii/oborskyivitalii/issues/13).
-The maintainer authorizes repository integration and this instruction update.
-**Actual host provisioning/upload remains paused.** There is no verified live
-staging URL. Keep `SITE_STAGING_ENABLED` absent/false and both explicit false
-guards in `site-checks.yml` and `site-staging.yml` until activation is authorized.
+The maintainer now requests Cloudflare-plugin inspection and staging preparation.
+The dedicated **`oborskyi-author-ci-staging`** Direct Upload project was created
+and checked through the API: `production_branch=production-disabled`, no Git
+source, no Web Analytics injection and **zero deployments**.
+[Verified capabilities and owner steps](review/site-sol-continuation-20261005/H2-CLOUDFLARE.md).
+
+During preparation the earlier `oborskyi-site-staging` project changed outside
+this execution: it now has automatic GitHub integration, production branch
+`main` and two successful provider deployments, including the old main tip.
+Preserve that work; it is incompatible with `projectPolicy()` and is **not** the
+target of this trusted Direct Upload workflow. Its provider success has not been
+accepted as served-byte/full-hosted evidence.
+
+**Asset upload and publication remain paused while the candidate fails its cold
+Writing gate.** There is no verified live staging URL. Keep
+`SITE_STAGING_ENABLED` absent/false and both explicit false guards in
+`site-checks.yml` and `site-staging.yml`. The request authorizes preparatory
+provider configuration; it does not turn failing source into an accepted release.
 
 ### Prepared manual protected-main path
 
@@ -27,33 +41,55 @@ alias stops the workflow for owner reconciliation. Deployment status goes to
 hosting issue **#8**, not the closed PR #10. Read the focused
 [H1 execution record](review/site-sol-continuation-20261005/H1.md).
 
-**Live repository check on 5 October: `main` is not protected.** No protection or
-environment setting was changed here. Source migration and passing fixtures do
-not mean hosting is configured. Do not install `refs/pull/10/merge` or the old
-work branch as new environment rules; no arbitrary PR/branch mode is enabled.
+**Live repository check on 5 October: `main` is not protected.** No GitHub
+protection or environment setting was changed here: the installed GitHub
+connector has no administration/secrets/environment write operations. Cloudflare
+Pages read/edit access was verified, but its token-permission endpoint returned
+`9109: Unauthorized to access requested resource`. The chat connection is not a
+GitHub Actions deployment credential. Do not install `refs/pull/10/merge` or the
+old work branch as new environment rules; no arbitrary PR/branch mode is enabled.
 
-### Owner configuration, once activation is requested
+### Owner configuration that can be prepared now
 
-1. Use one dedicated Cloudflare Pages **Direct Upload** staging project. Keep its
-   production branch `production-disabled`; no Git integration, Functions or
-   provider-injected analytics. Do not repurpose production Pages or buy a plan.
+1. Use **`oborskyi-author-ci-staging`** in the connected account. It is already a
+   dedicated Cloudflare Pages **Direct Upload** project with production branch
+   `production-disabled`, no Git source and no injected analytics. No Functions
+   or assets have been deployed. No new project, custom domain, DNS change or
+   paid plan is required for the first `pages.dev` staging deployment.
 2. Create an account-scoped token with **Account → Cloudflare Pages → Edit** for
    the intended account. Store it in the GitHub `staging` environment secret
    below. Never paste it into an issue/chat or commit it. Account-scoped permission
    does not mean project-only permission.
-3. Protect `main` with reviewed pull requests and the required current basic/RI
-   checks. Protect the GitHub `staging` environment with a selected **`main`**
-   branch rule and an owner reviewer where available. The live branch API must
-   report `protected:true`; environment restriction alone does not replace it.
+3. In repository Settings → Branches, protect **`main`** with pull requests and
+   required current checks **`checks`** (Site basic checks) and **`Local navigation
+   and RI freshness`**. Require the branch to be up to date. Protect the GitHub
+   `staging` environment with a selected **`main`** branch rule and an owner
+   reviewer where available. If there is only one reviewer, do not enable a
+   self-review restriction that makes approval impossible. The live branch API
+   must report `protected:true`; environment restriction alone does not replace it.
 4. Set these existing configuration names, without putting values in source:
 
 | Name | Location | Purpose |
 | --- | --- | --- |
 | `CLOUDFLARE_API_TOKEN` | `staging` environment secret | Intended account's Pages Edit token. |
-| `CLOUDFLARE_ACCOUNT_ID` | `staging` environment variable | Account's 32-character ID. |
-| `CLOUDFLARE_PAGES_PROJECT` | `staging` environment variable | Dedicated Direct Upload project name. No actual project is asserted here. |
-| `SITE_STAGING_CREATE_PROJECT` | `staging` environment variable | `true` only for initial creation of a missing `*-staging` project; otherwise false/absent. |
-| `SITE_STAGING_ENABLED` | Repository Actions variable | Enable last, after hosting authorization, source integration, protected-main/environment setup and removal of the two pause guards in a reviewed change. |
+| `CLOUDFLARE_ACCOUNT_ID` | `staging` environment variable | Connected account's 32-character ID; supplied to the maintainer separately. It is not the Pages project UUID. |
+| `CLOUDFLARE_PAGES_PROJECT` | `staging` environment variable | **`oborskyi-author-ci-staging`**. |
+| `SITE_STAGING_CREATE_PROJECT` | `staging` environment variable | **`false`**: the project already exists. |
+| `SITE_STAGING_ENABLED` | Repository Actions variable | Keep **`false`**/absent now. Enable last, after current-source performance acceptance, approved source integration, protected-main/environment setup and a reviewed removal of the two pause guards. |
+
+Configure these in GitHub **Settings → Environments → staging**; the last
+repository switch is under **Settings → Secrets and variables → Actions →
+Variables**. Store the token as an environment secret, not as a plaintext variable.
+Token creation and GitHub configuration are the remaining owner actions; the
+plugin's Pages connection cannot install them. Leave its credential in the
+provider connection rather than trying to export it.
+
+`oborskyi-author-ci-staging.pages.dev` is an allocated project subdomain, **not a
+working staging site**. The intended stable preview alias after successful
+promotion is `https://staging.oborskyi-author-ci-staging.pages.dev`; it has not been
+uploaded or tested. Record the actual immutable URL returned by deployment rather
+than guessing it. DNS/SSL configuration for a custom domain is outside this first
+staging path and does not unblock the missing GitHub credential/protection.
 
 An existing incompatible project is rejected, never silently converted. Current
 deployment code pins `cloudflare/wrangler-action` to
