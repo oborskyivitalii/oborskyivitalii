@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
     inputs:
       candidate_sha:
-        description: Exact source commit
+        description: Exact protected-main tip (manual staging source)
         required: true
         type: string
 permissions:
@@ -20,6 +20,7 @@ jobs:
       artifact_upload_digest: ${{ steps.public.outputs.artifact-digest }}
       public_digest: ${{ steps.identity.outputs.digest }}
       gate_artifact_id: ${{ steps.gate.outputs.artifact-id }}
+      gate_upload_digest: ${{ steps.gate.outputs.artifact-digest }}
     env:
       SITE_CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
     steps:
@@ -60,19 +61,19 @@ jobs:
       false &&
       vars.SITE_STAGING_ENABLED == 'true' &&
       github.repository == 'oborskyivitalii/oborskyivitalii' &&
-      (github.event_name == 'workflow_dispatch' ||
-       (github.event.pull_request.number == 10 &&
-        github.event.pull_request.head.repo.full_name == github.repository &&
-        github.event.pull_request.head.ref == 'work/site-v1-20261001'))
+      github.event_name == 'workflow_dispatch' &&
+      github.ref == 'refs/heads/main' &&
+      github.sha == inputs.candidate_sha
     permissions:
       contents: read
       actions: read
       deployments: write
-      pull-requests: write
+      issues: write
     uses: ./.github/workflows/site-staging.yml
     with:
-      candidate_sha: ${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
+      candidate_sha: ${{ inputs.candidate_sha }}
       public_artifact_id: ${{ needs.checks.outputs.artifact_id }}
       public_digest: ${{ needs.checks.outputs.public_digest }}
       upload_digest: ${{ needs.checks.outputs.artifact_upload_digest }}
       gate_artifact_id: ${{ needs.checks.outputs.gate_artifact_id }}
+      gate_upload_digest: ${{ needs.checks.outputs.gate_upload_digest }}

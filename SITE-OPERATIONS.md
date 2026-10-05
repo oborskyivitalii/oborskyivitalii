@@ -1,5 +1,15 @@
 # First site: candidate, review and release
 
+## Current staging source boundary — 2026-10-05
+
+The prepared staging path now uses manual protected-main dispatch and immutable
+basic artifacts, not the historical open-PR-10 source. Read the current
+[SITE-STAGING runbook](SITE-STAGING.md) and
+[H1 record](review/site-sol-continuation-20261005/H1.md). Both false deployment
+guards remain. Live main is currently unprotected; no environment/account/host
+configuration was changed. Code fixtures do not establish a staging URL or
+hosted acceptance. Historical recipes below are superseded where they conflict.
+
 ## Production host and analytics preparation — 2026-10-04
 
 The maintainer selects **GitHub Pages** for the eventual production site and

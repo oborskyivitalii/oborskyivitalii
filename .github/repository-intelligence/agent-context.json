@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "88ecade3a24cc638288ae81eaafe284960ee2d359f6080329c0a70cb8c258ccc",
+    "digest": "1ee94df56a6790887abb4db4e934689c29e5dfb16ccd650d9f0170a869955ef5",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -58,7 +58,7 @@
       {
         "path": ".github/workflows/site-checks.yml",
         "identity_mode": "content",
-        "sha256": "c1c98017c2edb249074fd92a87107a2a700b338126be9ba459c7094350cfddc0"
+        "sha256": "9ac88c88f32581b55f266abf9e866a3897ad5a91f9a92fa26c20f7cbe54a4721"
       },
       {
         "path": ".github/workflows/site-navigation-probe.yml",
@@ -78,7 +78,7 @@
       {
         "path": ".github/workflows/site-staging.yml",
         "identity_mode": "content",
-        "sha256": "a6c7422639edfee5b8416a66b28267e6bff8f5ac04405726df1aa76977abf72b"
+        "sha256": "52dcd5d2bd9241d490a9b84bbd68d59c1196d7969d2395a8880a35f8a8dc6528"
       },
       {
         "path": ".gitignore",
@@ -87,7 +87,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "183d63c461c9c32b3a257e1577b7c5d4cbe32033d8285eb75793d416e5f1d1ff"
+        "sha256": "e30f8d15b9849b4d4223369a5d9c82fba10fd3bf8f14780ed10b836302f7115e"
       },
       {
         "path": "BACKLOG.md",
@@ -127,7 +127,7 @@
       {
         "path": "SITE-OPERATIONS.md",
         "identity_mode": "content",
-        "sha256": "231ea96e96ec7214ce5c4488f27c9140bbe70874e756aeb4d43c956a1babdbef"
+        "sha256": "dd65c8505f89fa1d4f6a17e86857d8233062c0e1739c1f46d1138643400760f8"
       },
       {
         "path": "SITE-RELEASE-GATES.md",
@@ -152,7 +152,7 @@
       {
         "path": "SITE-STAGING.md",
         "identity_mode": "content",
-        "sha256": "59c7e61f8d5578d5c1d48609a5c0c2c80403cd938aa40ddb8f722430d897d486"
+        "sha256": "f1cb6214adde77a881f8885de8705a34ece015b534d61b52bc4111795323897c"
       },
       {
         "path": "SITE-VISUAL-REVIEW.md",
@@ -871,6 +871,11 @@
       {
         "path": "review/site-scroll-sync-20261004/export.cjs",
         "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/H1.md",
+        "identity_mode": "content",
+        "sha256": "28220161b8ae43319ad612b0d18ae9c72243b60a09d026f344bbc0b29f08d50f"
       },
       {
         "path": "review/site-sol-continuation-20261005/R1.md",
@@ -3043,6 +3048,10 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tests/staging-trust.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tests/staging.test.cjs",
         "identity_mode": "existence"
       },
@@ -3302,6 +3311,10 @@
       },
       {
         "path": "tools/staging/state.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/staging/trust.cjs",
         "identity_mode": "existence"
       }
     ]
@@ -4210,6 +4223,13 @@
     {
       "path": "review/site-scroll-sync-20261004/check-offline-security.py",
       "title": "review/site-scroll-sync-20261004/check-offline-security.py",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/H1.md",
+      "title": "H1 — protected-main staging trust, still paused",
       "instructions": [
         "AGENTS.md"
       ]
