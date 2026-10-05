@@ -33,3 +33,16 @@ Issue #19 closes this source repair. Parent #12/#13/#14 and hosting #8 remain op
 
 P1 and V1 are stacked Draft increments. Cold Writing still fails a current-source
 window, so they and #18 are not promoted to main. See REPORT and SOL-TASKS.
+
+## Parallel staging integration reconciled
+
+PR #25 was merged by the parallel staging execution into #18 at
+`2201411fff00c0045e42c648ca5ed71633878793`, source head
+`5fae11db89c584481264d7b7b08406b1fe82babd`. This continuation preserved and
+integrated that source delta into P1/V1, verified recorded HTTP hashes against
+the exact deployed source and reran all 14 staging/trust/reporting tests plus the
+ten-test default. Its current authorization removes the two false staging guards;
+repository opt-in, main/Environment and full-promotion checks remain. Earlier
+no-upload/pause statements above describe the R1/H1/H2 preparation stage.
+The actual preview uses 51611505, not the newer P1/V1 runtime; full acceptance
+and recovery remain pending. See current SITE-STAGING and Cloudflare REPORT.

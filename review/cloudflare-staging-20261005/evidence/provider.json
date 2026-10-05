@@ -1,0 +1,16 @@
+{
+  "success": true,
+  "id": "505498da-a176-4f26-a4c4-6c891ee7dead",
+  "url": "https://505498da.oborskyi-author-ci-staging.pages.dev",
+  "environment": "preview",
+  "latest_stage": {
+    "name": "deploy",
+    "started_on": null,
+    "ended_on": "2026-10-05T22:13:05.659246Z",
+    "status": "success"
+  },
+  "aliases": [
+    "https://candidate-51611505d941ae2996.oborskyi-author-ci-staging.pages.dev"
+  ],
+  "source": "51611505d941ae2996a87782840da418722451f6"
+}

@@ -11,15 +11,19 @@ Writing ще має один провал ліміту, тому #18 не пер
 | P1, PR #22 | Draft: нативний snapshot, instant restore, приховання активного SVG fallback від layout, окремий render feedback. Його початкові холодні провали збережено. |
 | V1, PR #23 | Draft: правильні нормалі мозку, плавне згасання другорядних деталей, точніші culling bounds, відсікання слабких субпіксельних граней і дешевша фільтрація Writing. Новий атлас і поточні знімки готові. |
 | H2, PR #24 | Змерджено в #18: перевірено Cloudflare API, створено окремий Direct Upload проєкт `oborskyi-author-ci-staging` і оновлено інструкцію. GitHub secrets/Environment/protection потребують owner дії. |
+| Staging, PR #25 | Паралельний апдейт уже змерджено в #18; підхоплено в P1/V1. Preview #18 доступний за URL, його звіт містить HTTPS smoke і 20 provider-browser видів. Pause guards прибрано під поточною staging-авторизацією; opt-in/main/artifact/full-gate checks збережено. |
 
 Готові PR #20 → #21 змерджені **merge commits**, із закріпленим head SHA та
 перевіреними кроками CI. [Точні SHA, дерева й CI](MERGE-RECORD.md).
-Main лишається `2ebdd731d5dcf1e12f43f60dd0b3a6ec49b94684`. Обидва false guards
-збережені; GitHub branch protection та Environment тут не змінювалися. Новий
-Cloudflare CI-проєкт налаштовано без upload; DNS та аналітику не активували.
-Паралельно попередній Pages-проєкт отримав зовнішню Git-інтеграцію і provider
-deployments, включно з автоматичним preview #24. Їх не перезаписували й не
-приймали як full hosted evidence. [Точний стан Cloudflare](H2-CLOUDFLARE.md).
+Main лишається `2ebdd731d5dcf1e12f43f60dd0b3a6ec49b94684`. Паралельний #25
+прибрав staging pause guards; repository opt-in, protected-main/Environment та
+immutable-artifact checks лишаються. GitHub admin налаштування ще не виконано.
+Новий CI-проєкт має [immutable preview #18](https://505498da.oborskyi-author-ci-staging.pages.dev)
+від source `51611505d941ae2996a87782840da418722451f6` з перевірених basic артефактів.
+Це bootstrap для перегляду; stable alias і повний hosted profile ще не пройдено.
+Попередній Git-проєкт та його автоматичні previews збережено. DNS і production
+аналітику не активували. [Поточний staging звіт](../cloudflare-staging-20261005/REPORT.md)
+та [історична підготовка](H2-CLOUDFLARE.md).
 Повного hosted або незалежного прийняття поточної P1/V1 версії немає.
 
 ## Продуктивність
@@ -61,7 +65,7 @@ font-size reflow, нульову висоту, interruption і повернен�
 
 ## Issues та подальша інтеграція
 
-Перевірено всі наявні PR і issues. #20/#21/#24 завершені; #18/#22/#23 лишаються Draft.
+Перевірено всі наявні PR і issues. #20/#21/#24/#25 завершені; #18/#22/#23 лишаються Draft.
 Старі #9/#10/#16/#17 уже змерджені, #3/#4 закриті раніше. #19 закрито після
 інтеграції R1. #12/#13/#14/#15 лишаються відкритими через продуктивність,
 поточну hosted/release/незалежну перевірку; #8 — через фактичний запуск staging.
@@ -75,9 +79,12 @@ content критерії; це продовження їх не виконало
 Власник має створити Pages Edit token для акаунта, зберегти його як secret у
 `staging`, внести account ID та `CLOUDFLARE_PAGES_PROJECT=oborskyi-author-ci-staging`,
 `SITE_STAGING_CREATE_PROJECT=false` і захистити main/Environment.
-У нового CI-проєкту немає deployment чи перевіреного живого alias. Зовнішній
-`oborskyi-site-staging.pages.dev` має provider success, але HTTP/bytes/full gate
-тут не перевірено і його Git source несумісний із підготовленим workflow.
+Для перегляду preview #18 ці owner кроки не потрібні. У #25 записано 28 HTTPS
+file/hash/MIME checks, redirects, noindex/cache/404 та 20 browser views; перевірено
+відповідність записаних HTTP-хешів точному deployed source і package identity.
+Це не новий мережевий re-test і не full hosted acceptance поточного P1/V1 runtime.
+Preview #18 використовує старіші public bytes; P1/V1 експеримент лишається окремим
+Draft. Stable alias ще не promoted. Git source старого проєкту несумісний із CI.
 Повний набір запускається на незмінному staging до promotion та на production
 після deploy; тут лишається мінімальний default.
 

@@ -1,6 +1,41 @@
 # Agent guidance for personal publications
 
-## Cloudflare preparation amendment — 2026-10-05
+## Live staging and current authorization — 2026-10-05
+
+The maintainer explicitly authorizes Cloudflare staging provisioning, uploads and
+the required repository/instruction/issue/PR updates. This supersedes the older
+staging publication pauses below, for staging only. Production GitHub Pages,
+production analytics, domain/DNS changes and paid purchases remain outside this
+activation. Preserve Draft #18 while its idle/cold Writing performance gates fail.
+
+The connected Cloudflare account now contains the dedicated Direct Upload project
+`oborskyi-author-ci-staging`, with production branch `production-disabled`, no Git
+integration, Functions or injected analytics. Its immutable preview is
+[available here](https://505498da.oborskyi-author-ci-staging.pages.dev), from source
+`51611505d941ae2996a87782840da418722451f6` and the verified successful basic-run
+artifacts. This authorized bootstrap upload uses the connected provider; it is
+not a protected-main Actions deployment or full hosted acceptance. No stable
+`staging` alias was promoted, and the full staging pipeline has not run.
+
+Read the current [SITE-STAGING runbook](SITE-STAGING.md) for the exact deployed
+identity and remaining owner steps. The current change removes the two explicit
+staging pause guards; repository opt-in, protected-main source verification and
+the protected `staging` environment remain required for Actions automation.
+H1/PR #21 is integrated into #18, not main. Main is still unprotected, and GitHub
+environment/token/variable setup is pending. Do not merge #18 merely to activate
+hosting; integrate required infrastructure separately after review, or complete
+its performance work. Keep #8/#13 open for full hosted evidence and recovery.
+
+The dated execution sections below retain historical decisions. Apply this
+current staging authorization where their pause/configuration statements conflict.
+
+## Historical Cloudflare preparation amendment — 2026-10-05
+
+This preparation record is retained from PR #24. Its asset-upload pause and false
+guard instructions are superseded by the staging authorization above. Preserve
+the earlier `oborskyi-site-staging` project; only `oborskyi-author-ci-staging` is
+the current Direct Upload target. Read
+`review/site-sol-continuation-20261005/H2-CLOUDFLARE.md` for its preparation evidence.
 
 The maintainer requests inspection and preparation through the newly connected
 Cloudflare plugin. This supersedes older blanket holds on preparatory provider
@@ -30,7 +65,9 @@ remove primary formula glyphs to compensate for native layout.
 Preserve original creation times in same-gesture wheel fixtures; >180ms creation
 gaps deliberately release endpoint ownership. Keep the separate fresh-input and
 middle-history checks, one Canvas/clock, finite grammar and ten-test default.
-Both false hosting guards remain false. Main is currently unprotected; GitHub
+Staging #25 removed the explicit pause guards; opt-in and protected-main trust
+remain. Its basic-artifact preview is live; full hosted acceptance/stable promotion
+remain pending. Main is currently unprotected; GitHub
 protection/Environment settings were not changed. Cloudflare preparation is
 recorded above and in H2-CLOUDFLARE. SITE-STAGING uses manual protected-main and
 schema-2 recovery. Hosting/release,
