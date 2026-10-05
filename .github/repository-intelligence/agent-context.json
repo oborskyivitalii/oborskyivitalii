@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "35a9c82c97698243e7741e84f855379d8d7db4a67aaf597eb7fc47bed9c98e59",
+    "digest": "d20d7c5c9aed72120cf9d07b4fec4c8b93353821de9d06faa2e69319ed1e0b49",
     "inputs": [
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -54,7 +54,7 @@
       {
         "path": ".github/workflows/site-checks.yml",
         "identity_mode": "content",
-        "sha256": "139dc06d5d1d2d96317c7d3d249404a4fe8e6a213e330472ddaeadbec0e25a49"
+        "sha256": "be9c1a7a8f06250cf375814cba644638d990df1e95efe6647e3f8fe6abf674a4"
       },
       {
         "path": ".github/workflows/site-navigation-probe.yml",
@@ -74,7 +74,7 @@
       {
         "path": ".github/workflows/site-staging.yml",
         "identity_mode": "content",
-        "sha256": "1e43a196095d34cedaa8caee7c1d19b83508dfbbb7b185d317c4e04d3df60db0"
+        "sha256": "2ed264f8506fabc81c5a9f5cb299b1552b7aa30d4a366a44372337a5397ec9b2"
       },
       {
         "path": ".gitignore",
