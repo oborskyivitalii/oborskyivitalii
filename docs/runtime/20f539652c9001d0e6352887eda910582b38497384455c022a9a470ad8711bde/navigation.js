@@ -118,13 +118,11 @@
     return !document.hidden && window.SiteScene?.canTravel()===true && (!presentation||presentation.canTravel());
   }
   function restoreScroll(left,top) {
-    // A route restore must be immediate even when ordinary anchor scrolling is
-    // smooth. Flush the computed preference before restoring the inline value:
-    // otherwise Chromium can defer this auto call using the old smooth style.
-    const style=document.documentElement.style,value=style.getPropertyValue("scroll-behavior"),priority=style.getPropertyPriority("scroll-behavior");
-    style.setProperty("scroll-behavior","auto","important");
-    try{void getComputedStyle(document.documentElement).scrollBehavior;window.scrollTo({left,top,behavior:"auto"});}
-    finally{if(value)style.setProperty("scroll-behavior",value,priority);else style.removeProperty("scroll-behavior");}
+    // Explicit instant behavior ignores the reader's smooth anchor preference
+    // without mutating the root style and forcing another style flush.
+    const start=window.SiteEngineStages?performance.now():0;
+    window.scrollTo({left,top,behavior:"instant"});
+    if(start){const time=performance.now();window.SiteEngineProbe?.({kind:'stage',part:'scroll-native',time,start,duration:time-start,page});}
   }
   function endpointProbe(reason,detail={}) {
     window.SiteEngineProbe?.({kind:'endpoint',time:performance.now(),reason,token:endpoint?.own,page,...detail});
@@ -221,7 +219,16 @@
     });
   }
   function mount(data,url,position) {
+    // Clear the presentation transform before DOM writes and landing. The
+    // nested scene measurement then reuses that same native layout snapshot.
+    const run=()=>mountNative(data,url,position);
+    return effects?.measure?effects.measure(run):run();
+  }
+  function mountNative(data,url,position) {
+    let stage=window.SiteEngineStages?performance.now():0;
+    const span=part=>{if(stage){const time=performance.now();window.SiteEngineProbe?.({kind:'stage',part,time,start:stage,duration:time-stage,page:data.page});stage=time;}};
     window.SiteArchive?.destroy();
+    span('mount-unmount');
     content.replaceChildren(data.main,data.footer);
     document.body.dataset.page=data.page;page=data.page;
     document.documentElement.lang=data.lang;document.title=data.title;
@@ -233,18 +240,24 @@
       const target=new URL(link.href,window.location.href);
       if(routeFor(target)===page)link.setAttribute("aria-current","page");else link.removeAttribute("aria-current");
     }
+    span('mount-dom');
     window.dispatchEvent(new CustomEvent("site:page-mount",{detail:{page}}));
     // Apply filters before the native scroll/style flush, so Writing does not
     // lay out the complete archive and immediately lay it out a second time.
     window.SiteArchive?.mount();
+    span('mount-archive');
     if(position==="end")mountEndpoint();
     if(position==="end")restoreScroll(0,Math.max(0,document.documentElement.scrollHeight-innerHeight));
     else restoreScroll(position?.[0]||0,position?.[1]||0);
+    span('mount-scroll');
     let target=null;
     try{target=url.hash?document.getElementById(decodeURIComponent(url.hash.slice(1))):null;}catch{/* Invalid fragments do not block a page. */}
     if(!position&&target&&target.getClientRects().length)target.scrollIntoView({block:"start",behavior:"instant"});
+    span('mount-anchor');
     window.SiteScene?.refresh({sync:true});
+    span('mount-layout');
     window.dispatchEvent(new CustomEvent("site:page-ready",{detail:{page}}));
+    span('mount-ready');
   }
   function prepare(data){
     const start=window.SiteEngineProbe?performance.now():0;

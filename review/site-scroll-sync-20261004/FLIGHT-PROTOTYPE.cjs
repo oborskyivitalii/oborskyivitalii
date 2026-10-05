@@ -139,7 +139,10 @@ function installEndScroll(gateFactory,isEnd,isStart){
 function createPresentation(content){
   let contentFlight=true;try{contentFlight=localStorage.getItem('vo.content-flight')!=='off';}catch{/* In-tab preference is sufficient. */}
   function setPlane(pose){
-    if(content.dataset.flightStage!==pose.stage)content.style.transformOrigin="50% "+(window.scrollY+window.innerHeight*.5-content.offsetTop)+"px";
+    if(content.dataset.flightStage!==pose.stage){
+      const top=window.SiteEffects?.nativePlaneTop;
+      content.style.transformOrigin="50% "+(window.scrollY+window.innerHeight*.5-(typeof top==='number'?top:content.offsetTop))+"px";
+    }
     content.dataset.flightStage=pose.stage;content.dataset.flightDepth=String(pose.z);content.style.opacity=String(pose.opacity);
     if(contentFlight)content.style.transform="perspective(1200px) translateZ("+pose.z+"px)";else content.style.removeProperty("transform");
   }
@@ -159,7 +162,13 @@ function createPresentation(content){
 function measurePlane(read){
   const plane=document.getElementById('site-content'),transform=plane?.style.transform;
   if(transform)plane.style.transform='none';
-  try{return read();}finally{if(transform)plane.style.transform=transform;}
+  try{
+    const result=read();
+    // Reuse the same native layout snapshot when presentation resumes. Reading
+    // offsetTop after mount restores root styles would force a second flush.
+    if(plane)window.SiteEffects.nativePlaneTop=plane.offsetTop;
+    return result;
+  }finally{if(transform)plane.style.transform=transform;}
 }
 function decorate(html){
   const code=`const flightPose=${flightPose.toString()};\nwindow.SiteEffects.navigation=${createPresentation.toString()};\nwindow.SiteEffects.measure=${measurePlane.toString()};`;

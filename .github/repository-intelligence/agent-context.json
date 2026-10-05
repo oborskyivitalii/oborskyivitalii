@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "1ee94df56a6790887abb4db4e934689c29e5dfb16ccd650d9f0170a869955ef5",
+    "digest": "36869b91150655c20e452f3c2cb79d58ca0deeab6a2fec0b98fe636656d4b0ce",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -87,7 +87,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "e30f8d15b9849b4d4223369a5d9c82fba10fd3bf8f14780ed10b836302f7115e"
+        "sha256": "0f8c8bd8e494b8f676ea9a5a1b09c3dce0fdfea8a9ad82323d0674e7d975606e"
       },
       {
         "path": "BACKLOG.md",
@@ -213,48 +213,48 @@
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/89aa3544002cfa53e1dfc7a519dacee119d9834755446a05d25e02a2372f6812/archive.js",
+        "path": "docs/runtime/20f539652c9001d0e6352887eda910582b38497384455c022a9a470ad8711bde/archive.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/89aa3544002cfa53e1dfc7a519dacee119d9834755446a05d25e02a2372f6812/navigation.js",
+        "path": "docs/runtime/20f539652c9001d0e6352887eda910582b38497384455c022a9a470ad8711bde/navigation.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/89aa3544002cfa53e1dfc7a519dacee119d9834755446a05d25e02a2372f6812/space.js",
+        "path": "docs/runtime/20f539652c9001d0e6352887eda910582b38497384455c022a9a470ad8711bde/space.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/89aa3544002cfa53e1dfc7a519dacee119d9834755446a05d25e02a2372f6812/styles.css",
+        "path": "docs/runtime/20f539652c9001d0e6352887eda910582b38497384455c022a9a470ad8711bde/styles.css",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/89aa3544002cfa53e1dfc7a519dacee119d9834755446a05d25e02a2372f6812/theme.js",
+        "path": "docs/runtime/20f539652c9001d0e6352887eda910582b38497384455c022a9a470ad8711bde/theme.js",
         "identity_mode": "existence"
       },
       {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "655a7d4355ce6988a0644cbc315e04d38eec18c7cdedb936a512e6ea129e4040"
+        "sha256": "75c3f75c13d77ca738608dcaa9028e8b76dee6a65e198d2f0316c2d844a9e139"
       },
       {
-        "path": "docs/snapshots/364ca34eb205d49e7f44a4a78384c634fc12a75c264e979b2c7f6ce7d85efaf1/research.html",
+        "path": "docs/snapshots/3890e62ee919e4aa27f5e1c71f9532084af353d3b68aa49ae2bedd7cc4d5f542/research.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/5466c0968921a941dac2a843e40d30f574d2d3e9f9f42a96df945267ac3fbf26/credits.html",
+        "path": "docs/snapshots/77bb09b58f40864cf436d8735d0cf4898c01e96170479d8b41dad2c8a733e812/credits.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/583350702053e1803346e21f55e76a89945664e3c6991ea177af286dfc102d68/talks.html",
+        "path": "docs/snapshots/a78c1c37981eceb8e37716dd61f0f516c26ef808fe40fee790577810c8c58d00/talks.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/d6fc03e1c26ea1c54823af7f3ed47166e981fbac676290a90e9872f9c1585ac7/writing.html",
+        "path": "docs/snapshots/c09a264dfcb2ec8a82e7ce38fb8ad2098014f73a7cf5e0553b60f58ce17cd13f/index.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/e7ed0a7fd94cc628cdd9a6875e4529bb9c4e5c4aeb1ff670b03c16c30686309a/index.html",
+        "path": "docs/snapshots/fb48f2591e5bb259beabe5b37333678ce22705d49b19cceb0a5151ac2dfa63a1/writing.html",
         "identity_mode": "existence"
       },
       {
@@ -878,6 +878,11 @@
         "sha256": "28220161b8ae43319ad612b0d18ae9c72243b60a09d026f344bbc0b29f08d50f"
       },
       {
+        "path": "review/site-sol-continuation-20261005/P1.md",
+        "identity_mode": "content",
+        "sha256": "4c58bb79f99f2ab36c19f6fe4d76299b3e6d26d5ecc0cb468e3c0a533cf78caf"
+      },
+      {
         "path": "review/site-sol-continuation-20261005/R1.md",
         "identity_mode": "content",
         "sha256": "373496798fc734c2c1965b85ad940f3f6cfc1905a3a971544555816f72651057"
@@ -895,6 +900,10 @@
         "identity_mode": "existence"
       },
       {
+        "path": "review/site-sol-continuation-20261005/check-stages.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "review/site-sol-continuation-20261005/evidence/input-tail-after.json",
         "identity_mode": "content",
         "sha256": "ad1c124eb63e8554d9b91cfc4a5fdf252b8775351594eaf3b2b7edb9f395e00f"
@@ -905,6 +914,34 @@
         "sha256": "682903cc09e3c3f3c1e7cd479f7792973b6b2e0f7c75211480eaec057ff2ce73"
       },
       {
+        "path": "review/site-sol-continuation-20261005/evidence/p1-failures.json",
+        "identity_mode": "content",
+        "sha256": "d1ad41c5856ae0ff2b5ca4d2b5e357e3b3954a1b5ce4a0060175c66d4ebe784f"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/p1-fallback-pairs.json.gz",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/p1-pairs.json.gz",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/p1-reverse.json",
+        "identity_mode": "content",
+        "sha256": "b1a48d0d155c6f8db3ae028a55c833ab09b67cc78582630ea2ac2e99d2519ffc"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/p1-summary.json",
+        "identity_mode": "content",
+        "sha256": "250daeb4f6d74aa1192c766fbfc27a4951e53e3e5892406ab05f7b0a5781c341"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/reverse-failures.json",
+        "identity_mode": "content",
+        "sha256": "7e0f68d5c4efecc0ad4cb08c5b82c3d4e79de75abbf70eef3b081de65da9f38e"
+      },
+      {
         "path": "review/site-sol-continuation-20261005/evidence/reverse-final.json",
         "identity_mode": "content",
         "sha256": "14d23615e4976a7ce2fd1b0bf1f26aca407a5d6e68157db27f1a44cce1b99fc5"
@@ -913,6 +950,30 @@
         "path": "review/site-sol-continuation-20261005/evidence/reverse-first.json",
         "identity_mode": "content",
         "sha256": "39dd5b2445f8d0b67f4e2ad3eb4f062001d11182b85e6684280a5c8bf18c8918"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/stages-after.json",
+        "identity_mode": "content",
+        "sha256": "42d83574315824e52841db2d2c1286c5394e4ef393080dcd9d91ae07bc89a95e"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/stages-before.json",
+        "identity_mode": "content",
+        "sha256": "7764dca9818921d5d7b2d15bfe411f1ac6e06a94df90d4fcbf73ad1f80530b08"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/stages-fallback.json",
+        "identity_mode": "content",
+        "sha256": "b15129c5d1c27725bad6a4abac26b55122a2356a4d1d392bb0f4bf27dd204742"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/stages-native-current.json",
+        "identity_mode": "content",
+        "sha256": "13633caf00e8f44dadfb9dbd57f85c5c427c7a89a5b73589b655cc836781f7ee"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/summarize-pairs.cjs",
+        "identity_mode": "existence"
       },
       {
         "path": "review/site-surface-review-20261004/REPORT.md",
@@ -2451,7 +2512,7 @@
       {
         "path": "review/site-v1-offline-bundle-v11.json",
         "identity_mode": "content",
-        "sha256": "0b0472d498e3e11a1bbaaef76be899dddbc71bd26a20b76e3c44c98e32e11564"
+        "sha256": "0e5d7b7ed2722edbe7289b7ef375ea278e189527f56033a80e8634996f12377c"
       },
       {
         "path": "review/site-v1-offline-bundle-v3.json",
@@ -2505,7 +2566,7 @@
       {
         "path": "review/site-v1-static-previews-v11.json",
         "identity_mode": "content",
-        "sha256": "fe563f8ac07c3388f03be5f9e9eaac79f7033f1995df5dd0b18f244a1b55972e"
+        "sha256": "60cc47f6143e7128c37f8b4dd8f7b9afb189fd6407c867343d96ddb1bbbb9c72"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -2967,7 +3028,7 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "8157755a19cde984574ec8801426db97d274f7ba7f0ccd4afb5afc1fa36f26cd"
+        "sha256": "4395b26d00469d30349652302955efca902f8048ce4a0e6683fb639586430397"
       },
       {
         "path": "site/routes.json",
@@ -4235,6 +4296,13 @@
       ]
     },
     {
+      "path": "review/site-sol-continuation-20261005/P1.md",
+      "title": "P1 — Writing mount and native layout",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "review/site-sol-continuation-20261005/R1.md",
       "title": "R1 — reverse endpoint repair",
       "instructions": [
@@ -4256,6 +4324,34 @@
       ]
     },
     {
+      "path": "review/site-sol-continuation-20261005/evidence/p1-failures.json",
+      "title": "review/site-sol-continuation-20261005/evidence/p1-failures.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/p1-reverse.json",
+      "title": "review/site-sol-continuation-20261005/evidence/p1-reverse.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/p1-summary.json",
+      "title": "review/site-sol-continuation-20261005/evidence/p1-summary.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/reverse-failures.json",
+      "title": "review/site-sol-continuation-20261005/evidence/reverse-failures.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "review/site-sol-continuation-20261005/evidence/reverse-final.json",
       "title": "review/site-sol-continuation-20261005/evidence/reverse-final.json",
       "instructions": [
@@ -4265,6 +4361,34 @@
     {
       "path": "review/site-sol-continuation-20261005/evidence/reverse-first.json",
       "title": "review/site-sol-continuation-20261005/evidence/reverse-first.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/stages-after.json",
+      "title": "review/site-sol-continuation-20261005/evidence/stages-after.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/stages-before.json",
+      "title": "review/site-sol-continuation-20261005/evidence/stages-before.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/stages-fallback.json",
+      "title": "review/site-sol-continuation-20261005/evidence/stages-fallback.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/stages-native-current.json",
+      "title": "review/site-sol-continuation-20261005/evidence/stages-native-current.json",
       "instructions": [
         "AGENTS.md"
       ]

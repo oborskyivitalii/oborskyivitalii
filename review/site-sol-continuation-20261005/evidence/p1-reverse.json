@@ -1,0 +1,135 @@
+{
+  "source": "b85e1cb880fc83a4233deb5329d7c262e788d6b1fb741f6d5bea4ad9c893ad9d",
+  "browser": "153.0.8010.12",
+  "scope": "Direct reverse-continuation API; controlled late 900px footer growth. This establishes an endpoint reflow gap, not the cause of the reported intermittent top landing.",
+  "rows": [
+    {
+      "width": 1440,
+      "motion": "on",
+      "lateGrowth": false,
+      "samples": [
+        {
+          "stage": "mount",
+          "y": 4635,
+          "max": 4635
+        }
+      ],
+      "y": 4635,
+      "max": 4635,
+      "gap": 0,
+      "atEnd": true
+    },
+    {
+      "width": 1440,
+      "motion": "on",
+      "lateGrowth": true,
+      "samples": [
+        {
+          "stage": "mount",
+          "y": 4635,
+          "max": 4635
+        }
+      ],
+      "y": 5498,
+      "max": 5498,
+      "gap": 0,
+      "atEnd": true
+    },
+    {
+      "width": 1440,
+      "motion": "off",
+      "lateGrowth": false,
+      "samples": [
+        {
+          "stage": "mount",
+          "y": 4635,
+          "max": 4635
+        }
+      ],
+      "y": 4635,
+      "max": 4635,
+      "gap": 0,
+      "atEnd": true
+    },
+    {
+      "width": 1440,
+      "motion": "off",
+      "lateGrowth": true,
+      "samples": [
+        {
+          "stage": "mount",
+          "y": 4635,
+          "max": 4635
+        }
+      ],
+      "y": 5498,
+      "max": 5498,
+      "gap": 0,
+      "atEnd": true
+    },
+    {
+      "width": 390,
+      "motion": "on",
+      "lateGrowth": false,
+      "samples": [
+        {
+          "stage": "mount",
+          "y": 8608,
+          "max": 8608
+        }
+      ],
+      "y": 8608,
+      "max": 8608,
+      "gap": 0,
+      "atEnd": true
+    },
+    {
+      "width": 390,
+      "motion": "on",
+      "lateGrowth": true,
+      "samples": [
+        {
+          "stage": "mount",
+          "y": 8608,
+          "max": 8608
+        }
+      ],
+      "y": 9524,
+      "max": 9524,
+      "gap": 0,
+      "atEnd": true
+    },
+    {
+      "width": 390,
+      "motion": "off",
+      "lateGrowth": false,
+      "samples": [
+        {
+          "stage": "mount",
+          "y": 8608,
+          "max": 8608
+        }
+      ],
+      "y": 8608,
+      "max": 8608,
+      "gap": 0,
+      "atEnd": true
+    },
+    {
+      "width": 390,
+      "motion": "off",
+      "lateGrowth": true,
+      "samples": [
+        {
+          "stage": "mount",
+          "y": 8608,
+          "max": 8608
+        }
+      ],
+      "y": 9524,
+      "max": 9524,
+      "gap": 0,
+      "atEnd": true
+    }
+  ]
+}

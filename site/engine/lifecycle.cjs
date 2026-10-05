@@ -45,13 +45,17 @@ module.exports=function(api) {
     return read();
   }
   function measureNative() {
+    let stage=window.SiteEngineStages?clock():0;
+    const span=part=>{if(stage){const time=clock();diagnostic('stage',{part,start:stage,duration:time-stage});stage=time;}};
     layoutPasses++;
     width=Math.max(1,window.innerWidth);height=Math.max(1,window.innerHeight);
     ratio=pixelRatio();
     const maxScroll=Math.max(0,document.documentElement.scrollHeight-height);
     window.SiteNavigation?.reconcileEndpoint?.(maxScroll);
+    span('layout-range');
     const markers=[...document.querySelectorAll("[data-space-stop]")].filter(el=>visible(el) && pageStops[page]?.[el.dataset.spaceStop]).map(el=>({id:pageStops[page][el.dataset.spaceStop],y:Math.max(0,el.getBoundingClientRect().top+window.scrollY-height*.22)}));
     stops=fitScrollStops(markers,maxScroll);
+    span('layout-stops');
     bounds=null;
     if (page==="writing") {
       const results=document.getElementById("archive-results");
@@ -66,6 +70,7 @@ module.exports=function(api) {
       }
       writingAnchor={y:window.scrollY,progress:localProgress};
     }
+    span('layout-writing');
   }
   function flushLayout() {
     if(!layoutDirty||failed)return;
@@ -96,6 +101,7 @@ module.exports=function(api) {
     return true;
   }
   function paintColors(room) {
+    const start=window.SiteEngineStages?clock():0;
     const rgb=Object.fromEntries(Object.entries(colors).map(([key,hex])=>[key,hex.slice(1).match(/.{2}/g).map(value=>parseInt(value,16))]));
     const paper=rgb.paper;
     room.faceColors=room.world.faces.map(f=>{
@@ -108,6 +114,7 @@ module.exports=function(api) {
       return colorFills.get(key);
     });
     room.paletteRevision=paletteRevision;
+    if(start)diagnostic('stage',{part:'model-color',route:room.name,start,duration:clock()-start});
   }
   function roomFor(name,detail=compact||detailTier>=.5||!!journey||flightDetail) {
     // Reduce actual model/paint work on a slow desktop as well as on mobile.
@@ -119,7 +126,9 @@ module.exports=function(api) {
     const variants=rooms.get(name);
     if(!variants.has(detail)){
       const start=window.SiteEngineProbe?clock():0;
-      const room={world:worldFor(name,detail),compact:detail,faceColors:[]};variants.set(detail,room);paintColors(room);
+      const room={world:worldFor(name,detail),name,compact:detail,faceColors:[]};variants.set(detail,room);
+      if(window.SiteEngineStages)diagnostic('stage',{part:'model-build',route:name,start,duration:clock()-start});
+      paintColors(room);
       if(window.SiteEngineProbe)diagnostic('model',{route:name,compact:detail,start,duration:clock()-start,objects:room.world.objects.length,vertices:room.world.objects.reduce((n,o)=>n+o.points.length,0),faces:room.world.faces.length,lines:room.world.lines.length});
     }
     rooms.delete(name);rooms.set(name,variants);
@@ -179,13 +188,18 @@ module.exports=function(api) {
     return shapes;
   }
   function draw() {
+    let stage=window.SiteEngineStages?clock():0;
+    const span=part=>{if(stage){const time=clock();diagnostic('stage',{part,start:stage,duration:time-stage});stage=time;}};
     // Resize only inside the protected paint, retaining the last valid bitmap.
     const w=Math.round(width*ratio),h=Math.round(height*ratio);
     if(canvas.width!==w || canvas.height!==h){canvas.width=w;canvas.height=h;}
     ctx.setTransform(ratio,0,0,ratio,0,0);ctx.clearRect(0,0,width,height);
     const state={current,width,height,ambientTime,compact,scene};
-    const shapes=visibleRooms().concat(sceneEffects?.collect(state)||[]).sort((a,b)=>b.depth-a.depth);
+    const geometry=visibleRooms();span('draw-project');
+    const custom=sceneEffects?.collect(state)||[];span('draw-effects');
+    const shapes=geometry.concat(custom).sort((a,b)=>b.depth-a.depth);span('draw-sort');
     paintShapes(ctx,shapes,colors,sceneEffects?.paint);
+    span('draw-paint');
     const air=atmosphereState(ambientTime);
     scene.style?.setProperty("--air-x",air.x.toFixed(3)+"px");
     scene.style?.setProperty("--air-y",air.y.toFixed(3)+"px");
@@ -195,6 +209,7 @@ module.exports=function(api) {
     scene.dataset.route=page;scene.dataset.travel=journey?"flying":"settled";scene.dataset.rooms=String(rooms.size);
     scene.dataset.geometry=compact||detailTier>=.5||journey||flightDetail?"compact":"full";
     scene.dataset.roomModels=String([...rooms.values()].reduce((count,variants)=>count+variants.size,0));
+    span('draw-state');
   }
   function fail() {
     failed=true;cancel();delete scene.dataset.ready;scene.dataset.state="fallback";
@@ -270,10 +285,13 @@ module.exports=function(api) {
     if(nextDraw===null||time+.5>=nextDraw||!living) {
       const start=clock();
       try{draw();}catch{fail();return;}
+      const renderCost=clock()-start;
       // Text follows the painted camera, including skipped frames and stalls.
       if(travelUpdate)reportTravel(journey?clamp(journey.elapsed/journey.duration):1);
       nextDraw=nextDeadline(nextDraw,time,interval);
-      if(living)quality(clock()-start,time);
+      // Decorative quality responds to rendering cost. The entire callback,
+      // including route mount, is still measured by the outer frame/ready gate.
+      if(living)quality(renderCost,time);
     }
     if(animation||living&&!hold)schedule();
   }

@@ -31,8 +31,8 @@
 
 
 
-  <meta name="site-engine" content="89aa3544002cfa53e1dfc7a519dacee119d9834755446a05d25e02a2372f6812">
-  <meta name="site-route" content="583350702053e1803346e21f55e76a89945664e3c6991ea177af286dfc102d68">
+  <meta name="site-engine" content="20f539652c9001d0e6352887eda910582b38497384455c022a9a470ad8711bde">
+  <meta name="site-route" content="a78c1c37981eceb8e37716dd61f0f516c26ef808fe40fee790577810c8c58d00">
   <meta name="site-contract" content="1">
   <meta name="site-variant" content="base">
 <meta name="robots" content="noindex, nofollow">
@@ -106,7 +106,9 @@ body[data-page="writing"] .space-scene canvas,body[data-page="credits"] .space-s
 .space-scene svg,.space-scene canvas {position:absolute;inset:0;width:100%;height:100%}
 .space-scene canvas {visibility:hidden}
 .space-scene[data-ready] canvas {visibility:visible}
-.space-scene[data-ready] svg {visibility:hidden}
+/* Removing data-ready on renderer failure restores the fallback. Its thousands
+   of SVG nodes need no native layout while Canvas owns the scene. */
+.space-scene[data-ready] svg {visibility:hidden;display:none}
 .space-fallback {opacity:1}
 /* Protect the reading block, leaving the section and its gutters open to the world. */
 .section,.archive-intro,.credits-page,.hero-copy,.shift-intro {background:transparent}

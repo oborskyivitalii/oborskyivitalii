@@ -12,7 +12,9 @@ The maintainer asks Sol to continue the reviewed R1/P1/V1/H1 tasks. R1 is
 implemented with route-scoped end intent and accepted input-tail ownership;
 read `review/site-sol-continuation-20261005/R1.md` and its current evidence.
 Keep normal history restoration, fresh-input takeover, single-clock freeze and
-the ten-test default. P1/V1 performance and H1 trust-source work continue; don't
+the ten-test default. Read `review/site-sol-continuation-20261005/P1.md` for the
+native snapshot/instant-scroll and fallback-layout increment. Its remaining cold
+failures are not accepted; P1/V1 performance and H1 trust-source work continue. Don't
 infer full hosted or independent release acceptance from focused checks.
 The existing authorization for code/PR/issue updates remains; hosting stays
 paused with both false guards. Preserve #18's current work and retain one

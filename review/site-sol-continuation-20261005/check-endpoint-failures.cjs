@@ -23,7 +23,15 @@ const directory=path.resolve(process.argv[2]),out=path.resolve(process.argv[3]);
    });
    await page.waitForFunction(()=>document.body.dataset.page==='research'&&!document.getElementById('site-content').hasAttribute('aria-busy'));await page.waitForTimeout(150);
    const zero=await page.evaluate(()=>({y:scrollY,max:Math.max(0,document.documentElement.scrollHeight-innerHeight)}));assert.equal(zero.max,0);assert.equal(zero.y,0);
-   rows.push({variant,source:crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex'),fallback,zero});await context.close();
+   const fallbackVisible=await page.evaluate(()=>{const el=document.querySelector('.space-fallback'),css=getComputedStyle(el);return css.display!=='none'&&css.visibility!=='hidden'&&el.getClientRects().length>0;});assert.equal(fallbackVisible,true,'missing Canvas retains the SVG');
+   rows.push({variant,source:crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex'),fallback,zero,fallbackVisible});await context.close();
+   const live=await browser.newContext({viewport:{width:390,height:844},offline:true}),active=await live.newPage();await active.goto(pathToFileURL(file).href+'?view=research');
+   await active.waitForFunction(()=>document.querySelector('.space-scene').dataset.ready==='true');
+   assert.equal(await active.evaluate(()=>getComputedStyle(document.querySelector('.space-fallback')).display),'none','active Canvas removes SVG from layout');
+   await active.evaluate(()=>{CanvasRenderingContext2D.prototype.clearRect=function(){throw Error('Injected Canvas submission failure');};});
+   await active.waitForFunction(()=>document.querySelector('.space-scene').dataset.state==='fallback');
+   const restored=await active.evaluate(()=>{const el=document.querySelector('.space-fallback'),css=getComputedStyle(el);return {display:css.display,visibility:css.visibility,rects:el.getClientRects().length};});
+   assert.notEqual(restored.display,'none');assert.notEqual(restored.visibility,'hidden');assert.ok(restored.rects>0);rows.at(-1).drawFailure=restored;await live.close();
   }
   const file=path.join(directory,'Vitalii-Oborskyi-Color-Prototype.html'),context=await browser.newContext({viewport:{width:390,height:844},offline:true});
   const page=await context.newPage();await page.goto(pathToFileURL(file).href+'?view=talks');
