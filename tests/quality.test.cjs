@@ -16,12 +16,20 @@ function fixture(){
   const functional={...identity,pass:true,kind:'functional',environment:{platform:'linux'},engines:['chromium','firefox','webkit'],smoke:false,modes,browsers:['chromium','firefox','webkit'].map(engine=>({engine,version:'fixture',executable:'fixture'})),rows:[]};
   for(const engine of functional.engines)for(const route of budgets.routes)for(const theme of ['light','dark'])for(const [mode,width]of [['normal',1440],['normal',390],...modes.map(x=>[x,320])])functional.rows.push({engine,route,theme,mode,width,pass:true,errors:[],externalRequests:[],checks:checks(mode,route)});
   functional.navigation=functional.engines.flatMap(engine=>require('../tools/quality/navigation.cjs').scenarios(engine).map(s=>({...s,pass:true,errors:[],checks:Object.fromEntries(require('../tools/quality/navigation.cjs').checks.map(k=>[k,true]))})));
+  const analytics=require('../tools/quality/analytics-browser.cjs');
+  functional.analytics=functional.engines.flatMap(engine=>analytics.cases(engine).map(s=>({...s,model:analytics.model,pass:true,errors:[],externalRequests:[],checks:Object.fromEntries(analytics.checks.map(key=>[key,true])),readyWhileSDKPending:s.mode==='delayed'?true:'not applicable',vendorRequests:['staging','offline'].includes(s.mode)?[]:Array(2).fill('https://static.cloudflareinsights.com/beacon.min.js')})));
   return {manifest:{...identity,sourceDirty:false},sizes:{pass:true,artifactDigest:identity.artifactDigest,rows:budgets.routes.map(route=>({route,raw:50000,svgNodes:100,totalGzipBytes:10000}))},jobs:{build:{result:'success'},static:{result:'success'},linux:{result:'success'}},reports:[scan('lint',{scannedFiles:30,tools:{eslint:'10',stylelint:'17',ruff:'0.16'}}),scan('security',{semgrep:{files:['docs/space.js'],rules:8,errors:0},bandit:{loc:100,findings:0},secrets:{trackedTextFiles:100}}),scan('advisories',{feedDate:'2026-10-03',npm:{},pythonDependencies:80,runtimeDependencies:'none'}),functional]};
 }
 test('complete source-bound PR evidence passes; missing and controlled failures fail closed',()=>{
   assert.equal(aggregate(fixture()).pass,true);
   const failures=[
     x=>x.reports.splice(2,1),
+    x=>delete x.reports[3].analytics,
+    x=>x.reports[3].analytics.pop(),
+    x=>x.reports[3].analytics[0].vendorRequests.push('https://unexpected.example.com/'),
+    x=>x.reports[3].analytics.find(row=>row.mode==='offline').vendorRequests.push('https://static.cloudflareinsights.com/beacon.min.js'),
+    x=>delete x.reports[3].analytics[0].checks.oneVendorPerDocument,
+    x=>delete x.reports[3].analytics.find(row=>row.mode==='delayed').readyWhileSDKPending,
     x=>x.reports[3].navigation.pop(),
     x=>x.reports[3].navigation[0].checks.persistentShell=false,
     x=>delete x.reports[3].navigation[0].checks.flightTiming,
@@ -85,7 +93,7 @@ test('capture camera settling requires two real stable paints and rejects stalls
 function fullFixture(){
   const x=fixture();x.full=true;for(const job of ['native','performance','captures'])x.jobs[job]={result:'success'};
   for(const [platform,engines]of [['win32',['chromium','firefox']],['darwin',['webkit']]]){
-    const f=structuredClone(x.reports[3]);Object.assign(f,{environment:{platform},smoke:true,modes:[],engines,browsers:engines.map(engine=>({engine,version:'controlled fixture',executable:'controlled fixture'})),navigation:f.navigation.filter(row=>engines.includes(row.engine)),rows:f.rows.filter(row=>engines.includes(row.engine)&&row.mode==='normal')});x.reports.push(f);
+    const f=structuredClone(x.reports[3]);Object.assign(f,{environment:{platform},smoke:true,modes:[],engines,browsers:engines.map(engine=>({engine,version:'controlled fixture',executable:'controlled fixture'})),navigation:f.navigation.filter(row=>engines.includes(row.engine)),analytics:f.analytics.filter(row=>engines.includes(row.engine)),rows:f.rows.filter(row=>engines.includes(row.engine)&&row.mode==='normal')});x.reports.push(f);
   }
   x.reports.push({...identity,pass:true,kind:'lighthouse',...lighthouseFixture()},{...identity,pass:true,kind:'motion',...motionFixture()});
   x.manifest.files=Object.fromEntries(budgets.routes.map(route=>[route+'.html',{sha256:'d'.repeat(64)}]));

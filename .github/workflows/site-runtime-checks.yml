@@ -17,7 +17,9 @@ jobs:
           node-version: '24.19.0'
       - name: Focused runtime, content and archive regressions
         run: node --test tests/theme.test.cjs tests/space.test.cjs tests/archive.test.cjs tests/content.test.cjs
-      - name: Check deterministic lightweight fallback
+      - name: Analytics configuration, isolation and export regressions
+        run: node --test tests/analytics.test.cjs
+      - name: Check generated site settings and deterministic lightweight fallback
         run: |
           node tools/site/build.cjs --check
           node tools/build_scene_fallbacks.cjs --check

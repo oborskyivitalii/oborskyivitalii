@@ -43,6 +43,24 @@ Off/reduced motion and an injected fetch failure with native-document recovery.
 Missing cases or assertions fail the aggregate; fixtures exercise those failures.
 CSS zoom and synthetic visibility/print events are explicitly limited claims.
 
+Each engine also runs thirteen enabled-source analytics fixtures: five production
+entry routes, a blocked/delayed SDK, a different staging origin and five offline entries.
+`Site runtime regressions` explicitly runs the analytics settings/adapter/export
+suite; PR and release builds include it in `tests/*.test.cjs`. Fixtures use their
+own disabled/enabled settings and remain valid after production activation.
+The required generated-source check rejects loader/verification/asset drift or
+unexpected disabled tracking before the public artifact is packaged.
+The provider URL is intercepted with a local stub; no visitor data is sent.
+These require persistent navigation/history/filters/reload, one vendor load per
+document and zero external offline/staging requests. The aggregate rejects missing
+cases or assertions. [SITE-ANALYTICS](../../SITE-ANALYTICS.md) distinguishes this
+source-adapter coverage from actual dashboard counts and hosted SDK performance.
+For a focused local Chromium repeat: `node tools/quality/analytics-browser.cjs`.
+DOM-ready navigation avoids waiting on the vendor's document-load event; the
+delayed SDK case requires all routes/history/filters to work before releasing it.
+The new fixture uses the same 30s navigation bound as the existing runner, with
+unchanged 6s readiness/SDK assertions and all existing #13 metric/startup budgets.
+
 Full release calls add Windows Chromium/Firefox, macOS WebKit, 30 sequential
 Lighthouse runs (3×5×2; median metrics), desktop/mobile/mobile×4 painted-callback
 samples, positive probes, Off/reduced zero work and a five-minute soak on the

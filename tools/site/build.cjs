@@ -125,9 +125,9 @@ function fallback(api,page) {
   // Keep the established bounded SVG rendition and exact coordinates.
   return require('../build_scene_fallbacks.cjs').fromModel(api,page);
 }
-function render(root,route,input,api) {
+function render(root,route,input,api,measurement='') {
   const title=escapeText(input.meta.title),description=escapeAttribute(input.meta.description);
-  const head=substitute(read(root,'site/templates/head.html'),{TITLE:title,TITLE_ATTRIBUTE:escapeAttribute(input.meta.title),DESCRIPTION:description,SCHEMA:scriptJSON(input.schema)},'head');
+  const head=substitute(read(root,'site/templates/head.html'),{TITLE:title,TITLE_ATTRIBUTE:escapeAttribute(input.meta.title),DESCRIPTION:description,SCHEMA:scriptJSON(input.schema),MEASUREMENT:measurement},'head');
   let header=read(root,'site/templates/header.html');
   const target=route.id==='index'?'./':route.url;
   header=header.replace(`href="${target}">${route.id==='index'?'Home':route.id[0].toUpperCase()+route.id.slice(1)}</a>`,`href="${target}" aria-current="page">${route.id==='index'?'Home':route.id[0].toUpperCase()+route.id.slice(1)}</a>`);
@@ -161,7 +161,8 @@ function fingerprints(root,config) {
     engine:sha(json(fileDigests(root,files(path.join(root,'site/engine')).map(x=>'site/engine/'+x)))),
     scenes:sha(json(fileDigests(root,files(path.join(root,'site/scenes')).map(x=>'site/scenes/'+x)))),
     assets:sha(json(fileDigests(root,files(path.join(root,'site/assets')).map(x=>'site/assets/'+x)))),
-    templates:sha(json(fileDigests(root,files(path.join(root,'site/templates')).map(x=>'site/templates/'+x)))),routes:sha(json(config))};
+    templates:sha(json(fileDigests(root,files(path.join(root,'site/templates')).map(x=>'site/templates/'+x)))),
+    analytics:sha(json(fileDigests(root,['site/analytics.json',...files(path.join(root,'site/integrations')).map(x=>'site/integrations/'+x)]))),routes:sha(json(config))};
 }
 function validCache(file) {
   try{const cache=JSON.parse(fs.readFileSync(file));return cache.schema===1&&cache.routes&&cache.files?cache:null;}catch{return null;}
@@ -183,6 +184,7 @@ function finish(root,output,cacheFile,temporary,result,check,lockFile) {
 }
 function build({root=defaultRoot,output=path.join(root,'docs'),cacheFile=path.join(root,'.site-cache/build.json'),all=false,check=false,versioned=true}={}) {
   const {config,definitions}=configuration(root),c=catalog(root),components=fingerprints(root,config);
+  const measurement=require('./analytics.cjs').compile(root,config.routes.map(route=>route.url));
   const previous=!all&&!check?validCache(cacheFile):null;
   const lockFile=path.join(root,'site/output-lock.json'),trusted=validCache(lockFile);
   const parent=path.dirname(output);fs.mkdirSync(parent,{recursive:true});
@@ -196,13 +198,14 @@ function build({root=defaultRoot,output=path.join(root,'docs'),cacheFile=path.jo
       const old=previous?.routes[route.id],file=path.join(output,route.url);
       let html;
       if(old?.version===version&&trusted?.routes[route.id]?.version===version&&previous.files[route.url]===trusted.files[route.url]&&fs.existsSync(file)&&sha(fs.readFileSync(file))===trusted.files[route.url]){html=fs.readFileSync(file,'utf8');result.reused.push(route.id);}
-      else {api??=model(root,definitions);html=render(root,route,input,api);if(versioned)html=versionHTML(html,version,components);result.built.push(route.id);}
+      else {api??=model(root,definitions);html=render(root,route,input,api,measurement.head);if(versioned)html=versionHTML(html,version,components);result.built.push(route.id);}
       put(route.url,html);result.routes[route.id]={version,url:route.url,inputs:input.inputs,records:Object.keys(input.records)};
       if(versioned){const name=`snapshots/${version}/${route.url}`;put(name,snapshotHTML(html));result.routes[route.id].snapshotSHA=result.files[name];}
     }
     for(const name of ['theme.js','archive.js','navigation.js','styles.css'])put(name,read(root,'site/engine/'+name));
     put('space.js',runtime(root,definitions));
     for(const name of files(path.join(root,'site/assets')))put(name==='nojekyll'?'.nojekyll':'assets/'+name,fs.readFileSync(path.join(root,'site/assets',name)));
+    for(const [name,bytes]of Object.entries(measurement.assets))put(name,bytes);
     if(versioned) {
       const engine=runtimeVersion(components);
       for(const name of ['theme.js','space.js','archive.js','navigation.js','styles.css'])put(`runtime/${engine}/${name}`,fs.readFileSync(path.join(temporary,name)));

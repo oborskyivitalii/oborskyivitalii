@@ -19,6 +19,7 @@ enhance that HTML; a content editor does not need a server, CMS or browser build
 | `engine/theme.js`, `archive.js`, `navigation.js`, `styles.css` | Theme, filtering, routing and presentation | Shared browser files and pages |
 | `scenes/world.cjs`, `paths.json` | Authored motifs, rest geometry and finite camera paths | Runtime and projected SVG fallbacks |
 | `assets/` | Existing portrait, cutout, favicon and `.nojekyll` source | Exact image/icon bytes |
+| `analytics.json`, `integrations/cloudflare.cjs` | Optional production-only measurement under #8; disabled by default | Shared head and one separately hashed loader when enabled |
 | `retained/` when explicitly imported | Previous verified immutable public files | Coherent prior snapshot support |
 | `output-lock.json` | Generated, reviewed output hashes and dependency identity | Cache verification and freshness check |
 | `../docs/` | Generated-only complete public output | Tested public artifact and offline exports |
@@ -61,7 +62,7 @@ All five offline interactive entry files embed all routes, so one content edit
 regenerates those review files even when four hosted route bytes stay unchanged.
 
 Each route signature includes producer, contract/configuration, shared templates,
-engine/scenes/assets, its actual block bytes and selected catalog records. A Home
+engine/scenes/assets/analytics, its actual block bytes and selected catalog records. A Home
 block edit builds Home only; a featured edition builds Home and Writing; a shared
 footer builds all five. A scene/code change is conservatively a complete closure:
 all scenes share one browser bundle and all fallbacks consume the same model.
@@ -80,8 +81,9 @@ No claim is made that this filesystem operation publishes an atomic CDN update.
 to `runtime/<digest>/` and `media/<digest>/`; fetchable HTML lives in
 `snapshots/<route-digest>/<route>.html`. Root aliases remain identical for existing
 tooling and the offline exporter. The revision and root HTML revalidate; immutable
-paths use the prepared host policy. No idle fetch, remote CMS, automatic refresh or
-telemetry is added.
+paths use the prepared host policy. No idle revision fetch, remote CMS or automatic
+refresh is added. Default output has no telemetry; [SITE-ANALYTICS](../SITE-ANALYTICS.md)
+owns the optional exact-origin adapter and tracking-free standalone exports.
 
 On the first user route navigation, the router pins a descriptor compatible with
 the initial shell/route. It fetches only the named immutable route and checks its

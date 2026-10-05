@@ -166,6 +166,19 @@
         "редагування тексту",
         "рушій сайту"
       ]
+    },
+    {
+      "concern": "production visitor analytics and search measurement preparation",
+      "path": "SITE-ANALYTICS.md",
+      "queries": [
+        "site analytics",
+        "Cloudflare Web Analytics",
+        "Search Console",
+        "visitor measurement",
+        "аналітика сайту",
+        "відвідувачі",
+        "пошуковий граф"
+      ]
     }
   ]
 }

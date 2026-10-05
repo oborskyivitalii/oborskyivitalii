@@ -7,7 +7,7 @@ const baseFiles=['.nojekyll',...routes.map(x=>x+'.html'),...runtimeFiles,...medi
 const hash=bytes=>crypto.createHash('sha256').update(bytes).digest('hex');
 function immutable(name) {
   const match=name.match(/^(runtime|media|snapshots)\/([a-f0-9]{64})\/([a-z0-9.-]+)$/);
-  return !!match&&(match[1]==='runtime'?runtimeFiles:match[1]==='media'?mediaFiles:routes.map(x=>x+'.html')).includes(match[3]);
+  return !!match&&(match[1]==='runtime'?[...runtimeFiles,'analytics.js']:match[1]==='media'?mediaFiles:routes.map(x=>x+'.html')).includes(match[3]);
 }
 function inventory(names) {
   assert.ok(names.length<=1000,'public retention inventory bound');
@@ -24,6 +24,7 @@ function verify(dir,record) {
   assert.deepEqual(Object.keys(revision.routes),routes);
   for(const name of runtimeFiles)assert.deepEqual(read(`runtime/${revision.engine}/${name}`),read(name),'immutable runtime differs from tested alias');
   for(const name of mediaFiles)assert.deepEqual(read(`media/${revision.assets}/${name}`),read('assets/'+name),'immutable media differs from tested alias');
+  for(const name of Object.keys(files).filter(x=>/^runtime\/[a-f0-9]{64}\/analytics\.js$/.test(x)))assert.equal(hash(read(name)),name.split('/')[1],'immutable analytics digest');
   for(const id of routes) {
     const route=revision.routes[id];assert.match(route.version,/^[a-f0-9]{64}$/);assert.match(route.sha256,/^[a-f0-9]{64}$/);
     assert.equal(route.url,`snapshots/${route.version}/${id}.html`);assert.equal(hash(read(route.url)),route.sha256,'route snapshot digest');

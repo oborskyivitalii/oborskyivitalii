@@ -1,5 +1,16 @@
 # First site: candidate, review and release
 
+## Production host and analytics preparation — 2026-10-04
+
+The maintainer selects **GitHub Pages** for the eventual production site and
+requests analytics preparation now. [SITE-ANALYTICS](SITE-ANALYTICS.md), owned by
+#8, records the implemented disabled-by-default Cloudflare adapter, source
+configuration and optional Google verification field. The actual production URL,
+owner account/public site token and Search Console property remain unconfigured.
+Cloudflare hosting credentials are unrelated to the public analytics token.
+All publication stays paused; no Pages setting or deployment guard is activated.
+Record actual vendor counts and enabled hosted performance at release time.
+
 ## Execution and publication pause — 2026-10-04
 
 The maintainer now authorizes the engine/content plan and Writing fix under

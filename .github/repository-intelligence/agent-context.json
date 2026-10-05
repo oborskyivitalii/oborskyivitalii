@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "c8270e3e81916516e0ae3ef9a81a5ede5968f5c6c5ae53a731d4dc1e1324fe0f",
+    "digest": "3a36728e519502c9d51143fe3e472ce2bfd3bd15eed083e7e9d145804ab236c0",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -43,7 +43,7 @@
       {
         "path": ".github/repository-intelligence-config.json",
         "identity_mode": "content",
-        "sha256": "fc9e61a55162119b9ad290bdb37e9825ebe17e038c3fcd52c5f30013e4c19179"
+        "sha256": "bd216268bb02a0e7928e8814167b040f1a2e0033e6d4cb7ab9023bc522823760"
       },
       {
         "path": ".github/workflows/navigation.yml",
@@ -73,7 +73,7 @@
       {
         "path": ".github/workflows/site-runtime-checks.yml",
         "identity_mode": "content",
-        "sha256": "5ba874a782766623b21dd614fbbd0a13a0fa00915ecfe89d22af491285b36651"
+        "sha256": "3ae5d2954b54227399bc6ec33e28d26047d3d54c2bdaffa56a5ecd992b0551da"
       },
       {
         "path": ".github/workflows/site-staging.yml",
@@ -87,7 +87,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "0e32c1b5267c5f39426bdb99fd1ac9a6b4a39b2c89f16a46d9fc8f0acfb896a1"
+        "sha256": "731f97ce8bddb3a0c8aa380db38f789e155cce7146dca44d4c9e29b7d31d8cf8"
       },
       {
         "path": "BACKLOG.md",
@@ -110,6 +110,11 @@
         "sha256": "3378a096e6fb8857424037323a5d80d1231471a6fb98a5362a7b3401d3af340a"
       },
       {
+        "path": "SITE-ANALYTICS.md",
+        "identity_mode": "content",
+        "sha256": "11e7160fb808061322bebe04f72f55386b2aeaa7beb552bc98e8a3e4d91d9b25"
+      },
+      {
         "path": "SITE-CONTENT-REVIEW.md",
         "identity_mode": "content",
         "sha256": "0b0204f36c50fdd30683f07c8db68c59cb1eeada3f00598775624b59acef38cc"
@@ -117,7 +122,7 @@
       {
         "path": "SITE-OPERATIONS.md",
         "identity_mode": "content",
-        "sha256": "427e2df949df27c7e997d561d5bb6a2b4229a8c020c100195d4f40b7f843309a"
+        "sha256": "231ea96e96ec7214ce5c4488f27c9140bbe70874e756aeb4d43c956a1babdbef"
       },
       {
         "path": "SITE-RELEASE-GATES.md",
@@ -132,7 +137,7 @@
       {
         "path": "SITE-SEO.md",
         "identity_mode": "content",
-        "sha256": "ace41b1d784803cfd4d90269fdf34485606cba80417ffba3a4ea199108fc8b78"
+        "sha256": "6dc9d37b918aeec5df3e1a7128cbf4b5f36379d64ccaded0cf7a51aa94a1ff67"
       },
       {
         "path": "SITE-SOURCE-AUDIT.md",
@@ -142,7 +147,7 @@
       {
         "path": "SITE-STAGING.md",
         "identity_mode": "content",
-        "sha256": "b4e2e755fedbc154474e6c4a3e2386db2d0d9e2b80ad12145bf90d1e4cd0174f"
+        "sha256": "14d30d21b12b9eca6181f0dd8c06ce847b264ba899867799242011872a517c11"
       },
       {
         "path": "SITE-VISUAL-REVIEW.md",
@@ -152,7 +157,7 @@
       {
         "path": "SOL-HANDOFF.md",
         "identity_mode": "content",
-        "sha256": "c09adbd97b644c97bb9a8c1294811c4a847179b88a3e5a3abe7d9163d26ee3f6"
+        "sha256": "f75fb72d6adc9c244495c85aaa848d65f4ccfead654a002d5708b3e6bbdebce5"
       },
       {
         "path": "docs/.nojekyll",
@@ -225,26 +230,26 @@
       {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "3cd461e56040c9b4eba619967df5e19e2592d3ed83426ec01f777e25bbd60cb1"
+        "sha256": "a95ca8c1dc1cb0d6d610310a82d0ebe97b727cf11622c465cb6cb60041be2849"
       },
       {
-        "path": "docs/snapshots/05579b83ac1ea4b73cc9194c908c4cbfa1aece0db23ff965bf17ae48f8319194/credits.html",
+        "path": "docs/snapshots/6021ffcbdf3ea3d5ef47c68b654ba5718d56aeac197f857733c7ce167cbaf840/index.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/202d575f69dc722e0d5a14b6912fc9be48b2e6499c6ee94074c1ec12e06dd08b/writing.html",
+        "path": "docs/snapshots/c5eaa2daac62ccf73371b310c5dea7eda127ec9e725d5ec586e3a84affaf107c/credits.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/2feb1dd380eded359b93451d5e96260cf3fea1b0e7a560cf6d30cf286ac48f5a/talks.html",
+        "path": "docs/snapshots/ceb1d7ffc177616bdb72f39ebc5ca1b760d55b94b4511e540dc62aa122d71c31/research.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/b18d2701f90f13b8cf60810a37c8f41da4aa4e8e676014a859202f198b905054/index.html",
+        "path": "docs/snapshots/db84ffe23fc465d6170feafe228908e6de521660a8c8379bf60f6348006ac82c/talks.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/bf80276ad344cbd56b78dfe92915ce94494285557f676c36e3f5260bb2cc6f25/research.html",
+        "path": "docs/snapshots/e9d0613fcfb4ebfb15abc599c756c1e9944c9aab56b425f9ef644423ad278cca/writing.html",
         "identity_mode": "existence"
       },
       {
@@ -2146,7 +2151,7 @@
       {
         "path": "review/site-v1-offline-bundle-v11.json",
         "identity_mode": "content",
-        "sha256": "99386f8b571a098c397f9741e2a49af1cbb16ea371eabd36cbc0fc282fc1d931"
+        "sha256": "1ea10471c090f10309b55da0df373754f53c471aace5e9c959c7b53fb38b2d66"
       },
       {
         "path": "review/site-v1-offline-bundle-v3.json",
@@ -2200,7 +2205,7 @@
       {
         "path": "review/site-v1-static-previews-v11.json",
         "identity_mode": "content",
-        "sha256": "0c298f55241c1f864ab747c253867f625cdd90c6042c4a584741fb5e19d71cc1"
+        "sha256": "8b63d4bd205fbe697ca8e8af499223ad9e041a7adf765c584b8c51401fb10439"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -2482,7 +2487,12 @@
       {
         "path": "site/README.md",
         "identity_mode": "content",
-        "sha256": "81e4adc8af6a64af5edf295aff18ab93a7c8dd77b491bba513b8c662911b3b17"
+        "sha256": "04507017054c1c265bf1b20e3e9337870a520d1e8ec9b85b4e58ddd8eb706c54"
+      },
+      {
+        "path": "site/analytics.json",
+        "identity_mode": "content",
+        "sha256": "81ccb148d11b1f5cdb69893cda701ef4701bd7158d65c0067ce1ae148a67623e"
       },
       {
         "path": "site/assets/favicon.svg",
@@ -2647,9 +2657,13 @@
         "identity_mode": "existence"
       },
       {
+        "path": "site/integrations/cloudflare.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "c4b14e14ca25a99bc6de306fa05ee43c6f1bd9fd07c9650a94e539e4ceff218b"
+        "sha256": "32d389051ff1fc964ae49695c0fc21a1e51135a03ef8ef70cc010967aa19de10"
       },
       {
         "path": "site/routes.json",
@@ -2679,6 +2693,10 @@
       },
       {
         "path": "site/templates/shell.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/analytics.test.cjs",
         "identity_mode": "existence"
       },
       {
@@ -2769,12 +2787,16 @@
       {
         "path": "tools/quality/README.md",
         "identity_mode": "content",
-        "sha256": "9a7c6d35fb10e82e89f5e1957f2c576a2fc3aef4e4d3b46966f04f45660982a0"
+        "sha256": "0c75596dfd90f5d073409b8d9af8ba433699778be5a5fcb016e24359636caefe"
       },
       {
         "path": "tools/quality/advisory-exceptions.json",
         "identity_mode": "content",
         "sha256": "3e8e02cd4871d81f04562c7709fd7f875f7ac7f45dfc9df0b9317d4eba218e1f"
+      },
+      {
+        "path": "tools/quality/analytics-browser.cjs",
+        "identity_mode": "existence"
       },
       {
         "path": "tools/quality/artifact.cjs",
@@ -2830,12 +2852,12 @@
       {
         "path": "tools/quality/secrets-baseline.json",
         "identity_mode": "content",
-        "sha256": "362baa540f343daeb9a417ed3f6196580e774f6a72b5f2f7056b9c86f6b343d1"
+        "sha256": "bbb820216b77fc4709171e943c000bf6f4c5a55ef5ca6d5991bbe95526a7efd0"
       },
       {
         "path": "tools/quality/security-rules.yml",
         "identity_mode": "content",
-        "sha256": "d14023a34e266f90a2181a5bd0e821fb653de2151fe214d44857dd97eebbe906"
+        "sha256": "3dee42667b6e067335f9c23f7c42e57ac5a63248d0750d377240e66d400048e9"
       },
       {
         "path": "tools/quality/selftest.cjs",
@@ -2887,6 +2909,10 @@
         "sha256": "77089ea2e33bb865d2f1bec08273ee12b1f61dc5ee5e507507e09cc6e9d430d2"
       },
       {
+        "path": "tools/site/analytics.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tools/site/build.cjs",
         "identity_mode": "existence"
       },
@@ -2924,7 +2950,7 @@
     "path": "tools/repository_intelligence.py",
     "sha256": "77089ea2e33bb865d2f1bec08273ee12b1f61dc5ee5e507507e09cc6e9d430d2",
     "config_path": ".github/repository-intelligence-config.json",
-    "config_sha256": "fc9e61a55162119b9ad290bdb37e9825ebe17e038c3fcd52c5f30013e4c19179"
+    "config_sha256": "bd216268bb02a0e7928e8814167b040f1a2e0033e6d4cb7ab9023bc522823760"
   },
   "owners": [
     {
@@ -3076,6 +3102,19 @@
         "редагування тексту",
         "рушій сайту"
       ]
+    },
+    {
+      "concern": "production visitor analytics and search measurement preparation",
+      "path": "SITE-ANALYTICS.md",
+      "queries": [
+        "site analytics",
+        "Cloudflare Web Analytics",
+        "Search Console",
+        "visitor measurement",
+        "аналітика сайту",
+        "відвідувачі",
+        "пошуковий граф"
+      ]
     }
   ],
   "terms": [],
@@ -3202,6 +3241,13 @@
     {
       "path": "REPOSITORIES.md",
       "title": "Three-repository ownership and agent routing",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "SITE-ANALYTICS.md",
+      "title": "Site measurement before the first release",
       "instructions": [
         "AGENTS.md"
       ]
@@ -4119,6 +4165,13 @@
     {
       "path": "site/README.md",
       "title": "Static site source and engine contract",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/analytics.json",
+      "title": "site/analytics.json",
       "instructions": [
         "AGENTS.md"
       ]

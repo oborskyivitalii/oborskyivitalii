@@ -1,5 +1,15 @@
 # Sol execution plan — reviewed 2026-10-02
 
+## Analytics preparation — 2026-10-04
+
+The latest maintainer request authorizes preparing analytics now, before GitHub
+Pages production. Read [SITE-ANALYTICS](SITE-ANALYTICS.md), owned by #8. The focused
+stacked branch preserves frozen PR #16/#10 and adds a disabled shared adapter,
+optional Google verification field, source/export isolation and enabled-source
+browser fixtures. No account, deployment, data collection or independent acceptance
+is claimed. Actual origin/token, hosted provider counts and hosted SDK performance
+remain release-time work; the all-publication pause and #13 budgets remain.
+
 ## Execution and publication pause — 2026-10-04
 
 The maintainer now authorizes the engine/content plan and Writing fix under

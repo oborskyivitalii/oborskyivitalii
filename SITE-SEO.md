@@ -1,5 +1,16 @@
 # Search discoverability and topic map
 
+## Measurement preparation — 2026-10-04
+
+Production will use GitHub Pages. The maintainer requests analytics before the
+first release; [SITE-ANALYTICS](SITE-ANALYTICS.md) owns the prepared Cloudflare and
+optional Search Console integration under #8. No live tracking, verified property,
+query data, ranking change or Google Knowledge Graph recognition is claimed.
+Use actual Search Console queries/pages/links after verification to evaluate the
+existing topic plan. Aggregate visits are a different measure from the site's
+authored publication/link structure. Canonical URLs/sitemap still need the actual
+production address; neither the optional tag nor analytics config replaces them.
+
 ## Executive redesign preservation — implemented 2026-10-03
 
 Source `9c12900` changes Home's problem-led H1, bounded author lead and Help/

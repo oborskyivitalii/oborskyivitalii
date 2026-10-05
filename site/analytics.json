@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "provider": "cloudflare",
+  "enabled": false,
+  "siteURL": null,
+  "token": null,
+  "searchConsoleVerification": null
+}
