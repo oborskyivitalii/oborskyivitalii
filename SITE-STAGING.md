@@ -4,29 +4,94 @@
 
 Owner: [#8](https://github.com/oborskyivitalii/oborskyivitalii/issues/8). Full
 checks: [#13](https://github.com/oborskyivitalii/oborskyivitalii/issues/13).
-The maintainer now requests Cloudflare-plugin inspection and staging preparation.
-The dedicated **`oborskyi-author-ci-staging`** Direct Upload project was created
-and checked through the API: `production_branch=production-disabled`, no Git
-source, no Web Analytics injection and **zero deployments**.
-[Verified capabilities and owner steps](review/site-sol-continuation-20261005/H2-CLOUDFLARE.md).
+The maintainer now explicitly authorizes Cloudflare staging configuration and
+upload, together with the required repository, issue, PR and instruction updates.
+This supersedes earlier staging pauses in the historical sections below.
+Production GitHub Pages, production analytics, domain/DNS changes and paid
+purchases remain outside this activation.
 
-During preparation the earlier `oborskyi-site-staging` project changed outside
-this execution: it now has automatic GitHub integration, production branch
-`main` and two successful provider deployments, including the old main tip.
-Preserve that work; it is incompatible with `projectPolicy()` and is **not** the
-target of this trusted Direct Upload workflow. Its provider success has not been
-accepted as served-byte/full-hosted evidence.
+### Open the deployed preview
 
-**Asset upload and publication remain paused while the candidate fails its cold
-Writing gate.** There is no verified live staging URL. Keep
-`SITE_STAGING_ENABLED` absent/false and both explicit false guards in
-`site-checks.yml` and `site-staging.yml`. The request authorizes preparatory
-provider configuration; it does not turn failing source into an accepted release.
+**[Open the whole-site preview](https://505498da.oborskyi-author-ci-staging.pages.dev).**
+No owner setup is needed to view this edition. The connected Cloudflare provider
+created a dedicated Pages **Direct Upload** project and registered this preview
+deployment successfully. Its production branch is `production-disabled`, with
+no Git integration, Functions or provider-injected analytics.
+
+| Deployed identity | Value |
+| --- | --- |
+| Cloudflare account | `3b938b72a4ad0ac10b9102e0534e75c0` |
+| Project | `oborskyi-author-ci-staging` |
+| Project ID | `d4b9b7b2-8ee6-4762-b9b1-84e221db9fbb` |
+| Preview deployment ID | `505498da-a176-4f26-a4c4-6c891ee7dead` |
+| Provider branch | `candidate-51611505d941ae2996a87782840da418722451f6` |
+| Source commit | `51611505d941ae2996a87782840da418722451f6` |
+| Source tree | `a31dd365393c1dc4d201170494641809f8162a30` |
+| Successful basic CI run | [37380498377](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37380498377) |
+| Public artifact ID / ZIP SHA-256 | `11372983963` / `989e6834ad2a948c4e1b988336ad0b46f9e6b392a97ac650f1a01b82ec71d93f` |
+| Basic gate artifact ID / ZIP SHA-256 | `11372849111` / `6035fefc82a6c7468dba6cfdf1149d80169198156b707d41df53222be12c6a6a` |
+| Public digest | `324c09ff0526fa2664e34c9f590d550ca7f6613ed53a9862d85e679b12e8df60` |
+| Staging package digest | `deb2dd16c6efea1eee83df5d01ba954376b16ab9a8e9d8fab6f3e332e0b3d261` |
+
+The uploaded package contains 31 recorded files, approximately 1.15 MB. Its public
+bytes come from the verified immutable basic artifact; only the recorded staging
+host files were added. The repository, review material and research attachments
+were not uploaded. Provider registration success does not establish browser,
+performance or full hosted acceptance. The full staging pipeline has **not run**,
+and the stable `staging` alias has **not been promoted**. Keep #8/#13 open.
+
+This bootstrap used the connected provider, rather than protected-main Actions.
+The plugin connection supplies provider access for this upload; it does not
+install a permanent Cloudflare credential or configure GitHub administrative
+settings. The remaining steps below are for repeatable GitHub automation,
+not prerequisites for opening the preview. Draft #18 retains its idle/cold Writing
+performance failures and must not be merged merely to activate staging.
+
+### Preserved earlier project and preparation evidence
+
+During this work the earlier `oborskyi-site-staging` changed outside this
+execution: it now has automatic GitHub integration, production branch `main`
+and automatic preview/production deployments. Preserve that work; the project
+is incompatible with `projectPolicy()` and is **not** the current Direct Upload
+CI target. No attempt was made to convert or delete it.
+
+The earlier bootstrap deployment
+[`21948511-ccb6-4b7b-a1ea-e78575a3f30f`](https://21948511.oborskyi-site-staging.pages.dev)
+used source `5020f05f3764b2a3141514795960a8dd98764165`, public digest
+`324c09ff0526fa2664e34c9f590d550ca7f6613ed53a9862d85e679b12e8df60` and package
+digest `4c8a6ca4c4a4b2dc87d685aad512e5bfe72f6fcbc1613e6a2d8d8ecb4ad04ebd`.
+Keep its reports as historical evidence with that source and origin. PR #24's
+[H2 preparation record](review/site-sol-continuation-20261005/H2-CLOUDFLARE.md)
+records creation and policy checks of the replacement `oborskyi-author-ci-staging`
+project. Its zero-deployment/no-preview statements describe preparation before
+the authorized upload above; its staging pause is superseded by this runbook.
+
+### Verified hosted checks
+
+The actual HTTPS check passes all 28 file/hash/MIME checks, root and query
+redirects, noindex/nofollow, correct cache policy and the exact 404 document.
+[HTTP evidence](review/cloudflare-staging-20261005/evidence/http.json) records
+this immutable source and origin. Cloudflare applies stronger `no-store` to the
+404; the checker accepts it without permitting stale mutable caching.
+
+[Execution report](review/cloudflare-staging-20261005/REPORT.md) and
+[browser evidence](review/cloudflare-staging-20261005/evidence/browser.json)
+retain the bounded hosted checks and their limits. They do not satisfy the
+complete automated profile or authorize stable promotion.
+
+All 20 browser views passed: five routes × two themes × widths 1440/390 px.
+Navigation/history, persistent header/Canvas, archive filters, footer Credits,
+ambient animation, Motion Off freeze and absence of analytics resources passed.
+This uses one provider browser; native devices and the full performance profile
+remain unverified.
 
 ### Prepared manual protected-main path
 
 The H1 source migration is implemented in `tools/staging/trust.cjs`,
-`tools/staging/state.cjs` and both caller/reusable workflows. It accepts only a
+`tools/staging/state.cjs` and both caller/reusable workflows, through PR #21 in
+Draft #18; it is **not yet integrated into main**. The current continuation
+removes the two explicit staging pause guards, while retaining repository opt-in
+and protected-main/environment verification. This Actions path accepts only a
 manual `site-checks.yml` dispatch on `refs/heads/main`, with `candidate_sha` equal
 to the caller/workflow SHA and the **live protected main tip**. Before any
 provider call, it verifies the exact repository, workflow, run/attempt, source
@@ -41,65 +106,70 @@ alias stops the workflow for owner reconciliation. Deployment status goes to
 hosting issue **#8**, not the closed PR #10. Read the focused
 [H1 execution record](review/site-sol-continuation-20261005/H1.md).
 
-**Live repository check on 5 October: `main` is not protected.** No GitHub
-protection or environment setting was changed here: the installed GitHub
-connector has no administration/secrets/environment write operations. Cloudflare
-Pages read/edit access was verified, but its token-permission endpoint returned
-`9109: Unauthorized to access requested resource`. The chat connection is not a
-GitHub Actions deployment credential. Do not install `refs/pull/10/merge` or the
-old work branch as new environment rules; no arbitrary PR/branch mode is enabled.
+**Live repository check on 5 October: `main` is not protected.** GitHub protection,
+environment, secret and variable configuration remains pending. Keep
+`SITE_STAGING_ENABLED` absent/false until source integration and the owner steps
+below are complete. Do not install `refs/pull/10/merge` or the old work branch as
+new environment rules; no arbitrary PR/branch mode is enabled.
 
-### Owner configuration that can be prepared now
+The plugin verified Pages read/create/edit access. Its token administration
+endpoint returned `9109: Unauthorized to access requested resource`, so the
+connection cannot create the persistent Actions deployment token for the owner.
+The connection itself is not a GitHub environment credential.
 
-1. Use **`oborskyi-author-ci-staging`** in the connected account. It is already a
-   dedicated Cloudflare Pages **Direct Upload** project with production branch
-   `production-disabled`, no Git source and no injected analytics. No Functions
-   or assets have been deployed. No new project, custom domain, DNS change or
-   paid plan is required for the first `pages.dev` staging deployment.
-2. Create an account-scoped token with **Account → Cloudflare Pages → Edit** for
-   the intended account. Store it in the GitHub `staging` environment secret
-   below. Never paste it into an issue/chat or commit it. Account-scoped permission
-   does not mean project-only permission.
-3. In repository Settings → Branches, protect **`main`** with pull requests and
-   required current checks **`checks`** (Site basic checks) and **`Local navigation
-   and RI freshness`**. Require the branch to be up to date. Protect the GitHub
-   `staging` environment with a selected **`main`** branch rule and an owner
-   reviewer where available. If there is only one reviewer, do not enable a
-   self-review restriction that makes approval impossible. The live branch API
-   must report `protected:true`; environment restriction alone does not replace it.
-4. Set these existing configuration names, without putting values in source:
+### Remaining owner steps for GitHub automation
 
-| Name | Location | Purpose |
+The GitHub connector can update repository files, issues and PRs, but does not
+expose administrative writes for these settings or workflow dispatch. Complete
+these settings in your own dashboard; do not send token values in chat.
+
+1. Reuse the existing project `oborskyi-author-ci-staging` in the account above. View it
+   from [Cloudflare Workers & Pages](https://dash.cloudflare.com/3b938b72a4ad0ac10b9102e0534e75c0/workers-and-pages).
+   No new account, project, domain or paid plan is required. Retain the existing
+   Direct Upload and `production-disabled` settings.
+2. In [Cloudflare Account API Tokens](https://dash.cloudflare.com/3b938b72a4ad0ac10b9102e0534e75c0/api-tokens),
+   create an account-scoped token with **Account → Cloudflare Pages → Edit** for
+   this account. Copy it directly into the GitHub environment secret in step 3.
+   Never paste it into an issue/chat or commit it. Account-scoped permission is
+   not project-only permission; do not add DNS or billing permissions.
+3. Open [GitHub Environments](https://github.com/oborskyivitalii/oborskyivitalii/settings/environments)
+   and create/configure `staging`. Choose selected deployment branches and allow
+   **main** only; add an owner reviewer where available. Add the environment
+   secret and variables from the table below. If there is only one reviewer,
+   do not enable a self-review restriction that makes approval impossible.
+4. Open [GitHub branch protection](https://github.com/oborskyivitalii/oborskyivitalii/settings/branches)
+   and protect `main` with reviewed pull requests and the current required checks
+   **`checks`** and **`Local navigation and RI freshness`**. Retain the protection
+   against force pushes and deletion, and require the branch to be up to date.
+   The branch API must report `protected:true`;
+   an environment branch restriction alone does not replace it. Do not require
+   the skipped `staging` check as an ordinary PR check.
+5. Integrate the reviewed H1/basic-profile infrastructure and this continuation
+   into main through a focused infrastructure PR, or after #18's performance
+   work is accepted. Do not merge failing Draft #18 as a setup shortcut. The
+   legacy workflow on main still has its obsolete PR #10 binding.
+6. Enable the repository variable `SITE_STAGING_ENABLED=true` last, from
+   [GitHub Actions variables](https://github.com/oborskyivitalii/oborskyivitalii/settings/variables/actions),
+   after the reviewed workflow is on main and steps 1–5 are complete.
+
+| Name | Location | Value / purpose |
 | --- | --- | --- |
-| `CLOUDFLARE_API_TOKEN` | `staging` environment secret | Intended account's Pages Edit token. |
-| `CLOUDFLARE_ACCOUNT_ID` | `staging` environment variable | Connected account's 32-character ID; supplied to the maintainer separately. It is not the Pages project UUID. |
-| `CLOUDFLARE_PAGES_PROJECT` | `staging` environment variable | **`oborskyi-author-ci-staging`**. |
-| `SITE_STAGING_CREATE_PROJECT` | `staging` environment variable | **`false`**: the project already exists. |
-| `SITE_STAGING_ENABLED` | Repository Actions variable | Keep **`false`**/absent now. Enable last, after current-source performance acceptance, approved source integration, protected-main/environment setup and a reviewed removal of the two pause guards. |
-
-Configure these in GitHub **Settings → Environments → staging**; the last
-repository switch is under **Settings → Secrets and variables → Actions →
-Variables**. Store the token as an environment secret, not as a plaintext variable.
-Token creation and GitHub configuration are the remaining owner actions; the
-plugin's Pages connection cannot install them. Leave its credential in the
-provider connection rather than trying to export it.
-
-`oborskyi-author-ci-staging.pages.dev` is an allocated project subdomain, **not a
-working staging site**. The intended stable preview alias after successful
-promotion is `https://staging.oborskyi-author-ci-staging.pages.dev`; it has not been
-uploaded or tested. Record the actual immutable URL returned by deployment rather
-than guessing it. DNS/SSL configuration for a custom domain is outside this first
-staging path and does not unblock the missing GitHub credential/protection.
+| `CLOUDFLARE_API_TOKEN` | `staging` environment secret | Token from step 2; never a plaintext variable. |
+| `CLOUDFLARE_ACCOUNT_ID` | `staging` environment variable | `3b938b72a4ad0ac10b9102e0534e75c0` |
+| `CLOUDFLARE_PAGES_PROJECT` | `staging` environment variable | `oborskyi-author-ci-staging` |
+| `SITE_STAGING_CREATE_PROJECT` | `staging` environment variable | `false`; the dedicated project already exists. |
+| `SITE_STAGING_ENABLED` | Repository Actions variable | `true` only after steps 1–5; leave absent/false until then. |
 
 An existing incompatible project is rejected, never silently converted. Current
 deployment code pins `cloudflare/wrangler-action` to
 `953926a2e2182532811c01a25e53647d93bf07c0` and Wrangler `4.147.0`; this update does
-not upgrade either dependency. Check actual account limits before provisioning.
+not upgrade either dependency. Do not purchase a plan to bypass a quota failure.
 
 ### Required sequence and evidence
 
-1. After activation is separately authorized, open **Actions → Site basic checks
-   → Run workflow**, select branch **main**, and enter its approved full 40-character
+1. Once the automation prerequisites above are complete, open
+   [Actions → Site basic checks](https://github.com/oborskyivitalii/oborskyivitalii/actions/workflows/site-checks.yml)
+   **→ Run workflow**, select branch **main**, and enter its approved full 40-character
    tip SHA as `candidate_sha`. That dispatch runs the one basic profile and owns
    the immutable public/gate artifacts consumed by staging. A SHA from an older
    tip, a PR or another workflow/run/attempt is rejected. Preserve the exact
@@ -130,7 +200,7 @@ promotion, preserve independent/device/rights release acceptance, then run the
 complete production profile against the real deployed origin. This document
 does not claim production automation has run.
 
-### Evidence still required before calling staging configured
+### Evidence still required before accepting stable staging and automation
 
 Working HTTPS stable/version URLs; true 404 and noindex on actual responses;
 all-page navigation/history/query/refresh; exact served bytes; successful full
@@ -147,7 +217,9 @@ Primary provider documentation rechecked 5 October 2026:
 
 The dated sections below retain earlier decisions and evidence. The current
 runbook above supersedes their PR #10 branch rules, smoke-only promotion and
-statements that code merge is still prohibited.
+staging publication pauses or statements that no account/project/preview exists.
+It also supersedes older code-merge restrictions; failing Draft #18 retains its
+current performance blockers. Production publication remains paused.
 
 ## Check-profile amendment — 2026-10-05
 

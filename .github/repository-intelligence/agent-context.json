@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "7f8285469bc8a32303e82a5788e545700107ba65cbe84a25f48e61b2da01eb00",
+    "digest": "394eb262b2437e8622b15afaee54f707a539e90b1b80ed2540457ad636046701",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -58,7 +58,7 @@
       {
         "path": ".github/workflows/site-checks.yml",
         "identity_mode": "content",
-        "sha256": "9ac88c88f32581b55f266abf9e866a3897ad5a91f9a92fa26c20f7cbe54a4721"
+        "sha256": "9f2a2bd1495a03e9d67b27981a744cec6f4788f61f3c137d8496f95735076e58"
       },
       {
         "path": ".github/workflows/site-navigation-probe.yml",
@@ -78,7 +78,7 @@
       {
         "path": ".github/workflows/site-staging.yml",
         "identity_mode": "content",
-        "sha256": "52dcd5d2bd9241d490a9b84bbd68d59c1196d7969d2395a8880a35f8a8dc6528"
+        "sha256": "1f38d9a12d86e792377b2ecf81b7bcbc1ddabd4782b6c967261fae1ee67409a1"
       },
       {
         "path": ".gitignore",
@@ -87,7 +87,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "248a6f84488debbf488780e307f0a5a05e9db826ba6463992757d0d461368756"
+        "sha256": "1c955e086d426410b7ecc08aa6c867dffe744416544775237ea8e1cfb8cf5252"
       },
       {
         "path": "BACKLOG.md",
@@ -117,7 +117,7 @@
       {
         "path": "SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "794fb647d1a9e812be10cb789b0ed5c1dda8d644ce3eed4ef69f5b54d81c235f"
+        "sha256": "a7e5fcd8248dd6ff269c67044d64ff05a2b5e63d959d384445f8697308bd093a"
       },
       {
         "path": "SITE-CONTENT-REVIEW.md",
@@ -127,7 +127,7 @@
       {
         "path": "SITE-OPERATIONS.md",
         "identity_mode": "content",
-        "sha256": "dd65c8505f89fa1d4f6a17e86857d8233062c0e1739c1f46d1138643400760f8"
+        "sha256": "9154efd6305ad8ebb3aae2986e30fb651f9745edeb5beb958ddf8d2717a658cd"
       },
       {
         "path": "SITE-RELEASE-GATES.md",
@@ -152,7 +152,7 @@
       {
         "path": "SITE-STAGING.md",
         "identity_mode": "content",
-        "sha256": "f1d68069ea6e8288f75dfdc62b0f57f789c4f568cafda242905cdc163a946988"
+        "sha256": "a69371e609a9b7dc118f072e7240384f1fe4d9a9062d5fb3e3d286640a16c38f"
       },
       {
         "path": "SITE-VISUAL-REVIEW.md",
@@ -292,6 +292,40 @@
       {
         "path": "review/build_visual_proposal.cjs",
         "identity_mode": "existence"
+      },
+      {
+        "path": "review/cloudflare-staging-20261005/REPORT.md",
+        "identity_mode": "content",
+        "sha256": "a2b107bed6b26fb99049500b8ebd727198da5d393efc3db4d76f41fd8ee4e832"
+      },
+      {
+        "path": "review/cloudflare-staging-20261005/browser-probe.js",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/cloudflare-staging-20261005/evidence/browser.json",
+        "identity_mode": "content",
+        "sha256": "0f3ec4df6156cbb54e4f52d4323dab41edd12687905dbace85fd76c21266ddf8"
+      },
+      {
+        "path": "review/cloudflare-staging-20261005/evidence/http.json",
+        "identity_mode": "content",
+        "sha256": "b1e250cbf6772417de910ae33993fe92a9d427d61290b693d73268c84a917a38"
+      },
+      {
+        "path": "review/cloudflare-staging-20261005/evidence/initial-project-http-headers.json",
+        "identity_mode": "content",
+        "sha256": "39773a98e9bf8a3ff147dae992120a691cb0a00bcf52e83312b1e5dc383de753"
+      },
+      {
+        "path": "review/cloudflare-staging-20261005/evidence/provider.json",
+        "identity_mode": "content",
+        "sha256": "448aa6efa8b269c26dfc6ddbbbdf72b578eb148bf9a658756f5587e327010e4e"
+      },
+      {
+        "path": "review/cloudflare-staging-20261005/evidence/staging-package.json",
+        "identity_mode": "content",
+        "sha256": "d8cf9a28f38fae737ec0ccd7c50d285ae9555741de8dae02f58c05f0b831fbb0"
       },
       {
         "path": "review/seo-20261002/COLLECTION-MANIFEST.json",
@@ -3053,6 +3087,10 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tests/staging-reporting.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tests/staging-trust.test.cjs",
         "identity_mode": "existence"
       },
@@ -3703,6 +3741,48 @@
     {
       "path": "docs/site-revision.json",
       "title": "docs/site-revision.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/cloudflare-staging-20261005/REPORT.md",
+      "title": "Cloudflare staging execution — 5 October 2026",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/cloudflare-staging-20261005/evidence/browser.json",
+      "title": "review/cloudflare-staging-20261005/evidence/browser.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/cloudflare-staging-20261005/evidence/http.json",
+      "title": "review/cloudflare-staging-20261005/evidence/http.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/cloudflare-staging-20261005/evidence/initial-project-http-headers.json",
+      "title": "review/cloudflare-staging-20261005/evidence/initial-project-http-headers.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/cloudflare-staging-20261005/evidence/provider.json",
+      "title": "review/cloudflare-staging-20261005/evidence/provider.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/cloudflare-staging-20261005/evidence/staging-package.json",
+      "title": "review/cloudflare-staging-20261005/evidence/staging-package.json",
       "instructions": [
         "AGENTS.md"
       ]
