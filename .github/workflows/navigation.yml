@@ -1,0 +1,24 @@
+name: Local navigation checks
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  navigation:
+    name: Local navigation and RI freshness
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Run bounded adapter checks
+        run: python3 -m unittest discover -s tests -p 'test_*.py'
+      - name: Verify current-source context
+        run: python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify

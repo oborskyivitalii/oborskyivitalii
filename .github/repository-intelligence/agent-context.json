@@ -1,0 +1,313 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "capabilities": [
+    "local-owner-candidates",
+    "complete-admitted-inventories",
+    "freshness"
+  ],
+  "limitations": [
+    "Navigation only; read owning sources and current GitHub state.",
+    "No semantic graph, impact traversal or trusted tested-merge comparison.",
+    "Excluded build/cache directories are not represented; binary assets are existence-only.",
+    "Lexical miss or untranslated query does not establish absence."
+  ],
+  "source_identity": {
+    "algorithm": "sha256-path-content-v1",
+    "digest": "e37291454d139f92e1d8047b4b36a12511d11ddeb5678992c73ff106d48dd04b",
+    "inputs": [
+      {
+        "path": ".github/ISSUE_TEMPLATE/research-input.md",
+        "identity_mode": "content",
+        "sha256": "e11097914b4abc03399c82e01eecc5074a833fbea4c5e65de23c051159753bfd"
+      },
+      {
+        "path": ".github/ISSUE_TEMPLATE/work-item.md",
+        "identity_mode": "content",
+        "sha256": "644f1eca4b593d50c0f38f3ba0551f1c6fb89989a5744e196afdb05e5b55389c"
+      },
+      {
+        "path": ".github/REPOSITORY-INTELLIGENCE.md",
+        "identity_mode": "content",
+        "sha256": "fb9276177cb328b442d7055adbdeee394408d47f77f4a46c114f50ab56d19033"
+      },
+      {
+        "path": ".github/pull_request_template.md",
+        "identity_mode": "content",
+        "sha256": "113404e51247fc7072e6da5fc2fe2982adb95e790fecea5700dc1e4c5678e771"
+      },
+      {
+        "path": ".github/repository-intelligence-config.json",
+        "identity_mode": "content",
+        "sha256": "af19127170a64e41ff0f2c2127424c7a77c66b28c979d0f9d1a3595be2f41d6c"
+      },
+      {
+        "path": ".github/workflows/navigation.yml",
+        "identity_mode": "content",
+        "sha256": "6e1f624cc47f76585e642deb121e8643668f2b4f290c49b56545bb6f6f854778"
+      },
+      {
+        "path": "AGENTS.md",
+        "identity_mode": "content",
+        "sha256": "97b288eefc5b9d2278e5711a0e8112871c73492a84a6deaf043b9b1b39bb7723"
+      },
+      {
+        "path": "BACKLOG.md",
+        "identity_mode": "content",
+        "sha256": "00abd20f5cccd013b72aec07c8e8cfc0d237dc8d8dc774df6720b955d4e7c623"
+      },
+      {
+        "path": "CONTRIBUTING.md",
+        "identity_mode": "content",
+        "sha256": "0cceb63babe52921690b2fc2539510a1c6731b9fc571709dc329aa099f801867"
+      },
+      {
+        "path": "README.md",
+        "identity_mode": "content",
+        "sha256": "65f9bd0ba252c9a9982fbf7bef551122c6985a5891fd24f6a16a02f6531eb9fa"
+      },
+      {
+        "path": "REPOSITORIES.md",
+        "identity_mode": "content",
+        "sha256": "3378a096e6fb8857424037323a5d80d1231471a6fb98a5362a7b3401d3af340a"
+      },
+      {
+        "path": "SITE-ROADMAP.md",
+        "identity_mode": "content",
+        "sha256": "eb926ade5d2ab1e0a5f6a4a83ae2e00cbc8a1ab97e453a5d7160de79b82f71db"
+      },
+      {
+        "path": "tests/test_repository_intelligence.py",
+        "identity_mode": "content",
+        "sha256": "6e7fb7644655a7d7f77a91914dbdb3f6113e6cca5cceb3687e4a586135e77cd1"
+      },
+      {
+        "path": "tools/RI-LICENSE.md",
+        "identity_mode": "content",
+        "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd"
+      },
+      {
+        "path": "tools/RI-NOTICE.md",
+        "identity_mode": "content",
+        "sha256": "e512235d9027a6bbfa8fa72743f3a40050aef252f579ec5fb6e825115738b2b6"
+      },
+      {
+        "path": "tools/repository_intelligence.py",
+        "identity_mode": "content",
+        "sha256": "d9cc389b40586783ee1632adbffb2cca62a262a8c89b4bb7b504c47d7822637e"
+      }
+    ]
+  },
+  "producer": {
+    "path": "tools/repository_intelligence.py",
+    "sha256": "d9cc389b40586783ee1632adbffb2cca62a262a8c89b4bb7b504c47d7822637e",
+    "config_path": ".github/repository-intelligence-config.json",
+    "config_sha256": "af19127170a64e41ff0f2c2127424c7a77c66b28c979d0f9d1a3595be2f41d6c"
+  },
+  "owners": [
+    {
+      "concern": "agent operation",
+      "path": "AGENTS.md",
+      "queries": [
+        "agent workflow",
+        "агент"
+      ]
+    },
+    {
+      "concern": "task intake and closure",
+      "path": "CONTRIBUTING.md",
+      "queries": [
+        "issue workflow",
+        "backlog",
+        "ішью",
+        "беклог"
+      ]
+    },
+    {
+      "concern": "author profile entry point",
+      "path": "README.md",
+      "queries": [
+        "author",
+        "about",
+        "профіль",
+        "про автора"
+      ]
+    },
+    {
+      "concern": "milestone sequence",
+      "path": "SITE-ROADMAP.md",
+      "queries": [
+        "roadmap",
+        "milestones",
+        "план сайту"
+      ]
+    },
+    {
+      "concern": "publication and migration backlog",
+      "path": "BACKLOG.md",
+      "queries": [
+        "publication",
+        "pmday",
+        "publisher",
+        "pdf",
+        "quartz",
+        "публікація",
+        "пдф"
+      ]
+    },
+    {
+      "concern": "canonical research ownership",
+      "path": "REPOSITORIES.md",
+      "queries": [
+        "cross repository",
+        "research owners",
+        "migration",
+        "міграція",
+        "дослідження"
+      ]
+    },
+    {
+      "concern": "navigation projection",
+      "path": ".github/REPOSITORY-INTELLIGENCE.md",
+      "queries": [
+        "repository intelligence",
+        "RI adapter",
+        "навігація репо"
+      ]
+    }
+  ],
+  "terms": [],
+  "sources": [],
+  "instructions": [
+    {
+      "path": "AGENTS.md",
+      "scope_root": "."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": ".github/ISSUE_TEMPLATE/research-input.md",
+      "title": ".github/ISSUE_TEMPLATE/research-input.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/work-item.md",
+      "title": ".github/ISSUE_TEMPLATE/work-item.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".github/REPOSITORY-INTELLIGENCE.md",
+      "title": "Local Repository Intelligence adapter",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".github/pull_request_template.md",
+      "title": ".github/pull_request_template.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".github/repository-intelligence-config.json",
+      "title": ".github/repository-intelligence-config.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".github/workflows/navigation.yml",
+      "title": ".github/workflows/navigation.yml",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "AGENTS.md",
+      "title": "Agent guidance for personal publications",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "BACKLOG.md",
+      "title": "Issue backlog audit — 2026-10-01",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "title": "Contributing",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "README.md",
+      "title": "Vitalii Oborskyi",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "REPOSITORIES.md",
+      "title": "Three-repository ownership and agent routing",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "SITE-ROADMAP.md",
+      "title": "Vitalii Oborskyi — site and publishing roadmap",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "tests/test_repository_intelligence.py",
+      "title": "tests/test_repository_intelligence.py",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "tools/RI-LICENSE.md",
+      "title": "tools/RI-LICENSE.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "tools/RI-NOTICE.md",
+      "title": "Repository Intelligence component notice",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "tools/repository_intelligence.py",
+      "title": "tools/repository_intelligence.py",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    }
+  ],
+  "cross_repository": [
+    {
+      "repository": "UncertaintyArchitectureGroup/uncertainty-architecture",
+      "concern": "UA specification and research owners",
+      "url": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/main/AGENTS.md"
+    },
+    {
+      "repository": "UncertaintyArchitectureGroup/The-Subprime-Code-Crisis",
+      "concern": "Subprime evidence and operational synthesis",
+      "url": "https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis/blob/main/AGENTS.md"
+    }
+  ]
+}
