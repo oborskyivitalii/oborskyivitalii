@@ -134,9 +134,10 @@ async function normal(page,scenario){
   assert.equal(await page.evaluate(()=>Number(getComputedStyle(document.documentElement).zoom)),2);
   readable(await settled(page));
   await page.evaluate(()=>document.documentElement.style.zoom='');
+  const scrollSync=await require('./scroll-browser.cjs').scenario(page,scenario.route);
   const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa']).analyze();
   assert.deepEqual(axe.violations,[],'axe violations');
-  return {positiveProbe:true,startup,probe:{elapsedMs:probeElapsedMs,paints:b.paints-a.paints},off:true,print:true,syntheticVisibility:true,keyboard:true,keyboardShortcut,reverse:true,forward:travel.range>1&&travel.target>1?'camera changed':'short page',travel:{...travel,settledY:forward.scrollY},archive:scenario.route==='writing'?true:'not applicable',zoom:true,zoomLimit:'CSS zoom; native browser zoom untested',cta,axePasses:axe.passes.length};
+  return {positiveProbe:true,startup,probe:{elapsedMs:probeElapsedMs,paints:b.paints-a.paints},off:true,print:true,syntheticVisibility:true,keyboard:true,keyboardShortcut,reverse:true,forward:travel.range>1&&travel.target>1?'camera changed':'short page',travel:{...travel,settledY:forward.scrollY},archive:scenario.route==='writing'?true:'not applicable',scrollSync,zoom:true,zoomLimit:'CSS zoom; native browser zoom untested',cta,axePasses:axe.passes.length};
 }
 async function failure(page,mode){
   let a=await settled(page);readable(a);

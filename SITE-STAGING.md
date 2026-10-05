@@ -1,4 +1,120 @@
-# Browser staging — Sol implementation plan
+# Browser staging — current setup and activation boundary
+
+## Current runbook — reviewed 5 October 2026
+
+Owner: [#8](https://github.com/oborskyivitalii/oborskyivitalii/issues/8). Full
+checks: [#13](https://github.com/oborskyivitalii/oborskyivitalii/issues/13).
+The maintainer authorizes repository integration and this instruction update.
+**Actual host provisioning/upload remains paused.** There is no verified live
+staging URL. Keep `SITE_STAGING_ENABLED` absent/false and both explicit false
+guards in `site-checks.yml` and `site-staging.yml` until activation is authorized.
+
+### What must change after the PR stack is merged
+
+The previous recipe is pinned to **open PR #10** and
+`work/site-v1-20261001`. It cannot deploy the newer merged engine. This is a code
+dependency, not something an owner can fix by entering a token:
+
+- `tools/staging/state.cjs`: `trustedHead`/`fresh`, recovery-artifact branch
+  validation, deployment registration and the PR comment target still use that
+  fixed PR/branch.
+- `site-checks.yml`: the staging caller allowlist still uses PR #10.
+- Environment rules for `refs/pull/10/merge` belong to that old recipe. Do not
+  install them as the new setup or broaden access to all PRs.
+
+Sol's [H1 task](review/site-followup-20261005/SOL-TASKS.md#h1--staging-after-integration)
+must first migrate these checks together. Recommended first activation is a
+manual workflow on protected `main`, with an explicit candidate SHA that equals
+the approved live main tip. Validate the source/artifact run/repository/branch
+before any provider call, and recheck freshness before alias promotion. A later
+PR-preview mode needs its own explicit same-repository allowlist and environment
+rules. Do not accept an arbitrary branch/SHA supplied by untrusted PR code.
+
+### Owner configuration, once activation is requested
+
+1. Use one dedicated Cloudflare Pages **Direct Upload** staging project. Keep its
+   production branch `production-disabled`; no Git integration, Functions or
+   provider-injected analytics. Do not repurpose production Pages or buy a plan.
+2. Create an account-scoped token with **Account → Cloudflare Pages → Edit** for
+   the intended account. Store it in the GitHub `staging` environment secret
+   below. Never paste it into an issue/chat or commit it. Account-scoped permission
+   does not mean project-only permission.
+3. Protect that GitHub environment with the source branch rules matching the
+   reviewed activation workflow (`main` for the proposed manual mode) and an
+   owner reviewer where available. Preserve the separate trust check in code.
+4. Set these existing configuration names, without putting values in source:
+
+| Name | Location | Purpose |
+| --- | --- | --- |
+| `CLOUDFLARE_API_TOKEN` | `staging` environment secret | Intended account's Pages Edit token. |
+| `CLOUDFLARE_ACCOUNT_ID` | `staging` environment variable | Account's 32-character ID. |
+| `CLOUDFLARE_PAGES_PROJECT` | `staging` environment variable | Dedicated Direct Upload project name. No actual project is asserted here. |
+| `SITE_STAGING_CREATE_PROJECT` | `staging` environment variable | `true` only for initial creation of a missing `*-staging` project; otherwise false/absent. |
+| `SITE_STAGING_ENABLED` | Repository Actions variable | Enable last, after authorization, source-guard migration, secure configuration and removal of the two pause guards in a reviewed change. |
+
+An existing incompatible project is rejected, never silently converted. Current
+deployment code pins `cloudflare/wrangler-action` to
+`953926a2e2182532811c01a25e53647d93bf07c0` and Wrangler `4.147.0`; this update does
+not upgrade either dependency. Check actual account limits before provisioning.
+
+### Required sequence and evidence
+
+1. Run the one basic PR/build profile. Preserve the exact source/tree/public
+   digest and returned immutable artifact/run IDs. Local default is still
+   `node tools/quality/local.cjs`, not the full browser/security matrix.
+2. Build the separate staging package from those verified public bytes, adding
+   only recorded host files (`_headers`, `404.html`, non-sensitive revision
+   metadata). Never upload the repo, `review/`, research attachments or ZIPs.
+3. Upload an immutable candidate; verify actual HTTPS responses, public hashes,
+   five routes, query/hash redirects, MIME, real 404 and noindex. The stable alias
+   stays unchanged at this stage.
+4. Run the **complete automated staging profile** on that exact candidate URL:
+   static/security/advisories, three browser engines, native runners, accessible
+   states/failures, Lighthouse, CPU/soak and captures. Missing/failed or mismatched
+   evidence blocks promotion. Existing limits remain unchanged. Basic/full
+   artifact names are distinct and include profile/run/attempt.
+5. Recheck freshness, promote the identical package to the stable `staging`
+   alias, then recheck it. Recover the previous verified package on failed alias
+   smoke. Uploading to a branch moves its alias; the candidate must therefore
+   use a different branch. Serialize promotion and verify retained dependencies.
+6. Record actual stable and immutable URLs, deployment IDs, source SHA, public/
+   package digests and results in #8/the implementation PR. Verify no analytics
+   beacon on staging and no staging URL/noindex contamination of production SEO.
+
+Production remains GitHub Pages under #8. Its workflow is still an inactive
+example, not an enabled deployment: reuse successful staging automation before
+promotion, preserve independent/device/rights release acceptance, then run the
+complete production profile against the real deployed origin. This document
+does not claim production automation has run.
+
+### Evidence still required before calling staging configured
+
+Working HTTPS stable/version URLs; true 404 and noindex on actual responses;
+all-page navigation/history/query/refresh; exact served bytes; successful full
+staging report; demonstrated recovery; recorded project ownership and retention.
+Physical-device and final rights/release decisions remain separately visible.
+Do not close #8 on local fixtures or setup documentation.
+
+Primary provider documentation rechecked 5 October 2026:
+[Cloudflare CI/token setup](https://developers.cloudflare.com/pages/how-to/use-direct-upload-with-continuous-integration/),
+[preview aliases/noindex](https://developers.cloudflare.com/pages/configuration/preview-deployments/),
+[GitHub deployment environments](https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments).
+
+## Historical implementation plan
+
+The dated sections below retain earlier decisions and evidence. The current
+runbook above supersedes their PR #10 branch rules, smoke-only promotion and
+statements that code merge is still prohibited.
+
+## Check-profile amendment — 2026-10-05
+
+[SITE-CHECK-PROFILES](SITE-CHECK-PROFILES.md) supersedes older always-full
+local/PR execution. Basic checks run once per update; full automated suites run
+against immutable staging and after production deployment. Successful staging
+evidence is reused before promotion. All budgets and separate physical/review
+acceptance remain; publication stays paused. Older execution descriptions below
+are historical where they conflict with this amendment.
+
 
 ## Production measurement isolation — 2026-10-04
 

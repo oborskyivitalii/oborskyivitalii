@@ -8,6 +8,10 @@ const root = path.resolve(process.env.SITE_PUBLIC_DIR || path.join(__dirname, '.
 const types = {'.json':'application/json; charset=utf-8','.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.webp':'image/webp','.svg':'image/svg+xml','.jpg':'image/jpeg','.jpeg':'image/jpeg'};
 const cache = new Map();
 function start() {
+  if(process.env.SITE_TEST_BASE_URL){
+    const url=require('./hosted-origin.cjs').target(process.env.SITE_TEST_BASE_URL,process.env.SITE_TEST_PROFILE);
+    return Promise.resolve({server:{close(){}},url});
+  }
   const server = http.createServer((req,res) => {
     let pathname;
     try {pathname = decodeURIComponent(new URL(req.url, 'http://127.0.0.1').pathname);} catch {res.writeHead(400).end();return;}

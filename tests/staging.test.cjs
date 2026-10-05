@@ -94,4 +94,7 @@ test('staging workflow depends on successful immutable gates, serializes promoti
   assert.match(workflow,/environment: staging/);assert.match(workflow,/cancel-in-progress: false/);assert.doesNotMatch(workflow,/pull_request_target|--branch=production|gitHubToken:/);
   assert.ok(workflow.indexOf('Candidate HTTPS')<workflow.indexOf('Promote identical'));assert.ok(workflow.indexOf('state.cjs begin')<workflow.indexOf('Promote identical'));
   assert.match(workflow,/steps.stable_smoke.outcome != 'success'/);assert.match(workflow,/state.cjs verify-rollback-deployment/);assert.match(workflow,/Fail the candidate even when recovery succeeds/);
+  const promotion=workflow.slice(workflow.indexOf('\n  promote:'));
+  assert.doesNotMatch(promotion,/steps\.prepare\./,'recovery metadata must cross the job boundary');
+  assert.match(promotion,/needs\.deploy\.outputs\.rollback_artifact_id/);assert.match(promotion,/needs\.deploy\.outputs\.rollback_sha/);
 });

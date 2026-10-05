@@ -25,6 +25,9 @@ permissions:
 defaults:
   run:
     shell: bash
+concurrency:
+  group: site-staging-${{ github.repository }}
+  cancel-in-progress: false
 jobs:
   deploy:
     # The caller also checks same-repo PR #10 / manual dispatch. Environment
@@ -34,9 +37,13 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 35
     environment: staging
-    concurrency:
-      group: site-staging-${{ github.repository }}
-      cancel-in-progress: false
+    outputs:
+      version_url: ${{ steps.candidate.outputs.deployment-url }}
+      deployment_id: ${{ steps.candidate.outputs.pages-deployment-id }}
+      session_id: ${{ steps.session.outputs.artifact-id }}
+      smoke: ${{ steps.candidate_smoke.outcome }}
+      rollback_artifact_id: ${{ steps.prepare.outputs.rollback_artifact_id }}
+      rollback_sha: ${{ steps.prepare.outputs.rollback_sha }}
     env:
       SITE_CANDIDATE_SHA: ${{ inputs.candidate_sha }}
       SITE_ARTIFACT_ID: ${{ inputs.public_artifact_id }}
@@ -113,6 +120,77 @@ jobs:
         run: node tools/staging/hosted.cjs "$SITE_VERSION_URL" staging-package staging-reports/candidate.json
         env:
           SITE_VERSION_URL: ${{ steps.candidate.outputs.deployment-url }}
+      - id: session
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: site-staging-session-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            staging-package/
+            quality-results/staging/
+            staging-rollback/
+            staging-reports/candidate.json
+          include-hidden-files: true
+          retention-days: 90
+      - name: Record candidate failure while leaving the stable alias untouched
+        if: ${{ always() && !cancelled() && steps.candidate_smoke.outcome != 'success' }}
+        run: node tools/staging/state.cjs finish
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          SITE_STABLE_SMOKE_OUTCOME: failure
+          SITE_ROLLBACK_SMOKE_OUTCOME: skipped
+  hosted_checks:
+    needs: deploy
+    if: needs.deploy.result == 'success'
+    uses: ./.github/workflows/site-release-checks.yml
+    with:
+      candidate_sha: ${{ inputs.candidate_sha }}
+      full: true
+      base_url: ${{ needs.deploy.outputs.version_url }}
+      profile: staging
+      automated_only: true
+      public_artifact_id: ${{ inputs.public_artifact_id }}
+      public_digest: ${{ inputs.public_digest }}
+      public_upload_digest: ${{ inputs.upload_digest }}
+  promote:
+    needs: [deploy, hosted_checks]
+    if: ${{ always() && needs.deploy.result == 'success' && !cancelled() }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    environment: staging
+    env:
+      SITE_CANDIDATE_SHA: ${{ inputs.candidate_sha }}
+      SITE_ARTIFACT_ID: ${{ inputs.public_artifact_id }}
+      SITE_EXPECTED_PUBLIC_DIGEST: ${{ inputs.public_digest }}
+      SITE_UPLOAD_DIGEST: ${{ inputs.upload_digest }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_PAGES_PROJECT: ${{ vars.CLOUDFLARE_PAGES_PROJECT }}
+      SITE_STAGING_CREATE_PROJECT: ${{ vars.SITE_STAGING_CREATE_PROJECT }}
+      WRANGLER_SEND_METRICS: 'false'
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ inputs.candidate_sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          artifact-ids: ${{ needs.deploy.outputs.session_id }}
+          path: .
+      - name: Require the full hosted suite before staging promotion
+        env:
+          FULL_RESULT: ${{ needs.hosted_checks.result }}
+        run: test "$FULL_RESULT" = success
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          artifact-ids: ${{ needs.hosted_checks.outputs.gate_artifact_id }}
+          path: staging-reports/full
+      - name: Install locked stable-alias browser checks
+        run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium
       - name: Verify candidate metadata and reject a newly stale tip before promotion
         run: |
           node tools/staging/package.cjs verify staging-package
@@ -120,7 +198,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          SITE_PAGES_DEPLOYMENT_ID: ${{ steps.candidate.outputs.pages-deployment-id }}
+          SITE_PAGES_DEPLOYMENT_ID: ${{ needs.deploy.outputs.deployment_id }}
       - id: stable
         name: Promote identical verified package to the staging alias
         continue-on-error: true
@@ -146,7 +224,7 @@ jobs:
           SITE_STAGING_STABLE: 'true'
       - id: rollback
         name: Restore the last verified package after failed stable promotion
-        if: ${{ !cancelled() && steps.stable.outcome != 'skipped' && steps.stable_smoke.outcome != 'success' && steps.prepare.outputs.rollback_artifact_id != '' }}
+        if: ${{ !cancelled() && steps.stable.outcome != 'skipped' && steps.stable_smoke.outcome != 'success' && needs.deploy.outputs.rollback_artifact_id != '' }}
         continue-on-error: true
         uses: cloudflare/wrangler-action@953926a2e2182532811c01a25e53647d93bf07c0 # v4.1.3
         with:
@@ -154,7 +232,7 @@ jobs:
           accountId: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
           wranglerVersion: 4.147.0
           packageManager: npm
-          command: pages deploy staging-rollback/public --project-name=${{ vars.CLOUDFLARE_PAGES_PROJECT }} --branch=staging --commit-hash=${{ steps.prepare.outputs.rollback_sha }} --commit-dirty=false
+          command: pages deploy staging-rollback/public --project-name=${{ vars.CLOUDFLARE_PAGES_PROJECT }} --branch=staging --commit-hash=${{ needs.deploy.outputs.rollback_sha }} --commit-dirty=false
       - id: rollback_smoke
         name: Recheck restored alias and its previous source identity
         if: ${{ !cancelled() && steps.rollback.outcome == 'success' }}
@@ -187,5 +265,5 @@ jobs:
           test "$CANDIDATE_SMOKE" = success
           test "$STABLE_SMOKE" = success
         env:
-          CANDIDATE_SMOKE: ${{ steps.candidate_smoke.outcome }}
+          CANDIDATE_SMOKE: ${{ needs.deploy.outputs.smoke }}
           STABLE_SMOKE: ${{ steps.stable_smoke.outcome }}

@@ -1,5 +1,38 @@
 # Sol execution plan — reviewed 2026-10-02
 
+## Current continuation — Astra review, 2026-10-05
+
+Start with [updated Sol tasks](review/site-followup-20261005/SOL-TASKS.md) and
+[the experiment/repository review](review/site-followup-20261005/REPORT.md).
+The maintainer authorizes ready code merges and completed-issue closure, replacing
+the older merge/push hold. Actual hosting/publication remains paused.
+The stronger shared primitives are implemented. Next: deterministic reverse-end
+landing, cold Writing mount/layout cost, then staging trust-source migration and
+full evidence when hosting is authorized. Do not reimplement completed S1–S6 or
+rerun the full suite locally by default. Independent release acceptance remains
+distinct from this implementer review and repository integration.
+
+## Engine optimization execution — 2026-10-05
+
+The maintainer's “сОля, підходи і зроби” authorizes the six tasks from the review.
+The implementation and exact-file checks are recorded in
+[EXECUTION.md](review/site-engine-optimization-20261005/EXECUTION.md).
+The dated review below remains the immutable baseline, not current task status.
+Owners #12/#13/#14/#15 remain; #8 retains actual hosting. Local evidence does not
+replace full hosted/native/device/independent acceptance. No push/merge/publication.
+
+## Current engine review and optimization tasks — 2026-10-05
+
+The maintainer requested a fresh architecture/performance/stability review and
+Sol optimization tasks. Read the [review](review/site-engine-review-20261005/REPORT.md)
+and [six prioritized tasks](review/site-engine-review-20261005/SOL-TASKS.md), based
+on source `6a759a0fd71706848b5b0f41e4e60e5b03c941c1`. Two hosted-check integration
+defects and current transition hotspots are confirmed; remediation is proposed,
+not implemented. Owners remain #12/#13/#14/#15. Keep the new minimal local profile,
+full hosted profiles, no Glass, primary-header itinerary and footer Credits.
+The exact Color file passed bounded freeze/resource checks; that is not complete
+performance or release acceptance. No push, external posting, merge or publication.
+
 ## Analytics preparation — 2026-10-04
 
 The latest maintainer request authorizes preparing analytics now, before GitHub

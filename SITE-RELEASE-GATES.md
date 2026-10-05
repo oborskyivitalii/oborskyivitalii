@@ -1,5 +1,15 @@
 # Site release checks — Sol implementation contract
 
+## Check-profile amendment — 2026-10-05
+
+[SITE-CHECK-PROFILES](SITE-CHECK-PROFILES.md) supersedes older always-full
+local/PR execution. Basic checks run once per update; full automated suites run
+against immutable staging and after production deployment. Successful staging
+evidence is reused before promotion. All budgets and separate physical/review
+acceptance remain; publication stays paused. Older execution descriptions below
+are historical where they conflict with this amendment.
+
+
 ## Execution and publication pause — 2026-10-04
 
 The maintainer now authorizes the engine/content plan and Writing fix under

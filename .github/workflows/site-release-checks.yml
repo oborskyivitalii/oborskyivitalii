@@ -8,6 +8,31 @@ on:
       full:
         type: boolean
         default: true
+      base_url:
+        description: Exact deployed HTTPS version URL; empty for pre-release checks
+        type: string
+        default: ''
+      profile:
+        type: string
+        default: release
+      automated_only:
+        description: Full hosted automation; separate from physical/review acceptance
+        type: boolean
+        default: false
+      public_artifact_id:
+        description: Reuse the immutable basic-build artifact without rebuilding
+        type: string
+        default: ''
+      public_run_id:
+        description: Run owning the immutable public artifact
+        type: string
+        default: ''
+      public_digest:
+        type: string
+        default: ''
+      public_upload_digest:
+        type: string
+        default: ''
       evidence_artifact_id:
         description: Immutable external review/device evidence artifact ID
         type: string
@@ -39,6 +64,31 @@ on:
         description: Native platforms, performance, devices and review release gates
         type: boolean
         default: true
+      base_url:
+        description: Exact deployed HTTPS version URL; empty for pre-release checks
+        type: string
+        default: ''
+      profile:
+        type: string
+        default: release
+      automated_only:
+        description: Full hosted automation; separate from physical/review acceptance
+        type: boolean
+        default: false
+      public_artifact_id:
+        description: Reuse the immutable basic-build artifact without rebuilding
+        type: string
+        default: ''
+      public_run_id:
+        description: Run owning the immutable public artifact
+        type: string
+        default: ''
+      public_digest:
+        type: string
+        default: ''
+      public_upload_digest:
+        type: string
+        default: ''
       evidence_artifact_id:
         description: External review/device evidence artifact ID, when available
         type: string
@@ -55,6 +105,9 @@ defaults:
     shell: bash
 env:
   SITE_CANDIDATE_SHA: ${{ inputs.candidate_sha }}
+  SITE_TEST_BASE_URL: ${{ inputs.base_url }}
+  SITE_TEST_PROFILE: ${{ inputs.profile }}
+  SITE_AUTOMATED_ONLY: ${{ inputs.automated_only }}
   SITE_PUBLIC_DIR: ${{ github.workspace }}/quality-artifact/public
   SITE_ARTIFACT_MANIFEST: ${{ github.workspace }}/quality-artifact/artifact.json
   SITE_REPORT_DIR: ${{ github.workspace }}/quality-reports
@@ -63,9 +116,10 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     outputs:
-      artifact_id: ${{ steps.upload.outputs.artifact-id }}
-      artifact_upload_digest: ${{ steps.upload.outputs.artifact-digest }}
+      artifact_id: ${{ inputs.public_artifact_id || steps.upload.outputs.artifact-id }}
+      artifact_upload_digest: ${{ inputs.public_upload_digest || steps.upload.outputs.artifact-digest }}
       public_digest: ${{ steps.identity.outputs.digest }}
+      artifact_run_id: ${{ inputs.public_run_id || github.run_id }}
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
@@ -92,16 +146,63 @@ jobs:
           python tools/build_site_bundle.py --check
           python tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify
       - name: Package public files once and enforce budgets
+        if: inputs.public_artifact_id == ''
         run: node tools/quality/artifact.cjs build quality-artifact
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        if: inputs.public_artifact_id != ''
+        with:
+          artifact-ids: ${{ inputs.public_artifact_id }}
+          run-id: ${{ inputs.public_run_id || github.run_id }}
+          github-token: ${{ github.token }}
+          path: quality-artifact
+      - name: Verify reused bytes and exact source identity
+        if: inputs.public_artifact_id != ''
+        env:
+          SITE_EXPECTED_PUBLIC_DIGEST: ${{ inputs.public_digest }}
+        run: |
+          node tools/quality/artifact.cjs verify quality-artifact/public quality-artifact/artifact.json
+          node - <<'JS'
+          const a=require('node:assert/strict'),m=require('./quality-artifact/artifact.json');
+          a.equal(m.sourceCommit,process.env.SITE_CANDIDATE_SHA);a.equal(m.candidateCommit,m.sourceCommit);a.equal(m.sourceDirty,false);
+          a.equal(m.sourceTree,require('node:child_process').execFileSync('git',['rev-parse','HEAD^{tree}'],{encoding:'utf8'}).trim());
+          JS
       - id: identity
         run: node -e "require('node:fs').appendFileSync(process.env.GITHUB_OUTPUT,'digest='+require('./quality-artifact/artifact.json').artifactDigest+'\n')"
       - id: upload
+        if: inputs.public_artifact_id == ''
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         with:
-          name: site-public-${{ github.run_id }}
+          name: site-public-${{ inputs.profile }}-${{ github.run_id }}-${{ github.run_attempt }}
           path: quality-artifact/
           include-hidden-files: true
           if-no-files-found: error
+          retention-days: 30
+  host:
+    if: inputs.base_url != ''
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ inputs.candidate_sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          artifact-ids: ${{ needs.build.outputs.artifact_id }}
+          run-id: ${{ needs.build.outputs.artifact_run_id }}
+          github-token: ${{ github.token }}
+          path: quality-artifact
+      - name: Verify HTTPS, MIME, redirects, 404 and every served source byte
+        run: node tools/quality/hosted.cjs
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: site-reports-host-${{ inputs.profile }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: quality-reports/
           retention-days: 30
   static:
     needs: build
@@ -120,7 +221,9 @@ jobs:
           python-version: 3.12.14
       - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
         with:
-          name: site-public-${{ github.run_id }}
+          artifact-ids: ${{ needs.build.outputs.artifact_id }}
+          run-id: ${{ needs.build.outputs.artifact_run_id }}
+          github-token: ${{ github.token }}
           path: quality-artifact
       - name: Install locked tools
         run: |
@@ -137,7 +240,7 @@ jobs:
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: always()
         with:
-          name: site-reports-static-${{ github.run_id }}
+          name: site-reports-static-${{ inputs.profile }}-${{ github.run_id }}-${{ github.run_attempt }}
           path: quality-reports/
           retention-days: 30
   linux:
@@ -154,7 +257,9 @@ jobs:
           node-version: 24.19.0
       - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
         with:
-          name: site-public-${{ github.run_id }}
+          artifact-ids: ${{ needs.build.outputs.artifact_id }}
+          run-id: ${{ needs.build.outputs.artifact_run_id }}
+          github-token: ${{ github.token }}
           path: quality-artifact
       - name: Install pinned browsers
         run: |
@@ -168,7 +273,7 @@ jobs:
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: always()
         with:
-          name: site-reports-linux-${{ github.run_id }}
+          name: site-reports-linux-${{ inputs.profile }}-${{ github.run_id }}-${{ github.run_attempt }}
           path: quality-reports/
           retention-days: 30
   native:
@@ -198,7 +303,9 @@ jobs:
           node-version: 24.19.0
       - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
         with:
-          name: site-public-${{ github.run_id }}
+          artifact-ids: ${{ needs.build.outputs.artifact_id }}
+          run-id: ${{ needs.build.outputs.artifact_run_id }}
+          github-token: ${{ github.token }}
           path: quality-artifact
       - name: Install pinned native engines
         run: |
@@ -214,7 +321,7 @@ jobs:
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: always()
         with:
-          name: site-reports-${{ matrix.platform }}-${{ github.run_id }}
+          name: site-reports-${{ matrix.platform }}-${{ inputs.profile }}-${{ github.run_id }}-${{ github.run_attempt }}
           path: quality-reports/
           retention-days: 30
   performance:
@@ -232,7 +339,9 @@ jobs:
           node-version: 24.19.0
       - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
         with:
-          name: site-public-${{ github.run_id }}
+          artifact-ids: ${{ needs.build.outputs.artifact_id }}
+          run-id: ${{ needs.build.outputs.artifact_run_id }}
+          github-token: ${{ github.token }}
           path: quality-artifact
       - run: |
           npm ci --prefix tools/quality/toolchain --ignore-scripts
@@ -249,7 +358,7 @@ jobs:
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: always()
         with:
-          name: site-reports-performance-${{ github.run_id }}
+          name: site-reports-performance-${{ inputs.profile }}-${{ github.run_id }}-${{ github.run_attempt }}
           path: quality-reports/
           retention-days: 30
   captures:
@@ -272,7 +381,9 @@ jobs:
           python-version: 3.12.14
       - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
         with:
-          name: site-public-${{ github.run_id }}
+          artifact-ids: ${{ needs.build.outputs.artifact_id }}
+          run-id: ${{ needs.build.outputs.artifact_run_id }}
+          github-token: ${{ github.token }}
           path: quality-artifact
       - name: Install locked capture tooling
         run: |
@@ -290,14 +401,14 @@ jobs:
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: always()
         with:
-          name: site-reports-captures-${{ github.run_id }}
+          name: site-reports-captures-${{ inputs.profile }}-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
             quality-reports/
             review/site-v1-20261004-v11-captures/
           retention-days: 30
   gate:
     if: always()
-    needs: [build, static, linux, native, performance, captures]
+    needs: [build, static, linux, native, performance, captures, host]
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     outputs:
@@ -319,18 +430,20 @@ jobs:
           node-version: 24.19.0
       - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
         with:
-          name: site-public-${{ github.run_id }}
+          artifact-ids: ${{ needs.build.outputs.artifact_id }}
+          run-id: ${{ needs.build.outputs.artifact_run_id }}
+          github-token: ${{ github.token }}
           path: quality-artifact
       - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
         with:
-          pattern: site-reports-*-${{ github.run_id }}
+          pattern: site-reports-*-${{ inputs.profile }}-${{ github.run_id }}-${{ github.run_attempt }}
           path: quality-artifact/reports
           merge-multiple: false
       - name: Validate external evidence identifiers
-        if: inputs.full && inputs.evidence_artifact_id != ''
+        if: inputs.full && !inputs.automated_only && inputs.evidence_artifact_id != ''
         run: node -e "const a=require('node:assert/strict');a.match(process.env.SITE_EVIDENCE_ARTIFACT_ID,/^[0-9]+$/);a.match(process.env.SITE_EVIDENCE_RUN_ID,/^[0-9]+$/)"
       - name: Download immutable external review/device evidence
-        if: inputs.full && inputs.evidence_artifact_id != ''
+        if: inputs.full && !inputs.automated_only && inputs.evidence_artifact_id != ''
         uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
         with:
           artifact-ids: ${{ inputs.evidence_artifact_id }}
@@ -355,6 +468,6 @@ jobs:
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: always()
         with:
-          name: site-gate-${{ github.run_id }}
+          name: site-gate-full-${{ inputs.profile }}-${{ github.run_id }}-${{ github.run_attempt }}
           path: quality-artifact/release-manifest.json
           retention-days: 30

@@ -1,7 +1,7 @@
 'use strict';
 const assert=require('node:assert/strict');
 const routes=['index','research','writing','talks','credits'];
-const checks=['persistentShell','fiveRoutes','metadata','forward','backward','history','historyScroll','archiveLifecycle','rapidNavigation','off','reduced','fetchFallback','headerEdges','flightTiming','earlyScroll','interruptions','retargetOpacity','writingFirstScroll','snapshotPin','versionFallback','digestFallback','offlineEntries'];
+const checks=['persistentShell','fiveRoutes','metadata','forward','backward','history','historyScroll','archiveLifecycle','rapidNavigation','off','reduced','fetchFallback','headerEdges','flightTiming','earlyScroll','interruptions','retargetOpacity','writingFirstScroll','fullScrollArrival','snapshotPin','versionFallback','digestFallback','offlineEntries','utilityNoFlight'];
 const selector=route=>`a[href="${route==='index'?'./':route+'.html'}"]`;
 async function ready(page,route){
   await page.waitForFunction(route=>document.body.dataset.page===route&&!document.querySelector('#site-content').hasAttribute('aria-busy'),route,{polling:40,timeout:6000});
@@ -49,12 +49,13 @@ async function scenario(browser,url,s){
     const initial=await page.locator('.space-scene').getAttribute('data-camera');
     for(const route of routes.slice(1)){
       await page.evaluate(()=>{window.__flightSamples=[];});
-      await click(page,route);await settled(page);checkTiming(await page.evaluate(()=>window.__flightSamples));
+      await click(page,route);await settled(page);if(route!=='credits')checkTiming(await page.evaluate(()=>window.__flightSamples));else{assert.ok((await page.evaluate(()=>window.__flightSamples)).every(x=>x.progress===1));result.checks.utilityNoFlight=true;}
       const state=await page.evaluate(()=>({page:document.body.dataset.page,title:document.title,description:document.querySelector('meta[name="description"]').content,h1:document.querySelectorAll('h1').length,focus:document.activeElement.id,rooms:+document.querySelector('.space-scene').dataset.rooms,direction:document.querySelector('.space-scene').dataset.direction,same:window.__shell.header===document.querySelector('header')&&window.__shell.canvas===document.querySelector('canvas')&&window.__shell.theme===document.querySelector('#theme-mode')&&window.__shell.document===document}));
-      assert.equal(state.page,route);assert.ok(state.title.toLowerCase().includes(route==='credits'?'credits':route));assert.ok(state.description.length>20);assert.equal(state.h1,1);assert.equal(state.focus,'main');assert.equal(state.same,true);assert.ok(state.rooms<=3);assert.equal(state.direction,'forward');assert.equal(new URL(page.url()).pathname,'/'+route+'.html');
+      assert.equal(state.page,route);assert.ok(state.title.toLowerCase().includes(route==='credits'?'credits':route));assert.ok(state.description.length>20);assert.equal(state.h1,1);assert.equal(state.focus,'main');assert.equal(state.same,true);assert.ok(state.rooms<=3);assert.equal(state.direction,'forward');assert.equal(new URL(page.url()).pathname,new URL(route+'.html',url+'/').pathname);
       if(route==='writing'){result.writingFirstScroll=await require('./engine-browser.cjs').writingGestures(page);result.checks.writingFirstScroll=true;}
+      (result.scrollArrivals??=[]).push({route,...await require('./scroll-browser.cjs').probe(page,'arrival',route)});
     }
-    Object.assign(result.checks,{persistentShell:true,fiveRoutes:true,metadata:true,forward:true,flightTiming:true});
+    Object.assign(result.checks,{persistentShell:true,fiveRoutes:true,metadata:true,forward:true,flightTiming:true,fullScrollArrival:true});
     await click(page,'index');await settled(page);assert.equal(await page.locator('.space-scene').getAttribute('data-camera'),initial);assert.equal(await page.locator('.space-scene').getAttribute('data-direction'),'backward');result.checks.backward=true;
     await page.goBack();await ready(page,'credits');await settled(page);await page.goForward();await ready(page,'index');await settled(page);result.checks.history=true;
     await page.evaluate(()=>addEventListener('site:page-ready',()=>scrollTo({top:400,behavior:'instant'}),{once:true}));
@@ -110,10 +111,8 @@ async function scenario(browser,url,s){
     await page.waitForFunction(()=>matchMedia('(prefers-reduced-motion: reduce)').matches&&document.querySelector('#space-motion').textContent==='Motion: reduced',null,{polling:40,timeout:2000});
     await click(page,'research');await settled(page);const reduced=await page.locator('.space-scene').getAttribute('data-camera');await page.waitForTimeout(220);assert.equal(await page.locator('.space-scene').getAttribute('data-camera'),reduced);assert.match(await page.locator('#space-motion').textContent(),/reduced/);result.checks.reduced=true;
     // An uncached fetch fails once, then the ordinary destination document opens.
-    await page.goto(url+'/index.html');
-    await page.route('**/research.html',route=>route.request().resourceType()==='fetch'?route.fulfill({status:503,contentType:'text/plain',body:'Controlled unavailable route'}):route.continue());
-    await page.locator(selector('research')).first().click();await page.waitForURL('**/research.html');await page.waitForFunction(()=>document.body.dataset.page==='research');result.checks.fetchFallback=true;await page.unroute('**/research.html');
     const engine=require('./engine-browser.cjs');
+    await engine.fetchFallback(page,url);result.checks.fetchFallback=true;
     await engine.snapshotPin(page,url);result.checks.snapshotPin=true;
     await engine.boundedFallback(page,url,'revision');result.checks.versionFallback=true;
     await engine.boundedFallback(page,url,'digest');result.checks.digestFallback=true;

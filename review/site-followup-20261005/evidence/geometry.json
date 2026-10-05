@@ -1,0 +1,945 @@
+{
+  "schema": 1,
+  "source": "8150206fb06d264c36688eda54a46f779447705c274f5f18f0cf3398e16e83ac",
+  "variant": {
+    "id": "color",
+    "contract": 1,
+    "fingerprint": "fc24728bbde174b9cba0f901d23052f65bc17ed702482ec11cb13514762cad21"
+  },
+  "theme": "dark",
+  "rows": [
+    {
+      "route": "index",
+      "compact": false,
+      "objects": 252,
+      "vertices": 14070,
+      "faces": 7344,
+      "lines": 4735,
+      "modelBytes": 4845454,
+      "projectedShapesMax": 9044,
+      "samples": [
+        {
+          "pose": "overview",
+          "time": 0,
+          "baseShapes": 8780,
+          "ribbonShapes": 241,
+          "totalShapes": 9021
+        },
+        {
+          "pose": "overview",
+          "time": 12000,
+          "baseShapes": 8804,
+          "ribbonShapes": 240,
+          "totalShapes": 9044
+        },
+        {
+          "pose": "control",
+          "time": 0,
+          "baseShapes": 7664,
+          "ribbonShapes": 232,
+          "totalShapes": 7896
+        },
+        {
+          "pose": "control",
+          "time": 12000,
+          "baseShapes": 7655,
+          "ribbonShapes": 233,
+          "totalShapes": 7888
+        },
+        {
+          "pose": "help",
+          "time": 0,
+          "baseShapes": 5671,
+          "ribbonShapes": 241,
+          "totalShapes": 5912
+        },
+        {
+          "pose": "help",
+          "time": 12000,
+          "baseShapes": 6032,
+          "ribbonShapes": 242,
+          "totalShapes": 6274
+        },
+        {
+          "pose": "feedback",
+          "time": 0,
+          "baseShapes": 5745,
+          "ribbonShapes": 232,
+          "totalShapes": 5977
+        },
+        {
+          "pose": "feedback",
+          "time": 12000,
+          "baseShapes": 5932,
+          "ribbonShapes": 233,
+          "totalShapes": 6165
+        },
+        {
+          "pose": "context",
+          "time": 0,
+          "baseShapes": 4126,
+          "ribbonShapes": 236,
+          "totalShapes": 4362
+        },
+        {
+          "pose": "context",
+          "time": 12000,
+          "baseShapes": 4240,
+          "ribbonShapes": 238,
+          "totalShapes": 4478
+        },
+        {
+          "pose": "closing",
+          "time": 0,
+          "baseShapes": 1921,
+          "ribbonShapes": 236,
+          "totalShapes": 2157
+        },
+        {
+          "pose": "closing",
+          "time": 12000,
+          "baseShapes": 2200,
+          "ribbonShapes": 235,
+          "totalShapes": 2435
+        }
+      ]
+    },
+    {
+      "route": "index",
+      "compact": true,
+      "objects": 252,
+      "vertices": 10650,
+      "faces": 5488,
+      "lines": 3167,
+      "modelBytes": 4066708,
+      "projectedShapesMax": 2805,
+      "samples": [
+        {
+          "pose": "overview",
+          "time": 0,
+          "baseShapes": 2725,
+          "ribbonShapes": 56,
+          "totalShapes": 2781
+        },
+        {
+          "pose": "overview",
+          "time": 12000,
+          "baseShapes": 2750,
+          "ribbonShapes": 55,
+          "totalShapes": 2805
+        },
+        {
+          "pose": "control",
+          "time": 0,
+          "baseShapes": 2294,
+          "ribbonShapes": 53,
+          "totalShapes": 2347
+        },
+        {
+          "pose": "control",
+          "time": 12000,
+          "baseShapes": 2286,
+          "ribbonShapes": 52,
+          "totalShapes": 2338
+        },
+        {
+          "pose": "help",
+          "time": 0,
+          "baseShapes": 1905,
+          "ribbonShapes": 59,
+          "totalShapes": 1964
+        },
+        {
+          "pose": "help",
+          "time": 12000,
+          "baseShapes": 2029,
+          "ribbonShapes": 58,
+          "totalShapes": 2087
+        },
+        {
+          "pose": "feedback",
+          "time": 0,
+          "baseShapes": 1733,
+          "ribbonShapes": 54,
+          "totalShapes": 1787
+        },
+        {
+          "pose": "feedback",
+          "time": 12000,
+          "baseShapes": 1946,
+          "ribbonShapes": 53,
+          "totalShapes": 1999
+        },
+        {
+          "pose": "context",
+          "time": 0,
+          "baseShapes": 1263,
+          "ribbonShapes": 50,
+          "totalShapes": 1313
+        },
+        {
+          "pose": "context",
+          "time": 12000,
+          "baseShapes": 1408,
+          "ribbonShapes": 49,
+          "totalShapes": 1457
+        },
+        {
+          "pose": "closing",
+          "time": 0,
+          "baseShapes": 865,
+          "ribbonShapes": 54,
+          "totalShapes": 919
+        },
+        {
+          "pose": "closing",
+          "time": 12000,
+          "baseShapes": 968,
+          "ribbonShapes": 53,
+          "totalShapes": 1021
+        }
+      ]
+    },
+    {
+      "route": "research",
+      "compact": false,
+      "objects": 252,
+      "vertices": 14644,
+      "faces": 7842,
+      "lines": 6145,
+      "modelBytes": 5353265,
+      "projectedShapesMax": 9576,
+      "samples": [
+        {
+          "pose": "researchOverview",
+          "time": 0,
+          "baseShapes": 9337,
+          "ribbonShapes": 239,
+          "totalShapes": 9576
+        },
+        {
+          "pose": "researchOverview",
+          "time": 12000,
+          "baseShapes": 9315,
+          "ribbonShapes": 238,
+          "totalShapes": 9553
+        },
+        {
+          "pose": "verification",
+          "time": 0,
+          "baseShapes": 7760,
+          "ribbonShapes": 236,
+          "totalShapes": 7996
+        },
+        {
+          "pose": "verification",
+          "time": 12000,
+          "baseShapes": 7804,
+          "ribbonShapes": 235,
+          "totalShapes": 8039
+        },
+        {
+          "pose": "help",
+          "time": 0,
+          "baseShapes": 5757,
+          "ribbonShapes": 239,
+          "totalShapes": 5996
+        },
+        {
+          "pose": "help",
+          "time": 12000,
+          "baseShapes": 6278,
+          "ribbonShapes": 237,
+          "totalShapes": 6515
+        },
+        {
+          "pose": "feedback",
+          "time": 0,
+          "baseShapes": 6055,
+          "ribbonShapes": 237,
+          "totalShapes": 6292
+        },
+        {
+          "pose": "feedback",
+          "time": 12000,
+          "baseShapes": 6250,
+          "ribbonShapes": 236,
+          "totalShapes": 6486
+        },
+        {
+          "pose": "closing",
+          "time": 0,
+          "baseShapes": 2014,
+          "ribbonShapes": 236,
+          "totalShapes": 2250
+        },
+        {
+          "pose": "closing",
+          "time": 12000,
+          "baseShapes": 2366,
+          "ribbonShapes": 237,
+          "totalShapes": 2603
+        }
+      ]
+    },
+    {
+      "route": "research",
+      "compact": true,
+      "objects": 252,
+      "vertices": 10488,
+      "faces": 5590,
+      "lines": 3777,
+      "modelBytes": 4212796,
+      "projectedShapesMax": 2908,
+      "samples": [
+        {
+          "pose": "researchOverview",
+          "time": 0,
+          "baseShapes": 2829,
+          "ribbonShapes": 54,
+          "totalShapes": 2883
+        },
+        {
+          "pose": "researchOverview",
+          "time": 12000,
+          "baseShapes": 2854,
+          "ribbonShapes": 54,
+          "totalShapes": 2908
+        },
+        {
+          "pose": "verification",
+          "time": 0,
+          "baseShapes": 2326,
+          "ribbonShapes": 56,
+          "totalShapes": 2382
+        },
+        {
+          "pose": "verification",
+          "time": 12000,
+          "baseShapes": 2310,
+          "ribbonShapes": 55,
+          "totalShapes": 2365
+        },
+        {
+          "pose": "help",
+          "time": 0,
+          "baseShapes": 2147,
+          "ribbonShapes": 57,
+          "totalShapes": 2204
+        },
+        {
+          "pose": "help",
+          "time": 12000,
+          "baseShapes": 2280,
+          "ribbonShapes": 57,
+          "totalShapes": 2337
+        },
+        {
+          "pose": "feedback",
+          "time": 0,
+          "baseShapes": 1846,
+          "ribbonShapes": 51,
+          "totalShapes": 1897
+        },
+        {
+          "pose": "feedback",
+          "time": 12000,
+          "baseShapes": 2013,
+          "ribbonShapes": 49,
+          "totalShapes": 2062
+        },
+        {
+          "pose": "closing",
+          "time": 0,
+          "baseShapes": 993,
+          "ribbonShapes": 54,
+          "totalShapes": 1047
+        },
+        {
+          "pose": "closing",
+          "time": 12000,
+          "baseShapes": 1094,
+          "ribbonShapes": 53,
+          "totalShapes": 1147
+        }
+      ]
+    },
+    {
+      "route": "writing",
+      "compact": false,
+      "objects": 252,
+      "vertices": 11422,
+      "faces": 4798,
+      "lines": 5057,
+      "modelBytes": 3867160,
+      "projectedShapesMax": 7162,
+      "samples": [
+        {
+          "pose": "library",
+          "time": 0,
+          "baseShapes": 6906,
+          "ribbonShapes": 238,
+          "totalShapes": 7144
+        },
+        {
+          "pose": "library",
+          "time": 12000,
+          "baseShapes": 6917,
+          "ribbonShapes": 238,
+          "totalShapes": 7155
+        },
+        {
+          "pose": "control",
+          "time": 0,
+          "baseShapes": 5900,
+          "ribbonShapes": 230,
+          "totalShapes": 6130
+        },
+        {
+          "pose": "control",
+          "time": 12000,
+          "baseShapes": 5868,
+          "ribbonShapes": 231,
+          "totalShapes": 6099
+        },
+        {
+          "pose": "libraryMid",
+          "time": 0,
+          "baseShapes": 4820,
+          "ribbonShapes": 232,
+          "totalShapes": 5052
+        },
+        {
+          "pose": "libraryMid",
+          "time": 12000,
+          "baseShapes": 4976,
+          "ribbonShapes": 230,
+          "totalShapes": 5206
+        },
+        {
+          "pose": "feedback",
+          "time": 0,
+          "baseShapes": 4533,
+          "ribbonShapes": 239,
+          "totalShapes": 4772
+        },
+        {
+          "pose": "feedback",
+          "time": 12000,
+          "baseShapes": 4522,
+          "ribbonShapes": 239,
+          "totalShapes": 4761
+        },
+        {
+          "pose": "libraryEnd",
+          "time": 0,
+          "baseShapes": 1703,
+          "ribbonShapes": 233,
+          "totalShapes": 1936
+        },
+        {
+          "pose": "libraryEnd",
+          "time": 12000,
+          "baseShapes": 1990,
+          "ribbonShapes": 233,
+          "totalShapes": 2223
+        },
+        {
+          "pose": "help",
+          "time": 0,
+          "baseShapes": 4674,
+          "ribbonShapes": 236,
+          "totalShapes": 4910
+        },
+        {
+          "pose": "help",
+          "time": 12000,
+          "baseShapes": 5064,
+          "ribbonShapes": 236,
+          "totalShapes": 5300
+        },
+        {
+          "pose": "closing",
+          "time": 0,
+          "baseShapes": 1749,
+          "ribbonShapes": 235,
+          "totalShapes": 1984
+        },
+        {
+          "pose": "closing",
+          "time": 12000,
+          "baseShapes": 1972,
+          "ribbonShapes": 236,
+          "totalShapes": 2208
+        },
+        {
+          "pose": "researchOverview",
+          "time": 0,
+          "baseShapes": 6923,
+          "ribbonShapes": 239,
+          "totalShapes": 7162
+        },
+        {
+          "pose": "researchOverview",
+          "time": 12000,
+          "baseShapes": 6917,
+          "ribbonShapes": 237,
+          "totalShapes": 7154
+        },
+        {
+          "pose": "verification",
+          "time": 0,
+          "baseShapes": 6027,
+          "ribbonShapes": 234,
+          "totalShapes": 6261
+        },
+        {
+          "pose": "verification",
+          "time": 12000,
+          "baseShapes": 6004,
+          "ribbonShapes": 236,
+          "totalShapes": 6240
+        },
+        {
+          "pose": "verificationEnd",
+          "time": 0,
+          "baseShapes": 2210,
+          "ribbonShapes": 234,
+          "totalShapes": 2444
+        },
+        {
+          "pose": "verificationEnd",
+          "time": 12000,
+          "baseShapes": 2401,
+          "ribbonShapes": 234,
+          "totalShapes": 2635
+        },
+        {
+          "pose": "controller",
+          "time": 0,
+          "baseShapes": 6905,
+          "ribbonShapes": 239,
+          "totalShapes": 7144
+        },
+        {
+          "pose": "controller",
+          "time": 12000,
+          "baseShapes": 6904,
+          "ribbonShapes": 237,
+          "totalShapes": 7141
+        },
+        {
+          "pose": "controllerEnd",
+          "time": 0,
+          "baseShapes": 1851,
+          "ribbonShapes": 232,
+          "totalShapes": 2083
+        },
+        {
+          "pose": "controllerEnd",
+          "time": 12000,
+          "baseShapes": 2057,
+          "ribbonShapes": 233,
+          "totalShapes": 2290
+        }
+      ]
+    },
+    {
+      "route": "writing",
+      "compact": true,
+      "objects": 252,
+      "vertices": 9398,
+      "faces": 3890,
+      "lines": 3549,
+      "modelBytes": 3416867,
+      "projectedShapesMax": 3073,
+      "samples": [
+        {
+          "pose": "library",
+          "time": 0,
+          "baseShapes": 3013,
+          "ribbonShapes": 55,
+          "totalShapes": 3068
+        },
+        {
+          "pose": "library",
+          "time": 12000,
+          "baseShapes": 3010,
+          "ribbonShapes": 55,
+          "totalShapes": 3065
+        },
+        {
+          "pose": "control",
+          "time": 0,
+          "baseShapes": 2254,
+          "ribbonShapes": 54,
+          "totalShapes": 2308
+        },
+        {
+          "pose": "control",
+          "time": 12000,
+          "baseShapes": 2260,
+          "ribbonShapes": 53,
+          "totalShapes": 2313
+        },
+        {
+          "pose": "libraryMid",
+          "time": 0,
+          "baseShapes": 1783,
+          "ribbonShapes": 56,
+          "totalShapes": 1839
+        },
+        {
+          "pose": "libraryMid",
+          "time": 12000,
+          "baseShapes": 1870,
+          "ribbonShapes": 57,
+          "totalShapes": 1927
+        },
+        {
+          "pose": "feedback",
+          "time": 0,
+          "baseShapes": 1613,
+          "ribbonShapes": 55,
+          "totalShapes": 1668
+        },
+        {
+          "pose": "feedback",
+          "time": 12000,
+          "baseShapes": 1769,
+          "ribbonShapes": 53,
+          "totalShapes": 1822
+        },
+        {
+          "pose": "libraryEnd",
+          "time": 0,
+          "baseShapes": 764,
+          "ribbonShapes": 54,
+          "totalShapes": 818
+        },
+        {
+          "pose": "libraryEnd",
+          "time": 12000,
+          "baseShapes": 874,
+          "ribbonShapes": 54,
+          "totalShapes": 928
+        },
+        {
+          "pose": "help",
+          "time": 0,
+          "baseShapes": 1792,
+          "ribbonShapes": 54,
+          "totalShapes": 1846
+        },
+        {
+          "pose": "help",
+          "time": 12000,
+          "baseShapes": 1917,
+          "ribbonShapes": 54,
+          "totalShapes": 1971
+        },
+        {
+          "pose": "closing",
+          "time": 0,
+          "baseShapes": 829,
+          "ribbonShapes": 58,
+          "totalShapes": 887
+        },
+        {
+          "pose": "closing",
+          "time": 12000,
+          "baseShapes": 905,
+          "ribbonShapes": 57,
+          "totalShapes": 962
+        },
+        {
+          "pose": "researchOverview",
+          "time": 0,
+          "baseShapes": 3017,
+          "ribbonShapes": 56,
+          "totalShapes": 3073
+        },
+        {
+          "pose": "researchOverview",
+          "time": 12000,
+          "baseShapes": 3017,
+          "ribbonShapes": 56,
+          "totalShapes": 3073
+        },
+        {
+          "pose": "verification",
+          "time": 0,
+          "baseShapes": 2343,
+          "ribbonShapes": 54,
+          "totalShapes": 2397
+        },
+        {
+          "pose": "verification",
+          "time": 12000,
+          "baseShapes": 2348,
+          "ribbonShapes": 55,
+          "totalShapes": 2403
+        },
+        {
+          "pose": "verificationEnd",
+          "time": 0,
+          "baseShapes": 979,
+          "ribbonShapes": 57,
+          "totalShapes": 1036
+        },
+        {
+          "pose": "verificationEnd",
+          "time": 12000,
+          "baseShapes": 1086,
+          "ribbonShapes": 57,
+          "totalShapes": 1143
+        },
+        {
+          "pose": "controller",
+          "time": 0,
+          "baseShapes": 2994,
+          "ribbonShapes": 55,
+          "totalShapes": 3049
+        },
+        {
+          "pose": "controller",
+          "time": 12000,
+          "baseShapes": 2999,
+          "ribbonShapes": 55,
+          "totalShapes": 3054
+        },
+        {
+          "pose": "controllerEnd",
+          "time": 0,
+          "baseShapes": 774,
+          "ribbonShapes": 55,
+          "totalShapes": 829
+        },
+        {
+          "pose": "controllerEnd",
+          "time": 12000,
+          "baseShapes": 866,
+          "ribbonShapes": 55,
+          "totalShapes": 921
+        }
+      ]
+    },
+    {
+      "route": "talks",
+      "compact": false,
+      "objects": 252,
+      "vertices": 13288,
+      "faces": 6460,
+      "lines": 5039,
+      "modelBytes": 4607402,
+      "projectedShapesMax": 8880,
+      "samples": [
+        {
+          "pose": "signal",
+          "time": 0,
+          "baseShapes": 8577,
+          "ribbonShapes": 241,
+          "totalShapes": 8818
+        },
+        {
+          "pose": "signal",
+          "time": 12000,
+          "baseShapes": 8638,
+          "ribbonShapes": 242,
+          "totalShapes": 8880
+        },
+        {
+          "pose": "signalEnd",
+          "time": 0,
+          "baseShapes": 5602,
+          "ribbonShapes": 238,
+          "totalShapes": 5840
+        },
+        {
+          "pose": "signalEnd",
+          "time": 12000,
+          "baseShapes": 5590,
+          "ribbonShapes": 240,
+          "totalShapes": 5830
+        },
+        {
+          "pose": "closing",
+          "time": 0,
+          "baseShapes": 2266,
+          "ribbonShapes": 235,
+          "totalShapes": 2501
+        },
+        {
+          "pose": "closing",
+          "time": 12000,
+          "baseShapes": 2531,
+          "ribbonShapes": 234,
+          "totalShapes": 2765
+        }
+      ]
+    },
+    {
+      "route": "talks",
+      "compact": true,
+      "objects": 252,
+      "vertices": 11196,
+      "faces": 5474,
+      "lines": 3535,
+      "modelBytes": 4278266,
+      "projectedShapesMax": 3288,
+      "samples": [
+        {
+          "pose": "signal",
+          "time": 0,
+          "baseShapes": 3219,
+          "ribbonShapes": 56,
+          "totalShapes": 3275
+        },
+        {
+          "pose": "signal",
+          "time": 12000,
+          "baseShapes": 3232,
+          "ribbonShapes": 56,
+          "totalShapes": 3288
+        },
+        {
+          "pose": "signalEnd",
+          "time": 0,
+          "baseShapes": 1817,
+          "ribbonShapes": 55,
+          "totalShapes": 1872
+        },
+        {
+          "pose": "signalEnd",
+          "time": 12000,
+          "baseShapes": 1858,
+          "ribbonShapes": 56,
+          "totalShapes": 1914
+        },
+        {
+          "pose": "closing",
+          "time": 0,
+          "baseShapes": 949,
+          "ribbonShapes": 53,
+          "totalShapes": 1002
+        },
+        {
+          "pose": "closing",
+          "time": 12000,
+          "baseShapes": 1044,
+          "ribbonShapes": 51,
+          "totalShapes": 1095
+        }
+      ]
+    },
+    {
+      "route": "credits",
+      "compact": false,
+      "objects": 252,
+      "vertices": 11424,
+      "faces": 5998,
+      "lines": 4311,
+      "modelBytes": 4152935,
+      "projectedShapesMax": 6501,
+      "samples": [
+        {
+          "pose": "network",
+          "time": 0,
+          "baseShapes": 6263,
+          "ribbonShapes": 238,
+          "totalShapes": 6501
+        },
+        {
+          "pose": "network",
+          "time": 12000,
+          "baseShapes": 6256,
+          "ribbonShapes": 238,
+          "totalShapes": 6494
+        },
+        {
+          "pose": "networkEnd",
+          "time": 0,
+          "baseShapes": 4837,
+          "ribbonShapes": 235,
+          "totalShapes": 5072
+        },
+        {
+          "pose": "networkEnd",
+          "time": 12000,
+          "baseShapes": 4830,
+          "ribbonShapes": 236,
+          "totalShapes": 5066
+        },
+        {
+          "pose": "closing",
+          "time": 0,
+          "baseShapes": 2190,
+          "ribbonShapes": 237,
+          "totalShapes": 2427
+        },
+        {
+          "pose": "closing",
+          "time": 12000,
+          "baseShapes": 2344,
+          "ribbonShapes": 238,
+          "totalShapes": 2582
+        }
+      ]
+    },
+    {
+      "route": "credits",
+      "compact": true,
+      "objects": 252,
+      "vertices": 9648,
+      "faces": 4928,
+      "lines": 3311,
+      "modelBytes": 3905869,
+      "projectedShapesMax": 2491,
+      "samples": [
+        {
+          "pose": "network",
+          "time": 0,
+          "baseShapes": 2438,
+          "ribbonShapes": 53,
+          "totalShapes": 2491
+        },
+        {
+          "pose": "network",
+          "time": 12000,
+          "baseShapes": 2434,
+          "ribbonShapes": 52,
+          "totalShapes": 2486
+        },
+        {
+          "pose": "networkEnd",
+          "time": 0,
+          "baseShapes": 1544,
+          "ribbonShapes": 49,
+          "totalShapes": 1593
+        },
+        {
+          "pose": "networkEnd",
+          "time": 12000,
+          "baseShapes": 1566,
+          "ribbonShapes": 49,
+          "totalShapes": 1615
+        },
+        {
+          "pose": "closing",
+          "time": 0,
+          "baseShapes": 934,
+          "ribbonShapes": 55,
+          "totalShapes": 989
+        },
+        {
+          "pose": "closing",
+          "time": 12000,
+          "baseShapes": 1059,
+          "ribbonShapes": 55,
+          "totalShapes": 1114
+        }
+      ]
+    }
+  ],
+  "note": "UTF-8 serialized model bytes are a complexity/retention proxy, not live heap bytes. Projected maxima cover the named finite pose/phase samples, not every possible frame. Ribbon samples use the current authored Color effect."
+}

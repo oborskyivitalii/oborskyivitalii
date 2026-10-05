@@ -1,0 +1,222 @@
+{
+  "pass": false,
+  "scope": "Local observed windows; not a hosted gate",
+  "rows": [
+    {
+      "side": "before",
+      "pair": 0,
+      "to": "writing",
+      "phase": "cold",
+      "p95": 80.5,
+      "pass": false,
+      "error": "slow transition painted p95"
+    },
+    {
+      "side": "before",
+      "pair": 0,
+      "to": "research",
+      "phase": "warm",
+      "p95": 65.79999999701977,
+      "pass": true,
+      "error": null
+    },
+    {
+      "side": "before",
+      "pair": 0,
+      "to": "index",
+      "phase": "warm",
+      "p95": 75.20000000298023,
+      "pass": true,
+      "error": null
+    },
+    {
+      "side": "before",
+      "pair": 0,
+      "to": "research",
+      "phase": "warm",
+      "p95": 81.60000000149012,
+      "pass": false,
+      "error": "slow transition painted p95"
+    },
+    {
+      "side": "before",
+      "pair": 1,
+      "to": "writing",
+      "phase": "cold",
+      "p95": 119.29999999701977,
+      "pass": false,
+      "error": "slow transition painted p95"
+    },
+    {
+      "side": "before",
+      "pair": 1,
+      "to": "research",
+      "phase": "warm",
+      "p95": 63.79999999701977,
+      "pass": true,
+      "error": null
+    },
+    {
+      "side": "before",
+      "pair": 1,
+      "to": "index",
+      "phase": "warm",
+      "p95": 71.40000000596046,
+      "pass": true,
+      "error": null
+    },
+    {
+      "side": "before",
+      "pair": 1,
+      "to": "research",
+      "phase": "warm",
+      "p95": 56.600000001490116,
+      "pass": true,
+      "error": null
+    },
+    {
+      "side": "before",
+      "pair": 2,
+      "to": "writing",
+      "phase": "cold",
+      "p95": 122,
+      "pass": false,
+      "error": "slow transition painted p95"
+    },
+    {
+      "side": "before",
+      "pair": 2,
+      "to": "research",
+      "phase": "warm",
+      "p95": 52.70000000298023,
+      "pass": true,
+      "error": null
+    },
+    {
+      "side": "before",
+      "pair": 2,
+      "to": "index",
+      "phase": "warm",
+      "p95": 83.89999999850988,
+      "pass": false,
+      "error": "slow transition painted p95"
+    },
+    {
+      "side": "before",
+      "pair": 2,
+      "to": "research",
+      "phase": "warm",
+      "p95": 49.5,
+      "pass": true,
+      "error": null
+    },
+    {
+      "side": "after",
+      "pair": 0,
+      "to": "writing",
+      "phase": "cold",
+      "p95": 73.79999999701977,
+      "pass": true,
+      "error": null
+    },
+    {
+      "side": "after",
+      "pair": 0,
+      "to": "research",
+      "phase": "warm",
+      "p95": 53.600000001490116,
+      "pass": true,
+      "error": null
+    },
+    {
+      "side": "after",
+      "pair": 0,
+      "to": "index",
+      "phase": "warm",
+      "p95": 59.70000000298023,
+      "pass": true,
+      "error": null
+    },
+    {
+      "side": "after",
+      "pair": 0,
+      "to": "research",
+      "phase": "warm",
+      "p95": 51.5,
+      "pass": true,
+      "error": null
+    },
+    {
+      "side": "after",
+      "pair": 1,
+      "to": "writing",
+      "phase": "cold",
+      "p95": 88.39999999850988,
+      "pass": false,
+      "error": "slow transition painted p95"
+    },
+    {
+      "side": "after",
+      "pair": 1,
+      "to": "research",
+      "phase": "warm",
+      "p95": 62.100000001490116,
+      "pass": true,
+      "error": null
+    },
+    {
+      "side": "after",
+      "pair": 1,
+      "to": "index",
+      "phase": "warm",
+      "p95": 65,
+      "pass": true,
+      "error": null
+    },
+    {
+      "side": "after",
+      "pair": 1,
+      "to": "research",
+      "phase": "warm",
+      "p95": 65.39999999850988,
+      "pass": true,
+      "error": null
+    },
+    {
+      "side": "after",
+      "pair": 2,
+      "to": "writing",
+      "phase": "cold",
+      "p95": 154.10000000149012,
+      "pass": false,
+      "error": "slow transition painted p95"
+    },
+    {
+      "side": "after",
+      "pair": 2,
+      "to": "research",
+      "phase": "warm",
+      "p95": 69.5,
+      "pass": true,
+      "error": null
+    },
+    {
+      "side": "after",
+      "pair": 2,
+      "to": "index",
+      "phase": "warm",
+      "p95": 70.5,
+      "pass": true,
+      "error": null
+    },
+    {
+      "side": "after",
+      "pair": 2,
+      "to": "research",
+      "phase": "warm",
+      "p95": 52.30000000447035,
+      "pass": true,
+      "error": null
+    }
+  ]
+}

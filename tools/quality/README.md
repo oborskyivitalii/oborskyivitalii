@@ -1,5 +1,10 @@
 # Repeatable site checks
 
+The current [check profiles](../../SITE-CHECK-PROFILES.md) supersede the older
+PR descriptions below: `node tools/quality/local.cjs` is the small local/PR
+default. Full automation belongs to deployed staging and post-deploy production.
+The tool installation and full-suite commands below remain available.
+
 Owner #13; runtime remediation #12. Production runtime has no package graph.
 These pinned tools run on development/CI only. Historical v8 results are immutable.
 

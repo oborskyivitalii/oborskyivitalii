@@ -24,18 +24,31 @@ module.exports=function() {
     return {x:6*Math.sin(phase),y:3*Math.cos(phase),light:.015*Math.sin(phase)};
   };
   const followCamera=(from,to,dt)=>mix(from,to,1-Math.exp(-Math.max(0,dt)/32));
+  // Semantic headings set interior waypoints. The actual scroll range owns
+  // both endpoints, including unmarked trailing blocks and the footer.
+  function fitScrollStops(markers,end) {
+    const unique=[];
+    for(const marker of markers) {
+      const previous=unique.at(-1);
+      if(Number.isFinite(marker.y)&&(!previous||(marker.y>previous.y+.5&&marker.id!==previous.id)))unique.push({...marker});
+    }
+    if(end<=.5||unique.length<2)return unique.slice(0,1);
+    const middle=unique.slice(1,-1).filter(marker=>marker.y>.5&&marker.y<end-.5);
+    return [{...unique[0],y:0},...middle,{...unique.at(-1),y:end}];
+  }
   // A short introductory segment begins at the first native scroll. The
   // remainder still follows the visible archive, including a filtered reflow.
   function writingProgress(y,{start,end},anchor=null) {
     if(y<=0)return 0;
+    if(y>=end)return 1;
     const intro=start>0 ? .12 : 0;
     const ordinary=()=>y<start?intro*clamp(y/start):intro+(1-intro)*clamp((y-start)/(end-start));
-    if(!anchor||(anchor.progress===0&&anchor.y<=0)||(anchor.progress===1&&anchor.y>=end))return ordinary();
-    if(anchor.y<=0||anchor.y>=end)return clamp(anchor.progress+(y-anchor.y)/(end-start));
+    // A previous bottom/top cannot remain an interior endpoint after reflow.
+    if(!anchor||anchor.y<=0||anchor.y>=end||anchor.progress<=0||anchor.progress>=1)return ordinary();
     const knots=[[0,0]];
-    if(start>0&&start<anchor.y)knots.push([start,Math.min(intro,anchor.progress)]);
+    if(start>0&&start<anchor.y)knots.push([start,Math.min(intro,anchor.progress*start/anchor.y)]);
     knots.push([anchor.y,anchor.progress]);
-    if(start>anchor.y)knots.push([start,Math.max(intro,anchor.progress)]);
+    if(start>anchor.y&&start<end)knots.push([start,Math.max(intro,anchor.progress+(1-anchor.progress)*(start-anchor.y)/(end-anchor.y))]);
     knots.push([end,1]);
     for(let i=1;i<knots.length;i++) {
       const [a,p]=knots[i-1],[b,q]=knots[i];
@@ -72,5 +85,5 @@ module.exports=function() {
     }
     return [x,y,z,x*points[0][0]+y*points[0][1]+z*points[0][2]];
   }
-  return {add,sub,dot,cross,normalize,lerp,mix,clamp,spline,LOOP_MS,rates,owns,smooth,depthVisibility,atmosphereState,followCamera,writingProgress,cadenceFor,nextDeadline,clipSegment,clipPolygon,facePlane};
+  return {add,sub,dot,cross,normalize,lerp,mix,clamp,spline,LOOP_MS,rates,owns,smooth,depthVisibility,atmosphereState,followCamera,fitScrollStops,writingProgress,cadenceFor,nextDeadline,clipSegment,clipPolygon,facePlane};
 };

@@ -14,9 +14,13 @@
   if(!routes.includes(page)||!window.fetch||!window.DOMParser||!window.history.pushState)return;
   const cache=new Map();
   const content=document.createElement("div");content.id="site-content";
+  const effects=window.SiteEffects;
+  if(effects&&effects.contract!==1)throw Error('Incompatible navigation effect contract');
+  const presentation=effects?.navigation?.(content);
   const main=document.querySelector("main"),footer=document.querySelector("footer");
   if(!main||!footer)return;
   main.before(content);content.append(main,footer);
+  presentation?.mount?.();
   const announcement=document.createElement("p");
   announcement.className="sr-only";announcement.setAttribute("role","status");
   announcement.setAttribute("aria-live","polite");document.body.append(announcement);
@@ -46,6 +50,10 @@
     if(!embedded)return url;
     const result=new URL(entry);result.search=url.search;result.hash=url.hash;result.searchParams.set("view",next);return result;
   }
+  // The scroll/flight itinerary follows the header; utility links stay accessible.
+  const primaryRoutes=Object.freeze([...document.querySelectorAll('.site-header nav a[href]')]
+    .map(link=>routeFor(new URL(link.href,entry)))
+    .filter((route,index,list)=>route&&list.indexOf(route)===index));
   function save() {
     if(routeFor(new URL(window.location.href))!==page)return;
     try{history.replaceState({...history.state,site:{page,scroll:[window.scrollX,window.scrollY]}},"",window.location.href);}catch{/* Native navigation still works. */}
@@ -94,6 +102,7 @@
   }
   function clearText() {
     content.style.removeProperty("opacity");content.style.removeProperty("transform");
+    presentation?.clear?.();
     content.inert=false;
   }
   function interrupt() {
@@ -103,7 +112,16 @@
     clearText();content.removeAttribute("aria-busy");return travelling;
   }
   function motionAllowed() {
-    return !document.hidden && window.SiteScene?.canTravel()===true;
+    return !document.hidden && window.SiteScene?.canTravel()===true && (!presentation||presentation.canTravel());
+  }
+  function restoreScroll(left,top) {
+    // A route restore must be immediate even when ordinary anchor scrolling is
+    // smooth. Flush the computed preference before restoring the inline value:
+    // otherwise Chromium can defer this auto call using the old smooth style.
+    const style=document.documentElement.style,value=style.getPropertyValue("scroll-behavior"),priority=style.getPropertyPriority("scroll-behavior");
+    style.setProperty("scroll-behavior","auto","important");
+    try{void getComputedStyle(document.documentElement).scrollBehavior;window.scrollTo({left,top,behavior:"auto"});}
+    finally{if(value)style.setProperty("scroll-behavior",value,priority);else style.removeProperty("scroll-behavior");}
   }
   function flight(next,animate,commit,own,departure) {
     return new Promise((resolve,reject)=>{
@@ -111,7 +129,12 @@
       transition=progress=>{
         if(own!==serial){resolve();return;}
         try {
-          if(progress>=.18&&!mounted){mounted=true;commit();}
+          if(progress>=(presentation?.mountAt??.18)&&!mounted){mounted=true;presentation?.prepareMount?.();commit();}
+          if(presentation){
+            if(progress===1){clearText();transition=null;resolve();}
+            else presentation.present(progress,document.querySelector('.space-scene')?.dataset.direction||'forward',departure);
+            return;
+          }
           // Smooth exit, empty tunnel, then arrival. No independent clock/RAF.
           const t=progress<.18?progress/.18:Math.max(0,(progress-.72)/.28);
           const eased=t*t*(3-2*t);
@@ -130,44 +153,60 @@
   }
   function mount(data,url,position) {
     window.SiteArchive?.destroy();
-    content.replaceChildren(document.importNode(data.main,true),document.importNode(data.footer,true));
+    content.replaceChildren(data.main,data.footer);
     document.body.dataset.page=data.page;page=data.page;
     document.documentElement.lang=data.lang;document.title=data.title;
     for(const node of document.head.querySelectorAll(metadata))node.remove();
-    document.head.append(...data.metadata.map(node=>document.importNode(node,true)));
+    document.head.append(...data.metadata);
     const fallback=document.querySelector(".space-fallback");
-    if(fallback)fallback.replaceWith(document.importNode(data.fallback,true));
+    if(fallback)fallback.replaceWith(data.fallback);
     for(const link of document.querySelectorAll(".site-header a")) {
       const target=new URL(link.href,window.location.href);
       if(routeFor(target)===page)link.setAttribute("aria-current","page");else link.removeAttribute("aria-current");
     }
-    window.scrollTo({left:position?.[0]||0,top:position?.[1]||0,behavior:"instant"});
+    window.dispatchEvent(new CustomEvent("site:page-mount",{detail:{page}}));
+    // Apply filters before the native scroll/style flush, so Writing does not
+    // lay out the complete archive and immediately lay it out a second time.
     window.SiteArchive?.mount();
+    if(position==="end")restoreScroll(0,Math.max(0,document.documentElement.scrollHeight-innerHeight));
+    else restoreScroll(position?.[0]||0,position?.[1]||0);
     let target=null;
     try{target=url.hash?document.getElementById(decodeURIComponent(url.hash.slice(1))):null;}catch{/* Invalid fragments do not block a page. */}
     if(!position&&target&&target.getClientRects().length)target.scrollIntoView({block:"start",behavior:"instant"});
-    window.SiteScene?.refresh();
+    window.SiteScene?.refresh({sync:true});
     window.dispatchEvent(new CustomEvent("site:page-ready",{detail:{page}}));
+  }
+  function prepare(data){
+    const start=window.SiteEngineProbe?performance.now():0;
+    const clone=node=>document.importNode(node,true);
+    const result={...data,main:clone(data.main),footer:clone(data.footer),fallback:clone(data.fallback),metadata:data.metadata.map(clone)};
+    if(window.SiteEngineProbe)window.SiteEngineProbe({kind:'route',time:performance.now(),start,duration:performance.now()-start,page:data.page});
+    return result;
   }
   async function navigate(url,{pop=false,position=null,initial=false}={}) {
     const next=routeFor(url);if(!next)return;
-    const departure=Number(content.style.opacity||1);
+    const departure=presentation?.departure?.()??Number(content.style.opacity||1);
     const own=++serial;interrupt();
-    content.style.opacity=String(departure);content.inert=departure<1;
+    if(presentation)presentation.restoreDeparture(departure);
+    else {content.style.opacity=String(departure);content.inert=departure<1;}
+    window.SiteEngineProbe?.({kind:'navigation-start',time:performance.now(),from:page,to:next});
     const controller=new AbortController();request=controller;
     const timeout=window.setTimeout(()=>controller.abort(),8000);
     content.setAttribute("aria-busy","true");
     try {
       const data=await read(next,controller.signal);
       if(own!==serial)return;
-      const animate=!initial&&motionAllowed();
+      const prepared=prepare(data);
+      const animate=!initial&&primaryRoutes.includes(page)&&primaryRoutes.includes(next)&&motionAllowed();
       await flight(next,animate,()=>{
         const destination=address(url,next);
         if(!pop&&!initial&&destination.href!==window.location.href){save();history.pushState({site:{page:next,scroll:[0,0]}},"",destination);}
         else if(initial)history.replaceState({site:{page:next,scroll:[0,0]}},"",destination);
-        mount(data,destination,position);
+        mount(prepared,destination,position);
       },own,departure);
-      if(own===serial){content.querySelector("main").focus({preventScroll:true});announcement.textContent=data.title;save();}
+      // Arrival removes the content transform. Its temporary overflow/offset
+      // must not remain the page's scroll range or semantic waypoint geometry.
+      if(own===serial){if(!presentation?.layoutStableDuringTravel)window.SiteScene?.refresh({reason:'arrival'});content.querySelector("main").focus({preventScroll:true});announcement.textContent=data.title;save();window.SiteEngineProbe?.({kind:'navigation-ready',time:performance.now(),page:next});}
     } catch {
       if(own===serial)window.location.assign(address(url,next).href);
     } finally {
@@ -189,7 +228,7 @@
       event.preventDefault();const dest=address(url,next);
       if(dest.href!==window.location.href)push(dest);
       window.dispatchEvent(new PopStateEvent("popstate",{state:history.state}));
-      if(dest.hash)document.getElementById(dest.hash.slice(1))?.scrollIntoView({behavior:"instant"});else window.scrollTo({top:0,behavior:"instant"});
+      if(dest.hash)document.getElementById(dest.hash.slice(1))?.scrollIntoView({behavior:"instant"});else restoreScroll(0,0);
       return;
     }
     event.preventDefault();navigate(url);
@@ -197,7 +236,7 @@
   window.addEventListener("popstate",event=>{
     const url=new URL(window.location.href),next=routeFor(url);
     if(next&&(next!==page||request))navigate(url,{pop:true,position:event.state?.site?.scroll||null});
-    else {++serial;if(interrupt())window.SiteScene?.navigate(page,motionAllowed());if(event.state?.site?.scroll)window.scrollTo({left:event.state.site.scroll[0],top:event.state.site.scroll[1],behavior:"instant"});}
+    else {++serial;if(interrupt())window.SiteScene?.navigate(page,motionAllowed());if(event.state?.site?.scroll)restoreScroll(event.state.site.scroll[0],event.state.site.scroll[1]);}
   });
   function finishText(){window.SiteScene?.detachTravel();transition?.(1);transition=null;clearText();}
   document.addEventListener("visibilitychange",()=>{if(document.hidden)finishText();});
@@ -210,7 +249,10 @@
     scrollSave=window.setTimeout(()=>{scrollSave=null;save();},350);
   },{passive:true});
   window.addEventListener("site:motion-preference",()=>{if(!motionAllowed())finishText();});
-  window.SiteNavigation={push};
+  window.SiteNavigation={push,primaryRoutes,contentFlight(value){return presentation?.contentFlight?.(value)??false;},go(next,{atEnd=false}={}){
+    if(next===page||!primaryRoutes.includes(page)||!primaryRoutes.includes(next)||request||transition)return false;
+    navigate(new URL(embedded?.files[next]||(next==="index"?"./":next+".html"),directory),{position:atEnd?"end":null});return true;
+  }};
   const first=embedded?routeFor(new URL(window.location.href)):page;
   if(first!==page)navigate(new URL(window.location.href),{initial:true});else save();
 })();

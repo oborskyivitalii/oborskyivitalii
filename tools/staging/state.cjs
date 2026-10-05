@@ -107,7 +107,12 @@ async function begin(){
   if(read(path.join(stateDir,'previous.json')))retained(read('staging-rollback/staging-package.json'),read(recordFile));
   await fresh();const current=read(path.join(stateDir,'current.json')),candidate=await verifyDeployment(process.env.SITE_PAGES_DEPLOYMENT_ID,'candidate-'+process.env.SITE_CANDIDATE_SHA,process.env.SITE_CANDIDATE_SHA);
   const report=successfulReport('staging-reports/candidate.json',current.packageDigest);assert.equal(report.origin,candidate.url);
-  save(path.join(stateDir,'current.json'),{...current,candidate});await status(current.deploymentId,'in_progress','Candidate smoke passed; promoting the same package');
+  const gate=read('staging-reports/full/release-manifest.json');
+  assert.equal(gate.kind,'hosted-gate');assert.equal(gate.profile,'staging');assert.equal(gate.pass,true);
+  assert.equal(gate.hostedOrigin,candidate.url);assert.equal(gate.sourceCommit,current.sourceCommit);
+  assert.equal(gate.artifactDigest,read(recordFile).source.artifactDigest);
+  for(const job of ['build','static','linux','native','performance','captures','host'])assert.equal(gate.jobs[job]?.result,'success');
+  save(path.join(stateDir,'current.json'),{...current,candidate});await status(current.deploymentId,'in_progress','Full hosted checks passed; promoting the same package');
 }
 async function status(id,state,description){
   return gh('/deployments/'+id+'/statuses',{state,description,environment:'staging',environment_url:'https://staging.'+process.env.CLOUDFLARE_PAGES_PROJECT+'.pages.dev',log_url:'https://github.com/'+repository+'/actions/runs/'+process.env.GITHUB_RUN_ID,auto_inactive:false});

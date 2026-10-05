@@ -23,7 +23,7 @@ function visit(options={}) {
   const document={hidden:false,body:{dataset:{page:options.page||"index"}},documentElement:{scrollHeight:15000},
     getElementById:id=>id==="space-canvas"?canvas:id==="space-motion"?button:results,
     querySelectorAll:()=>stops,querySelector:()=>({}),addEventListener:(name,fn)=>{docEvents[name]=fn;}};
-  class MutationObserver{constructor(fn){mutation=fn;}observe(){}}
+  class MutationObserver{constructor(fn){this.callback=fn;}observe(_,options){if(options?.attributeFilter?.includes('data-theme'))mutation=this.callback;}disconnect(){}}
   window.MutationObserver=MutationObserver;
   const localStorage={getItem(){if(options.blockedStorage)throw Error("blocked");return stored;},setItem(_,value){if(options.blockedStorage)throw Error("blocked");stored=value;}};
   vm.runInNewContext(source,{document,window,localStorage});
@@ -93,7 +93,7 @@ test("loop closes in position and velocity, stays bounded, and never mutates res
   for(const page of Object.keys(model.initialPoses)){
     const world=model.worldFor(page),original=JSON.stringify(world);
     for(const o of world.objects.filter((_,i)=>i%13===0)){
-      const point=world.faces[o.firstFace]?.points[0]||o.center;
+      const point=o.faceCount?world.faces[o.firstFace].points[0]:o.lineCount?world.lines[o.firstLine].a:o.center;
       const at=t=>model.loopTransform(o,t)(point),start=at(0),end=at(model.LOOP_MS);
       assert.deepEqual(start,end);const h=.01,left=at(-h),right=at(h),endLeft=at(model.LOOP_MS-h),endRight=at(model.LOOP_MS+h);
       for(let j=0;j<3;j++)assert.ok(Math.abs((right[j]-left[j])-(endRight[j]-endLeft[j]))<1e-9);
@@ -120,7 +120,7 @@ test("every page has eight semantic motifs, three recursive depths, immutable to
 test("all five worlds share the same multiscale angular geometry beside their own motifs",()=>{
   const common=page=>model.worldFor(page).objects.filter(o=>o.family==="shared");
   const first=common("index");
-  assert.equal(first.length,56);assert.equal(new Set(first.map(o=>o.symbol)).size,4);
+  assert.equal(first.length,56);for(const symbol of ['brain','line-chart','bar-chart','scatter-chart','attention','softmax','entropy'])assert.ok(first.some(o=>o.symbol===symbol));
   assert.deepEqual([...new Set(first.map(o=>o.depth))].sort(),[0,1,2]);
   const signature=objects=>objects.map(({name,center,scale,depth,parent,symbol})=>({name,center,scale,depth,parent,symbol}));
   for(const page of model.routeOrder)assert.deepEqual(signature(common(page)),signature(first));
@@ -350,7 +350,13 @@ test("a route chosen before the reduced-motion change event paints its static ar
 test("Writing responds to the first small gestures before the archive, including after route arrival",()=>{
   for(const arrival of[false,true])for(const single of[false,true]){
     const p=visit({page:arrival?"index":"writing",single});
-    if(arrival){p.window.SiteScene.navigate("writing");p.window.SiteScene.refresh();for(let i=0;i<30;i++)p.frame(80);}
+    if(arrival){
+      p.window.SiteScene.navigate("writing");
+      // The real router installs the destination DOM before its mount flush.
+      p.document.body.dataset.page="writing";
+      p.window.SiteScene.refresh({sync:true});
+      for(let i=0;i<30;i++)p.frame(80);
+    }
     p.settle();const start=p.trace(),phase=p.phase(),draws=p.draws();let last=start;
     for(const y of[100,200,400]){p.scroll(y);p.settle();assert.notEqual(p.trace(),last,`first gesture at ${y}px`);last=p.trace();}
     p.scroll(0);p.settle();assert.equal(p.trace(),start);assert.ok(p.phase()>phase);assert.ok(p.draws()>draws);

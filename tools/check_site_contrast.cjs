@@ -51,7 +51,7 @@ function result(measured,context){
  return {...context,samples:measured.length,min_normal:normal.length?Math.min(...normal.map(s=>s.ratio)):null,min_large:large.length?Math.min(...large.map(s=>s.ratio)):null,minimum:measured.reduce((a,b)=>a.ratio<b.ratio?a:b),failures:measured.filter(s=>s.ratio<s.target)};
 }
 async function routeViews(page,route,theme,device){
- const results=[];await page.goto('file://'+publicRoot+'/'+route+'.html');await page.waitForTimeout(220);
+ const results=[];await page.goto(process.env.SITE_TEST_BASE_URL?require('./quality/hosted-origin.cjs').target(process.env.SITE_TEST_BASE_URL,process.env.SITE_TEST_PROFILE)+'/'+route+'.html':'file://'+publicRoot+'/'+route+'.html');await page.waitForTimeout(220);
  const max=await page.evaluate(()=>document.documentElement.scrollHeight-innerHeight);
  for(const position of device==='desktop'?['start','middle','end']:['start']){
   await page.evaluate(y=>scrollTo({top:y,behavior:'instant'}),position==='start'?0:position==='end'?max:max*.5);await page.waitForTimeout(220);

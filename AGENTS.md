@@ -1,5 +1,199 @@
 # Agent guidance for personal publications
 
+## Integration review and next Sol increment — 2026-10-05
+
+The maintainer now authorizes reviewing/updating all site issues and PRs, closing
+completed issues, and merging ready code in dependency order. This supersedes
+older push/merge/external issue-posting holds below. Staging and production
+publication remain paused; preserve both false deployment guards.
+Read `review/site-followup-20261005/REPORT.md` and its `SOL-TASKS.md`.
+The new shared meshes replace the earlier brain/charts/formulas; retain the finite
+56-instance grammar and existing geometry/performance limits. Reverse edge
+continuation must finish at the previous route's actual native bottom, including
+bounded mount/arrival reflow. Back/Forward retains its own saved position, and
+fresh user scrolling releases a pending endpoint intent. This fix remains Sol's
+next work; a controlled reflow gap is reproduced, not yet repaired.
+The last optimization experiment is not accepted: cold Writing has a 102 ms p95
+window. The navigation workflow checks RI freshness only; the basic PR suite
+remains 10 focused tests, and complete automation stays in hosted profiles.
+
+## Engine review execution — 2026-10-05
+
+The maintainer authorizes implementing the six reviewed optimization tasks.
+Read `review/site-engine-optimization-20261005/EXECUTION.md`. Preserve the primary
+header itinerary, footer Credits, no Glass, single Canvas/clock, all stop/fallback
+contracts and bounded three-room/six-model working set. The local default remains
+10 focused tests; targeted diagnosis is separate and full automation stays hosted.
+New transition limits supplement the unchanged 33 ms / 20% steady-state budgets.
+Effects attach through authored API v1, with explicit base/Color fingerprints.
+Color remains an offline comparison until separately selected for deployment.
+All publication, push, merge and external posting remain paused.
+
+## Primary navigation and economical check profiles — 2026-10-05
+
+Latest maintainer decision supersedes older optional Glass and full-local-check
+instructions below. Derive scroll/flight routes from the header: Home, Research,
+Writing, Talks. Credits remains a footer utility route with instant navigation;
+never include it in edge continuation, including reverse travel/history. Preserve
+native reading positions, deliberate input, the single Canvas/clock and freezes.
+The shared finite grammar adds brain, line/bar/scatter charts and attention,
+softmax/entropy formulas, replacing terminals within the same 56 shared instances.
+Keep page-specific symbols. These charts are decorative, not reported findings.
+Glass is removed entirely from current CSS, controllers, settings and benchmark
+profiles. Historical reports remain historical; ordinary Soft backdrops remain.
+
+Default local/PR command is `node tools/quality/local.cjs`: 10 focused tests plus
+source/route/standalone syntax/motif/size checks. Use the short two-width browser
+smoke when relevant. Full automated checks run on immutable staging before alias
+promotion and on production after deployment, including served-byte verification,
+three engines, native runners, security/advisories, accessibility/failure fixtures,
+Lighthouse, CPU/soak and captures. Reuse successful staging automation before
+production; independent/device acceptance remains separate. Missing full evidence
+blocks staging promotion. See SITE-CHECK-PROFILES.md, owned by #13; #14/#12 own
+navigation and motifs. Push, merge and all publishing remain paused.
+
+## Bidirectional edge continuation and hotspot diagnosis — 2026-10-05
+
+The maintainer requests the reverse of bottom-scroll continuation and a concrete
+Glass verdict based on the Soft stalls. At the real top, fresh upward intent
+opens the preceding route at its real bottom; normal scrolling, nested controls,
+inertia, Home/Credits boundaries and saved history remain native. Keep the same
+persisted control and scene clock. An accepted touch retains bounded listeners
+on its original target until end/cancel, including after instant DOM replacement.
+Diagnose with isolated sampling/stage/timeline probes; those instrumented timings
+are not budget runs. The measured Research→Writing mount stall occurs in the
+native ScrollLayer/scrollTo path in both materials. Restore positions through a
+scoped computed-auto scroll behavior, flushing that preference before the native
+call and preserving the prior inline value/priority. The first unflushed candidate
+incorrectly inherited smooth scrolling with Motion Off; its faster mount results
+are historical rather than final acceptance. Preserve residual waits in evidence.
+Read `review/site-scroll-sync-20261004/EDGES-AND-HOTSPOTS.md` for current evidence
+and limits. Glass stays bounded and optional; Soft stays default. Every #13
+budget and the push/merge/publication pause remain unchanged.
+
+## Reading-material architecture, switch repair and measured audit — 2026-10-05
+
+The maintainer requests an architecture/security/performance review, asks whether
+Glass may remain, and reports a broken Soft/Glass control. The concrete defect
+is mobile Home's display:contents hero: its separately painted children were
+outside material admission and kept a fixed background in both modes. Reading
+preferences/admission/styles now belong to `READING-SURFACES.cjs`, independent
+of ribbon geometry and the single scene clock. Preserve actual pixel coverage,
+responsive rebinding, saved choices, reduced-transparency fallback and the
+six-panel desktop / three-panel compact cap. Compact blur is 3px after the first
+repaired candidate exceeded the unchanged 33ms Home scroll budget. Suspend child
+blur while the content plane is aria-busy and
+restore the selected material on arrival. Soft stays the default; Glass remains
+optional. Read `review/site-scroll-sync-20261004/SURFACE-AUDIT.md` for exact-file
+evidence and scope. Security scans must also cover the current offline runtime
+sources; the actual standalone scripts receive separate trust-boundary/syntax
+and parser-aware checks. Native devices, independent review, and the full release
+gate remain separate. Do not push, merge, publish or relabel historical evidence.
+
+## Corrected content travel and economical ribbon smoothing — 2026-10-05
+
+The maintainer corrects forward departures: the current text grows toward the
+viewer and disappears past the camera; the next page approaches from distant
+fog. Reverse departures recede while the preceding page enters from the near
+side. This supersedes the previous departure directions below. Increase local
+reading-background coverage slightly while keeping glyphs opaque and scene
+openings visible. Trial bounded analytic curves for visibly faceted ribbon
+edges, compare with identical straight-edge treatment sequentially, and keep
+the existing bitmap, mesh, single-clock lifecycle and every performance budget.
+Read `review/site-scroll-sync-20261004/REFINEMENT.md` for the exact-file result.
+This remains the offline comparison; push, merge and publication remain paused.
+
+## Engine optimization and ribbon fill repair — 2026-10-05
+
+The maintainer authorizes refactoring and optimizing the shared Canvas engine,
+fixing white ribbon seams and measuring content flight On/Off × Glass/Soft,
+including a synthetic slower-device profile. Use source-bound, sequential repeated
+measurements; callback cost alone does not prove compositor/display performance.
+Keep compact flight geometry, a bounded room/model cache and separate Canvas
+command submission compatible with native-scroll endpoints and the exact
+Off/reduced/hidden/print freeze. Keep the bright opaque narrow ribbons in the
+offline comparison. Soft may become the default if Glass has material cost;
+retain user controls. Read the current optimization record when available in
+`review/site-scroll-sync-20261004/OPTIMIZATION.md`. Every #13 budget and the
+publication/push pause remain. This explicitly permits engine source edits and
+regeneration of dependent local outputs, without palette promotion or publication.
+
+## Directional content flight and end-scroll continuation — 2026-10-05
+
+The maintainer asks to try moving the actual page content through depth with the
+camera: forward departures recede and arrivals approach from fog; backward
+departures pass toward the viewer and the preceding page arrives from the near
+side. Continued scrolling at the actual bottom advances through Home, Research,
+Writing, Talks and Credits. Read [the current exact-file record](review/site-scroll-sync-20261004/FLIGHT.md).
+Use the existing displayed flight clock, retain the persistent header/Canvas,
+native layout/range and history positions, and avoid cloned content or a second
+animation loop. Require deliberate continuation input so momentum does not skip
+routes; preserve ordinary/nested/form scrolling, the local Off control and the
+final route. Motion Off/reduced/hidden/print keep the exact scene freeze and
+finish content accessibly. This remains an offline #14 comparison outside
+production engine/public bytes; every #13 budget and publication/push pause stays.
+
+## Bright opaque ribbons and more frequent signals — 2026-10-05
+
+The maintainer's latest five-part refinement makes the offline comparison's
+ribbons exactly half as wide again, fully opaque over background geometry, and
+bright with yellow added. Each ribbon has its own distant-hue longitudinal
+palette. Signals now cover the entire width and start three times per cell per
+24-second cycle. Read [the ribbon exact-file record](review/site-scroll-sync-20261004/VIVID.md).
+Depth treatment mixes RGB toward paper rather than removing alpha; use normal
+source-over depth sorting. Preserve continuous joins, the displayed-phase freeze,
+native scroll, Soft/Glass and every #13 budget. Day secondary text is darker to
+retain contrast over the saturated ribbons. This remains an offline #14
+comparison outside production engine/public bytes; publication/push stay paused.
+
+## Continuous ribbon material and signals — 2026-10-05
+
+The maintainer asks to finish the interrupted optional-ribbon comparison:
+continuous gradients without rectangular joins and sparse irregular light
+packets, mostly forward with occasional returns. Read
+[the previous exact-file record](review/site-scroll-sync-20261004/SIGNALS.md).
+Use the same 24-second displayed phase, deterministic bounded schedules and
+world-anchored material coordinates. Preserve the half-width ribbons, Soft/Glass,
+native-scroll mapping, contrast, freeze lifecycle and all #13 budgets. The
+dark Writing caption contrast fix must be present in both exporter and output.
+The seven ribbon regressions now also run explicitly in runtime CI; the bitmap
+check proves actual seam/light pixels. Keep optional treatment outside production
+engine/public bytes and retain the recorded push/publication pause.
+
+## Full native-scroll synchronization — 2026-10-04
+
+The maintainer reports Research's camera finishing before the real page bottom
+and requires all-route regressions whenever block count/height changes. #12 owns
+the fix; #13 retains every gate/budget. The focused Draft increment
+`work/site-scroll-sync-20261004` stacks on frozen #17 `f99b8c2`, preserving #16/#10.
+Read [the current record](review/site-scroll-sync-20261004/REPORT.md).
+`site/engine` remains authoritative. Derive endpoint positions from the current
+native scroll range, coalesce consecutive identical poses, and retain semantic
+interior stops and Writing's topic/reflow behavior. Observe main/body mutations,
+resize, font loading and route mounts; never manufacture scroll space. Content-only
+edits still require the all-route content-growth/height/footer/reorder/viewport
+fixtures in the normal browser matrix, and its required aggregate assertions.
+Off/reduced/hidden/print retain their exact displayed freeze. No publication/merge.
+
+The requested colored-line design is a separately labelled offline prototype for
+maintainer comparison under #14, not an accepted production palette change.
+It uses the existing Canvas/24-second phase and introduces no runtime dependency.
+Keep it isolated from `docs/` and `site/engine`; production adoption follows the
+maintainer's review of the concrete variant, with fresh performance/contrast gates.
+The first ribbon refinement replaces the thin threads with broad gradient surfaces,
+spatial axial torsion, periodic axial rotation and width breathing. The current
+comparison exporter uses `review/site-scroll-sync-20261004/RIBBONS-PROTOTYPE.cjs`;
+the original thread module remains historical. Preserve native-scroll endpoints,
+exact Off/reduced freeze, bounded geometry and local reading contrast.
+The latest maintainer refinement halves those widths exactly, increases ribbon
+alpha and adds lighter Soft/Glass reading surfaces. Glass is an offline optional
+material, limited to six visible panels with smaller mobile blur and a persisted
+local preference. Keep observer admission, unsupported/reduced-transparency
+fallbacks and content-growth synchronization intact. Read
+[the current material record](review/site-scroll-sync-20261004/GLASS.md) for the
+exact-file checks and bounded performance evidence; the
+[broad-ribbon record](review/site-scroll-sync-20261004/RIBBONS.md) is historical.
+
 ## Analytics preparation and production host — 2026-10-04
 
 The maintainer selects GitHub Pages for production and authorizes preparing
