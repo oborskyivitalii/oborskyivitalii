@@ -2,8 +2,7 @@
 // Real browser input against the same immutable hosted Color artifact.
 const assert=require('node:assert/strict'),fs=require('node:fs');
 const {toolRequire,report,launchOptions}=require('./common.cjs'),{start}=require('./serve.cjs');
-const artifact=JSON.parse(fs.readFileSync(process.env.SITE_ARTIFACT_MANIFEST));
-const pw=toolRequire('playwright');
+let artifact;
 async function settled(page,route){
   await page.waitForFunction(id=>document.body.dataset.page===id&&!document.getElementById('site-content').hasAttribute('aria-busy')&&document.querySelector('.space-scene').dataset.travel==='settled',route,{polling:25,timeout:10000});
 }
@@ -52,16 +51,18 @@ async function scenario(browser,url,engine,width,theme){
   }finally{await context.close();}
 }
 async function main(){
+  artifact=JSON.parse(fs.readFileSync(process.env.SITE_ARTIFACT_MANIFEST));
+  const pw=toolRequire('playwright'),smoke=process.argv.includes('--smoke');
   assert.equal(artifact.variant?.id,'color');const {server,url}=await start(),rows=[],browsers=[];let pass=true;
   try{
-    for(const engine of ['chromium','firefox','webkit']){
+    for(const engine of smoke?['chromium']:['chromium','firefox','webkit']){
       const browser=await pw[engine].launch(launchOptions(engine));browsers.push({engine,version:browser.version()});
-      try{for(const width of [1440,390])for(const theme of ['light','dark']){
+      try{for(const width of [1440,390])for(const theme of smoke?['light']:['light','dark']){
         try{rows.push(await scenario(browser,url,engine,width,theme));}
         catch(error){pass=false;rows.push({engine,width,theme,pass:false,error:error.message});}
       }}finally{await browser.close();}
     }
   }finally{server.close();}
-  report('color-functional',{variant:artifact.variant,browsers,rows},pass);if(!pass)process.exitCode=1;
+  report(smoke?'color-preview-smoke':'color-functional',{variant:artifact.variant,browsers,rows},pass);if(!pass)process.exitCode=1;
 }
-main().catch(error=>{report('color-functional',{variant:artifact.variant,error:error.message},false);console.error(error.message);process.exitCode=1;});
+if(require.main===module)main().catch(error=>{report(process.argv.includes('--smoke')?'color-preview-smoke':'color-functional',{variant:artifact?.variant,error:error.message},false);console.error(error.message);process.exitCode=1;});

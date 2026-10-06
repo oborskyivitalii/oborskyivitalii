@@ -1,5 +1,36 @@
 # Agent guidance for personal publications
 
+## Current CI-only PR preview and explicit staging — 2026-10-06
+
+The maintainer replaces manual publishing with two CI paths. This instruction
+supersedes every manual provider upload/bootstrap and one-request `target.json`
+instruction below. Reuse existing PR #26 for this work; do not create another PR.
+Do not merge the failing #18/#22/#23 runtime stack merely to activate CI.
+
+`site-color-review.yml` builds the latest open same-repository PR head once,
+publishes through the pinned official Wrangler Action to `pr-N` in the existing
+Direct Upload project `oborskyi-author-ci-staging`, runs minimal two-width Chromium
+Color/HTTP smoke and updates one PR comment. Full checks never run automatically
+on PR changes. Forks and stale PR heads are rejected. The minimal report has a
+different kind and cannot satisfy the full hosted gate.
+
+Only an explicit maintainer request to stage PR N permits `workflow_dispatch`
+from protected `main`, with input `pr_number`. CI resolves its current head;
+the owner never copies files, SHA, URLs or artifact IDs between deployments.
+The immutable candidate gets the existing full automated hosted suite. Promotion
+to `staging.oborskyi-author-ci-staging.pages.dev` requires that exact full gate
+and unchanged PR/controller leases. Promotion and retained-package rollback both
+use the official deployment action. No plugin upload or ad hoc deploy script.
+
+Read [SITE-STAGING](SITE-STAGING.md) for owner configuration and verified state.
+Use new opt-ins `SITE_PR_PREVIEW_ENABLED` and `SITE_PR_STAGING_ENABLED`; keep legacy
+`SITE_STAGING_ENABLED` absent/false. Disable the old Git project's automatic
+production and preview deployments. Provider/GitHub administrative setup and
+the new main controller are not yet active. The initial hosted full run failed;
+the corrected source/static preflight succeeded, but is not a full hosted pass.
+Production, DNS, physical-device/independent acceptance and performance limits
+keep their existing boundaries. Historical records below remain dated evidence.
+
 ## Color staging correction and full hosted tests — 2026-10-06
 
 The maintainer explicitly requests updating staging to the current Color edition

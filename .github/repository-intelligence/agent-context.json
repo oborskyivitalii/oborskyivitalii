@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "a29314c86792e7df9604999cae267d9dc45eb3c9a2875cdc96d8063ba53e41e0",
+    "digest": "c8608f6a27cdfdd5d20e7e0a397048671756998b40d8c971bee7ca584483ded1",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -63,7 +63,7 @@
       {
         "path": ".github/workflows/site-color-review.yml",
         "identity_mode": "content",
-        "sha256": "34d7f4e9f37f1100f321af59122111a4a3f31796dd86e50975431c8f17b538b6"
+        "sha256": "5438101c4fadf662ae1b5298cf78505cbecd9b982840db9a353cd87dd4fd987d"
       },
       {
         "path": ".github/workflows/site-navigation-probe.yml",
@@ -92,7 +92,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "325ad0a47939acd1c71873f4f970fe5dfe49a51ca1085a1fb8ac78b0a72695ed"
+        "sha256": "ed9a5575fc772fc3d755af10ebe4a179549b464004558de7dc58adc6cc66b110"
       },
       {
         "path": "BACKLOG.md",
@@ -122,7 +122,7 @@
       {
         "path": "SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "a7e5fcd8248dd6ff269c67044d64ff05a2b5e63d959d384445f8697308bd093a"
+        "sha256": "ba81facaead6a49e1a7fb25ce94eb67b30c702323ff405f6db27ce98484738fc"
       },
       {
         "path": "SITE-CONTENT-REVIEW.md",
@@ -157,7 +157,7 @@
       {
         "path": "SITE-STAGING.md",
         "identity_mode": "content",
-        "sha256": "1daf2ec3a275b19f181378ffa404c9d2c3b79cd8c06ae37c69438e1128c268f0"
+        "sha256": "580accd4688c2ab7dae8c5cb6c620575404c91ff52ad2f1489074ec159744b97"
       },
       {
         "path": "SITE-VISUAL-REVIEW.md",
@@ -335,7 +335,7 @@
       {
         "path": "review/color-staging-20261006/REPORT.md",
         "identity_mode": "content",
-        "sha256": "4ec3756bff64cc1c19d2db8aee877721577cef1a3fafc1c80867a346094cb13e"
+        "sha256": "6f14d7288d6865e314a1cb9a3a1dc4d6bf551b3c26dcceae824ee94717be37c5"
       },
       {
         "path": "review/color-staging-20261006/evidence/provider.json",
@@ -3405,6 +3405,10 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tests/review-flow.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tests/ribbons.test.cjs",
         "identity_mode": "existence"
       },
@@ -3688,6 +3692,10 @@
       },
       {
         "path": "tools/staging/package.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/staging/review-flow.cjs",
         "identity_mode": "existence"
       },
       {
@@ -4068,7 +4076,7 @@
     },
     {
       "path": "SITE-STAGING.md",
-      "title": "Browser staging — current setup and activation boundary",
+      "title": "PR preview and staging through GitHub Actions",
       "instructions": [
         "AGENTS.md"
       ]

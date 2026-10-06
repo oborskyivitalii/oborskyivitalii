@@ -1,5 +1,30 @@
 # Site check profiles
 
+## Current two-level CI flow — 6 October 2026
+
+The maintainer replaces manual bootstrap publishing with automatic PR previews
+and explicit staging requests. Existing PR #26 owns the change; no new PR.
+Read [SITE-STAGING](SITE-STAGING.md) for exact owner configuration and activation.
+
+| Profile | Trigger | Checks |
+| --- | --- | --- |
+| PR preview | Every current same-repository PR head | Fast source/packaging and controller regressions; hosted route/revision/Color-runtime hashes; Chromium 1440/390 px ribbons, spatial flight, real forward/reverse wheel input and boundaries. |
+| Full staging | Explicit `workflow_dispatch` from protected main, input PR number | Existing complete hosted source/security/advisory/three-engine/native/accessibility/failure/Lighthouse/CPU/soak/capture suite against the one immutable candidate. |
+
+Only pinned official Wrangler Action publishes candidates, stable staging and
+rollback. CI resolves source/URLs/artifact IDs; nobody copies files between hosts.
+The PR comment updates in place. The fast `color-preview-smoke` report is distinct
+from `color-functional` and cannot authorize full staging. Stable promotion needs
+the exact successful hosted gate and unchanged PR/protected-main leases.
+`SITE_PR_PREVIEW_ENABLED` and `SITE_PR_STAGING_ENABLED` enable these paths after
+owner setup; legacy `SITE_STAGING_ENABLED` stays absent/false. The old Git project's
+automatic builds must be disabled. New main-controller activation is pending.
+
+Initial full hosted run failed; repaired source/static/Color preflight passed at
+`8f89078c`, without deploying it or establishing a full pass. Older paragraphs
+below retain dated decisions and are superseded where they describe manual
+upload, no full attempt, or the old exact-main publication route.
+
 Maintainer amendment, 5 October 2026. Owner #13; navigation/motifs #14 and #12.
 Supersedes older always-full local/PR requirements; all budgets remain unchanged.
 

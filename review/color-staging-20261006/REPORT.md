@@ -1,5 +1,46 @@
 # Color staging correction — 6 October 2026
 
+## Current CI-only flow amendment
+
+The maintainer stopped manual deployment and replaces the one-request bootstrap
+with two paths: automatic latest-head PR preview with minimal hosted smoke, then
+explicit PR-number staging dispatch with complete hosted automation. The change
+stays in existing #26. This supersedes every `target.json`/manual-upload operation
+below; earlier execution records remain historical evidence.
+
+The prepared workflow uses official Wrangler Action exclusively, one existing
+Direct Upload project, `pr-N` and `staging` branch aliases, immutable candidates,
+one updated PR comment and exact public/package artifact identity. Staging is
+serialized; preview cancels stale PR runs. Protected-main controller and live PR
+leases are verified before deploy/promotion. A lightweight report cannot replace
+the full gate. Stable recovery locates the previous successful CI run/package
+automatically and deploys it through the same official action if verification
+fails. It never uploads through the plugin or an operator script.
+
+The active provider audit finds `oborskyi-site-staging` automatically publishing
+all Git branches with empty build/output settings, explaining its missing site
+index. Disable those automatic production/preview builds. Reuse
+`oborskyi-author-ci-staging` without a Git connection or production-branch change;
+its bare root has no production deployment, while explicit branch aliases are
+the review/staging addresses. [Current runbook](../../SITE-STAGING.md) has exact
+Cloudflare/GitHub dashboard steps, variables, secret names and operation.
+
+Initial full run `37423460431` completed **failure**, including Linux/Windows
+timeouts. HTTP, captures and Lighthouse pass; its initial source/static/native
+navigation/DOM fixture failures remain recorded. Corrected preflight/build
+`37425628954` at `8f89078c` passes source, generation/SEO/RI, lint,
+security/advisories and Color packaging. That build was **not deployed**; actual
+live Color remains `0c423b48` / `eac4654e`. No new full-hosted pass or stable
+promotion is claimed. Scanner dispositions still need independent acceptance.
+
+New flow local tests pass source/head/main protection, failed/incomplete full-gate
+rejection, tampered hosted runtime/header rejection, recovery attempt binding and
+comment update/stale-source handling; YAML and embedded JS/shell parse. Deployment
+credentials, owner environment/variables/main protection and new default-branch
+controller integration remain pending. Preview/full staging and actual rollback
+must be verified in CI after activation. The runtime stack's recorded performance
+failure, production and physical-device/independent acceptance stay open.
+
 Owner intent: #8 provides the current whole-site preview; #13 owns complete
 hosted checks. The maintainer reports missing ribbons, scroll continuation and
 spatial text flight, and explicitly requests updating staging and full testing.
