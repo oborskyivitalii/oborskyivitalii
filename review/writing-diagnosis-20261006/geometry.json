@@ -1,0 +1,1245 @@
+{
+  "scope": "Authored geometry inventory, not timing or visible draw counts",
+  "rows": [
+    {
+      "route": "index",
+      "compact": false,
+      "objects": 252,
+      "vertices": 14070,
+      "faces": 7344,
+      "lines": 4735,
+      "groups": {
+        "thematic:arch": {
+          "objects": 14,
+          "vertices": 1064,
+          "faces": 952,
+          "lines": 14
+        },
+        "thematic:compass": {
+          "objects": 28,
+          "vertices": 4088,
+          "faces": 1792,
+          "lines": 1792
+        },
+        "thematic:book": {
+          "objects": 28,
+          "vertices": 1120,
+          "faces": 672,
+          "lines": 112
+        },
+        "thematic:lens": {
+          "objects": 28,
+          "vertices": 2044,
+          "faces": 1568,
+          "lines": 896
+        },
+        "thematic:bridge": {
+          "objects": 28,
+          "vertices": 672,
+          "faces": 504,
+          "lines": 0
+        },
+        "thematic:threshold": {
+          "objects": 28,
+          "vertices": 896,
+          "faces": 560,
+          "lines": 0
+        },
+        "thematic:stairs": {
+          "objects": 14,
+          "vertices": 980,
+          "faces": 588,
+          "lines": 98
+        },
+        "thematic:prism": {
+          "objects": 28,
+          "vertices": 224,
+          "faces": 140,
+          "lines": 28
+        },
+        "shared:brain": {
+          "objects": 5,
+          "vertices": 633,
+          "faces": 299,
+          "lines": 280
+        },
+        "shared:attention": {
+          "objects": 6,
+          "vertices": 618,
+          "faces": 0,
+          "lines": 450
+        },
+        "shared:bar-chart": {
+          "objects": 5,
+          "vertices": 259,
+          "faces": 120,
+          "lines": 67
+        },
+        "shared:softmax": {
+          "objects": 6,
+          "vertices": 402,
+          "faces": 0,
+          "lines": 294
+        },
+        "shared:line-chart": {
+          "objects": 6,
+          "vertices": 292,
+          "faces": 30,
+          "lines": 200
+        },
+        "shared:entropy": {
+          "objects": 6,
+          "vertices": 456,
+          "faces": 0,
+          "lines": 336
+        },
+        "shared:cube": {
+          "objects": 5,
+          "vertices": 40,
+          "faces": 30,
+          "lines": 0
+        },
+        "shared:triangle": {
+          "objects": 5,
+          "vertices": 30,
+          "faces": 25,
+          "lines": 0
+        },
+        "shared:scatter-chart": {
+          "objects": 4,
+          "vertices": 180,
+          "faces": 0,
+          "lines": 168
+        },
+        "shared:octahedron": {
+          "objects": 4,
+          "vertices": 24,
+          "faces": 32,
+          "lines": 0
+        },
+        "shared:hexagon": {
+          "objects": 4,
+          "vertices": 48,
+          "faces": 32,
+          "lines": 0
+        }
+      }
+    },
+    {
+      "route": "index",
+      "compact": true,
+      "objects": 252,
+      "vertices": 10650,
+      "faces": 5488,
+      "lines": 3167,
+      "groups": {
+        "thematic:arch": {
+          "objects": 14,
+          "vertices": 568,
+          "faces": 456,
+          "lines": 14
+        },
+        "thematic:compass": {
+          "objects": 28,
+          "vertices": 1960,
+          "faces": 1120,
+          "lines": 672
+        },
+        "thematic:book": {
+          "objects": 28,
+          "vertices": 1120,
+          "faces": 672,
+          "lines": 112
+        },
+        "thematic:lens": {
+          "objects": 28,
+          "vertices": 1260,
+          "faces": 896,
+          "lines": 448
+        },
+        "thematic:bridge": {
+          "objects": 28,
+          "vertices": 672,
+          "faces": 504,
+          "lines": 0
+        },
+        "thematic:threshold": {
+          "objects": 28,
+          "vertices": 896,
+          "faces": 560,
+          "lines": 0
+        },
+        "thematic:stairs": {
+          "objects": 14,
+          "vertices": 980,
+          "faces": 588,
+          "lines": 98
+        },
+        "thematic:prism": {
+          "objects": 28,
+          "vertices": 224,
+          "faces": 140,
+          "lines": 28
+        },
+        "shared:brain": {
+          "objects": 5,
+          "vertices": 621,
+          "faces": 283,
+          "lines": 280
+        },
+        "shared:attention": {
+          "objects": 6,
+          "vertices": 618,
+          "faces": 0,
+          "lines": 450
+        },
+        "shared:bar-chart": {
+          "objects": 5,
+          "vertices": 259,
+          "faces": 120,
+          "lines": 67
+        },
+        "shared:softmax": {
+          "objects": 6,
+          "vertices": 402,
+          "faces": 0,
+          "lines": 294
+        },
+        "shared:line-chart": {
+          "objects": 6,
+          "vertices": 292,
+          "faces": 30,
+          "lines": 200
+        },
+        "shared:entropy": {
+          "objects": 6,
+          "vertices": 456,
+          "faces": 0,
+          "lines": 336
+        },
+        "shared:cube": {
+          "objects": 5,
+          "vertices": 40,
+          "faces": 30,
+          "lines": 0
+        },
+        "shared:triangle": {
+          "objects": 5,
+          "vertices": 30,
+          "faces": 25,
+          "lines": 0
+        },
+        "shared:scatter-chart": {
+          "objects": 4,
+          "vertices": 180,
+          "faces": 0,
+          "lines": 168
+        },
+        "shared:octahedron": {
+          "objects": 4,
+          "vertices": 24,
+          "faces": 32,
+          "lines": 0
+        },
+        "shared:hexagon": {
+          "objects": 4,
+          "vertices": 48,
+          "faces": 32,
+          "lines": 0
+        }
+      }
+    },
+    {
+      "route": "research",
+      "compact": false,
+      "objects": 252,
+      "vertices": 14644,
+      "faces": 7842,
+      "lines": 6145,
+      "groups": {
+        "thematic:lens": {
+          "objects": 14,
+          "vertices": 1358,
+          "faces": 1072,
+          "lines": 640
+        },
+        "thematic:hypotheses": {
+          "objects": 28,
+          "vertices": 448,
+          "faces": 448,
+          "lines": 84
+        },
+        "thematic:balance": {
+          "objects": 28,
+          "vertices": 728,
+          "faces": 392,
+          "lines": 56
+        },
+        "thematic:gate": {
+          "objects": 28,
+          "vertices": 896,
+          "faces": 560,
+          "lines": 0
+        },
+        "thematic:feedback": {
+          "objects": 28,
+          "vertices": 3164,
+          "faces": 2688,
+          "lines": 1372
+        },
+        "thematic:evidence": {
+          "objects": 28,
+          "vertices": 868,
+          "faces": 252,
+          "lines": 392
+        },
+        "thematic:prism": {
+          "objects": 14,
+          "vertices": 112,
+          "faces": 70,
+          "lines": 14
+        },
+        "thematic:aperture": {
+          "objects": 28,
+          "vertices": 4088,
+          "faces": 1792,
+          "lines": 1792
+        },
+        "shared:brain": {
+          "objects": 5,
+          "vertices": 633,
+          "faces": 299,
+          "lines": 280
+        },
+        "shared:attention": {
+          "objects": 6,
+          "vertices": 618,
+          "faces": 0,
+          "lines": 450
+        },
+        "shared:bar-chart": {
+          "objects": 5,
+          "vertices": 259,
+          "faces": 120,
+          "lines": 67
+        },
+        "shared:softmax": {
+          "objects": 6,
+          "vertices": 402,
+          "faces": 0,
+          "lines": 294
+        },
+        "shared:line-chart": {
+          "objects": 6,
+          "vertices": 292,
+          "faces": 30,
+          "lines": 200
+        },
+        "shared:entropy": {
+          "objects": 6,
+          "vertices": 456,
+          "faces": 0,
+          "lines": 336
+        },
+        "shared:cube": {
+          "objects": 5,
+          "vertices": 40,
+          "faces": 30,
+          "lines": 0
+        },
+        "shared:triangle": {
+          "objects": 5,
+          "vertices": 30,
+          "faces": 25,
+          "lines": 0
+        },
+        "shared:scatter-chart": {
+          "objects": 4,
+          "vertices": 180,
+          "faces": 0,
+          "lines": 168
+        },
+        "shared:octahedron": {
+          "objects": 4,
+          "vertices": 24,
+          "faces": 32,
+          "lines": 0
+        },
+        "shared:hexagon": {
+          "objects": 4,
+          "vertices": 48,
+          "faces": 32,
+          "lines": 0
+        }
+      }
+    },
+    {
+      "route": "research",
+      "compact": true,
+      "objects": 252,
+      "vertices": 10488,
+      "faces": 5590,
+      "lines": 3777,
+      "groups": {
+        "thematic:lens": {
+          "objects": 14,
+          "vertices": 742,
+          "faces": 544,
+          "lines": 288
+        },
+        "thematic:hypotheses": {
+          "objects": 28,
+          "vertices": 448,
+          "faces": 448,
+          "lines": 84
+        },
+        "thematic:balance": {
+          "objects": 28,
+          "vertices": 728,
+          "faces": 392,
+          "lines": 56
+        },
+        "thematic:gate": {
+          "objects": 28,
+          "vertices": 896,
+          "faces": 560,
+          "lines": 0
+        },
+        "thematic:feedback": {
+          "objects": 28,
+          "vertices": 2044,
+          "faces": 1680,
+          "lines": 700
+        },
+        "thematic:evidence": {
+          "objects": 28,
+          "vertices": 588,
+          "faces": 224,
+          "lines": 168
+        },
+        "thematic:prism": {
+          "objects": 14,
+          "vertices": 112,
+          "faces": 70,
+          "lines": 14
+        },
+        "thematic:aperture": {
+          "objects": 28,
+          "vertices": 1960,
+          "faces": 1120,
+          "lines": 672
+        },
+        "shared:brain": {
+          "objects": 5,
+          "vertices": 621,
+          "faces": 283,
+          "lines": 280
+        },
+        "shared:attention": {
+          "objects": 6,
+          "vertices": 618,
+          "faces": 0,
+          "lines": 450
+        },
+        "shared:bar-chart": {
+          "objects": 5,
+          "vertices": 259,
+          "faces": 120,
+          "lines": 67
+        },
+        "shared:softmax": {
+          "objects": 6,
+          "vertices": 402,
+          "faces": 0,
+          "lines": 294
+        },
+        "shared:line-chart": {
+          "objects": 6,
+          "vertices": 292,
+          "faces": 30,
+          "lines": 200
+        },
+        "shared:entropy": {
+          "objects": 6,
+          "vertices": 456,
+          "faces": 0,
+          "lines": 336
+        },
+        "shared:cube": {
+          "objects": 5,
+          "vertices": 40,
+          "faces": 30,
+          "lines": 0
+        },
+        "shared:triangle": {
+          "objects": 5,
+          "vertices": 30,
+          "faces": 25,
+          "lines": 0
+        },
+        "shared:scatter-chart": {
+          "objects": 4,
+          "vertices": 180,
+          "faces": 0,
+          "lines": 168
+        },
+        "shared:octahedron": {
+          "objects": 4,
+          "vertices": 24,
+          "faces": 32,
+          "lines": 0
+        },
+        "shared:hexagon": {
+          "objects": 4,
+          "vertices": 48,
+          "faces": 32,
+          "lines": 0
+        }
+      }
+    },
+    {
+      "route": "writing",
+      "compact": false,
+      "objects": 252,
+      "vertices": 11422,
+      "faces": 4798,
+      "lines": 5057,
+      "groups": {
+        "thematic:open-book": {
+          "objects": 14,
+          "vertices": 1244,
+          "faces": 254,
+          "lines": 938
+        },
+        "thematic:scroll": {
+          "objects": 28,
+          "vertices": 2296,
+          "faces": 1400,
+          "lines": 1288
+        },
+        "thematic:letter-A": {
+          "objects": 28,
+          "vertices": 1176,
+          "faces": 868,
+          "lines": 0
+        },
+        "thematic:quill": {
+          "objects": 28,
+          "vertices": 420,
+          "faces": 28,
+          "lines": 140
+        },
+        "thematic:pages": {
+          "objects": 28,
+          "vertices": 840,
+          "faces": 168,
+          "lines": 840
+        },
+        "thematic:quotation": {
+          "objects": 28,
+          "vertices": 1008,
+          "faces": 616,
+          "lines": 0
+        },
+        "thematic:closed-book": {
+          "objects": 14,
+          "vertices": 560,
+          "faces": 336,
+          "lines": 56
+        },
+        "thematic:parenthesis": {
+          "objects": 28,
+          "vertices": 896,
+          "faces": 560,
+          "lines": 0
+        },
+        "shared:brain": {
+          "objects": 5,
+          "vertices": 633,
+          "faces": 299,
+          "lines": 280
+        },
+        "shared:attention": {
+          "objects": 6,
+          "vertices": 618,
+          "faces": 0,
+          "lines": 450
+        },
+        "shared:bar-chart": {
+          "objects": 5,
+          "vertices": 259,
+          "faces": 120,
+          "lines": 67
+        },
+        "shared:softmax": {
+          "objects": 6,
+          "vertices": 402,
+          "faces": 0,
+          "lines": 294
+        },
+        "shared:line-chart": {
+          "objects": 6,
+          "vertices": 292,
+          "faces": 30,
+          "lines": 200
+        },
+        "shared:entropy": {
+          "objects": 6,
+          "vertices": 456,
+          "faces": 0,
+          "lines": 336
+        },
+        "shared:cube": {
+          "objects": 5,
+          "vertices": 40,
+          "faces": 30,
+          "lines": 0
+        },
+        "shared:triangle": {
+          "objects": 5,
+          "vertices": 30,
+          "faces": 25,
+          "lines": 0
+        },
+        "shared:scatter-chart": {
+          "objects": 4,
+          "vertices": 180,
+          "faces": 0,
+          "lines": 168
+        },
+        "shared:octahedron": {
+          "objects": 4,
+          "vertices": 24,
+          "faces": 32,
+          "lines": 0
+        },
+        "shared:hexagon": {
+          "objects": 4,
+          "vertices": 48,
+          "faces": 32,
+          "lines": 0
+        }
+      }
+    },
+    {
+      "route": "writing",
+      "compact": true,
+      "objects": 252,
+      "vertices": 9398,
+      "faces": 3890,
+      "lines": 3549,
+      "groups": {
+        "thematic:open-book": {
+          "objects": 14,
+          "vertices": 800,
+          "faces": 146,
+          "lines": 550
+        },
+        "thematic:scroll": {
+          "objects": 28,
+          "vertices": 1120,
+          "faces": 700,
+          "lines": 616
+        },
+        "thematic:letter-A": {
+          "objects": 28,
+          "vertices": 1176,
+          "faces": 868,
+          "lines": 0
+        },
+        "thematic:quill": {
+          "objects": 28,
+          "vertices": 420,
+          "faces": 28,
+          "lines": 140
+        },
+        "thematic:pages": {
+          "objects": 28,
+          "vertices": 448,
+          "faces": 84,
+          "lines": 392
+        },
+        "thematic:quotation": {
+          "objects": 28,
+          "vertices": 1008,
+          "faces": 616,
+          "lines": 0
+        },
+        "thematic:closed-book": {
+          "objects": 14,
+          "vertices": 560,
+          "faces": 336,
+          "lines": 56
+        },
+        "thematic:parenthesis": {
+          "objects": 28,
+          "vertices": 896,
+          "faces": 560,
+          "lines": 0
+        },
+        "shared:brain": {
+          "objects": 5,
+          "vertices": 621,
+          "faces": 283,
+          "lines": 280
+        },
+        "shared:attention": {
+          "objects": 6,
+          "vertices": 618,
+          "faces": 0,
+          "lines": 450
+        },
+        "shared:bar-chart": {
+          "objects": 5,
+          "vertices": 259,
+          "faces": 120,
+          "lines": 67
+        },
+        "shared:softmax": {
+          "objects": 6,
+          "vertices": 402,
+          "faces": 0,
+          "lines": 294
+        },
+        "shared:line-chart": {
+          "objects": 6,
+          "vertices": 292,
+          "faces": 30,
+          "lines": 200
+        },
+        "shared:entropy": {
+          "objects": 6,
+          "vertices": 456,
+          "faces": 0,
+          "lines": 336
+        },
+        "shared:cube": {
+          "objects": 5,
+          "vertices": 40,
+          "faces": 30,
+          "lines": 0
+        },
+        "shared:triangle": {
+          "objects": 5,
+          "vertices": 30,
+          "faces": 25,
+          "lines": 0
+        },
+        "shared:scatter-chart": {
+          "objects": 4,
+          "vertices": 180,
+          "faces": 0,
+          "lines": 168
+        },
+        "shared:octahedron": {
+          "objects": 4,
+          "vertices": 24,
+          "faces": 32,
+          "lines": 0
+        },
+        "shared:hexagon": {
+          "objects": 4,
+          "vertices": 48,
+          "faces": 32,
+          "lines": 0
+        }
+      }
+    },
+    {
+      "route": "talks",
+      "compact": false,
+      "objects": 252,
+      "vertices": 13288,
+      "faces": 6460,
+      "lines": 5039,
+      "groups": {
+        "thematic:slide": {
+          "objects": 14,
+          "vertices": 338,
+          "faces": 54,
+          "lines": 220
+        },
+        "thematic:microphone": {
+          "objects": 28,
+          "vertices": 4088,
+          "faces": 2184,
+          "lines": 2324
+        },
+        "thematic:podium": {
+          "objects": 28,
+          "vertices": 448,
+          "faces": 336,
+          "lines": 0
+        },
+        "thematic:screen": {
+          "objects": 28,
+          "vertices": 1484,
+          "faces": 1036,
+          "lines": 28
+        },
+        "thematic:wave": {
+          "objects": 28,
+          "vertices": 1568,
+          "faces": 672,
+          "lines": 672
+        },
+        "thematic:dialogue": {
+          "objects": 28,
+          "vertices": 1008,
+          "faces": 616,
+          "lines": 0
+        },
+        "thematic:speech": {
+          "objects": 14,
+          "vertices": 196,
+          "faces": 126,
+          "lines": 0
+        },
+        "thematic:word": {
+          "objects": 28,
+          "vertices": 1176,
+          "faces": 868,
+          "lines": 0
+        },
+        "shared:brain": {
+          "objects": 5,
+          "vertices": 633,
+          "faces": 299,
+          "lines": 280
+        },
+        "shared:attention": {
+          "objects": 6,
+          "vertices": 618,
+          "faces": 0,
+          "lines": 450
+        },
+        "shared:bar-chart": {
+          "objects": 5,
+          "vertices": 259,
+          "faces": 120,
+          "lines": 67
+        },
+        "shared:softmax": {
+          "objects": 6,
+          "vertices": 402,
+          "faces": 0,
+          "lines": 294
+        },
+        "shared:line-chart": {
+          "objects": 6,
+          "vertices": 292,
+          "faces": 30,
+          "lines": 200
+        },
+        "shared:entropy": {
+          "objects": 6,
+          "vertices": 456,
+          "faces": 0,
+          "lines": 336
+        },
+        "shared:cube": {
+          "objects": 5,
+          "vertices": 40,
+          "faces": 30,
+          "lines": 0
+        },
+        "shared:triangle": {
+          "objects": 5,
+          "vertices": 30,
+          "faces": 25,
+          "lines": 0
+        },
+        "shared:scatter-chart": {
+          "objects": 4,
+          "vertices": 180,
+          "faces": 0,
+          "lines": 168
+        },
+        "shared:octahedron": {
+          "objects": 4,
+          "vertices": 24,
+          "faces": 32,
+          "lines": 0
+        },
+        "shared:hexagon": {
+          "objects": 4,
+          "vertices": 48,
+          "faces": 32,
+          "lines": 0
+        }
+      }
+    },
+    {
+      "route": "talks",
+      "compact": true,
+      "objects": 252,
+      "vertices": 11196,
+      "faces": 5474,
+      "lines": 3535,
+      "groups": {
+        "thematic:slide": {
+          "objects": 14,
+          "vertices": 218,
+          "faces": 36,
+          "lines": 116
+        },
+        "thematic:microphone": {
+          "objects": 28,
+          "vertices": 2800,
+          "faces": 1568,
+          "lines": 1260
+        },
+        "thematic:podium": {
+          "objects": 28,
+          "vertices": 448,
+          "faces": 336,
+          "lines": 0
+        },
+        "thematic:screen": {
+          "objects": 28,
+          "vertices": 1484,
+          "faces": 1036,
+          "lines": 28
+        },
+        "thematic:wave": {
+          "objects": 28,
+          "vertices": 896,
+          "faces": 336,
+          "lines": 336
+        },
+        "thematic:dialogue": {
+          "objects": 28,
+          "vertices": 1008,
+          "faces": 616,
+          "lines": 0
+        },
+        "thematic:speech": {
+          "objects": 14,
+          "vertices": 196,
+          "faces": 126,
+          "lines": 0
+        },
+        "thematic:word": {
+          "objects": 28,
+          "vertices": 1176,
+          "faces": 868,
+          "lines": 0
+        },
+        "shared:brain": {
+          "objects": 5,
+          "vertices": 621,
+          "faces": 283,
+          "lines": 280
+        },
+        "shared:attention": {
+          "objects": 6,
+          "vertices": 618,
+          "faces": 0,
+          "lines": 450
+        },
+        "shared:bar-chart": {
+          "objects": 5,
+          "vertices": 259,
+          "faces": 120,
+          "lines": 67
+        },
+        "shared:softmax": {
+          "objects": 6,
+          "vertices": 402,
+          "faces": 0,
+          "lines": 294
+        },
+        "shared:line-chart": {
+          "objects": 6,
+          "vertices": 292,
+          "faces": 30,
+          "lines": 200
+        },
+        "shared:entropy": {
+          "objects": 6,
+          "vertices": 456,
+          "faces": 0,
+          "lines": 336
+        },
+        "shared:cube": {
+          "objects": 5,
+          "vertices": 40,
+          "faces": 30,
+          "lines": 0
+        },
+        "shared:triangle": {
+          "objects": 5,
+          "vertices": 30,
+          "faces": 25,
+          "lines": 0
+        },
+        "shared:scatter-chart": {
+          "objects": 4,
+          "vertices": 180,
+          "faces": 0,
+          "lines": 168
+        },
+        "shared:octahedron": {
+          "objects": 4,
+          "vertices": 24,
+          "faces": 32,
+          "lines": 0
+        },
+        "shared:hexagon": {
+          "objects": 4,
+          "vertices": 48,
+          "faces": 32,
+          "lines": 0
+        }
+      }
+    },
+    {
+      "route": "credits",
+      "compact": false,
+      "objects": 252,
+      "vertices": 11424,
+      "faces": 5998,
+      "lines": 4311,
+      "groups": {
+        "thematic:source": {
+          "objects": 14,
+          "vertices": 490,
+          "faces": 138,
+          "lines": 220
+        },
+        "thematic:footnote": {
+          "objects": 28,
+          "vertices": 672,
+          "faces": 504,
+          "lines": 0
+        },
+        "thematic:reference": {
+          "objects": 28,
+          "vertices": 896,
+          "faces": 560,
+          "lines": 0
+        },
+        "thematic:asterisk": {
+          "objects": 28,
+          "vertices": 672,
+          "faces": 504,
+          "lines": 0
+        },
+        "thematic:link": {
+          "objects": 28,
+          "vertices": 1792,
+          "faces": 1344,
+          "lines": 896
+        },
+        "thematic:excerpt": {
+          "objects": 28,
+          "vertices": 2296,
+          "faces": 1400,
+          "lines": 1288
+        },
+        "thematic:citation": {
+          "objects": 14,
+          "vertices": 504,
+          "faces": 308,
+          "lines": 0
+        },
+        "thematic:edition": {
+          "objects": 28,
+          "vertices": 1120,
+          "faces": 672,
+          "lines": 112
+        },
+        "shared:brain": {
+          "objects": 5,
+          "vertices": 633,
+          "faces": 299,
+          "lines": 280
+        },
+        "shared:attention": {
+          "objects": 6,
+          "vertices": 618,
+          "faces": 0,
+          "lines": 450
+        },
+        "shared:bar-chart": {
+          "objects": 5,
+          "vertices": 259,
+          "faces": 120,
+          "lines": 67
+        },
+        "shared:softmax": {
+          "objects": 6,
+          "vertices": 402,
+          "faces": 0,
+          "lines": 294
+        },
+        "shared:line-chart": {
+          "objects": 6,
+          "vertices": 292,
+          "faces": 30,
+          "lines": 200
+        },
+        "shared:entropy": {
+          "objects": 6,
+          "vertices": 456,
+          "faces": 0,
+          "lines": 336
+        },
+        "shared:cube": {
+          "objects": 5,
+          "vertices": 40,
+          "faces": 30,
+          "lines": 0
+        },
+        "shared:triangle": {
+          "objects": 5,
+          "vertices": 30,
+          "faces": 25,
+          "lines": 0
+        },
+        "shared:scatter-chart": {
+          "objects": 4,
+          "vertices": 180,
+          "faces": 0,
+          "lines": 168
+        },
+        "shared:octahedron": {
+          "objects": 4,
+          "vertices": 24,
+          "faces": 32,
+          "lines": 0
+        },
+        "shared:hexagon": {
+          "objects": 4,
+          "vertices": 48,
+          "faces": 32,
+          "lines": 0
+        }
+      }
+    },
+    {
+      "route": "credits",
+      "compact": true,
+      "objects": 252,
+      "vertices": 9648,
+      "faces": 4928,
+      "lines": 3311,
+      "groups": {
+        "thematic:source": {
+          "objects": 14,
+          "vertices": 350,
+          "faces": 120,
+          "lines": 116
+        },
+        "thematic:footnote": {
+          "objects": 28,
+          "vertices": 672,
+          "faces": 504,
+          "lines": 0
+        },
+        "thematic:reference": {
+          "objects": 28,
+          "vertices": 896,
+          "faces": 560,
+          "lines": 0
+        },
+        "thematic:asterisk": {
+          "objects": 28,
+          "vertices": 672,
+          "faces": 504,
+          "lines": 0
+        },
+        "thematic:link": {
+          "objects": 28,
+          "vertices": 1344,
+          "faces": 1008,
+          "lines": 672
+        },
+        "thematic:excerpt": {
+          "objects": 28,
+          "vertices": 1120,
+          "faces": 700,
+          "lines": 616
+        },
+        "thematic:citation": {
+          "objects": 14,
+          "vertices": 504,
+          "faces": 308,
+          "lines": 0
+        },
+        "thematic:edition": {
+          "objects": 28,
+          "vertices": 1120,
+          "faces": 672,
+          "lines": 112
+        },
+        "shared:brain": {
+          "objects": 5,
+          "vertices": 621,
+          "faces": 283,
+          "lines": 280
+        },
+        "shared:attention": {
+          "objects": 6,
+          "vertices": 618,
+          "faces": 0,
+          "lines": 450
+        },
+        "shared:bar-chart": {
+          "objects": 5,
+          "vertices": 259,
+          "faces": 120,
+          "lines": 67
+        },
+        "shared:softmax": {
+          "objects": 6,
+          "vertices": 402,
+          "faces": 0,
+          "lines": 294
+        },
+        "shared:line-chart": {
+          "objects": 6,
+          "vertices": 292,
+          "faces": 30,
+          "lines": 200
+        },
+        "shared:entropy": {
+          "objects": 6,
+          "vertices": 456,
+          "faces": 0,
+          "lines": 336
+        },
+        "shared:cube": {
+          "objects": 5,
+          "vertices": 40,
+          "faces": 30,
+          "lines": 0
+        },
+        "shared:triangle": {
+          "objects": 5,
+          "vertices": 30,
+          "faces": 25,
+          "lines": 0
+        },
+        "shared:scatter-chart": {
+          "objects": 4,
+          "vertices": 180,
+          "faces": 0,
+          "lines": 168
+        },
+        "shared:octahedron": {
+          "objects": 4,
+          "vertices": 24,
+          "faces": 32,
+          "lines": 0
+        },
+        "shared:hexagon": {
+          "objects": 4,
+          "vertices": 48,
+          "faces": 32,
+          "lines": 0
+        }
+      }
+    }
+  ]
+}

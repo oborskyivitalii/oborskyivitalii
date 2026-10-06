@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "922024763f242a7e3678a9a4385b56d0e34e4711dbeefe22c02fe712d5596647",
+    "digest": "3949183e3c12af9c2f4c36f18acc2b34f55ff40cdbf0e9a197f119902d61623b",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -97,7 +97,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "3c07e85aea91846fe968cd1454f73712ebf4c656c30f6d823af05decd316bc75"
+        "sha256": "b71e950aaba31f1f3eb23da3e4a8f84de068580b953429ea6ea3f6f75850467c"
       },
       {
         "path": "BACKLOG.md",
@@ -172,7 +172,7 @@
       {
         "path": "SOL-HANDOFF.md",
         "identity_mode": "content",
-        "sha256": "f7f5da546c150be343abb32094dd76d436850283f8056ef7122d47a1e4d9eeb1"
+        "sha256": "c20abac5190338208dfc3a707937ff65214377b4fa2a7197ecc7b2c950d86ee7"
       },
       {
         "path": "docs/.nojekyll",
@@ -223,48 +223,48 @@
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/edd5bce9089959a669352ac43f8dc3a471ee37898e533bddc41e578347234bd3/archive.js",
+        "path": "docs/runtime/9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92/archive.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/edd5bce9089959a669352ac43f8dc3a471ee37898e533bddc41e578347234bd3/navigation.js",
+        "path": "docs/runtime/9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92/navigation.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/edd5bce9089959a669352ac43f8dc3a471ee37898e533bddc41e578347234bd3/space.js",
+        "path": "docs/runtime/9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92/space.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/edd5bce9089959a669352ac43f8dc3a471ee37898e533bddc41e578347234bd3/styles.css",
+        "path": "docs/runtime/9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92/styles.css",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/edd5bce9089959a669352ac43f8dc3a471ee37898e533bddc41e578347234bd3/theme.js",
+        "path": "docs/runtime/9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92/theme.js",
         "identity_mode": "existence"
       },
       {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "1a72ab9337f8e243d27c04bcb0fa6517c8f9f51925569a55a0cc78927fa6fe8f"
+        "sha256": "1a67e019fc485164e71e4775a6615eaa94bfd1cc7908a56fbdc839778e318c75"
       },
       {
-        "path": "docs/snapshots/0a3b86e9dcb8ee2d45d9e245a1119516f3656c0cd04950440196f6fa1b7b827c/credits.html",
+        "path": "docs/snapshots/1b7db4cbd8f9f6d4588ac587610e84a0e74aed106c0983fc477869cfe92ae6a7/index.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/198e0cf233a0e19fe20f3319d29d3cb5998e6c0ab88136d6dc91ff6b15d8674f/writing.html",
+        "path": "docs/snapshots/315ab9b6b3e27e07f3dc8648c7bf104254df6f698d2276840e5f37ace54f6fb8/writing.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/4879962c2b27daafdd7e0f2b7d8d9179a647d9bbd9726e003d657ace9bba0371/talks.html",
+        "path": "docs/snapshots/5d23d171f893489b698cc04c3c88cfe654d5e2d8f7200fd34703b118ec8694ff/credits.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/59a256e69f1b2d632cb0ef2c36f478104c55755a84cab2e8c4d7c7d4c032a5a7/index.html",
+        "path": "docs/snapshots/6396887ba1d05b7a01d469c4ebd31c3565448498673e35c51498346b55764e84/talks.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/70c3e155f50cfefd2126c0090037db899879ae4f51de56ee4c7e54925504b13d/research.html",
+        "path": "docs/snapshots/7c007f65f879d0238c5813810ac32cc342809363d3ce5aa1f0aac1069200a93e/research.html",
         "identity_mode": "existence"
       },
       {
@@ -988,7 +988,7 @@
       {
         "path": "review/site-sol-continuation-20261005/SOL-TASKS.md",
         "identity_mode": "content",
-        "sha256": "4cf68cf2ba47d341a0ac07996214d9ff3f3dc1b7dffef62049c836966d1d2b44"
+        "sha256": "ce47482089c1301db9eeb8d43a8b4aa3222909445a64e35b8cec5aaba9647c95"
       },
       {
         "path": "review/site-sol-continuation-20261005/V1.md",
@@ -2844,7 +2844,7 @@
       {
         "path": "review/site-v1-offline-bundle-v11.json",
         "identity_mode": "content",
-        "sha256": "96f36c5145a4f1215646ea4dcebab2615ab68576ffe6024d28c0c55a49aef926"
+        "sha256": "37f224ec7162f3b37d1ef4dbcfdb96262a29f2406aa9df92cf6a0711c7c48452"
       },
       {
         "path": "review/site-v1-offline-bundle-v3.json",
@@ -2898,7 +2898,7 @@
       {
         "path": "review/site-v1-static-previews-v11.json",
         "identity_mode": "content",
-        "sha256": "dee4444afc66f3f8463cdc2a3f727bfe344470906a8fe91431ae0acb9e4ffbff"
+        "sha256": "3f90b9c8af92ae74945047d8c6941d801d5841f61dd87e0b28ce0bca499f21a8"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -3178,6 +3178,20 @@
         "sha256": "b7f04d26962ee76e8677205de15d3095b938b0a6645f96d20494bcb5182a3fe7"
       },
       {
+        "path": "review/writing-diagnosis-20261006/SOL-TASKS.md",
+        "identity_mode": "content",
+        "sha256": "52e43b71d75c6d71e9af871deb152f2fdf3dcc8384f566077be3c90e4a5d17c0"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/geometry.json",
+        "identity_mode": "content",
+        "sha256": "bf337bea83833b9a44616b88a7604e1085e85d628d6196ebd14ba250c536139e"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/inventory.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "site/README.md",
         "identity_mode": "content",
         "sha256": "6060d78f6f1d608007ae81123454cdd2320e9f4d35dd41bc5b443705fbb1ef46"
@@ -3360,7 +3374,7 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "2e7a39b5a5cf439ddbe992c4e3007e621d1aa63384f00a36310e1caa644e7727"
+        "sha256": "c03ffbf86a6ea53778ccd9af3db7f713608ef10d1658fe067ff4cadcfc5a36f7"
       },
       {
         "path": "site/routes.json",
@@ -3577,6 +3591,10 @@
       },
       {
         "path": "tools/quality/fallback-url.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/flight-detail.cjs",
         "identity_mode": "existence"
       },
       {
@@ -5499,6 +5517,20 @@
     {
       "path": "review/sol-visual-v8-20261003/EXECUTION.md",
       "title": "v8 execution — living thematic fractals, 2026-10-03",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/writing-diagnosis-20261006/SOL-TASKS.md",
+      "title": "Sol: isolate cold Writing costs, one factor at a time",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/writing-diagnosis-20261006/geometry.json",
+      "title": "review/writing-diagnosis-20261006/geometry.json",
       "instructions": [
         "AGENTS.md"
       ]

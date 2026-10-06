@@ -25,6 +25,7 @@ function visit(options={}) {
     querySelectorAll:()=>stops,querySelector:()=>({}),addEventListener:(name,fn)=>{docEvents[name]=fn;}};
   class MutationObserver{constructor(fn){this.callback=fn;}observe(_,options){if(options?.attributeFilter?.includes('data-theme'))mutation=this.callback;}disconnect(){}}
   window.MutationObserver=MutationObserver;
+  if(options.probe)window.SiteEngineProbe=options.probe;
   const localStorage={getItem(){if(options.blockedStorage)throw Error("blocked");return stored;},setItem(_,value){if(options.blockedStorage)throw Error("blocked");stored=value;}};
   vm.runInNewContext(source,{document,window,localStorage});
   const api={window,document,button,canvas,scene,pending,calls,media,events,
@@ -143,6 +144,36 @@ test("short pages and empty archives finish in their destination room",()=>{
     for(let i=0;i<30;i++)p.frame(80);
     assert.equal(p.scene.dataset.travel,"settled");
     assert.deepEqual(JSON.parse(p.trace()),model.routePose(page,model.poses[model.initialPoses[page]]));
+  }
+});
+test("flight models have their settled detail before the first paint, without an arrival refinement",()=>{
+  for(const narrow of [false,true]){
+    const models=[],p=visit({page:"research",narrow,probe:event=>{if(event.kind==="model")models.push(event);}});
+    p.settle();models.length=0;
+    const before=p.draws();p.window.SiteScene.navigate("writing");
+    assert.equal(p.draws(),before,"preparation precedes the travelling paint");
+    assert.deepEqual(models.map(({route,compact})=>[route,compact]),[["writing",narrow]],"reuse the source and prepare the destination at its normal detail");
+    p.frame(80);assert.equal(p.scene.dataset.travel,"flying");
+    for(let i=0;i<32;i++){
+      assert.equal(p.scene.dataset.geometry,narrow?"compact":"full");
+      p.frame(80);
+    }
+    assert.equal(p.scene.dataset.travel,"settled");
+    assert.equal(models.length,1,"no post-arrival model rebuild");
+    assert.ok(Number(p.scene.dataset.rooms)<=3);assert.ok(Number(p.scene.dataset.roomModels)<=6);
+  }
+});
+test("flight preparation preserves adaptive compact detail and bounded multi-room retargeting",()=>{
+  const p=visit({paintCost:30});advanceUntil(p,()=>p.scene.dataset.geometry==="compact","adapt before flight");
+  p.window.SiteScene.navigate("writing");p.frame(80);assert.equal(p.scene.dataset.geometry,"compact");
+  const q=visit();q.settle();
+  for(const destination of ["credits","index","writing"]){
+    q.window.SiteScene.navigate(destination);
+    for(let i=0;i<28;i++){
+      q.frame(80);
+      assert.equal(q.scene.dataset.geometry,"full");
+      assert.ok(Number(q.scene.dataset.rooms)<=3);assert.ok(Number(q.scene.dataset.roomModels)<=6);
+    }
   }
 });
 test("camera traverses multiple structures, is continuous/reversible and clips safely through near planes",()=>{

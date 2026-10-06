@@ -1,5 +1,21 @@
 # Agent guidance for personal publications
 
+## Early flight detail and Writing ablations — 2026-10-06
+
+The maintainer requests earlier primitive refinement and a controlled diagnosis
+plan for Sol. Read [the current plan](review/writing-diagnosis-20261006/SOL-TASKS.md).
+Continue only Draft #23. The visual correction removes forced compact geometry
+during flight and the 250ms post-arrival rebuild; source/target use their normal
+viewport/adaptive detail before the first travelling paint. Keep bounded caches,
+mobile quality policy and inclusive preparation accounting. Desktop cost still
+requires a paired check; this is not a performance-pass claim.
+
+The plan separates Color ribbons/text transform, native Writing DOM/layout,
+model/palette preparation, motif rendering and archive/filter work. Screen one
+factor at a time, then repeat only the supported candidate. No full staging,
+native or soak matrix, budget relaxation, extra PR or custom deployment.
+The prior comparison and its failed Color windows remain authoritative evidence.
+
 ## Consolidated candidate and Writing-only diagnosis — 2026-10-06
 
 The maintainer stopped broad staging/full-suite iteration and requests one

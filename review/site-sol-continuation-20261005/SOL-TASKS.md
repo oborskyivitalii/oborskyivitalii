@@ -1,5 +1,9 @@
 # Next Sol task — cold Writing layout
 
+**Superseded 2026-10-06:** use [the current single-PR experiment plan](../writing-diagnosis-20261006/SOL-TASKS.md).
+The remaining text preserves the previous diagnostic/task context. #18/#22 are
+closed; only #23 is active. Main protection and CI hosting are already configured.
+
 Continue from `work/sol-primitive-cost-20261005`, stacked on
 `work/sol-writing-layout-20261005`, with R1 and H1 already integrated into Draft
 #18. H2 #24 and the parallel staging execution #25 are also integrated into

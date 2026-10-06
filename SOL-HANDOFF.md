@@ -1,5 +1,14 @@
 # Sol execution plan — reviewed 2026-10-02
 
+## Current task — 2026-10-06
+
+Start with [cold Writing hypotheses and experiments](review/writing-diagnosis-20261006/SOL-TASKS.md).
+Use the sole Draft #23 on `work/sol-primitive-cost-20261005`; #18/#22 are closed
+as superseded and CI-only #26 is merged. The early-detail visual correction is
+implemented; paired desktop cost and the prioritized Writing ablations remain.
+Existing PR preview CI is authorized; full staging/promotion is outside this
+focused task. This section supersedes the dated PR/hosting instructions below.
+
 ## Current continuation — Astra review, 2026-10-05
 
 Start with [updated Sol tasks](review/site-followup-20261005/SOL-TASKS.md) and

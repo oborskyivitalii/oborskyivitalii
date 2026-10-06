@@ -2,6 +2,7 @@
 // One small Chromium preview matrix. This report never substitutes for a full gate.
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),crypto=require('node:crypto');
 const {toolRequire,report,launchOptions,out}=require('./common.cjs'),{start}=require('./serve.cjs');
+const flightDetail=require('./flight-detail.cjs');
 const routes=['index','research','writing','talks','credits'];
 const hash=bytes=>crypto.createHash('sha256').update(bytes).digest('hex');
 function artifactFile(value,base,manifest){
@@ -75,7 +76,10 @@ async function scenario(browser,url,manifest,variant,width,mode){
     if(mode==='normal')await page.waitForFunction(()=>document.querySelector('.space-scene').dataset.ready==='true',null,{polling:50,timeout:5000});
     await page.evaluate(()=>{window.__previewShell={header:document.querySelector('header'),canvas:document.querySelector('canvas')};});
     for(const id of routes){
+      const checkDetail=mode==='normal'&&id==='writing';
+      if(checkDetail)await flightDetail.begin(page);
       if(id!=='index'){await page.locator(routeSelector(id)).evaluate(el=>el.click());await ready(page,id);}
+      const detail=checkDetail?await flightDetail.finish(page):null;
       const observed=await state(page);assert.equal(observed.h1,1,id+' single main heading');assert.equal(observed.overflow,false,id+' horizontal overflow');
       assert.equal(observed.engine,variant.fingerprint,id+' engine identity');assert.equal(observed.variant,variant.id,id+' variant identity');
       assert.equal(await page.evaluate(()=>window.__previewShell.header===document.querySelector('header')&&window.__previewShell.canvas===document.querySelector('canvas')),true,id+' persistent header and canvas');
@@ -94,7 +98,7 @@ async function scenario(browser,url,manifest,variant,width,mode){
         await page.locator('#archive-topic').selectOption('systems');assert.ok(await page.locator('li.publication:visible').count()>0,'Writing filter has results');
         await page.locator('.filter-reset').evaluate(el=>el.click());
       }
-      rows.push({route:id,pass:true,state:observed,checks:['exact identity','heading','viewport','persistent shell','theme control',mode==='normal'?'canvas active':'no-canvas fallback']});
+      rows.push({route:id,pass:true,state:observed,detail,checks:['exact identity','heading','viewport','persistent shell','theme control',mode==='normal'?'canvas active':'no-canvas fallback']});
     }
     await page.goBack();await ready(page,'talks');await page.goForward();await ready(page,'credits');
     await Promise.all(responseChecks);assert.deepEqual(errors,[],'runtime and served-byte errors');assert.deepEqual(external,[],'unexpected external requests');

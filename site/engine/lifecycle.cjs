@@ -27,7 +27,6 @@ module.exports=function(api) {
   const clock=()=>window.performance?.now()??Date.now();
   let current=routePose(page,poses[initial]), animation=null, writingAnchor=null,displayedTime=0,displayedCamera=current,journey=null;
   let travelUpdate=null;
-  let flightDetail=false,refineAt=null;
   let colors={cyan:"#075d7b",amber:"#895710",paper:"#f8f7f3"};
   let paletteRevision=0,colorFills=new Map();
   const pose = id => routePose(page,poses[id]);
@@ -116,7 +115,7 @@ module.exports=function(api) {
     room.paletteRevision=paletteRevision;
     if(start)diagnostic('stage',{part:'model-color',route:room.name,start,duration:clock()-start});
   }
-  function roomFor(name,detail=compact||detailTier>=.5||!!journey||flightDetail) {
+  function roomFor(name,detail=compact||detailTier>=.5) {
     // Reduce actual model/paint work on a slow desktop as well as on mobile.
     // The same motif IDs, macro positions and recursive topology survive.
     if(!rooms.has(name)){
@@ -207,7 +206,7 @@ module.exports=function(api) {
     ctx.globalAlpha=1;scene.dataset.ready="true";displayedTime=ambientTime;displayedCamera=current;displayedTier=detailTier;
     scene.dataset.phase=String(ambientTime);scene.dataset.camera=JSON.stringify(current);scene.dataset.detail=String(detailTier);
     scene.dataset.route=page;scene.dataset.travel=journey?"flying":"settled";scene.dataset.rooms=String(rooms.size);
-    scene.dataset.geometry=compact||detailTier>=.5||journey||flightDetail?"compact":"full";
+    scene.dataset.geometry=compact||detailTier>=.5?"compact":"full";
     scene.dataset.roomModels=String([...rooms.values()].reduce((count,variants)=>count+variants.size,0));
     span('draw-state');
   }
@@ -257,7 +256,7 @@ module.exports=function(api) {
       journey.elapsed+=delta;
       const t=clamp(journey.elapsed/journey.duration);
       current=mix(journey.from,journey.to,smooth(t));
-      if(t===1){current=journey.to;journey=null;refineAt=clock()+250;}
+      if(t===1){current=journey.to;journey=null;}
     }
   }
   function advanceAnimation(delta,time) {
@@ -275,9 +274,6 @@ module.exports=function(api) {
     const living=enabled&&!hold&&owns(initialPoses,page);
     if(living){ambientTime=(ambientTime+delta)%LOOP_MS;detailTier+=(tier-detailTier)*(1-Math.exp(-delta/180));}
     advanceJourney(delta,living);
-    // Arrival paints retain the already prepared compact scene. Desktop detail
-    // returns after text is ready, only on the existing living scene scheduler.
-    if(flightDetail&&!journey&&!animation&&living&&refineAt!==null&&time>=refineAt){flightDetail=false;refineAt=null;}
     advanceAnimation(delta,time);
     // Camera response gets a temporary, cost-bounded higher cadence. Deadlines
     // retain fractional phase instead of rounding every frame down to 20/15Hz.
@@ -369,12 +365,13 @@ module.exports=function(api) {
       if(animate&&this.canTravel()){
         journey={from,to:target,elapsed:0,duration:Math.min(1700,1000+Math.abs(target.position[2]-from.position[2])*2)};
       }else{journey=null;current=target;}
-      flightDetail=!!journey;refineAt=null;
       scene.dataset.travel=journey?"flying":"settled";
       travelUpdate=update;
-      // Prepare the bounded source/target compact working set before the first
-      // travelling paint. Probe costs remain part of input-to-ready evidence.
-      if(journey){try{roomFor(sourcePage,true);roomFor(page,true);}catch{fail();return;}}
+      // Prepare the bounded source/target working set at its settled detail
+      // before either can be painted in flight. Avoid a visible downgrade and
+      // post-arrival rebuild; mobile/adaptive compact detail still applies.
+      // Probe costs remain part of input-to-ready evidence.
+      if(journey){try{roomFor(sourcePage);roomFor(page);}catch{fail();return;}}
       reportTravel(journey?0:1);
       observeLayout();nextDraw=null;schedule();
     },
