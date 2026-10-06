@@ -90,7 +90,7 @@ jobs:
       - name: Fast source checks and one immutable public build
         run: |
           test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
-          node --test tests/review-flow.test.cjs
+          node --test tests/review-flow.test.cjs tests/preview-smoke.test.cjs
           if [ "$(node tools/staging/review-flow.cjs variant)" = color ]; then
             node --test tests/color-build.test.cjs
           fi

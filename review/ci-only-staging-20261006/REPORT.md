@@ -38,6 +38,15 @@ stopped; actual generic browser execution is required in PR CI before merge.
 Independent read-only reviewer capture_compat found no remaining controller
 blocker, including /stage privilege, artifact/gate and recovery boundaries.
 
+The first isolated hosted attempts, runs 37436554748 (base #26 source 3227442)
+and 37436551769 (Color #23 source 4335cc4), successfully publish exact artifacts
+as deployments 78482cd5 and 4d4be3e8. HTTP identity and runtime smoke assertions
+pass, but the browser response observer incorrectly reads redirect response
+bodies. Both smoke jobs fail honestly; neither run qualifies for merge or full
+staging. The correction validates same-origin canonical redirect destinations
+and hashes final extensionless HTML responses. Mock regression coverage joins
+the fast CI source checks; actual hosted smoke must pass again before merge.
+
 Full staging, stable promotion and actual rollback are not established by these
 local/source/preview checks. Owner main protection/staging opt-in and real hosted
 CI outcome remain explicit. Original runtime cold Writing failure/budgets and

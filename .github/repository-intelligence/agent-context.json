@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "104d7133ea947a27d9028292341d56385756aa27bd6b3cff193680010277a476",
+    "digest": "4da43cfe186bf2213e85fdb2ab24efb00499d35893cd57f6e4f2e2fa1bdf8ff3",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -63,7 +63,7 @@
       {
         "path": ".github/workflows/site-color-review.yml",
         "identity_mode": "content",
-        "sha256": "d16db3766e0053b1f2990e4c8e3547e75f3f670d4dc70e9c1a24a5a75b9b0d50"
+        "sha256": "ca53e071f613d7abe7cbcf01eb8628363213ec1df517a983ba323830a8126976"
       },
       {
         "path": ".github/workflows/site-navigation-probe.yml",
@@ -301,7 +301,7 @@
       {
         "path": "review/ci-only-staging-20261006/REPORT.md",
         "identity_mode": "content",
-        "sha256": "f3cdc0177bc2f1879b7df7e65718b0ac8a807177ed4a1d410bc2548bb6278083"
+        "sha256": "ab0f2a9b7299ca9421968b04a05e6b00548abe2f229c91fc0448b201066d2597"
       },
       {
         "path": "review/seo-20261002/COLLECTION-MANIFEST.json",
@@ -2724,6 +2724,10 @@
       },
       {
         "path": "tests/executive.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/preview-smoke.test.cjs",
         "identity_mode": "existence"
       },
       {
