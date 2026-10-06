@@ -1,0 +1,2106 @@
+{
+  "schema": 1,
+  "kind": "writing-bounded-diagnosis",
+  "complete": true,
+  "fullGate": false,
+  "performanceAcceptance": false,
+  "environment": {
+    "platform": "linux",
+    "os": "6.17.0-1022-azure",
+    "architecture": "x64",
+    "node": "v24.19.0",
+    "runnerImage": "ubuntu24",
+    "imageVersion": "20260927.320.1",
+    "cpus": [
+      "AMD EPYC 7763 64-Core Processor",
+      "AMD EPYC 7763 64-Core Processor",
+      "AMD EPYC 7763 64-Core Processor",
+      "AMD EPYC 7763 64-Core Processor"
+    ],
+    "memoryBytes": 16766414848,
+    "runId": "37453060501",
+    "attempt": "1"
+  },
+  "configuration": {
+    "schema": 1,
+    "mode": "v0",
+    "before": "6b73399c4f0afeba497c92809686bba4b7a3200a",
+    "desktopPairs": 3,
+    "mobilePairs": 6,
+    "directBoot": true,
+    "fullGate": false,
+    "request": "Confirm only exact ribbon scalar reuse against unchanged current Color",
+    "runtimeEngine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92"
+  },
+  "profiles": {
+    "desktop": {
+      "width": 1440,
+      "height": 900,
+      "deviceScaleFactor": 1.5,
+      "cpuRate": 1,
+      "theme": "dark"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "deviceScaleFactor": 3,
+      "cpuRate": 4,
+      "theme": "dark"
+    }
+  },
+  "budgets": {
+    "paintCallbackP95Ms": 33,
+    "idleCallbackBusyPercent": 20,
+    "minimumPaints": 1,
+    "soakSeconds": 300,
+    "transition": {
+      "paintCallbackP95Ms": 80,
+      "paintCallbackMaxMs": 200,
+      "preparationMaxMs": 160,
+      "paintGapMaxMs": 300,
+      "readyMaxMs": 3200,
+      "minimumPaints": 8
+    }
+  },
+  "plan": {
+    "mode": "v0",
+    "rows": [
+      {
+        "id": "v0-0",
+        "group": "v0",
+        "label": "before-color",
+        "profile": "desktop",
+        "contentFlight": true,
+        "fineStages": false,
+        "boot": true,
+        "pair": 0
+      },
+      {
+        "id": "v0-1",
+        "group": "v0",
+        "label": "current-color",
+        "profile": "desktop",
+        "contentFlight": true,
+        "fineStages": false,
+        "boot": true,
+        "pair": 0
+      },
+      {
+        "id": "v0-2",
+        "group": "v0",
+        "label": "current-color",
+        "profile": "desktop",
+        "contentFlight": true,
+        "fineStages": false,
+        "boot": true,
+        "pair": 1
+      },
+      {
+        "id": "v0-3",
+        "group": "v0",
+        "label": "before-color",
+        "profile": "desktop",
+        "contentFlight": true,
+        "fineStages": false,
+        "boot": true,
+        "pair": 1
+      },
+      {
+        "id": "v0-4",
+        "group": "v0",
+        "label": "before-color",
+        "profile": "desktop",
+        "contentFlight": true,
+        "fineStages": false,
+        "boot": true,
+        "pair": 2
+      },
+      {
+        "id": "v0-5",
+        "group": "v0",
+        "label": "current-color",
+        "profile": "desktop",
+        "contentFlight": true,
+        "fineStages": false,
+        "boot": true,
+        "pair": 2
+      },
+      {
+        "id": "v0-6",
+        "group": "v0",
+        "label": "before-color",
+        "profile": "mobile",
+        "contentFlight": true,
+        "fineStages": false,
+        "boot": true,
+        "pair": 0
+      },
+      {
+        "id": "v0-7",
+        "group": "v0",
+        "label": "current-color",
+        "profile": "mobile",
+        "contentFlight": true,
+        "fineStages": false,
+        "boot": true,
+        "pair": 0
+      },
+      {
+        "id": "v0-8",
+        "group": "v0",
+        "label": "current-color",
+        "profile": "mobile",
+        "contentFlight": true,
+        "fineStages": false,
+        "boot": true,
+        "pair": 1
+      },
+      {
+        "id": "v0-9",
+        "group": "v0",
+        "label": "before-color",
+        "profile": "mobile",
+        "contentFlight": true,
+        "fineStages": false,
+        "boot": true,
+        "pair": 1
+      },
+      {
+        "id": "v0-10",
+        "group": "v0",
+        "label": "before-color",
+        "profile": "mobile",
+        "contentFlight": true,
+        "fineStages": false,
+        "boot": true,
+        "pair": 2
+      },
+      {
+        "id": "v0-11",
+        "group": "v0",
+        "label": "current-color",
+        "profile": "mobile",
+        "contentFlight": true,
+        "fineStages": false,
+        "boot": true,
+        "pair": 2
+      },
+      {
+        "id": "v0-12",
+        "group": "v0",
+        "label": "current-color",
+        "profile": "mobile",
+        "contentFlight": true,
+        "fineStages": false,
+        "boot": true,
+        "pair": 3
+      },
+      {
+        "id": "v0-13",
+        "group": "v0",
+        "label": "before-color",
+        "profile": "mobile",
+        "contentFlight": true,
+        "fineStages": false,
+        "boot": true,
+        "pair": 3
+      },
+      {
+        "id": "v0-14",
+        "group": "v0",
+        "label": "before-color",
+        "profile": "mobile",
+        "contentFlight": true,
+        "fineStages": false,
+        "boot": true,
+        "pair": 4
+      },
+      {
+        "id": "v0-15",
+        "group": "v0",
+        "label": "current-color",
+        "profile": "mobile",
+        "contentFlight": true,
+        "fineStages": false,
+        "boot": true,
+        "pair": 4
+      },
+      {
+        "id": "v0-16",
+        "group": "v0",
+        "label": "current-color",
+        "profile": "mobile",
+        "contentFlight": true,
+        "fineStages": false,
+        "boot": true,
+        "pair": 5
+      },
+      {
+        "id": "v0-17",
+        "group": "v0",
+        "label": "before-color",
+        "profile": "mobile",
+        "contentFlight": true,
+        "fineStages": false,
+        "boot": true,
+        "pair": 5
+      }
+    ],
+    "deferred": []
+  },
+  "identities": {
+    "before-color": {
+      "schema": 1,
+      "sourceCommit": "6b73399c4f0afeba497c92809686bba4b7a3200a",
+      "sourceDirty": false,
+      "sourceTree": "52610262022b562d63e2a8be2b462696152fe6c1",
+      "candidateCommit": "6b73399c4f0afeba497c92809686bba4b7a3200a",
+      "artifactDigest": "2d3a9c6a27f6c3fcf0b957367fb64ed31765fd8cd95e934413b2675dfe087b8b",
+      "components": {
+        "schema": 1,
+        "contract": 1,
+        "variant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "29f96cf7b87c31e917e611abdc2112297f6e85cb4797b4c19a6f90bafd7924c9",
+          "baseEngine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92",
+          "effects": [
+            "ribbons",
+            "travel"
+          ]
+        },
+        "engine": "29f96cf7b87c31e917e611abdc2112297f6e85cb4797b4c19a6f90bafd7924c9",
+        "scenes": "b2235d46b4ebb320883af27c37025f97694ae4162ed86a1bc29e6e9156921518",
+        "assets": "442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401",
+        "content": "093a9c54a875f4be1f5d293a9a81c84700838609e0515069db0d8a3838810c7e",
+        "routes": {
+          "index": {
+            "version": "9b807cd8b46caa7a4b081f8b73d49c7e4c375342d01828f93c7df5975a71b059",
+            "url": "snapshots/9b807cd8b46caa7a4b081f8b73d49c7e4c375342d01828f93c7df5975a71b059/index.html",
+            "sha256": "ef0f1d3f16588db85292f1e8ec7da23974028915e02c8f7f6f4049ce1de3694f"
+          },
+          "research": {
+            "version": "31dfb6301fb27221e063e0fe9daad1654bcc65c9d0dbf2231276ac5124c0fd39",
+            "url": "snapshots/31dfb6301fb27221e063e0fe9daad1654bcc65c9d0dbf2231276ac5124c0fd39/research.html",
+            "sha256": "b0d34207e9eb7e3275774a654bb535a970d4b1593547e4f6018dcd1d67e908ee"
+          },
+          "writing": {
+            "version": "21a4530faa3854407c6671429ab749af408c8d5f77b0ab026d4100924f805ec4",
+            "url": "snapshots/21a4530faa3854407c6671429ab749af408c8d5f77b0ab026d4100924f805ec4/writing.html",
+            "sha256": "8f7b5306fa2de1217a039a24c2854b5c9d57e48af15ac24a6194225507c21bc8"
+          },
+          "talks": {
+            "version": "178bc19e305e392fdff168f0ce8abd4b1be2ca6cb3f628b330171de303f37123",
+            "url": "snapshots/178bc19e305e392fdff168f0ce8abd4b1be2ca6cb3f628b330171de303f37123/talks.html",
+            "sha256": "bbe44277eb38337d0f9a0cbe913bc2879f0c4605f5be337317712c27fd08ae53"
+          },
+          "credits": {
+            "version": "bfb51aea80b2d108a827df6dfca0fc732a3f612ad2ecc0348b7bf7b34a528f63",
+            "url": "snapshots/bfb51aea80b2d108a827df6dfca0fc732a3f612ad2ecc0348b7bf7b34a528f63/credits.html",
+            "sha256": "05d911bdcc3345fdfb5591dfa7eadd9f3268ab6d9b00bc510fea8cbeefb8110c"
+          }
+        }
+      },
+      "variant": {
+        "id": "color",
+        "contract": 1,
+        "fingerprint": "29f96cf7b87c31e917e611abdc2112297f6e85cb4797b4c19a6f90bafd7924c9",
+        "baseEngine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92",
+        "effects": [
+          "ribbons",
+          "travel"
+        ]
+      },
+      "derivation": {
+        "kind": "authored-color-effects",
+        "baseArtifactDigest": "f8f43b915e9f2d09be495499b9963b5e54fe8f8ba2d09eb45062abb738a9c933"
+      }
+    },
+    "current-base": {
+      "schema": 1,
+      "sourceCommit": "b84f1447346ecc7701e289878d3ee115e0cc6b41",
+      "sourceDirty": false,
+      "sourceTree": "0a0354e6b852bb4930639512566242a52347d15e",
+      "candidateCommit": "b84f1447346ecc7701e289878d3ee115e0cc6b41",
+      "artifactDigest": "f8f43b915e9f2d09be495499b9963b5e54fe8f8ba2d09eb45062abb738a9c933",
+      "components": {
+        "schema": 1,
+        "contract": 1,
+        "variant": {
+          "id": "base",
+          "contract": 1,
+          "fingerprint": "48153b94fbae4f314eaa11b156df8a20227dec429abfee9e45c14fda4a1f1b2a"
+        },
+        "engine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92",
+        "scenes": "b2235d46b4ebb320883af27c37025f97694ae4162ed86a1bc29e6e9156921518",
+        "assets": "442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401",
+        "content": "2375614e9ae56b3dec089fbc0911841d13a4d7ffdd3d185fe559283785660d5f",
+        "routes": {
+          "index": {
+            "version": "1b7db4cbd8f9f6d4588ac587610e84a0e74aed106c0983fc477869cfe92ae6a7",
+            "url": "snapshots/1b7db4cbd8f9f6d4588ac587610e84a0e74aed106c0983fc477869cfe92ae6a7/index.html",
+            "sha256": "7861502dc7935661d05c5fb876c027ddb3947396ea424100ff9869caf9c7f718"
+          },
+          "research": {
+            "version": "7c007f65f879d0238c5813810ac32cc342809363d3ce5aa1f0aac1069200a93e",
+            "url": "snapshots/7c007f65f879d0238c5813810ac32cc342809363d3ce5aa1f0aac1069200a93e/research.html",
+            "sha256": "fc18c3887947bebda9c3e4ac2bb4ffb04a1ea37f1ffb6097da278020709933a1"
+          },
+          "writing": {
+            "version": "315ab9b6b3e27e07f3dc8648c7bf104254df6f698d2276840e5f37ace54f6fb8",
+            "url": "snapshots/315ab9b6b3e27e07f3dc8648c7bf104254df6f698d2276840e5f37ace54f6fb8/writing.html",
+            "sha256": "205f6dee4c0c964636e9814ba1720f669cc2b3df40882cec3a04633f2af4f728"
+          },
+          "talks": {
+            "version": "6396887ba1d05b7a01d469c4ebd31c3565448498673e35c51498346b55764e84",
+            "url": "snapshots/6396887ba1d05b7a01d469c4ebd31c3565448498673e35c51498346b55764e84/talks.html",
+            "sha256": "5e84320532c312899e933f09afaba21efa9c92679bc7e772eed731f2f001cc24"
+          },
+          "credits": {
+            "version": "5d23d171f893489b698cc04c3c88cfe654d5e2d8f7200fd34703b118ec8694ff",
+            "url": "snapshots/5d23d171f893489b698cc04c3c88cfe654d5e2d8f7200fd34703b118ec8694ff/credits.html",
+            "sha256": "f66ca929787ac750566327331c3314bdfc353c069b1ec74b702dadfa3e924bb3"
+          }
+        }
+      }
+    },
+    "current-color": {
+      "schema": 1,
+      "sourceCommit": "b84f1447346ecc7701e289878d3ee115e0cc6b41",
+      "sourceDirty": false,
+      "sourceTree": "0a0354e6b852bb4930639512566242a52347d15e",
+      "candidateCommit": "b84f1447346ecc7701e289878d3ee115e0cc6b41",
+      "artifactDigest": "a96e4af00c61a312a8ada55cce17e0953f9474ce8fd9e112bee0a95305bbc807",
+      "components": {
+        "schema": 1,
+        "contract": 1,
+        "variant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "6cc097eb58ee6323c2f5535310c90c5c49a8036af35703f1f38fcf133a76d292",
+          "baseEngine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92",
+          "effects": [
+            "ribbons",
+            "travel"
+          ]
+        },
+        "engine": "6cc097eb58ee6323c2f5535310c90c5c49a8036af35703f1f38fcf133a76d292",
+        "scenes": "b2235d46b4ebb320883af27c37025f97694ae4162ed86a1bc29e6e9156921518",
+        "assets": "442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401",
+        "content": "6d3ad8f27652818bf858b783b8cb3be04a74a099295aae2b3e67bac048734af7",
+        "routes": {
+          "index": {
+            "version": "634cb00dbc7ea0e371f1cd1a8008b92d59ab1c5eb6fe2e6d99b59f185de8c372",
+            "url": "snapshots/634cb00dbc7ea0e371f1cd1a8008b92d59ab1c5eb6fe2e6d99b59f185de8c372/index.html",
+            "sha256": "9d5529888ede8a65258ddc7c676ea69f890259b68237d984e35bcd7d6a29bb3a"
+          },
+          "research": {
+            "version": "2d6d3582e42b1465f90f0100c06b8300b45f16e1655c83de0bb18e89fbe7c5e0",
+            "url": "snapshots/2d6d3582e42b1465f90f0100c06b8300b45f16e1655c83de0bb18e89fbe7c5e0/research.html",
+            "sha256": "60e361a61b6e14bcba8c0d81f1270c7ebed2351522dee9df0a64aff8b1957843"
+          },
+          "writing": {
+            "version": "815961a46843b7b4af452a58fb0cd1b597fc973b91e5b8141b644c09146cae96",
+            "url": "snapshots/815961a46843b7b4af452a58fb0cd1b597fc973b91e5b8141b644c09146cae96/writing.html",
+            "sha256": "c5dd7d507417e66a9e7ed2c3c10b7b20bf8eb005744506dc4de23ea2ddbc7876"
+          },
+          "talks": {
+            "version": "1aabae8fff7d40e2263e09cd9944f0aba1a0bef5d052f7377751ff323c15985b",
+            "url": "snapshots/1aabae8fff7d40e2263e09cd9944f0aba1a0bef5d052f7377751ff323c15985b/talks.html",
+            "sha256": "723273b6316f495c45a39011c1381b3aa75a321ae632380abf4209d5ebe534fb"
+          },
+          "credits": {
+            "version": "0242fa86b53480dbe2c061a4e8743fa6f9b5bc58ddf8d3272617eb9309d86cf6",
+            "url": "snapshots/0242fa86b53480dbe2c061a4e8743fa6f9b5bc58ddf8d3272617eb9309d86cf6/credits.html",
+            "sha256": "c447762b89b2a76bf4b48f0c1b54f1fce3af3f41c3c6156ad4033c14243021c1"
+          }
+        }
+      },
+      "variant": {
+        "id": "color",
+        "contract": 1,
+        "fingerprint": "6cc097eb58ee6323c2f5535310c90c5c49a8036af35703f1f38fcf133a76d292",
+        "baseEngine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92",
+        "effects": [
+          "ribbons",
+          "travel"
+        ]
+      },
+      "derivation": {
+        "kind": "authored-color-effects",
+        "baseArtifactDigest": "f8f43b915e9f2d09be495499b9963b5e54fe8f8ba2d09eb45062abb738a9c933"
+      }
+    },
+    "no-ribbons": {
+      "schema": 1,
+      "sourceCommit": "b84f1447346ecc7701e289878d3ee115e0cc6b41",
+      "sourceDirty": false,
+      "sourceTree": "0a0354e6b852bb4930639512566242a52347d15e",
+      "candidateCommit": "b84f1447346ecc7701e289878d3ee115e0cc6b41",
+      "artifactDigest": "db3c2d0b017a33c486a3c9ff66bcaea1770143e0f55ebbb8042c7f2fcf840eaa",
+      "components": {
+        "schema": 1,
+        "contract": 1,
+        "variant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "a4e2d39f872b5dbd1b6577d238e583680235740a2b903b06d11133c7806d9815",
+          "baseEngine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92",
+          "effects": [
+            "travel"
+          ],
+          "diagnostic": {
+            "label": "no-ribbons",
+            "description": "Suppress ribbon scene creation/collection/custom painting; retain travel, reading styles and controls.",
+            "fullGate": false
+          }
+        },
+        "engine": "a4e2d39f872b5dbd1b6577d238e583680235740a2b903b06d11133c7806d9815",
+        "scenes": "b2235d46b4ebb320883af27c37025f97694ae4162ed86a1bc29e6e9156921518",
+        "assets": "442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401",
+        "content": "28fc76b8fcf10918bec1e118fc4b63fe16972703389db561886904a7f3c8cad4",
+        "routes": {
+          "index": {
+            "version": "102903b1b409dd29141e0304f1c5de7ce3c103a1c79d895d7d15fd6e66f4c794",
+            "url": "snapshots/102903b1b409dd29141e0304f1c5de7ce3c103a1c79d895d7d15fd6e66f4c794/index.html",
+            "sha256": "20a934ad3a0f083fd00b54a414f0189481a160e2c1fe307e506645fe927de9f9"
+          },
+          "research": {
+            "version": "b232b4bee7ac125775ed6b2abfe2101bae490ada101cd2855b0f03d096deb4f6",
+            "url": "snapshots/b232b4bee7ac125775ed6b2abfe2101bae490ada101cd2855b0f03d096deb4f6/research.html",
+            "sha256": "cb93df9b4b99cba7dae7026a0e9020c83536f784228f29e2a3c205391632b5ca"
+          },
+          "writing": {
+            "version": "fe4ae763532ed07e269dec65cdbe93b646fb88b2a611357a51feee4e0ada48d7",
+            "url": "snapshots/fe4ae763532ed07e269dec65cdbe93b646fb88b2a611357a51feee4e0ada48d7/writing.html",
+            "sha256": "f8ef2e7d319b7f4a89538499ee147494c06d3a953a9b506723bfdfc6a5df97c7"
+          },
+          "talks": {
+            "version": "1bfccf696091588a6c94bd2e2422ca19e228bae827ded1b8bd66fc02737e56c1",
+            "url": "snapshots/1bfccf696091588a6c94bd2e2422ca19e228bae827ded1b8bd66fc02737e56c1/talks.html",
+            "sha256": "6fc33c92917820caf0df56832704b2587f51832ac6b208583f671c10a6432d20"
+          },
+          "credits": {
+            "version": "83f8e20aaaf5cb2f497118cfe5b15e8ae56ec171ed869efd9e83175824415678",
+            "url": "snapshots/83f8e20aaaf5cb2f497118cfe5b15e8ae56ec171ed869efd9e83175824415678/credits.html",
+            "sha256": "0e8f6718fd83eb0899c3c1553cc52c8823f3f502a115431f36f5076564848f77"
+          }
+        },
+        "diagnostic": {
+          "label": "no-ribbons",
+          "description": "Suppress ribbon scene creation/collection/custom painting; retain travel, reading styles and controls.",
+          "fullGate": false
+        }
+      },
+      "variant": {
+        "id": "color",
+        "contract": 1,
+        "fingerprint": "a4e2d39f872b5dbd1b6577d238e583680235740a2b903b06d11133c7806d9815",
+        "baseEngine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92",
+        "effects": [
+          "travel"
+        ],
+        "diagnostic": {
+          "label": "no-ribbons",
+          "description": "Suppress ribbon scene creation/collection/custom painting; retain travel, reading styles and controls.",
+          "fullGate": false
+        }
+      },
+      "derivation": {
+        "kind": "writing-diagnostic-intervention",
+        "intervention": "no-ribbons",
+        "description": "Suppress ribbon scene creation/collection/custom painting; retain travel, reading styles and controls.",
+        "baseArtifactDigest": "a96e4af00c61a312a8ada55cce17e0953f9474ce8fd9e112bee0a95305bbc807",
+        "parentArtifactDigest": "a96e4af00c61a312a8ada55cce17e0953f9474ce8fd9e112bee0a95305bbc807",
+        "parentVariant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "6cc097eb58ee6323c2f5535310c90c5c49a8036af35703f1f38fcf133a76d292",
+          "baseEngine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92",
+          "effects": [
+            "ribbons",
+            "travel"
+          ]
+        },
+        "patches": [
+          {
+            "file": "space.js",
+            "matches": 1,
+            "needleSha256": "6dea200e805c65c3d3fdc62e9eb47d02b7c5bc309abdfcb0fac9bbbe6d1c038e",
+            "replacementSha256": "3d3f80c0bf5d6d0ce5e0b250cf266d0d063d1f9930b7b3b82081f7125828273c",
+            "beforeSha256": "cebb9fc32b25e911b799d81995f19959ba0b838a5299c5e7b52df99a10dd908b",
+            "afterSha256": "d8bd6e71162bb2f823cf304caf51696f341c87ce4de7cb601ef30df4bb5d7aea"
+          }
+        ],
+        "fullGate": false
+      },
+      "diagnostic": {
+        "label": "no-ribbons",
+        "description": "Suppress ribbon scene creation/collection/custom painting; retain travel, reading styles and controls.",
+        "fullGate": false
+      },
+      "fullGate": false
+    },
+    "no-canvas-draw": {
+      "schema": 1,
+      "sourceCommit": "b84f1447346ecc7701e289878d3ee115e0cc6b41",
+      "sourceDirty": false,
+      "sourceTree": "0a0354e6b852bb4930639512566242a52347d15e",
+      "candidateCommit": "b84f1447346ecc7701e289878d3ee115e0cc6b41",
+      "artifactDigest": "11403c594391ca3bb503316c4b1af4df897dc3a0ffd05d362f6f40d2355f49bc",
+      "components": {
+        "schema": 1,
+        "contract": 1,
+        "variant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "74718b28eee581383fcff1156c1108fac60d869a90c82c1ea6677723d7e45fc9",
+          "baseEngine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92",
+          "effects": [
+            "ribbons",
+            "travel"
+          ],
+          "diagnostic": {
+            "label": "no-canvas-draw",
+            "description": "Omit shape submission only; retain clearRect, projection, effects, sorting and the scene clock.",
+            "fullGate": false
+          }
+        },
+        "engine": "74718b28eee581383fcff1156c1108fac60d869a90c82c1ea6677723d7e45fc9",
+        "scenes": "b2235d46b4ebb320883af27c37025f97694ae4162ed86a1bc29e6e9156921518",
+        "assets": "442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401",
+        "content": "64faf28eb6ca99338dbaeab5efe94ebfd7d39806c48925d03f4821bfd8ecfd54",
+        "routes": {
+          "index": {
+            "version": "ca5a401c9ef348f8ed6321d932717251cf4d19e54b9267a57d9e5ffd06cec5be",
+            "url": "snapshots/ca5a401c9ef348f8ed6321d932717251cf4d19e54b9267a57d9e5ffd06cec5be/index.html",
+            "sha256": "70ef270018193f438c20ca7e3501a8676f4699278f9bd577a7f08bcd9c27ed6f"
+          },
+          "research": {
+            "version": "34f894fb6205d609c71d78611c9eee128a626809ad138e989b53b612bc5bef88",
+            "url": "snapshots/34f894fb6205d609c71d78611c9eee128a626809ad138e989b53b612bc5bef88/research.html",
+            "sha256": "47570ca5c9362390e007bc8757e1ad0ea8890e1d6dc0329a2188bfe8e0a7cc29"
+          },
+          "writing": {
+            "version": "b039dbf9365d28c12588faeaa46c88cab86906ccf91f939e9f96c2835bb5b544",
+            "url": "snapshots/b039dbf9365d28c12588faeaa46c88cab86906ccf91f939e9f96c2835bb5b544/writing.html",
+            "sha256": "d9561d8f78a367db17bb672e4f2a9cd3bdba7f674ef6b2e7f5f5022560bb9d1d"
+          },
+          "talks": {
+            "version": "6caa207855047b4b537491c4ef3bf83ecffcac5eb7ae09f77f58536c66b34472",
+            "url": "snapshots/6caa207855047b4b537491c4ef3bf83ecffcac5eb7ae09f77f58536c66b34472/talks.html",
+            "sha256": "a7d095ebfa03a7bc83e50eb07beea5979c1e8e1a7e149775d6d0555cb8983b4c"
+          },
+          "credits": {
+            "version": "a95dfb87056887159f282ff99e429d9d5ed7fbd32e631c38167e639f9cdc3e16",
+            "url": "snapshots/a95dfb87056887159f282ff99e429d9d5ed7fbd32e631c38167e639f9cdc3e16/credits.html",
+            "sha256": "c7199f54a272f414732f2b07e008f72b3b34edbb4f992a7d9372b2f5b95bb267"
+          }
+        },
+        "diagnostic": {
+          "label": "no-canvas-draw",
+          "description": "Omit shape submission only; retain clearRect, projection, effects, sorting and the scene clock.",
+          "fullGate": false
+        }
+      },
+      "variant": {
+        "id": "color",
+        "contract": 1,
+        "fingerprint": "74718b28eee581383fcff1156c1108fac60d869a90c82c1ea6677723d7e45fc9",
+        "baseEngine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92",
+        "effects": [
+          "ribbons",
+          "travel"
+        ],
+        "diagnostic": {
+          "label": "no-canvas-draw",
+          "description": "Omit shape submission only; retain clearRect, projection, effects, sorting and the scene clock.",
+          "fullGate": false
+        }
+      },
+      "derivation": {
+        "kind": "writing-diagnostic-intervention",
+        "intervention": "no-canvas-draw",
+        "description": "Omit shape submission only; retain clearRect, projection, effects, sorting and the scene clock.",
+        "baseArtifactDigest": "a96e4af00c61a312a8ada55cce17e0953f9474ce8fd9e112bee0a95305bbc807",
+        "parentArtifactDigest": "a96e4af00c61a312a8ada55cce17e0953f9474ce8fd9e112bee0a95305bbc807",
+        "parentVariant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "6cc097eb58ee6323c2f5535310c90c5c49a8036af35703f1f38fcf133a76d292",
+          "baseEngine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92",
+          "effects": [
+            "ribbons",
+            "travel"
+          ]
+        },
+        "patches": [
+          {
+            "file": "space.js",
+            "matches": 1,
+            "needleSha256": "fa867ff1c0ae6b72427b087144b2610e1ab211ec3ca2154dd53e9ef837d23022",
+            "replacementSha256": "b45bdd08403dc3d3e7f8f2276efa06f34a16fb836bfdb154a9343925ae90c720",
+            "beforeSha256": "cebb9fc32b25e911b799d81995f19959ba0b838a5299c5e7b52df99a10dd908b",
+            "afterSha256": "92ffd2254401b2db071afed8dc672a6a8ae64125815cb8000c4521a548c31b1b"
+          }
+        ],
+        "fullGate": false
+      },
+      "diagnostic": {
+        "label": "no-canvas-draw",
+        "description": "Omit shape submission only; retain clearRect, projection, effects, sorting and the scene clock.",
+        "fullGate": false
+      },
+      "fullGate": false
+    },
+    "model-prewarm": {
+      "schema": 1,
+      "sourceCommit": "b84f1447346ecc7701e289878d3ee115e0cc6b41",
+      "sourceDirty": false,
+      "sourceTree": "0a0354e6b852bb4930639512566242a52347d15e",
+      "candidateCommit": "b84f1447346ecc7701e289878d3ee115e0cc6b41",
+      "artifactDigest": "1ee08f8febc39f93a67ae1219d9a0239c898736f3cba1051c3a829e1f7ef2be4",
+      "components": {
+        "schema": 1,
+        "contract": 1,
+        "variant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "bd4fd4f62f11e93d9104d514122cd049e81149c214ca881d763f8bc9c0bd513f",
+          "baseEngine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92",
+          "effects": [
+            "ribbons",
+            "travel"
+          ],
+          "diagnostic": {
+            "label": "model-prewarm",
+            "description": "Expose an explicit measured Writing room/palette preparation before navigation; include its cost in the result.",
+            "fullGate": false
+          }
+        },
+        "engine": "bd4fd4f62f11e93d9104d514122cd049e81149c214ca881d763f8bc9c0bd513f",
+        "scenes": "b2235d46b4ebb320883af27c37025f97694ae4162ed86a1bc29e6e9156921518",
+        "assets": "442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401",
+        "content": "911ad38f5306f11dd6c252c2adb80d31c567fc1d4c97a6fa933b828d7f478e53",
+        "routes": {
+          "index": {
+            "version": "5724949a78ed5ff49567930d82325b56aa1032748d525a645dd52b016af2c94e",
+            "url": "snapshots/5724949a78ed5ff49567930d82325b56aa1032748d525a645dd52b016af2c94e/index.html",
+            "sha256": "1de2f41e5280b823482ef1802a75a2fa7974b1225c079e06bc0911589bb0665b"
+          },
+          "research": {
+            "version": "16852c5b10ffb2ee3f06952ef8c1398efc13841ac059c7f5e00c0d90d3bab605",
+            "url": "snapshots/16852c5b10ffb2ee3f06952ef8c1398efc13841ac059c7f5e00c0d90d3bab605/research.html",
+            "sha256": "5380547d7cd2b5defd4e34067a99ec8e50f63ec04ba51a0be30dcc23334fa080"
+          },
+          "writing": {
+            "version": "84121a3549923b009611da0ad32355bb09dacb78c6aa373f1ee233cd860494e1",
+            "url": "snapshots/84121a3549923b009611da0ad32355bb09dacb78c6aa373f1ee233cd860494e1/writing.html",
+            "sha256": "fb37acfdb75f1711c3020c8bd721f1c44bf00f8047076cdc851b02a7a465245f"
+          },
+          "talks": {
+            "version": "c5c06242b4d21289d4c6f116951a7ad1e64217684595e208b7cd6e64e1769754",
+            "url": "snapshots/c5c06242b4d21289d4c6f116951a7ad1e64217684595e208b7cd6e64e1769754/talks.html",
+            "sha256": "e807bd527e411265a0c44f3cf8f99d896031a18a4bd4da0a75711a46582c7df2"
+          },
+          "credits": {
+            "version": "9f9197d42699ec0597463a6a99e3b9821eb6caaa70e1892a57f6263077419331",
+            "url": "snapshots/9f9197d42699ec0597463a6a99e3b9821eb6caaa70e1892a57f6263077419331/credits.html",
+            "sha256": "6f077794db1d5b7412ca643c27c469568a5a302091c6532cb9c8dff40494709e"
+          }
+        },
+        "diagnostic": {
+          "label": "model-prewarm",
+          "description": "Expose an explicit measured Writing room/palette preparation before navigation; include its cost in the result.",
+          "fullGate": false
+        }
+      },
+      "variant": {
+        "id": "color",
+        "contract": 1,
+        "fingerprint": "bd4fd4f62f11e93d9104d514122cd049e81149c214ca881d763f8bc9c0bd513f",
+        "baseEngine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92",
+        "effects": [
+          "ribbons",
+          "travel"
+        ],
+        "diagnostic": {
+          "label": "model-prewarm",
+          "description": "Expose an explicit measured Writing room/palette preparation before navigation; include its cost in the result.",
+          "fullGate": false
+        }
+      },
+      "derivation": {
+        "kind": "writing-diagnostic-intervention",
+        "intervention": "model-prewarm",
+        "description": "Expose an explicit measured Writing room/palette preparation before navigation; include its cost in the result.",
+        "baseArtifactDigest": "a96e4af00c61a312a8ada55cce17e0953f9474ce8fd9e112bee0a95305bbc807",
+        "parentArtifactDigest": "a96e4af00c61a312a8ada55cce17e0953f9474ce8fd9e112bee0a95305bbc807",
+        "parentVariant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "6cc097eb58ee6323c2f5535310c90c5c49a8036af35703f1f38fcf133a76d292",
+          "baseEngine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92",
+          "effects": [
+            "ribbons",
+            "travel"
+          ]
+        },
+        "patches": [
+          {
+            "file": "space.js",
+            "matches": 1,
+            "needleSha256": "2f8c696d5d1f25b806de536e64d02dc3873cdb69994b41fef9af4ec8571cbca1",
+            "replacementSha256": "bfae17c5bed39143be4c0e26ef2084e6221c9dec241389b4a6e758b67f3fa045",
+            "beforeSha256": "cebb9fc32b25e911b799d81995f19959ba0b838a5299c5e7b52df99a10dd908b",
+            "afterSha256": "d52d4e887513051fbe7e14f7266ba5b05a4466868b98ec1a46c7316086229104"
+          }
+        ],
+        "fullGate": false
+      },
+      "diagnostic": {
+        "label": "model-prewarm",
+        "description": "Expose an explicit measured Writing room/palette preparation before navigation; include its cost in the result.",
+        "fullGate": false
+      },
+      "fullGate": false
+    },
+    "thematic-off": {
+      "schema": 1,
+      "sourceCommit": "b84f1447346ecc7701e289878d3ee115e0cc6b41",
+      "sourceDirty": false,
+      "sourceTree": "0a0354e6b852bb4930639512566242a52347d15e",
+      "candidateCommit": "b84f1447346ecc7701e289878d3ee115e0cc6b41",
+      "artifactDigest": "8e70c49259796b81af1048410b0bd716971dda8cdf005b958c8b2baae24a4990",
+      "components": {
+        "schema": 1,
+        "contract": 1,
+        "variant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "52715492fb3b33f2e2df328669cd3062e03759c3e77aadb4b872d99a4ceaf289",
+          "baseEngine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92",
+          "effects": [
+            "ribbons",
+            "travel"
+          ],
+          "diagnostic": {
+            "label": "thematic-off",
+            "description": "Omit Writing thematic objects during projection only; retain all room construction/palette work and other routes.",
+            "fullGate": false
+          }
+        },
+        "engine": "52715492fb3b33f2e2df328669cd3062e03759c3e77aadb4b872d99a4ceaf289",
+        "scenes": "b2235d46b4ebb320883af27c37025f97694ae4162ed86a1bc29e6e9156921518",
+        "assets": "442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401",
+        "content": "5d651d2bff82cda48bcb1cc5a59a15efd379875c4601d8ae939cda7fa33000a2",
+        "routes": {
+          "index": {
+            "version": "3c154c754e8121c63349da2477e2e89f31dbfb20aa5a9d7173c88362c2a2607b",
+            "url": "snapshots/3c154c754e8121c63349da2477e2e89f31dbfb20aa5a9d7173c88362c2a2607b/index.html",
+            "sha256": "7b3105d8f939df504930f7ca0f6d04d2d200c791e5e854a4621fec50bb77874b"
+          },
+          "research": {
+            "version": "edbe108299f53771afe6b008f2957ffe45ebbfe59f66c9dd6c176f536fe619ed",
+            "url": "snapshots/edbe108299f53771afe6b008f2957ffe45ebbfe59f66c9dd6c176f536fe619ed/research.html",
+            "sha256": "7835680c12248f4e4fe43a383adbdef4274e8b4c4072dfbd1aa2221574f4169e"
+          },
+          "writing": {
+            "version": "d4f557ade879719b6a1254251047526790e8f3b4bba01ea70843fbe85d1facd3",
+            "url": "snapshots/d4f557ade879719b6a1254251047526790e8f3b4bba01ea70843fbe85d1facd3/writing.html",
+            "sha256": "d9493013f9200870f700af78a232ae367249551a3bdacbbc40cb0484f562c2be"
+          },
+          "talks": {
+            "version": "a1a1494c15f44cc2072910a1ab788e561d0d7af55451f3dc37ef90981dcc0f5f",
+            "url": "snapshots/a1a1494c15f44cc2072910a1ab788e561d0d7af55451f3dc37ef90981dcc0f5f/talks.html",
+            "sha256": "3175a6e5360e641428d4f696d384fc57dc1a74c8834fc7717554cd335f571365"
+          },
+          "credits": {
+            "version": "3b4df32520fd94a49a82554ce6ff367ad77b2bb99dcfa307ade1100656750af5",
+            "url": "snapshots/3b4df32520fd94a49a82554ce6ff367ad77b2bb99dcfa307ade1100656750af5/credits.html",
+            "sha256": "7935342516c7c850c10945f87ac899fef271003013a6381cab00057216bc1f29"
+          }
+        },
+        "diagnostic": {
+          "label": "thematic-off",
+          "description": "Omit Writing thematic objects during projection only; retain all room construction/palette work and other routes.",
+          "fullGate": false
+        }
+      },
+      "variant": {
+        "id": "color",
+        "contract": 1,
+        "fingerprint": "52715492fb3b33f2e2df328669cd3062e03759c3e77aadb4b872d99a4ceaf289",
+        "baseEngine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92",
+        "effects": [
+          "ribbons",
+          "travel"
+        ],
+        "diagnostic": {
+          "label": "thematic-off",
+          "description": "Omit Writing thematic objects during projection only; retain all room construction/palette work and other routes.",
+          "fullGate": false
+        }
+      },
+      "derivation": {
+        "kind": "writing-diagnostic-intervention",
+        "intervention": "thematic-off",
+        "description": "Omit Writing thematic objects during projection only; retain all room construction/palette work and other routes.",
+        "baseArtifactDigest": "a96e4af00c61a312a8ada55cce17e0953f9474ce8fd9e112bee0a95305bbc807",
+        "parentArtifactDigest": "a96e4af00c61a312a8ada55cce17e0953f9474ce8fd9e112bee0a95305bbc807",
+        "parentVariant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "6cc097eb58ee6323c2f5535310c90c5c49a8036af35703f1f38fcf133a76d292",
+          "baseEngine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92",
+          "effects": [
+            "ribbons",
+            "travel"
+          ]
+        },
+        "patches": [
+          {
+            "file": "space.js",
+            "matches": 1,
+            "needleSha256": "fdcf6aceb72d37a25bc6319adef98fdfe66cc7aef2c8146699e38abfe911005e",
+            "replacementSha256": "292de4c7906f6617db793cdc5597fb860d14acd2e35b9ad16c62d39e66971206",
+            "beforeSha256": "cebb9fc32b25e911b799d81995f19959ba0b838a5299c5e7b52df99a10dd908b",
+            "afterSha256": "b104124cf83bdf5f4c9132a6418085b9a99365ab4bc1d8fa7fb2744c290d0795"
+          },
+          {
+            "file": "space.js",
+            "matches": 1,
+            "needleSha256": "f20fd186e6a804cfd18117c8bf90406c6e65f3768264df47a20ab18d35589ea9",
+            "replacementSha256": "0162f672f6af379cb4fbc4101f7fba0625b6f8575a5209fe885b374172e0787e",
+            "beforeSha256": "b104124cf83bdf5f4c9132a6418085b9a99365ab4bc1d8fa7fb2744c290d0795",
+            "afterSha256": "547a809dd825c972d1484276a2a7e3ddc777fa969cdf083fcfb920c28785ad0b"
+          }
+        ],
+        "fullGate": false
+      },
+      "diagnostic": {
+        "label": "thematic-off",
+        "description": "Omit Writing thematic objects during projection only; retain all room construction/palette work and other routes.",
+        "fullGate": false
+      },
+      "fullGate": false
+    },
+    "shared-off": {
+      "schema": 1,
+      "sourceCommit": "b84f1447346ecc7701e289878d3ee115e0cc6b41",
+      "sourceDirty": false,
+      "sourceTree": "0a0354e6b852bb4930639512566242a52347d15e",
+      "candidateCommit": "b84f1447346ecc7701e289878d3ee115e0cc6b41",
+      "artifactDigest": "249774e8257f8c47a61629a1f57099c2e7371526fa212fd694c9913b4f2a26f2",
+      "components": {
+        "schema": 1,
+        "contract": 1,
+        "variant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "5f701cd2df9647c9b8196ca67b6d531b909230f2232ca074242d15ff7b195dcf",
+          "baseEngine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92",
+          "effects": [
+            "ribbons",
+            "travel"
+          ],
+          "diagnostic": {
+            "label": "shared-off",
+            "description": "Omit Writing shared objects during projection only; retain all room construction/palette work and other routes.",
+            "fullGate": false
+          }
+        },
+        "engine": "5f701cd2df9647c9b8196ca67b6d531b909230f2232ca074242d15ff7b195dcf",
+        "scenes": "b2235d46b4ebb320883af27c37025f97694ae4162ed86a1bc29e6e9156921518",
+        "assets": "442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401",
+        "content": "ea2439548dc1da9b1a9f54fa98d0f643c6135d48eaededb51502896a855ac3a2",
+        "routes": {
+          "index": {
+            "version": "781d77fab745a906f693839172808e72500e641b427e95932697c5a754cf9bcf",
+            "url": "snapshots/781d77fab745a906f693839172808e72500e641b427e95932697c5a754cf9bcf/index.html",
+            "sha256": "e4a08f766e7dec0dc388c4a8b2c251b02d2d851b5ee60d16855773e294b23cc6"
+          },
+          "research": {
+            "version": "ff91fe7d68d48fd5498a053116e24c766fbb7f15a4e75353ebe58ed00b49e06a",
+            "url": "snapshots/ff91fe7d68d48fd5498a053116e24c766fbb7f15a4e75353ebe58ed00b49e06a/research.html",
+            "sha256": "57060ac17bef3741c0f5af2b13bf855fb88e384e4a65c678b74860df5fb65dd5"
+          },
+          "writing": {
+            "version": "17b4e920396f88a77a4a24f9585846358ef341c4d8015344eb07d14ecc3528d6",
+            "url": "snapshots/17b4e920396f88a77a4a24f9585846358ef341c4d8015344eb07d14ecc3528d6/writing.html",
+            "sha256": "48fb3fd52d097e1d413427d9e05a1009f804c49c0afe4f930c966b377e9d110a"
+          },
+          "talks": {
+            "version": "c1276a37fb5cc4b2ba30c6168c4dfba0deb24c8acedd3ee1a38bc6328b768ccb",
+            "url": "snapshots/c1276a37fb5cc4b2ba30c6168c4dfba0deb24c8acedd3ee1a38bc6328b768ccb/talks.html",
+            "sha256": "449b6c65d448f3da6394b94dfb96b384772c301ecec0c92a4bb8027ce2dd6cd8"
+          },
+          "credits": {
+            "version": "2c0c8c945d7325e7362e76d26c799f5bca4b1559f7a4fcd605dfbe0f76c4789d",
+            "url": "snapshots/2c0c8c945d7325e7362e76d26c799f5bca4b1559f7a4fcd605dfbe0f76c4789d/credits.html",
+            "sha256": "eeaac89aab4068f35cef9ddf0c7e8c8208523cc91fb2a9ec80460ade46e874ba"
+          }
+        },
+        "diagnostic": {
+          "label": "shared-off",
+          "description": "Omit Writing shared objects during projection only; retain all room construction/palette work and other routes.",
+          "fullGate": false
+        }
+      },
+      "variant": {
+        "id": "color",
+        "contract": 1,
+        "fingerprint": "5f701cd2df9647c9b8196ca67b6d531b909230f2232ca074242d15ff7b195dcf",
+        "baseEngine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92",
+        "effects": [
+          "ribbons",
+          "travel"
+        ],
+        "diagnostic": {
+          "label": "shared-off",
+          "description": "Omit Writing shared objects during projection only; retain all room construction/palette work and other routes.",
+          "fullGate": false
+        }
+      },
+      "derivation": {
+        "kind": "writing-diagnostic-intervention",
+        "intervention": "shared-off",
+        "description": "Omit Writing shared objects during projection only; retain all room construction/palette work and other routes.",
+        "baseArtifactDigest": "a96e4af00c61a312a8ada55cce17e0953f9474ce8fd9e112bee0a95305bbc807",
+        "parentArtifactDigest": "a96e4af00c61a312a8ada55cce17e0953f9474ce8fd9e112bee0a95305bbc807",
+        "parentVariant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "6cc097eb58ee6323c2f5535310c90c5c49a8036af35703f1f38fcf133a76d292",
+          "baseEngine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92",
+          "effects": [
+            "ribbons",
+            "travel"
+          ]
+        },
+        "patches": [
+          {
+            "file": "space.js",
+            "matches": 1,
+            "needleSha256": "fdcf6aceb72d37a25bc6319adef98fdfe66cc7aef2c8146699e38abfe911005e",
+            "replacementSha256": "292de4c7906f6617db793cdc5597fb860d14acd2e35b9ad16c62d39e66971206",
+            "beforeSha256": "cebb9fc32b25e911b799d81995f19959ba0b838a5299c5e7b52df99a10dd908b",
+            "afterSha256": "b104124cf83bdf5f4c9132a6418085b9a99365ab4bc1d8fa7fb2744c290d0795"
+          },
+          {
+            "file": "space.js",
+            "matches": 1,
+            "needleSha256": "f20fd186e6a804cfd18117c8bf90406c6e65f3768264df47a20ab18d35589ea9",
+            "replacementSha256": "37602ec222800f2207a6725a38425ae592c44c7c969aa5fadce9d1abb6658c18",
+            "beforeSha256": "b104124cf83bdf5f4c9132a6418085b9a99365ab4bc1d8fa7fb2744c290d0795",
+            "afterSha256": "c8a145bafe7cd795472f9c05386e7fa403fa661de44899f64d46f35754b0ad14"
+          }
+        ],
+        "fullGate": false
+      },
+      "diagnostic": {
+        "label": "shared-off",
+        "description": "Omit Writing shared objects during projection only; retain all room construction/palette work and other routes.",
+        "fullGate": false
+      },
+      "fullGate": false
+    },
+    "edge-bypass": {
+      "schema": 1,
+      "sourceCommit": "b84f1447346ecc7701e289878d3ee115e0cc6b41",
+      "sourceDirty": false,
+      "sourceTree": "0a0354e6b852bb4930639512566242a52347d15e",
+      "candidateCommit": "b84f1447346ecc7701e289878d3ee115e0cc6b41",
+      "artifactDigest": "0b11edcb49cfc01c2c2ad1eb5bcec2e18ef39f8b54003f5f1b0c33f096ef6ccc",
+      "components": {
+        "schema": 1,
+        "contract": 1,
+        "variant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "5d2d206df5631e30f95cda9ed74deb4902ed102b76e5aaa0c38c6354bef5b6d2",
+          "baseEngine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92",
+          "effects": [
+            "ribbons",
+            "travel"
+          ],
+          "diagnostic": {
+            "label": "edge-bypass",
+            "description": "Do not install edge-scroll hooks; retain content-flight preference, travel, styles and ordinary header navigation.",
+            "fullGate": false
+          }
+        },
+        "engine": "5d2d206df5631e30f95cda9ed74deb4902ed102b76e5aaa0c38c6354bef5b6d2",
+        "scenes": "b2235d46b4ebb320883af27c37025f97694ae4162ed86a1bc29e6e9156921518",
+        "assets": "442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401",
+        "content": "d8693a5a687027753da2e4fd6f75155ca24eeda137c7fb7db51b32d9457ec100",
+        "routes": {
+          "index": {
+            "version": "a2baf106ee8598f9ecfe3702c1d063c87aa05f30cd5e4b4d633c42da2144df56",
+            "url": "snapshots/a2baf106ee8598f9ecfe3702c1d063c87aa05f30cd5e4b4d633c42da2144df56/index.html",
+            "sha256": "5e2aa7317d9a1f0c0a330958fa7bddb0903353f2d8d708b9e7677fa0a2c3537f"
+          },
+          "research": {
+            "version": "4f29877ef89163020502efd7b515c82fdb6ba076b2e61aeb837aaa29f52805c5",
+            "url": "snapshots/4f29877ef89163020502efd7b515c82fdb6ba076b2e61aeb837aaa29f52805c5/research.html",
+            "sha256": "fcdcb6e42d2d408ee8ba76149a9cc1f8cbcd20a1f62e9f62adde8116d9eb96b9"
+          },
+          "writing": {
+            "version": "8f58636ab8412c88849f5fa7e45dfd9c03166e2b418442276d57f0ba68ab3f86",
+            "url": "snapshots/8f58636ab8412c88849f5fa7e45dfd9c03166e2b418442276d57f0ba68ab3f86/writing.html",
+            "sha256": "2e857500f771181546bec6747f6c2e4f8e914447b530707f5f0b5b3becb37b2a"
+          },
+          "talks": {
+            "version": "00d0d020b119e3c1c5032d1d52a44c9fb109e0afd74c165c7e96fb34f65ae3be",
+            "url": "snapshots/00d0d020b119e3c1c5032d1d52a44c9fb109e0afd74c165c7e96fb34f65ae3be/talks.html",
+            "sha256": "164f95a7939a01b0e252328537c879fd09dc88817fe3b55f2e9d9d4ffade146e"
+          },
+          "credits": {
+            "version": "3c7506d25ca3df947a62b8dcb30a3d9f9a64a9d21b0801c17ecf3b2ebeef2150",
+            "url": "snapshots/3c7506d25ca3df947a62b8dcb30a3d9f9a64a9d21b0801c17ecf3b2ebeef2150/credits.html",
+            "sha256": "f0252128eef91eb11ce3527d04749bc1dd718578ddb3ef76b60dd73bc69b5bdf"
+          }
+        },
+        "diagnostic": {
+          "label": "edge-bypass",
+          "description": "Do not install edge-scroll hooks; retain content-flight preference, travel, styles and ordinary header navigation.",
+          "fullGate": false
+        }
+      },
+      "variant": {
+        "id": "color",
+        "contract": 1,
+        "fingerprint": "5d2d206df5631e30f95cda9ed74deb4902ed102b76e5aaa0c38c6354bef5b6d2",
+        "baseEngine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92",
+        "effects": [
+          "ribbons",
+          "travel"
+        ],
+        "diagnostic": {
+          "label": "edge-bypass",
+          "description": "Do not install edge-scroll hooks; retain content-flight preference, travel, styles and ordinary header navigation.",
+          "fullGate": false
+        }
+      },
+      "derivation": {
+        "kind": "writing-diagnostic-intervention",
+        "intervention": "edge-bypass",
+        "description": "Do not install edge-scroll hooks; retain content-flight preference, travel, styles and ordinary header navigation.",
+        "baseArtifactDigest": "a96e4af00c61a312a8ada55cce17e0953f9474ce8fd9e112bee0a95305bbc807",
+        "parentArtifactDigest": "a96e4af00c61a312a8ada55cce17e0953f9474ce8fd9e112bee0a95305bbc807",
+        "parentVariant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "6cc097eb58ee6323c2f5535310c90c5c49a8036af35703f1f38fcf133a76d292",
+          "baseEngine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92",
+          "effects": [
+            "ribbons",
+            "travel"
+          ]
+        },
+        "patches": [
+          {
+            "file": "navigation.js",
+            "matches": 1,
+            "needleSha256": "be66fde551e10f6d76e67045cd8a9510956fce595c2910a20ef77c913b0a3fa9",
+            "replacementSha256": "aac13b79866f9472b6bcff14014025a52a447a5d7cd398814ae582e15073d504",
+            "beforeSha256": "e929857dcd6dfc03aa422417c1a18345dc8b01d9e6bb4829161531b96fe6e5fb",
+            "afterSha256": "941bd76014376aaa8d770a2182bca821909008c22ef59a34c9a57ebfe7344c09"
+          }
+        ],
+        "fullGate": false
+      },
+      "diagnostic": {
+        "label": "edge-bypass",
+        "description": "Do not install edge-scroll hooks; retain content-flight preference, travel, styles and ordinary header navigation.",
+        "fullGate": false
+      },
+      "fullGate": false
+    }
+  },
+  "summary": {
+    "v0/desktop/before-color/flight-on": {
+      "trials": 3,
+      "complete": 3,
+      "errors": [],
+      "budgetFailures": 0,
+      "coldP50Ms": {
+        "count": 3,
+        "median": 24,
+        "min": 18.80000000000291,
+        "max": 24.40000000000873,
+        "values": [
+          24,
+          18.80000000000291,
+          24.40000000000873
+        ]
+      },
+      "coldP95Ms": {
+        "count": 3,
+        "median": 40.5,
+        "min": 37.19999999999709,
+        "max": 41.39999999999418,
+        "values": [
+          37.19999999999709,
+          41.39999999999418,
+          40.5
+        ]
+      },
+      "coldMaxMs": {
+        "count": 3,
+        "median": 40.59999999999127,
+        "min": 40.5,
+        "max": 44.5,
+        "values": [
+          40.5,
+          44.5,
+          40.59999999999127
+        ]
+      },
+      "coldPaints": {
+        "count": 3,
+        "median": 22,
+        "min": 22,
+        "max": 23,
+        "values": [
+          22,
+          23,
+          22
+        ]
+      },
+      "coldPaintHz": {
+        "count": 3,
+        "median": 16.687223391134147,
+        "min": 16.57125640253081,
+        "max": 16.880227115782976,
+        "values": [
+          16.880227115782976,
+          16.687223391134147,
+          16.57125640253081
+        ]
+      },
+      "coldCallbackBusyPercent": {
+        "count": 3,
+        "median": 39.9140642983238,
+        "min": 38.85946455778933,
+        "max": 40.915938535702026,
+        "values": [
+          39.9140642983238,
+          38.85946455778933,
+          40.915938535702026
+        ]
+      },
+      "coldPreparationMaxMs": {
+        "count": 3,
+        "median": 13,
+        "min": 12.80000000000291,
+        "max": 15,
+        "values": [
+          13,
+          15,
+          12.80000000000291
+        ]
+      },
+      "coldPreparationUnionMs": {
+        "count": 3,
+        "median": 26.19999999999709,
+        "min": 25.80000000000291,
+        "max": 29.09999999999127,
+        "values": [
+          25.80000000000291,
+          29.09999999999127,
+          26.19999999999709
+        ]
+      },
+      "inputToReadyMs": {
+        "count": 3,
+        "median": 1328.300000000003,
+        "min": 1304.0999999999913,
+        "max": 1379.0999999999913,
+        "values": [
+          1304.0999999999913,
+          1379.0999999999913,
+          1328.300000000003
+        ]
+      },
+      "firstPaintResponseMs": {
+        "count": 3,
+        "median": 26.19999999999709,
+        "min": 4.80000000000291,
+        "max": 30.5,
+        "values": [
+          30.5,
+          4.80000000000291,
+          26.19999999999709
+        ]
+      },
+      "firstFlightPaintResponseMs": {
+        "count": 3,
+        "median": 30.5,
+        "min": 26.19999999999709,
+        "max": 71.89999999999418,
+        "values": [
+          30.5,
+          71.89999999999418,
+          26.19999999999709
+        ]
+      },
+      "arrivalP95Ms": {
+        "count": 3,
+        "median": 15.599999999991269,
+        "min": 11.900000000008731,
+        "max": 18,
+        "values": [
+          15.599999999991269,
+          11.900000000008731,
+          18
+        ]
+      },
+      "arrivalPreparationMaxMs": {
+        "count": 3,
+        "median": 0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "inclusivePreparationUnionMs": {
+        "count": 3,
+        "median": 26.19999999999709,
+        "min": 25.80000000000291,
+        "max": 29.09999999999127,
+        "values": [
+          25.80000000000291,
+          29.09999999999127,
+          26.19999999999709
+        ]
+      },
+      "warmP95Ms": {
+        "count": 3,
+        "median": 31,
+        "min": 30.70000000001164,
+        "max": 35,
+        "values": [
+          30.70000000001164,
+          35,
+          31
+        ]
+      }
+    },
+    "v0/desktop/current-color/flight-on": {
+      "trials": 3,
+      "complete": 3,
+      "errors": [],
+      "budgetFailures": 0,
+      "coldP50Ms": {
+        "count": 3,
+        "median": 24.80000000000291,
+        "min": 20.30000000000291,
+        "max": 25.09999999999127,
+        "values": [
+          25.09999999999127,
+          24.80000000000291,
+          20.30000000000291
+        ]
+      },
+      "coldP95Ms": {
+        "count": 3,
+        "median": 37.59999999999127,
+        "min": 36.60000000000582,
+        "max": 41.19999999999709,
+        "values": [
+          41.19999999999709,
+          36.60000000000582,
+          37.59999999999127
+        ]
+      },
+      "coldMaxMs": {
+        "count": 3,
+        "median": 40.39999999999418,
+        "min": 38.89999999999418,
+        "max": 43.39999999999418,
+        "values": [
+          43.39999999999418,
+          38.89999999999418,
+          40.39999999999418
+        ]
+      },
+      "coldPaints": {
+        "count": 3,
+        "median": 22,
+        "min": 21,
+        "max": 23,
+        "values": [
+          21,
+          22,
+          23
+        ]
+      },
+      "coldPaintHz": {
+        "count": 3,
+        "median": 16.6995597388795,
+        "min": 15.413975337639526,
+        "max": 17.60563380281698,
+        "values": [
+          15.413975337639526,
+          16.6995597388795,
+          17.60563380281698
+        ]
+      },
+      "coldCallbackBusyPercent": {
+        "count": 3,
+        "median": 40.19377568996057,
+        "min": 38.755358236369595,
+        "max": 40.6027022923934,
+        "values": [
+          40.19377568996057,
+          40.6027022923934,
+          38.755358236369595
+        ]
+      },
+      "coldPreparationMaxMs": {
+        "count": 3,
+        "median": 15.5,
+        "min": 13,
+        "max": 15.60000000000582,
+        "values": [
+          15.5,
+          13,
+          15.60000000000582
+        ]
+      },
+      "coldPreparationUnionMs": {
+        "count": 3,
+        "median": 29.499999999985448,
+        "min": 25.19999999999709,
+        "max": 30.29999999998836,
+        "values": [
+          30.29999999998836,
+          25.19999999999709,
+          29.499999999985448
+        ]
+      },
+      "inputToReadyMs": {
+        "count": 3,
+        "median": 1318.300000000003,
+        "min": 1307.0999999999913,
+        "max": 1363.300000000003,
+        "values": [
+          1363.300000000003,
+          1318.300000000003,
+          1307.0999999999913
+        ]
+      },
+      "firstPaintResponseMs": {
+        "count": 3,
+        "median": 28,
+        "min": 25.30000000000291,
+        "max": 28,
+        "values": [
+          28,
+          25.30000000000291,
+          28
+        ]
+      },
+      "firstFlightPaintResponseMs": {
+        "count": 3,
+        "median": 28,
+        "min": 25.30000000000291,
+        "max": 28,
+        "values": [
+          28,
+          25.30000000000291,
+          28
+        ]
+      },
+      "arrivalP95Ms": {
+        "count": 3,
+        "median": 13.30000000000291,
+        "min": 12,
+        "max": 23.19999999999709,
+        "values": [
+          23.19999999999709,
+          13.30000000000291,
+          12
+        ]
+      },
+      "arrivalPreparationMaxMs": {
+        "count": 3,
+        "median": 0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "inclusivePreparationUnionMs": {
+        "count": 3,
+        "median": 29.499999999985448,
+        "min": 25.19999999999709,
+        "max": 30.29999999998836,
+        "values": [
+          30.29999999998836,
+          25.19999999999709,
+          29.499999999985448
+        ]
+      },
+      "warmP95Ms": {
+        "count": 3,
+        "median": 33.19999999999709,
+        "min": 31.09999999999127,
+        "max": 36.10000000000582,
+        "values": [
+          36.10000000000582,
+          31.09999999999127,
+          33.19999999999709
+        ]
+      }
+    },
+    "v0/mobile/before-color/flight-on": {
+      "trials": 6,
+      "complete": 6,
+      "errors": [],
+      "budgetFailures": 4,
+      "coldP50Ms": {
+        "count": 6,
+        "median": 26.75,
+        "min": 22.099999999976717,
+        "max": 28,
+        "values": [
+          28,
+          26.79999999998836,
+          23.70000000001164,
+          27,
+          22.099999999976717,
+          26.70000000001164
+        ]
+      },
+      "coldP95Ms": {
+        "count": 6,
+        "median": 83.00000000001455,
+        "min": 79.30000000001746,
+        "max": 90.69999999999709,
+        "values": [
+          90.69999999999709,
+          82.10000000000582,
+          83.90000000002328,
+          85.60000000000582,
+          79.30000000001746,
+          79.79999999998836
+        ]
+      },
+      "coldMaxMs": {
+        "count": 6,
+        "median": 83.00000000001455,
+        "min": 79.30000000001746,
+        "max": 90.69999999999709,
+        "values": [
+          90.69999999999709,
+          82.10000000000582,
+          83.90000000002328,
+          85.60000000000582,
+          79.30000000001746,
+          79.79999999998836
+        ]
+      },
+      "coldPaints": {
+        "count": 6,
+        "median": 18,
+        "min": 18,
+        "max": 18,
+        "values": [
+          18,
+          18,
+          18,
+          18,
+          18,
+          18
+        ]
+      },
+      "coldPaintHz": {
+        "count": 6,
+        "median": 12.721072826356458,
+        "min": 12.306850813619532,
+        "max": 13.033089566287686,
+        "values": [
+          12.327922745017538,
+          12.840633471251088,
+          12.876457543458097,
+          12.601512181461827,
+          13.033089566287686,
+          12.306850813619532
+        ]
+      },
+      "coldCallbackBusyPercent": {
+        "count": 6,
+        "median": 38.54032790762675,
+        "min": 36.604907361036304,
+        "max": 39.37508546424519,
+        "values": [
+          38.10697897403971,
+          39.206734198891226,
+          36.604907361036304,
+          38.97367684121377,
+          37.22395192237676,
+          39.37508546424519
+        ]
+      },
+      "coldPreparationMaxMs": {
+        "count": 6,
+        "median": 47.60000000000582,
+        "min": 44.39999999999418,
+        "max": 49,
+        "values": [
+          49,
+          45,
+          48.40000000002328,
+          46.79999999998836,
+          44.39999999999418,
+          48.5
+        ]
+      },
+      "coldPreparationUnionMs": {
+        "count": 6,
+        "median": 93.39999999997963,
+        "min": 88.39999999999418,
+        "max": 100.59999999999127,
+        "values": [
+          100.59999999999127,
+          90.89999999996508,
+          94.90000000002328,
+          92.29999999995925,
+          88.39999999999418,
+          94.5
+        ]
+      },
+      "inputToReadyMs": {
+        "count": 6,
+        "median": 1419.5,
+        "min": 1384.8999999999942,
+        "max": 1467.2000000000116,
+        "values": [
+          1464.2999999999884,
+          1406.5,
+          1401.7999999999884,
+          1432.5,
+          1384.8999999999942,
+          1467.2000000000116
+        ]
+      },
+      "firstPaintResponseMs": {
+        "count": 6,
+        "median": 91.69999999999709,
+        "min": 17.800000000017462,
+        "max": 105.39999999999418,
+        "values": [
+          105.39999999999418,
+          99.19999999998254,
+          91.39999999999418,
+          92,
+          89.19999999998254,
+          17.800000000017462
+        ]
+      },
+      "firstFlightPaintResponseMs": {
+        "count": 6,
+        "median": 95.59999999999127,
+        "min": 89.19999999998254,
+        "max": 147.70000000001164,
+        "values": [
+          105.39999999999418,
+          99.19999999998254,
+          91.39999999999418,
+          92,
+          89.19999999998254,
+          147.70000000001164
+        ]
+      },
+      "arrivalP95Ms": {
+        "count": 6,
+        "median": 20.09999999999127,
+        "min": 15.800000000017462,
+        "max": 26.79999999998836,
+        "values": [
+          26.79999999998836,
+          15.800000000017462,
+          20.29999999998836,
+          22.5,
+          19.79999999998836,
+          19.89999999999418
+        ]
+      },
+      "arrivalPreparationMaxMs": {
+        "count": 6,
+        "median": 0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "inclusivePreparationUnionMs": {
+        "count": 6,
+        "median": 93.39999999997963,
+        "min": 88.39999999999418,
+        "max": 100.59999999999127,
+        "values": [
+          100.59999999999127,
+          90.89999999996508,
+          94.90000000002328,
+          92.29999999995925,
+          88.39999999999418,
+          94.5
+        ]
+      },
+      "warmP95Ms": {
+        "count": 6,
+        "median": 35.00000000001455,
+        "min": 23.10000000000582,
+        "max": 43.70000000001164,
+        "values": [
+          35.80000000001746,
+          34.20000000001164,
+          43.70000000001164,
+          41.39999999999418,
+          28.699999999982538,
+          23.10000000000582
+        ]
+      }
+    },
+    "v0/mobile/current-color/flight-on": {
+      "trials": 6,
+      "complete": 6,
+      "errors": [],
+      "budgetFailures": 6,
+      "coldP50Ms": {
+        "count": 6,
+        "median": 25.59999999999127,
+        "min": 23.89999999999418,
+        "max": 28.10000000000582,
+        "values": [
+          23.89999999999418,
+          25.79999999998836,
+          25.39999999999418,
+          24.60000000000582,
+          27.300000000017462,
+          28.10000000000582
+        ]
+      },
+      "coldP95Ms": {
+        "count": 6,
+        "median": 83.80000000000291,
+        "min": 81.69999999998254,
+        "max": 92.5,
+        "values": [
+          81.69999999998254,
+          84.60000000000582,
+          82.10000000000582,
+          83,
+          85.79999999998836,
+          92.5
+        ]
+      },
+      "coldMaxMs": {
+        "count": 6,
+        "median": 83.80000000000291,
+        "min": 81.69999999998254,
+        "max": 92.5,
+        "values": [
+          81.69999999998254,
+          84.60000000000582,
+          82.10000000000582,
+          83,
+          85.79999999998836,
+          92.5
+        ]
+      },
+      "coldPaints": {
+        "count": 6,
+        "median": 19,
+        "min": 17,
+        "max": 19,
+        "values": [
+          19,
+          19,
+          19,
+          19,
+          18,
+          17
+        ]
+      },
+      "coldPaintHz": {
+        "count": 6,
+        "median": 12.929158272989977,
+        "min": 12.142857142857142,
+        "max": 13.241340859990297,
+        "values": [
+          12.909362685147284,
+          13.241340859990297,
+          12.98080207692823,
+          12.948953860832669,
+          12.482662968099861,
+          12.142857142857142
+        ]
+      },
+      "coldCallbackBusyPercent": {
+        "count": 6,
+        "median": 39.35361655573648,
+        "min": 37.562342009979595,
+        "max": 40.399510803096184,
+        "values": [
+          40.399510803096184,
+          39.41738100215897,
+          37.562342009979595,
+          39.28985210931398,
+          38.35644937586524,
+          39.714285714285715
+        ]
+      },
+      "coldPreparationMaxMs": {
+        "count": 6,
+        "median": 48.84999999999127,
+        "min": 44.5,
+        "max": 51.70000000001164,
+        "values": [
+          49.89999999999418,
+          49.59999999997672,
+          44.5,
+          51.70000000001164,
+          46.10000000000582,
+          48.10000000000582
+        ]
+      },
+      "coldPreparationUnionMs": {
+        "count": 6,
+        "median": 96.65000000000873,
+        "min": 91.10000000000582,
+        "max": 102.39999999999418,
+        "values": [
+          99.9999999999709,
+          98.10000000000582,
+          91.10000000000582,
+          102.39999999999418,
+          93.80000000001746,
+          95.20000000001164
+        ]
+      },
+      "inputToReadyMs": {
+        "count": 6,
+        "median": 1456.7000000000116,
+        "min": 1403.7000000000116,
+        "max": 1475.6000000000058,
+        "values": [
+          1475.6000000000058,
+          1439.3999999999942,
+          1467.4000000000233,
+          1471.3000000000175,
+          1446,
+          1403.7000000000116
+        ]
+      },
+      "firstPaintResponseMs": {
+        "count": 6,
+        "median": 19.5,
+        "min": 9,
+        "max": 103.80000000001746,
+        "values": [
+          10.10000000000582,
+          103.80000000001746,
+          14,
+          9,
+          25,
+          93.5
+        ]
+      },
+      "firstFlightPaintResponseMs": {
+        "count": 6,
+        "median": 136.8000000000029,
+        "min": 93.5,
+        "max": 148.70000000001164,
+        "values": [
+          145.29999999998836,
+          103.80000000001746,
+          134,
+          148.70000000001164,
+          139.60000000000582,
+          93.5
+        ]
+      },
+      "arrivalP95Ms": {
+        "count": 6,
+        "median": 24.84999999999127,
+        "min": 19.79999999998836,
+        "max": 29.70000000001164,
+        "values": [
+          20,
+          27.10000000000582,
+          26.699999999982538,
+          19.79999999998836,
+          23,
+          29.70000000001164
+        ]
+      },
+      "arrivalPreparationMaxMs": {
+        "count": 6,
+        "median": 0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "inclusivePreparationUnionMs": {
+        "count": 6,
+        "median": 96.65000000000873,
+        "min": 91.10000000000582,
+        "max": 102.39999999999418,
+        "values": [
+          99.9999999999709,
+          98.10000000000582,
+          91.10000000000582,
+          102.39999999999418,
+          93.80000000001746,
+          95.20000000001164
+        ]
+      },
+      "warmP95Ms": {
+        "count": 6,
+        "median": 30,
+        "min": 26.60000000000582,
+        "max": 47.80000000001746,
+        "values": [
+          29,
+          47.80000000001746,
+          30.5,
+          29.5,
+          26.60000000000582,
+          33.59999999997672
+        ]
+      }
+    }
+  },
+  "pairedDeltas": [
+    {
+      "pair": "desktop/0",
+      "complete": true,
+      "order": [
+        "before-color",
+        "current-color"
+      ],
+      "afterMinusBefore": {
+        "inputToReadyMs": 59.20000000001164,
+        "firstFlightPaintResponseMs": -2.5,
+        "paintP50Ms": 1.0999999999912689,
+        "paintP95Ms": 4,
+        "paintMaxMs": 2.8999999999941792,
+        "paints": -1,
+        "paintHz": -1.4662517781434499,
+        "callbackBusyPercent": 0.2797113916367664,
+        "preparationMaxMs": 2.5,
+        "inclusivePreparationUnionMs": 4.499999999985448,
+        "arrivalPreparationMaxMs": 0
+      },
+      "beforeBudgetPass": true,
+      "afterBudgetPass": true
+    },
+    {
+      "pair": "desktop/1",
+      "complete": true,
+      "order": [
+        "current-color",
+        "before-color"
+      ],
+      "afterMinusBefore": {
+        "inputToReadyMs": -60.79999999998836,
+        "firstFlightPaintResponseMs": -46.59999999999127,
+        "paintP50Ms": 6,
+        "paintP95Ms": -4.7999999999883585,
+        "paintMaxMs": -5.600000000005821,
+        "paints": -1,
+        "paintHz": 0.012336347745353748,
+        "callbackBusyPercent": 1.7432377346040724,
+        "preparationMaxMs": -2,
+        "inclusivePreparationUnionMs": -3.8999999999941792,
+        "arrivalPreparationMaxMs": 0
+      },
+      "beforeBudgetPass": true,
+      "afterBudgetPass": true
+    },
+    {
+      "pair": "desktop/2",
+      "complete": true,
+      "order": [
+        "before-color",
+        "current-color"
+      ],
+      "afterMinusBefore": {
+        "inputToReadyMs": -21.20000000001164,
+        "firstFlightPaintResponseMs": 1.8000000000029104,
+        "paintP50Ms": -4.100000000005821,
+        "paintP95Ms": -2.900000000008731,
+        "paintMaxMs": -0.19999999999708962,
+        "paints": 1,
+        "paintHz": 1.0343774002861679,
+        "callbackBusyPercent": -2.1605802993324303,
+        "preparationMaxMs": 2.8000000000029104,
+        "inclusivePreparationUnionMs": 3.2999999999883585,
+        "arrivalPreparationMaxMs": 0
+      },
+      "beforeBudgetPass": true,
+      "afterBudgetPass": true
+    },
+    {
+      "pair": "mobile/0",
+      "complete": true,
+      "order": [
+        "before-color",
+        "current-color"
+      ],
+      "afterMinusBefore": {
+        "inputToReadyMs": 11.300000000017462,
+        "firstFlightPaintResponseMs": 39.89999999999418,
+        "paintP50Ms": -4.100000000005821,
+        "paintP95Ms": -9.000000000014552,
+        "paintMaxMs": -9.000000000014552,
+        "paints": 1,
+        "paintHz": 0.5814399401297461,
+        "callbackBusyPercent": 2.292531829056472,
+        "preparationMaxMs": 0.8999999999941792,
+        "inclusivePreparationUnionMs": -0.6000000000203727,
+        "arrivalPreparationMaxMs": 0
+      },
+      "beforeBudgetPass": false,
+      "afterBudgetPass": false
+    },
+    {
+      "pair": "mobile/1",
+      "complete": true,
+      "order": [
+        "current-color",
+        "before-color"
+      ],
+      "afterMinusBefore": {
+        "inputToReadyMs": 32.89999999999418,
+        "firstFlightPaintResponseMs": 4.600000000034925,
+        "paintP50Ms": -1,
+        "paintP95Ms": 2.5,
+        "paintMaxMs": 2.5,
+        "paints": 1,
+        "paintHz": 0.4007073887392085,
+        "callbackBusyPercent": 0.21064680326774265,
+        "preparationMaxMs": 4.599999999976717,
+        "inclusivePreparationUnionMs": 7.200000000040745,
+        "arrivalPreparationMaxMs": 0
+      },
+      "beforeBudgetPass": false,
+      "afterBudgetPass": false
+    },
+    {
+      "pair": "mobile/2",
+      "complete": true,
+      "order": [
+        "before-color",
+        "current-color"
+      ],
+      "afterMinusBefore": {
+        "inputToReadyMs": 65.60000000003492,
+        "firstFlightPaintResponseMs": 42.60000000000582,
+        "paintP50Ms": 1.6999999999825377,
+        "paintP95Ms": -1.8000000000174623,
+        "paintMaxMs": -1.8000000000174623,
+        "paints": 1,
+        "paintHz": 0.10434453347013317,
+        "callbackBusyPercent": 0.9574346489432912,
+        "preparationMaxMs": -3.900000000023283,
+        "inclusivePreparationUnionMs": -3.8000000000174623,
+        "arrivalPreparationMaxMs": 0
+      },
+      "beforeBudgetPass": false,
+      "afterBudgetPass": false
+    },
+    {
+      "pair": "mobile/3",
+      "complete": true,
+      "order": [
+        "current-color",
+        "before-color"
+      ],
+      "afterMinusBefore": {
+        "inputToReadyMs": 38.80000000001746,
+        "firstFlightPaintResponseMs": 56.70000000001164,
+        "paintP50Ms": -2.3999999999941792,
+        "paintP95Ms": -2.6000000000058208,
+        "paintMaxMs": -2.6000000000058208,
+        "paints": 1,
+        "paintHz": 0.34744167937084214,
+        "callbackBusyPercent": 0.3161752681002099,
+        "preparationMaxMs": 4.900000000023283,
+        "inclusivePreparationUnionMs": 10.100000000034925,
+        "arrivalPreparationMaxMs": 0
+      },
+      "beforeBudgetPass": false,
+      "afterBudgetPass": false
+    },
+    {
+      "pair": "mobile/4",
+      "complete": true,
+      "order": [
+        "before-color",
+        "current-color"
+      ],
+      "afterMinusBefore": {
+        "inputToReadyMs": 61.10000000000582,
+        "firstFlightPaintResponseMs": 50.40000000002328,
+        "paintP50Ms": 5.200000000040745,
+        "paintP95Ms": 6.499999999970896,
+        "paintMaxMs": 6.499999999970896,
+        "paints": 0,
+        "paintHz": -0.5504265981878245,
+        "callbackBusyPercent": 1.132497453488476,
+        "preparationMaxMs": 1.7000000000116415,
+        "inclusivePreparationUnionMs": 5.400000000023283,
+        "arrivalPreparationMaxMs": 0
+      },
+      "beforeBudgetPass": true,
+      "afterBudgetPass": false
+    },
+    {
+      "pair": "mobile/5",
+      "complete": true,
+      "order": [
+        "current-color",
+        "before-color"
+      ],
+      "afterMinusBefore": {
+        "inputToReadyMs": -63.5,
+        "firstFlightPaintResponseMs": -54.20000000001164,
+        "paintP50Ms": 1.3999999999941792,
+        "paintP95Ms": 12.700000000011642,
+        "paintMaxMs": 12.700000000011642,
+        "paints": -1,
+        "paintHz": -0.16399367076238924,
+        "callbackBusyPercent": 0.3392002500405269,
+        "preparationMaxMs": -0.39999999999417923,
+        "inclusivePreparationUnionMs": 0.7000000000116415,
+        "arrivalPreparationMaxMs": 0
+      },
+      "beforeBudgetPass": true,
+      "afterBudgetPass": false
+    }
+  ]
+}

@@ -1,5 +1,23 @@
 # Agent guidance for personal publications
 
+## Completed Writing screen and rejected optimization — 2026-10-06
+
+Read review/writing-diagnosis-20261006/EXECUTION.md before continuing #23.
+V0 establishes the earlier full detail has higher desktop render cost but all
+six paired transition windows pass, and no post-arrival model rebuild remains.
+The 25-trial screen attributes the cold spike to native whole-document/archive
+layout (584/610 dirty layout objects), surviving ribbon/text/Canvas/edge ablations.
+Model preparation is a separate cost; Color ribbons add repeated render work.
+
+An exact scalar trig reuse was tested and rejected: on AMD, control fails 4/6
+cold Writing windows and candidate 6/6, without reliable paired improvement.
+Active ribbons are restored; rejected patch/history and every raw trial remain.
+Do not describe the Xeon screening times as a speedup over earlier AMD runs.
+Next attribution is measured-height/range/focus-preserving archive row/text
+layout, not guessed-height bypass, stale range cache or motif removal. The
+unchanged early-detail visual fix remains. No full staging or promotion ran.
+Diagnostics are manual-only again; ordinary PR updates retain fast preview CI.
+
 ## Sol execution of Writing diagnosis — 2026-10-06
 
 The maintainer asks Sol to execute the current plan. Start with the exact

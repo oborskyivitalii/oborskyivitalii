@@ -2,10 +2,15 @@
 
 ## Current task — 2026-10-06
 
-Start with [cold Writing hypotheses and experiments](review/writing-diagnosis-20261006/SOL-TASKS.md).
+Start with [the executed Writing diagnosis](review/writing-diagnosis-20261006/EXECUTION.md),
+then [the controlled experiment plan](review/writing-diagnosis-20261006/SOL-TASKS.md).
 Use the sole Draft #23 on `work/sol-primitive-cost-20261005`; #18/#22 are closed
 as superseded and CI-only #26 is merged. The early-detail visual correction is
-implemented; paired desktop cost and the prioritized Writing ablations remain.
+implemented and its paired desktop transition windows pass. The screen identifies
+native archive layout as the cold spike; ribbons add repeated work. Scalar trig
+reuse failed to confirm improvement (4/6 control vs 6/6 candidate cold failures)
+and was reverted. Next: archive row/text layout with measured height/range/focus
+preserved. All raw results and the rejected patch remain in the diagnosis folder.
 Existing PR preview CI is authorized; full staging/promotion is outside this
 focused task. This section supersedes the dated PR/hosting instructions below.
 

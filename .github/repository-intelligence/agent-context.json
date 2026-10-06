@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "6bb3d96f3fa2ecaa08541387cda7e449a6b97344c7db00bcdbca7f1048ad8302",
+    "digest": "d10b337128bab4a4898a7767c5cf426b3a03e848683a385de3045d28e86b62ff",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -88,7 +88,7 @@
       {
         "path": ".github/workflows/site-writing-probe.yml",
         "identity_mode": "content",
-        "sha256": "175403ebbfd2a0b09836c0af7024cef986d3861842bb27e7386a985a760fb2c7"
+        "sha256": "b73a949496bfb6c35a449d1ab4102b68c7f34f53c0bbfcc2b1f751b62db0a7ec"
       },
       {
         "path": ".gitignore",
@@ -97,7 +97,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "a0dababc470248323699809eb5b7da9eb6ec651ca51c1f8827fa1477854855d9"
+        "sha256": "ffe575bdd996270308a4c499bb9f2cf65bd8d69fa93cf72650b2b66f0d478f14"
       },
       {
         "path": "BACKLOG.md",
@@ -172,7 +172,7 @@
       {
         "path": "SOL-HANDOFF.md",
         "identity_mode": "content",
-        "sha256": "c20abac5190338208dfc3a707937ff65214377b4fa2a7197ecc7b2c950d86ee7"
+        "sha256": "dcea696a94c99e26b4998e8b75198c8c2808359ae25aee1860ea8a1300736924"
       },
       {
         "path": "docs/.nojekyll",
@@ -3180,12 +3180,26 @@
       {
         "path": "review/writing-diagnosis-20261006/EXECUTION.md",
         "identity_mode": "content",
-        "sha256": "911640317c4b4209bba4ba3ba575f4ca16c9dbeae78328a394aee105da1864be"
+        "sha256": "eecf81f833e7d4c9fba5fc0389359c4f0e77be4971652b765f43012ffa3c2fd2"
       },
       {
         "path": "review/writing-diagnosis-20261006/SOL-TASKS.md",
         "identity_mode": "content",
         "sha256": "52e43b71d75c6d71e9af871deb152f2fdf3dcc8384f566077be3c90e4a5d17c0"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/confirmation-summary.json",
+        "identity_mode": "content",
+        "sha256": "f51c5f2207af014b3583e8c34fd7816b901eabb69dc21366ed9dc45de658a00a"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/confirmation.json.gz",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/evidence.json",
+        "identity_mode": "content",
+        "sha256": "08725ea8411fc0c776b5f96ba5663fc8bedc620452b7741010308def01a0e973"
       },
       {
         "path": "review/writing-diagnosis-20261006/geometry.json",
@@ -3194,6 +3208,10 @@
       },
       {
         "path": "review/writing-diagnosis-20261006/inventory.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/rejected-ribbon-reuse.patch",
         "identity_mode": "existence"
       },
       {
@@ -3208,6 +3226,14 @@
       },
       {
         "path": "review/writing-diagnosis-20261006/screen.json.gz",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/traces/h2-19-current-color.json.gz",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/traces/h2-20-no-canvas-draw.json.gz",
         "identity_mode": "existence"
       },
       {
@@ -3471,10 +3497,6 @@
       },
       {
         "path": "tests/review-flow.test.cjs",
-        "identity_mode": "existence"
-      },
-      {
-        "path": "tests/ribbon-geometry-equivalence.test.cjs",
         "identity_mode": "existence"
       },
       {
@@ -5570,6 +5592,20 @@
     {
       "path": "review/writing-diagnosis-20261006/SOL-TASKS.md",
       "title": "Sol: isolate cold Writing costs, one factor at a time",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/writing-diagnosis-20261006/confirmation-summary.json",
+      "title": "review/writing-diagnosis-20261006/confirmation-summary.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/writing-diagnosis-20261006/evidence.json",
+      "title": "review/writing-diagnosis-20261006/evidence.json",
       "instructions": [
         "AGENTS.md"
       ]

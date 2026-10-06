@@ -5,22 +5,19 @@ function ribbonGeometry(api){
   const {cross,normalize}=api;
   return function section(z,k,time,centerOnly=false){
     const phase=((time%24000)+24000)%24000/24000*Math.PI*2;
-    const sinPhase=Math.sin(phase+k),sinDoublePhase=Math.sin(phase*2+k);
-    const s=-z*.038,angle=s+k*Math.PI*2/3+.09*sinPhase;
-    const radius=6.4+.8*Math.sin(s*.7+k)+.24*sinDoublePhase;
-    const cosAngle=Math.cos(angle),sinAngle=Math.sin(angle);
-    const center=[radius*cosAngle+.22*sinPhase,3.2*sinAngle+.2*Math.cos(phase+k),z];
+    const s=-z*.038,angle=s+k*Math.PI*2/3+.09*Math.sin(phase+k);
+    const radius=6.4+.8*Math.sin(s*.7+k)+.24*Math.sin(phase*2+k);
+    const center=[radius*Math.cos(angle)+.22*Math.sin(phase+k),3.2*Math.sin(angle)+.2*Math.cos(phase+k),z];
     if(centerOnly)return center;
     const dr=-.8*.038*.7*Math.cos(s*.7+k),da=-.038;
-    const tangent=normalize([dr*cosAngle-radius*sinAngle*da,3.2*cosAngle*da,1]);
+    const tangent=normalize([dr*Math.cos(angle)-radius*Math.sin(angle)*da,3.2*Math.cos(angle)*da,1]);
     const side=normalize(cross(tangent,[0,1,0])),baseNormal=cross(tangent,side);
     // Axial torsion travels along the ribbon; a complete slow rotation closes
     // after 24 seconds along with position, breathing and their derivatives.
     const twist=s*3.1+k*.7+phase+.12*Math.sin(phase*2+s);
-    const cosTwist=Math.cos(twist),sinTwist=Math.sin(twist);
-    const across=side.map((v,i)=>v*cosTwist+baseNormal[i]*sinTwist);
+    const across=side.map((v,i)=>v*Math.cos(twist)+baseNormal[i]*Math.sin(twist));
     const normal=cross(tangent,across);
-    const width=(.55+.06*Math.sin(s*.6+k))*(1+.1*sinDoublePhase);
+    const width=(.55+.06*Math.sin(s*.6+k))*(1+.1*Math.sin(phase*2+k));
     return {center,tangent,across,normal,width,
       left:center.map((v,i)=>v-across[i]*width/2),right:center.map((v,i)=>v+across[i]*width/2)};
   };

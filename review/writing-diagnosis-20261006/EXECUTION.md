@@ -77,7 +77,31 @@ This runner uses Intel Xeon 6973P-C; the earlier six-round comparison used AMD
 EPYC 7763. Its lower absolute times cannot be attributed to the source change.
 Prior failed Color windows remain valid evidence.
 
-## One exact source optimization and confirmation
+## Trace attribution and remaining cold target
+
+Both H2 traces are retained under `traces/*.json.gz`; their uncompressed hashes
+are recorded in the raw diagnosis. Native timeline events show style + layout
+5.897 + 24.677ms in normal Color and 5.694 + 29.070ms without Canvas submission.
+Both peaks have 584 dirty / 610 total layout objects. The source/stage chain is
+mount → synchronous scene refresh → native plane measurement → scrollHeight;
+full profiler JS stacks were not captured. The property read triggers deferred
+whole-document work rather than making scrollHeight itself an expensive API.
+
+Canvas has additional work outside measured JS submission: renderer-main
+LayerTreeHost::DoUpdateLayers median is 11.982ms (29 calls) with draw and 0.736ms
+(43 calls) without. This correlates with Canvas, but the trace does not establish
+an exact internal flush/GPU cause or display FPS. Raster totals cannot be
+compared as latency: the no-draw condition has more updates/tile tasks, and
+threaded/nested work overlaps.
+
+The next controlled cold experiment should preserve the measured native archive
+height, scroll range, filters and focus while changing row grid/flex/text
+formatting. Use same content first, then a matched inert-height diagnostic only
+if necessary. Do not revive rejected containment or guessed heights, cache a
+stale range, bypass archive semantics, or remove recognizable motifs to mask
+native layout. The current screen does not prove a unique Writing mesh defect.
+
+## Rejected exact source optimization and confirmation
 
 Reuse identical scalar sin/cos evaluations within each ribbon section, reducing
 native trig calls 20→11. Arithmetic order, mesh density, curves, material RGB,
@@ -90,5 +114,57 @@ candidate: six balanced mobile CPU×4 pairs and three desktop pairs. Every side
 gets a fresh direct Writing boot/first scroll and a separate fresh
 Research→Writing→Research→Writing itinerary. Fine stages/traces are disabled.
 The before Color producer is loaded from its own checkout, avoiding application
-of the new ribbon code to both sides. Confirmation results remain pending;
-no measured speedup or full-gate claim is made yet.
+of the new ribbon code to both sides. Confirmation [37453060501](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37453060501)
+collected all 18 complete trials at source `b84f1447346ecc7701e289878d3ee115e0cc6b41`.
+Artifact `11408525198`, downloaded ZIP SHA-256
+`4f8ee942067210eb1813abf13aec2f895b66a478ff98085ea1391fcb76c17bb2`
+is verified. `confirmation.json.gz` retains every trial; summaries retain exact
+identities and paired deltas. This runner is AMD EPYC 7763, so only its matched
+within-run pairs establish the candidate comparison.
+
+| Six mobile CPU×4 pairs: median | Unchanged Color | Scalar-reuse candidate |
+| --- | ---: | ---: |
+| Direct Writing scene ready (ms) | 381.9 | 376.75 |
+| Largest direct-boot callback (ms) | 195.8 | 190.25 |
+| First-scroll p95 (ms) | 29.3 | 28.25 |
+| Cold-flight callback p50 (ms) | 26.75 | 25.6 |
+| Cold-flight p95 / maximum (ms) | 83.0 / 83.0 | 83.8 / 83.8 |
+| Cold painted samples | 18 | 19 |
+| Observed paints/s | 12.72 | 12.93 |
+| Cold input-to-ready (ms) | 1419.5 | 1456.7 |
+| First travelling paint response (ms) | 95.6 | 136.8 |
+| Failed cold transition windows | 4/6 | 6/6 |
+
+The candidate does not confirm an improvement. Cold p95 pair deltas are
+−9.0,+2.5,−1.8,−2.6,+6.5,+12.7ms; first-response deltas likewise vary. Three
+mobile pairs improve typical callback cost and three worsen it. All six
+candidate cold windows still exceed 80ms; the exact source edit does not solve
+the dominant cold spike. All first-scroll windows pass the 33ms callback gate;
+that short fixture is not sustained/idle acceptance. Three desktop pairs pass
+on both sides, p95 medians 40.5/37.6ms, also with mixed pair deltas.
+
+**Rejected and reverted.** Active authored ribbon source returns to `6b73399`;
+the candidate/test delta is preserved in `rejected-ribbon-reuse.patch` and commit
+`b84f144`. The unchanged early-detail lifecycle remains in place. No budget is
+relaxed, no failed window is dropped, and no performance closure is claimed.
+The normal preview returns to the previously verified Color bytes:
+base engine `9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92`,
+Color fingerprint `29f96cf7b87c31e917e611abdc2112297f6e85cb4797b4c19a6f90bafd7924c9`,
+artifact digest `2d3a9c6a27f6c3fcf0b957367fb64ed31765fd8cd95e934413b2675dfe087b8b`.
+
+The temporary PR diagnostic event is removed. Future dated replay is explicit
+workflow_dispatch with `diagnosis=true` and the exact recorded candidate SHA;
+normal PR updates run only the existing fast checks/preview. Full staging and
+promotion were not run. #12 stays open for native archive layout/model/render
+work; #14 stays open for owner visual acceptance.
+
+Local verification: 22 focused ribbon/driver checks passed before rejection;
+13 theme/archive and 10 flight checks passed. The diagnostic jobs passed as
+complete data collection while retaining the budget failures above. The final
+source revert is exact; no extra performance matrix is warranted for identical
+runtime bytes.
+
+A separate source/raw reviewer checked the matched artifact lineage and all six
+mobile paired signs, agreed that benefit is unconfirmed and supported rejection.
+This is implementer-side review, not external release acceptance. `evidence.json`
+indexes every retained compressed raw/trace file and its SHA-256.

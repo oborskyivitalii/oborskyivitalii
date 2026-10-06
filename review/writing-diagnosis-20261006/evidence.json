@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "kind": "writing-diagnosis-evidence-index",
+  "decision": "reject-ribbon-reuse-benefit-unconfirmed",
+  "normalRuntimeRestoredTo": "6b73399c4f0afeba497c92809686bba4b7a3200a",
+  "screen": {
+    "run": 37452014157,
+    "source": "6b73399c4f0afeba497c92809686bba4b7a3200a",
+    "artifactId": 11407570095,
+    "zipSha256": "96eef80f532b7e07fad280d1fdc25298248b3ade87142c60f252ab8442557269"
+  },
+  "confirmation": {
+    "run": 37453060501,
+    "source": "b84f1447346ecc7701e289878d3ee115e0cc6b41",
+    "artifactId": 11408525198,
+    "zipSha256": "4f8ee942067210eb1813abf13aec2f895b66a478ff98085ea1391fcb76c17bb2"
+  },
+  "retainedFiles": {
+    "confirmation-summary.json": {
+      "bytes": 72625,
+      "sha256": "f51c5f2207af014b3583e8c34fd7816b901eabb69dc21366ed9dc45de658a00a"
+    },
+    "confirmation.json.gz": {
+      "bytes": 437124,
+      "sha256": "5c5e80070c068353834e179a270a664f852893a408ed070c0217b3a31a24bd64"
+    },
+    "rejected-ribbon-reuse.patch": {
+      "bytes": 6943,
+      "sha256": "e956322b5364b16addecd457a53cc4614a19d51a309c2a482235d8acc3b09862"
+    },
+    "screen-summary.json": {
+      "bytes": 107456,
+      "sha256": "04c07367aec4ca835c208078770b4d15c5a9699ebdb4ef1694cdfb39bec31256"
+    },
+    "screen.json.gz": {
+      "bytes": 1301496,
+      "sha256": "56697125e86e7301f4f1bcf54d911188c99d5d41027c349dbe93b755b2d8910d"
+    },
+    "traces/h2-19-current-color.json.gz": {
+      "bytes": 227212,
+      "sha256": "5c5e6cedec1bbcbf3801446761106691615142547316c88b91f32f0c32cd5aff"
+    },
+    "traces/h2-20-no-canvas-draw.json.gz": {
+      "bytes": 279857,
+      "sha256": "1191c7c21dde61bfae11d9e82293a2abafdf3fa6a3699d167060bdfcc307462d"
+    }
+  }
+}
