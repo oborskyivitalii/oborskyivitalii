@@ -1,5 +1,41 @@
 # Причини збоїв і виправлення — 6 жовтня 2026
 
+## Неповний GTK 37500364739: встановлення та окреме закриття сторінки
+
+WebKit встановлено, але залежності з Azure Ubuntu mirror завантажувались
+21 хв 44 с (123 MB, 94.4 kB/s). Увесь install step тривав 22 хв 18 с;
+job із початковим 25-хвилинним лімітом скасований о 17:27:17Z. Час відповідає
+вичерпанню budget, проте API не визначає ініціатора cancellation. Дзеркало
+надходить через `/etc/apt/apt-mirrors.txt`; зміна лише sources.list не достатня.
+
+Raw artifact 11430333444 зберігає 13 functional rows: 12 pass і одну no-js
+невдачу. Перший state/evaluate після успішного navigation/load повернув
+`Target page, context or browser has been closed`; failed row записано
+о 17:26:42Z, за 35 с до cancellation. Точного часу native closure немає. Пізніші modes того самого browser проходять. Це окремий
+непояснений target/session failure; не приписуємо його лише повільному apt.
+Page/process lifecycle події та native stderr у цьому run не зібрані.
+[GTK-INCOMPLETE.json](GTK-INCOMPLETE.json) зберігає точні identities,
+початкову невдачу, startup timings, API/artifact посилання і raw SHA.
+
+Наступна підтримана зміна перемикає лише Azure Ubuntu URLs на primary archive,
+включно з active mirror+file lists, та обмежує npm/dependency/browser installation
+окремими 3/5/3-хвилинними phases у тому самому 25-хвилинному job. Slow transfer
+може продовжуватися без idle timeout, тому phase cap потрібен окремо від APT
+30-секундного network timeout. Node/browser pins, cold startup, усі 130/4/13
+сценарії та runtime budgets лишаються. Native lifecycle і browser stderr
+збираються для причинного розрізнення no-js failure. Ця scoped installation
+зміна не змінює protected-main full-stage controller; його попередній install
+проходив, але той самий зовнішній mirror risk там лишається.
+
+Незалежне scoped review: Codex agent `installer_review` перевірив повний diff,
+12/12 APT rewrite fixtures, 23/23 lifecycle/functional/display tests, точну
+відповідність index raw artifact/log та шість scanner dispositions. Попередні
+4597 records і baseline metadata незмінні. Root перевірка 26/26 включає також
+cause-fix source-pair fixtures; scoped ESLint, local build і RI проходять.
+Review виправив формулювання: timestamp failed row — час запису після cleanup,
+а не точний момент native closure. Live archive throughput, no-js native причина
+та hosted/full/stable acceptance лишаються непідтвердженими.
+
 ## Повний staging 37491800878: startup Xvfb
 
 Exact source 4c05087e: Linux Chromium/Firefox проходять 260/260 functional,

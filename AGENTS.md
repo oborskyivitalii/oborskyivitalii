@@ -1,5 +1,20 @@
 # Agent guidance for personal publications
 
+## GTK installation and target-loss follow-up — 2026-10-06
+
+Run 37500364739 installed WebKit successfully but spent 22m18s on installation,
+including 21m44s slow Azure Ubuntu downloads through /etc/apt/apt-mirrors.txt.
+The 25m job was cancelled with incomplete coverage: 12 passing rows and a separate
+no-js first-state target closure. GTK-INCOMPLETE.json retains identities, raw SHA
+and the failure. Cancellation fits job-budget exhaustion; its initiator and the
+no-js native mechanism are not proved. Use the primary archive in direct and
+active mirror-file sources, independent 3/5/3m install phases in the same job,
+and optional native lifecycle/stderr evidence. Preserve cold startup, all
+130/4/13 scenarios, original engine/page/performance bounds and every raw failure.
+The full protected-main controller is unchanged. Remove the dated PR trigger
+only after collection, then complete the authorized hosted/stable/exact-head
+merge sequence; incomplete/private evidence never authorizes promotion.
+
 ## Full staging display startup follow-up — 2026-10-06
 
 Full run 37491800878 at 4c05087e passes all static/host/captures/performance and

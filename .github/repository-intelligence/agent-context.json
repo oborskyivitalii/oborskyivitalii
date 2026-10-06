@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "d4643f9129146c7ec3707a2d0dfe3c425173cd464d8798a64638d211d1b08b48",
+    "digest": "46a29b67a06384d9fa5d32135cf064af28e0467b2e3787666a9b4456a42b56e0",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -63,7 +63,7 @@
       {
         "path": ".github/workflows/site-cause-fix-probe.yml",
         "identity_mode": "content",
-        "sha256": "c04af65bdf00c5a26253ea1f22fe3d026aec6cdae8f73c15b9f7171a8e768abd"
+        "sha256": "ed0e4fe49aeaaf1e32246e28184424ca34b817e8179e5da68939e225616ebda6"
       },
       {
         "path": ".github/workflows/site-cause-probe.yml",
@@ -112,7 +112,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "9bd60a994549c58e4a32b52c6af049c2c22dc78be2a4c1d3bebf29e420962f9c"
+        "sha256": "f8ffb23e716b5d8d3a1bf98631b680427b35a91d7c2791f95be80c1c57f474d3"
       },
       {
         "path": "BACKLOG.md",
@@ -3225,7 +3225,7 @@
       {
         "path": "review/staging-readiness-20261006/CAUSES.md",
         "identity_mode": "content",
-        "sha256": "7572b451b46e3efe33ea6f7691d7f84a541b62aac0ade0de71e90ea3d89054d1"
+        "sha256": "de7666180f336541a4e08ebea328770c94632d8cec4b6f550f3c8c325e3cdf03"
       },
       {
         "path": "review/staging-readiness-20261006/DISPLAY.json",
@@ -3233,9 +3233,14 @@
         "sha256": "6f590b3e294ef8e165030ba4752df37f4b7d3b7905ef05a54a5dfacce3d00c8c"
       },
       {
+        "path": "review/staging-readiness-20261006/GTK-INCOMPLETE.json",
+        "identity_mode": "content",
+        "sha256": "0ebbeaf6531f780a646351ff0fe5eef95ac1903efaeaf3b7dcb76d545f6b9b23"
+      },
+      {
         "path": "review/staging-readiness-20261006/GTK-REQUEST.md",
         "identity_mode": "content",
-        "sha256": "9ee82232a2db8e9c005710d12b80cf0a901480ba2fd1cdf9f5d35942896a1414"
+        "sha256": "0b14d90e7c65ad1deff0738fc57e0714197045277a712843cdf6b111794552b6"
       },
       {
         "path": "review/staging-readiness-20261006/REPORT.md",
@@ -3583,6 +3588,10 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tests/browser-lifecycle.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tests/cause-fix-probe.test.cjs",
         "identity_mode": "existence"
       },
@@ -3799,6 +3808,10 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tools/quality/browser-lifecycle.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tools/quality/budgets.json",
         "identity_mode": "content",
         "sha256": "ce7c3a7e8bc70eaeb29d4e72f8c96e36a5aac563badfa8955d5bdd430d8ef567"
@@ -3908,7 +3921,7 @@
       {
         "path": "tools/quality/secrets-baseline.json",
         "identity_mode": "content",
-        "sha256": "7a05cdf7a119c9588a1781929236b4add25f45abd6c2faafe13b931f67ffebbd"
+        "sha256": "518cdc841817eaf2824ceb6dd3d411318622f22fd7b7d27bd35d6befbe215d16"
       },
       {
         "path": "tools/quality/security-rules.yml",
@@ -5878,6 +5891,13 @@
     {
       "path": "review/staging-readiness-20261006/DISPLAY.json",
       "title": "review/staging-readiness-20261006/DISPLAY.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/staging-readiness-20261006/GTK-INCOMPLETE.json",
+      "title": "review/staging-readiness-20261006/GTK-INCOMPLETE.json",
       "instructions": [
         "AGENTS.md"
       ]

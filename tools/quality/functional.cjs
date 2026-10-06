@@ -220,16 +220,22 @@ async function scenario(browser,url,s){
     const gate=new Promise(resolve=>release=resolve);await page.route('**/styles.css',async route=>{await gate;await route.continue();});
   }
   if(s.mode==='css-blocked')await page.route('**/styles.css',r=>r.abort('failed'));
+  const lifecycle=process.env.SITE_AUDIT_LIFECYCLE==='true'?require('./browser-lifecycle.cjs').observe({page,context:ctx,browser}):null;
   try{
+    lifecycle?.stage('navigation');
     await navigateDocument(page,`${url}/${s.route}.html`,release);
+    lifecycle?.stage('scenario-check');
     const checks=s.mode==='normal'?await normal(page,s):await failure(page,s.mode);
     if(s.mode==='css-delayed')checks.beforeCSSNoPaint=true;
     assert.deepEqual(errors,[]);assert.deepEqual(external,[]);
     return {...s,pass:true,checks,errors,externalRequests:external,diagnosticTrace:s.trace?await page.evaluate(()=>window.__browserGateTrace?.snapshot?.()||null):undefined};
   }catch(e){
-    if(release)release();await page.screenshot({path:path.join(out,`${s.engine}-${s.route}-${s.width}-${s.theme}-${s.mode}.png`)}).catch(()=>{});
-    return {...s,pass:false,error:e.message,stack:e.stack,state:await state(page).catch(()=>null),errors,externalRequests:external,diagnosticTrace:s.trace?await page.evaluate(()=>window.__browserGateTrace?.snapshot?.()||null).catch(()=>null):undefined};
-  }finally{await ctx.close();}
+    const lifecycleEvidence=lifecycle?.snapshot();
+    if(release)release();lifecycle?.stage('failure-screenshot');
+    await page.screenshot({path:path.join(out,`${s.engine}-${s.route}-${s.width}-${s.theme}-${s.mode}.png`)}).catch(()=>{});
+    lifecycle?.stage('failure-state');const failedState=await state(page).catch(()=>null);
+    return {...s,pass:false,error:e.message,stack:e.stack,state:failedState,errors,externalRequests:external,diagnosticTrace:s.trace?await page.evaluate(()=>window.__browserGateTrace?.snapshot?.()||null).catch(()=>null):undefined,...(lifecycleEvidence?{lifecycle:lifecycleEvidence}:{})};
+  }finally{lifecycle?.stage('teardown');try{await ctx.close();}finally{lifecycle?.dispose();}}
 }
 function scenarios(engine,smoke){return routes.flatMap(route=>['light','dark'].flatMap(theme=>[
   ...[1440,390].map(width=>({engine,route,theme,width,mode:'normal'})),

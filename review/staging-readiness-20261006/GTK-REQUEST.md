@@ -15,3 +15,11 @@ complete lease duration before deciding the next full stage. Full source
 lint/security run separately. This private loopback confirmation is not hosted
 full/stable acceptance. No browser warmup, retry, threshold change or deployment.
 Remove this dated PR trigger after retaining all evidence.
+
+Follow-up after incomplete 37500364739: its original dependency install consumed
+22m18s and left insufficient job time; the first no-js state probe also lost its
+target before cancellation. Retain GTK-INCOMPLETE.json. Correct the actual APT
+mirror list as well as direct sources, bound install phases inside the unchanged
+25m job, and collect native close/crash/disconnect stage evidence and stderr.
+Run the same complete cold lease once on the corrected infrastructure; do not
+retry scenarios or treat a green installation as functional acceptance.

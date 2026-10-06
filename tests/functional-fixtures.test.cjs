@@ -167,7 +167,7 @@ test('scenario tracing is explicit and its installation does not schedule extra 
     let requests=0,traceLoads=0,closed=false;
     const window={performance:{now:()=>0},requestAnimationFrame(){requests++;return requests;},cancelAnimationFrame(){},addEventListener(){}};
     const document={hidden:false,visibilityState:'visible',readyState:'complete',hasFocus:()=>true,body:{dataset:{page:'index'}},querySelector:()=>null,addEventListener(){}};
-    const context=vm.createContext({assert,window,document,localStorage:{setItem(){}},CanvasRenderingContext2D:class CanvasRenderingContext2D{clearRect(){}},normal:async()=>({positiveProbe:true}),failure:async()=>({}),navigateDocument:async()=>{},state:async()=>null,path,out:'/unused',require(name){assert.equal(name,'./browser-gate-trace.cjs');traceLoads++;return require('../tools/quality/browser-gate-trace.cjs');}});
+    const context=vm.createContext({assert,window,document,process:{env:{}},localStorage:{setItem(){}},CanvasRenderingContext2D:class CanvasRenderingContext2D{clearRect(){}},normal:async()=>({positiveProbe:true}),failure:async()=>({}),navigateDocument:async()=>{},state:async()=>null,path,out:'/unused',require(name){assert.equal(name,'./browser-gate-trace.cjs');traceLoads++;return require('../tools/quality/browser-gate-trace.cjs');}});
     vm.runInContext(setupSource,context);
     const scenario=vm.runInContext('('+scenarioSource+')',context);
     const page={on(){},evaluate:async fn=>fn()},ctx={addInitScript:async({content})=>vm.runInContext(content,context),newPage:async()=>page,close:async()=>{closed=true;}};
