@@ -92,6 +92,7 @@ jobs:
       SITE_REPORT_DIR: quality-reports
       SITE_PUBLIC_DIR: docs
       SITE_TEST_PROFILE: local
+      SITE_ARTIFACT_MANIFEST: quality-artifact/artifact.json
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
@@ -117,6 +118,9 @@ jobs:
           check python tools/build_site_bundle.py --check
           check python tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify
           exit "$status"
+      - name: Record exact scanner input identity
+        if: ${{ !cancelled() }}
+        run: node tools/quality/artifact.cjs build quality-artifact
       - name: Install locked scanners
         if: ${{ !cancelled() }}
         run: |

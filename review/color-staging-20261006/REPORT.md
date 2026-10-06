@@ -96,3 +96,47 @@ A scoped full-source/static preflight now precedes the corrected Color package,
 so scanner coverage and exact public-checksum triage can be resolved before
 spending another complete hosted run. After publishing its new immutable source,
 repeat the full profile and retain the initial run separately.
+
+## Completed initial diagnostics and preflight repairs
+
+The independent staging HTTP policy smoke passes all 28 source files, native
+root/query/revision, actual 404 bytes, noindex/nofollow and mutable/immutable
+caching. The initial macOS WebKit run passes all 20 normal cases and 13 analytics
+fixtures; its four navigation rows reject the old base-only empty-middle fade
+assertion. Color deliberately moves outgoing/incoming text through separate depth
+planes. The full navigation probe now checks both depth directions, fades and
+the zero-opacity spatial handover for Color, retaining the original base check.
+Retargeting must retain current opacity/depth; interruption/readability and all
+history/endpoint/fallback checks remain mandatory. A mutation test rejects wrong
+planes, visible handover and premature fully visible text.
+
+The initial motion run collected all 15 idle/scroll/Off/Reduced profiles, 24
+primary flights, 40-route cycles per profile and the five-minute soak. It fails
+the DOM-retention assertion: counters grow by one document/401 nodes, while
+listeners remain 75. The eight-flight itinerary never opens utility Credits, so
+the cycle test first fills the fifth cache entry after its baseline. Warm all
+five documents before comparing the same Index state over 40 cycles; keep the
+strict no-growth limits and require the recorded complete warmup in validation.
+This explains the fixture defect; a new hosted run must prove the correction.
+
+Source/static preflight at `ae8fbca9` passes all 133 Node and 21 Python tests and
+generation/SEO/bundle/RI checks. Its report wrapper lacked an artifact identity;
+the workflow now builds that exact identity before scanners. Raw Semgrep has zero
+findings/errors across 112 files, and Bandit zero findings/errors. Four complexity
+warnings are resolved by extracting existing animation and renderer assertion
+helpers; no rule threshold or exception is broadened.
+
+The raw secret scan's 390 new entropy candidates are exact public checksums or
+provider/Git identities. Append-only classification recomputes 205 generated
+checksums, verifies 119 metadata candidates in 37 frozen evidence blobs against
+the source tree, and verifies 66 current provider/package candidates against the
+confirmed deployment and byte-verified package. New generated identities are
+also proved before adding exact path/type/hash dispositions. Unknown fields,
+credentials and other candidate types remain unaccepted; independent review of
+these dispositions is pending. This is not a successful security-stage claim.
+
+The three functional engines run independently in parallel so the complete
+390-case source matrix can finish within a bounded job. Native Windows retains
+both engines, and every navigation/analytics fixture is collected. Performance
+remains sequential in its separate job; no timing budget changes. The initial
+run and its failed/incomplete results remain separate from the corrected run.

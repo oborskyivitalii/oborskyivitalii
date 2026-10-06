@@ -88,7 +88,7 @@ function flightMeasurement(slow=false){
   const data={schema:2,start:0,end:2100,elapsed:2100,frames:Array.from({length:12},(_,i)=>({time:i*100,started:i*100+10,duration:slow&&i===11?900:10,painted:true})),longTasks:[],events:[{kind:'layout',time:3,start:2,duration:1},{kind:'navigation-start',time:0},{kind:'navigation-ready',time:2100}]};
   return {...require('../tools/quality/motion.cjs').summarize(data,'flight'),state:'active'};
 }
-function motionFixture(){return {variant:{id:'base',contract:1,fingerprint:'d'.repeat(64)},samples:budgets.routes.flatMap(route=>[[1440,1],[390,1],[390,4]].map(([width,rate])=>({route,width,rate,positiveProbe:true,errors:[],measurements:['idle','scroll','off','reduced'].map(kind=>measurement(kind))}))),journeys:[[1440,1],[390,1],[390,4]].map(([width,rate])=>({width,rate,cycles:40,errors:[],before:{nodes:100,jsEventListeners:20},after:{nodes:100,jsEventListeners:20},rows:['research','writing','talks','index','talks','writing','research','index'].map(to=>({to,...flightMeasurement()}))})),soak:{route:'writing',durationSeconds:300,chunks:Array.from({length:10},(_,i)=>measurement('idle',i*30000)),off:measurement('off',300000),errors:[],startHeapBytes:100,endHeapBytes:110}};}
+function motionFixture(){return {variant:{id:'base',contract:1,fingerprint:'d'.repeat(64)},samples:budgets.routes.flatMap(route=>[[1440,1],[390,1],[390,4]].map(([width,rate])=>({route,width,rate,positiveProbe:true,errors:[],measurements:['idle','scroll','off','reduced'].map(kind=>measurement(kind))}))),journeys:[[1440,1],[390,1],[390,4]].map(([width,rate])=>({width,rate,cycles:40,warmedRoutes:[...budgets.routes.slice(1),budgets.routes[0]],errors:[],before:{nodes:100,jsEventListeners:20},after:{nodes:100,jsEventListeners:20},rows:['research','writing','talks','index','talks','writing','research','index'].map(to=>({to,...flightMeasurement()}))})),soak:{route:'writing',durationSeconds:300,chunks:Array.from({length:10},(_,i)=>measurement('idle',i*30000)),off:measurement('off',300000),errors:[],startHeapBytes:100,endHeapBytes:110}};}
 test('motion requires positive paints, every profile, real raw samples and settled zero work',()=>{
   const r=motionFixture();
   assert.equal(motion(r),true);
@@ -210,5 +210,14 @@ test('normal browser startup foregrounds the test tab and waits on real readines
 });
 
 test('flight measurements and repeated-navigation resources are mandatory',()=>{
-  for(const alter of [r=>delete r.journeys,r=>r.journeys[0].rows.pop(),r=>r.journeys[0].after.nodes++,r=>r.journeys[0].after.jsEventListeners++]){const r=motionFixture();alter(r);assert.throws(()=>motion(r));}
+  for(const alter of [r=>delete r.journeys,r=>r.journeys[0].rows.pop(),r=>r.journeys[0].warmedRoutes.pop(),r=>r.journeys[0].after.nodes++,r=>r.journeys[0].after.jsEventListeners++]){const r=motionFixture();alter(r);assert.throws(()=>motion(r));}
+});
+test('Color navigation requires both depth planes and a clear handover without changing base fades',()=>{
+  const {checkTiming}=require('../tools/quality/navigation.cjs');
+  const samples=[.05,.1,.2,.3,.4,.47,.5,.55,.6,.7,.8,.9,.99].map(progress=>({progress,opacity:progress<.46?1-progress/.46:progress<=.51?0:(progress-.51)/.49,depth:progress<.5?100:-100,stage:progress<.5?'depart':'arrive',direction:'forward'}));
+  checkTiming(samples,'color');
+  assert.throws(()=>checkTiming(samples,'base'),/hidden throughout middle/);
+  for(const mutate of [s=>s[0].depth=-100,s=>s.at(-1).depth=100,s=>s[5].opacity=.1,s=>s.at(-1).opacity=1]){
+    const changed=structuredClone(samples);mutate(changed);assert.throws(()=>checkTiming(changed,'color'));
+  }
 });

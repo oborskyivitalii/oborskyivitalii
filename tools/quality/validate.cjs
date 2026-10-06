@@ -61,6 +61,7 @@ function motion(r){
   for(const [width,rate]of [[1440,1],[390,1],[390,4]]){
     const flight=r.journeys.find(x=>x.width===width&&x.rate===rate);assert.ok(flight,'missing flight profile');assert.deepEqual(flight.errors,[]);
     assert.equal(flight.rows.length,8);assert.equal(flight.cycles,40);
+    assert.deepEqual(flight.warmedRoutes,[...budgets.routes.slice(1),budgets.routes[0]],'missing complete route-cache warmup');
     assert.deepEqual(flight.rows.map(x=>x.to),['research','writing','talks','index','talks','writing','research','index']);
     for(const row of flight.rows){measure(row,'flight',false);transition(row);assert.notEqual(row.state,'fallback');}
     assert.ok(flight.after.jsEventListeners<=flight.before.jsEventListeners,'listeners grow across repeated routes');

@@ -18,16 +18,30 @@ function timingProbe(){
   new MutationObserver(()=>{
     const scene=document.querySelector('.space-scene'),content=document.querySelector('#site-content');
     if(!scene||!content||!content.hasAttribute('aria-busy'))return;
-    window.__flightSamples.push({progress:Number(scene.dataset.progress),opacity:Number(getComputedStyle(content).opacity),page:document.body.dataset.page});
+    window.__flightSamples.push({progress:Number(scene.dataset.progress),opacity:Number(getComputedStyle(content).opacity),depth:Number(content.dataset.flightDepth),stage:content.dataset.flightStage,direction:scene.dataset.direction,page:document.body.dataset.page});
     if(window.__flightSamples.length>400)window.__flightSamples.shift();
   }).observe(document,{subtree:true,attributes:true,attributeFilter:['data-progress']});
 }
-function checkTiming(samples){
+function checkTiming(samples,variant='base'){
+  if(variant==='color')return checkSpatialTiming(samples);
   assert.ok(samples.some(x=>x.progress>0&&x.progress<.18&&x.opacity>0&&x.opacity<1),'visible outgoing fade');
   const middle=samples.filter(x=>x.progress>=.18&&x.progress<=.72);
   assert.ok(middle.length>2,'observed empty middle');assert.ok(middle.every(x=>x.opacity===0),'text hidden throughout middle');
   assert.ok(samples.some(x=>x.progress>.72&&x.progress<1&&x.opacity>0&&x.opacity<1),'visible arrival fade');
   assert.ok(samples.every(x=>x.progress<=.72||x.progress===1||x.opacity<1),'no premature full text');
+}
+function checkSpatialTiming(samples){
+  const departing=samples.filter(x=>x.progress>0&&x.progress<.46&&x.stage==='depart');
+  const arriving=samples.filter(x=>x.progress>.52&&x.progress<1&&x.stage==='arrive');
+  assert.ok(departing.length>2&&arriving.length>2,'observed both spatial flight planes');
+  assert.ok(departing.some(x=>x.opacity>0&&x.opacity<1),'visible outgoing spatial fade');
+  assert.ok(arriving.some(x=>x.opacity>0&&x.opacity<1),'visible incoming spatial fade');
+  assert.ok(departing.every(x=>x.direction==='forward'?x.depth>0:x.depth<0),'outgoing text travels in the camera direction');
+  assert.ok(arriving.every(x=>x.direction==='forward'?x.depth<0:x.depth>0),'incoming text starts beyond the camera');
+  const crossing=samples.filter(x=>x.progress>=.46&&x.progress<=.51);
+  assert.ok(crossing.length>0&&crossing.every(x=>x.opacity===0),'text clears at the spatial handover');
+  assert.ok(samples.every(x=>Number.isFinite(x.opacity)&&x.opacity>=0&&x.opacity<=1),'bounded spatial opacity');
+  assert.ok(samples.filter(x=>x.progress>.52&&x.progress<1).every(x=>x.opacity<1),'no premature full destination text');
 }
 async function reverseEndpoints(page){
   const rows=[];
@@ -79,6 +93,8 @@ async function scenario(browser,url,s){
   const result={...s,pass:false,checks:{},errors};
   try {
     await page.goto(url+'/index.html');
+    const variant=await page.locator('meta[name="site-variant"]').getAttribute('content');
+    assert.ok(['base','color'].includes(variant),'known tested navigation variant');result.variant=variant;
     await page.bringToFront();
     await page.waitForFunction(()=>document.querySelector('#site-content main')&&document.querySelector('.space-scene').dataset.ready==='true',null,{polling:50,timeout:4000});
     await page.evaluate(()=>{window.__shell={header:document.querySelector('header'),canvas:document.querySelector('canvas'),theme:document.querySelector('#theme-mode'),document};});
@@ -87,7 +103,7 @@ async function scenario(browser,url,s){
     const initial=await page.locator('.space-scene').getAttribute('data-camera');
     for(const route of routes.slice(1)){
       await page.evaluate(()=>{window.__flightSamples=[];});
-      await click(page,route);await settled(page);if(route!=='credits')checkTiming(await page.evaluate(()=>window.__flightSamples));else{assert.ok((await page.evaluate(()=>window.__flightSamples)).every(x=>x.progress===1));result.checks.utilityNoFlight=true;}
+      await click(page,route);await settled(page);if(route!=='credits')checkTiming(await page.evaluate(()=>window.__flightSamples),variant);else{assert.ok((await page.evaluate(()=>window.__flightSamples)).every(x=>x.progress===1));result.checks.utilityNoFlight=true;}
       const state=await page.evaluate(()=>({page:document.body.dataset.page,title:document.title,description:document.querySelector('meta[name="description"]').content,h1:document.querySelectorAll('h1').length,focus:document.activeElement.id,rooms:+document.querySelector('.space-scene').dataset.rooms,direction:document.querySelector('.space-scene').dataset.direction,same:window.__shell.header===document.querySelector('header')&&window.__shell.canvas===document.querySelector('canvas')&&window.__shell.theme===document.querySelector('#theme-mode')&&window.__shell.document===document}));
       assert.equal(state.page,route);assert.ok(state.title.toLowerCase().includes(route==='credits'?'credits':route));assert.ok(state.description.length>20);assert.equal(state.h1,1);assert.equal(state.focus,'main');assert.equal(state.same,true);assert.ok(state.rooms<=3);assert.equal(state.direction,'forward');assert.equal(new URL(page.url()).pathname,new URL(route+'.html',url+'/').pathname);
       if(route==='writing'){result.writingFirstScroll=await require('./engine-browser.cjs').writingGestures(page);result.checks.writingFirstScroll=true;}
@@ -119,10 +135,15 @@ async function scenario(browser,url,s){
     await ready(page,'talks');await settled(page);await page.waitForTimeout(200);assert.equal(await page.locator('body').getAttribute('data-page'),'talks');result.checks.rapidNavigation=true;
     await page.locator(selector('research')).first().evaluate(el=>el.click());
     await page.waitForFunction(()=>document.querySelector('.space-scene').dataset.travel==='flying'&&Number(document.querySelector('.space-scene').dataset.progress)>.3);
+    const retargetDeparture=await page.locator('#site-content').evaluate(el=>({opacity:Number(getComputedStyle(el).opacity),depth:Number(el.dataset.flightDepth)}));
     await page.evaluate(()=>{window.__flightSamples=[];document.querySelector('header a[href="writing.html"]').click();});
     await ready(page,'writing');await settled(page);
     const retarget=await page.evaluate(()=>window.__flightSamples.filter(x=>x.progress<.18));
-    assert.ok(retarget.length>0);assert.ok(retarget.every(x=>x.opacity===0),'hidden text stays hidden when retargeting');
+    assert.ok(retarget.length>0);
+    if(variant==='color'){
+      assert.ok(retarget.every(x=>x.opacity<=retargetDeparture.opacity+.001),'retarget keeps the current spatial opacity');
+      assert.ok(retarget.every(x=>x.direction==='forward'?x.depth>=retargetDeparture.depth:x.depth<=retargetDeparture.depth),'retarget continues the departing plane');
+    }else assert.ok(retarget.every(x=>x.opacity===0),'hidden text stays hidden when retargeting');
     result.checks.retargetOpacity=true;await click(page,'talks');await settled(page);
     // Exit/arrival interruptions must leave readable, interactive destination content.
     for(const kind of ['off','print','hidden']){
@@ -167,7 +188,7 @@ async function scenario(browser,url,s){
   return result;
 }
 function scenarios(engine){return [1440,390].flatMap(width=>['light','dark'].map(theme=>({engine,width,theme})));}
-module.exports={scenario,scenarios,checks,reverseEndpoints};
+module.exports={scenario,scenarios,checks,reverseEndpoints,checkTiming};
 if(require.main===module)(async()=>{
   const {toolRequire,launchOptions,report}=require('./common.cjs'),{start}=require('./serve.cjs');
   const {server,url}=await start(),browser=await toolRequire('playwright').firefox.launch(launchOptions('firefox'));

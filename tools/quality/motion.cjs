@@ -82,6 +82,14 @@ async function flights(browser,url,profile){
       rows.push({from,to:destination,...profile,...summarize(data,'flight')});
     }
     await page.locator('#space-motion').evaluate(el=>el.click());await page.waitForTimeout(200);
+    // Populate the finite five-route document cache before measuring retention.
+    // The flight itinerary visits four primary routes; Credits is a cached
+    // utility document too. Compare the same warm Index state over 40 cycles.
+    const warmedRoutes=[...routes.slice(1),routes[0]];
+    for(const destination of warmedRoutes){
+      await page.evaluate(destination=>document.querySelector(`a[href="${destination==='index'?'./':destination+'.html'}"]`).click(),destination);
+      await page.waitForFunction(destination=>document.body.dataset.page===destination&&!document.querySelector('#site-content').hasAttribute('aria-busy'),destination);
+    }
     await cdp.send('HeapProfiler.collectGarbage');const before=await cdp.send('Memory.getDOMCounters');
     for(let i=0;i<40;i++){
       const destination=routes[(i+1)%routes.length];
@@ -91,7 +99,7 @@ async function flights(browser,url,profile){
     await page.evaluate(()=>{window.__qualityMotion.frames=[];window.__qualityMotion.longTasks=[];});
     await cdp.send('HeapProfiler.collectGarbage');const after=await cdp.send('Memory.getDOMCounters');
     const retained=await page.evaluate(()=>window.SiteScene.diagnostics());
-    return {...profile,rows,errors,cycles:40,before,after,retained};
+    return {...profile,rows,errors,cycles:40,warmedRoutes,before,after,retained};
   }finally{await ctx.close();}
 }
 async function main(){

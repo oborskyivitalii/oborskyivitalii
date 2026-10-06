@@ -260,6 +260,14 @@ module.exports=function(api) {
       if(t===1){current=journey.to;journey=null;refineAt=clock()+250;}
     }
   }
+  function advanceAnimation(delta,time) {
+    if(!animation || !enabled || hold)return;
+    const dt=animation.last===null?delta:Math.min(80,Math.max(0,time-animation.last));
+    animation.last=time;
+    current=followCamera(current,animation.to,dt);
+    const done=Math.hypot(...sub(current.position,animation.to.position),...sub(current.target,animation.to.target))<1e-5;
+    if(done){current=animation.to;animation=null;}
+  }
   function frame(time) {
     pending=null;if(document.hidden || printing || !initialized || failed)return;
     try{flushLayout();}catch{fail();return;}
@@ -270,14 +278,7 @@ module.exports=function(api) {
     // Arrival paints retain the already prepared compact scene. Desktop detail
     // returns after text is ready, only on the existing living scene scheduler.
     if(flightDetail&&!journey&&!animation&&living&&refineAt!==null&&time>=refineAt){flightDetail=false;refineAt=null;}
-    if(animation && enabled && !hold) {
-      const dt=animation.last===null?delta:Math.min(80,Math.max(0,time-animation.last));
-      animation.last=time;
-      current=followCamera(current,animation.to,dt);
-      const done=Math.hypot(...sub(current.position,animation.to.position),...sub(current.target,animation.to.target))<1e-5;
-      if(done)current=animation.to;
-      if(done)animation=null;
-    }
+    advanceAnimation(delta,time);
     // Camera response gets a temporary, cost-bounded higher cadence. Deadlines
     // retain fractional phase instead of rounding every frame down to 20/15Hz.
     const cameraRate=Math.min([30,20,15][tier],cadenceFor(costAverage,compact,true));
