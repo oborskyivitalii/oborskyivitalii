@@ -127,7 +127,70 @@ The third run 37466005422 binds source 428f5ee, immutable
 It cannot serve as acceptance for a subsequent mode-fixture correction: the
 final source head needs its own complete matching CI gate and stable promotion.
 
-## Acceptance and operation
+## Complete matrix findings and bounded causal screen
+
+The third Linux artifact 11416411109 restores the complete collection: 390
+functional scenarios, 12 navigation cases and 39 analytics cases. Functional
+passes 385/390 and navigation 8/12, so this source is not accepted. Color 12/12,
+static, hosted bytes, captures and the uninstrumented Chrome performance/soak
+jobs pass. Windows artifact 11416350561 passes 40/40 functional, but only 6/8
+navigation. macOS passes 20 functional and four navigation cases.
+
+The first Linux WebKit normal startup repeatedly remains visible/focused with
+one Canvas paint, one callback and no recorded error through its original
+1500ms next-paint deadline. Later WebKit scenarios animate. Existing public
+state does not establish whether a native RAF is pending, cancelled or rejected
+by a private lifecycle condition; no scheduler source fix is justified yet.
+Firefox records a new adaptive device hold inside live scroll/navigation groups
+after a successful public resume. The viewport remains desktop, so the Color
+ribbon mesh still uses step 1.25 while model detail and DPR already adapt. The
+same Writing pose produces about 238–239 ribbon facets at that step and 99 at
+step 3. This is a cost hypothesis, not a measured speedup or accepted remedy.
+
+Run 37467434061 binds fixture head abfb1f2. Its public runtime is byte-identical
+to 3442934 and 428f5ee. It corrects actual public mode selection and retains
+failed endpoint rows before assertions; it does not fix a mid-group re-hold or
+the WebKit first-frame stall. Its full results must remain associated with that
+exact head even if further diagnosis advances the PR.
+
+The dated private browser-gate CI screen records actual RAF request/entry/exit/
+cancellation and private scheduler/quality state, using two fresh WebKit boots
+and a balanced Firefox Writing control/mesh-adaptive pair alone and under the
+same three-engine contention. Both variants derive from one exact current Color
+parent and have distinct fingerprints with fullGate:false. Mesh adaptation
+retains viewport projection, far range and mobile geometry; tier zero is exact.
+No public runtime changes or deployments occur in this screen. Trace/stage
+instrumentation adds work, so its durations cannot establish final performance
+acceptance. A supported correction still needs the normal uninstrumented full
+gate and matching stable promotion. Preserve every fixture failure as a failure.
+
+Fourth-run performance artifact 11417463093 fails Research/mobile Lighthouse
+TBT: the three trials report 327, 36 and 676.5ms (median 327ms, limit 200ms).
+Third-run identical public bytes report 39.5, 103 and 34ms. Both use EPYC 9V74.
+Both bind public digest
+`0c382abbed60068edf76478d25867fd2dd9b5efd3e583b8c718005e110bb285b`
+and Color fingerprint
+`510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb`.
+Third-run performance artifact is 11415956829. Exact ZIP members for both are
+`lighthouse-research-mobile-1.json`, `-2.json` and `-3.json`, with their source-
+bound `lighthouse.json` wrapper and `lighthouse-summary.json` summary.
+The recorded long tasks are assigned to space.js after load: fourth trial one
+records 102.142ms at 2536.608ms; trial three records 153.478ms at 2443.953ms and
+59.777ms at 2597.439ms. All have the same eight network requests, approximately
+70.4KB transferred and zero font requests. The LHR contains no trace/profile/
+stack, so attribution to a particular function or proof of infrastructure noise
+is not available. This failure also blocks promotion and merge; do not rerun an
+unchanged source merely to obtain green or describe diagnostic trace timing as
+Lighthouse acceptance.
+
+Late native endpoint growth now requires the actual growth marker and native
+end within the existing 1000ms reconciliation lease, retaining every position,
+range, motion and body/footer sample. The original 2px tolerance remains. A
+supported-capability positive paint probe uses the same original 1500ms bound as
+normal startup; it cannot pass on a frozen frame. Neither observer forces a
+layout invalidation, resets motion or retries a failed gesture.
+
+## Final acceptance and operation
 
 The new source remains unaccepted until all full jobs and matching reports pass,
 then stable alias verification and recovery recording succeed. Record the final

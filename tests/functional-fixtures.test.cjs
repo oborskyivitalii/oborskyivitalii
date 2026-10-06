@@ -7,10 +7,10 @@ const helpersSource=source.slice(begin,end);
 const plain=value=>JSON.parse(JSON.stringify(value));
 function helpers(){
   let time=0;
-  const scene={dataset:{camera:'opening',phase:'0',quality:'full'}},attached=new Set();
-  const context=vm.createContext({assert,window:{__quality:{paints:0,callbacks:0}},document:{hidden:false,querySelector:selector=>selector==='.space-scene'?attached.has(selector)&&scene:attached.has(selector)&&{}},performance:{now:()=>time},scrollY:0,state:async page=>page.snapshot()});
-  const methods=vm.runInContext(helpersSource+'\n({navigateDocument,forwardCamera,forwardCameraResponded})',context);
-  return {...methods,context,scene,attached,time:()=>time,setTime:value=>time=value,snapshot:()=>({scrollY:context.scrollY,camera:scene.dataset.camera,paints:context.window.__quality.paints,forwardResponse:context.window.__forwardCameraResponse?plain(context.window.__forwardCameraResponse):null})};
+  const scene={dataset:{camera:'opening',phase:'0',quality:'full',ready:'true'}},motion={textContent:'Motion: on',hidden:false,disabled:false},attached=new Set();
+  const context=vm.createContext({assert,window:{__quality:{paints:0,callbacks:0}},document:{hidden:false,visibilityState:'visible',hasFocus:()=>true,querySelector:selector=>selector==='.space-scene'?attached.has(selector)&&scene:selector==='#space-motion'?attached.has(selector)&&motion:attached.has(selector)&&{}},performance:{now:()=>time},scrollY:0,state:async page=>page.snapshot()});
+  const methods=vm.runInContext(helpersSource+'\n({navigateDocument,forwardCamera,forwardCameraResponded,nextPaintReady,nextPaintSample})',context);
+  return {...methods,context,scene,motion,attached,time:()=>time,setTime:value=>time=value,snapshot:()=>({scrollY:context.scrollY,camera:scene.dataset.camera,phase:scene.dataset.phase,quality:scene.dataset.quality,ready:scene.dataset.ready==='true',paints:context.window.__quality.paints,callbacks:context.window.__quality.callbacks,forwardResponse:context.window.__forwardCameraResponse?plain(context.window.__forwardCameraResponse):null})};
 }
 function deferred(){
   let resolve,reject;const promise=new Promise((yes,no)=>{resolve=yes;reject=no;});
@@ -119,4 +119,53 @@ test('forward response allows native subpixel rounding but does not demand trave
   const short=helpers();short.attached.add('.space-scene');
   const result=await short.forwardCamera({snapshot:()=>short.snapshot()},'opening',{range:1,target:1});
   assert.equal(result.camera,'opening');assert.equal(result.forwardResponse,null);
+});
+function paintPage(h,change){
+  h.attached.add('.space-scene');h.attached.add('#space-motion');
+  return {snapshot:()=>h.snapshot(),evaluate:async(fn,arg)=>fn(arg),async waitForFunction(fn,arg,options){
+    assert.deepEqual(plain(options),{polling:50,timeout:1500});
+    for(let elapsed=0;elapsed<=options.timeout;elapsed+=options.polling){h.setTime(elapsed);change(elapsed,h);if(fn(arg))return;}
+    throw Error('Controlled next-paint deadline after 1500ms');
+  }};
+}
+test('next-paint observation waits for an actual late paint without changing the 1500ms budget',async()=>{
+  const h=helpers();h.context.window.__quality={paints:1,callbacks:1};const before=h.snapshot();
+  const page=paintPage(h,(time,current)=>{if(time>=450){current.context.window.__quality.paints=2;current.context.window.__quality.callbacks=2;current.scene.dataset.phase='.45';}});
+  await h.nextPaintReady(page,before);const probe=plain(h.context.window.__nextPaintObserver);
+  assert.equal(probe.status,'painted');assert.equal(probe.elapsedMs,450);assert.equal(probe.timeoutMs,1500);assert.deepEqual(probe.baseline,before);
+  assert.equal(probe.samples.length,10);assert.equal(probe.samples[0].paints,1);assert.equal(probe.samples.at(-1).paints,2);
+  assert.equal(probe.samples.at(-1).time,450);assert.ok(probe.samples.every(sample=>sample.camera==='opening'));
+});
+test('ready visible focused phase-zero with only its initial paint fails at 1500ms and retains all observations',async()=>{
+  const h=helpers();h.context.window.__quality={paints:1,callbacks:1};const before=h.snapshot();
+  const page=paintPage(h,()=>{});await assert.rejects(h.nextPaintReady(page,before),/Controlled next-paint deadline after 1500ms/);
+  const probe=plain(h.context.window.__nextPaintObserver);assert.equal(h.time(),1500);assert.equal(probe.status,'failed');assert.match(probe.error,/1500ms/);assert.equal(probe.timeoutMs,1500);
+  assert.deepEqual(probe.baseline,before);assert.equal(probe.samples.length,31);assert.equal(probe.samples[0].time,0);assert.equal(probe.samples.at(-1).time,1500);
+  for(const sample of probe.samples){assert.equal(sample.paints,1);assert.equal(sample.callbacks,1);assert.equal(sample.phase,'0');assert.equal(sample.ready,true);assert.equal(sample.hidden,false);assert.equal(sample.visibility,'visible');assert.equal(sample.focus,true);assert.equal(sample.motion,'Motion: on');assert.equal(sample.y,0);}
+});
+test('RAF callbacks or a changed phase cannot fabricate a positive paint observation',async()=>{
+  for(const paints of [0,1,undefined,NaN]){
+    const h=helpers();h.context.window.__quality={paints:1,callbacks:1};const before=h.snapshot();
+    const page=paintPage(h,(time,current)=>{current.context.window.__quality.paints=paints;current.context.window.__quality.callbacks=1+time/50;current.scene.dataset.phase=String(time/50);});
+    await assert.rejects(h.nextPaintReady(page,before),/Controlled next-paint deadline after 1500ms/);const probe=plain(h.context.window.__nextPaintObserver);
+    assert.equal(probe.status,'failed');assert.equal(probe.samples.length,31);assert.equal(probe.samples.at(-1).callbacks,31);assert.equal(probe.samples.at(-1).phase,'30');assert.equal(probe.samples.at(-1).paints,Number.isNaN(paints)?null:paints);
+  }
+});
+test('scenario tracing is explicit and its installation does not schedule extra RAF work',async()=>{
+  const setupSource=source.slice(source.indexOf('function probe(){'),source.indexOf('async function state(page)'));
+  const scenarioSource=source.slice(source.indexOf('async function scenario('),source.indexOf('\nfunction scenarios(',source.indexOf('async function scenario(')));
+  for(const trace of [undefined,false,true]){
+    let requests=0,traceLoads=0,closed=false;
+    const window={performance:{now:()=>0},requestAnimationFrame(){requests++;return requests;},cancelAnimationFrame(){},addEventListener(){}};
+    const document={hidden:false,visibilityState:'visible',readyState:'complete',hasFocus:()=>true,body:{dataset:{page:'index'}},querySelector:()=>null,addEventListener(){}};
+    const context=vm.createContext({assert,window,document,localStorage:{setItem(){}},CanvasRenderingContext2D:class CanvasRenderingContext2D{clearRect(){}},normal:async()=>({positiveProbe:true}),failure:async()=>({}),navigateDocument:async()=>{},state:async()=>null,path,out:'/unused',require(name){assert.equal(name,'./browser-gate-trace.cjs');traceLoads++;return require('../tools/quality/browser-gate-trace.cjs');}});
+    vm.runInContext(setupSource,context);
+    const scenario=vm.runInContext('('+scenarioSource+')',context);
+    const page={on(){},evaluate:async fn=>fn()},ctx={addInitScript:async({content})=>vm.runInContext(content,context),newPage:async()=>page,close:async()=>{closed=true;}};
+    const result=await scenario({newContext:async()=>ctx},'https://owned.invalid',{engine:'webkit',route:'index',width:1440,theme:'light',mode:'normal',...(trace===undefined?{}:{trace})});
+    assert.equal(result.pass,true);assert.equal(closed,true);assert.equal(requests,0,'diagnostics may not create animation work');
+    assert.equal(traceLoads,trace===true?1:0);assert.equal(typeof window.__browserGateTrace,trace===true?'object':'undefined');
+    assert.equal(result.diagnosticTrace?.installed,trace===true?true:undefined);
+    if(trace===true)assert.equal(result.diagnosticTrace.events[0].kind,'installed');
+  }
 });

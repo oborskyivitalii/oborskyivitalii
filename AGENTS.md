@@ -1,5 +1,21 @@
 # Agent guidance for personal publications
 
+## Bounded browser-gate attribution — 2026-10-06
+
+The authorized full gate restored all 390 Linux scenarios and exposed Firefox
+adaptive holds and the first WebKit live-frame stall. Complete causal diagnosis
+before a supported source correction or another full staging request. The dated
+browser-gate workflow may run once through the #23/path-scoped PR trigger because
+manual workflow dispatch is not available in this session. Remove that trigger
+after retaining the bounded evidence. It uses read-only CI, private loopback
+Color derivatives with exact source/parent lineage and fullGate:false; there is
+no deployment. Compare ribbon mesh adaptation on one runner in balanced serial
+and three-engine conditions. Trace requested, entered and cancelled RAF handles,
+private scheduler state and actual quality/draw costs. Keep original deadlines,
+holds, failed observations and projection. Diagnostic completion is not full
+acceptance; only a corrected exact head passing full staging and promotion may
+merge. Existing public-source fingerprints are unchanged at this diagnostic phase.
+
 ## Full staging and merge authorized — 2026-10-06
 
 The maintainer now authorizes the next sequence: stage the current open #23

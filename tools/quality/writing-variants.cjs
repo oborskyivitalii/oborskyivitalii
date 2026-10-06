@@ -16,9 +16,14 @@ const descriptions={
   'layout-control':'Apply canonical separately measured row/control constraints; retain native grid/flex and every publication.',
   'controls-off':'Replace filters/content controls with measured empty placeholders after ordinary archive initialization; preserve publications and native range.',
   'row-grid-off':'Replace only constrained publication outer grids with positioned native child footprints; retain title flex and text.',
-  'title-flex-off':'Replace only constrained title flex layout with positioned native text/arrow footprints; retain outer grids.'
+  'title-flex-off':'Replace only constrained title flex layout with positioned native text/arrow footprints; retain outer grids.',
+  'browser-gate-trace':'Expose private scheduler state and post-quality draw costs; preserve the complete normal Color rendition.',
+  'browser-gate-adaptive-ribbons':'Retain private browser-gate probes and interpolate desktop ribbon mesh step with actual detail tier; preserve viewport projection, visibility bounds and mobile geometry.'
 };
-const labels=Object.keys(descriptions);
+// The dated Writing screen remains its original thirteen interventions. These
+// browser-gate renditions are derived only when explicitly requested by a probe.
+const browserGateLabels=['browser-gate-trace','browser-gate-adaptive-ribbons'];
+const labels=Object.keys(descriptions).filter(label=>!browserGateLabels.includes(label));
 function replaceOnce(source,needle,replacement,file,patches){
   const matches=source.split(needle).length-1;
   assert.equal(matches,1,'diagnostic patch must match exactly once: '+file+' '+needle.slice(0,70));
@@ -26,10 +31,24 @@ function replaceOnce(source,needle,replacement,file,patches){
   patches.push({file,matches,needleSha256:artifact.digest(needle),replacementSha256:artifact.digest(replacement),beforeSha256:artifact.digest(source),afterSha256:artifact.digest(result)});
   return result;
 }
+function patchBrowserGate(patch,label,source){
+  assert.equal(source.includes('__browserGateScheduler'),false,'browser-gate diagnostic may be applied exactly once');
+  patch('space.js','window.SiteScene={',`Object.defineProperty(window,"__browserGateScheduler",{get:()=>({pending,enabled,hold,printing,initialized,failed,page,tier,detailTier,slow,fast,idleRate,costAverage,lastFrame,nextDraw})});
+  window.SiteScene={`);
+  patch('space.js','      if(living)quality(renderCost,time);',`      if(living)quality(renderCost,time);
+      diagnostic("browser-gate-frame",{start,renderCost,...window.__browserGateScheduler,ribbonFaces:Number(scene.dataset.ribbonFaces||0),ribbonSignals:Number(scene.dataset.ribbonSignals||0)});`);
+  if(label!=='browser-gate-adaptive-ribbons')return;
+  patch('space.js','const state={current,width,height,ambientTime,compact,scene};','const state={current,width,height,ambientTime,compact,scene,detailTier};');
+  patch('space.js','collect({current,width,height,ambientTime,compact,scene})','collect({current,width,height,ambientTime,compact,scene,detailTier=0})');
+  patch('space.js','project(current,width,height,ambientTime,compact);','project(current,width,height,ambientTime,compact,detailTier);');
+  patch('space.js','return function projectRibbons(current,width,height,time,compact){','return function projectRibbons(current,width,height,time,compact,ribbonMesh=0){');
+  patch('space.js','shapes=[],step=compact?3:1.25,far=compact?64:105;','shapes=[],step=compact?3:1.25+Math.max(0,Math.min(2,ribbonMesh))*.875,far=compact?64:105;');
+}
 function patchRuntime(scripts,label){
-  assert.ok(labels.includes(label),'unsupported Writing intervention');
+  assert.ok(labels.includes(label)||browserGateLabels.includes(label),'unsupported Writing intervention');
   const result={...scripts},patches=[];
   const patch=(file,needle,replacement)=>{result[file]=replaceOnce(result[file],needle,replacement,file,patches);};
+  if(browserGateLabels.includes(label))patchBrowserGate(patch,label,result['space.js']);
   if(label==='no-ribbons')patch('space.js','const sceneEffects=effects?.scene?.(api);','const sceneEffects=null; // Private Writing diagnostic: ribbons omitted.');
   if(label==='no-canvas-draw')patch('space.js','paintShapes(ctx,shapes,colors,sceneEffects?.paint);','void shapes; // Private Writing diagnostic: Canvas shape submission omitted.');
   if(label==='thematic-off'||label==='shared-off'){
@@ -115,4 +134,4 @@ function build(inputRoot){
   ]};
 }
 if(require.main===module){const result=build(path.resolve(process.argv[2]));console.log(JSON.stringify({labels:result.labels,deferred:result.deferred}));}
-module.exports={build,derive,patchRuntime,labels,descriptions};
+module.exports={build,derive,patchRuntime,labels,browserGateLabels,descriptions};

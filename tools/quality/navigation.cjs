@@ -46,6 +46,33 @@ async function publicMotionMode(page,mode,group){
     evidence.status='ready';await saveMotionGroup(page,evidence);return evidence;
   }catch(error){evidence.status='failed';evidence.error=error.message;await saveMotionGroup(page,evidence).catch(()=>{});throw error;}
 }
+function requestEndpoint({from,to,late,token}){
+  const growth=window.__endpointGrowth={from,to,late,token,started:performance.now(),executed:false};
+  const range=()=>({y:scrollY,max:Math.max(0,document.documentElement.scrollHeight-innerHeight)});
+  const grow=()=>{
+    growth.dispatched=performance.now();growth.page=document.body.dataset.page;
+    if(growth.page!==to){growth.skipped=true;return;}
+    growth.before=range();
+    const el=document.createElement('div');el.dataset.endpointFixture=token;el.style.height='900px';document.querySelector('footer').append(el);
+    if(to==='writing'){document.querySelector('#archive-topic').value='systems';document.querySelector('#archive-topic').dispatchEvent(new Event('change',{bubbles:true}));}
+    growth.after=range();growth.executed=true;growth.completed=performance.now();
+  };
+  if(late)window.addEventListener('site:page-ready',()=>setTimeout(grow,80),{once:true});
+  if(!window.SiteNavigation.go(to,{atEnd:true}))throw Error('reverse rejected');
+}
+function endpointSample(expected){
+  const scene=document.querySelector('.space-scene'),content=document.querySelector('#site-content'),probe=window.__endpointSettlement,growth=window.__endpointGrowth;
+  const sample={time:performance.now()-probe.start,y:scrollY,max:Math.max(0,document.documentElement.scrollHeight-innerHeight),page:document.body.dataset.page,scene:scene.dataset.route,travel:scene.dataset.travel,busy:content.hasAttribute('aria-busy'),phase:scene.dataset.phase,motion:document.querySelector('#space-motion').textContent,quality:scene.dataset.quality,hidden:document.hidden,focus:document.hasFocus(),bodyHeight:document.body.getBoundingClientRect().height,footerHeight:document.querySelector('footer').getBoundingClientRect().height,growthExecuted:growth?.executed===true&&growth.token===expected.token,marker:!!document.querySelector('[data-endpoint-fixture="'+expected.token+'"]')};
+  probe.samples.push(sample);probe.elapsedMs=sample.time;
+  const ready=sample.page===expected.route&&sample.scene===expected.route&&sample.travel==='settled'&&!sample.busy&&Math.abs(sample.max-sample.y)<=2&&(!expected.late||sample.growthExecuted&&sample.marker);
+  if(ready)probe.status='settled';return ready;
+}
+async function endpointReady(page,expected){
+  await page.evaluate(expected=>{const probe=window.__endpointSettlement={expected,start:performance.now(),timeoutMs:1000,status:'sampling',samples:[]};(window.__endpointSettlements??=[]).push(probe);},expected);
+  try{await page.waitForFunction(endpointSample,expected,{polling:50,timeout:1000});}
+  catch(error){await page.evaluate(reason=>{window.__endpointSettlement.status='failed';window.__endpointSettlement.error=reason;},error.message).catch(()=>{});throw error;}
+  return page.evaluate(()=>({...window.__endpointSettlement,growth:window.__endpointGrowth}));
+}
 function historyPositionSample(expected){
   const scene=document.querySelector('.space-scene'),content=document.querySelector('#site-content'),site=history.state?.site;
   const sample={part:expected.part,time:performance.now(),page:document.body.dataset.page,scene:scene.dataset.route,travel:scene.dataset.travel,busy:content.hasAttribute('aria-busy'),url:location.href,y:scrollY,savedY:site?.scroll?.[1],savedPage:site?.page};
@@ -146,21 +173,12 @@ async function reverseEndpoints(page){
     for(const [from,to] of [['talks','writing'],['writing','research'],['research','index']])for(const late of [false,true]){
       await page.evaluate(route=>document.querySelectorAll('.site-header nav a')[['index','research','writing','talks'].indexOf(route)].click(),from);
       await ready(page,from);await settled(page);
-      await page.evaluate(({to,late})=>{
-        const grow=()=>{
-          if(document.body.dataset.page!==to)return;
-          const el=document.createElement('div');el.dataset.endpointFixture='true';el.style.height='900px';document.querySelector('footer').append(el);
-          if(to==='writing'){
-            document.querySelector('#archive-topic').value='systems';document.querySelector('#archive-topic').dispatchEvent(new Event('change',{bubbles:true}));
-          }
-        };
-        if(late)window.addEventListener('site:page-ready',()=>setTimeout(grow,80),{once:true});
-        if(!window.SiteNavigation.go(to,{atEnd:true}))throw Error('reverse rejected');
-      },{to,late});
-      await ready(page,to);await settled(page);await page.waitForTimeout(250);
+      const token=[from,to,motion,String(late)].join('-');await page.evaluate(requestEndpoint,{from,to,late,token});
+      await ready(page,to);await settled(page);
+      const endpointEvidence=await endpointReady(page,{route:to,late,token});
       const state=await range();
       const actualMotion=await page.evaluate(require('./engine-browser.cjs').motionState);
-      rows.push({from,to,motion,late,...state,actualMotion});
+      rows.push({from,to,motion,late,...state,actualMotion,endpointEvidence});
       await page.evaluate(rows=>window.__reverseEndpointRows=rows,rows);
       assert.ok(Math.abs(state.max-state.y)<=2,`reverse ${from}→${to} ${motion} late=${late}: ${JSON.stringify(state)}`);
       assert.equal(actualMotion.label,'Motion: '+motion,'reverse endpoint retains its declared mode');assert.equal(actualMotion.pressed,String(motion==='on'));
@@ -279,13 +297,13 @@ async function scenario(browser,url,s){
     assert.deepEqual(errors,[]);result.pass=checks.every(key=>result.checks[key]===true);
   }catch(error){
     result.error=error.message;result.stack=error.stack;
-    result.state=await page.evaluate(()=>({page:document.body.dataset.page,url:location.href,hidden:document.hidden,navigation:typeof window.SiteNavigation,scene:{...document.querySelector('.space-scene').dataset},motion:document.querySelector('#space-motion').textContent,busy:document.querySelector('#site-content')?.hasAttribute('aria-busy'),scrollY,frames:window.__navigationFrames||[],flightSamples:window.__flightSamples||[],wheelSettlement:window.__wheelSettlement||null,historyMiddle:window.__historyMiddle||null,cameraSettling:window.__engineCameraSettling||null,motionGroups:window.__navigationMotionGroups||{},reverseEndpointRows:window.__reverseEndpointRows||[]})).catch(()=>null);
+    result.state=await page.evaluate(()=>({page:document.body.dataset.page,url:location.href,hidden:document.hidden,navigation:typeof window.SiteNavigation,scene:{...document.querySelector('.space-scene').dataset},motion:document.querySelector('#space-motion').textContent,busy:document.querySelector('#site-content')?.hasAttribute('aria-busy'),scrollY,frames:window.__navigationFrames||[],flightSamples:window.__flightSamples||[],wheelSettlement:window.__wheelSettlement||null,historyMiddle:window.__historyMiddle||null,cameraSettling:window.__engineCameraSettling||null,motionGroups:window.__navigationMotionGroups||{},reverseEndpointRows:window.__reverseEndpointRows||[],endpointSettlements:window.__endpointSettlements||[],endpointGrowth:window.__endpointGrowth||null})).catch(()=>null);
   }
   finally{await ctx.close();}
   return result;
 }
 function scenarios(engine){return [1440,390].flatMap(width=>['light','dark'].map(theme=>({engine,width,theme})));}
-module.exports={scenario,scenarios,checks,reverseEndpoints,checkTiming,archiveHistoryReady,publicMotionMode,historyPositionReady,historyPositionSample,nativeScrollSettlement,beginInterruption,timingProbe};
+module.exports={scenario,scenarios,checks,reverseEndpoints,checkTiming,archiveHistoryReady,publicMotionMode,requestEndpoint,endpointReady,endpointSample,historyPositionReady,historyPositionSample,nativeScrollSettlement,beginInterruption,timingProbe};
 if(require.main===module)(async()=>{
   const {toolRequire,launchOptions,report}=require('./common.cjs'),{start}=require('./serve.cjs');
   const {server,url}=await start(),browser=await toolRequire('playwright').firefox.launch(launchOptions('firefox'));
