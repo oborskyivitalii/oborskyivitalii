@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "b5daa63a6804ccd8837b8f45108b009f518aa821e8d668d65b17d2d66cafbe87",
+    "digest": "2814ac53d48e2d26f8c799e1456fe1ce47ec88c4f6dd714a4c9016ca6cba86a4",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -63,7 +63,7 @@
       {
         "path": ".github/workflows/site-cause-fix-probe.yml",
         "identity_mode": "content",
-        "sha256": "339cf15237ce2f15ec3ef6f736ea25befead572c00e606dc04d9fc1674cb55e3"
+        "sha256": "b172ba915ddc031350bbf5cf027e528858ada3c0e0015830dfcef7809398826e"
       },
       {
         "path": ".github/workflows/site-cause-probe.yml",
@@ -3230,7 +3230,7 @@
       {
         "path": "review/staging-readiness-20261006/DISPLAY-REQUEST.md",
         "identity_mode": "content",
-        "sha256": "a051627b154bab9a47214d2e69290c8004233cd9e98399d4530822a9da44e8d9"
+        "sha256": "661c565e92509a94518e6b5e2c0f38a574c86282e861925caf7ab848feacf30a"
       },
       {
         "path": "review/staging-readiness-20261006/REPORT.md",

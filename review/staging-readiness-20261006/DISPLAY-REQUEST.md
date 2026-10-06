@@ -14,3 +14,7 @@ which never converts an original timeout into a pass. Check an actual X client
 connection and clean up only each owned process group. Keep all observations,
 source/tree and environment. Collection green is not full acceptance. Remove
 this dated PR trigger after retaining the evidence and before another full stage.
+
+Run 37498138713 stopped before observation because xdpyinfo was absent on both
+fresh runners. It contains no startup measurements. Install its x11-utils
+package in CI before the unchanged protocol; keep this prerequisite failure.

@@ -37,6 +37,10 @@ jobs:
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
           node-version: '24.19.0'
+      - name: Install the real X11 connection probe
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends x11-utils
       - name: Assert installed display tools
         run: |
           command -v Xvfb
