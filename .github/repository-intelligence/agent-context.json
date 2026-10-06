@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "3949183e3c12af9c2f4c36f18acc2b34f55ff40cdbf0e9a197f119902d61623b",
+    "digest": "833b3878cc5082abe988f7e9f081e05114d1bf76820b417973b20d57ca4cfbba",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -88,7 +88,7 @@
       {
         "path": ".github/workflows/site-writing-probe.yml",
         "identity_mode": "content",
-        "sha256": "6c902fdaaa74bbee42b70608c3ac137dfbccab6fc03f8b510b61a763ad86aa92"
+        "sha256": "f176118b5991e7a68ee37ed8fca1f80c7bd5a78b6f6c69b826e60c9c6e8f7197"
       },
       {
         "path": ".gitignore",
@@ -97,7 +97,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "b71e950aaba31f1f3eb23da3e4a8f84de068580b953429ea6ea3f6f75850467c"
+        "sha256": "a0dababc470248323699809eb5b7da9eb6ec651ca51c1f8827fa1477854855d9"
       },
       {
         "path": "BACKLOG.md",
@@ -3178,6 +3178,11 @@
         "sha256": "b7f04d26962ee76e8677205de15d3095b938b0a6645f96d20494bcb5182a3fe7"
       },
       {
+        "path": "review/writing-diagnosis-20261006/EXECUTION.md",
+        "identity_mode": "content",
+        "sha256": "a88b7db35d326986e3119b8eeffe18b72cd96e8bb50e5bbcbe38fd285e88f5c2"
+      },
+      {
         "path": "review/writing-diagnosis-20261006/SOL-TASKS.md",
         "identity_mode": "content",
         "sha256": "52e43b71d75c6d71e9af871deb152f2fdf3dcc8384f566077be3c90e4a5d17c0"
@@ -3190,6 +3195,11 @@
       {
         "path": "review/writing-diagnosis-20261006/inventory.cjs",
         "identity_mode": "existence"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/run.json",
+        "identity_mode": "content",
+        "sha256": "278dc27e66fee7a3b40e3ae99075d37c93eb4d697ca20449e52936c3cc7886de"
       },
       {
         "path": "site/README.md",
@@ -3497,6 +3507,14 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tests/writing-diagnosis.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/writing-variants.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tools/RI-LICENSE.md",
         "identity_mode": "content",
         "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd"
@@ -3704,7 +3722,15 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tools/quality/writing-diagnosis.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tools/quality/writing-probe.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/writing-variants.cjs",
         "identity_mode": "existence"
       },
       {
@@ -5522,6 +5548,13 @@
       ]
     },
     {
+      "path": "review/writing-diagnosis-20261006/EXECUTION.md",
+      "title": "Sol execution — 6 October 2026",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "review/writing-diagnosis-20261006/SOL-TASKS.md",
       "title": "Sol: isolate cold Writing costs, one factor at a time",
       "instructions": [
@@ -5531,6 +5564,13 @@
     {
       "path": "review/writing-diagnosis-20261006/geometry.json",
       "title": "review/writing-diagnosis-20261006/geometry.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/writing-diagnosis-20261006/run.json",
+      "title": "review/writing-diagnosis-20261006/run.json",
       "instructions": [
         "AGENTS.md"
       ]

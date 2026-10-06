@@ -17,8 +17,9 @@ function serve(inputs){
   });
   return new Promise(resolve=>server.listen(0,'127.0.0.1',()=>resolve({server,url:'http://127.0.0.1:'+server.address().port})));
 }
-function initialize(){
-  localStorage.setItem('vo.theme','dark');localStorage.setItem('vo.content-flight','on');
+function initialize({theme='dark',contentFlight=true,fineStages=false}={}){
+  localStorage.setItem('vo.theme',theme);localStorage.setItem('vo.content-flight',contentFlight?'on':'off');
+  if(fineStages)window.SiteEngineStages=true;
   window.__writingReady=null;
   const observer=new MutationObserver(()=>{
     if(window.__writingReady===null&&document.querySelector('.space-scene')?.dataset.ready==='true'){
@@ -27,13 +28,13 @@ function initialize(){
   });
   observer.observe(document,{subtree:true,attributes:true,attributeFilter:['data-ready']});
 }
-async function open(){
+async function open(settings=profile,options={}){
   const browser=await toolRequire('playwright').chromium.launch(launchOptions('chromium'));
-  const context=await browser.newContext({viewport:{width:profile.width,height:profile.height},deviceScaleFactor:profile.deviceScaleFactor,serviceWorkers:'block'});
-  await context.addInitScript(installProbe);await context.addInitScript(initialize);
+  const context=await browser.newContext({viewport:{width:settings.width,height:settings.height},deviceScaleFactor:settings.deviceScaleFactor,serviceWorkers:'block'});
+  await context.addInitScript(installProbe);await context.addInitScript(initialize,{theme:settings.theme,...options});
   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
-  const cdp=await context.newCDPSession(page);await cdp.send('Network.enable');await cdp.send('Network.setCacheDisabled',{cacheDisabled:true});await cdp.send('Emulation.setCPUThrottlingRate',{rate:profile.cpuRate});
-  return {browser,page,errors};
+  const cdp=await context.newCDPSession(page);await cdp.send('Network.enable');await cdp.send('Network.setCacheDisabled',{cacheDisabled:true});await cdp.send('Emulation.setCPUThrottlingRate',{rate:settings.cpuRate});
+  return {browser,context,page,cdp,errors};
 }
 async function ready(page,route){
   await page.waitForFunction(route=>document.body.dataset.page===route&&document.querySelector('.space-scene')?.dataset.ready==='true'&&!document.querySelector('#site-content').hasAttribute('aria-busy')&&document.querySelector('.space-scene').dataset.travel==='settled',route,{polling:40,timeout:10000});
@@ -102,4 +103,4 @@ async function main(inputRoot,output){
   }finally{server.close();}
 }
 if(require.main===module)main(path.resolve(process.argv[2]),path.resolve(process.argv[3])).catch(error=>{console.error(error.stack);process.exitCode=1;});
-module.exports={aggregate,orders};
+module.exports={aggregate,orders,serve,open,ready,reset,measure};

@@ -1,5 +1,19 @@
 # Agent guidance for personal publications
 
+## Sol execution of Writing diagnosis — 2026-10-06
+
+The maintainer asks Sol to execute the current plan. Start with the exact
+before/current Color pair for early-detail cost, then a bounded one-factor
+attribution screen. Use the existing Writing CI workflow with the dated run
+request; ordinary source updates must not repeatedly launch diagnosis. Retain
+every raw trial and budget failure. Diagnostic private renditions never deploy.
+Only the existing PR preview pipeline publishes the normal candidate.
+
+Check Color edge-scroll listeners and duplicate footer write/read work as an
+additional hypothesis: text-flight Off still leaves those hooks active. A
+completed screening job is not performance acceptance. Make only a supported
+source optimization and confirm it with balanced paired cold runs in #23.
+
 ## Early flight detail and Writing ablations — 2026-10-06
 
 The maintainer requests earlier primitive refinement and a controlled diagnosis
