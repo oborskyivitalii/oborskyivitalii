@@ -1,9 +1,6 @@
 name: Confirm cause corrections and cold native attribution
-# One dated #23 source update; remove PR trigger after retaining observations.
+# Completed dated #23 confirmation is retained; explicit manual replay only.
 on:
-  pull_request:
-    types: [opened, synchronize, reopened]
-    paths: ['review/staging-readiness-20261006/CAUSE-FIX-REQUEST.md']
   workflow_dispatch:
     inputs:
       candidate_sha:
@@ -73,7 +70,7 @@ jobs:
           if-no-files-found: error
           retention-days: 90
   native-profile:
-    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.number == 23
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     env:
@@ -121,7 +118,7 @@ jobs:
           if-no-files-found: error
           retention-days: 90
   static-preflight:
-    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.number == 23
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     env:
@@ -207,7 +204,7 @@ jobs:
           if-no-files-found: error
           retention-days: 90
   research-pair:
-    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.number == 23
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
