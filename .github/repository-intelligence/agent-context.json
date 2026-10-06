@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "133e766b9f1418be17cb00063aeda40bec1d3dc78bd309262ac283be6318e4f5",
+    "digest": "aafdc13f8d68a07ee8729f6a143d26acf1f68b0ebcb47df7bc0165ebae595b6c",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -2895,7 +2895,7 @@
       {
         "path": "review/site-v1-offline-bundle-v11.json",
         "identity_mode": "content",
-        "sha256": "41b9664723f843d3a87882b811690a32ccdd3051eb043053145135a9b4415f07"
+        "sha256": "50bab952e3f8cf5e25a4b77ee44b5c72751f4fbe6be5f19083692951f0f5dc09"
       },
       {
         "path": "review/site-v1-offline-bundle-v3.json",
@@ -4013,7 +4013,7 @@
       {
         "path": "tools/quality/secrets-baseline.json",
         "identity_mode": "content",
-        "sha256": "c4814a2fe6f821dfcb6e10fb316a1e181cde5d196b972ba480b3a5235e91fa32"
+        "sha256": "8bff933ce846d5b1a0fa9a357f629c07d49af8626270ea40cfd658b760e293b0"
       },
       {
         "path": "tools/quality/security-rules.yml",
