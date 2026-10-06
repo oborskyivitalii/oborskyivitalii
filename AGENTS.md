@@ -1,5 +1,23 @@
 # Agent guidance for personal publications
 
+## Approved macOS WebKit full coverage — 2026-10-06
+
+The maintainer approved one narrow CI-only controller PR before runtime PR #23:
+full checks run Chromium/Firefox on Linux (260 functional / 8 navigation / 26
+analytics) and all WebKit scenarios on macOS (130 / 4 / 13), including every
+disabled-JavaScript and failure/fallback mode. Windows smoke remains 40 / 8 / 26;
+Linux Color checks remain twelve. Require all 390 unique full-engine functional
+cases, twelve navigation cases and 39 analytics cases with exact source/artifact/
+host identity and separate raw runner provenance. macOS smoke is insufficient.
+
+Preserve legacy nonfull three-engine Linux checks, all pins and original 45m
+Linux / 40m native job and page/performance budgets. The already reviewed primary
+Ubuntu archive and bounded 3/5/3m installation phases are CI-only prerequisites.
+This is the explicit exception to the sole-#23 rule for this controller change;
+it authorizes no runtime/content transfer or other PR. Runtime #23 still requires
+fresh exact-head hosted/full acceptance, stable verification and then merge.
+Production and physical-device/visual acceptance remain separate.
+
 ## CI-only preview and explicit staging — 2026-10-06
 
 The maintainer authorizes completing and integrating the preview/staging

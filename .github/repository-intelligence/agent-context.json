@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "4da43cfe186bf2213e85fdb2ab24efb00499d35893cd57f6e4f2e2fa1bdf8ff3",
+    "digest": "800c0eb04ab2c83db87487dd154dccb3b04afd53ebed4db59499218687da3183",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -73,7 +73,7 @@
       {
         "path": ".github/workflows/site-release-checks.yml",
         "identity_mode": "content",
-        "sha256": "ebd44580c8a6cf9ee0e719e2bb16a29c03aad6f13599698b89c86e5bba8d57a8"
+        "sha256": "281c8ad74eedf8c464a14530f2e4a8c44e3fcff7d1ce61dc0d01abe476dabf9a"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
@@ -92,7 +92,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "7886ef9ccfe2f99c216136a43cd594e808eac032aeaba12fb4825e577d8b7260"
+        "sha256": "3afb83b6e368d605d18e696a31f674be8db4255f9e9f64b1558989244ab6ecf8"
       },
       {
         "path": "BACKLOG.md",
