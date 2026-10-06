@@ -117,27 +117,28 @@ async function cellTrial(cell,deps){
   }
   return row;
 }
-async function main(port,input,output){
+async function main(port,input,output,{plannedCells,kind='gtk-wpe-first-evaluation-attribution',reportFile='gtk-target.json',prepare=async()=>{},trialDeps=()=>({}),finalize=()=>{}}={}){
   fs.mkdirSync(output,{recursive:true});
-  const record={schema:1,kind:'gtk-wpe-first-evaluation-attribution',port,fullGate:false,performanceAcceptance:false,source:null,baseSource:null,phase:'preflight',untrustedInput:{directory:input,trust:'untrusted-observation',manifests:{}},startedAt:new Date().toISOString(),fixture:{document:BLANK,sha256:crypto.createHash('sha256').update(BLANK).digest('hex')},existingCorePattern:readObservation('/proc/sys/kernel/core_pattern'),existingProcessLimits:readObservation('/proc/self/limits'),plan:[],rows:[],errors:[],collectionComplete:false};
-  const capture=captureStderr(output),save=()=>{record.stderr=capture.snapshot();fs.writeFileSync(path.join(output,'gtk-target.json'),JSON.stringify(record,null,2)+'\n');};save();
+  const record={schema:1,kind,port,fullGate:false,performanceAcceptance:false,source:null,baseSource:null,phase:'preflight',untrustedInput:{directory:input,trust:'untrusted-observation',manifests:{}},startedAt:new Date().toISOString(),fixture:{document:BLANK,sha256:crypto.createHash('sha256').update(BLANK).digest('hex')},existingCorePattern:readObservation('/proc/sys/kernel/core_pattern'),existingProcessLimits:readObservation('/proc/self/limits'),plan:[],rows:[],errors:[],collectionComplete:false};
+  const capture=captureStderr(output),save=()=>{record.stderr=capture.snapshot();fs.writeFileSync(path.join(output,reportFile),JSON.stringify(record,null,2)+'\n');};save();
   let server;
   try{
     assert.equal(process.env.SITE_TEST_BASE_URL,undefined,'Only a private loopback source is allowed');record.environment=require('./common.cjs').environment();
-    const cells=plan(port);record.plan=cells;save();
+    const cells=plannedCells||plan(port);record.plan=cells;save();
     const readManifest=name=>{const file=path.join(input,name),bytes=fs.readFileSync(file),rawFile=path.join(output,'untrusted-'+name);fs.writeFileSync(rawFile,bytes);record.untrustedInput.manifests[name]={path:file,retainedPath:rawFile,bytes:bytes.length,sha256:crypto.createHash('sha256').update(bytes).digest('hex')};save();const parsed=JSON.parse(bytes);record.untrustedInput.manifests[name].parsed=parsed;save();return parsed;};
     const manifest=readManifest('artifact.json'),base=readManifest('base-artifact.json'),publicDir=path.join(input,'public');require('./artifact.cjs').verify(publicDir,manifest);
     const source=identity(manifest,process.env.SITE_CANDIDATE_SHA,base);record.source=source;record.baseSource={...cleanSource(base,process.env.SITE_CANDIDATE_SHA),variant:base.components?.variant||base.variant,engine:base.components.engine};record.phase='collection';save();
     const serving=await serve(publicDir);server=serving.server;const url=serving.url;
     const functional=require('./functional.cjs'),pw=require('./common.cjs').toolRequire('playwright'),native=require('./native-display.cjs');
+    await prepare(record);save();
     let priorCleanupIncomplete=false;
     for(const [index,cell]of cells.entries()){
-      const row=await cellTrial(cell,{pw,native,functional,url,source,since:record.startedAt,stderr:()=>capture.snapshot(),retain(row){row.priorCleanupIncomplete=priorCleanupIncomplete;record.rows[index]=row;save();}});
+      const row=await cellTrial(cell,{pw,native,functional,url,source,since:record.startedAt,stderr:()=>capture.snapshot(),...trialDeps({cell,pw,record}),retain(row){row.priorCleanupIncomplete=priorCleanupIncomplete;record.rows[index]=row;save();}});
       if(row.cleanupError)priorCleanupIncomplete=true;
     }
-    record.collectionComplete=record.rows.length===cells.length&&record.rows.every(row=>row.evidenceValid&&!row.cleanupError&&!row.priorCleanupIncomplete);assert.equal(record.collectionComplete,true,'Every planned first evaluation must produce an uncontaminated retained observation');record.phase='complete';save();
+    record.collectionComplete=record.rows.length===cells.length&&record.rows.every(row=>row.evidenceValid&&!row.cleanupError&&!row.priorCleanupIncomplete);finalize(record);assert.equal(record.collectionComplete,true,'Every planned first evaluation must produce an uncontaminated retained observation');record.phase='complete';save();
   }catch(error){record.errors.push({phase:record.phase,name:error.name,message:error.message,stack:error.stack});record.phase='failed';save();throw error;}
   finally{server?.close();save();capture.stop();}
 }
 if(require.main===module)main(process.argv[2],...process.argv.slice(3).map(value=>path.resolve(value))).catch(error=>{console.error(error.stack);process.exitCode=1;});
-module.exports={plan,identity,originalInit,bounded,textCollector,command,cellTrial,serve,main,BLANK,STARTUP_MS,GOTO_MS,COLLECTION_MS,CLEANUP_MS};
+module.exports={plan,identity,originalInit,bounded,textCollector,command,nativeObservation,cellTrial,serve,main,BLANK,STARTUP_MS,GOTO_MS,COLLECTION_MS,CLEANUP_MS};

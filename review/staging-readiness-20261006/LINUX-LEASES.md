@@ -39,6 +39,18 @@ These timings support a runner partition. They do not support increasing a
 deadline, dropping a scenario, shortening observation windows, retrying a
 failed row or claiming an unmeasured renderer improvement.
 
+A conservative reconstruction separates failed rows from passing work: all
+ten failed no-JavaScript row intervals together take 3m54.30s. Subtracting
+those intervals entirely, as if their successful replacements cost zero,
+still leaves 16m04.50s for 120 passing rows (14m52.01s for 20 normal rows and
+1m12.50s for the other 100). The first passing navigation case adds 2m10.76s.
+Lifecycle crash-to-context-close intervals total only 89.47ms across the ten
+failures. [GTK-BUDGET.json](GTK-BUDGET.json) records the raw boundaries and
+derivation. These are historical row intervals, including fixture/log overhead,
+not a future hardware lower bound. A supported native correction should receive
+a complete GTK lease measurement before deciding whether the CI-only controller
+exception is necessary; an unexpected broader speedup remains unmeasured.
+
 ## Minimal prepared change
 
 The release workflow retains the existing `linux` job contract and uses

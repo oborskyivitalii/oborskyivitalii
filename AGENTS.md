@@ -1,5 +1,28 @@
 # Agent guidance for personal publications
 
+## GTK native abort postmortem — 2026-10-06
+
+Corrected screen 37513438968 at 6c67952 completes all fourteen observations:
+eleven evaluations succeed and three GTK/Xvfb full-Color disabled-JS cells
+abort, including constant evaluation and original state without init scripts.
+Both disabled-JS blank controls pass. Exact pre-evaluation WebKitWebProcess
+PIDs 5535/5688/5843 have matching SIGABRT core records; MiniBrowser and network
+process survive until teardown. Init scripts, state body and browser reuse are
+not necessary triggers. No aborting function/stack is retained yet. WPE passes
+six cells on a different runner image and headless backend, so port alone is
+not isolated. Keep this negative and failed evidence in GTK-TARGET.json.
+
+Continue with three fresh GTK normal-source controls: blank/disabled-JS
+constant, Color/enabled-JS constant, Color/disabled-JS constant. Preserve original
+init/context/navigation/180ms first evaluation and all existing bounds. Improve
+only post-failure native retention: exact pre-evaluation PID, executable, trial
+time and signal must identify any coredump info or offline debugger backtrace.
+Do not attach to a live process, change core settings, prime evaluation, alter
+browser pins or substitute ports. Retain command availability/version, failures,
+text limits and dropped bytes. Remove the completed fourteen-cell PR trigger;
+retire the native trigger after collecting its evidence. A native stack is
+causal evidence, not hosted acceptance or authorization to merge.
+
 ## GTK no-JavaScript crash localization — 2026-10-06
 
 Follow-up 37505225237 at 5e4a8f6 fixes the observed installer delay: Ubuntu

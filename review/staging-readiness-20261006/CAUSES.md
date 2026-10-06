@@ -1,5 +1,37 @@
 # Причини збоїв і виправлення — 6 жовтня 2026
 
+## GTK 37513438968: native SIGABRT, evaluator/init не є необхідним тригером
+
+Corrected collector на clean 6c67952 / tree 7d1feec зберіг усі 14 observations
+і незмінні normal Color bytes. WPE проходить 6/6. GTK/Xvfb проходить 5/8;
+три full-Color / JavaScript-off cells падають: constant `evaluate(() => 1)`,
+original `state()` та той самий original state без init script. Blank JS-off
+constant проходить із init і без нього; усі JS-on controls проходять.
+Це виключає state body, init script і reused browser як необхідні тригери;
+не підтримує їхнє вилучення як remedy.
+
+Native lifecycle утримує page-crash через 15.59/15.06/15.04 с перед teardown,
+із pageClosed=false і browserConnected=true. До evaluation процеси
+WebKitWebProcess мають PID 5535/5688/5843; після failure вони відсутні, тоді
+як MiniBrowser/network process ще живі. `coredumpctl list` зв'язує ті самі PID
+і executable з present SIGABRT cores. Це підтверджує native abort, але stack
+і assertion ще не збережено. Kernel journal читається без matching crash text;
+dmesg повертає EPERM, /var/crash порожній. [GTK-TARGET.json](GTK-TARGET.json)
+зберігає всі результати, failed lifecycle, core metadata і raw checksums.
+
+GTK і WPE runner images відрізняються (20261004.327.1 / 20260927.320.1),
+як і headed/Xvfb та headless backend. Тому cross-port comparison не доводить
+порт як єдину причину. Within-GTK document/JS/init contrasts контрольовані
+на одному runner. Automation warning є також у всіх passing WPE controls.
+Collection green означає збереження трьох abort, а не native acceptance.
+
+Наступний вузький read-only postmortem зберігає matching coredump info та
+offline backtrace після failure: fresh GTK blank JS-off, Color JS-on і Color
+JS-off constant controls, із початковим init, load, 180ms і першим evaluate.
+Жодного live attach, core configuration change, timeout extension або
+непідтвердженого runtime fix. Завершений 14-cell trigger прибирається;
+exact-head hosted/full/stable/merge лишаються попереду.
+
 ## Preflight 37511255893: нуль браузерних спостережень
 
 Обидва ports встановились, але collector перед launch помилково відкинув

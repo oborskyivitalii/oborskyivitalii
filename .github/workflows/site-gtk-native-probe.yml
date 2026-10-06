@@ -1,5 +1,8 @@
-name: Attribute GTK disabled-script target crashes
+name: Retain exact GTK WebProcess offline abort stack
 on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths: [review/staging-readiness-20261006/GTK-NATIVE-REQUEST.md]
   workflow_dispatch:
     inputs:
       candidate_sha:
@@ -9,17 +12,13 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: gtk-target-${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
+  group: gtk-native-${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
   cancel-in-progress: true
 env:
   SITE_CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
 jobs:
   native-target:
     if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.number == 23 && github.event.pull_request.head.repo.full_name == github.repository)
-    strategy:
-      fail-fast: false
-      matrix:
-        port: [gtk, wpe]
     runs-on: ubuntu-24.04
     timeout-minutes: 25
     steps:
@@ -30,12 +29,12 @@ jobs:
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
           node-version: '24.19.0'
-      - name: Validate the bounded fourteen-cell contract
-        run: node --test tests/gtk-target-probe.test.cjs
+      - name: Validate the bounded three-control and real-source contracts
+        run: node --test tests/gtk-native-probe.test.cjs tests/gtk-target-probe.test.cjs
       - name: Build exact normal Color without an intervention
         run: |
           node - <<'JS'
-          const root=process.env.RUNNER_TEMP+'/gtk-target-input/color';
+          const root=process.env.RUNNER_TEMP+'/gtk-native-input/color';
           require('./tools/quality/artifact.cjs').build(root);
           require('node:fs').copyFileSync(root+'/artifact.json',root+'/base-artifact.json');
           require('./tools/staging/color.cjs').build(root);
@@ -77,23 +76,35 @@ jobs:
       - name: Install Ubuntu WebKit and display dependencies without prior launch
         timeout-minutes: 5
         run: tools/quality/toolchain/node_modules/.bin/playwright install-deps webkit
+      - name: Retain debugger availability and install it only if absent
+        timeout-minutes: 5
+        run: |
+          mkdir -p "$RUNNER_TEMP/gtk-native-results"
+          if test -x /usr/bin/gdb; then
+            /usr/bin/gdb --version > "$RUNNER_TEMP/gtk-native-results/gdb-before-install.txt"
+            echo 'Existing /usr/bin/gdb retained; no debugger installation.' > "$RUNNER_TEMP/gtk-native-results/gdb-install.log"
+          else
+            echo '/usr/bin/gdb unavailable before optional bounded installation.' > "$RUNNER_TEMP/gtk-native-results/gdb-before-install.txt"
+            set -o pipefail
+            sudo apt-get install -y --no-install-recommends --no-upgrade gdb 2>&1 | tee "$RUNNER_TEMP/gtk-native-results/gdb-install.log"
+          fi
       - name: Download pinned WebKit without prior launch
         timeout-minutes: 3
         run: |
           tools/quality/toolchain/node_modules/.bin/playwright install webkit
           command -v Xvfb
-      - name: Collect every private first-evaluation cell and its original result
+      - name: Retain three fresh GTK outcomes and exact failed-process offline core evidence
         env:
           DEBUG: pw:browser
         run: >-
-          node tools/quality/gtk-target-probe.cjs ${{ matrix.port }}
-          "$RUNNER_TEMP/gtk-target-input/color"
-          "$RUNNER_TEMP/gtk-target-results"
+          node tools/quality/gtk-native-probe.cjs
+          "$RUNNER_TEMP/gtk-native-input/color"
+          "$RUNNER_TEMP/gtk-native-results"
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: always()
         with:
-          name: gtk-target-${{ matrix.port }}-${{ github.run_id }}-${{ github.run_attempt }}
-          path: ${{ runner.temp }}/gtk-target-results/
+          name: gtk-native-core-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/gtk-native-results/
           if-no-files-found: error
           retention-days: 90
   static-preflight:
@@ -129,7 +140,7 @@ jobs:
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: always()
         with:
-          name: gtk-target-static-${{ github.run_id }}-${{ github.run_attempt }}
+          name: gtk-native-static-${{ github.run_id }}-${{ github.run_attempt }}
           path: quality-reports/
           if-no-files-found: error
           retention-days: 90
