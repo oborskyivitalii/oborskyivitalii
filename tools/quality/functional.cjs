@@ -21,12 +21,40 @@ async function state(page){return page.evaluate(()=>{
   const scene=document.querySelector('.space-scene'),motion=document.querySelector('#space-motion');
   const overflow=document.documentElement.scrollWidth>innerWidth+1;
   const overflowing=overflow?[...document.querySelectorAll('body *')].filter(el=>!el.closest('.space-scene')&&el.getClientRects().length).map(el=>{const r=el.getBoundingClientRect();return {tag:el.tagName,id:el.id,class:el.className,left:r.left,right:r.right,text:el.textContent?.trim().slice(0,70)};}).filter(r=>r.left< -1||r.right>innerWidth+1).slice(0,30):[];
-  return {ready:scene.dataset.ready==='true',phase:scene.dataset.phase,camera:scene.dataset.camera,quality:scene.dataset.quality,scrollY,scrollRange:document.documentElement.scrollHeight-innerHeight,fallback:getComputedStyle(document.querySelector('.space-fallback')).visibility!=='hidden',motion:{hidden:motion.hidden,disabled:motion.disabled,label:motion.textContent},overflow,overflowing,activeElement:{tag:document.activeElement.tagName,id:document.activeElement.id,class:document.activeElement.className},h1:document.querySelectorAll('h1').length,paints:window.__quality?.paints||0,callbacks:window.__quality?.callbacks||0};
+  return {ready:scene.dataset.ready==='true',phase:scene.dataset.phase,camera:scene.dataset.camera,quality:scene.dataset.quality,scrollY,scrollRange:document.documentElement.scrollHeight-innerHeight,fallback:getComputedStyle(document.querySelector('.space-fallback')).visibility!=='hidden',motion:{hidden:motion.hidden,disabled:motion.disabled,label:motion.textContent},overflow,overflowing,activeElement:{tag:document.activeElement.tagName,id:document.activeElement.id,class:document.activeElement.className},h1:document.querySelectorAll('h1').length,paints:window.__quality?.paints||0,callbacks:window.__quality?.callbacks||0,visibility:{hidden:document.hidden,state:document.visibilityState,focus:document.hasFocus(),readyState:document.readyState},forwardResponse:window.__forwardCameraResponse||null,cameraSettling:window.__engineCameraSettling||null,scrollMotionPrecondition:window.__scrollMotionPrecondition||null};
 });}
+async function navigateDocument(page,url,release){
+  // Attach both outcomes immediately: an early CSS assertion must not leave a
+  // rejected goto promise behind when its context is subsequently closed.
+  const pending=page.goto(url,{waitUntil:'load'}).then(()=>({ok:true}),error=>({ok:false,error}));
+  try{
+    if(release){
+      await page.waitForFunction(()=>document.querySelector('.space-scene')&&document.querySelector('#space-motion')&&document.querySelector('main')&&document.querySelector('footer'),null,{polling:50,timeout:3000});
+      assert.equal((await state(page)).paints,0,'no paint before valid CSS');
+      await page.waitForTimeout(200);assert.equal((await state(page)).paints,0,'no paint throughout the held CSS request');release();
+    }
+    const result=await pending;if(!result.ok)throw result.error;
+  }finally{release?.();await pending;}
+}
+function forwardCameraResponded(expected){
+  const scene=document.querySelector('.space-scene'),probe=window.__forwardCameraResponse;
+  const sample={time:performance.now()-probe.start,y:scrollY,camera:scene.dataset.camera,phase:scene.dataset.phase,quality:scene.dataset.quality,paints:window.__quality?.paints,callbacks:window.__quality?.callbacks,hidden:document.hidden};
+  probe.samples.push(sample);
+  const responded=Math.abs(scrollY-expected.target)<=1&&scene.dataset.camera!==expected.baseline;
+  if(responded){probe.status='responded';probe.elapsedMs=sample.time;}
+  return responded;
+}
+async function forwardCamera(page,baseline,travel){
+  if(travel.range<=1||travel.target<=1)return state(page);
+  await page.evaluate(({baseline,travel})=>window.__forwardCameraResponse={baseline,travel,start:performance.now(),timeoutMs:2000,status:'waiting',samples:[]},{baseline,travel});
+  try{await page.waitForFunction(forwardCameraResponded,{baseline,target:travel.target},{polling:50,timeout:2000});}
+  catch(error){await page.evaluate(reason=>{window.__forwardCameraResponse.status='failed';window.__forwardCameraResponse.error=reason;},error.message).catch(()=>{});throw error;}
+  return state(page);
+}
 async function settled(page){await page.waitForTimeout(180);return state(page);}
 async function foregroundReady(page){
   await page.bringToFront();const start=Date.now();
-  await page.waitForFunction(()=>document.querySelector('.space-scene').dataset.ready==='true',null,{polling:50,timeout:3000});
+  await page.waitForFunction(()=>document.querySelector('.space-scene').dataset.ready==='true'&&!document.hidden,null,{polling:50,timeout:3000});
   return {foreground:true,elapsedMs:Date.now()-start,timeoutMs:3000};
 }
 function readable(s){assert.equal(s.h1,1);assert.equal(s.overflow,false,'horizontal overflow');}
@@ -120,7 +148,7 @@ async function normal(page,scenario){
     const target=rows.length?rows[0].getBoundingClientRect().top+scrollY-innerHeight*.22+(rows.at(-1).getBoundingClientRect().bottom-rows[0].getBoundingClientRect().top)*.35:range*.6;
     scrollTo({top:Math.max(0,Math.min(range,target)),behavior:'instant'});return {range,target:Math.max(0,Math.min(range,target)),y:scrollY};
   });
-  const forward=await settled(page);
+  const forward=await forwardCamera(page,a.camera,travel);
   if(travel.range>1&&travel.target>1){assert.ok(forward.scrollY>0,'native scroll reaches the visible journey');assert.notEqual(forward.camera,a.camera,'native forward scroll moves camera');}
   else assert.equal(forward.camera,a.camera,'short page keeps camera');
   assert.equal((await atStart(page,a.camera)).camera,a.camera,'midflight reverse endpoint');
@@ -135,7 +163,9 @@ async function normal(page,scenario){
   assert.equal(await page.evaluate(()=>Number(getComputedStyle(document.documentElement).zoom)),2);
   readable(await settled(page));
   await page.evaluate(()=>document.documentElement.style.zoom='');
+  const scrollMotionPrecondition=await require('./engine-browser.cjs').liveScrollPrecondition(page);
   const scrollSync=await require('./scroll-browser.cjs').scenario(page,scenario.route);
+  scrollSync.motionPrecondition=scrollMotionPrecondition;
   const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa']).analyze();
   assert.deepEqual(axe.violations,[],'axe violations');
   return {positiveProbe:true,startup,probe:{elapsedMs:probeElapsedMs,paints:b.paints-a.paints},off:true,print:true,syntheticVisibility:true,keyboard:true,keyboardShortcut,reverse:true,forward:travel.range>1&&travel.target>1?'camera changed':'short page',travel:{...travel,settledY:forward.scrollY},archive:scenario.route==='writing'?true:'not applicable',scrollSync,zoom:true,zoomLimit:'CSS zoom; native browser zoom untested',cta,axePasses:axe.passes.length};
@@ -172,9 +202,7 @@ async function scenario(browser,url,s){
   }
   if(s.mode==='css-blocked')await page.route('**/styles.css',r=>r.abort('failed'));
   try{
-    const navigation=page.goto(`${url}/${s.route}.html`,{waitUntil:'load'});
-    if(release){await page.waitForTimeout(200);assert.equal((await state(page)).paints,0,'no paint before valid CSS');release();}
-    await navigation;
+    await navigateDocument(page,`${url}/${s.route}.html`,release);
     const checks=s.mode==='normal'?await normal(page,s):await failure(page,s.mode);
     if(s.mode==='css-delayed')checks.beforeCSSNoPaint=true;
     assert.deepEqual(errors,[]);assert.deepEqual(external,[]);
@@ -205,4 +233,4 @@ async function main(){
   assert.ok(rows.every(x=>x.pass)&&navigation.every(x=>x.pass)&&analytics.every(x=>x.pass),'Functional scenarios failed');
 }
 if(require.main===module)main().catch(e=>{console.error(e.stack);process.exitCode=1;});
-module.exports={scenarios,modes};
+module.exports={scenarios,modes,navigateDocument,forwardCamera,forwardCameraResponded};

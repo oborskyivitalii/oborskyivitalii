@@ -63,6 +63,48 @@ The earlier paired Writing evidence belongs to source 0187dc9, not to these new
 bytes; its supported optimization is retained, and the new exact head must pass
 its own complete hosted performance gate.
 
+## Second execution and remaining fixture corrections
+
+Owner command 6016216333 starts
+[run 37463381318](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37463381318)
+for source `3442934`, served at
+[f7b90cac](https://f7b90cac.oborskyi-author-ci-staging.pages.dev).
+Full static, source checks, hosted bytes, smoke, captures, Lighthouse,
+CPU/motion/five-minute soak and all 12 Color cases pass. The Linux matrix stops
+after 73/390 rows: a held CSS navigation inspects
+DOM before attachment, then closes its context with an unhandled goto promise.
+This run cannot be accepted or promoted; successful partial jobs do not replace
+the complete matrix.
+
+Fresh functional artifact 11413763600 and the first run's native reports identify
+three fixture problems. CSS delay must await attached DOM, hold and assert zero
+paints, and release/drain navigation on every outcome. Native camera response
+must await the actual target and a changed camera within 2 seconds, rather than
+sample after 180ms. History must await the actual saved 400px position before
+leaving and the matching URL/page/settled scene and native 400px restoration
+after returning; the existing 2px tolerance remains.
+
+An explicit adaptive device hold intentionally freezes camera and ambient phase.
+The settling observer records this policy only after a visible, ready, matching
+settled route remains quiet for 150ms; the live policy still requires two actual
+phase changes at the same camera. Downstream mapping, endpoint and live gesture
+assertions remain strict. A separate live-motion group may establish its initial
+state through one recorded real public Off/On cycle when earlier heavy fixtures
+have induced a device hold. It cannot retry individual gestures or reset a new
+hold during that group. Motion/performance/soak budgets and the runtime policy
+remain unchanged. Every new bounded observer retains raw timeout samples.
+
+The WebKit opening next-paint timeout retains its original 1500ms requirement;
+visibility/focus and observer state are added to failure evidence to distinguish
+real scheduling defects from background browser state. No failed scenario is
+declared successful merely because a different scenario passes.
+
+Independent fixture review confirms the actual-state waits and preserved strict
+downstream contracts. Focused negative regressions exercise DOM absence, early
+paint, delayed navigation rejection, wrong native target, unchanged camera,
+unsaved history, invalid hold and immediate re-hold. The final public resume must
+produce two real phase changes, an active On control and unchanged native scroll.
+
 ## Acceptance and operation
 
 The new source remains unaccepted until all full jobs and matching reports pass,

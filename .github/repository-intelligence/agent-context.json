@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "c1f1e42415200e92de8aa6c3c1cd5a43c267c40c285803ad31024fab64d833ae",
+    "digest": "dcef6302ab9a4b8b4747abbf240f52e59b0f5149b375459fb83e565144b9ac00",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -3180,7 +3180,7 @@
       {
         "path": "review/staging-readiness-20261006/REPORT.md",
         "identity_mode": "content",
-        "sha256": "489fad25ddbd290b5e0de0f28f6151fc005485fca4e4773b399599a6c2ba98c9"
+        "sha256": "0ac398da2076c4107f442bf985af98da0545302e88b50ca47a7eb477d2fa2e20"
       },
       {
         "path": "review/staging-readiness-20261006/SECRET-TRIAGE.json",
@@ -3519,11 +3519,19 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tests/engine-browser-fixtures.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tests/executive.test.cjs",
         "identity_mode": "existence"
       },
       {
         "path": "tests/flight.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/functional-fixtures.test.cjs",
         "identity_mode": "existence"
       },
       {

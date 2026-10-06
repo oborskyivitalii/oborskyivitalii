@@ -5,16 +5,57 @@ const {matchesRoute}=require('./fallback-url.cjs');
 async function ready(page,id){await page.waitForFunction(id=>document.body.dataset.page===id&&!document.querySelector('#site-content').hasAttribute('aria-busy'),id,{polling:50,timeout:6000});}
 async function move(page,id){await page.locator(`header a[href="${id==='index'?'./':id+'.html'}"]`).first().evaluate(el=>el.click());await ready(page,id);}
 async function camera(page){return page.locator('.space-scene').getAttribute('data-camera');}
+function cameraSettlingSample(){
+  const scene=document.querySelector('.space-scene'),control=document.querySelector('#space-motion'),probe=window.__engineCameraSettling,now=performance.now();
+  const sample={time:now-probe.start,y:scrollY,camera:scene.dataset.camera,phase:scene.dataset.phase,quality:scene.dataset.quality,route:scene.dataset.route,travel:scene.dataset.travel,ready:scene.dataset.ready==='true',hidden:document.hidden,motion:control.textContent,pressed:control.getAttribute('aria-pressed'),disabled:control.disabled,controlHidden:control.hidden,paints:window.__quality?.paints,callbacks:window.__quality?.callbacks};
+  sample.held=sample.quality==='still'&&sample.motion==='Motion: still (device)'&&sample.pressed==='false'&&!sample.disabled&&!sample.controlHidden&&sample.ready&&!sample.hidden&&sample.route===document.body.dataset.page&&sample.travel==='settled';
+  probe.samples.push(sample);probe.elapsedMs=sample.time;
+  const previous=probe.previous;probe.previous=sample;
+  if(sample.held){
+    probe.same=0;
+    if(!previous?.held||['camera','phase','y','paints','callbacks'].some(key=>sample[key]!==previous[key]))probe.quietStart=now;
+    if(now-probe.quietStart<150)return false;
+    probe.status='settled';probe.policy='adaptive-hold';probe.quietMs=now-probe.quietStart;return true;
+  }
+  probe.quietStart=null;
+  if(previous?.camera!==sample.camera)probe.same=0;
+  if(previous?.phase===sample.phase)return false;
+  probe.same=previous?.camera===sample.camera?(probe.same||0)+1:0;
+  if(probe.same<2)return false;
+  probe.status='settled';probe.policy='live';return true;
+}
 async function settledCamera(page) {
-  await page.evaluate(()=>window.__engineCameraSettling={});
-  await page.waitForFunction(()=>{
-    const scene=document.querySelector('.space-scene'),sample=window.__engineCameraSettling;
-    if(sample.phase===scene.dataset.phase)return false;
-    sample.same=sample.camera===scene.dataset.camera?(sample.same||0)+1:0;
-    sample.phase=scene.dataset.phase;sample.camera=scene.dataset.camera;
-    return sample.same>=2;
-  },null,{polling:50,timeout:3000});
+  await page.evaluate(()=>window.__engineCameraSettling={start:performance.now(),timeoutMs:3000,status:'sampling',samples:[]});
+  try{await page.waitForFunction(cameraSettlingSample,null,{polling:50,timeout:3000});}
+  catch(error){await page.evaluate(reason=>{window.__engineCameraSettling.status='failed';window.__engineCameraSettling.error=reason;},error.message).catch(()=>{});throw error;}
   return camera(page);
+}
+function motionState(){
+  const scene=document.querySelector('.space-scene'),control=document.querySelector('#space-motion');
+  return {label:control.textContent,pressed:control.getAttribute('aria-pressed'),disabled:control.disabled,hidden:control.hidden,quality:scene.dataset.quality,ready:scene.dataset.ready==='true',route:scene.dataset.route,page:document.body.dataset.page,travel:scene.dataset.travel,camera:scene.dataset.camera,phase:scene.dataset.phase,y:scrollY,paints:window.__quality?.paints,callbacks:window.__quality?.callbacks,documentHidden:document.hidden,h1:document.querySelectorAll('h1').length,overflow:document.documentElement.scrollWidth>innerWidth+1};
+}
+async function storeMotionPrecondition(page,evidence){await page.evaluate(evidence=>window.__scrollMotionPrecondition=evidence,evidence);}
+async function liveScrollPrecondition(page){
+  const before=await page.evaluate(motionState),evidence={group:'scroll-sync',before,resumed:false,steps:[],status:'unchanged'};
+  await storeMotionPrecondition(page,evidence);
+  if(before.quality!=='still'||before.label!=='Motion: still (device)')return evidence;
+  try{
+    await settledCamera(page);evidence.hold=await page.evaluate(()=>window.__engineCameraSettling);
+    assert.equal(evidence.hold.policy,'adaptive-hold','only an explicit visible device hold may resume');
+    assert.equal(before.h1,1);assert.equal(before.overflow,false,'held content remains readable');
+    evidence.status='resuming';await storeMotionPrecondition(page,evidence);
+    await page.locator('#space-motion').evaluate(el=>el.click());
+    const off=await page.evaluate(motionState);evidence.steps.push({action:'public-off',state:off});await storeMotionPrecondition(page,evidence);
+    assert.equal(off.label,'Motion: off');assert.equal(off.pressed,'false');
+    await page.locator('#space-motion').evaluate(el=>el.click());
+    const on=await page.evaluate(motionState);evidence.steps.push({action:'public-on',state:on});await storeMotionPrecondition(page,evidence);
+    assert.equal(on.label,'Motion: on');assert.equal(on.pressed,'true');
+    await settledCamera(page);evidence.live=await page.evaluate(()=>window.__engineCameraSettling);
+    const after=await page.evaluate(motionState);evidence.after=after;
+    assert.equal(evidence.live.policy,'live','public resume must produce actual live phase changes');
+    assert.equal(after.label,'Motion: on');assert.equal(after.pressed,'true');assert.equal(after.y,before.y,'public resume preserves the native reading position');
+    evidence.resumed=true;evidence.status='live';await storeMotionPrecondition(page,evidence);return evidence;
+  }catch(error){evidence.status='failed';evidence.error=error.message;await storeMotionPrecondition(page,evidence).catch(()=>{});throw error;}
 }
 async function writingGestures(page) {
   await page.waitForFunction(()=>document.querySelector('.space-scene').dataset.travel==='settled',null,{polling:50,timeout:4000});
@@ -107,4 +148,4 @@ async function offline(browser,scenario) {
     assert.deepEqual(errors,[]);
   }finally{await ctx.close();}
 }
-module.exports={writingGestures,settledCamera,snapshotPin,boundedFallback,fetchFallback,offline};
+module.exports={writingGestures,settledCamera,cameraSettlingSample,motionState,liveScrollPrecondition,snapshotPin,boundedFallback,fetchFallback,offline};

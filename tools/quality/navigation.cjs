@@ -18,6 +18,20 @@ async function archiveHistoryReady(page,url,controls){
   // Wait on the actual restored URL and archive values, not another delay.
   await page.waitForFunction(expected=>location.href===expected.url&&document.body.dataset.page==='writing'&&!document.querySelector('#site-content').hasAttribute('aria-busy')&&Object.entries(expected.controls).every(([key,value])=>document.getElementById('archive-'+key)?.value===value),{url,controls},{polling:40,timeout:6000});
 }
+function historyPositionSample(expected){
+  const scene=document.querySelector('.space-scene'),content=document.querySelector('#site-content'),site=history.state?.site;
+  const sample={part:expected.part,time:performance.now(),page:document.body.dataset.page,scene:scene.dataset.route,travel:scene.dataset.travel,busy:content.hasAttribute('aria-busy'),url:location.href,y:scrollY,savedY:site?.scroll?.[1],savedPage:site?.page};
+  const probe=window.__historyMiddle??={samples:[]};
+  if(probe.part!==expected.part){probe.part=expected.part;probe.started=sample.time;probe.expected=expected;probe.timeoutMs=2000;probe.status='sampling';}
+  probe.samples.push(sample);probe.elapsedMs=sample.time-probe.started;
+  const restored=sample.page===expected.route&&sample.scene===expected.route&&sample.travel==='settled'&&!sample.busy&&Math.abs(sample.y-expected.y)<=2&&sample.savedY===sample.y&&sample.savedPage===expected.route&&(!expected.url||sample.url===expected.url);
+  if(restored)probe.status='ready';return restored;
+}
+async function historyPositionReady(page,expected){
+  try{await page.waitForFunction(historyPositionSample,expected,{polling:50,timeout:2000});}
+  catch(error){await page.evaluate(reason=>{window.__historyMiddle.status='failed';window.__historyMiddle.error=reason;},error.message).catch(()=>{});throw error;}
+  return page.evaluate(()=>window.__historyMiddle);
+}
 function nativeScrollSettlement(){
   return new Promise((resolve,reject)=>{
     const start=performance.now(),samples=[];let previous=scrollY,changed=start;
@@ -131,10 +145,12 @@ async function reverseEndpoints(page){
   await page.evaluate(()=>{const el=document.createElement('div');el.style.height='900px';document.querySelector('footer').append(el);});
   await page.waitForTimeout(250);const after=await range();
   assert.ok(Math.abs(after.y-before.y)<=2,`fresh input must release end intent: ${JSON.stringify({before,after})}`);
-  await page.evaluate(()=>scrollTo({top:400,behavior:'instant'}));await page.waitForTimeout(380);
-  await page.goBack();await ready(page,'talks');await page.goForward();await ready(page,'writing');
+  await page.evaluate(()=>{window.__historyMiddle={samples:[]};scrollTo({top:400,behavior:'instant'});});
+  const readingURL=await page.evaluate(()=>location.href);await historyPositionReady(page,{route:'writing',y:400,url:readingURL,part:'saved'});
+  await page.goBack();await ready(page,'talks');await settled(page);await page.goForward();await ready(page,'writing');await settled(page);
+  const historyEvidence=await historyPositionReady(page,{route:'writing',y:400,url:readingURL,part:'restored'});
   assert.ok(Math.abs((await range()).y-400)<=2,'history keeps a middle reading position');
-  return {rows,takeover:{before,after,wheel},historyMiddle:400};
+  return {rows,takeover:{before,after,wheel},historyMiddle:400,historyEvidence};
 }
 async function scenario(browser,url,s){
   const ctx=await browser.newContext({viewport:{width:s.width,height:s.width===390?844:900}}),page=await ctx.newPage(),errors=[];
@@ -230,13 +246,13 @@ async function scenario(browser,url,s){
     assert.deepEqual(errors,[]);result.pass=checks.every(key=>result.checks[key]===true);
   }catch(error){
     result.error=error.message;result.stack=error.stack;
-    result.state=await page.evaluate(()=>({page:document.body.dataset.page,url:location.href,hidden:document.hidden,navigation:typeof window.SiteNavigation,scene:{...document.querySelector('.space-scene').dataset},motion:document.querySelector('#space-motion').textContent,busy:document.querySelector('#site-content')?.hasAttribute('aria-busy'),scrollY,frames:window.__navigationFrames||[],flightSamples:window.__flightSamples||[],wheelSettlement:window.__wheelSettlement||null})).catch(()=>null);
+    result.state=await page.evaluate(()=>({page:document.body.dataset.page,url:location.href,hidden:document.hidden,navigation:typeof window.SiteNavigation,scene:{...document.querySelector('.space-scene').dataset},motion:document.querySelector('#space-motion').textContent,busy:document.querySelector('#site-content')?.hasAttribute('aria-busy'),scrollY,frames:window.__navigationFrames||[],flightSamples:window.__flightSamples||[],wheelSettlement:window.__wheelSettlement||null,historyMiddle:window.__historyMiddle||null,cameraSettling:window.__engineCameraSettling||null})).catch(()=>null);
   }
   finally{await ctx.close();}
   return result;
 }
 function scenarios(engine){return [1440,390].flatMap(width=>['light','dark'].map(theme=>({engine,width,theme})));}
-module.exports={scenario,scenarios,checks,reverseEndpoints,checkTiming,archiveHistoryReady,nativeScrollSettlement,beginInterruption,timingProbe};
+module.exports={scenario,scenarios,checks,reverseEndpoints,checkTiming,archiveHistoryReady,historyPositionReady,historyPositionSample,nativeScrollSettlement,beginInterruption,timingProbe};
 if(require.main===module)(async()=>{
   const {toolRequire,launchOptions,report}=require('./common.cjs'),{start}=require('./serve.cjs');
   const {server,url}=await start(),browser=await toolRequire('playwright').firefox.launch(launchOptions('firefox'));

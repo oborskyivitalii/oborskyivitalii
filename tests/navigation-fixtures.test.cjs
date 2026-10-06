@@ -1,6 +1,6 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),vm=require('node:vm');
-const {archiveHistoryReady,nativeScrollSettlement,beginInterruption,checkTiming,timingProbe}=require('../tools/quality/navigation.cjs');
+const {archiveHistoryReady,historyPositionReady,historyPositionSample,nativeScrollSettlement,beginInterruption,checkTiming,timingProbe}=require('../tools/quality/navigation.cjs');
 test('same-document archive history waits for URL, popstate controls and finished route mounting',async()=>{
   const state={location:{href:'https://owned.invalid/writing.html?topic=systems&language=uk'},values:{topic:'systems',language:'uk'},busy:false};
   const document={body:{dataset:{page:'writing'}},querySelector:()=>({hasAttribute:()=>state.busy}),getElementById:id=>({value:state.values[id.slice('archive-'.length)]})};
@@ -88,4 +88,25 @@ test('timing evidence records the actual mount synchronously and keeps ordinary 
   vm.runInNewContext('('+timingProbe.toString()+')()',context);
   listeners.get('site:page-mount')();observer();
   const samples=context.window.__flightSamples;assert.equal(samples.length,2);assert.equal(samples[0].kind,'mount');assert.equal(samples[0].progress,.56);assert.equal(samples[0].opacity,0);assert.equal(samples[0].page,'writing');assert.equal(samples[1].kind,'progress');
+});
+function historyPositionFixture(update=()=>{}){
+  let time=0;
+  const scene={dataset:{route:'writing',travel:'settled'}},content={busy:false,hasAttribute(){return this.busy;}},context={window:{},performance:{now:()=>time},scrollY:400,location:{href:'https://owned.invalid/writing.html'},history:{state:{site:{page:'writing',scroll:[0,400]}}},document:{body:{dataset:{page:'writing'}},querySelector:selector=>selector==='.space-scene'?scene:content}};
+  const invoke=(fn,arg)=>vm.runInNewContext('('+fn.toString()+')(arg)',{...context,arg});
+  const page={async evaluate(fn,arg){return invoke(fn,arg);},async waitForFunction(fn,arg,options){assert.deepEqual(options,{polling:50,timeout:2000});for(time=0;time<=options.timeout;time+=options.polling){update(time,context,scene,content);if(invoke(fn,arg))return;}throw Error('Controlled history position timeout after 2000ms');}};
+  return {page,context,scene,content,invoke,time:value=>time=value};
+}
+const middleExpected={route:'writing',y:400,url:'https://owned.invalid/writing.html',part:'saved'};
+test('middle history waits for actual scroll, saved native position and finished matching scene',async()=>{
+  const h=historyPositionFixture((time,context,scene,content)=>{context.scrollY=time<100?4368:400;context.history.state.site.scroll[1]=time<450?4368:400;scene.dataset.route=time<150?'talks':'writing';scene.dataset.travel=time<200?'flying':'settled';content.busy=time<250;});
+  const evidence=await historyPositionReady(h.page,middleExpected);
+  assert.equal(evidence.status,'ready');assert.equal(evidence.elapsedMs,450);assert.equal(evidence.samples.length,10);assert.equal(evidence.samples[0].y,4368);assert.equal(evidence.samples.at(-1).savedY,400);
+  const controls=[h=>h.context.scrollY=7073,h=>h.context.history.state.site.scroll[1]=7073,h=>h.context.history.state.site.page='talks',h=>h.context.document.body.dataset.page='talks',h=>h.scene.dataset.route='talks',h=>h.scene.dataset.travel='flying',h=>h.content.busy=true,h=>h.context.location.href='https://owned.invalid/talks.html'];
+  for(const mutate of controls){const invalid=historyPositionFixture();mutate(invalid);assert.equal(invalid.invoke(historyPositionSample,middleExpected),false);}
+});
+test('restoration timeout retains every position sample and actual history mismatch',async()=>{
+  const h=historyPositionFixture(()=>{h.context.scrollY=7073;});
+  await assert.rejects(()=>historyPositionReady(h.page,{...middleExpected,part:'restored'}),/history position timeout/);
+  const evidence=h.context.window.__historyMiddle;
+  assert.equal(evidence.status,'failed');assert.equal(evidence.timeoutMs,2000);assert.equal(evidence.elapsedMs,2000);assert.equal(evidence.samples.length,41);assert.equal(evidence.samples.at(-1).y,7073);assert.equal(evidence.samples.at(-1).savedY,400);assert.match(evidence.error,/2000ms/);
 });
