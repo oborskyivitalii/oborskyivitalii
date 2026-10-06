@@ -4,6 +4,33 @@ const fs=require('node:fs'),path=require('node:path'),assert=require('node:asser
 const {toolRequire,report,launchOptions,out}=require('./common.cjs'),{start}=require('./serve.cjs');
 const routes=['index','research','writing','talks','credits'];
 const hash=bytes=>crypto.createHash('sha256').update(bytes).digest('hex');
+function artifactFile(value,base,manifest){
+  const url=new URL(value),scope=new URL(base.replace(/\/$/,'')+'/');
+  if(url.origin!==scope.origin||!url.pathname.startsWith(scope.pathname))return null;
+  const name=decodeURIComponent(url.pathname.slice(scope.pathname.length));
+  if(Object.hasOwn(manifest.files,name))return name;
+  const canonical=name.endsWith('/')||name===''?name+'index.html':name+'.html';
+  return Object.hasOwn(manifest.files,canonical)?canonical:null;
+}
+async function verifyResponse(response,base,manifest,checkedFiles){
+  const source=new URL(response.url()),scope=new URL(base.replace(/\/$/,'')+'/');
+  if(source.origin!==scope.origin||!source.pathname.startsWith(scope.pathname))return {observed:false};
+  const file=artifactFile(source.href,base,manifest),status=response.status();
+  assert.ok(status<400,'HTTP failure '+status+' '+source.pathname);
+  if([301,302,303,307,308].includes(status)){
+    assert.ok(file?.endsWith('.html'),'unexpected non-HTML artifact redirect '+source.pathname);
+    const location=response.headers().location;assert.ok(location,'missing canonical redirect Location '+source.pathname);
+    const target=new URL(location,source);
+    assert.equal(target.origin,scope.origin,'canonical redirect left the selected site');
+    assert.ok(target.pathname.startsWith(scope.pathname),'canonical redirect left the selected path');
+    assert.equal(artifactFile(target.href,base,manifest),file,'canonical redirect changed artifact '+file);
+    return {observed:true,file,status,redirect:target.href};
+  }
+  if(!file)return {observed:false};
+  assert.equal(status,200,'public response '+file);
+  const digest=hash(await response.body());assert.equal(digest,manifest.files[file].sha256,'served bytes '+file);
+  checkedFiles.add(file);return {observed:true,file,status,sha256:digest};
+}
 function identity(manifest){
   if(process.env.SITE_EXPECTED_PUBLIC_DIGEST)assert.equal(manifest.artifactDigest,process.env.SITE_EXPECTED_PUBLIC_DIGEST,'preview public digest');
   if(process.env.SITE_CANDIDATE_SHA)assert.equal(manifest.candidateCommit,process.env.SITE_CANDIDATE_SHA,'preview source commit');
@@ -24,9 +51,9 @@ async function state(page){return page.evaluate(()=>{
 });}
 async function routeBytes(context,url,manifest){
   return Promise.all(routes.map(async id=>{
-    const response=await context.request.get(url+'/'+id+'.html');assert.equal(response.status(),200,id+' HTTP status');
-    const bytes=await response.body();assert.equal(hash(bytes),manifest.files[id+'.html'].sha256,id+' exact public bytes');
-    return {route:id,sha256:hash(bytes),status:response.status()};
+    const response=await context.request.get(url+'/'+id+'.html'),result=await verifyResponse(response,url,manifest,new Set());
+    assert.equal(result.status,200,id+' HTTP status');assert.equal(result.file,id+'.html',id+' canonical route');
+    return {route:id,sha256:result.sha256,status:result.status};
   }));
 }
 async function scenario(browser,url,manifest,variant,width,mode){
@@ -40,12 +67,7 @@ async function scenario(browser,url,manifest,variant,width,mode){
   page.on('pageerror',error=>errors.push(error.message));
   page.on('request',request=>{if(!request.url().startsWith(url+'/'))external.push(request.url());});
   page.on('response',response=>{
-    const value=response.url();if(!value.startsWith(url+'/'))return;
-    const name=decodeURIComponent(value.slice(url.length+1).split('?')[0]);
-    if(!manifest.files[name])return;
-    responseChecks.push(response.body().then(bytes=>{
-      assert.equal(response.status(),200,'public response '+name);assert.equal(hash(bytes),manifest.files[name].sha256,'served bytes '+name);checkedFiles.add(name);
-    }).catch(error=>{errors.push(error.message);}));
+    responseChecks.push(verifyResponse(response,url,manifest,checkedFiles).catch(error=>{errors.push(error.message);}));
   });
   try{
     const served=await routeBytes(context,url,manifest);
@@ -100,4 +122,4 @@ async function main(){
   if(variant.id==='color')await require('./color-browser.cjs').main({smoke:true});
 }
 if(require.main===module)main().catch(error=>{console.error(error.stack);process.exitCode=1;});
-module.exports={main,identity,scenario,ready,state};
+module.exports={main,identity,scenario,ready,state,artifactFile,verifyResponse};
