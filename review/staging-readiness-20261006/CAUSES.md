@@ -1,5 +1,22 @@
 # Причини збоїв і виправлення — 6 жовтня 2026
 
+## Повний staging 37491800878: startup Xvfb
+
+Exact source 4c05087e: Linux Chromium/Firefox проходять 260/260 functional,
+8/8 navigation, 26/26 analytics. WebKit не запускається: новий launcher Xvfb
+не отримує display number за 3000 мс. Це infrastructure startup failure,
+а не повтор старого WPE RAF timeout. Linux Color 12/12; Windows 40/8/26,
+macOS 20/4/13, static/host/captures/performance проходять. Full gate падає,
+promotion skipped, stable/main не змінено. Raw Linux artifact 11427927561
+збережений; незмінного повного повтору для випадкового green немає.
+Попередні успішні GTK port probes використовували packaged xvfb-run.
+[DISPLAY-REQUEST.md](DISPLAY-REQUEST.md) описує шість коротких startup
+observations на двох runner, з незмінним результатом початкового 3000 мс,
+stdout/stderr, справжнім X client і cleanup лише власних process groups.
+Жоден браузер у цій перевірці не запускається; це не full acceptance.
+
+## Підтверджені виправлення та причинні межі
+
 Продовження в тому самому PR #23: браузери тепер виконують повні functional,
 navigation і analytics leases послідовно. Спостереження On/print/visibility та
 fallback чекають справжнього paint/стану в початковому 1500 мс, без старого

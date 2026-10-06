@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "f1dbd2536bb2011ad5531709944442f03432cf04037ed2a9469a3190134c4aca",
+    "digest": "b5daa63a6804ccd8837b8f45108b009f518aa821e8d668d65b17d2d66cafbe87",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -63,7 +63,7 @@
       {
         "path": ".github/workflows/site-cause-fix-probe.yml",
         "identity_mode": "content",
-        "sha256": "2f12e1bb275906f7b39e8e900ed5b6a0f861fdd5cbc6a6a61030695533e98f71"
+        "sha256": "339cf15237ce2f15ec3ef6f736ea25befead572c00e606dc04d9fc1674cb55e3"
       },
       {
         "path": ".github/workflows/site-cause-probe.yml",
@@ -3225,7 +3225,12 @@
       {
         "path": "review/staging-readiness-20261006/CAUSES.md",
         "identity_mode": "content",
-        "sha256": "ede7d5c4c73e389ff01abbe8b510dc4bcca196e9da0a7452059050ee87e677b5"
+        "sha256": "19431eceb748a37b29bf86f66d61c1920db1f0fa28b6a68c6361fca09a6043f5"
+      },
+      {
+        "path": "review/staging-readiness-20261006/DISPLAY-REQUEST.md",
+        "identity_mode": "content",
+        "sha256": "a051627b154bab9a47214d2e69290c8004233cd9e98399d4530822a9da44e8d9"
       },
       {
         "path": "review/staging-readiness-20261006/REPORT.md",
@@ -3813,6 +3818,10 @@
         "path": "tools/quality/deploy-pages.example.yml",
         "identity_mode": "content",
         "sha256": "7003194f2184e50dd498c73c8ab0d7a6c9878334cf616be6f1e6f1d9d1820e64"
+      },
+      {
+        "path": "tools/quality/display-probe.cjs",
+        "identity_mode": "existence"
       },
       {
         "path": "tools/quality/engine-browser.cjs",
@@ -5857,6 +5866,13 @@
     {
       "path": "review/staging-readiness-20261006/CAUSES.md",
       "title": "Причини збоїв і виправлення — 6 жовтня 2026",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/staging-readiness-20261006/DISPLAY-REQUEST.md",
+      "title": "Dated display-start observation",
       "instructions": [
         "AGENTS.md"
       ]
