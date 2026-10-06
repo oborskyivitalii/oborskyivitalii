@@ -4,23 +4,27 @@
 
 The maintainer requests actual localization and a verified source correction,
 including a test without filters/content controls. Continue only Draft #23.
-`localization-run.json` temporarily triggers the existing Writing workflow for
-two balanced mobile rounds of ten private conditions. These artifacts are never
-deployed. Each direct boot and cold/return itinerary has a fresh Chromium process.
-Procedural model construction/projection and measured native archive layout are
-separate interventions; layout footprints/range must pass post-window audits.
-Keep all failed/partial observations and compare layout interventions to their
-constrained control as well as untouched Color. Then confirm only a supported
-normal source correction against 6d538e1 with clean paired cold boots/flights.
-Remove the dated PR trigger afterward. No full/stable staging or new PR.
+Read review/writing-diagnosis-20261006/LOCALIZATION.md and its evidence index.
+The 20-trial causal screen and clean supported-fix confirmation are complete.
+Private diagnostic renditions never deploy; each boot/itinerary uses a fresh
+Chromium process. All observations, including budget failures, remain retained.
+The dated PR trigger is removed: ordinary updates run fast checks/preview only;
+the existing Writing workflow supports manual diagnostic replay. No full/stable
+staging, native/soak matrix or new PR is requested.
 
 The completed 20-trial localization rejects filters/grid/title-flex as the main
 source; every matched geometry audit passes. The worst RAF combines Canvas paint
 with synchronous native mount/layout (87–92ms). Model face preparation is another
-16–17ms cold cost. The supported candidate gates boot until deferred setup,
+16–17ms cold cost. The retained correction gates boot until deferred setup,
 uses numerically exact scalar face preparation and queues animated Color mount
-after its hidden midpoint paint. Confirm native task/LongTask and inclusive input
-latencies too; moving work outside RAF alone is not performance evidence.
+after its hidden midpoint paint. Source 0187dc9 was confirmed against 6d538e1 on
+one EPYC 9V45 runner: six mobile pairs reduce median maximum Canvas callback
+60.65→30.95ms and largest observed RAF/task/LongTask 86→55.5ms. Reference and
+candidate both pass 6/6 narrow mobile gates; do not compare these times with the
+slower EPYC 7763 causal screen or claim a failed-to-passed result. Input readiness,
+FCP/first scroll and the two desktop pairs are mixed. All 32 normal geometry/filter
+checks match exactly (0px). No motif deletion, frozen diagnostic CSS, stale range
+cache or browser/GPU presentation guarantee is part of the correction.
 
 ## Completed Writing screen and rejected optimization — 2026-10-06
 

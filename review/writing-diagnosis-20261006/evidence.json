@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "kind": "writing-diagnosis-evidence-index",
-  "decision": "reject-ribbon-reuse-benefit-unconfirmed",
+  "decision": "retain-supported-writing-cold-fix",
   "normalRuntimeRestoredTo": "6b73399c4f0afeba497c92809686bba4b7a3200a",
   "screen": {
     "run": 37452014157,
@@ -43,6 +43,45 @@
     "traces/h2-20-no-canvas-draw.json.gz": {
       "bytes": 279857,
       "sha256": "1191c7c21dde61bfae11d9e82293a2abafdf3fa6a3699d167060bdfcc307462d"
+    },
+    "localization.json.gz": {
+      "bytes": 1622995,
+      "sha256": "f1c7c50dfe16138aa3b815a4b9a6100d8263519b3601918029e88f3941a5eb5a"
+    },
+    "localization-summary.json": {
+      "bytes": 71029,
+      "sha256": "fb9449006e4433adaacca38e373615ab9cfdb57824a4681352f878750bff9116"
+    },
+    "face-equivalence.json": {
+      "bytes": 7164,
+      "sha256": "9078c78259bfe63ce6e386c4ef3ef95717ad0dd9438c0d6f69a5f3b6bb2c45df"
+    },
+    "fix-confirmation.json.gz": {
+      "bytes": 534235,
+      "sha256": "a912252987305a46cbd8c9912f9c54ee97978cdbc77676724e6bece329d64516"
+    },
+    "fix-confirmation-summary.json": {
+      "bytes": 50197,
+      "sha256": "47d794ac250fe1289c8aa9a039b9f9ae7875f8ee90a8c10032589dc7fa9f3681"
+    },
+    "fix-geometry.json.gz": {
+      "bytes": 400965,
+      "sha256": "6f084bf7a39ba90f1d26f7cb254805ad6e8e2a3064b0013d0be7d929de8460e4"
     }
+  },
+  "priorRibbonDecision": "reject-ribbon-reuse-benefit-unconfirmed",
+  "supportedRuntimeSource": "0187dc91fc19fd198e4a84b3953fd74d7a7ae2ec",
+  "localization": {
+    "run": 37456563653,
+    "source": "90391fb5796731a1a0d54e45a332dac71019ee11",
+    "artifactId": 11410370067,
+    "zipSha256": "ad1212e978e8a3402463a2f1b2a79cbc257dafbd41bfbbae17ef335cc991b2ee"
+  },
+  "supportedFixConfirmation": {
+    "run": 37458348938,
+    "source": "0187dc91fc19fd198e4a84b3953fd74d7a7ae2ec",
+    "reference": "6d538e171ecbbaa3c3948aa0d8d118fad4aaaf5d",
+    "artifactId": 11410097468,
+    "zipSha256": "97d052545e3db85e757987f1b0d52a1dc871ba2ccd8962646ff2b9484643c6ef"
   }
 }

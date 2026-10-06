@@ -1,9 +1,6 @@
 name: Writing cold comparison
-# The dated localization request is a temporary same-repository PR bootstrap.
-# Remove this event after localization/confirmation; ordinary PRs keep fast checks.
+# Writing diagnostics are manual-only; normal PR updates keep fast checks.
 on:
-  pull_request:
-    paths: ["review/writing-diagnosis-20261006/localization-run.json"]
   workflow_dispatch:
     inputs:
       candidate_sha:
@@ -15,10 +12,15 @@ on:
         required: false
         default: false
         type: boolean
+      localization:
+        description: Replay the dated Writing localization or supported-fix confirmation
+        required: false
+        default: false
+        type: boolean
 permissions:
   contents: read
 concurrency:
-  group: writing-comparison-${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
+  group: writing-comparison-${{ inputs.candidate_sha }}
   cancel-in-progress: true
 defaults:
   run:
@@ -26,7 +28,7 @@ defaults:
     working-directory: candidate
 jobs:
   writing:
-    if: github.event_name == 'workflow_dispatch' && !inputs.diagnosis
+    if: github.event_name == 'workflow_dispatch' && !inputs.diagnosis && !inputs.localization
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     env:
@@ -67,7 +69,7 @@ jobs:
           if-no-files-found: error
           retention-days: 30
   diagnosis:
-    if: github.event_name == 'workflow_dispatch' && inputs.diagnosis
+    if: github.event_name == 'workflow_dispatch' && inputs.diagnosis && !inputs.localization
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     env:
@@ -113,17 +115,17 @@ jobs:
           retention-days: 90
 
   localization:
-    if: github.event_name == 'pull_request' && github.event.pull_request.number == 23 && github.event.pull_request.head.repo.full_name == github.repository
+    if: github.event_name == 'workflow_dispatch' && inputs.localization
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     env:
-      SITE_CANDIDATE_SHA: ${{ github.event.pull_request.head.sha }}
+      SITE_CANDIDATE_SHA: ${{ inputs.candidate_sha }}
       WRITING_BEFORE_SHA: 6d538e171ecbbaa3c3948aa0d8d118fad4aaaf5d
       WRITING_DIAGNOSIS_TRACE: 'false'
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ inputs.candidate_sha }}
           path: candidate
           persist-credentials: false
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803

@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "18c0d1f873bf800a07e1b48286275084af87330a5e509b29f3b50b164b114167",
+    "digest": "1c14659df9ff738d25652b69f1b0b28fa920b2aa77c49656afdecc0e5345665d",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -88,7 +88,7 @@
       {
         "path": ".github/workflows/site-writing-probe.yml",
         "identity_mode": "content",
-        "sha256": "f8f839f571c0fe3229842b4f8e08f1828e2f8a4c0e221b64342df80bde1594ea"
+        "sha256": "716b3cb7e7739666690d6e3b052cd2ee2b70989df6f0c42b6ed50a6c4c662c77"
       },
       {
         "path": ".gitignore",
@@ -97,7 +97,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "9b416dba41ffb6cf1d6788ea92a588d1e81e11841b235039f8472fec932e1d89"
+        "sha256": "757607b3002b9d7ab8a98785804478fdccb5aa401809e6422d2a045f4456d239"
       },
       {
         "path": "BACKLOG.md",
@@ -3185,7 +3185,7 @@
       {
         "path": "review/writing-diagnosis-20261006/LOCALIZATION.md",
         "identity_mode": "content",
-        "sha256": "6bf7d6b46f952569c8f959f0b12e8d4eb8deda0fe4eb94ff64d4b7eee7dedf9b"
+        "sha256": "6d8bc02f34420fcdd109490873a5828882e24f1d7f8b7d12c8681fc32cf66ff7"
       },
       {
         "path": "review/writing-diagnosis-20261006/SOL-TASKS.md",
@@ -3204,12 +3204,25 @@
       {
         "path": "review/writing-diagnosis-20261006/evidence.json",
         "identity_mode": "content",
-        "sha256": "08725ea8411fc0c776b5f96ba5663fc8bedc620452b7741010308def01a0e973"
+        "sha256": "bb4b622b4ae19ae5329dc66078bef44703dad7f17673b212e3f566486a410074"
       },
       {
         "path": "review/writing-diagnosis-20261006/face-equivalence.json",
         "identity_mode": "content",
         "sha256": "9078c78259bfe63ce6e386c4ef3ef95717ad0dd9438c0d6f69a5f3b6bb2c45df"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/fix-confirmation-summary.json",
+        "identity_mode": "content",
+        "sha256": "47d794ac250fe1289c8aa9a039b9f9ae7875f8ee90a8c10032589dc7fa9f3681"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/fix-confirmation.json.gz",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/fix-geometry.json.gz",
+        "identity_mode": "existence"
       },
       {
         "path": "review/writing-diagnosis-20261006/geometry.json",
@@ -5684,6 +5697,13 @@
     {
       "path": "review/writing-diagnosis-20261006/face-equivalence.json",
       "title": "review/writing-diagnosis-20261006/face-equivalence.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/writing-diagnosis-20261006/fix-confirmation-summary.json",
+      "title": "review/writing-diagnosis-20261006/fix-confirmation-summary.json",
       "instructions": [
         "AGENTS.md"
       ]
