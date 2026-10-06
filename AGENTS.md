@@ -1,5 +1,25 @@
 # Agent guidance for personal publications
 
+## Complete PR #28 after stable alias verification — 2026-10-06
+
+The maintainer requests completing #28 after accepted #23, followed by review,
+issue updates and a closure list. This supersedes the older sole-#23 limits.
+Source `b0ec13a0` passed exact-head full run 37539805745: Linux Chromium/Firefox
+260/8/26, macOS WebKit 130/4/13, Windows smoke 40/8/26 and all twelve Color
+checks. Both promotion attempts failed strict HTTP verification immediately
+after successful deployments: the stable alias returned the preceding package,
+then the rollback check returned the candidate. These failures remain failed.
+
+Complete the necessary CI-only correction through normal protection before
+merging #28: bound exact-byte alias convergence, retain each failed observation,
+and distinguish the package producer attempt from the promotion attempt.
+Preserve every byte/header/root/404 assertion, source/artifact/controller lease,
+pin, browser scenario and original job/page/performance budget. Integrate the
+reviewed controller into #28, run all generated-source preflight checks, then
+complete fresh exact-head full/stable acceptance and normal merge. No further
+blind promotion retry or GTK/core experiment is authorized. Production,
+physical-device checks and maintainer visual acceptance remain separate.
+
 ## Approved macOS WebKit full coverage — 2026-10-06
 
 The maintainer approved one narrow CI-only controller PR before runtime PR #23:
