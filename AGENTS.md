@@ -1,5 +1,20 @@
 # Agent guidance for personal publications
 
+## Contact and remaining backdrop corrections — 2026-10-06
+
+The maintainer supplies the public booking URL and email and explicitly requests
+their addition. Continue Draft #28 for this follow-up, preserving useful fixes
+from duplicate #27 and recording its superseded disposition. New screenshots
+require title backing to follow rendered text lines, Talks backing to follow its
+metadata/title cells and one compact background behind Writing's filter group.
+Keep the already applied five-point alpha increase; do not apply it a second time.
+Use ordinary static CSS and preserve publication identities, scene algorithms,
+budgets, PR #23 and its separate staging work. Reconcile only the exact approved
+contact replacement and decorative title wrappers against frozen public copy.
+Regenerate public/standalone outputs, verify safe plain mailto retention and use
+the existing automatic PR preview and short smoke. Issue #14 owns this input;
+full staging, merge and production are not requested for #28.
+
 ## Content-sized reading backdrops follow-up — 2026-10-06
 
 The maintainer explicitly requests one separate Draft PR stacked on the current

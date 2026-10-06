@@ -445,8 +445,8 @@
 
 
 
-  <meta name="site-engine" content="4bc2918d0d25065e14f2ea57d526a9f065ed9d00bce79a49bc03b556014a8cc8">
-  <meta name="site-route" content="9075f6271308549d406a332eb88cd1066a352c4bcd4d4650e278d9b13cb89425">
+  <meta name="site-engine" content="b94f6868c5234b1d2f1b5ff5fea2ca74629f399184ae1ab876e94d7411acf1ac">
+  <meta name="site-route" content="b2531743f402f0e87e7a9fbb4ebdf92dbc5ce4585aabbeb9e45625c2450c924d">
   <meta name="site-contract" content="1">
   <meta name="site-variant" content="base">
 <meta name="robots" content="noindex, nofollow">
@@ -457,7 +457,7 @@
   --portrait-start:#deebeb; --portrait-end:#f4edde;
   --facet-1:#e7ece8;--facet-2:#dce9eb;--facet-3:#cddfe3;--facet-4:#eae1ce;--facet-5:#bfd4da;--facet-6:#eff0e9;
   --button-bg:#245866; --button-ink:#fffdf7;
-  --surface-open:91%; --surface-reading:95%; --surface-row:96%;
+  --surface-open:91%; --surface-reading:95%; --surface-row:96%; --surface-gutter:12px;
   --sans:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   color-scheme:light;
 }
@@ -526,34 +526,38 @@ body[data-page="writing"] .space-scene canvas,body[data-page="credits"] .space-s
 .space-fallback {opacity:1}
 /* Protect the reading block, leaving the section and its gutters open to the world. */
 .section,.archive-intro,.credits-page,.hero-copy,.shift-intro {background:transparent}
-:is(.hero-copy,.section-heading,.archive-intro>h1,.archive-intro>.hero-description,.archive-intro>.eyebrow,.shift-intro>p,
+:is(.hero-copy,.section-heading,.archive-intro>.hero-description,.archive-intro>.eyebrow,.shift-intro>p,
 .research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,
-.ack-grid article,.about-grid>div,.contact-grid>div,.publication,.credits-page>p,.credits-page>h2,
-.archive-heading,.archive-count,.empty-state,.year-landing,.section-note,.next-route,
-.archive-landings>.topic-landing,.archive-filters>label,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a) {
+.ack-grid article,.about-grid>div,.about-grid>h2,.about-section>.eyebrow,.archive-link,.contact-grid>div,.publication,.credits-page>p,.credits-page>h1,.credits-page>h2,
+.archive-heading,.archive-count,.empty-state,.year-landing,.section-note,.next-route>p,.next-route>a,
+.archive-landings>.topic-landing,.archive-filters,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a,.talks-list .publication>div) {
   position:relative;isolation:isolate;
 }
 /* The mask feathers only the backdrop beyond the reading area, never glyphs.
    Static gradients need no backdrop blur, extra bitmap or animation scheduler. */
-:is(.hero-copy,.section-heading,.archive-intro>h1,.archive-intro>.hero-description,.archive-intro>.eyebrow,.shift-intro>p,
+:is(.hero-copy,.section-heading,.archive-intro>.hero-description,.archive-intro>.eyebrow,.shift-intro>p,
 .research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,
-.ack-grid article,.about-grid>div,.contact-grid>div,.publication,.credits-page>p,.credits-page>h2,
-.archive-heading,.archive-count,.empty-state,.year-landing,.section-note,.next-route,
-.archive-landings>.topic-landing,.archive-filters>label,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a)::before {
-  content:"";position:absolute;inset:calc(-1 * var(--surface-gutter,24px));z-index:-1;pointer-events:none;
+.ack-grid article,.about-grid>div,.about-grid>h2,.about-section>.eyebrow,.archive-link,.contact-grid>div,.publication,.credits-page>p,.credits-page>h1,.credits-page>h2,
+.archive-heading,.archive-count,.empty-state,.year-landing,.section-note,.next-route>p,.next-route>a,
+.archive-landings>.topic-landing,.archive-filters,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a,.talks-list .publication>div)::before {
+  content:"";position:absolute;inset:calc(-1 * var(--surface-gutter));z-index:-1;pointer-events:none;
   background:var(--paper);background:color-mix(in srgb,var(--paper) var(--reading-alpha,var(--surface-reading)),transparent);
-  mask-image:linear-gradient(90deg,transparent,#000 var(--surface-gutter,24px),#000 calc(100% - var(--surface-gutter,24px)),transparent),linear-gradient(transparent,#000 var(--surface-gutter,24px),#000 calc(100% - var(--surface-gutter,24px)),transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 var(--surface-gutter),#000 calc(100% - var(--surface-gutter)),transparent),linear-gradient(transparent,#000 var(--surface-gutter),#000 calc(100% - var(--surface-gutter)),transparent);
   mask-composite:intersect;
 }
 .archive-intro>h1,.archive-intro>.hero-description {width:fit-content;max-width:100%;padding:8px 16px;margin-left:-16px}
+/* Inline fragments follow each rendered title line, including native wraps. */
+.reading-title {background:var(--paper);background:color-mix(in srgb,var(--paper) var(--surface-reading),transparent);border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .shift-intro>p {padding:16px}
 .about-grid>div,.contact-grid>div {padding:18px 22px}
 .credits-page>p {padding:14px 18px;margin-inline:-18px}
 .section-nav,.topic-nav {padding-inline:14px}
 /* Menus and controls need protection only behind their own text. */
-.archive-landings>.topic-landing,.archive-filters>label,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a {--surface-gutter:10px}
+.archive-landings>.topic-landing,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a,.next-route>p,.next-route>a {--surface-gutter:8px;max-width:100%}
 /* A short column must not inherit the height of its taller neighbour. */
 .shift-intro,.research-grid,.topic-grid,.help-grid,.ack-leads,.ack-compact,.ack-grid,.about-grid,.contact-grid {align-items:start}
+.hero-copy,.about-grid>div,.about-grid>h2,.contact-grid>div,.shift-intro>p,.credits-page>p,.credits-page>h1,.empty-state {width:fit-content;max-width:100%}
+:is(.research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,.ack-grid article,.about-grid>div,.contact-grid>div) .section-note::before {content:none}
 .site-footer,.next-route {padding-inline:18px}
 .hero {display:grid;grid-template-columns:1.22fr .78fr;align-items:end;gap:0 44px;padding-top:48px}
 .hero-copy {--reading-alpha:var(--surface-open);color:var(--ink);align-self:center;padding:16px 18px 34px;margin-left:-18px}
@@ -638,6 +642,8 @@ h2 {font-size:clamp(30px,3.4vw,40px);font-weight:720;letter-spacing:-.035em;line
 .archive-link {margin-top:26px}
 .writing-topic {font-size:13px;font-weight:650;color:var(--muted);margin:32px 0 12px;text-transform:uppercase;letter-spacing:.07em}
 .talk-title {font-size:25px;font-weight:600;line-height:1.4;margin:0 0 12px}
+.talks-list .publication::before {content:none}
+.talks-list .publication>div {width:fit-content;max-width:100%;min-width:0;justify-self:start;--reading-alpha:var(--surface-row)}
 .ack-grid article {border-top:1px solid var(--line);padding-top:22px}
 .ack-grid h3 {font-size:18px;margin:0 0 12px}
 .about-grid p {margin-bottom:18px}
@@ -658,7 +664,7 @@ h2 {font-size:clamp(30px,3.4vw,40px);font-weight:720;letter-spacing:-.035em;line
   body[data-page="credits"] .credits-page {max-width:1160px}
   .credits-page>p {max-width:730px}
 }
-.archive-filters {display:flex;flex-wrap:wrap;align-items:end;gap:18px;padding-block:24px 4px}
+.archive-filters {display:flex;flex-wrap:wrap;align-items:end;gap:18px;padding:12px;margin:12px 0 0 -12px;--surface-gutter:8px;--reading-alpha:var(--surface-row)}
 .archive-filters,.archive-heading,.archive-count,.topic-nav {width:fit-content;max-width:100%}
 .archive-filters label {display:grid;gap:8px;font-size:13px;color:var(--muted)}
 .archive-filters select {min-width:130px;font-size:14px}
@@ -674,9 +680,10 @@ h2 {font-size:clamp(30px,3.4vw,40px);font-weight:720;letter-spacing:-.035em;line
 .archive-landings,.year-landing {scroll-margin-top:12px}
 .contact-grid {display:grid;grid-template-columns:1fr 1fr;gap:44px}
 .contact-grid p {color:var(--muted);font-size:15px;max-width:520px}
-.booking-placeholder {border-left:2px solid var(--accent);padding:4px 0 4px 30px;align-self:center}
-.booking-placeholder h3 {font-size:22px;margin:0}
-.booking-placeholder .button {font-size:13px;gap:16px}
+.booking-card {border-left:2px solid var(--accent);padding:4px 0 4px 30px;align-self:center}
+.booking-card h3 {font-size:22px;margin:0}
+.booking-card .button {font-size:13px;gap:16px}
+.contact-email {overflow-wrap:anywhere}
 .credits-page {max-width:800px;padding-block:60px}
 .credits-page h1 {font-size:clamp(40px,6vw,60px)}
 .credits-page h2 {font-size:21px;letter-spacing:-.01em;margin-top:36px}
@@ -749,7 +756,7 @@ body[data-page="writing"] .publication {--reading-alpha:var(--surface-row)}
   .site-footer p {flex-basis:100%}
   .section-heading {padding:10px 12px;margin-left:-12px}
   .research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,.ack-grid article {padding:20px 16px}
-  .booking-placeholder {padding-left:20px}
+  .booking-card {padding-left:20px}
 }
 @media(prefers-reduced-motion:reduce) {
   html {overflow-x:clip;scroll-behavior:auto}
@@ -762,7 +769,8 @@ body[data-page="writing"] .publication {--reading-alpha:var(--surface-row)}
   .wrap {width:100%}
   .site-header {position:static}
   .site-header.wrap {padding-inline:0}
-  main ::before,.site-footer::before {display:none!important}
+  main ::before,.site-footer ::before {display:none!important}
+  .reading-title {background:transparent}
   .site-header nav,.appearance,.display-controls,.space-scene,.skip-link,.section-nav,.topic-nav,.archive-filters,.archive-landings,.archive-heading,.button {display:none!important}
   .hero {padding-top:24px}
   .section {padding-block:28px}
@@ -780,7 +788,7 @@ body[data-page="writing"] .publication {--reading-alpha:var(--surface-row)}
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header wrap"><a class="wordmark" href="site-v1-20261004-v11-night.html" aria-label="Vitalii Oborskyi, home"><span class="monogram" aria-hidden="true">vo<span class="monogram-dot">.</span></span><span>Vitalii Oborskyi</span></a><nav aria-label="Main navigation"><a href="site-v1-20261004-v11-night.html">Home</a><a href="site-v1-20261004-v11-research-night.html">Research</a><a href="site-v1-20261004-v11-writing-night.html" aria-current="page">Writing</a><a href="site-v1-20261004-v11-talks-night.html">Talks</a></nav><details class="appearance"><summary>Appearance</summary><noscript><p>Display follows your browser’s color preference. Animated motion needs JavaScript.</p></noscript><div class="display-controls"><nav class="theme-control" aria-label="Review theme"><span>Preview theme</span><a href="site-v1-20261004-v11-writing-day.html">Day</a><a href="site-v1-20261004-v11-writing-night.html" aria-current="page" style="text-decoration:underline">Night</a></nav></div></details></header>
 <aside class="wrap" aria-label="Review copy" style="padding-block:14px;font-size:13px;color:var(--muted)"><a href="site-v1-20261004-v11-index.html">All five pages</a> · fixed Night review · static background. Motion, filters and Auto run in the interactive copy. Review candidate.</aside>
-<main id="main" tabindex="-1"><section class="archive-intro wrap" data-space-stop><p class="eyebrow">Writing / Original published editions</p><h1>Follow the questions.<br>Find your next read.</h1><p class="hero-description">27 primary archive records: 20 English and 7 Ukrainian, plus a separate English LinkedIn rendition. Browse AI architecture, delivery, operating models and strategy; each link keeps its original title, date and language.</p></section><nav class="topic-nav wrap" data-archive-navigation aria-label="Browse article topics"><a href="#topic-delivery" data-filter-topic="delivery">AI-assisted delivery</a><a href="#topic-systems" data-filter-topic="systems">AI architecture &amp; control</a><a href="#topic-leadership" data-filter-topic="leadership">Operating models &amp; leadership</a><a href="#topic-strategy" data-filter-topic="strategy">AI strategy &amp; society</a></nav><div class="wrap"><nav class="section-nav" aria-label="Browse publication year" data-archive-navigation><a href="#year-2026">2026</a><a href="#year-2025">2025</a></nav><div class="archive-landings" role="navigation" aria-label="Archive topics"><h2 id="topic-delivery" class="topic-landing">AI-assisted delivery<a href="#topic-delivery-2026">Browse articles ↓</a></h2><h2 id="topic-systems" class="topic-landing">AI architecture &amp; control<a href="#topic-systems-2026">Browse articles ↓</a></h2><h2 id="topic-leadership" class="topic-landing">Operating models &amp; leadership<a href="#topic-leadership-2025">Browse articles ↓</a></h2><h2 id="topic-strategy" class="topic-landing">AI strategy &amp; society<a href="#topic-strategy-2026">Browse articles ↓</a></h2></div><h2 id="archive-heading" class="archive-heading" hidden>All topics · All years · EN + UA</h2><p id="archive-count" class="section-note" role="status" aria-live="polite">27 primary archive records · 20 EN / 7 UA · plus one linked EN rendition.</p><p class="section-note">The catalog contains 28 linked platform renditions (21 EN / 7 UA), including the separately dated Thinking Systems LinkedIn link. Dates belong to the linked platform edition. “Edited” marks a last-updated date. Related articles are not assumed to be translations.</p><p id="archive-empty" class="empty-state" hidden>No editions match these filters. Change a filter or reset to see everything.</p></div><h2 id="year-2026" class="year-landing">2026 archive</h2><div id="archive-results" class="archive-results"><section id="results-year-2026" class="section wrap archive-year" data-year="2026" aria-labelledby="year-2026-title" data-space-stop><div class="year-heading"><h2 id="year-2026-title">2026</h2><span>8 editions</span></div><section class="archive-group" data-topic="delivery" aria-labelledby="topic-delivery-2026"><h3 id="topic-delivery-2026" class="writing-topic">AI-assisted delivery</h3><ol class="publication-list"><li class="publication" data-language="uk" data-topic="delivery" data-year="2026"><div class="publication-meta"><time datetime="2026-06-17">17 Jun 2026</time><span><span class="language-badge" lang="uk">UA · Українська</span> · Article · DOU</span></div><div><a class="publication-title" href="https://dou.ua/forums/topic/60177/"><span lang="uk">Субпрайм-криза коду — чому AI-асистенти роблять нас повільнішими (Частина 2)</span><span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
+<main id="main" tabindex="-1"><section class="archive-intro wrap" data-space-stop><p class="eyebrow">Writing / Original published editions</p><h1><span class="reading-title">Follow the questions.<br>Find your next read.</span></h1><p class="hero-description">27 primary archive records: 20 English and 7 Ukrainian, plus a separate English LinkedIn rendition. Browse AI architecture, delivery, operating models and strategy; each link keeps its original title, date and language.</p></section><nav class="topic-nav wrap" data-archive-navigation aria-label="Browse article topics"><a href="#topic-delivery" data-filter-topic="delivery">AI-assisted delivery</a><a href="#topic-systems" data-filter-topic="systems">AI architecture &amp; control</a><a href="#topic-leadership" data-filter-topic="leadership">Operating models &amp; leadership</a><a href="#topic-strategy" data-filter-topic="strategy">AI strategy &amp; society</a></nav><div class="wrap"><nav class="section-nav" aria-label="Browse publication year" data-archive-navigation><a href="#year-2026">2026</a><a href="#year-2025">2025</a></nav><div class="archive-landings" role="navigation" aria-label="Archive topics"><h2 id="topic-delivery" class="topic-landing">AI-assisted delivery<a href="#topic-delivery-2026">Browse articles ↓</a></h2><h2 id="topic-systems" class="topic-landing">AI architecture &amp; control<a href="#topic-systems-2026">Browse articles ↓</a></h2><h2 id="topic-leadership" class="topic-landing">Operating models &amp; leadership<a href="#topic-leadership-2025">Browse articles ↓</a></h2><h2 id="topic-strategy" class="topic-landing">AI strategy &amp; society<a href="#topic-strategy-2026">Browse articles ↓</a></h2></div><h2 id="archive-heading" class="archive-heading" hidden>All topics · All years · EN + UA</h2><p id="archive-count" class="section-note" role="status" aria-live="polite">27 primary archive records · 20 EN / 7 UA · plus one linked EN rendition.</p><p class="section-note">The catalog contains 28 linked platform renditions (21 EN / 7 UA), including the separately dated Thinking Systems LinkedIn link. Dates belong to the linked platform edition. “Edited” marks a last-updated date. Related articles are not assumed to be translations.</p><p id="archive-empty" class="empty-state" hidden>No editions match these filters. Change a filter or reset to see everything.</p></div><h2 id="year-2026" class="year-landing">2026 archive</h2><div id="archive-results" class="archive-results"><section id="results-year-2026" class="section wrap archive-year" data-year="2026" aria-labelledby="year-2026-title" data-space-stop><div class="year-heading"><h2 id="year-2026-title">2026</h2><span>8 editions</span></div><section class="archive-group" data-topic="delivery" aria-labelledby="topic-delivery-2026"><h3 id="topic-delivery-2026" class="writing-topic">AI-assisted delivery</h3><ol class="publication-list"><li class="publication" data-language="uk" data-topic="delivery" data-year="2026"><div class="publication-meta"><time datetime="2026-06-17">17 Jun 2026</time><span><span class="language-badge" lang="uk">UA · Українська</span> · Article · DOU</span></div><div><a class="publication-title" href="https://dou.ua/forums/topic/60177/"><span lang="uk">Субпрайм-криза коду — чому AI-асистенти роблять нас повільнішими (Частина 2)</span><span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
 <li class="publication" data-language="en" data-topic="delivery" data-year="2026"><div class="publication-meta"><time datetime="2026-06-12">12 Jun 2026</time><span><span class="language-badge">EN · English</span> · Article · Agile Insider</span></div><div><a class="publication-title" href="https://medium.com/agileinsider/ai-the-externalization-of-reasoning-and-the-verification-crisis-4f5046f9f0d0">AI, the Externalization of Reasoning, and the Verification Crisis<span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
 <li class="publication" data-language="uk" data-topic="delivery" data-year="2026"><div class="publication-meta"><time datetime="2026-02-10">10 Feb 2026</time><span><span class="language-badge" lang="uk">UA · Українська</span> · Article · DOU</span></div><div><a class="publication-title" href="https://dou.ua/forums/topic/57846/"><span lang="uk">Субпрайм-криза коду: чому AI-асистенти роблять нас повільнішими — і дані це доводять</span><span class="publication-arrow" aria-hidden="true">↗</span></a></div></li>
 <li class="publication" data-language="uk" data-topic="delivery" data-year="2026"><div class="publication-meta"><time datetime="2026-01-05">5 Jan 2026</time><span><span class="language-badge" lang="uk">UA · Українська</span> · Article · DOU</span></div><div><a class="publication-title" href="https://dou.ua/forums/topic/57244/"><span lang="uk">Ілюзія економії: чому заміна розробників на AI — це шлях до технічного дефолту</span><span class="publication-arrow" aria-hidden="true">↗</span></a></div></li></ol></section><section class="archive-group" data-topic="systems" aria-labelledby="topic-systems-2026"><h3 id="topic-systems-2026" class="writing-topic">AI architecture &amp; control</h3><ol class="publication-list"><li class="publication" data-language="en" data-topic="systems" data-year="2026"><div class="publication-meta"><time datetime="2026-08-30">30 Aug 2026</time><span><span class="language-badge">EN · English</span> · Article · Generative AI</span></div><div><a class="publication-title" href="https://generativeai.pub/uncertainty-architecture-thinking-systems-when-the-controlled-object-changes-21275fe2f3db">Uncertainty Architecture: Thinking Systems, When the Controlled Object Changes<span class="publication-arrow" aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/pulse/thinking-systems-when-controlled-object-changes-vitalii-oborskyi-6k4we">LinkedIn edition · 27 Aug 2026</a></p></div></li>

@@ -31,6 +31,9 @@ function validateFragment(html,name) {
       const normalized=[...value].filter(char=>char.charCodeAt(0)>32&&char.charCodeAt(0)!==127).join('');
       if(/^https:\/\//i.test(normalized)) {
         const url=new URL(normalized);if(url.username||url.password)throw Error('Credentials in URL '+name);
+      } else if(/^mailto:[a-z0-9._+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i.test(value)) {
+        // A plain public address only: no headers, parameters or control bytes.
+        if(value!==normalized)throw Error('Unsafe URL in '+name);
       } else if(!/^(?:#[^\s]*|\.\/[^\s]*|[a-z0-9][a-z0-9_./-]*(?:[?#][^\s]*)?)$/i.test(normalized)||normalized.includes('..')||normalized.includes(':'))throw Error('Unsafe URL in '+name);
     }
   }
@@ -143,7 +146,7 @@ function versionHTML(html,version,components) {
   return html;
 }
 function snapshotHTML(html) {
-  return html.replace(/\b(href|src)="([^"]+)"/g,(original,attribute,value)=>/^(?:https:|#|data:)/.test(value)?original:`${attribute}="../../${value}"`);
+  return html.replace(/\b(href|src)="([^"]+)"/g,(original,attribute,value)=>/^(?:https:|mailto:|#|data:)/.test(value)?original:`${attribute}="../../${value}"`);
 }
 function retain(root,put) {
   const directory=path.join(root,'site/retained'),names=files(directory);

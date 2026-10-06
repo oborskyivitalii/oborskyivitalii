@@ -8,6 +8,19 @@ test('SEO reconciliation retains unsupported effects identity and semantic metad
     assert.ok(html.includes(from));assert.notEqual(restore(html.replace(from,to),'index'),preserved);
   }
 });
+test('approved contact and decorative title reconciliation retain changed destinations and copy',()=>{
+  const {restore}=require('../tools/check_site_seo.cjs'),path=require('node:path');
+  const html=fs.readFileSync(path.join(__dirname,'../docs/index.html'),'utf8'),preserved=restore(html,'index');
+  for(const [from,to]of [['https://calendar.app.google/zy9rAnUcoWygSdxH7','https://calendar.app.google/other'],['mailto:oborskyivitalii@gmail.com','mailto:other@example.com'],['Choose a time for a conversation, or send me an email.','Changed contact claim.']]){
+    assert.ok(html.includes(from));assert.notEqual(restore(html.replace(from,to),'index'),preserved);
+  }
+  for(const page of ['research','writing','talks']){
+    const source=fs.readFileSync(path.join(__dirname,'../docs/'+page+'.html'),'utf8');
+    assert.ok(source.includes('class="reading-title"'));
+    assert.notEqual(restore(source.replace('class="reading-title"','class="other-title"'),page),restore(source,page));
+    assert.notEqual(restore(source.replace('<span class="reading-title">','<span class="reading-title">Altered title '),page),restore(source,page));
+  }
+});
 test('Day/Night semantic text and CTA pairs exceed normal-text contrast with no independent atmosphere clock',()=>{
   const css=fs.readFileSync(require('node:path').join(__dirname,'../docs/styles.css'),'utf8');
   const lum=hex=>hex.match(/[a-f0-9]{2}/gi).map(x=>parseInt(x,16)/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4).reduce((sum,v,i)=>sum+v*[.2126,.7152,.0722][i],0);

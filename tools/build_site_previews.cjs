@@ -23,7 +23,7 @@ function filename(page, theme) {
 
 function rewriteLinks(html, theme, interactive = false) {
   return html.replace(/href="([^"]+)"/g, (attribute, value) => {
-    if (value.startsWith("data:image/svg+xml;base64,") || value.startsWith("https://") || value.startsWith("#")) return attribute;
+    if (value.startsWith("data:image/svg+xml;base64,") || value.startsWith("https://") || value.startsWith("mailto:") || value.startsWith("#")) return attribute;
     const suffixAt = value.search(/[?#]/);
     const base = suffixAt < 0 ? value : value.slice(0, suffixAt);
     const suffix = suffixAt < 0 ? "" : value.slice(suffixAt);

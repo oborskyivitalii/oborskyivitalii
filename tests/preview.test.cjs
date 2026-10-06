@@ -48,7 +48,7 @@ test("every local page/gallery link and fragment resolves within the complete ha
     const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
     assert.equal(ids.length, new Set(ids).size);
     for (const [, href] of html.matchAll(/href="([^"]+)"/g)) {
-      if (href.startsWith("https://") || href.startsWith("data:image/svg+xml;base64,")) continue;
+      if (href.startsWith("https://") || href.startsWith("mailto:") || href.startsWith("data:image/svg+xml;base64,")) continue;
       const [pathQuery, fragment] = href.split("#");
       const [base] = pathQuery.split("?");
       const target = base ? `review/${base}` : file;

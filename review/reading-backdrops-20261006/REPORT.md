@@ -1,5 +1,42 @@
 # Content-sized reading backdrops
 
+## Maintainer follow-up: real contact and remaining geometry
+
+Input: three new Safari/iPad screenshots, `image(6).png` through `image(8).png`,
+plus explicit instruction to add `https://calendar.app.google/zy9rAnUcoWygSdxH7`
+and public email `oborskyivitalii@gmail.com`. Screenshot 7/8 show immutable PR #27
+preview `a24cfb8d`; #28 is an alternative follow-up on the same parent, not its
+descendant. This increment continues #28 and retains useful unique #27 fixes.
+
+- The Research H1 still painted its maximum-width box after the long line wrapped.
+  Exact decorative spans now paint each native line fragment in Research, Writing
+  and Talks. Glyphs, headings and line-breaking copy are unchanged; no measurement
+  loop or backdrop blur is added.
+- Talks' full row panel is replaced by separate fitted metadata and title/link
+  cells. Reading protection stays present without covering the empty right column.
+- Writing's filter form now has one compact row-alpha background around the actual
+  controls, including Reset. Its labels have no second background. Archive article
+  rows keep their existing protection; year gutters and publication records remain.
+- Retained #27 fixes: one Contact backing without nested notes; compact feathering;
+  child protection for next-route and footer; Credits H1, About headings and archive
+  link protection; content-fit short text blocks; correct print footer cleanup.
+- Contact replaces its placeholder with the supplied booking link, a visible public
+  mailto address and secondary LinkedIn link. The CTA makes no unverified claim about
+  appointment duration. Plain email links survive versioned snapshots and standalone
+  exports. The source boundary admits plain addresses only, without header parameters.
+- Frozen-copy checks reverse only the exact approved contact block and three exact
+  title wrappers. Negative mutations retain changed destinations, copy and wrapper
+  identities. The prior publication/SEO/source inventory stays authoritative.
+
+Local generation, 23 basic/theme/archive/flight and 33 focused checks pass. Base CSS
+correctness lint passes. Independent review and hosted CI/browser results are recorded
+in #28/#14 on the exact published head; this report records the source-stage checkpoint.
+No local-browser or physical Safari/iPad pass is claimed. Source code/outputs are
+repository-backed and no existing local worktree was reset or overwritten.
+
+The earlier section below describes the initial #28 increment. Its advice-only
+contact scope and per-label filter treatment are superseded by this explicit follow-up.
+
 Owner: #14. Maintainer input: 6 October 2026, separate stacked PR on #23.
 Baseline runtime: 428f5ee58f73d53ff200a865a3fde05c1db083d3. Parent advanced to
 abfb1f272b11628274ac42c912e91477e995b132 during preparation; its four fixture/report
