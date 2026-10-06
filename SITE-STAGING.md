@@ -1,7 +1,8 @@
 # PR previews and explicit staging
 
-Owner intent: issues #8 and #13. CI-only PR #26 is merged into protected main;
-the complete current runtime candidate is consolidated in the sole open PR #23.
+Owner intent: issues #8 and #13. Controller PRs #26/#29 and runtime PR #23
+are merged into protected main. PR #28 is the current reading/content follow-up;
+its fresh full staging and stable verification must precede its merge.
 
 ## Deployment flow
 
@@ -23,7 +24,8 @@ the repository owner is accepted. Edited comments do not trigger a deployment.
 
 The source edition selects base or the authored Color rendition explicitly in its
 artifact. A pipeline-only PR based on main has the unchanged base runtime. The
-Color runtime stays in its own open PR (#23); stage that PR to review its effects.
+accepted Color runtime is on main; stage the current open follow-up PR to test
+its exact source and supported rendition.
 All served HTML/runtime bytes are verified against the selected artifact.
 
 ## Verified provider and first preview
@@ -70,9 +72,12 @@ preflight passed separately. Every full-stage failure remains evidence.
    current open runtime PR before merging it; staging resolves an open PR head.
 
 Preview and staging credentials/account/project, both opt-ins and protected main
-are proved by successful target/build/publish jobs, including full staging run
-37460990802 on 6 October 2026. No additional owner setup is needed. This proves
-configuration and candidate publication, not full acceptance or stable promotion.
+are proved by successful deployments. No additional owner setup is needed.
+Full run [37524167715](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37524167715)
+accepted #23 source `5577be8a13400f76d348b992688e3e2b1992e455`, tree
+`fbb0d0b6ada3305c6aae3334a6003a25a425db6b`, and verified stable staging before
+merge. This evidence applies to that edition; changed follow-ups need fresh gates.
+The older failed full runs remain retained.
 The connector cannot read or write GitHub environment/secrets/variables
 administration. A successful deployment proves the credential used for that job
 without exposing its value.

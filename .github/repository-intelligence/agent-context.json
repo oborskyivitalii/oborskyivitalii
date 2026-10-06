@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "58686975117829e4de11a1f21c4ed8ac5c4af2b655a45aee07ada537ba027056",
+    "digest": "e9ba27b6a108ff749e4416e90f872aa2e43ca3092878220cffc2f7da6aecfecc",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -152,7 +152,7 @@
       {
         "path": "SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "d0b122e6c6632ed02768ac9517c8f692e6ed6634a76e101f567fe44a60888a20"
+        "sha256": "8f678f1c3c296e9fef1deee1fe4af55afbead3927e0f6afe97dc2a5e49fbdcc7"
       },
       {
         "path": "SITE-CONTENT-REVIEW.md",
@@ -167,7 +167,7 @@
       {
         "path": "SITE-RELEASE-GATES.md",
         "identity_mode": "content",
-        "sha256": "10e67d3c979ade74e801a6f86e15cda4022b45f68ea09e82ca53dc345e92f0b0"
+        "sha256": "b7e72dfef2c21469859ccd87b61f330ec99709d2feab76bd6652847d29838f70"
       },
       {
         "path": "SITE-ROADMAP.md",
@@ -187,7 +187,7 @@
       {
         "path": "SITE-STAGING.md",
         "identity_mode": "content",
-        "sha256": "5a87311f0685c550313db624b29d8f6056bdb4459048f3929fa13f1ecce5bf94"
+        "sha256": "e8069c27ab4bdf8fb127fe341963afabf0c5260b048682fa53f96e60a5326434"
       },
       {
         "path": "SITE-VISUAL-REVIEW.md",

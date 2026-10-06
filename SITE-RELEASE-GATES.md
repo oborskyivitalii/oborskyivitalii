@@ -1,5 +1,22 @@
 # Site release checks — Sol implementation contract
 
+## Accepted hosted coverage and current release boundary — 2026-10-06
+
+[SITE-CHECK-PROFILES](SITE-CHECK-PROFILES.md) and the approved #29 controller
+supersede the older Linux-only full matrix below. Full staging combines Linux
+Chromium/Firefox 260/8/26 with native macOS WebKit 130/4/13: all 390 functional,
+12 navigation and 39 analytics cases, including every no-JavaScript/failure mode.
+Windows 40/8/26 smoke and twelve original Linux Color cases remain supplemental;
+legacy nonfull three-engine Linux behavior, pins and all budgets remain unchanged.
+
+PR #23 passed exact-source full staging and stable verification in run
+[37524167715](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37524167715)
+before its protected merge. PR #28 is authorized for the same sequence with its
+own fresh source/artifact/controller identities. Staging is authorized; production
+activation and first-release rights, independent/device and maintainer visual
+acceptance remain separate. Earlier blanket publication pauses and PR schedules
+below are historical where they conflict with these current decisions.
+
 ## Check-profile amendment — 2026-10-05
 
 [SITE-CHECK-PROFILES](SITE-CHECK-PROFILES.md) supersedes older always-full
@@ -86,7 +103,7 @@ SonarQube service, Lighthouse server or device-cloud subscription is required.
 | Stage | Required checks | Result |
 | --- | --- | --- |
 | Every PR | Existing behavior/content/export/RI tests; security/static checks; deterministic size budgets; three-engine Linux functional/failure matrix | A required aggregate check fails on any required failure or missing result. |
-| Every release candidate | Repeat PR checks on the exact candidate/artifact; native OS smoke matrix; repeated Lighthouse; sustained motion and soak; source-bound review/device evidence | Produce a complete release manifest. No reuse of a green run for different bytes. |
+| Every release candidate | Repeat PR checks on the exact candidate/artifact; Windows smoke and native macOS full matrix; repeated Lighthouse; sustained motion and soak; source-bound review/device evidence | Produce a complete release manifest. No reuse of a green run for different bytes. |
 | Owned hosted preview, once available under #8 | ZAP Baseline passive scan and HTTPS/redirect/MIME/header/mixed-content checks against the release artifact and actual host configuration | Record hosting findings separately from local-loopback results. Missing preview is not a fabricated pass. |
 | After authorized deployment | Verify served edition/digests, every route and assets, basic interactions, HTTPS and live headers, canonical/robots/sitemap policy | Mark deployment healthy only after smoke checks; execute the reviewed recovery procedure on failure. |
 
@@ -122,12 +139,12 @@ same approved candidate. Scanner reports must redact any discovered secret value
 
 | Execution environment | PR | Full release |
 | --- | --- | --- |
-| Linux, pinned supported runner image | Chromium, Firefox, WebKit: all five routes | Repeat the full functional and failure matrix. |
+| Linux, pinned supported runner image | Current bounded preview uses Chromium; legacy nonfull profiles retain all three engines. | Chromium/Firefox: full functional and failure matrix, 260/8/26; original Color12 retains all three engines. |
 | Windows, pinned supported runner image | Not required | Chromium and Firefox: all five routes, both themes, desktop/mobile layout and core interactions. |
-| macOS, pinned supported runner image | Not required | WebKit: all five routes, both themes, desktop/mobile layout and core interactions. |
+| macOS, pinned supported runner image | Not required | WebKit: full 130/4/13 on all five routes, both themes/widths and every original failure/no-JavaScript mode. |
 | Physical iPhone/iPad Safari and modest Android Chrome | No device-cloud requirement | First release and material rendering/layout/input/fallback/browser-policy changes: recorded physical smoke evidence. |
 
-The automated Linux matrix retains the audit's 1440×900 and 390×844 Day/Night
+The combined Linux/macOS core matrix retains the audit's 1440×900 and 390×844 Day/Night
 views and 320px fallback checks. Include 200% layout/zoom inspection, keyboard
 navigation/focus, theme/storage behavior, Writing query/hash/history/empty states,
 normal and rapid reverse scrolling, Off/reduced, visibility/print pause and return.
