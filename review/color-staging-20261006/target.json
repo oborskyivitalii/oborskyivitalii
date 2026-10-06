@@ -1,6 +1,12 @@
 {
   "schema": 1,
-  "mode": "build",
+  "mode": "test",
   "variant": "color",
-  "scope": "Maintainer-requested immutable staging review; no stable promotion or production release."
+  "scope": "Maintainer-requested immutable staging review; no stable promotion or production release.",
+  "source": "eac4654e58757f5bbab343feeef3fc690548df6b",
+  "url": "https://0c423b48.oborskyi-author-ci-staging.pages.dev",
+  "artifact": "11393657896",
+  "run": "37423103901",
+  "digest": "798ad5054e51b3f6bdb238889b843c73087b4c45de2634bd5794a4d03e32e236",
+  "upload": "sha256:c5e4ad803439bdc94c1fc04cd0462b8f201e15e2e22f5422ce8d4330512af578"
 }

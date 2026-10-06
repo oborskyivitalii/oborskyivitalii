@@ -20,7 +20,15 @@ GitHub administration or production job. Device/independent acceptance stays
 separate. Read `review/color-staging-20261006/REPORT.md` and `target.json`; a
 prepared or queued run is not a successful full profile.
 
-## Live staging and current authorization — 2026-10-05
+Current Color preview: [open staging](https://0c423b48.oborskyi-author-ci-staging.pages.dev), deployment `0c423b48`,
+source `eac4654e58757f5bbab343feeef3fc690548df6b`, checked public artifact `11393657896` from Color run
+`37423103901`. Provider deploy and initial Home hash/Color identity pass.
+The complete automated hosted profile is queued; no full-pass or stable-promotion
+claim is established. Report-only changes do not repeat the expensive suite;
+`target.json` or relevant code changes trigger it. Retain source failure outcomes
+while collecting all independent source/security/browser/performance checks.
+
+## Historical base staging and authorization — 2026-10-05
 
 The maintainer explicitly authorizes Cloudflare staging provisioning, uploads and
 the required repository/instruction/issue/PR updates. This supersedes the older

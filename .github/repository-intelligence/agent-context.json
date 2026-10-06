@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "0b56d7472cf85a8cf84f78e7ebfcb1719c8eabdc7b7f897a00c260c6507dede9",
+    "digest": "48d5c748ab16a2f7241dd0bcb9c2474770d19604186b4656051f97729ba66020",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -92,7 +92,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "4e854d8719cf5bd2dbc6ef8ced38d9dc43a9c0bb2fc93e05aa0097988f65621a"
+        "sha256": "325ad0a47939acd1c71873f4f970fe5dfe49a51ca1085a1fb8ac78b0a72695ed"
       },
       {
         "path": "BACKLOG.md",
@@ -157,7 +157,7 @@
       {
         "path": "SITE-STAGING.md",
         "identity_mode": "content",
-        "sha256": "a69371e609a9b7dc118f072e7240384f1fe4d9a9062d5fb3e3d286640a16c38f"
+        "sha256": "1daf2ec3a275b19f181378ffa404c9d2c3b79cd8c06ae37c69438e1128c268f0"
       },
       {
         "path": "SITE-VISUAL-REVIEW.md",
@@ -335,12 +335,22 @@
       {
         "path": "review/color-staging-20261006/REPORT.md",
         "identity_mode": "content",
-        "sha256": "b191660a115c246dfe0f99732496bef3d60dabf2ab640ffd008336e4fd95df50"
+        "sha256": "f0efc714a3bcd56cb0353aa459eb0fe41bde901f196c8cbacf6f06b5a66cc781"
+      },
+      {
+        "path": "review/color-staging-20261006/evidence/provider.json",
+        "identity_mode": "content",
+        "sha256": "c08b58046a89aaf67914b1510eb94a766cab57e0d1f4dda6ce0299da2fe0f229"
+      },
+      {
+        "path": "review/color-staging-20261006/evidence/staging-package.json",
+        "identity_mode": "content",
+        "sha256": "dae64dccd94af2d1dda9514ce84c7bd49a84f6b83a62e67f409d1f0a735a2beb"
       },
       {
         "path": "review/color-staging-20261006/target.json",
         "identity_mode": "content",
-        "sha256": "0c4e6790faebe66d263e486f7043d8c0eb86e85911ac57e561bfa237fcbe4650"
+        "sha256": "c702c409d6ecd3f67b6337568e9edbee747c719a7aaf01d56c10d7f6307c254e"
       },
       {
         "path": "review/seo-20261002/COLLECTION-MANIFEST.json",
@@ -4129,6 +4139,20 @@
     {
       "path": "review/color-staging-20261006/REPORT.md",
       "title": "Color staging correction — 6 October 2026",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/color-staging-20261006/evidence/provider.json",
+      "title": "review/color-staging-20261006/evidence/provider.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/color-staging-20261006/evidence/staging-package.json",
+      "title": "review/color-staging-20261006/evidence/staging-package.json",
       "instructions": [
         "AGENTS.md"
       ]

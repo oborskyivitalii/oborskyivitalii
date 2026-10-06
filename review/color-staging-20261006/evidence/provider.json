@@ -1,0 +1,135 @@
+{
+  "schema": 1,
+  "accountId": "3b938b72a4ad0ac10b9102e0534e75c0",
+  "deployment": {
+    "id": "0c423b48-f61d-44ef-bb29-cee749c8d010",
+    "short_id": "0c423b48",
+    "project_id": "d4b9b7b2-8ee6-4762-b9b1-84e221db9fbb",
+    "project_name": "oborskyi-author-ci-staging",
+    "environment": "preview",
+    "url": "https://0c423b48.oborskyi-author-ci-staging.pages.dev",
+    "created_on": "2026-10-06T06:22:00.291799Z",
+    "modified_on": "2026-10-06T06:22:01.689889Z",
+    "latest_stage": {
+      "name": "deploy",
+      "started_on": null,
+      "ended_on": "2026-10-06T06:22:01.689889Z",
+      "status": "success"
+    },
+    "deployment_trigger": {
+      "type": "ad_hoc",
+      "metadata": {
+        "branch": "candidate-color-eac4654e58757f5bbab343feeef3fc690548df6b",
+        "commit_hash": "eac4654e58757f5bbab343feeef3fc690548df6b",
+        "commit_message": "Authorized current Color staging review; checked artifact 11393657896; no stable promotion",
+        "commit_dirty": false
+      }
+    },
+    "stages": [
+      {
+        "name": "queued",
+        "started_on": "2026-10-06T06:22:00.291799Z",
+        "ended_on": null,
+        "status": "active"
+      },
+      {
+        "name": "initialize",
+        "started_on": null,
+        "ended_on": null,
+        "status": "idle"
+      },
+      {
+        "name": "clone_repo",
+        "started_on": null,
+        "ended_on": null,
+        "status": "idle"
+      },
+      {
+        "name": "build",
+        "started_on": null,
+        "ended_on": null,
+        "status": "idle"
+      },
+      {
+        "name": "deploy",
+        "started_on": null,
+        "ended_on": "2026-10-06T06:22:01.689889Z",
+        "status": "success"
+      }
+    ],
+    "build_config": {
+      "build_command": null,
+      "destination_dir": null,
+      "build_caching": null,
+      "root_dir": null,
+      "web_analytics_tag": null,
+      "web_analytics_token": null
+    },
+    "env_vars": {},
+    "compatibility_date": "2026-10-05",
+    "compatibility_flags": [],
+    "build_image_major_version": 3,
+    "usage_model": null,
+    "aliases": [
+      "https://candidate-color-eac4654e5875.oborskyi-author-ci-staging.pages.dev"
+    ],
+    "is_skipped": false,
+    "production_branch": "production-disabled",
+    "files": {
+      "/.nojekyll": "b335f4f6f73a2be8a7b9f689f5ee5e1c",
+      "/404.html": "1a58192f7205c651befbb12aa4d73676",
+      "/_staging/revision.json": "01d8a4ab2da987ff76220cb071da1e56",
+      "/archive.js": "f4091bd49d55c5cb000a0bb90f70c085",
+      "/assets/favicon.svg": "6ec139a477f4e2f1f717e36d83dee0af",
+      "/assets/vitalii-oborskyi-cutout.webp": "96bf2711f5d0ac34d94ac54db8367dca",
+      "/assets/vitalii-oborskyi.jpg": "e05c5f169578d13ab58aae8b4e603437",
+      "/credits.html": "160b482f688b8c32e254fd53f24f28f6",
+      "/index.html": "3819939051edf2610e0f03af055e7ee5",
+      "/media/442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401/favicon.svg": "6ec139a477f4e2f1f717e36d83dee0af",
+      "/media/442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401/vitalii-oborskyi-cutout.webp": "96bf2711f5d0ac34d94ac54db8367dca",
+      "/media/442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401/vitalii-oborskyi.jpg": "e05c5f169578d13ab58aae8b4e603437",
+      "/navigation.js": "133a41a1176d8546dd9c5d827eb0fc4e",
+      "/research.html": "dd87a579c2e48b47aa0ddf6d5b6088de",
+      "/runtime/949b2a2e441bc6b1673be0310ad8a12dc775ff8c73a59706d944373e7be36768/archive.js": "f4091bd49d55c5cb000a0bb90f70c085",
+      "/runtime/949b2a2e441bc6b1673be0310ad8a12dc775ff8c73a59706d944373e7be36768/navigation.js": "133a41a1176d8546dd9c5d827eb0fc4e",
+      "/runtime/949b2a2e441bc6b1673be0310ad8a12dc775ff8c73a59706d944373e7be36768/space.js": "308bf7a3962798e20067bfccdb182693",
+      "/runtime/949b2a2e441bc6b1673be0310ad8a12dc775ff8c73a59706d944373e7be36768/styles.css": "720c1952872acfe567430f16463d8efc",
+      "/runtime/949b2a2e441bc6b1673be0310ad8a12dc775ff8c73a59706d944373e7be36768/theme.js": "c07dd55e09779e9c48047a13966c0eee",
+      "/site-revision.json": "4131eaf132027d67b81ea006dbdf208d",
+      "/snapshots/4f065398396dcd6fcd567090ea8f5c30e79e4b5e45d8642f2a5d34d4403ab0a7/talks.html": "0e96a0feba1238c46476ccc360c261cd",
+      "/snapshots/be5296c28c91573c867abc6894956d75eeffead8d6eba5ec6e14f8f07381b989/writing.html": "269c98121d02575dc8faeeccd3ec55c7",
+      "/snapshots/d23974dff0a28f695bf21640517e3c36b861faa859247aebc97b9712727cc2d2/credits.html": "2c87d583ee7d280a1e439325d2ec6596",
+      "/snapshots/e2b2a3256589e2aa5e5682ca0a5a7ccdcef25dc1bb85807821b2deabdd1569bd/index.html": "f335437b871761719d38f24c7c3c410b",
+      "/snapshots/e3320b2da54e4f9bb14a32f6a2cfe1b8011023965f65bac06613a7832ad44f5c/research.html": "3055a2bf82811be6532fc6572bbd98ed",
+      "/space.js": "308bf7a3962798e20067bfccdb182693",
+      "/styles.css": "720c1952872acfe567430f16463d8efc",
+      "/talks.html": "f945ec4c0cf8c6c865622e25234d8aec",
+      "/theme.js": "c07dd55e09779e9c48047a13966c0eee",
+      "/writing.html": "cd9f8559db7d7c77a60f6121180bc621"
+    },
+    "uses_functions": false
+  },
+  "policy": {
+    "directUpload": true,
+    "productionBranch": "production-disabled",
+    "gitSource": false,
+    "functions": false,
+    "analytics": false
+  },
+  "build": {
+    "source": "eac4654e58757f5bbab343feeef3fc690548df6b",
+    "tree": "40b003170d38b85fcb71f7b7edec35ff352d05c3",
+    "run": "37423103901",
+    "artifact": "11393657896",
+    "gate": "11394036936",
+    "digest": "798ad5054e51b3f6bdb238889b843c73087b4c45de2634bd5794a4d03e32e236",
+    "upload": "sha256:c5e4ad803439bdc94c1fc04cd0462b8f201e15e2e22f5422ce8d4330512af578"
+  },
+  "packageDigest": "7068fb454c4cf713e5158d7706bafdea68fafb0b84da41b5183d59fa26bbf3dc",
+  "upload": {
+    "assetFiles": 30,
+    "uniqueAssets": 22,
+    "uploadedAssets": 22,
+    "missingAfter": 0
+  }
+}

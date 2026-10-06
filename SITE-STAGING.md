@@ -1,6 +1,39 @@
 # Browser staging — current setup and activation boundary
+## Current Color staging — 6 October 2026
 
-## Current runbook — reviewed 5 October 2026
+[Open the current whole-site Color preview](https://0c423b48.oborskyi-author-ci-staging.pages.dev).
+The earlier `505498da` preview selected base, which explains missing ribbons,
+edge scrolling and spatial text flight. The current native five-route package
+includes the existing authored Color effects with explicit variant identity.
+No owner setup is needed to open it.
+
+| Current identity | Value |
+| --- | --- |
+| Deployment | `0c423b48-f61d-44ef-bb29-cee749c8d010` (preview, successful) |
+| Source | `eac4654e58757f5bbab343feeef3fc690548df6b` |
+| Source tree | `40b003170d38b85fcb71f7b7edec35ff352d05c3` |
+| Color fingerprint | `949b2a2e441bc6b1673be0310ad8a12dc775ff8c73a59706d944373e7be36768` |
+| Successful Color build | [37423103901](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37423103901) |
+| Public artifact / ZIP digest | `11393657896` / `c5e4ad803439bdc94c1fc04cd0462b8f201e15e2e22f5422ce8d4330512af578` |
+| Public digest | `798ad5054e51b3f6bdb238889b843c73087b4c45de2634bd5794a4d03e32e236` |
+
+Provider registration and initial Home hash/Color identity pass. Full automated
+hosted tests are queued through the scoped Draft [#26](https://github.com/oborskyivitalii/oborskyivitalii/pull/26),
+reusing this exact artifact and immutable https://0c423b48.oborskyi-author-ci-staging.pages.dev. Results and failures belong to
+[the current execution report](review/color-staging-20261006/REPORT.md).
+This is an experimental rendition based on Draft #23, not its merge acceptance.
+The historical cold Writing failure and four full-source fixture failures remain
+visible until fresh evidence resolves them. No full-pass claim or stable promotion
+follows from packaging or initial smoke.
+
+The dedicated Direct Upload project still has `production-disabled`, no Git
+integration, Functions or injected analytics. Production generation remains base.
+The protected-main/environment/credential steps below apply to repeatable Actions
+deployment; they do not block this authorized preview or its read-only test run.
+Keep #8/#13 and Draft #18/#22/#23 open while their acceptance is incomplete.
+
+
+## Historical base bootstrap — reviewed 5 October 2026
 
 Owner: [#8](https://github.com/oborskyivitalii/oborskyivitalii/issues/8). Full
 checks: [#13](https://github.com/oborskyivitalii/oborskyivitalii/issues/13).
