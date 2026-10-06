@@ -105,6 +105,28 @@ paint, delayed navigation rejection, wrong native target, unchanged camera,
 unsaved history, invalid hold and immediate re-hold. The final public resume must
 produce two real phase changes, an active On control and unchanged native scroll.
 
+## Native mode selection correction
+
+The second Windows report (artifact 11415425401) passes functional 40/40,
+analytics and navigation 7/8. Firefox desktop/dark retarget fails because the
+fixture waits for a flight while its actual public control is Motion Off.
+The preceding endpoint fixture treats aria-pressed false as Off, although an
+enabled adaptive device hold also reports false. Subsequent unconditional
+toggles can therefore choose the wrong mode. This is a reproduced fixture-state
+defect, not evidence that a skipped flight satisfies the retarget requirement.
+
+Named Off/On scenario groups must select the declared mode through real public
+control events, retain the prior/selected state and establish actual live phase
+changes before an animated group. Explicit Off freezing, spatial retarget,
+native endpoints and original bounds remain mandatory. Selection happens once
+at a group boundary; an unexpected new device hold or absent flight within that
+group still fails. No runtime/adaptive policy or performance budget changes.
+
+The third run 37466005422 binds source 428f5ee, immutable
+[a5a68aa3](https://a5a68aa3.oborskyi-author-ci-staging.pages.dev).
+It cannot serve as acceptance for a subsequent mode-fixture correction: the
+final source head needs its own complete matching CI gate and stable promotion.
+
 ## Acceptance and operation
 
 The new source remains unaccepted until all full jobs and matching reports pass,

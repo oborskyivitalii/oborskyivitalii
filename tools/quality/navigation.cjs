@@ -18,6 +18,34 @@ async function archiveHistoryReady(page,url,controls){
   // Wait on the actual restored URL and archive values, not another delay.
   await page.waitForFunction(expected=>location.href===expected.url&&document.body.dataset.page==='writing'&&!document.querySelector('#site-content').hasAttribute('aria-busy')&&Object.entries(expected.controls).every(([key,value])=>document.getElementById('archive-'+key)?.value===value),{url,controls},{polling:40,timeout:6000});
 }
+async function saveMotionGroup(page,evidence){await page.evaluate(evidence=>(window.__navigationMotionGroups??={})[evidence.group]=evidence,evidence);}
+async function motionGroupStep(page,evidence,action){
+  await page.locator('#space-motion').evaluate(el=>el.click());
+  const state=await page.evaluate(require('./engine-browser.cjs').motionState);evidence.steps.push({action,state});await saveMotionGroup(page,evidence);
+  assert.equal(state.label,'Motion: '+action,'public control establishes the declared group mode');assert.equal(state.pressed,String(action==='on'));
+}
+async function publicMotionMode(page,mode,group){
+  assert.ok(['on','off'].includes(mode));
+  const {motionState,settledCamera}=require('./engine-browser.cjs'),before=await page.evaluate(motionState),evidence={mode,group,before,steps:[],status:'preparing'};
+  await saveMotionGroup(page,evidence);
+  try{
+    assert.equal(before.ready,true);assert.equal(before.documentHidden,false);assert.equal(before.hidden,false);assert.equal(before.disabled,false);assert.equal(before.h1,1);assert.equal(before.overflow,false);
+    if(before.label==='Motion: still (device)'){
+      await settledCamera(page);evidence.hold=await page.evaluate(()=>window.__engineCameraSettling);await saveMotionGroup(page,evidence);
+      assert.equal(evidence.hold.policy,'adaptive-hold','only the actual device policy may require Off/On resume');
+      await motionGroupStep(page,evidence,'off');
+    }
+    const selected=await page.evaluate(motionState);
+    if(selected.label!=='Motion: '+mode)await motionGroupStep(page,evidence,mode);
+    if(mode==='on'){
+      await settledCamera(page);evidence.live=await page.evaluate(()=>window.__engineCameraSettling);await saveMotionGroup(page,evidence);
+      assert.equal(evidence.live.policy,'live','declared On group requires two actual live phase changes');
+    }
+    evidence.after=await page.evaluate(motionState);
+    assert.equal(evidence.after.label,'Motion: '+mode);assert.equal(evidence.after.pressed,String(mode==='on'));assert.equal(evidence.after.y,before.y,'declared mode preserves native reading position');
+    evidence.status='ready';await saveMotionGroup(page,evidence);return evidence;
+  }catch(error){evidence.status='failed';evidence.error=error.message;await saveMotionGroup(page,evidence).catch(()=>{});throw error;}
+}
 function historyPositionSample(expected){
   const scene=document.querySelector('.space-scene'),content=document.querySelector('#site-content'),site=history.state?.site;
   const sample={part:expected.part,time:performance.now(),page:document.body.dataset.page,scene:scene.dataset.route,travel:scene.dataset.travel,busy:content.hasAttribute('aria-busy'),url:location.href,y:scrollY,savedY:site?.scroll?.[1],savedPage:site?.page};
@@ -114,7 +142,7 @@ async function reverseEndpoints(page){
   const rows=[];
   const range=()=>page.evaluate(()=>({y:scrollY,max:Math.max(0,document.documentElement.scrollHeight-innerHeight)}));
   for(const motion of ['on','off']){
-    if((await page.locator('#space-motion').getAttribute('aria-pressed'))!==String(motion==='on'))await page.locator('#space-motion').evaluate(el=>el.click());
+    await publicMotionMode(page,motion,'reverse-endpoints-'+motion);
     for(const [from,to] of [['talks','writing'],['writing','research'],['research','index']])for(const late of [false,true]){
       await page.evaluate(route=>document.querySelectorAll('.site-header nav a')[['index','research','writing','talks'].indexOf(route)].click(),from);
       await ready(page,from);await settled(page);
@@ -130,8 +158,12 @@ async function reverseEndpoints(page){
         if(!window.SiteNavigation.go(to,{atEnd:true}))throw Error('reverse rejected');
       },{to,late});
       await ready(page,to);await settled(page);await page.waitForTimeout(250);
-      const state=await range();assert.ok(Math.abs(state.max-state.y)<=2,`reverse ${from}→${to} ${motion} late=${late}: ${JSON.stringify(state)}`);
-      rows.push({from,to,motion,late,...state});
+      const state=await range();
+      const actualMotion=await page.evaluate(require('./engine-browser.cjs').motionState);
+      rows.push({from,to,motion,late,...state,actualMotion});
+      await page.evaluate(rows=>window.__reverseEndpointRows=rows,rows);
+      assert.ok(Math.abs(state.max-state.y)<=2,`reverse ${from}→${to} ${motion} late=${late}: ${JSON.stringify(state)}`);
+      assert.equal(actualMotion.label,'Motion: '+motion,'reverse endpoint retains its declared mode');assert.equal(actualMotion.pressed,String(motion==='on'));
     }
   }
   // A new reader gesture cancels reconciliation, including later footer growth.
@@ -193,17 +225,17 @@ async function scenario(browser,url,s){
     await page.goBack();await ready(page,'index');await settled(page);await page.goForward();await ready(page,'research');await settled(page);
     assert.equal(await page.evaluate(()=>scrollY),position,'Forward restores the last reading position');result.checks.historyScroll=true;
     result.reverseEndpoints=await reverseEndpoints(page);result.checks.reverseEndpoint=true;result.checks.endpointTakeover=true;
-    // The endpoint fixture finishes with Motion Off; resume the original scenario.
-    await page.locator('#space-motion').evaluate(el=>el.click());
-    await page.locator('#space-motion').evaluate(el=>el.click());
+    // Archive content/history checks retain the declared Off endpoint policy.
+    await publicMotionMode(page,'off','archive-lifecycle');
     for(const route of ['writing','research','writing'])await click(page,route);
     await page.locator('#archive-topic').selectOption('systems');const archiveBack=await page.evaluate(()=>location.href);await page.locator('#archive-language').selectOption('uk');const archiveForward=await page.evaluate(()=>location.href);
     await page.goBack();await archiveHistoryReady(page,archiveBack,{topic:'systems',language:'all'});assert.equal(await page.locator('#archive-language').inputValue(),'all');await page.goForward();await archiveHistoryReady(page,archiveForward,{topic:'systems',language:'uk'});assert.equal(await page.locator('#archive-language').inputValue(),'uk');
     await click(page,'talks');await page.goBack();await ready(page,'writing');assert.equal(await page.locator('#archive-topic').inputValue(),'systems');assert.equal(await page.locator('#archive-language').inputValue(),'uk');
     await page.evaluate(()=>dispatchEvent(new Event('beforeprint')));assert.equal(await page.locator('li.publication:visible').count(),27);await page.evaluate(()=>dispatchEvent(new Event('afterprint')));assert.ok(await page.locator('li.publication:visible').count()<27);result.checks.archiveLifecycle=true;
+    assert.equal(await page.locator('#space-motion').textContent(),'Motion: off','archive lifecycle preserves the declared Off mode');
     await click(page,'index');
     const frozen=await page.locator('.space-scene').getAttribute('data-phase');await page.waitForTimeout(200);assert.equal(await page.locator('.space-scene').getAttribute('data-phase'),frozen);assert.equal(await page.locator('.space-scene').getAttribute('data-travel'),'settled');result.checks.off=true;
-    await page.locator('#space-motion').evaluate(el=>el.click());
+    await publicMotionMode(page,'on','rapid-retarget');
     await page.evaluate(()=>{document.querySelector('header a[href="research.html"]').click();document.querySelector('header a[href="writing.html"]').click();document.querySelector('header a[href="talks.html"]').click();});
     await ready(page,'talks');await settled(page);await page.waitForTimeout(200);assert.equal(await page.locator('body').getAttribute('data-page'),'talks');result.checks.rapidNavigation=true;
     await page.locator(selector('research')).first().evaluate(el=>el.click());
@@ -228,7 +260,7 @@ async function scenario(browser,url,s){
       assert.equal(await page.locator('#site-content').evaluate(el=>el.inert||getComputedStyle(el).opacity!=='1'),false);
       if(kind==='print'){assert.equal(await page.locator('li.publication:visible').count(),27);await page.evaluate(()=>dispatchEvent(new Event('afterprint')));assert.ok(await page.locator('li.publication:visible').count()<27);}
       if(kind==='hidden')await page.evaluate(()=>{delete document.hidden;document.dispatchEvent(new Event('visibilitychange'));});
-      if(kind==='off')await page.locator('#space-motion').evaluate(el=>el.click());
+      if(kind==='off')await publicMotionMode(page,'on','resume-off-interruption');
       await click(page,'talks');await settled(page);
     }
     result.checks.interruptions=true;
@@ -236,6 +268,7 @@ async function scenario(browser,url,s){
     // Browser protocol acknowledgement can precede the page's media-query update.
     await page.waitForFunction(()=>matchMedia('(prefers-reduced-motion: reduce)').matches&&document.querySelector('#space-motion').textContent==='Motion: reduced',null,{polling:40,timeout:2000});
     await click(page,'research');await settled(page);const reduced=await page.locator('.space-scene').getAttribute('data-camera');await page.waitForTimeout(220);assert.equal(await page.locator('.space-scene').getAttribute('data-camera'),reduced);assert.match(await page.locator('#space-motion').textContent(),/reduced/);result.checks.reduced=true;
+    result.motionGroups=await page.evaluate(()=>window.__navigationMotionGroups||{});
     // An uncached fetch fails once, then the ordinary destination document opens.
     const engine=require('./engine-browser.cjs');
     await engine.fetchFallback(page,url);result.checks.fetchFallback=true;
@@ -246,13 +279,13 @@ async function scenario(browser,url,s){
     assert.deepEqual(errors,[]);result.pass=checks.every(key=>result.checks[key]===true);
   }catch(error){
     result.error=error.message;result.stack=error.stack;
-    result.state=await page.evaluate(()=>({page:document.body.dataset.page,url:location.href,hidden:document.hidden,navigation:typeof window.SiteNavigation,scene:{...document.querySelector('.space-scene').dataset},motion:document.querySelector('#space-motion').textContent,busy:document.querySelector('#site-content')?.hasAttribute('aria-busy'),scrollY,frames:window.__navigationFrames||[],flightSamples:window.__flightSamples||[],wheelSettlement:window.__wheelSettlement||null,historyMiddle:window.__historyMiddle||null,cameraSettling:window.__engineCameraSettling||null})).catch(()=>null);
+    result.state=await page.evaluate(()=>({page:document.body.dataset.page,url:location.href,hidden:document.hidden,navigation:typeof window.SiteNavigation,scene:{...document.querySelector('.space-scene').dataset},motion:document.querySelector('#space-motion').textContent,busy:document.querySelector('#site-content')?.hasAttribute('aria-busy'),scrollY,frames:window.__navigationFrames||[],flightSamples:window.__flightSamples||[],wheelSettlement:window.__wheelSettlement||null,historyMiddle:window.__historyMiddle||null,cameraSettling:window.__engineCameraSettling||null,motionGroups:window.__navigationMotionGroups||{},reverseEndpointRows:window.__reverseEndpointRows||[]})).catch(()=>null);
   }
   finally{await ctx.close();}
   return result;
 }
 function scenarios(engine){return [1440,390].flatMap(width=>['light','dark'].map(theme=>({engine,width,theme})));}
-module.exports={scenario,scenarios,checks,reverseEndpoints,checkTiming,archiveHistoryReady,historyPositionReady,historyPositionSample,nativeScrollSettlement,beginInterruption,timingProbe};
+module.exports={scenario,scenarios,checks,reverseEndpoints,checkTiming,archiveHistoryReady,publicMotionMode,historyPositionReady,historyPositionSample,nativeScrollSettlement,beginInterruption,timingProbe};
 if(require.main===module)(async()=>{
   const {toolRequire,launchOptions,report}=require('./common.cjs'),{start}=require('./serve.cjs');
   const {server,url}=await start(),browser=await toolRequire('playwright').firefox.launch(launchOptions('firefox'));

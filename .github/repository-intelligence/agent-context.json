@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "dcef6302ab9a4b8b4747abbf240f52e59b0f5149b375459fb83e565144b9ac00",
+    "digest": "8bcf47d83a32e439b4b4b940d7a1c482e14071fff1f0a52a2753996df730059a",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -3180,7 +3180,7 @@
       {
         "path": "review/staging-readiness-20261006/REPORT.md",
         "identity_mode": "content",
-        "sha256": "0ac398da2076c4107f442bf985af98da0545302e88b50ca47a7eb477d2fa2e20"
+        "sha256": "0461c23af731a30dbcc864064d72315c1fc4bc1073bcd31ac4cc498f85ac3977"
       },
       {
         "path": "review/staging-readiness-20261006/SECRET-TRIAGE.json",
@@ -3536,6 +3536,10 @@
       },
       {
         "path": "tests/navigation-fixtures.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/navigation-motion-fixtures.test.cjs",
         "identity_mode": "existence"
       },
       {
