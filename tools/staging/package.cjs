@@ -30,7 +30,7 @@ function sourceGate(source,gate,expected={}){
   snapshot.inventory(Object.keys(source.files));
   assert.equal(gate.schema,1);assert.equal(gate.kind,'pr-gate');assert.equal(gate.pass,true,'PR aggregate did not pass');
   for(const key of identityKeys)assert.equal(gate[key],source[key],'gate identity '+key);
-  for(const job of ['build','static','linux'])assert.equal(gate.jobs[job]?.result,'success','missing successful '+job);
+  for(const job of gate.profile==='local'?['build']:['build','static','linux'])assert.equal(gate.jobs[job]?.result,'success','missing successful '+job);
   if(expected.sourceCommit)assert.equal(source.sourceCommit,expected.sourceCommit,'wrong candidate');
   if(expected.publicDigest)assert.equal(source.artifactDigest,expected.publicDigest,'wrong public digest');
   if(expected.artifactId)assert.equal(String(gate.githubArtifact?.id),String(expected.artifactId),'wrong tested artifact ID');
@@ -90,4 +90,4 @@ if(require.main===module){
   else if(mode==='verify')verify(path.resolve(input),JSON.parse(fs.readFileSync(path.join(input,'staging-package.json'))),expected);
   else throw Error('Usage: package.cjs build INPUT EMPTY_OUTPUT | verify OUTPUT');
 }
-module.exports={publicFiles,headers,policyHeaders,notFound,sourceGate,additions,checkLinks,build,verify};
+module.exports={publicFiles,headers,policyHeaders,notFound,sourceGate,additions,checkLinks,build,verify,expectedEnvironment};

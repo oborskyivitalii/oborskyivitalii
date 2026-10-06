@@ -18,14 +18,8 @@ jobs:
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           persist-credentials: false
-      - name: Run bounded adapter checks
-        run: python3 -m unittest discover -s tests -p 'test_*.py'
-      - name: Check theme, spatial motion and archive behavior
-        run: node --test tests/theme.test.cjs tests/space.test.cjs tests/archive.test.cjs
-      - name: Check self-contained review handoff
-        run: |
-          node --test tests/preview.test.cjs tests/content.test.cjs
-          node tools/build_site_previews.cjs --check
-          python3 tools/build_site_bundle.py --check
+      # site-checks.yml owns the one basic suite. The complete Python/browser/
+      # export suites already run in hosted release checks; do not duplicate
+      # them here on every PR and main update.
       - name: Verify current-source context
         run: python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify

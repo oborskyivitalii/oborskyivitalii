@@ -53,7 +53,7 @@ async function settledCamera(page) {
   }
 }
 async function visit(page,route){
-  await page.goto(`${base}/docs/${route}.html`);await page.bringToFront();
+  await page.goto(`${base}/${route}.html`);await page.bringToFront();
   const start=Date.now();
   try {
     await page.waitForFunction(()=>document.querySelector('.space-scene').dataset.ready==='true',null,{polling:50,timeout:3000});
@@ -116,7 +116,7 @@ async function behavior() {
   await page.locator("#archive-topic").selectOption("delivery");await page.locator("#archive-language").selectOption("uk");await idle(page);assert.equal(await page.locator("#archive-empty").isVisible(),true);
   await page.evaluate(()=>window.dispatchEvent(new Event("beforeprint")));assert.equal(await page.locator("li.publication:visible").count(),27);await page.evaluate(()=>window.dispatchEvent(new Event("afterprint")));assert.equal(await page.locator("li.publication:visible").count(),0);
   await page.locator(".filter-reset").click();await idle(page);assert.equal(await page.locator("li.publication:visible").count(),27);
-  await page.goto(`${base}/docs/writing.html?topic=delivery&language=uk#topic-systems`);await idle(page);assert.equal(await page.locator("#archive-topic").inputValue(),"systems");assert.equal(await page.locator("#archive-language").inputValue(),"uk");
+  await page.goto(`${base}/writing.html?topic=delivery&language=uk#topic-systems`);await idle(page);assert.equal(await page.locator("#archive-topic").inputValue(),"systems");assert.equal(await page.locator("#archive-language").inputValue(),"uk");
   await page.locator("#archive-language").selectOption("en");await page.goBack();await idle(page);assert.equal(await page.locator("#archive-language").inputValue(),"uk");await page.goForward();await idle(page);assert.equal(await page.locator("#archive-language").inputValue(),"en");
   results.writing_archive="topic motion; year reflow/first scroll; empty results; Reset; conflict hash/query; back/forward; all 27 records on print and filter restoration passed";
   for(const width of[360])for(const theme of["light","dark"])for(const route of pages){await page.setViewportSize({width,height:844});await visit(page,route);await page.locator(".appearance summary").click();await page.locator("#theme-mode").selectOption(theme);assert.equal((await overflow(page)).overflow,false);await page.keyboard.press("Escape");}
@@ -128,9 +128,9 @@ async function behavior() {
   const reduced=await context("night",{width:1440,height:900},{reducedMotion:"reduce"}),rp=await reduced.newPage();
   for(const route of pages){await visit(rp,route);const fixed=await poseTrace(rp);await rp.mouse.wheel(0,600);await idle(rp);assert.equal(await poseTrace(rp),fixed);assert.equal(await rp.locator("#space-motion").isDisabled(),true);}await reduced.close();results.reduced="All five route-specific initial poses stay still and control is disabled";
   const nojs=await browser.newContext({viewport:{width:390,height:844},javaScriptEnabled:false}),np=await nojs.newPage();
-  for(const route of pages){await np.goto(`${base}/docs/${route}.html`);assert.equal(await np.locator(".space-fallback").isVisible(),true);assert.equal((await overflow(np)).overflow,false);assert.equal(await np.locator("h1").count(),1);}assert.equal(await np.locator("#space-motion").isVisible(),false);await nojs.close();results.nojs="All five pages readable at 390 × 844 with SVG, content and native navigation";
+  for(const route of pages){await np.goto(`${base}/${route}.html`);assert.equal(await np.locator(".space-fallback").isVisible(),true);assert.equal((await overflow(np)).overflow,false);assert.equal(await np.locator("h1").count(),1);}assert.equal(await np.locator("#space-motion").isVisible(),false);await nojs.close();results.nojs="All five pages readable at 390 × 844 with SVG, content and native navigation";
   const missing=await context("day",{width:1440,height:900});await missing.addInitScript(()=>HTMLCanvasElement.prototype.getContext=()=>null);const mp=await missing.newPage();
-  for(const route of pages){await mp.goto(`${base}/docs/${route}.html`);assert.equal(await mp.locator(".space-fallback").isVisible(),true);assert.equal(await mp.locator("#space-motion").isVisible(),false);}await missing.close();results.noCanvas="All five route-specific SVGs remain visible; unavailable control stays hidden";
+  for(const route of pages){await mp.goto(`${base}/${route}.html`);assert.equal(await mp.locator(".space-fallback").isVisible(),true);assert.equal(await mp.locator("#space-motion").isVisible(),false);}await missing.close();results.noCanvas="All five route-specific SVGs remain visible; unavailable control stays hidden";
   // A viewport tall enough for the actual short route must not manufacture scroll.
   const short=await context("day",{width:1440,height:2400}),sp=await short.newPage();await visit(sp,"talks");const fixed=await poseTrace(sp);await sp.mouse.wheel(0,1000);await idle(sp);assert.equal(await sp.evaluate(()=>scrollY),0);assert.equal(await poseTrace(sp),fixed);await short.close();results.short="Talks fits 1440 × 2400: static camera and continuing ambient cycle, no spacer or scroll interception";
   return results;
@@ -158,7 +158,7 @@ async function recordings() {
 }
 (async()=>{
   if(process.argv[2] && process.argv[2]!=="--recordings-only")throw Error("Usage: node tools/capture_site_review.cjs [--recordings-only]");
-  fs.mkdirSync(out,{recursive:true});await new Promise(resolve=>server.listen(0,"127.0.0.1",resolve));base=`http://127.0.0.1:${server.address().port}`;
+  fs.mkdirSync(out,{recursive:true});await new Promise(resolve=>server.listen(0,"127.0.0.1",resolve));base=process.env.SITE_TEST_BASE_URL?require('./quality/hosted-origin.cjs').target(process.env.SITE_TEST_BASE_URL,process.env.SITE_TEST_PROFILE):`http://127.0.0.1:${server.address().port}/docs`;
   try {
     browser=await chromium.launch({headless:true,...(process.env.SITE_REVIEW_CHROMIUM?{executablePath:process.env.SITE_REVIEW_CHROMIUM}:{})});const sources=publicSources();
     if(process.argv[2]==="--recordings-only") {

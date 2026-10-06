@@ -1,6 +1,6 @@
-name: Site runtime regressions
+name: Site local diagnostics
+# Manual only: PRs already run this once in site-checks.yml.
 on:
-  pull_request:
   workflow_dispatch:
 permissions:
   contents: read
@@ -9,30 +9,10 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
           persist-credentials: false
-      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
           node-version: '24.19.0'
-      - name: Focused runtime, content and archive regressions
-        run: node --test tests/theme.test.cjs tests/space.test.cjs tests/archive.test.cjs tests/content.test.cjs
-      - name: Analytics configuration, isolation and export regressions
-        run: node --test tests/analytics.test.cjs
-      - name: Check generated site settings and deterministic lightweight fallback
-        run: |
-          node tools/site/build.cjs --check
-          node tools/build_scene_fallbacks.cjs --check
-      - name: Enforce page and decorative DOM budgets
-        run: |
-          node - <<'JS'
-          const fs=require('node:fs'),assert=require('node:assert/strict');
-          for(const route of ['index','research','writing','talks','credits']){
-            const bytes=fs.readFileSync('docs/'+route+'.html'),html=bytes.toString(),svg=html.match(/<svg class="space-fallback"[\s\S]*?<\/svg>/)?.[0];
-            assert.ok(svg,'missing static fallback');
-            const nodes=(svg.match(/<[a-z][\w-]*(?:\s|>)/gi)||[]).length;
-            assert.ok(bytes.length<=100000,route+' HTML exceeds 100KB');
-            assert.ok(nodes<=250,route+' decorative SVG exceeds 250 nodes');
-            console.log(JSON.stringify({route,htmlBytes:bytes.length,svgNodes:nodes}));
-          }
-          JS
+      - run: node tools/quality/local.cjs

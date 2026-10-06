@@ -2,10 +2,12 @@
 const test=require('node:test'),assert=require('node:assert/strict');
 const {aggregate,lighthouse,motion}=require('../tools/quality/validate.cjs');
 const budgets=require('../tools/quality/budgets.json');
-const identity={schema:1,sourceCommit:'a'.repeat(40),sourceTree:'b'.repeat(40),candidateCommit:'a'.repeat(40),artifactDigest:'c'.repeat(64)};
+const variant={id:'base',contract:1,fingerprint:'d'.repeat(64)};
+const identity={variant,schema:1,sourceCommit:'a'.repeat(40),sourceTree:'b'.repeat(40),candidateCommit:'a'.repeat(40),artifactDigest:'c'.repeat(64)};
 function scan(kind,detail){return {...identity,pass:true,kind,detail};}
 function checks(mode,route){
-  if(mode==='normal')return {positiveProbe:true,off:true,print:true,syntheticVisibility:true,keyboard:true,reverse:true,forward:'camera changed',archive:route==='writing'?true:'not applicable',zoom:true,axePasses:1};
+  const contract=require('../tools/quality/scroll-browser.cjs'),syncFixture=label=>({label,end:1000,start:'opening',samples:[.9,.95,.99,1].map(fraction=>({fraction,y:fraction*1000,camera:'camera-'+fraction}))});
+  if(mode==='normal')return {positiveProbe:true,off:true,print:true,syntheticVisibility:true,keyboard:true,reverse:true,forward:'camera changed',archive:route==='writing'?true:'not applicable',zoom:true,axePasses:1,scrollSync:{pass:true,fixtures:contract.fixtures.map(syncFixture),filtered:route==='writing'?[syncFixture('single-record')]:[],waypoint:{id:'semantic-stop',y:100,distance:0,actual:{position:[0,0,0],target:[0,0,-1]},expected:{position:[0,0,0],target:[0,0,-1]}},checks:Object.fromEntries(contract.checks.map(k=>[k,route!=='writing'&&k==='filtered'?'not applicable':true]))}};
   if(['no-js','no-canvas','no-raf','no-match-media','css-blocked'].includes(mode))return {fallback:true};
   if(mode==='reduced')return {reducedFreeze:true};
   if(['draw-fault','context-loss'].includes(mode))return {boundedFailure:true};
@@ -15,10 +17,10 @@ function fixture(){
   const modes=['no-js','no-canvas','no-raf','no-match-media','blocked-storage','reduced','missing-hasOwn','css-delayed','css-blocked','draw-fault','context-loss'];
   const functional={...identity,pass:true,kind:'functional',environment:{platform:'linux'},engines:['chromium','firefox','webkit'],smoke:false,modes,browsers:['chromium','firefox','webkit'].map(engine=>({engine,version:'fixture',executable:'fixture'})),rows:[]};
   for(const engine of functional.engines)for(const route of budgets.routes)for(const theme of ['light','dark'])for(const [mode,width]of [['normal',1440],['normal',390],...modes.map(x=>[x,320])])functional.rows.push({engine,route,theme,mode,width,pass:true,errors:[],externalRequests:[],checks:checks(mode,route)});
-  functional.navigation=functional.engines.flatMap(engine=>require('../tools/quality/navigation.cjs').scenarios(engine).map(s=>({...s,pass:true,errors:[],checks:Object.fromEntries(require('../tools/quality/navigation.cjs').checks.map(k=>[k,true]))})));
+  functional.navigation=functional.engines.flatMap(engine=>require('../tools/quality/navigation.cjs').scenarios(engine).map(s=>({...s,pass:true,errors:[],scrollArrivals:['research','writing','talks','credits'].map(route=>({route,end:1000,samples:[.9,.95,.99,1].map(fraction=>({fraction,y:fraction*1000,camera:'arrival-'+fraction}))})),checks:Object.fromEntries(require('../tools/quality/navigation.cjs').checks.map(k=>[k,true]))})));
   const analytics=require('../tools/quality/analytics-browser.cjs');
   functional.analytics=functional.engines.flatMap(engine=>analytics.cases(engine).map(s=>({...s,model:analytics.model,pass:true,errors:[],externalRequests:[],checks:Object.fromEntries(analytics.checks.map(key=>[key,true])),readyWhileSDKPending:s.mode==='delayed'?true:'not applicable',vendorRequests:['staging','offline'].includes(s.mode)?[]:Array(2).fill('https://static.cloudflareinsights.com/beacon.min.js')})));
-  return {manifest:{...identity,sourceDirty:false},sizes:{pass:true,artifactDigest:identity.artifactDigest,rows:budgets.routes.map(route=>({route,raw:50000,svgNodes:100,totalGzipBytes:10000}))},jobs:{build:{result:'success'},static:{result:'success'},linux:{result:'success'}},reports:[scan('lint',{scannedFiles:30,tools:{eslint:'10',stylelint:'17',ruff:'0.16'}}),scan('security',{semgrep:{files:['docs/space.js'],rules:8,errors:0},bandit:{loc:100,findings:0},secrets:{trackedTextFiles:100}}),scan('advisories',{feedDate:'2026-10-03',npm:{},pythonDependencies:80,runtimeDependencies:'none'}),functional]};
+  return {manifest:{...identity,components:{variant},sourceDirty:false},sizes:{pass:true,artifactDigest:identity.artifactDigest,rows:budgets.routes.map(route=>({route,raw:50000,svgNodes:100,totalGzipBytes:10000}))},jobs:{build:{result:'success'},static:{result:'success'},linux:{result:'success'}},reports:[scan('lint',{scannedFiles:30,tools:{eslint:'10',stylelint:'17',ruff:'0.16'}}),scan('security',{semgrep:{files:['docs/space.js'],rules:8,errors:0},bandit:{loc:100,findings:0},secrets:{trackedTextFiles:100}}),scan('advisories',{feedDate:'2026-10-03',npm:{},pythonDependencies:80,runtimeDependencies:'none'}),functional]};
 }
 test('complete source-bound PR evidence passes; missing and controlled failures fail closed',()=>{
   assert.equal(aggregate(fixture()).pass,true);
@@ -34,6 +36,8 @@ test('complete source-bound PR evidence passes; missing and controlled failures 
     x=>x.reports[3].navigation[0].checks.persistentShell=false,
     x=>delete x.reports[3].navigation[0].checks.flightTiming,
     x=>delete x.reports[3].navigation[0].checks.writingFirstScroll,
+    x=>delete x.reports[3].navigation[0].checks.fullScrollArrival,
+    x=>x.reports[3].navigation[0].scrollArrivals.pop(),
     x=>delete x.reports[3].navigation[0].checks.snapshotPin,
     x=>delete x.reports[3].navigation[0].checks.offlineEntries,
     x=>x.jobs.linux.result='cancelled',
@@ -41,6 +45,14 @@ test('complete source-bound PR evidence passes; missing and controlled failures 
     x=>x.reports[3].rows[0].errors.push('synthetic browser error'),
     x=>x.reports[3].engines.pop(),
     x=>delete x.reports[3].rows[0].checks,
+    x=>delete x.reports[3].rows[0].checks.scrollSync,
+    x=>x.reports[3].rows[0].checks.scrollSync.fixtures.pop(),
+    x=>delete x.reports[3].rows[0].checks.scrollSync.checks.contentGrowth,
+    x=>delete x.reports[3].rows[0].checks.scrollSync.waypoint,
+    x=>x.reports[3].rows[0].checks.scrollSync.waypoint.actual.position[0]=1,
+    x=>x.reports[3].rows[0].checks.scrollSync.fixtures[0].samples[3].camera=x.reports[3].rows[0].checks.scrollSync.fixtures[0].samples[2].camera,
+    x=>x.reports[3].rows[0].checks.scrollSync.fixtures[0].samples[3].y=990,
+    x=>x.reports[3].rows.find(row=>row.route==='writing'&&row.mode==='normal').checks.scrollSync.filtered.pop(),
     x=>x.reports[3].rows[0].checks.keyboard=false,
     x=>x.reports[3].rows.find(row=>row.mode==='css-delayed').checks.beforeCSSNoPaint=false,
     x=>x.reports[1].pass=false,
@@ -51,6 +63,17 @@ test('complete source-bound PR evidence passes; missing and controlled failures 
   ];
   for(const mutate of failures){const x=fixture();mutate(x);assert.throws(()=>aggregate(x));}
   assert.throws(()=>aggregate({...fixture(),full:true}),/native|job|evidence/);
+  const workflow=require('../tools/quality/workflow-artifacts.cjs'),fs=require('node:fs'),path=require('node:path');
+  const root=path.resolve(__dirname,'..');assert.equal(workflow.check(root).unique,true);
+  const sources=Object.fromEntries(['site-checks','site-release-checks'].map(id=>[id,fs.readFileSync(path.join(root,'.github/workflows/'+id+'.yml'),'utf8')]));
+  sources['site-checks']=sources['site-checks'].replace('site-gate-basic-','site-gate-full-staging-');assert.throws(()=>workflow.check(root,sources),/collision/);
+  const {matchesRoute}=require('../tools/quality/fallback-url.cjs'),requested='https://owned.invalid/project/research.html?topic=systems#main';
+  for(const pathname of ['/project/research.html','/project/research'])assert.equal(matchesRoute('https://owned.invalid'+pathname+'?topic=systems#main',requested),true);
+  for(const bad of ['https://other.invalid/project/research?topic=systems#main','https://owned.invalid/research?topic=systems#main','https://owned.invalid/project/writing?topic=systems#main','https://owned.invalid/project/research?topic=delivery#main','https://owned.invalid/project/research?topic=systems#other'])assert.equal(matchesRoute(bad,requested),false);
+  const geometry=require('../tools/quality/geometry.cjs'),empty={objects:[],faces:[],lines:[]};
+  assert.throws(()=>geometry.check({...empty,objects:[{points:[[0,NaN,0]]}]},true),/nonfinite/);
+  assert.throws(()=>geometry.check({...empty,lines:[{a:[0,0,0],b:[0,Infinity,0]}]},true),/nonfinite/);
+  assert.throws(()=>geometry.check({...empty,objects:Array(261).fill({points:[]})},true),/geometry objects/);
 });
 function lighthouseFixture(){return {rows:budgets.routes.flatMap(route=>['mobile','desktop'].flatMap(formFactor=>[1,2,3].map(run=>({route,formFactor,run,lighthouseVersion:'13.5',environment:{networkUserAgent:'controlled fixture'},configSettings:{formFactor,...structuredClone(budgets.lighthouse.profiles[formFactor]),throttlingMethod:'simulate'},categories:{performance:.91},metrics:{'largest-contentful-paint':{numericValue:run===1?10000:2000},'total-blocking-time':{numericValue:100},'cumulative-layout-shift':{numericValue:.05}}}))))};}
 test('Lighthouse uses all three metric medians and rejects missing/mislabeled runs',()=>{
@@ -61,10 +84,16 @@ test('Lighthouse uses all three metric medians and rejects missing/mislabeled ru
   const fail=structuredClone(r);fail.rows[1].metrics['largest-contentful-paint'].numericValue=10000;assert.throws(()=>lighthouse(fail));
 });
 function measurement(kind,startMs=0){const zero=['off','reduced'].includes(kind),elapsedMs=kind==='idle'?30000:1000;return {kind,elapsedMs,window:{startMs,endMs:startMs+elapsedMs},callbacks:zero?0:1,paints:zero?0:1,rawFrames:zero?[]:[{time:startMs+1,started:startMs+1,duration:10,painted:true}],paintRateHz:zero?0:1000/elapsedMs,paintIntervalsMs:{count:0,p50:null,p95:null,max:null},paintCallbackMs:{p50:zero?null:10,p95:zero?null:10,max:zero?null:10},callbackBusyPercent:zero?0:10/elapsedMs*100,state:'active'};}
-function motionFixture(){return {samples:budgets.routes.flatMap(route=>[[1440,1],[390,1],[390,4]].map(([width,rate])=>({route,width,rate,positiveProbe:true,errors:[],measurements:['idle','scroll','off','reduced'].map(kind=>measurement(kind))}))),journeys:[[1440,1],[390,1],[390,4]].map(([width,rate])=>({width,rate,cycles:40,errors:[],before:{nodes:100,jsEventListeners:20},after:{nodes:100,jsEventListeners:20},rows:['research','writing','talks','credits','index','credits','talks','writing','research','index'].map(to=>({to,...measurement('flight')}))})),soak:{route:'writing',durationSeconds:300,chunks:Array.from({length:10},(_,i)=>measurement('idle',i*30000)),off:measurement('off',300000),errors:[],startHeapBytes:100,endHeapBytes:110}};}
+function flightMeasurement(slow=false){
+  const data={schema:2,start:0,end:2100,elapsed:2100,frames:Array.from({length:12},(_,i)=>({time:i*100,started:i*100+10,duration:slow&&i===11?900:10,painted:true})),longTasks:[],events:[{kind:'layout',time:3,start:2,duration:1},{kind:'navigation-start',time:0},{kind:'navigation-ready',time:2100}]};
+  return {...require('../tools/quality/motion.cjs').summarize(data,'flight'),state:'active'};
+}
+function motionFixture(){return {variant:{id:'base',contract:1,fingerprint:'d'.repeat(64)},samples:budgets.routes.flatMap(route=>[[1440,1],[390,1],[390,4]].map(([width,rate])=>({route,width,rate,positiveProbe:true,errors:[],measurements:['idle','scroll','off','reduced'].map(kind=>measurement(kind))}))),journeys:[[1440,1],[390,1],[390,4]].map(([width,rate])=>({width,rate,cycles:40,warmedRoutes:[...budgets.routes.slice(1),budgets.routes[0]],errors:[],before:{nodes:100,jsEventListeners:20},after:{nodes:100,jsEventListeners:20},rows:['research','writing','talks','index','talks','writing','research','index'].map(to=>({to,...flightMeasurement()}))})),soak:{route:'writing',durationSeconds:300,chunks:Array.from({length:10},(_,i)=>measurement('idle',i*30000)),off:measurement('off',300000),errors:[],startHeapBytes:100,endHeapBytes:110}};}
 test('motion requires positive paints, every profile, real raw samples and settled zero work',()=>{
   const r=motionFixture();
   assert.equal(motion(r),true);
+  const huge=structuredClone(r);huge.journeys[0].rows[0]={to:'research',...flightMeasurement(true)};assert.throws(()=>motion(huge),/slow transition/);
+  for(const mutate of [x=>delete x.variant,x=>delete x.journeys[0].rows[0].readyMs,x=>delete x.journeys[0].rows[0].rawPreparation]){const copy=structuredClone(r);mutate(copy);assert.throws(()=>motion(copy));}
   const mutate=[x=>x.samples[0].positiveProbe=false,x=>x.samples.pop(),x=>x.samples[0].measurements[2].callbacks=1,x=>x.samples[2].measurements[0].paintCallbackMs.p95=40,x=>x.samples[2].measurements[0].rawFrames[0].duration=1000,x=>x.samples[0].measurements[0].paintIntervalsMs.p95=1,x=>x.samples[0].measurements[0].paintRateHz=30,x=>x.soak.chunks.pop(),x=>x.soak.chunks[1]=structuredClone(x.soak.chunks[0])];
   for(const fn of mutate){const x=structuredClone(r);fn(x);assert.throws(()=>motion(x));}
 });
@@ -108,6 +137,37 @@ test('complete controlled full-release fixture passes, missing native/capture/de
   const cases=[x=>x.reports.splice(4,1),x=>x.reports.push(structuredClone(x.reports[6])),x=>x.reports.at(-1).views.pop(),x=>delete x.reports.at(-1).files['writing-motion.webm'],x=>x.reports.at(-1).files['writing-motion.webm']=true,x=>x.releaseEvidence.iosSafari.pass=false,x=>delete x.releaseEvidence.androidChrome.device];
   for(const mutate of cases){const x=fullFixture();mutate(x);assert.throws(()=>aggregate(x));}
 });
+test('full hosted evidence cannot use local measurements, a missing file or another source edition',()=>{
+  const make=()=>{
+    const x=fullFixture();x.automatedOnly=true;delete x.releaseEvidence;
+    x.hostedURL='https://quality.invalid/site';x.profile='staging';x.jobs.host={result:'success'};
+    for(const r of x.reports)r.target=x.hostedURL;
+    x.reports.push({...identity,kind:'hosted',pass:true,target:x.hostedURL,profile:'staging',root:true,actual404:true,redirectsStayWithinSite:true,rows:Object.entries(x.manifest.files).map(([file,info])=>({file,url:x.hostedURL+'/'+file,status:200,sha256:info.sha256}))});
+    return x;
+  };
+  assert.equal(aggregate(make()).kind,'hosted-gate');
+  for(const mutate of [x=>x.reports.at(-1).rows.pop(),x=>x.reports[3].target=null,x=>x.jobs.host.result='skipped',x=>x.reports.at(-1).rows[0].sha256='0'.repeat(64),x=>x.hostedURL=null,x=>x.full=false]){
+    const x=make();mutate(x);assert.throws(()=>aggregate(x));
+  }
+  const x=make(),gate=aggregate(x);gate.githubArtifact={id:'123'};
+  const promote=require('../tools/quality/promotion.cjs'),evidence=fullFixture().releaseEvidence;
+  assert.equal(promote.validate(x.manifest,gate,evidence),true);
+  assert.throws(()=>promote.validate(x.manifest,{...gate,artifactDigest:'0'.repeat(64)},evidence));
+  assert.throws(()=>promote.validate(x.manifest,gate,{...evidence,iosSafari:{pass:false}}));
+});
+test('served-byte verification keeps project paths and rejects tampered files, redirects and indexing errors',async()=>{
+  const {verify}=require('../tools/quality/hosted.cjs'),{digest}=require('../tools/quality/artifact.cjs');
+  const base='https://quality.invalid/site',data={'index.html':Buffer.from('<h1>Fixture</h1>'),'site-revision.json':Buffer.from('{}')};
+  const m={sourceCommit:'a'.repeat(40),files:Object.fromEntries(Object.entries(data).map(([file,bytes])=>[file,{sha256:digest(bytes)}]))};
+  const fake=(option={})=>async url=>{
+    const pathname=new URL(url).pathname,file=pathname==='/site/'?'index.html':pathname.slice('/site/'.length),bytes=data[file];
+    if(option.redirect)return new Response(null,{status:302,headers:{location:'https://other.invalid/'}});
+    return new Response(option.tamper&&file==='index.html'?'changed':bytes||'missing',{status:bytes?200:option.spa?200:404,headers:{'content-type':file.endsWith('.json')?'application/json':'text/html','x-robots-tag':option.index?'all':'noindex, nofollow','x-content-type-options':'nosniff'}});
+  };
+  assert.equal((await verify(base,'staging',m,fake())).actual404,true);
+  for(const option of [{tamper:true},{redirect:true},{index:true},{spa:true}])await assert.rejects(()=>verify(base,'staging',m,fake(option)));
+  await assert.rejects(()=>verify(base,'production',m,fake()),/noindex/);
+});
 test('current v11 capture input is byte-verified once; stale editions and tampered media fail closed',()=>{
   const fs=require('node:fs'),path=require('node:path'),os=require('node:os');
   const {digest}=require('../tools/quality/artifact.cjs'),{readEvidence}=require('../tools/quality/validate.cjs');
@@ -150,5 +210,14 @@ test('normal browser startup foregrounds the test tab and waits on real readines
 });
 
 test('flight measurements and repeated-navigation resources are mandatory',()=>{
-  for(const alter of [r=>delete r.journeys,r=>r.journeys[0].rows.pop(),r=>r.journeys[0].after.nodes++,r=>r.journeys[0].after.jsEventListeners++]){const r=motionFixture();alter(r);assert.throws(()=>motion(r));}
+  for(const alter of [r=>delete r.journeys,r=>r.journeys[0].rows.pop(),r=>r.journeys[0].warmedRoutes.pop(),r=>r.journeys[0].after.nodes++,r=>r.journeys[0].after.jsEventListeners++]){const r=motionFixture();alter(r);assert.throws(()=>motion(r));}
+});
+test('Color navigation requires both depth planes and a clear handover without changing base fades',()=>{
+  const {checkTiming}=require('../tools/quality/navigation.cjs');
+  const samples=[.05,.1,.2,.3,.4,.47,.5,.55,.6,.7,.8,.9,.99].map(progress=>({progress,opacity:progress<.46?1-progress/.46:progress<=.51?0:(progress-.51)/.49,depth:progress<.5?100:-100,stage:progress<.5?'depart':'arrive',direction:'forward'}));
+  checkTiming(samples,'color');
+  assert.throws(()=>checkTiming(samples,'base'),/hidden throughout middle/);
+  for(const mutate of [s=>s[0].depth=-100,s=>s.at(-1).depth=100,s=>s[5].opacity=.1,s=>s.at(-1).opacity=1]){
+    const changed=structuredClone(samples);mutate(changed);assert.throws(()=>checkTiming(changed,'color'));
+  }
 });

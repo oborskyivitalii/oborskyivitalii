@@ -4,7 +4,8 @@ const {toolRequire,report,launchOptions}=require('./common.cjs');
 const {routes,motion:budgets}=require('./budgets.json'),{start}=require('./serve.cjs');
 function installProbe(){
   const native=window.requestAnimationFrame.bind(window),clear=CanvasRenderingContext2D.prototype.clearRect;
-  const probe={frames:[],longTasks:[],paints:0};window.__qualityMotion=probe;
+  const probe={schema:2,frames:[],longTasks:[],events:[],paints:0};window.__qualityMotion=probe;
+  window.SiteEngineProbe=event=>probe.events.push(event);
   CanvasRenderingContext2D.prototype.clearRect=function(...args){probe.paints++;return clear.apply(this,args);};
   window.requestAnimationFrame=callback=>native(time=>{
     const start=performance.now(),before=probe.paints;callback(time);
@@ -20,10 +21,13 @@ function summarize(data,kind){
   // percentile alone cannot detect. These are lab paint intervals, not display FPS.
   const gaps=painted.slice(1).map((x,i)=>x.started-painted[i].started).sort((a,b)=>a-b);
   const gapPercentile=p=>gaps.length?gaps[Math.min(gaps.length-1,Math.floor(gaps.length*p))]:null;
-  return {kind,elapsedMs:data.elapsed,window:{startMs:data.start,endMs:data.end},quality:data.quality,cadence:data.cadence,state:data.state,motion:data.motion,callbacks:data.frames.length,paints:painted.length,paintRateHz:painted.length/data.elapsed*1000,paintIntervalsMs:{count:gaps.length,p50:gapPercentile(.5),p95:gapPercentile(.95),max:gaps.at(-1)??null},paintCallbackMs:{p50:percentile(.5),p95:percentile(.95),max:values.at(-1)??null},callbackBusyPercent:data.frames.reduce((a,x)=>a+x.duration,0)/data.elapsed*100,rawFrames:data.frames,rawLongTasks:data.longTasks,errors:data.errors||[]};
+  const events=(data.events||[]).filter(x=>x.time>=data.start&&x.time<=data.end),preparation=events.filter(x=>['model','layout','route'].includes(x.kind)&&x.start>=data.start&&x.start+x.duration<=data.end);
+  const starts=events.filter(x=>x.kind==='navigation-start'),ready=events.find(x=>x.kind==='navigation-ready');
+  const preparationMs={count:preparation.length,max:preparation.length?Math.max(...preparation.map(x=>x.duration)):0,total:preparation.reduce((n,x)=>n+x.duration,0)};
+  return {kind,probeVersion:data.schema??null,elapsedMs:data.elapsed,window:{startMs:data.start,endMs:data.end},quality:data.quality,cadence:data.cadence,state:data.state,motion:data.motion,callbacks:data.frames.length,paints:painted.length,paintRateHz:painted.length/data.elapsed*1000,paintIntervalsMs:{count:gaps.length,p50:gapPercentile(.5),p95:gapPercentile(.95),max:gaps.at(-1)??null},paintCallbackMs:{p50:percentile(.5),p95:percentile(.95),max:values.at(-1)??null},callbackBusyPercent:data.frames.reduce((a,x)=>a+x.duration,0)/data.elapsed*100,rawFrames:data.frames,rawLongTasks:data.longTasks.filter(x=>x.start>=data.start&&x.start+x.duration<=data.end),rawPreparation:preparation,preparationMs,readyMs:starts.length===1&&ready?ready.time-starts[0].time:null,transitionPhase:starts.length===1?(preparation.some(x=>x.kind==='model')?'cold':'warm'):'unobserved',errors:data.errors||[]};
 }
 async function collect(page,kind,duration){
-  await page.evaluate(()=>{window.__qualityMotion.frames=[];window.__qualityMotion.longTasks=[];window.__qualityStart=performance.now();});
+  await page.evaluate(()=>{window.__qualityMotion.frames=[];window.__qualityMotion.longTasks=[];window.__qualityMotion.events=[];window.__qualityStart=performance.now();});
   if(kind==='scroll')await page.evaluate(()=>{const start=performance.now();window.__qualityScroll=setInterval(()=>{const p=((performance.now()-start)%2000)/1000;scrollTo({top:(p<1?p:2-p)*(document.documentElement.scrollHeight-innerHeight),behavior:'instant'});},60);});
   await page.waitForTimeout(duration);
   if(kind==='scroll')await page.evaluate(()=>clearInterval(window.__qualityScroll));
@@ -67,10 +71,10 @@ async function flights(browser,url,profile){
   try{
     await page.goto(url+'/index.html');await page.waitForFunction(()=>document.querySelector('.space-scene').dataset.ready==='true');
     const rows=[];
-    for(const destination of ['research','writing','talks','credits','index','credits','talks','writing','research','index']){
+    for(const destination of ['research','writing','talks','index','talks','writing','research','index']){
       const from=await page.locator('body').getAttribute('data-page');
       await page.evaluate(destination=>{
-        window.__qualityMotion.frames=[];window.__qualityMotion.longTasks=[];window.__qualityStart=performance.now();
+        window.__qualityMotion.frames=[];window.__qualityMotion.longTasks=[];window.__qualityMotion.events=[];window.__qualityStart=performance.now();
         document.querySelector(`a[href="${destination==='index'?'./':destination+'.html'}"]`).click();
       },destination);
       await page.waitForFunction(destination=>document.body.dataset.page===destination&&!document.querySelector('#site-content').hasAttribute('aria-busy')&&document.querySelector('.space-scene').dataset.travel==='settled',destination,{polling:40,timeout:8000});
@@ -78,6 +82,14 @@ async function flights(browser,url,profile){
       rows.push({from,to:destination,...profile,...summarize(data,'flight')});
     }
     await page.locator('#space-motion').evaluate(el=>el.click());await page.waitForTimeout(200);
+    // Populate the finite five-route document cache before measuring retention.
+    // The flight itinerary visits four primary routes; Credits is a cached
+    // utility document too. Compare the same warm Index state over 40 cycles.
+    const warmedRoutes=[...routes.slice(1),routes[0]];
+    for(const destination of warmedRoutes){
+      await page.evaluate(destination=>document.querySelector(`a[href="${destination==='index'?'./':destination+'.html'}"]`).click(),destination);
+      await page.waitForFunction(destination=>document.body.dataset.page===destination&&!document.querySelector('#site-content').hasAttribute('aria-busy'),destination);
+    }
     await cdp.send('HeapProfiler.collectGarbage');const before=await cdp.send('Memory.getDOMCounters');
     for(let i=0;i<40;i++){
       const destination=routes[(i+1)%routes.length];
@@ -86,12 +98,13 @@ async function flights(browser,url,profile){
     }
     await page.evaluate(()=>{window.__qualityMotion.frames=[];window.__qualityMotion.longTasks=[];});
     await cdp.send('HeapProfiler.collectGarbage');const after=await cdp.send('Memory.getDOMCounters');
-    return {...profile,rows,errors,cycles:40,before,after};
+    const retained=await page.evaluate(()=>window.SiteScene.diagnostics());
+    return {...profile,rows,errors,cycles:40,warmedRoutes,before,after,retained};
   }finally{await ctx.close();}
 }
 async function main(){
   const {server,url}=await start(),samples=[];let browser;
-  const details={note:'Sequential lab measurements. CPU x4 is synthetic. Callback timing includes JS/Canvas commands, not display FPS or battery usage.',samples};
+  const details={variant:require('./common.cjs').identity().variant,note:'Sequential lab measurements. CPU x4 is synthetic. Callback timing includes JS/Canvas commands, not display FPS or battery usage. Preparation durations and callback time overlap; do not sum them.',samples};
   try{
     browser=await toolRequire('playwright').chromium.launch(launchOptions('chromium'));details.browser=browser.version();
     for(const profile of [{width:1440,rate:1},{width:390,rate:1},{width:390,rate:4}])for(const route of routes){
@@ -99,7 +112,7 @@ async function main(){
       process.stdout.write(JSON.stringify({...profile,route,measurements:samples.at(-1).measurements.map(({kind,paints,paintRateHz,paintIntervalsMs,paintCallbackMs,callbackBusyPercent,quality,cadence})=>({kind,paints,paintRateHz,paintIntervalsMs,paintCallbackMs,callbackBusyPercent,quality,cadence}))})+'\n');
     }
     details.journeys=[];
-    for(const profile of [{width:1440,rate:1},{width:390,rate:1},{width:390,rate:4}]){details.journeys.push(await flights(browser,url,profile));report('motion',details);process.stdout.write('Ten route flights measured: '+JSON.stringify(profile)+'\n');}
+    for(const profile of [{width:1440,rate:1},{width:390,rate:1},{width:390,rate:4}]){details.journeys.push(await flights(browser,url,profile));report('motion',details);process.stdout.write('Eight primary-route flights measured: '+JSON.stringify(profile)+'\n');}
     const heaviest=[...samples.filter(x=>x.width===390&&x.rate===4)].sort((a,b)=>b.measurements[0].paintCallbackMs.p95-a.measurements[0].paintCallbackMs.p95)[0].route;
     details.soak=await soak(browser,url,heaviest);report('motion',details);
     require('./validate.cjs').motion(report('motion',details));

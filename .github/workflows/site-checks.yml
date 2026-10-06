@@ -1,11 +1,11 @@
-name: Site PR checks
+name: Site basic checks
 on:
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
   workflow_dispatch:
     inputs:
       candidate_sha:
-        description: Exact 40-character source commit
+        description: Exact protected-main tip (manual staging source)
         required: true
         type: string
 permissions:
@@ -13,31 +13,66 @@ permissions:
   actions: read
 jobs:
   checks:
-    uses: ./.github/workflows/site-release-checks.yml
-    with:
-      candidate_sha: ${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
-      full: false
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    outputs:
+      artifact_id: ${{ steps.public.outputs.artifact-id }}
+      artifact_upload_digest: ${{ steps.public.outputs.artifact-digest }}
+      public_digest: ${{ steps.identity.outputs.digest }}
+      gate_artifact_id: ${{ steps.gate.outputs.artifact-id }}
+      gate_upload_digest: ${{ steps.gate.outputs.artifact-digest }}
+    env:
+      SITE_CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - name: Minimal source, route, script and size checks
+        run: node tools/quality/local.cjs --package quality-artifact
+      - id: identity
+        run: node -e "require('node:fs').appendFileSync(process.env.GITHUB_OUTPUT,'digest='+require('./quality-artifact/artifact.json').artifactDigest+'\n')"
+      - id: public
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: site-public-basic-${{ github.run_id }}-${{ github.run_attempt }}
+          path: quality-artifact/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+      - name: Bind successful basic checks to the uploaded artifact
+        run: node tools/quality/local.cjs --gate quality-artifact
+        env:
+          SITE_ARTIFACT_ID: ${{ steps.public.outputs.artifact-id }}
+          SITE_UPLOAD_DIGEST: ${{ steps.public.outputs.artifact-digest }}
+      - id: gate
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: site-gate-basic-${{ github.run_id }}-${{ github.run_attempt }}
+          path: quality-artifact/gate/release-manifest.json
+          if-no-files-found: error
+          retention-days: 30
   staging:
     needs: checks
     if: >-
-      false &&
       vars.SITE_STAGING_ENABLED == 'true' &&
       github.repository == 'oborskyivitalii/oborskyivitalii' &&
-      (github.event_name == 'workflow_dispatch' ||
-       (github.event.pull_request.number == 10 &&
-        github.event.pull_request.head.repo.full_name == github.repository &&
-        github.event.pull_request.head.ref == 'work/site-v1-20261001'))
+      github.event_name == 'workflow_dispatch' &&
+      github.ref == 'refs/heads/main' &&
+      github.sha == inputs.candidate_sha
     permissions:
       contents: read
       actions: read
       deployments: write
-      pull-requests: write
+      issues: write
     uses: ./.github/workflows/site-staging.yml
     with:
-      candidate_sha: ${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
+      candidate_sha: ${{ inputs.candidate_sha }}
       public_artifact_id: ${{ needs.checks.outputs.artifact_id }}
       public_digest: ${{ needs.checks.outputs.public_digest }}
       upload_digest: ${{ needs.checks.outputs.artifact_upload_digest }}
       gate_artifact_id: ${{ needs.checks.outputs.gate_artifact_id }}
-    # Only the callee job's protected staging environment supplies its token.
-    # Do not inherit all repository secrets into a PR checkout.
+      gate_upload_digest: ${{ needs.checks.outputs.gate_upload_digest }}

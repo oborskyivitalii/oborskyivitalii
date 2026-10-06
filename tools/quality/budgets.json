@@ -14,5 +14,10 @@
     "mobile": {"largest-contentful-paint": 2500, "total-blocking-time": 200, "cumulative-layout-shift": 0.1},
     "desktop": {"largest-contentful-paint": 2500, "total-blocking-time": 200, "cumulative-layout-shift": 0.1}
   },
-  "motion": {"paintCallbackP95Ms": 33, "idleCallbackBusyPercent": 20, "minimumPaints": 1, "soakSeconds": 300}
+  "geometry": {
+    "full": {"objects": 260, "vertices": 15000, "faces": 8000, "lines": 6500, "modelBytes": 10000000},
+    "compact": {"objects": 260, "vertices": 11500, "faces": 6000, "lines": 4000, "modelBytes": 8000000}
+  },
+  "motion": {"paintCallbackP95Ms": 33, "idleCallbackBusyPercent": 20, "minimumPaints": 1, "soakSeconds": 300,
+    "transition": {"paintCallbackP95Ms": 80, "paintCallbackMaxMs": 200, "preparationMaxMs": 160, "paintGapMaxMs": 300, "readyMaxMs": 3200, "minimumPaints": 8}}
 }
