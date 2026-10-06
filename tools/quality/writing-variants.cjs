@@ -9,7 +9,14 @@ const descriptions={
   'thematic-off':'Omit Writing thematic objects during projection only; retain all room construction/palette work and other routes.',
   'shared-off':'Omit Writing shared objects during projection only; retain all room construction/palette work and other routes.',
   'model-prewarm':'Expose an explicit measured Writing room/palette preparation before navigation; include its cost in the result.',
-  'edge-bypass':'Do not install edge-scroll hooks; retain content-flight preference, travel, styles and ordinary header navigation.'
+  'edge-bypass':'Do not install edge-scroll hooks; retain content-flight preference, travel, styles and ordinary header navigation.',
+  'model-profile':'Profile Writing symbol construction and aggregate face preparation; preserve geometry and rendering.',
+  'model-no-thematic':'Omit Writing thematic construction and rendering; retain shared geometry and every other route.',
+  'model-no-shared':'Omit Writing shared construction and rendering; retain thematic geometry and every other route.',
+  'layout-control':'Apply canonical separately measured row/control constraints; retain native grid/flex and every publication.',
+  'controls-off':'Replace filters/content controls with measured empty placeholders after ordinary archive initialization; preserve publications and native range.',
+  'row-grid-off':'Replace only constrained publication outer grids with positioned native child footprints; retain title flex and text.',
+  'title-flex-off':'Replace only constrained title flex layout with positioned native text/arrow footprints; retain outer grids.'
 };
 const labels=Object.keys(descriptions);
 function replaceOnce(source,needle,replacement,file,patches){
@@ -44,6 +51,12 @@ function patchRuntime(scripts,label){
     const args='('+flight.endScrollGate.toString()+','+flight.atPageEnd.toString()+','+flight.atPageStart.toString()+')';
     // Retain the serialized function/argument expressions without invoking them.
     patch('navigation.js',fn+args,`(${fn},[${args.slice(1,-1)}]); // Private Writing diagnostic: edge hooks not installed.`);
+  }
+  if(require('./writing-layout.cjs').labels.includes(label)){
+    patch('archive.js','onNavigation("initial");','onNavigation("initial");\n  window.__writingLayout?.apply(); // Private calibrated Writing intervention: '+label+'.');
+  }
+  if(label.startsWith('model-')&&label!=='model-prewarm'){
+    require('./writing-models.cjs').patch(result,label,patch);
   }
   return {scripts:result,patches};
 }
@@ -98,7 +111,6 @@ function build(inputRoot){
   assert.equal(color.derivation?.baseArtifactDigest,base.artifactDigest,'matched current base/Color control');
   assert.equal(color.sourceCommit,base.sourceCommit);assert.equal(color.sourceTree,base.sourceTree);
   return {labels,inputs:Object.fromEntries(labels.map(label=>[label,derive(colorDir,path.join(inputRoot,label),label)])),deferred:[
-    {label:'archive-block',reason:'Requires matched control archive dimensions and exact preserved range/focus; do not substitute guessed heights.'},
     {label:'archive-bypass',reason:'Requires identical initial filter/URL/focus/visibility state; removing Archive.mount changes layout and is not an isolated control.'}
   ]};
 }

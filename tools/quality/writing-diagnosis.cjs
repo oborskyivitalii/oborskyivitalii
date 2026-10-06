@@ -133,6 +133,7 @@ async function snapshot(page){
 async function prepareBrowser(profile,options){
   const session=await open(profile,{fineStages:options.fineStages,contentFlight:options.contentFlight});
   await session.context.addInitScript(installStateRecorder);
+  if(options.layoutConfiguration)await session.context.addInitScript(require("./writing-layout.cjs").install,options.layoutConfiguration);
   return session;
 }
 
@@ -155,7 +156,9 @@ async function boot(url,profile,options){
     const rawScroll=await snapshot(page),firstScroll=windowSummary(rawScroll,'first-scroll',rawScroll.start,rawScroll.end);
     Object.assign(partial,{timing,rawScroll,firstScroll});
     assert.deepEqual(errors,[]);
-    return {browser:browser.version(),timing,startup,firstScroll,rawBoot,rawScroll,errors};
+    const layoutAudit=options.layoutConfiguration?await page.evaluate(()=>window.__writingLayout.audit()):null;
+    const resources=await page.evaluate(()=>performance.getEntriesByType("resource").map(x=>({name:x.name,initiatorType:x.initiatorType,startTime:x.startTime,duration:x.duration,transferSize:x.transferSize,encodedBodySize:x.encodedBodySize,decodedBodySize:x.decodedBodySize})));
+    return {browser:browser.version(),timing,startup,firstScroll,rawBoot,rawScroll,resources,layoutAudit,errors};
   }catch(error){
     try{partial.rawFailure=await snapshot(page);}catch(captureError){partial.captureError=captureError.message;}
     error.evidenceKind='boot';error.evidence=partial;throw error;
@@ -216,6 +219,7 @@ async function flights(url,profile,options,traceFile=null){
       });
       await page.waitForFunction(end=>performance.now()>=end,arrivalEnd,{polling:20,timeout:3000});
       const raw=await snapshot(page),row={from,to,action,...splitFlight(raw),raw};
+      if(to==="writing"&&options.layoutConfiguration)row.layoutAudit=await page.evaluate(()=>window.__writingLayout.audit());
       rows.push(row);partial.pending=null;
       assert.equal(raw.contentFlight,options.contentFlight);
       assert.ok(row.normal.paints>0,'no observed scene submission callbacks');assert.equal(raw.state,'active','scene inactive or failed');
@@ -300,4 +304,4 @@ async function main(inputRoot,output,settings={}){
   }finally{server.close();}
 }
 if(require.main===module)main(path.resolve(process.argv[2]),path.resolve(process.argv[3]),process.argv[4]||'screen').catch(error=>{console.error(error.stack);process.exitCode=1;});
-module.exports={beforeCommit,profiles,configuration,plan,validateIdentities,unionDuration,windowSummary,splitFlight,distribution,summarizeTrials,pairedDeltas,main};
+module.exports={beforeCommit,profiles,configuration,plan,validateIdentities,unionDuration,windowSummary,splitFlight,distribution,summarizeTrials,pairedDeltas,prepareBrowser,boot,flights,snapshot,main};

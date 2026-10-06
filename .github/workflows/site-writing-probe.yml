@@ -1,6 +1,9 @@
 name: Writing cold comparison
-# Manual cold comparison or dated diagnosis; ordinary PRs keep only fast checks.
+# The dated localization request is a temporary same-repository PR bootstrap.
+# Remove this event after localization/confirmation; ordinary PRs keep fast checks.
 on:
+  pull_request:
+    paths: ["review/writing-diagnosis-20261006/localization-run.json"]
   workflow_dispatch:
     inputs:
       candidate_sha:
@@ -15,7 +18,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: writing-comparison-${{ inputs.candidate_sha }}
+  group: writing-comparison-${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
   cancel-in-progress: true
 defaults:
   run:
@@ -105,6 +108,59 @@ jobs:
         if: always()
         with:
           name: writing-diagnosis-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/writing-results/
+          if-no-files-found: error
+          retention-days: 90
+
+  localization:
+    if: github.event_name == 'pull_request' && github.event.pull_request.number == 23 && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      SITE_CANDIDATE_SHA: ${{ github.event.pull_request.head.sha }}
+      WRITING_BEFORE_SHA: 6d538e171ecbbaa3c3948aa0d8d118fad4aaaf5d
+      WRITING_DIAGNOSIS_TRACE: 'false'
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: candidate
+          persist-credentials: false
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: 6d538e171ecbbaa3c3948aa0d8d118fad4aaaf5d
+          path: reference
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - name: Check localization helpers and package exact controls
+        run: |
+          test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
+          node --test tests/writing-diagnosis.test.cjs tests/writing-variants.test.cjs tests/writing-layout.test.cjs tests/writing-models.test.cjs tests/writing-localization.test.cjs
+          SITE_CANDIDATE_SHA="$WRITING_BEFORE_SHA" node ../reference/tools/quality/artifact.cjs build "$RUNNER_TEMP/writing-input/before-color"
+          node ../reference/tools/staging/color.cjs "$RUNNER_TEMP/writing-input/before-color"
+          node tools/quality/artifact.cjs build "$RUNNER_TEMP/writing-input/current-base"
+          node -e "const fs=require('node:fs'),p=process.env.RUNNER_TEMP+'/writing-input/';fs.cpSync(p+'current-base',p+'current-color',{recursive:true})"
+          node tools/staging/color.cjs "$RUNNER_TEMP/writing-input/current-color"
+          node tools/quality/writing-variants.cjs "$RUNNER_TEMP/writing-input"
+      - name: Install locked Chromium only
+        run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium
+      - name: Localize Writing or confirm only the supported source correction
+        run: |
+          node - <<'JS'
+          const fs=require('node:fs'),path=require('node:path');
+          const input=process.env.RUNNER_TEMP+'/writing-input',out=process.env.RUNNER_TEMP+'/writing-results';
+          const config=JSON.parse(fs.readFileSync('review/writing-diagnosis-20261006/localization-run.json'));
+          const driver=config.mode==='v0'?require('./tools/quality/writing-diagnosis.cjs'):require('./tools/quality/writing-localization.cjs');
+          driver.main(input,out,config).catch(error=>{console.error(error.stack);process.exitCode=1;});
+          JS
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: writing-localization-${{ github.run_id }}-${{ github.run_attempt }}
           path: ${{ runner.temp }}/writing-results/
           if-no-files-found: error
           retention-days: 90

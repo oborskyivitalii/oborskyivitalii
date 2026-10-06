@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "d10b337128bab4a4898a7767c5cf426b3a03e848683a385de3045d28e86b62ff",
+    "digest": "e810926057dc62a2363730c1b5d1c51fffdf3e81866b97964378d7fe9ec933c0",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -88,7 +88,7 @@
       {
         "path": ".github/workflows/site-writing-probe.yml",
         "identity_mode": "content",
-        "sha256": "b73a949496bfb6c35a449d1ab4102b68c7f34f53c0bbfcc2b1f751b62db0a7ec"
+        "sha256": "64aa56e976c031fa41f6a4bb8c420a0c4a7760c00601016fed3a8c0e5d2e2ede"
       },
       {
         "path": ".gitignore",
@@ -97,7 +97,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "ffe575bdd996270308a4c499bb9f2cf65bd8d69fa93cf72650b2b66f0d478f14"
+        "sha256": "c3352fe0e4a794bdfc270a104daa8d232f8804e12c1481af16c7624c74cdfa88"
       },
       {
         "path": "BACKLOG.md",
@@ -3183,6 +3183,11 @@
         "sha256": "eecf81f833e7d4c9fba5fc0389359c4f0e77be4971652b765f43012ffa3c2fd2"
       },
       {
+        "path": "review/writing-diagnosis-20261006/LOCALIZATION.md",
+        "identity_mode": "content",
+        "sha256": "ad9e7c0781d3aa01ed6bb4d2b108a5f6b20c1d68d0f4fe2afab40b60272fe8e8"
+      },
+      {
         "path": "review/writing-diagnosis-20261006/SOL-TASKS.md",
         "identity_mode": "content",
         "sha256": "52e43b71d75c6d71e9af871deb152f2fdf3dcc8384f566077be3c90e4a5d17c0"
@@ -3209,6 +3214,11 @@
       {
         "path": "review/writing-diagnosis-20261006/inventory.cjs",
         "identity_mode": "existence"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/localization-run.json",
+        "identity_mode": "content",
+        "sha256": "2463862e7d4b24a5aaa495e50771b2687cc7b6030649a0e629e602ed048a7c8d"
       },
       {
         "path": "review/writing-diagnosis-20261006/rejected-ribbon-reuse.patch",
@@ -3546,6 +3556,18 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tests/writing-layout.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/writing-localization.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/writing-models.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tests/writing-variants.test.cjs",
         "identity_mode": "existence"
       },
@@ -3758,6 +3780,18 @@
       },
       {
         "path": "tools/quality/writing-diagnosis.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/writing-layout.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/writing-localization.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/writing-models.cjs",
         "identity_mode": "existence"
       },
       {
@@ -5590,6 +5624,13 @@
       ]
     },
     {
+      "path": "review/writing-diagnosis-20261006/LOCALIZATION.md",
+      "title": "Writing causal localization — 6 October 2026",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "review/writing-diagnosis-20261006/SOL-TASKS.md",
       "title": "Sol: isolate cold Writing costs, one factor at a time",
       "instructions": [
@@ -5613,6 +5654,13 @@
     {
       "path": "review/writing-diagnosis-20261006/geometry.json",
       "title": "review/writing-diagnosis-20261006/geometry.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/writing-diagnosis-20261006/localization-run.json",
+      "title": "review/writing-diagnosis-20261006/localization-run.json",
       "instructions": [
         "AGENTS.md"
       ]

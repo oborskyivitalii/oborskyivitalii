@@ -25,7 +25,7 @@ test('private Writing packages retain source identities and verify fresh immutab
   const dir=controls();
   try{
     const parent=JSON.parse(fs.readFileSync(path.join(dir,'current-color','artifact.json'))),unchanged=parent.artifactDigest;
-    const result=diagnostic.build(dir);assert.equal(result.labels.length,6);assert.deepEqual(result.deferred.map(row=>row.label),['archive-block','archive-bypass']);
+    const result=diagnostic.build(dir);assert.equal(result.labels.length,13);assert.deepEqual(result.deferred.map(row=>row.label),['archive-bypass']);
     for(const label of result.labels){
       const {manifest,publicDir}=result.inputs[label];artifact.verify(publicDir,manifest);snapshot.verify(publicDir,manifest);
       assert.equal(manifest.sourceCommit,sourceCommit);assert.equal(manifest.sourceTree,sourceTree);assert.equal(manifest.sourceDirty,false);

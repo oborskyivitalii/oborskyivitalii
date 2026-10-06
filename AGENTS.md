@@ -1,5 +1,19 @@
 # Agent guidance for personal publications
 
+## Writing causal localization and source correction — 2026-10-06
+
+The maintainer requests actual localization and a verified source correction,
+including a test without filters/content controls. Continue only Draft #23.
+`localization-run.json` temporarily triggers the existing Writing workflow for
+two balanced mobile rounds of ten private conditions. These artifacts are never
+deployed. Each direct boot and cold/return itinerary has a fresh Chromium process.
+Procedural model construction/projection and measured native archive layout are
+separate interventions; layout footprints/range must pass post-window audits.
+Keep all failed/partial observations and compare layout interventions to their
+constrained control as well as untouched Color. Then confirm only a supported
+normal source correction against 6d538e1 with clean paired cold boots/flights.
+Remove the dated PR trigger afterward. No full/stable staging or new PR.
+
 ## Completed Writing screen and rejected optimization — 2026-10-06
 
 Read review/writing-diagnosis-20261006/EXECUTION.md before continuing #23.
