@@ -2,6 +2,13 @@
 
 ## Maintainer follow-up: real contact and remaining geometry
 
+Hosted review exposed a selector-specificity interaction: adding the Talks child
+selector to a shared `:is()` raised every mask selector above the intended
+Talks-row and mobile display-contents hero suppressions. Shared defaults now
+use `:where()` so those component overrides win. This removes the duplicated
+Talks parent panel and the mobile root-spanning pseudo-element; the 390px
+normal/no-canvas smoke is rerun on the corrected output.
+
 Input: three new Safari/iPad screenshots, `image(6).png` through `image(8).png`,
 plus explicit instruction to add `https://calendar.app.google/zy9rAnUcoWygSdxH7`
 and public email `oborskyivitalii@gmail.com`. Screenshot 7/8 show immutable PR #27

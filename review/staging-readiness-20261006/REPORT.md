@@ -190,6 +190,52 @@ supported-capability positive paint probe uses the same original 1500ms bound as
 normal startup; it cannot pass on a frozen frame. Neither observer forces a
 layout invalidation, resets motion or retries a failed gesture.
 
+## Completed browser diagnostic: confirmed causes and remaining attribution
+
+[Run 37473674941](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37473674941)
+for b9ca9fc finishes with ten valid retained observations. Collection success
+does not change the two original failed Firefox fixtures or full-gate status.
+Artifact 11417899005 and [BROWSER-CAUSES.json](BROWSER-CAUSES.json) retain exact
+raw member identities, costs, scheduler transitions and dispositions.
+
+On its four-vCPU Xeon 8573C runner, Firefox Writing passes both standalone
+control/adaptive trials and fails both loaded trials while Chromium and WebKit
+actually render concurrently. Control draw median/p95 rises from 16/28ms alone
+to 41/92ms loaded. Adaptive ribbon geometry reduces the loaded median/p95 to
+23/55ms and median facets from 238 to 99, but still causes an adaptive hold.
+This is a small controlled attribution screen, not a statistical estimate of
+all CI runners or an uninstrumented performance-pass claim.
+
+The concrete stop is intentional source policy: repeated draws over 25ms raise
+the slow counter, quality reaches tier two, then slow >=16 and a draw over 50ms
+set hold=true and cancel the pending RAF. Loaded control holds at 15.243s;
+adaptive holds at 25.507s, resumes through the existing public group boundary,
+and re-holds at 53.032s. Final schedulers are enabled and not failed, but held
+with no pending frame. There is no uncaught renderer error. Canvas paint is the
+largest measured draw stage. The functional harness starts all three browser
+engines on one runner through Promise.allSettled, creating the reproduced load.
+The normal desktop ribbon mesh does not receive detailTier, so it keeps step
+1.25 even when model detail/DPR/cadence have adapted. Mesh adaptation helps cost
+but is not sufficient to cure the loaded failure; it is not shipped here.
+
+Cold WebKit is a different mechanism. In startup zero, frame two is requested
+at 314ms and entered at 2349ms, a 2035ms native RAF wait. Frame one costs 67ms
+and frame two 34ms. The request is not cancelled; page visibility/focus remain
+true, initialized/enabled remain true, and hold/failed remain false. The actual
+fixture passes because its bounded positive-paint observation begins later than
+the first request. Startup one also passes, with a 428ms second-frame wait.
+These observations reject a lost RAF or adaptive-hold explanation for this cold
+stall, but do not identify the browser's native presentation mechanism.
+
+Research's 327ms failed median is a simulated mobile Lighthouse result, not one
+measured 327ms callback. Original LHR debug tasks are 102.142ms and 153.478ms;
+their displayed simulated durations are about four times larger. The old job
+discards result.artifacts, so it cannot name the responsible function. A bounded
+follow-up retains three normal-Color mobile/simulated CPU profiles and four cold
+WebKit trials, alone/under verified background drawing. It preserves original
+fixture bounds and reports a separate recovery observation without retrying the
+failed result. No full gate, promotion, merge or source remedy is claimed.
+
 ## Final acceptance and operation
 
 The new source remains unaccepted until all full jobs and matching reports pass,

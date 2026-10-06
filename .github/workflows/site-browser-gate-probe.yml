@@ -1,13 +1,6 @@
 name: Browser gate causal diagnostic
-# Temporary dated #23 trigger. Remove it after the bounded causal screen;
-# normal PR updates retain only fast checks and hosted preview smoke.
+# Completed causal screen retained in run 37473674941. Explicit replay only.
 on:
-  pull_request:
-    types: [opened, synchronize, reopened]
-    paths:
-      - '.github/workflows/site-browser-gate-probe.yml'
-      - 'tools/quality/browser-gate-*.cjs'
-      - 'review/staging-readiness-20261006/browser-gate-run.json'
   workflow_dispatch:
     inputs:
       candidate_sha:

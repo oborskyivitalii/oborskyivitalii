@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "7a6c20a392a8501bd56460e7a2246605d2996159f3b2c45b2dfe14a8c7127b8a",
+    "digest": "1cf1f1b2eb886f4fff019ee5c203932cafa540788062b28c26ba476b926d319b",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -53,12 +53,17 @@
       {
         "path": ".github/workflows/site-browser-gate-probe.yml",
         "identity_mode": "content",
-        "sha256": "942646639da8bffd05ab7285f1d942c8b71b1b0937eee10da33d89493eb8f9fd"
+        "sha256": "9a7c908e6fadc8f46ce665399293621d5853bf526548b2456dcfcb708323313b"
       },
       {
         "path": ".github/workflows/site-candidate-evidence.yml",
         "identity_mode": "content",
         "sha256": "4f29bb722c296a012d79850b504f2a47369f450a0449f65804a277369ca5406e"
+      },
+      {
+        "path": ".github/workflows/site-cause-probe.yml",
+        "identity_mode": "content",
+        "sha256": "17922227c41fb7e0b253b2fdeec63cb48057bcc7c3980abe9c9cb0865f11dc50"
       },
       {
         "path": ".github/workflows/site-checks.yml",
@@ -102,7 +107,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "5436e9ab72fad33142a9f730475da8483ebd29c39476c86448620761a2418e22"
+        "sha256": "c13688ee10b5c0a1ce9084ed52bd57d34390cd4d5c2fcc8acea8c5162dbc42ab"
       },
       {
         "path": "BACKLOG.md",
@@ -228,48 +233,48 @@
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/b94f6868c5234b1d2f1b5ff5fea2ca74629f399184ae1ab876e94d7411acf1ac/archive.js",
+        "path": "docs/runtime/75fea39ef51888f9f9f7e051ac5b74d4fef997b8e9a143562fbfae7f076c35e9/archive.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/b94f6868c5234b1d2f1b5ff5fea2ca74629f399184ae1ab876e94d7411acf1ac/navigation.js",
+        "path": "docs/runtime/75fea39ef51888f9f9f7e051ac5b74d4fef997b8e9a143562fbfae7f076c35e9/navigation.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/b94f6868c5234b1d2f1b5ff5fea2ca74629f399184ae1ab876e94d7411acf1ac/space.js",
+        "path": "docs/runtime/75fea39ef51888f9f9f7e051ac5b74d4fef997b8e9a143562fbfae7f076c35e9/space.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/b94f6868c5234b1d2f1b5ff5fea2ca74629f399184ae1ab876e94d7411acf1ac/styles.css",
+        "path": "docs/runtime/75fea39ef51888f9f9f7e051ac5b74d4fef997b8e9a143562fbfae7f076c35e9/styles.css",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/b94f6868c5234b1d2f1b5ff5fea2ca74629f399184ae1ab876e94d7411acf1ac/theme.js",
+        "path": "docs/runtime/75fea39ef51888f9f9f7e051ac5b74d4fef997b8e9a143562fbfae7f076c35e9/theme.js",
         "identity_mode": "existence"
       },
       {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "29132fcea4741f065d36d87f66f23dcd7d603f35bb7cbc1306cce3d9d2586b96"
+        "sha256": "5e19c4b44bab2ed0423431cd9e1c27373b71fa2e69539022063c5b3cd24cfc70"
       },
       {
-        "path": "docs/snapshots/522891bab2e13302c795b79bf60155a9ee3da511ace9d593165ee47d589c2192/credits.html",
+        "path": "docs/snapshots/265d6ef84e52d835533c69913a34eee035b6814dfb81c7d8456178c500d60565/writing.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/7e0537515255503facfdde5a0be87c35294b82a1dda5e0d52d4720a6d316e788/index.html",
+        "path": "docs/snapshots/4ef2bf1487bf3298d29e1546ad45982656c3ab60148bb58f48d2c09aa0c788ed/index.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/a3c992c52ae39df4652c74d33ea5cdfa9f1aab0229d5d5b9703b5e31aa14cd5a/research.html",
+        "path": "docs/snapshots/96587aaad906c1477e4a6882f82dfa0aac8a0d16dbcee22a72b9d00fedd71c4e/credits.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/aa1be25c1405a5bcbeebe39ba1c22de84515f6ab1f926f979878c703b8aadb24/talks.html",
+        "path": "docs/snapshots/a5d3fd72230c3cc53b8bd6f8553b14a48a014e5f4df81ef0ea7cb4481ceb4ab0/talks.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/b2531743f402f0e87e7a9fbb4ebdf92dbc5ce4585aabbeb9e45625c2450c924d/writing.html",
+        "path": "docs/snapshots/e97cc439cfea65e096b7d3733074b013b70ff30db008b1a6d17003757eab7c34/research.html",
         "identity_mode": "existence"
       },
       {
@@ -370,7 +375,7 @@
       {
         "path": "review/reading-backdrops-20261006/REPORT.md",
         "identity_mode": "content",
-        "sha256": "fd38fc3d5074f074651e8b6ed9a78f673646a34f64e022533b9348fb4e03baf7"
+        "sha256": "398896019efc077808c93a2ae5660edea418e9dae3573de4408ed4ed1792b147"
       },
       {
         "path": "review/seo-20261002/COLLECTION-MANIFEST.json",
@@ -2908,7 +2913,7 @@
       {
         "path": "review/site-v1-static-previews-v11.json",
         "identity_mode": "content",
-        "sha256": "72e6630602b9c21185334f8e83e00887e1a67223a7d5287c328f990117daefb1"
+        "sha256": "87ac26c76077748a0fea6feee456aef11964514dc19e0c8118a4bcbaa1caae5c"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -3188,9 +3193,14 @@
         "sha256": "b7f04d26962ee76e8677205de15d3095b938b0a6645f96d20494bcb5182a3fe7"
       },
       {
+        "path": "review/staging-readiness-20261006/BROWSER-CAUSES.json",
+        "identity_mode": "content",
+        "sha256": "06e0b57ef09bb446722381cba654ed9f70c838616455da6c71286baba6085eae"
+      },
+      {
         "path": "review/staging-readiness-20261006/REPORT.md",
         "identity_mode": "content",
-        "sha256": "262f2f30469d1ffd58e90de713b16722f51716c9cd5ecf54ea1b9b27d4cc7d3e"
+        "sha256": "2f4574932a1af013037d40a049c27e95c989d16ae393274a01f0cf2922e0280b"
       },
       {
         "path": "review/staging-readiness-20261006/SECRET-TRIAGE.json",
@@ -3480,7 +3490,7 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "0927c8946b93e91a34ebdf34a48592a7c2c56c2e3de431efcd211cc9c41dde14"
+        "sha256": "1f18c66783d0e16994eadc4e5e5c8dab51bf6dcaa41693d83e4d6bcc75d6a5f9"
       },
       {
         "path": "site/routes.json",
@@ -3530,6 +3540,10 @@
       },
       {
         "path": "tests/browser-gate-variants.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/cause-probe.test.cjs",
         "identity_mode": "existence"
       },
       {
@@ -3740,6 +3754,10 @@
         "path": "tools/quality/budgets.json",
         "identity_mode": "content",
         "sha256": "ce7c3a7e8bc70eaeb29d4e72f8c96e36a5aac563badfa8955d5bdd430d8ef567"
+      },
+      {
+        "path": "tools/quality/cause-probe.cjs",
+        "identity_mode": "existence"
       },
       {
         "path": "tools/quality/color-browser.cjs",
@@ -4200,6 +4218,13 @@
     {
       "path": ".github/workflows/site-candidate-evidence.yml",
       "title": ".github/workflows/site-candidate-evidence.yml",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".github/workflows/site-cause-probe.yml",
+      "title": ".github/workflows/site-cause-probe.yml",
       "instructions": [
         "AGENTS.md"
       ]
@@ -5733,6 +5758,13 @@
     {
       "path": "review/sol-visual-v8-20261003/EXECUTION.md",
       "title": "v8 execution — living thematic fractals, 2026-10-03",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/staging-readiness-20261006/BROWSER-CAUSES.json",
+      "title": "review/staging-readiness-20261006/BROWSER-CAUSES.json",
       "instructions": [
         "AGENTS.md"
       ]

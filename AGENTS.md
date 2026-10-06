@@ -27,6 +27,23 @@ surface module, regenerate dependent outputs and use the existing automatic PR
 preview/short-smoke workflow. Full staging, merge and production of this follow-up
 are not requested. Calendar booking/email are advice only until real contact
 values and an implementation request are supplied. No Glass or new runtime loop.
+
+## Cold browser cause follow-up — 2026-10-06
+
+The maintainer requests analysis of the completed diagnostic, not another full
+staging retry. Run 37473674941 retains ten valid observations and two actual
+Firefox fixture failures. Its green collection status is not acceptance.
+The Firefox adaptive hold is reproduced under three-engine contention; standalone
+trials pass. A WebKit RAF remains requested and uncancelled for about two seconds,
+with no hold or visibility change. Research's older LHR omits call stacks.
+Retain the evidence before correcting source. Remove the completed screen's PR
+trigger; one dated #23 follow-up may collect four fresh WebKit cold starts, alone
+and with real background draws, and three Research mobile/simulated Lighthouse
+trials with CPU samples. Separate read-only CI runners, exact source and normal
+Color/private control lineage, no deployment, original bounds, raw failures and
+fullGate:false remain mandatory. Remove this follow-up PR trigger after evidence
+is retained. Do not call new trace timings uninstrumented performance acceptance.
+
 ## Bounded browser-gate attribution — 2026-10-06
 
 The authorized full gate restored all 390 Linux scenarios and exposed Firefox

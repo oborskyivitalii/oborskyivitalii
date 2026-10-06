@@ -1,6 +1,6 @@
 'use strict';
 // Reading backdrops are ordinary translucent paint: no controller or observer.
-const readingSelector=':is(.hero-copy,.section-heading,.archive-intro>.hero-description,.archive-intro>.eyebrow,.shift-intro>p,.research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,.ack-grid article,.about-grid>div,.about-grid>h2,.about-section>.eyebrow,.archive-link,.contact-grid>div,.publication,.talks-list .publication>div,.credits-page>p,.credits-page>h1,.credits-page>h2,.archive-heading,.archive-count,.empty-state,.year-landing,.section-note,.next-route>p,.next-route>a,.archive-landings>.topic-landing,.archive-filters,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a,.year-heading,.writing-topic)';
+const readingSelector=':where(.hero-copy,.section-heading,.archive-intro>.hero-description,.archive-intro>.eyebrow,.shift-intro>p,.research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,.ack-grid article,.about-grid>div,.about-grid>h2,.about-section>.eyebrow,.archive-link,.contact-grid>div,.publication,.talks-list .publication>div,.credits-page>p,.credits-page>h1,.credits-page>h2,.archive-heading,.archive-count,.empty-state,.year-landing,.section-note,.next-route>p,.next-route>a,.archive-landings>.topic-landing,.archive-filters,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a,.year-heading,.writing-topic)';
 const mobileReadingSelector='.hero :is(h1,.hero-lead,.hero-description,.audience,.eyebrow)';
 function surfaceStyles(){
   return `<style data-ribbon-reading-surface>
