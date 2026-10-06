@@ -1178,7 +1178,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     const w=Math.round(width*ratio),h=Math.round(height*ratio);
     if(canvas.width!==w || canvas.height!==h){canvas.width=w;canvas.height=h;}
     ctx.setTransform(ratio,0,0,ratio,0,0);ctx.clearRect(0,0,width,height);
-    const state={current,width,height,ambientTime,compact,scene};
+    const state={current,width,height,ambientTime,compact,scene,detailTier};
     const geometry=visibleRooms();span('draw-project');
     const custom=sceneEffects?.collect(state)||[];span('draw-effects');
     const shapes=geometry.concat(custom).sort((a,b)=>b.depth-a.depth);span('draw-sort');

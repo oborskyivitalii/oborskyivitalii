@@ -5,10 +5,10 @@ const candidate='a'.repeat(40),tree='b'.repeat(40);
 function inputs(){
   const parentVariant={id:'color',contract:1,fingerprint:'c'.repeat(64),baseEngine:'d'.repeat(64),effects:['ribbons','travel']};
   return Object.fromEntries(['control','adaptive'].map(label=>{
-    const intervention=label==='control'?'browser-gate-trace':'browser-gate-adaptive-ribbons';
+    const intervention=label==='control'?'browser-gate-fixed-ribbons':'browser-gate-trace';
     const diagnostic={label:intervention,description:intervention,fullGate:false};
     const derivation={kind:'writing-diagnostic-intervention',intervention,description:intervention,baseArtifactDigest:'e'.repeat(64),parentArtifactDigest:'e'.repeat(64),parentVariant,
-      patches:Array.from({length:label==='control'?2:7},()=>({file:'space.js',matches:1,needleSha256:'1'.repeat(64),replacementSha256:'2'.repeat(64),beforeSha256:'3'.repeat(64),afterSha256:'4'.repeat(64)})),fullGate:false};
+      patches:Array.from({length:label==='control'?3:2},()=>({file:'space.js',matches:1,needleSha256:'1'.repeat(64),replacementSha256:'2'.repeat(64),beforeSha256:'3'.repeat(64),afterSha256:'4'.repeat(64)})),fullGate:false};
     const fingerprint=digest(JSON.stringify({contract:1,parentEngine:parentVariant.fingerprint,intervention:derivation}));
     const visual={...parentVariant,fingerprint,diagnostic};
     return [label,{manifest:{sourceCommit:candidate,candidateCommit:candidate,sourceDirty:false,sourceTree:tree,artifactDigest:(label==='control'?'5':'6').repeat(64),components:{contract:1,engine:fingerprint,variant:visual},variant:visual,fullGate:false,diagnostic,derivation}}];

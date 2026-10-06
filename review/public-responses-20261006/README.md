@@ -2,7 +2,7 @@
 
 The maintainer asked Sol to execute the [approved plan in PR #28](https://github.com/oborskyivitalii/oborskyivitalii/pull/28#issuecomment-6018945888), owned by issue #14.
 
-Home presents Dobkin, Skelton and Kopko as three bounded examples. Research retains all eight complete articles in surname order, including the original profile/source/secondary URLs and Thinking Systems formulation credit. The two source blocks preserve their IDs, camera stops and route positions. Contact/backdrop changes already in #28 remain intact. Newer #23 source 38ee0df is retained, without changing that branch.
+Home presents Dobkin, Skelton and Kopko as three bounded examples. Research retains all eight complete articles in surname order, including the original profile/source/secondary URLs and Thinking Systems formulation credit. The two source blocks preserve their IDs, camera stops and route positions. Contact/backdrop changes already in #28 remain intact. Newer #23 source 614c3e5 (including 38ee0df) is retained, without changing that branch.
 
 ## Exact copy reconciliation
 
@@ -12,7 +12,7 @@ Research article byte strings are unchanged as a set. Tests also assert ordered 
 
 ## Validation and review
 
-Local focused run: 40/40 tests across content, executive/frozen-copy, preview exports, site engine, Color build, ribbons and scroll-sync. Changed helper/tests pass pinned ESLint with zero warnings. Default local profile passes 13 theme/archive and 10 Color-flight tests, freshness, finite geometry, snapshot integrity and size budgets. Another 30 preview-smoke/renderer/functional-fixture/cause-probe tests pass for preserved base work and changed smoke helpers. Final sequential RI, exact-head CI preview and actual browser review are recorded in the PR execution comment after publication.
+Local focused run after the final base sync: 49/49 tests across content, executive/frozen-copy, preview exports, site engine, Color build, ribbons scroll-sync and retained browser-gate/cause-probe behavior. Changed helper/tests pass pinned ESLint with zero warnings. Default local profile passes 13 theme/archive and 10 Color-flight tests, freshness, finite geometry, snapshot integrity and size budgets. Another 30 preview-smoke/renderer/functional-fixture/cause-probe tests pass for preserved base work and changed smoke helpers. Final sequential RI, exact-head CI preview and actual browser review are recorded in the PR execution comment after publication.
 
 Independent source/layout review: `/root/people_review` inspected the plan, authored source diff and existing styles. All eight Research article strings equal the prior source byte-for-byte; the 3-column/1-column Home grid and 2-column/1-column Research grid already fit the change, with content-height alignment. No CSS/runtime change is required for this editorial task. Existing generic smoke alone did not establish Home deep links or the shortened endpoint; bounded preview checks are added for those behaviors.
 

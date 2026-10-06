@@ -54,7 +54,9 @@ async function research(inputs,url,output,record){
 }
 async function browserPage(engine,url,trace=false){
   const {toolRequire,launchOptions}=require('./common.cjs'),functional=require('./functional.cjs');
-  const browser=await toolRequire('playwright')[engine].launch(launchOptions(engine));
+  const options=launchOptions(engine);
+  if(engine==='webkit'&&process.env.COLD_NATIVE_PORT==='gtk')options.headless=false;
+  const browser=await toolRequire('playwright')[engine].launch(options);
   try{
     const context=await browser.newContext({viewport:{width:1440,height:900},reducedMotion:'no-preference',colorScheme:'light'});
     const code='('+functional.probe.toString()+')();try{localStorage.setItem("vo.theme","light");}catch{}'+

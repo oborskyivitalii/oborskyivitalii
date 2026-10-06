@@ -19,15 +19,19 @@ const descriptions={
   'title-flex-off':'Replace only constrained title flex layout with positioned native text/arrow footprints; retain outer grids.',
   'browser-gate-trace':'Expose private scheduler state and post-quality draw costs; preserve the complete normal Color rendition.',
   'browser-gate-adaptive-ribbons':'Retain private browser-gate probes and interpolate desktop ribbon mesh step with actual detail tier; preserve viewport projection, visibility bounds and mobile geometry.',
+  'browser-gate-fixed-ribbons':'Retain private browser-gate probes but restore the previous fixed desktop mesh as a counterfactual to the now-public adaptive ribbon policy.',
   'cold-no-paint':'Retain all normal projection/effects/sorting, canvas clear and scheduler; omit only native shape submission for cold WebKit attribution.',
   'cold-no-air':'Retain normal canvas/rendering and scheduler; omit only the three per-frame atmosphere CSS property writes for cold WebKit attribution.',
-  'cold-small-canvas':'Retain normal geometry/paint/scheduler; keep the native canvas backing store at its default size for cold WebKit attribution.'
+  'cold-small-canvas':'Retain normal geometry/paint/scheduler; keep the native canvas backing store at its default size for cold WebKit attribution.',
+  'cold-2d-air':'Keep the exact atmosphere translation but use its equivalent 2D CSS transform instead of translate3d with zero Z.'
 };
 // The dated Writing screen remains its original thirteen interventions. These
 // browser-gate renditions are derived only when explicitly requested by a probe.
-const browserGateLabels=['browser-gate-trace','browser-gate-adaptive-ribbons'];
-const coldNativeLabels=['cold-no-paint','cold-no-air','cold-small-canvas'];
-const labels=Object.keys(descriptions).filter(label=>!browserGateLabels.includes(label)&&!coldNativeLabels.includes(label));
+const browserGateLabels=['browser-gate-trace','browser-gate-fixed-ribbons'];
+const legacyBrowserGateLabels=['browser-gate-adaptive-ribbons'];
+const coldNativeLabels=['cold-no-paint','cold-no-air','cold-small-canvas','cold-2d-air'];
+const diagnosticLabels=[...browserGateLabels,...legacyBrowserGateLabels,...coldNativeLabels];
+const labels=Object.keys(descriptions).filter(label=>!browserGateLabels.includes(label)&&!legacyBrowserGateLabels.includes(label)&&!coldNativeLabels.includes(label));
 function replaceOnce(source,needle,replacement,file,patches){
   const matches=source.split(needle).length-1;
   assert.equal(matches,1,'diagnostic patch must match exactly once: '+file+' '+needle.slice(0,70));
@@ -41,24 +45,32 @@ function patchBrowserGate(patch,label,source){
   window.SiteScene={`);
   patch('space.js','      if(living)quality(renderCost,time);',`      if(living)quality(renderCost,time);
       diagnostic("browser-gate-frame",{start,renderCost,...window.__browserGateScheduler,ribbonFaces:Number(scene.dataset.ribbonFaces||0),ribbonSignals:Number(scene.dataset.ribbonSignals||0)});`);
+  if(label==='browser-gate-fixed-ribbons'){
+    patch('space.js','shapes=[],step=compact?3:1.25+Math.max(0,Math.min(2,ribbonMesh))*.875,far=compact?64:105;','shapes=[],step=compact?3:1.25,far=compact?64:105;');return;
+  }
   if(label!=='browser-gate-adaptive-ribbons')return;
+  assert.equal(source.includes('compact,scene,detailTier};'),false,'adaptive ribbons are public; use the fixed-mesh counterfactual, not a second adaptation');
   patch('space.js','const state={current,width,height,ambientTime,compact,scene};','const state={current,width,height,ambientTime,compact,scene,detailTier};');
   patch('space.js','collect({current,width,height,ambientTime,compact,scene})','collect({current,width,height,ambientTime,compact,scene,detailTier=0})');
   patch('space.js','project(current,width,height,ambientTime,compact);','project(current,width,height,ambientTime,compact,detailTier);');
   patch('space.js','return function projectRibbons(current,width,height,time,compact){','return function projectRibbons(current,width,height,time,compact,ribbonMesh=0){');
   patch('space.js','shapes=[],step=compact?3:1.25,far=compact?64:105;','shapes=[],step=compact?3:1.25+Math.max(0,Math.min(2,ribbonMesh))*.875,far=compact?64:105;');
 }
-function patchRuntime(scripts,label){
-  assert.ok(labels.includes(label)||browserGateLabels.includes(label)||coldNativeLabels.includes(label),'unsupported Writing intervention');
-  const result={...scripts},patches=[];
-  const patch=(file,needle,replacement)=>{result[file]=replaceOnce(result[file],needle,replacement,file,patches);};
-  if(browserGateLabels.includes(label)||coldNativeLabels.includes(label))patchBrowserGate(patch,label,result['space.js']);
+function patchColdNative(patch,label){
+  if(label==='cold-2d-air')patch('styles.css','transform:translate3d(var(--air-x,0px),var(--air-y,0px),0);','transform:translate(var(--air-x,0px),var(--air-y,0px));');
   if(label==='cold-no-paint')patch('space.js','paintShapes(ctx,shapes,colors,sceneEffects?.paint);','void shapes; // Private cold native shape-submission ablation.');
   if(label==='cold-small-canvas')patch('space.js','if(canvas.width!==w || canvas.height!==h){canvas.width=w;canvas.height=h;}','void w;void h; // Private default native backing-store ablation.');
   if(label==='cold-no-air')for(const property of ['x','y','light']){
     const digits=property==='light'?5:3,suffix=property==='light'?'':'px';
     patch('space.js','scene.style?.setProperty("--air-'+property+'",air.'+property+'.toFixed('+digits+')'+(suffix?'+'+JSON.stringify(suffix):'')+');','void air.'+property+'; // Private atmosphere-write ablation.');
   }
+}
+function patchRuntime(scripts,label){
+  assert.ok(labels.includes(label)||diagnosticLabels.includes(label),'unsupported Writing intervention');
+  const result={...scripts},patches=[];
+  const patch=(file,needle,replacement)=>{result[file]=replaceOnce(result[file],needle,replacement,file,patches);};
+  if(diagnosticLabels.includes(label))patchBrowserGate(patch,label,result['space.js']);
+  patchColdNative(patch,label);
   if(label==='no-ribbons')patch('space.js','const sceneEffects=effects?.scene?.(api);','const sceneEffects=null; // Private Writing diagnostic: ribbons omitted.');
   if(label==='no-canvas-draw')patch('space.js','paintShapes(ctx,shapes,colors,sceneEffects?.paint);','void shapes; // Private Writing diagnostic: Canvas shape submission omitted.');
   if(label==='thematic-off'||label==='shared-off'){
