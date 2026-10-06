@@ -19,3 +19,9 @@ Independent source/layout review: `/root/people_review` inspected the plan, auth
 Independent final review by `/root/people_review` also confirms the exact before/after reconciler, negative mutation tests and bounded mailto handling. The normal preview now checks 3/8 names/order, CTA/local/direct anchors and Back/Forward at 390/1440px with normal/no-Canvas modes. Color supplemental smoke tests the actual Home range at 90/95/99/100%, exact reverse/start endpoint and Home→Research native edge continuation. The candidate checkout supplies these additions; no controller change is needed. Their browser results are pending until the new CI run finishes.
 
 No new external verification, research acceptance, full staging, merge or production deployment is asserted by this implementation record.
+
+## Same-PR base synchronization after the completed preview
+
+The next status check found PR #23 had advanced to d6adcf2 after #28's verified fef1848 preview. The existing stack had generated-file conflicts. This same-PR synchronization retains the newer exact-RGB palette cache, isolated Linux GTK tooling and causal evidence from #23. Authored Home/Research selection, contact URLs and backdrop CSS are unchanged; generated outputs and RI are rebuilt from their owners. The earlier independent editorial review remains applicable to identical authored content. New exact-head CI/preview results are recorded in the PR and issue execution comments. This synchronization does not launch full staging or change PR #23's branch.
+
+Local synchronized-source acceptance: 63/63 focused content/export/engine/renderer/native-display/functional-fixture tests pass. Exact byte checks confirm all authored #28 people/contact/backdrop owners are unchanged from the prior checked source, and the newer #23 renderer/lifecycle/native-display owners equal d6adcf2 exactly.

@@ -17,10 +17,11 @@ concurrency:
   cancel-in-progress: true
 env:
   SITE_CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
-  CAUSE_REFERENCE_SHA: db9447d0a6c9755670b9a40009329f183a1d3af9
+  CAUSE_REFERENCE_SHA: 614c3e54735831f72acdce1f8091baf178634835
 jobs:
   native-port:
-    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.number == 23
+    # Six port observations retained in 37484704942; manual replay only.
+    if: github.event_name == 'workflow_dispatch'
     strategy:
       fail-fast: false
       matrix:
@@ -79,6 +80,7 @@ jobs:
       COLD_NATIVE_PORT: wpe
       COLD_NATIVE_PROFILE: 'true'
       COLD_REPLICA: native-profile
+      PLAYWRIGHT_BROWSERS_PATH: ${{ github.workspace }}/.native-probe-browsers
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
@@ -103,9 +105,12 @@ jobs:
       - name: Sample only the cold probe and its browser children
         run: |
           mkdir -p "$RUNNER_TEMP/cause-fix-results"
+          probe_user=$(id -un)
+          probe_group=$(id -gn)
+          trap 'sudo chown -R "$probe_user:$probe_group" "$RUNNER_TEMP/cause-fix-results"' EXIT
           perf_tool=$(find /usr/lib -path '*linux-tools*/perf' -type f | sort | tail -n 1)
           test -n "$perf_tool"
-          sudo --preserve-env=SITE_CANDIDATE_SHA,COLD_NATIVE_PORT,COLD_NATIVE_PROFILE,COLD_REPLICA "$perf_tool" record -e cycles:u -F 99 --call-graph dwarf -o "$RUNNER_TEMP/cause-fix-results/native-perf.data" -- "$(command -v node)" tools/quality/cold-native-probe.cjs browser-gate-trace "$RUNNER_TEMP/cause-fix-input/color" "$RUNNER_TEMP/cause-fix-input/control" "$RUNNER_TEMP/cause-fix-results"
+          sudo --preserve-env=SITE_CANDIDATE_SHA,COLD_NATIVE_PORT,COLD_NATIVE_PROFILE,COLD_REPLICA,PLAYWRIGHT_BROWSERS_PATH "$perf_tool" record -e cycles:u -F 99 --call-graph dwarf -o "$RUNNER_TEMP/cause-fix-results/native-perf.data" -- runuser -u "$probe_user" -- "$(command -v node)" tools/quality/cold-native-probe.cjs browser-gate-trace "$RUNNER_TEMP/cause-fix-input/color" "$RUNNER_TEMP/cause-fix-input/control" "$RUNNER_TEMP/cause-fix-results"
           sudo "$perf_tool" report --stdio --no-children --sort comm,dso,symbol -i "$RUNNER_TEMP/cause-fix-results/native-perf.data" > "$RUNNER_TEMP/cause-fix-results/native-profile.txt"
           sudo chmod 644 "$RUNNER_TEMP/cause-fix-results/native-perf.data"
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f

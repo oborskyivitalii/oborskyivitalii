@@ -1,0 +1,1015 @@
+{
+  "schema": 1,
+  "kind": "cold-native-port-comparison",
+  "runId": 37484704942,
+  "fullGate": false,
+  "performanceAcceptance": false,
+  "complete": true,
+  "originalFailures": 2,
+  "rows": [
+    {
+      "port": "gtk",
+      "label": "browser-gate-trace",
+      "replica": "1",
+      "environment": {
+        "platform": "linux",
+        "os": "6.17.0-1022-azure",
+        "architecture": "x64",
+        "node": "v24.19.0",
+        "runnerImage": "ubuntu24",
+        "imageVersion": "20260927.320.1",
+        "cpus": [
+          "AMD EPYC 9V74 80-Core Processor",
+          "AMD EPYC 9V74 80-Core Processor",
+          "AMD EPYC 9V74 80-Core Processor",
+          "AMD EPYC 9V74 80-Core Processor"
+        ],
+        "memoryBytes": 16766414848,
+        "runId": "37484704942",
+        "attempt": "1"
+      },
+      "artifact": {
+        "id": 11423145635,
+        "name": "cause-fix-port-gtk-browser-gate-trace-1-37484704942-1",
+        "zipSha256": "81dd289f5ffb61cb2108584a1f96bbe6009cac87e38a1ffabb989a7c3bad4c20"
+      },
+      "publicIdentity": {
+        "sourceCommit": "614c3e54735831f72acdce1f8091baf178634835",
+        "sourceTree": "e65c7fdf4d4f1fe4137732873aa4c0a29e415b14",
+        "candidateCommit": "614c3e54735831f72acdce1f8091baf178634835",
+        "artifactDigest": "e7bc3491f4f0c3e7cb668ebc2d5b7ff9fcb8a8c1a9c4e7f67e86fe82d64deef9",
+        "variant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "2b88738c63a59ab1bae298e00be286358ddfbad54fde01f27f2744d4b6c9d428",
+          "baseEngine": "3d18d6d94f90651689bf646fe5a204e9d3f32ec86343036194995494c656167f",
+          "effects": [
+            "ribbons",
+            "travel"
+          ]
+        },
+        "derivation": {
+          "kind": "authored-color-effects",
+          "baseArtifactDigest": "2942f3622583d14c5e59ae55bfb6e384bfca30dcdb0dc44b40dd851f3b821028"
+        }
+      },
+      "privateIdentity": {
+        "sourceCommit": "614c3e54735831f72acdce1f8091baf178634835",
+        "sourceTree": "e65c7fdf4d4f1fe4137732873aa4c0a29e415b14",
+        "candidateCommit": "614c3e54735831f72acdce1f8091baf178634835",
+        "artifactDigest": "ff68c8bee2be3774c0bb8a9687ac1715b8cc470062a610a8438933ecb1682d18",
+        "variant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "357c5eeea2fd860ec3c0dd21d5d0ddda2600b552b42bb4f52a5d47456c4a673a",
+          "baseEngine": "3d18d6d94f90651689bf646fe5a204e9d3f32ec86343036194995494c656167f",
+          "effects": [
+            "ribbons",
+            "travel"
+          ],
+          "diagnostic": {
+            "label": "browser-gate-trace",
+            "description": "Expose private scheduler state and post-quality draw costs; preserve the complete normal Color rendition.",
+            "fullGate": false
+          }
+        },
+        "derivation": {
+          "kind": "writing-diagnostic-intervention",
+          "intervention": "browser-gate-trace",
+          "description": "Expose private scheduler state and post-quality draw costs; preserve the complete normal Color rendition.",
+          "baseArtifactDigest": "e7bc3491f4f0c3e7cb668ebc2d5b7ff9fcb8a8c1a9c4e7f67e86fe82d64deef9",
+          "parentArtifactDigest": "e7bc3491f4f0c3e7cb668ebc2d5b7ff9fcb8a8c1a9c4e7f67e86fe82d64deef9",
+          "parentVariant": {
+            "id": "color",
+            "contract": 1,
+            "fingerprint": "2b88738c63a59ab1bae298e00be286358ddfbad54fde01f27f2744d4b6c9d428",
+            "baseEngine": "3d18d6d94f90651689bf646fe5a204e9d3f32ec86343036194995494c656167f",
+            "effects": [
+              "ribbons",
+              "travel"
+            ]
+          },
+          "patches": [
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "2f8c696d5d1f25b806de536e64d02dc3873cdb69994b41fef9af4ec8571cbca1",
+              "replacementSha256": "ca3d16d39eec2c77f007ff5c9bfece1866f77da0b4474815efed472d369f20e5",
+              "beforeSha256": "96cf328e21e301203c45865d290b42b9d2309a26dfe611402037160f80d0c795",
+              "afterSha256": "2b4eecb7d386da315dfa3b154c62380fe0a7c74f1ec2b30134c2012e7344f80b"
+            },
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "7efda12d8c2ca57a709d3ccee04b1751ad44d8df714b5b17d27df9039ce5d9df",
+              "replacementSha256": "6c56dc0e3e511af5a3c15a3eaa2958637af4267dfa3cf405724a2295ed7e17ec",
+              "beforeSha256": "2b4eecb7d386da315dfa3b154c62380fe0a7c74f1ec2b30134c2012e7344f80b",
+              "afterSha256": "f0d5b0003a2f9f0b7466828ef9393cc09ff359c211a8a96cf6770e122f15c9bc"
+            }
+          ],
+          "fullGate": false
+        }
+      },
+      "originalPass": true,
+      "originalError": null,
+      "evidenceValid": true,
+      "raw": {
+        "file": "webkit-alone-1.json.gz",
+        "sha256": "79d3aea65a31fec3108fa7b4073802716c73514ebef436cd86c0ba3b34b8d81b",
+        "bytes": 17064
+      },
+      "largestRafWait": {
+        "requestId": 2,
+        "requestedMs": 285,
+        "enteredMs": 375,
+        "waitMs": 90,
+        "heartbeatSamples": 1,
+        "maxHeartbeatGapMs": null
+      },
+      "finalState": {
+        "hidden": false,
+        "visibility": "visible",
+        "focus": true,
+        "readyState": "complete",
+        "scene": {
+          "page": "index",
+          "route": "index",
+          "state": "active",
+          "ready": "true",
+          "travel": "settled",
+          "phase": "2948",
+          "quality": "1",
+          "cadence": "7.5",
+          "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}"
+        },
+        "motion": {
+          "label": "Motion: on",
+          "pressed": "true",
+          "disabled": false,
+          "hidden": false
+        },
+        "scheduler": {
+          "pending": 48,
+          "enabled": true,
+          "hold": false,
+          "printing": false,
+          "initialized": true,
+          "failed": false,
+          "page": "index",
+          "tier": 1,
+          "detailTier": 0.9964034411935826,
+          "slow": 0,
+          "fast": 0,
+          "idleRate": 7.5,
+          "costAverage": 30.60951115970984,
+          "lastFrame": 3639,
+          "nextDraw": 3657.0000000000014
+        },
+        "pendingIds": [
+          48
+        ]
+      }
+    },
+    {
+      "port": "gtk",
+      "label": "browser-gate-trace",
+      "replica": "2",
+      "environment": {
+        "platform": "linux",
+        "os": "6.17.0-1022-azure",
+        "architecture": "x64",
+        "node": "v24.19.0",
+        "runnerImage": "ubuntu24",
+        "imageVersion": "20260927.320.1",
+        "cpus": [
+          "AMD EPYC 7763 64-Core Processor",
+          "AMD EPYC 7763 64-Core Processor",
+          "AMD EPYC 7763 64-Core Processor",
+          "AMD EPYC 7763 64-Core Processor"
+        ],
+        "memoryBytes": 16766414848,
+        "runId": "37484704942",
+        "attempt": "1"
+      },
+      "artifact": {
+        "id": 11422454057,
+        "name": "cause-fix-port-gtk-browser-gate-trace-2-37484704942-1",
+        "zipSha256": "78a0d96496a78f9cb6efa8f8572675835144e2ad01507ee91f9b03b29f5fe083"
+      },
+      "publicIdentity": {
+        "sourceCommit": "614c3e54735831f72acdce1f8091baf178634835",
+        "sourceTree": "e65c7fdf4d4f1fe4137732873aa4c0a29e415b14",
+        "candidateCommit": "614c3e54735831f72acdce1f8091baf178634835",
+        "artifactDigest": "e7bc3491f4f0c3e7cb668ebc2d5b7ff9fcb8a8c1a9c4e7f67e86fe82d64deef9",
+        "variant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "2b88738c63a59ab1bae298e00be286358ddfbad54fde01f27f2744d4b6c9d428",
+          "baseEngine": "3d18d6d94f90651689bf646fe5a204e9d3f32ec86343036194995494c656167f",
+          "effects": [
+            "ribbons",
+            "travel"
+          ]
+        },
+        "derivation": {
+          "kind": "authored-color-effects",
+          "baseArtifactDigest": "2942f3622583d14c5e59ae55bfb6e384bfca30dcdb0dc44b40dd851f3b821028"
+        }
+      },
+      "privateIdentity": {
+        "sourceCommit": "614c3e54735831f72acdce1f8091baf178634835",
+        "sourceTree": "e65c7fdf4d4f1fe4137732873aa4c0a29e415b14",
+        "candidateCommit": "614c3e54735831f72acdce1f8091baf178634835",
+        "artifactDigest": "ff68c8bee2be3774c0bb8a9687ac1715b8cc470062a610a8438933ecb1682d18",
+        "variant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "357c5eeea2fd860ec3c0dd21d5d0ddda2600b552b42bb4f52a5d47456c4a673a",
+          "baseEngine": "3d18d6d94f90651689bf646fe5a204e9d3f32ec86343036194995494c656167f",
+          "effects": [
+            "ribbons",
+            "travel"
+          ],
+          "diagnostic": {
+            "label": "browser-gate-trace",
+            "description": "Expose private scheduler state and post-quality draw costs; preserve the complete normal Color rendition.",
+            "fullGate": false
+          }
+        },
+        "derivation": {
+          "kind": "writing-diagnostic-intervention",
+          "intervention": "browser-gate-trace",
+          "description": "Expose private scheduler state and post-quality draw costs; preserve the complete normal Color rendition.",
+          "baseArtifactDigest": "e7bc3491f4f0c3e7cb668ebc2d5b7ff9fcb8a8c1a9c4e7f67e86fe82d64deef9",
+          "parentArtifactDigest": "e7bc3491f4f0c3e7cb668ebc2d5b7ff9fcb8a8c1a9c4e7f67e86fe82d64deef9",
+          "parentVariant": {
+            "id": "color",
+            "contract": 1,
+            "fingerprint": "2b88738c63a59ab1bae298e00be286358ddfbad54fde01f27f2744d4b6c9d428",
+            "baseEngine": "3d18d6d94f90651689bf646fe5a204e9d3f32ec86343036194995494c656167f",
+            "effects": [
+              "ribbons",
+              "travel"
+            ]
+          },
+          "patches": [
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "2f8c696d5d1f25b806de536e64d02dc3873cdb69994b41fef9af4ec8571cbca1",
+              "replacementSha256": "ca3d16d39eec2c77f007ff5c9bfece1866f77da0b4474815efed472d369f20e5",
+              "beforeSha256": "96cf328e21e301203c45865d290b42b9d2309a26dfe611402037160f80d0c795",
+              "afterSha256": "2b4eecb7d386da315dfa3b154c62380fe0a7c74f1ec2b30134c2012e7344f80b"
+            },
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "7efda12d8c2ca57a709d3ccee04b1751ad44d8df714b5b17d27df9039ce5d9df",
+              "replacementSha256": "6c56dc0e3e511af5a3c15a3eaa2958637af4267dfa3cf405724a2295ed7e17ec",
+              "beforeSha256": "2b4eecb7d386da315dfa3b154c62380fe0a7c74f1ec2b30134c2012e7344f80b",
+              "afterSha256": "f0d5b0003a2f9f0b7466828ef9393cc09ff359c211a8a96cf6770e122f15c9bc"
+            }
+          ],
+          "fullGate": false
+        }
+      },
+      "originalPass": true,
+      "originalError": null,
+      "evidenceValid": true,
+      "raw": {
+        "file": "webkit-alone-1.json.gz",
+        "sha256": "49b070d07a5ed4e53265e97d80b2b21c553529f614b4bdcf8ccbb0fe96bb5857",
+        "bytes": 17377
+      },
+      "largestRafWait": {
+        "requestId": 2,
+        "requestedMs": 320,
+        "enteredMs": 438,
+        "waitMs": 118,
+        "heartbeatSamples": 1,
+        "maxHeartbeatGapMs": null
+      },
+      "finalState": {
+        "hidden": false,
+        "visibility": "visible",
+        "focus": true,
+        "readyState": "complete",
+        "scene": {
+          "page": "index",
+          "route": "index",
+          "state": "active",
+          "ready": "true",
+          "travel": "settled",
+          "phase": "3004",
+          "quality": "1",
+          "cadence": "7.5",
+          "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}"
+        },
+        "motion": {
+          "label": "Motion: on",
+          "pressed": "true",
+          "disabled": false,
+          "hidden": false
+        },
+        "scheduler": {
+          "pending": 52,
+          "enabled": true,
+          "hold": false,
+          "printing": false,
+          "initialized": true,
+          "failed": false,
+          "page": "index",
+          "tier": 1,
+          "detailTier": 0.9978665182299623,
+          "slow": 0,
+          "fast": 0,
+          "idleRate": 7.5,
+          "costAverage": 29.352277975412257,
+          "lastFrame": 3638,
+          "nextDraw": 3695.0000000000014
+        },
+        "pendingIds": [
+          52
+        ]
+      }
+    },
+    {
+      "port": "wpe",
+      "label": "browser-gate-trace",
+      "replica": "1",
+      "environment": {
+        "platform": "linux",
+        "os": "6.17.0-1022-azure",
+        "architecture": "x64",
+        "node": "v24.19.0",
+        "runnerImage": "ubuntu24",
+        "imageVersion": "20260927.320.1",
+        "cpus": [
+          "AMD EPYC 9V45 96-Core Processor",
+          "AMD EPYC 9V45 96-Core Processor",
+          "AMD EPYC 9V45 96-Core Processor",
+          "AMD EPYC 9V45 96-Core Processor"
+        ],
+        "memoryBytes": 16766414848,
+        "runId": "37484704942",
+        "attempt": "1"
+      },
+      "artifact": {
+        "id": 11422248922,
+        "name": "cause-fix-port-wpe-browser-gate-trace-1-37484704942-1",
+        "zipSha256": "4b283e72aecf53538b5dbe7fd56bf4fb12f1dc180d9d2ebb23d2c41e4d754a66"
+      },
+      "publicIdentity": {
+        "sourceCommit": "614c3e54735831f72acdce1f8091baf178634835",
+        "sourceTree": "e65c7fdf4d4f1fe4137732873aa4c0a29e415b14",
+        "candidateCommit": "614c3e54735831f72acdce1f8091baf178634835",
+        "artifactDigest": "e7bc3491f4f0c3e7cb668ebc2d5b7ff9fcb8a8c1a9c4e7f67e86fe82d64deef9",
+        "variant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "2b88738c63a59ab1bae298e00be286358ddfbad54fde01f27f2744d4b6c9d428",
+          "baseEngine": "3d18d6d94f90651689bf646fe5a204e9d3f32ec86343036194995494c656167f",
+          "effects": [
+            "ribbons",
+            "travel"
+          ]
+        },
+        "derivation": {
+          "kind": "authored-color-effects",
+          "baseArtifactDigest": "2942f3622583d14c5e59ae55bfb6e384bfca30dcdb0dc44b40dd851f3b821028"
+        }
+      },
+      "privateIdentity": {
+        "sourceCommit": "614c3e54735831f72acdce1f8091baf178634835",
+        "sourceTree": "e65c7fdf4d4f1fe4137732873aa4c0a29e415b14",
+        "candidateCommit": "614c3e54735831f72acdce1f8091baf178634835",
+        "artifactDigest": "ff68c8bee2be3774c0bb8a9687ac1715b8cc470062a610a8438933ecb1682d18",
+        "variant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "357c5eeea2fd860ec3c0dd21d5d0ddda2600b552b42bb4f52a5d47456c4a673a",
+          "baseEngine": "3d18d6d94f90651689bf646fe5a204e9d3f32ec86343036194995494c656167f",
+          "effects": [
+            "ribbons",
+            "travel"
+          ],
+          "diagnostic": {
+            "label": "browser-gate-trace",
+            "description": "Expose private scheduler state and post-quality draw costs; preserve the complete normal Color rendition.",
+            "fullGate": false
+          }
+        },
+        "derivation": {
+          "kind": "writing-diagnostic-intervention",
+          "intervention": "browser-gate-trace",
+          "description": "Expose private scheduler state and post-quality draw costs; preserve the complete normal Color rendition.",
+          "baseArtifactDigest": "e7bc3491f4f0c3e7cb668ebc2d5b7ff9fcb8a8c1a9c4e7f67e86fe82d64deef9",
+          "parentArtifactDigest": "e7bc3491f4f0c3e7cb668ebc2d5b7ff9fcb8a8c1a9c4e7f67e86fe82d64deef9",
+          "parentVariant": {
+            "id": "color",
+            "contract": 1,
+            "fingerprint": "2b88738c63a59ab1bae298e00be286358ddfbad54fde01f27f2744d4b6c9d428",
+            "baseEngine": "3d18d6d94f90651689bf646fe5a204e9d3f32ec86343036194995494c656167f",
+            "effects": [
+              "ribbons",
+              "travel"
+            ]
+          },
+          "patches": [
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "2f8c696d5d1f25b806de536e64d02dc3873cdb69994b41fef9af4ec8571cbca1",
+              "replacementSha256": "ca3d16d39eec2c77f007ff5c9bfece1866f77da0b4474815efed472d369f20e5",
+              "beforeSha256": "96cf328e21e301203c45865d290b42b9d2309a26dfe611402037160f80d0c795",
+              "afterSha256": "2b4eecb7d386da315dfa3b154c62380fe0a7c74f1ec2b30134c2012e7344f80b"
+            },
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "7efda12d8c2ca57a709d3ccee04b1751ad44d8df714b5b17d27df9039ce5d9df",
+              "replacementSha256": "6c56dc0e3e511af5a3c15a3eaa2958637af4267dfa3cf405724a2295ed7e17ec",
+              "beforeSha256": "2b4eecb7d386da315dfa3b154c62380fe0a7c74f1ec2b30134c2012e7344f80b",
+              "afterSha256": "f0d5b0003a2f9f0b7466828ef9393cc09ff359c211a8a96cf6770e122f15c9bc"
+            }
+          ],
+          "fullGate": false
+        }
+      },
+      "originalPass": true,
+      "originalError": null,
+      "evidenceValid": true,
+      "raw": {
+        "file": "webkit-alone-1.json.gz",
+        "sha256": "4574518234dfed041882393b430b704564c4de90db38f49aa1956d521d81d80f",
+        "bytes": 9724
+      },
+      "largestRafWait": {
+        "requestId": 2,
+        "requestedMs": 102,
+        "enteredMs": 1221,
+        "waitMs": 1119,
+        "heartbeatSamples": 15,
+        "maxHeartbeatGapMs": 52
+      },
+      "finalState": {
+        "hidden": false,
+        "visibility": "visible",
+        "focus": true,
+        "readyState": "complete",
+        "scene": {
+          "page": "index",
+          "route": "index",
+          "state": "active",
+          "ready": "true",
+          "travel": "settled",
+          "phase": "2318",
+          "quality": "0",
+          "cadence": "15",
+          "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}"
+        },
+        "motion": {
+          "label": "Motion: on",
+          "pressed": "true",
+          "disabled": false,
+          "hidden": false
+        },
+        "scheduler": {
+          "pending": 34,
+          "enabled": true,
+          "hold": false,
+          "printing": false,
+          "initialized": true,
+          "failed": false,
+          "page": "index",
+          "tier": 0,
+          "detailTier": 0,
+          "slow": 0,
+          "fast": 0,
+          "idleRate": 15,
+          "costAverage": 14.06935713769803,
+          "lastFrame": 3493,
+          "nextDraw": 3512.333333333331
+        },
+        "pendingIds": [
+          34
+        ]
+      }
+    },
+    {
+      "port": "wpe",
+      "label": "browser-gate-trace",
+      "replica": "2",
+      "environment": {
+        "platform": "linux",
+        "os": "6.17.0-1022-azure",
+        "architecture": "x64",
+        "node": "v24.19.0",
+        "runnerImage": "ubuntu24",
+        "imageVersion": "20260927.320.1",
+        "cpus": [
+          "AMD EPYC 7763 64-Core Processor",
+          "AMD EPYC 7763 64-Core Processor",
+          "AMD EPYC 7763 64-Core Processor",
+          "AMD EPYC 7763 64-Core Processor"
+        ],
+        "memoryBytes": 16766414848,
+        "runId": "37484704942",
+        "attempt": "1"
+      },
+      "artifact": {
+        "id": 11422812058,
+        "name": "cause-fix-port-wpe-browser-gate-trace-2-37484704942-1",
+        "zipSha256": "e0e3439647b641df74d242ea2f599136042b76de663bebe2eb9821ec8a9520c6"
+      },
+      "publicIdentity": {
+        "sourceCommit": "614c3e54735831f72acdce1f8091baf178634835",
+        "sourceTree": "e65c7fdf4d4f1fe4137732873aa4c0a29e415b14",
+        "candidateCommit": "614c3e54735831f72acdce1f8091baf178634835",
+        "artifactDigest": "e7bc3491f4f0c3e7cb668ebc2d5b7ff9fcb8a8c1a9c4e7f67e86fe82d64deef9",
+        "variant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "2b88738c63a59ab1bae298e00be286358ddfbad54fde01f27f2744d4b6c9d428",
+          "baseEngine": "3d18d6d94f90651689bf646fe5a204e9d3f32ec86343036194995494c656167f",
+          "effects": [
+            "ribbons",
+            "travel"
+          ]
+        },
+        "derivation": {
+          "kind": "authored-color-effects",
+          "baseArtifactDigest": "2942f3622583d14c5e59ae55bfb6e384bfca30dcdb0dc44b40dd851f3b821028"
+        }
+      },
+      "privateIdentity": {
+        "sourceCommit": "614c3e54735831f72acdce1f8091baf178634835",
+        "sourceTree": "e65c7fdf4d4f1fe4137732873aa4c0a29e415b14",
+        "candidateCommit": "614c3e54735831f72acdce1f8091baf178634835",
+        "artifactDigest": "ff68c8bee2be3774c0bb8a9687ac1715b8cc470062a610a8438933ecb1682d18",
+        "variant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "357c5eeea2fd860ec3c0dd21d5d0ddda2600b552b42bb4f52a5d47456c4a673a",
+          "baseEngine": "3d18d6d94f90651689bf646fe5a204e9d3f32ec86343036194995494c656167f",
+          "effects": [
+            "ribbons",
+            "travel"
+          ],
+          "diagnostic": {
+            "label": "browser-gate-trace",
+            "description": "Expose private scheduler state and post-quality draw costs; preserve the complete normal Color rendition.",
+            "fullGate": false
+          }
+        },
+        "derivation": {
+          "kind": "writing-diagnostic-intervention",
+          "intervention": "browser-gate-trace",
+          "description": "Expose private scheduler state and post-quality draw costs; preserve the complete normal Color rendition.",
+          "baseArtifactDigest": "e7bc3491f4f0c3e7cb668ebc2d5b7ff9fcb8a8c1a9c4e7f67e86fe82d64deef9",
+          "parentArtifactDigest": "e7bc3491f4f0c3e7cb668ebc2d5b7ff9fcb8a8c1a9c4e7f67e86fe82d64deef9",
+          "parentVariant": {
+            "id": "color",
+            "contract": 1,
+            "fingerprint": "2b88738c63a59ab1bae298e00be286358ddfbad54fde01f27f2744d4b6c9d428",
+            "baseEngine": "3d18d6d94f90651689bf646fe5a204e9d3f32ec86343036194995494c656167f",
+            "effects": [
+              "ribbons",
+              "travel"
+            ]
+          },
+          "patches": [
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "2f8c696d5d1f25b806de536e64d02dc3873cdb69994b41fef9af4ec8571cbca1",
+              "replacementSha256": "ca3d16d39eec2c77f007ff5c9bfece1866f77da0b4474815efed472d369f20e5",
+              "beforeSha256": "96cf328e21e301203c45865d290b42b9d2309a26dfe611402037160f80d0c795",
+              "afterSha256": "2b4eecb7d386da315dfa3b154c62380fe0a7c74f1ec2b30134c2012e7344f80b"
+            },
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "7efda12d8c2ca57a709d3ccee04b1751ad44d8df714b5b17d27df9039ce5d9df",
+              "replacementSha256": "6c56dc0e3e511af5a3c15a3eaa2958637af4267dfa3cf405724a2295ed7e17ec",
+              "beforeSha256": "2b4eecb7d386da315dfa3b154c62380fe0a7c74f1ec2b30134c2012e7344f80b",
+              "afterSha256": "f0d5b0003a2f9f0b7466828ef9393cc09ff359c211a8a96cf6770e122f15c9bc"
+            }
+          ],
+          "fullGate": false
+        }
+      },
+      "originalPass": false,
+      "originalError": "page.waitForFunction: Timeout 1500ms exceeded.",
+      "evidenceValid": true,
+      "raw": {
+        "file": "webkit-alone-1.json.gz",
+        "sha256": "b983feccf988797dde3a7f96147ce5b168d188aaf71550fc42512768a3b53c43",
+        "bytes": 5697
+      },
+      "largestRafWait": {
+        "requestId": 2,
+        "requestedMs": 500,
+        "enteredMs": 2957,
+        "waitMs": 2457,
+        "heartbeatSamples": 33,
+        "maxHeartbeatGapMs": 54
+      },
+      "finalState": {
+        "hidden": false,
+        "visibility": "visible",
+        "focus": true,
+        "readyState": "complete",
+        "scene": {
+          "page": "index",
+          "route": "index",
+          "state": "active",
+          "ready": "true",
+          "travel": "settled",
+          "phase": "1360",
+          "quality": "0",
+          "cadence": "10",
+          "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}"
+        },
+        "motion": {
+          "label": "Motion: on",
+          "pressed": "true",
+          "disabled": false,
+          "hidden": false
+        },
+        "scheduler": {
+          "pending": 19,
+          "enabled": true,
+          "hold": false,
+          "printing": false,
+          "initialized": true,
+          "failed": false,
+          "page": "index",
+          "tier": 0,
+          "detailTier": 0,
+          "slow": 2,
+          "fast": 0,
+          "idleRate": 10,
+          "costAverage": 24.55172446587454,
+          "lastFrame": 5191,
+          "nextDraw": 5260
+        },
+        "pendingIds": [
+          19
+        ]
+      }
+    },
+    {
+      "port": "wpe",
+      "label": "cold-2d-air",
+      "replica": "1",
+      "environment": {
+        "platform": "linux",
+        "os": "6.17.0-1022-azure",
+        "architecture": "x64",
+        "node": "v24.19.0",
+        "runnerImage": "ubuntu24",
+        "imageVersion": "20260927.320.1",
+        "cpus": [
+          "AMD EPYC 7763 64-Core Processor",
+          "AMD EPYC 7763 64-Core Processor",
+          "AMD EPYC 7763 64-Core Processor",
+          "AMD EPYC 7763 64-Core Processor"
+        ],
+        "memoryBytes": 16766414848,
+        "runId": "37484704942",
+        "attempt": "1"
+      },
+      "artifact": {
+        "id": 11423360391,
+        "name": "cause-fix-port-wpe-cold-2d-air-1-37484704942-1",
+        "zipSha256": "20eee6b3effa223a116e9c775ba764502a7242c5b389b5f1929409a7ec6663fa"
+      },
+      "publicIdentity": {
+        "sourceCommit": "614c3e54735831f72acdce1f8091baf178634835",
+        "sourceTree": "e65c7fdf4d4f1fe4137732873aa4c0a29e415b14",
+        "candidateCommit": "614c3e54735831f72acdce1f8091baf178634835",
+        "artifactDigest": "e7bc3491f4f0c3e7cb668ebc2d5b7ff9fcb8a8c1a9c4e7f67e86fe82d64deef9",
+        "variant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "2b88738c63a59ab1bae298e00be286358ddfbad54fde01f27f2744d4b6c9d428",
+          "baseEngine": "3d18d6d94f90651689bf646fe5a204e9d3f32ec86343036194995494c656167f",
+          "effects": [
+            "ribbons",
+            "travel"
+          ]
+        },
+        "derivation": {
+          "kind": "authored-color-effects",
+          "baseArtifactDigest": "2942f3622583d14c5e59ae55bfb6e384bfca30dcdb0dc44b40dd851f3b821028"
+        }
+      },
+      "privateIdentity": {
+        "sourceCommit": "614c3e54735831f72acdce1f8091baf178634835",
+        "sourceTree": "e65c7fdf4d4f1fe4137732873aa4c0a29e415b14",
+        "candidateCommit": "614c3e54735831f72acdce1f8091baf178634835",
+        "artifactDigest": "e7f9c747040c14c9a312c5f3275d060f8eb1710e5a9e244507cbc574c0cb6e52",
+        "variant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "45cc3de8bc0de735957bf66e4200940b10c5925e3bf19ab18d798a90376d3cf1",
+          "baseEngine": "3d18d6d94f90651689bf646fe5a204e9d3f32ec86343036194995494c656167f",
+          "effects": [
+            "ribbons",
+            "travel"
+          ],
+          "diagnostic": {
+            "label": "cold-2d-air",
+            "description": "Keep the exact atmosphere translation but use its equivalent 2D CSS transform instead of translate3d with zero Z.",
+            "fullGate": false
+          }
+        },
+        "derivation": {
+          "kind": "writing-diagnostic-intervention",
+          "intervention": "cold-2d-air",
+          "description": "Keep the exact atmosphere translation but use its equivalent 2D CSS transform instead of translate3d with zero Z.",
+          "baseArtifactDigest": "e7bc3491f4f0c3e7cb668ebc2d5b7ff9fcb8a8c1a9c4e7f67e86fe82d64deef9",
+          "parentArtifactDigest": "e7bc3491f4f0c3e7cb668ebc2d5b7ff9fcb8a8c1a9c4e7f67e86fe82d64deef9",
+          "parentVariant": {
+            "id": "color",
+            "contract": 1,
+            "fingerprint": "2b88738c63a59ab1bae298e00be286358ddfbad54fde01f27f2744d4b6c9d428",
+            "baseEngine": "3d18d6d94f90651689bf646fe5a204e9d3f32ec86343036194995494c656167f",
+            "effects": [
+              "ribbons",
+              "travel"
+            ]
+          },
+          "patches": [
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "2f8c696d5d1f25b806de536e64d02dc3873cdb69994b41fef9af4ec8571cbca1",
+              "replacementSha256": "ca3d16d39eec2c77f007ff5c9bfece1866f77da0b4474815efed472d369f20e5",
+              "beforeSha256": "96cf328e21e301203c45865d290b42b9d2309a26dfe611402037160f80d0c795",
+              "afterSha256": "2b4eecb7d386da315dfa3b154c62380fe0a7c74f1ec2b30134c2012e7344f80b"
+            },
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "7efda12d8c2ca57a709d3ccee04b1751ad44d8df714b5b17d27df9039ce5d9df",
+              "replacementSha256": "6c56dc0e3e511af5a3c15a3eaa2958637af4267dfa3cf405724a2295ed7e17ec",
+              "beforeSha256": "2b4eecb7d386da315dfa3b154c62380fe0a7c74f1ec2b30134c2012e7344f80b",
+              "afterSha256": "f0d5b0003a2f9f0b7466828ef9393cc09ff359c211a8a96cf6770e122f15c9bc"
+            },
+            {
+              "file": "styles.css",
+              "matches": 1,
+              "needleSha256": "c3f7193c979ac10ccc717b91671cc0d05cc675243118d4f1e7b2dfb33c69a853",
+              "replacementSha256": "4d433023d87154ed195c9889e6c5dbdcf1441212f8950020ef7fbe1346c4334c",
+              "beforeSha256": "a5af33c49956370accca6d586d036868fbab25f8c23849e30d6696f26c03acd8",
+              "afterSha256": "793788d52fe465dfacf772d3c5ff60592a2c3a6ad546ed616ab649fad63237d8"
+            }
+          ],
+          "fullGate": false
+        }
+      },
+      "originalPass": false,
+      "originalError": "page.waitForFunction: Timeout 1500ms exceeded.",
+      "evidenceValid": true,
+      "raw": {
+        "file": "webkit-alone-1.json.gz",
+        "sha256": "12473a2102d91bd19b627b48ce739589ca8bb74edccc2d43ac1457d1bdce3656",
+        "bytes": 5064
+      },
+      "largestRafWait": {
+        "requestId": 2,
+        "requestedMs": 309,
+        "enteredMs": 2683,
+        "waitMs": 2374,
+        "heartbeatSamples": 32,
+        "maxHeartbeatGapMs": 53
+      },
+      "finalState": {
+        "hidden": false,
+        "visibility": "visible",
+        "focus": true,
+        "readyState": "complete",
+        "scene": {
+          "page": "index",
+          "route": "index",
+          "state": "active",
+          "ready": "true",
+          "travel": "settled",
+          "phase": "1120",
+          "quality": "0",
+          "cadence": "12",
+          "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}"
+        },
+        "motion": {
+          "label": "Motion: on",
+          "pressed": "true",
+          "disabled": false,
+          "hidden": false
+        },
+        "scheduler": {
+          "pending": 16,
+          "enabled": true,
+          "hold": false,
+          "printing": false,
+          "initialized": true,
+          "failed": false,
+          "page": "index",
+          "tier": 0,
+          "detailTier": 0,
+          "slow": 0,
+          "fast": 0,
+          "idleRate": 12,
+          "costAverage": 23.60424055685121,
+          "lastFrame": 4946,
+          "nextDraw": 5029.333333333333
+        },
+        "pendingIds": [
+          16
+        ]
+      }
+    },
+    {
+      "port": "wpe",
+      "label": "cold-2d-air",
+      "replica": "2",
+      "environment": {
+        "platform": "linux",
+        "os": "6.17.0-1022-azure",
+        "architecture": "x64",
+        "node": "v24.19.0",
+        "runnerImage": "ubuntu24",
+        "imageVersion": "20260927.320.1",
+        "cpus": [
+          "AMD EPYC 9V74 80-Core Processor",
+          "AMD EPYC 9V74 80-Core Processor",
+          "AMD EPYC 9V74 80-Core Processor",
+          "AMD EPYC 9V74 80-Core Processor"
+        ],
+        "memoryBytes": 16766410752,
+        "runId": "37484704942",
+        "attempt": "1"
+      },
+      "artifact": {
+        "id": 11421989230,
+        "name": "cause-fix-port-wpe-cold-2d-air-2-37484704942-1",
+        "zipSha256": "e7a8e3e2a817f05a03397795b08e255d1cc52ac839be2afa1d0ef27b2ab4e5b2"
+      },
+      "publicIdentity": {
+        "sourceCommit": "614c3e54735831f72acdce1f8091baf178634835",
+        "sourceTree": "e65c7fdf4d4f1fe4137732873aa4c0a29e415b14",
+        "candidateCommit": "614c3e54735831f72acdce1f8091baf178634835",
+        "artifactDigest": "e7bc3491f4f0c3e7cb668ebc2d5b7ff9fcb8a8c1a9c4e7f67e86fe82d64deef9",
+        "variant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "2b88738c63a59ab1bae298e00be286358ddfbad54fde01f27f2744d4b6c9d428",
+          "baseEngine": "3d18d6d94f90651689bf646fe5a204e9d3f32ec86343036194995494c656167f",
+          "effects": [
+            "ribbons",
+            "travel"
+          ]
+        },
+        "derivation": {
+          "kind": "authored-color-effects",
+          "baseArtifactDigest": "2942f3622583d14c5e59ae55bfb6e384bfca30dcdb0dc44b40dd851f3b821028"
+        }
+      },
+      "privateIdentity": {
+        "sourceCommit": "614c3e54735831f72acdce1f8091baf178634835",
+        "sourceTree": "e65c7fdf4d4f1fe4137732873aa4c0a29e415b14",
+        "candidateCommit": "614c3e54735831f72acdce1f8091baf178634835",
+        "artifactDigest": "e7f9c747040c14c9a312c5f3275d060f8eb1710e5a9e244507cbc574c0cb6e52",
+        "variant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "45cc3de8bc0de735957bf66e4200940b10c5925e3bf19ab18d798a90376d3cf1",
+          "baseEngine": "3d18d6d94f90651689bf646fe5a204e9d3f32ec86343036194995494c656167f",
+          "effects": [
+            "ribbons",
+            "travel"
+          ],
+          "diagnostic": {
+            "label": "cold-2d-air",
+            "description": "Keep the exact atmosphere translation but use its equivalent 2D CSS transform instead of translate3d with zero Z.",
+            "fullGate": false
+          }
+        },
+        "derivation": {
+          "kind": "writing-diagnostic-intervention",
+          "intervention": "cold-2d-air",
+          "description": "Keep the exact atmosphere translation but use its equivalent 2D CSS transform instead of translate3d with zero Z.",
+          "baseArtifactDigest": "e7bc3491f4f0c3e7cb668ebc2d5b7ff9fcb8a8c1a9c4e7f67e86fe82d64deef9",
+          "parentArtifactDigest": "e7bc3491f4f0c3e7cb668ebc2d5b7ff9fcb8a8c1a9c4e7f67e86fe82d64deef9",
+          "parentVariant": {
+            "id": "color",
+            "contract": 1,
+            "fingerprint": "2b88738c63a59ab1bae298e00be286358ddfbad54fde01f27f2744d4b6c9d428",
+            "baseEngine": "3d18d6d94f90651689bf646fe5a204e9d3f32ec86343036194995494c656167f",
+            "effects": [
+              "ribbons",
+              "travel"
+            ]
+          },
+          "patches": [
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "2f8c696d5d1f25b806de536e64d02dc3873cdb69994b41fef9af4ec8571cbca1",
+              "replacementSha256": "ca3d16d39eec2c77f007ff5c9bfece1866f77da0b4474815efed472d369f20e5",
+              "beforeSha256": "96cf328e21e301203c45865d290b42b9d2309a26dfe611402037160f80d0c795",
+              "afterSha256": "2b4eecb7d386da315dfa3b154c62380fe0a7c74f1ec2b30134c2012e7344f80b"
+            },
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "7efda12d8c2ca57a709d3ccee04b1751ad44d8df714b5b17d27df9039ce5d9df",
+              "replacementSha256": "6c56dc0e3e511af5a3c15a3eaa2958637af4267dfa3cf405724a2295ed7e17ec",
+              "beforeSha256": "2b4eecb7d386da315dfa3b154c62380fe0a7c74f1ec2b30134c2012e7344f80b",
+              "afterSha256": "f0d5b0003a2f9f0b7466828ef9393cc09ff359c211a8a96cf6770e122f15c9bc"
+            },
+            {
+              "file": "styles.css",
+              "matches": 1,
+              "needleSha256": "c3f7193c979ac10ccc717b91671cc0d05cc675243118d4f1e7b2dfb33c69a853",
+              "replacementSha256": "4d433023d87154ed195c9889e6c5dbdcf1441212f8950020ef7fbe1346c4334c",
+              "beforeSha256": "a5af33c49956370accca6d586d036868fbab25f8c23849e30d6696f26c03acd8",
+              "afterSha256": "793788d52fe465dfacf772d3c5ff60592a2c3a6ad546ed616ab649fad63237d8"
+            }
+          ],
+          "fullGate": false
+        }
+      },
+      "originalPass": true,
+      "originalError": null,
+      "evidenceValid": true,
+      "raw": {
+        "file": "webkit-alone-1.json.gz",
+        "sha256": "90124a6a65f62db7812cfb48e37807a4ed2f97a682b77c8f502253595372cfb1",
+        "bytes": 6892
+      },
+      "largestRafWait": {
+        "requestId": 2,
+        "requestedMs": 285,
+        "enteredMs": 1847,
+        "waitMs": 1562,
+        "heartbeatSamples": 21,
+        "maxHeartbeatGapMs": 53
+      },
+      "finalState": {
+        "hidden": false,
+        "visibility": "visible",
+        "focus": true,
+        "readyState": "complete",
+        "scene": {
+          "page": "index",
+          "route": "index",
+          "state": "active",
+          "ready": "true",
+          "travel": "settled",
+          "phase": "1520",
+          "quality": "0",
+          "cadence": "15",
+          "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}"
+        },
+        "motion": {
+          "label": "Motion: on",
+          "pressed": "true",
+          "disabled": false,
+          "hidden": false
+        },
+        "scheduler": {
+          "pending": 21,
+          "enabled": true,
+          "hold": false,
+          "printing": false,
+          "initialized": true,
+          "failed": false,
+          "page": "index",
+          "tier": 0,
+          "detailTier": 0,
+          "slow": 0,
+          "fast": 0,
+          "idleRate": 15,
+          "costAverage": 16.77022000946558,
+          "lastFrame": 4168,
+          "nextDraw": 4187.333333333334
+        },
+        "pendingIds": [
+          21
+        ]
+      }
+    }
+  ],
+  "nativeProfile": {
+    "collected": false,
+    "jobId": 112341643747,
+    "error": "Root perf launcher chose /root/.cache/ms-playwright; installed browser belonged to runner. Browser never launched; upload also failed artifact ownership. No valid browser CPU profile."
+  },
+  "interpretation": {
+    "supported": "On EPYC 7763, identical traced public normal source WPE RAF2 waits 2457ms and fails; desktop GTK RAF2 waits 118ms and passes. Both fresh GTK replicas pass (90/118ms). Linux functional uses desktop GTK on private Xvfb without warmup/retry or increased browser deadlines.",
+    "rejected": "Equivalent 2D atmosphere translation still waits 2374ms and fails on WPE; do not ship CSS ablation as a cure.",
+    "limits": "Two replicas per port are a bounded causal screen, not a complete functional/platform or stable acceptance. Exact native library/driver symbol remains unlocalized."
+  }
+}

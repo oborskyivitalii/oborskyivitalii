@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "f7076d879fc6b4697cb499d12c2e7459f32edf120c4abd0b3a38b6464579b3c0",
+    "digest": "e603626dd57a53e431b5eb06ed635a81e1ce562025def51d169b9618acea49ae",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -63,7 +63,7 @@
       {
         "path": ".github/workflows/site-cause-fix-probe.yml",
         "identity_mode": "content",
-        "sha256": "681818e7524d52352808242943cbbe89df9b715f7fb7356c573091525dbf7227"
+        "sha256": "3eadbfab1570e5fa5f42feca5b89cd44fdca02ce0acab33294de7acb6a8227e3"
       },
       {
         "path": ".github/workflows/site-cause-probe.yml",
@@ -112,7 +112,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "1be07c774dd47f4815c978762da947e76e70a13b1568d1b24dea6cdd016db7c4"
+        "sha256": "80377a831da3b2b97940be44efa89991407197f42a0d46f6a0f86aeb1d5d39f9"
       },
       {
         "path": "BACKLOG.md",
@@ -238,48 +238,48 @@
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/0050a78e3667db08a42ae773e8a92bc0e8585d7c033e6f926763349fae70876c/archive.js",
+        "path": "docs/runtime/5b2239d9600bce59c2d6796b8cb1b63145b72333fe2447a19432e52b6fa74ab1/archive.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/0050a78e3667db08a42ae773e8a92bc0e8585d7c033e6f926763349fae70876c/navigation.js",
+        "path": "docs/runtime/5b2239d9600bce59c2d6796b8cb1b63145b72333fe2447a19432e52b6fa74ab1/navigation.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/0050a78e3667db08a42ae773e8a92bc0e8585d7c033e6f926763349fae70876c/space.js",
+        "path": "docs/runtime/5b2239d9600bce59c2d6796b8cb1b63145b72333fe2447a19432e52b6fa74ab1/space.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/0050a78e3667db08a42ae773e8a92bc0e8585d7c033e6f926763349fae70876c/styles.css",
+        "path": "docs/runtime/5b2239d9600bce59c2d6796b8cb1b63145b72333fe2447a19432e52b6fa74ab1/styles.css",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/0050a78e3667db08a42ae773e8a92bc0e8585d7c033e6f926763349fae70876c/theme.js",
+        "path": "docs/runtime/5b2239d9600bce59c2d6796b8cb1b63145b72333fe2447a19432e52b6fa74ab1/theme.js",
         "identity_mode": "existence"
       },
       {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "3ad72fbf801c78d0a4aa39f08e6261a3c7cb7da673f2e5a75a317298f857d561"
+        "sha256": "1bd38e79a8930ca2c8b89b4ba635d74245dd02f4ffb0a41634c21b6f1f503f8a"
       },
       {
-        "path": "docs/snapshots/28ba05c51a44db33b190d8f3211722f7a0cdd8fc2be56a449dcbf8f72e3cdc42/research.html",
+        "path": "docs/snapshots/262639c82217291a6448dda796d6497165d58fba53c1ee1412bc71def0a6fc63/credits.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/4ab846e10b9cb569b04140e1798a18eee803ee23608083ff63493f6bb6d5a7ca/talks.html",
+        "path": "docs/snapshots/5b5f80ba9c40f269cecf5988ce54e740ab5b7b1254cef4ffce26245b8a2ceb0b/index.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/9197bf29705896326270fc2a8418ed8cfbfb98ff869a1ad762f164f7ce5d51f0/credits.html",
+        "path": "docs/snapshots/a6dc38f045a2ab206d81af560c924a9e2312c7bdd16ae34fb70ea3d22ec63762/talks.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/c1b72dd1c53715e736aea9d69939434971648add0a6ffdde0fbe23590f6176da/writing.html",
+        "path": "docs/snapshots/c1f9201da9512c89628be5af019d26c5b8697288addf98def1b69f5d66e4566a/research.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/db2d1bbcf653c33a3d0cf770ef6a48c6bab91eb2ab67fa41587d05d1438afbb3/index.html",
+        "path": "docs/snapshots/ddf2769f4ce615d00764240a6b9f1902a610ca4bf80f41229e396a059bec36c5/writing.html",
         "identity_mode": "existence"
       },
       {
@@ -380,7 +380,7 @@
       {
         "path": "review/public-responses-20261006/README.md",
         "identity_mode": "content",
-        "sha256": "712fc9a76e1434ee251bebec21dfef8471f9dfb4ab2aa56e6393fd0c3adeed6a"
+        "sha256": "664bb7b820475a499e983749b10d07973afd88652075556040606824d144e008"
       },
       {
         "path": "review/public-responses-20261006/index.after.html",
@@ -2885,7 +2885,7 @@
       {
         "path": "review/site-v1-offline-bundle-v11.json",
         "identity_mode": "content",
-        "sha256": "79f41eac985ff766d104df9b5af4d3b48663764be9a330b5030d7e16ba82e35d"
+        "sha256": "41b9664723f843d3a87882b811690a32ccdd3051eb043053145135a9b4415f07"
       },
       {
         "path": "review/site-v1-offline-bundle-v3.json",
@@ -2939,7 +2939,7 @@
       {
         "path": "review/site-v1-static-previews-v11.json",
         "identity_mode": "content",
-        "sha256": "fc561e7d9a7f283ab5eb2a606c38ab2070b7f7e6f0bf30f5593a474c82af9c84"
+        "sha256": "0fb551828c6ba2fde3e4b51e39ee03c0d849a91e230a69239385a88c4cdf2497"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -3229,14 +3229,29 @@
         "sha256": "cfc951fa5b6181a74aa3ac7da3015a92b50665bdf0df290f7ab2021d62a346ff"
       },
       {
+        "path": "review/staging-readiness-20261006/CAUSE-FIX-NATIVE.json",
+        "identity_mode": "content",
+        "sha256": "799ca7ddd656456b31c020aafffe62b2119c82b382d5e759de8c16d5608e4a8f"
+      },
+      {
+        "path": "review/staging-readiness-20261006/CAUSE-FIX-PORTS.json",
+        "identity_mode": "content",
+        "sha256": "5e8aec2348e519f0b9be85f7884b172b5671088c179f4ff9394e8ad71bd0b26e"
+      },
+      {
         "path": "review/staging-readiness-20261006/CAUSE-FIX-REQUEST.md",
         "identity_mode": "content",
-        "sha256": "91e28945f08c2717edb895bcf14b66e0e7532dbaaa416000eb1a3561da6c391a"
+        "sha256": "ef03fd560983f6efc9ee4743969987b99910d928e026dd8be728861c38dccd5d"
+      },
+      {
+        "path": "review/staging-readiness-20261006/CAUSE-FIX-RESEARCH.json",
+        "identity_mode": "content",
+        "sha256": "768ce3a091ce64c2a160e1e919c3ac37c159acba55a0ef9c5469e7867fda718d"
       },
       {
         "path": "review/staging-readiness-20261006/CAUSES.md",
         "identity_mode": "content",
-        "sha256": "dd0a29b8cff6055ac4b20661ec29827d04656af4b242476352db6ff1422a38cb"
+        "sha256": "367e0deb9562cdaf253d664578f5c30a7f78598ae66c6fa0f6e45a1065a36975"
       },
       {
         "path": "review/staging-readiness-20261006/REPORT.md",
@@ -3531,7 +3546,7 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "e9dcaa3314c79a8874cd8e58b0477fbc92e2b9e6d2aa256557305a4f2f5e0a1e"
+        "sha256": "8c6668ebc49a714cafe7b286f177305c5b1881b4168a3ab40435ae12ccca4b16"
       },
       {
         "path": "site/routes.json",
@@ -3617,6 +3632,10 @@
       },
       {
         "path": "tests/functional-fixtures.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/native-display.test.cjs",
         "identity_mode": "existence"
       },
       {
@@ -3875,6 +3894,10 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tools/quality/native-display.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tools/quality/navigation.cjs",
         "identity_mode": "existence"
       },
@@ -3897,7 +3920,7 @@
       {
         "path": "tools/quality/secrets-baseline.json",
         "identity_mode": "content",
-        "sha256": "743d4e609e92cc1f410c46e6c13bc237c69bc35ad7975db0e73f3b305e240607"
+        "sha256": "bb5fc6dee811d4b929521690d840148b0cb0fb38bc7e93154466a562338a19a4"
       },
       {
         "path": "tools/quality/security-rules.yml",
@@ -5844,6 +5867,20 @@
       ]
     },
     {
+      "path": "review/staging-readiness-20261006/CAUSE-FIX-NATIVE.json",
+      "title": "review/staging-readiness-20261006/CAUSE-FIX-NATIVE.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/staging-readiness-20261006/CAUSE-FIX-PORTS.json",
+      "title": "review/staging-readiness-20261006/CAUSE-FIX-PORTS.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "review/staging-readiness-20261006/CAUSE-FIX-REQUEST.md",
       "title": "Confirm cause corrections and attribute the unresolved native delay",
       "instructions": [
@@ -5851,8 +5888,15 @@
       ]
     },
     {
+      "path": "review/staging-readiness-20261006/CAUSE-FIX-RESEARCH.json",
+      "title": "review/staging-readiness-20261006/CAUSE-FIX-RESEARCH.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "review/staging-readiness-20261006/CAUSES.md",
-      "title": "Причини збоїв: завершена діагностика 6 жовтня 2026",
+      "title": "Причини збоїв і виправлення — 6 жовтня 2026",
       "instructions": [
         "AGENTS.md"
       ]

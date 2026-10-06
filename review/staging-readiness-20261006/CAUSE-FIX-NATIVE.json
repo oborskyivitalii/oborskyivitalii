@@ -1,0 +1,2947 @@
+{
+  "schema": 1,
+  "kind": "cold-native-one-factor-summary",
+  "runId": 37483016304,
+  "sourceCommit": "38ee0df5ed13fdc988318a0e24a7ac5d573c474e",
+  "publicIdentity": {
+    "sourceCommit": "38ee0df5ed13fdc988318a0e24a7ac5d573c474e",
+    "candidateCommit": "38ee0df5ed13fdc988318a0e24a7ac5d573c474e",
+    "sourceTree": "dad785fb6ca4fdbc589ef998961c474b897a7509",
+    "sourceDirty": false,
+    "artifactDigest": "167ea344f12ca7b6da91db6f4cf436ea690033bd31ad7216a83c7bfce1b38df1",
+    "variant": {
+      "id": "color",
+      "contract": 1,
+      "fingerprint": "a27fa48a9f3117ccc7bc4a51b95b13684d150725917e583cb08370fc92d5c583",
+      "baseEngine": "2e064507b154606578a9be3fc7ee7bec059443e5f54e2bec7421b6edd801fd43",
+      "effects": [
+        "ribbons",
+        "travel"
+      ]
+    },
+    "derivation": {
+      "kind": "authored-color-effects",
+      "baseArtifactDigest": "18e4233870f5e9a0fe3afabee62ddd902a8cd0493dfa464088b41ee88070bf16"
+    }
+  },
+  "fullGate": false,
+  "performanceAcceptance": false,
+  "complete": true,
+  "originalFailures": 5,
+  "rows": [
+    {
+      "label": "browser-gate-trace",
+      "replica": "1",
+      "environment": {
+        "platform": "linux",
+        "os": "6.17.0-1022-azure",
+        "architecture": "x64",
+        "node": "v24.19.0",
+        "runnerImage": "ubuntu24",
+        "imageVersion": "20260927.320.1",
+        "cpus": [
+          "AMD EPYC 7763 64-Core Processor",
+          "AMD EPYC 7763 64-Core Processor",
+          "AMD EPYC 7763 64-Core Processor",
+          "AMD EPYC 7763 64-Core Processor"
+        ],
+        "memoryBytes": 16766414848,
+        "runId": "37483016304",
+        "attempt": "1"
+      },
+      "artifact": {
+        "id": 11421199329,
+        "name": "cause-fix-native-browser-gate-trace-1-37483016304-1",
+        "sha256": "1480a8f8a20397af1eb2e80a79b477d443b44d8efd36477d485aad35d0bd679e",
+        "bytes": 12467
+      },
+      "privateIdentity": {
+        "sourceCommit": "38ee0df5ed13fdc988318a0e24a7ac5d573c474e",
+        "candidateCommit": "38ee0df5ed13fdc988318a0e24a7ac5d573c474e",
+        "sourceTree": "dad785fb6ca4fdbc589ef998961c474b897a7509",
+        "sourceDirty": false,
+        "artifactDigest": "87390729793c81ae275a17c846d35f150b5e94e1fcd4ef2f1633ffb255ed24c4",
+        "variant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "c0a59f8e4752606f5797c6058f04e7260a8179c6e4b5441e9e21b2f933a3687d",
+          "baseEngine": "2e064507b154606578a9be3fc7ee7bec059443e5f54e2bec7421b6edd801fd43",
+          "effects": [
+            "ribbons",
+            "travel"
+          ],
+          "diagnostic": {
+            "label": "browser-gate-trace",
+            "description": "Expose private scheduler state and post-quality draw costs; preserve the complete normal Color rendition.",
+            "fullGate": false
+          }
+        },
+        "diagnostic": {
+          "label": "browser-gate-trace",
+          "description": "Expose private scheduler state and post-quality draw costs; preserve the complete normal Color rendition.",
+          "fullGate": false
+        },
+        "derivation": {
+          "kind": "writing-diagnostic-intervention",
+          "intervention": "browser-gate-trace",
+          "description": "Expose private scheduler state and post-quality draw costs; preserve the complete normal Color rendition.",
+          "baseArtifactDigest": "167ea344f12ca7b6da91db6f4cf436ea690033bd31ad7216a83c7bfce1b38df1",
+          "parentArtifactDigest": "167ea344f12ca7b6da91db6f4cf436ea690033bd31ad7216a83c7bfce1b38df1",
+          "parentVariant": {
+            "id": "color",
+            "contract": 1,
+            "fingerprint": "a27fa48a9f3117ccc7bc4a51b95b13684d150725917e583cb08370fc92d5c583",
+            "baseEngine": "2e064507b154606578a9be3fc7ee7bec059443e5f54e2bec7421b6edd801fd43",
+            "effects": [
+              "ribbons",
+              "travel"
+            ]
+          },
+          "patches": [
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "2f8c696d5d1f25b806de536e64d02dc3873cdb69994b41fef9af4ec8571cbca1",
+              "replacementSha256": "ca3d16d39eec2c77f007ff5c9bfece1866f77da0b4474815efed472d369f20e5",
+              "beforeSha256": "5b30e60c406b2c88e60cc6252c7fc7d17970c212449950b5d2d47eee9cc65dce",
+              "afterSha256": "182a81301e52fa6056f387ff81f7d41b811b53a07e200a432b7e24a928b99086"
+            },
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "7efda12d8c2ca57a709d3ccee04b1751ad44d8df714b5b17d27df9039ce5d9df",
+              "replacementSha256": "6c56dc0e3e511af5a3c15a3eaa2958637af4267dfa3cf405724a2295ed7e17ec",
+              "beforeSha256": "182a81301e52fa6056f387ff81f7d41b811b53a07e200a432b7e24a928b99086",
+              "afterSha256": "776bb05c596a2a48a2c369cd6535cd8741070b52a8d8a1b65e48d8127565aa1d"
+            }
+          ],
+          "fullGate": false
+        }
+      },
+      "originalPass": false,
+      "originalError": "page.waitForFunction: Timeout 1500ms exceeded.",
+      "evidenceValid": true,
+      "originalChecks": null,
+      "raw": {
+        "file": "webkit-alone-1.json.gz",
+        "sha256": "280193485ea7017a634f6ded763129e69ca2890b9e793a84e844cb76f935f91b",
+        "bytes": 5923
+      },
+      "largestRafWait": {
+        "id": 2,
+        "requestedMs": 383,
+        "entryMs": 2755,
+        "waitMs": 2372
+      },
+      "heartbeatWithinWait": {
+        "count": 32,
+        "first": {
+          "time": 1111,
+          "hidden": false,
+          "visibility": "visible",
+          "ready": "complete",
+          "paints": 1,
+          "callbacks": 1,
+          "phase": "0"
+        },
+        "last": {
+          "time": 2720,
+          "hidden": false,
+          "visibility": "visible",
+          "ready": "complete",
+          "paints": 1,
+          "callbacks": 1,
+          "phase": "0"
+        },
+        "maxConsecutiveGapMs": 52
+      },
+      "firstDraws": [
+        {
+          "kind": "browser-gate-frame",
+          "time": 383,
+          "page": "index",
+          "start": 321,
+          "renderCost": 62,
+          "pending": null,
+          "enabled": true,
+          "hold": false,
+          "printing": false,
+          "initialized": true,
+          "failed": false,
+          "tier": 0,
+          "detailTier": 0,
+          "slow": 1,
+          "fast": 0,
+          "idleRate": 30,
+          "costAverage": 0,
+          "lastFrame": 320,
+          "nextDraw": 353.3333333333333,
+          "ribbonFaces": 241,
+          "ribbonSignals": 1
+        },
+        {
+          "kind": "browser-gate-frame",
+          "time": 2798,
+          "page": "index",
+          "start": 2755,
+          "renderCost": 43,
+          "pending": null,
+          "enabled": true,
+          "hold": false,
+          "printing": false,
+          "initialized": true,
+          "failed": false,
+          "tier": 0,
+          "detailTier": 0,
+          "slow": 2,
+          "fast": 0,
+          "idleRate": 30,
+          "costAverage": 43,
+          "lastFrame": 2755,
+          "nextDraw": 2788.3333333333335,
+          "ribbonFaces": 241,
+          "ribbonSignals": 1
+        }
+      ],
+      "finalState": {
+        "hidden": false,
+        "visibility": "visible",
+        "focus": true,
+        "readyState": "complete",
+        "scene": {
+          "page": "index",
+          "route": "index",
+          "state": "active",
+          "ready": "true",
+          "travel": "settled",
+          "phase": "1440",
+          "quality": "0",
+          "cadence": "10",
+          "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}"
+        },
+        "motion": {
+          "label": "Motion: on",
+          "pressed": "true",
+          "disabled": false,
+          "hidden": false
+        },
+        "scheduler": {
+          "pending": 20,
+          "enabled": true,
+          "hold": false,
+          "printing": false,
+          "initialized": true,
+          "failed": false,
+          "page": "index",
+          "tier": 0,
+          "detailTier": 0,
+          "slow": 5,
+          "fast": 0,
+          "idleRate": 10,
+          "costAverage": 26.772477036578746,
+          "lastFrame": 5063,
+          "nextDraw": 5163
+        },
+        "pendingIds": [
+          20
+        ]
+      }
+    },
+    {
+      "label": "browser-gate-trace",
+      "replica": "2",
+      "environment": {
+        "platform": "linux",
+        "os": "6.17.0-1022-azure",
+        "architecture": "x64",
+        "node": "v24.19.0",
+        "runnerImage": "ubuntu24",
+        "imageVersion": "20260927.320.1",
+        "cpus": [
+          "INTEL(R) XEON(R) PLATINUM 8573C",
+          "INTEL(R) XEON(R) PLATINUM 8573C",
+          "INTEL(R) XEON(R) PLATINUM 8573C",
+          "INTEL(R) XEON(R) PLATINUM 8573C"
+        ],
+        "memoryBytes": 16765374464,
+        "runId": "37483016304",
+        "attempt": "1"
+      },
+      "artifact": {
+        "id": 11422301871,
+        "name": "cause-fix-native-browser-gate-trace-2-37483016304-1",
+        "sha256": "623aafa25ae9a73ed83dded0da79ad3ef1852b58ee3a983aa2e3f484a8b7614a",
+        "bytes": 25477
+      },
+      "privateIdentity": {
+        "sourceCommit": "38ee0df5ed13fdc988318a0e24a7ac5d573c474e",
+        "candidateCommit": "38ee0df5ed13fdc988318a0e24a7ac5d573c474e",
+        "sourceTree": "dad785fb6ca4fdbc589ef998961c474b897a7509",
+        "sourceDirty": false,
+        "artifactDigest": "87390729793c81ae275a17c846d35f150b5e94e1fcd4ef2f1633ffb255ed24c4",
+        "variant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "c0a59f8e4752606f5797c6058f04e7260a8179c6e4b5441e9e21b2f933a3687d",
+          "baseEngine": "2e064507b154606578a9be3fc7ee7bec059443e5f54e2bec7421b6edd801fd43",
+          "effects": [
+            "ribbons",
+            "travel"
+          ],
+          "diagnostic": {
+            "label": "browser-gate-trace",
+            "description": "Expose private scheduler state and post-quality draw costs; preserve the complete normal Color rendition.",
+            "fullGate": false
+          }
+        },
+        "diagnostic": {
+          "label": "browser-gate-trace",
+          "description": "Expose private scheduler state and post-quality draw costs; preserve the complete normal Color rendition.",
+          "fullGate": false
+        },
+        "derivation": {
+          "kind": "writing-diagnostic-intervention",
+          "intervention": "browser-gate-trace",
+          "description": "Expose private scheduler state and post-quality draw costs; preserve the complete normal Color rendition.",
+          "baseArtifactDigest": "167ea344f12ca7b6da91db6f4cf436ea690033bd31ad7216a83c7bfce1b38df1",
+          "parentArtifactDigest": "167ea344f12ca7b6da91db6f4cf436ea690033bd31ad7216a83c7bfce1b38df1",
+          "parentVariant": {
+            "id": "color",
+            "contract": 1,
+            "fingerprint": "a27fa48a9f3117ccc7bc4a51b95b13684d150725917e583cb08370fc92d5c583",
+            "baseEngine": "2e064507b154606578a9be3fc7ee7bec059443e5f54e2bec7421b6edd801fd43",
+            "effects": [
+              "ribbons",
+              "travel"
+            ]
+          },
+          "patches": [
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "2f8c696d5d1f25b806de536e64d02dc3873cdb69994b41fef9af4ec8571cbca1",
+              "replacementSha256": "ca3d16d39eec2c77f007ff5c9bfece1866f77da0b4474815efed472d369f20e5",
+              "beforeSha256": "5b30e60c406b2c88e60cc6252c7fc7d17970c212449950b5d2d47eee9cc65dce",
+              "afterSha256": "182a81301e52fa6056f387ff81f7d41b811b53a07e200a432b7e24a928b99086"
+            },
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "7efda12d8c2ca57a709d3ccee04b1751ad44d8df714b5b17d27df9039ce5d9df",
+              "replacementSha256": "6c56dc0e3e511af5a3c15a3eaa2958637af4267dfa3cf405724a2295ed7e17ec",
+              "beforeSha256": "182a81301e52fa6056f387ff81f7d41b811b53a07e200a432b7e24a928b99086",
+              "afterSha256": "776bb05c596a2a48a2c369cd6535cd8741070b52a8d8a1b65e48d8127565aa1d"
+            }
+          ],
+          "fullGate": false
+        }
+      },
+      "originalPass": true,
+      "originalError": null,
+      "evidenceValid": true,
+      "originalChecks": {
+        "positiveProbe": true,
+        "startup": {
+          "foreground": true,
+          "elapsedMs": 827,
+          "timeoutMs": 3000
+        },
+        "a": {
+          "ready": true,
+          "phase": "0",
+          "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+          "scrollY": 0,
+          "scrollRange": 5532,
+          "fallback": false,
+          "motion": {
+            "hidden": false,
+            "disabled": false,
+            "label": "Motion: on"
+          },
+          "overflow": false,
+          "overflowing": [],
+          "activeElement": {
+            "tag": "BODY",
+            "id": "",
+            "class": ""
+          },
+          "h1": 1,
+          "paints": 1,
+          "callbacks": 1,
+          "visibility": {
+            "hidden": false,
+            "state": "visible",
+            "focus": true,
+            "readyState": "complete"
+          },
+          "forwardResponse": null,
+          "cameraSettling": null,
+          "scrollMotionPrecondition": null,
+          "nextPaint": null
+        },
+        "b": {
+          "ready": true,
+          "phase": "80",
+          "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+          "scrollY": 0,
+          "scrollRange": 5532,
+          "fallback": false,
+          "motion": {
+            "hidden": false,
+            "disabled": false,
+            "label": "Motion: on"
+          },
+          "overflow": false,
+          "overflowing": [],
+          "activeElement": {
+            "tag": "BODY",
+            "id": "",
+            "class": ""
+          },
+          "h1": 1,
+          "paints": 2,
+          "callbacks": 2,
+          "visibility": {
+            "hidden": false,
+            "state": "visible",
+            "focus": true,
+            "readyState": "complete"
+          },
+          "forwardResponse": null,
+          "cameraSettling": null,
+          "scrollMotionPrecondition": null,
+          "nextPaint": {
+            "baseline": {
+              "ready": true,
+              "phase": "0",
+              "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+              "scrollY": 0,
+              "scrollRange": 5532,
+              "fallback": false,
+              "motion": {
+                "hidden": false,
+                "disabled": false,
+                "label": "Motion: on"
+              },
+              "overflow": false,
+              "overflowing": [],
+              "activeElement": {
+                "tag": "BODY",
+                "id": "",
+                "class": ""
+              },
+              "h1": 1,
+              "paints": 1,
+              "callbacks": 1,
+              "visibility": {
+                "hidden": false,
+                "state": "visible",
+                "focus": true,
+                "readyState": "complete"
+              },
+              "forwardResponse": null,
+              "cameraSettling": null,
+              "scrollMotionPrecondition": null,
+              "nextPaint": null
+            },
+            "start": 1305,
+            "timeoutMs": 1500,
+            "status": "painted",
+            "samples": [
+              {
+                "time": 24,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 74,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 125,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 175,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 225,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 275,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 325,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 375,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 425,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 475,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 526,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 577,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 629,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 681,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 733,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 785,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 837,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 889,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 941,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 994,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 1148,
+                "y": 0,
+                "paints": 2,
+                "callbacks": 2,
+                "phase": "80",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              }
+            ],
+            "elapsedMs": 1148
+          }
+        },
+        "probe": {
+          "elapsedMs": 1209,
+          "paints": 1
+        }
+      },
+      "raw": {
+        "file": "webkit-alone-1.json.gz",
+        "sha256": "9412353038872ac417a975f2d0e1f4d917fb5914b2939a12e0d2952cb173fd7c",
+        "bytes": 6966
+      },
+      "largestRafWait": {
+        "id": 2,
+        "requestedMs": 427,
+        "entryMs": 2330,
+        "waitMs": 1903
+      },
+      "heartbeatWithinWait": {
+        "count": 25,
+        "first": {
+          "time": 1073,
+          "hidden": false,
+          "visibility": "visible",
+          "ready": "complete",
+          "paints": 1,
+          "callbacks": 1,
+          "phase": "0"
+        },
+        "last": {
+          "time": 2318,
+          "hidden": false,
+          "visibility": "visible",
+          "ready": "complete",
+          "paints": 1,
+          "callbacks": 1,
+          "phase": "0"
+        },
+        "maxConsecutiveGapMs": 54
+      },
+      "firstDraws": [
+        {
+          "kind": "browser-gate-frame",
+          "time": 427,
+          "page": "index",
+          "start": 367,
+          "renderCost": 59,
+          "pending": null,
+          "enabled": true,
+          "hold": false,
+          "printing": false,
+          "initialized": true,
+          "failed": false,
+          "tier": 0,
+          "detailTier": 0,
+          "slow": 1,
+          "fast": 0,
+          "idleRate": 30,
+          "costAverage": 0,
+          "lastFrame": 366,
+          "nextDraw": 399.3333333333333,
+          "ribbonFaces": 241,
+          "ribbonSignals": 1
+        },
+        {
+          "kind": "browser-gate-frame",
+          "time": 2363,
+          "page": "index",
+          "start": 2331,
+          "renderCost": 32,
+          "pending": null,
+          "enabled": true,
+          "hold": false,
+          "printing": false,
+          "initialized": true,
+          "failed": false,
+          "tier": 0,
+          "detailTier": 0,
+          "slow": 2,
+          "fast": 0,
+          "idleRate": 30,
+          "costAverage": 32,
+          "lastFrame": 2330,
+          "nextDraw": 2363.3333333333335,
+          "ribbonFaces": 241,
+          "ribbonSignals": 1
+        }
+      ],
+      "finalState": {
+        "hidden": false,
+        "visibility": "visible",
+        "focus": true,
+        "readyState": "complete",
+        "scene": {
+          "page": "index",
+          "route": "index",
+          "state": "active",
+          "ready": "true",
+          "travel": "settled",
+          "phase": "1520",
+          "quality": "0",
+          "cadence": "15",
+          "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}"
+        },
+        "motion": {
+          "label": "Motion: on",
+          "pressed": "true",
+          "disabled": false,
+          "hidden": false
+        },
+        "scheduler": {
+          "pending": 21,
+          "enabled": true,
+          "hold": false,
+          "printing": false,
+          "initialized": true,
+          "failed": false,
+          "page": "index",
+          "tier": 0,
+          "detailTier": 0,
+          "slow": 0,
+          "fast": 0,
+          "idleRate": 15,
+          "costAverage": 17.719543295776397,
+          "lastFrame": 4690,
+          "nextDraw": 4692.333333333334
+        },
+        "pendingIds": [
+          21
+        ]
+      }
+    },
+    {
+      "label": "cold-no-air",
+      "replica": "1",
+      "environment": {
+        "platform": "linux",
+        "os": "6.17.0-1022-azure",
+        "architecture": "x64",
+        "node": "v24.19.0",
+        "runnerImage": "ubuntu24",
+        "imageVersion": "20260927.320.1",
+        "cpus": [
+          "AMD EPYC 9V45 96-Core Processor",
+          "AMD EPYC 9V45 96-Core Processor",
+          "AMD EPYC 9V45 96-Core Processor",
+          "AMD EPYC 9V45 96-Core Processor"
+        ],
+        "memoryBytes": 16766414848,
+        "runId": "37483016304",
+        "attempt": "1"
+      },
+      "artifact": {
+        "id": 11421288515,
+        "name": "cause-fix-native-cold-no-air-1-37483016304-1",
+        "sha256": "8256bcc2b6a966d3a376d091b21b2d38e6e5a2b184f079c3d0da3574281c2302",
+        "bytes": 28125
+      },
+      "privateIdentity": {
+        "sourceCommit": "38ee0df5ed13fdc988318a0e24a7ac5d573c474e",
+        "candidateCommit": "38ee0df5ed13fdc988318a0e24a7ac5d573c474e",
+        "sourceTree": "dad785fb6ca4fdbc589ef998961c474b897a7509",
+        "sourceDirty": false,
+        "artifactDigest": "a938871eda3ddaf9b78ae4f7639f5d51096b7b2ba0b61faa4c69d3d98c3fabfe",
+        "variant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "796356959ca752a13243711090ed9b79f8395e14bb9f76439c6b08c2ca23a092",
+          "baseEngine": "2e064507b154606578a9be3fc7ee7bec059443e5f54e2bec7421b6edd801fd43",
+          "effects": [
+            "ribbons",
+            "travel"
+          ],
+          "diagnostic": {
+            "label": "cold-no-air",
+            "description": "Retain normal canvas/rendering and scheduler; omit only the three per-frame atmosphere CSS property writes for cold WebKit attribution.",
+            "fullGate": false
+          }
+        },
+        "diagnostic": {
+          "label": "cold-no-air",
+          "description": "Retain normal canvas/rendering and scheduler; omit only the three per-frame atmosphere CSS property writes for cold WebKit attribution.",
+          "fullGate": false
+        },
+        "derivation": {
+          "kind": "writing-diagnostic-intervention",
+          "intervention": "cold-no-air",
+          "description": "Retain normal canvas/rendering and scheduler; omit only the three per-frame atmosphere CSS property writes for cold WebKit attribution.",
+          "baseArtifactDigest": "167ea344f12ca7b6da91db6f4cf436ea690033bd31ad7216a83c7bfce1b38df1",
+          "parentArtifactDigest": "167ea344f12ca7b6da91db6f4cf436ea690033bd31ad7216a83c7bfce1b38df1",
+          "parentVariant": {
+            "id": "color",
+            "contract": 1,
+            "fingerprint": "a27fa48a9f3117ccc7bc4a51b95b13684d150725917e583cb08370fc92d5c583",
+            "baseEngine": "2e064507b154606578a9be3fc7ee7bec059443e5f54e2bec7421b6edd801fd43",
+            "effects": [
+              "ribbons",
+              "travel"
+            ]
+          },
+          "patches": [
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "2f8c696d5d1f25b806de536e64d02dc3873cdb69994b41fef9af4ec8571cbca1",
+              "replacementSha256": "ca3d16d39eec2c77f007ff5c9bfece1866f77da0b4474815efed472d369f20e5",
+              "beforeSha256": "5b30e60c406b2c88e60cc6252c7fc7d17970c212449950b5d2d47eee9cc65dce",
+              "afterSha256": "182a81301e52fa6056f387ff81f7d41b811b53a07e200a432b7e24a928b99086"
+            },
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "7efda12d8c2ca57a709d3ccee04b1751ad44d8df714b5b17d27df9039ce5d9df",
+              "replacementSha256": "6c56dc0e3e511af5a3c15a3eaa2958637af4267dfa3cf405724a2295ed7e17ec",
+              "beforeSha256": "182a81301e52fa6056f387ff81f7d41b811b53a07e200a432b7e24a928b99086",
+              "afterSha256": "776bb05c596a2a48a2c369cd6535cd8741070b52a8d8a1b65e48d8127565aa1d"
+            },
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "337c0aa2a122fe0cfe3142b11ffaf12d8f11cd09c7977a57a0794eabea636b38",
+              "replacementSha256": "82fb39a98029335459ef510d4b32d5a49ce62dd2eebad3c88676217ac509c64b",
+              "beforeSha256": "776bb05c596a2a48a2c369cd6535cd8741070b52a8d8a1b65e48d8127565aa1d",
+              "afterSha256": "6ed3aa0f482b3cef21d1d7f37a68cbda5dcd885b01fdd798626c004b35028bbd"
+            },
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "28b1f7be1443b20d09a981540a3626e520d4d80b3db800dfe06cb73e5e33c5ea",
+              "replacementSha256": "ca4258ea946774a861cc447c96bc95bfcb1899bdd2cc24f88ae59e6b06bca1bb",
+              "beforeSha256": "6ed3aa0f482b3cef21d1d7f37a68cbda5dcd885b01fdd798626c004b35028bbd",
+              "afterSha256": "95e29382707e6b48f787fb3c070591922443a9457377dbf427621f685a126b88"
+            },
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "5a6b2422662806e5c48b46bb15fb687d835f524619821c33fb2bf0922dabc2e4",
+              "replacementSha256": "312371e9bbc1a9209cc077b6c20a5c63eefa4809e7cc4e68d5cd9f8cf6d56f9f",
+              "beforeSha256": "95e29382707e6b48f787fb3c070591922443a9457377dbf427621f685a126b88",
+              "afterSha256": "37de4334ac8d7b9962ec2228517c3b5a201254e1807cee826d8e8494e5a4e605"
+            }
+          ],
+          "fullGate": false
+        }
+      },
+      "originalPass": true,
+      "originalError": null,
+      "evidenceValid": true,
+      "originalChecks": {
+        "positiveProbe": true,
+        "startup": {
+          "foreground": true,
+          "elapsedMs": 529,
+          "timeoutMs": 3000
+        },
+        "a": {
+          "ready": true,
+          "phase": "0",
+          "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+          "scrollY": 0,
+          "scrollRange": 5532,
+          "fallback": false,
+          "motion": {
+            "hidden": false,
+            "disabled": false,
+            "label": "Motion: on"
+          },
+          "overflow": false,
+          "overflowing": [],
+          "activeElement": {
+            "tag": "BODY",
+            "id": "",
+            "class": ""
+          },
+          "h1": 1,
+          "paints": 1,
+          "callbacks": 1,
+          "visibility": {
+            "hidden": false,
+            "state": "visible",
+            "focus": true,
+            "readyState": "complete"
+          },
+          "forwardResponse": null,
+          "cameraSettling": null,
+          "scrollMotionPrecondition": null,
+          "nextPaint": null
+        },
+        "b": {
+          "ready": true,
+          "phase": "80",
+          "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+          "scrollY": 0,
+          "scrollRange": 5532,
+          "fallback": false,
+          "motion": {
+            "hidden": false,
+            "disabled": false,
+            "label": "Motion: on"
+          },
+          "overflow": false,
+          "overflowing": [],
+          "activeElement": {
+            "tag": "BODY",
+            "id": "",
+            "class": ""
+          },
+          "h1": 1,
+          "paints": 2,
+          "callbacks": 2,
+          "visibility": {
+            "hidden": false,
+            "state": "visible",
+            "focus": true,
+            "readyState": "complete"
+          },
+          "forwardResponse": null,
+          "cameraSettling": null,
+          "scrollMotionPrecondition": null,
+          "nextPaint": {
+            "baseline": {
+              "ready": true,
+              "phase": "0",
+              "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+              "scrollY": 0,
+              "scrollRange": 5532,
+              "fallback": false,
+              "motion": {
+                "hidden": false,
+                "disabled": false,
+                "label": "Motion: on"
+              },
+              "overflow": false,
+              "overflowing": [],
+              "activeElement": {
+                "tag": "BODY",
+                "id": "",
+                "class": ""
+              },
+              "h1": 1,
+              "paints": 1,
+              "callbacks": 1,
+              "visibility": {
+                "hidden": false,
+                "state": "visible",
+                "focus": true,
+                "readyState": "complete"
+              },
+              "forwardResponse": null,
+              "cameraSettling": null,
+              "scrollMotionPrecondition": null,
+              "nextPaint": null
+            },
+            "start": 860,
+            "timeoutMs": 1500,
+            "status": "painted",
+            "samples": [
+              {
+                "time": 18,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 68,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 118,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 168,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 219,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 269,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 319,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 369,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 419,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 469,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 519,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 571,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 623,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 707,
+                "y": 0,
+                "paints": 2,
+                "callbacks": 2,
+                "phase": "80",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              }
+            ],
+            "elapsedMs": 707
+          }
+        },
+        "probe": {
+          "elapsedMs": 742,
+          "paints": 1
+        }
+      },
+      "raw": {
+        "file": "webkit-alone-1.json.gz",
+        "sha256": "c8be570c359e7dd68f5a432f0db3fec8c6e30693740ef5608c2cee9f195c4dfb",
+        "bytes": 8947
+      },
+      "largestRafWait": {
+        "id": 2,
+        "requestedMs": 159,
+        "entryMs": 1493,
+        "waitMs": 1334
+      },
+      "heartbeatWithinWait": {
+        "count": 17,
+        "first": {
+          "time": 646,
+          "hidden": false,
+          "visibility": "visible",
+          "ready": "complete",
+          "paints": 1,
+          "callbacks": 1,
+          "phase": "0"
+        },
+        "last": {
+          "time": 1471,
+          "hidden": false,
+          "visibility": "visible",
+          "ready": "complete",
+          "paints": 1,
+          "callbacks": 1,
+          "phase": "0"
+        },
+        "maxConsecutiveGapMs": 52
+      },
+      "firstDraws": [
+        {
+          "kind": "browser-gate-frame",
+          "time": 159,
+          "page": "index",
+          "start": 123,
+          "renderCost": 36,
+          "pending": null,
+          "enabled": true,
+          "hold": false,
+          "printing": false,
+          "initialized": true,
+          "failed": false,
+          "tier": 0,
+          "detailTier": 0,
+          "slow": 1,
+          "fast": 0,
+          "idleRate": 30,
+          "costAverage": 0,
+          "lastFrame": 122,
+          "nextDraw": 155.33333333333334,
+          "ribbonFaces": 241,
+          "ribbonSignals": 1
+        },
+        {
+          "kind": "browser-gate-frame",
+          "time": 1512,
+          "page": "index",
+          "start": 1494,
+          "renderCost": 18,
+          "pending": null,
+          "enabled": true,
+          "hold": false,
+          "printing": false,
+          "initialized": true,
+          "failed": false,
+          "tier": 0,
+          "detailTier": 0,
+          "slow": 0,
+          "fast": 0,
+          "idleRate": 30,
+          "costAverage": 18,
+          "lastFrame": 1493,
+          "nextDraw": 1526.3333333333333,
+          "ribbonFaces": 241,
+          "ribbonSignals": 1
+        }
+      ],
+      "finalState": {
+        "hidden": false,
+        "visibility": "visible",
+        "focus": true,
+        "readyState": "complete",
+        "scene": {
+          "page": "index",
+          "route": "index",
+          "state": "active",
+          "ready": "true",
+          "travel": "settled",
+          "phase": "2258",
+          "quality": "0",
+          "cadence": "20",
+          "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}"
+        },
+        "motion": {
+          "label": "Motion: on",
+          "pressed": "true",
+          "disabled": false,
+          "hidden": false
+        },
+        "scheduler": {
+          "pending": 31,
+          "enabled": true,
+          "hold": false,
+          "printing": false,
+          "initialized": true,
+          "failed": false,
+          "page": "index",
+          "tier": 0,
+          "detailTier": 0,
+          "slow": 0,
+          "fast": 0,
+          "idleRate": 20,
+          "costAverage": 17.633076668198722,
+          "lastFrame": 3752,
+          "nextDraw": 3758
+        },
+        "pendingIds": [
+          31
+        ]
+      }
+    },
+    {
+      "label": "cold-no-air",
+      "replica": "2",
+      "environment": {
+        "platform": "linux",
+        "os": "6.17.0-1022-azure",
+        "architecture": "x64",
+        "node": "v24.19.0",
+        "runnerImage": "ubuntu24",
+        "imageVersion": "20261004.327.1",
+        "cpus": [
+          "Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz",
+          "Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz",
+          "Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz",
+          "Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz"
+        ],
+        "memoryBytes": 16765374464,
+        "runId": "37483016304",
+        "attempt": "1"
+      },
+      "artifact": {
+        "id": 11421493537,
+        "name": "cause-fix-native-cold-no-air-2-37483016304-1",
+        "sha256": "f823cd9015188e32d4389d099fc44aa869aa6567b9c66dfd1f6f36725c13d761",
+        "bytes": 26674
+      },
+      "privateIdentity": {
+        "sourceCommit": "38ee0df5ed13fdc988318a0e24a7ac5d573c474e",
+        "candidateCommit": "38ee0df5ed13fdc988318a0e24a7ac5d573c474e",
+        "sourceTree": "dad785fb6ca4fdbc589ef998961c474b897a7509",
+        "sourceDirty": false,
+        "artifactDigest": "a938871eda3ddaf9b78ae4f7639f5d51096b7b2ba0b61faa4c69d3d98c3fabfe",
+        "variant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "796356959ca752a13243711090ed9b79f8395e14bb9f76439c6b08c2ca23a092",
+          "baseEngine": "2e064507b154606578a9be3fc7ee7bec059443e5f54e2bec7421b6edd801fd43",
+          "effects": [
+            "ribbons",
+            "travel"
+          ],
+          "diagnostic": {
+            "label": "cold-no-air",
+            "description": "Retain normal canvas/rendering and scheduler; omit only the three per-frame atmosphere CSS property writes for cold WebKit attribution.",
+            "fullGate": false
+          }
+        },
+        "diagnostic": {
+          "label": "cold-no-air",
+          "description": "Retain normal canvas/rendering and scheduler; omit only the three per-frame atmosphere CSS property writes for cold WebKit attribution.",
+          "fullGate": false
+        },
+        "derivation": {
+          "kind": "writing-diagnostic-intervention",
+          "intervention": "cold-no-air",
+          "description": "Retain normal canvas/rendering and scheduler; omit only the three per-frame atmosphere CSS property writes for cold WebKit attribution.",
+          "baseArtifactDigest": "167ea344f12ca7b6da91db6f4cf436ea690033bd31ad7216a83c7bfce1b38df1",
+          "parentArtifactDigest": "167ea344f12ca7b6da91db6f4cf436ea690033bd31ad7216a83c7bfce1b38df1",
+          "parentVariant": {
+            "id": "color",
+            "contract": 1,
+            "fingerprint": "a27fa48a9f3117ccc7bc4a51b95b13684d150725917e583cb08370fc92d5c583",
+            "baseEngine": "2e064507b154606578a9be3fc7ee7bec059443e5f54e2bec7421b6edd801fd43",
+            "effects": [
+              "ribbons",
+              "travel"
+            ]
+          },
+          "patches": [
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "2f8c696d5d1f25b806de536e64d02dc3873cdb69994b41fef9af4ec8571cbca1",
+              "replacementSha256": "ca3d16d39eec2c77f007ff5c9bfece1866f77da0b4474815efed472d369f20e5",
+              "beforeSha256": "5b30e60c406b2c88e60cc6252c7fc7d17970c212449950b5d2d47eee9cc65dce",
+              "afterSha256": "182a81301e52fa6056f387ff81f7d41b811b53a07e200a432b7e24a928b99086"
+            },
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "7efda12d8c2ca57a709d3ccee04b1751ad44d8df714b5b17d27df9039ce5d9df",
+              "replacementSha256": "6c56dc0e3e511af5a3c15a3eaa2958637af4267dfa3cf405724a2295ed7e17ec",
+              "beforeSha256": "182a81301e52fa6056f387ff81f7d41b811b53a07e200a432b7e24a928b99086",
+              "afterSha256": "776bb05c596a2a48a2c369cd6535cd8741070b52a8d8a1b65e48d8127565aa1d"
+            },
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "337c0aa2a122fe0cfe3142b11ffaf12d8f11cd09c7977a57a0794eabea636b38",
+              "replacementSha256": "82fb39a98029335459ef510d4b32d5a49ce62dd2eebad3c88676217ac509c64b",
+              "beforeSha256": "776bb05c596a2a48a2c369cd6535cd8741070b52a8d8a1b65e48d8127565aa1d",
+              "afterSha256": "6ed3aa0f482b3cef21d1d7f37a68cbda5dcd885b01fdd798626c004b35028bbd"
+            },
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "28b1f7be1443b20d09a981540a3626e520d4d80b3db800dfe06cb73e5e33c5ea",
+              "replacementSha256": "ca4258ea946774a861cc447c96bc95bfcb1899bdd2cc24f88ae59e6b06bca1bb",
+              "beforeSha256": "6ed3aa0f482b3cef21d1d7f37a68cbda5dcd885b01fdd798626c004b35028bbd",
+              "afterSha256": "95e29382707e6b48f787fb3c070591922443a9457377dbf427621f685a126b88"
+            },
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "5a6b2422662806e5c48b46bb15fb687d835f524619821c33fb2bf0922dabc2e4",
+              "replacementSha256": "312371e9bbc1a9209cc077b6c20a5c63eefa4809e7cc4e68d5cd9f8cf6d56f9f",
+              "beforeSha256": "95e29382707e6b48f787fb3c070591922443a9457377dbf427621f685a126b88",
+              "afterSha256": "37de4334ac8d7b9962ec2228517c3b5a201254e1807cee826d8e8494e5a4e605"
+            }
+          ],
+          "fullGate": false
+        }
+      },
+      "originalPass": true,
+      "originalError": null,
+      "evidenceValid": true,
+      "originalChecks": {
+        "positiveProbe": true,
+        "startup": {
+          "foreground": true,
+          "elapsedMs": 1733,
+          "timeoutMs": 3000
+        },
+        "a": {
+          "ready": true,
+          "phase": "0",
+          "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+          "scrollY": 0,
+          "scrollRange": 5532,
+          "fallback": false,
+          "motion": {
+            "hidden": false,
+            "disabled": false,
+            "label": "Motion: on"
+          },
+          "overflow": false,
+          "overflowing": [],
+          "activeElement": {
+            "tag": "BODY",
+            "id": "",
+            "class": ""
+          },
+          "h1": 1,
+          "paints": 1,
+          "callbacks": 1,
+          "visibility": {
+            "hidden": false,
+            "state": "visible",
+            "focus": true,
+            "readyState": "complete"
+          },
+          "forwardResponse": null,
+          "cameraSettling": null,
+          "scrollMotionPrecondition": null,
+          "nextPaint": null
+        },
+        "b": {
+          "ready": true,
+          "phase": "80",
+          "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+          "quality": "0",
+          "scrollY": 0,
+          "scrollRange": 5532,
+          "fallback": false,
+          "motion": {
+            "hidden": false,
+            "disabled": false,
+            "label": "Motion: on"
+          },
+          "overflow": false,
+          "overflowing": [],
+          "activeElement": {
+            "tag": "BODY",
+            "id": "",
+            "class": ""
+          },
+          "h1": 1,
+          "paints": 2,
+          "callbacks": 2,
+          "visibility": {
+            "hidden": false,
+            "state": "visible",
+            "focus": true,
+            "readyState": "complete"
+          },
+          "forwardResponse": null,
+          "cameraSettling": null,
+          "scrollMotionPrecondition": null,
+          "nextPaint": {
+            "baseline": {
+              "ready": true,
+              "phase": "0",
+              "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+              "scrollY": 0,
+              "scrollRange": 5532,
+              "fallback": false,
+              "motion": {
+                "hidden": false,
+                "disabled": false,
+                "label": "Motion: on"
+              },
+              "overflow": false,
+              "overflowing": [],
+              "activeElement": {
+                "tag": "BODY",
+                "id": "",
+                "class": ""
+              },
+              "h1": 1,
+              "paints": 1,
+              "callbacks": 1,
+              "visibility": {
+                "hidden": false,
+                "state": "visible",
+                "focus": true,
+                "readyState": "complete"
+              },
+              "forwardResponse": null,
+              "cameraSettling": null,
+              "scrollMotionPrecondition": null,
+              "nextPaint": null
+            },
+            "start": 2270,
+            "timeoutMs": 1500,
+            "status": "painted",
+            "samples": [
+              {
+                "time": 35,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 86,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 136,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 186,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 236,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 286,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 336,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 386,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 437,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 487,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 537,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 590,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 642,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 694,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 746,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 798,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 850,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 902,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 954,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 1006,
+                "y": 0,
+                "paints": 1,
+                "callbacks": 1,
+                "phase": "0",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              },
+              {
+                "time": 1176,
+                "y": 0,
+                "paints": 2,
+                "callbacks": 2,
+                "phase": "80",
+                "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+                "ready": true,
+                "quality": "0",
+                "motion": "Motion: on",
+                "hidden": false,
+                "visibility": "visible",
+                "focus": true
+              }
+            ],
+            "elapsedMs": 1176
+          }
+        },
+        "probe": {
+          "elapsedMs": 1242,
+          "paints": 1
+        }
+      },
+      "raw": {
+        "file": "webkit-alone-1.json.gz",
+        "sha256": "6a28272cb2b28907ff4c2eb91ad7a01400d1627ef4960d039dcf1a606ca074cc",
+        "bytes": 7285
+      },
+      "largestRafWait": {
+        "id": 2,
+        "requestedMs": 1154,
+        "entryMs": 3326,
+        "waitMs": 2172
+      },
+      "heartbeatWithinWait": {
+        "count": 25,
+        "first": {
+          "time": 2040,
+          "hidden": false,
+          "visibility": "visible",
+          "ready": "complete",
+          "paints": 1,
+          "callbacks": 1,
+          "phase": "0"
+        },
+        "last": {
+          "time": 3296,
+          "hidden": false,
+          "visibility": "visible",
+          "ready": "complete",
+          "paints": 1,
+          "callbacks": 1,
+          "phase": "0"
+        },
+        "maxConsecutiveGapMs": 55
+      },
+      "firstDraws": [
+        {
+          "kind": "browser-gate-frame",
+          "time": 1154,
+          "page": "index",
+          "start": 1094,
+          "renderCost": 60,
+          "pending": null,
+          "enabled": true,
+          "hold": false,
+          "printing": false,
+          "initialized": true,
+          "failed": false,
+          "tier": 0,
+          "detailTier": 0,
+          "slow": 1,
+          "fast": 0,
+          "idleRate": 30,
+          "costAverage": 0,
+          "lastFrame": 1093,
+          "nextDraw": 1126.3333333333333,
+          "ribbonFaces": 241,
+          "ribbonSignals": 1
+        },
+        {
+          "kind": "browser-gate-frame",
+          "time": 3358,
+          "page": "index",
+          "start": 3327,
+          "renderCost": 31,
+          "pending": null,
+          "enabled": true,
+          "hold": false,
+          "printing": false,
+          "initialized": true,
+          "failed": false,
+          "tier": 0,
+          "detailTier": 0,
+          "slow": 2,
+          "fast": 0,
+          "idleRate": 30,
+          "costAverage": 31,
+          "lastFrame": 3326,
+          "nextDraw": 3359.3333333333335,
+          "ribbonFaces": 241,
+          "ribbonSignals": 1
+        }
+      ],
+      "finalState": {
+        "hidden": false,
+        "visibility": "visible",
+        "focus": true,
+        "readyState": "complete",
+        "scene": {
+          "page": "index",
+          "route": "index",
+          "state": "active",
+          "ready": "true",
+          "travel": "settled",
+          "phase": "1515",
+          "quality": "1",
+          "cadence": "12",
+          "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}"
+        },
+        "motion": {
+          "label": "Motion: on",
+          "pressed": "true",
+          "disabled": false,
+          "hidden": false
+        },
+        "scheduler": {
+          "pending": 21,
+          "enabled": true,
+          "hold": false,
+          "printing": false,
+          "initialized": true,
+          "failed": false,
+          "page": "index",
+          "tier": 1,
+          "detailTier": 0.8262260565495548,
+          "slow": 0,
+          "fast": 0,
+          "idleRate": 12,
+          "costAverage": 25.148067236370455,
+          "lastFrame": 5619,
+          "nextDraw": 5699.999999999999
+        },
+        "pendingIds": [
+          21
+        ]
+      }
+    },
+    {
+      "label": "cold-no-paint",
+      "replica": "1",
+      "environment": {
+        "platform": "linux",
+        "os": "6.17.0-1022-azure",
+        "architecture": "x64",
+        "node": "v24.19.0",
+        "runnerImage": "ubuntu24",
+        "imageVersion": "20260927.320.1",
+        "cpus": [
+          "AMD EPYC 7763 64-Core Processor",
+          "AMD EPYC 7763 64-Core Processor",
+          "AMD EPYC 7763 64-Core Processor",
+          "AMD EPYC 7763 64-Core Processor"
+        ],
+        "memoryBytes": 16766414848,
+        "runId": "37483016304",
+        "attempt": "1"
+      },
+      "artifact": {
+        "id": 11421842357,
+        "name": "cause-fix-native-cold-no-paint-1-37483016304-1",
+        "sha256": "ba14d76fed1b4dd4cf37c3f37c97913e81711e32d41cc4c618d02ed57b0aec85",
+        "bytes": 22519
+      },
+      "privateIdentity": {
+        "sourceCommit": "38ee0df5ed13fdc988318a0e24a7ac5d573c474e",
+        "candidateCommit": "38ee0df5ed13fdc988318a0e24a7ac5d573c474e",
+        "sourceTree": "dad785fb6ca4fdbc589ef998961c474b897a7509",
+        "sourceDirty": false,
+        "artifactDigest": "6774d381ece01ffd0d38c1f8c5fe62f1229967acb60fefb217d78f606f8307a1",
+        "variant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "29a114819c81e902cec21e75ba30bc8f057040653df768c216a79008dab1a3c0",
+          "baseEngine": "2e064507b154606578a9be3fc7ee7bec059443e5f54e2bec7421b6edd801fd43",
+          "effects": [
+            "ribbons",
+            "travel"
+          ],
+          "diagnostic": {
+            "label": "cold-no-paint",
+            "description": "Retain all normal projection/effects/sorting, canvas clear and scheduler; omit only native shape submission for cold WebKit attribution.",
+            "fullGate": false
+          }
+        },
+        "diagnostic": {
+          "label": "cold-no-paint",
+          "description": "Retain all normal projection/effects/sorting, canvas clear and scheduler; omit only native shape submission for cold WebKit attribution.",
+          "fullGate": false
+        },
+        "derivation": {
+          "kind": "writing-diagnostic-intervention",
+          "intervention": "cold-no-paint",
+          "description": "Retain all normal projection/effects/sorting, canvas clear and scheduler; omit only native shape submission for cold WebKit attribution.",
+          "baseArtifactDigest": "167ea344f12ca7b6da91db6f4cf436ea690033bd31ad7216a83c7bfce1b38df1",
+          "parentArtifactDigest": "167ea344f12ca7b6da91db6f4cf436ea690033bd31ad7216a83c7bfce1b38df1",
+          "parentVariant": {
+            "id": "color",
+            "contract": 1,
+            "fingerprint": "a27fa48a9f3117ccc7bc4a51b95b13684d150725917e583cb08370fc92d5c583",
+            "baseEngine": "2e064507b154606578a9be3fc7ee7bec059443e5f54e2bec7421b6edd801fd43",
+            "effects": [
+              "ribbons",
+              "travel"
+            ]
+          },
+          "patches": [
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "2f8c696d5d1f25b806de536e64d02dc3873cdb69994b41fef9af4ec8571cbca1",
+              "replacementSha256": "ca3d16d39eec2c77f007ff5c9bfece1866f77da0b4474815efed472d369f20e5",
+              "beforeSha256": "5b30e60c406b2c88e60cc6252c7fc7d17970c212449950b5d2d47eee9cc65dce",
+              "afterSha256": "182a81301e52fa6056f387ff81f7d41b811b53a07e200a432b7e24a928b99086"
+            },
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "7efda12d8c2ca57a709d3ccee04b1751ad44d8df714b5b17d27df9039ce5d9df",
+              "replacementSha256": "6c56dc0e3e511af5a3c15a3eaa2958637af4267dfa3cf405724a2295ed7e17ec",
+              "beforeSha256": "182a81301e52fa6056f387ff81f7d41b811b53a07e200a432b7e24a928b99086",
+              "afterSha256": "776bb05c596a2a48a2c369cd6535cd8741070b52a8d8a1b65e48d8127565aa1d"
+            },
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "fa867ff1c0ae6b72427b087144b2610e1ab211ec3ca2154dd53e9ef837d23022",
+              "replacementSha256": "73d7d98b2633b9f2913f5932beef3a32909e9b7f903bffdbc7d9a7cfc67df529",
+              "beforeSha256": "776bb05c596a2a48a2c369cd6535cd8741070b52a8d8a1b65e48d8127565aa1d",
+              "afterSha256": "e1456d5991e9940f234c86e8a331b79ad2790ff876f6391e9ffc1d124cce6ecd"
+            }
+          ],
+          "fullGate": false
+        }
+      },
+      "originalPass": false,
+      "originalError": "page.waitForFunction: Timeout 1500ms exceeded.",
+      "evidenceValid": true,
+      "originalChecks": null,
+      "raw": {
+        "file": "webkit-alone-1.json.gz",
+        "sha256": "4379d3bf833ac9e76751ee29f2c72adff5fd704d8ca14cceb5b0c74b9b422239",
+        "bytes": 16626
+      },
+      "largestRafWait": {
+        "id": 2,
+        "requestedMs": 286,
+        "entryMs": 2097,
+        "waitMs": 1811
+      },
+      "heartbeatWithinWait": {
+        "count": 35,
+        "first": {
+          "time": 292,
+          "hidden": false,
+          "visibility": "visible",
+          "ready": "complete",
+          "paints": 1,
+          "callbacks": 1,
+          "phase": "0"
+        },
+        "last": {
+          "time": 2056,
+          "hidden": false,
+          "visibility": "visible",
+          "ready": "complete",
+          "paints": 1,
+          "callbacks": 1,
+          "phase": "0"
+        },
+        "maxConsecutiveGapMs": 54
+      },
+      "firstDraws": [
+        {
+          "kind": "browser-gate-frame",
+          "time": 286,
+          "page": "index",
+          "start": 241,
+          "renderCost": 45,
+          "pending": null,
+          "enabled": true,
+          "hold": false,
+          "printing": false,
+          "initialized": true,
+          "failed": false,
+          "tier": 0,
+          "detailTier": 0,
+          "slow": 1,
+          "fast": 0,
+          "idleRate": 30,
+          "costAverage": 0,
+          "lastFrame": 240,
+          "nextDraw": 273.3333333333333,
+          "ribbonFaces": 241,
+          "ribbonSignals": 1
+        },
+        {
+          "kind": "browser-gate-frame",
+          "time": 2117,
+          "page": "index",
+          "start": 2098,
+          "renderCost": 19,
+          "pending": null,
+          "enabled": true,
+          "hold": false,
+          "printing": false,
+          "initialized": true,
+          "failed": false,
+          "tier": 0,
+          "detailTier": 0,
+          "slow": 0,
+          "fast": 0,
+          "idleRate": 30,
+          "costAverage": 19,
+          "lastFrame": 2097,
+          "nextDraw": 2130.3333333333335,
+          "ribbonFaces": 241,
+          "ribbonSignals": 1
+        }
+      ],
+      "finalState": {
+        "hidden": false,
+        "visibility": "visible",
+        "focus": true,
+        "readyState": "complete",
+        "scene": {
+          "page": "index",
+          "route": "index",
+          "state": "active",
+          "ready": "true",
+          "travel": "settled",
+          "phase": "2232",
+          "quality": "0",
+          "cadence": "20",
+          "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}"
+        },
+        "motion": {
+          "label": "Motion: on",
+          "pressed": "true",
+          "disabled": false,
+          "hidden": false
+        },
+        "scheduler": {
+          "pending": 126,
+          "enabled": true,
+          "hold": false,
+          "printing": false,
+          "initialized": true,
+          "failed": false,
+          "page": "index",
+          "tier": 0,
+          "detailTier": 0,
+          "slow": 0,
+          "fast": 10,
+          "idleRate": 20,
+          "costAverage": 5.899799292933268,
+          "lastFrame": 4272,
+          "nextDraw": 4295
+        },
+        "pendingIds": [
+          126
+        ]
+      }
+    },
+    {
+      "label": "cold-no-paint",
+      "replica": "2",
+      "environment": {
+        "platform": "linux",
+        "os": "6.17.0-1022-azure",
+        "architecture": "x64",
+        "node": "v24.19.0",
+        "runnerImage": "ubuntu24",
+        "imageVersion": "20260927.320.1",
+        "cpus": [
+          "AMD EPYC 7763 64-Core Processor",
+          "AMD EPYC 7763 64-Core Processor",
+          "AMD EPYC 7763 64-Core Processor",
+          "AMD EPYC 7763 64-Core Processor"
+        ],
+        "memoryBytes": 16770748416,
+        "runId": "37483016304",
+        "attempt": "1"
+      },
+      "artifact": {
+        "id": 11422538410,
+        "name": "cause-fix-native-cold-no-paint-2-37483016304-1",
+        "sha256": "45c495a44177228216307f298fc480819f3d920c4ccb1f8b8b493e5d24cc1e2e",
+        "bytes": 21351
+      },
+      "privateIdentity": {
+        "sourceCommit": "38ee0df5ed13fdc988318a0e24a7ac5d573c474e",
+        "candidateCommit": "38ee0df5ed13fdc988318a0e24a7ac5d573c474e",
+        "sourceTree": "dad785fb6ca4fdbc589ef998961c474b897a7509",
+        "sourceDirty": false,
+        "artifactDigest": "6774d381ece01ffd0d38c1f8c5fe62f1229967acb60fefb217d78f606f8307a1",
+        "variant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "29a114819c81e902cec21e75ba30bc8f057040653df768c216a79008dab1a3c0",
+          "baseEngine": "2e064507b154606578a9be3fc7ee7bec059443e5f54e2bec7421b6edd801fd43",
+          "effects": [
+            "ribbons",
+            "travel"
+          ],
+          "diagnostic": {
+            "label": "cold-no-paint",
+            "description": "Retain all normal projection/effects/sorting, canvas clear and scheduler; omit only native shape submission for cold WebKit attribution.",
+            "fullGate": false
+          }
+        },
+        "diagnostic": {
+          "label": "cold-no-paint",
+          "description": "Retain all normal projection/effects/sorting, canvas clear and scheduler; omit only native shape submission for cold WebKit attribution.",
+          "fullGate": false
+        },
+        "derivation": {
+          "kind": "writing-diagnostic-intervention",
+          "intervention": "cold-no-paint",
+          "description": "Retain all normal projection/effects/sorting, canvas clear and scheduler; omit only native shape submission for cold WebKit attribution.",
+          "baseArtifactDigest": "167ea344f12ca7b6da91db6f4cf436ea690033bd31ad7216a83c7bfce1b38df1",
+          "parentArtifactDigest": "167ea344f12ca7b6da91db6f4cf436ea690033bd31ad7216a83c7bfce1b38df1",
+          "parentVariant": {
+            "id": "color",
+            "contract": 1,
+            "fingerprint": "a27fa48a9f3117ccc7bc4a51b95b13684d150725917e583cb08370fc92d5c583",
+            "baseEngine": "2e064507b154606578a9be3fc7ee7bec059443e5f54e2bec7421b6edd801fd43",
+            "effects": [
+              "ribbons",
+              "travel"
+            ]
+          },
+          "patches": [
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "2f8c696d5d1f25b806de536e64d02dc3873cdb69994b41fef9af4ec8571cbca1",
+              "replacementSha256": "ca3d16d39eec2c77f007ff5c9bfece1866f77da0b4474815efed472d369f20e5",
+              "beforeSha256": "5b30e60c406b2c88e60cc6252c7fc7d17970c212449950b5d2d47eee9cc65dce",
+              "afterSha256": "182a81301e52fa6056f387ff81f7d41b811b53a07e200a432b7e24a928b99086"
+            },
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "7efda12d8c2ca57a709d3ccee04b1751ad44d8df714b5b17d27df9039ce5d9df",
+              "replacementSha256": "6c56dc0e3e511af5a3c15a3eaa2958637af4267dfa3cf405724a2295ed7e17ec",
+              "beforeSha256": "182a81301e52fa6056f387ff81f7d41b811b53a07e200a432b7e24a928b99086",
+              "afterSha256": "776bb05c596a2a48a2c369cd6535cd8741070b52a8d8a1b65e48d8127565aa1d"
+            },
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "fa867ff1c0ae6b72427b087144b2610e1ab211ec3ca2154dd53e9ef837d23022",
+              "replacementSha256": "73d7d98b2633b9f2913f5932beef3a32909e9b7f903bffdbc7d9a7cfc67df529",
+              "beforeSha256": "776bb05c596a2a48a2c369cd6535cd8741070b52a8d8a1b65e48d8127565aa1d",
+              "afterSha256": "e1456d5991e9940f234c86e8a331b79ad2790ff876f6391e9ffc1d124cce6ecd"
+            }
+          ],
+          "fullGate": false
+        }
+      },
+      "originalPass": false,
+      "originalError": "page.waitForFunction: Timeout 1500ms exceeded.",
+      "evidenceValid": true,
+      "originalChecks": null,
+      "raw": {
+        "file": "webkit-alone-1.json.gz",
+        "sha256": "99a37d6455711442912f9c55e2543104b35700c93ce4c67ad4e1af78bab528b7",
+        "bytes": 16071
+      },
+      "largestRafWait": {
+        "id": 2,
+        "requestedMs": 763,
+        "entryMs": 2605,
+        "waitMs": 1842
+      },
+      "heartbeatWithinWait": {
+        "count": 36,
+        "first": {
+          "time": 769,
+          "hidden": false,
+          "visibility": "visible",
+          "ready": "complete",
+          "paints": 1,
+          "callbacks": 1,
+          "phase": "0"
+        },
+        "last": {
+          "time": 2587,
+          "hidden": false,
+          "visibility": "visible",
+          "ready": "complete",
+          "paints": 1,
+          "callbacks": 1,
+          "phase": "0"
+        },
+        "maxConsecutiveGapMs": 53
+      },
+      "firstDraws": [
+        {
+          "kind": "browser-gate-frame",
+          "time": 763,
+          "page": "index",
+          "start": 717,
+          "renderCost": 46,
+          "pending": null,
+          "enabled": true,
+          "hold": false,
+          "printing": false,
+          "initialized": true,
+          "failed": false,
+          "tier": 0,
+          "detailTier": 0,
+          "slow": 1,
+          "fast": 0,
+          "idleRate": 30,
+          "costAverage": 0,
+          "lastFrame": 715,
+          "nextDraw": 748.3333333333334,
+          "ribbonFaces": 241,
+          "ribbonSignals": 1
+        },
+        {
+          "kind": "browser-gate-frame",
+          "time": 2622,
+          "page": "index",
+          "start": 2605,
+          "renderCost": 17,
+          "pending": null,
+          "enabled": true,
+          "hold": false,
+          "printing": false,
+          "initialized": true,
+          "failed": false,
+          "tier": 0,
+          "detailTier": 0,
+          "slow": 0,
+          "fast": 0,
+          "idleRate": 30,
+          "costAverage": 17,
+          "lastFrame": 2605,
+          "nextDraw": 2638.3333333333335,
+          "ribbonFaces": 241,
+          "ribbonSignals": 1
+        }
+      ],
+      "finalState": {
+        "hidden": false,
+        "visibility": "visible",
+        "focus": true,
+        "readyState": "complete",
+        "scene": {
+          "page": "index",
+          "route": "index",
+          "state": "active",
+          "ready": "true",
+          "travel": "settled",
+          "phase": "2169",
+          "quality": "0",
+          "cadence": "20",
+          "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}"
+        },
+        "motion": {
+          "label": "Motion: on",
+          "pressed": "true",
+          "disabled": false,
+          "hidden": false
+        },
+        "scheduler": {
+          "pending": 121,
+          "enabled": true,
+          "hold": false,
+          "printing": false,
+          "initialized": true,
+          "failed": false,
+          "page": "index",
+          "tier": 0,
+          "detailTier": 0,
+          "slow": 0,
+          "fast": 38,
+          "idleRate": 20,
+          "costAverage": 5.444533349172741,
+          "lastFrame": 4747,
+          "nextDraw": 4748
+        },
+        "pendingIds": [
+          121
+        ]
+      }
+    },
+    {
+      "label": "cold-small-canvas",
+      "replica": "1",
+      "environment": {
+        "platform": "linux",
+        "os": "6.17.0-1022-azure",
+        "architecture": "x64",
+        "node": "v24.19.0",
+        "runnerImage": "ubuntu24",
+        "imageVersion": "20260927.320.1",
+        "cpus": [
+          "AMD EPYC 7763 64-Core Processor",
+          "AMD EPYC 7763 64-Core Processor",
+          "AMD EPYC 7763 64-Core Processor",
+          "AMD EPYC 7763 64-Core Processor"
+        ],
+        "memoryBytes": 16766414848,
+        "runId": "37483016304",
+        "attempt": "1"
+      },
+      "artifact": {
+        "id": 11421278666,
+        "name": "cause-fix-native-cold-small-canvas-1-37483016304-1",
+        "sha256": "66063dc742704652e36c2a0649531d7cab706c2f18b6875b751e206dec550771",
+        "bytes": 19595
+      },
+      "privateIdentity": {
+        "sourceCommit": "38ee0df5ed13fdc988318a0e24a7ac5d573c474e",
+        "candidateCommit": "38ee0df5ed13fdc988318a0e24a7ac5d573c474e",
+        "sourceTree": "dad785fb6ca4fdbc589ef998961c474b897a7509",
+        "sourceDirty": false,
+        "artifactDigest": "851235eb8f532d0b2c6d54f68aa13569e9a903f0d1efa79ebe0cf980bcbeb327",
+        "variant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "6e834002d1d9e689a04dd911b85597f868f3b992a97e5e0a7ccf3e18c5240e28",
+          "baseEngine": "2e064507b154606578a9be3fc7ee7bec059443e5f54e2bec7421b6edd801fd43",
+          "effects": [
+            "ribbons",
+            "travel"
+          ],
+          "diagnostic": {
+            "label": "cold-small-canvas",
+            "description": "Retain normal geometry/paint/scheduler; keep the native canvas backing store at its default size for cold WebKit attribution.",
+            "fullGate": false
+          }
+        },
+        "diagnostic": {
+          "label": "cold-small-canvas",
+          "description": "Retain normal geometry/paint/scheduler; keep the native canvas backing store at its default size for cold WebKit attribution.",
+          "fullGate": false
+        },
+        "derivation": {
+          "kind": "writing-diagnostic-intervention",
+          "intervention": "cold-small-canvas",
+          "description": "Retain normal geometry/paint/scheduler; keep the native canvas backing store at its default size for cold WebKit attribution.",
+          "baseArtifactDigest": "167ea344f12ca7b6da91db6f4cf436ea690033bd31ad7216a83c7bfce1b38df1",
+          "parentArtifactDigest": "167ea344f12ca7b6da91db6f4cf436ea690033bd31ad7216a83c7bfce1b38df1",
+          "parentVariant": {
+            "id": "color",
+            "contract": 1,
+            "fingerprint": "a27fa48a9f3117ccc7bc4a51b95b13684d150725917e583cb08370fc92d5c583",
+            "baseEngine": "2e064507b154606578a9be3fc7ee7bec059443e5f54e2bec7421b6edd801fd43",
+            "effects": [
+              "ribbons",
+              "travel"
+            ]
+          },
+          "patches": [
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "2f8c696d5d1f25b806de536e64d02dc3873cdb69994b41fef9af4ec8571cbca1",
+              "replacementSha256": "ca3d16d39eec2c77f007ff5c9bfece1866f77da0b4474815efed472d369f20e5",
+              "beforeSha256": "5b30e60c406b2c88e60cc6252c7fc7d17970c212449950b5d2d47eee9cc65dce",
+              "afterSha256": "182a81301e52fa6056f387ff81f7d41b811b53a07e200a432b7e24a928b99086"
+            },
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "7efda12d8c2ca57a709d3ccee04b1751ad44d8df714b5b17d27df9039ce5d9df",
+              "replacementSha256": "6c56dc0e3e511af5a3c15a3eaa2958637af4267dfa3cf405724a2295ed7e17ec",
+              "beforeSha256": "182a81301e52fa6056f387ff81f7d41b811b53a07e200a432b7e24a928b99086",
+              "afterSha256": "776bb05c596a2a48a2c369cd6535cd8741070b52a8d8a1b65e48d8127565aa1d"
+            },
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "50ac87ed20df1029db62154c9197a73bbc2639f623871151587c1994f2fc5e17",
+              "replacementSha256": "64b3d14238c546be0627b62c5b2e3d1ac73ed8835578ab75c89486a57060d75c",
+              "beforeSha256": "776bb05c596a2a48a2c369cd6535cd8741070b52a8d8a1b65e48d8127565aa1d",
+              "afterSha256": "7a0d2a12569855379ca4b5ccf70b318a92144f61ad27bc254731bf9b951b105e"
+            }
+          ],
+          "fullGate": false
+        }
+      },
+      "originalPass": false,
+      "originalError": "page.waitForFunction: Timeout 1500ms exceeded.",
+      "evidenceValid": true,
+      "originalChecks": null,
+      "raw": {
+        "file": "webkit-alone-1.json.gz",
+        "sha256": "b9c5e0ad3bed85bed63965d62f745307196924d3f37c74d640c11016afbc67c9",
+        "bytes": 13300
+      },
+      "largestRafWait": {
+        "id": 2,
+        "requestedMs": 336,
+        "entryMs": 2166,
+        "waitMs": 1830
+      },
+      "heartbeatWithinWait": {
+        "count": 36,
+        "first": {
+          "time": 340,
+          "hidden": false,
+          "visibility": "visible",
+          "ready": "complete",
+          "paints": 1,
+          "callbacks": 1,
+          "phase": "0"
+        },
+        "last": {
+          "time": 2162,
+          "hidden": false,
+          "visibility": "visible",
+          "ready": "complete",
+          "paints": 1,
+          "callbacks": 1,
+          "phase": "0"
+        },
+        "maxConsecutiveGapMs": 61
+      },
+      "firstDraws": [
+        {
+          "kind": "browser-gate-frame",
+          "time": 335,
+          "page": "index",
+          "start": 274,
+          "renderCost": 61,
+          "pending": null,
+          "enabled": true,
+          "hold": false,
+          "printing": false,
+          "initialized": true,
+          "failed": false,
+          "tier": 0,
+          "detailTier": 0,
+          "slow": 1,
+          "fast": 0,
+          "idleRate": 30,
+          "costAverage": 0,
+          "lastFrame": 273,
+          "nextDraw": 306.3333333333333,
+          "ribbonFaces": 241,
+          "ribbonSignals": 1
+        },
+        {
+          "kind": "browser-gate-frame",
+          "time": 2202,
+          "page": "index",
+          "start": 2167,
+          "renderCost": 35,
+          "pending": null,
+          "enabled": true,
+          "hold": false,
+          "printing": false,
+          "initialized": true,
+          "failed": false,
+          "tier": 0,
+          "detailTier": 0,
+          "slow": 2,
+          "fast": 0,
+          "idleRate": 30,
+          "costAverage": 35,
+          "lastFrame": 2166,
+          "nextDraw": 2199.3333333333335,
+          "ribbonFaces": 241,
+          "ribbonSignals": 1
+        }
+      ],
+      "finalState": {
+        "hidden": false,
+        "visibility": "visible",
+        "focus": true,
+        "readyState": "complete",
+        "scene": {
+          "page": "index",
+          "route": "index",
+          "state": "active",
+          "ready": "true",
+          "travel": "settled",
+          "phase": "2187",
+          "quality": "0",
+          "cadence": "12",
+          "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}"
+        },
+        "motion": {
+          "label": "Motion: on",
+          "pressed": "true",
+          "disabled": false,
+          "hidden": false
+        },
+        "scheduler": {
+          "pending": 101,
+          "enabled": true,
+          "hold": false,
+          "printing": false,
+          "initialized": true,
+          "failed": false,
+          "page": "index",
+          "tier": 0,
+          "detailTier": 0,
+          "slow": 0,
+          "fast": 0,
+          "idleRate": 12,
+          "costAverage": 16.184669448092308,
+          "lastFrame": 4339,
+          "nextDraw": 4372.666666666669
+        },
+        "pendingIds": [
+          101
+        ]
+      }
+    },
+    {
+      "label": "cold-small-canvas",
+      "replica": "2",
+      "environment": {
+        "platform": "linux",
+        "os": "6.17.0-1022-azure",
+        "architecture": "x64",
+        "node": "v24.19.0",
+        "runnerImage": "ubuntu24",
+        "imageVersion": "20260927.320.1",
+        "cpus": [
+          "AMD EPYC 7763 64-Core Processor",
+          "AMD EPYC 7763 64-Core Processor",
+          "AMD EPYC 7763 64-Core Processor",
+          "AMD EPYC 7763 64-Core Processor"
+        ],
+        "memoryBytes": 16766414848,
+        "runId": "37483016304",
+        "attempt": "1"
+      },
+      "artifact": {
+        "id": 11421538515,
+        "name": "cause-fix-native-cold-small-canvas-2-37483016304-1",
+        "sha256": "f78f24e041472d09e0f997bedfd91d0f0cb3e0377ba5a0eaf3c593c80ad37cc3",
+        "bytes": 20094
+      },
+      "privateIdentity": {
+        "sourceCommit": "38ee0df5ed13fdc988318a0e24a7ac5d573c474e",
+        "candidateCommit": "38ee0df5ed13fdc988318a0e24a7ac5d573c474e",
+        "sourceTree": "dad785fb6ca4fdbc589ef998961c474b897a7509",
+        "sourceDirty": false,
+        "artifactDigest": "851235eb8f532d0b2c6d54f68aa13569e9a903f0d1efa79ebe0cf980bcbeb327",
+        "variant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "6e834002d1d9e689a04dd911b85597f868f3b992a97e5e0a7ccf3e18c5240e28",
+          "baseEngine": "2e064507b154606578a9be3fc7ee7bec059443e5f54e2bec7421b6edd801fd43",
+          "effects": [
+            "ribbons",
+            "travel"
+          ],
+          "diagnostic": {
+            "label": "cold-small-canvas",
+            "description": "Retain normal geometry/paint/scheduler; keep the native canvas backing store at its default size for cold WebKit attribution.",
+            "fullGate": false
+          }
+        },
+        "diagnostic": {
+          "label": "cold-small-canvas",
+          "description": "Retain normal geometry/paint/scheduler; keep the native canvas backing store at its default size for cold WebKit attribution.",
+          "fullGate": false
+        },
+        "derivation": {
+          "kind": "writing-diagnostic-intervention",
+          "intervention": "cold-small-canvas",
+          "description": "Retain normal geometry/paint/scheduler; keep the native canvas backing store at its default size for cold WebKit attribution.",
+          "baseArtifactDigest": "167ea344f12ca7b6da91db6f4cf436ea690033bd31ad7216a83c7bfce1b38df1",
+          "parentArtifactDigest": "167ea344f12ca7b6da91db6f4cf436ea690033bd31ad7216a83c7bfce1b38df1",
+          "parentVariant": {
+            "id": "color",
+            "contract": 1,
+            "fingerprint": "a27fa48a9f3117ccc7bc4a51b95b13684d150725917e583cb08370fc92d5c583",
+            "baseEngine": "2e064507b154606578a9be3fc7ee7bec059443e5f54e2bec7421b6edd801fd43",
+            "effects": [
+              "ribbons",
+              "travel"
+            ]
+          },
+          "patches": [
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "2f8c696d5d1f25b806de536e64d02dc3873cdb69994b41fef9af4ec8571cbca1",
+              "replacementSha256": "ca3d16d39eec2c77f007ff5c9bfece1866f77da0b4474815efed472d369f20e5",
+              "beforeSha256": "5b30e60c406b2c88e60cc6252c7fc7d17970c212449950b5d2d47eee9cc65dce",
+              "afterSha256": "182a81301e52fa6056f387ff81f7d41b811b53a07e200a432b7e24a928b99086"
+            },
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "7efda12d8c2ca57a709d3ccee04b1751ad44d8df714b5b17d27df9039ce5d9df",
+              "replacementSha256": "6c56dc0e3e511af5a3c15a3eaa2958637af4267dfa3cf405724a2295ed7e17ec",
+              "beforeSha256": "182a81301e52fa6056f387ff81f7d41b811b53a07e200a432b7e24a928b99086",
+              "afterSha256": "776bb05c596a2a48a2c369cd6535cd8741070b52a8d8a1b65e48d8127565aa1d"
+            },
+            {
+              "file": "space.js",
+              "matches": 1,
+              "needleSha256": "50ac87ed20df1029db62154c9197a73bbc2639f623871151587c1994f2fc5e17",
+              "replacementSha256": "64b3d14238c546be0627b62c5b2e3d1ac73ed8835578ab75c89486a57060d75c",
+              "beforeSha256": "776bb05c596a2a48a2c369cd6535cd8741070b52a8d8a1b65e48d8127565aa1d",
+              "afterSha256": "7a0d2a12569855379ca4b5ccf70b318a92144f61ad27bc254731bf9b951b105e"
+            }
+          ],
+          "fullGate": false
+        }
+      },
+      "originalPass": false,
+      "originalError": "page.waitForFunction: Timeout 1500ms exceeded.",
+      "evidenceValid": true,
+      "originalChecks": null,
+      "raw": {
+        "file": "webkit-alone-1.json.gz",
+        "sha256": "255d9c3a4f6d34af20f9ad5403e96da05a1a26c5c55bdc9499a5b9d2b4b5c434",
+        "bytes": 13979
+      },
+      "largestRafWait": {
+        "id": 2,
+        "requestedMs": 599,
+        "entryMs": 2467,
+        "waitMs": 1868
+      },
+      "heartbeatWithinWait": {
+        "count": 36,
+        "first": {
+          "time": 603,
+          "hidden": false,
+          "visibility": "visible",
+          "ready": "complete",
+          "paints": 1,
+          "callbacks": 1,
+          "phase": "0"
+        },
+        "last": {
+          "time": 2431,
+          "hidden": false,
+          "visibility": "visible",
+          "ready": "complete",
+          "paints": 1,
+          "callbacks": 1,
+          "phase": "0"
+        },
+        "maxConsecutiveGapMs": 55
+      },
+      "firstDraws": [
+        {
+          "kind": "browser-gate-frame",
+          "time": 598,
+          "page": "index",
+          "start": 532,
+          "renderCost": 66,
+          "pending": null,
+          "enabled": true,
+          "hold": false,
+          "printing": false,
+          "initialized": true,
+          "failed": false,
+          "tier": 0,
+          "detailTier": 0,
+          "slow": 1,
+          "fast": 0,
+          "idleRate": 30,
+          "costAverage": 0,
+          "lastFrame": 530,
+          "nextDraw": 563.3333333333334,
+          "ribbonFaces": 241,
+          "ribbonSignals": 1
+        },
+        {
+          "kind": "browser-gate-frame",
+          "time": 2508,
+          "page": "index",
+          "start": 2467,
+          "renderCost": 41,
+          "pending": null,
+          "enabled": true,
+          "hold": false,
+          "printing": false,
+          "initialized": true,
+          "failed": false,
+          "tier": 0,
+          "detailTier": 0,
+          "slow": 2,
+          "fast": 0,
+          "idleRate": 30,
+          "costAverage": 41,
+          "lastFrame": 2467,
+          "nextDraw": 2500.3333333333335,
+          "ribbonFaces": 241,
+          "ribbonSignals": 1
+        }
+      ],
+      "finalState": {
+        "hidden": false,
+        "visibility": "visible",
+        "focus": true,
+        "readyState": "complete",
+        "scene": {
+          "page": "index",
+          "route": "index",
+          "state": "active",
+          "ready": "true",
+          "travel": "settled",
+          "phase": "2149",
+          "quality": "0",
+          "cadence": "10",
+          "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}"
+        },
+        "motion": {
+          "label": "Motion: on",
+          "pressed": "true",
+          "disabled": false,
+          "hidden": false
+        },
+        "scheduler": {
+          "pending": 119,
+          "enabled": true,
+          "hold": false,
+          "printing": false,
+          "initialized": true,
+          "failed": false,
+          "page": "index",
+          "tier": 0,
+          "detailTier": 0,
+          "slow": 0,
+          "fast": 0,
+          "idleRate": 10,
+          "costAverage": 17.7446689071893,
+          "lastFrame": 4553,
+          "nextDraw": 4649
+        },
+        "pendingIds": [
+          119
+        ]
+      }
+    }
+  ],
+  "researchCollection": {
+    "validTrials": 0,
+    "reason": "Reference candidateCommit inherited the candidate SHA; strict validation rejected it before the first Chromium launch. Corrected source-specific build is separate."
+  },
+  "interpretation": [
+    "The requested uncancelled RAF2 wait survives native shape-submission omission, default-small backing size and omitted atmosphere writes. None cures the native cold delay.",
+    "Two no-air fixture passes do not prove a cure: one still has a 2172ms pending RAF, with its original fixture starting later; hardware differs across fresh runners.",
+    "This screen excludes an exclusive explanation by geometric submission or canvas size; the native WPE presentation path remains to be attributed with native CPU/port/2D-transform evidence."
+  ]
+}

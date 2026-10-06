@@ -39,3 +39,19 @@ source lint/security preflight, and the corrected balanced Research pairs.
 Pinned Playwright's Linux headless script selects WPE, whereas headed selects
 GTK. GTK-only compositing environment variables are not a WPE diagnosis. No
 native backend selection is shipped in the accepting functional gate yet.
+
+Final source confirmation: the six native-port observations are retained and
+are manual-only now. Linux functional WebKit selects the normal desktop GTK port
+on one private Xvfb display with the original deadlines and complete scenario
+counts. No public CSS ablation is shipped. The WPE CPU collector failed before
+browser launch because sudo selected root's uninstalled browser cache; preserve
+the explicit installed path, run the browser child as the runner user, and always
+restore artifact ownership. That failed attempt supplies no browser CPU evidence.
+
+The first valid Research screen has no late >30ms task and does not show a gain
+from unused Canvas-state removal (normal median TBT 103.5 vs 130ms). Retain it.
+The new source uses the exact final RGB color as the palette cache key instead
+of a fractional tint string. Compare only this change against clean 614c3e5 with
+three new normal and three separately profiled balanced pairs. Prove every face
+color byte-identical in all route/detail/theme combinations; never pool profiled
+timings with ordinary acceptance. Complete source scanners also remain required.
