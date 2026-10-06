@@ -94,3 +94,11 @@ test('small-screen distributions and paired deltas retain sample count and faile
   const rows=[{group:'v0',profile:'desktop',pair:0,label:'before-color',navigation:{rows:[before]}},{group:'v0',profile:'desktop',pair:0,label:'current-color',navigation:{rows:[after]}},{group:'v0',profile:'mobile',pair:0,label:'before-color',error:'timeout'}];
   const deltas=pairedDeltas(rows);assert.equal(deltas[0].complete,true);assert.equal(deltas[0].afterMinusBefore.inputToReadyMs,0);assert.equal(deltas[1].complete,false);
 });
+
+test('clean confirmation repeats direct cold boot in both sides of each pair',()=>{
+  const settings=configuration({mode:'v0',desktopPairs:3,mobilePairs:6,directBoot:true});
+  const selected=plan('v0',['before-color','current-color'],settings);
+  assert.equal(selected.rows.length,18);
+  assert.ok(selected.rows.every(row=>row.boot&&!row.fineStages));
+  assert.throws(()=>configuration({directBoot:'true'}),/explicit boolean/);
+});

@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "833b3878cc5082abe988f7e9f081e05114d1bf76820b417973b20d57ca4cfbba",
+    "digest": "6bb3d96f3fa2ecaa08541387cda7e449a6b97344c7db00bcdbca7f1048ad8302",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -88,7 +88,7 @@
       {
         "path": ".github/workflows/site-writing-probe.yml",
         "identity_mode": "content",
-        "sha256": "f176118b5991e7a68ee37ed8fca1f80c7bd5a78b6f6c69b826e60c9c6e8f7197"
+        "sha256": "175403ebbfd2a0b09836c0af7024cef986d3861842bb27e7386a985a760fb2c7"
       },
       {
         "path": ".gitignore",
@@ -3180,7 +3180,7 @@
       {
         "path": "review/writing-diagnosis-20261006/EXECUTION.md",
         "identity_mode": "content",
-        "sha256": "a88b7db35d326986e3119b8eeffe18b72cd96e8bb50e5bbcbe38fd285e88f5c2"
+        "sha256": "911640317c4b4209bba4ba3ba575f4ca16c9dbeae78328a394aee105da1864be"
       },
       {
         "path": "review/writing-diagnosis-20261006/SOL-TASKS.md",
@@ -3199,7 +3199,16 @@
       {
         "path": "review/writing-diagnosis-20261006/run.json",
         "identity_mode": "content",
-        "sha256": "278dc27e66fee7a3b40e3ae99075d37c93eb4d697ca20449e52936c3cc7886de"
+        "sha256": "460d38af05b0cc327284a2fbd94ac4ec26e3c7a03b925d8819baeb2d46cfe12c"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/screen-summary.json",
+        "identity_mode": "content",
+        "sha256": "04c07367aec4ca835c208078770b4d15c5a9699ebdb4ef1694cdfb39bec31256"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/screen.json.gz",
+        "identity_mode": "existence"
       },
       {
         "path": "site/README.md",
@@ -3462,6 +3471,10 @@
       },
       {
         "path": "tests/review-flow.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/ribbon-geometry-equivalence.test.cjs",
         "identity_mode": "existence"
       },
       {
@@ -5571,6 +5584,13 @@
     {
       "path": "review/writing-diagnosis-20261006/run.json",
       "title": "review/writing-diagnosis-20261006/run.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/writing-diagnosis-20261006/screen-summary.json",
+      "title": "review/writing-diagnosis-20261006/screen-summary.json",
       "instructions": [
         "AGENTS.md"
       ]

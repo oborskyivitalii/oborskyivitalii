@@ -10,11 +10,12 @@ const modes=['screen','v0','h1','h2','h3','h4','h5','edge'];
 
 function configuration(value={}){
   const settings=typeof value==='string'?(modes.includes(value)?{mode:value}:JSON.parse(fs.readFileSync(path.resolve(value)))):value;
-  const config={schema:1,mode:'screen',before:beforeCommit,desktopPairs:6,mobilePairs:1,fullGate:false,...settings};
+  const config={schema:1,mode:'screen',before:beforeCommit,desktopPairs:6,mobilePairs:1,directBoot:false,fullGate:false,...settings};
   assert.equal(config.schema,1,'unsupported diagnostic configuration');assert.equal(config.fullGate,false,'diagnosis cannot accept a full gate');
   assert.ok(modes.includes(config.mode),'unknown Writing diagnosis mode');assert.match(config.before,/^[a-f0-9]{40}$/,'exact before SHA required');
   for(const key of ['desktopPairs','mobilePairs'])assert.ok(Number.isInteger(config[key])&&config[key]>=0&&config[key]<=6,'unbounded '+key);
   assert.ok(config.desktopPairs+config.mobilePairs>0,'at least one bounded V0 pair required');
+  assert.equal(typeof config.directBoot,'boolean','directBoot must be an explicit boolean');
   if(config.runtimeEngine)assert.match(config.runtimeEngine,/^[a-f0-9]{64}$/,'invalid expected runtime engine');
   return config;
 }
@@ -28,7 +29,7 @@ function plan(mode='screen',available=[],options={}){
   };
   for(const group of groups){
     if(group==='v0'){
-      for(const profile of ['desktop','mobile'])for(let pair=0;pair<config[profile+'Pairs'];pair++)for(const label of pair%2?['current-color','before-color']:['before-color','current-color'])add(group,label,profile,{pair});
+      for(const profile of ['desktop','mobile'])for(let pair=0;pair<config[profile+'Pairs'];pair++)for(const label of pair%2?['current-color','before-color']:['before-color','current-color'])add(group,label,profile,{pair,boot:config.directBoot});
     }else if(group==='h1'){
       add(group,'current-color');optional(group,'no-ribbons');
       optional(group,'no-ribbons',{contentFlight:false});add(group,'current-color','mobile',{contentFlight:false});
