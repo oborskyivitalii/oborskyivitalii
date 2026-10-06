@@ -1,0 +1,2588 @@
+{
+  "schema": 1,
+  "run": 37456563653,
+  "artifactId": 11410370067,
+  "source": "90391fb5796731a1a0d54e45a332dac71019ee11",
+  "zipSha256": "ad1212e978e8a3402463a2f1b2a79cbc257dafbd41bfbbae17ef335cc991b2ee",
+  "environment": {
+    "platform": "linux",
+    "os": "6.17.0-1022-azure",
+    "architecture": "x64",
+    "node": "v24.19.0",
+    "runnerImage": "ubuntu24",
+    "imageVersion": "20260927.320.1",
+    "cpus": [
+      "AMD EPYC 7763 64-Core Processor",
+      "AMD EPYC 7763 64-Core Processor",
+      "AMD EPYC 7763 64-Core Processor",
+      "AMD EPYC 7763 64-Core Processor"
+    ],
+    "memoryBytes": 16766414848,
+    "runId": "37456563653",
+    "attempt": "1"
+  },
+  "complete": true,
+  "fullGate": false,
+  "performanceAcceptance": false,
+  "rows": [
+    {
+      "label": "current-color",
+      "trials": 2,
+      "budgetFailures": 2,
+      "coldP50Ms": 25.850000000020373,
+      "coldP95Ms": 89.85000000000582,
+      "coldMaxMs": 89.85000000000582,
+      "directReadyMs": 430.0,
+      "directMaxMs": 193.8000000000029,
+      "firstScrollP95Ms": 31.25,
+      "nativeRangeMaxMs": 47.95000000001164,
+      "modelBuildMs": 34.14999999997963,
+      "modelPaletteMs": 15.39999999999418,
+      "modelFacePrepareMs": null,
+      "layoutAudits": 0
+    },
+    {
+      "label": "thematic-off",
+      "trials": 2,
+      "budgetFailures": 0,
+      "coldP50Ms": 18.999999999970896,
+      "coldP95Ms": 37.94999999998254,
+      "coldMaxMs": 86.89999999996508,
+      "directReadyMs": 502.0,
+      "directMaxMs": 162.24999999998545,
+      "firstScrollP95Ms": 12.299999999988358,
+      "nativeRangeMaxMs": 51.20000000001164,
+      "modelBuildMs": 36.25000000001455,
+      "modelPaletteMs": 14.349999999976717,
+      "modelFacePrepareMs": null,
+      "layoutAudits": 0
+    },
+    {
+      "label": "shared-off",
+      "trials": 2,
+      "budgetFailures": 2,
+      "coldP50Ms": 25.09999999999127,
+      "coldP95Ms": 86.29999999998836,
+      "coldMaxMs": 86.29999999998836,
+      "directReadyMs": 388.6499999999942,
+      "directMaxMs": 188.19999999998254,
+      "firstScrollP95Ms": 27.09999999999127,
+      "nativeRangeMaxMs": 46.30000000000291,
+      "modelBuildMs": 36.29999999997381,
+      "modelPaletteMs": 15.400000000008731,
+      "modelFacePrepareMs": null,
+      "layoutAudits": 0
+    },
+    {
+      "label": "model-profile",
+      "trials": 2,
+      "budgetFailures": 2,
+      "coldP50Ms": 27.299999999973807,
+      "coldP95Ms": 88.15000000000873,
+      "coldMaxMs": 88.15000000000873,
+      "directReadyMs": 411.8000000000029,
+      "directMaxMs": 204.5500000000029,
+      "firstScrollP95Ms": 32.25000000001455,
+      "nativeRangeMaxMs": 47.85000000000582,
+      "modelBuildMs": 41.55000000000291,
+      "modelPaletteMs": 13.949999999967986,
+      "modelFacePrepareMs": 16.90000000000873,
+      "layoutAudits": 0
+    },
+    {
+      "label": "model-no-thematic",
+      "trials": 2,
+      "budgetFailures": 0,
+      "coldP50Ms": 14.499999999985448,
+      "coldP95Ms": 35.94999999998254,
+      "coldMaxMs": 91.35000000000582,
+      "directReadyMs": 308.3500000000058,
+      "directMaxMs": 112.80000000001746,
+      "firstScrollP95Ms": 13.949999999982538,
+      "nativeRangeMaxMs": 48.05000000000291,
+      "modelBuildMs": 8.649999999979627,
+      "modelPaletteMs": 1.1000000000058208,
+      "modelFacePrepareMs": 2.0499999999883585,
+      "layoutAudits": 0
+    },
+    {
+      "label": "model-no-shared",
+      "trials": 2,
+      "budgetFailures": 2,
+      "coldP50Ms": 25.0,
+      "coldP95Ms": 89.95000000001164,
+      "coldMaxMs": 89.95000000001164,
+      "directReadyMs": 423.25,
+      "directMaxMs": 161.95000000001164,
+      "firstScrollP95Ms": 23.20000000001164,
+      "nativeRangeMaxMs": 48.59999999999127,
+      "modelBuildMs": 31.75,
+      "modelPaletteMs": 13.44999999999709,
+      "modelFacePrepareMs": 13.699999999982538,
+      "layoutAudits": 0
+    },
+    {
+      "label": "layout-control",
+      "trials": 2,
+      "budgetFailures": 2,
+      "coldP50Ms": 28.60000000000582,
+      "coldP95Ms": 96.80000000001746,
+      "coldMaxMs": 96.80000000001746,
+      "directReadyMs": 401.00000000001455,
+      "directMaxMs": 205.95000000001164,
+      "firstScrollP95Ms": 32.25000000001455,
+      "nativeRangeMaxMs": 48.85000000000582,
+      "modelBuildMs": 38.70000000001164,
+      "modelPaletteMs": 15.55000000000291,
+      "modelFacePrepareMs": null,
+      "layoutAudits": 6
+    },
+    {
+      "label": "controls-off",
+      "trials": 2,
+      "budgetFailures": 2,
+      "coldP50Ms": 25.44999999999709,
+      "coldP95Ms": 87.40000000002328,
+      "coldMaxMs": 87.40000000002328,
+      "directReadyMs": 467.09999999999127,
+      "directMaxMs": 204.45000000001164,
+      "firstScrollP95Ms": 32.0,
+      "nativeRangeMaxMs": 42.35000000002037,
+      "modelBuildMs": 34.35000000000582,
+      "modelPaletteMs": 13.749999999985448,
+      "modelFacePrepareMs": null,
+      "layoutAudits": 6
+    },
+    {
+      "label": "row-grid-off",
+      "trials": 2,
+      "budgetFailures": 2,
+      "coldP50Ms": 25.5,
+      "coldP95Ms": 93.94999999999709,
+      "coldMaxMs": 93.94999999999709,
+      "directReadyMs": 541.3999999999942,
+      "directMaxMs": 213.70000000001164,
+      "firstScrollP95Ms": 30.89999999999418,
+      "nativeRangeMaxMs": 46.39999999999418,
+      "modelBuildMs": 35.65000000002328,
+      "modelPaletteMs": 14.099999999991269,
+      "modelFacePrepareMs": null,
+      "layoutAudits": 6
+    },
+    {
+      "label": "title-flex-off",
+      "trials": 2,
+      "budgetFailures": 2,
+      "coldP50Ms": 28.050000000017462,
+      "coldP95Ms": 99.70000000001164,
+      "coldMaxMs": 99.70000000001164,
+      "directReadyMs": 498.8499999999767,
+      "directMaxMs": 206.60000000003492,
+      "firstScrollP95Ms": 30.20000000001164,
+      "nativeRangeMaxMs": 49.94999999998254,
+      "modelBuildMs": 35.25,
+      "modelPaletteMs": 14.25,
+      "modelFacePrepareMs": null,
+      "layoutAudits": 6
+    }
+  ],
+  "summary": {
+    "common": {
+      "localize/mobile/current-color/flight-on": {
+        "trials": 2,
+        "complete": 2,
+        "errors": [],
+        "budgetFailures": 2,
+        "coldP50Ms": {
+          "count": 2,
+          "median": 25.850000000020373,
+          "min": 25.60000000000582,
+          "max": 26.100000000034925,
+          "values": [
+            25.60000000000582,
+            26.100000000034925
+          ]
+        },
+        "coldP95Ms": {
+          "count": 2,
+          "median": 89.85000000000582,
+          "min": 87.79999999998836,
+          "max": 91.90000000002328,
+          "values": [
+            87.79999999998836,
+            91.90000000002328
+          ]
+        },
+        "coldMaxMs": {
+          "count": 2,
+          "median": 89.85000000000582,
+          "min": 87.79999999998836,
+          "max": 91.90000000002328,
+          "values": [
+            87.79999999998836,
+            91.90000000002328
+          ]
+        },
+        "coldPaints": {
+          "count": 2,
+          "median": 18.5,
+          "min": 18,
+          "max": 19,
+          "values": [
+            19,
+            18
+          ]
+        },
+        "coldPaintHz": {
+          "count": 2,
+          "median": 12.400944978792534,
+          "min": 12.22493887530543,
+          "max": 12.57695108227964,
+          "values": [
+            12.57695108227964,
+            12.22493887530543
+          ]
+        },
+        "coldCallbackBusyPercent": {
+          "count": 2,
+          "median": 39.58089116434701,
+          "min": 38.89568052158966,
+          "max": 40.266101807104356,
+          "values": [
+            40.266101807104356,
+            38.89568052158966
+          ]
+        },
+        "coldPreparationMaxMs": {
+          "count": 2,
+          "median": 49.99999999998545,
+          "min": 47.60000000000582,
+          "max": 52.399999999965075,
+          "values": [
+            47.60000000000582,
+            52.399999999965075
+          ]
+        },
+        "coldPreparationUnionMs": {
+          "count": 2,
+          "median": 102.89999999997963,
+          "min": 99.10000000000582,
+          "max": 106.69999999995343,
+          "values": [
+            99.10000000000582,
+            106.69999999995343
+          ]
+        },
+        "inputToReadyMs": {
+          "count": 2,
+          "median": 1495.7500000000146,
+          "min": 1476.600000000035,
+          "max": 1514.8999999999942,
+          "values": [
+            1514.8999999999942,
+            1476.600000000035
+          ]
+        },
+        "firstPaintResponseMs": {
+          "count": 2,
+          "median": 62.54999999998836,
+          "min": 18.099999999976717,
+          "max": 107,
+          "values": [
+            18.099999999976717,
+            107
+          ]
+        },
+        "firstFlightPaintResponseMs": {
+          "count": 2,
+          "median": 123.69999999999709,
+          "min": 107,
+          "max": 140.39999999999418,
+          "values": [
+            140.39999999999418,
+            107
+          ]
+        },
+        "arrivalP95Ms": {
+          "count": 2,
+          "median": 25.14999999999418,
+          "min": 24.5,
+          "max": 25.79999999998836,
+          "values": [
+            25.79999999998836,
+            24.5
+          ]
+        },
+        "arrivalPreparationMaxMs": {
+          "count": 2,
+          "median": 0,
+          "min": 0,
+          "max": 0,
+          "values": [
+            0,
+            0
+          ]
+        },
+        "inclusivePreparationUnionMs": {
+          "count": 2,
+          "median": 102.89999999997963,
+          "min": 99.10000000000582,
+          "max": 106.69999999995343,
+          "values": [
+            99.10000000000582,
+            106.69999999995343
+          ]
+        },
+        "warmP95Ms": {
+          "count": 2,
+          "median": 40.75,
+          "min": 32.20000000001164,
+          "max": 49.29999999998836,
+          "values": [
+            49.29999999998836,
+            32.20000000001164
+          ]
+        }
+      },
+      "localize/mobile/thematic-off/flight-on": {
+        "trials": 2,
+        "complete": 2,
+        "errors": [],
+        "budgetFailures": 0,
+        "coldP50Ms": {
+          "count": 2,
+          "median": 18.999999999970896,
+          "min": 16.699999999953434,
+          "max": 21.29999999998836,
+          "values": [
+            21.29999999998836,
+            16.699999999953434
+          ]
+        },
+        "coldP95Ms": {
+          "count": 2,
+          "median": 37.94999999998254,
+          "min": 36.899999999965075,
+          "max": 39,
+          "values": [
+            39,
+            36.899999999965075
+          ]
+        },
+        "coldMaxMs": {
+          "count": 2,
+          "median": 86.89999999996508,
+          "min": 82.19999999995343,
+          "max": 91.59999999997672,
+          "values": [
+            91.59999999997672,
+            82.19999999995343
+          ]
+        },
+        "coldPaints": {
+          "count": 2,
+          "median": 22,
+          "min": 22,
+          "max": 22,
+          "values": [
+            22,
+            22
+          ]
+        },
+        "coldPaintHz": {
+          "count": 2,
+          "median": 15.63967679684873,
+          "min": 15.261879986125564,
+          "max": 16.017473607571898,
+          "values": [
+            15.261879986125564,
+            16.017473607571898
+          ]
+        },
+        "coldCallbackBusyPercent": {
+          "count": 2,
+          "median": 33.925354320235066,
+          "min": 32.89406625407757,
+          "max": 34.95664238639256,
+          "values": [
+            34.95664238639256,
+            32.89406625407757
+          ]
+        },
+        "coldPreparationMaxMs": {
+          "count": 2,
+          "median": 52.30000000000291,
+          "min": 50.29999999998836,
+          "max": 54.30000000001746,
+          "values": [
+            54.30000000001746,
+            50.29999999998836
+          ]
+        },
+        "coldPreparationUnionMs": {
+          "count": 2,
+          "median": 105.20000000001164,
+          "min": 102.70000000001164,
+          "max": 107.70000000001164,
+          "values": [
+            107.70000000001164,
+            102.70000000001164
+          ]
+        },
+        "inputToReadyMs": {
+          "count": 2,
+          "median": 1410.5,
+          "min": 1376.2000000000116,
+          "max": 1444.7999999999884,
+          "values": [
+            1444.7999999999884,
+            1376.2000000000116
+          ]
+        },
+        "firstPaintResponseMs": {
+          "count": 2,
+          "median": 61.35000000000582,
+          "min": 18,
+          "max": 104.70000000001164,
+          "values": [
+            18,
+            104.70000000001164
+          ]
+        },
+        "firstFlightPaintResponseMs": {
+          "count": 2,
+          "median": 128.45000000001164,
+          "min": 105.40000000002328,
+          "max": 151.5,
+          "values": [
+            151.5,
+            105.40000000002328
+          ]
+        },
+        "arrivalP95Ms": {
+          "count": 2,
+          "median": 12.549999999988358,
+          "min": 10.799999999988358,
+          "max": 14.299999999988358,
+          "values": [
+            10.799999999988358,
+            14.299999999988358
+          ]
+        },
+        "arrivalPreparationMaxMs": {
+          "count": 2,
+          "median": 0,
+          "min": 0,
+          "max": 0,
+          "values": [
+            0,
+            0
+          ]
+        },
+        "inclusivePreparationUnionMs": {
+          "count": 2,
+          "median": 105.20000000001164,
+          "min": 102.70000000001164,
+          "max": 107.70000000001164,
+          "values": [
+            107.70000000001164,
+            102.70000000001164
+          ]
+        },
+        "warmP95Ms": {
+          "count": 2,
+          "median": 26.79999999998836,
+          "min": 25.70000000001164,
+          "max": 27.899999999965075,
+          "values": [
+            25.70000000001164,
+            27.899999999965075
+          ]
+        }
+      },
+      "localize/mobile/shared-off/flight-on": {
+        "trials": 2,
+        "complete": 2,
+        "errors": [],
+        "budgetFailures": 2,
+        "coldP50Ms": {
+          "count": 2,
+          "median": 25.09999999999127,
+          "min": 24.099999999976717,
+          "max": 26.10000000000582,
+          "values": [
+            26.10000000000582,
+            24.099999999976717
+          ]
+        },
+        "coldP95Ms": {
+          "count": 2,
+          "median": 86.29999999998836,
+          "min": 82,
+          "max": 90.59999999997672,
+          "values": [
+            90.59999999997672,
+            82
+          ]
+        },
+        "coldMaxMs": {
+          "count": 2,
+          "median": 86.29999999998836,
+          "min": 82,
+          "max": 90.59999999997672,
+          "values": [
+            90.59999999997672,
+            82
+          ]
+        },
+        "coldPaints": {
+          "count": 2,
+          "median": 19,
+          "min": 19,
+          "max": 19,
+          "values": [
+            19,
+            19
+          ]
+        },
+        "coldPaintHz": {
+          "count": 2,
+          "median": 12.71654941144299,
+          "min": 12.596128347918373,
+          "max": 12.836970474967606,
+          "values": [
+            12.596128347918373,
+            12.836970474967606
+          ]
+        },
+        "coldCallbackBusyPercent": {
+          "count": 2,
+          "median": 38.014775747352004,
+          "min": 37.76186687879901,
+          "max": 38.267684615905004,
+          "values": [
+            37.76186687879901,
+            38.267684615905004
+          ]
+        },
+        "coldPreparationMaxMs": {
+          "count": 2,
+          "median": 51.75,
+          "min": 51.5,
+          "max": 52,
+          "values": [
+            52,
+            51.5
+          ]
+        },
+        "coldPreparationUnionMs": {
+          "count": 2,
+          "median": 103.34999999997672,
+          "min": 102.39999999996508,
+          "max": 104.29999999998836,
+          "values": [
+            104.29999999998836,
+            102.39999999996508
+          ]
+        },
+        "inputToReadyMs": {
+          "count": 2,
+          "median": 1497.0999999999913,
+          "min": 1483,
+          "max": 1511.1999999999825,
+          "values": [
+            1511.1999999999825,
+            1483
+          ]
+        },
+        "firstPaintResponseMs": {
+          "count": 2,
+          "median": 12.599999999976717,
+          "min": 8.199999999953434,
+          "max": 17,
+          "values": [
+            17,
+            8.199999999953434
+          ]
+        },
+        "firstFlightPaintResponseMs": {
+          "count": 2,
+          "median": 150.54999999998836,
+          "min": 148,
+          "max": 153.09999999997672,
+          "values": [
+            153.09999999997672,
+            148
+          ]
+        },
+        "arrivalP95Ms": {
+          "count": 2,
+          "median": 22.25,
+          "min": 20.79999999998836,
+          "max": 23.70000000001164,
+          "values": [
+            20.79999999998836,
+            23.70000000001164
+          ]
+        },
+        "arrivalPreparationMaxMs": {
+          "count": 2,
+          "median": 0,
+          "min": 0,
+          "max": 0,
+          "values": [
+            0,
+            0
+          ]
+        },
+        "inclusivePreparationUnionMs": {
+          "count": 2,
+          "median": 103.34999999997672,
+          "min": 102.39999999996508,
+          "max": 104.29999999998836,
+          "values": [
+            104.29999999998836,
+            102.39999999996508
+          ]
+        },
+        "warmP95Ms": {
+          "count": 2,
+          "median": 31.45000000001164,
+          "min": 31.300000000046566,
+          "max": 31.599999999976717,
+          "values": [
+            31.599999999976717,
+            31.300000000046566
+          ]
+        }
+      },
+      "localize/mobile/model-profile/flight-on": {
+        "trials": 2,
+        "complete": 2,
+        "errors": [],
+        "budgetFailures": 2,
+        "coldP50Ms": {
+          "count": 2,
+          "median": 27.299999999973807,
+          "min": 26.899999999965075,
+          "max": 27.699999999982538,
+          "values": [
+            27.699999999982538,
+            26.899999999965075
+          ]
+        },
+        "coldP95Ms": {
+          "count": 2,
+          "median": 88.15000000000873,
+          "min": 85.39999999999418,
+          "max": 90.90000000002328,
+          "values": [
+            85.39999999999418,
+            90.90000000002328
+          ]
+        },
+        "coldMaxMs": {
+          "count": 2,
+          "median": 88.15000000000873,
+          "min": 85.39999999999418,
+          "max": 90.90000000002328,
+          "values": [
+            85.39999999999418,
+            90.90000000002328
+          ]
+        },
+        "coldPaints": {
+          "count": 2,
+          "median": 17.5,
+          "min": 17,
+          "max": 18,
+          "values": [
+            18,
+            17
+          ]
+        },
+        "coldPaintHz": {
+          "count": 2,
+          "median": 12.049481181163657,
+          "min": 11.890606420927371,
+          "max": 12.20835594139994,
+          "values": [
+            12.20835594139994,
+            11.890606420927371
+          ]
+        },
+        "coldCallbackBusyPercent": {
+          "count": 2,
+          "median": 38.920781780715686,
+          "min": 38.91725536826039,
+          "max": 38.92430819317097,
+          "values": [
+            38.92430819317097,
+            38.91725536826039
+          ]
+        },
+        "coldPreparationMaxMs": {
+          "count": 2,
+          "median": 55.64999999997963,
+          "min": 55.39999999999418,
+          "max": 55.899999999965075,
+          "values": [
+            55.39999999999418,
+            55.899999999965075
+          ]
+        },
+        "coldPreparationUnionMs": {
+          "count": 2,
+          "median": 108.79999999998836,
+          "min": 104.39999999996508,
+          "max": 113.20000000001164,
+          "values": [
+            104.39999999996508,
+            113.20000000001164
+          ]
+        },
+        "inputToReadyMs": {
+          "count": 2,
+          "median": 1455.300000000003,
+          "min": 1433.2000000000116,
+          "max": 1477.3999999999942,
+          "values": [
+            1477.3999999999942,
+            1433.2000000000116
+          ]
+        },
+        "firstPaintResponseMs": {
+          "count": 2,
+          "median": 61.54999999998836,
+          "min": 10.700000000011642,
+          "max": 112.39999999996508,
+          "values": [
+            10.700000000011642,
+            112.39999999996508
+          ]
+        },
+        "firstFlightPaintResponseMs": {
+          "count": 2,
+          "median": 132.24999999998545,
+          "min": 112.39999999996508,
+          "max": 152.10000000000582,
+          "values": [
+            152.10000000000582,
+            112.39999999996508
+          ]
+        },
+        "arrivalP95Ms": {
+          "count": 2,
+          "median": 26.400000000023283,
+          "min": 23.300000000046566,
+          "max": 29.5,
+          "values": [
+            29.5,
+            23.300000000046566
+          ]
+        },
+        "arrivalPreparationMaxMs": {
+          "count": 2,
+          "median": 0,
+          "min": 0,
+          "max": 0,
+          "values": [
+            0,
+            0
+          ]
+        },
+        "inclusivePreparationUnionMs": {
+          "count": 2,
+          "median": 108.79999999998836,
+          "min": 104.39999999996508,
+          "max": 113.20000000001164,
+          "values": [
+            104.39999999996508,
+            113.20000000001164
+          ]
+        },
+        "warmP95Ms": {
+          "count": 2,
+          "median": 43.25,
+          "min": 33,
+          "max": 53.5,
+          "values": [
+            33,
+            53.5
+          ]
+        }
+      },
+      "localize/mobile/model-no-thematic/flight-on": {
+        "trials": 2,
+        "complete": 2,
+        "errors": [],
+        "budgetFailures": 0,
+        "coldP50Ms": {
+          "count": 2,
+          "median": 14.499999999985448,
+          "min": 13.89999999999418,
+          "max": 15.099999999976717,
+          "values": [
+            13.89999999999418,
+            15.099999999976717
+          ]
+        },
+        "coldP95Ms": {
+          "count": 2,
+          "median": 35.94999999998254,
+          "min": 31.70000000001164,
+          "max": 40.199999999953434,
+          "values": [
+            31.70000000001164,
+            40.199999999953434
+          ]
+        },
+        "coldMaxMs": {
+          "count": 2,
+          "median": 91.35000000000582,
+          "min": 91,
+          "max": 91.70000000001164,
+          "values": [
+            91,
+            91.70000000001164
+          ]
+        },
+        "coldPaints": {
+          "count": 2,
+          "median": 22,
+          "min": 21,
+          "max": 23,
+          "values": [
+            23,
+            21
+          ]
+        },
+        "coldPaintHz": {
+          "count": 2,
+          "median": 15.909442206830864,
+          "min": 15.420766632398427,
+          "max": 16.398117781263302,
+          "values": [
+            16.398117781263302,
+            15.420766632398427
+          ]
+        },
+        "coldCallbackBusyPercent": {
+          "count": 2,
+          "median": 32.869418577834566,
+          "min": 32.275773563385066,
+          "max": 33.46306359228407,
+          "values": [
+            32.275773563385066,
+            33.46306359228407
+          ]
+        },
+        "coldPreparationMaxMs": {
+          "count": 2,
+          "median": 48.90000000000873,
+          "min": 48.19999999998254,
+          "max": 49.600000000034925,
+          "values": [
+            48.19999999998254,
+            49.600000000034925
+          ]
+        },
+        "coldPreparationUnionMs": {
+          "count": 2,
+          "median": 63.80000000001746,
+          "min": 62.09999999997672,
+          "max": 65.50000000005821,
+          "values": [
+            62.09999999997672,
+            65.50000000005821
+          ]
+        },
+        "inputToReadyMs": {
+          "count": 2,
+          "median": 1385.75,
+          "min": 1366,
+          "max": 1405.5,
+          "values": [
+            1405.5,
+            1366
+          ]
+        },
+        "firstPaintResponseMs": {
+          "count": 2,
+          "median": 44.050000000032014,
+          "min": 12.800000000017462,
+          "max": 75.30000000004657,
+          "values": [
+            12.800000000017462,
+            75.30000000004657
+          ]
+        },
+        "firstFlightPaintResponseMs": {
+          "count": 2,
+          "median": 91.60000000002037,
+          "min": 75.30000000004657,
+          "max": 107.89999999999418,
+          "values": [
+            107.89999999999418,
+            75.30000000004657
+          ]
+        },
+        "arrivalP95Ms": {
+          "count": 2,
+          "median": 11.299999999988358,
+          "min": 10.299999999988358,
+          "max": 12.299999999988358,
+          "values": [
+            10.299999999988358,
+            12.299999999988358
+          ]
+        },
+        "arrivalPreparationMaxMs": {
+          "count": 2,
+          "median": 0,
+          "min": 0,
+          "max": 0,
+          "values": [
+            0,
+            0
+          ]
+        },
+        "inclusivePreparationUnionMs": {
+          "count": 2,
+          "median": 63.80000000001746,
+          "min": 62.09999999997672,
+          "max": 65.50000000005821,
+          "values": [
+            62.09999999997672,
+            65.50000000005821
+          ]
+        },
+        "warmP95Ms": {
+          "count": 2,
+          "median": 29.75,
+          "min": 27.400000000023283,
+          "max": 32.09999999997672,
+          "values": [
+            27.400000000023283,
+            32.09999999997672
+          ]
+        }
+      },
+      "localize/mobile/model-no-shared/flight-on": {
+        "trials": 2,
+        "complete": 2,
+        "errors": [],
+        "budgetFailures": 2,
+        "coldP50Ms": {
+          "count": 2,
+          "median": 25,
+          "min": 24.70000000001164,
+          "max": 25.29999999998836,
+          "values": [
+            24.70000000001164,
+            25.29999999998836
+          ]
+        },
+        "coldP95Ms": {
+          "count": 2,
+          "median": 89.95000000001164,
+          "min": 88.20000000001164,
+          "max": 91.70000000001164,
+          "values": [
+            91.70000000001164,
+            88.20000000001164
+          ]
+        },
+        "coldMaxMs": {
+          "count": 2,
+          "median": 89.95000000001164,
+          "min": 88.20000000001164,
+          "max": 91.70000000001164,
+          "values": [
+            91.70000000001164,
+            88.20000000001164
+          ]
+        },
+        "coldPaints": {
+          "count": 2,
+          "median": 17.5,
+          "min": 17,
+          "max": 18,
+          "values": [
+            17,
+            18
+          ]
+        },
+        "coldPaintHz": {
+          "count": 2,
+          "median": 12.145706250701304,
+          "min": 11.996330534189493,
+          "max": 12.295081967213115,
+          "values": [
+            11.996330534189493,
+            12.295081967213115
+          ]
+        },
+        "coldCallbackBusyPercent": {
+          "count": 2,
+          "median": 36.91907957372902,
+          "min": 36.44061816386341,
+          "max": 37.39754098359463,
+          "values": [
+            36.44061816386341,
+            37.39754098359463
+          ]
+        },
+        "coldPreparationMaxMs": {
+          "count": 2,
+          "median": 49.19999999998254,
+          "min": 49.09999999997672,
+          "max": 49.29999999998836,
+          "values": [
+            49.29999999998836,
+            49.09999999997672
+          ]
+        },
+        "coldPreparationUnionMs": {
+          "count": 2,
+          "median": 97.5499999999738,
+          "min": 97.10000000000582,
+          "max": 97.99999999994179,
+          "values": [
+            97.10000000000582,
+            97.99999999994179
+          ]
+        },
+        "inputToReadyMs": {
+          "count": 2,
+          "median": 1444.1499999999942,
+          "min": 1420,
+          "max": 1468.2999999999884,
+          "values": [
+            1420,
+            1468.2999999999884
+          ]
+        },
+        "firstPaintResponseMs": {
+          "count": 2,
+          "median": 57.95000000001164,
+          "min": 15.400000000023283,
+          "max": 100.5,
+          "values": [
+            100.5,
+            15.400000000023283
+          ]
+        },
+        "firstFlightPaintResponseMs": {
+          "count": 2,
+          "median": 123.85000000000582,
+          "min": 100.5,
+          "max": 147.20000000001164,
+          "values": [
+            100.5,
+            147.20000000001164
+          ]
+        },
+        "arrivalP95Ms": {
+          "count": 2,
+          "median": 23.249999999985448,
+          "min": 22.199999999982538,
+          "max": 24.29999999998836,
+          "values": [
+            22.199999999982538,
+            24.29999999998836
+          ]
+        },
+        "arrivalPreparationMaxMs": {
+          "count": 2,
+          "median": 0,
+          "min": 0,
+          "max": 0,
+          "values": [
+            0,
+            0
+          ]
+        },
+        "inclusivePreparationUnionMs": {
+          "count": 2,
+          "median": 97.5499999999738,
+          "min": 97.10000000000582,
+          "max": 97.99999999994179,
+          "values": [
+            97.10000000000582,
+            97.99999999994179
+          ]
+        },
+        "warmP95Ms": {
+          "count": 2,
+          "median": 33.14999999997963,
+          "min": 30.39999999999418,
+          "max": 35.899999999965075,
+          "values": [
+            30.39999999999418,
+            35.899999999965075
+          ]
+        }
+      },
+      "localize/mobile/layout-control/flight-on": {
+        "trials": 2,
+        "complete": 2,
+        "errors": [],
+        "budgetFailures": 2,
+        "coldP50Ms": {
+          "count": 2,
+          "median": 28.60000000000582,
+          "min": 27.900000000023283,
+          "max": 29.29999999998836,
+          "values": [
+            29.29999999998836,
+            27.900000000023283
+          ]
+        },
+        "coldP95Ms": {
+          "count": 2,
+          "median": 96.80000000001746,
+          "min": 93.90000000002328,
+          "max": 99.70000000001164,
+          "values": [
+            99.70000000001164,
+            93.90000000002328
+          ]
+        },
+        "coldMaxMs": {
+          "count": 2,
+          "median": 96.80000000001746,
+          "min": 93.90000000002328,
+          "max": 99.70000000001164,
+          "values": [
+            99.70000000001164,
+            93.90000000002328
+          ]
+        },
+        "coldPaints": {
+          "count": 2,
+          "median": 17.5,
+          "min": 17,
+          "max": 18,
+          "values": [
+            18,
+            17
+          ]
+        },
+        "coldPaintHz": {
+          "count": 2,
+          "median": 11.942409894625639,
+          "min": 11.638255630862286,
+          "max": 12.246564158388992,
+          "values": [
+            12.246564158388992,
+            11.638255630862286
+          ]
+        },
+        "coldCallbackBusyPercent": {
+          "count": 2,
+          "median": 40.09945220280141,
+          "min": 39.15930718148958,
+          "max": 41.03959722411324,
+          "values": [
+            41.03959722411324,
+            39.15930718148958
+          ]
+        },
+        "coldPreparationMaxMs": {
+          "count": 2,
+          "median": 55.45000000001164,
+          "min": 54.70000000001164,
+          "max": 56.20000000001164,
+          "values": [
+            54.70000000001164,
+            56.20000000001164
+          ]
+        },
+        "coldPreparationUnionMs": {
+          "count": 2,
+          "median": 108.2000000000262,
+          "min": 104.90000000002328,
+          "max": 111.5000000000291,
+          "values": [
+            111.5000000000291,
+            104.90000000002328
+          ]
+        },
+        "inputToReadyMs": {
+          "count": 2,
+          "median": 1468.1499999999942,
+          "min": 1463.5999999999767,
+          "max": 1472.7000000000116,
+          "values": [
+            1472.7000000000116,
+            1463.5999999999767
+          ]
+        },
+        "firstPaintResponseMs": {
+          "count": 2,
+          "median": 60.09999999999127,
+          "min": 7.600000000005821,
+          "max": 112.59999999997672,
+          "values": [
+            7.600000000005821,
+            112.59999999997672
+          ]
+        },
+        "firstFlightPaintResponseMs": {
+          "count": 2,
+          "median": 131.75,
+          "min": 112.59999999997672,
+          "max": 150.90000000002328,
+          "values": [
+            150.90000000002328,
+            112.59999999997672
+          ]
+        },
+        "arrivalP95Ms": {
+          "count": 2,
+          "median": 27.899999999979627,
+          "min": 27.199999999953434,
+          "max": 28.60000000000582,
+          "values": [
+            28.60000000000582,
+            27.199999999953434
+          ]
+        },
+        "arrivalPreparationMaxMs": {
+          "count": 2,
+          "median": 0,
+          "min": 0,
+          "max": 0,
+          "values": [
+            0,
+            0
+          ]
+        },
+        "inclusivePreparationUnionMs": {
+          "count": 2,
+          "median": 108.2000000000262,
+          "min": 104.90000000002328,
+          "max": 111.5000000000291,
+          "values": [
+            111.5000000000291,
+            104.90000000002328
+          ]
+        },
+        "warmP95Ms": {
+          "count": 2,
+          "median": 59.95000000002619,
+          "min": 58.80000000001746,
+          "max": 61.100000000034925,
+          "values": [
+            58.80000000001746,
+            61.100000000034925
+          ]
+        }
+      },
+      "localize/mobile/controls-off/flight-on": {
+        "trials": 2,
+        "complete": 2,
+        "errors": [],
+        "budgetFailures": 2,
+        "coldP50Ms": {
+          "count": 2,
+          "median": 25.44999999999709,
+          "min": 25,
+          "max": 25.89999999999418,
+          "values": [
+            25.89999999999418,
+            25
+          ]
+        },
+        "coldP95Ms": {
+          "count": 2,
+          "median": 87.40000000002328,
+          "min": 85.90000000002328,
+          "max": 88.90000000002328,
+          "values": [
+            88.90000000002328,
+            85.90000000002328
+          ]
+        },
+        "coldMaxMs": {
+          "count": 2,
+          "median": 87.40000000002328,
+          "min": 85.90000000002328,
+          "max": 88.90000000002328,
+          "values": [
+            88.90000000002328,
+            85.90000000002328
+          ]
+        },
+        "coldPaints": {
+          "count": 2,
+          "median": 19,
+          "min": 19,
+          "max": 19,
+          "values": [
+            19,
+            19
+          ]
+        },
+        "coldPaintHz": {
+          "count": 2,
+          "median": 12.87361456637317,
+          "min": 12.671735360810795,
+          "max": 13.075493771935546,
+          "values": [
+            12.671735360810795,
+            13.075493771935546
+          ]
+        },
+        "coldCallbackBusyPercent": {
+          "count": 2,
+          "median": 40.1488733038322,
+          "min": 39.942643724157264,
+          "max": 40.35510288350713,
+          "values": [
+            39.942643724157264,
+            40.35510288350713
+          ]
+        },
+        "coldPreparationMaxMs": {
+          "count": 2,
+          "median": 48.39999999999418,
+          "min": 46.79999999998836,
+          "max": 50,
+          "values": [
+            50,
+            46.79999999998836
+          ]
+        },
+        "coldPreparationUnionMs": {
+          "count": 2,
+          "median": 94.59999999999127,
+          "min": 93.09999999997672,
+          "max": 96.10000000000582,
+          "values": [
+            96.10000000000582,
+            93.09999999997672
+          ]
+        },
+        "inputToReadyMs": {
+          "count": 2,
+          "median": 1479.3500000000058,
+          "min": 1456.2000000000116,
+          "max": 1502.5,
+          "values": [
+            1502.5,
+            1456.2000000000116
+          ]
+        },
+        "firstPaintResponseMs": {
+          "count": 2,
+          "median": 14.39999999999418,
+          "min": 11.5,
+          "max": 17.29999999998836,
+          "values": [
+            11.5,
+            17.29999999998836
+          ]
+        },
+        "firstFlightPaintResponseMs": {
+          "count": 2,
+          "median": 144.10000000000582,
+          "min": 139.90000000002328,
+          "max": 148.29999999998836,
+          "values": [
+            148.29999999998836,
+            139.90000000002328
+          ]
+        },
+        "arrivalP95Ms": {
+          "count": 2,
+          "median": 25.700000000026193,
+          "min": 25.300000000017462,
+          "max": 26.100000000034925,
+          "values": [
+            25.300000000017462,
+            26.100000000034925
+          ]
+        },
+        "arrivalPreparationMaxMs": {
+          "count": 2,
+          "median": 0,
+          "min": 0,
+          "max": 0,
+          "values": [
+            0,
+            0
+          ]
+        },
+        "inclusivePreparationUnionMs": {
+          "count": 2,
+          "median": 94.59999999999127,
+          "min": 93.09999999997672,
+          "max": 96.10000000000582,
+          "values": [
+            96.10000000000582,
+            93.09999999997672
+          ]
+        },
+        "warmP95Ms": {
+          "count": 2,
+          "median": 54.14999999997963,
+          "min": 52.399999999965075,
+          "max": 55.89999999999418,
+          "values": [
+            55.89999999999418,
+            52.399999999965075
+          ]
+        }
+      },
+      "localize/mobile/row-grid-off/flight-on": {
+        "trials": 2,
+        "complete": 2,
+        "errors": [],
+        "budgetFailures": 2,
+        "coldP50Ms": {
+          "count": 2,
+          "median": 25.5,
+          "min": 24.900000000023283,
+          "max": 26.099999999976717,
+          "values": [
+            24.900000000023283,
+            26.099999999976717
+          ]
+        },
+        "coldP95Ms": {
+          "count": 2,
+          "median": 93.94999999999709,
+          "min": 92.89999999999418,
+          "max": 95,
+          "values": [
+            92.89999999999418,
+            95
+          ]
+        },
+        "coldMaxMs": {
+          "count": 2,
+          "median": 93.94999999999709,
+          "min": 92.89999999999418,
+          "max": 95,
+          "values": [
+            92.89999999999418,
+            95
+          ]
+        },
+        "coldPaints": {
+          "count": 2,
+          "median": 18.5,
+          "min": 18,
+          "max": 19,
+          "values": [
+            19,
+            18
+          ]
+        },
+        "coldPaintHz": {
+          "count": 2,
+          "median": 12.393576981072327,
+          "min": 11.945845500398287,
+          "max": 12.841308461746367,
+          "values": [
+            12.841308461746367,
+            11.945845500398287
+          ]
+        },
+        "coldCallbackBusyPercent": {
+          "count": 2,
+          "median": 39.75168745698999,
+          "min": 38.485532253800145,
+          "max": 41.01784266017984,
+          "values": [
+            41.01784266017984,
+            38.485532253800145
+          ]
+        },
+        "coldPreparationMaxMs": {
+          "count": 2,
+          "median": 50.20000000001164,
+          "min": 47.5,
+          "max": 52.90000000002328,
+          "values": [
+            47.5,
+            52.90000000002328
+          ]
+        },
+        "coldPreparationUnionMs": {
+          "count": 2,
+          "median": 100.35000000002037,
+          "min": 97.30000000001746,
+          "max": 103.40000000002328,
+          "values": [
+            97.30000000001746,
+            103.40000000002328
+          ]
+        },
+        "inputToReadyMs": {
+          "count": 2,
+          "median": 1496.9500000000116,
+          "min": 1483.2000000000116,
+          "max": 1510.7000000000116,
+          "values": [
+            1483.2000000000116,
+            1510.7000000000116
+          ]
+        },
+        "firstPaintResponseMs": {
+          "count": 2,
+          "median": 13.700000000011642,
+          "min": 9.700000000011642,
+          "max": 17.70000000001164,
+          "values": [
+            17.70000000001164,
+            9.700000000011642
+          ]
+        },
+        "firstFlightPaintResponseMs": {
+          "count": 2,
+          "median": 150.8000000000029,
+          "min": 143.10000000000582,
+          "max": 158.5,
+          "values": [
+            143.10000000000582,
+            158.5
+          ]
+        },
+        "arrivalP95Ms": {
+          "count": 2,
+          "median": 19.44999999999709,
+          "min": 19,
+          "max": 19.89999999999418,
+          "values": [
+            19.89999999999418,
+            19
+          ]
+        },
+        "arrivalPreparationMaxMs": {
+          "count": 2,
+          "median": 0,
+          "min": 0,
+          "max": 0,
+          "values": [
+            0,
+            0
+          ]
+        },
+        "inclusivePreparationUnionMs": {
+          "count": 2,
+          "median": 100.35000000002037,
+          "min": 97.30000000001746,
+          "max": 103.40000000002328,
+          "values": [
+            97.30000000001746,
+            103.40000000002328
+          ]
+        },
+        "warmP95Ms": {
+          "count": 2,
+          "median": 50.29999999998836,
+          "min": 41.79999999998836,
+          "max": 58.79999999998836,
+          "values": [
+            58.79999999998836,
+            41.79999999998836
+          ]
+        }
+      },
+      "localize/mobile/title-flex-off/flight-on": {
+        "trials": 2,
+        "complete": 2,
+        "errors": [],
+        "budgetFailures": 2,
+        "coldP50Ms": {
+          "count": 2,
+          "median": 28.050000000017462,
+          "min": 25.600000000034925,
+          "max": 30.5,
+          "values": [
+            25.600000000034925,
+            30.5
+          ]
+        },
+        "coldP95Ms": {
+          "count": 2,
+          "median": 99.70000000001164,
+          "min": 93.70000000001164,
+          "max": 105.70000000001164,
+          "values": [
+            93.70000000001164,
+            105.70000000001164
+          ]
+        },
+        "coldMaxMs": {
+          "count": 2,
+          "median": 99.70000000001164,
+          "min": 93.70000000001164,
+          "max": 105.70000000001164,
+          "values": [
+            93.70000000001164,
+            105.70000000001164
+          ]
+        },
+        "coldPaints": {
+          "count": 2,
+          "median": 17.5,
+          "min": 17,
+          "max": 18,
+          "values": [
+            18,
+            17
+          ]
+        },
+        "coldPaintHz": {
+          "count": 2,
+          "median": 11.891591755554689,
+          "min": 11.593016912165664,
+          "max": 12.190166598943712,
+          "values": [
+            12.190166598943712,
+            11.593016912165664
+          ]
+        },
+        "coldCallbackBusyPercent": {
+          "count": 2,
+          "median": 39.982330465454375,
+          "min": 39.19815793036861,
+          "max": 40.76650300054014,
+          "values": [
+            39.19815793036861,
+            40.76650300054014
+          ]
+        },
+        "coldPreparationMaxMs": {
+          "count": 2,
+          "median": 50.69999999998254,
+          "min": 49.399999999965075,
+          "max": 52,
+          "values": [
+            49.399999999965075,
+            52
+          ]
+        },
+        "coldPreparationUnionMs": {
+          "count": 2,
+          "median": 104.64999999993597,
+          "min": 100.79999999987194,
+          "max": 108.5,
+          "values": [
+            100.79999999987194,
+            108.5
+          ]
+        },
+        "inputToReadyMs": {
+          "count": 2,
+          "median": 1474.6499999999942,
+          "min": 1470.0999999999767,
+          "max": 1479.2000000000116,
+          "values": [
+            1479.2000000000116,
+            1470.0999999999767
+          ]
+        },
+        "firstPaintResponseMs": {
+          "count": 2,
+          "median": 106.79999999998836,
+          "min": 105.5,
+          "max": 108.09999999997672,
+          "values": [
+            105.5,
+            108.09999999997672
+          ]
+        },
+        "firstFlightPaintResponseMs": {
+          "count": 2,
+          "median": 106.79999999998836,
+          "min": 105.5,
+          "max": 108.09999999997672,
+          "values": [
+            105.5,
+            108.09999999997672
+          ]
+        },
+        "arrivalP95Ms": {
+          "count": 2,
+          "median": 26.449999999982538,
+          "min": 25.5,
+          "max": 27.399999999965075,
+          "values": [
+            25.5,
+            27.399999999965075
+          ]
+        },
+        "arrivalPreparationMaxMs": {
+          "count": 2,
+          "median": 0,
+          "min": 0,
+          "max": 0,
+          "values": [
+            0,
+            0
+          ]
+        },
+        "inclusivePreparationUnionMs": {
+          "count": 2,
+          "median": 104.64999999993597,
+          "min": 100.79999999987194,
+          "max": 108.5,
+          "values": [
+            100.79999999987194,
+            108.5
+          ]
+        },
+        "warmP95Ms": {
+          "count": 2,
+          "median": 49.10000000000582,
+          "min": 40.5,
+          "max": 57.70000000001164,
+          "values": [
+            40.5,
+            57.70000000001164
+          ]
+        }
+      }
+    },
+    "details": {
+      "current-color": {
+        "trials": 2,
+        "complete": 2,
+        "errors": [],
+        "directSceneReadyMs": {
+          "count": 2,
+          "median": 430,
+          "min": 367.79999999998836,
+          "max": 492.20000000001164,
+          "values": [
+            367.79999999998836,
+            492.20000000001164
+          ]
+        },
+        "directBootP95Ms": {
+          "count": 2,
+          "median": 193.8000000000029,
+          "min": 184.60000000000582,
+          "max": 203,
+          "values": [
+            184.60000000000582,
+            203
+          ]
+        },
+        "directBootMaxMs": {
+          "count": 2,
+          "median": 193.8000000000029,
+          "min": 184.60000000000582,
+          "max": 203,
+          "values": [
+            184.60000000000582,
+            203
+          ]
+        },
+        "firstScrollP95Ms": {
+          "count": 2,
+          "median": 31.25,
+          "min": 29,
+          "max": 33.5,
+          "values": [
+            29,
+            33.5
+          ]
+        },
+        "firstScrollMaxMs": {
+          "count": 2,
+          "median": 31.25,
+          "min": 29,
+          "max": 33.5,
+          "values": [
+            29,
+            33.5
+          ]
+        },
+        "invalidAudits": 0
+      },
+      "thematic-off": {
+        "trials": 2,
+        "complete": 2,
+        "errors": [],
+        "directSceneReadyMs": {
+          "count": 2,
+          "median": 502,
+          "min": 492.70000000001164,
+          "max": 511.29999999998836,
+          "values": [
+            511.29999999998836,
+            492.70000000001164
+          ]
+        },
+        "directBootP95Ms": {
+          "count": 2,
+          "median": 162.24999999998545,
+          "min": 160.79999999998836,
+          "max": 163.69999999998254,
+          "values": [
+            163.69999999998254,
+            160.79999999998836
+          ]
+        },
+        "directBootMaxMs": {
+          "count": 2,
+          "median": 162.24999999998545,
+          "min": 160.79999999998836,
+          "max": 163.69999999998254,
+          "values": [
+            163.69999999998254,
+            160.79999999998836
+          ]
+        },
+        "firstScrollP95Ms": {
+          "count": 2,
+          "median": 12.299999999988358,
+          "min": 11.599999999976717,
+          "max": 13,
+          "values": [
+            13,
+            11.599999999976717
+          ]
+        },
+        "firstScrollMaxMs": {
+          "count": 2,
+          "median": 12.599999999976717,
+          "min": 11.899999999965075,
+          "max": 13.299999999988358,
+          "values": [
+            13.299999999988358,
+            11.899999999965075
+          ]
+        },
+        "invalidAudits": 0
+      },
+      "shared-off": {
+        "trials": 2,
+        "complete": 2,
+        "errors": [],
+        "directSceneReadyMs": {
+          "count": 2,
+          "median": 388.6499999999942,
+          "min": 373.79999999998836,
+          "max": 403.5,
+          "values": [
+            373.79999999998836,
+            403.5
+          ]
+        },
+        "directBootP95Ms": {
+          "count": 2,
+          "median": 188.19999999998254,
+          "min": 180.79999999998836,
+          "max": 195.59999999997672,
+          "values": [
+            180.79999999998836,
+            195.59999999997672
+          ]
+        },
+        "directBootMaxMs": {
+          "count": 2,
+          "median": 188.19999999998254,
+          "min": 180.79999999998836,
+          "max": 195.59999999997672,
+          "values": [
+            180.79999999998836,
+            195.59999999997672
+          ]
+        },
+        "firstScrollP95Ms": {
+          "count": 2,
+          "median": 27.09999999999127,
+          "min": 26.599999999976717,
+          "max": 27.60000000000582,
+          "values": [
+            27.60000000000582,
+            26.599999999976717
+          ]
+        },
+        "firstScrollMaxMs": {
+          "count": 2,
+          "median": 27.09999999999127,
+          "min": 26.599999999976717,
+          "max": 27.60000000000582,
+          "values": [
+            27.60000000000582,
+            26.599999999976717
+          ]
+        },
+        "invalidAudits": 0
+      },
+      "model-profile": {
+        "trials": 2,
+        "complete": 2,
+        "errors": [],
+        "directSceneReadyMs": {
+          "count": 2,
+          "median": 411.8000000000029,
+          "min": 404.69999999998254,
+          "max": 418.9000000000233,
+          "values": [
+            404.69999999998254,
+            418.9000000000233
+          ]
+        },
+        "directBootP95Ms": {
+          "count": 2,
+          "median": 204.5500000000029,
+          "min": 199.89999999999418,
+          "max": 209.20000000001164,
+          "values": [
+            199.89999999999418,
+            209.20000000001164
+          ]
+        },
+        "directBootMaxMs": {
+          "count": 2,
+          "median": 204.5500000000029,
+          "min": 199.89999999999418,
+          "max": 209.20000000001164,
+          "values": [
+            199.89999999999418,
+            209.20000000001164
+          ]
+        },
+        "firstScrollP95Ms": {
+          "count": 2,
+          "median": 32.25000000001455,
+          "min": 30.800000000017462,
+          "max": 33.70000000001164,
+          "values": [
+            30.800000000017462,
+            33.70000000001164
+          ]
+        },
+        "firstScrollMaxMs": {
+          "count": 2,
+          "median": 32.25000000001455,
+          "min": 30.800000000017462,
+          "max": 33.70000000001164,
+          "values": [
+            30.800000000017462,
+            33.70000000001164
+          ]
+        },
+        "invalidAudits": 0
+      },
+      "model-no-thematic": {
+        "trials": 2,
+        "complete": 2,
+        "errors": [],
+        "directSceneReadyMs": {
+          "count": 2,
+          "median": 308.3500000000058,
+          "min": 296.5,
+          "max": 320.20000000001164,
+          "values": [
+            296.5,
+            320.20000000001164
+          ]
+        },
+        "directBootP95Ms": {
+          "count": 2,
+          "median": 112.80000000001746,
+          "min": 110.90000000002328,
+          "max": 114.70000000001164,
+          "values": [
+            110.90000000002328,
+            114.70000000001164
+          ]
+        },
+        "directBootMaxMs": {
+          "count": 2,
+          "median": 112.80000000001746,
+          "min": 110.90000000002328,
+          "max": 114.70000000001164,
+          "values": [
+            110.90000000002328,
+            114.70000000001164
+          ]
+        },
+        "firstScrollP95Ms": {
+          "count": 2,
+          "median": 13.949999999982538,
+          "min": 13,
+          "max": 14.899999999965075,
+          "values": [
+            13,
+            14.899999999965075
+          ]
+        },
+        "firstScrollMaxMs": {
+          "count": 2,
+          "median": 16.300000000017462,
+          "min": 13.900000000023283,
+          "max": 18.70000000001164,
+          "values": [
+            13.900000000023283,
+            18.70000000001164
+          ]
+        },
+        "invalidAudits": 0
+      },
+      "model-no-shared": {
+        "trials": 2,
+        "complete": 2,
+        "errors": [],
+        "directSceneReadyMs": {
+          "count": 2,
+          "median": 423.25,
+          "min": 358.70000000001164,
+          "max": 487.79999999998836,
+          "values": [
+            358.70000000001164,
+            487.79999999998836
+          ]
+        },
+        "directBootP95Ms": {
+          "count": 2,
+          "median": 161.95000000001164,
+          "min": 160.90000000002328,
+          "max": 163,
+          "values": [
+            163,
+            160.90000000002328
+          ]
+        },
+        "directBootMaxMs": {
+          "count": 2,
+          "median": 161.95000000001164,
+          "min": 160.90000000002328,
+          "max": 163,
+          "values": [
+            163,
+            160.90000000002328
+          ]
+        },
+        "firstScrollP95Ms": {
+          "count": 2,
+          "median": 23.20000000001164,
+          "min": 21.900000000023283,
+          "max": 24.5,
+          "values": [
+            24.5,
+            21.900000000023283
+          ]
+        },
+        "firstScrollMaxMs": {
+          "count": 2,
+          "median": 23.20000000001164,
+          "min": 21.900000000023283,
+          "max": 24.5,
+          "values": [
+            24.5,
+            21.900000000023283
+          ]
+        },
+        "invalidAudits": 0
+      },
+      "layout-control": {
+        "trials": 2,
+        "complete": 2,
+        "errors": [],
+        "directSceneReadyMs": {
+          "count": 2,
+          "median": 401.00000000001455,
+          "min": 393.9000000000233,
+          "max": 408.1000000000058,
+          "values": [
+            408.1000000000058,
+            393.9000000000233
+          ]
+        },
+        "directBootP95Ms": {
+          "count": 2,
+          "median": 205.95000000001164,
+          "min": 198.90000000002328,
+          "max": 213,
+          "values": [
+            213,
+            198.90000000002328
+          ]
+        },
+        "directBootMaxMs": {
+          "count": 2,
+          "median": 205.95000000001164,
+          "min": 198.90000000002328,
+          "max": 213,
+          "values": [
+            213,
+            198.90000000002328
+          ]
+        },
+        "firstScrollP95Ms": {
+          "count": 2,
+          "median": 32.25000000001455,
+          "min": 30.60000000000582,
+          "max": 33.90000000002328,
+          "values": [
+            30.60000000000582,
+            33.90000000002328
+          ]
+        },
+        "firstScrollMaxMs": {
+          "count": 2,
+          "median": 32.25000000001455,
+          "min": 30.60000000000582,
+          "max": 33.90000000002328,
+          "values": [
+            30.60000000000582,
+            33.90000000002328
+          ]
+        },
+        "invalidAudits": 0
+      },
+      "controls-off": {
+        "trials": 2,
+        "complete": 2,
+        "errors": [],
+        "directSceneReadyMs": {
+          "count": 2,
+          "median": 467.09999999999127,
+          "min": 424.19999999998254,
+          "max": 510,
+          "values": [
+            424.19999999998254,
+            510
+          ]
+        },
+        "directBootP95Ms": {
+          "count": 2,
+          "median": 204.45000000001164,
+          "min": 204.40000000002328,
+          "max": 204.5,
+          "values": [
+            204.5,
+            204.40000000002328
+          ]
+        },
+        "directBootMaxMs": {
+          "count": 2,
+          "median": 204.45000000001164,
+          "min": 204.40000000002328,
+          "max": 204.5,
+          "values": [
+            204.5,
+            204.40000000002328
+          ]
+        },
+        "firstScrollP95Ms": {
+          "count": 2,
+          "median": 32,
+          "min": 30.29999999998836,
+          "max": 33.70000000001164,
+          "values": [
+            33.70000000001164,
+            30.29999999998836
+          ]
+        },
+        "firstScrollMaxMs": {
+          "count": 2,
+          "median": 32,
+          "min": 30.29999999998836,
+          "max": 33.70000000001164,
+          "values": [
+            33.70000000001164,
+            30.29999999998836
+          ]
+        },
+        "invalidAudits": 0
+      },
+      "row-grid-off": {
+        "trials": 2,
+        "complete": 2,
+        "errors": [],
+        "directSceneReadyMs": {
+          "count": 2,
+          "median": 541.3999999999942,
+          "min": 520.5,
+          "max": 562.2999999999884,
+          "values": [
+            520.5,
+            562.2999999999884
+          ]
+        },
+        "directBootP95Ms": {
+          "count": 2,
+          "median": 213.70000000001164,
+          "min": 202,
+          "max": 225.40000000002328,
+          "values": [
+            202,
+            225.40000000002328
+          ]
+        },
+        "directBootMaxMs": {
+          "count": 2,
+          "median": 213.70000000001164,
+          "min": 202,
+          "max": 225.40000000002328,
+          "values": [
+            202,
+            225.40000000002328
+          ]
+        },
+        "firstScrollP95Ms": {
+          "count": 2,
+          "median": 30.89999999999418,
+          "min": 30.29999999998836,
+          "max": 31.5,
+          "values": [
+            30.29999999998836,
+            31.5
+          ]
+        },
+        "firstScrollMaxMs": {
+          "count": 2,
+          "median": 30.89999999999418,
+          "min": 30.29999999998836,
+          "max": 31.5,
+          "values": [
+            30.29999999998836,
+            31.5
+          ]
+        },
+        "invalidAudits": 0
+      },
+      "title-flex-off": {
+        "trials": 2,
+        "complete": 2,
+        "errors": [],
+        "directSceneReadyMs": {
+          "count": 2,
+          "median": 498.8499999999767,
+          "min": 465.3999999999651,
+          "max": 532.2999999999884,
+          "values": [
+            532.2999999999884,
+            465.3999999999651
+          ]
+        },
+        "directBootP95Ms": {
+          "count": 2,
+          "median": 206.60000000003492,
+          "min": 201.90000000002328,
+          "max": 211.30000000004657,
+          "values": [
+            211.30000000004657,
+            201.90000000002328
+          ]
+        },
+        "directBootMaxMs": {
+          "count": 2,
+          "median": 206.60000000003492,
+          "min": 201.90000000002328,
+          "max": 211.30000000004657,
+          "values": [
+            211.30000000004657,
+            201.90000000002328
+          ]
+        },
+        "firstScrollP95Ms": {
+          "count": 2,
+          "median": 30.20000000001164,
+          "min": 29.20000000001164,
+          "max": 31.20000000001164,
+          "values": [
+            29.20000000001164,
+            31.20000000001164
+          ]
+        },
+        "firstScrollMaxMs": {
+          "count": 2,
+          "median": 30.20000000001164,
+          "min": 29.20000000001164,
+          "max": 31.20000000001164,
+          "values": [
+            29.20000000001164,
+            31.20000000001164
+          ]
+        },
+        "invalidAudits": 0
+      }
+    }
+  },
+  "identities": {
+    "current-base": {
+      "sourceCommit": "90391fb5796731a1a0d54e45a332dac71019ee11",
+      "sourceTree": "8ddb435890c705827d28ffdd51869bdf0800c665",
+      "candidateCommit": "90391fb5796731a1a0d54e45a332dac71019ee11",
+      "sourceDirty": false,
+      "artifactDigest": "f8f43b915e9f2d09be495499b9963b5e54fe8f8ba2d09eb45062abb738a9c933",
+      "variant": null,
+      "diagnostic": null
+    },
+    "current-color": {
+      "sourceCommit": "90391fb5796731a1a0d54e45a332dac71019ee11",
+      "sourceTree": "8ddb435890c705827d28ffdd51869bdf0800c665",
+      "candidateCommit": "90391fb5796731a1a0d54e45a332dac71019ee11",
+      "sourceDirty": false,
+      "artifactDigest": "2d3a9c6a27f6c3fcf0b957367fb64ed31765fd8cd95e934413b2675dfe087b8b",
+      "variant": {
+        "id": "color",
+        "contract": 1,
+        "fingerprint": "29f96cf7b87c31e917e611abdc2112297f6e85cb4797b4c19a6f90bafd7924c9",
+        "baseEngine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92",
+        "effects": [
+          "ribbons",
+          "travel"
+        ]
+      },
+      "diagnostic": null
+    },
+    "thematic-off": {
+      "sourceCommit": "90391fb5796731a1a0d54e45a332dac71019ee11",
+      "sourceTree": "8ddb435890c705827d28ffdd51869bdf0800c665",
+      "candidateCommit": "90391fb5796731a1a0d54e45a332dac71019ee11",
+      "sourceDirty": false,
+      "artifactDigest": "fc96a5440289ba59387bc956637a0f173b1fd9088ea26db878731e179afefc2a",
+      "variant": {
+        "id": "color",
+        "contract": 1,
+        "fingerprint": "28f67fede1705b29b50425aa4fc8d55b74823cdd300aa737aa0b912748c8d4b8",
+        "baseEngine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92",
+        "effects": [
+          "ribbons",
+          "travel"
+        ],
+        "diagnostic": {
+          "label": "thematic-off",
+          "description": "Omit Writing thematic objects during projection only; retain all room construction/palette work and other routes.",
+          "fullGate": false
+        }
+      },
+      "diagnostic": {
+        "label": "thematic-off",
+        "description": "Omit Writing thematic objects during projection only; retain all room construction/palette work and other routes.",
+        "fullGate": false
+      }
+    },
+    "shared-off": {
+      "sourceCommit": "90391fb5796731a1a0d54e45a332dac71019ee11",
+      "sourceTree": "8ddb435890c705827d28ffdd51869bdf0800c665",
+      "candidateCommit": "90391fb5796731a1a0d54e45a332dac71019ee11",
+      "sourceDirty": false,
+      "artifactDigest": "77cfed1d89641098f310a7aae8f8bf5be3141ac982398f4530c85b4553652a0c",
+      "variant": {
+        "id": "color",
+        "contract": 1,
+        "fingerprint": "5233b82fcfda88490ffa83cc09dac3e0fb79bbe5b6aee03e1a073ba93a3c458c",
+        "baseEngine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92",
+        "effects": [
+          "ribbons",
+          "travel"
+        ],
+        "diagnostic": {
+          "label": "shared-off",
+          "description": "Omit Writing shared objects during projection only; retain all room construction/palette work and other routes.",
+          "fullGate": false
+        }
+      },
+      "diagnostic": {
+        "label": "shared-off",
+        "description": "Omit Writing shared objects during projection only; retain all room construction/palette work and other routes.",
+        "fullGate": false
+      }
+    },
+    "model-profile": {
+      "sourceCommit": "90391fb5796731a1a0d54e45a332dac71019ee11",
+      "sourceTree": "8ddb435890c705827d28ffdd51869bdf0800c665",
+      "candidateCommit": "90391fb5796731a1a0d54e45a332dac71019ee11",
+      "sourceDirty": false,
+      "artifactDigest": "9b9c45e3aac2bdd61938c44be5cb741906ebb56a2b67c0a9e6bfa9bb652811d8",
+      "variant": {
+        "id": "color",
+        "contract": 1,
+        "fingerprint": "5bcb51b5f6db00c746b699cb4310d359d84a4d9d01924255faff77e3890606d3",
+        "baseEngine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92",
+        "effects": [
+          "ribbons",
+          "travel"
+        ],
+        "diagnostic": {
+          "label": "model-profile",
+          "description": "Profile Writing symbol construction and aggregate face preparation; preserve geometry and rendering.",
+          "fullGate": false
+        }
+      },
+      "diagnostic": {
+        "label": "model-profile",
+        "description": "Profile Writing symbol construction and aggregate face preparation; preserve geometry and rendering.",
+        "fullGate": false
+      }
+    },
+    "model-no-thematic": {
+      "sourceCommit": "90391fb5796731a1a0d54e45a332dac71019ee11",
+      "sourceTree": "8ddb435890c705827d28ffdd51869bdf0800c665",
+      "candidateCommit": "90391fb5796731a1a0d54e45a332dac71019ee11",
+      "sourceDirty": false,
+      "artifactDigest": "a584867b519ad041058219b6b74e9d305ee7a27913659db68d181cf7ae965f3b",
+      "variant": {
+        "id": "color",
+        "contract": 1,
+        "fingerprint": "03a0f75ba23142db8225e3034437780e8b458d99a1c46924fc322ebd97c58010",
+        "baseEngine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92",
+        "effects": [
+          "ribbons",
+          "travel"
+        ],
+        "diagnostic": {
+          "label": "model-no-thematic",
+          "description": "Omit Writing thematic construction and rendering; retain shared geometry and every other route.",
+          "fullGate": false
+        }
+      },
+      "diagnostic": {
+        "label": "model-no-thematic",
+        "description": "Omit Writing thematic construction and rendering; retain shared geometry and every other route.",
+        "fullGate": false
+      }
+    },
+    "model-no-shared": {
+      "sourceCommit": "90391fb5796731a1a0d54e45a332dac71019ee11",
+      "sourceTree": "8ddb435890c705827d28ffdd51869bdf0800c665",
+      "candidateCommit": "90391fb5796731a1a0d54e45a332dac71019ee11",
+      "sourceDirty": false,
+      "artifactDigest": "5b7df7695c63705232c8a34bb4bb44962706b01dbafcfc5aebee12527e46242c",
+      "variant": {
+        "id": "color",
+        "contract": 1,
+        "fingerprint": "5e143dd684f5729070c56d92009295a24e3bc3391e90fd5c70f0591ada285184",
+        "baseEngine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92",
+        "effects": [
+          "ribbons",
+          "travel"
+        ],
+        "diagnostic": {
+          "label": "model-no-shared",
+          "description": "Omit Writing shared construction and rendering; retain thematic geometry and every other route.",
+          "fullGate": false
+        }
+      },
+      "diagnostic": {
+        "label": "model-no-shared",
+        "description": "Omit Writing shared construction and rendering; retain thematic geometry and every other route.",
+        "fullGate": false
+      }
+    },
+    "layout-control": {
+      "sourceCommit": "90391fb5796731a1a0d54e45a332dac71019ee11",
+      "sourceTree": "8ddb435890c705827d28ffdd51869bdf0800c665",
+      "candidateCommit": "90391fb5796731a1a0d54e45a332dac71019ee11",
+      "sourceDirty": false,
+      "artifactDigest": "ab9bfa74c4759fa3cb717a37c7676a8d344e2557602aea127c0025dbacaaaed9",
+      "variant": {
+        "id": "color",
+        "contract": 1,
+        "fingerprint": "d823054317422aae555492e98badd31ba9fc50dc4ad22335a81571768c214e3f",
+        "baseEngine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92",
+        "effects": [
+          "ribbons",
+          "travel"
+        ],
+        "diagnostic": {
+          "label": "layout-control",
+          "description": "Apply canonical separately measured row/control constraints; retain native grid/flex and every publication.",
+          "fullGate": false
+        }
+      },
+      "diagnostic": {
+        "label": "layout-control",
+        "description": "Apply canonical separately measured row/control constraints; retain native grid/flex and every publication.",
+        "fullGate": false
+      }
+    },
+    "controls-off": {
+      "sourceCommit": "90391fb5796731a1a0d54e45a332dac71019ee11",
+      "sourceTree": "8ddb435890c705827d28ffdd51869bdf0800c665",
+      "candidateCommit": "90391fb5796731a1a0d54e45a332dac71019ee11",
+      "sourceDirty": false,
+      "artifactDigest": "c0183e66d7e99f2e0e131cca096bb214003d44b722edbbc51975cefd32c2e723",
+      "variant": {
+        "id": "color",
+        "contract": 1,
+        "fingerprint": "315a43373f96e1d18185a3c84912217c22a11a405e8c9a186879d6034634940c",
+        "baseEngine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92",
+        "effects": [
+          "ribbons",
+          "travel"
+        ],
+        "diagnostic": {
+          "label": "controls-off",
+          "description": "Replace filters/content controls with measured empty placeholders after ordinary archive initialization; preserve publications and native range.",
+          "fullGate": false
+        }
+      },
+      "diagnostic": {
+        "label": "controls-off",
+        "description": "Replace filters/content controls with measured empty placeholders after ordinary archive initialization; preserve publications and native range.",
+        "fullGate": false
+      }
+    },
+    "row-grid-off": {
+      "sourceCommit": "90391fb5796731a1a0d54e45a332dac71019ee11",
+      "sourceTree": "8ddb435890c705827d28ffdd51869bdf0800c665",
+      "candidateCommit": "90391fb5796731a1a0d54e45a332dac71019ee11",
+      "sourceDirty": false,
+      "artifactDigest": "d3f3693e859691d17986c9b94e6283ba5bb983189fd9ec8aa76e300ff4b02b67",
+      "variant": {
+        "id": "color",
+        "contract": 1,
+        "fingerprint": "b4777b9a6d82b224dcf9c7a7002bcc0959496288c56e38dfe865407f82f859b3",
+        "baseEngine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92",
+        "effects": [
+          "ribbons",
+          "travel"
+        ],
+        "diagnostic": {
+          "label": "row-grid-off",
+          "description": "Replace only constrained publication outer grids with positioned native child footprints; retain title flex and text.",
+          "fullGate": false
+        }
+      },
+      "diagnostic": {
+        "label": "row-grid-off",
+        "description": "Replace only constrained publication outer grids with positioned native child footprints; retain title flex and text.",
+        "fullGate": false
+      }
+    },
+    "title-flex-off": {
+      "sourceCommit": "90391fb5796731a1a0d54e45a332dac71019ee11",
+      "sourceTree": "8ddb435890c705827d28ffdd51869bdf0800c665",
+      "candidateCommit": "90391fb5796731a1a0d54e45a332dac71019ee11",
+      "sourceDirty": false,
+      "artifactDigest": "c882a0703b6e7f6f877ee6099fada1d5f5ee1c427bcfc3031a570095f014584c",
+      "variant": {
+        "id": "color",
+        "contract": 1,
+        "fingerprint": "d2d959dd3dd808edc78f8bad7a3f5192ac4def4cbf15b20bf230ebf89006710e",
+        "baseEngine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92",
+        "effects": [
+          "ribbons",
+          "travel"
+        ],
+        "diagnostic": {
+          "label": "title-flex-off",
+          "description": "Replace only constrained title flex layout with positioned native text/arrow footprints; retain outer grids.",
+          "fullGate": false
+        }
+      },
+      "diagnostic": {
+        "label": "title-flex-off",
+        "description": "Replace only constrained title flex layout with positioned native text/arrow footprints; retain outer grids.",
+        "fullGate": false
+      }
+    }
+  },
+  "rawSha256": "96123eb3bd12a1e250b9a0b7f78856fc0c9b90767e0beb4f6dd46b36d1d405c2"
+}

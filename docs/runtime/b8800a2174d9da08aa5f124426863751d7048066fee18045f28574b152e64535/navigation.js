@@ -111,6 +111,7 @@
     releaseEndpoint('interrupt');
     releaseTail();
     request?.abort();request=null;
+    transition?.cancel?.();
     window.SiteScene?.detachTravel();transition?.(1);transition=null;
     clearText();content.removeAttribute("aria-busy");return travelling;
   }
@@ -192,13 +193,45 @@
   document.fonts?.addEventListener?.('loadingdone',()=>{if(!window.SiteScene?.managesLayout)reconcileEndpoint();});
   function flight(next,animate,commit,own,departure) {
     return new Promise((resolve,reject)=>{
-      let mounted=false;
-      transition=progress=>{
-        if(own!==serial){resolve();return;}
+      let mounted=false,mountTimer=null,settled=false,lastProgress=0;
+      const mountAt=presentation?.mountAt??.18;
+      const cancelTask=()=>{if(mountTimer!==null)window.clearTimeout(mountTimer);mountTimer=null;};
+      const cancel=()=>{if(settled)return;settled=true;cancelTask();if(transition===update)transition=null;resolve();};
+      const fail=error=>{if(settled)return;settled=true;cancelTask();if(transition===update){window.SiteScene?.detachTravel();transition=null;}reject(error);};
+      function mountNow(task=false) {
+        cancelTask();
+        if(settled||own!==serial){cancel();return;}
+        if(mounted)return;
+        const start=task&&window.SiteEngineProbe?performance.now():0;
+        try{mounted=true;commit();}
+        finally{if(start){const time=performance.now();window.SiteEngineProbe?.({kind:'navigation-task',part:'mount-task',time,start,duration:time-start,page:next});}}
+      }
+      function queueMount() {
+        if(mountTimer!==null)return;
+        // The Color midpoint has hidden the old plane. Yield the completed
+        // Canvas paint before native archive construction/layout, using the
+        // existing browser task queue rather than another animation clock.
+        mountTimer=window.setTimeout(()=>{
+          mountTimer=null;
+          if(settled||own!==serial){cancel();return;}
+          try{mountNow(true);if(!settled)update(lastProgress);}catch(error){fail(error);}
+        },0);
+      }
+      const update=progress=>{
+        if(settled)return;
+        if(own!==serial){cancel();return;}
         try {
-          if(progress>=(presentation?.mountAt??.18)&&!mounted){mounted=true;commit();}
+          lastProgress=progress;
+          if(progress>=mountAt&&!mounted){
+            if(animate&&presentation?.mountAt===.5&&progress<1)queueMount();
+            else mountNow(mountTimer!==null);
+          }
+          if(settled||own!==serial){cancel();return;}
+          // Do not reveal the old DOM if a painted progress jumps past the
+          // midpoint before its queued native mount has completed.
+          if(!mounted&&mountTimer!==null)progress=mountAt;
           if(presentation){
-            if(progress===1){clearText();transition=null;resolve();}
+            if(progress===1){clearText();settled=true;cancelTask();if(transition===update)transition=null;resolve();}
             else presentation.present(progress,document.querySelector('.space-scene')?.dataset.direction||'forward',departure);
             return;
           }
@@ -210,9 +243,10 @@
           const opacity=progress<.18?departure*(1-eased):progress===1?1:Math.min(.999,eased);
           content.style.opacity=String(opacity);
           content.style.transform="translateY("+(progress<.18?-10*eased:12*(1-eased))+"px)";
-          if(progress===1){clearText();transition=null;resolve();}
-        }catch(error){window.SiteScene?.detachTravel();transition=null;reject(error);}
+          if(progress===1){clearText();settled=true;cancelTask();if(transition===update)transition=null;resolve();}
+        }catch(error){fail(error);}
       };
+      update.cancel=cancel;transition=update;
       content.inert=true;
       if(window.SiteScene)window.SiteScene.navigate(next,animate,transition);
       else transition(1);

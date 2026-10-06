@@ -17,6 +17,9 @@ module.exports=function(api) {
   let choice=null;
   try { choice=localStorage.getItem(key); } catch { /* In-tab controls remain useful. */ }
   let enabled=choice!=="off" && !reduced.matches, printing=false, pending=null,initialized=false,failed=false;
+  // Deferred scripts run while readyState is interactive. Archive filtering
+  // and the navigation content plane must finish before the first layout read.
+  let domReady=document.readyState!=="loading"&&document.readyState!=="interactive";
   let width=1,height=1,ratio=1,stops=[],bounds=null,focus="all",localProgress=0;
   const initial=initialPoses[page]||"overview";
   const rooms=new Map();
@@ -72,7 +75,7 @@ module.exports=function(api) {
     span('layout-writing');
   }
   function flushLayout() {
-    if(!layoutDirty||failed)return;
+    if(!initialized||!layoutDirty||failed)return;
     // During departure the engine already owns the next route, while the old
     // DOM is still shown. Its geometry cannot describe the destination.
     if(document.body.dataset.page!==page)return;
@@ -324,9 +327,9 @@ module.exports=function(api) {
     if(event.detail.reason==="initial"&&!journey){current=target;animation=null;schedule();}else moveTo(target);
   });
   const resize=()=>{
-    if(!initialized){initialize();return;}
     if(failed)return;
     if(compact!==narrow.matches)compact=narrow.matches;
+    if(!initialized){initialize();return;}
     invalidateLayout('resize');
   }; // Layout never changes a frozen camera/ambient phase or starts a flight.
   window.addEventListener("site:archive-layout",resize);
@@ -381,7 +384,7 @@ module.exports=function(api) {
   };
   // Stylesheet load/error is authoritative, including early WebKit deferral.
   function initialize() {
-    if(initialized || failed || !readColors())return;
+    if(!domReady || initialized || failed || !readColors())return;
     measure();layoutDirty=false;layoutReasons.clear();initialized=true;scene.dataset.state="active";
     if(enabled) {
       if(page==="writing")current=pathPose();
@@ -394,5 +397,6 @@ module.exports=function(api) {
   stylesheet?.addEventListener?.("load",initialize,{once:true});
   stylesheet?.addEventListener?.("error",()=>{if(!initialized)fail();},{once:true});
   canvas.addEventListener?.("contextlost",fail);
+  if(!domReady)document.addEventListener("DOMContentLoaded",()=>{domReady=true;initialize();},{once:true});
   initialize();
 };

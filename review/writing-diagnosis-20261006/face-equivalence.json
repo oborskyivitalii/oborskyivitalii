@@ -1,0 +1,279 @@
+{
+  "scope": "Exact numeric equivalence plus local Node ranking only; browser/CI performance acceptance is not established.",
+  "sourceHead": "90391fb5796731a1a0d54e45a332dac71019ee11",
+  "originalSha256": "db00841d731cd45174fff4b759afc785ea63aee795b6964a75aba216d697f861",
+  "candidateSha256": "a8db657e84df4611712142b02fe5022c5cb13a9e9d7142d5ad7ef778548d529e",
+  "sourcePath": "site/scenes/world.cjs",
+  "arithmetic": "Preserve edge subtraction, cross products, Math.hypot, n>1e-9 degenerate fallback and left-to-right dot accumulation from0. Newell facePlane unchanged.",
+  "exactWorlds": 10,
+  "exactProjections": 1440,
+  "exact": [
+    {
+      "route": "index",
+      "compact": false,
+      "objects": 252,
+      "vertices": 14070,
+      "faces": 7344,
+      "lines": 4735,
+      "temporaryArraysEliminated": 29376,
+      "worldSha256": "87fd5e8ab3963452652d1b82b106b4fd3a824d6d2302e7deab432ee3def411b5",
+      "projectionChecks": 144
+    },
+    {
+      "route": "research",
+      "compact": false,
+      "objects": 252,
+      "vertices": 14644,
+      "faces": 7842,
+      "lines": 6145,
+      "temporaryArraysEliminated": 31368,
+      "worldSha256": "2d1304e21b8ce8bc88480e04294d840402e20e6c5d4976aef7184a09fadb0f4b",
+      "projectionChecks": 144
+    },
+    {
+      "route": "writing",
+      "compact": false,
+      "objects": 252,
+      "vertices": 11422,
+      "faces": 4798,
+      "lines": 5057,
+      "temporaryArraysEliminated": 19192,
+      "worldSha256": "44645170bf77264f42e26554e4abf79245aca16c7557e410ab7e78e37b989293",
+      "projectionChecks": 144
+    },
+    {
+      "route": "talks",
+      "compact": false,
+      "objects": 252,
+      "vertices": 13288,
+      "faces": 6460,
+      "lines": 5039,
+      "temporaryArraysEliminated": 25840,
+      "worldSha256": "1a90f95f4f9cc5e04dc3e13b1152e90b945d45bf24d746f18b219d78fbe636fa",
+      "projectionChecks": 144
+    },
+    {
+      "route": "credits",
+      "compact": false,
+      "objects": 252,
+      "vertices": 11424,
+      "faces": 5998,
+      "lines": 4311,
+      "temporaryArraysEliminated": 23992,
+      "worldSha256": "e7d312429f9d5ac79d5d38afc38a61d8f161cce266c7bce950a054aa777b5b3a",
+      "projectionChecks": 144
+    },
+    {
+      "route": "index",
+      "compact": true,
+      "objects": 252,
+      "vertices": 10650,
+      "faces": 5488,
+      "lines": 3167,
+      "temporaryArraysEliminated": 21952,
+      "worldSha256": "ce2bad68b7f7400afa6df735eae5173571a46dddb02a439f7dbc9a81fb331cf9",
+      "projectionChecks": 144
+    },
+    {
+      "route": "research",
+      "compact": true,
+      "objects": 252,
+      "vertices": 10488,
+      "faces": 5590,
+      "lines": 3777,
+      "temporaryArraysEliminated": 22360,
+      "worldSha256": "4838b32934c28a629f671ac6bb4570baf51b38240a86ae9263413a751704863c",
+      "projectionChecks": 144
+    },
+    {
+      "route": "writing",
+      "compact": true,
+      "objects": 252,
+      "vertices": 9398,
+      "faces": 3890,
+      "lines": 3549,
+      "temporaryArraysEliminated": 15560,
+      "worldSha256": "d8e8ea81a6463b4258c15b44eb82b7c11f9fa93521f31364e951e87c5896ad63",
+      "projectionChecks": 144
+    },
+    {
+      "route": "talks",
+      "compact": true,
+      "objects": 252,
+      "vertices": 11196,
+      "faces": 5474,
+      "lines": 3535,
+      "temporaryArraysEliminated": 21896,
+      "worldSha256": "70b9a1104c1b7546ee2f79719b987c0b1d6e85004dcb246eb05c0d3e9fbea42f",
+      "projectionChecks": 144
+    },
+    {
+      "route": "credits",
+      "compact": true,
+      "objects": 252,
+      "vertices": 9648,
+      "faces": 4928,
+      "lines": 3311,
+      "temporaryArraysEliminated": 19712,
+      "worldSha256": "c3d29f8730b9be8f843fe930589b3c58e3647d97991b402aac90edd13008aebc",
+      "projectionChecks": 144
+    }
+  ],
+  "timings": [
+    {
+      "pair": 0,
+      "condition": "before",
+      "coldMs": 10.388069000000542,
+      "warmMs": 5.802037874999769
+    },
+    {
+      "pair": 0,
+      "condition": "candidate",
+      "coldMs": 11.900891000001138,
+      "warmMs": 4.383935000000292
+    },
+    {
+      "pair": 1,
+      "condition": "candidate",
+      "coldMs": 7.711001000003307,
+      "warmMs": 4.245765499999834
+    },
+    {
+      "pair": 1,
+      "condition": "before",
+      "coldMs": 10.728723000000173,
+      "warmMs": 7.280103125000096
+    },
+    {
+      "pair": 2,
+      "condition": "before",
+      "coldMs": 9.040095000000292,
+      "warmMs": 5.604137000000264
+    },
+    {
+      "pair": 2,
+      "condition": "candidate",
+      "coldMs": 10.230562000000646,
+      "warmMs": 4.690700374999778
+    },
+    {
+      "pair": 3,
+      "condition": "candidate",
+      "coldMs": 8.838832999997976,
+      "warmMs": 4.635395750000043
+    },
+    {
+      "pair": 3,
+      "condition": "before",
+      "coldMs": 8.697448999999324,
+      "warmMs": 5.099419374999798
+    },
+    {
+      "pair": 4,
+      "condition": "before",
+      "coldMs": 8.076202000000194,
+      "warmMs": 4.7844831249999515
+    },
+    {
+      "pair": 4,
+      "condition": "candidate",
+      "coldMs": 7.800576000001456,
+      "warmMs": 4.700740499999938
+    },
+    {
+      "pair": 5,
+      "condition": "candidate",
+      "coldMs": 8.127057999998215,
+      "warmMs": 4.137368249999781
+    },
+    {
+      "pair": 5,
+      "condition": "before",
+      "coldMs": 7.880797000001621,
+      "warmMs": 4.987061249999897
+    },
+    {
+      "pair": 6,
+      "condition": "before",
+      "coldMs": 10.83724599999914,
+      "warmMs": 4.697381625000162
+    },
+    {
+      "pair": 6,
+      "condition": "candidate",
+      "coldMs": 7.717191000003368,
+      "warmMs": 3.9309343750001062
+    },
+    {
+      "pair": 7,
+      "condition": "candidate",
+      "coldMs": 7.216606000001775,
+      "warmMs": 4.003134374999718
+    },
+    {
+      "pair": 7,
+      "condition": "before",
+      "coldMs": 13.075112999998964,
+      "warmMs": 4.820656374999999
+    },
+    {
+      "pair": 8,
+      "condition": "before",
+      "coldMs": 20.490036999999575,
+      "warmMs": 6.010561125000095
+    },
+    {
+      "pair": 8,
+      "condition": "candidate",
+      "coldMs": 13.900977999997849,
+      "warmMs": 5.139066749999984
+    },
+    {
+      "pair": 9,
+      "condition": "candidate",
+      "coldMs": 8.435122999999294,
+      "warmMs": 4.582563500000106
+    },
+    {
+      "pair": 9,
+      "condition": "before",
+      "coldMs": 9.015799000000698,
+      "warmMs": 5.247556625000016
+    },
+    {
+      "pair": 10,
+      "condition": "before",
+      "coldMs": 8.531909000001178,
+      "warmMs": 5.019179625000106
+    },
+    {
+      "pair": 10,
+      "condition": "candidate",
+      "coldMs": 8.598910000000615,
+      "warmMs": 4.961241625000184
+    },
+    {
+      "pair": 11,
+      "condition": "candidate",
+      "coldMs": 8.303965999999491,
+      "warmMs": 4.833669750000354
+    },
+    {
+      "pair": 11,
+      "condition": "before",
+      "coldMs": 19.321635000000242,
+      "warmMs": 5.224509249999755
+    }
+  ],
+  "summary": {
+    "before": {
+      "coldMedianMs": 9.714082000000417,
+      "warmMedianMs": 5.1619643124997765
+    },
+    "candidate": {
+      "coldMedianMs": 8.369544499999392,
+      "warmMedianMs": 4.6089796250000745
+    }
+  },
+  "syntheticExactFaces": 40020
+}

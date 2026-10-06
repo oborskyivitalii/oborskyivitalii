@@ -3,33 +3,35 @@ const test=require("node:test"),assert=require("node:assert/strict"),fs=require(
 const sourceFile=process.env.SITE_SPACE_SOURCE||path.join(__dirname,"../docs/space.js");
 const source=fs.readFileSync(sourceFile,"utf8"),model=require(sourceFile);
 function visit(options={}) {
-  const events={},docEvents={},buttonEvents={},pending=new Map(),calls=[];
-  let failDraw=false,styled=options.styled!==false,paintClock=0,bitmapValid=false,resizeCount=0,draws=0,serial=0,time=0,stored=options.saved??null,mutation;
+  const events={},docEvents={},buttonEvents={},stylesheetEvents={},canvasEvents={},pending=new Map(),calls=[];
+  let failDraw=false,styled=options.styled!==false,paintClock=0,bitmapValid=false,resizeCount=0,draws=0,serial=0,time=0,stored=options.saved??null,mutation,rangeReads=0,styleReads=0,maxHeight=15000;
   const media={matches:!!options.reduced,addEventListener:(_,fn)=>{media.change=fn;}};
   const narrow={matches:!!options.narrow},scene={dataset:{}};
   const context=Object.fromEntries(["setTransform","clearRect","beginPath","moveTo","lineTo","stroke","arc","fill","closePath"].map(name=>[name,(...args)=>{for(const arg of args)assert.ok(Number.isFinite(arg));if(name==="clearRect"){if(failDraw)throw Error("injected");draws++;bitmapValid=false;paintClock+=options.paintCost??0;}if(name==="fill"||name==="stroke")bitmapValid=true;}]));
-  const canvas={parentElement:scene,getContext:()=>options.noCanvas?null:context};
+  const canvas={parentElement:scene,getContext:()=>options.noCanvas?null:context,addEventListener:(name,fn)=>{canvasEvents[name]=fn;}};
   for(const [key,initial] of [["width",300],["height",150]]){let value=initial;Object.defineProperty(canvas,key,{get:()=>value,set:v=>{value=v;bitmapValid=false;resizeCount++;}});}
   const button={hidden:true,disabled:false,setAttribute:(key,value)=>{button[key]=value;},addEventListener:(name,fn)=>{buttonEvents[name]=fn;}};
   const window={performance:{now:()=>paintClock},innerWidth:options.narrow?390:1440,innerHeight:900,devicePixelRatio:4,scrollY:options.scrollY||0,
     matchMedia:query=>query.includes("reduced")?media:narrow,
     requestAnimationFrame:fn=>{const id=++serial;pending.set(id,fn);return id;},cancelAnimationFrame:id=>pending.delete(id),
-    addEventListener:(name,fn)=>{events[name]=fn;},getComputedStyle:()=>({getPropertyValue:name=>!styled?"":({"--accent":"#075d7b","--systems":"#895710","--paper":"#f8f7f3"})[name]})};
+    addEventListener:(name,fn)=>{events[name]=fn;},getComputedStyle:()=>{styleReads++;return {getPropertyValue:name=>!styled?"":({"--accent":"#075d7b","--systems":"#895710","--paper":"#f8f7f3"})[name]};}};
   const makeStop=([id,top],hidden=false)=>({hidden,dataset:{spaceStop:id},getClientRects:()=>hidden?[]:[{}],getBoundingClientRect:()=>({top:top-window.scrollY,height:300})});
   const keys=Object.keys(model.pageStops[options.page||"index"]||{});
   let stops=(options.stops||keys.map((id,i)=>[id,i*1100])).map(pair=>makeStop(pair));
   let resultRects=options.empty?[]:options.coincident?[[1000,1000]]:options.single?[[1000,1160]]:[[1000,1160],[1800,1960]];
   const results={querySelectorAll:()=>resultRects.map(([top,bottom])=>({hidden:false,getClientRects:()=>[{}],getBoundingClientRect:()=>({top:top-window.scrollY,bottom:bottom-window.scrollY})}))};
-  const document={hidden:false,body:{dataset:{page:options.page||"index"}},documentElement:{scrollHeight:15000},
+  const stylesheet={addEventListener:(name,fn)=>{stylesheetEvents[name]=fn;}};
+  const document={readyState:options.readyState,hidden:false,body:{dataset:{page:options.page||"index"}},documentElement:{get scrollHeight(){rangeReads++;return maxHeight;},set scrollHeight(value){maxHeight=value;}},
     getElementById:id=>id==="space-canvas"?canvas:id==="space-motion"?button:results,
-    querySelectorAll:()=>stops,querySelector:()=>({}),addEventListener:(name,fn)=>{docEvents[name]=fn;}};
+    querySelectorAll:()=>stops,querySelector:selector=>selector==='link[rel="stylesheet"]'?stylesheet:{},addEventListener:(name,fn)=>{docEvents[name]=fn;}};
   class MutationObserver{constructor(fn){this.callback=fn;}observe(_,options){if(options?.attributeFilter?.includes('data-theme'))mutation=this.callback;}disconnect(){}}
   window.MutationObserver=MutationObserver;
   if(options.probe)window.SiteEngineProbe=options.probe;
   const localStorage={getItem(){if(options.blockedStorage)throw Error("blocked");return stored;},setItem(_,value){if(options.blockedStorage)throw Error("blocked");stored=value;}};
   vm.runInNewContext(source,{document,window,localStorage});
-  const api={window,document,button,canvas,scene,pending,calls,media,events,
+  const api={window,document,button,canvas,scene,pending,calls,media,narrow,events,
     drawingFault(){failDraw=true;},styling(value){styled=value;events.load();},paintCost(value){options.paintCost=value;},bitmapValid:()=>bitmapValid,resizeCount:()=>resizeCount,
+    domReady(){document.readyState='interactive';docEvents.DOMContentLoaded?.();},stylesheetLoad(value=true){styled=value;stylesheetEvents.load?.();},stylesheetError(){stylesheetEvents.error?.();},contextLost(){canvasEvents.contextlost?.();},rangeReads:()=>rangeReads,styleReads:()=>styleReads,
     frame(delta=20){const jobs=[...pending.values()];pending.clear();calls.length=0;time+=delta;for(const fn of jobs)fn(time);},
     settle(){for(let i=0;i<12&&pending.size;i++)api.frame(60);},
     trace:()=>scene.dataset.camera,phase:()=>Number(scene.dataset.phase),draws:()=>draws,scroll(y){window.scrollY=y;events.scroll?.();},event(name,detail){events[name]?.({detail});},
@@ -203,6 +205,55 @@ test("delayed CSS cannot partially activate; post-activation draw failure stops 
   p.styling(true);p.settle();assert.equal(p.scene.dataset.ready,"true");assert.equal(p.button.hidden,false);
   p.drawingFault();p.frame(80);assert.equal(p.pending.size,0);assert.equal(p.scene.dataset.ready,undefined);assert.equal(p.button.disabled,true);assert.equal(p.button["aria-pressed"],"false");
   p.event("resize");p.mutate();assert.equal(p.pending.size,0);
+});
+test("direct boot waits for deferred archive/navigation setup and measures the final range once",()=>{
+  for(const readyState of ['loading','interactive']){
+    const p=visit({page:'writing',readyState});
+    const ranges=[];p.window.SiteNavigation={reconcileEndpoint:value=>ranges.push(value)};
+    assert.equal(p.rangeReads(),0);assert.equal(p.styleReads(),0);assert.equal(p.pending.size,0);
+    // Archive's initial visibility and focus events precede navigation's
+    // content-plane mount, which can request an immediate layout refresh.
+    p.layout([[420,580],[2800,2960]]);
+    p.event('site:scene-focus',{focus:'leadership',reason:'initial'});
+    p.document.documentElement.scrollHeight=11000;
+    p.window.SiteScene.refresh({sync:true});
+    p.mutate();p.stylesheetLoad();p.event('resize');
+    assert.equal(p.rangeReads(),0,'no geometry read before all deferred modules finish');
+    assert.equal(p.styleReads(),0,'early theme and stylesheet events retain readiness guard');
+    assert.equal(p.window.SiteScene.diagnostics().layoutPasses,0);assert.equal(p.pending.size,0);
+    p.domReady();
+    assert.equal(p.rangeReads(),1);assert.equal(p.window.SiteScene.diagnostics().layoutPasses,1);
+    assert.deepEqual(ranges,[10100],'initial endpoint uses the completed native document range');
+    assert.equal(p.pending.size,1,'the existing RAF paints immediately after setup');
+    p.settle();
+    assert.deepEqual(JSON.parse(p.trace()),model.routePose('writing',model.journeyPose(model.topicPaths.leadership,0,false)),'initial archive focus survives the deferred initialization');
+    p.domReady();p.stylesheetLoad();
+    assert.equal(p.rangeReads(),1,'repeated readiness notifications cannot initialize twice');
+    p.document.documentElement.scrollHeight=18000;
+    p.window.SiteScene.refresh({sync:true});
+    assert.equal(p.rangeReads(),2,'later native range changes still invalidate normally');
+    assert.deepEqual(ranges,[10100,17100]);
+  }
+});
+test("post-DOMContentLoaded stylesheet load activates, while an early failure stays failed",()=>{
+  const late=visit({readyState:'interactive',styled:false});
+  late.domReady();assert.equal(late.rangeReads(),0);assert.equal(late.pending.size,0);
+  late.stylesheetLoad();assert.equal(late.rangeReads(),1);assert.equal(late.pending.size,1);
+  late.settle();assert.equal(late.scene.dataset.ready,'true');assert.equal(late.button.hidden,false);
+  for(const failure of ['stylesheetError','contextLost']){
+    const p=visit({readyState:'interactive'});p[failure]();p.domReady();p.stylesheetLoad();p.mutate();
+    assert.equal(p.rangeReads(),0);assert.equal(p.pending.size,0);assert.equal(p.scene.dataset.state,'fallback');assert.equal(p.button.disabled,true);
+  }
+});
+test("boot readiness preserves reduced/no-Canvas fallback and latest viewport detail",()=>{
+  const reduced=visit({readyState:'interactive',reduced:true,saved:'on'});
+  reduced.domReady();reduced.settle();assert.equal(reduced.rangeReads(),1);assert.equal(reduced.phase(),0);assert.equal(reduced.pending.size,0);assert.equal(reduced.button.disabled,true);
+  const missing=visit({readyState:'interactive',noCanvas:true});missing.domReady();assert.equal(missing.rangeReads(),0);assert.equal(missing.pending.size,0);assert.equal(missing.button.hidden,true);
+  const resized=visit({readyState:'interactive'});resized.narrow.matches=true;resized.window.innerWidth=390;resized.event('resize');resized.domReady();resized.settle();
+  assert.equal(resized.scene.dataset.geometry,'compact');assert.equal(resized.canvas.width,390);
+  for(const readyState of ['complete',undefined]){
+    const p=visit({readyState});assert.equal(p.rangeReads(),1);assert.equal(p.pending.size,1);
+  }
 });
 test("24-second cycle doubles v8 speed without changing geometry or camera",()=>{
   assert.equal(model.LOOP_MS,24000);

@@ -137,7 +137,7 @@ jobs:
       - name: Check localization helpers and package exact controls
         run: |
           test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
-          node --test tests/writing-diagnosis.test.cjs tests/writing-variants.test.cjs tests/writing-layout.test.cjs tests/writing-models.test.cjs tests/writing-localization.test.cjs
+          node --test tests/writing-diagnosis.test.cjs tests/writing-variants.test.cjs tests/writing-layout.test.cjs tests/writing-models.test.cjs tests/writing-localization.test.cjs tests/writing-geometry.test.cjs tests/site-face-preparation.test.cjs tests/navigation.test.cjs tests/space.test.cjs
           SITE_CANDIDATE_SHA="$WRITING_BEFORE_SHA" node ../reference/tools/quality/artifact.cjs build "$RUNNER_TEMP/writing-input/before-color"
           node ../reference/tools/staging/color.cjs "$RUNNER_TEMP/writing-input/before-color"
           node tools/quality/artifact.cjs build "$RUNNER_TEMP/writing-input/current-base"
@@ -155,7 +155,16 @@ jobs:
           const input=process.env.RUNNER_TEMP+'/writing-input',out=process.env.RUNNER_TEMP+'/writing-results';
           const config=JSON.parse(fs.readFileSync('review/writing-diagnosis-20261006/localization-run.json'));
           const driver=config.mode==='v0'?require('./tools/quality/writing-diagnosis.cjs'):require('./tools/quality/writing-localization.cjs');
-          driver.main(input,out,config).catch(error=>{console.error(error.stack);process.exitCode=1;});
+          (async()=>{
+            await driver.main(input,out,config);
+            if(config.mode==='v0'){
+              const {serve}=require('./tools/quality/writing-probe.cjs');
+              const inputs=Object.fromEntries(['before-color','current-color'].map(label=>[label,{publicDir:path.join(input,label,'public')}]));
+              const {server,url}=await serve(inputs);
+              try{await require('./tools/quality/writing-geometry.cjs').compare(url+'/before-color',url+'/current-color',out+'/geometry.json');}
+              finally{server.close();}
+            }
+          })().catch(error=>{console.error(error.stack);process.exitCode=1;});
           JS
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: always()

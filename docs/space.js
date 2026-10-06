@@ -780,8 +780,17 @@ const world=(function(math) {
     return {faces,lines,objects};
   }
   function prepareFace(f,light) {
-    const normal=normalize(cross(sub(f.points[1],f.points[0]),sub(f.points[2],f.points[0])));
-    const shade=.65+.5*Math.abs(dot(normal,light));
+    // Preserve the original cross/normalize/dot arithmetic without allocating
+    // two edge vectors, a cross vector and a normalized vector for every face.
+    const a=f.points[0],b=f.points[1],c=f.points[2];
+    const ax=b[0]-a[0],ay=b[1]-a[1],az=b[2]-a[2];
+    const bx=c[0]-a[0],by=c[1]-a[1],bz=c[2]-a[2];
+    let nx=ay*bz-az*by,ny=az*bx-ax*bz,nz=ax*by-ay*bx;
+    const length=Math.hypot(nx,ny,nz);
+    if(length>1e-9){nx/=length;ny/=length;nz/=length;}
+    else {nx=0;ny=0;nz=1;}
+    const lightDot=((0+nx*light[0])+ny*light[1])+nz*light[2];
+    const shade=.65+.5*Math.abs(lightDot);
     f.tint=Math.min(.63,f.tone*shade);
     if(f.oneSided)f.plane=facePlane(f.points);
     // Paper catches neutral light in both themes; metal keeps its cyan/bronze tint.
@@ -990,6 +999,9 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
   let choice=null;
   try { choice=localStorage.getItem(key); } catch { /* In-tab controls remain useful. */ }
   let enabled=choice!=="off" && !reduced.matches, printing=false, pending=null,initialized=false,failed=false;
+  // Deferred scripts run while readyState is interactive. Archive filtering
+  // and the navigation content plane must finish before the first layout read.
+  let domReady=document.readyState!=="loading"&&document.readyState!=="interactive";
   let width=1,height=1,ratio=1,stops=[],bounds=null,focus="all",localProgress=0;
   const initial=initialPoses[page]||"overview";
   const rooms=new Map();
@@ -1045,7 +1057,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     span('layout-writing');
   }
   function flushLayout() {
-    if(!layoutDirty||failed)return;
+    if(!initialized||!layoutDirty||failed)return;
     // During departure the engine already owns the next route, while the old
     // DOM is still shown. Its geometry cannot describe the destination.
     if(document.body.dataset.page!==page)return;
@@ -1297,9 +1309,9 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     if(event.detail.reason==="initial"&&!journey){current=target;animation=null;schedule();}else moveTo(target);
   });
   const resize=()=>{
-    if(!initialized){initialize();return;}
     if(failed)return;
     if(compact!==narrow.matches)compact=narrow.matches;
+    if(!initialized){initialize();return;}
     invalidateLayout('resize');
   }; // Layout never changes a frozen camera/ambient phase or starts a flight.
   window.addEventListener("site:archive-layout",resize);
@@ -1354,7 +1366,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
   };
   // Stylesheet load/error is authoritative, including early WebKit deferral.
   function initialize() {
-    if(initialized || failed || !readColors())return;
+    if(!domReady || initialized || failed || !readColors())return;
     measure();layoutDirty=false;layoutReasons.clear();initialized=true;scene.dataset.state="active";
     if(enabled) {
       if(page==="writing")current=pathPose();
@@ -1367,6 +1379,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
   stylesheet?.addEventListener?.("load",initialize,{once:true});
   stylesheet?.addEventListener?.("error",()=>{if(!initialized)fail();},{once:true});
   canvas.addEventListener?.("contextlost",fail);
+  if(!domReady)document.addEventListener("DOMContentLoaded",()=>{domReady=true;initialize();},{once:true});
   initialize();
 })(api);
 })();

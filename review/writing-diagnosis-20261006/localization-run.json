@@ -1,9 +1,11 @@
 {
   "schema": 1,
-  "mode": "localize",
-  "repeats": 2,
+  "mode": "v0",
+  "desktopPairs": 2,
+  "mobilePairs": 6,
+  "directBoot": true,
   "before": "6d538e171ecbbaa3c3948aa0d8d118fad4aaaf5d",
-  "runtimeEngine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92",
+  "runtimeEngine": "b8800a2174d9da08aa5f124426863751d7048066fee18045f28574b152e64535",
   "fullGate": false,
-  "request": "Localize Writing assets, construction, thematic/shared rendering, filters/controls and native row/title layout; then fix supported cause"
+  "request": "Confirm scalar face preparation, deferred boot readiness and cancelable Color native mount task; retain every raw RAF, native task and LongTask, then compare normal geometry and real filters"
 }

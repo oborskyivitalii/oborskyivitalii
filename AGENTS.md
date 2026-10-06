@@ -14,6 +14,14 @@ constrained control as well as untouched Color. Then confirm only a supported
 normal source correction against 6d538e1 with clean paired cold boots/flights.
 Remove the dated PR trigger afterward. No full/stable staging or new PR.
 
+The completed 20-trial localization rejects filters/grid/title-flex as the main
+source; every matched geometry audit passes. The worst RAF combines Canvas paint
+with synchronous native mount/layout (87–92ms). Model face preparation is another
+16–17ms cold cost. The supported candidate gates boot until deferred setup,
+uses numerically exact scalar face preparation and queues animated Color mount
+after its hidden midpoint paint. Confirm native task/LongTask and inclusive input
+latencies too; moving work outside RAF alone is not performance evidence.
+
 ## Completed Writing screen and rejected optimization — 2026-10-06
 
 Read review/writing-diagnosis-20261006/EXECUTION.md before continuing #23.

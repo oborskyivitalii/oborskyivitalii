@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "e810926057dc62a2363730c1b5d1c51fffdf3e81866b97964378d7fe9ec933c0",
+    "digest": "18c0d1f873bf800a07e1b48286275084af87330a5e509b29f3b50b164b114167",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -88,7 +88,7 @@
       {
         "path": ".github/workflows/site-writing-probe.yml",
         "identity_mode": "content",
-        "sha256": "64aa56e976c031fa41f6a4bb8c420a0c4a7760c00601016fed3a8c0e5d2e2ede"
+        "sha256": "f8f839f571c0fe3229842b4f8e08f1828e2f8a4c0e221b64342df80bde1594ea"
       },
       {
         "path": ".gitignore",
@@ -97,7 +97,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "c3352fe0e4a794bdfc270a104daa8d232f8804e12c1481af16c7624c74cdfa88"
+        "sha256": "9b416dba41ffb6cf1d6788ea92a588d1e81e11841b235039f8472fec932e1d89"
       },
       {
         "path": "BACKLOG.md",
@@ -223,48 +223,48 @@
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92/archive.js",
+        "path": "docs/runtime/b8800a2174d9da08aa5f124426863751d7048066fee18045f28574b152e64535/archive.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92/navigation.js",
+        "path": "docs/runtime/b8800a2174d9da08aa5f124426863751d7048066fee18045f28574b152e64535/navigation.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92/space.js",
+        "path": "docs/runtime/b8800a2174d9da08aa5f124426863751d7048066fee18045f28574b152e64535/space.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92/styles.css",
+        "path": "docs/runtime/b8800a2174d9da08aa5f124426863751d7048066fee18045f28574b152e64535/styles.css",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92/theme.js",
+        "path": "docs/runtime/b8800a2174d9da08aa5f124426863751d7048066fee18045f28574b152e64535/theme.js",
         "identity_mode": "existence"
       },
       {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "1a67e019fc485164e71e4775a6615eaa94bfd1cc7908a56fbdc839778e318c75"
+        "sha256": "f12b8c687c4fb88862517b0ff974961bad7ceb61878bfdd2db853cea0efaff67"
       },
       {
-        "path": "docs/snapshots/1b7db4cbd8f9f6d4588ac587610e84a0e74aed106c0983fc477869cfe92ae6a7/index.html",
+        "path": "docs/snapshots/2a6d0443255ea7de79741848679814b7088f6d067f907c33c21b13eee5ef3ad2/talks.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/315ab9b6b3e27e07f3dc8648c7bf104254df6f698d2276840e5f37ace54f6fb8/writing.html",
+        "path": "docs/snapshots/5748c3e4de41efe3620a03a58d12f60d9053abbd521f8132a1f425f73080a8c6/research.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/5d23d171f893489b698cc04c3c88cfe654d5e2d8f7200fd34703b118ec8694ff/credits.html",
+        "path": "docs/snapshots/6c1459ece2549ff747498f948a474b4039d2e21db27338fb251eb159fadd7487/writing.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/6396887ba1d05b7a01d469c4ebd31c3565448498673e35c51498346b55764e84/talks.html",
+        "path": "docs/snapshots/6d3cf8a5ea63e32b0af315b8cf04a110064f9352fad755d91e019566d0aa1f09/credits.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/7c007f65f879d0238c5813810ac32cc342809363d3ce5aa1f0aac1069200a93e/research.html",
+        "path": "docs/snapshots/ef9408d1d24421dd8a56adf434edb807d3a49d4bd703890438316ee9d683c353/index.html",
         "identity_mode": "existence"
       },
       {
@@ -2898,7 +2898,7 @@
       {
         "path": "review/site-v1-static-previews-v11.json",
         "identity_mode": "content",
-        "sha256": "3f90b9c8af92ae74945047d8c6941d801d5841f61dd87e0b28ce0bca499f21a8"
+        "sha256": "01c2df7fd14a66f5b5d5c10d77615c0192f44e245775675092d855a1ad949140"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -3185,7 +3185,7 @@
       {
         "path": "review/writing-diagnosis-20261006/LOCALIZATION.md",
         "identity_mode": "content",
-        "sha256": "ad9e7c0781d3aa01ed6bb4d2b108a5f6b20c1d68d0f4fe2afab40b60272fe8e8"
+        "sha256": "6bf7d6b46f952569c8f959f0b12e8d4eb8deda0fe4eb94ff64d4b7eee7dedf9b"
       },
       {
         "path": "review/writing-diagnosis-20261006/SOL-TASKS.md",
@@ -3207,6 +3207,11 @@
         "sha256": "08725ea8411fc0c776b5f96ba5663fc8bedc620452b7741010308def01a0e973"
       },
       {
+        "path": "review/writing-diagnosis-20261006/face-equivalence.json",
+        "identity_mode": "content",
+        "sha256": "9078c78259bfe63ce6e386c4ef3ef95717ad0dd9438c0d6f69a5f3b6bb2c45df"
+      },
+      {
         "path": "review/writing-diagnosis-20261006/geometry.json",
         "identity_mode": "content",
         "sha256": "bf337bea83833b9a44616b88a7604e1085e85d628d6196ebd14ba250c536139e"
@@ -3218,7 +3223,16 @@
       {
         "path": "review/writing-diagnosis-20261006/localization-run.json",
         "identity_mode": "content",
-        "sha256": "2463862e7d4b24a5aaa495e50771b2687cc7b6030649a0e629e602ed048a7c8d"
+        "sha256": "307794c8761b1108ccb2e808f0dfe9d9398c61d9603a613f0323f02d6eade895"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/localization-summary.json",
+        "identity_mode": "content",
+        "sha256": "fb9449006e4433adaacca38e373615ab9cfdb57824a4681352f878750bff9116"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/localization.json.gz",
+        "identity_mode": "existence"
       },
       {
         "path": "review/writing-diagnosis-20261006/rejected-ribbon-reuse.patch",
@@ -3429,7 +3443,7 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "c03ffbf86a6ea53778ccd9af3db7f713608ef10d1658fe067ff4cadcfc5a36f7"
+        "sha256": "42a64f701abc898b5b9fb0f4442e09e7876ff0a42a34533b7e736cad13e8cd85"
       },
       {
         "path": "site/routes.json",
@@ -3486,6 +3500,10 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tests/navigation.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tests/preview-smoke.test.cjs",
         "identity_mode": "existence"
       },
@@ -3522,6 +3540,10 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tests/site-face-preparation.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tests/space.test.cjs",
         "identity_mode": "existence"
       },
@@ -3553,6 +3575,10 @@
       },
       {
         "path": "tests/writing-diagnosis.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/writing-geometry.test.cjs",
         "identity_mode": "existence"
       },
       {
@@ -3780,6 +3806,10 @@
       },
       {
         "path": "tools/quality/writing-diagnosis.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/writing-geometry.cjs",
         "identity_mode": "existence"
       },
       {
@@ -5652,6 +5682,13 @@
       ]
     },
     {
+      "path": "review/writing-diagnosis-20261006/face-equivalence.json",
+      "title": "review/writing-diagnosis-20261006/face-equivalence.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "review/writing-diagnosis-20261006/geometry.json",
       "title": "review/writing-diagnosis-20261006/geometry.json",
       "instructions": [
@@ -5661,6 +5698,13 @@
     {
       "path": "review/writing-diagnosis-20261006/localization-run.json",
       "title": "review/writing-diagnosis-20261006/localization-run.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/writing-diagnosis-20261006/localization-summary.json",
+      "title": "review/writing-diagnosis-20261006/localization-summary.json",
       "instructions": [
         "AGENTS.md"
       ]
