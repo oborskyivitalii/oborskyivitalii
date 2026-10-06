@@ -2,6 +2,7 @@
 const assert=require('node:assert/strict'),path=require('node:path');
 const {toolRequire,out,report,launchOptions}=require('./common.cjs');
 const pw=toolRequire('playwright'),AxeBuilder=toolRequire('@axe-core/playwright').default;
+const {performance}=require('node:perf_hooks');
 const {start}=require('./serve.cjs'),{routes}=require('./budgets.json');
 const modes=['no-js','no-canvas','no-raf','no-match-media','blocked-storage','reduced','missing-hasOwn','css-delayed','css-blocked','draw-fault','context-loss'];
 function probe(){
@@ -219,16 +220,22 @@ async function scenario(browser,url,s){
     const gate=new Promise(resolve=>release=resolve);await page.route('**/styles.css',async route=>{await gate;await route.continue();});
   }
   if(s.mode==='css-blocked')await page.route('**/styles.css',r=>r.abort('failed'));
+  const lifecycle=process.env.SITE_AUDIT_LIFECYCLE==='true'?require('./browser-lifecycle.cjs').observe({page,context:ctx,browser}):null;
   try{
+    lifecycle?.stage('navigation');
     await navigateDocument(page,`${url}/${s.route}.html`,release);
+    lifecycle?.stage('scenario-check');
     const checks=s.mode==='normal'?await normal(page,s):await failure(page,s.mode);
     if(s.mode==='css-delayed')checks.beforeCSSNoPaint=true;
     assert.deepEqual(errors,[]);assert.deepEqual(external,[]);
     return {...s,pass:true,checks,errors,externalRequests:external,diagnosticTrace:s.trace?await page.evaluate(()=>window.__browserGateTrace?.snapshot?.()||null):undefined};
   }catch(e){
-    if(release)release();await page.screenshot({path:path.join(out,`${s.engine}-${s.route}-${s.width}-${s.theme}-${s.mode}.png`)}).catch(()=>{});
-    return {...s,pass:false,error:e.message,stack:e.stack,state:await state(page).catch(()=>null),errors,externalRequests:external,diagnosticTrace:s.trace?await page.evaluate(()=>window.__browserGateTrace?.snapshot?.()||null).catch(()=>null):undefined};
-  }finally{await ctx.close();}
+    const lifecycleEvidence=lifecycle?.snapshot();
+    if(release)release();lifecycle?.stage('failure-screenshot');
+    await page.screenshot({path:path.join(out,`${s.engine}-${s.route}-${s.width}-${s.theme}-${s.mode}.png`)}).catch(()=>{});
+    lifecycle?.stage('failure-state');const failedState=await state(page).catch(()=>null);
+    return {...s,pass:false,error:e.message,stack:e.stack,state:failedState,errors,externalRequests:external,diagnosticTrace:s.trace?await page.evaluate(()=>window.__browserGateTrace?.snapshot?.()||null).catch(()=>null):undefined,...(lifecycleEvidence?{lifecycle:lifecycleEvidence}:{})};
+  }finally{lifecycle?.stage('teardown');try{await ctx.close();}finally{lifecycle?.dispose();}}
 }
 function scenarios(engine,smoke){return routes.flatMap(route=>['light','dark'].flatMap(theme=>[
   ...[1440,390].map(width=>({engine,route,theme,width,mode:'normal'})),
@@ -244,12 +251,16 @@ async function serialEngines(engines,run){
 }
 async function runEngine(engine,url,smoke,results){
   const {engines,rows,browsers,navigation,analytics}=results;
-  const display=await require('./native-display.cjs').start(engine);let browser;
+  const native=require('./native-display.cjs'),options=launchOptions(engine),budgetMs=options.timeout,started=performance.now();let display,browser;
   try{
-    const options=launchOptions(engine);
+    // The existing launch budget includes the display and browser together.
+    // No new 3s pre-launch deadline is imposed on a cold X server.
+    try{display=await native.start(engine,{timeoutMs:budgetMs});}
+    catch(error){results.startupFailures.push({engine,stage:'display',budgetMs,elapsedMs:performance.now()-started,error:error.message,...error.displayDiagnostics});throw error;}
     if(display){options.headless=false;options.env={...process.env,DISPLAY:display.name};}
+    options.timeout=native.remaining(started,budgetMs);
     browser=await pw[engine].launch(options);
-    browsers.push({engine,version:browser.version(),executable:options.executablePath||pw[engine].executablePath(),headless:options.headless,port:display?.port||(engine==='webkit'&&process.platform==='linux'?'wpe':'native'),displayBackend:display?.backend||null});
+    browsers.push({engine,version:browser.version(),executable:options.executablePath||pw[engine].executablePath(),headless:options.headless,port:display?.port||(engine==='webkit'&&process.platform==='linux'?'wpe':'native'),displayBackend:display?.backend||null,startup:{budgetMs,displayMs:display?.elapsedMs||0,totalMs:performance.now()-started}});
     try{
       for(const s of scenarios(engine,smoke)){
         const row=await scenario(browser,url,s);rows.push(row);report('functional',{smoke,engines,browsers,modes:smoke?[]:modes,rows},rows.every(x=>x.pass));
@@ -263,13 +274,13 @@ async function runEngine(engine,url,smoke,results){
   }finally{try{await browser?.close();}finally{display?.stop();}}
 }
 async function main(){
-  const engines=(process.env.SITE_AUDIT_ENGINES||'chromium,firefox,webkit').split(','),smoke=process.argv.includes('--smoke'),rows=[],browsers=[],navigation=[],analytics=[];
+  const engines=(process.env.SITE_AUDIT_ENGINES||'chromium,firefox,webkit').split(','),smoke=process.argv.includes('--smoke'),rows=[],browsers=[],navigation=[],analytics=[],startupFailures=[];
   const {server,url}=await start();
   // Each engine owns the runner until its complete functional/navigation/
   // analytics lease finishes. Preserve every engine even after an earlier error.
-  try{const outcomes=await serialEngines(engines,engine=>runEngine(engine,url,smoke,{engines,rows,browsers,navigation,analytics}));
+  try{const outcomes=await serialEngines(engines,engine=>runEngine(engine,url,smoke,{engines,rows,browsers,navigation,analytics,startupFailures}));
     for(const outcome of outcomes)if(outcome.status==='rejected')throw outcome.reason;
-  }finally{server.close();report('functional',{smoke,engines,browsers,modes:smoke?[]:modes,rows,navigation,analytics},rows.length===engines.length*scenarios(engines[0],smoke).length&&rows.every(x=>x.pass)&&navigation.length===engines.length*4&&navigation.every(x=>x.pass)&&analytics.length===engines.length*13&&analytics.every(x=>x.pass));}
+  }finally{server.close();report('functional',{smoke,engines,browsers,modes:smoke?[]:modes,rows,navigation,analytics,startupFailures},rows.length===engines.length*scenarios(engines[0],smoke).length&&rows.every(x=>x.pass)&&navigation.length===engines.length*4&&navigation.every(x=>x.pass)&&analytics.length===engines.length*13&&analytics.every(x=>x.pass));}
   assert.ok(rows.every(x=>x.pass)&&navigation.every(x=>x.pass)&&analytics.every(x=>x.pass),'Functional scenarios failed');
 }
 if(require.main===module)main().catch(e=>{console.error(e.stack);process.exitCode=1;});

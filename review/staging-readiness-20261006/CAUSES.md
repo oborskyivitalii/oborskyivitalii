@@ -1,5 +1,183 @@
 # Причини збоїв і виправлення — 6 жовтня 2026
 
+## Погоджене повне WebKit-покриття на macOS
+
+Власник погодив перенести повні WebKit-перевірки з Linux GTK на macOS та один
+окремий CI-only PR для protected-main controller. Linux Chromium/Firefox
+зберігають 260/8/26, macOS WebKit отримує всі 130/4/13, включно з десятьма
+no-JavaScript cases та всіма failure/fallback modes. Windows smoke 40/8/26 і
+Linux Color12 лишаються. Повне унікальне engine-покриття — 390/12/39; колишні
+20 normal macOS smoke rows більше не дублюються. Nonfull Linux checks зберігають
+початкові три engines. Pins, 45m/40m limits та performance/page budgets незмінні.
+
+Це зміна платформи перевірки, не виправлення або доказ нешкідливості GTK abort.
+Нинішній accepted macOS smoke не перевіряв жодного no-js case; повні 130/4/13
+та фактичний час macOS ще треба підтвердити на exact hosted candidate. GTK і
+core-size діагностику зупинено, її raw failures збережено. Runtime #23 не
+зливається до нового full hosted gate та stable verification.
+
+Run 37518167424 на clean e726982 / tree 1a582eb зберіг три fresh controls:
+blank JS-off і Color JS-on проходять, Color JS-off падає. Matching PID 5435,
+executable, boot і trial time підтверджують SIGABRT. Journal frames містять
+pthread_kill -> raise -> abort -> unresolved journal module frame
+libwebkitgtk-6.0.so.4.20.0 +0x78de17;
+названого WebKit caller/assertion немає. Окремий postmortem debug повернув
+SIGXFSZ під 512MiB file cap до GDB output; nativeCaptureComplete=false.
+Core timestamp має секундну точність і збігається з секундою first evaluate;
+23.7s є observer elapsed, не точним часом між abort і notification та не
+доказом watchdog/evaluation causality. [GTK-NATIVE.json](GTK-NATIVE.json)
+утримує всі три rows, identities, raw checksums і неповне debugger capture.
+
+## GTK 37513438968: native SIGABRT, evaluator/init не є необхідним тригером
+
+Corrected collector на clean 6c67952 / tree 7d1feec зберіг усі 14 observations
+і незмінні normal Color bytes. WPE проходить 6/6. GTK/Xvfb проходить 5/8;
+три full-Color / JavaScript-off cells падають: constant `evaluate(() => 1)`,
+original `state()` та той самий original state без init script. Blank JS-off
+constant проходить із init і без нього; усі JS-on controls проходять.
+Це виключає state body, init script і reused browser як необхідні тригери;
+не підтримує їхнє вилучення як remedy.
+
+Native lifecycle утримує page-crash через 15.59/15.06/15.04 с перед teardown,
+із pageClosed=false і browserConnected=true. До evaluation процеси
+WebKitWebProcess мають PID 5535/5688/5843; після failure вони відсутні, тоді
+як MiniBrowser/network process ще живі. `coredumpctl list` зв'язує ті самі PID
+і executable з present SIGABRT cores. Це підтверджує native abort, але stack
+і assertion ще не збережено. Kernel journal читається без matching crash text;
+dmesg повертає EPERM, /var/crash порожній. [GTK-TARGET.json](GTK-TARGET.json)
+зберігає всі результати, failed lifecycle, core metadata і raw checksums.
+
+GTK і WPE runner images відрізняються (20261004.327.1 / 20260927.320.1),
+як і headed/Xvfb та headless backend. Тому cross-port comparison не доводить
+порт як єдину причину. Within-GTK document/JS/init contrasts контрольовані
+на одному runner. Automation warning є також у всіх passing WPE controls.
+Collection green означає збереження трьох abort, а не native acceptance.
+
+Наступний вузький read-only postmortem зберігає matching coredump info та
+offline backtrace після failure: fresh GTK blank JS-off, Color JS-on і Color
+JS-off constant controls, із початковим init, load, 180ms і першим evaluate.
+Жодного live attach, core configuration change, timeout extension або
+непідтвердженого runtime fix. Завершений 14-cell trigger прибирається;
+exact-head hosted/full/stable/merge лишаються попереду.
+
+## Preflight 37511255893: нуль браузерних спостережень
+
+Обидва ports встановились, але collector перед launch помилково відкинув
+законний normal Color `derivation.kind=authored-color-effects`. Це помилка
+діагностичного harness, яку пропустили root та незалежний review; не нова
+невдача браузера. Усі 14 native cells лишаються незапущеними. Static source
+lint/security і звичайні basic/RI/preview checks проходять на c2cfade.
+[GTK-TARGET-PREFLIGHT.json](GTK-TARGET-PREFLIGHT.json) зберігає exact source/tree,
+обидва failed preconditions, порожні native outputs, raw SHA і окрему BASE
+identity scanner artifact без вигаданого Color digest.
+
+Виправлено лише preflight: canonical Color lineage звіряється з реально
+збереженим base manifest — clean candidate/tree, parent digest, base engine,
+authored effects; private diagnostics відхиляються. Report/stderr envelope
+створюється до parse/verify, тому наступний precondition failure залишить raw
+untrusted input та нуль cells. Integration test використовує actual base/Color
+producer у чистому detached worktree, без підміни sourceDirty. Після review
+збираємо ті самі 14 controls на зміненому collector; native remedy ще не обрано.
+
+## GTK 37505225237: усі no-js сторінки падають до cleanup
+
+Після primary archive Ubuntu завантажує 126 MB за 15 с; dependencies — 44 с,
+WebKit — 5 с. Це виміряний результат нового runner, а не обіцянка throughput.
+Усі 130 functional rows записані: 120 pass, усі десять no-js fail. Optional
+lifecycle утримує `page-crash` у `scenario-check` через 19.4–24.6 с, перед
+teardown; у catch `pageClosed=false`, `browserConnected=true`. Пізніші
+`page-close`/`context-close` належать cleanup. Це втрата нативного page/WebProcess,
+без доведеного signal, assertion, OOM чи точного компонента. Pinned Playwright
+підтримує evaluate при disabled JavaScript; не вилучаємо цей сценарій.
+
+Row phase — 19 хв 58 с. Functional lease скасований через 24 хв 08 с на
+25-хвилинній межі job; stdout зберігає лише перший navigation pass. Останній
+raw checkpoint не має завершених navigation/analytics fields, тому full
+130/4/13 не прийнято. [GTK-FOLLOWUP.json](GTK-FOLLOWUP.json) зберігає кожну
+невдачу, lifecycle, identities, native stderr, точні GitHub links та raw SHA.
+Старий dated GTK job/PR trigger видалено після collection.
+
+Automation-context `CRITICAL` є також біля passing modes. Пinned GTK inspector
+launch використовує official `--inspector-pipe --no-startup-window`; його
+patched network-session path пояснює warning без доказу фактичної втрати session.
+Додавання `--automation` не є підтриманим виправленням. Наступний bounded screen
+порівнює 14 свіжих спостережень GTK/WPE: JS on/off, blank/full normal Color,
+constant/original state як перший evaluate, та matching GTK blank/full без init script.
+Сторінки, ports і evaluator factors відокремлено без warmup або retry.
+Native mechanism і remedy ще не доведено; collection не є acceptance.
+
+[LINUX-LEASES.md](LINUX-LEASES.md) утримує мінімальне розділення Linux на два
+повні leases, усі 390/12/39 перевірки та початкові 45m limits. Підготовлений
+CI-only main backport містить п'ять файлів без runtime/content змін. Protected
+main controller поки незмінний; додатковий PR потребує вузького винятку з
+чинної sole-#23 вимоги. Staging/stable/merge не виконані на неповних даних.
+
+## Неповний GTK 37500364739: встановлення та окреме закриття сторінки
+
+WebKit встановлено, але залежності з Azure Ubuntu mirror завантажувались
+21 хв 44 с (123 MB, 94.4 kB/s). Увесь install step тривав 22 хв 18 с;
+job із початковим 25-хвилинним лімітом скасований о 17:27:17Z. Час відповідає
+вичерпанню budget, проте API не визначає ініціатора cancellation. Дзеркало
+надходить через `/etc/apt/apt-mirrors.txt`; зміна лише sources.list не достатня.
+
+Raw artifact 11430333444 зберігає 13 functional rows: 12 pass і одну no-js
+невдачу. Перший state/evaluate після успішного navigation/load повернув
+`Target page, context or browser has been closed`; failed row записано
+о 17:26:42Z, за 35 с до cancellation. Точного часу native closure немає. Пізніші modes того самого browser проходять. Це окремий
+непояснений target/session failure; не приписуємо його лише повільному apt.
+Page/process lifecycle події та native stderr у цьому run не зібрані.
+[GTK-INCOMPLETE.json](GTK-INCOMPLETE.json) зберігає точні identities,
+початкову невдачу, startup timings, API/artifact посилання і raw SHA.
+
+Наступна підтримана зміна перемикає лише Azure Ubuntu URLs на primary archive,
+включно з active mirror+file lists, та обмежує npm/dependency/browser installation
+окремими 3/5/3-хвилинними phases у тому самому 25-хвилинному job. Slow transfer
+може продовжуватися без idle timeout, тому phase cap потрібен окремо від APT
+30-секундного network timeout. Node/browser pins, cold startup, усі 130/4/13
+сценарії та runtime budgets лишаються. Native lifecycle і browser stderr
+збираються для причинного розрізнення no-js failure. Ця scoped installation
+зміна не змінює protected-main full-stage controller; його попередній install
+проходив, але той самий зовнішній mirror risk там лишається.
+
+Незалежне scoped review: Codex agent `installer_review` перевірив повний diff,
+12/12 APT rewrite fixtures, 23/23 lifecycle/functional/display tests, точну
+відповідність index raw artifact/log та шість scanner dispositions. Попередні
+4597 records і baseline metadata незмінні. Root перевірка 26/26 включає також
+cause-fix source-pair fixtures; scoped ESLint, local build і RI проходять.
+Review виправив формулювання: timestamp failed row — час запису після cleanup,
+а не точний момент native closure. Live archive throughput, no-js native причина
+та hosted/full/stable acceptance лишаються непідтвердженими.
+
+## Повний staging 37491800878: startup Xvfb
+
+Exact source 4c05087e: Linux Chromium/Firefox проходять 260/260 functional,
+8/8 navigation, 26/26 analytics. WebKit не запускається: новий launcher Xvfb
+не отримує display number за 3000 мс. Це infrastructure startup failure,
+а не повтор старого WPE RAF timeout. Linux Color 12/12; Windows 40/8/26,
+macOS 20/4/13, static/host/captures/performance проходять. Full gate падає,
+promotion skipped, stable/main не змінено. Raw Linux artifact 11427927561
+збережений; незмінного повного повтору для випадкового green немає.
+Попередні успішні GTK port probes використовували packaged xvfb-run.
+[DISPLAY.json](DISPLAY.json) зберігає шість startup observations з source/tree,
+raw/ZIP SHA та початковим 3000 мс результатом. FD1 проходить за 65/15 мс;
+FD3 за 21/1268 мс. Це не підтримує припущення, що заміна дескриптора лікує
+стару невдачу. Два wrapper observations не запускають X server: /dev/stderr
+неможливо повторно відкрити як файл із Node socket stdio. Для manual replay
+collector тепер використовує власний regular log file. Перша спроба з відсутнім
+xdpyinfo окремо збережена; startup measurements там немає.
+
+Доданий 3000 мс infrastructure deadline не належав до початкового engine launch
+contract (30000 мс). Xvfb і browser тепер ділять цей самий 30000 мс budget;
+час підготовки display віднімається від дозволеного browser launch. Нульовий
+timeout, який вимикає Playwright bound, неможливий. Page/paint/fallback 1500 мс,
+CI job limits і всі performance budgets не змінено. На failure зберігаються
+stdout/stderr; точна причина історичного 3s stall досі не доведена.
+[GTK-REQUEST.md](GTK-REQUEST.md) підтверджує фактичний launcher і всі 130/4/13
+сценаріїв на normal Color перед наступним hosted full stage. Ця private loopback
+перевірка не є full/stable acceptance.
+
+## Підтверджені виправлення та причинні межі
+
 Продовження в тому самому PR #23: браузери тепер виконують повні functional,
 navigation і analytics leases послідовно. Спостереження On/print/visibility та
 fallback чекають справжнього paint/стану в початковому 1500 мс, без старого

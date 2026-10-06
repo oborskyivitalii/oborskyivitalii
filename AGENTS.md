@@ -1,5 +1,21 @@
 # Agent guidance for personal publications
 
+## Complete PR #28 and audit issues — 2026-10-06
+
+The maintainer now requests completing PR #28 after accepted PR #23, followed
+by independent review, issue updates and a list of issues eligible for closure.
+Retarget the existing #28 to protected main and preserve its three selected Home
+responses, all eight Research records, exact contacts and fitted backdrops.
+This explicitly supersedes the earlier #28 preview-only and sole-#23 limits.
+Complete fresh exact-head full hosted staging, stable verification and merge
+that same reviewed head through normal protection. Preserve all macOS WebKit
+full coverage, Linux Chromium/Firefox and twelve Color checks, Windows smoke,
+original budgets, native evidence and source/artifact/controller leases.
+Do not restart GTK/core experiments. Production publication, physical-device
+checks and maintainer visual acceptance retain their separate issue criteria.
+Update existing issue evidence without treating a merged implementation or green
+CI as completion of unrelated publication, rights or release requirements.
+
 ## Selected Home responses and complete Research context — 2026-10-06
 
 The maintainer now asks Sol to implement the [approved plan in Draft #28](https://github.com/oborskyivitalii/oborskyivitalii/pull/28#issuecomment-6018945888).
@@ -38,6 +54,123 @@ surface module, regenerate dependent outputs and use the existing automatic PR
 preview/short-smoke workflow. Full staging, merge and production of this follow-up
 are not requested. Calendar booking/email are advice only until real contact
 values and an implementation request are supplied. No Glass or new runtime loop.
+## Approved macOS WebKit full coverage — 2026-10-06
+
+The maintainer approved one narrow CI-only controller PR before runtime PR #23:
+full checks run Chromium/Firefox on Linux (260 functional / 8 navigation / 26
+analytics) and all WebKit scenarios on macOS (130 / 4 / 13), including every
+disabled-JavaScript and failure/fallback mode. Windows smoke remains 40 / 8 / 26;
+Linux Color checks remain twelve. All 390 unique full-engine cases, twelve
+navigation cases and 39 analytics cases remain mandatory, with exact source/
+artifact/host identity and separate raw runner provenance. macOS smoke is
+insufficient; full macOS success and elapsed time still require fresh evidence.
+
+Preserve legacy nonfull three-engine Linux checks, all pins and original 45m
+Linux / 40m native job and page/performance budgets. This explicitly supersedes
+the proposed two-Linux-runner adapter and further GTK/native-core experiments.
+Retain their failed raw evidence, including GTK-NATIVE.json; retire the completed
+native PR trigger. Do not launch another GTK/core-size collection. The approved
+CI-only PR is the narrow exception to sole-#23; no other runtime/content PR is
+authorized. After controller acceptance, complete fresh exact-head hosted/full,
+stable verification and merge #23. Production/device/visual acceptance stays
+separate.
+
+## GTK native abort postmortem — 2026-10-06
+
+Corrected screen 37513438968 at 6c67952 completes all fourteen observations:
+eleven evaluations succeed and three GTK/Xvfb full-Color disabled-JS cells
+abort, including constant evaluation and original state without init scripts.
+Both disabled-JS blank controls pass. Exact pre-evaluation WebKitWebProcess
+PIDs 5535/5688/5843 have matching SIGABRT core records; MiniBrowser and network
+process survive until teardown. Init scripts, state body and browser reuse are
+not necessary triggers. No aborting function/stack is retained yet. WPE passes
+six cells on a different runner image and headless backend, so port alone is
+not isolated. Keep this negative and failed evidence in GTK-TARGET.json.
+
+Continue with three fresh GTK normal-source controls: blank/disabled-JS
+constant, Color/enabled-JS constant, Color/disabled-JS constant. Preserve original
+init/context/navigation/180ms first evaluation and all existing bounds. Improve
+only post-failure native retention: exact pre-evaluation PID, executable, trial
+time and signal must identify any coredump info or offline debugger backtrace.
+Do not attach to a live process, change core settings, prime evaluation, alter
+browser pins or substitute ports. Retain command availability/version, failures,
+text limits and dropped bytes. Remove the completed fourteen-cell PR trigger;
+retire the native trigger after collecting its evidence. A native stack is
+causal evidence, not hosted acceptance or authorization to merge.
+
+## GTK no-JavaScript crash localization — 2026-10-06
+
+Follow-up 37505225237 at 5e4a8f6 fixes the observed installer delay: Ubuntu
+126 MB fetch takes 15s, dependencies 44s and browser download 5s. All 130
+functional rows are retained: 120 pass, all ten no-js rows emit page-crash
+19–25s into first state evaluation while the browser remains connected.
+The 25m diagnostic cancels during navigation, so full 130/4/13 acceptance is
+not achieved. GTK-FOLLOWUP.json retains every failed lifecycle, raw identities,
+SHA and incomplete navigation/analytics. No native signal/stack establishes
+SIGSEGV, OOM or a driver/renderer cause. The automation-context warning also
+occurs in passing rows; pinned GTK inspector code explains it without proving
+actual default-session fallback. Do not add an unsupported automation flag.
+The completed GTK job and dated PR trigger are removed after collection.
+
+One dated read-only causal screen compares GTK/WPE on separate fresh runners:
+blank/full normal Color and constant/original state first evaluation, JavaScript
+on/off, six fresh browsers per port; two additional GTK cells omit only the
+functional init script from matching disabled-JS blank/constant and full/state controls.
+Keep exact source/tree/normal artifact, original options, cold startup, raw
+failures and all 14 observations. There is no warmup, retry, deployment or
+acceptance from collection green. Native crash records are observed separately.
+Remove its dated PR trigger after retaining evidence; correct only supported
+causes before a fresh hosted/full/stable/exact-head merge.
+
+The first screen run 37511255893 at c2cfade has zero native observations: its
+collector incorrectly rejects normal Color authored-color-effects derivation.
+GTK-TARGET-PREFLIGHT.json retains both failed preconditions, passed installs,
+static lint/security and raw SHA. It says nothing about GTK/WPE factors.
+Correct only this preflight: validate canonical Color lineage against its real
+retained base with exact clean source/tree/engine/effects, reject diagnostics,
+and initialize reports before input validation. The real producer integration
+uses a clean detached test-owned source; do not rewrite sourceDirty metadata.
+Original fourteen cells and native/collection bounds stay unchanged.
+
+The observed GTK row phase is 19m58s; incomplete lease is 24m08s, exceeding the
+previous full Linux job's 9m02s allowance. LINUX-LEASES.md retains a reviewed
+260/8/26 + 130/4/13 two-runner adapter, unchanged 45m job limits and exact raw
+coverage/provenance checks. A five-file CI-only backport is prepared against
+main, with no runtime/content changes. It is not activated: /stage uses the
+protected-main workflow and requires that unchanged controller. The active
+sole-#23 and no-runtime-merge-before-stable instructions remain. No extra PR,
+main bypass or branch-controller deployment is authorized by this preparation.
+
+## GTK installation and target-loss follow-up — 2026-10-06
+
+Run 37500364739 installed WebKit successfully but spent 22m18s on installation,
+including 21m44s slow Azure Ubuntu downloads through /etc/apt/apt-mirrors.txt.
+The 25m job was cancelled with incomplete coverage: 12 passing rows and a separate
+no-js first-state target closure. GTK-INCOMPLETE.json retains identities, raw SHA
+and the failure. Cancellation fits job-budget exhaustion; its initiator and the
+no-js native mechanism are not proved. Use the primary archive in direct and
+active mirror-file sources, independent 3/5/3m install phases in the same job,
+and optional native lifecycle/stderr evidence. Preserve cold startup, all
+130/4/13 scenarios, original engine/page/performance bounds and every raw failure.
+The full protected-main controller is unchanged. Remove the dated PR trigger
+only after collection, then complete the authorized hosted/stable/exact-head
+merge sequence; incomplete/private evidence never authorizes promotion.
+
+## Full staging display startup follow-up — 2026-10-06
+
+Full run 37491800878 at 4c05087e passes all static/host/captures/performance and
+native jobs, plus Linux Chromium/Firefox 260/8/26 and Color 12/12. WebKit never
+starts because the new Xvfb pre-launch cap expires after 3000ms. The gate fails
+and promotion is skipped; do not merge that incomplete matrix. DISPLAY.json
+retains subsequent real X server observations, including invalid wrapper/probe
+preconditions. Both FD1 and FD3 pass, so do not claim an FD switch is a cure.
+Share the original 30000ms engine startup allowance across Xvfb and browser,
+subtracting display elapsed time before browser launch. Keep original 1500ms
+page/paint/fallback bounds, 45/40 minute CI limits and performance/hold policy.
+Retain server stderr on failure; do not invent the historical startup stall's
+native cause. The dated GTK request confirms its complete 130/4/13 lease and
+actual time on normal private Color; remove its trigger after collection, then
+complete the already authorized exact-head hosted full/stable/merge sequence.
 
 ## Implement confirmed causes and investigate the rest — 2026-10-06
 
