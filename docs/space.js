@@ -962,14 +962,14 @@ const renderer=(function() {
       // Depth order is unchanged. Only adjacent compatible lines are batched.
       if(shape.kind==="line"&&!shape.arrow){index=drawLineRun(ctx,shapes,index,colors);continue;}
       const points=shape.points,from=points[0],to=points[1];
-      path(ctx,points);ctx.lineWidth=shape.lineWidth;ctx.strokeStyle=colors[shape.color];
+      path(ctx,points);
       if(shape.kind==="face") {
         ctx.closePath();ctx.fillStyle=shape.room.faceColors[shape.material];ctx.globalAlpha=shape.alpha;ctx.fill();
         if(shape.edgeAlpha===0){ctx.strokeStyle=ctx.fillStyle;ctx.lineWidth=.65;ctx.stroke();}
         // Explicit silhouettes survive; faint internal mesh edges are omitted
         // on desktop as on mobile. Thousands of invisible strokes cost time.
-        else if(shape.room.world.faces[shape.material].edgeAlpha>.12){ctx.globalAlpha=shape.edgeAlpha;ctx.stroke();}
-      } else {ctx.globalAlpha=shape.alpha;ctx.stroke();}
+        else if(shape.room.world.faces[shape.material].edgeAlpha>.12){ctx.lineWidth=shape.lineWidth;ctx.strokeStyle=colors[shape.color];ctx.globalAlpha=shape.edgeAlpha;ctx.stroke();}
+      } else {ctx.lineWidth=shape.lineWidth;ctx.strokeStyle=colors[shape.color];ctx.globalAlpha=shape.alpha;ctx.stroke();}
       if(shape.arrow) {
         const dx=to[0]-from[0],dy=to[1]-from[1],length=Math.hypot(dx,dy);if(length<10)continue;
         const size=5,ux=dx/length,uy=dy/length;

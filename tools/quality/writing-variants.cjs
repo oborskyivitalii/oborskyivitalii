@@ -18,12 +18,16 @@ const descriptions={
   'row-grid-off':'Replace only constrained publication outer grids with positioned native child footprints; retain title flex and text.',
   'title-flex-off':'Replace only constrained title flex layout with positioned native text/arrow footprints; retain outer grids.',
   'browser-gate-trace':'Expose private scheduler state and post-quality draw costs; preserve the complete normal Color rendition.',
-  'browser-gate-adaptive-ribbons':'Retain private browser-gate probes and interpolate desktop ribbon mesh step with actual detail tier; preserve viewport projection, visibility bounds and mobile geometry.'
+  'browser-gate-adaptive-ribbons':'Retain private browser-gate probes and interpolate desktop ribbon mesh step with actual detail tier; preserve viewport projection, visibility bounds and mobile geometry.',
+  'cold-no-paint':'Retain all normal projection/effects/sorting, canvas clear and scheduler; omit only native shape submission for cold WebKit attribution.',
+  'cold-no-air':'Retain normal canvas/rendering and scheduler; omit only the three per-frame atmosphere CSS property writes for cold WebKit attribution.',
+  'cold-small-canvas':'Retain normal geometry/paint/scheduler; keep the native canvas backing store at its default size for cold WebKit attribution.'
 };
 // The dated Writing screen remains its original thirteen interventions. These
 // browser-gate renditions are derived only when explicitly requested by a probe.
 const browserGateLabels=['browser-gate-trace','browser-gate-adaptive-ribbons'];
-const labels=Object.keys(descriptions).filter(label=>!browserGateLabels.includes(label));
+const coldNativeLabels=['cold-no-paint','cold-no-air','cold-small-canvas'];
+const labels=Object.keys(descriptions).filter(label=>!browserGateLabels.includes(label)&&!coldNativeLabels.includes(label));
 function replaceOnce(source,needle,replacement,file,patches){
   const matches=source.split(needle).length-1;
   assert.equal(matches,1,'diagnostic patch must match exactly once: '+file+' '+needle.slice(0,70));
@@ -45,10 +49,16 @@ function patchBrowserGate(patch,label,source){
   patch('space.js','shapes=[],step=compact?3:1.25,far=compact?64:105;','shapes=[],step=compact?3:1.25+Math.max(0,Math.min(2,ribbonMesh))*.875,far=compact?64:105;');
 }
 function patchRuntime(scripts,label){
-  assert.ok(labels.includes(label)||browserGateLabels.includes(label),'unsupported Writing intervention');
+  assert.ok(labels.includes(label)||browserGateLabels.includes(label)||coldNativeLabels.includes(label),'unsupported Writing intervention');
   const result={...scripts},patches=[];
   const patch=(file,needle,replacement)=>{result[file]=replaceOnce(result[file],needle,replacement,file,patches);};
-  if(browserGateLabels.includes(label))patchBrowserGate(patch,label,result['space.js']);
+  if(browserGateLabels.includes(label)||coldNativeLabels.includes(label))patchBrowserGate(patch,label,result['space.js']);
+  if(label==='cold-no-paint')patch('space.js','paintShapes(ctx,shapes,colors,sceneEffects?.paint);','void shapes; // Private cold native shape-submission ablation.');
+  if(label==='cold-small-canvas')patch('space.js','if(canvas.width!==w || canvas.height!==h){canvas.width=w;canvas.height=h;}','void w;void h; // Private default native backing-store ablation.');
+  if(label==='cold-no-air')for(const property of ['x','y','light']){
+    const digits=property==='light'?5:3,suffix=property==='light'?'':'px';
+    patch('space.js','scene.style?.setProperty("--air-'+property+'",air.'+property+'.toFixed('+digits+')'+(suffix?'+'+JSON.stringify(suffix):'')+');','void air.'+property+'; // Private atmosphere-write ablation.');
+  }
   if(label==='no-ribbons')patch('space.js','const sceneEffects=effects?.scene?.(api);','const sceneEffects=null; // Private Writing diagnostic: ribbons omitted.');
   if(label==='no-canvas-draw')patch('space.js','paintShapes(ctx,shapes,colors,sceneEffects?.paint);','void shapes; // Private Writing diagnostic: Canvas shape submission omitted.');
   if(label==='thematic-off'||label==='shared-off'){
@@ -134,4 +144,4 @@ function build(inputRoot){
   ]};
 }
 if(require.main===module){const result=build(path.resolve(process.argv[2]));console.log(JSON.stringify({labels:result.labels,deferred:result.deferred}));}
-module.exports={build,derive,patchRuntime,labels,browserGateLabels,descriptions};
+module.exports={build,derive,patchRuntime,labels,browserGateLabels,coldNativeLabels,descriptions};

@@ -24,7 +24,7 @@ test('source migration preserves publication HTML and thematic geometry when sha
   const context={module:{exports:{}}};vm.runInNewContext(cp.execFileSync('git',['show','6041a5801729e561c425092323a12cc8e4062f85:docs/space.js'],{cwd:root,encoding:'utf8'}),context);
   for(const route of config.routes){
     const rendered=b.render(root,route,b.routeInput(root,route,c),context.module.exports),original=cp.execFileSync('git',['show','6041a5801729e561c425092323a12cc8e4062f85:docs/'+route.url],{cwd:root,encoding:'utf8'});
-    assert.equal(require('../tools/check_site_seo.cjs').restoreApprovedContent(rendered.match(/<main\b[\s\S]*?<\/main>/)[0],route.id),original.match(/<main\b[\s\S]*?<\/main>/)[0],route.id+' publication content with exact approved contact/title transformations');
+    assert.equal(require('../tools/check_site_seo.cjs').restoreApprovedContent(rendered.match(/<main\b[\s\S]*?<\/main>/)[0],route.id),original.match(/<main\b[\s\S]*?<\/main>/)[0],route.id+' publication content with exact approved contact/title/response transformations');
     for(const compact of [false,true]){
       const actual=api.worldFor(route.id,compact).objects.filter(o=>o.family==='thematic'),before=context.module.exports.worldFor(route.id,compact).objects.filter(o=>o.family==='thematic');
       // V1 tightens only the acceleration bound. Compare every semantic/style

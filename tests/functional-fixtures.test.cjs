@@ -5,6 +5,15 @@ const begin=source.indexOf('async function navigateDocument('),end=source.indexO
 assert.ok(begin>=0&&end>begin,'real functional fixture helpers must be present');
 const helpersSource=source.slice(begin,end);
 const plain=value=>JSON.parse(JSON.stringify(value));
+test('complete engine leases run serially and a failed engine does not suppress later engines',async()=>{
+  const begin=source.indexOf('async function serialEngines('),end=source.indexOf('\nasync function main(',begin);
+  const run=vm.runInNewContext('('+source.slice(begin,end)+')');let active=0,maxActive=0;const seen=[],fault=Error('Firefox failure');
+  const results=await run(['chromium','firefox','webkit'],async engine=>{
+    active++;maxActive=Math.max(maxActive,active);seen.push(engine);await Promise.resolve();active--;if(engine==='firefox')throw fault;
+  });
+  assert.equal(maxActive,1);assert.deepEqual(seen,['chromium','firefox','webkit']);
+  assert.deepEqual(plain(results.map(row=>row.status)),['fulfilled','rejected','fulfilled']);assert.equal(results[1].reason,fault);
+});
 function helpers(){
   let time=0;
   const scene={dataset:{camera:'opening',phase:'0',quality:'full',ready:'true'}},motion={textContent:'Motion: on',hidden:false,disabled:false},attached=new Set();

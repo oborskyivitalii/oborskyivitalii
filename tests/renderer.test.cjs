@@ -4,6 +4,19 @@ const {paintShapes}=require('../site/engine/renderer.cjs')();
 function recorder(){
   const commands=[];return {commands,beginPath(){commands.push('begin');},moveTo(){},lineTo(){},closePath(){},fill(){commands.push('fill');},stroke(){commands.push('stroke');}};
 }
+test('filled facets avoid unused native stroke setters while every visible contour retains its effective style',()=>{
+  const strokes=[],fills=[],writes=[],ctx=recorder();
+  for(const property of ['lineWidth','strokeStyle']){
+    let value;Object.defineProperty(ctx,property,{get:()=>value,set:next=>{value=next;writes.push([property,next]);}});
+  }
+  ctx.fill=()=>fills.push([ctx.fillStyle,ctx.globalAlpha]);ctx.stroke=()=>strokes.push([ctx.strokeStyle,ctx.lineWidth,ctx.globalAlpha]);
+  const room={faceColors:['#abcdef','#fedcba','#aabbcc'],world:{faces:[{edgeAlpha:.12},{edgeAlpha:.36},{edgeAlpha:0}]}};
+  const face=material=>({kind:'face',points:[[0,0],[10,0],[0,10]],room,material,color:'cyan',alpha:.82,edgeAlpha:room.world.faces[material].edgeAlpha,lineWidth:1.25});
+  paintShapes(ctx,[face(0),face(1),face(2)],{cyan:'#123456'});
+  assert.deepEqual(fills,[['#abcdef',.82],['#fedcba',.82],['#aabbcc',.82]]);
+  assert.deepEqual(strokes,[['#123456',1.25,.36],['#aabbcc',.65,.82]]);
+  assert.equal(writes.length,4,'unoutlined facet submits no unused stroke-state setters');assert.equal(ctx.globalAlpha,1);
+});
 test('batching keeps depth order and visible outlines, reducing tiny mesh strokes',()=>{
   const ctx=recorder(),room={faceColors:['#123456'],world:{faces:[{edgeAlpha:.12},{edgeAlpha:.36},{edgeAlpha:0}]}};
   const face=material=>({kind:'face',points:[[0,0],[10,0],[0,10]],room,material,color:'cyan',alpha:.82,edgeAlpha:room.world.faces[material].edgeAlpha,lineWidth:1});

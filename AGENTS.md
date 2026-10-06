@@ -1,5 +1,16 @@
 # Agent guidance for personal publications
 
+## Selected Home responses and complete Research context — 2026-10-06
+
+The maintainer now asks Sol to implement the [approved plan in Draft #28](https://github.com/oborskyivitalii/oborskyivitalii/pull/28#issuecomment-6018945888).
+Keep three short Home cards (Dobkin, Skelton, Kopko), all eight complete Research
+records in surname order, exact profile/source links and bounded contribution
+claims. Preserve Research formulation credit and add direct public-discussion
+navigation. Issue #14 owns this input. Edit authored content, explicitly reconcile
+only approved before/after copy, refresh generated outputs and use ordinary PR
+preview/minimal smoke. Preserve newer #23 work, contact links and backdrop alpha;
+full staging, merge and production of #28 remain outside this request.
+
 ## Contact and remaining backdrop corrections — 2026-10-06
 
 The maintainer supplies the public booking URL and email and explicitly requests
@@ -27,6 +38,20 @@ surface module, regenerate dependent outputs and use the existing automatic PR
 preview/short-smoke workflow. Full staging, merge and production of this follow-up
 are not requested. Calendar booking/email are advice only until real contact
 values and an implementation request are supplied. No Glass or new runtime loop.
+
+## Implement confirmed causes and investigate the rest — 2026-10-06
+
+The maintainer requests corrections and remaining causal investigation from
+review/staging-readiness-20261006/CAUSES.md, continuing only PR #23. This
+supersedes the completed analysis-only pause below. Isolate the complete browser
+matrix, fix state-observation races without extending the original bounds, and
+correct supported renderer/adaptation costs while preserving geometry and holds.
+Cold WebKit and late Research tasks require controlled evidence, not guessed
+causes. One dated, path-scoped read-only PR experiment may retain cold WebKit
+ablations on fresh runners and balanced before/current Research traces. Remove
+its temporary trigger after collection; keep every failed observation and exact
+source/parent identity. Diagnostic green is not performance acceptance. Complete
+the authorized exact-head full staging and stable verification before merge.
 
 ## Completed browser causes — 2026-10-06
 

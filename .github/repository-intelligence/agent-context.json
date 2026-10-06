@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "3d0133d0a1b99d9add38f3108cb73b56440cc6674e7034da47e6739a6ebaf165",
+    "digest": "9e14c53f5bacf011a82fe90ad053d8dea3c78cb81a4780f2fb9cd5e11d71dcbc",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -59,6 +59,11 @@
         "path": ".github/workflows/site-candidate-evidence.yml",
         "identity_mode": "content",
         "sha256": "4f29bb722c296a012d79850b504f2a47369f450a0449f65804a277369ca5406e"
+      },
+      {
+        "path": ".github/workflows/site-cause-fix-probe.yml",
+        "identity_mode": "content",
+        "sha256": "545a3851202eac13981498675dd032bf03cbf3053ef5545f5f0df36714d0d407"
       },
       {
         "path": ".github/workflows/site-cause-probe.yml",
@@ -107,7 +112,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "4551fa9dc9ff449ca053a38ad10c96a8ac02c9b4dc39cf9ba69a9db98e072e4a"
+        "sha256": "1be07c774dd47f4815c978762da947e76e70a13b1568d1b24dea6cdd016db7c4"
       },
       {
         "path": "BACKLOG.md",
@@ -162,12 +167,12 @@
       {
         "path": "SITE-SEO.md",
         "identity_mode": "content",
-        "sha256": "6dc9d37b918aeec5df3e1a7128cbf4b5f36379d64ccaded0cf7a51aa94a1ff67"
+        "sha256": "18ad68f198b6cbd63c97f6978a11b58b1ecb1f8f850c008bb8900c9c56e7d647"
       },
       {
         "path": "SITE-SOURCE-AUDIT.md",
         "identity_mode": "content",
-        "sha256": "d0b1cebe7c79e11776c9041719280aaa199dbbebea997812dce2d2410add777e"
+        "sha256": "c335821184ef75c60ba7278f8c8139864b9571abf373c974810ccc0c9dff0de8"
       },
       {
         "path": "SITE-STAGING.md",
@@ -233,48 +238,48 @@
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/75fea39ef51888f9f9f7e051ac5b74d4fef997b8e9a143562fbfae7f076c35e9/archive.js",
+        "path": "docs/runtime/938f695fa2bfd8377944127b79e9df54ca6d7b1578d70df9777cb79cdc985e3f/archive.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/75fea39ef51888f9f9f7e051ac5b74d4fef997b8e9a143562fbfae7f076c35e9/navigation.js",
+        "path": "docs/runtime/938f695fa2bfd8377944127b79e9df54ca6d7b1578d70df9777cb79cdc985e3f/navigation.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/75fea39ef51888f9f9f7e051ac5b74d4fef997b8e9a143562fbfae7f076c35e9/space.js",
+        "path": "docs/runtime/938f695fa2bfd8377944127b79e9df54ca6d7b1578d70df9777cb79cdc985e3f/space.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/75fea39ef51888f9f9f7e051ac5b74d4fef997b8e9a143562fbfae7f076c35e9/styles.css",
+        "path": "docs/runtime/938f695fa2bfd8377944127b79e9df54ca6d7b1578d70df9777cb79cdc985e3f/styles.css",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/75fea39ef51888f9f9f7e051ac5b74d4fef997b8e9a143562fbfae7f076c35e9/theme.js",
+        "path": "docs/runtime/938f695fa2bfd8377944127b79e9df54ca6d7b1578d70df9777cb79cdc985e3f/theme.js",
         "identity_mode": "existence"
       },
       {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "5e19c4b44bab2ed0423431cd9e1c27373b71fa2e69539022063c5b3cd24cfc70"
+        "sha256": "e2bc440cf719daf193e4252cbff59d11b1f13713fd9c861c577cbd2736e13dea"
       },
       {
-        "path": "docs/snapshots/265d6ef84e52d835533c69913a34eee035b6814dfb81c7d8456178c500d60565/writing.html",
+        "path": "docs/snapshots/0f252b9365e6ad429e93473685c3d2255d04009fb33eeb7caa4a00246e5b6d34/index.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/4ef2bf1487bf3298d29e1546ad45982656c3ab60148bb58f48d2c09aa0c788ed/index.html",
+        "path": "docs/snapshots/25d88063742a0b2d53be7a2dca4d9b5a84714e47f58bb2015d421348384864b0/writing.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/96587aaad906c1477e4a6882f82dfa0aac8a0d16dbcee22a72b9d00fedd71c4e/credits.html",
+        "path": "docs/snapshots/5d1257e0c2eba0464d2873f7df1d5e8ff9b54d37aebd55af012d7ce69d3e8f7f/research.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/a5d3fd72230c3cc53b8bd6f8553b14a48a014e5f4df81ef0ea7cb4481ceb4ab0/talks.html",
+        "path": "docs/snapshots/c198a7acbc6310c24a02c60fc49e637de4780df26106218d00d5301be70a0766/talks.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/e97cc439cfea65e096b7d3733074b013b70ff30db008b1a6d17003757eab7c34/research.html",
+        "path": "docs/snapshots/cb589cde02f2f7c785a8daebc68d67802f941d2322e455961c094fa2a9b9b09f/credits.html",
         "identity_mode": "existence"
       },
       {
@@ -371,6 +376,27 @@
         "path": "review/color-staging-20261006/target.json",
         "identity_mode": "content",
         "sha256": "42bac7997ba50f77b0ad9a53fa76cbdaa3fab8df0099c531b0c7f317ee2be0e2"
+      },
+      {
+        "path": "review/public-responses-20261006/README.md",
+        "identity_mode": "content",
+        "sha256": "4b4c5375f5bd72c88e7d9783a926993e96a373a828f628ff5c80107942486b8c"
+      },
+      {
+        "path": "review/public-responses-20261006/index.after.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/public-responses-20261006/index.before.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/public-responses-20261006/research.after.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/public-responses-20261006/research.before.html",
+        "identity_mode": "existence"
       },
       {
         "path": "review/reading-backdrops-20261006/REPORT.md",
@@ -2913,7 +2939,7 @@
       {
         "path": "review/site-v1-static-previews-v11.json",
         "identity_mode": "content",
-        "sha256": "87ac26c76077748a0fea6feee456aef11964514dc19e0c8118a4bcbaa1caae5c"
+        "sha256": "9a9bf8cac0c3fe4329ce35ca72f7f0f90882e768745e764244d5f69ab0306fb2"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -3201,6 +3227,11 @@
         "path": "review/staging-readiness-20261006/CAUSE-ATTRIBUTION.json",
         "identity_mode": "content",
         "sha256": "cfc951fa5b6181a74aa3ac7da3015a92b50665bdf0df290f7ab2021d62a346ff"
+      },
+      {
+        "path": "review/staging-readiness-20261006/CAUSE-FIX-REQUEST.md",
+        "identity_mode": "content",
+        "sha256": "ea9c51bb7daa40d0d213305a87818714ec243c0dcae042711625b66a67b2b540"
       },
       {
         "path": "review/staging-readiness-20261006/CAUSES.md",
@@ -3500,7 +3531,7 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "1f18c66783d0e16994eadc4e5e5c8dab51bf6dcaa41693d83e4d6bcc75d6a5f9"
+        "sha256": "a12156e9778e599d61b5ade6c9c8d93e161858015b9007f99b82ca7839d7565e"
       },
       {
         "path": "site/routes.json",
@@ -3550,6 +3581,10 @@
       },
       {
         "path": "tests/browser-gate-variants.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/cause-fix-probe.test.cjs",
         "identity_mode": "existence"
       },
       {
@@ -3770,6 +3805,10 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tools/quality/cold-native-probe.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tools/quality/color-browser.cjs",
         "identity_mode": "existence"
       },
@@ -3841,6 +3880,10 @@
       },
       {
         "path": "tools/quality/promotion.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/research-pair-probe.cjs",
         "identity_mode": "existence"
       },
       {
@@ -4233,6 +4276,13 @@
       ]
     },
     {
+      "path": ".github/workflows/site-cause-fix-probe.yml",
+      "title": ".github/workflows/site-cause-fix-probe.yml",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": ".github/workflows/site-cause-probe.yml",
       "title": ".github/workflows/site-cause-probe.yml",
       "instructions": [
@@ -4480,6 +4530,13 @@
     {
       "path": "review/color-staging-20261006/target.json",
       "title": "review/color-staging-20261006/target.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/public-responses-20261006/README.md",
+      "title": "Selected Home responses — implementation, 2026-10-06",
       "instructions": [
         "AGENTS.md"
       ]
@@ -5782,6 +5839,13 @@
     {
       "path": "review/staging-readiness-20261006/CAUSE-ATTRIBUTION.json",
       "title": "review/staging-readiness-20261006/CAUSE-ATTRIBUTION.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/staging-readiness-20261006/CAUSE-FIX-REQUEST.md",
+      "title": "Confirm cause corrections and attribute the unresolved native delay",
       "instructions": [
         "AGENTS.md"
       ]
