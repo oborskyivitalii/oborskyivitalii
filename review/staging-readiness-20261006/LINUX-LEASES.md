@@ -1,6 +1,35 @@
-# Linux engine lease adapter — 2026-10-06
+# Full engine runner policy — 2026-10-06
 
-Status: the adapter is prepared for review within #23. Controller activation
+## Approved replacement: full WebKit on macOS
+
+The maintainer approved one CI-only controller PR to move the complete WebKit
+functional suite to macOS. This replaces the prepared two-Linux-runner adapter
+documented below and further GTK/native-core experiments. Preserve the failed
+evidence; do not activate the old adapter or run another native collection.
+
+| Full runner | Functional / navigation / analytics | Other coverage |
+| --- | --- | --- |
+| Linux | Chromium + Firefox: 260 / 8 / 26 | Original twelve enabled-JS Color feature cells, including WebKit |
+| macOS | WebKit: 130 / 4 / 13 | All eleven failure/fallback modes, including ten disabled-JS cells |
+| Windows | Chromium + Firefox smoke: 40 / 8 / 26 | Existing supplemental native smoke |
+
+All 390 unique functional cases, twelve navigation cases and 39 analytics cases
+remain required across Linux and macOS. Validate exact source, tree, artifact,
+variant and hosted target; retain each runner's original report separately.
+The previous macOS twenty-row normal smoke has no disabled-JS coverage and is
+insufficient. Fresh full macOS results and elapsed time remain unproved until
+the new hosted acceptance run. macOS Playwright WebKit is not physical Safari
+or iOS acceptance.
+
+Nonfull previews retain the original three-engine Linux matrix. Browser pins,
+45m Linux / 40m native limits and page/performance budgets remain unchanged.
+The approved CI-only exception permits this controller change before #23;
+runtime #23 still requires fresh exact-head hosted/full and stable verification
+before its merge. No production acceptance is claimed.
+
+## Historical two-Linux-runner proposal (superseded)
+
+Historical status: the adapter was prepared for review within #23. Controller activation
 and the extra CI-only PR described below remain pending explicit authorization.
 There is no hosted acceptance, stable promotion or runtime merge.
 

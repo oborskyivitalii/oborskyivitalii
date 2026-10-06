@@ -1,5 +1,33 @@
 # Причини збоїв і виправлення — 6 жовтня 2026
 
+## Погоджене повне WebKit-покриття на macOS
+
+Власник погодив перенести повні WebKit-перевірки з Linux GTK на macOS та один
+окремий CI-only PR для protected-main controller. Linux Chromium/Firefox
+зберігають 260/8/26, macOS WebKit отримує всі 130/4/13, включно з десятьма
+no-JavaScript cases та всіма failure/fallback modes. Windows smoke 40/8/26 і
+Linux Color12 лишаються. Повне унікальне engine-покриття — 390/12/39; колишні
+20 normal macOS smoke rows більше не дублюються. Nonfull Linux checks зберігають
+початкові три engines. Pins, 45m/40m limits та performance/page budgets незмінні.
+
+Це зміна платформи перевірки, не виправлення або доказ нешкідливості GTK abort.
+Нинішній accepted macOS smoke не перевіряв жодного no-js case; повні 130/4/13
+та фактичний час macOS ще треба підтвердити на exact hosted candidate. GTK і
+core-size діагностику зупинено, її raw failures збережено. Runtime #23 не
+зливається до нового full hosted gate та stable verification.
+
+Run 37518167424 на clean e726982 / tree 1a582eb зберіг три fresh controls:
+blank JS-off і Color JS-on проходять, Color JS-off падає. Matching PID 5435,
+executable, boot і trial time підтверджують SIGABRT. Journal frames містять
+pthread_kill -> raise -> abort -> unresolved journal module frame
+libwebkitgtk-6.0.so.4.20.0 +0x78de17;
+названого WebKit caller/assertion немає. Окремий postmortem debug повернув
+SIGXFSZ під 512MiB file cap до GDB output; nativeCaptureComplete=false.
+Core timestamp має секундну точність і збігається з секундою first evaluate;
+23.7s є observer elapsed, не точним часом між abort і notification та не
+доказом watchdog/evaluation causality. [GTK-NATIVE.json](GTK-NATIVE.json)
+утримує всі три rows, identities, raw checksums і неповне debugger capture.
+
 ## GTK 37513438968: native SIGABRT, evaluator/init не є необхідним тригером
 
 Corrected collector на clean 6c67952 / tree 7d1feec зберіг усі 14 observations

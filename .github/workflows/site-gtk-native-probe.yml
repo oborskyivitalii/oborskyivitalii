@@ -1,8 +1,5 @@
 name: Retain exact GTK WebProcess offline abort stack
 on:
-  pull_request:
-    types: [opened, synchronize, reopened]
-    paths: [review/staging-readiness-20261006/GTK-NATIVE-REQUEST.md]
   workflow_dispatch:
     inputs:
       candidate_sha:

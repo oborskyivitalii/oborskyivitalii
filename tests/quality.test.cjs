@@ -22,63 +22,6 @@ function fixture(){
   functional.analytics=functional.engines.flatMap(engine=>analytics.cases(engine).map(s=>({...s,model:analytics.model,pass:true,errors:[],externalRequests:[],checks:Object.fromEntries(analytics.checks.map(key=>[key,true])),readyWhileSDKPending:s.mode==='delayed'?true:'not applicable',vendorRequests:['staging','offline'].includes(s.mode)?[]:Array(2).fill('https://static.cloudflareinsights.com/beacon.min.js')})));
   return {manifest:{...identity,components:{variant},sourceDirty:false},sizes:{pass:true,artifactDigest:identity.artifactDigest,rows:budgets.routes.map(route=>({route,raw:50000,svgNodes:100,totalGzipBytes:10000}))},jobs:{build:{result:'success'},static:{result:'success'},linux:{result:'success'}},reports:[scan('lint',{scannedFiles:30,tools:{eslint:'10',stylelint:'17',ruff:'0.16'}}),scan('security',{semgrep:{files:['docs/space.js'],rules:8,errors:0},bandit:{loc:100,findings:0},secrets:{trackedTextFiles:100}}),scan('advisories',{feedDate:'2026-10-03',npm:{},pythonDependencies:80,runtimeDependencies:'none'}),functional]};
 }
-function splitLinux(x){
-  const index=x.reports.findIndex(r=>r.kind==='functional'&&r.environment.platform==='linux'),original=x.reports[index];
-  const leases=[['chromium','firefox'],['webkit']].map((engines,i)=>{
-    const lease=structuredClone(original);lease.engines=engines;
-    lease.environment={...lease.environment,runnerImage:'controlled-lease-'+i,cpus:['controlled CPU '+i]};
-    for(const key of ['browsers','rows','navigation','analytics'])lease[key]=lease[key].filter(row=>engines.includes(row.engine));
-    return lease;
-  });x.reports.splice(index,1,...leases);return x;
-}
-test('separate Linux runners retain complete disjoint leases and their original provenance',()=>{
-  const x=splitLinux(fixture()),before=structuredClone(x.reports);
-  assert.equal(aggregate(x).pass,true);assert.deepEqual(x.reports,before,'the gate never synthesizes a runner or combines raw reports');
-  const leases=x.reports.filter(r=>r.kind==='functional');
-  assert.deepEqual(leases.map(r=>[r.rows.length,r.navigation.length,r.analytics.length]),[[260,8,26],[130,4,13]]);
-  const cases=[
-    x=>x.reports.pop(),
-    x=>x.reports.push(structuredClone(x.reports.at(-1))),
-    x=>x.reports.at(-1).engines.push('firefox'),
-    x=>x.reports.at(-1).engines.push('webkit'),
-    x=>x.reports.at(-1).engines[0]='unknown',
-    x=>{const empty=structuredClone(x.reports.at(-1));for(const key of ['engines','browsers','rows','navigation','analytics'])empty[key]=[];x.reports.push(empty);},
-    x=>x.reports.at(-1).rows.pop(),
-    x=>x.reports.at(-1).rows[1]=structuredClone(x.reports.at(-1).rows[0]),
-    x=>x.reports.at(-1).rows[0].engine='firefox',
-    x=>x.reports.at(-1).navigation.pop(),
-    x=>x.reports.at(-1).navigation[1]=structuredClone(x.reports.at(-1).navigation[0]),
-    x=>x.reports.at(-1).analytics.pop(),
-    x=>x.reports.at(-1).analytics[1]=structuredClone(x.reports.at(-1).analytics[0]),
-    x=>x.reports.at(-1).smoke=true,
-    x=>x.reports.at(-1).modes.pop(),
-    x=>x.reports.at(-1).browsers[0].version='',
-    x=>x.reports.at(-1).rows[0].pass=false,
-    x=>x.reports.at(-1).rows.find(row=>row.mode==='no-js').checks.fallback=false,
-    x=>x.reports.at(-1).pass=false,
-    x=>x.reports.at(-1).target='https://other.invalid',
-    ...['sourceCommit','sourceTree','candidateCommit','artifactDigest'].map(key=>x=>x.reports.at(-1)[key]='0'.repeat(key==='artifactDigest'?64:40)),
-    x=>x.reports.at(-1).variant.fingerprint='0'.repeat(64),
-    x=>x.jobs.linux.result='cancelled'
-  ];
-  for(const mutate of cases){const x=splitLinux(fixture());mutate(x);assert.throws(()=>aggregate(x));}
-});
-test('Linux lease uploads remain unique across engines, profiles and workflow attempts',()=>{
-  const fs=require('node:fs'),path=require('node:path'),workflow=require('../tools/quality/workflow-artifacts.cjs'),root=path.resolve(__dirname,'..');
-  const sources=Object.fromEntries(['site-checks','site-release-checks'].map(id=>[id,fs.readFileSync(path.join(root,'.github/workflows/'+id+'.yml'),'utf8')]));
-  const actual=workflow.names(sources['site-release-checks'],{run:123,attempt:2,profile:'staging'});
-  assert.ok(actual.includes('site-reports-linux-primary-staging-123-2'));assert.ok(actual.includes('site-reports-linux-gtk-staging-123-2'));
-  assert.equal(workflow.check(root,sources).unique,true);
-  const collision={...sources,'site-release-checks':sources['site-release-checks'].replace('lease: gtk','lease: primary')};assert.throws(()=>workflow.check(root,collision),/collision/);
-  const shared={...sources,'site-release-checks':sources['site-release-checks'].replace('site-reports-linux-${{ matrix.lease }}-','site-reports-linux-')};assert.throws(()=>workflow.check(root,shared),/distinct immutable/);
-  assert.throws(()=>workflow.names('  name: site-test-${{ matrix.lease }}\n',{run:1,attempt:1,profile:'staging'}),/missing artifact lease/);
-  assert.throws(()=>workflow.names('  name: site-test-${{ matrix.unknown }}\n',{run:1,attempt:1,profile:'staging'}),/unknown artifact discriminator/);
-  const linux=sources['site-release-checks'].split('\n  linux:')[1].split('\n  native:')[0];
-  assert.match(linux,/timeout-minutes: 45/);assert.match(linux,/fail-fast: false/);assert.match(linux,/SITE_AUDIT_ENGINES: \$\{\{ matrix\.engines \}\}/);
-  assert.match(linux,/lease: primary\s+engines: chromium,firefox\s+install: chromium firefox webkit/);assert.match(linux,/lease: gtk\s+engines: webkit\s+install: webkit/);
-  assert.match(linux,/if: matrix\.lease == 'primary' && inputs\.public_variant == 'color' && !cancelled\(\)/);
-  assert.equal((linux.match(/timeout-minutes: 3/g)||[]).length,2);assert.match(linux,/timeout-minutes: 5/);assert.doesNotMatch(linux,/--smoke|continue-on-error|headless/);
-});
 test('complete source-bound PR evidence passes; missing and controlled failures fail closed',()=>{
   assert.equal(aggregate(fixture()).pass,true);
   const failures=[
@@ -178,8 +121,9 @@ test('capture camera settling requires two real stable paints and rejects stalls
 });
 function fullFixture(){
   const x=fixture();x.full=true;for(const job of ['native','performance','captures'])x.jobs[job]={result:'success'};
-  for(const [platform,engines]of [['win32',['chromium','firefox']],['darwin',['webkit']]]){
-    const f=structuredClone(x.reports[3]);Object.assign(f,{environment:{platform},smoke:true,modes:[],engines,browsers:engines.map(engine=>({engine,version:'controlled fixture',executable:'controlled fixture'})),navigation:f.navigation.filter(row=>engines.includes(row.engine)),analytics:f.analytics.filter(row=>engines.includes(row.engine)),rows:f.rows.filter(row=>engines.includes(row.engine)&&row.mode==='normal')});x.reports.push(f);
+  const original=structuredClone(x.reports[3]);
+  for(const [platform,engines,smoke]of [['linux',['chromium','firefox'],false],['win32',['chromium','firefox'],true],['darwin',['webkit'],false]]){
+    const f=structuredClone(original);Object.assign(f,{environment:{platform,cpus:[platform+' controlled fixture'],runId:'controlled fixture'},smoke,modes:smoke?[]:f.modes,engines,browsers:engines.map(engine=>({engine,version:'controlled fixture',executable:platform+' controlled fixture'})),navigation:f.navigation.filter(row=>engines.includes(row.engine)),analytics:f.analytics.filter(row=>engines.includes(row.engine)),rows:f.rows.filter(row=>engines.includes(row.engine)&&(!smoke||row.mode==='normal'))});if(platform==='linux')x.reports[3]=f;else x.reports.push(f);
   }
   x.reports.push({...identity,pass:true,kind:'lighthouse',...lighthouseFixture()},{...identity,pass:true,kind:'motion',...motionFixture()});
   x.manifest.files=Object.fromEntries(budgets.routes.map(route=>[route+'.html',{sha256:'d'.repeat(64)}]));
@@ -189,40 +133,87 @@ function fullFixture(){
   for(const key of ['independentReview','iosSafari','androidChrome'])x.releaseEvidence[key]={pass:true,reviewer:'controlled fixture; no actual reviewer/device',record:'controlled fixture',device:'controlled fixture',os:'controlled fixture',browser:'controlled fixture'};
   return x;
 }
-test('two complete Linux leases satisfy the full hosted gate only for the exact hosted artifact',()=>{
-  function make(){
-    const x=splitLinux(fullFixture());x.automatedOnly=true;delete x.releaseEvidence;
-    x.hostedURL='https://quality.invalid/site';x.profile='staging';x.jobs.host={result:'success'};
-    for(const r of x.reports)r.target=x.hostedURL;
-    x.reports.push({...identity,kind:'hosted',pass:true,target:x.hostedURL,profile:'staging',root:true,actual404:true,redirectsStayWithinSite:true,rows:Object.entries(x.manifest.files).map(([file,info])=>({file,url:x.hostedURL+'/'+file,status:200,sha256:info.sha256}))});
-    return x;
-  }
-  const gate=aggregate(make());assert.equal(gate.kind,'hosted-gate');assert.equal(gate.checkedReports.filter(r=>r.kind==='functional'&&r.platform==='linux').length,2);
-  const cases=[
-    x=>x.reports[4].target=null,
-    x=>{x.reports[3].target='https://other.invalid';x.reports[4].target=x.reports[3].target;},
-    x=>x.reports[4].artifactDigest='0'.repeat(64),
-    x=>x.reports[4].rows.pop(),
-    x=>x.jobs.linux.result='failure',
-    x=>x.reports.splice(5,1)
-  ];
-  for(const mutate of cases){const x=make();mutate(x);assert.throws(()=>aggregate(x));}
-});
 test('complete controlled full-release fixture passes, missing native/capture/device data and duplicate reports fail',()=>{
   assert.equal(aggregate(fullFixture()).pass,true);
   const cases=[x=>x.reports.splice(4,1),x=>x.reports.push(structuredClone(x.reports[6])),x=>x.reports.at(-1).views.pop(),x=>delete x.reports.at(-1).files['writing-motion.webm'],x=>x.reports.at(-1).files['writing-motion.webm']=true,x=>x.releaseEvidence.iosSafari.pass=false,x=>delete x.releaseEvidence.androidChrome.device];
   for(const mutate of cases){const x=fullFixture();mutate(x);assert.throws(()=>aggregate(x));}
 });
+test('full coverage requires complete macOS WebKit and Linux Chromium/Firefox without accepting GTK or smoke substitutes',()=>{
+  const get=(x,platform)=>x.reports.find(r=>r.kind==='functional'&&r.environment.platform===platform),x=fullFixture(),before=structuredClone(x.reports),gate=aggregate(x);
+  assert.equal(gate.pass,true);assert.deepEqual(x.reports,before,'raw runner reports remain separate and unchanged');
+  assert.deepEqual(gate.checkedReports.filter(r=>r.kind==='functional').map(r=>r.platform),['linux','win32','darwin']);
+  for(const [platform,engines,smoke,rows,nav,analytics]of [['linux',['chromium','firefox'],false,260,8,26],['darwin',['webkit'],false,130,4,13],['win32',['chromium','firefox'],true,40,8,26]]){
+    const r=get(x,platform);assert.deepEqual(r.engines,engines);assert.equal(r.smoke,smoke);assert.equal(r.rows.length,rows);assert.equal(r.navigation.length,nav);assert.equal(r.analytics.length,analytics);
+  }
+  const failures=[
+    ['missing macOS',q=>q.reports.splice(q.reports.indexOf(get(q,'darwin')),1)],
+    ['duplicate macOS',q=>q.reports.push(structuredClone(get(q,'darwin')))],
+    ['macOS smoke',q=>{const r=get(q,'darwin');r.smoke=true;r.modes=[];r.rows=r.rows.filter(row=>row.mode==='normal');}],
+    ['wrong macOS engine',q=>get(q,'darwin').engines=['firefox']],
+    ['wrong macOS platform',q=>get(q,'darwin').environment.platform='linux'],
+    ['old Linux GTK matrix',q=>q.reports[q.reports.indexOf(get(q,'linux'))]=fixture().reports[3]],
+    ['extra GTK lease',q=>{const r=structuredClone(get(q,'darwin'));r.environment.platform='linux';q.reports.push(r);}],
+    ['unexpected platform',q=>{const r=structuredClone(get(q,'darwin'));r.environment.platform='other';q.reports.push(r);}],
+    ['missing macOS browser',q=>get(q,'darwin').browsers=[]],
+    ['GTK masquerading as macOS',q=>get(q,'darwin').browsers[0].port='gtk'],
+    ['Xvfb masquerading as macOS',q=>get(q,'darwin').browsers[0].displayBackend='Xvfb'],
+    ['missing macOS row',q=>get(q,'darwin').rows.pop()],
+    ['duplicate macOS row',q=>{const r=get(q,'darwin');r.rows[0]=structuredClone(r.rows[1]);}],
+    ['failed macOS row',q=>get(q,'darwin').rows[0].pass=false],
+    ['macOS external request',q=>get(q,'darwin').rows[0].externalRequests.push('https://unexpected.invalid/')],
+    ['missing macOS navigation',q=>get(q,'darwin').navigation.pop()],
+    ['duplicate macOS navigation',q=>{const r=get(q,'darwin');r.navigation[0]=structuredClone(r.navigation[1]);}],
+    ['missing macOS navigation check',q=>delete get(q,'darwin').navigation[0].checks.fullScrollArrival],
+    ['missing macOS analytics',q=>get(q,'darwin').analytics.pop()],
+    ['duplicate macOS analytics',q=>{const r=get(q,'darwin');r.analytics[0]=structuredClone(r.analytics[1]);}],
+    ['missing macOS analytics check',q=>delete get(q,'darwin').analytics[0].checks.oneVendorPerDocument],
+    ['macOS source mismatch',q=>get(q,'darwin').sourceCommit='e'.repeat(40)],
+    ['macOS tree mismatch',q=>get(q,'darwin').sourceTree='e'.repeat(40)],
+    ['macOS candidate mismatch',q=>get(q,'darwin').candidateCommit='e'.repeat(40)],
+    ['macOS artifact mismatch',q=>get(q,'darwin').artifactDigest='e'.repeat(64)],
+    ['macOS variant mismatch',q=>get(q,'darwin').variant.fingerprint='e'.repeat(64)],
+    ['macOS target mismatch',q=>get(q,'darwin').target='https://other.invalid/site'],
+    ['Windows full substitute',q=>get(q,'win32').smoke=false]
+  ];
+  for(const [label,mutate]of failures){const q=fullFixture();mutate(q);assert.throws(()=>aggregate(q),undefined,label);}
+  for(const mode of get(x,'darwin').modes){const q=fullFixture();get(q,'darwin').rows.find(row=>row.mode===mode).checks={};assert.throws(()=>aggregate(q),undefined,'macOS retains '+mode+' assertions');}
+  const quick=fixture();assert.equal(aggregate(quick).pass,true);quick.reports[3].engines=['chromium','firefox'];assert.throws(()=>aggregate(quick),'nonfull still requires all three Linux engines');
+  const extra=fixture();extra.reports.push(structuredClone(get(x,'darwin')));assert.throws(()=>aggregate(extra),'nonfull cannot substitute macOS for its Linux coverage');
+});
+function colorFixture(){
+    const x=fullFixture(),color={id:'color',contract:1,fingerprint:'f'.repeat(64),baseEngine:'d'.repeat(64),effects:['ribbons','travel']};
+    x.manifest.variant=color;x.manifest.components={variant:color};for(const r of [...x.reports,x.releaseEvidence])r.variant=color;
+    const rows=['chromium','firefox','webkit'].flatMap(engine=>[1440,390].flatMap(width=>['light','dark'].map(theme=>({engine,width,theme,pass:true,identity:{id:'color',engine:color.fingerprint},ribbons:{count:'3',faces:1},checks:Object.fromEntries(['spatialFlight','forwardEdge','reverseNativeBottom','disabledEdge','creditsBoundary','homeBoundary'].map(k=>[k,true])),flight:[{plane:{flightStage:'depart',flightDepth:1}},{plane:{flightStage:'arrive',flightDepth:-1}}]}))));
+    x.reports.push({...identity,variant:color,kind:'color-functional',pass:true,rows});return x;
+}
+test('full macOS policy keeps all twelve Linux Color feature cells including WebKit',()=>{
+  assert.equal(aggregate(colorFixture()).pass,true);
+  for(const mutate of [r=>r.rows=r.rows.filter(row=>row.engine!=='webkit'),r=>r.rows[0].checks.spatialFlight=false,r=>r.rows[0]=structuredClone(r.rows[1])]){const x=colorFixture();mutate(x.reports.at(-1));assert.throws(()=>aggregate(x));}
+});
+test('workflow selects full Linux Chromium/Firefox and macOS WebKit while preserving nonfull and Windows coverage',()=>{
+  const fs=require('node:fs'),path=require('node:path'),source=fs.readFileSync(path.join(__dirname,'../.github/workflows/site-release-checks.yml'),'utf8');
+  const linux=source.slice(source.indexOf('\n  linux:'),source.indexOf('\n  native:')),native=source.slice(source.indexOf('\n  native:'),source.indexOf('\n  performance:'));
+  assert.match(linux,/timeout-minutes: 45/);assert.doesNotMatch(linux,/\n {4}strategy:|matrix\.lease/);
+  assert.match(linux,/SITE_AUDIT_ENGINES: \$\{\{ inputs\.full && 'chromium,firefox' \|\| 'chromium,firefox,webkit' \}\}/);
+  assert.match(linux,/playwright install-deps chromium firefox webkit/);assert.match(linux,/playwright install chromium firefox webkit/);
+  assert.match(linux,/if: inputs\.public_variant == 'color' && !cancelled\(\)/);assert.match(linux,/node tools\/quality\/color-browser\.cjs/);
+  assert.match(linux,/name: site-reports-linux-\$\{\{ inputs\.profile \}\}-\$\{\{ github\.run_id \}\}-\$\{\{ github\.run_attempt \}\}/);
+  assert.match(native,/\n {4}if: inputs\.full\n/);assert.match(native,/timeout-minutes: 40/);assert.match(native,/os: macos-15\n {12}platform: darwin\n {12}engines: webkit/);
+  assert.match(native,/name: Native full WebKit matrix\n {8}if: matrix\.platform == 'darwin'\n {8}run: \|\n {10}node tools\/quality\/artifact\.cjs verify quality-artifact\/public quality-artifact\/artifact\.json\n {10}node tools\/quality\/functional\.cjs\n/);
+  assert.match(native,/name: Native Windows smoke matrix\n {8}if: matrix\.platform == 'win32'\n {8}run: \|\n {10}node tools\/quality\/artifact\.cjs verify quality-artifact\/public quality-artifact\/artifact\.json\n {10}node tools\/quality\/functional\.cjs --smoke\n/);
+});
 test('full hosted evidence cannot use local measurements, a missing file or another source edition',()=>{
-  const make=()=>{
-    const x=fullFixture();x.automatedOnly=true;delete x.releaseEvidence;
+  const make=(color=false)=>{
+    const x=color?colorFixture():fullFixture();x.automatedOnly=true;delete x.releaseEvidence;
     x.hostedURL='https://quality.invalid/site';x.profile='staging';x.jobs.host={result:'success'};
     for(const r of x.reports)r.target=x.hostedURL;
-    x.reports.push({...identity,kind:'hosted',pass:true,target:x.hostedURL,profile:'staging',root:true,actual404:true,redirectsStayWithinSite:true,rows:Object.entries(x.manifest.files).map(([file,info])=>({file,url:x.hostedURL+'/'+file,status:200,sha256:info.sha256}))});
+    x.reports.push({...identity,variant:x.manifest.variant,kind:'hosted',pass:true,target:x.hostedURL,profile:'staging',root:true,actual404:true,redirectsStayWithinSite:true,rows:Object.entries(x.manifest.files).map(([file,info])=>({file,url:x.hostedURL+'/'+file,status:200,sha256:info.sha256}))});
     return x;
   };
   assert.equal(aggregate(make()).kind,'hosted-gate');
-  for(const mutate of [x=>x.reports.at(-1).rows.pop(),x=>x.reports[3].target=null,x=>x.jobs.host.result='skipped',x=>x.reports.at(-1).rows[0].sha256='0'.repeat(64),x=>x.hostedURL=null,x=>x.full=false]){
+  assert.equal(aggregate(make(true)).kind,'hosted-gate');
+  for(const target of [null,'https://other.invalid/site']){const x=make(true);x.reports.find(r=>r.kind==='color-functional').target=target;assert.throws(()=>aggregate(x),/local results cannot stand in for hosted checks/);}
+  for(const mutate of [x=>x.reports.at(-1).rows.pop(),x=>x.reports[3].target=null,x=>x.reports.find(r=>r.kind==='functional'&&r.environment.platform==='darwin').target=null,x=>x.jobs.host.result='skipped',x=>x.reports.at(-1).rows[0].sha256='0'.repeat(64),x=>x.hostedURL=null,x=>x.full=false]){
     const x=make();mutate(x);assert.throws(()=>aggregate(x));
   }
   const x=make(),gate=aggregate(x);gate.githubArtifact={id:'123'};

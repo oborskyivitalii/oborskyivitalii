@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "617c74a72c89c42cf3ac2fb901d7f10813d93f24d2c7e754eeb26d49dd30d135",
+    "digest": "0a814dace0c526950d7f46c5560166e287e9d4ce01ab05977e6ed52d376af929",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -83,7 +83,7 @@
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
         "identity_mode": "content",
-        "sha256": "d7e3af852c002d006831f8814d664c898fadb214dde2a02510c07bba5f79ffe8"
+        "sha256": "2e555c5ab92cb13e2d92003a4b63053ab02e8f9c41a233ab61af4097b71c9154"
       },
       {
         "path": ".github/workflows/site-gtk-target-probe.yml",
@@ -98,7 +98,7 @@
       {
         "path": ".github/workflows/site-release-checks.yml",
         "identity_mode": "content",
-        "sha256": "c2b50c3929dc9b6241fd7a540f81525d90891076a95718fb27b9caf8a3f2c7c6"
+        "sha256": "281c8ad74eedf8c464a14530f2e4a8c44e3fcff7d1ce61dc0d01abe476dabf9a"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
@@ -122,7 +122,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "5651dcd6d7bb2be33d277dc0456856b05d51e140590aac6700939f71cd8f8045"
+        "sha256": "1dba9affa72febdd274fe136f690b2bef420d0bed0f88a9dc4f602dbd08e0d4f"
       },
       {
         "path": "BACKLOG.md",
@@ -3235,7 +3235,7 @@
       {
         "path": "review/staging-readiness-20261006/CAUSES.md",
         "identity_mode": "content",
-        "sha256": "786c135eba63e1868a0fc4ccb3b215cf79702d037f62c8513ffbef293a0c6d8a"
+        "sha256": "35086a29864712888496eba0b625f11c22689edb61d0d19c30045b32d00d6db0"
       },
       {
         "path": "review/staging-readiness-20261006/DISPLAY.json",
@@ -3263,6 +3263,11 @@
         "sha256": "512e0d38cc953bf7c3649b6f5622ce5763cb939fc250b13da800308328a6cbc8"
       },
       {
+        "path": "review/staging-readiness-20261006/GTK-NATIVE.json",
+        "identity_mode": "content",
+        "sha256": "2a1bd86eaa887d1f925bec93c531f0bb6901b50f866576f3cc0f94cf54f1277b"
+      },
+      {
         "path": "review/staging-readiness-20261006/GTK-REQUEST.md",
         "identity_mode": "content",
         "sha256": "a4c30e27d0049e74eae26ad3a5cced4bc692f6241c8b9e20aab0ccd546e58095"
@@ -3285,7 +3290,7 @@
       {
         "path": "review/staging-readiness-20261006/LINUX-LEASES.md",
         "identity_mode": "content",
-        "sha256": "214d0e1465ed48c078319326bed503ef4edbd47e86ff3c7468458dc44aec04bc"
+        "sha256": "db2054d22744897f36502d69c856178c60cf52fe6e06889e12383a75d95c4de4"
       },
       {
         "path": "review/staging-readiness-20261006/REPORT.md",
@@ -3982,7 +3987,7 @@
       {
         "path": "tools/quality/secrets-baseline.json",
         "identity_mode": "content",
-        "sha256": "2b47ac4039a65e070bc00e1b8adad9a05951e4675e479597dc2cc1fb43c02920"
+        "sha256": "cd2e0bc112f90a436c9630d64e0bbed1ef390e50c53c4db9c738052cd4bb2bbe"
       },
       {
         "path": "tools/quality/security-rules.yml",
@@ -5999,6 +6004,13 @@
       ]
     },
     {
+      "path": "review/staging-readiness-20261006/GTK-NATIVE.json",
+      "title": "review/staging-readiness-20261006/GTK-NATIVE.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "review/staging-readiness-20261006/GTK-REQUEST.md",
       "title": "Dated complete GTK lease confirmation",
       "instructions": [
@@ -6028,7 +6040,7 @@
     },
     {
       "path": "review/staging-readiness-20261006/LINUX-LEASES.md",
-      "title": "Linux engine lease adapter — 2026-10-06",
+      "title": "Full engine runner policy — 2026-10-06",
       "instructions": [
         "AGENTS.md"
       ]

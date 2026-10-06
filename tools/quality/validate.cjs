@@ -170,7 +170,12 @@ function scanner(r){
   if(r.kind==='advisories'){assert.ok(d.feedDate&&d.npm&&d.pythonDependencies>0);assert.equal(d.runtimeDependencies,'none');}
 }
 function releaseReports(reports,m,releaseEvidence,automatedOnly=false){
-  const windows=reports.find(x=>x.kind==='functional'&&x.environment.platform==='win32'),mac=reports.find(x=>x.kind==='functional'&&x.environment.platform==='darwin');assert.ok(windows&&mac,'missing native OS reports');functional(windows,'win32',['chromium','firefox'],true);functional(mac,'darwin',['webkit'],true);
+  const windows=reports.find(x=>x.kind==='functional'&&x.environment.platform==='win32'),mac=reports.find(x=>x.kind==='functional'&&x.environment.platform==='darwin');assert.ok(windows&&mac,'missing native OS reports');functional(windows,'win32',['chromium','firefox'],true);functional(mac,'darwin',['webkit'],false);
+  for(const browser of mac.browsers){if(browser.port!==undefined)assert.equal(browser.port,'native','unexpected macOS WebKit port');assert.equal(browser.displayBackend??null,null,'unexpected macOS display backend');}
+  const core=[reports.find(x=>x.kind==='functional'&&x.environment.platform==='linux'),mac],engines=core.flatMap(r=>r.engines);unique(engines,engine=>engine);
+  assert.deepEqual([...engines].sort(),['chromium','firefox','webkit'],'missing or unexpected full engine coverage');
+  for(const report of [mac,windows])assert.equal(report.target??null,core[0].target??null,'full engine reports tested different targets');
+  for(const [key,count]of [['rows',390],['navigation',12],['analytics',39]])assert.equal(core.reduce((n,r)=>n+r[key].length,0),count,'incomplete full '+key+' coverage');
   for(const kind of ['lighthouse','motion','captures'])assert.equal(reports.filter(x=>x.kind===kind).length,1,'missing/duplicate '+kind);
   lighthouse(reports.find(x=>x.kind==='lighthouse'));motion(reports.find(x=>x.kind==='motion'));
   const captures=reports.find(x=>x.kind==='captures');assert.equal(captures.views.length,20);unique(captures.views,x=>`${x.route}/${x.theme}/${x.device}`);
@@ -187,17 +192,6 @@ function releaseReports(reports,m,releaseEvidence,automatedOnly=false){
   for(const key of ['independentReview','iosSafari','androidChrome'])assert.ok(releaseEvidence[key]?.pass===true&&releaseEvidence[key].reviewer&&releaseEvidence[key].record,'pending '+key);
   for(const key of ['iosSafari','androidChrome'])assert.ok(releaseEvidence[key].device&&releaseEvidence[key].os&&releaseEvidence[key].browser,'incomplete physical device record');
 }
-function linuxLeases(reports){
-  const leases=reports.filter(x=>x.environment.platform==='linux');assert.ok(leases.length,'missing Linux engines');
-  const engines=leases.flatMap(r=>r.engines);unique(engines,engine=>engine);
-  assert.deepEqual([...engines].sort(),['chromium','firefox','webkit'],'missing or unexpected Linux engine lease');
-  for(const lease of leases){
-    assert.ok(lease.engines.length>0,'empty Linux engine lease');
-    assert.equal(lease.target??null,leases[0].target??null,'Linux engine leases tested different targets');
-    functional(lease,'linux',lease.engines,false);
-  }
-  for(const [key,count]of [['rows',390],['navigation',12],['analytics',39]])assert.equal(leases.reduce((n,r)=>n+r[key].length,0),count,'incomplete Linux '+key+' coverage');
-}
 function aggregate({manifest:m,sizes,reports,jobs,full=false,releaseEvidence,hostedURL=null,profile=null,automatedOnly=false,sourceChecks=null}){
   if(sourceChecks!==null)assert.equal(sourceChecks,'success','source regressions failed or did not run');
   assert.equal(m.schema,1);assert.equal(m.sourceDirty,false,'dirty public sources');assert.match(m.sourceCommit,/^[0-9a-f]{40}$/);assert.match(m.sourceTree,/^[0-9a-f]{40}$/);assert.match(m.artifactDigest,/^[0-9a-f]{64}$/);assert.equal(m.candidateCommit,m.sourceCommit,'candidate/source mismatch');
@@ -208,8 +202,9 @@ function aggregate({manifest:m,sizes,reports,jobs,full=false,releaseEvidence,hos
   for(const name of required)assert.equal(jobs[name]?.result,'success',`required job ${name} missing/failed`);
   for(const r of reports)sourceReport(r,m);
   for(const kind of ['lint','security','advisories']){const rows=reports.filter(x=>x.kind===kind);assert.equal(rows.length,1,`missing/duplicate ${kind}`);scanner(rows[0]);}
-  const functionalReports=reports.filter(x=>x.kind==='functional');unique(functionalReports.filter(x=>x.environment.platform!=='linux'),x=>x.environment.platform);
-  linuxLeases(functionalReports);
+  const functionalReports=reports.filter(x=>x.kind==='functional');unique(functionalReports,x=>x.environment.platform);
+  assert.deepEqual(functionalReports.map(x=>x.environment.platform).sort(),full?['darwin','linux','win32']:['linux'],'missing or unexpected functional platform');
+  const linux=functionalReports.find(x=>x.environment.platform==='linux');assert.ok(linux,'missing Linux engines');functional(linux,'linux',full?['chromium','firefox']:['chromium','firefox','webkit'],false);
   if(require('./common.cjs').variant(m).id==='color')colorReports(reports,{...m,variant:require('./common.cjs').variant(m)});
   if(automatedOnly)assert.ok(full&&hostedURL,'automated hosted checks cannot replace release acceptance');
   if(hostedURL){
@@ -220,7 +215,7 @@ function aggregate({manifest:m,sizes,reports,jobs,full=false,releaseEvidence,hos
     const expectedFiles=Object.keys(m.files).filter(x=>x!=='.nojekyll').sort();
     assert.deepEqual(host[0].rows.map(x=>x.file).sort(),expectedFiles,'missing hosted file');
     for(const row of host[0].rows){assert.equal(row.status,200);assert.equal(row.sha256,m.files[row.file].sha256);assert.ok(row.url.startsWith(expected+'/'));}
-    for(const row of reports.filter(x=>['functional','motion','lighthouse','captures'].includes(x.kind)))assert.equal(row.target,expected,'local results cannot stand in for hosted checks');
+    for(const row of reports.filter(x=>['functional','color-functional','motion','lighthouse','captures'].includes(x.kind)))assert.equal(row.target,expected,'local results cannot stand in for hosted checks');
   }
   if(full)releaseReports(reports,m,releaseEvidence,automatedOnly);
   return {schema:1,kind:automatedOnly?'hosted-gate':full?'release-manifest':'pr-gate',profile:profile||'release',pass:true,...m,jobs,checkedReports:reports.map(x=>({kind:x.kind,platform:x.environment?.platform})),checkedAt:new Date().toISOString(),hostedOrigin:hostedURL||'pending #8',deploymentAuthorized:false};

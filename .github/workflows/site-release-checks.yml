@@ -271,20 +271,10 @@ jobs:
           retention-days: 30
   linux:
     needs: build
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - lease: primary
-            engines: chromium,firefox
-            install: chromium firefox webkit
-          - lease: gtk
-            engines: webkit
-            install: webkit
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     env:
-      SITE_AUDIT_ENGINES: ${{ matrix.engines }}
+      SITE_AUDIT_ENGINES: ${{ inputs.full && 'chromium,firefox' || 'chromium,firefox,webkit' }}
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
@@ -335,28 +325,24 @@ jobs:
         run: npm ci --prefix tools/quality/toolchain --ignore-scripts
       - name: Install Ubuntu engine dependencies without prior launch
         timeout-minutes: 5
-        run: tools/quality/toolchain/node_modules/.bin/playwright install-deps $SITE_INSTALL_ENGINES
-        env:
-          SITE_INSTALL_ENGINES: ${{ matrix.install }}
+        run: tools/quality/toolchain/node_modules/.bin/playwright install-deps chromium firefox webkit
       - name: Download pinned engines without prior launch
         timeout-minutes: 3
         run: |
-          tools/quality/toolchain/node_modules/.bin/playwright install $SITE_INSTALL_ENGINES
+          tools/quality/toolchain/node_modules/.bin/playwright install chromium firefox webkit
           command -v Xvfb
-        env:
-          SITE_INSTALL_ENGINES: ${{ matrix.install }}
-      - name: Assert the complete engine lease
+      - name: Assert the required Linux engine matrix
         run: |
           node tools/quality/artifact.cjs verify quality-artifact/public quality-artifact/artifact.json
           node tools/staging/selftest.cjs
           node tools/quality/functional.cjs
       - name: Assert Color ribbons, spatial flight and real edge scrolling
-        if: matrix.lease == 'primary' && inputs.public_variant == 'color' && !cancelled()
+        if: inputs.public_variant == 'color' && !cancelled()
         run: node tools/quality/color-browser.cjs
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: always()
         with:
-          name: site-reports-linux-${{ matrix.lease }}-${{ inputs.profile }}-${{ github.run_id }}-${{ github.run_attempt }}
+          name: site-reports-linux-${{ inputs.profile }}-${{ github.run_id }}-${{ github.run_attempt }}
           path: quality-reports/
           retention-days: 30
   native:
@@ -397,7 +383,13 @@ jobs:
         env:
           # CLI uses separate engine arguments, unlike the runner's comma list.
           SITE_AUDIT_ENGINES: ${{ matrix.platform == 'win32' && 'chromium firefox' || 'webkit' }}
-      - name: Native smoke matrix
+      - name: Native full WebKit matrix
+        if: matrix.platform == 'darwin'
+        run: |
+          node tools/quality/artifact.cjs verify quality-artifact/public quality-artifact/artifact.json
+          node tools/quality/functional.cjs
+      - name: Native Windows smoke matrix
+        if: matrix.platform == 'win32'
         run: |
           node tools/quality/artifact.cjs verify quality-artifact/public quality-artifact/artifact.json
           node tools/quality/functional.cjs --smoke

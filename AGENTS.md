@@ -1,5 +1,26 @@
 # Agent guidance for personal publications
 
+## Approved macOS WebKit full coverage — 2026-10-06
+
+The maintainer approved one narrow CI-only controller PR before runtime PR #23:
+full checks run Chromium/Firefox on Linux (260 functional / 8 navigation / 26
+analytics) and all WebKit scenarios on macOS (130 / 4 / 13), including every
+disabled-JavaScript and failure/fallback mode. Windows smoke remains 40 / 8 / 26;
+Linux Color checks remain twelve. All 390 unique full-engine cases, twelve
+navigation cases and 39 analytics cases remain mandatory, with exact source/
+artifact/host identity and separate raw runner provenance. macOS smoke is
+insufficient; full macOS success and elapsed time still require fresh evidence.
+
+Preserve legacy nonfull three-engine Linux checks, all pins and original 45m
+Linux / 40m native job and page/performance budgets. This explicitly supersedes
+the proposed two-Linux-runner adapter and further GTK/native-core experiments.
+Retain their failed raw evidence, including GTK-NATIVE.json; retire the completed
+native PR trigger. Do not launch another GTK/core-size collection. The approved
+CI-only PR is the narrow exception to sole-#23; no other runtime/content PR is
+authorized. After controller acceptance, complete fresh exact-head hosted/full,
+stable verification and merge #23. Production/device/visual acceptance stays
+separate.
+
 ## GTK native abort postmortem — 2026-10-06
 
 Corrected screen 37513438968 at 6c67952 completes all fourteen observations:
