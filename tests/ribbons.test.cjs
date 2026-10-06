@@ -135,7 +135,11 @@ test('offline ribbon treatment is exact, labelled, depth-sorted and invalidates 
   const hash=html.match(/name="site-engine" content="([a-f0-9]{64})"/)[1];
   const output=decorate(html);
   assert.match(output,/optional-spatial-ribbons-prototype/);
-  assert.match(output,/concat\(sceneEffects\?\.collect\(state\)\|\|\[\]\)\.sort/);
+  const merged=output.match(/const custom=sceneEffects\?\.collect\(state\)\|\|\[\];[\s\S]*?const shapes=geometry\.concat\(custom\)\.sort\(\(a,b\)=>b\.depth-a\.depth\);/)[0];
+  const depths=require('node:vm').runInNewContext('(()=>{'+merged+'return shapes.map(s=>s.depth);})()',{
+    geometry:[{depth:1},{depth:9}],sceneEffects:{collect:()=>[{kind:'ribbon',depth:4}]},state:{},span:()=>{}
+  });
+  assert.deepEqual(Array.from(depths),[9,4,1],'authored ribbons and native geometry share the actual depth sort');
   assert.match(output,/if\(shape.kind!=="ribbon"\)/);
   assert.match(output,/opaque-rgb/);
   assert.doesNotMatch(output,/createPattern|setTransform\(\{a:/,'no affine bitmap edge extrapolation');

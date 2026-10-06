@@ -68,3 +68,31 @@ was corrected after the first CI caught missing historical binary existence
 records; native RI and Color preflight pass at this deployed source. Full source
 checks now collect every command while retaining any failure. Results follow
 when all hosted jobs finish.
+
+## Initial full run findings and repair
+
+Full hosted run [37423460431](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37423460431)
+tests deployed source `eac4654e`. HTTP and captures pass; native/browser/motion
+jobs are still running at this repair. Native CI reports 128/132 source tests,
+with the same four failures (the earlier local preparation count was 127/131).
+SEO separately fails exact comparison; lint flags an unused `points` binding.
+Semgrep has zero findings but three partial-parse errors at the valid terse
+`i%2?.45:-.65` conditional, so coverage fails and Bandit/secrets were not reached.
+Dependency advisories pass. These failed/incomplete outcomes remain evidence.
+
+The correction retains exact semantic/edition comparison, allowing only the
+exact base effects identity/contract and generated separator; a new negative test
+retains changed variants/contracts/authors. The ribbon fixture executes the real
+merged depth-sort snippet. The restoration fixture requires instant native scroll
+without any style read/write, including after native failure. The migration
+fixture compares all semantic/style fields and rest vertices, and proves the
+tighter acceleration sphere contains every vertex and is no broader than the
+frozen conservative sphere. It also removes the unused binding. The conditional
+is spaced without changing its expression, making all source parseable to the
+pinned scanner. No budget, scan coverage or runtime acceptance assertion is
+removed. Reconciled local Node tests pass 133/133; exact SEO comparison passes.
+
+A scoped full-source/static preflight now precedes the corrected Color package,
+so scanner coverage and exact public-checksum triage can be resolved before
+spending another complete hosted run. After publishing its new immutable source,
+repeat the full profile and retain the initial run separately.

@@ -330,7 +330,7 @@ module.exports=function(math) {
     const scatterChart=h=>{
       axes(h);const points=[[-1.6,-.9],[-1.15,-.4],[-.7,-.8],[-.35,.2],[.25,.05],[.8,.85],[1.35,.4],[1.75,1.25]];
       points.forEach(([x,y],i)=>{
-        const z=i%2?.45:-.65,r=.13;
+        const z=i%2 ? .45 : -.65,r=.13;
         h.path([[x-r,y,z],[x,y+r,z],[x+r,y,z],[x,y-r,z],[x-r,y,z]],i%2?"amber":"cyan",.96,1.8);
         if(!detail)h.line([x,y,z],[x,-1.6,z],"cyan",.22,.7,7);
       });

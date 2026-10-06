@@ -20,8 +20,15 @@ test('source migration preserves publication HTML and thematic geometry when sha
     assert.equal(rendered.match(/<main\b[\s\S]*?<\/main>/)[0],original.match(/<main\b[\s\S]*?<\/main>/)[0],route.id+' publication content');
     for(const compact of [false,true]){
       const actual=api.worldFor(route.id,compact).objects.filter(o=>o.family==='thematic'),before=context.module.exports.worldFor(route.id,compact).objects.filter(o=>o.family==='thematic');
-      const metadata=objects=>objects.map(({points,...rest})=>rest);
+      // V1 tightens only the acceleration bound. Compare every semantic/style
+      // field and every rest vertex; independently prove the new sphere contains
+      // the geometry and is no broader than its frozen conservative bound.
+      const metadata=objects=>objects.map(o=>Object.fromEntries(Object.entries(o).filter(([key])=>!['points','radius'].includes(key))));
       assert.equal(JSON.stringify(metadata(actual)),JSON.stringify(metadata(before)),route.id+' geometry metadata');
+      for(let i=0;i<actual.length;i++){
+        assert.ok(actual[i].radius<=before[i].radius,route.id+' tightened bound');
+        for(const point of actual[i].points)assert.ok(Math.hypot(...point.map((v,k)=>v-actual[i].center[k]))<=actual[i].radius,route.id+' contains every vertex');
+      }
       for(let i=0;i<actual.length;i++)for(let j=0;j<actual[i].points.length;j++)for(let k=0;k<3;k++)assert.ok(Math.abs(actual[i].points[j][k]-before[i].points[j][k])<1e-9,'composed instance matrix preserves rest vertices');
     }
   }

@@ -25,10 +25,11 @@ test('route position restoration is immediate and retains CSS preferences even a
   const source=fs.readFileSync(require('node:path').join(__dirname,'../site/engine/navigation.js'),'utf8');
   const helper=source.match(/ {2}function restoreScroll\(left,top\) \{[\s\S]*?\n {2}}/)[0];
   for(const saved of [['',''],['smooth','important']])for(const failure of [false,true]){
-    let value=saved[0],priority=saved[1],calls=0,computed=false;
-    const style={getPropertyValue:()=>value,getPropertyPriority:()=>priority,setProperty:(name,v,p)=>{value=v;priority=p;},removeProperty:()=>{value='';priority='';}};
-    const restore=vm.runInNewContext('('+helper+')',{getComputedStyle:()=>{assert.equal(value,'auto');computed=true;return {scrollBehavior:value};},document:{documentElement:{style}},window:{scrollTo:options=>{
-      calls++;assert.equal(computed,true);assert.equal(value,'auto');assert.equal(options.behavior,'auto');assert.equal(options.left,12);assert.equal(options.top,7841);
+    const value=saved[0],priority=saved[1];let calls=0;
+    const unexpected=()=>{throw Error('Restoration must not read or rewrite CSS preferences');};
+    const style={getPropertyValue:unexpected,getPropertyPriority:unexpected,setProperty:unexpected,removeProperty:unexpected};
+    const restore=vm.runInNewContext('('+helper+')',{getComputedStyle:unexpected,document:{documentElement:{style}},window:{scrollTo:options=>{
+      calls++;assert.equal(options.behavior,'instant');assert.equal(options.left,12);assert.equal(options.top,7841);
       if(failure)throw Error('Controlled native failure');
     }}});
     if(failure)assert.throws(()=>restore(12,7841),/Controlled native failure/);else restore(12,7841);

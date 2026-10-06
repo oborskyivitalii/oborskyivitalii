@@ -45,7 +45,7 @@ jobs:
           for(const [key,value]of Object.entries(values)){a.ok(!String(value).includes('\n'));fs.appendFileSync(process.env.GITHUB_OUTPUT,key+'='+value+'\n');}
           JS
   color-build:
-    needs: target
+    needs: [target, source-static]
     if: needs.target.outputs.mode == 'build'
     runs-on: ubuntu-24.04
     timeout-minutes: 10
@@ -81,6 +81,62 @@ jobs:
         with:
           name: site-gate-color-${{ github.run_id }}-${{ github.run_attempt }}
           path: color-artifact/gate/
+          retention-days: 30
+  source-static:
+    needs: target
+    if: needs.target.outputs.mode == 'build'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      SITE_CANDIDATE_SHA: ${{ needs.target.outputs.source }}
+      SITE_REPORT_DIR: quality-reports
+      SITE_PUBLIC_DIR: docs
+      SITE_TEST_PROFILE: local
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ needs.target.outputs.source }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: 3.12.14
+      - name: Complete source preflight
+        run: |
+          status=0
+          check() { "$@" || status=1; }
+          check node --test tests/*.test.cjs
+          check node tools/site/build.cjs --check
+          check node tools/check_site_seo.cjs
+          check python -m unittest discover -s tests -p 'test_*.py'
+          check node tools/build_scene_fallbacks.cjs --check
+          check node tools/build_site_previews.cjs --check
+          check python tools/build_site_bundle.py --check
+          check python tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify
+          exit "$status"
+      - name: Install locked scanners
+        if: ${{ !cancelled() }}
+        run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          python -m venv tools/quality/toolchain/venv
+          tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check -r tools/quality/toolchain/requirements.txt
+      - name: Lint preflight
+        if: ${{ !cancelled() }}
+        run: node tools/quality/scanners.cjs lint
+      - name: Security preflight
+        if: ${{ !cancelled() }}
+        run: node tools/quality/scanners.cjs security
+      - name: Advisory preflight
+        if: ${{ !cancelled() }}
+        run: node tools/quality/scanners.cjs advisories
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: site-color-preflight-${{ github.run_id }}-${{ github.run_attempt }}
+          path: quality-reports/
           retention-days: 30
   full:
     needs: target
