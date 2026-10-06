@@ -733,28 +733,29 @@
             "pending": 435
           },
           "draw": {
-            "time": 25389,
+            "time": 25508,
             "kind": "browser-gate-frame",
             "page": "writing",
-            "start": 25366,
-            "renderCost": 23,
+            "start": 25451,
+            "renderCost": 56,
             "pending": null,
             "enabled": true,
-            "hold": false,
+            "hold": true,
             "printing": false,
             "initialized": true,
             "failed": false,
             "tier": 2,
             "detailTier": 1.9999999999999998,
-            "slow": 27,
+            "slow": 28,
             "fast": 0,
             "idleRate": 7.5,
-            "costAverage": 26.26629825013144,
-            "lastFrame": 25364.72,
-            "nextDraw": 25498.053333333333,
-            "ribbonFaces": 99,
+            "costAverage": 32.21303860010516,
+            "lastFrame": null,
+            "nextDraw": null,
+            "ribbonFaces": 100,
             "ribbonSignals": 7
-          }
+          },
+          "triggerEvent": 2154
         },
         {
           "transition": {
@@ -784,7 +785,8 @@
             "nextDraw": null,
             "ribbonFaces": 99,
             "ribbonSignals": 8
-          }
+          },
+          "triggerEvent": 7354
         }
       ],
       "stages": {
@@ -1255,7 +1257,8 @@
             "nextDraw": null,
             "ribbonFaces": 237,
             "ribbonSignals": 4
-          }
+          },
+          "triggerEvent": 1309
         }
       ],
       "stages": {
@@ -1618,5 +1621,21 @@
         "focus": true
       }
     }
-  ]
+  ],
+  "identity": {
+    "sourceCommit": "b9ca9fc3290d52a572496340eaa837e3f618ee6c",
+    "sourceTree": "1e2283d154a7723b9e63178bbe42c9a26679d7bc",
+    "candidateCommit": "b9ca9fc3290d52a572496340eaa837e3f618ee6c",
+    "parentArtifactDigest": "0c382abbed60068edf76478d25867fd2dd9b5efd3e583b8c718005e110bb285b",
+    "parentVariant": {
+      "id": "color",
+      "contract": 1,
+      "fingerprint": "510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb",
+      "baseEngine": "5a10d22a3b14c296913100d8dfa3d9d128a334c46b4ab5bfb9abd6b512f57ef4",
+      "effects": [
+        "ribbons",
+        "travel"
+      ]
+    }
+  }
 }

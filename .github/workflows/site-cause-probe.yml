@@ -1,11 +1,6 @@
 name: Cold browser cause attribution
-# One dated #23 follow-up: original deadlines and failed samples stay intact.
+# Completed in 37476487993. Explicit replay only; failures remain retained.
 on:
-  pull_request:
-    types: [opened, synchronize, reopened]
-    paths:
-      - '.github/workflows/site-cause-probe.yml'
-      - 'tools/quality/cause-probe.cjs'
   workflow_dispatch:
     inputs:
       candidate_sha:
@@ -19,7 +14,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   diagnose:
-    if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.number == 23 && github.event.pull_request.head.repo.full_name == github.repository)
+    if: github.event_name == 'workflow_dispatch'
     strategy:
       fail-fast: false
       matrix:

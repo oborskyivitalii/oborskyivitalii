@@ -228,13 +228,35 @@ These observations reject a lost RAF or adaptive-hold explanation for this cold
 stall, but do not identify the browser's native presentation mechanism.
 
 Research's 327ms failed median is a simulated mobile Lighthouse result, not one
-measured 327ms callback. Original LHR debug tasks are 102.142ms and 153.478ms;
+measured 327ms callback. Original main-thread-tasks rows are 102.142ms and 153.478ms;
 their displayed simulated durations are about four times larger. The old job
 discards result.artifacts, so it cannot name the responsible function. A bounded
 follow-up retains three normal-Color mobile/simulated CPU profiles and four cold
 WebKit trials, alone/under verified background drawing. It preserves original
 fixture bounds and reports a separate recovery observation without retrying the
 failed result. No full gate, promotion, merge or source remedy is claimed.
+
+The follow-up [37476487993](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37476487993)
+now completes. [CAUSES.md](CAUSES.md) gives the final findings and order of
+corrections; [CAUSE-ATTRIBUTION.json](CAUSE-ATTRIBUTION.json) retains original
+task/stack summaries, heartbeat counts, source identities and raw artifact hashes.
+Its first isolated WebKit start fails the unchanged 1500ms positive-paint gate:
+RAF two waits 2475ms while 33 ordinary timer heartbeats run over the last 1670ms
+of that wait, maximum consecutive gap 56ms. The other isolated boot and both
+loaded boots pass, with real background draws verified. Isolation is therefore
+not a demonstrated cure for the cold WebKit mechanism.
+
+Research's fresh diagnostic trials yield TBT 129/248/52ms, with extra CPU profiling
+on loopback and EPYC 9V45; these do not replace the hosted EPYC 9V74 failure. Largest
+original main-thread tasks are 53.115/90.251/42.331ms near first paint. The failed
+248ms trial includes a 73.404ms first frame with worldFor/instance preparation,
+paintColors, projection/Canvas painting and 5.146ms minor GC. Recurring draw
+stacks are dominated by projectedWorld/appendFaces/appendLines and paintShapes/
+drawLineRun. Older outliers occur about 2.4–2.6s after navigation and their stacks
+were not retained, so the cold frame is not claimed to be their sole cause.
+Normal Lighthouse now saves original Research/mobile Trace and DevtoolsLog for
+every trial. It adds no profiler category and changes no audit flags or budgets.
+Both dated PR triggers are removed after retaining all observed failures.
 
 ## Final acceptance and operation
 

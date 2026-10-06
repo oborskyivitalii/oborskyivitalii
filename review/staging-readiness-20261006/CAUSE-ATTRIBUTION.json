@@ -1,0 +1,2571 @@
+{
+  "run": 37476487993,
+  "fullGate": false,
+  "performanceAcceptance": false,
+  "research": [
+    {
+      "run": 1,
+      "tbtMs": 129,
+      "lcpMs": 1670.6338,
+      "benchmarkIndex": 3927.5,
+      "mainProfile": {
+        "pid": 5463,
+        "tid": 5463,
+        "samples": 15129
+      },
+      "self": [
+        {
+          "function": "(idle)",
+          "url": "",
+          "line": 0,
+          "sampledMs": 1626.114
+        },
+        {
+          "function": "(program)",
+          "url": "",
+          "line": 0,
+          "sampledMs": 453.789
+        },
+        {
+          "function": "paintShapes",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1172,
+          "sampledMs": 59.231
+        },
+        {
+          "function": "draw",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1388,
+          "sampledMs": 39.791
+        },
+        {
+          "function": "drawLineRun",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1161,
+          "sampledMs": 37.241
+        },
+        {
+          "function": "(garbage collector)",
+          "url": "",
+          "line": 0,
+          "sampledMs": 23.344
+        },
+        {
+          "function": "appendFaces",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1116,
+          "sampledMs": 15.405
+        },
+        {
+          "function": "requestAnimationFrame",
+          "url": "",
+          "line": 0,
+          "sampledMs": 15.227
+        },
+        {
+          "function": "appendLines",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1131,
+          "sampledMs": 14.62
+        },
+        {
+          "function": "(anonymous)",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1398,
+          "sampledMs": 14.42
+        },
+        {
+          "function": "paintRibbon",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 122,
+          "sampledMs": 11.236
+        },
+        {
+          "function": "loopTransform",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1031,
+          "sampledMs": 9.506
+        },
+        {
+          "function": "(anonymous)",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1061,
+          "sampledMs": 7.057
+        },
+        {
+          "function": "projectedFace",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1089,
+          "sampledMs": 6.183
+        },
+        {
+          "function": "projectRibbons",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 83,
+          "sampledMs": 6.004
+        }
+      ],
+      "inclusive": [
+        {
+          "function": "(root)",
+          "url": "",
+          "line": 0,
+          "sampledMs": 2473.248
+        },
+        {
+          "function": "(idle)",
+          "url": "",
+          "line": 0,
+          "sampledMs": 1626.114
+        },
+        {
+          "function": "(program)",
+          "url": "",
+          "line": 0,
+          "sampledMs": 453.789
+        },
+        {
+          "function": "frame",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1469,
+          "sampledMs": 350.394
+        },
+        {
+          "function": "draw",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1388,
+          "sampledMs": 330.616
+        },
+        {
+          "function": "visibleRooms",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1366,
+          "sampledMs": 125.101
+        },
+        {
+          "function": "paintShapes",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1172,
+          "sampledMs": 118.404
+        },
+        {
+          "function": "projectedWorld",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1066,
+          "sampledMs": 97.214
+        },
+        {
+          "function": "appendObject",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1103,
+          "sampledMs": 60.256
+        },
+        {
+          "function": "drawLineRun",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1161,
+          "sampledMs": 37.241
+        },
+        {
+          "function": "appendFaces",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1116,
+          "sampledMs": 33.212
+        },
+        {
+          "function": "collect",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 158,
+          "sampledMs": 33.16
+        },
+        {
+          "function": "projectRibbons",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 83,
+          "sampledMs": 28.98
+        },
+        {
+          "function": "appendLines",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1131,
+          "sampledMs": 24.148
+        },
+        {
+          "function": "(garbage collector)",
+          "url": "",
+          "line": 0,
+          "sampledMs": 23.344
+        }
+      ],
+      "longestTasks": [
+        {
+          "startUs": 155003589,
+          "durationMs": 53.115,
+          "self": [
+            {
+              "function": "(program)",
+              "url": "",
+              "line": 0,
+              "sampledMs": 11.684
+            },
+            {
+              "function": "draw",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 1388,
+              "sampledMs": 4.264
+            },
+            {
+              "function": "object",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 615,
+              "sampledMs": 3.929
+            },
+            {
+              "function": "(anonymous)",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 1305,
+              "sampledMs": 3.523
+            },
+            {
+              "function": "instance",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 660,
+              "sampledMs": 2.995
+            },
+            {
+              "function": "prepareFace",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 996,
+              "sampledMs": 1.497
+            },
+            {
+              "function": "paint",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 164,
+              "sampledMs": 1.191
+            },
+            {
+              "function": "appendFaces",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 1116,
+              "sampledMs": 1.085
+            }
+          ],
+          "sampledMs": 53.438,
+          "topStacks": [
+            {
+              "sampledMs": 11.684,
+              "frames": [
+                {
+                  "function": "(program)",
+                  "url": "",
+                  "line": 0
+                },
+                {
+                  "function": "(root)",
+                  "url": "",
+                  "line": 0
+                }
+              ]
+            },
+            {
+              "sampledMs": 4.264,
+              "frames": [
+                {
+                  "function": "draw",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1388
+                },
+                {
+                  "function": "frame",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1469
+                },
+                {
+                  "function": "(root)",
+                  "url": "",
+                  "line": 0
+                }
+              ]
+            },
+            {
+              "sampledMs": 3.523,
+              "frames": [
+                {
+                  "function": "(anonymous)",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1305
+                },
+                {
+                  "function": "paintColors",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1301
+                },
+                {
+                  "function": "roomFor",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1317
+                },
+                {
+                  "function": "visibleRooms",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1366
+                },
+                {
+                  "function": "draw",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1388
+                },
+                {
+                  "function": "frame",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1469
+                },
+                {
+                  "function": "(root)",
+                  "url": "",
+                  "line": 0
+                }
+              ]
+            }
+          ],
+          "calls": [
+            {
+              "name": "FireAnimationFrame",
+              "durationMs": 41.835,
+              "function": null,
+              "url": null
+            },
+            {
+              "name": "FunctionCall",
+              "durationMs": 41.791,
+              "function": "frame",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js"
+            },
+            {
+              "name": "UpdateLayoutTree",
+              "durationMs": 0.404,
+              "function": null,
+              "url": null
+            },
+            {
+              "name": "Layout",
+              "durationMs": 0.132,
+              "function": null,
+              "url": null
+            },
+            {
+              "name": "FunctionCall",
+              "durationMs": 0.064,
+              "function": "observer",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js"
+            },
+            {
+              "name": "FunctionCall",
+              "durationMs": 0.056,
+              "function": "clearance",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/theme.js"
+            }
+          ],
+          "observedStartMs": 84.432
+        },
+        {
+          "startUs": 156544317,
+          "durationMs": 24.81,
+          "self": [
+            {
+              "function": "(program)",
+              "url": "",
+              "line": 0,
+              "sampledMs": 13.446
+            },
+            {
+              "function": "paintShapes",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 1172,
+              "sampledMs": 3.305
+            },
+            {
+              "function": "collect",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 158,
+              "sampledMs": 0.967
+            },
+            {
+              "function": "drawLineRun",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 1161,
+              "sampledMs": 0.773
+            },
+            {
+              "function": "draw",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 1388,
+              "sampledMs": 0.725
+            },
+            {
+              "function": "visible",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 1073,
+              "sampledMs": 0.64
+            },
+            {
+              "function": "row",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 133,
+              "sampledMs": 0.576
+            },
+            {
+              "function": "projectedWorld",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 1066,
+              "sampledMs": 0.549
+            }
+          ],
+          "sampledMs": 25.247,
+          "topStacks": [
+            {
+              "sampledMs": 13.446,
+              "frames": [
+                {
+                  "function": "(program)",
+                  "url": "",
+                  "line": 0
+                },
+                {
+                  "function": "(root)",
+                  "url": "",
+                  "line": 0
+                }
+              ]
+            },
+            {
+              "sampledMs": 3.305,
+              "frames": [
+                {
+                  "function": "paintShapes",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1172
+                },
+                {
+                  "function": "draw",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1388
+                },
+                {
+                  "function": "frame",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1469
+                },
+                {
+                  "function": "(root)",
+                  "url": "",
+                  "line": 0
+                }
+              ]
+            },
+            {
+              "sampledMs": 0.967,
+              "frames": [
+                {
+                  "function": "collect",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 158
+                },
+                {
+                  "function": "draw",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1388
+                },
+                {
+                  "function": "frame",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1469
+                },
+                {
+                  "function": "(root)",
+                  "url": "",
+                  "line": 0
+                }
+              ]
+            }
+          ],
+          "calls": [
+            {
+              "name": "FireAnimationFrame",
+              "durationMs": 11.948,
+              "function": null,
+              "url": null
+            },
+            {
+              "name": "FunctionCall",
+              "durationMs": 11.763,
+              "function": "frame",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js"
+            },
+            {
+              "name": "UpdateLayoutTree",
+              "durationMs": 0.743,
+              "function": null,
+              "url": null
+            }
+          ],
+          "observedStartMs": 1625.16
+        },
+        {
+          "startUs": 156612663,
+          "durationMs": 21.518,
+          "self": [
+            {
+              "function": "(program)",
+              "url": "",
+              "line": 0,
+              "sampledMs": 12.127
+            },
+            {
+              "function": "paintShapes",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 1172,
+              "sampledMs": 1.739
+            },
+            {
+              "function": "draw",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 1388,
+              "sampledMs": 1.551
+            },
+            {
+              "function": "drawLineRun",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 1161,
+              "sampledMs": 1.431
+            },
+            {
+              "function": "paintRibbon",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 122,
+              "sampledMs": 0.86
+            },
+            {
+              "function": "(anonymous)",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 1398,
+              "sampledMs": 0.746
+            },
+            {
+              "function": "appendFaces",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 1116,
+              "sampledMs": 0.509
+            },
+            {
+              "function": "sample",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 60,
+              "sampledMs": 0.342
+            }
+          ],
+          "sampledMs": 21.546,
+          "topStacks": [
+            {
+              "sampledMs": 12.127,
+              "frames": [
+                {
+                  "function": "(program)",
+                  "url": "",
+                  "line": 0
+                },
+                {
+                  "function": "(root)",
+                  "url": "",
+                  "line": 0
+                }
+              ]
+            },
+            {
+              "sampledMs": 1.739,
+              "frames": [
+                {
+                  "function": "paintShapes",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1172
+                },
+                {
+                  "function": "draw",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1388
+                },
+                {
+                  "function": "frame",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1469
+                },
+                {
+                  "function": "(root)",
+                  "url": "",
+                  "line": 0
+                }
+              ]
+            },
+            {
+              "sampledMs": 1.551,
+              "frames": [
+                {
+                  "function": "draw",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1388
+                },
+                {
+                  "function": "frame",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1469
+                },
+                {
+                  "function": "(root)",
+                  "url": "",
+                  "line": 0
+                }
+              ]
+            }
+          ],
+          "calls": [
+            {
+              "name": "FireAnimationFrame",
+              "durationMs": 9.6,
+              "function": null,
+              "url": null
+            },
+            {
+              "name": "FunctionCall",
+              "durationMs": 9.548,
+              "function": "frame",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js"
+            },
+            {
+              "name": "UpdateLayoutTree",
+              "durationMs": 0.802,
+              "function": null,
+              "url": null
+            }
+          ],
+          "observedStartMs": 1693.506
+        }
+      ],
+      "raw": {
+        "lhr": {
+          "file": "research-1-lhr.json.gz",
+          "sha256": "61f45624ca2e037345861ca613307af4a4753717a89f9f0a699f3e658080d3ec",
+          "bytes": 325177
+        },
+        "trace": {
+          "file": "research-1-trace.json.gz",
+          "sha256": "f6d2b85dedf5844d5fba228c822099ae09475217d1b28ebb22cd087602a96ba3",
+          "bytes": 2776621
+        },
+        "devtoolsLog": {
+          "file": "research-1-devtoolslog.json.gz",
+          "sha256": "dc4bda43c9cb90d5b36547314e3e057285ecb7bb498c6d3ae19f73315275c541",
+          "bytes": 4021
+        }
+      },
+      "longTaskAudit": {
+        "items": [
+          {
+            "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+            "duration": 106,
+            "startTime": 1617.6338
+          },
+          {
+            "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+            "duration": 99,
+            "startTime": 1997.6338
+          },
+          {
+            "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+            "duration": 86,
+            "startTime": 2096.6338
+          },
+          {
+            "url": "Unattributable",
+            "duration": 81,
+            "startTime": 750.8169
+          },
+          {
+            "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+            "duration": 72,
+            "startTime": 1723.6338
+          },
+          {
+            "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+            "duration": 61,
+            "startTime": 1889.6338
+          },
+          {
+            "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+            "duration": 53,
+            "startTime": 1795.6338
+          }
+        ],
+        "timing": "Lighthouse simulated diagnostic task durations, not original X-event durations"
+      },
+      "observedTimeOriginUs": 154919157,
+      "originalMainthreadTaskMaxMs": 53.115
+    },
+    {
+      "run": 2,
+      "tbtMs": 248,
+      "lcpMs": 1713.7426,
+      "benchmarkIndex": 3416,
+      "mainProfile": {
+        "pid": 5634,
+        "tid": 5634,
+        "samples": 15198
+      },
+      "self": [
+        {
+          "function": "(idle)",
+          "url": "",
+          "line": 0,
+          "sampledMs": 1789.299
+        },
+        {
+          "function": "(program)",
+          "url": "",
+          "line": 0,
+          "sampledMs": 447.981
+        },
+        {
+          "function": "paintShapes",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1172,
+          "sampledMs": 49.408
+        },
+        {
+          "function": "drawLineRun",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1161,
+          "sampledMs": 43.451
+        },
+        {
+          "function": "draw",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1388,
+          "sampledMs": 34.865
+        },
+        {
+          "function": "(garbage collector)",
+          "url": "",
+          "line": 0,
+          "sampledMs": 15.585
+        },
+        {
+          "function": "requestAnimationFrame",
+          "url": "",
+          "line": 0,
+          "sampledMs": 14.679
+        },
+        {
+          "function": "appendLines",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1131,
+          "sampledMs": 12.056
+        },
+        {
+          "function": "appendFaces",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1116,
+          "sampledMs": 11.729
+        },
+        {
+          "function": "instance",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 660,
+          "sampledMs": 10.577
+        },
+        {
+          "function": "(anonymous)",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1398,
+          "sampledMs": 9.831
+        },
+        {
+          "function": "paintRibbon",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 122,
+          "sampledMs": 8.807
+        },
+        {
+          "function": "(anonymous)",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1061,
+          "sampledMs": 8.329
+        },
+        {
+          "function": "(anonymous)",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1305,
+          "sampledMs": 7.869
+        },
+        {
+          "function": "paint",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 164,
+          "sampledMs": 6.952
+        }
+      ],
+      "inclusive": [
+        {
+          "function": "(root)",
+          "url": "",
+          "line": 0,
+          "sampledMs": 2610.016
+        },
+        {
+          "function": "(idle)",
+          "url": "",
+          "line": 0,
+          "sampledMs": 1789.299
+        },
+        {
+          "function": "(program)",
+          "url": "",
+          "line": 0,
+          "sampledMs": 447.981
+        },
+        {
+          "function": "frame",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1469,
+          "sampledMs": 330.923
+        },
+        {
+          "function": "draw",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1388,
+          "sampledMs": 313.138
+        },
+        {
+          "function": "visibleRooms",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1366,
+          "sampledMs": 128.319
+        },
+        {
+          "function": "paintShapes",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1172,
+          "sampledMs": 114.072
+        },
+        {
+          "function": "projectedWorld",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1066,
+          "sampledMs": 81.877
+        },
+        {
+          "function": "appendObject",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1103,
+          "sampledMs": 44.483
+        },
+        {
+          "function": "drawLineRun",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1161,
+          "sampledMs": 43.451
+        },
+        {
+          "function": "roomFor",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1317,
+          "sampledMs": 41.826
+        },
+        {
+          "function": "worldFor",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 606,
+          "sampledMs": 31.392
+        },
+        {
+          "function": "grow",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 850,
+          "sampledMs": 30.582
+        },
+        {
+          "function": "collect",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 158,
+          "sampledMs": 25.851
+        },
+        {
+          "function": "appendFaces",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1116,
+          "sampledMs": 22.807
+        }
+      ],
+      "longestTasks": [
+        {
+          "startUs": 163417236,
+          "durationMs": 90.251,
+          "self": [
+            {
+              "function": "(program)",
+              "url": "",
+              "line": 0,
+              "sampledMs": 18.05
+            },
+            {
+              "function": "instance",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 660,
+              "sampledMs": 10.577
+            },
+            {
+              "function": "(anonymous)",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 1305,
+              "sampledMs": 7.869
+            },
+            {
+              "function": "worldFor",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 606,
+              "sampledMs": 5.591
+            },
+            {
+              "function": "(garbage collector)",
+              "url": "",
+              "line": 0,
+              "sampledMs": 5.469
+            },
+            {
+              "function": "paintShapes",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 1172,
+              "sampledMs": 5.208
+            },
+            {
+              "function": "index",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 655,
+              "sampledMs": 3.683
+            },
+            {
+              "function": "prepareFace",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 996,
+              "sampledMs": 2.811
+            }
+          ],
+          "sampledMs": 90.904,
+          "topStacks": [
+            {
+              "sampledMs": 18.05,
+              "frames": [
+                {
+                  "function": "(program)",
+                  "url": "",
+                  "line": 0
+                },
+                {
+                  "function": "(root)",
+                  "url": "",
+                  "line": 0
+                }
+              ]
+            },
+            {
+              "sampledMs": 7.869,
+              "frames": [
+                {
+                  "function": "(anonymous)",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1305
+                },
+                {
+                  "function": "paintColors",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1301
+                },
+                {
+                  "function": "roomFor",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1317
+                },
+                {
+                  "function": "visibleRooms",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1366
+                },
+                {
+                  "function": "draw",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1388
+                },
+                {
+                  "function": "frame",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1469
+                },
+                {
+                  "function": "(root)",
+                  "url": "",
+                  "line": 0
+                }
+              ]
+            },
+            {
+              "sampledMs": 6.84,
+              "frames": [
+                {
+                  "function": "instance",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 660
+                },
+                {
+                  "function": "object",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 615
+                },
+                {
+                  "function": "grow",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 850
+                },
+                {
+                  "function": "grow",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 850
+                },
+                {
+                  "function": "grow",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 850
+                },
+                {
+                  "function": "worldFor",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 606
+                },
+                {
+                  "function": "roomFor",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1317
+                },
+                {
+                  "function": "visibleRooms",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1366
+                },
+                {
+                  "function": "draw",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1388
+                },
+                {
+                  "function": "frame",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1469
+                },
+                {
+                  "function": "(root)",
+                  "url": "",
+                  "line": 0
+                }
+              ]
+            }
+          ],
+          "calls": [
+            {
+              "name": "FireAnimationFrame",
+              "durationMs": 73.451,
+              "function": null,
+              "url": null
+            },
+            {
+              "name": "FunctionCall",
+              "durationMs": 73.404,
+              "function": "frame",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js"
+            },
+            {
+              "name": "MinorGC",
+              "durationMs": 5.146,
+              "function": null,
+              "url": null
+            },
+            {
+              "name": "V8.GCScavenger",
+              "durationMs": 5.082,
+              "function": null,
+              "url": null
+            },
+            {
+              "name": "UpdateLayoutTree",
+              "durationMs": 0.47,
+              "function": null,
+              "url": null
+            },
+            {
+              "name": "Layout",
+              "durationMs": 0.143,
+              "function": null,
+              "url": null
+            },
+            {
+              "name": "FunctionCall",
+              "durationMs": 0.219,
+              "function": "observer",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js"
+            },
+            {
+              "name": "FunctionCall",
+              "durationMs": 0.067,
+              "function": "clearance",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/theme.js"
+            }
+          ],
+          "observedStartMs": 138.712
+        },
+        {
+          "startUs": 163287137,
+          "durationMs": 58.343,
+          "self": [
+            {
+              "function": "(program)",
+              "url": "",
+              "line": 0,
+              "sampledMs": 51.164
+            },
+            {
+              "function": "(anonymous)",
+              "url": "_lighthouse-eval.js",
+              "line": 8,
+              "sampledMs": 0.33
+            },
+            {
+              "function": "(anonymous)",
+              "url": "_lighthouse-eval.js",
+              "line": 1,
+              "sampledMs": 0.166
+            }
+          ],
+          "sampledMs": 51.66,
+          "topStacks": [
+            {
+              "sampledMs": 51.164,
+              "frames": [
+                {
+                  "function": "(program)",
+                  "url": "",
+                  "line": 0
+                },
+                {
+                  "function": "(root)",
+                  "url": "",
+                  "line": 0
+                }
+              ]
+            },
+            {
+              "sampledMs": 0.33,
+              "frames": [
+                {
+                  "function": "(anonymous)",
+                  "url": "_lighthouse-eval.js",
+                  "line": 8
+                },
+                {
+                  "function": "(anonymous)",
+                  "url": "_lighthouse-eval.js",
+                  "line": 1
+                },
+                {
+                  "function": "(anonymous)",
+                  "url": "_lighthouse-eval.js",
+                  "line": 1
+                },
+                {
+                  "function": "(root)",
+                  "url": "",
+                  "line": 0
+                }
+              ]
+            },
+            {
+              "sampledMs": 0.166,
+              "frames": [
+                {
+                  "function": "(anonymous)",
+                  "url": "_lighthouse-eval.js",
+                  "line": 1
+                },
+                {
+                  "function": "(anonymous)",
+                  "url": "_lighthouse-eval.js",
+                  "line": 1
+                },
+                {
+                  "function": "(root)",
+                  "url": "",
+                  "line": 0
+                }
+              ]
+            }
+          ],
+          "calls": [],
+          "observedStartMs": 8.613
+        },
+        {
+          "startUs": 163509964,
+          "durationMs": 27.928,
+          "self": [
+            {
+              "function": "(program)",
+              "url": "",
+              "line": 0,
+              "sampledMs": 12.386
+            },
+            {
+              "function": "draw",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 1388,
+              "sampledMs": 2.527
+            },
+            {
+              "function": "paintShapes",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 1172,
+              "sampledMs": 2.036
+            },
+            {
+              "function": "drawLineRun",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 1161,
+              "sampledMs": 1.73
+            },
+            {
+              "function": "appendLines",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 1131,
+              "sampledMs": 0.978
+            },
+            {
+              "function": "appendObject",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 1103,
+              "sampledMs": 0.913
+            },
+            {
+              "function": "projectedFace",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 1089,
+              "sampledMs": 0.794
+            },
+            {
+              "function": "paintRibbon",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 122,
+              "sampledMs": 0.526
+            }
+          ],
+          "sampledMs": 28.319,
+          "topStacks": [
+            {
+              "sampledMs": 12.386,
+              "frames": [
+                {
+                  "function": "(program)",
+                  "url": "",
+                  "line": 0
+                },
+                {
+                  "function": "(root)",
+                  "url": "",
+                  "line": 0
+                }
+              ]
+            },
+            {
+              "sampledMs": 2.527,
+              "frames": [
+                {
+                  "function": "draw",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1388
+                },
+                {
+                  "function": "frame",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1469
+                },
+                {
+                  "function": "(root)",
+                  "url": "",
+                  "line": 0
+                }
+              ]
+            },
+            {
+              "sampledMs": 2.036,
+              "frames": [
+                {
+                  "function": "paintShapes",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1172
+                },
+                {
+                  "function": "draw",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1388
+                },
+                {
+                  "function": "frame",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1469
+                },
+                {
+                  "function": "(root)",
+                  "url": "",
+                  "line": 0
+                }
+              ]
+            }
+          ],
+          "calls": [
+            {
+              "name": "FireAnimationFrame",
+              "durationMs": 15.861,
+              "function": null,
+              "url": null
+            },
+            {
+              "name": "FunctionCall",
+              "durationMs": 15.798,
+              "function": "frame",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js"
+            },
+            {
+              "name": "UpdateLayoutTree",
+              "durationMs": 0.436,
+              "function": null,
+              "url": null
+            }
+          ],
+          "observedStartMs": 231.44
+        }
+      ],
+      "raw": {
+        "lhr": {
+          "file": "research-2-lhr.json.gz",
+          "sha256": "45e0e5573f4cb15878305e0686eaa041b8376cd517be224e1765f97c41af5c6f",
+          "bytes": 326038
+        },
+        "trace": {
+          "file": "research-2-trace.json.gz",
+          "sha256": "21d077788b477674a64f9ae6a448ab8c8eeb4f623ee8aa093b75ac95bbb977f9",
+          "bytes": 2373346
+        },
+        "devtoolsLog": {
+          "file": "research-2-devtoolslog.json.gz",
+          "sha256": "d03ca34375975cd9e1a60dafb17304e97959ef305b5b4609d7a545325605b4d8",
+          "bytes": 4013
+        }
+      },
+      "longTaskAudit": {
+        "items": [
+          {
+            "url": "Unattributable",
+            "duration": 233,
+            "startTime": 750.1213
+          },
+          {
+            "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+            "duration": 181,
+            "startTime": 1623.2426
+          },
+          {
+            "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+            "duration": 112,
+            "startTime": 1804.2426
+          },
+          {
+            "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+            "duration": 93,
+            "startTime": 2230.2426
+          },
+          {
+            "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+            "duration": 76,
+            "startTime": 2154.2426
+          },
+          {
+            "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+            "duration": 66,
+            "startTime": 2323.2426
+          },
+          {
+            "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+            "duration": 62,
+            "startTime": 1916.2426
+          },
+          {
+            "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+            "duration": 51,
+            "startTime": 2021.2426
+          }
+        ],
+        "timing": "Lighthouse simulated diagnostic task durations, not original X-event durations"
+      },
+      "observedTimeOriginUs": 163278524,
+      "originalMainthreadTaskMaxMs": 90.251
+    },
+    {
+      "run": 3,
+      "tbtMs": 52,
+      "lcpMs": 1633.2302,
+      "benchmarkIndex": 4226.5,
+      "mainProfile": {
+        "pid": 5807,
+        "tid": 5807,
+        "samples": 15382
+      },
+      "self": [
+        {
+          "function": "(idle)",
+          "url": "",
+          "line": 0,
+          "sampledMs": 1704.972
+        },
+        {
+          "function": "(program)",
+          "url": "",
+          "line": 0,
+          "sampledMs": 401.18
+        },
+        {
+          "function": "paintShapes",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1172,
+          "sampledMs": 52.414
+        },
+        {
+          "function": "drawLineRun",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1161,
+          "sampledMs": 37.968
+        },
+        {
+          "function": "draw",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1388,
+          "sampledMs": 31.46
+        },
+        {
+          "function": "(garbage collector)",
+          "url": "",
+          "line": 0,
+          "sampledMs": 18.587
+        },
+        {
+          "function": "(anonymous)",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1398,
+          "sampledMs": 16.322
+        },
+        {
+          "function": "appendFaces",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1116,
+          "sampledMs": 13.191
+        },
+        {
+          "function": "requestAnimationFrame",
+          "url": "",
+          "line": 0,
+          "sampledMs": 12.784
+        },
+        {
+          "function": "appendLines",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1131,
+          "sampledMs": 11.073
+        },
+        {
+          "function": "paintRibbon",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 122,
+          "sampledMs": 10.461
+        },
+        {
+          "function": "loopTransform",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1031,
+          "sampledMs": 8.932
+        },
+        {
+          "function": "(anonymous)",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1061,
+          "sampledMs": 8.765
+        },
+        {
+          "function": "projectedFace",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1089,
+          "sampledMs": 6.532
+        },
+        {
+          "function": "cameraVertices",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1056,
+          "sampledMs": 5.943
+        }
+      ],
+      "inclusive": [
+        {
+          "function": "(root)",
+          "url": "",
+          "line": 0,
+          "sampledMs": 2459.75
+        },
+        {
+          "function": "(idle)",
+          "url": "",
+          "line": 0,
+          "sampledMs": 1704.972
+        },
+        {
+          "function": "(program)",
+          "url": "",
+          "line": 0,
+          "sampledMs": 401.18
+        },
+        {
+          "function": "frame",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1469,
+          "sampledMs": 311.719
+        },
+        {
+          "function": "draw",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1388,
+          "sampledMs": 294.204
+        },
+        {
+          "function": "paintShapes",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1172,
+          "sampledMs": 112.473
+        },
+        {
+          "function": "visibleRooms",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1366,
+          "sampledMs": 107.81
+        },
+        {
+          "function": "projectedWorld",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1066,
+          "sampledMs": 86.248
+        },
+        {
+          "function": "appendObject",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1103,
+          "sampledMs": 50.372
+        },
+        {
+          "function": "drawLineRun",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1161,
+          "sampledMs": 37.968
+        },
+        {
+          "function": "appendFaces",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1116,
+          "sampledMs": 28.448
+        },
+        {
+          "function": "collect",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 158,
+          "sampledMs": 25.979
+        },
+        {
+          "function": "projectRibbons",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 83,
+          "sampledMs": 23.215
+        },
+        {
+          "function": "appendLines",
+          "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+          "line": 1131,
+          "sampledMs": 18.925
+        },
+        {
+          "function": "(garbage collector)",
+          "url": "",
+          "line": 0,
+          "sampledMs": 18.587
+        }
+      ],
+      "longestTasks": [
+        {
+          "startUs": 170750628,
+          "durationMs": 42.331,
+          "self": [
+            {
+              "function": "(program)",
+              "url": "",
+              "line": 0,
+              "sampledMs": 10.747
+            },
+            {
+              "function": "add",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 219,
+              "sampledMs": 3.261
+            },
+            {
+              "function": "object",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 615,
+              "sampledMs": 3.042
+            },
+            {
+              "function": "draw",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 1388,
+              "sampledMs": 2.353
+            },
+            {
+              "function": "(anonymous)",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 1305,
+              "sampledMs": 1.879
+            },
+            {
+              "function": "instance",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 660,
+              "sampledMs": 1.531
+            },
+            {
+              "function": "index",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 655,
+              "sampledMs": 1.196
+            },
+            {
+              "function": "prepareFace",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 996,
+              "sampledMs": 1.091
+            }
+          ],
+          "sampledMs": 42.532,
+          "topStacks": [
+            {
+              "sampledMs": 10.747,
+              "frames": [
+                {
+                  "function": "(program)",
+                  "url": "",
+                  "line": 0
+                },
+                {
+                  "function": "(root)",
+                  "url": "",
+                  "line": 0
+                }
+              ]
+            },
+            {
+              "sampledMs": 2.929,
+              "frames": [
+                {
+                  "function": "add",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 219
+                },
+                {
+                  "function": "at",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 637
+                },
+                {
+                  "function": "ring",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 635
+                },
+                {
+                  "function": "lens",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 825
+                },
+                {
+                  "function": "object",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 615
+                },
+                {
+                  "function": "grow",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 850
+                },
+                {
+                  "function": "worldFor",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 606
+                },
+                {
+                  "function": "roomFor",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1317
+                },
+                {
+                  "function": "visibleRooms",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1366
+                },
+                {
+                  "function": "draw",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1388
+                },
+                {
+                  "function": "frame",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1469
+                },
+                {
+                  "function": "(root)",
+                  "url": "",
+                  "line": 0
+                }
+              ]
+            },
+            {
+              "sampledMs": 2.353,
+              "frames": [
+                {
+                  "function": "draw",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1388
+                },
+                {
+                  "function": "frame",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1469
+                },
+                {
+                  "function": "(root)",
+                  "url": "",
+                  "line": 0
+                }
+              ]
+            }
+          ],
+          "calls": [
+            {
+              "name": "FireAnimationFrame",
+              "durationMs": 31.797,
+              "function": null,
+              "url": null
+            },
+            {
+              "name": "FunctionCall",
+              "durationMs": 31.76,
+              "function": "frame",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js"
+            },
+            {
+              "name": "UpdateLayoutTree",
+              "durationMs": 0.351,
+              "function": null,
+              "url": null
+            },
+            {
+              "name": "Layout",
+              "durationMs": 0.112,
+              "function": null,
+              "url": null
+            },
+            {
+              "name": "FunctionCall",
+              "durationMs": 0.048,
+              "function": "observer",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js"
+            },
+            {
+              "name": "FunctionCall",
+              "durationMs": 0.036,
+              "function": "clearance",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/theme.js"
+            }
+          ],
+          "observedStartMs": 77.722
+        },
+        {
+          "startUs": 170728439,
+          "durationMs": 22.073,
+          "self": [
+            {
+              "function": "(program)",
+              "url": "",
+              "line": 0,
+              "sampledMs": 6.564
+            },
+            {
+              "function": "save",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/navigation.js",
+              "line": 58,
+              "sampledMs": 5.092
+            },
+            {
+              "function": "readColors",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 1293,
+              "sampledMs": 3.566
+            },
+            {
+              "function": "installEndScroll",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/navigation.js",
+              "line": 400,
+              "sampledMs": 1.43
+            },
+            {
+              "function": "(anonymous)",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/navigation.js",
+              "line": 2,
+              "sampledMs": 0.971
+            },
+            {
+              "function": "measureNative",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 1245,
+              "sampledMs": 0.816
+            },
+            {
+              "function": "bounds",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/navigation.js",
+              "line": 411,
+              "sampledMs": 0.483
+            },
+            {
+              "function": "addEventListener",
+              "url": "",
+              "line": 0,
+              "sampledMs": 0.353
+            }
+          ],
+          "sampledMs": 22.798,
+          "topStacks": [
+            {
+              "sampledMs": 6.564,
+              "frames": [
+                {
+                  "function": "(program)",
+                  "url": "",
+                  "line": 0
+                },
+                {
+                  "function": "(root)",
+                  "url": "",
+                  "line": 0
+                }
+              ]
+            },
+            {
+              "sampledMs": 5.092,
+              "frames": [
+                {
+                  "function": "save",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/navigation.js",
+                  "line": 58
+                },
+                {
+                  "function": "(anonymous)",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/navigation.js",
+                  "line": 2
+                },
+                {
+                  "function": "(anonymous)",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/navigation.js",
+                  "line": 1
+                },
+                {
+                  "function": "(root)",
+                  "url": "",
+                  "line": 0
+                }
+              ]
+            },
+            {
+              "sampledMs": 3.566,
+              "frames": [
+                {
+                  "function": "readColors",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1293
+                },
+                {
+                  "function": "initialize",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1582
+                },
+                {
+                  "function": "document.addEventListener.once",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1596
+                },
+                {
+                  "function": "(root)",
+                  "url": "",
+                  "line": 0
+                }
+              ]
+            }
+          ],
+          "calls": [
+            {
+              "name": "EvaluateScript",
+              "durationMs": 11.111,
+              "function": null,
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/navigation.js"
+            },
+            {
+              "name": "UpdateLayoutTree",
+              "durationMs": 1.039,
+              "function": null,
+              "url": null
+            },
+            {
+              "name": "Layout",
+              "durationMs": 2.779,
+              "function": null,
+              "url": null
+            },
+            {
+              "name": "UpdateLayoutTree",
+              "durationMs": 0.25,
+              "function": null,
+              "url": null
+            },
+            {
+              "name": "Layout",
+              "durationMs": 0.248,
+              "function": null,
+              "url": null
+            },
+            {
+              "name": "FunctionCall",
+              "durationMs": 0.416,
+              "function": "attachControl",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/theme.js"
+            },
+            {
+              "name": "FunctionCall",
+              "durationMs": 6.242,
+              "function": "document.addEventListener.once",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js"
+            },
+            {
+              "name": "UpdateLayoutTree",
+              "durationMs": 3.329,
+              "function": null,
+              "url": null
+            },
+            {
+              "name": "Layout",
+              "durationMs": 0.197,
+              "function": null,
+              "url": null
+            },
+            {
+              "name": "UpdateLayoutTree",
+              "durationMs": 0.051,
+              "function": null,
+              "url": null
+            },
+            {
+              "name": "UpdateLayoutTree",
+              "durationMs": 0.518,
+              "function": null,
+              "url": null
+            },
+            {
+              "name": "Layout",
+              "durationMs": 0.299,
+              "function": null,
+              "url": null
+            },
+            {
+              "name": "FunctionCall",
+              "durationMs": 0.112,
+              "function": "resize",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js"
+            }
+          ],
+          "observedStartMs": 55.533
+        },
+        {
+          "startUs": 170794338,
+          "durationMs": 19.511,
+          "self": [
+            {
+              "function": "(program)",
+              "url": "",
+              "line": 0,
+              "sampledMs": 7.954
+            },
+            {
+              "function": "draw",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 1388,
+              "sampledMs": 1.743
+            },
+            {
+              "function": "path",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 1157,
+              "sampledMs": 1.182
+            },
+            {
+              "function": "paintShapes",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 1172,
+              "sampledMs": 1.156
+            },
+            {
+              "function": "drawLineRun",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 1161,
+              "sampledMs": 1.099
+            },
+            {
+              "function": "appendObject",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 1103,
+              "sampledMs": 0.73
+            },
+            {
+              "function": "appendLines",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 1131,
+              "sampledMs": 0.67
+            },
+            {
+              "function": "paintRibbon",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+              "line": 122,
+              "sampledMs": 0.651
+            }
+          ],
+          "sampledMs": 19.613,
+          "topStacks": [
+            {
+              "sampledMs": 7.954,
+              "frames": [
+                {
+                  "function": "(program)",
+                  "url": "",
+                  "line": 0
+                },
+                {
+                  "function": "(root)",
+                  "url": "",
+                  "line": 0
+                }
+              ]
+            },
+            {
+              "sampledMs": 1.743,
+              "frames": [
+                {
+                  "function": "draw",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1388
+                },
+                {
+                  "function": "frame",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1469
+                },
+                {
+                  "function": "(root)",
+                  "url": "",
+                  "line": 0
+                }
+              ]
+            },
+            {
+              "sampledMs": 1.182,
+              "frames": [
+                {
+                  "function": "path",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1157
+                },
+                {
+                  "function": "paintShapes",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1172
+                },
+                {
+                  "function": "draw",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1388
+                },
+                {
+                  "function": "frame",
+                  "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+                  "line": 1469
+                },
+                {
+                  "function": "(root)",
+                  "url": "",
+                  "line": 0
+                }
+              ]
+            }
+          ],
+          "calls": [
+            {
+              "name": "FireAnimationFrame",
+              "durationMs": 11.664,
+              "function": null,
+              "url": null
+            },
+            {
+              "name": "FunctionCall",
+              "durationMs": 11.591,
+              "function": "frame",
+              "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js"
+            },
+            {
+              "name": "UpdateLayoutTree",
+              "durationMs": 0.308,
+              "function": null,
+              "url": null
+            }
+          ],
+          "observedStartMs": 121.432
+        }
+      ],
+      "raw": {
+        "lhr": {
+          "file": "research-3-lhr.json.gz",
+          "sha256": "caee4005dc9e9e26a1dd2f5e23e871352c76fcdde7e5d45fbb335d9e2504f9ee",
+          "bytes": 322916
+        },
+        "trace": {
+          "file": "research-3-trace.json.gz",
+          "sha256": "c267bf88de8ea2e2fd388c02e25eef0159d1f2433147f7646070ad0bc9c9a769",
+          "bytes": 2773817
+        },
+        "devtoolsLog": {
+          "file": "research-3-devtoolslog.json.gz",
+          "sha256": "02bbc19459a316c09454a3467a31c2904ea5f685bc3b08384482736632d06a62",
+          "bytes": 4060
+        }
+      },
+      "longTaskAudit": {
+        "items": [
+          {
+            "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+            "duration": 85,
+            "startTime": 1590.7302
+          },
+          {
+            "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+            "duration": 78,
+            "startTime": 1675.7302
+          },
+          {
+            "url": "http://127.0.0.1:42291/color/runtime/510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb/space.js",
+            "duration": 56,
+            "startTime": 1841.7302
+          }
+        ],
+        "timing": "Lighthouse simulated diagnostic task durations, not original X-event durations"
+      },
+      "observedTimeOriginUs": 170672906,
+      "originalMainthreadTaskMaxMs": 42.331
+    }
+  ],
+  "webkit": [
+    {
+      "run": 1,
+      "mode": "alone",
+      "fixturePass": false,
+      "error": "page.waitForFunction: Timeout 1500ms exceeded.",
+      "raw": {
+        "file": "webkit-alone-1.json.gz",
+        "sha256": "ccac47682e81991d4a016e1fa11df1a021cbdef100412a4e487e7bd307f374f4",
+        "bytes": 5688
+      },
+      "backgroundDraws": [],
+      "longestWaits": [
+        {
+          "requestId": 2,
+          "requestedMs": 439,
+          "enteredMs": 2914,
+          "waitMs": 2475,
+          "heartbeatSamples": 33,
+          "firstHeartbeatMs": 1197,
+          "lastHeartbeatMs": 2867,
+          "maxHeartbeatGapMs": 56
+        },
+        {
+          "requestId": 1,
+          "requestedMs": 123,
+          "enteredMs": 372,
+          "waitMs": 249,
+          "heartbeatSamples": 5,
+          "firstHeartbeatMs": 125,
+          "lastHeartbeatMs": 325,
+          "maxHeartbeatGapMs": 50
+        },
+        {
+          "requestId": 3,
+          "requestedMs": 2954,
+          "enteredMs": 3116,
+          "waitMs": 162,
+          "heartbeatSamples": 2,
+          "firstHeartbeatMs": 3050,
+          "lastHeartbeatMs": 3103,
+          "maxHeartbeatGapMs": 53
+        }
+      ],
+      "finalScheduler": {
+        "pending": 19,
+        "enabled": true,
+        "hold": false,
+        "printing": false,
+        "initialized": true,
+        "failed": false,
+        "page": "index",
+        "tier": 0,
+        "detailTier": 0,
+        "slow": 0,
+        "fast": 0,
+        "idleRate": 10,
+        "costAverage": 22.75756313046549,
+        "lastFrame": 5261,
+        "nextDraw": 5280
+      },
+      "fixtureChecks": {}
+    },
+    {
+      "run": 2,
+      "mode": "alone",
+      "fixturePass": true,
+      "error": null,
+      "raw": {
+        "file": "webkit-alone-2.json.gz",
+        "sha256": "e94142eebb2b024924002bb8bdceb694930771f7d2a1e4d93e94fdeed3b7ee0f",
+        "bytes": 6150
+      },
+      "backgroundDraws": [],
+      "longestWaits": [
+        {
+          "requestId": 2,
+          "requestedMs": 189,
+          "enteredMs": 658,
+          "waitMs": 469,
+          "heartbeatSamples": 6,
+          "firstHeartbeatMs": 363,
+          "lastHeartbeatMs": 618,
+          "maxHeartbeatGapMs": 53
+        },
+        {
+          "requestId": 3,
+          "requestedMs": 697,
+          "enteredMs": 839,
+          "waitMs": 142,
+          "heartbeatSamples": 1,
+          "firstHeartbeatMs": 795,
+          "lastHeartbeatMs": 795,
+          "maxHeartbeatGapMs": null
+        },
+        {
+          "requestId": 4,
+          "requestedMs": 867,
+          "enteredMs": 996,
+          "waitMs": 129,
+          "heartbeatSamples": 1,
+          "firstHeartbeatMs": 962,
+          "lastHeartbeatMs": 962,
+          "maxHeartbeatGapMs": null
+        }
+      ],
+      "finalScheduler": {
+        "pending": 19,
+        "enabled": true,
+        "hold": false,
+        "printing": false,
+        "initialized": true,
+        "failed": false,
+        "page": "index",
+        "tier": 0,
+        "detailTier": 0,
+        "slow": 0,
+        "fast": 0,
+        "idleRate": 12,
+        "costAverage": 22.52623982929511,
+        "lastFrame": 2917,
+        "nextDraw": 2948.666666666667
+      },
+      "fixtureChecks": {
+        "positiveProbe": true,
+        "startup": {
+          "foreground": true,
+          "elapsedMs": 27,
+          "timeoutMs": 3000
+        },
+        "probe": {
+          "elapsedMs": 239,
+          "paints": 1
+        }
+      }
+    },
+    {
+      "run": 1,
+      "mode": "loaded",
+      "fixturePass": true,
+      "error": null,
+      "raw": {
+        "file": "webkit-loaded-1.json.gz",
+        "sha256": "359750acfb16ca7372e916619b26bd9b8e93663256811814910fa46514a6ad27",
+        "bytes": 5699
+      },
+      "backgroundDraws": [
+        {
+          "engine": "chromium",
+          "additionalPaints": 81
+        },
+        {
+          "engine": "firefox",
+          "additionalPaints": 34
+        }
+      ],
+      "longestWaits": [
+        {
+          "requestId": 2,
+          "requestedMs": 334,
+          "enteredMs": 955,
+          "waitMs": 621,
+          "heartbeatSamples": 6,
+          "firstHeartbeatMs": 653,
+          "lastHeartbeatMs": 927,
+          "maxHeartbeatGapMs": 65
+        },
+        {
+          "requestId": 3,
+          "requestedMs": 1034,
+          "enteredMs": 1311,
+          "waitMs": 277,
+          "heartbeatSamples": 2,
+          "firstHeartbeatMs": 1224,
+          "lastHeartbeatMs": 1275,
+          "maxHeartbeatGapMs": 51
+        },
+        {
+          "requestId": 8,
+          "requestedMs": 2201,
+          "enteredMs": 2403,
+          "waitMs": 202,
+          "heartbeatSamples": 2,
+          "firstHeartbeatMs": 2339,
+          "lastHeartbeatMs": 2391,
+          "maxHeartbeatGapMs": 52
+        }
+      ],
+      "finalScheduler": {
+        "pending": 15,
+        "enabled": true,
+        "hold": false,
+        "printing": false,
+        "initialized": true,
+        "failed": false,
+        "page": "index",
+        "tier": 1,
+        "detailTier": 0.8916319767781041,
+        "slow": 3,
+        "fast": 0,
+        "idleRate": 7.5,
+        "costAverage": 40.48899919052802,
+        "lastFrame": 3414,
+        "nextDraw": 3526.333333333334
+      },
+      "fixtureChecks": {
+        "positiveProbe": true,
+        "startup": {
+          "foreground": true,
+          "elapsedMs": 484,
+          "timeoutMs": 3000
+        },
+        "probe": {
+          "elapsedMs": 373,
+          "paints": 1
+        }
+      }
+    },
+    {
+      "run": 2,
+      "mode": "loaded",
+      "fixturePass": true,
+      "error": null,
+      "raw": {
+        "file": "webkit-loaded-2.json.gz",
+        "sha256": "ceddedf87cf02af71cf3bf80e5d873dfb214cb32971df2823a7c21a4598fda52",
+        "bytes": 7388
+      },
+      "backgroundDraws": [
+        {
+          "engine": "chromium",
+          "additionalPaints": 67
+        },
+        {
+          "engine": "firefox",
+          "additionalPaints": 33
+        }
+      ],
+      "longestWaits": [
+        {
+          "requestId": 2,
+          "requestedMs": 353,
+          "enteredMs": 790,
+          "waitMs": 437,
+          "heartbeatSamples": 5,
+          "firstHeartbeatMs": 582,
+          "lastHeartbeatMs": 785,
+          "maxHeartbeatGapMs": 51
+        },
+        {
+          "requestId": 3,
+          "requestedMs": 834,
+          "enteredMs": 1026,
+          "waitMs": 192,
+          "heartbeatSamples": 1,
+          "firstHeartbeatMs": 975,
+          "lastHeartbeatMs": 975,
+          "maxHeartbeatGapMs": null
+        },
+        {
+          "requestId": 4,
+          "requestedMs": 1065,
+          "enteredMs": 1230,
+          "waitMs": 165,
+          "heartbeatSamples": 2,
+          "firstHeartbeatMs": 1178,
+          "lastHeartbeatMs": 1229,
+          "maxHeartbeatGapMs": 51
+        }
+      ],
+      "finalScheduler": {
+        "pending": 23,
+        "enabled": true,
+        "hold": false,
+        "printing": false,
+        "initialized": true,
+        "failed": false,
+        "page": "index",
+        "tier": 1,
+        "detailTier": 0.9658768001247827,
+        "slow": 1,
+        "fast": 0,
+        "idleRate": 7.5,
+        "costAverage": 27.054802133229256,
+        "lastFrame": 3358,
+        "nextDraw": 3476.333333333335
+      },
+      "fixtureChecks": {
+        "positiveProbe": true,
+        "startup": {
+          "foreground": true,
+          "elapsedMs": 34,
+          "timeoutMs": 3000
+        },
+        "probe": {
+          "elapsedMs": 230,
+          "paints": 1
+        }
+      }
+    }
+  ],
+  "researchRunner": {
+    "platform": "linux",
+    "os": "6.17.0-1022-azure",
+    "architecture": "x64",
+    "node": "v24.19.0",
+    "runnerImage": "ubuntu24",
+    "imageVersion": "20260927.320.1",
+    "cpus": [
+      "AMD EPYC 9V45 96-Core Processor",
+      "AMD EPYC 9V45 96-Core Processor",
+      "AMD EPYC 9V45 96-Core Processor",
+      "AMD EPYC 9V45 96-Core Processor"
+    ],
+    "memoryBytes": 16766414848,
+    "runId": "37476487993",
+    "attempt": "1"
+  },
+  "identity": {
+    "sourceCommit": "3877b3f50912722e275907947a144b9cee07ea33",
+    "sourceDirty": false,
+    "sourceTree": "a94e1c626e03b1bebc7f9ba12b14460be9470073",
+    "candidateCommit": "3877b3f50912722e275907947a144b9cee07ea33",
+    "artifactDigest": "0c382abbed60068edf76478d25867fd2dd9b5efd3e583b8c718005e110bb285b",
+    "variant": {
+      "id": "color",
+      "contract": 1,
+      "fingerprint": "510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb",
+      "baseEngine": "5a10d22a3b14c296913100d8dfa3d9d128a334c46b4ab5bfb9abd6b512f57ef4",
+      "effects": [
+        "ribbons",
+        "travel"
+      ]
+    }
+  },
+  "researchArtifact": {
+    "id": 11418778661,
+    "zipSha256": "d78ea046013f109c4679f42c9e2e4459b21eecea6886971d2a2a5844b1586290"
+  },
+  "webkitRunner": {
+    "platform": "linux",
+    "os": "6.17.0-1022-azure",
+    "architecture": "x64",
+    "node": "v24.19.0",
+    "runnerImage": "ubuntu24",
+    "imageVersion": "20260927.320.1",
+    "cpus": [
+      "AMD EPYC 7763 64-Core Processor",
+      "AMD EPYC 7763 64-Core Processor",
+      "AMD EPYC 7763 64-Core Processor",
+      "AMD EPYC 7763 64-Core Processor"
+    ],
+    "memoryBytes": 16766414848,
+    "runId": "37476487993",
+    "attempt": "1"
+  },
+  "webkitArtifact": {
+    "id": 11418549003,
+    "zipSha256": "a55672ef34495ac27bf5d56251691799c4ced65074406bc9477c710cac0caf90"
+  },
+  "method": "Decode exact gzipped Lighthouse Trace events; profile identity uses pid/id, and the Profile start event identifies the renderer thread. Sum per-sample timeDeltas for leaf self and inclusive ancestor stacks; intersect sample intervals with original main-thread RunTask intervals. Sampling approximates stack time, not exact native CPU work. Original X-event and FunctionCall durations remain separately labeled; simulated LHR values are not mixed with trace time. WebKit RAF requestId pairs and timer heartbeat samples establish actual pending wait and event-loop responsiveness.",
+  "limitations": [
+    "Trace/profile instrumentation affects timings; diagnostic completion does not accept performance.",
+    "Research uses identical normal Color bytes on loopback and a different runner from failed hosted staging; old 102.142/153.478ms late task stacks were not retained. Current hotspots are not proof of the exact function in those historical outliers.",
+    "WebKit native rendering/presentation delay is localized independently of hold, lost RAF and other browser engines; browser-native component or driver is not identified by JavaScript traces.",
+    "Two trials per WebKit load condition are a bounded cause screen, not a population estimate."
+  ]
+}
