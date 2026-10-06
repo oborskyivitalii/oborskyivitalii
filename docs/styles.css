@@ -4,7 +4,7 @@
   --portrait-start:#deebeb; --portrait-end:#f4edde;
   --facet-1:#e7ece8;--facet-2:#dce9eb;--facet-3:#cddfe3;--facet-4:#eae1ce;--facet-5:#bfd4da;--facet-6:#eff0e9;
   --button-bg:#245866; --button-ink:#fffdf7;
-  --surface-open:86%; --surface-reading:90%; --surface-row:91%;
+  --surface-open:91%; --surface-reading:95%; --surface-row:96%; --reading-feather:12px;
   --sans:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   color-scheme:light;
 }
@@ -14,7 +14,7 @@
   --portrait-start:#152732; --portrait-end:#24251e;
   --facet-1:#1c252e;--facet-2:#142f3b;--facet-3:#1c3f4c;--facet-4:#332e21;--facet-5:#235164;--facet-6:#253038;
   --button-bg:#78abb0; --button-ink:#111c22; color-scheme:dark;
-  --surface-open:86%; --surface-reading:90%; --surface-row:91%;
+  --surface-open:91%; --surface-reading:95%; --surface-row:96%;
 }
 @media(prefers-color-scheme:dark) {
   :root:not([data-theme]) {
@@ -23,7 +23,7 @@
     --portrait-start:#152732; --portrait-end:#24251e;
     --facet-1:#1c252e;--facet-2:#142f3b;--facet-3:#1c3f4c;--facet-4:#332e21;--facet-5:#235164;--facet-6:#253038;
     --button-bg:#78abb0; --button-ink:#111c22; color-scheme:dark;
-    --surface-open:86%; --surface-reading:90%; --surface-row:91%;
+    --surface-open:91%; --surface-reading:95%; --surface-row:96%;
   }
 }
 * {box-sizing:border-box}
@@ -75,21 +75,21 @@ body[data-page="writing"] .space-scene canvas,body[data-page="credits"] .space-s
 .section,.archive-intro,.credits-page,.hero-copy,.shift-intro {background:transparent}
 :is(.hero-copy,.section-heading,.archive-intro>h1,.archive-intro>.hero-description,.archive-intro>.eyebrow,.shift-intro>p,
 .research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,
-.ack-grid article,.about-grid>div,.contact-grid>div,.publication,.credits-page>p,.credits-page>h2,
-.archive-landings,.archive-heading,.archive-filters,.archive-count,.empty-state,.year-landing,
-.section-note,.section-nav,.topic-nav,.next-route,.site-footer) {
+.ack-grid article,.about-grid>div,.about-grid>h2,.about-section>.eyebrow,.archive-link,.contact-grid>div,.publication,.credits-page>p,.credits-page>h1,.credits-page>h2,
+.archive-landings>.topic-landing,.archive-heading,.archive-filters>label,.archive-count,.empty-state,.year-landing>span,
+.section-note,.section-nav>a,.topic-nav>a,.next-route>p,.next-route>a,.site-footer>p,.site-footer>a) {
   position:relative;isolation:isolate;
 }
 /* The mask feathers only the backdrop beyond the reading area, never glyphs.
    Static gradients need no backdrop blur, extra bitmap or animation scheduler. */
 :is(.hero-copy,.section-heading,.archive-intro>h1,.archive-intro>.hero-description,.archive-intro>.eyebrow,.shift-intro>p,
 .research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,
-.ack-grid article,.about-grid>div,.contact-grid>div,.publication,.credits-page>p,.credits-page>h2,
-.archive-landings,.archive-heading,.archive-filters,.archive-count,.empty-state,.year-landing,
-.section-note,.section-nav,.topic-nav,.next-route,.site-footer)::before {
-  content:"";position:absolute;inset:-24px;z-index:-1;pointer-events:none;
+.ack-grid article,.about-grid>div,.about-grid>h2,.about-section>.eyebrow,.archive-link,.contact-grid>div,.publication,.credits-page>p,.credits-page>h1,.credits-page>h2,
+.archive-landings>.topic-landing,.archive-heading,.archive-filters>label,.archive-count,.empty-state,.year-landing>span,
+.section-note,.section-nav>a,.topic-nav>a,.next-route>p,.next-route>a,.site-footer>p,.site-footer>a)::before {
+  content:"";position:absolute;inset:calc(-1 * var(--reading-feather));z-index:-1;pointer-events:none;
   background:var(--paper);background:color-mix(in srgb,var(--paper) var(--reading-alpha,var(--surface-reading)),transparent);
-  mask-image:linear-gradient(90deg,transparent,#000 24px,#000 calc(100% - 24px),transparent),linear-gradient(transparent,#000 24px,#000 calc(100% - 24px),transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 var(--reading-feather),#000 calc(100% - var(--reading-feather)),transparent),linear-gradient(transparent,#000 var(--reading-feather),#000 calc(100% - var(--reading-feather)),transparent);
   mask-composite:intersect;
 }
 .archive-intro>h1,.archive-intro>.hero-description {width:fit-content;max-width:100%;padding:8px 16px;margin-left:-16px}
@@ -98,6 +98,13 @@ body[data-page="writing"] .space-scene canvas,body[data-page="credits"] .space-s
 .credits-page>p {padding:14px 18px;margin-inline:-18px}
 .section-nav,.topic-nav {padding-inline:14px}
 .site-footer,.next-route {padding-inline:18px}
+/* Preserve route gutters and control geometry; paint only their occupied cells. */
+.section-nav>a,.topic-nav>a,.archive-filters>label,.archive-landings>.topic-landing,.site-footer>p,.site-footer>a,.next-route>p,.next-route>a {--reading-feather:8px;max-width:100%}
+.research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,.ack-grid article,.about-grid>div,.about-grid>h2,.shift-intro>p {align-self:start}
+.hero-copy,.about-grid>div,.about-grid>h2,.contact-grid>div,.shift-intro>p,.credits-page>p,.credits-page>h1,.empty-state {width:fit-content;max-width:100%}
+.year-landing>span {display:inline-block;max-width:100%}
+/* An already protected card needs one backdrop, including any inset notes. */
+:is(.research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,.ack-grid article,.about-grid>div,.contact-grid>div) .section-note::before {content:none}
 .hero {display:grid;grid-template-columns:1.22fr .78fr;align-items:end;gap:0 44px;padding-top:48px}
 .hero-copy {--reading-alpha:var(--surface-open);color:var(--ink);align-self:center;padding:16px 18px 34px;margin-left:-18px}
 .eyebrow {display:flex;align-items:center;gap:12px;font-size:12px;font-weight:650;line-height:1.6;letter-spacing:.08em;text-transform:uppercase;margin:0 0 20px;color:var(--muted)}
@@ -244,7 +251,7 @@ body[data-page="writing"] .publication {--reading-alpha:var(--surface-row)}
   .site-header.wrap {padding-inline:20px}
   .hero .hero-copy::before {content:none}
   .hero :is(h1,.hero-lead,.hero-description,.audience,.eyebrow) {position:relative;isolation:isolate}
-  .hero :is(h1,.hero-lead,.hero-description,.audience,.eyebrow)::before {content:"";position:absolute;inset:-18px;z-index:-1;pointer-events:none;background:color-mix(in srgb,var(--paper) 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 18px,#000 calc(100% - 18px),transparent),linear-gradient(transparent,#000 18px,#000 calc(100% - 18px),transparent);mask-composite:intersect}
+  .hero :is(h1,.hero-lead,.hero-description,.audience,.eyebrow)::before {content:"";position:absolute;inset:calc(-1 * var(--reading-feather));z-index:-1;pointer-events:none;background:color-mix(in srgb,var(--paper) 97%,transparent);mask-image:linear-gradient(90deg,transparent,#000 var(--reading-feather),#000 calc(100% - var(--reading-feather)),transparent),linear-gradient(transparent,#000 var(--reading-feather),#000 calc(100% - var(--reading-feather)),transparent);mask-composite:intersect}
   /* Match the mobile camera framing for the static 1440×900 projection too. */
   .space-scene .space-fallback {width:min(184vw,160vh);height:min(115vw,100vh);left:calc(42vw - min(121.44vw,105.6vh));top:calc(48vh - min(55.2vw,48vh))}
   .archive-intro>h1 {padding-inline:0;margin-inline:0}
@@ -302,7 +309,7 @@ body[data-page="writing"] .publication {--reading-alpha:var(--surface-row)}
   .wrap {width:100%}
   .site-header {position:static}
   .site-header.wrap {padding-inline:0}
-  main ::before,.site-footer::before {display:none!important}
+  main ::before,.site-footer ::before {display:none!important}
   .site-header nav,.appearance,.display-controls,.space-scene,.skip-link,.section-nav,.topic-nav,.archive-filters,.archive-landings,.archive-heading,.button {display:none!important}
   .hero {padding-top:24px}
   .section {padding-block:28px}

@@ -1,5 +1,18 @@
 # Agent guidance for personal publications
 
+## Reading-surface follow-up — 2026-10-06
+
+The maintainer explicitly requests a new Draft PR stacked on #23 for text
+backdrop opacity and content fit. This bounded follow-up supersedes the earlier
+single-PR restriction only for these layout changes; preserve #23 and its
+ongoing staging gate. Issue #14 owns the intent. Increase background alpha by
+five percentage points in the actual base and Color renditions, keep glyphs
+opaque, fit protection to occupied content and avoid duplicate nested backdrops.
+Inspect all five routes in both themes, wrapped controls and no-JS/print.
+Use the existing automatic PR-preview CI only; no full staging/merge is requested
+for this follow-up. Booking/email remain advice until public destinations are
+supplied by the maintainer.
+
 ## Full staging and merge authorized — 2026-10-06
 
 The maintainer now authorizes the next sequence: stage the current open #23

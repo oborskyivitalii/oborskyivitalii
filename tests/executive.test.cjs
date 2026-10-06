@@ -7,6 +7,9 @@ test('SEO reconciliation retains unsupported effects identity and semantic metad
   for(const [from,to]of [['site-effects-contract" content="1','site-effects-contract" content="2'],['site-variant" content="base','site-variant" content="color'],['<meta name="author" content="Vitalii Oborskyi">','<meta name="author" content="Other author">']]){
     assert.ok(html.includes(from));assert.notEqual(restore(html.replace(from,to),'index'),preserved);
   }
+  const writing=fs.readFileSync(require('node:path').join(__dirname,'../docs/writing.html'),'utf8');
+  assert.ok(writing.includes('<span>2026 archive</span>'));
+  for(const [from,to]of [['<span>2026 archive</span>','<span>2027 archive</span>'],['id="year-2026"','id="year-2027"']])assert.notEqual(restore(writing.replace(from,to),'writing'),restore(writing,'writing'));
 });
 test('Day/Night semantic text and CTA pairs exceed normal-text contrast with no independent atmosphere clock',()=>{
   const css=fs.readFileSync(require('node:path').join(__dirname,'../docs/styles.css'),'utf8');

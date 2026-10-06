@@ -31,6 +31,10 @@ function restore(html,page){
     const help=result.slice(a,b).replace('01 / Where I can help','02 / Where I can help'),research=result.slice(b,c).replace('02 / Research','01 / Research');
     result=result.slice(0,a)+research+help+result.slice(c);
   }
+  // Only these exact layout wrappers are reversible; year IDs/copy stay frozen.
+  if(page==='writing')result=result
+    .replace('<h2 id="year-2026" class="year-landing"><span>2026 archive</span></h2>','<h2 id="year-2026" class="year-landing">2026 archive</h2>')
+    .replace('<h2 id="year-2025" class="year-landing"><span>2025 archive</span></h2>','<h2 id="year-2025" class="year-landing">2025 archive</h2>');
   return strip(result);
 }
 function verify(){
@@ -39,7 +43,7 @@ function verify(){
     const file='docs/'+page+'.html',source=fs.readFileSync(path.join(root,file),'utf8');
     const old=cp.execFileSync('git',['show',baseline+':'+file],{cwd:root,encoding:'utf8',maxBuffer:1024*1024});
     assert.equal(restore(source,page),strip(old),'undeclared semantic/source change: '+file);
-    rows.push({path:file,sha256:crypto.createHash('sha256').update(source).digest('hex'),exactContentAndMetadataPreserved:true,declaredChanges:page==='index'?['problem-led H1','author identity moved to hero lead','Help before Research','matching section/local-nav order','wordmark dot']:['wordmark dot']});
+    rows.push({path:file,sha256:crypto.createHash('sha256').update(source).digest('hex'),exactContentAndMetadataPreserved:true,declaredChanges:page==='index'?['problem-led H1','author identity moved to hero lead','Help before Research','matching section/local-nav order','wordmark dot']:page==='writing'?['wordmark dot','content-fit year label wrappers']:['wordmark dot']});
   }
   return {baseline,pass:true,rows,policy:'Exact source after reversing declared Home hierarchy/wordmark changes and exact authored-base build identity/separator; decorative fallback SVG is excluded. Includes semantic metadata, JSON-LD, publication records, links, languages, dates, portrait and source attribution.'};
 }

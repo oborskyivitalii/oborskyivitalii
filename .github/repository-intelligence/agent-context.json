@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "8bcf47d83a32e439b4b4b940d7a1c482e14071fff1f0a52a2753996df730059a",
+    "digest": "c7577ceeb4f5945a899143e75018e718be7c13f1ad8d971007ece9146eb46e41",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -97,7 +97,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "bef41ba1fd256285ec4a030baa980de960f9bb0d3a3d6504986d9cc6720f9c74"
+        "sha256": "83ebae1500033a1be71ff214b188bcbd347c28424d972ceab33d3a1fcbdc6859"
       },
       {
         "path": "BACKLOG.md",
@@ -223,48 +223,48 @@
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/5a10d22a3b14c296913100d8dfa3d9d128a334c46b4ab5bfb9abd6b512f57ef4/archive.js",
+        "path": "docs/runtime/3ca401400a9c297237166aeef707b8beb4123f13a7780fdaa034989d1c90da30/archive.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/5a10d22a3b14c296913100d8dfa3d9d128a334c46b4ab5bfb9abd6b512f57ef4/navigation.js",
+        "path": "docs/runtime/3ca401400a9c297237166aeef707b8beb4123f13a7780fdaa034989d1c90da30/navigation.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/5a10d22a3b14c296913100d8dfa3d9d128a334c46b4ab5bfb9abd6b512f57ef4/space.js",
+        "path": "docs/runtime/3ca401400a9c297237166aeef707b8beb4123f13a7780fdaa034989d1c90da30/space.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/5a10d22a3b14c296913100d8dfa3d9d128a334c46b4ab5bfb9abd6b512f57ef4/styles.css",
+        "path": "docs/runtime/3ca401400a9c297237166aeef707b8beb4123f13a7780fdaa034989d1c90da30/styles.css",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/5a10d22a3b14c296913100d8dfa3d9d128a334c46b4ab5bfb9abd6b512f57ef4/theme.js",
+        "path": "docs/runtime/3ca401400a9c297237166aeef707b8beb4123f13a7780fdaa034989d1c90da30/theme.js",
         "identity_mode": "existence"
       },
       {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "b115c23940bdcd7aac239c97822449fccf3aa0b286b9ed66dae67d461b16c07c"
+        "sha256": "3b3671c92737bdf91967fe2781345cb21774c2dfc569a0a0a8bb9030a49afc71"
       },
       {
-        "path": "docs/snapshots/105217850877fcef7a3524919834c62ce8234507c62ce34827c34e3bc1774136/credits.html",
+        "path": "docs/snapshots/0f2eacbc3548e38c37ed278d8fed1fd76304ca834294b85e68155d01c29f56f5/talks.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/50eb894b23ae14bad0cc92d44ac0be76f78893c3c29b64e4f69a5c0d6923cbb3/index.html",
+        "path": "docs/snapshots/556b4c44141f2c18c73bda09a43de6cdee961563206b0877a6f72db12ccc4aba/writing.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/5df9b41edeeda61082132c750e12c547d7ca1a31ff480aad6a1984821e2d263c/writing.html",
+        "path": "docs/snapshots/62117fc339f628d35847709ced174841ec78773b380629d594ce04015973d9bf/index.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/ecb03b20ca60453d8f8e1448ea46f306251595a15cadb022fdc4fc2fccbb2715/talks.html",
+        "path": "docs/snapshots/aec20c5fbb4f9de3e94a05eb483a9ee65ceae675dd0bb8d52bb0c736d9587319/credits.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/eebd77547baef13a8d04b6c7c053189a9d5719355d4eea489b648f0de77a3821/research.html",
+        "path": "docs/snapshots/f03f44ab4f4ed5baf958b0c4e30ba20599451dea8b0ebaed9d598566e037cc9f/research.html",
         "identity_mode": "existence"
       },
       {
@@ -361,6 +361,11 @@
         "path": "review/color-staging-20261006/target.json",
         "identity_mode": "content",
         "sha256": "42bac7997ba50f77b0ad9a53fa76cbdaa3fab8df0099c531b0c7f317ee2be0e2"
+      },
+      {
+        "path": "review/reading-surfaces-20261006/REPORT.md",
+        "identity_mode": "content",
+        "sha256": "85f179b4ffc27208f61bb66ded10c5f9e08c045aa6e51eac8d853bf4e8337e97"
       },
       {
         "path": "review/seo-20261002/COLLECTION-MANIFEST.json",
@@ -3470,7 +3475,7 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "6053e065201c1df21e2f0695dab0d1333302b010c6924250d61d06bdf4c7f57d"
+        "sha256": "1073e928705080bd1a674e6524d093a85ea2ed9d087c8caadba889416317b006"
       },
       {
         "path": "site/routes.json",
@@ -4404,6 +4409,13 @@
     {
       "path": "review/color-staging-20261006/target.json",
       "title": "review/color-staging-20261006/target.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/reading-surfaces-20261006/REPORT.md",
+      "title": "Content-sized reading surfaces",
       "instructions": [
         "AGENTS.md"
       ]
