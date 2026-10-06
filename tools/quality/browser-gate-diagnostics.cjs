@@ -62,6 +62,11 @@ function validateInputs(inputs,candidate){
   assert.notEqual(variant(control).fingerprint,variant(adaptive).fingerprint,'adaptive identity unchanged');
   return true;
 }
+function validateDraw(probe){
+  assert.ok(Number.isFinite(probe.renderCost)&&probe.renderCost>=0,'invalid actual draw duration');
+  for(const key of ['slow','fast','tier','detailTier','ribbonFaces','ribbonSignals'])assert.ok(Number.isFinite(probe[key])&&probe[key]>=0,'missing draw/quality counter '+key);
+  assert.equal(typeof probe.hold,'boolean','missing actual draw hold state');
+}
 function validateTrace(trace){
   assert.equal(trace?.installed,true,'missing diagnostic trace');assert.equal(trace.overflow,false,'diagnostic trace overflow');
   assert.equal(trace.completeRetention,true,'incomplete trace retention');assert.equal(trace.droppedEvents,0);
@@ -76,7 +81,7 @@ function validateTrace(trace){
     assert.equal(event.sequence,index+1,'missing trace sequence');assert.ok(Number.isFinite(event.time),'invalid trace clock');
     assert.ok(event.state&&Array.isArray(event.state.pendingIds),'missing event scheduler/pending state');assert.ok(!event.state.schedulerError,'private scheduler getter failed');
     if(event.kind==='exit')assert.ok(Number.isFinite(event.duration)&&event.duration>=0,'invalid actual callback duration');
-    if(event.probe?.kind==='browser-gate-frame')assert.ok(Number.isFinite(event.probe.renderCost)&&event.probe.renderCost>=0,'invalid actual draw duration');
+    if(event.probe?.kind==='browser-gate-frame')validateDraw(event.probe);
   }
   return true;
 }
@@ -103,7 +108,7 @@ function summarizeTrace(trace){
 function validateOutcome(observation){
   assert.equal(typeof observation?.pass,'boolean','missing original fixture disposition');
   if(!observation.pass)assert.ok(typeof observation.error==='string'&&observation.error.length,'failed fixture error suppressed');
-  if(observation.pass){assert.deepEqual(observation.errors,[],'page errors suppressed');assert.deepEqual(observation.externalRequests,[],'external request failures suppressed');}
+  if(observation.pass){assert.equal(observation.checks?.positiveProbe,true,'passed fixture omitted its positive paint gate');assert.deepEqual(observation.errors,[],'page errors suppressed');assert.deepEqual(observation.externalRequests,[],'external request failures suppressed');}
   validateTrace(observation.diagnosticTrace);return true;
 }
 async function startup(browser,url,settings,output){

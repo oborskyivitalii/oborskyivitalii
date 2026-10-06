@@ -70,6 +70,7 @@ test('a fixture timeout stays failed observed data and the complete raw trace is
     const invalid=diagnostic.saveTrial(record,{id:'missing-trace'},{observation:{pass:false,error:'timeout'},startMs:0,endMs:1500},output);
     assert.equal(invalid.status,'invalid-observation');assert.equal(record.infrastructureErrors.length,1);
     assert.throws(()=>diagnostic.validateOutcome({pass:false,diagnosticTrace:trace()}),/suppressed/);
+    assert.throws(()=>diagnostic.validateOutcome({pass:true,errors:[],externalRequests:[],diagnosticTrace:trace()}),/positive paint gate/);
   }finally{fs.rmSync(output,{recursive:true,force:true});}
 });
 test('summary reports actual draw costs separately from RAF callbacks and preserves quality/hold/pending state',()=>{

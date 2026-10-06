@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "4ed596fe40343c72b6c8e2ebe7bc781304356be82f491d7a9257db56303503c9",
+    "digest": "fcbeab4996ab8421bf00148c4e5c780ca0f284d64d8b3db29db5e81960aab677",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -53,7 +53,7 @@
       {
         "path": ".github/workflows/site-browser-gate-probe.yml",
         "identity_mode": "content",
-        "sha256": "784b521e287a7b7f60d630f0abe3d86196e3b5a78a26ffbadf14240558d091d4"
+        "sha256": "942646639da8bffd05ab7285f1d942c8b71b1b0937eee10da33d89493eb8f9fd"
       },
       {
         "path": ".github/workflows/site-candidate-evidence.yml",
