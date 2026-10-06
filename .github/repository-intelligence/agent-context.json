@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "f5f559c9493753ad3e4b5e5e99a106d1fd29842c4e5e6185aef194278ad560ca",
+    "digest": "7a6c20a392a8501bd56460e7a2246605d2996159f3b2c45b2dfe14a8c7127b8a",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -97,22 +97,6 @@
       },
       {
         "path": ".gitignore",
-        "identity_mode": "existence"
-      },
-      {
-        "path": ".site-build-OSQsvy/index.html",
-        "identity_mode": "existence"
-      },
-      {
-        "path": ".site-build-OSQsvy/research.html",
-        "identity_mode": "existence"
-      },
-      {
-        "path": ".site-build-OSQsvy/snapshots/7e0537515255503facfdde5a0be87c35294b82a1dda5e0d52d4720a6d316e788/index.html",
-        "identity_mode": "existence"
-      },
-      {
-        "path": ".site-build-OSQsvy/snapshots/a3c992c52ae39df4652c74d33ea5cdfa9f1aab0229d5d5b9703b5e31aa14cd5a/research.html",
         "identity_mode": "existence"
       },
       {
