@@ -1,11 +1,6 @@
 name: Writing cold comparison
-# Focused diagnosis only; never publishes or substitutes for the full gate.
+# Explicit focused diagnosis only; ordinary PR updates do not rerun it.
 on:
-  pull_request:
-    types: [opened, synchronize, reopened, ready_for_review]
-    paths:
-      - '.github/workflows/site-writing-probe.yml'
-      - 'tools/quality/writing-probe.cjs'
   workflow_dispatch:
     inputs:
       candidate_sha:
@@ -15,7 +10,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: writing-comparison-${{ github.event.pull_request.number || inputs.candidate_sha }}
+  group: writing-comparison-${{ inputs.candidate_sha }}
   cancel-in-progress: true
 defaults:
   run:
@@ -26,12 +21,12 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     env:
-      SITE_CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
+      SITE_CANDIDATE_SHA: ${{ inputs.candidate_sha }}
       WRITING_REFERENCE_SHA: 174bef1f14390363953cc94ebc0ced136d39da82
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
-          ref: ${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
+          ref: ${{ inputs.candidate_sha }}
           path: candidate
           persist-credentials: false
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803

@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "533508a0523c08d92e30d5b055cbbf4c2e42fe7099c4debc6894ac394efe05f4",
+    "digest": "922024763f242a7e3678a9a4385b56d0e34e4711dbeefe22c02fe712d5596647",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -88,7 +88,7 @@
       {
         "path": ".github/workflows/site-writing-probe.yml",
         "identity_mode": "content",
-        "sha256": "c59e718790cc2a1913713d724a5b6261669d0c031bb3331eb769db54eaee57e9"
+        "sha256": "6c902fdaaa74bbee42b70608c3ac137dfbccab6fc03f8b510b61a763ad86aa92"
       },
       {
         "path": ".gitignore",
@@ -636,7 +636,16 @@
       {
         "path": "review/site-consolidation-20261006/REPORT.md",
         "identity_mode": "content",
-        "sha256": "7f2eee8badca1c02152732cdaf053e975f6e2e299d88607430fed0ded13c77e9"
+        "sha256": "1d46647caacbce957e8e7bc4c10b109a106d06553701d497b07d00a9c71c3ba4"
+      },
+      {
+        "path": "review/site-consolidation-20261006/comparison.json.gz",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-consolidation-20261006/summary.json",
+        "identity_mode": "content",
+        "sha256": "365dad674b91ef870ee28812be8688a467355f56d20b72ff61a8ffa5be441539"
       },
       {
         "path": "review/site-engine-implementation-20261004/EXECUTION.md",
@@ -4489,6 +4498,13 @@
     {
       "path": "review/site-consolidation-20261006/REPORT.md",
       "title": "One current site candidate — 6 October 2026",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-consolidation-20261006/summary.json",
+      "title": "review/site-consolidation-20261006/summary.json",
       "instructions": [
         "AGENTS.md"
       ]

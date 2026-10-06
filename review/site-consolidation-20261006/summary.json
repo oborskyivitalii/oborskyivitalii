@@ -1,0 +1,693 @@
+{
+  "run": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37444601098",
+  "artifactId": 11403052120,
+  "archiveSha256": "a30b094872bba465bdce418cee9c0de5a969500f81b7fb882e32b4d5b2efdc81",
+  "rawJsonSha256": "bdfe271b733112d19febab6839b15a84a0d5d214ef9dd660bc00eaa68f40744d",
+  "gzipSha256": "50afa1a619d1d69bdd9d19127331e0401ee3cda4085ed2c9fbf7b69bdff81a18",
+  "testedSource": "d8cddecf2f5b882d6cf4c101b46eb478ccf17c6b",
+  "profile": {
+    "width": 390,
+    "height": 844,
+    "deviceScaleFactor": 3,
+    "cpuRate": 4,
+    "theme": "dark"
+  },
+  "environment": {
+    "platform": "linux",
+    "os": "6.17.0-1022-azure",
+    "architecture": "x64",
+    "node": "v24.19.0",
+    "runnerImage": "ubuntu24",
+    "imageVersion": "20260927.320.1",
+    "cpus": [
+      "AMD EPYC 7763 64-Core Processor",
+      "AMD EPYC 7763 64-Core Processor",
+      "AMD EPYC 7763 64-Core Processor",
+      "AMD EPYC 7763 64-Core Processor"
+    ],
+    "memoryBytes": 16766414848,
+    "runId": "37444601098",
+    "attempt": "1"
+  },
+  "summary": {
+    "pr23-base": {
+      "complete": true,
+      "trials": 6,
+      "sceneReadyMs": {
+        "median": 354.15000000000146,
+        "min": 323.9000000000233,
+        "max": 368.8000000000029,
+        "values": [
+          368.8000000000029,
+          353.40000000000873,
+          323.9000000000233,
+          330.3999999999942,
+          354.8999999999942,
+          362.30000000001746
+        ]
+      },
+      "bootPaintMaxMs": {
+        "median": 165.85000000000582,
+        "min": 154.60000000000582,
+        "max": 169.3000000000029,
+        "values": [
+          168.20000000001164,
+          169.3000000000029,
+          154.60000000000582,
+          164.60000000000582,
+          167.10000000000582,
+          162.89999999999418
+        ]
+      },
+      "bootPreparationMaxMs": {
+        "median": 103.75,
+        "min": 102.39999999999418,
+        "max": 106.20000000001164,
+        "values": [
+          102.39999999999418,
+          106.20000000001164,
+          102.39999999999418,
+          103.60000000000582,
+          106.10000000000582,
+          103.89999999999418
+        ]
+      },
+      "firstScrollP95Ms": {
+        "median": 19.10000000000582,
+        "min": 17.60000000000582,
+        "max": 20.89999999999418,
+        "values": [
+          20.5,
+          18.20000000001164,
+          19,
+          17.60000000000582,
+          20.89999999999418,
+          19.20000000001164
+        ]
+      },
+      "coldWritingP95Ms": {
+        "median": 37.00000000001455,
+        "min": 30.60000000000582,
+        "max": 40.39999999999418,
+        "values": [
+          40.39999999999418,
+          33.5,
+          36.80000000001746,
+          37.20000000001164,
+          30.60000000000582,
+          37.29999999998836
+        ]
+      },
+      "coldWritingMaxMs": {
+        "median": 83.20000000000437,
+        "min": 78.39999999999418,
+        "max": 94.20000000001164,
+        "values": [
+          94.20000000001164,
+          83.30000000000291,
+          83,
+          78.39999999999418,
+          87.60000000000582,
+          83.10000000000582
+        ]
+      },
+      "coldWritingReadyMs": {
+        "median": 1402.4500000000044,
+        "min": 1360.2000000000116,
+        "max": 1590.5999999999913,
+        "values": [
+          1590.5999999999913,
+          1395.300000000003,
+          1373.2000000000116,
+          1360.2000000000116,
+          1409.6000000000058,
+          1423
+        ]
+      },
+      "coldWritingPreparationMaxMs": {
+        "median": 56.75,
+        "min": 54.5,
+        "max": 58.70000000001164,
+        "values": [
+          54.5,
+          57.39999999999418,
+          57.29999999998836,
+          54.5,
+          58.70000000001164,
+          56.20000000001164
+        ]
+      },
+      "warmWritingP95Ms": {
+        "median": 22.30000000000291,
+        "min": 18.89999999999418,
+        "max": 29.10000000000582,
+        "values": [
+          22.10000000000582,
+          22.5,
+          18.89999999999418,
+          27.300000000017462,
+          19.89999999999418,
+          29.10000000000582
+        ]
+      },
+      "coldFailures": 0,
+      "warmFailures": 0
+    },
+    "current-base": {
+      "complete": true,
+      "trials": 6,
+      "sceneReadyMs": {
+        "median": 345.95000000001164,
+        "min": 327.8999999999942,
+        "max": 367,
+        "values": [
+          367,
+          327.8999999999942,
+          330.5,
+          344.9000000000233,
+          347,
+          355.8999999999942
+        ]
+      },
+      "bootPaintMaxMs": {
+        "median": 163.6999999999971,
+        "min": 152.90000000000873,
+        "max": 172.29999999998836,
+        "values": [
+          172.29999999998836,
+          156.20000000001164,
+          152.90000000000873,
+          162.19999999998254,
+          165.20000000001164,
+          168
+        ]
+      },
+      "bootPreparationMaxMs": {
+        "median": 104.95000000000437,
+        "min": 95.5,
+        "max": 109.5,
+        "values": [
+          103.40000000000873,
+          102.09999999999127,
+          95.5,
+          109.5,
+          106.5,
+          108.79999999998836
+        ]
+      },
+      "firstScrollP95Ms": {
+        "median": 19.64999999999418,
+        "min": 17.10000000000582,
+        "max": 21.60000000000582,
+        "values": [
+          20.60000000000582,
+          21.60000000000582,
+          18.30000000000291,
+          18.699999999982538,
+          17.10000000000582,
+          21.300000000017462
+        ]
+      },
+      "coldWritingP95Ms": {
+        "median": 33.44999999999709,
+        "min": 31.5,
+        "max": 40.19999999999709,
+        "values": [
+          40.19999999999709,
+          34.5,
+          31.5,
+          32.10000000000582,
+          32.39999999999418,
+          35.69999999998254
+        ]
+      },
+      "coldWritingMaxMs": {
+        "median": 85.25000000000728,
+        "min": 79.89999999999418,
+        "max": 93.90000000002328,
+        "values": [
+          89.89999999999418,
+          85.30000000000291,
+          84.80000000000291,
+          79.89999999999418,
+          93.90000000002328,
+          85.20000000001164
+        ]
+      },
+      "coldWritingReadyMs": {
+        "median": 1397.050000000003,
+        "min": 1367.199999999997,
+        "max": 1447,
+        "values": [
+          1447,
+          1389,
+          1367.199999999997,
+          1378.5,
+          1425.7000000000116,
+          1405.1000000000058
+        ]
+      },
+      "coldWritingPreparationMaxMs": {
+        "median": 56.349999999998545,
+        "min": 53.70000000001164,
+        "max": 64.59999999999127,
+        "values": [
+          64.59999999999127,
+          54.5,
+          55.90000000000873,
+          53.70000000001164,
+          56.79999999998836,
+          60.69999999998254
+        ]
+      },
+      "warmWritingP95Ms": {
+        "median": 27,
+        "min": 20.89999999999418,
+        "max": 31.39999999999418,
+        "values": [
+          30,
+          28.70000000001164,
+          20.89999999999418,
+          25.29999999998836,
+          31.39999999999418,
+          22.79999999998836
+        ]
+      },
+      "coldFailures": 0,
+      "warmFailures": 0
+    },
+    "current-color": {
+      "complete": true,
+      "trials": 6,
+      "sceneReadyMs": {
+        "median": 420.90000000000873,
+        "min": 354.8999999999942,
+        "max": 480.1000000000058,
+        "values": [
+          480.1000000000058,
+          472.5,
+          363.79999999998836,
+          467.5,
+          354.8999999999942,
+          374.30000000001746
+        ]
+      },
+      "bootPaintMaxMs": {
+        "median": 177.45000000001164,
+        "min": 173.6999999999971,
+        "max": 196.5,
+        "values": [
+          190.5,
+          173.6999999999971,
+          175.10000000000582,
+          179.80000000001746,
+          174.40000000002328,
+          196.5
+        ]
+      },
+      "bootPreparationMaxMs": {
+        "median": 98.44999999999709,
+        "min": 89.5,
+        "max": 105.20000000001164,
+        "values": [
+          101.5,
+          89.5,
+          99.10000000000582,
+          97.79999999998836,
+          94.10000000000582,
+          105.20000000001164
+        ]
+      },
+      "firstScrollP95Ms": {
+        "median": 28.250000000007276,
+        "min": 27.89999999999418,
+        "max": 33.5,
+        "values": [
+          29.89999999999418,
+          28.19999999999709,
+          28.300000000017462,
+          27.89999999999418,
+          28.099999999976717,
+          33.5
+        ]
+      },
+      "coldWritingP95Ms": {
+        "median": 80.79999999999563,
+        "min": 71.5,
+        "max": 88.80000000000291,
+        "values": [
+          80.69999999999709,
+          88.80000000000291,
+          71.5,
+          76.5,
+          81,
+          80.89999999999418
+        ]
+      },
+      "coldWritingMaxMs": {
+        "median": 80.79999999999563,
+        "min": 71.5,
+        "max": 88.80000000000291,
+        "values": [
+          80.69999999999709,
+          88.80000000000291,
+          71.5,
+          76.5,
+          81,
+          80.89999999999418
+        ]
+      },
+      "coldWritingReadyMs": {
+        "median": 1400.0499999999956,
+        "min": 1346.0999999999767,
+        "max": 1434.5,
+        "values": [
+          1390.199999999997,
+          1417.699999999997,
+          1346.0999999999767,
+          1434.5,
+          1409.8999999999942,
+          1386
+        ]
+      },
+      "coldWritingPreparationMaxMs": {
+        "median": 46.09999999999127,
+        "min": 43,
+        "max": 48.30000000000291,
+        "values": [
+          47,
+          48.30000000000291,
+          43,
+          45.89999999999418,
+          44.60000000000582,
+          46.29999999998836
+        ]
+      },
+      "warmWritingP95Ms": {
+        "median": 29.04999999998836,
+        "min": 25.099999999976717,
+        "max": 36.60000000000582,
+        "values": [
+          29.69999999999709,
+          25.09999999999127,
+          28.79999999998836,
+          36.60000000000582,
+          25.099999999976717,
+          29.29999999998836
+        ]
+      },
+      "coldFailures": 4,
+      "warmFailures": 0
+    }
+  },
+  "trials": [
+    {
+      "round": 0,
+      "variant": "pr23-base",
+      "startupReadyMs": 368.8000000000029,
+      "startupCallbackMaxMs": 168.20000000001164,
+      "firstScrollP95Ms": 20.5,
+      "coldP50Ms": 18.80000000000291,
+      "coldP95Ms": 40.39999999999418,
+      "coldMaxMs": 94.20000000001164,
+      "coldPaints": 22,
+      "coldPaintRateHz": 13.227513227513251,
+      "coldReadyMs": 1590.5999999999913,
+      "budgetPass": true,
+      "budgetError": null,
+      "warmP95Ms": 22.10000000000582
+    },
+    {
+      "round": 0,
+      "variant": "current-base",
+      "startupReadyMs": 367,
+      "startupCallbackMaxMs": 172.29999999998836,
+      "firstScrollP95Ms": 20.60000000000582,
+      "coldP50Ms": 17.19999999999709,
+      "coldP95Ms": 40.19999999999709,
+      "coldMaxMs": 89.89999999999418,
+      "coldPaints": 23,
+      "coldPaintRateHz": 15.069121404704301,
+      "coldReadyMs": 1447,
+      "budgetPass": true,
+      "budgetError": null,
+      "warmP95Ms": 30
+    },
+    {
+      "round": 0,
+      "variant": "current-color",
+      "startupReadyMs": 480.1000000000058,
+      "startupCallbackMaxMs": 190.5,
+      "firstScrollP95Ms": 29.89999999999418,
+      "coldP50Ms": 25.60000000000582,
+      "coldP95Ms": 80.69999999999709,
+      "coldMaxMs": 80.69999999999709,
+      "coldPaints": 18,
+      "coldPaintRateHz": 12.594458438287178,
+      "coldReadyMs": 1390.199999999997,
+      "budgetPass": false,
+      "budgetError": "slow transition painted p95",
+      "warmP95Ms": 29.69999999999709
+    },
+    {
+      "round": 1,
+      "variant": "current-color",
+      "startupReadyMs": 472.5,
+      "startupCallbackMaxMs": 173.6999999999971,
+      "firstScrollP95Ms": 28.19999999999709,
+      "coldP50Ms": 24.59999999999127,
+      "coldP95Ms": 88.80000000000291,
+      "coldMaxMs": 88.80000000000291,
+      "coldPaints": 18,
+      "coldPaintRateHz": 12.327922745017416,
+      "coldReadyMs": 1417.699999999997,
+      "budgetPass": false,
+      "budgetError": "slow transition painted p95",
+      "warmP95Ms": 25.09999999999127
+    },
+    {
+      "round": 1,
+      "variant": "current-base",
+      "startupReadyMs": 327.8999999999942,
+      "startupCallbackMaxMs": 156.20000000001164,
+      "firstScrollP95Ms": 21.60000000000582,
+      "coldP50Ms": 19.30000000000291,
+      "coldP95Ms": 34.5,
+      "coldMaxMs": 85.30000000000291,
+      "coldPaints": 23,
+      "coldPaintRateHz": 15.736179529283072,
+      "coldReadyMs": 1389,
+      "budgetPass": true,
+      "budgetError": null,
+      "warmP95Ms": 28.70000000001164
+    },
+    {
+      "round": 1,
+      "variant": "pr23-base",
+      "startupReadyMs": 353.40000000000873,
+      "startupCallbackMaxMs": 169.3000000000029,
+      "firstScrollP95Ms": 18.20000000001164,
+      "coldP50Ms": 16.5,
+      "coldP95Ms": 33.5,
+      "coldMaxMs": 83.30000000000291,
+      "coldPaints": 23,
+      "coldPaintRateHz": 15.6825310241374,
+      "coldReadyMs": 1395.300000000003,
+      "budgetPass": true,
+      "budgetError": null,
+      "warmP95Ms": 22.5
+    },
+    {
+      "round": 2,
+      "variant": "current-base",
+      "startupReadyMs": 330.5,
+      "startupCallbackMaxMs": 152.90000000000873,
+      "firstScrollP95Ms": 18.30000000000291,
+      "coldP50Ms": 18.70000000001164,
+      "coldP95Ms": 31.5,
+      "coldMaxMs": 84.80000000000291,
+      "coldPaints": 22,
+      "coldPaintRateHz": 15.337423312883498,
+      "coldReadyMs": 1367.199999999997,
+      "budgetPass": true,
+      "budgetError": null,
+      "warmP95Ms": 20.89999999999418
+    },
+    {
+      "round": 2,
+      "variant": "current-color",
+      "startupReadyMs": 363.79999999998836,
+      "startupCallbackMaxMs": 175.10000000000582,
+      "firstScrollP95Ms": 28.300000000017462,
+      "coldP50Ms": 21.10000000000582,
+      "coldP95Ms": 71.5,
+      "coldMaxMs": 71.5,
+      "coldPaints": 19,
+      "coldPaintRateHz": 13.703570140641904,
+      "coldReadyMs": 1346.0999999999767,
+      "budgetPass": true,
+      "budgetError": null,
+      "warmP95Ms": 28.79999999998836
+    },
+    {
+      "round": 2,
+      "variant": "pr23-base",
+      "startupReadyMs": 323.9000000000233,
+      "startupCallbackMaxMs": 154.60000000000582,
+      "firstScrollP95Ms": 19,
+      "coldP50Ms": 16.599999999976717,
+      "coldP95Ms": 36.80000000001746,
+      "coldMaxMs": 83,
+      "coldPaints": 23,
+      "coldPaintRateHz": 15.88288101650432,
+      "coldReadyMs": 1373.2000000000116,
+      "budgetPass": true,
+      "budgetError": null,
+      "warmP95Ms": 18.89999999999418
+    },
+    {
+      "round": 3,
+      "variant": "pr23-base",
+      "startupReadyMs": 330.3999999999942,
+      "startupCallbackMaxMs": 164.60000000000582,
+      "firstScrollP95Ms": 17.60000000000582,
+      "coldP50Ms": 15.700000000011642,
+      "coldP95Ms": 37.20000000001164,
+      "coldMaxMs": 78.39999999999418,
+      "coldPaints": 24,
+      "coldPaintRateHz": 16.794961511546536,
+      "coldReadyMs": 1360.2000000000116,
+      "budgetPass": true,
+      "budgetError": null,
+      "warmP95Ms": 27.300000000017462
+    },
+    {
+      "round": 3,
+      "variant": "current-color",
+      "startupReadyMs": 467.5,
+      "startupCallbackMaxMs": 179.80000000001746,
+      "firstScrollP95Ms": 27.89999999999418,
+      "coldP50Ms": 28.20000000001164,
+      "coldP95Ms": 76.5,
+      "coldMaxMs": 76.5,
+      "coldPaints": 18,
+      "coldPaintRateHz": 12.222448563862438,
+      "coldReadyMs": 1434.5,
+      "budgetPass": true,
+      "budgetError": null,
+      "warmP95Ms": 36.60000000000582
+    },
+    {
+      "round": 3,
+      "variant": "current-base",
+      "startupReadyMs": 344.9000000000233,
+      "startupCallbackMaxMs": 162.19999999998254,
+      "firstScrollP95Ms": 18.699999999982538,
+      "coldP50Ms": 19.89999999999418,
+      "coldP95Ms": 32.10000000000582,
+      "coldMaxMs": 79.89999999999418,
+      "coldPaints": 23,
+      "coldPaintRateHz": 15.846768637177961,
+      "coldReadyMs": 1378.5,
+      "budgetPass": true,
+      "budgetError": null,
+      "warmP95Ms": 25.29999999998836
+    },
+    {
+      "round": 4,
+      "variant": "current-color",
+      "startupReadyMs": 354.8999999999942,
+      "startupCallbackMaxMs": 174.40000000002328,
+      "firstScrollP95Ms": 28.099999999976717,
+      "coldP50Ms": 24.89999999999418,
+      "coldP95Ms": 81,
+      "coldMaxMs": 81,
+      "coldPaints": 18,
+      "coldPaintRateHz": 12.396694214876034,
+      "coldReadyMs": 1409.8999999999942,
+      "budgetPass": false,
+      "budgetError": "slow transition painted p95",
+      "warmP95Ms": 25.099999999976717
+    },
+    {
+      "round": 4,
+      "variant": "pr23-base",
+      "startupReadyMs": 354.8999999999942,
+      "startupCallbackMaxMs": 167.10000000000582,
+      "firstScrollP95Ms": 20.89999999999418,
+      "coldP50Ms": 19.699999999982538,
+      "coldP95Ms": 30.60000000000582,
+      "coldMaxMs": 87.60000000000582,
+      "coldPaints": 23,
+      "coldPaintRateHz": 15.502830951738952,
+      "coldReadyMs": 1409.6000000000058,
+      "budgetPass": true,
+      "budgetError": null,
+      "warmP95Ms": 19.89999999999418
+    },
+    {
+      "round": 4,
+      "variant": "current-base",
+      "startupReadyMs": 347,
+      "startupCallbackMaxMs": 165.20000000001164,
+      "firstScrollP95Ms": 17.10000000000582,
+      "coldP50Ms": 18.10000000000582,
+      "coldP95Ms": 32.39999999999418,
+      "coldMaxMs": 93.90000000002328,
+      "coldPaints": 23,
+      "coldPaintRateHz": 15.206611570247935,
+      "coldReadyMs": 1425.7000000000116,
+      "budgetPass": true,
+      "budgetError": null,
+      "warmP95Ms": 31.39999999999418
+    },
+    {
+      "round": 5,
+      "variant": "current-base",
+      "startupReadyMs": 355.8999999999942,
+      "startupCallbackMaxMs": 168,
+      "firstScrollP95Ms": 21.300000000017462,
+      "coldP50Ms": 17.400000000023283,
+      "coldP95Ms": 35.69999999998254,
+      "coldMaxMs": 85.20000000001164,
+      "coldPaints": 23,
+      "coldPaintRateHz": 15.52899871716961,
+      "coldReadyMs": 1405.1000000000058,
+      "budgetPass": true,
+      "budgetError": null,
+      "warmP95Ms": 22.79999999998836
+    },
+    {
+      "round": 5,
+      "variant": "pr23-base",
+      "startupReadyMs": 362.30000000001746,
+      "startupCallbackMaxMs": 162.89999999999418,
+      "firstScrollP95Ms": 19.20000000001164,
+      "coldP50Ms": 16.5,
+      "coldP95Ms": 37.29999999998836,
+      "coldMaxMs": 83.10000000000582,
+      "coldPaints": 23,
+      "coldPaintRateHz": 15.353805073431241,
+      "coldReadyMs": 1423,
+      "budgetPass": true,
+      "budgetError": null,
+      "warmP95Ms": 29.10000000000582
+    },
+    {
+      "round": 5,
+      "variant": "current-color",
+      "startupReadyMs": 374.30000000001746,
+      "startupCallbackMaxMs": 196.5,
+      "firstScrollP95Ms": 33.5,
+      "coldP50Ms": 25.39999999999418,
+      "coldP95Ms": 80.89999999999418,
+      "coldMaxMs": 80.89999999999418,
+      "coldPaints": 18,
+      "coldPaintRateHz": 12.619181155356193,
+      "coldReadyMs": 1386,
+      "budgetPass": false,
+      "budgetError": "slow transition painted p95",
+      "warmP95Ms": 29.29999999998836
+    }
+  ]
+}
