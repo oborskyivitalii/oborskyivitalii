@@ -1,0 +1,2731 @@
+{
+  "schema": 1,
+  "kind": "gtk-native-offline-core-evidence",
+  "fullGate": false,
+  "performanceAcceptance": false,
+  "promotionAcceptance": false,
+  "source": {
+    "sourceCommit": "e726982735cea1c7890711ea1aa5575ee53d4169",
+    "sourceTree": "1a582ebb928e4f94cfff2691f0e40741ae6ea0b1",
+    "candidateCommit": "e726982735cea1c7890711ea1aa5575ee53d4169",
+    "sourceDirty": false,
+    "artifactDigest": "0de6c4869daf732aa99a0fa5c0095a5be4cc39fd88252d18a605781130b7e427",
+    "variant": {
+      "id": "color",
+      "contract": 1,
+      "fingerprint": "5696d4af5cb8d756bfd2b8d85c79f918cf17c7f6f7b1427a5b04235e758c1413",
+      "baseEngine": "22e1e5b42356b0b36696a6aacebbd36d299c96d168c73ebcb0613da0bfd5c658",
+      "effects": [
+        "ribbons",
+        "travel"
+      ]
+    },
+    "derivation": {
+      "kind": "authored-color-effects",
+      "baseArtifactDigest": "3be0dd2590c60890ce06a3e91f30b298c3b37d9741581fd36a2d3e6e1af33984"
+    }
+  },
+  "baseSource": {
+    "sourceCommit": "e726982735cea1c7890711ea1aa5575ee53d4169",
+    "sourceTree": "1a582ebb928e4f94cfff2691f0e40741ae6ea0b1",
+    "candidateCommit": "e726982735cea1c7890711ea1aa5575ee53d4169",
+    "sourceDirty": false,
+    "artifactDigest": "3be0dd2590c60890ce06a3e91f30b298c3b37d9741581fd36a2d3e6e1af33984",
+    "variant": {
+      "id": "base",
+      "contract": 1,
+      "fingerprint": "48153b94fbae4f314eaa11b156df8a20227dec429abfee9e45c14fda4a1f1b2a"
+    },
+    "engine": "22e1e5b42356b0b36696a6aacebbd36d299c96d168c73ebcb0613da0bfd5c658"
+  },
+  "run": {
+    "id": 37518167424,
+    "url": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37518167424",
+    "status": "completed",
+    "conclusion": "success",
+    "attempt": 1,
+    "event": "pull_request",
+    "workflowPath": ".github/workflows/site-gtk-native-probe.yml",
+    "startedAt": "2026-10-06T19:20:01Z",
+    "updatedAt": "2026-10-06T19:22:13Z"
+  },
+  "rawMetadata": {
+    "run": {
+      "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-run.json",
+      "bytes": 14019,
+      "sha256": "8308f12c69d1cc1084e71d4a654088df48bc5c8564a0ee791b6055a91787396a"
+    },
+    "jobs": {
+      "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-jobs.json",
+      "bytes": 7225,
+      "sha256": "ca3c7b971f7cd121e4c591d6d03fbdbc29c0e858e2c93090d40f9a086bf47a00"
+    },
+    "artifacts": {
+      "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-artifacts.json",
+      "bytes": 1866,
+      "sha256": "fdcb51f23d7bb262496ffd6527d26467b0560f5859adef0d111fe5e31a2052a3"
+    },
+    "checksumInventory": {
+      "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-sha256.json",
+      "bytes": 4478,
+      "sha256": "c1928e7346cd959136c3fe6d97a74ad3e10b11b154b8ecbfa900d08218b0a841"
+    }
+  },
+  "rawEvidence": [
+    {
+      "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-native-job.log",
+      "bytes": 161897,
+      "sha256": "bf5a4db3e75221281cba2bcf02f37ba2a4fcb9c16d0b1c5eaa9adb0f3406bc99"
+    },
+    {
+      "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-static-job.log",
+      "bytes": 70941,
+      "sha256": "0897e115d89bfbcb0bc19a29857bb24ad7dd6fb069a69eb19a848109af8a38d6"
+    },
+    {
+      "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-run.json",
+      "bytes": 14019,
+      "sha256": "8308f12c69d1cc1084e71d4a654088df48bc5c8564a0ee791b6055a91787396a"
+    },
+    {
+      "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-jobs.json",
+      "bytes": 7225,
+      "sha256": "ca3c7b971f7cd121e4c591d6d03fbdbc29c0e858e2c93090d40f9a086bf47a00"
+    },
+    {
+      "path": "/workspace/scratch/39abca264702/attachments/36a507e7-5db3-464b-883f-1263289d9d38/gtk-native-core-37518167424.zip",
+      "bytes": 20887,
+      "sha256": "e653cc38fb5b303e4c03ae93f443227755eaadcb961e5790c41dcb05cac1f07b"
+    },
+    {
+      "path": "/workspace/scratch/39abca264702/attachments/b092ba3a-7d26-4845-b61b-1faa06daacb0/gtk-native-static-37518167424.zip",
+      "bytes": 81921,
+      "sha256": "7e3caa0fa338efef2da58fe912f58866ba933f52dba5ea610cb8067ea54d1f86"
+    },
+    {
+      "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-core/gdb-before-install.txt",
+      "bytes": 63,
+      "sha256": "779ade19a3d6c4110de81e0779f9020f0c856b512bd7c039fa92b69bb08cad16"
+    },
+    {
+      "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-core/gdb-install.log",
+      "bytes": 4270,
+      "sha256": "0a07b15ae6c8c9362445a035d6d740c1c01618fb6ae341de1b6ea4e373593ede"
+    },
+    {
+      "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-core/gtk-native.json",
+      "bytes": 107051,
+      "sha256": "47b749f2759a3b3e5e73b2509c61a9ce17dcbf7b39791548ab5ea6a5e2d41bb6"
+    },
+    {
+      "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-core/native-stderr.log",
+      "bytes": 4611,
+      "sha256": "8b3db39cf18a6dfbc1afffaef0b2a391c0e54dece852f456fbe04bbaf8368127"
+    },
+    {
+      "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-core/untrusted-artifact.json",
+      "bytes": 8264,
+      "sha256": "3b5cd16a5819b4998b9e9ab4f4335a681bba4e86d6debf2ab47cdb47ff34011e"
+    },
+    {
+      "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-core/untrusted-base-artifact.json",
+      "bytes": 7671,
+      "sha256": "767054a74897bcade47b97b6e14d5183284508bb1faf592e90b6f74a861f013a"
+    },
+    {
+      "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-static/bandit.json",
+      "bytes": 2121,
+      "sha256": "8c7712fa1488e058d0783ce3b5bec686c12af331974e2c394816ea48f526fb14"
+    },
+    {
+      "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-static/detect-secrets.json",
+      "bytes": 726845,
+      "sha256": "adac6691d296cae63133989d5acc37adf84751c946398ab57dd7680b055a7a92"
+    },
+    {
+      "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-static/eslint.json",
+      "bytes": 30112,
+      "sha256": "aaad63f5631b7d718d367b0d5d42ea830720433b1e90ea8fff23f6142f25b456"
+    },
+    {
+      "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-static/lint.json",
+      "bytes": 1707,
+      "sha256": "cab2e2a16bf8102244e27569148a28b53db701a1f296d63116064187be76c3c2"
+    },
+    {
+      "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-static/ruff.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-static/security.json",
+      "bytes": 14171,
+      "sha256": "3d8fe291a8599fcc3b332f8cdf081d54802b4e053ad43a2f8a14b2d4c5c2affc"
+    },
+    {
+      "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-static/semgrep-settings.yml",
+      "bytes": 94,
+      "sha256": "4ae81f3ca98f5f6b7920173c4e47572468b0a76f2f5e8ffd73d814c152da292f"
+    },
+    {
+      "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-static/semgrep.json",
+      "bytes": 8073,
+      "sha256": "9abc5265e73a858cebce31f838b579a577d99b4c96ed4e7ed4d3e1569c5f95df"
+    },
+    {
+      "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-static/semgrep.log",
+      "bytes": 37113,
+      "sha256": "7a1344382b61a728fd186f2925b93f8cdb8719a67f8190aefcd0ed516c3ae212"
+    },
+    {
+      "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-static/stylelint.json",
+      "bytes": 192,
+      "sha256": "e3f28861099fd575c2f1a74a397eb61eda5ae6e5a6872d7eac922e3366fe8289"
+    },
+    {
+      "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-artifacts.json",
+      "bytes": 1866,
+      "sha256": "fdcb51f23d7bb262496ffd6527d26467b0560f5859adef0d111fe5e31a2052a3"
+    },
+    {
+      "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-sha256.json",
+      "bytes": 4478,
+      "sha256": "c1928e7346cd959136c3fe6d97a74ad3e10b11b154b8ecbfa900d08218b0a841"
+    }
+  ],
+  "sourceFilesAtObservedCommit": {
+    ".github/workflows/site-gtk-native-probe.yml": {
+      "bytes": 7166,
+      "sha256": "d7e3af852c002d006831f8814d664c898fadb214dde2a02510c07bba5f79ffe8"
+    },
+    "tools/quality/gtk-native-probe.cjs": {
+      "bytes": 9776,
+      "sha256": "b6255fc7423799860daab040fcda65923fcb565130cfc4aec385c48fa546afd4"
+    },
+    "tools/quality/gtk-target-probe.cjs": {
+      "bytes": 14942,
+      "sha256": "77ff03d0de11e4da9aa298d12f2c172b74d4e55be6b0e754c335fd8e65ad3f51"
+    },
+    "tests/gtk-native-probe.test.cjs": {
+      "bytes": 11207,
+      "sha256": "f4ecc8af42bf302de759a18043cad916ae5f9daf7556e17bc92a5c92799c8e17"
+    },
+    "tools/quality/toolchain/package.json": {
+      "bytes": 285,
+      "sha256": "2d19024075cdf77d7cbc017d109922c85c26952461440d87db07ef88f4420c3b"
+    },
+    "tools/quality/toolchain/package-lock.json": {
+      "bytes": 133786,
+      "sha256": "54466f796f3295144bdb2df71087988e13aa3886bf9cfede6f37a4f918b61052"
+    },
+    "tools/quality/toolchain/requirements.txt": {
+      "bytes": 1843,
+      "sha256": "6ffc757fae57f9ba6c53bd0eff83d9ebb495791a6c0ca8b221bbcc28f8d001b8"
+    }
+  },
+  "expectedDiagnosticRows": 3,
+  "observedDiagnosticRows": 3,
+  "nativeSuccessRows": 2,
+  "nativeFailureRows": 1,
+  "allEvidenceValid": true,
+  "allNativeCellsFresh": true,
+  "collectionComplete": true,
+  "nativeCaptureComplete": false,
+  "acceptanceCoverage": {
+    "expectedFunctionalScenarioRows": 130,
+    "expectedNavigationRows": 4,
+    "expectedAnalyticsRows": 13,
+    "observedAcceptance": null,
+    "reason": "Three private constant first-evaluation diagnostic controls do not run functional/navigation/analytics acceptance or a hosted full gate."
+  },
+  "ports": {
+    "gtk": {
+      "schema": 1,
+      "kind": "gtk-native-offline-core-attribution",
+      "port": "gtk",
+      "fullGate": false,
+      "performanceAcceptance": false,
+      "source": {
+        "sourceCommit": "e726982735cea1c7890711ea1aa5575ee53d4169",
+        "sourceTree": "1a582ebb928e4f94cfff2691f0e40741ae6ea0b1",
+        "candidateCommit": "e726982735cea1c7890711ea1aa5575ee53d4169",
+        "sourceDirty": false,
+        "artifactDigest": "0de6c4869daf732aa99a0fa5c0095a5be4cc39fd88252d18a605781130b7e427",
+        "variant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "5696d4af5cb8d756bfd2b8d85c79f918cf17c7f6f7b1427a5b04235e758c1413",
+          "baseEngine": "22e1e5b42356b0b36696a6aacebbd36d299c96d168c73ebcb0613da0bfd5c658",
+          "effects": [
+            "ribbons",
+            "travel"
+          ]
+        },
+        "derivation": {
+          "kind": "authored-color-effects",
+          "baseArtifactDigest": "3be0dd2590c60890ce06a3e91f30b298c3b37d9741581fd36a2d3e6e1af33984"
+        }
+      },
+      "baseSource": {
+        "sourceCommit": "e726982735cea1c7890711ea1aa5575ee53d4169",
+        "sourceTree": "1a582ebb928e4f94cfff2691f0e40741ae6ea0b1",
+        "candidateCommit": "e726982735cea1c7890711ea1aa5575ee53d4169",
+        "sourceDirty": false,
+        "artifactDigest": "3be0dd2590c60890ce06a3e91f30b298c3b37d9741581fd36a2d3e6e1af33984",
+        "variant": {
+          "id": "base",
+          "contract": 1,
+          "fingerprint": "48153b94fbae4f314eaa11b156df8a20227dec429abfee9e45c14fda4a1f1b2a"
+        },
+        "engine": "22e1e5b42356b0b36696a6aacebbd36d299c96d168c73ebcb0613da0bfd5c658"
+      },
+      "phase": "complete",
+      "untrustedInput": {
+        "directory": "/home/runner/work/_temp/gtk-native-input/color",
+        "trust": "untrusted-observation",
+        "manifests": {
+          "artifact.json": {
+            "path": "/home/runner/work/_temp/gtk-native-input/color/artifact.json",
+            "retainedPath": "/home/runner/work/_temp/gtk-native-results/untrusted-artifact.json",
+            "bytes": 8264,
+            "sha256": "3b5cd16a5819b4998b9e9ab4f4335a681bba4e86d6debf2ab47cdb47ff34011e",
+            "parsed": {
+              "schema": 1,
+              "sourceCommit": "e726982735cea1c7890711ea1aa5575ee53d4169",
+              "sourceDirty": false,
+              "sourceTree": "1a582ebb928e4f94cfff2691f0e40741ae6ea0b1",
+              "candidateCommit": "e726982735cea1c7890711ea1aa5575ee53d4169",
+              "files": {
+                ".nojekyll": {
+                  "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+                  "raw": 1,
+                  "gzip": 21
+                },
+                "archive.js": {
+                  "sha256": "7f4574761ea6967c0e5282bc26af4342d13b0334ae6a593a9ef9a51cf5efe1a9",
+                  "raw": 5876,
+                  "gzip": 1999
+                },
+                "assets/favicon.svg": {
+                  "sha256": "a27a6f79b42bfa41fa8a8d3fe39e3c9570bcd992410c91a17d021de4dc28636e",
+                  "raw": 303,
+                  "gzip": 228
+                },
+                "assets/vitalii-oborskyi-cutout.webp": {
+                  "sha256": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae",
+                  "raw": 55458,
+                  "gzip": 55299
+                },
+                "assets/vitalii-oborskyi.jpg": {
+                  "sha256": "5321e48f08b075cb1cbd522d0f36bc01276aece65d1a04cf09102aa5dd2b59bc",
+                  "raw": 100768,
+                  "gzip": 93959
+                },
+                "credits.html": {
+                  "sha256": "4bdb207ed17cae8e3d6bc809c253c4fbe64532401ac1e41627a50126a00694a2",
+                  "raw": 42984,
+                  "gzip": 12868
+                },
+                "index.html": {
+                  "sha256": "7ff5c0c0fe6dcc7b2e2a53f34ffead1f8ea728b72de96785bb0becf962cc7c3f",
+                  "raw": 57943,
+                  "gzip": 17870
+                },
+                "media/442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401/favicon.svg": {
+                  "sha256": "a27a6f79b42bfa41fa8a8d3fe39e3c9570bcd992410c91a17d021de4dc28636e",
+                  "raw": 303,
+                  "gzip": 228
+                },
+                "media/442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401/vitalii-oborskyi-cutout.webp": {
+                  "sha256": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae",
+                  "raw": 55458,
+                  "gzip": 55299
+                },
+                "media/442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401/vitalii-oborskyi.jpg": {
+                  "sha256": "5321e48f08b075cb1cbd522d0f36bc01276aece65d1a04cf09102aa5dd2b59bc",
+                  "raw": 100768,
+                  "gzip": 93959
+                },
+                "navigation.js": {
+                  "sha256": "25ca2177518e9ab19b295656503d0777c69e6b59c22aaee4d2bdbd821f7f6e23",
+                  "raw": 33323,
+                  "gzip": 9990
+                },
+                "research.html": {
+                  "sha256": "c12ad91d358dc21b92d1c168344e41b963ccf3adece5f55c174d05bf148a8a25",
+                  "raw": 57301,
+                  "gzip": 16241
+                },
+                "runtime/5696d4af5cb8d756bfd2b8d85c79f918cf17c7f6f7b1427a5b04235e758c1413/archive.js": {
+                  "sha256": "7f4574761ea6967c0e5282bc26af4342d13b0334ae6a593a9ef9a51cf5efe1a9",
+                  "raw": 5876,
+                  "gzip": 1999
+                },
+                "runtime/5696d4af5cb8d756bfd2b8d85c79f918cf17c7f6f7b1427a5b04235e758c1413/navigation.js": {
+                  "sha256": "25ca2177518e9ab19b295656503d0777c69e6b59c22aaee4d2bdbd821f7f6e23",
+                  "raw": 33323,
+                  "gzip": 9990
+                },
+                "runtime/5696d4af5cb8d756bfd2b8d85c79f918cf17c7f6f7b1427a5b04235e758c1413/space.js": {
+                  "sha256": "93574e6a6fe20b3afcd1f53097d5cf44c3c2a592daa41ea032a01e696ac21095",
+                  "raw": 86805,
+                  "gzip": 28784
+                },
+                "runtime/5696d4af5cb8d756bfd2b8d85c79f918cf17c7f6f7b1427a5b04235e758c1413/styles.css": {
+                  "sha256": "a5af33c49956370accca6d586d036868fbab25f8c23849e30d6696f26c03acd8",
+                  "raw": 26862,
+                  "gzip": 6456
+                },
+                "runtime/5696d4af5cb8d756bfd2b8d85c79f918cf17c7f6f7b1427a5b04235e758c1413/theme.js": {
+                  "sha256": "d11f679af05442e8b01024e9a5fe3ba9aff73554f11bd8f3ff692d14f830f8fb",
+                  "raw": 2907,
+                  "gzip": 1112
+                },
+                "site-revision.json": {
+                  "sha256": "7f6511e52d13dcae5728f729eae8546c4693b0f3d9444c7e616fed398b3b7483",
+                  "raw": 2134,
+                  "gzip": 876
+                },
+                "snapshots/11af81af05466134c6c0738c47f325cf3a0b8e7ade97321c627dc5132f320f0f/writing.html": {
+                  "sha256": "189c2765d37237d5a4a11998ad6dc6d43c06d8ede1a8909f01a9da03e5103222",
+                  "raw": 84210,
+                  "gzip": 21820
+                },
+                "snapshots/1857b1889b2a7cab5838f3e9bfd7e8ef5c40d1bba25803c8b76496992feeb8d5/research.html": {
+                  "sha256": "a63000b3969aa048ccd47130975d1bf25ece3520064143b55d4bf730c77fd6d7",
+                  "raw": 57391,
+                  "gzip": 16253
+                },
+                "snapshots/383237a9992628120894cb415a848696cc25e1b9688949eb56ff5225be79cb65/index.html": {
+                  "sha256": "1740a908bfbfc6f3e8723c666b8e284b7ca77d4944a8231d218f70a551b8ee63",
+                  "raw": 58057,
+                  "gzip": 17888
+                },
+                "snapshots/45c36810181d300877756888597ae772372a5469ba1aa31144b134c20bf5be7d/talks.html": {
+                  "sha256": "f00a37e2158933a4a2a717e29725e52ee9491a6eb2d968884ec443d0f45d27ab",
+                  "raw": 51447,
+                  "gzip": 15397
+                },
+                "snapshots/f1177013711e8e35d7d53bdbf1da72018121a36ef5db6c0e5fa47a5446da8da1/credits.html": {
+                  "sha256": "ae25fea13bf36777c2b75ea1b27ea21ba5d80a6368d44ef02fca236092aa6c62",
+                  "raw": 43068,
+                  "gzip": 12880
+                },
+                "space.js": {
+                  "sha256": "93574e6a6fe20b3afcd1f53097d5cf44c3c2a592daa41ea032a01e696ac21095",
+                  "raw": 86805,
+                  "gzip": 28784
+                },
+                "styles.css": {
+                  "sha256": "a5af33c49956370accca6d586d036868fbab25f8c23849e30d6696f26c03acd8",
+                  "raw": 26862,
+                  "gzip": 6456
+                },
+                "talks.html": {
+                  "sha256": "6849fc7bcb162b7d2263c79a36fdcd42c1c68fe1237d82b3ebd396e07042126b",
+                  "raw": 51357,
+                  "gzip": 15383
+                },
+                "theme.js": {
+                  "sha256": "d11f679af05442e8b01024e9a5fe3ba9aff73554f11bd8f3ff692d14f830f8fb",
+                  "raw": 2907,
+                  "gzip": 1112
+                },
+                "writing.html": {
+                  "sha256": "2bb0e511312dd81690ce39ba335afe058fff6a5cd5a0332d031714a1874eb9fd",
+                  "raw": 84126,
+                  "gzip": 21808
+                }
+              },
+              "artifactDigest": "0de6c4869daf732aa99a0fa5c0095a5be4cc39fd88252d18a605781130b7e427",
+              "components": {
+                "schema": 1,
+                "contract": 1,
+                "variant": {
+                  "id": "color",
+                  "contract": 1,
+                  "fingerprint": "5696d4af5cb8d756bfd2b8d85c79f918cf17c7f6f7b1427a5b04235e758c1413",
+                  "baseEngine": "22e1e5b42356b0b36696a6aacebbd36d299c96d168c73ebcb0613da0bfd5c658",
+                  "effects": [
+                    "ribbons",
+                    "travel"
+                  ]
+                },
+                "engine": "5696d4af5cb8d756bfd2b8d85c79f918cf17c7f6f7b1427a5b04235e758c1413",
+                "scenes": "eb98d1f27e73b32a9e0e505276c86d0d425ea80b22c05233649f1bad1ea907e6",
+                "assets": "442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401",
+                "content": "788cdf082adcd2895e8cdc0628e44c25e9abf0e33d0eb52ad7f6d62814489bd6",
+                "routes": {
+                  "index": {
+                    "version": "383237a9992628120894cb415a848696cc25e1b9688949eb56ff5225be79cb65",
+                    "url": "snapshots/383237a9992628120894cb415a848696cc25e1b9688949eb56ff5225be79cb65/index.html",
+                    "sha256": "1740a908bfbfc6f3e8723c666b8e284b7ca77d4944a8231d218f70a551b8ee63"
+                  },
+                  "research": {
+                    "version": "1857b1889b2a7cab5838f3e9bfd7e8ef5c40d1bba25803c8b76496992feeb8d5",
+                    "url": "snapshots/1857b1889b2a7cab5838f3e9bfd7e8ef5c40d1bba25803c8b76496992feeb8d5/research.html",
+                    "sha256": "a63000b3969aa048ccd47130975d1bf25ece3520064143b55d4bf730c77fd6d7"
+                  },
+                  "writing": {
+                    "version": "11af81af05466134c6c0738c47f325cf3a0b8e7ade97321c627dc5132f320f0f",
+                    "url": "snapshots/11af81af05466134c6c0738c47f325cf3a0b8e7ade97321c627dc5132f320f0f/writing.html",
+                    "sha256": "189c2765d37237d5a4a11998ad6dc6d43c06d8ede1a8909f01a9da03e5103222"
+                  },
+                  "talks": {
+                    "version": "45c36810181d300877756888597ae772372a5469ba1aa31144b134c20bf5be7d",
+                    "url": "snapshots/45c36810181d300877756888597ae772372a5469ba1aa31144b134c20bf5be7d/talks.html",
+                    "sha256": "f00a37e2158933a4a2a717e29725e52ee9491a6eb2d968884ec443d0f45d27ab"
+                  },
+                  "credits": {
+                    "version": "f1177013711e8e35d7d53bdbf1da72018121a36ef5db6c0e5fa47a5446da8da1",
+                    "url": "snapshots/f1177013711e8e35d7d53bdbf1da72018121a36ef5db6c0e5fa47a5446da8da1/credits.html",
+                    "sha256": "ae25fea13bf36777c2b75ea1b27ea21ba5d80a6368d44ef02fca236092aa6c62"
+                  }
+                }
+              },
+              "variant": {
+                "id": "color",
+                "contract": 1,
+                "fingerprint": "5696d4af5cb8d756bfd2b8d85c79f918cf17c7f6f7b1427a5b04235e758c1413",
+                "baseEngine": "22e1e5b42356b0b36696a6aacebbd36d299c96d168c73ebcb0613da0bfd5c658",
+                "effects": [
+                  "ribbons",
+                  "travel"
+                ]
+              },
+              "derivation": {
+                "kind": "authored-color-effects",
+                "baseArtifactDigest": "3be0dd2590c60890ce06a3e91f30b298c3b37d9741581fd36a2d3e6e1af33984"
+              }
+            }
+          },
+          "base-artifact.json": {
+            "path": "/home/runner/work/_temp/gtk-native-input/color/base-artifact.json",
+            "retainedPath": "/home/runner/work/_temp/gtk-native-results/untrusted-base-artifact.json",
+            "bytes": 7671,
+            "sha256": "767054a74897bcade47b97b6e14d5183284508bb1faf592e90b6f74a861f013a",
+            "parsed": {
+              "schema": 1,
+              "sourceCommit": "e726982735cea1c7890711ea1aa5575ee53d4169",
+              "sourceDirty": false,
+              "sourceTree": "1a582ebb928e4f94cfff2691f0e40741ae6ea0b1",
+              "candidateCommit": "e726982735cea1c7890711ea1aa5575ee53d4169",
+              "files": {
+                ".nojekyll": {
+                  "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+                  "raw": 1,
+                  "gzip": 21
+                },
+                "archive.js": {
+                  "sha256": "7f4574761ea6967c0e5282bc26af4342d13b0334ae6a593a9ef9a51cf5efe1a9",
+                  "raw": 5876,
+                  "gzip": 1999
+                },
+                "assets/favicon.svg": {
+                  "sha256": "a27a6f79b42bfa41fa8a8d3fe39e3c9570bcd992410c91a17d021de4dc28636e",
+                  "raw": 303,
+                  "gzip": 228
+                },
+                "assets/vitalii-oborskyi-cutout.webp": {
+                  "sha256": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae",
+                  "raw": 55458,
+                  "gzip": 55299
+                },
+                "assets/vitalii-oborskyi.jpg": {
+                  "sha256": "5321e48f08b075cb1cbd522d0f36bc01276aece65d1a04cf09102aa5dd2b59bc",
+                  "raw": 100768,
+                  "gzip": 93959
+                },
+                "credits.html": {
+                  "sha256": "d7a85d475e4b295d7488342efe3b1bd0c7dc2d0f5940915beb186b885f03e7c6",
+                  "raw": 42983,
+                  "gzip": 12870
+                },
+                "index.html": {
+                  "sha256": "30d67488614a652d9457094f80f53c4af11610935abb3af9316ed573855a994f",
+                  "raw": 57942,
+                  "gzip": 17872
+                },
+                "media/442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401/favicon.svg": {
+                  "sha256": "a27a6f79b42bfa41fa8a8d3fe39e3c9570bcd992410c91a17d021de4dc28636e",
+                  "raw": 303,
+                  "gzip": 228
+                },
+                "media/442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401/vitalii-oborskyi-cutout.webp": {
+                  "sha256": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae",
+                  "raw": 55458,
+                  "gzip": 55299
+                },
+                "media/442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401/vitalii-oborskyi.jpg": {
+                  "sha256": "5321e48f08b075cb1cbd522d0f36bc01276aece65d1a04cf09102aa5dd2b59bc",
+                  "raw": 100768,
+                  "gzip": 93959
+                },
+                "navigation.js": {
+                  "sha256": "c0c3b3457edb83f5a960a98f36c8a363de8799188bb982bdbce50ba384791221",
+                  "raw": 23418,
+                  "gzip": 7282
+                },
+                "research.html": {
+                  "sha256": "cd94033f09146b3a1fcde810964b0274eeb286dc2b2f88a18812a11f6e91468a",
+                  "raw": 57300,
+                  "gzip": 16239
+                },
+                "runtime/22e1e5b42356b0b36696a6aacebbd36d299c96d168c73ebcb0613da0bfd5c658/archive.js": {
+                  "sha256": "7f4574761ea6967c0e5282bc26af4342d13b0334ae6a593a9ef9a51cf5efe1a9",
+                  "raw": 5876,
+                  "gzip": 1999
+                },
+                "runtime/22e1e5b42356b0b36696a6aacebbd36d299c96d168c73ebcb0613da0bfd5c658/navigation.js": {
+                  "sha256": "c0c3b3457edb83f5a960a98f36c8a363de8799188bb982bdbce50ba384791221",
+                  "raw": 23418,
+                  "gzip": 7282
+                },
+                "runtime/22e1e5b42356b0b36696a6aacebbd36d299c96d168c73ebcb0613da0bfd5c658/space.js": {
+                  "sha256": "889f5a2a6c7172d112185fcd2f8a63c7bd59c388667138fac301cdfc7ff5b352",
+                  "raw": 73550,
+                  "gzip": 24185
+                },
+                "runtime/22e1e5b42356b0b36696a6aacebbd36d299c96d168c73ebcb0613da0bfd5c658/styles.css": {
+                  "sha256": "b9ee1acea41ea315fd87582c1aa3ad8124a720256fe990cacdf308feb999d3f7",
+                  "raw": 23735,
+                  "gzip": 6075
+                },
+                "runtime/22e1e5b42356b0b36696a6aacebbd36d299c96d168c73ebcb0613da0bfd5c658/theme.js": {
+                  "sha256": "d11f679af05442e8b01024e9a5fe3ba9aff73554f11bd8f3ff692d14f830f8fb",
+                  "raw": 2907,
+                  "gzip": 1112
+                },
+                "site-revision.json": {
+                  "sha256": "66c3a1cf2fbdb333f01c65cc6ac7f5612e777b7e9f1038227386ff78b3b9ac33",
+                  "raw": 1991,
+                  "gzip": 832
+                },
+                "snapshots/2563a77a0412dc3e1752de92db0275275c407cbb9466a4446526f0e0e2d32839/research.html": {
+                  "sha256": "66382340dae63fc0d969171bcf7d90cd430cd82b7eb89ac47a3cb1eb3f78a212",
+                  "raw": 57390,
+                  "gzip": 16251
+                },
+                "snapshots/76e7d39767ff8fa89a5aef0f7d8fcd78cb8ae14d0c3feedce9915b4187a85a28/index.html": {
+                  "sha256": "aeeec8dc52901eb04636ac1facb177645099b5392336e23fd5df276ed1bc1868",
+                  "raw": 58056,
+                  "gzip": 17889
+                },
+                "snapshots/9801894c58765429d9ba28716c428c2bd100d7c1a664bf2fbc3f4c9b1c4bfe0f/credits.html": {
+                  "sha256": "914ea308ca4420c3f40a6925c97d547708bd3774494e4aaed12d5c89a0f2637c",
+                  "raw": 43067,
+                  "gzip": 12882
+                },
+                "snapshots/a1e3d05f91ebcb853da06fed79b5312e9207bda153c0d53770bea02834e88430/talks.html": {
+                  "sha256": "0ca21b0a68f985f142e52d039a2df7904f001889fb4d256b683f682122ebce81",
+                  "raw": 51446,
+                  "gzip": 15397
+                },
+                "snapshots/dcea5838a0dc114bbc646c311db31babc6fc93ab7c47e2d98e17cef3e46ad46e/writing.html": {
+                  "sha256": "fb2eb1ca7b4dee487e6bd2a7933b2dd79612a2861a6e65f8cc576fd0926bec07",
+                  "raw": 84209,
+                  "gzip": 21823
+                },
+                "space.js": {
+                  "sha256": "889f5a2a6c7172d112185fcd2f8a63c7bd59c388667138fac301cdfc7ff5b352",
+                  "raw": 73550,
+                  "gzip": 24185
+                },
+                "styles.css": {
+                  "sha256": "b9ee1acea41ea315fd87582c1aa3ad8124a720256fe990cacdf308feb999d3f7",
+                  "raw": 23735,
+                  "gzip": 6075
+                },
+                "talks.html": {
+                  "sha256": "38d5253d68a2f1fcc51da96696055c262542377bd947c8d1b63bf65fd2f67d75",
+                  "raw": 51356,
+                  "gzip": 15383
+                },
+                "theme.js": {
+                  "sha256": "d11f679af05442e8b01024e9a5fe3ba9aff73554f11bd8f3ff692d14f830f8fb",
+                  "raw": 2907,
+                  "gzip": 1112
+                },
+                "writing.html": {
+                  "sha256": "d184951182f912b3143fc2a178f8b03d2fa85401ac2aad960839b9b83b5162bd",
+                  "raw": 84125,
+                  "gzip": 21811
+                }
+              },
+              "artifactDigest": "3be0dd2590c60890ce06a3e91f30b298c3b37d9741581fd36a2d3e6e1af33984",
+              "components": {
+                "schema": 1,
+                "contract": 1,
+                "variant": {
+                  "id": "base",
+                  "contract": 1,
+                  "fingerprint": "48153b94fbae4f314eaa11b156df8a20227dec429abfee9e45c14fda4a1f1b2a"
+                },
+                "engine": "22e1e5b42356b0b36696a6aacebbd36d299c96d168c73ebcb0613da0bfd5c658",
+                "scenes": "eb98d1f27e73b32a9e0e505276c86d0d425ea80b22c05233649f1bad1ea907e6",
+                "assets": "442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401",
+                "content": "0d980b6dbf54a0ee6f2b2e7fc73430f47d7f9a7ddb93c608926abd8fc9e6f96c",
+                "routes": {
+                  "index": {
+                    "version": "76e7d39767ff8fa89a5aef0f7d8fcd78cb8ae14d0c3feedce9915b4187a85a28",
+                    "url": "snapshots/76e7d39767ff8fa89a5aef0f7d8fcd78cb8ae14d0c3feedce9915b4187a85a28/index.html",
+                    "sha256": "aeeec8dc52901eb04636ac1facb177645099b5392336e23fd5df276ed1bc1868"
+                  },
+                  "research": {
+                    "version": "2563a77a0412dc3e1752de92db0275275c407cbb9466a4446526f0e0e2d32839",
+                    "url": "snapshots/2563a77a0412dc3e1752de92db0275275c407cbb9466a4446526f0e0e2d32839/research.html",
+                    "sha256": "66382340dae63fc0d969171bcf7d90cd430cd82b7eb89ac47a3cb1eb3f78a212"
+                  },
+                  "writing": {
+                    "version": "dcea5838a0dc114bbc646c311db31babc6fc93ab7c47e2d98e17cef3e46ad46e",
+                    "url": "snapshots/dcea5838a0dc114bbc646c311db31babc6fc93ab7c47e2d98e17cef3e46ad46e/writing.html",
+                    "sha256": "fb2eb1ca7b4dee487e6bd2a7933b2dd79612a2861a6e65f8cc576fd0926bec07"
+                  },
+                  "talks": {
+                    "version": "a1e3d05f91ebcb853da06fed79b5312e9207bda153c0d53770bea02834e88430",
+                    "url": "snapshots/a1e3d05f91ebcb853da06fed79b5312e9207bda153c0d53770bea02834e88430/talks.html",
+                    "sha256": "0ca21b0a68f985f142e52d039a2df7904f001889fb4d256b683f682122ebce81"
+                  },
+                  "credits": {
+                    "version": "9801894c58765429d9ba28716c428c2bd100d7c1a664bf2fbc3f4c9b1c4bfe0f",
+                    "url": "snapshots/9801894c58765429d9ba28716c428c2bd100d7c1a664bf2fbc3f4c9b1c4bfe0f/credits.html",
+                    "sha256": "914ea308ca4420c3f40a6925c97d547708bd3774494e4aaed12d5c89a0f2637c"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "startedAt": "2026-10-06T19:21:22.225Z",
+      "fixture": {
+        "document": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"><title>Private blank control</title></head><body><h1>Blank control</h1></body></html>\n",
+        "sha256": "03df50527feae6a64e731afd0d315621d3b7b15874625fc73621c40c4e152db0"
+      },
+      "existingCorePattern": {
+        "file": "/proc/sys/kernel/core_pattern",
+        "text": "|/usr/lib/systemd/systemd-coredump %P %u %g %s %t 9223372036854775808 %h %d\n",
+        "bytes": 76,
+        "retainedBytes": 76,
+        "droppedBytes": 0,
+        "limitBytes": 65536
+      },
+      "existingProcessLimits": {
+        "file": "/proc/self/limits",
+        "text": "Limit                     Soft Limit           Hard Limit           Units     \nMax cpu time              unlimited            unlimited            seconds   \nMax file size             unlimited            unlimited            bytes     \nMax data size             unlimited            unlimited            bytes     \nMax stack size            16777216             unlimited            bytes     \nMax core file size        0                    unlimited            bytes     \nMax resident set          unlimited            unlimited            bytes     \nMax processes             63795                63795                processes \nMax open files            65536                65536                files     \nMax locked memory         8388608              8388608              bytes     \nMax address space         unlimited            unlimited            bytes     \nMax file locks            unlimited            unlimited            locks     \nMax pending signals       63795                63795                signals   \nMax msgqueue size         819200               819200               bytes     \nMax nice priority         0                    0                    \nMax realtime priority     0                    0                    \nMax realtime timeout      unlimited            unlimited            us        \n",
+        "bytes": 1323,
+        "retainedBytes": 1323,
+        "droppedBytes": 0,
+        "limitBytes": 65536
+      },
+      "plan": [
+        {
+          "id": "blank-constant-js-off",
+          "port": "gtk",
+          "document": "blank",
+          "evaluation": "constant",
+          "javaScriptEnabled": false,
+          "originalInit": true
+        },
+        {
+          "id": "color-constant-js-on",
+          "port": "gtk",
+          "document": "color",
+          "evaluation": "constant",
+          "javaScriptEnabled": true,
+          "originalInit": true
+        },
+        {
+          "id": "color-constant-js-off",
+          "port": "gtk",
+          "document": "color",
+          "evaluation": "constant",
+          "javaScriptEnabled": false,
+          "originalInit": true
+        }
+      ],
+      "rows": [
+        {
+          "id": "blank-constant-js-off",
+          "port": "gtk",
+          "document": "blank",
+          "evaluation": "constant",
+          "javaScriptEnabled": false,
+          "originalInit": true,
+          "fullGate": false,
+          "source": {
+            "sourceCommit": "e726982735cea1c7890711ea1aa5575ee53d4169",
+            "sourceTree": "1a582ebb928e4f94cfff2691f0e40741ae6ea0b1",
+            "candidateCommit": "e726982735cea1c7890711ea1aa5575ee53d4169",
+            "sourceDirty": false,
+            "artifactDigest": "0de6c4869daf732aa99a0fa5c0095a5be4cc39fd88252d18a605781130b7e427",
+            "variant": {
+              "id": "color",
+              "contract": 1,
+              "fingerprint": "5696d4af5cb8d756bfd2b8d85c79f918cf17c7f6f7b1427a5b04235e758c1413",
+              "baseEngine": "22e1e5b42356b0b36696a6aacebbd36d299c96d168c73ebcb0613da0bfd5c658",
+              "effects": [
+                "ribbons",
+                "travel"
+              ]
+            },
+            "derivation": {
+              "kind": "authored-color-effects",
+              "baseArtifactDigest": "3be0dd2590c60890ce06a3e91f30b298c3b37d9741581fd36a2d3e6e1af33984"
+            }
+          },
+          "startedAt": "2026-10-06T19:21:23.094Z",
+          "bounds": {
+            "startupMs": 30000,
+            "gotoMs": 30000,
+            "settleMs": 180,
+            "diagnosticFirstEvaluationMs": 60000,
+            "diagnosticCleanupMs": 30000
+          },
+          "evidenceValid": true,
+          "success": true,
+          "pageErrors": [],
+          "externalRequests": [],
+          "stderrBefore": {
+            "path": "/home/runner/work/_temp/gtk-native-results/native-stderr.log",
+            "bytes": 0,
+            "retainedBytes": 0,
+            "droppedBytes": 0,
+            "limitBytes": 262144,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "priorCleanupIncomplete": false,
+          "browser": {
+            "version": "26.6",
+            "executable": "/home/runner/.cache/ms-playwright/webkit-2359/pw_run.sh",
+            "port": "gtk",
+            "headless": false,
+            "displayBackend": "Xvfb",
+            "startup": {
+              "budgetMs": 30000,
+              "displayMs": 4307.564771,
+              "totalMs": 6208.014813000001
+            }
+          },
+          "nativeBefore": {
+            "stage": "before-navigation",
+            "observedAt": "2026-10-06T19:21:30.916Z",
+            "processTree": {
+              "command": "ps",
+              "args": [
+                "-eo",
+                "pid,ppid,stat,comm"
+              ],
+              "code": 0,
+              "signal": null,
+              "timedOut": false,
+              "error": null,
+              "stdout": {
+                "text": "    PID    PPID STAT COMMAND\n      1       0 Ss   systemd\n      2       0 S    kthreadd\n      3       2 S    pool_workqueue_release\n      4       2 I<   kworker/R-rcu_gp\n      5       2 I<   kworker/R-sync_wq\n      6       2 I<   kworker/R-kvfree_rcu_reclaim\n      7       2 I<   kworker/R-slub_flushwq\n      8       2 I<   kworker/R-netns\n      9       2 I    kworker/0:0-events\n     10       2 I<   kworker/0:0H-events_highpri\n     11       2 I    kworker/0:1-cgroup_offline\n     12       2 I    kworker/u16:0-events_power_efficient\n     13       2 I<   kworker/R-mm_percpu_wq\n     14       2 S    ksoftirqd/0\n     15       2 I    rcu_sched\n     16       2 S    rcu_exp_par_gp_kthread_worker/0\n     17       2 S    rcu_exp_gp_kthread_worker\n     18       2 S    migration/0\n     19       2 S    idle_inject/0\n     20       2 S    cpuhp/0\n     21       2 S    cpuhp/2\n     22       2 S    idle_inject/2\n     23       2 S    migration/2\n     24       2 S    ksoftirqd/2\n     25       2 I    kworker/2:0-rcu_gp\n     26       2 I<   kworker/2:0H-events_highpri\n     27       2 S    cpuhp/1\n     28       2 S    idle_inject/1\n     29       2 S    migration/1\n     30       2 S    ksoftirqd/1\n     31       2 I    kworker/1:0-cgroup_free\n     32       2 I<   kworker/1:0H-events_highpri\n     33       2 S    cpuhp/3\n     34       2 S    idle_inject/3\n     35       2 S    migration/3\n     36       2 S    ksoftirqd/3\n     37       2 I    kworker/3:0-events\n     38       2 I<   kworker/3:0H-events_highpri\n     39       2 S    kdevtmpfs\n     40       2 I<   kworker/R-inet_frag_wq\n     41       2 I    rcu_tasks_rude_kthread\n     42       2 I    rcu_tasks_trace_kthread\n     43       2 S    kauditd\n     44       2 S    khungtaskd\n     45       2 I    kworker/u16:1-ext4-rsv-conversion\n     46       2 S    oom_reaper\n     47       2 I    kworker/u16:2-events_power_efficient\n     48       2 I<   kworker/R-writeback\n     49       2 S    kcompactd0\n     50       2 SN   ksmd\n     51       2 SN   khugepaged\n     52       2 I<   kworker/R-kblockd\n     53       2 I<   kworker/R-blkcg_punt_bio\n     54       2 I<   kworker/R-kintegrityd\n     55       2 S    irq/9-acpi\n     56       2 I    kworker/2:1-events\n     57       2 I    kworker/1:1-cgroup_release\n     58       2 I    kworker/3:1-cgroup_free\n     59       2 I<   kworker/R-tpm_dev_wq\n     60       2 I<   kworker/R-ata_sff\n     61       2 I<   kworker/R-md\n     62       2 I<   kworker/R-md_bitmap\n     63       2 I<   kworker/R-edac-poller\n     64       2 I<   kworker/R-hv_vmbus_con\n     65       2 I<   kworker/R-hv_vmbus_rescind\n     66       2 I<   kworker/R-hv_pri_chan\n     67       2 I<   kworker/R-hv_sub_chan\n     68       2 I<   kworker/R-devfreq_wq\n     69       2 S    watchdogd\n     70       2 I<   kworker/R-quota_events_unbound\n     71       2 I<   kworker/0:1H-kblockd\n     72       2 S    kswapd0\n     73       2 S    ecryptfs-kthread\n     74       2 I<   kworker/R-kthrotld\n     75       2 I<   kworker/R-nfit\n     76       2 S    scsi_eh_0\n     77       2 I<   kworker/R-scsi_tmf_0\n     78       2 I<   kworker/R-nvme-wq\n     79       2 I<   kworker/R-nvme-reset-wq\n     80       2 I<   kworker/R-nvme-delete-wq\n     81       2 I<   kworker/R-nvme-auth-wq\n     82       2 I    kworker/u16:3-events_power_efficient\n     83       2 I    kworker/u16:4-iou_exit\n     84       2 I    kworker/u16:5-flush-259:0\n     85       2 I<   kworker/R-mld\n     86       2 I<   kworker/1:1H-kblockd\n     87       2 I<   kworker/R-ipv6_addrconf\n     88       2 I    kworker/0:2-cgroup_free\n     89       2 S    hv_balloon\n     90       2 I<   kworker/R-kstrp\n     92       2 I<   kworker/u17:0\n    103       2 S    jbd2/nvme0n1p1-8\n    104       2 I<   kworker/R-ext4-rsv-conversion\n    105       2 I<   kworker/2:1H-kblockd\n    106       2 I    kworker/2:2-events\n    133       2 I<   kworker/3:1H-kblockd\n    156       1 S<s  systemd-journal\n    173       2 I    kworker/3:2-events\n    178       2 I<   kworker/R-kmpathd\n    179       2 I<   kworker/R-kmpath_handlerd\n    180       2 I    kworker/1:2-events\n    198       2 I    kworker/0:3-events\n    199       2 I    kworker/0:4-events\n    220       1 SLsl multipathd\n    225       1 Ss   systemd-udevd\n    237       2 S    psimon\n    298       1 Ss   hv_kvp_daemon\n    324       2 I    kworker/2:3-events\n    328       2 S    jbd2/nvme0n1p16-8\n    329       2 I<   kworker/R-ext4-rsv-conversion\n    346       2 I    kworker/1:3-cgroup_free\n    399       1 Ss   systemd-resolve\n    490       1 Ss   haveged\n    491       2 I    kworker/3:3-cgroup_free\n    553       2 I<   kworker/R-mana_per_port_queue_reset_wq\n    558       2 I<   kworker/R-ib-comp-wq\n    559       2 I<   kworker/R-ib-comp-unb-wq\n    560       2 I<   kworker/R-ib_mcast\n    561       2 I<   kworker/R-ib_nl_sa_wq\n    562       2 I<   kworker/R-ib_mad1\n    641       1 Ss   systemd-network\n    707       2 I    kworker/u16:6\n    743       2 S    ext4lazyinit\n    809       1 Ss   dbus-daemon\n    814       1 Ss   networkd-dispat\n    821       1 Ssl  polkitd\n    832       1 Ss   systemd-logind\n    848       1 Ssl  udisksd\n    849       1 Ss   python3\n    878       2 I    kworker/3:4\n    881       1 Ss   cron\n    900       1 Ssl  containerd\n    903       1 Ss+  agetty\n    932       1 Ssl  rsyslogd\n    933       1 Ss+  agetty\n    955       1 Ss   systemd\n    956       1 S    chronyd\n    957     956 S    chronyd\n    994       1 Ssl  ModemManager\n   1006     955 S    (sd-pam)\n   1085       1 Ssl  dockerd\n   1130       2 I<   kworker/R-tls-strp\n   1214     849 Sl   python3\n   1869       2 S    psimon\n   1872       1 Ssl  hosted-compute-\n   1887    1872 S    sudo\n   1890    1887 Sl   provjobd6724948\n   1925    1872 Sl   Runner.Listener\n   1946    1925 Sl   Runner.Worker\n   2589       1 Ssl  packagekitd\n   4566       1 Ss   php-fpm8.3\n   4567    4566 S    php-fpm8.3\n   4568    4566 S    php-fpm8.3\n   5229    1946 S    bash\n   5230    5229 Sl   MainThread\n   5246    5230 S    Xvfb\n   5253    5230 Ss   bash\n   5259    5253 Rl   MiniBrowser\n   5274     955 Ss   dbus-daemon\n   5288    5259 SLl  WebKitNetworkPr\n   5300    5259 SLl  WebKitWebProces\n   5315    5230 R    ps\n",
+                "bytes": 6160,
+                "retainedBytes": 6160,
+                "droppedBytes": 0,
+                "limitBytes": 65536
+              },
+              "stderr": {
+                "text": "",
+                "bytes": 0,
+                "retainedBytes": 0,
+                "droppedBytes": 0,
+                "limitBytes": 65536
+              }
+            }
+          },
+          "firstEvaluationStartedAt": "2026-10-06T19:21:31.139Z",
+          "result": {
+            "type": "number",
+            "value": 1
+          },
+          "lifecycle": {
+            "events": [
+              {
+                "kind": "page-close",
+                "stage": "teardown",
+                "elapsedMs": 229.56578799999988
+              },
+              {
+                "kind": "context-close",
+                "stage": "teardown",
+                "elapsedMs": 363.1716129999986
+              },
+              {
+                "kind": "browser-disconnected",
+                "stage": "teardown",
+                "elapsedMs": 363.26571499999955
+              }
+            ],
+            "eventLimit": 64,
+            "droppedEvents": 0,
+            "observation": {
+              "stage": "first-evaluation",
+              "elapsedMs": 226.22251099999994,
+              "pageClosed": false,
+              "browserConnected": true
+            }
+          },
+          "nativeBeforeEvaluation": {
+            "stage": "after-load-before-first-evaluation",
+            "observedAt": "2026-10-06T19:21:30.957Z",
+            "processTree": {
+              "command": "ps",
+              "args": [
+                "-eo",
+                "pid,ppid,stat,comm"
+              ],
+              "code": 0,
+              "signal": null,
+              "timedOut": false,
+              "error": null,
+              "stdout": {
+                "text": "    PID    PPID STAT COMMAND\n      1       0 Ss   systemd\n      2       0 S    kthreadd\n      3       2 S    pool_workqueue_release\n      4       2 I<   kworker/R-rcu_gp\n      5       2 I<   kworker/R-sync_wq\n      6       2 I<   kworker/R-kvfree_rcu_reclaim\n      7       2 I<   kworker/R-slub_flushwq\n      8       2 I<   kworker/R-netns\n      9       2 I    kworker/0:0-events\n     10       2 I<   kworker/0:0H-events_highpri\n     11       2 I    kworker/0:1-cgroup_offline\n     12       2 I    kworker/u16:0-events_power_efficient\n     13       2 I<   kworker/R-mm_percpu_wq\n     14       2 S    ksoftirqd/0\n     15       2 I    rcu_sched\n     16       2 S    rcu_exp_par_gp_kthread_worker/0\n     17       2 S    rcu_exp_gp_kthread_worker\n     18       2 S    migration/0\n     19       2 S    idle_inject/0\n     20       2 S    cpuhp/0\n     21       2 S    cpuhp/2\n     22       2 S    idle_inject/2\n     23       2 S    migration/2\n     24       2 S    ksoftirqd/2\n     25       2 I    kworker/2:0-rcu_gp\n     26       2 I<   kworker/2:0H-events_highpri\n     27       2 S    cpuhp/1\n     28       2 S    idle_inject/1\n     29       2 S    migration/1\n     30       2 S    ksoftirqd/1\n     31       2 I    kworker/1:0-cgroup_free\n     32       2 I<   kworker/1:0H-events_highpri\n     33       2 S    cpuhp/3\n     34       2 S    idle_inject/3\n     35       2 S    migration/3\n     36       2 S    ksoftirqd/3\n     37       2 I    kworker/3:0-events\n     38       2 I<   kworker/3:0H-events_highpri\n     39       2 S    kdevtmpfs\n     40       2 I<   kworker/R-inet_frag_wq\n     41       2 I    rcu_tasks_rude_kthread\n     42       2 I    rcu_tasks_trace_kthread\n     43       2 S    kauditd\n     44       2 S    khungtaskd\n     45       2 I    kworker/u16:1-ext4-rsv-conversion\n     46       2 S    oom_reaper\n     47       2 I    kworker/u16:2-events_power_efficient\n     48       2 I<   kworker/R-writeback\n     49       2 S    kcompactd0\n     50       2 SN   ksmd\n     51       2 SN   khugepaged\n     52       2 I<   kworker/R-kblockd\n     53       2 I<   kworker/R-blkcg_punt_bio\n     54       2 I<   kworker/R-kintegrityd\n     55       2 S    irq/9-acpi\n     56       2 I    kworker/2:1-events\n     57       2 I    kworker/1:1-cgroup_release\n     58       2 I    kworker/3:1-cgroup_free\n     59       2 I<   kworker/R-tpm_dev_wq\n     60       2 I<   kworker/R-ata_sff\n     61       2 I<   kworker/R-md\n     62       2 I<   kworker/R-md_bitmap\n     63       2 I<   kworker/R-edac-poller\n     64       2 I<   kworker/R-hv_vmbus_con\n     65       2 I<   kworker/R-hv_vmbus_rescind\n     66       2 I<   kworker/R-hv_pri_chan\n     67       2 I<   kworker/R-hv_sub_chan\n     68       2 I<   kworker/R-devfreq_wq\n     69       2 S    watchdogd\n     70       2 I<   kworker/R-quota_events_unbound\n     71       2 I<   kworker/0:1H-kblockd\n     72       2 S    kswapd0\n     73       2 S    ecryptfs-kthread\n     74       2 I<   kworker/R-kthrotld\n     75       2 I<   kworker/R-nfit\n     76       2 S    scsi_eh_0\n     77       2 I<   kworker/R-scsi_tmf_0\n     78       2 I<   kworker/R-nvme-wq\n     79       2 I<   kworker/R-nvme-reset-wq\n     80       2 I<   kworker/R-nvme-delete-wq\n     81       2 I<   kworker/R-nvme-auth-wq\n     82       2 I    kworker/u16:3-ext4-rsv-conversion\n     83       2 I    kworker/u16:4-iou_exit\n     84       2 I    kworker/u16:5-flush-259:0\n     85       2 I<   kworker/R-mld\n     86       2 I<   kworker/1:1H-kblockd\n     87       2 I<   kworker/R-ipv6_addrconf\n     88       2 I    kworker/0:2-cgroup_free\n     89       2 S    hv_balloon\n     90       2 I<   kworker/R-kstrp\n     92       2 I<   kworker/u17:0\n    103       2 S    jbd2/nvme0n1p1-8\n    104       2 I<   kworker/R-ext4-rsv-conversion\n    105       2 I<   kworker/2:1H-kblockd\n    106       2 I    kworker/2:2-events\n    133       2 I<   kworker/3:1H-kblockd\n    156       1 S<s  systemd-journal\n    173       2 I    kworker/3:2-events\n    178       2 I<   kworker/R-kmpathd\n    179       2 I<   kworker/R-kmpath_handlerd\n    180       2 I    kworker/1:2-events\n    198       2 I    kworker/0:3-events\n    199       2 I    kworker/0:4-events\n    220       1 SLsl multipathd\n    225       1 Ss   systemd-udevd\n    237       2 S    psimon\n    298       1 Ss   hv_kvp_daemon\n    324       2 I    kworker/2:3-events\n    328       2 S    jbd2/nvme0n1p16-8\n    329       2 I<   kworker/R-ext4-rsv-conversion\n    346       2 I    kworker/1:3-cgroup_free\n    399       1 Ss   systemd-resolve\n    490       1 Ss   haveged\n    491       2 I    kworker/3:3-cgroup_free\n    553       2 I<   kworker/R-mana_per_port_queue_reset_wq\n    558       2 I<   kworker/R-ib-comp-wq\n    559       2 I<   kworker/R-ib-comp-unb-wq\n    560       2 I<   kworker/R-ib_mcast\n    561       2 I<   kworker/R-ib_nl_sa_wq\n    562       2 I<   kworker/R-ib_mad1\n    641       1 Ss   systemd-network\n    707       2 I    kworker/u16:6\n    743       2 S    ext4lazyinit\n    809       1 Ss   dbus-daemon\n    814       1 Ss   networkd-dispat\n    821       1 Ssl  polkitd\n    832       1 Ss   systemd-logind\n    848       1 Ssl  udisksd\n    849       1 Ss   python3\n    878       2 I    kworker/3:4\n    881       1 Ss   cron\n    900       1 Ssl  containerd\n    903       1 Ss+  agetty\n    932       1 Ssl  rsyslogd\n    933       1 Ss+  agetty\n    955       1 Ss   systemd\n    956       1 S    chronyd\n    957     956 S    chronyd\n    994       1 Ssl  ModemManager\n   1006     955 S    (sd-pam)\n   1085       1 Ssl  dockerd\n   1130       2 I<   kworker/R-tls-strp\n   1214     849 Sl   python3\n   1869       2 S    psimon\n   1872       1 Ssl  hosted-compute-\n   1887    1872 S    sudo\n   1890    1887 Sl   provjobd6724948\n   1925    1872 Sl   Runner.Listener\n   1946    1925 Sl   Runner.Worker\n   2589       1 Ssl  packagekitd\n   4566       1 Ss   php-fpm8.3\n   4567    4566 S    php-fpm8.3\n   4568    4566 S    php-fpm8.3\n   5229    1946 S    bash\n   5230    5229 Sl   MainThread\n   5246    5230 S    Xvfb\n   5253    5230 Ss   bash\n   5259    5253 Sl   MiniBrowser\n   5274     955 Ss   dbus-daemon\n   5288    5259 SLl  WebKitNetworkPr\n   5300    5259 SLl  WebKitWebProces\n   5317    5230 R    ps\n",
+                "bytes": 6157,
+                "retainedBytes": 6157,
+                "droppedBytes": 0,
+                "limitBytes": 65536
+              },
+              "stderr": {
+                "text": "",
+                "bytes": 0,
+                "retainedBytes": 0,
+                "droppedBytes": 0,
+                "limitBytes": 65536
+              }
+            },
+            "webProcesses": [
+              {
+                "pid": 5300,
+                "ppid": 5259,
+                "state": "SLl",
+                "name": "WebKitWebProces",
+                "identity": {
+                  "pid": 5300,
+                  "executable": "/home/runner/.cache/ms-playwright/webkit-2359/minibrowser-gtk/bin/WebKitWebProcess",
+                  "startTicks": "11081",
+                  "bootId": "baf98144-94fd-42cd-ad63-28309a73925a",
+                  "bootIdHex": "baf9814494fd42cdad6328309a73925a",
+                  "observedAt": "2026-10-06T19:21:30.967Z",
+                  "verified": true
+                }
+              }
+            ]
+          },
+          "stderrAfter": {
+            "path": "/home/runner/work/_temp/gtk-native-results/native-stderr.log",
+            "bytes": 1537,
+            "retainedBytes": 1537,
+            "droppedBytes": 0,
+            "limitBytes": 262144,
+            "sha256": "843840871471a24404da087e04d48fa6a5c9e129949634b15d2bf188e1880a9f"
+          },
+          "elapsedMs": 8186.508864
+        },
+        {
+          "id": "color-constant-js-on",
+          "port": "gtk",
+          "document": "color",
+          "evaluation": "constant",
+          "javaScriptEnabled": true,
+          "originalInit": true,
+          "fullGate": false,
+          "source": {
+            "sourceCommit": "e726982735cea1c7890711ea1aa5575ee53d4169",
+            "sourceTree": "1a582ebb928e4f94cfff2691f0e40741ae6ea0b1",
+            "candidateCommit": "e726982735cea1c7890711ea1aa5575ee53d4169",
+            "sourceDirty": false,
+            "artifactDigest": "0de6c4869daf732aa99a0fa5c0095a5be4cc39fd88252d18a605781130b7e427",
+            "variant": {
+              "id": "color",
+              "contract": 1,
+              "fingerprint": "5696d4af5cb8d756bfd2b8d85c79f918cf17c7f6f7b1427a5b04235e758c1413",
+              "baseEngine": "22e1e5b42356b0b36696a6aacebbd36d299c96d168c73ebcb0613da0bfd5c658",
+              "effects": [
+                "ribbons",
+                "travel"
+              ]
+            },
+            "derivation": {
+              "kind": "authored-color-effects",
+              "baseArtifactDigest": "3be0dd2590c60890ce06a3e91f30b298c3b37d9741581fd36a2d3e6e1af33984"
+            }
+          },
+          "startedAt": "2026-10-06T19:21:31.281Z",
+          "bounds": {
+            "startupMs": 30000,
+            "gotoMs": 30000,
+            "settleMs": 180,
+            "diagnosticFirstEvaluationMs": 60000,
+            "diagnosticCleanupMs": 30000
+          },
+          "evidenceValid": true,
+          "success": true,
+          "pageErrors": [],
+          "externalRequests": [],
+          "stderrBefore": {
+            "path": "/home/runner/work/_temp/gtk-native-results/native-stderr.log",
+            "bytes": 1537,
+            "retainedBytes": 1537,
+            "droppedBytes": 0,
+            "limitBytes": 262144,
+            "sha256": "843840871471a24404da087e04d48fa6a5c9e129949634b15d2bf188e1880a9f"
+          },
+          "priorCleanupIncomplete": false,
+          "browser": {
+            "version": "26.6",
+            "executable": "/home/runner/.cache/ms-playwright/webkit-2359/pw_run.sh",
+            "port": "gtk",
+            "headless": false,
+            "displayBackend": "Xvfb",
+            "startup": {
+              "budgetMs": 30000,
+              "displayMs": 28.239605000000665,
+              "totalMs": 124.51492799999869
+            }
+          },
+          "nativeBefore": {
+            "stage": "before-navigation",
+            "observedAt": "2026-10-06T19:21:31.615Z",
+            "processTree": {
+              "command": "ps",
+              "args": [
+                "-eo",
+                "pid,ppid,stat,comm"
+              ],
+              "code": 0,
+              "signal": null,
+              "timedOut": false,
+              "error": null,
+              "stdout": {
+                "text": "    PID    PPID STAT COMMAND\n      1       0 Ss   systemd\n      2       0 S    kthreadd\n      3       2 S    pool_workqueue_release\n      4       2 I<   kworker/R-rcu_gp\n      5       2 I<   kworker/R-sync_wq\n      6       2 I<   kworker/R-kvfree_rcu_reclaim\n      7       2 I<   kworker/R-slub_flushwq\n      8       2 I<   kworker/R-netns\n      9       2 I    kworker/0:0-events\n     10       2 I<   kworker/0:0H-events_highpri\n     11       2 I    kworker/0:1-cgroup_offline\n     12       2 I    kworker/u16:0-events_unbound\n     13       2 I<   kworker/R-mm_percpu_wq\n     14       2 S    ksoftirqd/0\n     15       2 R    rcu_sched\n     16       2 S    rcu_exp_par_gp_kthread_worker/0\n     17       2 S    rcu_exp_gp_kthread_worker\n     18       2 S    migration/0\n     19       2 S    idle_inject/0\n     20       2 S    cpuhp/0\n     21       2 S    cpuhp/2\n     22       2 S    idle_inject/2\n     23       2 S    migration/2\n     24       2 S    ksoftirqd/2\n     25       2 I    kworker/2:0-rcu_gp\n     26       2 I<   kworker/2:0H-events_highpri\n     27       2 S    cpuhp/1\n     28       2 S    idle_inject/1\n     29       2 S    migration/1\n     30       2 S    ksoftirqd/1\n     31       2 I    kworker/1:0-cgroup_free\n     32       2 I<   kworker/1:0H-events_highpri\n     33       2 S    cpuhp/3\n     34       2 S    idle_inject/3\n     35       2 S    migration/3\n     36       2 S    ksoftirqd/3\n     37       2 I    kworker/3:0-events\n     38       2 I<   kworker/3:0H-events_highpri\n     39       2 S    kdevtmpfs\n     40       2 I<   kworker/R-inet_frag_wq\n     41       2 I    rcu_tasks_rude_kthread\n     42       2 I    rcu_tasks_trace_kthread\n     43       2 S    kauditd\n     44       2 S    khungtaskd\n     45       2 I    kworker/u16:1-ext4-rsv-conversion\n     46       2 S    oom_reaper\n     47       2 I    kworker/u16:2-events_power_efficient\n     48       2 I<   kworker/R-writeback\n     49       2 S    kcompactd0\n     50       2 SN   ksmd\n     51       2 SN   khugepaged\n     52       2 I<   kworker/R-kblockd\n     53       2 I<   kworker/R-blkcg_punt_bio\n     54       2 I<   kworker/R-kintegrityd\n     55       2 S    irq/9-acpi\n     56       2 I    kworker/2:1-events\n     57       2 I    kworker/1:1-cgroup_release\n     58       2 I    kworker/3:1-cgroup_free\n     59       2 I<   kworker/R-tpm_dev_wq\n     60       2 I<   kworker/R-ata_sff\n     61       2 I<   kworker/R-md\n     62       2 I<   kworker/R-md_bitmap\n     63       2 I<   kworker/R-edac-poller\n     64       2 I<   kworker/R-hv_vmbus_con\n     65       2 I<   kworker/R-hv_vmbus_rescind\n     66       2 I<   kworker/R-hv_pri_chan\n     67       2 I<   kworker/R-hv_sub_chan\n     68       2 I<   kworker/R-devfreq_wq\n     69       2 S    watchdogd\n     70       2 I<   kworker/R-quota_events_unbound\n     71       2 I<   kworker/0:1H-kblockd\n     72       2 S    kswapd0\n     73       2 S    ecryptfs-kthread\n     74       2 I<   kworker/R-kthrotld\n     75       2 I<   kworker/R-nfit\n     76       2 S    scsi_eh_0\n     77       2 I<   kworker/R-scsi_tmf_0\n     78       2 I<   kworker/R-nvme-wq\n     79       2 I<   kworker/R-nvme-reset-wq\n     80       2 I<   kworker/R-nvme-delete-wq\n     81       2 I<   kworker/R-nvme-auth-wq\n     82       2 I    kworker/u16:3-events_power_efficient\n     83       2 I    kworker/u16:4-iou_exit\n     84       2 I    kworker/u16:5-flush-259:0\n     85       2 I<   kworker/R-mld\n     86       2 I<   kworker/1:1H-kblockd\n     87       2 I<   kworker/R-ipv6_addrconf\n     88       2 I    kworker/0:2-cgroup_free\n     89       2 S    hv_balloon\n     90       2 I<   kworker/R-kstrp\n     92       2 I<   kworker/u17:0\n    103       2 S    jbd2/nvme0n1p1-8\n    104       2 I<   kworker/R-ext4-rsv-conversion\n    105       2 I<   kworker/2:1H-kblockd\n    106       2 I    kworker/2:2-events\n    133       2 I<   kworker/3:1H-kblockd\n    156       1 S<s  systemd-journal\n    173       2 I    kworker/3:2-events\n    178       2 I<   kworker/R-kmpathd\n    179       2 I<   kworker/R-kmpath_handlerd\n    180       2 I    kworker/1:2-events\n    198       2 I    kworker/0:3-events\n    199       2 I    kworker/0:4-events\n    220       1 SLsl multipathd\n    225       1 Ss   systemd-udevd\n    237       2 S    psimon\n    298       1 Ss   hv_kvp_daemon\n    324       2 I    kworker/2:3-events\n    328       2 S    jbd2/nvme0n1p16-8\n    329       2 I<   kworker/R-ext4-rsv-conversion\n    346       2 I    kworker/1:3-cgroup_free\n    399       1 Ss   systemd-resolve\n    490       1 Ss   haveged\n    491       2 I    kworker/3:3-cgroup_free\n    553       2 I<   kworker/R-mana_per_port_queue_reset_wq\n    558       2 I<   kworker/R-ib-comp-wq\n    559       2 I<   kworker/R-ib-comp-unb-wq\n    560       2 I<   kworker/R-ib_mcast\n    561       2 I<   kworker/R-ib_nl_sa_wq\n    562       2 I<   kworker/R-ib_mad1\n    641       1 Ss   systemd-network\n    707       2 I    kworker/u16:6\n    743       2 S    ext4lazyinit\n    809       1 Ss   dbus-daemon\n    814       1 Ss   networkd-dispat\n    821       1 Ssl  polkitd\n    832       1 Ss   systemd-logind\n    848       1 Ssl  udisksd\n    849       1 Ss   python3\n    878       2 I    kworker/3:4\n    881       1 Ss   cron\n    900       1 Ssl  containerd\n    903       1 Ss+  agetty\n    932       1 Ssl  rsyslogd\n    933       1 Ss+  agetty\n    955       1 Ss   systemd\n    956       1 S    chronyd\n    957     956 S    chronyd\n    994       1 Ssl  ModemManager\n   1006     955 S    (sd-pam)\n   1085       1 Ssl  dockerd\n   1130       2 I<   kworker/R-tls-strp\n   1214     849 Sl   python3\n   1869       2 S    psimon\n   1872       1 Ssl  hosted-compute-\n   1887    1872 S    sudo\n   1890    1887 Sl   provjobd6724948\n   1925    1872 Sl   Runner.Listener\n   1946    1925 Sl   Runner.Worker\n   2589       1 Ssl  packagekitd\n   4566       1 Ss   php-fpm8.3\n   4567    4566 S    php-fpm8.3\n   4568    4566 S    php-fpm8.3\n   5229    1946 S    bash\n   5230    5229 Sl   MainThread\n   5274     955 Ss   dbus-daemon\n   5322    5230 S    Xvfb\n   5325    5230 Ss   bash\n   5331    5325 Sl   MiniBrowser\n   5354    5331 SLl  WebKitNetworkPr\n   5368    5331 SLl  WebKitWebProces\n   5383    5230 R    ps\n",
+                "bytes": 6152,
+                "retainedBytes": 6152,
+                "droppedBytes": 0,
+                "limitBytes": 65536
+              },
+              "stderr": {
+                "text": "",
+                "bytes": 0,
+                "retainedBytes": 0,
+                "droppedBytes": 0,
+                "limitBytes": 65536
+              }
+            }
+          },
+          "firstEvaluationStartedAt": "2026-10-06T19:21:31.885Z",
+          "result": {
+            "type": "number",
+            "value": 1
+          },
+          "lifecycle": {
+            "events": [
+              {
+                "kind": "page-close",
+                "stage": "teardown",
+                "elapsedMs": 292.2407039999998
+              },
+              {
+                "kind": "context-close",
+                "stage": "teardown",
+                "elapsedMs": 315.2443110000004
+              },
+              {
+                "kind": "browser-disconnected",
+                "stage": "teardown",
+                "elapsedMs": 315.2910210000009
+              }
+            ],
+            "eventLimit": 64,
+            "droppedEvents": 0,
+            "observation": {
+              "stage": "first-evaluation",
+              "elapsedMs": 286.5804050000006,
+              "pageClosed": false,
+              "browserConnected": true
+            }
+          },
+          "nativeBeforeEvaluation": {
+            "stage": "after-load-before-first-evaluation",
+            "observedAt": "2026-10-06T19:21:31.701Z",
+            "processTree": {
+              "command": "ps",
+              "args": [
+                "-eo",
+                "pid,ppid,stat,comm"
+              ],
+              "code": 0,
+              "signal": null,
+              "timedOut": false,
+              "error": null,
+              "stdout": {
+                "text": "    PID    PPID STAT COMMAND\n      1       0 Ss   systemd\n      2       0 S    kthreadd\n      3       2 S    pool_workqueue_release\n      4       2 I<   kworker/R-rcu_gp\n      5       2 I<   kworker/R-sync_wq\n      6       2 I<   kworker/R-kvfree_rcu_reclaim\n      7       2 I<   kworker/R-slub_flushwq\n      8       2 I<   kworker/R-netns\n      9       2 I    kworker/0:0-events\n     10       2 I<   kworker/0:0H-events_highpri\n     11       2 I    kworker/0:1-cgroup_offline\n     12       2 I    kworker/u16:0-events_unbound\n     13       2 I<   kworker/R-mm_percpu_wq\n     14       2 S    ksoftirqd/0\n     15       2 R    rcu_sched\n     16       2 S    rcu_exp_par_gp_kthread_worker/0\n     17       2 S    rcu_exp_gp_kthread_worker\n     18       2 S    migration/0\n     19       2 S    idle_inject/0\n     20       2 S    cpuhp/0\n     21       2 S    cpuhp/2\n     22       2 S    idle_inject/2\n     23       2 S    migration/2\n     24       2 S    ksoftirqd/2\n     25       2 I    kworker/2:0-rcu_gp\n     26       2 I<   kworker/2:0H-events_highpri\n     27       2 S    cpuhp/1\n     28       2 S    idle_inject/1\n     29       2 S    migration/1\n     30       2 S    ksoftirqd/1\n     31       2 I    kworker/1:0-cgroup_free\n     32       2 I<   kworker/1:0H-events_highpri\n     33       2 S    cpuhp/3\n     34       2 S    idle_inject/3\n     35       2 S    migration/3\n     36       2 S    ksoftirqd/3\n     37       2 I    kworker/3:0-events\n     38       2 I<   kworker/3:0H-events_highpri\n     39       2 S    kdevtmpfs\n     40       2 I<   kworker/R-inet_frag_wq\n     41       2 I    rcu_tasks_rude_kthread\n     42       2 I    rcu_tasks_trace_kthread\n     43       2 S    kauditd\n     44       2 S    khungtaskd\n     45       2 I    kworker/u16:1-ext4-rsv-conversion\n     46       2 S    oom_reaper\n     47       2 I    kworker/u16:2-events_power_efficient\n     48       2 I<   kworker/R-writeback\n     49       2 S    kcompactd0\n     50       2 SN   ksmd\n     51       2 SN   khugepaged\n     52       2 I<   kworker/R-kblockd\n     53       2 I<   kworker/R-blkcg_punt_bio\n     54       2 I<   kworker/R-kintegrityd\n     55       2 S    irq/9-acpi\n     56       2 I    kworker/2:1-events\n     57       2 I    kworker/1:1-cgroup_release\n     58       2 I    kworker/3:1-cgroup_free\n     59       2 I<   kworker/R-tpm_dev_wq\n     60       2 I<   kworker/R-ata_sff\n     61       2 I<   kworker/R-md\n     62       2 I<   kworker/R-md_bitmap\n     63       2 I<   kworker/R-edac-poller\n     64       2 I<   kworker/R-hv_vmbus_con\n     65       2 I<   kworker/R-hv_vmbus_rescind\n     66       2 I<   kworker/R-hv_pri_chan\n     67       2 I<   kworker/R-hv_sub_chan\n     68       2 I<   kworker/R-devfreq_wq\n     69       2 S    watchdogd\n     70       2 I<   kworker/R-quota_events_unbound\n     71       2 I<   kworker/0:1H-kblockd\n     72       2 S    kswapd0\n     73       2 S    ecryptfs-kthread\n     74       2 I<   kworker/R-kthrotld\n     75       2 I<   kworker/R-nfit\n     76       2 S    scsi_eh_0\n     77       2 I<   kworker/R-scsi_tmf_0\n     78       2 I<   kworker/R-nvme-wq\n     79       2 I<   kworker/R-nvme-reset-wq\n     80       2 I<   kworker/R-nvme-delete-wq\n     81       2 I<   kworker/R-nvme-auth-wq\n     82       2 I    kworker/u16:3-ext4-rsv-conversion\n     83       2 I    kworker/u16:4-iou_exit\n     84       2 I    kworker/u16:5-flush-259:0\n     85       2 I<   kworker/R-mld\n     86       2 I<   kworker/1:1H-kblockd\n     87       2 I<   kworker/R-ipv6_addrconf\n     88       2 I    kworker/0:2-cgroup_free\n     89       2 S    hv_balloon\n     90       2 I<   kworker/R-kstrp\n     92       2 I<   kworker/u17:0\n    103       2 S    jbd2/nvme0n1p1-8\n    104       2 I<   kworker/R-ext4-rsv-conversion\n    105       2 I<   kworker/2:1H-kblockd\n    106       2 I    kworker/2:2-events\n    133       2 I<   kworker/3:1H-kblockd\n    156       1 S<s  systemd-journal\n    173       2 I    kworker/3:2-events\n    178       2 I<   kworker/R-kmpathd\n    179       2 I<   kworker/R-kmpath_handlerd\n    180       2 I    kworker/1:2-events\n    198       2 I    kworker/0:3-events\n    199       2 I    kworker/0:4-events\n    220       1 SLsl multipathd\n    225       1 Ss   systemd-udevd\n    237       2 S    psimon\n    298       1 Ss   hv_kvp_daemon\n    324       2 I    kworker/2:3-events\n    328       2 S    jbd2/nvme0n1p16-8\n    329       2 I<   kworker/R-ext4-rsv-conversion\n    346       2 I    kworker/1:3-cgroup_free\n    399       1 Ss   systemd-resolve\n    490       1 Ss   haveged\n    491       2 I    kworker/3:3-cgroup_free\n    553       2 I<   kworker/R-mana_per_port_queue_reset_wq\n    558       2 I<   kworker/R-ib-comp-wq\n    559       2 I<   kworker/R-ib-comp-unb-wq\n    560       2 I<   kworker/R-ib_mcast\n    561       2 I<   kworker/R-ib_nl_sa_wq\n    562       2 I<   kworker/R-ib_mad1\n    641       1 Ss   systemd-network\n    707       2 I    kworker/u16:6\n    743       2 S    ext4lazyinit\n    809       1 Ss   dbus-daemon\n    814       1 Ss   networkd-dispat\n    821       1 Ssl  polkitd\n    832       1 Ss   systemd-logind\n    848       1 Ssl  udisksd\n    849       1 Ss   python3\n    878       2 I    kworker/3:4\n    881       1 Ss   cron\n    900       1 Ssl  containerd\n    903       1 Ss+  agetty\n    932       1 Ssl  rsyslogd\n    933       1 Ss+  agetty\n    955       1 Ss   systemd\n    956       1 S    chronyd\n    957     956 S    chronyd\n    994       1 Ssl  ModemManager\n   1006     955 S    (sd-pam)\n   1085       1 Ssl  dockerd\n   1130       2 I<   kworker/R-tls-strp\n   1214     849 Sl   python3\n   1869       2 S    psimon\n   1872       1 Ssl  hosted-compute-\n   1887    1872 S    sudo\n   1890    1887 Sl   provjobd6724948\n   1925    1872 Sl   Runner.Listener\n   1946    1925 Sl   Runner.Worker\n   2589       1 Ssl  packagekitd\n   4566       1 Ss   php-fpm8.3\n   4567    4566 S    php-fpm8.3\n   4568    4566 S    php-fpm8.3\n   5229    1946 S    bash\n   5230    5229 Sl   MainThread\n   5274     955 Ss   dbus-daemon\n   5322    5230 S    Xvfb\n   5325    5230 Ss   bash\n   5331    5325 Rl   MiniBrowser\n   5354    5331 SLl  WebKitNetworkPr\n   5368    5331 RLl  WebKitWebProces\n   5385    5230 R    ps\n",
+                "bytes": 6149,
+                "retainedBytes": 6149,
+                "droppedBytes": 0,
+                "limitBytes": 65536
+              },
+              "stderr": {
+                "text": "",
+                "bytes": 0,
+                "retainedBytes": 0,
+                "droppedBytes": 0,
+                "limitBytes": 65536
+              }
+            },
+            "webProcesses": [
+              {
+                "pid": 5368,
+                "ppid": 5331,
+                "state": "RLl",
+                "name": "WebKitWebProces",
+                "identity": {
+                  "pid": 5368,
+                  "executable": "/home/runner/.cache/ms-playwright/webkit-2359/minibrowser-gtk/bin/WebKitWebProcess",
+                  "startTicks": "11251",
+                  "bootId": "baf98144-94fd-42cd-ad63-28309a73925a",
+                  "bootIdHex": "baf9814494fd42cdad6328309a73925a",
+                  "observedAt": "2026-10-06T19:21:31.713Z",
+                  "verified": true
+                }
+              }
+            ]
+          },
+          "stderrAfter": {
+            "path": "/home/runner/work/_temp/gtk-native-results/native-stderr.log",
+            "bytes": 3074,
+            "retainedBytes": 3074,
+            "droppedBytes": 0,
+            "limitBytes": 262144,
+            "sha256": "c5326802c35431beabb51d8114956b60ee2c2d00f4ab645fe81253d94f9307df"
+          },
+          "elapsedMs": 650.0499069999987
+        },
+        {
+          "id": "color-constant-js-off",
+          "port": "gtk",
+          "document": "color",
+          "evaluation": "constant",
+          "javaScriptEnabled": false,
+          "originalInit": true,
+          "fullGate": false,
+          "source": {
+            "sourceCommit": "e726982735cea1c7890711ea1aa5575ee53d4169",
+            "sourceTree": "1a582ebb928e4f94cfff2691f0e40741ae6ea0b1",
+            "candidateCommit": "e726982735cea1c7890711ea1aa5575ee53d4169",
+            "sourceDirty": false,
+            "artifactDigest": "0de6c4869daf732aa99a0fa5c0095a5be4cc39fd88252d18a605781130b7e427",
+            "variant": {
+              "id": "color",
+              "contract": 1,
+              "fingerprint": "5696d4af5cb8d756bfd2b8d85c79f918cf17c7f6f7b1427a5b04235e758c1413",
+              "baseEngine": "22e1e5b42356b0b36696a6aacebbd36d299c96d168c73ebcb0613da0bfd5c658",
+              "effects": [
+                "ribbons",
+                "travel"
+              ]
+            },
+            "derivation": {
+              "kind": "authored-color-effects",
+              "baseArtifactDigest": "3be0dd2590c60890ce06a3e91f30b298c3b37d9741581fd36a2d3e6e1af33984"
+            }
+          },
+          "startedAt": "2026-10-06T19:21:31.931Z",
+          "bounds": {
+            "startupMs": 30000,
+            "gotoMs": 30000,
+            "settleMs": 180,
+            "diagnosticFirstEvaluationMs": 60000,
+            "diagnosticCleanupMs": 30000
+          },
+          "evidenceValid": true,
+          "success": false,
+          "pageErrors": [],
+          "externalRequests": [],
+          "stderrBefore": {
+            "path": "/home/runner/work/_temp/gtk-native-results/native-stderr.log",
+            "bytes": 3074,
+            "retainedBytes": 3074,
+            "droppedBytes": 0,
+            "limitBytes": 262144,
+            "sha256": "c5326802c35431beabb51d8114956b60ee2c2d00f4ab645fe81253d94f9307df"
+          },
+          "priorCleanupIncomplete": false,
+          "browser": {
+            "version": "26.6",
+            "executable": "/home/runner/.cache/ms-playwright/webkit-2359/pw_run.sh",
+            "port": "gtk",
+            "headless": false,
+            "displayBackend": "Xvfb",
+            "startup": {
+              "budgetMs": 30000,
+              "displayMs": 28.232484000000113,
+              "totalMs": 125.6073039999992
+            }
+          },
+          "nativeBefore": {
+            "stage": "before-navigation",
+            "observedAt": "2026-10-06T19:21:32.273Z",
+            "processTree": {
+              "command": "ps",
+              "args": [
+                "-eo",
+                "pid,ppid,stat,comm"
+              ],
+              "code": 0,
+              "signal": null,
+              "timedOut": false,
+              "error": null,
+              "stdout": {
+                "text": "    PID    PPID STAT COMMAND\n      1       0 Ss   systemd\n      2       0 S    kthreadd\n      3       2 S    pool_workqueue_release\n      4       2 I<   kworker/R-rcu_gp\n      5       2 I<   kworker/R-sync_wq\n      6       2 I<   kworker/R-kvfree_rcu_reclaim\n      7       2 I<   kworker/R-slub_flushwq\n      8       2 I<   kworker/R-netns\n      9       2 I    kworker/0:0-mm_percpu_wq\n     10       2 I<   kworker/0:0H-events_highpri\n     11       2 I    kworker/0:1-cgroup_offline\n     12       2 I    kworker/u16:0-events_power_efficient\n     13       2 I<   kworker/R-mm_percpu_wq\n     14       2 S    ksoftirqd/0\n     15       2 I    rcu_sched\n     16       2 S    rcu_exp_par_gp_kthread_worker/0\n     17       2 S    rcu_exp_gp_kthread_worker\n     18       2 S    migration/0\n     19       2 S    idle_inject/0\n     20       2 S    cpuhp/0\n     21       2 S    cpuhp/2\n     22       2 S    idle_inject/2\n     23       2 S    migration/2\n     24       2 S    ksoftirqd/2\n     25       2 I    kworker/2:0-rcu_gp\n     26       2 I<   kworker/2:0H-events_highpri\n     27       2 S    cpuhp/1\n     28       2 S    idle_inject/1\n     29       2 S    migration/1\n     30       2 S    ksoftirqd/1\n     31       2 I    kworker/1:0-cgroup_free\n     32       2 I<   kworker/1:0H-events_highpri\n     33       2 S    cpuhp/3\n     34       2 S    idle_inject/3\n     35       2 S    migration/3\n     36       2 S    ksoftirqd/3\n     37       2 I    kworker/3:0-events\n     38       2 I<   kworker/3:0H-events_highpri\n     39       2 S    kdevtmpfs\n     40       2 I<   kworker/R-inet_frag_wq\n     41       2 I    rcu_tasks_rude_kthread\n     42       2 I    rcu_tasks_trace_kthread\n     43       2 S    kauditd\n     44       2 S    khungtaskd\n     45       2 I    kworker/u16:1-ext4-rsv-conversion\n     46       2 S    oom_reaper\n     47       2 I    kworker/u16:2-events_power_efficient\n     48       2 I<   kworker/R-writeback\n     49       2 S    kcompactd0\n     50       2 SN   ksmd\n     51       2 SN   khugepaged\n     52       2 I<   kworker/R-kblockd\n     53       2 I<   kworker/R-blkcg_punt_bio\n     54       2 I<   kworker/R-kintegrityd\n     55       2 S    irq/9-acpi\n     56       2 I    kworker/2:1-events\n     57       2 I    kworker/1:1-cgroup_release\n     58       2 I    kworker/3:1-cgroup_free\n     59       2 I<   kworker/R-tpm_dev_wq\n     60       2 I<   kworker/R-ata_sff\n     61       2 I<   kworker/R-md\n     62       2 I<   kworker/R-md_bitmap\n     63       2 I<   kworker/R-edac-poller\n     64       2 I<   kworker/R-hv_vmbus_con\n     65       2 I<   kworker/R-hv_vmbus_rescind\n     66       2 I<   kworker/R-hv_pri_chan\n     67       2 I<   kworker/R-hv_sub_chan\n     68       2 I<   kworker/R-devfreq_wq\n     69       2 S    watchdogd\n     70       2 I<   kworker/R-quota_events_unbound\n     71       2 I<   kworker/0:1H-kblockd\n     72       2 S    kswapd0\n     73       2 S    ecryptfs-kthread\n     74       2 I<   kworker/R-kthrotld\n     75       2 I<   kworker/R-nfit\n     76       2 S    scsi_eh_0\n     77       2 I<   kworker/R-scsi_tmf_0\n     78       2 I<   kworker/R-nvme-wq\n     79       2 I<   kworker/R-nvme-reset-wq\n     80       2 I<   kworker/R-nvme-delete-wq\n     81       2 I<   kworker/R-nvme-auth-wq\n     82       2 I    kworker/u16:3-events_unbound\n     83       2 I    kworker/u16:4-iou_exit\n     84       2 I    kworker/u16:5-flush-259:0\n     85       2 I<   kworker/R-mld\n     86       2 I<   kworker/1:1H-kblockd\n     87       2 I<   kworker/R-ipv6_addrconf\n     88       2 I    kworker/0:2-cgroup_free\n     89       2 S    hv_balloon\n     90       2 I<   kworker/R-kstrp\n     92       2 I<   kworker/u17:0\n    103       2 S    jbd2/nvme0n1p1-8\n    104       2 I<   kworker/R-ext4-rsv-conversion\n    105       2 I<   kworker/2:1H-kblockd\n    106       2 I    kworker/2:2-events\n    133       2 I<   kworker/3:1H-kblockd\n    156       1 S<s  systemd-journal\n    173       2 I    kworker/3:2-mm_percpu_wq\n    178       2 I<   kworker/R-kmpathd\n    179       2 I<   kworker/R-kmpath_handlerd\n    180       2 I    kworker/1:2-mm_percpu_wq\n    198       2 I    kworker/0:3-events\n    199       2 I    kworker/0:4-events\n    220       1 SLsl multipathd\n    225       1 Ss   systemd-udevd\n    237       2 S    psimon\n    298       1 Ss   hv_kvp_daemon\n    324       2 I    kworker/2:3-events\n    328       2 S    jbd2/nvme0n1p16-8\n    329       2 I<   kworker/R-ext4-rsv-conversion\n    346       2 I    kworker/1:3-cgroup_free\n    399       1 Ss   systemd-resolve\n    490       1 Ss   haveged\n    491       2 I    kworker/3:3-cgroup_free\n    553       2 I<   kworker/R-mana_per_port_queue_reset_wq\n    558       2 I<   kworker/R-ib-comp-wq\n    559       2 I<   kworker/R-ib-comp-unb-wq\n    560       2 I<   kworker/R-ib_mcast\n    561       2 I<   kworker/R-ib_nl_sa_wq\n    562       2 I<   kworker/R-ib_mad1\n    641       1 Ss   systemd-network\n    707       2 I    kworker/u16:6\n    743       2 S    ext4lazyinit\n    809       1 Ss   dbus-daemon\n    814       1 Ss   networkd-dispat\n    821       1 Ssl  polkitd\n    832       1 Ss   systemd-logind\n    848       1 Ssl  udisksd\n    849       1 Ss   python3\n    878       2 I    kworker/3:4\n    881       1 Ss   cron\n    900       1 Ssl  containerd\n    903       1 Ss+  agetty\n    932       1 Ssl  rsyslogd\n    933       1 Ss+  agetty\n    955       1 Ss   systemd\n    956       1 S    chronyd\n    957     956 S    chronyd\n    994       1 Ssl  ModemManager\n   1006     955 S    (sd-pam)\n   1085       1 Ssl  dockerd\n   1130       2 I<   kworker/R-tls-strp\n   1214     849 Sl   python3\n   1869       2 S    psimon\n   1872       1 Ssl  hosted-compute-\n   1887    1872 S    sudo\n   1890    1887 Sl   provjobd6724948\n   1925    1872 Sl   Runner.Listener\n   1946    1925 Sl   Runner.Worker\n   2589       1 Ssl  packagekitd\n   4566       1 Ss   php-fpm8.3\n   4567    4566 S    php-fpm8.3\n   4568    4566 S    php-fpm8.3\n   5229    1946 S    bash\n   5230    5229 Sl   MainThread\n   5274     955 Ss   dbus-daemon\n   5392    5230 S    Xvfb\n   5395    5230 Ss   bash\n   5401    5395 Rl   MiniBrowser\n   5424    5401 SLl  WebKitNetworkPr\n   5435    5401 RLl  WebKitWebProces\n   5450    5230 R    ps\n",
+                "bytes": 6170,
+                "retainedBytes": 6170,
+                "droppedBytes": 0,
+                "limitBytes": 65536
+              },
+              "stderr": {
+                "text": "",
+                "bytes": 0,
+                "retainedBytes": 0,
+                "droppedBytes": 0,
+                "limitBytes": 65536
+              }
+            }
+          },
+          "firstEvaluationStartedAt": "2026-10-06T19:21:32.489Z",
+          "error": {
+            "name": "Error",
+            "message": "page.evaluate: Target page, context or browser has been closed",
+            "stack": "page.evaluate: Target page, context or browser has been closed\n    at cellTrial (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/gtk-target-probe.cjs:105:85)\n    at async Object.main (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/gtk-target-probe.cjs:136:17)"
+          },
+          "lifecycle": {
+            "events": [
+              {
+                "kind": "page-crash",
+                "stage": "first-evaluation",
+                "elapsedMs": 23705.797071999998
+              },
+              {
+                "kind": "page-close",
+                "stage": "teardown",
+                "elapsedMs": 23942.269609
+              },
+              {
+                "kind": "context-close",
+                "stage": "teardown",
+                "elapsedMs": 23964.385522
+              },
+              {
+                "kind": "browser-disconnected",
+                "stage": "teardown",
+                "elapsedMs": 23964.423389
+              }
+            ],
+            "eventLimit": 64,
+            "droppedEvents": 0,
+            "observation": {
+              "stage": "first-evaluation",
+              "elapsedMs": 23729.611883,
+              "pageClosed": false,
+              "browserConnected": true
+            }
+          },
+          "nativeAfterFailure": {
+            "stage": "after-failure",
+            "observedAt": "2026-10-06T19:21:55.980Z",
+            "processTree": {
+              "command": "ps",
+              "args": [
+                "-eo",
+                "pid,ppid,stat,comm"
+              ],
+              "code": 0,
+              "signal": null,
+              "timedOut": false,
+              "error": null,
+              "stdout": {
+                "text": "    PID    PPID STAT COMMAND\n      1       0 Ss   systemd\n      2       0 S    kthreadd\n      3       2 S    pool_workqueue_release\n      4       2 I<   kworker/R-rcu_gp\n      5       2 I<   kworker/R-sync_wq\n      6       2 I<   kworker/R-kvfree_rcu_reclaim\n      7       2 I<   kworker/R-slub_flushwq\n      8       2 I<   kworker/R-netns\n      9       2 I    kworker/0:0-rcu_gp\n     10       2 I<   kworker/0:0H-events_highpri\n     11       2 I    kworker/0:1-cgroup_offline\n     12       2 R    kworker/u16:0+netns\n     13       2 I<   kworker/R-mm_percpu_wq\n     14       2 S    ksoftirqd/0\n     15       2 I    rcu_sched\n     16       2 S    rcu_exp_par_gp_kthread_worker/0\n     17       2 R    rcu_exp_gp_kthread_worker\n     18       2 S    migration/0\n     19       2 S    idle_inject/0\n     20       2 S    cpuhp/0\n     21       2 S    cpuhp/2\n     22       2 S    idle_inject/2\n     23       2 S    migration/2\n     24       2 S    ksoftirqd/2\n     25       2 I    kworker/2:0-rcu_gp\n     26       2 I<   kworker/2:0H-events_highpri\n     27       2 S    cpuhp/1\n     28       2 S    idle_inject/1\n     29       2 S    migration/1\n     30       2 S    ksoftirqd/1\n     31       2 I    kworker/1:0-cgroup_free\n     32       2 I<   kworker/1:0H-events_highpri\n     33       2 S    cpuhp/3\n     34       2 S    idle_inject/3\n     35       2 S    migration/3\n     36       2 S    ksoftirqd/3\n     37       2 I    kworker/3:0-events\n     38       2 I<   kworker/3:0H-events_highpri\n     39       2 S    kdevtmpfs\n     40       2 I<   kworker/R-inet_frag_wq\n     41       2 I    rcu_tasks_rude_kthread\n     42       2 I    rcu_tasks_trace_kthread\n     43       2 S    kauditd\n     44       2 S    khungtaskd\n     45       2 I    kworker/u16:1-ipv6_addrconf\n     46       2 S    oom_reaper\n     47       2 R    kworker/u16:2+events_unbound\n     48       2 I<   kworker/R-writeback\n     49       2 S    kcompactd0\n     50       2 SN   ksmd\n     51       2 SN   khugepaged\n     52       2 I<   kworker/R-kblockd\n     53       2 I<   kworker/R-blkcg_punt_bio\n     54       2 I<   kworker/R-kintegrityd\n     55       2 S    irq/9-acpi\n     56       2 I    kworker/2:1-events\n     57       2 I    kworker/1:1-cgroup_release\n     58       2 I    kworker/3:1-cgroup_free\n     59       2 I<   kworker/R-tpm_dev_wq\n     60       2 I<   kworker/R-ata_sff\n     61       2 I<   kworker/R-md\n     62       2 I<   kworker/R-md_bitmap\n     63       2 I<   kworker/R-edac-poller\n     64       2 I<   kworker/R-hv_vmbus_con\n     65       2 I<   kworker/R-hv_vmbus_rescind\n     66       2 I<   kworker/R-hv_pri_chan\n     67       2 I<   kworker/R-hv_sub_chan\n     68       2 I<   kworker/R-devfreq_wq\n     69       2 S    watchdogd\n     70       2 I<   kworker/R-quota_events_unbound\n     71       2 I<   kworker/0:1H-kblockd\n     72       2 S    kswapd0\n     73       2 S    ecryptfs-kthread\n     74       2 I<   kworker/R-kthrotld\n     75       2 I<   kworker/R-nfit\n     76       2 S    scsi_eh_0\n     77       2 I<   kworker/R-scsi_tmf_0\n     78       2 I<   kworker/R-nvme-wq\n     79       2 I<   kworker/R-nvme-reset-wq\n     80       2 I<   kworker/R-nvme-delete-wq\n     81       2 I<   kworker/R-nvme-auth-wq\n     82       2 I    kworker/u16:3-flush-259:0\n     83       2 I    kworker/u16:4-events_power_efficient\n     84       2 I    kworker/u16:5-events_power_efficient\n     85       2 I<   kworker/R-mld\n     86       2 I<   kworker/1:1H-kblockd\n     87       2 I<   kworker/R-ipv6_addrconf\n     88       2 I    kworker/0:2-cgroup_free\n     89       2 S    hv_balloon\n     90       2 I<   kworker/R-kstrp\n     92       2 I<   kworker/u17:0\n    103       2 S    jbd2/nvme0n1p1-8\n    104       2 I<   kworker/R-ext4-rsv-conversion\n    105       2 I<   kworker/2:1H-kblockd\n    106       2 I    kworker/2:2-events\n    133       2 I<   kworker/3:1H-kblockd\n    156       1 S<s  systemd-journal\n    173       2 I    kworker/3:2-events\n    178       2 I<   kworker/R-kmpathd\n    179       2 I<   kworker/R-kmpath_handlerd\n    180       2 I    kworker/1:2-cgroup_offline\n    198       2 I    kworker/0:3-events\n    199       2 I    kworker/0:4-events\n    220       1 SLsl multipathd\n    225       1 Ss   systemd-udevd\n    237       2 S    psimon\n    298       1 Ss   hv_kvp_daemon\n    324       2 I    kworker/2:3-events\n    328       2 S    jbd2/nvme0n1p16-8\n    329       2 I<   kworker/R-ext4-rsv-conversion\n    346       2 I    kworker/1:3-cgroup_free\n    399       1 Ss   systemd-resolve\n    490       1 Ss   haveged\n    491       2 I    kworker/3:3-events\n    553       2 I<   kworker/R-mana_per_port_queue_reset_wq\n    558       2 I<   kworker/R-ib-comp-wq\n    559       2 I<   kworker/R-ib-comp-unb-wq\n    560       2 I<   kworker/R-ib_mcast\n    561       2 I<   kworker/R-ib_nl_sa_wq\n    562       2 I<   kworker/R-ib_mad1\n    641       1 Ss   systemd-network\n    707       2 I    kworker/u16:6\n    743       2 S    ext4lazyinit\n    809       1 Ss   dbus-daemon\n    814       1 Ss   networkd-dispat\n    821       1 Ssl  polkitd\n    832       1 Ss   systemd-logind\n    848       1 Ssl  udisksd\n    849       1 Ss   python3\n    878       2 I    kworker/3:4\n    881       1 Ss   cron\n    900       1 Ssl  containerd\n    903       1 Ss+  agetty\n    932       1 Ssl  rsyslogd\n    933       1 Ss+  agetty\n    955       1 Ss   systemd\n    956       1 S    chronyd\n    957     956 S    chronyd\n    994       1 Ssl  ModemManager\n   1006     955 S    (sd-pam)\n   1085       1 Ssl  dockerd\n   1130       2 I<   kworker/R-tls-strp\n   1214     849 Sl   python3\n   1869       2 S    psimon\n   1872       1 Ssl  hosted-compute-\n   1887    1872 S    sudo\n   1890    1887 Sl   provjobd6724948\n   1925    1872 Sl   Runner.Listener\n   1946    1925 Sl   Runner.Worker\n   2589       1 Ssl  packagekitd\n   4566       1 Ss   php-fpm8.3\n   4567    4566 S    php-fpm8.3\n   4568    4566 S    php-fpm8.3\n   5229    1946 S    bash\n   5230    5229 Sl   MainThread\n   5274     955 Ss   dbus-daemon\n   5392    5230 S    Xvfb\n   5395    5230 Ss   bash\n   5401    5395 Sl   MiniBrowser\n   5424    5401 SLl  WebKitNetworkPr\n   5466       1 RNs  (apport)\n   5467    5230 R    ps\n",
+                "bytes": 6139,
+                "retainedBytes": 6139,
+                "droppedBytes": 0,
+                "limitBytes": 65536
+              },
+              "stderr": {
+                "text": "",
+                "bytes": 0,
+                "retainedBytes": 0,
+                "droppedBytes": 0,
+                "limitBytes": 65536
+              }
+            },
+            "kernelJournal": {
+              "command": "journalctl",
+              "args": [
+                "-k",
+                "-n",
+                "80",
+                "--no-pager"
+              ],
+              "code": 0,
+              "signal": null,
+              "timedOut": false,
+              "error": null,
+              "stdout": {
+                "text": "Oct 06 19:19:41 runnervm8df0l kernel: hv_vmbus: registering driver hyperv_keyboard\nOct 06 19:19:41 runnervm8df0l kernel: hv_netvsc f8615163-0000-1000-2000-6045bd2d7c94 (unnamed net_device) (uninitialized): VF slot 1 added\nOct 06 19:19:41 runnervm8df0l kernel: input: AT Translated Set 2 keyboard as /devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/d34b2567-b9b6-42b9-8778-0a4ec0b955bf/serio0/input/input0\nOct 06 19:19:41 runnervm8df0l kernel: hyperv_drm 5620e0c7-8062-4dce-aeb7-520c7ef76171: [drm] Registered 1 planes with drm panic\nOct 06 19:19:41 runnervm8df0l kernel: [drm] Initialized hyperv_drm 1.0.0 for 5620e0c7-8062-4dce-aeb7-520c7ef76171 on minor 1\nOct 06 19:19:41 runnervm8df0l kernel: Console: switching to colour frame buffer device 128x48\nOct 06 19:19:41 runnervm8df0l kernel: hyperv_drm 5620e0c7-8062-4dce-aeb7-520c7ef76171: [drm] fb0: hyperv_drmdrmfb frame buffer device\nOct 06 19:19:41 runnervm8df0l kernel: hv_vmbus: registering driver hid_hyperv\nOct 06 19:19:41 runnervm8df0l kernel: input: Microsoft Vmbus HID-compliant Mouse as /devices/0006:045E:0621.0001/input/input1\nOct 06 19:19:41 runnervm8df0l kernel: hv_utils: KVP IC version 4.0\nOct 06 19:19:41 runnervm8df0l kernel: hid-hyperv 0006:045E:0621.0001: input: VIRTUAL HID v0.01 Mouse [Microsoft Vmbus HID-compliant Mouse] on \nOct 06 19:19:41 runnervm8df0l kernel: EXT4-fs (nvme0n1p16): Supports (experimental) DIO atomic writes awu_min: 4096, awu_max: 4096\nOct 06 19:19:41 runnervm8df0l kernel: EXT4-fs (nvme0n1p16): mounted filesystem 11c37f36-eda2-46ed-86c9-17c521906ced r/w with ordered data mode. Quota mode: none.\nOct 06 19:19:41 runnervm8df0l kernel: kvm_amd: TSC scaling supported\nOct 06 19:19:41 runnervm8df0l kernel: kvm_amd: Nested Virtualization enabled\nOct 06 19:19:41 runnervm8df0l kernel: kvm_amd: Nested Paging enabled\nOct 06 19:19:41 runnervm8df0l kernel: kvm_amd: kvm_amd: Hyper-V enlightened NPT TLB flush enabled\nOct 06 19:19:41 runnervm8df0l kernel: kvm_amd: kvm_amd: Hyper-V Direct TLB Flush enabled\nOct 06 19:19:41 runnervm8df0l kernel: kvm_amd: Virtual VMLOAD VMSAVE supported\nOct 06 19:19:41 runnervm8df0l kernel: kvm_amd: PMU virtualization is disabled\nOct 06 19:19:41 runnervm8df0l kernel: audit: type=1400 audit(1791314381.307:2): apparmor=\"STATUS\" operation=\"profile_load\" profile=\"unconfined\" name=\"Discord\" pid=367 comm=\"apparmor_parser\"\nOct 06 19:19:41 runnervm8df0l kernel: audit: type=1400 audit(1791314381.307:3): apparmor=\"STATUS\" operation=\"profile_load\" profile=\"unconfined\" name=\"QtWebEngineProcess\" pid=369 comm=\"apparmor_parser\"\nOct 06 19:19:41 runnervm8df0l kernel: audit: type=1400 audit(1791314381.307:4): apparmor=\"STATUS\" operation=\"profile_load\" profile=\"unconfined\" name=\"1password\" pid=366 comm=\"apparmor_parser\"\nOct 06 19:19:41 runnervm8df0l kernel: audit: type=1400 audit(1791314381.307:5): apparmor=\"STATUS\" operation=\"profile_load\" profile=\"unconfined\" name=4D6F6E676F444220436F6D70617373 pid=368 comm=\"apparmor_parser\"\nOct 06 19:19:41 runnervm8df0l kernel: audit: type=1400 audit(1791314381.309:6): apparmor=\"STATUS\" operation=\"profile_load\" profile=\"unconfined\" name=\"brave\" pid=372 comm=\"apparmor_parser\"\nOct 06 19:19:41 runnervm8df0l kernel: audit: type=1400 audit(1791314381.309:7): apparmor=\"STATUS\" operation=\"profile_load\" profile=\"unconfined\" name=\"cam\" pid=375 comm=\"apparmor_parser\"\nOct 06 19:19:41 runnervm8df0l kernel: audit: type=1400 audit(1791314381.309:8): apparmor=\"STATUS\" operation=\"profile_load\" profile=\"unconfined\" name=\"balena-etcher\" pid=371 comm=\"apparmor_parser\"\nOct 06 19:19:41 runnervm8df0l kernel: audit: type=1400 audit(1791314381.309:9): apparmor=\"STATUS\" operation=\"profile_load\" profile=\"unconfined\" name=\"buildah\" pid=374 comm=\"apparmor_parser\"\nOct 06 19:19:41 runnervm8df0l kernel: audit: type=1400 audit(1791314381.311:10): apparmor=\"STATUS\" operation=\"profile_load\" profile=\"unconfined\" name=\"chrome\" pid=381 comm=\"apparmor_parser\"\nOct 06 19:19:41 runnervm8df0l kernel: /dev/sr0: Can't lookup blockdev\nOct 06 19:19:41 runnervm8df0l kernel: 8021q: 802.1Q VLAN Support v1.8\nOct 06 19:19:42 runnervm8df0l kernel: hv_pci 00000001-7870-47b5-b203-907d12ca697e: PCI VMBus probing: Using version 0x10004\nOct 06 19:19:42 runnervm8df0l kernel: hv_pci 00000001-7870-47b5-b203-907d12ca697e: PCI host bridge to bus 7870:00\nOct 06 19:19:42 runnervm8df0l kernel: pci_bus 7870:00: root bus resource [mem 0xfc2000000-0xfc4007fff window]\nOct 06 19:19:42 runnervm8df0l kernel: pci_bus 7870:00: No busn resource found for root bus, will use [bus 00-ff]\nOct 06 19:19:42 runnervm8df0l kernel: pci 7870:00:00.0: [1414:00ba] type 00 class 0x020000 PCIe Endpoint\nOct 06 19:19:42 runnervm8df0l kernel: pci 7870:00:00.0: BAR 0 [mem 0xfc2000000-0xfc3ffffff 64bit pref]\nOct 06 19:19:42 runnervm8df0l kernel: pci 7870:00:00.0: BAR 4 [mem 0xfc4000000-0xfc4007fff 64bit pref]\nOct 06 19:19:42 runnervm8df0l kernel: pci 7870:00:00.0: enabling Extended Tags\nOct 06 19:19:42 runnervm8df0l kernel: pci_bus 7870:00: busn_res: [bus 00-ff] end is updated to 00\nOct 06 19:19:42 runnervm8df0l kernel: pci 7870:00:00.0: BAR 0 [mem 0xfc2000000-0xfc3ffffff 64bit pref]: assigned\nOct 06 19:19:42 runnervm8df0l kernel: pci 7870:00:00.0: BAR 4 [mem 0xfc4000000-0xfc4007fff 64bit pref]: assigned\nOct 06 19:19:42 runnervm8df0l kernel: mana 7870:00:00.0: enabling device (0000 -> 0002)\nOct 06 19:19:42 runnervm8df0l kernel: mana 7870:00:00.0: Microsoft Azure Network Adapter protocol version: 0.1.1\nOct 06 19:19:42 runnervm8df0l kernel: hv_netvsc f8615163-0000-1000-2000-6045bd2d7c94 eth0: VF registering: eth1\nOct 06 19:19:42 runnervm8df0l kernel: mana 7870:00:00.0 eth1: joined to eth0\nOct 06 19:19:42 runnervm8df0l kernel: mana 7870:00:00.0 ens1: renamed from eth1\nOct 06 19:19:42 runnervm8df0l kernel: mana 7870:00:00.0 ens1: Configured vPort 0 PD 18 DB 16\nOct 06 19:19:42 runnervm8df0l kernel: mana 7870:00:00.0 ens1: Configured steering vPort 0 entries 64\nOct 06 19:19:42 runnervm8df0l kernel: hv_netvsc f8615163-0000-1000-2000-6045bd2d7c94 eth0: Data path switched to VF: ens1\nOct 06 19:19:43 runnervm8df0l kernel: hv_netvsc f8615163-0000-1000-2000-6045bd2d7c94 eth0: Data path switched from VF: ens1\nOct 06 19:19:43 runnervm8df0l kernel: mana 7870:00:00.0 ens1: Configured steering vPort 0 entries 64\nOct 06 19:19:44 runnervm8df0l kernel: mana 7870:00:00.0 ens1: Configured vPort 0 PD 18 DB 16\nOct 06 19:19:44 runnervm8df0l kernel: mana 7870:00:00.0 ens1: Configured steering vPort 0 entries 64\nOct 06 19:19:44 runnervm8df0l kernel: hv_netvsc f8615163-0000-1000-2000-6045bd2d7c94 eth0: Data path switched to VF: ens1\nOct 06 19:19:44 runnervm8df0l kernel: mana 7870:00:00.0 mana_0: Port: 1 Link ACTIVE\nOct 06 19:19:46 runnervm8df0l kernel: EXT4-fs (nvme0n1p1): resizing filesystem from 19398395 to 39059195 blocks\nOct 06 19:19:47 runnervm8df0l kernel: EXT4-fs (nvme0n1p1): resized filesystem to 39059195\nOct 06 19:19:47 runnervm8df0l kernel: ephemeral0: Can't lookup blockdev\nOct 06 19:19:47 runnervm8df0l systemd-fstab-generator[774]: Checking was requested for \"ephemeral0\", but it is not a device.\nOct 06 19:19:47 runnervm8df0l systemd-fstab-generator[774]: x-systemd.device-timeout ignored for ephemeral0\nOct 06 19:19:47 runnervm8df0l kernel: block nvme0n1: No UUID available providing old NGUID\nOct 06 19:19:47 runnervm8df0l kernel: ephemeral0: Can't lookup blockdev\nOct 06 19:19:47 runnervm8df0l kernel: kauditd_printk_skb: 113 callbacks suppressed\nOct 06 19:19:47 runnervm8df0l kernel: audit: type=1400 audit(1791314387.992:124): apparmor=\"STATUS\" operation=\"profile_replace\" info=\"same as current profile, skipping\" profile=\"unconfined\" name=\"rsyslogd\" pid=855 comm=\"apparmor_parser\"\nOct 06 19:19:48 runnervm8df0l kernel: evm: overlay not supported\nOct 06 19:19:48 runnervm8df0l kernel: loop0: detected capacity change from 0 to 8\nOct 06 19:19:48 runnervm8df0l systemd-journald[156]: /var/log/journal/bb9ebc7b4ed8498385fd3b7f0a389054/user-1001.journal: Journal file uses a different sequence number ID, rotating.\nOct 06 19:19:48 runnervm8df0l kernel: audit: type=1400 audit(1791314388.445:125): apparmor=\"STATUS\" operation=\"profile_replace\" info=\"same as current profile, skipping\" profile=\"unconfined\" name=\"/usr/lib/snapd/snap-confine\" pid=1187 comm=\"apparmor_parser\"\nOct 06 19:19:48 runnervm8df0l kernel: audit: type=1400 audit(1791314388.610:126): apparmor=\"STATUS\" operation=\"profile_load\" profile=\"unconfined\" name=\"docker-default\" pid=1311 comm=\"apparmor_parser\"\nOct 06 19:19:48 runnervm8df0l kernel: Initializing XFRM netlink socket\nOct 06 19:19:49 runnervm8df0l kernel: bridge: filtering via arp/ip/ip6tables is no longer available by default. Update your scripts to load br_netfilter if you need this.\nOct 06 19:19:49 runnervm8df0l systemd-fstab-generator[1541]: Checking was requested for \"ephemeral0\", but it is not a device.\nOct 06 19:19:49 runnervm8df0l systemd-fstab-generator[1541]: x-systemd.device-timeout ignored for ephemeral0\nOct 06 19:19:53 runnervm8df0l kernel: Adding 3145724k swap on /swapfile.  Priority:-2 extents:44 across:43499516k SS\nOct 06 19:20:01 runnervm8df0l systemd-fstab-generator[1798]: Checking was requested for \"ephemeral0\", but it is not a device.\nOct 06 19:20:01 runnervm8df0l systemd-fstab-generator[1798]: x-systemd.device-timeout ignored for ephemeral0\nOct 06 19:20:01 runnervm8df0l systemd-fstab-generator[1853]: Checking was requested for \"ephemeral0\", but it is not a device.\nOct 06 19:20:01 runnervm8df0l systemd-fstab-generator[1853]: x-systemd.device-timeout ignored for ephemeral0\nOct 06 19:20:28 runnervm8df0l kernel: hv_balloon: Max. dynamic memory size: 16384 MB\n",
+                "bytes": 9555,
+                "retainedBytes": 9555,
+                "droppedBytes": 0,
+                "limitBytes": 65536
+              },
+              "stderr": {
+                "text": "",
+                "bytes": 0,
+                "retainedBytes": 0,
+                "droppedBytes": 0,
+                "limitBytes": 65536
+              }
+            },
+            "kernelMessages": {
+              "command": "dmesg",
+              "args": [
+                "--ctime",
+                "--level=err,warn"
+              ],
+              "code": 1,
+              "signal": null,
+              "timedOut": false,
+              "error": null,
+              "stdout": {
+                "text": "",
+                "bytes": 0,
+                "retainedBytes": 0,
+                "droppedBytes": 0,
+                "limitBytes": 65536
+              },
+              "stderr": {
+                "text": "dmesg: read kernel buffer failed: Operation not permitted\n",
+                "bytes": 58,
+                "retainedBytes": 58,
+                "droppedBytes": 0,
+                "limitBytes": 65536
+              }
+            },
+            "coredumps": {
+              "command": "coredumpctl",
+              "args": [
+                "list",
+                "--no-pager",
+                "--no-legend",
+                "--since",
+                "2026-10-06T19:21:31.931Z"
+              ],
+              "code": 0,
+              "signal": null,
+              "timedOut": false,
+              "error": null,
+              "stdout": {
+                "text": "Tue 2026-10-06 19:21:55 UTC 5435 1001 1001 SIGABRT present /home/runner/.cache/ms-playwright/webkit-2359/minibrowser-gtk/bin/WebKitWebProcess 4.7M\n",
+                "bytes": 147,
+                "retainedBytes": 147,
+                "droppedBytes": 0,
+                "limitBytes": 65536
+              },
+              "stderr": {
+                "text": "",
+                "bytes": 0,
+                "retainedBytes": 0,
+                "droppedBytes": 0,
+                "limitBytes": 65536
+              }
+            },
+            "varCrash": {
+              "path": "/var/crash",
+              "entries": [],
+              "entryCount": 0,
+              "droppedEntries": 0
+            },
+            "offlineCore": {
+              "selection": {
+                "pid": 5435,
+                "executable": "/home/runner/.cache/ms-playwright/webkit-2359/minibrowser-gtk/bin/WebKitWebProcess",
+                "startTicks": "11317",
+                "bootId": "baf98144-94fd-42cd-ad63-28309a73925a",
+                "bootIdHex": "baf9814494fd42cdad6328309a73925a",
+                "observedAt": "2026-10-06T19:21:32.316Z",
+                "verified": true,
+                "since": "2026-10-06T19:21:31.931Z",
+                "until": "2026-10-06T19:21:56.003Z"
+              },
+              "trust": "untrusted-native-diagnostic-output",
+              "complete": false,
+              "info": {
+                "command": "coredumpctl",
+                "args": [
+                  "--no-pager",
+                  "--since=2026-10-06T19:21:31.931Z",
+                  "--until=2026-10-06T19:21:56.003Z",
+                  "info",
+                  "5435",
+                  "COREDUMP_EXE=/home/runner/.cache/ms-playwright/webkit-2359/minibrowser-gtk/bin/WebKitWebProcess",
+                  "_BOOT_ID=baf9814494fd42cdad6328309a73925a"
+                ],
+                "pid": 5471,
+                "processGroup": 5471,
+                "code": 0,
+                "signal": null,
+                "timedOut": false,
+                "groupKill": null,
+                "error": null,
+                "stdout": {
+                  "text": "           PID: 5435 (WebKitWebProces)\n           UID: 1001 (runner)\n           GID: 1001 (runner)\n        Signal: 6 (ABRT)\n     Timestamp: Tue 2026-10-06 19:21:32 UTC (24s ago)\n  Command Line: /home/runner/.cache/ms-playwright/webkit-2359/minibrowser-gtk/bin/WebKitWebProcess 4 18\n    Executable: /home/runner/.cache/ms-playwright/webkit-2359/minibrowser-gtk/bin/WebKitWebProcess\n Control Group: /system.slice/hosted-compute-agent.service\n          Unit: hosted-compute-agent.service\n         Slice: system.slice\n       Boot ID: baf9814494fd42cdad6328309a73925a\n    Machine ID: bb9ebc7b4ed8498385fd3b7f0a389054\n      Hostname: runnervm8df0l\n       Storage: /var/lib/systemd/coredump/core.WebKitWebProces.1001.baf9814494fd42cdad6328309a73925a.5435.1791314492000000.zst (present)\n  Size on Disk: 4.7M\n       Message: Process 5435 (WebKitWebProces) of user 1001 dumped core.\n                \n                Module libudev.so.1 from deb systemd-255.4-1ubuntu8.17.amd64\n                Module libzstd.so.1 from deb libzstd-1.5.5+dfsg2-2build1.1.amd64\n                Module libgcc_s.so.1 from deb gcc-14-14.2.0-4ubuntu2~24.04.1.amd64\n                Module libstdc++.so.6 from deb gcc-14-14.2.0-4ubuntu2~24.04.1.amd64\n                Module libsystemd.so.0 from deb systemd-255.4-1ubuntu8.17.amd64\n                Module libatomic.so.1 from deb gcc-14-14.2.0-4ubuntu2~24.04.1.amd64\n                Stack trace of thread 5435:\n                #0  0x00007ff7ce89ec0c pthread_kill (libc.so.6 + 0x9ec0c)\n                #1  0x00007ff7ce84527e raise (libc.so.6 + 0x4527e)\n                #2  0x00007ff7ce8288ff abort (libc.so.6 + 0x288ff)\n                #3  0x00007ff7d558de17 n/a (/home/runner/.cache/ms-playwright/webkit-2359/minibrowser-gtk/lib/libwebkitgtk-6.0.so.4.20.0 + 0x78de17)\n                ELF object binary architecture: AMD x86-64\n",
+                  "bytes": 1839,
+                  "retainedBytes": 1839,
+                  "droppedBytes": 0,
+                  "limitBytes": 262144
+                },
+                "stderr": {
+                  "text": "",
+                  "bytes": 0,
+                  "retainedBytes": 0,
+                  "droppedBytes": 0,
+                  "limitBytes": 262144
+                },
+                "timeoutMs": 30000
+              },
+              "verifiedInfo": {
+                "pid": 5435,
+                "executable": "/home/runner/.cache/ms-playwright/webkit-2359/minibrowser-gtk/bin/WebKitWebProcess",
+                "signal": "6 (ABRT)",
+                "timestamp": "Tue 2026-10-06 19:21:32 UTC (24s ago)",
+                "trust": "verified-exact-selector-metadata"
+              },
+              "postmortemFileLimitBytes": 536870912,
+              "debug": {
+                "command": "prlimit",
+                "args": [
+                  "--fsize=536870912:536870912",
+                  "--",
+                  "coredumpctl",
+                  "--no-pager",
+                  "--since=2026-10-06T19:21:31.931Z",
+                  "--until=2026-10-06T19:21:56.003Z",
+                  "--debugger=/usr/bin/gdb",
+                  "--debugger-arguments=-nx -nh -batch -quiet -iex 'set auto-load off' -iex 'set debuginfod enabled off' -ex 'set pagination off' -ex 'bt 80' -ex 'thread apply all bt 20' -ex 'info sharedlibrary'",
+                  "debug",
+                  "5435",
+                  "COREDUMP_EXE=/home/runner/.cache/ms-playwright/webkit-2359/minibrowser-gtk/bin/WebKitWebProcess",
+                  "_BOOT_ID=baf9814494fd42cdad6328309a73925a"
+                ],
+                "pid": 5472,
+                "processGroup": 5472,
+                "code": null,
+                "signal": "SIGXFSZ",
+                "timedOut": false,
+                "groupKill": null,
+                "error": null,
+                "stdout": {
+                  "text": "",
+                  "bytes": 0,
+                  "retainedBytes": 0,
+                  "droppedBytes": 0,
+                  "limitBytes": 262144
+                },
+                "stderr": {
+                  "text": "",
+                  "bytes": 0,
+                  "retainedBytes": 0,
+                  "droppedBytes": 0,
+                  "limitBytes": 262144
+                },
+                "timeoutMs": 30000
+              },
+              "stackFramesRetained": false
+            }
+          },
+          "nativeBeforeEvaluation": {
+            "stage": "after-load-before-first-evaluation",
+            "observedAt": "2026-10-06T19:21:32.306Z",
+            "processTree": {
+              "command": "ps",
+              "args": [
+                "-eo",
+                "pid,ppid,stat,comm"
+              ],
+              "code": 0,
+              "signal": null,
+              "timedOut": false,
+              "error": null,
+              "stdout": {
+                "text": "    PID    PPID STAT COMMAND\n      1       0 Ss   systemd\n      2       0 S    kthreadd\n      3       2 S    pool_workqueue_release\n      4       2 I<   kworker/R-rcu_gp\n      5       2 I<   kworker/R-sync_wq\n      6       2 I<   kworker/R-kvfree_rcu_reclaim\n      7       2 I<   kworker/R-slub_flushwq\n      8       2 I<   kworker/R-netns\n      9       2 I    kworker/0:0-mm_percpu_wq\n     10       2 I<   kworker/0:0H-events_highpri\n     11       2 I    kworker/0:1-cgroup_offline\n     12       2 I    kworker/u16:0-ext4-rsv-conversion\n     13       2 I<   kworker/R-mm_percpu_wq\n     14       2 S    ksoftirqd/0\n     15       2 I    rcu_sched\n     16       2 S    rcu_exp_par_gp_kthread_worker/0\n     17       2 S    rcu_exp_gp_kthread_worker\n     18       2 S    migration/0\n     19       2 S    idle_inject/0\n     20       2 S    cpuhp/0\n     21       2 S    cpuhp/2\n     22       2 S    idle_inject/2\n     23       2 S    migration/2\n     24       2 S    ksoftirqd/2\n     25       2 I    kworker/2:0-rcu_gp\n     26       2 I<   kworker/2:0H-events_highpri\n     27       2 S    cpuhp/1\n     28       2 S    idle_inject/1\n     29       2 S    migration/1\n     30       2 S    ksoftirqd/1\n     31       2 I    kworker/1:0-cgroup_free\n     32       2 I<   kworker/1:0H-events_highpri\n     33       2 S    cpuhp/3\n     34       2 S    idle_inject/3\n     35       2 S    migration/3\n     36       2 S    ksoftirqd/3\n     37       2 I    kworker/3:0-events\n     38       2 I<   kworker/3:0H-events_highpri\n     39       2 S    kdevtmpfs\n     40       2 I<   kworker/R-inet_frag_wq\n     41       2 I    rcu_tasks_rude_kthread\n     42       2 I    rcu_tasks_trace_kthread\n     43       2 S    kauditd\n     44       2 S    khungtaskd\n     45       2 I    kworker/u16:1-ext4-rsv-conversion\n     46       2 S    oom_reaper\n     47       2 I    kworker/u16:2-events_power_efficient\n     48       2 I<   kworker/R-writeback\n     49       2 S    kcompactd0\n     50       2 SN   ksmd\n     51       2 SN   khugepaged\n     52       2 I<   kworker/R-kblockd\n     53       2 I<   kworker/R-blkcg_punt_bio\n     54       2 I<   kworker/R-kintegrityd\n     55       2 S    irq/9-acpi\n     56       2 I    kworker/2:1-events\n     57       2 I    kworker/1:1-cgroup_release\n     58       2 I    kworker/3:1-cgroup_free\n     59       2 I<   kworker/R-tpm_dev_wq\n     60       2 I<   kworker/R-ata_sff\n     61       2 I<   kworker/R-md\n     62       2 I<   kworker/R-md_bitmap\n     63       2 I<   kworker/R-edac-poller\n     64       2 I<   kworker/R-hv_vmbus_con\n     65       2 I<   kworker/R-hv_vmbus_rescind\n     66       2 I<   kworker/R-hv_pri_chan\n     67       2 I<   kworker/R-hv_sub_chan\n     68       2 I<   kworker/R-devfreq_wq\n     69       2 S    watchdogd\n     70       2 I<   kworker/R-quota_events_unbound\n     71       2 I<   kworker/0:1H-kblockd\n     72       2 S    kswapd0\n     73       2 S    ecryptfs-kthread\n     74       2 I<   kworker/R-kthrotld\n     75       2 I<   kworker/R-nfit\n     76       2 S    scsi_eh_0\n     77       2 I<   kworker/R-scsi_tmf_0\n     78       2 I<   kworker/R-nvme-wq\n     79       2 I<   kworker/R-nvme-reset-wq\n     80       2 I<   kworker/R-nvme-delete-wq\n     81       2 I<   kworker/R-nvme-auth-wq\n     82       2 I    kworker/u16:3-events_unbound\n     83       2 I    kworker/u16:4-iou_exit\n     84       2 I    kworker/u16:5-flush-259:0\n     85       2 I<   kworker/R-mld\n     86       2 I<   kworker/1:1H-kblockd\n     87       2 I<   kworker/R-ipv6_addrconf\n     88       2 I    kworker/0:2-cgroup_free\n     89       2 S    hv_balloon\n     90       2 I<   kworker/R-kstrp\n     92       2 I<   kworker/u17:0\n    103       2 S    jbd2/nvme0n1p1-8\n    104       2 I<   kworker/R-ext4-rsv-conversion\n    105       2 I<   kworker/2:1H-kblockd\n    106       2 I    kworker/2:2-events\n    133       2 I<   kworker/3:1H-kblockd\n    156       1 S<s  systemd-journal\n    173       2 I    kworker/3:2-mm_percpu_wq\n    178       2 I<   kworker/R-kmpathd\n    179       2 I<   kworker/R-kmpath_handlerd\n    180       2 I    kworker/1:2-mm_percpu_wq\n    198       2 I    kworker/0:3-events\n    199       2 I    kworker/0:4-events\n    220       1 SLsl multipathd\n    225       1 Ss   systemd-udevd\n    237       2 S    psimon\n    298       1 Ss   hv_kvp_daemon\n    324       2 I    kworker/2:3-events\n    328       2 S    jbd2/nvme0n1p16-8\n    329       2 I<   kworker/R-ext4-rsv-conversion\n    346       2 I    kworker/1:3-cgroup_free\n    399       1 Ss   systemd-resolve\n    490       1 Ss   haveged\n    491       2 I    kworker/3:3-cgroup_free\n    553       2 I<   kworker/R-mana_per_port_queue_reset_wq\n    558       2 I<   kworker/R-ib-comp-wq\n    559       2 I<   kworker/R-ib-comp-unb-wq\n    560       2 I<   kworker/R-ib_mcast\n    561       2 I<   kworker/R-ib_nl_sa_wq\n    562       2 I<   kworker/R-ib_mad1\n    641       1 Ss   systemd-network\n    707       2 I    kworker/u16:6\n    743       2 S    ext4lazyinit\n    809       1 Ss   dbus-daemon\n    814       1 Ss   networkd-dispat\n    821       1 Ssl  polkitd\n    832       1 Ss   systemd-logind\n    848       1 Ssl  udisksd\n    849       1 Ss   python3\n    878       2 I    kworker/3:4\n    881       1 Ss   cron\n    900       1 Ssl  containerd\n    903       1 Ss+  agetty\n    932       1 Ssl  rsyslogd\n    933       1 Ss+  agetty\n    955       1 Ss   systemd\n    956       1 S    chronyd\n    957     956 S    chronyd\n    994       1 Ssl  ModemManager\n   1006     955 S    (sd-pam)\n   1085       1 Ssl  dockerd\n   1130       2 I<   kworker/R-tls-strp\n   1214     849 Sl   python3\n   1869       2 S    psimon\n   1872       1 Ssl  hosted-compute-\n   1887    1872 S    sudo\n   1890    1887 Sl   provjobd6724948\n   1925    1872 Sl   Runner.Listener\n   1946    1925 Sl   Runner.Worker\n   2589       1 Ssl  packagekitd\n   4566       1 Ss   php-fpm8.3\n   4567    4566 S    php-fpm8.3\n   4568    4566 S    php-fpm8.3\n   5229    1946 S    bash\n   5230    5229 Sl   MainThread\n   5274     955 Ss   dbus-daemon\n   5392    5230 S    Xvfb\n   5395    5230 Ss   bash\n   5401    5395 Rl   MiniBrowser\n   5424    5401 SLl  WebKitNetworkPr\n   5435    5401 DLl  WebKitWebProces\n   5452    5230 R    ps\n",
+                "bytes": 6167,
+                "retainedBytes": 6167,
+                "droppedBytes": 0,
+                "limitBytes": 65536
+              },
+              "stderr": {
+                "text": "",
+                "bytes": 0,
+                "retainedBytes": 0,
+                "droppedBytes": 0,
+                "limitBytes": 65536
+              }
+            },
+            "webProcesses": [
+              {
+                "pid": 5435,
+                "ppid": 5401,
+                "state": "DLl",
+                "name": "WebKitWebProces",
+                "identity": {
+                  "pid": 5435,
+                  "executable": "/home/runner/.cache/ms-playwright/webkit-2359/minibrowser-gtk/bin/WebKitWebProcess",
+                  "startTicks": "11317",
+                  "bootId": "baf98144-94fd-42cd-ad63-28309a73925a",
+                  "bootIdHex": "baf9814494fd42cdad6328309a73925a",
+                  "observedAt": "2026-10-06T19:21:32.316Z",
+                  "verified": true
+                }
+              }
+            ]
+          },
+          "stderrAfter": {
+            "path": "/home/runner/work/_temp/gtk-native-results/native-stderr.log",
+            "bytes": 4611,
+            "retainedBytes": 4611,
+            "droppedBytes": 0,
+            "limitBytes": 262144,
+            "sha256": "8b3db39cf18a6dfbc1afffaef0b2a391c0e54dece852f456fbe04bbaf8368127"
+          },
+          "elapsedMs": 24306.841297
+        }
+      ],
+      "errors": [],
+      "collectionComplete": true,
+      "stderr": {
+        "path": "/home/runner/work/_temp/gtk-native-results/native-stderr.log",
+        "bytes": 4611,
+        "retainedBytes": 4611,
+        "droppedBytes": 0,
+        "limitBytes": 262144,
+        "sha256": "8b3db39cf18a6dfbc1afffaef0b2a391c0e54dece852f456fbe04bbaf8368127"
+      },
+      "environment": {
+        "platform": "linux",
+        "os": "6.17.0-1022-azure",
+        "architecture": "x64",
+        "node": "v24.19.0",
+        "runnerImage": "ubuntu24",
+        "imageVersion": "20260927.320.1",
+        "cpus": [
+          "AMD EPYC 9V45 96-Core Processor",
+          "AMD EPYC 9V45 96-Core Processor",
+          "AMD EPYC 9V45 96-Core Processor",
+          "AMD EPYC 9V45 96-Core Processor"
+        ],
+        "memoryBytes": 16766410752,
+        "runId": "37518167424",
+        "attempt": "1"
+      },
+      "offlineDiagnostics": {
+        "commandMs": 30000,
+        "textLimitBytes": 262144,
+        "gdbArguments": "-nx -nh -batch -quiet -iex 'set auto-load off' -iex 'set debuginfod enabled off' -ex 'set pagination off' -ex 'bt 80' -ex 'thread apply all bt 20' -ex 'info sharedlibrary'",
+        "gdb": {
+          "command": "/usr/bin/gdb",
+          "args": [
+            "--version"
+          ],
+          "pid": 5238,
+          "processGroup": 5238,
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "groupKill": null,
+          "error": null,
+          "stdout": {
+            "text": "GNU gdb (Ubuntu 15.1-1ubuntu1~24.04.1) 15.1\nCopyright (C) 2024 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n",
+            "bytes": 293,
+            "retainedBytes": 293,
+            "droppedBytes": 0,
+            "limitBytes": 262144
+          },
+          "stderr": {
+            "text": "",
+            "bytes": 0,
+            "retainedBytes": 0,
+            "droppedBytes": 0,
+            "limitBytes": 262144
+          },
+          "timeoutMs": 30000
+        },
+        "coredumpctl": {
+          "command": "coredumpctl",
+          "args": [
+            "--version"
+          ],
+          "pid": 5244,
+          "processGroup": 5244,
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "groupKill": null,
+          "error": null,
+          "stdout": {
+            "text": "systemd 255 (255.4-1ubuntu8.17)\n+PAM +AUDIT +SELINUX +APPARMOR +IMA +SMACK +SECCOMP +GCRYPT -GNUTLS +OPENSSL +ACL +BLKID +CURL +ELFUTILS +FIDO2 +IDN2 -IDN +IPTC +KMOD +LIBCRYPTSETUP +LIBFDISK +PCRE2 -PWQUALITY +P11KIT +QRENCODE +TPM2 +BZIP2 +LZ4 +XZ +ZLIB +ZSTD -BPF_FRAMEWORK -XKBCOMMON +UTMP +SYSVINIT default-hierarchy=unified\n",
+            "bytes": 330,
+            "retainedBytes": 330,
+            "droppedBytes": 0,
+            "limitBytes": 262144
+          },
+          "stderr": {
+            "text": "",
+            "bytes": 0,
+            "retainedBytes": 0,
+            "droppedBytes": 0,
+            "limitBytes": 262144
+          },
+          "timeoutMs": 30000
+        },
+        "prlimit": {
+          "command": "prlimit",
+          "args": [
+            "--version"
+          ],
+          "pid": 5245,
+          "processGroup": 5245,
+          "code": 0,
+          "signal": null,
+          "timedOut": false,
+          "groupKill": null,
+          "error": null,
+          "stdout": {
+            "text": "prlimit from util-linux 2.39.3\n",
+            "bytes": 31,
+            "retainedBytes": 31,
+            "droppedBytes": 0,
+            "limitBytes": 262144
+          },
+          "stderr": {
+            "text": "",
+            "bytes": 0,
+            "retainedBytes": 0,
+            "droppedBytes": 0,
+            "limitBytes": 262144
+          },
+          "timeoutMs": 30000
+        },
+        "debuggerAvailable": true,
+        "trust": "untrusted-native-diagnostic-output",
+        "nativeCaptureComplete": false,
+        "nativeCrashRows": 1
+      },
+      "job": {
+        "id": 112456357214,
+        "url": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37518167424/job/112456357214",
+        "status": "completed",
+        "conclusion": "success",
+        "sourceCommit": "e726982735cea1c7890711ea1aa5575ee53d4169",
+        "attempt": 1,
+        "startedAt": "2026-10-06T19:20:04Z",
+        "completedAt": "2026-10-06T19:21:59Z",
+        "durationSeconds": 115.0,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-10-06T19:20:05Z",
+            "completed_at": "2026-10-06T19:20:06Z",
+            "durationSeconds": 1.0
+          },
+          {
+            "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-10-06T19:20:06Z",
+            "completed_at": "2026-10-06T19:20:10Z",
+            "durationSeconds": 4.0
+          },
+          {
+            "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-10-06T19:20:10Z",
+            "completed_at": "2026-10-06T19:20:14Z",
+            "durationSeconds": 4.0
+          },
+          {
+            "name": "Validate the bounded three-control and real-source contracts",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-10-06T19:20:14Z",
+            "completed_at": "2026-10-06T19:20:16Z",
+            "durationSeconds": 2.0
+          },
+          {
+            "name": "Build exact normal Color without an intervention",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-10-06T19:20:16Z",
+            "completed_at": "2026-10-06T19:20:16Z",
+            "durationSeconds": 0.0
+          },
+          {
+            "name": "Bound Ubuntu downloads and use its primary archive",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-10-06T19:20:16Z",
+            "completed_at": "2026-10-06T19:20:16Z",
+            "durationSeconds": 0.0
+          },
+          {
+            "name": "Install the pinned Node toolchain",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-10-06T19:20:16Z",
+            "completed_at": "2026-10-06T19:20:20Z",
+            "durationSeconds": 4.0
+          },
+          {
+            "name": "Install Ubuntu WebKit and display dependencies without prior launch",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8,
+            "started_at": "2026-10-06T19:20:20Z",
+            "completed_at": "2026-10-06T19:21:14Z",
+            "durationSeconds": 54.0
+          },
+          {
+            "name": "Retain debugger availability and install it only if absent",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9,
+            "started_at": "2026-10-06T19:21:14Z",
+            "completed_at": "2026-10-06T19:21:18Z",
+            "durationSeconds": 4.0
+          },
+          {
+            "name": "Download pinned WebKit without prior launch",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10,
+            "started_at": "2026-10-06T19:21:18Z",
+            "completed_at": "2026-10-06T19:21:22Z",
+            "durationSeconds": 4.0
+          },
+          {
+            "name": "Retain three fresh GTK outcomes and exact failed-process offline core evidence",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11,
+            "started_at": "2026-10-06T19:21:22Z",
+            "completed_at": "2026-10-06T19:21:56Z",
+            "durationSeconds": 34.0
+          },
+          {
+            "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 12,
+            "started_at": "2026-10-06T19:21:56Z",
+            "completed_at": "2026-10-06T19:21:57Z",
+            "durationSeconds": 1.0
+          },
+          {
+            "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 23,
+            "started_at": "2026-10-06T19:21:57Z",
+            "completed_at": "2026-10-06T19:21:57Z",
+            "durationSeconds": 0.0
+          },
+          {
+            "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 24,
+            "started_at": "2026-10-06T19:21:57Z",
+            "completed_at": "2026-10-06T19:21:57Z",
+            "durationSeconds": 0.0
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 25,
+            "started_at": "2026-10-06T19:21:57Z",
+            "completed_at": "2026-10-06T19:21:57Z",
+            "durationSeconds": 0.0
+          }
+        ]
+      },
+      "artifact": {
+        "id": 11438351937,
+        "name": "gtk-native-core-37518167424-1",
+        "url": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37518167424/artifacts/11438351937",
+        "digest": "sha256:e653cc38fb5b303e4c03ae93f443227755eaadcb961e5790c41dcb05cac1f07b",
+        "sizeBytes": 20887,
+        "downloadFileId": "file_000000002da881f4a7edbf7275784349",
+        "zip": {
+          "path": "/workspace/scratch/39abca264702/attachments/36a507e7-5db3-464b-883f-1263289d9d38/gtk-native-core-37518167424.zip",
+          "bytes": 20887,
+          "sha256": "e653cc38fb5b303e4c03ae93f443227755eaadcb961e5790c41dcb05cac1f07b"
+        },
+        "members": {
+          "gdb-before-install.txt": {
+            "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-core/gdb-before-install.txt",
+            "bytes": 63,
+            "sha256": "779ade19a3d6c4110de81e0779f9020f0c856b512bd7c039fa92b69bb08cad16"
+          },
+          "gdb-install.log": {
+            "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-core/gdb-install.log",
+            "bytes": 4270,
+            "sha256": "0a07b15ae6c8c9362445a035d6d740c1c01618fb6ae341de1b6ea4e373593ede"
+          },
+          "gtk-native.json": {
+            "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-core/gtk-native.json",
+            "bytes": 107051,
+            "sha256": "47b749f2759a3b3e5e73b2509c61a9ce17dcbf7b39791548ab5ea6a5e2d41bb6"
+          },
+          "native-stderr.log": {
+            "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-core/native-stderr.log",
+            "bytes": 4611,
+            "sha256": "8b3db39cf18a6dfbc1afffaef0b2a391c0e54dece852f456fbe04bbaf8368127"
+          },
+          "untrusted-artifact.json": {
+            "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-core/untrusted-artifact.json",
+            "bytes": 8264,
+            "sha256": "3b5cd16a5819b4998b9e9ab4f4335a681bba4e86d6debf2ab47cdb47ff34011e"
+          },
+          "untrusted-base-artifact.json": {
+            "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-core/untrusted-base-artifact.json",
+            "bytes": 7671,
+            "sha256": "767054a74897bcade47b97b6e14d5183284508bb1faf592e90b6f74a861f013a"
+          }
+        },
+        "metadata": {
+          "id": 11438351937,
+          "node_id": "MDg6QXJ0aWZhY3QxMTQzODM1MTkzNw==",
+          "name": "gtk-native-core-37518167424-1",
+          "size_in_bytes": 20887,
+          "url": "https://api.github.com/repos/oborskyivitalii/oborskyivitalii/actions/artifacts/11438351937",
+          "archive_download_url": "https://api.github.com/repos/oborskyivitalii/oborskyivitalii/actions/artifacts/11438351937/zip",
+          "expired": false,
+          "digest": "sha256:e653cc38fb5b303e4c03ae93f443227755eaadcb961e5790c41dcb05cac1f07b",
+          "created_at": "2026-10-06T19:21:57Z",
+          "updated_at": "2026-10-06T19:21:57Z",
+          "expires_at": "2027-01-04T19:20:01Z",
+          "workflow_run": {
+            "id": 37518167424,
+            "repository_id": 1400059184,
+            "head_repository_id": 1400059184,
+            "head_branch": "work/sol-primitive-cost-20261005",
+            "head_sha": "e726982735cea1c7890711ea1aa5575ee53d4169"
+          }
+        }
+      },
+      "rawLog": {
+        "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-native-job.log",
+        "bytes": 161897,
+        "sha256": "bf5a4db3e75221281cba2bcf02f37ba2a4fcb9c16d0b1c5eaa9adb0f3406bc99"
+      },
+      "nativeSuccessRows": 2,
+      "nativeFailureRows": 1,
+      "runnerImage": {
+        "version": "20260927.320.1",
+        "manifestURL": "https://github.com/actions/runner-images/blob/ubuntu24/20260927.320/images/ubuntu/Ubuntu2404-Readme.md"
+      },
+      "installation": {
+        "contractTests": {
+          "passed": 21,
+          "failed": 0,
+          "logLines": [
+            "2026-10-06T19:20:16.1313313Z ℹ tests 21",
+            "2026-10-06T19:20:16.1313715Z ℹ pass 21",
+            "2026-10-06T19:20:16.1313897Z ℹ fail 0"
+          ]
+        },
+        "changedAptSourceFiles": [
+          "/etc/apt/apt-mirrors.txt"
+        ],
+        "rewriteLogLine": "2026-10-06T19:20:16.8378274Z Ubuntu source/mirror files moved to the primary archive: ['/etc/apt/apt-mirrors.txt']",
+        "aptAcquireBounds": {
+          "httpTimeoutSeconds": 30,
+          "httpsTimeoutSeconds": 30,
+          "retries": 0
+        },
+        "nodeInstallStepSeconds": 4,
+        "osDependencyStepSeconds": 54,
+        "debuggerInstallStepSeconds": 4,
+        "browserDownloadStepSeconds": 4,
+        "jobBudgetMinutes": 25,
+        "stepBudgetsMinutes": {
+          "node": 3,
+          "osDependencies": 5,
+          "optionalDebugger": 5,
+          "browser": 3
+        },
+        "osDependencies": {
+          "upgraded": 7,
+          "newlyInstalled": 181,
+          "removed": 0,
+          "notUpgraded": 22,
+          "upgrades": [
+            {
+              "package": "libfreetype6:amd64",
+              "fromVersion": "2.13.2+dfsg-1ubuntu0.1",
+              "toVersion": "2.13.2+dfsg-1ubuntu0.2",
+              "rawLine": "2026-10-06T19:21:06.5048583Z Unpacking libfreetype6:amd64 (2.13.2+dfsg-1ubuntu0.2) over (2.13.2+dfsg-1ubuntu0.1) ..."
+            },
+            {
+              "package": "libgl1-mesa-dri:amd64",
+              "fromVersion": "25.2.8-0ubuntu0.24.04.2",
+              "toVersion": "25.2.8-0ubuntu0.24.04.4",
+              "rawLine": "2026-10-06T19:21:09.1650389Z Unpacking libgl1-mesa-dri:amd64 (25.2.8-0ubuntu0.24.04.4) over (25.2.8-0ubuntu0.24.04.2) ..."
+            },
+            {
+              "package": "libglx-mesa0:amd64",
+              "fromVersion": "25.2.8-0ubuntu0.24.04.2",
+              "toVersion": "25.2.8-0ubuntu0.24.04.4",
+              "rawLine": "2026-10-06T19:21:09.2033587Z Unpacking libglx-mesa0:amd64 (25.2.8-0ubuntu0.24.04.4) over (25.2.8-0ubuntu0.24.04.2) ..."
+            },
+            {
+              "package": "libgbm1:amd64",
+              "fromVersion": "25.2.8-0ubuntu0.24.04.2",
+              "toVersion": "25.2.8-0ubuntu0.24.04.4",
+              "rawLine": "2026-10-06T19:21:09.2321637Z Unpacking libgbm1:amd64 (25.2.8-0ubuntu0.24.04.4) over (25.2.8-0ubuntu0.24.04.2) ..."
+            },
+            {
+              "package": "mesa-libgallium:amd64",
+              "fromVersion": "25.2.8-0ubuntu0.24.04.2",
+              "toVersion": "25.2.8-0ubuntu0.24.04.4",
+              "rawLine": "2026-10-06T19:21:09.2607990Z Unpacking mesa-libgallium:amd64 (25.2.8-0ubuntu0.24.04.4) over (25.2.8-0ubuntu0.24.04.2) ..."
+            },
+            {
+              "package": "libevent-pthreads-2.1-7t64:amd64",
+              "fromVersion": "2.1.12-stable-9ubuntu2.1",
+              "toVersion": "2.1.12-stable-9ubuntu2.2",
+              "rawLine": "2026-10-06T19:21:09.6983095Z Unpacking libevent-pthreads-2.1-7t64:amd64 (2.1.12-stable-9ubuntu2.2) over (2.1.12-stable-9ubuntu2.1) ..."
+            },
+            {
+              "package": "libevent-core-2.1-7t64:amd64",
+              "fromVersion": "2.1.12-stable-9ubuntu2.1",
+              "toVersion": "2.1.12-stable-9ubuntu2.2",
+              "rawLine": "2026-10-06T19:21:09.7397631Z Unpacking libevent-core-2.1-7t64:amd64 (2.1.12-stable-9ubuntu2.2) over (2.1.12-stable-9ubuntu2.1) ..."
+            }
+          ],
+          "summaryLines": [
+            "2026-10-06T19:20:28.9511156Z 7 upgraded, 181 newly installed, 0 to remove and 22 not upgraded.",
+            "2026-10-06T19:20:28.0943560Z Fetched 12.6 MB in 2s (6638 kB/s)",
+            "2026-10-06T19:21:01.6333336Z Fetched 126 MB in 32s (3876 kB/s)"
+          ]
+        },
+        "debugger": {
+          "availableBeforeInstall": false,
+          "upgraded": 0,
+          "newlyInstalled": 7,
+          "removed": 0,
+          "notUpgraded": 22,
+          "newPackages": [
+            "gdb",
+            "libbabeltrace1",
+            "libdebuginfod-common",
+            "libdebuginfod1t64",
+            "libipt2",
+            "libsource-highlight-common",
+            "libsource-highlight4t64"
+          ],
+          "packageVersion": "15.1-1ubuntu1~24.04.1",
+          "summaryLines": [
+            "2026-10-06T19:21:14.7442769Z 0 upgraded, 7 newly installed, 0 to remove and 22 not upgraded.",
+            "2026-10-06T19:21:17.2414834Z Fetched 4646 kB in 2s (2009 kB/s)"
+          ],
+          "beforeInstallFile": {
+            "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-core/gdb-before-install.txt",
+            "bytes": 63,
+            "sha256": "779ade19a3d6c4110de81e0779f9020f0c856b512bd7c039fa92b69bb08cad16"
+          },
+          "installLog": {
+            "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-core/gdb-install.log",
+            "bytes": 4270,
+            "sha256": "0a07b15ae6c8c9362445a035d6d740c1c01618fb6ae341de1b6ea4e373593ede"
+          }
+        },
+        "downloadedBrowser": {
+          "name": "WebKit",
+          "version": "26.6",
+          "playwrightVersion": "1.63.0",
+          "build": 2359,
+          "rawLines": [
+            "2026-10-06T19:21:18.9511242Z Downloading WebKit 26.6 (playwright webkit v2359) from https://cdn.playwright.dev/dbazure/download/playwright/builds/webkit/2359/webkit-ubuntu-24.04.zip",
+            "2026-10-06T19:21:21.4944414Z WebKit 26.6 (playwright webkit v2359) downloaded to /home/runner/.cache/ms-playwright/webkit-2359"
+          ]
+        },
+        "observedUbuntuAptURIs": [
+          "https://archive.ubuntu.com/ubuntu"
+        ],
+        "ubuntuAptObservation": "APT Get/Hit lines after the source rewrite use archive.ubuntu.com. The Azure archive expression in the printed rewrite source is not an observed APT download."
+      }
+    }
+  },
+  "static": {
+    "job": {
+      "id": 112456357656,
+      "url": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37518167424/job/112456357656",
+      "status": "completed",
+      "conclusion": "success",
+      "sourceCommit": "e726982735cea1c7890711ea1aa5575ee53d4169",
+      "attempt": 1,
+      "startedAt": "2026-10-06T19:20:05Z",
+      "completedAt": "2026-10-06T19:22:12Z",
+      "durationSeconds": 127.0,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-06T19:20:06Z",
+          "completed_at": "2026-10-06T19:20:07Z",
+          "durationSeconds": 1.0
+        },
+        {
+          "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-06T19:20:07Z",
+          "completed_at": "2026-10-06T19:20:11Z",
+          "durationSeconds": 4.0
+        },
+        {
+          "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-06T19:20:11Z",
+          "completed_at": "2026-10-06T19:20:16Z",
+          "durationSeconds": 5.0
+        },
+        {
+          "name": "Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-06T19:20:16Z",
+          "completed_at": "2026-10-06T19:20:17Z",
+          "durationSeconds": 1.0
+        },
+        {
+          "name": "Build source identity and install locked scanners",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-06T19:20:17Z",
+          "completed_at": "2026-10-06T19:20:47Z",
+          "durationSeconds": 30.0
+        },
+        {
+          "name": "Lint complete current source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-06T19:20:47Z",
+          "completed_at": "2026-10-06T19:20:51Z",
+          "durationSeconds": 4.0
+        },
+        {
+          "name": "Retain exact security candidates",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-06T19:20:51Z",
+          "completed_at": "2026-10-06T19:22:07Z",
+          "durationSeconds": 76.0
+        },
+        {
+          "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-06T19:22:07Z",
+          "completed_at": "2026-10-06T19:22:09Z",
+          "durationSeconds": 2.0
+        },
+        {
+          "name": "Post Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-10-06T19:22:09Z",
+          "completed_at": "2026-10-06T19:22:09Z",
+          "durationSeconds": 0.0
+        },
+        {
+          "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-10-06T19:22:09Z",
+          "completed_at": "2026-10-06T19:22:09Z",
+          "durationSeconds": 0.0
+        },
+        {
+          "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-10-06T19:22:09Z",
+          "completed_at": "2026-10-06T19:22:09Z",
+          "durationSeconds": 0.0
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-10-06T19:22:09Z",
+          "completed_at": "2026-10-06T19:22:09Z",
+          "durationSeconds": 0.0
+        }
+      ]
+    },
+    "artifact": {
+      "id": 11437707700,
+      "name": "gtk-native-static-37518167424-1",
+      "url": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37518167424/artifacts/11437707700",
+      "digest": "sha256:7e3caa0fa338efef2da58fe912f58866ba933f52dba5ea610cb8067ea54d1f86",
+      "sizeBytes": 81921,
+      "downloadFileId": "file_00000000aa5481f4bf617a6502b39d99",
+      "zip": {
+        "path": "/workspace/scratch/39abca264702/attachments/b092ba3a-7d26-4845-b61b-1faa06daacb0/gtk-native-static-37518167424.zip",
+        "bytes": 81921,
+        "sha256": "7e3caa0fa338efef2da58fe912f58866ba933f52dba5ea610cb8067ea54d1f86"
+      },
+      "members": {
+        "bandit.json": {
+          "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-static/bandit.json",
+          "bytes": 2121,
+          "sha256": "8c7712fa1488e058d0783ce3b5bec686c12af331974e2c394816ea48f526fb14"
+        },
+        "detect-secrets.json": {
+          "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-static/detect-secrets.json",
+          "bytes": 726845,
+          "sha256": "adac6691d296cae63133989d5acc37adf84751c946398ab57dd7680b055a7a92"
+        },
+        "eslint.json": {
+          "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-static/eslint.json",
+          "bytes": 30112,
+          "sha256": "aaad63f5631b7d718d367b0d5d42ea830720433b1e90ea8fff23f6142f25b456"
+        },
+        "lint.json": {
+          "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-static/lint.json",
+          "bytes": 1707,
+          "sha256": "cab2e2a16bf8102244e27569148a28b53db701a1f296d63116064187be76c3c2"
+        },
+        "ruff.json": {
+          "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-static/ruff.json",
+          "bytes": 2,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "security.json": {
+          "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-static/security.json",
+          "bytes": 14171,
+          "sha256": "3d8fe291a8599fcc3b332f8cdf081d54802b4e053ad43a2f8a14b2d4c5c2affc"
+        },
+        "semgrep-settings.yml": {
+          "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-static/semgrep-settings.yml",
+          "bytes": 94,
+          "sha256": "4ae81f3ca98f5f6b7920173c4e47572468b0a76f2f5e8ffd73d814c152da292f"
+        },
+        "semgrep.json": {
+          "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-static/semgrep.json",
+          "bytes": 8073,
+          "sha256": "9abc5265e73a858cebce31f838b579a577d99b4c96ed4e7ed4d3e1569c5f95df"
+        },
+        "semgrep.log": {
+          "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-static/semgrep.log",
+          "bytes": 37113,
+          "sha256": "7a1344382b61a728fd186f2925b93f8cdb8719a67f8190aefcd0ed516c3ae212"
+        },
+        "stylelint.json": {
+          "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-static/stylelint.json",
+          "bytes": 192,
+          "sha256": "e3f28861099fd575c2f1a74a397eb61eda5ae6e5a6872d7eac922e3366fe8289"
+        }
+      },
+      "metadata": {
+        "id": 11437707700,
+        "node_id": "MDg6QXJ0aWZhY3QxMTQzNzcwNzcwMA==",
+        "name": "gtk-native-static-37518167424-1",
+        "size_in_bytes": 81921,
+        "url": "https://api.github.com/repos/oborskyivitalii/oborskyivitalii/actions/artifacts/11437707700",
+        "archive_download_url": "https://api.github.com/repos/oborskyivitalii/oborskyivitalii/actions/artifacts/11437707700/zip",
+        "expired": false,
+        "digest": "sha256:7e3caa0fa338efef2da58fe912f58866ba933f52dba5ea610cb8067ea54d1f86",
+        "created_at": "2026-10-06T19:22:09Z",
+        "updated_at": "2026-10-06T19:22:09Z",
+        "expires_at": "2027-01-04T19:20:01Z",
+        "workflow_run": {
+          "id": 37518167424,
+          "repository_id": 1400059184,
+          "head_repository_id": 1400059184,
+          "head_branch": "work/sol-primitive-cost-20261005",
+          "head_sha": "e726982735cea1c7890711ea1aa5575ee53d4169"
+        }
+      }
+    },
+    "rawLog": {
+      "path": "/workspace/scratch/39abca264702/gtk-native-37518167424-static-job.log",
+      "bytes": 70941,
+      "sha256": "0897e115d89bfbcb0bc19a29857bb24ad7dd6fb069a69eb19a848109af8a38d6"
+    },
+    "reports": {
+      "lint": {
+        "schema": 1,
+        "kind": "lint",
+        "pass": true,
+        "sourceCommit": "e726982735cea1c7890711ea1aa5575ee53d4169",
+        "sourceTree": "1a582ebb928e4f94cfff2691f0e40741ae6ea0b1",
+        "candidateCommit": "e726982735cea1c7890711ea1aa5575ee53d4169",
+        "artifactDigest": "3be0dd2590c60890ce06a3e91f30b298c3b37d9741581fd36a2d3e6e1af33984",
+        "variant": {
+          "id": "base",
+          "contract": 1,
+          "fingerprint": "48153b94fbae4f314eaa11b156df8a20227dec429abfee9e45c14fda4a1f1b2a"
+        },
+        "environment": {
+          "platform": "linux",
+          "os": "6.17.0-1022-azure",
+          "architecture": "x64",
+          "node": "v24.19.0",
+          "runnerImage": "ubuntu24",
+          "imageVersion": "20260927.320.1",
+          "cpus": [
+            "AMD EPYC 7763 64-Core Processor",
+            "AMD EPYC 7763 64-Core Processor",
+            "AMD EPYC 7763 64-Core Processor",
+            "AMD EPYC 7763 64-Core Processor"
+          ],
+          "memoryBytes": 16766414848,
+          "runId": "37518167424",
+          "attempt": "1"
+        },
+        "target": null,
+        "detail": {
+          "scannedFiles": 125,
+          "pythonFiles": [
+            "/home/runner/work/oborskyivitalii/oborskyivitalii/tests/test_offline_export_security.py",
+            "/home/runner/work/oborskyivitalii/oborskyivitalii/tests/test_repository_intelligence.py",
+            "/home/runner/work/oborskyivitalii/oborskyivitalii/tools/build_site_bundle.py",
+            "/home/runner/work/oborskyivitalii/oborskyivitalii/tools/build_site_contact_sheets.py",
+            "/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/triage-secrets.py",
+            "/home/runner/work/oborskyivitalii/oborskyivitalii/tools/repository_intelligence.py"
+          ],
+          "warnings": [],
+          "tools": {
+            "eslint": "v10.12.0",
+            "stylelint": "17.16.0",
+            "ruff": "ruff 0.16.10"
+          }
+        }
+      },
+      "security": {
+        "schema": 1,
+        "kind": "security",
+        "pass": true,
+        "sourceCommit": "e726982735cea1c7890711ea1aa5575ee53d4169",
+        "sourceTree": "1a582ebb928e4f94cfff2691f0e40741ae6ea0b1",
+        "candidateCommit": "e726982735cea1c7890711ea1aa5575ee53d4169",
+        "artifactDigest": "3be0dd2590c60890ce06a3e91f30b298c3b37d9741581fd36a2d3e6e1af33984",
+        "variant": {
+          "id": "base",
+          "contract": 1,
+          "fingerprint": "48153b94fbae4f314eaa11b156df8a20227dec429abfee9e45c14fda4a1f1b2a"
+        },
+        "environment": {
+          "platform": "linux",
+          "os": "6.17.0-1022-azure",
+          "architecture": "x64",
+          "node": "v24.19.0",
+          "runnerImage": "ubuntu24",
+          "imageVersion": "20260927.320.1",
+          "cpus": [
+            "AMD EPYC 7763 64-Core Processor",
+            "AMD EPYC 7763 64-Core Processor",
+            "AMD EPYC 7763 64-Core Processor",
+            "AMD EPYC 7763 64-Core Processor"
+          ],
+          "memoryBytes": 16766414848,
+          "runId": "37518167424",
+          "attempt": "1"
+        },
+        "target": null,
+        "detail": {
+          "semgrep": {
+            "files": [
+              ".github/workflows/navigation.yml",
+              ".github/workflows/site-browser-gate-probe.yml",
+              ".github/workflows/site-candidate-evidence.yml",
+              ".github/workflows/site-cause-fix-probe.yml",
+              ".github/workflows/site-cause-probe.yml",
+              ".github/workflows/site-checks.yml",
+              ".github/workflows/site-color-review.yml",
+              ".github/workflows/site-gtk-native-probe.yml",
+              ".github/workflows/site-gtk-target-probe.yml",
+              ".github/workflows/site-navigation-probe.yml",
+              ".github/workflows/site-release-checks.yml",
+              ".github/workflows/site-runtime-checks.yml",
+              ".github/workflows/site-staging.yml",
+              ".github/workflows/site-writing-probe.yml",
+              "docs/archive.js",
+              "docs/credits.html",
+              "docs/index.html",
+              "docs/navigation.js",
+              "docs/research.html",
+              "docs/runtime/22e1e5b42356b0b36696a6aacebbd36d299c96d168c73ebcb0613da0bfd5c658/archive.js",
+              "docs/runtime/22e1e5b42356b0b36696a6aacebbd36d299c96d168c73ebcb0613da0bfd5c658/navigation.js",
+              "docs/runtime/22e1e5b42356b0b36696a6aacebbd36d299c96d168c73ebcb0613da0bfd5c658/space.js",
+              "docs/runtime/22e1e5b42356b0b36696a6aacebbd36d299c96d168c73ebcb0613da0bfd5c658/theme.js",
+              "docs/snapshots/2563a77a0412dc3e1752de92db0275275c407cbb9466a4446526f0e0e2d32839/research.html",
+              "docs/snapshots/76e7d39767ff8fa89a5aef0f7d8fcd78cb8ae14d0c3feedce9915b4187a85a28/index.html",
+              "docs/snapshots/9801894c58765429d9ba28716c428c2bd100d7c1a664bf2fbc3f4c9b1c4bfe0f/credits.html",
+              "docs/snapshots/a1e3d05f91ebcb853da06fed79b5312e9207bda153c0d53770bea02834e88430/talks.html",
+              "docs/snapshots/dcea5838a0dc114bbc646c311db31babc6fc93ab7c47e2d98e17cef3e46ad46e/writing.html",
+              "docs/space.js",
+              "docs/talks.html",
+              "docs/theme.js",
+              "docs/writing.html",
+              "review/site-scroll-sync-20261004/FLIGHT-PROTOTYPE.cjs",
+              "review/site-scroll-sync-20261004/READING-SURFACES.cjs",
+              "review/site-scroll-sync-20261004/RIBBONS-PROTOTYPE.cjs",
+              "site/content/pages/credits/main.html",
+              "site/content/pages/index/about.html",
+              "site/content/pages/index/acknowledgements.html",
+              "site/content/pages/index/contact.html",
+              "site/content/pages/index/help.html",
+              "site/content/pages/index/hero.html",
+              "site/content/pages/index/main.html",
+              "site/content/pages/index/research.html",
+              "site/content/pages/index/writing.html",
+              "site/content/pages/research/acknowledgements.html",
+              "site/content/pages/research/intro.html",
+              "site/content/pages/research/lenses.html",
+              "site/content/pages/research/main.html",
+              "site/content/pages/research/research.html",
+              "site/content/pages/research/topics.html",
+              "site/content/pages/talks/intro.html",
+              "site/content/pages/talks/main.html",
+              "site/content/pages/talks/talks.html",
+              "site/content/pages/writing/main.html",
+              "site/content/pages/writing/results-year-2025.html",
+              "site/content/pages/writing/results-year-2026.html",
+              "site/content/pages/writing/section-1.html",
+              "site/engine/archive.js",
+              "site/engine/lifecycle.cjs",
+              "site/engine/math.cjs",
+              "site/engine/navigation.js",
+              "site/engine/projection.cjs",
+              "site/engine/renderer.cjs",
+              "site/engine/theme.js",
+              "site/integrations/cloudflare.cjs",
+              "site/scenes/world.cjs",
+              "site/templates/footer.html",
+              "site/templates/head.html",
+              "site/templates/header.html",
+              "site/templates/shell.html",
+              "tools/build_scene_fallbacks.cjs",
+              "tools/build_site_bundle.py",
+              "tools/build_site_contact_sheets.py",
+              "tools/build_site_previews.cjs",
+              "tools/capture_site_review.cjs",
+              "tools/check_site_contrast.cjs",
+              "tools/check_site_seo.cjs",
+              "tools/compact_site_recordings.cjs",
+              "tools/quality/analytics-browser.cjs",
+              "tools/quality/artifact.cjs",
+              "tools/quality/browser-gate-diagnostics.cjs",
+              "tools/quality/browser-gate-trace.cjs",
+              "tools/quality/browser-lifecycle.cjs",
+              "tools/quality/cause-probe.cjs",
+              "tools/quality/cold-native-probe.cjs",
+              "tools/quality/color-browser.cjs",
+              "tools/quality/common.cjs",
+              "tools/quality/display-probe.cjs",
+              "tools/quality/engine-browser.cjs",
+              "tools/quality/eslint.config.cjs",
+              "tools/quality/fallback-url.cjs",
+              "tools/quality/flight-detail.cjs",
+              "tools/quality/functional.cjs",
+              "tools/quality/geometry.cjs",
+              "tools/quality/gtk-native-probe.cjs",
+              "tools/quality/gtk-target-probe.cjs",
+              "tools/quality/hosted-origin.cjs",
+              "tools/quality/hosted.cjs",
+              "tools/quality/lighthouse.cjs",
+              "tools/quality/local-browser.cjs",
+              "tools/quality/local.cjs",
+              "tools/quality/motion.cjs",
+              "tools/quality/native-display.cjs",
+              "tools/quality/navigation.cjs",
+              "tools/quality/promotion.cjs",
+              "tools/quality/research-pair-probe.cjs",
+              "tools/quality/scanners.cjs",
+              "tools/quality/scroll-browser.cjs",
+              "tools/quality/selftest.cjs",
+              "tools/quality/serve.cjs",
+              "tools/quality/stylelint.cjs",
+              "tools/quality/stylelint.config.cjs",
+              "tools/quality/triage-engine-checksums.cjs",
+              "tools/quality/triage-secrets.py",
+              "tools/quality/validate.cjs",
+              "tools/quality/workflow-artifacts.cjs",
+              "tools/quality/writing-diagnosis.cjs",
+              "tools/quality/writing-geometry.cjs",
+              "tools/quality/writing-layout.cjs",
+              "tools/quality/writing-localization.cjs",
+              "tools/quality/writing-models.cjs",
+              "tools/quality/writing-probe.cjs",
+              "tools/quality/writing-variants.cjs",
+              "tools/repository_intelligence.py",
+              "tools/site/analytics.cjs",
+              "tools/site/build.cjs",
+              "tools/site/evidence-policy.cjs",
+              "tools/site/retain.cjs",
+              "tools/site/snapshot.cjs",
+              "tools/site/variants.cjs",
+              "tools/staging/color.cjs",
+              "tools/staging/hosted.cjs",
+              "tools/staging/package.cjs",
+              "tools/staging/review-flow.cjs",
+              "tools/staging/selftest.cjs",
+              "tools/staging/state.cjs",
+              "tools/staging/trust.cjs"
+            ],
+            "rules": 8,
+            "errors": 0,
+            "expected": [
+              ".github/workflows/navigation.yml",
+              ".github/workflows/site-browser-gate-probe.yml",
+              ".github/workflows/site-candidate-evidence.yml",
+              ".github/workflows/site-cause-fix-probe.yml",
+              ".github/workflows/site-cause-probe.yml",
+              ".github/workflows/site-checks.yml",
+              ".github/workflows/site-color-review.yml",
+              ".github/workflows/site-gtk-native-probe.yml",
+              ".github/workflows/site-gtk-target-probe.yml",
+              ".github/workflows/site-navigation-probe.yml",
+              ".github/workflows/site-release-checks.yml",
+              ".github/workflows/site-runtime-checks.yml",
+              ".github/workflows/site-staging.yml",
+              ".github/workflows/site-writing-probe.yml",
+              "docs/archive.js",
+              "docs/credits.html",
+              "docs/index.html",
+              "docs/navigation.js",
+              "docs/research.html",
+              "docs/runtime/22e1e5b42356b0b36696a6aacebbd36d299c96d168c73ebcb0613da0bfd5c658/archive.js",
+              "docs/runtime/22e1e5b42356b0b36696a6aacebbd36d299c96d168c73ebcb0613da0bfd5c658/navigation.js",
+              "docs/runtime/22e1e5b42356b0b36696a6aacebbd36d299c96d168c73ebcb0613da0bfd5c658/space.js",
+              "docs/runtime/22e1e5b42356b0b36696a6aacebbd36d299c96d168c73ebcb0613da0bfd5c658/theme.js",
+              "docs/snapshots/2563a77a0412dc3e1752de92db0275275c407cbb9466a4446526f0e0e2d32839/research.html",
+              "docs/snapshots/76e7d39767ff8fa89a5aef0f7d8fcd78cb8ae14d0c3feedce9915b4187a85a28/index.html",
+              "docs/snapshots/9801894c58765429d9ba28716c428c2bd100d7c1a664bf2fbc3f4c9b1c4bfe0f/credits.html",
+              "docs/snapshots/a1e3d05f91ebcb853da06fed79b5312e9207bda153c0d53770bea02834e88430/talks.html",
+              "docs/snapshots/dcea5838a0dc114bbc646c311db31babc6fc93ab7c47e2d98e17cef3e46ad46e/writing.html",
+              "docs/space.js",
+              "docs/talks.html",
+              "docs/theme.js",
+              "docs/writing.html",
+              "site/content/pages/credits/main.html",
+              "site/content/pages/index/about.html",
+              "site/content/pages/index/acknowledgements.html",
+              "site/content/pages/index/contact.html",
+              "site/content/pages/index/help.html",
+              "site/content/pages/index/hero.html",
+              "site/content/pages/index/main.html",
+              "site/content/pages/index/research.html",
+              "site/content/pages/index/writing.html",
+              "site/content/pages/research/acknowledgements.html",
+              "site/content/pages/research/intro.html",
+              "site/content/pages/research/lenses.html",
+              "site/content/pages/research/main.html",
+              "site/content/pages/research/research.html",
+              "site/content/pages/research/topics.html",
+              "site/content/pages/talks/intro.html",
+              "site/content/pages/talks/main.html",
+              "site/content/pages/talks/talks.html",
+              "site/content/pages/writing/main.html",
+              "site/content/pages/writing/results-year-2025.html",
+              "site/content/pages/writing/results-year-2026.html",
+              "site/content/pages/writing/section-1.html",
+              "site/engine/archive.js",
+              "site/engine/lifecycle.cjs",
+              "site/engine/math.cjs",
+              "site/engine/navigation.js",
+              "site/engine/projection.cjs",
+              "site/engine/renderer.cjs",
+              "site/engine/theme.js",
+              "site/integrations/cloudflare.cjs",
+              "site/scenes/world.cjs",
+              "site/templates/footer.html",
+              "site/templates/head.html",
+              "site/templates/header.html",
+              "site/templates/shell.html",
+              "tools/build_scene_fallbacks.cjs",
+              "tools/build_site_bundle.py",
+              "tools/build_site_contact_sheets.py",
+              "tools/build_site_previews.cjs",
+              "tools/capture_site_review.cjs",
+              "tools/check_site_contrast.cjs",
+              "tools/check_site_seo.cjs",
+              "tools/compact_site_recordings.cjs",
+              "tools/quality/analytics-browser.cjs",
+              "tools/quality/artifact.cjs",
+              "tools/quality/browser-gate-diagnostics.cjs",
+              "tools/quality/browser-gate-trace.cjs",
+              "tools/quality/browser-lifecycle.cjs",
+              "tools/quality/cause-probe.cjs",
+              "tools/quality/cold-native-probe.cjs",
+              "tools/quality/color-browser.cjs",
+              "tools/quality/common.cjs",
+              "tools/quality/display-probe.cjs",
+              "tools/quality/engine-browser.cjs",
+              "tools/quality/eslint.config.cjs",
+              "tools/quality/fallback-url.cjs",
+              "tools/quality/flight-detail.cjs",
+              "tools/quality/functional.cjs",
+              "tools/quality/geometry.cjs",
+              "tools/quality/gtk-native-probe.cjs",
+              "tools/quality/gtk-target-probe.cjs",
+              "tools/quality/hosted-origin.cjs",
+              "tools/quality/hosted.cjs",
+              "tools/quality/lighthouse.cjs",
+              "tools/quality/local-browser.cjs",
+              "tools/quality/local.cjs",
+              "tools/quality/motion.cjs",
+              "tools/quality/native-display.cjs",
+              "tools/quality/navigation.cjs",
+              "tools/quality/promotion.cjs",
+              "tools/quality/research-pair-probe.cjs",
+              "tools/quality/scanners.cjs",
+              "tools/quality/scroll-browser.cjs",
+              "tools/quality/selftest.cjs",
+              "tools/quality/serve.cjs",
+              "tools/quality/stylelint.cjs",
+              "tools/quality/stylelint.config.cjs",
+              "tools/quality/triage-engine-checksums.cjs",
+              "tools/quality/triage-secrets.py",
+              "tools/quality/validate.cjs",
+              "tools/quality/workflow-artifacts.cjs",
+              "tools/quality/writing-diagnosis.cjs",
+              "tools/quality/writing-geometry.cjs",
+              "tools/quality/writing-layout.cjs",
+              "tools/quality/writing-localization.cjs",
+              "tools/quality/writing-models.cjs",
+              "tools/quality/writing-probe.cjs",
+              "tools/quality/writing-variants.cjs",
+              "tools/repository_intelligence.py",
+              "tools/site/analytics.cjs",
+              "tools/site/build.cjs",
+              "tools/site/evidence-policy.cjs",
+              "tools/site/retain.cjs",
+              "tools/site/snapshot.cjs",
+              "tools/site/variants.cjs",
+              "tools/staging/color.cjs",
+              "tools/staging/hosted.cjs",
+              "tools/staging/package.cjs",
+              "tools/staging/review-flow.cjs",
+              "tools/staging/selftest.cjs",
+              "tools/staging/state.cjs",
+              "tools/staging/trust.cjs",
+              "review/site-scroll-sync-20261004/FLIGHT-PROTOTYPE.cjs",
+              "review/site-scroll-sync-20261004/RIBBONS-PROTOTYPE.cjs",
+              "review/site-scroll-sync-20261004/READING-SURFACES.cjs"
+            ]
+          },
+          "bandit": {
+            "loc": 566,
+            "findings": 0
+          },
+          "secrets": {
+            "trackedTextFiles": 680,
+            "reviewedCandidates": 2775
+          },
+          "historyScan": false
+        }
+      }
+    },
+    "verifiedSummary": {
+      "lintScannedFiles": 125,
+      "eslintFiles": 118,
+      "eslintErrors": 0,
+      "eslintWarnings": 0,
+      "pythonFiles": 6,
+      "ruffFindings": 0,
+      "stylelintErrors": 0,
+      "stylelintWarnings": 0,
+      "semgrepFiles": 137,
+      "semgrepRules": 8,
+      "semgrepFindings": 0,
+      "semgrepErrors": 0,
+      "banditPythonLOC": 566,
+      "banditFindings": 0,
+      "banditErrors": 0,
+      "secretsTrackedTextFiles": 680,
+      "secretsRawFindings": 2775,
+      "secretsExactBaselineDispositions": 2484,
+      "secretsExistingVerifiedNavigationHashes": 291,
+      "secretsUntriaged": 0,
+      "historyScan": false,
+      "advisoryScanRun": false,
+      "identityVariant": "base",
+      "reason": "Static reports bind BASE artifact identity; the native controls bind the separately retained derived normal Color artifact with that BASE parent."
+    }
+  },
+  "nativeFailureEvidence": [
+    {
+      "port": "gtk",
+      "cell": "color-constant-js-off",
+      "webProcessPid": 5435,
+      "selection": {
+        "pid": 5435,
+        "executable": "/home/runner/.cache/ms-playwright/webkit-2359/minibrowser-gtk/bin/WebKitWebProcess",
+        "startTicks": "11317",
+        "bootId": "baf98144-94fd-42cd-ad63-28309a73925a",
+        "bootIdHex": "baf9814494fd42cdad6328309a73925a",
+        "observedAt": "2026-10-06T19:21:32.316Z",
+        "verified": true,
+        "since": "2026-10-06T19:21:31.931Z",
+        "until": "2026-10-06T19:21:56.003Z"
+      },
+      "verifiedCoreInfo": {
+        "pid": 5435,
+        "executable": "/home/runner/.cache/ms-playwright/webkit-2359/minibrowser-gtk/bin/WebKitWebProcess",
+        "signal": "6 (ABRT)",
+        "timestamp": "Tue 2026-10-06 19:21:32 UTC (24s ago)",
+        "trust": "verified-exact-selector-metadata"
+      },
+      "journalStackLines": [
+        "                #0  0x00007ff7ce89ec0c pthread_kill (libc.so.6 + 0x9ec0c)",
+        "                #1  0x00007ff7ce84527e raise (libc.so.6 + 0x4527e)",
+        "                #2  0x00007ff7ce8288ff abort (libc.so.6 + 0x288ff)",
+        "                #3  0x00007ff7d558de17 n/a (/home/runner/.cache/ms-playwright/webkit-2359/minibrowser-gtk/lib/libwebkitgtk-6.0.so.4.20.0 + 0x78de17)"
+      ],
+      "primaryModuleOffset": {
+        "module": "libwebkitgtk-6.0.so.4.20.0",
+        "offset": "0x78de17",
+        "symbol": null,
+        "sourceRoutine": null,
+        "evidence": "Exact unresolved #3 frame in matching coredumpctl info; no symbol/routine attribution inferred."
+      },
+      "crashEvents": [
+        {
+          "kind": "page-crash",
+          "stage": "first-evaluation",
+          "elapsedMs": 23705.797071999998
+        }
+      ],
+      "observationAtFailure": {
+        "stage": "first-evaluation",
+        "elapsedMs": 23729.611883,
+        "pageClosed": false,
+        "browserConnected": true
+      },
+      "postmortemDebug": {
+        "command": "prlimit",
+        "args": [
+          "--fsize=536870912:536870912",
+          "--",
+          "coredumpctl",
+          "--no-pager",
+          "--since=2026-10-06T19:21:31.931Z",
+          "--until=2026-10-06T19:21:56.003Z",
+          "--debugger=/usr/bin/gdb",
+          "--debugger-arguments=-nx -nh -batch -quiet -iex 'set auto-load off' -iex 'set debuginfod enabled off' -ex 'set pagination off' -ex 'bt 80' -ex 'thread apply all bt 20' -ex 'info sharedlibrary'",
+          "debug",
+          "5435",
+          "COREDUMP_EXE=/home/runner/.cache/ms-playwright/webkit-2359/minibrowser-gtk/bin/WebKitWebProcess",
+          "_BOOT_ID=baf9814494fd42cdad6328309a73925a"
+        ],
+        "pid": 5472,
+        "processGroup": 5472,
+        "code": null,
+        "signal": "SIGXFSZ",
+        "timedOut": false,
+        "groupKill": null,
+        "error": null,
+        "stdout": {
+          "text": "",
+          "bytes": 0,
+          "retainedBytes": 0,
+          "droppedBytes": 0,
+          "limitBytes": 262144
+        },
+        "stderr": {
+          "text": "",
+          "bytes": 0,
+          "retainedBytes": 0,
+          "droppedBytes": 0,
+          "limitBytes": 262144
+        },
+        "timeoutMs": 30000
+      },
+      "postmortemFileLimitBytes": 536870912,
+      "coreInfoComplete": true,
+      "journalStackRetained": true,
+      "offlineDebuggerFramesRetained": false,
+      "offlineDebuggerComplete": false,
+      "coreBytesRetained": false,
+      "timing": {
+        "trialStartedAt": "2026-10-06T19:21:31.931Z",
+        "preEvaluationProcessObservedAt": "2026-10-06T19:21:32.316Z",
+        "firstEvaluationStartedAt": "2026-10-06T19:21:32.489Z",
+        "coreTimestamp": "Tue 2026-10-06 19:21:32 UTC (24s ago)",
+        "coreTimestampUTCSecond": "2026-10-06T19:21:32Z",
+        "pageCrashObserverElapsedMs": 23705.797071999998,
+        "afterFailureObservedAt": "2026-10-06T19:21:55.980Z",
+        "selectorUntil": "2026-10-06T19:21:56.003Z",
+        "bounds": "Core timestamp is printed to whole seconds, and first evaluation starts within that same 19:21:32 second. The roughly 23.7s page-crash field records when notification was observed on its observer clock; it does not measure time until the native abort instruction. These fields cannot establish subsecond abort/evaluation order or a fixed 15s/23.7s native timer."
+      }
+    }
+  ],
+  "interpretation": {
+    "established": [
+      "Both hosted jobs and every workflow step completed successfully at the exact e726982 source/tree; static lint/security have complete declared source coverage and no untriaged candidates.",
+      "All three planned controls retained valid fresh-browser observations: blank constant JavaScript-off and normal Color constant JavaScript-on succeed; normal Color constant JavaScript-off reports page-crash while its MiniBrowser remains connected, before teardown.",
+      "The exact pre-evaluation WebKitWebProcess PID 5435, executable and boot match one SIGABRT core record in the same trial. Its journal stack includes pthread_kill, raise, abort and unresolved libwebkitgtk module offset 0x78de17.",
+      "coredumpctl info succeeds untruncated; the separate postmortem debug command terminates with observed SIGXFSZ under its 512MiB file-size limit, with no stdout/stderr or debugger frames. nativeCaptureComplete remains false.",
+      "GDB was absent and the optional installation added seven packages with zero upgrades. The separate unchanged Playwright install-deps step upgraded seven packages and installed 181; those actual dependency versions are retained."
+    ],
+    "bounds": [
+      "One observation per control, with no retry, live attach, source intervention, priming or altered first-evaluation/cleanup limits; the successful job denotes diagnostic collection, not functional acceptance.",
+      "The retained core timestamp has whole-second resolution and shares a second with first-evaluation start. The later 23.7s page-crash notification does not establish native abort time, before/after-evaluation order, a fixed timer or evaluation() as the native initiator.",
+      "The unresolved journal module frame is a narrower lead, not a named assertion/native routine or complete debugger stack. Raw core bytes and a full GDB stack were not retained.",
+      "This native runner is Ubuntu image 20260927.320.1 with AMD EPYC 9V45 CPUs; the preceding fourteen-cell GTK runner used image 20261004.327.1 with AMD EPYC 7763. Host/image/package changes prevent treating cross-run elapsed times as an isolated remedy test.",
+      "Static preflight is a separate AMD EPYC 7763 runner on image 20260927.320.1 and declares BASE artifact identity. It must not be mislabeled measured Color or native browser acceptance.",
+      "Kernel core_pattern and browser process limits were read unchanged. The postmortem-only 512MiB cap and 30s isolated-command deadline constrain offline extraction/debugger work; diagnostic incompleteness does not relax acceptance or browser limits."
+    ],
+    "nextSupportedObservation": "A supported bounded postmortem extraction correction may obtain a complete matching native stack after failure while preserving the same three fresh controls, source/setup, browser/runtime/job deadlines and no live attach or retry."
+  },
+  "review": {
+    "status": "Independent raw provenance, source parity and causal precision reviews approved by installer_review, matrix_budget_review and gtk_nojs_cause.",
+    "rawOriginalFilesVerified": 22,
+    "rawCapturedFilesIndexed": 24,
+    "zipMembersVerified": 16,
+    "rowStderrPrefixesVerified": 6,
+    "sourceTreeVerified": "1a582ebb928e4f94cfff2691f0e40741ae6ea0b1",
+    "rootRepositoryModified": false,
+    "frozen": true
+  }
+}

@@ -1,7 +1,7 @@
 "use strict";
 // Native function factory; the producer serializes this exact authored function.
 module.exports=function(api) {
-  const {sub,mix,clamp,LOOP_MS,rates,owns,smooth,atmosphereState,followCamera,writingProgress,cadenceFor,nextDeadline,poses,topicPaths,pageStops,initialPoses,routeOrder,roomSpacing,worldFor,projectedWorld,journeyPose,blendColor,routePose,roomOffset,translatePose}=api;
+  const {sub,mix,clamp,LOOP_MS,rates,owns,smooth,atmosphereState,followCamera,fitScrollStops,writingProgress,cadenceFor,nextDeadline,poses,topicPaths,pageStops,initialPoses,routeOrder,roomSpacing,worldFor,projectedWorld,paintShapes,journeyPose,routePose,roomOffset,translatePose}=api;
   if (typeof document === "undefined") return;
   const canvas = document.getElementById("space-canvas");
   const control = document.getElementById("space-motion");
@@ -17,64 +17,115 @@ module.exports=function(api) {
   let choice=null;
   try { choice=localStorage.getItem(key); } catch { /* In-tab controls remain useful. */ }
   let enabled=choice!=="off" && !reduced.matches, printing=false, pending=null,initialized=false,failed=false;
+  // Deferred scripts run while readyState is interactive. Archive filtering
+  // and the navigation content plane must finish before the first layout read.
+  let domReady=document.readyState!=="loading"&&document.readyState!=="interactive";
   let width=1,height=1,ratio=1,stops=[],bounds=null,focus="all",localProgress=0;
   const initial=initialPoses[page]||"overview";
   const rooms=new Map();
-  let compact=narrow.matches,world=worldFor(page,compact),ambientTime=0,lastFrame=null,nextDraw=null;
+  let compact=narrow.matches,ambientTime=0,lastFrame=null,nextDraw=null;
+  let layoutDirty=true,layoutReasons=new Set(['initial']),layoutPasses=0;
   let idleRate=30,costAverage=0,costSamples=0,cadenceSlow=0,cadenceFast=0,lastCadenceChange=0,detailTier=0,displayedTier=0;
   let tier=0,slow=0,fast=0,lastQualityChange=0,hold=false;
   const clock=()=>window.performance?.now()??Date.now();
   let current=routePose(page,poses[initial]), animation=null, writingAnchor=null,displayedTime=0,displayedCamera=current,journey=null;
   let travelUpdate=null;
   let colors={cyan:"#075d7b",amber:"#895710",paper:"#f8f7f3"};
+  let paletteRevision=0,colorFills=new Map();
   const pose = id => routePose(page,poses[id]);
   const pathPose = () => routePose(page,journeyPose(topicPaths[focus],localProgress,narrow.matches));
-  rooms.set(page,{world,compact,faceColors:[]});
+  const effects=window.SiteEffects;
+  if(effects&&effects.contract!==1)throw Error('Incompatible scene effect contract');
+  const sceneEffects=effects?.scene?.(api);
   // The decorative mobile bitmap uses one physical pixel per CSS pixel.
   // Text and controls retain their native resolution; timing is independent.
   const pixelRatio=()=>Math.min(compact||tier===2?1:tier===1?1.25:1.5,window.devicePixelRatio||1);
   function visible(el) { return !el.hidden && el.getClientRects().length>0; }
   function measure() {
+    const read=()=>measureNative();
+    if(effects?.measure)return effects.measure(read);
+    return read();
+  }
+  function measureNative() {
+    let stage=window.SiteEngineStages?clock():0;
+    const span=part=>{if(stage){const time=clock();diagnostic('stage',{part,start:stage,duration:time-stage});stage=time;}};
+    layoutPasses++;
     width=Math.max(1,window.innerWidth);height=Math.max(1,window.innerHeight);
     ratio=pixelRatio();
     const maxScroll=Math.max(0,document.documentElement.scrollHeight-height);
-    stops=[...document.querySelectorAll("[data-space-stop]")].filter(el=>visible(el) && pageStops[page]?.[el.dataset.spaceStop]).map(el=>({id:pageStops[page][el.dataset.spaceStop],y:Math.min(maxScroll,Math.max(0,el.getBoundingClientRect().top+window.scrollY-height*.22))}));
-    // Coincident stops cannot define a flight interval. Never use document height as a substitute.
-    stops=stops.filter((stop,i,all)=>i===0 || stop.y>all[i-1].y+.5);
+    window.SiteNavigation?.reconcileEndpoint?.(maxScroll);
+    span('layout-range');
+    const markers=[...document.querySelectorAll("[data-space-stop]")].filter(el=>visible(el) && pageStops[page]?.[el.dataset.spaceStop]).map(el=>({id:pageStops[page][el.dataset.spaceStop],y:Math.max(0,el.getBoundingClientRect().top+window.scrollY-height*.22)}));
+    stops=fitScrollStops(markers,maxScroll);
+    span('layout-stops');
     bounds=null;
     if (page==="writing") {
       const results=document.getElementById("archive-results");
-      const rows=results ? [...results.querySelectorAll("li.publication")].filter(visible) : [];
-      if (rows.length) {
-        const first=rows[0].getBoundingClientRect(),last=rows[rows.length-1].getBoundingClientRect();
-        const start=Math.max(0,first.top+window.scrollY-height*.22),end=last.bottom+window.scrollY-height*.22;
+      const row=results ? [...results.querySelectorAll("li.publication")].find(visible) : null;
+      if (row) {
+        const first=row.getBoundingClientRect();
+        const firstY=Math.max(0,first.top+window.scrollY-height*.22),end=maxScroll;
+        // A one-record archive can start below the maximum viewport offset.
+        // In that case its entire real scroll range still forms a valid path.
+        const start=firstY<end-.5?firstY:0;
         if (end>start+.5) bounds={start,end};
       }
       writingAnchor={y:window.scrollY,progress:localProgress};
     }
+    span('layout-writing');
+  }
+  function flushLayout() {
+    if(!initialized||!layoutDirty||failed)return;
+    // During departure the engine already owns the next route, while the old
+    // DOM is still shown. Its geometry cannot describe the destination.
+    if(document.body.dataset.page!==page)return;
+    layoutDirty=false;const reasons=[...layoutReasons];layoutReasons.clear();
+    const start=window.SiteEngineProbe?clock():0;measure();
+    if(window.SiteEngineProbe)diagnostic('layout',{reasons,passes:layoutPasses,start,duration:clock()-start});
+    const target=scrollPose();if(journey)journey.to=target;else moveTo(target);
+    nextDraw=null;
+  }
+  function invalidateLayout(reason) {
+    layoutDirty=true;layoutReasons.add(reason);
+    if(failed){window.SiteNavigation?.reconcileEndpoint?.();return;}
+    if(!initialized){initialize();return;}if(!failed)schedule();
+  }
+  // Opt-in measurements emit no timing/JSON work on an ordinary visitor path.
+  function diagnostic(kind,detail) {
+    window.SiteEngineProbe?.({kind,time:clock(),page,...detail});
   }
   function readColors() {
     const css=window.getComputedStyle(document.documentElement);
     const next={cyan:css.getPropertyValue("--accent").trim(),amber:css.getPropertyValue("--systems").trim(),paper:css.getPropertyValue("--paper").trim(),sheet:(css.getPropertyValue("--scene-sheet")||"#fffefa").trim()};
     if(!Object.values(next).every(v=>/^#[0-9a-f]{6}$/i.test(v)))return false;
     colors=next;
-    for(const room of rooms.values())paintColors(room);
+    paletteRevision++;colorFills.clear();
     return true;
   }
   function paintColors(room) {
-    const fills=new Map(),next=colors;
-    room.faceColors=room.world.faces.map(f=>{
-      const key=(f.fillColor||f.color)+":"+f.tint;
-      if(!fills.has(key))fills.set(key,blendColor(next.paper,next[f.fillColor||f.color],f.tint));
-      return fills.get(key);
-    });
+    const start=window.SiteEngineStages?clock():0;
+    room.faceColors=api.facePalette(room.world.faces,colors,colorFills);
+    room.paletteRevision=paletteRevision;
+    if(start)diagnostic('stage',{part:'model-color',route:room.name,start,duration:clock()-start});
   }
-  function roomFor(name) {
+  function roomFor(name,detail=compact||detailTier>=.5) {
     // Reduce actual model/paint work on a slow desktop as well as on mobile.
     // The same motif IDs, macro positions and recursive topology survive.
-    const detail=compact||detailTier>=.5;
-    if(!rooms.has(name)||rooms.get(name).compact!==detail){const room={world:worldFor(name,detail),compact:detail,faceColors:[]};rooms.set(name,room);paintColors(room);}
-    return rooms.get(name);
+    if(!rooms.has(name)){
+      while(rooms.size>=3){const oldest=[...rooms.keys()].find(id=>id!==page&&id!==name);rooms.delete(oldest);}
+      rooms.set(name,new Map());
+    }
+    const variants=rooms.get(name);
+    if(!variants.has(detail)){
+      const start=window.SiteEngineProbe?clock():0;
+      const room={world:worldFor(name,detail),name,compact:detail,faceColors:[]};variants.set(detail,room);
+      if(window.SiteEngineStages)diagnostic('stage',{part:'model-build',route:name,start,duration:clock()-start});
+      paintColors(room);
+      if(window.SiteEngineProbe)diagnostic('model',{route:name,compact:detail,start,duration:clock()-start,objects:room.world.objects.length,vertices:room.world.objects.reduce((n,o)=>n+o.points.length,0),faces:room.world.faces.length,lines:room.world.lines.length});
+    }
+    rooms.delete(name);rooms.set(name,variants);
+    while(rooms.size>3){const oldest=[...rooms.keys()].find(id=>id!==page&&id!==name);rooms.delete(oldest);}
+    const room=variants.get(detail);if(room.paletteRevision!==paletteRevision)paintColors(room);return room;
   }
   function scrollPose() {
     if (page==="writing") {
@@ -109,8 +160,7 @@ module.exports=function(api) {
   function visibleRooms() {
     if(!journey){
       const room=roomFor(page);
-      for(const name of rooms.keys())if(name!==page)rooms.delete(name);
-      const shapes=projectedWorld(room.world,translatePose(current,-roomOffset(page)),width,height,ambientTime,detailTier);
+      const shapes=projectedWorld(room.world,translatePose(current,-roomOffset(page)),width,height,ambientTime,detailTier,true,false);
       for(const shape of shapes)shape.room=room;
       return shapes;
     }
@@ -120,40 +170,28 @@ module.exports=function(api) {
     const names=[routeOrder[near],routeOrder[Math.min(near+1,routeOrder.length-1)]];
     const active=[...new Set(names)];
     const shapes=active.flatMap(name=>{
+      // Entire room envelope behind the camera cannot contribute geometry.
+      const local=translatePose(current,-roomOffset(name));
+      const forward=api.normalize(sub(local.target,local.position));
+      if(api.dot(sub([0,0,-48],local.position),forward)+110<.5)return [];
       const room=roomFor(name);
-      return projectedWorld(room.world,translatePose(current,-roomOffset(name)),width,height,ambientTime,detailTier).map(shape=>{shape.room=room;return shape;});
-    }).sort((a,b)=>b.depth-a.depth);
-    for(const name of rooms.keys())if(!active.includes(name)&&name!==page)rooms.delete(name);
+      return projectedWorld(room.world,translatePose(current,-roomOffset(name)),width,height,ambientTime,detailTier,true,false).map(shape=>{shape.room=room;return shape;});
+    });
     return shapes;
   }
   function draw() {
+    let stage=window.SiteEngineStages?clock():0;
+    const span=part=>{if(stage){const time=clock();diagnostic('stage',{part,start:stage,duration:time-stage});stage=time;}};
     // Resize only inside the protected paint, retaining the last valid bitmap.
     const w=Math.round(width*ratio),h=Math.round(height*ratio);
     if(canvas.width!==w || canvas.height!==h){canvas.width=w;canvas.height=h;}
     ctx.setTransform(ratio,0,0,ratio,0,0);ctx.clearRect(0,0,width,height);
-    const shapes=visibleRooms();
-    for(let index=0;index<shapes.length;index++) {
-      const shape=shapes[index];
-      if(shape.room.compact&&shape.kind==="line"&&!shape.arrow){index=drawLineRun(shapes,index);continue;}
-      const points=shape.points,from=points[0],to=points[1];
-      ctx.beginPath();ctx.moveTo(from[0],from[1]);for(let i=1;i<points.length;i++)ctx.lineTo(points[i][0],points[i][1]);
-      ctx.lineWidth=shape.lineWidth;ctx.strokeStyle=colors[shape.color];
-      if(shape.kind==="face") {
-        ctx.closePath();ctx.fillStyle=shape.room.faceColors[shape.material];
-        ctx.globalAlpha=shape.alpha;ctx.fill();
-        // Join adjacent paper facets without dark antialias seams.
-        if(shape.edgeAlpha===0){ctx.strokeStyle=ctx.fillStyle;ctx.lineWidth=.65;}else ctx.globalAlpha=shape.edgeAlpha;
-        // Curved mobile motifs retain explicit outlines (rings, grilles,
-        // waves and links); omit their faint internal facet strokes.
-        if(!shape.room.compact||shape.edgeAlpha===0||shape.room.world.faces[shape.material].edgeAlpha>.12)ctx.stroke();
-      } else {ctx.globalAlpha=shape.alpha;ctx.stroke();}
-      if(shape.arrow) {
-        const dx=to[0]-from[0],dy=to[1]-from[1],length=Math.hypot(dx,dy);
-        if(length<10)continue;
-        const size=5,ux=dx/length,uy=dy/length;
-        ctx.beginPath();ctx.moveTo(to[0]-ux*size-uy*size*.55,to[1]-uy*size+ux*size*.55);ctx.lineTo(...to);ctx.lineTo(to[0]-ux*size+uy*size*.55,to[1]-uy*size-ux*size*.55);ctx.stroke();
-      }
-    }
+    const state={current,width,height,ambientTime,compact,scene,detailTier};
+    const geometry=visibleRooms();span('draw-project');
+    const custom=sceneEffects?.collect(state)||[];span('draw-effects');
+    const shapes=geometry.concat(custom).sort((a,b)=>b.depth-a.depth);span('draw-sort');
+    paintShapes(ctx,shapes,colors,sceneEffects?.paint);
+    span('draw-paint');
     const air=atmosphereState(ambientTime);
     scene.style?.setProperty("--air-x",air.x.toFixed(3)+"px");
     scene.style?.setProperty("--air-y",air.y.toFixed(3)+"px");
@@ -162,19 +200,8 @@ module.exports=function(api) {
     scene.dataset.phase=String(ambientTime);scene.dataset.camera=JSON.stringify(current);scene.dataset.detail=String(detailTier);
     scene.dataset.route=page;scene.dataset.travel=journey?"flying":"settled";scene.dataset.rooms=String(rooms.size);
     scene.dataset.geometry=compact||detailTier>=.5?"compact":"full";
-  }
-  // Preserve continuous opacity; group only adjacent compatible lines whose
-  // opacity differs by less than 1/256. No visible 16-step fade quantization.
-  function drawLineRun(shapes,index) {
-    const first=shapes[index],alpha=first.alpha;
-    ctx.beginPath();ctx.lineWidth=first.lineWidth;ctx.strokeStyle=colors[first.color];ctx.globalAlpha=alpha;
-    let end=index;
-    while(end<shapes.length){
-      const shape=shapes[end];
-      if(shape.kind!=="line"||shape.arrow||shape.color!==first.color||shape.lineWidth!==first.lineWidth||Math.abs(shape.alpha-alpha)>1/256)break;
-      const [from,to]=shape.points;ctx.moveTo(from[0],from[1]);ctx.lineTo(to[0],to[1]);end++;
-    }
-    ctx.stroke();return end-1;
+    scene.dataset.roomModels=String([...rooms.values()].reduce((count,variants)=>count+variants.size,0));
+    span('draw-state');
   }
   function fail() {
     failed=true;cancel();delete scene.dataset.ready;scene.dataset.state="fallback";
@@ -225,20 +252,22 @@ module.exports=function(api) {
       if(t===1){current=journey.to;journey=null;}
     }
   }
+  function advanceAnimation(delta,time) {
+    if(!animation || !enabled || hold)return;
+    const dt=animation.last===null?delta:Math.min(80,Math.max(0,time-animation.last));
+    animation.last=time;
+    current=followCamera(current,animation.to,dt);
+    const done=Math.hypot(...sub(current.position,animation.to.position),...sub(current.target,animation.to.target))<1e-5;
+    if(done){current=animation.to;animation=null;}
+  }
   function frame(time) {
     pending=null;if(document.hidden || printing || !initialized || failed)return;
+    try{flushLayout();}catch{fail();return;}
     const delta=lastFrame===null?0:Math.min(80,Math.max(0,time-lastFrame));lastFrame=time;
     const living=enabled&&!hold&&owns(initialPoses,page);
     if(living){ambientTime=(ambientTime+delta)%LOOP_MS;detailTier+=(tier-detailTier)*(1-Math.exp(-delta/180));}
     advanceJourney(delta,living);
-    if(animation && enabled && !hold) {
-      const dt=animation.last===null?delta:Math.min(80,Math.max(0,time-animation.last));
-      animation.last=time;
-      current=followCamera(current,animation.to,dt);
-      const done=Math.hypot(...sub(current.position,animation.to.position),...sub(current.target,animation.to.target))<1e-5;
-      if(done)current=animation.to;
-      if(done)animation=null;
-    }
+    advanceAnimation(delta,time);
     // Camera response gets a temporary, cost-bounded higher cadence. Deadlines
     // retain fractional phase instead of rounding every frame down to 20/15Hz.
     const cameraRate=Math.min([30,20,15][tier],cadenceFor(costAverage,compact,true));
@@ -246,10 +275,13 @@ module.exports=function(api) {
     if(nextDraw===null||time+.5>=nextDraw||!living) {
       const start=clock();
       try{draw();}catch{fail();return;}
+      const renderCost=clock()-start;
       // Text follows the painted camera, including skipped frames and stalls.
       if(travelUpdate)reportTravel(journey?clamp(journey.elapsed/journey.duration):1);
       nextDraw=nextDeadline(nextDraw,time,interval);
-      if(living)quality(clock()-start,time);
+      // Decorative quality responds to rendering cost. The entire callback,
+      // including route mount, is still measured by the outer frame/ready gate.
+      if(living)quality(renderCost,time);
     }
     if(animation||living&&!hold)schedule();
   }
@@ -279,16 +311,16 @@ module.exports=function(api) {
   },{passive:true});
   window.addEventListener("site:scene-focus",event=>{
     if(page!=="writing" || !owns(topicPaths,event.detail?.focus))return;
-    focus=event.detail.focus;measure();
+    focus=event.detail.focus;invalidateLayout('archive-focus');
     if(!enabled || hold || document.hidden || printing)return;
     const target=pathPose();
     if(event.detail.reason==="initial"&&!journey){current=target;animation=null;schedule();}else moveTo(target);
   });
   const resize=()=>{
-    if(!initialized){initialize();return;}
     if(failed)return;
-    if(compact!==narrow.matches){compact=narrow.matches;world=roomFor(page).world;}
-    measure();nextDraw=null;schedule();
+    if(compact!==narrow.matches)compact=narrow.matches;
+    if(!initialized){initialize();return;}
+    invalidateLayout('resize');
   }; // Layout never changes a frozen camera/ambient phase or starts a flight.
   window.addEventListener("site:archive-layout",resize);
   window.addEventListener("resize",resize,{passive:true});
@@ -299,16 +331,27 @@ module.exports=function(api) {
   if(reduced.addEventListener)reduced.addEventListener("change",preferenceChanged);
   window.addEventListener("storage",event=>{if(event.key===key || event.key===null){try{choice=localStorage.getItem(key);}catch{choice=null;}preferenceChanged();}});
   if(window.MutationObserver)new window.MutationObserver(()=>{if(!initialized){initialize();return;}if(!failed && readColors())schedule();}).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
-  const observer=window.ResizeObserver?new window.ResizeObserver(resize):null;
-  observer?.observe(document.querySelector("main"));
+  const observer=window.ResizeObserver?new window.ResizeObserver(()=>invalidateLayout('size')):null;
+  const contentObserver=window.MutationObserver?new window.MutationObserver(()=>invalidateLayout('content')):null;
+  let observedMain=null;
+  function observeLayout() {
+    const main=document.querySelector('main');if(main===observedMain)return;observedMain=main;
+    observer?.disconnect();contentObserver?.disconnect();
+    // Body also covers an expanded footer/header. Subtree edits cover moving
+    // interior waypoints even when the total main height stays unchanged.
+    observer?.observe(document.body);observer?.observe(main);
+    contentObserver?.observe(main,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:["hidden","class","style","data-space-stop"]});
+  }
+  observeLayout();
+  document.fonts?.addEventListener?.("loadingdone",resize);
   window.SiteScene={
+    managesLayout:true,
     canTravel:()=>initialized&&!failed&&enabled&&!reduced.matches&&!hold&&!printing&&!document.hidden,
     navigate(next,animate=true,update=null){
       if(!owns(initialPoses,next))return;
       // Media-query state can change before its queued change event is delivered.
       if(reduced.matches&&enabled){enabled=false;cancel();updateControl();}
-      const from=displayedCamera;page=next;focus="all";localProgress=0;writingAnchor=null;
-      world=roomFor(page).world;measure();
+      const from=displayedCamera,sourcePage=page;page=next;focus="all";localProgress=0;writingAnchor=null;
       const target=pose(initialPoses[page]);
       animation=null;current=from;
       scene.dataset.direction=target.position[2]<from.position[2]?"forward":"backward";
@@ -317,16 +360,22 @@ module.exports=function(api) {
       }else{journey=null;current=target;}
       scene.dataset.travel=journey?"flying":"settled";
       travelUpdate=update;
+      // Prepare the bounded source/target working set at its settled detail
+      // before either can be painted in flight. Avoid a visible downgrade and
+      // post-arrival rebuild; mobile/adaptive compact detail still applies.
+      // Probe costs remain part of input-to-ready evidence.
+      if(journey){try{roomFor(sourcePage);roomFor(page);}catch{fail();return;}}
       reportTravel(journey?0:1);
-      observer?.disconnect();observer?.observe(document.querySelector("main"));nextDraw=null;schedule();
+      observeLayout();nextDraw=null;schedule();
     },
-    refresh(){observer?.disconnect();observer?.observe(document.querySelector("main"));measure();const target=scrollPose();if(journey)journey.to=target;else moveTo(target);},
+    refresh({sync=false,reason='mount'}={}){observeLayout();invalidateLayout(reason);if(sync)flushLayout();},
+    diagnostics(){return {rooms:[...rooms].map(([route,variants])=>({route,models:[...variants].map(([compact,room])=>({compact,serializedChars:JSON.stringify(room.world).length}))})),paletteEntries:colorFills.size,layoutPasses};},
     detachTravel(){travelUpdate=null;}
   };
   // Stylesheet load/error is authoritative, including early WebKit deferral.
   function initialize() {
-    if(initialized || failed || !readColors())return;
-    measure();initialized=true;scene.dataset.state="active";
+    if(!domReady || initialized || failed || !readColors())return;
+    measure();layoutDirty=false;layoutReasons.clear();initialized=true;scene.dataset.state="active";
     if(enabled) {
       if(page==="writing")current=pathPose();
       else if(stops.length===1)current=pose(stops[0].id);
@@ -338,5 +387,6 @@ module.exports=function(api) {
   stylesheet?.addEventListener?.("load",initialize,{once:true});
   stylesheet?.addEventListener?.("error",()=>{if(!initialized)fail();},{once:true});
   canvas.addEventListener?.("contextlost",fail);
+  if(!domReady)document.addEventListener("DOMContentLoaded",()=>{domReady=true;initialize();},{once:true});
   initialize();
 };

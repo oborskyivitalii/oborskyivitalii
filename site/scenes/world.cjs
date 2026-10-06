@@ -1,12 +1,14 @@
 "use strict";
 // Native function factory; the producer serializes this exact authored function.
 module.exports=function(math) {
-  const {add,sub,dot,cross,normalize,facePlane}=math;
+  const {add,normalize,facePlane,owns}=math;
+  // Finite symbol/detail templates are shared by every room. No route models
+  // or browser objects live here; the vocabulary bounds this immutable cache.
+  const templates=new Map();
   // Finite recursive grammars use modeled symbols as their terminal geometry.
   // Immutable geometry is built once; every animated pose is evaluated from it.
   function worldFor(page,compact=false) {
     const faces=[],lines=[],objects=[];
-    const templates=new Map();
     const rotate=(p,r)=>{
       let [x,y,z]=p,[a,b,c]=r;
       [y,z]=[y*Math.cos(a)-z*Math.sin(a),y*Math.sin(a)+z*Math.cos(a)];
@@ -16,14 +18,14 @@ module.exports=function(math) {
     let detail=0,metadata={};
     function object(name,center,rotation,scale,band,build) {
       const firstFace=faces.length,firstLine=lines.length;
-      const key=metadata.symbol+":"+detail;
+      const key=Number(compact)+":"+metadata.symbol+":"+detail;
       if(templates.has(key)){instance(templates.get(key));return;}
       // Build each symbol/detail vocabulary once in local coordinates. Every
       // repetition transforms its shared vertices once, not once per facet.
       const point=p=>p;
       const face=(points,color="cyan",tone=.2,edge=.36,closed=false)=>faces.push({points:points.map(point),color,band,opacity:1,tone,edgeAlpha:edge,object:name,...(compact&&closed?{oneSided:true}:{})});
-      const line=(a,b,color="cyan",alpha=.58,width=1)=>lines.push({a:point(a),b:point(b),color,band,opacity:alpha,width,object:name});
-      const path=(points,color="cyan",alpha=.58,width=1)=>{for(let i=1;i<points.length;i++)if(!compact||!points[i].every((v,j)=>v===points[i-1][j]))line(points[i-1],points[i],color,alpha,width);};
+      const line=(a,b,color="cyan",alpha=.58,width=1,minScale=0)=>lines.push({a:point(a),b:point(b),color,band,opacity:alpha,width,object:name,...(minScale?{minScale}:{})});
+      const path=(points,color="cyan",alpha=.58,width=1,minScale=0)=>{for(let i=1;i<points.length;i++)if(!compact||!points[i].every((v,j)=>v===points[i-1][j]))line(points[i-1],points[i],color,alpha,width,minScale);};
       const poly=(points,depth,color="cyan",tone=.24)=>{
         if(compact&&points.reduce((sum,p,i)=>sum+p[0]*points[(i+1)%points.length][1]-points[(i+1)%points.length][0]*p[1],0)<0)points=points.slice().reverse();
         const front=points.map(([x,y])=>[x,y,depth/2]),back=points.map(([x,y])=>[x,y,-depth/2]);
@@ -60,10 +62,15 @@ module.exports=function(math) {
       template.radius=Math.max(...template.points.map(p=>Math.hypot(...p)));
       templates.set(key,template);instance(template);
       function instance(template) {
-        const points=template.points.map(p=>add(center,rotate(p.map(v=>v*scale),rotation)));
+        const [a,b,c]=rotation,ca=Math.cos(a),sa=Math.sin(a),cb=Math.cos(b),sb=Math.sin(b),cc=Math.cos(c),sc=Math.sin(c);
+        const m=[cc*cb,cc*sb*sa-sc*ca,cc*sb*ca+sc*sa,sc*cb,sc*sb*sa+cc*ca,sc*sb*ca-cc*sa,-sb,cb*sa,cb*ca];
+        const points=template.points.map(p=>[center[0]+scale*(m[0]*p[0]+m[1]*p[1]+m[2]*p[2]),center[1]+scale*(m[3]*p[0]+m[4]*p[1]+m[5]*p[2]),center[2]+scale*(m[6]*p[0]+m[7]*p[1]+m[8]*p[2])]);
         for(const f of template.faces)faces.push({...f,points:f.indices.map(i=>points[i]),band,object:name});
         for(const line of template.lines)lines.push({...line,a:points[line.indices[0]],b:points[line.indices[1]],band,object:name});
-        objects.push({name,center,scale,band,...metadata,firstFace,faceCount:template.faces.length,firstLine,lineCount:template.lines.length,points,radius:template.radius*scale+2.3});
+        // Culling uses the actual animated centre and uniform pulse scale.
+        // A fixed 2.3-world-unit motion pad inflated tiny copies by several
+        // times and needlessly projected objects outside the viewport.
+        objects.push({name,center,scale,band,...metadata,firstFace,faceCount:template.faces.length,firstLine,lineCount:template.lines.length,points,radius:template.radius*scale+1e-6});
       }
     }
     const bookHalf=({face,line,path},sign,n,rows,segments)=>{
@@ -275,16 +282,112 @@ module.exports=function(math) {
     // A common angular grammar threads every thematic room. Each branch uses
     // the same finite 1 + 2 + 4 hierarchy and clear camera corridor.
     function sharedGeometry() {
+    // Replace shared terminals, keeping the same bounded 56-object hierarchy.
+    const brain=({path,face,poly,box})=>{
+      // Two closed lobes, a real fissure, cortical folds and a stem. The small
+      // fixed mesh carries volume; the grooves carry the recognisable silhouette.
+      const n=detail?5:compact?6:8;
+      for(const side of [-1,1]){
+        const at=(lat,i)=>{
+          const a=i/n*Math.PI*2,r=1+.065*Math.cos(3*a+lat*2);
+          return [side*1.02+.94*Math.cos(lat)*Math.cos(a)*r,.24+1.76*Math.sin(lat),.94*Math.cos(lat)*Math.sin(a)*r];
+        };
+        const rings=[-.92,0,.92].map(lat=>Array.from({length:n},(_,i)=>at(lat,i)));
+        for(let i=0;i<n;i++){
+          const j=(i+1)%n;
+          face([[side*1.02,-1.52,0],rings[0][i],rings[0][j]],"cyan",.19,.13,true);
+          face([[side*1.02,2,0],rings[2][j],rings[2][i]],"cyan",.19,.13,true);
+          for(let k=0;k<2;k++)face([rings[k+1][i],rings[k+1][j],rings[k][j],rings[k][i]],"cyan",.16,.12,true);
+        }
+        for(let fold=0;fold<4;fold++)path(Array.from({length:7},(_,i)=>{
+          const x=.27+i*.27,y=1.45-fold*.72+.18*Math.sin(i*1.7+fold);
+          return [side*x,y,.12+.96*Math.sqrt(Math.max(.03,1-((x-1.02)/1.05)**2-((y-.24)/1.88)**2))];
+        }),"amber",.88,1.45,fold%2?7:0);
+      }
+      path([[0,1.88,.2],[-.09,1.12,.6],[.07,.5,.83],[-.07,-.15,.75],[0,-1.23,.25]],"amber",.95,1.8);
+      poly([[-.62,-1.38],[-.84,-1.62],[-.62,-1.93],[0,-2.06],[.62,-1.93],[.84,-1.62],[.62,-1.38]],.65,"cyan",.23);
+      box([0,-2.12,-.12],[.36,.65,.42],"amber",.32);
+      for(let row=0;row<2;row++)path([[-.6,-1.58-row*.2,.35],[0,-1.74-row*.2,.37],[.6,-1.58-row*.2,.35]],"amber",.68,1.15,7);
+    };
+    const axes=({path,line})=>{
+      path([[-2.15,1.8,0],[-2.15,-1.65,0],[2.2,-1.65,0]],"cyan",.85,1.5);
+      path([[-2.15,-1.65,0],[-2.15,-1.65,-1.25],[2.2,-1.65,-1.25]],"cyan",.42,1,7);
+      path([[-2.32,1.53,0],[-2.15,1.8,0],[-1.98,1.53,0]],"cyan",.85,1.5,7);
+      path([[1.94,-1.48,0],[2.2,-1.65,0],[1.94,-1.82,0]],"cyan",.85,1.5,7);
+      for(let y=-.8;y<(detail?-.7:1.6);y+=.8)line([-2.15,y,-.35],[2,y,-.35],"cyan",.22,.7,7);
+    };
+    const lineChart=h=>{
+      axes(h);const points=[[-1.8,-1.05,.3],[-1.1,-.2,.3],[-.45,-.55,.3],[.25,.5,.3],[.85,.22,.3],[1.72,1.48,.3]];
+      h.path(points,"amber",.98,2.3);
+      for(let i=1;i<points.length;i++)h.face([points[i-1],points[i],add(points[i],[0,-.18,-.15]),add(points[i-1],[0,-.18,-.15])],"amber",.36,0);
+      for(const [x,y,z]of points)h.path(detail?[[x-.09,y-.09,z+.02],[x,y+.09,z+.02],[x+.09,y-.09,z+.02]]:[[x-.09,y,z+.02],[x,y+.09,z+.02],[x+.09,y,z+.02],[x,y-.09,z+.02],[x-.09,y,z+.02]],"amber",.95,1.3,7);
+      h.path([[-1.8,.9,-.6],[-1.1,.45,-.6],[-.45,.2,-.6],[.25,-.3,-.6],[.85,-.62,-.6],[1.72,-.83,-.6]],"cyan",.82,1.5);
+    };
+    const barChart=h=>{axes(h);for(const [i,height]of [1.05,2.25,1.65,3.05].entries()){
+      h.box([-1.45+i*.9,-1.6+height/2,-.28],[.58,height,1.05],i%2?"amber":"cyan",.32);
+      h.line([-1.74+i*.9,-1.6+height,.27],[-1.16+i*.9,-1.6+height,.27],"amber",.98,1.8);
+    }};
+    const scatterChart=h=>{
+      axes(h);const points=[[-1.6,-.9],[-1.15,-.4],[-.7,-.8],[-.35,.2],[.25,.05],[.8,.85],[1.35,.4],[1.75,1.25]];
+      points.forEach(([x,y],i)=>{
+        const z=i%2 ? .45 : -.65,r=.13;
+        h.path([[x-r,y,z],[x,y+r,z],[x+r,y,z],[x,y-r,z],[x-r,y,z]],i%2?"amber":"cyan",.96,1.8);
+        if(!detail)h.line([x,y,z],[x,-1.6,z],"cyan",.22,.7,7);
+      });
+      h.path([[-1.8,-1.1,.15],[1.85,1.25,.15]],"amber",.68,1.2);
+    };
+    // Stroke glyphs are world geometry, built once per detail tier.
+    const glyphs={D:'0,0 0,6 3,6 4,5 4,1 3,0 0,0',F:'0,0 0,6 4,6|0,3 3,3',G:'4,5 3,6 1,6 0,5 0,1 1,0 4,0 4,3 2,3',H:'0,0 0,6|4,0 4,6|0,3 4,3',K:'0,0 0,6|4,6 0,3 4,0',L:'0,6 0,0 4,0',M:'0,0 0,6 2,3 4,6 4,0',O:'1,0 0,1 0,5 1,6 3,6 4,5 4,1 3,0 1,0',P:'0,0 0,6 3,6 4,5 4,4 3,3 0,3',Q:'1,0 0,1 0,5 1,6 3,6 4,5 4,1 3,0 1,0|2,2 4,-1',S:'4,5 3,6 1,6 0,5 0,4 4,2 4,1 3,0 1,0 0,1',T:'0,6 4,6|2,6 2,0',V:'0,6 2,0 4,6',X:'0,6 4,0|4,6 0,0',Z:'0,6 4,6 0,0 4,0',A:'0,0 2,6 4,0|1,2 3,2','=':'0,2 4,2|0,4 4,4','-':'0,3 4,3','/':'0,0 4,6','(':'3,6 1,5 0,3 1,1 3,0',')':'1,6 3,5 4,3 3,1 1,0','Σ':'4,6 0,6 3,3 0,0 4,0','√':'0,2 1,0 2,6 4,6','·':'1,3 2,3',d:'4,6 4,0 1,0 0,1 0,3 1,4 4,4','ᵀ':'0,8 3,8|1.5,8 1.5,5'};
+    Object.assign(glyphs,{e:'0,2 4,2 4,3 3,4 1,4 0,3 0,1 1,0 4,0',i:'2,0 2,4|2,6 2,6.2',j:'3,4 3,-1 2,-2 0,-2|3,6 3,6.2',k:'0,0 0,6|4,4 0,2 4,0',p:'0,-2 0,4 3,4 4,3 4,1 3,0 0,0',z:'0,4 4,4 0,0 4,0'});
+    const formula=kind=>({path,line})=>{
+      // Fraction bars and genuinely raised/lowered exponents replace flattened
+      // all-caps strings. A sparse rear rail gives depth without duplicate text.
+      const text=(value,x,y,unit=.2,color="amber")=>{
+        for(let i=0;i<value.length;i++)for(const stroke of glyphs[value[i]].split('|'))path(stroke.split(' ').map(pair=>{
+          const [a,b]=pair.split(',').map(Number);return [x+(i*5+a)*unit,y+b*unit,.28];
+        }),color,.97,1.8);
+      };
+      if(kind==='attention'){
+        text('A=',-4.8,-.55,.19);text('SOFTMAX',-2.7,-.3,.13);
+        text('(',1.93,-.95,.29);text('QK',2.43,.32,.18);text('T',4.0,1.02,.1);
+        line([2.38,.13,.28],[4.28,.13,.28],"amber",.98,1.8);
+        text('√d',2.58,-1.22,.18);text('k',4.05,-1.42,.1);
+        text(')',4.38,-.95,.29);text('V',5.62,-.5,.19);
+      }else if(kind==='softmax'){
+        text('p',-2.6,-.25,.25);text('i',-1.5,-.65,.13);text('=',-.73,-.4,.22);
+        text('e',1.1,.52,.28);text('z',2.45,1.2,.15);text('i',3.1,1.02,.09);
+        line([.63,.26,.28],[3.65,.26,.28],"amber",.98,1.8);
+        text('Σ',.7,-1.3,.23);text('j',1.07,-1.95,.1);text('e',2,-1.28,.25);text('z',3.16,-.7,.13);text('j',3.75,-.87,.09);
+      }else{
+        text('H=-',-3.85,-.5,.22);text('Σ',-.4,-.62,.26);text('i',.15,-1.2,.12);
+        text('p',1.15,-.45,.22);text('i',2.12,-.85,.11);
+        text('LOG',-1.1,-2.35,.2);text('(',2,-2.42,.22);text('p',2.94,-2.35,.22);text('i',3.9,-2.7,.1);text(')',4.38,-2.42,.22);
+      }
+      const ends=kind==='attention'?[-4.9,6.4]:[-3.9,5.3],y=kind==='entropy'?-3.1:-2.2;
+      line([ends[0],y,-.55],[ends[1],y,-.55],"cyan",.55,1.2,7);
+      if(!detail)for(const x of ends)path([[x,y+.38,-.55],[x,y,-.55],[x,y,.32],[x,y+.38,.32]],"cyan",.65,1.2,7);
+    };
+    const formulas={"attention":"A = softmax(QKᵀ/√dₖ)V","softmax":"pᵢ = exp(zᵢ)/Σⱼ exp(zⱼ)","entropy":"H = −Σᵢ pᵢ log(pᵢ)"};
     const geometry=[
+      ["brain",brain],
+      ["attention",formula('attention')],
+      ["line-chart",lineChart],
+      ["bar-chart",barChart],
+      ["softmax",formula('softmax')],
+      ["entropy",formula('entropy')],
       ["cube",h=>h.box([0,0,0],[2,2,2],"cyan",.23)],
       ["triangle",h=>h.poly([[-1.3,-1],[1.3,-1],[0,1.4]],.65,"amber",.28)],
+      ["scatter-chart",scatterChart],
       ["octahedron",h=>h.ball([0,0,0],1.45,"cyan")],
       ["hexagon",h=>h.poly(Array.from({length:6},(_,i)=>[1.35*Math.cos(i*Math.PI/3),1.35*Math.sin(i*Math.PI/3)]),.7,"amber",.2)]
     ];
     function branch(center,scale,depth,root,index,parent=null) {
-      const [symbol,build]=geometry[index%geometry.length],name=`shared-${root}-${index}`;
-      metadata={family:"shared",symbol,depth,root,rootCenter:roots[root],parent,phase:index*.71+root*1.9};
-      object(name,center,[.3,.45,index*.6],scale,root>1?"distant":"middle",build);
+      const slot=depth===0?root*2+(index===8?1:0):index+root*3;
+      const [symbol,build]=geometry[slot%geometry.length],name=`shared-${root}-${index}`;
+      detail=depth?1:0;
+      metadata={family:"shared",symbol,...(formulas[symbol]?{formula:formulas[symbol]}:{}),depth,root,rootCenter:roots[root],parent,phase:index*.71+root*1.9};
+      const readable=symbol==='brain'||symbol.includes('chart')||owns(formulas,symbol);
+      object(name,center,readable?[.12,-.18,.08*Math.sin(index+root)]:[.3,.45,index*.6],scale,root>1?"distant":"middle",build);
       if(depth===2)return;
       for(let j=0;j<2;j++)branch(add(center,[(j?1:-1)*scale*2.6,scale*1.7,-scale*1.4]),scale*.43,depth+1,root,index*2+j+1,name);
     }
@@ -295,8 +398,17 @@ module.exports=function(math) {
     return {faces,lines,objects};
   }
   function prepareFace(f,light) {
-    const normal=normalize(cross(sub(f.points[1],f.points[0]),sub(f.points[2],f.points[0])));
-    const shade=.65+.5*Math.abs(dot(normal,light));
+    // Preserve the original cross/normalize/dot arithmetic without allocating
+    // two edge vectors, a cross vector and a normalized vector for every face.
+    const a=f.points[0],b=f.points[1],c=f.points[2];
+    const ax=b[0]-a[0],ay=b[1]-a[1],az=b[2]-a[2];
+    const bx=c[0]-a[0],by=c[1]-a[1],bz=c[2]-a[2];
+    let nx=ay*bz-az*by,ny=az*bx-ax*bz,nz=ax*by-ay*bx;
+    const length=Math.hypot(nx,ny,nz);
+    if(length>1e-9){nx/=length;ny/=length;nz/=length;}
+    else {nx=0;ny=0;nz=1;}
+    const lightDot=((0+nx*light[0])+ny*light[1])+nz*light[2];
+    const shade=.65+.5*Math.abs(lightDot);
     f.tint=Math.min(.63,f.tone*shade);
     if(f.oneSided)f.plane=facePlane(f.points);
     // Paper catches neutral light in both themes; metal keeps its cyan/bronze tint.

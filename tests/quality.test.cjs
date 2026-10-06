@@ -282,6 +282,7 @@ test('flight measurements and repeated-navigation resources are mandatory',()=>{
 test('Color navigation requires both depth planes and a clear handover without changing base fades',()=>{
   const {checkTiming}=require('../tools/quality/navigation.cjs');
   const samples=[.05,.1,.2,.3,.4,.47,.5,.55,.6,.7,.8,.9,.99].map(progress=>({progress,opacity:progress<.46?1-progress/.46:progress<=.51?0:(progress-.51)/.49,depth:progress<.5?100:-100,stage:progress<.5?'depart':'arrive',direction:'forward'}));
+  samples.splice(-1,0,{kind:'mount',progress:.5,opacity:0,direction:'forward'});
   checkTiming(samples,'color');
   assert.throws(()=>checkTiming(samples,'base'),/hidden throughout middle/);
   for(const mutate of [s=>s[0].depth=-100,s=>s.at(-1).depth=100,s=>s[5].opacity=.1,s=>s.at(-1).opacity=1]){

@@ -1,0 +1,856 @@
+{
+  "browser": "153.0.8010.12",
+  "rows": [
+    {
+      "variant": "Final",
+      "width": 1440,
+      "source": "93cf7c1f75ca663c16992ae99ddf96c8402d8eb08fe4f6c3671d9defa46a2d42",
+      "result": {
+        "rows": [
+          {
+            "from": "talks",
+            "to": "writing",
+            "motion": "on",
+            "late": false,
+            "y": 4642,
+            "max": 4642
+          },
+          {
+            "from": "talks",
+            "to": "writing",
+            "motion": "on",
+            "late": true,
+            "y": 2873,
+            "max": 2873
+          },
+          {
+            "from": "writing",
+            "to": "research",
+            "motion": "on",
+            "late": false,
+            "y": 3811,
+            "max": 3811
+          },
+          {
+            "from": "writing",
+            "to": "research",
+            "motion": "on",
+            "late": true,
+            "y": 4691,
+            "max": 4691
+          },
+          {
+            "from": "research",
+            "to": "index",
+            "motion": "on",
+            "late": false,
+            "y": 5539,
+            "max": 5539
+          },
+          {
+            "from": "research",
+            "to": "index",
+            "motion": "on",
+            "late": true,
+            "y": 6419,
+            "max": 6419
+          },
+          {
+            "from": "talks",
+            "to": "writing",
+            "motion": "off",
+            "late": false,
+            "y": 4642,
+            "max": 4642
+          },
+          {
+            "from": "talks",
+            "to": "writing",
+            "motion": "off",
+            "late": true,
+            "y": 2873,
+            "max": 2873
+          },
+          {
+            "from": "writing",
+            "to": "research",
+            "motion": "off",
+            "late": false,
+            "y": 3811,
+            "max": 3811
+          },
+          {
+            "from": "writing",
+            "to": "research",
+            "motion": "off",
+            "late": true,
+            "y": 4691,
+            "max": 4691
+          },
+          {
+            "from": "research",
+            "to": "index",
+            "motion": "off",
+            "late": false,
+            "y": 5539,
+            "max": 5539
+          },
+          {
+            "from": "research",
+            "to": "index",
+            "motion": "off",
+            "late": true,
+            "y": 6419,
+            "max": 6419
+          }
+        ],
+        "takeover": {
+          "before": {
+            "y": 4442,
+            "max": 4642
+          },
+          "after": {
+            "y": 4442,
+            "max": 5522
+          }
+        },
+        "historyMiddle": 400
+      },
+      "errors": []
+    },
+    {
+      "variant": "Final",
+      "width": 390,
+      "source": "93cf7c1f75ca663c16992ae99ddf96c8402d8eb08fe4f6c3671d9defa46a2d42",
+      "result": {
+        "rows": [
+          {
+            "from": "talks",
+            "to": "writing",
+            "motion": "on",
+            "late": false,
+            "y": 8615,
+            "max": 8615
+          },
+          {
+            "from": "talks",
+            "to": "writing",
+            "motion": "on",
+            "late": true,
+            "y": 4617,
+            "max": 4617
+          },
+          {
+            "from": "writing",
+            "to": "research",
+            "motion": "on",
+            "late": false,
+            "y": 7690,
+            "max": 7690
+          },
+          {
+            "from": "writing",
+            "to": "research",
+            "motion": "on",
+            "late": true,
+            "y": 8570,
+            "max": 8570
+          },
+          {
+            "from": "research",
+            "to": "index",
+            "motion": "on",
+            "late": false,
+            "y": 10179,
+            "max": 10179
+          },
+          {
+            "from": "research",
+            "to": "index",
+            "motion": "on",
+            "late": true,
+            "y": 11059,
+            "max": 11059
+          },
+          {
+            "from": "talks",
+            "to": "writing",
+            "motion": "off",
+            "late": false,
+            "y": 8615,
+            "max": 8615
+          },
+          {
+            "from": "talks",
+            "to": "writing",
+            "motion": "off",
+            "late": true,
+            "y": 4617,
+            "max": 4617
+          },
+          {
+            "from": "writing",
+            "to": "research",
+            "motion": "off",
+            "late": false,
+            "y": 7690,
+            "max": 7690
+          },
+          {
+            "from": "writing",
+            "to": "research",
+            "motion": "off",
+            "late": true,
+            "y": 8570,
+            "max": 8570
+          },
+          {
+            "from": "research",
+            "to": "index",
+            "motion": "off",
+            "late": false,
+            "y": 10179,
+            "max": 10179
+          },
+          {
+            "from": "research",
+            "to": "index",
+            "motion": "off",
+            "late": true,
+            "y": 11059,
+            "max": 11059
+          }
+        ],
+        "takeover": {
+          "before": {
+            "y": 8415,
+            "max": 8615
+          },
+          "after": {
+            "y": 8415,
+            "max": 9495
+          }
+        },
+        "historyMiddle": 400
+      },
+      "errors": []
+    },
+    {
+      "variant": "Color-Prototype",
+      "width": 1440,
+      "source": "2762c20418996007ab489dcde68c54f633439aef7725c70c1867d44e9e236eb6",
+      "result": {
+        "rows": [
+          {
+            "from": "talks",
+            "to": "writing",
+            "motion": "on",
+            "late": false,
+            "y": 4635,
+            "max": 4635
+          },
+          {
+            "from": "talks",
+            "to": "writing",
+            "motion": "on",
+            "late": true,
+            "y": 2849,
+            "max": 2849
+          },
+          {
+            "from": "writing",
+            "to": "research",
+            "motion": "on",
+            "late": false,
+            "y": 3804,
+            "max": 3804
+          },
+          {
+            "from": "writing",
+            "to": "research",
+            "motion": "on",
+            "late": true,
+            "y": 4667,
+            "max": 4667
+          },
+          {
+            "from": "research",
+            "to": "index",
+            "motion": "on",
+            "late": false,
+            "y": 5533,
+            "max": 5533
+          },
+          {
+            "from": "research",
+            "to": "index",
+            "motion": "on",
+            "late": true,
+            "y": 6395,
+            "max": 6395
+          },
+          {
+            "from": "talks",
+            "to": "writing",
+            "motion": "off",
+            "late": false,
+            "y": 4635,
+            "max": 4635
+          },
+          {
+            "from": "talks",
+            "to": "writing",
+            "motion": "off",
+            "late": true,
+            "y": 2849,
+            "max": 2849
+          },
+          {
+            "from": "writing",
+            "to": "research",
+            "motion": "off",
+            "late": false,
+            "y": 3804,
+            "max": 3804
+          },
+          {
+            "from": "writing",
+            "to": "research",
+            "motion": "off",
+            "late": true,
+            "y": 4667,
+            "max": 4667
+          },
+          {
+            "from": "research",
+            "to": "index",
+            "motion": "off",
+            "late": false,
+            "y": 5533,
+            "max": 5533
+          },
+          {
+            "from": "research",
+            "to": "index",
+            "motion": "off",
+            "late": true,
+            "y": 6395,
+            "max": 6395
+          }
+        ],
+        "takeover": {
+          "before": {
+            "y": 4435,
+            "max": 4635
+          },
+          "after": {
+            "y": 4435,
+            "max": 5498
+          }
+        },
+        "historyMiddle": 400
+      },
+      "errors": [],
+      "inputs": [
+        {
+          "input": "wheel",
+          "from": "talks",
+          "to": "writing",
+          "flight": "on",
+          "y": 5498,
+          "max": 5498,
+          "wheelTimes": [
+            1065.7999999970198,
+            1125.8999999985099,
+            1185.8999999985099,
+            1245.7999999970198,
+            1305.7999999970198
+          ]
+        },
+        {
+          "input": "wheel",
+          "from": "writing",
+          "to": "research",
+          "flight": "on",
+          "y": 4667,
+          "max": 4667,
+          "wheelTimes": [
+            1090.7999999970198,
+            1150.7999999970198,
+            1210.7999999970198,
+            1270.8999999985099,
+            1330.7999999970198
+          ]
+        },
+        {
+          "input": "wheel",
+          "from": "research",
+          "to": "index",
+          "flight": "on",
+          "y": 6395,
+          "max": 6395,
+          "wheelTimes": [
+            1223.2999999970198,
+            1283.2999999970198,
+            1343.3999999985099,
+            1403.2999999970198,
+            1463.2999999970198
+          ]
+        },
+        {
+          "input": "key",
+          "from": "talks",
+          "to": "writing",
+          "flight": "on",
+          "y": 5498,
+          "max": 5498
+        },
+        {
+          "input": "key",
+          "from": "writing",
+          "to": "research",
+          "flight": "on",
+          "y": 4667,
+          "max": 4667
+        },
+        {
+          "input": "key",
+          "from": "research",
+          "to": "index",
+          "flight": "on",
+          "y": 6395,
+          "max": 6395
+        },
+        {
+          "input": "touch",
+          "from": "talks",
+          "to": "writing",
+          "flight": "on",
+          "y": 5498,
+          "max": 5498
+        },
+        {
+          "input": "touch",
+          "from": "writing",
+          "to": "research",
+          "flight": "on",
+          "y": 4667,
+          "max": 4667
+        },
+        {
+          "input": "touch",
+          "from": "research",
+          "to": "index",
+          "flight": "on",
+          "y": 6395,
+          "max": 6395
+        },
+        {
+          "input": "wheel",
+          "from": "talks",
+          "to": "writing",
+          "flight": "off",
+          "y": 5498,
+          "max": 5498,
+          "wheelTimes": [
+            1198.7000000029802,
+            1258.8000000044703,
+            1318.7000000029802,
+            1378.7000000029802,
+            1438.7000000029802
+          ]
+        },
+        {
+          "input": "wheel",
+          "from": "writing",
+          "to": "research",
+          "flight": "off",
+          "y": 4667,
+          "max": 4667,
+          "wheelTimes": [
+            1113.7999999970198,
+            1173.7999999970198,
+            1233.7999999970198,
+            1293.7999999970198,
+            1353.8999999985099
+          ]
+        },
+        {
+          "input": "wheel",
+          "from": "research",
+          "to": "index",
+          "flight": "off",
+          "y": 6395,
+          "max": 6395,
+          "wheelTimes": [
+            1144,
+            1204,
+            1264,
+            1324.1000000014901,
+            1384.1000000014901
+          ]
+        },
+        {
+          "input": "key",
+          "from": "talks",
+          "to": "writing",
+          "flight": "off",
+          "y": 5498,
+          "max": 5498
+        },
+        {
+          "input": "key",
+          "from": "writing",
+          "to": "research",
+          "flight": "off",
+          "y": 4667,
+          "max": 4667
+        },
+        {
+          "input": "key",
+          "from": "research",
+          "to": "index",
+          "flight": "off",
+          "y": 6395,
+          "max": 6395
+        },
+        {
+          "input": "touch",
+          "from": "talks",
+          "to": "writing",
+          "flight": "off",
+          "y": 5498,
+          "max": 5498
+        },
+        {
+          "input": "touch",
+          "from": "writing",
+          "to": "research",
+          "flight": "off",
+          "y": 4667,
+          "max": 4667
+        },
+        {
+          "input": "touch",
+          "from": "research",
+          "to": "index",
+          "flight": "off",
+          "y": 6395,
+          "max": 6395
+        }
+      ],
+      "reduced": true,
+      "expiry": true,
+      "shortGrowth": true
+    },
+    {
+      "variant": "Color-Prototype",
+      "width": 390,
+      "source": "2762c20418996007ab489dcde68c54f633439aef7725c70c1867d44e9e236eb6",
+      "result": {
+        "rows": [
+          {
+            "from": "talks",
+            "to": "writing",
+            "motion": "on",
+            "late": false,
+            "y": 8608,
+            "max": 8608
+          },
+          {
+            "from": "talks",
+            "to": "writing",
+            "motion": "on",
+            "late": true,
+            "y": 4647,
+            "max": 4647
+          },
+          {
+            "from": "writing",
+            "to": "research",
+            "motion": "on",
+            "late": false,
+            "y": 7719,
+            "max": 7719
+          },
+          {
+            "from": "writing",
+            "to": "research",
+            "motion": "on",
+            "late": true,
+            "y": 8582,
+            "max": 8582
+          },
+          {
+            "from": "research",
+            "to": "index",
+            "motion": "on",
+            "late": false,
+            "y": 10208,
+            "max": 10208
+          },
+          {
+            "from": "research",
+            "to": "index",
+            "motion": "on",
+            "late": true,
+            "y": 11071,
+            "max": 11071
+          },
+          {
+            "from": "talks",
+            "to": "writing",
+            "motion": "off",
+            "late": false,
+            "y": 8608,
+            "max": 8608
+          },
+          {
+            "from": "talks",
+            "to": "writing",
+            "motion": "off",
+            "late": true,
+            "y": 4647,
+            "max": 4647
+          },
+          {
+            "from": "writing",
+            "to": "research",
+            "motion": "off",
+            "late": false,
+            "y": 7719,
+            "max": 7719
+          },
+          {
+            "from": "writing",
+            "to": "research",
+            "motion": "off",
+            "late": true,
+            "y": 8582,
+            "max": 8582
+          },
+          {
+            "from": "research",
+            "to": "index",
+            "motion": "off",
+            "late": false,
+            "y": 10208,
+            "max": 10208
+          },
+          {
+            "from": "research",
+            "to": "index",
+            "motion": "off",
+            "late": true,
+            "y": 11071,
+            "max": 11071
+          }
+        ],
+        "takeover": {
+          "before": {
+            "y": 8408,
+            "max": 8608
+          },
+          "after": {
+            "y": 8408,
+            "max": 9524
+          }
+        },
+        "historyMiddle": 400
+      },
+      "errors": [],
+      "inputs": [
+        {
+          "input": "wheel",
+          "from": "talks",
+          "to": "writing",
+          "flight": "on",
+          "y": 9524,
+          "max": 9524,
+          "wheelTimes": [
+            954.3999999985099,
+            1014.3999999985099,
+            1074.3999999985099,
+            1134.5,
+            1194.3999999985099
+          ]
+        },
+        {
+          "input": "wheel",
+          "from": "writing",
+          "to": "research",
+          "flight": "on",
+          "y": 8582,
+          "max": 8582,
+          "wheelTimes": [
+            941.2999999970198,
+            1001.2999999970198,
+            1061.2999999970198,
+            1121.2000000029802,
+            1181.2999999970198
+          ]
+        },
+        {
+          "input": "wheel",
+          "from": "research",
+          "to": "index",
+          "flight": "on",
+          "y": 11071,
+          "max": 11071,
+          "wheelTimes": [
+            1030.9000000059605,
+            1090.8000000044703,
+            1150.9000000059605,
+            1210.9000000059605,
+            1270.9000000059605
+          ]
+        },
+        {
+          "input": "key",
+          "from": "talks",
+          "to": "writing",
+          "flight": "on",
+          "y": 9524,
+          "max": 9524
+        },
+        {
+          "input": "key",
+          "from": "writing",
+          "to": "research",
+          "flight": "on",
+          "y": 8582,
+          "max": 8582
+        },
+        {
+          "input": "key",
+          "from": "research",
+          "to": "index",
+          "flight": "on",
+          "y": 11071,
+          "max": 11071
+        },
+        {
+          "input": "touch",
+          "from": "talks",
+          "to": "writing",
+          "flight": "on",
+          "y": 9524,
+          "max": 9524
+        },
+        {
+          "input": "touch",
+          "from": "writing",
+          "to": "research",
+          "flight": "on",
+          "y": 8582,
+          "max": 8582
+        },
+        {
+          "input": "touch",
+          "from": "research",
+          "to": "index",
+          "flight": "on",
+          "y": 11071,
+          "max": 11071
+        },
+        {
+          "input": "wheel",
+          "from": "talks",
+          "to": "writing",
+          "flight": "off",
+          "y": 9524,
+          "max": 9524,
+          "wheelTimes": [
+            982.9000000059605,
+            1042.8000000044703,
+            1102.8000000044703,
+            1162.9000000059605,
+            1222.9000000059605
+          ]
+        },
+        {
+          "input": "wheel",
+          "from": "writing",
+          "to": "research",
+          "flight": "off",
+          "y": 8582,
+          "max": 8582,
+          "wheelTimes": [
+            951.1000000014901,
+            1011.2000000029802,
+            1071.2000000029802,
+            1131.2000000029802,
+            1191.2000000029802
+          ]
+        },
+        {
+          "input": "wheel",
+          "from": "research",
+          "to": "index",
+          "flight": "off",
+          "y": 11071,
+          "max": 11071,
+          "wheelTimes": [
+            1006,
+            1066.1000000014901,
+            1126.1000000014901,
+            1186,
+            1246
+          ]
+        },
+        {
+          "input": "key",
+          "from": "talks",
+          "to": "writing",
+          "flight": "off",
+          "y": 9524,
+          "max": 9524
+        },
+        {
+          "input": "key",
+          "from": "writing",
+          "to": "research",
+          "flight": "off",
+          "y": 8582,
+          "max": 8582
+        },
+        {
+          "input": "key",
+          "from": "research",
+          "to": "index",
+          "flight": "off",
+          "y": 11071,
+          "max": 11071
+        },
+        {
+          "input": "touch",
+          "from": "talks",
+          "to": "writing",
+          "flight": "off",
+          "y": 9524,
+          "max": 9524
+        },
+        {
+          "input": "touch",
+          "from": "writing",
+          "to": "research",
+          "flight": "off",
+          "y": 8582,
+          "max": 8582
+        },
+        {
+          "input": "touch",
+          "from": "research",
+          "to": "index",
+          "flight": "off",
+          "y": 11071,
+          "max": 11071
+        }
+      ],
+      "reduced": true,
+      "expiry": true,
+      "shortGrowth": true
+    }
+  ],
+  "scope": "Targeted existing hosted endpoint fixture on both offline variants, two widths; trusted CDP wheel with original 60ms gesture timestamps, actual key/touch with Color content flight On/Off, reduced/expiry/short-growth. Fresh-input takeover remains separate. No full hosted/device claim."
+}

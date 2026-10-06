@@ -1,0 +1,177 @@
+name: Writing cold comparison
+# Writing diagnostics are manual-only; normal PR updates keep fast checks.
+on:
+  workflow_dispatch:
+    inputs:
+      candidate_sha:
+        description: Exact current candidate commit
+        required: true
+        type: string
+      diagnosis:
+        description: Run the dated bounded diagnosis instead of the original PR23 comparison
+        required: false
+        default: false
+        type: boolean
+      localization:
+        description: Replay the dated Writing localization or supported-fix confirmation
+        required: false
+        default: false
+        type: boolean
+permissions:
+  contents: read
+concurrency:
+  group: writing-comparison-${{ inputs.candidate_sha }}
+  cancel-in-progress: true
+defaults:
+  run:
+    shell: bash
+    working-directory: candidate
+jobs:
+  writing:
+    if: github.event_name == 'workflow_dispatch' && !inputs.diagnosis && !inputs.localization
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      SITE_CANDIDATE_SHA: ${{ inputs.candidate_sha }}
+      WRITING_REFERENCE_SHA: 174bef1f14390363953cc94ebc0ced136d39da82
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ inputs.candidate_sha }}
+          path: candidate
+          persist-credentials: false
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: 174bef1f14390363953cc94ebc0ced136d39da82
+          path: reference
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - name: Package original PR23 base, current base and current Color
+        run: |
+          test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
+          SITE_CANDIDATE_SHA="$WRITING_REFERENCE_SHA" node ../reference/tools/quality/artifact.cjs build "$RUNNER_TEMP/writing-input/pr23-base"
+          node tools/quality/artifact.cjs build "$RUNNER_TEMP/writing-input/current-base"
+          node -e "const fs=require('node:fs'),p=process.env.RUNNER_TEMP+'/writing-input/';fs.cpSync(p+'current-base',p+'current-color',{recursive:true})"
+          node tools/staging/color.cjs "$RUNNER_TEMP/writing-input/current-color"
+      - name: Install pinned Chromium only
+        run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium
+      - name: Collect paired cold Writing evidence and retain every trial
+        run: node tools/quality/writing-probe.cjs "$RUNNER_TEMP/writing-input" "$RUNNER_TEMP/writing-results"
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: writing-cold-comparison-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/writing-results/
+          if-no-files-found: error
+          retention-days: 30
+  diagnosis:
+    if: github.event_name == 'workflow_dispatch' && inputs.diagnosis && !inputs.localization
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      SITE_CANDIDATE_SHA: ${{ inputs.candidate_sha }}
+      WRITING_BEFORE_SHA: 6b73399c4f0afeba497c92809686bba4b7a3200a
+      WRITING_DIAGNOSIS_TRACE: 'false'
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ inputs.candidate_sha }}
+          path: candidate
+          persist-credentials: false
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: 6b73399c4f0afeba497c92809686bba4b7a3200a
+          path: reference
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - name: Check diagnostic helpers and package exact paired inputs
+        run: |
+          test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
+          node --test tests/writing-diagnosis.test.cjs tests/writing-variants.test.cjs
+          SITE_CANDIDATE_SHA="$WRITING_BEFORE_SHA" node ../reference/tools/quality/artifact.cjs build "$RUNNER_TEMP/writing-input/before-color"
+          node ../reference/tools/staging/color.cjs "$RUNNER_TEMP/writing-input/before-color"
+          node tools/quality/artifact.cjs build "$RUNNER_TEMP/writing-input/current-base"
+          node -e "const fs=require('node:fs'),p=process.env.RUNNER_TEMP+'/writing-input/';fs.cpSync(p+'current-base',p+'current-color',{recursive:true})"
+          node tools/staging/color.cjs "$RUNNER_TEMP/writing-input/current-color"
+          node tools/quality/writing-variants.cjs "$RUNNER_TEMP/writing-input"
+      - name: Install pinned Chromium only
+        run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium
+      - name: Confirm the supported change with clean paired cold boots and flights
+        run: node tools/quality/writing-diagnosis.cjs "$RUNNER_TEMP/writing-input" "$RUNNER_TEMP/writing-results" review/writing-diagnosis-20261006/run.json
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: writing-diagnosis-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/writing-results/
+          if-no-files-found: error
+          retention-days: 90
+
+  localization:
+    if: github.event_name == 'workflow_dispatch' && inputs.localization
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      SITE_CANDIDATE_SHA: ${{ inputs.candidate_sha }}
+      WRITING_BEFORE_SHA: 6d538e171ecbbaa3c3948aa0d8d118fad4aaaf5d
+      WRITING_DIAGNOSIS_TRACE: 'false'
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ inputs.candidate_sha }}
+          path: candidate
+          persist-credentials: false
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: 6d538e171ecbbaa3c3948aa0d8d118fad4aaaf5d
+          path: reference
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - name: Check localization helpers and package exact controls
+        run: |
+          test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
+          node --test tests/writing-diagnosis.test.cjs tests/writing-variants.test.cjs tests/writing-layout.test.cjs tests/writing-models.test.cjs tests/writing-localization.test.cjs tests/writing-geometry.test.cjs tests/site-face-preparation.test.cjs tests/navigation.test.cjs tests/space.test.cjs
+          SITE_CANDIDATE_SHA="$WRITING_BEFORE_SHA" node ../reference/tools/quality/artifact.cjs build "$RUNNER_TEMP/writing-input/before-color"
+          node ../reference/tools/staging/color.cjs "$RUNNER_TEMP/writing-input/before-color"
+          node tools/quality/artifact.cjs build "$RUNNER_TEMP/writing-input/current-base"
+          node -e "const fs=require('node:fs'),p=process.env.RUNNER_TEMP+'/writing-input/';fs.cpSync(p+'current-base',p+'current-color',{recursive:true})"
+          node tools/staging/color.cjs "$RUNNER_TEMP/writing-input/current-color"
+          node tools/quality/writing-variants.cjs "$RUNNER_TEMP/writing-input"
+      - name: Install locked Chromium only
+        run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium
+      - name: Localize Writing or confirm only the supported source correction
+        run: |
+          node - <<'JS'
+          const fs=require('node:fs'),path=require('node:path');
+          const input=process.env.RUNNER_TEMP+'/writing-input',out=process.env.RUNNER_TEMP+'/writing-results';
+          const config=JSON.parse(fs.readFileSync('review/writing-diagnosis-20261006/localization-run.json'));
+          const driver=config.mode==='v0'?require('./tools/quality/writing-diagnosis.cjs'):require('./tools/quality/writing-localization.cjs');
+          (async()=>{
+            await driver.main(input,out,config);
+            if(config.mode==='v0'){
+              const {serve}=require('./tools/quality/writing-probe.cjs');
+              const inputs=Object.fromEntries(['before-color','current-color'].map(label=>[label,{publicDir:path.join(input,label,'public')}]));
+              const {server,url}=await serve(inputs);
+              try{await require('./tools/quality/writing-geometry.cjs').compare(url+'/before-color',url+'/current-color',out+'/geometry.json');}
+              finally{server.close();}
+            }
+          })().catch(error=>{console.error(error.stack);process.exitCode=1;});
+          JS
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: writing-localization-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/writing-results/
+          if-no-files-found: error
+          retention-days: 90

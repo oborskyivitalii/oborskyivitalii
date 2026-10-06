@@ -1,0 +1,75 @@
+{
+  "schema": 1,
+  "kind": "incomplete-gtk-lease",
+  "runId": 37500364739,
+  "jobId": 112395490069,
+  "sourceCommit": "a8a0af5dc0c5bfab76a657d082ddaed39ae60a47",
+  "sourceTree": "c17757fa2339cc066bd194528c14d2f012e3f5bd",
+  "artifactDigest": "0de6c4869daf732aa99a0fa5c0095a5be4cc39fd88252d18a605781130b7e427",
+  "fullGate": false,
+  "complete": false,
+  "runConclusion": "cancelled",
+  "artifact": {
+    "id": 11430333444,
+    "name": "cause-fix-gtk-lease-37500364739-1",
+    "zipSha256": "fcb4867f02d69ddc2cdf17fd795af65ded8044c8c36a28a60b42146164dd694b",
+    "functionalSha256": "2948d75191c2c26e2ae6df997f9365052a0c911fd0c7193c5a13ffa95ea11619"
+  },
+  "log": {
+    "jobUrl": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37500364739/job/112395490069",
+    "apiUrl": "https://api.github.com/repos/oborskyivitalii/oborskyivitalii/actions/jobs/112395490069/logs",
+    "decodedSha256": "e66b0bf58de258efc2b751d9d1dda15ccb4124238d6aea65f24635db82b27d37"
+  },
+  "installation": {
+    "mirror": "http://azure.archive.ubuntu.com/ubuntu",
+    "mirrorList": "/etc/apt/apt-mirrors.txt",
+    "startedAt": "2026-10-06T17:02:16Z",
+    "completedAt": "2026-10-06T17:24:34Z",
+    "elapsedSeconds": 1338,
+    "downloadBytesApproximate": 123000000,
+    "downloadSeconds": 1304,
+    "reportedBytesPerSecond": 94400,
+    "longestObservedPackageGapSeconds": 378.49,
+    "jobTimeoutMinutes": 25,
+    "conclusion": "Dependency downloads consumed most of the configured job budget. Its cancellation time fits budget exhaustion; the API does not identify the cancellation initiator."
+  },
+  "browser": [
+    {
+      "engine": "webkit",
+      "version": "26.6",
+      "executable": "/home/runner/.cache/ms-playwright/webkit-2359/pw_run.sh",
+      "headless": false,
+      "port": "gtk",
+      "displayBackend": "Xvfb",
+      "startup": {
+        "budgetMs": 30000,
+        "displayMs": 1024.673059,
+        "totalMs": 2854.767285
+      }
+    }
+  ],
+  "coverage": {
+    "expectedFunctional": 130,
+    "retainedFunctional": 13,
+    "passingFunctional": 12,
+    "navigationComplete": false,
+    "analyticsComplete": false
+  },
+  "failedRows": [
+    {
+      "engine": "webkit",
+      "route": "index",
+      "theme": "light",
+      "width": 320,
+      "mode": "no-js",
+      "pass": false,
+      "error": "page.evaluate: Target page, context or browser has been closed",
+      "stack": "page.evaluate: Target page, context or browser has been closed\n    at state (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:21:40)\n    at settled (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:68:68)\n    at async failure (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:191:9)\n    at async scenario (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:225:57)\n    at async runEngine (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:260:19)\n    at async serialEngines (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:241:9)\n    at async main (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:275:22)",
+      "state": null,
+      "errors": [],
+      "externalRequests": []
+    }
+  ],
+  "failureLimit": "The first no-js state snapshot failed with target closed; its failed row was logged 35 seconds before job cancellation, after diagnostic cleanup. The native closure instant is not recorded. Later modes passed on the same browser. No native page/process events were retained; installation correction is not a proven cure for this distinct failure.",
+  "correction": "Use primary Ubuntu archive including active local APT mirror lists, independent bounded npm/dependency/browser phases, and native lifecycle diagnostics during the unchanged complete cold GTK lease. No retry, warmup, scenario removal or runtime timeout change."
+}

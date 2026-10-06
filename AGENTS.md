@@ -6,45 +6,690 @@ The maintainer approved one narrow CI-only controller PR before runtime PR #23:
 full checks run Chromium/Firefox on Linux (260 functional / 8 navigation / 26
 analytics) and all WebKit scenarios on macOS (130 / 4 / 13), including every
 disabled-JavaScript and failure/fallback mode. Windows smoke remains 40 / 8 / 26;
-Linux Color checks remain twelve. Require all 390 unique full-engine functional
-cases, twelve navigation cases and 39 analytics cases with exact source/artifact/
-host identity and separate raw runner provenance. macOS smoke is insufficient.
+Linux Color checks remain twelve. All 390 unique full-engine cases, twelve
+navigation cases and 39 analytics cases remain mandatory, with exact source/
+artifact/host identity and separate raw runner provenance. macOS smoke is
+insufficient; full macOS success and elapsed time still require fresh evidence.
 
 Preserve legacy nonfull three-engine Linux checks, all pins and original 45m
-Linux / 40m native job and page/performance budgets. The already reviewed primary
-Ubuntu archive and bounded 3/5/3m installation phases are CI-only prerequisites.
-This is the explicit exception to the sole-#23 rule for this controller change;
-it authorizes no runtime/content transfer or other PR. Runtime #23 still requires
-fresh exact-head hosted/full acceptance, stable verification and then merge.
-Production and physical-device/visual acceptance remain separate.
+Linux / 40m native job and page/performance budgets. This explicitly supersedes
+the proposed two-Linux-runner adapter and further GTK/native-core experiments.
+Retain their failed raw evidence, including GTK-NATIVE.json; retire the completed
+native PR trigger. Do not launch another GTK/core-size collection. The approved
+CI-only PR is the narrow exception to sole-#23; no other runtime/content PR is
+authorized. After controller acceptance, complete fresh exact-head hosted/full,
+stable verification and merge #23. Production/device/visual acceptance stays
+separate.
 
-## CI-only preview and explicit staging — 2026-10-06
+## GTK native abort postmortem — 2026-10-06
 
-The maintainer authorizes completing and integrating the preview/staging
-pipelines, then running them. This supersedes older publication/merge holds for
-this staging infrastructure. Reuse existing #26; no additional PR. Preserve the
-unfinished #18/#22/#23 runtime work and every existing budget.
+Corrected screen 37513438968 at 6c67952 completes all fourteen observations:
+eleven evaluations succeed and three GTK/Xvfb full-Color disabled-JS cells
+abort, including constant evaluation and original state without init scripts.
+Both disabled-JS blank controls pass. Exact pre-evaluation WebKitWebProcess
+PIDs 5535/5688/5843 have matching SIGABRT core records; MiniBrowser and network
+process survive until teardown. Init scripts, state body and browser reuse are
+not necessary triggers. No aborting function/stack is retained yet. WPE passes
+six cells on a different runner image and headless backend, so port alone is
+not isolated. Keep this negative and failed evidence in GTK-TARGET.json.
 
-Read SITE-STAGING.md and SITE-CHECK-PROFILES.md. PR updates receive bounded basic
-checks and latest-head preview/short smoke, through the official pinned Wrangler
-Action only. Full staging requires an explicit owner request, protected unchanged
-main, staging opt-in/environment, exact open same-repository PR head and the
-complete matching hosted gate. Use the owner-only exact `/stage` command in that
-PR through the GitHub connector, or workflow_dispatch; never a plugin/manual
-asset upload. Ordinary/edited/bot commands cannot authorize or cancel staging.
+Continue with three fresh GTK normal-source controls: blank/disabled-JS
+constant, Color/enabled-JS constant, Color/disabled-JS constant. Preserve original
+init/context/navigation/180ms first evaluation and all existing bounds. Improve
+only post-failure native retention: exact pre-evaluation PID, executable, trial
+time and signal must identify any coredump info or offline debugger backtrace.
+Do not attach to a live process, change core settings, prime evaluation, alter
+browser pins or substitute ports. Retain command availability/version, failures,
+text limits and dropped bytes. Remove the completed fourteen-cell PR trigger;
+retire the native trigger after collecting its evidence. A native stack is
+causal evidence, not hosted acceptance or authorization to merge.
 
-Main's base public runtime is unchanged by this infrastructure. Color staging
-uses its actual source PR (#23) after inheritance of the reviewed infrastructure;
-capability/variant identity is recorded explicitly. The old Color source in #26
-is preserved in #23 before #26 is retargeted to main. Do not merge failed runtime
-experiments merely to activate hosting. Full unsupported/failed telemetry remains
-failure. Preview success does not satisfy full staging or production acceptance.
+## GTK no-JavaScript crash localization — 2026-10-06
 
-The first CI preview at 1deed630 passed deployment/HTTP/two-width Color smoke.
-Owner setup still needs protected main and the staging opt-in; secret values are
-never retrieved or printed. Keep #8/#13 open until actual full staging/recovery
-and their separate release requirements are met.
+Follow-up 37505225237 at 5e4a8f6 fixes the observed installer delay: Ubuntu
+126 MB fetch takes 15s, dependencies 44s and browser download 5s. All 130
+functional rows are retained: 120 pass, all ten no-js rows emit page-crash
+19–25s into first state evaluation while the browser remains connected.
+The 25m diagnostic cancels during navigation, so full 130/4/13 acceptance is
+not achieved. GTK-FOLLOWUP.json retains every failed lifecycle, raw identities,
+SHA and incomplete navigation/analytics. No native signal/stack establishes
+SIGSEGV, OOM or a driver/renderer cause. The automation-context warning also
+occurs in passing rows; pinned GTK inspector code explains it without proving
+actual default-session fallback. Do not add an unsupported automation flag.
+The completed GTK job and dated PR trigger are removed after collection.
 
+One dated read-only causal screen compares GTK/WPE on separate fresh runners:
+blank/full normal Color and constant/original state first evaluation, JavaScript
+on/off, six fresh browsers per port; two additional GTK cells omit only the
+functional init script from matching disabled-JS blank/constant and full/state controls.
+Keep exact source/tree/normal artifact, original options, cold startup, raw
+failures and all 14 observations. There is no warmup, retry, deployment or
+acceptance from collection green. Native crash records are observed separately.
+Remove its dated PR trigger after retaining evidence; correct only supported
+causes before a fresh hosted/full/stable/exact-head merge.
+
+The first screen run 37511255893 at c2cfade has zero native observations: its
+collector incorrectly rejects normal Color authored-color-effects derivation.
+GTK-TARGET-PREFLIGHT.json retains both failed preconditions, passed installs,
+static lint/security and raw SHA. It says nothing about GTK/WPE factors.
+Correct only this preflight: validate canonical Color lineage against its real
+retained base with exact clean source/tree/engine/effects, reject diagnostics,
+and initialize reports before input validation. The real producer integration
+uses a clean detached test-owned source; do not rewrite sourceDirty metadata.
+Original fourteen cells and native/collection bounds stay unchanged.
+
+The observed GTK row phase is 19m58s; incomplete lease is 24m08s, exceeding the
+previous full Linux job's 9m02s allowance. LINUX-LEASES.md retains a reviewed
+260/8/26 + 130/4/13 two-runner adapter, unchanged 45m job limits and exact raw
+coverage/provenance checks. A five-file CI-only backport is prepared against
+main, with no runtime/content changes. It is not activated: /stage uses the
+protected-main workflow and requires that unchanged controller. The active
+sole-#23 and no-runtime-merge-before-stable instructions remain. No extra PR,
+main bypass or branch-controller deployment is authorized by this preparation.
+
+## GTK installation and target-loss follow-up — 2026-10-06
+
+Run 37500364739 installed WebKit successfully but spent 22m18s on installation,
+including 21m44s slow Azure Ubuntu downloads through /etc/apt/apt-mirrors.txt.
+The 25m job was cancelled with incomplete coverage: 12 passing rows and a separate
+no-js first-state target closure. GTK-INCOMPLETE.json retains identities, raw SHA
+and the failure. Cancellation fits job-budget exhaustion; its initiator and the
+no-js native mechanism are not proved. Use the primary archive in direct and
+active mirror-file sources, independent 3/5/3m install phases in the same job,
+and optional native lifecycle/stderr evidence. Preserve cold startup, all
+130/4/13 scenarios, original engine/page/performance bounds and every raw failure.
+The full protected-main controller is unchanged. Remove the dated PR trigger
+only after collection, then complete the authorized hosted/stable/exact-head
+merge sequence; incomplete/private evidence never authorizes promotion.
+
+## Full staging display startup follow-up — 2026-10-06
+
+Full run 37491800878 at 4c05087e passes all static/host/captures/performance and
+native jobs, plus Linux Chromium/Firefox 260/8/26 and Color 12/12. WebKit never
+starts because the new Xvfb pre-launch cap expires after 3000ms. The gate fails
+and promotion is skipped; do not merge that incomplete matrix. DISPLAY.json
+retains subsequent real X server observations, including invalid wrapper/probe
+preconditions. Both FD1 and FD3 pass, so do not claim an FD switch is a cure.
+Share the original 30000ms engine startup allowance across Xvfb and browser,
+subtracting display elapsed time before browser launch. Keep original 1500ms
+page/paint/fallback bounds, 45/40 minute CI limits and performance/hold policy.
+Retain server stderr on failure; do not invent the historical startup stall's
+native cause. The dated GTK request confirms its complete 130/4/13 lease and
+actual time on normal private Color; remove its trigger after collection, then
+complete the already authorized exact-head hosted full/stable/merge sequence.
+
+## Implement confirmed causes and investigate the rest — 2026-10-06
+
+The maintainer requests corrections and remaining causal investigation from
+review/staging-readiness-20261006/CAUSES.md, continuing only PR #23. This
+supersedes the completed analysis-only pause below. Isolate the complete browser
+matrix, fix state-observation races without extending the original bounds, and
+correct supported renderer/adaptation costs while preserving geometry and holds.
+Cold WebKit and late Research tasks require controlled evidence, not guessed
+causes. One dated, path-scoped read-only PR experiment may retain cold WebKit
+ablations on fresh runners and balanced before/current Research traces. Remove
+its temporary trigger after collection; keep every failed observation and exact
+source/parent identity. Diagnostic green is not performance acceptance. Complete
+the authorized exact-head full staging and stable verification before merge.
+
+Implemented follow-up: complete engine leases are serial; desktop ribbons use
+the existing quality tier; unused filled-face stroke setters are omitted; Linux
+functional WebKit uses desktop GTK on its own fresh Xvfb. Eight ablations and
+six port comparisons are retained in CAUSE-FIX-NATIVE/PORTS.json, including seven
+original failures. On EPYC 7763 WPE RAF2 waits 2457ms versus GTK 118ms with the
+same traced normal source. Do not ship the disproved 2D atmosphere workaround.
+The twelve Research source pairs are retained in CAUSE-FIX-RESEARCH.json; they
+show no late >30ms task or Chromium TBT gain from Canvas-state omission. Preserve
+that negative result. Exact RGB palette caching is a new controlled source
+intervention, byte-identical in every route/detail/theme. Its normal/profiled
+confirmation compares clean 614c3e5; port/ablation repeats are manual-only.
+Native perf's prior root-cache failure collected no browser profile; correct the
+installed path/runner UID and always restore artifact ownership. None of this
+diagnostic evidence substitutes for the mandatory exact-head full/stable gate.
+
+Final source confirmation 37486905044 is retained in CAUSE-FIX-CONFIRMATION.json.
+Full source lint/security pass; six new normal and six separately CPU-profiled
+Research trials retain all traces. Palette samples fall 4.470/5.445/7.270 to
+1.228/1.852/2.538ms, but normal TBT median 128.5 to 142ms does not show overall
+improvement. No late >30ms task reproduces. The native capture is now valid:
+949 samples, zero losses, with original WPE 1500ms failure/2419ms RAF2 retained.
+LLVM/software-compositor work is present but not time-aligned to the exact stall;
+do not claim an exact native blocking symbol. The dated PR trigger is removed.
+Proceed through the authorized full staging, exact-head stable verification and
+merge sequence. Issues #12/#13/#14 keep their distinct remaining acceptance.
+
+## Completed browser causes — 2026-10-06
+
+The requested analysis is retained in review/staging-readiness-20261006/CAUSES.md,
+BROWSER-CAUSES.json and CAUSE-ATTRIBUTION.json. Follow-up 37476487993 completes
+four valid WebKit observations (one original timeout retained) and three normal
+Color Research mobile/simulated CPU profiles. Both dated PR triggers are removed.
+Firefox contention and the source hold/cadence/detail mismatch are confirmed;
+mesh adaptation alone still fails. The first isolated WebKit boot also leaves
+RAF pending 2475ms while 33 timer heartbeats continue; later/loaded boots pass.
+Do not claim browser isolation cures this cold native rendering delay, or invent
+its compositor/driver cause from JS evidence. Research profiles show cold world/
+palette preparation and recurring projection/Canvas paint. They do not identify
+the unrecorded stacks of the older late 102/153ms outliers. Normal Lighthouse now
+retains original Research/mobile Trace and DevtoolsLog on every trial, with no
+new profiling categories or changes to measurement, medians or thresholds.
+No renderer source remedy, full staging retry, promotion or merge is claimed by
+this analysis. Keep #12/#13/#14 and Draft #23 open until their own acceptance.
+
+## Cold browser cause follow-up — 2026-10-06
+
+The maintainer requests analysis of the completed diagnostic, not another full
+staging retry. Run 37473674941 retains ten valid observations and two actual
+Firefox fixture failures. Its green collection status is not acceptance.
+The Firefox adaptive hold is reproduced under three-engine contention; standalone
+trials pass. A WebKit RAF remains requested and uncancelled for about two seconds,
+with no hold or visibility change. Research's older LHR omits call stacks.
+Retain the evidence before correcting source. Remove the completed screen's PR
+trigger; one dated #23 follow-up may collect four fresh WebKit cold starts, alone
+and with real background draws, and three Research mobile/simulated Lighthouse
+trials with CPU samples. Separate read-only CI runners, exact source and normal
+Color/private control lineage, no deployment, original bounds, raw failures and
+fullGate:false remain mandatory. Remove this follow-up PR trigger after evidence
+is retained. Do not call new trace timings uninstrumented performance acceptance.
+
+## Bounded browser-gate attribution — 2026-10-06
+
+The authorized full gate restored all 390 Linux scenarios and exposed Firefox
+adaptive holds and the first WebKit live-frame stall. Complete causal diagnosis
+before a supported source correction or another full staging request. The dated
+browser-gate workflow may run once through the #23/path-scoped PR trigger because
+manual workflow dispatch is not available in this session. Remove that trigger
+after retaining the bounded evidence. It uses read-only CI, private loopback
+Color derivatives with exact source/parent lineage and fullGate:false; there is
+no deployment. Compare ribbon mesh adaptation on one runner in balanced serial
+and three-engine conditions. Trace requested, entered and cancelled RAF handles,
+private scheduler state and actual quality/draw costs. Keep original deadlines,
+holds, failed observations and projection. Diagnostic completion is not full
+acceptance; only a corrected exact head passing full staging and promotion may
+merge. Existing public-source fingerprints are unchanged at this diagnostic phase.
+
+## Full staging and merge authorized — 2026-10-06
+
+The maintainer now authorizes the next sequence: stage the current open #23
+through the existing CI controller, complete the full mandatory gate and stable
+promotion, then merge that exact reviewed head into main. This supersedes the
+earlier Writing-only pause below. Keep #23 as the sole PR, unchanged budgets,
+raw failed evidence and official Wrangler Action deployment only. Never merge
+before the open-PR staging lease and stable verification finish. Main protection
+and environment configuration already work; do not request their setup again.
+
+Run 37460990802 stages cd2575 via owner command; its fresh full static gate finds
+unused imports/complexity and untriaged checksum candidates. A confirmed browser
+capability defect uses Object.hasOwn despite the supported missing-hasOwn mode;
+use the existing math.owns and preserve exact geometry. Correct fixture races
+through actual history/scroll/print state, not sleeps, missing-trigger passes or
+relaxed visual/performance requirements. Review exact scanner candidates with
+provenance; no blanket entropy exclusions or new complexity debt. Finish the
+corrected head's full staging acceptance before the authorized merge.
+
+## Writing causal localization and source correction — 2026-10-06
+
+The maintainer requests actual localization and a verified source correction,
+including a test without filters/content controls. Continue only Draft #23.
+Read review/writing-diagnosis-20261006/LOCALIZATION.md and its evidence index.
+The 20-trial causal screen and clean supported-fix confirmation are complete.
+Private diagnostic renditions never deploy; each boot/itinerary uses a fresh
+Chromium process. All observations, including budget failures, remain retained.
+The dated PR trigger is removed: ordinary updates run fast checks/preview only;
+the existing Writing workflow supports manual diagnostic replay. No full/stable
+staging, native/soak matrix or new PR is requested.
+
+The completed 20-trial localization rejects filters/grid/title-flex as the main
+source; every matched geometry audit passes. The worst RAF combines Canvas paint
+with synchronous native mount/layout (87–92ms). Model face preparation is another
+16–17ms cold cost. The retained correction gates boot until deferred setup,
+uses numerically exact scalar face preparation and queues animated Color mount
+after its hidden midpoint paint. Source 0187dc9 was confirmed against 6d538e1 on
+one EPYC 9V45 runner: six mobile pairs reduce median maximum Canvas callback
+60.65→30.95ms and largest observed RAF/task/LongTask 86→55.5ms. Reference and
+candidate both pass 6/6 narrow mobile gates; do not compare these times with the
+slower EPYC 7763 causal screen or claim a failed-to-passed result. Input readiness,
+FCP/first scroll and the two desktop pairs are mixed. All 32 normal geometry/filter
+checks match exactly (0px). No motif deletion, frozen diagnostic CSS, stale range
+cache or browser/GPU presentation guarantee is part of the correction.
+
+## Completed Writing screen and rejected optimization — 2026-10-06
+
+Read review/writing-diagnosis-20261006/EXECUTION.md before continuing #23.
+V0 establishes the earlier full detail has higher desktop render cost but all
+six paired transition windows pass, and no post-arrival model rebuild remains.
+The 25-trial screen attributes the cold spike to native whole-document/archive
+layout (584/610 dirty layout objects), surviving ribbon/text/Canvas/edge ablations.
+Model preparation is a separate cost; Color ribbons add repeated render work.
+
+An exact scalar trig reuse was tested and rejected: on AMD, control fails 4/6
+cold Writing windows and candidate 6/6, without reliable paired improvement.
+Active ribbons are restored; rejected patch/history and every raw trial remain.
+Do not describe the Xeon screening times as a speedup over earlier AMD runs.
+Next attribution is measured-height/range/focus-preserving archive row/text
+layout, not guessed-height bypass, stale range cache or motif removal. The
+unchanged early-detail visual fix remains. No full staging or promotion ran.
+Diagnostics are manual-only again; ordinary PR updates retain fast preview CI.
+
+## Sol execution of Writing diagnosis — 2026-10-06
+
+The maintainer asks Sol to execute the current plan. Start with the exact
+before/current Color pair for early-detail cost, then a bounded one-factor
+attribution screen. Use the existing Writing CI workflow with the dated run
+request; ordinary source updates must not repeatedly launch diagnosis. Retain
+every raw trial and budget failure. Diagnostic private renditions never deploy.
+Only the existing PR preview pipeline publishes the normal candidate.
+
+Check Color edge-scroll listeners and duplicate footer write/read work as an
+additional hypothesis: text-flight Off still leaves those hooks active. A
+completed screening job is not performance acceptance. Make only a supported
+source optimization and confirm it with balanced paired cold runs in #23.
+
+## Early flight detail and Writing ablations — 2026-10-06
+
+The maintainer requests earlier primitive refinement and a controlled diagnosis
+plan for Sol. Read [the current plan](review/writing-diagnosis-20261006/SOL-TASKS.md).
+Continue only Draft #23. The visual correction removes forced compact geometry
+during flight and the 250ms post-arrival rebuild; source/target use their normal
+viewport/adaptive detail before the first travelling paint. Keep bounded caches,
+mobile quality policy and inclusive preparation accounting. Desktop cost still
+requires a paired check; this is not a performance-pass claim.
+
+The plan separates Color ribbons/text transform, native Writing DOM/layout,
+model/palette preparation, motif rendering and archive/filter work. Screen one
+factor at a time, then repeat only the supported candidate. No full staging,
+native or soak matrix, budget relaxation, extra PR or custom deployment.
+The prior comparison and its failed Color windows remain authoritative evidence.
+
+## Consolidated candidate and Writing-only diagnosis — 2026-10-06
+
+The maintainer stopped broad staging/full-suite iteration and requests one
+current runtime PR. Existing #23 is the sole active PR; #18 and #22 are closed
+as superseded after GitHub ancestry verification. Every original commit is
+preserved. Do not repurpose #22 or create another PR. CI-only #26 is merged.
+
+The immediate test scope is cold Writing and first entry/return around it.
+Compare original #23 base at 174bef1f, current base and current Color with exact
+source/artifact identities, identical conditions and all repeated trials. A
+main controller SHA is not the deployed candidate SHA. The first full hosted
+run 37439947574 tested Color 1f307962, with failures blocking stable promotion.
+Main protection and staging opt-in are verified; do not ask for those again.
+
+Do not launch another full matrix or staging promotion during this diagnosis.
+Keep existing budgets and retain failed raw trials. Record the issue audit,
+completed source increments and remaining acceptance under their actual owners.
+This latest instruction supersedes the workflow/PR sequence below.
+
+## Preserved Color runtime candidate and isolated CI — 2026-10-06
+
+The maintainer authorizes ready preview/staging pipeline integration and CI-only
+execution. Existing #26 now isolates the controller against main; current Color
+runtime/source/fixture repairs from its former source 1deed630 are retained in
+existing #23, including the unfinished #18/#22 stack. No new PR is created.
+Read SITE-STAGING.md and SITE-CHECK-PROFILES.md for current main-controller/owner
+command operation. The dated sections below preserve earlier execution; their
+old #26-only runtime ownership and pending/manual controller instructions are
+superseded by this preservation/integration. Keep every performance budget and
+failed full-hosted outcome. Full staging uses the current open #23 head, explicit
+owner /stage or dispatch, protected unchanged main and the exact complete hosted
+gate before stable promotion. Only the official Wrangler Action deploys assets.
+
+
+## Current CI-only PR preview and explicit staging — 2026-10-06
+
+The maintainer replaces manual publishing with two CI paths. This instruction
+supersedes every manual provider upload/bootstrap and one-request `target.json`
+instruction below. Reuse existing PR #26 for this work; do not create another PR.
+Do not merge the failing #18/#22/#23 runtime stack merely to activate CI.
+
+`site-color-review.yml` builds the latest open same-repository PR head once,
+publishes through the pinned official Wrangler Action to `pr-N` in the existing
+Direct Upload project `oborskyi-author-ci-staging`, runs minimal two-width Chromium
+Color/HTTP smoke and updates one PR comment. Full checks never run automatically
+on PR changes. Forks and stale PR heads are rejected. The minimal report has a
+different kind and cannot satisfy the full hosted gate.
+
+Only an explicit maintainer request to stage PR N permits `workflow_dispatch`
+from protected `main`, with input `pr_number`. CI resolves its current head;
+the owner never copies files, SHA, URLs or artifact IDs between deployments.
+The immutable candidate gets the existing full automated hosted suite. Promotion
+to `staging.oborskyi-author-ci-staging.pages.dev` requires that exact full gate
+and unchanged PR/controller leases. Promotion and retained-package rollback both
+use the official deployment action. No plugin upload or ad hoc deploy script.
+
+Read [SITE-STAGING](SITE-STAGING.md) for owner configuration and verified state.
+Use new opt-ins `SITE_PR_PREVIEW_ENABLED` and `SITE_PR_STAGING_ENABLED`; keep legacy
+`SITE_STAGING_ENABLED` absent/false. The 09:41 Warsaw provider recheck finds only
+the Direct Upload project; explicit lookup of the old Git project returns not
+found. Do not recreate it or request configuration of an absent project.
+Enable preview after its credentials exist; keep staging false until reviewed
+controller isolation/integration. #26 currently targets #23, so merging it as-is
+cannot activate main. Preserve the runtime stack and adapt the controller and
+its helper/build dependencies within #26. Provider/GitHub administrative setup and
+the new main controller are not yet active. The initial hosted full run failed;
+the corrected source/static preflight succeeded, but is not a full hosted pass.
+Production, DNS, physical-device/independent acceptance and performance limits
+keep their existing boundaries. Historical records below remain dated evidence.
+
+## Color staging correction and full hosted tests — 2026-10-06
+
+The maintainer explicitly requests updating staging to the current Color edition
+and running the complete hosted tests. The earlier preview deployed base; its
+passed smoke did not establish ribbons, edge continuation or spatial text flight.
+Use the latest Color source in Draft #23 without merging its performance failures
+into #18/main. `tools/staging/color.cjs` packages the authored ribbons/travel
+effects into the native five-route artifact with a distinct variant/fingerprint.
+Production generation stays base. Require the actual Color identity, all requested
+effects and the same served hashes in tests; retain every failure and missing job.
+
+`site-color-review.yml` is a one-request, same-repository PR review path scoped to
+`work/color-staging-20261006`. It first uploads a checked Color artifact, then the
+recorded immutable URL/artifact IDs drive the existing full staging profile with
+Linux three engines, Windows/macOS, security/advisories, accessibility/failures,
+Lighthouse, CPU/soak and captures. It has no provider secret, stable promotion,
+GitHub administration or production job. Device/independent acceptance stays
+separate. Read `review/color-staging-20261006/REPORT.md` and `target.json`; a
+prepared or queued run is not a successful full profile.
+
+Current Color preview: [open staging](https://0c423b48.oborskyi-author-ci-staging.pages.dev), deployment `0c423b48`,
+source `eac4654e58757f5bbab343feeef3fc690548df6b`, checked public artifact `11393657896` from Color run
+`37423103901`. Provider deploy and initial Home hash/Color identity pass.
+The complete automated hosted profile is queued; no full-pass or stable-promotion
+claim is established. Report-only changes do not repeat the expensive suite;
+`target.json` or relevant code changes trigger it. Retain source failure outcomes
+while collecting all independent source/security/browser/performance checks.
+
+## Historical base staging and authorization — 2026-10-05
+
+The maintainer explicitly authorizes Cloudflare staging provisioning, uploads and
+the required repository/instruction/issue/PR updates. This supersedes the older
+staging publication pauses below, for staging only. Production GitHub Pages,
+production analytics, domain/DNS changes and paid purchases remain outside this
+activation. Preserve Draft #18 while its idle/cold Writing performance gates fail.
+
+The connected Cloudflare account now contains the dedicated Direct Upload project
+`oborskyi-author-ci-staging`, with production branch `production-disabled`, no Git
+integration, Functions or injected analytics. Its immutable preview is
+[available here](https://505498da.oborskyi-author-ci-staging.pages.dev), from source
+`51611505d941ae2996a87782840da418722451f6` and the verified successful basic-run
+artifacts. This authorized bootstrap upload uses the connected provider; it is
+not a protected-main Actions deployment or full hosted acceptance. No stable
+`staging` alias was promoted, and the full staging pipeline has not run.
+
+Read the current [SITE-STAGING runbook](SITE-STAGING.md) for the exact deployed
+identity and remaining owner steps. The current change removes the two explicit
+staging pause guards; repository opt-in, protected-main source verification and
+the protected `staging` environment remain required for Actions automation.
+H1/PR #21 is integrated into #18, not main. Main is still unprotected, and GitHub
+environment/token/variable setup is pending. Do not merge #18 merely to activate
+hosting; integrate required infrastructure separately after review, or complete
+its performance work. Keep #8/#13 open for full hosted evidence and recovery.
+
+The dated execution sections below retain historical decisions. Apply this
+current staging authorization where their pause/configuration statements conflict.
+
+## Historical Cloudflare preparation amendment — 2026-10-05
+
+This preparation record is retained from PR #24. Its asset-upload pause and false
+guard instructions are superseded by the staging authorization above. Preserve
+the earlier `oborskyi-site-staging` project; only `oborskyi-author-ci-staging` is
+the current Direct Upload target. Read
+`review/site-sol-continuation-20261005/H2-CLOUDFLARE.md` for its preparation evidence.
+
+The maintainer requests inspection and preparation through the newly connected
+Cloudflare plugin. This supersedes older blanket holds on preparatory provider
+configuration. Read the current SITE-STAGING and
+`review/site-sol-continuation-20261005/H2-CLOUDFLARE.md` before hosting work.
+The dedicated `oborskyi-author-ci-staging` Direct Upload project was created;
+Pages read/create/edit access and disabled production/analytics settings are
+verified. The earlier `oborskyi-site-staging` acquired external Git integration
+and deployments during this work; preserve it and do not target it with this CI.
+No assets were uploaded by this execution. Token administration is denied;
+GitHub secrets, Environment and branch protection require the owner. Main is
+currently unprotected. Keep both false deployment guards and the enable variable
+off while current candidate cold Writing fails. Do not use the plugin as a
+shortcut around protected-main/artifact/full-hosted checks or recovery. No DNS,
+custom domain, paid plan or production change is needed for initial staging.
+
+## Current Sol result and remaining task — 2026-10-05
+
+R1 #20 and H1 #21 are merged into the reviewed candidate Draft #18; #19 is
+closed as the implemented source fix. Read
+`review/site-sol-continuation-20261005/REPORT.md`, `MERGE-RECORD.md`, `V1.md` and
+`SOL-TASKS.md` before continuing. P1/V1 remain stacked Draft increments. Their
+current Color cold Writing windows are 89.2/67.5/78.9ms; one exceeds 80ms.
+Steady/warm diagnosis does not erase that failure. Next P2 targets first native
+Writing layout (37.7ms in a separate fine-stage run); do not repeat R1/H1 or
+remove primary formula glyphs to compensate for native layout.
+Preserve original creation times in same-gesture wheel fixtures; >180ms creation
+gaps deliberately release endpoint ownership. Keep the separate fresh-input and
+middle-history checks, one Canvas/clock, finite grammar and ten-test default.
+Staging #25 removed the explicit pause guards; opt-in and protected-main trust
+remain. Its basic-artifact preview is live; full hosted acceptance/stable promotion
+remain pending. Main is currently unprotected; GitHub
+protection/Environment settings were not changed. Cloudflare preparation is
+recorded above and in H2-CLOUDFLARE. SITE-STAGING uses manual protected-main and
+schema-2 recovery. Hosting/release,
+three-engine and independent/device acceptance remain separate.
+
+## Sol continuation execution — 2026-10-05
+
+H1 source trust is implemented for exact protected-main manual dispatch; read
+`review/site-sol-continuation-20261005/H1.md` and the current SITE-STAGING runbook.
+Both false guards remain. Main is not yet protected and no hosting/environment
+configuration was changed. New schema-2 recovery and status issue #8 replace the
+legacy PR-10 binding; local fixtures do not establish hosted acceptance.
+
+The maintainer asks Sol to continue the reviewed R1/P1/V1/H1 tasks. R1 is
+implemented with route-scoped end intent and accepted input-tail ownership;
+read `review/site-sol-continuation-20261005/R1.md` and its current evidence.
+Keep normal history restoration, fresh-input takeover, single-clock freeze and
+the ten-test default. Read `review/site-sol-continuation-20261005/P1.md` for the
+native snapshot/instant-scroll and fallback-layout increment. Its remaining cold
+failures are not accepted; P1/V1 performance and H1 trust-source work continue. Don't
+infer full hosted or independent release acceptance from focused checks.
+The existing authorization for code/PR/issue updates remains; hosting stays
+paused with both false guards. Preserve #18's current work and retain one
+focused implementation PR per independently reviewable fix.
+
+## Integration review and next Sol increment — 2026-10-05
+
+The maintainer now authorizes reviewing/updating all site issues and PRs, closing
+completed issues, and merging ready code in dependency order. This supersedes
+older push/merge/external issue-posting holds below. Staging and production
+publication remain paused; preserve both false deployment guards.
+Read `review/site-followup-20261005/REPORT.md` and its `SOL-TASKS.md`.
+The accepted older stack #9/#10/#16/#17 is merged. Continue from Draft PR #18,
+`work/site-followup-20261005`, for the newer optimization and mesh edition;
+keep it Draft while idle/cold performance gates fail. Issue #19 owns reverse-end
+repair under #12/#14. Both standalone runtime/navigation diagnostics are manual;
+automatic update checks are the one basic profile and RI freshness only.
+The new shared meshes replace the earlier brain/charts/formulas; retain the finite
+56-instance grammar and existing geometry/performance limits. Reverse edge
+continuation must finish at the previous route's actual native bottom, including
+bounded mount/arrival reflow. Back/Forward retains its own saved position, and
+fresh user scrolling releases a pending endpoint intent. This fix remains Sol's
+next work; a controlled reflow gap is reproduced, not yet repaired.
+The last optimization experiment is not accepted: cold Writing has a 102 ms p95
+window. The navigation workflow checks RI freshness only; the basic PR suite
+remains 10 focused tests, and complete automation stays in hosted profiles.
+
+## Engine review execution — 2026-10-05
+
+The maintainer authorizes implementing the six reviewed optimization tasks.
+Read `review/site-engine-optimization-20261005/EXECUTION.md`. Preserve the primary
+header itinerary, footer Credits, no Glass, single Canvas/clock, all stop/fallback
+contracts and bounded three-room/six-model working set. The local default remains
+10 focused tests; targeted diagnosis is separate and full automation stays hosted.
+New transition limits supplement the unchanged 33 ms / 20% steady-state budgets.
+Effects attach through authored API v1, with explicit base/Color fingerprints.
+Color remains an offline comparison until separately selected for deployment.
+All publication, push, merge and external posting remain paused.
+
+## Primary navigation and economical check profiles — 2026-10-05
+
+Latest maintainer decision supersedes older optional Glass and full-local-check
+instructions below. Derive scroll/flight routes from the header: Home, Research,
+Writing, Talks. Credits remains a footer utility route with instant navigation;
+never include it in edge continuation, including reverse travel/history. Preserve
+native reading positions, deliberate input, the single Canvas/clock and freezes.
+The shared finite grammar adds brain, line/bar/scatter charts and attention,
+softmax/entropy formulas, replacing terminals within the same 56 shared instances.
+Keep page-specific symbols. These charts are decorative, not reported findings.
+Glass is removed entirely from current CSS, controllers, settings and benchmark
+profiles. Historical reports remain historical; ordinary Soft backdrops remain.
+
+Default local/PR command is `node tools/quality/local.cjs`: 10 focused tests plus
+source/route/standalone syntax/motif/size checks. Use the short two-width browser
+smoke when relevant. Full automated checks run on immutable staging before alias
+promotion and on production after deployment, including served-byte verification,
+three engines, native runners, security/advisories, accessibility/failure fixtures,
+Lighthouse, CPU/soak and captures. Reuse successful staging automation before
+production; independent/device acceptance remains separate. Missing full evidence
+blocks staging promotion. See SITE-CHECK-PROFILES.md, owned by #13; #14/#12 own
+navigation and motifs. Push, merge and all publishing remain paused.
+
+## Bidirectional edge continuation and hotspot diagnosis — 2026-10-05
+
+The maintainer requests the reverse of bottom-scroll continuation and a concrete
+Glass verdict based on the Soft stalls. At the real top, fresh upward intent
+opens the preceding route at its real bottom; normal scrolling, nested controls,
+inertia, Home/Credits boundaries and saved history remain native. Keep the same
+persisted control and scene clock. An accepted touch retains bounded listeners
+on its original target until end/cancel, including after instant DOM replacement.
+Diagnose with isolated sampling/stage/timeline probes; those instrumented timings
+are not budget runs. The measured Research→Writing mount stall occurs in the
+native ScrollLayer/scrollTo path in both materials. Restore positions through a
+scoped computed-auto scroll behavior, flushing that preference before the native
+call and preserving the prior inline value/priority. The first unflushed candidate
+incorrectly inherited smooth scrolling with Motion Off; its faster mount results
+are historical rather than final acceptance. Preserve residual waits in evidence.
+Read `review/site-scroll-sync-20261004/EDGES-AND-HOTSPOTS.md` for current evidence
+and limits. Glass stays bounded and optional; Soft stays default. Every #13
+budget and the push/merge/publication pause remain unchanged.
+
+## Reading-material architecture, switch repair and measured audit — 2026-10-05
+
+The maintainer requests an architecture/security/performance review, asks whether
+Glass may remain, and reports a broken Soft/Glass control. The concrete defect
+is mobile Home's display:contents hero: its separately painted children were
+outside material admission and kept a fixed background in both modes. Reading
+preferences/admission/styles now belong to `READING-SURFACES.cjs`, independent
+of ribbon geometry and the single scene clock. Preserve actual pixel coverage,
+responsive rebinding, saved choices, reduced-transparency fallback and the
+six-panel desktop / three-panel compact cap. Compact blur is 3px after the first
+repaired candidate exceeded the unchanged 33ms Home scroll budget. Suspend child
+blur while the content plane is aria-busy and
+restore the selected material on arrival. Soft stays the default; Glass remains
+optional. Read `review/site-scroll-sync-20261004/SURFACE-AUDIT.md` for exact-file
+evidence and scope. Security scans must also cover the current offline runtime
+sources; the actual standalone scripts receive separate trust-boundary/syntax
+and parser-aware checks. Native devices, independent review, and the full release
+gate remain separate. Do not push, merge, publish or relabel historical evidence.
+
+## Corrected content travel and economical ribbon smoothing — 2026-10-05
+
+The maintainer corrects forward departures: the current text grows toward the
+viewer and disappears past the camera; the next page approaches from distant
+fog. Reverse departures recede while the preceding page enters from the near
+side. This supersedes the previous departure directions below. Increase local
+reading-background coverage slightly while keeping glyphs opaque and scene
+openings visible. Trial bounded analytic curves for visibly faceted ribbon
+edges, compare with identical straight-edge treatment sequentially, and keep
+the existing bitmap, mesh, single-clock lifecycle and every performance budget.
+Read `review/site-scroll-sync-20261004/REFINEMENT.md` for the exact-file result.
+This remains the offline comparison; push, merge and publication remain paused.
+
+## Engine optimization and ribbon fill repair — 2026-10-05
+
+The maintainer authorizes refactoring and optimizing the shared Canvas engine,
+fixing white ribbon seams and measuring content flight On/Off × Glass/Soft,
+including a synthetic slower-device profile. Use source-bound, sequential repeated
+measurements; callback cost alone does not prove compositor/display performance.
+Keep compact flight geometry, a bounded room/model cache and separate Canvas
+command submission compatible with native-scroll endpoints and the exact
+Off/reduced/hidden/print freeze. Keep the bright opaque narrow ribbons in the
+offline comparison. Soft may become the default if Glass has material cost;
+retain user controls. Read the current optimization record when available in
+`review/site-scroll-sync-20261004/OPTIMIZATION.md`. Every #13 budget and the
+publication/push pause remain. This explicitly permits engine source edits and
+regeneration of dependent local outputs, without palette promotion or publication.
+
+## Directional content flight and end-scroll continuation — 2026-10-05
+
+The maintainer asks to try moving the actual page content through depth with the
+camera: forward departures recede and arrivals approach from fog; backward
+departures pass toward the viewer and the preceding page arrives from the near
+side. Continued scrolling at the actual bottom advances through Home, Research,
+Writing, Talks and Credits. Read [the current exact-file record](review/site-scroll-sync-20261004/FLIGHT.md).
+Use the existing displayed flight clock, retain the persistent header/Canvas,
+native layout/range and history positions, and avoid cloned content or a second
+animation loop. Require deliberate continuation input so momentum does not skip
+routes; preserve ordinary/nested/form scrolling, the local Off control and the
+final route. Motion Off/reduced/hidden/print keep the exact scene freeze and
+finish content accessibly. This remains an offline #14 comparison outside
+production engine/public bytes; every #13 budget and publication/push pause stays.
+
+## Bright opaque ribbons and more frequent signals — 2026-10-05
+
+The maintainer's latest five-part refinement makes the offline comparison's
+ribbons exactly half as wide again, fully opaque over background geometry, and
+bright with yellow added. Each ribbon has its own distant-hue longitudinal
+palette. Signals now cover the entire width and start three times per cell per
+24-second cycle. Read [the ribbon exact-file record](review/site-scroll-sync-20261004/VIVID.md).
+Depth treatment mixes RGB toward paper rather than removing alpha; use normal
+source-over depth sorting. Preserve continuous joins, the displayed-phase freeze,
+native scroll, Soft/Glass and every #13 budget. Day secondary text is darker to
+retain contrast over the saturated ribbons. This remains an offline #14
+comparison outside production engine/public bytes; publication/push stay paused.
+
+## Continuous ribbon material and signals — 2026-10-05
+
+The maintainer asks to finish the interrupted optional-ribbon comparison:
+continuous gradients without rectangular joins and sparse irregular light
+packets, mostly forward with occasional returns. Read
+[the previous exact-file record](review/site-scroll-sync-20261004/SIGNALS.md).
+Use the same 24-second displayed phase, deterministic bounded schedules and
+world-anchored material coordinates. Preserve the half-width ribbons, Soft/Glass,
+native-scroll mapping, contrast, freeze lifecycle and all #13 budgets. The
+dark Writing caption contrast fix must be present in both exporter and output.
+The seven ribbon regressions now also run explicitly in runtime CI; the bitmap
+check proves actual seam/light pixels. Keep optional treatment outside production
+engine/public bytes and retain the recorded push/publication pause.
+
+## Full native-scroll synchronization — 2026-10-04
+
+The maintainer reports Research's camera finishing before the real page bottom
+and requires all-route regressions whenever block count/height changes. #12 owns
+the fix; #13 retains every gate/budget. The focused Draft increment
+`work/site-scroll-sync-20261004` stacks on frozen #17 `f99b8c2`, preserving #16/#10.
+Read [the current record](review/site-scroll-sync-20261004/REPORT.md).
+`site/engine` remains authoritative. Derive endpoint positions from the current
+native scroll range, coalesce consecutive identical poses, and retain semantic
+interior stops and Writing's topic/reflow behavior. Observe main/body mutations,
+resize, font loading and route mounts; never manufacture scroll space. Content-only
+edits still require the all-route content-growth/height/footer/reorder/viewport
+fixtures in the normal browser matrix, and its required aggregate assertions.
+Off/reduced/hidden/print retain their exact displayed freeze. No publication/merge.
+
+The requested colored-line design is a separately labelled offline prototype for
+maintainer comparison under #14, not an accepted production palette change.
+It uses the existing Canvas/24-second phase and introduces no runtime dependency.
+Keep it isolated from `docs/` and `site/engine`; production adoption follows the
+maintainer's review of the concrete variant, with fresh performance/contrast gates.
+The first ribbon refinement replaces the thin threads with broad gradient surfaces,
+spatial axial torsion, periodic axial rotation and width breathing. The current
+comparison exporter uses `review/site-scroll-sync-20261004/RIBBONS-PROTOTYPE.cjs`;
+the original thread module remains historical. Preserve native-scroll endpoints,
+exact Off/reduced freeze, bounded geometry and local reading contrast.
+The latest maintainer refinement halves those widths exactly, increases ribbon
+alpha and adds lighter Soft/Glass reading surfaces. Glass is an offline optional
+material, limited to six visible panels with smaller mobile blur and a persisted
+local preference. Keep observer admission, unsupported/reduced-transparency
+fallbacks and content-growth synchronization intact. Read
+[the current material record](review/site-scroll-sync-20261004/GLASS.md) for the
+exact-file checks and bounded performance evidence; the
+[broad-ribbon record](review/site-scroll-sync-20261004/RIBBONS.md) is historical.
 
 ## Analytics preparation and production host — 2026-10-04
 

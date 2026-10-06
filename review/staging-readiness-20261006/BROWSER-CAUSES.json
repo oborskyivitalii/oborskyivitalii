@@ -1,0 +1,1641 @@
+{
+  "schema": 1,
+  "kind": "browser-gate-causal-diagnostic",
+  "fullGate": false,
+  "performanceAcceptance": false,
+  "complete": true,
+  "pass": true,
+  "environment": {
+    "platform": "linux",
+    "os": "6.17.0-1022-azure",
+    "architecture": "x64",
+    "node": "v24.19.0",
+    "runnerImage": "ubuntu24",
+    "imageVersion": "20260927.320.1",
+    "cpus": [
+      "INTEL(R) XEON(R) PLATINUM 8573C",
+      "INTEL(R) XEON(R) PLATINUM 8573C",
+      "INTEL(R) XEON(R) PLATINUM 8573C",
+      "INTEL(R) XEON(R) PLATINUM 8573C"
+    ],
+    "memoryBytes": 16765378560,
+    "runId": "37473674941",
+    "attempt": "1"
+  },
+  "fixtureFailures": [
+    {
+      "id": "firefox-loaded-adaptive",
+      "error": "restored leaves the opening pose"
+    },
+    {
+      "id": "firefox-loaded-control",
+      "error": "page.waitForFunction: Timeout 2000ms exceeded."
+    }
+  ],
+  "workflowRun": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37473674941",
+  "artifact": {
+    "id": 11417899005,
+    "file": "browser-gate-diagnostic-b9ca9fc.zip",
+    "zipSha256": "f1686c623510fa2d82394815aeab24350e6c58af3fea682dfa9fb4286c04eb40"
+  },
+  "scope": "Instrumented causal observations only. Collection success is not full gate acceptance.",
+  "rows": [
+    {
+      "id": "webkit-startup-0",
+      "role": "target",
+      "fixturePass": true,
+      "error": null,
+      "durationMs": 6028.66243,
+      "drawDurationMs": {
+        "count": 2,
+        "min": 34,
+        "median": 50.5,
+        "p95": 67,
+        "max": 67
+      },
+      "ribbonFaces": {
+        "count": 2,
+        "min": 241,
+        "median": 241,
+        "p95": 241,
+        "max": 241
+      },
+      "holdTransitions": [
+        {
+          "time": 131,
+          "hold": false,
+          "pending": null
+        }
+      ],
+      "finalScheduler": {
+        "pending": 3,
+        "enabled": true,
+        "hold": false,
+        "printing": false,
+        "initialized": true,
+        "failed": false,
+        "page": "index",
+        "tier": 0,
+        "detailTier": 0,
+        "slow": 2,
+        "fast": 0,
+        "idleRate": 30,
+        "costAverage": 34,
+        "lastFrame": 2349,
+        "nextDraw": 2382.3333333333335
+      },
+      "longestRafWaits": [
+        {
+          "requestId": 2,
+          "requestedMs": 314,
+          "enteredMs": 2349,
+          "waitMs": 2035
+        },
+        {
+          "requestId": 1,
+          "requestedMs": 132,
+          "enteredMs": 246,
+          "waitMs": 114
+        }
+      ],
+      "raw": {
+        "file": "trials/webkit-startup-0.json.gz",
+        "sha256": "fd7bb5ded9274342dfc7e64a0e7abb0f87ddd685753a39fa1c3ad5f0b7467235"
+      },
+      "holdDraws": [],
+      "stages": {
+        "layout-range": {
+          "count": 3,
+          "medianMs": 0,
+          "sumMs": 0,
+          "maxMs": 0
+        },
+        "layout-stops": {
+          "count": 3,
+          "medianMs": 1,
+          "sumMs": 2,
+          "maxMs": 1
+        },
+        "layout-writing": {
+          "count": 3,
+          "medianMs": 0,
+          "sumMs": 0,
+          "maxMs": 0
+        },
+        "model-build": {
+          "count": 1,
+          "medianMs": 18,
+          "sumMs": 18,
+          "maxMs": 18
+        },
+        "model-color": {
+          "count": 1,
+          "medianMs": 6,
+          "sumMs": 6,
+          "maxMs": 6
+        },
+        "draw-project": {
+          "count": 2,
+          "medianMs": 29.0,
+          "sumMs": 58,
+          "maxMs": 40
+        },
+        "draw-effects": {
+          "count": 2,
+          "medianMs": 5.0,
+          "sumMs": 10,
+          "maxMs": 6
+        },
+        "draw-sort": {
+          "count": 2,
+          "medianMs": 2.0,
+          "sumMs": 4,
+          "maxMs": 3
+        },
+        "draw-paint": {
+          "count": 2,
+          "medianMs": 14.0,
+          "sumMs": 28,
+          "maxMs": 17
+        },
+        "draw-state": {
+          "count": 2,
+          "medianMs": 0.5,
+          "sumMs": 1,
+          "maxMs": 1
+        }
+      },
+      "events": {
+        "request": 3,
+        "entry": 2,
+        "cancel": 0,
+        "visibilitychange": 0
+      },
+      "checks": {
+        "positiveProbe": true,
+        "startup": {
+          "foreground": true,
+          "elapsedMs": 927,
+          "timeoutMs": 3000
+        },
+        "probe": {
+          "elapsedMs": 1253,
+          "paints": 1
+        }
+      },
+      "finalVisible": {
+        "hidden": false,
+        "visibility": "visible",
+        "focus": true
+      }
+    },
+    {
+      "id": "webkit-startup-1",
+      "role": "target",
+      "fixturePass": true,
+      "error": null,
+      "durationMs": 1135.391845,
+      "drawDurationMs": {
+        "count": 3,
+        "min": 31,
+        "median": 38,
+        "p95": 74,
+        "max": 74
+      },
+      "ribbonFaces": {
+        "count": 3,
+        "min": 241,
+        "median": 241,
+        "p95": 241,
+        "max": 241
+      },
+      "holdTransitions": [
+        {
+          "time": 121,
+          "hold": false,
+          "pending": null
+        }
+      ],
+      "finalScheduler": {
+        "pending": 4,
+        "enabled": true,
+        "hold": false,
+        "printing": false,
+        "initialized": true,
+        "failed": false,
+        "page": "index",
+        "tier": 0,
+        "detailTier": 0,
+        "slow": 3,
+        "fast": 0,
+        "idleRate": 30,
+        "costAverage": 32.4,
+        "lastFrame": 781,
+        "nextDraw": 814.3333333333334
+      },
+      "longestRafWaits": [
+        {
+          "requestId": 2,
+          "requestedMs": 197,
+          "enteredMs": 625,
+          "waitMs": 428
+        },
+        {
+          "requestId": 3,
+          "requestedMs": 656,
+          "enteredMs": 781,
+          "waitMs": 125
+        },
+        {
+          "requestId": 1,
+          "requestedMs": 122,
+          "enteredMs": 122,
+          "waitMs": 0
+        }
+      ],
+      "raw": {
+        "file": "trials/webkit-startup-1.json.gz",
+        "sha256": "51e8a74abd4cecfe6bdd8527f9223230ff38d71ba4509fb7c2d492532cc9862f"
+      },
+      "holdDraws": [],
+      "stages": {
+        "layout-range": {
+          "count": 2,
+          "medianMs": 0.5,
+          "sumMs": 1,
+          "maxMs": 1
+        },
+        "layout-stops": {
+          "count": 2,
+          "medianMs": 0.0,
+          "sumMs": 0,
+          "maxMs": 0
+        },
+        "layout-writing": {
+          "count": 2,
+          "medianMs": 0.0,
+          "sumMs": 0,
+          "maxMs": 0
+        },
+        "model-build": {
+          "count": 1,
+          "medianMs": 20,
+          "sumMs": 20,
+          "maxMs": 20
+        },
+        "model-color": {
+          "count": 1,
+          "medianMs": 6,
+          "sumMs": 6,
+          "maxMs": 6
+        },
+        "draw-project": {
+          "count": 3,
+          "medianMs": 19,
+          "sumMs": 74,
+          "maxMs": 44
+        },
+        "draw-effects": {
+          "count": 3,
+          "medianMs": 5,
+          "sumMs": 16,
+          "maxMs": 7
+        },
+        "draw-sort": {
+          "count": 3,
+          "medianMs": 3,
+          "sumMs": 8,
+          "maxMs": 3
+        },
+        "draw-paint": {
+          "count": 3,
+          "medianMs": 13,
+          "sumMs": 44,
+          "maxMs": 19
+        },
+        "draw-state": {
+          "count": 3,
+          "medianMs": 0,
+          "sumMs": 1,
+          "maxMs": 1
+        }
+      },
+      "events": {
+        "request": 4,
+        "entry": 3,
+        "cancel": 0,
+        "visibilitychange": 0
+      },
+      "checks": {
+        "positiveProbe": true,
+        "startup": {
+          "foreground": true,
+          "elapsedMs": 28,
+          "timeoutMs": 3000
+        },
+        "probe": {
+          "elapsedMs": 188,
+          "paints": 1
+        }
+      },
+      "finalVisible": {
+        "hidden": false,
+        "visibility": "visible",
+        "focus": true
+      }
+    },
+    {
+      "id": "firefox-alone-control",
+      "role": "target",
+      "fixturePass": true,
+      "error": null,
+      "durationMs": 58129.655303,
+      "drawDurationMs": {
+        "count": 678,
+        "min": 10,
+        "median": 16,
+        "p95": 28,
+        "max": 118
+      },
+      "ribbonFaces": {
+        "count": 678,
+        "min": 231,
+        "median": 237,
+        "p95": 239,
+        "max": 242
+      },
+      "holdTransitions": [
+        {
+          "time": 278,
+          "hold": false,
+          "pending": null
+        }
+      ],
+      "finalScheduler": {
+        "pending": 2428,
+        "enabled": true,
+        "hold": false,
+        "printing": false,
+        "initialized": true,
+        "failed": false,
+        "page": "writing",
+        "tier": 1,
+        "detailTier": 0.9999999999999999,
+        "slow": 0,
+        "fast": 0,
+        "idleRate": 7.5,
+        "costAverage": 22.563132708036335,
+        "lastFrame": 51099.1,
+        "nextDraw": 51198.79333333335
+      },
+      "longestRafWaits": [
+        {
+          "requestId": 317,
+          "requestedMs": 13205,
+          "enteredMs": 13715,
+          "waitMs": 510
+        },
+        {
+          "requestId": 164,
+          "requestedMs": 9083,
+          "enteredMs": 9335,
+          "waitMs": 252
+        },
+        {
+          "requestId": 138,
+          "requestedMs": 7082,
+          "enteredMs": 7296,
+          "waitMs": 214
+        }
+      ],
+      "raw": {
+        "file": "trials/firefox-alone-control.json.gz",
+        "sha256": "b6f7fe3ac74de34dd08d762df223ed0e601a87461033c504be033d7544fea20e"
+      },
+      "holdDraws": [],
+      "stages": {
+        "layout-range": {
+          "count": 44,
+          "medianMs": 0.0,
+          "sumMs": 31,
+          "maxMs": 7
+        },
+        "layout-stops": {
+          "count": 44,
+          "medianMs": 0.0,
+          "sumMs": 2,
+          "maxMs": 1
+        },
+        "layout-writing": {
+          "count": 44,
+          "medianMs": 0.0,
+          "sumMs": 3,
+          "maxMs": 1
+        },
+        "model-build": {
+          "count": 2,
+          "medianMs": 23.5,
+          "sumMs": 47,
+          "maxMs": 26
+        },
+        "model-color": {
+          "count": 4,
+          "medianMs": 3.5,
+          "sumMs": 19,
+          "maxMs": 9
+        },
+        "draw-project": {
+          "count": 678,
+          "medianMs": 2.0,
+          "sumMs": 1792,
+          "maxMs": 54
+        },
+        "draw-effects": {
+          "count": 678,
+          "medianMs": 1.0,
+          "sumMs": 908,
+          "maxMs": 10
+        },
+        "draw-sort": {
+          "count": 678,
+          "medianMs": 1.0,
+          "sumMs": 509,
+          "maxMs": 4
+        },
+        "draw-paint": {
+          "count": 678,
+          "medianMs": 12.0,
+          "sumMs": 8589,
+          "maxMs": 52
+        },
+        "draw-state": {
+          "count": 678,
+          "medianMs": 0.0,
+          "sumMs": 106,
+          "maxMs": 1
+        },
+        "scroll-native": {
+          "count": 2,
+          "medianMs": 0.0,
+          "sumMs": 0,
+          "maxMs": 0
+        }
+      },
+      "events": {
+        "request": 2418,
+        "entry": 2413,
+        "cancel": 4,
+        "visibilitychange": 2
+      },
+      "finalVisible": {
+        "hidden": false,
+        "visibility": "visible",
+        "focus": true
+      }
+    },
+    {
+      "id": "firefox-alone-adaptive",
+      "role": "target",
+      "fixturePass": true,
+      "error": null,
+      "durationMs": 57732.301898000005,
+      "drawDurationMs": {
+        "count": 678,
+        "min": 9,
+        "median": 15,
+        "p95": 28,
+        "max": 122
+      },
+      "ribbonFaces": {
+        "count": 678,
+        "min": 137,
+        "median": 140,
+        "p95": 145,
+        "max": 239
+      },
+      "holdTransitions": [
+        {
+          "time": 279,
+          "hold": false,
+          "pending": null
+        }
+      ],
+      "finalScheduler": {
+        "pending": 2422,
+        "enabled": true,
+        "hold": false,
+        "printing": false,
+        "initialized": true,
+        "failed": false,
+        "page": "writing",
+        "tier": 1,
+        "detailTier": 0.9999999999999999,
+        "slow": 0,
+        "fast": 0,
+        "idleRate": 7.5,
+        "costAverage": 21.6691597348272,
+        "lastFrame": 50502,
+        "nextDraw": 50568.75333333335
+      },
+      "longestRafWaits": [
+        {
+          "requestId": 304,
+          "requestedMs": 12944,
+          "enteredMs": 13448,
+          "waitMs": 504
+        },
+        {
+          "requestId": 162,
+          "requestedMs": 8685,
+          "enteredMs": 8934,
+          "waitMs": 249
+        },
+        {
+          "requestId": 133,
+          "requestedMs": 6650,
+          "enteredMs": 6856,
+          "waitMs": 206
+        }
+      ],
+      "raw": {
+        "file": "trials/firefox-alone-adaptive.json.gz",
+        "sha256": "ea26844a843e315394cf1ec4f36a773bb2e40e35bf7f7612f64a9383ca83b2bb"
+      },
+      "holdDraws": [],
+      "stages": {
+        "layout-range": {
+          "count": 43,
+          "medianMs": 0,
+          "sumMs": 31,
+          "maxMs": 8
+        },
+        "layout-stops": {
+          "count": 43,
+          "medianMs": 0,
+          "sumMs": 4,
+          "maxMs": 1
+        },
+        "layout-writing": {
+          "count": 43,
+          "medianMs": 0,
+          "sumMs": 3,
+          "maxMs": 1
+        },
+        "model-build": {
+          "count": 2,
+          "medianMs": 26.5,
+          "sumMs": 53,
+          "maxMs": 33
+        },
+        "model-color": {
+          "count": 4,
+          "medianMs": 3.5,
+          "sumMs": 19,
+          "maxMs": 10
+        },
+        "draw-project": {
+          "count": 678,
+          "medianMs": 2.0,
+          "sumMs": 1718,
+          "maxMs": 64
+        },
+        "draw-effects": {
+          "count": 678,
+          "medianMs": 1.0,
+          "sumMs": 609,
+          "maxMs": 9
+        },
+        "draw-sort": {
+          "count": 678,
+          "medianMs": 1.0,
+          "sumMs": 492,
+          "maxMs": 7
+        },
+        "draw-paint": {
+          "count": 678,
+          "medianMs": 11.0,
+          "sumMs": 7827,
+          "maxMs": 46
+        },
+        "draw-state": {
+          "count": 678,
+          "medianMs": 0.0,
+          "sumMs": 112,
+          "maxMs": 2
+        },
+        "scroll-native": {
+          "count": 2,
+          "medianMs": 0.0,
+          "sumMs": 0,
+          "maxMs": 0
+        }
+      },
+      "events": {
+        "request": 2412,
+        "entry": 2407,
+        "cancel": 4,
+        "visibilitychange": 2
+      },
+      "finalVisible": {
+        "hidden": false,
+        "visibility": "visible",
+        "focus": true
+      }
+    },
+    {
+      "id": "firefox-loaded-adaptive",
+      "role": "target",
+      "fixturePass": false,
+      "error": "restored leaves the opening pose",
+      "durationMs": 68353.49295900001,
+      "drawDurationMs": {
+        "count": 440,
+        "min": 7,
+        "median": 23,
+        "p95": 55,
+        "max": 180
+      },
+      "ribbonFaces": {
+        "count": 440,
+        "min": 97,
+        "median": 99,
+        "p95": 145,
+        "max": 238
+      },
+      "holdTransitions": [
+        {
+          "time": 449,
+          "hold": false,
+          "pending": null
+        },
+        {
+          "time": 25507,
+          "hold": true,
+          "pending": 435
+        },
+        {
+          "time": 28604,
+          "hold": false,
+          "pending": null
+        },
+        {
+          "time": 53032,
+          "hold": true,
+          "pending": null
+        }
+      ],
+      "finalScheduler": {
+        "pending": null,
+        "enabled": true,
+        "hold": true,
+        "printing": false,
+        "initialized": true,
+        "failed": false,
+        "page": "writing",
+        "tier": 2,
+        "detailTier": 1.9999999999999998,
+        "slow": 22,
+        "fast": 0,
+        "idleRate": 7.5,
+        "costAverage": 39.79326983419678,
+        "lastFrame": 54760.7,
+        "nextDraw": 54894.03333333333
+      },
+      "longestRafWaits": [
+        {
+          "requestId": 285,
+          "requestedMs": 20199,
+          "enteredMs": 20894,
+          "waitMs": 695
+        },
+        {
+          "requestId": 238,
+          "requestedMs": 15976,
+          "enteredMs": 16502,
+          "waitMs": 526
+        },
+        {
+          "requestId": 204,
+          "requestedMs": 11454,
+          "enteredMs": 11952,
+          "waitMs": 498
+        }
+      ],
+      "raw": {
+        "file": "trials/firefox-loaded-adaptive.json.gz",
+        "sha256": "8b2c7592806405ade4df6722f68f9dbe4ee5bcd1da841c1bbb26f6cb52906f76"
+      },
+      "holdDraws": [
+        {
+          "transition": {
+            "time": 25507,
+            "hold": true,
+            "pending": 435
+          },
+          "draw": {
+            "time": 25508,
+            "kind": "browser-gate-frame",
+            "page": "writing",
+            "start": 25451,
+            "renderCost": 56,
+            "pending": null,
+            "enabled": true,
+            "hold": true,
+            "printing": false,
+            "initialized": true,
+            "failed": false,
+            "tier": 2,
+            "detailTier": 1.9999999999999998,
+            "slow": 28,
+            "fast": 0,
+            "idleRate": 7.5,
+            "costAverage": 32.21303860010516,
+            "lastFrame": null,
+            "nextDraw": null,
+            "ribbonFaces": 100,
+            "ribbonSignals": 7
+          },
+          "triggerEvent": 2154
+        },
+        {
+          "transition": {
+            "time": 53032,
+            "hold": true,
+            "pending": null
+          },
+          "draw": {
+            "time": 53032,
+            "kind": "browser-gate-frame",
+            "page": "writing",
+            "start": 52969,
+            "renderCost": 62,
+            "pending": null,
+            "enabled": true,
+            "hold": true,
+            "printing": false,
+            "initialized": true,
+            "failed": false,
+            "tier": 2,
+            "detailTier": 1.9999999999999998,
+            "slow": 22,
+            "fast": 0,
+            "idleRate": 7.5,
+            "costAverage": 39.79326983419678,
+            "lastFrame": null,
+            "nextDraw": null,
+            "ribbonFaces": 99,
+            "ribbonSignals": 8
+          },
+          "triggerEvent": 7354
+        }
+      ],
+      "stages": {
+        "layout-range": {
+          "count": 37,
+          "medianMs": 0,
+          "sumMs": 66,
+          "maxMs": 13
+        },
+        "layout-stops": {
+          "count": 37,
+          "medianMs": 0,
+          "sumMs": 6,
+          "maxMs": 1
+        },
+        "layout-writing": {
+          "count": 37,
+          "medianMs": 0,
+          "sumMs": 7,
+          "maxMs": 5
+        },
+        "model-build": {
+          "count": 2,
+          "medianMs": 49.0,
+          "sumMs": 98,
+          "maxMs": 49
+        },
+        "model-color": {
+          "count": 4,
+          "medianMs": 8.5,
+          "sumMs": 34,
+          "maxMs": 13
+        },
+        "draw-project": {
+          "count": 440,
+          "medianMs": 3.0,
+          "sumMs": 1865,
+          "maxMs": 91
+        },
+        "draw-effects": {
+          "count": 440,
+          "medianMs": 1.0,
+          "sumMs": 689,
+          "maxMs": 17
+        },
+        "draw-sort": {
+          "count": 440,
+          "medianMs": 1.0,
+          "sumMs": 506,
+          "maxMs": 10
+        },
+        "draw-paint": {
+          "count": 440,
+          "medianMs": 17.0,
+          "sumMs": 8774,
+          "maxMs": 122
+        },
+        "draw-state": {
+          "count": 440,
+          "medianMs": 0.0,
+          "sumMs": 100,
+          "maxMs": 8
+        },
+        "scroll-native": {
+          "count": 2,
+          "medianMs": 0.0,
+          "sumMs": 0,
+          "maxMs": 0
+        }
+      },
+      "events": {
+        "request": 1526,
+        "entry": 1522,
+        "cancel": 4,
+        "visibilitychange": 2
+      },
+      "finalVisible": {
+        "hidden": false,
+        "visibility": "visible",
+        "focus": true
+      }
+    },
+    {
+      "id": "firefox-loaded-adaptive-chromium",
+      "role": "background",
+      "fixturePass": true,
+      "error": null,
+      "durationMs": 55965.00416499999,
+      "drawDurationMs": {
+        "count": 610,
+        "min": 3.2999999999883585,
+        "median": 9,
+        "p95": 25.60000000000582,
+        "max": 204.80000000001746
+      },
+      "ribbonFaces": {
+        "count": 610,
+        "min": 232,
+        "median": 236,
+        "p95": 241,
+        "max": 242
+      },
+      "holdTransitions": [
+        {
+          "time": 199.5,
+          "hold": false,
+          "pending": null
+        }
+      ],
+      "finalScheduler": {
+        "pending": 2192,
+        "enabled": true,
+        "hold": false,
+        "printing": false,
+        "initialized": true,
+        "failed": false,
+        "page": "index",
+        "tier": 1,
+        "detailTier": 0.9999999999999999,
+        "slow": 0,
+        "fast": 0,
+        "idleRate": 10,
+        "costAverage": 19.26686162745238,
+        "lastFrame": 49712.2,
+        "nextDraw": 49812.2
+      },
+      "longestRafWaits": [
+        {
+          "requestId": 331,
+          "requestedMs": 14743,
+          "enteredMs": 15295.899999999994,
+          "waitMs": 552.8999999999942
+        },
+        {
+          "requestId": 2141,
+          "requestedMs": 48618.100000000006,
+          "enteredMs": 48815.69999999998,
+          "waitMs": 197.59999999997672
+        },
+        {
+          "requestId": 42,
+          "requestedMs": 2207.399999999994,
+          "enteredMs": 2399.399999999994,
+          "waitMs": 192.0
+        }
+      ],
+      "raw": {
+        "file": "trials/firefox-loaded-adaptive-chromium.json.gz",
+        "sha256": "07caf4cdca2784e87ffd379b096b106ab04a7cae588648f855ea7aeba95bf838"
+      },
+      "holdDraws": [],
+      "stages": {
+        "layout-range": {
+          "count": 19,
+          "medianMs": 0,
+          "sumMs": 0.7000000000116415,
+          "maxMs": 0.5
+        },
+        "layout-stops": {
+          "count": 19,
+          "medianMs": 0.10000000000582077,
+          "sumMs": 2.9000000001105946,
+          "maxMs": 0.6000000000058208
+        },
+        "layout-writing": {
+          "count": 19,
+          "medianMs": 0,
+          "sumMs": 0.29999999995925464,
+          "maxMs": 0.10000000000582077
+        },
+        "model-build": {
+          "count": 2,
+          "medianMs": 40.90000000000873,
+          "sumMs": 81.80000000001746,
+          "maxMs": 56.5
+        },
+        "model-color": {
+          "count": 4,
+          "medianMs": 7.100000000005821,
+          "sumMs": 37.80000000001746,
+          "maxMs": 18.60000000000582
+        },
+        "draw-project": {
+          "count": 610,
+          "medianMs": 1.0,
+          "sumMs": 1256.1999999999825,
+          "maxMs": 120.29999999998836
+        },
+        "draw-effects": {
+          "count": 610,
+          "medianMs": 1.3000000000174623,
+          "sumMs": 1256.6999999999825,
+          "maxMs": 20.39999999999418
+        },
+        "draw-sort": {
+          "count": 610,
+          "medianMs": 0.6000000000058208,
+          "sumMs": 701.3999999995867,
+          "maxMs": 16.10000000000582
+        },
+        "draw-paint": {
+          "count": 610,
+          "medianMs": 4.9500000000116415,
+          "sumMs": 3736.6000000002678,
+          "maxMs": 47.39999999999418
+        },
+        "draw-state": {
+          "count": 610,
+          "medianMs": 0.10000000000582077,
+          "sumMs": 92.49999999965075,
+          "maxMs": 3.3000000000174623
+        }
+      },
+      "events": {
+        "request": 2176,
+        "entry": 2172,
+        "cancel": 3,
+        "visibilitychange": 2
+      },
+      "finalVisible": {
+        "hidden": false,
+        "visibility": "visible",
+        "focus": true
+      }
+    },
+    {
+      "id": "firefox-loaded-adaptive-webkit",
+      "role": "background",
+      "fixturePass": true,
+      "error": null,
+      "durationMs": 66578.892937,
+      "drawDurationMs": {
+        "count": 487,
+        "min": 5,
+        "median": 15,
+        "p95": 32,
+        "max": 107
+      },
+      "ribbonFaces": {
+        "count": 487,
+        "min": 231,
+        "median": 236,
+        "p95": 241,
+        "max": 242
+      },
+      "holdTransitions": [
+        {
+          "time": 204,
+          "hold": false,
+          "pending": null
+        }
+      ],
+      "finalScheduler": {
+        "pending": 805,
+        "enabled": true,
+        "hold": false,
+        "printing": false,
+        "initialized": true,
+        "failed": false,
+        "page": "index",
+        "tier": 1,
+        "detailTier": 0.9999999999999999,
+        "slow": 1,
+        "fast": 0,
+        "idleRate": 7.5,
+        "costAverage": 22.282658538799208,
+        "lastFrame": 63678,
+        "nextDraw": 63736.33333333335
+      },
+      "longestRafWaits": [
+        {
+          "requestId": 26,
+          "requestedMs": 5945,
+          "enteredMs": 6914,
+          "waitMs": 969
+        },
+        {
+          "requestId": 7,
+          "requestedMs": 2372,
+          "enteredMs": 3050,
+          "waitMs": 678
+        },
+        {
+          "requestId": 2,
+          "requestedMs": 314,
+          "enteredMs": 919,
+          "waitMs": 605
+        }
+      ],
+      "raw": {
+        "file": "trials/firefox-loaded-adaptive-webkit.json.gz",
+        "sha256": "4227701c68adef6d90ac70868a598d48082211846ac3d2d8c2fc627f23890ce6"
+      },
+      "holdDraws": [],
+      "stages": {
+        "layout-range": {
+          "count": 20,
+          "medianMs": 0.0,
+          "sumMs": 2,
+          "maxMs": 1
+        },
+        "layout-stops": {
+          "count": 20,
+          "medianMs": 0.0,
+          "sumMs": 14,
+          "maxMs": 8
+        },
+        "layout-writing": {
+          "count": 20,
+          "medianMs": 0.0,
+          "sumMs": 0,
+          "maxMs": 0
+        },
+        "model-build": {
+          "count": 2,
+          "medianMs": 32.0,
+          "sumMs": 64,
+          "maxMs": 37
+        },
+        "model-color": {
+          "count": 4,
+          "medianMs": 11.0,
+          "sumMs": 38,
+          "maxMs": 12
+        },
+        "draw-project": {
+          "count": 487,
+          "medianMs": 2,
+          "sumMs": 2029,
+          "maxMs": 64
+        },
+        "draw-effects": {
+          "count": 487,
+          "medianMs": 2,
+          "sumMs": 1424,
+          "maxMs": 19
+        },
+        "draw-sort": {
+          "count": 487,
+          "medianMs": 1,
+          "sumMs": 413,
+          "maxMs": 9
+        },
+        "draw-paint": {
+          "count": 487,
+          "medianMs": 7,
+          "sumMs": 4204,
+          "maxMs": 47
+        },
+        "draw-state": {
+          "count": 487,
+          "medianMs": 0,
+          "sumMs": 114,
+          "maxMs": 4
+        }
+      },
+      "events": {
+        "request": 787,
+        "entry": 783,
+        "cancel": 3,
+        "visibilitychange": 2
+      },
+      "finalVisible": {
+        "hidden": false,
+        "visibility": "visible",
+        "focus": true
+      }
+    },
+    {
+      "id": "firefox-loaded-control",
+      "role": "target",
+      "fixturePass": false,
+      "error": "page.waitForFunction: Timeout 2000ms exceeded.",
+      "durationMs": 33042.334864000004,
+      "drawDurationMs": {
+        "count": 70,
+        "min": 17,
+        "median": 41,
+        "p95": 92,
+        "max": 198
+      },
+      "ribbonFaces": {
+        "count": 70,
+        "min": 230,
+        "median": 238,
+        "p95": 239,
+        "max": 239
+      },
+      "holdTransitions": [
+        {
+          "time": 565,
+          "hold": false,
+          "pending": null
+        },
+        {
+          "time": 15243,
+          "hold": true,
+          "pending": null
+        }
+      ],
+      "finalScheduler": {
+        "pending": null,
+        "enabled": true,
+        "hold": true,
+        "printing": false,
+        "initialized": true,
+        "failed": false,
+        "page": "writing",
+        "tier": 2,
+        "detailTier": 1.9999999985742023,
+        "slow": 23,
+        "fast": 0,
+        "idleRate": 7.5,
+        "costAverage": 37.43921502721118,
+        "lastFrame": 27045.48,
+        "nextDraw": 27178.81333333333
+      },
+      "longestRafWaits": [
+        {
+          "requestId": 236,
+          "requestedMs": 8621,
+          "enteredMs": 9149,
+          "waitMs": 528
+        },
+        {
+          "requestId": 176,
+          "requestedMs": 6738,
+          "enteredMs": 7241,
+          "waitMs": 503
+        },
+        {
+          "requestId": 101,
+          "requestedMs": 4432,
+          "enteredMs": 4846,
+          "waitMs": 414
+        }
+      ],
+      "raw": {
+        "file": "trials/firefox-loaded-control.json.gz",
+        "sha256": "fa0f966ab10f389781414da78292bf51a4b9d87535f9f6e5af25a7e3122234f1"
+      },
+      "holdDraws": [
+        {
+          "transition": {
+            "time": 15243,
+            "hold": true,
+            "pending": null
+          },
+          "draw": {
+            "time": 15243,
+            "kind": "browser-gate-frame",
+            "page": "writing",
+            "start": 15185,
+            "renderCost": 58,
+            "pending": null,
+            "enabled": true,
+            "hold": true,
+            "printing": false,
+            "initialized": true,
+            "failed": false,
+            "tier": 2,
+            "detailTier": 1.9999999985742023,
+            "slow": 23,
+            "fast": 0,
+            "idleRate": 7.5,
+            "costAverage": 37.43921502721118,
+            "lastFrame": null,
+            "nextDraw": null,
+            "ribbonFaces": 237,
+            "ribbonSignals": 4
+          },
+          "triggerEvent": 1309
+        }
+      ],
+      "stages": {
+        "layout-range": {
+          "count": 5,
+          "medianMs": 0,
+          "sumMs": 2,
+          "maxMs": 1
+        },
+        "layout-stops": {
+          "count": 5,
+          "medianMs": 0,
+          "sumMs": 1,
+          "maxMs": 1
+        },
+        "layout-writing": {
+          "count": 5,
+          "medianMs": 0,
+          "sumMs": 0,
+          "maxMs": 0
+        },
+        "model-build": {
+          "count": 2,
+          "medianMs": 48.5,
+          "sumMs": 97,
+          "maxMs": 63
+        },
+        "model-color": {
+          "count": 4,
+          "medianMs": 4.5,
+          "sumMs": 37,
+          "maxMs": 24
+        },
+        "draw-project": {
+          "count": 70,
+          "medianMs": 5.0,
+          "sumMs": 605,
+          "maxMs": 131
+        },
+        "draw-effects": {
+          "count": 70,
+          "medianMs": 2.5,
+          "sumMs": 269,
+          "maxMs": 19
+        },
+        "draw-sort": {
+          "count": 70,
+          "medianMs": 1.0,
+          "sumMs": 138,
+          "maxMs": 11
+        },
+        "draw-paint": {
+          "count": 70,
+          "medianMs": 31.0,
+          "sumMs": 2364,
+          "maxMs": 88
+        },
+        "draw-state": {
+          "count": 70,
+          "medianMs": 0.0,
+          "sumMs": 14,
+          "maxMs": 1
+        }
+      },
+      "events": {
+        "request": 299,
+        "entry": 298,
+        "cancel": 1,
+        "visibilitychange": 2
+      },
+      "finalVisible": {
+        "hidden": false,
+        "visibility": "visible",
+        "focus": true
+      }
+    },
+    {
+      "id": "firefox-loaded-control-chromium",
+      "role": "background",
+      "fixturePass": true,
+      "error": null,
+      "durationMs": 55130.28451,
+      "drawDurationMs": {
+        "count": 694,
+        "min": 3.2000000000116415,
+        "median": 7.5,
+        "p95": 23.29999999998836,
+        "max": 220.69999999995343
+      },
+      "ribbonFaces": {
+        "count": 694,
+        "min": 231,
+        "median": 236,
+        "p95": 241,
+        "max": 242
+      },
+      "holdTransitions": [
+        {
+          "time": 125,
+          "hold": false,
+          "pending": null
+        }
+      ],
+      "finalScheduler": {
+        "pending": 2148,
+        "enabled": true,
+        "hold": false,
+        "printing": false,
+        "initialized": true,
+        "failed": false,
+        "page": "index",
+        "tier": 1,
+        "detailTier": 0.9999999999999999,
+        "slow": 0,
+        "fast": 3,
+        "idleRate": 20,
+        "costAverage": 10.167736023294589,
+        "lastFrame": 49696.9,
+        "nextDraw": 49746.9
+      },
+      "longestRafWaits": [
+        {
+          "requestId": 415,
+          "requestedMs": 18481.20000000001,
+          "enteredMs": 19025.70000000001,
+          "waitMs": 544.5
+        },
+        {
+          "requestId": 196,
+          "requestedMs": 11266.799999999988,
+          "enteredMs": 11521.600000000035,
+          "waitMs": 254.80000000004657
+        },
+        {
+          "requestId": 135,
+          "requestedMs": 8257.200000000012,
+          "enteredMs": 8476.100000000035,
+          "waitMs": 218.90000000002328
+        }
+      ],
+      "raw": {
+        "file": "trials/firefox-loaded-control-chromium.json.gz",
+        "sha256": "620a10b88fcfa753e2ef36f6250cc9b0ef62582473515428c0ec877425062784"
+      },
+      "holdDraws": [],
+      "stages": {
+        "layout-range": {
+          "count": 19,
+          "medianMs": 0,
+          "sumMs": 0.3999999999650754,
+          "maxMs": 0.20000000001164153
+        },
+        "layout-stops": {
+          "count": 19,
+          "medianMs": 0.09999999997671694,
+          "sumMs": 3.3999999999068677,
+          "maxMs": 1.2999999999883585
+        },
+        "layout-writing": {
+          "count": 19,
+          "medianMs": 0,
+          "sumMs": 0.1000000000349246,
+          "maxMs": 0.1000000000349246
+        },
+        "model-build": {
+          "count": 2,
+          "medianMs": 53.64999999999418,
+          "sumMs": 107.29999999998836,
+          "maxMs": 63.90000000002328
+        },
+        "model-color": {
+          "count": 4,
+          "medianMs": 8.35000000000582,
+          "sumMs": 43.600000000034925,
+          "maxMs": 21.400000000023283
+        },
+        "draw-project": {
+          "count": 694,
+          "medianMs": 0.9000000000232831,
+          "sumMs": 1300.8000000001048,
+          "maxMs": 154.09999999997672
+        },
+        "draw-effects": {
+          "count": 694,
+          "medianMs": 1.2000000000116415,
+          "sumMs": 1214.299999999639,
+          "maxMs": 19.600000000034925
+        },
+        "draw-sort": {
+          "count": 694,
+          "medianMs": 0.5,
+          "sumMs": 643.3999999992084,
+          "maxMs": 22.399999999965075
+        },
+        "draw-paint": {
+          "count": 694,
+          "medianMs": 4.100000000005821,
+          "sumMs": 3545.4000000006636,
+          "maxMs": 42
+        },
+        "draw-state": {
+          "count": 694,
+          "medianMs": 0.09999999997671694,
+          "sumMs": 91.80000000004657,
+          "maxMs": 6.199999999953434
+        }
+      },
+      "events": {
+        "request": 2132,
+        "entry": 2128,
+        "cancel": 3,
+        "visibilitychange": 2
+      },
+      "finalVisible": {
+        "hidden": false,
+        "visibility": "visible",
+        "focus": true
+      }
+    },
+    {
+      "id": "firefox-loaded-control-webkit",
+      "role": "background",
+      "fixturePass": true,
+      "error": null,
+      "durationMs": 65852.16729599997,
+      "drawDurationMs": {
+        "count": 539,
+        "min": 5,
+        "median": 10,
+        "p95": 25,
+        "max": 149
+      },
+      "ribbonFaces": {
+        "count": 539,
+        "min": 231,
+        "median": 236,
+        "p95": 241,
+        "max": 242
+      },
+      "holdTransitions": [
+        {
+          "time": 274,
+          "hold": false,
+          "pending": null
+        }
+      ],
+      "finalScheduler": {
+        "pending": 1008,
+        "enabled": true,
+        "hold": false,
+        "printing": false,
+        "initialized": true,
+        "failed": false,
+        "page": "index",
+        "tier": 1,
+        "detailTier": 0.9999999999999999,
+        "slow": 0,
+        "fast": 0,
+        "idleRate": 7.5,
+        "costAverage": 16.40183998156032,
+        "lastFrame": 63206,
+        "nextDraw": 63238.000000000015
+      },
+      "longestRafWaits": [
+        {
+          "requestId": 2,
+          "requestedMs": 429,
+          "enteredMs": 1113,
+          "waitMs": 684
+        },
+        {
+          "requestId": 5,
+          "requestedMs": 1819,
+          "enteredMs": 2339,
+          "waitMs": 520
+        },
+        {
+          "requestId": 8,
+          "requestedMs": 2995,
+          "enteredMs": 3392,
+          "waitMs": 397
+        }
+      ],
+      "raw": {
+        "file": "trials/firefox-loaded-control-webkit.json.gz",
+        "sha256": "a3b208e25ab6c6b282dbacd77c4dfd6b63b5fdbc040033e9c52ed0d6e55f2f8a"
+      },
+      "holdDraws": [],
+      "stages": {
+        "layout-range": {
+          "count": 20,
+          "medianMs": 0.0,
+          "sumMs": 0,
+          "maxMs": 0
+        },
+        "layout-stops": {
+          "count": 20,
+          "medianMs": 0.0,
+          "sumMs": 4,
+          "maxMs": 1
+        },
+        "layout-writing": {
+          "count": 20,
+          "medianMs": 0.0,
+          "sumMs": 0,
+          "maxMs": 0
+        },
+        "model-build": {
+          "count": 2,
+          "medianMs": 39.0,
+          "sumMs": 78,
+          "maxMs": 45
+        },
+        "model-color": {
+          "count": 4,
+          "medianMs": 6.0,
+          "sumMs": 41,
+          "maxMs": 23
+        },
+        "draw-project": {
+          "count": 539,
+          "medianMs": 2,
+          "sumMs": 1567,
+          "maxMs": 109
+        },
+        "draw-effects": {
+          "count": 539,
+          "medianMs": 2,
+          "sumMs": 1102,
+          "maxMs": 12
+        },
+        "draw-sort": {
+          "count": 539,
+          "medianMs": 0,
+          "sumMs": 318,
+          "maxMs": 11
+        },
+        "draw-paint": {
+          "count": 539,
+          "medianMs": 5,
+          "sumMs": 3421,
+          "maxMs": 36
+        },
+        "draw-state": {
+          "count": 539,
+          "medianMs": 0,
+          "sumMs": 100,
+          "maxMs": 4
+        }
+      },
+      "events": {
+        "request": 978,
+        "entry": 974,
+        "cancel": 3,
+        "visibilitychange": 2
+      },
+      "finalVisible": {
+        "hidden": false,
+        "visibility": "visible",
+        "focus": true
+      }
+    }
+  ],
+  "identity": {
+    "sourceCommit": "b9ca9fc3290d52a572496340eaa837e3f618ee6c",
+    "sourceTree": "1e2283d154a7723b9e63178bbe42c9a26679d7bc",
+    "candidateCommit": "b9ca9fc3290d52a572496340eaa837e3f618ee6c",
+    "parentArtifactDigest": "0c382abbed60068edf76478d25867fd2dd9b5efd3e583b8c718005e110bb285b",
+    "parentVariant": {
+      "id": "color",
+      "contract": 1,
+      "fingerprint": "510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb",
+      "baseEngine": "5a10d22a3b14c296913100d8dfa3d9d128a334c46b4ab5bfb9abd6b512f57ef4",
+      "effects": [
+        "ribbons",
+        "travel"
+      ]
+    }
+  }
+}

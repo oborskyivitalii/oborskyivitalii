@@ -1,0 +1,687 @@
+{
+  "schema": 1,
+  "kind": "bounded-gtk-complete-lease-followup",
+  "createdDate": "2026-10-06",
+  "fullGate": false,
+  "promotionAccepted": false,
+  "deploymentPerformed": false,
+  "sourceIdentity": {
+    "sourceCommit": "5e4a8f61a2f9fa8bf0a9370a2706b67289e239c9",
+    "sourceTree": "451fe8ec324ad417618842106a7e4fb0fd8b6dc4",
+    "candidateCommit": "5e4a8f61a2f9fa8bf0a9370a2706b67289e239c9",
+    "artifactDigest": "0de6c4869daf732aa99a0fa5c0095a5be4cc39fd88252d18a605781130b7e427",
+    "variant": {
+      "id": "color",
+      "contract": 1,
+      "fingerprint": "5696d4af5cb8d756bfd2b8d85c79f918cf17c7f6f7b1427a5b04235e758c1413",
+      "baseEngine": "22e1e5b42356b0b36696a6aacebbd36d299c96d168c73ebcb0613da0bfd5c658",
+      "effects": [
+        "ribbons",
+        "travel"
+      ]
+    }
+  },
+  "environment": {
+    "platform": "linux",
+    "os": "6.17.0-1022-azure",
+    "architecture": "x64",
+    "node": "v24.19.0",
+    "runnerImage": "ubuntu24",
+    "imageVersion": "20260927.320.1",
+    "cpus": [
+      "INTEL(R) XEON(R) PLATINUM 8573C",
+      "INTEL(R) XEON(R) PLATINUM 8573C",
+      "INTEL(R) XEON(R) PLATINUM 8573C",
+      "INTEL(R) XEON(R) PLATINUM 8573C"
+    ],
+    "memoryBytes": 16765374464,
+    "runId": "37505225237",
+    "attempt": "1"
+  },
+  "browsers": [
+    {
+      "engine": "webkit",
+      "version": "26.6",
+      "executable": "/home/runner/.cache/ms-playwright/webkit-2359/pw_run.sh",
+      "headless": false,
+      "port": "gtk",
+      "displayBackend": "Xvfb",
+      "startup": {
+        "budgetMs": 30000,
+        "displayMs": 940.450623,
+        "totalMs": 1592.9845
+      }
+    }
+  ],
+  "github": {
+    "repository": "oborskyivitalii/oborskyivitalii",
+    "pullRequest": 23,
+    "run": {
+      "id": 37505225237,
+      "attempt": 1,
+      "url": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37505225237",
+      "conclusion": "cancelled"
+    },
+    "job": {
+      "id": 112412063384,
+      "url": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37505225237/job/112412063384",
+      "conclusion": "cancelled",
+      "startedAt": "2026-10-06T17:39:26Z",
+      "completedAt": "2026-10-06T18:04:46Z",
+      "durationSeconds": 1520.0
+    },
+    "artifact": {
+      "id": 11433335638,
+      "name": "cause-fix-gtk-lease-37505225237-1",
+      "url": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37505225237/artifacts/11433335638",
+      "archiveDownloadAPI": "https://api.github.com/repos/oborskyivitalii/oborskyivitalii/actions/artifacts/11433335638/zip",
+      "digest": "sha256:dabb69b9de6031350e8662eb9387bc9c2ae2da959440ec2b6dbe0af00b007107",
+      "bytes": 26056,
+      "createdAt": "2026-10-06T18:04:44Z",
+      "expiresAt": "2027-01-04T17:39:22Z"
+    }
+  },
+  "rawEvidence": {
+    "zip": {
+      "path": "/workspace/scratch/39abca264702/attachments/0c8bc08a-3e8f-4b05-b51b-55d42d7139e3/gtk-followup-37505225237.zip",
+      "bytes": 26056,
+      "sha256": "dabb69b9de6031350e8662eb9387bc9c2ae2da959440ec2b6dbe0af00b007107",
+      "provenance": "GitHub download_workflow_artifact for artifact 11433335638; exact SHA256 matches GitHub artifact digest"
+    },
+    "jobLog": {
+      "path": "/workspace/scratch/39abca264702/gtk-followup-job.log",
+      "bytes": 210746,
+      "sha256": "6ad536f49a86d2c3dbfff78d262d3ec433452973222290f9ec88ff8fc04df5e9",
+      "provenance": "GitHub fetch_workflow_job_logs 112412063384; verbatim decoded UTF-8 text including BOM and final newline"
+    },
+    "functionalReport": {
+      "path": "/workspace/scratch/39abca264702/gtk-followup-report/functional.json",
+      "bytes": 304684,
+      "sha256": "250ded6cc64d0f19a20aa9c615f984a9a75a8903b1cc2f7629f017c92a7ea466",
+      "provenance": "Exact functional.json bytes extracted from the downloaded artifact ZIP"
+    },
+    "jobAndArtifactMetadata": {
+      "path": "/workspace/scratch/39abca264702/gtk-followup-metadata.json",
+      "bytes": 17039,
+      "sha256": "088f73d761580e0e6edc8a6f6b2ec744539ea55e4c5ccb66dc09ad3c96d72e16",
+      "provenance": "GitHub GET run/jobs and fetch_workflow_run_artifacts structured responses retained for timings/digests"
+    },
+    "archiveEntries": [
+      "functional.json"
+    ],
+    "reportCheckpoint": "Last per-row checkpoint; forced process cancellation prevented final navigation/analytics report. Missing fields are not completed zero-valued suites."
+  },
+  "timings": {
+    "nodeToolchain": {
+      "name": "Install the pinned Node toolchain",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 6,
+      "started_at": "2026-10-06T17:39:40Z",
+      "completed_at": "2026-10-06T17:39:46Z",
+      "durationSeconds": 6.0
+    },
+    "ubuntuDependencies": {
+      "name": "Install Ubuntu WebKit and display dependencies without prior launch",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 7,
+      "started_at": "2026-10-06T17:39:46Z",
+      "completed_at": "2026-10-06T17:40:30Z",
+      "durationSeconds": 44.0
+    },
+    "browserDownload": {
+      "name": "Download pinned WebKit without prior launch",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 8,
+      "started_at": "2026-10-06T17:40:30Z",
+      "completed_at": "2026-10-06T17:40:35Z",
+      "durationSeconds": 5.0
+    },
+    "functionalLease": {
+      "name": "Exercise all 130 GTK scenarios and its complete navigation and analytics lease",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "number": 9,
+      "started_at": "2026-10-06T17:40:35Z",
+      "completed_at": "2026-10-06T18:04:43Z",
+      "durationSeconds": 1448.0
+    },
+    "completeAssertions": {
+      "name": "Assert complete GTK coverage and original shared startup bound",
+      "status": "completed",
+      "conclusion": "skipped",
+      "number": 10,
+      "started_at": "2026-10-06T18:04:43Z",
+      "completed_at": "2026-10-06T18:04:43Z",
+      "durationSeconds": 0.0
+    },
+    "actualUbuntuArchiveURI": "https://archive.ubuntu.com/ubuntu",
+    "aptFetchEvidence": [
+      "2026-10-06T17:40:14.7463259Z Fetched 126 MB in 15s (8360 kB/s)"
+    ],
+    "priorUbuntuDownloadSeconds": 1304,
+    "priorCombinedInstallationSeconds": 1338,
+    "observedRowsCompletedAt": "2026-10-06T18:00:33.8632998Z",
+    "rowPhaseElapsedSeconds": 1198.863299,
+    "navigationStdout": [
+      "2026-10-06T18:02:44.6239453Z navigation webkit 1440 light: pass"
+    ],
+    "cancellationEvidence": [
+      "2026-10-06T18:04:43.1700005Z ##[error]The operation was canceled."
+    ],
+    "timeoutMinutesConfigured": 25,
+    "timeoutConclusion": "Cancellation at the configured 25-minute job bound is supported by workflow configuration and elapsed job timing; API does not identify a separate cancellation initiator."
+  },
+  "coverage": {
+    "expected": {
+      "functionalRows": 130,
+      "navigationRows": 4,
+      "analyticsRows": 13
+    },
+    "observed": {
+      "functionalRows": 130,
+      "functionalPass": 120,
+      "functionalFail": 10,
+      "navigation": {
+        "reportFieldPresent": false,
+        "stdoutPass": 1,
+        "stdoutFail": 0,
+        "finishedLease": false
+      },
+      "analytics": {
+        "reportFieldPresent": false,
+        "finishedLease": false,
+        "controlFlow": "Analytics runs after all four navigation scenarios; cancellation interrupted navigation before this lease completed."
+      }
+    },
+    "allFailedModes": [
+      "no-js"
+    ],
+    "allOtherModesPass": true,
+    "completeGTKAcceptance": false
+  },
+  "failedRows": [
+    {
+      "engine": "webkit",
+      "route": "index",
+      "theme": "light",
+      "width": 320,
+      "mode": "no-js",
+      "pass": false,
+      "error": "page.evaluate: Target page, context or browser has been closed",
+      "stack": "page.evaluate: Target page, context or browser has been closed\n    at state (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:21:40)\n    at settled (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:68:68)\n    at async failure (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:191:9)\n    at async scenario (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:228:57)\n    at async runEngine (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:266:19)\n    at async serialEngines (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:247:9)\n    at async main (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:281:22)",
+      "state": null,
+      "errors": [],
+      "externalRequests": [],
+      "lifecycle": {
+        "events": [
+          {
+            "kind": "page-crash",
+            "stage": "scenario-check",
+            "elapsedMs": 24582.621755
+          },
+          {
+            "kind": "page-close",
+            "stage": "teardown",
+            "elapsedMs": 24593.333866
+          },
+          {
+            "kind": "context-close",
+            "stage": "teardown",
+            "elapsedMs": 24593.38332899999
+          }
+        ],
+        "eventLimit": 64,
+        "droppedEvents": 0,
+        "observation": {
+          "stage": "scenario-check",
+          "elapsedMs": 24583.144050999996,
+          "pageClosed": false,
+          "browserConnected": true
+        }
+      }
+    },
+    {
+      "engine": "webkit",
+      "route": "index",
+      "theme": "dark",
+      "width": 320,
+      "mode": "no-js",
+      "pass": false,
+      "error": "page.evaluate: Target page, context or browser has been closed",
+      "stack": "page.evaluate: Target page, context or browser has been closed\n    at state (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:21:40)\n    at settled (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:68:68)\n    at async failure (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:191:9)\n    at async scenario (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:228:57)\n    at async runEngine (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:266:19)\n    at async serialEngines (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:247:9)\n    at async main (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:281:22)",
+      "state": null,
+      "errors": [],
+      "externalRequests": [],
+      "lifecycle": {
+        "events": [
+          {
+            "kind": "page-crash",
+            "stage": "scenario-check",
+            "elapsedMs": 24166.658532
+          },
+          {
+            "kind": "page-close",
+            "stage": "teardown",
+            "elapsedMs": 24173.750765000004
+          },
+          {
+            "kind": "context-close",
+            "stage": "teardown",
+            "elapsedMs": 24173.94922499999
+          }
+        ],
+        "eventLimit": 64,
+        "droppedEvents": 0,
+        "observation": {
+          "stage": "scenario-check",
+          "elapsedMs": 24166.801974,
+          "pageClosed": false,
+          "browserConnected": true
+        }
+      }
+    },
+    {
+      "engine": "webkit",
+      "route": "research",
+      "theme": "light",
+      "width": 320,
+      "mode": "no-js",
+      "pass": false,
+      "error": "page.evaluate: Target page, context or browser has been closed",
+      "stack": "page.evaluate: Target page, context or browser has been closed\n    at state (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:21:40)\n    at settled (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:68:68)\n    at async failure (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:191:9)\n    at async scenario (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:228:57)\n    at async runEngine (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:266:19)\n    at async serialEngines (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:247:9)\n    at async main (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:281:22)",
+      "state": null,
+      "errors": [],
+      "externalRequests": [],
+      "lifecycle": {
+        "events": [
+          {
+            "kind": "page-crash",
+            "stage": "scenario-check",
+            "elapsedMs": 23985.453493000008
+          },
+          {
+            "kind": "page-close",
+            "stage": "teardown",
+            "elapsedMs": 23993.08204000001
+          },
+          {
+            "kind": "context-close",
+            "stage": "teardown",
+            "elapsedMs": 23993.13687300001
+          }
+        ],
+        "eventLimit": 64,
+        "droppedEvents": 0,
+        "observation": {
+          "stage": "scenario-check",
+          "elapsedMs": 23985.60288099997,
+          "pageClosed": false,
+          "browserConnected": true
+        }
+      }
+    },
+    {
+      "engine": "webkit",
+      "route": "research",
+      "theme": "dark",
+      "width": 320,
+      "mode": "no-js",
+      "pass": false,
+      "error": "page.evaluate: Target page, context or browser has been closed",
+      "stack": "page.evaluate: Target page, context or browser has been closed\n    at state (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:21:40)\n    at settled (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:68:68)\n    at async failure (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:191:9)\n    at async scenario (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:228:57)\n    at async runEngine (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:266:19)\n    at async serialEngines (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:247:9)\n    at async main (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:281:22)",
+      "state": null,
+      "errors": [],
+      "externalRequests": [],
+      "lifecycle": {
+        "events": [
+          {
+            "kind": "page-crash",
+            "stage": "scenario-check",
+            "elapsedMs": 19490.977202999988
+          },
+          {
+            "kind": "page-close",
+            "stage": "teardown",
+            "elapsedMs": 19501.35271300003
+          },
+          {
+            "kind": "context-close",
+            "stage": "teardown",
+            "elapsedMs": 19501.386202999973
+          }
+        ],
+        "eventLimit": 64,
+        "droppedEvents": 0,
+        "observation": {
+          "stage": "scenario-check",
+          "elapsedMs": 19491.128423999995,
+          "pageClosed": false,
+          "browserConnected": true
+        }
+      }
+    },
+    {
+      "engine": "webkit",
+      "route": "writing",
+      "theme": "light",
+      "width": 320,
+      "mode": "no-js",
+      "pass": false,
+      "error": "page.evaluate: Target page, context or browser has been closed",
+      "stack": "page.evaluate: Target page, context or browser has been closed\n    at state (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:21:40)\n    at settled (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:68:68)\n    at async failure (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:191:9)\n    at async scenario (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:228:57)\n    at async runEngine (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:266:19)\n    at async serialEngines (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:247:9)\n    at async main (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:281:22)",
+      "state": null,
+      "errors": [],
+      "externalRequests": [],
+      "lifecycle": {
+        "events": [
+          {
+            "kind": "page-crash",
+            "stage": "scenario-check",
+            "elapsedMs": 24248.030922000064
+          },
+          {
+            "kind": "page-close",
+            "stage": "teardown",
+            "elapsedMs": 24254.870672999998
+          },
+          {
+            "kind": "context-close",
+            "stage": "teardown",
+            "elapsedMs": 24255.74874499999
+          }
+        ],
+        "eventLimit": 64,
+        "droppedEvents": 0,
+        "observation": {
+          "stage": "scenario-check",
+          "elapsedMs": 24248.21959600004,
+          "pageClosed": false,
+          "browserConnected": true
+        }
+      }
+    },
+    {
+      "engine": "webkit",
+      "route": "writing",
+      "theme": "dark",
+      "width": 320,
+      "mode": "no-js",
+      "pass": false,
+      "error": "page.evaluate: Target page, context or browser has been closed",
+      "stack": "page.evaluate: Target page, context or browser has been closed\n    at state (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:21:40)\n    at settled (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:68:68)\n    at async failure (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:191:9)\n    at async scenario (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:228:57)\n    at async runEngine (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:266:19)\n    at async serialEngines (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:247:9)\n    at async main (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:281:22)",
+      "state": null,
+      "errors": [],
+      "externalRequests": [],
+      "lifecycle": {
+        "events": [
+          {
+            "kind": "page-crash",
+            "stage": "scenario-check",
+            "elapsedMs": 24227.089353000047
+          },
+          {
+            "kind": "page-close",
+            "stage": "teardown",
+            "elapsedMs": 24235.292562999995
+          },
+          {
+            "kind": "context-close",
+            "stage": "teardown",
+            "elapsedMs": 24235.32860700006
+          }
+        ],
+        "eventLimit": 64,
+        "droppedEvents": 0,
+        "observation": {
+          "stage": "scenario-check",
+          "elapsedMs": 24227.245928999968,
+          "pageClosed": false,
+          "browserConnected": true
+        }
+      }
+    },
+    {
+      "engine": "webkit",
+      "route": "talks",
+      "theme": "light",
+      "width": 320,
+      "mode": "no-js",
+      "pass": false,
+      "error": "page.evaluate: Target page, context or browser has been closed",
+      "stack": "page.evaluate: Target page, context or browser has been closed\n    at state (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:21:40)\n    at settled (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:68:68)\n    at async failure (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:191:9)\n    at async scenario (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:228:57)\n    at async runEngine (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:266:19)\n    at async serialEngines (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:247:9)\n    at async main (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:281:22)",
+      "state": null,
+      "errors": [],
+      "externalRequests": [],
+      "lifecycle": {
+        "events": [
+          {
+            "kind": "page-crash",
+            "stage": "scenario-check",
+            "elapsedMs": 23991.073493000004
+          },
+          {
+            "kind": "page-close",
+            "stage": "teardown",
+            "elapsedMs": 24001.490807999973
+          },
+          {
+            "kind": "context-close",
+            "stage": "teardown",
+            "elapsedMs": 24001.527217000024
+          }
+        ],
+        "eventLimit": 64,
+        "droppedEvents": 0,
+        "observation": {
+          "stage": "scenario-check",
+          "elapsedMs": 23991.176023000036,
+          "pageClosed": false,
+          "browserConnected": true
+        }
+      }
+    },
+    {
+      "engine": "webkit",
+      "route": "talks",
+      "theme": "dark",
+      "width": 320,
+      "mode": "no-js",
+      "pass": false,
+      "error": "page.evaluate: Target page, context or browser has been closed",
+      "stack": "page.evaluate: Target page, context or browser has been closed\n    at state (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:21:40)\n    at settled (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:68:68)\n    at async failure (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:191:9)\n    at async scenario (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:228:57)\n    at async runEngine (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:266:19)\n    at async serialEngines (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:247:9)\n    at async main (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:281:22)",
+      "state": null,
+      "errors": [],
+      "externalRequests": [],
+      "lifecycle": {
+        "events": [
+          {
+            "kind": "page-crash",
+            "stage": "scenario-check",
+            "elapsedMs": 24014.752870999975
+          },
+          {
+            "kind": "page-close",
+            "stage": "teardown",
+            "elapsedMs": 24022.62152200006
+          },
+          {
+            "kind": "context-close",
+            "stage": "teardown",
+            "elapsedMs": 24022.657533999998
+          }
+        ],
+        "eventLimit": 64,
+        "droppedEvents": 0,
+        "observation": {
+          "stage": "scenario-check",
+          "elapsedMs": 24014.939543000073,
+          "pageClosed": false,
+          "browserConnected": true
+        }
+      }
+    },
+    {
+      "engine": "webkit",
+      "route": "credits",
+      "theme": "light",
+      "width": 320,
+      "mode": "no-js",
+      "pass": false,
+      "error": "page.evaluate: Target page, context or browser has been closed",
+      "stack": "page.evaluate: Target page, context or browser has been closed\n    at state (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:21:40)\n    at settled (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:68:68)\n    at async failure (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:191:9)\n    at async scenario (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:228:57)\n    at async runEngine (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:266:19)\n    at async serialEngines (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:247:9)\n    at async main (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:281:22)",
+      "state": null,
+      "errors": [],
+      "externalRequests": [],
+      "lifecycle": {
+        "events": [
+          {
+            "kind": "page-crash",
+            "stage": "scenario-check",
+            "elapsedMs": 19433.660157999955
+          },
+          {
+            "kind": "page-close",
+            "stage": "teardown",
+            "elapsedMs": 19443.85060700006
+          },
+          {
+            "kind": "context-close",
+            "stage": "teardown",
+            "elapsedMs": 19443.888129000086
+          }
+        ],
+        "eventLimit": 64,
+        "droppedEvents": 0,
+        "observation": {
+          "stage": "scenario-check",
+          "elapsedMs": 19433.79710899992,
+          "pageClosed": false,
+          "browserConnected": true
+        }
+      }
+    },
+    {
+      "engine": "webkit",
+      "route": "credits",
+      "theme": "dark",
+      "width": 320,
+      "mode": "no-js",
+      "pass": false,
+      "error": "page.evaluate: Target page, context or browser has been closed",
+      "stack": "page.evaluate: Target page, context or browser has been closed\n    at state (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:21:40)\n    at settled (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:68:68)\n    at async failure (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:191:9)\n    at async scenario (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:228:57)\n    at async runEngine (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:266:19)\n    at async serialEngines (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:247:9)\n    at async main (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/functional.cjs:281:22)",
+      "state": null,
+      "errors": [],
+      "externalRequests": [],
+      "lifecycle": {
+        "events": [
+          {
+            "kind": "page-crash",
+            "stage": "scenario-check",
+            "elapsedMs": 23953.55774199986
+          },
+          {
+            "kind": "page-close",
+            "stage": "teardown",
+            "elapsedMs": 23962.301870999858
+          },
+          {
+            "kind": "context-close",
+            "stage": "teardown",
+            "elapsedMs": 23962.34091599984
+          }
+        ],
+        "eventLimit": 64,
+        "droppedEvents": 0,
+        "observation": {
+          "stage": "scenario-check",
+          "elapsedMs": 23953.70149899996,
+          "pageClosed": false,
+          "browserConnected": true
+        }
+      }
+    }
+  ],
+  "nativeFindings": {
+    "supported": "All 10 disabled-JavaScript rows emit page-crash during their first scenario-check state evaluation, before cleanup. The page/WebProcess crashes while the browser remains connected; cleanup subsequently emits page-close and context-close.",
+    "crashElapsedMsRange": [
+      19433.660157999955,
+      24582.621755
+    ],
+    "failedEvaluation": "state(page) tools/quality/functional.cjs:21, via settled:68 and failure:191, after successful load and the unchanged 180ms settling interval; no fallback/readability assertions are reached.",
+    "browserDisconnectedBeforeFailure": false,
+    "pageErrors": [],
+    "externalRequests": [],
+    "retainedNativeStderrExamples": [
+      "2026-10-06T17:40:36.4503118Z 2026-10-06T17:40:36.450Z pw:browser [pid=5344][err] libEGL warning: DRI3 error: Could not get DRI3 device",
+      "2026-10-06T17:40:36.4503947Z 2026-10-06T17:40:36.450Z pw:browser [pid=5344][err] libEGL warning: Ensure your X server supports DRI3 to get accelerated rendering",
+      "2026-10-06T17:40:37.0287524Z 2026-10-06T17:40:37.028Z pw:browser [pid=5344][err] (MiniBrowser:5350): Gtk-WARNING **: 17:40:37.028: Unable to acquire the address of the accessibility bus: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files. If you are attempting to run GTK without a11y support, GTK_A11Y should be set to 'none'.",
+      "2026-10-06T17:40:37.0971057Z 2026-10-06T17:40:37.096Z pw:browser [pid=5344][err] ** (MiniBrowser:5350): CRITICAL **: 17:40:37.096: WebKitWebView is-controlled-by-automation set but automation is not allowed in the context, falling back to default session.",
+      "2026-10-06T17:42:18.2649417Z 2026-10-06T17:42:18.263Z pw:browser [pid=5344][err] ** (MiniBrowser:5350): CRITICAL **: 17:42:18.263: WebKitWebView is-controlled-by-automation set but automation is not allowed in the context, falling back to default session."
+    ],
+    "automationContextWarningCount": 154,
+    "warningInterpretation": "The same automation-context fallback warning appears before passing JavaScript-enabled scenarios; it does not isolate the no-JavaScript crash mechanism. DRI3/a11y warnings likewise do not establish a crash cause.",
+    "mechanismBounds": "Page crash is observed, but this job retained no native call stack, crash signal or crashing assertion. It does not establish a product-renderer defect, inspector/runtime bug, driver fault or exact native blocking symbol. Generic TargetClosedError text cannot exclude a native page crash.",
+    "upstreamDisabledJavaScriptEvaluationContract": "https://github.com/microsoft/playwright/blob/v1.63.0/tests/library/browsercontext-basic.spec.ts",
+    "nextControlledObservation": {
+      "executed": false,
+      "proposal": "Two fresh port runners (GTK/WPE); per port use six fresh browser processes to compare JavaScript on/off on blank constant evaluation, full Color constant evaluation, and full Color original state() as the first evaluation. Preserve init options, load event, 180ms interval and original bounds; no warmup or retries."
+    },
+    "primarySourceAttribution": [
+      {
+        "url": "https://github.com/microsoft/playwright/blob/v1.63.0/tests/library/browsercontext-basic.spec.ts",
+        "scope": "disabled JavaScript tests, lines 261–305",
+        "finding": "Sync and async inspector evaluation remains an explicitly tested supported operation with JavaScript disabled; WebKit is not excluded."
+      },
+      {
+        "url": "https://github.com/microsoft/playwright/blob/v1.63.0/packages/playwright-core/src/server/webkit/webkit.ts",
+        "scope": "official launch defaults",
+        "finding": "GTK uses inspector pipe and no startup window; these are current default arguments, without automation flag."
+      },
+      {
+        "url": "https://github.com/microsoft/playwright/blob/v1.63.0/browser_patches/webkit/pw_run.sh",
+        "scope": "Linux port selection",
+        "finding": "The headless flag selects WPE; otherwise the packaged launcher uses GTK."
+      },
+      {
+        "url": "https://github.com/microsoft/playwright/blob/v1.63.0/browser_patches/webkit/patches/bootstrap.diff",
+        "scope": "pageCrashed/targetCrashed, GTK activate/createBrowserContext and network-session setter",
+        "finding": "Native inspector emits crashed target only for Crash category. GTK no-startup path returns before WebDriver automation setup, but inspector context explicitly stores its ephemeral network session. This does not support adding automation flag as a correction."
+      },
+      {
+        "url": "https://github.com/WebKit/WebKit/blob/4d05d732e5a84f32675bef4cc135a2e7a9269a87/Source/WebKit/UIProcess/WebProcessProxy.cpp",
+        "scope": "WebKit base pinned by v1.63 UPSTREAM_CONFIG.sh, didClose/terminationReason",
+        "finding": "Unexpected process IPC closure is classified as Crash; the event alone cannot identify SIGSEGV, OOM or a specific native component."
+      },
+      {
+        "url": "https://github.com/WebKit/WebKit/blob/4d05d732e5a84f32675bef4cc135a2e7a9269a87/Source/WebKit/UIProcess/API/glib/WebKitWebView.cpp",
+        "scope": "automation warning and network-session selection",
+        "finding": "Warning precedes network-session getter; default is used only if no session remains. Inference from paired patched context setter/getter: warning text alone does not prove actual default-session fallback."
+      },
+      {
+        "url": "https://github.com/WebKit/WebKit/blob/4d05d732e5a84f32675bef4cc135a2e7a9269a87/Source/WebKit/UIProcess/API/glib/WebKitWebContext.cpp",
+        "scope": "network-session getter",
+        "finding": "Getter returns the stored automation network session even without an automation client, matching the inspector setter in the pinned patch."
+      }
+    ]
+  },
+  "serialFullBudget": {
+    "configuredLinuxFullMinutes": 45,
+    "priorRun": 37491800878,
+    "priorJob": 112367844051,
+    "priorJobURL": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37491800878/job/112367844051",
+    "priorJobStartedAt": "2026-10-06T16:00:57Z",
+    "priorJobCompletedAt": "2026-10-06T16:36:55Z",
+    "priorJobSeconds": 2158,
+    "priorCompleteChromiumFirefoxPlusFailedWebKitStartupSeconds": 1968,
+    "priorColorSeconds": 130,
+    "priorBrowserInstallSeconds": 45,
+    "priorRemainingSeconds": 542,
+    "currentIncompleteGTKLeaseSeconds": 1448,
+    "compositionEstimateSeconds": 3603,
+    "conclusion": "The current incomplete GTK lease alone exceeds the previous single-job 9m02s slack. Historical-composition estimate replacing its 3s failed WebKit startup is already at least 60m03s, before the current GTK lease completes. This is an estimate across runs, not a new full-gate measurement; retaining a single 45m serial job is not supported."
+  },
+  "acceptance": "Diagnostic collection only. Ten native page crashes and interrupted navigation/analytics keep GTK/full staging acceptance failed or incomplete. No promotion, merge or performance acceptance is established."
+}

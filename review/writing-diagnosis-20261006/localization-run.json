@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "mode": "v0",
+  "desktopPairs": 2,
+  "mobilePairs": 6,
+  "directBoot": true,
+  "before": "6d538e171ecbbaa3c3948aa0d8d118fad4aaaf5d",
+  "runtimeEngine": "b8800a2174d9da08aa5f124426863751d7048066fee18045f28574b152e64535",
+  "fullGate": false,
+  "request": "Confirm scalar face preparation, deferred boot readiness and cancelable Color native mount task; retain every raw RAF, native task and LongTask, then compare normal geometry and real filters"
+}

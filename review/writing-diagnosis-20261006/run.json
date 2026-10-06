@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "mode": "v0",
+  "request": "Confirm only exact ribbon scalar reuse against unchanged current Color",
+  "before": "6b73399c4f0afeba497c92809686bba4b7a3200a",
+  "runtimeEngine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92",
+  "desktopPairs": 3,
+  "mobilePairs": 6,
+  "fullGate": false,
+  "directBoot": true
+}

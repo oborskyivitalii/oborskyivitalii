@@ -1,6 +1,15 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),crypto=require('node:crypto');
 const {artifactFile,verifyResponse}=require('../tools/quality/local-browser.cjs');
+const {validate}=require('../tools/quality/flight-detail.cjs');
+test('preview detail observer rejects the old flight downgrade and retains adaptive/mobile detail',()=>{
+  const rows=detail=>['flying','settled'].map(travel=>({travel,geometry:detail?'compact':'full',detail,rooms:2,models:2,narrow:false}));
+  for(const detail of [0,1])assert.equal(validate(rows(detail)).length,2);
+  assert.equal(validate(rows(0).map(row=>({...row,narrow:true,geometry:'compact'}))).length,2);
+  assert.throws(()=>validate(rows(0).map(row=>({...row,geometry:'compact'}))),/normal viewport/);
+  assert.throws(()=>validate(rows(0).slice(1)),/travelling paints/);
+  assert.throws(()=>validate(rows(0).map(row=>({...row,models:7}))),/bounded model cache/);
+});
 const base='https://candidate.example.test',hash=bytes=>crypto.createHash('sha256').update(bytes).digest('hex');
 const content={
   'index.html':'<h1>Home</h1>',

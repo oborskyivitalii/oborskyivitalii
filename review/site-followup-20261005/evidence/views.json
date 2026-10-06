@@ -1,0 +1,162 @@
+[
+  {
+    "route": "index",
+    "width": 1440,
+    "theme": "light",
+    "name": "index-1440-light.png",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "research",
+    "width": 1440,
+    "theme": "light",
+    "name": "research-1440-light.png",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "writing",
+    "width": 1440,
+    "theme": "light",
+    "name": "writing-1440-light.png",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "talks",
+    "width": 1440,
+    "theme": "light",
+    "name": "talks-1440-light.png",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "credits",
+    "width": 1440,
+    "theme": "light",
+    "name": "credits-1440-light.png",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "index",
+    "width": 1440,
+    "theme": "dark",
+    "name": "index-1440-dark.png",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "research",
+    "width": 1440,
+    "theme": "dark",
+    "name": "research-1440-dark.png",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "writing",
+    "width": 1440,
+    "theme": "dark",
+    "name": "writing-1440-dark.png",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "talks",
+    "width": 1440,
+    "theme": "dark",
+    "name": "talks-1440-dark.png",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "credits",
+    "width": 1440,
+    "theme": "dark",
+    "name": "credits-1440-dark.png",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "index",
+    "width": 390,
+    "theme": "light",
+    "name": "index-390-light.png",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "research",
+    "width": 390,
+    "theme": "light",
+    "name": "research-390-light.png",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "writing",
+    "width": 390,
+    "theme": "light",
+    "name": "writing-390-light.png",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "talks",
+    "width": 390,
+    "theme": "light",
+    "name": "talks-390-light.png",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "credits",
+    "width": 390,
+    "theme": "light",
+    "name": "credits-390-light.png",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "index",
+    "width": 390,
+    "theme": "dark",
+    "name": "index-390-dark.png",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "research",
+    "width": 390,
+    "theme": "dark",
+    "name": "research-390-dark.png",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "writing",
+    "width": 390,
+    "theme": "dark",
+    "name": "writing-390-dark.png",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "talks",
+    "width": 390,
+    "theme": "dark",
+    "name": "talks-390-dark.png",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "credits",
+    "width": 390,
+    "theme": "dark",
+    "name": "credits-390-dark.png",
+    "overflow": false,
+    "errors": []
+  }
+]

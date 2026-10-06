@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "800c0eb04ab2c83db87487dd154dccb3b04afd53ebed4db59499218687da3183",
+    "digest": "0a814dace0c526950d7f46c5560166e287e9d4ce01ab05977e6ed52d376af929",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -51,9 +51,24 @@
         "sha256": "e37ca016e4b33c0ea6d6f106e153d2ee66213c61bdb41b9ca975ed654b0d5fc2"
       },
       {
+        "path": ".github/workflows/site-browser-gate-probe.yml",
+        "identity_mode": "content",
+        "sha256": "4f7e741aa672907e7daa4a97859b0a20f2bbc7a2ed59413229c6e05bf3337aa4"
+      },
+      {
         "path": ".github/workflows/site-candidate-evidence.yml",
         "identity_mode": "content",
         "sha256": "4f29bb722c296a012d79850b504f2a47369f450a0449f65804a277369ca5406e"
+      },
+      {
+        "path": ".github/workflows/site-cause-fix-probe.yml",
+        "identity_mode": "content",
+        "sha256": "7bb827eb9592d8adf06bc63c065a6c4f23f8505f949aaa74a0915577930a55e7"
+      },
+      {
+        "path": ".github/workflows/site-cause-probe.yml",
+        "identity_mode": "content",
+        "sha256": "c46cf129e38fcfb12cba7c255e4371398627facc67f4941d3d9fb597c8ffdf06"
       },
       {
         "path": ".github/workflows/site-checks.yml",
@@ -64,6 +79,16 @@
         "path": ".github/workflows/site-color-review.yml",
         "identity_mode": "content",
         "sha256": "ca53e071f613d7abe7cbcf01eb8628363213ec1df517a983ba323830a8126976"
+      },
+      {
+        "path": ".github/workflows/site-gtk-native-probe.yml",
+        "identity_mode": "content",
+        "sha256": "2e555c5ab92cb13e2d92003a4b63053ab02e8f9c41a233ab61af4097b71c9154"
+      },
+      {
+        "path": ".github/workflows/site-gtk-target-probe.yml",
+        "identity_mode": "content",
+        "sha256": "e7ad196cd35383facc9ac988de9647601ca5752250c2536efe19a094583a98b3"
       },
       {
         "path": ".github/workflows/site-navigation-probe.yml",
@@ -86,13 +111,18 @@
         "sha256": "1f38d9a12d86e792377b2ecf81b7bcbc1ddabd4782b6c967261fae1ee67409a1"
       },
       {
+        "path": ".github/workflows/site-writing-probe.yml",
+        "identity_mode": "content",
+        "sha256": "716b3cb7e7739666690d6e3b052cd2ee2b70989df6f0c42b6ed50a6c4c662c77"
+      },
+      {
         "path": ".gitignore",
         "identity_mode": "existence"
       },
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "3afb83b6e368d605d18e696a31f674be8db4255f9e9f64b1558989244ab6ecf8"
+        "sha256": "1dba9affa72febdd274fe136f690b2bef420d0bed0f88a9dc4f602dbd08e0d4f"
       },
       {
         "path": "BACKLOG.md",
@@ -122,7 +152,7 @@
       {
         "path": "SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "0e4c730ab40bd2aee046d226eeff9bf5dc240ff34226c7119fd4f63c044612d0"
+        "sha256": "d0b122e6c6632ed02768ac9517c8f692e6ed6634a76e101f567fe44a60888a20"
       },
       {
         "path": "SITE-CONTENT-REVIEW.md",
@@ -132,12 +162,12 @@
       {
         "path": "SITE-OPERATIONS.md",
         "identity_mode": "content",
-        "sha256": "231ea96e96ec7214ce5c4488f27c9140bbe70874e756aeb4d43c956a1babdbef"
+        "sha256": "9154efd6305ad8ebb3aae2986e30fb651f9745edeb5beb958ddf8d2717a658cd"
       },
       {
         "path": "SITE-RELEASE-GATES.md",
         "identity_mode": "content",
-        "sha256": "3ca85a9e2a034c226f91d2ca367eeef87f25aabd2d38168d97e18572cbaba122"
+        "sha256": "10e67d3c979ade74e801a6f86e15cda4022b45f68ea09e82ca53dc345e92f0b0"
       },
       {
         "path": "SITE-ROADMAP.md",
@@ -157,7 +187,7 @@
       {
         "path": "SITE-STAGING.md",
         "identity_mode": "content",
-        "sha256": "eeeca7f74951052e3bd8e37bd2c50e95df4e3767380bf3c9be3970c0ea7e3d82"
+        "sha256": "5a87311f0685c550313db624b29d8f6056bdb4459048f3929fa13f1ecce5bf94"
       },
       {
         "path": "SITE-VISUAL-REVIEW.md",
@@ -167,7 +197,7 @@
       {
         "path": "SOL-HANDOFF.md",
         "identity_mode": "content",
-        "sha256": "f75fb72d6adc9c244495c85aaa848d65f4ccfead654a002d5708b3e6bbdebce5"
+        "sha256": "dcea696a94c99e26b4998e8b75198c8c2808359ae25aee1860ea8a1300736924"
       },
       {
         "path": "docs/.nojekyll",
@@ -218,48 +248,48 @@
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/a017c98cfb8e4c6303738a9c791090a1237b4c75ea48ce43daf84095e728d3c1/archive.js",
+        "path": "docs/runtime/22e1e5b42356b0b36696a6aacebbd36d299c96d168c73ebcb0613da0bfd5c658/archive.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/a017c98cfb8e4c6303738a9c791090a1237b4c75ea48ce43daf84095e728d3c1/navigation.js",
+        "path": "docs/runtime/22e1e5b42356b0b36696a6aacebbd36d299c96d168c73ebcb0613da0bfd5c658/navigation.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/a017c98cfb8e4c6303738a9c791090a1237b4c75ea48ce43daf84095e728d3c1/space.js",
+        "path": "docs/runtime/22e1e5b42356b0b36696a6aacebbd36d299c96d168c73ebcb0613da0bfd5c658/space.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/a017c98cfb8e4c6303738a9c791090a1237b4c75ea48ce43daf84095e728d3c1/styles.css",
+        "path": "docs/runtime/22e1e5b42356b0b36696a6aacebbd36d299c96d168c73ebcb0613da0bfd5c658/styles.css",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/a017c98cfb8e4c6303738a9c791090a1237b4c75ea48ce43daf84095e728d3c1/theme.js",
+        "path": "docs/runtime/22e1e5b42356b0b36696a6aacebbd36d299c96d168c73ebcb0613da0bfd5c658/theme.js",
         "identity_mode": "existence"
       },
       {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "a95ca8c1dc1cb0d6d610310a82d0ebe97b727cf11622c465cb6cb60041be2849"
+        "sha256": "66c3a1cf2fbdb333f01c65cc6ac7f5612e777b7e9f1038227386ff78b3b9ac33"
       },
       {
-        "path": "docs/snapshots/6021ffcbdf3ea3d5ef47c68b654ba5718d56aeac197f857733c7ce167cbaf840/index.html",
+        "path": "docs/snapshots/2563a77a0412dc3e1752de92db0275275c407cbb9466a4446526f0e0e2d32839/research.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/c5eaa2daac62ccf73371b310c5dea7eda127ec9e725d5ec586e3a84affaf107c/credits.html",
+        "path": "docs/snapshots/76e7d39767ff8fa89a5aef0f7d8fcd78cb8ae14d0c3feedce9915b4187a85a28/index.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/ceb1d7ffc177616bdb72f39ebc5ca1b760d55b94b4511e540dc62aa122d71c31/research.html",
+        "path": "docs/snapshots/9801894c58765429d9ba28716c428c2bd100d7c1a664bf2fbc3f4c9b1c4bfe0f/credits.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/db84ffe23fc465d6170feafe228908e6de521660a8c8379bf60f6348006ac82c/talks.html",
+        "path": "docs/snapshots/a1e3d05f91ebcb853da06fed79b5312e9207bda153c0d53770bea02834e88430/talks.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/e9d0613fcfb4ebfb15abc599c756c1e9944c9aab56b425f9ef644423ad278cca/writing.html",
+        "path": "docs/snapshots/dcea5838a0dc114bbc646c311db31babc6fc93ab7c47e2d98e17cef3e46ad46e/writing.html",
         "identity_mode": "existence"
       },
       {
@@ -302,6 +332,60 @@
         "path": "review/ci-only-staging-20261006/REPORT.md",
         "identity_mode": "content",
         "sha256": "ab0f2a9b7299ca9421968b04a05e6b00548abe2f229c91fc0448b201066d2597"
+      },
+      {
+        "path": "review/cloudflare-staging-20261005/REPORT.md",
+        "identity_mode": "content",
+        "sha256": "a2b107bed6b26fb99049500b8ebd727198da5d393efc3db4d76f41fd8ee4e832"
+      },
+      {
+        "path": "review/cloudflare-staging-20261005/browser-probe.js",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/cloudflare-staging-20261005/evidence/browser.json",
+        "identity_mode": "content",
+        "sha256": "0f3ec4df6156cbb54e4f52d4323dab41edd12687905dbace85fd76c21266ddf8"
+      },
+      {
+        "path": "review/cloudflare-staging-20261005/evidence/http.json",
+        "identity_mode": "content",
+        "sha256": "b1e250cbf6772417de910ae33993fe92a9d427d61290b693d73268c84a917a38"
+      },
+      {
+        "path": "review/cloudflare-staging-20261005/evidence/initial-project-http-headers.json",
+        "identity_mode": "content",
+        "sha256": "39773a98e9bf8a3ff147dae992120a691cb0a00bcf52e83312b1e5dc383de753"
+      },
+      {
+        "path": "review/cloudflare-staging-20261005/evidence/provider.json",
+        "identity_mode": "content",
+        "sha256": "448aa6efa8b269c26dfc6ddbbbdf72b578eb148bf9a658756f5587e327010e4e"
+      },
+      {
+        "path": "review/cloudflare-staging-20261005/evidence/staging-package.json",
+        "identity_mode": "content",
+        "sha256": "d8cf9a28f38fae737ec0ccd7c50d285ae9555741de8dae02f58c05f0b831fbb0"
+      },
+      {
+        "path": "review/color-staging-20261006/REPORT.md",
+        "identity_mode": "content",
+        "sha256": "090d2a6fd18d14d38290772e51c24119effaaeb5c617cab4fd2ad820584e9300"
+      },
+      {
+        "path": "review/color-staging-20261006/evidence/provider.json",
+        "identity_mode": "content",
+        "sha256": "c08b58046a89aaf67914b1510eb94a766cab57e0d1f4dda6ce0299da2fe0f229"
+      },
+      {
+        "path": "review/color-staging-20261006/evidence/staging-package.json",
+        "identity_mode": "content",
+        "sha256": "dae64dccd94af2d1dda9514ce84c7bd49a84f6b83a62e67f409d1f0a735a2beb"
+      },
+      {
+        "path": "review/color-staging-20261006/target.json",
+        "identity_mode": "content",
+        "sha256": "42bac7997ba50f77b0ad9a53fa76cbdaa3fab8df0099c531b0c7f317ee2be0e2"
       },
       {
         "path": "review/seo-20261002/COLLECTION-MANIFEST.json",
@@ -575,6 +659,20 @@
         "sha256": "9de0b8b6d25edabdcb1959c07ff65c225e8f096a6eb0f128f51e7582d802e9a4"
       },
       {
+        "path": "review/site-consolidation-20261006/REPORT.md",
+        "identity_mode": "content",
+        "sha256": "1d46647caacbce957e8e7bc4c10b109a106d06553701d497b07d00a9c71c3ba4"
+      },
+      {
+        "path": "review/site-consolidation-20261006/comparison.json.gz",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-consolidation-20261006/summary.json",
+        "identity_mode": "content",
+        "sha256": "365dad674b91ef870ee28812be8688a467355f56d20b72ff61a8ffa5be441539"
+      },
+      {
         "path": "review/site-engine-implementation-20261004/EXECUTION.md",
         "identity_mode": "content",
         "sha256": "a19c9288d06b8e1c88b2cec61a5501ae5004b1ef928006d980edc7cedcf9d22a"
@@ -583,6 +681,39 @@
         "path": "review/site-engine-implementation-20261004/PARITY-BASELINE.json",
         "identity_mode": "content",
         "sha256": "748fc7a78b0ef00f56c52d3f2a7b28a22df0bfa4d804f409b5e04150c8ba9af6"
+      },
+      {
+        "path": "review/site-engine-optimization-20261005/EXECUTION.md",
+        "identity_mode": "content",
+        "sha256": "23ebc88726396f44da53df578d375d69d26df1b5edf25bd397e2aecca64af7e2"
+      },
+      {
+        "path": "review/site-engine-optimization-20261005/check-cache.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-engine-optimization-20261005/check-fallback.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-engine-optimization-20261005/check-geometry.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-engine-optimization-20261005/check-layout.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-engine-optimization-20261005/check-performance.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-engine-optimization-20261005/check-preference.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-engine-optimization-20261005/paired-performance.cjs",
+        "identity_mode": "existence"
       },
       {
         "path": "review/site-engine-plan-20261004/ASSESSMENT.md",
@@ -598,6 +729,16 @@
         "path": "review/site-engine-plan-20261004/PLAN.md",
         "identity_mode": "content",
         "sha256": "2eabfa2f984461650096844add2ae7109768dc81f1182a2a89a8cea1b756b4c3"
+      },
+      {
+        "path": "review/site-engine-review-20261005/REPORT.md",
+        "identity_mode": "content",
+        "sha256": "109af1498ea571ad17eaac2df728f15bcfe2c8753645d99221929912b3454430"
+      },
+      {
+        "path": "review/site-engine-review-20261005/SOL-TASKS.md",
+        "identity_mode": "content",
+        "sha256": "d5189c2582f66540a18d1e1eddd614794bb7b1e7b16206721939580de0fa513d"
       },
       {
         "path": "review/site-engineering-v9-20261003/CHECKPOINT.md",
@@ -620,6 +761,109 @@
         "sha256": "4b4504040e5bb61c66529dbbff1b2425b5cd463743e6fa6e8269b1a3b52081cf"
       },
       {
+        "path": "review/site-followup-20261005/MERGE-RECORD.md",
+        "identity_mode": "content",
+        "sha256": "015a5d0470ec3fc44056cd990ab9bd0f865914585f337720fd9c7073e512d36d"
+      },
+      {
+        "path": "review/site-followup-20261005/REPORT.md",
+        "identity_mode": "content",
+        "sha256": "707b25e5d9bfcf63bc218ba7a42d7e95998f498590c4f8ab4e89d0fae8455f99"
+      },
+      {
+        "path": "review/site-followup-20261005/SOL-TASKS.md",
+        "identity_mode": "content",
+        "sha256": "97b157d484d84a90243aa89267364a60ed71e28379519ca492b55686971af2bb"
+      },
+      {
+        "path": "review/site-followup-20261005/VALIDATION.md",
+        "identity_mode": "content",
+        "sha256": "eb7682645ee5e8574136465ec7fbe77d3d845b4d39a1db26a2ff1831570743a3"
+      },
+      {
+        "path": "review/site-followup-20261005/assets/Primitive-Atlas.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-followup-20261005/assets/attention.svg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-followup-20261005/assets/bar-chart.svg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-followup-20261005/assets/brain.svg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-followup-20261005/assets/entropy.svg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-followup-20261005/assets/line-chart.svg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-followup-20261005/assets/page-contact.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-followup-20261005/assets/scatter-chart.svg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-followup-20261005/assets/softmax.svg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-followup-20261005/check-reverse.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-followup-20261005/evidence/geometry.json",
+        "identity_mode": "content",
+        "sha256": "48e137d800a011f4d141d876bed5a1db6b99afa34c5c6db28bc7cfa34cdc9794"
+      },
+      {
+        "path": "review/site-followup-20261005/evidence/local.json",
+        "identity_mode": "content",
+        "sha256": "5fda30b5705560432697bfadacfb21127aeb301e40d41afb3748648887e5cab0"
+      },
+      {
+        "path": "review/site-followup-20261005/evidence/primitive-pairs.json.gz",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-followup-20261005/evidence/primitive-performance-summary.json",
+        "identity_mode": "content",
+        "sha256": "16f2d0ac9edf0a6e817be131fce635a33ac4d5a39f961609525a68551cb661a3"
+      },
+      {
+        "path": "review/site-followup-20261005/evidence/reverse.json",
+        "identity_mode": "content",
+        "sha256": "1e4cec30e52afa3366226694d770825078dd1a912271321f04ac54e42fff262f"
+      },
+      {
+        "path": "review/site-followup-20261005/evidence/smoke.json",
+        "identity_mode": "content",
+        "sha256": "adaa2a2227b8dd44cf0cf57a2b821f9fea4e937fd399f20d3f3d18c965939eb3"
+      },
+      {
+        "path": "review/site-followup-20261005/evidence/transition-gate.json",
+        "identity_mode": "content",
+        "sha256": "30f5a9d4c84f95ee275729b905a88d86d472bba45bf38cc80621eacb86cc4bac"
+      },
+      {
+        "path": "review/site-followup-20261005/evidence/views.json",
+        "identity_mode": "content",
+        "sha256": "a9928d2a251531bb7e3b5f580f20d0a7222bfc525f61f49bcc0d2f3089d650ba"
+      },
+      {
+        "path": "review/site-followup-20261005/export-primitives.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "review/site-navigation-v12-20261004/EXECUTION.md",
         "identity_mode": "content",
         "sha256": "0a5362369ddad9b6b696d2fb6d00b5d65c1088594d2de65515486949b432ae3d"
@@ -628,6 +872,465 @@
         "path": "review/site-navigation-v12-20261004/TASKS.md",
         "identity_mode": "content",
         "sha256": "116d5ea22c8e39201e1058df9c55017c2f112d6442e888a095caa6ecde88c6ec"
+      },
+      {
+        "path": "review/site-scroll-sync-20261004/EDGES-AND-HOTSPOTS.md",
+        "identity_mode": "content",
+        "sha256": "3cfe38261b23748117f85f71ee8bc31562458018de113594cb2cd8cbc0d32f57"
+      },
+      {
+        "path": "review/site-scroll-sync-20261004/FLIGHT-PROTOTYPE.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-scroll-sync-20261004/FLIGHT.md",
+        "identity_mode": "content",
+        "sha256": "02581cd2b8a215cdf293b6fca9e9924744cb62f011825093e7f9318952e92dce"
+      },
+      {
+        "path": "review/site-scroll-sync-20261004/GLASS.md",
+        "identity_mode": "content",
+        "sha256": "126737d31686696984e670895e4769a1f5118ff46e4d93d29d8c26f691143818"
+      },
+      {
+        "path": "review/site-scroll-sync-20261004/OPTIMIZATION.md",
+        "identity_mode": "content",
+        "sha256": "c3a2d619a8dea0c09cbb1cc4007993e2e7646f0fae057fc512af7f2cccb5cdd2"
+      },
+      {
+        "path": "review/site-scroll-sync-20261004/READING-SURFACES.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-scroll-sync-20261004/REFINEMENT.md",
+        "identity_mode": "content",
+        "sha256": "73682b92351232369370943fa8b6b1dd2c385109f7bf7baf2fa8d5352e4ef624"
+      },
+      {
+        "path": "review/site-scroll-sync-20261004/REPORT.md",
+        "identity_mode": "content",
+        "sha256": "7dc1ec95f7bef987ba6b29b9603d83dd594870692a5b2f6c8f53a066e813d499"
+      },
+      {
+        "path": "review/site-scroll-sync-20261004/RIBBONS-PROTOTYPE.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-scroll-sync-20261004/RIBBONS.md",
+        "identity_mode": "content",
+        "sha256": "1044bb21b1feb2e284083767459c9d60fa94ad5d721034bf330610c981e74c92"
+      },
+      {
+        "path": "review/site-scroll-sync-20261004/SIGNALS.md",
+        "identity_mode": "content",
+        "sha256": "3c509f1ff6f7bc726bdb6e3cf01f427dcab0c2575b6811b4453a16be8cb9c84a"
+      },
+      {
+        "path": "review/site-scroll-sync-20261004/SURFACE-AUDIT.md",
+        "identity_mode": "content",
+        "sha256": "98dd287ced6ccf9a54934b190d28f357f0d90582041abb90726180816c892466"
+      },
+      {
+        "path": "review/site-scroll-sync-20261004/THREADS-PROTOTYPE.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-scroll-sync-20261004/VIVID.md",
+        "identity_mode": "content",
+        "sha256": "aca114441f6455793febfc5a1e4defef74b45a4c2817ee2e49618da03d15b976"
+      },
+      {
+        "path": "review/site-scroll-sync-20261004/check-content-flight.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-scroll-sync-20261004/check-edge-scroll.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-scroll-sync-20261004/check-engine-hotspots.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-scroll-sync-20261004/check-engine-lifecycle.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-scroll-sync-20261004/check-engine-performance.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-scroll-sync-20261004/check-engine-sustain.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-scroll-sync-20261004/check-offline-security.py",
+        "identity_mode": "content",
+        "sha256": "af9bc07b2b43660e6e560ae2e4a164fd6070d678e3fc6789e4c7ecabed9eeead"
+      },
+      {
+        "path": "review/site-scroll-sync-20261004/check-ribbon-fill.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-scroll-sync-20261004/check-ribbon-material.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-scroll-sync-20261004/export.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/H1.md",
+        "identity_mode": "content",
+        "sha256": "28220161b8ae43319ad612b0d18ae9c72243b60a09d026f344bbc0b29f08d50f"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/H2-CLOUDFLARE.md",
+        "identity_mode": "content",
+        "sha256": "4212cf4dcfc39cb45bd3b07e2dc43f01f04d1210119e279b6597f8108962bd70"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/MERGE-RECORD.md",
+        "identity_mode": "content",
+        "sha256": "0b95f5fec2b685532f8feda66fbd082d39ad334212a6a8ab74cfb2a4d106e230"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/P1.md",
+        "identity_mode": "content",
+        "sha256": "4c58bb79f99f2ab36c19f6fe4d76299b3e6d26d5ecc0cb468e3c0a533cf78caf"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/R1.md",
+        "identity_mode": "content",
+        "sha256": "373496798fc734c2c1965b85ad940f3f6cfc1905a3a971544555816f72651057"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/REPORT.md",
+        "identity_mode": "content",
+        "sha256": "bee1401b6c58e54023a3b12c452ce00f24999663753b4bb43070c9dd53790c56"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/SOL-TASKS.md",
+        "identity_mode": "content",
+        "sha256": "ce47482089c1301db9eeb8d43a8b4aa3222909445a64e35b8cec5aaba9647c95"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/V1.md",
+        "identity_mode": "content",
+        "sha256": "8391d487d182d8728c1524d05d82f72a80263d7f1023346da36d93114beff62e"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/analyze-primitives.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/assets/Primitive-Atlas.html",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/assets/attention.svg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/assets/bar-chart.svg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/assets/brain.svg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/assets/entropy.svg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/assets/line-chart.svg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/assets/scatter-chart.svg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/assets/softmax.svg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/contact-sheet.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/credits-dark-1440.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/credits-dark-390.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/credits-light-1440.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/credits-light-390.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/index-dark-1440.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/index-dark-390.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/index-light-1440.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/index-light-390.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/primitive-atlas.png",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/research-dark-1440.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/research-dark-390.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/research-light-1440.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/research-light-390.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/talks-dark-1440.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/talks-dark-390.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/talks-light-1440.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/talks-light-390.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/views.json",
+        "identity_mode": "content",
+        "sha256": "aa26cae8a805e7062f625bd89342b89b764313967ba9b4e02e5769d037b0d65a"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/writing-dark-1440.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/writing-dark-390.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/writing-light-1440.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/writing-light-390.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/check-endpoint-failures.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/check-endpoints.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/check-input-tail.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/check-stages.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/check-views.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/archive-summary.json",
+        "identity_mode": "content",
+        "sha256": "c08d771d8eb87416586e9ec3e8718b8e97ec92de0ca8c9bf44f003a39d2bc5ec"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/contain-trial.json",
+        "identity_mode": "content",
+        "sha256": "6c7b6f10641dc732afa34c60b350996de714fd00c4e7d18112dd542602c33ffe"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/endpoint-wheel-diagnostic.json",
+        "identity_mode": "content",
+        "sha256": "2959dc2b8dd6dec2a52fee2520055e8d7f21b3ae6e064ee1e9560fff4dfdd69f"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/final-endpoints-before.json",
+        "identity_mode": "content",
+        "sha256": "5dfb45e1b25e3107d235bcd992cad936ffe73960e464be42f998b41724d480b6"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/final-endpoints.json",
+        "identity_mode": "content",
+        "sha256": "7c2dae4899a2e90de72548e02372ad228532e7a5cbe82bd285af62eabe471d3e"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/final-failures.json",
+        "identity_mode": "content",
+        "sha256": "7728803b9738e5c202563585118e4f0a4b5509bc2562dddefc1dfe2e5a4f6be7"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/final-layout.json",
+        "identity_mode": "content",
+        "sha256": "c87bd224a41e860509472e10fc2d8afd50cd8317a73a5e4f337885886624be5b"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/final-pairs.json.gz",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/final-stages.json",
+        "identity_mode": "content",
+        "sha256": "c33e9490f52510c7353c9afebc72df3f073baf6bdf04a821778450d5e78fb133"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/input-tail-after.json",
+        "identity_mode": "content",
+        "sha256": "ad1c124eb63e8554d9b91cfc4a5fdf252b8775351594eaf3b2b7edb9f395e00f"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/input-tail-before.json",
+        "identity_mode": "content",
+        "sha256": "682903cc09e3c3f3c1e7cd479f7792973b6b2e0f7c75211480eaec057ff2ce73"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/p1-failures.json",
+        "identity_mode": "content",
+        "sha256": "d1ad41c5856ae0ff2b5ca4d2b5e357e3b3954a1b5ce4a0060175c66d4ebe784f"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/p1-fallback-pairs.json.gz",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/p1-pairs.json.gz",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/p1-reverse.json",
+        "identity_mode": "content",
+        "sha256": "b1a48d0d155c6f8db3ae028a55c833ab09b67cc78582630ea2ac2e99d2519ffc"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/p1-summary.json",
+        "identity_mode": "content",
+        "sha256": "250daeb4f6d74aa1192c766fbfc27a4951e53e3e5892406ab05f7b0a5781c341"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/primitive-counts-before.json",
+        "identity_mode": "content",
+        "sha256": "702777220c8f4aa8573b607569e2a29f005a52e3f43d01a87ab58f9956892bd4"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/primitive-counts-final.json",
+        "identity_mode": "content",
+        "sha256": "57b382baa3dfc40ac4995d83b863e38b64f1fe9faf9b207bf285803eb83b9938"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/reverse-failures.json",
+        "identity_mode": "content",
+        "sha256": "7e0f68d5c4efecc0ad4cb08c5b82c3d4e79de75abbf70eef3b081de65da9f38e"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/reverse-final.json",
+        "identity_mode": "content",
+        "sha256": "14d23615e4976a7ce2fd1b0bf1f26aca407a5d6e68157db27f1a44cce1b99fc5"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/reverse-first.json",
+        "identity_mode": "content",
+        "sha256": "39dd5b2445f8d0b67f4e2ad3eb4f062001d11182b85e6684280a5c8bf18c8918"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/stages-after.json",
+        "identity_mode": "content",
+        "sha256": "42d83574315824e52841db2d2c1286c5394e4ef393080dcd9d91ae07bc89a95e"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/stages-before.json",
+        "identity_mode": "content",
+        "sha256": "7764dca9818921d5d7b2d15bfe411f1ac6e06a94df90d4fcbf73ad1f80530b08"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/stages-boundary.json",
+        "identity_mode": "content",
+        "sha256": "adb1b23585034a8d32f7eb0a668385688349eee1ca152ebdc679fcf2f0fedd30"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/stages-deferred.json",
+        "identity_mode": "content",
+        "sha256": "ce9522ed6741692a2278b772eb86e1bb704803ebc049c66c5b854b548ba711a8"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/stages-fallback.json",
+        "identity_mode": "content",
+        "sha256": "b15129c5d1c27725bad6a4abac26b55122a2356a4d1d392bb0f4bf27dd204742"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/stages-middle.json",
+        "identity_mode": "content",
+        "sha256": "3c82f858f3a57bde3f0186dbcf94dd5d5ce14b2eb5e6fd76b4f0337d3510e903"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/stages-native-current.json",
+        "identity_mode": "content",
+        "sha256": "13633caf00e8f44dadfb9dbd57f85c5c427c7a89a5b73589b655cc836781f7ee"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/tight-pairs.json.gz",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/v1-pairs.json.gz",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/weighted-pairs.json.gz",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/weighted-summary.json",
+        "identity_mode": "content",
+        "sha256": "30d9153a248b9775f0d012ea4418abcc8c91c6e67f144057e2789b22f52c5d26"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/weighted-trial.json",
+        "identity_mode": "content",
+        "sha256": "72d627f62a012049edb0466778ad7e59a62b855a95996c4eb3b712786706fb82"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/summarize-pairs.cjs",
+        "identity_mode": "existence"
       },
       {
         "path": "review/site-surface-review-20261004/REPORT.md",
@@ -2166,7 +2869,7 @@
       {
         "path": "review/site-v1-offline-bundle-v11.json",
         "identity_mode": "content",
-        "sha256": "1ea10471c090f10309b55da0df373754f53c471aace5e9c959c7b53fb38b2d66"
+        "sha256": "41b9664723f843d3a87882b811690a32ccdd3051eb043053145135a9b4415f07"
       },
       {
         "path": "review/site-v1-offline-bundle-v3.json",
@@ -2220,7 +2923,7 @@
       {
         "path": "review/site-v1-static-previews-v11.json",
         "identity_mode": "content",
-        "sha256": "8b63d4bd205fbe697ca8e8af499223ad9e041a7adf765c584b8c51401fb10439"
+        "sha256": "34c64b89de40c01b75dc6f9242107b5d2c6e7d4957339000fff71ad6eb8eeae5"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -2500,9 +3203,209 @@
         "sha256": "b7f04d26962ee76e8677205de15d3095b938b0a6645f96d20494bcb5182a3fe7"
       },
       {
+        "path": "review/staging-readiness-20261006/BROWSER-CAUSES.json",
+        "identity_mode": "content",
+        "sha256": "2b6ed187163020ea3e5d8b24bb3c98f51a56315e9b2d0812a9b86f5aca2fb4f3"
+      },
+      {
+        "path": "review/staging-readiness-20261006/CAUSE-ATTRIBUTION.json",
+        "identity_mode": "content",
+        "sha256": "cfc951fa5b6181a74aa3ac7da3015a92b50665bdf0df290f7ab2021d62a346ff"
+      },
+      {
+        "path": "review/staging-readiness-20261006/CAUSE-FIX-CONFIRMATION.json",
+        "identity_mode": "content",
+        "sha256": "9d3237694b8673e82c7b7fd17d8cda515787cb64e4f0524561a8a1ac813f60b3"
+      },
+      {
+        "path": "review/staging-readiness-20261006/CAUSE-FIX-NATIVE.json",
+        "identity_mode": "content",
+        "sha256": "799ca7ddd656456b31c020aafffe62b2119c82b382d5e759de8c16d5608e4a8f"
+      },
+      {
+        "path": "review/staging-readiness-20261006/CAUSE-FIX-PORTS.json",
+        "identity_mode": "content",
+        "sha256": "5e8aec2348e519f0b9be85f7884b172b5671088c179f4ff9394e8ad71bd0b26e"
+      },
+      {
+        "path": "review/staging-readiness-20261006/CAUSE-FIX-RESEARCH.json",
+        "identity_mode": "content",
+        "sha256": "768ce3a091ce64c2a160e1e919c3ac37c159acba55a0ef9c5469e7867fda718d"
+      },
+      {
+        "path": "review/staging-readiness-20261006/CAUSES.md",
+        "identity_mode": "content",
+        "sha256": "35086a29864712888496eba0b625f11c22689edb61d0d19c30045b32d00d6db0"
+      },
+      {
+        "path": "review/staging-readiness-20261006/DISPLAY.json",
+        "identity_mode": "content",
+        "sha256": "6f590b3e294ef8e165030ba4752df37f4b7d3b7905ef05a54a5dfacce3d00c8c"
+      },
+      {
+        "path": "review/staging-readiness-20261006/GTK-BUDGET.json",
+        "identity_mode": "content",
+        "sha256": "196afbc8619599b54ebb0e47b9029495555360ea17b3cff2820efa8120e1197a"
+      },
+      {
+        "path": "review/staging-readiness-20261006/GTK-FOLLOWUP.json",
+        "identity_mode": "content",
+        "sha256": "e42fbf4d6b32c61ea917a13980cfea54cae1fb3b974ac2d9ab880a07f36ee3ab"
+      },
+      {
+        "path": "review/staging-readiness-20261006/GTK-INCOMPLETE.json",
+        "identity_mode": "content",
+        "sha256": "0ebbeaf6531f780a646351ff0fe5eef95ac1903efaeaf3b7dcb76d545f6b9b23"
+      },
+      {
+        "path": "review/staging-readiness-20261006/GTK-NATIVE-REQUEST.md",
+        "identity_mode": "content",
+        "sha256": "512e0d38cc953bf7c3649b6f5622ce5763cb939fc250b13da800308328a6cbc8"
+      },
+      {
+        "path": "review/staging-readiness-20261006/GTK-NATIVE.json",
+        "identity_mode": "content",
+        "sha256": "2a1bd86eaa887d1f925bec93c531f0bb6901b50f866576f3cc0f94cf54f1277b"
+      },
+      {
+        "path": "review/staging-readiness-20261006/GTK-REQUEST.md",
+        "identity_mode": "content",
+        "sha256": "a4c30e27d0049e74eae26ad3a5cced4bc692f6241c8b9e20aab0ccd546e58095"
+      },
+      {
+        "path": "review/staging-readiness-20261006/GTK-TARGET-PREFLIGHT.json",
+        "identity_mode": "content",
+        "sha256": "1c33b022d5f341e75fc2baa188aa030ce626d5fce3eff94a0dce06f0a57dbd03"
+      },
+      {
+        "path": "review/staging-readiness-20261006/GTK-TARGET-REQUEST.md",
+        "identity_mode": "content",
+        "sha256": "d620998880e946d4470ccd66e23b39f2fe1cf5b90e642d2b835b09630c09dfc9"
+      },
+      {
+        "path": "review/staging-readiness-20261006/GTK-TARGET.json",
+        "identity_mode": "content",
+        "sha256": "56e0730427cf954f0b7e9fd3acca4c31459a674c86e986090f396109d0e318cd"
+      },
+      {
+        "path": "review/staging-readiness-20261006/LINUX-LEASES.md",
+        "identity_mode": "content",
+        "sha256": "db2054d22744897f36502d69c856178c60cf52fe6e06889e12383a75d95c4de4"
+      },
+      {
+        "path": "review/staging-readiness-20261006/REPORT.md",
+        "identity_mode": "content",
+        "sha256": "ca2e105e8029a312839428a05c0cb6554c680717f0febe1d4353627aed797136"
+      },
+      {
+        "path": "review/staging-readiness-20261006/SECRET-TRIAGE.json",
+        "identity_mode": "content",
+        "sha256": "3190f1c3de0aa70c0f59246fee7a0ffd1f5230bd21de915677ccc3c32911122b"
+      },
+      {
+        "path": "review/staging-readiness-20261006/first-static.zip",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/EXECUTION.md",
+        "identity_mode": "content",
+        "sha256": "eecf81f833e7d4c9fba5fc0389359c4f0e77be4971652b765f43012ffa3c2fd2"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/LOCALIZATION.md",
+        "identity_mode": "content",
+        "sha256": "6d8bc02f34420fcdd109490873a5828882e24f1d7f8b7d12c8681fc32cf66ff7"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/SOL-TASKS.md",
+        "identity_mode": "content",
+        "sha256": "52e43b71d75c6d71e9af871deb152f2fdf3dcc8384f566077be3c90e4a5d17c0"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/confirmation-summary.json",
+        "identity_mode": "content",
+        "sha256": "f51c5f2207af014b3583e8c34fd7816b901eabb69dc21366ed9dc45de658a00a"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/confirmation.json.gz",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/evidence.json",
+        "identity_mode": "content",
+        "sha256": "bb4b622b4ae19ae5329dc66078bef44703dad7f17673b212e3f566486a410074"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/face-equivalence.json",
+        "identity_mode": "content",
+        "sha256": "9078c78259bfe63ce6e386c4ef3ef95717ad0dd9438c0d6f69a5f3b6bb2c45df"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/fix-confirmation-summary.json",
+        "identity_mode": "content",
+        "sha256": "47d794ac250fe1289c8aa9a039b9f9ae7875f8ee90a8c10032589dc7fa9f3681"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/fix-confirmation.json.gz",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/fix-geometry.json.gz",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/geometry.json",
+        "identity_mode": "content",
+        "sha256": "bf337bea83833b9a44616b88a7604e1085e85d628d6196ebd14ba250c536139e"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/inventory.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/localization-run.json",
+        "identity_mode": "content",
+        "sha256": "307794c8761b1108ccb2e808f0dfe9d9398c61d9603a613f0323f02d6eade895"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/localization-summary.json",
+        "identity_mode": "content",
+        "sha256": "fb9449006e4433adaacca38e373615ab9cfdb57824a4681352f878750bff9116"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/localization.json.gz",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/rejected-ribbon-reuse.patch",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/run.json",
+        "identity_mode": "content",
+        "sha256": "460d38af05b0cc327284a2fbd94ac4ec26e3c7a03b925d8819baeb2d46cfe12c"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/screen-summary.json",
+        "identity_mode": "content",
+        "sha256": "04c07367aec4ca835c208078770b4d15c5a9699ebdb4ef1694cdfb39bec31256"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/screen.json.gz",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/traces/h2-19-current-color.json.gz",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/writing-diagnosis-20261006/traces/h2-20-no-canvas-draw.json.gz",
+        "identity_mode": "existence"
+      },
+      {
         "path": "site/README.md",
         "identity_mode": "content",
-        "sha256": "04507017054c1c265bf1b20e3e9337870a520d1e8ec9b85b4e58ddd8eb706c54"
+        "sha256": "6060d78f6f1d608007ae81123454cdd2320e9f4d35dd41bc5b443705fbb1ef46"
       },
       {
         "path": "site/analytics.json",
@@ -2664,6 +3567,10 @@
         "identity_mode": "existence"
       },
       {
+        "path": "site/engine/renderer.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "site/engine/styles.css",
         "identity_mode": "existence"
       },
@@ -2678,7 +3585,7 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "32d389051ff1fc964ae49695c0fc21a1e51135a03ef8ef70cc010967aa19de10"
+        "sha256": "a9d8415161968a5744511d1cc46dd8a248ac8e41fb00eb4dfa3207a65cc5ba88"
       },
       {
         "path": "site/routes.json",
@@ -2719,11 +3626,79 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tests/browser-gate-diagnostics.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/browser-gate-trace.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/browser-gate-variants.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/browser-lifecycle.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/cause-fix-probe.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/cause-probe.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/color-build.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tests/content.test.cjs",
         "identity_mode": "existence"
       },
       {
+        "path": "tests/endpoint-fixtures.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/engine-browser-fixtures.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tests/executive.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/flight.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/functional-fixtures.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/gtk-native-probe.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/gtk-target-probe.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/native-display.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/navigation-fixtures.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/navigation-motion-fixtures.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/navigation.test.cjs",
         "identity_mode": "existence"
       },
       {
@@ -2735,7 +3710,15 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tests/quality-sources.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tests/quality.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/renderer.test.cjs",
         "identity_mode": "existence"
       },
       {
@@ -2743,7 +3726,19 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tests/ribbons.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/scroll-sync.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tests/site-engine.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/site-face-preparation.test.cjs",
         "identity_mode": "existence"
       },
       {
@@ -2763,12 +3758,41 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tests/test_offline_export_security.py",
+        "identity_mode": "content",
+        "sha256": "e3703408812856a714f2ba33f81f7c70b1bc941af36461b64d4849d3613a4cda"
+      },
+      {
         "path": "tests/test_repository_intelligence.py",
         "identity_mode": "content",
         "sha256": "6e7fb7644655a7d7f77a91914dbdb3f6113e6cca5cceb3687e4a586135e77cd1"
       },
       {
         "path": "tests/theme.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/writing-diagnosis.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/writing-geometry.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/writing-layout.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/writing-localization.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/writing-models.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/writing-variants.test.cjs",
         "identity_mode": "existence"
       },
       {
@@ -2834,9 +3858,29 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tools/quality/browser-gate-diagnostics.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/browser-gate-trace.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/browser-lifecycle.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tools/quality/budgets.json",
         "identity_mode": "content",
         "sha256": "ce7c3a7e8bc70eaeb29d4e72f8c96e36a5aac563badfa8955d5bdd430d8ef567"
+      },
+      {
+        "path": "tools/quality/cause-probe.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/cold-native-probe.cjs",
+        "identity_mode": "existence"
       },
       {
         "path": "tools/quality/color-browser.cjs",
@@ -2850,6 +3894,10 @@
         "path": "tools/quality/deploy-pages.example.yml",
         "identity_mode": "content",
         "sha256": "7003194f2184e50dd498c73c8ab0d7a6c9878334cf616be6f1e6f1d9d1820e64"
+      },
+      {
+        "path": "tools/quality/display-probe.cjs",
+        "identity_mode": "existence"
       },
       {
         "path": "tools/quality/engine-browser.cjs",
@@ -2869,11 +3917,23 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tools/quality/flight-detail.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tools/quality/functional.cjs",
         "identity_mode": "existence"
       },
       {
         "path": "tools/quality/geometry.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/gtk-native-probe.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/gtk-target-probe.cjs",
         "identity_mode": "existence"
       },
       {
@@ -2901,11 +3961,19 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tools/quality/native-display.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tools/quality/navigation.cjs",
         "identity_mode": "existence"
       },
       {
         "path": "tools/quality/promotion.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/research-pair-probe.cjs",
         "identity_mode": "existence"
       },
       {
@@ -2919,12 +3987,12 @@
       {
         "path": "tools/quality/secrets-baseline.json",
         "identity_mode": "content",
-        "sha256": "c3522aaab5e6f298de9dc527f12d8f64394b4fb572affa50408478fdaf0348ef"
+        "sha256": "cd2e0bc112f90a436c9630d64e0bbed1ef390e50c53c4db9c738052cd4bb2bbe"
       },
       {
         "path": "tools/quality/security-rules.yml",
         "identity_mode": "content",
-        "sha256": "2badb50df3a566f737cd79520d4b9a64f29515f27f286250f88b4b453895d141"
+        "sha256": "fb6eccbc3d02a2b0a389265fb33364746181b7e6234a1e0192a6f1357b09e75a"
       },
       {
         "path": "tools/quality/selftest.cjs",
@@ -2975,6 +4043,34 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tools/quality/writing-diagnosis.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/writing-geometry.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/writing-layout.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/writing-localization.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/writing-models.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/writing-probe.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/writing-variants.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tools/repository_intelligence.py",
         "identity_mode": "content",
         "sha256": "77089ea2e33bb865d2f1bec08273ee12b1f61dc5ee5e507507e09cc6e9d430d2"
@@ -2997,6 +4093,10 @@
       },
       {
         "path": "tools/site/snapshot.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/site/variants.cjs",
         "identity_mode": "existence"
       },
       {
@@ -3252,8 +4352,29 @@
       ]
     },
     {
+      "path": ".github/workflows/site-browser-gate-probe.yml",
+      "title": ".github/workflows/site-browser-gate-probe.yml",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": ".github/workflows/site-candidate-evidence.yml",
       "title": ".github/workflows/site-candidate-evidence.yml",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".github/workflows/site-cause-fix-probe.yml",
+      "title": ".github/workflows/site-cause-fix-probe.yml",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".github/workflows/site-cause-probe.yml",
+      "title": ".github/workflows/site-cause-probe.yml",
       "instructions": [
         "AGENTS.md"
       ]
@@ -3268,6 +4389,20 @@
     {
       "path": ".github/workflows/site-color-review.yml",
       "title": ".github/workflows/site-color-review.yml",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".github/workflows/site-gtk-native-probe.yml",
+      "title": ".github/workflows/site-gtk-native-probe.yml",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".github/workflows/site-gtk-target-probe.yml",
+      "title": ".github/workflows/site-gtk-target-probe.yml",
       "instructions": [
         "AGENTS.md"
       ]
@@ -3296,6 +4431,13 @@
     {
       "path": ".github/workflows/site-staging.yml",
       "title": ".github/workflows/site-staging.yml",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".github/workflows/site-writing-probe.yml",
+      "title": ".github/workflows/site-writing-probe.yml",
       "instructions": [
         "AGENTS.md"
       ]
@@ -3422,6 +4564,76 @@
     {
       "path": "review/ci-only-staging-20261006/REPORT.md",
       "title": "CI-only preview/staging integration — 6 October 2026",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/cloudflare-staging-20261005/REPORT.md",
+      "title": "Cloudflare staging execution — 5 October 2026",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/cloudflare-staging-20261005/evidence/browser.json",
+      "title": "review/cloudflare-staging-20261005/evidence/browser.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/cloudflare-staging-20261005/evidence/http.json",
+      "title": "review/cloudflare-staging-20261005/evidence/http.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/cloudflare-staging-20261005/evidence/initial-project-http-headers.json",
+      "title": "review/cloudflare-staging-20261005/evidence/initial-project-http-headers.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/cloudflare-staging-20261005/evidence/provider.json",
+      "title": "review/cloudflare-staging-20261005/evidence/provider.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/cloudflare-staging-20261005/evidence/staging-package.json",
+      "title": "review/cloudflare-staging-20261005/evidence/staging-package.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/color-staging-20261006/REPORT.md",
+      "title": "Color staging correction — 6 October 2026",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/color-staging-20261006/evidence/provider.json",
+      "title": "review/color-staging-20261006/evidence/provider.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/color-staging-20261006/evidence/staging-package.json",
+      "title": "review/color-staging-20261006/evidence/staging-package.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/color-staging-20261006/target.json",
+      "title": "review/color-staging-20261006/target.json",
       "instructions": [
         "AGENTS.md"
       ]
@@ -3700,6 +4912,20 @@
       ]
     },
     {
+      "path": "review/site-consolidation-20261006/REPORT.md",
+      "title": "One current site candidate — 6 October 2026",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-consolidation-20261006/summary.json",
+      "title": "review/site-consolidation-20261006/summary.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "review/site-engine-implementation-20261004/EXECUTION.md",
       "title": "Engine and Writing execution — 2026-10-04",
       "instructions": [
@@ -3709,6 +4935,13 @@
     {
       "path": "review/site-engine-implementation-20261004/PARITY-BASELINE.json",
       "title": "review/site-engine-implementation-20261004/PARITY-BASELINE.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-engine-optimization-20261005/EXECUTION.md",
+      "title": "Engine optimization execution",
       "instructions": [
         "AGENTS.md"
       ]
@@ -3730,6 +4963,20 @@
     {
       "path": "review/site-engine-plan-20261004/PLAN.md",
       "title": "План: статичний сайт із відокремленим двигуном і контентом",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-engine-review-20261005/REPORT.md",
+      "title": "Engine architecture, performance and stability review",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-engine-review-20261005/SOL-TASKS.md",
+      "title": "Sol tasks from the engine review",
       "instructions": [
         "AGENTS.md"
       ]
@@ -3763,6 +5010,83 @@
       ]
     },
     {
+      "path": "review/site-followup-20261005/MERGE-RECORD.md",
+      "title": "Repository integration — executed 5 October 2026",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-followup-20261005/REPORT.md",
+      "title": "Astra: experiment, architecture and repository review",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-followup-20261005/SOL-TASKS.md",
+      "title": "Sol continuation — 5 October 2026",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-followup-20261005/VALIDATION.md",
+      "title": "Primitive follow-up validation",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-followup-20261005/evidence/geometry.json",
+      "title": "review/site-followup-20261005/evidence/geometry.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-followup-20261005/evidence/local.json",
+      "title": "review/site-followup-20261005/evidence/local.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-followup-20261005/evidence/primitive-performance-summary.json",
+      "title": "review/site-followup-20261005/evidence/primitive-performance-summary.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-followup-20261005/evidence/reverse.json",
+      "title": "review/site-followup-20261005/evidence/reverse.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-followup-20261005/evidence/smoke.json",
+      "title": "review/site-followup-20261005/evidence/smoke.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-followup-20261005/evidence/transition-gate.json",
+      "title": "review/site-followup-20261005/evidence/transition-gate.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-followup-20261005/evidence/views.json",
+      "title": "review/site-followup-20261005/evidence/views.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "review/site-navigation-v12-20261004/EXECUTION.md",
       "title": "Connected navigation — execution checkpoint, 4 October 2026",
       "instructions": [
@@ -3772,6 +5096,335 @@
     {
       "path": "review/site-navigation-v12-20261004/TASKS.md",
       "title": "Connected page space — maintainer amendment, 4 October 2026",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-scroll-sync-20261004/EDGES-AND-HOTSPOTS.md",
+      "title": "Bidirectional scroll continuation and localized stalls",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-scroll-sync-20261004/FLIGHT.md",
+      "title": "Directional content flight and end-scroll continuation — 5 October 2026",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-scroll-sync-20261004/GLASS.md",
+      "title": "Half-width ribbons and reading glass — 4 October 2026",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-scroll-sync-20261004/OPTIMIZATION.md",
+      "title": "Canvas optimization and ribbon fill repair — 5 October 2026",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-scroll-sync-20261004/REFINEMENT.md",
+      "title": "Corrected flight, stronger backgrounds and ribbon smoothing — 5 October 2026",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-scroll-sync-20261004/REPORT.md",
+      "title": "Complete native-scroll camera synchronization — 4 October 2026",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-scroll-sync-20261004/RIBBONS.md",
+      "title": "Broad ribbons — maintainer refinement, 4 October 2026",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-scroll-sync-20261004/SIGNALS.md",
+      "title": "Continuous ribbon material and intermittent signals — 5 October 2026",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-scroll-sync-20261004/SURFACE-AUDIT.md",
+      "title": "Reading materials, architecture and security — 2026-10-05",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-scroll-sync-20261004/VIVID.md",
+      "title": "Bright opaque ribbons and full-width signals — 5 October 2026",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-scroll-sync-20261004/check-offline-security.py",
+      "title": "review/site-scroll-sync-20261004/check-offline-security.py",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/H1.md",
+      "title": "H1 — protected-main staging trust, still paused",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/H2-CLOUDFLARE.md",
+      "title": "Cloudflare staging: перевірка плагіна — 5 жовтня 2026",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/MERGE-RECORD.md",
+      "title": "Sol integration record — 5 October 2026",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/P1.md",
+      "title": "P1 — Writing mount and native layout",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/R1.md",
+      "title": "R1 — reverse endpoint repair",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/REPORT.md",
+      "title": "Продовження Sol — 5 жовтня 2026",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/SOL-TASKS.md",
+      "title": "Next Sol task — cold Writing layout",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/V1.md",
+      "title": "V1 — primitive and remaining native costs",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/captures/views.json",
+      "title": "review/site-sol-continuation-20261005/captures/views.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/archive-summary.json",
+      "title": "review/site-sol-continuation-20261005/evidence/archive-summary.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/contain-trial.json",
+      "title": "review/site-sol-continuation-20261005/evidence/contain-trial.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/endpoint-wheel-diagnostic.json",
+      "title": "review/site-sol-continuation-20261005/evidence/endpoint-wheel-diagnostic.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/final-endpoints-before.json",
+      "title": "review/site-sol-continuation-20261005/evidence/final-endpoints-before.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/final-endpoints.json",
+      "title": "review/site-sol-continuation-20261005/evidence/final-endpoints.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/final-failures.json",
+      "title": "review/site-sol-continuation-20261005/evidence/final-failures.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/final-layout.json",
+      "title": "review/site-sol-continuation-20261005/evidence/final-layout.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/final-stages.json",
+      "title": "review/site-sol-continuation-20261005/evidence/final-stages.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/input-tail-after.json",
+      "title": "review/site-sol-continuation-20261005/evidence/input-tail-after.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/input-tail-before.json",
+      "title": "review/site-sol-continuation-20261005/evidence/input-tail-before.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/p1-failures.json",
+      "title": "review/site-sol-continuation-20261005/evidence/p1-failures.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/p1-reverse.json",
+      "title": "review/site-sol-continuation-20261005/evidence/p1-reverse.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/p1-summary.json",
+      "title": "review/site-sol-continuation-20261005/evidence/p1-summary.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/primitive-counts-before.json",
+      "title": "review/site-sol-continuation-20261005/evidence/primitive-counts-before.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/primitive-counts-final.json",
+      "title": "review/site-sol-continuation-20261005/evidence/primitive-counts-final.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/reverse-failures.json",
+      "title": "review/site-sol-continuation-20261005/evidence/reverse-failures.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/reverse-final.json",
+      "title": "review/site-sol-continuation-20261005/evidence/reverse-final.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/reverse-first.json",
+      "title": "review/site-sol-continuation-20261005/evidence/reverse-first.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/stages-after.json",
+      "title": "review/site-sol-continuation-20261005/evidence/stages-after.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/stages-before.json",
+      "title": "review/site-sol-continuation-20261005/evidence/stages-before.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/stages-boundary.json",
+      "title": "review/site-sol-continuation-20261005/evidence/stages-boundary.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/stages-deferred.json",
+      "title": "review/site-sol-continuation-20261005/evidence/stages-deferred.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/stages-fallback.json",
+      "title": "review/site-sol-continuation-20261005/evidence/stages-fallback.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/stages-middle.json",
+      "title": "review/site-sol-continuation-20261005/evidence/stages-middle.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/stages-native-current.json",
+      "title": "review/site-sol-continuation-20261005/evidence/stages-native-current.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/weighted-summary.json",
+      "title": "review/site-sol-continuation-20261005/evidence/weighted-summary.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-sol-continuation-20261005/evidence/weighted-trial.json",
+      "title": "review/site-sol-continuation-20261005/evidence/weighted-trial.json",
       "instructions": [
         "AGENTS.md"
       ]
@@ -4267,6 +5920,230 @@
       ]
     },
     {
+      "path": "review/staging-readiness-20261006/BROWSER-CAUSES.json",
+      "title": "review/staging-readiness-20261006/BROWSER-CAUSES.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/staging-readiness-20261006/CAUSE-ATTRIBUTION.json",
+      "title": "review/staging-readiness-20261006/CAUSE-ATTRIBUTION.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/staging-readiness-20261006/CAUSE-FIX-CONFIRMATION.json",
+      "title": "review/staging-readiness-20261006/CAUSE-FIX-CONFIRMATION.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/staging-readiness-20261006/CAUSE-FIX-NATIVE.json",
+      "title": "review/staging-readiness-20261006/CAUSE-FIX-NATIVE.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/staging-readiness-20261006/CAUSE-FIX-PORTS.json",
+      "title": "review/staging-readiness-20261006/CAUSE-FIX-PORTS.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/staging-readiness-20261006/CAUSE-FIX-RESEARCH.json",
+      "title": "review/staging-readiness-20261006/CAUSE-FIX-RESEARCH.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/staging-readiness-20261006/CAUSES.md",
+      "title": "Причини збоїв і виправлення — 6 жовтня 2026",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/staging-readiness-20261006/DISPLAY.json",
+      "title": "review/staging-readiness-20261006/DISPLAY.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/staging-readiness-20261006/GTK-BUDGET.json",
+      "title": "review/staging-readiness-20261006/GTK-BUDGET.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/staging-readiness-20261006/GTK-FOLLOWUP.json",
+      "title": "review/staging-readiness-20261006/GTK-FOLLOWUP.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/staging-readiness-20261006/GTK-INCOMPLETE.json",
+      "title": "review/staging-readiness-20261006/GTK-INCOMPLETE.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/staging-readiness-20261006/GTK-NATIVE-REQUEST.md",
+      "title": "Exact GTK native abort stack — 2026-10-06",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/staging-readiness-20261006/GTK-NATIVE.json",
+      "title": "review/staging-readiness-20261006/GTK-NATIVE.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/staging-readiness-20261006/GTK-REQUEST.md",
+      "title": "Dated complete GTK lease confirmation",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/staging-readiness-20261006/GTK-TARGET-PREFLIGHT.json",
+      "title": "review/staging-readiness-20261006/GTK-TARGET-PREFLIGHT.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/staging-readiness-20261006/GTK-TARGET-REQUEST.md",
+      "title": "Bounded first-evaluation target attribution — 2026-10-06",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/staging-readiness-20261006/GTK-TARGET.json",
+      "title": "review/staging-readiness-20261006/GTK-TARGET.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/staging-readiness-20261006/LINUX-LEASES.md",
+      "title": "Full engine runner policy — 2026-10-06",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/staging-readiness-20261006/REPORT.md",
+      "title": "Full staging and merge readiness — 6 October 2026",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/staging-readiness-20261006/SECRET-TRIAGE.json",
+      "title": "review/staging-readiness-20261006/SECRET-TRIAGE.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/writing-diagnosis-20261006/EXECUTION.md",
+      "title": "Sol execution — 6 October 2026",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/writing-diagnosis-20261006/LOCALIZATION.md",
+      "title": "Writing causal localization — 6 October 2026",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/writing-diagnosis-20261006/SOL-TASKS.md",
+      "title": "Sol: isolate cold Writing costs, one factor at a time",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/writing-diagnosis-20261006/confirmation-summary.json",
+      "title": "review/writing-diagnosis-20261006/confirmation-summary.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/writing-diagnosis-20261006/evidence.json",
+      "title": "review/writing-diagnosis-20261006/evidence.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/writing-diagnosis-20261006/face-equivalence.json",
+      "title": "review/writing-diagnosis-20261006/face-equivalence.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/writing-diagnosis-20261006/fix-confirmation-summary.json",
+      "title": "review/writing-diagnosis-20261006/fix-confirmation-summary.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/writing-diagnosis-20261006/geometry.json",
+      "title": "review/writing-diagnosis-20261006/geometry.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/writing-diagnosis-20261006/localization-run.json",
+      "title": "review/writing-diagnosis-20261006/localization-run.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/writing-diagnosis-20261006/localization-summary.json",
+      "title": "review/writing-diagnosis-20261006/localization-summary.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/writing-diagnosis-20261006/run.json",
+      "title": "review/writing-diagnosis-20261006/run.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/writing-diagnosis-20261006/screen-summary.json",
+      "title": "review/writing-diagnosis-20261006/screen-summary.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "site/README.md",
       "title": "Static site source and engine contract",
       "instructions": [
@@ -4339,6 +6216,13 @@
     {
       "path": "site/scenes/paths.json",
       "title": "site/scenes/paths.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "tests/test_offline_export_security.py",
+      "title": "tests/test_offline_export_security.py",
       "instructions": [
         "AGENTS.md"
       ]

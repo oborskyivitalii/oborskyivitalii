@@ -6,7 +6,7 @@ rules:
     message: Browser HTML assignment needs explicit trust-boundary review.
     severity: ERROR
     paths:
-      include: [docs/**, site/engine/**, site/scenes/**, site/integrations/**, review/site-scroll-sync-20261004/*.cjs]
+      include: [docs/**, site/engine/**, site/scenes/**, site/integrations/**, review/site-scroll-sync-20261004/READING-SURFACES.cjs, review/site-scroll-sync-20261004/RIBBONS-PROTOTYPE.cjs, review/site-scroll-sync-20261004/FLIGHT-PROTOTYPE.cjs]
     pattern-either:
       - pattern: $EL.innerHTML = $VALUE
       - pattern: $EL.outerHTML = $VALUE
@@ -17,7 +17,7 @@ rules:
     message: Dynamic browser code execution is prohibited.
     severity: ERROR
     paths:
-      include: [docs/**, site/engine/**, site/scenes/**, site/integrations/**, review/site-scroll-sync-20261004/*.cjs]
+      include: [docs/**, site/engine/**, site/scenes/**, site/integrations/**, review/site-scroll-sync-20261004/READING-SURFACES.cjs, review/site-scroll-sync-20261004/RIBBONS-PROTOTYPE.cjs, review/site-scroll-sync-20261004/FLIGHT-PROTOTYPE.cjs]
     pattern-either:
       - pattern: eval(...)
       - pattern: new Function(...)

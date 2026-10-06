@@ -1,5 +1,55 @@
 # Sol execution plan — reviewed 2026-10-02
 
+## Current task — 2026-10-06
+
+Start with [the executed Writing diagnosis](review/writing-diagnosis-20261006/EXECUTION.md),
+then [the controlled experiment plan](review/writing-diagnosis-20261006/SOL-TASKS.md).
+Use the sole Draft #23 on `work/sol-primitive-cost-20261005`; #18/#22 are closed
+as superseded and CI-only #26 is merged. The early-detail visual correction is
+implemented and its paired desktop transition windows pass. The screen identifies
+native archive layout as the cold spike; ribbons add repeated work. Scalar trig
+reuse failed to confirm improvement (4/6 control vs 6/6 candidate cold failures)
+and was reverted. Next: archive row/text layout with measured height/range/focus
+preserved. All raw results and the rejected patch remain in the diagnosis folder.
+Existing PR preview CI is authorized; full staging/promotion is outside this
+focused task. This section supersedes the dated PR/hosting instructions below.
+
+## Current continuation — Astra review, 2026-10-05
+
+Start with [updated Sol tasks](review/site-followup-20261005/SOL-TASKS.md) and
+[the experiment/repository review](review/site-followup-20261005/REPORT.md).
+Use Draft [PR #18](https://github.com/oborskyivitalii/oborskyivitalii/pull/18),
+branch `work/site-followup-20261005`, as the source for focused fixes. The older
+#9/#10/#16/#17 stack is merged; this continuation still fails measured performance.
+The maintainer authorizes ready code merges and completed-issue closure, replacing
+the older merge/push hold. Actual hosting/publication remains paused.
+The stronger shared primitives are implemented. Next: deterministic reverse-end
+landing (#19), cold Writing mount/layout cost, new-mesh idle cost, then staging trust-source migration and
+full evidence when hosting is authorized. Do not reimplement completed S1–S6 or
+rerun the full suite locally by default. Independent release acceptance remains
+distinct from this implementer review and repository integration.
+
+## Engine optimization execution — 2026-10-05
+
+The maintainer's “сОля, підходи і зроби” authorizes the six tasks from the review.
+The implementation and exact-file checks are recorded in
+[EXECUTION.md](review/site-engine-optimization-20261005/EXECUTION.md).
+The dated review below remains the immutable baseline, not current task status.
+Owners #12/#13/#14/#15 remain; #8 retains actual hosting. Local evidence does not
+replace full hosted/native/device/independent acceptance. No push/merge/publication.
+
+## Current engine review and optimization tasks — 2026-10-05
+
+The maintainer requested a fresh architecture/performance/stability review and
+Sol optimization tasks. Read the [review](review/site-engine-review-20261005/REPORT.md)
+and [six prioritized tasks](review/site-engine-review-20261005/SOL-TASKS.md), based
+on source `6a759a0fd71706848b5b0f41e4e60e5b03c941c1`. Two hosted-check integration
+defects and current transition hotspots are confirmed; remediation is proposed,
+not implemented. Owners remain #12/#13/#14/#15. Keep the new minimal local profile,
+full hosted profiles, no Glass, primary-header itinerary and footer Credits.
+The exact Color file passed bounded freeze/resource checks; that is not complete
+performance or release acceptance. No push, external posting, merge or publication.
+
 ## Analytics preparation — 2026-10-04
 
 The latest maintainer request authorizes preparing analytics now, before GitHub

@@ -51,7 +51,7 @@ module.exports=function(math,definitions) {
       return [center[0]+m[0]*x+m[1]*y+m[2]*z,center[1]+m[3]*x+m[4]*y+m[5]*z,center[2]+m[6]*x+m[7]*y+m[8]*z];
     });
   }
-  function projectedWorld(world,current,width,height,time=0,tier=0) {
+  function projectedWorld(world,current,width,height,time=0,tier=0,prune=false,sort=true) {
     const forward=normalize(sub(current.target,current.position)),right=normalize(cross(forward,[0,1,0])),up=cross(right,forward);
     const camera=point=>{const x=point[0]-current.position[0],y=point[1]-current.position[1],z=point[2]-current.position[2];return [x*right[0]+y*right[1]+z*right[2],x*up[0]+y*up[1]+z*up[2],x*forward[0]+y*forward[1]+z*forward[2]];};
     const focal=(width<=640?Math.min(height,width*1.15):height)/(2*Math.tan(Math.PI/8));
@@ -59,7 +59,8 @@ module.exports=function(math,definitions) {
     const project=p=>[cx+p[0]*focal/p[2],cy-p[1]*focal/p[2]];
     const shapes=[];
     const visible=pts=>!pts.every(p=>p[0]<-8)&&!pts.every(p=>p[0]>width+8)&&!pts.every(p=>p[1]<-8)&&!pts.every(p=>p[1]>height+8);
-    // Conservative frustum bounds include the complete motion envelope.
+    // Exact animated-centre sphere bounds; the eight-pixel viewport margin
+    // includes stroke coverage. No extra world-space motion pad is needed.
     const planes=[[-1,0,(width+8-cx)/focal],[1,0,(cx+8)/focal],[0,-1,(cy+8)/focal],[0,1,(height+8-cy)/focal]].map(p=>({normal:p,length:Math.hypot(...p)}));
     for(const o of world.objects) {
       const transform=loopTransform(o,time),center=camera(transform.center),radius=o.radius*transform.scale;
@@ -69,9 +70,9 @@ module.exports=function(math,definitions) {
       const vertices=cameraVertices(o,transform,center,right,up,forward);
       const projected=vertices.map(p=>p[2]>=.5?project(p):null);
       const fade=threshold?smooth((size-threshold)/2):1;
-      appendObject(world,o,vertices,projected,project,visible,fade,shapes,transform.inverse(current.position));
+      appendObject(world,o,vertices,projected,project,visible,fade,shapes,transform.inverse(current.position),prune?(width<=640? .5: .35):0,prune?size:Infinity);
     }
-    return shapes.sort((a,b)=>b.depth-a.depth);
+    return sort?shapes.sort((a,b)=>b.depth-a.depth):shapes;
   }
   function projectedFace(f,vertices,screen,project) {
     // Clipping changes vertex count. Sorting uses the continuous original face
@@ -87,7 +88,20 @@ module.exports=function(math,definitions) {
     }
     return {points,depth:z};
   }
-  function appendObject(world,o,vertices,screen,project,visible,fade,shapes,eye) {
+  function appendObject(world,o,vertices,screen,project,visible,fade,shapes,eye,minArea=0,pixelScale=Infinity) {
+    appendFaces(world,o,vertices,screen,project,visible,fade,shapes,eye,minArea);
+    appendLines(world,o,vertices,screen,project,visible,fade,shapes,minArea,pixelScale);
+  }
+  function insignificantFace(points,alpha,minArea) {
+    if(!minArea)return false;
+    if(alpha<1/512)return true;
+    let area=0;
+    for(let j=0;j<points.length;j++){const a=points[j],b=points[(j+1)%points.length];area+=a[0]*b[1]-b[0]*a[1];}
+    // A distant translucent facet can cover several pixels yet contribute less
+    // than one pixel of ink. Bound effective coverage, retaining nearby volume.
+    return Math.abs(area)*alpha<minArea*2;
+  }
+  function appendFaces(world,o,vertices,screen,project,visible,fade,shapes,eye,minArea) {
     for(let i=o.firstFace;i<o.firstFace+o.faceCount;i++) {
       const f=world.faces[i],plane=f.plane;
       if(plane&&plane[0]*eye[0]+plane[1]*eye[1]+plane[2]*eye[2]<=plane[3])continue;
@@ -96,17 +110,26 @@ module.exports=function(math,definitions) {
       const z=face.depth,projected=face.points;
       if(!visible(projected))continue;
       const haze=depthVisibility(z)*fade;
+      if(insignificantFace(projected,(f.opacity?? .82)*haze,minArea))continue;
       shapes.push({kind:"face",points:projected,depth:z,color:f.color,band:f.band,object:f.object,material:i,
         tint:f.tint,fillColor:f.fillColor,alpha:(f.opacity?? .82)*haze,
         edgeAlpha:(f.edgeAlpha?? .36)*haze,lineWidth:z<12?1.25: .85});
     }
+  }
+  function appendLines(world,o,vertices,screen,project,visible,fade,shapes,minArea,pixelScale) {
     for(let i=o.firstLine;i<o.firstLine+o.lineCount;i++) {
-      const line=world.lines[i],[a,b]=line.indices,unclipped=screen[a]&&screen[b],clipped=unclipped?[vertices[a],vertices[b]]:clipSegment(vertices[a],vertices[b]);
+      const line=world.lines[i];
+      // Only authored secondary marks fade below seven CSS pixels per model
+      // unit. Main folds, every formula glyph and all series/points remain.
+      const detailFade=line.minScale&&pixelScale!==Infinity?smooth(pixelScale-line.minScale):1;
+      if(detailFade===0)continue;
+      const [a,b]=line.indices,unclipped=screen[a]&&screen[b],clipped=unclipped?[vertices[a],vertices[b]]:clipSegment(vertices[a],vertices[b]);
       if(!clipped)continue;
       const projected=unclipped?[screen[a],screen[b]]:clipped.map(project),z=(clipped[0][2]+clipped[1][2])/2;
       if(!visible(projected))continue;
-      shapes.push({kind:"line",points:projected,depth:z,object:line.object,color:line.color,
-        alpha:(line.opacity?? .65)*depthVisibility(z)*fade,lineWidth:line.width??1,arrow:line.arrow});
+      if(minArea&&Math.hypot(projected[1][0]-projected[0][0],projected[1][1]-projected[0][1])<.5)continue;
+      shapes.push({kind:"line",points:projected,depth:z,object:line.object,color:line.color,material:i,
+        alpha:(line.opacity?? .65)*depthVisibility(z)*fade*detailFade,lineWidth:line.width??1,arrow:line.arrow});
     }
   }
   function blendColor(a,b,t) {

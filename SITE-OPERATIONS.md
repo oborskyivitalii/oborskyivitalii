@@ -1,5 +1,37 @@
 # First site: candidate, review and release
 
+## Live staging and current source boundary — 2026-10-05
+
+The maintainer authorizes staging configuration and upload. The dedicated
+Cloudflare Pages Direct Upload project `oborskyi-author-ci-staging` now serves this
+[immutable preview](https://505498da.oborskyi-author-ci-staging.pages.dev), from source
+`51611505d941ae2996a87782840da418722451f6`. It uses verified artifacts from the
+successful basic CI run, with recorded staging-only host additions. No viewer
+setup is needed. The full hosted pipeline has not run, the stable `staging` alias
+has not been promoted, and production GitHub Pages remains disabled.
+
+This first preview was uploaded through the connected Cloudflare provider; it
+does not claim protected-main Actions or full release acceptance. Read the
+current [SITE-STAGING runbook](SITE-STAGING.md) for deployed identity, checks and
+the precise remaining owner configuration. The current change removes the two
+staging pause guards while retaining repository opt-in, protected-main verification
+and the protected `staging` environment. H1/PR #21 is in Draft #18, not main;
+GitHub protection/environment/secret/variable setup remains pending. Keep #18
+Draft while its measured performance failures remain. Do not merge it merely
+to enable automation. #8/#13 remain open for full hosted evidence and recovery.
+
+The earlier `oborskyi-site-staging` acquired external GitHub integration and
+automatic deployments with production branch `main`; preserve that project and
+exclude it from this Direct Upload CI. The earlier bootstrap preview and the
+[H2 preparation record](review/site-sol-continuation-20261005/H2-CLOUDFLARE.md)
+are historical evidence, not the current hosting target.
+
+## Historical operations notes
+
+The dated sections below preserve earlier decisions and evidence. The current
+runbook supersedes their staging pauses, absent-host statements, PR #10 source
+rules and smoke-only promotion recipes. Production publication remains paused.
+
 ## Production host and analytics preparation — 2026-10-04
 
 The maintainer selects **GitHub Pages** for the eventual production site and

@@ -1,0 +1,720 @@
+{
+  "schema": 1,
+  "kind": "research-canvas-state-pairs",
+  "runId": 37484704942,
+  "artifact": {
+    "id": 11423285877,
+    "name": "cause-fix-research-37484704942-1",
+    "zipSha256": "ad5520fca14c5113318a22c271fdc987509e508cef38782394a11822f7254f1f"
+  },
+  "fullGate": false,
+  "performanceAcceptance": false,
+  "complete": true,
+  "environment": {
+    "platform": "linux",
+    "os": "6.17.0-1022-azure",
+    "architecture": "x64",
+    "node": "v24.19.0",
+    "runnerImage": "ubuntu24",
+    "imageVersion": "20260927.320.1",
+    "cpus": [
+      "AMD EPYC 9V74 80-Core Processor",
+      "AMD EPYC 9V74 80-Core Processor",
+      "AMD EPYC 9V74 80-Core Processor",
+      "AMD EPYC 9V74 80-Core Processor"
+    ],
+    "memoryBytes": 16766414848,
+    "runId": "37484704942",
+    "attempt": "1"
+  },
+  "protocol": "Three balanced pairs of fresh Chromium/mobile/simulated Lighthouse on normal Color, then three separately labeled CPU-profiled pairs. Order reference/candidate, candidate/reference, reference/candidate. No parallel browsers, retries, discarded failures or changed budgets. This loopback causal comparison does not accept the full hosted gate.",
+  "identities": {
+    "candidate": {
+      "sourceCommit": "614c3e54735831f72acdce1f8091baf178634835",
+      "sourceTree": "e65c7fdf4d4f1fe4137732873aa4c0a29e415b14",
+      "candidateCommit": "614c3e54735831f72acdce1f8091baf178634835",
+      "artifactDigest": "e7bc3491f4f0c3e7cb668ebc2d5b7ff9fcb8a8c1a9c4e7f67e86fe82d64deef9",
+      "variant": {
+        "id": "color",
+        "contract": 1,
+        "fingerprint": "2b88738c63a59ab1bae298e00be286358ddfbad54fde01f27f2744d4b6c9d428",
+        "baseEngine": "3d18d6d94f90651689bf646fe5a204e9d3f32ec86343036194995494c656167f",
+        "effects": [
+          "ribbons",
+          "travel"
+        ]
+      },
+      "derivation": {
+        "kind": "authored-color-effects",
+        "baseArtifactDigest": "2942f3622583d14c5e59ae55bfb6e384bfca30dcdb0dc44b40dd851f3b821028"
+      }
+    },
+    "reference": {
+      "sourceCommit": "db9447d0a6c9755670b9a40009329f183a1d3af9",
+      "sourceTree": "a38407f82e141e5169e355c622cfe3b45785c0e5",
+      "candidateCommit": "db9447d0a6c9755670b9a40009329f183a1d3af9",
+      "artifactDigest": "0c382abbed60068edf76478d25867fd2dd9b5efd3e583b8c718005e110bb285b",
+      "variant": {
+        "id": "color",
+        "contract": 1,
+        "fingerprint": "510876e970393525cbe5f8387013cef9ca6856f59ae4e2fec98274624452a1bb",
+        "baseEngine": "5a10d22a3b14c296913100d8dfa3d9d128a334c46b4ab5bfb9abd6b512f57ef4",
+        "effects": [
+          "ribbons",
+          "travel"
+        ]
+      },
+      "derivation": {
+        "kind": "authored-color-effects",
+        "baseArtifactDigest": "fcda5f80641256cfa7ac412e932ad890b342f708ae50e45b98e28637e0bf7be2"
+      }
+    }
+  },
+  "normalTbt": {
+    "reference": [
+      120.5,
+      96.5,
+      103.5
+    ],
+    "candidate": [
+      130.5,
+      130,
+      123
+    ]
+  },
+  "normalMedianTbt": {
+    "reference": 103.5,
+    "candidate": 130
+  },
+  "rows": [
+    {
+      "label": "reference",
+      "profiled": false,
+      "run": 1,
+      "evidenceValid": true,
+      "lighthouseVersion": "13.5.0",
+      "tbtMs": 120.5,
+      "lcpMs": 1606.2493,
+      "lhr": {
+        "file": "normal-reference-1-lhr.json.gz",
+        "sha256": "a3855470a1ebcbc13c93c5fb8a4cf7651185d20cd6dad23eed448ea028c29a5d",
+        "bytes": 324968
+      },
+      "trace": {
+        "file": "normal-reference-1-trace.json.gz",
+        "sha256": "335b04dfdd5546c5837ce8d34bd14f8914ec7620c7bb90824a08c63a752b1e42",
+        "bytes": 1877154
+      },
+      "devtoolsLog": {
+        "file": "normal-reference-1-devtoolslog.json.gz",
+        "sha256": "29db5b7f7b8ca4e4eab88431f3c49dcca93775f5c516ecf3c1429eea569b62c7",
+        "bytes": 4052
+      },
+      "benchmarkIndex": 2171.5,
+      "largestOriginalTasks": [
+        {
+          "duration": 56.932,
+          "startTime": 87.916
+        },
+        {
+          "duration": 22.971,
+          "startTime": 64.682
+        },
+        {
+          "duration": 20.444,
+          "startTime": 145.427
+        },
+        {
+          "duration": 20.006,
+          "startTime": 38.28
+        },
+        {
+          "duration": 17.389,
+          "startTime": 2248.407
+        },
+        {
+          "duration": 16.792,
+          "startTime": 2198.597
+        }
+      ],
+      "lateTasksOver30Ms": []
+    },
+    {
+      "label": "candidate",
+      "profiled": false,
+      "run": 1,
+      "evidenceValid": true,
+      "lighthouseVersion": "13.5.0",
+      "tbtMs": 130.5,
+      "lcpMs": 1647.2687,
+      "lhr": {
+        "file": "normal-candidate-1-lhr.json.gz",
+        "sha256": "646b15fce3630f5d750bb3cef58e23452f8756622b493db69ca767b0c0f2c81e",
+        "bytes": 324613
+      },
+      "trace": {
+        "file": "normal-candidate-1-trace.json.gz",
+        "sha256": "c20fe19c94047c53606b6edbbffce243d683a1efb96b805fd827e50c62cb00d4",
+        "bytes": 1863599
+      },
+      "devtoolsLog": {
+        "file": "normal-candidate-1-devtoolslog.json.gz",
+        "sha256": "95730328a1cd0ce2204620e870d2acb046f8c2664015dccc6ccca68b193513fe",
+        "bytes": 4080
+      },
+      "benchmarkIndex": 2365,
+      "largestOriginalTasks": [
+        {
+          "duration": 61.658,
+          "startTime": 83.094
+        },
+        {
+          "duration": 24.225,
+          "startTime": 145.356
+        },
+        {
+          "duration": 22.48,
+          "startTime": 60.417
+        },
+        {
+          "duration": 20.228,
+          "startTime": 33.461
+        },
+        {
+          "duration": 17.173,
+          "startTime": 170.107
+        },
+        {
+          "duration": 12.82,
+          "startTime": 946.286
+        }
+      ],
+      "lateTasksOver30Ms": []
+    },
+    {
+      "label": "candidate",
+      "profiled": false,
+      "run": 2,
+      "evidenceValid": true,
+      "lighthouseVersion": "13.5.0",
+      "tbtMs": 130,
+      "lcpMs": 1601.8358,
+      "lhr": {
+        "file": "normal-candidate-2-lhr.json.gz",
+        "sha256": "aa21dff7ae9c4e7f2cc26dcf6cdb39d634c45ab8a4565e364b598eb20e3f46fd",
+        "bytes": 323400
+      },
+      "trace": {
+        "file": "normal-candidate-2-trace.json.gz",
+        "sha256": "05391f66c9d99c6a184cbf0866175f890e9bc3bb3430dd2575e7210214abd752",
+        "bytes": 1842841
+      },
+      "devtoolsLog": {
+        "file": "normal-candidate-2-devtoolslog.json.gz",
+        "sha256": "aa823c480320e757d6d0145f504917e18f4535b252b5eefcb3c973ccfa74bc66",
+        "bytes": 4051
+      },
+      "benchmarkIndex": 2301,
+      "largestOriginalTasks": [
+        {
+          "duration": 59.963,
+          "startTime": 81.027
+        },
+        {
+          "duration": 24.41,
+          "startTime": 141.591
+        },
+        {
+          "duration": 20.391,
+          "startTime": 60.509
+        },
+        {
+          "duration": 20.006,
+          "startTime": 34.64
+        },
+        {
+          "duration": 18.027,
+          "startTime": 2372.899
+        },
+        {
+          "duration": 12.897,
+          "startTime": 338.52
+        }
+      ],
+      "lateTasksOver30Ms": []
+    },
+    {
+      "label": "reference",
+      "profiled": false,
+      "run": 2,
+      "evidenceValid": true,
+      "lighthouseVersion": "13.5.0",
+      "tbtMs": 96.5,
+      "lcpMs": 1640.5801,
+      "lhr": {
+        "file": "normal-reference-2-lhr.json.gz",
+        "sha256": "13a53ea4fe4c83e6f1f29754afc6842c74a488d99fc3f72fcdd95fecde016371",
+        "bytes": 323596
+      },
+      "trace": {
+        "file": "normal-reference-2-trace.json.gz",
+        "sha256": "3832074317909ece29ea87d83ca274e3164367736acc5a6fb0759cf35ea6c6b5",
+        "bytes": 1850978
+      },
+      "devtoolsLog": {
+        "file": "normal-reference-2-devtoolslog.json.gz",
+        "sha256": "ca3e8d377084819a1aa9da8dbab44cdde9b56b2b392f4fcff4ce0cbc8539bad0",
+        "bytes": 4011
+      },
+      "benchmarkIndex": 2371,
+      "largestOriginalTasks": [
+        {
+          "duration": 58.96,
+          "startTime": 79.517
+        },
+        {
+          "duration": 22.031,
+          "startTime": 139.183
+        },
+        {
+          "duration": 20.386,
+          "startTime": 34.999
+        },
+        {
+          "duration": 17.906,
+          "startTime": 61.295
+        },
+        {
+          "duration": 15.01,
+          "startTime": 232.753
+        },
+        {
+          "duration": 14.017,
+          "startTime": 167.247
+        }
+      ],
+      "lateTasksOver30Ms": []
+    },
+    {
+      "label": "reference",
+      "profiled": false,
+      "run": 3,
+      "evidenceValid": true,
+      "lighthouseVersion": "13.5.0",
+      "tbtMs": 103.5,
+      "lcpMs": 1600.4972,
+      "lhr": {
+        "file": "normal-reference-3-lhr.json.gz",
+        "sha256": "d357e03bc7f1780c3d1b7d3dd6ba7d5f1c5dd5173798595760d7ab9836a1fdef",
+        "bytes": 325261
+      },
+      "trace": {
+        "file": "normal-reference-3-trace.json.gz",
+        "sha256": "2bf7108ee644de51e838c09aeda5950652ba982e95846e7d59bfb198130184b8",
+        "bytes": 1835260
+      },
+      "devtoolsLog": {
+        "file": "normal-reference-3-devtoolslog.json.gz",
+        "sha256": "dfe8c81ae2bca692cd815573e4e489da1fb7c09e86edb114d64afcaa2b5ed3a1",
+        "bytes": 4029
+      },
+      "benchmarkIndex": 2289,
+      "largestOriginalTasks": [
+        {
+          "duration": 60.56,
+          "startTime": 78.376
+        },
+        {
+          "duration": 24.311,
+          "startTime": 139.78
+        },
+        {
+          "duration": 20.094,
+          "startTime": 32.76
+        },
+        {
+          "duration": 19.383,
+          "startTime": 58.801
+        },
+        {
+          "duration": 13.982,
+          "startTime": 895.181
+        },
+        {
+          "duration": 13.433,
+          "startTime": 164.672
+        }
+      ],
+      "lateTasksOver30Ms": []
+    },
+    {
+      "label": "candidate",
+      "profiled": false,
+      "run": 3,
+      "evidenceValid": true,
+      "lighthouseVersion": "13.5.0",
+      "tbtMs": 123,
+      "lcpMs": 1642.0094,
+      "lhr": {
+        "file": "normal-candidate-3-lhr.json.gz",
+        "sha256": "5cb0a3e72ade661abee62fbc463f09cc0698e04240bfeabb60a1ea8c8e136822",
+        "bytes": 324909
+      },
+      "trace": {
+        "file": "normal-candidate-3-trace.json.gz",
+        "sha256": "dae440e23aa248968a92306171434b88657d71a076b213c06864411f90282970",
+        "bytes": 1874814
+      },
+      "devtoolsLog": {
+        "file": "normal-candidate-3-devtoolslog.json.gz",
+        "sha256": "685cfb597fb603526e20141815dd282870959f9c180ffcc18a98816eeaad14a5",
+        "bytes": 4012
+      },
+      "benchmarkIndex": 2377,
+      "largestOriginalTasks": [
+        {
+          "duration": 60.891,
+          "startTime": 80.511
+        },
+        {
+          "duration": 22.299,
+          "startTime": 141.956
+        },
+        {
+          "duration": 20.131,
+          "startTime": 34.887
+        },
+        {
+          "duration": 20.116,
+          "startTime": 60.203
+        },
+        {
+          "duration": 16.256,
+          "startTime": 2442.175
+        },
+        {
+          "duration": 13.386,
+          "startTime": 164.787
+        }
+      ],
+      "lateTasksOver30Ms": []
+    },
+    {
+      "label": "reference",
+      "profiled": true,
+      "run": 1,
+      "evidenceValid": true,
+      "lighthouseVersion": "13.5.0",
+      "tbtMs": 295.5,
+      "lcpMs": 1781.3078,
+      "lhr": {
+        "file": "profiled-reference-1-lhr.json.gz",
+        "sha256": "03764ff3e123c7dfd022102731aa2fa0e75156c21be3d6b0a05b365e82a1e8b7",
+        "bytes": 326097
+      },
+      "trace": {
+        "file": "profiled-reference-1-trace.json.gz",
+        "sha256": "b4b4146f385f145e678af6eebefed651397fdd970563f2122159ba88ea27d1ca",
+        "bytes": 2154928
+      },
+      "devtoolsLog": {
+        "file": "profiled-reference-1-devtoolslog.json.gz",
+        "sha256": "16fc80c157074d0f3d591c969b8e0aee5f857fa6e61a63184a5a750b1bfad901",
+        "bytes": 4030
+      },
+      "benchmarkIndex": 2381,
+      "largestOriginalTasks": [
+        {
+          "duration": 77.389,
+          "startTime": 136.52
+        },
+        {
+          "duration": 45.355,
+          "startTime": 90.991
+        },
+        {
+          "duration": 27.633,
+          "startTime": 6.872
+        },
+        {
+          "duration": 25.46,
+          "startTime": 214.496
+        },
+        {
+          "duration": 24.087,
+          "startTime": 54.903
+        },
+        {
+          "duration": 21.8,
+          "startTime": 337.971
+        }
+      ],
+      "lateTasksOver30Ms": []
+    },
+    {
+      "label": "candidate",
+      "profiled": true,
+      "run": 1,
+      "evidenceValid": true,
+      "lighthouseVersion": "13.5.0",
+      "tbtMs": 461.5,
+      "lcpMs": 1823.6537000000003,
+      "lhr": {
+        "file": "profiled-candidate-1-lhr.json.gz",
+        "sha256": "1da94f8e33df0d34564aa4fbb6f86d13abd148b06d11b7aafc1c8867996cb44f",
+        "bytes": 327770
+      },
+      "trace": {
+        "file": "profiled-candidate-1-trace.json.gz",
+        "sha256": "e256968bb42072aa2637fb6330815bbc392cc6346cb695dadb7ac379f3ce0aa4",
+        "bytes": 2022627
+      },
+      "devtoolsLog": {
+        "file": "profiled-candidate-1-devtoolslog.json.gz",
+        "sha256": "dccef871cc3e7f55c41de8a9df44c2fb571c28d9388872ae248c7e7b45e613fc",
+        "bytes": 4035
+      },
+      "benchmarkIndex": 2389.5,
+      "largestOriginalTasks": [
+        {
+          "duration": 129.225,
+          "startTime": 122.534
+        },
+        {
+          "duration": 33.341,
+          "startTime": 6.156
+        },
+        {
+          "duration": 31.991,
+          "startTime": 283.494
+        },
+        {
+          "duration": 30.499,
+          "startTime": 91.71
+        },
+        {
+          "duration": 28.502,
+          "startTime": 252.397
+        },
+        {
+          "duration": 24.576,
+          "startTime": 57.778
+        }
+      ],
+      "lateTasksOver30Ms": []
+    },
+    {
+      "label": "candidate",
+      "profiled": true,
+      "run": 2,
+      "evidenceValid": true,
+      "lighthouseVersion": "13.5.0",
+      "tbtMs": 490.5000000000002,
+      "lcpMs": 1719.506,
+      "lhr": {
+        "file": "profiled-candidate-2-lhr.json.gz",
+        "sha256": "2a4a8ccc3877a1e6252251b364a37485aebdbdee1f42fd7f9866ac049b5abd8c",
+        "bytes": 326650
+      },
+      "trace": {
+        "file": "profiled-candidate-2-trace.json.gz",
+        "sha256": "8994edcf47aa19dc7c3e68d43a66776efc2765e95452294b08576bd0a76952a4",
+        "bytes": 1821850
+      },
+      "devtoolsLog": {
+        "file": "profiled-candidate-2-devtoolslog.json.gz",
+        "sha256": "fb6dcac788ccc343ee84c136b56534fe8e1e65f0a978d634202013d4272d7915",
+        "bytes": 4027
+      },
+      "benchmarkIndex": 2224.5,
+      "largestOriginalTasks": [
+        {
+          "duration": 90.528,
+          "startTime": 162.963
+        },
+        {
+          "duration": 50.675,
+          "startTime": 9
+        },
+        {
+          "duration": 40.387,
+          "startTime": 256.786
+        },
+        {
+          "duration": 37.557,
+          "startTime": 122.968
+        },
+        {
+          "duration": 32.463,
+          "startTime": 81.31
+        },
+        {
+          "duration": 28.427,
+          "startTime": 347.806
+        }
+      ],
+      "lateTasksOver30Ms": []
+    },
+    {
+      "label": "reference",
+      "profiled": true,
+      "run": 2,
+      "evidenceValid": true,
+      "lighthouseVersion": "13.5.0",
+      "tbtMs": 252.9999999999999,
+      "lcpMs": 1752.6721,
+      "lhr": {
+        "file": "profiled-reference-2-lhr.json.gz",
+        "sha256": "67dbd1040476b60e4566f284c4189029a3c96dee662c0d68413fbe4482fb7bdd",
+        "bytes": 306194
+      },
+      "trace": {
+        "file": "profiled-reference-2-trace.json.gz",
+        "sha256": "ad10ccdbdcc5e5ae53202e2cbc71f9ded77a295dcfe1f6a17c9e2f90732126f6",
+        "bytes": 2153860
+      },
+      "devtoolsLog": {
+        "file": "profiled-reference-2-devtoolslog.json.gz",
+        "sha256": "c95fc67f2b27c3207e488585fac81b2b9240e516c53c9b6ec8b5250d95d53357",
+        "bytes": 4034
+      },
+      "benchmarkIndex": 2303.5,
+      "largestOriginalTasks": [
+        {
+          "duration": 84.385,
+          "startTime": 118.668
+        },
+        {
+          "duration": 27.991,
+          "startTime": 90.505
+        },
+        {
+          "duration": 27.637,
+          "startTime": 8.884
+        },
+        {
+          "duration": 27.013,
+          "startTime": 55.375
+        },
+        {
+          "duration": 26.524,
+          "startTime": 204.613
+        },
+        {
+          "duration": 21.648,
+          "startTime": 231.716
+        }
+      ],
+      "lateTasksOver30Ms": []
+    },
+    {
+      "label": "reference",
+      "profiled": true,
+      "run": 3,
+      "evidenceValid": true,
+      "lighthouseVersion": "13.5.0",
+      "tbtMs": 276,
+      "lcpMs": 1755.7783999999997,
+      "lhr": {
+        "file": "profiled-reference-3-lhr.json.gz",
+        "sha256": "c1e1977bed45c981236b8b48aca0f29b2c35aaf12dd1ac0e310585674eb8ba0e",
+        "bytes": 305872
+      },
+      "trace": {
+        "file": "profiled-reference-3-trace.json.gz",
+        "sha256": "4cd03a58a9557e9b56cb71290b9bb5fe3d02e634f1dd3020ce84f5dbb6989dcc",
+        "bytes": 2178263
+      },
+      "devtoolsLog": {
+        "file": "profiled-reference-3-devtoolslog.json.gz",
+        "sha256": "718e75c235fd314375d84deae8c3932f140117ed8d3896e75080f33e3b3a6fb7",
+        "bytes": 4024
+      },
+      "benchmarkIndex": 2296.5,
+      "largestOriginalTasks": [
+        {
+          "duration": 84.803,
+          "startTime": 122.42
+        },
+        {
+          "duration": 29.066,
+          "startTime": 7.267
+        },
+        {
+          "duration": 29.051,
+          "startTime": 207.898
+        },
+        {
+          "duration": 26.992,
+          "startTime": 94.824
+        },
+        {
+          "duration": 26.666,
+          "startTime": 56.283
+        },
+        {
+          "duration": 26.002,
+          "startTime": 238.066
+        }
+      ],
+      "lateTasksOver30Ms": []
+    },
+    {
+      "label": "candidate",
+      "profiled": true,
+      "run": 3,
+      "evidenceValid": true,
+      "lighthouseVersion": "13.5.0",
+      "tbtMs": 301.9999999999998,
+      "lcpMs": 1746.3538,
+      "lhr": {
+        "file": "profiled-candidate-3-lhr.json.gz",
+        "sha256": "801b7a4e0de2f98900f2dcfb757156bb799f23bb614b82982f26a7c4779448ea",
+        "bytes": 323233
+      },
+      "trace": {
+        "file": "profiled-candidate-3-trace.json.gz",
+        "sha256": "f98bae833ef3f7973a80cde1b53d65d2761e462f12a4026ab86c8a2d372b2e2f",
+        "bytes": 2006299
+      },
+      "devtoolsLog": {
+        "file": "profiled-candidate-3-devtoolslog.json.gz",
+        "sha256": "2eb149c94181eaeed7e503537943bde88c59787a73deb330cc6c049fdea9db8f",
+        "bytes": 4058
+      },
+      "benchmarkIndex": 2323.5,
+      "largestOriginalTasks": [
+        {
+          "duration": 100.64,
+          "startTime": 113.386
+        },
+        {
+          "duration": 32.618,
+          "startTime": 214.734
+        },
+        {
+          "duration": 29.017,
+          "startTime": 52.381
+        },
+        {
+          "duration": 24.669,
+          "startTime": 88.537
+        },
+        {
+          "duration": 24.009,
+          "startTime": 8.173
+        },
+        {
+          "duration": 21.952,
+          "startTime": 248.348
+        }
+      ],
+      "lateTasksOver30Ms": []
+    }
+  ],
+  "interpretation": {
+    "cost": "The Canvas-state source change does not show a Chromium mobile TBT improvement in this screen (reference median 103.5ms, candidate 130ms). No improvement is claimed.",
+    "lateTasks": "No normal or profiled trial has an original >30ms task after 500ms. The earlier 102/153ms late outliers did not reproduce and their missing historical stacks remain unknown.",
+    "profiling": "Profiled TBT is 253-490.5ms and must not be pooled with ordinary measurements. First-frame preparation and recurring projection/paint remain visible; next source intervention targets exact palette caching."
+  }
+}

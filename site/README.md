@@ -1,10 +1,23 @@
 # Static site source and engine contract
 
+The [current check profiles](../SITE-CHECK-PROFILES.md) supersede older full-local
+and always-full PR requirements below. Native-scroll mapping and all release
+budgets remain. Primary flights follow the four header links; Credits is a footer
+utility route with instant navigation.
+
 Owner [#15](https://github.com/oborskyivitalii/oborskyivitalii/issues/15), execution
 in stacked Draft [PR #16](https://github.com/oborskyivitalii/oborskyivitalii/pull/16).
 Publication is paused by the maintainer's 2026-10-04 instruction, including staging.
 The website still ships complete ordinary HTML. Canvas and the persistent router
 enhance that HTML; a content editor does not need a server, CMS or browser build.
+
+Native-scroll camera endpoints follow 0/the actual current page bottom on every
+route, including added unmarked blocks and the footer. Semantic markers define
+interior stops; repeated closing poses are coalesced. Main/body content reflow,
+font loading, viewport resize and route mounts recalculate the mapping. Writing
+retains its topic path, early-scroll response and valid anchored filter reflow.
+Every content edit still runs the normal all-route browser synchronization fixtures
+and strict aggregate under #13; generation freshness alone is insufficient.
 
 ## Authoritative sources and dependencies
 
@@ -16,6 +29,7 @@ enhance that HTML; a content editor does not need a server, CMS or browser build
 | `content/catalog.json` | 27 exact primary editions, one linked rendition, five featured selections | Writing; selected featured records also Home |
 | `routes.json` | Contract 1: ordered five route IDs, native URLs, scenes and stop IDs | Runtime, pages and fallback |
 | `engine/math.cjs`, `projection.cjs`, `lifecycle.cjs` | Math, projection and single Canvas/RAF lifecycle | Assembled `space.js` |
+| `engine/renderer.cjs` | Ordered Canvas commands, adjacent-line batching and visible outlines | Assembled `space.js` |
 | `engine/theme.js`, `archive.js`, `navigation.js`, `styles.css` | Theme, filtering, routing and presentation | Shared browser files and pages |
 | `scenes/world.cjs`, `paths.json` | Authored motifs, rest geometry and finite camera paths | Runtime and projected SVG fallbacks |
 | `assets/` | Existing portrait, cutout, favicon and `.nojekyll` source | Exact image/icon bytes |
@@ -42,6 +56,10 @@ without JavaScript. Contract 1 retains `SiteScene.navigate/refresh/detachTravel/
 history; the scene owns route progress and its actual arrival paint. Ambient phase,
 scroll/topic pose and route flight remain separate. Off/reduced, visibility, print,
 failure, reflow and device-cost adaptation preserve the existing bounded behavior.
+Runtime projection omits subpixel facets; static SVG/model output keeps the complete
+geometry. Flights use compact facet models, then restore settled detail. Each of
+at most three active/pending rooms caches at most two detail variants; theme changes
+repaint their color tables. No independent render loop or runtime dependency is added.
 
 ## Editing and deterministic generation
 
@@ -127,3 +145,20 @@ regenerate between validation and upload. Both hosting workflow entry points are
 explicitly paused. Local Pages fixtures are controlled tests, not real Cloudflare/TLS/
 CDN acceptance. Real host, independent visual/rights review and physical-device
 acceptance are separately pending and cannot be self-confirmed by this implementation.
+
+## Optional effects contract v1
+
+The base edition remains the deployable producer selection. Offline exports accept
+an explicit `base`, `color` or `both` argument in
+`review/site-scroll-sync-20261004/export.cjs`. Each file has a variant/digest manifest.
+The effects loader attaches a scene `collect` / `paint` pair and a travel
+presentation through `window.SiteEffects`, contract 1. These narrow hooks cannot
+own another scene clock. One composition stage performs stable final depth sorting.
+Native measurement runs through a scoped presentation hook when required.
+
+`tools/site/variants.cjs` binds authored effect code, styles, input controls and
+base engine to a fingerprint; it updates every embedded route identity. Runtime
+function text/formatting is not an extension boundary. An incompatible or duplicate
+effect fails generation. Hosted evidence is bound to the producer's base variant;
+selecting Color for production remains a separate decision requiring its complete
+same-byte hosted behavioral/performance matrix. A base pass cannot admit Color.

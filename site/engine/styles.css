@@ -67,7 +67,9 @@ body[data-page="writing"] .space-scene canvas,body[data-page="credits"] .space-s
 .space-scene svg,.space-scene canvas {position:absolute;inset:0;width:100%;height:100%}
 .space-scene canvas {visibility:hidden}
 .space-scene[data-ready] canvas {visibility:visible}
-.space-scene[data-ready] svg {visibility:hidden}
+/* Removing data-ready on renderer failure restores the fallback. Its long SVG
+   paths need no native layout while Canvas owns the scene. */
+.space-scene[data-ready] svg {visibility:hidden;display:none}
 .space-fallback {opacity:1}
 /* Protect the reading block, leaving the section and its gutters open to the world. */
 .section,.archive-intro,.credits-page,.hero-copy,.shift-intro {background:transparent}

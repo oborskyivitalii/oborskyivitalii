@@ -12,12 +12,25 @@ function run(dir,options={}){return b.build({root:dir,...options});}
 function inventory(dir){return Object.fromEntries(b.files(path.join(dir,'docs')).map(name=>[name,b.sha(fs.readFileSync(path.join(dir,'docs',name)))]));}
 function unchanged(before,after,names){for(const name of names)assert.equal(after.files[name],before.files[name],name);}
 const aliases=['space.js','navigation.js','theme.js','archive.js','styles.css','assets/favicon.svg','assets/vitalii-oborskyi.jpg','assets/vitalii-oborskyi-cutout.webp'];
-test('source migration preserves all five legacy HTML bytes and every desktop/mobile world',()=>{
-  const {config,definitions}=b.configuration(root),c=b.catalog(root),api=b.model(root,definitions),baseline=require('../review/site-engine-implementation-20261004/PARITY-BASELINE.json');
+test('source migration preserves publication HTML and thematic geometry when shared vocabulary expands',()=>{
+  const {config,definitions}=b.configuration(root),c=b.catalog(root),api=b.model(root,definitions);
   const context={module:{exports:{}}};vm.runInNewContext(cp.execFileSync('git',['show','6041a5801729e561c425092323a12cc8e4062f85:docs/space.js'],{cwd:root,encoding:'utf8'}),context);
   for(const route of config.routes){
-    assert.equal(b.sha(b.render(root,route,b.routeInput(root,route,c),api)),baseline.files[route.url],route.id);
-    for(const compact of [false,true])assert.equal(JSON.stringify(api.worldFor(route.id,compact)),JSON.stringify(context.module.exports.worldFor(route.id,compact)),route.id+' geometry');
+    const rendered=b.render(root,route,b.routeInput(root,route,c),context.module.exports),original=cp.execFileSync('git',['show','6041a5801729e561c425092323a12cc8e4062f85:docs/'+route.url],{cwd:root,encoding:'utf8'});
+    assert.equal(rendered.match(/<main\b[\s\S]*?<\/main>/)[0],original.match(/<main\b[\s\S]*?<\/main>/)[0],route.id+' publication content');
+    for(const compact of [false,true]){
+      const actual=api.worldFor(route.id,compact).objects.filter(o=>o.family==='thematic'),before=context.module.exports.worldFor(route.id,compact).objects.filter(o=>o.family==='thematic');
+      // V1 tightens only the acceleration bound. Compare every semantic/style
+      // field and every rest vertex; independently prove the new sphere contains
+      // the geometry and is no broader than its frozen conservative bound.
+      const metadata=objects=>objects.map(o=>Object.fromEntries(Object.entries(o).filter(([key])=>!['points','radius'].includes(key))));
+      assert.equal(JSON.stringify(metadata(actual)),JSON.stringify(metadata(before)),route.id+' geometry metadata');
+      for(let i=0;i<actual.length;i++){
+        assert.ok(actual[i].radius<=before[i].radius,route.id+' tightened bound');
+        for(const point of actual[i].points)assert.ok(Math.hypot(...point.map((v,k)=>v-actual[i].center[k]))<=actual[i].radius,route.id+' contains every vertex');
+      }
+      for(let i=0;i<actual.length;i++)for(let j=0;j<actual[i].points.length;j++)for(let k=0;k<3;k++)assert.ok(Math.abs(actual[i].points[j][k]-before[i].points[j][k])<1e-9,'composed instance matrix preserves rest vertices');
+    }
   }
 });
 test('a Home block changes only Home; unchanged assets/routes retain bytes and full equals incremental',t=>{

@@ -1,0 +1,1347 @@
+{
+  "schema": 1,
+  "kind": "writing-supported-fix-confirmation",
+  "run": 37458348938,
+  "source": "0187dc91fc19fd198e4a84b3953fd74d7a7ae2ec",
+  "reference": "6d538e171ecbbaa3c3948aa0d8d118fad4aaaf5d",
+  "artifactId": 11410097468,
+  "zipSha256": "97d052545e3db85e757987f1b0d52a1dc871ba2ccd8962646ff2b9484643c6ef",
+  "environment": {
+    "platform": "linux",
+    "os": "6.17.0-1022-azure",
+    "architecture": "x64",
+    "node": "v24.19.0",
+    "runnerImage": "ubuntu24",
+    "imageVersion": "20260927.320.1",
+    "cpus": [
+      "AMD EPYC 9V45 96-Core Processor",
+      "AMD EPYC 9V45 96-Core Processor",
+      "AMD EPYC 9V45 96-Core Processor",
+      "AMD EPYC 9V45 96-Core Processor"
+    ],
+    "memoryBytes": 16766414848,
+    "runId": "37458348938",
+    "attempt": "1"
+  },
+  "complete": true,
+  "fullGate": false,
+  "groups": {
+    "mobile/before-color": {
+      "trials": 6,
+      "failures": 0,
+      "coldP50Ms": 17.099999999998545,
+      "coldP95Ms": 31.65000000000873,
+      "coldPaintMaxMs": 60.64999999999418,
+      "observedBlockMaxMs": 86.0,
+      "longTaskUnionMs": 192.0,
+      "observedWorkUnionMs": 590.4499999999389,
+      "inputToReadyMs": 1320.5499999999956,
+      "firstFlightPaintResponseMs": 68.30000000001746,
+      "nativeTaskMaxMs": 0.0,
+      "bootInitializationCompleteMs": 344.49999999998545,
+      "bootSceneReadyMs": 267.6499999999942,
+      "bootDomReadyMs": 344.49999999998545,
+      "bootFcpMs": 324.0,
+      "bootPaintMaxMs": 123.34999999999854,
+      "firstScrollP95Ms": 19.05000000000291
+    },
+    "mobile/current-color": {
+      "trials": 6,
+      "failures": 0,
+      "coldP50Ms": 17.19999999999709,
+      "coldP95Ms": 28.599999999998545,
+      "coldPaintMaxMs": 30.94999999999709,
+      "observedBlockMaxMs": 55.5,
+      "longTaskUnionMs": 93.0,
+      "observedWorkUnionMs": 570.2500000001746,
+      "inputToReadyMs": 1324.0499999999956,
+      "firstFlightPaintResponseMs": 64.30000000000291,
+      "nativeTaskMaxMs": 44.69999999999709,
+      "bootInitializationCompleteMs": 275.09999999999127,
+      "bootSceneReadyMs": 275.09999999999127,
+      "bootDomReadyMs": 164.15000000000873,
+      "bootFcpMs": 332.0,
+      "bootPaintMaxMs": 106.64999999999418,
+      "firstScrollP95Ms": 22.10000000000582
+    },
+    "desktop/before-color": {
+      "trials": 2,
+      "failures": 0,
+      "coldP50Ms": 12.25,
+      "coldP95Ms": 31.59999999999127,
+      "coldPaintMaxMs": 35.80000000000291,
+      "observedBlockMaxMs": 58.5,
+      "longTaskUnionMs": 303.5,
+      "observedWorkUnionMs": 675.8999999999432,
+      "inputToReadyMs": 1313.2999999999956,
+      "firstFlightPaintResponseMs": 34.25,
+      "nativeTaskMaxMs": 0.0,
+      "bootInitializationCompleteMs": 130.65000000000873,
+      "bootSceneReadyMs": 130.65000000000873,
+      "bootDomReadyMs": 56.35000000000582,
+      "bootFcpMs": 136.0,
+      "bootPaintMaxMs": 70.25,
+      "firstScrollP95Ms": 10.799999999995634
+    },
+    "desktop/current-color": {
+      "trials": 2,
+      "failures": 0,
+      "coldP50Ms": 10.950000000004366,
+      "coldP95Ms": 30.199999999989814,
+      "coldPaintMaxMs": 37.5,
+      "observedBlockMaxMs": 62.5,
+      "longTaskUnionMs": 278.0,
+      "observedWorkUnionMs": 654.550000000083,
+      "inputToReadyMs": 1284.6499999999942,
+      "firstFlightPaintResponseMs": 18.549999999995634,
+      "nativeTaskMaxMs": 14.14999999999418,
+      "bootInitializationCompleteMs": 162.84999999999854,
+      "bootSceneReadyMs": 162.84999999999854,
+      "bootDomReadyMs": 66.34999999999854,
+      "bootFcpMs": 154.0,
+      "bootPaintMaxMs": 93.24999999999272,
+      "firstScrollP95Ms": 13.299999999995634
+    }
+  },
+  "pairs": [
+    {
+      "profile": "mobile",
+      "pair": 0,
+      "afterMinusBefore": {
+        "coldP95Ms": -5.599999999991269,
+        "coldPaintMaxMs": -25.09999999999127,
+        "observedBlockMaxMs": 4,
+        "longTaskUnionMs": -153.0,
+        "observedWorkUnionMs": -73.9999999999709,
+        "inputToReadyMs": 8.5,
+        "bootInitializationCompleteMs": -42.89999999999418,
+        "bootFcpMs": 36
+      }
+    },
+    {
+      "profile": "mobile",
+      "pair": 1,
+      "afterMinusBefore": {
+        "coldP95Ms": 1.2000000000116415,
+        "coldPaintMaxMs": -23.70000000001164,
+        "observedBlockMaxMs": -26,
+        "longTaskUnionMs": -26.0,
+        "observedWorkUnionMs": -3.9999999999417923,
+        "inputToReadyMs": 1.6999999999825377,
+        "bootInitializationCompleteMs": -72.60000000000582,
+        "bootFcpMs": 4
+      }
+    },
+    {
+      "profile": "mobile",
+      "pair": 2,
+      "afterMinusBefore": {
+        "coldP95Ms": -3.8999999999941792,
+        "coldPaintMaxMs": -32.90000000002328,
+        "observedBlockMaxMs": -38,
+        "longTaskUnionMs": -146.0,
+        "observedWorkUnionMs": -37.19999999983702,
+        "inputToReadyMs": -0.3000000000174623,
+        "bootInitializationCompleteMs": -78.70000000004075,
+        "bootFcpMs": -4
+      }
+    },
+    {
+      "profile": "mobile",
+      "pair": 3,
+      "afterMinusBefore": {
+        "coldP95Ms": -1.1000000000058208,
+        "coldPaintMaxMs": -31.5,
+        "observedBlockMaxMs": -11,
+        "longTaskUnionMs": -17.0,
+        "observedWorkUnionMs": 49.90000000008149,
+        "inputToReadyMs": 66.39999999999418,
+        "bootInitializationCompleteMs": -57.69999999998254,
+        "bootFcpMs": 12
+      }
+    },
+    {
+      "profile": "mobile",
+      "pair": 4,
+      "afterMinusBefore": {
+        "coldP95Ms": -5.100000000005821,
+        "coldPaintMaxMs": -27.79999999998836,
+        "observedBlockMaxMs": -30,
+        "longTaskUnionMs": -134.0,
+        "observedWorkUnionMs": -7.0,
+        "inputToReadyMs": -13.10000000000582,
+        "bootInitializationCompleteMs": -41.59999999997672,
+        "bootFcpMs": 32
+      }
+    },
+    {
+      "profile": "mobile",
+      "pair": 5,
+      "afterMinusBefore": {
+        "coldP95Ms": -2.6000000000058208,
+        "coldPaintMaxMs": -35.70000000001164,
+        "observedBlockMaxMs": -34,
+        "longTaskUnionMs": 19.0,
+        "observedWorkUnionMs": 18.399999999965075,
+        "inputToReadyMs": 15.10000000000582,
+        "bootInitializationCompleteMs": -60.399999999965075,
+        "bootFcpMs": 20
+      }
+    },
+    {
+      "profile": "desktop",
+      "pair": 0,
+      "afterMinusBefore": {
+        "coldP95Ms": 0.8000000000029104,
+        "coldPaintMaxMs": -0.10000000000582077,
+        "observedBlockMaxMs": -1,
+        "longTaskUnionMs": -53.0,
+        "observedWorkUnionMs": -21.29999999993015,
+        "inputToReadyMs": -26.90000000000873,
+        "bootInitializationCompleteMs": 68.39999999999418,
+        "bootFcpMs": 36
+      }
+    },
+    {
+      "profile": "desktop",
+      "pair": 1,
+      "afterMinusBefore": {
+        "coldP95Ms": -3.6000000000058208,
+        "coldPaintMaxMs": 3.5,
+        "observedBlockMaxMs": 9,
+        "longTaskUnionMs": 2.0,
+        "observedWorkUnionMs": -21.399999999790452,
+        "inputToReadyMs": -30.39999999999418,
+        "bootInitializationCompleteMs": -4.000000000014552,
+        "bootFcpMs": 0
+      }
+    }
+  ],
+  "rows": [
+    {
+      "id": "v0-0",
+      "profile": "desktop",
+      "pair": 0,
+      "label": "before-color",
+      "boot": {
+        "timing": {
+          "sceneReadyMs": 115.90000000000873,
+          "domReadyMs": 57.60000000000582,
+          "fcpMs": 132,
+          "publications": 27,
+          "engine": "29f96cf7b87c31e917e611abdc2112297f6e85cb4797b4c19a6f90bafd7924c9"
+        },
+        "initializationCompleteMs": 115.90000000000873,
+        "startupPaintMaxMs": 54.89999999999418,
+        "firstScrollP95Ms": 9.599999999991269,
+        "blocking": {
+          "allRafMaxMs": 54.89999999999418,
+          "nativeTaskMaxMs": 0,
+          "nativeTasks": [],
+          "longTaskMaxMs": 88,
+          "observedBlockMaxMs": 88,
+          "longTaskUnionMs": 88,
+          "observedWorkUnionMs": 132.89999999999418,
+          "scope": "Whole inclusive input/preparation/flight/arrival-tail window; RAF callbacks, native mount tasks and browser LongTasks (>50ms), including rendering after JS. Overlaps merged. This is observed work, not every main-thread task or GPU measurement."
+        }
+      },
+      "cold": {
+        "paint": {
+          "p50": 10.80000000000291,
+          "p95": 26.79999999998836,
+          "max": 31.60000000000582
+        },
+        "paintIntervalsMs": {
+          "count": 31,
+          "p50": 42.89999999999418,
+          "p95": 54.09999999999127,
+          "max": 55.70000000001164
+        },
+        "budgetPass": true,
+        "inputToReadyMs": 1297.300000000003,
+        "firstFlightPaintResponseMs": 49,
+        "blocking": {
+          "allRafMaxMs": 31.60000000000582,
+          "nativeTaskMaxMs": 0,
+          "nativeTasks": [],
+          "longTaskMaxMs": 55,
+          "observedBlockMaxMs": 55,
+          "longTaskUnionMs": 210.0,
+          "observedWorkUnionMs": 613.3000000000029,
+          "scope": "Whole inclusive input/preparation/flight/arrival-tail window; RAF callbacks, native mount tasks and browser LongTasks (>50ms), including rendering after JS. Overlaps merged. This is observed work, not every main-thread task or GPU measurement."
+        }
+      }
+    },
+    {
+      "id": "v0-1",
+      "profile": "desktop",
+      "pair": 0,
+      "label": "current-color",
+      "boot": {
+        "timing": {
+          "sceneReadyMs": 184.3000000000029,
+          "domReadyMs": 76,
+          "fcpMs": 168,
+          "publications": 27,
+          "engine": "bdca287a920ec5fed7194f00f219a65f320e27f6bc77e714409b7aa06442ef80"
+        },
+        "initializationCompleteMs": 184.3000000000029,
+        "startupPaintMaxMs": 103.69999999999709,
+        "firstScrollP95Ms": 13.5,
+        "blocking": {
+          "allRafMaxMs": 103.69999999999709,
+          "nativeTaskMaxMs": 0,
+          "nativeTasks": [],
+          "longTaskMaxMs": 138,
+          "observedBlockMaxMs": 138,
+          "longTaskUnionMs": 192.0,
+          "observedWorkUnionMs": 250.09999999999127,
+          "scope": "Whole inclusive input/preparation/flight/arrival-tail window; RAF callbacks, native mount tasks and browser LongTasks (>50ms), including rendering after JS. Overlaps merged. This is observed work, not every main-thread task or GPU measurement."
+        }
+      },
+      "cold": {
+        "paint": {
+          "p50": 11.400000000008731,
+          "p95": 27.59999999999127,
+          "max": 31.5
+        },
+        "paintIntervalsMs": {
+          "count": 32,
+          "p50": 35.79999999998836,
+          "p95": 53.69999999999709,
+          "max": 54.19999999999709
+        },
+        "budgetPass": true,
+        "inputToReadyMs": 1270.3999999999942,
+        "firstFlightPaintResponseMs": 16.59999999999127,
+        "blocking": {
+          "allRafMaxMs": 31.5,
+          "nativeTaskMaxMs": 13.19999999999709,
+          "nativeTasks": [
+            {
+              "kind": "navigation-task",
+              "part": "mount-task",
+              "time": 1355.5,
+              "start": 1342.300000000003,
+              "duration": 13.19999999999709,
+              "page": "writing"
+            }
+          ],
+          "longTaskMaxMs": 54,
+          "observedBlockMaxMs": 54,
+          "longTaskUnionMs": 157.0,
+          "observedWorkUnionMs": 592.0000000000728,
+          "scope": "Whole inclusive input/preparation/flight/arrival-tail window; RAF callbacks, native mount tasks and browser LongTasks (>50ms), including rendering after JS. Overlaps merged. This is observed work, not every main-thread task or GPU measurement."
+        }
+      }
+    },
+    {
+      "id": "v0-2",
+      "profile": "desktop",
+      "pair": 1,
+      "label": "current-color",
+      "boot": {
+        "timing": {
+          "sceneReadyMs": 141.39999999999418,
+          "domReadyMs": 56.69999999999709,
+          "fcpMs": 140,
+          "publications": 27,
+          "engine": "bdca287a920ec5fed7194f00f219a65f320e27f6bc77e714409b7aa06442ef80"
+        },
+        "initializationCompleteMs": 141.39999999999418,
+        "startupPaintMaxMs": 82.79999999998836,
+        "firstScrollP95Ms": 13.099999999991269,
+        "blocking": {
+          "allRafMaxMs": 82.79999999998836,
+          "nativeTaskMaxMs": 0,
+          "nativeTasks": [],
+          "longTaskMaxMs": 114,
+          "observedBlockMaxMs": 114,
+          "longTaskUnionMs": 114.0,
+          "observedWorkUnionMs": 159.60000000000582,
+          "scope": "Whole inclusive input/preparation/flight/arrival-tail window; RAF callbacks, native mount tasks and browser LongTasks (>50ms), including rendering after JS. Overlaps merged. This is observed work, not every main-thread task or GPU measurement."
+        }
+      },
+      "cold": {
+        "paint": {
+          "p50": 10.5,
+          "p95": 32.79999999998836,
+          "max": 43.5
+        },
+        "paintIntervalsMs": {
+          "count": 30,
+          "p50": 38.5,
+          "p95": 62.60000000000582,
+          "max": 71.69999999999709
+        },
+        "budgetPass": true,
+        "inputToReadyMs": 1298.8999999999942,
+        "firstFlightPaintResponseMs": 20.5,
+        "blocking": {
+          "allRafMaxMs": 43.5,
+          "nativeTaskMaxMs": 15.099999999991269,
+          "nativeTasks": [
+            {
+              "kind": "navigation-task",
+              "part": "mount-task",
+              "time": 1382.5,
+              "start": 1367.4000000000087,
+              "duration": 15.099999999991269,
+              "page": "writing"
+            }
+          ],
+          "longTaskMaxMs": 71,
+          "observedBlockMaxMs": 71,
+          "longTaskUnionMs": 399.0,
+          "observedWorkUnionMs": 717.1000000000931,
+          "scope": "Whole inclusive input/preparation/flight/arrival-tail window; RAF callbacks, native mount tasks and browser LongTasks (>50ms), including rendering after JS. Overlaps merged. This is observed work, not every main-thread task or GPU measurement."
+        }
+      }
+    },
+    {
+      "id": "v0-3",
+      "profile": "desktop",
+      "pair": 1,
+      "label": "before-color",
+      "boot": {
+        "timing": {
+          "sceneReadyMs": 145.40000000000873,
+          "domReadyMs": 55.10000000000582,
+          "fcpMs": 140,
+          "publications": 27,
+          "engine": "29f96cf7b87c31e917e611abdc2112297f6e85cb4797b4c19a6f90bafd7924c9"
+        },
+        "initializationCompleteMs": 145.40000000000873,
+        "startupPaintMaxMs": 85.60000000000582,
+        "firstScrollP95Ms": 12,
+        "blocking": {
+          "allRafMaxMs": 85.60000000000582,
+          "nativeTaskMaxMs": 0,
+          "nativeTasks": [],
+          "longTaskMaxMs": 115,
+          "observedBlockMaxMs": 115,
+          "longTaskUnionMs": 115.0,
+          "observedWorkUnionMs": 162.90000000002328,
+          "scope": "Whole inclusive input/preparation/flight/arrival-tail window; RAF callbacks, native mount tasks and browser LongTasks (>50ms), including rendering after JS. Overlaps merged. This is observed work, not every main-thread task or GPU measurement."
+        }
+      },
+      "cold": {
+        "paint": {
+          "p50": 13.69999999999709,
+          "p95": 36.39999999999418,
+          "max": 40
+        },
+        "paintIntervalsMs": {
+          "count": 29,
+          "p50": 47.40000000000873,
+          "p95": 61.5,
+          "max": 62
+        },
+        "budgetPass": true,
+        "inputToReadyMs": 1329.2999999999884,
+        "firstFlightPaintResponseMs": 19.5,
+        "blocking": {
+          "allRafMaxMs": 40,
+          "nativeTaskMaxMs": 0,
+          "nativeTasks": [],
+          "longTaskMaxMs": 62,
+          "observedBlockMaxMs": 62,
+          "longTaskUnionMs": 397.0,
+          "observedWorkUnionMs": 738.4999999998836,
+          "scope": "Whole inclusive input/preparation/flight/arrival-tail window; RAF callbacks, native mount tasks and browser LongTasks (>50ms), including rendering after JS. Overlaps merged. This is observed work, not every main-thread task or GPU measurement."
+        }
+      }
+    },
+    {
+      "id": "v0-4",
+      "profile": "mobile",
+      "pair": 0,
+      "label": "before-color",
+      "boot": {
+        "timing": {
+          "sceneReadyMs": 265.8999999999942,
+          "domReadyMs": 342.29999999998836,
+          "fcpMs": 324,
+          "publications": 27,
+          "engine": "29f96cf7b87c31e917e611abdc2112297f6e85cb4797b4c19a6f90bafd7924c9"
+        },
+        "initializationCompleteMs": 342.29999999998836,
+        "startupPaintMaxMs": 119.30000000000291,
+        "firstScrollP95Ms": 14.60000000000582,
+        "blocking": {
+          "allRafMaxMs": 119.30000000000291,
+          "nativeTaskMaxMs": 0,
+          "nativeTasks": [],
+          "longTaskMaxMs": 156,
+          "observedBlockMaxMs": 156,
+          "longTaskUnionMs": 280.0,
+          "observedWorkUnionMs": 370.8999999999942,
+          "scope": "Whole inclusive input/preparation/flight/arrival-tail window; RAF callbacks, native mount tasks and browser LongTasks (>50ms), including rendering after JS. Overlaps merged. This is observed work, not every main-thread task or GPU measurement."
+        }
+      },
+      "cold": {
+        "paint": {
+          "p50": 17.30000000000291,
+          "p95": 33.89999999999418,
+          "max": 55.69999999999709
+        },
+        "paintIntervalsMs": {
+          "count": 22,
+          "p50": 50.5,
+          "p95": 67.10000000000582,
+          "max": 80.09999999999127
+        },
+        "budgetPass": true,
+        "inputToReadyMs": 1320.699999999997,
+        "firstFlightPaintResponseMs": 66,
+        "blocking": {
+          "allRafMaxMs": 55.69999999999709,
+          "nativeTaskMaxMs": 0,
+          "nativeTasks": [],
+          "longTaskMaxMs": 79,
+          "observedBlockMaxMs": 79,
+          "longTaskUnionMs": 236.0,
+          "observedWorkUnionMs": 634.4999999999709,
+          "scope": "Whole inclusive input/preparation/flight/arrival-tail window; RAF callbacks, native mount tasks and browser LongTasks (>50ms), including rendering after JS. Overlaps merged. This is observed work, not every main-thread task or GPU measurement."
+        }
+      }
+    },
+    {
+      "id": "v0-5",
+      "profile": "mobile",
+      "pair": 0,
+      "label": "current-color",
+      "boot": {
+        "timing": {
+          "sceneReadyMs": 299.3999999999942,
+          "domReadyMs": 168.6999999999971,
+          "fcpMs": 360,
+          "publications": 27,
+          "engine": "bdca287a920ec5fed7194f00f219a65f320e27f6bc77e714409b7aa06442ef80"
+        },
+        "initializationCompleteMs": 299.3999999999942,
+        "startupPaintMaxMs": 125.59999999999127,
+        "firstScrollP95Ms": 18.19999999999709,
+        "blocking": {
+          "allRafMaxMs": 125.59999999999127,
+          "nativeTaskMaxMs": 0,
+          "nativeTasks": [],
+          "longTaskMaxMs": 160,
+          "observedBlockMaxMs": 160,
+          "longTaskUnionMs": 244.0,
+          "observedWorkUnionMs": 354.3000000000029,
+          "scope": "Whole inclusive input/preparation/flight/arrival-tail window; RAF callbacks, native mount tasks and browser LongTasks (>50ms), including rendering after JS. Overlaps merged. This is observed work, not every main-thread task or GPU measurement."
+        }
+      },
+      "cold": {
+        "paint": {
+          "p50": 17.29999999998836,
+          "p95": 28.30000000000291,
+          "max": 30.60000000000582
+        },
+        "paintIntervalsMs": {
+          "count": 23,
+          "p50": 50.19999999999709,
+          "p95": 66.89999999999418,
+          "max": 82.30000000000291
+        },
+        "budgetPass": true,
+        "inputToReadyMs": 1329.199999999997,
+        "firstFlightPaintResponseMs": 66.39999999999418,
+        "blocking": {
+          "allRafMaxMs": 30.60000000000582,
+          "nativeTaskMaxMs": 43,
+          "nativeTasks": [
+            {
+              "kind": "navigation-task",
+              "part": "mount-task",
+              "time": 1531.699999999997,
+              "start": 1488.699999999997,
+              "duration": 43,
+              "page": "writing"
+            }
+          ],
+          "longTaskMaxMs": 83,
+          "observedBlockMaxMs": 83,
+          "longTaskUnionMs": 83.0,
+          "observedWorkUnionMs": 560.5,
+          "scope": "Whole inclusive input/preparation/flight/arrival-tail window; RAF callbacks, native mount tasks and browser LongTasks (>50ms), including rendering after JS. Overlaps merged. This is observed work, not every main-thread task or GPU measurement."
+        }
+      }
+    },
+    {
+      "id": "v0-6",
+      "profile": "mobile",
+      "pair": 1,
+      "label": "current-color",
+      "boot": {
+        "timing": {
+          "sceneReadyMs": 274.0999999999767,
+          "domReadyMs": 161.59999999997672,
+          "fcpMs": 328,
+          "publications": 27,
+          "engine": "bdca287a920ec5fed7194f00f219a65f320e27f6bc77e714409b7aa06442ef80"
+        },
+        "initializationCompleteMs": 274.0999999999767,
+        "startupPaintMaxMs": 107.39999999999418,
+        "firstScrollP95Ms": 23.29999999998836,
+        "blocking": {
+          "allRafMaxMs": 107.39999999999418,
+          "nativeTaskMaxMs": 0,
+          "nativeTasks": [],
+          "longTaskMaxMs": 141,
+          "observedBlockMaxMs": 141,
+          "longTaskUnionMs": 225.0,
+          "observedWorkUnionMs": 343.9999999999709,
+          "scope": "Whole inclusive input/preparation/flight/arrival-tail window; RAF callbacks, native mount tasks and browser LongTasks (>50ms), including rendering after JS. Overlaps merged. This is observed work, not every main-thread task or GPU measurement."
+        }
+      },
+      "cold": {
+        "paint": {
+          "p50": 17,
+          "p95": 32.5,
+          "max": 33.89999999999418
+        },
+        "paintIntervalsMs": {
+          "count": 22,
+          "p50": 50.39999999999418,
+          "p95": 66.80000000001746,
+          "max": 88.39999999999418
+        },
+        "budgetPass": true,
+        "inputToReadyMs": 1318.8999999999942,
+        "firstFlightPaintResponseMs": 58.80000000001746,
+        "blocking": {
+          "allRafMaxMs": 33.89999999999418,
+          "nativeTaskMaxMs": 48.5,
+          "nativeTasks": [
+            {
+              "kind": "navigation-task",
+              "part": "mount-task",
+              "time": 1613.7000000000116,
+              "start": 1565.2000000000116,
+              "duration": 48.5,
+              "page": "writing"
+            }
+          ],
+          "longTaskMaxMs": 53,
+          "observedBlockMaxMs": 53,
+          "longTaskUnionMs": 103.0,
+          "observedWorkUnionMs": 567.0000000000873,
+          "scope": "Whole inclusive input/preparation/flight/arrival-tail window; RAF callbacks, native mount tasks and browser LongTasks (>50ms), including rendering after JS. Overlaps merged. This is observed work, not every main-thread task or GPU measurement."
+        }
+      }
+    },
+    {
+      "id": "v0-7",
+      "profile": "mobile",
+      "pair": 1,
+      "label": "before-color",
+      "boot": {
+        "timing": {
+          "sceneReadyMs": 269.3999999999942,
+          "domReadyMs": 346.69999999998254,
+          "fcpMs": 324,
+          "publications": 27,
+          "engine": "29f96cf7b87c31e917e611abdc2112297f6e85cb4797b4c19a6f90bafd7924c9"
+        },
+        "initializationCompleteMs": 346.69999999998254,
+        "startupPaintMaxMs": 130.69999999998254,
+        "firstScrollP95Ms": 18.20000000001164,
+        "blocking": {
+          "allRafMaxMs": 130.69999999998254,
+          "nativeTaskMaxMs": 0,
+          "nativeTasks": [],
+          "longTaskMaxMs": 167,
+          "observedBlockMaxMs": 167,
+          "longTaskUnionMs": 294.0,
+          "observedWorkUnionMs": 370.30000000001746,
+          "scope": "Whole inclusive input/preparation/flight/arrival-tail window; RAF callbacks, native mount tasks and browser LongTasks (>50ms), including rendering after JS. Overlaps merged. This is observed work, not every main-thread task or GPU measurement."
+        }
+      },
+      "cold": {
+        "paint": {
+          "p50": 16,
+          "p95": 31.29999999998836,
+          "max": 57.60000000000582
+        },
+        "paintIntervalsMs": {
+          "count": 24,
+          "p50": 50.10000000000582,
+          "p95": 66.69999999998254,
+          "max": 79.89999999999418
+        },
+        "budgetPass": true,
+        "inputToReadyMs": 1317.2000000000116,
+        "firstFlightPaintResponseMs": 68.40000000002328,
+        "blocking": {
+          "allRafMaxMs": 57.60000000000582,
+          "nativeTaskMaxMs": 0,
+          "nativeTasks": [],
+          "longTaskMaxMs": 79,
+          "observedBlockMaxMs": 79,
+          "longTaskUnionMs": 129.0,
+          "observedWorkUnionMs": 571.0000000000291,
+          "scope": "Whole inclusive input/preparation/flight/arrival-tail window; RAF callbacks, native mount tasks and browser LongTasks (>50ms), including rendering after JS. Overlaps merged. This is observed work, not every main-thread task or GPU measurement."
+        }
+      }
+    },
+    {
+      "id": "v0-8",
+      "profile": "mobile",
+      "pair": 2,
+      "label": "before-color",
+      "boot": {
+        "timing": {
+          "sceneReadyMs": 273.1000000000058,
+          "domReadyMs": 353.9000000000233,
+          "fcpMs": 332,
+          "publications": 27,
+          "engine": "29f96cf7b87c31e917e611abdc2112297f6e85cb4797b4c19a6f90bafd7924c9"
+        },
+        "initializationCompleteMs": 353.9000000000233,
+        "startupPaintMaxMs": 130.5,
+        "firstScrollP95Ms": 16.29999999998836,
+        "blocking": {
+          "allRafMaxMs": 130.5,
+          "nativeTaskMaxMs": 0,
+          "nativeTasks": [],
+          "longTaskMaxMs": 166,
+          "observedBlockMaxMs": 166,
+          "longTaskUnionMs": 296.0,
+          "observedWorkUnionMs": 391.69999999998254,
+          "scope": "Whole inclusive input/preparation/flight/arrival-tail window; RAF callbacks, native mount tasks and browser LongTasks (>50ms), including rendering after JS. Overlaps merged. This is observed work, not every main-thread task or GPU measurement."
+        }
+      },
+      "cold": {
+        "paint": {
+          "p50": 17.70000000001164,
+          "p95": 31.800000000017462,
+          "max": 63.80000000001746
+        },
+        "paintIntervalsMs": {
+          "count": 22,
+          "p50": 50.39999999999418,
+          "p95": 67.09999999997672,
+          "max": 88.80000000001746
+        },
+        "budgetPass": true,
+        "inputToReadyMs": 1318.5,
+        "firstFlightPaintResponseMs": 67.80000000001746,
+        "blocking": {
+          "allRafMaxMs": 63.80000000001746,
+          "nativeTaskMaxMs": 0,
+          "nativeTasks": [],
+          "longTaskMaxMs": 88,
+          "observedBlockMaxMs": 88,
+          "longTaskUnionMs": 196.0,
+          "observedWorkUnionMs": 610.700000000099,
+          "scope": "Whole inclusive input/preparation/flight/arrival-tail window; RAF callbacks, native mount tasks and browser LongTasks (>50ms), including rendering after JS. Overlaps merged. This is observed work, not every main-thread task or GPU measurement."
+        }
+      }
+    },
+    {
+      "id": "v0-9",
+      "profile": "mobile",
+      "pair": 2,
+      "label": "current-color",
+      "boot": {
+        "timing": {
+          "sceneReadyMs": 275.19999999998254,
+          "domReadyMs": 164.5,
+          "fcpMs": 328,
+          "publications": 27,
+          "engine": "bdca287a920ec5fed7194f00f219a65f320e27f6bc77e714409b7aa06442ef80"
+        },
+        "initializationCompleteMs": 275.19999999998254,
+        "startupPaintMaxMs": 105.19999999998254,
+        "firstScrollP95Ms": 18.300000000017462,
+        "blocking": {
+          "allRafMaxMs": 105.19999999998254,
+          "nativeTaskMaxMs": 0,
+          "nativeTasks": [],
+          "longTaskMaxMs": 140,
+          "observedBlockMaxMs": 140,
+          "longTaskUnionMs": 217.0,
+          "observedWorkUnionMs": 322.29999999995925,
+          "scope": "Whole inclusive input/preparation/flight/arrival-tail window; RAF callbacks, native mount tasks and browser LongTasks (>50ms), including rendering after JS. Overlaps merged. This is observed work, not every main-thread task or GPU measurement."
+        }
+      },
+      "cold": {
+        "paint": {
+          "p50": 17.10000000000582,
+          "p95": 27.900000000023283,
+          "max": 30.89999999999418
+        },
+        "paintIntervalsMs": {
+          "count": 25,
+          "p50": 49.89999999999418,
+          "p95": 66.89999999999418,
+          "max": 78.90000000002328
+        },
+        "budgetPass": true,
+        "inputToReadyMs": 1318.1999999999825,
+        "firstFlightPaintResponseMs": 56.69999999998254,
+        "blocking": {
+          "allRafMaxMs": 30.89999999999418,
+          "nativeTaskMaxMs": 45.5,
+          "nativeTasks": [
+            {
+              "kind": "navigation-task",
+              "part": "mount-task",
+              "time": 1626.7000000000116,
+              "start": 1581.2000000000116,
+              "duration": 45.5,
+              "page": "writing"
+            }
+          ],
+          "longTaskMaxMs": 50,
+          "observedBlockMaxMs": 50,
+          "longTaskUnionMs": 50.0,
+          "observedWorkUnionMs": 573.5000000002619,
+          "scope": "Whole inclusive input/preparation/flight/arrival-tail window; RAF callbacks, native mount tasks and browser LongTasks (>50ms), including rendering after JS. Overlaps merged. This is observed work, not every main-thread task or GPU measurement."
+        }
+      }
+    },
+    {
+      "id": "v0-10",
+      "profile": "mobile",
+      "pair": 3,
+      "label": "current-color",
+      "boot": {
+        "timing": {
+          "sceneReadyMs": 272.6000000000058,
+          "domReadyMs": 163.80000000001746,
+          "fcpMs": 328,
+          "publications": 27,
+          "engine": "bdca287a920ec5fed7194f00f219a65f320e27f6bc77e714409b7aa06442ef80"
+        },
+        "initializationCompleteMs": 272.6000000000058,
+        "startupPaintMaxMs": 101.79999999998836,
+        "firstScrollP95Ms": 22.20000000001164,
+        "blocking": {
+          "allRafMaxMs": 101.79999999998836,
+          "nativeTaskMaxMs": 0,
+          "nativeTasks": [],
+          "longTaskMaxMs": 135,
+          "observedBlockMaxMs": 135,
+          "longTaskUnionMs": 224.0,
+          "observedWorkUnionMs": 340.69999999995343,
+          "scope": "Whole inclusive input/preparation/flight/arrival-tail window; RAF callbacks, native mount tasks and browser LongTasks (>50ms), including rendering after JS. Overlaps merged. This is observed work, not every main-thread task or GPU measurement."
+        }
+      },
+      "cold": {
+        "paint": {
+          "p50": 17.79999999998836,
+          "p95": 30.29999999998836,
+          "max": 31
+        },
+        "paintIntervalsMs": {
+          "count": 22,
+          "p50": 51.19999999998254,
+          "p95": 71.30000000001746,
+          "max": 87.39999999999418
+        },
+        "budgetPass": true,
+        "inputToReadyMs": 1399.1000000000058,
+        "firstFlightPaintResponseMs": 124.80000000001746,
+        "blocking": {
+          "allRafMaxMs": 31,
+          "nativeTaskMaxMs": 43.89999999999418,
+          "nativeTasks": [
+            {
+              "kind": "navigation-task",
+              "part": "mount-task",
+              "time": 1632.2000000000116,
+              "start": 1588.3000000000175,
+              "duration": 43.89999999999418,
+              "page": "writing"
+            }
+          ],
+          "longTaskMaxMs": 77,
+          "observedBlockMaxMs": 77,
+          "longTaskUnionMs": 180.0,
+          "observedWorkUnionMs": 645.1000000000931,
+          "scope": "Whole inclusive input/preparation/flight/arrival-tail window; RAF callbacks, native mount tasks and browser LongTasks (>50ms), including rendering after JS. Overlaps merged. This is observed work, not every main-thread task or GPU measurement."
+        }
+      }
+    },
+    {
+      "id": "v0-11",
+      "profile": "mobile",
+      "pair": 3,
+      "label": "before-color",
+      "boot": {
+        "timing": {
+          "sceneReadyMs": 260.8999999999942,
+          "domReadyMs": 330.29999999998836,
+          "fcpMs": 316,
+          "publications": 27,
+          "engine": "29f96cf7b87c31e917e611abdc2112297f6e85cb4797b4c19a6f90bafd7924c9"
+        },
+        "initializationCompleteMs": 330.29999999998836,
+        "startupPaintMaxMs": 114.5,
+        "firstScrollP95Ms": 28.79999999998836,
+        "blocking": {
+          "allRafMaxMs": 114.5,
+          "nativeTaskMaxMs": 0,
+          "nativeTasks": [],
+          "longTaskMaxMs": 148,
+          "observedBlockMaxMs": 148,
+          "longTaskUnionMs": 228.0,
+          "observedWorkUnionMs": 337.0,
+          "scope": "Whole inclusive input/preparation/flight/arrival-tail window; RAF callbacks, native mount tasks and browser LongTasks (>50ms), including rendering after JS. Overlaps merged. This is observed work, not every main-thread task or GPU measurement."
+        }
+      },
+      "cold": {
+        "paint": {
+          "p50": 16.89999999999418,
+          "p95": 31.39999999999418,
+          "max": 62.5
+        },
+        "paintIntervalsMs": {
+          "count": 22,
+          "p50": 50.30000000001746,
+          "p95": 67,
+          "max": 89.90000000002328
+        },
+        "budgetPass": true,
+        "inputToReadyMs": 1332.7000000000116,
+        "firstFlightPaintResponseMs": 74.10000000000582,
+        "blocking": {
+          "allRafMaxMs": 62.5,
+          "nativeTaskMaxMs": 0,
+          "nativeTasks": [],
+          "longTaskMaxMs": 88,
+          "observedBlockMaxMs": 88,
+          "longTaskUnionMs": 197.0,
+          "observedWorkUnionMs": 595.2000000000116,
+          "scope": "Whole inclusive input/preparation/flight/arrival-tail window; RAF callbacks, native mount tasks and browser LongTasks (>50ms), including rendering after JS. Overlaps merged. This is observed work, not every main-thread task or GPU measurement."
+        }
+      }
+    },
+    {
+      "id": "v0-12",
+      "profile": "mobile",
+      "pair": 4,
+      "label": "before-color",
+      "boot": {
+        "timing": {
+          "sceneReadyMs": 243,
+          "domReadyMs": 316.5999999999767,
+          "fcpMs": 304,
+          "publications": 27,
+          "engine": "29f96cf7b87c31e917e611abdc2112297f6e85cb4797b4c19a6f90bafd7924c9"
+        },
+        "initializationCompleteMs": 316.5999999999767,
+        "startupPaintMaxMs": 104.89999999999418,
+        "firstScrollP95Ms": 21.39999999999418,
+        "blocking": {
+          "allRafMaxMs": 104.89999999999418,
+          "nativeTaskMaxMs": 0,
+          "nativeTasks": [],
+          "longTaskMaxMs": 139,
+          "observedBlockMaxMs": 139,
+          "longTaskUnionMs": 263.0,
+          "observedWorkUnionMs": 350.8999999999942,
+          "scope": "Whole inclusive input/preparation/flight/arrival-tail window; RAF callbacks, native mount tasks and browser LongTasks (>50ms), including rendering after JS. Overlaps merged. This is observed work, not every main-thread task or GPU measurement."
+        }
+      },
+      "cold": {
+        "paint": {
+          "p50": 16,
+          "p95": 32.70000000001164,
+          "max": 58.79999999998836
+        },
+        "paintIntervalsMs": {
+          "count": 22,
+          "p50": 50.20000000001164,
+          "p95": 67.10000000000582,
+          "max": 85.10000000000582
+        },
+        "budgetPass": true,
+        "inputToReadyMs": 1320.3999999999942,
+        "firstFlightPaintResponseMs": 68.20000000001164,
+        "blocking": {
+          "allRafMaxMs": 58.79999999998836,
+          "nativeTaskMaxMs": 0,
+          "nativeTasks": [],
+          "longTaskMaxMs": 84,
+          "observedBlockMaxMs": 84,
+          "longTaskUnionMs": 188.0,
+          "observedWorkUnionMs": 571.3999999999651,
+          "scope": "Whole inclusive input/preparation/flight/arrival-tail window; RAF callbacks, native mount tasks and browser LongTasks (>50ms), including rendering after JS. Overlaps merged. This is observed work, not every main-thread task or GPU measurement."
+        }
+      }
+    },
+    {
+      "id": "v0-13",
+      "profile": "mobile",
+      "pair": 4,
+      "label": "current-color",
+      "boot": {
+        "timing": {
+          "sceneReadyMs": 275,
+          "domReadyMs": 161.79999999998836,
+          "fcpMs": 336,
+          "publications": 27,
+          "engine": "bdca287a920ec5fed7194f00f219a65f320e27f6bc77e714409b7aa06442ef80"
+        },
+        "initializationCompleteMs": 275,
+        "startupPaintMaxMs": 105.89999999999418,
+        "firstScrollP95Ms": 22.89999999999418,
+        "blocking": {
+          "allRafMaxMs": 105.89999999999418,
+          "nativeTaskMaxMs": 0,
+          "nativeTasks": [],
+          "longTaskMaxMs": 141,
+          "observedBlockMaxMs": 141,
+          "longTaskUnionMs": 272.0,
+          "observedWorkUnionMs": 358.5000000000291,
+          "scope": "Whole inclusive input/preparation/flight/arrival-tail window; RAF callbacks, native mount tasks and browser LongTasks (>50ms), including rendering after JS. Overlaps merged. This is observed work, not every main-thread task or GPU measurement."
+        }
+      },
+      "cold": {
+        "paint": {
+          "p50": 17,
+          "p95": 27.60000000000582,
+          "max": 31
+        },
+        "paintIntervalsMs": {
+          "count": 23,
+          "p50": 49.70000000001164,
+          "p95": 67.10000000000582,
+          "max": 86.60000000000582
+        },
+        "budgetPass": true,
+        "inputToReadyMs": 1307.2999999999884,
+        "firstFlightPaintResponseMs": 62.20000000001164,
+        "blocking": {
+          "allRafMaxMs": 31,
+          "nativeTaskMaxMs": 43.5,
+          "nativeTasks": [
+            {
+              "kind": "navigation-task",
+              "part": "mount-task",
+              "time": 1544.5999999999767,
+              "start": 1501.0999999999767,
+              "duration": 43.5,
+              "page": "writing"
+            }
+          ],
+          "longTaskMaxMs": 54,
+          "observedBlockMaxMs": 54,
+          "longTaskUnionMs": 54.0,
+          "observedWorkUnionMs": 564.3999999999651,
+          "scope": "Whole inclusive input/preparation/flight/arrival-tail window; RAF callbacks, native mount tasks and browser LongTasks (>50ms), including rendering after JS. Overlaps merged. This is observed work, not every main-thread task or GPU measurement."
+        }
+      }
+    },
+    {
+      "id": "v0-14",
+      "profile": "mobile",
+      "pair": 5,
+      "label": "current-color",
+      "boot": {
+        "timing": {
+          "sceneReadyMs": 306.9000000000233,
+          "domReadyMs": 173.60000000000582,
+          "fcpMs": 372,
+          "publications": 27,
+          "engine": "bdca287a920ec5fed7194f00f219a65f320e27f6bc77e714409b7aa06442ef80"
+        },
+        "initializationCompleteMs": 306.9000000000233,
+        "startupPaintMaxMs": 127,
+        "firstScrollP95Ms": 22,
+        "blocking": {
+          "allRafMaxMs": 127,
+          "nativeTaskMaxMs": 0,
+          "nativeTasks": [],
+          "longTaskMaxMs": 164,
+          "observedBlockMaxMs": 164,
+          "longTaskUnionMs": 312.0,
+          "observedWorkUnionMs": 413.5999999999767,
+          "scope": "Whole inclusive input/preparation/flight/arrival-tail window; RAF callbacks, native mount tasks and browser LongTasks (>50ms), including rendering after JS. Overlaps merged. This is observed work, not every main-thread task or GPU measurement."
+        }
+      },
+      "cold": {
+        "paint": {
+          "p50": 18.800000000017462,
+          "p95": 28.89999999999418,
+          "max": 30.79999999998836
+        },
+        "paintIntervalsMs": {
+          "count": 22,
+          "p50": 50.30000000001746,
+          "p95": 67.40000000002328,
+          "max": 89.80000000001746
+        },
+        "budgetPass": true,
+        "inputToReadyMs": 1336.8999999999942,
+        "firstFlightPaintResponseMs": 69.20000000001164,
+        "blocking": {
+          "allRafMaxMs": 30.79999999998836,
+          "nativeTaskMaxMs": 50.89999999999418,
+          "nativeTasks": [
+            {
+              "kind": "navigation-task",
+              "part": "mount-task",
+              "time": 1647.7000000000116,
+              "start": 1596.8000000000175,
+              "duration": 50.89999999999418,
+              "page": "writing"
+            }
+          ],
+          "longTaskMaxMs": 57,
+          "observedBlockMaxMs": 57,
+          "longTaskUnionMs": 163.0,
+          "observedWorkUnionMs": 604.0999999998312,
+          "scope": "Whole inclusive input/preparation/flight/arrival-tail window; RAF callbacks, native mount tasks and browser LongTasks (>50ms), including rendering after JS. Overlaps merged. This is observed work, not every main-thread task or GPU measurement."
+        }
+      }
+    },
+    {
+      "id": "v0-15",
+      "profile": "mobile",
+      "pair": 5,
+      "label": "before-color",
+      "boot": {
+        "timing": {
+          "sceneReadyMs": 290.0999999999767,
+          "domReadyMs": 367.29999999998836,
+          "fcpMs": 352,
+          "publications": 27,
+          "engine": "29f96cf7b87c31e917e611abdc2112297f6e85cb4797b4c19a6f90bafd7924c9"
+        },
+        "initializationCompleteMs": 367.29999999998836,
+        "startupPaintMaxMs": 127.39999999999418,
+        "firstScrollP95Ms": 19.89999999999418,
+        "blocking": {
+          "allRafMaxMs": 127.39999999999418,
+          "nativeTaskMaxMs": 0,
+          "nativeTasks": [],
+          "longTaskMaxMs": 163,
+          "observedBlockMaxMs": 163,
+          "longTaskUnionMs": 308.0,
+          "observedWorkUnionMs": 395.80000000004657,
+          "scope": "Whole inclusive input/preparation/flight/arrival-tail window; RAF callbacks, native mount tasks and browser LongTasks (>50ms), including rendering after JS. Overlaps merged. This is observed work, not every main-thread task or GPU measurement."
+        }
+      },
+      "cold": {
+        "paint": {
+          "p50": 17.60000000000582,
+          "p95": 31.5,
+          "max": 66.5
+        },
+        "paintIntervalsMs": {
+          "count": 22,
+          "p50": 50.29999999998836,
+          "p95": 66.90000000002328,
+          "max": 92.5
+        },
+        "budgetPass": true,
+        "inputToReadyMs": 1321.7999999999884,
+        "firstFlightPaintResponseMs": 73.70000000001164,
+        "blocking": {
+          "allRafMaxMs": 66.5,
+          "nativeTaskMaxMs": 0,
+          "nativeTasks": [],
+          "longTaskMaxMs": 91,
+          "observedBlockMaxMs": 91,
+          "longTaskUnionMs": 144.0,
+          "observedWorkUnionMs": 585.6999999998661,
+          "scope": "Whole inclusive input/preparation/flight/arrival-tail window; RAF callbacks, native mount tasks and browser LongTasks (>50ms), including rendering after JS. Overlaps merged. This is observed work, not every main-thread task or GPU measurement."
+        }
+      }
+    }
+  ],
+  "geometry": {
+    "pass": true,
+    "complete": true,
+    "widths": [
+      390,
+      640,
+      641,
+      1440
+    ],
+    "states": 8,
+    "comparisons": 32,
+    "maxDeltaPx": 0
+  },
+  "identities": {
+    "before-color": {
+      "sourceCommit": "6d538e171ecbbaa3c3948aa0d8d118fad4aaaf5d",
+      "sourceTree": "f5a0ad59d68a7313f18cd4f1b8795b71072e3117",
+      "candidateCommit": "6d538e171ecbbaa3c3948aa0d8d118fad4aaaf5d",
+      "sourceDirty": false,
+      "artifactDigest": "2d3a9c6a27f6c3fcf0b957367fb64ed31765fd8cd95e934413b2675dfe087b8b",
+      "variant": {
+        "id": "color",
+        "contract": 1,
+        "fingerprint": "29f96cf7b87c31e917e611abdc2112297f6e85cb4797b4c19a6f90bafd7924c9",
+        "baseEngine": "9a82a529271c1d91c57de7be9c923a6bca5f3609acde7b4ed00ab55cc0944b92",
+        "effects": [
+          "ribbons",
+          "travel"
+        ]
+      }
+    },
+    "current-base": {
+      "sourceCommit": "0187dc91fc19fd198e4a84b3953fd74d7a7ae2ec",
+      "sourceTree": "fc54328ea9a99685802328cf7810b3c231693852",
+      "candidateCommit": "0187dc91fc19fd198e4a84b3953fd74d7a7ae2ec",
+      "sourceDirty": false,
+      "artifactDigest": "8c09b8e51ac1af20144602618ca025701569dbfd5ecf75d9381a58930c764f91",
+      "variant": null
+    },
+    "current-color": {
+      "sourceCommit": "0187dc91fc19fd198e4a84b3953fd74d7a7ae2ec",
+      "sourceTree": "fc54328ea9a99685802328cf7810b3c231693852",
+      "candidateCommit": "0187dc91fc19fd198e4a84b3953fd74d7a7ae2ec",
+      "sourceDirty": false,
+      "artifactDigest": "e0bb49fa13ea56b073af0a7d672365633c8629d85c65e56edacd00f229004e77",
+      "variant": {
+        "id": "color",
+        "contract": 1,
+        "fingerprint": "bdca287a920ec5fed7194f00f219a65f320e27f6bc77e714409b7aa06442ef80",
+        "baseEngine": "b8800a2174d9da08aa5f124426863751d7048066fee18045f28574b152e64535",
+        "effects": [
+          "ribbons",
+          "travel"
+        ]
+      }
+    },
+    "no-ribbons": {
+      "sourceCommit": "0187dc91fc19fd198e4a84b3953fd74d7a7ae2ec",
+      "sourceTree": "fc54328ea9a99685802328cf7810b3c231693852",
+      "candidateCommit": "0187dc91fc19fd198e4a84b3953fd74d7a7ae2ec",
+      "sourceDirty": false,
+      "artifactDigest": "697e3d83d1279557f8d1dfb3b298aae0da65be1383d20eb1e3fb57c292ccbeec",
+      "variant": {
+        "id": "color",
+        "contract": 1,
+        "fingerprint": "2a3db2b050206bea1156fe2621a78c3839e36b9daf8ea59efb9f7c95cdee0be1",
+        "baseEngine": "b8800a2174d9da08aa5f124426863751d7048066fee18045f28574b152e64535",
+        "effects": [
+          "travel"
+        ],
+        "diagnostic": {
+          "label": "no-ribbons",
+          "description": "Suppress ribbon scene creation/collection/custom painting; retain travel, reading styles and controls.",
+          "fullGate": false
+        }
+      }
+    },
+    "no-canvas-draw": {
+      "sourceCommit": "0187dc91fc19fd198e4a84b3953fd74d7a7ae2ec",
+      "sourceTree": "fc54328ea9a99685802328cf7810b3c231693852",
+      "candidateCommit": "0187dc91fc19fd198e4a84b3953fd74d7a7ae2ec",
+      "sourceDirty": false,
+      "artifactDigest": "e071e387dab2f821a53a992d71abcc7d0ee22b9222fbab1e8c0cc59df5f9c0ad",
+      "variant": {
+        "id": "color",
+        "contract": 1,
+        "fingerprint": "198f41e4ddad53f2af7d8991463732fcfdc350d332990f5e2e9edfb095a17fc2",
+        "baseEngine": "b8800a2174d9da08aa5f124426863751d7048066fee18045f28574b152e64535",
+        "effects": [
+          "ribbons",
+          "travel"
+        ],
+        "diagnostic": {
+          "label": "no-canvas-draw",
+          "description": "Omit shape submission only; retain clearRect, projection, effects, sorting and the scene clock.",
+          "fullGate": false
+        }
+      }
+    },
+    "model-prewarm": {
+      "sourceCommit": "0187dc91fc19fd198e4a84b3953fd74d7a7ae2ec",
+      "sourceTree": "fc54328ea9a99685802328cf7810b3c231693852",
+      "candidateCommit": "0187dc91fc19fd198e4a84b3953fd74d7a7ae2ec",
+      "sourceDirty": false,
+      "artifactDigest": "787d946979e3246bb2741c645d62c75cdee46a41809e420543aaa29eff49eb8b",
+      "variant": {
+        "id": "color",
+        "contract": 1,
+        "fingerprint": "148d4d7a6eb0f528fee90d45e041124b63bb35b2406ff742a631b5e9f584ff74",
+        "baseEngine": "b8800a2174d9da08aa5f124426863751d7048066fee18045f28574b152e64535",
+        "effects": [
+          "ribbons",
+          "travel"
+        ],
+        "diagnostic": {
+          "label": "model-prewarm",
+          "description": "Expose an explicit measured Writing room/palette preparation before navigation; include its cost in the result.",
+          "fullGate": false
+        }
+      }
+    },
+    "thematic-off": {
+      "sourceCommit": "0187dc91fc19fd198e4a84b3953fd74d7a7ae2ec",
+      "sourceTree": "fc54328ea9a99685802328cf7810b3c231693852",
+      "candidateCommit": "0187dc91fc19fd198e4a84b3953fd74d7a7ae2ec",
+      "sourceDirty": false,
+      "artifactDigest": "c0716c0e489315cad59dd254ca3a6b90cdea6f3a02b4124a215d54e293ac174f",
+      "variant": {
+        "id": "color",
+        "contract": 1,
+        "fingerprint": "a05adf8a5789844a800ade14d08ec187d4aafafc832719fc349c494617185dc1",
+        "baseEngine": "b8800a2174d9da08aa5f124426863751d7048066fee18045f28574b152e64535",
+        "effects": [
+          "ribbons",
+          "travel"
+        ],
+        "diagnostic": {
+          "label": "thematic-off",
+          "description": "Omit Writing thematic objects during projection only; retain all room construction/palette work and other routes.",
+          "fullGate": false
+        }
+      }
+    },
+    "shared-off": {
+      "sourceCommit": "0187dc91fc19fd198e4a84b3953fd74d7a7ae2ec",
+      "sourceTree": "fc54328ea9a99685802328cf7810b3c231693852",
+      "candidateCommit": "0187dc91fc19fd198e4a84b3953fd74d7a7ae2ec",
+      "sourceDirty": false,
+      "artifactDigest": "997d5fcd06f0413aab86ff25134f5a2eb2b2a4da1089c52d26991e4b3d03b3a2",
+      "variant": {
+        "id": "color",
+        "contract": 1,
+        "fingerprint": "653b02b0ae04fc1134885a0f3bd5856aae4a24c51ff854558d7e2258c9e35142",
+        "baseEngine": "b8800a2174d9da08aa5f124426863751d7048066fee18045f28574b152e64535",
+        "effects": [
+          "ribbons",
+          "travel"
+        ],
+        "diagnostic": {
+          "label": "shared-off",
+          "description": "Omit Writing shared objects during projection only; retain all room construction/palette work and other routes.",
+          "fullGate": false
+        }
+      }
+    },
+    "edge-bypass": {
+      "sourceCommit": "0187dc91fc19fd198e4a84b3953fd74d7a7ae2ec",
+      "sourceTree": "fc54328ea9a99685802328cf7810b3c231693852",
+      "candidateCommit": "0187dc91fc19fd198e4a84b3953fd74d7a7ae2ec",
+      "sourceDirty": false,
+      "artifactDigest": "f4f8c87ba2508828fb0f6ab2673d809160fd800e07a2ae247122897065e16c48",
+      "variant": {
+        "id": "color",
+        "contract": 1,
+        "fingerprint": "3782d0e922c7323c1c20b44211bb492b08f14ab234e0079ea5249f4d143fcc35",
+        "baseEngine": "b8800a2174d9da08aa5f124426863751d7048066fee18045f28574b152e64535",
+        "effects": [
+          "ribbons",
+          "travel"
+        ],
+        "diagnostic": {
+          "label": "edge-bypass",
+          "description": "Do not install edge-scroll hooks; retain content-flight preference, travel, styles and ordinary header navigation.",
+          "fullGate": false
+        }
+      }
+    }
+  },
+  "decision": "Retain supported source correction for reduced mobile cold blocking and exact geometry. Both controls and candidates pass on this faster host; no pass-from-fail, FCP/steady-paint/flight-duration or full-release claim."
+}

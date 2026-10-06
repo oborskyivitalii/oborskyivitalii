@@ -1,0 +1,349 @@
+{
+  "schema": 1,
+  "kind": "retained-full-stage-and-display-observations",
+  "stagingRun": 37491800878,
+  "stagingSource": {
+    "sourceCommit": "4c05087e80110979f174b36b5dab6811d759a468",
+    "sourceTree": "683d56caef2649c9cce7c8fc4842ba8539baeb25",
+    "artifactDigest": "0de6c4869daf732aa99a0fa5c0095a5be4cc39fd88252d18a605781130b7e427"
+  },
+  "stagingOutcome": {
+    "linuxComplete": false,
+    "functionalPassed": 260,
+    "functionalRequired": 390,
+    "navigationPassed": 8,
+    "navigationRequired": 12,
+    "analyticsPassed": 26,
+    "analyticsRequired": 39,
+    "webkitNeverLaunched": true,
+    "newDisplayDeadlineMs": 3000,
+    "existingEngineLaunchBudgetMs": 30000,
+    "promotion": "skipped",
+    "stableChanged": false,
+    "mainChanged": false
+  },
+  "linuxArtifact": {
+    "id": 11427927561,
+    "zipSha256": "89219871b149bdf409bca510c800b0698dc80e6f54c8e56dc4fa48c1bb9e70ff",
+    "functionalRawSha256": "874056006126188f8fe83e2ba5cde7b6f8cec543014752f24cf7855434ea95b2"
+  },
+  "prerequisiteFailure": {
+    "runId": 37498138713,
+    "reason": "xdpyinfo absent; no startup measurement collected"
+  },
+  "observationRun": 37498536525,
+  "validDisplayObservations": 4,
+  "invalidWrapperObservations": 2,
+  "fullGate": false,
+  "performanceAcceptance": false,
+  "limits": [
+    "The failed full-stage X server stderr was not retained; its exact native delay remains unknown.",
+    "FD1 and FD3 both pass; these observations do not support an FD switch as a causal cure.",
+    "Two wrapper attempts fail before Xvfb starts because Node socket stderr cannot be reopened through /dev/stderr; they are instrumentation failures.",
+    "The original 3s failures remain failures. Startup now shares the pre-existing 30s display-plus-browser budget; page/paint deadlines and CI job limits remain unchanged."
+  ],
+  "observations": [
+    {
+      "artifactId": 11428946714,
+      "zipSha256": "3f017273069108a937eb3e0f0f9f9690902b8f2d37b761c3ebe5aa0844235482",
+      "rawSha256": "ec5c7d62a6e4543ab90adb7fe32f84ba15aff672ae953e50b4cf2d140cae0553",
+      "record": {
+        "schema": 1,
+        "kind": "display-launch-observation",
+        "fullGate": false,
+        "performanceAcceptance": false,
+        "sourceCommit": "935716754a41b93077b8f8539aa9420bcb92c3cc",
+        "sourceTree": "445c25e10de08eb68a3526dd2719882d144d15af",
+        "sourceDirty": false,
+        "environment": {
+          "platform": "linux",
+          "node": "v24.19.0",
+          "os": "6.17.0-1022-azure",
+          "cpus": [
+            "INTEL(R) XEON(R) PLATINUM 8573C",
+            "INTEL(R) XEON(R) PLATINUM 8573C",
+            "INTEL(R) XEON(R) PLATINUM 8573C",
+            "INTEL(R) XEON(R) PLATINUM 8573C"
+          ],
+          "runId": "37498536525",
+          "attempt": "1",
+          "replica": 1
+        },
+        "xvfbVersion": "2:21.1.12-1ubuntu1.8",
+        "order": [
+          "fd1",
+          "fd3",
+          "wrapper"
+        ],
+        "rows": [
+          {
+            "kind": "fd1",
+            "command": "Xvfb",
+            "args": [
+              "-displayfd",
+              "1",
+              "-screen",
+              "0",
+              "1440x900x24",
+              "-nolisten",
+              "tcp"
+            ],
+            "originalDeadlineMs": 3000,
+            "observationLimitMs": 10000,
+            "stdout": "0\n",
+            "stderr": "The XKEYBOARD keymap compiler (xkbcomp) reports:\n> Warning:          Could not resolve keysym XF86CameraAccessEnable\n> Warning:          Could not resolve keysym XF86CameraAccessDisable\n> Warning:          Could not resolve keysym XF86CameraAccessToggle\n> Warning:          Could not resolve keysym XF86NextElement\n> Warning:          Could not resolve keysym XF86PreviousElement\n> Warning:          Could not resolve keysym XF86AutopilotEngageToggle\n> Warning:          Could not resolve keysym XF86MarkWaypoint\n> Warning:          Could not resolve keysym XF86Sos\n> Warning:          Could not resolve keysym XF86NavChart\n> Warning:          Could not resolve keysym XF86FishingChart\n> Warning:          Could not resolve keysym XF86SingleRangeRadar\n> Warning:          Could not resolve keysym XF86DualRangeRadar\n> Warning:          Could not resolve keysym XF86RadarOverlay\n> Warning:          Could not resolve keysym XF86TraditionalSonar\n> Warning:          Could not resolve keysym XF86ClearvuSonar\n> Warning:          Could not resolve keysym XF86SidevuSonar\n> Warning:          Could not resolve keysym XF86NavInfo\nErrors from xkbcomp are not fatal to the X server\nThe XKEYBOARD keymap compiler (xkbcomp) reports:\n> Warning:          Could not resolve keysym XF86CameraAccessEnable\n> Warning:          Could not resolve keysym XF86CameraAccessDisable\n> Warning:          Could not resolve keysym XF86CameraAccessToggle\n> Warning:          Could not resolve keysym XF86NextElement\n> Warning:          Could not resolve keysym XF86PreviousElement\n> Warning:          Could not resolve keysym XF86AutopilotEngageToggle\n> Warning:          Could not resolve keysym XF86MarkWaypoint\n> Warning:          Could not resolve keysym XF86Sos\n> Warning:          Could not resolve keysym XF86NavChart\n> Warning:          Could not resolve keysym XF86FishingChart\n> Warning:          Could not resolve keysym XF86SingleRangeRadar\n> Warning:          Could not resolve keysym XF86DualRangeRadar\n> Warning:          Could not resolve keysym XF86RadarOverlay\n> Warning:          Could not resolve keysym XF86TraditionalSonar\n> Warning:          Could not resolve keysym XF86ClearvuSonar\n> Warning:          Could not resolve keysym XF86SidevuSonar\n> Warning:          Could not resolve keysym XF86NavInfo\nErrors from xkbcomp are not fatal to the X server\n",
+            "readiness": "0\n",
+            "droppedBytes": 0,
+            "signals": [
+              "SIGTERM"
+            ],
+            "display": ":0",
+            "readyMs": 65.35497399999997,
+            "client": {
+              "pass": true,
+              "status": 0,
+              "error": null,
+              "stderr": "",
+              "summary": [
+                "version number:    11.0",
+                "vendor string:    The X.Org Foundation",
+                "  dimensions:    1440x900 pixels (366x229 millimeters)"
+              ]
+            },
+            "elapsedMs": 92.42675500000007,
+            "originalPass": true,
+            "earlyExit": {
+              "code": 0,
+              "signal": null
+            },
+            "exitCode": 0,
+            "exitSignal": null
+          },
+          {
+            "kind": "fd3",
+            "command": "Xvfb",
+            "args": [
+              "-displayfd",
+              "3",
+              "-screen",
+              "0",
+              "1440x900x24",
+              "-nolisten",
+              "tcp"
+            ],
+            "originalDeadlineMs": 3000,
+            "observationLimitMs": 10000,
+            "stdout": "",
+            "stderr": "The XKEYBOARD keymap compiler (xkbcomp) reports:\n> Warning:          Could not resolve keysym XF86CameraAccessEnable\n> Warning:          Could not resolve keysym XF86CameraAccessDisable\n> Warning:          Could not resolve keysym XF86CameraAccessToggle\n> Warning:          Could not resolve keysym XF86NextElement\n> Warning:          Could not resolve keysym XF86PreviousElement\n> Warning:          Could not resolve keysym XF86AutopilotEngageToggle\n> Warning:          Could not resolve keysym XF86MarkWaypoint\n> Warning:          Could not resolve keysym XF86Sos\n> Warning:          Could not resolve keysym XF86NavChart\n> Warning:          Could not resolve keysym XF86FishingChart\n> Warning:          Could not resolve keysym XF86SingleRangeRadar\n> Warning:          Could not resolve keysym XF86DualRangeRadar\n> Warning:          Could not resolve keysym XF86RadarOverlay\n> Warning:          Could not resolve keysym XF86TraditionalSonar\n> Warning:          Could not resolve keysym XF86ClearvuSonar\n> Warning:          Could not resolve keysym XF86SidevuSonar\n> Warning:          Could not resolve keysym XF86NavInfo\nErrors from xkbcomp are not fatal to the X server\n",
+            "readiness": "0\n",
+            "droppedBytes": 0,
+            "signals": [
+              "SIGTERM"
+            ],
+            "display": ":0",
+            "readyMs": 21.00705700000003,
+            "client": {
+              "pass": true,
+              "status": 0,
+              "error": null,
+              "stderr": "",
+              "summary": [
+                "version number:    11.0",
+                "vendor string:    The X.Org Foundation",
+                "  dimensions:    1440x900 pixels (366x229 millimeters)"
+              ]
+            },
+            "elapsedMs": 24.08922400000006,
+            "originalPass": true,
+            "earlyExit": {
+              "code": 0,
+              "signal": null
+            },
+            "exitCode": 0,
+            "exitSignal": null
+          },
+          {
+            "kind": "wrapper",
+            "command": "xvfb-run",
+            "args": [
+              "-a",
+              "-e",
+              "/dev/stderr",
+              "--server-args=-screen 0 1440x900x24 -nolisten tcp",
+              "/opt/hostedtoolcache/node/24.19.0/x64/bin/node",
+              "-e",
+              "console.log(JSON.stringify({display:process.env.DISPLAY,authority:process.env.XAUTHORITY}));process.stdin.on('end',()=>process.exit(0));process.stdin.resume();"
+            ],
+            "originalDeadlineMs": 3000,
+            "observationLimitMs": 10000,
+            "stdout": "",
+            "stderr": "/usr/bin/xvfb-run: 159: cannot create /dev/stderr: No such device or address\n/usr/bin/xvfb-run: 82: cannot create /dev/stderr: No such device or address\n",
+            "readiness": "",
+            "droppedBytes": 0,
+            "signals": [],
+            "earlyExit": {
+              "code": 2,
+              "signal": null
+            },
+            "elapsedMs": 29.28475000000003,
+            "originalPass": false,
+            "exitCode": 2,
+            "exitSignal": null
+          }
+        ],
+        "complete": true
+      }
+    },
+    {
+      "artifactId": 11428272525,
+      "zipSha256": "8a38d8c8e43a8e0a628f1976ef53fd5970cb648cec5d15830d8e249644ea2d01",
+      "rawSha256": "f27b56835d84a8cf2fc88e24058ff378fc87ce00424c53dd6ac38d16e9aeaf28",
+      "record": {
+        "schema": 1,
+        "kind": "display-launch-observation",
+        "fullGate": false,
+        "performanceAcceptance": false,
+        "sourceCommit": "935716754a41b93077b8f8539aa9420bcb92c3cc",
+        "sourceTree": "445c25e10de08eb68a3526dd2719882d144d15af",
+        "sourceDirty": false,
+        "environment": {
+          "platform": "linux",
+          "node": "v24.19.0",
+          "os": "6.17.0-1022-azure",
+          "cpus": [
+            "Intel(R) Xeon(R) 6973P-C",
+            "Intel(R) Xeon(R) 6973P-C",
+            "Intel(R) Xeon(R) 6973P-C",
+            "Intel(R) Xeon(R) 6973P-C"
+          ],
+          "runId": "37498536525",
+          "attempt": "1",
+          "replica": 2
+        },
+        "xvfbVersion": "2:21.1.12-1ubuntu1.8",
+        "order": [
+          "wrapper",
+          "fd3",
+          "fd1"
+        ],
+        "rows": [
+          {
+            "kind": "wrapper",
+            "command": "xvfb-run",
+            "args": [
+              "-a",
+              "-e",
+              "/dev/stderr",
+              "--server-args=-screen 0 1440x900x24 -nolisten tcp",
+              "/opt/hostedtoolcache/node/24.19.0/x64/bin/node",
+              "-e",
+              "console.log(JSON.stringify({display:process.env.DISPLAY,authority:process.env.XAUTHORITY}));process.stdin.on('end',()=>process.exit(0));process.stdin.resume();"
+            ],
+            "originalDeadlineMs": 3000,
+            "observationLimitMs": 10000,
+            "stdout": "",
+            "stderr": "/usr/bin/xvfb-run: 159: cannot create /dev/stderr: No such device or address\n/usr/bin/xvfb-run: 82: cannot create /dev/stderr: No such device or address\n",
+            "readiness": "",
+            "droppedBytes": 0,
+            "signals": [],
+            "earlyExit": {
+              "code": 2,
+              "signal": null
+            },
+            "elapsedMs": 26.56922899999995,
+            "originalPass": false,
+            "exitCode": 2,
+            "exitSignal": null
+          },
+          {
+            "kind": "fd3",
+            "command": "Xvfb",
+            "args": [
+              "-displayfd",
+              "3",
+              "-screen",
+              "0",
+              "1440x900x24",
+              "-nolisten",
+              "tcp"
+            ],
+            "originalDeadlineMs": 3000,
+            "observationLimitMs": 10000,
+            "stdout": "",
+            "stderr": "The XKEYBOARD keymap compiler (xkbcomp) reports:\n> Warning:          Could not resolve keysym XF86CameraAccessEnable\n> Warning:          Could not resolve keysym XF86CameraAccessDisable\n> Warning:          Could not resolve keysym XF86CameraAccessToggle\n> Warning:          Could not resolve keysym XF86NextElement\n> Warning:          Could not resolve keysym XF86PreviousElement\n> Warning:          Could not resolve keysym XF86AutopilotEngageToggle\n> Warning:          Could not resolve keysym XF86MarkWaypoint\n> Warning:          Could not resolve keysym XF86Sos\n> Warning:          Could not resolve keysym XF86NavChart\n> Warning:          Could not resolve keysym XF86FishingChart\n> Warning:          Could not resolve keysym XF86SingleRangeRadar\n> Warning:          Could not resolve keysym XF86DualRangeRadar\n> Warning:          Could not resolve keysym XF86RadarOverlay\n> Warning:          Could not resolve keysym XF86TraditionalSonar\n> Warning:          Could not resolve keysym XF86ClearvuSonar\n> Warning:          Could not resolve keysym XF86SidevuSonar\n> Warning:          Could not resolve keysym XF86NavInfo\nErrors from xkbcomp are not fatal to the X server\nThe XKEYBOARD keymap compiler (xkbcomp) reports:\n> Warning:          Could not resolve keysym XF86CameraAccessEnable\n> Warning:          Could not resolve keysym XF86CameraAccessDisable\n> Warning:          Could not resolve keysym XF86CameraAccessToggle\n> Warning:          Could not resolve keysym XF86NextElement\n> Warning:          Could not resolve keysym XF86PreviousElement\n> Warning:          Could not resolve keysym XF86AutopilotEngageToggle\n> Warning:          Could not resolve keysym XF86MarkWaypoint\n> Warning:          Could not resolve keysym XF86Sos\n> Warning:          Could not resolve keysym XF86NavChart\n> Warning:          Could not resolve keysym XF86FishingChart\n> Warning:          Could not resolve keysym XF86SingleRangeRadar\n> Warning:          Could not resolve keysym XF86DualRangeRadar\n> Warning:          Could not resolve keysym XF86RadarOverlay\n> Warning:          Could not resolve keysym XF86TraditionalSonar\n> Warning:          Could not resolve keysym XF86ClearvuSonar\n> Warning:          Could not resolve keysym XF86SidevuSonar\n> Warning:          Could not resolve keysym XF86NavInfo\nErrors from xkbcomp are not fatal to the X server\n",
+            "readiness": "0\n",
+            "droppedBytes": 0,
+            "signals": [
+              "SIGTERM"
+            ],
+            "display": ":0",
+            "readyMs": 1267.708693,
+            "client": {
+              "pass": true,
+              "status": 0,
+              "error": null,
+              "stderr": "",
+              "summary": [
+                "version number:    11.0",
+                "vendor string:    The X.Org Foundation",
+                "  dimensions:    1440x900 pixels (366x229 millimeters)"
+              ]
+            },
+            "elapsedMs": 1275.172438,
+            "originalPass": true,
+            "earlyExit": {
+              "code": 0,
+              "signal": null
+            },
+            "exitCode": 0,
+            "exitSignal": null
+          },
+          {
+            "kind": "fd1",
+            "command": "Xvfb",
+            "args": [
+              "-displayfd",
+              "1",
+              "-screen",
+              "0",
+              "1440x900x24",
+              "-nolisten",
+              "tcp"
+            ],
+            "originalDeadlineMs": 3000,
+            "observationLimitMs": 10000,
+            "stdout": "0\n",
+            "stderr": "The XKEYBOARD keymap compiler (xkbcomp) reports:\n> Warning:          Could not resolve keysym XF86CameraAccessEnable\n> Warning:          Could not resolve keysym XF86CameraAccessDisable\n> Warning:          Could not resolve keysym XF86CameraAccessToggle\n> Warning:          Could not resolve keysym XF86NextElement\n> Warning:          Could not resolve keysym XF86PreviousElement\n> Warning:          Could not resolve keysym XF86AutopilotEngageToggle\n> Warning:          Could not resolve keysym XF86MarkWaypoint\n> Warning:          Could not resolve keysym XF86Sos\n> Warning:          Could not resolve keysym XF86NavChart\n> Warning:          Could not resolve keysym XF86FishingChart\n> Warning:          Could not resolve keysym XF86SingleRangeRadar\n> Warning:          Could not resolve keysym XF86DualRangeRadar\n> Warning:          Could not resolve keysym XF86RadarOverlay\n> Warning:          Could not resolve keysym XF86TraditionalSonar\n> Warning:          Could not resolve keysym XF86ClearvuSonar\n> Warning:          Could not resolve keysym XF86SidevuSonar\n> Warning:          Could not resolve keysym XF86NavInfo\nErrors from xkbcomp are not fatal to the X server\n",
+            "readiness": "0\n",
+            "droppedBytes": 0,
+            "signals": [
+              "SIGTERM"
+            ],
+            "display": ":0",
+            "readyMs": 14.892323999999917,
+            "client": {
+              "pass": true,
+              "status": 0,
+              "error": null,
+              "stderr": "",
+              "summary": [
+                "version number:    11.0",
+                "vendor string:    The X.Org Foundation",
+                "  dimensions:    1440x900 pixels (366x229 millimeters)"
+              ]
+            },
+            "elapsedMs": 17.51591200000007,
+            "originalPass": true,
+            "earlyExit": {
+              "code": 0,
+              "signal": null
+            },
+            "exitCode": 0,
+            "exitSignal": null
+          }
+        ],
+        "complete": true
+      }
+    }
+  ]
+}

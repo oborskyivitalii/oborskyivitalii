@@ -27,14 +27,8 @@ function finiteGeometry(world,compact){
   if(limits)for(const [key,limit]of Object.entries(limits))assert.ok(row[key]<=limit,`geometry ${key}: ${row[key]} > ${limit}`);
   return {...row,finite:true,budget:limits?'configured':'no geometry budget in this source edition'};
 }
-function check(){
-  run('tools/site/build.cjs',['--check']);
-  const {configuration,model}=require('../site/build.cjs'),{config,definitions}=configuration(root),api=model(root,definitions),geometry=[];
-  const focused=tests(['tests/theme.test.cjs','tests/archive.test.cjs']);
-  const helpers=fs.existsSync(path.join(__dirname,'workflow-artifacts.cjs'));
-  const workflow=helpers?require('./workflow-artifacts.cjs').check(root):{status:'not-applicable',reason:'This source edition has no additional workflow namespace helper'};
-  for(const route of config.routes)for(const compact of [false,true])geometry.push({route:route.id,compact,...finiteGeometry(api.worldFor(route.id,compact),compact)});
-  const publicDir=path.join(root,'docs'),scripts=new Set();
+function checkPublicScripts(publicDir,config){
+  const scripts=new Set();
   for(const entry of artifact.entries(publicDir)){
     if(entry.path.endsWith('.js')){
       const hash=artifact.digest(entry.bytes);if(!scripts.has(hash)){new vm.Script(entry.bytes.toString('utf8'),{filename:entry.path});scripts.add(hash);}
@@ -46,30 +40,44 @@ function check(){
     assert.match(html,/<a href="credits\.html">Reuse &amp; credits<\/a>/,'footer reaches utility page');
     for(const script of html.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/g))if(!script[1].includes('application/'))new vm.Script(script[2],{filename:route.url});
   }
-  const manifest=artifact.manifest(publicDir);artifact.verify(publicDir,manifest);
-  const sizes=artifact.checkSize(publicDir),shared=api.worldFor('index',true).objects.filter(x=>x.family==='shared'),symbols=new Set(shared.map(x=>x.symbol));
+  return scripts.size;
+}
+function checkMotifs(api,config){
+  const shared=api.worldFor('index',true).objects.filter(x=>x.family==='shared'),symbols=new Set(shared.map(x=>x.symbol));
   const newMotifs=['brain','line-chart','bar-chart','scatter-chart','attention','softmax','entropy'];
-  const motifCapability=newMotifs.some(symbol=>symbols.has(symbol));
-  const colorFiles=['tools/staging/color.cjs','tools/site/variants.cjs','review/site-scroll-sync-20261004/export.cjs','review/site-scroll-sync-20261004/FLIGHT-PROTOTYPE.cjs','review/site-scroll-sync-20261004/RIBBONS-PROTOTYPE.cjs','tests/flight.test.cjs'];
-  const missing=colorFiles.filter(name=>!fs.existsSync(path.join(root,name)));
-  const extensions={sharedMotifs:motifCapability?{status:'checked',symbols:newMotifs}:{status:'not-applicable',reason:'This source edition predates the authored shared motifs'},color:missing.length?{status:'not-applicable',missing}:{status:'checked'}};
-  if(motifCapability)for(const route of config.routes)for(const compact of [false,true]){
+  if(!newMotifs.some(symbol=>symbols.has(symbol)))return {status:'not-applicable',reason:'This source edition predates the authored shared motifs'};
+  for(const route of config.routes)for(const compact of [false,true]){
     const objects=api.worldFor(route.id,compact).objects.filter(x=>x.family==='shared'),actual=new Set(objects.map(x=>x.symbol));
     assert.equal(objects.length,56,'bounded shared grammar');for(const symbol of newMotifs)assert.ok(actual.has(symbol),route.id+' lacks '+symbol);
   }
-  if(!missing.length){
-    const directory=fs.mkdtempSync(path.join(os.tmpdir(),'site-local-'));
-    try{
-      run('review/site-scroll-sync-20261004/export.cjs',[directory]);
-      const html=fs.readFileSync(path.join(directory,'Vitalii-Oborskyi-Color-Prototype.html'),'utf8');
-      assert.doesNotMatch(html,/backdrop-filter|data-glass|vo\.reading-surface|id=["']surface-mode/,'retired reading effect is absent');
-      for(const script of html.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/g))if(!script[1].includes('application/'))new vm.Script(script[2]);
-      const payload=JSON.parse(html.match(/id="site-pages">([\s\S]*?)<\/script>/)[1]);
-      for(const route of config.routes)assert.match(payload.pages[route.id],/href="\?view=credits"/,'footer reaches utility page');
-      extensions.color.focusedTests=tests(['tests/flight.test.cjs']);
-    }finally{fs.rmSync(directory,{recursive:true,force:true});}
-  }
-  const result={profile:'local',pass:true,focusedTests:focused,routes:config.routes.length,workflow,geometry,extensions,checks:['generated source','finite geometry','script syntax','single main heading','footer links','artifact snapshot integrity','size budgets'],uniqueScripts:scripts.size,maxHtmlBytes:Math.max(...sizes.rows.map(x=>x.raw)),deploymentAuthorized:false};
+  return {status:'checked',symbols:newMotifs};
+}
+function checkColor(config){
+  const colorFiles=['tools/staging/color.cjs','tools/site/variants.cjs','review/site-scroll-sync-20261004/export.cjs','review/site-scroll-sync-20261004/FLIGHT-PROTOTYPE.cjs','review/site-scroll-sync-20261004/RIBBONS-PROTOTYPE.cjs','tests/flight.test.cjs'];
+  const missing=colorFiles.filter(name=>!fs.existsSync(path.join(root,name)));
+  if(missing.length)return {status:'not-applicable',missing};
+  const directory=fs.mkdtempSync(path.join(os.tmpdir(),'site-local-'));
+  try{
+    run('review/site-scroll-sync-20261004/export.cjs',[directory]);
+    const html=fs.readFileSync(path.join(directory,'Vitalii-Oborskyi-Color-Prototype.html'),'utf8');
+    assert.doesNotMatch(html,/backdrop-filter|data-glass|vo\.reading-surface|id=["']surface-mode/,'retired reading effect is absent');
+    for(const script of html.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/g))if(!script[1].includes('application/'))new vm.Script(script[2]);
+    const payload=JSON.parse(html.match(/id="site-pages">([\s\S]*?)<\/script>/)[1]);
+    for(const route of config.routes)assert.match(payload.pages[route.id],/href="\?view=credits"/,'footer reaches utility page');
+    return {status:'checked',focusedTests:tests(['tests/flight.test.cjs'])};
+  }finally{fs.rmSync(directory,{recursive:true,force:true});}
+}
+function check(){
+  run('tools/site/build.cjs',['--check']);
+  const {configuration,model}=require('../site/build.cjs'),{config,definitions}=configuration(root),api=model(root,definitions),geometry=[];
+  const focused=tests(['tests/theme.test.cjs','tests/archive.test.cjs']);
+  const helpers=fs.existsSync(path.join(__dirname,'workflow-artifacts.cjs'));
+  const workflow=helpers?require('./workflow-artifacts.cjs').check(root):{status:'not-applicable',reason:'This source edition has no additional workflow namespace helper'};
+  for(const route of config.routes)for(const compact of [false,true])geometry.push({route:route.id,compact,...finiteGeometry(api.worldFor(route.id,compact),compact)});
+  const publicDir=path.join(root,'docs'),uniqueScripts=checkPublicScripts(publicDir,config);
+  const manifest=artifact.manifest(publicDir);artifact.verify(publicDir,manifest);
+  const sizes=artifact.checkSize(publicDir),extensions={sharedMotifs:checkMotifs(api,config),color:checkColor(config)};
+  const result={profile:'local',pass:true,focusedTests:focused,routes:config.routes.length,workflow,geometry,extensions,checks:['generated source','finite geometry','script syntax','single main heading','footer links','artifact snapshot integrity','size budgets'],uniqueScripts,maxHtmlBytes:Math.max(...sizes.rows.map(x=>x.raw)),deploymentAuthorized:false};
   console.log(JSON.stringify(result));return result;
 }
 function gate(directory){

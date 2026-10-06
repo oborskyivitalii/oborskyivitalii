@@ -1,7 +1,7 @@
 # Site check profiles
 
-Issues #8/#13 own hosting/checks. Existing PR #26 isolates the CI controller;
-#18/#22/#23 retain their unfinished runtime work.
+Issues #8/#13 own hosting/checks. CI-only #26 is on protected main; #18/#22 are
+preserved in the sole current runtime PR #23. Full staging precedes its merge.
 
 | Profile | Trigger | Work |
 | --- | --- | --- |

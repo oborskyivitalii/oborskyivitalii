@@ -58,16 +58,16 @@ function configuration(root) {
   if(!Number.isFinite(paths.roomSpacing)||paths.roomSpacing<100)throw Error('Invalid room spacing');
   return {config,definitions:{...paths,pageStops:Object.fromEntries(config.routes.filter(x=>Object.keys(x.stops).length).map(x=>[x.id,x.stops])),initialPoses:Object.fromEntries(config.routes.map(x=>[x.id,x.initialPose])),routeOrder:config.routes.map(x=>x.id)}};
 }
-const factories=['site/engine/math.cjs','site/scenes/world.cjs','site/engine/projection.cjs','site/engine/lifecycle.cjs'];
+const factories=['site/engine/math.cjs','site/scenes/world.cjs','site/engine/projection.cjs','site/engine/lifecycle.cjs','site/engine/renderer.cjs'];
 function factory(root,name){const file=path.join(root,name);delete require.cache[require.resolve(file)];const fn=require(file);if(typeof fn!=='function')throw Error('Invalid native factory '+name);return fn;}
 function model(root,definitions) {
   const math=factory(root,factories[0])();
-  return {...math,...definitions,...factory(root,factories[1])(math),...factory(root,factories[2])(math,definitions)};
+  return {...math,...definitions,...factory(root,factories[1])(math),...factory(root,factories[2])(math,definitions),...factory(root,factories[4])()};
 }
 function runtime(root,definitions) {
-  const [math,world,projection,lifecycle]=factories.map(name=>factory(root,name).toString());
+  const [math,world,projection,lifecycle,renderer]=factories.map(name=>factory(root,name).toString());
   return '/* Generated from site/engine and site/scenes by tools/site/build.cjs. */\n(()=>{\n"use strict";\n'+
-    `const math=(${math})();\nconst definitions=${scriptJSON(definitions)};\nconst world=(${world})(math);\nconst projection=(${projection})(math,definitions);\nconst api={...math,...definitions,...world,...projection};\n`+
+    `const math=(${math})();\nconst definitions=${scriptJSON(definitions)};\nconst world=(${world})(math);\nconst projection=(${projection})(math,definitions);\nconst renderer=(${renderer})();\nconst api={...math,...definitions,...world,...projection,...renderer};\n`+
     `if(typeof module!=="undefined"&&module.exports)module.exports=api;\n(${lifecycle})(api);\n})();\n`;
 }
 function dateLabel(value,septemberStyle='Sep') {
@@ -134,10 +134,10 @@ function render(root,route,input,api,measurement='') {
   return substitute(read(root,'site/templates/shell.html'),{LANG:input.meta.lang,ROUTE:route.id,HEAD:head,HEADER:header,MAIN:input.main,FOOTER:read(root,'site/templates/footer.html'),FALLBACK:fallback(api,route.id)},'shell');
 }
 function fileDigests(root,names){return Object.fromEntries(names.sort().map(name=>[name,sha(fs.readFileSync(path.join(root,name)))]));}
-function runtimeVersion(components){return sha(json({engine:components.engine,scenes:components.scenes,routes:components.routes,contract:components.contract}));}
+function runtimeVersion(components){return sha(json({engine:components.engine,scenes:components.scenes,routes:components.routes,variant:components.variant,contract:components.contract}));}
 function versionHTML(html,version,components) {
   const engine=runtimeVersion(components),media=components.assets;
-  html=html.replace('</head>',`  <meta name="site-engine" content="${engine}">\n  <meta name="site-route" content="${version}">\n  <meta name="site-contract" content="${components.contract}">\n</head>`);
+  html=html.replace('</head>',`  <meta name="site-engine" content="${engine}">\n  <meta name="site-route" content="${version}">\n  <meta name="site-contract" content="${components.contract}">\n  <meta name="site-variant" content="base">\n</head>`);
   for(const name of ['theme.js','space.js','archive.js','navigation.js','styles.css'])html=html.replaceAll(`="${name}"`,`="runtime/${engine}/${name}"`);
   for(const name of ['favicon.svg','vitalii-oborskyi-cutout.webp','vitalii-oborskyi.jpg'])html=html.replaceAll(`="assets/${name}"`,`="media/${media}/${name}"`);
   return html;
@@ -157,7 +157,7 @@ function retain(root,put) {
 }
 function fingerprints(root,config) {
   const producers=files(path.join(root,'tools/site')).map(x=>'tools/site/'+x).concat('tools/build_scene_fallbacks.cjs');
-  return {contract:config.contract,producer:sha(json(fileDigests(root,producers))),
+  return {contract:config.contract,variant:sha(json({id:'base',contract:1})),producer:sha(json(fileDigests(root,producers))),
     engine:sha(json(fileDigests(root,files(path.join(root,'site/engine')).map(x=>'site/engine/'+x)))),
     scenes:sha(json(fileDigests(root,files(path.join(root,'site/scenes')).map(x=>'site/scenes/'+x)))),
     assets:sha(json(fileDigests(root,files(path.join(root,'site/assets')).map(x=>'site/assets/'+x)))),
@@ -210,7 +210,7 @@ function build({root=defaultRoot,output=path.join(root,'docs'),cacheFile=path.jo
       const engine=runtimeVersion(components);
       for(const name of ['theme.js','space.js','archive.js','navigation.js','styles.css'])put(`runtime/${engine}/${name}`,fs.readFileSync(path.join(temporary,name)));
       for(const name of files(path.join(root,'site/assets')).filter(x=>x!=='nojekyll'))put(`media/${components.assets}/${name}`,fs.readFileSync(path.join(root,'site/assets',name)));
-      const revision={schema:1,contract:components.contract,engine,scenes:components.scenes,assets:components.assets,content:sha(json(Object.fromEntries(Object.entries(result.routes).map(([id,route])=>[id,route.version])))),routes:Object.fromEntries(Object.entries(result.routes).map(([id,route])=>[id,{version:route.version,url:`snapshots/${route.version}/${route.url}`,sha256:route.snapshotSHA}]))};
+      const revision={schema:1,contract:components.contract,variant:{id:'base',contract:1,fingerprint:components.variant},engine,scenes:components.scenes,assets:components.assets,content:sha(json(Object.fromEntries(Object.entries(result.routes).map(([id,route])=>[id,route.version])))),routes:Object.fromEntries(Object.entries(result.routes).map(([id,route])=>[id,{version:route.version,url:`snapshots/${route.version}/${route.url}`,sha256:route.snapshotSHA}]))};
       retain(root,put);put('site-revision.json',json(revision));
     }
     result.removed=files(output).filter(name=>!Object.hasOwn(result.files,name));

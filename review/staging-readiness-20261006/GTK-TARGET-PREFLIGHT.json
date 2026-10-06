@@ -1,0 +1,640 @@
+{
+  "schema": 1,
+  "kind": "gtk-target-preflight-failure",
+  "createdDate": "2026-10-06",
+  "fullGate": false,
+  "collectionComplete": false,
+  "performanceAcceptance": false,
+  "promotionAccepted": false,
+  "deploymentPerformed": false,
+  "sourceIdentity": {
+    "sourceCommit": "c2cfadebe2247128dbc06cdb4b9c44ef5795d181",
+    "sourceTree": "5f477909222c7c736a8934a19c669aef9298cfea",
+    "candidateCommit": "c2cfadebe2247128dbc06cdb4b9c44ef5795d181",
+    "verifiedAgainst": "Retained GitHub head_commit plus local commit tree; all job heads and both static report identities agree."
+  },
+  "github": {
+    "repository": "oborskyivitalii/oborskyivitalii",
+    "pullRequest": 23,
+    "workflow": ".github/workflows/site-gtk-target-probe.yml",
+    "run": {
+      "id": 37511255893,
+      "attempt": 1,
+      "url": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37511255893",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "failure",
+      "createdAt": "2026-10-06T18:25:55Z",
+      "updatedAt": "2026-10-06T18:28:00Z"
+    },
+    "artifacts": [
+      {
+        "id": 11435598056,
+        "name": "gtk-target-static-37511255893-1",
+        "size_in_bytes": 79807,
+        "url": "https://api.github.com/repos/oborskyivitalii/oborskyivitalii/actions/artifacts/11435598056",
+        "archive_download_url": "https://api.github.com/repos/oborskyivitalii/oborskyivitalii/actions/artifacts/11435598056/zip",
+        "expired": false,
+        "created_at": "2026-10-06T18:27:55Z",
+        "expires_at": "2027-01-04T18:25:56Z",
+        "updated_at": "2026-10-06T18:27:55Z",
+        "digest": "sha256:0c3b922fd500bd5b5bd0d0d507a023bb47fe6f095b8e7a0403c076230837bef8",
+        "workflow_run": {
+          "id": 37511255893,
+          "repository_id": 1400059184,
+          "head_repository_id": 1400059184,
+          "head_branch": "work/sol-primitive-cost-20261005",
+          "head_sha": "c2cfadebe2247128dbc06cdb4b9c44ef5795d181"
+        }
+      }
+    ]
+  },
+  "rawEvidence": {
+    "metadata": {
+      "path": "/workspace/scratch/39abca264702/gtk-target-37511255893-metadata.json",
+      "bytes": 32739,
+      "sha256": "f11e168e425a8a72f011780c7b1cd6eb279bba46119c0aca6bbe827a54fb5b98",
+      "provenance": "Retained GitHub run, jobs and artifacts API responses; job conclusions and source identity verified against reports and logs."
+    },
+    "staticArtifactZIP": {
+      "path": "/workspace/scratch/39abca264702/attachments/fb1f66a7-0b2b-44c6-90b9-8c5bcbabde46/gtk-target-static-37511255893.zip",
+      "bytes": 79807,
+      "sha256": "0c3b922fd500bd5b5bd0d0d507a023bb47fe6f095b8e7a0403c076230837bef8",
+      "provenance": "GitHub download_workflow_artifact for artifact 11435598056; exact SHA256 equals retained GitHub artifact digest."
+    },
+    "gtkJobLog": {
+      "path": "/workspace/scratch/39abca264702/gtk-target-37511255893-gtk-job.log",
+      "bytes": 146978,
+      "sha256": "e490475ead112a910c58673a0f892b75236d53b213122e38319ee4ca64f20130",
+      "provenance": "GitHub fetch_workflow_job_logs for job 112432687232; verbatim retained UTF-8 bytes."
+    },
+    "wpeJobLog": {
+      "path": "/workspace/scratch/39abca264702/gtk-target-37511255893-wpe-job.log",
+      "bytes": 142784,
+      "sha256": "2f44b285b4830bebbe8b027c88b5c57f40a8110843530eccc724f77971a74de4",
+      "provenance": "GitHub fetch_workflow_job_logs for job 112432687103; verbatim retained UTF-8 bytes."
+    },
+    "staticJobLog": {
+      "path": "/workspace/scratch/39abca264702/gtk-target-37511255893-static-job.log",
+      "bytes": 70953,
+      "sha256": "b4f0b4134ff0c6db790d19caecd09f36886fac55dc111defb78b91934bee6fca",
+      "provenance": "GitHub fetch_workflow_job_logs for job 112432686631; verbatim retained UTF-8 bytes."
+    }
+  },
+  "staticArtifactEntries": [
+    {
+      "path": "bandit.json",
+      "bytes": 2121,
+      "sha256": "1e097c242c3e8a6d81949f47a96a45713853fd835afa0bf13fcff3d4b7b1e12a"
+    },
+    {
+      "path": "detect-secrets.json",
+      "bytes": 706215,
+      "sha256": "3654f78fb87d91de9546cf920f08d925696feb01843de0768b020b5a0fdd797e"
+    },
+    {
+      "path": "eslint.json",
+      "bytes": 29593,
+      "sha256": "c96ac188a57ab6c06c124d30ac0ac07a4cba66ae8951d6a2c1797998714a0e80"
+    },
+    {
+      "path": "lint.json",
+      "bytes": 1707,
+      "sha256": "e76a5d3d2b7d8d4c82cc6f78e36a9d17a7bd6e532604d1e2faaf78b20fa46905"
+    },
+    {
+      "path": "ruff.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "semgrep-settings.yml",
+      "bytes": 94,
+      "sha256": "9155f214f1f836d8b428cfaf8a88bb3c7ff54ebed9361714e0e1c823d3599c0b"
+    },
+    {
+      "path": "security.json",
+      "bytes": 13969,
+      "sha256": "eaa2092dd09c87dc1f8cbe9c93e0310bf07bf202f02c4a2eac24ddd417bb08ab"
+    },
+    {
+      "path": "semgrep.json",
+      "bytes": 7977,
+      "sha256": "f88b03437b240063fd3cd0800bf28b6806afd8e01ee7bd51e773362dc7fc86b9"
+    },
+    {
+      "path": "semgrep.log",
+      "bytes": 37113,
+      "sha256": "55e47824389a602e147f034e323b3107ad2c3386330ee1921f9a6c1791bfe516"
+    },
+    {
+      "path": "stylelint.json",
+      "bytes": 192,
+      "sha256": "e3f28861099fd575c2f1a74a397eb61eda5ae6e5a6872d7eac922e3366fe8289"
+    }
+  ],
+  "staticPreflight": {
+    "id": 112432686631,
+    "name": "static-preflight",
+    "url": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37511255893/job/112432686631",
+    "status": "completed",
+    "conclusion": "success",
+    "sourceCommit": "c2cfadebe2247128dbc06cdb4b9c44ef5795d181",
+    "startedAt": "2026-10-06T18:26:01Z",
+    "completedAt": "2026-10-06T18:27:59Z",
+    "durationSeconds": 118.0,
+    "steps": [
+      {
+        "name": "Build source identity and install locked scanners",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-10-06T18:26:15Z",
+        "completed_at": "2026-10-06T18:26:38Z",
+        "durationSeconds": 23.0
+      },
+      {
+        "name": "Lint complete current source",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-10-06T18:26:38Z",
+        "completed_at": "2026-10-06T18:26:43Z",
+        "durationSeconds": 5.0
+      },
+      {
+        "name": "Retain exact security candidates",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7,
+        "started_at": "2026-10-06T18:26:43Z",
+        "completed_at": "2026-10-06T18:27:53Z",
+        "durationSeconds": 70.0
+      },
+      {
+        "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8,
+        "started_at": "2026-10-06T18:27:53Z",
+        "completed_at": "2026-10-06T18:27:55Z",
+        "durationSeconds": 2.0
+      }
+    ],
+    "identity": {
+      "sourceCommit": "c2cfadebe2247128dbc06cdb4b9c44ef5795d181",
+      "sourceTree": "5f477909222c7c736a8934a19c669aef9298cfea",
+      "candidateCommit": "c2cfadebe2247128dbc06cdb4b9c44ef5795d181",
+      "artifactDigest": "3be0dd2590c60890ce06a3e91f30b298c3b37d9741581fd36a2d3e6e1af33984",
+      "variant": {
+        "id": "base",
+        "contract": 1,
+        "fingerprint": "48153b94fbae4f314eaa11b156df8a20227dec429abfee9e45c14fda4a1f1b2a"
+      }
+    },
+    "environment": {
+      "platform": "linux",
+      "os": "6.17.0-1022-azure",
+      "architecture": "x64",
+      "node": "v24.19.0",
+      "runnerImage": "ubuntu24",
+      "imageVersion": "20260927.320.1",
+      "cpus": [
+        "AMD EPYC 9V74 80-Core Processor",
+        "AMD EPYC 9V74 80-Core Processor",
+        "AMD EPYC 9V74 80-Core Processor",
+        "AMD EPYC 9V74 80-Core Processor"
+      ],
+      "memoryBytes": 16766414848,
+      "runId": "37511255893",
+      "attempt": "1"
+    },
+    "lint": {
+      "pass": true,
+      "scannedFiles": 123,
+      "pythonFiles": 6,
+      "eslintFiles": 116,
+      "eslintErrors": 0,
+      "eslintWarnings": 0,
+      "stylelintWarnings": 0,
+      "ruffFindings": 0,
+      "tools": {
+        "eslint": "v10.12.0",
+        "stylelint": "17.16.0",
+        "ruff": "ruff 0.16.10"
+      }
+    },
+    "security": {
+      "pass": true,
+      "semgrep": {
+        "scannedFiles": 135,
+        "expectedFiles": 135,
+        "rules": 8,
+        "findings": 0,
+        "errors": 0
+      },
+      "bandit": {
+        "loc": 566,
+        "findings": 0
+      },
+      "secrets": {
+        "trackedTextFiles": 673,
+        "reviewedCandidates": 2697
+      },
+      "historyScan": false
+    },
+    "acceptanceLimit": "Exact-head static lint/security pass against the base build identity; no native cell, browser, hosted, performance or full-stage acceptance."
+  },
+  "nativePreflight": [
+    {
+      "id": 112432687232,
+      "name": "native-target (gtk)",
+      "url": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37511255893/job/112432687232",
+      "status": "completed",
+      "conclusion": "failure",
+      "sourceCommit": "c2cfadebe2247128dbc06cdb4b9c44ef5795d181",
+      "startedAt": "2026-10-06T18:26:00Z",
+      "completedAt": "2026-10-06T18:26:55Z",
+      "durationSeconds": 55.0,
+      "plannedCellIds": [
+        "blank-constant-js-on",
+        "blank-constant-js-off",
+        "color-constant-js-on",
+        "color-constant-js-off",
+        "color-state-js-on",
+        "color-state-js-off",
+        "blank-constant-js-off-no-init",
+        "color-state-js-off-no-init"
+      ],
+      "plannedCells": 8,
+      "observedCells": 0,
+      "browserStarted": false,
+      "displayStarted": false,
+      "unitContractTests": {
+        "tests": 10,
+        "pass": 10,
+        "fail": 0,
+        "interpretation": "Unit fixtures passed; these are not the planned native browser observations."
+      },
+      "successfulPreconditions": [
+        {
+          "name": "Validate the bounded fourteen-cell contract",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-06T18:26:11Z",
+          "completed_at": "2026-10-06T18:26:11Z",
+          "durationSeconds": 0.0
+        },
+        {
+          "name": "Build exact normal Color without an intervention",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-06T18:26:11Z",
+          "completed_at": "2026-10-06T18:26:12Z",
+          "durationSeconds": 1.0
+        },
+        {
+          "name": "Bound Ubuntu downloads and use its primary archive",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-06T18:26:12Z",
+          "completed_at": "2026-10-06T18:26:12Z",
+          "durationSeconds": 0.0
+        },
+        {
+          "name": "Install the pinned Node toolchain",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-06T18:26:12Z",
+          "completed_at": "2026-10-06T18:26:18Z",
+          "durationSeconds": 6.0
+        },
+        {
+          "name": "Install Ubuntu WebKit and display dependencies without prior launch",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-06T18:26:18Z",
+          "completed_at": "2026-10-06T18:26:48Z",
+          "durationSeconds": 30.0
+        },
+        {
+          "name": "Download pinned WebKit without prior launch",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-06T18:26:48Z",
+          "completed_at": "2026-10-06T18:26:52Z",
+          "durationSeconds": 4.0
+        }
+      ],
+      "installEvidence": [
+        "2026-10-06T18:26:12.3274147Z Ubuntu source/mirror files moved to the primary archive: ['/etc/apt/apt-mirrors.txt']",
+        "2026-10-06T18:26:24.8004317Z Fetched 12.6 MB in 2s (6425 kB/s)",
+        "2026-10-06T18:26:34.0084768Z Fetched 126 MB in 7s (17.0 MB/s)",
+        "2026-10-06T18:26:51.9211373Z WebKit 26.6 (playwright webkit v2359) downloaded to /home/runner/.cache/ms-playwright/webkit-2359",
+        "2026-10-06T18:26:52.5912994Z /usr/bin/Xvfb"
+      ],
+      "collectionStep": {
+        "name": "Collect every private first-evaluation cell and its original result",
+        "status": "completed",
+        "conclusion": "failure",
+        "number": 10,
+        "started_at": "2026-10-06T18:26:52Z",
+        "completed_at": "2026-10-06T18:26:52Z",
+        "durationSeconds": 0.0
+      },
+      "failedPreconditions": [
+        {
+          "stage": "manifest-identity",
+          "assertion": "assert.equal(manifest.derivation,undefined)",
+          "sourceLocation": "tools/quality/gtk-target-probe.cjs:15:54",
+          "actual": {
+            "kind": "authored-color-effects",
+            "baseArtifactDigest": "3be0dd2590c60890ce06a3e91f30b298c3b37d9741581fd36a2d3e6e1af33984"
+          },
+          "expected": "undefined",
+          "errorName": "AssertionError [ERR_ASSERTION]",
+          "rawFailure": [
+            "2026-10-06T18:26:52.6887686Z AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:",
+            "2026-10-06T18:26:52.6888343Z + actual - expected",
+            "2026-10-06T18:26:52.6888501Z ",
+            "2026-10-06T18:26:52.6888652Z + {",
+            "2026-10-06T18:26:52.6889413Z +   baseArtifactDigest: '3be0dd2590c60890ce06a3e91f30b298c3b37d9741581fd36a2d3e6e1af33984',",
+            "2026-10-06T18:26:52.6890234Z +   kind: 'authored-color-effects'",
+            "2026-10-06T18:26:52.6890631Z + }",
+            "2026-10-06T18:26:52.6890993Z - undefined",
+            "2026-10-06T18:26:52.6891193Z ",
+            "2026-10-06T18:26:52.6891871Z     at identity (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/gtk-target-probe.cjs:15:54)",
+            "2026-10-06T18:26:52.6893289Z     at main (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/gtk-target-probe.cjs:113:16)",
+            "2026-10-06T18:26:52.6894466Z     at Object.<anonymous> (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/gtk-target-probe.cjs:127:26)",
+            "2026-10-06T18:26:52.6895232Z     at Module._compile (node:internal/modules/cjs/loader:1872:14)",
+            "2026-10-06T18:26:52.6895716Z     at Object..js (node:internal/modules/cjs/loader:2003:10)",
+            "2026-10-06T18:26:52.6896198Z     at Module.load (node:internal/modules/cjs/loader:1594:32)",
+            "2026-10-06T18:26:52.6897008Z     at Module._load (node:internal/modules/cjs/loader:1396:12)",
+            "2026-10-06T18:26:52.6897543Z     at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)",
+            "2026-10-06T18:26:52.6898142Z     at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)",
+            "2026-10-06T18:26:52.6898724Z     at node:internal/main/run_main_module:33:47",
+            "2026-10-06T18:26:52.6939045Z ##[error]Process completed with exit code 1."
+          ]
+        },
+        {
+          "stage": "always-artifact-upload",
+          "step": {
+            "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+            "status": "completed",
+            "conclusion": "failure",
+            "number": 11,
+            "started_at": "2026-10-06T18:26:52Z",
+            "completed_at": "2026-10-06T18:26:52Z",
+            "durationSeconds": 0.0
+          },
+          "artifactName": "gtk-target-gtk-37511255893-1",
+          "rawFailure": [
+            "2026-10-06T18:26:52.8679445Z ##[error]No files were found with the provided path: /home/runner/work/_temp/gtk-target-results/. No artifacts will be uploaded."
+          ],
+          "interpretation": "Identity validation throws before the first gtk-target.json save or native stderr capture; the output directory exists without report files, so upload fails."
+        }
+      ],
+      "checksReachedBeforeIdentityFailure": [
+        "Private-loopback URL precondition",
+        "Public artifact byte verification",
+        "Candidate SHA format and equality to sourceCommit/candidateCommit",
+        "sourceDirty false",
+        "sourceTree/artifactDigest formats",
+        "manifest.diagnostic undefined"
+      ],
+      "checksNotReached": [
+        "Remaining variant/fullGate identity assertions",
+        "Initial attribution report checkpoint",
+        "Private server setup",
+        "Playwright/Xvfb launch",
+        "First evaluation",
+        "Native process/kernel/coredump collection"
+      ],
+      "nativeArtifactPresent": false
+    },
+    {
+      "id": 112432687103,
+      "name": "native-target (wpe)",
+      "url": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37511255893/job/112432687103",
+      "status": "completed",
+      "conclusion": "failure",
+      "sourceCommit": "c2cfadebe2247128dbc06cdb4b9c44ef5795d181",
+      "startedAt": "2026-10-06T18:26:01Z",
+      "completedAt": "2026-10-06T18:27:09Z",
+      "durationSeconds": 68.0,
+      "plannedCellIds": [
+        "blank-constant-js-on",
+        "blank-constant-js-off",
+        "color-constant-js-on",
+        "color-constant-js-off",
+        "color-state-js-on",
+        "color-state-js-off"
+      ],
+      "plannedCells": 6,
+      "observedCells": 0,
+      "browserStarted": false,
+      "displayStarted": false,
+      "unitContractTests": {
+        "tests": 10,
+        "pass": 10,
+        "fail": 0,
+        "interpretation": "Unit fixtures passed; these are not the planned native browser observations."
+      },
+      "successfulPreconditions": [
+        {
+          "name": "Validate the bounded fourteen-cell contract",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-06T18:26:15Z",
+          "completed_at": "2026-10-06T18:26:15Z",
+          "durationSeconds": 0.0
+        },
+        {
+          "name": "Build exact normal Color without an intervention",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-06T18:26:15Z",
+          "completed_at": "2026-10-06T18:26:16Z",
+          "durationSeconds": 1.0
+        },
+        {
+          "name": "Bound Ubuntu downloads and use its primary archive",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-06T18:26:16Z",
+          "completed_at": "2026-10-06T18:26:16Z",
+          "durationSeconds": 0.0
+        },
+        {
+          "name": "Install the pinned Node toolchain",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-06T18:26:16Z",
+          "completed_at": "2026-10-06T18:26:21Z",
+          "durationSeconds": 5.0
+        },
+        {
+          "name": "Install Ubuntu WebKit and display dependencies without prior launch",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-06T18:26:21Z",
+          "completed_at": "2026-10-06T18:27:02Z",
+          "durationSeconds": 41.0
+        },
+        {
+          "name": "Download pinned WebKit without prior launch",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-06T18:27:02Z",
+          "completed_at": "2026-10-06T18:27:06Z",
+          "durationSeconds": 4.0
+        }
+      ],
+      "installEvidence": [
+        "2026-10-06T18:26:16.1155966Z Ubuntu source/mirror files moved to the primary archive: ['/etc/apt/apt-mirrors.txt']",
+        "2026-10-06T18:26:29.9601462Z Fetched 9982 kB in 3s (3891 kB/s)",
+        "2026-10-06T18:26:47.4053850Z Fetched 115 MB in 16s (7126 kB/s)",
+        "2026-10-06T18:27:05.4784722Z WebKit 26.6 (playwright webkit v2359) downloaded to /home/runner/.cache/ms-playwright/webkit-2359",
+        "2026-10-06T18:27:06.0535342Z /usr/bin/Xvfb"
+      ],
+      "collectionStep": {
+        "name": "Collect every private first-evaluation cell and its original result",
+        "status": "completed",
+        "conclusion": "failure",
+        "number": 10,
+        "started_at": "2026-10-06T18:27:06Z",
+        "completed_at": "2026-10-06T18:27:06Z",
+        "durationSeconds": 0.0
+      },
+      "failedPreconditions": [
+        {
+          "stage": "manifest-identity",
+          "assertion": "assert.equal(manifest.derivation,undefined)",
+          "sourceLocation": "tools/quality/gtk-target-probe.cjs:15:54",
+          "actual": {
+            "kind": "authored-color-effects",
+            "baseArtifactDigest": "3be0dd2590c60890ce06a3e91f30b298c3b37d9741581fd36a2d3e6e1af33984"
+          },
+          "expected": "undefined",
+          "errorName": "AssertionError [ERR_ASSERTION]",
+          "rawFailure": [
+            "2026-10-06T18:27:06.1300115Z AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:",
+            "2026-10-06T18:27:06.1300919Z + actual - expected",
+            "2026-10-06T18:27:06.1301108Z ",
+            "2026-10-06T18:27:06.1301204Z + {",
+            "2026-10-06T18:27:06.1301780Z +   baseArtifactDigest: '3be0dd2590c60890ce06a3e91f30b298c3b37d9741581fd36a2d3e6e1af33984',",
+            "2026-10-06T18:27:06.1302413Z +   kind: 'authored-color-effects'",
+            "2026-10-06T18:27:06.1302729Z + }",
+            "2026-10-06T18:27:06.1303032Z - undefined",
+            "2026-10-06T18:27:06.1303243Z ",
+            "2026-10-06T18:27:06.1303783Z     at identity (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/gtk-target-probe.cjs:15:54)",
+            "2026-10-06T18:27:06.1304923Z     at main (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/gtk-target-probe.cjs:113:16)",
+            "2026-10-06T18:27:06.1306151Z     at Object.<anonymous> (/home/runner/work/oborskyivitalii/oborskyivitalii/tools/quality/gtk-target-probe.cjs:127:26)",
+            "2026-10-06T18:27:06.1307131Z     at Module._compile (node:internal/modules/cjs/loader:1872:14)",
+            "2026-10-06T18:27:06.1307776Z     at Object..js (node:internal/modules/cjs/loader:2003:10)",
+            "2026-10-06T18:27:06.1308305Z     at Module.load (node:internal/modules/cjs/loader:1594:32)",
+            "2026-10-06T18:27:06.1308870Z     at Module._load (node:internal/modules/cjs/loader:1396:12)",
+            "2026-10-06T18:27:06.1309511Z     at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)",
+            "2026-10-06T18:27:06.1310256Z     at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)",
+            "2026-10-06T18:27:06.1311039Z     at node:internal/main/run_main_module:33:47",
+            "2026-10-06T18:27:06.1344079Z ##[error]Process completed with exit code 1."
+          ]
+        },
+        {
+          "stage": "always-artifact-upload",
+          "step": {
+            "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+            "status": "completed",
+            "conclusion": "failure",
+            "number": 11,
+            "started_at": "2026-10-06T18:27:06Z",
+            "completed_at": "2026-10-06T18:27:06Z",
+            "durationSeconds": 0.0
+          },
+          "artifactName": "gtk-target-wpe-37511255893-1",
+          "rawFailure": [
+            "2026-10-06T18:27:06.2736292Z ##[error]No files were found with the provided path: /home/runner/work/_temp/gtk-target-results/. No artifacts will be uploaded."
+          ],
+          "interpretation": "Identity validation throws before the first gtk-target.json save or native stderr capture; the output directory exists without report files, so upload fails."
+        }
+      ],
+      "checksReachedBeforeIdentityFailure": [
+        "Private-loopback URL precondition",
+        "Public artifact byte verification",
+        "Candidate SHA format and equality to sourceCommit/candidateCommit",
+        "sourceDirty false",
+        "sourceTree/artifactDigest formats",
+        "manifest.diagnostic undefined"
+      ],
+      "checksNotReached": [
+        "Remaining variant/fullGate identity assertions",
+        "Initial attribution report checkpoint",
+        "Private server setup",
+        "Playwright/Xvfb launch",
+        "First evaluation",
+        "Native process/kernel/coredump collection"
+      ],
+      "nativeArtifactPresent": false
+    }
+  ],
+  "coverage": {
+    "planned": {
+      "gtk": 8,
+      "wpe": 6,
+      "total": 14
+    },
+    "observed": {
+      "gtk": 0,
+      "wpe": 0,
+      "total": 0
+    },
+    "browserStarts": 0,
+    "nativeReports": 0,
+    "collectionComplete": false,
+    "interpretation": "Both native jobs stopped at manifest identity before plan/report initialization and before any browser process. This run provides no native crash, successful evaluation or port comparison observation."
+  },
+  "failureAttribution": {
+    "supportedCause": "The collector requires manifest.derivation to be undefined, but the canonical normal Color builder intentionally records authored-color-effects with its verified base artifact digest. Both jobs reject that legitimate producer lineage before launch.",
+    "primaryEvidence": [
+      {
+        "source": "https://github.com/oborskyivitalii/oborskyivitalii/blob/c2cfadebe2247128dbc06cdb4b9c44ef5795d181/tools/quality/gtk-target-probe.cjs",
+        "scope": "identity line 15 and main lines 111\u2013116: byte verification precedes identity; report checkpoint and runtime launch follow it."
+      },
+      {
+        "source": "https://github.com/oborskyivitalii/oborskyivitalii/blob/c2cfadebe2247128dbc06cdb4b9c44ef5795d181/tools/staging/color.cjs",
+        "scope": "build() records derivation.kind authored-color-effects and exact baseArtifactDigest after canonical Color rendering."
+      }
+    ],
+    "unestablished": [
+      "Cause of the prior no-JavaScript native page crashes",
+      "GTK/WPE first-evaluation behavior",
+      "Native signal, call stack or exact blocking component",
+      "Full staging or performance acceptance"
+    ],
+    "requiredCorrection": "Admit only the canonical verified normal Color lineage; continue rejecting diagnostic/intervention artifacts and foreign base digests. Preserve failures and ensure preflight exceptions are retained before launching the unchanged fourteen-cell screen."
+  },
+  "review": {
+    "reviewer": "installer_review",
+    "mode": "Independent evidence review; only this index created.",
+    "checks": [
+      "Recomputed all retained raw file byte counts and SHA256 values; ZIP digest and size match GitHub metadata.",
+      "Checked every archived report/scanner JSON and recorded exact member byte counts/checksums.",
+      "Checked exact commit tree and report/job/source identity equality.",
+      "Matched both identity assertion blocks and failed uploads to metadata; verified earlier installs and ten unit fixtures passed.",
+      "Read pinned collector and canonical Color producer to distinguish preflight defect from native browser evidence."
+    ]
+  },
+  "acceptance": "Failed preflight, zero native observations. Static passes and successful installation do not complete the planned collection or authorize staging acceptance, promotion or merge."
+}

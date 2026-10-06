@@ -1,0 +1,492 @@
+{
+  "scope": "Sequential paired local diagnosis: dark Research, 390x844 DPR3, synthetic CPU x4, no tracing/sampling. All trials retained. Not a full hosted gate or physical display FPS.",
+  "rows": [
+    {
+      "pair": 0,
+      "order": [
+        "before",
+        "after"
+      ],
+      "label": "before",
+      "source": "fc2ef3f568d1ce9357c4076c0417e0f557684f047b838dcbc4e47352ee4ca5a8",
+      "bytes": 669053,
+      "steady": [
+        {
+          "kind": "idle",
+          "p95": 20.599999994039536,
+          "busy": 11.401548408090076,
+          "paints": 19,
+          "pass": true
+        },
+        {
+          "kind": "scroll",
+          "p95": 21.19999999552965,
+          "busy": 34.128841054864274,
+          "paints": 65,
+          "pass": true
+        }
+      ],
+      "flights": [
+        {
+          "from": "research",
+          "to": "writing",
+          "phase": "cold",
+          "p95": 81.20000000298023,
+          "max": 81.20000000298023,
+          "gapMax": 133.39999999850988,
+          "ready": 1369.9000000059605,
+          "preparationMax": 36.600000001490116,
+          "paints": 16,
+          "pass": false,
+          "error": "slow transition painted p95"
+        },
+        {
+          "from": "writing",
+          "to": "research",
+          "phase": "warm",
+          "p95": 50,
+          "max": 50,
+          "gapMax": 100.40000000596046,
+          "ready": 1341,
+          "preparationMax": 12.5,
+          "paints": 20,
+          "pass": true,
+          "error": null
+        },
+        {
+          "from": "research",
+          "to": "index",
+          "phase": "warm",
+          "p95": 72.89999999850988,
+          "max": 72.89999999850988,
+          "gapMax": 111.20000000298023,
+          "ready": 1327.5,
+          "preparationMax": 23.399999998509884,
+          "paints": 16,
+          "pass": true,
+          "error": null
+        },
+        {
+          "from": "index",
+          "to": "research",
+          "phase": "warm",
+          "p95": 45.69999999552965,
+          "max": 45.69999999552965,
+          "gapMax": 85.89999999850988,
+          "ready": 1308.9000000059605,
+          "preparationMax": 12.699999995529652,
+          "paints": 18,
+          "pass": true,
+          "error": null
+        }
+      ],
+      "pass": false
+    },
+    {
+      "pair": 0,
+      "order": [
+        "before",
+        "after"
+      ],
+      "label": "after",
+      "source": "619df613923f84da69b4bfdb8bd36bb27c8943036370ba73ffc2597156e4d4bf",
+      "bytes": 672907,
+      "steady": [
+        {
+          "kind": "idle",
+          "p95": 21.099999994039536,
+          "busy": 11.948103792296198,
+          "paints": 19,
+          "pass": true
+        },
+        {
+          "kind": "scroll",
+          "p95": 25.599999994039536,
+          "busy": 32.938462743495805,
+          "paints": 58,
+          "pass": true
+        }
+      ],
+      "flights": [
+        {
+          "from": "research",
+          "to": "writing",
+          "phase": "cold",
+          "p95": 81.39999999850988,
+          "max": 81.39999999850988,
+          "gapMax": 113.09999999403954,
+          "ready": 1321.2999999970198,
+          "preparationMax": 40.900000005960464,
+          "paints": 19,
+          "pass": false,
+          "error": "slow transition painted p95"
+        },
+        {
+          "from": "writing",
+          "to": "research",
+          "phase": "warm",
+          "p95": 43.899999998509884,
+          "max": 44.70000000298023,
+          "gapMax": 90.5,
+          "ready": 1353.5,
+          "preparationMax": 14.100000001490116,
+          "paints": 23,
+          "pass": true,
+          "error": null
+        },
+        {
+          "from": "research",
+          "to": "index",
+          "phase": "warm",
+          "p95": 37.5,
+          "max": 52.70000000298023,
+          "gapMax": 83.29999999701977,
+          "ready": 1332.6000000014901,
+          "preparationMax": 25.700000002980232,
+          "paints": 22,
+          "pass": true,
+          "error": null
+        },
+        {
+          "from": "index",
+          "to": "research",
+          "phase": "warm",
+          "p95": 36.100000001490116,
+          "max": 46.899999998509884,
+          "gapMax": 70.60000000149012,
+          "ready": 1315.6999999955297,
+          "preparationMax": 14.399999998509884,
+          "paints": 22,
+          "pass": true,
+          "error": null
+        }
+      ],
+      "pass": false
+    },
+    {
+      "pair": 1,
+      "order": [
+        "after",
+        "before"
+      ],
+      "label": "before",
+      "source": "fc2ef3f568d1ce9357c4076c0417e0f557684f047b838dcbc4e47352ee4ca5a8",
+      "bytes": 669053,
+      "steady": [
+        {
+          "kind": "idle",
+          "p95": 25.899999998509884,
+          "busy": 13.398771047072033,
+          "paints": 19,
+          "pass": true
+        },
+        {
+          "kind": "scroll",
+          "p95": 21.399999998509884,
+          "busy": 34.10367773100114,
+          "paints": 61,
+          "pass": true
+        }
+      ],
+      "flights": [
+        {
+          "from": "research",
+          "to": "writing",
+          "phase": "cold",
+          "p95": 84.60000000149012,
+          "max": 84.60000000149012,
+          "gapMax": 133.10000000149012,
+          "ready": 1452,
+          "preparationMax": 61.099999994039536,
+          "paints": 15,
+          "pass": false,
+          "error": "slow transition painted p95"
+        },
+        {
+          "from": "writing",
+          "to": "research",
+          "phase": "warm",
+          "p95": 56.29999999701977,
+          "max": 56.29999999701977,
+          "gapMax": 100.79999999701977,
+          "ready": 1368.1000000014901,
+          "preparationMax": 13.5,
+          "paints": 19,
+          "pass": true,
+          "error": null
+        },
+        {
+          "from": "research",
+          "to": "index",
+          "phase": "warm",
+          "p95": 80.80000000447035,
+          "max": 80.80000000447035,
+          "gapMax": 127.10000000149012,
+          "ready": 1327.5,
+          "preparationMax": 21.899999998509884,
+          "paints": 16,
+          "pass": false,
+          "error": "slow transition painted p95"
+        },
+        {
+          "from": "index",
+          "to": "research",
+          "phase": "warm",
+          "p95": 47.399999998509884,
+          "max": 47.399999998509884,
+          "gapMax": 90.89999999850988,
+          "ready": 1337.2999999970198,
+          "preparationMax": 13.599999994039536,
+          "paints": 18,
+          "pass": true,
+          "error": null
+        }
+      ],
+      "pass": false
+    },
+    {
+      "pair": 1,
+      "order": [
+        "after",
+        "before"
+      ],
+      "label": "after",
+      "source": "619df613923f84da69b4bfdb8bd36bb27c8943036370ba73ffc2597156e4d4bf",
+      "bytes": 672907,
+      "steady": [
+        {
+          "kind": "idle",
+          "p95": 17.600000001490116,
+          "busy": 9.730700178284762,
+          "paints": 19,
+          "pass": true
+        },
+        {
+          "kind": "scroll",
+          "p95": 19,
+          "busy": 30.762792922339216,
+          "paints": 63,
+          "pass": true
+        }
+      ],
+      "flights": [
+        {
+          "from": "research",
+          "to": "writing",
+          "phase": "cold",
+          "p95": 71.60000000149012,
+          "max": 71.60000000149012,
+          "gapMax": 108.60000000149012,
+          "ready": 1350.8000000044703,
+          "preparationMax": 49.19999999552965,
+          "paints": 19,
+          "pass": true,
+          "error": null
+        },
+        {
+          "from": "writing",
+          "to": "research",
+          "phase": "warm",
+          "p95": 41.600000001490116,
+          "max": 49.599999994039536,
+          "gapMax": 83.80000000447035,
+          "ready": 1285.1999999955297,
+          "preparationMax": 20.30000000447035,
+          "paints": 22,
+          "pass": true,
+          "error": null
+        },
+        {
+          "from": "research",
+          "to": "index",
+          "phase": "warm",
+          "p95": 34.29999999701977,
+          "max": 52.600000001490116,
+          "gapMax": 84.5,
+          "ready": 1296.2000000029802,
+          "preparationMax": 26.799999997019768,
+          "paints": 21,
+          "pass": true,
+          "error": null
+        },
+        {
+          "from": "index",
+          "to": "research",
+          "phase": "warm",
+          "p95": 36.399999998509884,
+          "max": 38.80000000447035,
+          "gapMax": 69.09999999403954,
+          "ready": 1319.3999999985099,
+          "preparationMax": 15.5,
+          "paints": 24,
+          "pass": true,
+          "error": null
+        }
+      ],
+      "pass": true
+    },
+    {
+      "pair": 2,
+      "order": [
+        "before",
+        "after"
+      ],
+      "label": "before",
+      "source": "fc2ef3f568d1ce9357c4076c0417e0f557684f047b838dcbc4e47352ee4ca5a8",
+      "bytes": 669053,
+      "steady": [
+        {
+          "kind": "idle",
+          "p95": 19.200000002980232,
+          "busy": 10.582411881008133,
+          "paints": 19,
+          "pass": true
+        },
+        {
+          "kind": "scroll",
+          "p95": 20.80000000447035,
+          "busy": 27.77887697152594,
+          "paints": 49,
+          "pass": true
+        }
+      ],
+      "flights": [
+        {
+          "from": "research",
+          "to": "writing",
+          "phase": "cold",
+          "p95": 80.79999999701977,
+          "max": 80.79999999701977,
+          "gapMax": 133.09999999403954,
+          "ready": 1422.8000000044703,
+          "preparationMax": 37.5,
+          "paints": 16,
+          "pass": false,
+          "error": "slow transition painted p95"
+        },
+        {
+          "from": "writing",
+          "to": "research",
+          "phase": "warm",
+          "p95": 62.899999998509884,
+          "max": 62.899999998509884,
+          "gapMax": 123.90000000596046,
+          "ready": 1428.3000000044703,
+          "preparationMax": 14.5,
+          "paints": 18,
+          "pass": true,
+          "error": null
+        },
+        {
+          "from": "research",
+          "to": "index",
+          "phase": "warm",
+          "p95": 63.20000000298023,
+          "max": 63.20000000298023,
+          "gapMax": 99.80000000447035,
+          "ready": 1301.7000000029802,
+          "preparationMax": 19.399999998509884,
+          "paints": 16,
+          "pass": true,
+          "error": null
+        },
+        {
+          "from": "index",
+          "to": "research",
+          "phase": "warm",
+          "p95": 48.20000000298023,
+          "max": 48.20000000298023,
+          "gapMax": 86.20000000298023,
+          "ready": 1319.1000000014901,
+          "preparationMax": 14.899999998509884,
+          "paints": 18,
+          "pass": true,
+          "error": null
+        }
+      ],
+      "pass": false
+    },
+    {
+      "pair": 2,
+      "order": [
+        "before",
+        "after"
+      ],
+      "label": "after",
+      "source": "619df613923f84da69b4bfdb8bd36bb27c8943036370ba73ffc2597156e4d4bf",
+      "bytes": 672907,
+      "steady": [
+        {
+          "kind": "idle",
+          "p95": 20.69999999552965,
+          "busy": 11.466517767799498,
+          "paints": 19,
+          "pass": true
+        },
+        {
+          "kind": "scroll",
+          "p95": 21.399999998509884,
+          "busy": 33.10199873135856,
+          "paints": 64,
+          "pass": true
+        }
+      ],
+      "flights": [
+        {
+          "from": "research",
+          "to": "writing",
+          "phase": "cold",
+          "p95": 75,
+          "max": 75,
+          "gapMax": 110,
+          "ready": 1350.2999999970198,
+          "preparationMax": 46.19999999552965,
+          "paints": 18,
+          "pass": true,
+          "error": null
+        },
+        {
+          "from": "writing",
+          "to": "research",
+          "phase": "warm",
+          "p95": 70.90000000596046,
+          "max": 70.90000000596046,
+          "gapMax": 148.60000000149012,
+          "ready": 1449.8000000044703,
+          "preparationMax": 17,
+          "paints": 20,
+          "pass": true,
+          "error": null
+        },
+        {
+          "from": "research",
+          "to": "index",
+          "phase": "warm",
+          "p95": 44.600000001490116,
+          "max": 44.600000001490116,
+          "gapMax": 93.29999999701977,
+          "ready": 1295.7999999970198,
+          "preparationMax": 21.80000000447035,
+          "paints": 20,
+          "pass": true,
+          "error": null
+        },
+        {
+          "from": "index",
+          "to": "research",
+          "phase": "warm",
+          "p95": 29.19999999552965,
+          "max": 39.29999999701977,
+          "gapMax": 84.19999999552965,
+          "ready": 1317.3999999985099,
+          "preparationMax": 16.899999998509884,
+          "paints": 23,
+          "pass": true,
+          "error": null
+        }
+      ],
+      "pass": true
+    }
+  ],
+  "afterPass": false
+}

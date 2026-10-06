@@ -1,0 +1,2411 @@
+{
+  "source": "73579c6ca5673a0904e10210685f0f8aeb1a847eae8741e08ace424a073df836",
+  "browser": "153.0.8010.12",
+  "initialScroll": "42%",
+  "scope": "Opt-in fine stage diagnosis only, synthetic CPU×4; not a clean budget run.",
+  "idle": {
+    "frames": [
+      {
+        "time": 2033.6,
+        "started": 2034,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 2050.4,
+        "started": 2050.7999999970198,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 2067,
+        "started": 2067.1999999955297,
+        "duration": 0.10000000149011612,
+        "painted": false
+      },
+      {
+        "time": 2083.7,
+        "started": 2083.89999999851,
+        "duration": 16.299999997019768,
+        "painted": true
+      },
+      {
+        "time": 2100.3,
+        "started": 2116.1999999955297,
+        "duration": 0.10000000149011612,
+        "painted": false
+      },
+      {
+        "time": 2117,
+        "started": 2119.39999999851,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 2133.6,
+        "started": 2134.2999999970198,
+        "duration": 0.10000000149011612,
+        "painted": false
+      },
+      {
+        "time": 2150.4,
+        "started": 2150.60000000149,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 2167,
+        "started": 2167.6999999955297,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 2183.6,
+        "started": 2184,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 2200.3,
+        "started": 2201.1999999955297,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 2217,
+        "started": 2217.6999999955297,
+        "duration": 18.100000001490116,
+        "painted": true
+      },
+      {
+        "time": 2233.6,
+        "started": 2250.5,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 2250.3,
+        "started": 2250.60000000149,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 2267,
+        "started": 2267.10000000149,
+        "duration": 0.09999999403953552,
+        "painted": false
+      },
+      {
+        "time": 2283.6,
+        "started": 2286.10000000149,
+        "duration": 0.09999999403953552,
+        "painted": false
+      },
+      {
+        "time": 2300.3,
+        "started": 2301.10000000149,
+        "duration": 0.19999999552965164,
+        "painted": false
+      },
+      {
+        "time": 2316.9,
+        "started": 2317.5,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 2333.6,
+        "started": 2333.89999999851,
+        "duration": 0.10000000149011612,
+        "painted": false
+      },
+      {
+        "time": 2350.4,
+        "started": 2350.6999999955297,
+        "duration": 15.800000004470348,
+        "painted": true
+      }
+    ],
+    "events": [
+      {
+        "kind": "route",
+        "time": 436.8999999985099,
+        "start": 435.79999999701977,
+        "duration": 1.1000000014901161,
+        "page": "research"
+      },
+      {
+        "kind": "stage",
+        "part": "mount-unmount",
+        "time": 439.5,
+        "start": 439.5,
+        "duration": 0,
+        "page": "research"
+      },
+      {
+        "kind": "stage",
+        "part": "mount-dom",
+        "time": 440.79999999701977,
+        "start": 439.5,
+        "duration": 1.2999999970197678,
+        "page": "research"
+      },
+      {
+        "kind": "stage",
+        "part": "mount-archive",
+        "time": 441.6000000014901,
+        "start": 440.79999999701977,
+        "duration": 0.8000000044703484,
+        "page": "research"
+      },
+      {
+        "kind": "stage",
+        "part": "scroll-native",
+        "time": 441.79999999701977,
+        "start": 441.79999999701977,
+        "duration": 0,
+        "page": "research"
+      },
+      {
+        "kind": "stage",
+        "part": "mount-scroll",
+        "time": 441.79999999701977,
+        "start": 441.6000000014901,
+        "duration": 0.19999999552965164,
+        "page": "research"
+      },
+      {
+        "kind": "stage",
+        "part": "mount-anchor",
+        "time": 441.79999999701977,
+        "start": 441.79999999701977,
+        "duration": 0,
+        "page": "research"
+      },
+      {
+        "kind": "stage",
+        "time": 460.3999999985099,
+        "page": "research",
+        "part": "layout-range",
+        "start": 441.79999999701977,
+        "duration": 18.600000001490116
+      },
+      {
+        "kind": "stage",
+        "time": 461.3999999985099,
+        "page": "research",
+        "part": "layout-stops",
+        "start": 460.3999999985099,
+        "duration": 1
+      },
+      {
+        "kind": "stage",
+        "time": 461.6000000014901,
+        "page": "research",
+        "part": "layout-writing",
+        "start": 461.3999999985099,
+        "duration": 0.10000000149011612
+      },
+      {
+        "kind": "layout",
+        "time": 461.69999999552965,
+        "page": "research",
+        "reasons": [
+          "size",
+          "mount"
+        ],
+        "passes": 2,
+        "start": 441.79999999701977,
+        "duration": 19.899999998509884
+      },
+      {
+        "kind": "stage",
+        "part": "mount-layout",
+        "time": 461.69999999552965,
+        "start": 441.79999999701977,
+        "duration": 19.899999998509884,
+        "page": "research"
+      },
+      {
+        "kind": "stage",
+        "part": "mount-ready",
+        "time": 461.79999999701977,
+        "start": 461.69999999552965,
+        "duration": 0.10000000149011612,
+        "page": "research"
+      },
+      {
+        "kind": "navigation-ready",
+        "time": 467.8999999985099,
+        "page": "research"
+      },
+      {
+        "kind": "stage",
+        "time": 505.79999999701977,
+        "page": "research",
+        "part": "model-build",
+        "route": "research",
+        "start": 472.19999999552965,
+        "duration": 33.600000001490116
+      },
+      {
+        "kind": "stage",
+        "time": 522.6000000014901,
+        "page": "research",
+        "part": "model-color",
+        "route": "research",
+        "start": 505.79999999701977,
+        "duration": 16.80000000447035
+      },
+      {
+        "kind": "model",
+        "time": 522.6999999955297,
+        "page": "research",
+        "route": "research",
+        "compact": true,
+        "start": 472.19999999552965,
+        "duration": 50.400000005960464,
+        "objects": 252,
+        "vertices": 10488,
+        "faces": 5590,
+        "lines": 3777
+      },
+      {
+        "kind": "stage",
+        "time": 540,
+        "page": "research",
+        "part": "draw-project",
+        "start": 472.19999999552965,
+        "duration": 67.80000000447035
+      },
+      {
+        "kind": "stage",
+        "time": 543.5,
+        "page": "research",
+        "part": "draw-effects",
+        "start": 540,
+        "duration": 3.5
+      },
+      {
+        "kind": "stage",
+        "time": 545.8999999985099,
+        "page": "research",
+        "part": "draw-sort",
+        "start": 543.5,
+        "duration": 2.399999998509884
+      },
+      {
+        "kind": "stage",
+        "time": 560,
+        "page": "research",
+        "part": "draw-paint",
+        "start": 545.8999999985099,
+        "duration": 14.100000001490116
+      },
+      {
+        "kind": "stage",
+        "time": 561,
+        "page": "research",
+        "part": "draw-state",
+        "start": 560,
+        "duration": 1
+      },
+      {
+        "kind": "stage",
+        "time": 621,
+        "page": "research",
+        "part": "layout-range",
+        "start": 620.8999999985099,
+        "duration": 0.10000000149011612
+      },
+      {
+        "kind": "stage",
+        "time": 621.3999999985099,
+        "page": "research",
+        "part": "layout-stops",
+        "start": 621,
+        "duration": 0.3999999985098839
+      },
+      {
+        "kind": "stage",
+        "time": 621.3999999985099,
+        "page": "research",
+        "part": "layout-writing",
+        "start": 621.3999999985099,
+        "duration": 0
+      },
+      {
+        "kind": "layout",
+        "time": 621.3999999985099,
+        "page": "research",
+        "reasons": [
+          "size",
+          "resize"
+        ],
+        "passes": 3,
+        "start": 620.8999999985099,
+        "duration": 0.5
+      },
+      {
+        "kind": "stage",
+        "time": 634.6999999955297,
+        "page": "research",
+        "part": "draw-project",
+        "start": 621.5,
+        "duration": 13.199999995529652
+      },
+      {
+        "kind": "stage",
+        "time": 639.7999999970198,
+        "page": "research",
+        "part": "draw-effects",
+        "start": 634.6999999955297,
+        "duration": 5.100000001490116
+      },
+      {
+        "kind": "stage",
+        "time": 642.7999999970198,
+        "page": "research",
+        "part": "draw-sort",
+        "start": 639.7999999970198,
+        "duration": 3
+      },
+      {
+        "kind": "stage",
+        "time": 653.5,
+        "page": "research",
+        "part": "draw-paint",
+        "start": 642.7999999970198,
+        "duration": 10.700000002980232
+      },
+      {
+        "kind": "stage",
+        "time": 654.3999999985099,
+        "page": "research",
+        "part": "draw-state",
+        "start": 653.5,
+        "duration": 0.8999999985098839
+      },
+      {
+        "kind": "stage",
+        "time": 716,
+        "page": "research",
+        "part": "layout-range",
+        "start": 716,
+        "duration": 0
+      },
+      {
+        "kind": "stage",
+        "time": 716.6000000014901,
+        "page": "research",
+        "part": "layout-stops",
+        "start": 716,
+        "duration": 0.6000000014901161
+      },
+      {
+        "kind": "stage",
+        "time": 716.7999999970198,
+        "page": "research",
+        "part": "layout-writing",
+        "start": 716.6000000014901,
+        "duration": 0.19999999552965164
+      },
+      {
+        "kind": "layout",
+        "time": 716.7999999970198,
+        "page": "research",
+        "reasons": [
+          "size"
+        ],
+        "passes": 4,
+        "start": 716,
+        "duration": 0.7999999970197678
+      },
+      {
+        "kind": "stage",
+        "time": 727.5,
+        "page": "research",
+        "part": "draw-project",
+        "start": 716.8999999985099,
+        "duration": 10.600000001490116
+      },
+      {
+        "kind": "stage",
+        "time": 729.5,
+        "page": "research",
+        "part": "draw-effects",
+        "start": 727.5,
+        "duration": 2
+      },
+      {
+        "kind": "stage",
+        "time": 731.5,
+        "page": "research",
+        "part": "draw-sort",
+        "start": 729.5,
+        "duration": 2
+      },
+      {
+        "kind": "stage",
+        "time": 740.6000000014901,
+        "page": "research",
+        "part": "draw-paint",
+        "start": 731.5,
+        "duration": 9.100000001490116
+      },
+      {
+        "kind": "stage",
+        "time": 740.6999999955297,
+        "page": "research",
+        "part": "draw-state",
+        "start": 740.6000000014901,
+        "duration": 0.09999999403953552
+      },
+      {
+        "kind": "stage",
+        "time": 773.1999999955297,
+        "page": "research",
+        "part": "draw-project",
+        "start": 762.6000000014901,
+        "duration": 10.599999994039536
+      },
+      {
+        "kind": "stage",
+        "time": 775.3999999985099,
+        "page": "research",
+        "part": "draw-effects",
+        "start": 773.1999999955297,
+        "duration": 2.2000000029802322
+      },
+      {
+        "kind": "stage",
+        "time": 777.5,
+        "page": "research",
+        "part": "draw-sort",
+        "start": 775.3999999985099,
+        "duration": 2.100000001490116
+      },
+      {
+        "kind": "stage",
+        "time": 790.3999999985099,
+        "page": "research",
+        "part": "draw-paint",
+        "start": 777.5,
+        "duration": 12.899999998509884
+      },
+      {
+        "kind": "stage",
+        "time": 790.5,
+        "page": "research",
+        "part": "draw-state",
+        "start": 790.3999999985099,
+        "duration": 0.10000000149011612
+      },
+      {
+        "kind": "stage",
+        "time": 825.8999999985099,
+        "page": "research",
+        "part": "draw-project",
+        "start": 814.3999999985099,
+        "duration": 10.899999998509884
+      },
+      {
+        "kind": "stage",
+        "time": 828.5,
+        "page": "research",
+        "part": "draw-effects",
+        "start": 825.2999999970198,
+        "duration": 2.600000001490116
+      },
+      {
+        "kind": "stage",
+        "time": 831.1000000014901,
+        "page": "research",
+        "part": "draw-sort",
+        "start": 827.8999999985099,
+        "duration": 3.2000000029802322
+      },
+      {
+        "kind": "stage",
+        "time": 841.1000000014901,
+        "page": "research",
+        "part": "draw-paint",
+        "start": 831.1000000014901,
+        "duration": 10
+      },
+      {
+        "kind": "stage",
+        "time": 841.1999999955297,
+        "page": "research",
+        "part": "draw-state",
+        "start": 841.1000000014901,
+        "duration": 0.09999999403953552
+      },
+      {
+        "kind": "stage",
+        "time": 866,
+        "page": "research",
+        "part": "draw-project",
+        "start": 859.2999999970198,
+        "duration": 6.700000002980232
+      },
+      {
+        "kind": "stage",
+        "time": 868.2999999970198,
+        "page": "research",
+        "part": "draw-effects",
+        "start": 866,
+        "duration": 2.2999999970197678
+      },
+      {
+        "kind": "stage",
+        "time": 870.2999999970198,
+        "page": "research",
+        "part": "draw-sort",
+        "start": 868.2999999970198,
+        "duration": 2
+      },
+      {
+        "kind": "stage",
+        "time": 878.1999999955297,
+        "page": "research",
+        "part": "draw-paint",
+        "start": 870.2999999970198,
+        "duration": 7.899999998509884
+      },
+      {
+        "kind": "stage",
+        "time": 879.5,
+        "page": "research",
+        "part": "draw-state",
+        "start": 878.1999999955297,
+        "duration": 1.3000000044703484
+      },
+      {
+        "kind": "stage",
+        "time": 906.6999999955297,
+        "page": "research",
+        "part": "draw-project",
+        "start": 900.1999999955297,
+        "duration": 6.5
+      },
+      {
+        "kind": "stage",
+        "time": 912.2999999970198,
+        "page": "research",
+        "part": "draw-effects",
+        "start": 906.6999999955297,
+        "duration": 5.600000001490116
+      },
+      {
+        "kind": "stage",
+        "time": 913.6999999955297,
+        "page": "research",
+        "part": "draw-sort",
+        "start": 912.2999999970198,
+        "duration": 1.3999999985098839
+      },
+      {
+        "kind": "stage",
+        "time": 920.1000000014901,
+        "page": "research",
+        "part": "draw-paint",
+        "start": 913.6999999955297,
+        "duration": 6.4000000059604645
+      },
+      {
+        "kind": "stage",
+        "time": 920.1999999955297,
+        "page": "research",
+        "part": "draw-state",
+        "start": 920.1000000014901,
+        "duration": 0.09999999403953552
+      },
+      {
+        "kind": "stage",
+        "time": 1024.3999999985099,
+        "page": "research",
+        "part": "draw-project",
+        "start": 1017.6000000014901,
+        "duration": 6.799999997019768
+      },
+      {
+        "kind": "stage",
+        "time": 1026.3999999985099,
+        "page": "research",
+        "part": "draw-effects",
+        "start": 1024.3999999985099,
+        "duration": 2
+      },
+      {
+        "kind": "stage",
+        "time": 1027.6999999955297,
+        "page": "research",
+        "part": "draw-sort",
+        "start": 1026.3999999985099,
+        "duration": 1.2999999970197678
+      },
+      {
+        "kind": "stage",
+        "time": 1033.8999999985099,
+        "page": "research",
+        "part": "draw-paint",
+        "start": 1027.6999999955297,
+        "duration": 6.200000002980232
+      },
+      {
+        "kind": "stage",
+        "time": 1034.1000000014901,
+        "page": "research",
+        "part": "draw-state",
+        "start": 1033.8999999985099,
+        "duration": 0.20000000298023224
+      },
+      {
+        "kind": "stage",
+        "time": 1157.2999999970198,
+        "page": "research",
+        "part": "draw-project",
+        "start": 1151.1000000014901,
+        "duration": 6.0999999940395355
+      },
+      {
+        "kind": "stage",
+        "time": 1159.6999999955297,
+        "page": "research",
+        "part": "draw-effects",
+        "start": 1157.1999999955297,
+        "duration": 2.5
+      },
+      {
+        "kind": "stage",
+        "time": 1161.3999999985099,
+        "page": "research",
+        "part": "draw-sort",
+        "start": 1159.6999999955297,
+        "duration": 1.7000000029802322
+      },
+      {
+        "kind": "stage",
+        "time": 1170,
+        "page": "research",
+        "part": "draw-paint",
+        "start": 1161.3999999985099,
+        "duration": 8.600000001490116
+      },
+      {
+        "kind": "stage",
+        "time": 1170.1000000014901,
+        "page": "research",
+        "part": "draw-state",
+        "start": 1170,
+        "duration": 0.10000000149011612
+      },
+      {
+        "kind": "stage",
+        "time": 1258,
+        "page": "research",
+        "part": "draw-project",
+        "start": 1251.1999999955297,
+        "duration": 6.700000002980232
+      },
+      {
+        "kind": "stage",
+        "time": 1259.6999999955297,
+        "page": "research",
+        "part": "draw-effects",
+        "start": 1257.8999999985099,
+        "duration": 1.7999999970197678
+      },
+      {
+        "kind": "stage",
+        "time": 1261.2999999970198,
+        "page": "research",
+        "part": "draw-sort",
+        "start": 1259.6999999955297,
+        "duration": 1.5
+      },
+      {
+        "kind": "stage",
+        "time": 1266.5,
+        "page": "research",
+        "part": "draw-paint",
+        "start": 1261.1999999955297,
+        "duration": 5.300000004470348
+      },
+      {
+        "kind": "stage",
+        "time": 1266.6000000014901,
+        "page": "research",
+        "part": "draw-state",
+        "start": 1266.5,
+        "duration": 0.10000000149011612
+      },
+      {
+        "kind": "stage",
+        "time": 1339.1000000014901,
+        "page": "research",
+        "part": "draw-project",
+        "start": 1333.8999999985099,
+        "duration": 5.200000002980232
+      },
+      {
+        "kind": "stage",
+        "time": 1341.7999999970198,
+        "page": "research",
+        "part": "draw-effects",
+        "start": 1339.1000000014901,
+        "duration": 2.6999999955296516
+      },
+      {
+        "kind": "stage",
+        "time": 1342.8999999985099,
+        "page": "research",
+        "part": "draw-sort",
+        "start": 1341.7999999970198,
+        "duration": 1.1000000014901161
+      },
+      {
+        "kind": "stage",
+        "time": 1355.1999999955297,
+        "page": "research",
+        "part": "draw-paint",
+        "start": 1342.8999999985099,
+        "duration": 12.299999997019768
+      },
+      {
+        "kind": "stage",
+        "time": 1355.1999999955297,
+        "page": "research",
+        "part": "draw-state",
+        "start": 1355.1999999955297,
+        "duration": 0
+      },
+      {
+        "kind": "stage",
+        "time": 1421.6999999955297,
+        "page": "research",
+        "part": "draw-project",
+        "start": 1417.1999999955297,
+        "duration": 4.5
+      },
+      {
+        "kind": "stage",
+        "time": 1423.5,
+        "page": "research",
+        "part": "draw-effects",
+        "start": 1421.6999999955297,
+        "duration": 1.8000000044703484
+      },
+      {
+        "kind": "stage",
+        "time": 1424.7999999970198,
+        "page": "research",
+        "part": "draw-sort",
+        "start": 1423.5,
+        "duration": 1.2999999970197678
+      },
+      {
+        "kind": "stage",
+        "time": 1431.5,
+        "page": "research",
+        "part": "draw-paint",
+        "start": 1424.7999999970198,
+        "duration": 6.700000002980232
+      },
+      {
+        "kind": "stage",
+        "time": 1431.5,
+        "page": "research",
+        "part": "draw-state",
+        "start": 1431.5,
+        "duration": 0
+      },
+      {
+        "kind": "stage",
+        "time": 1555.2999999970198,
+        "page": "research",
+        "part": "draw-project",
+        "start": 1550.5,
+        "duration": 4.799999997019768
+      },
+      {
+        "kind": "stage",
+        "time": 1556.5,
+        "page": "research",
+        "part": "draw-effects",
+        "start": 1555.2999999970198,
+        "duration": 1.2000000029802322
+      },
+      {
+        "kind": "stage",
+        "time": 1557.8999999985099,
+        "page": "research",
+        "part": "draw-sort",
+        "start": 1556.5,
+        "duration": 1.3999999985098839
+      },
+      {
+        "kind": "stage",
+        "time": 1566.5,
+        "page": "research",
+        "part": "draw-paint",
+        "start": 1557.8999999985099,
+        "duration": 8.600000001490116
+      },
+      {
+        "kind": "stage",
+        "time": 1566.6000000014901,
+        "page": "research",
+        "part": "draw-state",
+        "start": 1566.5,
+        "duration": 0.10000000149011612
+      },
+      {
+        "kind": "stage",
+        "time": 1688.7999999970198,
+        "page": "research",
+        "part": "draw-project",
+        "start": 1684.1000000014901,
+        "duration": 4.699999995529652
+      },
+      {
+        "kind": "stage",
+        "time": 1691.6000000014901,
+        "page": "research",
+        "part": "draw-effects",
+        "start": 1688.7999999970198,
+        "duration": 2.8000000044703484
+      },
+      {
+        "kind": "stage",
+        "time": 1693.3999999985099,
+        "page": "research",
+        "part": "draw-sort",
+        "start": 1691.6000000014901,
+        "duration": 1.7999999970197678
+      },
+      {
+        "kind": "stage",
+        "time": 1701,
+        "page": "research",
+        "part": "draw-paint",
+        "start": 1693.3999999985099,
+        "duration": 7.600000001490116
+      },
+      {
+        "kind": "stage",
+        "time": 1701,
+        "page": "research",
+        "part": "draw-state",
+        "start": 1701,
+        "duration": 0
+      },
+      {
+        "kind": "stage",
+        "time": 1822.3999999985099,
+        "page": "research",
+        "part": "draw-project",
+        "start": 1817.5,
+        "duration": 4.899999998509884
+      },
+      {
+        "kind": "stage",
+        "time": 1824.8999999985099,
+        "page": "research",
+        "part": "draw-effects",
+        "start": 1822.3999999985099,
+        "duration": 2.5
+      },
+      {
+        "kind": "stage",
+        "time": 1825.3999999985099,
+        "page": "research",
+        "part": "draw-sort",
+        "start": 1824.8999999985099,
+        "duration": 0.5
+      },
+      {
+        "kind": "stage",
+        "time": 1833.5,
+        "page": "research",
+        "part": "draw-paint",
+        "start": 1825.3999999985099,
+        "duration": 8.100000001490116
+      },
+      {
+        "kind": "stage",
+        "time": 1833.6000000014901,
+        "page": "research",
+        "part": "draw-state",
+        "start": 1833.5,
+        "duration": 0.10000000149011612
+      },
+      {
+        "kind": "stage",
+        "time": 1956.5,
+        "page": "research",
+        "part": "draw-project",
+        "start": 1950.7999999970198,
+        "duration": 5.700000002980232
+      },
+      {
+        "kind": "stage",
+        "time": 1958.5,
+        "page": "research",
+        "part": "draw-effects",
+        "start": 1956.5,
+        "duration": 2
+      },
+      {
+        "kind": "stage",
+        "time": 1960.1999999955297,
+        "page": "research",
+        "part": "draw-sort",
+        "start": 1958.5,
+        "duration": 1.6999999955296516
+      },
+      {
+        "kind": "stage",
+        "time": 1967.1000000014901,
+        "page": "research",
+        "part": "draw-paint",
+        "start": 1960.1999999955297,
+        "duration": 6.9000000059604645
+      },
+      {
+        "kind": "stage",
+        "time": 1967.1000000014901,
+        "page": "research",
+        "part": "draw-state",
+        "start": 1967.1000000014901,
+        "duration": 0
+      },
+      {
+        "kind": "stage",
+        "time": 2089.1999999955297,
+        "page": "research",
+        "part": "draw-project",
+        "start": 2084,
+        "duration": 5.199999995529652
+      },
+      {
+        "kind": "stage",
+        "time": 2090.5,
+        "page": "research",
+        "part": "draw-effects",
+        "start": 2089.1999999955297,
+        "duration": 1.3000000044703484
+      },
+      {
+        "kind": "stage",
+        "time": 2091.6999999955297,
+        "page": "research",
+        "part": "draw-sort",
+        "start": 2090.5,
+        "duration": 1.1999999955296516
+      },
+      {
+        "kind": "stage",
+        "time": 2099.89999999851,
+        "page": "research",
+        "part": "draw-paint",
+        "start": 2091.6999999955297,
+        "duration": 8.200000002980232
+      },
+      {
+        "kind": "stage",
+        "time": 2100.1999999955297,
+        "page": "research",
+        "part": "draw-state",
+        "start": 2099.89999999851,
+        "duration": 0.29999999701976776
+      },
+      {
+        "kind": "stage",
+        "time": 2223.1999999955297,
+        "page": "research",
+        "part": "draw-project",
+        "start": 2217.6999999955297,
+        "duration": 5.300000004470348
+      },
+      {
+        "kind": "stage",
+        "time": 2225.7999999970198,
+        "page": "research",
+        "part": "draw-effects",
+        "start": 2223,
+        "duration": 2.6999999955296516
+      },
+      {
+        "kind": "stage",
+        "time": 2227,
+        "page": "research",
+        "part": "draw-sort",
+        "start": 2225.6999999955297,
+        "duration": 1.3000000044703484
+      },
+      {
+        "kind": "stage",
+        "time": 2235.6999999955297,
+        "page": "research",
+        "part": "draw-paint",
+        "start": 2227,
+        "duration": 8.699999995529652
+      },
+      {
+        "kind": "stage",
+        "time": 2235.6999999955297,
+        "page": "research",
+        "part": "draw-state",
+        "start": 2235.6999999955297,
+        "duration": 0
+      },
+      {
+        "kind": "stage",
+        "time": 2355.1999999955297,
+        "page": "research",
+        "part": "draw-project",
+        "start": 2350.6999999955297,
+        "duration": 4.5
+      },
+      {
+        "kind": "stage",
+        "time": 2358.5,
+        "page": "research",
+        "part": "draw-effects",
+        "start": 2355.1999999955297,
+        "duration": 3.3000000044703484
+      },
+      {
+        "kind": "stage",
+        "time": 2359.6999999955297,
+        "page": "research",
+        "part": "draw-sort",
+        "start": 2358.5,
+        "duration": 1.1999999955296516
+      },
+      {
+        "kind": "stage",
+        "time": 2366.2999999970198,
+        "page": "research",
+        "part": "draw-paint",
+        "start": 2359.6999999955297,
+        "duration": 6.600000001490116
+      },
+      {
+        "kind": "stage",
+        "time": 2366.5,
+        "page": "research",
+        "part": "draw-state",
+        "start": 2366.2999999970198,
+        "duration": 0.20000000298023224
+      }
+    ]
+  },
+  "flight": {
+    "schema": 2,
+    "frames": [
+      {
+        "time": 2417,
+        "started": 2469,
+        "duration": 50.29999999701977,
+        "painted": true
+      },
+      {
+        "time": 2533.6,
+        "started": 2548.39999999851,
+        "duration": 54.5,
+        "painted": true
+      },
+      {
+        "time": 2533.6,
+        "started": 2602.89999999851,
+        "duration": 0.10000000149011612,
+        "painted": false
+      },
+      {
+        "time": 2633.6,
+        "started": 2644.5,
+        "duration": 45.399999998509884,
+        "painted": true
+      },
+      {
+        "time": 2633.6,
+        "started": 2690,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 2700.3,
+        "started": 2717.39999999851,
+        "duration": 39.399999998509884,
+        "painted": true
+      },
+      {
+        "time": 2700.3,
+        "started": 2756.7999999970198,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 2767,
+        "started": 2775,
+        "duration": 0.10000000149011612,
+        "painted": false
+      },
+      {
+        "time": 2767,
+        "started": 2775.10000000149,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 2783.7,
+        "started": 2784.10000000149,
+        "duration": 35.5,
+        "painted": true
+      },
+      {
+        "time": 2783.7,
+        "started": 2819.60000000149,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 2833.6,
+        "started": 2838.60000000149,
+        "duration": 0.09999999403953552,
+        "painted": false
+      },
+      {
+        "time": 2833.6,
+        "started": 2838.6999999955297,
+        "duration": 0.10000000149011612,
+        "painted": false
+      },
+      {
+        "time": 2850.3,
+        "started": 2855,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 2850.3,
+        "started": 2855,
+        "duration": 0.10000000149011612,
+        "painted": false
+      },
+      {
+        "time": 2867,
+        "started": 2867.60000000149,
+        "duration": 0.19999999552965164,
+        "painted": false
+      },
+      {
+        "time": 2867,
+        "started": 2867.7999999970198,
+        "duration": 0.30000000447034836,
+        "painted": false
+      },
+      {
+        "time": 2883.6,
+        "started": 2884.89999999851,
+        "duration": 36.600000001490116,
+        "painted": true
+      },
+      {
+        "time": 2883.6,
+        "started": 2921.5,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 2933.6,
+        "started": 2940.7999999970198,
+        "duration": 0.10000000149011612,
+        "painted": false
+      },
+      {
+        "time": 2933.6,
+        "started": 2940.89999999851,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 2950.2,
+        "started": 2951.1999999955297,
+        "duration": 0.4000000059604645,
+        "painted": false
+      },
+      {
+        "time": 2950.2,
+        "started": 2951.60000000149,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 2967,
+        "started": 2967.7999999970198,
+        "duration": 0.5,
+        "painted": false
+      },
+      {
+        "time": 2967,
+        "started": 2968.2999999970198,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 2983.6,
+        "started": 2985.1999999955297,
+        "duration": 67.40000000596046,
+        "painted": true
+      },
+      {
+        "time": 2983.6,
+        "started": 3052.6999999955297,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 3100.3,
+        "started": 3106.60000000149,
+        "duration": 72.5,
+        "painted": true
+      },
+      {
+        "time": 3100.3,
+        "started": 3179.10000000149,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 3200.3,
+        "started": 3207.5,
+        "duration": 19.600000001490116,
+        "painted": true
+      },
+      {
+        "time": 3200.3,
+        "started": 3227.10000000149,
+        "duration": 0.09999999403953552,
+        "painted": false
+      },
+      {
+        "time": 3233.6,
+        "started": 3245.39999999851,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 3233.6,
+        "started": 3245.39999999851,
+        "duration": 0.10000000149011612,
+        "painted": false
+      },
+      {
+        "time": 3250.3,
+        "started": 3251.60000000149,
+        "duration": 0.09999999403953552,
+        "painted": false
+      },
+      {
+        "time": 3250.3,
+        "started": 3251.6999999955297,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 3266.9,
+        "started": 3267.1999999955297,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 3266.9,
+        "started": 3267.1999999955297,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 3283.6,
+        "started": 3283.89999999851,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 3283.6,
+        "started": 3283.89999999851,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 3300.3,
+        "started": 3300.89999999851,
+        "duration": 17,
+        "painted": true
+      },
+      {
+        "time": 3300.3,
+        "started": 3317.89999999851,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 3333.6,
+        "started": 3337.39999999851,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 3333.6,
+        "started": 3337.39999999851,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 3350.3,
+        "started": 3350.5,
+        "duration": 0.10000000149011612,
+        "painted": false
+      },
+      {
+        "time": 3350.3,
+        "started": 3350.60000000149,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 3366.9,
+        "started": 3367.60000000149,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 3366.9,
+        "started": 3367.60000000149,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 3383.6,
+        "started": 3384.6999999955297,
+        "duration": 25.700000002980232,
+        "painted": true
+      },
+      {
+        "time": 3383.6,
+        "started": 3410.39999999851,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 3416.9,
+        "started": 3431.39999999851,
+        "duration": 0.10000000149011612,
+        "painted": false
+      },
+      {
+        "time": 3416.9,
+        "started": 3431.5,
+        "duration": 0.6000000014901161,
+        "painted": false
+      },
+      {
+        "time": 3433.6,
+        "started": 3434,
+        "duration": 0.10000000149011612,
+        "painted": false
+      },
+      {
+        "time": 3433.6,
+        "started": 3434.10000000149,
+        "duration": 0.29999999701976776,
+        "painted": false
+      },
+      {
+        "time": 3450.2,
+        "started": 3450.60000000149,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 3450.2,
+        "started": 3450.60000000149,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 3466.9,
+        "started": 3467.10000000149,
+        "duration": 23.5,
+        "painted": true
+      },
+      {
+        "time": 3466.9,
+        "started": 3490.60000000149,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 3500.2,
+        "started": 3512.10000000149,
+        "duration": 0.6999999955296516,
+        "painted": false
+      },
+      {
+        "time": 3500.2,
+        "started": 3512.7999999970198,
+        "duration": 0.10000000149011612,
+        "painted": false
+      },
+      {
+        "time": 3516.9,
+        "started": 3517.2999999970198,
+        "duration": 0.30000000447034836,
+        "painted": false
+      },
+      {
+        "time": 3516.9,
+        "started": 3517.60000000149,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 3533.6,
+        "started": 3534.10000000149,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 3533.6,
+        "started": 3534.10000000149,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 3550.3,
+        "started": 3550.5,
+        "duration": 22.799999997019768,
+        "painted": true
+      },
+      {
+        "time": 3550.3,
+        "started": 3573.2999999970198,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 3583.6,
+        "started": 3599.89999999851,
+        "duration": 0.10000000149011612,
+        "painted": false
+      },
+      {
+        "time": 3583.6,
+        "started": 3600,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 3600.3,
+        "started": 3600.6999999955297,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 3600.3,
+        "started": 3600.6999999955297,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 3616.9,
+        "started": 3617.1999999955297,
+        "duration": 0.10000000149011612,
+        "painted": false
+      },
+      {
+        "time": 3616.9,
+        "started": 3617.2999999970198,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 3633.6,
+        "started": 3633.89999999851,
+        "duration": 21.299999997019768,
+        "painted": true
+      },
+      {
+        "time": 3633.6,
+        "started": 3655.1999999955297,
+        "duration": 0.10000000149011612,
+        "painted": false
+      },
+      {
+        "time": 3666.9,
+        "started": 3680.6999999955297,
+        "duration": 0.30000000447034836,
+        "painted": false
+      },
+      {
+        "time": 3666.9,
+        "started": 3681,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 3683.6,
+        "started": 3684.60000000149,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 3683.6,
+        "started": 3684.60000000149,
+        "duration": 0,
+        "painted": false
+      },
+      {
+        "time": 3700.3,
+        "started": 3701.10000000149,
+        "duration": 21.799999997019768,
+        "painted": true
+      },
+      {
+        "time": 3700.3,
+        "started": 3737.1999999955297,
+        "duration": 0,
+        "painted": false
+      }
+    ],
+    "longTasks": [
+      {
+        "start": 2409,
+        "duration": 59
+      },
+      {
+        "start": 2468.89999999851,
+        "duration": 78
+      },
+      {
+        "start": 2548.39999999851,
+        "duration": 87
+      },
+      {
+        "start": 2644.5,
+        "duration": 66
+      },
+      {
+        "start": 2717.2999999970198,
+        "duration": 57
+      },
+      {
+        "start": 2784.10000000149,
+        "duration": 54
+      },
+      {
+        "start": 2884,
+        "duration": 56
+      },
+      {
+        "start": 2984.60000000149,
+        "duration": 115
+      },
+      {
+        "start": 3106.5,
+        "duration": 99
+      }
+    ],
+    "events": [
+      {
+        "kind": "navigation-start",
+        "time": 2412.6999999955297,
+        "from": "research",
+        "to": "writing"
+      },
+      {
+        "kind": "route",
+        "time": 2422.2999999970198,
+        "start": 2420.89999999851,
+        "duration": 1.3999999985098839,
+        "page": "writing"
+      },
+      {
+        "kind": "stage",
+        "time": 2444.89999999851,
+        "page": "writing",
+        "part": "model-build",
+        "route": "writing",
+        "start": 2423.2999999970198,
+        "duration": 21.600000001490116
+      },
+      {
+        "kind": "stage",
+        "time": 2459.10000000149,
+        "page": "writing",
+        "part": "model-color",
+        "route": "writing",
+        "start": 2444.89999999851,
+        "duration": 14.200000002980232
+      },
+      {
+        "kind": "model",
+        "time": 2459.1999999955297,
+        "page": "writing",
+        "route": "writing",
+        "compact": true,
+        "start": 2423.2999999970198,
+        "duration": 35.80000000447035,
+        "objects": 252,
+        "vertices": 9398,
+        "faces": 3890,
+        "lines": 3549
+      },
+      {
+        "kind": "stage",
+        "time": 2490,
+        "page": "writing",
+        "part": "draw-project",
+        "start": 2469,
+        "duration": 21
+      },
+      {
+        "kind": "stage",
+        "time": 2494.89999999851,
+        "page": "writing",
+        "part": "draw-effects",
+        "start": 2490,
+        "duration": 4.899999998509884
+      },
+      {
+        "kind": "stage",
+        "time": 2498.60000000149,
+        "page": "writing",
+        "part": "draw-sort",
+        "start": 2494.89999999851,
+        "duration": 3.7000000029802322
+      },
+      {
+        "kind": "stage",
+        "time": 2517.10000000149,
+        "page": "writing",
+        "part": "draw-paint",
+        "start": 2498.60000000149,
+        "duration": 18.5
+      },
+      {
+        "kind": "stage",
+        "time": 2517.1999999955297,
+        "page": "writing",
+        "part": "draw-state",
+        "start": 2517.10000000149,
+        "duration": 0.09999999403953552
+      },
+      {
+        "kind": "stage",
+        "time": 2582.1999999955297,
+        "page": "writing",
+        "part": "draw-project",
+        "start": 2548.39999999851,
+        "duration": 33.79999999701977
+      },
+      {
+        "kind": "stage",
+        "time": 2585,
+        "page": "writing",
+        "part": "draw-effects",
+        "start": 2582.1999999955297,
+        "duration": 2.8000000044703484
+      },
+      {
+        "kind": "stage",
+        "time": 2588.2999999970198,
+        "page": "writing",
+        "part": "draw-sort",
+        "start": 2585,
+        "duration": 3.2999999970197678
+      },
+      {
+        "kind": "stage",
+        "time": 2602.5,
+        "page": "writing",
+        "part": "draw-paint",
+        "start": 2588.2999999970198,
+        "duration": 14.200000002980232
+      },
+      {
+        "kind": "stage",
+        "time": 2602.7999999970198,
+        "page": "writing",
+        "part": "draw-state",
+        "start": 2602.5,
+        "duration": 0.29999999701976776
+      },
+      {
+        "kind": "stage",
+        "time": 2675.5,
+        "page": "writing",
+        "part": "draw-project",
+        "start": 2645.5,
+        "duration": 30
+      },
+      {
+        "kind": "stage",
+        "time": 2676.89999999851,
+        "page": "writing",
+        "part": "draw-effects",
+        "start": 2675.5,
+        "duration": 1.3999999985098839
+      },
+      {
+        "kind": "stage",
+        "time": 2679.60000000149,
+        "page": "writing",
+        "part": "draw-sort",
+        "start": 2676.89999999851,
+        "duration": 2.7000000029802322
+      },
+      {
+        "kind": "stage",
+        "time": 2689.1999999955297,
+        "page": "writing",
+        "part": "draw-paint",
+        "start": 2679.60000000149,
+        "duration": 9.5
+      },
+      {
+        "kind": "stage",
+        "time": 2689.39999999851,
+        "page": "writing",
+        "part": "draw-state",
+        "start": 2689.10000000149,
+        "duration": 0.29999999701976776
+      },
+      {
+        "kind": "stage",
+        "time": 2735.60000000149,
+        "page": "writing",
+        "part": "draw-project",
+        "start": 2717.39999999851,
+        "duration": 18.200000002980232
+      },
+      {
+        "kind": "stage",
+        "time": 2737.60000000149,
+        "page": "writing",
+        "part": "draw-effects",
+        "start": 2735.60000000149,
+        "duration": 2
+      },
+      {
+        "kind": "stage",
+        "time": 2742.10000000149,
+        "page": "writing",
+        "part": "draw-sort",
+        "start": 2737.60000000149,
+        "duration": 4.5
+      },
+      {
+        "kind": "stage",
+        "time": 2756,
+        "page": "writing",
+        "part": "draw-paint",
+        "start": 2742.10000000149,
+        "duration": 13.899999998509884
+      },
+      {
+        "kind": "stage",
+        "time": 2756.1999999955297,
+        "page": "writing",
+        "part": "draw-state",
+        "start": 2756,
+        "duration": 0.19999999552965164
+      },
+      {
+        "kind": "stage",
+        "time": 2803.7999999970198,
+        "page": "writing",
+        "part": "draw-project",
+        "start": 2784.10000000149,
+        "duration": 19.69999999552965
+      },
+      {
+        "kind": "stage",
+        "time": 2807.89999999851,
+        "page": "writing",
+        "part": "draw-effects",
+        "start": 2803.7999999970198,
+        "duration": 4.100000001490116
+      },
+      {
+        "kind": "stage",
+        "time": 2809.5,
+        "page": "writing",
+        "part": "draw-sort",
+        "start": 2807.89999999851,
+        "duration": 1.6000000014901161
+      },
+      {
+        "kind": "stage",
+        "time": 2818.7999999970198,
+        "page": "writing",
+        "part": "draw-paint",
+        "start": 2809.5,
+        "duration": 9.299999997019768
+      },
+      {
+        "kind": "stage",
+        "time": 2819,
+        "page": "writing",
+        "part": "draw-state",
+        "start": 2818.7999999970198,
+        "duration": 0.20000000298023224
+      },
+      {
+        "kind": "stage",
+        "time": 2898,
+        "page": "writing",
+        "part": "draw-project",
+        "start": 2884.89999999851,
+        "duration": 13.100000001490116
+      },
+      {
+        "kind": "stage",
+        "time": 2905.10000000149,
+        "page": "writing",
+        "part": "draw-effects",
+        "start": 2898,
+        "duration": 7.100000001490116
+      },
+      {
+        "kind": "stage",
+        "time": 2908.2999999970198,
+        "page": "writing",
+        "part": "draw-sort",
+        "start": 2905.10000000149,
+        "duration": 3.1999999955296516
+      },
+      {
+        "kind": "stage",
+        "time": 2920.39999999851,
+        "page": "writing",
+        "part": "draw-paint",
+        "start": 2908.2999999970198,
+        "duration": 12.100000001490116
+      },
+      {
+        "kind": "stage",
+        "time": 2920.89999999851,
+        "page": "writing",
+        "part": "draw-state",
+        "start": 2920.39999999851,
+        "duration": 0.5
+      },
+      {
+        "kind": "stage",
+        "time": 3014.6999999955297,
+        "page": "writing",
+        "part": "draw-project",
+        "start": 2985.1999999955297,
+        "duration": 29.5
+      },
+      {
+        "kind": "stage",
+        "time": 3021.1999999955297,
+        "page": "writing",
+        "part": "draw-effects",
+        "start": 3014.6999999955297,
+        "duration": 6.5
+      },
+      {
+        "kind": "stage",
+        "time": 3026.2999999970198,
+        "page": "writing",
+        "part": "draw-sort",
+        "start": 3021.1999999955297,
+        "duration": 5.100000001490116
+      },
+      {
+        "kind": "stage",
+        "time": 3051.2999999970198,
+        "page": "writing",
+        "part": "draw-paint",
+        "start": 3026.2999999970198,
+        "duration": 25
+      },
+      {
+        "kind": "stage",
+        "time": 3052.2999999970198,
+        "page": "writing",
+        "part": "draw-state",
+        "start": 3051.2999999970198,
+        "duration": 1
+      },
+      {
+        "kind": "stage",
+        "time": 3116.2999999970198,
+        "page": "writing",
+        "part": "draw-project",
+        "start": 3106.6999999955297,
+        "duration": 9.600000001490116
+      },
+      {
+        "kind": "stage",
+        "time": 3117.1999999955297,
+        "page": "writing",
+        "part": "draw-effects",
+        "start": 3116.2999999970198,
+        "duration": 0.8999999985098839
+      },
+      {
+        "kind": "stage",
+        "time": 3118.7999999970198,
+        "page": "writing",
+        "part": "draw-sort",
+        "start": 3117.1999999955297,
+        "duration": 1.6000000014901161
+      },
+      {
+        "kind": "stage",
+        "time": 3126.2999999970198,
+        "page": "writing",
+        "part": "draw-paint",
+        "start": 3118.7999999970198,
+        "duration": 7.5
+      },
+      {
+        "kind": "stage",
+        "time": 3126.39999999851,
+        "page": "writing",
+        "part": "draw-state",
+        "start": 3126.2999999970198,
+        "duration": 0.10000000149011612
+      },
+      {
+        "kind": "stage",
+        "part": "mount-unmount",
+        "time": 3132,
+        "start": 3132,
+        "duration": 0,
+        "page": "writing"
+      },
+      {
+        "kind": "stage",
+        "part": "mount-dom",
+        "time": 3134.5,
+        "start": 3132,
+        "duration": 2.5,
+        "page": "writing"
+      },
+      {
+        "kind": "stage",
+        "part": "mount-archive",
+        "time": 3138.5,
+        "start": 3134.5,
+        "duration": 4,
+        "page": "writing"
+      },
+      {
+        "kind": "stage",
+        "part": "scroll-native",
+        "time": 3138.60000000149,
+        "start": 3138.60000000149,
+        "duration": 0,
+        "page": "writing"
+      },
+      {
+        "kind": "stage",
+        "part": "mount-scroll",
+        "time": 3138.60000000149,
+        "start": 3138.5,
+        "duration": 0.10000000149011612,
+        "page": "writing"
+      },
+      {
+        "kind": "stage",
+        "part": "mount-anchor",
+        "time": 3138.60000000149,
+        "start": 3138.60000000149,
+        "duration": 0,
+        "page": "writing"
+      },
+      {
+        "kind": "stage",
+        "time": 3176.5,
+        "page": "writing",
+        "part": "layout-range",
+        "start": 3139.39999999851,
+        "duration": 37.100000001490116
+      },
+      {
+        "kind": "stage",
+        "time": 3176.6999999955297,
+        "page": "writing",
+        "part": "layout-stops",
+        "start": 3176.5,
+        "duration": 0.19999999552965164
+      },
+      {
+        "kind": "stage",
+        "time": 3176.7999999970198,
+        "page": "writing",
+        "part": "layout-writing",
+        "start": 3176.6999999955297,
+        "duration": 0.10000000149011612
+      },
+      {
+        "kind": "layout",
+        "time": 3177.1999999955297,
+        "page": "writing",
+        "reasons": [
+          "resize",
+          "archive-focus",
+          "mount"
+        ],
+        "passes": 5,
+        "start": 3138.60000000149,
+        "duration": 38.599999994039536
+      },
+      {
+        "kind": "stage",
+        "part": "mount-layout",
+        "time": 3177.89999999851,
+        "start": 3138.60000000149,
+        "duration": 39.29999999701977,
+        "page": "writing"
+      },
+      {
+        "kind": "stage",
+        "part": "mount-ready",
+        "time": 3178.39999999851,
+        "start": 3177.89999999851,
+        "duration": 0.5,
+        "page": "writing"
+      },
+      {
+        "kind": "stage",
+        "time": 3208.10000000149,
+        "page": "writing",
+        "part": "layout-range",
+        "start": 3207.7999999970198,
+        "duration": 0.30000000447034836
+      },
+      {
+        "kind": "stage",
+        "time": 3208.10000000149,
+        "page": "writing",
+        "part": "layout-stops",
+        "start": 3208.10000000149,
+        "duration": 0
+      },
+      {
+        "kind": "stage",
+        "time": 3208.60000000149,
+        "page": "writing",
+        "part": "layout-writing",
+        "start": 3208.10000000149,
+        "duration": 0.5
+      },
+      {
+        "kind": "layout",
+        "time": 3208.89999999851,
+        "page": "writing",
+        "reasons": [
+          "size"
+        ],
+        "passes": 6,
+        "start": 3207.5,
+        "duration": 1.3999999985098839
+      },
+      {
+        "kind": "stage",
+        "time": 3216,
+        "page": "writing",
+        "part": "draw-project",
+        "start": 3209.2999999970198,
+        "duration": 6.700000002980232
+      },
+      {
+        "kind": "stage",
+        "time": 3218,
+        "page": "writing",
+        "part": "draw-effects",
+        "start": 3216,
+        "duration": 2
+      },
+      {
+        "kind": "stage",
+        "time": 3219.5,
+        "page": "writing",
+        "part": "draw-sort",
+        "start": 3218,
+        "duration": 1.5
+      },
+      {
+        "kind": "stage",
+        "time": 3226.1999999955297,
+        "page": "writing",
+        "part": "draw-paint",
+        "start": 3219.5,
+        "duration": 6.699999995529652
+      },
+      {
+        "kind": "stage",
+        "time": 3226.2999999970198,
+        "page": "writing",
+        "part": "draw-state",
+        "start": 3226.1999999955297,
+        "duration": 0.10000000149011612
+      },
+      {
+        "kind": "stage",
+        "time": 3307.5,
+        "page": "writing",
+        "part": "draw-project",
+        "start": 3301,
+        "duration": 6.5
+      },
+      {
+        "kind": "stage",
+        "time": 3309.2999999970198,
+        "page": "writing",
+        "part": "draw-effects",
+        "start": 3307.5,
+        "duration": 1.7999999970197678
+      },
+      {
+        "kind": "stage",
+        "time": 3310.39999999851,
+        "page": "writing",
+        "part": "draw-sort",
+        "start": 3309.2999999970198,
+        "duration": 1.1000000014901161
+      },
+      {
+        "kind": "stage",
+        "time": 3317.7999999970198,
+        "page": "writing",
+        "part": "draw-paint",
+        "start": 3310.39999999851,
+        "duration": 7.399999998509884
+      },
+      {
+        "kind": "stage",
+        "time": 3317.7999999970198,
+        "page": "writing",
+        "part": "draw-state",
+        "start": 3317.7999999970198,
+        "duration": 0
+      },
+      {
+        "kind": "stage",
+        "time": 3396.2999999970198,
+        "page": "writing",
+        "part": "draw-project",
+        "start": 3384.7999999970198,
+        "duration": 11.5
+      },
+      {
+        "kind": "stage",
+        "time": 3398,
+        "page": "writing",
+        "part": "draw-effects",
+        "start": 3396.2999999970198,
+        "duration": 1.7000000029802322
+      },
+      {
+        "kind": "stage",
+        "time": 3399.6999999955297,
+        "page": "writing",
+        "part": "draw-sort",
+        "start": 3398,
+        "duration": 1.6999999955296516
+      },
+      {
+        "kind": "stage",
+        "time": 3409.6999999955297,
+        "page": "writing",
+        "part": "draw-paint",
+        "start": 3399.6999999955297,
+        "duration": 10
+      },
+      {
+        "kind": "stage",
+        "time": 3409.7999999970198,
+        "page": "writing",
+        "part": "draw-state",
+        "start": 3409.6999999955297,
+        "duration": 0.10000000149011612
+      },
+      {
+        "kind": "stage",
+        "time": 3477.10000000149,
+        "page": "writing",
+        "part": "draw-project",
+        "start": 3467.10000000149,
+        "duration": 10
+      },
+      {
+        "kind": "stage",
+        "time": 3478,
+        "page": "writing",
+        "part": "draw-effects",
+        "start": 3477.10000000149,
+        "duration": 0.8999999985098839
+      },
+      {
+        "kind": "stage",
+        "time": 3480.10000000149,
+        "page": "writing",
+        "part": "draw-sort",
+        "start": 3478,
+        "duration": 2.100000001490116
+      },
+      {
+        "kind": "stage",
+        "time": 3489.60000000149,
+        "page": "writing",
+        "part": "draw-paint",
+        "start": 3480.10000000149,
+        "duration": 9.5
+      },
+      {
+        "kind": "stage",
+        "time": 3489.6999999955297,
+        "page": "writing",
+        "part": "draw-state",
+        "start": 3489.60000000149,
+        "duration": 0.09999999403953552
+      },
+      {
+        "kind": "stage",
+        "time": 3558.60000000149,
+        "page": "writing",
+        "part": "draw-project",
+        "start": 3550.5,
+        "duration": 8.100000001490116
+      },
+      {
+        "kind": "stage",
+        "time": 3560.6999999955297,
+        "page": "writing",
+        "part": "draw-effects",
+        "start": 3558.60000000149,
+        "duration": 2.0999999940395355
+      },
+      {
+        "kind": "stage",
+        "time": 3562.6999999955297,
+        "page": "writing",
+        "part": "draw-sort",
+        "start": 3560.6999999955297,
+        "duration": 1.9000000059604645
+      },
+      {
+        "kind": "stage",
+        "time": 3572.5,
+        "page": "writing",
+        "part": "draw-paint",
+        "start": 3562.60000000149,
+        "duration": 9.899999998509884
+      },
+      {
+        "kind": "stage",
+        "time": 3572.5,
+        "page": "writing",
+        "part": "draw-state",
+        "start": 3572.5,
+        "duration": 0
+      },
+      {
+        "kind": "stage",
+        "time": 3642.10000000149,
+        "page": "writing",
+        "part": "draw-project",
+        "start": 3634,
+        "duration": 8.100000001490116
+      },
+      {
+        "kind": "stage",
+        "time": 3643.60000000149,
+        "page": "writing",
+        "part": "draw-effects",
+        "start": 3642.10000000149,
+        "duration": 1.5
+      },
+      {
+        "kind": "stage",
+        "time": 3645.5,
+        "page": "writing",
+        "part": "draw-sort",
+        "start": 3643.60000000149,
+        "duration": 1.8999999985098839
+      },
+      {
+        "kind": "stage",
+        "time": 3654.1999999955297,
+        "page": "writing",
+        "part": "draw-paint",
+        "start": 3645.5,
+        "duration": 8.699999995529652
+      },
+      {
+        "kind": "stage",
+        "time": 3655.10000000149,
+        "page": "writing",
+        "part": "draw-state",
+        "start": 3654.1999999955297,
+        "duration": 0.9000000059604645
+      },
+      {
+        "kind": "stage",
+        "time": 3707.39999999851,
+        "page": "writing",
+        "part": "draw-project",
+        "start": 3701.10000000149,
+        "duration": 6.299999997019768
+      },
+      {
+        "kind": "stage",
+        "time": 3709,
+        "page": "writing",
+        "part": "draw-effects",
+        "start": 3707.39999999851,
+        "duration": 1.6000000014901161
+      },
+      {
+        "kind": "stage",
+        "time": 3710.7999999970198,
+        "page": "writing",
+        "part": "draw-sort",
+        "start": 3709,
+        "duration": 1.7999999970197678
+      },
+      {
+        "kind": "stage",
+        "time": 3722,
+        "page": "writing",
+        "part": "draw-paint",
+        "start": 3710.7999999970198,
+        "duration": 11.200000002980232
+      },
+      {
+        "kind": "stage",
+        "time": 3722.10000000149,
+        "page": "writing",
+        "part": "draw-state",
+        "start": 3722,
+        "duration": 0.10000000149011612
+      },
+      {
+        "kind": "navigation-ready",
+        "time": 3736.2999999970198,
+        "page": "writing"
+      }
+    ],
+    "paints": 35
+  }
+}
