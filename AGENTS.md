@@ -1,5 +1,18 @@
 # Agent guidance for personal publications
 
+## Content-sized reading backdrops follow-up — 2026-10-06
+
+The maintainer explicitly requests one separate Draft PR stacked on the current
+PR #23 for reading-backdrop geometry and five-percentage-point higher background
+alpha. This supersedes the sole-PR restriction for this scoped follow-up only.
+Issue #14 owns the input and visual acceptance; #12/#13 keep runtime/release
+requirements. Preserve #23 and all its performance/fixture work; do not change
+its branch or staging run. Edit shared source CSS and the authored Color reading
+surface module, regenerate dependent outputs and use the existing automatic PR
+preview/short-smoke workflow. Full staging, merge and production of this follow-up
+are not requested. Calendar booking/email are advice only until real contact
+values and an implementation request are supplied. No Glass or new runtime loop.
+
 ## Full staging and merge authorized — 2026-10-06
 
 The maintainer now authorizes the next sequence: stage the current open #23

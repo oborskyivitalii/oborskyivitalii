@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "8bcf47d83a32e439b4b4b940d7a1c482e14071fff1f0a52a2753996df730059a",
+    "digest": "9412c320aff3963d3530c6da8adf3ac710045667e568f10fbefb05fed48cb22f",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -97,7 +97,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "bef41ba1fd256285ec4a030baa980de960f9bb0d3a3d6504986d9cc6720f9c74"
+        "sha256": "f802be9b19891325656182311e236cc0ced53bfdfb9898e44b39ad858d2b7e54"
       },
       {
         "path": "BACKLOG.md",
@@ -223,48 +223,48 @@
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/5a10d22a3b14c296913100d8dfa3d9d128a334c46b4ab5bfb9abd6b512f57ef4/archive.js",
+        "path": "docs/runtime/16b3125e74bed9b7d9022e49d25481af5cd342ad403d81f8d59563c414759470/archive.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/5a10d22a3b14c296913100d8dfa3d9d128a334c46b4ab5bfb9abd6b512f57ef4/navigation.js",
+        "path": "docs/runtime/16b3125e74bed9b7d9022e49d25481af5cd342ad403d81f8d59563c414759470/navigation.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/5a10d22a3b14c296913100d8dfa3d9d128a334c46b4ab5bfb9abd6b512f57ef4/space.js",
+        "path": "docs/runtime/16b3125e74bed9b7d9022e49d25481af5cd342ad403d81f8d59563c414759470/space.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/5a10d22a3b14c296913100d8dfa3d9d128a334c46b4ab5bfb9abd6b512f57ef4/styles.css",
+        "path": "docs/runtime/16b3125e74bed9b7d9022e49d25481af5cd342ad403d81f8d59563c414759470/styles.css",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/5a10d22a3b14c296913100d8dfa3d9d128a334c46b4ab5bfb9abd6b512f57ef4/theme.js",
+        "path": "docs/runtime/16b3125e74bed9b7d9022e49d25481af5cd342ad403d81f8d59563c414759470/theme.js",
         "identity_mode": "existence"
       },
       {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "b115c23940bdcd7aac239c97822449fccf3aa0b286b9ed66dae67d461b16c07c"
+        "sha256": "a07b212ae8b692ac8888ad7ccd411a2784ee1b74d56c956a1dfedc20a22ff08d"
       },
       {
-        "path": "docs/snapshots/105217850877fcef7a3524919834c62ce8234507c62ce34827c34e3bc1774136/credits.html",
+        "path": "docs/snapshots/12ba807789c82179bdd4fc8177c9a2a30c7bbc34c58420e54a7d40ac228db30b/research.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/50eb894b23ae14bad0cc92d44ac0be76f78893c3c29b64e4f69a5c0d6923cbb3/index.html",
+        "path": "docs/snapshots/5cfb8142ca2bf9a6ff1746a40fb1e3828a782226789db83814edffbf7aa857ec/writing.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/5df9b41edeeda61082132c750e12c547d7ca1a31ff480aad6a1984821e2d263c/writing.html",
+        "path": "docs/snapshots/6d137ddaa79d2adf7ec47f9eb543a26545e64ae8a37eb32a245a56e7ab33518d/talks.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/ecb03b20ca60453d8f8e1448ea46f306251595a15cadb022fdc4fc2fccbb2715/talks.html",
+        "path": "docs/snapshots/80846befd16dbf4d0045e4a38fa628a463b9d6a7c67030f820ae2dff0107558a/credits.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/eebd77547baef13a8d04b6c7c053189a9d5719355d4eea489b648f0de77a3821/research.html",
+        "path": "docs/snapshots/c57b6de3f17ea80bfdccc30c66f33913d345010925fe0681870c0e9ad38c5f28/index.html",
         "identity_mode": "existence"
       },
       {
@@ -361,6 +361,11 @@
         "path": "review/color-staging-20261006/target.json",
         "identity_mode": "content",
         "sha256": "42bac7997ba50f77b0ad9a53fa76cbdaa3fab8df0099c531b0c7f317ee2be0e2"
+      },
+      {
+        "path": "review/reading-backdrops-20261006/REPORT.md",
+        "identity_mode": "content",
+        "sha256": "0980ec1b7e6c8c74ce784032408968b1886aa6eaf9e6a403fb29e9919b973e4e"
       },
       {
         "path": "review/seo-20261002/COLLECTION-MANIFEST.json",
@@ -2898,7 +2903,7 @@
       {
         "path": "review/site-v1-static-previews-v11.json",
         "identity_mode": "content",
-        "sha256": "5930be33216802834f4ab7ada5005e2971e7aa213b09cb0c41acce7fd1016af6"
+        "sha256": "97c26952a7ab4572b3c871ad46a165e38b6e0032d08321ce76b6e86c40fe406f"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -3470,7 +3475,7 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "6053e065201c1df21e2f0695dab0d1333302b010c6924250d61d06bdf4c7f57d"
+        "sha256": "2b6f97cc565d3a3ab48318c613df888384051f57f31c30f2f931d2c66983b7c5"
       },
       {
         "path": "site/routes.json",
@@ -4404,6 +4409,13 @@
     {
       "path": "review/color-staging-20261006/target.json",
       "title": "review/color-staging-20261006/target.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/reading-backdrops-20261006/REPORT.md",
+      "title": "Content-sized reading backdrops",
       "instructions": [
         "AGENTS.md"
       ]

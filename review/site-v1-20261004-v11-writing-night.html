@@ -445,8 +445,8 @@
 
 
 
-  <meta name="site-engine" content="5a10d22a3b14c296913100d8dfa3d9d128a334c46b4ab5bfb9abd6b512f57ef4">
-  <meta name="site-route" content="5df9b41edeeda61082132c750e12c547d7ca1a31ff480aad6a1984821e2d263c">
+  <meta name="site-engine" content="16b3125e74bed9b7d9022e49d25481af5cd342ad403d81f8d59563c414759470">
+  <meta name="site-route" content="5cfb8142ca2bf9a6ff1746a40fb1e3828a782226789db83814edffbf7aa857ec">
   <meta name="site-contract" content="1">
   <meta name="site-variant" content="base">
 <meta name="robots" content="noindex, nofollow">
@@ -457,7 +457,7 @@
   --portrait-start:#deebeb; --portrait-end:#f4edde;
   --facet-1:#e7ece8;--facet-2:#dce9eb;--facet-3:#cddfe3;--facet-4:#eae1ce;--facet-5:#bfd4da;--facet-6:#eff0e9;
   --button-bg:#245866; --button-ink:#fffdf7;
-  --surface-open:86%; --surface-reading:90%; --surface-row:91%;
+  --surface-open:91%; --surface-reading:95%; --surface-row:96%;
   --sans:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   color-scheme:light;
 }
@@ -467,7 +467,7 @@
   --portrait-start:#152732; --portrait-end:#24251e;
   --facet-1:#1c252e;--facet-2:#142f3b;--facet-3:#1c3f4c;--facet-4:#332e21;--facet-5:#235164;--facet-6:#253038;
   --button-bg:#78abb0; --button-ink:#111c22; color-scheme:dark;
-  --surface-open:86%; --surface-reading:90%; --surface-row:91%;
+  --surface-open:91%; --surface-reading:95%; --surface-row:96%;
 }
 @media(prefers-color-scheme:dark) {
   :root:not([data-theme]) {
@@ -476,7 +476,7 @@
     --portrait-start:#152732; --portrait-end:#24251e;
     --facet-1:#1c252e;--facet-2:#142f3b;--facet-3:#1c3f4c;--facet-4:#332e21;--facet-5:#235164;--facet-6:#253038;
     --button-bg:#78abb0; --button-ink:#111c22; color-scheme:dark;
-    --surface-open:86%; --surface-reading:90%; --surface-row:91%;
+    --surface-open:91%; --surface-reading:95%; --surface-row:96%;
   }
 }
 * {box-sizing:border-box}
@@ -529,8 +529,8 @@ body[data-page="writing"] .space-scene canvas,body[data-page="credits"] .space-s
 :is(.hero-copy,.section-heading,.archive-intro>h1,.archive-intro>.hero-description,.archive-intro>.eyebrow,.shift-intro>p,
 .research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,
 .ack-grid article,.about-grid>div,.contact-grid>div,.publication,.credits-page>p,.credits-page>h2,
-.archive-landings,.archive-heading,.archive-filters,.archive-count,.empty-state,.year-landing,
-.section-note,.section-nav,.topic-nav,.next-route,.site-footer) {
+.archive-heading,.archive-count,.empty-state,.year-landing,.section-note,.next-route,
+.archive-landings>.topic-landing,.archive-filters>label,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a) {
   position:relative;isolation:isolate;
 }
 /* The mask feathers only the backdrop beyond the reading area, never glyphs.
@@ -538,11 +538,11 @@ body[data-page="writing"] .space-scene canvas,body[data-page="credits"] .space-s
 :is(.hero-copy,.section-heading,.archive-intro>h1,.archive-intro>.hero-description,.archive-intro>.eyebrow,.shift-intro>p,
 .research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,
 .ack-grid article,.about-grid>div,.contact-grid>div,.publication,.credits-page>p,.credits-page>h2,
-.archive-landings,.archive-heading,.archive-filters,.archive-count,.empty-state,.year-landing,
-.section-note,.section-nav,.topic-nav,.next-route,.site-footer)::before {
-  content:"";position:absolute;inset:-24px;z-index:-1;pointer-events:none;
+.archive-heading,.archive-count,.empty-state,.year-landing,.section-note,.next-route,
+.archive-landings>.topic-landing,.archive-filters>label,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a)::before {
+  content:"";position:absolute;inset:calc(-1 * var(--surface-gutter,24px));z-index:-1;pointer-events:none;
   background:var(--paper);background:color-mix(in srgb,var(--paper) var(--reading-alpha,var(--surface-reading)),transparent);
-  mask-image:linear-gradient(90deg,transparent,#000 24px,#000 calc(100% - 24px),transparent),linear-gradient(transparent,#000 24px,#000 calc(100% - 24px),transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 var(--surface-gutter,24px),#000 calc(100% - var(--surface-gutter,24px)),transparent),linear-gradient(transparent,#000 var(--surface-gutter,24px),#000 calc(100% - var(--surface-gutter,24px)),transparent);
   mask-composite:intersect;
 }
 .archive-intro>h1,.archive-intro>.hero-description {width:fit-content;max-width:100%;padding:8px 16px;margin-left:-16px}
@@ -550,6 +550,11 @@ body[data-page="writing"] .space-scene canvas,body[data-page="credits"] .space-s
 .about-grid>div,.contact-grid>div {padding:18px 22px}
 .credits-page>p {padding:14px 18px;margin-inline:-18px}
 .section-nav,.topic-nav {padding-inline:14px}
+.section-nav {width:fit-content;max-width:100%}
+/* Menus and controls need protection only behind their own text. */
+.archive-landings>.topic-landing,.archive-filters>label,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a {--surface-gutter:10px}
+/* A short column must not inherit the height of its taller neighbour. */
+.shift-intro,.research-grid,.topic-grid,.help-grid,.ack-leads,.ack-compact,.ack-grid,.about-grid,.contact-grid {align-items:start}
 .site-footer,.next-route {padding-inline:18px}
 .hero {display:grid;grid-template-columns:1.22fr .78fr;align-items:end;gap:0 44px;padding-top:48px}
 .hero-copy {--reading-alpha:var(--surface-open);color:var(--ink);align-self:center;padding:16px 18px 34px;margin-left:-18px}
@@ -664,7 +669,8 @@ h2 {font-size:clamp(30px,3.4vw,40px);font-weight:720;letter-spacing:-.035em;line
 .archive-landings {display:flex;flex-wrap:wrap;gap:12px 28px;padding-top:24px}
 .topic-landing,.year-landing {font-size:15px;letter-spacing:0;line-height:1.5;margin:0;padding-block:12px}
 .topic-landing a {display:block;font-size:13px;font-weight:500;margin-top:6px}
-.year-landing {width:min(1160px,calc(100% - 80px));margin-inline:auto;font-size:19px;padding-top:38px}
+.year-landing {width:fit-content;max-width:min(1160px,calc(100% - 80px));margin-left:max(40px,calc((100% - 1160px)/2));margin-right:0;font-size:19px;padding-top:38px}
+#archive-results .year-landing {margin-left:0;max-width:100%}
 .archive-heading {font-size:21px;margin-top:24px;letter-spacing:-.015em}
 .archive-landings,.year-landing {scroll-margin-top:12px}
 .contact-grid {display:grid;grid-template-columns:1fr 1fr;gap:44px}
@@ -687,7 +693,8 @@ body[data-page="writing"] .publication {--reading-alpha:var(--surface-row)}
 }
 @media(max-width:900px) {
   .site-header.wrap {padding-inline:24px}
-  .wrap,.year-landing {width:calc(100% - 48px)}
+  .wrap {width:calc(100% - 48px)}
+  .year-landing {max-width:calc(100% - 48px);margin-left:24px}
   body[data-page="writing"] #archive-results {width:calc(100% - 48px)}
   .hero {gap:0 24px;padding-top:40px}
   .hero h1 {font-size:clamp(40px,4.9vw,56px)}
@@ -697,12 +704,13 @@ body[data-page="writing"] .publication {--reading-alpha:var(--surface-row)}
   .site-header.wrap {padding-inline:20px}
   .hero .hero-copy::before {content:none}
   .hero :is(h1,.hero-lead,.hero-description,.audience,.eyebrow) {position:relative;isolation:isolate}
-  .hero :is(h1,.hero-lead,.hero-description,.audience,.eyebrow)::before {content:"";position:absolute;inset:-18px;z-index:-1;pointer-events:none;background:color-mix(in srgb,var(--paper) 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 18px,#000 calc(100% - 18px),transparent),linear-gradient(transparent,#000 18px,#000 calc(100% - 18px),transparent);mask-composite:intersect}
+  .hero :is(h1,.hero-lead,.hero-description,.audience,.eyebrow)::before {content:"";position:absolute;inset:-18px;z-index:-1;pointer-events:none;background:color-mix(in srgb,var(--paper) 97%,transparent);mask-image:linear-gradient(90deg,transparent,#000 18px,#000 calc(100% - 18px),transparent),linear-gradient(transparent,#000 18px,#000 calc(100% - 18px),transparent);mask-composite:intersect}
   /* Match the mobile camera framing for the static 1440×900 projection too. */
   .space-scene .space-fallback {width:min(184vw,160vh);height:min(115vw,100vh);left:calc(42vw - min(121.44vw,105.6vh));top:calc(48vh - min(55.2vw,48vh))}
   .archive-intro>h1 {padding-inline:0;margin-inline:0}
   html {scroll-padding-top:var(--header-clearance,112px)}
-  .wrap,.year-landing {width:calc(100% - 40px)}
+  .wrap {width:calc(100% - 40px)}
+  .year-landing {max-width:calc(100% - 40px);margin-left:20px}
   body[data-page="writing"] #archive-results {width:calc(100% - 40px)}
   .site-header {padding-block:8px;gap:0 14px}
   .wordmark {font-size:13px}

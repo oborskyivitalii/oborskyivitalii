@@ -1,10 +1,10 @@
 'use strict';
 // Reading backdrops are ordinary translucent paint: no controller or observer.
-const readingSelector=':is(.hero-copy,.section-heading,.archive-intro>h1,.archive-intro>.hero-description,.archive-intro>.eyebrow,.shift-intro>p,.research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,.ack-grid article,.about-grid>div,.contact-grid>div,.publication,.credits-page>p,.credits-page>h2,.archive-landings,.archive-heading,.archive-filters,.archive-count,.empty-state,.year-landing,.section-note,.section-nav,.topic-nav,.next-route,.site-footer,.year-heading,.writing-topic)';
+const readingSelector=':is(.hero-copy,.section-heading,.archive-intro>h1,.archive-intro>.hero-description,.archive-intro>.eyebrow,.shift-intro>p,.research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,.ack-grid article,.about-grid>div,.contact-grid>div,.publication,.credits-page>p,.credits-page>h2,.archive-heading,.archive-count,.empty-state,.year-landing,.section-note,.next-route,.archive-landings>.topic-landing,.archive-filters>label,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a,.year-heading,.writing-topic)';
 const mobileReadingSelector='.hero :is(h1,.hero-lead,.hero-description,.audience,.eyebrow)';
 function surfaceStyles(){
   return `<style data-ribbon-reading-surface>
-:root,:root[data-theme="dark"]{--surface-open:78%;--surface-reading:82%;--surface-row:84%}
+:root,:root[data-theme="dark"]{--surface-open:83%;--surface-reading:87%;--surface-row:89%}
 :root:not([data-theme="dark"]){--muted:#344a53}
 :root[data-theme="dark"] body[data-page="writing"] .archive-intro>.hero-description{color:var(--ink)}
 .year-heading,.writing-topic{position:relative;isolation:isolate}
@@ -17,7 +17,7 @@ ${readingSelector}::before{border-radius:8px}
   ${mobileReadingSelector}{--reading-alpha:var(--surface-reading)}
   ${mobileReadingSelector}::before{background:var(--paper);background:color-mix(in srgb,var(--paper) var(--reading-alpha),transparent);border-radius:8px}
 }
-@media(prefers-reduced-transparency:reduce){:root,:root[data-theme="dark"]{--surface-open:96%;--surface-reading:96%;--surface-row:96%}}
+@media(prefers-reduced-transparency:reduce){:root,:root[data-theme="dark"]{--surface-open:100%;--surface-reading:100%;--surface-row:100%}}
 @media print{${readingSelector}::before,${mobileReadingSelector}::before{background:white}}
 </style>\n`;
 }
