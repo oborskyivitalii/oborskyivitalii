@@ -1,5 +1,19 @@
 # Agent guidance for personal publications
 
+## Implement confirmed causes and investigate the rest — 2026-10-06
+
+The maintainer requests corrections and remaining causal investigation from
+review/staging-readiness-20261006/CAUSES.md, continuing only PR #23. This
+supersedes the completed analysis-only pause below. Isolate the complete browser
+matrix, fix state-observation races without extending the original bounds, and
+correct supported renderer/adaptation costs while preserving geometry and holds.
+Cold WebKit and late Research tasks require controlled evidence, not guessed
+causes. One dated, path-scoped read-only PR experiment may retain cold WebKit
+ablations on fresh runners and balanced before/current Research traces. Remove
+its temporary trigger after collection; keep every failed observation and exact
+source/parent identity. Diagnostic green is not performance acceptance. Complete
+the authorized exact-head full staging and stable verification before merge.
+
 ## Completed browser causes — 2026-10-06
 
 The requested analysis is retained in review/staging-readiness-20261006/CAUSES.md,

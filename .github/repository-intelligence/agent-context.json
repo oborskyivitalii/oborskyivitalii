@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "eb194f45c17de0a59401d1b5290c76edf90ada31db3f7c3d6327ffa8b211ca8d",
+    "digest": "11936ab362fc64864278498db45626a3caad4071aa4f732f270e7892cc3f1609",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -59,6 +59,11 @@
         "path": ".github/workflows/site-candidate-evidence.yml",
         "identity_mode": "content",
         "sha256": "4f29bb722c296a012d79850b504f2a47369f450a0449f65804a277369ca5406e"
+      },
+      {
+        "path": ".github/workflows/site-cause-fix-probe.yml",
+        "identity_mode": "content",
+        "sha256": "545a3851202eac13981498675dd032bf03cbf3053ef5545f5f0df36714d0d407"
       },
       {
         "path": ".github/workflows/site-cause-probe.yml",
@@ -107,7 +112,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "1f56215061d72ce7437583c99f75d47e539da7c64459339776817e67f32dad6b"
+        "sha256": "bf83fa74fce7ca679eaee2b885c9fe983ec48d28bed5564e71bec9c6328ee622"
       },
       {
         "path": "BACKLOG.md",
@@ -233,48 +238,48 @@
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/5a10d22a3b14c296913100d8dfa3d9d128a334c46b4ab5bfb9abd6b512f57ef4/archive.js",
+        "path": "docs/runtime/2e064507b154606578a9be3fc7ee7bec059443e5f54e2bec7421b6edd801fd43/archive.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/5a10d22a3b14c296913100d8dfa3d9d128a334c46b4ab5bfb9abd6b512f57ef4/navigation.js",
+        "path": "docs/runtime/2e064507b154606578a9be3fc7ee7bec059443e5f54e2bec7421b6edd801fd43/navigation.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/5a10d22a3b14c296913100d8dfa3d9d128a334c46b4ab5bfb9abd6b512f57ef4/space.js",
+        "path": "docs/runtime/2e064507b154606578a9be3fc7ee7bec059443e5f54e2bec7421b6edd801fd43/space.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/5a10d22a3b14c296913100d8dfa3d9d128a334c46b4ab5bfb9abd6b512f57ef4/styles.css",
+        "path": "docs/runtime/2e064507b154606578a9be3fc7ee7bec059443e5f54e2bec7421b6edd801fd43/styles.css",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/5a10d22a3b14c296913100d8dfa3d9d128a334c46b4ab5bfb9abd6b512f57ef4/theme.js",
+        "path": "docs/runtime/2e064507b154606578a9be3fc7ee7bec059443e5f54e2bec7421b6edd801fd43/theme.js",
         "identity_mode": "existence"
       },
       {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "b115c23940bdcd7aac239c97822449fccf3aa0b286b9ed66dae67d461b16c07c"
+        "sha256": "e661a2016e8215630f91b27370dc5242b5f0373b26b4b820f71086e7f012e3a9"
       },
       {
-        "path": "docs/snapshots/105217850877fcef7a3524919834c62ce8234507c62ce34827c34e3bc1774136/credits.html",
+        "path": "docs/snapshots/06b03b607a5582f486087804c67920fb6ae23ebeba26a28deac04f94c3432428/writing.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/50eb894b23ae14bad0cc92d44ac0be76f78893c3c29b64e4f69a5c0d6923cbb3/index.html",
+        "path": "docs/snapshots/51d0f71fdcbc42c43052c7ca14021ac75fd9efdd6d3839410facdbd975d89b30/credits.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/5df9b41edeeda61082132c750e12c547d7ca1a31ff480aad6a1984821e2d263c/writing.html",
+        "path": "docs/snapshots/a414c2e34022dbc88eb63f90e96be44d1a1a040bb20fbb6b04ff1dc1894d0f7d/research.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/ecb03b20ca60453d8f8e1448ea46f306251595a15cadb022fdc4fc2fccbb2715/talks.html",
+        "path": "docs/snapshots/c5fdb6075e49df0251f0ea6d4ab0ec0735ea37db72a58df994d13c1bab3ba8ac/index.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/eebd77547baef13a8d04b6c7c053189a9d5719355d4eea489b648f0de77a3821/research.html",
+        "path": "docs/snapshots/d31253124176469aaedcc819685263dfa39233f6b256189108346b8eafc42683/talks.html",
         "identity_mode": "existence"
       },
       {
@@ -3198,6 +3203,11 @@
         "sha256": "cfc951fa5b6181a74aa3ac7da3015a92b50665bdf0df290f7ab2021d62a346ff"
       },
       {
+        "path": "review/staging-readiness-20261006/CAUSE-FIX-REQUEST.md",
+        "identity_mode": "content",
+        "sha256": "ea9c51bb7daa40d0d213305a87818714ec243c0dcae042711625b66a67b2b540"
+      },
+      {
         "path": "review/staging-readiness-20261006/CAUSES.md",
         "identity_mode": "content",
         "sha256": "dd0a29b8cff6055ac4b20661ec29827d04656af4b242476352db6ff1422a38cb"
@@ -3495,7 +3505,7 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "6053e065201c1df21e2f0695dab0d1333302b010c6924250d61d06bdf4c7f57d"
+        "sha256": "b258c29523e7a13f16fadd8d2c3c7926dfb04d9086c0cc0db0fd6364602c2d57"
       },
       {
         "path": "site/routes.json",
@@ -3545,6 +3555,10 @@
       },
       {
         "path": "tests/browser-gate-variants.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/cause-fix-probe.test.cjs",
         "identity_mode": "existence"
       },
       {
@@ -3765,6 +3779,10 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tools/quality/cold-native-probe.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tools/quality/color-browser.cjs",
         "identity_mode": "existence"
       },
@@ -3836,6 +3854,10 @@
       },
       {
         "path": "tools/quality/promotion.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/research-pair-probe.cjs",
         "identity_mode": "existence"
       },
       {
@@ -4223,6 +4245,13 @@
     {
       "path": ".github/workflows/site-candidate-evidence.yml",
       "title": ".github/workflows/site-candidate-evidence.yml",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".github/workflows/site-cause-fix-probe.yml",
+      "title": ".github/workflows/site-cause-fix-probe.yml",
       "instructions": [
         "AGENTS.md"
       ]
@@ -5770,6 +5799,13 @@
     {
       "path": "review/staging-readiness-20261006/CAUSE-ATTRIBUTION.json",
       "title": "review/staging-readiness-20261006/CAUSE-ATTRIBUTION.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/staging-readiness-20261006/CAUSE-FIX-REQUEST.md",
+      "title": "Confirm cause corrections and attribute the unresolved native delay",
       "instructions": [
         "AGENTS.md"
       ]

@@ -95,15 +95,15 @@ async function freezeControls(page){
   await page.keyboard.press('Escape');assert.equal(await page.locator('.appearance').evaluate(el=>el.open),false);
   assert.equal(await page.locator('.appearance summary').evaluate(el=>el===document.activeElement),true);
   await page.locator('.appearance summary').click();await page.locator('#space-motion').click();
-  const on=await settled(page);assert.match(on.motion.label,/on/);assert.ok(on.paints>off.paints);
+  const on=await nextPaintReady(page,off);assert.match(on.motion.label,/on/);assert.ok(on.paints>off.paints);
   await page.evaluate(()=>window.dispatchEvent(new Event('beforeprint')));
   const print=await settled(page);frozen(print,await settled(page));
   await page.evaluate(()=>window.dispatchEvent(new Event('afterprint')));
-  assert.ok((await settled(page)).paints>print.paints);
+  assert.ok((await nextPaintReady(page,print)).paints>print.paints);
   await page.evaluate(()=>{Object.defineProperty(document,'hidden',{configurable:true,value:true});document.dispatchEvent(new Event('visibilitychange'));});
   const hidden=await settled(page);frozen(hidden,await settled(page));
   await page.evaluate(()=>{delete document.hidden;document.dispatchEvent(new Event('visibilitychange'));});
-  assert.ok((await settled(page)).paints>hidden.paints);
+  assert.ok((await nextPaintReady(page,hidden)).paints>hidden.paints);
 }
 async function archive(page){
   await page.locator('#archive-topic').selectOption('systems');await page.locator('#archive-language').selectOption('en');
@@ -201,7 +201,8 @@ async function failure(page,mode){
   if(mode==='draw-fault')await page.evaluate(()=>CanvasRenderingContext2D.prototype.clearRect=function(){throw Error('Synthetic draw fault');});
   if(mode==='context-loss')await page.evaluate(()=>document.querySelector('canvas').dispatchEvent(new Event('contextlost')));
   if(['draw-fault','context-loss'].includes(mode)){
-    a=await settled(page);assert.equal(a.ready,false);assert.equal(a.fallback,true);assert.equal(a.motion.disabled,true);assert.match(a.motion.label,/unavailable/);frozen(a,await settled(page));return {boundedFailure:true,synthetic:true};
+    await page.waitForFunction(()=>document.querySelector('.space-scene').dataset.state==='fallback',null,{polling:50,timeout:1500});
+    a=await state(page);assert.equal(a.ready,false);assert.equal(a.fallback,true);assert.equal(a.motion.disabled,true);assert.match(a.motion.label,/unavailable/);frozen(a,await settled(page));return {boundedFailure:true,synthetic:true};
   }
   assert.ok((await nextPaintReady(page,a)).paints>a.paints);return {positiveProbe:true};
 }
@@ -233,21 +234,30 @@ function scenarios(engine,smoke){return routes.flatMap(route=>['light','dark'].f
   ...[1440,390].map(width=>({engine,route,theme,width,mode:'normal'})),
   ...(!smoke?modes.map(mode=>({engine,route,theme,width:320,mode})):[])
 ]));}
+async function serialEngines(engines,run){
+  const outcomes=[];
+  for(const engine of engines){
+    try{await run(engine);outcomes.push({status:'fulfilled'});}
+    catch(reason){outcomes.push({status:'rejected',reason});}
+  }
+  return outcomes;
+}
 async function main(){
   const engines=(process.env.SITE_AUDIT_ENGINES||'chromium,firefox,webkit').split(','),smoke=process.argv.includes('--smoke'),rows=[],browsers=[],navigation=[],analytics=[];
   const {server,url}=await start();
-  try{const outcomes=await Promise.allSettled(engines.map(async engine=>{
+  // Each engine owns the runner until its complete functional/navigation/
+  // analytics lease finishes. Preserve every engine even after an earlier error.
+  try{const outcomes=await serialEngines(engines,async engine=>{
     const options=launchOptions(engine),browser=await pw[engine].launch(options);browsers.push({engine,version:browser.version(),executable:options.executablePath||pw[engine].executablePath()});
     try{for(const s of scenarios(engine,smoke)){const row=await scenario(browser,url,s);rows.push(row);report('functional',{smoke,engines,browsers,modes:smoke?[]:modes,rows},rows.every(x=>x.pass));process.stdout.write(`${engine} ${s.route} ${s.theme} ${s.width} ${s.mode}: ${row.pass?'pass':row.error}\n`);}}
-    finally{
+    finally{try{
       const nav=require('./navigation.cjs');
       for(const s of nav.scenarios(engine)){navigation.push(await nav.scenario(browser,url,s));process.stdout.write(`navigation ${engine} ${s.width} ${s.theme}: ${navigation.at(-1).pass?'pass':navigation.at(-1).error}\n`);}
       analytics.push(...await require('./analytics-browser.cjs').run(browser,engine));
-      await browser.close();
-    }
-  }));for(const outcome of outcomes)if(outcome.status==='rejected')throw outcome.reason;
+    }finally{await browser.close();}}
+  });for(const outcome of outcomes)if(outcome.status==='rejected')throw outcome.reason;
   }finally{server.close();report('functional',{smoke,engines,browsers,modes:smoke?[]:modes,rows,navigation,analytics},rows.length===engines.length*scenarios(engines[0],smoke).length&&rows.every(x=>x.pass)&&navigation.length===engines.length*4&&navigation.every(x=>x.pass)&&analytics.length===engines.length*13&&analytics.every(x=>x.pass));}
   assert.ok(rows.every(x=>x.pass)&&navigation.every(x=>x.pass)&&analytics.every(x=>x.pass),'Functional scenarios failed');
 }
 if(require.main===module)main().catch(e=>{console.error(e.stack);process.exitCode=1;});
-module.exports={scenario,probe,capability,state,foregroundReady,normalStartup,scenarios,modes,navigateDocument,forwardCamera,forwardCameraResponded,nextPaintReady,nextPaintSample};
+module.exports={scenario,probe,capability,state,foregroundReady,normalStartup,scenarios,modes,navigateDocument,forwardCamera,forwardCameraResponded,nextPaintReady,nextPaintSample,serialEngines};

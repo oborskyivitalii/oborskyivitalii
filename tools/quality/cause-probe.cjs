@@ -2,14 +2,14 @@
 // Bounded private attribution. Instrumented observations never authorize release.
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),zlib=require('node:zlib');
 const {pathToFileURL}=require('node:url'),artifact=require('./artifact.cjs');
-function validateInput(normal,control,candidate){
+function validateInput(normal,control,candidate,label='browser-gate-trace'){
   assert.match(candidate,/^[a-f0-9]{40}$/);
   for(const input of [normal,control]){
     assert.equal(input.sourceCommit,candidate);assert.equal(input.candidateCommit,candidate);assert.equal(input.sourceDirty,false);
     assert.match(input.sourceTree,/^[a-f0-9]{40}$/);assert.match(input.artifactDigest,/^[a-f0-9]{64}$/);
   }
   assert.equal(normal.sourceTree,control.sourceTree);assert.equal(normal.variant.id,'color');assert.ok(!normal.diagnostic);
-  assert.equal(control.fullGate,false);assert.equal(control.diagnostic.label,'browser-gate-trace');
+  assert.equal(control.fullGate,false);assert.equal(control.diagnostic.label,label);
   assert.equal(control.derivation.parentArtifactDigest,normal.artifactDigest);assert.deepEqual(control.derivation.parentVariant,normal.variant);
   assert.notEqual(control.artifactDigest,normal.artifactDigest);
 }
@@ -114,4 +114,4 @@ async function main(scope,normalDir,controlDir,output){
   finally{server.close();}
 }
 if(require.main===module){assert.equal(process.argv.length,6);main(process.argv[2],...process.argv.slice(3).map(value=>path.resolve(value))).catch(error=>{console.error(error.stack);process.exitCode=1;});}
-module.exports={validateInput,lighthouseEvidence,saveRaw,heartbeat,main};
+module.exports={validateInput,lighthouseEvidence,saveRaw,heartbeat,webkitTrial,main};
