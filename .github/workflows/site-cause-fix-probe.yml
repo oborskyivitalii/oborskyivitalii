@@ -13,14 +13,148 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: cause-fix-${{ github.event.pull_request.number || inputs.candidate_sha }}
+  group: cause-fix-${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
   cancel-in-progress: true
 env:
   SITE_CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
   CAUSE_REFERENCE_SHA: db9447d0a6c9755670b9a40009329f183a1d3af9
 jobs:
-  cold-native:
+  native-port:
     if: github.event_name == 'workflow_dispatch' || github.event.pull_request.number == 23
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {port: wpe, label: browser-gate-trace, replica: 1}
+          - {port: wpe, label: browser-gate-trace, replica: 2}
+          - {port: gtk, label: browser-gate-trace, replica: 1}
+          - {port: gtk, label: browser-gate-trace, replica: 2}
+          - {port: wpe, label: cold-2d-air, replica: 1}
+          - {port: wpe, label: cold-2d-air, replica: 2}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      COLD_REPLICA: ${{ matrix.replica }}
+      COLD_NATIVE_PORT: ${{ matrix.port }}
+      COLD_LABEL: ${{ matrix.label }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ env.SITE_CANDIDATE_SHA }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: '24.19.0'
+      - name: Build exact normal Color and traced control
+        run: |
+          node - <<'JS'
+          const root=process.env.RUNNER_TEMP+'/cause-fix-input';
+          require('./tools/quality/artifact.cjs').build(root+'/color');
+          require('./tools/staging/color.cjs').build(root+'/color');
+          require('./tools/quality/writing-variants.cjs').derive(root+'/color',root+'/control',process.env.COLD_LABEL);
+          JS
+      - name: Install pinned WebKit without prior launch
+        run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          tools/quality/toolchain/node_modules/.bin/playwright install --with-deps webkit
+      - name: Observe first-process WPE or GTK with the complete normal rendition
+        run: >-
+          xvfb-run -a node tools/quality/cold-native-probe.cjs ${{ matrix.label }}
+          "$RUNNER_TEMP/cause-fix-input/color"
+          "$RUNNER_TEMP/cause-fix-input/control"
+          "$RUNNER_TEMP/cause-fix-results"
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: cause-fix-port-${{ matrix.port }}-${{ matrix.label }}-${{ matrix.replica }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/cause-fix-results/
+          if-no-files-found: error
+          retention-days: 90
+  native-profile:
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.number == 23
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      COLD_NATIVE_PORT: wpe
+      COLD_NATIVE_PROFILE: 'true'
+      COLD_REPLICA: native-profile
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ env.SITE_CANDIDATE_SHA }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: '24.19.0'
+      - name: Build normal Color and install native sampling tools
+        run: |
+          node - <<'JS'
+          const root=process.env.RUNNER_TEMP+'/cause-fix-input';
+          require('./tools/quality/artifact.cjs').build(root+'/color');
+          require('./tools/staging/color.cjs').build(root+'/color');
+          require('./tools/quality/writing-variants.cjs').derive(root+'/color',root+'/control','browser-gate-trace');
+          JS
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          tools/quality/toolchain/node_modules/.bin/playwright install --with-deps webkit
+          sudo apt-get update
+          sudo apt-get install -y linux-tools-common linux-tools-generic
+      - name: Sample only the cold probe and its browser children
+        run: |
+          mkdir -p "$RUNNER_TEMP/cause-fix-results"
+          perf_tool=$(find /usr/lib -path '*linux-tools*/perf' -type f | sort | tail -n 1)
+          test -n "$perf_tool"
+          sudo --preserve-env=SITE_CANDIDATE_SHA,COLD_NATIVE_PORT,COLD_NATIVE_PROFILE,COLD_REPLICA "$perf_tool" record -e cycles:u -F 99 --call-graph dwarf -o "$RUNNER_TEMP/cause-fix-results/native-perf.data" -- "$(command -v node)" tools/quality/cold-native-probe.cjs browser-gate-trace "$RUNNER_TEMP/cause-fix-input/color" "$RUNNER_TEMP/cause-fix-input/control" "$RUNNER_TEMP/cause-fix-results"
+          sudo "$perf_tool" report --stdio --no-children --sort comm,dso,symbol -i "$RUNNER_TEMP/cause-fix-results/native-perf.data" > "$RUNNER_TEMP/cause-fix-results/native-profile.txt"
+          sudo chmod 644 "$RUNNER_TEMP/cause-fix-results/native-perf.data"
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: cause-fix-native-profile-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/cause-fix-results/
+          if-no-files-found: error
+          retention-days: 90
+  static-preflight:
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.number == 23
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      SITE_REPORT_DIR: ${{ github.workspace }}/quality-reports
+      SITE_ARTIFACT_MANIFEST: ${{ runner.temp }}/cause-static/artifact.json
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ env.SITE_CANDIDATE_SHA }}
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: '24.19.0'
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.12.14'
+      - name: Build source identity and install locked scanners
+        run: |
+          node tools/quality/artifact.cjs build "$RUNNER_TEMP/cause-static"
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          python -m venv tools/quality/toolchain/venv
+          tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check -r tools/quality/toolchain/requirements.txt
+      - name: Lint complete current source
+        if: ${{ !cancelled() }}
+        run: node tools/quality/scanners.cjs lint
+      - name: Retain exact security candidates
+        if: ${{ !cancelled() }}
+        run: node tools/quality/scanners.cjs security
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: cause-fix-static-${{ github.run_id }}-${{ github.run_attempt }}
+          path: quality-reports/
+          if-no-files-found: error
+          retention-days: 90
+  cold-native:
+    # Original eight ablations retained in 37483016304; manual replay only.
+    if: github.event_name == 'workflow_dispatch'
     strategy:
       fail-fast: false
       matrix:
@@ -86,7 +220,9 @@ jobs:
           git worktree add --detach "$RUNNER_TEMP/cause-reference" "$CAUSE_REFERENCE_SHA"
           node - <<'JS'
           const path=require('node:path'),root=process.env.RUNNER_TEMP+'/cause-fix-input';
+          const candidate=process.env.SITE_CANDIDATE_SHA;
           for(const [label,source]of [['candidate',process.cwd()],['reference',process.env.RUNNER_TEMP+'/cause-reference']]){
+            process.env.SITE_CANDIDATE_SHA=label==='reference'?process.env.CAUSE_REFERENCE_SHA:candidate;
             require(path.join(source,'tools/quality/artifact.cjs')).build(root+'/'+label);
             require(path.join(source,'tools/staging/color.cjs')).build(root+'/'+label);
           }

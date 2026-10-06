@@ -3,11 +3,12 @@ const test=require('node:test'),assert=require('node:assert/strict'),fs=require(
 const variants=require('../tools/quality/writing-variants.cjs'),{validateInput}=require('../tools/quality/cause-probe.cjs'),{validatePair}=require('../tools/quality/research-pair-probe.cjs');
 const color=require('../tools/staging/color.cjs'),root=path.resolve(__dirname,'..');
 const source=color.runtime(color.authoredEffects()).code+'\n'+fs.readFileSync(path.join(root,'docs/space.js'),'utf8');
+const scripts={'space.js':source,'styles.css':fs.readFileSync(path.join(root,'docs/styles.css'),'utf8')};
 test('cold native interventions are separate from the dated Writing screen and each changes only its declared factor',()=>{
-  assert.equal(variants.labels.length,13);assert.equal(variants.coldNativeLabels.length,3);
-  const trace=variants.patchRuntime({'space.js':source},'browser-gate-trace');
+  assert.equal(variants.labels.length,13);assert.equal(variants.coldNativeLabels.length,4);
+  const trace=variants.patchRuntime(scripts,'browser-gate-trace');
   for(const label of variants.coldNativeLabels){
-    const result=variants.patchRuntime({'space.js':source},label);new vm.Script(result.scripts['space.js']);
+    const result=variants.patchRuntime(scripts,label);new vm.Script(result.scripts['space.js']);
     assert.equal(result.patches.length,label==='cold-no-air'?5:3);assert.deepEqual(result.patches.slice(0,2),trace.patches);
     assert.ok(result.patches.every(p=>p.matches===1));assert.equal(source.includes('__browserGateScheduler'),false);
   }

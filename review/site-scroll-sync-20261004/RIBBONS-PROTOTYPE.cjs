@@ -81,13 +81,13 @@ function createRibbonMaterials(api,section,signals){
 }
 function makeProjector(api,section,material,smoothEdges=true){
   const {sub,cross,normalize,clipPolygon}=api;
-  return function projectRibbons(current,width,height,time,compact){
+  return function projectRibbons(current,width,height,time,compact,ribbonMesh=0){
     const forward=normalize(sub(current.target,current.position)),right=normalize(cross(forward,[0,1,0])),up=cross(right,forward);
     const focal=(compact?Math.min(height,width*1.15):height)/(2*Math.tan(Math.PI/8)),cx=width*(compact? .42:.66),cy=height*.48;
     const camera=p=>{const x=p[0]-current.position[0],y=p[1]-current.position[1],z=p[2]-current.position[2];return [x*right[0]+y*right[1]+z*right[2],x*up[0]+y*up[1]+z*up[2],x*forward[0]+y*forward[1]+z*forward[2]];};
     const project=p=>[cx+p[0]*focal/p[2],cy-p[1]*focal/p[2],...p.slice(3)];
     const visible=points=>!points.every(p=>p[0]<-8)&&!points.every(p=>p[0]>width+8)&&!points.every(p=>p[1]<-8)&&!points.every(p=>p[1]>height+8);
-    const dark=document.documentElement.dataset.theme==='dark',shapes=[],step=compact?3:1.25,far=compact?64:105;
+    const dark=document.documentElement.dataset.theme==='dark',shapes=[],step=compact?3:1.25+Math.max(0,Math.min(2,ribbonMesh))*.875,far=compact?64:105;
     const start=Math.min(80,Math.ceil((current.position[2]+32)/step)*step),end=Math.max(-820,current.position[2]-(compact?96:132));
     for(let k=0;k<3;k++){
       const m=material(k,dark,start,end,time,camera,far);
@@ -157,8 +157,8 @@ function createSceneEffects(api,smoothEdges){
   const section=ribbonGeometry(api),signals=ribbonSignals(),materials=createRibbonMaterials(api,section,signals);
   const project=makeProjector(api,section,materials,smoothEdges);
   return {
-    collect({current,width,height,ambientTime,compact,scene}){
-      const shapes=project(current,width,height,ambientTime,compact);
+    collect({current,width,height,ambientTime,compact,scene,detailTier=0}){
+      const shapes=project(current,width,height,ambientTime,compact,detailTier);
       scene.dataset.ribbons="3";scene.dataset.ribbonMaterial="opaque-rgb";scene.dataset.ribbonFaces=String(shapes.length);
       scene.dataset.ribbonSignals=String([0,1,2].reduce((n,k)=>n+(shapes.find(shape=>shape.ribbon===k)?.packets||0),0));
       return shapes;

@@ -9,7 +9,7 @@ async function main(label,normalDir,controlDir,output){
     const manifest=JSON.parse(fs.readFileSync(path.join(dir,'artifact.json'))),publicDir=path.join(dir,'public');artifact.verify(publicDir,manifest);return [id,{manifest,publicDir}];
   }));
   cause.validateInput(inputs.color.manifest,inputs.control.manifest,candidate,label);
-  const record={schema:1,kind:'cold-native-one-factor',label,replica:process.env.COLD_REPLICA,fullGate:false,performanceAcceptance:false,
+  const record={schema:1,kind:'cold-native-one-factor',label,replica:process.env.COLD_REPLICA,port:process.env.COLD_NATIVE_PORT||'wpe',nativeProfile:process.env.COLD_NATIVE_PROFILE==='true',fullGate:false,performanceAcceptance:false,
     protocol:'Exactly one first-process WebKit cold Index per fresh runner. Original foreground/baseline/1500ms next-paint bounds; 2200ms recovery remains separate. Only the declared private ablation changes normal Color. No prior browser launch, warmup or retry.',
     environment:require('./common.cjs').environment(),identities:Object.fromEntries(Object.entries(inputs).map(([id,v])=>[id,{...v.manifest,files:undefined}])),rows:[],errors:[],complete:false,pass:false};
   const save=()=>fs.writeFileSync(path.join(output,'cold-native.json'),JSON.stringify(record,null,2)+'\n');save();

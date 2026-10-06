@@ -3,7 +3,7 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),cp=require('node:child_process'),zlib=require('node:zlib');
 const {performance}=require('node:perf_hooks'),artifact=require('./artifact.cjs');
 const variant=manifest=>require('./common.cjs').variant(manifest);
-const labels={control:'browser-gate-trace',adaptive:'browser-gate-adaptive-ribbons'},runBudgetMs=12*60*1000;
+const labels={control:'browser-gate-fixed-ribbons',adaptive:'browser-gate-trace'},runBudgetMs=12*60*1000;
 
 function argumentsFor(argv){
   assert.equal(argv.length,6,'exact --control, --adaptive and --output paths required');
@@ -44,7 +44,7 @@ function validateManifest(manifest,label,candidate){
   assert.equal(derivation.parentVariant?.id,'color');assert.equal(derivation.parentVariant.contract,1);assert.ok(!derivation.parentVariant.diagnostic,'normal Color parent required');
   assert.match(derivation.parentVariant.fingerprint||'',/^[a-f0-9]{64}$/);assert.match(derivation.parentVariant.baseEngine||'',/^[a-f0-9]{64}$/);
   assert.deepEqual(derivation.parentVariant.effects,['ribbons','travel']);assert.equal(visual.baseEngine,derivation.parentVariant.baseEngine);
-  assert.equal(derivation.patches?.length,label==='control'?2:7,'exact declared patch count required');
+  assert.equal(derivation.patches?.length,label==='control'?3:2,'exact declared patch count required');
   for(const patch of derivation.patches){
     assert.equal(patch.file,'space.js');assert.equal(patch.matches,1,'private patch must match exactly once');
     for(const key of ['needleSha256','replacementSha256','beforeSha256','afterSha256'])assert.match(patch[key]||'',/^[a-f0-9]{64}$/,'missing exact patch checksum');

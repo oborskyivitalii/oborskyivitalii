@@ -18,17 +18,17 @@ function pointMap(shapes){
   return points;
 }
 test('browser-gate diagnostics are explicit additions while the original Writing screen labels remain unchanged',()=>{
-  assert.equal(variants.labels.length,13);assert.deepEqual(variants.browserGateLabels,['browser-gate-trace','browser-gate-adaptive-ribbons']);
+  assert.equal(variants.labels.length,13);assert.deepEqual(variants.browserGateLabels,['browser-gate-trace','browser-gate-fixed-ribbons']);
   for(const label of variants.browserGateLabels){
     assert.equal(variants.labels.includes(label),false);
     const result=variants.patchRuntime(scripts,label);new vm.Script(result.scripts['space.js']);
-    assert.equal(result.patches.length,label==='browser-gate-trace'?2:7);assert.ok(result.patches.every(row=>row.matches===1));
+    assert.equal(result.patches.length,label==='browser-gate-trace'?2:3);assert.ok(result.patches.every(row=>row.matches===1));
     assert.equal(scripts['space.js'],effects.code+'\n'+baseSource,'normal Color control stays unchanged');
   }
 });
 test('normal tier zero and every mobile tier retain exactly the normal ribbon facets, colors and projection',()=>{
   for(const theme of ['light','dark']){
-    const control=scene(scripts['space.js'],theme),trace=scene(variants.patchRuntime(scripts,'browser-gate-trace').scripts['space.js'],theme),adaptive=scene(variants.patchRuntime(scripts,'browser-gate-adaptive-ribbons').scripts['space.js'],theme);
+    const control=scene(variants.patchRuntime(scripts,'browser-gate-fixed-ribbons').scripts['space.js'],theme),trace=scene(variants.patchRuntime(scripts,'browser-gate-trace').scripts['space.js'],theme),adaptive=scene(scripts['space.js'],theme);
     for(const time of [0,6639.66,7518.48,23999]){
       const original=plain(collect(control,{time}));assert.ok(original.length>200);
       assert.deepEqual(plain(collect(trace,{time})),original);assert.deepEqual(plain(collect(adaptive,{time})),original);
@@ -37,7 +37,7 @@ test('normal tier zero and every mobile tier retain exactly the normal ribbon fa
   }
 });
 test('adaptive desktop mesh reduces facets without changing shared projected vertices or visibility bounds',()=>{
-  const control=scene(scripts['space.js']),adaptive=scene(variants.patchRuntime(scripts,'browser-gate-adaptive-ribbons').scripts['space.js']);
+  const control=scene(variants.patchRuntime(scripts,'browser-gate-fixed-ribbons').scripts['space.js']),adaptive=scene(scripts['space.js']);
   for(const time of [0,6639.66,7518.48,15255.54]){
     const original=collect(control,{time}),low=collect(adaptive,{detailTier:2,time}),middle=collect(adaptive,{detailTier:1,time});
     assert.ok(low.length<original.length*.5);assert.ok(middle.length>low.length&&middle.length<original.length);
@@ -90,12 +90,13 @@ test('both explicit browser-gate artifacts keep exact Color parent lineage and c
     assert.equal(artifact.manifest(path.join(parentDir,'public')).artifactDigest,parent.artifactDigest);
   }finally{fs.rmSync(directory,{recursive:true,force:true});}
 });
-test('unsupported renditions, repeated application and missing or duplicated adaptive anchors fail closed',()=>{
+test('unsupported renditions, repeated adaptation and missing or duplicated counterfactual anchors fail closed',()=>{
   assert.throws(()=>variants.patchRuntime(scripts,'browser-gate-unknown'),/unsupported Writing intervention/);
-  const anchors=['window.SiteScene={','      if(living)quality(renderCost,time);','const state={current,width,height,ambientTime,compact,scene};','collect({current,width,height,ambientTime,compact,scene})','project(current,width,height,ambientTime,compact);','return function projectRibbons(current,width,height,time,compact){','shapes=[],step=compact?3:1.25,far=compact?64:105;'];
+  const anchors=['window.SiteScene={','      if(living)quality(renderCost,time);','shapes=[],step=compact?3:1.25+Math.max(0,Math.min(2,ribbonMesh))*.875,far=compact?64:105;'];
   for(const anchor of anchors){
-    assert.throws(()=>variants.patchRuntime({'space.js':scripts['space.js'].replace(anchor,'/* controlled source drift */')},'browser-gate-adaptive-ribbons'),/exactly once/);
-    assert.throws(()=>variants.patchRuntime({'space.js':scripts['space.js']+'\n'+anchor},'browser-gate-adaptive-ribbons'),/exactly once/);
+    assert.throws(()=>variants.patchRuntime({'space.js':scripts['space.js'].replace(anchor,'/* controlled source drift */')},'browser-gate-fixed-ribbons'),/exactly once/);
+    assert.throws(()=>variants.patchRuntime({'space.js':scripts['space.js']+'\n'+anchor},'browser-gate-fixed-ribbons'),/exactly once/);
   }
+  assert.throws(()=>variants.patchRuntime(scripts,'browser-gate-adaptive-ribbons'),/adaptive ribbons are public/);
   const once=variants.patchRuntime(scripts,'browser-gate-trace').scripts;assert.throws(()=>variants.patchRuntime(once,'browser-gate-trace'),/exactly once/);
 });

@@ -37,8 +37,8 @@ jobs:
           node - <<'JS'
           const root=process.env.RUNNER_TEMP+'/browser-gate-input';
           const {derive}=require('./tools/quality/writing-variants.cjs');
-          derive(root+'/color',root+'/control','browser-gate-trace');
-          derive(root+'/color',root+'/adaptive','browser-gate-adaptive-ribbons');
+          derive(root+'/color',root+'/control','browser-gate-fixed-ribbons');
+          derive(root+'/color',root+'/adaptive','browser-gate-trace');
           JS
       - name: Install the locked three browser engines
         run: |
