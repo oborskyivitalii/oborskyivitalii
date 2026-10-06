@@ -1,5 +1,21 @@
 # Agent guidance for personal publications
 
+## Full staging display startup follow-up — 2026-10-06
+
+Full run 37491800878 at 4c05087e passes all static/host/captures/performance and
+native jobs, plus Linux Chromium/Firefox 260/8/26 and Color 12/12. WebKit never
+starts because the new Xvfb pre-launch cap expires after 3000ms. The gate fails
+and promotion is skipped; do not merge that incomplete matrix. DISPLAY.json
+retains subsequent real X server observations, including invalid wrapper/probe
+preconditions. Both FD1 and FD3 pass, so do not claim an FD switch is a cure.
+Share the original 30000ms engine startup allowance across Xvfb and browser,
+subtracting display elapsed time before browser launch. Keep original 1500ms
+page/paint/fallback bounds, 45/40 minute CI limits and performance/hold policy.
+Retain server stderr on failure; do not invent the historical startup stall's
+native cause. The dated GTK request confirms its complete 130/4/13 lease and
+actual time on normal private Color; remove its trigger after collection, then
+complete the already authorized exact-head hosted full/stable/merge sequence.
+
 ## Implement confirmed causes and investigate the rest — 2026-10-06
 
 The maintainer requests corrections and remaining causal investigation from

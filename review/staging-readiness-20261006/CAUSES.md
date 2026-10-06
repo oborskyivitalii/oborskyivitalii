@@ -10,10 +10,23 @@ macOS 20/4/13, static/host/captures/performance проходять. Full gate п
 promotion skipped, stable/main не змінено. Raw Linux artifact 11427927561
 збережений; незмінного повного повтору для випадкового green немає.
 Попередні успішні GTK port probes використовували packaged xvfb-run.
-[DISPLAY-REQUEST.md](DISPLAY-REQUEST.md) описує шість коротких startup
-observations на двох runner, з незмінним результатом початкового 3000 мс,
-stdout/stderr, справжнім X client і cleanup лише власних process groups.
-Жоден браузер у цій перевірці не запускається; це не full acceptance.
+[DISPLAY.json](DISPLAY.json) зберігає шість startup observations з source/tree,
+raw/ZIP SHA та початковим 3000 мс результатом. FD1 проходить за 65/15 мс;
+FD3 за 21/1268 мс. Це не підтримує припущення, що заміна дескриптора лікує
+стару невдачу. Два wrapper observations не запускають X server: /dev/stderr
+неможливо повторно відкрити як файл із Node socket stdio. Для manual replay
+collector тепер використовує власний regular log file. Перша спроба з відсутнім
+xdpyinfo окремо збережена; startup measurements там немає.
+
+Доданий 3000 мс infrastructure deadline не належав до початкового engine launch
+contract (30000 мс). Xvfb і browser тепер ділять цей самий 30000 мс budget;
+час підготовки display віднімається від дозволеного browser launch. Нульовий
+timeout, який вимикає Playwright bound, неможливий. Page/paint/fallback 1500 мс,
+CI job limits і всі performance budgets не змінено. На failure зберігаються
+stdout/stderr; точна причина історичного 3s stall досі не доведена.
+[GTK-REQUEST.md](GTK-REQUEST.md) підтверджує фактичний launcher і всі 130/4/13
+сценаріїв на normal Color перед наступним hosted full stage. Ця private loopback
+перевірка не є full/stable acceptance.
 
 ## Підтверджені виправлення та причинні межі
 

@@ -2,11 +2,12 @@
 // Read-only X server startup observations. No browser, warmup or retry.
 const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),cp=require('node:child_process'),{performance}=require('node:perf_hooks');
 const originalDeadlineMs=3000,observationLimitMs=10000;
-function launchSpec(kind){
+function launchSpec(kind,errorFile){
   const args=['-displayfd',kind==='fd3'?'3':'1','-screen','0','1440x900x24','-nolisten','tcp'];
   if(kind!=='wrapper')return {command:'Xvfb',args,stdio:kind==='fd3'?['ignore','pipe','pipe','pipe']:['ignore','pipe','pipe'],channel:kind==='fd3'?3:1};
   const client="console.log(JSON.stringify({display:process.env.DISPLAY,authority:process.env.XAUTHORITY}));process.stdin.on('end',()=>process.exit(0));process.stdin.resume();";
-  return {command:'xvfb-run',args:['-a','-e','/dev/stderr','--server-args=-screen 0 1440x900x24 -nolisten tcp',process.execPath,'-e',client],stdio:['pipe','pipe','pipe'],channel:1};
+  if(!errorFile)throw Error('Wrapper diagnostics require an owned regular log file');
+  return {command:'xvfb-run',args:['-a','-e',errorFile,'--server-args=-screen 0 1440x900x24 -nolisten tcp',process.execPath,'-e',client],stdio:['pipe','pipe','pipe'],channel:1};
 }
 function displayValue(kind,text){
   if(!text.includes('\n'))return null;
@@ -27,7 +28,8 @@ async function stop(child,row){
   row.exitCode=child.exitCode;row.exitSignal=child.signalCode;
 }
 async function observe(kind){
-  const spec=launchSpec(kind),started=performance.now(),child=cp.spawn(spec.command,spec.args,{stdio:spec.stdio,detached:true});
+  const temporary=fs.mkdtempSync(path.join(os.tmpdir(),'xserver-probe-')),errorFile=path.join(temporary,'stderr.log');fs.writeFileSync(errorFile,'',{mode:0o600});
+  const spec=launchSpec(kind,errorFile),started=performance.now(),child=cp.spawn(spec.command,spec.args,{stdio:spec.stdio,detached:true});
   const row={kind,command:spec.command,args:spec.args,originalDeadlineMs,observationLimitMs,stdout:'',stderr:'',readiness:'',droppedBytes:0,signals:[]};
   let finished=false,timer;
   const observed=new Promise(resolve=>{
@@ -42,7 +44,8 @@ async function observe(kind){
     child.once('exit',(code,signal)=>{row.earlyExit={code,signal};finish();});
     timer=setTimeout(()=>{row.observationTimeout=true;finish();},observationLimitMs);
   });
-  await observed;row.originalPass=Boolean(row.readyMs<=originalDeadlineMs&&row.client?.pass);await stop(child,row);return row;
+  await observed;row.originalPass=Boolean(row.readyMs<=originalDeadlineMs&&row.client?.pass);await stop(child,row);
+  row.serverLog=fs.readFileSync(errorFile,'utf8');fs.rmSync(temporary,{recursive:true,force:true});return row;
 }
 async function main(){
   const directory=path.resolve(process.argv[2]),replica=Number(process.env.DISPLAY_REPLICA||1),order=replica===1?['fd1','fd3','wrapper']:['wrapper','fd3','fd1'];

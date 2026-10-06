@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "2814ac53d48e2d26f8c799e1456fe1ce47ec88c4f6dd714a4c9016ca6cba86a4",
+    "digest": "d4643f9129146c7ec3707a2d0dfe3c425173cd464d8798a64638d211d1b08b48",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -63,7 +63,7 @@
       {
         "path": ".github/workflows/site-cause-fix-probe.yml",
         "identity_mode": "content",
-        "sha256": "b172ba915ddc031350bbf5cf027e528858ada3c0e0015830dfcef7809398826e"
+        "sha256": "c04af65bdf00c5a26253ea1f22fe3d026aec6cdae8f73c15b9f7171a8e768abd"
       },
       {
         "path": ".github/workflows/site-cause-probe.yml",
@@ -112,7 +112,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "f86d5191e3ec6c8e5d912be52ce2f52d0ddfa89e9bb95850e2c4849938a4e6f4"
+        "sha256": "9bd60a994549c58e4a32b52c6af049c2c22dc78be2a4c1d3bebf29e420962f9c"
       },
       {
         "path": "BACKLOG.md",
@@ -3225,12 +3225,17 @@
       {
         "path": "review/staging-readiness-20261006/CAUSES.md",
         "identity_mode": "content",
-        "sha256": "19431eceb748a37b29bf86f66d61c1920db1f0fa28b6a68c6361fca09a6043f5"
+        "sha256": "7572b451b46e3efe33ea6f7691d7f84a541b62aac0ade0de71e90ea3d89054d1"
       },
       {
-        "path": "review/staging-readiness-20261006/DISPLAY-REQUEST.md",
+        "path": "review/staging-readiness-20261006/DISPLAY.json",
         "identity_mode": "content",
-        "sha256": "661c565e92509a94518e6b5e2c0f38a574c86282e861925caf7ab848feacf30a"
+        "sha256": "6f590b3e294ef8e165030ba4752df37f4b7d3b7905ef05a54a5dfacce3d00c8c"
+      },
+      {
+        "path": "review/staging-readiness-20261006/GTK-REQUEST.md",
+        "identity_mode": "content",
+        "sha256": "9ee82232a2db8e9c005710d12b80cf0a901480ba2fd1cdf9f5d35942896a1414"
       },
       {
         "path": "review/staging-readiness-20261006/REPORT.md",
@@ -3903,7 +3908,7 @@
       {
         "path": "tools/quality/secrets-baseline.json",
         "identity_mode": "content",
-        "sha256": "667c323018dba7ea9a16e901e9d7e5ad2483bcababd6eba5566ac338a096fe47"
+        "sha256": "7a05cdf7a119c9588a1781929236b4add25f45abd6c2faafe13b931f67ffebbd"
       },
       {
         "path": "tools/quality/security-rules.yml",
@@ -5871,8 +5876,15 @@
       ]
     },
     {
-      "path": "review/staging-readiness-20261006/DISPLAY-REQUEST.md",
-      "title": "Dated display-start observation",
+      "path": "review/staging-readiness-20261006/DISPLAY.json",
+      "title": "review/staging-readiness-20261006/DISPLAY.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/staging-readiness-20261006/GTK-REQUEST.md",
+      "title": "Dated complete GTK lease confirmation",
       "instructions": [
         "AGENTS.md"
       ]

@@ -19,6 +19,26 @@ test('an unavailable, early-exited or malformed display fails closed without bro
     await assert.rejects(pending,/Xvfb|Invalid/);assert.equal(child.signals.length,1);
   }
 });
-test('readiness has its own bounded infrastructure deadline without warming a browser',async()=>{
+test('readiness honors the caller remaining startup deadline without warming a browser',async()=>{
   const child=fake();await assert.rejects(start('webkit',{platform:'linux',launch:()=>child,timeoutMs:10}),/readiness exceeded 10ms/);assert.equal(child.signals.length,1);
+});
+test('a cold display uses the existing 30s launch allowance instead of an extra 3s deadline',async t=>{
+  t.mock.timers.enable({apis:['setTimeout']});
+  const child=fake(),pending=start('webkit',{platform:'linux',launch:()=>child});
+  t.mock.timers.tick(4000);assert.deepEqual(child.signals,[]);
+  child.stdout.emit('data','12\n');const display=await pending;
+  assert.equal(display.name,':12');display.stop();assert.deepEqual(child.signals,['SIGTERM']);
+});
+test('display preparation consumes the existing browser launch budget and never disables its timeout',()=>{
+  const {remaining}=require('../tools/quality/native-display.cjs');
+  assert.equal(remaining(100,30000,4100),26000);
+  assert.equal(remaining(100,30000,30100-1),1);
+  assert.throws(()=>remaining(100,30000,30100),/startup exceeded 30000ms/);
+  assert.throws(()=>remaining(100,30000,31100),/startup exceeded 30000ms/);
+});
+test('a failed display retains server diagnostics before cleanup',async()=>{
+  const child=fake(),pending=start('webkit',{platform:'linux',launch:()=>child,timeoutMs:10});
+  child.stderr.emit('data','server connection failure');
+  await assert.rejects(pending,error=>error.displayDiagnostics.stderr==='server connection failure'&&error.displayDiagnostics.stdout==='');
+  assert.equal(child.signals.length,1);
 });
