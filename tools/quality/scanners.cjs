@@ -6,6 +6,14 @@ function run(command,args,accepted=[0]){const r=cp.spawnSync(command,args,{cwd:r
 const binary=name=>path.join(tools,'node_modules/.bin',name+(process.platform==='win32'?'.cmd':''));
 const py=name=>path.join(tools,'venv',process.platform==='win32'?'Scripts':'bin',name);
 const read=file=>JSON.parse(fs.readFileSync(path.join(out,file),'utf8'));
+// These modules are the authored Color runtime import closure: the exporter
+// loads Flight and Ribbons; Ribbons loads Reading Surfaces. Diagnostic browser
+// harnesses in the same directory do not become public runtime sources.
+const authoredRuntimeSources=['FLIGHT-PROTOTYPE.cjs','RIBBONS-PROTOTYPE.cjs','READING-SURFACES.cjs'].map(file=>'review/site-scroll-sync-20261004/'+file);
+function authoredRuntime(tracked,exists=file=>fs.existsSync(path.join(root,file))){
+  const files=new Set(tracked);
+  return authoredRuntimeSources.filter(file=>files.has(file)&&exists(file));
+}
 function lint(){
   run(binary('eslint'),['--config','tools/quality/eslint.config.cjs','docs','site','tools','tests','--format','json','--output-file',path.join(out,'eslint.json')]);
   const eslint=read('eslint.json'),warnings=eslint.flatMap(f=>f.messages.filter(m=>m.severity===1).map(m=>({file:path.relative(root,f.filePath).split(path.sep).join('/'),rule:m.ruleId,message:m.message})));
@@ -18,7 +26,7 @@ function lint(){
   return {scannedFiles:eslint.length+1+pythonFiles.length,pythonFiles,warnings,tools:{eslint:run(binary('eslint'),['--version']).trim(),stylelint:run(binary('stylelint'),['--version']).trim(),ruff:run(py('ruff'),['--version']).trim()}};
 }
 function security(){
-  const offlineRuntime=run('git',['ls-files','review/site-scroll-sync-20261004']).trim().split('\n').filter(file=>file.endsWith('.cjs')&&fs.existsSync(path.join(root,file)));
+  const offlineRuntime=authoredRuntime(run('git',['ls-files','review/site-scroll-sync-20261004']).trim().split('\n'));
   // Files are scanned at their real paths, including inline HTML. Reports retain
   // coverage/errors. Source snippets are removed before artifact upload.
   run(py('semgrep'),['scan','--config','tools/quality/security-rules.yml','--metrics','off','--disable-version-check','--jobs','1','--max-target-bytes','5000000','--json','--output',path.join(out,'semgrep.json'),'docs','site','tools','.github/workflows',...offlineRuntime]);
@@ -66,6 +74,9 @@ function advisories(){
   const python=read('pip-audit.json');if(!python.dependencies?.length||python.dependencies.some(x=>x.vulns?.length))throw Error('Python advisories or missing coverage');
   return {feedDate:new Date().toISOString(),npm:npm.metadata.dependencies,npmFindingCount:npm.metadata.vulnerabilities.total,reviewedNpmAdvisories:[...new Set(leaf.map(x=>x.url))],pythonDependencies:python.dependencies.length,runtimeDependencies:'none'};
 }
-const kind=process.argv[2];
-try{const detail=kind==='lint'?lint():kind==='security'?security():kind==='advisories'?advisories():(()=>{throw Error('Unknown scanner stage');})();require('./common.cjs').report(kind,{detail});}
-catch(e){require('./common.cjs').report(kind,{error:e.message},false);throw e;}
+function main(kind=process.argv[2]){
+  try{const detail=kind==='lint'?lint():kind==='security'?security():kind==='advisories'?advisories():(()=>{throw Error('Unknown scanner stage');})();require('./common.cjs').report(kind,{detail});}
+  catch(e){require('./common.cjs').report(kind,{error:e.message},false);throw e;}
+}
+if(require.main===module)main();
+module.exports={authoredRuntimeSources,authoredRuntime};

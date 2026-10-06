@@ -1,0 +1,64 @@
+name: Writing cold comparison
+# Focused diagnosis only; never publishes or substitutes for the full gate.
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - '.github/workflows/site-writing-probe.yml'
+      - 'tools/quality/writing-probe.cjs'
+  workflow_dispatch:
+    inputs:
+      candidate_sha:
+        description: Exact current candidate commit
+        required: true
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: writing-comparison-${{ github.event.pull_request.number || inputs.candidate_sha }}
+  cancel-in-progress: true
+defaults:
+  run:
+    shell: bash
+    working-directory: candidate
+jobs:
+  writing:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      SITE_CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
+      WRITING_REFERENCE_SHA: 174bef1f14390363953cc94ebc0ced136d39da82
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
+          path: candidate
+          persist-credentials: false
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: 174bef1f14390363953cc94ebc0ced136d39da82
+          path: reference
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - name: Package original PR23 base, current base and current Color
+        run: |
+          test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
+          SITE_CANDIDATE_SHA="$WRITING_REFERENCE_SHA" node ../reference/tools/quality/artifact.cjs build "$RUNNER_TEMP/writing-input/pr23-base"
+          node tools/quality/artifact.cjs build "$RUNNER_TEMP/writing-input/current-base"
+          node -e "const fs=require('node:fs'),p=process.env.RUNNER_TEMP+'/writing-input/';fs.cpSync(p+'current-base',p+'current-color',{recursive:true})"
+          node tools/staging/color.cjs "$RUNNER_TEMP/writing-input/current-color"
+      - name: Install pinned Chromium only
+        run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium
+      - name: Collect paired cold Writing evidence and retain every trial
+        run: node tools/quality/writing-probe.cjs "$RUNNER_TEMP/writing-input" "$RUNNER_TEMP/writing-results"
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: writing-cold-comparison-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/writing-results/
+          if-no-files-found: error
+          retention-days: 30

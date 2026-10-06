@@ -147,7 +147,7 @@ test('PR deployment comments are updated in place and stale candidates cannot re
 test('workflow publishes through the official action, excludes full tests from PRs and gates stable promotion',()=>{
   const text=fs.readFileSync(path.join(__dirname,'../.github/workflows/site-color-review.yml'),'utf8');
   assert.doesNotMatch(text,/pull_request_target|target\.json|tools\/staging\/deploy\.cjs|upload-token|api\.cloudflare\.com/);
-  assert.match(text,/issue_comment:\n    types: \[created\]/);
+  assert.match(text,/issue_comment:\n {4}types: \[created\]/);
   assert.match(text,/github.event.comment.body == '\/stage'/);
   assert.match(text,/github.event.comment.user.login == github.repository_owner/);
   assert.match(text,/github.actor == github.repository_owner/);

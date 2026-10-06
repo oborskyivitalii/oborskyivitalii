@@ -1,5 +1,24 @@
 # Agent guidance for personal publications
 
+## Consolidated candidate and Writing-only diagnosis — 2026-10-06
+
+The maintainer stopped broad staging/full-suite iteration and requests one
+current runtime PR. Existing #23 is the sole active PR; #18 and #22 are closed
+as superseded after GitHub ancestry verification. Every original commit is
+preserved. Do not repurpose #22 or create another PR. CI-only #26 is merged.
+
+The immediate test scope is cold Writing and first entry/return around it.
+Compare original #23 base at 174bef1f, current base and current Color with exact
+source/artifact identities, identical conditions and all repeated trials. A
+main controller SHA is not the deployed candidate SHA. The first full hosted
+run 37439947574 tested Color 1f307962, with failures blocking stable promotion.
+Main protection and staging opt-in are verified; do not ask for those again.
+
+Do not launch another full matrix or staging promotion during this diagnosis.
+Keep existing budgets and retain failed raw trials. Record the issue audit,
+completed source increments and remaining acceptance under their actual owners.
+This latest instruction supersedes the workflow/PR sequence below.
+
 ## Preserved Color runtime candidate and isolated CI — 2026-10-06
 
 The maintainer authorizes ready preview/staging pipeline integration and CI-only

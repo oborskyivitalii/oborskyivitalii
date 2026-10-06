@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "f3a0978a97650822928d4387708f4f6682e1add0e32023c37d2666ba448d1104",
+    "digest": "533508a0523c08d92e30d5b055cbbf4c2e42fe7099c4debc6894ac394efe05f4",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -86,13 +86,18 @@
         "sha256": "1f38d9a12d86e792377b2ecf81b7bcbc1ddabd4782b6c967261fae1ee67409a1"
       },
       {
+        "path": ".github/workflows/site-writing-probe.yml",
+        "identity_mode": "content",
+        "sha256": "c59e718790cc2a1913713d724a5b6261669d0c031bb3331eb769db54eaee57e9"
+      },
+      {
         "path": ".gitignore",
         "identity_mode": "existence"
       },
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "26d358ec15b6f18919b1d37f73a3c312de45e9bc99081acd25fc16143d1fb94d"
+        "sha256": "3c07e85aea91846fe968cd1454f73712ebf4c656c30f6d823af05decd316bc75"
       },
       {
         "path": "BACKLOG.md",
@@ -627,6 +632,11 @@
         "path": "review/site-audit-v8-20261003/toolchain/requirements.txt",
         "identity_mode": "content",
         "sha256": "9de0b8b6d25edabdcb1959c07ff65c225e8f096a6eb0f128f51e7582d802e9a4"
+      },
+      {
+        "path": "review/site-consolidation-20261006/REPORT.md",
+        "identity_mode": "content",
+        "sha256": "7f2eee8badca1c02152732cdaf053e975f6e2e299d88607430fed0ded13c77e9"
       },
       {
         "path": "review/site-engine-implementation-20261004/EXECUTION.md",
@@ -3406,6 +3416,10 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tests/quality-sources.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tests/quality.test.cjs",
         "identity_mode": "existence"
       },
@@ -3612,7 +3626,7 @@
       {
         "path": "tools/quality/security-rules.yml",
         "identity_mode": "content",
-        "sha256": "2badb50df3a566f737cd79520d4b9a64f29515f27f286250f88b4b453895d141"
+        "sha256": "fb6eccbc3d02a2b0a389265fb33364746181b7e6234a1e0192a6f1357b09e75a"
       },
       {
         "path": "tools/quality/selftest.cjs",
@@ -3660,6 +3674,10 @@
       },
       {
         "path": "tools/quality/workflow-artifacts.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/writing-probe.cjs",
         "identity_mode": "existence"
       },
       {
@@ -3988,6 +4006,13 @@
     {
       "path": ".github/workflows/site-staging.yml",
       "title": ".github/workflows/site-staging.yml",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".github/workflows/site-writing-probe.yml",
+      "title": ".github/workflows/site-writing-probe.yml",
       "instructions": [
         "AGENTS.md"
       ]
@@ -4457,6 +4482,13 @@
     {
       "path": "review/site-audit-v8-20261003/toolchain/requirements.txt",
       "title": "review/site-audit-v8-20261003/toolchain/requirements.txt",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/site-consolidation-20261006/REPORT.md",
+      "title": "One current site candidate — 6 October 2026",
       "instructions": [
         "AGENTS.md"
       ]

@@ -61,7 +61,7 @@ async function scenario(browser,url,manifest,variant,width,mode){
   const errors=[],external=[],responseChecks=[],checkedFiles=new Set(),rows=[];
   page.setDefaultTimeout(8000);
   await context.addInitScript(mode=>{
-    try{localStorage.setItem('vo.theme','light');localStorage.setItem('vo.motion','on');}catch{}
+    try{localStorage.setItem('vo.theme','light');localStorage.setItem('vo.motion','on');}catch{/* Denied storage keeps the runtime's ordinary defaults. */}
     if(mode==='no-canvas')HTMLCanvasElement.prototype.getContext=()=>null;
   },mode);
   page.on('pageerror',error=>errors.push(error.message));
@@ -107,7 +107,7 @@ async function scenario(browser,url,manifest,variant,width,mode){
 async function main(){
   assert.ok(process.argv.includes('--smoke'),'Usage: local-browser.cjs --smoke with artifact environment');
   const manifest=JSON.parse(fs.readFileSync(process.env.SITE_ARTIFACT_MANIFEST)),variant=identity(manifest),{server,url}=await start();
-  const rows=[],pw=toolRequire('playwright');let browser,pass=false;
+  const rows=[],pw=toolRequire('playwright');let browser,pass;
   try{
     browser=await pw.chromium.launch(launchOptions('chromium'));
     for(const width of [1440,390])for(const mode of ['normal','no-canvas']){
