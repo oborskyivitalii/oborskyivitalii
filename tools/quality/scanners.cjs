@@ -18,13 +18,14 @@ function lint(){
   return {scannedFiles:eslint.length+1+pythonFiles.length,pythonFiles,warnings,tools:{eslint:run(binary('eslint'),['--version']).trim(),stylelint:run(binary('stylelint'),['--version']).trim(),ruff:run(py('ruff'),['--version']).trim()}};
 }
 function security(){
+  const offlineRuntime=run('git',['ls-files','review/site-scroll-sync-20261004']).trim().split('\n').filter(file=>file.endsWith('.cjs')&&fs.existsSync(path.join(root,file)));
   // Files are scanned at their real paths, including inline HTML. Reports retain
   // coverage/errors. Source snippets are removed before artifact upload.
-  run(py('semgrep'),['scan','--config','tools/quality/security-rules.yml','--metrics','off','--disable-version-check','--jobs','1','--max-target-bytes','5000000','--json','--output',path.join(out,'semgrep.json'),'docs','site','tools','.github/workflows']);
+  run(py('semgrep'),['scan','--config','tools/quality/security-rules.yml','--metrics','off','--disable-version-check','--jobs','1','--max-target-bytes','5000000','--json','--output',path.join(out,'semgrep.json'),'docs','site','tools','.github/workflows',...offlineRuntime]);
   const semgrep=read('semgrep.json');for(const finding of semgrep.results||[])if(finding.extra)delete finding.extra.lines;
   fs.writeFileSync(path.join(out,'semgrep.json'),JSON.stringify(semgrep,null,2));
   if(semgrep.results?.length||semgrep.errors?.length||!semgrep.paths?.scanned?.length)throw Error('Semgrep findings, errors, or empty coverage');
-  const scanned=new Set(semgrep.paths.scanned),expected=run('git',['ls-files','docs','site','tools','.github/workflows']).trim().split('\n').filter(f=>/\.(?:js|cjs|html|py)$/.test(f)||f.startsWith('.github/workflows/'));
+  const scanned=new Set(semgrep.paths.scanned),expected=[...run('git',['ls-files','docs','site','tools','.github/workflows']).trim().split('\n').filter(f=>/\.(?:js|cjs|html|py)$/.test(f)||f.startsWith('.github/workflows/')),...offlineRuntime];
   for(const file of expected)if(!scanned.has(file))throw Error('Unscanned source '+file);
   run(py('bandit'),['-r','tools','-x','tools/quality/toolchain/venv','-f','json','-o',path.join(out,'bandit.json')],[0,1]);const bandit=read('bandit.json');
   for(const finding of bandit.results||[])delete finding.code;fs.writeFileSync(path.join(out,'bandit.json'),JSON.stringify(bandit,null,2));

@@ -1,5 +1,33 @@
 # Agent guidance for personal publications
 
+## CI-only preview and explicit staging — 2026-10-06
+
+The maintainer authorizes completing and integrating the preview/staging
+pipelines, then running them. This supersedes older publication/merge holds for
+this staging infrastructure. Reuse existing #26; no additional PR. Preserve the
+unfinished #18/#22/#23 runtime work and every existing budget.
+
+Read SITE-STAGING.md and SITE-CHECK-PROFILES.md. PR updates receive bounded basic
+checks and latest-head preview/short smoke, through the official pinned Wrangler
+Action only. Full staging requires an explicit owner request, protected unchanged
+main, staging opt-in/environment, exact open same-repository PR head and the
+complete matching hosted gate. Use the owner-only exact `/stage` command in that
+PR through the GitHub connector, or workflow_dispatch; never a plugin/manual
+asset upload. Ordinary/edited/bot commands cannot authorize or cancel staging.
+
+Main's base public runtime is unchanged by this infrastructure. Color staging
+uses its actual source PR (#23) after inheritance of the reviewed infrastructure;
+capability/variant identity is recorded explicitly. The old Color source in #26
+is preserved in #23 before #26 is retargeted to main. Do not merge failed runtime
+experiments merely to activate hosting. Full unsupported/failed telemetry remains
+failure. Preview success does not satisfy full staging or production acceptance.
+
+The first CI preview at 1deed630 passed deployment/HTTP/two-width Color smoke.
+Owner setup still needs protected main and the staging opt-in; secret values are
+never retrieved or printed. Keep #8/#13 open until actual full staging/recovery
+and their separate release requirements are met.
+
+
 ## Analytics preparation and production host — 2026-10-04
 
 The maintainer selects GitHub Pages for production and authorizes preparing

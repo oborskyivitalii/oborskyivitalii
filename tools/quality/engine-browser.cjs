@@ -1,6 +1,7 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{pathToFileURL}=require('node:url');
 const routes=['index','research','writing','talks','credits'];
+const {matchesRoute}=require('./fallback-url.cjs');
 async function ready(page,id){await page.waitForFunction(id=>document.body.dataset.page===id&&!document.querySelector('#site-content').hasAttribute('aria-busy'),id,{polling:50,timeout:6000});}
 async function move(page,id){await page.locator(`header a[href="${id==='index'?'./':id+'.html'}"]`).first().evaluate(el=>el.click());await ready(page,id);}
 async function camera(page){return page.locator('.space-scene').getAttribute('data-camera');}
@@ -51,13 +52,13 @@ async function snapshotPin(page,url) {
   await page.goto(url+'/index.html');await page.locator('#space-motion').evaluate(el=>{if(el.textContent==='Motion: on')el.click();});
   const fetched=[];page.on('request',request=>{if(request.resourceType()==='fetch')fetched.push(new URL(request.url()).pathname);});
   await page.waitForTimeout(180);assert.deepEqual(fetched,[],'no idle revision polling');
-  await move(page,'research');assert.equal(fetched.filter(x=>x==='/site-revision.json').length,1);assert.ok(fetched.some(x=>/^\/snapshots\/[a-f0-9]{64}\/research.html$/.test(x)));
+  await move(page,'research');assert.equal(fetched.filter(x=>x===new URL('site-revision.json',url+'/').pathname).length,1);assert.ok(fetched.some(x=>/\/snapshots\/[a-f0-9]{64}\/research.html$/.test(x)));
   await page.route('**/site-revision.json',route=>route.fulfill({status:503,body:'revision changed after pin'}));
   await move(page,'writing');await move(page,'research');
-  assert.equal(fetched.filter(x=>x==='/site-revision.json').length,1,'pinned revision is reused');assert.equal(fetched.filter(x=>x.endsWith('/research.html')).length,1,'verified cached route is reused');
+  assert.equal(fetched.filter(x=>x===new URL('site-revision.json',url+'/').pathname).length,1,'pinned revision is reused');assert.equal(fetched.filter(x=>x.endsWith('/research.html')).length,1,'verified cached route is reused');
   await page.unroute('**/site-revision.json');
 }
-async function boundedFallback(page,url,kind) {
+async function boundedFallback(page,url,kind,suffix='') {
   await page.goto(url+'/index.html');await page.evaluate(()=>window.__engineDocument=true);
   let faults=0;
   const pattern=kind==='revision'?'**/site-revision.json':'**/snapshots/**/research.html';
@@ -66,9 +67,21 @@ async function boundedFallback(page,url,kind) {
     if(kind==='revision'){const data=await response.json();data.engine='0'.repeat(64);await route.fulfill({response,json:data});}
     else await route.fulfill({response,body:(await response.text())+'<!-- wrong bytes -->'});
   });
-  await page.locator('header a[href="research.html"]').click();await page.waitForURL(url+'/research.html');
+  const requested=new URL('research.html'+suffix,url+'/');
+  await page.locator('header a[href="research.html"]').evaluate((link,href)=>{link.href=href;link.click();},requested.href);
+  await page.waitForURL(actual=>matchesRoute(actual.href,requested.href));
   await page.waitForFunction(()=>document.body.dataset.page==='research'&&window.__engineDocument===undefined,null,{polling:50,timeout:6000});
   assert.equal(faults,1,'one failed snapshot read then native document');await page.waitForTimeout(180);assert.equal(faults,1,'no reload loop');await page.unroute(pattern);
+}
+async function fetchFallback(page,url,suffix='') {
+  await page.goto(url+'/index.html');await page.evaluate(()=>window.__engineDocument=true);
+  let faults=0;const pattern='**/snapshots/**/research.html';
+  await page.route(pattern,route=>{if(route.request().resourceType()==='fetch'){faults++;return route.fulfill({status:503,contentType:'text/plain',body:'Controlled unavailable route'});}return route.continue();});
+  const requested=new URL('research.html'+suffix,url+'/');
+  await page.locator('header a[href="research.html"]').evaluate((link,href)=>{link.href=href;link.click();},requested.href);
+  await page.waitForURL(actual=>matchesRoute(actual.href,requested.href));
+  await page.waitForFunction(()=>document.body.dataset.page==='research'&&window.__engineDocument===undefined);
+  assert.equal(faults,1,'one failed snapshot read');await page.waitForTimeout(180);assert.equal(faults,1,'no reload loop');await page.unroute(pattern);
 }
 async function offline(browser,scenario) {
   const ctx=await browser.newContext({viewport:{width:scenario.width,height:scenario.width===390?844:900}}),page=await ctx.newPage(),errors=[],requests=[];
@@ -80,6 +93,8 @@ async function offline(browser,scenario) {
       const file=path.join(root,'review',producer.interactiveFilename(entry));assert.ok(fs.existsSync(file));
       requests.length=0;await page.goto(pathToFileURL(file).href);
       await page.waitForFunction(()=>window.SiteNavigation&&document.querySelector('#site-content'),null,{polling:50,timeout:4000});
+      await page.locator('#space-motion').evaluate(el=>{if(el.textContent==='Motion: off')el.click();});
+      await require('./scroll-browser.cjs').probe(page,'offline-entry',entry);
       await page.locator('#space-motion').evaluate(el=>{if(el.textContent==='Motion: on')el.click();});
       await page.evaluate(()=>{window.__offlineShell=document.querySelector('header');window.__offlineCanvas=document.querySelector('canvas');});
       for(const id of routes){
@@ -92,4 +107,4 @@ async function offline(browser,scenario) {
     assert.deepEqual(errors,[]);
   }finally{await ctx.close();}
 }
-module.exports={writingGestures,snapshotPin,boundedFallback,offline};
+module.exports={writingGestures,settledCamera,snapshotPin,boundedFallback,fetchFallback,offline};

@@ -134,9 +134,10 @@ async function normal(page,scenario){
   assert.equal(await page.evaluate(()=>Number(getComputedStyle(document.documentElement).zoom)),2);
   readable(await settled(page));
   await page.evaluate(()=>document.documentElement.style.zoom='');
+  const scrollSync=await require('./scroll-browser.cjs').scenario(page,scenario.route);
   const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa']).analyze();
   assert.deepEqual(axe.violations,[],'axe violations');
-  return {positiveProbe:true,startup,probe:{elapsedMs:probeElapsedMs,paints:b.paints-a.paints},off:true,print:true,syntheticVisibility:true,keyboard:true,keyboardShortcut,reverse:true,forward:travel.range>1&&travel.target>1?'camera changed':'short page',travel:{...travel,settledY:forward.scrollY},archive:scenario.route==='writing'?true:'not applicable',zoom:true,zoomLimit:'CSS zoom; native browser zoom untested',cta,axePasses:axe.passes.length};
+  return {positiveProbe:true,startup,probe:{elapsedMs:probeElapsedMs,paints:b.paints-a.paints},off:true,print:true,syntheticVisibility:true,keyboard:true,keyboardShortcut,reverse:true,forward:travel.range>1&&travel.target>1?'camera changed':'short page',travel:{...travel,settledY:forward.scrollY},archive:scenario.route==='writing'?true:'not applicable',scrollSync,zoom:true,zoomLimit:'CSS zoom; native browser zoom untested',cta,axePasses:axe.passes.length};
 }
 async function failure(page,mode){
   let a=await settled(page);readable(a);
@@ -189,16 +190,17 @@ function scenarios(engine,smoke){return routes.flatMap(route=>['light','dark'].f
 async function main(){
   const engines=(process.env.SITE_AUDIT_ENGINES||'chromium,firefox,webkit').split(','),smoke=process.argv.includes('--smoke'),rows=[],browsers=[],navigation=[],analytics=[];
   const {server,url}=await start();
-  try{for(const engine of engines){
+  try{const outcomes=await Promise.allSettled(engines.map(async engine=>{
     const options=launchOptions(engine),browser=await pw[engine].launch(options);browsers.push({engine,version:browser.version(),executable:options.executablePath||pw[engine].executablePath()});
-    try{for(const s of scenarios(engine,smoke)){rows.push(await scenario(browser,url,s));report('functional',{smoke,engines,browsers,modes:smoke?[]:modes,rows},rows.every(x=>x.pass));process.stdout.write(`${engine} ${s.route} ${s.theme} ${s.width} ${s.mode}: ${rows.at(-1).pass?'pass':rows.at(-1).error}\n`);}}
+    try{for(const s of scenarios(engine,smoke)){const row=await scenario(browser,url,s);rows.push(row);report('functional',{smoke,engines,browsers,modes:smoke?[]:modes,rows},rows.every(x=>x.pass));process.stdout.write(`${engine} ${s.route} ${s.theme} ${s.width} ${s.mode}: ${row.pass?'pass':row.error}\n`);}}
     finally{
       const nav=require('./navigation.cjs');
       for(const s of nav.scenarios(engine)){navigation.push(await nav.scenario(browser,url,s));process.stdout.write(`navigation ${engine} ${s.width} ${s.theme}: ${navigation.at(-1).pass?'pass':navigation.at(-1).error}\n`);}
       analytics.push(...await require('./analytics-browser.cjs').run(browser,engine));
       await browser.close();
     }
-  }}finally{server.close();report('functional',{smoke,engines,browsers,modes:smoke?[]:modes,rows,navigation,analytics},rows.length===engines.length*scenarios(engines[0],smoke).length&&rows.every(x=>x.pass)&&navigation.length===engines.length*4&&navigation.every(x=>x.pass)&&analytics.length===engines.length*13&&analytics.every(x=>x.pass));}
+  }));for(const outcome of outcomes)if(outcome.status==='rejected')throw outcome.reason;
+  }finally{server.close();report('functional',{smoke,engines,browsers,modes:smoke?[]:modes,rows,navigation,analytics},rows.length===engines.length*scenarios(engines[0],smoke).length&&rows.every(x=>x.pass)&&navigation.length===engines.length*4&&navigation.every(x=>x.pass)&&analytics.length===engines.length*13&&analytics.every(x=>x.pass));}
   assert.ok(rows.every(x=>x.pass)&&navigation.every(x=>x.pass)&&analytics.every(x=>x.pass),'Functional scenarios failed');
 }
 if(require.main===module)main().catch(e=>{console.error(e.stack);process.exitCode=1;});

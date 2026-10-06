@@ -1,12 +1,6 @@
 name: Site navigation diagnostic
+# Explicit diagnosis only. Basic PR checks and hosted full navigation own CI.
 on:
-  pull_request:
-    types: [opened, synchronize, reopened]
-    paths:
-      - docs/navigation.js
-      - docs/space.js
-      - tools/quality/navigation.cjs
-      - .github/workflows/site-navigation-probe.yml
   workflow_dispatch:
     inputs:
       candidate_sha:
@@ -20,7 +14,7 @@ jobs:
     runs-on: windows-2025
     timeout-minutes: 10
     env:
-      SITE_CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
+      SITE_CANDIDATE_SHA: ${{ inputs.candidate_sha }}
       SITE_PUBLIC_DIR: ${{ github.workspace }}/quality-artifact/public
       SITE_ARTIFACT_MANIFEST: ${{ github.workspace }}/quality-artifact/artifact.json
       SITE_REPORT_DIR: ${{ github.workspace }}/quality-reports
@@ -28,7 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
-          ref: ${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
+          ref: ${{ inputs.candidate_sha }}
           fetch-depth: 0
           persist-credentials: false
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38

@@ -47,12 +47,20 @@ test('hosted origin and redirect boundary cannot crawl another site or the produ
   await assert.rejects(()=>hosted.request(base+'/',base,async()=>new Response(null,{status:302,headers:{location:'https://example.org/'}})),/left staging origin/);
   await assert.rejects(()=>hosted.request(base+'/',base,async()=>new Response(null,{status:302,headers:{location:'/'}})),/Too many/);
 });
+test('mutable staging headers admit stronger no-store without admitting immutable or missing cache policy',()=>{
+  const headers=cache=>new Headers({'x-robots-tag':'noindex, nofollow','x-content-type-options':'nosniff','cache-control':cache});
+  for(const cache of ['no-cache, max-age=0, must-revalidate','no-store','private, NO-STORE'])assert.doesNotThrow(()=>hosted.responseHeaders(headers(cache)));
+  for(const cache of ['','public, max-age=3600','private, max-age=0','x-no-store','no-cache="x-robots-tag"','no-store, immutable','no-cache, IMMUTABLE'])assert.throws(()=>hosted.responseHeaders(headers(cache)));
+  assert.doesNotThrow(()=>hosted.responseHeaders(headers('public, max-age=31536000, immutable'),true));
+  for(const cache of ['public, max-age=31536000, immutable, no-store','public, max-age=31536000, immutable, no-cache','no-store'])assert.throws(()=>hosted.responseHeaders(headers(cache),true));
+});
 function fetchFixture(f,options={}){
   return async url=>{
     const u=new URL(url),headers={'x-robots-tag':options.robots||'noindex, nofollow','cache-control':staging.policyHeaders(u.pathname.slice(1))['Cache-Control'],'x-content-type-options':'nosniff'};
     if(u.pathname.endsWith('.html'))return new Response(null,{status:301,headers:{location:u.pathname.slice(0,-5)+(options.dropQuery?'':u.search)}});
     let file=u.pathname.slice(1)||'index';if(!path.extname(file)&&fs.existsSync(path.join(f.out,'public',file+'.html')))file+='.html';
     const missing=!fs.existsSync(path.join(f.out,'public',file));if(missing)file=options.spa?'index.html':'404.html';
+    if(missing&&options.noStore404)headers['cache-control']='no-store';
     const extensions={'.html':'text/html','.css':'text/css','.js':'text/javascript','.svg':'image/svg+xml','.webp':'image/webp','.jpg':'image/jpeg','.json':'application/json'};
     headers['content-type']=extensions[path.extname(file)];const bytes=fs.readFileSync(path.join(f.out,'public',file));
     return new Response(options.tamper&&file==='styles.css'?Buffer.from('bad bytes'):bytes,{status:missing&&!options.spa?404:200,headers});
@@ -62,19 +70,19 @@ test('real-HTTP smoke model checks every served byte, extensionless query redire
   const f=fixture();try{
     const record=staging.build(f.input,f.out,f.expected),base='https://preview.unit-test-staging.pages.dev';
     const result=await hosted.httpSmoke(base,record,fetchFixture(f));assert.equal(result.actual404,true);assert.equal(result.queryRedirect,true);assert.equal(result.files.length,Object.keys(f.source.files).length);
+    assert.equal((await hosted.httpSmoke(base,record,fetchFixture(f,{noStore404:true}))).actual404,true);
     for(const options of [{robots:'noindex'},{tamper:true},{dropQuery:true},{spa:true}])await assert.rejects(()=>hosted.httpSmoke(base,record,fetchFixture(f,options)));
   }finally{fs.rmSync(f.dir,{recursive:true,force:true});}
 });
 test('trusted source, dedicated provider project and known rollback metadata fail closed',()=>{
-  const sha='a'.repeat(40),pr={state:'open',head:{repo:{full_name:'oborskyivitalii/oborskyivitalii'},ref:'work/site-v1-20261001',sha}};
-  assert.equal(state.trustedHead(pr,sha),true);
-  for(const mutate of [p=>p.state='closed',p=>p.head.repo.full_name='other/fork',p=>p.head.ref='main',p=>p.head.sha='b'.repeat(40)]){const p=structuredClone(pr);mutate(p);assert.throws(()=>state.trustedHead(p,sha));}
+  const sha='a'.repeat(40);
   const previousProject=process.env.CLOUDFLARE_PAGES_PROJECT;process.env.CLOUDFLARE_PAGES_PROJECT='unit-test-staging';
   try{
     const project={name:'unit-test-staging',production_branch:'production-disabled'};assert.equal(state.projectPolicy(project),true);
     for(const mutation of [{production_branch:'staging'},{source:{type:'github'}},{uses_functions:true},{build_config:{web_analytics_tag:'enabled'}}])assert.throws(()=>state.projectPolicy({...project,...mutation}));
-    const record={source:{sourceCommit:sha,artifactDigest:'c'.repeat(64)},packageDigest:'d'.repeat(64)},previous={schema:1,provider:'cloudflare-pages',project:project.name,sourceCommit:sha,publicDigest:'c'.repeat(64),packageDigest:'d'.repeat(64),packageArtifactId:'123',runId:'456'};
+    const record={source:{sourceCommit:sha,artifactDigest:'c'.repeat(64)},packageDigest:'d'.repeat(64)},previous={schema:2,provider:'cloudflare-pages',project:project.name,sourceBranch:'main',workflow:'.github/workflows/site-checks.yml',sourceCommit:sha,publicDigest:'c'.repeat(64),packageDigest:'d'.repeat(64),packageUploadDigest:'e'.repeat(64),packageArtifactId:'123',runId:'456',runAttempt:'1'};
     assert.equal(state.knownPayload(previous,project.name),true);assert.equal(state.knownPayload(previous,'other-project'),false);assert.equal(state.rollbackRecord(record,previous),true);
+    for(const mutation of [{schema:1},{sourceBranch:'work/site-v1-20261001'},{workflow:'.github/workflows/other.yml'},{runAttempt:null},{packageUploadDigest:null}])assert.equal(state.knownPayload({...previous,...mutation},project.name),false);
     assert.throws(()=>state.rollbackRecord(record,{...previous,packageDigest:'e'.repeat(64)}));assert.throws(()=>state.rollbackRecord(record,null));
   }finally{if(previousProject===undefined)delete process.env.CLOUDFLARE_PAGES_PROJECT;else process.env.CLOUDFLARE_PAGES_PROJECT=previousProject;}
 });
@@ -88,10 +96,17 @@ test('provisioning reuses an existing project and never converts permission/rate
 });
 test('staging workflow depends on successful immutable gates, serializes promotion and never uses privileged PR execution',()=>{
   const caller=fs.readFileSync(path.resolve(__dirname,'../.github/workflows/site-checks.yml'),'utf8'),workflow=fs.readFileSync(path.resolve(__dirname,'../.github/workflows/site-staging.yml'),'utf8');
-  assert.match(caller,/needs: checks/);assert.match(caller,/SITE_STAGING_ENABLED == 'true'/);assert.match(caller,/head.repo.full_name == github.repository/);
+  assert.match(caller,/needs: checks/);assert.match(caller,/SITE_STAGING_ENABLED == 'true'/);assert.match(caller,/github\.event_name == 'workflow_dispatch'/);assert.match(caller,/github\.ref == 'refs\/heads\/main'/);assert.match(caller,/github\.sha == inputs\.candidate_sha/);
+  assert.doesNotMatch(caller,/false &&/);assert.doesNotMatch(workflow,/if: false &&/);assert.doesNotMatch(caller,/pull_request\.number == 10|work\/site-v1-20261001/);
+  assert.match(caller,/issues: write/);assert.match(workflow,/issues: write/);assert.match(workflow,/SITE_GATE_UPLOAD_DIGEST/);assert.match(workflow,/SITE_PACKAGE_UPLOAD_DIGEST/);
   assert.doesNotMatch(caller,/secrets: inherit/,'do not expose all repository secrets');
   assert.match(workflow,/artifact-ids: \$\{\{ inputs.public_artifact_id \}\}/);assert.match(workflow,/artifact-ids: \$\{\{ inputs.gate_artifact_id \}\}/);
   assert.match(workflow,/environment: staging/);assert.match(workflow,/cancel-in-progress: false/);assert.doesNotMatch(workflow,/pull_request_target|--branch=production|gitHubToken:/);
   assert.ok(workflow.indexOf('Candidate HTTPS')<workflow.indexOf('Promote identical'));assert.ok(workflow.indexOf('state.cjs begin')<workflow.indexOf('Promote identical'));
+  assert.ok(workflow.indexOf('state.cjs candidate')>workflow.indexOf('Candidate HTTPS'));assert.ok(workflow.indexOf('state.cjs candidate')<workflow.indexOf('site-staging-session-'));
+  assert.match(workflow,/steps.candidate_record.outcome != 'success'/,'failed candidate identity recording must finalize the failed attempt');
   assert.match(workflow,/steps.stable_smoke.outcome != 'success'/);assert.match(workflow,/state.cjs verify-rollback-deployment/);assert.match(workflow,/Fail the candidate even when recovery succeeds/);
+  const promotion=workflow.slice(workflow.indexOf('\n  promote:'));
+  assert.doesNotMatch(promotion,/steps\.prepare\./,'recovery metadata must cross the job boundary');
+  assert.match(promotion,/needs\.deploy\.outputs\.rollback_artifact_id/);assert.match(promotion,/needs\.deploy\.outputs\.rollback_sha/);
 });

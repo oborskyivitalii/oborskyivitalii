@@ -1,10 +1,24 @@
-# INACTIVE EXAMPLE. #8 activates only after host/URL/rights/release decisions.
-# Copy into .github/workflows only at authorized hosting activation.
-name: Deploy checked site artifact
+# INACTIVE EXAMPLE. #8 activates after the existing host/URL/rights decisions.
+name: Deploy staged site artifact
 on:
   workflow_dispatch:
     inputs:
       candidate_sha:
+        required: true
+        type: string
+      public_artifact_id:
+        required: true
+        type: string
+      public_digest:
+        required: true
+        type: string
+      public_upload_digest:
+        required: true
+        type: string
+      staging_gate_artifact_id:
+        required: true
+        type: string
+      staging_run_id:
         required: true
         type: string
       evidence_artifact_id:
@@ -17,25 +31,23 @@ permissions:
   contents: read
   actions: read
 jobs:
-  checks:
-    uses: ./.github/workflows/site-release-checks.yml
-    with:
-      candidate_sha: ${{ inputs.candidate_sha }}
-      full: true
-      evidence_artifact_id: ${{ inputs.evidence_artifact_id }}
-      evidence_run_id: ${{ inputs.evidence_run_id }}
   deploy:
-    needs: checks
     runs-on: ubuntu-24.04
+    outputs:
+      page_url: ${{ steps.deploy.outputs.page_url }}
     permissions:
       contents: read
+      actions: read
       pages: write
       id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
     env:
-      SITE_EXPECTED_PUBLIC_DIGEST: ${{ needs.checks.outputs.public_digest }}
+      SITE_CANDIDATE_SHA: ${{ inputs.candidate_sha }}
+      SITE_ARTIFACT_ID: ${{ inputs.public_artifact_id }}
+      SITE_EXPECTED_PUBLIC_DIGEST: ${{ inputs.public_digest }}
+      SITE_UPLOAD_DIGEST: ${{ inputs.public_upload_digest }}
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
@@ -46,15 +58,40 @@ jobs:
           node-version: 24.19.0
       - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
         with:
-          artifact-ids: ${{ needs.checks.outputs.artifact_id }}
+          artifact-ids: ${{ inputs.public_artifact_id }}
+          run-id: ${{ inputs.staging_run_id }}
+          github-token: ${{ github.token }}
           path: tested-site
-          merge-multiple: true
-      - name: Verify immutable tested bytes, without rebuilding
-        run: node tools/quality/artifact.cjs verify tested-site/public tested-site/artifact.json
-      - uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          artifact-ids: ${{ inputs.staging_gate_artifact_id }}
+          run-id: ${{ inputs.staging_run_id }}
+          github-token: ${{ github.token }}
+          path: staging-gate
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          artifact-ids: ${{ inputs.evidence_artifact_id }}
+          run-id: ${{ inputs.evidence_run_id }}
+          github-token: ${{ github.token }}
+          path: review-evidence
+      - name: Verify exact staging gate and device/review records without rebuilding
+        run: node tools/quality/promotion.cjs tested-site staging-gate/release-manifest.json review-evidence/release-evidence.json
+      - uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b
         with:
           path: tested-site/public
       - id: deploy
-        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
-# #8 must add the owned-origin passive scan, host checks, served-byte smoke and
-# reviewed recovery before activating. This example is not production-ready.
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e
+  post_deploy:
+    needs: deploy
+    uses: ./.github/workflows/site-release-checks.yml
+    with:
+      candidate_sha: ${{ inputs.candidate_sha }}
+      full: true
+      base_url: ${{ needs.deploy.outputs.page_url }}
+      profile: production
+      automated_only: true
+      public_artifact_id: ${{ inputs.public_artifact_id }}
+      public_run_id: ${{ inputs.staging_run_id }}
+      public_digest: ${{ inputs.public_digest }}
+      public_upload_digest: ${{ inputs.public_upload_digest }}
+# Hosting activation still owns reviewed production recovery and passive ZAP checks.

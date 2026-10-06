@@ -1,5 +1,10 @@
 # Repeatable site checks
 
+The current [check profiles](../../SITE-CHECK-PROFILES.md) supersede the older
+PR descriptions below: `node tools/quality/local.cjs` is the small local/PR
+default. Full automation belongs to deployed staging and post-deploy production.
+The tool installation and full-suite commands below remain available.
+
 Owner #13; runtime remediation #12. Production runtime has no package graph.
 These pinned tools run on development/CI only. Historical v8 results are immutable.
 
@@ -30,7 +35,9 @@ Reports describe actual runner image/version, CPU, OS and engine versions. The
 runner name does not freeze its hardware. Browser tests use the copied, verified
 public artifact. Do not rebuild or resolve a moving branch for deployment.
 
-PR workflow `Site PR checks` calls reusable `site-release-checks.yml`: build once,
+The explicit staging stage in `Site PR preview and staging` calls reusable
+`site-release-checks.yml`. Routine PR updates use `Site basic checks` and a
+bounded hosted preview smoke; they do not run this full matrix. Full checks build once,
 source/content/export/RI regressions, size/transfer budgets, quality/security/feed
 checks, all five routes × both themes × Chromium/Firefox/WebKit. Normal views are
 1440×900 and 390×844. Eleven failure/capability modes run at 320px. Assertions
@@ -69,10 +76,11 @@ target; the versioned raw metric budgets gate. Missing/cancelled jobs, incomplet
 reports, wrong profiles, failed probes and digest mismatches fail the aggregate.
 `tests/quality.test.cjs` exercises controlled failure propagation.
 
-Run full evidence on an exact commit using workflow dispatch, a workflow caller,
-or the `site-release-candidate` PR label. The label triggers once when added; it
-does not silently rerun expensive benchmarks for every source push. A new source
-commit needs a new full run. PR checks continue on every update.
+Request PR staging through `Site PR preview and staging` workflow dispatch with
+the open PR number. The workflow resolves its current head and binds every result
+to that exact source/public artifact. A new source commit needs a new full run.
+PR checks and previews continue on every update. Publication is performed by the
+checked-in workflows; the commands above are local check reproductions.
 
 Full release evidence is external to the candidate tree: upload a separately
 produced `release-evidence.json` through an evidence-record workflow in this same

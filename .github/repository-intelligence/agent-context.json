@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "3a36728e519502c9d51143fe3e472ce2bfd3bd15eed083e7e9d145804ab236c0",
+    "digest": "104d7133ea947a27d9028292341d56385756aa27bd6b3cff193680010277a476",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -48,7 +48,7 @@
       {
         "path": ".github/workflows/navigation.yml",
         "identity_mode": "content",
-        "sha256": "cc2c56c8780712bd9080a0d2ff8236ec11740b1f2c73e545b2cfe6ffbefd094a"
+        "sha256": "e37ca016e4b33c0ea6d6f106e153d2ee66213c61bdb41b9ca975ed654b0d5fc2"
       },
       {
         "path": ".github/workflows/site-candidate-evidence.yml",
@@ -58,27 +58,32 @@
       {
         "path": ".github/workflows/site-checks.yml",
         "identity_mode": "content",
-        "sha256": "be9c1a7a8f06250cf375814cba644638d990df1e95efe6647e3f8fe6abf674a4"
+        "sha256": "9f2a2bd1495a03e9d67b27981a744cec6f4788f61f3c137d8496f95735076e58"
+      },
+      {
+        "path": ".github/workflows/site-color-review.yml",
+        "identity_mode": "content",
+        "sha256": "d16db3766e0053b1f2990e4c8e3547e75f3f670d4dc70e9c1a24a5a75b9b0d50"
       },
       {
         "path": ".github/workflows/site-navigation-probe.yml",
         "identity_mode": "content",
-        "sha256": "b4ad6ed139038e26967189b87533d6413b3f0ec1552fafb9f5329b2c35d80de5"
+        "sha256": "ba70e04ac9e1258017a62c9416fca0405d58294d174020e5cb1fe6ad75fa6702"
       },
       {
         "path": ".github/workflows/site-release-checks.yml",
         "identity_mode": "content",
-        "sha256": "037405a751e067526c395c618fe2a2f82d3b2ff716f87933a46e1ac8572bd39c"
+        "sha256": "ebd44580c8a6cf9ee0e719e2bb16a29c03aad6f13599698b89c86e5bba8d57a8"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
         "identity_mode": "content",
-        "sha256": "3ae5d2954b54227399bc6ec33e28d26047d3d54c2bdaffa56a5ecd992b0551da"
+        "sha256": "761df5fc4eac6dbb110254e2f7f14ed5de1eec0ca6cb7a34f9d48dc70cb9cde8"
       },
       {
         "path": ".github/workflows/site-staging.yml",
         "identity_mode": "content",
-        "sha256": "2ed264f8506fabc81c5a9f5cb299b1552b7aa30d4a366a44372337a5397ec9b2"
+        "sha256": "1f38d9a12d86e792377b2ecf81b7bcbc1ddabd4782b6c967261fae1ee67409a1"
       },
       {
         "path": ".gitignore",
@@ -87,7 +92,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "731f97ce8bddb3a0c8aa380db38f789e155cce7146dca44d4c9e29b7d31d8cf8"
+        "sha256": "7886ef9ccfe2f99c216136a43cd594e808eac032aeaba12fb4825e577d8b7260"
       },
       {
         "path": "BACKLOG.md",
@@ -113,6 +118,11 @@
         "path": "SITE-ANALYTICS.md",
         "identity_mode": "content",
         "sha256": "11e7160fb808061322bebe04f72f55386b2aeaa7beb552bc98e8a3e4d91d9b25"
+      },
+      {
+        "path": "SITE-CHECK-PROFILES.md",
+        "identity_mode": "content",
+        "sha256": "0e4c730ab40bd2aee046d226eeff9bf5dc240ff34226c7119fd4f63c044612d0"
       },
       {
         "path": "SITE-CONTENT-REVIEW.md",
@@ -147,7 +157,7 @@
       {
         "path": "SITE-STAGING.md",
         "identity_mode": "content",
-        "sha256": "14d30d21b12b9eca6181f0dd8c06ce847b264ba899867799242011872a517c11"
+        "sha256": "eeeca7f74951052e3bd8e37bd2c50e95df4e3767380bf3c9be3970c0ea7e3d82"
       },
       {
         "path": "SITE-VISUAL-REVIEW.md",
@@ -287,6 +297,11 @@
       {
         "path": "review/build_visual_proposal.cjs",
         "identity_mode": "existence"
+      },
+      {
+        "path": "review/ci-only-staging-20261006/REPORT.md",
+        "identity_mode": "content",
+        "sha256": "f3cdc0177bc2f1879b7df7e65718b0ac8a807177ed4a1d410bc2548bb6278083"
       },
       {
         "path": "review/seo-20261002/COLLECTION-MANIFEST.json",
@@ -2720,11 +2735,23 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tests/review-flow.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tests/site-engine.test.cjs",
         "identity_mode": "existence"
       },
       {
         "path": "tests/space.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/staging-reporting.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/staging-trust.test.cjs",
         "identity_mode": "existence"
       },
       {
@@ -2787,7 +2814,7 @@
       {
         "path": "tools/quality/README.md",
         "identity_mode": "content",
-        "sha256": "0c75596dfd90f5d073409b8d9af8ba433699778be5a5fcb016e24359636caefe"
+        "sha256": "466833c88b22e26836ae157da25ac34f56c16209208b829c03ce20fdced96a7e"
       },
       {
         "path": "tools/quality/advisory-exceptions.json",
@@ -2805,7 +2832,11 @@
       {
         "path": "tools/quality/budgets.json",
         "identity_mode": "content",
-        "sha256": "c7f35f0390d472d5a943ff134d193969cab37b6f582f3766efe71012e9e0904b"
+        "sha256": "ce7c3a7e8bc70eaeb29d4e72f8c96e36a5aac563badfa8955d5bdd430d8ef567"
+      },
+      {
+        "path": "tools/quality/color-browser.cjs",
+        "identity_mode": "existence"
       },
       {
         "path": "tools/quality/common.cjs",
@@ -2814,7 +2845,7 @@
       {
         "path": "tools/quality/deploy-pages.example.yml",
         "identity_mode": "content",
-        "sha256": "0765b00108a729455751759b998282d4d09b013cbf99104f7acd8dd18d44d939"
+        "sha256": "7003194f2184e50dd498c73c8ab0d7a6c9878334cf616be6f1e6f1d9d1820e64"
       },
       {
         "path": "tools/quality/engine-browser.cjs",
@@ -2830,11 +2861,35 @@
         "sha256": "4c4ad9578157a01f59eda2f51ce232dbbbe9dfc4811646ab8bb7dd903eea57cb"
       },
       {
+        "path": "tools/quality/fallback-url.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tools/quality/functional.cjs",
         "identity_mode": "existence"
       },
       {
+        "path": "tools/quality/geometry.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/hosted-origin.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/hosted.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tools/quality/lighthouse.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/local-browser.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/local.cjs",
         "identity_mode": "existence"
       },
       {
@@ -2846,18 +2901,26 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tools/quality/promotion.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tools/quality/scanners.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/scroll-browser.cjs",
         "identity_mode": "existence"
       },
       {
         "path": "tools/quality/secrets-baseline.json",
         "identity_mode": "content",
-        "sha256": "bbb820216b77fc4709171e943c000bf6f4c5a55ef5ca6d5991bbe95526a7efd0"
+        "sha256": "c3522aaab5e6f298de9dc527f12d8f64394b4fb572affa50408478fdaf0348ef"
       },
       {
         "path": "tools/quality/security-rules.yml",
         "identity_mode": "content",
-        "sha256": "3dee42667b6e067335f9c23f7c42e57ac5a63248d0750d377240e66d400048e9"
+        "sha256": "2badb50df3a566f737cd79520d4b9a64f29515f27f286250f88b4b453895d141"
       },
       {
         "path": "tools/quality/selftest.cjs",
@@ -2904,6 +2967,10 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tools/quality/workflow-artifacts.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tools/repository_intelligence.py",
         "identity_mode": "content",
         "sha256": "77089ea2e33bb865d2f1bec08273ee12b1f61dc5ee5e507507e09cc6e9d430d2"
@@ -2929,6 +2996,10 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tools/staging/color.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tools/staging/hosted.cjs",
         "identity_mode": "existence"
       },
@@ -2937,11 +3008,19 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tools/staging/review-flow.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tools/staging/selftest.cjs",
         "identity_mode": "existence"
       },
       {
         "path": "tools/staging/state.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/staging/trust.cjs",
         "identity_mode": "existence"
       }
     ]
@@ -3183,6 +3262,13 @@
       ]
     },
     {
+      "path": ".github/workflows/site-color-review.yml",
+      "title": ".github/workflows/site-color-review.yml",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": ".github/workflows/site-navigation-probe.yml",
       "title": ".github/workflows/site-navigation-probe.yml",
       "instructions": [
@@ -3253,6 +3339,13 @@
       ]
     },
     {
+      "path": "SITE-CHECK-PROFILES.md",
+      "title": "Site check profiles",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "SITE-CONTENT-REVIEW.md",
       "title": "Site v1 content and release review",
       "instructions": [
@@ -3296,7 +3389,7 @@
     },
     {
       "path": "SITE-STAGING.md",
-      "title": "Browser staging — Sol implementation plan",
+      "title": "PR previews and explicit staging",
       "instructions": [
         "AGENTS.md"
       ]
@@ -3318,6 +3411,13 @@
     {
       "path": "docs/site-revision.json",
       "title": "docs/site-revision.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/ci-only-staging-20261006/REPORT.md",
+      "title": "CI-only preview/staging integration — 6 October 2026",
       "instructions": [
         "AGENTS.md"
       ]
