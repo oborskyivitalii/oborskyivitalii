@@ -82,6 +82,98 @@ test('fast hosted smoke binds all five routes, both revisions and actual base ru
     await assert.rejects(()=>flow.quickHttp(base,f.record,fetchFixture(f,'robots')));
   }finally{fs.rmSync(f.dir,{recursive:true,force:true});}
 });
+function readinessClock(deadlineMs=6000){
+  let now=0;const waits=[];
+  return {waits,options:{deadlineMs,pollMs:2000,clock:()=>now,wait:async ms=>{waits.push(ms);now+=ms;}},advance:ms=>{now+=ms;}};
+}
+test('post-deploy alias convergence retains the stale revision before one fresh complete exact-byte observation',async()=>{
+  const f=packageFixture();try{
+    const base='https://staging.'+flow.project+'.pages.dev',good=fetchFixture(f),clock=readinessClock(),saved=[];let revisionCalls=0;
+    const fetcher=async(url,init)=>{
+      assert.equal(init.cache,'no-store');assert.equal(init.redirect,'manual');assert.ok(init.signal instanceof AbortSignal);
+      const response=await good(url,init);
+      if(new URL(url).pathname==='/_staging/revision.json'&&++revisionCalls===1)return new Response('previous edition',{headers:response.headers});
+      return response;
+    };
+    const result=await flow.readyHttp(base,f.record,fetcher,{...clock.options,retain:x=>saved.push(x)});
+    assert.equal(result.pass,true);assert.equal(result.rows.length,10);assert.equal(new Set(result.rows.map(x=>x.file)).size,10);
+    assert.equal(result.root,true);assert.equal(result.actual404,true);assert.equal(result.noindex,true);assert.equal(result.error,undefined);
+    assert.deepEqual(clock.waits,[2000]);assert.equal(result.readiness.attempts.length,2);
+    const first=result.readiness.attempts[0];assert.equal(first.pass,false);assert.equal(first.retryable,true);assert.equal(first.rows.length,0);
+    assert.equal(first.revision.sha256,artifact.digest(Buffer.from('previous edition')));assert.equal(first.revision.expectedSha256,f.record.files['_staging/revision.json'].sha256);
+    assert.equal(result.readiness.attempts[1].rows.length,12);assert.equal(result.readiness.attempts[1].pass,true);
+    assert.equal(saved[0].pass,false);assert.equal(saved[1].pass,false);assert.deepEqual(saved[1].readiness.attempts,[first]);assert.equal(saved.at(-1).pass,true);
+  }finally{fs.rmSync(f.dir,{recursive:true,force:true});}
+});
+test('never-correct and mixed alias bytes fail at the finite deadline without stitching successful files',async()=>{
+  const f=packageFixture();try{
+    const base='https://staging.'+flow.project+'.pages.dev',good=fetchFixture(f);
+    for(const mixed of [false,true]){
+      const clock=readinessClock();let revisionCalls=0;
+      const fetcher=async(url,init)=>{
+        const pathname=new URL(url).pathname,response=await good(url,init);
+        if(pathname==='/_staging/revision.json')revisionCalls++;
+        const changed=mixed?(Math.ceil(revisionCalls/2)%2===1?'/index':'/research'):'/_staging/revision.json';
+        return pathname===changed&&response.status===200?new Response('stale bytes',{headers:response.headers}):response;
+      };
+      const result=await flow.readyHttp(base,f.record,fetcher,clock.options);
+      assert.equal(result.pass,false);assert.equal(result.readiness.deadlineExceeded,true);assert.equal(result.readiness.elapsedMs,6000);assert.equal(result.readiness.attempts.length,3);
+      assert.equal(result.rows,undefined);assert.ok(result.readiness.attempts.every(x=>!x.pass&&x.retryable));
+      if(mixed){const individual=new Set(result.readiness.attempts.flatMap(x=>x.rows.filter(r=>r.sha256===r.expectedSha256).map(r=>r.file)));assert.equal(individual.size,10,'every individual file can match while no complete observation passes');}
+    }
+  }finally{fs.rmSync(f.dir,{recursive:true,force:true});}
+});
+test('alias status, security headers, redirect origin and forged transport mismatch errors fail without polling',async()=>{
+  const f=packageFixture();try{
+    const base='https://staging.'+flow.project+'.pages.dev',good=fetchFixture(f);
+    for(const mode of ['status','headers','origin','transport']){
+      const fetcher=async(url,init)=>{
+        const pathname=new URL(url).pathname;
+        if(mode==='transport')throw Object.assign(Error('wrong served bytes _staging/revision.json'),{code:'ALIAS_BYTES_PENDING'});
+        if(mode==='origin'&&pathname==='/index.html')return new Response(null,{status:301,headers:{location:'https://outside.invalid/'}});
+        const response=await good(url,init);
+        if(pathname==='/_staging/revision.json'&&mode==='status')return new Response('unavailable',{status:503,headers:response.headers});
+        if(pathname==='/research'&&mode==='headers'){const headers=new Headers(response.headers);headers.delete('x-robots-tag');return new Response(await response.arrayBuffer(),{headers});}
+        return response;
+      };
+      const result=await flow.readyHttp(base,f.record,fetcher,{deadlineMs:1000,pollMs:1,wait:async()=>assert.fail('non-byte errors must not poll')});
+      assert.equal(result.pass,false);assert.equal(result.readiness.attempts.length,1);assert.equal(result.readiness.attempts[0].retryable,false);
+      if(mode==='origin')assert.match(result.error,/redirect left staging origin/);
+    }
+  }finally{fs.rmSync(f.dir,{recursive:true,force:true});}
+});
+test('a failed complete observation settles its launched requests before the next alias observation',async()=>{
+  const f=packageFixture();try{
+    const base='https://staging.'+flow.project+'.pages.dev',good=fetchFixture(f);let revisionCalls=0,held=false,settled=false,waits=0;
+    const fetcher=async(url,init)=>{
+      const pathname=new URL(url).pathname,response=await good(url,init);
+      if(pathname==='/_staging/revision.json')revisionCalls++;
+      if(pathname==='/index'&&revisionCalls<=2)return new Response('old Home',{headers:response.headers});
+      if(pathname==='/research'&&!held){held=true;const original=response.arrayBuffer.bind(response);response.arrayBuffer=async()=>{await new Promise(r=>setTimeout(r,15));settled=true;return original();};}
+      return response;
+    };
+    const result=await flow.readyHttp(base,f.record,fetcher,{deadlineMs:1000,pollMs:1,wait:async()=>{waits++;assert.equal(settled,true);}});
+    assert.equal(result.pass,true);assert.equal(waits,1);assert.equal(result.readiness.attempts.length,2);
+  }finally{fs.rmSync(f.dir,{recursive:true,force:true});}
+});
+test('the alias deadline bounds stalled body reads and prevents redirects or late success after expiry',async()=>{
+  const f=packageFixture();try{
+    const base='https://staging.'+flow.project+'.pages.dev',good=fetchFixture(f);
+    let signal,release,calls=0;
+    const body=flow.readyHttp(base,f.record,async(url,init)=>{
+      calls++;signal=init.signal;const response=await good(url,init);
+      response.arrayBuffer=()=>new Promise(resolve=>{release=async()=>resolve(await fs.promises.readFile(path.join(f.out,'public/_staging/revision.json')));});return response;
+    },{deadlineMs:25,pollMs:1});
+    const result=await body;assert.equal(result.pass,false);assert.equal(result.readiness.deadlineExceeded,true);assert.equal(signal.aborted,true);assert.equal(calls,1);
+    const snapshot=JSON.stringify(result);await release();await new Promise(r=>setTimeout(r,5));assert.equal(calls,1,'a late body must not launch full HTTP checks');assert.equal(JSON.stringify(result),snapshot);
+    const clock=readinessClock(60);let redirects=0;
+    const redirected=await flow.readyHttp(base,f.record,async()=>{redirects++;clock.advance(31);return new Response(null,{status:301,headers:{location:'/_staging/revision.json'}});},{...clock.options,pollMs:20});
+    assert.equal(redirected.pass,false);assert.equal(redirected.readiness.deadlineExceeded,true);assert.equal(redirects,2);
+    const lateClock=readinessClock(60);
+    const late=await flow.readyHttp(base,f.record,async(url,init)=>{const response=await good(url,init);if(new URL(url).pathname.includes('__pr_preview_missing_')){const original=response.arrayBuffer.bind(response);response.arrayBuffer=async()=>{lateClock.advance(61);return original();};}return response;},{...lateClock.options,pollMs:20});
+    assert.equal(late.pass,false);assert.equal(late.readiness.deadlineExceeded,true);assert.equal(late.readiness.elapsedMs,61);assert.equal(late.readiness.attempts[0].rows.length,12);
+  }finally{fs.rmSync(f.dir,{recursive:true,force:true});}
+});
 test('source capabilities choose Color only with every authored dependency; base identity is derived without changing bytes',()=>{
   const dir=fs.mkdtempSync(path.join(os.tmpdir(),'rendition-capability-'));
   try{
@@ -132,6 +224,16 @@ test('untracked stable aliases stop promotion; first deployment and known recove
   await assert.rejects(()=>flow.priorStable(base,{...state,sourceCommit:controller},current));
   await assert.rejects(()=>flow.priorStable(base,null,async()=>{throw Error('timeout');}));
 });
+test('retained recovery binds the package producer attempt independently of a later promotion attempt',()=>{
+  const previous={runId:'10',attempt:'2',controller},state={schema:1,kind:'ci-staging-recovery',project:flow.project,workflow:flow.workflow,...previous,sourceCommit:source,publicDigest:'d'.repeat(64),packageDigest:'e'.repeat(64),packageUploadDigest:'f'.repeat(64),packageArtifactId:'12',packageAttempt:'1'};
+  const stored={id:12,name:'site-review-package-10-1',expired:false,digest:'sha256:'+state.packageUploadDigest,workflow_run:{id:10,head_sha:controller}};
+  assert.equal(flow.recoveryArtifact(state,previous,stored),true);assert.equal(flow.packageAttempt(state),1);
+  const legacy={...state,attempt:'1'};delete legacy.packageAttempt;assert.equal(flow.recoveryArtifact(legacy,{...previous,attempt:'1'},stored),true);
+  for(const packageAttempt of [null,'',0,'0','3',[1],{},true])assert.throws(()=>flow.recoveryArtifact({...state,packageAttempt},previous,stored));
+  assert.throws(()=>flow.recoveryArtifact({...state,packageArtifactId:[12]},previous,stored));
+  for(const mutation of [{id:13},{expired:true},{name:'site-review-package-10-2'},{digest:'a'.repeat(64)},{workflow_run:{id:11,head_sha:controller}},{workflow_run:{id:10,head_sha:source}}])assert.throws(()=>flow.recoveryArtifact(state,previous,{...stored,...mutation}));
+  for(const mutation of [{attempt:'1'},{controller:source},{runId:'11'}])assert.throws(()=>flow.recoveryArtifact({...state,...mutation},previous,stored));
+});
 test('PR deployment comments are updated in place and stale candidates cannot replace current status',async()=>{
   const oldEnv=process.env.REVIEW_PR,oldMode=process.env.REVIEW_MODE;
   process.env.REVIEW_PR='26';process.env.REVIEW_MODE='preview';
@@ -157,6 +259,10 @@ test('workflow publishes through the official action, excludes full tests from P
   assert.match(full,/if: needs.target.outputs.mode == 'staging'/);assert.match(full,/full: true/);assert.match(full,/public_artifact_id: \$\{\{ needs.build.outputs.public_artifact \}\}/);
   const promote=text.split('\n  promote:\n')[1].split('\n  status-comment:\n')[0];
   assert.match(promote,/needs.full.result == 'success'/);assert.match(promote,/review-flow.cjs gate/);assert.match(promote,/--branch=staging/);assert.match(promote,/Restore the previous successful staging package through CI/);
+  assert.match(promote,/timeout-minutes: 15/);assert.equal((promote.match(/review-flow.cjs http-ready /g)||[]).length,2);
+  assert.match(text,/package_attempt: \$\{\{ steps.identity.outputs.package_attempt \}\}/);assert.match(text,/package_attempt='\+attempt/);
+  assert.match(promote,/REVIEW_PACKAGE_ATTEMPT: \$\{\{ needs.build.outputs.package_attempt \}\}/);assert.match(promote,/packageAttempt:String\(flow.positive\(e.REVIEW_PACKAGE_ATTEMPT\)\)/);
+  assert.match(promote,/flow.recoveryArtifact\(state,previous,artifact\)/);assert.doesNotMatch(promote,/artifact.name,'site-review-package-'\+previous.runId\+'-'\+previous.attempt/);
   const smoke=text.split('\n  smoke:\n')[1].split('\n  full:\n')[0];
   assert.match(smoke,/local-browser.cjs --smoke/);assert.match(smoke,/SITE_PUBLIC_VARIANT: \$\{\{ needs.build.outputs.variant \}\}/);assert.doesNotMatch(smoke,/secrets\.|lighthouse|scanners.cjs|motion.cjs/);
   for(const match of text.matchAll(/uses: ([^\s]+)/g))if(!match[1].startsWith('./'))assert.match(match[1],/@[a-f0-9]{40}$/,'pin third-party actions');

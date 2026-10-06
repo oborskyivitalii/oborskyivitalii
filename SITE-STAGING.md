@@ -1,7 +1,9 @@
 # PR previews and explicit staging
 
-Owner intent: issues #8 and #13. CI-only PR #26 is merged into protected main;
-the complete current runtime candidate is consolidated in the sole open PR #23.
+Owner intent: issues #8 and #13. Infrastructure #26/#29 and runtime #23 are
+accepted in protected main. PR #28 is the current reading/contact/Home increment;
+its candidate passed full run 37539805745, but stable verification
+failed and it remains unmerged until corrected exact-head acceptance.
 
 ## Deployment flow
 
@@ -23,7 +25,7 @@ the repository owner is accepted. Edited comments do not trigger a deployment.
 
 The source edition selects base or the authored Color rendition explicitly in its
 artifact. A pipeline-only PR based on main has the unchanged base runtime. The
-Color runtime stays in its own open PR (#23); stage that PR to review its effects.
+Color runtime was accepted in #23; stage the current open PR to review its effects.
 All served HTML/runtime bytes are verified against the selected artifact.
 
 ## Verified provider and first preview
@@ -78,6 +80,19 @@ administration. A successful deployment proves the credential used for that job
 without exposing its value.
 
 ## Operation
+
+After successful official deployment, stable and rollback verification allow a
+bounded 60-second convergence interval with two-second polls. Every observation
+is retained, and success still requires all ten exact file hashes, headers,
+root and real-404 checks. The existing 20-second request and 15-minute promotion
+job limits remain. A preceding revision during alias propagation never counts
+as success; exhausted convergence remains a failed promotion or recovery.
+
+Recovery records distinguish the original package producer attempt from the
+promotion attempt. A promotion-only retry must reuse the exact tested package
+ID and upload digest. Future recovery validates its name against that producer
+attempt; legacy records retain their original matching attempt. No browser
+report, failed observation or artifact is relabeled.
 
 After enabling preview, subsequent PR commits publish automatically. Changing
 settings alone does not trigger a run: use the latest source run's **Re-run all

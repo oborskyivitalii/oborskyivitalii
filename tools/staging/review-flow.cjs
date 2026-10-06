@@ -1,10 +1,12 @@
 'use strict';
 // CI controller, identity checks and HTTP tests. Deployment is exclusively Wrangler Action.
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const {performance}=require('node:perf_hooks');
 const pkg=require('./package.cjs'),hosted=require('./hosted.cjs'),{digest}=require('../quality/artifact.cjs');
 const repository='oborskyivitalii/oborskyivitalii',project='oborskyi-author-ci-staging';
 const workflow='.github/workflows/site-color-review.yml',marker='<!-- site-review-deployment -->';
-function positive(value){assert.match(String(value),/^[1-9][0-9]*$/);assert.ok(Number.isSafeInteger(Number(value)));return Number(value);}
+const byteMismatches=new WeakSet();
+function positive(value){assert.ok(typeof value==='string'||typeof value==='number','expected a decimal string or number');assert.match(String(value),/^[1-9][0-9]*$/);assert.ok(Number.isSafeInteger(Number(value)));return Number(value);}
 function sha(value){assert.match(value,/^[a-f0-9]{40}$/);return value;}
 function stageComment(context){
   assert.equal(context.eventName,'issue_comment');
@@ -80,19 +82,74 @@ function fullGate(gate,record,url){
   return true;
 }
 function readPackage(dir,expected={}){const record=JSON.parse(fs.readFileSync(path.join(dir,'staging-package.json')));pkg.verify(dir,record,expected);return record;}
-async function quickHttp(base,record,fetcher=fetch){
+function sameBytes(actual,expected,file){
+  try{assert.equal(actual,expected,'wrong served bytes '+file);}
+  catch(error){error.code='ALIAS_BYTES_PENDING';byteMismatches.add(error);throw error;}
+}
+function httpObservation(file,result,expected){
+  return {file,url:result.url,status:result.response.status,sha256:digest(result.bytes),expectedSha256:expected,headers:Object.fromEntries(['x-robots-tag','x-content-type-options','cache-control','content-type'].map(key=>[key,result.response.headers.get(key)]))};
+}
+async function quickHttp(base,record,fetcher=fetch,observation){
   const runtime=record.source.components.engine;
   const identity=variant(record.source);
   const names=['index.html','research.html','writing.html','talks.html','credits.html','site-revision.json','_staging/revision.json',...['space.js','navigation.js','styles.css'].map(x=>'runtime/'+runtime+'/'+x)];
-  const rows=await Promise.all(names.map(async file=>{
-    const result=await hosted.request(base+'/'+file,base,fetcher);assert.equal(result.response.status,200,file);
-    hosted.responseHeaders(result.response.headers,file.startsWith('runtime/'));
-    assert.equal(digest(result.bytes),record.files[file].sha256,'wrong served bytes '+file);
-    return {file,sha256:digest(result.bytes),status:200};
-  }));
-  const root=await hosted.request(base+'/',base,fetcher);assert.equal(root.response.status,200);hosted.responseHeaders(root.response.headers);assert.equal(digest(root.bytes),record.files['index.html'].sha256);
-  const missing=await hosted.request(base+'/__pr_preview_missing_'+record.source.sourceCommit,base,fetcher);assert.equal(missing.response.status,404);hosted.responseHeaders(missing.response.headers);assert.equal(digest(missing.bytes),record.files['404.html'].sha256);
+  const work=names.map(async file=>{
+    try{
+      const result=await hosted.request(base+'/'+file,base,fetcher);
+      if(observation)observation.rows.push(httpObservation(file,result,record.files[file].sha256));
+      assert.equal(result.response.status,200,file);hosted.responseHeaders(result.response.headers,file.startsWith('runtime/'));
+      sameBytes(digest(result.bytes),record.files[file].sha256,file);
+      return {file,sha256:digest(result.bytes),status:200};
+    }catch(error){if(observation)observation.failed(error,file);throw error;}
+  });
+  let rows;
+  try{rows=await Promise.all(work);}
+  catch(error){if(observation){await Promise.allSettled(work);throw observation.fatal||error;}throw error;}
+  const root=await hosted.request(base+'/',base,fetcher);
+  if(observation)observation.rows.push(httpObservation('/',root,record.files['index.html'].sha256));
+  assert.equal(root.response.status,200);hosted.responseHeaders(root.response.headers);sameBytes(digest(root.bytes),record.files['index.html'].sha256,'/');
+  const missing=await hosted.request(base+'/__pr_preview_missing_'+record.source.sourceCommit,base,fetcher);
+  if(observation)observation.rows.push(httpObservation('404.html',missing,record.files['404.html'].sha256));
+  assert.equal(missing.response.status,404);hosted.responseHeaders(missing.response.headers);sameBytes(digest(missing.bytes),record.files['404.html'].sha256,'404.html');
   return {rows,root:true,actual404:true,noindex:true,sourceCommit:record.source.sourceCommit,publicDigest:record.source.artifactDigest,variant:identity};
+}
+async function readyHttp(base,record,fetcher=fetch,options={}){
+  const deadlineMs=options.deadlineMs??60000,pollMs=options.pollMs??2000;
+  assert.ok(Number.isInteger(deadlineMs)&&deadlineMs>0&&deadlineMs<=60000);assert.ok(Number.isInteger(pollMs)&&pollMs>0&&pollMs<=2000);
+  const clock=options.clock||(()=>performance.now()),wait=options.wait||(ms=>new Promise(resolve=>setTimeout(resolve,ms))),retain=options.retain||(()=>{});
+  const started=clock(),deadline=started+deadlineMs;
+  const result={schema:1,kind:'pr-preview-http',pass:false,origin:base,sourceCommit:record.source.sourceCommit,publicDigest:record.source.artifactDigest,packageDigest:record.packageDigest,readiness:{deadlineMs,pollMs,requestTimeoutMs:20000,attempts:[]}};
+  const expired=()=>Object.assign(Error('staging alias did not converge within '+deadlineMs+'ms'),{code:'ALIAS_READINESS_DEADLINE'});
+  const save=()=>{result.readiness.elapsedMs=Math.max(0,clock()-started);retain(structuredClone(result));};save();
+  while(clock()<deadline&&result.readiness.attempts.length<Math.ceil(deadlineMs/pollMs)+1){
+    const abort=new AbortController(),began=clock(),startedAt=new Date().toISOString(),observed={rows:[],errors:[]};
+    const observation={rows:observed.rows,failed(error,file){observed.errors.push({file,message:error.message,code:error.code||null});if(!byteMismatches.has(error)&&!observation.fatal){observation.fatal=error;abort.abort(error);}}};
+    const boundedFetcher=(url,init)=>{abort.signal.throwIfAborted();if(clock()>=deadline)throw expired();return fetcher(url,{...init,signal:AbortSignal.any([init.signal,abort.signal])});};
+    let timer,error,value;
+    const timeout=new Promise((_,reject)=>{timer=setTimeout(()=>{const e=expired();abort.abort(e);reject(e);},Math.max(1,deadline-clock()));});
+    try{
+      value=await Promise.race([(async()=>{
+        // Wait for this edition before requesting its new immutable runtime paths.
+        const file='_staging/revision.json',revision=await hosted.request(base+'/'+file,base,boundedFetcher);
+        observed.revision=httpObservation(file,revision,record.files[file].sha256);
+        assert.equal(revision.response.status,200,file);hosted.responseHeaders(revision.response.headers);
+        sameBytes(digest(revision.bytes),record.files[file].sha256,file);
+        abort.signal.throwIfAborted();if(clock()>=deadline)throw expired();
+        return quickHttp(base,record,boundedFetcher,observation);
+      })(),timeout]);
+      if(clock()>=deadline)throw expired();
+    }catch(e){error=e;abort.abort(e);}
+    finally{clearTimeout(timer);}
+    const attempt={number:result.readiness.attempts.length+1,startedAt,elapsedMs:Math.max(0,clock()-began),pass:!error,...structuredClone(observed)};
+    if(error)Object.assign(attempt,{error:error.message,code:error.code||null,retryable:byteMismatches.has(error)});
+    result.readiness.attempts.push(attempt);
+    if(!error){Object.assign(result,value,{pass:true});delete result.error;save();return result;}
+    result.error=error.message;save();
+    if(!byteMismatches.has(error)){if(error.code==='ALIAS_READINESS_DEADLINE'){result.readiness.deadlineExceeded=true;save();}return result;}
+    const remaining=deadline-clock();if(remaining<=0)break;
+    await wait(Math.min(pollMs,remaining));
+  }
+  result.error=expired().message;result.readiness.deadlineExceeded=true;save();return result;
 }
 async function findRecovery(github,context){
   const runs=await github.paginate(github.rest.actions.listWorkflowRuns,{...context.repo,workflow_id:workflow.split('/').pop(),branch:'main',status:'success',per_page:100});
@@ -114,7 +171,17 @@ function recoveryState(state,previous){
   assert.equal(state.schema,1);assert.equal(state.kind,'ci-staging-recovery');assert.equal(state.project,project);assert.equal(state.workflow,workflow);
   assert.equal(state.runId,previous.runId);assert.equal(state.attempt,previous.attempt);assert.equal(state.controller,previous.controller);
   sha(state.sourceCommit);assert.match(state.publicDigest,/^[a-f0-9]{64}$/);assert.match(state.packageDigest,/^[a-f0-9]{64}$/);
-  assert.match(state.packageUploadDigest,/^(?:sha256:)?[a-f0-9]{64}$/);positive(state.packageArtifactId);return true;
+  assert.match(state.packageUploadDigest,/^(?:sha256:)?[a-f0-9]{64}$/);positive(state.packageArtifactId);packageAttempt(state);return true;
+}
+function packageAttempt(state){
+  const value=positive(state.packageAttempt===undefined?state.attempt:state.packageAttempt);
+  assert.ok(value<=positive(state.attempt),'package producer attempt exceeds promotion attempt');return value;
+}
+function recoveryArtifact(state,previous,artifact){
+  recoveryState(state,previous);assert.equal(String(artifact.id),String(state.packageArtifactId));assert.equal(artifact.expired,false);
+  assert.equal(artifact.workflow_run.id,Number(previous.runId));assert.equal(artifact.workflow_run.head_sha,previous.controller);
+  assert.equal(artifact.name,'site-review-package-'+previous.runId+'-'+packageAttempt(state));
+  assert.equal(artifact.digest.replace(/^sha256:/,''),state.packageUploadDigest.replace(/^sha256:/,''));return true;
 }
 async function priorStable(base,state,fetcher=fetch){
   let result;
@@ -164,12 +231,17 @@ async function main(){
     const state=url&&fs.existsSync(url)?JSON.parse(fs.readFileSync(url)):null;
     await priorStable(hosted.origin(dir,project,true),state);return;
   }
-  assert.equal(mode,'http','usage: review-flow.cjs verify DIR | gate DIR GATE | recovery DIR STATE | prior URL [STATE] | http DIR URL REPORT');
+  assert.ok(['http','http-ready'].includes(mode),'usage: review-flow.cjs verify DIR | gate DIR GATE | recovery DIR STATE | prior URL [STATE] | http[-ready] DIR URL REPORT');
   const record=readPackage(dir,expected),base=hosted.origin(url,project,process.env.SITE_STAGING_STABLE==='true');
+  if(mode==='http-ready'){
+    assert.equal(process.env.SITE_STAGING_STABLE,'true','alias readiness is for post-deployment staging only');
+    const retain=result=>{fs.mkdirSync(path.dirname(out),{recursive:true});fs.writeFileSync(out,JSON.stringify(result,null,2)+'\n');};
+    const result=await readyHttp(base,record,fetch,{retain});if(!result.pass)throw Error(result.error);return;
+  }
   const result={schema:1,kind:'pr-preview-http',pass:false,origin:base};
   try{Object.assign(result,await quickHttp(base,record));result.pass=true;}
   catch(error){result.error=error.message;throw error;}
   finally{fs.mkdirSync(path.dirname(out),{recursive:true});fs.writeFileSync(out,JSON.stringify(result,null,2)+'\n');}
 }
 if(require.main===module)main().catch(error=>{console.error(error.message);process.exitCode=1;});
-module.exports={repository,project,workflow,positive,stageComment,controller,lease,resolve,configuration,variant,colorInputs,supportedRendition,rendition,fullGate,quickHttp,findRecovery,recoveryState,priorStable,commentBody,updateComment};
+module.exports={repository,project,workflow,positive,stageComment,controller,lease,resolve,configuration,variant,colorInputs,supportedRendition,rendition,fullGate,quickHttp,readyHttp,findRecovery,recoveryState,packageAttempt,recoveryArtifact,priorStable,commentBody,updateComment};

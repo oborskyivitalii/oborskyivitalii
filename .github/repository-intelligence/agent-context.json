@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "0a814dace0c526950d7f46c5560166e287e9d4ce01ab05977e6ed52d376af929",
+    "digest": "023ee18acd1f4b28a635d8c4208b12e2406cdd410637bfcff5fc0caf2c26fded",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -78,7 +78,7 @@
       {
         "path": ".github/workflows/site-color-review.yml",
         "identity_mode": "content",
-        "sha256": "ca53e071f613d7abe7cbcf01eb8628363213ec1df517a983ba323830a8126976"
+        "sha256": "e10f8aed8750f7b85ac1419bf2332bddb5ddfb8b8871a52d7d37a1cb5ff65eb7"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -122,7 +122,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "1dba9affa72febdd274fe136f690b2bef420d0bed0f88a9dc4f602dbd08e0d4f"
+        "sha256": "102b30dcac0aa26acf47f273ca0844efe18e4de9533b5199fac7607f923f68af"
       },
       {
         "path": "BACKLOG.md",
@@ -187,7 +187,7 @@
       {
         "path": "SITE-STAGING.md",
         "identity_mode": "content",
-        "sha256": "5a87311f0685c550313db624b29d8f6056bdb4459048f3929fa13f1ecce5bf94"
+        "sha256": "45106db01fddb33acad87d45e3cb831c34ec327798de0387512dc29c031ccd6e"
       },
       {
         "path": "SITE-VISUAL-REVIEW.md",
