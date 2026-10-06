@@ -1,6 +1,13 @@
-const fs=require('node:fs'),path=require('node:path'),{pathToFileURL}=require('node:url');
+const fs=require('node:fs'),path=require('node:path'),zlib=require('node:zlib'),{pathToFileURL}=require('node:url');
 const {toolRequire,out,report}=require('./common.cjs');
 const {start}=require('./serve.cjs');
+function retainResearchEvidence(label,result){
+  return Object.fromEntries(['Trace','DevtoolsLog'].map(key=>{
+    const bytes=zlib.gzipSync(JSON.stringify(result.artifacts[key])+'\n'),file=label+'-'+key.toLowerCase()+'.json.gz';
+    fs.writeFileSync(path.join(out,file),bytes);
+    return [key,{file,sha256:require('./artifact.cjs').digest(bytes),bytes:bytes.length}];
+  }));
+}
 async function main(){
   const {default:lighthouse}=await import(pathToFileURL(toolRequire.resolve('lighthouse')).href);
   const launcher=await import(pathToFileURL(toolRequire.resolve('chrome-launcher')).href);
@@ -18,10 +25,13 @@ async function main(){
       try{
         const result=await lighthouse(`${url}/${route}.html`,{port:chrome.port,output:'json',logLevel:'error',onlyCategories:['performance','accessibility','best-practices']},formFactor==='desktop'?desktopConfig:undefined);
         const lhr=result.lhr;
+        // Preserve original late-task evidence without adding profiler categories
+        // or altering the normal Lighthouse measurement and median gate.
+        const evidence=route==='research'&&formFactor==='mobile'?retainResearchEvidence(`lighthouse-${route}-${formFactor}-${run}`,result):undefined;
         if(lhr.configSettings.formFactor!==formFactor)throw Error('Actual Lighthouse form factor differs from scenario label');
         fs.writeFileSync(path.join(out,`lighthouse-${route}-${formFactor}-${run}.json`),JSON.stringify(lhr,null,2)+'\n');
         const keys=['first-contentful-paint','largest-contentful-paint','total-blocking-time','cumulative-layout-shift','speed-index','interactive','dom-size','dom-size-insight','mainthread-work-breakdown','bootup-time','total-byte-weight'];
-        const row={route,formFactor,run,lighthouseVersion:lhr.lighthouseVersion,fetchTime:lhr.fetchTime,environment:lhr.environment,configSettings:lhr.configSettings,categories:Object.fromEntries(Object.entries(lhr.categories).map(([k,v])=>[k,v.score])),metrics:Object.fromEntries(keys.filter(k=>lhr.audits[k]).map(k=>[k,{numericValue:lhr.audits[k].numericValue,displayValue:lhr.audits[k].displayValue,score:lhr.audits[k].score}])),warnings:lhr.runWarnings,runtimeError:lhr.runtimeError};
+        const row={route,formFactor,run,lighthouseVersion:lhr.lighthouseVersion,fetchTime:lhr.fetchTime,environment:lhr.environment,configSettings:lhr.configSettings,categories:Object.fromEntries(Object.entries(lhr.categories).map(([k,v])=>[k,v.score])),metrics:Object.fromEntries(keys.filter(k=>lhr.audits[k]).map(k=>[k,{numericValue:lhr.audits[k].numericValue,displayValue:lhr.audits[k].displayValue,score:lhr.audits[k].score}])),warnings:lhr.runWarnings,runtimeError:lhr.runtimeError,...(evidence?{originalEvidence:evidence}:{})};
         summaries.push(row);fs.writeFileSync(path.join(out,'lighthouse-summary.json'),JSON.stringify(summaries,null,2)+'\n');
         process.stdout.write(JSON.stringify({route,formFactor,scores:row.categories,metrics:row.metrics})+'\n');
       }finally{await chrome.kill();}
@@ -31,4 +41,5 @@ async function main(){
   }catch(e){report('lighthouse',{rows:summaries,error:e.stack},false);throw e;}
   finally{server.close();}
 }
-main().catch(e=>{console.error(e.stack);process.exitCode=1;});
+if(require.main===module)main().catch(e=>{console.error(e.stack);process.exitCode=1;});
+module.exports={retainResearchEvidence};

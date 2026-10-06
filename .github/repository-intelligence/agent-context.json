@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "1cf1f1b2eb886f4fff019ee5c203932cafa540788062b28c26ba476b926d319b",
+    "digest": "3d0133d0a1b99d9add38f3108cb73b56440cc6674e7034da47e6739a6ebaf165",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -63,7 +63,7 @@
       {
         "path": ".github/workflows/site-cause-probe.yml",
         "identity_mode": "content",
-        "sha256": "17922227c41fb7e0b253b2fdeec63cb48057bcc7c3980abe9c9cb0865f11dc50"
+        "sha256": "c46cf129e38fcfb12cba7c255e4371398627facc67f4941d3d9fb597c8ffdf06"
       },
       {
         "path": ".github/workflows/site-checks.yml",
@@ -107,7 +107,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "c13688ee10b5c0a1ce9084ed52bd57d34390cd4d5c2fcc8acea8c5162dbc42ab"
+        "sha256": "4551fa9dc9ff449ca053a38ad10c96a8ac02c9b4dc39cf9ba69a9db98e072e4a"
       },
       {
         "path": "BACKLOG.md",
@@ -3195,12 +3195,22 @@
       {
         "path": "review/staging-readiness-20261006/BROWSER-CAUSES.json",
         "identity_mode": "content",
-        "sha256": "06e0b57ef09bb446722381cba654ed9f70c838616455da6c71286baba6085eae"
+        "sha256": "2b6ed187163020ea3e5d8b24bb3c98f51a56315e9b2d0812a9b86f5aca2fb4f3"
+      },
+      {
+        "path": "review/staging-readiness-20261006/CAUSE-ATTRIBUTION.json",
+        "identity_mode": "content",
+        "sha256": "cfc951fa5b6181a74aa3ac7da3015a92b50665bdf0df290f7ab2021d62a346ff"
+      },
+      {
+        "path": "review/staging-readiness-20261006/CAUSES.md",
+        "identity_mode": "content",
+        "sha256": "dd0a29b8cff6055ac4b20661ec29827d04656af4b242476352db6ff1422a38cb"
       },
       {
         "path": "review/staging-readiness-20261006/REPORT.md",
         "identity_mode": "content",
-        "sha256": "2f4574932a1af013037d40a049c27e95c989d16ae393274a01f0cf2922e0280b"
+        "sha256": "ca2e105e8029a312839428a05c0cb6554c680717f0febe1d4353627aed797136"
       },
       {
         "path": "review/staging-readiness-20261006/SECRET-TRIAGE.json",
@@ -5765,6 +5775,20 @@
     {
       "path": "review/staging-readiness-20261006/BROWSER-CAUSES.json",
       "title": "review/staging-readiness-20261006/BROWSER-CAUSES.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/staging-readiness-20261006/CAUSE-ATTRIBUTION.json",
+      "title": "review/staging-readiness-20261006/CAUSE-ATTRIBUTION.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/staging-readiness-20261006/CAUSES.md",
+      "title": "Причини збоїв: завершена діагностика 6 жовтня 2026",
       "instructions": [
         "AGENTS.md"
       ]

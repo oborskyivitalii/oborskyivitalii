@@ -28,6 +28,24 @@ preview/short-smoke workflow. Full staging, merge and production of this follow-
 are not requested. Calendar booking/email are advice only until real contact
 values and an implementation request are supplied. No Glass or new runtime loop.
 
+## Completed browser causes — 2026-10-06
+
+The requested analysis is retained in review/staging-readiness-20261006/CAUSES.md,
+BROWSER-CAUSES.json and CAUSE-ATTRIBUTION.json. Follow-up 37476487993 completes
+four valid WebKit observations (one original timeout retained) and three normal
+Color Research mobile/simulated CPU profiles. Both dated PR triggers are removed.
+Firefox contention and the source hold/cadence/detail mismatch are confirmed;
+mesh adaptation alone still fails. The first isolated WebKit boot also leaves
+RAF pending 2475ms while 33 timer heartbeats continue; later/loaded boots pass.
+Do not claim browser isolation cures this cold native rendering delay, or invent
+its compositor/driver cause from JS evidence. Research profiles show cold world/
+palette preparation and recurring projection/Canvas paint. They do not identify
+the unrecorded stacks of the older late 102/153ms outliers. Normal Lighthouse now
+retains original Research/mobile Trace and DevtoolsLog on every trial, with no
+new profiling categories or changes to measurement, medians or thresholds.
+No renderer source remedy, full staging retry, promotion or merge is claimed by
+this analysis. Keep #12/#13/#14 and Draft #23 open until their own acceptance.
+
 ## Cold browser cause follow-up — 2026-10-06
 
 The maintainer requests analysis of the completed diagnostic, not another full
