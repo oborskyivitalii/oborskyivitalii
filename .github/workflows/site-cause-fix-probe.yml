@@ -121,7 +121,7 @@ jobs:
     timeout-minutes: 15
     env:
       SITE_REPORT_DIR: ${{ github.workspace }}/quality-reports
-      SITE_ARTIFACT_MANIFEST: ${{ runner.temp }}/cause-static/artifact.json
+      SITE_ARTIFACT_MANIFEST: ${{ github.workspace }}/quality-artifact/artifact.json
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
@@ -135,7 +135,7 @@ jobs:
           python-version: '3.12.14'
       - name: Build source identity and install locked scanners
         run: |
-          node tools/quality/artifact.cjs build "$RUNNER_TEMP/cause-static"
+          node tools/quality/artifact.cjs build quality-artifact
           npm ci --prefix tools/quality/toolchain --ignore-scripts
           python -m venv tools/quality/toolchain/venv
           tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check -r tools/quality/toolchain/requirements.txt
