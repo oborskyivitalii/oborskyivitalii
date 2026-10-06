@@ -104,17 +104,7 @@ module.exports=function(api) {
   }
   function paintColors(room) {
     const start=window.SiteEngineStages?clock():0;
-    const rgb=Object.fromEntries(Object.entries(colors).map(([key,hex])=>[key,hex.slice(1).match(/.{2}/g).map(value=>parseInt(value,16))]));
-    const paper=rgb.paper;
-    room.faceColors=room.world.faces.map(f=>{
-      const key=(f.fillColor||f.color)+":"+f.tint;
-      if(!colorFills.has(key)){
-        const ink=rgb[f.fillColor||f.color];
-        colorFills.set(key,"#"+paper.map((value,i)=>Math.round(value+(ink[i]-value)*f.tint).toString(16).padStart(2,"0")).join(""));
-        if(colorFills.size>16384)colorFills.delete(colorFills.keys().next().value);
-      }
-      return colorFills.get(key);
-    });
+    room.faceColors=api.facePalette(room.world.faces,colors,colorFills);
     room.paletteRevision=paletteRevision;
     if(start)diagnostic('stage',{part:'model-color',route:room.name,start,duration:clock()-start});
   }

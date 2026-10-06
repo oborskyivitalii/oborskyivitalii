@@ -1,6 +1,25 @@
 "use strict";
 // Canvas command submission is separate from projection and lifecycle clocks.
 module.exports=function() {
+  function facePalette(faces,colors,cache) {
+    const rgb=Object.fromEntries(Object.entries(colors).map(([key,hex])=>[key,hex.slice(1).match(/.{2}/g).map(value=>parseInt(value,16))]));
+    const paper=rgb.paper;
+    return faces.map(face=>{
+      const ink=rgb[face.fillColor||face.color],tint=face.tint;
+      const red=Math.round(paper[0]+(ink[0]-paper[0])*tint);
+      const green=Math.round(paper[1]+(ink[1]-paper[1])*tint);
+      const blue=Math.round(paper[2]+(ink[2]-paper[2])*tint);
+      // Lighting tints vary continuously; the actual six-digit RGB result has
+      // far fewer values. Cache that exact result without quantizing geometry,
+      // tint arithmetic or the colors submitted to Canvas.
+      const key=red*65536+green*256+blue;
+      if(!cache.has(key)){
+        cache.set(key,"#"+key.toString(16).padStart(6,"0"));
+        if(cache.size>16384)cache.delete(cache.keys().next().value);
+      }
+      return cache.get(key);
+    });
+  }
   function path(ctx,points) {
     ctx.beginPath();ctx.moveTo(points[0][0],points[0][1]);
     for(let i=1;i<points.length;i++)ctx.lineTo(points[i][0],points[i][1]);
@@ -39,5 +58,5 @@ module.exports=function() {
     }
     ctx.globalAlpha=1;
   }
-  return {paintShapes};
+  return {paintShapes,facePalette};
 };

@@ -1,4 +1,51 @@
-# Причини збоїв: завершена діагностика 6 жовтня 2026
+# Причини збоїв і виправлення — 6 жовтня 2026
+
+Продовження в тому самому PR #23: браузери тепер виконують повні functional,
+navigation і analytics leases послідовно. Спостереження On/print/visibility та
+fallback чекають справжнього paint/стану в початковому 1500 мс, без старого
+180 мс race. Desktop ribbons отримують наявний detailTier; tier 0 і всі mobile
+вершини лишаються точними. Зайві stroke setters для суто залитих граней прибрано.
+Ліміти, cadence, hold і всі 390 Linux scenarios не послаблено.
+
+Холодні тести [37483016304](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37483016304)
+зберігають 8 observations і 5 початкових невдач. Вимкнення Canvas submission,
+атмосферних CSS writes або малий bitmap не прибирають довгий запитаний RAF.
+[CAUSE-FIX-NATIVE.json](CAUSE-FIX-NATIVE.json) зберігає всі результати та raw SHA.
+
+Наступне порівняння [37484704942](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37484704942)
+дає 6 observations і 2 початкові невдачі. На одному типі CPU EPYC 7763 звичайний
+WPE чекає RAF №2 2457 мс і падає; звичайний GTK чекає 118 мс і проходить.
+Обидва окремі холодні GTK trials проходять (90/118 мс). Еквівалентний 2D CSS
+на WPE також падає (2374 мс), тому його не впроваджено як remedy.
+Linux functional WebKit тепер запускає desktop GTK на власному Xvfb, без warmup,
+retry чи зміни браузерних дедлайнів. Це підтримане виправлення CI port; точний
+символ нативної бібліотеки/драйвера ще не локалізовано.
+[CAUSE-FIX-PORTS.json](CAUSE-FIX-PORTS.json) містить порівняння та provenance.
+
+Валідні Research pairs того самого run зберігають усі 12 LHR/Trace/DevtoolsLog.
+Normal TBT reference 120.5/96.5/103.5 проти candidate 130.5/130/123 мс:
+медіана 103.5→130 мс не доводить приросту від Canvas-state зміни. У жодному trial
+немає вихідної задачі >30 мс після 500 мс; старі пізні 102/153 мс не відтворились,
+їхніх історичних стеків усе ще немає. Profiled цифри не є acceptance.
+[CAUSE-FIX-RESEARCH.json](CAUSE-FIX-RESEARCH.json) зберігає ці межі висновку.
+
+Нова перевірювана оптимізація палітри кешує точний RGB результат замість дробового
+tint string. Кольори кожної грані byte-identical для 5 routes × 2 details × 3
+palettes; геометрія й світлова арифметика не змінюються. Парні normal та окремі
+CPU trials проти 614c3e5 ще потрібні для виміряного ефекту.
+
+Static preflight цього run падає на complexity collector та 217 нових checksum
+candidates; перевірено їхню exact provenance, без blanket exclusion, попередні
+3986 dispositions збережено. Collector розділено без зміни метрик/flags.
+Native perf не запустив браузер через root cache path, потім не завантажив
+root-owned файл. Цей запуск не дає browser CPU evidence; шлях/runner UID і
+гарантоване повернення ownership виправляються в окремій scoped confirmation.
+
+Повний exact-head staging, stable verification і merge ще не завершено.
+Наведені нижче записи — історія первинної діагностики; її початковий
+analysis-only статус не скасовує поточне доручення виправляти.
+
+## Первинна діагностика
 
 Основна підтверджена причина зупинок Firefox — конкуренція трьох браузерів на
 одному CI runner, яка збільшує час Canvas-малювання і запускає захист рушія.

@@ -8,6 +8,17 @@ function retainResearchEvidence(label,result){
     return [key,{file,sha256:require('./artifact.cjs').digest(bytes),bytes:bytes.length}];
   }));
 }
+function recordTrial(route,formFactor,run,result,summaries){
+  const lhr=result.lhr;
+  // Keep the ordinary mobile trace with its original metrics and flags.
+  const evidence=route==='research'&&formFactor==='mobile'?retainResearchEvidence(`lighthouse-${route}-${formFactor}-${run}`,result):undefined;
+  if(lhr.configSettings.formFactor!==formFactor)throw Error('Actual Lighthouse form factor differs from scenario label');
+  fs.writeFileSync(path.join(out,`lighthouse-${route}-${formFactor}-${run}.json`),JSON.stringify(lhr,null,2)+'\n');
+  const keys=['first-contentful-paint','largest-contentful-paint','total-blocking-time','cumulative-layout-shift','speed-index','interactive','dom-size','dom-size-insight','mainthread-work-breakdown','bootup-time','total-byte-weight'];
+  const row={route,formFactor,run,lighthouseVersion:lhr.lighthouseVersion,fetchTime:lhr.fetchTime,environment:lhr.environment,configSettings:lhr.configSettings,categories:Object.fromEntries(Object.entries(lhr.categories).map(([k,v])=>[k,v.score])),metrics:Object.fromEntries(keys.filter(k=>lhr.audits[k]).map(k=>[k,{numericValue:lhr.audits[k].numericValue,displayValue:lhr.audits[k].displayValue,score:lhr.audits[k].score}])),warnings:lhr.runWarnings,runtimeError:lhr.runtimeError,...(evidence?{originalEvidence:evidence}:{})};
+  summaries.push(row);fs.writeFileSync(path.join(out,'lighthouse-summary.json'),JSON.stringify(summaries,null,2)+'\n');
+  process.stdout.write(JSON.stringify({route,formFactor,scores:row.categories,metrics:row.metrics})+'\n');
+}
 async function main(){
   const {default:lighthouse}=await import(pathToFileURL(toolRequire.resolve('lighthouse')).href);
   const launcher=await import(pathToFileURL(toolRequire.resolve('chrome-launcher')).href);
@@ -24,16 +35,7 @@ async function main(){
       const chrome=await launcher.launch({chromePath:process.env.SITE_AUDIT_CHROME||toolRequire('playwright').chromium.executablePath(),chromeFlags:['--headless','--no-sandbox','--disable-dev-shm-usage']});
       try{
         const result=await lighthouse(`${url}/${route}.html`,{port:chrome.port,output:'json',logLevel:'error',onlyCategories:['performance','accessibility','best-practices']},formFactor==='desktop'?desktopConfig:undefined);
-        const lhr=result.lhr;
-        // Preserve original late-task evidence without adding profiler categories
-        // or altering the normal Lighthouse measurement and median gate.
-        const evidence=route==='research'&&formFactor==='mobile'?retainResearchEvidence(`lighthouse-${route}-${formFactor}-${run}`,result):undefined;
-        if(lhr.configSettings.formFactor!==formFactor)throw Error('Actual Lighthouse form factor differs from scenario label');
-        fs.writeFileSync(path.join(out,`lighthouse-${route}-${formFactor}-${run}.json`),JSON.stringify(lhr,null,2)+'\n');
-        const keys=['first-contentful-paint','largest-contentful-paint','total-blocking-time','cumulative-layout-shift','speed-index','interactive','dom-size','dom-size-insight','mainthread-work-breakdown','bootup-time','total-byte-weight'];
-        const row={route,formFactor,run,lighthouseVersion:lhr.lighthouseVersion,fetchTime:lhr.fetchTime,environment:lhr.environment,configSettings:lhr.configSettings,categories:Object.fromEntries(Object.entries(lhr.categories).map(([k,v])=>[k,v.score])),metrics:Object.fromEntries(keys.filter(k=>lhr.audits[k]).map(k=>[k,{numericValue:lhr.audits[k].numericValue,displayValue:lhr.audits[k].displayValue,score:lhr.audits[k].score}])),warnings:lhr.runWarnings,runtimeError:lhr.runtimeError,...(evidence?{originalEvidence:evidence}:{})};
-        summaries.push(row);fs.writeFileSync(path.join(out,'lighthouse-summary.json'),JSON.stringify(summaries,null,2)+'\n');
-        process.stdout.write(JSON.stringify({route,formFactor,scores:row.categories,metrics:row.metrics})+'\n');
+        recordTrial(route,formFactor,run,result,summaries);
       }finally{await chrome.kill();}
     }
     const checked=require('./validate.cjs').lighthouse({rows:summaries});

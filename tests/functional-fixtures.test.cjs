@@ -6,7 +6,7 @@ assert.ok(begin>=0&&end>begin,'real functional fixture helpers must be present')
 const helpersSource=source.slice(begin,end);
 const plain=value=>JSON.parse(JSON.stringify(value));
 test('complete engine leases run serially and a failed engine does not suppress later engines',async()=>{
-  const begin=source.indexOf('async function serialEngines('),end=source.indexOf('\nasync function main(',begin);
+  const begin=source.indexOf('async function serialEngines('),end=source.indexOf('\nasync function runEngine(',begin);
   const run=vm.runInNewContext('('+source.slice(begin,end)+')');let active=0,maxActive=0;const seen=[],fault=Error('Firefox failure');
   const results=await run(['chromium','firefox','webkit'],async engine=>{
     active++;maxActive=Math.max(maxActive,active);seen.push(engine);await Promise.resolve();active--;if(engine==='firefox')throw fault;

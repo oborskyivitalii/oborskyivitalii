@@ -14,6 +14,21 @@ its temporary trigger after collection; keep every failed observation and exact
 source/parent identity. Diagnostic green is not performance acceptance. Complete
 the authorized exact-head full staging and stable verification before merge.
 
+Implemented follow-up: complete engine leases are serial; desktop ribbons use
+the existing quality tier; unused filled-face stroke setters are omitted; Linux
+functional WebKit uses desktop GTK on its own fresh Xvfb. Eight ablations and
+six port comparisons are retained in CAUSE-FIX-NATIVE/PORTS.json, including seven
+original failures. On EPYC 7763 WPE RAF2 waits 2457ms versus GTK 118ms with the
+same traced normal source. Do not ship the disproved 2D atmosphere workaround.
+The twelve Research source pairs are retained in CAUSE-FIX-RESEARCH.json; they
+show no late >30ms task or Chromium TBT gain from Canvas-state omission. Preserve
+that negative result. Exact RGB palette caching is a new controlled source
+intervention, byte-identical in every route/detail/theme. Its normal/profiled
+confirmation compares clean 614c3e5; port/ablation repeats are manual-only.
+Native perf's prior root-cache failure collected no browser profile; correct the
+installed path/runner UID and always restore artifact ownership. None of this
+diagnostic evidence substitutes for the mandatory exact-head full/stable gate.
+
 ## Completed browser causes — 2026-10-06
 
 The requested analysis is retained in review/staging-readiness-20261006/CAUSES.md,

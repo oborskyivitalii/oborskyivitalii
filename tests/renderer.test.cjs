@@ -1,6 +1,20 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict');
-const {paintShapes}=require('../site/engine/renderer.cjs')();
+const {paintShapes,facePalette}=require('../site/engine/renderer.cjs')();
+test('the RGB-keyed palette matches every original face color on all routes, details and themes',()=>{
+  const worldFor=require('../site/scenes/world.cjs')(require('../site/engine/math.cjs')()).worldFor;
+  const themes=[{cyan:'#245866',amber:'#70512d',paper:'#f3f1ea',sheet:'#fffdf7'},{cyan:'#78abb0',amber:'#c2a373',paper:'#111c22',sheet:'#85999e'},{cyan:'#075d7b',amber:'#895710',paper:'#ffffff',sheet:'#fffdf7'}];
+  for(const colors of themes){
+    const rgb=Object.fromEntries(Object.entries(colors).map(([key,hex])=>[key,hex.slice(1).match(/.{2}/g).map(value=>parseInt(value,16))])),cache=new Map();
+    for(const route of ['index','research','writing','talks','credits'])for(const compact of [false,true]){
+      const {faces}=worldFor(route,compact);
+      const original=faces.map(face=>'#'+rgb.paper.map((value,i)=>Math.round(value+(rgb[face.fillColor||face.color][i]-value)*face.tint).toString(16).padStart(2,'0')).join(''));
+      assert.deepEqual(facePalette(faces,colors,cache),original,route+' compact='+compact);
+    }
+    assert.equal(cache.size,new Set(cache.values()).size,'one cache entry per final color');
+    assert.ok(cache.size<1000,'the finite palette must not retain thousands of float-string entries');
+  }
+});
 function recorder(){
   const commands=[];return {commands,beginPath(){commands.push('begin');},moveTo(){},lineTo(){},closePath(){},fill(){commands.push('fill');},stroke(){commands.push('stroke');}};
 }

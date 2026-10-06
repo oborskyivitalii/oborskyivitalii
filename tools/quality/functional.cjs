@@ -242,20 +242,33 @@ async function serialEngines(engines,run){
   }
   return outcomes;
 }
+async function runEngine(engine,url,smoke,results){
+  const {engines,rows,browsers,navigation,analytics}=results;
+  const display=await require('./native-display.cjs').start(engine);let browser;
+  try{
+    const options=launchOptions(engine);
+    if(display){options.headless=false;options.env={...process.env,DISPLAY:display.name};}
+    browser=await pw[engine].launch(options);
+    browsers.push({engine,version:browser.version(),executable:options.executablePath||pw[engine].executablePath(),headless:options.headless,port:display?.port||(engine==='webkit'&&process.platform==='linux'?'wpe':'native'),displayBackend:display?.backend||null});
+    try{
+      for(const s of scenarios(engine,smoke)){
+        const row=await scenario(browser,url,s);rows.push(row);report('functional',{smoke,engines,browsers,modes:smoke?[]:modes,rows},rows.every(x=>x.pass));
+        process.stdout.write(`${engine} ${s.route} ${s.theme} ${s.width} ${s.mode}: ${row.pass?'pass':row.error}\n`);
+      }
+    }finally{
+      const nav=require('./navigation.cjs');
+      for(const s of nav.scenarios(engine)){navigation.push(await nav.scenario(browser,url,s));process.stdout.write(`navigation ${engine} ${s.width} ${s.theme}: ${navigation.at(-1).pass?'pass':navigation.at(-1).error}\n`);}
+      analytics.push(...await require('./analytics-browser.cjs').run(browser,engine));
+    }
+  }finally{try{await browser?.close();}finally{display?.stop();}}
+}
 async function main(){
   const engines=(process.env.SITE_AUDIT_ENGINES||'chromium,firefox,webkit').split(','),smoke=process.argv.includes('--smoke'),rows=[],browsers=[],navigation=[],analytics=[];
   const {server,url}=await start();
   // Each engine owns the runner until its complete functional/navigation/
   // analytics lease finishes. Preserve every engine even after an earlier error.
-  try{const outcomes=await serialEngines(engines,async engine=>{
-    const options=launchOptions(engine),browser=await pw[engine].launch(options);browsers.push({engine,version:browser.version(),executable:options.executablePath||pw[engine].executablePath()});
-    try{for(const s of scenarios(engine,smoke)){const row=await scenario(browser,url,s);rows.push(row);report('functional',{smoke,engines,browsers,modes:smoke?[]:modes,rows},rows.every(x=>x.pass));process.stdout.write(`${engine} ${s.route} ${s.theme} ${s.width} ${s.mode}: ${row.pass?'pass':row.error}\n`);}}
-    finally{try{
-      const nav=require('./navigation.cjs');
-      for(const s of nav.scenarios(engine)){navigation.push(await nav.scenario(browser,url,s));process.stdout.write(`navigation ${engine} ${s.width} ${s.theme}: ${navigation.at(-1).pass?'pass':navigation.at(-1).error}\n`);}
-      analytics.push(...await require('./analytics-browser.cjs').run(browser,engine));
-    }finally{await browser.close();}}
-  });for(const outcome of outcomes)if(outcome.status==='rejected')throw outcome.reason;
+  try{const outcomes=await serialEngines(engines,engine=>runEngine(engine,url,smoke,{engines,rows,browsers,navigation,analytics}));
+    for(const outcome of outcomes)if(outcome.status==='rejected')throw outcome.reason;
   }finally{server.close();report('functional',{smoke,engines,browsers,modes:smoke?[]:modes,rows,navigation,analytics},rows.length===engines.length*scenarios(engines[0],smoke).length&&rows.every(x=>x.pass)&&navigation.length===engines.length*4&&navigation.every(x=>x.pass)&&analytics.length===engines.length*13&&analytics.every(x=>x.pass));}
   assert.ok(rows.every(x=>x.pass)&&navigation.every(x=>x.pass)&&analytics.every(x=>x.pass),'Functional scenarios failed');
 }
