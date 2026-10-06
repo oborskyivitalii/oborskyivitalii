@@ -2,6 +2,15 @@ name: Color staging review
 on:
   pull_request:
     types: [opened, synchronize, reopened]
+    paths:
+      - '.github/workflows/site-color-review.yml'
+      - '.github/workflows/site-release-checks.yml'
+      - 'review/color-staging-20261006/target.json'
+      - 'tools/**'
+      - 'tests/**'
+      - 'site/**'
+      - 'docs/**'
+      - 'review/site-scroll-sync-20261004/*.cjs'
 permissions:
   contents: read
   actions: read

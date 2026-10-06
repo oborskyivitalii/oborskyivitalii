@@ -150,14 +150,17 @@ jobs:
           node -e "require('node:assert/strict').match(process.env.SITE_CANDIDATE_SHA,/^[0-9a-f]{40}$/)"
           node -e "const a=require('node:assert/strict'),v=process.env.SITE_PUBLIC_VARIANT;a.ok(['base','color'].includes(v));if(v==='color')a.equal(process.env.SITE_TEST_PROFILE,'staging')"
           test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
-          node --test tests/*.test.cjs
-          node tools/site/build.cjs --check
-          node tools/check_site_seo.cjs
-          python -m unittest discover -s tests -p 'test_*.py'
-          node tools/build_scene_fallbacks.cjs --check
-          node tools/build_site_previews.cjs --check
-          python tools/build_site_bundle.py --check
-          python tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify
+          status=0
+          check() { "$@" || status=1; }
+          check node --test tests/*.test.cjs
+          check node tools/site/build.cjs --check
+          check node tools/check_site_seo.cjs
+          check python -m unittest discover -s tests -p 'test_*.py'
+          check node tools/build_scene_fallbacks.cjs --check
+          check node tools/build_site_previews.cjs --check
+          check python tools/build_site_bundle.py --check
+          check python tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify
+          exit "$status"
       - name: Package public files once and enforce budgets
         if: inputs.public_artifact_id == ''
         run: node tools/quality/artifact.cjs build quality-artifact

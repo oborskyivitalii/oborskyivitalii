@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "ed3cd2a24c5627bf4106113dd2f778985d0fcf36cc85b24f6a075bbbd05d6ede",
+    "digest": "0b56d7472cf85a8cf84f78e7ebfcb1719c8eabdc7b7f897a00c260c6507dede9",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -63,7 +63,7 @@
       {
         "path": ".github/workflows/site-color-review.yml",
         "identity_mode": "content",
-        "sha256": "77c6a86cfc67af0dc07c235d6aaa84b1ef281c8b4eac2b9f26c6f7f3bf146a3a"
+        "sha256": "866b23086d2f0f09a2737c147912a618072d228c6bf588d4f2faa57c2e9167fe"
       },
       {
         "path": ".github/workflows/site-navigation-probe.yml",
@@ -73,7 +73,7 @@
       {
         "path": ".github/workflows/site-release-checks.yml",
         "identity_mode": "content",
-        "sha256": "da1f8051b87e3b4a9c0e298cbc7ce870d0dae8cee095582f951ef4432746207b"
+        "sha256": "0a3b5c8c2c787e74e32ea8c4a7fe041857d1a99f5c7fe27aa5df6f6a8637dc90"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
@@ -746,6 +746,10 @@
         "identity_mode": "existence"
       },
       {
+        "path": "review/site-followup-20261005/assets/page-contact.jpg",
+        "identity_mode": "existence"
+      },
+      {
         "path": "review/site-followup-20261005/assets/scatter-chart.svg",
         "identity_mode": "existence"
       },
@@ -766,6 +770,10 @@
         "path": "review/site-followup-20261005/evidence/local.json",
         "identity_mode": "content",
         "sha256": "5fda30b5705560432697bfadacfb21127aeb301e40d41afb3748648887e5cab0"
+      },
+      {
+        "path": "review/site-followup-20261005/evidence/primitive-pairs.json.gz",
+        "identity_mode": "existence"
       },
       {
         "path": "review/site-followup-20261005/evidence/primitive-performance-summary.json",
@@ -990,9 +998,97 @@
         "identity_mode": "existence"
       },
       {
+        "path": "review/site-sol-continuation-20261005/captures/contact-sheet.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/credits-dark-1440.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/credits-dark-390.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/credits-light-1440.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/credits-light-390.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/index-dark-1440.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/index-dark-390.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/index-light-1440.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/index-light-390.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/primitive-atlas.png",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/research-dark-1440.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/research-dark-390.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/research-light-1440.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/research-light-390.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/talks-dark-1440.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/talks-dark-390.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/talks-light-1440.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/talks-light-390.jpg",
+        "identity_mode": "existence"
+      },
+      {
         "path": "review/site-sol-continuation-20261005/captures/views.json",
         "identity_mode": "content",
         "sha256": "aa26cae8a805e7062f625bd89342b89b764313967ba9b4e02e5769d037b0d65a"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/writing-dark-1440.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/writing-dark-390.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/writing-light-1440.jpg",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/captures/writing-light-390.jpg",
+        "identity_mode": "existence"
       },
       {
         "path": "review/site-sol-continuation-20261005/check-endpoint-failures.cjs",
@@ -1050,6 +1146,10 @@
         "sha256": "c87bd224a41e860509472e10fc2d8afd50cd8317a73a5e4f337885886624be5b"
       },
       {
+        "path": "review/site-sol-continuation-20261005/evidence/final-pairs.json.gz",
+        "identity_mode": "existence"
+      },
+      {
         "path": "review/site-sol-continuation-20261005/evidence/final-stages.json",
         "identity_mode": "content",
         "sha256": "c33e9490f52510c7353c9afebc72df3f073baf6bdf04a821778450d5e78fb133"
@@ -1068,6 +1168,14 @@
         "path": "review/site-sol-continuation-20261005/evidence/p1-failures.json",
         "identity_mode": "content",
         "sha256": "d1ad41c5856ae0ff2b5ca4d2b5e357e3b3954a1b5ce4a0060175c66d4ebe784f"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/p1-fallback-pairs.json.gz",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/p1-pairs.json.gz",
+        "identity_mode": "existence"
       },
       {
         "path": "review/site-sol-continuation-20261005/evidence/p1-reverse.json",
@@ -1138,6 +1246,18 @@
         "path": "review/site-sol-continuation-20261005/evidence/stages-native-current.json",
         "identity_mode": "content",
         "sha256": "13633caf00e8f44dadfb9dbd57f85c5c427c7a89a5b73589b655cc836781f7ee"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/tight-pairs.json.gz",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/v1-pairs.json.gz",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "review/site-sol-continuation-20261005/evidence/weighted-pairs.json.gz",
+        "identity_mode": "existence"
       },
       {
         "path": "review/site-sol-continuation-20261005/evidence/weighted-summary.json",
