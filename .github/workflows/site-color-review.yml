@@ -2,6 +2,8 @@ name: Site PR preview and staging
 on:
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
+  issue_comment:
+    types: [created]
   workflow_dispatch:
     inputs:
       pr_number:
@@ -13,14 +15,27 @@ permissions:
   actions: read
   pull-requests: read
 concurrency:
-  group: ${{ github.event_name == 'pull_request' && format('site-preview-{0}', github.event.pull_request.number) || 'site-pr-staging' }}
+  group: >-
+    ${{ github.event_name == 'pull_request' && format('site-preview-{0}', github.event.pull_request.number) ||
+        (github.event_name == 'workflow_dispatch' ||
+         (github.event_name == 'issue_comment' && github.event.issue.pull_request &&
+          github.event.comment.body == '/stage' && github.event.comment.user.login == github.repository_owner &&
+          github.actor == github.repository_owner)) && 'site-pr-staging' ||
+        format('site-ignored-comment-{0}', github.run_id) }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 defaults:
   run:
     shell: bash
 jobs:
   target:
-    if: github.repository == 'oborskyivitalii/oborskyivitalii' && (github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository)
+    if: >-
+      github.repository == 'oborskyivitalii/oborskyivitalii' &&
+      (github.event_name == 'workflow_dispatch' ||
+       (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) ||
+       (github.event_name == 'issue_comment' && github.event.issue.pull_request &&
+        github.event.comment.body == '/stage' &&
+        github.event.comment.user.login == github.repository_owner &&
+        github.actor == github.repository_owner))
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     outputs:
@@ -37,7 +52,7 @@ jobs:
       - id: target
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
-          REVIEW_PR: ${{ github.event.pull_request.number || inputs.pr_number }}
+          REVIEW_PR: ${{ github.event.pull_request.number || github.event.issue.number || inputs.pr_number }}
           REVIEW_PREVIEW_ENABLED: ${{ vars.SITE_PR_PREVIEW_ENABLED }}
           REVIEW_STAGING_ENABLED: ${{ vars.SITE_PR_STAGING_ENABLED }}
         with:
@@ -45,7 +60,7 @@ jobs:
             const flow=require('./tools/staging/review-flow.cjs');
             const number=flow.positive(process.env.REVIEW_PR);
             const {data:pr}=await github.rest.pulls.get({...context.repo,pull_number:number});
-            const main=context.eventName==='workflow_dispatch'?(await github.rest.repos.getBranch({...context.repo,branch:'main'})).data:null;
+            const main=context.eventName!=='pull_request'?(await github.rest.repos.getBranch({...context.repo,branch:'main'})).data:null;
             const target=flow.resolve(context,pr,main);
             target.enabled=String(process.env[target.mode==='preview'?'REVIEW_PREVIEW_ENABLED':'REVIEW_STAGING_ENABLED']==='true');
             for(const [key,value]of Object.entries(target))core.setOutput(key,value);
@@ -60,6 +75,7 @@ jobs:
       package_artifact: ${{ steps.package.outputs.artifact-id }}
       package_upload_digest: ${{ steps.package.outputs.artifact-digest }}
       package_digest: ${{ steps.identity.outputs.package }}
+      variant: ${{ steps.rendition.outputs.variant }}
     env:
       SITE_CANDIDATE_SHA: ${{ needs.target.outputs.source }}
     steps:
@@ -71,16 +87,21 @@ jobs:
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
           node-version: 24.19.0
-      - name: Fast source checks and one immutable Color build
+      - name: Fast source checks and one immutable public build
         run: |
           test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
-          node --test tests/review-flow.test.cjs tests/color-build.test.cjs
+          node --test tests/review-flow.test.cjs
+          if [ "$(node tools/staging/review-flow.cjs variant)" = color ]; then
+            node --test tests/color-build.test.cjs
+          fi
           node tools/quality/local.cjs --package color-artifact
-          node tools/staging/color.cjs color-artifact
+      - id: rendition
+        name: Select the supported source rendition and bind its visual identity
+        run: node tools/staging/review-flow.cjs rendition color-artifact
       - id: public
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         with:
-          name: site-public-color-${{ github.run_id }}-${{ github.run_attempt }}
+          name: site-public-review-${{ github.run_id }}-${{ github.run_attempt }}
           path: color-artifact/
           include-hidden-files: true
           if-no-files-found: error
@@ -191,6 +212,7 @@ jobs:
       SITE_EXPECTED_PUBLIC_DIGEST: ${{ needs.build.outputs.public_digest }}
       SITE_TEST_BASE_URL: ${{ needs.publish.outputs.url }}
       SITE_TEST_PROFILE: staging
+      SITE_PUBLIC_VARIANT: ${{ needs.build.outputs.variant }}
       SITE_PUBLIC_DIR: ${{ github.workspace }}/color-artifact/public
       SITE_ARTIFACT_MANIFEST: ${{ github.workspace }}/color-artifact/artifact.json
       SITE_REPORT_DIR: ${{ github.workspace }}/staging-reports
@@ -210,14 +232,14 @@ jobs:
         with:
           artifact-ids: ${{ needs.build.outputs.package_artifact }}
           path: staging-package
-      - name: Verify current hosted routes, revision and Color runtime
+      - name: Verify current hosted routes, revision and runtime
         run: node tools/staging/review-flow.cjs http staging-package "$SITE_TEST_BASE_URL" staging-reports/http.json
       - name: Install locked Chromium smoke tools
         run: |
           npm ci --prefix tools/quality/toolchain --ignore-scripts
           tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium
-      - name: Minimal two-width hosted Color smoke
-        run: node tools/quality/color-browser.cjs --smoke
+      - name: Minimal two-width hosted rendition smoke
+        run: node tools/quality/local-browser.cjs --smoke
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: always()
         with:
@@ -233,7 +255,7 @@ jobs:
       full: true
       profile: staging
       automated_only: true
-      public_variant: color
+      public_variant: ${{ needs.build.outputs.variant }}
       base_url: ${{ needs.publish.outputs.url }}
       public_artifact_id: ${{ needs.build.outputs.public_artifact }}
       public_run_id: ${{ github.run_id }}
@@ -241,7 +263,7 @@ jobs:
       public_upload_digest: ${{ needs.build.outputs.public_upload_digest }}
   promote:
     needs: [target, build, publish, smoke, full]
-    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && needs.full.result == 'success'
+    if: (github.event_name == 'workflow_dispatch' || github.event_name == 'issue_comment') && github.ref == 'refs/heads/main' && needs.full.result == 'success'
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     environment: staging

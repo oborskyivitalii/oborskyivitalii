@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "c791588bfe0764ee9b488c92a44f419242484be4caca07d538907390a0e9daf1",
+    "digest": "5c9aaeff88bc6a51fcddec9a5e8b30162e4438ad8462054ed11855253f78c3ed",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -63,7 +63,7 @@
       {
         "path": ".github/workflows/site-color-review.yml",
         "identity_mode": "content",
-        "sha256": "5438101c4fadf662ae1b5298cf78505cbecd9b982840db9a353cd87dd4fd987d"
+        "sha256": "d16db3766e0053b1f2990e4c8e3547e75f3f670d4dc70e9c1a24a5a75b9b0d50"
       },
       {
         "path": ".github/workflows/site-navigation-probe.yml",
@@ -92,7 +92,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "f39af0fa84ef5d1c3ccbfb175389cc2ddb2719f9ce1df8d755380cdd78f33a54"
+        "sha256": "26d358ec15b6f18919b1d37f73a3c312de45e9bc99081acd25fc16143d1fb94d"
       },
       {
         "path": "BACKLOG.md",
@@ -122,7 +122,7 @@
       {
         "path": "SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "ba81facaead6a49e1a7fb25ce94eb67b30c702323ff405f6db27ce98484738fc"
+        "sha256": "0e4c730ab40bd2aee046d226eeff9bf5dc240ff34226c7119fd4f63c044612d0"
       },
       {
         "path": "SITE-CONTENT-REVIEW.md",
@@ -157,7 +157,7 @@
       {
         "path": "SITE-STAGING.md",
         "identity_mode": "content",
-        "sha256": "1393030552190335fb7bac9bbe3ca6c82fd0268d41ab5c36251c6eac9132e50c"
+        "sha256": "eeeca7f74951052e3bd8e37bd2c50e95df4e3767380bf3c9be3970c0ea7e3d82"
       },
       {
         "path": "SITE-VISUAL-REVIEW.md",
@@ -297,6 +297,11 @@
       {
         "path": "review/build_visual_proposal.cjs",
         "identity_mode": "existence"
+      },
+      {
+        "path": "review/ci-only-staging-20261006/REPORT.md",
+        "identity_mode": "content",
+        "sha256": "f3cdc0177bc2f1879b7df7e65718b0ac8a807177ed4a1d410bc2548bb6278083"
       },
       {
         "path": "review/cloudflare-staging-20261005/REPORT.md",
@@ -3497,7 +3502,7 @@
       {
         "path": "tools/quality/README.md",
         "identity_mode": "content",
-        "sha256": "c598ee96f2a42a30465a5b413aab4f6d5ded1347a88aac572cf7724db01c799f"
+        "sha256": "466833c88b22e26836ae157da25ac34f56c16209208b829c03ce20fdced96a7e"
       },
       {
         "path": "tools/quality/advisory-exceptions.json",
@@ -3603,7 +3608,7 @@
       {
         "path": "tools/quality/security-rules.yml",
         "identity_mode": "content",
-        "sha256": "fb6eccbc3d02a2b0a389265fb33364746181b7e6234a1e0192a6f1357b09e75a"
+        "sha256": "2badb50df3a566f737cd79520d4b9a64f29515f27f286250f88b4b453895d141"
       },
       {
         "path": "tools/quality/selftest.cjs",
@@ -4076,7 +4081,7 @@
     },
     {
       "path": "SITE-STAGING.md",
-      "title": "PR preview and staging through GitHub Actions",
+      "title": "PR previews and explicit staging",
       "instructions": [
         "AGENTS.md"
       ]
@@ -4098,6 +4103,13 @@
     {
       "path": "docs/site-revision.json",
       "title": "docs/site-revision.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/ci-only-staging-20261006/REPORT.md",
+      "title": "CI-only preview/staging integration — 6 October 2026",
       "instructions": [
         "AGENTS.md"
       ]

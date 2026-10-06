@@ -18,7 +18,7 @@ function lint(){
   return {scannedFiles:eslint.length+1+pythonFiles.length,pythonFiles,warnings,tools:{eslint:run(binary('eslint'),['--version']).trim(),stylelint:run(binary('stylelint'),['--version']).trim(),ruff:run(py('ruff'),['--version']).trim()}};
 }
 function security(){
-  const offlineRuntime=['READING-SURFACES.cjs','RIBBONS-PROTOTYPE.cjs','FLIGHT-PROTOTYPE.cjs'].map(file=>'review/site-scroll-sync-20261004/'+file);
+  const offlineRuntime=run('git',['ls-files','review/site-scroll-sync-20261004']).trim().split('\n').filter(file=>file.endsWith('.cjs')&&fs.existsSync(path.join(root,file)));
   // Files are scanned at their real paths, including inline HTML. Reports retain
   // coverage/errors. Source snippets are removed before artifact upload.
   run(py('semgrep'),['scan','--config','tools/quality/security-rules.yml','--metrics','off','--disable-version-check','--jobs','1','--max-target-bytes','5000000','--json','--output',path.join(out,'semgrep.json'),'docs','site','tools','.github/workflows',...offlineRuntime]);

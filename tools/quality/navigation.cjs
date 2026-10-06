@@ -93,7 +93,8 @@ async function scenario(browser,url,s){
   const result={...s,pass:false,checks:{},errors};
   try {
     await page.goto(url+'/index.html');
-    const variant=await page.locator('meta[name="site-variant"]').getAttribute('content');
+    const variantMeta=page.locator('meta[name="site-variant"]');
+    const variant=await variantMeta.count()?await variantMeta.getAttribute('content'):'base';
     assert.ok(['base','color'].includes(variant),'known tested navigation variant');result.variant=variant;
     await page.bringToFront();
     await page.waitForFunction(()=>document.querySelector('#site-content main')&&document.querySelector('.space-scene').dataset.ready==='true',null,{polling:50,timeout:4000});

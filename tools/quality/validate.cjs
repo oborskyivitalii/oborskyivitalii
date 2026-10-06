@@ -161,7 +161,7 @@ function navigation(r,engines) {
 function sourceReport(r,m){
   assert.equal(r.schema,1);assert.equal(r.pass,true,r.error||r.kind+' failed');
   for(const k of ['sourceCommit','sourceTree','candidateCommit','artifactDigest'])assert.equal(r[k],m[k],`${r.kind} ${k} mismatch`);
-  assert.deepEqual(r.variant,m.components?.variant,'tested visual variant mismatch');
+  assert.deepEqual(r.variant,require('./common.cjs').variant(m),'tested visual variant mismatch');
 }
 function scanner(r){
   const d=r.detail;assert.ok(d,'missing scanner coverage');
@@ -199,7 +199,7 @@ function aggregate({manifest:m,sizes,reports,jobs,full=false,releaseEvidence,hos
   for(const kind of ['lint','security','advisories']){const rows=reports.filter(x=>x.kind===kind);assert.equal(rows.length,1,`missing/duplicate ${kind}`);scanner(rows[0]);}
   const functionalReports=reports.filter(x=>x.kind==='functional');unique(functionalReports,x=>x.environment.platform);
   const linux=functionalReports.find(x=>x.environment.platform==='linux');assert.ok(linux,'missing Linux engines');functional(linux,'linux',['chromium','firefox','webkit'],false);
-  if(m.variant?.id==='color')colorReports(reports,m);
+  if(require('./common.cjs').variant(m).id==='color')colorReports(reports,{...m,variant:require('./common.cjs').variant(m)});
   if(automatedOnly)assert.ok(full&&hostedURL,'automated hosted checks cannot replace release acceptance');
   if(hostedURL){
     assert.equal(full,true,'hosted profiles require the full automated suite');

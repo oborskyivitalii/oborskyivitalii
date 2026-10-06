@@ -1,5 +1,20 @@
 # Agent guidance for personal publications
 
+## Preserved Color runtime candidate and isolated CI — 2026-10-06
+
+The maintainer authorizes ready preview/staging pipeline integration and CI-only
+execution. Existing #26 now isolates the controller against main; current Color
+runtime/source/fixture repairs from its former source 1deed630 are retained in
+existing #23, including the unfinished #18/#22 stack. No new PR is created.
+Read SITE-STAGING.md and SITE-CHECK-PROFILES.md for current main-controller/owner
+command operation. The dated sections below preserve earlier execution; their
+old #26-only runtime ownership and pending/manual controller instructions are
+superseded by this preservation/integration. Keep every performance budget and
+failed full-hosted outcome. Full staging uses the current open #23 head, explicit
+owner /stage or dispatch, protected unchanged main and the exact complete hosted
+gate before stable promotion. Only the official Wrangler Action deploys assets.
+
+
 ## Current CI-only PR preview and explicit staging — 2026-10-06
 
 The maintainer replaces manual publishing with two CI paths. This instruction
