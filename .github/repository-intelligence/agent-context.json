@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "e9ba27b6a108ff749e4416e90f872aa2e43ca3092878220cffc2f7da6aecfecc",
+    "digest": "133e766b9f1418be17cb00063aeda40bec1d3dc78bd309262ac283be6318e4f5",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -187,7 +187,7 @@
       {
         "path": "SITE-STAGING.md",
         "identity_mode": "content",
-        "sha256": "e8069c27ab4bdf8fb127fe341963afabf0c5260b048682fa53f96e60a5326434"
+        "sha256": "ec064d7d2deac5ccda565231f26fbe3abd541fffa8bd3bfbf62ac70e014a222c"
       },
       {
         "path": "SITE-VISUAL-REVIEW.md",
@@ -4013,7 +4013,7 @@
       {
         "path": "tools/quality/secrets-baseline.json",
         "identity_mode": "content",
-        "sha256": "cd2e0bc112f90a436c9630d64e0bbed1ef390e50c53c4db9c738052cd4bb2bbe"
+        "sha256": "c4814a2fe6f821dfcb6e10fb316a1e181cde5d196b972ba480b3a5235e91fa32"
       },
       {
         "path": "tools/quality/security-rules.yml",

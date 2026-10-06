@@ -23,7 +23,7 @@ Only a newly created exact `/stage` command whose commenter and event actor are
 the repository owner is accepted. Edited comments do not trigger a deployment.
 
 The source edition selects base or the authored Color rendition explicitly in its
-artifact. A pipeline-only PR based on main has the unchanged base runtime. The
+artifact. A pipeline-only PR based on main retains its unchanged source rendition. The
 accepted Color runtime is on main; stage the current open follow-up PR to test
 its exact source and supported rendition.
 All served HTML/runtime bytes are verified against the selected artifact.
