@@ -75,6 +75,7 @@ jobs:
       package_artifact: ${{ steps.package.outputs.artifact-id }}
       package_upload_digest: ${{ steps.package.outputs.artifact-digest }}
       package_digest: ${{ steps.identity.outputs.package }}
+      package_attempt: ${{ steps.identity.outputs.package_attempt }}
       variant: ${{ steps.rendition.outputs.variant }}
     env:
       SITE_CANDIDATE_SHA: ${{ needs.target.outputs.source }}
@@ -117,7 +118,8 @@ jobs:
         run: |
           node - <<'JS'
           const fs=require('node:fs'),m=require('./staging-package/staging-package.json');
-          fs.appendFileSync(process.env.GITHUB_OUTPUT,'digest='+m.source.artifactDigest+'\npackage='+m.packageDigest+'\n');
+          const attempt=require('./tools/staging/review-flow.cjs').positive(process.env.GITHUB_RUN_ATTEMPT);
+          fs.appendFileSync(process.env.GITHUB_OUTPUT,'digest='+m.source.artifactDigest+'\npackage='+m.packageDigest+'\npackage_attempt='+attempt+'\n');
           JS
       - id: package
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
@@ -316,13 +318,11 @@ jobs:
           REVIEW_PREVIOUS: ${{ toJSON(steps.previous.outputs) }}
         with:
           script: |
-            const fs=require('node:fs'),a=require('node:assert/strict'),flow=require('./tools/staging/review-flow.cjs');
+            const fs=require('node:fs'),flow=require('./tools/staging/review-flow.cjs');
             const previous=JSON.parse(process.env.REVIEW_PREVIOUS),state=JSON.parse(fs.readFileSync('staging-reports/previous/recovery.json'));
             flow.recoveryState(state,previous);
             const {data:artifact}=await github.rest.actions.getArtifact({...context.repo,artifact_id:flow.positive(state.packageArtifactId)});
-            a.equal(artifact.expired,false);a.equal(artifact.workflow_run.id,Number(previous.runId));
-            a.equal(artifact.name,'site-review-package-'+previous.runId+'-'+previous.attempt);
-            a.equal(artifact.digest.replace(/^sha256:/,''),state.packageUploadDigest.replace(/^sha256:/,''));
+            flow.recoveryArtifact(state,previous,artifact);
             for(const key of ['packageArtifactId','sourceCommit','publicDigest'])core.setOutput(key,state[key]);
       - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
         if: steps.recovery.outputs.packageArtifactId != ''
@@ -361,7 +361,7 @@ jobs:
         continue-on-error: true
         env:
           SITE_STAGING_STABLE: 'true'
-        run: node tools/staging/review-flow.cjs http staging-package "$REVIEW_STABLE" staging-reports/stable-http.json
+        run: node tools/staging/review-flow.cjs http-ready staging-package "$REVIEW_STABLE" staging-reports/stable-http.json
       - id: rollback
         if: always() && steps.recovery.outputs.packageArtifactId != '' && (steps.deploy.outcome == 'failure' || steps.stable-check.outcome == 'failure')
         continue-on-error: true
@@ -380,7 +380,7 @@ jobs:
           SITE_ARTIFACT_ID: ''
           SITE_UPLOAD_DIGEST: ''
           SITE_STAGING_STABLE: 'true'
-        run: node tools/staging/review-flow.cjs http staging-rollback "$REVIEW_STABLE" staging-reports/rollback-http.json
+        run: node tools/staging/review-flow.cjs http-ready staging-rollback "$REVIEW_STABLE" staging-reports/rollback-http.json
       - id: verified
         if: steps.deploy.outcome == 'success' && steps.stable-check.outcome == 'success'
         env:
@@ -389,10 +389,12 @@ jobs:
           REVIEW_PACKAGE: ${{ needs.build.outputs.package_digest }}
           REVIEW_PACKAGE_ID: ${{ needs.build.outputs.package_artifact }}
           REVIEW_PACKAGE_UPLOAD: ${{ needs.build.outputs.package_upload_digest }}
+          REVIEW_PACKAGE_ATTEMPT: ${{ needs.build.outputs.package_attempt }}
         run: |
           node - <<'JS'
           const fs=require('node:fs'),flow=require('./tools/staging/review-flow.cjs');
-          const e=process.env,record={schema:1,kind:'ci-staging-recovery',project:flow.project,workflow:flow.workflow,runId:e.GITHUB_RUN_ID,attempt:e.GITHUB_RUN_ATTEMPT,controller:e.GITHUB_SHA,sourceCommit:e.REVIEW_SOURCE,publicDigest:e.REVIEW_PUBLIC,packageDigest:e.REVIEW_PACKAGE,packageArtifactId:e.REVIEW_PACKAGE_ID,packageUploadDigest:e.REVIEW_PACKAGE_UPLOAD};
+          const e=process.env,record={schema:1,kind:'ci-staging-recovery',project:flow.project,workflow:flow.workflow,runId:e.GITHUB_RUN_ID,attempt:e.GITHUB_RUN_ATTEMPT,packageAttempt:String(flow.positive(e.REVIEW_PACKAGE_ATTEMPT)),controller:e.GITHUB_SHA,sourceCommit:e.REVIEW_SOURCE,publicDigest:e.REVIEW_PUBLIC,packageDigest:e.REVIEW_PACKAGE,packageArtifactId:e.REVIEW_PACKAGE_ID,packageUploadDigest:e.REVIEW_PACKAGE_UPLOAD};
+          flow.recoveryState(record,{runId:e.GITHUB_RUN_ID,attempt:e.GITHUB_RUN_ATTEMPT,controller:e.GITHUB_SHA});
           fs.mkdirSync('staging-reports/recovery',{recursive:true});fs.writeFileSync('staging-reports/recovery/recovery.json',JSON.stringify(record,null,2)+'\n');
           fs.appendFileSync(e.GITHUB_OUTPUT,'url='+e.REVIEW_STABLE+'\n');
           JS

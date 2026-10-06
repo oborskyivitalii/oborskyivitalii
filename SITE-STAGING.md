@@ -1,8 +1,12 @@
 # PR previews and explicit staging
 
 Owner intent: issues #8 and #13. Controller PRs #26/#29 and runtime PR #23
-are merged into protected main. PR #28 is the current reading/content follow-up;
-its fresh full staging and stable verification must precede its merge.
+are accepted in protected main. PR #28 is the current reading/contact/Home
+increment. Its candidate passed full run 37539805745, but both stable promotion
+attempts failed and remain failed. CI-only PR #30 is accepted in protected main
+with bounded exact-byte alias convergence and package-attempt lineage.
+PR #28 requires fresh corrected exact-head full/stable acceptance
+before merge.
 
 ## Deployment flow
 
@@ -83,6 +87,19 @@ administration. A successful deployment proves the credential used for that job
 without exposing its value.
 
 ## Operation
+
+After successful official deployment, stable and rollback verification allow a
+bounded 60-second convergence interval with two-second polls. Every observation
+is retained, and success still requires all ten exact file hashes, headers,
+root and real-404 checks. The existing 20-second request and 15-minute promotion
+job limits remain. A preceding revision during alias propagation never counts
+as success; exhausted convergence remains a failed promotion or recovery.
+
+Recovery records distinguish the original package producer attempt from the
+promotion attempt. A promotion-only retry must reuse the exact tested package
+ID and upload digest. Future recovery validates its name against that producer
+attempt; legacy records retain their original matching attempt. No browser
+report, failed observation or artifact is relabeled.
 
 After enabling preview, subsequent PR commits publish automatically. Changing
 settings alone does not trigger a run: use the latest source run's **Re-run all
