@@ -1,5 +1,38 @@
 # Причини збоїв і виправлення — 6 жовтня 2026
 
+## GTK 37505225237: усі no-js сторінки падають до cleanup
+
+Після primary archive Ubuntu завантажує 126 MB за 15 с; dependencies — 44 с,
+WebKit — 5 с. Це виміряний результат нового runner, а не обіцянка throughput.
+Усі 130 functional rows записані: 120 pass, усі десять no-js fail. Optional
+lifecycle утримує `page-crash` у `scenario-check` через 19.4–24.6 с, перед
+teardown; у catch `pageClosed=false`, `browserConnected=true`. Пізніші
+`page-close`/`context-close` належать cleanup. Це втрата нативного page/WebProcess,
+без доведеного signal, assertion, OOM чи точного компонента. Pinned Playwright
+підтримує evaluate при disabled JavaScript; не вилучаємо цей сценарій.
+
+Row phase — 19 хв 58 с. Functional lease скасований через 24 хв 08 с на
+25-хвилинній межі job; stdout зберігає лише перший navigation pass. Останній
+raw checkpoint не має завершених navigation/analytics fields, тому full
+130/4/13 не прийнято. [GTK-FOLLOWUP.json](GTK-FOLLOWUP.json) зберігає кожну
+невдачу, lifecycle, identities, native stderr, точні GitHub links та raw SHA.
+Старий dated GTK job/PR trigger видалено після collection.
+
+Automation-context `CRITICAL` є також біля passing modes. Пinned GTK inspector
+launch використовує official `--inspector-pipe --no-startup-window`; його
+patched network-session path пояснює warning без доказу фактичної втрати session.
+Додавання `--automation` не є підтриманим виправленням. Наступний bounded screen
+порівнює 14 свіжих спостережень GTK/WPE: JS on/off, blank/full normal Color,
+constant/original state як перший evaluate, та matching GTK blank/full без init script.
+Сторінки, ports і evaluator factors відокремлено без warmup або retry.
+Native mechanism і remedy ще не доведено; collection не є acceptance.
+
+[LINUX-LEASES.md](LINUX-LEASES.md) утримує мінімальне розділення Linux на два
+повні leases, усі 390/12/39 перевірки та початкові 45m limits. Підготовлений
+CI-only main backport містить п'ять файлів без runtime/content змін. Protected
+main controller поки незмінний; додатковий PR потребує вузького винятку з
+чинної sole-#23 вимоги. Staging/stable/merge не виконані на неповних даних.
+
 ## Неповний GTK 37500364739: встановлення та окреме закриття сторінки
 
 WebKit встановлено, але залежності з Azure Ubuntu mirror завантажувались

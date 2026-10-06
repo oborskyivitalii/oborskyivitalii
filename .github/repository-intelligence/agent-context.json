@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "46a29b67a06384d9fa5d32135cf064af28e0467b2e3787666a9b4456a42b56e0",
+    "digest": "3a0091e27d1f6808fd805705444a8cac08087ff584d928688cf28cbe1a595b09",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -63,7 +63,7 @@
       {
         "path": ".github/workflows/site-cause-fix-probe.yml",
         "identity_mode": "content",
-        "sha256": "ed0e4fe49aeaaf1e32246e28184424ca34b817e8179e5da68939e225616ebda6"
+        "sha256": "7bb827eb9592d8adf06bc63c065a6c4f23f8505f949aaa74a0915577930a55e7"
       },
       {
         "path": ".github/workflows/site-cause-probe.yml",
@@ -81,6 +81,11 @@
         "sha256": "ca53e071f613d7abe7cbcf01eb8628363213ec1df517a983ba323830a8126976"
       },
       {
+        "path": ".github/workflows/site-gtk-target-probe.yml",
+        "identity_mode": "content",
+        "sha256": "8f6370657406a04dc500681c5a1a96b94025b9a1f51987a15a80a543c0b606be"
+      },
+      {
         "path": ".github/workflows/site-navigation-probe.yml",
         "identity_mode": "content",
         "sha256": "ba70e04ac9e1258017a62c9416fca0405d58294d174020e5cb1fe6ad75fa6702"
@@ -88,7 +93,7 @@
       {
         "path": ".github/workflows/site-release-checks.yml",
         "identity_mode": "content",
-        "sha256": "ebd44580c8a6cf9ee0e719e2bb16a29c03aad6f13599698b89c86e5bba8d57a8"
+        "sha256": "c2b50c3929dc9b6241fd7a540f81525d90891076a95718fb27b9caf8a3f2c7c6"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
@@ -112,7 +117,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "f8ffb23e716b5d8d3a1bf98631b680427b35a91d7c2791f95be80c1c57f474d3"
+        "sha256": "65b4a0f27d0b6602ba3fb55fcb8bf9158c582bba483736d81c11d9a517c8ff87"
       },
       {
         "path": "BACKLOG.md",
@@ -3225,12 +3230,17 @@
       {
         "path": "review/staging-readiness-20261006/CAUSES.md",
         "identity_mode": "content",
-        "sha256": "de7666180f336541a4e08ebea328770c94632d8cec4b6f550f3c8c325e3cdf03"
+        "sha256": "56fa87d24ca578bbb8db2ef770374f3546640ab1146223502aee66518022abbd"
       },
       {
         "path": "review/staging-readiness-20261006/DISPLAY.json",
         "identity_mode": "content",
         "sha256": "6f590b3e294ef8e165030ba4752df37f4b7d3b7905ef05a54a5dfacce3d00c8c"
+      },
+      {
+        "path": "review/staging-readiness-20261006/GTK-FOLLOWUP.json",
+        "identity_mode": "content",
+        "sha256": "e42fbf4d6b32c61ea917a13980cfea54cae1fb3b974ac2d9ab880a07f36ee3ab"
       },
       {
         "path": "review/staging-readiness-20261006/GTK-INCOMPLETE.json",
@@ -3240,7 +3250,17 @@
       {
         "path": "review/staging-readiness-20261006/GTK-REQUEST.md",
         "identity_mode": "content",
-        "sha256": "0b14d90e7c65ad1deff0738fc57e0714197045277a712843cdf6b111794552b6"
+        "sha256": "a4c30e27d0049e74eae26ad3a5cced4bc692f6241c8b9e20aab0ccd546e58095"
+      },
+      {
+        "path": "review/staging-readiness-20261006/GTK-TARGET-REQUEST.md",
+        "identity_mode": "content",
+        "sha256": "6eb3f232e2c61af321c4f0be283330cf4085b9ddd8e48481787349abdd6c8ae9"
+      },
+      {
+        "path": "review/staging-readiness-20261006/LINUX-LEASES.md",
+        "identity_mode": "content",
+        "sha256": "3356160d368ccfe7da6239a2b89e207020f62687ccb3646e23e1c1d14c1f0b0f"
       },
       {
         "path": "review/staging-readiness-20261006/REPORT.md",
@@ -3628,6 +3648,10 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tests/gtk-target-probe.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tests/native-display.test.cjs",
         "identity_mode": "existence"
       },
@@ -3871,6 +3895,10 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tools/quality/gtk-target-probe.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tools/quality/hosted-origin.cjs",
         "identity_mode": "existence"
       },
@@ -3921,7 +3949,7 @@
       {
         "path": "tools/quality/secrets-baseline.json",
         "identity_mode": "content",
-        "sha256": "518cdc841817eaf2824ceb6dd3d411318622f22fd7b7d27bd35d6befbe215d16"
+        "sha256": "5b13569920ce1d9f9608ade9c77543a601707c5c01847408979b4adb7ece149b"
       },
       {
         "path": "tools/quality/security-rules.yml",
@@ -4323,6 +4351,13 @@
     {
       "path": ".github/workflows/site-color-review.yml",
       "title": ".github/workflows/site-color-review.yml",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".github/workflows/site-gtk-target-probe.yml",
+      "title": ".github/workflows/site-gtk-target-probe.yml",
       "instructions": [
         "AGENTS.md"
       ]
@@ -5896,6 +5931,13 @@
       ]
     },
     {
+      "path": "review/staging-readiness-20261006/GTK-FOLLOWUP.json",
+      "title": "review/staging-readiness-20261006/GTK-FOLLOWUP.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "review/staging-readiness-20261006/GTK-INCOMPLETE.json",
       "title": "review/staging-readiness-20261006/GTK-INCOMPLETE.json",
       "instructions": [
@@ -5905,6 +5947,20 @@
     {
       "path": "review/staging-readiness-20261006/GTK-REQUEST.md",
       "title": "Dated complete GTK lease confirmation",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/staging-readiness-20261006/GTK-TARGET-REQUEST.md",
+      "title": "Bounded first-evaluation target attribution — 2026-10-06",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/staging-readiness-20261006/LINUX-LEASES.md",
+      "title": "Linux engine lease adapter — 2026-10-06",
       "instructions": [
         "AGENTS.md"
       ]

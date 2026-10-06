@@ -187,6 +187,17 @@ function releaseReports(reports,m,releaseEvidence,automatedOnly=false){
   for(const key of ['independentReview','iosSafari','androidChrome'])assert.ok(releaseEvidence[key]?.pass===true&&releaseEvidence[key].reviewer&&releaseEvidence[key].record,'pending '+key);
   for(const key of ['iosSafari','androidChrome'])assert.ok(releaseEvidence[key].device&&releaseEvidence[key].os&&releaseEvidence[key].browser,'incomplete physical device record');
 }
+function linuxLeases(reports){
+  const leases=reports.filter(x=>x.environment.platform==='linux');assert.ok(leases.length,'missing Linux engines');
+  const engines=leases.flatMap(r=>r.engines);unique(engines,engine=>engine);
+  assert.deepEqual([...engines].sort(),['chromium','firefox','webkit'],'missing or unexpected Linux engine lease');
+  for(const lease of leases){
+    assert.ok(lease.engines.length>0,'empty Linux engine lease');
+    assert.equal(lease.target??null,leases[0].target??null,'Linux engine leases tested different targets');
+    functional(lease,'linux',lease.engines,false);
+  }
+  for(const [key,count]of [['rows',390],['navigation',12],['analytics',39]])assert.equal(leases.reduce((n,r)=>n+r[key].length,0),count,'incomplete Linux '+key+' coverage');
+}
 function aggregate({manifest:m,sizes,reports,jobs,full=false,releaseEvidence,hostedURL=null,profile=null,automatedOnly=false,sourceChecks=null}){
   if(sourceChecks!==null)assert.equal(sourceChecks,'success','source regressions failed or did not run');
   assert.equal(m.schema,1);assert.equal(m.sourceDirty,false,'dirty public sources');assert.match(m.sourceCommit,/^[0-9a-f]{40}$/);assert.match(m.sourceTree,/^[0-9a-f]{40}$/);assert.match(m.artifactDigest,/^[0-9a-f]{64}$/);assert.equal(m.candidateCommit,m.sourceCommit,'candidate/source mismatch');
@@ -197,8 +208,8 @@ function aggregate({manifest:m,sizes,reports,jobs,full=false,releaseEvidence,hos
   for(const name of required)assert.equal(jobs[name]?.result,'success',`required job ${name} missing/failed`);
   for(const r of reports)sourceReport(r,m);
   for(const kind of ['lint','security','advisories']){const rows=reports.filter(x=>x.kind===kind);assert.equal(rows.length,1,`missing/duplicate ${kind}`);scanner(rows[0]);}
-  const functionalReports=reports.filter(x=>x.kind==='functional');unique(functionalReports,x=>x.environment.platform);
-  const linux=functionalReports.find(x=>x.environment.platform==='linux');assert.ok(linux,'missing Linux engines');functional(linux,'linux',['chromium','firefox','webkit'],false);
+  const functionalReports=reports.filter(x=>x.kind==='functional');unique(functionalReports.filter(x=>x.environment.platform!=='linux'),x=>x.environment.platform);
+  linuxLeases(functionalReports);
   if(require('./common.cjs').variant(m).id==='color')colorReports(reports,{...m,variant:require('./common.cjs').variant(m)});
   if(automatedOnly)assert.ok(full&&hostedURL,'automated hosted checks cannot replace release acceptance');
   if(hostedURL){

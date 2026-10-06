@@ -22,6 +22,63 @@ function fixture(){
   functional.analytics=functional.engines.flatMap(engine=>analytics.cases(engine).map(s=>({...s,model:analytics.model,pass:true,errors:[],externalRequests:[],checks:Object.fromEntries(analytics.checks.map(key=>[key,true])),readyWhileSDKPending:s.mode==='delayed'?true:'not applicable',vendorRequests:['staging','offline'].includes(s.mode)?[]:Array(2).fill('https://static.cloudflareinsights.com/beacon.min.js')})));
   return {manifest:{...identity,components:{variant},sourceDirty:false},sizes:{pass:true,artifactDigest:identity.artifactDigest,rows:budgets.routes.map(route=>({route,raw:50000,svgNodes:100,totalGzipBytes:10000}))},jobs:{build:{result:'success'},static:{result:'success'},linux:{result:'success'}},reports:[scan('lint',{scannedFiles:30,tools:{eslint:'10',stylelint:'17',ruff:'0.16'}}),scan('security',{semgrep:{files:['docs/space.js'],rules:8,errors:0},bandit:{loc:100,findings:0},secrets:{trackedTextFiles:100}}),scan('advisories',{feedDate:'2026-10-03',npm:{},pythonDependencies:80,runtimeDependencies:'none'}),functional]};
 }
+function splitLinux(x){
+  const index=x.reports.findIndex(r=>r.kind==='functional'&&r.environment.platform==='linux'),original=x.reports[index];
+  const leases=[['chromium','firefox'],['webkit']].map((engines,i)=>{
+    const lease=structuredClone(original);lease.engines=engines;
+    lease.environment={...lease.environment,runnerImage:'controlled-lease-'+i,cpus:['controlled CPU '+i]};
+    for(const key of ['browsers','rows','navigation','analytics'])lease[key]=lease[key].filter(row=>engines.includes(row.engine));
+    return lease;
+  });x.reports.splice(index,1,...leases);return x;
+}
+test('separate Linux runners retain complete disjoint leases and their original provenance',()=>{
+  const x=splitLinux(fixture()),before=structuredClone(x.reports);
+  assert.equal(aggregate(x).pass,true);assert.deepEqual(x.reports,before,'the gate never synthesizes a runner or combines raw reports');
+  const leases=x.reports.filter(r=>r.kind==='functional');
+  assert.deepEqual(leases.map(r=>[r.rows.length,r.navigation.length,r.analytics.length]),[[260,8,26],[130,4,13]]);
+  const cases=[
+    x=>x.reports.pop(),
+    x=>x.reports.push(structuredClone(x.reports.at(-1))),
+    x=>x.reports.at(-1).engines.push('firefox'),
+    x=>x.reports.at(-1).engines.push('webkit'),
+    x=>x.reports.at(-1).engines[0]='unknown',
+    x=>{const empty=structuredClone(x.reports.at(-1));for(const key of ['engines','browsers','rows','navigation','analytics'])empty[key]=[];x.reports.push(empty);},
+    x=>x.reports.at(-1).rows.pop(),
+    x=>x.reports.at(-1).rows[1]=structuredClone(x.reports.at(-1).rows[0]),
+    x=>x.reports.at(-1).rows[0].engine='firefox',
+    x=>x.reports.at(-1).navigation.pop(),
+    x=>x.reports.at(-1).navigation[1]=structuredClone(x.reports.at(-1).navigation[0]),
+    x=>x.reports.at(-1).analytics.pop(),
+    x=>x.reports.at(-1).analytics[1]=structuredClone(x.reports.at(-1).analytics[0]),
+    x=>x.reports.at(-1).smoke=true,
+    x=>x.reports.at(-1).modes.pop(),
+    x=>x.reports.at(-1).browsers[0].version='',
+    x=>x.reports.at(-1).rows[0].pass=false,
+    x=>x.reports.at(-1).rows.find(row=>row.mode==='no-js').checks.fallback=false,
+    x=>x.reports.at(-1).pass=false,
+    x=>x.reports.at(-1).target='https://other.invalid',
+    ...['sourceCommit','sourceTree','candidateCommit','artifactDigest'].map(key=>x=>x.reports.at(-1)[key]='0'.repeat(key==='artifactDigest'?64:40)),
+    x=>x.reports.at(-1).variant.fingerprint='0'.repeat(64),
+    x=>x.jobs.linux.result='cancelled'
+  ];
+  for(const mutate of cases){const x=splitLinux(fixture());mutate(x);assert.throws(()=>aggregate(x));}
+});
+test('Linux lease uploads remain unique across engines, profiles and workflow attempts',()=>{
+  const fs=require('node:fs'),path=require('node:path'),workflow=require('../tools/quality/workflow-artifacts.cjs'),root=path.resolve(__dirname,'..');
+  const sources=Object.fromEntries(['site-checks','site-release-checks'].map(id=>[id,fs.readFileSync(path.join(root,'.github/workflows/'+id+'.yml'),'utf8')]));
+  const actual=workflow.names(sources['site-release-checks'],{run:123,attempt:2,profile:'staging'});
+  assert.ok(actual.includes('site-reports-linux-primary-staging-123-2'));assert.ok(actual.includes('site-reports-linux-gtk-staging-123-2'));
+  assert.equal(workflow.check(root,sources).unique,true);
+  const collision={...sources,'site-release-checks':sources['site-release-checks'].replace('lease: gtk','lease: primary')};assert.throws(()=>workflow.check(root,collision),/collision/);
+  const shared={...sources,'site-release-checks':sources['site-release-checks'].replace('site-reports-linux-${{ matrix.lease }}-','site-reports-linux-')};assert.throws(()=>workflow.check(root,shared),/distinct immutable/);
+  assert.throws(()=>workflow.names('  name: site-test-${{ matrix.lease }}\n',{run:1,attempt:1,profile:'staging'}),/missing artifact lease/);
+  assert.throws(()=>workflow.names('  name: site-test-${{ matrix.unknown }}\n',{run:1,attempt:1,profile:'staging'}),/unknown artifact discriminator/);
+  const linux=sources['site-release-checks'].split('\n  linux:')[1].split('\n  native:')[0];
+  assert.match(linux,/timeout-minutes: 45/);assert.match(linux,/fail-fast: false/);assert.match(linux,/SITE_AUDIT_ENGINES: \$\{\{ matrix\.engines \}\}/);
+  assert.match(linux,/lease: primary\s+engines: chromium,firefox\s+install: chromium firefox webkit/);assert.match(linux,/lease: gtk\s+engines: webkit\s+install: webkit/);
+  assert.match(linux,/if: matrix\.lease == 'primary' && inputs\.public_variant == 'color' && !cancelled\(\)/);
+  assert.equal((linux.match(/timeout-minutes: 3/g)||[]).length,2);assert.match(linux,/timeout-minutes: 5/);assert.doesNotMatch(linux,/--smoke|continue-on-error|headless/);
+});
 test('complete source-bound PR evidence passes; missing and controlled failures fail closed',()=>{
   assert.equal(aggregate(fixture()).pass,true);
   const failures=[
@@ -132,6 +189,25 @@ function fullFixture(){
   for(const key of ['independentReview','iosSafari','androidChrome'])x.releaseEvidence[key]={pass:true,reviewer:'controlled fixture; no actual reviewer/device',record:'controlled fixture',device:'controlled fixture',os:'controlled fixture',browser:'controlled fixture'};
   return x;
 }
+test('two complete Linux leases satisfy the full hosted gate only for the exact hosted artifact',()=>{
+  function make(){
+    const x=splitLinux(fullFixture());x.automatedOnly=true;delete x.releaseEvidence;
+    x.hostedURL='https://quality.invalid/site';x.profile='staging';x.jobs.host={result:'success'};
+    for(const r of x.reports)r.target=x.hostedURL;
+    x.reports.push({...identity,kind:'hosted',pass:true,target:x.hostedURL,profile:'staging',root:true,actual404:true,redirectsStayWithinSite:true,rows:Object.entries(x.manifest.files).map(([file,info])=>({file,url:x.hostedURL+'/'+file,status:200,sha256:info.sha256}))});
+    return x;
+  }
+  const gate=aggregate(make());assert.equal(gate.kind,'hosted-gate');assert.equal(gate.checkedReports.filter(r=>r.kind==='functional'&&r.platform==='linux').length,2);
+  const cases=[
+    x=>x.reports[4].target=null,
+    x=>{x.reports[3].target='https://other.invalid';x.reports[4].target=x.reports[3].target;},
+    x=>x.reports[4].artifactDigest='0'.repeat(64),
+    x=>x.reports[4].rows.pop(),
+    x=>x.jobs.linux.result='failure',
+    x=>x.reports.splice(5,1)
+  ];
+  for(const mutate of cases){const x=make();mutate(x);assert.throws(()=>aggregate(x));}
+});
 test('complete controlled full-release fixture passes, missing native/capture/device data and duplicate reports fail',()=>{
   assert.equal(aggregate(fullFixture()).pass,true);
   const cases=[x=>x.reports.splice(4,1),x=>x.reports.push(structuredClone(x.reports[6])),x=>x.reports.at(-1).views.pop(),x=>delete x.reports.at(-1).files['writing-motion.webm'],x=>x.reports.at(-1).files['writing-motion.webm']=true,x=>x.releaseEvidence.iosSafari.pass=false,x=>delete x.releaseEvidence.androidChrome.device];

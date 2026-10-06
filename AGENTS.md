@@ -1,5 +1,38 @@
 # Agent guidance for personal publications
 
+## GTK no-JavaScript crash localization — 2026-10-06
+
+Follow-up 37505225237 at 5e4a8f6 fixes the observed installer delay: Ubuntu
+126 MB fetch takes 15s, dependencies 44s and browser download 5s. All 130
+functional rows are retained: 120 pass, all ten no-js rows emit page-crash
+19–25s into first state evaluation while the browser remains connected.
+The 25m diagnostic cancels during navigation, so full 130/4/13 acceptance is
+not achieved. GTK-FOLLOWUP.json retains every failed lifecycle, raw identities,
+SHA and incomplete navigation/analytics. No native signal/stack establishes
+SIGSEGV, OOM or a driver/renderer cause. The automation-context warning also
+occurs in passing rows; pinned GTK inspector code explains it without proving
+actual default-session fallback. Do not add an unsupported automation flag.
+The completed GTK job and dated PR trigger are removed after collection.
+
+One dated read-only causal screen compares GTK/WPE on separate fresh runners:
+blank/full normal Color and constant/original state first evaluation, JavaScript
+on/off, six fresh browsers per port; two additional GTK cells omit only the
+functional init script from matching disabled-JS blank/constant and full/state controls.
+Keep exact source/tree/normal artifact, original options, cold startup, raw
+failures and all 14 observations. There is no warmup, retry, deployment or
+acceptance from collection green. Native crash records are observed separately.
+Remove its dated PR trigger after retaining evidence; correct only supported
+causes before a fresh hosted/full/stable/exact-head merge.
+
+The observed GTK row phase is 19m58s; incomplete lease is 24m08s, exceeding the
+previous full Linux job's 9m02s allowance. LINUX-LEASES.md retains a reviewed
+260/8/26 + 130/4/13 two-runner adapter, unchanged 45m job limits and exact raw
+coverage/provenance checks. A five-file CI-only backport is prepared against
+main, with no runtime/content changes. It is not activated: /stage uses the
+protected-main workflow and requires that unchanged controller. The active
+sole-#23 and no-runtime-merge-before-stable instructions remain. No extra PR,
+main bypass or branch-controller deployment is authorized by this preparation.
+
 ## GTK installation and target-loss follow-up — 2026-10-06
 
 Run 37500364739 installed WebKit successfully but spent 22m18s on installation,

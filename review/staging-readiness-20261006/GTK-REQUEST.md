@@ -23,3 +23,11 @@ mirror list as well as direct sources, bound install phases inside the unchanged
 25m job, and collect native close/crash/disconnect stage evidence and stderr.
 Run the same complete cold lease once on the corrected infrastructure; do not
 retry scenarios or treat a green installation as functional acceptance.
+
+Collection completed in 37505225237 at 5e4a8f6. Dependencies installed in 44s
+and WebKit in 5s, but all ten no-js rows emitted native page-crash while the
+other 120 functional rows passed. The 25m diagnostic cancelled during navigation;
+full 130/4/13 acceptance is incomplete. GTK-FOLLOWUP.json retains every failure
+and raw identities. The completed dated job and PR trigger are removed.
+The next separate bounded GTK-TARGET-REQUEST.md localizes port/document/evaluator
+factors; there is no unchanged full rerun or promotion from these records.

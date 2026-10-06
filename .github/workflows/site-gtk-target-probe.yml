@@ -1,0 +1,137 @@
+name: Attribute GTK disabled-script target crashes
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths: [review/staging-readiness-20261006/GTK-TARGET-REQUEST.md]
+  workflow_dispatch:
+    inputs:
+      candidate_sha:
+        description: Exact clean candidate for private read-only attribution
+        required: true
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: gtk-target-${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
+  cancel-in-progress: true
+env:
+  SITE_CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
+jobs:
+  native-target:
+    if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.number == 23 && github.event.pull_request.head.repo.full_name == github.repository)
+    strategy:
+      fail-fast: false
+      matrix:
+        port: [gtk, wpe]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ env.SITE_CANDIDATE_SHA }}
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: '24.19.0'
+      - name: Validate the bounded fourteen-cell contract
+        run: node --test tests/gtk-target-probe.test.cjs
+      - name: Build exact normal Color without an intervention
+        run: |
+          node - <<'JS'
+          const root=process.env.RUNNER_TEMP+'/gtk-target-input/color';
+          require('./tools/quality/artifact.cjs').build(root);
+          require('./tools/staging/color.cjs').build(root);
+          JS
+      - name: Bound Ubuntu downloads and use its primary archive
+        run: |
+          sudo python3 - <<'PYTHON'
+          from pathlib import Path
+          import re
+          apt = Path('/etc/apt')
+          sources = [apt / 'sources.list', *apt.glob('sources.list.d/*.list'), *apt.glob('sources.list.d/*.sources')]
+          mirrors = {apt / 'apt-mirrors.txt'}
+          for source in sources:
+              if source.exists():
+                  active = '\n'.join(line.split('#', 1)[0] for line in source.read_text().splitlines())
+                  for name in re.findall(r'(?<!\S)mirror\+file:(?://)?(/etc/apt/[^\s#]+)', active):
+                      mirror = Path(name)
+                      if not mirror.resolve().is_relative_to(apt.resolve()) or not mirror.is_file():
+                          raise ValueError('Invalid or missing active APT mirror list: ' + name)
+                      mirrors.add(mirror)
+          pattern = r'https?://azure\.archive\.ubuntu\.com/ubuntu(?=/|\s|$)'
+          changed = []
+          for source in [*sources, *sorted(mirrors)]:
+              if not source.exists():
+                  continue
+              before = source.read_text()
+              after = re.sub(pattern, 'https://archive.ubuntu.com/ubuntu', before)
+              if after != before:
+                  source.write_text(after)
+                  changed.append(str(source))
+              if re.search(pattern, source.read_text()):
+                  raise ValueError('Azure archive remains in ' + str(source))
+          (apt / 'apt.conf.d/99-site-download-bounds').write_text('Acquire::http::Timeout "30";\nAcquire::https::Timeout "30";\nAcquire::Retries "0";\n')
+          print('Ubuntu source/mirror files moved to the primary archive:', changed)
+          PYTHON
+      - name: Install the pinned Node toolchain
+        timeout-minutes: 3
+        run: npm ci --prefix tools/quality/toolchain --ignore-scripts
+      - name: Install Ubuntu WebKit and display dependencies without prior launch
+        timeout-minutes: 5
+        run: tools/quality/toolchain/node_modules/.bin/playwright install-deps webkit
+      - name: Download pinned WebKit without prior launch
+        timeout-minutes: 3
+        run: |
+          tools/quality/toolchain/node_modules/.bin/playwright install webkit
+          command -v Xvfb
+      - name: Collect every private first-evaluation cell and its original result
+        env:
+          DEBUG: pw:browser
+        run: >-
+          node tools/quality/gtk-target-probe.cjs ${{ matrix.port }}
+          "$RUNNER_TEMP/gtk-target-input/color"
+          "$RUNNER_TEMP/gtk-target-results"
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: gtk-target-${{ matrix.port }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/gtk-target-results/
+          if-no-files-found: error
+          retention-days: 90
+  static-preflight:
+    if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.number == 23 && github.event.pull_request.head.repo.full_name == github.repository)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      SITE_REPORT_DIR: ${{ github.workspace }}/quality-reports
+      SITE_ARTIFACT_MANIFEST: ${{ github.workspace }}/quality-artifact/artifact.json
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ env.SITE_CANDIDATE_SHA }}
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: '24.19.0'
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.12.14'
+      - name: Build source identity and install locked scanners
+        run: |
+          node tools/quality/artifact.cjs build quality-artifact
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          python -m venv tools/quality/toolchain/venv
+          tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check -r tools/quality/toolchain/requirements.txt
+      - name: Lint complete current source
+        if: ${{ !cancelled() }}
+        run: node tools/quality/scanners.cjs lint
+      - name: Retain exact security candidates
+        if: ${{ !cancelled() }}
+        run: node tools/quality/scanners.cjs security
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: gtk-target-static-${{ github.run_id }}-${{ github.run_attempt }}
+          path: quality-reports/
+          if-no-files-found: error
+          retention-days: 90
