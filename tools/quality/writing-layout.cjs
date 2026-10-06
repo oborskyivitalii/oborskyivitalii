@@ -49,45 +49,53 @@ function install({calibration,intervention}){
   let values=null,originalCount=null;
   const px=number=>number+'px';
   function text(node){return node.textContent.replace(/\s+/g,' ').trim();}
+  function calibratedRows(){
+    if(!valid.includes(intervention))throw Error('Unknown Writing layout intervention');
+    if(!c||c.schema!==1||c.route!=='writing'||c.rows.length!==27)throw Error('Invalid Writing layout calibration');
+    if(c.viewport.width!==innerWidth||c.viewport.height!==innerHeight||c.viewport.dpr!==devicePixelRatio)throw Error('Writing calibration viewport mismatch');
+    const rows=[...document.querySelectorAll('#archive-results li.publication')];if(rows.length!==27)throw Error('Writing row count differs from calibration');
+    return rows;
+  }
+  function applyRow(node,index){
+    const r=c.rows[index];
+    if(node.hidden!==r.hidden||text(node)!==r.text)throw Error('Writing calibrated row content/visibility mismatch '+index);
+    const title=node.querySelector('.publication-title'),arrow=title.querySelector('.publication-arrow');
+    let titleText=[...title.children].find(x=>x!==arrow);
+    if(!titleText){titleText=document.createElement('span');titleText.dataset.writingLayoutText='true';for(const child of [...title.childNodes])if(child!==arrow)titleText.append(child);title.prepend(titleText);}
+    // Every constrained control carries these identical measured dimensions.
+    node.style.height=px(r.rect.height);node.style.minHeight='0';node.style.maxHeight='none';
+    [...node.children].forEach((child,i)=>{child.style.width=px(r.children[i].rect.width);child.style.minWidth='0';});
+    title.style.width=px(r.title.rect.width);title.style.height=px(r.title.rect.height);
+    titleText.style.width=px(r.title.textRect.width);titleText.style.flex='0 0 auto';titleText.style.minWidth='0';
+    if(intervention==='row-grid-off'){
+      node.style.display='block';
+      [...node.children].forEach((child,i)=>{const box=r.children[i].rect;child.style.position='absolute';child.style.left=px(box.x-r.rect.x-r.borderLeft);child.style.top=px(box.y-r.rect.y-r.borderTop);});
+    }
+    if(intervention==='title-flex-off'){
+      title.style.display='block';title.style.position='relative';
+      titleText.style.display='block';titleText.style.position='absolute';titleText.style.left=px(r.title.textRect.x-r.title.rect.x-r.title.borderLeft);titleText.style.top=px(r.title.textRect.y-r.title.rect.y-r.title.borderTop);
+      arrow.style.position='absolute';arrow.style.left=px(r.title.arrowRect.x-r.title.rect.x-r.title.borderLeft);arrow.style.top=px(r.title.arrowRect.y-r.title.rect.y-r.title.borderTop);arrow.style.width=px(r.title.arrowRect.width);arrow.style.height=px(r.title.arrowRect.height);
+    }
+  }
+  function applyControls(){
+    for(const control of c.controls){
+      const node=document.querySelectorAll(control.selector)[control.index];if(!node)throw Error('Missing calibrated control '+control.selector);
+      if(control.hidden||control.display==='none')continue;
+      node.style.width=px(control.rect.width);node.style.height=px(control.rect.height);node.style.minHeight='0';node.style.maxHeight='none';
+      if(intervention==='controls-off'){
+        node.replaceChildren();node.style.display='block';node.style.padding='0';node.style.border='0';node.style.overflow='hidden';node.dataset.writingLayoutPlaceholder='true';
+      }
+    }
+  }
   function apply(){
     if(document.body.dataset.page!=='writing')return {applied:false,reason:'other-route'};
     const main=document.querySelector('main');if(applied.has(main))return {applied:false,reason:'already-applied'};
     const start=performance.now();
     try{
-      if(!valid.includes(intervention))throw Error('Unknown Writing layout intervention');
-      if(!c||c.schema!==1||c.route!=='writing'||c.rows.length!==27)throw Error('Invalid Writing layout calibration');
-      if(c.viewport.width!==innerWidth||c.viewport.height!==innerHeight||c.viewport.dpr!==devicePixelRatio)throw Error('Writing calibration viewport mismatch');
-      const rows=[...document.querySelectorAll('#archive-results li.publication')];if(rows.length!==27)throw Error('Writing row count differs from calibration');
+      const rows=calibratedRows();
       values=Object.fromEntries(['topic','year','language'].map(key=>[key,document.getElementById('archive-'+key)?.value??null]));originalCount=document.getElementById('archive-count')?.textContent;
-      for(let index=0;index<rows.length;index++){
-        const node=rows[index],r=c.rows[index];
-        if(node.hidden!==r.hidden||text(node)!==r.text)throw Error('Writing calibrated row content/visibility mismatch '+index);
-        const title=node.querySelector('.publication-title'),arrow=title.querySelector('.publication-arrow');
-        let titleText=[...title.children].find(x=>x!==arrow);
-        if(!titleText){titleText=document.createElement('span');titleText.dataset.writingLayoutText='true';for(const child of [...title.childNodes])if(child!==arrow)titleText.append(child);title.prepend(titleText);}
-        // Every constrained control carries these identical measured dimensions.
-        node.style.height=px(r.rect.height);node.style.minHeight='0';node.style.maxHeight='none';
-        [...node.children].forEach((child,i)=>{child.style.width=px(r.children[i].rect.width);child.style.minWidth='0';});
-        title.style.width=px(r.title.rect.width);title.style.height=px(r.title.rect.height);
-        titleText.style.width=px(r.title.textRect.width);titleText.style.flex='0 0 auto';titleText.style.minWidth='0';
-        if(intervention==='row-grid-off'){
-          node.style.display='block';
-          [...node.children].forEach((child,i)=>{const box=r.children[i].rect;child.style.position='absolute';child.style.left=px(box.x-r.rect.x-r.borderLeft);child.style.top=px(box.y-r.rect.y-r.borderTop);});
-        }
-        if(intervention==='title-flex-off'){
-          title.style.display='block';title.style.position='relative';
-          titleText.style.display='block';titleText.style.position='absolute';titleText.style.left=px(r.title.textRect.x-r.title.rect.x-r.title.borderLeft);titleText.style.top=px(r.title.textRect.y-r.title.rect.y-r.title.borderTop);
-          arrow.style.position='absolute';arrow.style.left=px(r.title.arrowRect.x-r.title.rect.x-r.title.borderLeft);arrow.style.top=px(r.title.arrowRect.y-r.title.rect.y-r.title.borderTop);arrow.style.width=px(r.title.arrowRect.width);arrow.style.height=px(r.title.arrowRect.height);
-        }
-      }
-      for(const control of c.controls){
-        const node=document.querySelectorAll(control.selector)[control.index];if(!node)throw Error('Missing calibrated control '+control.selector);
-        if(control.hidden||control.display==='none')continue;
-        node.style.width=px(control.rect.width);node.style.height=px(control.rect.height);node.style.minHeight='0';node.style.maxHeight='none';
-        if(intervention==='controls-off'){
-          node.replaceChildren();node.style.display='block';node.style.padding='0';node.style.border='0';node.style.overflow='hidden';node.dataset.writingLayoutPlaceholder='true';
-        }
-      }
+      rows.forEach(applyRow);
+      applyControls();
       applied.add(main);
       const end=performance.now();window.SiteEngineProbe?.({kind:'layout-intervention',intervention,start,time:end,duration:end-start});
       return {applied:true,intervention,start,end,duration:end-start};

@@ -1,5 +1,24 @@
 # Agent guidance for personal publications
 
+## Full staging and merge authorized — 2026-10-06
+
+The maintainer now authorizes the next sequence: stage the current open #23
+through the existing CI controller, complete the full mandatory gate and stable
+promotion, then merge that exact reviewed head into main. This supersedes the
+earlier Writing-only pause below. Keep #23 as the sole PR, unchanged budgets,
+raw failed evidence and official Wrangler Action deployment only. Never merge
+before the open-PR staging lease and stable verification finish. Main protection
+and environment configuration already work; do not request their setup again.
+
+Run 37460990802 stages cd2575 via owner command; its fresh full static gate finds
+unused imports/complexity and untriaged checksum candidates. A confirmed browser
+capability defect uses Object.hasOwn despite the supported missing-hasOwn mode;
+use the existing math.owns and preserve exact geometry. Correct fixture races
+through actual history/scroll/print state, not sleeps, missing-trigger passes or
+relaxed visual/performance requirements. Review exact scanner candidates with
+provenance; no blanket entropy exclusions or new complexity debt. Finish the
+corrected head's full staging acceptance before the authorized merge.
+
 ## Writing causal localization and source correction — 2026-10-06
 
 The maintainer requests actual localization and a verified source correction,

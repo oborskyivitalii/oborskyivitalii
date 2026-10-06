@@ -217,6 +217,9 @@
           try{mountNow(true);if(!settled)update(lastProgress);}catch(error){fail(error);}
         },0);
       }
+      function finish() {
+        clearText();settled=true;cancelTask();if(transition===update)transition=null;resolve();
+      }
       const update=progress=>{
         if(settled)return;
         if(own!==serial){cancel();return;}
@@ -231,7 +234,7 @@
           // midpoint before its queued native mount has completed.
           if(!mounted&&mountTimer!==null)progress=mountAt;
           if(presentation){
-            if(progress===1){clearText();settled=true;cancelTask();if(transition===update)transition=null;resolve();}
+            if(progress===1)finish();
             else presentation.present(progress,document.querySelector('.space-scene')?.dataset.direction||'forward',departure);
             return;
           }
@@ -243,7 +246,7 @@
           const opacity=progress<.18?departure*(1-eased):progress===1?1:Math.min(.999,eased);
           content.style.opacity=String(opacity);
           content.style.transform="translateY("+(progress<.18?-10*eased:12*(1-eased))+"px)";
-          if(progress===1){clearText();settled=true;cancelTask();if(transition===update)transition=null;resolve();}
+          if(progress===1)finish();
         }catch(error){fail(error);}
       };
       update.cancel=cancel;transition=update;

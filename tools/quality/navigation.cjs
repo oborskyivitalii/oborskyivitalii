@@ -13,14 +13,61 @@ async function settled(page){
   },null,{polling:50,timeout:4000});
 }
 async function click(page,route){await page.locator(selector(route)).first().evaluate(el=>el.click());await ready(page,route);}
+async function archiveHistoryReady(page,url,controls){
+  // Same-document traversal acknowledgement can precede popstate listeners.
+  // Wait on the actual restored URL and archive values, not another delay.
+  await page.waitForFunction(expected=>location.href===expected.url&&document.body.dataset.page==='writing'&&!document.querySelector('#site-content').hasAttribute('aria-busy')&&Object.entries(expected.controls).every(([key,value])=>document.getElementById('archive-'+key)?.value===value),{url,controls},{polling:40,timeout:6000});
+}
+function nativeScrollSettlement(){
+  return new Promise((resolve,reject)=>{
+    const start=performance.now(),samples=[];let previous=scrollY,changed=start;
+    const probe=window.__wheelSettlement={status:'sampling',elapsedMs:0,quietMs:150,timeoutMs:2000,samples};
+    function sample(){
+      const now=performance.now(),y=scrollY;probe.elapsedMs=now-start;probe.y=y;samples.push({time:now-start,y});
+      if(Math.abs(y-previous)>.5){previous=y;changed=now;}
+      if(now-start>=2000){probe.status='failed';probe.error='Native wheel scroll did not settle within 2000ms';probe.max=Math.max(0,document.documentElement.scrollHeight-innerHeight);reject(Error(probe.error));return;}
+      if(now-changed>=150){probe.status='settled';probe.max=Math.max(0,document.documentElement.scrollHeight-innerHeight);resolve({...probe});return;}
+      setTimeout(sample,50);
+    }
+    sample();
+  });
+}
+function beginInterruption(kind){
+  const scene=document.querySelector('.space-scene'),canTravel=window.SiteScene?.canTravel()===true&&!document.hidden&&(!window.SiteEffects?.navigation||window.CSS?.supports?.('overflow','clip')===true);
+  const probe=window.__interruption={kind,expected:canTravel?'animated':'instant',triggered:false,trigger:null,progress:null};
+  let observer;
+  function cleanup(){observer?.disconnect();window.removeEventListener('site:page-ready',arrived);}
+  function apply(trigger){
+    if(probe.triggered)return;
+    probe.triggered=true;probe.trigger=trigger;probe.progress=Number(scene.dataset.progress);cleanup();
+    if(kind==='off')document.querySelector('#space-motion').click();
+    if(kind==='print')window.dispatchEvent(new Event('beforeprint'));
+    if(kind==='hidden'){Object.defineProperty(document,'hidden',{configurable:true,value:true});document.dispatchEvent(new Event('visibilitychange'));}
+  }
+  function arrived(){
+    if(document.body.dataset.page!=='writing')return;
+    if(!canTravel)apply('instant-arrival');else {probe.missedArrival=true;cleanup();}
+  }
+  window.addEventListener('site:page-ready',arrived);
+  if(canTravel){
+    observer=new MutationObserver(()=>{
+      if(scene.dataset.travel==='flying'&&Number(scene.dataset.progress)>=.08)apply('flight');
+    });observer.observe(scene,{attributes:true,attributeFilter:['data-progress']});
+  }
+  const link=document.querySelector('header a[href="writing.html"]'),href=link.getAttribute('href');
+  if(kind==='print')link.setAttribute('href','writing.html?topic=systems');
+  link.click();link.setAttribute('href',href);
+}
 function timingProbe(){
   window.__flightSamples=[];
-  new MutationObserver(()=>{
+  function record(kind){
     const scene=document.querySelector('.space-scene'),content=document.querySelector('#site-content');
     if(!scene||!content||!content.hasAttribute('aria-busy'))return;
-    window.__flightSamples.push({progress:Number(scene.dataset.progress),opacity:Number(getComputedStyle(content).opacity),depth:Number(content.dataset.flightDepth),stage:content.dataset.flightStage,direction:scene.dataset.direction,page:document.body.dataset.page});
+    window.__flightSamples.push({kind,progress:Number(scene.dataset.progress),opacity:Number(getComputedStyle(content).opacity),depth:Number(content.dataset.flightDepth),stage:content.dataset.flightStage,direction:scene.dataset.direction,page:document.body.dataset.page});
     if(window.__flightSamples.length>400)window.__flightSamples.shift();
-  }).observe(document,{subtree:true,attributes:true,attributeFilter:['data-progress']});
+  }
+  new MutationObserver(()=>record('progress')).observe(document,{subtree:true,attributes:true,attributeFilter:['data-progress']});
+  window.addEventListener('site:page-mount',()=>record('mount'));
 }
 function checkTiming(samples,variant='base'){
   if(variant==='color')return checkSpatialTiming(samples);
@@ -38,8 +85,14 @@ function checkSpatialTiming(samples){
   assert.ok(arriving.some(x=>x.opacity>0&&x.opacity<1),'visible incoming spatial fade');
   assert.ok(departing.every(x=>x.direction==='forward'?x.depth>0:x.depth<0),'outgoing text travels in the camera direction');
   assert.ok(arriving.every(x=>x.direction==='forward'?x.depth<0:x.depth>0),'incoming text starts beyond the camera');
-  const crossing=samples.filter(x=>x.progress>=.46&&x.progress<=.51);
-  assert.ok(crossing.length>0&&crossing.every(x=>x.opacity===0),'text clears at the spatial handover');
+  const crossing=samples.filter(x=>x.kind!=='mount'&&x.progress>=.46&&x.progress<=.51);
+  assert.ok(crossing.every(x=>x.opacity===0),'sampled crossing text remains hidden');
+  // Adaptive paints may skip the narrow .46–.51 interval. The real native
+  // mount event must still occur once after the midpoint, with hidden content.
+  const mounts=samples.filter(x=>x.kind==='mount');
+  assert.equal(mounts.length,1,'exactly one actual spatial handover');
+  assert.equal(mounts[0].opacity,0,'text hidden during the actual native handover');
+  assert.ok(mounts[0].progress>=.5&&mounts[0].progress<1,'native handover follows the painted midpoint before arrival');
   assert.ok(samples.every(x=>Number.isFinite(x.opacity)&&x.opacity>=0&&x.opacity<=1),'bounded spatial opacity');
   assert.ok(samples.filter(x=>x.progress>.52&&x.progress<1).every(x=>x.opacity<1),'no premature full destination text');
 }
@@ -72,14 +125,16 @@ async function reverseEndpoints(page){
   await page.evaluate(()=>window.SiteNavigation.go('writing',{atEnd:true}));await ready(page,'writing');
   await page.waitForTimeout(210);await page.mouse.wheel(0,-200);
   await page.waitForFunction(()=>Math.max(0,document.documentElement.scrollHeight-innerHeight)-scrollY>20);
-  const before=await range();
+  // mouse.wheel returns before WebKit's native smooth wheel has finished.
+  // Footer growth must test endpoint takeover after that gesture has settled.
+  const wheel=await page.evaluate(nativeScrollSettlement),before={y:wheel.y,max:wheel.max};
   await page.evaluate(()=>{const el=document.createElement('div');el.style.height='900px';document.querySelector('footer').append(el);});
   await page.waitForTimeout(250);const after=await range();
   assert.ok(Math.abs(after.y-before.y)<=2,`fresh input must release end intent: ${JSON.stringify({before,after})}`);
   await page.evaluate(()=>scrollTo({top:400,behavior:'instant'}));await page.waitForTimeout(380);
   await page.goBack();await ready(page,'talks');await page.goForward();await ready(page,'writing');
   assert.ok(Math.abs((await range()).y-400)<=2,'history keeps a middle reading position');
-  return {rows,takeover:{before,after},historyMiddle:400};
+  return {rows,takeover:{before,after,wheel},historyMiddle:400};
 }
 async function scenario(browser,url,s){
   const ctx=await browser.newContext({viewport:{width:s.width,height:s.width===390?844:900}}),page=await ctx.newPage(),errors=[];
@@ -104,7 +159,8 @@ async function scenario(browser,url,s){
     const initial=await page.locator('.space-scene').getAttribute('data-camera');
     for(const route of routes.slice(1)){
       await page.evaluate(()=>{window.__flightSamples=[];});
-      await click(page,route);await settled(page);if(route!=='credits')checkTiming(await page.evaluate(()=>window.__flightSamples),variant);else{assert.ok((await page.evaluate(()=>window.__flightSamples)).every(x=>x.progress===1));result.checks.utilityNoFlight=true;}
+      await click(page,route);await settled(page);const samples=await page.evaluate(()=>window.__flightSamples);(result.flightEvidence??=[]).push({route,samples});
+      if(route!=='credits')checkTiming(samples,variant);else{assert.ok(samples.every(x=>x.progress===1));result.checks.utilityNoFlight=true;}
       const state=await page.evaluate(()=>({page:document.body.dataset.page,title:document.title,description:document.querySelector('meta[name="description"]').content,h1:document.querySelectorAll('h1').length,focus:document.activeElement.id,rooms:+document.querySelector('.space-scene').dataset.rooms,direction:document.querySelector('.space-scene').dataset.direction,same:window.__shell.header===document.querySelector('header')&&window.__shell.canvas===document.querySelector('canvas')&&window.__shell.theme===document.querySelector('#theme-mode')&&window.__shell.document===document}));
       assert.equal(state.page,route);assert.ok(state.title.toLowerCase().includes(route==='credits'?'credits':route));assert.ok(state.description.length>20);assert.equal(state.h1,1);assert.equal(state.focus,'main');assert.equal(state.same,true);assert.ok(state.rooms<=3);assert.equal(state.direction,'forward');assert.equal(new URL(page.url()).pathname,new URL(route+'.html',url+'/').pathname);
       if(route==='writing'){result.writingFirstScroll=await require('./engine-browser.cjs').writingGestures(page);result.checks.writingFirstScroll=true;}
@@ -125,8 +181,8 @@ async function scenario(browser,url,s){
     await page.locator('#space-motion').evaluate(el=>el.click());
     await page.locator('#space-motion').evaluate(el=>el.click());
     for(const route of ['writing','research','writing'])await click(page,route);
-    await page.locator('#archive-topic').selectOption('systems');await page.locator('#archive-language').selectOption('uk');
-    await page.goBack();assert.equal(await page.locator('#archive-language').inputValue(),'all');await page.goForward();assert.equal(await page.locator('#archive-language').inputValue(),'uk');
+    await page.locator('#archive-topic').selectOption('systems');const archiveBack=await page.evaluate(()=>location.href);await page.locator('#archive-language').selectOption('uk');const archiveForward=await page.evaluate(()=>location.href);
+    await page.goBack();await archiveHistoryReady(page,archiveBack,{topic:'systems',language:'all'});assert.equal(await page.locator('#archive-language').inputValue(),'all');await page.goForward();await archiveHistoryReady(page,archiveForward,{topic:'systems',language:'uk'});assert.equal(await page.locator('#archive-language').inputValue(),'uk');
     await click(page,'talks');await page.goBack();await ready(page,'writing');assert.equal(await page.locator('#archive-topic').inputValue(),'systems');assert.equal(await page.locator('#archive-language').inputValue(),'uk');
     await page.evaluate(()=>dispatchEvent(new Event('beforeprint')));assert.equal(await page.locator('li.publication:visible').count(),27);await page.evaluate(()=>dispatchEvent(new Event('afterprint')));assert.ok(await page.locator('li.publication:visible').count()<27);result.checks.archiveLifecycle=true;
     await click(page,'index');
@@ -148,20 +204,11 @@ async function scenario(browser,url,s){
     result.checks.retargetOpacity=true;await click(page,'talks');await settled(page);
     // Exit/arrival interruptions must leave readable, interactive destination content.
     for(const kind of ['off','print','hidden']){
-      await page.evaluate(kind=>{
-        const scene=document.querySelector('.space-scene');
-        const observer=new MutationObserver(()=>{
-          if(scene.dataset.travel!=='flying'||Number(scene.dataset.progress)<.08)return;
-          observer.disconnect();
-          if(kind==='off')document.querySelector('#space-motion').click();
-          if(kind==='print')dispatchEvent(new Event('beforeprint'));
-          if(kind==='hidden'){Object.defineProperty(document,'hidden',{configurable:true,value:true});document.dispatchEvent(new Event('visibilitychange'));}
-        });observer.observe(scene,{attributes:true,attributeFilter:['data-progress']});
-        const link=document.querySelector('header a[href="writing.html"]'),href=link.getAttribute('href');
-        if(kind==='print')link.setAttribute('href','writing.html?topic=systems');
-        link.click();link.setAttribute('href',href);
-      },kind);
+      await page.evaluate(beginInterruption,kind);
       await ready(page,'writing');
+      const interruption=await page.evaluate(()=>window.__interruption);(result.interruptionEvidence??=[]).push(interruption);
+      assert.equal(interruption.triggered,true,kind+' fixture must actually trigger');
+      assert.equal(interruption.trigger,interruption.expected==='animated'?'flight':'instant-arrival',kind+' uses its actual navigation path');
       assert.equal(await page.locator('#site-content').evaluate(el=>el.inert||getComputedStyle(el).opacity!=='1'),false);
       if(kind==='print'){assert.equal(await page.locator('li.publication:visible').count(),27);await page.evaluate(()=>dispatchEvent(new Event('afterprint')));assert.ok(await page.locator('li.publication:visible').count()<27);}
       if(kind==='hidden')await page.evaluate(()=>{delete document.hidden;document.dispatchEvent(new Event('visibilitychange'));});
@@ -183,13 +230,13 @@ async function scenario(browser,url,s){
     assert.deepEqual(errors,[]);result.pass=checks.every(key=>result.checks[key]===true);
   }catch(error){
     result.error=error.message;result.stack=error.stack;
-    result.state=await page.evaluate(()=>({page:document.body.dataset.page,url:location.href,hidden:document.hidden,navigation:typeof window.SiteNavigation,scene:{...document.querySelector('.space-scene').dataset},motion:document.querySelector('#space-motion').textContent,busy:document.querySelector('#site-content')?.hasAttribute('aria-busy'),scrollY,frames:window.__navigationFrames||[]})).catch(()=>null);
+    result.state=await page.evaluate(()=>({page:document.body.dataset.page,url:location.href,hidden:document.hidden,navigation:typeof window.SiteNavigation,scene:{...document.querySelector('.space-scene').dataset},motion:document.querySelector('#space-motion').textContent,busy:document.querySelector('#site-content')?.hasAttribute('aria-busy'),scrollY,frames:window.__navigationFrames||[],flightSamples:window.__flightSamples||[],wheelSettlement:window.__wheelSettlement||null})).catch(()=>null);
   }
   finally{await ctx.close();}
   return result;
 }
 function scenarios(engine){return [1440,390].flatMap(width=>['light','dark'].map(theme=>({engine,width,theme})));}
-module.exports={scenario,scenarios,checks,reverseEndpoints,checkTiming};
+module.exports={scenario,scenarios,checks,reverseEndpoints,checkTiming,archiveHistoryReady,nativeScrollSettlement,beginInterruption,timingProbe};
 if(require.main===module)(async()=>{
   const {toolRequire,launchOptions,report}=require('./common.cjs'),{start}=require('./serve.cjs');
   const {server,url}=await start(),browser=await toolRequire('playwright').firefox.launch(launchOptions('firefox'));

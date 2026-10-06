@@ -6,35 +6,35 @@
     "contract": 1,
     "fingerprint": "48153b94fbae4f314eaa11b156df8a20227dec429abfee9e45c14fda4a1f1b2a"
   },
-  "engine": "b8800a2174d9da08aa5f124426863751d7048066fee18045f28574b152e64535",
-  "scenes": "b957e0c05e01caa260e2066319ecb086b09fd794a7fc7e1860d3adf6a2a117cb",
+  "engine": "5a10d22a3b14c296913100d8dfa3d9d128a334c46b4ab5bfb9abd6b512f57ef4",
+  "scenes": "eb98d1f27e73b32a9e0e505276c86d0d425ea80b22c05233649f1bad1ea907e6",
   "assets": "442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401",
-  "content": "b83e8c27304c502a28c27a34dfcb336875eaff29d36567b8639d8ca5a213a72a",
+  "content": "909c05bc9d84d555ce3a7c0fea9e404c084d7c5ed5e994bf074de8e1caefae22",
   "routes": {
     "index": {
-      "version": "ef9408d1d24421dd8a56adf434edb807d3a49d4bd703890438316ee9d683c353",
-      "url": "snapshots/ef9408d1d24421dd8a56adf434edb807d3a49d4bd703890438316ee9d683c353/index.html",
-      "sha256": "9098c243db8d58ffe3635920a96b1f4e387b3c7e29a53bab6fcc7cb6825ad4ee"
+      "version": "50eb894b23ae14bad0cc92d44ac0be76f78893c3c29b64e4f69a5c0d6923cbb3",
+      "url": "snapshots/50eb894b23ae14bad0cc92d44ac0be76f78893c3c29b64e4f69a5c0d6923cbb3/index.html",
+      "sha256": "e78ccb08b04b1dc7866b5a6a947f428f9c9dae1738c2a6e45e7cca9256613749"
     },
     "research": {
-      "version": "5748c3e4de41efe3620a03a58d12f60d9053abbd521f8132a1f425f73080a8c6",
-      "url": "snapshots/5748c3e4de41efe3620a03a58d12f60d9053abbd521f8132a1f425f73080a8c6/research.html",
-      "sha256": "735587887fc80d00dd1be380c832e6fd47e16a85fd623881942bdd2a2944c4d7"
+      "version": "eebd77547baef13a8d04b6c7c053189a9d5719355d4eea489b648f0de77a3821",
+      "url": "snapshots/eebd77547baef13a8d04b6c7c053189a9d5719355d4eea489b648f0de77a3821/research.html",
+      "sha256": "511db6a4dabaa72046a16feebfb723ff5a532d013d07e829161c54f861c8da1e"
     },
     "writing": {
-      "version": "6c1459ece2549ff747498f948a474b4039d2e21db27338fb251eb159fadd7487",
-      "url": "snapshots/6c1459ece2549ff747498f948a474b4039d2e21db27338fb251eb159fadd7487/writing.html",
-      "sha256": "11cfbdf940fb8ab842f34abe578bf3cc3a7b87c35da6aed26296211c178df3cf"
+      "version": "5df9b41edeeda61082132c750e12c547d7ca1a31ff480aad6a1984821e2d263c",
+      "url": "snapshots/5df9b41edeeda61082132c750e12c547d7ca1a31ff480aad6a1984821e2d263c/writing.html",
+      "sha256": "4ffe07e7ee75dbfaebb0e2bf645ed26d2f460a7beb33b0e95bd9ec01df7931e8"
     },
     "talks": {
-      "version": "2a6d0443255ea7de79741848679814b7088f6d067f907c33c21b13eee5ef3ad2",
-      "url": "snapshots/2a6d0443255ea7de79741848679814b7088f6d067f907c33c21b13eee5ef3ad2/talks.html",
-      "sha256": "f08a212b4dc9f158e6747a906a6967e330891bd7c6470e20ec591a5325a8faa8"
+      "version": "ecb03b20ca60453d8f8e1448ea46f306251595a15cadb022fdc4fc2fccbb2715",
+      "url": "snapshots/ecb03b20ca60453d8f8e1448ea46f306251595a15cadb022fdc4fc2fccbb2715/talks.html",
+      "sha256": "4d51edf41a6966377f30be2a5f73f382c3a50f7bdc37f282067743c43f620f4a"
     },
     "credits": {
-      "version": "6d3cf8a5ea63e32b0af315b8cf04a110064f9352fad755d91e019566d0aa1f09",
-      "url": "snapshots/6d3cf8a5ea63e32b0af315b8cf04a110064f9352fad755d91e019566d0aa1f09/credits.html",
-      "sha256": "7155128fc8f52f431fe9faebb266456681b808b6db10072a052ddf96bc3382b3"
+      "version": "105217850877fcef7a3524919834c62ce8234507c62ce34827c34e3bc1774136",
+      "url": "snapshots/105217850877fcef7a3524919834c62ce8234507c62ce34827c34e3bc1774136/credits.html",
+      "sha256": "984f4d6d767eae8e20147ba552b1616ff31777de27ff7f0c92e5dc246ada8692"
     }
   }
 }

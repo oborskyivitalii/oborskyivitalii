@@ -27,9 +27,12 @@ function plan(mode='screen',available=[],options={}){
     if(available.includes(label))add(group,label,'mobile',options);
     else deferred.push({group,label,reason:'Private controlled rendition is unavailable; no substitute was measured.'});
   };
+  const paired=group=>{
+    for(const profile of ['desktop','mobile'])for(let pair=0;pair<config[profile+'Pairs'];pair++)for(const label of pair%2?['current-color','before-color']:['before-color','current-color'])add(group,label,profile,{pair,boot:config.directBoot});
+  };
   for(const group of groups){
     if(group==='v0'){
-      for(const profile of ['desktop','mobile'])for(let pair=0;pair<config[profile+'Pairs'];pair++)for(const label of pair%2?['current-color','before-color']:['before-color','current-color'])add(group,label,profile,{pair,boot:config.directBoot});
+      paired(group);
     }else if(group==='h1'){
       add(group,'current-color');optional(group,'no-ribbons');
       optional(group,'no-ribbons',{contentFlight:false});add(group,'current-color','mobile',{contentFlight:false});
@@ -266,12 +269,20 @@ function pairedDeltas(rows){
   });
 }
 
-async function main(inputRoot,output,settings={}){
-  fs.mkdirSync(output,{recursive:true});const config=configuration(settings),inputs={};
+function tracePath(output,row){
+  if(process.env.WRITING_DIAGNOSIS_TRACE!=='true'||row.group!=='h2'||!['current-color','no-canvas-draw'].includes(row.label))return null;
+  return path.join(output,'traces',row.id+'-'+row.label+'.json');
+}
+function readInputs(inputRoot){
+  const inputs={};
   for(const label of ['before-color','current-base','current-color','no-ribbons','no-canvas-draw','archive-block','model-prewarm','thematic-off','shared-off','archive-bypass','edge-bypass']){
     const directory=path.join(inputRoot,label),file=path.join(directory,'artifact.json');if(!fs.existsSync(file))continue;
     const manifest=JSON.parse(fs.readFileSync(file)),publicDir=path.join(directory,'public');artifact.verify(publicDir,manifest);inputs[label]={publicDir,manifest};
   }
+  return inputs;
+}
+async function main(inputRoot,output,settings={}){
+  fs.mkdirSync(output,{recursive:true});const config=configuration(settings),inputs=readInputs(inputRoot);
   if(process.env.WRITING_BEFORE_SHA)assert.equal(config.before,process.env.WRITING_BEFORE_SHA,'before configuration differs from checkout');
   validateIdentities(inputs,process.env.SITE_CANDIDATE_SHA,config.before);
   if(config.runtimeEngine)assert.equal(inputs['current-base'].manifest.components.engine,config.runtimeEngine,'current runtime is not the expected visual-fix engine');
@@ -290,7 +301,7 @@ async function main(inputRoot,output,settings={}){
       try{
         const rendition=url+'/'+row.label,profile=profiles[row.profile];
         if(row.boot){row.bootResult=await boot(rendition,profile,row);save();}
-        const traceFile=process.env.WRITING_DIAGNOSIS_TRACE==='true'&&row.group==='h2'&&['current-color','no-canvas-draw'].includes(row.label)?path.join(output,'traces',row.id+'-'+row.label+'.json'):null;
+        const traceFile=tracePath(output,row);
         row.navigation=await flights(rendition,profile,row,traceFile);row.status='collected';
       }catch(error){
         if(error.evidence)row[error.evidenceKind==='boot'?'bootFailure':'navigationFailure']=error.evidence;

@@ -1,7 +1,7 @@
 # PR previews and explicit staging
 
-Owner intent: issues #8 and #13. Existing PR #26 integrates the CI infrastructure
-independently of the unfinished runtime branches #18/#22/#23.
+Owner intent: issues #8 and #13. CI-only PR #26 is merged into protected main;
+the complete current runtime candidate is consolidated in the sole open PR #23.
 
 ## Deployment flow
 
@@ -65,16 +65,17 @@ preflight passed separately. Every full-stage failure remains evidence.
 4. [Protect main](https://github.com/oborskyivitalii/oborskyivitalii/settings/branches)
    with reviewed PRs and basic checks; expensive staging suites are not required
    for every PR update. Staging requires the live API to report `protected: true`.
-5. Integrate the reviewed infrastructure in existing #26. Both command and
-   dispatch definitions must exist on the default branch. The runtime branches
-   are preserved; merging their failed performance experiments is not activation.
+5. Both command and dispatch definitions must exist on the default branch.
+   This is complete: reviewed infrastructure #26 is already merged. Stage the
+   current open runtime PR before merging it; staging resolves an open PR head.
 
-Preview credentials/account/project and the preview opt-in are already proved
-by the successful CI deployment above. The latest observed target settings have
-`SITE_PR_STAGING_ENABLED=false`, and main reports `protected:false`; those owner
-settings must be updated for full staging. The connector cannot read or write
-GitHub environment/secrets/variables administration. A successful deployment
-proves the credential used for that job without exposing its value.
+Preview and staging credentials/account/project, both opt-ins and protected main
+are proved by successful target/build/publish jobs, including full staging run
+37460990802 on 6 October 2026. No additional owner setup is needed. This proves
+configuration and candidate publication, not full acceptance or stable promotion.
+The connector cannot read or write GitHub environment/secrets/variables
+administration. A successful deployment proves the credential used for that job
+without exposing its value.
 
 ## Operation
 
@@ -87,6 +88,11 @@ current Color PR. The agent can post `/stage` through the GitHub connector;
 that comment invokes Actions from main and the agent follows the result. Manual
 alternative: **Actions → Site PR preview and staging → Run workflow → main →
 pr_number**. No direct provider upload is substituted.
+
+Complete staging and stable verification while the PR remains open, then merge
+the tested head. The controller rejects a merged/closed or moved PR; merging
+first does not publish staging. Main updates do not automatically publish
+production GitHub Pages under the current repository workflows.
 
 The PR's single status comment shows the immutable candidate, source and linked
 smoke/full result. Only a complete matching full gate updates stable staging.

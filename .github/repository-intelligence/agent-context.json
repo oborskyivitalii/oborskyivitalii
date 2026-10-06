@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "1c14659df9ff738d25652b69f1b0b28fa920b2aa77c49656afdecc0e5345665d",
+    "digest": "c1f1e42415200e92de8aa6c3c1cd5a43c267c40c285803ad31024fab64d833ae",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -97,7 +97,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "757607b3002b9d7ab8a98785804478fdccb5aa401809e6422d2a045f4456d239"
+        "sha256": "bef41ba1fd256285ec4a030baa980de960f9bb0d3a3d6504986d9cc6720f9c74"
       },
       {
         "path": "BACKLOG.md",
@@ -127,7 +127,7 @@
       {
         "path": "SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "0e4c730ab40bd2aee046d226eeff9bf5dc240ff34226c7119fd4f63c044612d0"
+        "sha256": "d0b122e6c6632ed02768ac9517c8f692e6ed6634a76e101f567fe44a60888a20"
       },
       {
         "path": "SITE-CONTENT-REVIEW.md",
@@ -162,7 +162,7 @@
       {
         "path": "SITE-STAGING.md",
         "identity_mode": "content",
-        "sha256": "eeeca7f74951052e3bd8e37bd2c50e95df4e3767380bf3c9be3970c0ea7e3d82"
+        "sha256": "5a87311f0685c550313db624b29d8f6056bdb4459048f3929fa13f1ecce5bf94"
       },
       {
         "path": "SITE-VISUAL-REVIEW.md",
@@ -223,48 +223,48 @@
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/b8800a2174d9da08aa5f124426863751d7048066fee18045f28574b152e64535/archive.js",
+        "path": "docs/runtime/5a10d22a3b14c296913100d8dfa3d9d128a334c46b4ab5bfb9abd6b512f57ef4/archive.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/b8800a2174d9da08aa5f124426863751d7048066fee18045f28574b152e64535/navigation.js",
+        "path": "docs/runtime/5a10d22a3b14c296913100d8dfa3d9d128a334c46b4ab5bfb9abd6b512f57ef4/navigation.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/b8800a2174d9da08aa5f124426863751d7048066fee18045f28574b152e64535/space.js",
+        "path": "docs/runtime/5a10d22a3b14c296913100d8dfa3d9d128a334c46b4ab5bfb9abd6b512f57ef4/space.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/b8800a2174d9da08aa5f124426863751d7048066fee18045f28574b152e64535/styles.css",
+        "path": "docs/runtime/5a10d22a3b14c296913100d8dfa3d9d128a334c46b4ab5bfb9abd6b512f57ef4/styles.css",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/b8800a2174d9da08aa5f124426863751d7048066fee18045f28574b152e64535/theme.js",
+        "path": "docs/runtime/5a10d22a3b14c296913100d8dfa3d9d128a334c46b4ab5bfb9abd6b512f57ef4/theme.js",
         "identity_mode": "existence"
       },
       {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "f12b8c687c4fb88862517b0ff974961bad7ceb61878bfdd2db853cea0efaff67"
+        "sha256": "b115c23940bdcd7aac239c97822449fccf3aa0b286b9ed66dae67d461b16c07c"
       },
       {
-        "path": "docs/snapshots/2a6d0443255ea7de79741848679814b7088f6d067f907c33c21b13eee5ef3ad2/talks.html",
+        "path": "docs/snapshots/105217850877fcef7a3524919834c62ce8234507c62ce34827c34e3bc1774136/credits.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/5748c3e4de41efe3620a03a58d12f60d9053abbd521f8132a1f425f73080a8c6/research.html",
+        "path": "docs/snapshots/50eb894b23ae14bad0cc92d44ac0be76f78893c3c29b64e4f69a5c0d6923cbb3/index.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/6c1459ece2549ff747498f948a474b4039d2e21db27338fb251eb159fadd7487/writing.html",
+        "path": "docs/snapshots/5df9b41edeeda61082132c750e12c547d7ca1a31ff480aad6a1984821e2d263c/writing.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/6d3cf8a5ea63e32b0af315b8cf04a110064f9352fad755d91e019566d0aa1f09/credits.html",
+        "path": "docs/snapshots/ecb03b20ca60453d8f8e1448ea46f306251595a15cadb022fdc4fc2fccbb2715/talks.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/ef9408d1d24421dd8a56adf434edb807d3a49d4bd703890438316ee9d683c353/index.html",
+        "path": "docs/snapshots/eebd77547baef13a8d04b6c7c053189a9d5719355d4eea489b648f0de77a3821/research.html",
         "identity_mode": "existence"
       },
       {
@@ -2844,7 +2844,7 @@
       {
         "path": "review/site-v1-offline-bundle-v11.json",
         "identity_mode": "content",
-        "sha256": "37f224ec7162f3b37d1ef4dbcfdb96262a29f2406aa9df92cf6a0711c7c48452"
+        "sha256": "fe149d8beebc81fac6de86b59467c173ae6710a93e9f696caa92bf6e5aad7763"
       },
       {
         "path": "review/site-v1-offline-bundle-v3.json",
@@ -2898,7 +2898,7 @@
       {
         "path": "review/site-v1-static-previews-v11.json",
         "identity_mode": "content",
-        "sha256": "01c2df7fd14a66f5b5d5c10d77615c0192f44e245775675092d855a1ad949140"
+        "sha256": "5930be33216802834f4ab7ada5005e2971e7aa213b09cb0c41acce7fd1016af6"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -3176,6 +3176,20 @@
         "path": "review/sol-visual-v8-20261003/EXECUTION.md",
         "identity_mode": "content",
         "sha256": "b7f04d26962ee76e8677205de15d3095b938b0a6645f96d20494bcb5182a3fe7"
+      },
+      {
+        "path": "review/staging-readiness-20261006/REPORT.md",
+        "identity_mode": "content",
+        "sha256": "489fad25ddbd290b5e0de0f28f6151fc005485fca4e4773b399599a6c2ba98c9"
+      },
+      {
+        "path": "review/staging-readiness-20261006/SECRET-TRIAGE.json",
+        "identity_mode": "content",
+        "sha256": "3190f1c3de0aa70c0f59246fee7a0ffd1f5230bd21de915677ccc3c32911122b"
+      },
+      {
+        "path": "review/staging-readiness-20261006/first-static.zip",
+        "identity_mode": "existence"
       },
       {
         "path": "review/writing-diagnosis-20261006/EXECUTION.md",
@@ -3456,7 +3470,7 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "42a64f701abc898b5b9fb0f4442e09e7876ff0a42a34533b7e736cad13e8cd85"
+        "sha256": "6053e065201c1df21e2f0695dab0d1333302b010c6924250d61d06bdf4c7f57d"
       },
       {
         "path": "site/routes.json",
@@ -3510,6 +3524,10 @@
       },
       {
         "path": "tests/flight.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/navigation-fixtures.test.cjs",
         "identity_mode": "existence"
       },
       {
@@ -3762,7 +3780,7 @@
       {
         "path": "tools/quality/secrets-baseline.json",
         "identity_mode": "content",
-        "sha256": "c3522aaab5e6f298de9dc527f12d8f64394b4fb572affa50408478fdaf0348ef"
+        "sha256": "743d4e609e92cc1f410c46e6c13bc237c69bc35ad7975db0e73f3b305e240607"
       },
       {
         "path": "tools/quality/security-rules.yml",
@@ -5655,6 +5673,20 @@
     {
       "path": "review/sol-visual-v8-20261003/EXECUTION.md",
       "title": "v8 execution — living thematic fractals, 2026-10-03",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/staging-readiness-20261006/REPORT.md",
+      "title": "Full staging and merge readiness — 6 October 2026",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/staging-readiness-20261006/SECRET-TRIAGE.json",
+      "title": "review/staging-readiness-20261006/SECRET-TRIAGE.json",
       "instructions": [
         "AGENTS.md"
       ]

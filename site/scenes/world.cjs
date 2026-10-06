@@ -1,7 +1,7 @@
 "use strict";
 // Native function factory; the producer serializes this exact authored function.
 module.exports=function(math) {
-  const {add,sub,dot,cross,normalize,facePlane}=math;
+  const {add,normalize,facePlane,owns}=math;
   // Finite symbol/detail templates are shared by every room. No route models
   // or browser objects live here; the vocabulary bounds this immutable cache.
   const templates=new Map();
@@ -386,7 +386,7 @@ module.exports=function(math) {
       const [symbol,build]=geometry[slot%geometry.length],name=`shared-${root}-${index}`;
       detail=depth?1:0;
       metadata={family:"shared",symbol,...(formulas[symbol]?{formula:formulas[symbol]}:{}),depth,root,rootCenter:roots[root],parent,phase:index*.71+root*1.9};
-      const readable=symbol==='brain'||symbol.includes('chart')||Object.hasOwn(formulas,symbol);
+      const readable=symbol==='brain'||symbol.includes('chart')||owns(formulas,symbol);
       object(name,center,readable?[.12,-.18,.08*Math.sin(index+root)]:[.3,.45,index*.6],scale,root>1?"distant":"middle",build);
       if(depth===2)return;
       for(let j=0;j<2;j++)branch(add(center,[(j?1:-1)*scale*2.6,scale*1.7,-scale*1.4]),scale*.43,depth+1,root,index*2+j+1,name);

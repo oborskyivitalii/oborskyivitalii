@@ -74,9 +74,10 @@ async function archive(page){
   await page.evaluate(()=>window.dispatchEvent(new Event('afterprint')));
   assert.equal(await page.locator('li.publication:visible').count(),0);
   await page.locator('.filter-reset').click();assert.equal(await page.locator('li.publication:visible').count(),27);
-  await page.locator('#archive-topic').selectOption('systems');await page.locator('#archive-language').selectOption('uk');
-  await page.goBack();assert.equal(await page.locator('#archive-language').inputValue(),'all');
-  await page.goForward();assert.equal(await page.locator('#archive-language').inputValue(),'uk');
+  await page.locator('#archive-topic').selectOption('systems');const backURL=await page.evaluate(()=>location.href);await page.locator('#archive-language').selectOption('uk');const forwardURL=await page.evaluate(()=>location.href);
+  const {archiveHistoryReady}=require('./navigation.cjs');
+  await page.goBack();await archiveHistoryReady(page,backURL,{topic:'systems',language:'all'});assert.equal(await page.locator('#archive-language').inputValue(),'all');
+  await page.goForward();await archiveHistoryReady(page,forwardURL,{topic:'systems',language:'uk'});assert.equal(await page.locator('#archive-language').inputValue(),'uk');
 }
 async function ctaStates(page){
   const rows=[],buttons=page.locator('a.button');

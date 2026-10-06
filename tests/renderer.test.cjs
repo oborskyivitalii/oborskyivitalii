@@ -62,3 +62,13 @@ test('tight culling spheres contain actual animated vertices and closed brain no
   if(compact)assertOutwardBrainPlanes(world,m);
  }
 });
+test('all route/detail worlds retain exact geometry when Object.hasOwn is unavailable',()=>{
+  const vm=require('node:vm'),mathFactory=require('../site/engine/math.cjs'),worldFactory=require('../site/scenes/world.cjs');
+  const compatible=vm.runInNewContext('Object.hasOwn=undefined;const math=('+mathFactory.toString()+')();('+worldFactory.toString()+')(math)');
+  const expected=worldFactory(mathFactory());
+  for(const route of ['index','research','writing','talks','credits'])for(const compact of [false,true]){
+    // Serialization also compares all facets, glyphs, normals and formula metadata
+    // without treating separate-realm array prototypes as a geometry difference.
+    assert.equal(JSON.stringify(compatible.worldFor(route,compact)),JSON.stringify(expected.worldFor(route,compact)),route+' compact='+compact);
+  }
+});

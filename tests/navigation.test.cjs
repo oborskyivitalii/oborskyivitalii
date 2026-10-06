@@ -3,7 +3,7 @@ const test=require('node:test'),assert=require('node:assert/strict'),fs=require(
 const source=fs.readFileSync(path.join(__dirname,'../site/engine/navigation.js'),'utf8');
 const section=(name,next)=>{const start=source.indexOf('  function '+name+'('),end=source.indexOf('  function '+next+'(',start);assert.ok(start>=0&&end>start,'missing authored navigation boundary '+name);return source.slice(start,end);};
 const flightSource=section('flight','mount'),interruptSource=section('interrupt','motionAllowed');
-const finishSource=source.match(/  function finishText\(\)\{[^\n]+\}/)[0];
+const finishSource=source.match(/ {2}function finishText\(\)\{[^\n]+\}/)[0];
 function harness(options={}){
   const tasks=new Map(),presented=[],commits=[],probes=[];let timer=0,clock=10,callback=null,route='research',throwCommit=false,clearCount=0,detachCount=0;
   const content={inert:false,style:{},removeAttribute(){}};
