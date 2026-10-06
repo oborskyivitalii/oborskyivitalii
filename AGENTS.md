@@ -24,8 +24,13 @@ use the official deployment action. No plugin upload or ad hoc deploy script.
 
 Read [SITE-STAGING](SITE-STAGING.md) for owner configuration and verified state.
 Use new opt-ins `SITE_PR_PREVIEW_ENABLED` and `SITE_PR_STAGING_ENABLED`; keep legacy
-`SITE_STAGING_ENABLED` absent/false. Disable the old Git project's automatic
-production and preview deployments. Provider/GitHub administrative setup and
+`SITE_STAGING_ENABLED` absent/false. The 09:41 Warsaw provider recheck finds only
+the Direct Upload project; explicit lookup of the old Git project returns not
+found. Do not recreate it or request configuration of an absent project.
+Enable preview after its credentials exist; keep staging false until reviewed
+controller isolation/integration. #26 currently targets #23, so merging it as-is
+cannot activate main. Preserve the runtime stack and adapt the controller and
+its helper/build dependencies within #26. Provider/GitHub administrative setup and
 the new main controller are not yet active. The initial hosted full run failed;
 the corrected source/static preflight succeeded, but is not a full hosted pass.
 Production, DNS, physical-device/independent acceptance and performance limits

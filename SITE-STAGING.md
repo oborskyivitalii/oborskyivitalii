@@ -36,13 +36,13 @@ An untracked stable alias or expired recovery stops promotion for reconciliation
 The first deployment has no earlier accepted stable package to restore. Failed
 candidate/smoke/full/promotion reports remain available with their actual status.
 
-## Active Cloudflare audit
+## Active Cloudflare audit — rechecked 6 October, 09:41 Warsaw
 
 Account: `3b938b72a4ad0ac10b9102e0534e75c0`.
 
 | Existing project | Verified configuration | Required disposition |
 | --- | --- | --- |
-| `oborskyi-site-staging` | GitHub integration, main production + all preview branches automatic; build command/output/root empty. It publishes repository root, which has no site index. | Disable automatic production and preview builds. Preserve its history; no CI points here. |
+| `oborskyi-site-staging` | No longer present in the connected account. Project enumeration returns one Pages project; direct lookup returns `8000007: Project not found`. Its earlier Git settings are historical. | No action. Do not recreate it or follow the earlier disable-build instruction. |
 | `oborskyi-author-ci-staging` | Direct Upload, no Git source, production branch `production-disabled`, no canonical production deployment or injected analytics. Latest actual candidate is Color `0c423b48`, source `eac4654e`. | Reuse for PR and staging aliases. No Git connection, build command, third project, production branch change or DNS change. |
 
 The bare `oborskyi-author-ci-staging.pages.dev` address has no production
@@ -54,17 +54,17 @@ bootstrap evidence, not the new automatic PR alias or accepted stable staging.
 
 ## One-time owner configuration
 
-1. [Cloudflare Workers & Pages](https://dash.cloudflare.com/3b938b72a4ad0ac10b9102e0534e75c0/workers-and-pages)
-   → `oborskyi-site-staging` → **Build → Branch control → Edit**:
-   turn off automatic production deployments; set preview deployments to **None**.
-   Do this first so the old Git path stops publishing alongside Actions. Keep the
-   existing Direct Upload project unchanged.
+1. [Cloudflare Workers & Pages](https://dash.cloudflare.com/3b938b72a4ad0ac10b9102e0534e75c0/workers-and-pages):
+   the surviving `oborskyi-author-ci-staging` project already fits this flow.
+   Keep Direct Upload and `production-disabled`; no project setting, Git connection
+   or second project is required. The earlier `oborskyi-site-staging` is absent.
 2. Cloudflare **My Profile → API Tokens → Create Token → Custom Token**:
    permission **Account → Cloudflare Pages → Edit**, resource restricted to the
    account above. No DNS permission is needed. Store the token only in GitHub
    secrets; never put its value in chat, source, issues or logs. The connected
-   Cloudflare plugin is not a GitHub Actions credential and cannot create this
-   owner's token through its current permission.
+   Cloudflare plugin is not a GitHub Actions credential. Token administration was
+   not exercised in the current audit; create and store this credential through
+   the provider and GitHub dashboards.
 3. [Repository Settings → Environments](https://github.com/oborskyivitalii/oborskyivitalii/settings/environments):
    create `preview` and `staging`. Put environment secret `CLOUDFLARE_API_TOKEN`
    into each. Preview: no wait timer/reviewers and no branch restriction; workflow
@@ -79,20 +79,24 @@ bootstrap evidence, not the new automatic PR alias or accepted stable staging.
    | `CLOUDFLARE_ACCOUNT_ID` | `3b938b72a4ad0ac10b9102e0534e75c0` |
    | `CLOUDFLARE_PAGES_PROJECT` | `oborskyi-author-ci-staging` |
    | `SITE_PR_PREVIEW_ENABLED` | `true` after preview secret/configuration exists |
-   | `SITE_PR_STAGING_ENABLED` | `true` only after the main controller and staging environment are ready |
+   | `SITE_PR_STAGING_ENABLED` | `false` now; enable only after the main controller is integrated and verified |
    | Legacy `SITE_STAGING_ENABLED` | absent or `false`; do not activate the old exact-main publication path |
 
 5. [Settings → Branches / Rules](https://github.com/oborskyivitalii/oborskyivitalii/settings/branches):
    protect `main`, restrict direct writes and require reviewed PRs/basic checks.
    The current main is unprotected; staging explicitly rejects it. Expensive full
    staging jobs should not become mandatory on each PR update.
-6. Integrate the reviewed CI controller/reusable-workflow changes into `main`
-   using existing PR #26. GitHub requires the dispatch definition on the default
-   branch before **Run workflow** appears. Do not merge the unrelated failing
-   #18/#22/#23 runtime stack as an activation shortcut; source integration is a
-   remaining review step, not something credentials accomplish. Keep this work
-   in #26; no extra activation PR. Preview can be exercised in #26 before that
-   integration, after its preview environment/opt-in is configured.
+6. **Agent-owned integration remains, rather than an owner settings step.**
+   Current #26 is Draft and targets #23's branch, not `main`. Merging it as-is
+   would not activate staging. Main lacks the new controller and the reusable
+   workflow inputs/helpers it needs. Isolate and adapt these dependencies within
+   existing #26 before retargeting/review; do not merge the failing #18/#22/#23
+   runtime stack or cherry-pick only the last controller commit. Candidate tooling
+   and Color assumptions also need reconciliation in that isolated change.
+   GitHub requires the dispatch definition on the default branch before **Run
+   workflow** appears. Keep staging off until this integration is completed.
+   Preview can be exercised in current #26 before integration, after its preview
+   environment/opt-in is configured.
 
 ## Operation and verification
 
@@ -104,6 +108,13 @@ are never read back. GitHub's current plugin has no secret/environment/protectio
 administration or workflow dispatch tool; the owner performs those dashboard
 steps and can press Run workflow. The agent never substitutes manual provider
 upload if a dispatch capability is unavailable.
+
+Saving variables/secrets does not trigger a new PR run. For the first preview,
+open **Actions → Site PR preview and staging → latest PR #26 run → Re-run all
+jobs** after configuration. Choose a run whose source is still the latest PR
+head; stale runs are rejected. After activation, subsequent PR commits trigger
+preview automatically. GitHub's current plugin cannot rerun an entire successful
+workflow; this one-time dashboard operation does not involve copying assets.
 
 To stage an accepted PR, request **“Запусти стейджинг для останнього коміту PR #26.”**
 Use **Actions → Site PR preview and staging → Run workflow → Branch main →
@@ -129,6 +140,10 @@ See [the dated execution report](review/color-staging-20261006/REPORT.md).
 The new flow is prepared, with local resolver/gate/recovery/HTTP/comment tests and
 workflow parsing; provider credentials, owner GitHub settings, protected-main
 activation and the first real CI preview/full staging remain to be verified.
+Latest implemented-source CI [37429439856](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37429439856)
+at `53d44b5b` succeeded in 43 seconds: target/build/status-comment passed, while
+publish/smoke/full/promote were skipped. This does not establish hosted preview
+or complete staging. Main `2ebdd731` is still unprotected and lacks the controller.
 Keep #8/#13 open. The 89.2 ms cold Writing result against 80 ms in the runtime
 stack and separate independent/device/recovery acceptance remain unresolved.
 

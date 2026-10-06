@@ -2,6 +2,20 @@
 
 ## Current CI-only flow amendment
 
+Continuation audit, 6 October 09:41 Warsaw: the connected account now lists only
+`oborskyi-author-ci-staging`. Direct lookup of `oborskyi-site-staging` returns
+`8000007: Project not found`; the earlier disable-Git instruction below is
+historical. No Cloudflare changes or uploads were performed in this continuation.
+The surviving project's Direct Upload/production-disabled settings need no change.
+At source `53d44b5b`, CI run `37429439856` succeeds in 43 seconds, but deployment,
+smoke, full checks and promotion are skipped. Main remains unprotected and lacks
+the new controller. #26 targets #23, so it cannot activate main by an ordinary
+merge; isolate/adapt its CI dependencies within #26. Enable preview first, keep
+staging false until that integration is complete. The current runbook also adds
+the one-time full preview rerun after credentials; setting variables alone does
+not trigger CI. Independent read-only pipeline/provider audits confirm these
+boundaries. No new PR or issue is created; #8/#13 remain open.
+
 The maintainer stopped manual deployment and replaces the one-request bootstrap
 with two paths: automatic latest-head PR preview with minimal hosted smoke, then
 explicit PR-number staging dispatch with complete hosted automation. The change

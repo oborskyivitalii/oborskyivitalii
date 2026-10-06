@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "c8608f6a27cdfdd5d20e7e0a397048671756998b40d8c971bee7ca584483ded1",
+    "digest": "c791588bfe0764ee9b488c92a44f419242484be4caca07d538907390a0e9daf1",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -92,7 +92,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "ed9a5575fc772fc3d755af10ebe4a179549b464004558de7dc58adc6cc66b110"
+        "sha256": "f39af0fa84ef5d1c3ccbfb175389cc2ddb2719f9ce1df8d755380cdd78f33a54"
       },
       {
         "path": "BACKLOG.md",
@@ -157,7 +157,7 @@
       {
         "path": "SITE-STAGING.md",
         "identity_mode": "content",
-        "sha256": "580accd4688c2ab7dae8c5cb6c620575404c91ff52ad2f1489074ec159744b97"
+        "sha256": "1393030552190335fb7bac9bbe3ca6c82fd0268d41ab5c36251c6eac9132e50c"
       },
       {
         "path": "SITE-VISUAL-REVIEW.md",
@@ -335,7 +335,7 @@
       {
         "path": "review/color-staging-20261006/REPORT.md",
         "identity_mode": "content",
-        "sha256": "6f14d7288d6865e314a1cb9a3a1dc4d6bf551b3c26dcceae824ee94717be37c5"
+        "sha256": "090d2a6fd18d14d38290772e51c24119effaaeb5c617cab4fd2ad820584e9300"
       },
       {
         "path": "review/color-staging-20261006/evidence/provider.json",
