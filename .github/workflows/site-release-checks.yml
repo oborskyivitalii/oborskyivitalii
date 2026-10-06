@@ -30,6 +30,10 @@ on:
       public_digest:
         type: string
         default: ''
+      public_variant:
+        description: Explicit public rendition; Color is staging-only
+        type: string
+        default: base
       public_upload_digest:
         type: string
         default: ''
@@ -86,6 +90,10 @@ on:
       public_digest:
         type: string
         default: ''
+      public_variant:
+        description: Explicit public rendition; Color is staging-only
+        type: string
+        default: base
       public_upload_digest:
         type: string
         default: ''
@@ -108,6 +116,7 @@ env:
   SITE_TEST_BASE_URL: ${{ inputs.base_url }}
   SITE_TEST_PROFILE: ${{ inputs.profile }}
   SITE_AUTOMATED_ONLY: ${{ inputs.automated_only }}
+  SITE_PUBLIC_VARIANT: ${{ inputs.public_variant }}
   SITE_PUBLIC_DIR: ${{ github.workspace }}/quality-artifact/public
   SITE_ARTIFACT_MANIFEST: ${{ github.workspace }}/quality-artifact/artifact.json
   SITE_REPORT_DIR: ${{ github.workspace }}/quality-reports
@@ -120,6 +129,7 @@ jobs:
       artifact_upload_digest: ${{ inputs.public_upload_digest || steps.upload.outputs.artifact-digest }}
       public_digest: ${{ steps.identity.outputs.digest }}
       artifact_run_id: ${{ inputs.public_run_id || github.run_id }}
+      source_checks: ${{ steps.source_checks.outcome }}
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
@@ -134,8 +144,11 @@ jobs:
         with:
           python-version: 3.12.14
       - name: Validate exact source and regressions
+        id: source_checks
+        continue-on-error: true
         run: |
           node -e "require('node:assert/strict').match(process.env.SITE_CANDIDATE_SHA,/^[0-9a-f]{40}$/)"
+          node -e "const a=require('node:assert/strict'),v=process.env.SITE_PUBLIC_VARIANT;a.ok(['base','color'].includes(v));if(v==='color')a.equal(process.env.SITE_TEST_PROFILE,'staging')"
           test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
           node --test tests/*.test.cjs
           node tools/site/build.cjs --check
@@ -148,6 +161,9 @@ jobs:
       - name: Package public files once and enforce budgets
         if: inputs.public_artifact_id == ''
         run: node tools/quality/artifact.cjs build quality-artifact
+      - name: Build the explicit Color rendition
+        if: inputs.public_artifact_id == '' && inputs.public_variant == 'color'
+        run: node tools/staging/color.cjs quality-artifact
       - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
         if: inputs.public_artifact_id != ''
         with:
@@ -165,6 +181,7 @@ jobs:
           const a=require('node:assert/strict'),m=require('./quality-artifact/artifact.json');
           a.equal(m.sourceCommit,process.env.SITE_CANDIDATE_SHA);a.equal(m.candidateCommit,m.sourceCommit);a.equal(m.sourceDirty,false);
           a.equal(m.sourceTree,require('node:child_process').execFileSync('git',['rev-parse','HEAD^{tree}'],{encoding:'utf8'}).trim());
+          a.equal(m.components.variant?.id||'base',process.env.SITE_PUBLIC_VARIANT,'wrong tested public rendition');
           JS
       - id: identity
         run: node -e "require('node:fs').appendFileSync(process.env.GITHUB_OUTPUT,'digest='+require('./quality-artifact/artifact.json').artifactDigest+'\n')"
@@ -230,13 +247,19 @@ jobs:
           npm ci --prefix tools/quality/toolchain --ignore-scripts
           python -m venv tools/quality/toolchain/venv
           tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check -r tools/quality/toolchain/requirements.txt
-      - name: Check artifact and quality
+      - name: Verify artifact and scanner fixtures
         run: |
           node tools/quality/artifact.cjs verify quality-artifact/public quality-artifact/artifact.json
           node tools/quality/selftest.cjs
-          node tools/quality/scanners.cjs lint
-          node tools/quality/scanners.cjs security
-          node tools/quality/scanners.cjs advisories
+      - name: Lint source
+        if: ${{ !cancelled() }}
+        run: node tools/quality/scanners.cjs lint
+      - name: Security scans
+        if: ${{ !cancelled() }}
+        run: node tools/quality/scanners.cjs security
+      - name: Dependency advisories
+        if: ${{ !cancelled() }}
+        run: node tools/quality/scanners.cjs advisories
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: always()
         with:
@@ -270,6 +293,9 @@ jobs:
           node tools/quality/artifact.cjs verify quality-artifact/public quality-artifact/artifact.json
           node tools/staging/selftest.cjs
           node tools/quality/functional.cjs
+      - name: Assert Color ribbons, spatial flight and real edge scrolling
+        if: inputs.public_variant == 'color' && !cancelled()
+        run: node tools/quality/color-browser.cjs
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: always()
         with:
@@ -418,6 +444,7 @@ jobs:
       SITE_EXPECTED_PUBLIC_DIGEST: ${{ needs.build.outputs.public_digest }}
       SITE_ARTIFACT_ID: ${{ needs.build.outputs.artifact_id }}
       SITE_UPLOAD_DIGEST: ${{ needs.build.outputs.artifact_upload_digest }}
+      SITE_SOURCE_CHECKS_OUTCOME: ${{ needs.build.outputs.source_checks }}
       SITE_EVIDENCE_ARTIFACT_ID: ${{ inputs.evidence_artifact_id }}
       SITE_EVIDENCE_RUN_ID: ${{ inputs.evidence_run_id }}
     steps:

@@ -1,0 +1,90 @@
+name: Color staging review
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  target:
+    if: github.repository == 'oborskyivitalii/oborskyivitalii' && github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'work/color-staging-20261006'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      mode: ${{ steps.target.outputs.mode }}
+      source: ${{ steps.target.outputs.source }}
+      url: ${{ steps.target.outputs.url }}
+      artifact: ${{ steps.target.outputs.artifact }}
+      run: ${{ steps.target.outputs.run }}
+      digest: ${{ steps.target.outputs.digest }}
+      upload: ${{ steps.target.outputs.upload }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - id: target
+        env:
+          REVIEW_SOURCE: ${{ github.event.pull_request.head.sha }}
+        run: |
+          node - <<'JS'
+          const fs=require('node:fs'),a=require('node:assert/strict'),t=require('./review/color-staging-20261006/target.json');
+          a.equal(t.schema,1);a.equal(t.variant,'color');a.ok(['build','test'].includes(t.mode));
+          const values={mode:t.mode,source:t.source||process.env.REVIEW_SOURCE,url:t.url||'',artifact:t.artifact||'',run:t.run||'',digest:t.digest||'',upload:t.upload||''};
+          a.match(values.source,/^[a-f0-9]{40}$/);
+          if(t.mode==='test'){a.match(values.url,/^https:\/\/[a-f0-9]{8}\.oborskyi-author-ci-staging\.pages\.dev$/);for(const key of ['artifact','run'])a.match(String(values[key]),/^[0-9]+$/);a.match(values.digest,/^[a-f0-9]{64}$/);a.match(values.upload,/^sha256:[a-f0-9]{64}$/);}
+          for(const [key,value]of Object.entries(values)){a.ok(!String(value).includes('\n'));fs.appendFileSync(process.env.GITHUB_OUTPUT,key+'='+value+'\n');}
+          JS
+  color-build:
+    needs: target
+    if: needs.target.outputs.mode == 'build'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ needs.target.outputs.source }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - name: Check source and Color package
+        run: |
+          node tools/quality/local.cjs
+          node --test tests/color-build.test.cjs
+          node tools/quality/artifact.cjs build color-artifact
+          node tools/staging/color.cjs color-artifact
+          node tools/quality/artifact.cjs verify color-artifact/public color-artifact/artifact.json
+      - id: public
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: site-public-color-${{ github.run_id }}-${{ github.run_attempt }}
+          path: color-artifact/
+          include-hidden-files: true
+          retention-days: 30
+      - name: Record successful preflight without authorizing stable promotion
+        env:
+          SITE_ARTIFACT_ID: ${{ steps.public.outputs.artifact-id }}
+          SITE_UPLOAD_DIGEST: ${{ steps.public.outputs.artifact-digest }}
+        run: node tools/quality/local.cjs --gate color-artifact
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: site-gate-color-${{ github.run_id }}-${{ github.run_attempt }}
+          path: color-artifact/gate/
+          retention-days: 30
+  full:
+    needs: target
+    if: needs.target.outputs.mode == 'test'
+    uses: ./.github/workflows/site-release-checks.yml
+    with:
+      candidate_sha: ${{ needs.target.outputs.source }}
+      full: true
+      profile: staging
+      automated_only: true
+      public_variant: color
+      base_url: ${{ needs.target.outputs.url }}
+      public_artifact_id: ${{ needs.target.outputs.artifact }}
+      public_run_id: ${{ needs.target.outputs.run }}
+      public_digest: ${{ needs.target.outputs.digest }}
+      public_upload_digest: ${{ needs.target.outputs.upload }}

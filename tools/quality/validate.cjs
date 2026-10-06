@@ -186,7 +186,8 @@ function releaseReports(reports,m,releaseEvidence,automatedOnly=false){
   for(const key of ['independentReview','iosSafari','androidChrome'])assert.ok(releaseEvidence[key]?.pass===true&&releaseEvidence[key].reviewer&&releaseEvidence[key].record,'pending '+key);
   for(const key of ['iosSafari','androidChrome'])assert.ok(releaseEvidence[key].device&&releaseEvidence[key].os&&releaseEvidence[key].browser,'incomplete physical device record');
 }
-function aggregate({manifest:m,sizes,reports,jobs,full=false,releaseEvidence,hostedURL=null,profile=null,automatedOnly=false}){
+function aggregate({manifest:m,sizes,reports,jobs,full=false,releaseEvidence,hostedURL=null,profile=null,automatedOnly=false,sourceChecks=null}){
+  if(sourceChecks!==null)assert.equal(sourceChecks,'success','source regressions failed or did not run');
   assert.equal(m.schema,1);assert.equal(m.sourceDirty,false,'dirty public sources');assert.match(m.sourceCommit,/^[0-9a-f]{40}$/);assert.match(m.sourceTree,/^[0-9a-f]{40}$/);assert.match(m.artifactDigest,/^[0-9a-f]{64}$/);assert.equal(m.candidateCommit,m.sourceCommit,'candidate/source mismatch');
   assert.equal(sizes.artifactDigest,m.artifactDigest);assert.equal(sizes.pass,true);assert.equal(sizes.rows.length,budgets.routes.length);
   for(const route of budgets.routes){const row=sizes.rows.find(x=>x.route===route);assert.ok(row);assert.ok(row.raw<=budgets.htmlRawBytes&&row.svgNodes<=budgets.svgElements&&row.totalGzipBytes<=budgets.routeGzipBytes);}
@@ -197,6 +198,7 @@ function aggregate({manifest:m,sizes,reports,jobs,full=false,releaseEvidence,hos
   for(const kind of ['lint','security','advisories']){const rows=reports.filter(x=>x.kind===kind);assert.equal(rows.length,1,`missing/duplicate ${kind}`);scanner(rows[0]);}
   const functionalReports=reports.filter(x=>x.kind==='functional');unique(functionalReports,x=>x.environment.platform);
   const linux=functionalReports.find(x=>x.environment.platform==='linux');assert.ok(linux,'missing Linux engines');functional(linux,'linux',['chromium','firefox','webkit'],false);
+  if(m.variant?.id==='color')colorReports(reports,m);
   if(automatedOnly)assert.ok(full&&hostedURL,'automated hosted checks cannot replace release acceptance');
   if(hostedURL){
     assert.equal(full,true,'hosted profiles require the full automated suite');
@@ -211,10 +213,20 @@ function aggregate({manifest:m,sizes,reports,jobs,full=false,releaseEvidence,hos
   if(full)releaseReports(reports,m,releaseEvidence,automatedOnly);
   return {schema:1,kind:automatedOnly?'hosted-gate':full?'release-manifest':'pr-gate',profile:profile||'release',pass:true,...m,jobs,checkedReports:reports.map(x=>({kind:x.kind,platform:x.environment?.platform})),checkedAt:new Date().toISOString(),hostedOrigin:hostedURL||'pending #8',deploymentAuthorized:false};
 }
+function colorReports(reports,m){
+  const found=reports.filter(r=>r.kind==='color-functional');assert.equal(found.length,1,'missing/duplicate Color feature matrix');const r=found[0];
+  assert.equal(r.variant.fingerprint,m.variant.fingerprint);assert.equal(r.rows.length,12);unique(r.rows,x=>`${x.engine}/${x.width}/${x.theme}`);
+  for(const engine of ['chromium','firefox','webkit'])for(const width of [1440,390])for(const theme of ['light','dark']){
+    const row=r.rows.find(x=>x.engine===engine&&x.width===width&&x.theme===theme);assert.ok(row);assert.equal(row.pass,true,row.error);
+    assert.equal(row.identity.id,'color');assert.equal(row.identity.engine,m.variant.fingerprint);assert.equal(row.ribbons.count,'3');assert.ok(row.ribbons.faces>0);
+    for(const key of ['spatialFlight','forwardEdge','reverseNativeBottom','disabledEdge','creditsBoundary','homeBoundary'])assert.equal(row.checks[key],true,'missing Color '+key);
+    assert.ok(row.flight.some(x=>x.plane.flightStage==='depart'&&Number(x.plane.flightDepth)>0));assert.ok(row.flight.some(x=>x.plane.flightStage==='arrive'&&Number(x.plane.flightDepth)<0));
+  }
+}
 function files(dir){return fs.readdirSync(dir).flatMap(name=>{const p=path.join(dir,name);return fs.statSync(p).isDirectory()?files(p):[p];});}
 function readEvidence(evidenceFiles,full=false){
   const read=p=>JSON.parse(fs.readFileSync(p)),suffix=path.join('site-v1-20261004-v11-captures','captures.json');
-  const reports=evidenceFiles.filter(x=>/\/(lint|security|advisories|functional|lighthouse|motion|captures|hosted)\.json$/.test(x.split(path.sep).join('/'))&&!x.endsWith(suffix)).map(read);
+  const reports=evidenceFiles.filter(x=>/\/(lint|security|advisories|functional|color-functional|lighthouse|motion|captures|hosted)\.json$/.test(x.split(path.sep).join('/'))&&!x.endsWith(suffix)).map(read);
   if(full){
     const file=evidenceFiles.find(x=>x.endsWith(suffix));assert.ok(file,'missing capture byte record');const actual=read(file),claimed=reports.find(x=>x.kind==='captures');assert.deepEqual(actual.files,claimed?.files);
     for(const [name,hash]of Object.entries(actual.files)){assert.equal(path.basename(name),name);assert.match(hash,/^[0-9a-f]{64}$/);assert.equal(require('./artifact.cjs').digest(fs.readFileSync(path.join(path.dirname(file),name))),hash,'capture bytes differ');}
@@ -232,7 +244,7 @@ function main(){
   const evidenceFiles=files(path.join(dir,'reports'));
   const reports=readEvidence(evidenceFiles,full);
   const evidence=process.env.SITE_RELEASE_EVIDENCE?read(process.env.SITE_RELEASE_EVIDENCE):undefined;
-  const result=aggregate({manifest:m,sizes,reports,jobs:JSON.parse(process.env.SITE_JOB_RESULTS||'{}'),full,releaseEvidence:evidence,hostedURL:process.env.SITE_TEST_BASE_URL||null,profile:process.env.SITE_TEST_PROFILE||null,automatedOnly:process.env.SITE_AUTOMATED_ONLY==='true'});
+  const result=aggregate({manifest:m,sizes,reports,jobs:JSON.parse(process.env.SITE_JOB_RESULTS||'{}'),full,releaseEvidence:evidence,hostedURL:process.env.SITE_TEST_BASE_URL||null,profile:process.env.SITE_TEST_PROFILE||null,automatedOnly:process.env.SITE_AUTOMATED_ONLY==='true',sourceChecks:process.env.SITE_SOURCE_CHECKS_OUTCOME??null});
   result.githubArtifact={id:process.env.SITE_ARTIFACT_ID||null,uploadDigest:process.env.SITE_UPLOAD_DIGEST||null};
   result.externalEvidence={artifactId:process.env.SITE_EVIDENCE_ARTIFACT_ID||null,runId:process.env.SITE_EVIDENCE_RUN_ID||null};
   fs.writeFileSync(path.join(dir,'release-manifest.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));

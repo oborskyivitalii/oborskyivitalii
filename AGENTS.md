@@ -1,5 +1,25 @@
 # Agent guidance for personal publications
 
+## Color staging correction and full hosted tests — 2026-10-06
+
+The maintainer explicitly requests updating staging to the current Color edition
+and running the complete hosted tests. The earlier preview deployed base; its
+passed smoke did not establish ribbons, edge continuation or spatial text flight.
+Use the latest Color source in Draft #23 without merging its performance failures
+into #18/main. `tools/staging/color.cjs` packages the authored ribbons/travel
+effects into the native five-route artifact with a distinct variant/fingerprint.
+Production generation stays base. Require the actual Color identity, all requested
+effects and the same served hashes in tests; retain every failure and missing job.
+
+`site-color-review.yml` is a one-request, same-repository PR review path scoped to
+`work/color-staging-20261006`. It first uploads a checked Color artifact, then the
+recorded immutable URL/artifact IDs drive the existing full staging profile with
+Linux three engines, Windows/macOS, security/advisories, accessibility/failures,
+Lighthouse, CPU/soak and captures. It has no provider secret, stable promotion,
+GitHub administration or production job. Device/independent acceptance stays
+separate. Read `review/color-staging-20261006/REPORT.md` and `target.json`; a
+prepared or queued run is not a successful full profile.
+
 ## Live staging and current authorization — 2026-10-05
 
 The maintainer explicitly authorizes Cloudflare staging provisioning, uploads and

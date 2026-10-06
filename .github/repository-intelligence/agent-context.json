@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "c98cba981de1858c51acb446d7728ba967fb2ef934e081ef6a6b91aa647365f4",
+    "digest": "ed3cd2a24c5627bf4106113dd2f778985d0fcf36cc85b24f6a075bbbd05d6ede",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -61,6 +61,11 @@
         "sha256": "9f2a2bd1495a03e9d67b27981a744cec6f4788f61f3c137d8496f95735076e58"
       },
       {
+        "path": ".github/workflows/site-color-review.yml",
+        "identity_mode": "content",
+        "sha256": "77c6a86cfc67af0dc07c235d6aaa84b1ef281c8b4eac2b9f26c6f7f3bf146a3a"
+      },
+      {
         "path": ".github/workflows/site-navigation-probe.yml",
         "identity_mode": "content",
         "sha256": "ba70e04ac9e1258017a62c9416fca0405d58294d174020e5cb1fe6ad75fa6702"
@@ -68,7 +73,7 @@
       {
         "path": ".github/workflows/site-release-checks.yml",
         "identity_mode": "content",
-        "sha256": "e7999f1bc15cbfa559bb3a9f5b61e0e463958b9708f86135e6f3caf16246830b"
+        "sha256": "da1f8051b87e3b4a9c0e298cbc7ce870d0dae8cee095582f951ef4432746207b"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
@@ -87,7 +92,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "db1e06ba76f1ff48337bf86aa8f9ddc9001f9451d24d60d51f42377dc181d297"
+        "sha256": "4e854d8719cf5bd2dbc6ef8ced38d9dc43a9c0bb2fc93e05aa0097988f65621a"
       },
       {
         "path": "BACKLOG.md",
@@ -326,6 +331,16 @@
         "path": "review/cloudflare-staging-20261005/evidence/staging-package.json",
         "identity_mode": "content",
         "sha256": "d8cf9a28f38fae737ec0ccd7c50d285ae9555741de8dae02f58c05f0b831fbb0"
+      },
+      {
+        "path": "review/color-staging-20261006/REPORT.md",
+        "identity_mode": "content",
+        "sha256": "b191660a115c246dfe0f99732496bef3d60dabf2ab640ffd008336e4fd95df50"
+      },
+      {
+        "path": "review/color-staging-20261006/target.json",
+        "identity_mode": "content",
+        "sha256": "0c4e6790faebe66d263e486f7043d8c0eb86e85911ac57e561bfa237fcbe4650"
       },
       {
         "path": "review/seo-20261002/COLLECTION-MANIFEST.json",
@@ -731,10 +746,6 @@
         "identity_mode": "existence"
       },
       {
-        "path": "review/site-followup-20261005/assets/page-contact.jpg",
-        "identity_mode": "existence"
-      },
-      {
         "path": "review/site-followup-20261005/assets/scatter-chart.svg",
         "identity_mode": "existence"
       },
@@ -755,10 +766,6 @@
         "path": "review/site-followup-20261005/evidence/local.json",
         "identity_mode": "content",
         "sha256": "5fda30b5705560432697bfadacfb21127aeb301e40d41afb3748648887e5cab0"
-      },
-      {
-        "path": "review/site-followup-20261005/evidence/primitive-pairs.json.gz",
-        "identity_mode": "existence"
       },
       {
         "path": "review/site-followup-20261005/evidence/primitive-performance-summary.json",
@@ -983,97 +990,9 @@
         "identity_mode": "existence"
       },
       {
-        "path": "review/site-sol-continuation-20261005/captures/contact-sheet.jpg",
-        "identity_mode": "existence"
-      },
-      {
-        "path": "review/site-sol-continuation-20261005/captures/credits-dark-1440.jpg",
-        "identity_mode": "existence"
-      },
-      {
-        "path": "review/site-sol-continuation-20261005/captures/credits-dark-390.jpg",
-        "identity_mode": "existence"
-      },
-      {
-        "path": "review/site-sol-continuation-20261005/captures/credits-light-1440.jpg",
-        "identity_mode": "existence"
-      },
-      {
-        "path": "review/site-sol-continuation-20261005/captures/credits-light-390.jpg",
-        "identity_mode": "existence"
-      },
-      {
-        "path": "review/site-sol-continuation-20261005/captures/index-dark-1440.jpg",
-        "identity_mode": "existence"
-      },
-      {
-        "path": "review/site-sol-continuation-20261005/captures/index-dark-390.jpg",
-        "identity_mode": "existence"
-      },
-      {
-        "path": "review/site-sol-continuation-20261005/captures/index-light-1440.jpg",
-        "identity_mode": "existence"
-      },
-      {
-        "path": "review/site-sol-continuation-20261005/captures/index-light-390.jpg",
-        "identity_mode": "existence"
-      },
-      {
-        "path": "review/site-sol-continuation-20261005/captures/primitive-atlas.png",
-        "identity_mode": "existence"
-      },
-      {
-        "path": "review/site-sol-continuation-20261005/captures/research-dark-1440.jpg",
-        "identity_mode": "existence"
-      },
-      {
-        "path": "review/site-sol-continuation-20261005/captures/research-dark-390.jpg",
-        "identity_mode": "existence"
-      },
-      {
-        "path": "review/site-sol-continuation-20261005/captures/research-light-1440.jpg",
-        "identity_mode": "existence"
-      },
-      {
-        "path": "review/site-sol-continuation-20261005/captures/research-light-390.jpg",
-        "identity_mode": "existence"
-      },
-      {
-        "path": "review/site-sol-continuation-20261005/captures/talks-dark-1440.jpg",
-        "identity_mode": "existence"
-      },
-      {
-        "path": "review/site-sol-continuation-20261005/captures/talks-dark-390.jpg",
-        "identity_mode": "existence"
-      },
-      {
-        "path": "review/site-sol-continuation-20261005/captures/talks-light-1440.jpg",
-        "identity_mode": "existence"
-      },
-      {
-        "path": "review/site-sol-continuation-20261005/captures/talks-light-390.jpg",
-        "identity_mode": "existence"
-      },
-      {
         "path": "review/site-sol-continuation-20261005/captures/views.json",
         "identity_mode": "content",
         "sha256": "aa26cae8a805e7062f625bd89342b89b764313967ba9b4e02e5769d037b0d65a"
-      },
-      {
-        "path": "review/site-sol-continuation-20261005/captures/writing-dark-1440.jpg",
-        "identity_mode": "existence"
-      },
-      {
-        "path": "review/site-sol-continuation-20261005/captures/writing-dark-390.jpg",
-        "identity_mode": "existence"
-      },
-      {
-        "path": "review/site-sol-continuation-20261005/captures/writing-light-1440.jpg",
-        "identity_mode": "existence"
-      },
-      {
-        "path": "review/site-sol-continuation-20261005/captures/writing-light-390.jpg",
-        "identity_mode": "existence"
       },
       {
         "path": "review/site-sol-continuation-20261005/check-endpoint-failures.cjs",
@@ -1131,10 +1050,6 @@
         "sha256": "c87bd224a41e860509472e10fc2d8afd50cd8317a73a5e4f337885886624be5b"
       },
       {
-        "path": "review/site-sol-continuation-20261005/evidence/final-pairs.json.gz",
-        "identity_mode": "existence"
-      },
-      {
         "path": "review/site-sol-continuation-20261005/evidence/final-stages.json",
         "identity_mode": "content",
         "sha256": "c33e9490f52510c7353c9afebc72df3f073baf6bdf04a821778450d5e78fb133"
@@ -1153,14 +1068,6 @@
         "path": "review/site-sol-continuation-20261005/evidence/p1-failures.json",
         "identity_mode": "content",
         "sha256": "d1ad41c5856ae0ff2b5ca4d2b5e357e3b3954a1b5ce4a0060175c66d4ebe784f"
-      },
-      {
-        "path": "review/site-sol-continuation-20261005/evidence/p1-fallback-pairs.json.gz",
-        "identity_mode": "existence"
-      },
-      {
-        "path": "review/site-sol-continuation-20261005/evidence/p1-pairs.json.gz",
-        "identity_mode": "existence"
       },
       {
         "path": "review/site-sol-continuation-20261005/evidence/p1-reverse.json",
@@ -1231,18 +1138,6 @@
         "path": "review/site-sol-continuation-20261005/evidence/stages-native-current.json",
         "identity_mode": "content",
         "sha256": "13633caf00e8f44dadfb9dbd57f85c5c427c7a89a5b73589b655cc836781f7ee"
-      },
-      {
-        "path": "review/site-sol-continuation-20261005/evidence/tight-pairs.json.gz",
-        "identity_mode": "existence"
-      },
-      {
-        "path": "review/site-sol-continuation-20261005/evidence/v1-pairs.json.gz",
-        "identity_mode": "existence"
-      },
-      {
-        "path": "review/site-sol-continuation-20261005/evidence/weighted-pairs.json.gz",
-        "identity_mode": "existence"
       },
       {
         "path": "review/site-sol-continuation-20261005/evidence/weighted-summary.json",
@@ -3352,6 +3247,10 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tests/color-build.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tests/content.test.cjs",
         "identity_mode": "existence"
       },
@@ -3483,6 +3382,10 @@
         "path": "tools/quality/budgets.json",
         "identity_mode": "content",
         "sha256": "ce7c3a7e8bc70eaeb29d4e72f8c96e36a5aac563badfa8955d5bdd430d8ef567"
+      },
+      {
+        "path": "tools/quality/color-browser.cjs",
+        "identity_mode": "existence"
       },
       {
         "path": "tools/quality/common.cjs",
@@ -3643,6 +3546,10 @@
       },
       {
         "path": "tools/site/variants.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/staging/color.cjs",
         "identity_mode": "existence"
       },
       {
@@ -3904,6 +3811,13 @@
       ]
     },
     {
+      "path": ".github/workflows/site-color-review.yml",
+      "title": ".github/workflows/site-color-review.yml",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": ".github/workflows/site-navigation-probe.yml",
       "title": ".github/workflows/site-navigation-probe.yml",
       "instructions": [
@@ -4088,6 +4002,20 @@
     {
       "path": "review/cloudflare-staging-20261005/evidence/staging-package.json",
       "title": "review/cloudflare-staging-20261005/evidence/staging-package.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/color-staging-20261006/REPORT.md",
+      "title": "Color staging correction — 6 October 2026",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/color-staging-20261006/target.json",
+      "title": "review/color-staging-20261006/target.json",
       "instructions": [
         "AGENTS.md"
       ]

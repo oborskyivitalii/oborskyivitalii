@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "mode": "build",
+  "variant": "color",
+  "scope": "Maintainer-requested immutable staging review; no stable promotion or production release."
+}
