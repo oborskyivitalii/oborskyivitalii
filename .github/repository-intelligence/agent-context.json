@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "9412c320aff3963d3530c6da8adf3ac710045667e568f10fbefb05fed48cb22f",
+    "digest": "539800a6dc283b0a8d531d08e58e59a68188e1defab0548cbeba1e7c14d9eb3c",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -223,48 +223,48 @@
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/16b3125e74bed9b7d9022e49d25481af5cd342ad403d81f8d59563c414759470/archive.js",
+        "path": "docs/runtime/4bc2918d0d25065e14f2ea57d526a9f065ed9d00bce79a49bc03b556014a8cc8/archive.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/16b3125e74bed9b7d9022e49d25481af5cd342ad403d81f8d59563c414759470/navigation.js",
+        "path": "docs/runtime/4bc2918d0d25065e14f2ea57d526a9f065ed9d00bce79a49bc03b556014a8cc8/navigation.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/16b3125e74bed9b7d9022e49d25481af5cd342ad403d81f8d59563c414759470/space.js",
+        "path": "docs/runtime/4bc2918d0d25065e14f2ea57d526a9f065ed9d00bce79a49bc03b556014a8cc8/space.js",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/16b3125e74bed9b7d9022e49d25481af5cd342ad403d81f8d59563c414759470/styles.css",
+        "path": "docs/runtime/4bc2918d0d25065e14f2ea57d526a9f065ed9d00bce79a49bc03b556014a8cc8/styles.css",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/runtime/16b3125e74bed9b7d9022e49d25481af5cd342ad403d81f8d59563c414759470/theme.js",
+        "path": "docs/runtime/4bc2918d0d25065e14f2ea57d526a9f065ed9d00bce79a49bc03b556014a8cc8/theme.js",
         "identity_mode": "existence"
       },
       {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "a07b212ae8b692ac8888ad7ccd411a2784ee1b74d56c956a1dfedc20a22ff08d"
+        "sha256": "8f236135e13e32436c036f666004e0a39ff74e5047cd993854133940426dbbac"
       },
       {
-        "path": "docs/snapshots/12ba807789c82179bdd4fc8177c9a2a30c7bbc34c58420e54a7d40ac228db30b/research.html",
+        "path": "docs/snapshots/10254d63f193adea95be78cd27bc91c0af941282d92a3773eefb701775e55b1e/research.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/5cfb8142ca2bf9a6ff1746a40fb1e3828a782226789db83814edffbf7aa857ec/writing.html",
+        "path": "docs/snapshots/2fa1f774d551bf13fcf99afcf755327093d7fbcd0f4ebf593401e5778f7068fe/credits.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/6d137ddaa79d2adf7ec47f9eb543a26545e64ae8a37eb32a245a56e7ab33518d/talks.html",
+        "path": "docs/snapshots/34f6d10cd2f4f0cda298d7b2ff971382c1d69578c0a30d17241a58828bdd840e/talks.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/80846befd16dbf4d0045e4a38fa628a463b9d6a7c67030f820ae2dff0107558a/credits.html",
+        "path": "docs/snapshots/9075f6271308549d406a332eb88cd1066a352c4bcd4d4650e278d9b13cb89425/writing.html",
         "identity_mode": "existence"
       },
       {
-        "path": "docs/snapshots/c57b6de3f17ea80bfdccc30c66f33913d345010925fe0681870c0e9ad38c5f28/index.html",
+        "path": "docs/snapshots/e86d8e19a5901d5a58c406bd1877dd411ae28157bda1e92b90a16300acf395e6/index.html",
         "identity_mode": "existence"
       },
       {
@@ -2903,7 +2903,7 @@
       {
         "path": "review/site-v1-static-previews-v11.json",
         "identity_mode": "content",
-        "sha256": "97c26952a7ab4572b3c871ad46a165e38b6e0032d08321ce76b6e86c40fe406f"
+        "sha256": "141e085052573718329e12f1090df172c7f08911b275bc39951dc7d3db125d1f"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -3475,7 +3475,7 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "2b6f97cc565d3a3ab48318c613df888384051f57f31c30f2f931d2c66983b7c5"
+        "sha256": "058aa19c7e568296f6136c8be6f566bae2cb7dd031b638bacab3f6ad48a16362"
       },
       {
         "path": "site/routes.json",

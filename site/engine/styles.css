@@ -97,7 +97,6 @@ body[data-page="writing"] .space-scene canvas,body[data-page="credits"] .space-s
 .about-grid>div,.contact-grid>div {padding:18px 22px}
 .credits-page>p {padding:14px 18px;margin-inline:-18px}
 .section-nav,.topic-nav {padding-inline:14px}
-.section-nav {width:fit-content;max-width:100%}
 /* Menus and controls need protection only behind their own text. */
 .archive-landings>.topic-landing,.archive-filters>label,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a {--surface-gutter:10px}
 /* A short column must not inherit the height of its taller neighbour. */
