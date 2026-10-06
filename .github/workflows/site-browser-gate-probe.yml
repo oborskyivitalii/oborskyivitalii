@@ -1,0 +1,66 @@
+name: Browser gate causal diagnostic
+# Temporary dated #23 trigger. Remove it after the bounded causal screen;
+# normal PR updates retain only fast checks and hosted preview smoke.
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - '.github/workflows/site-browser-gate-probe.yml'
+      - 'tools/quality/browser-gate-*.cjs'
+      - 'review/staging-readiness-20261006/browser-gate-run.json'
+  workflow_dispatch:
+    inputs:
+      candidate_sha:
+        description: Exact source commit for the private causal diagnostic
+        required: true
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: browser-gate-probe-${{ github.event.pull_request.number || inputs.candidate_sha }}
+  cancel-in-progress: true
+jobs:
+  diagnose:
+    if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.number == 23 && github.event.pull_request.head.repo.full_name == github.repository)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    env:
+      SITE_CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: '24.19.0'
+      - name: Verify helpers and build exact private Color inputs
+        run: |
+          test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
+          node --test tests/browser-gate-trace.test.cjs tests/browser-gate-variants.test.cjs tests/browser-gate-diagnostics.test.cjs tests/functional-fixtures.test.cjs tests/endpoint-fixtures.test.cjs
+          node tools/quality/artifact.cjs build "$RUNNER_TEMP/browser-gate-input/color"
+          node tools/staging/color.cjs "$RUNNER_TEMP/browser-gate-input/color"
+          node - <<'JS'
+          const root=process.env.RUNNER_TEMP+'/browser-gate-input';
+          const {derive}=require('./tools/quality/writing-variants.cjs');
+          derive(root+'/color',root+'/control','browser-gate-trace');
+          derive(root+'/color',root+'/adaptive','browser-gate-adaptive-ribbons');
+          JS
+      - name: Install the locked three browser engines
+        run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium firefox webkit
+      - name: Retain bounded startup and balanced Writing observations
+        run: >-
+          node tools/quality/browser-gate-diagnostics.cjs
+          --control "$RUNNER_TEMP/browser-gate-input/control"
+          --adaptive "$RUNNER_TEMP/browser-gate-input/adaptive"
+          --output "$RUNNER_TEMP/browser-gate-results"
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: browser-gate-diagnostic-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/browser-gate-results/
+          if-no-files-found: error
+          retention-days: 90

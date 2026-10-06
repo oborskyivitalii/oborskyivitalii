@@ -21,7 +21,7 @@ async function state(page){return page.evaluate(()=>{
   const scene=document.querySelector('.space-scene'),motion=document.querySelector('#space-motion');
   const overflow=document.documentElement.scrollWidth>innerWidth+1;
   const overflowing=overflow?[...document.querySelectorAll('body *')].filter(el=>!el.closest('.space-scene')&&el.getClientRects().length).map(el=>{const r=el.getBoundingClientRect();return {tag:el.tagName,id:el.id,class:el.className,left:r.left,right:r.right,text:el.textContent?.trim().slice(0,70)};}).filter(r=>r.left< -1||r.right>innerWidth+1).slice(0,30):[];
-  return {ready:scene.dataset.ready==='true',phase:scene.dataset.phase,camera:scene.dataset.camera,quality:scene.dataset.quality,scrollY,scrollRange:document.documentElement.scrollHeight-innerHeight,fallback:getComputedStyle(document.querySelector('.space-fallback')).visibility!=='hidden',motion:{hidden:motion.hidden,disabled:motion.disabled,label:motion.textContent},overflow,overflowing,activeElement:{tag:document.activeElement.tagName,id:document.activeElement.id,class:document.activeElement.className},h1:document.querySelectorAll('h1').length,paints:window.__quality?.paints||0,callbacks:window.__quality?.callbacks||0,visibility:{hidden:document.hidden,state:document.visibilityState,focus:document.hasFocus(),readyState:document.readyState},forwardResponse:window.__forwardCameraResponse||null,cameraSettling:window.__engineCameraSettling||null,scrollMotionPrecondition:window.__scrollMotionPrecondition||null};
+  return {ready:scene.dataset.ready==='true',phase:scene.dataset.phase,camera:scene.dataset.camera,quality:scene.dataset.quality,scrollY,scrollRange:document.documentElement.scrollHeight-innerHeight,fallback:getComputedStyle(document.querySelector('.space-fallback')).visibility!=='hidden',motion:{hidden:motion.hidden,disabled:motion.disabled,label:motion.textContent},overflow,overflowing,activeElement:{tag:document.activeElement.tagName,id:document.activeElement.id,class:document.activeElement.className},h1:document.querySelectorAll('h1').length,paints:window.__quality?.paints||0,callbacks:window.__quality?.callbacks||0,visibility:{hidden:document.hidden,state:document.visibilityState,focus:document.hasFocus(),readyState:document.readyState},forwardResponse:window.__forwardCameraResponse||null,cameraSettling:window.__engineCameraSettling||null,scrollMotionPrecondition:window.__scrollMotionPrecondition||null,nextPaint:window.__nextPaintObserver||null,browserGateTrace:window.__browserGateTrace?.snapshot?.()||null};
 });}
 async function navigateDocument(page,url,release){
   // Attach both outcomes immediately: an early CSS assertion must not leave a
@@ -49,6 +49,19 @@ async function forwardCamera(page,baseline,travel){
   await page.evaluate(({baseline,travel})=>window.__forwardCameraResponse={baseline,travel,start:performance.now(),timeoutMs:2000,status:'waiting',samples:[]},{baseline,travel});
   try{await page.waitForFunction(forwardCameraResponded,{baseline,target:travel.target},{polling:50,timeout:2000});}
   catch(error){await page.evaluate(reason=>{window.__forwardCameraResponse.status='failed';window.__forwardCameraResponse.error=reason;},error.message).catch(()=>{});throw error;}
+  return state(page);
+}
+function nextPaintSample(before){
+  const scene=document.querySelector('.space-scene'),probe=window.__nextPaintObserver;
+  const sample={time:performance.now()-probe.start,y:scrollY,paints:window.__quality?.paints,callbacks:window.__quality?.callbacks,phase:scene.dataset.phase,camera:scene.dataset.camera,ready:scene.dataset.ready==='true',quality:scene.dataset.quality,motion:document.querySelector('#space-motion').textContent,hidden:document.hidden,visibility:document.visibilityState,focus:document.hasFocus()};
+  probe.samples.push(sample);probe.elapsedMs=sample.time;
+  if(!(sample.paints>before.paints))return false;
+  probe.status='painted';return true;
+}
+async function nextPaintReady(page,before){
+  await page.evaluate(before=>window.__nextPaintObserver={baseline:before,start:performance.now(),timeoutMs:1500,status:'sampling',samples:[]},before);
+  try{await page.waitForFunction(nextPaintSample,before,{polling:50,timeout:1500});}
+  catch(error){await page.evaluate(reason=>{window.__nextPaintObserver.status='failed';window.__nextPaintObserver.error=reason;},error.message).catch(()=>{});throw error;}
   return state(page);
 }
 async function settled(page){await page.waitForTimeout(180);return state(page);}
@@ -126,15 +139,18 @@ async function ctaStates(page){
   }
   return rows;
 }
-async function normal(page,scenario){
+async function normalStartup(page){
   const startup=await foregroundReady(page);
   const a=await settled(page),probeStart=Date.now();readable(a);assert.equal(a.ready,true);
   // A cold engine can miss one short sampling window. Require a real next paint,
   // using bounded timer polling that does not add RAFs to the measured renderer.
-  await page.waitForFunction(before=>window.__quality.paints>before,a.paints,{polling:50,timeout:1500});
-  const b=await state(page),probeElapsedMs=Date.now()-probeStart;
+  const b=await nextPaintReady(page,a),probeElapsedMs=Date.now()-probeStart;
   assert.ok(b.paints>a.paints,'positive ambient paint probe');
   assert.notEqual(b.phase,a.phase);assert.equal(b.camera,a.camera);
+  return {positiveProbe:true,startup,a,b,probe:{elapsedMs:probeElapsedMs,paints:b.paints-a.paints}};
+}
+async function normal(page,scenario){
+  const {startup,a,probe}=await normalStartup(page);
   // Safari's default macOS navigation uses Option-Tab for links.
   const keyboardShortcut=process.platform==='darwin'&&scenario.engine==='webkit'?'Alt+Tab':'Tab';
   await page.keyboard.press(keyboardShortcut);assert.equal(await page.evaluate(()=>document.activeElement.className),'skip-link','skip-link focus');
@@ -168,7 +184,7 @@ async function normal(page,scenario){
   scrollSync.motionPrecondition=scrollMotionPrecondition;
   const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa']).analyze();
   assert.deepEqual(axe.violations,[],'axe violations');
-  return {positiveProbe:true,startup,probe:{elapsedMs:probeElapsedMs,paints:b.paints-a.paints},off:true,print:true,syntheticVisibility:true,keyboard:true,keyboardShortcut,reverse:true,forward:travel.range>1&&travel.target>1?'camera changed':'short page',travel:{...travel,settledY:forward.scrollY},archive:scenario.route==='writing'?true:'not applicable',scrollSync,zoom:true,zoomLimit:'CSS zoom; native browser zoom untested',cta,axePasses:axe.passes.length};
+  return {positiveProbe:true,startup,probe,off:true,print:true,syntheticVisibility:true,keyboard:true,keyboardShortcut,reverse:true,forward:travel.range>1&&travel.target>1?'camera changed':'short page',travel:{...travel,settledY:forward.scrollY},archive:scenario.route==='writing'?true:'not applicable',scrollSync,zoom:true,zoomLimit:'CSS zoom; native browser zoom untested',cta,axePasses:axe.passes.length};
 }
 async function failure(page,mode){
   let a=await settled(page);readable(a);
@@ -187,13 +203,14 @@ async function failure(page,mode){
   if(['draw-fault','context-loss'].includes(mode)){
     a=await settled(page);assert.equal(a.ready,false);assert.equal(a.fallback,true);assert.equal(a.motion.disabled,true);assert.match(a.motion.label,/unavailable/);frozen(a,await settled(page));return {boundedFailure:true,synthetic:true};
   }
-  assert.ok((await settled(page)).paints>a.paints);return {positiveProbe:true};
+  assert.ok((await nextPaintReady(page,a)).paints>a.paints);return {positiveProbe:true};
 }
 async function scenario(browser,url,s){
   const ctx=await browser.newContext({viewport:{width:s.width,height:s.width===1440?900:844},colorScheme:s.theme==='light'?'light':'dark',javaScriptEnabled:s.mode!=='no-js',reducedMotion:s.mode==='reduced'?'reduce':'no-preference'});
   const setup=`(${probe.toString()})();(${capability.toString()})(${JSON.stringify(s.mode)});`;
   const theme=s.mode==='blocked-storage'?'':`try{localStorage.setItem('vo.theme',${JSON.stringify(s.theme)});}catch{}`;
-  await ctx.addInitScript({content:setup+theme});
+  const trace=s.trace?`(${require('./browser-gate-trace.cjs').install.toString()})();`:'';
+  await ctx.addInitScript({content:setup+theme+trace});
   const page=await ctx.newPage(),errors=[],external=[];page.on('pageerror',e=>errors.push(e.message));
   page.on('request',r=>{if(!r.url().startsWith(url))external.push(r.url());});
   let release;
@@ -206,10 +223,10 @@ async function scenario(browser,url,s){
     const checks=s.mode==='normal'?await normal(page,s):await failure(page,s.mode);
     if(s.mode==='css-delayed')checks.beforeCSSNoPaint=true;
     assert.deepEqual(errors,[]);assert.deepEqual(external,[]);
-    return {...s,pass:true,checks,errors,externalRequests:external};
+    return {...s,pass:true,checks,errors,externalRequests:external,diagnosticTrace:s.trace?await page.evaluate(()=>window.__browserGateTrace?.snapshot?.()||null):undefined};
   }catch(e){
     if(release)release();await page.screenshot({path:path.join(out,`${s.engine}-${s.route}-${s.width}-${s.theme}-${s.mode}.png`)}).catch(()=>{});
-    return {...s,pass:false,error:e.message,stack:e.stack,state:await state(page).catch(()=>null),errors,externalRequests:external};
+    return {...s,pass:false,error:e.message,stack:e.stack,state:await state(page).catch(()=>null),errors,externalRequests:external,diagnosticTrace:s.trace?await page.evaluate(()=>window.__browserGateTrace?.snapshot?.()||null).catch(()=>null):undefined};
   }finally{await ctx.close();}
 }
 function scenarios(engine,smoke){return routes.flatMap(route=>['light','dark'].flatMap(theme=>[
@@ -233,4 +250,4 @@ async function main(){
   assert.ok(rows.every(x=>x.pass)&&navigation.every(x=>x.pass)&&analytics.every(x=>x.pass),'Functional scenarios failed');
 }
 if(require.main===module)main().catch(e=>{console.error(e.stack);process.exitCode=1;});
-module.exports={scenarios,modes,navigateDocument,forwardCamera,forwardCameraResponded};
+module.exports={scenario,probe,capability,state,foregroundReady,normalStartup,scenarios,modes,navigateDocument,forwardCamera,forwardCameraResponded,nextPaintReady,nextPaintSample};

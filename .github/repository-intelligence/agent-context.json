@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "46ef9d3696aac75c401140cf40c78164d965dd9d0f670b6ef22a7643ebb227dc",
+    "digest": "f5f559c9493753ad3e4b5e5e99a106d1fd29842c4e5e6185aef194278ad560ca",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -49,6 +49,11 @@
         "path": ".github/workflows/navigation.yml",
         "identity_mode": "content",
         "sha256": "e37ca016e4b33c0ea6d6f106e153d2ee66213c61bdb41b9ca975ed654b0d5fc2"
+      },
+      {
+        "path": ".github/workflows/site-browser-gate-probe.yml",
+        "identity_mode": "content",
+        "sha256": "942646639da8bffd05ab7285f1d942c8b71b1b0937eee10da33d89493eb8f9fd"
       },
       {
         "path": ".github/workflows/site-candidate-evidence.yml",
@@ -113,7 +118,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "7f05fcdfb17a8fcc6f2bc876db4673158076f862e9c7704a1bbd72884b321b26"
+        "sha256": "5436e9ab72fad33142a9f730475da8483ebd29c39476c86448620761a2418e22"
       },
       {
         "path": "BACKLOG.md",
@@ -3201,7 +3206,7 @@
       {
         "path": "review/staging-readiness-20261006/REPORT.md",
         "identity_mode": "content",
-        "sha256": "0461c23af731a30dbcc864064d72315c1fc4bc1073bcd31ac4cc498f85ac3977"
+        "sha256": "262f2f30469d1ffd58e90de713b16722f51716c9cd5ecf54ea1b9b27d4cc7d3e"
       },
       {
         "path": "review/staging-readiness-20261006/SECRET-TRIAGE.json",
@@ -3532,11 +3537,27 @@
         "identity_mode": "existence"
       },
       {
+        "path": "tests/browser-gate-diagnostics.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/browser-gate-trace.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/browser-gate-variants.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
         "path": "tests/color-build.test.cjs",
         "identity_mode": "existence"
       },
       {
         "path": "tests/content.test.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tests/endpoint-fixtures.test.cjs",
         "identity_mode": "existence"
       },
       {
@@ -3721,6 +3742,14 @@
       },
       {
         "path": "tools/quality/artifact.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/browser-gate-diagnostics.cjs",
+        "identity_mode": "existence"
+      },
+      {
+        "path": "tools/quality/browser-gate-trace.cjs",
         "identity_mode": "existence"
       },
       {
@@ -4173,6 +4202,13 @@
     {
       "path": ".github/workflows/navigation.yml",
       "title": ".github/workflows/navigation.yml",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": ".github/workflows/site-browser-gate-probe.yml",
+      "title": ".github/workflows/site-browser-gate-probe.yml",
       "instructions": [
         "AGENTS.md"
       ]
