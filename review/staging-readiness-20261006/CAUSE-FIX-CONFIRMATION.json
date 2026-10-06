@@ -1,0 +1,1399 @@
+{
+  "schema": 1,
+  "kind": "supported-palette-and-native-profile-confirmation",
+  "runId": 37486905044,
+  "sourceCommit": "d6adcf20a94338820338134e5fae8ae6b9439eba",
+  "fullGate": false,
+  "performanceAcceptance": false,
+  "complete": true,
+  "research": {
+    "artifact": {
+      "id": 11424211258,
+      "name": "cause-fix-research-37486905044-1",
+      "zipSha256": "b2afb1340e5c66e3a357fe694a952aba8955efe4874a183dac2754a5471dfd68"
+    },
+    "identities": {
+      "candidate": {
+        "sourceCommit": "d6adcf20a94338820338134e5fae8ae6b9439eba",
+        "sourceTree": "d13c1c2d4702e41d71c1a8a4766bdaedebfa9cd4",
+        "candidateCommit": "d6adcf20a94338820338134e5fae8ae6b9439eba",
+        "artifactDigest": "0de6c4869daf732aa99a0fa5c0095a5be4cc39fd88252d18a605781130b7e427",
+        "variant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "5696d4af5cb8d756bfd2b8d85c79f918cf17c7f6f7b1427a5b04235e758c1413",
+          "baseEngine": "22e1e5b42356b0b36696a6aacebbd36d299c96d168c73ebcb0613da0bfd5c658",
+          "effects": [
+            "ribbons",
+            "travel"
+          ]
+        },
+        "derivation": {
+          "kind": "authored-color-effects",
+          "baseArtifactDigest": "3be0dd2590c60890ce06a3e91f30b298c3b37d9741581fd36a2d3e6e1af33984"
+        }
+      },
+      "reference": {
+        "sourceCommit": "614c3e54735831f72acdce1f8091baf178634835",
+        "sourceTree": "e65c7fdf4d4f1fe4137732873aa4c0a29e415b14",
+        "candidateCommit": "614c3e54735831f72acdce1f8091baf178634835",
+        "artifactDigest": "e7bc3491f4f0c3e7cb668ebc2d5b7ff9fcb8a8c1a9c4e7f67e86fe82d64deef9",
+        "variant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "2b88738c63a59ab1bae298e00be286358ddfbad54fde01f27f2744d4b6c9d428",
+          "baseEngine": "3d18d6d94f90651689bf646fe5a204e9d3f32ec86343036194995494c656167f",
+          "effects": [
+            "ribbons",
+            "travel"
+          ]
+        },
+        "derivation": {
+          "kind": "authored-color-effects",
+          "baseArtifactDigest": "2942f3622583d14c5e59ae55bfb6e384bfca30dcdb0dc44b40dd851f3b821028"
+        }
+      }
+    },
+    "environment": {
+      "platform": "linux",
+      "os": "6.17.0-1022-azure",
+      "architecture": "x64",
+      "node": "v24.19.0",
+      "runnerImage": "ubuntu24",
+      "imageVersion": "20260927.320.1",
+      "cpus": [
+        "AMD EPYC 9V74 80-Core Processor",
+        "AMD EPYC 9V74 80-Core Processor",
+        "AMD EPYC 9V74 80-Core Processor",
+        "AMD EPYC 9V74 80-Core Processor"
+      ],
+      "memoryBytes": 16766414848,
+      "runId": "37486905044",
+      "attempt": "1"
+    },
+    "protocol": "Three balanced pairs of fresh Chromium/mobile/simulated Lighthouse on normal Color, then three separately labeled CPU-profiled pairs. Order reference/candidate, candidate/reference, reference/candidate. No parallel browsers, retries, discarded failures or changed budgets. This loopback causal comparison does not accept the full hosted gate.",
+    "normalTbt": {
+      "reference": [
+        128,
+        130.9999999999999,
+        128.5
+      ],
+      "candidate": [
+        160.5000000000001,
+        141.9999999999999,
+        116
+      ]
+    },
+    "normalMedianTbt": {
+      "reference": 128.5,
+      "candidate": 141.9999999999999
+    },
+    "rows": [
+      {
+        "label": "reference",
+        "profiled": false,
+        "run": 1,
+        "evidenceValid": true,
+        "tbtMs": 128,
+        "lcpMs": 1651.9072,
+        "lhr": {
+          "file": "normal-reference-1-lhr.json.gz",
+          "sha256": "200f2d24a3f43d4265bd76adc523eaf5b99e5e5c9ed1d832231fbc70962b817d",
+          "bytes": 323636
+        },
+        "trace": {
+          "file": "normal-reference-1-trace.json.gz",
+          "sha256": "049f486ac2140fe75ddb36b8564ab36678ecf06cc0dfd2ccf6b5c46571c3e0aa",
+          "bytes": 1856717
+        },
+        "devtoolsLog": {
+          "file": "normal-reference-1-devtoolslog.json.gz",
+          "sha256": "b5afbd345c6a66de9c1335d568c41bffa77900bb44f982a140b6e2f696cfbaa0",
+          "bytes": 4044
+        },
+        "largestOriginalTasks": [
+          {
+            "duration": 58.708,
+            "startTime": 93.938
+          },
+          {
+            "duration": 25.798,
+            "startTime": 153.332
+          },
+          {
+            "duration": 25.729,
+            "startTime": 67.99
+          },
+          {
+            "duration": 22.319,
+            "startTime": 36.386
+          },
+          {
+            "duration": 13.446,
+            "startTime": 350.344
+          },
+          {
+            "duration": 13.425,
+            "startTime": 383.667
+          }
+        ],
+        "lateOriginalTasksOver30Ms": []
+      },
+      {
+        "label": "candidate",
+        "profiled": false,
+        "run": 1,
+        "evidenceValid": true,
+        "tbtMs": 160.5000000000001,
+        "lcpMs": 1648.1445,
+        "lhr": {
+          "file": "normal-candidate-1-lhr.json.gz",
+          "sha256": "54e7d3ec6d86030a18922dc272004dd9d64d8eaa3a05d476b180655dcd334811",
+          "bytes": 324730
+        },
+        "trace": {
+          "file": "normal-candidate-1-trace.json.gz",
+          "sha256": "e24e4d9674063ce7a9ff920b61e89571a926652d473d9bdecb1fd32d197eb0f6",
+          "bytes": 1862129
+        },
+        "devtoolsLog": {
+          "file": "normal-candidate-1-devtoolslog.json.gz",
+          "sha256": "683c1e2bcf71ff69f6d5bbdf99e84b2501ed82285bac95388c80f1b61e45335c",
+          "bytes": 4013
+        },
+        "largestOriginalTasks": [
+          {
+            "duration": 60.016,
+            "startTime": 83.628
+          },
+          {
+            "duration": 28.198,
+            "startTime": 144.313
+          },
+          {
+            "duration": 21.735,
+            "startTime": 34.816
+          },
+          {
+            "duration": 20.467,
+            "startTime": 62.961
+          },
+          {
+            "duration": 18.024,
+            "startTime": 267.573
+          },
+          {
+            "duration": 15.067,
+            "startTime": 173.119
+          }
+        ],
+        "lateOriginalTasksOver30Ms": []
+      },
+      {
+        "label": "candidate",
+        "profiled": false,
+        "run": 2,
+        "evidenceValid": true,
+        "tbtMs": 141.9999999999999,
+        "lcpMs": 1643.9958,
+        "lhr": {
+          "file": "normal-candidate-2-lhr.json.gz",
+          "sha256": "6a396645276a1462772af38bdb8d7ec7620b2171a13440aa007430086d06d11b",
+          "bytes": 325066
+        },
+        "trace": {
+          "file": "normal-candidate-2-trace.json.gz",
+          "sha256": "65172afe1e753b956ab2fa6647c6b5f5debf6aa64a9f847781c2893486831251",
+          "bytes": 1888079
+        },
+        "devtoolsLog": {
+          "file": "normal-candidate-2-devtoolslog.json.gz",
+          "sha256": "154ab700be1a8a42b2961433be898af4bfa3618d3ab1c6e6411458e760f3752c",
+          "bytes": 4024
+        },
+        "largestOriginalTasks": [
+          {
+            "duration": 56.825,
+            "startTime": 86.049
+          },
+          {
+            "duration": 25.443,
+            "startTime": 143.53
+          },
+          {
+            "duration": 21.741,
+            "startTime": 34.066
+          },
+          {
+            "duration": 21.135,
+            "startTime": 64.789
+          },
+          {
+            "duration": 17.058,
+            "startTime": 225.905
+          },
+          {
+            "duration": 16.379,
+            "startTime": 169.61
+          }
+        ],
+        "lateOriginalTasksOver30Ms": []
+      },
+      {
+        "label": "reference",
+        "profiled": false,
+        "run": 2,
+        "evidenceValid": true,
+        "tbtMs": 130.9999999999999,
+        "lcpMs": 1603.8466,
+        "lhr": {
+          "file": "normal-reference-2-lhr.json.gz",
+          "sha256": "afb212df5cfbc631aa9be46898ec4cef6e46c10fda1f625a2889512b93f2462d",
+          "bytes": 325114
+        },
+        "trace": {
+          "file": "normal-reference-2-trace.json.gz",
+          "sha256": "057eb86003716bbe80c8aef15b3eb185591ff42b90ec4ec5d2972bf0993f5cdd",
+          "bytes": 1897895
+        },
+        "devtoolsLog": {
+          "file": "normal-reference-2-devtoolslog.json.gz",
+          "sha256": "21a5db1acb85f24ac2539745ef7fa0e94c9f898760880d19f58e6bbd85a7c2e6",
+          "bytes": 4052
+        },
+        "largestOriginalTasks": [
+          {
+            "duration": 60.908,
+            "startTime": 82.482
+          },
+          {
+            "duration": 23.057,
+            "startTime": 144.043
+          },
+          {
+            "duration": 20.981,
+            "startTime": 34.482
+          },
+          {
+            "duration": 20.921,
+            "startTime": 61.358
+          },
+          {
+            "duration": 17.447,
+            "startTime": 167.699
+          },
+          {
+            "duration": 13.616,
+            "startTime": 2244.848
+          }
+        ],
+        "lateOriginalTasksOver30Ms": []
+      },
+      {
+        "label": "reference",
+        "profiled": false,
+        "run": 3,
+        "evidenceValid": true,
+        "tbtMs": 128.5,
+        "lcpMs": 1650.8853,
+        "lhr": {
+          "file": "normal-reference-3-lhr.json.gz",
+          "sha256": "510701589c2c4dbdd3caf63fbc048d52ab87dfdeb9f2420e91c6588860648003",
+          "bytes": 323445
+        },
+        "trace": {
+          "file": "normal-reference-3-trace.json.gz",
+          "sha256": "a0c255dfd980bd774d25334f86f8dac7862bae028732d0e6cf2db9db409b7c5b",
+          "bytes": 1845530
+        },
+        "devtoolsLog": {
+          "file": "normal-reference-3-devtoolslog.json.gz",
+          "sha256": "723404e3dbd18d9544a14335fe3e6c83d65e062c2afbe89b8bdeecc75872d402",
+          "bytes": 4019
+        },
+        "largestOriginalTasks": [
+          {
+            "duration": 59.782,
+            "startTime": 82.803
+          },
+          {
+            "duration": 25.326,
+            "startTime": 143.172
+          },
+          {
+            "duration": 20.753,
+            "startTime": 61.854
+          },
+          {
+            "duration": 20.662,
+            "startTime": 34.787
+          },
+          {
+            "duration": 15.605,
+            "startTime": 170.199
+          },
+          {
+            "duration": 13.27,
+            "startTime": 920.045
+          }
+        ],
+        "lateOriginalTasksOver30Ms": []
+      },
+      {
+        "label": "candidate",
+        "profiled": false,
+        "run": 3,
+        "evidenceValid": true,
+        "tbtMs": 116,
+        "lcpMs": 1649.1112,
+        "lhr": {
+          "file": "normal-candidate-3-lhr.json.gz",
+          "sha256": "e4f699754d4733c74180397135813a4931194f0ac7e13b188d73f074fe77f785",
+          "bytes": 325500
+        },
+        "trace": {
+          "file": "normal-candidate-3-trace.json.gz",
+          "sha256": "08ce2b563154c7b734f6337fc790e62f67d9de399faf73dc3ce4e78bacda0eda",
+          "bytes": 1885889
+        },
+        "devtoolsLog": {
+          "file": "normal-candidate-3-devtoolslog.json.gz",
+          "sha256": "a73519521ca74984ec31bf77f40b0dd08b0970af5b1a8636a62717d268374e49",
+          "bytes": 4047
+        },
+        "largestOriginalTasks": [
+          {
+            "duration": 57.218,
+            "startTime": 84.419
+          },
+          {
+            "duration": 22.503,
+            "startTime": 61.687
+          },
+          {
+            "duration": 22.006,
+            "startTime": 142.794
+          },
+          {
+            "duration": 20.62,
+            "startTime": 34.067
+          },
+          {
+            "duration": 18.449,
+            "startTime": 165.316
+          },
+          {
+            "duration": 13.285,
+            "startTime": 946.16
+          }
+        ],
+        "lateOriginalTasksOver30Ms": []
+      },
+      {
+        "label": "reference",
+        "profiled": true,
+        "run": 1,
+        "evidenceValid": true,
+        "tbtMs": 343,
+        "lcpMs": 1773.8683,
+        "lhr": {
+          "file": "profiled-reference-1-lhr.json.gz",
+          "sha256": "c52796d6c6e1d2c9fdf424a57ef4d231102ebae67a51438f97b2d1e181fcfd6b",
+          "bytes": 327096
+        },
+        "trace": {
+          "file": "profiled-reference-1-trace.json.gz",
+          "sha256": "df5a05fd7a4dbcfb9795492e2e6d3b5d5dea4b7c3025fb7ae0c45f368609a49a",
+          "bytes": 2037581
+        },
+        "devtoolsLog": {
+          "file": "profiled-reference-1-devtoolslog.json.gz",
+          "sha256": "4449fcd564eb1b496b4917fca1af8d10ac22247bd2e5cb6e72f7b9a0eabd4d7c",
+          "bytes": 4053
+        },
+        "largestOriginalTasks": [
+          {
+            "duration": 76.473,
+            "startTime": 121.591
+          },
+          {
+            "duration": 36.994,
+            "startTime": 198.803
+          },
+          {
+            "duration": 33.99,
+            "startTime": 6.713
+          },
+          {
+            "duration": 29.984,
+            "startTime": 91.378
+          },
+          {
+            "duration": 24.926,
+            "startTime": 56.743
+          },
+          {
+            "duration": 23.582,
+            "startTime": 353.477
+          }
+        ],
+        "lateOriginalTasksOver30Ms": []
+      },
+      {
+        "label": "candidate",
+        "profiled": true,
+        "run": 1,
+        "evidenceValid": true,
+        "tbtMs": 241.0000000000001,
+        "lcpMs": 1716.1121,
+        "lhr": {
+          "file": "profiled-candidate-1-lhr.json.gz",
+          "sha256": "f11395ba86b538b225f150d21eb96f3bd114352cf63142184a07a65811dab5e7",
+          "bytes": 327322
+        },
+        "trace": {
+          "file": "profiled-candidate-1-trace.json.gz",
+          "sha256": "653febe54cbc29b2cf8e84fc35af35344280426f2f0aa56403f5ae57bf699fd2",
+          "bytes": 2030379
+        },
+        "devtoolsLog": {
+          "file": "profiled-candidate-1-devtoolslog.json.gz",
+          "sha256": "f31d5c665b64f5c31437d31c45b530cecd25723e637ba3678e2bc038d7c5be76",
+          "bytes": 4061
+        },
+        "largestOriginalTasks": [
+          {
+            "duration": 69.692,
+            "startTime": 114.973
+          },
+          {
+            "duration": 36.007,
+            "startTime": 185.334
+          },
+          {
+            "duration": 28.063,
+            "startTime": 86.683
+          },
+          {
+            "duration": 23.41,
+            "startTime": 52.588
+          },
+          {
+            "duration": 22.164,
+            "startTime": 10.426
+          },
+          {
+            "duration": 16.919,
+            "startTime": 222.103
+          }
+        ],
+        "lateOriginalTasksOver30Ms": []
+      },
+      {
+        "label": "candidate",
+        "profiled": true,
+        "run": 2,
+        "evidenceValid": true,
+        "tbtMs": 332,
+        "lcpMs": 1807.2203999999997,
+        "lhr": {
+          "file": "profiled-candidate-2-lhr.json.gz",
+          "sha256": "e9f53067c2cbf7bad5e3b88ed371725288c0131d3138cc9429496a8c1718732c",
+          "bytes": 323436
+        },
+        "trace": {
+          "file": "profiled-candidate-2-trace.json.gz",
+          "sha256": "dd4407c92e3a176516565717aa545d0c5a8fe624978b860dbb730ab2df1f3abd",
+          "bytes": 2000787
+        },
+        "devtoolsLog": {
+          "file": "profiled-candidate-2-devtoolslog.json.gz",
+          "sha256": "5e9325a5ebb55835d31fb2934dbc356a79fca605f03078972694b6058ce6d62f",
+          "bytes": 4067
+        },
+        "largestOriginalTasks": [
+          {
+            "duration": 83.786,
+            "startTime": 136.908
+          },
+          {
+            "duration": 37.234,
+            "startTime": 99.383
+          },
+          {
+            "duration": 37.103,
+            "startTime": 8.528
+          },
+          {
+            "duration": 29.073,
+            "startTime": 62.861
+          },
+          {
+            "duration": 28.446,
+            "startTime": 221.778
+          },
+          {
+            "duration": 27.501,
+            "startTime": 251.21
+          }
+        ],
+        "lateOriginalTasksOver30Ms": []
+      },
+      {
+        "label": "reference",
+        "profiled": true,
+        "run": 2,
+        "evidenceValid": true,
+        "tbtMs": 299.5,
+        "lcpMs": 1732.7273,
+        "lhr": {
+          "file": "profiled-reference-2-lhr.json.gz",
+          "sha256": "5c1862ac0fa331509bd46ba4a155586c0e38084b61b5f0ffd013a03a85dc8418",
+          "bytes": 305666
+        },
+        "trace": {
+          "file": "profiled-reference-2-trace.json.gz",
+          "sha256": "3ee163cec208c3178af70ce83c03930b6de5d1cd01f93d13e10b1961d0e62990",
+          "bytes": 2161059
+        },
+        "devtoolsLog": {
+          "file": "profiled-reference-2-devtoolslog.json.gz",
+          "sha256": "ac0d9a2554a0d322d0a665409f4b592f3193f076ca9250c63abb7e2ad62b0963",
+          "bytes": 4104
+        },
+        "largestOriginalTasks": [
+          {
+            "duration": 83.916,
+            "startTime": 111.846
+          },
+          {
+            "duration": 27.479,
+            "startTime": 196.554
+          },
+          {
+            "duration": 25.787,
+            "startTime": 85.909
+          },
+          {
+            "duration": 25.674,
+            "startTime": 52.41
+          },
+          {
+            "duration": 23.987,
+            "startTime": 357.219
+          },
+          {
+            "duration": 23.734,
+            "startTime": 6.228
+          }
+        ],
+        "lateOriginalTasksOver30Ms": []
+      },
+      {
+        "label": "reference",
+        "profiled": true,
+        "run": 3,
+        "evidenceValid": true,
+        "tbtMs": 497.5000000000002,
+        "lcpMs": 1803.3261,
+        "lhr": {
+          "file": "profiled-reference-3-lhr.json.gz",
+          "sha256": "846a146875e2cc22bc4b95b3cee82c472786276bda37989d68ff66f86e4ff35f",
+          "bytes": 328456
+        },
+        "trace": {
+          "file": "profiled-reference-3-trace.json.gz",
+          "sha256": "4f806660fb4ace66369e7e80a457174c1807a3e222283ac5bfefaa24719d7a9f",
+          "bytes": 2015451
+        },
+        "devtoolsLog": {
+          "file": "profiled-reference-3-devtoolslog.json.gz",
+          "sha256": "9ad422ae92e97872e47f875351b6394263bfc4fb3fb1b11fd87738a9293f2e6d",
+          "bytes": 4057
+        },
+        "largestOriginalTasks": [
+          {
+            "duration": 111.479,
+            "startTime": 149.825
+          },
+          {
+            "duration": 38.07,
+            "startTime": 111.571
+          },
+          {
+            "duration": 35.066,
+            "startTime": 67.102
+          },
+          {
+            "duration": 28.538,
+            "startTime": 439.122
+          },
+          {
+            "duration": 28.431,
+            "startTime": 6.669
+          },
+          {
+            "duration": 28.096,
+            "startTime": 262.766
+          }
+        ],
+        "lateOriginalTasksOver30Ms": []
+      },
+      {
+        "label": "candidate",
+        "profiled": true,
+        "run": 3,
+        "evidenceValid": true,
+        "tbtMs": 235,
+        "lcpMs": 1706.1219,
+        "lhr": {
+          "file": "profiled-candidate-3-lhr.json.gz",
+          "sha256": "4bac9f6dc2da4ef35b54e60bf5b84bc438bcbe0104715ccbcc849dac6a92a02c",
+          "bytes": 305443
+        },
+        "trace": {
+          "file": "profiled-candidate-3-trace.json.gz",
+          "sha256": "1b910e6b1279d1598677e8660c614157ff61bbfb377c3359618ef7753f3f08b0",
+          "bytes": 2150811
+        },
+        "devtoolsLog": {
+          "file": "profiled-candidate-3-devtoolslog.json.gz",
+          "sha256": "55698220aa1c073c267297e7a12eb2cd30814b5933de15328247296cb73ada37",
+          "bytes": 4044
+        },
+        "largestOriginalTasks": [
+          {
+            "duration": 80.014,
+            "startTime": 108.629
+          },
+          {
+            "duration": 30.715,
+            "startTime": 189.324
+          },
+          {
+            "duration": 25.921,
+            "startTime": 82.51
+          },
+          {
+            "duration": 25.529,
+            "startTime": 49.258
+          },
+          {
+            "duration": 17.925,
+            "startTime": 9.259
+          },
+          {
+            "duration": 17.061,
+            "startTime": 220.643
+          }
+        ],
+        "lateOriginalTasksOver30Ms": []
+      }
+    ],
+    "profiledCpuAnalysis": {
+      "method": "Profile and ProfileChunk join by (pid,id); use initial Profile tid to select original main thread; sample timeDelta weights follow parent stacks. Inclusive counts are approximate sampled CPU, not native Canvas duration or normal performance acceptance.",
+      "rows": [
+        {
+          "label": "reference",
+          "run": 1,
+          "topAuthoredSelf": [
+            {
+              "function": "paintShapes",
+              "line": 1172,
+              "sampledMs": 40.459
+            },
+            {
+              "function": "drawLineRun",
+              "line": 1161,
+              "sampledMs": 34.797
+            },
+            {
+              "function": "draw",
+              "line": 1388,
+              "sampledMs": 26.499
+            },
+            {
+              "function": "(anonymous)",
+              "line": 1398,
+              "sampledMs": 15.067
+            },
+            {
+              "function": "appendFaces",
+              "line": 1116,
+              "sampledMs": 15.062
+            },
+            {
+              "function": "visible",
+              "line": 1073,
+              "sampledMs": 10.423
+            },
+            {
+              "function": "appendLines",
+              "line": 1131,
+              "sampledMs": 9.301
+            },
+            {
+              "function": "paintRibbon",
+              "line": 122,
+              "sampledMs": 9.124
+            },
+            {
+              "function": "loopTransform",
+              "line": 1031,
+              "sampledMs": 7.925
+            },
+            {
+              "function": "collect",
+              "line": 158,
+              "sampledMs": 7.204
+            }
+          ],
+          "namedInclusiveMs": {
+            "worldFor": 27.42,
+            "instance": 4.108,
+            "paintColors": 4.47,
+            "projectedWorld": 84.887,
+            "paintShapes": 96.734
+          },
+          "mainProfile": {
+            "pid": 4271,
+            "tid": 4271,
+            "samples": 15386
+          }
+        },
+        {
+          "label": "candidate",
+          "run": 1,
+          "topAuthoredSelf": [
+            {
+              "function": "paintShapes",
+              "line": 1191,
+              "sampledMs": 36.718
+            },
+            {
+              "function": "drawLineRun",
+              "line": 1180,
+              "sampledMs": 31.57
+            },
+            {
+              "function": "draw",
+              "line": 1397,
+              "sampledMs": 28.814
+            },
+            {
+              "function": "(anonymous)",
+              "line": 1407,
+              "sampledMs": 14.577
+            },
+            {
+              "function": "appendFaces",
+              "line": 1116,
+              "sampledMs": 12.271
+            },
+            {
+              "function": "appendLines",
+              "line": 1131,
+              "sampledMs": 12.039
+            },
+            {
+              "function": "visible",
+              "line": 1073,
+              "sampledMs": 9.2
+            },
+            {
+              "function": "paintRibbon",
+              "line": 122,
+              "sampledMs": 8.872
+            },
+            {
+              "function": "(anonymous)",
+              "line": 1061,
+              "sampledMs": 7.105
+            },
+            {
+              "function": "loopTransform",
+              "line": 1031,
+              "sampledMs": 6.591
+            }
+          ],
+          "namedInclusiveMs": {
+            "worldFor": 24.817,
+            "instance": 4.928,
+            "facePalette": 1.228,
+            "paintColors": 1.228,
+            "projectedWorld": 85.723,
+            "paintShapes": 88.856
+          },
+          "mainProfile": {
+            "pid": 4439,
+            "tid": 4439,
+            "samples": 15075
+          }
+        },
+        {
+          "label": "candidate",
+          "run": 2,
+          "topAuthoredSelf": [
+            {
+              "function": "paintShapes",
+              "line": 1191,
+              "sampledMs": 39.302
+            },
+            {
+              "function": "drawLineRun",
+              "line": 1180,
+              "sampledMs": 29.583
+            },
+            {
+              "function": "draw",
+              "line": 1397,
+              "sampledMs": 25.742
+            },
+            {
+              "function": "appendLines",
+              "line": 1131,
+              "sampledMs": 13.801
+            },
+            {
+              "function": "appendFaces",
+              "line": 1116,
+              "sampledMs": 12.34
+            },
+            {
+              "function": "paintRibbon",
+              "line": 122,
+              "sampledMs": 11.287
+            },
+            {
+              "function": "(anonymous)",
+              "line": 1407,
+              "sampledMs": 10.01
+            },
+            {
+              "function": "visible",
+              "line": 1073,
+              "sampledMs": 9.001
+            },
+            {
+              "function": "loopTransform",
+              "line": 1031,
+              "sampledMs": 8.283
+            },
+            {
+              "function": "instance",
+              "line": 660,
+              "sampledMs": 8.031
+            }
+          ],
+          "namedInclusiveMs": {
+            "worldFor": 30.53,
+            "instance": 9.622,
+            "paintColors": 1.852,
+            "facePalette": 1.685,
+            "projectedWorld": 98.605,
+            "paintShapes": 89.952
+          },
+          "mainProfile": {
+            "pid": 4607,
+            "tid": 4607,
+            "samples": 15057
+          }
+        },
+        {
+          "label": "reference",
+          "run": 2,
+          "topAuthoredSelf": [
+            {
+              "function": "paintShapes",
+              "line": 1172,
+              "sampledMs": 48.047
+            },
+            {
+              "function": "drawLineRun",
+              "line": 1161,
+              "sampledMs": 38.337
+            },
+            {
+              "function": "appendLines",
+              "line": 1131,
+              "sampledMs": 27.092
+            },
+            {
+              "function": "draw",
+              "line": 1388,
+              "sampledMs": 24.333
+            },
+            {
+              "function": "(anonymous)",
+              "line": 1061,
+              "sampledMs": 14.546
+            },
+            {
+              "function": "(anonymous)",
+              "line": 1398,
+              "sampledMs": 13.872
+            },
+            {
+              "function": "appendFaces",
+              "line": 1116,
+              "sampledMs": 12.797
+            },
+            {
+              "function": "projectedWorld",
+              "line": 1066,
+              "sampledMs": 11.07
+            },
+            {
+              "function": "loopTransform",
+              "line": 1031,
+              "sampledMs": 10.89
+            },
+            {
+              "function": "paintRibbon",
+              "line": 122,
+              "sampledMs": 10.258
+            }
+          ],
+          "namedInclusiveMs": {
+            "worldFor": 28.848,
+            "instance": 6.705,
+            "paintColors": 5.445,
+            "projectedWorld": 115.198,
+            "paintShapes": 110.322
+          },
+          "mainProfile": {
+            "pid": 4780,
+            "tid": 4780,
+            "samples": 14880
+          }
+        },
+        {
+          "label": "reference",
+          "run": 3,
+          "topAuthoredSelf": [
+            {
+              "function": "paintShapes",
+              "line": 1172,
+              "sampledMs": 44.77
+            },
+            {
+              "function": "drawLineRun",
+              "line": 1161,
+              "sampledMs": 30.832
+            },
+            {
+              "function": "draw",
+              "line": 1388,
+              "sampledMs": 26.807
+            },
+            {
+              "function": "appendLines",
+              "line": 1131,
+              "sampledMs": 22.824
+            },
+            {
+              "function": "visible",
+              "line": 1073,
+              "sampledMs": 15.26
+            },
+            {
+              "function": "appendFaces",
+              "line": 1116,
+              "sampledMs": 12.721
+            },
+            {
+              "function": "paintRibbon",
+              "line": 122,
+              "sampledMs": 11.355
+            },
+            {
+              "function": "(anonymous)",
+              "line": 1398,
+              "sampledMs": 10.707
+            },
+            {
+              "function": "verticesAt",
+              "line": 93,
+              "sampledMs": 8.308
+            },
+            {
+              "function": "instance",
+              "line": 660,
+              "sampledMs": 8.102
+            }
+          ],
+          "namedInclusiveMs": {
+            "worldFor": 42.53,
+            "instance": 8.807,
+            "paintColors": 7.27,
+            "projectedWorld": 109.166,
+            "paintShapes": 99.42
+          },
+          "mainProfile": {
+            "pid": 4946,
+            "tid": 4946,
+            "samples": 14804
+          }
+        },
+        {
+          "label": "candidate",
+          "run": 3,
+          "topAuthoredSelf": [
+            {
+              "function": "paintShapes",
+              "line": 1191,
+              "sampledMs": 47.717
+            },
+            {
+              "function": "drawLineRun",
+              "line": 1180,
+              "sampledMs": 32.019
+            },
+            {
+              "function": "draw",
+              "line": 1397,
+              "sampledMs": 26.955
+            },
+            {
+              "function": "appendLines",
+              "line": 1131,
+              "sampledMs": 14.964
+            },
+            {
+              "function": "(anonymous)",
+              "line": 1407,
+              "sampledMs": 13.084
+            },
+            {
+              "function": "appendFaces",
+              "line": 1116,
+              "sampledMs": 11.233
+            },
+            {
+              "function": "(anonymous)",
+              "line": 1061,
+              "sampledMs": 11.225
+            },
+            {
+              "function": "loopTransform",
+              "line": 1031,
+              "sampledMs": 8.176
+            },
+            {
+              "function": "paintRibbon",
+              "line": 122,
+              "sampledMs": 6.699
+            },
+            {
+              "function": "depthVisibility",
+              "line": 236,
+              "sampledMs": 6.173
+            }
+          ],
+          "namedInclusiveMs": {
+            "worldFor": 30.56,
+            "instance": 10.75,
+            "paintColors": 2.538,
+            "facePalette": 2.2,
+            "projectedWorld": 100.748,
+            "paintShapes": 99.189
+          },
+          "mainProfile": {
+            "pid": 5111,
+            "tid": 5111,
+            "samples": 15051
+          }
+        }
+      ]
+    },
+    "interpretation": "Palette inclusive sampled time reference 4.470/5.445/7.270ms vs candidate 1.228/1.852/2.538ms, with byte-identical face colors and bounded cache. Normal total TBT median 128.5 vs 142ms does not establish an end-to-end gain. No original late >30ms task reproduced; historical late-task stacks remain unavailable."
+  },
+  "native": {
+    "artifact": {
+      "id": 11424106971,
+      "name": "cause-fix-native-profile-37486905044-1",
+      "zipSha256": "b4f9b847d7ba9740f6dd3cb1f6018b718d05c01ac94f5f32822067584defb450"
+    },
+    "publicIdentity": {
+      "sourceCommit": "d6adcf20a94338820338134e5fae8ae6b9439eba",
+      "sourceTree": "d13c1c2d4702e41d71c1a8a4766bdaedebfa9cd4",
+      "candidateCommit": "d6adcf20a94338820338134e5fae8ae6b9439eba",
+      "artifactDigest": "0de6c4869daf732aa99a0fa5c0095a5be4cc39fd88252d18a605781130b7e427",
+      "variant": {
+        "id": "color",
+        "contract": 1,
+        "fingerprint": "5696d4af5cb8d756bfd2b8d85c79f918cf17c7f6f7b1427a5b04235e758c1413",
+        "baseEngine": "22e1e5b42356b0b36696a6aacebbd36d299c96d168c73ebcb0613da0bfd5c658",
+        "effects": [
+          "ribbons",
+          "travel"
+        ]
+      },
+      "derivation": {
+        "kind": "authored-color-effects",
+        "baseArtifactDigest": "3be0dd2590c60890ce06a3e91f30b298c3b37d9741581fd36a2d3e6e1af33984"
+      }
+    },
+    "privateIdentity": {
+      "sourceCommit": "d6adcf20a94338820338134e5fae8ae6b9439eba",
+      "sourceTree": "d13c1c2d4702e41d71c1a8a4766bdaedebfa9cd4",
+      "candidateCommit": "d6adcf20a94338820338134e5fae8ae6b9439eba",
+      "artifactDigest": "bd2c40faa3b16a0dc55fe64f862ad2264f25c66b2ca670d7458d8d04457c1b43",
+      "variant": {
+        "id": "color",
+        "contract": 1,
+        "fingerprint": "e86daffb6b4b92179e7f2b3597ba104456701eaef51ea5e06d1ce162c61ddfb9",
+        "baseEngine": "22e1e5b42356b0b36696a6aacebbd36d299c96d168c73ebcb0613da0bfd5c658",
+        "effects": [
+          "ribbons",
+          "travel"
+        ],
+        "diagnostic": {
+          "label": "browser-gate-trace",
+          "description": "Expose private scheduler state and post-quality draw costs; preserve the complete normal Color rendition.",
+          "fullGate": false
+        }
+      },
+      "derivation": {
+        "kind": "writing-diagnostic-intervention",
+        "intervention": "browser-gate-trace",
+        "description": "Expose private scheduler state and post-quality draw costs; preserve the complete normal Color rendition.",
+        "baseArtifactDigest": "0de6c4869daf732aa99a0fa5c0095a5be4cc39fd88252d18a605781130b7e427",
+        "parentArtifactDigest": "0de6c4869daf732aa99a0fa5c0095a5be4cc39fd88252d18a605781130b7e427",
+        "parentVariant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "5696d4af5cb8d756bfd2b8d85c79f918cf17c7f6f7b1427a5b04235e758c1413",
+          "baseEngine": "22e1e5b42356b0b36696a6aacebbd36d299c96d168c73ebcb0613da0bfd5c658",
+          "effects": [
+            "ribbons",
+            "travel"
+          ]
+        },
+        "patches": [
+          {
+            "file": "space.js",
+            "matches": 1,
+            "needleSha256": "2f8c696d5d1f25b806de536e64d02dc3873cdb69994b41fef9af4ec8571cbca1",
+            "replacementSha256": "ca3d16d39eec2c77f007ff5c9bfece1866f77da0b4474815efed472d369f20e5",
+            "beforeSha256": "93574e6a6fe20b3afcd1f53097d5cf44c3c2a592daa41ea032a01e696ac21095",
+            "afterSha256": "4ddcb9df1266aa0884479d9f8ac3ebbea2b986972350743a31b5a0cbf4ab054e"
+          },
+          {
+            "file": "space.js",
+            "matches": 1,
+            "needleSha256": "7efda12d8c2ca57a709d3ccee04b1751ad44d8df714b5b17d27df9039ce5d9df",
+            "replacementSha256": "6c56dc0e3e511af5a3c15a3eaa2958637af4267dfa3cf405724a2295ed7e17ec",
+            "beforeSha256": "4ddcb9df1266aa0884479d9f8ac3ebbea2b986972350743a31b5a0cbf4ab054e",
+            "afterSha256": "76d63fba001056c965147031107e8d5251251aa02d0d8e37e29d29108737f437"
+          }
+        ],
+        "fullGate": false
+      }
+    },
+    "environment": {
+      "platform": "linux",
+      "os": "6.17.0-1022-azure",
+      "architecture": "x64",
+      "node": "v24.19.0",
+      "runnerImage": "ubuntu24",
+      "imageVersion": "20260927.320.1",
+      "cpus": [
+        "AMD EPYC 7763 64-Core Processor",
+        "AMD EPYC 7763 64-Core Processor",
+        "AMD EPYC 7763 64-Core Processor",
+        "AMD EPYC 7763 64-Core Processor"
+      ],
+      "memoryBytes": 16766414848,
+      "runId": null,
+      "attempt": null
+    },
+    "nativeProfile": true,
+    "originalPass": false,
+    "originalError": "page.waitForFunction: Timeout 1500ms exceeded.",
+    "raw": {
+      "file": "webkit-alone-1.json.gz",
+      "sha256": "92a1861b8c2f6c09ff99d813d91e1f73a65d063ce42a2920d08385eff952a38f",
+      "bytes": 5881
+    },
+    "files": {
+      "native-perf.data": {
+        "sha256": "2575d33e3e73429dcce07b4bdb2d2fa521f8c1c230bea6f734448543185dcf05",
+        "bytes": 10275945
+      },
+      "native-profile.txt": {
+        "sha256": "b322c80591ec0dc4870b57e7a787e2eea3fffe4efe64b29b1b9921cfbb203758",
+        "bytes": 1279153
+      }
+    },
+    "largestRafWait": {
+      "requestId": 2,
+      "requestedMs": 232,
+      "enteredMs": 2651,
+      "waitMs": 2419
+    },
+    "profile": {
+      "effectiveEvent": "task-clock:uH",
+      "samples": 949,
+      "lostSamples": 0,
+      "resolvedLeafPercentByCommand": {
+        "WPEWebProcess": 25.63999999999992,
+        "eadedCompositor": 18.639999999999958,
+        "MainThread": 6.410000000000005,
+        "V8Worker": 1.2800000000000002,
+        "gst-plugin-scan": 2.5000000000000004,
+        "llvmpipe-0": 3.4899999999999993,
+        "llvmpipe-1": 2.5200000000000005,
+        "HeapHelper": 0.22,
+        "ImageDecoder": 0.11,
+        "JITWorker": 1.6500000000000006,
+        "MiniBrowser": 0.44,
+        "ReceiveQueue": 0.11,
+        "WPENetworkProce": 0.77,
+        "llvmpipe-2": 2.3100000000000005,
+        "llvmpipe-3": 3.519999999999999
+      },
+      "resolvedLeafPercentByDso": {
+        "libc.so.6": 6.370000000000005,
+        "libLLVM.so.20.1": 21.68999999999994,
+        "node": 7.690000000000009,
+        "ld-linux-x86-64.so.2": 2.5100000000000002,
+        "libgallium-25.2.8-0ubuntu0.24.04.4.so": 19.58999999999995,
+        "libgobject-2.0.so.0.8000.0": 0.43,
+        "libWPEWebKit-2.0.so.1.12.0": 9.240000000000004,
+        "libgio-2.0.so.0.8000.0": 0.11,
+        "libglib-2.0.so.0.8000.0": 0.33,
+        "libGLESv2.so.2.1.0": 0.11,
+        "libfontconfig.so.1.12.1": 0.44,
+        "libfreetype.so.6.20.1": 0.11,
+        "libm.so.6": 0.11,
+        "libstdc++.so.6.0.33": 0.22,
+        "libavutil.so.58.29.100": 0.11,
+        "libgstreamer-1.0.so.0.2402.0": 0.44,
+        "libnss3.so": 0.11
+      },
+      "topResolvedLeaves": [
+        {
+          "percent": 1.58,
+          "command": "WPEWebProcess",
+          "dso": "libc.so.6",
+          "symbol": "0x0000000000189087"
+        },
+        {
+          "percent": 0.95,
+          "command": "eadedCompositor",
+          "dso": "libLLVM.so.20.1",
+          "symbol": "llvm::SelectionDAG::computeKnownBits(llvm::SDValue, llvm::APInt const&, unsigned int) const"
+        },
+        {
+          "percent": 0.63,
+          "command": "MainThread",
+          "dso": "node",
+          "symbol": "v8::internal::Scanner::Next()"
+        },
+        {
+          "percent": 0.63,
+          "command": "eadedCompositor",
+          "dso": "libLLVM.so.20.1",
+          "symbol": "llvm::TargetLowering::SimplifyDemandedVectorElts(llvm::SDValue, llvm::APInt const&, llvm::APInt&, llvm::APInt&, llvm::TargetLowering::TargetLoweringOpt&, unsigned int, bool) const"
+        },
+        {
+          "percent": 0.53,
+          "command": "WPEWebProcess",
+          "dso": "libc.so.6",
+          "symbol": "0x0000000000189024"
+        },
+        {
+          "percent": 0.42,
+          "command": "MainThread",
+          "dso": "node",
+          "symbol": "deflate_slow"
+        },
+        {
+          "percent": 0.42,
+          "command": "V8Worker",
+          "dso": "node",
+          "symbol": "v8::internal::ConcurrentMarking::RunMajor(v8::JobDelegate*, v8::base::EnumSet<v8::internal::CodeFlushMode, int>, unsigned int, bool)"
+        },
+        {
+          "percent": 0.32,
+          "command": "eadedCompositor",
+          "dso": "libLLVM.so.20.1",
+          "symbol": "llvm::LiveRangeUpdater::add(llvm::LiveRange::Segment)"
+        },
+        {
+          "percent": 0.21,
+          "command": "MainThread",
+          "dso": "node",
+          "symbol": "compress_block"
+        },
+        {
+          "percent": 0.21,
+          "command": "MainThread",
+          "dso": "node",
+          "symbol": "longest_match"
+        },
+        {
+          "percent": 0.21,
+          "command": "MainThread",
+          "dso": "node",
+          "symbol": "v8::internal::AstValueFactory::GetOneByteStringInternal(v8::base::Vector<unsigned char const>)"
+        },
+        {
+          "percent": 0.21,
+          "command": "V8Worker",
+          "dso": "node",
+          "symbol": "void v8::internal::BodyDescriptorBase::IteratePointers<v8::internal::ConcurrentMarkingVisitor>(v8::internal::Tagged<v8::internal::HeapObject>, int, int, v8::internal::ConcurrentMarkingVisitor*)"
+        },
+        {
+          "percent": 0.21,
+          "command": "V8Worker",
+          "dso": "node",
+          "symbol": "void v8::internal::MarkingVisitorBase<v8::internal::ConcurrentMarkingVisitor>::ProcessStrongHeapObject<v8::internal::FullHeapObjectSlot>(v8::internal::Tagged<v8::internal::HeapObject>, v8::internal::FullHeapObjectSlot, v8::internal::Tagged<v8::internal::HeapObject>)"
+        },
+        {
+          "percent": 0.21,
+          "command": "WPEWebProcess",
+          "dso": "ld-linux-x86-64.so.2",
+          "symbol": "0x000000000000a5b1"
+        },
+        {
+          "percent": 0.21,
+          "command": "WPEWebProcess",
+          "dso": "libLLVM.so.20.1",
+          "symbol": "llvm::SelectionDAG::computeKnownBits(llvm::SDValue, llvm::APInt const&, unsigned int) const"
+        },
+        {
+          "percent": 0.21,
+          "command": "WPEWebProcess",
+          "dso": "libLLVM.so.20.1",
+          "symbol": "llvm::SelectionDAGISel::SelectCodeCommon(llvm::SDNode*, unsigned char const*, unsigned int)"
+        }
+      ]
+    },
+    "interpretation": "WPE RAF2 still waits 2419ms and the original 1500ms fixture fails. Capture contains software-rendering LLVM/gallium/compositor work and llvmpipe workers. Aggregated CPU samples are not aligned to the exact RAF wait and some symbols are unresolved, so the exact native blocking symbol is not claimed. The non-warmed GTK port remedy is supported separately by the six retained fresh-runner comparisons."
+  },
+  "static": {
+    "artifact": {
+      "id": 11423572416,
+      "name": "cause-fix-static-37486905044-1",
+      "zipSha256": "199d0955c818ba05b882ee71c1f43d731d9cd67124374f10ff70a966080e612a"
+    },
+    "results": {
+      "lint": {
+        "pass": true,
+        "sourceCommit": "d6adcf20a94338820338134e5fae8ae6b9439eba",
+        "sourceTree": "d13c1c2d4702e41d71c1a8a4766bdaedebfa9cd4",
+        "artifactDigest": "3be0dd2590c60890ce06a3e91f30b298c3b37d9741581fd36a2d3e6e1af33984"
+      },
+      "security": {
+        "pass": true,
+        "sourceCommit": "d6adcf20a94338820338134e5fae8ae6b9439eba",
+        "sourceTree": "d13c1c2d4702e41d71c1a8a4766bdaedebfa9cd4",
+        "artifactDigest": "3be0dd2590c60890ce06a3e91f30b298c3b37d9741581fd36a2d3e6e1af33984"
+      }
+    },
+    "interpretation": "Complete source lint and security pass. No new complexity debt, Semgrep/Bandit finding or untriaged secret candidate; previous baseline dispositions remain unchanged."
+  },
+  "status": "The dated PR trigger is removed after retaining all results. The corrected public source still needs full exact-head hosted/native/performance/soak acceptance and verified stable promotion before merge."
+}

@@ -31,15 +31,32 @@ Normal TBT reference 120.5/96.5/103.5 проти candidate 130.5/130/123 мс:
 
 Нова перевірювана оптимізація палітри кешує точний RGB результат замість дробового
 tint string. Кольори кожної грані byte-identical для 5 routes × 2 details × 3
-palettes; геометрія й світлова арифметика не змінюються. Парні normal та окремі
-CPU trials проти 614c3e5 ще потрібні для виміряного ефекту.
+palettes; геометрія й світлова арифметика не змінюються.
 
 Static preflight цього run падає на complexity collector та 217 нових checksum
 candidates; перевірено їхню exact provenance, без blanket exclusion, попередні
 3986 dispositions збережено. Collector розділено без зміни метрик/flags.
 Native perf не запустив браузер через root cache path, потім не завантажив
 root-owned файл. Цей запуск не дає browser CPU evidence; шлях/runner UID і
-гарантоване повернення ownership виправляються в окремій scoped confirmation.
+гарантоване повернення ownership виправлено в окремій scoped confirmation.
+
+Фінальне підтвердження [37486905044](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37486905044)
+успішно зберегло lint/security, нові 12 Research trials та native profile.
+Підготовка палітри в CPU samples 4.470/5.445/7.270→1.228/1.852/2.538 мс;
+це приблизні inclusive samples, а не normal elapsed time. Node cold palette
+microbenchmark 4.40→0.47 мс; кеш 4944→296 записів для Research compact.
+Normal TBT reference 128/131/128.5 проти candidate 160.5/142/116 мс:
+медіана 128.5→142 мс не доводить загального приросту. Старий late outlier знов
+не відтворився, його історичний стек лишається невідомим.
+
+Native profile утримує початковий WPE timeout та RAF №2 2419 мс. 949 samples
+без втрат містять LLVM/gallium/compositor/llvmpipe роботу, але aggregate samples
+не вирівняні до точного RAF wait; частина symbols відсутня. Точний blocking
+symbol не доведено. Remedy для Linux CI — перевірений cold GTK port, а не
+припущене виправлення драйвера. Повний raw perf і початкова невдача збережені.
+[CAUSE-FIX-CONFIRMATION.json](CAUSE-FIX-CONFIRMATION.json) містить identities,
+ZIP/raw SHA, усі метрики й межі висновків. Тимчасовий PR-тригер видалено;
+manual replay лишився. Повторів unchanged scenarios для випадкового green немає.
 
 Повний exact-head staging, stable verification і merge ще не завершено.
 Наведені нижче записи — історія первинної діагностики; її початковий

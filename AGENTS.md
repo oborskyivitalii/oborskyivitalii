@@ -68,6 +68,17 @@ Native perf's prior root-cache failure collected no browser profile; correct the
 installed path/runner UID and always restore artifact ownership. None of this
 diagnostic evidence substitutes for the mandatory exact-head full/stable gate.
 
+Final source confirmation 37486905044 is retained in CAUSE-FIX-CONFIRMATION.json.
+Full source lint/security pass; six new normal and six separately CPU-profiled
+Research trials retain all traces. Palette samples fall 4.470/5.445/7.270 to
+1.228/1.852/2.538ms, but normal TBT median 128.5 to 142ms does not show overall
+improvement. No late >30ms task reproduces. The native capture is now valid:
+949 samples, zero losses, with original WPE 1500ms failure/2419ms RAF2 retained.
+LLVM/software-compositor work is present but not time-aligned to the exact stall;
+do not claim an exact native blocking symbol. The dated PR trigger is removed.
+Proceed through the authorized full staging, exact-head stable verification and
+merge sequence. Issues #12/#13/#14 keep their distinct remaining acceptance.
+
 ## Completed browser causes — 2026-10-06
 
 The requested analysis is retained in review/staging-readiness-20261006/CAUSES.md,

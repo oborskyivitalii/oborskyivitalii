@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "e603626dd57a53e431b5eb06ed635a81e1ce562025def51d169b9618acea49ae",
+    "digest": "c4924f5677c03e61259fbd3a1f8659f377df11d93a5c8cdb77a3c28527bbb605",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -63,7 +63,7 @@
       {
         "path": ".github/workflows/site-cause-fix-probe.yml",
         "identity_mode": "content",
-        "sha256": "3eadbfab1570e5fa5f42feca5b89cd44fdca02ce0acab33294de7acb6a8227e3"
+        "sha256": "2f12e1bb275906f7b39e8e900ed5b6a0f861fdd5cbc6a6a61030695533e98f71"
       },
       {
         "path": ".github/workflows/site-cause-probe.yml",
@@ -112,7 +112,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "80377a831da3b2b97940be44efa89991407197f42a0d46f6a0f86aeb1d5d39f9"
+        "sha256": "854d5ae5b4d1f74e23338250ca5dd835a1c5e4153aadc3b2b6ebfc0e1314bc9f"
       },
       {
         "path": "BACKLOG.md",
@@ -380,7 +380,7 @@
       {
         "path": "review/public-responses-20261006/README.md",
         "identity_mode": "content",
-        "sha256": "664bb7b820475a499e983749b10d07973afd88652075556040606824d144e008"
+        "sha256": "2c1435cfd2db54f5fd6294ff5e0511468558bbc153d4f7f783eda363450cf06b"
       },
       {
         "path": "review/public-responses-20261006/index.after.html",
@@ -3229,6 +3229,11 @@
         "sha256": "cfc951fa5b6181a74aa3ac7da3015a92b50665bdf0df290f7ab2021d62a346ff"
       },
       {
+        "path": "review/staging-readiness-20261006/CAUSE-FIX-CONFIRMATION.json",
+        "identity_mode": "content",
+        "sha256": "9d3237694b8673e82c7b7fd17d8cda515787cb64e4f0524561a8a1ac813f60b3"
+      },
+      {
         "path": "review/staging-readiness-20261006/CAUSE-FIX-NATIVE.json",
         "identity_mode": "content",
         "sha256": "799ca7ddd656456b31c020aafffe62b2119c82b382d5e759de8c16d5608e4a8f"
@@ -3239,11 +3244,6 @@
         "sha256": "5e8aec2348e519f0b9be85f7884b172b5671088c179f4ff9394e8ad71bd0b26e"
       },
       {
-        "path": "review/staging-readiness-20261006/CAUSE-FIX-REQUEST.md",
-        "identity_mode": "content",
-        "sha256": "ef03fd560983f6efc9ee4743969987b99910d928e026dd8be728861c38dccd5d"
-      },
-      {
         "path": "review/staging-readiness-20261006/CAUSE-FIX-RESEARCH.json",
         "identity_mode": "content",
         "sha256": "768ce3a091ce64c2a160e1e919c3ac37c159acba55a0ef9c5469e7867fda718d"
@@ -3251,7 +3251,7 @@
       {
         "path": "review/staging-readiness-20261006/CAUSES.md",
         "identity_mode": "content",
-        "sha256": "367e0deb9562cdaf253d664578f5c30a7f78598ae66c6fa0f6e45a1065a36975"
+        "sha256": "ede7d5c4c73e389ff01abbe8b510dc4bcca196e9da0a7452059050ee87e677b5"
       },
       {
         "path": "review/staging-readiness-20261006/REPORT.md",
@@ -3920,7 +3920,7 @@
       {
         "path": "tools/quality/secrets-baseline.json",
         "identity_mode": "content",
-        "sha256": "bb5fc6dee811d4b929521690d840148b0cb0fb38bc7e93154466a562338a19a4"
+        "sha256": "667c323018dba7ea9a16e901e9d7e5ad2483bcababd6eba5566ac338a096fe47"
       },
       {
         "path": "tools/quality/security-rules.yml",
@@ -5867,6 +5867,13 @@
       ]
     },
     {
+      "path": "review/staging-readiness-20261006/CAUSE-FIX-CONFIRMATION.json",
+      "title": "review/staging-readiness-20261006/CAUSE-FIX-CONFIRMATION.json",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "review/staging-readiness-20261006/CAUSE-FIX-NATIVE.json",
       "title": "review/staging-readiness-20261006/CAUSE-FIX-NATIVE.json",
       "instructions": [
@@ -5876,13 +5883,6 @@
     {
       "path": "review/staging-readiness-20261006/CAUSE-FIX-PORTS.json",
       "title": "review/staging-readiness-20261006/CAUSE-FIX-PORTS.json",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "review/staging-readiness-20261006/CAUSE-FIX-REQUEST.md",
-      "title": "Confirm cause corrections and attribute the unresolved native delay",
       "instructions": [
         "AGENTS.md"
       ]
