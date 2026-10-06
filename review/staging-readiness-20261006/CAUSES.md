@@ -1,5 +1,24 @@
 # Причини збоїв і виправлення — 6 жовтня 2026
 
+## Preflight 37511255893: нуль браузерних спостережень
+
+Обидва ports встановились, але collector перед launch помилково відкинув
+законний normal Color `derivation.kind=authored-color-effects`. Це помилка
+діагностичного harness, яку пропустили root та незалежний review; не нова
+невдача браузера. Усі 14 native cells лишаються незапущеними. Static source
+lint/security і звичайні basic/RI/preview checks проходять на c2cfade.
+[GTK-TARGET-PREFLIGHT.json](GTK-TARGET-PREFLIGHT.json) зберігає exact source/tree,
+обидва failed preconditions, порожні native outputs, raw SHA і окрему BASE
+identity scanner artifact без вигаданого Color digest.
+
+Виправлено лише preflight: canonical Color lineage звіряється з реально
+збереженим base manifest — clean candidate/tree, parent digest, base engine,
+authored effects; private diagnostics відхиляються. Report/stderr envelope
+створюється до parse/verify, тому наступний precondition failure залишить raw
+untrusted input та нуль cells. Integration test використовує actual base/Color
+producer у чистому detached worktree, без підміни sourceDirty. Після review
+збираємо ті самі 14 controls на зміненому collector; native remedy ще не обрано.
+
 ## GTK 37505225237: усі no-js сторінки падають до cleanup
 
 Після primary archive Ubuntu завантажує 126 MB за 15 с; dependencies — 44 с,

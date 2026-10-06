@@ -17,7 +17,15 @@ automation flag, shipped-source intervention, deployment or promotion occurs.
 
 The exact blank fixture and its hash are retained; blank and unchanged Color
 bytes use the same private loopback origin. Full Color retains its clean source,
-tree, runtime variant and artifact identity. GTK display plus browser share the
+tree, runtime variant and artifact identity. The unmodified normal producer's
+canonical authored-color-effects derivation is checked against its retained
+base manifest, including the actual parent digest, clean source/tree, base engine
+and authored ribbons/travel effects. Private diagnostic derivatives are rejected.
+Report and stderr capture start before manifest reading or validation, so a failed
+preflight retains untrusted input bytes/parsed metadata, the exact error, zero
+native observations and collectionComplete:false. A real producer integration
+test builds normal base/Color from a clean detached source with output outside it.
+GTK display plus browser share the
 existing 30000ms startup allowance; goto(load) remains 30000ms. After load,
 the original 180ms wait is followed immediately by the chosen first evaluation.
 The Node-side process snapshot runs during that wait and is awaited later.

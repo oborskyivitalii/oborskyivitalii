@@ -14,7 +14,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v1",
-    "digest": "3a0091e27d1f6808fd805705444a8cac08087ff584d928688cf28cbe1a595b09",
+    "digest": "d668d587e6cb89a657ec5b26895ab0efeeffccd3f1f60ca0243eb0a52620a76c",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -83,7 +83,7 @@
       {
         "path": ".github/workflows/site-gtk-target-probe.yml",
         "identity_mode": "content",
-        "sha256": "8f6370657406a04dc500681c5a1a96b94025b9a1f51987a15a80a543c0b606be"
+        "sha256": "2656f74880d8534abcfc9c7a3101e95b31765389d1291156b254341ca332beaf"
       },
       {
         "path": ".github/workflows/site-navigation-probe.yml",
@@ -117,7 +117,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "65b4a0f27d0b6602ba3fb55fcb8bf9158c582bba483736d81c11d9a517c8ff87"
+        "sha256": "98555a6d50523993422fb14158f2547cf2448516d917bed3eab0498123bf87a8"
       },
       {
         "path": "BACKLOG.md",
@@ -3230,7 +3230,7 @@
       {
         "path": "review/staging-readiness-20261006/CAUSES.md",
         "identity_mode": "content",
-        "sha256": "56fa87d24ca578bbb8db2ef770374f3546640ab1146223502aee66518022abbd"
+        "sha256": "dbaa01a60bef19ef36a7ab7442a2a6aa737201781a8371a5bdd3b065cbe27809"
       },
       {
         "path": "review/staging-readiness-20261006/DISPLAY.json",
@@ -3253,9 +3253,14 @@
         "sha256": "a4c30e27d0049e74eae26ad3a5cced4bc692f6241c8b9e20aab0ccd546e58095"
       },
       {
+        "path": "review/staging-readiness-20261006/GTK-TARGET-PREFLIGHT.json",
+        "identity_mode": "content",
+        "sha256": "1c33b022d5f341e75fc2baa188aa030ce626d5fce3eff94a0dce06f0a57dbd03"
+      },
+      {
         "path": "review/staging-readiness-20261006/GTK-TARGET-REQUEST.md",
         "identity_mode": "content",
-        "sha256": "6eb3f232e2c61af321c4f0be283330cf4085b9ddd8e48481787349abdd6c8ae9"
+        "sha256": "d620998880e946d4470ccd66e23b39f2fe1cf5b90e642d2b835b09630c09dfc9"
       },
       {
         "path": "review/staging-readiness-20261006/LINUX-LEASES.md",
@@ -3949,7 +3954,7 @@
       {
         "path": "tools/quality/secrets-baseline.json",
         "identity_mode": "content",
-        "sha256": "5b13569920ce1d9f9608ade9c77543a601707c5c01847408979b4adb7ece149b"
+        "sha256": "d5b449448d6bf1fa4c4b508b729945c17a53ca162694097b9fa18933f7247798"
       },
       {
         "path": "tools/quality/security-rules.yml",
@@ -5947,6 +5952,13 @@
     {
       "path": "review/staging-readiness-20261006/GTK-REQUEST.md",
       "title": "Dated complete GTK lease confirmation",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/staging-readiness-20261006/GTK-TARGET-PREFLIGHT.json",
+      "title": "review/staging-readiness-20261006/GTK-TARGET-PREFLIGHT.json",
       "instructions": [
         "AGENTS.md"
       ]

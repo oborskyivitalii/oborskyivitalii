@@ -9,13 +9,23 @@ function plan(port){
   if(port==='gtk')rows.push({...rows[1],id:'blank-constant-js-off-no-init',originalInit:false},{...rows[5],id:'color-state-js-off-no-init',originalInit:false});
   return rows;
 }
-function identity(manifest,candidate){
+function cleanSource(manifest,candidate){
   assert.match(candidate||'',/^[a-f0-9]{40}$/);assert.equal(manifest.sourceCommit,candidate);assert.equal(manifest.candidateCommit,candidate);assert.equal(manifest.sourceDirty,false);
   assert.match(manifest.sourceTree||'',/^[a-f0-9]{40}$/);assert.match(manifest.artifactDigest||'',/^[a-f0-9]{64}$/);
-  assert.equal(manifest.diagnostic,undefined);assert.equal(manifest.derivation,undefined);assert.notEqual(manifest.fullGate,false);
+  assert.equal(manifest.diagnostic,undefined);assert.notEqual(manifest.fullGate,false);
+  return {sourceCommit:manifest.sourceCommit,sourceTree:manifest.sourceTree,candidateCommit:manifest.candidateCommit,sourceDirty:false,artifactDigest:manifest.artifactDigest};
+}
+function identity(manifest,candidate,base){
+  const source=cleanSource(manifest,candidate),parent=cleanSource(base,candidate),derivation=manifest.derivation;
+  assert.ok(derivation&&typeof derivation==='object');assert.deepEqual(Object.keys(derivation).sort(),['baseArtifactDigest','kind']);
+  assert.equal(derivation.kind,'authored-color-effects');assert.match(derivation.baseArtifactDigest||'',/^[a-f0-9]{64}$/);
+  assert.equal(base.derivation,undefined);assert.equal(parent.sourceTree,source.sourceTree);assert.equal(derivation.baseArtifactDigest,parent.artifactDigest);
+  const baseVariant=base.components?.variant||base.variant;assert.equal(baseVariant?.id,'base');assert.equal(baseVariant.contract,1);assert.match(baseVariant.fingerprint||'',/^[a-f0-9]{64}$/);assert.equal(baseVariant.diagnostic,undefined);assert.match(base.components?.engine||'',/^[a-f0-9]{64}$/);
+  if(base.components?.variant&&base.variant)assert.deepEqual(base.components.variant,base.variant);
   const variant=manifest.components?.variant||manifest.variant;assert.equal(variant?.id,'color');assert.equal(variant.contract,1);assert.match(variant.fingerprint,/^[a-f0-9]{64}$/);assert.equal(variant.diagnostic,undefined);
+  assert.equal(variant.baseEngine,base.components.engine);assert.deepEqual(variant.effects,['ribbons','travel']);
   if(manifest.components?.variant&&manifest.variant)assert.deepEqual(manifest.components.variant,manifest.variant);
-  return {sourceCommit:manifest.sourceCommit,sourceTree:manifest.sourceTree,candidateCommit:manifest.candidateCommit,sourceDirty:false,artifactDigest:manifest.artifactDigest,variant};
+  return {...source,variant,derivation:{...derivation}};
 }
 function originalInit(functional,cell){
   const mode=cell.javaScriptEnabled?'normal':'no-js';
@@ -108,21 +118,26 @@ async function cellTrial(cell,deps){
   return row;
 }
 async function main(port,input,output){
-  assert.equal(process.env.SITE_TEST_BASE_URL,undefined,'Only a private loopback source is allowed');fs.mkdirSync(output,{recursive:true});
-  const manifest=JSON.parse(fs.readFileSync(path.join(input,'artifact.json'))),publicDir=path.join(input,'public');require('./artifact.cjs').verify(publicDir,manifest);
-  const source=identity(manifest,process.env.SITE_CANDIDATE_SHA),cells=plan(port),record={schema:1,kind:'gtk-wpe-first-evaluation-attribution',port,fullGate:false,performanceAcceptance:false,source,environment:require('./common.cjs').environment(),startedAt:new Date().toISOString(),fixture:{document:BLANK,sha256:crypto.createHash('sha256').update(BLANK).digest('hex')},existingCorePattern:readObservation('/proc/sys/kernel/core_pattern'),existingProcessLimits:readObservation('/proc/self/limits'),plan:cells,rows:[],errors:[],collectionComplete:false};
+  fs.mkdirSync(output,{recursive:true});
+  const record={schema:1,kind:'gtk-wpe-first-evaluation-attribution',port,fullGate:false,performanceAcceptance:false,source:null,baseSource:null,phase:'preflight',untrustedInput:{directory:input,trust:'untrusted-observation',manifests:{}},startedAt:new Date().toISOString(),fixture:{document:BLANK,sha256:crypto.createHash('sha256').update(BLANK).digest('hex')},existingCorePattern:readObservation('/proc/sys/kernel/core_pattern'),existingProcessLimits:readObservation('/proc/self/limits'),plan:[],rows:[],errors:[],collectionComplete:false};
   const capture=captureStderr(output),save=()=>{record.stderr=capture.snapshot();fs.writeFileSync(path.join(output,'gtk-target.json'),JSON.stringify(record,null,2)+'\n');};save();
-  const {server,url}=await serve(publicDir);
+  let server;
   try{
+    assert.equal(process.env.SITE_TEST_BASE_URL,undefined,'Only a private loopback source is allowed');record.environment=require('./common.cjs').environment();
+    const cells=plan(port);record.plan=cells;save();
+    const readManifest=name=>{const file=path.join(input,name),bytes=fs.readFileSync(file),rawFile=path.join(output,'untrusted-'+name);fs.writeFileSync(rawFile,bytes);record.untrustedInput.manifests[name]={path:file,retainedPath:rawFile,bytes:bytes.length,sha256:crypto.createHash('sha256').update(bytes).digest('hex')};save();const parsed=JSON.parse(bytes);record.untrustedInput.manifests[name].parsed=parsed;save();return parsed;};
+    const manifest=readManifest('artifact.json'),base=readManifest('base-artifact.json'),publicDir=path.join(input,'public');require('./artifact.cjs').verify(publicDir,manifest);
+    const source=identity(manifest,process.env.SITE_CANDIDATE_SHA,base);record.source=source;record.baseSource={...cleanSource(base,process.env.SITE_CANDIDATE_SHA),variant:base.components?.variant||base.variant,engine:base.components.engine};record.phase='collection';save();
+    const serving=await serve(publicDir);server=serving.server;const url=serving.url;
     const functional=require('./functional.cjs'),pw=require('./common.cjs').toolRequire('playwright'),native=require('./native-display.cjs');
     let priorCleanupIncomplete=false;
     for(const [index,cell]of cells.entries()){
       const row=await cellTrial(cell,{pw,native,functional,url,source,since:record.startedAt,stderr:()=>capture.snapshot(),retain(row){row.priorCleanupIncomplete=priorCleanupIncomplete;record.rows[index]=row;save();}});
       if(row.cleanupError)priorCleanupIncomplete=true;
     }
-    record.collectionComplete=record.rows.length===cells.length&&record.rows.every(row=>row.evidenceValid&&!row.cleanupError&&!row.priorCleanupIncomplete);save();assert.equal(record.collectionComplete,true,'Every planned first evaluation must produce an uncontaminated retained observation');
-  }catch(error){record.errors.push({name:error.name,message:error.message,stack:error.stack});save();throw error;}
-  finally{server.close();save();capture.stop();}
+    record.collectionComplete=record.rows.length===cells.length&&record.rows.every(row=>row.evidenceValid&&!row.cleanupError&&!row.priorCleanupIncomplete);assert.equal(record.collectionComplete,true,'Every planned first evaluation must produce an uncontaminated retained observation');record.phase='complete';save();
+  }catch(error){record.errors.push({phase:record.phase,name:error.name,message:error.message,stack:error.stack});record.phase='failed';save();throw error;}
+  finally{server?.close();save();capture.stop();}
 }
 if(require.main===module)main(process.argv[2],...process.argv.slice(3).map(value=>path.resolve(value))).catch(error=>{console.error(error.stack);process.exitCode=1;});
-module.exports={plan,identity,originalInit,bounded,textCollector,command,cellTrial,serve,BLANK,STARTUP_MS,GOTO_MS,COLLECTION_MS,CLEANUP_MS};
+module.exports={plan,identity,originalInit,bounded,textCollector,command,cellTrial,serve,main,BLANK,STARTUP_MS,GOTO_MS,COLLECTION_MS,CLEANUP_MS};

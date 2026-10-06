@@ -24,6 +24,16 @@ acceptance from collection green. Native crash records are observed separately.
 Remove its dated PR trigger after retaining evidence; correct only supported
 causes before a fresh hosted/full/stable/exact-head merge.
 
+The first screen run 37511255893 at c2cfade has zero native observations: its
+collector incorrectly rejects normal Color authored-color-effects derivation.
+GTK-TARGET-PREFLIGHT.json retains both failed preconditions, passed installs,
+static lint/security and raw SHA. It says nothing about GTK/WPE factors.
+Correct only this preflight: validate canonical Color lineage against its real
+retained base with exact clean source/tree/engine/effects, reject diagnostics,
+and initialize reports before input validation. The real producer integration
+uses a clean detached test-owned source; do not rewrite sourceDirty metadata.
+Original fourteen cells and native/collection bounds stay unchanged.
+
 The observed GTK row phase is 19m58s; incomplete lease is 24m08s, exceeding the
 previous full Linux job's 9m02s allowance. LINUX-LEASES.md retains a reviewed
 260/8/26 + 130/4/13 two-runner adapter, unchanged 45m job limits and exact raw

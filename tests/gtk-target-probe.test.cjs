@@ -1,8 +1,8 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),{EventEmitter}=require('node:events'),http=require('node:http');
-const fs=require('node:fs'),os=require('node:os'),path=require('node:path');
+const fs=require('node:fs'),os=require('node:os'),path=require('node:path'),cp=require('node:child_process');
 const probe=require('../tools/quality/gtk-target-probe.cjs');
-const candidate='a'.repeat(40),manifest={sourceCommit:candidate,candidateCommit:candidate,sourceTree:'b'.repeat(40),sourceDirty:false,artifactDigest:'c'.repeat(64),variant:{id:'color',contract:1,fingerprint:'d'.repeat(64)}};
+const candidate='a'.repeat(40),base={sourceCommit:candidate,candidateCommit:candidate,sourceTree:'b'.repeat(40),sourceDirty:false,artifactDigest:'e'.repeat(64),components:{engine:'f'.repeat(64),variant:{id:'base',contract:1,fingerprint:'9'.repeat(64)}}},manifest={sourceCommit:candidate,candidateCommit:candidate,sourceTree:'b'.repeat(40),sourceDirty:false,artifactDigest:'c'.repeat(64),variant:{id:'color',contract:1,fingerprint:'d'.repeat(64),baseEngine:base.components.engine,effects:['ribbons','travel']},derivation:{kind:'authored-color-effects',baseArtifactDigest:base.artifactDigest}};
 test('fourteen one-factor cells retain the same six standards per port and two matching GTK init omissions',()=>{
   const gtk=probe.plan('gtk'),wpe=probe.plan('wpe');assert.equal(gtk.length,8);assert.equal(wpe.length,6);
   assert.deepEqual(gtk.slice(0,6).map(row=>({...row,port:undefined})),wpe.map(row=>({...row,port:undefined})));
@@ -11,8 +11,35 @@ test('fourteen one-factor cells retain the same six standards per port and two m
   assert.ok(gtk.slice(0,6).every(row=>row.originalInit));assert.throws(()=>probe.plan('native'));
 });
 test('only exact clean normal Color source identity is admitted',()=>{
-  assert.deepEqual(probe.identity(manifest,candidate),manifest);
-  for(const change of [{sourceCommit:'e'.repeat(40)},{candidateCommit:'e'.repeat(40)},{sourceDirty:true},{sourceTree:'unknown'},{artifactDigest:'unknown'},{diagnostic:{label:'private'}},{derivation:{parent:'unknown'}},{fullGate:false},{variant:{...manifest.variant,id:'base'}},{variant:{...manifest.variant,diagnostic:{label:'private'}}}])assert.throws(()=>probe.identity({...manifest,...change},candidate));
+  assert.deepEqual(probe.identity(manifest,candidate,base),manifest);
+  for(const change of [{sourceCommit:'e'.repeat(40)},{candidateCommit:'e'.repeat(40)},{sourceDirty:true},{sourceTree:'unknown'},{artifactDigest:'unknown'},{diagnostic:{label:'private'}},{derivation:undefined},{derivation:{parent:'unknown'}},{derivation:{...manifest.derivation,kind:'writing-diagnostic-intervention'}},{derivation:{...manifest.derivation,baseArtifactDigest:'0'.repeat(64)}},{derivation:{...manifest.derivation,diagnostic:'private'}},{fullGate:false},{variant:{...manifest.variant,id:'base'}},{variant:{...manifest.variant,diagnostic:{label:'private'}}},{variant:{...manifest.variant,baseEngine:'0'.repeat(64)}},{variant:{...manifest.variant,effects:['ribbons']}}])assert.throws(()=>probe.identity({...manifest,...change},candidate,base));
+  for(const change of [{sourceCommit:'e'.repeat(40)},{sourceTree:'e'.repeat(40)},{sourceDirty:true},{derivation:manifest.derivation},{fullGate:false},{diagnostic:{label:'private'}},{components:{...base.components,variant:{...base.components.variant,contract:2}}},{components:{...base.components,variant:{...base.components.variant,fingerprint:'unknown'}}},{components:{...base.components,variant:{...base.components.variant,diagnostic:{label:'private'}}}},{variant:{...base.components.variant,fingerprint:'0'.repeat(64)}}])assert.throws(()=>probe.identity(manifest,candidate,{...base,...change}));
+});
+test('real clean normal artifact and Color producers satisfy lineage and retain every failed preflight without native cells',async()=>{
+  const root=path.resolve(__dirname,'..'),dir=fs.mkdtempSync(path.join(os.tmpdir(),'gtk-target-real-')),worktree=path.join(dir,'source'),input=path.join(dir,'input');
+  const sha=cp.execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim(),priorCandidate=process.env.SITE_CANDIDATE_SHA,priorBaseUrl=process.env.SITE_TEST_BASE_URL;let registered=false;
+  try{
+    cp.execFileSync('git',['worktree','add','--detach','--quiet',worktree,sha],{cwd:root});registered=true;process.env.SITE_CANDIDATE_SHA=sha;delete process.env.SITE_TEST_BASE_URL;
+    const artifact=require(path.join(worktree,'tools/quality/artifact.cjs')),normalBase=artifact.build(input);fs.copyFileSync(path.join(input,'artifact.json'),path.join(input,'base-artifact.json'));
+    const normalColor=require(path.join(worktree,'tools/staging/color.cjs')).build(input);
+    assert.equal(normalBase.sourceDirty,false);assert.equal(normalColor.sourceDirty,false);assert.equal(normalColor.sourceCommit,sha);assert.equal(normalColor.sourceTree,cp.execFileSync('git',['rev-parse','HEAD^{tree}'],{cwd:worktree,encoding:'utf8'}).trim());
+    assert.deepEqual(normalColor.derivation,{kind:'authored-color-effects',baseArtifactDigest:normalBase.artifactDigest});assert.equal(artifact.verify(path.join(input,'public'),normalColor),true);
+    const accepted=probe.identity(normalColor,sha,normalBase);assert.deepEqual(accepted.derivation,normalColor.derivation);assert.deepEqual(accepted.variant,normalColor.variant);assert.equal(accepted.artifactDigest,normalColor.artifactDigest);
+    const artifactFile=path.join(input,'artifact.json'),artifactBytes=fs.readFileSync(artifactFile),pageFile=path.join(input,'public/index.html'),pageBytes=fs.readFileSync(pageFile);
+    const cases=[['missing',()=>fs.rmSync(artifactFile)],['malformed',()=>fs.writeFileSync(artifactFile,'{')],['bytes',()=>fs.appendFileSync(pageFile,'\nchanged private bytes\n')],['identity',()=>fs.writeFileSync(artifactFile,JSON.stringify({...normalColor,derivation:{...normalColor.derivation,diagnostic:'private'}}))]];
+    for(const [label,intervene]of cases){
+      fs.writeFileSync(artifactFile,artifactBytes);fs.writeFileSync(pageFile,pageBytes);intervene();const output=path.join(dir,'results',label),stderrWrite=process.stderr.write;
+      await assert.rejects(probe.main('gtk',input,output));assert.equal(process.stderr.write,stderrWrite);
+      const report=JSON.parse(fs.readFileSync(path.join(output,'gtk-target.json')));assert.equal(report.phase,'failed');assert.equal(report.source,null);assert.equal(report.baseSource,null);assert.equal(report.collectionComplete,false);assert.equal(report.fullGate,false);assert.equal(report.performanceAcceptance,false);
+      assert.equal(report.plan.length,8);assert.deepEqual(report.rows,[]);assert.equal(report.errors.length,1);assert.equal(report.errors[0].phase,'preflight');assert.equal(report.untrustedInput.trust,'untrusted-observation');assert.equal(fs.existsSync(path.join(output,'native-stderr.log')),true);
+      if(label!=='missing')assert.deepEqual(fs.readFileSync(path.join(output,'untrusted-artifact.json')),fs.readFileSync(artifactFile));
+      if(label==='identity')assert.equal(report.untrustedInput.manifests['artifact.json'].parsed.derivation.diagnostic,'private');
+    }
+  }finally{
+    if(priorCandidate===undefined)delete process.env.SITE_CANDIDATE_SHA;else process.env.SITE_CANDIDATE_SHA=priorCandidate;
+    if(priorBaseUrl===undefined)delete process.env.SITE_TEST_BASE_URL;else process.env.SITE_TEST_BASE_URL=priorBaseUrl;
+    if(registered)cp.execFileSync('git',['worktree','remove','--force',worktree],{cwd:root});fs.rmSync(dir,{recursive:true,force:true});
+  }
 });
 function fake({crash=false,timeout=false}={}){
   const calls=[],browsers=[];let clock=0;
@@ -33,7 +60,7 @@ function fake({crash=false,timeout=false}={}){
   const native={start:async(...args)=>{calls.push(['display',...args]);clock+=1200;return {name:':9',backend:'Xvfb',elapsedMs:1200,stop(){calls.push('stop-display');}};},remaining:(started,budget,now)=>budget-(now-started)};
   const collect=async(stage,options)=>{calls.push(['native',stage,options]);return {stage};};
   const first=async(promise,ms)=>{calls.push(['collector',ms]);if(timeout){await promise;const error=Error('diagnostic collection expired');error.name='CollectorTimeout';throw error;}return promise;};
-  return {calls,browsers,deps:{pw,native,functional,collect,first,url:'http://127.0.0.1:9',source:probe.identity(manifest,candidate),now:()=>clock,stderr:()=>({bytes:0,droppedBytes:0})}};
+  return {calls,browsers,deps:{pw,native,functional,collect,first,url:'http://127.0.0.1:9',source:probe.identity(manifest,candidate,base),now:()=>clock,stderr:()=>({bytes:0,droppedBytes:0})}};
 }
 test('every cell owns a fresh browser and its chosen first evaluation follows exact original context/init/load/settle',async()=>{
   const h=fake();let count=0;

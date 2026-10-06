@@ -40,6 +40,7 @@ jobs:
           node - <<'JS'
           const root=process.env.RUNNER_TEMP+'/gtk-target-input/color';
           require('./tools/quality/artifact.cjs').build(root);
+          require('node:fs').copyFileSync(root+'/artifact.json',root+'/base-artifact.json');
           require('./tools/staging/color.cjs').build(root);
           JS
       - name: Bound Ubuntu downloads and use its primary archive
