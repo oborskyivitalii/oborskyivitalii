@@ -1,4 +1,5 @@
 'use strict';
+const primaryCount=Object.keys(require('../../site/content/catalog.json').records).length;
 const assert=require('node:assert/strict'),path=require('node:path');
 const {toolRequire,out,report,launchOptions}=require('./common.cjs');
 const pw=toolRequire('playwright'),AxeBuilder=toolRequire('@axe-core/playwright').default;
@@ -112,10 +113,10 @@ async function archive(page){
   await page.locator('#archive-year').selectOption('2025');await page.locator('#archive-topic').selectOption('delivery');await page.locator('#archive-language').selectOption('uk');
   assert.equal(await page.locator('#archive-empty').isVisible(),true);
   await page.evaluate(()=>window.dispatchEvent(new Event('beforeprint')));
-  assert.equal(await page.locator('li.publication:visible').count(),27);
+  assert.equal(await page.locator('li.publication:visible').count(),primaryCount);
   await page.evaluate(()=>window.dispatchEvent(new Event('afterprint')));
   assert.equal(await page.locator('li.publication:visible').count(),0);
-  await page.locator('.filter-reset').click();assert.equal(await page.locator('li.publication:visible').count(),27);
+  await page.locator('.filter-reset').click();assert.equal(await page.locator('li.publication:visible').count(),primaryCount);
   await page.locator('#archive-topic').selectOption('systems');const backURL=await page.evaluate(()=>location.href);await page.locator('#archive-language').selectOption('uk');const forwardURL=await page.evaluate(()=>location.href);
   const {archiveHistoryReady}=require('./navigation.cjs');
   await page.goBack();await archiveHistoryReady(page,backURL,{topic:'systems',language:'all'});assert.equal(await page.locator('#archive-language').inputValue(),'all');

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/36",
-    "summary": "2026-10-07 #36: reconciled canonical Writing compiler/cache/scoped exact-head evidence with merged #35 registry/profile selection, selected staging/full production separation and source triage. Both owning policies and unconditional RI/test-profile companions remain mapped. Fixture passes do not assert hosted timing, visual/device acceptance, merge or closure.",
+    "summary": "2026-10-07 joint #36/#41: preserve all original source/profile/AC routes; mechanical projection/parser and bounded validator extraction, catalog-derived browser counts, exact individually proved public checksums. Basic23, selected source258, policy23, 120 exact projection comparisons and locked static preflight pass. No complexity/budget/scanner exclusions; editorial/visual/paired/independent gates remain pending. Maintainer proposes corrected43 merge, adapt44, then one staging run.",
     "date": "2026-10-07"
   },
   "layers": [
@@ -353,7 +353,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "0a2c8c445fdc119809cee2e6780d4b01a404e4d2b6d13281c392a77a91c7ad9c",
+    "digest": "c4fd49489cbf7e6d63e42dea45596c9a5e7d4cf7315aff798752c84abdd0b880",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -405,7 +405,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "24c0a9e0df0559a32d648a4f23d9e0d6a208e322fc24c825a03ea646f58b72cc"
+        "sha256": "778fcce2ea708c69cad229743ad41b58ac1b0f5ded0a71b8d7d18377d71b1300"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -517,11 +517,11 @@
       },
       {
         "path": "tests/test_issue36_acceptance.py",
-        "sha256": "031337cd1dbaf1b389aaa7461647fb1658af841914539721e97a3484c9df45f0"
+        "sha256": "7a6b3342e65ca20bb0fd86cdc88db43116fc8e76f030b402fa6bc3bab1327750"
       },
       {
         "path": "tests/test_issue41_acceptance.py",
-        "sha256": "a76ab421cc664e94933f8561579ed3c79bcda15abbd49ebc121985cb1287a66e"
+        "sha256": "e558341644520e99ff0d8cba98f64b6a2f85328565cd39afb1efdc0bef1a0451"
       },
       {
         "path": "tests/test_issue_acceptance.py",

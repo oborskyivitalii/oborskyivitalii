@@ -64,6 +64,20 @@ function measurement(row,kind,{zero=false,flight=false}={}){
   if(flight){for(const key of ['readyMs','transitionPhase'])assert.deepEqual(row[key],recomputed[key],'declared '+key+' differs from raw events');transition(row);}
   return row;
 }
+const reportedQuality=value=>typeof value==='string'&&value.length>0&&Number.isFinite(+value);
+function adaptationChanges(state,startup,index,firstQuality){
+    for(const [changeIndex,change]of state.changes.entries()){
+      assert.ok(['data-quality','data-cadence'].includes(change.attribute),'invalid adaptation attribute');
+      const initialQuality=startup&&index===firstQuality&&change.attribute==='data-quality'&&change.from===null&&!state.changes.slice(0,changeIndex).some(item=>item.attribute==='data-quality');
+      assert.ok((initialQuality||reportedQuality(change.from))&&reportedQuality(change.to),'invalid raw adaptation change');
+      if(change.attribute==='data-cadence')assert.ok(+change.from>0&&+change.to>0,'invalid raw cadence change');
+    }
+    for(const [attribute,key]of [['data-quality','quality'],['data-cadence','cadence']]){
+      const changes=state.changes.filter(change=>change.attribute===attribute);
+      for(let index=1;index<changes.length;index++)assert.equal(changes[index].from,changes[index-1].to,'broken batched adaptation trace');
+      if(changes.length)assert.equal(changes.at(-1).to,state[key],'raw adaptation differs from snapshot');
+    }
+}
 function adaptationTrace(row,{startup=false}={}){
   assert.ok(Array.isArray(row.trace)&&row.trace.length>0,'missing adaptation trace');
   if(startup)assert.equal(row.kind,'startup-idle','quality initialization is only allowed during startup');
@@ -71,7 +85,6 @@ function adaptationTrace(row,{startup=false}={}){
   // cooldown. Its immediate startup observation can therefore contain an
   // absent attribute followed by the actual null-to-numeric publication.
   // Preserve that raw prefix; never turn absent telemetry into a quality tier.
-  const reportedQuality=value=>typeof value==='string'&&value.length>0&&Number.isFinite(+value);
   const firstQuality=row.trace.findIndex(state=>reportedQuality(state.quality));
   assert.ok(firstQuality>=0,'quality was never published during adaptation observation');
   if(firstQuality>0){
@@ -84,17 +97,7 @@ function adaptationTrace(row,{startup=false}={}){
     assert.equal(state.route,'writing');assert.ok((startup&&index<firstQuality&&state.quality===undefined||reportedQuality(state.quality))&&Number.isFinite(+state.cadence)&&+state.cadence>0,'invalid adaptive quality/cadence');
     const camera=JSON.parse(state.camera);for(const key of ['position','target'])assert.ok(Array.isArray(camera[key])&&camera[key].length===3&&camera[key].every(Number.isFinite),'invalid warm-up camera');
     assert.ok(Array.isArray(state.changes),'missing raw attribute changes');
-    for(const [changeIndex,change]of state.changes.entries()){
-      assert.ok(['data-quality','data-cadence'].includes(change.attribute),'invalid adaptation attribute');
-      const initialQuality=startup&&index===firstQuality&&change.attribute==='data-quality'&&change.from===null&&!state.changes.slice(0,changeIndex).some(item=>item.attribute==='data-quality');
-      assert.ok((initialQuality||reportedQuality(change.from))&&reportedQuality(change.to),'invalid raw adaptation change');
-      if(change.attribute==='data-cadence')assert.ok(+change.from>0&&+change.to>0,'invalid raw cadence change');
-    }
-    for(const [attribute,key]of [['data-quality','quality'],['data-cadence','cadence']]){
-      const changes=state.changes.filter(change=>change.attribute===attribute);
-      for(let index=1;index<changes.length;index++)assert.equal(changes[index].from,changes[index-1].to,'broken batched adaptation trace');
-      if(changes.length)assert.equal(changes.at(-1).to,state[key],'raw adaptation differs from snapshot');
-    }
+    adaptationChanges(state,startup,index,firstQuality);
   }
   assert.ok(row.trace[0].time<=row.window.startMs+300&&row.trace.at(-1).time>=row.window.endMs-300,'incomplete whole-window adaptation trace');
   return row.trace;
@@ -247,6 +250,53 @@ function browser(record,expectedManifest){
   return {pass:true,fullGate:false,cases:expectedRows.length};
 }
 const median=values=>[...values].sort((a,b)=>a-b)[Math.floor(values.length/2)];
+function validateTransfer(row,trustedTransfers){
+    assert.ok(Number.isFinite(row.transfer?.routeRawBytes)&&row.transfer.routeRawBytes>0&&Number.isFinite(row.transfer.routeGzipBytes)&&row.transfer.routeGzipBytes>0&&row.transfer.routeGzipBytes<=budgets.routeGzipBytes,'missing/over-budget route transfer');
+    if(trustedTransfers)for(const key of ['routeRawBytes','routeGzipBytes'])assert.equal(row.transfer[key],trustedTransfers[row.label][key],'transfer does not match exact artifact');
+    assert.ok(Array.isArray(row.transfer.requests)&&row.transfer.requests.length>0,'missing actual transfer observations');
+    for(const request of row.transfer.requests)assert.ok(typeof request.path==='string'&&Number.isFinite(request.duration)&&request.duration>=0&&Number.isFinite(request.encodedBodySize)&&request.encodedBodySize>=0&&Number.isFinite(request.transferSize)&&request.transferSize>=0,'invalid actual transfer');
+    assert.equal(row.transfer.formulaAssetRequests,0,'compiled formula unexpectedly fetched a separate asset');assert.equal(row.transfer.runtimeDecodes,0,'compiled formula unexpectedly decodes an image');
+}
+function validateSteadySamples(row){
+    assert.deepEqual(row.warmups?.map(sample=>sample.for),['idle','filtered','empty'],'missing preconditioning intervals');
+    for(const sample of row.warmups){warmup(sample);const next=row.measurements.find(value=>value.kind===sample.for);assert.equal(next.quality,sample.quality,'steady window changed quality after preconditioning');assert.equal(next.cadence,sample.cadence,'steady window changed cadence after preconditioning');assert.ok(next.window.startMs>=sample.window.endMs,'preconditioning overlaps measured window');}
+    const sequence=[row.startupIdle,row.warmups[0],row.measurements[0],row.measurements[1],row.warmups[1],row.measurements[2],row.warmups[2],row.measurements[3]];
+    for(let index=1;index<sequence.length;index++)assert.ok(sequence[index].window.startMs>=sequence[index-1].window.endMs,'reused/overlapping startup, preconditioning or steady windows');
+    for(const sample of row.measurements){measurement(sample,sample.kind);assert.ok(sample.elapsedMs>=steadyProtocol.measurementMs-100,'truncated Writing observation');assert.ok(sample.paints>=steadyProtocol.minimumPaints,'insufficient steady tail sample');steady(sample);}
+    return sequence;
+}
+function validateAbsolute(profile,row,gate){
+    if(profile.cpuRate===4){
+      const absolute=(scope,sample,idle)=>{const context=profile.id+'/'+row.label+'/'+row.round+'/'+sample.kind+(sample.for?'/'+sample.for:'');gate(scope,sample.paintCallbackMs.p95<=budgets.motion.paintCallbackP95Ms,context+' absolute painted callback p95 exceeded');if(idle)gate(scope,sample.callbackBusyPercent<=budgets.motion.idleCallbackBusyPercent,context+' absolute idle busy exceeded');};
+      for(const sample of row.measurements)absolute('steady',sample,['idle','empty'].includes(sample.kind));
+      absolute('startup',row.startupIdle,true);for(const sample of row.warmups)absolute('warmup',sample,true);
+    }
+}
+function validateTrial(record,row,index,expected,gate,trustedTransfers){
+    assert.deepEqual({profile:row.profile,round:row.round,label:row.label},expected[index],'missing/duplicate/reordered trial');assert.ok(!row.error,'failed trial: '+row.error);
+    assert.ok(Number.isFinite(row.startedMs)&&Number.isFinite(row.endedMs)&&row.endedMs>row.startedMs,'missing trial duration');
+    if(index)assert.ok(row.startedMs>=record.rows[index-1].endedMs,'simultaneous/reused trial windows');
+    const profile=profiles.find(item=>item.id===row.profile);assert.deepEqual(row.settings,profile,'mislabeled runtime settings');
+    assert.deepEqual(row.errors,[]);assert.equal(row.browser,record.browser.version,'browser changed between pairs');
+    assert.equal(row.runtimeVariant,'color');assert.equal(row.runtimeEngine,record.identities[row.label].variant.fingerprint,'wrong served runtime');
+    assert.deepEqual(row.measurements.map(value=>value.kind),['idle','scroll','filtered','empty'],'missing Writing/reflow observations');
+    measurement(row.startupIdle,'startup-idle');assert.ok(row.startupIdle.elapsedMs>=steadyProtocol.startupIdleMs-100,'truncated initial idle observation');adaptationTrace(row.startupIdle,{startup:true});
+    const sequence=validateSteadySamples(row);
+    assert.ok(Number.isInteger(row.filteredPublications)&&row.filteredPublications>0);assert.equal(row.emptyPublications,0);
+    validateAbsolute(profile,row,gate);
+    assert.deepEqual(row.flights.map(value=>value.to),['writing','talks','writing','research'],'missing cold/warm entry and exit');
+    assert.deepEqual(row.flights.map(value=>value.from),['research','writing','talks','writing']);
+    for(const sample of row.flights)measurement(sample,'flight',{flight:true});
+    const chronology=[row.flights[0],...sequence,...row.flights.slice(1)];
+    for(let index=1;index<chronology.length;index++)assert.ok(chronology[index].window.startMs>=chronology[index-1].window.endMs,'reused/overlapping flight, startup, preconditioning or steady windows');
+    assert.equal(row.flights[0].transitionPhase,'cold','cold Writing entry not observed');assert.equal(row.flights[2].transitionPhase,'warm','warm Writing cache not observed');
+    validateTransfer(row,trustedTransfers);
+    if(row.label==='candidate'){
+      cache(row.formula,{painted:true});rooms(row.diagnostics);
+      for(const sample of [...row.measurements,row.startupIdle])formulaSample(sample,{framed:['idle','scroll','startup-idle'].includes(sample.kind)});
+      for(const sample of row.flights.filter(value=>value.to!=='writing'))assert.equal(sample.formula.lastPaintCount,0,'formula leaks into settled neighboring room');
+    }
+}
 function validate(record,{trustedIdentities,trustedTransfers}={}){
   assert.equal(record?.schema,1);assert.equal(record.kind,'writing-paradigm-performance');assert.equal(record.fullGate,false);
   assert.equal(record.protocolVersion,2,'historical protocol cannot supply steady evidence');assert.deepEqual(record.scope,scope,'changed startup/warmup/steady acceptance scope');assert.deepEqual(record.steadyProtocol,steadyProtocol,'changed steady preconditioning');
@@ -258,43 +308,7 @@ function validate(record,{trustedIdentities,trustedTransfers}={}){
   const gate=(scope,condition,message)=>{if(!condition){outcomes[scope].pass=false;outcomes[scope].failures.push(message);}};
   const expected=profiles.flatMap(profile=>orders.flatMap((order,round)=>order.map(label=>({profile:profile.id,round,label}))));
   assert.equal(record.rows?.length,expected.length,'missing paired samples');
-  for(const [index,row]of record.rows.entries()){
-    assert.deepEqual({profile:row.profile,round:row.round,label:row.label},expected[index],'missing/duplicate/reordered trial');assert.ok(!row.error,'failed trial: '+row.error);
-    assert.ok(Number.isFinite(row.startedMs)&&Number.isFinite(row.endedMs)&&row.endedMs>row.startedMs,'missing trial duration');
-    if(index)assert.ok(row.startedMs>=record.rows[index-1].endedMs,'simultaneous/reused trial windows');
-    const profile=profiles.find(item=>item.id===row.profile);assert.deepEqual(row.settings,profile,'mislabeled runtime settings');
-    assert.deepEqual(row.errors,[]);assert.equal(row.browser,record.browser.version,'browser changed between pairs');
-    assert.equal(row.runtimeVariant,'color');assert.equal(row.runtimeEngine,record.identities[row.label].variant.fingerprint,'wrong served runtime');
-    assert.deepEqual(row.measurements.map(value=>value.kind),['idle','scroll','filtered','empty'],'missing Writing/reflow observations');
-    measurement(row.startupIdle,'startup-idle');assert.ok(row.startupIdle.elapsedMs>=steadyProtocol.startupIdleMs-100,'truncated initial idle observation');adaptationTrace(row.startupIdle,{startup:true});
-    assert.deepEqual(row.warmups?.map(sample=>sample.for),['idle','filtered','empty'],'missing preconditioning intervals');
-    for(const sample of row.warmups){warmup(sample);const next=row.measurements.find(value=>value.kind===sample.for);assert.equal(next.quality,sample.quality,'steady window changed quality after preconditioning');assert.equal(next.cadence,sample.cadence,'steady window changed cadence after preconditioning');assert.ok(next.window.startMs>=sample.window.endMs,'preconditioning overlaps measured window');}
-    const sequence=[row.startupIdle,row.warmups[0],row.measurements[0],row.measurements[1],row.warmups[1],row.measurements[2],row.warmups[2],row.measurements[3]];
-    for(let index=1;index<sequence.length;index++)assert.ok(sequence[index].window.startMs>=sequence[index-1].window.endMs,'reused/overlapping startup, preconditioning or steady windows');
-    for(const sample of row.measurements){measurement(sample,sample.kind);assert.ok(sample.elapsedMs>=steadyProtocol.measurementMs-100,'truncated Writing observation');assert.ok(sample.paints>=steadyProtocol.minimumPaints,'insufficient steady tail sample');steady(sample);}
-    assert.ok(Number.isInteger(row.filteredPublications)&&row.filteredPublications>0);assert.equal(row.emptyPublications,0);
-    if(profile.cpuRate===4){
-      const absolute=(scope,sample,idle)=>{const context=profile.id+'/'+row.label+'/'+row.round+'/'+sample.kind+(sample.for?'/'+sample.for:'');gate(scope,sample.paintCallbackMs.p95<=budgets.motion.paintCallbackP95Ms,context+' absolute painted callback p95 exceeded');if(idle)gate(scope,sample.callbackBusyPercent<=budgets.motion.idleCallbackBusyPercent,context+' absolute idle busy exceeded');};
-      for(const sample of row.measurements)absolute('steady',sample,['idle','empty'].includes(sample.kind));
-      absolute('startup',row.startupIdle,true);for(const sample of row.warmups)absolute('warmup',sample,true);
-    }
-    assert.deepEqual(row.flights.map(value=>value.to),['writing','talks','writing','research'],'missing cold/warm entry and exit');
-    assert.deepEqual(row.flights.map(value=>value.from),['research','writing','talks','writing']);
-    for(const sample of row.flights)measurement(sample,'flight',{flight:true});
-    const chronology=[row.flights[0],...sequence,...row.flights.slice(1)];
-    for(let index=1;index<chronology.length;index++)assert.ok(chronology[index].window.startMs>=chronology[index-1].window.endMs,'reused/overlapping flight, startup, preconditioning or steady windows');
-    assert.equal(row.flights[0].transitionPhase,'cold','cold Writing entry not observed');assert.equal(row.flights[2].transitionPhase,'warm','warm Writing cache not observed');
-    assert.ok(Number.isFinite(row.transfer?.routeRawBytes)&&row.transfer.routeRawBytes>0&&Number.isFinite(row.transfer.routeGzipBytes)&&row.transfer.routeGzipBytes>0&&row.transfer.routeGzipBytes<=budgets.routeGzipBytes,'missing/over-budget route transfer');
-    if(trustedTransfers)for(const key of ['routeRawBytes','routeGzipBytes'])assert.equal(row.transfer[key],trustedTransfers[row.label][key],'transfer does not match exact artifact');
-    assert.ok(Array.isArray(row.transfer.requests)&&row.transfer.requests.length>0,'missing actual transfer observations');
-    for(const request of row.transfer.requests)assert.ok(typeof request.path==='string'&&Number.isFinite(request.duration)&&request.duration>=0&&Number.isFinite(request.encodedBodySize)&&request.encodedBodySize>=0&&Number.isFinite(request.transferSize)&&request.transferSize>=0,'invalid actual transfer');
-    assert.equal(row.transfer.formulaAssetRequests,0,'compiled formula unexpectedly fetched a separate asset');assert.equal(row.transfer.runtimeDecodes,0,'compiled formula unexpectedly decodes an image');
-    if(row.label==='candidate'){
-      cache(row.formula,{painted:true});rooms(row.diagnostics);
-      for(const sample of [...row.measurements,row.startupIdle])formulaSample(sample,{framed:['idle','scroll','startup-idle'].includes(sample.kind)});
-      for(const sample of row.flights.filter(value=>value.to!=='writing'))assert.equal(sample.formula.lastPaintCount,0,'formula leaks into settled neighboring room');
-    }
-  }
+  for(const [index,row]of record.rows.entries())validateTrial(record,row,index,expected,gate,trustedTransfers);
   const comparisons=[];
   const pairedMetric=(a,b,scope,context)=>{
     gate(scope,Number.isFinite(+a.quality)&&Number.isFinite(+b.quality)&&+b.quality<=+a.quality,context+' performance pass hides a quality downgrade');

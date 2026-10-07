@@ -26,6 +26,22 @@ test('the canonical formula compiles once into finite strong glyphs and rejects 
   const duplicateGlyph=source.match(/<path data-glyph="y"[^>]*\/>/)[0];
   for(const changed of [source.replace('</svg>','<script>alert(1)</script></svg>'),source.replace('M57 95','MInfinity 95'),source.replace('M57 95','M57'),source.replace('M57 95','M6 95'),source.replace('width="1380"','width="8192"'),source.replace('stroke-width="14"','stroke-width="7"'),source.replace('P(y|x)','P(x|y)'),source.replace('data-glyph="P"','data-glyph="Q"'),source.replace('d="M57','onload="alert(1)" d="M57'),source.replace('</g>','</defs>'),source.replace('</svg>',''),source.replace('</g>',duplicateGlyph+'</g>'),source.replace('</defs>','</defs><title id="title">duplicate</title>'),source.replace('M57 95','M57 95'+' L60 100'.repeat(16)),source.replace('</defs>','</defs>'+'<defs/>'.repeat(16))])assert.throws(()=>assets.compile(changed));
 });
+function formulaProjectionCase(api,definitions,anchor,pose,width,height){
+      const initial=api.projectedFormula(anchor,pose,width,height,0),moved=api.projectedFormula(anchor,pose,width,height,api.LOOP_MS/4),closed=api.projectedFormula(anchor,pose,width,height,api.LOOP_MS);
+      assert.ok(initial);assert.notEqual(initial.points[0][1],initial.points[1][1],'plane is tilted');
+      assert.equal(initial.cameraLayers.length,3);assert.notDeepEqual(initial.cameraLayers[0],initial.cameraLayers[2],'real depth separates front and back');
+      assert.notDeepEqual(moved.points,initial.points,'same ambient clock moves and pulses the landmark');
+      for(let i=0;i<4;i++)for(let j=0;j<2;j++)assert.ok(Math.abs(closed.points[i][j]-initial.points[i][j])<1e-8,'loop closes without drift');
+      const span=shape=>Math.max(...shape.points.map(p=>p[0]))-Math.min(...shape.points.map(p=>p[0]));
+      let maximum=span(initial),seen=false;
+      for(let sample=0;sample<=64;sample++){
+        const current=api.projectedFormula(anchor,api.journeyPose(definitions.topicPaths.all,sample/64),width,height,0);
+        if(!current)continue;seen=true;maximum=Math.max(maximum,span(current));
+        assert.ok(current.points.flat().every(Number.isFinite),'bounded finite projection');
+        assert.ok(current.cameraCorners.every(point=>point[2]>.5),'whole expression fades before camera crosses it');
+      }
+      assert.ok(seen&&maximum>span(initial)*1.2,'native camera approaches the formula through the fractal');
+}
 test('Writing formula is a tilted moving world landmark with one same-scene static rendition and no layout band',()=>{
   const {definitions}=b.configuration(root),api=b.model(root,definitions),c=b.catalog(root),fallbacks=require('../tools/build_scene_fallbacks.cjs');
   for(const route of definitions.routeOrder)for(const compact of [false,true]){
@@ -49,22 +65,7 @@ test('Writing formula is a tilted moving world landmark with one same-scene stat
     assert.ok(firstPoint,'static glyph has its canonical projected move');
     assert.deepEqual(firstPoint.slice(1).map(Number),first.map(n=>Number(n.toFixed(2))),
       'static glyph uses the exact rounded canonical point, independent of redundant decimal zeroes');
-    for(const [width,height]of [[320,740],[390,844],[768,1024],[1440,900]]){
-      const initial=api.projectedFormula(anchor,pose,width,height,0),moved=api.projectedFormula(anchor,pose,width,height,api.LOOP_MS/4),closed=api.projectedFormula(anchor,pose,width,height,api.LOOP_MS);
-      assert.ok(initial);assert.notEqual(initial.points[0][1],initial.points[1][1],'plane is tilted');
-      assert.equal(initial.cameraLayers.length,3);assert.notDeepEqual(initial.cameraLayers[0],initial.cameraLayers[2],'real depth separates front and back');
-      assert.notDeepEqual(moved.points,initial.points,'same ambient clock moves and pulses the landmark');
-      for(let i=0;i<4;i++)for(let j=0;j<2;j++)assert.ok(Math.abs(closed.points[i][j]-initial.points[i][j])<1e-8,'loop closes without drift');
-      const span=shape=>Math.max(...shape.points.map(p=>p[0]))-Math.min(...shape.points.map(p=>p[0]));
-      let maximum=span(initial),seen=false;
-      for(let sample=0;sample<=64;sample++){
-        const current=api.projectedFormula(anchor,api.journeyPose(definitions.topicPaths.all,sample/64),width,height,0);
-        if(!current)continue;seen=true;maximum=Math.max(maximum,span(current));
-        assert.ok(current.points.flat().every(Number.isFinite),'bounded finite projection');
-        assert.ok(current.cameraCorners.every(point=>point[2]>.5),'whole expression fades before camera crosses it');
-      }
-      assert.ok(seen&&maximum>span(initial)*1.2,'native camera approaches the formula through the fractal');
-    }
+    for(const [width,height]of [[320,740],[390,844],[768,1024],[1440,900]])formulaProjectionCase(api,definitions,anchor,pose,width,height);
   }
 });
 test('embedded formula artwork changes immutable runtime identity and packaged media coherently',t=>{

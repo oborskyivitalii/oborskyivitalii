@@ -15,7 +15,11 @@ Dated continuity, not live authority. Last verified: **2026-10-07**.
   `7c9ff1ee760a48669990b6df560dc54da7561a17`. Original PR branches stay open.
   [Formula handoff](review/issue-36/2026-10-07-handoff.md) and
   [editorial analysis](review/issue-41/2026-10-07-analysis.md) carry the same
-  joint staging amendment. Current combined CI/deployment is in the live issues.
+  joint staging amendment. Joint PR #43's first bounded run failed old-count and
+  static checks; its absolute performance passed. The repaired candidate passes
+  258 selected source cases. PR #44 at eb81a61 has four green minimal CI runs.
+  The maintainer now proposes corrected #43 merge, #44 adaptation, one staging
+  run. Current exact combined CI/deployment is in the live issues.
 - #36 places one tilted, pulsing formula in Writing's books/pages fractal,
   sharing its camera/clock and bounded cache. Rejected banner benchmarks are
   historical failures, not acceptance of this world-space implementation.
@@ -32,7 +36,8 @@ Dated continuity, not live authority. Last verified: **2026-10-07**.
 - #36 selected policy runs its original checks plus eleven I41-prefixed source
   checks once. #41's original ACs/gates remain mapped at its own live anchor.
 - #41 catalog identities compare to c4539ad; protected runtime/workflow bytes
-  compare exactly to its approved immutable #36 companion 73020e8.
+  compare to its approved immutable #36 companion 73020e8, with one explicitly
+  normalized projection syntax/helper repair proven equal in all 120 cases.
 - Chromium/Firefox run on Linux; WebKit stays native macOS production coverage.
   Do not repeat eighteen diagnostic trials to repair a report/environment error.
 - Paired formula performance, combined independent/editorial/mobile decisions,
@@ -48,7 +53,7 @@ Dated continuity, not live authority. Last verified: **2026-10-07**.
 
 | Issue | Remaining intent |
 | --- | --- |
-| #36 / #41 | Joint candidate CI/staging; current paired evidence and visual/editorial/independent gates; merge reconciliation. |
+| #36 / #41 | Corrected #43 exact-head CI/authorized merge, adapt #44 on main, joint staging; paired evidence and visual/editorial/independent gates. |
 | #1 / #13 | First-release, physical-device and full production/recovery acceptance. |
 | #8 / #39 | Production URL/indexability, domains and analytics activation. |
 | #7 | License and editorial/third-party rights. |

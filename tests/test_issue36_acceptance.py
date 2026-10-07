@@ -2,12 +2,11 @@
 
 import gzip
 import math
-from pathlib import Path
 import re
 import subprocess
 import unittest
 import xml.etree.ElementTree as ET
-
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSET = ROOT / "site/assets/writing-paradigm.svg"

@@ -874,8 +874,11 @@ const projection=(function(math,definitions) {
       const fade=threshold?smooth((size-threshold)/2):1;
       appendObject(world,o,vertices,projected,project,visible,fade,shapes,transform.inverse(current.position),prune?(width<=640? .5: .35):0,prune?size:Infinity);
     }
-    for(const anchor of world.formulas||[]){const shape=projectedFormula(anchor,current,width,height,time);if(shape)shapes.push(shape);}
+    appendFormulas(world,current,width,height,time,shapes);
     return sort?shapes.sort((a,b)=>b.depth-a.depth):shapes;
+  }
+  function appendFormulas(world,current,width,height,time,shapes) {
+    for(const anchor of world.formulas||[]){const shape=projectedFormula(anchor,current,width,height,time);if(shape)shapes.push(shape);}
   }
   function formulaWorldPoint(anchor,time,u,v,z=0) {
     const [a,b,c]=anchor.rotation,ca=Math.cos(a),sa=Math.sin(a),cb=Math.cos(b),sb=Math.sin(b),cc=Math.cos(c),sc=Math.sin(c);
@@ -885,7 +888,7 @@ const projection=(function(math,definitions) {
   }
   function formulaCamera(current,width,height) {
     const forward=normalize(sub(current.target,current.position)),right=normalize(cross(forward,[0,1,0])),up=cross(right,forward);
-    const focal=(width<=640?Math.min(height,width*1.15):height)/(2*Math.tan(Math.PI/8)),origin=[width*(width<=640?.42:.66),height*.48];
+    const focal=(width<=640?Math.min(height,width*1.15):height)/(2*Math.tan(Math.PI/8)),origin=[width*(width<=640 ? 0.42 : 0.66),height*.48];
     const camera=point=>{const delta=sub(point,current.position);return [dot(delta,right),dot(delta,up),dot(delta,forward)];};
     const project=point=>[origin[0]+point[0]*focal/point[2],origin[1]-point[1]*focal/point[2]];
     return {camera,project,focal,origin};

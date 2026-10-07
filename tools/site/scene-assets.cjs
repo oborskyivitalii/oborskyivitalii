@@ -61,5 +61,5 @@ function compile(source){
   return {width,height,gradient:{line,stops},paths:compiled,svg:source};
 }
 function load(root){return compile(fs.readFileSync(path.join(root,'site/assets/writing-paradigm.svg'),'utf8'));}
-function runtime(art){const {svg,...compiled}=art;return compiled;}
+function runtime(art){const compiled={...art};delete compiled.svg;return compiled;}
 module.exports={compile,load,runtime};

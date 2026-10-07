@@ -38,13 +38,13 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/media](docs/media) | Generated content-addressed asset editions. | generated | [site/README.md](site/README.md) |
 | [docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc](docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc) | Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
 | [docs/runtime](docs/runtime) | Generated content-addressed browser runtime editions. | generated | [site/README.md](site/README.md) |
-| [docs/runtime/bfc6bf5864d8d66d335398e7f89ccf45bd3bd00a68516f73c6c2f28d8379fb55](docs/runtime/bfc6bf5864d8d66d335398e7f89ccf45bd3bd00a68516f73c6c2f28d8379fb55) | Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/38240fdac883053042ccf811d84899da1bc1fd7a3fda1c703cddd7455c2ae0da](docs/runtime/38240fdac883053042ccf811d84899da1bc1fd7a3fda1c703cddd7455c2ae0da) | Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots](docs/snapshots) | Generated exact-route HTML snapshots. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/42c67754f139b1809fce7750a2e9f7b36375b3a6791dd7c471be9ab281689915](docs/snapshots/42c67754f139b1809fce7750a2e9f7b36375b3a6791dd7c471be9ab281689915) | Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/6d9935cdf1fe5256721f27f09040c7a126089140f3e7bbb1191601fe911827c0](docs/snapshots/6d9935cdf1fe5256721f27f09040c7a126089140f3e7bbb1191601fe911827c0) | Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/8151f4bd49e9c2b713d6be38cfd5b0a1cd3cefc9b39eeba3192ced7941669465](docs/snapshots/8151f4bd49e9c2b713d6be38cfd5b0a1cd3cefc9b39eeba3192ced7941669465) | Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/c9e062cece69c151fa2e7a9956ce2c47366309250b9263dedc550f789e255403](docs/snapshots/c9e062cece69c151fa2e7a9956ce2c47366309250b9263dedc550f789e255403) | Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/e4b13a63668e27303ccb52cbc3cd4d6a435637adf2edf46a2ae25ad7cd419c20](docs/snapshots/e4b13a63668e27303ccb52cbc3cd4d6a435637adf2edf46a2ae25ad7cd419c20) | Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/205bd8e406f3fedf627e4179401d20ea52526f834040b842befffd2e3eefcb2e](docs/snapshots/205bd8e406f3fedf627e4179401d20ea52526f834040b842befffd2e3eefcb2e) | Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/335bc53e555bf644df3c6537f55e322679789b9870efb7b3ce141d809f0fd016](docs/snapshots/335bc53e555bf644df3c6537f55e322679789b9870efb7b3ce141d809f0fd016) | Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/5bb105567fc5afddb2c7864712f8c829acdac379ce71f56c3aca5a91a421b993](docs/snapshots/5bb105567fc5afddb2c7864712f8c829acdac379ce71f56c3aca5a91a421b993) | Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/608a83952254494d1217d29e8142f29f3b7e7bcfe318304272b57f0b541ea202](docs/snapshots/608a83952254494d1217d29e8142f29f3b7e7bcfe318304272b57f0b541ea202) | Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/abd8542ba93de7aa7b8bf285fc2750c8a48d0f1553bdcb36553a5e2e3c2f531d](docs/snapshots/abd8542ba93de7aa7b8bf285fc2750c8a48d0f1553bdcb36553a5e2e3c2f531d) | Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs. | generated | [site/README.md](site/README.md) |
 | [drafts](drafts) | Unpublished article/profile proposals excluded from public builds. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [guides](guides) | Maintained topic guides for repository boundaries, publication, quality and hosting; root stays an entry surface. | guide | [guides/README.md](guides/README.md) |
 | [review](review) | Dated plans, evidence, captures and renditions; current Color/export inputs are explicitly marked. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -212,45 +212,45 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi.jpg](docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi.jpg) | Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
 | [docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/writing-paradigm.svg](docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/writing-paradigm.svg) | Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
 
-## docs/runtime/bfc6bf5864d8d66d335398e7f89ccf45bd3bd00a68516f73c6c2f28d8379fb55/
+## docs/runtime/38240fdac883053042ccf811d84899da1bc1fd7a3fda1c703cddd7455c2ae0da/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/runtime/bfc6bf5864d8d66d335398e7f89ccf45bd3bd00a68516f73c6c2f28d8379fb55/archive.js](docs/runtime/bfc6bf5864d8d66d335398e7f89ccf45bd3bd00a68516f73c6c2f28d8379fb55/archive.js) | Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
-| [docs/runtime/bfc6bf5864d8d66d335398e7f89ccf45bd3bd00a68516f73c6c2f28d8379fb55/navigation.js](docs/runtime/bfc6bf5864d8d66d335398e7f89ccf45bd3bd00a68516f73c6c2f28d8379fb55/navigation.js) | Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
-| [docs/runtime/bfc6bf5864d8d66d335398e7f89ccf45bd3bd00a68516f73c6c2f28d8379fb55/space.js](docs/runtime/bfc6bf5864d8d66d335398e7f89ccf45bd3bd00a68516f73c6c2f28d8379fb55/space.js) | Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
-| [docs/runtime/bfc6bf5864d8d66d335398e7f89ccf45bd3bd00a68516f73c6c2f28d8379fb55/styles.css](docs/runtime/bfc6bf5864d8d66d335398e7f89ccf45bd3bd00a68516f73c6c2f28d8379fb55/styles.css) | Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
-| [docs/runtime/bfc6bf5864d8d66d335398e7f89ccf45bd3bd00a68516f73c6c2f28d8379fb55/theme.js](docs/runtime/bfc6bf5864d8d66d335398e7f89ccf45bd3bd00a68516f73c6c2f28d8379fb55/theme.js) | Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/38240fdac883053042ccf811d84899da1bc1fd7a3fda1c703cddd7455c2ae0da/archive.js](docs/runtime/38240fdac883053042ccf811d84899da1bc1fd7a3fda1c703cddd7455c2ae0da/archive.js) | Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/38240fdac883053042ccf811d84899da1bc1fd7a3fda1c703cddd7455c2ae0da/navigation.js](docs/runtime/38240fdac883053042ccf811d84899da1bc1fd7a3fda1c703cddd7455c2ae0da/navigation.js) | Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/38240fdac883053042ccf811d84899da1bc1fd7a3fda1c703cddd7455c2ae0da/space.js](docs/runtime/38240fdac883053042ccf811d84899da1bc1fd7a3fda1c703cddd7455c2ae0da/space.js) | Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/38240fdac883053042ccf811d84899da1bc1fd7a3fda1c703cddd7455c2ae0da/styles.css](docs/runtime/38240fdac883053042ccf811d84899da1bc1fd7a3fda1c703cddd7455c2ae0da/styles.css) | Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/38240fdac883053042ccf811d84899da1bc1fd7a3fda1c703cddd7455c2ae0da/theme.js](docs/runtime/38240fdac883053042ccf811d84899da1bc1fd7a3fda1c703cddd7455c2ae0da/theme.js) | Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/42c67754f139b1809fce7750a2e9f7b36375b3a6791dd7c471be9ab281689915/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/snapshots/42c67754f139b1809fce7750a2e9f7b36375b3a6791dd7c471be9ab281689915/research.html](docs/snapshots/42c67754f139b1809fce7750a2e9f7b36375b3a6791dd7c471be9ab281689915/research.html) | Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
-
-## docs/snapshots/6d9935cdf1fe5256721f27f09040c7a126089140f3e7bbb1191601fe911827c0/
+## docs/snapshots/205bd8e406f3fedf627e4179401d20ea52526f834040b842befffd2e3eefcb2e/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/snapshots/6d9935cdf1fe5256721f27f09040c7a126089140f3e7bbb1191601fe911827c0/index.html](docs/snapshots/6d9935cdf1fe5256721f27f09040c7a126089140f3e7bbb1191601fe911827c0/index.html) | Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/205bd8e406f3fedf627e4179401d20ea52526f834040b842befffd2e3eefcb2e/credits.html](docs/snapshots/205bd8e406f3fedf627e4179401d20ea52526f834040b842befffd2e3eefcb2e/credits.html) | Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/8151f4bd49e9c2b713d6be38cfd5b0a1cd3cefc9b39eeba3192ced7941669465/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/snapshots/8151f4bd49e9c2b713d6be38cfd5b0a1cd3cefc9b39eeba3192ced7941669465/talks.html](docs/snapshots/8151f4bd49e9c2b713d6be38cfd5b0a1cd3cefc9b39eeba3192ced7941669465/talks.html) | Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
-
-## docs/snapshots/c9e062cece69c151fa2e7a9956ce2c47366309250b9263dedc550f789e255403/
+## docs/snapshots/335bc53e555bf644df3c6537f55e322679789b9870efb7b3ce141d809f0fd016/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/snapshots/c9e062cece69c151fa2e7a9956ce2c47366309250b9263dedc550f789e255403/writing.html](docs/snapshots/c9e062cece69c151fa2e7a9956ce2c47366309250b9263dedc550f789e255403/writing.html) | Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/335bc53e555bf644df3c6537f55e322679789b9870efb7b3ce141d809f0fd016/writing.html](docs/snapshots/335bc53e555bf644df3c6537f55e322679789b9870efb7b3ce141d809f0fd016/writing.html) | Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/e4b13a63668e27303ccb52cbc3cd4d6a435637adf2edf46a2ae25ad7cd419c20/
+## docs/snapshots/5bb105567fc5afddb2c7864712f8c829acdac379ce71f56c3aca5a91a421b993/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/snapshots/e4b13a63668e27303ccb52cbc3cd4d6a435637adf2edf46a2ae25ad7cd419c20/credits.html](docs/snapshots/e4b13a63668e27303ccb52cbc3cd4d6a435637adf2edf46a2ae25ad7cd419c20/credits.html) | Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/5bb105567fc5afddb2c7864712f8c829acdac379ce71f56c3aca5a91a421b993/index.html](docs/snapshots/5bb105567fc5afddb2c7864712f8c829acdac379ce71f56c3aca5a91a421b993/index.html) | Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs. | generated | [site/README.md](site/README.md) |
+
+## docs/snapshots/608a83952254494d1217d29e8142f29f3b7e7bcfe318304272b57f0b541ea202/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/608a83952254494d1217d29e8142f29f3b7e7bcfe318304272b57f0b541ea202/talks.html](docs/snapshots/608a83952254494d1217d29e8142f29f3b7e7bcfe318304272b57f0b541ea202/talks.html) | Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs. | generated | [site/README.md](site/README.md) |
+
+## docs/snapshots/abd8542ba93de7aa7b8bf285fc2750c8a48d0f1553bdcb36553a5e2e3c2f531d/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/abd8542ba93de7aa7b8bf285fc2750c8a48d0f1553bdcb36553a5e2e3c2f531d/research.html](docs/snapshots/abd8542ba93de7aa7b8bf285fc2750c8a48d0f1553bdcb36553a5e2e3c2f531d/research.html) | Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs. | generated | [site/README.md](site/README.md) |
 
 ## drafts/
 

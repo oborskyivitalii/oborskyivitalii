@@ -14,7 +14,7 @@ function job(text,id){
   assert.ok(block,'missing '+id+' job');return block.trimEnd();
 }
 function guards(text){
-  const value=job(text,'paradigm').match(/^    if: (.+)$/m)?.[1];assert.ok(value,'missing explicit opt-in condition');
+  const value=job(text,'paradigm').match(/^ {4}if: (.+)$/m)?.[1];assert.ok(value,'missing explicit opt-in condition');
   const clauses=value.split(' && ');assert.deepEqual([...clauses].sort(),[...requiredGuards].sort(),'opt-in guard changed');
   return clauses.map(clause=>{const parsed=clause.match(/^([\w.]+) == (?:'([^']*)'|(\d+)|([\w.]+))$/);assert.ok(parsed,'unsupported opt-in condition');return parsed;});
 }
@@ -27,9 +27,9 @@ function event(overrides={}){
 }
 function contract(text){
   const header=text.slice(0,text.indexOf('\njobs:')),current=job(text,'paradigm');guards(text);
-  assert.match(header,/^  pull_request:\n    types: \[labeled\]$/m,'only explicit label events may run this PR probe');
-  assert.doesNotMatch(header,/pull_request_target|^  push:|synchronize|opened|reopened|ready_for_review/m);
-  assert.match(header,/^permissions:\n  contents: read\n/m);assert.doesNotMatch(text,/^\s+[a-z-]+: write$/m);
+  assert.match(header,/^ {2}pull_request:\n {4}types: \[labeled\]$/m,'only explicit label events may run this PR probe');
+  assert.doesNotMatch(header,/pull_request_target|^ {2}push:|synchronize|opened|reopened|ready_for_review/m);
+  assert.match(header,/^permissions:\n {2}contents: read\n/m);assert.doesNotMatch(text,/^\s+[a-z-]+: write$/m);
   assert.match(current,/SITE_CANDIDATE_SHA: \$\{\{ github\.event\.pull_request\.head\.sha \}\}/);
   assert.match(current,new RegExp('WRITING_BASELINE_SHA: '+baseline));
   assert.match(current,/ref: \$\{\{ github\.event\.pull_request\.head\.sha \}\}/);
@@ -51,8 +51,8 @@ function contract(text){
   assert.match(current,/2>&1 \| tee "\$RUNNER_TEMP\/writing-paradigm-results\/browser\/browser-run\.log"/);
   assert.match(current,/if: \$\{\{ !cancelled\(\) && steps\.inputs\.outcome == 'success' && steps\.browsers\.outcome == 'success' \}\}/,'paired measurements must retain evidence after a browser assertion failure');
   assert.match(current,/node tools\/quality\/writing-paradigm\.cjs "\$RUNNER_TEMP\/writing-paradigm-input" "\$RUNNER_TEMP\/writing-paradigm-results\/performance"/);
-  assert.match(current,/uses: actions\/upload-artifact@[a-f0-9]{40}\n        if: always\(\)/);
-  assert.match(current,/path: \$\{\{ runner\.temp \}\}\/writing-paradigm-results\//);assert.match(current,/if-no-files-found: error\n          retention-days: 90/);
+  assert.match(current,/uses: actions\/upload-artifact@[a-f0-9]{40}\n {8}if: always\(\)/);
+  assert.match(current,/path: \$\{\{ runner\.temp \}\}\/writing-paradigm-results\//);assert.match(current,/if-no-files-found: error\n {10}retention-days: 90/);
   assert.doesNotMatch(current,/secrets\.|environment:|wrangler|deploy|\/stage|--branch=production|Promise\.all/);
 }
 test('bounded Writing evidence selects only its deliberate same-repository PR label event',()=>{

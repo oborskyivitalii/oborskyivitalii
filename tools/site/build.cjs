@@ -119,14 +119,8 @@ function discussionRows(c,dependencies) {
     return `<li class="discussion-row"><h4><a href="${escapeAttribute(row.url)}">${escapeText(row.label)} <span aria-hidden="true">↗</span></a></h4><p>${escapeText(row.summary)}</p><p class="discussion-community">r/${escapeText(row.subreddit)}</p>${counts}</li>`;
   }).join('\n');
 }
-function catalog(root) {
-  const c=load(root,'site/content/catalog.json');
-  const ids=Object.keys(c.records||{});
-  if(c.schema!==1||!ids.length||ids.length>250||!Array.isArray(c.featured)||c.featured.length!==5||new Set(c.featured).size!==5||!Array.isArray(c.structuredOrder)||c.structuredOrder.length!==ids.length||new Set(c.structuredOrder.map(e=>e.record)).size!==ids.length)throw Error('Invalid publication catalog inventory');
-  const urls=new Set(),postIds=new Set();
-  if(!c.discussions||!Array.isArray(c.discussionOrder)||c.discussionOrder.length>10||new Set(c.discussionOrder).size!==c.discussionOrder.length||Object.keys(c.discussions).length!==c.discussionOrder.length)throw Error('Invalid discussion inventory');
-  for(const id of c.discussionOrder){
-    const row=c.discussions[id];if(!row||typeof row.label!=='string'||!row.label.trim()||typeof row.summary!=='string'||!row.summary.trim())throw Error('Invalid discussion '+id);
+function validateDiscussion(row,id,postIds){
+    if(!row||typeof row.label!=='string'||!row.label.trim()||typeof row.summary!=='string'||!row.summary.trim())throw Error('Invalid discussion '+id);
     const url=new URL(row.url),match=url.pathname.match(/^\/r\/([a-zA-Z0-9_]+)\/comments\/([a-z0-9]+)\/[a-z0-9_]+\/$/);
     if(url.protocol!=='https:'||url.hostname!=='www.reddit.com'||url.username||url.password||url.search||url.hash||!match||match[1]!==row.subreddit||postIds.has(match[2]))throw Error('Invalid or duplicate discussion URL');
     postIds.add(match[2]);
@@ -136,7 +130,18 @@ function catalog(root) {
       if(!s||s.source!=='author-supplied-pasted-ui'||s.capturedAt!==null||!/^([a-f0-9]{64})$/.test(s.attachmentSHA256))throw Error('Invalid discussion provenance');
       dateLabel(s.reviewedAt);dateLabel(s.receivedAt);
     }
-  }
+}
+function validateCatalogOrder(c){
+  for(const id of c.featured)if(!c.records[id]?.featuredHTML)throw Error('Missing featured record');
+  for(const entry of c.structuredOrder)if(!c.records[entry.record])throw Error('Missing structured edition');
+}
+function catalog(root) {
+  const c=load(root,'site/content/catalog.json');
+  const ids=Object.keys(c.records||{});
+  if(c.schema!==1||!ids.length||ids.length>250||!Array.isArray(c.featured)||c.featured.length!==5||new Set(c.featured).size!==5||!Array.isArray(c.structuredOrder)||c.structuredOrder.length!==ids.length||new Set(c.structuredOrder.map(e=>e.record)).size!==ids.length)throw Error('Invalid publication catalog inventory');
+  const urls=new Set(),postIds=new Set();
+  if(!c.discussions||!Array.isArray(c.discussionOrder)||c.discussionOrder.length>10||new Set(c.discussionOrder).size!==c.discussionOrder.length||Object.keys(c.discussions).length!==c.discussionOrder.length)throw Error('Invalid discussion inventory');
+  for(const id of c.discussionOrder)validateDiscussion(c.discussions[id],id,postIds);
   for(const [id,record]of Object.entries(c.records)) {
     if(!/^publication-\d\d$/.test(id)||!Array.isArray(record.editions)||record.editions.length>2||!Array.isArray(record.discussions)||new Set(record.discussions).size!==record.discussions.length||record.discussions.length>1||record.discussions.some(key=>!c.discussions[key]))throw Error('Invalid edition relationships '+id);
     for(const edition of [record.edition,...record.editions]){
@@ -145,8 +150,7 @@ function catalog(root) {
     }
     for(const field of ['archiveHTML','featuredHTML'])if(record[field])validateFragment(substitute(record[field],editionValues(record,c),id),id);
   }
-  for(const id of c.featured)if(!c.records[id]?.featuredHTML)throw Error('Missing featured record');
-  for(const entry of c.structuredOrder)if(!c.records[entry.record])throw Error('Missing structured edition');
+  validateCatalogOrder(c);
   return c;
 }
 function publication(html,c,dependencies,discussionDependencies,route) {

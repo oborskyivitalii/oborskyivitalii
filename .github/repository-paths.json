@@ -379,39 +379,39 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/bfc6bf5864d8d66d335398e7f89ccf45bd3bd00a68516f73c6c2f28d8379fb55": {
+    "docs/runtime/38240fdac883053042ccf811d84899da1bc1fd7a3fda1c703cddd7455c2ae0da": {
       "kind": "directory",
-      "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
+      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/bfc6bf5864d8d66d335398e7f89ccf45bd3bd00a68516f73c6c2f28d8379fb55/archive.js": {
+    "docs/runtime/38240fdac883053042ccf811d84899da1bc1fd7a3fda1c703cddd7455c2ae0da/archive.js": {
       "kind": "file",
-      "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
+      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/bfc6bf5864d8d66d335398e7f89ccf45bd3bd00a68516f73c6c2f28d8379fb55/navigation.js": {
+    "docs/runtime/38240fdac883053042ccf811d84899da1bc1fd7a3fda1c703cddd7455c2ae0da/navigation.js": {
       "kind": "file",
-      "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
+      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/bfc6bf5864d8d66d335398e7f89ccf45bd3bd00a68516f73c6c2f28d8379fb55/space.js": {
+    "docs/runtime/38240fdac883053042ccf811d84899da1bc1fd7a3fda1c703cddd7455c2ae0da/space.js": {
       "kind": "file",
-      "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
+      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/bfc6bf5864d8d66d335398e7f89ccf45bd3bd00a68516f73c6c2f28d8379fb55/styles.css": {
+    "docs/runtime/38240fdac883053042ccf811d84899da1bc1fd7a3fda1c703cddd7455c2ae0da/styles.css": {
       "kind": "file",
-      "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
+      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/bfc6bf5864d8d66d335398e7f89ccf45bd3bd00a68516f73c6c2f28d8379fb55/theme.js": {
+    "docs/runtime/38240fdac883053042ccf811d84899da1bc1fd7a3fda1c703cddd7455c2ae0da/theme.js": {
       "kind": "file",
-      "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
+      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -427,63 +427,63 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/42c67754f139b1809fce7750a2e9f7b36375b3a6791dd7c471be9ab281689915": {
+    "docs/snapshots/205bd8e406f3fedf627e4179401d20ea52526f834040b842befffd2e3eefcb2e": {
       "kind": "directory",
-      "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
+      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/42c67754f139b1809fce7750a2e9f7b36375b3a6791dd7c471be9ab281689915/research.html": {
+    "docs/snapshots/205bd8e406f3fedf627e4179401d20ea52526f834040b842befffd2e3eefcb2e/credits.html": {
       "kind": "file",
-      "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
+      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/6d9935cdf1fe5256721f27f09040c7a126089140f3e7bbb1191601fe911827c0": {
+    "docs/snapshots/335bc53e555bf644df3c6537f55e322679789b9870efb7b3ce141d809f0fd016": {
       "kind": "directory",
-      "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
+      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/6d9935cdf1fe5256721f27f09040c7a126089140f3e7bbb1191601fe911827c0/index.html": {
+    "docs/snapshots/335bc53e555bf644df3c6537f55e322679789b9870efb7b3ce141d809f0fd016/writing.html": {
       "kind": "file",
-      "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
+      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/8151f4bd49e9c2b713d6be38cfd5b0a1cd3cefc9b39eeba3192ced7941669465": {
+    "docs/snapshots/5bb105567fc5afddb2c7864712f8c829acdac379ce71f56c3aca5a91a421b993": {
       "kind": "directory",
-      "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
+      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/8151f4bd49e9c2b713d6be38cfd5b0a1cd3cefc9b39eeba3192ced7941669465/talks.html": {
+    "docs/snapshots/5bb105567fc5afddb2c7864712f8c829acdac379ce71f56c3aca5a91a421b993/index.html": {
       "kind": "file",
-      "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
+      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/c9e062cece69c151fa2e7a9956ce2c47366309250b9263dedc550f789e255403": {
+    "docs/snapshots/608a83952254494d1217d29e8142f29f3b7e7bcfe318304272b57f0b541ea202": {
       "kind": "directory",
-      "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
+      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/c9e062cece69c151fa2e7a9956ce2c47366309250b9263dedc550f789e255403/writing.html": {
+    "docs/snapshots/608a83952254494d1217d29e8142f29f3b7e7bcfe318304272b57f0b541ea202/talks.html": {
       "kind": "file",
-      "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
+      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/e4b13a63668e27303ccb52cbc3cd4d6a435637adf2edf46a2ae25ad7cd419c20": {
+    "docs/snapshots/abd8542ba93de7aa7b8bf285fc2750c8a48d0f1553bdcb36553a5e2e3c2f531d": {
       "kind": "directory",
-      "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
+      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/e4b13a63668e27303ccb52cbc3cd4d6a435637adf2edf46a2ae25ad7cd419c20/credits.html": {
+    "docs/snapshots/abd8542ba93de7aa7b8bf285fc2750c8a48d0f1553bdcb36553a5e2e3c2f531d/research.html": {
       "kind": "file",
-      "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
+      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
       "role": "generated",
       "owner": "site/README.md"
     },

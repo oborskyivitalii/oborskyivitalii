@@ -372,7 +372,17 @@ class Issue41ImplementationTests(unittest.TestCase):
             if path == 'site/engine/archive.js':
                 current = current.replace(b'all records and their linked platform editions shown for printing.',
                                           b'all records and the additional LinkedIn rendition shown for printing.')
-            self.assertEqual(current, subprocess.check_output(['git', 'show', f'{RUNTIME_BASE}:{path}'], cwd=ROOT), path)
+            expected = subprocess.check_output(['git', 'show', f'{RUNTIME_BASE}:{path}'], cwd=ROOT)
+            if path == 'site/engine/projection.cjs':
+                # Joint staging repair: same expression values and ordered loop,
+                # extracted for the unchanged cognitive-complexity limit.
+                loop = b'    for(const anchor of world.formulas||[]){const shape=projectedFormula(anchor,current,width,height,time);if(shape)shapes.push(shape);}'
+                self.assertEqual(expected.count(loop), 1)
+                expected = expected.replace(b'width<=640?.42:.66', b'width<=640 ? 0.42 : 0.66')
+                expected = expected.replace(loop, b'    appendFormulas(world,current,width,height,time,shapes);')
+                helper = b'  function appendFormulas(world,current,width,height,time,shapes) {\n' + loop + b'\n  }\n'
+                expected = expected.replace(b'  function formulaWorldPoint(', helper + b'  function formulaWorldPoint(')
+            self.assertEqual(current, expected, path)
 
 
 if __name__ == '__main__':
