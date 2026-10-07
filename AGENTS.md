@@ -67,6 +67,11 @@ navigation in [REPOSITORY-MAP.md](REPOSITORY-MAP.md).
   [acceptance policy](.github/ACCEPTANCE.md) for every AC. Run the mapped checks;
   report AC → test/check → result → exact source/run. Unmapped/skipped/failed or
   wrong-source evidence stays open; human decisions remain explicit gates.
+  At session end/evaluation update the actual AC checkboxes in the owning issue
+  body; an evidence table alone is insufficient. Use `[x]` only for the whole
+  criterion verified by all required current-source checks and gates. Partial,
+  failed, skipped, unmapped, stale, wrong-source or pending criteria stay `[ ]`;
+  clear a tick if evidence is invalidated. Preserve AC IDs/intent and evidence links.
 - When changing RI review its linked CI/test coverage, update the
   [RI/CI map](.github/ri-ci-map.json), verify it and rebuild the RI views.
 - Before closure compare the result with the original issue acceptance. Record

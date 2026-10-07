@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "d7cc3cec927ed5335f4ec92b8b93d849e87b552342cfd11ead10f11d2c16bad6",
+    "digest": "c7b198f3bde5644728a12f83f359d9ec29f25bd4fdf1db8910f8f5422ae3162a",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -27,7 +27,7 @@
       {
         "path": ".github/ACCEPTANCE.md",
         "identity_mode": "content",
-        "sha256": "2ed4d294fdc0d8ddc8eca0efa4133bb3110d943fe5ee3ce85f40a13acdacf6ea"
+        "sha256": "bd74a60ccf2493e6ffc2e598cba737a2935a4377072cf83acecdd3a3851a3d13"
       },
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -42,7 +42,7 @@
       {
         "path": ".github/REPOSITORY-INTELLIGENCE.md",
         "identity_mode": "content",
-        "sha256": "cce540329bd406b3454959c4699f34247f8cf1d1b869f2d16f88e3e4bc91b443"
+        "sha256": "b82d2a4d4b50c97a8fb870885e1475c51abab7971c7808fbe4eeeb104b334c3a"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -57,7 +57,7 @@
       {
         "path": ".github/acceptance/issue-35.json",
         "identity_mode": "content",
-        "sha256": "36d4602749901eb1bd3e08b31749d58a33e73b3c763b93c12ef8d2f4de97065f"
+        "sha256": "6d405a86fc607d867f6c29422cd0c98780cd185b53b785616b85bf5685f61af0"
       },
       {
         "path": ".github/pull_request_template.md",
@@ -86,7 +86,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "770cfbb1d9557dabe1f5d9c7e09b1977277e8a94974101a7ea4f62521fe3936f"
+        "sha256": "ce829fe092ddca28bcb07320e4f675c5103519accfb566f5c0be863ac2ec695f"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -171,17 +171,17 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "6dd6e5b4df186c2fee6fced39a532da37bdc93d0aeb2b04db0c4464af4a7e435"
+        "sha256": "a46a8c699e5c58247e2aa1e6be01d49ce7508e815e16a5f27f51453cda38378e"
       },
       {
         "path": "CONTRIBUTING.md",
         "identity_mode": "content",
-        "sha256": "b462cf1f02a325b130658ed3b6c92216deb6cfb5bb9a4a3ca9cd07c87b50e30b"
+        "sha256": "4294fc3e68375e674e5a1fcac8a81a8236c11c023d35e10497688e2807aa75ec"
       },
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "57f70fa6c26491d287c7ad5fe226aa947817177ee6c704913d8a580f36930ad9"
+        "sha256": "9dbe3c059f85e6831946af8f2893fa944132afa4e26b743a5cd360b3ed2e5bd0"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -495,7 +495,7 @@
       {
         "path": "review/issue-35/2026-10-07-analysis.md",
         "identity_mode": "content",
-        "sha256": "20bf9fc92f5ab67bf8c5021b87d02595a06a461de499d00da30238a52f15b2b2"
+        "sha256": "2e455ffc4813ee7804cce59e523cd989384703b84d57cf21a8836c59c3269cca"
       },
       {
         "path": "review/issue-35/2026-10-07-ci-audit.json",
@@ -510,7 +510,7 @@
       {
         "path": "review/issue-35/2026-10-07-review.md",
         "identity_mode": "content",
-        "sha256": "79ae8c2f124ad78cf09cc3fb6f3ac8f8afb401a54e9c608b0ce28631276379e2"
+        "sha256": "ec011252f29631c9f20486eb86e84c84ab3f7a040c9b3877aa39b200627331ec"
       },
       {
         "path": "review/issue-35/2026-10-07-runtime-audit.json",

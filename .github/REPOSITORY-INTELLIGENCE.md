@@ -88,6 +88,8 @@ routes require checking the dependent layer and CI selection in the same PR:
 5. Run coupling regressions/verification, then rebuild and verify both RI views.
    Re-run the issue policy on the final committed source before deciding closure;
    put the AC/result/evidence mapping and remaining decisions in the issue/PR.
+   Update the actual issue-body AC checkboxes using the acceptance protocol;
+   a table or generated report alone does not update live criterion state.
 
 ```sh
 python3 tools/check_ri_ci.py refresh

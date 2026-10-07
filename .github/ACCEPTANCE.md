@@ -27,6 +27,8 @@ At the end of implementation/session work:
    policy digest, tested commit and tree, criterion results and pending gates in
    the PR. Put a short anchored criterion summary and exact evidence links in
    the issue; refresh MEMORY with the remaining action.
+4. Update the actual AC checkboxes in the owning issue body using the evaluation
+   rules below. A report or evidence table alone does not update criterion state.
 
 ```sh
 python3 tools/issue_acceptance.py validate --policy .github/acceptance/issue-31.json
@@ -86,6 +88,13 @@ with its check evidence and its non-automated requirements. Do not cite an old
 green run from another head or a synthetic merge as raw-head evidence. Attach
 the report/artifact and exact run/ref links to the issue and PR, then separately
 fetch and record current review, PR/commit linkage and merge decisions.
+
+At every session end or issue evaluation, mark a criterion `[x]` only when its
+whole pass condition is verified by all required current-source checks and
+non-automated gates. Partial, failed, skipped, unmapped, stale, wrong-source or
+pending criteria remain `[ ]`. Clear a tick when evidence is invalidated.
+Preserve the original intent, stable AC IDs and criterion-to-evidence mapping;
+update these checkboxes in the issue body alongside the linked evidence table.
 
 Close only after the original intent and all applicable criteria/gates are
 satisfied and the accepted result is merged and checked. Record the merged

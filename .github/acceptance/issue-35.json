@@ -179,7 +179,7 @@
     },
     "G03": {
       "kind": "human",
-      "description": "Revalidate live owning issue to PR, exact Refs #35 commits, versioned independent review, reports and CI links. Update #13 criterion-by-criterion against its original/current accepted intent and remaining first-release obligations; close only when the actual or explicitly superseded accepted scope is satisfied. No text-presence test supplies that human/live decision."
+      "description": "Revalidate live owning issue to PR, exact Refs #35 commits, versioned independent review, reports and CI links. Update the actual issue-body AC checkboxes alongside the evidence table, checking only fully verified criteria and clearing invalidated evidence. Update #13 criterion-by-criterion against its original/current accepted intent and remaining first-release obligations; close only when the actual or explicitly superseded accepted scope is satisfied. No text-presence test supplies that human/live decision."
     }
   }
 }

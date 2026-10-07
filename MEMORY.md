@@ -22,15 +22,17 @@ Dated continuity hints, not instructions or live-status authority. Last verified
   audits use the accepted #33 source above. The complete current test inventory is
   `tools/quality/test-profiles.json`, owned by `guides/SITE-CHECK-PROFILES.md`.
   [PR #37](https://github.com/oborskyivitalii/oborskyivitalii/pull/37) implements it.
-  Initial candidate `7b86ff1e3128b09060d8c5422f6884ed8ccbfef7` passed 15
-  clean-source mapped checks and actual Basic/acceptance/navigation/preview CI.
-  Its first opt-in stage correctly failed on cold/warm and untriaged findings;
-  the next passed static/functional checks and exposed an ambiguous Home locator.
-  Raw failed reports and the unique Main-navigation correction are retained in
-  the linked analysis/review. The prepared correction
-  passes 15 mapped checks and 92 enduring Python cases. Independent follow-up
-  reviews the real flight/cache correction and exact source-bound scanner triage.
-  Fresh final-head hosted CI/timing, normal merge and #13 reconciliation remain.
+  Candidate `5345cc657067483a7e160dc80dfeef95cdfd6206`, tree
+  `c19f968c424644b0e3b5e7b5734a895931072eaf`, passed all 15 clean-source mapped
+  checks and actual Basic/navigation/preview CI. Bounded
+  [stage evidence 37605919092](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37605919092)
+  passed: staging job 5m58s, browser install 38s, regression step 5m01s, total
+  8m41s versus historical full 46m37s. Downloaded reports bind this exact source,
+  tree and public artifact; four cold/warm flights and selected coverage passed.
+  Full production remains a separate gate; stable promotion was not requested.
+  The continuation adds actual issue-body AC checkbox updates to the agent and
+  acceptance rules. Final rule-only source CI, normal merge and exact merged
+  reconciliation remain; live #13 stays open for genuine release obligations.
 - Earlier #28/#14 completion and accepted stage remain recorded in their issues.
   Current hosting mechanics are in [the runbook](guides/SITE-STAGING.md).
   Stable stage: https://staging.oborskyi-author-ci-staging.pages.dev ; recheck its
@@ -51,6 +53,8 @@ Dated continuity hints, not instructions or live-status authority. Last verified
   recorded separately. #31 acceptance stays pinned to its accepted source.
 - At issue closure review PR/staging/production test allocation and retired or
   diagnostic cases with their canonical owners and RI/CI routes.
+- At session end/evaluation update actual issue-body AC checkboxes alongside
+  evidence tables; check only the whole verified criterion, including its gates.
 - Production is intended for GitHub Pages. Analytics stays disabled until an
   actual production origin/token and activation decision under #8. Current
   staging/production check profiles and budgets retain their guide owners.
@@ -62,7 +66,7 @@ live criteria/status before selecting the next increment.
 
 | Issue | Remaining intent |
 | --- | --- |
-| [#35](https://github.com/oborskyivitalii/oborskyivitalii/issues/35) | Final profile review, current-source CI/timing, independent review, merge and #13 criterion reconciliation. |
+| [#35](https://github.com/oborskyivitalii/oborskyivitalii/issues/35) | Finish checkbox-rule continuation CI/review, merge and exact merged acceptance; update live #35/#13 checkboxes and remaining obligations. |
 | [#1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1) | Overall launch and its production/rights/device dependencies. |
 | [#13](https://github.com/oborskyivitalii/oborskyivitalii/issues/13) | Reconcile original pipeline scope after #35; preserve first-release device/review gates under #1 and hosting/security/rollback gates under #8 before any closure. |
 | [#8](https://github.com/oborskyivitalii/oborskyivitalii/issues/8) | Production URL/indexability and actual analytics activation. |
