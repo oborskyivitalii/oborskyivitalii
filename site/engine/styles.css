@@ -75,7 +75,7 @@ body[data-page="writing"] .space-scene canvas,body[data-page="credits"] .space-s
 .section,.archive-intro,.credits-page,.hero-copy,.shift-intro {background:transparent}
 :where(.hero-copy,.section-heading,.archive-intro>.hero-description,.archive-intro>.eyebrow,.shift-intro>p,
 .research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,
-.ack-grid article,.about-grid>div,.about-grid>h2,.about-section>.eyebrow,.archive-link,.contact-grid>div,.publication,.credits-page>p,.credits-page>h1,.credits-page>h2,
+.ack-grid article,.discussion-row,.about-grid>div,.about-grid>h2,.about-section>.eyebrow,.archive-link,.contact-grid>div,.publication,.credits-page>p,.credits-page>h1,.credits-page>h2,
 .archive-heading,.archive-count,.empty-state,.year-landing,.section-note,.next-route>p,.next-route>a,
 .archive-landings>.topic-landing,.archive-filters,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a,.talks-list .publication>div) {
   position:relative;isolation:isolate;
@@ -84,7 +84,7 @@ body[data-page="writing"] .space-scene canvas,body[data-page="credits"] .space-s
    Static gradients need no backdrop blur, extra bitmap or animation scheduler. */
 :where(.hero-copy,.section-heading,.archive-intro>.hero-description,.archive-intro>.eyebrow,.shift-intro>p,
 .research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,
-.ack-grid article,.about-grid>div,.about-grid>h2,.about-section>.eyebrow,.archive-link,.contact-grid>div,.publication,.credits-page>p,.credits-page>h1,.credits-page>h2,
+.ack-grid article,.discussion-row,.about-grid>div,.about-grid>h2,.about-section>.eyebrow,.archive-link,.contact-grid>div,.publication,.credits-page>p,.credits-page>h1,.credits-page>h2,
 .archive-heading,.archive-count,.empty-state,.year-landing,.section-note,.next-route>p,.next-route>a,
 .archive-landings>.topic-landing,.archive-filters,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a,.talks-list .publication>div)::before {
   content:"";position:absolute;inset:calc(-1 * var(--surface-gutter));z-index:-1;pointer-events:none;
@@ -104,7 +104,7 @@ body[data-page="writing"] .space-scene canvas,body[data-page="credits"] .space-s
 /* A short column must not inherit the height of its taller neighbour. */
 .shift-intro,.research-grid,.topic-grid,.help-grid,.ack-leads,.ack-compact,.ack-grid,.about-grid,.contact-grid {align-items:start}
 .hero-copy,.about-grid>div,.about-grid>h2,.contact-grid>div,.shift-intro>p,.credits-page>p,.credits-page>h1,.empty-state {width:fit-content;max-width:100%}
-:is(.research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,.ack-grid article,.about-grid>div,.contact-grid>div) .section-note::before {content:none}
+:is(.research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,.ack-grid article,.discussion-row,.about-grid>div,.contact-grid>div) .section-note::before {content:none}
 .site-footer,.next-route {padding-inline:18px}
 .hero {display:grid;grid-template-columns:1.22fr .78fr;align-items:end;gap:0 44px;padding-top:48px}
 .hero-copy {--reading-alpha:var(--surface-open);color:var(--ink);align-self:center;padding:16px 18px 34px;margin-left:-18px}
@@ -201,6 +201,7 @@ h2 {font-size:clamp(30px,3.4vw,40px);font-weight:720;letter-spacing:-.035em;line
 .site-footer {display:flex;flex-wrap:wrap;gap:16px 28px;border-top:1px solid var(--line);padding-block:26px;font-size:12px;color:var(--muted)}
 .site-footer p {margin:0 auto 0 0}
 .site-footer a {text-decoration:none}
+
 .archive-intro {padding-block:60px 32px}
 .archive-intro h1 {font-size:clamp(40px,5.7vw,72px)}
 .archive-intro .hero-description {max-width:720px}
@@ -328,3 +329,17 @@ body[data-page="writing"] .publication {--reading-alpha:var(--surface-row)}
 /* Professional context accompanies the exact public contribution record. */
 .ack-leads .person-context,.ack-compact .person-context,.ack-grid .person-context {font-size:14px;line-height:1.5;color:var(--muted);margin:0 0 14px}
 .ack-leads h3 a,.ack-compact h3 a,.ack-grid h3 a {color:inherit;text-decoration-thickness:1px;text-underline-offset:.22em}
+
+/* Context stays subordinate to the research and publication entry points. */
+.context-heading {font-size:21px;line-height:1.4;margin:34px 0 22px;scroll-margin-top:110px}
+.advisor-role {display:block;font-size:15px;line-height:1.5;font-weight:550;margin-top:8px}
+.public-discussion {margin-top:42px;scroll-margin-top:110px}
+.discussion-list {list-style:none;padding:0;margin:20px 0 0}
+.discussion-row {padding:22px 20px;border-top:1px solid var(--line);margin:0 0 12px;max-width:900px}
+.discussion-row h4 {font-size:18px;line-height:1.5;margin:0 0 10px}
+.discussion-row h4 a {text-decoration:none}
+.discussion-row>p {font-size:15px;line-height:1.7;color:var(--muted);margin:0 0 10px}
+.discussion-row .discussion-community,.discussion-row .discussion-counts {font-size:13px;margin:0}
+.discussion-row .discussion-counts {margin-top:5px}
+@media (max-width:680px) {.discussion-row {padding:20px 16px}.context-heading {margin-top:28px}}
+@media print {.discussion-row {break-inside:avoid;background:white}}

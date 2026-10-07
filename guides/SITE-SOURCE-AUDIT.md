@@ -5,6 +5,67 @@ Each dated section describes that edition; older counts, placement and review
 limits are historical. Use [the editorial review route](SITE-CONTENT-REVIEW.md),
 the owning issue/PR and [MEMORY](../MEMORY.md) for current acceptance.
 
+## Writing formula artwork — 2026-10-07
+
+Issue #36 / PR #38 adds the owner's requested `y = f(x) → y ∼ P(y|x)` scene
+landmark. `site/assets/writing-paradigm.svg` is the sole editable original source:
+15 manually outlined Bézier/line glyph paths, no extracted font or external
+artwork. Its continuous red/pink/violet/blue gradient uses exact current ribbon
+palette entries. The owner requested 2× stronger strokes; glyphs use14 and the
+arrow/conditional bar10 SVG units. Build-time compiled commands, cached Canvas
+and static/offline markup derive from that source; none is a second artwork owner.
+The same [handoff](../review/issue-36/2026-10-07-handoff.md) retains asset digest,
+execution decisions and acceptance evidence. This visual shorthand adds no
+publication, research-definition, attribution or validation claim.
+## Issue #41 implementation amendment — 2026-10-07
+
+The maintainer's “Сол підхопи” authorizes implementation in the same Draft
+[PR #42](https://github.com/oborskyivitalii/oborskyivitalii/pull/42). The
+[analysis and tasks](../review/issue-41/2026-10-07-analysis.md) and
+[source inventory](../review/issue-41/source-inventory.json) retain exact inputs,
+source limits and historical decisions. Earlier byte-only preparation evidence
+is pinned at `d7ce5d317ebf016b988ba060025f455908120b5a`; it is explicitly
+superseded by the actual catalog/generated-page/SEO checks for this phase.
+
+Markus Kopko is UA's Strategic Advisor on Governance and Alignment; Otman Basir,
+Ph.D. is Academic Advisor. Written consent is maintainer-attested; private
+correspondence was not inspected or published. Basir's supplied professional
+headline is Professor of Intelligent Systems at the University of Waterloo;
+Kopko's is CPMAI Lead Coach | PMI AI Standards Core Team. Standards participation
+is not employment or PMI endorsement; coaching counts are not UA outcomes.
+Research groups these two advisors before six other responses, retaining every
+existing person and contribution/source/provenance link. Home keeps three cards
+and a single advisory line. No institutional endorsement, certification or
+adoption is inferred.
+
+All 27 original primary editions, the existing Thinking Systems LinkedIn URL/date
+and five featured selections remain intact. Sixteen additional LinkedIn versions
+are attached to existing works using their own observed titles/dates. L07 is a
+new English delivery article; L09 is a new English essay under strategy. Accessible
+opening, argument and concluding sections were reviewed; their empirical or
+speculative claims are not imported as site evidence. L15/L19 remain unavailable
+and deferred. L14's retry was unavailable: the previously read header is retained,
+without claiming fresh access. Alternate relationships mean same-topic platform
+editions, not verified identical bodies or translations. The catalog now has
+29 primary records (22 EN / 7 UA), 17 alternates and 46 linked editions.
+
+Three supplied Reddit texts establish canonical thread identities independently
+of the unresolved original short aliases. Research has three neutral topic rows
+with approximate post views and displayed comments: S2 48K/55, S1 13K/30,
+S3 34K/41. They are author-supplied UI snapshots reviewed/received 7 Oct 2026;
+capture dates are unknown and metrics are not independently verified. Comments
+include author replies; views are not unique readers or validation. Historical
+reports, subreddit counters, scores, reposts, shares and the internal 95K/126
+aggregate are excluded. Writing links S2/S3 beside their related articles; Home
+and structured data contain no discussion metrics or popularity/rating claims.
+
+Control Theory is the heading. The explanatory TOC primer is
+[Theory of Constraints Institute](https://www.tocinstitute.org/theory-of-constraints.html);
+the Subprime delivery interpretation remains the primary reading route. Specific
+copy corrections distinguish the software controlled object from its wider
+control perimeter and describe delivery responses as hypotheses to test in context.
+No research acceptance or production release is established by this amendment.
+
 ## Selected Home responses and complete Research context — 2026-10-06
 
 The maintainer authorized implementation of the

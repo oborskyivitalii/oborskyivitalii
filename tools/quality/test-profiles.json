@@ -495,7 +495,8 @@
         "tests/content.test.cjs",
         "review/sol-execution-20261002/BASELINE.json",
         "site/content/**",
-        "site/templates/**"
+        "site/templates/**",
+        "site/content/catalog.json"
       ]
     },
     {
@@ -551,7 +552,8 @@
         "tests/executive.test.cjs",
         "tools/check_site_seo.cjs",
         "site/content/**",
-        "site/templates/**"
+        "site/templates/**",
+        "review/issue-41/content-amendment.json"
       ]
     },
     {
@@ -1152,6 +1154,21 @@
       ]
     },
     {
+      "path": "tests/test_issue36_acceptance.py",
+      "language": "python",
+      "purpose": "Issue #36 exact formula asset, producer/cache assertions and source-bound browser/performance evidence policies.",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": [
+        "issue-policy"
+      ],
+      "disposition": "selected owning policy only; exact measured browser/performance reports and human gates remain distinct",
+      "surviving_route": ".github/acceptance/issue-36.json",
+      "inputs": [
+        "tests/test_issue36_acceptance.py"
+      ]
+    },
+    {
       "path": "tests/test_issue_acceptance.py",
       "language": "python",
       "purpose": "Permanent fail-closed AC/policy selection runner, exact source accounting, module fixtures and explicit manual gates",
@@ -1358,6 +1375,62 @@
       ]
     },
     {
+      "path": "tests/writing-paradigm-browser.test.cjs",
+      "language": "javascript",
+      "purpose": "Scoped #36 Linux Chromium/Firefox report checks one world3D perspective landmark, bounded Canvas submissions/cache, frozen lifecycle and static fallback; native WebKit remains on macOS production.",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "diagnostic",
+      "profiles": [
+        "diagnostic",
+        "pr-targeted"
+      ],
+      "disposition": "retain focused feature/helper checks; Linux GTK is excluded; preview follows small hosted smoke and staging uses bounded #35 regression",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
+      "inputs": [
+        "tests/writing-paradigm-browser.test.cjs",
+        "tools/quality/writing-paradigm-browser.cjs",
+        "tools/quality/writing-paradigm-validate.cjs"
+      ]
+    },
+    {
+      "path": "tests/writing-paradigm-ci.test.cjs",
+      "language": "javascript",
+      "purpose": "Scoped #36 opt-in CI event/source/pin/raw-retention contract, deliberate same-repository PR label selection and unchanged historical manual diagnostic jobs.",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "diagnostic",
+      "profiles": [
+        "diagnostic",
+        "pr-targeted"
+      ],
+      "disposition": "retain bounded exact-baseline PR #38 diagnostic control; never launch browser/performance matrix on ordinary PR updates",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
+      "inputs": [
+        "tests/writing-paradigm-ci.test.cjs",
+        ".github/workflows/site-writing-probe.yml"
+      ]
+    },
+    {
+      "path": "tests/writing-paradigm-quality.test.cjs",
+      "language": "javascript",
+      "purpose": "Scoped #36 paired evidence recomputes raw samples, preserves historical baseline bytes, rejects wrong identity/profile, changed budgets, concealed quality and growing resources.",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "diagnostic",
+      "profiles": [
+        "diagnostic",
+        "pr-targeted"
+      ],
+      "disposition": "retain exact-baseline feature comparison and adversarial validator fixtures; not routine staging/production measurement or release acceptance",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
+      "inputs": [
+        "tests/writing-paradigm-quality.test.cjs",
+        "tools/quality/writing-paradigm.cjs",
+        "tools/quality/writing-paradigm-validate.cjs",
+        "tools/quality/motion.cjs",
+        "tools/quality/artifact.cjs",
+        "tools/site/snapshot.cjs"
+      ]
+    },
+    {
       "path": "tests/writing-variants.test.cjs",
       "language": "javascript",
       "purpose": "Private ablation derivation retains exact normal parent, descriptor/patch identity and cannot satisfy a release gate",
@@ -1373,6 +1446,21 @@
         "tests/writing-variants.test.cjs",
         "tools/quality/writing-variants.cjs",
         "tools/quality/artifact.cjs"
+      ]
+    },
+    {
+      "path": "tests/test_issue41_acceptance.py",
+      "language": "python",
+      "purpose": "Issue41 exact source/snapshot accounting, admitted and deferred edition identities, generated advisor/discussion/catalog/schema checks, reversible SEO delta and exact approved #36 runtime companion and unchanged hosting. Preparation evidence stays pinned at d7ce5d3; implementation phase explicitly supersedes its byte-only check.",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": [
+        "issue-policy"
+      ],
+      "disposition": "owning implementation policy only; enduring renderer/archive/SEO and normal preview smoke are extended in their current owners; no duplicate full regression or new browser suite; joint #36/#41 integration maps the same tests once through the #36 policy",
+      "surviving_route": ".github/acceptance/issue-41.json",
+      "inputs": [
+        "tests/test_issue41_acceptance.py"
       ]
     }
   ]

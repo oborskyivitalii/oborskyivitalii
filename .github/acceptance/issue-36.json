@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 36,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/36",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Prepare a small transparent original vector of the exact requested expression in ribbon-family colors.",
+      "automated_scope": "Actual SVG byte/gzip/element/command bounds, inert vocabulary, finite unclipped control geometry, expression metadata and continuous gradient; meaningful unsafe/incorrect mutations fail. Glyph recognizability and final-scene composition require visual review.",
+      "checks": [
+        "ASSET",
+        "ASSET-UNSAFE",
+        "ASSET-SEMANTICS"
+      ],
+      "gates": [
+        "G01"
+      ]
+    },
+    {
+      "id": "AC02",
+      "intent": "Integrate one large central Writing-only formula with coherent camera/depth/media/offline behavior and readable foreground content.",
+      "automated_scope": "One Writing-only world landmark in both detail tiers, finite perspective corners, mild authored tilt and closed ambient pulse/depth motion, normal scene depth sorting and no DOM banner. Canonical artwork is projected in the existing static scene; immutable runtime/media identity derives from that artwork. Visual composition remains an explicit review decision.",
+      "checks": [
+        "SCENE",
+        "BROWSER-VALIDATOR"
+      ],
+      "gates": [
+        "G01",
+        "G02"
+      ]
+    },
+    {
+      "id": "AC03",
+      "intent": "Preserve bounded single-clock lifecycle, cache/initialization, navigation and graceful fallback.",
+      "automated_scope": "Fixed 1380×240 single raster cache, bounded perspective/extrusion draw submissions, one logical landmark per paint, existing clock and frozen Off/reduced scene ownership, failure containment. Focused Linux Chromium/Firefox report fixtures preserve writing-only/fallback/zero-work observations; actual current-source measurements remain separate evidence.",
+      "checks": [
+        "CACHE",
+        "BROWSER-VALIDATOR"
+      ],
+      "gates": [
+        "G02"
+      ]
+    },
+    {
+      "id": "AC04",
+      "intent": "Measure the exact implementation against paired baseline and unchanged absolute performance budgets in this PR.",
+      "automated_scope": "Maintained paired report validator recomputes raw measurements, enforces fixed Color source/artifact identities, three ordered pairs per profile, absolute budgets and declared before-measurement added-cost limits. Meaningful missing/misbound/incomplete/over-budget/concealed-quality/resource-growth negatives fail. Validator fixtures are not a measured performance result; exact-head opt-in run remains separately reviewed.",
+      "checks": [
+        "PERFORMANCE-VALIDATOR",
+        "OPT-IN-CI"
+      ],
+      "gates": [
+        "G03"
+      ]
+    },
+    {
+      "id": "AC05",
+      "intent": "Preserve owning-issue/Draft-PR handoff, RI routes and honest pending implementation, then reconcile the original acceptance before closure.",
+      "automated_scope": "Current catalog/views and real CI coupling, owning-issue selection, pending-gate semantics and deliberate opt-in event/source/retention controls. Basic remains owned by existing site-checks; no duplicated full release suite. Joint staging runs the eleven #41 catalog/source checks in this same selected policy, once per unique check. Companion acceptance retains its separate AC IDs, gates and issue mapping.",
+      "checks": [
+        "CURRENT-RI",
+        "RI-CI",
+        "PENDING-GATE",
+        "OWNER-SELECTION",
+        "OPT-IN-CI",
+        "I41-INPUTS",
+        "I41-INPUT-NEGATIVES",
+        "I41-REDDIT-METRICS",
+        "I41-REDDIT-NEGATIVES",
+        "I41-ADMISSIONS",
+        "I41-EDITION-NEGATIVES",
+        "I41-ADVISORS",
+        "I41-DISCUSSIONS",
+        "I41-CATALOG-SCHEMA",
+        "I41-SEO",
+        "I41-RUNTIME-SCOPE"
+      ],
+      "gates": [
+        "G04",
+        "G05",
+        "I41-EDITORIAL",
+        "I41-REVIEW-MERGE",
+        "I41-BROWSER"
+      ]
+    }
+  ],
+  "checks": {
+    "ASSET": {
+      "kind": "unittest",
+      "test": "test_issue36_acceptance.Issue36AssetTests.test_original_vector_is_small_inert_and_finite"
+    },
+    "ASSET-UNSAFE": {
+      "kind": "unittest",
+      "test": "test_issue36_acceptance.Issue36AssetTests.test_active_external_and_unbounded_assets_fail"
+    },
+    "ASSET-SEMANTICS": {
+      "kind": "unittest",
+      "test": "test_issue36_acceptance.Issue36AssetTests.test_wrong_expression_palette_and_gradient_fail"
+    },
+    "CURRENT-RI": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    },
+    "PENDING-GATE": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_manual_only_criterion_is_pending"
+    },
+    "OWNER-SELECTION": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_selector_uses_only_explicit_local_refs"
+    },
+    "SCENE": {
+      "kind": "unittest",
+      "test": "test_issue36_acceptance.Issue36RuntimeTests.test_scene_producer_projection_and_immutable_artwork"
+    },
+    "CACHE": {
+      "kind": "unittest",
+      "test": "test_issue36_acceptance.Issue36RuntimeTests.test_single_bounded_cache_depth_order_and_failure_containment"
+    },
+    "PERFORMANCE-VALIDATOR": {
+      "kind": "unittest",
+      "test": "test_issue36_acceptance.Issue36RuntimeTests.test_source_bound_performance_validator_and_adversarial_reports"
+    },
+    "BROWSER-VALIDATOR": {
+      "kind": "unittest",
+      "test": "test_issue36_acceptance.Issue36RuntimeTests.test_browser_validator_rejects_missing_misbound_and_clipped_evidence"
+    },
+    "OPT-IN-CI": {
+      "kind": "unittest",
+      "test": "test_issue36_acceptance.Issue36RuntimeTests.test_opt_in_ci_preserves_exact_source_and_failure_evidence"
+    },
+    "I41-INPUTS": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_exact_input_coverage_and_candidate_boundaries"
+    },
+    "I41-INPUT-NEGATIVES": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_missing_duplicate_wrong_target_and_unread_promotions_fail"
+    },
+    "I41-REDDIT-METRICS": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_reddit_snapshot_metrics_and_provenance"
+    },
+    "I41-REDDIT-NEGATIVES": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_reddit_metric_inflation_and_identity_errors_fail"
+    },
+    "I41-ADMISSIONS": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_admitted_editions_preserve_primary_identity_and_deferred_inputs"
+    },
+    "I41-EDITION-NEGATIVES": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_primary_mutation_duplicate_missing_and_unread_editions_fail"
+    },
+    "I41-ADVISORS": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_advisor_grouping_preserves_people_sources_and_compact_home"
+    },
+    "I41-DISCUSSIONS": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_discussion_rows_use_only_supplied_snapshot_metrics_and_relations"
+    },
+    "I41-CATALOG-SCHEMA": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_visible_archive_counts_and_schema_match_primary_catalog"
+    },
+    "I41-SEO": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_seo_exact_amendment_and_unrelated_semantics_reconcile"
+    },
+    "I41-RUNTIME-SCOPE": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_runtime_and_hosting_mechanics_remain_unchanged"
+    }
+  },
+  "gates": {
+    "G01": {
+      "kind": "human",
+      "description": "Visual review of actual Writing composition, exact glyph meaning, foreground readability and Day/Night/mobile behavior; a standalone asset preview does not complete scene acceptance."
+    },
+    "G02": {
+      "kind": "human",
+      "description": "Current-source Linux Chromium/Firefox observations: one logical world formula with positive paints, Off/reduced/hidden/print settled zero work, room isolation, coherent static/no-JS/no-Canvas fallback, bounded cache failure and offline export. WebKit stays in native macOS production coverage. Fixture success alone is not measured runtime evidence."
+    },
+    "G03": {
+      "kind": "human",
+      "description": "Exact-head opted-in paired Color measurements and raw artifacts must pass the unchanged absolute limits and predeclared median added-cost guardrails. Reviewer verifies source/tree/public digest and three serial profiles; absent, failed or inconclusive measurement stays open."
+    },
+    "G04": {
+      "kind": "human",
+      "description": "Live issue/PR/Refs commits/exact handoff and CI links, independent implementation review. Applicable physical-device and full native production evidence stay with #13 before production, and do not block delivery of a smoke-checked PR preview or beginning bounded staging validation."
+    },
+    "G05": {
+      "kind": "merge",
+      "description": "Only after applicable maintainer decision: normal merge of accepted implementation and exact merged-source reconciliation. Implementation/CI/preview do not supply merge authorization."
+    },
+    "I41-EDITORIAL": {
+      "kind": "human",
+      "description": "Source/editorial review of exact roles and contribution verbs, admitted editions and per-platform dates, neutral Reddit disposition, public and structured-data claim boundaries, before/after semantics and actual readable layout. Preserve separate existing rights/device/release owners; do not invent source access or advisor correspondence inspection. Reddit numbers require the dated snapshot note; community criticism and the supplied historical claims are not validation."
+    },
+    "I41-REVIEW-MERGE": {
+      "kind": "merge",
+      "description": "Record independent review honestly, exact current-source Basic/targeted/navigation/acceptance and preview artifacts, live PR/Refs commits at the issue anchor, actual AC checkbox reconciliation and maintainer merge decision. Compare merged source with accepted candidate before closure; implementation is not release approval."
+    },
+    "I41-BROWSER": {
+      "kind": "human",
+      "description": "Inspect matching current-source PR Chromium smoke and targeted Home/Research/Writing Day/Night desktop/narrow layout, advisory anchors, filters/history/print, Off/reduced motion and bottom reach. Record report/public digest/source binding; this policy cannot ingest hosted reports. Separate first-release physical-device requirements remain with their owners."
+    }
+  }
+}

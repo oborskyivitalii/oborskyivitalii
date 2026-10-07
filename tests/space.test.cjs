@@ -4,11 +4,12 @@ const sourceFile=process.env.SITE_SPACE_SOURCE||path.join(__dirname,"../docs/spa
 const source=fs.readFileSync(sourceFile,"utf8"),model=require(sourceFile);
 function visit(options={}) {
   const events={},docEvents={},buttonEvents={},stylesheetEvents={},canvasEvents={},pending=new Map(),calls=[];
+  let formulaConstructions=0;
   let failDraw=false,styled=options.styled!==false,paintClock=0,bitmapValid=false,resizeCount=0,draws=0,serial=0,time=0,stored=options.saved??null,mutation,rangeReads=0,styleReads=0,maxHeight=15000;
   const media={matches:!!options.reduced,addEventListener:(_,fn)=>{media.change=fn;}};
   const narrow={matches:!!options.narrow},scene={dataset:{}};
   const context=Object.fromEntries(["setTransform","clearRect","beginPath","moveTo","lineTo","stroke","arc","fill","closePath"].map(name=>[name,(...args)=>{for(const arg of args)assert.ok(Number.isFinite(arg));if(name==="clearRect"){if(failDraw)throw Error("injected");draws++;bitmapValid=false;paintClock+=options.paintCost??0;}if(name==="fill"||name==="stroke")bitmapValid=true;}]));
-  const canvas={parentElement:scene,getContext:()=>options.noCanvas?null:context,addEventListener:(name,fn)=>{canvasEvents[name]=fn;}};
+  const canvas={getBoundingClientRect:()=>({left:0,top:0,width:window.innerWidth,height:window.innerHeight}),parentElement:scene,getContext:()=>options.noCanvas?null:context,addEventListener:(name,fn)=>{canvasEvents[name]=fn;}};
   for(const [key,initial] of [["width",300],["height",150]]){let value=initial;Object.defineProperty(canvas,key,{get:()=>value,set:v=>{value=v;bitmapValid=false;resizeCount++;}});}
   const button={hidden:true,disabled:false,setAttribute:(key,value)=>{button[key]=value;},addEventListener:(name,fn)=>{buttonEvents[name]=fn;}};
   const window={performance:{now:()=>paintClock},innerWidth:options.narrow?390:1440,innerHeight:900,devicePixelRatio:4,scrollY:options.scrollY||0,
@@ -20,16 +21,19 @@ function visit(options={}) {
   let stops=(options.stops||keys.map((id,i)=>[id,i*1100])).map(pair=>makeStop(pair));
   let resultRects=options.empty?[]:options.coincident?[[1000,1000]]:options.single?[[1000,1160]]:[[1000,1160],[1800,1960]];
   const results={querySelectorAll:()=>resultRects.map(([top,bottom])=>({hidden:false,getClientRects:()=>[{}],getBoundingClientRect:()=>({top:top-window.scrollY,bottom:bottom-window.scrollY})}))};
+  Object.assign(context,{save(){},restore(){},clip(){},transform(...values){assert.ok(values.every(Number.isFinite));},drawImage(){bitmapValid=true;}});
+  const raster={beginPath(){},moveTo(){},lineTo(){},bezierCurveTo(){},stroke(){},createLinearGradient(){return {addColorStop(){}};}};
   const stylesheet={addEventListener:(name,fn)=>{stylesheetEvents[name]=fn;}};
   const document={readyState:options.readyState,hidden:false,body:{dataset:{page:options.page||"index"}},documentElement:{get scrollHeight(){rangeReads++;return maxHeight;},set scrollHeight(value){maxHeight=value;}},
     getElementById:id=>id==="space-canvas"?canvas:id==="space-motion"?button:results,
-    querySelectorAll:()=>stops,querySelector:selector=>selector==='link[rel="stylesheet"]'?stylesheet:{},addEventListener:(name,fn)=>{docEvents[name]=fn;}};
+    createElement:()=>{formulaConstructions++;return {getContext:()=>raster};},
+    querySelectorAll:()=>stops,querySelector:selector=>selector==='link[rel="stylesheet"]'?stylesheet:selector==='[data-writing-formula]'?assert.fail('world formula never queries a DOM band'):selector==='.site-header'?{getBoundingClientRect:()=>({bottom:100})}:{},addEventListener:(name,fn)=>{docEvents[name]=fn;}};
   class MutationObserver{constructor(fn){this.callback=fn;}observe(_,options){if(options?.attributeFilter?.includes('data-theme'))mutation=this.callback;}disconnect(){}}
   window.MutationObserver=MutationObserver;
   if(options.probe)window.SiteEngineProbe=options.probe;
   const localStorage={getItem(){if(options.blockedStorage)throw Error("blocked");return stored;},setItem(_,value){if(options.blockedStorage)throw Error("blocked");stored=value;}};
   vm.runInNewContext(source,{document,window,localStorage});
-  const api={window,document,button,canvas,scene,pending,calls,media,narrow,events,
+  const api={window,document,button,canvas,scene,pending,calls,media,narrow,events,formulaConstructions:()=>formulaConstructions,
     drawingFault(){failDraw=true;},styling(value){styled=value;events.load();},paintCost(value){options.paintCost=value;},bitmapValid:()=>bitmapValid,resizeCount:()=>resizeCount,
     domReady(){document.readyState='interactive';docEvents.DOMContentLoaded?.();},stylesheetLoad(value=true){styled=value;stylesheetEvents.load?.();},stylesheetError(){stylesheetEvents.error?.();},contextLost(){canvasEvents.contextlost?.();},rangeReads:()=>rangeReads,styleReads:()=>styleReads,
     frame(delta=20){const jobs=[...pending.values()];pending.clear();calls.length=0;time+=delta;for(const fn of jobs)fn(time);},
@@ -442,5 +446,33 @@ test("Writing responds to the first small gestures before the archive, including
     p.settle();const start=p.trace(),phase=p.phase(),draws=p.draws();let last=start;
     for(const y of[100,200,400]){p.scroll(y);p.settle();assert.notEqual(p.trace(),last,`first gesture at ${y}px`);last=p.trace();}
     p.scroll(0);p.settle();assert.equal(p.trace(),start);assert.ok(p.phase()>phase);assert.ok(p.draws()>draws);
+  }
+});
+
+// The world landmark shares the Canvas ownership and existing freeze lifecycle.
+// No DOM band appears or moves when a preference stops the living scene.
+test("Writing world formula stays singular and frozen through Off/reduced and resumes with one retained cache",()=>{
+  for(const reduced of [false,true]){
+    const p=visit({page:'writing'});p.settle();
+    const before=p.window.SiteScene.diagnostics().formula;assert.ok(before.paintCount>0);assert.equal(before.lastPaintCount,1);assert.equal(before.lastDrawSubmissions,24);assert.equal(p.document.body.dataset.formulaMode,undefined);assert.equal(p.scene.dataset.ready,'true');
+    const fixed=p.trace(),phase=p.phase(),corners=JSON.stringify(before.projection.corners);
+    if(reduced){p.media.matches=true;p.media.change();}else p.click();
+    p.settle();const frozen=p.window.SiteScene.diagnostics().formula;
+    assert.equal(frozen.lastPaintCount,1,'the frozen Canvas retains its sole world landmark');assert.equal(frozen.cacheBuilds,1);assert.equal(JSON.stringify(frozen.projection.corners),corners);assert.equal(p.document.body.dataset.formulaMode,undefined);
+    const paints=p.draws(),formulaPaints=frozen.paintCount;
+    p.scroll(60);for(let i=0;i<8;i++)p.frame(60);
+    assert.equal(p.draws(),paints);assert.equal(p.window.SiteScene.diagnostics().formula.paintCount,formulaPaints);assert.equal(p.trace(),fixed);assert.equal(p.phase(),phase);assert.equal(p.pending.size,0);
+    if(reduced){p.media.matches=false;p.media.change();}else p.click();
+    for(let i=0;i<30;i++)p.frame(60);
+    assert.ok(p.window.SiteScene.diagnostics().formula.paintCount>formulaPaints,'resuming moves the existing world landmark with the camera and ambient phase');assert.equal(p.formulaConstructions(),1);assert.equal(p.window.SiteScene.diagnostics().formula.lastPaintCount,1);
+  }
+  for(const options of[{saved:'off'},{reduced:true,saved:'on'}]){
+    const p=visit({page:'writing',...options});p.settle();
+    const frozen=p.window.SiteScene.diagnostics().formula;
+    assert.equal(frozen.cacheBuilds,1);assert.equal(frozen.lastPaintCount,1);assert.equal(frozen.projection.clock,0);assert.equal(p.pending.size,0);assert.equal(p.formulaConstructions(),1);
+    const paints=p.draws();for(let i=0;i<8;i++)p.frame(60);assert.equal(p.draws(),paints,'startup frozen world requires no continuing work');
+    if(options.reduced){p.media.matches=false;p.media.change();}else p.click();
+    assert.equal(p.draws(),paints,'activation queues the existing shared paint');assert.equal(p.window.SiteScene.diagnostics().formula.cacheBuilds,1);
+    p.settle();assert.ok(p.window.SiteScene.diagnostics().formula.paintCount>frozen.paintCount);assert.equal(p.formulaConstructions(),1);
   }
 });

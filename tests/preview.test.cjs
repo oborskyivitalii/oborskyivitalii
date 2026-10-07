@@ -9,6 +9,7 @@ const css = fs.readFileSync(path.join(root, "docs/styles.css"), "utf8");
 const portrait = fs.readFileSync(path.join(root, "docs/assets/vitalii-oborskyi-cutout.webp"));
 const files = buildPreviews();
 const htmlFiles = Object.keys(files).filter((file) => file.endsWith(".html"));
+const primaryCount=Object.keys(require('../site/content/catalog.json').records).length;
 
 test("ten fixed-theme copies preserve actual main content, CSS and external source links", () => {
   assert.equal(htmlFiles.length, 16);
@@ -37,7 +38,7 @@ test("ten fixed-theme copies preserve actual main content, CSS and external sour
       const external = (text) => [...text.matchAll(/href="(https:\/\/[^"]+)"/g)].map((match) => match[1]);
       assert.deepEqual(external(html), external(source));
       const count = [...html.matchAll(/class="publication-title"/g)].length;
-      assert.equal(count, page === "index" ? 5 : page === "writing" ? 27 : 0);
+      assert.equal(count, page === "index" ? 5 : page === "writing" ? primaryCount : 0);
     }
   }
 });

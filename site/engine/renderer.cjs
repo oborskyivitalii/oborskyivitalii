@@ -1,6 +1,75 @@
 "use strict";
 // Canvas command submission is separate from projection and lifecycle clocks.
-module.exports=function() {
+module.exports=function(artwork=null,createSurface=null) {
+  // Exactly one immutable bitmap serves every Writing room/detail model. Its
+  // intrinsic size never follows viewport/DPR, and no resource owns a clock.
+  let formulaSurface=null,formulaAttempted=false,formulaBuilds=0,formulaPaints=0,formulaFailures=0,formulaVisible=0,formulaLastPaints=0,formulaSubmissions=0,formulaLastSubmissions=0,formulaProjection=null;
+  function formulaBitmap() {
+    if(formulaAttempted)return formulaSurface;
+    formulaAttempted=true;formulaBuilds++;
+    try{
+      if(!artwork||artwork.width!==1380||artwork.height!==240)throw Error('bounded formula artwork unavailable');
+      const surface=createSurface?createSurface():document.createElement('canvas');
+      surface.width=artwork.width;surface.height=artwork.height;
+      const target=surface.getContext('2d');if(!target)throw Error('formula cache unavailable');
+      const gradient=target.createLinearGradient(...artwork.gradient.line);
+      for(const [offset,color]of artwork.gradient.stops)gradient.addColorStop(offset,color);
+      target.strokeStyle=gradient;target.lineCap='round';target.lineJoin='round';
+      for(const glyph of artwork.paths){
+        target.beginPath();target.lineWidth=glyph.stroke;
+        for(const [kind,...values]of glyph.commands){
+          if(kind==='M')target.moveTo(...values);
+          else if(kind==='L')target.lineTo(...values);
+          else if(kind==='C')target.bezierCurveTo(...values);
+          else throw Error('unsupported compiled formula command');
+        }
+        target.stroke();
+      }
+      formulaSurface=surface;
+    }catch{formulaFailures++;formulaSurface=null;}
+    return formulaSurface;
+  }
+  function paintFormula(ctx,shape) {
+    formulaVisible++;formulaProjection=shape.projection||null;
+    const surface=formulaBitmap();if(!surface)return;
+    let saved=false;
+    try{
+      ctx.save();saved=true;ctx.globalAlpha=shape.alpha;ctx.globalCompositeOperation='source-over';
+      // A fixed four-strip mesh follows the projected world plane. Three
+      // z-slices give the actual tilted glyphs thickness, using the same single
+      // cache. This is one landmark with at most 24 native submissions, not
+      // viewport-sized caches, per-glyph geometry or another animation clock.
+      for(let layer=0;layer<shape.cameraLayers.length;layer++){
+        ctx.globalAlpha=shape.alpha*[.30,.45,1][layer];
+        const corners=shape.cameraLayers[layer];
+        const at=(u,v)=>{
+          const top=corners[0].map((value,i)=>value+(corners[1][i]-value)*u),bottom=corners[3].map((value,i)=>value+(corners[2][i]-value)*u),p=top.map((value,i)=>value+(bottom[i]-value)*v);
+          return [shape.origin[0]+p[0]*shape.focal/p[2],shape.origin[1]-p[1]*shape.focal/p[2]];
+        };
+        for(let strip=0;strip<4;strip++){
+          const u=strip/4,U=(strip+1)/4,source=[[u*surface.width,0],[U*surface.width,0],[U*surface.width,surface.height],[u*surface.width,surface.height]],points=[at(u,0),at(U,0),at(U,1),at(u,1)];
+          for(const triangle of [[0,1,2],[0,2,3]])paintFormulaTriangle(ctx,surface,triangle.map(i=>source[i]),triangle.map(i=>points[i]));
+        }
+      }
+      formulaPaints++;formulaLastPaints++;
+    }catch{formulaFailures++;formulaSurface=null;}
+    finally{if(saved)ctx.restore();}
+  }
+  function paintFormulaTriangle(ctx,surface,source,points) {
+    const [p,q,r]=source,[P,Q,R]=points,dx=q[0]-p[0],dy=q[1]-p[1],ex=r[0]-p[0],ey=r[1]-p[1],den=dx*ey-dy*ex;
+    const a=((Q[0]-P[0])*ey-(R[0]-P[0])*dy)/den,c=((R[0]-P[0])*dx-(Q[0]-P[0])*ex)/den;
+    const b=((Q[1]-P[1])*ey-(R[1]-P[1])*dy)/den,d=((R[1]-P[1])*dx-(Q[1]-P[1])*ex)/den;
+    ctx.save();
+    try{
+      path(ctx,points);ctx.closePath();ctx.clip();
+      ctx.transform(a,b,c,d,P[0]-a*p[0]-c*p[1],P[1]-b*p[0]-d*p[1]);
+      ctx.drawImage(surface,0,0);formulaSubmissions++;formulaLastSubmissions++;
+    }finally{ctx.restore();}
+  }
+  function formulaDiagnostics() {
+    const width=formulaSurface?.width||0,height=formulaSurface?.height||0;
+    return {status:formulaSurface?'ready':formulaAttempted?'failed':'unused',cacheBuilds:formulaBuilds,width,height,bytes:width*height*4,paintCount:formulaPaints,failures:formulaFailures,visibleCount:formulaVisible,lastPaintCount:formulaLastPaints,drawSubmissions:formulaSubmissions,lastDrawSubmissions:formulaLastSubmissions,projection:formulaProjection,attempts:formulaBuilds,builds:formulaSurface?formulaBuilds:0,failed:formulaFailures>0,draws:formulaPaints,visible:formulaVisible>0};
+  }
   function facePalette(faces,colors,cache) {
     const rgb=Object.fromEntries(Object.entries(colors).map(([key,hex])=>[key,hex.slice(1).match(/.{2}/g).map(value=>parseInt(value,16))]));
     const paper=rgb.paper;
@@ -36,9 +105,11 @@ module.exports=function() {
     ctx.stroke();return end-1;
   }
   function paintShapes(ctx,shapes,colors,paintCustom=null) {
+    formulaVisible=0;formulaLastPaints=0;formulaLastSubmissions=0;formulaProjection=null;
     for(let index=0;index<shapes.length;index++) {
       const shape=shapes[index];
       if(paintCustom?.(ctx,shape))continue;
+      if(shape.kind==='formula'){paintFormula(ctx,shape);continue;}
       // Depth order is unchanged. Only adjacent compatible lines are batched.
       if(shape.kind==="line"&&!shape.arrow){index=drawLineRun(ctx,shapes,index,colors);continue;}
       const points=shape.points,from=points[0],to=points[1];
@@ -58,5 +129,5 @@ module.exports=function() {
     }
     ctx.globalAlpha=1;
   }
-  return {paintShapes,facePalette};
+  return {paintShapes,facePalette,formulaDiagnostics,prepareFormula:formulaBitmap,formulaReady:()=>!!formulaSurface,formulaDrawn:()=>formulaLastPaints>0};
 };

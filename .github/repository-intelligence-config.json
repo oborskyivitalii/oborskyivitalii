@@ -353,13 +353,14 @@
         "review/issue-",
         "PROJECT-BOOTSTRAP.md",
         "tests/test_issue33_acceptance.py",
-        "tests/test_issue35_acceptance.py"
+        "tests/test_issue35_acceptance.py",
+        "tests/test_issue36_acceptance.py"
       ],
       "commands": [
-        "python3 tools/issue_acceptance.py run --policy .github/acceptance/issue-35.json --report /tmp/issue-35-acceptance.json"
+        "python3 tools/issue_acceptance.py run --policy .github/acceptance/issue-36.json --report /tmp/issue-36-acceptance.json"
       ],
       "workflow": ".github/workflows/issue-acceptance.yml",
-      "note": "Choose the owning issue policy. #35 is the test-allocation worked example; completed #31/#33 snapshots remain pinned to their original sources. Automated assertions cannot supply independent review, observed hosted timing, merge or live GitHub linkage."
+      "note": "Choose the owning issue policy. Current #36 Writing integration uses scoped source/browser/performance mappings; completed #35 test allocation and #31/#33 snapshots remain pinned to their original sources. Automated assertions cannot supply independent review, observed hosted timing, owner/device acceptance, merge or live GitHub linkage."
     },
     {
       "concern": "canonical test inventory, changed-source selection and selected staging evidence",

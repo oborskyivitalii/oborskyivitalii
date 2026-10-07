@@ -19,6 +19,98 @@ test('content links admit a plain public mailto without admitting executable sch
     assert.throws(()=>b.validateFragment('<a href="'+value+'">Email</a>','contact'),/Unsafe/);
   }
 });
+test('the canonical formula compiles once into finite strong glyphs and rejects executable, malformed and changed artwork',()=>{
+  const assets=require('../tools/site/scene-assets.cjs'),source=fs.readFileSync(path.join(root,'site/assets/writing-paradigm.svg'),'utf8'),art=assets.compile(source);
+  assert.equal(art.width,1380);assert.equal(art.height,240);assert.equal(art.paths.length,15);
+  assert.equal(art.paths.reduce((n,p)=>n+p.commands.length,0),65);assert.equal(Object.hasOwn(assets.runtime(art),'svg'),false,'runtime contains numeric commands without XML');
+  const duplicateGlyph=source.match(/<path data-glyph="y"[^>]*\/>/)[0];
+  for(const changed of [source.replace('</svg>','<script>alert(1)</script></svg>'),source.replace('M57 95','MInfinity 95'),source.replace('M57 95','M57'),source.replace('M57 95','M6 95'),source.replace('width="1380"','width="8192"'),source.replace('stroke-width="14"','stroke-width="7"'),source.replace('P(y|x)','P(x|y)'),source.replace('data-glyph="P"','data-glyph="Q"'),source.replace('d="M57','onload="alert(1)" d="M57'),source.replace('</g>','</defs>'),source.replace('</svg>',''),source.replace('</g>',duplicateGlyph+'</g>'),source.replace('</defs>','</defs><title id="title">duplicate</title>'),source.replace('M57 95','M57 95'+' L60 100'.repeat(16)),source.replace('</defs>','</defs>'+'<defs/>'.repeat(16))])assert.throws(()=>assets.compile(changed));
+});
+function formulaProjectionCase(api,definitions,anchor,pose,width,height){
+      const initial=api.projectedFormula(anchor,pose,width,height,0),moved=api.projectedFormula(anchor,pose,width,height,api.LOOP_MS/4),closed=api.projectedFormula(anchor,pose,width,height,api.LOOP_MS);
+      assert.ok(initial);assert.notEqual(initial.points[0][1],initial.points[1][1],'plane is tilted');
+      assert.equal(initial.cameraLayers.length,3);assert.notDeepEqual(initial.cameraLayers[0],initial.cameraLayers[2],'real depth separates front and back');
+      assert.notDeepEqual(moved.points,initial.points,'same ambient clock moves and pulses the landmark');
+      for(let i=0;i<4;i++)for(let j=0;j<2;j++)assert.ok(Math.abs(closed.points[i][j]-initial.points[i][j])<1e-8,'loop closes without drift');
+      const span=shape=>Math.max(...shape.points.map(p=>p[0]))-Math.min(...shape.points.map(p=>p[0]));
+      let maximum=span(initial),seen=false;
+      for(let sample=0;sample<=64;sample++){
+        const current=api.projectedFormula(anchor,api.journeyPose(definitions.topicPaths.all,sample/64),width,height,0);
+        if(!current)continue;seen=true;maximum=Math.max(maximum,span(current));
+        assert.ok(current.points.flat().every(Number.isFinite),'bounded finite projection');
+        assert.ok(current.cameraCorners.every(point=>point[2]>.5),'whole expression fades before camera crosses it');
+      }
+      assert.ok(seen&&maximum>span(initial)*1.2,'native camera approaches the formula through the fractal');
+}
+test('Writing formula is a tilted moving world landmark with one same-scene static rendition and no layout band',()=>{
+  const {definitions}=b.configuration(root),api=b.model(root,definitions),c=b.catalog(root),fallbacks=require('../tools/build_scene_fallbacks.cjs');
+  for(const route of definitions.routeOrder)for(const compact of [false,true]){
+    const world=api.worldFor(route,compact),input=b.routeInput(root,{id:route},c),fallback=fallbacks.fromModel(api,route);
+    assert.equal(world.formulas.length,route==='writing'?1:0);
+    assert.equal([...fallback.matchAll(/data-formula="writing-paradigm"/g)].length,route==='writing'?1:0);
+    assert.equal(input.main.includes('data-writing-formula='),false,'no formula owns content layout');
+    assert.equal(input.main.includes('writing-formula-fallback'),false,'decorative artwork belongs to the existing scene');
+    assert.equal(input.main.includes('{{WRITING_FORMULA}}'),false,'no banner producer token remains');
+    assert.equal(input.main.includes('data-writing-formula-description'),route==='writing','one short accessible semantic description');
+    if(route!=='writing')continue;
+    const anchor=world.formulas[0],pose=api.poses[api.initialPoses[route]],art=api.sceneAsset;
+    assert.deepEqual(anchor.rootCenter,world.objects.find(o=>o.root===anchor.root).rootCenter,'same fractal root');
+    assert.ok(anchor.rotation.some(angle=>angle!==0));assert.ok(anchor.extrusion>0);
+    assert.equal([...fallback.matchAll(/data-glyph=/g)].length,art.paths.length,'one visible front rendition of every canonical glyph');
+    assert.equal([...fallback.matchAll(/data-formula-layer=/g)].length,3,'bounded world-depth extrusion');
+    assert.equal([...fallback.matchAll(/<svg\b/g)].length,1,'one existing fallback scene');
+    assert.equal(/<(?:image|use|filter|text|script|foreignObject)\b|(?:href|src)=/.test(fallback),false,'no font, filter or external artwork request');
+    const first=api.projectFormulaPoint(anchor,pose,1440,900,0,art.paths[0].commands[0][1]/art.width,art.paths[0].commands[0][2]/art.height);
+    const firstPoint=fallback.match(/data-glyph="0" d="M(-?[\d.]+) (-?[\d.]+)/);
+    assert.ok(firstPoint,'static glyph has its canonical projected move');
+    assert.deepEqual(firstPoint.slice(1).map(Number),first.map(n=>Number(n.toFixed(2))),
+      'static glyph uses the exact rounded canonical point, independent of redundant decimal zeroes');
+    for(const [width,height]of [[320,740],[390,844],[768,1024],[1440,900]])formulaProjectionCase(api,definitions,anchor,pose,width,height);
+  }
+});
+test('embedded formula artwork changes immutable runtime identity and packaged media coherently',t=>{
+  const dir=fixture(t),before=run(dir),oldRevision=JSON.parse(fs.readFileSync(path.join(dir,'docs/site-revision.json'))),oldRuntime=fs.readFileSync(path.join(dir,'docs/space.js'));
+  edit(dir,'site/assets/writing-paradigm.svg',source=>source.replace('M57 95','M58 95'));
+  const after=run(dir),newRevision=JSON.parse(fs.readFileSync(path.join(dir,'docs/site-revision.json'))),newRuntime=fs.readFileSync(path.join(dir,'docs/space.js'));
+  assert.notDeepEqual(newRuntime,oldRuntime);assert.notEqual(newRevision.engine,oldRevision.engine,'different embedded artwork cannot reuse an immutable runtime URL');
+  assert.notEqual(newRevision.assets,oldRevision.assets);assert.notEqual(after.files['assets/writing-paradigm.svg'],before.files['assets/writing-paradigm.svg']);
+  assert.deepEqual(after.built,['index','research','writing','talks','credits']);
+  assert.deepEqual(fs.readFileSync(path.join(dir,`docs/runtime/${newRevision.engine}/space.js`)),newRuntime);
+  assert.deepEqual(fs.readFileSync(path.join(dir,`docs/media/${newRevision.assets}/writing-paradigm.svg`)),fs.readFileSync(path.join(dir,'site/assets/writing-paradigm.svg')));
+  snapshot.verify(path.join(dir,'docs'),{files:after.files});run(dir,{check:true});
+  edit(dir,'tools/site/scene-assets.cjs',source=>source.replace('return compiled;','compiled.paths[0].commands[0][1]+=.25;return compiled;'));
+  const compilerChange=run(dir),compilerRevision=JSON.parse(fs.readFileSync(path.join(dir,'docs/site-revision.json'))),compilerRuntime=fs.readFileSync(path.join(dir,'docs/space.js'));
+  assert.notDeepEqual(compilerRuntime,newRuntime,'compiler-only changes affect the actual serialized glyph payload');
+  assert.notEqual(compilerRevision.engine,newRevision.engine,'compiler-only changes cannot reuse an immutable runtime URL');
+  assert.equal(compilerRevision.assets,newRevision.assets,'compiler-only changes preserve source artwork identity');
+  assert.deepEqual(fs.readFileSync(path.join(dir,`docs/runtime/${compilerRevision.engine}/space.js`)),compilerRuntime);
+  snapshot.verify(path.join(dir,'docs'),{files:compilerChange.files});run(dir,{check:true});
+});
+test('missing canonical formula fails generation without replacing the coherent public output',t=>{
+  const dir=fixture(t);run(dir);const before=inventory(dir);
+  fs.unlinkSync(path.join(dir,'site/assets/writing-paradigm.svg'));
+  assert.throws(()=>require('../tools/site/scene-assets.cjs').load(dir),/ENOENT/);
+  assert.throws(()=>run(dir),/ENOENT/);assert.deepEqual(inventory(dir),before);
+});
+test('formula media declaration preserves legacy artifacts while current omissions fail closed',t=>{
+  const dir=fixture(t),current=run(dir),publicDir=path.join(dir,'docs'),revisionFile=path.join(publicDir,'site-revision.json'),revision=JSON.parse(fs.readFileSync(revisionFile));
+  assert.deepEqual(revision.mediaFiles,snapshot.mediaFiles);snapshot.verify(publicDir,{files:current.files});
+  const missingAlias={files:{...current.files}};delete missingAlias.files['assets/writing-paradigm.svg'];
+  assert.throws(()=>snapshot.verify(publicDir,missingAlias),/missing public file assets\/writing-paradigm.svg/);
+  const noDeclaration={...revision};delete noDeclaration.mediaFiles;fs.writeFileSync(revisionFile,JSON.stringify(noDeclaration));
+  assert.throws(()=>snapshot.verify(publicDir,{files:current.files}),/formula artifact requires current media declaration/);
+  fs.writeFileSync(revisionFile,JSON.stringify({...revision,mediaFiles:snapshot.legacyMediaFiles}));
+  assert.throws(()=>snapshot.verify(publicDir,{files:current.files}),/finite current media declaration/);
+  // Construct the pre-feature descriptor shape from the same ordinary producer
+  // with an empty landmark vocabulary. No current formula bytes survive.
+  edit(dir,'site/scenes/world.cjs',source=>source.replace(/const formulas=page==='writing'\?[^\n]+;/,'const formulas=[];'));
+  const prior=run(dir,{all:true}),priorRevision=JSON.parse(fs.readFileSync(revisionFile));delete priorRevision.mediaFiles;
+  const legacyRecord={files:{...prior.files}};delete legacyRecord.files['assets/writing-paradigm.svg'];delete legacyRecord.files[`media/${priorRevision.assets}/writing-paradigm.svg`];
+  fs.unlinkSync(path.join(publicDir,'assets/writing-paradigm.svg'));fs.unlinkSync(path.join(publicDir,`media/${priorRevision.assets}/writing-paradigm.svg`));fs.writeFileSync(revisionFile,JSON.stringify(priorRevision));
+  assert.equal(fs.readFileSync(path.join(publicDir,'space.js'),'utf8').includes('writing-paradigm'),false);
+  assert.equal(fs.readFileSync(path.join(publicDir,'writing.html'),'utf8').includes('writing-paradigm'),false);
+  assert.doesNotThrow(()=>snapshot.verify(publicDir,legacyRecord),'legacy three-media descriptors remain verifiable for previous artifact import');
+});
 test('source migration preserves publication HTML and thematic geometry when shared vocabulary expands',()=>{
   const {config,definitions}=b.configuration(root),c=b.catalog(root),api=b.model(root,definitions);
   const context={module:{exports:{}}};vm.runInNewContext(cp.execFileSync('git',['show','6041a5801729e561c425092323a12cc8e4062f85:docs/space.js'],{cwd:root,encoding:'utf8'}),context);
@@ -109,4 +201,41 @@ test('checksum triage is exact and append-only; an unknown path, type or value f
   assert.equal(helper.append({results:{[file]:[finding]}},baseline,allowed),1);assert.deepEqual(baseline.findings[0],{id:'existing-reviewed-record',reason:'preserve'});
   assert.equal(helper.append({results:{[file]:[finding]}},baseline,allowed),0);
   for(const [report,map]of [[{results:{'unknown.txt':[finding]}},allowed],[{results:{[file]:[{...finding,type:'Private Key'}]}},allowed],[{results:{[file]:[finding]}},new Map([[file,new Set()]])]])assert.throws(()=>helper.append(report,{findings:[]},map));
+});
+test('catalog editions reject duplicates, unread metadata and unsafe relationships before generation',t=>{
+  const dir=fixture(t),file=path.join(dir,'site/content/catalog.json'),original=JSON.parse(fs.readFileSync(file,'utf8'));
+  const cases=[
+    c=>c.records['publication-09'].editions.push(structuredClone(c.records['publication-09'].editions[0])),
+    c=>c.records['publication-09'].editions[0].url='javascript:alert(1)',
+    c=>c.records['publication-09'].editions[0].datePublished='2025-02-30',
+    c=>delete c.records['publication-09'].editions[0].author,
+    c=>c.records['publication-09'].editions[0].bodyEquivalenceVerified=true,
+    c=>c.records['publication-09'].editions[0].inLanguage='unknown',
+    c=>c.structuredOrder[0].record='publication-99',
+    c=>c.discussions['reddit-controller'].url=c.discussions['reddit-agentic-loops'].url,
+    c=>c.records['publication-09'].discussions=['missing-thread'],
+    c=>c.discussions['reddit-controller'].metrics.shares=80,
+    c=>c.discussions['reddit-controller'].metrics.views.approximateValue=47000,
+    c=>c.discussions['reddit-controller'].snapshot.capturedAt='2026-10-07',
+  ];
+  for(const mutate of cases){const c=structuredClone(original);mutate(c);fs.writeFileSync(file,JSON.stringify(c));assert.throws(()=>b.catalog(dir),/Invalid|Duplicate|Missing/);}
+});
+test('alternate metadata, discussion data and structured order invalidate their actual route dependencies',t=>{
+  const dir=fixture(t);run(dir);
+  edit(dir,'site/content/catalog.json',s=>{const c=JSON.parse(s);c.records['publication-09'].editions[0].name='A " title < with a different date';c.records['publication-09'].editions[0].datePublished='2025-12-12';return JSON.stringify(c);});
+  assert.deepEqual(run(dir).built,['writing']);
+  const writing=fs.readFileSync(path.join(dir,'docs/writing.html'),'utf8');assert.match(writing,/title="A &quot; title &lt; with a different date"/);assert.match(writing,/LinkedIn edition · 12 Dec 2025/);
+  edit(dir,'site/content/catalog.json',s=>{const c=JSON.parse(s);c.discussions['reddit-agentic-loops'].summary+=' Further questions.';return JSON.stringify(c);});
+  assert.deepEqual(run(dir).built,['research','writing']);
+  edit(dir,'site/content/catalog.json',s=>{const c=JSON.parse(s);c.structuredOrder.reverse();return JSON.stringify(c);});
+  assert.deepEqual(run(dir).built,['writing']);
+  const once=inventory(dir);run(dir,{all:true});assert.deepEqual(inventory(dir),once);
+});
+test('discussion metrics can be omitted while links, work counts and JSON-LD retain their own identities',t=>{
+  const dir=fixture(t);edit(dir,'site/content/catalog.json',s=>{const c=JSON.parse(s);c.discussions['reddit-delivery-bottlenecks'].metrics=null;return JSON.stringify(c);});
+  const {config}=b.configuration(dir),c=b.catalog(dir),writing=b.routeInput(dir,config.routes.find(r=>r.id==='writing'),c),research=b.routeInput(dir,config.routes.find(r=>r.id==='research'),c);
+  assert.equal(writing.schema.mainEntity.numberOfItems,Object.keys(c.records).length);assert.equal(writing.schema.mainEntity.itemListElement.length,Object.keys(c.records).length);
+  assert.equal(JSON.stringify(writing.schema).includes('reddit.com'),false);assert.equal(writing.main.includes('post views'),false);
+  assert.ok(research.main.includes(c.discussions['reddit-delivery-bottlenecks'].url));assert.equal(research.main.includes('≈13K'),false);assert.ok(research.main.includes('≈48K'));
+  const counts=b.catalogCounts(c);assert.equal(counts.linked.total,counts.primary.total+Object.values(c.records).reduce((n,r)=>n+r.editions.length,0));
 });

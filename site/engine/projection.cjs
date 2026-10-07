@@ -72,7 +72,46 @@ module.exports=function(math,definitions) {
       const fade=threshold?smooth((size-threshold)/2):1;
       appendObject(world,o,vertices,projected,project,visible,fade,shapes,transform.inverse(current.position),prune?(width<=640? .5: .35):0,prune?size:Infinity);
     }
+    appendFormulas(world,current,width,height,time,shapes);
     return sort?shapes.sort((a,b)=>b.depth-a.depth):shapes;
+  }
+  function appendFormulas(world,current,width,height,time,shapes) {
+    for(const anchor of world.formulas||[]){const shape=projectedFormula(anchor,current,width,height,time);if(shape)shapes.push(shape);}
+  }
+  function formulaWorldPoint(anchor,time,u,v,z=0) {
+    const [a,b,c]=anchor.rotation,ca=Math.cos(a),sa=Math.sin(a),cb=Math.cos(b),sb=Math.sin(b),cc=Math.cos(c),sc=Math.sin(c);
+    const x=(u-.5)*anchor.width,y=(.5-v)*anchor.width/anchor.aspect;
+    const Y=y*ca-z*sa,Z=y*sa+z*ca,X=x*cb+Z*sb;
+    return loopTransform(anchor,time)(add(anchor.center,[X*cc-Y*sc,X*sc+Y*cc,-x*sb+Z*cb]));
+  }
+  function formulaCamera(current,width,height) {
+    const forward=normalize(sub(current.target,current.position)),right=normalize(cross(forward,[0,1,0])),up=cross(right,forward);
+    const focal=(width<=640?Math.min(height,width*1.15):height)/(2*Math.tan(Math.PI/8)),origin=[width*(width<=640 ? 0.42 : 0.66),height*.48];
+    const camera=point=>{const delta=sub(point,current.position);return [dot(delta,right),dot(delta,up),dot(delta,forward)];};
+    const project=point=>[origin[0]+point[0]*focal/point[2],origin[1]-point[1]*focal/point[2]];
+    return {camera,project,focal,origin};
+  }
+  function projectFormulaPoint(anchor,current,width,height,time,u,v,z=0) {
+    const view=formulaCamera(current,width,height),point=view.camera(formulaWorldPoint(anchor,time,u,v,z));
+    return point[2]>.5?view.project(point):null;
+  }
+  function projectedFormula(anchor,current,width,height,time=0) {
+    const view=formulaCamera(current,width,height),uv=[[0,0],[1,0],[1,1],[0,1]],worldCorners=uv.map(([u,v])=>formulaWorldPoint(anchor,time,u,v)),cameraCorners=worldCorners.map(view.camera);
+    const depth=view.camera(loopTransform(anchor,time).center)[2],nearest=Math.min(...cameraCorners.map(p=>p[2]));
+    // Fade the entire plane before the camera crosses it. A near-plane clip
+    // would discard part of the expression and stretch the raster unboundedly.
+    if(nearest<=.5||depth>=105)return null;
+    const points=cameraCorners.map(view.project),xs=points.map(p=>p[0]),ys=points.map(p=>p[1]);
+    const left=Math.min(...xs),right=Math.max(...xs),top=Math.min(...ys),bottom=Math.max(...ys),span=right-left;
+    if(right<0||left>width||bottom<0||top>height||span<24)return null;
+    const coverage=Math.min(right,width-left,bottom,height-top),alpha=depthVisibility(depth)*smooth((nearest-.5)/3)*smooth((105-depth)/14)*smooth((span-24)/80)*smooth(coverage/32);
+    if(alpha<=0)return null;
+    // Three slices make the outlined glyphs visibly extruded. Each slice is
+    // a genuine tilted world plane, not a screen-space translated banner.
+    const cameraLayers=[-anchor.extrusion,-anchor.extrusion/2,0].map(z=>uv.map(([u,v])=>view.camera(formulaWorldPoint(anchor,time,u,v,z))));
+    const transform=loopTransform(anchor,time);
+    return {kind:'formula',object:anchor.id,asset:anchor.id,points,cameraCorners,cameraLayers,focal:view.focal,origin:view.origin,depth,alpha,
+      projection:{worldCenter:transform.center,rootCenter:anchor.rootCenter,worldCorners,corners:points,depth,pulse:transform.scale,clock:time,extrusion:anchor.extrusion,strategy:'perspective-extruded',layers:3,strips:4}};
   }
   function projectedFace(f,vertices,screen,project) {
     // Clipping changes vertex count. Sorting uses the continuous original face
@@ -139,5 +178,5 @@ module.exports=function(math,definitions) {
   const roomOffset=page=>-Math.max(0,routeOrder.indexOf(page))*roomSpacing;
   const translatePose=(pose,z)=>({position:add(pose.position,[0,0,z]),target:add(pose.target,[0,0,z])});
   const routePose=(page,pose)=>translatePose(pose,roomOffset(page));
-  return {loopTransform,cameraVertices,projectedWorld,projectedFace,journeyPose,blendColor,routePose,roomOffset,translatePose};
+  return {loopTransform,cameraVertices,projectedWorld,projectedFace,projectedFormula,formulaWorldPoint,projectFormulaPoint,journeyPose,blendColor,routePose,roomOffset,translatePose};
 };

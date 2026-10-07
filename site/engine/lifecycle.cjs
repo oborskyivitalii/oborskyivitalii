@@ -119,6 +119,8 @@ module.exports=function(api) {
     if(!variants.has(detail)){
       const start=window.SiteEngineProbe?clock():0;
       const room={world:worldFor(name,detail),name,compact:detail,faceColors:[]};variants.set(detail,room);
+      // Prepare once during the existing room work, never inside timed paint.
+      if(name==='writing')api.prepareFormula?.();
       if(window.SiteEngineStages)diagnostic('stage',{part:'model-build',route:name,start,duration:clock()-start});
       paintColors(room);
       if(window.SiteEngineProbe)diagnostic('model',{route:name,compact:detail,start,duration:clock()-start,objects:room.world.objects.length,vertices:room.world.objects.reduce((n,o)=>n+o.points.length,0),faces:room.world.faces.length,lines:room.world.lines.length});
@@ -292,7 +294,9 @@ module.exports=function(api) {
   }
   function preferenceChanged() {
     const was=enabled;enabled=choice!=="off" && !reduced.matches;
-    if(enabled&&!was)lastFrame=null;
+    if(enabled&&!was){
+      lastFrame=null;
+    }
     if(!enabled){if(was)cancel();}else if(!was)moveTo(page==="writing" && !bounds?pathPose():scrollPose());
     updateControl();schedule();
     if(window.dispatchEvent)window.dispatchEvent(new CustomEvent("site:motion-preference"));
@@ -369,7 +373,8 @@ module.exports=function(api) {
       observeLayout();nextDraw=null;schedule();
     },
     refresh({sync=false,reason='mount'}={}){observeLayout();invalidateLayout(reason);if(sync)flushLayout();},
-    diagnostics(){return {rooms:[...rooms].map(([route,variants])=>({route,models:[...variants].map(([compact,room])=>({compact,serializedChars:JSON.stringify(room.world).length}))})),paletteEntries:colorFills.size,layoutPasses};},
+    formulaDiagnostics:()=>api.formulaDiagnostics?.()||null,
+    diagnostics(){return {rooms:[...rooms].map(([route,variants])=>({route,models:[...variants].map(([compact,room])=>({compact,serializedChars:JSON.stringify(room.world).length,formulaAnchors:room.world.formulas?.length||0}))})),paletteEntries:colorFills.size,layoutPasses,formula:api.formulaDiagnostics?.()||null};},
     detachTravel(){travelUpdate=null;}
   };
   // Stylesheet load/error is authoritative, including early WebKit deferral.

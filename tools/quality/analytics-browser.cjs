@@ -3,6 +3,7 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),os=require('node:os'),{pathToFileURL}=require('node:url');
 const {root}=require('./common.cjs'),{routes}=require('../site/snapshot.cjs');
 const model='enabled source fixture; vendor stubbed';
+const primaryCount=Object.keys(require('../../site/content/catalog.json').records).length;
 const settings={schema:1,provider:'cloudflare',enabled:true,siteURL:'https://analytics.example.com/author/',token:'a'.repeat(32),searchConsoleVerification:null};
 const modes=['enabled','blocked','delayed','staging','offline'];
 const checks=['fiveRoutes','persistentShell','history','reload','archive','oneVendorPerDocument','originIsolation','offlineIsolation'];
@@ -54,7 +55,7 @@ async function scenario(browser,dir,producer,s) {
       assert.equal(await page.evaluate(()=>document.querySelector('header')===window.__analyticsShell.header&&document.querySelector('canvas')===window.__analyticsShell.canvas),true);
       if(id==='writing') {
         await page.locator('#archive-topic').selectOption('systems');assert.ok(await page.locator('li.publication:visible').count()>0);
-        await page.locator('.filter-reset').evaluate(el=>el.click());assert.equal(await page.locator('li.publication:visible').count(),27);
+        await page.locator('.filter-reset').evaluate(el=>el.click());assert.equal(await page.locator('li.publication:visible').count(),primaryCount);
       }
       await vendorState(page,s.mode);
     }

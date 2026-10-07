@@ -1,6 +1,6 @@
 'use strict';
 // Reconcile exact content against the frozen source, allowing only the declared
-// Home hierarchy/wordmark, contact, selected responses and exact title wrappers.
+// Home hierarchy/wordmark, contact, response/title wrappers and Issue41 content delta.
 // Decorative SVG bytes are not copy.
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),cp=require('node:child_process'),crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..'),baseline='0333c4d2b2318850fd56312d83fb63ca468f01a4';
@@ -10,8 +10,22 @@ const contactCurrent='<div class="booking-card"><h3>Book a conversation</h3><p>C
 const titleCopy={research:'Two systems.<br>One engineering perspective.',writing:'Follow the questions.<br>Find your next read.',talks:'Questions are better<br>in conversation.'};
 // Immutable reviewed before/after blocks, not the mutable authored page source.
 const responses=Object.fromEntries(['index','research'].map(page=>[page,Object.fromEntries(['before','after'].map(version=>[version,fs.readFileSync(path.join(root,'review/public-responses-20261006',page+'.'+version+'.html'),'utf8')]))]));
+const amendment=JSON.parse(fs.readFileSync(path.join(root,'review/issue-41/content-amendment.json'),'utf8'));
+function restoreContentAmendment(html,page){
+  for(const change of amendment.changes.filter(c=>c.page===page)){
+    for(const version of ['before','after'])assert.equal(crypto.createHash('sha256').update(change[version]).digest('hex'),change[version+'SHA256'],'amendment snapshot integrity');
+    html=html.replace(change.after,change.before);
+  }
+  return html;
+}
 const strip=html=>html.replace(/<svg class="space-fallback"[\s\S]*?<\/svg>/,'[same-world decorative fallback]');
 function restoreApprovedContent(html,page){
+  if(page==='writing') {
+    // Reverse only the approved accessible description; the scene landmark is
+    // decorative geometry within the existing fallback, with no content band.
+    html=html.replace('<p class="sr-only" data-writing-formula-description>y = f(x) → y ∼ P(y|x): a shift from deterministic mapping to conditional probabilistic modeling.</p>','');
+  }
+  html=restoreContentAmendment(html,page);
   if(titleCopy[page])html=html.replace('<h1><span class="reading-title">'+titleCopy[page]+'</span></h1>','<h1>'+titleCopy[page]+'</h1>');
   if(responses[page])html=html.replace(responses[page].after,responses[page].before);
   if(page==='research')html=html.replace('<a href="#acknowledgements">Public discussion</a>','<a href="#acknowledgements">Conversations</a>');
@@ -53,9 +67,9 @@ function verify(){
     const file='docs/'+page+'.html',source=fs.readFileSync(path.join(root,file),'utf8');
     const old=cp.execFileSync('git',['show',baseline+':'+file],{cwd:root,encoding:'utf8',maxBuffer:1024*1024});
     assert.equal(restore(source,page),strip(old),'undeclared semantic/source change: '+file);
-    rows.push({path:file,sha256:crypto.createHash('sha256').update(source).digest('hex'),exactContentAndMetadataPreserved:true,declaredChanges:page==='index'?['three selected public responses with complete Research deep link','approved direct booking and public email','problem-led H1','author identity moved to hero lead','Help before Research','matching section/local-nav order','wordmark dot']:[...(page==='research'?['eight complete public responses in surname order, intro and navigation label']:[]),...(titleCopy[page]?['exact decorative title-line wrapper']:[]),'wordmark dot']});
+    rows.push({path:file,sha256:crypto.createHash('sha256').update(source).digest('hex'),exactContentAndMetadataPreserved:true,declaredChanges:[...amendment.changes.filter(c=>c.page===page).map(c=>c.intent),...(page==='index'?['three selected public responses with complete Research deep link','approved direct booking and public email','problem-led H1','author identity moved to hero lead','Help before Research','matching section/local-nav order','wordmark dot']:[...(page==='research'?['eight complete public responses, intro and navigation label']:[]),...(titleCopy[page]?['exact decorative title-line wrapper']:[]),...(page==='writing'?['exact accessible canonical formula description']:[]),'wordmark dot'])]});
   }
-  return {baseline,pass:true,rows,policy:'Exact source after reversing declared Home hierarchy/wordmark changes, exact approved contact replacement/title wrappers, exact reviewed response blocks/Research nav and exact authored-base build identity/separator; decorative fallback SVG is excluded. Includes semantic metadata, JSON-LD, publication records, links, languages, dates, portrait and source attribution.'};
+  return {baseline,pass:true,rows,policy:'Exact source after reversing the hashed Issue41 content amendment and declared Home hierarchy/wordmark changes, exact approved contact replacement/title wrappers, exact reviewed response blocks/Research nav, exact accessible Writing formula description and exact authored-base build identity/separator; decorative fallback SVG is excluded. Includes semantic metadata, JSON-LD, publication records, links, languages, dates, portrait and source attribution.'};
 }
 if(require.main===module)process.stdout.write(JSON.stringify(verify(),null,2)+'\n');
-module.exports={verify,restore,restoreApprovedContent};
+module.exports={verify,restore,restoreApprovedContent,restoreContentAmendment};

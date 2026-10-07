@@ -44,6 +44,54 @@ test('line grouping stops at opacity changes, arrows and extension geometry',()=
   paintShapes(ctx,[line(.6),line(.61),{kind:'custom'},line(.61,true),line(.61)],{cyan:'#123456'},(ctx,shape)=>{if(shape.kind!=='custom')return false;ctx.commands.push('custom');return true;});
   assert.deepEqual(ctx.commands.filter(x=>x!=='begin'),['stroke','stroke','custom','stroke','stroke','stroke']);
 });
+test('one fixed formula cache preserves scene order and is reused across room visits and viewport sizes',()=>{
+  const asset=require('../tools/site/scene-assets.cjs').load(require('node:path').resolve(__dirname,'..'));
+  let constructions=0,gradients=0;const target=recorder();target.bezierCurveTo=()=>{};target.createLinearGradient=()=>{gradients++;return {addColorStop(){}};};
+  const surface={getContext:()=>target},renderer=require('../site/engine/renderer.cjs')(asset,()=>{constructions++;return surface;}),ctx=recorder();
+  ctx.save=()=>{};ctx.restore=()=>{};ctx.clip=()=>{};ctx.transform=(...matrix)=>assert.ok(matrix.every(Number.isFinite));ctx.drawImage=(bitmap,...bounds)=>{assert.equal(bitmap,surface);assert.ok(bounds.every(Number.isFinite));ctx.commands.push('formula');};
+  const line={kind:'line',points:[[0,0],[10,10]],color:'cyan',alpha:.5,lineWidth:1};
+  const builder=require('../tools/site/build.cjs'),root=require('node:path').resolve(__dirname,'..'),api=builder.model(root,builder.configuration(root).definitions),anchor=api.worldFor('writing').formulas[0];
+  const formula=api.projectedFormula(anchor,api.poses.library,390,844,7317);
+  assert.equal(renderer.formulaReady(),false);renderer.prepareFormula();renderer.prepareFormula();
+  assert.equal(renderer.formulaReady(),true);assert.equal(renderer.formulaDiagnostics().paintCount,0,'preparation submits no Canvas paint');
+  renderer.paintShapes(ctx,[line,formula,line],{cyan:'#123456'});
+  assert.equal(renderer.formulaDrawn(),true,'bitmap ownership persists until another successful paint');
+  assert.deepEqual(ctx.commands.filter(c=>c!=='begin'),['stroke',...Array(24).fill('formula'),'stroke'],'one extruded perspective landmark paints at its sorted depth without moving other commands');
+  assert.equal(renderer.formulaDiagnostics().lastDrawSubmissions,24);
+  assert.deepEqual(renderer.formulaDiagnostics().projection,formula.projection);
+  assert.equal(target.commands.filter(c=>c==='stroke').length,15,'each approved glyph is rasterized exactly once');
+  for(let visit=0;visit<40;visit++){
+    renderer.paintShapes(ctx,[api.projectedFormula(anchor,api.poses.library,visit%2?1440:390,900,visit*293)],{});
+    assert.equal(renderer.formulaDiagnostics().lastPaintCount,1);
+    renderer.paintShapes(ctx,[line],{cyan:'#123456'});assert.equal(renderer.formulaDiagnostics().lastPaintCount,0);assert.equal(renderer.formulaDrawn(),false,'an empty room paint carries no formula landmark');
+  }
+  const diagnostic=renderer.formulaDiagnostics();assert.equal(diagnostic.status,'ready');assert.equal(diagnostic.paintCount,41);assert.equal(diagnostic.visibleCount,0);
+  assert.equal(constructions,1);assert.equal(gradients,1);assert.equal(diagnostic.cacheBuilds,1);assert.equal(diagnostic.drawSubmissions,41*24);assert.equal(diagnostic.bytes,1380*240*4);assert.equal(diagnostic.failures,0);
+  assert.equal(target.commands.filter(c=>c==='stroke').length,15,'resize/theme/route reuse adds no path construction');
+});
+test('formula raster failure is bounded once and preserves other scene commands',()=>{
+  const asset=require('../tools/site/scene-assets.cjs').load(require('node:path').resolve(__dirname,'..'));
+  let attempts=0;const renderer=require('../site/engine/renderer.cjs')(asset,()=>{attempts++;return {getContext(){throw Error('cache unavailable');}};}),ctx=recorder();
+  const formula={kind:'formula',points:[[0,0],[10,0],[10,10],[0,10]],alpha:1},line={kind:'line',points:[[0,0],[10,10]],color:'cyan',alpha:.5,lineWidth:1};
+  renderer.prepareFormula();renderer.prepareFormula();assert.equal(renderer.formulaReady(),false);
+  for(let frame=0;frame<8;frame++)assert.doesNotThrow(()=>renderer.paintShapes(ctx,[formula,line],{cyan:'#123456'}));
+  assert.equal(attempts,1);assert.equal(ctx.commands.filter(c=>c==='stroke').length,8);assert.equal(ctx.globalAlpha,1);
+  assert.equal(renderer.formulaDiagnostics().status,'failed');assert.equal(renderer.formulaDiagnostics().failures,1);assert.equal(renderer.formulaDiagnostics().bytes,0);
+  assert.equal(renderer.formulaDiagnostics().paintCount,0);
+});
+test('the Writing landmark inhabits the book fractal and follows its periodic world transform and forward camera',()=>{
+  const builder=require('../tools/site/build.cjs'),root=require('node:path').resolve(__dirname,'..'),api=builder.model(root,builder.configuration(root).definitions),world=api.worldFor('writing'),anchor=world.formulas[0];
+  assert.equal(world.formulas.length,1);assert.deepEqual(anchor.center,[0,0,-5]);assert.deepEqual(anchor.rootCenter,world.objects.find(o=>o.root===0).rootCenter);
+  const first=api.projectedFormula(anchor,api.poses.library,1440,900,0),mobile=api.projectedFormula(anchor,api.poses.library,390,844,0),living=api.projectedFormula(anchor,api.poses.library,1440,900,3000),approach=api.projectedFormula(anchor,api.journeyPose(api.topicPaths.all,.08),1440,900,0);
+  assert.deepEqual(first.projection.worldCorners,mobile.projection.worldCorners,'viewport does not relocate the world landmark');
+  assert.notDeepEqual(living.projection.worldCorners,first.projection.worldCorners);assert.ok(living.projection.pulse>first.projection.pulse);
+  assert.deepEqual(api.projectedFormula(anchor,api.poses.library,1440,900,api.LOOP_MS).projection.worldCorners,first.projection.worldCorners,'existing clock closes the world pose without accumulating drift');
+  assert.ok(first.points[0][1]!==first.points[1][1]);assert.ok(Math.max(...first.projection.worldCorners.map(p=>p[2]))-Math.min(...first.projection.worldCorners.map(p=>p[2]))>1,'formula has true world orientation and depth');
+  assert.ok(approach.depth<first.depth);assert.ok(Math.hypot(...api.sub(approach.points[1],approach.points[0]))>Math.hypot(...api.sub(first.points[1],first.points[0])),'forward travel approaches and enlarges the fixed formula');
+  assert.equal(first.cameraLayers.length,3);assert.notDeepEqual(first.cameraLayers[0],first.cameraLayers[2],'extrusion uses separated world planes');
+  const sorted=api.projectedWorld(world,api.poses.library,1440,900,0);assert.equal(sorted.filter(s=>s.kind==='formula').length,1);
+  for(let i=1;i<sorted.length;i++)assert.ok(sorted[i].depth<=sorted[i-1].depth,'formula and surrounding geometry share the same sort');
+});
 function assertPrunedShape(shape,w,m,compact,pose){
   if(shape.kind==='line'){
     const line=w.lines[shape.material],object=w.objects.find(o=>o.name===shape.object),transform=m.loopTransform(object,7317),forward=m.normalize(m.sub(pose.target,pose.position));

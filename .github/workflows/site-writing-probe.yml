@@ -1,6 +1,9 @@
 name: Writing cold comparison
-# Writing diagnostics are manual-only; normal PR updates keep fast checks.
+# Historical Writing diagnostics remain manual. Issue #36 evidence requires
+# an explicit label event; ordinary PR updates keep fast checks.
 on:
+  pull_request:
+    types: [labeled]
   workflow_dispatch:
     inputs:
       candidate_sha:
@@ -20,7 +23,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: writing-comparison-${{ inputs.candidate_sha }}
+  group: writing-comparison-${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
   cancel-in-progress: true
 defaults:
   run:
@@ -111,6 +114,62 @@ jobs:
         with:
           name: writing-diagnosis-${{ github.run_id }}-${{ github.run_attempt }}
           path: ${{ runner.temp }}/writing-results/
+          if-no-files-found: error
+          retention-days: 90
+
+  paradigm:
+    if: github.event_name == 'pull_request' && github.event.action == 'labeled' && github.event.label.name == 'site-writing-paradigm-evidence' && github.event.pull_request.number == 38 && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      SITE_CANDIDATE_SHA: ${{ github.event.pull_request.head.sha }}
+      WRITING_BASELINE_SHA: 11e5432d908ca0b81431ca4eac6721b076c33cb6
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: candidate
+          persist-credentials: false
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: 11e5432d908ca0b81431ca4eac6721b076c33cb6
+          path: reference
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - name: Validate opt-in contract and package exact Color comparison
+        id: inputs
+        run: |
+          test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
+          test "$(git -C ../reference rev-parse HEAD)" = "$WRITING_BASELINE_SHA"
+          node --test tests/writing-paradigm-ci.test.cjs
+          SITE_CANDIDATE_SHA="$WRITING_BASELINE_SHA" node ../reference/tools/quality/artifact.cjs build "$RUNNER_TEMP/writing-paradigm-input/baseline"
+          node ../reference/tools/staging/color.cjs "$RUNNER_TEMP/writing-paradigm-input/baseline"
+          node tools/quality/artifact.cjs build "$RUNNER_TEMP/writing-paradigm-input/candidate"
+          node tools/staging/color.cjs "$RUNNER_TEMP/writing-paradigm-input/candidate"
+      - name: Install pinned Linux browser engines
+        id: browsers
+        run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium firefox
+      - name: Check Writing lifecycle and retain scene captures
+        env:
+          SITE_REPORT_DIR: ${{ runner.temp }}/writing-paradigm-results/browser
+          SITE_AUDIT_LIFECYCLE: 'true'
+          DEBUG: pw:browser
+        run: |
+          set -o pipefail
+          mkdir -p "$RUNNER_TEMP/writing-paradigm-results/browser"
+          node tools/quality/writing-paradigm-browser.cjs "$RUNNER_TEMP/writing-paradigm-input/candidate" "$RUNNER_TEMP/writing-paradigm-results/browser" 2>&1 | tee "$RUNNER_TEMP/writing-paradigm-results/browser/browser-run.log"
+      - name: Measure three ordered pairs per profile without parallel browsers
+        if: ${{ !cancelled() && steps.inputs.outcome == 'success' && steps.browsers.outcome == 'success' }}
+        run: node tools/quality/writing-paradigm.cjs "$RUNNER_TEMP/writing-paradigm-input" "$RUNNER_TEMP/writing-paradigm-results/performance"
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: writing-paradigm-evidence-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/writing-paradigm-results/
           if-no-files-found: error
           retention-days: 90
 

@@ -777,7 +777,11 @@ const world=(function(math) {
     }
     const light=normalize([-.55,.85,1]);
     for(const f of faces)prepareFace(f,light);
-    return {faces,lines,objects};
+    // One extruded landmark sits in the open centre of the first book/page
+    // fractal. Its corners are world geometry, sharing that root's living
+    // transform and the camera's forward journey on every viewport.
+    const formulas=page==='writing'?[{id:'writing-paradigm',center:[0,0,-5],rootCenter:roots[0],root:0,phase:0,width:12,aspect:1380/240,rotation:[.08,-.22,.08],extrusion:.32}]:[];
+    return {faces,lines,objects,formulas};
   }
   function prepareFace(f,light) {
     // Preserve the original cross/normalize/dot arithmetic without allocating
@@ -870,7 +874,46 @@ const projection=(function(math,definitions) {
       const fade=threshold?smooth((size-threshold)/2):1;
       appendObject(world,o,vertices,projected,project,visible,fade,shapes,transform.inverse(current.position),prune?(width<=640? .5: .35):0,prune?size:Infinity);
     }
+    appendFormulas(world,current,width,height,time,shapes);
     return sort?shapes.sort((a,b)=>b.depth-a.depth):shapes;
+  }
+  function appendFormulas(world,current,width,height,time,shapes) {
+    for(const anchor of world.formulas||[]){const shape=projectedFormula(anchor,current,width,height,time);if(shape)shapes.push(shape);}
+  }
+  function formulaWorldPoint(anchor,time,u,v,z=0) {
+    const [a,b,c]=anchor.rotation,ca=Math.cos(a),sa=Math.sin(a),cb=Math.cos(b),sb=Math.sin(b),cc=Math.cos(c),sc=Math.sin(c);
+    const x=(u-.5)*anchor.width,y=(.5-v)*anchor.width/anchor.aspect;
+    const Y=y*ca-z*sa,Z=y*sa+z*ca,X=x*cb+Z*sb;
+    return loopTransform(anchor,time)(add(anchor.center,[X*cc-Y*sc,X*sc+Y*cc,-x*sb+Z*cb]));
+  }
+  function formulaCamera(current,width,height) {
+    const forward=normalize(sub(current.target,current.position)),right=normalize(cross(forward,[0,1,0])),up=cross(right,forward);
+    const focal=(width<=640?Math.min(height,width*1.15):height)/(2*Math.tan(Math.PI/8)),origin=[width*(width<=640 ? 0.42 : 0.66),height*.48];
+    const camera=point=>{const delta=sub(point,current.position);return [dot(delta,right),dot(delta,up),dot(delta,forward)];};
+    const project=point=>[origin[0]+point[0]*focal/point[2],origin[1]-point[1]*focal/point[2]];
+    return {camera,project,focal,origin};
+  }
+  function projectFormulaPoint(anchor,current,width,height,time,u,v,z=0) {
+    const view=formulaCamera(current,width,height),point=view.camera(formulaWorldPoint(anchor,time,u,v,z));
+    return point[2]>.5?view.project(point):null;
+  }
+  function projectedFormula(anchor,current,width,height,time=0) {
+    const view=formulaCamera(current,width,height),uv=[[0,0],[1,0],[1,1],[0,1]],worldCorners=uv.map(([u,v])=>formulaWorldPoint(anchor,time,u,v)),cameraCorners=worldCorners.map(view.camera);
+    const depth=view.camera(loopTransform(anchor,time).center)[2],nearest=Math.min(...cameraCorners.map(p=>p[2]));
+    // Fade the entire plane before the camera crosses it. A near-plane clip
+    // would discard part of the expression and stretch the raster unboundedly.
+    if(nearest<=.5||depth>=105)return null;
+    const points=cameraCorners.map(view.project),xs=points.map(p=>p[0]),ys=points.map(p=>p[1]);
+    const left=Math.min(...xs),right=Math.max(...xs),top=Math.min(...ys),bottom=Math.max(...ys),span=right-left;
+    if(right<0||left>width||bottom<0||top>height||span<24)return null;
+    const coverage=Math.min(right,width-left,bottom,height-top),alpha=depthVisibility(depth)*smooth((nearest-.5)/3)*smooth((105-depth)/14)*smooth((span-24)/80)*smooth(coverage/32);
+    if(alpha<=0)return null;
+    // Three slices make the outlined glyphs visibly extruded. Each slice is
+    // a genuine tilted world plane, not a screen-space translated banner.
+    const cameraLayers=[-anchor.extrusion,-anchor.extrusion/2,0].map(z=>uv.map(([u,v])=>view.camera(formulaWorldPoint(anchor,time,u,v,z))));
+    const transform=loopTransform(anchor,time);
+    return {kind:'formula',object:anchor.id,asset:anchor.id,points,cameraCorners,cameraLayers,focal:view.focal,origin:view.origin,depth,alpha,
+      projection:{worldCenter:transform.center,rootCenter:anchor.rootCenter,worldCorners,corners:points,depth,pulse:transform.scale,clock:time,extrusion:anchor.extrusion,strategy:'perspective-extruded',layers:3,strips:4}};
   }
   function projectedFace(f,vertices,screen,project) {
     // Clipping changes vertex count. Sorting uses the continuous original face
@@ -937,9 +980,78 @@ const projection=(function(math,definitions) {
   const roomOffset=page=>-Math.max(0,routeOrder.indexOf(page))*roomSpacing;
   const translatePose=(pose,z)=>({position:add(pose.position,[0,0,z]),target:add(pose.target,[0,0,z])});
   const routePose=(page,pose)=>translatePose(pose,roomOffset(page));
-  return {loopTransform,cameraVertices,projectedWorld,projectedFace,journeyPose,blendColor,routePose,roomOffset,translatePose};
+  return {loopTransform,cameraVertices,projectedWorld,projectedFace,projectedFormula,formulaWorldPoint,projectFormulaPoint,journeyPose,blendColor,routePose,roomOffset,translatePose};
 })(math,definitions);
-const renderer=(function() {
+const renderer=(function(artwork=null,createSurface=null) {
+  // Exactly one immutable bitmap serves every Writing room/detail model. Its
+  // intrinsic size never follows viewport/DPR, and no resource owns a clock.
+  let formulaSurface=null,formulaAttempted=false,formulaBuilds=0,formulaPaints=0,formulaFailures=0,formulaVisible=0,formulaLastPaints=0,formulaSubmissions=0,formulaLastSubmissions=0,formulaProjection=null;
+  function formulaBitmap() {
+    if(formulaAttempted)return formulaSurface;
+    formulaAttempted=true;formulaBuilds++;
+    try{
+      if(!artwork||artwork.width!==1380||artwork.height!==240)throw Error('bounded formula artwork unavailable');
+      const surface=createSurface?createSurface():document.createElement('canvas');
+      surface.width=artwork.width;surface.height=artwork.height;
+      const target=surface.getContext('2d');if(!target)throw Error('formula cache unavailable');
+      const gradient=target.createLinearGradient(...artwork.gradient.line);
+      for(const [offset,color]of artwork.gradient.stops)gradient.addColorStop(offset,color);
+      target.strokeStyle=gradient;target.lineCap='round';target.lineJoin='round';
+      for(const glyph of artwork.paths){
+        target.beginPath();target.lineWidth=glyph.stroke;
+        for(const [kind,...values]of glyph.commands){
+          if(kind==='M')target.moveTo(...values);
+          else if(kind==='L')target.lineTo(...values);
+          else if(kind==='C')target.bezierCurveTo(...values);
+          else throw Error('unsupported compiled formula command');
+        }
+        target.stroke();
+      }
+      formulaSurface=surface;
+    }catch{formulaFailures++;formulaSurface=null;}
+    return formulaSurface;
+  }
+  function paintFormula(ctx,shape) {
+    formulaVisible++;formulaProjection=shape.projection||null;
+    const surface=formulaBitmap();if(!surface)return;
+    let saved=false;
+    try{
+      ctx.save();saved=true;ctx.globalAlpha=shape.alpha;ctx.globalCompositeOperation='source-over';
+      // A fixed four-strip mesh follows the projected world plane. Three
+      // z-slices give the actual tilted glyphs thickness, using the same single
+      // cache. This is one landmark with at most 24 native submissions, not
+      // viewport-sized caches, per-glyph geometry or another animation clock.
+      for(let layer=0;layer<shape.cameraLayers.length;layer++){
+        ctx.globalAlpha=shape.alpha*[.30,.45,1][layer];
+        const corners=shape.cameraLayers[layer];
+        const at=(u,v)=>{
+          const top=corners[0].map((value,i)=>value+(corners[1][i]-value)*u),bottom=corners[3].map((value,i)=>value+(corners[2][i]-value)*u),p=top.map((value,i)=>value+(bottom[i]-value)*v);
+          return [shape.origin[0]+p[0]*shape.focal/p[2],shape.origin[1]-p[1]*shape.focal/p[2]];
+        };
+        for(let strip=0;strip<4;strip++){
+          const u=strip/4,U=(strip+1)/4,source=[[u*surface.width,0],[U*surface.width,0],[U*surface.width,surface.height],[u*surface.width,surface.height]],points=[at(u,0),at(U,0),at(U,1),at(u,1)];
+          for(const triangle of [[0,1,2],[0,2,3]])paintFormulaTriangle(ctx,surface,triangle.map(i=>source[i]),triangle.map(i=>points[i]));
+        }
+      }
+      formulaPaints++;formulaLastPaints++;
+    }catch{formulaFailures++;formulaSurface=null;}
+    finally{if(saved)ctx.restore();}
+  }
+  function paintFormulaTriangle(ctx,surface,source,points) {
+    const [p,q,r]=source,[P,Q,R]=points,dx=q[0]-p[0],dy=q[1]-p[1],ex=r[0]-p[0],ey=r[1]-p[1],den=dx*ey-dy*ex;
+    const a=((Q[0]-P[0])*ey-(R[0]-P[0])*dy)/den,c=((R[0]-P[0])*dx-(Q[0]-P[0])*ex)/den;
+    const b=((Q[1]-P[1])*ey-(R[1]-P[1])*dy)/den,d=((R[1]-P[1])*dx-(Q[1]-P[1])*ex)/den;
+    ctx.save();
+    try{
+      path(ctx,points);ctx.closePath();ctx.clip();
+      ctx.transform(a,b,c,d,P[0]-a*p[0]-c*p[1],P[1]-b*p[0]-d*p[1]);
+      ctx.drawImage(surface,0,0);formulaSubmissions++;formulaLastSubmissions++;
+    }finally{ctx.restore();}
+  }
+  function formulaDiagnostics() {
+    const width=formulaSurface?.width||0,height=formulaSurface?.height||0;
+    return {status:formulaSurface?'ready':formulaAttempted?'failed':'unused',cacheBuilds:formulaBuilds,width,height,bytes:width*height*4,paintCount:formulaPaints,failures:formulaFailures,visibleCount:formulaVisible,lastPaintCount:formulaLastPaints,drawSubmissions:formulaSubmissions,lastDrawSubmissions:formulaLastSubmissions,projection:formulaProjection,attempts:formulaBuilds,builds:formulaSurface?formulaBuilds:0,failed:formulaFailures>0,draws:formulaPaints,visible:formulaVisible>0};
+  }
   function facePalette(faces,colors,cache) {
     const rgb=Object.fromEntries(Object.entries(colors).map(([key,hex])=>[key,hex.slice(1).match(/.{2}/g).map(value=>parseInt(value,16))]));
     const paper=rgb.paper;
@@ -975,9 +1087,11 @@ const renderer=(function() {
     ctx.stroke();return end-1;
   }
   function paintShapes(ctx,shapes,colors,paintCustom=null) {
+    formulaVisible=0;formulaLastPaints=0;formulaLastSubmissions=0;formulaProjection=null;
     for(let index=0;index<shapes.length;index++) {
       const shape=shapes[index];
       if(paintCustom?.(ctx,shape))continue;
+      if(shape.kind==='formula'){paintFormula(ctx,shape);continue;}
       // Depth order is unchanged. Only adjacent compatible lines are batched.
       if(shape.kind==="line"&&!shape.arrow){index=drawLineRun(ctx,shapes,index,colors);continue;}
       const points=shape.points,from=points[0],to=points[1];
@@ -997,8 +1111,563 @@ const renderer=(function() {
     }
     ctx.globalAlpha=1;
   }
-  return {paintShapes,facePalette};
-})();
+  return {paintShapes,facePalette,formulaDiagnostics,prepareFormula:formulaBitmap,formulaReady:()=>!!formulaSurface,formulaDrawn:()=>formulaLastPaints>0};
+})({
+  "width": 1380,
+  "height": 240,
+  "gradient": {
+    "line": [
+      50,
+      0,
+      1330,
+      0
+    ],
+    "stops": [
+      [
+        0,
+        "#ff2535"
+      ],
+      [
+        0.34,
+        "#ff008e"
+      ],
+      [
+        0.64,
+        "#8500ff"
+      ],
+      [
+        1,
+        "#0063ff"
+      ]
+    ]
+  },
+  "paths": [
+    {
+      "stroke": 14,
+      "commands": [
+        [
+          "M",
+          57,
+          95
+        ],
+        [
+          "C",
+          54,
+          125,
+          53,
+          158,
+          72,
+          159
+        ],
+        [
+          "C",
+          91,
+          160,
+          108,
+          119,
+          118,
+          94
+        ],
+        [
+          "M",
+          118,
+          94
+        ],
+        [
+          "C",
+          107,
+          134,
+          93,
+          177,
+          78,
+          192
+        ],
+        [
+          "C",
+          68,
+          202,
+          57,
+          201,
+          50,
+          194
+        ]
+      ]
+    },
+    {
+      "stroke": 14,
+      "commands": [
+        [
+          "M",
+          163,
+          116
+        ],
+        [
+          "L",
+          215,
+          116
+        ],
+        [
+          "M",
+          160,
+          141
+        ],
+        [
+          "L",
+          212,
+          141
+        ]
+      ]
+    },
+    {
+      "stroke": 14,
+      "commands": [
+        [
+          "M",
+          326,
+          68
+        ],
+        [
+          "C",
+          304,
+          54,
+          287,
+          73,
+          281,
+          100
+        ],
+        [
+          "L",
+          265,
+          177
+        ],
+        [
+          "C",
+          262,
+          194,
+          253,
+          199,
+          243,
+          193
+        ],
+        [
+          "M",
+          261,
+          109
+        ],
+        [
+          "L",
+          311,
+          109
+        ]
+      ]
+    },
+    {
+      "stroke": 14,
+      "commands": [
+        [
+          "M",
+          363,
+          62
+        ],
+        [
+          "C",
+          336,
+          83,
+          325,
+          109,
+          325,
+          134
+        ],
+        [
+          "C",
+          325,
+          159,
+          334,
+          181,
+          349,
+          196
+        ]
+      ]
+    },
+    {
+      "stroke": 14,
+      "commands": [
+        [
+          "M",
+          382,
+          99
+        ],
+        [
+          "C",
+          398,
+          91,
+          407,
+          111,
+          413,
+          132
+        ],
+        [
+          "C",
+          420,
+          154,
+          432,
+          168,
+          446,
+          158
+        ],
+        [
+          "M",
+          444,
+          100
+        ],
+        [
+          "C",
+          426,
+          118,
+          403,
+          145,
+          381,
+          162
+        ]
+      ]
+    },
+    {
+      "stroke": 14,
+      "commands": [
+        [
+          "M",
+          474,
+          62
+        ],
+        [
+          "C",
+          491,
+          79,
+          499,
+          101,
+          499,
+          125
+        ],
+        [
+          "C",
+          499,
+          153,
+          484,
+          179,
+          459,
+          196
+        ]
+      ]
+    },
+    {
+      "stroke": 10,
+      "commands": [
+        [
+          "M",
+          546,
+          128
+        ],
+        [
+          "L",
+          671,
+          128
+        ],
+        [
+          "M",
+          650,
+          109
+        ],
+        [
+          "L",
+          672,
+          128
+        ],
+        [
+          "L",
+          650,
+          147
+        ]
+      ]
+    },
+    {
+      "stroke": 14,
+      "commands": [
+        [
+          "M",
+          711,
+          95
+        ],
+        [
+          "C",
+          708,
+          125,
+          707,
+          158,
+          726,
+          159
+        ],
+        [
+          "C",
+          745,
+          160,
+          762,
+          119,
+          772,
+          94
+        ],
+        [
+          "M",
+          772,
+          94
+        ],
+        [
+          "C",
+          761,
+          134,
+          747,
+          177,
+          732,
+          192
+        ],
+        [
+          "C",
+          722,
+          202,
+          711,
+          201,
+          704,
+          194
+        ]
+      ]
+    },
+    {
+      "stroke": 14,
+      "commands": [
+        [
+          "M",
+          813,
+          133
+        ],
+        [
+          "C",
+          824,
+          112,
+          836,
+          115,
+          848,
+          128
+        ],
+        [
+          "C",
+          860,
+          141,
+          872,
+          144,
+          884,
+          123
+        ]
+      ]
+    },
+    {
+      "stroke": 14,
+      "commands": [
+        [
+          "M",
+          917,
+          167
+        ],
+        [
+          "L",
+          940,
+          64
+        ],
+        [
+          "L",
+          970,
+          64
+        ],
+        [
+          "C",
+          1007,
+          64,
+          1018,
+          112,
+          975,
+          122
+        ],
+        [
+          "L",
+          929,
+          122
+        ]
+      ]
+    },
+    {
+      "stroke": 14,
+      "commands": [
+        [
+          "M",
+          1058,
+          62
+        ],
+        [
+          "C",
+          1031,
+          83,
+          1020,
+          109,
+          1020,
+          134
+        ],
+        [
+          "C",
+          1020,
+          159,
+          1029,
+          181,
+          1044,
+          196
+        ]
+      ]
+    },
+    {
+      "stroke": 14,
+      "commands": [
+        [
+          "M",
+          1081,
+          95
+        ],
+        [
+          "C",
+          1078,
+          125,
+          1077,
+          158,
+          1096,
+          159
+        ],
+        [
+          "C",
+          1115,
+          160,
+          1132,
+          119,
+          1142,
+          94
+        ],
+        [
+          "M",
+          1142,
+          94
+        ],
+        [
+          "C",
+          1131,
+          134,
+          1117,
+          177,
+          1102,
+          192
+        ],
+        [
+          "C",
+          1092,
+          202,
+          1081,
+          201,
+          1074,
+          194
+        ]
+      ]
+    },
+    {
+      "stroke": 10,
+      "commands": [
+        [
+          "M",
+          1175,
+          79
+        ],
+        [
+          "L",
+          1175,
+          180
+        ]
+      ]
+    },
+    {
+      "stroke": 14,
+      "commands": [
+        [
+          "M",
+          1210,
+          99
+        ],
+        [
+          "C",
+          1226,
+          91,
+          1235,
+          111,
+          1241,
+          132
+        ],
+        [
+          "C",
+          1248,
+          154,
+          1260,
+          168,
+          1274,
+          158
+        ],
+        [
+          "M",
+          1272,
+          100
+        ],
+        [
+          "C",
+          1254,
+          118,
+          1231,
+          145,
+          1209,
+          162
+        ]
+      ]
+    },
+    {
+      "stroke": 14,
+      "commands": [
+        [
+          "M",
+          1304,
+          62
+        ],
+        [
+          "C",
+          1321,
+          79,
+          1329,
+          101,
+          1329,
+          125
+        ],
+        [
+          "C",
+          1329,
+          153,
+          1314,
+          179,
+          1289,
+          196
+        ]
+      ]
+    }
+  ]
+});
 const api={...math,...definitions,...world,...projection,...renderer};
 if(typeof module!=="undefined"&&module.exports)module.exports=api;
 (function(api) {
@@ -1120,6 +1789,8 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     if(!variants.has(detail)){
       const start=window.SiteEngineProbe?clock():0;
       const room={world:worldFor(name,detail),name,compact:detail,faceColors:[]};variants.set(detail,room);
+      // Prepare once during the existing room work, never inside timed paint.
+      if(name==='writing')api.prepareFormula?.();
       if(window.SiteEngineStages)diagnostic('stage',{part:'model-build',route:name,start,duration:clock()-start});
       paintColors(room);
       if(window.SiteEngineProbe)diagnostic('model',{route:name,compact:detail,start,duration:clock()-start,objects:room.world.objects.length,vertices:room.world.objects.reduce((n,o)=>n+o.points.length,0),faces:room.world.faces.length,lines:room.world.lines.length});
@@ -1293,7 +1964,9 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
   }
   function preferenceChanged() {
     const was=enabled;enabled=choice!=="off" && !reduced.matches;
-    if(enabled&&!was)lastFrame=null;
+    if(enabled&&!was){
+      lastFrame=null;
+    }
     if(!enabled){if(was)cancel();}else if(!was)moveTo(page==="writing" && !bounds?pathPose():scrollPose());
     updateControl();schedule();
     if(window.dispatchEvent)window.dispatchEvent(new CustomEvent("site:motion-preference"));
@@ -1370,7 +2043,8 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       observeLayout();nextDraw=null;schedule();
     },
     refresh({sync=false,reason='mount'}={}){observeLayout();invalidateLayout(reason);if(sync)flushLayout();},
-    diagnostics(){return {rooms:[...rooms].map(([route,variants])=>({route,models:[...variants].map(([compact,room])=>({compact,serializedChars:JSON.stringify(room.world).length}))})),paletteEntries:colorFills.size,layoutPasses};},
+    formulaDiagnostics:()=>api.formulaDiagnostics?.()||null,
+    diagnostics(){return {rooms:[...rooms].map(([route,variants])=>({route,models:[...variants].map(([compact,room])=>({compact,serializedChars:JSON.stringify(room.world).length,formulaAnchors:room.world.formulas?.length||0}))})),paletteEntries:colorFills.size,layoutPasses,formula:api.formulaDiagnostics?.()||null};},
     detachTravel(){travelUpdate=null;}
   };
   // Stylesheet load/error is authoritative, including early WebKit deferral.

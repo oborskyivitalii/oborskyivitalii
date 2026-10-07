@@ -1,4 +1,5 @@
 'use strict';
+const primaryCount=Object.keys(require('../../site/content/catalog.json').records).length;
 const assert=require('node:assert/strict');
 const routes=['index','research','writing','talks','credits'];
 const checks=['persistentShell','fiveRoutes','metadata','forward','backward','history','historyScroll','archiveLifecycle','rapidNavigation','off','reduced','fetchFallback','headerEdges','flightTiming','earlyScroll','interruptions','retargetOpacity','writingFirstScroll','fullScrollArrival','snapshotPin','versionFallback','digestFallback','offlineEntries','utilityNoFlight','reverseEndpoint','endpointTakeover'];
@@ -249,7 +250,7 @@ async function scenario(browser,url,s){
     await page.locator('#archive-topic').selectOption('systems');const archiveBack=await page.evaluate(()=>location.href);await page.locator('#archive-language').selectOption('uk');const archiveForward=await page.evaluate(()=>location.href);
     await page.goBack();await archiveHistoryReady(page,archiveBack,{topic:'systems',language:'all'});assert.equal(await page.locator('#archive-language').inputValue(),'all');await page.goForward();await archiveHistoryReady(page,archiveForward,{topic:'systems',language:'uk'});assert.equal(await page.locator('#archive-language').inputValue(),'uk');
     await click(page,'talks');await page.goBack();await ready(page,'writing');assert.equal(await page.locator('#archive-topic').inputValue(),'systems');assert.equal(await page.locator('#archive-language').inputValue(),'uk');
-    await page.evaluate(()=>dispatchEvent(new Event('beforeprint')));assert.equal(await page.locator('li.publication:visible').count(),27);await page.evaluate(()=>dispatchEvent(new Event('afterprint')));assert.ok(await page.locator('li.publication:visible').count()<27);result.checks.archiveLifecycle=true;
+    await page.evaluate(()=>dispatchEvent(new Event('beforeprint')));assert.equal(await page.locator('li.publication:visible').count(),primaryCount);await page.evaluate(()=>dispatchEvent(new Event('afterprint')));assert.ok(await page.locator('li.publication:visible').count()<primaryCount);result.checks.archiveLifecycle=true;
     assert.equal(await page.locator('#space-motion').textContent(),'Motion: off','archive lifecycle preserves the declared Off mode');
     await click(page,'index');
     const frozen=await page.locator('.space-scene').getAttribute('data-phase');await page.waitForTimeout(200);assert.equal(await page.locator('.space-scene').getAttribute('data-phase'),frozen);assert.equal(await page.locator('.space-scene').getAttribute('data-travel'),'settled');result.checks.off=true;
@@ -276,7 +277,7 @@ async function scenario(browser,url,s){
       assert.equal(interruption.triggered,true,kind+' fixture must actually trigger');
       assert.equal(interruption.trigger,interruption.expected==='animated'?'flight':'instant-arrival',kind+' uses its actual navigation path');
       assert.equal(await page.locator('#site-content').evaluate(el=>el.inert||getComputedStyle(el).opacity!=='1'),false);
-      if(kind==='print'){assert.equal(await page.locator('li.publication:visible').count(),27);await page.evaluate(()=>dispatchEvent(new Event('afterprint')));assert.ok(await page.locator('li.publication:visible').count()<27);}
+      if(kind==='print'){assert.equal(await page.locator('li.publication:visible').count(),primaryCount);await page.evaluate(()=>dispatchEvent(new Event('afterprint')));assert.ok(await page.locator('li.publication:visible').count()<primaryCount);}
       if(kind==='hidden')await page.evaluate(()=>{delete document.hidden;document.dispatchEvent(new Event('visibilitychange'));});
       if(kind==='off')await publicMotionMode(page,'on','resume-off-interruption');
       await click(page,'talks');await settled(page);
