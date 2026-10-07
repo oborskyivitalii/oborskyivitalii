@@ -1676,7 +1676,7 @@ const renderer=(function(artwork=null,createSurface=null) {
 const api={...math,...definitions,...world,...projection,...renderer};
 if(typeof module!=="undefined"&&module.exports)module.exports=api;
 (function(api) {
-  const {sub,mix,clamp,LOOP_MS,rates,owns,smooth,atmosphereState,followCamera,fitScrollStops,writingProgress,cadenceFor,nextDeadline,poses,topicPaths,pageStops,initialPoses,routeOrder,roomSpacing,worldFor,projectedWorld,paintShapes,journeyPose,routePose,roomOffset,translatePose}=api;
+  const {sub,mix,clamp,LOOP_MS,rates,owns,atmosphereState,followCamera,fitScrollStops,writingProgress,cadenceFor,nextDeadline,poses,topicPaths,pageStops,initialPoses,routeOrder,roomSpacing,worldFor,projectedWorld,paintShapes,journeyPose,routePose,roomOffset,translatePose}=api;
   if (typeof document === "undefined") return;
   const canvas = document.getElementById("space-canvas");
   const control = document.getElementById("space-motion");

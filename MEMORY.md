@@ -21,17 +21,19 @@ Dated continuity, not live authority. Last verified: **2026-10-07**.
   Corrected #43 at072a7b8 passed four minimal CI runs and merged at76f2a78.
   PR #44 is now merged at709c6d0. One bounded
   joint staging run and current exact deployment are tracked in the live issues.
-- #45 owns formula-edge/heading reading margins and continuous Color ribbons
-  on live main709c6d0. [Draft PR #46](https://github.com/oborskyivitalii/oborskyivitalii/pull/46)
-  is open after explicit maintainer push/PR authorization, at660c5f1 initially
-  (same tested tree as local981597d). [Current handoff](review/issue-45/2026-10-07-handoff.md)
-  and independent review route its evidence. AC05/AC06 append first forward and
-  all reverse flight continuity, stable detail samples and camera retargeting.
-  Scoped ribbon repair and maintained checks are prepared. Next: verify final
-  mapped/CI checks and exact-source captures; visual acceptance remains open.
-  First3b838bc browser evidence passes60geometry/28captures/4flight contexts;
-  visual review found overlapping title-shadow ink, now repaired with an inner
-  ink layer. Fresh final-head captures and required CI are still needed.
+- #45 owns formula/heading clarity and continuous Color ribbons in
+  [PR #46](https://github.com/oborskyivitalii/oborskyivitalii/pull/46). Approved
+  candidate f1caf4d/tree44c13b39 passes Basic23,279 selected source cases,
+  policy11/11 and60geometry/28capture/4flight contexts. Independent review
+  confirms intact title ink and sampled continuous ribbons. The maintainer
+  explicitly authorized merge and staging at18:13 Europe/Warsaw on7October.
+  Controller requires staging while the PR remains open, then merge tested head.
+  [Run37650674442](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37650674442)
+  passes package/immutable-host identity but full/static fails unused smooth
+  and192 untriaged public checksum/Gitref candidates. Narrow import/verified
+  exact-checksum repair is prepared in this same PR; no accepted stable
+  promotion or merge is yet claimed. [Current handoff](review/issue-45/2026-10-07-handoff.md)
+  and the live issue retain actual failure and next-source acceptance.
 - #36 places one tilted, pulsing formula in Writing's books/pages fractal,
   sharing its camera/clock and bounded cache. Rejected banner benchmarks are
   historical failures, not acceptance of this world-space implementation.
@@ -65,7 +67,7 @@ Dated continuity, not live authority. Last verified: **2026-10-07**.
 
 | Issue | Remaining intent |
 | --- | --- |
-| #45 | Formula/heading/ribbon continuity repair in Draft PR46; exact CI/Color captures and visual/merge acceptance. |
+| #45 | Merge/staging authorized; repair static admission, verify fresh bounded staging, then merge exact tested head. AC01 complete visibility remains open. |
 | #36 / #41 | #43/#44 merged; joint staging and paired/visual/editorial acceptance. |
 | #1 / #13 | First-release, physical-device and full production/recovery acceptance. |
 | #8 / #39 | Production URL/indexability, domains and analytics activation. |
