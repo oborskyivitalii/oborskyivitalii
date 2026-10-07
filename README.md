@@ -1,33 +1,25 @@
-# Vitalii Oborskyi
+# Vitalii Oborskyi — author site and publication platform
 
-I write about AI-assisted software delivery and how to design, evaluate, and control systems that use probabilistic model judgment.
+This repository develops Vitalii Oborskyi’s personal website and publication
+platform: research, articles, talks and source-linked public work. The interface
+is English; English and Ukrainian publication editions are labeled separately.
 
-- [Uncertainty Architecture](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture) — research and practical patterns for LLM-based systems.
-- [The Subprime Code Crisis](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis) — an evidence-governed look at AI-assisted software delivery.
-- [Site and publishing roadmap](SITE-ROADMAP.md) — milestones, boundaries, and the plan for articles, talks, and the personal site.
-- [Actionable backlog and PR audit](BACKLOG.md) — issue links, acceptance boundaries and migration dependencies.
-- [Repository ownership](REPOSITORIES.md) — where research, source review and personal publication editions belong.
+I write about AI-assisted software delivery and how to design, evaluate and
+control systems that use probabilistic model judgment:
 
-Contributors and agents: start from an owning [issue](https://github.com/oborskyivitalii/oborskyivitalii/issues),
-[CONTRIBUTING](CONTRIBUTING.md) and [AGENTS](AGENTS.md). The complete
-[repository map](REPOSITORY-MAP.md) describes every file/directory and its editing
-owner; [MEMORY](MEMORY.md) holds the dated handoff between sessions.
+- [Uncertainty Architecture](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture) — architecture and operational responsibility for systems using model judgment.
+- [The Subprime Code Crisis](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis) — evidence about AI-assisted software delivery.
 
-Complete generated public pages are in [docs/index.html](docs/index.html).
-Edit separate sources in [site/](site/README.md); the deterministic generator
-updates dependent pages and preserves unchanged engine/assets. The
-[all-page gallery](review/site-v1-20261004-v11-index.html) links all five standalone
-interactive entries and fixed Day/Night copies. Each interactive file embeds all
-five routes and works alone. Actual capture availability is explicit in the gallery.
+Research meaning and evidence stay in their canonical repositories; this site
+owns personal publication editions and distribution. [Repository ownership](guides/REPOSITORIES.md)
+and [publication priorities](guides/SITE-ROADMAP.md) describe those boundaries.
 
-The English UI preserves 27 primary EN/UA editions plus the separate LinkedIn
-rendition, five featured works, eight public discussion entries and three source-linked
-Talks. [Source audit](SITE-SOURCE-AUDIT.md), [content/rights review](SITE-CONTENT-REVIEW.md)
-and [SEO map](SITE-SEO.md) continue to own editorial acceptance. See
-[execution evidence](review/site-engine-implementation-20261004/EXECUTION.md) for
-first-scroll diagnosis, structural parity, incremental generation and versioned
-navigation. Local/CI checks, physical devices, independent review and real host
-acceptance are distinct. Current refs, accepted staging and remaining production/
-publication work are in [MEMORY](MEMORY.md), with links to live issues and PRs.
-Current work is tracked in
-[Issues](https://github.com/oborskyivitalii/oborskyivitalii/issues).
+Edit authored content, templates, engine and assets in [site/](site/README.md).
+[docs/](docs/index.html) is generated public output. Internal contracts and
+runbooks are in [guides/](guides/README.md); dated evidence is in [review/](review/).
+
+Start with [AGENTS.md](AGENTS.md) and [CONTRIBUTING.md](CONTRIBUTING.md).
+The generated [repository map](REPOSITORY-MAP.md) describes every area/file and
+its editing owner. [MEMORY.md](MEMORY.md) is a dated handoff requiring live
+revalidation; current work and acceptance are in [GitHub Issues](https://github.com/oborskyivitalii/oborskyivitalii/issues).
+[PROJECT-BOOTSTRAP.md](PROJECT-BOOTSTRAP.md) is the short ChatGPT entry point.

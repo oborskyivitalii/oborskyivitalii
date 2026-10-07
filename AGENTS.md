@@ -27,15 +27,15 @@ navigation in [REPOSITORY-MAP.md](REPOSITORY-MAP.md).
 - [site/README.md](site/README.md) owns the engine/source contract. Edit authored
   `site/` content, templates, code and assets; regenerate `docs/`, output locks
   and dependent previews. Generated files are renditions, not editing sources.
-- [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md),
-  [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) and
-  [SITE-STAGING.md](SITE-STAGING.md) own checks and hosting mechanics. Preserve
+- [SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md),
+  [SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) and
+  [SITE-STAGING.md](guides/SITE-STAGING.md) own checks and hosting mechanics. Preserve
   exact source/tree/artifact binding, original budgets and all required cases.
-- [SITE-SOURCE-AUDIT.md](SITE-SOURCE-AUDIT.md),
-  [SITE-CONTENT-REVIEW.md](SITE-CONTENT-REVIEW.md) and
-  [SITE-SEO.md](SITE-SEO.md) own provenance, editorial checks and discoverability.
+- [SITE-SOURCE-AUDIT.md](guides/SITE-SOURCE-AUDIT.md),
+  [SITE-CONTENT-REVIEW.md](guides/SITE-CONTENT-REVIEW.md) and
+  [SITE-SEO.md](guides/SITE-SEO.md) own provenance, editorial checks and discoverability.
   Rights and publication decisions remain with their issues and accepted editions.
-- [REPOSITORIES.md](REPOSITORIES.md) routes UA specification/research and Subprime
+- [REPOSITORIES.md](guides/REPOSITORIES.md) routes UA specification/research and Subprime
   evidence/operations to their canonical repositories. Site copies, public
   recognition, RI metadata and green CI do not establish scientific acceptance,
   authorship, validation or institutional endorsement.

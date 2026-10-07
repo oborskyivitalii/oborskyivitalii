@@ -1,95 +1,41 @@
-# Site release checks — Sol implementation contract
+# Site release requirements
 
-## Accepted hosted coverage and current release boundary — 2026-10-06
+Owner: [release gates #13](https://github.com/oborskyivitalii/oborskyivitalii/issues/13),
+with [hosting #8](https://github.com/oborskyivitalii/oborskyivitalii/issues/8) and
+launch/rights #1/#7 retaining their separate acceptance decisions.
+[SITE-CHECK-PROFILES](SITE-CHECK-PROFILES.md) owns when checks run;
+[SITE-STAGING](SITE-STAGING.md) owns controller, promotion and recovery mechanics.
+Read live issues/PRs and [MEMORY](../MEMORY.md) for the exact candidate and results.
 
-[SITE-CHECK-PROFILES](SITE-CHECK-PROFILES.md) and the approved #29 controller
-supersede the older Linux-only full matrix below. Full staging combines Linux
-Chromium/Firefox 260/8/26 with native macOS WebKit 130/4/13: all 390 functional,
-12 navigation and 39 analytics cases, including every no-JavaScript/failure mode.
-Windows 40/8/26 smoke and twelve original Linux Color cases remain supplemental;
-legacy nonfull three-engine Linux behavior, pins and all budgets remain unchanged.
+## Coverage and source boundary
 
-PR #23 passed exact-source full staging and stable verification in run
-[37524167715](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37524167715)
-before its protected merge. PR #28 is authorized for the same sequence with its
-own fresh source/artifact/controller identities. Staging is authorized; production
-activation and first-release rights, independent/device and maintainer visual
-acceptance remain separate. Earlier blanket publication pauses and PR schedules
-below are historical where they conflict with these current decisions.
+The accepted check profiles supersede the original always-full PR/Linux-only
+schedule. Full staging combines Linux Chromium/Firefox 260/8/26 with native
+macOS WebKit 130/4/13: all 390 functional, 12 navigation and 39 analytics cases,
+including every no-JavaScript/failure mode. Windows 40/8/26 smoke and twelve
+original Linux Color cases remain supplemental. Legacy nonfull three-engine
+Linux behavior, pins and all original budgets remain unchanged.
 
-## Check-profile amendment — 2026-10-05
+Staging uses the existing CI controller and owner request. Production activation
+and first-release rights, independent/device and maintainer visual acceptance
+remain separate. Historical successful runs admit only their matching sources,
+artifacts and controllers; neither a prior run nor green Basic checks accepts
+another full candidate.
 
-[SITE-CHECK-PROFILES](SITE-CHECK-PROFILES.md) supersedes older always-full
-local/PR execution. Basic checks run once per update; full automated suites run
-against immutable staging and after production deployment. Successful staging
-evidence is reused before promotion. All budgets and separate physical/review
-acceptance remain; publication stays paused. Older execution descriptions below
-are historical where they conflict with this amendment.
+The [original contract and dated amendments](https://github.com/oborskyivitalii/oborskyivitalii/blob/3ca14c54824ac6b9e7225bc88429b4b8fb3bcf10/SITE-RELEASE-GATES.md)
+preserve PR #10/S1–S4 execution, blanket publication pauses and the original
+pipeline implementation proposal. Those session instructions are historical.
+The v8 [audit](../review/site-audit-v8-20261003/REPORT.md) and
+[execution tasks](../review/site-audit-v8-20261003/SOL-TASKS.md) remain evidence
+of their inspected edition, not new tasks for every follow-up.
 
+## Maintained execution routes
 
-## Execution and publication pause — 2026-10-04
-
-The maintainer now authorizes the engine/content plan and Writing fix under
-[#15](https://github.com/oborskyivitalii/oborskyivitalii/issues/15)/#12 in stacked
-Draft [PR #16](https://github.com/oborskyivitalii/oborskyivitalii/pull/16). Read
-[the source/engine contract](site/README.md) and
-[execution record](review/site-engine-implementation-20261004/EXECUTION.md).
-`site/` is authoritative; `docs/` is generated-only. Every #13 mandatory job and
-budget remains. The latest instruction pauses **all publication**, including
-staging, superseding the earlier activation amendment below. Both deployment
-workflow entry points have explicit false guards; configuration alone cannot
-enable publication. No host/account provisioning, upload, production release or
-merge is part of this work. Prepared packages/fixtures do not establish real host,
-physical-device or independent acceptance. Re-enabling hosting needs a later
-maintainer instruction and a separately reviewed change to those guards.
-
-## Browser staging amendment — 2026-10-03
-
-The maintainer now requests hosted staging as part of the current site work.
-Read [SITE-STAGING](SITE-STAGING.md): #8 owns hosting, #14 owns the visual
-iteration, and Draft PR #10 implements both. Set up a dedicated test host and
-return one working whole-site URL plus a version URL. Cloudflare Pages Direct
-Upload through the existing CI is the recommended default. Establish the baseline
-preview early, then update it as the design progresses. This authorizes staging
-setup/updates and supersedes earlier blanket no-deployment wording for staging
-only. Production/merge/domain/payment decisions remain separate. Preserve #13's
-production gate; staging uses successful PR checks and hosted smoke checks so
-missing final device/visual acceptance does not block the review environment.
-This amendment is a plan, not a claim that hosting has already been provisioned.
-
-Owner: [issue #13](https://github.com/oborskyivitalii/oborskyivitalii/issues/13).
-Runtime fixes: [#12](https://github.com/oborskyivitalii/oborskyivitalii/issues/12)
-and [S1–S4](review/site-audit-v8-20261003/SOL-TASKS.md).
-Execution: Draft PR #10. Hosting activation: #8; launch/rights: #1/#7.
-
-**Status, 2026-10-03: implemented in the v9 candidate, validation in progress.**
-Maintained commands are in `tools/quality/`; PR and reusable release workflows
-bind checks to a single public artifact. See the v9 engineering checkpoint for
-actual results and independent review. Browser/performance measurements,
-physical-device acceptance and hosting activation remain pending. The v8 audit
-is an immutable baseline. This document records the new
-maintainer requirement that repeatable checks become mandatory for future releases.
-It supersedes the earlier optional-small-CI wording in S4 and the old operational
-instruction to publish automatically from a branch without these gates.
-
-## Execution order and maintained files
-
-1. Recover live #12/#13/#8 and PR #10 state. Planning baseline is
-   `fbc2ee0ec35683b541cb037a26f300e37ff7e7bd`, tree
-   `a4044acf64c0b1ad55cd91c003177d99fd800ecb`; preserve newer work.
-2. Fix S1–S4 and demonstrate each regression failing on the audited v8 and passing
-   on the candidate. Keep original raw audit results immutable.
-3. Extract reusable commands/configuration from the audit into a small maintained
-   `tools/quality/` area and regression tests into `tests/`. Suggested outputs:
-   toolchain locks, reviewed scanner rules, budgets, exceptions, browser projects,
-   report validation and local runner commands. Adapt paths to existing conventions.
-4. Add PR checks and a reusable full `site-release-checks` workflow, callable from
-   the future deployment workflow and manually against an explicit revision.
-   Deploy wiring is prepared now; activating the selected host remains under #8.
-5. Verify the checks, review the changed sources and evidence independently,
-   refresh all-page visual exports, and record exact refs/results in both issues
-   and PR #10. Keep this PR while it is the active site candidate; split only if
-   integration/concurrent work creates a concrete need.
+Commands and code paths below are relative to the repository root.
+Use `node tools/quality/local.cjs` for the bounded local/Basic source check.
+The existing `tools/quality/`, required workflows, reviewed toolchain locks,
+scanner rules, exceptions and versioned budgets own executable verification.
+Do not introduce a competing release pipeline from an old session handoff.
 
 Use locked CLI dependencies, reviewed action commit SHAs and compatible pinned
 browser revisions. Record actual OS image, architecture, browser executable and
@@ -98,19 +44,17 @@ Keep caches and transient output outside the repository's RI inventory. Optional
 quality tooling is not a production runtime dependency. No paid scanner account,
 SonarQube service, Lighthouse server or device-cloud subscription is required.
 
-## When each check runs
-
-| Stage | Required checks | Result |
+| Stage | Required work | Acceptance boundary |
 | --- | --- | --- |
-| Every PR | Existing behavior/content/export/RI tests; security/static checks; deterministic size budgets; three-engine Linux functional/failure matrix | A required aggregate check fails on any required failure or missing result. |
-| Every release candidate | Repeat PR checks on the exact candidate/artifact; Windows smoke and native macOS full matrix; repeated Lighthouse; sustained motion and soak; source-bound review/device evidence | Produce a complete release manifest. No reuse of a green run for different bytes. |
-| Owned hosted preview, once available under #8 | ZAP Baseline passive scan and HTTPS/redirect/MIME/header/mixed-content checks against the release artifact and actual host configuration | Record hosting findings separately from local-loopback results. Missing preview is not a fabricated pass. |
-| After authorized deployment | Verify served edition/digests, every route and assets, basic interactions, HTTPS and live headers, canonical/robots/sitemap policy | Mark deployment healthy only after smoke checks; execute the reviewed recovery procedure on failure. |
+| PR update | The bounded Basic source checks and CI preview selected by SITE-CHECK-PROFILES | Required checks fail on missing/failed applicable results; preview does not authorize full staging. |
+| Explicit full staging | Complete exact-artifact source/security/browser/native/Color/accessibility/failure/Lighthouse/CPU/soak/capture profile | All mandatory reports, budgets and source/controller/artifact identities must match before stable promotion. |
+| Authorized production release | The full hosted automation and applicable source-bound rights/independent/device/production indexing checks | Production activation stays with #8 and the release decision. |
+| After deployment | Served edition/digests, every route and assets, interactions, HTTPS/live headers and applicable canonical/robots/sitemap policy | Deployment is healthy only after live checks; recovery follows the reviewed same-artifact controller route. |
 
-No recurring clock schedule is created by this request. Keep PR feedback bounded;
-the complete release stage must never be skipped by a path-filter optimization.
-If a PR check is legitimately not applicable, the aggregate records a validated
-reason; absent/cancelled/unknown results do not count as success.
+Keep PR feedback bounded; the complete authorized hosted profile must never be
+skipped by a path-filter optimization. If a check is legitimately not applicable,
+the aggregate records a validated reason; absent/cancelled/unknown results do not
+count as success. No recurring clock schedule is implied by this guide.
 
 ## Security and source quality
 
@@ -255,15 +199,16 @@ release manifests, concise results and durable report links beyond that window i
 the release record. Do not lose all release evidence when transient artifacts expire.
 Reports identify exact refs, test/rule versions, exclusions, real versus emulated
 platforms, unsupported cases, reviewer and remaining blockers. Link completed
-increments in #12/#13 and PR #10 so an interrupted session resumes from evidence.
+increments in the owning issue/PR and applicable #12/#13 routes so an interrupted
+session resumes from evidence.
 
-## Sol completion checklist
+## Candidate evidence checklist
 
-- [ ] #12 bugs fixed; focused regressions fail on v8 and pass on the candidate.
-- [ ] Portable pinned commands and PR gates implemented; clean-checkout execution.
+- [ ] Applicable known bugs fixed; focused regressions fail on their recorded baseline and pass on the candidate.
+- [ ] Existing portable pinned commands and applicable gates pass in a clean checkout.
 - [ ] Full browser/OS/performance matrix and validity checks run on candidate bytes.
 - [ ] Controlled failing cases block the aggregate gate; complete passing case exists.
-- [ ] Deployment dependency prepared; hosting activation and live checks tracked in #8.
+- [ ] Same-artifact deployment dependencies verified; hosting activation and live checks tracked in #8.
 - [ ] Required device and independent review evidence recorded or explicitly pending.
 - [ ] Before/after report, new all-page visual preview, exact-head CI and durable issue/PR updates.
 
@@ -273,4 +218,4 @@ increments in #12/#13 and PR #10 so an interrupted session resumes from evidence
 - [Lighthouse CI configuration and assertions](https://googlechrome.github.io/lighthouse-ci/docs/configuration.html).
 - [ZAP Baseline scope, rule configuration and exit codes](https://www.zaproxy.org/docs/docker/baseline-scan/).
 - [GitHub Pages custom deployment workflows](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
-- [Audit tools, versions and limits](review/site-audit-v8-20261003/REPORT.md).
+- [Audit tools, versions and limits](../review/site-audit-v8-20261003/REPORT.md).

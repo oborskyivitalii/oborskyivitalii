@@ -57,7 +57,8 @@ class RICICouplingTests(unittest.TestCase):
         data = json.loads((REPO / ci.MAP).read_text())
         self.assertEqual({layer["id"] for layer in data["layers"]}, {
             "authority-instructions", "intent-acceptance", "path-catalog", "producer-identity",
-            "generated-views", "lookup-validation-routes", "continuity", "github-live-overlay-ci-boundary"})
+            "generated-views", "lookup-validation-routes", "continuity", "github-live-overlay-ci-boundary",
+            "entry-root-guides"})
         self.assertFalse(result["live_github_state_verified"])
 
     def test_verified_definition_and_source_identity_are_deterministic(self):

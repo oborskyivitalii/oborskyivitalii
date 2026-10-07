@@ -99,3 +99,20 @@ When later work intentionally supersedes #31's unchanged-public baseline, keep
 the historical intent/evidence and append an explicit approved scope decision
 before changing or retiring that policy check. Acceptance criteria must never
 be silently weakened to make a new build green.
+
+Issue #33 explicitly supersedes the earlier expanded bootstrap requirement: its
+[policy](acceptance/issue-33.json) checks the short router and root organization.
+The original #31 policy and accepted evidence remain pinned to the accepted
+source. Its unchanged-public assertion is not weakened; #33 has a separate
+locator-only exception for the moved provenance guide. Permanent navigation
+checks validate current structure; #33’s fixed public/history snapshots execute
+only through its selected policy, so later publication work selects its own
+acceptance. The scope decision is recorded in [issue #33](https://github.com/oborskyivitalii/oborskyivitalii/issues/33).
+
+The Full-profile Python source preflight uses `tools/run_repository_tests.py`:
+all `test_*.py` modules remain enduring checks except the exact numeric pattern
+`test_issue[0-9]+_acceptance.py`. Those modules are source-pinned task evidence
+selected through their owning policy, including their unchanged historical
+assertions; the generic acceptance-runner suite remains a permanent check.
+Selection regressions run in navigation, so future public edits do not implicitly
+rerun closed tasks against obsolete public snapshots.

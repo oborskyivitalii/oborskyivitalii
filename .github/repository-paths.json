@@ -61,6 +61,12 @@
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
+    ".github/acceptance/issue-33.json": {
+      "kind": "file",
+      "purpose": "Bootstrap/root optimization AC01–AC06 mapped to source-bound assertions and separate review, merge and linkage gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     ".github/pull_request_template.md": {
       "kind": "file",
       "purpose": "PR execution, owning issue/commit links, checks/review and honest completion template.",
@@ -85,6 +91,12 @@
       "role": "generated",
       "owner": ".github/REPOSITORY-INTELLIGENCE.md"
     },
+    ".github/repository-layout.json": {
+      "kind": "file",
+      "purpose": "Reviewed root file contract, complete original dispositions and current Markdown surfaces for issue #33.",
+      "role": "configuration",
+      "owner": ".github/REPOSITORY-INTELLIGENCE.md"
+    },
     ".github/repository-paths.json": {
       "kind": "file",
       "purpose": "Maintained exhaustive path/purpose/role/owner catalog; unknown and stale entries fail.",
@@ -101,7 +113,7 @@
       "kind": "directory",
       "purpose": "Pinned CI workflows for navigation, site checks, hosted staging and manual diagnostics.",
       "role": "workflow",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     ".github/workflows/issue-acceptance.yml": {
       "kind": "file",
@@ -113,85 +125,85 @@
       "kind": "file",
       "purpose": "GitHub Actions: Local navigation checks; inspect trigger/profile before running.",
       "role": "workflow",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     ".github/workflows/site-browser-gate-probe.yml": {
       "kind": "file",
       "purpose": "GitHub Actions: Browser gate causal diagnostic; inspect trigger/profile before running.",
       "role": "workflow",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     ".github/workflows/site-candidate-evidence.yml": {
       "kind": "file",
       "purpose": "GitHub Actions: Site candidate evidence; inspect trigger/profile before running.",
       "role": "workflow",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     ".github/workflows/site-cause-fix-probe.yml": {
       "kind": "file",
       "purpose": "GitHub Actions: Confirm cause corrections and cold native attribution; inspect trigger/profile before running.",
       "role": "workflow",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     ".github/workflows/site-cause-probe.yml": {
       "kind": "file",
       "purpose": "GitHub Actions: Cold browser cause attribution; inspect trigger/profile before running.",
       "role": "workflow",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     ".github/workflows/site-checks.yml": {
       "kind": "file",
       "purpose": "GitHub Actions: Site basic checks; inspect trigger/profile before running.",
       "role": "workflow",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     ".github/workflows/site-color-review.yml": {
       "kind": "file",
       "purpose": "GitHub Actions: Site PR preview and staging; inspect trigger/profile before running.",
       "role": "workflow",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     ".github/workflows/site-gtk-native-probe.yml": {
       "kind": "file",
       "purpose": "GitHub Actions: Retain exact GTK WebProcess offline abort stack; inspect trigger/profile before running.",
       "role": "workflow",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     ".github/workflows/site-gtk-target-probe.yml": {
       "kind": "file",
       "purpose": "GitHub Actions: Attribute GTK disabled-script target crashes; inspect trigger/profile before running.",
       "role": "workflow",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     ".github/workflows/site-navigation-probe.yml": {
       "kind": "file",
       "purpose": "GitHub Actions: Site navigation diagnostic; inspect trigger/profile before running.",
       "role": "workflow",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     ".github/workflows/site-release-checks.yml": {
       "kind": "file",
       "purpose": "GitHub Actions: Site release checks; inspect trigger/profile before running.",
       "role": "workflow",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     ".github/workflows/site-runtime-checks.yml": {
       "kind": "file",
       "purpose": "GitHub Actions: Site local diagnostics; inspect trigger/profile before running.",
       "role": "workflow",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     ".github/workflows/site-staging.yml": {
       "kind": "file",
       "purpose": "GitHub Actions: Verified site staging; inspect trigger/profile before running.",
       "role": "workflow",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     ".github/workflows/site-writing-probe.yml": {
       "kind": "file",
       "purpose": "GitHub Actions: Writing cold comparison; inspect trigger/profile before running.",
       "role": "workflow",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     ".gitignore": {
       "kind": "file",
@@ -204,12 +216,6 @@
       "purpose": "Compact agent bootstrap, authority routes, issue-first work and completion rules.",
       "role": "guide",
       "owner": "AGENTS.md"
-    },
-    "BACKLOG.md": {
-      "kind": "file",
-      "purpose": "Publication/migration backlog and historical PR audit; live issues own current acceptance.",
-      "role": "guide",
-      "owner": "BACKLOG.md"
     },
     "CONTRIBUTING.md": {
       "kind": "file",
@@ -225,7 +231,7 @@
     },
     "PROJECT-BOOTSTRAP.md": {
       "kind": "file",
-      "purpose": "Copy-ready Ukrainian ChatGPT project prompt for the author site and stable issue/acceptance/RI/handoff workflow.",
+      "purpose": "Short Ukrainian entry router delegating purpose to README, rules to AGENTS and navigation to REPOSITORY-MAP.",
       "role": "guide",
       "owner": "PROJECT-BOOTSTRAP.md"
     },
@@ -235,83 +241,11 @@
       "role": "guide",
       "owner": "README.md"
     },
-    "REPOSITORIES.md": {
-      "kind": "file",
-      "purpose": "Canonical boundaries and coordinated work routes across site, UA and Subprime.",
-      "role": "guide",
-      "owner": "REPOSITORIES.md"
-    },
     "REPOSITORY-MAP.md": {
       "kind": "file",
       "purpose": "Generated readable description/index of every repository file and directory.",
       "role": "generated",
       "owner": ".github/REPOSITORY-INTELLIGENCE.md"
-    },
-    "SITE-ANALYTICS.md": {
-      "kind": "file",
-      "purpose": "Disabled-by-default production analytics adapter contract and measurement limitations.",
-      "role": "guide",
-      "owner": "SITE-ANALYTICS.md"
-    },
-    "SITE-CHECK-PROFILES.md": {
-      "kind": "file",
-      "purpose": "Current Basic, Preview, Full staging and Full production validation profiles.",
-      "role": "guide",
-      "owner": "SITE-CHECK-PROFILES.md"
-    },
-    "SITE-CONTENT-REVIEW.md": {
-      "kind": "file",
-      "purpose": "Editorial, source-link and rights acceptance for the authored publication inventory.",
-      "role": "guide",
-      "owner": "SITE-CONTENT-REVIEW.md"
-    },
-    "SITE-OPERATIONS.md": {
-      "kind": "file",
-      "purpose": "Historical candidate/release observations and procedures; current mechanics route to profiles/staging.",
-      "role": "history",
-      "owner": "SITE-STAGING.md"
-    },
-    "SITE-RELEASE-GATES.md": {
-      "kind": "file",
-      "purpose": "Exact-artifact security, quality, performance, browser/device and release requirements.",
-      "role": "guide",
-      "owner": "SITE-RELEASE-GATES.md"
-    },
-    "SITE-ROADMAP.md": {
-      "kind": "file",
-      "purpose": "Milestones and publication/site boundaries; implementation acceptance remains in issues.",
-      "role": "guide",
-      "owner": "SITE-ROADMAP.md"
-    },
-    "SITE-SEO.md": {
-      "kind": "file",
-      "purpose": "Search/topic plan, structured publication metadata and discoverability constraints.",
-      "role": "guide",
-      "owner": "SITE-SEO.md"
-    },
-    "SITE-SOURCE-AUDIT.md": {
-      "kind": "file",
-      "purpose": "Public-source identities, publication inventory, contribution provenance and access limits.",
-      "role": "guide",
-      "owner": "SITE-SOURCE-AUDIT.md"
-    },
-    "SITE-STAGING.md": {
-      "kind": "file",
-      "purpose": "Existing CI preview/staging controller, source leases, exact hosted verification and recovery runbook.",
-      "role": "guide",
-      "owner": "SITE-STAGING.md"
-    },
-    "SITE-VISUAL-REVIEW.md": {
-      "kind": "file",
-      "purpose": "Visual-design source findings and dated proposals; acceptance belongs in its owning issue.",
-      "role": "history",
-      "owner": "SITE-VISUAL-REVIEW.md"
-    },
-    "SOL-HANDOFF.md": {
-      "kind": "file",
-      "purpose": "Archived iteration plans and dated decisions, retained for provenance rather than current task selection.",
-      "role": "history",
-      "owner": "MEMORY.md"
     },
     "docs": {
       "kind": "directory",
@@ -565,6 +499,72 @@
       "role": "draft",
       "owner": "CONTRIBUTING.md"
     },
+    "guides": {
+      "kind": "directory",
+      "purpose": "Maintained topic guides for repository boundaries, publication, quality and hosting; root stays an entry surface.",
+      "role": "guide",
+      "owner": "guides/README.md"
+    },
+    "guides/README.md": {
+      "kind": "file",
+      "purpose": "Topic guide index with one current owner for each concern; live issue status is retrieved separately.",
+      "role": "guide",
+      "owner": "guides/README.md"
+    },
+    "guides/REPOSITORIES.md": {
+      "kind": "file",
+      "purpose": "Canonical boundaries and coordinated work routes across site, UA and Subprime.",
+      "role": "guide",
+      "owner": "guides/REPOSITORIES.md"
+    },
+    "guides/SITE-ANALYTICS.md": {
+      "kind": "file",
+      "purpose": "Disabled-by-default production analytics adapter contract and measurement limitations.",
+      "role": "guide",
+      "owner": "guides/SITE-ANALYTICS.md"
+    },
+    "guides/SITE-CHECK-PROFILES.md": {
+      "kind": "file",
+      "purpose": "Current Basic, Preview, Full staging and Full production validation profiles.",
+      "role": "guide",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "guides/SITE-CONTENT-REVIEW.md": {
+      "kind": "file",
+      "purpose": "Maintained exact-edition editorial, source and rights review protocol; past inventory decisions remain archived.",
+      "role": "guide",
+      "owner": "guides/SITE-CONTENT-REVIEW.md"
+    },
+    "guides/SITE-RELEASE-GATES.md": {
+      "kind": "file",
+      "purpose": "Exact-artifact security, quality, performance, browser/device and release requirements.",
+      "role": "guide",
+      "owner": "guides/SITE-RELEASE-GATES.md"
+    },
+    "guides/SITE-ROADMAP.md": {
+      "kind": "file",
+      "purpose": "Stable site/publication priorities and live owning-issue routes; dated backlog observations remain archived.",
+      "role": "guide",
+      "owner": "guides/SITE-ROADMAP.md"
+    },
+    "guides/SITE-SEO.md": {
+      "kind": "file",
+      "purpose": "Search/topic plan, structured publication metadata and discoverability constraints.",
+      "role": "guide",
+      "owner": "guides/SITE-SEO.md"
+    },
+    "guides/SITE-SOURCE-AUDIT.md": {
+      "kind": "file",
+      "purpose": "Public-source identities, publication inventory, contribution provenance and access limits.",
+      "role": "guide",
+      "owner": "guides/SITE-SOURCE-AUDIT.md"
+    },
+    "guides/SITE-STAGING.md": {
+      "kind": "file",
+      "purpose": "Existing CI preview/staging controller, source leases, exact hosted verification and recovery runbook.",
+      "role": "guide",
+      "owner": "guides/SITE-STAGING.md"
+    },
     "review": {
       "kind": "directory",
       "purpose": "Dated plans, evidence, captures and renditions; current Color/export inputs are explicitly marked.",
@@ -721,6 +721,24 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-33": {
+      "kind": "directory",
+      "purpose": "Versioned analysis and independent review evidence for short bootstrap and root organization.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-33/2026-10-07-analysis.md": {
+      "kind": "file",
+      "purpose": "Issue #33 inspected-source analysis, complete root dispositions, ordered tasks and public-output boundaries.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-33/2026-10-07-review.md": {
+      "kind": "file",
+      "purpose": "Independent structure/semantic and CI review at exact implementation source, four findings/dispositions, source-bound checks and separate live/merge gates.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/public-responses-20261006": {
       "kind": "directory",
       "purpose": "Exact before/after public response prose and reconciliation records.",
@@ -784,6 +802,60 @@
     "review/repository-maintenance-20261007/README.md": {
       "kind": "file",
       "purpose": "Archive provenance, exact baseline/SHA and authority boundary for the prior agent guide.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/root-history-20261007": {
+      "kind": "directory",
+      "purpose": "Preserved original root backlog, handoff and dated operational/design evidence with exact accepted-base provenance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/root-history-20261007/BACKLOG.md": {
+      "kind": "file",
+      "purpose": "Byte-exact BACKLOG.md at the accepted pre-cleanup source; historical context and original link bases remain commit-pinned in the archive manifest.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/root-history-20261007/README.md": {
+      "kind": "file",
+      "purpose": "Historical archive routing, original-root link context and current guide owners; archived text is not current instruction.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/root-history-20261007/SITE-CONTENT-REVIEW.md": {
+      "kind": "file",
+      "purpose": "Byte-exact SITE-CONTENT-REVIEW.md at the accepted pre-cleanup source; historical context and original link bases remain commit-pinned in the archive manifest.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/root-history-20261007/SITE-OPERATIONS.md": {
+      "kind": "file",
+      "purpose": "Byte-exact SITE-OPERATIONS.md at the accepted pre-cleanup source; historical context and original link bases remain commit-pinned in the archive manifest.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/root-history-20261007/SITE-ROADMAP.md": {
+      "kind": "file",
+      "purpose": "Byte-exact SITE-ROADMAP.md at the accepted pre-cleanup source; historical context and original link bases remain commit-pinned in the archive manifest.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/root-history-20261007/SITE-VISUAL-REVIEW.md": {
+      "kind": "file",
+      "purpose": "Byte-exact SITE-VISUAL-REVIEW.md at the accepted pre-cleanup source; historical context and original link bases remain commit-pinned in the archive manifest.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/root-history-20261007/SOL-HANDOFF.md": {
+      "kind": "file",
+      "purpose": "Byte-exact SOL-HANDOFF.md at the accepted pre-cleanup source; historical context and original link bases remain commit-pinned in the archive manifest.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/root-history-20261007/manifest.json": {
+      "kind": "file",
+      "purpose": "Accepted source commit, exact Git blob/SHA-256 identities and current owner for six preserved original documents.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -5231,7 +5303,7 @@
       "kind": "file",
       "purpose": "Disabled-by-default real production origin/token/verification source configuration.",
       "role": "configuration",
-      "owner": "SITE-ANALYTICS.md"
+      "owner": "guides/SITE-ANALYTICS.md"
     },
     "site/assets": {
       "kind": "directory",
@@ -5267,13 +5339,13 @@
       "kind": "directory",
       "purpose": "Authored publication catalog and route-specific curated content.",
       "role": "source",
-      "owner": "SITE-SOURCE-AUDIT.md"
+      "owner": "guides/SITE-SOURCE-AUDIT.md"
     },
     "site/content/catalog.json": {
       "kind": "file",
       "purpose": "Exact curated publication editions, language/rendition identities and featured selections.",
       "role": "source",
-      "owner": "SITE-SOURCE-AUDIT.md"
+      "owner": "guides/SITE-SOURCE-AUDIT.md"
     },
     "site/content/pages": {
       "kind": "directory",
@@ -5531,13 +5603,13 @@
       "kind": "directory",
       "purpose": "Production-origin-only optional external measurement integration.",
       "role": "source",
-      "owner": "SITE-ANALYTICS.md"
+      "owner": "guides/SITE-ANALYTICS.md"
     },
     "site/integrations/cloudflare.cjs": {
       "kind": "file",
       "purpose": "Exact-origin opt-in Cloudflare analytics loader with offline/staging exclusion.",
       "role": "source",
-      "owner": "SITE-ANALYTICS.md"
+      "owner": "guides/SITE-ANALYTICS.md"
     },
     "site/output-lock.json": {
       "kind": "file",
@@ -5603,221 +5675,227 @@
       "kind": "directory",
       "purpose": "Behavioral, adversarial and fixture checks for RI, engine, exporters and CI/staging trust.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/analytics.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for analytics.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/archive.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for archive.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/browser-gate-diagnostics.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for browser gate diagnostics.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/browser-gate-trace.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for browser gate trace.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/browser-gate-variants.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for browser gate variants.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/browser-lifecycle.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for browser lifecycle.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/cause-fix-probe.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for cause fix probe.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/cause-probe.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for cause probe.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/color-build.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for color build.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/content.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for content.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/endpoint-fixtures.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for endpoint fixtures.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/engine-browser-fixtures.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for engine browser fixtures.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/executive.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for executive.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/flight.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for flight.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/functional-fixtures.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for functional fixtures.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/gtk-native-probe.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for gtk native probe.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/gtk-target-probe.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for gtk target probe.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/native-display.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for native display.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/navigation-fixtures.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for navigation fixtures.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/navigation-motion-fixtures.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for navigation motion fixtures.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/navigation.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for navigation.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/preview-smoke.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for preview smoke.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/preview.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for preview.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/quality-sources.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for quality sources.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/quality.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for quality.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/renderer.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for renderer.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/review-flow.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for review flow.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/ribbons.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for ribbons.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/scroll-sync.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for scroll sync.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/site-engine.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for site engine.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/site-face-preparation.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for site face preparation.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/space.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for space.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/staging-reporting.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for staging reporting.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/staging-trust.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for staging trust.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/staging.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for staging.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/test_issue31_acceptance.py": {
       "kind": "file",
       "purpose": "Issue 31 observable acceptance checks for RI provenance, inventory, memory, workflow, unchanged site and bootstrap.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "tests/test_issue33_acceptance.py": {
+      "kind": "file",
+      "purpose": "Issue #33 source snapshot assertions for unchanged public bytes, historic reviews, locator exceptions, policy and handoff.",
       "role": "test",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -5831,11 +5909,17 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for offline export security.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/test_repository_intelligence.py": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for repository intelligence.",
+      "role": "test",
+      "owner": ".github/REPOSITORY-INTELLIGENCE.md"
+    },
+    "tests/test_repository_test_selection.py": {
+      "kind": "file",
+      "purpose": "Permanent discovery and failure/accounting regressions: numeric task snapshots stay selected only by their issue policy; generic/current/new modules remain included.",
       "role": "test",
       "owner": ".github/REPOSITORY-INTELLIGENCE.md"
     },
@@ -5845,47 +5929,53 @@
       "role": "test",
       "owner": ".github/REPOSITORY-INTELLIGENCE.md"
     },
+    "tests/test_root_layout.py": {
+      "kind": "file",
+      "purpose": "Permanent root/bootstrap/archive/link/ownership checks and meaningful negative fixtures; future public edits stay available.",
+      "role": "test",
+      "owner": ".github/REPOSITORY-INTELLIGENCE.md"
+    },
     "tests/theme.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for theme.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/writing-diagnosis.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for writing diagnosis.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/writing-geometry.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for writing geometry.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/writing-layout.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for writing layout.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/writing-localization.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for writing localization.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/writing-models.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for writing models.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/writing-variants.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for writing variants.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tools": {
       "kind": "directory",
@@ -5935,6 +6025,12 @@
       "role": "source",
       "owner": "site/README.md"
     },
+    "tools/check_repository_layout.py": {
+      "kind": "file",
+      "purpose": "Validate bounded entry routes, root/guide ownership, exact archive provenance and active links; opt-in issue #33 snapshots preserve task evidence.",
+      "role": "validator",
+      "owner": ".github/REPOSITORY-INTELLIGENCE.md"
+    },
     "tools/check_ri_ci.py": {
       "kind": "file",
       "purpose": "Validate and refresh reviewed RI/CI mapping, test-selector resolution and actual workflow invocations.",
@@ -5951,7 +6047,7 @@
       "kind": "file",
       "purpose": "Check frozen authored HTML/copy against the immutable baseline and exact approved editorial exceptions.",
       "role": "validator",
-      "owner": "SITE-SEO.md"
+      "owner": "guides/SITE-SEO.md"
     },
     "tools/compact_site_recordings.cjs": {
       "kind": "file",
@@ -5969,253 +6065,253 @@
       "kind": "directory",
       "purpose": "Maintained source, security, browser, hosted-origin, performance and release checks.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/README.md": {
       "kind": "file",
       "purpose": "Pinned quality tooling and source/browser/hosted artifact check entry points.",
       "role": "guide",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/advisory-exceptions.json": {
       "kind": "file",
       "purpose": "Quality/release configuration: advisory exceptions; preserve reviewed budgets, pins and exception provenance.",
       "role": "configuration",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/analytics-browser.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for analytics browser; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/artifact.cjs": {
       "kind": "file",
       "purpose": "Exact public artifact manifest/digest, byte verification and configured size budgets.",
       "role": "source",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/browser-gate-diagnostics.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for browser gate diagnostics; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/browser-gate-trace.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for browser gate trace; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/browser-lifecycle.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for browser lifecycle; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/budgets.json": {
       "kind": "file",
       "purpose": "Quality/release configuration: budgets; preserve reviewed budgets, pins and exception provenance.",
       "role": "configuration",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/cause-probe.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for cause probe; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/cold-native-probe.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for cold native probe; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/color-browser.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for color browser; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/common.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for common; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/deploy-pages.example.yml": {
       "kind": "file",
       "purpose": "Quality/release configuration: deploy pages.example; preserve reviewed budgets, pins and exception provenance.",
       "role": "configuration",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/display-probe.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for display probe; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/engine-browser.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for engine browser; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/eslint.config.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for eslint configuration; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/exceptions.json": {
       "kind": "file",
       "purpose": "Quality/release configuration: exceptions; preserve reviewed budgets, pins and exception provenance.",
       "role": "configuration",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/fallback-url.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for fallback url; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/flight-detail.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for flight detail; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/functional.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for functional; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/geometry.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for geometry; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/gtk-native-probe.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for gtk native probe; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/gtk-target-probe.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for gtk target probe; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/hosted-origin.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for hosted origin; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/hosted.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for hosted; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/lighthouse.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for lighthouse; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/local-browser.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for local browser; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/local.cjs": {
       "kind": "file",
       "purpose": "Economical source, generation, finite geometry, focused tests and size/profile checks.",
       "role": "validator",
-      "owner": "SITE-CHECK-PROFILES.md"
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tools/quality/motion.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for motion; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/native-display.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for native display; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/navigation.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for navigation; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/promotion.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for promotion; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/research-pair-probe.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for research pair probe; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/scanners.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for scanners; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/scroll-browser.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for scroll browser; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/secrets-baseline.json": {
       "kind": "file",
       "purpose": "Quality/release configuration: secrets baseline; preserve reviewed budgets, pins and exception provenance.",
       "role": "configuration",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/security-rules.yml": {
       "kind": "file",
       "purpose": "Quality/release configuration: security rules; preserve reviewed budgets, pins and exception provenance.",
       "role": "configuration",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/selftest.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for selftest; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/serve.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for serve; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/stylelint.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for stylelint; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/stylelint.config.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for stylelint configuration; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/toolchain": {
       "kind": "directory",
@@ -6245,72 +6341,78 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for triage engine checksums; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/triage-secrets.py": {
       "kind": "file",
       "purpose": "Classify exact known non-secret checksums with retained evidence; never blanket-suppress findings.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/validate.cjs": {
       "kind": "file",
       "purpose": "Release gate aggregation: mandatory reports/jobs and exact deployable artifact.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/workflow-artifacts.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for workflow artifacts; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/writing-diagnosis.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for writing diagnosis; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/writing-geometry.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for writing geometry; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/writing-layout.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for writing layout; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/writing-localization.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for writing localization; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/writing-models.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for writing models; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/writing-probe.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for writing probe; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/writing-variants.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for writing variants; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md"
+      "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/repository_intelligence.py": {
       "kind": "file",
       "purpose": "Bounded deterministic site RI producer, catalog validation, scoped lookup and generated-view verification.",
       "role": "source",
+      "owner": ".github/REPOSITORY-INTELLIGENCE.md"
+    },
+    "tools/run_repository_tests.py": {
+      "kind": "file",
+      "purpose": "Run all enduring Python regression suites while reserving exact numeric issue acceptance modules for their selected source-bound policies.",
+      "role": "validator",
       "owner": ".github/REPOSITORY-INTELLIGENCE.md"
     },
     "tools/site": {
@@ -6323,7 +6425,7 @@
       "kind": "file",
       "purpose": "Validate exact-origin analytics configuration and generate optional head/loader.",
       "role": "source",
-      "owner": "SITE-ANALYTICS.md"
+      "owner": "guides/SITE-ANALYTICS.md"
     },
     "tools/site/build.cjs": {
       "kind": "file",
@@ -6359,49 +6461,49 @@
       "kind": "directory",
       "purpose": "Verified artifact packaging, state/controller leases, promotion and recovery mechanics.",
       "role": "source",
-      "owner": "SITE-STAGING.md"
+      "owner": "guides/SITE-STAGING.md"
     },
     "tools/staging/color.cjs": {
       "kind": "file",
       "purpose": "Authored Color variant lineage, package construction and source preflight.",
       "role": "source",
-      "owner": "SITE-STAGING.md"
+      "owner": "guides/SITE-STAGING.md"
     },
     "tools/staging/hosted.cjs": {
       "kind": "file",
       "purpose": "Exact hosted bytes/root/runtime/media/redirects/404 and alias convergence checks.",
       "role": "validator",
-      "owner": "SITE-STAGING.md"
+      "owner": "guides/SITE-STAGING.md"
     },
     "tools/staging/package.cjs": {
       "kind": "file",
       "purpose": "Verified public artifact packaging and staging-only headers/noindex additions.",
       "role": "source",
-      "owner": "SITE-STAGING.md"
+      "owner": "guides/SITE-STAGING.md"
     },
     "tools/staging/review-flow.cjs": {
       "kind": "file",
       "purpose": "Issue/PR preview and owner-stage command routing with exact source/controller trust.",
       "role": "source",
-      "owner": "SITE-STAGING.md"
+      "owner": "guides/SITE-STAGING.md"
     },
     "tools/staging/selftest.cjs": {
       "kind": "file",
       "purpose": "Controller/package/trust self-test entry point.",
       "role": "validator",
-      "owner": "SITE-STAGING.md"
+      "owner": "guides/SITE-STAGING.md"
     },
     "tools/staging/state.cjs": {
       "kind": "file",
       "purpose": "Retained staging/promotion/recovery state tied to exact identities.",
       "role": "source",
-      "owner": "SITE-STAGING.md"
+      "owner": "guides/SITE-STAGING.md"
     },
     "tools/staging/trust.cjs": {
       "kind": "file",
       "purpose": "Protected source/artifact/controller/PR lease validation before hosted action.",
       "role": "source",
-      "owner": "SITE-STAGING.md"
+      "owner": "guides/SITE-STAGING.md"
     }
   }
 }

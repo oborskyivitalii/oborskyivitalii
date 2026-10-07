@@ -1,10 +1,9 @@
 # Site check profiles
 
-Issues #8/#13 own hosting/checks. Controller PRs #26/#29 and the accepted
-#18/#22/#23 runtime lineage and the #28 reading/content follow-up are on protected
-main. Current source/deployment observations belong in [MEMORY](MEMORY.md) and
-the live issue/PR. Fresh full staging and stable verification precede each
-authorized runtime/content merge.
+Issues #8/#13 own hosting/checks. Current source/controller/deployment observations
+belong in [MEMORY](../MEMORY.md) and the live issue/PR; prior accepted runs remain
+evidence of their exact source. Fresh full staging and stable verification precede
+each authorized runtime/content merge.
 
 | Profile | Trigger | Work |
 | --- | --- | --- |

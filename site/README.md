@@ -1,6 +1,6 @@
 # Static site source and engine contract
 
-The [current check profiles](../SITE-CHECK-PROFILES.md) supersede older full-local
+The [current check profiles](../guides/SITE-CHECK-PROFILES.md) supersede older full-local
 and always-full PR requirements below. Native-scroll mapping and all release
 budgets remain. Primary flights follow the four header links; Credits is a footer
 utility route with instant navigation.
@@ -40,8 +40,8 @@ and strict aggregate under #13; generation freshness alone is insufficient.
 | `output-lock.json` | Generated, reviewed output hashes and dependency identity | Cache verification and freshness check |
 | `../docs/` | Generated-only complete public output | Tested public artifact and offline exports |
 
-This catalog migrates the existing public inventory. [SITE-SOURCE-AUDIT](../SITE-SOURCE-AUDIT.md)
-continues to own provenance; [SITE-SEO](../SITE-SEO.md) owns discoverability and
+This catalog migrates the existing public inventory. [SITE-SOURCE-AUDIT](../guides/SITE-SOURCE-AUDIT.md)
+continues to own provenance; [SITE-SEO](../guides/SITE-SEO.md) owns discoverability and
 [#7](https://github.com/oborskyivitalii/oborskyivitalii/issues/7) owns rights.
 It is not a second rights ledger or a new article renderer; #5 retains article adapters.
 
@@ -102,7 +102,7 @@ to `runtime/<digest>/` and `media/<digest>/`; fetchable HTML lives in
 `snapshots/<route-digest>/<route>.html`. Root aliases remain identical for existing
 tooling and the offline exporter. The revision and root HTML revalidate; immutable
 paths use the prepared host policy. No idle revision fetch, remote CMS or automatic
-refresh is added. Default output has no telemetry; [SITE-ANALYTICS](../SITE-ANALYTICS.md)
+refresh is added. Default output has no telemetry; [SITE-ANALYTICS](../guides/SITE-ANALYTICS.md)
 owns the optional exact-origin adapter and tracking-free standalone exports.
 
 On the first user route navigation, the router pins a descriptor compatible with
@@ -144,8 +144,8 @@ reuses no evidence. Generation savings do not establish permission to omit check
 
 Packagers consume one tested coherent artifact; they do not patch live files or
 regenerate between validation and upload. Current hosting controllers, check profiles
-and host acceptance follow [SITE-STAGING](../SITE-STAGING.md),
-[SITE-CHECK-PROFILES](../SITE-CHECK-PROFILES.md) and the live owning issue.
+and host acceptance follow [SITE-STAGING](../guides/SITE-STAGING.md),
+[SITE-CHECK-PROFILES](../guides/SITE-CHECK-PROFILES.md) and the live owning issue.
 Local Pages fixtures are controlled tests, not real Cloudflare/TLS/CDN acceptance.
 Independent visual/rights review, physical-device acceptance and production decisions
 remain separate requirements; this source contract does not supply their approval.

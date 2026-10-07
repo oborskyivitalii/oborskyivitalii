@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "issue": 33,
+  "base_commit": "3ca14c54824ac6b9e7225bc88429b4b8fb3bcf10",
+  "root_files": [
+    ".gitattributes",
+    ".gitignore",
+    "AGENTS.md",
+    "CONTRIBUTING.md",
+    "MEMORY.md",
+    "PROJECT-BOOTSTRAP.md",
+    "README.md",
+    "REPOSITORY-MAP.md"
+  ],
+  "dispositions": {
+    ".gitattributes": {
+      "treatment": "keep",
+      "destination": ".gitattributes"
+    },
+    ".gitignore": {
+      "treatment": "keep",
+      "destination": ".gitignore"
+    },
+    "AGENTS.md": {
+      "treatment": "keep",
+      "destination": "AGENTS.md"
+    },
+    "BACKLOG.md": {
+      "treatment": "archive",
+      "destination": "review/root-history-20261007/BACKLOG.md",
+      "archive_path": "review/root-history-20261007/BACKLOG.md"
+    },
+    "CONTRIBUTING.md": {
+      "treatment": "keep",
+      "destination": "CONTRIBUTING.md"
+    },
+    "MEMORY.md": {
+      "treatment": "keep",
+      "destination": "MEMORY.md"
+    },
+    "PROJECT-BOOTSTRAP.md": {
+      "treatment": "keep",
+      "destination": "PROJECT-BOOTSTRAP.md"
+    },
+    "README.md": {
+      "treatment": "keep",
+      "destination": "README.md"
+    },
+    "REPOSITORIES.md": {
+      "treatment": "move",
+      "destination": "guides/REPOSITORIES.md"
+    },
+    "REPOSITORY-MAP.md": {
+      "treatment": "keep",
+      "destination": "REPOSITORY-MAP.md"
+    },
+    "SITE-ANALYTICS.md": {
+      "treatment": "move",
+      "destination": "guides/SITE-ANALYTICS.md"
+    },
+    "SITE-CHECK-PROFILES.md": {
+      "treatment": "move",
+      "destination": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "SITE-CONTENT-REVIEW.md": {
+      "treatment": "replace",
+      "destination": "guides/SITE-CONTENT-REVIEW.md",
+      "archive_path": "review/root-history-20261007/SITE-CONTENT-REVIEW.md"
+    },
+    "SITE-OPERATIONS.md": {
+      "treatment": "archive",
+      "destination": "review/root-history-20261007/SITE-OPERATIONS.md",
+      "archive_path": "review/root-history-20261007/SITE-OPERATIONS.md"
+    },
+    "SITE-RELEASE-GATES.md": {
+      "treatment": "move",
+      "destination": "guides/SITE-RELEASE-GATES.md"
+    },
+    "SITE-ROADMAP.md": {
+      "treatment": "replace",
+      "destination": "guides/SITE-ROADMAP.md",
+      "archive_path": "review/root-history-20261007/SITE-ROADMAP.md"
+    },
+    "SITE-SEO.md": {
+      "treatment": "move",
+      "destination": "guides/SITE-SEO.md"
+    },
+    "SITE-SOURCE-AUDIT.md": {
+      "treatment": "move",
+      "destination": "guides/SITE-SOURCE-AUDIT.md"
+    },
+    "SITE-STAGING.md": {
+      "treatment": "move",
+      "destination": "guides/SITE-STAGING.md"
+    },
+    "SITE-VISUAL-REVIEW.md": {
+      "treatment": "archive",
+      "destination": "review/root-history-20261007/SITE-VISUAL-REVIEW.md",
+      "archive_path": "review/root-history-20261007/SITE-VISUAL-REVIEW.md"
+    },
+    "SOL-HANDOFF.md": {
+      "treatment": "archive",
+      "destination": "review/root-history-20261007/SOL-HANDOFF.md",
+      "archive_path": "review/root-history-20261007/SOL-HANDOFF.md"
+    }
+  },
+  "active_markdown": [
+    ".github/ACCEPTANCE.md",
+    ".github/ISSUE_TEMPLATE/research-input.md",
+    ".github/ISSUE_TEMPLATE/work-item.md",
+    ".github/REPOSITORY-INTELLIGENCE.md",
+    ".github/pull_request_template.md",
+    "AGENTS.md",
+    "CONTRIBUTING.md",
+    "MEMORY.md",
+    "PROJECT-BOOTSTRAP.md",
+    "README.md",
+    "REPOSITORY-MAP.md",
+    "guides/README.md",
+    "guides/REPOSITORIES.md",
+    "guides/SITE-ANALYTICS.md",
+    "guides/SITE-CHECK-PROFILES.md",
+    "guides/SITE-CONTENT-REVIEW.md",
+    "guides/SITE-RELEASE-GATES.md",
+    "guides/SITE-ROADMAP.md",
+    "guides/SITE-SEO.md",
+    "guides/SITE-SOURCE-AUDIT.md",
+    "guides/SITE-STAGING.md",
+    "review/REVIEW-TEMPLATE.md",
+    "site/README.md",
+    "tools/RI-NOTICE.md",
+    "tools/quality/README.md",
+    "review/root-history-20261007/README.md"
+  ]
+}

@@ -1,17 +1,19 @@
 # Site measurement before the first release
 
 The adapter contract below remains applicable. Dated branch/hosting observations
-are historical; [MEMORY](MEMORY.md) and live #8/#13 own the current status.
+are historical; [MEMORY](../MEMORY.md) and live #8/#13 own the current status.
 
 Owner [#8](https://github.com/oborskyivitalii/oborskyivitalii/issues/8), with
 [#13](https://github.com/oborskyivitalii/oborskyivitalii/issues/13) retaining release
 gates and [SITE-SEO](SITE-SEO.md) retaining the query/topic plan.
 
-The maintainer's 2026-10-04 request authorizes preparing analytics now. Production
-hosting is **GitHub Pages**; Cloudflare Pages remains a possible future staging
-host. All publication is still paused. No account, live hostname, token, verified
-Search Console property or collected visitor data is claimed. This focused Draft
-branch stacks on PR #16's frozen `4d4c609`; PR #10 remains frozen at `da06b6d6`.
+The maintainer's 2026-10-04 request established analytics preparation for the
+selected future production host, **GitHub Pages**. [SITE-STAGING](SITE-STAGING.md)
+owns the separate Cloudflare preview/staging mechanics. Analytics activation,
+actual production origin/token and Search Console/provider evidence remain with
+live #8/#13; preparing the adapter does not establish collected visitor data.
+The [original preparation record](https://github.com/oborskyivitalii/oborskyivitalii/blob/3ca14c54824ac6b9e7225bc88429b4b8fb3bcf10/SITE-ANALYTICS.md)
+preserves dated PR #10/#16 observations and the then-applicable publication pause.
 
 ## What each source can answer
 
@@ -107,7 +109,7 @@ tab hiding and an ad blocker; missing beacon data is a known coverage limit.
 ## Activation at release time
 
 1. Finalize the actual GitHub Pages URL and release/canonical/sitemap setup under
-   #8. Retain the all-publication pause until a later maintainer release decision.
+   #8. Production activation requires the applicable maintainer release decision.
 2. In the owner's Cloudflare Web Analytics account, register that hostname and
    obtain its manual JavaScript snippet. Set the exact `siteURL` and public `token`,
    then `enabled: true` in a reviewed change. Leave provider-side automatic

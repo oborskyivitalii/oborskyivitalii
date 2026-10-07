@@ -150,10 +150,12 @@ class Issue31AcceptanceTests(unittest.TestCase):
 
     def test_bootstrap_prompt_is_repository_anchored(self):
         prompt = text("PROJECT-BOOTSTRAP.md")
-        for fragment in ["oborskyivitalii/oborskyivitalii", "AGENTS.md", "MEMORY.md",
-                         "CONTRIBUTING.md", "REPOSITORY-MAP.md", "AC", "UA", "Subprime"]:
+        for fragment in ["oborskyivitalii/oborskyivitalii", "README.md", "AGENTS.md",
+                         "MEMORY.md", "REPOSITORY-MAP.md"]:
             self.assertIn(fragment, prompt)
-        self.assertGreater(len(prompt.strip()), 500)
+        self.assertLessEqual(len(prompt), 1000)
+        self.assertLessEqual(len([line for line in prompt.splitlines() if line.strip()]), 12)
+        # #33 explicitly supersedes the former long prompt; #31 evidence is pinned.
         # Semantic usefulness/language is part of independent review.
 
 

@@ -1,6 +1,6 @@
 # Contributing
 
-This repository owns personal publications and distribution. Read [AGENTS](AGENTS.md) and [repository ownership](REPOSITORIES.md) before coordinated edits.
+This repository owns personal publications and distribution. Read [AGENTS](AGENTS.md) and [repository ownership](guides/REPOSITORIES.md) before coordinated edits.
 
 ## Issue intake and durable intent
 

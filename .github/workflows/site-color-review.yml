@@ -437,7 +437,7 @@ jobs:
         with:
           script: |
             const n=JSON.parse(process.env.REVIEW_RESULTS),preview=process.env.REVIEW_MODE==='preview';
-            let status='Deployment is disabled; complete the owner setup in SITE-STAGING.md.';
+            let status='Deployment is disabled; complete the owner setup in guides/SITE-STAGING.md.';
             if(n.target.outputs.enabled==='true'){
               if(n.build.result!=='success'||n.publish.result!=='success')status='Build/deployment failed; no accepted update.';
               else if(n.smoke.result!=='success')status='Hosted smoke failed; no accepted update.';

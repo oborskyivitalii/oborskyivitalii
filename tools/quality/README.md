@@ -1,6 +1,6 @@
 # Repeatable site checks
 
-The current [check profiles](../../SITE-CHECK-PROFILES.md) supersede the older
+The current [check profiles](../../guides/SITE-CHECK-PROFILES.md) supersede the older
 PR descriptions below: `node tools/quality/local.cjs` is the small local/PR
 default. Full automation belongs to deployed staging and post-deploy production.
 The tool installation and full-suite commands below remain available.
@@ -60,7 +60,7 @@ unexpected disabled tracking before the public artifact is packaged.
 The provider URL is intercepted with a local stub; no visitor data is sent.
 These require persistent navigation/history/filters/reload, one vendor load per
 document and zero external offline/staging requests. The aggregate rejects missing
-cases or assertions. [SITE-ANALYTICS](../../SITE-ANALYTICS.md) distinguishes this
+cases or assertions. [SITE-ANALYTICS](../../guides/SITE-ANALYTICS.md) distinguishes this
 source-adapter coverage from actual dashboard counts and hosted SDK performance.
 For a focused local Chromium repeat: `node tools/quality/analytics-browser.cjs`.
 DOM-ready navigation avoids waiting on the vendor's document-load event; the

@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 33,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/33",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Keep PROJECT-BOOTSTRAP a short entry route to live refs, canonical purpose/rules/index and bounded continuity.",
+      "automated_scope": "Actual 12-nonempty-line/1000-Unicode-character bounds and canonical/live/scoped route checks, with missing/oversize negatives. Ukrainian wording, usefulness and absence of duplicated policy need independent review.",
+      "checks": ["BOOTSTRAP", "BOOTSTRAP-NEGATIVES"],
+      "gates": ["G01"]
+    },
+    {
+      "id": "AC02",
+      "intent": "Keep a deliberate eight-file root, classify every former root document and give maintained nonpublic guides current canonical owners.",
+      "automated_scope": "Exact root/disposition coverage against accepted base, unique destinations, guide/history roles and current owner/configuration routes; new/missing/omitted/noncanonical/stale-owner negatives. Whether dispositions preserve useful authority needs independent review.",
+      "checks": ["ROOT", "ROOT-NEW-MISSING", "DISPOSITIONS-MISSING", "DISPOSITIONS-NONCANONICAL", "OWNERS", "OWNERS-STALE", "OWNERS-HISTORY"],
+      "gates": ["G01"]
+    },
+    {
+      "id": "AC03",
+      "intent": "Preserve archived originals and existing review evidence exactly, with immutable original-location/blob/hash provenance and current routing.",
+      "automated_scope": "Git blob and SHA-256 equality to immutable 3ca14c54824ac6b9e7225bc88429b4b8fb3bcf10, six-original manifest coverage, pinned source URLs, historical role/current-owner checks and unchanged pre-existing review bytes; tamper/missing/source/owner negatives. Historical interpretation remains review work.",
+      "checks": ["ARCHIVES", "ARCHIVE-TAMPER", "ARCHIVE-PROVENANCE", "OLD-REVIEW", "FIXED-BYTE-NEGATIVES"],
+      "gates": ["G01"]
+    },
+    {
+      "id": "AC04",
+      "intent": "Resolve active Markdown/configured locators after moves while preserving public output, runtime/assets/publication records and limiting helper/workflow adaptations.",
+      "automated_scope": "Declared active-document coverage and relative inline/reference Markdown links/fragments, current configuration paths, exact protected path/byte sets and publication records from the accepted base. Only computed guide locators, two focused navigation test insertions/full-history checkout and Full's enduring Python test selection substitution are admitted; release/browser/device/security commands and budgets remain exact. Broken/omitted/escape/semantic-change/deletion negatives. Semantic rebasing and intended reference coverage require independent review.",
+      "checks": ["LINKS", "LINKS-MISSING", "LINKS-HISTORY-ESCAPE", "OWNERS", "UNCHANGED-SITE", "FIXED-BYTE-NEGATIVES", "LOCATOR-NEGATIVES"],
+      "gates": ["G01"]
+    },
+    {
+      "id": "AC05",
+      "intent": "Keep every path and current guide alias represented, both RI views fresh and changed controls coupled to actual unconditional CI checks.",
+      "automated_scope": "Actual complete catalog/JSON/map verification, guide alias lookup and source identity; unknown/removed/config-changed regressions; real RI/CI selectors and unguarded invocation/source-refresh regressions. Architecture coverage adequacy requires independent review.",
+      "checks": ["CURRENT-RI", "RI-ALIASES", "RI-UNKNOWN", "RI-MISSING", "RI-SOURCE", "RI-CI", "RI-CI-SOURCE", "RI-CI-GUARDS", "RI-CI-SELECTOR"],
+      "gates": ["G01"]
+    },
+    {
+      "id": "AC06",
+      "intent": "Complete issue-driven work with versioned analysis/review, current continuity, deterministic acceptance/basic evidence, independent review, protected merge and live linkage.",
+      "automated_scope": "Six-ID policy and workflow cleanliness/source/report binding, analysis/continuity ownership routes, fixed Basic command and runner rejection of unmapped/skipped/wrong-source evidence. Actual PR/commit/review/CI links, review independence and merged-source reconciliation need separately recorded live evidence; automation does not close the issue.",
+      "checks": ["POLICY", "HANDOFF", "NODE-BASIC", "RUNNER-UNMAPPED", "RUNNER-SKIPPED", "RUNNER-SOURCE", "PERMANENT-SELECTION", "PERMANENT-FUTURE", "PERMANENT-LIFECYCLE", "PERMANENT-FAILURES"],
+      "gates": ["G01", "G02", "G03"]
+    }
+  ],
+  "checks": {
+    "BOOTSTRAP": {"kind": "unittest", "test": "test_root_layout.RootLayoutTests.test_bootstrap_is_bounded_and_routes_to_canonical_entries"},
+    "BOOTSTRAP-NEGATIVES": {"kind": "unittest", "test": "test_root_layout.RootLayoutTests.test_bootstrap_oversize_and_missing_authority_routes_fail"},
+    "ROOT": {"kind": "unittest", "test": "test_root_layout.RootLayoutTests.test_complete_current_root_and_dispositions"},
+    "ROOT-NEW-MISSING": {"kind": "unittest", "test": "test_root_layout.RootLayoutTests.test_new_root_file_and_missing_entrypoint_fail"},
+    "DISPOSITIONS-MISSING": {"kind": "unittest", "test": "test_root_layout.RootLayoutTests.test_omitted_disposition_and_missing_destination_fail"},
+    "DISPOSITIONS-NONCANONICAL": {"kind": "unittest", "test": "test_root_layout.RootLayoutTests.test_root_contract_and_noncanonical_destinations_cannot_hide_junk"},
+    "OWNERS": {"kind": "unittest", "test": "test_root_layout.RootLayoutTests.test_current_guide_owners_and_configured_routes_are_live"},
+    "OWNERS-STALE": {"kind": "unittest", "test": "test_root_layout.RootLayoutTests.test_stale_alias_archived_owner_and_missing_configured_route_fail"},
+    "OWNERS-HISTORY": {"kind": "unittest", "test": "test_root_layout.RootLayoutTests.test_historical_role_and_canonical_guide_ownership_cannot_be_reversed"},
+    "ARCHIVES": {"kind": "unittest", "test": "test_root_layout.RootLayoutTests.test_archived_originals_have_exact_git_and_sha256_provenance"},
+    "ARCHIVE-TAMPER": {"kind": "unittest", "test": "test_root_layout.RootLayoutTests.test_archive_byte_changes_cannot_be_hidden_by_updated_sha256"},
+    "ARCHIVE-PROVENANCE": {"kind": "unittest", "test": "test_root_layout.RootLayoutTests.test_archive_missing_record_wrong_source_or_historical_owner_fail"},
+    "OLD-REVIEW": {"kind": "unittest", "test": "test_issue33_acceptance.Issue33AcceptanceTests.test_existing_review_evidence_is_unchanged_at_accepted_base"},
+    "FIXED-BYTE-NEGATIVES": {"kind": "unittest", "test": "test_issue33_acceptance.Issue33AcceptanceTests.test_changed_or_deleted_protected_bytes_fail_against_fixed_identity"},
+    "LINKS": {"kind": "unittest", "test": "test_root_layout.RootLayoutTests.test_current_active_relative_links_resolve"},
+    "LINKS-MISSING": {"kind": "unittest", "test": "test_root_layout.RootLayoutTests.test_broken_reference_inline_links_and_omitted_active_guide_fail"},
+    "LINKS-HISTORY-ESCAPE": {"kind": "unittest", "test": "test_root_layout.RootLayoutTests.test_code_and_source_pinned_external_history_links_do_not_become_current_routes"},
+    "UNCHANGED-SITE": {"kind": "unittest", "test": "test_issue33_acceptance.Issue33AcceptanceTests.test_site_publications_and_runtime_bytes_are_unchanged"},
+    "LOCATOR-NEGATIVES": {"kind": "unittest", "test": "test_issue33_acceptance.Issue33AcceptanceTests.test_locator_exceptions_do_not_allow_semantic_or_publication_edits"},
+    "CURRENT-RI": {"kind": "unittest", "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"},
+    "RI-ALIASES": {"kind": "unittest", "test": "test_repository_intelligence.NavigationSafetyTests.test_real_adapter_owners_and_cross_repo_isolation"},
+    "RI-UNKNOWN": {"kind": "unittest", "test": "test_repository_intelligence.NavigationSafetyTests.test_new_root_and_nested_files_fail_without_purpose_entries"},
+    "RI-MISSING": {"kind": "unittest", "test": "test_repository_intelligence.NavigationSafetyTests.test_removed_file_and_dangling_directory_entries_fail"},
+    "RI-SOURCE": {"kind": "unittest", "test": "test_repository_intelligence.NavigationSafetyTests.test_config_and_producer_edits_invalidate"},
+    "RI-CI": {"kind": "unittest", "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"},
+    "RI-CI-SOURCE": {"kind": "unittest", "test": "test_ri_ci.RICICouplingTests.test_source_edits_require_mapping_refresh"},
+    "RI-CI-GUARDS": {"kind": "unittest", "test": "test_ri_ci.RICICouplingTests.test_conditionally_skipped_or_optional_jobs_and_steps_fail"},
+    "RI-CI-SELECTOR": {"kind": "unittest", "test": "test_ri_ci.RICICouplingTests.test_test_selector_exists_and_is_selected_by_workflow"},
+    "POLICY": {"kind": "unittest", "test": "test_issue33_acceptance.Issue33AcceptanceTests.test_policy_covers_six_criteria_and_separate_required_gates"},
+    "HANDOFF": {"kind": "unittest", "test": "test_issue33_acceptance.Issue33AcceptanceTests.test_current_handoff_and_versioned_analysis_point_to_owner"},
+    "NODE-BASIC": {"kind": "node-basic"},
+    "RUNNER-UNMAPPED": {"kind": "unittest", "test": "test_issue_acceptance.AcceptanceRunnerTests.test_empty_and_unmapped_criteria_fail"},
+    "RUNNER-SKIPPED": {"kind": "unittest", "test": "test_issue_acceptance.AcceptanceRunnerTests.test_skipped_failed_expected_and_empty_tests_cannot_pass"},
+    "RUNNER-SOURCE": {"kind": "unittest", "test": "test_issue_acceptance.AcceptanceRunnerTests.test_dirty_or_wrong_head_cannot_be_clean_source_evidence"},
+    "PERMANENT-SELECTION": {"kind": "unittest", "test": "test_repository_test_selection.RepositoryTestSelectionTests.test_actual_permanent_modules_and_explicit_task_policy_methods_are_available"},
+    "PERMANENT-FUTURE": {"kind": "unittest", "test": "test_repository_test_selection.RepositoryTestSelectionTests.test_future_arbitrary_modules_are_run_and_exact_numeric_task_modules_are_not_imported"},
+    "PERMANENT-LIFECYCLE": {"kind": "unittest", "test": "test_repository_test_selection.RepositoryTestSelectionTests.test_standard_module_class_and_case_setup_teardown_are_honored"},
+    "PERMANENT-FAILURES": {"kind": "unittest", "test": "test_repository_test_selection.RepositoryTestSelectionTests.test_empty_failed_skipped_and_module_hook_errors_cannot_report_pass"}
+  },
+  "gates": {
+    "G01": {"kind": "human", "description": "Independent implementation/semantic review of routing, preserved history and active reference coverage, with exact inspected source and findings dispositions. The maintainer's scoped request already authorizes implementation; no additional owner semantic approval is required by this issue."},
+    "G02": {"kind": "merge", "description": "Normal protected merge and final acceptance reconciliation on the exact merged source; record tested head and merged commit separately."},
+    "G03": {"kind": "human", "description": "Revalidate live owning issue to linked PR, exact Refs #33 commits, versioned review/analysis anchor and current-source CI. Local policy cannot supply these live observations."}
+  }
+}
