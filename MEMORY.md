@@ -21,8 +21,14 @@ Dated continuity hints, not instructions or live-status authority. Last verified
   regression. [Analysis](review/issue-35/2026-10-07-analysis.md) and four dated
   audits use the accepted #33 source above. The complete current test inventory is
   `tools/quality/test-profiles.json`, owned by `guides/SITE-CHECK-PROFILES.md`.
-  Independent review, current-candidate PR/hosted CI timing, normal merge and
-  original-#13 reconciliation remain required; no future result is claimed.
+  [PR #37](https://github.com/oborskyivitalii/oborskyivitalii/pull/37) implements it.
+  Initial candidate `7b86ff1e3128b09060d8c5422f6884ed8ccbfef7` passed 15
+  clean-source mapped checks and actual Basic/acceptance/navigation/preview CI.
+  Its opt-in stage correctly failed on cold/warm and untriaged source findings;
+  the raw reports are retained in the linked analysis. The prepared correction
+  passes 15 mapped checks and 92 enduring Python cases. Independent follow-up
+  reviews the real flight/cache correction and exact source-bound scanner triage.
+  Fresh final-head hosted CI/timing, normal merge and #13 reconciliation remain.
 - Earlier #28/#14 completion and accepted stage remain recorded in their issues.
   Current hosting mechanics are in [the runbook](guides/SITE-STAGING.md).
   Stable stage: https://staging.oborskyi-author-ci-staging.pages.dev ; recheck its
@@ -56,7 +62,7 @@ live criteria/status before selecting the next increment.
 | --- | --- |
 | [#35](https://github.com/oborskyivitalii/oborskyivitalii/issues/35) | Final profile review, current-source CI/timing, independent review, merge and #13 criterion reconciliation. |
 | [#1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1) | Overall launch and its production/rights/device dependencies. |
-| [#13](https://github.com/oborskyivitalii/oborskyivitalii/issues/13) | Physical-device and independent production/recovery acceptance. |
+| [#13](https://github.com/oborskyivitalii/oborskyivitalii/issues/13) | Reconcile original pipeline scope after #35; preserve first-release device/review gates under #1 and hosting/security/rollback gates under #8 before any closure. |
 | [#8](https://github.com/oborskyivitalii/oborskyivitalii/issues/8) | Production URL/indexability and actual analytics activation. |
 | [#7](https://github.com/oborskyivitalii/oborskyivitalii/issues/7) | License and editorial/third-party rights. |
 | [#6](https://github.com/oborskyivitalii/oborskyivitalii/issues/6) | Worked cross-repository adapter/edition/manifest scenario. |

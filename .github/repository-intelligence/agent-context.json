@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "a634c90f92571c55a060d01f85a73886b5118fa39a8c956d72cfcfaf66a25cd6",
+    "digest": "dbc3b5ccf1fa3c1fa74438e6d2a684138922d24372aeb034889ecb17f08aa8b7",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -67,7 +67,7 @@
       {
         "path": ".github/repository-intelligence-config.json",
         "identity_mode": "content",
-        "sha256": "c7677a10d56caf55663066077759f0fe6103ebf416a3aa79fd002b589a018248"
+        "sha256": "6a4dd53f7fdcfdbdc3c3d29ed027e03bf861ab5aecb62413440de4376d39830b"
       },
       {
         "path": ".github/repository-intelligence/agent-context.json",
@@ -81,12 +81,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "889ad047e75421273f33760a79aaed1e87660a30da4d0d32aabc5bd746ed17c6"
+        "sha256": "e71580ccebbbfc16d051990b68a49e59f82a9797b4a7341c3b27c5c758ed26f1"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "a1cd35ab575eec001a093bb7263ccdcb8c57f863a4e84c6d90abfd5d040e6552"
+        "sha256": "f977e6ac3f0cf385c3ecd88e22d50a9cde4319b945a0901744cd0fa1fcc9e6a7"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -96,7 +96,7 @@
       {
         "path": ".github/workflows/navigation.yml",
         "identity_mode": "content",
-        "sha256": "fff20c6eb682c60503578e56e370c093a439953c0c1da91ee4cfbc0fa625ce82"
+        "sha256": "8bb5299dfe5082381cbaa08b5a1bdc748d7e8bd060daf512096448eac8950454"
       },
       {
         "path": ".github/workflows/site-browser-gate-probe.yml",
@@ -146,7 +146,7 @@
       {
         "path": ".github/workflows/site-release-checks.yml",
         "identity_mode": "content",
-        "sha256": "700fde757ab7a8da55805a219d05b21407ff0eef4e8a654ce12b98462edbb870"
+        "sha256": "27639df5efb5aac57b9f6d44764c601325dd9294aa98111b8aba5f6d9c610082"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
@@ -181,7 +181,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "92795b9fa9a51ae43933ee54a2f9f405f746603a41256b25bea8e4447f1840a5"
+        "sha256": "16aca0503d5d1e5d5dc290894b8f3e5e65ce07242f8f34245c28463e121336cb"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -360,7 +360,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "757cec98d8e5db8ecd50328d8cfbab41babd1437f975d42e200755353a923dda"
+        "sha256": "3b0b18ffcad6190e56ba7ad9de990df1a36c1bdf7a7ca7d837378074e3d3b5c6"
       },
       {
         "path": "guides/SITE-CONTENT-REVIEW.md",
@@ -495,7 +495,7 @@
       {
         "path": "review/issue-35/2026-10-07-analysis.md",
         "identity_mode": "content",
-        "sha256": "b0149c8a0c914a3fd55ab4c98f7a45f63c1ae7cc2809ce7d3ef507d1af8c5009"
+        "sha256": "9fc6b627cc6498e8c68b972c66b7c75ba682364ea8da8e693fd1c59944733a94"
       },
       {
         "path": "review/issue-35/2026-10-07-ci-audit.json",
@@ -506,6 +506,11 @@
         "path": "review/issue-35/2026-10-07-issue13-audit.md",
         "identity_mode": "content",
         "sha256": "252a98b7214b12a2ed3c9db380e41d0e35a40f20aa6faeb1fc26ec0e26e7d0bb"
+      },
+      {
+        "path": "review/issue-35/2026-10-07-review.md",
+        "identity_mode": "content",
+        "sha256": "fe8453051b738e7c6566b35801314e72a5c281a333db7e67d4bb3f2b088033fd"
       },
       {
         "path": "review/issue-35/2026-10-07-runtime-audit.json",
@@ -4420,7 +4425,7 @@
       {
         "path": "tests/fixtures/staging-evidence.cjs",
         "identity_mode": "content",
-        "sha256": "df589d3180585ddd5163ff2bd9dca889c9117d6e5d2be710c931109db14dc0f2"
+        "sha256": "d5c653e3e1a1d8c4653e3443d66c483f5d1a63d6d47d00d15978084a77481a9d"
       },
       {
         "path": "tests/flight.test.cjs",
@@ -4475,7 +4480,7 @@
       {
         "path": "tests/quality-sources.test.cjs",
         "identity_mode": "content",
-        "sha256": "c251752151d00649bdbc7907d7e3f3cb1e12e15accf9617d4457ab880d375458"
+        "sha256": "685dbdd43960a3ea5b1c575a3fdb9d59378b1a57f97fa70404f70d6f24344fd3"
       },
       {
         "path": "tests/quality.test.cjs",
@@ -4525,7 +4530,7 @@
       {
         "path": "tests/staging-regression.test.cjs",
         "identity_mode": "content",
-        "sha256": "3f8eeb8b9d2ac2ffdeb7bdb5b3e00ddb29f355629b0806e329cd58d1348e9678"
+        "sha256": "ed556cc2eb1232100cb8389c5b81a736b7d98b5f0294e60b63404738a00d29d3"
       },
       {
         "path": "tests/staging-reporting.test.cjs",
@@ -4550,7 +4555,7 @@
       {
         "path": "tests/test_issue31_acceptance.py",
         "identity_mode": "content",
-        "sha256": "9399afd265d4ed769a56e20588eeb0bfc498cda3dc678d7c47f351f596cff3f2"
+        "sha256": "09b726a0772b0611aa19051abc45702e7158c26d9f289081e50922d49c48cc34"
       },
       {
         "path": "tests/test_issue33_acceptance.py",
@@ -4565,7 +4570,7 @@
       {
         "path": "tests/test_issue_acceptance.py",
         "identity_mode": "content",
-        "sha256": "63239ef57bd90d27fca4dde944ed267f5f6522dd0bfe13a6a6a830307b2f01fc"
+        "sha256": "51ccc40c3ccbf755ef277c7dec6437148cdf50fb7aa401e1bf8f255c2b96a426"
       },
       {
         "path": "tests/test_offline_export_security.py",
@@ -4585,12 +4590,12 @@
       {
         "path": "tests/test_ri_ci.py",
         "identity_mode": "content",
-        "sha256": "9c90b60ce276a897069ca86b05bb3c6c482f705e8aa21407a8dbe11573faeda3"
+        "sha256": "e566cc57a41fc73b3da7ade2649752a4e0b038f6215b06c9bfc3e620a978ec73"
       },
       {
         "path": "tests/test_root_layout.py",
         "identity_mode": "content",
-        "sha256": "abfd110c9072996eba575ca2beefa5e1f56db0732ea8ab1d4ec3976511244487"
+        "sha256": "1eec98199b0a4ef834afc9e396d5f2c5909dd19501a2958887fc5d201df7d3a9"
       },
       {
         "path": "tests/theme.test.cjs",
@@ -4665,7 +4670,7 @@
       {
         "path": "tools/check_repository_layout.py",
         "identity_mode": "content",
-        "sha256": "5c2ab75f96d70d727470b2cb91544b2295d78f1d916899b143febcd48e2fff65"
+        "sha256": "e3d46affb1f40c296943610d4557b0c15a99f87b81ce0eeb3d22ab3fc9a46c3a"
       },
       {
         "path": "tools/check_ri_ci.py",
@@ -4695,7 +4700,7 @@
       {
         "path": "tools/quality/README.md",
         "identity_mode": "content",
-        "sha256": "226bbc94dd3134f376b5febad5abddc7f95c2238190a86b70216f84100d11928"
+        "sha256": "8cd820c3b033ab0837f60350567b1f2d06750fe444f5c0dee56f33d166e2a129"
       },
       {
         "path": "tools/quality/advisory-exceptions.json",
@@ -4711,6 +4716,16 @@
         "path": "tools/quality/artifact.cjs",
         "identity_mode": "content",
         "sha256": "200022f00cd486a47aefbb73217c97c010860adceb3d0a4fc6803b6e765c1fe1"
+      },
+      {
+        "path": "tools/quality/bandit-policy.json",
+        "identity_mode": "content",
+        "sha256": "91099518ba6f5c02694186a6c099daf4fc85dd1419267dff034bb653a43726c2"
+      },
+      {
+        "path": "tools/quality/bandit-triage.cjs",
+        "identity_mode": "content",
+        "sha256": "725e0bbd52c7dc38434e3aeac29c4edbe7bf7f25229945427ec177ebb02bf566"
       },
       {
         "path": "tools/quality/browser-gate-diagnostics.cjs",
@@ -4860,7 +4875,7 @@
       {
         "path": "tools/quality/scanners.cjs",
         "identity_mode": "content",
-        "sha256": "2cdf30eae862a4041a1fc841d5e2d5397cbde15c64fff34ecf61012f432cca0a"
+        "sha256": "ed955d35bf240a338007186142ec345ccc539a9c7b57a07b2aea19900d266e6c"
       },
       {
         "path": "tools/quality/scroll-browser.cjs",
@@ -4871,6 +4886,11 @@
         "path": "tools/quality/secrets-baseline.json",
         "identity_mode": "content",
         "sha256": "8bff933ce846d5b1a0fa9a357f629c07d49af8626270ea40cfd658b760e293b0"
+      },
+      {
+        "path": "tools/quality/secrets-reviewed.json",
+        "identity_mode": "content",
+        "sha256": "dcba0f8cc59f89c5e0ead7336c013385d7709dd72c3dacfffeef448854b28212"
       },
       {
         "path": "tools/quality/security-rules.yml",
@@ -4890,7 +4910,7 @@
       {
         "path": "tools/quality/source-tests.cjs",
         "identity_mode": "content",
-        "sha256": "c4d4564066f502f909557a7efd83df279253a70d7d74417ff15b304e2f644432"
+        "sha256": "c7cf375b960645ba37b9dbd63f566fc20818ddcc41e7f630288a440228cdb0a2"
       },
       {
         "path": "tools/quality/staging-gate.cjs",
@@ -4900,7 +4920,7 @@
       {
         "path": "tools/quality/staging-regression.cjs",
         "identity_mode": "content",
-        "sha256": "6a3fee8bc27b49044069b2ad23e97ca5d554de6b5b0df8297ca08a63f05d7f06"
+        "sha256": "c80de65a53fdf7440d153a4c0dbd297d41418b670e6565d54fb6c7bfa96b513e"
       },
       {
         "path": "tools/quality/stylelint.cjs",
@@ -4915,7 +4935,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "ad0b35995829a70976f85d86e9e4fdb1a57ba745f2e7d2ecd183c43a3d11e358"
+        "sha256": "2c651c61e76cf004403c7fe5b074666483721a552de65ddd8669d1fa03e372df"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -5068,7 +5088,7 @@
     "path": "tools/repository_intelligence.py",
     "sha256": "9c043c7e13c36899559f83b7941b989dfebaabd1e2d6d6e1815815704db627b3",
     "config_path": ".github/repository-intelligence-config.json",
-    "config_sha256": "c7677a10d56caf55663066077759f0fe6103ebf416a3aa79fd002b589a018248"
+    "config_sha256": "6a4dd53f7fdcfdbdc3c3d29ed027e03bf861ab5aecb62413440de4376d39830b"
   },
   "owners": [
     {
@@ -6370,6 +6390,17 @@
         "AGENTS.md"
       ],
       "title": "Issue 13 reconciliation for issue 35 — 7 October 2026"
+    },
+    {
+      "path": "review/issue-35/2026-10-07-review.md",
+      "kind": "file",
+      "purpose": "Independent exact-tree AC/trust/profile review with original finding, integration corrections and substantive follow-up evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 35 — 2026-10-07 independent implementation review"
     },
     {
       "path": "review/issue-35/2026-10-07-runtime-audit.json",
@@ -15097,7 +15128,7 @@
     {
       "path": "tests/quality-sources.test.cjs",
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for quality sources.",
+      "purpose": "Active offline Color security import closure, exact Bandit scope/expiry/source/coverage negatives and verified RI/coupling checksum-only admission tests.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
@@ -15623,6 +15654,28 @@
       "title": "artifact.cjs"
     },
     {
+      "path": "tools/quality/bandit-policy.json",
+      "kind": "file",
+      "purpose": "32 independently reviewed current RI/acceptance-tooling Bandit findings, bound to exact file/line bytes and review expiry; no high-severity admission.",
+      "role": "configuration",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "bandit-policy.json"
+    },
+    {
+      "path": "tools/quality/bandit-triage.cjs",
+      "kind": "file",
+      "purpose": "Strict reviewed internal-tooling Bandit admission: exact source/line/rule/owner/expiry, raw finding and scan coverage accounting; untriaged changes fail.",
+      "role": "validator",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "bandit-triage.cjs"
+    },
+    {
       "path": "tools/quality/browser-gate-diagnostics.cjs",
       "kind": "file",
       "purpose": "Maintained quality/check helper for browser gate diagnostics; applicable profiles are selected by SITE-CHECK-PROFILES.",
@@ -15944,7 +15997,7 @@
     {
       "path": "tools/quality/scanners.cjs",
       "kind": "file",
-      "purpose": "Maintained quality/check helper for scanners; applicable profiles are selected by SITE-CHECK-PROFILES.",
+      "purpose": "Pinned lint/security/advisory execution with raw coverage, exact expiring Bandit triage and verified RI/coupling checksum proof; new findings fail.",
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
@@ -15966,13 +16019,24 @@
     {
       "path": "tools/quality/secrets-baseline.json",
       "kind": "file",
-      "purpose": "Quality/release configuration: secrets baseline; preserve reviewed budgets, pins and exception provenance.",
+      "purpose": "Exact independently reviewed public source/file/line checksum and article identifier false positives; new unknown entropy remains a gate failure.",
       "role": "configuration",
       "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
       "title": "secrets-baseline.json"
+    },
+    {
+      "path": "tools/quality/secrets-reviewed.json",
+      "kind": "file",
+      "purpose": "105 exact independently proved current Git/file/line checksum false positives, complementing the byte-preserved historical baseline; unknown values still fail.",
+      "role": "configuration",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "secrets-reviewed.json"
     },
     {
       "path": "tools/quality/security-rules.yml",
@@ -17428,10 +17492,16 @@
         "tests/staging-regression.test.cjs",
         "tests/staging-gate.test.cjs",
         "tests/fixtures/",
-        "guides/SITE-CHECK-PROFILES.md"
+        "guides/SITE-CHECK-PROFILES.md",
+        "tools/quality/bandit-triage.cjs",
+        "tools/quality/bandit-policy.json",
+        "tools/quality/scanners.cjs",
+        "tools/quality/secrets-baseline.json",
+        "tests/quality-sources.test.cjs",
+        "tools/quality/secrets-reviewed.json"
       ],
       "commands": [
-        "node --test tests/test-profile-selection.test.cjs tests/staging-gate.test.cjs tests/staging-regression.test.cjs",
+        "node --test tests/test-profile-selection.test.cjs tests/staging-gate.test.cjs tests/staging-regression.test.cjs tests/quality-sources.test.cjs",
         "node tools/quality/source-tests.cjs --profile production --plan"
       ],
       "read": [

@@ -177,3 +177,12 @@ The exception binds the helper, static configuration and committed lock SHA256s
 and expires 2026-11-03. A changed helper/configuration/lock/version, new advisory
 or expired review fails. The independent reviewer
 must assess this reachability decision; it is not a zero-vulnerability claim.
+
+`bandit-policy.json` owns exact expiring internal-tooling findings;
+`bandit-triage.cjs` verifies source/line/rule/coverage and retains raw counts.
+The security summary reports remaining blocking findings separately from raw and
+reviewed findings. SHA1 Git object identifiers use `usedforsecurity=False`; they
+are metadata, while integrity evidence remains SHA256. Generated RI and coupling
+checksums are admitted only after both actual verification commands succeed;
+other new entropy values require exact reviewed entries in `secrets-reviewed.json`.
+The historical `secrets-baseline.json` remains byte-identical and within RI bounds.

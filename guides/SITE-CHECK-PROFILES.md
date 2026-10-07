@@ -46,7 +46,7 @@ The complete bounded matrix is executable in `tools/quality/staging-regression.c
 | Authored Color smoke | Two Chromium width cases when the artifact is the Color rendition. |
 | Lighthouse | Research and Writing: two sequential single mobile trials. Individual original mobile metric budgets apply; these are not three-run median release results. |
 | Sustained motion | Research/Writing at 390px and CPU ×4: idle, scroll, Off and reduced windows for each route, with positive paint probes and original applicable limits. |
-| Navigation timing | Four Research/Writing destination flights: two cold and two warm observations. |
+| Navigation timing | Four Index-to-destination flights: a cold/warm pair in a fresh context for each of Research and Writing. Unmeasured return/setup is distinguished from the four actual observations. |
 
 Staging omits native macOS/Windows jobs, the full Color12 matrix, thirty
 Lighthouse runs, the five-minute soak, release captures and long cache-retention
@@ -97,3 +97,9 @@ disabled obsolete cases, diagnostic-only cases and the reason/owner in the
 registry and owning issue. Preserve independent failure surfaces. Update the
 RI validation routes and RI/CI mapping, verify both, and rebuild generated RI
 views. An unmapped suite or a stale route is an incomplete handoff.
+
+Source scanner triage remains explicit: the Bandit policy binds reviewed internal
+tooling findings to exact source/line bytes, rules, owners and a review deadline.
+Raw findings remain in the report; new/source-changed/expired findings fail.
+Secrets admission for generated RI/coupling checksum fields requires actual
+verification; other public metadata hashes use exact reviewed baseline entries.

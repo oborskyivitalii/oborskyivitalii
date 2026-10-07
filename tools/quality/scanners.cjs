@@ -14,6 +14,18 @@ function authoredRuntime(tracked,exists=file=>fs.existsSync(path.join(root,file)
   const files=new Set(tracked);
   return authoredRuntimeSources.filter(file=>files.has(file)&&exists(file));
 }
+function verifiedChecksumIds(values){
+  const ids=new Set();
+  for(const value of values){
+    require('node:assert/strict').match(value,/^[a-f0-9]{64}$/,'invalid verified public checksum');
+    ids.add(require('node:crypto').createHash('sha1').update(value).digest('hex'));
+  }
+  return ids;
+}
+function verifiedChecksumFinding(file,finding,proved){
+  return ['.github/repository-intelligence/agent-context.json','.github/ri-ci-map.json'].includes(file)&&
+    finding.type==='Hex High Entropy String'&&proved.get(file)?.has(finding.hashed_secret)===true;
+}
 function lint(){
   run(binary('eslint'),['--config','tools/quality/eslint.config.cjs','docs','site','tools','tests','--format','json','--output-file',path.join(out,'eslint.json')]);
   const eslint=read('eslint.json'),warnings=eslint.flatMap(f=>f.messages.filter(m=>m.severity===1).map(m=>({file:path.relative(root,f.filePath).split(path.sep).join('/'),rule:m.ruleId,message:m.message})));
@@ -37,23 +49,29 @@ function security(){
   for(const file of expected)if(!scanned.has(file))throw Error('Unscanned source '+file);
   run(py('bandit'),['-r','tools','-x','tools/quality/toolchain/venv','-f','json','-o',path.join(out,'bandit.json')],[0,1]);const bandit=read('bandit.json');
   for(const finding of bandit.results||[])delete finding.code;fs.writeFileSync(path.join(out,'bandit.json'),JSON.stringify(bandit,null,2));
-  if(bandit.errors?.length||bandit.results?.length||!bandit.metrics?._totals?.loc)throw Error('Bandit coverage or finding');
+  let banditReview;
+  try{banditReview=require('./bandit-triage.cjs').admit(root,bandit,expected.filter(file=>file.endsWith('.py')),{rawReportSha256:require('./artifact.cjs').digest(fs.readFileSync(path.join(out,'bandit.json')))});}
+  catch(error){fs.writeFileSync(path.join(out,'bandit-triage.json'),JSON.stringify({schema:1,kind:'bandit-triage',pass:false,rawFindings:bandit.results?.length??null,error:error.message},null,2));throw error;}
+  fs.writeFileSync(path.join(out,'bandit-triage.json'),JSON.stringify(banditReview,null,2));
+  if(bandit.errors?.length||banditReview.untriagedFindings||!bandit.metrics?._totals?.loc)throw Error('Bandit coverage or finding');
   for(const file of expected.filter(x=>x.endsWith('.py')))if(!bandit.metrics[file]&&!bandit.metrics['./'+file])throw Error('Bandit missed tracked Python '+file);
   const tracked=run('git',['ls-files','-z']).split('\0').filter(Boolean),text=tracked.filter(f=>{const bytes=fs.readFileSync(path.join(root,f));return !bytes.includes(0)&&!f.endsWith('.gz');});
   const secrets=JSON.parse(run(py('detect-secrets'),['scan','--no-verify',...text]));
   fs.writeFileSync(path.join(out,'detect-secrets.json'),JSON.stringify(secrets,null,2));
-  const reviewed=require('./secrets-baseline.json'),newFindings=[];
+  const reviewed=[...require('./secrets-baseline.json').findings,...require('./secrets-reviewed.json').findings],newFindings=[];
   const navigationFile='.github/repository-intelligence/agent-context.json';
   run(py('python'),['tools/repository_intelligence.py','--config','.github/repository-intelligence-config.json','verify']);
   const navigation=JSON.parse(fs.readFileSync(path.join(root,navigationFile))),publicHashes=[navigation.source_identity.digest,navigation.producer.sha256,navigation.producer.config_sha256,...navigation.source_identity.inputs.map(x=>x.sha256).filter(Boolean)];
-  const navigationHashes=new Set(publicHashes.map(x=>require('node:crypto').createHash('sha1').update(x).digest('hex')));
+  run(py('python'),['tools/check_ri_ci.py','verify']);
+  const coupling=JSON.parse(fs.readFileSync(path.join(root,'.github/ri-ci-map.json'))).reviewed_source_identity;
+  const proved=new Map([[navigationFile,verifiedChecksumIds(publicHashes)],['.github/ri-ci-map.json',verifiedChecksumIds([coupling.digest,...coupling.inputs.map(x=>x.sha256)])]]);
   for(const [file,findings]of Object.entries(secrets.results))for(const finding of findings){
     const id=[file,finding.type,finding.hashed_secret].join(':');
-    const provedNavigationHash=file===navigationFile&&finding.type==='Hex High Entropy String'&&navigationHashes.has(finding.hashed_secret);
-    if(!provedNavigationHash&&!reviewed.findings.some(x=>x.id===id))newFindings.push({file,type:finding.type,hash:finding.hashed_secret});
+    const provedChecksum=verifiedChecksumFinding(file,finding,proved);
+    if(!provedChecksum&&!reviewed.some(x=>x.id===id))newFindings.push({file,type:finding.type,hash:finding.hashed_secret});
   }
   if(newFindings.length)throw Error(`${newFindings.length} untriaged secret candidates; see hashed-only detect-secrets.json`);
-  return {semgrep:{files:semgrep.paths.scanned,rules:8,errors:0,expected},bandit:{loc:bandit.metrics._totals.loc,findings:0},secrets:{trackedTextFiles:text.length,reviewedCandidates:Object.values(secrets.results).flat().length},historyScan:false};
+  return {semgrep:{files:semgrep.paths.scanned,rules:8,errors:0,expected},bandit:{loc:bandit.metrics._totals.loc,findings:banditReview.untriagedFindings,rawFindings:banditReview.rawFindings,reviewedFindings:banditReview.reviewedFindings,policySha256:banditReview.policySha256},secrets:{trackedTextFiles:text.length,reviewedCandidates:Object.values(secrets.results).flat().length},historyScan:false};
 }
 function advisories(){
   const npm=JSON.parse(run(process.platform==='win32'?'npm.cmd':'npm',['audit','--prefix',path.join(tools),'--json'],[0,1]));fs.writeFileSync(path.join(out,'npm-audit.json'),JSON.stringify(npm,null,2));
@@ -79,4 +97,4 @@ function main(kind=process.argv[2]){
   catch(e){require('./common.cjs').report(kind,{error:e.message},false);throw e;}
 }
 if(require.main===module)main();
-module.exports={authoredRuntimeSources,authoredRuntime};
+module.exports={authoredRuntimeSources,authoredRuntime,verifiedChecksumIds,verifiedChecksumFinding};

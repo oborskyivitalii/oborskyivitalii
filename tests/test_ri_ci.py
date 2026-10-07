@@ -61,6 +61,34 @@ class RICICouplingTests(unittest.TestCase):
             "entry-root-guides", "test-profile-selection"})
         self.assertFalse(result["live_github_state_verified"])
 
+    def test_staging_and_production_share_actual_ri_freshness_preflight(self):
+        workflow = (REPO / ".github/workflows/site-release-checks.yml").read_text()
+        start = workflow.index("      - name: Validate exact source and regressions\n")
+        end = workflow.index("      - ", start + 8)
+        script = workflow[start:end]
+        command = "check python tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify"
+
+        def unconditionally_verified(body):
+            depth = 0
+            depths = []
+            for raw in body.splitlines():
+                line = raw.strip()
+                if line.startswith("if ["):
+                    depth += 1
+                elif line == "fi":
+                    depth -= 1
+                elif line == command:
+                    depths.append(depth)
+            return depths == [0]
+
+        self.assertTrue(unconditionally_verified(script))
+        line = "          " + command + "\n"
+        self.assertFalse(unconditionally_verified(script.replace(line, "")))
+        self.assertFalse(unconditionally_verified(script.replace(
+            line, '          if [ "$SITE_VALIDATION_LEVEL" = production ]; then\n'
+            + "  " + line + "          fi\n")))
+        self.assertFalse(unconditionally_verified(script.replace(line, line.rstrip() + " || true\n")))
+
     def test_verified_definition_and_source_identity_are_deterministic(self):
         first = ci.verify(self.root)
         self.refresh()

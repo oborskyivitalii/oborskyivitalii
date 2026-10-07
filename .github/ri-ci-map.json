@@ -2,7 +2,7 @@
   "schema_version": 1,
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/35",
-    "summary": "2026-10-07: reviewed the complete test registry, PR/targeted/staging/production/diagnostic source selection and distinct fail-closed stage controls against actual unconditional navigation regressions. Owning task snapshots remain selected by their issue policy. Conditional hosted runs and live review/merge/release decisions stay separate observations."
+    "summary": "2026-10-07 #35: reviewed PR/source allocation, selected staging/full production boundary and exact source-scanner triage against unconditional navigation and owning-issue CI; manual release gates remain external."
   },
   "layers": [
     {
@@ -79,7 +79,7 @@
     },
     {
       "id": "test-profile-selection",
-      "purpose": "Canonical test dispositions and conservative changed-source selection; bounded staging reports remain distinct from complete production regression and production admission. Unconditional source-only fixtures verify selection and failure propagation; conditional hosted execution is not presented as universal PR invocation.",
+      "purpose": "Canonical test inventory/source allocation, selected staging evidence and reviewed source-scanner controls; explicit cheap unconditional negatives verify source/expiry/coverage and exact selection.",
       "paths": [
         "guides/SITE-CHECK-PROFILES.md",
         "tools/quality/test-profiles.json",
@@ -90,7 +90,13 @@
         "tests/test-profile-selection.test.cjs",
         "tests/staging-gate.test.cjs",
         "tests/staging-regression.test.cjs",
-        "tests/fixtures/staging-evidence.cjs"
+        "tests/fixtures/staging-evidence.cjs",
+        "tools/quality/scanners.cjs",
+        "tools/quality/bandit-triage.cjs",
+        "tools/quality/bandit-policy.json",
+        "tools/quality/secrets-baseline.json",
+        "tests/quality-sources.test.cjs",
+        "tools/quality/secrets-reviewed.json"
       ],
       "checks": [
         "test-profile-regressions",
@@ -331,13 +337,14 @@
         "--test",
         "tests/test-profile-selection.test.cjs",
         "tests/staging-gate.test.cjs",
-        "tests/staging-regression.test.cjs"
+        "tests/staging-regression.test.cjs",
+        "tests/quality-sources.test.cjs"
       ]
     }
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "2bb176e78befa97a6a29dfb2fa0190799d43d2ea60a8495f20aa7eff35dc3fa4",
+    "digest": "8f01233ba243887d17f5a1fd4c21f324621d3bcd711aca49dd7f8ee98c6b9262",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -373,7 +380,7 @@
       },
       {
         "path": ".github/repository-intelligence-config.json",
-        "sha256": "c7677a10d56caf55663066077759f0fe6103ebf416a3aa79fd002b589a018248"
+        "sha256": "6a4dd53f7fdcfdbdc3c3d29ed027e03bf861ab5aecb62413440de4376d39830b"
       },
       {
         "path": ".github/repository-layout.json",
@@ -381,7 +388,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "889ad047e75421273f33760a79aaed1e87660a30da4d0d32aabc5bd746ed17c6"
+        "sha256": "e71580ccebbbfc16d051990b68a49e59f82a9797b4a7341c3b27c5c758ed26f1"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -389,7 +396,7 @@
       },
       {
         "path": ".github/workflows/navigation.yml",
-        "sha256": "fff20c6eb682c60503578e56e370c093a439953c0c1da91ee4cfbc0fa625ce82"
+        "sha256": "8bb5299dfe5082381cbaa08b5a1bdc748d7e8bd060daf512096448eac8950454"
       },
       {
         "path": ".github/workflows/site-browser-gate-probe.yml",
@@ -429,7 +436,7 @@
       },
       {
         "path": ".github/workflows/site-release-checks.yml",
-        "sha256": "700fde757ab7a8da55805a219d05b21407ff0eef4e8a654ce12b98462edbb870"
+        "sha256": "27639df5efb5aac57b9f6d44764c601325dd9294aa98111b8aba5f6d9c610082"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
@@ -457,7 +464,7 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "757cec98d8e5db8ecd50328d8cfbab41babd1437f975d42e200755353a923dda"
+        "sha256": "3b0b18ffcad6190e56ba7ad9de990df1a36c1bdf7a7ca7d837378074e3d3b5c6"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -465,7 +472,7 @@
       },
       {
         "path": "tests/fixtures/staging-evidence.cjs",
-        "sha256": "df589d3180585ddd5163ff2bd9dca889c9117d6e5d2be710c931109db14dc0f2"
+        "sha256": "d5c653e3e1a1d8c4653e3443d66c483f5d1a63d6d47d00d15978084a77481a9d"
       },
       {
         "path": "tests/staging-gate.test.cjs",
@@ -473,7 +480,7 @@
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "3f8eeb8b9d2ac2ffdeb7bdb5b3e00ddb29f355629b0806e329cd58d1348e9678"
+        "sha256": "ed556cc2eb1232100cb8389c5b81a736b7d98b5f0294e60b63404738a00d29d3"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
@@ -481,7 +488,7 @@
       },
       {
         "path": "tests/test_issue31_acceptance.py",
-        "sha256": "9399afd265d4ed769a56e20588eeb0bfc498cda3dc678d7c47f351f596cff3f2"
+        "sha256": "09b726a0772b0611aa19051abc45702e7158c26d9f289081e50922d49c48cc34"
       },
       {
         "path": "tests/test_issue33_acceptance.py",
@@ -493,7 +500,7 @@
       },
       {
         "path": "tests/test_issue_acceptance.py",
-        "sha256": "63239ef57bd90d27fca4dde944ed267f5f6522dd0bfe13a6a6a830307b2f01fc"
+        "sha256": "51ccc40c3ccbf755ef277c7dec6437148cdf50fb7aa401e1bf8f255c2b96a426"
       },
       {
         "path": "tests/test_repository_intelligence.py",
@@ -505,15 +512,15 @@
       },
       {
         "path": "tests/test_ri_ci.py",
-        "sha256": "9c90b60ce276a897069ca86b05bb3c6c482f705e8aa21407a8dbe11573faeda3"
+        "sha256": "e566cc57a41fc73b3da7ade2649752a4e0b038f6215b06c9bfc3e620a978ec73"
       },
       {
         "path": "tests/test_root_layout.py",
-        "sha256": "abfd110c9072996eba575ca2beefa5e1f56db0732ea8ab1d4ec3976511244487"
+        "sha256": "1eec98199b0a4ef834afc9e396d5f2c5909dd19501a2958887fc5d201df7d3a9"
       },
       {
         "path": "tools/check_repository_layout.py",
-        "sha256": "5c2ab75f96d70d727470b2cb91544b2295d78f1d916899b143febcd48e2fff65"
+        "sha256": "e3d46affb1f40c296943610d4557b0c15a99f87b81ce0eeb3d22ab3fc9a46c3a"
       },
       {
         "path": "tools/check_ri_ci.py",
@@ -529,7 +536,7 @@
       },
       {
         "path": "tools/quality/source-tests.cjs",
-        "sha256": "c4d4564066f502f909557a7efd83df279253a70d7d74417ff15b304e2f644432"
+        "sha256": "c7cf375b960645ba37b9dbd63f566fc20818ddcc41e7f630288a440228cdb0a2"
       },
       {
         "path": "tools/quality/staging-gate.cjs",
@@ -537,11 +544,11 @@
       },
       {
         "path": "tools/quality/staging-regression.cjs",
-        "sha256": "6a3fee8bc27b49044069b2ad23e97ca5d554de6b5b0df8297ca08a63f05d7f06"
+        "sha256": "c80de65a53fdf7440d153a4c0dbd297d41418b670e6565d54fb6c7bfa96b513e"
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "ad0b35995829a70976f85d86e9e4fdb1a57ba745f2e7d2ecd183c43a3d11e358"
+        "sha256": "2c651c61e76cf004403c7fe5b074666483721a552de65ddd8669d1fa03e372df"
       },
       {
         "path": "tools/repository_intelligence.py",

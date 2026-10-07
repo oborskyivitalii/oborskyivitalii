@@ -215,8 +215,8 @@
         ],
         "flight_destinations": [
           "research",
-          "writing",
           "research",
+          "writing",
           "writing"
         ],
         "flight_cold": 2,
@@ -231,6 +231,28 @@
             "route": "writing",
             "form_factor": "mobile",
             "runs": 1
+          }
+        ],
+        "flight_cases": [
+          {
+            "from": "index",
+            "to": "research",
+            "phase": "cold"
+          },
+          {
+            "from": "index",
+            "to": "research",
+            "phase": "warm"
+          },
+          {
+            "from": "index",
+            "to": "writing",
+            "phase": "cold"
+          },
+          {
+            "from": "index",
+            "to": "writing",
+            "phase": "warm"
           }
         ]
       },
@@ -729,7 +751,7 @@
     {
       "path": "tests/quality-sources.test.cjs",
       "language": "javascript",
-      "purpose": "Current Color authored runtime dependency graph exactly matches lint/security scope; dated path is still active code",
+      "purpose": "Active authored Color scanner closure and fail-visible exact Bandit review/coverage/source/expiry plus verified public checksum-only admission",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": [
@@ -746,7 +768,11 @@
         "tools/site/**",
         "tools/build_site_previews.cjs",
         "tools/build_scene_fallbacks.cjs",
-        ".github/workflows/**"
+        ".github/workflows/**",
+        "tools/quality/bandit-triage.cjs",
+        "tools/quality/bandit-policy.json",
+        "tools/quality/secrets-baseline.json",
+        "tools/quality/secrets-reviewed.json"
       ]
     },
     {

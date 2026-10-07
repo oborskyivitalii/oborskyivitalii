@@ -37,8 +37,11 @@ test('staging performance validates actual raw windows, cold/warm flights and tw
     r=>r.samples[0].measurements[2]=fixture.measurement('off',false),r=>r.samples[0].measurements[3]=fixture.measurement('reduced',false),
     r=>r.samples[0].measurements[2].motion='Motion: still (device)',r=>r.samples[0].measurements[3].motion='Motion: off',
     r=>r.samples[0].measurements[0].state='fallback',r=>r.samples[0].measurements[0].rawLongTasks=[{start:3999,duration:2}],
-    r=>r.flights.pop(),r=>r.flights[0].transitionPhase='warm',r=>r.flights[2].transitionPhase='cold',r=>r.flights[0].readyMs=4000,
+    r=>r.flights.pop(),r=>r.flights[0].transitionPhase='warm',r=>r.flights[1].transitionPhase='cold',r=>r.flights[0].readyMs=4000,
     r=>r.flights[0].paints=0,r=>r.flights[0].rawPreparation=[],r=>r.flights[0].paintIntervalsMs.max=400,
+    r=>r.flights[0].rawPreparation.find(x=>x.kind==='model').route='writing',r=>r.flights[0].pass=false,
+    r=>r.flights[0].setup.samples[0].lastPreparationAgeMs=0,r=>r.flights[1].setup.samples[0].targetCached=false,
+    r=>r.flights[0].setup.samples[0].paints=0,r=>r.flights[0].setup.status='sampling',r=>r.flights[0].setup.samples[0].elapsedMs=3100,
     r=>r.lighthouse.pop(),r=>r.lighthouse[0]=structuredClone(r.lighthouse[1]),r=>r.lighthouse[0].run=2,r=>r.lighthouse[0].configSettings.formFactor='desktop',
     r=>r.lighthouse[0].configSettings.throttling.cpuSlowdownMultiplier=1,r=>r.lighthouse[0].metrics['largest-contentful-paint'].numericValue=2600,
     r=>r.lighthouse[0].metrics['total-blocking-time'].numericValue=201,r=>r.lighthouse[0].metrics['cumulative-layout-shift'].numericValue=.11,
@@ -69,7 +72,7 @@ test('the functional driver executes precisely its selected helpers and closes e
   });
   assert.deepEqual(closed,['chromium','firefox']);
   for(const [group,expected]of [['journey',stage.journeyCases()],['navigation',stage.navigationCases()],['failure',stage.failureCases()],['analytics',stage.analyticsCases()]]){
-    assert.deepEqual(calls.filter(row=>row.group===group).map(({group,...s})=>s),expected);
+    assert.deepEqual(calls.filter(row=>row.group===group).map(row=>{const selected={...row};delete selected.group;return selected;}),expected);
   }
   assert.deepEqual(report.startupFailures,[]);assert.equal(stage.validateFunctional({...fixture.identity(m),kind:'stage-functional',...report},m).failures,10);
 });
@@ -83,4 +86,40 @@ test('performance driver runs two route samples and two audits serially with a c
   });
   assert.deepEqual(calls,['launch','sample research','sample writing','flights','close','audit research','audit writing']);
   assert.equal(stage.validatePerformance({...fixture.identity(),kind:'stage-performance',...report}).soakSeconds,0);
+});
+test('selected flight driver uses a fresh context for each destination and measures its actual cold/warm pair',async()=>{
+  const calls=[];let pairId=0;
+  const rows=await stage.selectedFlights({},fixture.target,{
+    open:async()=>{const id=++pairId;calls.push('open '+id);return {page:{id},id,close:async()=>calls.push('close '+id)};},
+    setup:async(page,selected)=>{calls.push('setup '+page.id+' '+selected.to+' '+selected.phase);return fixture.flightSetup(selected.to,selected.phase);},
+    measure:async(pair,selected,setup)=>{calls.push('measure '+pair.id+' '+selected.to+' '+selected.phase);return {...fixture.flight(selected.to,selected.from,selected.phase),setup};},
+    restore:async pair=>calls.push('restore index '+pair.id)
+  });
+  assert.deepEqual(calls,['open 1','setup 1 research cold','measure 1 research cold','restore index 1','setup 1 research warm','measure 1 research warm','close 1','open 2','setup 2 writing cold','measure 2 writing cold','restore index 2','setup 2 writing warm','measure 2 writing warm','close 2']);
+  assert.deepEqual(rows.map(({from,to,transitionPhase})=>({from,to,phase:transitionPhase})),stage.flightCases());
+});
+test('flight setup observes live paints and quiet preparation while preserving actual cache state',()=>{
+  const vm=require('node:vm'),probe={destination:'research',phase:'warm',start:0,startPaints:0,timeoutMs:3000,quietMs:200,samples:[]};let now=400;
+  const window={__stageFlightSetup:probe,__qualityMotion:{paints:4,events:[{kind:'model',time:100}]},SiteScene:{diagnostics:()=>({rooms:[{route:'research',models:[{compact:true}]}]})}};
+  const document={hidden:false,body:{dataset:{page:'index'}},querySelector:selector=>selector==='.space-scene'?{dataset:{route:'index',travel:'settled',ready:'true'}}:{textContent:'Motion: on'}};
+  const observe=()=>vm.runInNewContext('('+stage.flightSetupSample.toString()+')()',{window,document,performance:{now:()=>now}});
+  assert.equal(observe(),true);window.__qualityMotion.events.push({kind:'model',time:350});assert.equal(observe(),false,'late prefetch must settle before a warm measurement');
+  now=650;assert.equal(observe(),true);probe.phase='cold';assert.equal(observe(),false,'cached target cannot pretend to be cold');
+  probe.phase='warm';window.__qualityMotion.paints=1;assert.equal(observe(),false,'quiet unpainted state cannot pretend to be live');
+  window.__qualityMotion.paints=4;now=3100;assert.equal(observe(),false,'bounded setup cannot accept late readiness');
+});
+test('failed flight collection retains previous and failing raw records instead of erasing them',async()=>{
+  const closed=[],cold=fixture.flight('research','index','cold');
+  await assert.rejects(()=>stage.selectedFlights({},fixture.target,{
+    open:async()=>({page:{},close:async()=>closed.push(true)}),setup:async(page,selected)=>fixture.flightSetup(selected.to,selected.phase),restore:async()=>{},
+    measure:async(pair,selected)=>selected.phase==='cold'?cold:{...fixture.flight('research','index','warm'),transitionPhase:'cold'}
+  }),error=>{assert.equal(error.flightEvidence.length,2);assert.deepEqual(error.flightEvidence[0].rawFrames,cold.rawFrames);assert.equal(error.flightEvidence[1].pass,false);assert.equal(error.flightEvidence[1].transitionPhase,'cold');return true;});
+  assert.deepEqual(closed,[true]);let measurementClosed=false;
+  await assert.rejects(()=>stage.collectPerformance(fixture.target,{
+    launch:async()=>({version:()=> 'controlled fixture',close:async()=>{measurementClosed=true;}}),
+    sample:async(browser,url,route)=>fixture.performanceReport().samples.find(s=>s.route===route),
+    flights:async()=>{const error=new Error('controlled collection failure');error.flightEvidence=[cold];throw error;},
+    lighthouse:async()=>assert.fail('failed flight collection cannot manufacture successful audit completion')
+  }),error=>{assert.equal(error.detail.samples.length,2);assert.deepEqual(error.detail.flights,[cold]);assert.ok(error.detail.elapsedMs>0);return true;});
+  assert.equal(measurementClosed,true);
 });

@@ -7,7 +7,7 @@ function safePath(value,{pattern=false}={}){
   assert.ok(value.length>0&&!/[\0\r\n\\]/.test(value)&&!path.posix.isAbsolute(value),'unsafe path '+value);
   assert.ok(value.split('/').every(part=>part&&part!=='.'&&part!=='..'),'unsafe path '+value);
   if(!pattern)assert.ok(!value.includes('*'),'literal path required '+value);
-  else assert.ok(!/[?\[\]{}]/.test(value),'unsupported path pattern '+value);
+  else assert.ok(!['?','[',']','{','}'].some(token=>value.includes(token)),'unsupported path pattern '+value);
   return value;
 }
 function matches(file,pattern){
@@ -34,33 +34,31 @@ function actualModules(root){
   visit('tests');return modules.sort();
 }
 function loadRegistry(root){return JSON.parse(fs.readFileSync(path.join(root,REGISTRY),'utf8'));}
-function validateRegistry(root,registry){
-  assert.equal(registry.schema_version,1,'unsupported test registry');
-  assert.equal(registry.owner,'guides/SITE-CHECK-PROFILES.md','test profile owner must remain explicit');
-  assert.ok(Array.isArray(registry.tests)&&registry.tests.length>0,'empty test inventory');
-  const seen=new Set(),profiles=new Set(['pr-smoke','pr-targeted','staging','production','diagnostic','issue-policy']);
-  for(const row of registry.tests){
-    safePath(row.path);assert.ok(/^tests\/(?:[^/]+\/)*[^/]+(?:\.test\.cjs|\.py)$/.test(row.path),'unsupported test module '+row.path);
-    assert.ok(!seen.has(row.path),'duplicate test module '+row.path);seen.add(row.path);
-    assert.equal(fs.lstatSync(path.join(root,row.path)).isFile(),true,'test module is not a regular file '+row.path);
-    assert.ok(!fs.lstatSync(path.join(root,row.path)).isSymbolicLink(),'symlink test module '+row.path);
-    assert.equal(row.language,row.path.endsWith('.cjs')?'javascript':'python','test language mismatch '+row.path);
-    assert.ok(['permanent','diagnostic','task-snapshot'].includes(row.lifecycle),'missing test lifecycle '+row.path);
-    for(const key of ['purpose','owner','disposition','surviving_route'])assert.ok(typeof row[key]==='string'&&row[key].trim(),row.path+' missing '+key);
-    safePath(row.owner);assert.ok(fs.statSync(path.join(root,row.owner)).isFile(),'missing test owner '+row.owner);
-    assert.ok(Array.isArray(row.profiles)&&row.profiles.length&&new Set(row.profiles).size===row.profiles.length,'invalid test profiles '+row.path);
-    for(const profile of row.profiles)assert.ok(profiles.has(profile),'unknown test profile '+profile);
-    assert.ok(Array.isArray(row.inputs)&&row.inputs.includes(row.path),'test must target its own changed module '+row.path);
-    for(const input of row.inputs)safePath(input,{pattern:true});
-    if(/^tests\/test_issue\d+_acceptance\.py$/.test(row.path))assert.equal(row.lifecycle,'task-snapshot','numeric task modules are owning-policy-only');
-    if(row.lifecycle==='task-snapshot')assert.deepEqual(row.profiles,['issue-policy'],'task snapshots cannot enter routine profiles');
-    if(row.lifecycle==='diagnostic'){
-      assert.ok(row.profiles.includes('diagnostic')&&row.profiles.includes('pr-targeted'),'diagnostic needs explicit replay/changed-helper route');
-      assert.ok(!row.profiles.some(p=>['production','staging','pr-smoke'].includes(p)),'diagnostic cannot enter routine profiles');
-    }
-    if(row.lifecycle==='permanent')assert.ok(row.profiles.includes('production')&&row.profiles.includes('staging')&&row.profiles.includes('pr-targeted'),'permanent module needs current profile routes');
+function validateLifecycle(row){
+  if(/^tests\/test_issue\d+_acceptance\.py$/.test(row.path))assert.equal(row.lifecycle,'task-snapshot','numeric task modules are owning-policy-only');
+  if(row.lifecycle==='task-snapshot')assert.deepEqual(row.profiles,['issue-policy'],'task snapshots cannot enter routine profiles');
+  if(row.lifecycle==='diagnostic'){
+    assert.ok(row.profiles.includes('diagnostic')&&row.profiles.includes('pr-targeted'),'diagnostic needs explicit replay/changed-helper route');
+    assert.ok(!row.profiles.some(p=>['production','staging','pr-smoke'].includes(p)),'diagnostic cannot enter routine profiles');
   }
-  assert.deepEqual([...seen].sort(),actualModules(root),'test inventory must cover every actual module exactly; declare new modules or retire missing ones');
+  if(row.lifecycle==='permanent')assert.ok(row.profiles.includes('production')&&row.profiles.includes('staging')&&row.profiles.includes('pr-targeted'),'permanent module needs current profile routes');
+}
+function validateTestRow(root,row,profiles){
+  safePath(row.path);assert.ok(/^tests\/(?:[^/]+\/)*[^/]+(?:\.test\.cjs|\.py)$/.test(row.path),'unsupported test module '+row.path);
+  const stat=fs.lstatSync(path.join(root,row.path));
+  assert.equal(stat.isFile(),true,'test module is not a regular file '+row.path);
+  assert.ok(!stat.isSymbolicLink(),'symlink test module '+row.path);
+  assert.equal(row.language,row.path.endsWith('.cjs')?'javascript':'python','test language mismatch '+row.path);
+  assert.ok(['permanent','diagnostic','task-snapshot'].includes(row.lifecycle),'missing test lifecycle '+row.path);
+  for(const key of ['purpose','owner','disposition','surviving_route'])assert.ok(typeof row[key]==='string'&&row[key].trim(),row.path+' missing '+key);
+  safePath(row.owner);assert.ok(fs.statSync(path.join(root,row.owner)).isFile(),'missing test owner '+row.owner);
+  assert.ok(Array.isArray(row.profiles)&&row.profiles.length&&new Set(row.profiles).size===row.profiles.length,'invalid test profiles '+row.path);
+  for(const profile of row.profiles)assert.ok(profiles.has(profile),'unknown test profile '+profile);
+  assert.ok(Array.isArray(row.inputs)&&row.inputs.includes(row.path),'test must target its own changed module '+row.path);
+  for(const input of row.inputs)safePath(input,{pattern:true});
+  validateLifecycle(row);
+}
+function validateBaseline(root,registry){
   const smoke=registry.tests.filter(r=>r.profiles.includes('pr-smoke')).map(r=>r.path).sort();
   for(const profile of ['pr','staging']){
     const baseline=registry.source_profiles?.[profile]?.baseline_files;
@@ -71,8 +69,22 @@ function validateRegistry(root,registry){
   for(const call of local.matchAll(/tests\(\[([\s\S]*?)\]\)/g))for(const match of call[1].matchAll(/['"](tests\/[^'"]+\.test\.cjs)['"]/g))localTests.add(match[1]);
   assert.deepEqual([...localTests].sort(),smoke,'baseline delegation must match actual local.cjs test calls');
   assert.ok(Array.isArray(registry.source_profiles.pr.known_non_node_paths),'known non-Node routes must be declared');
-  for(const key of ['known_non_node_paths','shared_inputs']){assert.ok(Array.isArray(registry.source_profiles.pr[key]),'missing impact category '+key);for(const input of registry.source_profiles.pr[key])safePath(input,{pattern:true});}
-  return registry;
+  for(const key of ['known_non_node_paths','shared_inputs']){
+    assert.ok(Array.isArray(registry.source_profiles.pr[key]),'missing impact category '+key);
+    for(const input of registry.source_profiles.pr[key])safePath(input,{pattern:true});
+  }
+}
+function validateRegistry(root,registry){
+  assert.equal(registry.schema_version,1,'unsupported test registry');
+  assert.equal(registry.owner,'guides/SITE-CHECK-PROFILES.md','test profile owner must remain explicit');
+  assert.ok(Array.isArray(registry.tests)&&registry.tests.length>0,'empty test inventory');
+  const seen=new Set(),profiles=new Set(['pr-smoke','pr-targeted','staging','production','diagnostic','issue-policy']);
+  for(const row of registry.tests){
+    safePath(row.path);assert.ok(!seen.has(row.path),'duplicate test module '+row.path);seen.add(row.path);
+    validateTestRow(root,row,profiles);
+  }
+  assert.deepEqual([...seen].sort(),actualModules(root),'test inventory must cover every actual module exactly; declare new modules or retire missing ones');
+  validateBaseline(root,registry);return registry;
 }
 function git(root,args){return cp.execFileSync('git',args,{cwd:root,encoding:'utf8',stdio:['ignore','pipe','pipe'],maxBuffer:8*1024*1024});}
 function readChangedPaths(root,base,head){
@@ -84,31 +96,43 @@ function readChangedPaths(root,base,head){
   const files=raw.split('\0').filter(Boolean);for(const file of files)safePath(file);
   return [...new Set(files)].sort();
 }
+function normalizedChanges(root,options){
+  const files=options.changedPaths===undefined?readChangedPaths(root,options.base,options.head):options.changedPaths;
+  assert.ok(Array.isArray(files),'changed paths must be a list');
+  return [...new Set(files.map(value=>safePath(value)))].sort();
+}
+function knownNonNodeChange(registry,affected,changed){
+  return affected.some(row=>row.language==='python')||
+    registry.tests.some(row=>row.lifecycle==='task-snapshot'&&row.path===changed)||
+    registry.source_profiles.pr.known_non_node_paths.some(input=>matches(changed,input));
+}
+function selectPRTargets(root,registry,options,permanent,include){
+  const changedPaths=normalizedChanges(root,options),conservativeFallback=[];
+  for(const changed of changedPaths){
+    if(registry.source_profiles.pr.shared_inputs.some(input=>matches(changed,input)))for(const row of permanent)include(row,'shared source control '+changed);
+    const affected=registry.tests.filter(row=>row.lifecycle!=='task-snapshot'&&row.inputs.some(input=>matches(changed,input)));
+    for(const row of affected.filter(row=>row.language==='javascript'))include(row,'changed '+changed);
+    if(!affected.length&&!knownNonNodeChange(registry,affected,changed)){
+      conservativeFallback.push(changed);for(const row of permanent)include(row,'unknown changed source '+changed);
+    }
+  }
+  return {changedPaths,conservativeFallback};
+}
 function select(root,profile,options={}){
   assert.ok(['pr','staging','production','diagnostic'].includes(profile),'unknown source profile '+profile);
   const registry=validateRegistry(root,options.registry||loadRegistry(root));
-  const js=registry.tests.filter(r=>r.language==='javascript'),permanent=js.filter(r=>r.lifecycle==='permanent');
+  const js=registry.tests.filter(row=>row.language==='javascript'),permanent=js.filter(row=>row.lifecycle==='permanent');
   const baselineFiles=['pr','staging'].includes(profile)?registry.source_profiles[profile].baseline_files:[];
   const baseline=new Set(baselineFiles),selected=new Set(),reasons={};
   const include=(row,reason)=>{if(!baseline.has(row.path)){selected.add(row.path);(reasons[row.path]??=[]).push(reason);}};
-  let changedPaths=[],conservativeFallback=[];
-  if(profile==='production'||profile==='staging')for(const row of permanent)include(row,'all permanent source modules in '+profile);
-  else if(profile==='diagnostic')for(const row of js.filter(r=>r.lifecycle==='diagnostic'))include(row,'explicit diagnostic replay');
+  let changed={changedPaths:[],conservativeFallback:[]};
+  if(profile==='pr')changed=selectPRTargets(root,registry,options,permanent,include);
   else{
-    changedPaths=options.changedPaths===undefined?readChangedPaths(root,options.base,options.head):options.changedPaths;
-    assert.ok(Array.isArray(changedPaths),'changed paths must be a list');
-    changedPaths=[...new Set(changedPaths.map(value=>safePath(value)))].sort();
-    for(const changed of changedPaths){
-      if(registry.source_profiles.pr.shared_inputs.some(input=>matches(changed,input)))for(const row of permanent)include(row,'shared source control '+changed);
-      const affected=registry.tests.filter(r=>r.lifecycle!=='task-snapshot'&&r.inputs.some(input=>matches(changed,input)));
-      const jsAffected=affected.filter(r=>r.language==='javascript');
-      for(const row of jsAffected)include(row,'changed '+changed);
-      const ownTask=registry.tests.some(r=>r.lifecycle==='task-snapshot'&&r.path===changed);
-      const knownNonNode=affected.some(r=>r.language==='python')||ownTask||registry.source_profiles.pr.known_non_node_paths.some(input=>matches(changed,input));
-      if(!affected.length&&!knownNonNode){conservativeFallback.push(changed);for(const row of permanent)include(row,'unknown changed source '+changed);}
-    }
+    const rows=profile==='diagnostic'?js.filter(row=>row.lifecycle==='diagnostic'):permanent;
+    const reason=profile==='diagnostic'?'explicit diagnostic replay':'all permanent source modules in '+profile;
+    for(const row of rows)include(row,reason);
   }
-  return {profile,registry:REGISTRY,modules:[...selected].sort(),baselineFiles:[...baselineFiles],baselineCommand:baselineFiles.length?registry.source_profiles[profile].baseline_command:null,changedPaths,conservativeFallback,reasons,pythonRoute:'python3 tools/run_repository_tests.py',taskSnapshots:'selected owning issue policy only'};
+  return {profile,registry:REGISTRY,modules:[...selected].sort(),baselineFiles:[...baselineFiles],baselineCommand:baselineFiles.length?registry.source_profiles[profile].baseline_command:null,...changed,reasons,pythonRoute:'python3 tools/run_repository_tests.py',taskSnapshots:'selected owning issue policy only'};
 }
 function accounting(tap,{modules=[],root=""}={}){
   const captions=[...tap.matchAll(/^# Subtest: (.+)\r?$/gm)].map(match=>match[1].trim());

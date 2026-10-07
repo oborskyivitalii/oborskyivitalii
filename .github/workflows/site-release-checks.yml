@@ -173,8 +173,8 @@ jobs:
             check node tools/build_scene_fallbacks.cjs --check
             check node tools/build_site_previews.cjs --check
             check python tools/build_site_bundle.py --check
-            check python tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify
           fi
+          check python tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify
           check python tools/run_repository_tests.py
           exit "$status"
       - name: Package public files once and enforce budgets

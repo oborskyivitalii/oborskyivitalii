@@ -372,10 +372,16 @@
         "tests/staging-regression.test.cjs",
         "tests/staging-gate.test.cjs",
         "tests/fixtures/",
-        "guides/SITE-CHECK-PROFILES.md"
+        "guides/SITE-CHECK-PROFILES.md",
+        "tools/quality/bandit-triage.cjs",
+        "tools/quality/bandit-policy.json",
+        "tools/quality/scanners.cjs",
+        "tools/quality/secrets-baseline.json",
+        "tests/quality-sources.test.cjs",
+        "tools/quality/secrets-reviewed.json"
       ],
       "commands": [
-        "node --test tests/test-profile-selection.test.cjs tests/staging-gate.test.cjs tests/staging-regression.test.cjs",
+        "node --test tests/test-profile-selection.test.cjs tests/staging-gate.test.cjs tests/staging-regression.test.cjs tests/quality-sources.test.cjs",
         "node tools/quality/source-tests.cjs --profile production --plan"
       ],
       "read": [

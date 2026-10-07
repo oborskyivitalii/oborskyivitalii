@@ -769,6 +769,12 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-35/2026-10-07-review.md": {
+      "kind": "file",
+      "purpose": "Independent exact-tree AC/trust/profile review with original finding, integration corrections and substantive follow-up evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/issue-35/2026-10-07-runtime-audit.json": {
       "kind": "file",
       "purpose": "Exact-base browser/runtime/performance scenario families, costs and bounded staging selection analysis.",
@@ -5871,7 +5877,7 @@
     },
     "tests/quality-sources.test.cjs": {
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for quality sources.",
+      "purpose": "Active offline Color security import closure, exact Bandit scope/expiry/source/coverage negatives and verified RI/coupling checksum-only admission tests.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -6169,6 +6175,18 @@
       "role": "source",
       "owner": "guides/SITE-RELEASE-GATES.md"
     },
+    "tools/quality/bandit-policy.json": {
+      "kind": "file",
+      "purpose": "32 independently reviewed current RI/acceptance-tooling Bandit findings, bound to exact file/line bytes and review expiry; no high-severity admission.",
+      "role": "configuration",
+      "owner": "guides/SITE-RELEASE-GATES.md"
+    },
+    "tools/quality/bandit-triage.cjs": {
+      "kind": "file",
+      "purpose": "Strict reviewed internal-tooling Bandit admission: exact source/line/rule/owner/expiry, raw finding and scan coverage accounting; untriaged changes fail.",
+      "role": "validator",
+      "owner": "guides/SITE-RELEASE-GATES.md"
+    },
     "tools/quality/browser-gate-diagnostics.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for browser gate diagnostics; applicable profiles are selected by SITE-CHECK-PROFILES.",
@@ -6345,7 +6363,7 @@
     },
     "tools/quality/scanners.cjs": {
       "kind": "file",
-      "purpose": "Maintained quality/check helper for scanners; applicable profiles are selected by SITE-CHECK-PROFILES.",
+      "purpose": "Pinned lint/security/advisory execution with raw coverage, exact expiring Bandit triage and verified RI/coupling checksum proof; new findings fail.",
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md"
     },
@@ -6357,7 +6375,13 @@
     },
     "tools/quality/secrets-baseline.json": {
       "kind": "file",
-      "purpose": "Quality/release configuration: secrets baseline; preserve reviewed budgets, pins and exception provenance.",
+      "purpose": "Exact independently reviewed public source/file/line checksum and article identifier false positives; new unknown entropy remains a gate failure.",
+      "role": "configuration",
+      "owner": "guides/SITE-RELEASE-GATES.md"
+    },
+    "tools/quality/secrets-reviewed.json": {
+      "kind": "file",
+      "purpose": "105 exact independently proved current Git/file/line checksum false positives, complementing the byte-preserved historical baseline; unknown values still fail.",
       "role": "configuration",
       "owner": "guides/SITE-RELEASE-GATES.md"
     },

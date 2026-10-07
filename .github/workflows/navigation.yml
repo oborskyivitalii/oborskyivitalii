@@ -30,7 +30,7 @@ jobs:
       - name: Check RI and CI coupling regression cases
         run: python3 -m unittest discover -s tests -p 'test_ri_ci.py'
       - name: Check profile selection and fail-closed staging controls
-        run: node --test tests/test-profile-selection.test.cjs tests/staging-gate.test.cjs tests/staging-regression.test.cjs
+        run: node --test tests/test-profile-selection.test.cjs tests/staging-gate.test.cjs tests/staging-regression.test.cjs tests/quality-sources.test.cjs
       - name: Check repository entry points, guide routes and preserved history
         run: python3 -m unittest discover -s tests -p 'test_root_layout.py'
       - name: Check enduring and owning-issue test selection

@@ -5,9 +5,9 @@ import json
 import os
 import py_compile
 import subprocess
+import sys
 import tempfile
 import unittest
-import sys
 from pathlib import Path
 from unittest.mock import patch
 
