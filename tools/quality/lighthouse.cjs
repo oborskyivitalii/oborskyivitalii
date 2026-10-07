@@ -44,4 +44,4 @@ async function main(){
   finally{server.close();}
 }
 if(require.main===module)main().catch(e=>{console.error(e.stack);process.exitCode=1;});
-module.exports={retainResearchEvidence};
+module.exports={retainResearchEvidence,recordTrial};

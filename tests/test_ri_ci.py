@@ -58,7 +58,7 @@ class RICICouplingTests(unittest.TestCase):
         self.assertEqual({layer["id"] for layer in data["layers"]}, {
             "authority-instructions", "intent-acceptance", "path-catalog", "producer-identity",
             "generated-views", "lookup-validation-routes", "continuity", "github-live-overlay-ci-boundary",
-            "entry-root-guides"})
+            "entry-root-guides", "test-profile-selection"})
         self.assertFalse(result["live_github_state_verified"])
 
     def test_verified_definition_and_source_identity_are_deterministic(self):
@@ -91,6 +91,23 @@ class RICICouplingTests(unittest.TestCase):
             "kind": "file", "role": "validator", "owner": ".github/REPOSITORY-INTELLIGENCE.md"}}}))
         with self.assertRaisesRegex(ValueError, "Unmapped.*new_ri_control.py"):
             self.refresh()
+
+    def test_new_profile_owned_control_family_must_be_mapped(self):
+        path = "tools/quality/new-profile-selector.cjs"
+        self.write(path, "// New maintained profile-selection control\n")
+        self.write(ci.CATALOG, json.dumps({"entries": {path: {
+            "kind": "file", "role": "validator", "owner": "guides/SITE-CHECK-PROFILES.md"}}}))
+        # Fixed profile families cannot disappear from CI coupling merely because
+        # their editing owner differs from RI/acceptance architecture owners.
+        self.assertIn(path, ci.control_paths(self.root))
+        with self.assertRaisesRegex(ValueError, "Unmapped.*new-profile-selector.cjs"):
+            self.refresh()
+        self.data["layers"][0]["paths"].append(path)
+        self.refresh()
+        self.assertTrue(ci.verify(self.root)["pass"])
+        self.write(path, "// Changed profile-selection behavior\n")
+        with self.assertRaisesRegex(ValueError, "Stale RI/CI mapping"):
+            ci.verify(self.root)
 
     def test_missing_path_and_dangling_check_fail(self):
         (self.root / "AGENTS.md").unlink()

@@ -1,0 +1,359 @@
+{
+  "schema_version": 1,
+  "issue": 35,
+  "source_commit": "ec9b8361b619f1042bce5a3ec224d3e0c9054b01",
+  "scope": "read-only runtime/scenario/workflow audit",
+  "measured_runtime": false,
+  "inventory": [
+    {
+      "path": "tools/quality/functional.cjs",
+      "purpose": "Core full functional matrix",
+      "current_count": {
+        "linux": 260,
+        "native_macos": 130,
+        "combined": 390
+      },
+      "selectors": "3 engines ×5 routes ×2 themes ×(2 normal widths +11 failure modes at320px)",
+      "cost_or_overlap": "60 normal cases share expensive full scroll-reflow/axe/freeze/archive probes;330failure vectors repeat same capability injection across route/theme. Keep forproduction,select representatives separately for staging.",
+      "recommended_disposition": "production-retain"
+    },
+    {
+      "path": "tools/quality/functional.cjs --smoke",
+      "purpose": "Native Windows contract",
+      "current_count": {
+        "functional": 40,
+        "navigation": 8,
+        "analytics": 26
+      },
+      "selectors": "2 engines ×5routes ×2themes ×2widths; still full normal assertions,4navigation and13analytics/engine",
+      "cost_or_overlap": "Name smoke masks expensive crossproduct; distinct Windows obligation,not economicalstaging selector.",
+      "recommended_disposition": "production-retain"
+    },
+    {
+      "path": "tools/quality/navigation.cjs",
+      "purpose": "Persistent SPA navigation and flight regression",
+      "current_count": {
+        "core": 12,
+        "windows_supplemental": 8
+      },
+      "selectors": "4width/theme cases/engine;26named checks;5-route cache/offline and failures",
+      "cost_or_overlap": "Repeated full motion,metadata,archive/history/fallback checks across4cases;recommend2staging reps with complete check list. Preserve12production.",
+      "recommended_disposition": "production-retain"
+    },
+    {
+      "path": "tools/quality/analytics-browser.cjs",
+      "purpose": "Enabled analytics fixture;vendor stub,no live telemetry claim",
+      "current_count": {
+        "core": 39,
+        "windows_supplemental": 26
+      },
+      "selectors": "13cases/engine:5enabledentry+blocked+delayed+staging+5offlineentry;each journeysall5routes",
+      "cost_or_overlap": "Fixture rebuild+previews repeatedperengine;persistent-shell/history/archive overlapsbrowsernavigation. Preserve13perprodengine;stageoneengine7representatives.",
+      "recommended_disposition": "production-retain"
+    },
+    {
+      "path": "tools/quality/local-browser.cjs --smoke",
+      "purpose": "Exact hosted PR rendition smoke",
+      "current_count": {
+        "journeys": 4,
+        "route_observations": 20
+      },
+      "selectors": "Chromium ×widths1440/390 ×modesnormal/no-canvas;eachall5routes",
+      "cost_or_overlap": "Four journey scenarios are distinct fromfunctional --smoke. HashesrouteBytes eachjourney and responsechecks;contentdiscussion/history repeated. Keep PRsmokecoverage but can consolidate duplicate HTTPallbytescheck in controller.",
+      "recommended_disposition": "pr-retain-targeted"
+    },
+    {
+      "path": "tools/quality/color-browser.cjs",
+      "purpose": "Authored Color ribbons/spatialflight/nativeedgeboundaries",
+      "current_count": {
+        "production": 12,
+        "preview": 2
+      },
+      "selectors": "Prod3engines ×2widths ×2themes;previewChromium ×2widths ×light",
+      "cost_or_overlap": "Distinctcolorfeatureobligation;reuseexisting previewselector forstage supplemental,keep12production.",
+      "recommended_disposition": "production-retain"
+    },
+    {
+      "path": "tools/quality/lighthouse.cjs",
+      "purpose": "Original startup performance budgets",
+      "current_count": {
+        "production_trials": 30
+      },
+      "selectors": "5routes ×2formfactors ×3trials;freshChromium pertrial;sequential",
+      "cost_or_overlap": "30fullaudits inoneperformancejob beforemotion,3-runmedian cannot be replacedbyonesample. Stageexplicit2mobiletrial smoke only;never labelasfull Lighthouse.",
+      "recommended_disposition": "production-retain-separate-smoke"
+    },
+    {
+      "path": "tools/quality/motion.cjs",
+      "purpose": "Raw runtime measurement,flights,andretention",
+      "current_count": {
+        "samples": 15,
+        "measurement_windows": 60,
+        "flight_journeys": 3,
+        "flight_rows": 24,
+        "cache_cycles": 120,
+        "soak_seconds": 300
+      },
+      "selectors": "5routes ×(1440x1,390x1,390x4);eachidle4s/scroll4s/off1s/reduced1s;8flights+40cachecycles/profile;5minheaviestsoak",
+      "cost_or_overlap": "Hardlowerbound~450s sampling+soak beforeflights/setup;retentioncycles andsoak intentionallyprodonly. Stage2routesmobilex4+fourcold/warmflights,nosoak/cacheloops.",
+      "recommended_disposition": "production-retain-separate-smoke"
+    },
+    {
+      "path": ".github/workflows/site-release-checks.yml",
+      "purpose": "Shared release suite",
+      "current_count": {
+        "jobs": [
+          "build",
+          "host",
+          "static",
+          "linux",
+          "native",
+          "performance",
+          "captures",
+          "gate"
+        ]
+      },
+      "selectors": "full=true controlsnative/performance/captures;linux full260;Color12;nativeWindows40+mac130",
+      "cost_or_overlap": "Stagingcurrentlycallsentirefullrelease. sourcechecksrepeatPRbasic;Linuxalwaysdownloadsall3engines forColor. Maxlinux45/native40/performance50minutes.",
+      "recommended_disposition": "production-retain-separate-staging-workflow"
+    },
+    {
+      "path": ".github/workflows/site-color-review.yml",
+      "purpose": "PR preview /explicitstaging controller",
+      "current_count": {
+        "preview_jobs": [
+          "target",
+          "build",
+          "publish",
+          "published-comment",
+          "smoke"
+        ],
+        "stage_extra": [
+          "full",
+          "promote",
+          "status-comment"
+        ]
+      },
+      "selectors": "fulljobcallsreleasefull=true stagingautomated_only=true",
+      "cost_or_overlap": "Candidatepreviewsmoke thenfullstage thenstablequicksmoke. Retaincandidatebyte/leasechecks andstablealias/recovery smoke;replacefull stagingcaller withlighterstaging workflow.",
+      "recommended_disposition": "stage-reroute"
+    },
+    {
+      "path": ".github/workflows/site-staging.yml",
+      "purpose": "Legacy main staging route",
+      "current_count": {
+        "hosted_checks": "full release suite"
+      },
+      "selectors": "deploycandidate+smoke;hostedfull;promotestable+smoke",
+      "cost_or_overlap": "Disabled legacyoptin stillhasroute. Reroute orretirewith explicitcompatibilitydecision;do not silentlyleave heavy alternate path.",
+      "recommended_disposition": "stage-reroute-or-explicit-retire"
+    },
+    {
+      "path": "tools/quality/validate.cjs",
+      "purpose": "Full gate raw evidence validator",
+      "current_count": {
+        "required_core": [
+          390,
+          12,
+          39
+        ],
+        "color": 12,
+        "windows": [
+          40,
+          8,
+          26
+        ],
+        "lighthouse": 30,
+        "motion_samples": 15,
+        "captures": 20
+      },
+      "selectors": "Strictsource/tree/artifact/variant/rawprobe reports;hostedrequiresfull=true",
+      "cost_or_overlap": "Do not weakenfullaggregate orfunctional expectedcounts. Newstaging-gate separatevalidatorselectedexplicitly,negativecrossprofiletests.",
+      "recommended_disposition": "production-retain"
+    },
+    {
+      "path": "tools/staging/review-flow.cjs;tools/staging/state.cjs;tools/quality/promotion.cjs",
+      "purpose": "Promotion report consumers",
+      "current_count": {
+        "required_kind": "hosted-gate",
+        "required_jobs": [
+          "build",
+          "static",
+          "linux",
+          "native",
+          "performance",
+          "captures",
+          "host"
+        ]
+      },
+      "selectors": "Currentstablepromotionchecks fullhosted. qualitypromotion alsorequiresindependent+physicaldeviceevidence",
+      "cost_or_overlap": "Stagingconsumerstoacceptnew explicitstaging-gateonly;release/productionpromotioncontinuesfull/device/rightschecks.",
+      "recommended_disposition": "split-staging-versus-production-consumers"
+    }
+  ],
+  "proposed_profiles": {
+    "pr": {
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "checks": [
+        "ExistingboundedBasic source/size/syntax/geometry",
+        "Selectedowning-issueACtests",
+        "Chromiumpreviewnormal/noCanvasall5routejourneys at1440/390",
+        "Colorpreview2caseswhenvariantcolor"
+      ],
+      "excluded": [
+        "Fullfunctional/native",
+        "Lighthouse30",
+        "motionsoak",
+        "captures20",
+        "liveadvisoryfullsuite"
+      ],
+      "report_kinds": [
+        "pr-gate",
+        "preview-smoke",
+        "color-preview-smoke"
+      ]
+    },
+    "staging": {
+      "active_job_target_minutes": 15,
+      "runtime_estimate": "15 minutes is a target requiring CI measurement, not an empirical guarantee from source inspection. Cache pinned npm/Playwright assets; serialize measurements within a dedicated performance job.",
+      "jobs": [
+        "sourceidentity/reusedartifact",
+        "staticlintsecurityadvisories",
+        "hostedexactallbytes",
+        "representativebrowserregression",
+        "performancesmoke",
+        "staginggate"
+      ],
+      "browser": {
+        "journeys": [
+          {
+            "engine": "chromium",
+            "width": 1440,
+            "mode": "normal"
+          },
+          {
+            "engine": "chromium",
+            "width": 390,
+            "mode": "normal"
+          },
+          {
+            "engine": "firefox",
+            "width": 1440,
+            "mode": "normal"
+          },
+          {
+            "engine": "firefox",
+            "width": 390,
+            "mode": "normal"
+          },
+          {
+            "engine": "chromium",
+            "width": 390,
+            "mode": "no-canvas"
+          }
+        ],
+        "route_coverage": "Eachjourneyall5routes;themesalternatedandcontroltogglechecked",
+        "navigation": [
+          {
+            "engine": "chromium",
+            "width": 1440,
+            "theme": "light"
+          },
+          {
+            "engine": "firefox",
+            "width": 390,
+            "theme": "dark"
+          }
+        ],
+        "capability_failures": {
+          "engine": "chromium",
+          "route": "index",
+          "width": 320,
+          "modes": [
+            "no-js",
+            "no-raf",
+            "no-match-media",
+            "blocked-storage",
+            "reduced",
+            "missing-hasOwn",
+            "css-delayed",
+            "css-blocked",
+            "draw-fault",
+            "context-loss"
+          ],
+          "note": "No-Canvas is covered by the five-route journey; avoid a second identical direct-load assertion."
+        },
+        "analytics": {
+          "engine": "chromium",
+          "cases": [
+            {
+              "entry": "index",
+              "mode": "enabled"
+            },
+            {
+              "entry": "writing",
+              "mode": "enabled"
+            },
+            {
+              "entry": "index",
+              "mode": "blocked"
+            },
+            {
+              "entry": "index",
+              "mode": "delayed"
+            },
+            {
+              "entry": "index",
+              "mode": "staging"
+            },
+            {
+              "entry": "index",
+              "mode": "offline"
+            },
+            {
+              "entry": "writing",
+              "mode": "offline"
+            }
+          ]
+        },
+        "color": "ExistingChromium2previewcases;labelstage-color-smoke"
+      },
+      "performance": {
+        "lighthouse": "2mobiletrialsresearch/writing;originalLCP/TBT/CLSlimits;distinct single-trialsmoke,no medianclaim",
+        "motion": "Research+Writing390px CPUx4 idle/scroll/off/reduced original33ms/20%limits withrawvalidation;4cold/warmflightrows originaltransitionlimits;no40cycleloops,nosoak"
+      },
+      "report_kinds": [
+        "staging-browser-regression",
+        "staging-performance-smoke",
+        "staging-gate"
+      ],
+      "assertions": [
+        "Exactselectors,tags,anduniqueexpectedcasecoverage;do not trust rowcounts alone",
+        "source/tree/candidate/artifact/variant/targetbinding",
+        "Successfulrequiredjobsandcompleteexactservedbyteinventory",
+        "staging-only profile andproductionEligible=false",
+        "Negative testsreject previewreportasstagegateand stagegateasrelease"
+      ]
+    },
+    "production": {
+      "required": "Original full functional/navigation/analytics matrix; native Windows/macOS WebKit; Color twelve-case matrix when testing the declared Color rendition; raw performance budgets, captures, independent review, physical devices, rights and production indexing.",
+      "report_kinds": [
+        "functional",
+        "color-functional",
+        "lighthouse",
+        "motion",
+        "captures",
+        "hosted",
+        "release-manifest"
+      ],
+      "unchanged_budgets": [
+        "LCP2500ms,TBT200ms,CLS0.1three-runmedian",
+        "Mobilex4paintp95<=33ms,idlebusy<=20%",
+        "Transitionp95<=80ms/max<=200ms/preparation<=160ms/gap<=300ms/ready<=3200ms/minpaint8",
+        "Soak300sec10nonoverlap30secchunks",
+        "390functional12navigation39analytics;Windows40/8/26 supplemental;Color12"
+      ]
+    }
+  },
+  "finding": "Most apparent duplicate scenarios are crossproduct repetition of valid current behavior. They can be selected differently for staging while full production evidence remains intact. Use a distinct selector/report contract instead of lowering full-validator expected counts."
+}

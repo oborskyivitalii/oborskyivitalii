@@ -5,6 +5,10 @@ on:
       candidate_sha:
         required: true
         type: string
+      validation_level:
+        description: Distinct validation contract; staging never substitutes for production
+        type: string
+        default: production
       full:
         type: boolean
         default: true
@@ -64,6 +68,10 @@ on:
         description: Exact 40-character source commit
         required: true
         type: string
+      validation_level:
+        description: Distinct validation contract; staging never substitutes for production
+        type: string
+        default: production
       full:
         description: Native platforms, performance, devices and review release gates
         type: boolean
@@ -112,6 +120,8 @@ defaults:
   run:
     shell: bash
 env:
+  SITE_VALIDATION_LEVEL: ${{ inputs.validation_level }}
+  SITE_FULL: ${{ inputs.full }}
   SITE_CANDIDATE_SHA: ${{ inputs.candidate_sha }}
   SITE_TEST_BASE_URL: ${{ inputs.base_url }}
   SITE_TEST_PROFILE: ${{ inputs.profile }}
@@ -150,16 +160,22 @@ jobs:
           node -e "require('node:assert/strict').match(process.env.SITE_CANDIDATE_SHA,/^[0-9a-f]{40}$/)"
           node -e "const a=require('node:assert/strict'),v=process.env.SITE_PUBLIC_VARIANT;a.ok(['base','color'].includes(v));if(v==='color')a.equal(process.env.SITE_TEST_PROFILE,'staging')"
           test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
+          node -e "const a=require('node:assert/strict');a.ok(['staging','production'].includes(process.env.SITE_VALIDATION_LEVEL));if(process.env.SITE_VALIDATION_LEVEL==='staging'){a.equal(process.env.SITE_TEST_PROFILE,'staging');a.ok(process.env.SITE_TEST_BASE_URL.startsWith('https://'));a.equal(process.env.SITE_AUTOMATED_ONLY,'true');a.equal(process.env.SITE_FULL,'true')}"
           status=0
           check() { "$@" || status=1; }
-          check node --test tests/*.test.cjs
-          check node tools/site/build.cjs --check
-          check node tools/check_site_seo.cjs
+          if [ "$SITE_VALIDATION_LEVEL" = staging ]; then
+            check node tools/quality/local.cjs
+            check node tools/quality/source-tests.cjs --profile staging --require-clean
+          else
+            check node tools/quality/source-tests.cjs --profile production --require-clean
+            check node tools/site/build.cjs --check
+            check node tools/check_site_seo.cjs
+            check node tools/build_scene_fallbacks.cjs --check
+            check node tools/build_site_previews.cjs --check
+            check python tools/build_site_bundle.py --check
+            check python tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify
+          fi
           check python tools/run_repository_tests.py
-          check node tools/build_scene_fallbacks.cjs --check
-          check node tools/build_site_previews.cjs --check
-          check python tools/build_site_bundle.py --check
-          check python tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify
           exit "$status"
       - name: Package public files once and enforce budgets
         if: inputs.public_artifact_id == ''
@@ -227,7 +243,7 @@ jobs:
   static:
     needs: build
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: ${{ inputs.validation_level == 'staging' && 15 || 20 }}
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
@@ -270,6 +286,7 @@ jobs:
           path: quality-reports/
           retention-days: 30
   linux:
+    if: inputs.validation_level == 'production'
     needs: build
     runs-on: ubuntu-24.04
     timeout-minutes: 45
@@ -346,7 +363,7 @@ jobs:
           path: quality-reports/
           retention-days: 30
   native:
-    if: inputs.full
+    if: inputs.validation_level == 'production' && inputs.full
     needs: build
     strategy:
       fail-fast: false
@@ -400,7 +417,7 @@ jobs:
           path: quality-reports/
           retention-days: 30
   performance:
-    if: inputs.full
+    if: inputs.validation_level == 'production' && inputs.full
     needs: build
     runs-on: ubuntu-24.04
     timeout-minutes: 50
@@ -437,7 +454,7 @@ jobs:
           path: quality-reports/
           retention-days: 30
   captures:
-    if: inputs.full
+    if: inputs.validation_level == 'production' && inputs.full
     needs: build
     runs-on: ubuntu-24.04
     timeout-minutes: 25
@@ -481,9 +498,43 @@ jobs:
             quality-reports/
             review/site-v1-20261004-v11-captures/
           retention-days: 30
+  staging:
+    if: inputs.validation_level == 'staging'
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ inputs.candidate_sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          artifact-ids: ${{ needs.build.outputs.artifact_id }}
+          run-id: ${{ needs.build.outputs.artifact_run_id }}
+          github-token: ${{ github.token }}
+          path: quality-artifact
+      - name: Install locked bounded staging browser tools
+        run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium firefox
+      - name: Verify the unchanged package and run representative browser and performance regression
+        run: |
+          node tools/quality/artifact.cjs verify quality-artifact/public quality-artifact/artifact.json
+          node tools/quality/staging-regression.cjs
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: site-reports-staging-${{ inputs.profile }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: quality-reports/
+          if-no-files-found: error
+          retention-days: 30
   gate:
     if: always()
-    needs: [build, static, linux, native, performance, captures, host]
+    needs: [build, static, linux, native, performance, captures, host, staging]
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     outputs:
@@ -516,10 +567,10 @@ jobs:
           path: quality-artifact/reports
           merge-multiple: false
       - name: Validate external evidence identifiers
-        if: inputs.full && !inputs.automated_only && inputs.evidence_artifact_id != ''
+        if: inputs.validation_level == 'production' && inputs.full && !inputs.automated_only && inputs.evidence_artifact_id != ''
         run: node -e "const a=require('node:assert/strict');a.match(process.env.SITE_EVIDENCE_ARTIFACT_ID,/^[0-9]+$/);a.match(process.env.SITE_EVIDENCE_RUN_ID,/^[0-9]+$/)"
       - name: Download immutable external review/device evidence
-        if: inputs.full && !inputs.automated_only && inputs.evidence_artifact_id != ''
+        if: inputs.validation_level == 'production' && inputs.full && !inputs.automated_only && inputs.evidence_artifact_id != ''
         uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
         with:
           artifact-ids: ${{ inputs.evidence_artifact_id }}
@@ -531,7 +582,10 @@ jobs:
         env:
           SITE_FULL: ${{ inputs.full }}
         run: |
-          if [ "$SITE_FULL" = true ]; then
+          if [ "$SITE_VALIDATION_LEVEL" = staging ]; then
+            unset SITE_RELEASE_EVIDENCE
+            node tools/quality/staging-gate.cjs quality-artifact
+          elif [ "$SITE_FULL" = true ]; then
             if [ -n "$SITE_EVIDENCE_ARTIFACT_ID" ]; then
               export SITE_RELEASE_EVIDENCE="$GITHUB_WORKSPACE/quality-artifact/external-evidence/release-evidence.json"
             fi

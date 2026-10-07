@@ -1,7 +1,12 @@
 # PR previews and explicit staging
 
-Owner intent: issues #8 and #13. The accepted staging record below describes
-earlier exact editions; revalidate current settings/source through the live owners.
+Owner intent: [hosting #8](https://github.com/oborskyivitalii/oborskyivitalii/issues/8)
+and [release gates #13](https://github.com/oborskyivitalii/oborskyivitalii/issues/13).
+[Test optimization #35](https://github.com/oborskyivitalii/oborskyivitalii/issues/35)
+supersedes the full-staging schedule with the bounded regression owned by
+[SITE-CHECK-PROFILES](SITE-CHECK-PROFILES.md). Earlier accepted records below
+remain evidence only of their exact editions; revalidate current settings/source
+through the live owners.
 Controller PRs #26/#29 and runtime PR #23
 are accepted in protected main. CI-only PR #30 added bounded exact-byte alias
 convergence and package-attempt lineage. Reading/contact/Home PR #28 is merged
@@ -18,24 +23,49 @@ mechanics; a historical accepted run does not admit a later candidate.
 | Trigger | Address | Checks |
 | --- | --- | --- |
 | Open/update a same-repository PR | `https://pr-N.oborskyi-author-ci-staging.pages.dev` and an immutable version URL | Focused source, controller, package and HTTP checks; Chromium at 1440/390 widths; Color effects checked when that exact source supports them. |
-| Owner posts exactly `/stage` in an open PR, or manually dispatches its number from main | Immutable candidate, then `https://staging.oborskyi-author-ci-staging.pages.dev` after success | Complete hosted source/security/advisory/three-engine/native/accessibility/failure/Lighthouse/CPU/soak/capture suite. |
+| Owner posts exactly `/stage` in an open PR, or manually dispatches its number from main | Immutable candidate, then `https://staging.oborskyi-author-ci-staging.pages.dev` after success | Exact source/package/HTTP checks, lint/security/advisories and bounded staging regression: Chromium/Firefox all-route journeys, selected failure/navigation/analytics, two mobile Lighthouse trials and bounded CPU/flight samples. |
+| Owner applies `staging-regression` to an open same-repository PR | Immutable preview candidate URL | The bounded staging regression records exact candidate evidence; it does not update the stable staging alias. |
+| Explicit full candidate validation before production | Exact selected public artifact and, when provided, its immutable HTTPS origin | Full production regression retains all engines/native platforms, complete cases, thirty Lighthouse runs, soak/captures and external release gates. This validation does not publish production. |
 
 Only the pinned official Wrangler Action deploys candidates, stable staging and
 rollback. CI resolves the current open PR head, public/package artifact identities
 and URLs. No files, hashes or artifact IDs are copied by the operator.
 
 The controller rejects forks, stale PR heads, moved or unprotected main, wrong
-artifacts, incomplete/failed full suites, invalid recovery and an untracked stable
-alias. A preview report cannot authorize stable promotion. Staging requests are
-serialized. Ordinary/bot PR comments never authorize staging or share its queue.
+artifacts, incomplete/failed selected staging regression, invalid recovery and
+an untracked stable alias. A preview report cannot authorize stable promotion.
+Staging requests are serialized. Ordinary/bot PR comments never authorize staging or share its queue.
 Only a newly created exact `/stage` command whose commenter and event actor are
 the repository owner is accepted. Edited comments do not trigger a deployment.
+The evidence-only `staging-regression` label likewise requires the repository
+owner's label event, matching sender/actor and an open same-repository PR. It uses
+its own concurrency group and does not authorize stable promotion. This permits
+reviewing a changed staging implementation before it reaches protected main;
+the existing `/stage` route still runs from protected main.
 
 The source edition selects base or the authored Color rendition explicitly in its
 artifact. A pipeline-only PR based on main retains its unchanged source rendition. The
 accepted Color runtime is on main; stage the current open follow-up PR to test
 its exact source and supported rendition.
 All served HTML/runtime bytes are verified against the selected artifact.
+
+The reusable workflow distinguishes `validation_level` from hosted `profile`.
+The owner staging controller selects `validation_level: staging`,
+`profile: staging`, and `automated_only: true`. It runs successful build/static/host/staging
+jobs and promotes only their matching `staging-gate`, whose `fullGate` and
+`productionEligible` remain false. The operational target is at most 15 minutes
+of active staging jobs; measure the actual run and report queue time separately.
+
+For explicit pre-production candidate validation, `validation_level: production`
+and `full: true` select the complete regression; production is the reusable
+workflow's default validation level. A full validation can test an immutable
+staging origin using `profile: staging`; real production indexing/origin checks
+use `profile: production`. These origin policies do not change the coverage
+level. The strict `tools/quality/promotion.cjs` and GitHub Pages example still
+require the full hosted gate and external device/independent acceptance; the
+lighter `staging-gate` is rejected for production admission. Color stays
+staging-only. Production activation and first-release acceptance remain with
+#8/#1/#7.
 
 ## Verified provider and first preview
 
@@ -78,7 +108,8 @@ preflight passed separately. Every full-stage failure remains evidence.
    for every PR update. Staging requires the live API to report `protected: true`.
 5. Both command and dispatch definitions must exist on the default branch.
    This is complete: reviewed infrastructure #26 is already merged. Stage the
-   current open runtime PR before merging it; staging resolves an open PR head.
+   current open runtime PR through its applicable staging profile before merging
+   it; staging resolves an open PR head.
 
 Preview and staging credentials/account/project, both opt-ins and protected main
 are proved by successful deployments. No additional owner setup is needed.
@@ -116,13 +147,14 @@ that comment invokes Actions from main and the agent follows the result. Manual
 alternative: **Actions → Site PR preview and staging → Run workflow → main →
 pr_number**. No direct provider upload is substituted.
 
-Complete staging and stable verification while the PR remains open, then merge
-the tested head. The controller rejects a merged/closed or moved PR; merging
-first does not publish staging. Main updates do not automatically publish
+Complete the bounded staging regression and stable verification while the PR
+remains open, then merge the tested head. The controller rejects a merged/closed
+or moved PR; merging first does not publish staging. Main updates do not automatically publish
 production GitHub Pages under the current repository workflows.
 
 The PR's single status comment shows the immutable candidate, source and linked
-smoke/full result. Only a complete matching full gate updates stable staging.
+preview/staging result. Only a complete matching staging gate updates stable
+staging; it does not assert full production regression or release acceptance.
 Promotion retains the successful package/recovery for 90 days; subsequent runs
 locate the last real successful promotion, verify its attempt/digests and restore
 it through the official action if stable verification fails. Disabled/skipped
@@ -130,5 +162,8 @@ runs never replace recovery. Expired recovery blocks promotion. The first stable
 promotion has no earlier accepted package to restore.
 
 Production GitHub Pages and physical-device/independent release acceptance retain
-their existing requirements. Full stage failures are recorded without relaxing
-performance limits or patching deployed files.
+their existing requirements. Staging and full-production failures are recorded
+under their actual profile without relaxing performance limits or patching
+served files. At owning-issue completion review added/changed tests against PR,
+staging, production and diagnostic coverage; update the profile registry and
+RI/CI routes as required by SITE-CHECK-PROFILES.

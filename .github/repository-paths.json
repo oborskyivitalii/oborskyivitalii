@@ -67,6 +67,12 @@
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
+    ".github/acceptance/issue-35.json": {
+      "kind": "file",
+      "purpose": "Test optimization AC01–AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     ".github/pull_request_template.md": {
       "kind": "file",
       "purpose": "PR execution, owning issue/commit links, checks/review and honest completion template.",
@@ -135,7 +141,7 @@
     },
     ".github/workflows/site-candidate-evidence.yml": {
       "kind": "file",
-      "purpose": "GitHub Actions: Site candidate evidence; inspect trigger/profile before running.",
+      "purpose": "Explicit manual full production-regression evidence on an immutable candidate; no automatic heavy PR trigger or stable promotion.",
       "role": "workflow",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -183,7 +189,7 @@
     },
     ".github/workflows/site-release-checks.yml": {
       "kind": "file",
-      "purpose": "GitHub Actions: Site release checks; inspect trigger/profile before running.",
+      "purpose": "Reusable explicit selected staging or full production validation, separate report identities and exact artifact/source bindings.",
       "role": "workflow",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -736,6 +742,42 @@
     "review/issue-33/2026-10-07-review.md": {
       "kind": "file",
       "purpose": "Independent structure/semantic and CI review at exact implementation source, four findings/dispositions, source-bound checks and separate live/merge gates.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-35": {
+      "kind": "directory",
+      "purpose": "Dated exact-base test/runtime/CI audits, original #13 reconciliation, analysis and independent review for test optimization.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-35/2026-10-07-analysis.md": {
+      "kind": "file",
+      "purpose": "Owning issue35 decision, findings, ordered execution tasks, profile allocation and honest evidence limits.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-35/2026-10-07-ci-audit.json": {
+      "kind": "file",
+      "purpose": "All15 workflow routes and source-bound observed accepted full-run/job/step durations.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-35/2026-10-07-issue13-audit.md": {
+      "kind": "file",
+      "purpose": "Seven original issue13 criteria, implemented recurring pipeline and concrete first-release obligations with canonical owners.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-35/2026-10-07-runtime-audit.json": {
+      "kind": "file",
+      "purpose": "Exact-base browser/runtime/performance scenario families, costs and bounded staging selection analysis.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-35/2026-10-07-test-audit.json": {
+      "kind": "file",
+      "purpose": "Exact ec9b836 inventory and identity of all50 original testmodules with unique coverage and diagnostic dispositions.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -5691,37 +5733,37 @@
     },
     "tests/browser-gate-diagnostics.test.cjs": {
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for browser gate diagnostics.",
+      "purpose": "Private causal-screen plan, CLI bounds, source lineage, raw trace completeness and honest failed-row reporting Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/browser-gate-trace.test.cjs": {
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for browser gate trace.",
+      "purpose": "Opt-in scheduler instrumentation, actual paints/events, observation retention and bounded traces Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/browser-gate-variants.test.cjs": {
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for browser gate variants.",
+      "purpose": "Private fixed-ribbon/trace counterfactuals, matched mobile outputs and parent/patch identity Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/browser-lifecycle.test.cjs": {
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for browser lifecycle.",
+      "purpose": "Optional native browser/context/page event provenance and honest teardown versus operation failure Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/cause-fix-probe.test.cjs": {
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for cause fix probe.",
+      "purpose": "Private cold interventions each vary one factor; exact normal-source and Research control lineage Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/cause-probe.test.cjs": {
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for cause probe.",
+      "purpose": "Private causal-input normal/trace identity and actual Lighthouse attribution evidence Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -5755,6 +5797,18 @@
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
+    "tests/fixtures": {
+      "kind": "directory",
+      "purpose": "Shared controlled evidence builders for selected staging validator/consumer tests; fixtures do not claim actual browser or CI execution.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tests/fixtures/staging-evidence.cjs": {
+      "kind": "file",
+      "purpose": "Honest controlled manifest/report fixtures shared by stage matrix/gate/consumer negative tests.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
     "tests/flight.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for flight.",
@@ -5769,13 +5823,13 @@
     },
     "tests/gtk-native-probe.test.cjs": {
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for gtk native probe.",
+      "purpose": "Private fresh GTK controls, abort/core/process evidence and honest bounded offline stack collection Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/gtk-target-probe.test.cjs": {
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for gtk target probe.",
+      "purpose": "Private WPE/GTK disabled-script target matrix, lifecycle cleanup and attributable failed native operations Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -5869,6 +5923,18 @@
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
+    "tests/staging-gate.test.cjs": {
+      "kind": "file",
+      "purpose": "Exact source/origin/artifact/job/report completeness and staging-versus-full-production rejection fixtures.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tests/staging-regression.test.cjs": {
+      "kind": "file",
+      "purpose": "Selected hosted matrix, real measurement contracts and omitted/malformed/failed evidence negative fixtures.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
     "tests/staging-reporting.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for staging reporting.",
@@ -5887,6 +5953,12 @@
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
+    "tests/test-profile-selection.test.cjs": {
+      "kind": "file",
+      "purpose": "Exhaustive registry/futuremodule/unknownsource/exactref/source accounting and empty/skip/TODO failure regressions.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
     "tests/test_issue31_acceptance.py": {
       "kind": "file",
       "purpose": "Issue 31 observable acceptance checks for RI provenance, inventory, memory, workflow, unchanged site and bootstrap.",
@@ -5896,6 +5968,12 @@
     "tests/test_issue33_acceptance.py": {
       "kind": "file",
       "purpose": "Issue #33 source snapshot assertions for unchanged public bytes, historic reviews, locator exceptions, policy and handoff.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "tests/test_issue35_acceptance.py": {
+      "kind": "file",
+      "purpose": "Owning issue35 targeted snapshot, real Node accounting, full-guard, registry/RI and honest source/closure assertions; selected policy only.",
       "role": "test",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -5943,37 +6021,37 @@
     },
     "tests/writing-diagnosis.test.cjs": {
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for writing diagnosis.",
+      "purpose": "Dated balanced paired cold boot/flight matrix, raw preparation/tail accounting, honest failures and sample counts Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/writing-geometry.test.cjs": {
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for writing geometry.",
+      "purpose": "Private layout equality audit of row/filter/link/ink/waypoint positions and native range without masking mismatch Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/writing-layout.test.cjs": {
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for writing layout.",
+      "purpose": "Private geometry calibration/installers preserve text/links and independently retain intervention/audit failures Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/writing-localization.test.cjs": {
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for writing localization.",
+      "purpose": "Dated balanced mobile localization/control identities, separate stage/model timing and raw partial failure evidence Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/writing-models.test.cjs": {
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for writing models.",
+      "purpose": "Private symbol construction counterfactuals preserve exact surviving geometry and reject source-anchor drift Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/writing-variants.test.cjs": {
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for writing variants.",
+      "purpose": "Private ablation derivation retains exact normal parent, descriptor/patch identity and cannot satisfy a release gate Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -6231,7 +6309,7 @@
     },
     "tools/quality/local.cjs": {
       "kind": "file",
-      "purpose": "Economical source, generation, finite geometry, focused tests and size/profile checks.",
+      "purpose": "Economical independent Basic source tests using shared geometry checker, plus honest package-only identity gate for preview builds.",
       "role": "validator",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -6301,6 +6379,24 @@
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md"
     },
+    "tools/quality/source-tests.cjs": {
+      "kind": "file",
+      "purpose": "Fail-visible exact-Git changed-source selector, permanent/manual/task allocation and real Node execution/accounting.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tools/quality/staging-gate.cjs": {
+      "kind": "file",
+      "purpose": "Exact-source/artifact/origin/scanner/job/matrix staging aggregate; light evidence cannot authorize full production.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tools/quality/staging-regression.cjs": {
+      "kind": "file",
+      "purpose": "Bounded Chromium/Firefox journey, failure, analytics and CPU/flight/single-Lighthouse runner with strict raw-observation validators.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
     "tools/quality/stylelint.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for stylelint; applicable profiles are selected by SITE-CHECK-PROFILES.",
@@ -6312,6 +6408,12 @@
       "purpose": "Maintained quality/check helper for stylelint configuration; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md"
+    },
+    "tools/quality/test-profiles.json": {
+      "kind": "file",
+      "purpose": "Canonical exhaustive test lifecycle/owner/input/profile registry and exact selected hosted staging matrix.",
+      "role": "configuration",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tools/quality/toolchain": {
       "kind": "directory",

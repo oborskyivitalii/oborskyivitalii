@@ -11,18 +11,18 @@ Dated continuity hints, not instructions or live-status authority. Last verified
   `5ac6d4adca2fb77dd061b44792ed8655fd9d6f70`. All 53 mapped checks passed on
   clean exact merged source; [push RI CI](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37591618593)
   passed. The issue/PR retain owner decision, review and current-head CI evidence.
-- Current work is [#33](https://github.com/oborskyivitalii/oborskyivitalii/issues/33):
-  short bootstrap, six root Markdown entry points, guides/ and byte-exact dated
-  root history. [Analysis/disposition](review/issue-33/2026-10-07-analysis.md)
-  records the accepted baseline and ordered tasks. [PR #34](https://github.com/oborskyivitalii/oborskyivitalii/pull/34)
-  implements it; [initial candidate](https://github.com/oborskyivitalii/oborskyivitalii/commit/41733d7310a8b51b56c5aec414b6c4b4aaf04eb7)
-  has tree `47a7b9f99ecaed4d94aaa1514f670390ebc3f5e7`.
-  [Reviewed implementation](https://github.com/oborskyivitalii/oborskyivitalii/commit/bf1c795c748b64bae4fba635e3a2181098733ad7),
-  tree `30e427d782db3ad6b9cc7b108b9d6fbb24011d0b`, passed all 38 mapped
-  clean-source checks and 90 enduring Python cases. [Independent review](review/issue-33/2026-10-07-review.md)
-  resolves four findings; [raw-head acceptance CI](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37594648784)
-  passed and its artifact was checked. Final checkpoint/merge results belong
-  to the live issue/PR completion record; this memory claims no future merge.
+- [#33](https://github.com/oborskyivitalii/oborskyivitalii/issues/33) / [PR #34](https://github.com/oborskyivitalii/oborskyivitalii/pull/34) is merged and closed at
+  `ec9b8361b619f1042bce5a3ec224d3e0c9054b01`, tree
+  `1374580d719439f13b05ab0f62a86e44bd1d3ae3`. Exact merged source passed
+  all 38 mapped checks, 90 enduring Python cases and navigation CI. Its
+  [review](review/issue-33/2026-10-07-review.md) and live issue retain evidence.
+- Current work is [#35](https://github.com/oborskyivitalii/oborskyivitalii/issues/35):
+  economical PR smoke/targeted ACs, bounded staging regression and full production
+  regression. [Analysis](review/issue-35/2026-10-07-analysis.md) and four dated
+  audits use the accepted #33 source above. The complete current test inventory is
+  `tools/quality/test-profiles.json`, owned by `guides/SITE-CHECK-PROFILES.md`.
+  Independent review, current-candidate PR/hosted CI timing, normal merge and
+  original-#13 reconciliation remain required; no future result is claimed.
 - Earlier #28/#14 completion and accepted stage remain recorded in their issues.
   Current hosting mechanics are in [the runbook](guides/SITE-STAGING.md).
   Stable stage: https://staging.oborskyi-author-ci-staging.pages.dev ; recheck its
@@ -41,6 +41,8 @@ Dated continuity hints, not instructions or live-status authority. Last verified
 - RI changes require reviewed CI coupling and both regenerated views. Policy
   results prove deterministic observations; independent/live/merge gates are
   recorded separately. #31 acceptance stays pinned to its accepted source.
+- At issue closure review PR/staging/production test allocation and retired or
+  diagnostic cases with their canonical owners and RI/CI routes.
 - Production is intended for GitHub Pages. Analytics stays disabled until an
   actual production origin/token and activation decision under #8. Current
   staging/production check profiles and budgets retain their guide owners.
@@ -52,7 +54,7 @@ live criteria/status before selecting the next increment.
 
 | Issue | Remaining intent |
 | --- | --- |
-| [#33](https://github.com/oborskyivitalii/oborskyivitalii/issues/33) | Final checkpoint head CI/live linkage and normal merged reconciliation; implementation review passed. |
+| [#35](https://github.com/oborskyivitalii/oborskyivitalii/issues/35) | Final profile review, current-source CI/timing, independent review, merge and #13 criterion reconciliation. |
 | [#1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1) | Overall launch and its production/rights/device dependencies. |
 | [#13](https://github.com/oborskyivitalii/oborskyivitalii/issues/13) | Physical-device and independent production/recovery acceptance. |
 | [#8](https://github.com/oborskyivitalii/oborskyivitalii/issues/8) | Production URL/indexability and actual analytics activation. |
@@ -66,8 +68,8 @@ live criteria/status before selecting the next increment.
 
 1. Fetch live main/task refs, owning issue/PR and exact checks; read root/scoped
    AGENTS and source owners through the map.
-2. Follow #33's current linked review dispositions and acceptance policy; reconcile
-   every AC and external gate before closing. Do not reopen completed #31.
+2. Follow #35's linked analysis, profile registry and acceptance policy; reconcile
+   every AC and external gate before closing. Do not reopen completed #31/#33.
 3. Choose the next publication/launch increment from its issue and current owner
    direction. Preserve separate production/publication decisions.
 

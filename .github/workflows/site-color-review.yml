@@ -1,7 +1,7 @@
 name: Site PR preview and staging
 on:
   pull_request:
-    types: [opened, synchronize, reopened, ready_for_review]
+    types: [opened, synchronize, reopened, ready_for_review, labeled]
   issue_comment:
     types: [created]
   workflow_dispatch:
@@ -16,13 +16,14 @@ permissions:
   pull-requests: read
 concurrency:
   group: >-
-    ${{ github.event_name == 'pull_request' && format('site-preview-{0}', github.event.pull_request.number) ||
+    ${{ github.event_name == 'pull_request' && github.event.action == 'labeled' && format('site-stage-evidence-{0}', github.event.pull_request.number) ||
+        github.event_name == 'pull_request' && format('site-preview-{0}', github.event.pull_request.number) ||
         (github.event_name == 'workflow_dispatch' ||
          (github.event_name == 'issue_comment' && github.event.issue.pull_request &&
           github.event.comment.body == '/stage' && github.event.comment.user.login == github.repository_owner &&
           github.actor == github.repository_owner)) && 'site-pr-staging' ||
         format('site-ignored-comment-{0}', github.run_id) }}
-  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' && github.event.action != 'labeled' }}
 defaults:
   run:
     shell: bash
@@ -31,7 +32,10 @@ jobs:
     if: >-
       github.repository == 'oborskyivitalii/oborskyivitalii' &&
       (github.event_name == 'workflow_dispatch' ||
-       (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) ||
+       (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository &&
+        (github.event.action != 'labeled' ||
+         (github.event.label.name == 'staging-regression' &&
+          github.event.sender.login == github.repository_owner && github.actor == github.repository_owner))) ||
        (github.event_name == 'issue_comment' && github.event.issue.pull_request &&
         github.event.comment.body == '/stage' &&
         github.event.comment.user.login == github.repository_owner &&
@@ -44,6 +48,7 @@ jobs:
       source: ${{ steps.target.outputs.source }}
       branch: ${{ steps.target.outputs.branch }}
       enabled: ${{ steps.target.outputs.enabled }}
+      evidence: ${{ steps.target.outputs.evidence }}
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
@@ -62,6 +67,7 @@ jobs:
             const {data:pr}=await github.rest.pulls.get({...context.repo,pull_number:number});
             const main=context.eventName!=='pull_request'?(await github.rest.repos.getBranch({...context.repo,branch:'main'})).data:null;
             const target=flow.resolve(context,pr,main);
+            target.evidence=String(flow.previewEvidence(context));
             target.enabled=String(process.env[target.mode==='preview'?'REVIEW_PREVIEW_ENABLED':'REVIEW_STAGING_ENABLED']==='true');
             for(const [key,value]of Object.entries(target))core.setOutput(key,value);
   build:
@@ -88,14 +94,14 @@ jobs:
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
           node-version: 24.19.0
-      - name: Fast source checks and one immutable public build
+      - name: Targeted controller checks and one immutable public build
         run: |
           test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
           node --test tests/review-flow.test.cjs tests/preview-smoke.test.cjs
           if [ "$(node tools/staging/review-flow.cjs variant)" = color ]; then
             node --test tests/color-build.test.cjs
           fi
-          node tools/quality/local.cjs --package color-artifact
+          node tools/quality/artifact.cjs build color-artifact
       - id: rendition
         name: Select the supported source rendition and bind its visual identity
         run: node tools/staging/review-flow.cjs rendition color-artifact
@@ -112,7 +118,7 @@ jobs:
           SITE_ARTIFACT_ID: ${{ steps.public.outputs.artifact-id }}
           SITE_UPLOAD_DIGEST: ${{ steps.public.outputs.artifact-digest }}
         run: |
-          node tools/quality/local.cjs --gate color-artifact
+          node tools/quality/local.cjs --package-gate color-artifact
           node tools/staging/package.cjs build color-artifact staging-package
       - id: identity
         run: |
@@ -202,10 +208,12 @@ jobs:
           REVIEW_SOURCE: ${{ needs.target.outputs.source }}
           REVIEW_URL: ${{ needs.publish.outputs.url }}
           REVIEW_ALIAS: ${{ needs.target.outputs.mode == 'preview' && needs.publish.outputs.alias || '' }}
+          REVIEW_EVIDENCE: ${{ needs.target.outputs.evidence }}
         with:
           script: |
-            await require('./tools/staging/review-flow.cjs').updateComment(github,context,{source:process.env.REVIEW_SOURCE,url:process.env.REVIEW_URL,alias:process.env.REVIEW_ALIAS,status:'Published; '+(process.env.REVIEW_MODE==='preview'?'minimal hosted smoke':'full hosted tests')+' pending.',run:`https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`});
+            await require('./tools/staging/review-flow.cjs').updateComment(github,context,{source:process.env.REVIEW_SOURCE,url:process.env.REVIEW_URL,alias:process.env.REVIEW_ALIAS,status:'Published; '+(process.env.REVIEW_MODE==='preview'&&process.env.REVIEW_EVIDENCE!=='true'?'minimal hosted smoke':'bounded staging regression')+' pending.',run:`https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`});
   smoke:
+    if: needs.target.outputs.mode == 'preview' && needs.target.outputs.evidence != 'true'
     needs: [target, build, publish]
     runs-on: ubuntu-24.04
     timeout-minutes: 10
@@ -248,12 +256,33 @@ jobs:
           name: site-preview-smoke-${{ github.run_id }}-${{ github.run_attempt }}
           path: staging-reports/
           retention-days: 30
-  full:
-    needs: [target, build, publish, smoke]
-    if: needs.target.outputs.mode == 'staging'
+  stage-evidence:
+    needs: [target, build, publish]
+    if: >-
+      github.event_name == 'pull_request' && needs.target.outputs.evidence == 'true' &&
+      needs.target.result == 'success' && needs.build.result == 'success' && needs.publish.result == 'success'
     uses: ./.github/workflows/site-release-checks.yml
     with:
       candidate_sha: ${{ needs.target.outputs.source }}
+      validation_level: staging
+      full: true
+      profile: staging
+      automated_only: true
+      public_variant: ${{ needs.build.outputs.variant }}
+      base_url: ${{ needs.publish.outputs.url }}
+      public_artifact_id: ${{ needs.build.outputs.public_artifact }}
+      public_digest: ${{ needs.build.outputs.public_digest }}
+      public_upload_digest: ${{ needs.build.outputs.public_upload_digest }}
+  full:
+    needs: [target, build, publish, smoke]
+    if: >-
+      always() && needs.target.outputs.mode == 'staging' &&
+      needs.target.result == 'success' && needs.build.result == 'success' &&
+      needs.publish.result == 'success' && needs.smoke.result == 'skipped' && !cancelled()
+    uses: ./.github/workflows/site-release-checks.yml
+    with:
+      candidate_sha: ${{ needs.target.outputs.source }}
+      validation_level: staging
       full: true
       profile: staging
       automated_only: true
@@ -265,7 +294,11 @@ jobs:
       public_upload_digest: ${{ needs.build.outputs.public_upload_digest }}
   promote:
     needs: [target, build, publish, smoke, full]
-    if: (github.event_name == 'workflow_dispatch' || github.event_name == 'issue_comment') && github.ref == 'refs/heads/main' && needs.full.result == 'success'
+    if: >-
+      always() && (github.event_name == 'workflow_dispatch' || github.event_name == 'issue_comment') &&
+      github.ref == 'refs/heads/main' && needs.target.result == 'success' &&
+      needs.build.result == 'success' && needs.publish.result == 'success' &&
+      needs.smoke.result == 'skipped' && needs.full.result == 'success' && !cancelled()
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     environment: staging
@@ -295,7 +328,7 @@ jobs:
         with:
           artifact-ids: ${{ needs.full.outputs.gate_artifact_id }}
           path: staging-reports/gate
-      - name: Verify the full hosted gate for these exact bytes
+      - name: Verify the bounded staging gate for these exact bytes
         run: node tools/staging/review-flow.cjs gate staging-package staging-reports/gate/release-manifest.json
       - id: previous
         name: Locate the last successful CI staging recovery automatically
@@ -415,7 +448,7 @@ jobs:
         if: always() && (steps.deploy.outcome != 'success' || steps.stable-check.outcome != 'success')
         run: exit 1
   status-comment:
-    needs: [target, build, publish, published-comment, smoke, full, promote]
+    needs: [target, build, publish, published-comment, smoke, stage-evidence, full, promote]
     if: always() && needs.target.result == 'success'
     runs-on: ubuntu-24.04
     timeout-minutes: 5
@@ -433,17 +466,19 @@ jobs:
           REVIEW_PR: ${{ needs.target.outputs.number }}
           REVIEW_MODE: ${{ needs.target.outputs.mode }}
           REVIEW_SOURCE: ${{ needs.target.outputs.source }}
+          REVIEW_EVIDENCE: ${{ needs.target.outputs.evidence }}
           REVIEW_RESULTS: ${{ toJSON(needs) }}
         with:
           script: |
-            const n=JSON.parse(process.env.REVIEW_RESULTS),preview=process.env.REVIEW_MODE==='preview';
+            const n=JSON.parse(process.env.REVIEW_RESULTS),preview=process.env.REVIEW_MODE==='preview',evidence=process.env.REVIEW_EVIDENCE==='true';
             let status='Deployment is disabled; complete the owner setup in guides/SITE-STAGING.md.';
             if(n.target.outputs.enabled==='true'){
               if(n.build.result!=='success'||n.publish.result!=='success')status='Build/deployment failed; no accepted update.';
-              else if(n.smoke.result!=='success')status='Hosted smoke failed; no accepted update.';
-              else if(preview)status='Minimal hosted smoke passed. Full staging tests have not run.';
-              else if(n.full.result!=='success')status='Full hosted tests failed or are incomplete; staging was not promoted.';
-              else if(n.promote.result==='success')status='Full hosted tests and stable verification passed; staging promoted.';
-              else status='Full hosted tests passed, but promotion failed.'+(n.promote.outputs.rollback==='success'?' Previous staging restored and verified.':' Check recovery evidence.');
+              else if(evidence)status=n['stage-evidence'].result==='success'?'Bounded staging regression passed for these preview bytes; stable staging was not promoted.':'Bounded staging evidence failed or is incomplete; stable staging was not changed.';
+              else if(preview&&n.smoke.result!=='success')status='Hosted smoke failed; no accepted update.';
+              else if(preview)status='Minimal hosted smoke passed. Staging regression has not run.';
+              else if(n.full.result!=='success')status='Bounded staging regression failed or is incomplete; staging was not promoted.';
+              else if(n.promote.result==='success')status='Bounded staging regression and stable verification passed; staging promoted.';
+              else status='Bounded staging regression passed, but promotion failed.'+(n.promote.outputs.rollback==='success'?' Previous staging restored and verified.':' Check recovery evidence.');
             }
             await require('./tools/staging/review-flow.cjs').updateComment(github,context,{source:process.env.REVIEW_SOURCE,url:n.publish.outputs.url||'',alias:preview?(n.publish.outputs.alias||''):(n.promote.result==='success'?n.promote.outputs.stable:''),status,run:`https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`});
