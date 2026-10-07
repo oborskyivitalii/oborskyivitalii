@@ -50,3 +50,48 @@ test('Day/Night semantic text and CTA pairs exceed normal-text contrast with no 
   assert.match(css,/\.button:link,\.button:visited,\.button:hover,\.button:focus-visible/);
   assert.doesNotMatch(css,/animation:|backdrop-filter:|filter:\s*blur/);
 });
+test('reading surfaces have one shared CSS authority across base and Color renditions',()=>{
+  const path=require('node:path'),read=name=>fs.readFileSync(path.join(__dirname,'..',name),'utf8');
+  const base=read('site/engine/styles.css'),owner=read('site/engine/reading-surfaces.css');
+  const color=require('../tools/staging/color.cjs'),extra=color.runtime(color.authoredEffects()).styles;
+  const generated=read('docs/styles.css');
+  const strip=css=>css.replace(/\/\*[\s\S]*?\*\//g,'');
+  // This bounded reader checks the repository's authored declaration blocks;
+  // actual cascade, geometry and effective corner radii belong to the browser.
+  const rules=css=>[...strip(css).matchAll(/([^{}]+)\{([^{}]*)\}/g)].map(match=>({selector:match[1],body:match[2]}));
+  const properties=body=>[...body.matchAll(/(?:^|;)\s*([\w-]+)\s*:\s*([^;]+)/g)].map(match=>[match[1],match[2].trim()]);
+  const classes=new Set([...strip(owner).matchAll(/\.([a-z][\w-]*)/g)].map(match=>match[1]));
+  const isSurface=selector=>[...selector.matchAll(/\.([a-z][\w-]*)/g)].some(match=>classes.has(match[1]));
+  const paint=/^(?:background(?:-[\w-]+)?|opacity|border(?:-[\w]+)*-radius|box-shadow|(?:-webkit-)?mask(?:-[\w-]+)?|(?:backdrop-)?filter)$/;
+  function verifyMaterial(rule){
+    for(const [property,value]of properties(rule.body)){
+      if(property==='background')assert.equal(value,rule.selector.includes('::before')||rule.selector.includes('.reading-title')?'var(--reading-surface-color)':'transparent','one theme-paper material');
+      if(property==='opacity')assert.equal(value,'var(--reading-surface-opacity)');
+      if(property==='border-radius')assert.ok(['var(--reading-surface-radius)','max(0px,calc(var(--reading-surface-radius) - var(--reading-title-outset)))'].includes(value),'shared outside radius including title spread');
+      if(property==='box-shadow')assert.equal(value,'0 0 0 var(--reading-title-outset) var(--reading-surface-color)','title margin is sharp paint only');
+    }
+  }
+  function verify(reading,ordinary,authoredColor,publicCSS){
+    assert.equal(publicCSS,ordinary+'\n'+reading,'generated CSS is the exact two authored files');
+    const all=strip(reading),screen=all.replace(/@media\s+print\s*\{(?:[^{}]|\{[^{}]*\})*\}/g,'');
+    assert.doesNotMatch(screen,/@media\s+print/,'unsupported nested print CSS stays visible');
+    for(const [name,value]of [['color','var(--paper)'],['opacity','1'],['radius','12px']]){
+      const matches=[...all.matchAll(new RegExp('--reading-surface-'+name+'\\s*:\\s*([^;}]+)','g'))];
+      assert.equal(matches.length,1,'one shared '+name+' authority');assert.equal(matches[0][1].trim(),value);
+    }
+    assert.match(screen,/--reading-title-outset\s*:\s*\.16em\s*;/);
+    assert.doesNotMatch(screen,/(?:^|[;{}])\s*(?:padding|margin|font|line-height|width|height|display|gap)(?:-[\w-]+)?\s*:/,'reading paint cannot change native flow placement');
+    assert.doesNotMatch(screen,/(?:color-mix|(?:backdrop-)?filter\s*:|(?:-webkit-)?mask(?:-[\w-]+)?\s*:)/,'solid paint has no opacity mixing, mask or blur');
+    for(const rule of rules(screen))verifyMaterial(rule);
+    assert.match(screen,/\.reading-title-ink\s*\{[^}]*z-index\s*:\s*1\s*[;}]/,'all title ink stays above neighbouring fragment paint');
+    for(const css of [ordinary,authoredColor]){
+      assert.doesNotMatch(strip(css),/--(?:reading-surface-[\w-]+|reading-title-outset|reading-alpha|surface-(?:open|reading|row|gutter|outset))\s*:/,'no second token authority');
+      for(const rule of rules(css))if(isSurface(rule.selector))assert.ok(properties(rule.body).every(([property])=>!paint.test(property)),'no base/Color reading-paint override: '+rule.selector.trim());
+    }
+  }
+  verify(owner,base,extra,generated);
+  const duplicate='\nbody[data-page="writing"] .publication::before {background:#ffffff;opacity:.5;border-radius:3px}\n';
+  assert.throws(()=>verify(owner,base+duplicate,extra,base+duplicate+'\n'+owner),/reading-paint override/,'a route override cannot become another CSS owner');
+  assert.throws(()=>verify(owner,base,extra+duplicate,generated),/reading-paint override/,'Color cannot silently replace the shared material');
+  assert.throws(()=>verify(owner+'\n:root {--reading-surface-opacity:.5}\n',base,extra,base+'\n'+owner+'\n:root {--reading-surface-opacity:.5}\n'),/opacity authority/,'a second opacity token fails');
+});

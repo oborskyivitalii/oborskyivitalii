@@ -32,7 +32,7 @@ and strict aggregate under #13; generation freshness alone is insufficient.
 | `routes.json` | Contract 1: ordered five route IDs, native URLs, scenes and stop IDs | Runtime, pages and fallback |
 | `engine/math.cjs`, `projection.cjs`, `lifecycle.cjs` | Math, projection and single Canvas/RAF lifecycle | Assembled `space.js` |
 | `engine/renderer.cjs` | Ordered Canvas commands, adjacent-line batching and visible outlines | Assembled `space.js` |
-| `engine/theme.js`, `archive.js`, `navigation.js`, `styles.css` | Theme, filtering, routing and presentation | Shared browser files and pages |
+| `engine/theme.js`, `archive.js`, `navigation.js`, `styles.css`, `reading-surfaces.css` | Theme, filtering, routing and presentation | Shared browser files and pages |
 | `scenes/world.cjs`, `paths.json` | Authored motifs, rest geometry and finite camera paths | Runtime and projected SVG fallbacks |
 | `assets/` | Existing portrait, cutout, favicon and `.nojekyll` source | Exact image/icon bytes |
 | `analytics.json`, `integrations/cloudflare.cjs` | Optional production-only measurement under #8; disabled by default | Shared head and one separately hashed loader when enabled |
@@ -206,3 +206,5 @@ function text/formatting is not an extension boundary. An incompatible or duplic
 effect fails generation. Hosted evidence is bound to the producer's base variant;
 selecting Color for production remains a separate decision requiring its complete
 same-byte hosted behavioral/performance matrix. A base pass cannot admit Color.
+
+Reading backdrop paint is authored only in `engine/reading-surfaces.css` and concatenated into the existing stylesheet by the producer. All routes and Color share solid theme-paper paint, crisp edges and a 12px visible outer corner radius; title spread adjusts its inner radius and preserves ink stacking. Component spacing remains ordinary layout CSS.

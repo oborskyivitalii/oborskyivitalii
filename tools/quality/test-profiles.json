@@ -381,7 +381,7 @@
     {
       "path": "tests/browser-gate-variants.test.cjs",
       "language": "javascript",
-      "purpose": "Private fixed-ribbon/trace counterfactuals, matched mobile outputs and parent/patch identity",
+      "purpose": "Private fixed-ribbon/trace counterfactuals, matched mobile outputs and parent/patch identity; exact endpoint and monotonic-depth validation rejects continuous camera overshoot",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "diagnostic",
       "profiles": [
@@ -393,7 +393,8 @@
       "inputs": [
         "tests/browser-gate-variants.test.cjs",
         "tools/quality/writing-variants.cjs",
-        "tools/quality/artifact.cjs"
+        "tools/quality/artifact.cjs",
+        "tools/quality/reading-clarity.cjs"
       ]
     },
     {

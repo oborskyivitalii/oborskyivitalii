@@ -20,7 +20,7 @@
     {
       "id": "AC02",
       "intent": "Widen the painted reading protection around large headings across pages, keeping text and native layout intact.",
-      "automated_scope": "Reuse the maintained Day/Night foreground contrast and no-blur/no-independent-animation assertion. This source check does not establish expanded reading margins or unchanged glyph geometry; the actual 60-case browser comparison and visual captures remain an explicit gate.",
+      "automated_scope": "Reuse maintained Day/Night foreground contrast and no-blur/no-independent-animation checks, plus the single-authority contract for site/engine/reading-surfaces.css. Generated public CSS must concatenate the exact authored sources; ordinary base CSS and Color styles cannot add a second reading-paint authority. Shared reading paint uses theme paper at 100% opacity, crisp edges without masks/blur/feather and a 12px effective outer radius, including title radius plus its zero-blur paint spread. The owner does not introduce flow padding/margin/font changes; meaningful duplicate per-route/Color override mutations fail. Actual native geometry, computed cascade across the twelve representative surfaces and visual uniformity remain explicit browser/human evidence.",
       "checks": [
         "FOREGROUND"
       ],
@@ -71,7 +71,7 @@
     {
       "id": "AC06",
       "intent": "Keep midflight layout and target changes and quick retargeting continuous from the displayed camera and shared ambient state; adaptive detail preserves existing ribbon samples and lifecycle/resource bounds.",
-      "automated_scope": "Maintained actual runtime fixtures exercise destination DOM/layout changes during flight, backward endpoint handling and resize retargeting without jumping the displayed camera or resetting the shared ribbon clock. Existing cases retain settled/adaptive flight detail, bounded multi-room preparation, stale-navigation cancellation, detail freezing, quality recovery and draw-failure completion. Shared ribbon, freeze and formula-cache/failure checks run once per unique selected check. Scoped hosted smoke, independent review and visual acceptance remain separate evidence.",
+      "automated_scope": "Maintained runtime/navigation fixtures forward native top, bottom, history and fragment landing intent before the first flight paint. Known reverse endpoints plan the actual destination bottom with cold and prepared rooms, departing source-DOM events cannot retarget the destination, and unresolved history/fragment landings hold the displayed camera until destination mount. Actual sampled camera depth stays between departure and destination without mount reversal; layout and resize retargets preserve the displayed camera and shared clock. Existing cases retain settled/adaptive flight detail, bounded multi-room preparation, stale-navigation cancellation, detail freezing, quality recovery and draw-failure completion. The maintained reading-clarity validator negative rejects wrong landing targets, overshoot and depth reversal. Shared ribbon, freeze and formula-cache/failure checks run once per unique selected check. Scoped hosted smoke, independent review and current-source visual acceptance remain separate evidence.",
       "checks": [
         "CAMERA-RETARGET",
         "RIBBON-CONTINUITY",
@@ -138,7 +138,7 @@
     },
     "G02": {
       "kind": "human",
-      "description": "Review the matching opt-in reading-clarity report and paired captures: all 60 route/width/theme/zoom geometry cases pass with source/CSS identities retained, equal heading and glyph Range geometry, equal scroll widths, no overflow and positive solid reading margins for every visible heading at least 25px. Inspect the 12 captures served from the exact baseline and candidate Color artifacts with their source bindings. Confirm perceived isolation on the marked Talks title and other large headings. CSS zoom/Chromium evidence does not supply physical Safari/iPad acceptance. Inspect line-fragment paint ordering: the expanded background must never cover glyph bottoms on an adjacent title line."
+      "description": "Review the matching opt-in reading-clarity report and paired captures: all 60 route/width/theme/zoom geometry cases pass with source/CSS identities retained, equal heading and glyph Range geometry, equal scroll widths, no overflow and positive solid reading margins for every visible heading at least 25px. Also inspect actual computed reading paint for twelve representative surfaces across all five pages in Day/Night at desktop and narrow widths: theme-paper color, 100% opacity, no mask/blur/feather and a common 12px effective outer radius. For inline titles compare border radius plus zero-blur paint spread, not the inner border radius alone. Inspect the baseline/candidate captures, consistent block isolation and both lines of the marked Talks title; expanded backgrounds must never cover adjacent-line glyph bottoms. CSS zoom/Chromium evidence does not supply physical Safari/iPad acceptance. Current-source maintainer visual acceptance remains explicit."
     },
     "G03": {
       "kind": "human",
@@ -154,7 +154,7 @@
     },
     "G06": {
       "kind": "human",
-      "description": "Inspect a small exact-current-source Color browser sequence with retained frame evidence in Day/Night at desktop and narrow sizes. Begin with a fresh session and first Home to Research flight, continue all adjacent forward flights, then reverse Talks to Writing to Research to Home. Verify no repositioning, geometry/material/phase reset or opacity step at start, midpoint DOM mount or arrival; also inspect quick navigation and layout retargeting from the displayed camera. Record raw-head/public identity, scoped hosted smoke and actual observations; maintainer visual acceptance remains explicit and earlier-head or fixture evidence cannot close this gate."
+      "description": "Inspect a small exact-current-source Color browser sequence with retained frame evidence in Day/Night at desktop and narrow sizes. Begin with a fresh session and first Home to Research flight, continue all adjacent forward flights, then reverse Talks to Writing to Research to Home; repeat with prepared destination rooms. Exercise actual native departure edges and true backward atEnd destination landings, retaining native scroll/range observations and planned endpoint before destination mount. Verify camera depth stays within the actual departure/arrival endpoints, advances in the intended direction without overshoot or reversal at mount, and departing source-DOM scroll/layout cannot change the destination. Verify no geometry/material/phase reset or opacity step at start, midpoint DOM mount or arrival; also inspect quick navigation, unresolved history/fragment landings and layout retargeting from the displayed camera. Record raw-head/public identity, scoped hosted smoke and actual observations; maintainer visual acceptance of this current source remains explicit. Earlier-head approvals, earlier browser reports or fixture success cannot close this gate."
     }
   }
 }

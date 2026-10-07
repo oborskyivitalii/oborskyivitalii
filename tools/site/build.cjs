@@ -272,7 +272,8 @@ function build({root=defaultRoot,output=path.join(root,'docs'),cacheFile=path.jo
       put(route.url,html);result.routes[route.id]={version,url:route.url,inputs:input.inputs,records:Object.keys(input.records)};
       if(versioned){const name=`snapshots/${version}/${route.url}`;put(name,snapshotHTML(html));result.routes[route.id].snapshotSHA=result.files[name];}
     }
-    for(const name of ['theme.js','archive.js','navigation.js','styles.css'])put(name,read(root,'site/engine/'+name));
+    for(const name of ['theme.js','archive.js','navigation.js'])put(name,read(root,'site/engine/'+name));
+    put('styles.css',read(root,'site/engine/styles.css')+'\n'+read(root,'site/engine/reading-surfaces.css'));
     put('space.js',runtime(root,definitions));
     for(const name of files(path.join(root,'site/assets')))put(name==='nojekyll'?'.nojekyll':'assets/'+name,fs.readFileSync(path.join(root,'site/assets',name)));
     for(const [name,bytes]of Object.entries(measurement.assets))put(name,bytes);

@@ -1805,6 +1805,9 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     const room=variants.get(detail);if(room.paletteRevision!==paletteRevision)paintColors(room);return room;
   }
   function scrollPose() {
+    // Departure keeps the old DOM until the hidden content midpoint. Its
+    // delayed scroll events cannot describe or retarget the incoming route.
+    if(document.body.dataset.page!==page)return journey?.to||current;
     if (page==="writing") {
       if (!bounds) return journey?pathPose():current;
       localProgress=writingProgress(window.scrollY,bounds,writingAnchor);
@@ -2010,7 +2013,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     moveTo(scrollPose());
   },{passive:true});
   window.addEventListener("site:scene-focus",event=>{
-    if(page!=="writing" || !owns(topicPaths,event.detail?.focus))return;
+    if(document.body.dataset.page!==page || page!=="writing" || !owns(topicPaths,event.detail?.focus))return;
     focus=event.detail.focus;invalidateLayout('archive-focus');
     if(!enabled || hold || document.hidden || printing)return;
     const target=pathPose();
@@ -2044,18 +2047,33 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
   }
   observeLayout();
   document.fonts?.addEventListener?.("loadingdone",resize);
+  function landingPose(landing,from,travelling) {
+    // Writing URL filters/fragments can select a different canonical topic
+    // path, including its endpoint. Let the mounted archive identify it.
+    if(travelling&&page==="writing"&&(landing?.search||landing?.hash))return from;
+    if(landing?.position==="end") {
+      const ids=page==="writing"?topicPaths.all:Object.values(pageStops[page]||{});
+      return pose(ids.at(-1)||initialPoses[page]);
+    }
+    // Interior history and fragments need the incoming page's native layout.
+    // Keep the displayed pose until the existing hidden midpoint mount measures
+    // that landing; guessing its initial pose can pass the destination first.
+    if(travelling&&(landing?.position?.[1]>0 || (!landing?.position&&landing?.hash)))return from;
+    return pose(initialPoses[page]);
+  }
   window.SiteScene={
     managesLayout:true,
     canTravel:()=>initialized&&!failed&&enabled&&!reduced.matches&&!hold&&!printing&&!document.hidden,
-    navigate(next,animate=true,update=null){
+    navigate(next,animate=true,update=null,landing=null){
       if(!owns(initialPoses,next))return;
       // Media-query state can change before its queued change event is delivered.
       if(reduced.matches&&enabled){enabled=false;cancel();updateControl();}
-      const from=displayedCamera,sourcePage=page;page=next;focus="all";localProgress=0;writingAnchor=null;
-      const target=pose(initialPoses[page]);
+      const from=displayedCamera,sourcePage=page;page=next;focus="all";localProgress=landing?.position==="end"?1:0;writingAnchor=null;
+      const travelling=animate&&this.canTravel(),target=landingPose(landing,from,travelling);
       animation=null;current=from;displayedProgress=0;
-      scene.dataset.direction=target.position[2]<from.position[2]?"forward":"backward";
-      if(animate&&this.canTravel()){
+      const forward=target.position[2]===from.position[2]?routeOrder.indexOf(page)>routeOrder.indexOf(sourcePage):target.position[2]<from.position[2];
+      scene.dataset.direction=forward?"forward":"backward";
+      if(travelling){
         journey={from,to:target,elapsed:0,duration:Math.min(1700,1000+Math.abs(target.position[2]-from.position[2])*2),progressStart:0,started:false};
       }else{journey=null;current=target;}
       scene.dataset.travel=journey?"flying":"settled";

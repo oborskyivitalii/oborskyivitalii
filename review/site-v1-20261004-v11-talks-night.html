@@ -31,8 +31,8 @@
 
 
 
-  <meta name="site-engine" content="1931da4d353da1b26a8a81d60fb9207d7adb57e9d3e68f4d240b32723bf2bc62">
-  <meta name="site-route" content="bb2d876ef70240e7c54dcf1ceb33bbcaa207c399e0588084a16380a0961a1843">
+  <meta name="site-engine" content="e8689f408f63fb3bcb220da0e866dbab5431227d4b08b3eafdc7566ce7f2e02d">
+  <meta name="site-route" content="278cfcd7f0a569ebfe221b0b92c28d822d73758c21f27747bb955d96f95c4da9">
   <meta name="site-contract" content="1">
   <meta name="site-variant" content="base">
 <meta name="robots" content="noindex, nofollow">
@@ -43,7 +43,6 @@
   --portrait-start:#deebeb; --portrait-end:#f4edde;
   --facet-1:#e7ece8;--facet-2:#dce9eb;--facet-3:#cddfe3;--facet-4:#eae1ce;--facet-5:#bfd4da;--facet-6:#eff0e9;
   --button-bg:#245866; --button-ink:#fffdf7;
-  --surface-open:91%; --surface-reading:95%; --surface-row:96%; --surface-gutter:12px;
   --sans:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   color-scheme:light;
 }
@@ -53,7 +52,6 @@
   --portrait-start:#152732; --portrait-end:#24251e;
   --facet-1:#1c252e;--facet-2:#142f3b;--facet-3:#1c3f4c;--facet-4:#332e21;--facet-5:#235164;--facet-6:#253038;
   --button-bg:#78abb0; --button-ink:#111c22; color-scheme:dark;
-  --surface-open:91%; --surface-reading:95%; --surface-row:96%;
 }
 @media(prefers-color-scheme:dark) {
   :root:not([data-theme]) {
@@ -62,7 +60,6 @@
     --portrait-start:#152732; --portrait-end:#24251e;
     --facet-1:#1c252e;--facet-2:#142f3b;--facet-3:#1c3f4c;--facet-4:#332e21;--facet-5:#235164;--facet-6:#253038;
     --button-bg:#78abb0; --button-ink:#111c22; color-scheme:dark;
-    --surface-open:91%; --surface-reading:95%; --surface-row:96%;
   }
 }
 * {box-sizing:border-box}
@@ -109,49 +106,19 @@ select,.motion-control,.filter-reset {min-height:44px;background:var(--paper);co
    paths need no native layout while Canvas owns the scene. */
 .space-scene[data-ready] svg {visibility:hidden;display:none}
 .space-fallback {opacity:1}
-/* Protect the reading block, leaving the section and its gutters open to the world. */
-.section,.archive-intro,.credits-page,.hero-copy,.shift-intro {background:transparent}
-:where(.hero-copy,.section-heading,.archive-intro>.hero-description,.archive-intro>.eyebrow,.shift-intro>p,
-.research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,
-.ack-grid article,.discussion-row,.about-grid>div,.about-grid>h2,.about-section>.eyebrow,.archive-link,.contact-grid>div,.publication,.credits-page>p,.credits-page>h1,.credits-page>h2,
-.archive-heading,.archive-count,.empty-state,.year-landing,.year-heading,.section-note,.next-route>p,.next-route>a,
-.archive-landings>.topic-landing,.archive-filters,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a,.talks-list .publication>div) {
-  position:relative;isolation:isolate;
-}
-/* The mask feathers only the backdrop beyond the reading area, never glyphs.
-   Static gradients need no backdrop blur, extra bitmap or animation scheduler. */
-:where(.hero-copy,.section-heading,.archive-intro>.hero-description,.archive-intro>.eyebrow,.shift-intro>p,
-.research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,
-.ack-grid article,.discussion-row,.about-grid>div,.about-grid>h2,.about-section>.eyebrow,.archive-link,.contact-grid>div,.publication,.credits-page>p,.credits-page>h1,.credits-page>h2,
-.archive-heading,.archive-count,.empty-state,.year-landing,.year-heading,.section-note,.next-route>p,.next-route>a,
-.archive-landings>.topic-landing,.archive-filters,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a,.talks-list .publication>div)::before {
-  content:"";position:absolute;inset:calc(-1 * (var(--surface-gutter) + var(--surface-outset,0px)));z-index:-1;pointer-events:none;
-  background:var(--paper);background:color-mix(in srgb,var(--paper) var(--reading-alpha,var(--surface-reading)),transparent);
-  mask-image:linear-gradient(90deg,transparent,#000 var(--surface-gutter),#000 calc(100% - var(--surface-gutter)),transparent),linear-gradient(transparent,#000 var(--surface-gutter),#000 calc(100% - var(--surface-gutter)),transparent);
-  mask-composite:intersect;
-}
 .archive-intro>h1,.archive-intro>.hero-description {width:fit-content;max-width:100%;padding:8px 16px;margin-left:-16px}
-/* Cloned paint extends beyond each title line without changing native wrapping. */
-.reading-title {background:var(--paper);background:color-mix(in srgb,var(--paper) var(--surface-reading),transparent);box-shadow:0 0 0 .16em var(--paper);box-shadow:0 0 0 .16em color-mix(in srgb,var(--paper) var(--surface-reading),transparent);border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
-/* Paint all title ink above every cloned line's backdrop and spread. */
-.reading-title-ink {position:relative;z-index:1}
-/* Padded panels already protect their headings; fitted standalone titles need a
-   solid margin before the existing feather. Outset paint has no layout effect. */
-.about-grid>h2,.credits-page>h1,.hero h1 {--surface-outset:.16em}
-.year-heading,.talks-list .publication>div:has(.talk-title) {--surface-outset:6px}
 .shift-intro>p {padding:16px}
 .about-grid>div,.contact-grid>div {padding:18px 22px}
 .credits-page>p {padding:14px 18px;margin-inline:-18px}
 .section-nav,.topic-nav {padding-inline:14px}
 /* Menus and controls need protection only behind their own text. */
-.archive-landings>.topic-landing,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a,.next-route>p,.next-route>a {--surface-gutter:8px;max-width:100%}
+.archive-landings>.topic-landing,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a,.next-route>p,.next-route>a {max-width:100%}
 /* A short column must not inherit the height of its taller neighbour. */
 .shift-intro,.research-grid,.topic-grid,.help-grid,.ack-leads,.ack-compact,.ack-grid,.about-grid,.contact-grid {align-items:start}
 .hero-copy,.about-grid>div,.about-grid>h2,.contact-grid>div,.shift-intro>p,.credits-page>p,.credits-page>h1,.empty-state {width:fit-content;max-width:100%}
-:is(.research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,.ack-grid article,.discussion-row,.about-grid>div,.contact-grid>div) .section-note::before {content:none}
 .site-footer,.next-route {padding-inline:18px}
 .hero {display:grid;grid-template-columns:1.22fr .78fr;align-items:end;gap:0 44px;padding-top:48px}
-.hero-copy {--reading-alpha:var(--surface-open);color:var(--ink);align-self:center;padding:16px 18px 34px;margin-left:-18px}
+.hero-copy {color:var(--ink);align-self:center;padding:16px 18px 34px;margin-left:-18px}
 .eyebrow {display:flex;align-items:center;gap:12px;font-size:12px;font-weight:650;line-height:1.6;letter-spacing:.08em;text-transform:uppercase;margin:0 0 20px;color:var(--muted)}
 .accent-line {width:28px;height:2px;background:var(--accent);flex:0 0 auto}
 h1,h2,h3,p {overflow-wrap:break-word}
@@ -223,7 +190,7 @@ h2 {font-size:clamp(30px,3.4vw,40px);font-weight:720;letter-spacing:-.035em;line
 .topic-nav {display:flex;flex-wrap:wrap;gap:8px 24px;margin-bottom:24px}
 .topic-nav a {font-size:13px;font-weight:600;text-decoration:none;border-bottom:1px solid var(--line);padding-block:10px}
 .publication-list {list-style:none;margin:0;padding:0}
-.publication {--reading-alpha:var(--surface-row);padding-inline:20px;margin-bottom:12px;display:grid;grid-template-columns:200px minmax(0,1fr);gap:36px;align-items:start;border-top:1px solid var(--line);padding-block:24px}
+.publication {padding-inline:20px;margin-bottom:12px;display:grid;grid-template-columns:200px minmax(0,1fr);gap:36px;align-items:start;border-top:1px solid var(--line);padding-block:24px}
 .publication-meta {display:flex;flex-direction:column;gap:7px;font-size:13px;color:var(--muted)}
 .publication-meta time {font-weight:650;color:var(--ink);font-size:13px}
 .publication-title {display:flex;align-items:start;justify-content:space-between;gap:24px;font-size:clamp(20px,2vw,23px);font-weight:550;line-height:1.5;letter-spacing:-.018em;text-decoration:none}
@@ -233,8 +200,7 @@ h2 {font-size:clamp(30px,3.4vw,40px);font-weight:720;letter-spacing:-.035em;line
 .archive-link {margin-top:26px}
 .writing-topic {font-size:13px;font-weight:650;color:var(--muted);margin:32px 0 12px;text-transform:uppercase;letter-spacing:.07em}
 .talk-title {font-size:25px;font-weight:600;line-height:1.4;margin:0 0 12px}
-.talks-list .publication::before {content:none}
-.talks-list .publication>div {width:fit-content;max-width:100%;min-width:0;justify-self:start;--reading-alpha:var(--surface-row)}
+.talks-list .publication>div {width:fit-content;max-width:100%;min-width:0;justify-self:start}
 .ack-grid article {border-top:1px solid var(--line);padding-top:22px}
 .ack-grid h3 {font-size:18px;margin:0 0 12px}
 .about-grid p {margin-bottom:18px}
@@ -256,7 +222,7 @@ h2 {font-size:clamp(30px,3.4vw,40px);font-weight:720;letter-spacing:-.035em;line
   body[data-page="credits"] .credits-page {max-width:1160px}
   .credits-page>p {max-width:730px}
 }
-.archive-filters {display:flex;flex-wrap:wrap;align-items:end;gap:18px;padding:12px;margin:12px 0 0 -12px;--surface-gutter:8px;--reading-alpha:var(--surface-row)}
+.archive-filters {display:flex;flex-wrap:wrap;align-items:end;gap:18px;padding:12px;margin:12px 0 0 -12px}
 .archive-filters,.archive-heading,.archive-count,.topic-nav {width:fit-content;max-width:100%}
 .archive-filters label {display:grid;gap:8px;font-size:13px;color:var(--muted)}
 .archive-filters select {min-width:130px;font-size:14px}
@@ -284,7 +250,6 @@ h2 {font-size:clamp(30px,3.4vw,40px);font-weight:720;letter-spacing:-.035em;line
 .research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,.ack-grid article {padding:24px 22px}
 .eyebrow,.audience,.writing-topic,.credits-page h2 {width:fit-content}
 body[data-page="writing"] #archive-results {width:min(1010px,calc(100% - 80px));margin-inline:auto}
-body[data-page="writing"] .publication {--reading-alpha:var(--surface-row)}
 @media(max-width:1100px) {
   .site-header {gap:8px 20px}
   .appearance {margin-left:auto}
@@ -300,9 +265,6 @@ body[data-page="writing"] .publication {--reading-alpha:var(--surface-row)}
 }
 @media(max-width:640px) {
   .site-header.wrap {padding-inline:20px}
-  .hero .hero-copy::before {content:none}
-  .hero :is(h1,.hero-lead,.hero-description,.audience,.eyebrow) {position:relative;isolation:isolate}
-  .hero :is(h1,.hero-lead,.hero-description,.audience,.eyebrow)::before {content:"";position:absolute;inset:calc(-18px - var(--surface-outset,0px));z-index:-1;pointer-events:none;background:color-mix(in srgb,var(--paper) 97%,transparent);mask-image:linear-gradient(90deg,transparent,#000 18px,#000 calc(100% - 18px),transparent),linear-gradient(transparent,#000 18px,#000 calc(100% - 18px),transparent);mask-composite:intersect}
   /* Match the mobile camera framing for the static 1440×900 projection too. */
   .space-scene .space-fallback {width:min(184vw,160vh);height:min(115vw,100vh);left:calc(42vw - min(121.44vw,105.6vh));top:calc(48vh - min(55.2vw,48vh))}
   .archive-intro>h1 {padding-inline:0;margin-inline:0}
@@ -357,12 +319,10 @@ body[data-page="writing"] .publication {--reading-alpha:var(--surface-row)}
 @media print {
   :root,:root[data-theme],:root:not([data-theme]) {--paper:#fff;--ink:#142632;--muted:#4b5c69;--line:#cdd6da;--accent:#075d7b;--systems:#895710;color-scheme:light}
   body {background:white}
-  .section-heading,.publication,.credits-page>p {background:white}
   .wrap {width:100%}
   .site-header {position:static}
   .site-header.wrap {padding-inline:0}
   main ::before,.site-footer ::before {display:none!important}
-  .reading-title {background:transparent;box-shadow:none}
   .site-header nav,.appearance,.display-controls,.space-scene,.skip-link,.section-nav,.topic-nav,.archive-filters,.archive-landings,.archive-heading,.button {display:none!important}
   .hero {padding-top:24px}
   .section {padding-block:28px}
@@ -386,7 +346,64 @@ body[data-page="writing"] .publication {--reading-alpha:var(--surface-row)}
 .discussion-row .discussion-community,.discussion-row .discussion-counts {font-size:13px;margin:0}
 .discussion-row .discussion-counts {margin-top:5px}
 @media (max-width:680px) {.discussion-row {padding:20px 16px}.context-heading {margin-top:28px}}
-@media print {.discussion-row {break-inside:avoid;background:white}}
+@media print {.discussion-row {break-inside:avoid}}
+
+/* Canonical reading backdrop paint for every route and base/Color rendition.
+   Placement remains paint-only; text wrapping and line boxes are unchanged. */
+:where(:root) {
+  --reading-surface-color:var(--paper);
+  --reading-surface-opacity:1;
+  --reading-surface-radius:12px;
+  --reading-title-outset:.16em;
+  --surface-gutter:12px;
+}
+.section,.archive-intro,.credits-page,.hero-copy,.shift-intro {background:transparent}
+:where(.hero-copy,.section-heading,.archive-intro>.hero-description,.archive-intro>.eyebrow,.shift-intro>p,
+.research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,
+.ack-grid article,.discussion-row,.about-grid>div,.about-grid>h2,.about-section>.eyebrow,.archive-link,.contact-grid>div,.publication,.credits-page>p,.credits-page>h1,.credits-page>h2,
+.archive-heading,.archive-count,.empty-state,.year-landing,.year-heading,.writing-topic,.section-note,.next-route>p,.next-route>a,
+.archive-landings>.topic-landing,.archive-filters,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a,.talks-list .publication>div) {
+  position:relative;isolation:isolate;
+}
+:where(.hero-copy,.section-heading,.archive-intro>.hero-description,.archive-intro>.eyebrow,.shift-intro>p,
+.research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,
+.ack-grid article,.discussion-row,.about-grid>div,.about-grid>h2,.about-section>.eyebrow,.archive-link,.contact-grid>div,.publication,.credits-page>p,.credits-page>h1,.credits-page>h2,
+.archive-heading,.archive-count,.empty-state,.year-landing,.year-heading,.writing-topic,.section-note,.next-route>p,.next-route>a,
+.archive-landings>.topic-landing,.archive-filters,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a,.talks-list .publication>div)::before {
+  content:"";position:absolute;inset:calc(-1 * (var(--surface-gutter) + var(--surface-outset,0px)));z-index:-1;pointer-events:none;
+}
+/* The same solid material prevents nested panels and cloned fragments from
+   accumulating opacity. Every visible outside corner has the same radius. */
+:where(.hero-copy,.section-heading,.archive-intro>.hero-description,.archive-intro>.eyebrow,.shift-intro>p,
+.research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,
+.ack-grid article,.discussion-row,.about-grid>div,.about-grid>h2,.about-section>.eyebrow,.archive-link,.contact-grid>div,.publication,.credits-page>p,.credits-page>h1,.credits-page>h2,
+.archive-heading,.archive-count,.empty-state,.year-landing,.year-heading,.writing-topic,.section-note,.next-route>p,.next-route>a,
+.archive-landings>.topic-landing,.archive-filters,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a,.talks-list .publication>div)::before,
+.hero :is(h1,.hero-lead,.hero-description,.audience,.eyebrow)::before,.reading-title {
+  background:var(--reading-surface-color);opacity:var(--reading-surface-opacity);border-radius:var(--reading-surface-radius);
+}
+/* A spread shadow adds its spread to the base radius. Subtract it here so the
+   outside of each title fragment matches the shared 12px panel corner. */
+.reading-title {
+  box-shadow:0 0 0 var(--reading-title-outset) var(--reading-surface-color);
+  border-radius:max(0px,calc(var(--reading-surface-radius) - var(--reading-title-outset)));
+  -webkit-box-decoration-break:clone;box-decoration-break:clone;
+}
+/* All title ink paints above every cloned fragment, including its neighbours. */
+.reading-title-ink {position:relative;z-index:1}
+.about-grid>h2,.credits-page>h1,.hero h1 {--surface-outset:.16em}
+.year-heading,.talks-list .publication>div:has(.talk-title) {--surface-outset:6px}
+.archive-landings>.topic-landing,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a,.next-route>p,.next-route>a,.archive-filters {--surface-gutter:8px}
+:is(.research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,.ack-grid article,.discussion-row,.about-grid>div,.contact-grid>div) .section-note::before,
+.talks-list .publication::before {content:none}
+@media(max-width:640px) {
+  .hero .hero-copy::before {content:none}
+  .hero :is(h1,.hero-lead,.hero-description,.audience,.eyebrow) {position:relative;isolation:isolate;--surface-gutter:18px}
+  .hero :is(h1,.hero-lead,.hero-description,.audience,.eyebrow)::before {content:"";position:absolute;inset:calc(-1 * (var(--surface-gutter) + var(--surface-outset,0px)));z-index:-1;pointer-events:none}
+}
+@media print {
+  .reading-title {background:transparent;box-shadow:none}
+}
 </style>
 </head>
 <body data-page="talks">

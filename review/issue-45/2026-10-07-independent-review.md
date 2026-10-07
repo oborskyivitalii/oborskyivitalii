@@ -181,3 +181,33 @@ No blocker was found in this narrow extraction repair. Review identity is parent
 | `tools/quality/reading-clarity.cjs` | `da2029d02f21fb9a6192fa8744bdc70a79527630c571f29a8bfb95842cac9117` |
 | `tools/quality/exceptions.json` | `4c4ad9578157a01f59eda2f51ce232dbbbe9dfc4811646ab8bb7dd903eea57cb` |
 | `tools/quality/scanners.cjs` | `ed955d35bf240a338007186142ec345ccc539a9c7b57a07b2aea19900d266e6c` |
+
+
+## Camera landing and canonical surfaces — prepared-source review
+
+Independent review found no remaining blocker in the scoped prepared repair. The observed checkout is parent `75860ffe510916eac9285ce37fccfae98dafc7fe`, tree `a21f3395c709d1dd3b5d677c6ff13090b7c50548`, with `sourceDirty: true`; regenerated engine identity is `e8689f408f63fb3bcb220da0e866dbab5431227d4b08b3eafdc7566ce7f2e02d`. The user stopped merge/staging after observing camera overshoot; this conclusion permits preparation of a new draft, not promotion or merge.
+
+The runtime now selects canonical top/end targets before incoming DOM exists, rejects departing-page scroll/focus ownership, and holds the displayed pose for animated unknown history/hash or filtered Writing landings until native mounting resolves them. Instant, Off and reduced-motion arrivals avoid that hold. Route-order direction handles held targets; the existing ambient clock, eased suffix, first displayed frame, lifecycle bounds and resource mechanisms remain intact. Inspected regression tests assert the planned target and sampled depth envelope/no reversal across mounting, including 16 cold/warm reverse flights at narrow/desktop sizes and actual forwarding of landing metadata. These assertions address the continuous-but-wrong endpoint missed by the earlier trace checks.
+
+`site/engine/reading-surfaces.css` is the single canonical paint owner, assembled by the builder after layout CSS. All surfaces use solid paper, opacity one, crisp edges and a shared visible 12px outside radius; existing placement and title ink stacking are preserved. The Color helper retains only ink/control rules. Source contracts reject duplicate paint authorities and material overrides. Solid surfaces may obscure more world geometry, so source consistency does not establish complete-expression visibility.
+
+The browser helper now uses eight fresh opposite-start contexts to exercise genuinely cold forward/reverse targets, then warm routes. It retains native source-edge and destination scroll observations, strict planned-target/depth/no-reversal assertions and the prior projection/phase/station checks; 48 computed-style samples cover the shared surfaces. Independent review found a timing blocker: raw `site:page-mount` precedes native scroll restoration and cannot prove a bottom landing. The final helper retains raw mount for ordering and asserts landing at existing `site:page-ready` (`mount-ready`) and navigation readiness after restoration/layout. The amended negative fixture accepts raw mount at zero followed by the correct bottom and rejects a missed post-layout endpoint. This reviewer ran the two maintained focused tests for reading-clarity rejection and single surface authority: 2 passed, 0 failed. No browser or broad suite was rerun by this reviewer.
+
+The checksum-policy review independently confirms 725 prior records deep-equal to the parent and exactly 187 unique appended path/type/hash identities across 29 paths, for 912 records. Each addition matches an actual pinned scan finding and exactly one source value; rerunning `triage-engine-checksums.proof()` proved all 187 against canonical public generation, revision/snapshot, preview and offline-bundle owners. The historical baseline, scanner, proof helper and lint exceptions remain byte-identical to the parent; no wildcard admission was added. The supplied detect-secrets 1.5.0 report SHA256 is `9cd0f9f1d65ba119032269f8697363c13a489b236cdb3c8e0e6df34aa9228a18`. Independent reconciliation of its 3,804 raw findings leaves zero unmatched findings outside the two existing dynamically proven RI paths. Final reviewed-policy SHA256 is `f8d4b77028471734327e31963a5024259031d020adac5cf28c093d4aaaa4ceec`. After this reconciliation, the root reports a newer final scan of 763 text files / 3,806 raw findings with zero unknown outside RI, SHA256 `26ea0c8b7ab5f1ce935661a475825ec1840c16efc5a57e230d078428facf3bb8`; this reviewer did not rerun or reconcile that later scan.
+
+Fresh published-head browser captures, eight-context traces/videos and visual review remain pending. Earlier captures retain their original identities; they do not validate this repair. Broad performance/device acceptance and all human/merge gates remain pending. This reviewer changed only this review document and did not change runtime, tests, dispositions, generated output or deployment state.
+
+| Final prepared review target | SHA256 |
+| --- | --- |
+| `site/engine/lifecycle.cjs` | `b75012d302959c38a6b75056d04eaada218342adff0b49afe3845fa28d73549e` |
+| `site/engine/navigation.js` | `d464143b30f2600cfa64a98e131f9def79ef010ff5312762dd002625cf765b98` |
+| `site/engine/reading-surfaces.css` | `5adbf07d5dad8f40bb9c29da967040dfa06a31cd8e4bc57ca61a32f1b1247149` |
+| `site/engine/styles.css` | `c9c5829db7137704fd6f3546c6499f72a8316a3d45aa705cdf4b671d4dccb49f` |
+| `tools/site/build.cjs` | `cdf05453bbd24d116decb62738749ae2df688d2fc486fe17e573afd54817af3d` |
+| `tools/quality/reading-clarity.cjs` | `155a8f119dc43b5fc240798a4fa63423d89c19e13440fb9dd729d7d587136320` |
+| `tests/space.test.cjs` | `d405d0141c5ef6e76c2feed5fe254af48b9e491d3e6b4fd6da2e4dd3d04cffb2` |
+| `tests/navigation.test.cjs` | `5ea537a3d0c32033e7de675a966571e2089da672bea2e9dd8ae5ef09a77596df` |
+| `tests/executive.test.cjs` | `250f1309fcbe4501592de180576dd18564cb3906902879a91d4a3e87f9b34596` |
+| `tests/browser-gate-variants.test.cjs` | `001ae9a6351f2921fcd3937640596d91c53396ac6c17761e711789688c831545` |
+| `review/site-scroll-sync-20261004/READING-SURFACES.cjs` | `2fa9010b3caa90827d94b7131f4efe865017477c222358a54c4fb06a9a9a3afe` |
+| `tools/quality/secrets-reviewed.json` | `f8d4b77028471734327e31963a5024259031d020adac5cf28c093d4aaaa4ceec` |

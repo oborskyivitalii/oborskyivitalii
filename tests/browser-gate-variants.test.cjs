@@ -4,6 +4,26 @@ const variants=require('../tools/quality/writing-variants.cjs'),color=require('.
 const root=path.resolve(__dirname,'..'),baseSource=fs.readFileSync(path.join(root,'docs/space.js'),'utf8');
 const effects=color.runtime(color.authoredEffects()),scripts={'space.js':effects.code+'\n'+baseSource};
 const plain=value=>JSON.parse(JSON.stringify(value));
+test('reading clarity rejects wrong landing targets and depth reversals that remain frame-continuous',()=>{
+  const {validateArrivalDepth,validateNativeEndpoints}=require('../tools/quality/reading-clarity.cjs');
+  const camera=z=>({position:[0,0,z],target:[0,0,z-29]}),start={camera:camera(-360)},leg={id:'reverse-end',to:'writing',direction:'backward'};
+  const rows=values=>values.map((z,i)=>({camera:camera(z),journey:i===values.length-1?null:{to:camera(-319)}}));
+  const good=rows([-360,-350,-340,-319]);
+  assert.doesNotThrow(()=>validateArrivalDepth(good,good.filter(row=>row.journey),start,leg));
+  const overshoot=rows([-360,-330,-294.1658,-303.6741,-319]);
+  assert.throws(()=>validateArrivalDepth(overshoot,overshoot.filter(row=>row.journey),start,leg),/cannot pass the intended endpoint/);
+  const reversal=rows([-360,-340,-350,-319]);
+  assert.throws(()=>validateArrivalDepth(reversal,reversal.filter(row=>row.journey),start,leg),/cannot reverse camera depth/);
+  const wrong=rows([-360,-350,-319]);wrong[0].journey.to=camera(-232);
+  assert.throws(()=>validateArrivalDepth(wrong,wrong.filter(row=>row.journey),start,leg),/departure already targets/);
+  const events=[{leg:'edge-reverse-end',kind:'edge-ready',scrollY:0,maxScroll:400,time:1},
+    {leg:leg.id,kind:'mount',scrollY:0,maxScroll:500,time:2},
+    {leg:leg.id,kind:'mount-ready',page:'writing',scrollY:500,maxScroll:500,time:3},
+    {leg:leg.id,kind:'navigation-ready',scrollY:500,maxScroll:500,time:4}];
+  assert.doesNotThrow(()=>validateNativeEndpoints({events},leg),'raw mount precedes the native landing');
+  const missed=plain(events);missed[2].scrollY=0;
+  assert.throws(()=>validateNativeEndpoints({events:missed},leg),/destination scroll endpoint/,'post-layout landing must reach the bottom');
+});
 function scene(source,theme='dark'){
   const context={window:{},module:{exports:{}},document:{getElementById:()=>null,documentElement:{dataset:{theme}}}};
   vm.runInNewContext(source,context);

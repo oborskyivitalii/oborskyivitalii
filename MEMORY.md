@@ -21,22 +21,23 @@ Dated continuity, not live authority. Last verified: **2026-10-07**.
   Corrected #43 at072a7b8 passed four minimal CI runs and merged at76f2a78.
   PR #44 is now merged at709c6d0. One bounded
   joint staging run and current exact deployment are tracked in the live issues.
-- #45 owns formula/heading clarity and continuous Color ribbons in
-  [PR #46](https://github.com/oborskyivitalii/oborskyivitalii/pull/46). Approved
-  candidate f1caf4d/tree44c13b39 passes Basic23,279 selected source cases,
-  policy11/11 and60geometry/28capture/4flight contexts. Independent review
-  confirms intact title ink and sampled continuous ribbons. The maintainer
-  explicitly authorized merge and staging at18:13 Europe/Warsaw on7October.
-  Controller requires staging while the PR remains open, then merge tested head.
-  [Run37650674442](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37650674442)
-  passes package/immutable-host identity but full/static fails unused smooth
-  and192 untriaged public checksum/Gitref candidates. Narrow import/verified
-  exact-checksum repair at210adc passes security/advisories. Second staging
-  run37653486011 fails two helper complexity warnings and Writing TBT201.5ms
-  against200ms. Helper-only refactors preserve runtime and original budgets;
-  fresh bounded staging is required before merge. No stable promotion or merge
-  is yet claimed. [Current handoff](review/issue-45/2026-10-07-handoff.md)
-  and the live issue retain actual failure and next-source acceptance.
+- #45 owns formula/heading clarity and ribbon continuity in PR46. At19:18
+  Europe/Warsaw the maintainer stopped merge after observing camera overshoot
+  in75860ffe preview; this suspends earlier merge/staging acceptance. PR46
+  temporarily closed/unmerged Draft blocks controller promotion. Stage37656606117
+  passed package/host/static, but browser cancelled, gate failed, promote skipped.
+  Two causes reproduced: reverse end landing guessed start pose; delayed source
+  scroll retargeted incoming route through old waypoints. At19:36 the maintainer
+  requests a new PR linked to45 and uniform reading backdrops. Live Git confirms
+  main709c6d0 still lacks46; successor branch
+  `work/issue45-camera-surfaces-20261007` preserves its unmerged work.
+  Canonical repair passes landing intent, guards DOM ownership and defers unknown
+  native landings to normal midpoint measurement. Twelve selected camera cases
+  and eight fresh cold/warm browser contexts cover actual reverse end landings.
+  `site/engine/reading-surfaces.css` owns all reading paint: theme paper100%,
+  crisp edges and12px outer corners. New Draft preview/review is pending;
+  no renewed merge/stable promotion is authorized.
+  [Current handoff](review/issue-45/2026-10-07-handoff.md) retains exact evidence.
 - #36 places one tilted, pulsing formula in Writing's books/pages fractal,
   sharing its camera/clock and bounded cache. Rejected banner benchmarks are
   historical failures, not acceptance of this world-space implementation.
@@ -70,7 +71,7 @@ Dated continuity, not live authority. Last verified: **2026-10-07**.
 
 | Issue | Remaining intent |
 | --- | --- |
-| #45 | Merge/staging authorized; repair static admission, verify fresh bounded staging, then merge exact tested head. AC01 complete visibility remains open. |
+| #45 | New Draft PR: camera arrival repair, uniform reading paint and exact-source motion/style preview; merge/staging stopped. AC01 visibility remains open. |
 | #36 / #41 | #43/#44 merged; joint staging and paired/visual/editorial acceptance. |
 | #1 / #13 | First-release, physical-device and full production/recovery acceptance. |
 | #8 / #39 | Production URL/indexability, domains and analytics activation. |

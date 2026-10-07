@@ -43,8 +43,9 @@ class Issue45AcceptanceTests(unittest.TestCase):
                     "^animated Color yields|^Off/reduced/hidden/print completion")
 
     def test_foreground_contrast_keeps_no_blur_or_independent_animation(self):
-        node_checks(["tests/executive.test.cjs"], 1,
-                    "^Day/Night semantic text and CTA pairs")
+        node_checks(["tests/executive.test.cjs"], 2,
+                    "^Day/Night semantic text and CTA pairs|"
+                    "^reading surfaces have one shared CSS authority")
 
     def test_ribbon_world_samples_material_and_phase_stay_continuous(self):
         node_checks(["tests/ribbons.test.cjs"], 3,
@@ -52,11 +53,17 @@ class Issue45AcceptanceTests(unittest.TestCase):
                     "^fixed world cells keep projected ribbon stations stable")
 
     def test_displayed_camera_retargets_keep_detail_clock_and_failure_bounds(self):
-        node_checks(["tests/space.test.cjs", "tests/navigation.test.cjs"], 7,
+        node_checks(["tests/space.test.cjs", "tests/navigation.test.cjs",
+                     "tests/browser-gate-variants.test.cjs"], 12,
                     "^midflight destination layout retargeting preserves|"
                     "^flight models have their settled detail|^flight preparation preserves|"
                     "^travel progress is emitted|^detail fades across a tier change|"
-                    "^quality recovery uses hysteresis|^retarget cancellation prevents")
+                    "^quality recovery uses hysteresis|^retarget cancellation prevents|"
+                    "^navigation flight forwards native endpoint|"
+                    "^departure scroll events cannot retarget|"
+                    "^reverse endpoint flights target the destination bottom|"
+                    "^unknown history and fragment landings hold|"
+                    "^reading clarity rejects wrong landing targets")
 
 
 if __name__ == "__main__":
