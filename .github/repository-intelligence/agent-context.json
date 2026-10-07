@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "c7b198f3bde5644728a12f83f359d9ec29f25bd4fdf1db8910f8f5422ae3162a",
+    "digest": "5d3ef57daf3ec994c169d565c2a96c90b3668ff2c05ba0b96448f95a7584634b",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -60,6 +60,11 @@
         "sha256": "6d405a86fc607d867f6c29422cd0c98780cd185b53b785616b85bf5685f61af0"
       },
       {
+        "path": ".github/acceptance/issue-41.json",
+        "identity_mode": "content",
+        "sha256": "1dcd99bf437a47bce06fb838c2efe63c24e2e9facff3b066aa7be0b43a1eee12"
+      },
+      {
         "path": ".github/pull_request_template.md",
         "identity_mode": "content",
         "sha256": "9d6e001401d72e906275515a4c4921e966541cda9d7b98aad58f54980bf301de"
@@ -81,12 +86,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "e71580ccebbbfc16d051990b68a49e59f82a9797b4a7341c3b27c5c758ed26f1"
+        "sha256": "2c810b2f05b3a25b5b8f68cf7c1a237f55525a547673b84252207d40d57ce9f5"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "ce829fe092ddca28bcb07320e4f675c5103519accfb566f5c0be863ac2ec695f"
+        "sha256": "c3bf5595540c9dfd91c2fd6f20fb7ca49bea26adf7612ec59d1777e50aba924b"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -181,7 +186,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "9dbe3c059f85e6831946af8f2893fa944132afa4e26b743a5cd360b3ed2e5bd0"
+        "sha256": "f9bfae75c8fefd9a1f307fd8e7d66786a24432d75f167840d0e430f178b38bc6"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -521,6 +526,16 @@
         "path": "review/issue-35/2026-10-07-test-audit.json",
         "identity_mode": "content",
         "sha256": "94a6da1d8236bd7c2b0cbe5dc01f5806fbb5454b55a18decb0316e9e0a40c078"
+      },
+      {
+        "path": "review/issue-41/2026-10-07-analysis.md",
+        "identity_mode": "content",
+        "sha256": "c695206e5a77b793cb6b698f26d0c5d82e780ac6b4d2aaa0e38a8d47f811065c"
+      },
+      {
+        "path": "review/issue-41/source-inventory.json",
+        "identity_mode": "content",
+        "sha256": "1d1259109fc1384c795d6ff1c26b3287f5e42808c003b214294157a5bd8abc48"
       },
       {
         "path": "review/public-responses-20261006/README.md",
@@ -4568,6 +4583,11 @@
         "sha256": "22a4451edfd4bf60d7e67c636d07c0fe189300261fca914300b209a584ea56ad"
       },
       {
+        "path": "tests/test_issue41_acceptance.py",
+        "identity_mode": "content",
+        "sha256": "23344edcea1bc36783889fb2b3aa17c2e893deb345ec04d73ab1ca0c3594d864"
+      },
+      {
         "path": "tests/test_issue_acceptance.py",
         "identity_mode": "content",
         "sha256": "51ccc40c3ccbf755ef277c7dec6437148cdf50fb7aa401e1bf8f255c2b96a426"
@@ -4935,7 +4955,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "2c651c61e76cf004403c7fe5b074666483721a552de65ddd8669d1fa03e372df"
+        "sha256": "8dcbcbc07057b7624c74b0e97e35120cc87bd521eab8bddd8794f053b0f2a9e4"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -5400,6 +5420,17 @@
         "AGENTS.md"
       ],
       "title": "issue-35.json"
+    },
+    {
+      "path": ".github/acceptance/issue-41.json",
+      "kind": "file",
+      "purpose": "Issue41 AC01-AC06 preparation mapping with explicit implementation/editorial/review/merge gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-41.json"
     },
     {
       "path": ".github/pull_request_template.md",
@@ -6423,6 +6454,28 @@
         "AGENTS.md"
       ],
       "title": "2026-10-07-test-audit.json"
+    },
+    {
+      "path": "review/issue-41/2026-10-07-analysis.md",
+      "kind": "file",
+      "purpose": "Evidence-bounded site advisory, publication, community and SEO analysis; proposed copy, ordered Sol tasks and test allocation.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 41 — 2026-10-07 content analysis and Sol handoff"
+    },
+    {
+      "path": "review/issue-41/source-inventory.json",
+      "kind": "file",
+      "purpose": "Exact supplied LinkedIn/Reddit inputs, observed metadata and proposed mappings/access limits; dated preparation evidence only.",
+      "role": "history",
+      "owner": "guides/SITE-SOURCE-AUDIT.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "source-inventory.json"
     },
     {
       "path": "review/public-responses-20261006/README.md",
@@ -15324,6 +15377,17 @@
       "title": "test_issue35_acceptance.py"
     },
     {
+      "path": "tests/test_issue41_acceptance.py",
+      "kind": "file",
+      "purpose": "Issue41-only exact-input, unresolved-source and unchanged-public preparation checks with meaningful failure fixtures.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "test_issue41_acceptance.py"
+    },
+    {
       "path": "tests/test_issue_acceptance.py",
       "kind": "file",
       "purpose": "Acceptance runner adversarial cases for invalid mappings, skipped/empty/failed tests and evidence identity.",
@@ -16752,6 +16816,16 @@
       "path": "review/issue-35",
       "kind": "directory",
       "purpose": "Dated exact-base test/runtime/CI audits, original #13 reconciliation, analysis and independent review for test optimization.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-41",
+      "kind": "directory",
+      "purpose": "Dated source inventory and content-authority analysis for the same-PR Sol handoff.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "review": {
-    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/35",
-    "summary": "2026-10-07 #35: reviewed PR/source allocation, selected staging/full production boundary and exact source-scanner triage against unconditional navigation and owning-issue CI; manual release gates remain external."
+    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/41",
+    "summary": "2026-10-07 #41: reviewed preparation policy and task-only inventory/byte-boundary tests through existing issue-acceptance CI; existing Basic/navigation and #35 profile routes retained. No public/runtime/workflow changes or implemented editorial/SEO acceptance."
   },
   "layers": [
     {
@@ -38,7 +38,10 @@
         "review/issue-33/2026-10-07-analysis.md",
         ".github/acceptance/issue-35.json",
         "tests/test_issue35_acceptance.py",
-        "review/issue-35/2026-10-07-analysis.md"
+        "review/issue-35/2026-10-07-analysis.md",
+        ".github/acceptance/issue-41.json",
+        "tests/test_issue41_acceptance.py",
+        "review/issue-41/2026-10-07-analysis.md"
       ],
       "checks": [
         "acceptance-policy-selection",
@@ -344,7 +347,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "c295346e74506918fb4f0a7225cd67d84d806aa7523d06175a31fac3532d9af7",
+    "digest": "627b20c176ca7785cbc08a3facebc8521695bbcc00676734b84a61ce6c903ead",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -375,6 +378,10 @@
         "sha256": "6d405a86fc607d867f6c29422cd0c98780cd185b53b785616b85bf5685f61af0"
       },
       {
+        "path": ".github/acceptance/issue-41.json",
+        "sha256": "1dcd99bf437a47bce06fb838c2efe63c24e2e9facff3b066aa7be0b43a1eee12"
+      },
+      {
         "path": ".github/pull_request_template.md",
         "sha256": "9d6e001401d72e906275515a4c4921e966541cda9d7b98aad58f54980bf301de"
       },
@@ -388,7 +395,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "e71580ccebbbfc16d051990b68a49e59f82a9797b4a7341c3b27c5c758ed26f1"
+        "sha256": "2c810b2f05b3a25b5b8f68cf7c1a237f55525a547673b84252207d40d57ce9f5"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -499,6 +506,10 @@
         "sha256": "22a4451edfd4bf60d7e67c636d07c0fe189300261fca914300b209a584ea56ad"
       },
       {
+        "path": "tests/test_issue41_acceptance.py",
+        "sha256": "23344edcea1bc36783889fb2b3aa17c2e893deb345ec04d73ab1ca0c3594d864"
+      },
+      {
         "path": "tests/test_issue_acceptance.py",
         "sha256": "51ccc40c3ccbf755ef277c7dec6437148cdf50fb7aa401e1bf8f255c2b96a426"
       },
@@ -548,7 +559,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "2c651c61e76cf004403c7fe5b074666483721a552de65ddd8669d1fa03e372df"
+        "sha256": "8dcbcbc07057b7624c74b0e97e35120cc87bd521eab8bddd8794f053b0f2a9e4"
       },
       {
         "path": "tools/repository_intelligence.py",

@@ -1374,6 +1374,21 @@
         "tools/quality/writing-variants.cjs",
         "tools/quality/artifact.cjs"
       ]
+    },
+    {
+      "path": "tests/test_issue41_acceptance.py",
+      "language": "python",
+      "purpose": "Issue41 preparation input identity, inaccessible-source boundaries and unchanged public/source bytes; later execution replaces the preparation phase explicitly.",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": [
+        "issue-policy"
+      ],
+      "disposition": "selected owning policy only; no new recurring browser/source sweep or duplicate production regression",
+      "surviving_route": ".github/acceptance/issue-41.json",
+      "inputs": [
+        "tests/test_issue41_acceptance.py"
+      ]
     }
   ]
 }
