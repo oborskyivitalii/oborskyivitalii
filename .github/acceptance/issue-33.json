@@ -28,7 +28,7 @@
     {
       "id": "AC04",
       "intent": "Resolve active Markdown/configured locators after moves while preserving public output, runtime/assets/publication records and limiting helper/workflow adaptations.",
-      "automated_scope": "Declared active-document coverage and relative inline/reference Markdown links/fragments, current configuration paths, exact protected path/byte sets and publication records from the accepted base. Only computed guide locators, one unconditional navigation test insertion and its required full-history checkout are admitted. Broken/omitted/escape/semantic-change/deletion negatives. Semantic rebasing and full intended reference coverage require independent review.",
+      "automated_scope": "Declared active-document coverage and relative inline/reference Markdown links/fragments, current configuration paths, exact protected path/byte sets and publication records from the accepted base. Only computed guide locators, two focused navigation test insertions/full-history checkout and Full's enduring Python test selection substitution are admitted; release/browser/device/security commands and budgets remain exact. Broken/omitted/escape/semantic-change/deletion negatives. Semantic rebasing and intended reference coverage require independent review.",
       "checks": ["LINKS", "LINKS-MISSING", "LINKS-HISTORY-ESCAPE", "OWNERS", "UNCHANGED-SITE", "FIXED-BYTE-NEGATIVES", "LOCATOR-NEGATIVES"],
       "gates": ["G01"]
     },
@@ -43,7 +43,7 @@
       "id": "AC06",
       "intent": "Complete issue-driven work with versioned analysis/review, current continuity, deterministic acceptance/basic evidence, independent review, protected merge and live linkage.",
       "automated_scope": "Six-ID policy and workflow cleanliness/source/report binding, analysis/continuity ownership routes, fixed Basic command and runner rejection of unmapped/skipped/wrong-source evidence. Actual PR/commit/review/CI links, review independence and merged-source reconciliation need separately recorded live evidence; automation does not close the issue.",
-      "checks": ["POLICY", "HANDOFF", "NODE-BASIC", "RUNNER-UNMAPPED", "RUNNER-SKIPPED", "RUNNER-SOURCE"],
+      "checks": ["POLICY", "HANDOFF", "NODE-BASIC", "RUNNER-UNMAPPED", "RUNNER-SKIPPED", "RUNNER-SOURCE", "PERMANENT-SELECTION", "PERMANENT-FUTURE", "PERMANENT-LIFECYCLE", "PERMANENT-FAILURES"],
       "gates": ["G01", "G02", "G03"]
     }
   ],
@@ -81,7 +81,11 @@
     "NODE-BASIC": {"kind": "node-basic"},
     "RUNNER-UNMAPPED": {"kind": "unittest", "test": "test_issue_acceptance.AcceptanceRunnerTests.test_empty_and_unmapped_criteria_fail"},
     "RUNNER-SKIPPED": {"kind": "unittest", "test": "test_issue_acceptance.AcceptanceRunnerTests.test_skipped_failed_expected_and_empty_tests_cannot_pass"},
-    "RUNNER-SOURCE": {"kind": "unittest", "test": "test_issue_acceptance.AcceptanceRunnerTests.test_dirty_or_wrong_head_cannot_be_clean_source_evidence"}
+    "RUNNER-SOURCE": {"kind": "unittest", "test": "test_issue_acceptance.AcceptanceRunnerTests.test_dirty_or_wrong_head_cannot_be_clean_source_evidence"},
+    "PERMANENT-SELECTION": {"kind": "unittest", "test": "test_repository_test_selection.RepositoryTestSelectionTests.test_actual_permanent_modules_and_explicit_task_policy_methods_are_available"},
+    "PERMANENT-FUTURE": {"kind": "unittest", "test": "test_repository_test_selection.RepositoryTestSelectionTests.test_future_arbitrary_modules_are_run_and_exact_numeric_task_modules_are_not_imported"},
+    "PERMANENT-LIFECYCLE": {"kind": "unittest", "test": "test_repository_test_selection.RepositoryTestSelectionTests.test_standard_module_class_and_case_setup_teardown_are_honored"},
+    "PERMANENT-FAILURES": {"kind": "unittest", "test": "test_repository_test_selection.RepositoryTestSelectionTests.test_empty_failed_skipped_and_module_hook_errors_cannot_report_pass"}
   },
   "gates": {
     "G01": {"kind": "human", "description": "Independent implementation/semantic review of routing, preserved history and active reference coverage, with exact inspected source and findings dispositions. The maintainer's scoped request already authorizes implementation; no additional owner semantic approval is required by this issue."},

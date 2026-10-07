@@ -5911,6 +5911,12 @@
       "role": "test",
       "owner": ".github/REPOSITORY-INTELLIGENCE.md"
     },
+    "tests/test_repository_test_selection.py": {
+      "kind": "file",
+      "purpose": "Permanent discovery and failure/accounting regressions: numeric task snapshots stay selected only by their issue policy; generic/current/new modules remain included.",
+      "role": "test",
+      "owner": ".github/REPOSITORY-INTELLIGENCE.md"
+    },
     "tests/test_ri_ci.py": {
       "kind": "file",
       "purpose": "Negative and positive cases for stale coverage, dangling paths/selectors and workflow invocation drift.",
@@ -6395,6 +6401,12 @@
       "kind": "file",
       "purpose": "Bounded deterministic site RI producer, catalog validation, scoped lookup and generated-view verification.",
       "role": "source",
+      "owner": ".github/REPOSITORY-INTELLIGENCE.md"
+    },
+    "tools/run_repository_tests.py": {
+      "kind": "file",
+      "purpose": "Run all enduring Python regression suites while reserving exact numeric issue acceptance modules for their selected source-bound policies.",
+      "role": "validator",
       "owner": ".github/REPOSITORY-INTELLIGENCE.md"
     },
     "tools/site": {

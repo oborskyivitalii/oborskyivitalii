@@ -58,6 +58,11 @@ class Issue33AcceptanceTests(unittest.TestCase):
         modified["records"].pop(next(iter(modified["records"])))
         with self.assertRaisesRegex(ValueError, "Non-locator adaptation"):
             layout.validate_locator_content(json.dumps(modified).encode(), catalog, "site/content/catalog.json")
+        expected = layout.allowed_full_workflow_bytes(REPO)
+        self.assertEqual((REPO / layout.FULL_WORKFLOW).read_bytes(), expected)
+        with self.assertRaisesRegex(ValueError, "Non-locator adaptation"):
+            layout.validate_locator_content(expected.replace(b"check node --test", b"# check node --test"),
+                                            expected, layout.FULL_WORKFLOW)
 
     def test_policy_covers_six_criteria_and_separate_required_gates(self):
         acceptance = load_tool("issue_acceptance")

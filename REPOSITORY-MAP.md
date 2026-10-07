@@ -1409,6 +1409,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/test_issue_acceptance.py](tests/test_issue_acceptance.py) | Acceptance runner adversarial cases for invalid mappings, skipped/empty/failed tests and evidence identity. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_offline_export_security.py](tests/test_offline_export_security.py) | Behavioral/adversarial tests and fixtures for offline export security. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/test_repository_intelligence.py](tests/test_repository_intelligence.py) | Behavioral/adversarial tests and fixtures for repository intelligence. | test | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
+| [tests/test_repository_test_selection.py](tests/test_repository_test_selection.py) | Permanent discovery and failure/accounting regressions: numeric task snapshots stay selected only by their issue policy; generic/current/new modules remain included. | test | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 | [tests/test_ri_ci.py](tests/test_ri_ci.py) | Negative and positive cases for stale coverage, dangling paths/selectors and workflow invocation drift. | test | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 | [tests/test_root_layout.py](tests/test_root_layout.py) | Permanent root/bootstrap/archive/link/ownership checks and meaningful negative fixtures; future public edits stay available. | test | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 | [tests/theme.test.cjs](tests/theme.test.cjs) | Behavioral/adversarial tests and fixtures for theme. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
@@ -1437,6 +1438,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tools/compact_site_recordings.cjs](tools/compact_site_recordings.cjs) | Site generation/offline review helper: compact site recordings; inspect its source and output contract before use. | source | [site/README.md](site/README.md) |
 | [tools/issue_acceptance.py](tools/issue_acceptance.py) | Bounded acceptance policy runner with deterministic unittest/basic checks and exact-source per-AC evidence. | validator | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tools/repository_intelligence.py](tools/repository_intelligence.py) | Bounded deterministic site RI producer, catalog validation, scoped lookup and generated-view verification. | source | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
+| [tools/run_repository_tests.py](tools/run_repository_tests.py) | Run all enduring Python regression suites while reserving exact numeric issue acceptance modules for their selected source-bound policies. | validator | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 
 ## tools/quality/
 

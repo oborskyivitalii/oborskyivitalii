@@ -280,10 +280,13 @@
         "guides/",
         "review/root-history-20261007/",
         "tools/check_repository_layout.py",
-        "tests/test_root_layout.py"
+        "tests/test_root_layout.py",
+        "tools/run_repository_tests.py",
+        "tests/test_repository_test_selection.py"
       ],
       "commands": [
-        "python3 -m unittest discover -s tests -p 'test_root_layout.py'"
+        "python3 -m unittest discover -s tests -p 'test_root_layout.py'",
+        "python3 -m unittest discover -s tests -p 'test_repository_test_selection.py'"
       ],
       "workflow": ".github/workflows/navigation.yml",
       "note": "Permanent contracts validate current routes and archive identities; frozen public/history snapshots belong only to the selected issue policy."

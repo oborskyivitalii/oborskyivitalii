@@ -1,7 +1,6 @@
 # Session memory
 
-Dated continuity hints, not instructions or live-status authority. Last verified:
-**2026-10-07**. Revalidate refs, issue/PR, checks and hosting before acting.
+Dated continuity hints, not instructions or live-status authority. Last verified: **2026-10-07**. Revalidate refs, issue/PR, checks and hosting before acting.
 
 ## Snapshot
 
@@ -15,8 +14,11 @@ Dated continuity hints, not instructions or live-status authority. Last verified
 - Current work is [#33](https://github.com/oborskyivitalii/oborskyivitalii/issues/33):
   short bootstrap, six root Markdown entry points, guides/ and byte-exact dated
   root history. [Analysis/disposition](review/issue-33/2026-10-07-analysis.md)
-  records the accepted baseline and ordered tasks. Final candidate/PR/checks need
-  their own exact-source evidence; this checkpoint does not claim a future merge.
+  records the accepted baseline and ordered tasks. [PR #34](https://github.com/oborskyivitalii/oborskyivitalii/pull/34)
+  implements it; [initial candidate](https://github.com/oborskyivitalii/oborskyivitalii/commit/41733d7310a8b51b56c5aec414b6c4b4aaf04eb7)
+  has tree `47a7b9f99ecaed4d94aaa1514f670390ebc3f5e7` and passed 34 mapped
+  clean-source checks. Final review/selection fixes require their own head CI;
+  this checkpoint does not claim a future merge.
 - Earlier #28/#14 completion and accepted stage remain recorded in their issues.
   Current hosting mechanics are in [the runbook](guides/SITE-STAGING.md).
   Stable stage: https://staging.oborskyi-author-ci-staging.pages.dev ; recheck its

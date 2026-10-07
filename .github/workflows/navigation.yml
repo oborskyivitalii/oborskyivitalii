@@ -27,6 +27,8 @@ jobs:
         run: python3 -m unittest discover -s tests -p 'test_ri_ci.py'
       - name: Check repository entry points, guide routes and preserved history
         run: python3 -m unittest discover -s tests -p 'test_root_layout.py'
+      - name: Check enduring and owning-issue test selection
+        run: python3 -m unittest discover -s tests -p 'test_repository_test_selection.py'
       - name: Check RI inventory and agent-memory contract
         run: python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'
       - name: Verify current-source context

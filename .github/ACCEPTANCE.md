@@ -108,3 +108,11 @@ locator-only exception for the moved provenance guide. Permanent navigation
 checks validate current structure; #33’s fixed public/history snapshots execute
 only through its selected policy, so later publication work selects its own
 acceptance. The scope decision is recorded in [issue #33](https://github.com/oborskyivitalii/oborskyivitalii/issues/33).
+
+The Full-profile Python source preflight uses `tools/run_repository_tests.py`:
+all `test_*.py` modules remain enduring checks except the exact numeric pattern
+`test_issue[0-9]+_acceptance.py`. Those modules are source-pinned task evidence
+selected through their owning policy, including their unchanged historical
+assertions; the generic acceptance-runner suite remains a permanent check.
+Selection regressions run in navigation, so future public edits do not implicitly
+rerun closed tasks against obsolete public snapshots.

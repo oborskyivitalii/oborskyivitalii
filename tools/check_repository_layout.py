@@ -27,6 +27,7 @@ PROTECTED = ["site", "docs", "tools/site", "tools/quality", "tools/staging"]
 LOCATOR_FILES = {"site/README.md": "../", "tools/quality/README.md": "../../",
                  ".github/workflows/site-color-review.yml": ""}
 NAVIGATION = ".github/workflows/navigation.yml"
+FULL_WORKFLOW = ".github/workflows/site-release-checks.yml"
 
 
 def require(condition, message):
@@ -272,7 +273,9 @@ def allowed_navigation_bytes(root):
     original = baseline_bytes(root, NAVIGATION)
     anchor = b"      - name: Check RI inventory and agent-memory contract\n"
     addition = (b"      - name: Check repository entry points, guide routes and preserved history\n"
-                b"        run: python3 -m unittest discover -s tests -p 'test_root_layout.py'\n")
+                b"        run: python3 -m unittest discover -s tests -p 'test_root_layout.py'\n"
+                b"      - name: Check enduring and owning-issue test selection\n"
+                b"        run: python3 -m unittest discover -s tests -p 'test_repository_test_selection.py'\n")
     require(original.count(anchor) == 1, "Ambiguous navigation validator insertion")
     checkout = re.search(rb"^        uses: actions/checkout@[^\n]+\n", original, re.M)
     require(checkout is not None and original.count(b"actions/checkout@") == 1,
@@ -285,6 +288,13 @@ def allowed_navigation_bytes(root):
 
 def validate_locator_content(actual, expected, path):
     require(actual == expected, f"Non-locator adaptation: {path}")
+
+
+def allowed_full_workflow_bytes(root):
+    original = baseline_bytes(root, FULL_WORKFLOW)
+    previous = b"          check python -m unittest discover -s tests -p 'test_*.py'\n"
+    require(original.count(previous) == 1, "Ambiguous enduring-test selection substitution")
+    return original.replace(previous, b"          check python tools/run_repository_tests.py\n")
 
 
 def validate_public(root, data):
@@ -300,9 +310,11 @@ def validate_public(root, data):
     # All other existing workflows retain their exact source bytes.
     workflows = baseline_entries(root, [".github/workflows"])
     validate_unchanged(root, {path: blob for path, blob in workflows.items()
-                              if path not in LOCATOR_FILES and path != NAVIGATION}, "workflow")
+                              if path not in LOCATOR_FILES and path not in {NAVIGATION, FULL_WORKFLOW}}, "workflow")
     require(file_path(root, NAVIGATION).read_bytes() == allowed_navigation_bytes(root),
             "Non-validation navigation workflow adaptation")
+    require(file_path(root, FULL_WORKFLOW).read_bytes() == allowed_full_workflow_bytes(root),
+            "Non-selection Full workflow adaptation")
     before = json.loads(baseline_bytes(root, "site/content/catalog.json"))
     after = read_json(root, "site/content/catalog.json")
     require(before["records"] == after["records"], "Publication records changed")
