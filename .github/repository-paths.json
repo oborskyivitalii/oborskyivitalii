@@ -5949,9 +5949,9 @@
     },
     "tools/check_site_seo.cjs": {
       "kind": "file",
-      "purpose": "Site generation/offline review helper: check site seo; inspect its source and output contract before use.",
-      "role": "source",
-      "owner": "site/README.md"
+      "purpose": "Check frozen authored HTML/copy against the immutable baseline and exact approved editorial exceptions.",
+      "role": "validator",
+      "owner": "SITE-SEO.md"
     },
     "tools/compact_site_recordings.cjs": {
       "kind": "file",
@@ -6333,9 +6333,9 @@
     },
     "tools/site/evidence-policy.cjs": {
       "kind": "file",
-      "purpose": "Frozen authored-copy/edition checks and exact allowed reconciliation.",
-      "role": "validator",
-      "owner": "SITE-CONTENT-REVIEW.md"
+      "purpose": "Advisory component-fingerprint proposal for content-only or full check scope under #13; never skips mandatory jobs or reuses evidence.",
+      "role": "source",
+      "owner": "site/README.md"
     },
     "tools/site/retain.cjs": {
       "kind": "file",

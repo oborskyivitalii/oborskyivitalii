@@ -1,12 +1,15 @@
 # PR previews and explicit staging
 
 Owner intent: issues #8 and #13. Controller PRs #26/#29 and runtime PR #23
-are accepted in protected main. PR #28 is the current reading/contact/Home
-increment. Its candidate passed full run 37539805745, but both stable promotion
-attempts failed and remain failed. CI-only PR #30 is accepted in protected main
-with bounded exact-byte alias convergence and package-attempt lineage.
-PR #28 requires fresh corrected exact-head full/stable acceptance
-before merge.
+are accepted in protected main. CI-only PR #30 added bounded exact-byte alias
+convergence and package-attempt lineage. Reading/contact/Home PR #28 is merged
+at `07f936a8733f56d73f34b89e2ad96d1b2ef605c7`; its corrected exact-source
+full/stable acceptance is recorded in
+[run 37549451723](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37549451723).
+Earlier failed promotion attempts remain failed historical evidence.
+Read [MEMORY](MEMORY.md), the live owning issue/PR and current run/deployment
+records for the latest candidate, source and acceptance. This runbook defines
+mechanics; a historical accepted run does not admit a later candidate.
 
 ## Deployment flow
 

@@ -1404,7 +1404,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tools/capture_site_review.cjs](tools/capture_site_review.cjs) | Site generation/offline review helper: capture site review; inspect its source and output contract before use. | source | [site/README.md](site/README.md) |
 | [tools/check_ri_ci.py](tools/check_ri_ci.py) | Validate and refresh reviewed RI/CI mapping, test-selector resolution and actual workflow invocations. | validator | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 | [tools/check_site_contrast.cjs](tools/check_site_contrast.cjs) | Site generation/offline review helper: check site contrast; inspect its source and output contract before use. | source | [site/README.md](site/README.md) |
-| [tools/check_site_seo.cjs](tools/check_site_seo.cjs) | Site generation/offline review helper: check site seo; inspect its source and output contract before use. | source | [site/README.md](site/README.md) |
+| [tools/check_site_seo.cjs](tools/check_site_seo.cjs) | Check frozen authored HTML/copy against the immutable baseline and exact approved editorial exceptions. | validator | [SITE-SEO.md](SITE-SEO.md) |
 | [tools/compact_site_recordings.cjs](tools/compact_site_recordings.cjs) | Site generation/offline review helper: compact site recordings; inspect its source and output contract before use. | source | [site/README.md](site/README.md) |
 | [tools/issue_acceptance.py](tools/issue_acceptance.py) | Bounded acceptance policy runner with deterministic unittest/basic checks and exact-source per-AC evidence. | validator | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tools/repository_intelligence.py](tools/repository_intelligence.py) | Bounded deterministic site RI producer, catalog validation, scoped lookup and generated-view verification. | source | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
@@ -1480,7 +1480,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [tools/site/analytics.cjs](tools/site/analytics.cjs) | Validate exact-origin analytics configuration and generate optional head/loader. | source | [SITE-ANALYTICS.md](SITE-ANALYTICS.md) |
 | [tools/site/build.cjs](tools/site/build.cjs) | Source validation and deterministic dependency-aware complete public-tree generation. | source | [site/README.md](site/README.md) |
-| [tools/site/evidence-policy.cjs](tools/site/evidence-policy.cjs) | Frozen authored-copy/edition checks and exact allowed reconciliation. | validator | [SITE-CONTENT-REVIEW.md](SITE-CONTENT-REVIEW.md) |
+| [tools/site/evidence-policy.cjs](tools/site/evidence-policy.cjs) | Advisory component-fingerprint proposal for content-only or full check scope under #13; never skips mandatory jobs or reuses evidence. | source | [site/README.md](site/README.md) |
 | [tools/site/retain.cjs](tools/site/retain.cjs) | Explicit verified prior immutable public-file retention. | source | [site/README.md](site/README.md) |
 | [tools/site/snapshot.cjs](tools/site/snapshot.cjs) | Exact content-addressed route/runtime/media descriptor construction. | source | [site/README.md](site/README.md) |
 | [tools/site/variants.cjs](tools/site/variants.cjs) | Authored effect API/identity attachment shared by offline and hosted Color variants. | source | [site/README.md](site/README.md) |

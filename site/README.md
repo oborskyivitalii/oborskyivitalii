@@ -143,10 +143,12 @@ engine/scenes/assets/templates/routes/producer means full scope. It skips no job
 reuses no evidence. Generation savings do not establish permission to omit checks.
 
 Packagers consume one tested coherent artifact; they do not patch live files or
-regenerate between validation and upload. Both hosting workflow entry points are
-explicitly paused. Local Pages fixtures are controlled tests, not real Cloudflare/TLS/
-CDN acceptance. Real host, independent visual/rights review and physical-device
-acceptance are separately pending and cannot be self-confirmed by this implementation.
+regenerate between validation and upload. Current hosting controllers, check profiles
+and host acceptance follow [SITE-STAGING](../SITE-STAGING.md),
+[SITE-CHECK-PROFILES](../SITE-CHECK-PROFILES.md) and the live owning issue.
+Local Pages fixtures are controlled tests, not real Cloudflare/TLS/CDN acceptance.
+Independent visual/rights review, physical-device acceptance and production decisions
+remain separate requirements; this source contract does not supply their approval.
 
 ## Optional effects contract v1
 

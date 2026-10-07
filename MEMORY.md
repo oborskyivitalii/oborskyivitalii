@@ -6,18 +6,20 @@ facts that affect the next action. Last verified: **2026-10-07**.
 ## Snapshot
 
 - Cleanup [#31](https://github.com/oborskyivitalii/oborskyivitalii/issues/31) is
-  implemented in Draft [PR #32](https://github.com/oborskyivitalii/oborskyivitalii/pull/32).
-  Verified implementation head [284d022](https://github.com/oborskyivitalii/oborskyivitalii/commit/284d022b7128ce125933f0f12375dc353a9f2112)
+  implemented in [PR #32](https://github.com/oborskyivitalii/oborskyivitalii/pull/32).
+  Independently rechecked head [3af7ee7](https://github.com/oborskyivitalii/oborskyivitalii/commit/3af7ee7afefec72a28bca8b67724760974d4c988)
   passed all 53 mapped AC01–AC11 checks on clean raw-head
-  [acceptance run 37587378498](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37587378498).
-  RI `37587378349`, Basic `37587378960` and PR preview `37587378618` also passed.
-  Analysis, review dispositions and exact source identities stay in the
-  [PR completion record](https://github.com/oborskyivitalii/oborskyivitalii/pull/32#issuecomment-6033205001).
+  [acceptance run 37588698929](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37588698929).
+  RI `37588698925`, Basic `37588699779` and PR preview `37588699240` also passed.
+  All 78 focused Python tests passed independently; the downloaded CI report
+  matched source/tree, policy, producer, RI and all named-test hashes.
   The [analysis](review/issue-31/2026-10-07-analysis.md#sol-tasks) and
-  [independent review](review/issue-31/2026-10-07-review.md) keep one task route.
-  This handoff records that verified baseline; later metadata/current heads need
-  their own matching CI. Owner semantic acceptance and protected merge remain open.
-  Recheck its latest head/CI/review; the cleanup is not merged into main.
+  [completion review](review/issue-31/2026-10-07-review.md#completion-review-2026-10-07)
+  keep one task route. This follow-up corrects two catalog descriptions/owners
+  and obsolete hosting-state paragraphs in the source guide/runbook; public
+  and runtime bytes remain unchanged. Current exact-head checks/CI and final dispositions stay
+  in the PR/issue. Owner semantic acceptance and protected merge remain open.
+  Recheck the latest head/CI/review; the cleanup is not merged into main.
 - Pre-cleanup protected `main`: [`07f936a`](https://github.com/oborskyivitalii/oborskyivitalii/commit/07f936a8733f56d73f34b89e2ad96d1b2ef605c7),
   the normal merge of [PR #28](https://github.com/oborskyivitalii/oborskyivitalii/pull/28).
   This is a baseline, not a claim about future main tips.
@@ -64,7 +66,7 @@ snapshot, not authorization to implement or deploy them all.
 
 | Issue | Remaining intent |
 | --- | --- |
-| [#31](https://github.com/oborskyivitalii/oborskyivitalii/issues/31) | Review and merge the RI/map/agent-memory cleanup plus acceptance policy, review/handoff, RI/CI coupling and bootstrap; recheck exact-head criteria/gates. |
+| [#31](https://github.com/oborskyivitalii/oborskyivitalii/issues/31) | Reconcile owner semantic acceptance G01, normal protected merge G02 and exact merged-source checks; independent implementation/semantic review and live linkage G03 are recorded in the PR/issue. |
 | [#1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1) | Overall launch: production, rights and physical-device acceptance. |
 | [#13](https://github.com/oborskyivitalii/oborskyivitalii/issues/13) | Real iPhone/iPad Safari and modest Android Chrome on the exact digest; independent production release, production-origin checks and actual rollback exercise. |
 | [#8](https://github.com/oborskyivitalii/oborskyivitalii/issues/8) | Production URL/canonicals, activation, live links/robots/indexability and real analytics; staging setup is complete. |
@@ -78,8 +80,8 @@ snapshot, not authorization to implement or deploy them all.
 
 1. Read root/scoped AGENTS; fetch current main and the owning issue/PR, including
    commits, complete diff, feedback and checks.
-2. For #31, read its AC policy, linked analysis/review and RI/CI map; run the
-   mapped checks on the exact head and reconcile each AC and remaining gate.
+2. For #31, read its final review/CI and obtain the required G01 owner decision;
+   after normal merge run mapped checks on the exact merged source before closure.
    The project prompt is [PROJECT-BOOTSTRAP.md](PROJECT-BOOTSTRAP.md).
 3. Preserve the completed #28/#14 outcome. Select the next launch/publication
    increment from its existing issue and the maintainer's current direction.
