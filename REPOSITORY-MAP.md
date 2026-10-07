@@ -20,6 +20,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [BACKLOG.md](BACKLOG.md) | Publication/migration backlog and historical PR audit; live issues own current acceptance. | guide | [BACKLOG.md](BACKLOG.md) |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Issue intent, PR/commit linkage, research intake, review, closure and memory procedure. | guide | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [MEMORY.md](MEMORY.md) | Bounded dated session handoff: verified baseline, decisions, open acceptance and next step. | memory | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [PROJECT-BOOTSTRAP.md](PROJECT-BOOTSTRAP.md) | Copy-ready Ukrainian ChatGPT project prompt for the author site and stable issue/acceptance/RI/handoff workflow. | guide | [PROJECT-BOOTSTRAP.md](PROJECT-BOOTSTRAP.md) |
 | [README.md](README.md) | Author/repository entry point and routes to site sources, work and ownership. | guide | [README.md](README.md) |
 | [REPOSITORIES.md](REPOSITORIES.md) | Canonical boundaries and coordinated work routes across site, UA and Subprime. | guide | [REPOSITORIES.md](REPOSITORIES.md) |
 | [REPOSITORY-MAP.md](REPOSITORY-MAP.md) | Generated readable description/index of every repository file and directory. | generated | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
@@ -42,6 +43,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [.](.) | Repository entry points, authored site, generated renditions, checks and historical review evidence. | guide | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [.github](.github) | Contributor templates, RI contracts/views and GitHub Actions controllers. | configuration | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [.github/ISSUE_TEMPLATE](.github/ISSUE_TEMPLATE) | Issue intake forms preserving intent, scope and acceptance. | configuration | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [.github/acceptance](.github/acceptance) | Owning-issue acceptance policies with stable criterion IDs and executable check mappings. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/repository-intelligence](.github/repository-intelligence) | Generated machine navigation view with exact source identity. | generated | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 | [.github/workflows](.github/workflows) | Pinned CI workflows for navigation, site checks, hosted staging and manual diagnostics. | workflow | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
 | [docs](docs) | Generated complete public tree and immutable rendition aliases; edit site sources instead. | generated | [site/README.md](site/README.md) |
@@ -64,6 +66,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/cloudflare-staging-20261005/evidence](review/cloudflare-staging-20261005/evidence) | Initial Direct Upload staging provisioning/provider/HTTP evidence. Contains evidence artifacts. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/color-staging-20261006](review/color-staging-20261006) | Color hosted variant provider/package identity and target evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/color-staging-20261006/evidence](review/color-staging-20261006/evidence) | Color hosted variant provider/package identity and target evidence. Contains evidence artifacts. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-31](review/issue-31) | Dated issue 31 implementation analysis and review evidence linked from its owning issue and PR. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/public-responses-20261006](review/public-responses-20261006) | Exact before/after public response prose and reconciliation records. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/reading-backdrops-20261006](review/reading-backdrops-20261006) | Content-sized reading backdrop correction evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/repository-maintenance-20261007](review/repository-maintenance-20261007) | Byte-exact pre-cleanup agent guide and its provenance note. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -129,17 +132,25 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) | UA comparison, site adaptation contract, navigation commands, identity/bounds and upgrade procedure. | guide | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
+| [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) | Stable issue AC contract, policy schema, deterministic evidence, session-end reconciliation and explicit live/manual gates. | guide | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) | UA comparison, site RI layers, file/check/workflow mapping, identity/bounds and coupled CI upgrade procedure. | guide | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 | [.github/pull_request_template.md](.github/pull_request_template.md) | PR execution, owning issue/commit links, checks/review and honest completion template. | configuration | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [.github/repository-intelligence-config.json](.github/repository-intelligence-config.json) | Site RI schema, upstream pin, owner aliases, memory bounds and validation routes. | configuration | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 | [.github/repository-paths.json](.github/repository-paths.json) | Maintained exhaustive path/purpose/role/owner catalog; unknown and stale entries fail. | configuration | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
+| [.github/ri-ci-map.json](.github/ri-ci-map.json) | Reviewed RI layer/path/check/workflow coupling and source digest; stale or missing coverage fails. | configuration | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 
 ## .github/ISSUE_TEMPLATE/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [.github/ISSUE_TEMPLATE/research-input.md](.github/ISSUE_TEMPLATE/research-input.md) | Original research input, affected-use report and decision intake template. | configuration | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [.github/ISSUE_TEMPLATE/research-input.md](.github/ISSUE_TEMPLATE/research-input.md) | Research/publication intent and impact intake with stable ACs, exact implementation links, review artifact and completion evidence. | configuration | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [.github/ISSUE_TEMPLATE/work-item.md](.github/ISSUE_TEMPLATE/work-item.md) | Issue intent/scope/acceptance template with PR and exact implementation commit links. | configuration | [CONTRIBUTING.md](CONTRIBUTING.md) |
+
+## .github/acceptance/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [.github/acceptance/issue-31.json](.github/acceptance/issue-31.json) | Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 
 ## .github/repository-intelligence/
 
@@ -151,6 +162,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
+| [.github/workflows/issue-acceptance.yml](.github/workflows/issue-acceptance.yml) | Run the owning issue acceptance policy on the exact PR source and retain the per-criterion CI report. | workflow | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/workflows/navigation.yml](.github/workflows/navigation.yml) | GitHub Actions: Local navigation checks; inspect trigger/profile before running. | workflow | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
 | [.github/workflows/site-browser-gate-probe.yml](.github/workflows/site-browser-gate-probe.yml) | GitHub Actions: Browser gate causal diagnostic; inspect trigger/profile before running. | workflow | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
 | [.github/workflows/site-candidate-evidence.yml](.github/workflows/site-candidate-evidence.yml) | GitHub Actions: Site candidate evidence; inspect trigger/profile before running. | workflow | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
@@ -249,6 +261,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
+| [review/REVIEW-TEMPLATE.md](review/REVIEW-TEMPLATE.md) | One issue/PR review and model-handoff artifact template with inspected source, findings, ACs, tasks and evidence. | guide | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/build_visual_proposal.cjs](review/build_visual_proposal.cjs) | Historical retained diagnostic/export script: build_visual_proposal.cjs. Dated build_visual_proposal.cjs iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-v1-20261001-credits-day.html](review/site-v1-20261001-credits-day.html) | Historical reference/preview HTML: site-v1-20261001-credits-day.html. Dated site v1 20261001 credits day.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-v1-20261001-credits-night.html](review/site-v1-20261001-credits-night.html) | Historical reference/preview HTML: site-v1-20261001-credits-night.html. Dated site v1 20261001 credits night.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -479,6 +492,13 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [review/color-staging-20261006/evidence/provider.json](review/color-staging-20261006/evidence/provider.json) | Historical manifest/observation data: provider.json. Color hosted variant provider/package identity and target evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/color-staging-20261006/evidence/staging-package.json](review/color-staging-20261006/evidence/staging-package.json) | Historical manifest/observation data: staging-package.json. Color hosted variant provider/package identity and target evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+
+## review/issue-31/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-31/2026-10-07-analysis.md](review/issue-31/2026-10-07-analysis.md) | Issue 31 acceptance/handoff/RI-CI/bootstrap analysis, AC-linked findings and ordered execution tasks. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-31/2026-10-07-review.md](review/issue-31/2026-10-07-review.md) | Independent issue 31 code/contract review with resolved findings, exact inspected file hashes, check results and acceptance limitations. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 ## review/public-responses-20261006/
 
@@ -1358,8 +1378,11 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/staging-reporting.test.cjs](tests/staging-reporting.test.cjs) | Behavioral/adversarial tests and fixtures for staging reporting. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
 | [tests/staging-trust.test.cjs](tests/staging-trust.test.cjs) | Behavioral/adversarial tests and fixtures for staging trust. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
 | [tests/staging.test.cjs](tests/staging.test.cjs) | Behavioral/adversarial tests and fixtures for staging. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
+| [tests/test_issue31_acceptance.py](tests/test_issue31_acceptance.py) | Issue 31 observable acceptance checks for RI provenance, inventory, memory, workflow, unchanged site and bootstrap. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [tests/test_issue_acceptance.py](tests/test_issue_acceptance.py) | Acceptance runner adversarial cases for invalid mappings, skipped/empty/failed tests and evidence identity. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_offline_export_security.py](tests/test_offline_export_security.py) | Behavioral/adversarial tests and fixtures for offline export security. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
 | [tests/test_repository_intelligence.py](tests/test_repository_intelligence.py) | Behavioral/adversarial tests and fixtures for repository intelligence. | test | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
+| [tests/test_ri_ci.py](tests/test_ri_ci.py) | Negative and positive cases for stale coverage, dangling paths/selectors and workflow invocation drift. | test | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 | [tests/theme.test.cjs](tests/theme.test.cjs) | Behavioral/adversarial tests and fixtures for theme. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
 | [tests/writing-diagnosis.test.cjs](tests/writing-diagnosis.test.cjs) | Behavioral/adversarial tests and fixtures for writing diagnosis. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
 | [tests/writing-geometry.test.cjs](tests/writing-geometry.test.cjs) | Behavioral/adversarial tests and fixtures for writing geometry. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
@@ -1379,9 +1402,11 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tools/build_site_contact_sheets.py](tools/build_site_contact_sheets.py) | Site generation/offline review helper: build site contact sheets; inspect its source and output contract before use. | source | [site/README.md](site/README.md) |
 | [tools/build_site_previews.cjs](tools/build_site_previews.cjs) | Site generation/offline review helper: build site previews; inspect its source and output contract before use. | source | [site/README.md](site/README.md) |
 | [tools/capture_site_review.cjs](tools/capture_site_review.cjs) | Site generation/offline review helper: capture site review; inspect its source and output contract before use. | source | [site/README.md](site/README.md) |
+| [tools/check_ri_ci.py](tools/check_ri_ci.py) | Validate and refresh reviewed RI/CI mapping, test-selector resolution and actual workflow invocations. | validator | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 | [tools/check_site_contrast.cjs](tools/check_site_contrast.cjs) | Site generation/offline review helper: check site contrast; inspect its source and output contract before use. | source | [site/README.md](site/README.md) |
 | [tools/check_site_seo.cjs](tools/check_site_seo.cjs) | Site generation/offline review helper: check site seo; inspect its source and output contract before use. | source | [site/README.md](site/README.md) |
 | [tools/compact_site_recordings.cjs](tools/compact_site_recordings.cjs) | Site generation/offline review helper: compact site recordings; inspect its source and output contract before use. | source | [site/README.md](site/README.md) |
+| [tools/issue_acceptance.py](tools/issue_acceptance.py) | Bounded acceptance policy runner with deterministic unittest/basic checks and exact-source per-AC evidence. | validator | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tools/repository_intelligence.py](tools/repository_intelligence.py) | Bounded deterministic site RI producer, catalog validation, scoped lookup and generated-view verification. | source | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 
 ## tools/quality/

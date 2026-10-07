@@ -10,7 +10,8 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 SPEC = importlib.util.spec_from_file_location("local_ri", REPO / "tools/repository_intelligence.py")
 ri = importlib.util.module_from_spec(SPEC)
-SPEC.loader.exec_module(ri)
+exec(compile((REPO / "tools/repository_intelligence.py").read_bytes(),
+             str(REPO / "tools/repository_intelligence.py"), "exec"), ri.__dict__)
 
 
 class NavigationSafetyTests(unittest.TestCase):

@@ -32,6 +32,76 @@ traversal, trusted accepted/proposed Git comparison, checkpoint contracts and
 benchmark machinery remain upstream. There is no remote index/cache, new runtime
 dependency, measured productivity claim or replacement for #6's cross-repo harness.
 
+## Layers, repository paths and CI companions
+
+This is the architecture map for the local projection and its working protocol.
+The checked [ri-ci-map.json](ri-ci-map.json) records concrete paths, test selectors
+and exact workflow command arguments. The table explains their responsibility;
+the JSON and [coupling validator](../tools/check_ri_ci.py) enforce the routes.
+
+| Layer | Maintained paths and authority | CI companion and what it proves |
+| --- | --- | --- |
+| Authority and instructions | Root/scoped `AGENTS.md`; [CONTRIBUTING](../CONTRIBUTING.md); [project bootstrap](../PROJECT-BOOTSTRAP.md). Source owners supply meaning; archived guides supply history. | [navigation](workflows/navigation.yml): `NavigationSafetyTests` verifies scope, historical isolation and guide bounds. Issue acceptance tests exercise the documented task/review protocol. |
+| Intent and acceptance | Live owning issue with stable AC IDs; [issue templates](ISSUE_TEMPLATE/work-item.md), [research intake](ISSUE_TEMPLATE/research-input.md), [PR template](pull_request_template.md), [acceptance protocol](ACCEPTANCE.md), `.github/acceptance/issue-N.json`; `review/issue-N/` files use [one review format](../review/REVIEW-TEMPLATE.md). | [issue-acceptance](workflows/issue-acceptance.yml): `tools/issue_acceptance.py` executes the selected owning issue policy's named assertions at an exact source, maps evidence back to AC IDs and leaves owner/manual/merge criteria pending. Green automated checks alone cannot close an issue. |
+| Path catalog | [repository-paths.json](repository-paths.json): every file/directory's purpose, role and editing owner, including root files. | Navigation's `NavigationSafetyTests` checks unknown/missing paths, kinds, purposes and owners. RI `verify` compares the complete outputs against that catalog. |
+| Producer and identity | [producer](../tools/repository_intelligence.py), [config](repository-intelligence-config.json), upstream pin and notices; source bytes are data, not automatically accepted meaning. | Navigation's RI regressions exercise byte mutation, bounds, exclusions, unsafe inputs and config/producer invalidation; RI `verify` establishes deterministic freshness. |
+| Generated views | [REPOSITORY-MAP](../REPOSITORY-MAP.md) and [agent context](repository-intelligence/agent-context.json), generated from one source projection. | Navigation's `verify` regenerates both and compares them exactly; mutation/missing-output regressions fail. The workflow records checkout/blob/source identity. |
+| Lookup and validation routes | Config owner aliases/routes, this architecture and the checked CI map; `query`, `context-for-task` and `inventory` remain navigation. | RI regressions check unresolved queries, aliases, authority boundaries and scoped owners. `check_ri_ci.py verify` resolves declared test selectors and verifies actual unconditional CI command invocation. `RICICouplingTests` checks broken routes, stale mapping and new controls. |
+| Continuity | [MEMORY](../MEMORY.md) is a bounded dated snapshot; AGENTS/CONTRIBUTING and config own its maintenance/format contract. Detailed prior state remains in issues, PRs and dated review files. | Navigation checks required sections, size limits and RI freshness after memory edits. The acceptance policy checks the handoff protocol. No deterministic test turns dated facts into live observations. |
+| GitHub live overlay and CI boundary | Current issues, refs, reviews, checks and deployment records remain outside RI; `.github/workflows/` defines recorded execution routes. Release/source profiles retain their existing owners. | The map watches every workflow definition and maps the acceptance and [site-basic](workflows/site-checks.yml) entrypoints. Exact-source acceptance reports and artifact checks bind local observations; agents must separately retrieve current GitHub/hosting state. |
+
+The current issue's acceptance policy is
+[issue-31.json](acceptance/issue-31.json), and its model analysis is
+[review/issue-31/2026-10-07-analysis.md](../review/issue-31/2026-10-07-analysis.md).
+Each later task keeps its own issue/PR links and dated review artifact; do not
+create competing task instructions in AGENTS, memory or a second handoff system.
+
+## Reviewing RI changes with CI
+
+Changes to RI interpretation, catalogs, the agent/acceptance protocol or workflow
+routes require checking the dependent layer and CI selection in the same PR:
+
+1. For producer/config/bounds changes, review source identity and unsafe-input
+   behavior; update behavioral and negative fixtures and the upstream comparison
+   when its interpretation changes. For catalog/scope/output changes, exercise
+   missing/new paths, owner/instruction routing and output freshness.
+2. For issue/review/continuity changes, keep AC IDs linked to the issue intent;
+   update the relevant acceptance policy and protocol tests. Distinguish runnable
+   assertions from human decisions, merge and release evidence. Review the CI
+   workflow's exact source, failure propagation and test selection.
+3. Update this table/config routes and `ri-ci-map.json` where dependencies changed.
+   New workflows and catalog-owned RI/acceptance controls require explicit map
+   entries. Review affected checks before running `check_ri_ci.py refresh`; its
+   digest records exact maintained input bytes and map interpretation, rather
+   than accepting a meaningless edit to the map file as evidence of review.
+4. Run coupling regressions/verification, then rebuild and verify both RI views.
+   Re-run the issue policy on the final committed source before deciding closure;
+   put the AC/result/evidence mapping and remaining decisions in the issue/PR.
+
+```sh
+python3 tools/check_ri_ci.py refresh
+python3 tools/check_ri_ci.py verify
+python3 -m unittest discover -s tests -p 'test_ri_ci.py'
+```
+
+Coupling verification fails for stale source digests, unmapped control files,
+missing test selectors or a declared command that is only mentioned, guarded,
+optional or absent in the mapped workflow job. The deliberately narrow workflow
+reader accepts this repository's explicit YAML job/step/run shape; unsupported
+aliases, folded runs or filtered/matrix/dependent-job routes require a reviewed
+adapter. Mapped PR triggers cannot filter paths/branches; explicit `types` must
+include both `opened` and `synchronize` (the default PR types are admitted).
+Mapped-job `needs` is rejected until dependency reachability is supported.
+For a clean committed checkout, optional `--base-sha` and `--head-sha` accept only
+full immutable commit IDs, require the exact head and report changed controls.
+Ordinary verification is content-bound even without that Git comparison.
+
+The coupling digest excludes generated RI views and its own digest field, so it
+does not recurse. `MEMORY.md` content and dated review logs remain RI freshness
+inputs; their format/protocol controls, rather than each checkpoint's contents,
+are CI-coupling inputs. CI invocation/freshness evidence is separate from a live
+successful GitHub run, independent review, semantic acceptance or publication.
+
 ## Complete path catalog and authority
 
 [repository-paths.json](repository-paths.json) is the maintained description

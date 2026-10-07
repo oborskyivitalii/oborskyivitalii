@@ -20,6 +20,10 @@ jobs:
           persist-credentials: false
       # site-checks.yml owns the basic site suite. Only focused RI/continuity
       # tests run here; full browser/export suites belong to hosted profiles.
+      - name: Verify reviewed RI and CI coverage
+        run: python3 tools/check_ri_ci.py verify
+      - name: Check RI and CI coupling regression cases
+        run: python3 -m unittest discover -s tests -p 'test_ri_ci.py'
       - name: Check RI inventory and agent-memory contract
         run: python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'
       - name: Verify current-source context

@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "063c482b2d66e68a4ff82f804cbe5984ab9854f6bbb545e8790bdeb95a368cbb",
+    "digest": "bb25cb6fc9649ff5d9485615eb331342a4b4850d55ac15d6033424d0577f78e9",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -25,29 +25,39 @@
         "sha256": "6030a33a1cd826768f3c0ed65bde55a3a210e7131cca0a6d60d9b378e5268461"
       },
       {
+        "path": ".github/ACCEPTANCE.md",
+        "identity_mode": "content",
+        "sha256": "c4633fff1188acf086e04be72d14d2ec6368d7438413852d096cc32a020b862a"
+      },
+      {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
         "identity_mode": "content",
-        "sha256": "e11097914b4abc03399c82e01eecc5074a833fbea4c5e65de23c051159753bfd"
+        "sha256": "6b069202635c47073c37fbe4444b2ffe9741a3ed794a68a20c291943075b71a9"
       },
       {
         "path": ".github/ISSUE_TEMPLATE/work-item.md",
         "identity_mode": "content",
-        "sha256": "79504471084208b3f81a3454a7eb444763c2c0382ff4141de46a0ec2e66485f6"
+        "sha256": "5dd1607ad15da77867bf9f7f3d52f3f95e64f50a8349cbf545c41a01db1d2ca2"
       },
       {
         "path": ".github/REPOSITORY-INTELLIGENCE.md",
         "identity_mode": "content",
-        "sha256": "319aac36287080c04ca08832d0f19f9f5bf1ea7d830b314eea4668db65b6fb59"
+        "sha256": "fabf68e04b45095ec42f07cc6a512cf8416ae9ddc9b9510c9fa57ec8d44e76b3"
+      },
+      {
+        "path": ".github/acceptance/issue-31.json",
+        "identity_mode": "content",
+        "sha256": "a6635dd547834da79e83ab2ee9067135263fd8a3312b90ec7485c8ce12a8b3b4"
       },
       {
         "path": ".github/pull_request_template.md",
         "identity_mode": "content",
-        "sha256": "3e1332f0de5a0dc6a48d44acbb2ac43790d38ee2371881a5908efad00e0e42a6"
+        "sha256": "9d6e001401d72e906275515a4c4921e966541cda9d7b98aad58f54980bf301de"
       },
       {
         "path": ".github/repository-intelligence-config.json",
         "identity_mode": "content",
-        "sha256": "4abfe930425d6a2786e2e80a8062b74c03b1716873fe4086a863f9be8b471b52"
+        "sha256": "0371bf5434380e26af0dcb171ef462581580a6e908800a18b647ebe7b0c83072"
       },
       {
         "path": ".github/repository-intelligence/agent-context.json",
@@ -56,12 +66,22 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "7e61ed30ce8de05d61771da18e2b27ba0c9649b02a320ec4c4f8c155560ac690"
+        "sha256": "b970b5bb10c3531da3be96c3d97a212f7b414b05700f8d7f4e180213f1794f8f"
+      },
+      {
+        "path": ".github/ri-ci-map.json",
+        "identity_mode": "content",
+        "sha256": "240228fc918ede7e7d075de0894496977ee4ba79680286c2b2811467c69cb189"
+      },
+      {
+        "path": ".github/workflows/issue-acceptance.yml",
+        "identity_mode": "content",
+        "sha256": "f7f2921d3d12774efed48a1184960e4664241c2ed3b7087133660428fe00f8d3"
       },
       {
         "path": ".github/workflows/navigation.yml",
         "identity_mode": "content",
-        "sha256": "900f3625d1cf9f64cc467bb623257c409c0898b0dbe7926fe11a3c4de52ee76f"
+        "sha256": "e60f51f6185495e26e114e63934374de75311490eddd62d5a4954814fe681866"
       },
       {
         "path": ".github/workflows/site-browser-gate-probe.yml",
@@ -136,7 +156,7 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "1e4b0465ae399c60ac004f5444c49c3c8d33e13af2290e82c795fdd92ca95b5d"
+        "sha256": "ef48c7889e5a1fcd40e271994c482d75db70bdcf44143476d6cf69b17b67162b"
       },
       {
         "path": "BACKLOG.md",
@@ -146,12 +166,17 @@
       {
         "path": "CONTRIBUTING.md",
         "identity_mode": "content",
-        "sha256": "3ea8be5958fb7ea9ba72c50fb3cdbf07aa6940cafbbc609dd03e9d7610942321"
+        "sha256": "3aaa6f3fe33d434d182969e15f3da57ffc3c7ee43728aa1f5fd4581acb8ec385"
       },
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "115e50c835a2f53ddc4aebe1da4bd85dd2ae71b7b037a28c871f5537af350669"
+        "sha256": "33fc16e6fd1c6e24282390483d5ede44da871ebdc04fb85077684820ffabb6f0"
+      },
+      {
+        "path": "PROJECT-BOOTSTRAP.md",
+        "identity_mode": "content",
+        "sha256": "191aeec142f55101336388b65b428e7e22af2a614b10fbd62c5872279d45083e"
       },
       {
         "path": "README.md",
@@ -368,6 +393,11 @@
         "sha256": "8500a3a89bd091df6638caad812824cf03ad3233f674b207e37c73bb4c26cc01"
       },
       {
+        "path": "review/REVIEW-TEMPLATE.md",
+        "identity_mode": "content",
+        "sha256": "fcaa167cfc290547a3a6ffb2d5b31296cc4dd2f67db025110789f7ed1b38afe0"
+      },
+      {
         "path": "review/assets/site-day-night-concept-20261002.png",
         "identity_mode": "content",
         "sha256": "c29ba4bef68347a9c764faca9cfdba5392e47d43fe853f7e7084314948dc3fdc"
@@ -441,6 +471,16 @@
         "path": "review/color-staging-20261006/target.json",
         "identity_mode": "content",
         "sha256": "42bac7997ba50f77b0ad9a53fa76cbdaa3fab8df0099c531b0c7f317ee2be0e2"
+      },
+      {
+        "path": "review/issue-31/2026-10-07-analysis.md",
+        "identity_mode": "content",
+        "sha256": "368f405fc689735570a0b80a9a435d49cbc583deb8dd6fc1f2d88c67ced358cf"
+      },
+      {
+        "path": "review/issue-31/2026-10-07-review.md",
+        "identity_mode": "content",
+        "sha256": "c2cf28a9a6bb6053fe50ca53f0191b0a31497b1a3b3d893ab7734a10a7c14f35"
       },
       {
         "path": "review/public-responses-20261006/README.md",
@@ -4413,6 +4453,16 @@
         "sha256": "ecd099e3c7b1fa92c55c89cfb883f80120661eb7f55a72f3d61e01ad2d730bc7"
       },
       {
+        "path": "tests/test_issue31_acceptance.py",
+        "identity_mode": "content",
+        "sha256": "ee45e351b5be540afd216a72f85f4ce9a9f34059e1ef898cedfadfb52a512c79"
+      },
+      {
+        "path": "tests/test_issue_acceptance.py",
+        "identity_mode": "content",
+        "sha256": "63239ef57bd90d27fca4dde944ed267f5f6522dd0bfe13a6a6a830307b2f01fc"
+      },
+      {
         "path": "tests/test_offline_export_security.py",
         "identity_mode": "content",
         "sha256": "e3703408812856a714f2ba33f81f7c70b1bc941af36461b64d4849d3613a4cda"
@@ -4420,7 +4470,12 @@
       {
         "path": "tests/test_repository_intelligence.py",
         "identity_mode": "content",
-        "sha256": "ae98061a1ceda6a6b5167cec304b6670a0585cbd0b652c812541213030f9eabf"
+        "sha256": "7ba48d71b6cc1c85543918f4d1528d55c9c4b0786d0cb718d333758f17d3b47d"
+      },
+      {
+        "path": "tests/test_ri_ci.py",
+        "identity_mode": "content",
+        "sha256": "0bc4018d8e1d01843ce1676d6b1d2eb3d0fc25fa162805f6bf7b67cd8fd7d1f2"
       },
       {
         "path": "tests/theme.test.cjs",
@@ -4493,6 +4548,11 @@
         "sha256": "db173aa4024daf743dbc42bfe5ee472c2f08baf7b7c0640373c4d9faa96d6ad4"
       },
       {
+        "path": "tools/check_ri_ci.py",
+        "identity_mode": "content",
+        "sha256": "217ce60fe7caae6a78c81d5be000a46e000e0a22493eff74518f8edc14710ed6"
+      },
+      {
         "path": "tools/check_site_contrast.cjs",
         "identity_mode": "content",
         "sha256": "9aa2d8da41a95b1ac1d0f12c2fe9c1908a6205feb6df97700686d7ef3f5b88f8"
@@ -4506,6 +4566,11 @@
         "path": "tools/compact_site_recordings.cjs",
         "identity_mode": "content",
         "sha256": "489ff89c149337fd1f6ac9ba99a868031ffc10c6e7f6dc09bec3d994c23c20a8"
+      },
+      {
+        "path": "tools/issue_acceptance.py",
+        "identity_mode": "content",
+        "sha256": "a29a8e6d9145af08668da76a29c7852250256139eb8ab0ba77c9798c1352a1f3"
       },
       {
         "path": "tools/quality/README.md",
@@ -4858,7 +4923,7 @@
     "path": "tools/repository_intelligence.py",
     "sha256": "9c043c7e13c36899559f83b7941b989dfebaabd1e2d6d6e1815815704db627b3",
     "config_path": ".github/repository-intelligence-config.json",
-    "config_sha256": "4abfe930425d6a2786e2e80a8062b74c03b1716873fe4086a863f9be8b471b52"
+    "config_sha256": "0371bf5434380e26af0dcb171ef462581580a6e908800a18b647ebe7b0c83072"
   },
   "owners": [
     {
@@ -4998,13 +5063,10 @@
         "session memory",
         "current work",
         "handoff",
-        "Sol",
-        "execution plan",
         "памʼять",
         "память",
         "поточний стан",
-        "наступна сесія",
-        "план для сол"
+        "наступна сесія"
       ]
     },
     {
@@ -5019,6 +5081,44 @@
         "індекс репо",
         "каталоги",
         "файли в корені"
+      ]
+    },
+    {
+      "concern": "acceptance criteria, deterministic policy and source-bound evidence",
+      "path": ".github/ACCEPTANCE.md",
+      "queries": [
+        "acceptance criteria",
+        "AC mapping",
+        "deterministic tests",
+        "аксептанс",
+        "критерії приймання",
+        "policy"
+      ]
+    },
+    {
+      "concern": "review analysis and model-to-model execution handoff",
+      "path": "review/REVIEW-TEMPLATE.md",
+      "queries": [
+        "Astra",
+        "review handoff",
+        "analysis tasks",
+        "ревʼю",
+        "аналіз",
+        "завдання солу",
+        "Sol",
+        "execution plan",
+        "план для сол"
+      ]
+    },
+    {
+      "concern": "ChatGPT project bootstrap and stable context",
+      "path": "PROJECT-BOOTSTRAP.md",
+      "queries": [
+        "bootstrap prompt",
+        "project description",
+        "ChatGPT project",
+        "бутстрап",
+        "опис проекту"
       ]
     }
   ],
@@ -5043,9 +5143,20 @@
       "title": ".gitattributes"
     },
     {
+      "path": ".github/ACCEPTANCE.md",
+      "kind": "file",
+      "purpose": "Stable issue AC contract, policy schema, deterministic evidence, session-end reconciliation and explicit live/manual gates.",
+      "role": "guide",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue acceptance evidence"
+    },
+    {
       "path": ".github/ISSUE_TEMPLATE/research-input.md",
       "kind": "file",
-      "purpose": "Original research input, affected-use report and decision intake template.",
+      "purpose": "Research/publication intent and impact intake with stable ACs, exact implementation links, review artifact and completion evidence.",
       "role": "configuration",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -5067,13 +5178,24 @@
     {
       "path": ".github/REPOSITORY-INTELLIGENCE.md",
       "kind": "file",
-      "purpose": "UA comparison, site adaptation contract, navigation commands, identity/bounds and upgrade procedure.",
+      "purpose": "UA comparison, site RI layers, file/check/workflow mapping, identity/bounds and coupled CI upgrade procedure.",
       "role": "guide",
       "owner": ".github/REPOSITORY-INTELLIGENCE.md",
       "instructions": [
         "AGENTS.md"
       ],
       "title": "Site Repository Intelligence"
+    },
+    {
+      "path": ".github/acceptance/issue-31.json",
+      "kind": "file",
+      "purpose": "Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-31.json"
     },
     {
       "path": ".github/pull_request_template.md",
@@ -5118,6 +5240,28 @@
         "AGENTS.md"
       ],
       "title": "repository-paths.json"
+    },
+    {
+      "path": ".github/ri-ci-map.json",
+      "kind": "file",
+      "purpose": "Reviewed RI layer/path/check/workflow coupling and source digest; stale or missing coverage fails.",
+      "role": "configuration",
+      "owner": ".github/REPOSITORY-INTELLIGENCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "ri-ci-map.json"
+    },
+    {
+      "path": ".github/workflows/issue-acceptance.yml",
+      "kind": "file",
+      "purpose": "Run the owning issue acceptance policy on the exact PR source and retain the per-criterion CI report.",
+      "role": "workflow",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-acceptance.yml"
     },
     {
       "path": ".github/workflows/navigation.yml",
@@ -5327,6 +5471,17 @@
         "AGENTS.md"
       ],
       "title": "Session memory"
+    },
+    {
+      "path": "PROJECT-BOOTSTRAP.md",
+      "kind": "file",
+      "purpose": "Copy-ready Ukrainian ChatGPT project prompt for the author site and stable issue/acceptance/RI/handoff workflow.",
+      "role": "guide",
+      "owner": "PROJECT-BOOTSTRAP.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Bootstrap для ChatGPT-проєкту"
     },
     {
       "path": "README.md",
@@ -5802,6 +5957,17 @@
       "title": "medium-profile-revision-20261001.html"
     },
     {
+      "path": "review/REVIEW-TEMPLATE.md",
+      "kind": "file",
+      "purpose": "One issue/PR review and model-handoff artifact template with inspected source, findings, ACs, tasks and evidence.",
+      "role": "guide",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue N — YYYY-MM-DD review / analysis / handoff"
+    },
+    {
       "path": "review/assets/site-day-night-concept-20261002.png",
       "kind": "file",
       "purpose": "Historical visual capture/reference: site-day-night-concept-20261002.png. Historical visual concept/portrait assets.",
@@ -5965,6 +6131,28 @@
         "AGENTS.md"
       ],
       "title": "target.json"
+    },
+    {
+      "path": "review/issue-31/2026-10-07-analysis.md",
+      "kind": "file",
+      "purpose": "Issue 31 acceptance/handoff/RI-CI/bootstrap analysis, AC-linked findings and ordered execution tasks.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 31 — acceptance, model handoff and RI/CI analysis"
+    },
+    {
+      "path": "review/issue-31/2026-10-07-review.md",
+      "kind": "file",
+      "purpose": "Independent issue 31 code/contract review with resolved findings, exact inspected file hashes, check results and acceptance limitations.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 31 — independent acceptance and RI/CI review"
     },
     {
       "path": "review/public-responses-20261006/README.md",
@@ -14701,6 +14889,28 @@
       "title": "staging.test.cjs"
     },
     {
+      "path": "tests/test_issue31_acceptance.py",
+      "kind": "file",
+      "purpose": "Issue 31 observable acceptance checks for RI provenance, inventory, memory, workflow, unchanged site and bootstrap.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "test_issue31_acceptance.py"
+    },
+    {
+      "path": "tests/test_issue_acceptance.py",
+      "kind": "file",
+      "purpose": "Acceptance runner adversarial cases for invalid mappings, skipped/empty/failed tests and evidence identity.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "test_issue_acceptance.py"
+    },
+    {
       "path": "tests/test_offline_export_security.py",
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for offline export security.",
@@ -14721,6 +14931,17 @@
         "AGENTS.md"
       ],
       "title": "test_repository_intelligence.py"
+    },
+    {
+      "path": "tests/test_ri_ci.py",
+      "kind": "file",
+      "purpose": "Negative and positive cases for stale coverage, dangling paths/selectors and workflow invocation drift.",
+      "role": "test",
+      "owner": ".github/REPOSITORY-INTELLIGENCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "test_ri_ci.py"
     },
     {
       "path": "tests/theme.test.cjs",
@@ -14877,6 +15098,17 @@
       "title": "capture_site_review.cjs"
     },
     {
+      "path": "tools/check_ri_ci.py",
+      "kind": "file",
+      "purpose": "Validate and refresh reviewed RI/CI mapping, test-selector resolution and actual workflow invocations.",
+      "role": "validator",
+      "owner": ".github/REPOSITORY-INTELLIGENCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "check_ri_ci.py"
+    },
+    {
       "path": "tools/check_site_contrast.cjs",
       "kind": "file",
       "purpose": "Site generation/offline review helper: check site contrast; inspect its source and output contract before use.",
@@ -14908,6 +15140,17 @@
         "AGENTS.md"
       ],
       "title": "compact_site_recordings.cjs"
+    },
+    {
+      "path": "tools/issue_acceptance.py",
+      "kind": "file",
+      "purpose": "Bounded acceptance policy runner with deterministic unittest/basic checks and exact-source per-AC evidence.",
+      "role": "validator",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue_acceptance.py"
     },
     {
       "path": "tools/quality/README.md",
@@ -15701,6 +15944,16 @@
       ]
     },
     {
+      "path": ".github/acceptance",
+      "kind": "directory",
+      "purpose": "Owning-issue acceptance policies with stable criterion IDs and executable check mappings.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": ".github/repository-intelligence",
       "kind": "directory",
       "purpose": "Generated machine navigation view with exact source identity.",
@@ -15914,6 +16167,16 @@
       "path": "review/color-staging-20261006/evidence",
       "kind": "directory",
       "purpose": "Color hosted variant provider/package identity and target evidence. Contains evidence artifacts.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-31",
+      "kind": "directory",
+      "purpose": "Dated issue 31 implementation analysis and review evidence linked from its owning issue and PR.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -16536,9 +16799,15 @@
         ".github/ISSUE_TEMPLATE/",
         ".github/pull_request_template.md",
         "tools/repository_intelligence.py",
-        "tests/test_repository_intelligence.py"
+        "tests/test_repository_intelligence.py",
+        ".github/ri-ci-map.json",
+        "tools/check_ri_ci.py",
+        "tests/test_ri_ci.py",
+        "PROJECT-BOOTSTRAP.md"
       ],
       "commands": [
+        "python3 tools/check_ri_ci.py verify",
+        "python3 -m unittest discover -s tests -p 'test_ri_ci.py'",
         "python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'",
         "python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json build",
         "python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify"
@@ -16576,6 +16845,25 @@
         "SITE-STAGING.md"
       ],
       "note": "Select the authorized hosted profile; this route does not trigger deployment."
+    },
+    {
+      "concern": "issue acceptance and anchored analysis/review handoff",
+      "paths": [
+        ".github/ACCEPTANCE.md",
+        ".github/acceptance/",
+        ".github/workflows/issue-acceptance.yml",
+        "tools/issue_acceptance.py",
+        "tests/test_issue_acceptance.py",
+        "tests/test_issue31_acceptance.py",
+        "review/REVIEW-TEMPLATE.md",
+        "review/issue-",
+        "PROJECT-BOOTSTRAP.md"
+      ],
+      "commands": [
+        "python3 tools/issue_acceptance.py run --policy .github/acceptance/issue-31.json --report /tmp/issue-31-acceptance.json"
+      ],
+      "workflow": ".github/workflows/issue-acceptance.yml",
+      "note": "Choose the owning issue policy; automated criteria cannot supply manual gates or live GitHub approval."
     }
   ],
   "upstream": {

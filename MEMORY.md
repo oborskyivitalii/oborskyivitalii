@@ -7,9 +7,12 @@ facts that affect the next action. Last verified: **2026-10-07**.
 
 - Cleanup [#31](https://github.com/oborskyivitalii/oborskyivitalii/issues/31) is
   implemented in Draft [PR #32](https://github.com/oborskyivitalii/oborskyivitalii/pull/32).
-  Baseline commit [2d6bca0](https://github.com/oborskyivitalii/oborskyivitalii/commit/2d6bca0746d455b93522abc42147d8185473834a)
-  passed basic [run 37582543381](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37582543381)
-  and RI [run 37582542648](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37582542648).
+  Earlier head `b20fc30` passed basic run `37582992916` and RI run
+  `37582992470`; these are baseline evidence, not checks for later extensions.
+  The AC08–AC11 extension and ordered tasks are in the linked PR’s
+  [analysis](review/issue-31/2026-10-07-analysis.md#sol-tasks) and
+  [independent review](review/issue-31/2026-10-07-review.md). The policy maps
+  AC01–AC11 to 53 checks; owner acceptance and protected merge remain open.
   Recheck its latest head/CI/review; the cleanup is not merged into main.
 - Pre-cleanup protected `main`: [`07f936a`](https://github.com/oborskyivitalii/oborskyivitalii/commit/07f936a8733f56d73f34b89e2ad96d1b2ef605c7),
   the normal merge of [PR #28](https://github.com/oborskyivitalii/oborskyivitalii/pull/28).
@@ -32,7 +35,11 @@ facts that affect the next action. Last verified: **2026-10-07**.
 - Work begins from an owning issue. Issue = intent/scope/acceptance; linked
   PR and commits = technical execution. Return an acceptance summary and exact
   implementation links to the issue before closure. [Cleanup #31](https://github.com/oborskyivitalii/oborskyivitalii/issues/31)
-  records the maintainer's 2026-10-07 request and the accepted scope.
+  records the maintainer's 2026-10-07 request, stable AC01–AC11 and scope.
+- Session completion maps AC IDs to deterministic policy/check evidence and
+  remaining gates. Review/model handoff uses one issue anchor and versioned PR
+  artifact; RI changes require reviewed CI coupling. See CONTRIBUTING and
+  [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md).
 - `AGENTS.md` stays a compact rule/router; this file holds a bounded handoff.
   Detailed historical state is preserved in issues/PRs and `review/`.
 - Production host preference is GitHub Pages. Analytics remains disabled until
@@ -53,7 +60,7 @@ snapshot, not authorization to implement or deploy them all.
 
 | Issue | Remaining intent |
 | --- | --- |
-| [#31](https://github.com/oborskyivitalii/oborskyivitalii/issues/31) | Review and merge the complete RI/map/agent-memory cleanup; check the linked PR and CI. |
+| [#31](https://github.com/oborskyivitalii/oborskyivitalii/issues/31) | Review and merge the RI/map/agent-memory cleanup plus acceptance policy, review/handoff, RI/CI coupling and bootstrap; recheck exact-head criteria/gates. |
 | [#1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1) | Overall launch: production, rights and physical-device acceptance. |
 | [#13](https://github.com/oborskyivitalii/oborskyivitalii/issues/13) | Real iPhone/iPad Safari and modest Android Chrome on the exact digest; independent production release, production-origin checks and actual rollback exercise. |
 | [#8](https://github.com/oborskyivitalii/oborskyivitalii/issues/8) | Production URL/canonicals, activation, live links/robots/indexability and real analytics; staging setup is complete. |
@@ -67,8 +74,9 @@ snapshot, not authorization to implement or deploy them all.
 
 1. Read root/scoped AGENTS; fetch current main and the owning issue/PR, including
    commits, complete diff, feedback and checks.
-2. For #31, inspect the full repository map and RI notice/config, run freshness
-   and the focused RI tests, and finish the issue acceptance comparison.
+2. For #31, read its AC policy, linked analysis/review and RI/CI map; run the
+   mapped checks on the exact head and reconcile each AC and remaining gate.
+   The project prompt is [PROJECT-BOOTSTRAP.md](PROJECT-BOOTSTRAP.md).
 3. Preserve the completed #28/#14 outcome. Select the next launch/publication
    increment from its existing issue and the maintainer's current direction.
 

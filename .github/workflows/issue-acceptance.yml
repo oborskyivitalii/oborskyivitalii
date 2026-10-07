@@ -1,0 +1,45 @@
+name: Issue acceptance evidence
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review, edited]
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: Owning issue whose accepted policy must be evaluated
+        required: true
+        default: '31'
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  acceptance:
+    name: Owning issue deterministic acceptance mapping
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      ACCEPTANCE_SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+    steps:
+      - name: Check out the exact source, including immutable comparison history
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Set up Node for the existing economical basic check
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - name: Select the policy from the explicit owning References line or dispatch input
+        run: python3 tools/issue_acceptance.py select --event "$GITHUB_EVENT_PATH" --event-name "$GITHUB_EVENT_NAME" --github-env "$GITHUB_ENV" --report "$RUNNER_TEMP/issue-acceptance.json"
+      - name: Run criterion checks and preserve explicit pending human gates
+        run: python3 tools/issue_acceptance.py run --policy "$ACCEPTANCE_POLICY" --report "$RUNNER_TEMP/issue-acceptance.json" --require-clean --expected-source "$ACCEPTANCE_SOURCE_SHA"
+      - name: Upload the acceptance report even when checks fail
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: issue-acceptance-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/issue-acceptance.json
+          if-no-files-found: error
+          retention-days: 30

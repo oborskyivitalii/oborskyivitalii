@@ -32,8 +32,9 @@ Before implementation, record:
 - **Owner and type:** research input, publication or repository task; exact owning
   paths, current ref, source/research IDs where applicable.
 - **Scope:** expected outcome, exclusions, dependencies, unresolved choices.
-- **Acceptance:** observable checks and required editorial, independent or human
-  decisions.
+- **Acceptance:** stable criterion IDs (`AC01`, `AC02`, ...), observable pass
+  conditions and required editorial, independent or human decisions. Define
+  these before making the PR or doing implementation; they drive its scope.
 - **Plan:** next step and linked PRs; use full issue URLs for other repositories.
 
 Preserve the original intent. Append scope changes with date, reason and decision
@@ -94,6 +95,74 @@ correspondence boundaries; link public evidence or a bounded authorized summary.
 Draft, merged, reviewed, published and deployed are separate observations.
 An umbrella issue remains open until its required dependencies are complete.
 Issue closure and green CI do not change scientific or source-verification state.
+
+## Acceptance criteria and session evidence
+
+Use one complete `Refs #N` line in this repository’s PR body to identify the
+local owning issue for the acceptance workflow. Record other local or
+cross-repository issues as dependencies; incidental links do not select policy.
+
+The issue owns the acceptance criteria. Give each a stable heading such as
+`### AC01 — Exact snapshot identity` and a checkbox/pass condition. Keep IDs
+stable across sessions; append dated scope decisions instead of renumbering or
+weakening a criterion to match a convenient result.
+
+For implementation, maintain `.github/acceptance/issue-N.json` in the owning PR.
+It maps every issue AC to deterministic, reproducible named tests or policy
+checks, the relevant workflow and required non-automatable gates. This policy
+is the executable mapping of the issue, not a substitute for its intent. See
+[the acceptance contract](.github/ACCEPTANCE.md) for schema, runner and report.
+Define checks early and finish/refresh them before ending a substantive session.
+Tests must exercise the promised outcome and meaningful failure cases; a file
+existing or a sentence containing a keyword proves only that structural fact.
+
+At handoff or before interruption:
+
+1. Ensure every AC has an explicit check and pass condition. A missing mapping,
+   skipped check, incomplete run or unavailable evidence is not a pass. For a
+   criterion requiring a human decision, test its automatable invariants and
+   retain the decision as an unresolved gate until evidence actually exists.
+2. Run the acceptance policy and applicable repository checks at the exact
+   candidate. CI/Actions records checkout SHA/tree, policy/source identity and
+   a per-criterion result artifact; local evidence declares dirty/prepared state.
+3. In the issue add a compact table: `AC | check/test | result | source/run |
+   remaining decision`. Link technical logs/results in the PR/CI artifact.
+   Record partial work honestly when interrupted; rerun after relevant changes.
+4. Before declaring the issue ready, fetch its current criteria and linked PR,
+   commits, reviews and CI; rerun/verify the mapped checks and map results back
+   to the criteria. Reconcile all human/dependency/release gates and the exact
+   merged ref when required. The issue remains open if any required result is
+   failed, skipped, unmapped, stale or pending. Automation never auto-closes it.
+
+When RI changes, also review the associated CI/test routes and the layer/path
+mapping in [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md).
+Refresh the checked RI/CI coverage map and both generated RI views; rerun the
+coupling/acceptance checks. A fresh index with stale CI coverage is insufficient.
+
+## Review, analysis and model handoff
+
+Use the existing owning issue and PR when asking another model (for example,
+Astra for analysis/review and Sol for execution). Model names are roles in the
+conversation, not independent task records or proof of independent review.
+
+Store the technical result in the PR as
+`review/issue-N/YYYY-MM-DD-kind.md` (`analysis`, `review` or `handoff`), following
+[REVIEW-TEMPLATE](review/REVIEW-TEMPLATE.md). Record the inspected ref/materials,
+reviewer identity/role, findings with evidence, AC impact, decisions needed,
+ordered execution tasks and how their results will be checked. Label draft
+analysis, self-review, independent review and unavailable evidence accurately.
+
+The issue gets one dated anchor, a short synopsis and an exact PR Files Changed
+link or commit-pinned file/section permalink. Link that anchor back from the
+artifact and PR body. New findings/corrections update the same issue route and
+versioned artifact; use a new dated file only for a distinct review pass and
+cross-link prior findings. Do not create a competing handoff in AGENTS, chat
+memory or another issue. MEMORY holds only a short pointer/next action.
+
+The execution model reads the issue intent/ACs, the linked PR and artifact,
+implements those tasks, updates their dispositions and acceptance evidence in
+the PR, then summarizes outcomes back at the issue anchor. It must not treat
+review recommendations as an unrecorded change of the maintainer's intent.
 
 ## Repository navigation and session memory
 

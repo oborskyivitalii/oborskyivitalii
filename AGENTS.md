@@ -9,7 +9,8 @@ navigation in [REPOSITORY-MAP.md](REPOSITORY-MAP.md).
 1. Verify the live repository, target tip, task ref and working tree. Discover and
    read this file and every applicable nested `AGENTS.md`.
 2. Find or create the owning issue **before implementation**. Read its original
-   intent, accepted scope, decisions, acceptance checks and dependencies. Reuse
+   intent, accepted scope, decisions, acceptance checks and dependencies. Assign
+   stable AC IDs and observable pass conditions before implementation. Reuse
    an existing owner. Follow [CONTRIBUTING.md](CONTRIBUTING.md).
 3. Read `MEMORY.md` as a dated handoff; revalidate relevant refs, issue/PR state,
    checks and deployments through Git/GitHub. Memory is never live evidence.
@@ -52,10 +53,20 @@ navigation in [REPOSITORY-MAP.md](REPOSITORY-MAP.md).
 - Keep substantive PRs Draft during iteration. Record required independent
   review honestly; self-review is not independent review. Preserve editorial,
   rights and device acceptance when applicable.
+- Put analysis/review and tasks for the execution model in one versioned
+  `review/issue-N/YYYY-MM-DD-kind.md` file in the owning PR. The issue gets a
+  dated anchor, short outcome and exact PR-file/section link; keep model changes
+  on that same route. Use [the review template](review/REVIEW-TEMPLATE.md).
 - Default site check: `node tools/quality/local.cjs`. After indexed path/source
   changes run RI `build` and `verify`; after RI/flow changes also run
   `python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'`.
   Runtime/content edits additionally follow the applicable hosted profiles.
+- At session end provide/update deterministic tests and the
+  [acceptance policy](.github/ACCEPTANCE.md) for every AC. Run the mapped checks;
+  report AC → test/check → result → exact source/run. Unmapped/skipped/failed or
+  wrong-source evidence stays open; human decisions remain explicit gates.
+- When changing RI review its linked CI/test coverage, update the
+  [RI/CI map](.github/ri-ci-map.json), verify it and rebuild the RI views.
 - Before closure compare the result with the original issue acceptance. Record
   exact refs, checks, deviations and remaining work in both issue and PR. Draft,
   implemented, merged, reviewed, staged and published are separate observations.

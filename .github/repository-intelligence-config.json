@@ -154,13 +154,10 @@
         "session memory",
         "current work",
         "handoff",
-        "Sol",
-        "execution plan",
         "памʼять",
         "память",
         "поточний стан",
-        "наступна сесія",
-        "план для сол"
+        "наступна сесія"
       ]
     },
     {
@@ -175,6 +172,44 @@
         "індекс репо",
         "каталоги",
         "файли в корені"
+      ]
+    },
+    {
+      "concern": "acceptance criteria, deterministic policy and source-bound evidence",
+      "path": ".github/ACCEPTANCE.md",
+      "queries": [
+        "acceptance criteria",
+        "AC mapping",
+        "deterministic tests",
+        "аксептанс",
+        "критерії приймання",
+        "policy"
+      ]
+    },
+    {
+      "concern": "review analysis and model-to-model execution handoff",
+      "path": "review/REVIEW-TEMPLATE.md",
+      "queries": [
+        "Astra",
+        "review handoff",
+        "analysis tasks",
+        "ревʼю",
+        "аналіз",
+        "завдання солу",
+        "Sol",
+        "execution plan",
+        "план для сол"
+      ]
+    },
+    {
+      "concern": "ChatGPT project bootstrap and stable context",
+      "path": "PROJECT-BOOTSTRAP.md",
+      "queries": [
+        "bootstrap prompt",
+        "project description",
+        "ChatGPT project",
+        "бутстрап",
+        "опис проекту"
       ]
     }
   ],
@@ -222,9 +257,15 @@
         ".github/ISSUE_TEMPLATE/",
         ".github/pull_request_template.md",
         "tools/repository_intelligence.py",
-        "tests/test_repository_intelligence.py"
+        "tests/test_repository_intelligence.py",
+        ".github/ri-ci-map.json",
+        "tools/check_ri_ci.py",
+        "tests/test_ri_ci.py",
+        "PROJECT-BOOTSTRAP.md"
       ],
       "commands": [
+        "python3 tools/check_ri_ci.py verify",
+        "python3 -m unittest discover -s tests -p 'test_ri_ci.py'",
         "python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'",
         "python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json build",
         "python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify"
@@ -262,6 +303,25 @@
         "SITE-STAGING.md"
       ],
       "note": "Select the authorized hosted profile; this route does not trigger deployment."
+    },
+    {
+      "concern": "issue acceptance and anchored analysis/review handoff",
+      "paths": [
+        ".github/ACCEPTANCE.md",
+        ".github/acceptance/",
+        ".github/workflows/issue-acceptance.yml",
+        "tools/issue_acceptance.py",
+        "tests/test_issue_acceptance.py",
+        "tests/test_issue31_acceptance.py",
+        "review/REVIEW-TEMPLATE.md",
+        "review/issue-",
+        "PROJECT-BOOTSTRAP.md"
+      ],
+      "commands": [
+        "python3 tools/issue_acceptance.py run --policy .github/acceptance/issue-31.json --report /tmp/issue-31-acceptance.json"
+      ],
+      "workflow": ".github/workflows/issue-acceptance.yml",
+      "note": "Choose the owning issue policy; automated criteria cannot supply manual gates or live GitHub approval."
     }
   ]
 }

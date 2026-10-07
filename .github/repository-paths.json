@@ -19,6 +19,12 @@
       "role": "configuration",
       "owner": "CONTRIBUTING.md"
     },
+    ".github/ACCEPTANCE.md": {
+      "kind": "file",
+      "purpose": "Stable issue AC contract, policy schema, deterministic evidence, session-end reconciliation and explicit live/manual gates.",
+      "role": "guide",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     ".github/ISSUE_TEMPLATE": {
       "kind": "directory",
       "purpose": "Issue intake forms preserving intent, scope and acceptance.",
@@ -27,7 +33,7 @@
     },
     ".github/ISSUE_TEMPLATE/research-input.md": {
       "kind": "file",
-      "purpose": "Original research input, affected-use report and decision intake template.",
+      "purpose": "Research/publication intent and impact intake with stable ACs, exact implementation links, review artifact and completion evidence.",
       "role": "configuration",
       "owner": "CONTRIBUTING.md"
     },
@@ -39,9 +45,21 @@
     },
     ".github/REPOSITORY-INTELLIGENCE.md": {
       "kind": "file",
-      "purpose": "UA comparison, site adaptation contract, navigation commands, identity/bounds and upgrade procedure.",
+      "purpose": "UA comparison, site RI layers, file/check/workflow mapping, identity/bounds and coupled CI upgrade procedure.",
       "role": "guide",
       "owner": ".github/REPOSITORY-INTELLIGENCE.md"
+    },
+    ".github/acceptance": {
+      "kind": "directory",
+      "purpose": "Owning-issue acceptance policies with stable criterion IDs and executable check mappings.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    ".github/acceptance/issue-31.json": {
+      "kind": "file",
+      "purpose": "Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
     },
     ".github/pull_request_template.md": {
       "kind": "file",
@@ -73,11 +91,23 @@
       "role": "configuration",
       "owner": ".github/REPOSITORY-INTELLIGENCE.md"
     },
+    ".github/ri-ci-map.json": {
+      "kind": "file",
+      "purpose": "Reviewed RI layer/path/check/workflow coupling and source digest; stale or missing coverage fails.",
+      "role": "configuration",
+      "owner": ".github/REPOSITORY-INTELLIGENCE.md"
+    },
     ".github/workflows": {
       "kind": "directory",
       "purpose": "Pinned CI workflows for navigation, site checks, hosted staging and manual diagnostics.",
       "role": "workflow",
       "owner": "SITE-CHECK-PROFILES.md"
+    },
+    ".github/workflows/issue-acceptance.yml": {
+      "kind": "file",
+      "purpose": "Run the owning issue acceptance policy on the exact PR source and retain the per-criterion CI report.",
+      "role": "workflow",
+      "owner": ".github/ACCEPTANCE.md"
     },
     ".github/workflows/navigation.yml": {
       "kind": "file",
@@ -192,6 +222,12 @@
       "purpose": "Bounded dated session handoff: verified baseline, decisions, open acceptance and next step.",
       "role": "memory",
       "owner": "CONTRIBUTING.md"
+    },
+    "PROJECT-BOOTSTRAP.md": {
+      "kind": "file",
+      "purpose": "Copy-ready Ukrainian ChatGPT project prompt for the author site and stable issue/acceptance/RI/handoff workflow.",
+      "role": "guide",
+      "owner": "PROJECT-BOOTSTRAP.md"
     },
     "README.md": {
       "kind": "file",
@@ -535,6 +571,12 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/REVIEW-TEMPLATE.md": {
+      "kind": "file",
+      "purpose": "One issue/PR review and model-handoff artifact template with inspected source, findings, ACs, tasks and evidence.",
+      "role": "guide",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/assets": {
       "kind": "directory",
       "purpose": "Historical visual concept/portrait assets.",
@@ -658,6 +700,24 @@
     "review/color-staging-20261006/target.json": {
       "kind": "file",
       "purpose": "Historical manifest/observation data: target.json. Color hosted variant provider/package identity and target evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-31": {
+      "kind": "directory",
+      "purpose": "Dated issue 31 implementation analysis and review evidence linked from its owning issue and PR.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-31/2026-10-07-analysis.md": {
+      "kind": "file",
+      "purpose": "Issue 31 acceptance/handoff/RI-CI/bootstrap analysis, AC-linked findings and ordered execution tasks.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-31/2026-10-07-review.md": {
+      "kind": "file",
+      "purpose": "Independent issue 31 code/contract review with resolved findings, exact inspected file hashes, check results and acceptance limitations.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -5755,6 +5815,18 @@
       "role": "test",
       "owner": "SITE-CHECK-PROFILES.md"
     },
+    "tests/test_issue31_acceptance.py": {
+      "kind": "file",
+      "purpose": "Issue 31 observable acceptance checks for RI provenance, inventory, memory, workflow, unchanged site and bootstrap.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "tests/test_issue_acceptance.py": {
+      "kind": "file",
+      "purpose": "Acceptance runner adversarial cases for invalid mappings, skipped/empty/failed tests and evidence identity.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     "tests/test_offline_export_security.py": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for offline export security.",
@@ -5764,6 +5836,12 @@
     "tests/test_repository_intelligence.py": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for repository intelligence.",
+      "role": "test",
+      "owner": ".github/REPOSITORY-INTELLIGENCE.md"
+    },
+    "tests/test_ri_ci.py": {
+      "kind": "file",
+      "purpose": "Negative and positive cases for stale coverage, dangling paths/selectors and workflow invocation drift.",
       "role": "test",
       "owner": ".github/REPOSITORY-INTELLIGENCE.md"
     },
@@ -5857,6 +5935,12 @@
       "role": "source",
       "owner": "site/README.md"
     },
+    "tools/check_ri_ci.py": {
+      "kind": "file",
+      "purpose": "Validate and refresh reviewed RI/CI mapping, test-selector resolution and actual workflow invocations.",
+      "role": "validator",
+      "owner": ".github/REPOSITORY-INTELLIGENCE.md"
+    },
     "tools/check_site_contrast.cjs": {
       "kind": "file",
       "purpose": "Site generation/offline review helper: check site contrast; inspect its source and output contract before use.",
@@ -5874,6 +5958,12 @@
       "purpose": "Site generation/offline review helper: compact site recordings; inspect its source and output contract before use.",
       "role": "source",
       "owner": "site/README.md"
+    },
+    "tools/issue_acceptance.py": {
+      "kind": "file",
+      "purpose": "Bounded acceptance policy runner with deterministic unittest/basic checks and exact-source per-AC evidence.",
+      "role": "validator",
+      "owner": ".github/ACCEPTANCE.md"
     },
     "tools/quality": {
       "kind": "directory",
