@@ -78,6 +78,32 @@ test('Writing paired performance accepts complete exact-source raw observations 
   assert.deepEqual(traced.trace.at(-1).changes,[{attribute:'data-cadence',from:'15',to:'12'},{attribute:'data-cadence',from:'12',to:'15'}]);assert.ok(!sandbox.observer.disconnected,'observer remains active through measurement');
   await runner.traceSample(page,{window:{startMs:100,endMs:200}},true);assert.equal(sandbox.observer.disconnected,true);
 });
+function startupQualityPublication(sample,prefix=5){
+  for(const state of sample.trace.slice(0,prefix)){
+    delete state.quality;state.changes=state.changes.filter(change=>change.attribute!=='data-quality');
+  }
+  sample.trace[prefix].changes.find(change=>change.attribute==='data-quality').from=null;
+  return sample;
+}
+test('Writing startup accepts the observed delayed quality publication without inventing telemetry',()=>{
+  const value=fixture();for(const row of value.rows)startupQualityPublication(row.startupIdle);
+  assert.equal(contract.validate(value).pass,true,'the renderer publishes initial quality after its existing cooldown');
+  const sample=value.rows[0].startupIdle;
+  assert.equal(sample.trace[0].quality,undefined,'raw unpublished quality is preserved');
+  assert.equal(sample.trace[5].changes.find(change=>change.attribute==='data-quality').from,null);
+  assert.throws(()=>contract.adaptationTrace(sample),/missing adaptive quality after startup/,'preconditioned observations cannot reuse the startup exception');
+  for(const mutate of [
+    sample=>sample.trace[5].changes.find(change=>change.attribute==='data-quality').from='0',
+    sample=>{delete sample.trace[6].quality;},
+    sample=>{sample.trace[6].changes.find(change=>change.attribute==='data-quality').from=null;},
+    sample=>{for(const state of sample.trace){delete state.quality;state.changes=state.changes.filter(change=>change.attribute!=='data-quality');}},
+    sample=>{sample.trace[0].quality='';},
+    sample=>{sample.trace[0].cadence=undefined;}
+  ]){const changed=structuredClone(sample);mutate(changed);assert.throws(()=>contract.adaptationTrace(changed,{startup:true}));}
+  for(const locate of [row=>row.warmups[0],row=>row.measurements[0]]){
+    const changed=fixture();startupQualityPublication(locate(changed.rows[0]));assert.throws(()=>contract.validate(changed),/missing adaptive quality after startup/);
+  }
+});
 test('Writing paired performance rejects missing, duplicate, wrong-source, wrong-variant and mislabeled profiles',()=>{
   const mutations=[
     value=>value.rows.pop(),value=>value.rows[1]=structuredClone(value.rows[0]),value=>value.rows[0].settings.cpuRate=4,

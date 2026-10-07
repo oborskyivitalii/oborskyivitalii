@@ -21,15 +21,13 @@ function visit(options={}) {
   let stops=(options.stops||keys.map((id,i)=>[id,i*1100])).map(pair=>makeStop(pair));
   let resultRects=options.empty?[]:options.coincident?[[1000,1000]]:options.single?[[1000,1160]]:[[1000,1160],[1800,1960]];
   const results={querySelectorAll:()=>resultRects.map(([top,bottom])=>({hidden:false,getClientRects:()=>[{}],getBoundingClientRect:()=>({top:top-window.scrollY,bottom:bottom-window.scrollY})}))};
-  const formulaWidth=()=>Math.min(960,window.innerWidth-32),formulaBox=(padding=0)=>({left:(window.innerWidth-formulaWidth())/2,right:(window.innerWidth+formulaWidth())/2,top:560-padding-window.scrollY,bottom:560+formulaWidth()/(1380/240)+padding-window.scrollY,width:formulaWidth(),height:formulaWidth()/(1380/240)+padding*2});
-  const formulaArt={getBoundingClientRect:()=>formulaBox()},formulaBand={getBoundingClientRect:()=>formulaBox(40),querySelector:()=>formulaArt};
-  Object.assign(context,{save(){},restore(){},drawImage(){bitmapValid=true;}});
+  Object.assign(context,{save(){},restore(){},clip(){},transform(...values){assert.ok(values.every(Number.isFinite));},drawImage(){bitmapValid=true;}});
   const raster={beginPath(){},moveTo(){},lineTo(){},bezierCurveTo(){},stroke(){},createLinearGradient(){return {addColorStop(){}};}};
   const stylesheet={addEventListener:(name,fn)=>{stylesheetEvents[name]=fn;}};
   const document={readyState:options.readyState,hidden:false,body:{dataset:{page:options.page||"index"}},documentElement:{get scrollHeight(){rangeReads++;return maxHeight;},set scrollHeight(value){maxHeight=value;}},
     getElementById:id=>id==="space-canvas"?canvas:id==="space-motion"?button:results,
     createElement:()=>{formulaConstructions++;return {getContext:()=>raster};},
-    querySelectorAll:()=>stops,querySelector:selector=>selector==='link[rel="stylesheet"]'?stylesheet:selector==='[data-writing-formula]'?(options.formula?formulaBand:null):selector==='.site-header'?{getBoundingClientRect:()=>({bottom:100})}:{},addEventListener:(name,fn)=>{docEvents[name]=fn;}};
+    querySelectorAll:()=>stops,querySelector:selector=>selector==='link[rel="stylesheet"]'?stylesheet:selector==='[data-writing-formula]'?assert.fail('world formula never queries a DOM band'):selector==='.site-header'?{getBoundingClientRect:()=>({bottom:100})}:{},addEventListener:(name,fn)=>{docEvents[name]=fn;}};
   class MutationObserver{constructor(fn){this.callback=fn;}observe(_,options){if(options?.attributeFilter?.includes('data-theme'))mutation=this.callback;}disconnect(){}}
   window.MutationObserver=MutationObserver;
   if(options.probe)window.SiteEngineProbe=options.probe;
@@ -451,25 +449,30 @@ test("Writing responds to the first small gestures before the archive, including
   }
 });
 
-// A positive first bitmap is essential: starting Off alone cannot expose the
-// frozen-Canvas plus passive-SVG duplication after a preference transition.
-test("Writing formula ownership is singular after positive paint, Off/reduced scroll and prepared activation",()=>{
+// The world landmark shares the Canvas ownership and existing freeze lifecycle.
+// No DOM band appears or moves when a preference stops the living scene.
+test("Writing world formula stays singular and frozen through Off/reduced and resumes with one retained cache",()=>{
   for(const reduced of [false,true]){
-    const p=visit({page:'writing',formula:true});p.settle();
-    const before=p.window.SiteScene.diagnostics().formula;assert.ok(before.paintCount>0);assert.equal(before.lastPaintCount,1);assert.equal(p.document.body.dataset.formulaMode,'canvas');
-    const fixed=p.trace(),phase=p.phase();
+    const p=visit({page:'writing'});p.settle();
+    const before=p.window.SiteScene.diagnostics().formula;assert.ok(before.paintCount>0);assert.equal(before.lastPaintCount,1);assert.equal(before.lastDrawSubmissions,24);assert.equal(p.document.body.dataset.formulaMode,undefined);assert.equal(p.scene.dataset.ready,'true');
+    const fixed=p.trace(),phase=p.phase(),corners=JSON.stringify(before.projection.corners);
     if(reduced){p.media.matches=true;p.media.change();}else p.click();
-    assert.equal(p.document.body.dataset.formulaMode,'canvas','passive artwork waits for the existing frozen preference paint');
-    p.settle();assert.equal(p.document.body.dataset.formulaMode,'static');assert.equal(p.window.SiteScene.diagnostics().formula.lastPaintCount,0);
-    const paints=p.draws(),formulaPaints=p.window.SiteScene.diagnostics().formula.paintCount;
+    p.settle();const frozen=p.window.SiteScene.diagnostics().formula;
+    assert.equal(frozen.lastPaintCount,1,'the frozen Canvas retains its sole world landmark');assert.equal(frozen.cacheBuilds,1);assert.equal(JSON.stringify(frozen.projection.corners),corners);assert.equal(p.document.body.dataset.formulaMode,undefined);
+    const paints=p.draws(),formulaPaints=frozen.paintCount;
     p.scroll(60);for(let i=0;i<8;i++)p.frame(60);
     assert.equal(p.draws(),paints);assert.equal(p.window.SiteScene.diagnostics().formula.paintCount,formulaPaints);assert.equal(p.trace(),fixed);assert.equal(p.phase(),phase);assert.equal(p.pending.size,0);
     if(reduced){p.media.matches=false;p.media.change();}else p.click();
     for(let i=0;i<30;i++)p.frame(60);
-    assert.ok(p.window.SiteScene.diagnostics().formula.paintCount>formulaPaints,'resuming at the real band prepares its new reference before painting');assert.equal(p.formulaConstructions(),1);
+    assert.ok(p.window.SiteScene.diagnostics().formula.paintCount>formulaPaints,'resuming moves the existing world landmark with the camera and ambient phase');assert.equal(p.formulaConstructions(),1);assert.equal(p.window.SiteScene.diagnostics().formula.lastPaintCount,1);
   }
-  const p=visit({page:'writing',formula:true,saved:'off'});p.settle();
-  assert.equal(p.window.SiteScene.diagnostics().formula.cacheBuilds,0);const paints=p.draws();p.click();
-  assert.equal(p.window.SiteScene.diagnostics().formula.cacheBuilds,1,'startup-Off activation prepares synchronously before the queued paint');assert.equal(p.draws(),paints);
-  p.settle();assert.ok(p.window.SiteScene.diagnostics().formula.paintCount>0);assert.equal(p.formulaConstructions(),1);
+  for(const options of[{saved:'off'},{reduced:true,saved:'on'}]){
+    const p=visit({page:'writing',...options});p.settle();
+    const frozen=p.window.SiteScene.diagnostics().formula;
+    assert.equal(frozen.cacheBuilds,1);assert.equal(frozen.lastPaintCount,1);assert.equal(frozen.projection.clock,0);assert.equal(p.pending.size,0);assert.equal(p.formulaConstructions(),1);
+    const paints=p.draws();for(let i=0;i<8;i++)p.frame(60);assert.equal(p.draws(),paints,'startup frozen world requires no continuing work');
+    if(options.reduced){p.media.matches=false;p.media.change();}else p.click();
+    assert.equal(p.draws(),paints,'activation queues the existing shared paint');assert.equal(p.window.SiteScene.diagnostics().formula.cacheBuilds,1);
+    p.settle();assert.ok(p.window.SiteScene.diagnostics().formula.paintCount>frozen.paintCount);assert.equal(p.formulaConstructions(),1);
+  }
 });

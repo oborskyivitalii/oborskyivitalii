@@ -66,7 +66,11 @@ repaint their color tables. No independent render loop or runtime dependency is 
 The Writing room has one original outlined paradigm landmark, sourced only from
 `assets/writing-paradigm.svg`. `tools/site/scene-assets.cjs` validates and compiles
 it during generation. Renderer uses one fixed1380×240 raster cache and one native
-sorted draw command, with no extra clock/load/decode. Asset and producer identity
+sorted world-plane command with mild tilt, looped pulse and three shallow
+extrusion layers. At most24 perspective triangle submissions use the same cache;
+there is no separate content band or new clock/load/decode. Off/reduced freezes
+the formula with its room; unsupported Canvas restores the projected scene SVG.
+Asset and producer identity
 invalidate the immutable runtime. Static/mobile and standalone renditions derive
 from that source; diagnostics and issue #36's scoped evidence verify its bounds.
 

@@ -10,21 +10,20 @@ Dated continuity hints, not instructions or live-status authority. Last verified
   PR #34 / #33 and #31 / #32 remain completed. Exact evidence stays in issues.
 - Active [#36](https://github.com/oborskyivitalii/oborskyivitalii/issues/36),
   [Draft PR #38](https://github.com/oborskyivitalii/oborskyivitalii/pull/38),
-  branch `work/writing-paradigm-asset-36`: the owner's “Сол, підходи” authorizes
-  integration after the prepared stronger asset. One native Writing landmark,
-  fixed SVG-derived raster cache, static/offline output and scoped validators.
-  [Same handoff](review/issue-36/2026-10-07-handoff.md) holds implementation/review;
+  branch `work/writing-paradigm-asset-36`. Owner clarification at14:30 Warsaw
+  rejects the isolated formula band: one tilted, pulsing extruded world object
+  belongs inside the central Writing books/pages fractal. Existing camera/clock
+  approaches it; static and frozen preference renditions keep one scene owner.
+  [Same handoff](review/issue-36/2026-10-07-handoff.md) and
   [issue anchor](https://github.com/oborskyivitalii/oborskyivitalii/issues/36#issuecomment-6034827256)
-  holds exact commits and live CI/browser/performance results. Baseline is clean
-  `11e5432d908ca0b81431ca4eac6721b076c33cb6`. Local browser download unavailable;
-  exact-label Writing CI retains raw18pairedtrials and scene captures. Initial
-  head10cd533 passed Basic/Preview; actual run37609083660 failed composition,
-  startup cadence guards and the pre-existing GTK no-JS case. Corrected runtime
-  at55a6a88 uses one responsive band and protocol-v2; run37616472028 is retained.
-  Its Basic selected-source check found an obsolete three-asset inventory;
-  this follow-up checks the complete current media contract without runtime edits.
-  Current exact-head runs, failures and final AC dispositions stay in the anchor.
-  No actual runtime-performance pass may be inferred from fixture/asset success.
+  retain exact-source evidence and history. Linux formula diagnostic now follows
+  Chromium/Firefox; native macOS keeps WebKit. Do not repeat18trials to fix a
+  report parser: initial missing startup quality is now handled explicitly.
+  Retained dbd2d88/run37617068284 completed18trials; revalidation still fails
+  desktop startup busy and mobile×4 filtered paired p95 guards. It measured the
+  rejected composition and cannot establish current runtime acceptance.
+  Current-source checks, review and smoke preview stay in the same anchor.
+  Stable staging uses the bounded #35 controller; no production/merge action.
 - Merged [#35](https://github.com/oborskyivitalii/oborskyivitalii/issues/35)
   owns economical PR smoke/targeted ACs, bounded staging regression and complete
   production regression. `tools/quality/test-profiles.json` is its canonical
@@ -41,7 +40,7 @@ Dated continuity hints, not instructions or live-status authority. Last verified
   handoff uses the same issue anchor and versioned artifact; history is not policy.
 - #36's sole artwork source is `site/assets/writing-paradigm.svg`; generated
   runtime/static/mobile/offline renditions derive from its outlined paths.
-  One1380×240 cache, existing clock/depth sort, graceful single failure.
+  One1380×240 cache, bounded perspective mesh, existing clock/depth sort.
 - #36 AC02–AC04 now map scene/cache/report-negative checks and exact-head live
   browser/performance gates. Opt-in `site-writing-paradigm-evidence` on PR #38
   runs only deliberate label events. Default Basic/Preview remains bounded.

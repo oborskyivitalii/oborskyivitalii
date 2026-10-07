@@ -64,17 +64,30 @@ function measurement(row,kind,{zero=false,flight=false}={}){
   if(flight){for(const key of ['readyMs','transitionPhase'])assert.deepEqual(row[key],recomputed[key],'declared '+key+' differs from raw events');transition(row);}
   return row;
 }
-function adaptationTrace(row){
+function adaptationTrace(row,{startup=false}={}){
   assert.ok(Array.isArray(row.trace)&&row.trace.length>0,'missing adaptation trace');
+  if(startup)assert.equal(row.kind,'startup-idle','quality initialization is only allowed during startup');
+  // The existing renderer publishes data-quality after its initial 2.5 s
+  // cooldown. Its immediate startup observation can therefore contain an
+  // absent attribute followed by the actual null-to-numeric publication.
+  // Preserve that raw prefix; never turn absent telemetry into a quality tier.
+  const reportedQuality=value=>typeof value==='string'&&value.length>0&&Number.isFinite(+value);
+  const firstQuality=row.trace.findIndex(state=>reportedQuality(state.quality));
+  assert.ok(firstQuality>=0,'quality was never published during adaptation observation');
+  if(firstQuality>0){
+    assert.equal(startup,true,'missing adaptive quality after startup');
+    assert.equal(row.trace[firstQuality].changes?.find(change=>change.attribute==='data-quality')?.from,null,'missing initial quality publication');
+  }
   for(const [index,state]of row.trace.entries()){
     assert.ok(Number.isFinite(state.time)&&state.time>=row.window.startMs&&state.time<=row.window.endMs,'invalid adaptation time');
     if(index)assert.ok(state.time>=row.trace[index-1].time,'unordered adaptation trace');
-    assert.equal(state.route,'writing');assert.ok(Number.isFinite(+state.quality)&&Number.isFinite(+state.cadence)&&+state.cadence>0,'invalid adaptive quality/cadence');
+    assert.equal(state.route,'writing');assert.ok((startup&&index<firstQuality&&state.quality===undefined||reportedQuality(state.quality))&&Number.isFinite(+state.cadence)&&+state.cadence>0,'invalid adaptive quality/cadence');
     const camera=JSON.parse(state.camera);for(const key of ['position','target'])assert.ok(Array.isArray(camera[key])&&camera[key].length===3&&camera[key].every(Number.isFinite),'invalid warm-up camera');
     assert.ok(Array.isArray(state.changes),'missing raw attribute changes');
-    for(const change of state.changes){
+    for(const [changeIndex,change]of state.changes.entries()){
       assert.ok(['data-quality','data-cadence'].includes(change.attribute),'invalid adaptation attribute');
-      assert.ok(typeof change.from==='string'&&typeof change.to==='string'&&Number.isFinite(+change.from)&&Number.isFinite(+change.to),'invalid raw adaptation change');
+      const initialQuality=startup&&index===firstQuality&&change.attribute==='data-quality'&&change.from===null&&!state.changes.slice(0,changeIndex).some(item=>item.attribute==='data-quality');
+      assert.ok((initialQuality||reportedQuality(change.from))&&reportedQuality(change.to),'invalid raw adaptation change');
       if(change.attribute==='data-cadence')assert.ok(+change.from>0&&+change.to>0,'invalid raw cadence change');
     }
     for(const [attribute,key]of [['data-quality','quality'],['data-cadence','cadence']]){
@@ -128,20 +141,32 @@ function formulaSample(sample,{framed=false}={}){
 function formulaObservation(value,{viewportWidth}={}){
   cache(value?.formula,{painted:true});assert.equal(value.overflow,false,'formula causes overflow');
   assert.equal(value.probe?.duplicate,false,'duplicate formula per paint');assert.ok(value.probe.draws>0,'missing observed formula draw');assert.equal(value.probe.maxPerPaint,1);
+  assert.equal(value.probe.maxSubmissionsPerPaint,24,'world plane exceeds bounded triangle submission budget');
+  assert.equal(value.formula.lastPaintCount,1);assert.equal(value.formula.lastDrawSubmissions,24,'missing frozen/active world plane');
   assert.ok(Number.isInteger(value.probe.startPaintCount)&&value.probe.startPaintCount>=0,'missing fresh observation baseline');
   assert.equal(value.formula.paintCount-value.probe.startPaintCount,value.probe.draws,'historical formula paints cannot substitute fresh draws');
+  assert.ok(Number.isInteger(value.probe.startDrawSubmissions)&&value.probe.startDrawSubmissions>=0,'missing fresh native draw baseline');
+  assert.equal(value.formula.drawSubmissions-value.probe.startDrawSubmissions,value.probe.drawSubmissions,'declared native submissions differ from instrumented Canvas calls');
+  assert.equal(value.probe.drawSubmissions,value.probe.draws*24,'incomplete/duplicate perspective formula draw');
   assert.ok(Array.isArray(value.probe.bounds)&&value.probe.bounds.length>0,'missing actual projected bounds');
   for(const row of value.probe.bounds){
     for(const key of ['x','y','width','height','viewportWidth','viewportHeight'])assert.ok(Number.isFinite(row[key]),'invalid projected formula '+key);
     assert.equal(row.coordinateSpace,'physical-css-pixels','formula bounds use another coordinate space');
-    for(const key of ['x','y','width','height'])assert.ok(Number.isFinite(row.band?.[key]),'missing physical formula band '+key);
     for(const key of ['x','y','width','height','backingWidth','backingHeight'])assert.ok(Number.isFinite(row.canvas?.[key]),'missing physical Canvas '+key);
-    assert.ok(row.band.width>0&&row.band.height>0&&row.canvas.width>0&&row.canvas.height>0&&row.canvas.backingWidth>0&&row.canvas.backingHeight>0,'invalid physical band or Canvas dimensions');
-    assert.ok(Number.isFinite(row.headingBottom)&&row.band.y>=row.headingBottom-1,'formula band overlaps Writing introduction');
+    assert.ok(row.canvas.width>0&&row.canvas.height>0&&row.canvas.backingWidth>0&&row.canvas.backingHeight>0,'invalid physical Canvas dimensions');
     if(viewportWidth)assert.equal(row.viewportWidth,viewportWidth,'mislabeled formula viewport');
     assert.ok(row.width>0&&row.height>0&&row.x>=15&&row.x+row.width<=row.viewportWidth-15,'expression clipped horizontally');
     assert.ok(row.y>=0&&row.y+row.height<=row.viewportHeight,'expression clipped vertically');
-    assert.ok(row.x>=row.band.x-1&&row.x+row.width<=row.band.x+row.band.width+1&&row.y>=row.band.y-1&&row.y+row.height<=row.band.y+row.band.height+1,'expression escapes reserved Writing band');
+    const projection=row.projection;assert.equal(projection?.strategy,'perspective-extruded');assert.equal(projection.layers,3);assert.equal(projection.strips,4);
+    for(const key of ['worldCenter','rootCenter'])assert.ok(Array.isArray(projection[key])&&projection[key].length===3&&projection[key].every(Number.isFinite),'missing world '+key);
+    assert.ok(Math.hypot(...projection.worldCenter.map((value,index)=>value-projection.rootCenter[index]))<1,'formula detached from Writing fractal center');
+    assert.ok(projection.depth>.5&&projection.extrusion>0&&projection.pulse>0&&Number.isFinite(projection.clock),'missing world depth/extrusion/shared-clock evidence');
+    assert.ok(Array.isArray(projection.worldCorners)&&projection.worldCorners.length===4&&projection.worldCorners.every(point=>point.length===3&&point.every(Number.isFinite)),'missing world plane');
+    assert.ok(Array.isArray(projection.corners)&&projection.corners.length===4&&projection.corners.every(point=>point.length===2&&point.every(Number.isFinite)),'missing perspective quadrilateral');
+    assert.ok(Array.isArray(row.clips)&&row.clips.length===24&&row.clips.every(triangle=>triangle.length===3&&triangle.every(point=>point.length===2&&point.every(Number.isFinite))),'missing actual bounded triangle clips');
+    assert.ok(Array.isArray(row.rawVertices),'missing actual Canvas clip vertices');
+    for(const corner of projection.corners)assert.ok(row.rawVertices.some(point=>Math.hypot(point[0]-corner[0],point[1]-corner[1])<1e-6),'world corners differ from actual Canvas clip vertices');
+    const [a,b,c,d]=projection.corners;assert.ok(Math.hypot(a[0]+c[0]-b[0]-d[0],a[1]+c[1]-b[1]-d[1])>.001,'screen rectangle cannot prove perspective');
   }
 }
 function ownershipState(state){
@@ -155,39 +180,45 @@ function ownershipState(state){
 }
 function ownership(row){
   assert.deepEqual(row.errors,[]);const startup=row.startup;
-  for(const state of [startup?.off,startup?.onSynchronous,row.before,row.immediate,row.settle?.start,row.after,row.frozen?.scroll?.after,row.frozen?.after])ownershipState(state);
-  assert.equal(startup.off.mode,'static');assert.equal(startup.off.motion,'Motion: off');assert.equal(startup.off.fallbackVisible,true);assert.equal(startup.off.bitmapFormula,false);assert.equal(startup.off.draws,0);
-  assert.equal(startup.off.formula?.status,'unused');assert.equal(startup.off.formula.cacheBuilds,0);assert.equal(startup.off.formula.paintCount,0);assert.equal(startup.off.formula.lastPaintCount,0,'disabled startup submitted formula');
-  cache(startup.onSynchronous.formula);assert.equal(startup.onSynchronous.mode,'canvas');assert.equal(startup.onSynchronous.motion,'Motion: on');assert.equal(startup.onSynchronous.fallbackVisible,false);assert.equal(startup.onSynchronous.bitmapFormula,false);assert.equal(startup.onSynchronous.draws,0);assert.equal(startup.onSynchronous.formula.paintCount,0);assert.equal(startup.onSynchronous.formula.lastPaintCount,0,'cache preparation submitted formula');
-  assert.ok(startup.onSynchronous.time>=startup.off.time);formulaObservation(startup.painted,{viewportWidth:390});
+  for(const state of [startup?.off,startup?.startupFrozen,startup?.onSynchronous,row.before,row.immediate,row.settle?.start,row.after,row.frozen?.scroll?.after,row.frozen?.after])ownershipState(state);
+  for(const state of [startup.off,startup.startupFrozen,startup.onSynchronous]){
+    cache(state.formula,{painted:true});assert.equal(state.mode,'canvas');assert.equal(state.fallbackVisible,false);assert.equal(state.bitmapFormula,true);assert.equal(state.formula.lastPaintCount,1);assert.equal(state.formula.lastDrawSubmissions,24);
+  }
+  assert.equal(startup.off.motion,'Motion: off');assert.equal(startup.startupFrozen.motion,'Motion: off');assert.equal(startup.onSynchronous.motion,'Motion: on');
+  assert.ok(startup.startupFrozen.time-startup.off.time>=400,'truncated startup frozen interval');
+  for(const key of ['paints','draws','callbacks','phase','camera'])assert.equal(startup.startupFrozen[key],startup.off[key],'startup Off performs background work');
+  assert.deepEqual(startup.startupFrozen.formula.projection,startup.off.formula.projection,'startup Off world formula moved');
+  for(const key of ['paints','draws','callbacks'])assert.equal(startup.onSynchronous[key],startup.startupFrozen[key],'synchronous preference unexpectedly submitted another plane');
+  assert.ok(startup.onSynchronous.time>=startup.startupFrozen.time);formulaObservation(startup.painted,{viewportWidth:390});
   const before=row.before,after=row.after,end=row.frozen.after,targetMotion=row.kind==='off'?'Motion: off':'Motion: reduced';
   cache(before.formula,{painted:true});assert.ok(before.time>=startup.onSynchronous.time&&before.formula.paintCount>=startup.painted.formula.paintCount&&before.draws>=startup.painted.probe.draws,'active ownership precedes fresh startup observation');assert.equal(before.mode,'canvas');assert.equal(before.motion,'Motion: on');assert.equal(before.fallbackVisible,false);assert.equal(before.bitmapFormula,true);assert.equal(before.formula.lastPaintCount,1);
-  for(const state of [after,end]){cache(state.formula,{painted:true});assert.equal(state.mode,'static');assert.equal(state.motion,targetMotion);assert.equal(state.fallbackVisible,true);assert.equal(state.bitmapFormula,false);assert.equal(state.formula.lastPaintCount,0);}
+  for(const state of [after,end]){cache(state.formula,{painted:true});assert.equal(state.mode,'canvas');assert.equal(state.motion,targetMotion);assert.equal(state.fallbackVisible,false);assert.equal(state.bitmapFormula,true);assert.equal(state.formula.lastPaintCount,1);assert.equal(state.formula.lastDrawSubmissions,24);}
   assert.ok(Array.isArray(row.events)&&row.events.length>=5,'missing raw formula ownership timeline');
   for(const [index,state]of row.events.entries()){
-    ownershipState(state);cache(state.formula,{painted:true});assert.ok(['before','preference-return','paint-clear','formula-draw','mode-change','settled','native-scroll','freeze-end'].includes(state.kind),'invalid ownership event');
+    ownershipState(state);cache(state.formula,{painted:true});assert.ok(['before','preference-return','paint-clear','formula-draw','settled','native-scroll','freeze-end'].includes(state.kind),'invalid ownership event');
     if(index){const previous=row.events[index-1];assert.ok(state.time>=previous.time,'unordered ownership events');for(const key of ['paints','draws','callbacks'])assert.ok(state[key]>=previous[key],'ownership counters moved backwards');}
   }
   assert.deepEqual(row.events[0],{kind:'before',...before},'ownership timeline omits active initial state');assert.deepEqual(row.events.at(-1),{kind:'freeze-end',...end},'ownership timeline omits frozen final state');
   assert.ok(row.events.some(state=>state.kind==='settled'&&state.time===after.time),'ownership timeline omits settled snapshot');
   const events=row.events.filter(state=>state.time<=after.time&&state.motion===targetMotion),settle=row.settle,start=events[0];
   assert.ok(start,'missing actual preference event');assert.deepEqual(settle.start,start,'settle window starts at another preference event');assert.equal(settle.timeoutMs,1500);
-  assert.equal(settle.elapsedMs,after.time-start.time);assert.ok(settle.elapsedMs>=0&&settle.elapsedMs<=settle.timeoutMs,'unbounded formula ownership handoff');
-  assert.equal(settle.paintDelta,events.filter(state=>state.kind==='paint-clear').length);assert.equal(settle.paintDelta,1,'formula handoff must clear with one actual paint');
-  assert.equal(settle.drawDelta,events.filter(state=>state.kind==='formula-draw').length);assert.equal(settle.drawDelta,0,'formula redrawn during preference freeze');
-  assert.equal(settle.paintDelta,after.paints-start.paints+(start.kind==='paint-clear'?1:0),'ownership clear events differ from actual paint counters');assert.equal(settle.drawDelta,after.draws-start.draws+(start.kind==='formula-draw'?1:0),'ownership draw events differ from actual draw counters');
-  assert.equal(settle.callbackDelta,after.callbacks-start.callbacks+(start.kind==='paint-clear'?1:0));assert.equal(settle.callbackDelta,1,'formula handoff schedules additional callbacks');
+  assert.equal(settle.elapsedMs,after.time-start.time);assert.ok(settle.elapsedMs>=0&&settle.elapsedMs<=settle.timeoutMs,'unbounded formula freeze handoff');
+  assert.equal(settle.paintDelta,events.filter(state=>state.kind==='paint-clear').length);assert.equal(settle.paintDelta,1,'formula freeze must settle with one actual paint');
+  assert.equal(settle.drawDelta,events.filter(state=>state.kind==='formula-draw').length);assert.equal(settle.drawDelta,1,'frozen scene must contain exactly one world formula');
+  assert.equal(settle.paintDelta,after.paints-start.paints+(start.kind==='paint-clear'?1:0),'ownership paint events differ from actual counters');assert.equal(settle.drawDelta,after.draws-start.draws+(start.kind==='formula-draw'?1:0),'ownership draw events differ from actual counters');
+  assert.equal(settle.callbackDelta,after.callbacks-start.callbacks+(start.kind==='paint-clear'?1:0));assert.equal(settle.callbackDelta,1,'formula freeze schedules additional callbacks');
   assert.equal(after.phase,start.phase);assert.equal(after.camera,start.camera);
   const frozen=row.frozen;assert.equal(frozen.elapsedMs,end.time-after.time);assert.ok(frozen.elapsedMs>=400,'truncated frozen formula interval');
   for(const [delta,key]of [['paintDelta','paints'],['drawDelta','draws'],['callbackDelta','callbacks']]){assert.equal(frozen[delta],end[key]-after[key],'frozen delta differs from raw counters');assert.equal(frozen[delta],0,'frozen formula still performs '+key);}
-  assert.equal(end.phase,after.phase);assert.equal(end.camera,after.camera);assert.ok(Number.isFinite(frozen.scroll.beforeY)&&Number.isFinite(frozen.scroll.target)&&frozen.scroll.target>=frozen.scroll.beforeY+50,'missing actual native scroll');assert.ok(end.scrollY>frozen.scroll.beforeY+50,'native scroll did not advance while frozen');
+  assert.equal(end.phase,after.phase);assert.equal(end.camera,after.camera);assert.deepEqual(end.formula.projection,after.formula.projection,'frozen world plane changed');
+  assert.ok(Number.isFinite(frozen.scroll.beforeY)&&Number.isFinite(frozen.scroll.target)&&frozen.scroll.target>=frozen.scroll.beforeY+50,'missing actual native scroll');assert.ok(end.scrollY>frozen.scroll.beforeY+50,'native scroll did not advance while frozen');
 }
 function browser(record,expectedManifest){
   const expected=expectedManifest.components?identity(expectedManifest):expectedManifest;checkIdentity(expected);
   assert.equal(record?.schema,1);assert.equal(record.kind,'writing-paradigm-browser');assert.equal(record.fullGate,false);assert.equal(record.pass,true,'failed browser observation');
   for(const key of ['sourceCommit','sourceTree','artifactDigest','variant'])assert.deepEqual(record[key],expected[key],'browser evidence belongs to another '+key);
   assert.ok(record.environment?.platform&&record.environment.os&&record.environment.node,'missing browser environment');
-  const engines=['chromium','firefox','webkit'],cases=[{width:1440,theme:'light',mode:'normal'},{width:390,theme:'dark',mode:'normal'},{width:320,theme:'dark',mode:'no-js'},{width:320,theme:'light',mode:'no-canvas'},{width:390,theme:'dark',mode:'reduced'}];
+  const engines=['chromium','firefox'],cases=[{width:1440,theme:'light',mode:'normal'},{width:390,theme:'dark',mode:'normal'},{width:320,theme:'dark',mode:'no-js'},{width:320,theme:'light',mode:'no-canvas'},{width:390,theme:'dark',mode:'reduced'}];
   assert.deepEqual(record.engines?.map(row=>row.engine),engines,'missing/duplicate browser engines');assert.ok(record.engines.every(row=>typeof row.version==='string'&&row.version.length>0),'missing engine version');
   const expectedRows=engines.flatMap(engine=>cases.map(row=>({engine,route:'writing',...row})));assert.equal(record.rows?.length,expectedRows.length,'missing focused browser cases');
   for(const [index,row]of record.rows.entries()){
@@ -235,7 +266,7 @@ function validate(record,{trustedIdentities,trustedTransfers}={}){
     assert.deepEqual(row.errors,[]);assert.equal(row.browser,record.browser.version,'browser changed between pairs');
     assert.equal(row.runtimeVariant,'color');assert.equal(row.runtimeEngine,record.identities[row.label].variant.fingerprint,'wrong served runtime');
     assert.deepEqual(row.measurements.map(value=>value.kind),['idle','scroll','filtered','empty'],'missing Writing/reflow observations');
-    measurement(row.startupIdle,'startup-idle');assert.ok(row.startupIdle.elapsedMs>=steadyProtocol.startupIdleMs-100,'truncated initial idle observation');adaptationTrace(row.startupIdle);
+    measurement(row.startupIdle,'startup-idle');assert.ok(row.startupIdle.elapsedMs>=steadyProtocol.startupIdleMs-100,'truncated initial idle observation');adaptationTrace(row.startupIdle,{startup:true});
     assert.deepEqual(row.warmups?.map(sample=>sample.for),['idle','filtered','empty'],'missing preconditioning intervals');
     for(const sample of row.warmups){warmup(sample);const next=row.measurements.find(value=>value.kind===sample.for);assert.equal(next.quality,sample.quality,'steady window changed quality after preconditioning');assert.equal(next.cadence,sample.cadence,'steady window changed cadence after preconditioning');assert.ok(next.window.startMs>=sample.window.endMs,'preconditioning overlaps measured window');}
     const sequence=[row.startupIdle,row.warmups[0],row.measurements[0],row.measurements[1],row.warmups[1],row.measurements[2],row.warmups[2],row.measurements[3]];

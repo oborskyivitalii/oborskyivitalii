@@ -41,7 +41,8 @@ function contract(text){
   assert.match(current,/node tools\/quality\/artifact\.cjs build "\$RUNNER_TEMP\/writing-paradigm-input\/candidate"/);
   assert.match(current,/node tools\/staging\/color\.cjs "\$RUNNER_TEMP\/writing-paradigm-input\/candidate"/);
   assert.match(current,/npm ci --prefix tools\/quality\/toolchain --ignore-scripts/);
-  assert.match(current,/playwright install --with-deps chromium firefox webkit/);
+  assert.match(current,/playwright install --with-deps chromium firefox\s*$/m);
+  assert.doesNotMatch(current,/\bwebkit\b/,'native macOS WebKit belongs to the production profile');
   for(const action of current.matchAll(/uses: (\S+)/g))assert.match(action[1],/^actions\/[a-z-]+@[a-f0-9]{40}$/,'mutable action pin');
   assert.match(current,/node tools\/quality\/writing-paradigm-browser\.cjs "\$RUNNER_TEMP\/writing-paradigm-input\/candidate" "\$RUNNER_TEMP\/writing-paradigm-results\/browser"/);
   assert.match(current,/SITE_REPORT_DIR: \$\{\{ runner\.temp \}\}\/writing-paradigm-results\/browser/);
@@ -74,7 +75,8 @@ test('source binding, opt-in guards and raw failure retention cannot be weakened
     text=>text.replace('ref: ${{ github.event.pull_request.head.sha }}','ref: ${{ github.sha }}'),
     text=>text.replaceAll('persist-credentials: false','persist-credentials: true'),
     text=>text.replaceAll('npm ci --prefix','npm install --prefix'),
-    text=>text.replace('playwright install --with-deps chromium firefox webkit','playwright install --with-deps chromium'),
+    text=>text.replace('playwright install --with-deps chromium firefox','playwright install --with-deps chromium'),
+    text=>text.replace('playwright install --with-deps chromium firefox','playwright install --with-deps chromium firefox webkit'),
     text=>text.replace("SITE_AUDIT_LIFECYCLE: 'true'","SITE_AUDIT_LIFECYCLE: 'false'"),
     text=>text.replace('SITE_REPORT_DIR: ${{ runner.temp }}/writing-paradigm-results/browser','SITE_REPORT_DIR: /tmp/unretained'),
     text=>text.replace('set -o pipefail','set +o pipefail'),

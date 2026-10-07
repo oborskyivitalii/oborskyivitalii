@@ -29,13 +29,18 @@ repeating Basic source tests. The required Basic check remains independent.
 
 Issue #36 adds a scoped diagnostic on existing `site-writing-probe.yml`:
 the exact `site-writing-paradigm-evidence` label event on same-repository PR #38
-runs focused Writing checks in three Linux engines, captures and 18 sequential
+runs focused Writing checks in Linux Chromium/Firefox, captures and 18 sequential
 paired Color trials. Its fixed baseline is
 `11e5432d908ca0b81431ca4eac6721b076c33cb6`; the candidate is the exact PR head.
 Three profiles each retain three ordered pairs plus a candidate 40-cycle
-lifecycle/cache observation. The job has a 45-minute bound and retains all raw
+lifecycle/cache observation. WebKit remains on native macOS in production; it
+is not reintroduced through this Linux diagnostic. The job has a 45-minute bound and retains all raw
 failures/captures for 90 days. Ordinary PR updates retain the small source/smoke
-profiles. These reports cannot authorize staging or satisfy production/native
+profiles. Preview delivery does not wait for this diagnostic. On harness/validator
+failures, inspect and revalidate retained raw observations before choosing any
+new measurement; do not replay all trials to repair report parsing. A runtime
+change invalidates old runtime evidence, while test-only changes do not create
+new measurements. These reports cannot authorize staging or satisfy production/native
 device gates. Its source fixtures are diagnostics selected by their changed
 helpers or the owning issue policy; current formula runtime assertions remain
 in the permanent renderer and engine suites.

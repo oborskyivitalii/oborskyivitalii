@@ -347,7 +347,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "aa78c2c90d30c57e1fd4f40aca61c9101ed57440df20af3f0de0b638257363fa",
+    "digest": "ec78532ff831cc3ca6da42f5f7c96404cae9a8b7a0438cf48be59b9609d1dce1",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -379,7 +379,7 @@
       },
       {
         "path": ".github/acceptance/issue-36.json",
-        "sha256": "e08d0dc484011d35bf47f74ae6e2f7a38f3220ba8557e8a28633b9c0c12c4e30"
+        "sha256": "ddf0578ac91f1c74d8d243d991a7fccd13f9bdd3a0ac0d379f07e650e35a1b80"
       },
       {
         "path": ".github/pull_request_template.md",
@@ -395,7 +395,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "d8c95eaa68173b0424adf7af6eb8de74a8f13ae15191c9e79afcabf29a2872c1"
+        "sha256": "e5d9fee2917bf55095aa96402fc94ffb45735b3904e74f8f47d2244d46074eda"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -455,7 +455,7 @@
       },
       {
         "path": ".github/workflows/site-writing-probe.yml",
-        "sha256": "489115069a17cca175a0f58e7329a1980cfb28a2e72f7713c401ebb47af9678a"
+        "sha256": "688caf2aa412d6360e2376444031c0689d235ba9b830f84aed643d79dca8cb49"
       },
       {
         "path": "AGENTS.md",
@@ -471,7 +471,7 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "6618070700e0c8306bef01f4287728933928c2bd0ae763d640aeff13d5f7ed5d"
+        "sha256": "f51a75e299db9b879724de1310c4b0c9fcf1ad78c7d22449912b94eb6dc3b6bc"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -507,7 +507,7 @@
       },
       {
         "path": "tests/test_issue36_acceptance.py",
-        "sha256": "c20df90eb5ef42d64edf0319806628fb16139bbb2e3d40888abb819c105a5b50"
+        "sha256": "031337cd1dbaf1b389aaa7461647fb1658af841914539721e97a3484c9df45f0"
       },
       {
         "path": "tests/test_issue_acceptance.py",
@@ -559,7 +559,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "1ced29287fde92bab8010ba9a62d0b312c30346114e7a54b919f567a37a19d2c"
+        "sha256": "d810d81e858d0678a2daaabbb9e9795d6475d8c89360b4a822f09d67573cc009"
       },
       {
         "path": "tools/repository_intelligence.py",

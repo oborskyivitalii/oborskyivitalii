@@ -1375,14 +1375,14 @@
     {
       "path": "tests/writing-paradigm-browser.test.cjs",
       "language": "javascript",
-      "purpose": "Scoped #36 browser report validates exact Color identity, complete focused cells/captures, actual whole formula bounds, room isolation, bounded fault and offline evidence.",
+      "purpose": "Scoped #36 Linux Chromium/Firefox report checks one world3D perspective landmark, bounded Canvas submissions/cache, frozen lifecycle and static fallback; native WebKit remains on macOS production.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "diagnostic",
       "profiles": [
         "diagnostic",
         "pr-targeted"
       ],
-      "disposition": "retain explicit #36 evidence/changed-helper checks; fixture pass does not establish actual browser or release acceptance",
+      "disposition": "retain focused feature/helper checks; Linux GTK is excluded; preview follows small hosted smoke and staging uses bounded #35 regression",
       "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
       "inputs": [
         "tests/writing-paradigm-browser.test.cjs",

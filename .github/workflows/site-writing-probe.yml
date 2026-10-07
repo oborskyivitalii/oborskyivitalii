@@ -152,7 +152,7 @@ jobs:
         id: browsers
         run: |
           npm ci --prefix tools/quality/toolchain --ignore-scripts
-          tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium firefox webkit
+          tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium firefox
       - name: Check Writing lifecycle and retain scene captures
         env:
           SITE_REPORT_DIR: ${{ runner.temp }}/writing-paradigm-results/browser

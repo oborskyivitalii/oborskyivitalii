@@ -137,20 +137,20 @@ def node_checks(files, expected, pattern=None):
 class Issue36RuntimeTests(unittest.TestCase):
     def test_scene_producer_projection_and_immutable_artwork(self):
         node_checks(["tests/site-engine.test.cjs"], 5,
-                    "^the canonical formula|^the formula belongs|^embedded formula artwork|^missing canonical formula|^formula media declaration")
+                    "^the canonical formula|^Writing formula is|^embedded formula artwork|^missing canonical formula|^formula media declaration")
 
     def test_single_bounded_cache_depth_order_and_failure_containment(self):
         node_checks(["tests/renderer.test.cjs"], 2,
                     "^one fixed formula cache|^formula raster failure")
 
     def test_source_bound_performance_validator_and_adversarial_reports(self):
-        node_checks(["tests/writing-paradigm-quality.test.cjs"], 4)
+        node_checks(["tests/writing-paradigm-quality.test.cjs"], 5)
 
     def test_opt_in_ci_preserves_exact_source_and_failure_evidence(self):
         node_checks(["tests/writing-paradigm-ci.test.cjs"], 3)
 
     def test_browser_validator_rejects_missing_misbound_and_clipped_evidence(self):
-        node_checks(["tests/writing-paradigm-browser.test.cjs"], 3)
+        node_checks(["tests/writing-paradigm-browser.test.cjs"], 4)
 
 
 if __name__ == "__main__":

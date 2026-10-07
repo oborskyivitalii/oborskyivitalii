@@ -777,9 +777,10 @@ const world=(function(math) {
     }
     const light=normalize([-.55,.85,1]);
     for(const f of faces)prepareFace(f,light);
-    // One readable landmark belongs to the Writing room, never the recursive
-    // symbol grammar. Mobile has its own authored framing in the same room.
-    const formulas=page==='writing'?[{id:'writing-paradigm',center:[-5.6,3,-6],mobileCenter:[1.6,3,-6],width:30,mobileWidth:19,aspect:1380/240}]:[];
+    // One extruded landmark sits in the open centre of the first book/page
+    // fractal. Its corners are world geometry, sharing that root's living
+    // transform and the camera's forward journey on every viewport.
+    const formulas=page==='writing'?[{id:'writing-paradigm',center:[0,0,-5],rootCenter:roots[0],root:0,phase:0,width:12,aspect:1380/240,rotation:[.08,-.22,.08],extrusion:.32}]:[];
     return {faces,lines,objects,formulas};
   }
   function prepareFace(f,light) {
@@ -852,7 +853,7 @@ const projection=(function(math,definitions) {
       return [center[0]+m[0]*x+m[1]*y+m[2]*z,center[1]+m[3]*x+m[4]*y+m[5]*z,center[2]+m[6]*x+m[7]*y+m[8]*z];
     });
   }
-  function projectedWorld(world,current,width,height,time=0,tier=0,prune=false,sort=true,formulaFrame=undefined) {
+  function projectedWorld(world,current,width,height,time=0,tier=0,prune=false,sort=true) {
     const forward=normalize(sub(current.target,current.position)),right=normalize(cross(forward,[0,1,0])),up=cross(right,forward);
     const camera=point=>{const x=point[0]-current.position[0],y=point[1]-current.position[1],z=point[2]-current.position[2];return [x*right[0]+y*right[1]+z*right[2],x*up[0]+y*up[1]+z*up[2],x*forward[0]+y*forward[1]+z*forward[2]];};
     const focal=(width<=640?Math.min(height,width*1.15):height)/(2*Math.tan(Math.PI/8));
@@ -873,32 +874,43 @@ const projection=(function(math,definitions) {
       const fade=threshold?smooth((size-threshold)/2):1;
       appendObject(world,o,vertices,projected,project,visible,fade,shapes,transform.inverse(current.position),prune?(width<=640? .5: .35):0,prune?size:Infinity);
     }
-    for(const anchor of world.formulas||[]){const shape=formulaFrame===false?null:projectedFormula(anchor,current,width,height,formulaFrame);if(shape)shapes.push(shape);}
+    for(const anchor of world.formulas||[]){const shape=projectedFormula(anchor,current,width,height,time);if(shape)shapes.push(shape);}
     return sort?shapes.sort((a,b)=>b.depth-a.depth):shapes;
   }
-  function calibrateFormula(anchor,current,width,height,frame) {
-    // One layout-time inversion fixes the landmark in its room. Subsequent
-    // paints only project that point through the actual moving camera.
-    const forward=normalize(sub(current.target,current.position)),right=normalize(cross(forward,[0,1,0])),up=cross(right,forward);
-    const focal=(width<=640?Math.min(height,width*1.15):height)/(2*Math.tan(Math.PI/8)),depth=.95;
-    const x=(frame.x-width*(width<=640?.42:.66))*depth/focal,y=(height*.48-frame.y)*depth/focal;
-    const center=add(current.position,add(forward.map(v=>v*depth),add(right.map(v=>v*x),up.map(v=>v*y))));
-    return {...frame,center,width:frame.width*depth/focal,aspect:anchor.aspect};
+  function formulaWorldPoint(anchor,time,u,v,z=0) {
+    const [a,b,c]=anchor.rotation,ca=Math.cos(a),sa=Math.sin(a),cb=Math.cos(b),sb=Math.sin(b),cc=Math.cos(c),sc=Math.sin(c);
+    const x=(u-.5)*anchor.width,y=(.5-v)*anchor.width/anchor.aspect;
+    const Y=y*ca-z*sa,Z=y*sa+z*ca,X=x*cb+Z*sb;
+    return loopTransform(anchor,time)(add(anchor.center,[X*cc-Y*sc,X*sc+Y*cc,-x*sb+Z*cb]));
   }
-  function projectedFormula(anchor,current,width,height,frame) {
-    const mobile=width<=640,forward=normalize(sub(current.target,current.position)),right=normalize(cross(forward,[0,1,0])),up=cross(right,forward);
-    const delta=sub(frame?.center||(mobile?anchor.mobileCenter:anchor.center),current.position),depth=dot(delta,forward);
-    if(!Number.isFinite(depth)||depth<=.5||depth>=105)return null;
-    const focal=(mobile?Math.min(height,width*1.15):height)/(2*Math.tan(Math.PI/8));
-    const x=width*(mobile?.42:.66)+dot(delta,right)*focal/depth,y=height*.48-dot(delta,up)*focal/depth;
-    const left=frame?.left??16,rightEdge=frame?.right??width-16,top=Math.max(0,frame?.top??0,frame?.viewportTop??0),bottom=Math.min(height,frame?.bottom??height,frame?.viewportBottom??height);
-    if(x<=left||x>=rightEdge||y<top||y>bottom)return null;
-    // Preserve the whole expression inside its reserved band and the actual
-    // physical viewport, including a CSS-zoomed Canvas content plane.
-    const w=Math.min((frame?.width||(mobile?anchor.mobileWidth:anchor.width))*focal/depth,2*Math.min(x-left,rightEdge-x)),h=w/anchor.aspect;
-    if(!Number.isFinite(w)||w<24||y-h/2<top||y+h/2>bottom)return null;
-    const edge=Math.min(y-h/2-top,bottom-y-h/2),visibility=smooth(edge/(frame?16:32))*smooth((w-24)/80)*smooth((depth-.5)/.4)*smooth((105-depth)/14);
-    return {kind:'formula',object:anchor.id,asset:anchor.id,points:[[x-w/2,y-h/2],[x+w/2,y-h/2],[x+w/2,y+h/2],[x-w/2,y+h/2]],depth,alpha:depthVisibility(depth)*visibility};
+  function formulaCamera(current,width,height) {
+    const forward=normalize(sub(current.target,current.position)),right=normalize(cross(forward,[0,1,0])),up=cross(right,forward);
+    const focal=(width<=640?Math.min(height,width*1.15):height)/(2*Math.tan(Math.PI/8)),origin=[width*(width<=640?.42:.66),height*.48];
+    const camera=point=>{const delta=sub(point,current.position);return [dot(delta,right),dot(delta,up),dot(delta,forward)];};
+    const project=point=>[origin[0]+point[0]*focal/point[2],origin[1]-point[1]*focal/point[2]];
+    return {camera,project,focal,origin};
+  }
+  function projectFormulaPoint(anchor,current,width,height,time,u,v,z=0) {
+    const view=formulaCamera(current,width,height),point=view.camera(formulaWorldPoint(anchor,time,u,v,z));
+    return point[2]>.5?view.project(point):null;
+  }
+  function projectedFormula(anchor,current,width,height,time=0) {
+    const view=formulaCamera(current,width,height),uv=[[0,0],[1,0],[1,1],[0,1]],worldCorners=uv.map(([u,v])=>formulaWorldPoint(anchor,time,u,v)),cameraCorners=worldCorners.map(view.camera);
+    const depth=view.camera(loopTransform(anchor,time).center)[2],nearest=Math.min(...cameraCorners.map(p=>p[2]));
+    // Fade the entire plane before the camera crosses it. A near-plane clip
+    // would discard part of the expression and stretch the raster unboundedly.
+    if(nearest<=.5||depth>=105)return null;
+    const points=cameraCorners.map(view.project),xs=points.map(p=>p[0]),ys=points.map(p=>p[1]);
+    const left=Math.min(...xs),right=Math.max(...xs),top=Math.min(...ys),bottom=Math.max(...ys),span=right-left;
+    if(right<0||left>width||bottom<0||top>height||span<24)return null;
+    const coverage=Math.min(right,width-left,bottom,height-top),alpha=depthVisibility(depth)*smooth((nearest-.5)/3)*smooth((105-depth)/14)*smooth((span-24)/80)*smooth(coverage/32);
+    if(alpha<=0)return null;
+    // Three slices make the outlined glyphs visibly extruded. Each slice is
+    // a genuine tilted world plane, not a screen-space translated banner.
+    const cameraLayers=[-anchor.extrusion,-anchor.extrusion/2,0].map(z=>uv.map(([u,v])=>view.camera(formulaWorldPoint(anchor,time,u,v,z))));
+    const transform=loopTransform(anchor,time);
+    return {kind:'formula',object:anchor.id,asset:anchor.id,points,cameraCorners,cameraLayers,focal:view.focal,origin:view.origin,depth,alpha,
+      projection:{worldCenter:transform.center,rootCenter:anchor.rootCenter,worldCorners,corners:points,depth,pulse:transform.scale,clock:time,extrusion:anchor.extrusion,strategy:'perspective-extruded',layers:3,strips:4}};
   }
   function projectedFace(f,vertices,screen,project) {
     // Clipping changes vertex count. Sorting uses the continuous original face
@@ -965,12 +977,12 @@ const projection=(function(math,definitions) {
   const roomOffset=page=>-Math.max(0,routeOrder.indexOf(page))*roomSpacing;
   const translatePose=(pose,z)=>({position:add(pose.position,[0,0,z]),target:add(pose.target,[0,0,z])});
   const routePose=(page,pose)=>translatePose(pose,roomOffset(page));
-  return {loopTransform,cameraVertices,projectedWorld,projectedFace,projectedFormula,calibrateFormula,journeyPose,blendColor,routePose,roomOffset,translatePose};
+  return {loopTransform,cameraVertices,projectedWorld,projectedFace,projectedFormula,formulaWorldPoint,projectFormulaPoint,journeyPose,blendColor,routePose,roomOffset,translatePose};
 })(math,definitions);
 const renderer=(function(artwork=null,createSurface=null) {
   // Exactly one immutable bitmap serves every Writing room/detail model. Its
   // intrinsic size never follows viewport/DPR, and no resource owns a clock.
-  let formulaSurface=null,formulaAttempted=false,formulaBuilds=0,formulaPaints=0,formulaFailures=0,formulaVisible=0,formulaLastPaints=0;
+  let formulaSurface=null,formulaAttempted=false,formulaBuilds=0,formulaPaints=0,formulaFailures=0,formulaVisible=0,formulaLastPaints=0,formulaSubmissions=0,formulaLastSubmissions=0,formulaProjection=null;
   function formulaBitmap() {
     if(formulaAttempted)return formulaSurface;
     formulaAttempted=true;formulaBuilds++;
@@ -997,18 +1009,45 @@ const renderer=(function(artwork=null,createSurface=null) {
     return formulaSurface;
   }
   function paintFormula(ctx,shape) {
-    formulaVisible++;
+    formulaVisible++;formulaProjection=shape.projection||null;
     const surface=formulaBitmap();if(!surface)return;
-    const [from,to,,bottom]=shape.points;let saved=false;
+    let saved=false;
     try{
       ctx.save();saved=true;ctx.globalAlpha=shape.alpha;ctx.globalCompositeOperation='source-over';
-      ctx.drawImage(surface,from[0],from[1],to[0]-from[0],bottom[1]-from[1]);formulaPaints++;formulaLastPaints++;
+      // A fixed four-strip mesh follows the projected world plane. Three
+      // z-slices give the actual tilted glyphs thickness, using the same single
+      // cache. This is one landmark with at most 24 native submissions, not
+      // viewport-sized caches, per-glyph geometry or another animation clock.
+      for(let layer=0;layer<shape.cameraLayers.length;layer++){
+        ctx.globalAlpha=shape.alpha*[.30,.45,1][layer];
+        const corners=shape.cameraLayers[layer];
+        const at=(u,v)=>{
+          const top=corners[0].map((value,i)=>value+(corners[1][i]-value)*u),bottom=corners[3].map((value,i)=>value+(corners[2][i]-value)*u),p=top.map((value,i)=>value+(bottom[i]-value)*v);
+          return [shape.origin[0]+p[0]*shape.focal/p[2],shape.origin[1]-p[1]*shape.focal/p[2]];
+        };
+        for(let strip=0;strip<4;strip++){
+          const u=strip/4,U=(strip+1)/4,source=[[u*surface.width,0],[U*surface.width,0],[U*surface.width,surface.height],[u*surface.width,surface.height]],points=[at(u,0),at(U,0),at(U,1),at(u,1)];
+          for(const triangle of [[0,1,2],[0,2,3]])paintFormulaTriangle(ctx,surface,triangle.map(i=>source[i]),triangle.map(i=>points[i]));
+        }
+      }
+      formulaPaints++;formulaLastPaints++;
     }catch{formulaFailures++;formulaSurface=null;}
     finally{if(saved)ctx.restore();}
   }
+  function paintFormulaTriangle(ctx,surface,source,points) {
+    const [p,q,r]=source,[P,Q,R]=points,dx=q[0]-p[0],dy=q[1]-p[1],ex=r[0]-p[0],ey=r[1]-p[1],den=dx*ey-dy*ex;
+    const a=((Q[0]-P[0])*ey-(R[0]-P[0])*dy)/den,c=((R[0]-P[0])*dx-(Q[0]-P[0])*ex)/den;
+    const b=((Q[1]-P[1])*ey-(R[1]-P[1])*dy)/den,d=((R[1]-P[1])*dx-(Q[1]-P[1])*ex)/den;
+    ctx.save();
+    try{
+      path(ctx,points);ctx.closePath();ctx.clip();
+      ctx.transform(a,b,c,d,P[0]-a*p[0]-c*p[1],P[1]-b*p[0]-d*p[1]);
+      ctx.drawImage(surface,0,0);formulaSubmissions++;formulaLastSubmissions++;
+    }finally{ctx.restore();}
+  }
   function formulaDiagnostics() {
     const width=formulaSurface?.width||0,height=formulaSurface?.height||0;
-    return {status:formulaSurface?'ready':formulaAttempted?'failed':'unused',cacheBuilds:formulaBuilds,width,height,bytes:width*height*4,paintCount:formulaPaints,failures:formulaFailures,visibleCount:formulaVisible,lastPaintCount:formulaLastPaints,attempts:formulaBuilds,builds:formulaSurface?formulaBuilds:0,failed:formulaFailures>0,draws:formulaPaints,visible:formulaVisible>0};
+    return {status:formulaSurface?'ready':formulaAttempted?'failed':'unused',cacheBuilds:formulaBuilds,width,height,bytes:width*height*4,paintCount:formulaPaints,failures:formulaFailures,visibleCount:formulaVisible,lastPaintCount:formulaLastPaints,drawSubmissions:formulaSubmissions,lastDrawSubmissions:formulaLastSubmissions,projection:formulaProjection,attempts:formulaBuilds,builds:formulaSurface?formulaBuilds:0,failed:formulaFailures>0,draws:formulaPaints,visible:formulaVisible>0};
   }
   function facePalette(faces,colors,cache) {
     const rgb=Object.fromEntries(Object.entries(colors).map(([key,hex])=>[key,hex.slice(1).match(/.{2}/g).map(value=>parseInt(value,16))]));
@@ -1045,7 +1084,7 @@ const renderer=(function(artwork=null,createSurface=null) {
     ctx.stroke();return end-1;
   }
   function paintShapes(ctx,shapes,colors,paintCustom=null) {
-    formulaVisible=0;formulaLastPaints=0;
+    formulaVisible=0;formulaLastPaints=0;formulaLastSubmissions=0;formulaProjection=null;
     for(let index=0;index<shapes.length;index++) {
       const shape=shapes[index];
       if(paintCustom?.(ctx,shape))continue;
@@ -1648,7 +1687,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
   // Deferred scripts run while readyState is interactive. Archive filtering
   // and the navigation content plane must finish before the first layout read.
   let domReady=document.readyState!=="loading"&&document.readyState!=="interactive";
-  let width=1,height=1,ratio=1,stops=[],bounds=null,focus="all",localProgress=0,nativeScrollY=window.scrollY,formulaFrame=false;
+  let width=1,height=1,ratio=1,stops=[],bounds=null,focus="all",localProgress=0;
   const initial=initialPoses[page]||"overview";
   const rooms=new Map();
   let compact=narrow.matches,ambientTime=0,lastFrame=null,nextDraw=null;
@@ -1700,47 +1739,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       }
       writingAnchor={y:window.scrollY,progress:localProgress};
     }
-    measureFormulaBand();
     span('layout-writing');
-  }
-  function formulaMode() {
-    // The existing frozen preference paint removes the bitmap formula before
-    // its passive replacement appears. Never display both during that handoff.
-    const owned=enabled&&formulaFrame&&api.formulaReady?.()||api.formulaDrawn?.();
-    const mode=!failed&&!printing&&owned?'canvas':'static';
-    if(document.body.dataset.formulaMode!==mode)document.body.dataset.formulaMode=mode;
-  }
-  function updateFormulaBandScroll() {
-    if(!formulaFrame)return;
-    formulaFrame.top=formulaFrame.documentTop-nativeScrollY*formulaFrame.scaleY;
-    formulaFrame.bottom=formulaFrame.documentBottom-nativeScrollY*formulaFrame.scaleY;
-  }
-  function measureFormulaBand() {
-    nativeScrollY=window.scrollY;formulaFrame=false;
-    const band=page==='writing'?document.querySelector('[data-writing-formula]'):null;
-    const art=band?.querySelector('.writing-formula-fallback');
-    if(band&&art&&api.calibrateFormula) {
-      if(enabled)api.prepareFormula?.();
-      const box=band.getBoundingClientRect(),glyph=art.getBoundingClientRect(),surface=canvas.getBoundingClientRect();
-      const header=document.querySelector('.site-header')?.getBoundingClientRect();
-      const viewportWidth=window.innerWidth,viewportHeight=window.innerHeight;
-      const sx=width/surface.width,sy=height/surface.height,headerBottom=Math.max(0,header?.bottom||0);
-      if([sx,sy,glyph.width,glyph.height].every(v=>Number.isFinite(v)&&v>0)&&headerBottom+32<viewportHeight) {
-        const centerDocument=(glyph.top+glyph.bottom)/2+nativeScrollY;
-        const fits=glyph.top>=headerBottom+16&&glyph.bottom<=viewportHeight-16;
-        const referenceY=fits?nativeScrollY:Math.max(0,Math.min(document.documentElement.scrollHeight-viewportHeight,centerDocument-(headerBottom+viewportHeight)/2));
-        const progress=bounds?writingProgress(referenceY,bounds,writingAnchor):localProgress;
-        const reference=journeyPose(topicPaths[focus],progress);
-        const anchor=roomFor('writing').world.formulas[0];
-        formulaFrame=api.calibrateFormula(anchor,reference,width,height,{
-          x:((glyph.left+glyph.right)/2-surface.left)*sx,y:(centerDocument-referenceY-surface.top)*sy,width:glyph.width*sx,
-          left:(16-surface.left)*sx,right:(viewportWidth-16-surface.left)*sx,viewportTop:(headerBottom+16-surface.top)*sy,viewportBottom:(viewportHeight-16-surface.top)*sy,
-          documentTop:(box.top+nativeScrollY-surface.top)*sy,documentBottom:(box.bottom+nativeScrollY-surface.top)*sy,scaleY:sy
-        });
-        updateFormulaBandScroll();
-      }
-    }
-    formulaMode();
   }
   function flushLayout() {
     if(!initialized||!layoutDirty||failed)return;
@@ -1788,7 +1787,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       const start=window.SiteEngineProbe?clock():0;
       const room={world:worldFor(name,detail),name,compact:detail,faceColors:[]};variants.set(detail,room);
       // Prepare once during the existing room work, never inside timed paint.
-      if(name==='writing'&&enabled)api.prepareFormula?.();
+      if(name==='writing')api.prepareFormula?.();
       if(window.SiteEngineStages)diagnostic('stage',{part:'model-build',route:name,start,duration:clock()-start});
       paintColors(room);
       if(window.SiteEngineProbe)diagnostic('model',{route:name,compact:detail,start,duration:clock()-start,objects:room.world.objects.length,vertices:room.world.objects.reduce((n,o)=>n+o.points.length,0),faces:room.world.faces.length,lines:room.world.lines.length});
@@ -1830,7 +1829,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
   function visibleRooms() {
     if(!journey){
       const room=roomFor(page);
-      const shapes=projectedWorld(room.world,translatePose(current,-roomOffset(page)),width,height,ambientTime,detailTier,true,false,enabled?formulaFrame:false);
+      const shapes=projectedWorld(room.world,translatePose(current,-roomOffset(page)),width,height,ambientTime,detailTier,true,false);
       for(const shape of shapes)shape.room=room;
       return shapes;
     }
@@ -1845,7 +1844,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       const forward=api.normalize(sub(local.target,local.position));
       if(api.dot(sub([0,0,-48],local.position),forward)+110<.5)return [];
       const room=roomFor(name);
-      return projectedWorld(room.world,translatePose(current,-roomOffset(name)),width,height,ambientTime,detailTier,true,false,enabled?formulaFrame:false).map(shape=>{shape.room=room;return shape;});
+      return projectedWorld(room.world,translatePose(current,-roomOffset(name)),width,height,ambientTime,detailTier,true,false).map(shape=>{shape.room=room;return shape;});
     });
     return shapes;
   }
@@ -1861,7 +1860,6 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     const custom=sceneEffects?.collect(state)||[];span('draw-effects');
     const shapes=geometry.concat(custom).sort((a,b)=>b.depth-a.depth);span('draw-sort');
     paintShapes(ctx,shapes,colors,sceneEffects?.paint);
-    formulaMode();
     span('draw-paint');
     const air=atmosphereState(ambientTime);
     scene.style?.setProperty("--air-x",air.x.toFixed(3)+"px");
@@ -1875,7 +1873,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     span('draw-state');
   }
   function fail() {
-    failed=true;formulaMode();cancel();delete scene.dataset.ready;scene.dataset.state="fallback";
+    failed=true;cancel();delete scene.dataset.ready;scene.dataset.state="fallback";
     control.hidden=false;control.disabled=true;control.setAttribute("aria-pressed","false");control.textContent="Motion: unavailable";
     reportTravel(1);
   }
@@ -1957,7 +1955,6 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     if(animation||living&&!hold)schedule();
   }
   function updateControl() {
-    formulaMode();
     if(failed)return;
     control.hidden=false;control.disabled=reduced.matches;control.setAttribute("aria-pressed",String(enabled&&!hold));
     control.textContent=reduced.matches?"Motion: reduced":!enabled?"Motion: off":hold?"Motion: still (device)":"Motion: on";
@@ -1965,7 +1962,6 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
   function preferenceChanged() {
     const was=enabled;enabled=choice!=="off" && !reduced.matches;
     if(enabled&&!was){
-      if(page==='writing'){api.prepareFormula?.();invalidateLayout('motion-resume');}
       lastFrame=null;
     }
     if(!enabled){if(was)cancel();}else if(!was)moveTo(page==="writing" && !bounds?pathPose():scrollPose());
@@ -1979,7 +1975,6 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     preferenceChanged();
   });
   window.addEventListener("scroll",()=>{
-    nativeScrollY=window.scrollY;updateFormulaBandScroll();
     if(!enabled || document.hidden || printing)return;
     if(page!=="writing" && !pageStops[page])return;
     // A new scroll takes control of any unfinished topic transition.
@@ -2002,7 +1997,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
   window.addEventListener("resize",resize,{passive:true});
   window.addEventListener("load",resize,{once:true});
   document.addEventListener("visibilitychange",()=>{if(document.hidden)cancel();else resize();});
-  window.addEventListener("beforeprint",()=>{printing=true;formulaMode();cancel();});
+  window.addEventListener("beforeprint",()=>{printing=true;cancel();});
   window.addEventListener("afterprint",()=>{printing=false;resize();});
   if(reduced.addEventListener)reduced.addEventListener("change",preferenceChanged);
   window.addEventListener("storage",event=>{if(event.key===key || event.key===null){try{choice=localStorage.getItem(key);}catch{choice=null;}preferenceChanged();}});
@@ -2045,6 +2040,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       observeLayout();nextDraw=null;schedule();
     },
     refresh({sync=false,reason='mount'}={}){observeLayout();invalidateLayout(reason);if(sync)flushLayout();},
+    formulaDiagnostics:()=>api.formulaDiagnostics?.()||null,
     diagnostics(){return {rooms:[...rooms].map(([route,variants])=>({route,models:[...variants].map(([compact,room])=>({compact,serializedChars:JSON.stringify(room.world).length,formulaAnchors:room.world.formulas?.length||0}))})),paletteEntries:colorFills.size,layoutPasses,formula:api.formulaDiagnostics?.()||null};},
     detachTravel(){travelUpdate=null;}
   };
