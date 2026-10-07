@@ -3,6 +3,7 @@ const test=require('node:test'),assert=require('node:assert/strict'),fs=require(
 const artifact=require('../tools/quality/artifact.cjs'),staging=require('../tools/staging/package.cjs');
 const hosted=require('../tools/staging/hosted.cjs');
 const state=require('../tools/staging/state.cjs');
+const snapshot=require('../tools/site/snapshot.cjs');
 function fixture(){
   const dir=fs.mkdtempSync(path.join(os.tmpdir(),'site-staging-test-')),input=path.join(dir,'input'),out=path.join(dir,'package');
   fs.mkdirSync(input);fs.cpSync(path.resolve(__dirname,'../docs'),path.join(input,'public'),{recursive:true});
@@ -11,6 +12,63 @@ function fixture(){
   fs.writeFileSync(path.join(input,'artifact.json'),JSON.stringify(source));fs.mkdirSync(path.join(input,'gate'));fs.writeFileSync(path.join(input,'gate/release-manifest.json'),JSON.stringify(gate));
   return {dir,input,out,source,gate,expected:{sourceCommit:source.sourceCommit,publicDigest:source.artifactDigest,artifactId:'123',uploadDigest:'c'.repeat(64)}};
 }
+// Synthetic legacy-declaration fixture exercises consumer compatibility only;
+// current scene/browser behavior remains owned by the actual joint artifact.
+function legacyFixture(){
+  const f=fixture(),publicDir=path.join(f.input,'public'),revisionFile=path.join(publicDir,'site-revision.json');
+  const revision=JSON.parse(fs.readFileSync(revisionFile));delete revision.mediaFiles;
+  for(const file of ['assets/writing-paradigm.svg',`media/${revision.assets}/writing-paradigm.svg`])fs.rmSync(path.join(publicDir,file));
+  for(const file of ['space.js',`runtime/${revision.engine}/space.js`,'writing.html',revision.routes.writing.url]){
+    const target=path.join(publicDir,file);fs.writeFileSync(target,fs.readFileSync(target,'utf8').replaceAll('writing-paradigm','legacy-fixture'));
+  }
+  revision.routes.writing.sha256=artifact.digest(fs.readFileSync(path.join(publicDir,revision.routes.writing.url)));
+  fs.writeFileSync(revisionFile,JSON.stringify(revision));
+  const manifest=artifact.manifest(publicDir);Object.assign(f.source,manifest);Object.assign(f.gate,manifest);f.expected.publicDigest=manifest.artifactDigest;
+  fs.writeFileSync(path.join(f.input,'artifact.json'),JSON.stringify(f.source));fs.writeFileSync(path.join(f.input,'gate/release-manifest.json'),JSON.stringify(f.gate));
+  return f;
+}
+function formulaFixture(){
+  const f=fixture(),publicDir=path.join(f.input,'public'),revisionFile=path.join(publicDir,'site-revision.json');
+  const revision=JSON.parse(fs.readFileSync(revisionFile));
+  revision.mediaFiles=[...snapshot.mediaFiles];
+  const svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><path d="M1 1L9 9"/></svg>\n';
+  for(const file of ['assets/writing-paradigm.svg',`media/${revision.assets}/writing-paradigm.svg`])fs.writeFileSync(path.join(publicDir,file),svg);
+  fs.writeFileSync(revisionFile,JSON.stringify(revision));
+  const manifest=artifact.manifest(publicDir);Object.assign(f.source,manifest);Object.assign(f.gate,manifest);f.expected.publicDigest=manifest.artifactDigest;
+  fs.writeFileSync(path.join(f.input,'artifact.json'),JSON.stringify(f.source));fs.writeFileSync(path.join(f.input,'gate/release-manifest.json'),JSON.stringify(f.gate));
+  return {...f,publicDir,revision,revisionFile};
+}
+test('trusted controller admits the declared formula alias and immutable copy while retaining legacy staging and rollback packages',()=>{
+  for(const create of [fixture,legacyFixture,formulaFixture]){
+    const f=create();try{const record=staging.build(f.input,f.out,f.expected);assert.equal(staging.verify(f.out,record,f.expected),true);}
+    finally{fs.rmSync(f.dir,{recursive:true,force:true});}
+  }
+});
+test('formula media declarations, required copies and unknown inputs fail closed',()=>{
+  const f=formulaFixture();try{
+    const withoutDeclaration={...f.revision};delete withoutDeclaration.mediaFiles;fs.writeFileSync(f.revisionFile,JSON.stringify(withoutDeclaration));
+    assert.throws(()=>snapshot.verify(f.publicDir,f.source),/requires current media declaration/);
+    for(const mediaFiles of [snapshot.legacyMediaFiles,[...f.revision.mediaFiles,'arbitrary.svg'],[...f.revision.mediaFiles].reverse()]){
+      fs.writeFileSync(f.revisionFile,JSON.stringify({...f.revision,mediaFiles}));assert.throws(()=>snapshot.verify(f.publicDir,f.source),/finite current media declaration/);
+    }
+    fs.writeFileSync(f.revisionFile,JSON.stringify(f.revision));
+    const missingAlias={...f.source,files:{...f.source.files}};delete missingAlias.files['assets/writing-paradigm.svg'];
+    assert.throws(()=>snapshot.verify(f.publicDir,missingAlias),/missing public file assets\/writing-paradigm.svg/);
+    const immutable=path.join(f.publicDir,`media/${f.revision.assets}/writing-paradigm.svg`),original=fs.readFileSync(immutable);
+    fs.appendFileSync(immutable,'<!-- changed -->');assert.throws(()=>snapshot.verify(f.publicDir,f.source),/immutable media differs/);fs.writeFileSync(immutable,original);
+    fs.rmSync(immutable);assert.throws(()=>snapshot.verify(f.publicDir,f.source),/ENOENT/);
+    for(const name of ['assets/arbitrary.svg',`media/${f.revision.assets}/arbitrary.svg`])assert.throws(()=>snapshot.inventory([...Object.keys(f.source.files),name]),/unexpected public input/);
+  }finally{fs.rmSync(f.dir,{recursive:true,force:true});}
+});
+test('controller package consumer rechecks formula media binding even when package manifests are internally consistent',()=>{
+  const f=formulaFixture();try{
+    const record=staging.build(f.input,f.out,f.expected),publicDir=path.join(f.out,'public'),revisionFile=path.join(publicDir,'site-revision.json');
+    const revision={...f.revision};delete revision.mediaFiles;fs.writeFileSync(revisionFile,JSON.stringify(revision));
+    const actual=artifact.manifest(publicDir);record.files=actual.files;record.packageDigest=actual.artifactDigest;
+    for(const name of Object.keys(record.source.files))record.source.files[name]=actual.files[name];
+    assert.throws(()=>staging.verify(f.out,record,f.expected),/requires current media declaration/);
+  }finally{fs.rmSync(f.dir,{recursive:true,force:true});}
+});
 test('staging adds only host policy, real 404 and revision; every tested public byte stays exact',()=>{
   const f=fixture();try{
     const record=staging.build(f.input,f.out,f.expected);assert.equal(staging.verify(f.out,record,f.expected),true);

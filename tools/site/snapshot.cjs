@@ -10,7 +10,7 @@ function immutable(name) {
   const match=name.match(/^(runtime|media|snapshots)\/([a-f0-9]{64})\/([a-z0-9.-]+)$/);
   return !!match&&(match[1]==='runtime'?[...runtimeFiles,'analytics.js']:match[1]==='media'?mediaFiles:routes.map(x=>x+'.html')).includes(match[3]);
 }
-function inventory(names,requiredMedia=mediaFiles) {
+function inventory(names,requiredMedia=legacyMediaFiles) {
   assert.ok(names.length<=1000,'public retention inventory bound');
   for(const name of baseFiles.filter(name=>!name.startsWith('assets/')).concat(requiredMedia.map(name=>'assets/'+name)))assert.ok(names.includes(name),'missing public file '+name);
   for(const name of names)assert.ok(baseFiles.includes(name)||immutable(name),'unexpected public input '+name);
@@ -22,7 +22,7 @@ function verify(dir,record) {
   const revision=JSON.parse(read('site-revision.json'));
   const declaredMedia=revision.mediaFiles===undefined?legacyMediaFiles:revision.mediaFiles;
   if(revision.mediaFiles!==undefined)assert.deepEqual(declaredMedia,mediaFiles,'finite current media declaration');
-  else assert.ok(!read('space.js').toString().includes('writing-paradigm')&&!read('writing.html').toString().includes('writing-paradigm'),'formula artifact requires current media declaration');
+  else assert.ok(!Object.hasOwn(files,'assets/writing-paradigm.svg')&&!read('space.js').toString().includes('writing-paradigm')&&!read('writing.html').toString().includes('writing-paradigm'),'formula artifact requires current media declaration');
   inventory(Object.keys(files),declaredMedia);
   assert.equal(revision.schema,1);assert.equal(revision.contract,1);
   for(const key of ['engine','scenes','assets','content'])assert.match(revision[key],/^[a-f0-9]{64}$/);

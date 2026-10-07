@@ -4,7 +4,7 @@ Dated continuity, not live authority. Last verified: **2026-10-07**.
 
 ## Snapshot
 
-- Main is `c4539ad18f4f35169eda792a9a40677a7ea9abac`; #35 / PR #37 is
+- Main is `76f2a78` after authorized joint PR #43 merge; #35 / PR #37 is
   merged. #31/#32 and #33/#34 are completed. Read their pinned issue evidence.
 - The maintainer requests one joint staging run for [#36](https://github.com/oborskyivitalii/oborskyivitalii/issues/36)
   / [PR #38](https://github.com/oborskyivitalii/oborskyivitalii/pull/38) and
@@ -18,8 +18,9 @@ Dated continuity, not live authority. Last verified: **2026-10-07**.
   joint staging amendment. Joint PR #43's first bounded run failed old-count and
   static checks; its absolute performance passed. The repaired candidate passes
   258 selected source cases. PR #44 at eb81a61 has four green minimal CI runs.
-  The maintainer now proposes corrected #43 merge, #44 adaptation, one staging
-  run. Current exact combined CI/deployment is in the live issues.
+  Corrected #43 at072a7b8 passed four minimal CI runs and merged at76f2a78.
+  PR #44 is adapted on that main with the full24-check joint policy. One bounded
+  joint staging run and current exact deployment are tracked in the live issues.
 - #36 places one tilted, pulsing formula in Writing's books/pages fractal,
   sharing its camera/clock and bounded cache. Rejected banner benchmarks are
   historical failures, not acceptance of this world-space implementation.
@@ -53,7 +54,7 @@ Dated continuity, not live authority. Last verified: **2026-10-07**.
 
 | Issue | Remaining intent |
 | --- | --- |
-| #36 / #41 | Corrected #43 exact-head CI/authorized merge, adapt #44 on main, joint staging; paired evidence and visual/editorial/independent gates. |
+| #36 / #41 | #43 merged; adapted #44/joint staging, legacy recovery compatibility; paired evidence and visual/editorial/independent gates. |
 | #1 / #13 | First-release, physical-device and full production/recovery acceptance. |
 | #8 / #39 | Production URL/indexability, domains and analytics activation. |
 | #7 | License and editorial/third-party rights. |
