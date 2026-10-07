@@ -359,7 +359,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "7a3ee7fd8c7c4c62c5bfba5d017c2a3a55a88a6d881bcab1825156cd7b562005",
+    "digest": "c605b8a363cdf404b751ce3f8c97cfdda41d3b411b00daa5f1ade52f9c4811ad",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -475,7 +475,7 @@
       },
       {
         "path": ".github/workflows/site-writing-probe.yml",
-        "sha256": "93db36afb905a677384124fc390da9e4f4dbd34a26924b816fe0d3f0c22df7b1"
+        "sha256": "b52362e175382fdd8210316808908b7937d6e060e5d337bc44c0b41174a8f25e"
       },
       {
         "path": "AGENTS.md",

@@ -211,3 +211,15 @@ Fresh published-head browser captures, eight-context traces/videos and visual re
 | `tests/browser-gate-variants.test.cjs` | `001ae9a6351f2921fcd3937640596d91c53396ac6c17761e711789688c831545` |
 | `review/site-scroll-sync-20261004/READING-SURFACES.cjs` | `2fa9010b3caa90827d94b7131f4efe865017477c222358a54c4fb06a9a9a3afe` |
 | `tools/quality/secrets-reviewed.json` | `f8d4b77028471734327e31963a5024259031d020adac5cf28c093d4aaaa4ceec` |
+
+
+## Browser-proof runner environment repair — prepared-source review
+
+No blocker found in the narrow workflow change. Against parent `1f60f059d97b8afbaaf141c1c3069a2963d36175` / tree `09b6bb81651848594155e1b23a90197a26f14446`, `sourceDirty: true`, independent byte comparison confirms the sole workflow diff copies the exact established “Bound Ubuntu downloads and use its primary archive” step from `site-release-checks.yml`'s Linux job into only the opt-in reading-clarity job, before npm/Chromium installation. The step validates active `/etc/apt` mirror-list ownership, switches the Azure Ubuntu archive to HTTPS primary archive, and bounds download timeouts to 30 seconds with zero retries. Runtime/public/CSS/helper bytes, action/tool pins, job budget and browser cases are unchanged.
+
+The root reports opt-in run `37664883208` timed out in APT installation before any browser case; this review does not reinterpret that run as browser evidence. A fresh exact-head browser proof remains pending. This reviewer performed source/byte comparisons only, edited only this review document, and did not execute APT, browser tests, staging or merge.
+
+| Runner environment review target | SHA256 |
+| --- | --- |
+| `.github/workflows/site-writing-probe.yml` | `b52362e175382fdd8210316808908b7937d6e060e5d337bc44c0b41174a8f25e` |
+| Exact copied workflow step | `bbcb7817cb909cf73b6a51b0ae64255f2106704d40f02d6503e3f47b1dab866f` |
