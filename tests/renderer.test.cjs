@@ -18,6 +18,41 @@ test('the RGB-keyed palette matches every original face color on all routes, det
 function recorder(){
   const commands=[];return {commands,beginPath(){commands.push('begin');},moveTo(){},lineTo(){},closePath(){},fill(){commands.push('fill');},stroke(){commands.push('stroke');}};
 }
+function paintStateRecorder(){
+  const ctx=recorder(),values={fillStyle:'#112233',strokeStyle:'#445566',lineWidth:2,globalAlpha:.4},writes=[],reads=[],draws=[];
+  for(const property of Object.keys(values))Object.defineProperty(ctx,property,{get(){reads.push(property);return values[property];},set(value){writes.push([property,value]);values[property]=value;}});
+  ctx.fill=()=>draws.push(['fill',values.fillStyle,values.globalAlpha]);
+  ctx.stroke=()=>draws.push(['stroke',values.strokeStyle,values.lineWidth,values.globalAlpha]);
+  return {ctx,values,writes,reads,draws};
+}
+function assertPaintStateBoundaries(face){
+  const {ctx,values,writes,reads,draws}=paintStateRecorder(),expected=[['fill','#aabbcc',.82],['stroke','#aabbcc',.65,.82]];
+  paintShapes(ctx,[face,face],{});assert.deepEqual(draws,expected.concat(expected));
+  assert.equal(writes.length,5,'identical adjacent facet styles avoid four native writes without omitting either fill or stroke');
+  assert.equal(reads.filter(property=>property==='fillStyle').length,0,'the exact known face color avoids a native fillStyle getter');
+  Object.assign(values,{fillStyle:'#000000',strokeStyle:'#ffffff',lineWidth:9,globalAlpha:.1});writes.length=draws.length=0;
+  paintShapes(ctx,[face,face],{});assert.deepEqual(draws,expected.concat(expected));assert.equal(writes.length,5,'a new paint restores externally reset native state');
+  writes.length=draws.length=0;
+  paintShapes(ctx,[face,{kind:'custom'},face],{},(context,shape)=>{
+    if(shape.kind!=='custom')return false;
+    context.fillStyle='#000000';context.strokeStyle='#ffffff';context.lineWidth=9;context.globalAlpha=.1;draws.push(['custom']);return true;
+  });
+  assert.deepEqual(draws,expected.concat([['custom']],expected),'handled custom paint cannot leak its state into subsequent ordinary geometry');
+  assert.equal(values.globalAlpha,1);assert.equal(values.lineWidth,.65);assert.equal(values.strokeStyle,'#aabbcc');
+}
+function assertFormulaPaintBoundary(face){
+  const asset=require('../tools/site/scene-assets.cjs').load(require('node:path').resolve(__dirname,'..')),target=recorder();
+  target.bezierCurveTo=()=>{};target.createLinearGradient=()=>({addColorStop(){}});
+  const renderer=require('../site/engine/renderer.cjs')(asset,()=>({getContext:()=>target}));
+  const {ctx,values,writes,draws}=paintStateRecorder(),saved=[];let afterDraw=0,submissions=0;
+  ctx.save=()=>saved.push({...values});ctx.restore=()=>Object.assign(values,saved.pop());ctx.clip=ctx.transform=()=>{};
+  ctx.drawImage=()=>{draws.push(['formula',values.globalAlpha]);submissions++;afterDraw=writes.length;};
+  const layer=[[0,0,10],[2,0,10],[2,-1,10],[0,-1,10]],formula={kind:'formula',alpha:.82,cameraLayers:[layer,layer,layer],focal:10,origin:[0,0]};
+  renderer.paintShapes(ctx,[face,formula,face],{});
+  assert.deepEqual(draws,[['fill','#aabbcc',.82],['stroke','#aabbcc',.65,.82],...Array.from({length:24},()=>['formula',.82]),['fill','#aabbcc',.82],['stroke','#aabbcc',.65,.82]]);
+  assert.equal(writes.length-afterDraw,5,'formula boundary conservatively re-establishes ordinary paint state and final alpha');
+  assert.equal(submissions,24);assert.equal(saved.length,0);assert.equal(values.globalAlpha,1);assert.equal(renderer.formulaDiagnostics().failures,0);
+}
 test('filled facets avoid unused native stroke setters while every visible contour retains its effective style',()=>{
   const strokes=[],fills=[],writes=[],ctx=recorder();
   for(const property of ['lineWidth','strokeStyle']){
@@ -30,6 +65,7 @@ test('filled facets avoid unused native stroke setters while every visible conto
   assert.deepEqual(fills,[['#abcdef',.82],['#fedcba',.82],['#aabbcc',.82]]);
   assert.deepEqual(strokes,[['#123456',1.25,.36],['#aabbcc',.65,.82]]);
   assert.equal(writes.length,4,'unoutlined facet submits no unused stroke-state setters');assert.equal(ctx.globalAlpha,1);
+  assertPaintStateBoundaries(face(2));assertFormulaPaintBoundary(face(2));
 });
 test('batching keeps depth order and visible outlines, reducing tiny mesh strokes',()=>{
   const ctx=recorder(),room={faceColors:['#123456'],world:{faces:[{edgeAlpha:.12},{edgeAlpha:.36},{edgeAlpha:0}]}};

@@ -103,9 +103,16 @@ module.exports=function(artwork=null,createSurface=null) {
     ctx.beginPath();ctx.moveTo(points[0][0],points[0][1]);
     for(let i=1;i<points.length;i++)ctx.lineTo(points[i][0],points[i][1]);
   }
-  function drawLineRun(ctx,shapes,index,colors) {
+  function setPaintState(ctx,state,property,value) {
+    if(state[property]===value)return;
+    ctx[property]=value;state[property]=value;
+  }
+  function invalidatePaintState(state) {
+    state.fillStyle=state.strokeStyle=state.lineWidth=state.globalAlpha=undefined;
+  }
+  function drawLineRun(ctx,shapes,index,colors,state) {
     const first=shapes[index],alpha=first.alpha;
-    ctx.beginPath();ctx.lineWidth=first.lineWidth;ctx.strokeStyle=colors[first.color];ctx.globalAlpha=alpha;
+    ctx.beginPath();setPaintState(ctx,state,'lineWidth',first.lineWidth);setPaintState(ctx,state,'strokeStyle',colors[first.color]);setPaintState(ctx,state,'globalAlpha',alpha);
     let end=index;
     while(end<shapes.length){
       const shape=shapes[end];
@@ -116,28 +123,32 @@ module.exports=function(artwork=null,createSurface=null) {
   }
   function paintShapes(ctx,shapes,colors,paintCustom=null) {
     formulaVisible=0;formulaLastPaints=0;formulaLastSubmissions=0;formulaProjection=null;
+    // Every paint starts unknown: resize or external drawing may reset native
+    // state. A declining custom painter must leave the context untouched.
+    const state={};
     for(let index=0;index<shapes.length;index++) {
       const shape=shapes[index];
-      if(paintCustom?.(ctx,shape))continue;
-      if(shape.kind==='formula'){paintFormula(ctx,shape);continue;}
+      if(paintCustom?.(ctx,shape)){invalidatePaintState(state);continue;}
+      if(shape.kind==='formula'){paintFormula(ctx,shape);invalidatePaintState(state);continue;}
       // Depth order is unchanged. Only adjacent compatible lines are batched.
-      if(shape.kind==="line"&&!shape.arrow){index=drawLineRun(ctx,shapes,index,colors);continue;}
+      if(shape.kind==="line"&&!shape.arrow){index=drawLineRun(ctx,shapes,index,colors,state);continue;}
       const points=shape.points,from=points[0],to=points[1];
       path(ctx,points);
       if(shape.kind==="face") {
-        ctx.closePath();ctx.fillStyle=shape.room.faceColors[shape.material];ctx.globalAlpha=shape.alpha;ctx.fill();
-        if(shape.edgeAlpha===0){ctx.strokeStyle=ctx.fillStyle;ctx.lineWidth=.65;ctx.stroke();}
+        const fill=shape.room.faceColors[shape.material];
+        ctx.closePath();setPaintState(ctx,state,'fillStyle',fill);setPaintState(ctx,state,'globalAlpha',shape.alpha);ctx.fill();
+        if(shape.edgeAlpha===0){setPaintState(ctx,state,'strokeStyle',fill);setPaintState(ctx,state,'lineWidth',.65);ctx.stroke();}
         // Explicit silhouettes survive; faint internal mesh edges are omitted
         // on desktop as on mobile. Thousands of invisible strokes cost time.
-        else if(shape.room.world.faces[shape.material].edgeAlpha>.12){ctx.lineWidth=shape.lineWidth;ctx.strokeStyle=colors[shape.color];ctx.globalAlpha=shape.edgeAlpha;ctx.stroke();}
-      } else {ctx.lineWidth=shape.lineWidth;ctx.strokeStyle=colors[shape.color];ctx.globalAlpha=shape.alpha;ctx.stroke();}
+        else if(shape.room.world.faces[shape.material].edgeAlpha>.12){setPaintState(ctx,state,'lineWidth',shape.lineWidth);setPaintState(ctx,state,'strokeStyle',colors[shape.color]);setPaintState(ctx,state,'globalAlpha',shape.edgeAlpha);ctx.stroke();}
+      } else {setPaintState(ctx,state,'lineWidth',shape.lineWidth);setPaintState(ctx,state,'strokeStyle',colors[shape.color]);setPaintState(ctx,state,'globalAlpha',shape.alpha);ctx.stroke();}
       if(shape.arrow) {
         const dx=to[0]-from[0],dy=to[1]-from[1],length=Math.hypot(dx,dy);if(length<10)continue;
         const size=5,ux=dx/length,uy=dy/length;
         ctx.beginPath();ctx.moveTo(to[0]-ux*size-uy*size*.55,to[1]-uy*size+ux*size*.55);ctx.lineTo(...to);ctx.lineTo(to[0]-ux*size+uy*size*.55,to[1]-uy*size-ux*size*.55);ctx.stroke();
       }
     }
-    ctx.globalAlpha=1;
+    setPaintState(ctx,state,'globalAlpha',1);
   }
   return {paintShapes,facePalette,formulaDiagnostics,prepareFormula:formulaBitmap,formulaReady:()=>!!formulaSurface,formulaDrawn:()=>formulaLastPaints>0};
 };

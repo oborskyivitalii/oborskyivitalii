@@ -57,25 +57,25 @@
     },
     ".github/acceptance/issue-31.json": {
       "kind": "file",
-      "purpose": "Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates.",
+      "purpose": "Cleanup AC01\u2013AC11 mapped to source-bound deterministic tests and separate readiness gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-33.json": {
       "kind": "file",
-      "purpose": "Bootstrap/root optimization AC01–AC06 mapped to source-bound assertions and separate review, merge and linkage gates.",
+      "purpose": "Bootstrap/root optimization AC01\u2013AC06 mapped to source-bound assertions and separate review, merge and linkage gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-35.json": {
       "kind": "file",
-      "purpose": "Test optimization AC01–AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates.",
+      "purpose": "Test optimization AC01\u2013AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-36.json": {
       "kind": "file",
-      "purpose": "Writing formula AC01–AC05 mapped to canonical asset, native cache/integration, source-bound browser and paired performance evidence, with remaining human/release gates explicit.",
+      "purpose": "Writing formula AC01\u2013AC05 mapped to canonical asset, native cache/integration, source-bound browser and paired performance evidence, with remaining human/release gates explicit.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -385,37 +385,37 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/a8e28e72e6a74cec41f322a8a87c5f0616f33fc1d468f5152dbd1cfa2d3ce4d3": {
+    "docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff": {
       "kind": "directory",
       "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/a8e28e72e6a74cec41f322a8a87c5f0616f33fc1d468f5152dbd1cfa2d3ce4d3/archive.js": {
+    "docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff/archive.js": {
       "kind": "file",
       "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/a8e28e72e6a74cec41f322a8a87c5f0616f33fc1d468f5152dbd1cfa2d3ce4d3/navigation.js": {
+    "docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff/navigation.js": {
       "kind": "file",
       "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/a8e28e72e6a74cec41f322a8a87c5f0616f33fc1d468f5152dbd1cfa2d3ce4d3/space.js": {
+    "docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff/space.js": {
       "kind": "file",
       "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/a8e28e72e6a74cec41f322a8a87c5f0616f33fc1d468f5152dbd1cfa2d3ce4d3/styles.css": {
+    "docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff/styles.css": {
       "kind": "file",
       "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/a8e28e72e6a74cec41f322a8a87c5f0616f33fc1d468f5152dbd1cfa2d3ce4d3/theme.js": {
+    "docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff/theme.js": {
       "kind": "file",
       "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
       "role": "generated",
@@ -433,61 +433,61 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/6a626819d4a8fdef21cfb604890546e5be96b9e6fe65b0da98b17d0c9ba95f92": {
+    "docs/snapshots/2f6d5fbf34aa829b133360029157fb5ee425571e9ecadd2b443ef6f1e0901986": {
       "kind": "directory",
       "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/6a626819d4a8fdef21cfb604890546e5be96b9e6fe65b0da98b17d0c9ba95f92/talks.html": {
+    "docs/snapshots/2f6d5fbf34aa829b133360029157fb5ee425571e9ecadd2b443ef6f1e0901986/talks.html": {
       "kind": "file",
       "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/4b4724f2563fe042608fba9d8a6b04361318e21a8c5b43cca53522d573cd3a9c": {
+    "docs/snapshots/259616bcb517d2aa0736fc66ec7fad29101355d46f0501151d2101e3b34baaad": {
       "kind": "directory",
       "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/4b4724f2563fe042608fba9d8a6b04361318e21a8c5b43cca53522d573cd3a9c/index.html": {
+    "docs/snapshots/259616bcb517d2aa0736fc66ec7fad29101355d46f0501151d2101e3b34baaad/index.html": {
       "kind": "file",
       "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/8c361aa58c1e6f597983df207992f642296a1219c233c3a34f3508e5072d51c1": {
+    "docs/snapshots/3d0618ceada601d51bfc3e3e69383e0fcd2c2933cd25963eb67638328cb83207": {
       "kind": "directory",
       "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/8c361aa58c1e6f597983df207992f642296a1219c233c3a34f3508e5072d51c1/writing.html": {
+    "docs/snapshots/3d0618ceada601d51bfc3e3e69383e0fcd2c2933cd25963eb67638328cb83207/writing.html": {
       "kind": "file",
       "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/1ebcae4301bb70764bd306b15c7301d6c6107427cb5a2158dc7a8015cdeed3a1": {
+    "docs/snapshots/be7a4cd6562bc70e20f247ee15e4667885db74053acef7397ea075963186a9fb": {
       "kind": "directory",
       "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/1ebcae4301bb70764bd306b15c7301d6c6107427cb5a2158dc7a8015cdeed3a1/credits.html": {
+    "docs/snapshots/be7a4cd6562bc70e20f247ee15e4667885db74053acef7397ea075963186a9fb/credits.html": {
       "kind": "file",
       "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/3b6b3ee8cb495c16f3d54e75accf3cdacef421d72d62e679054236b8035de121": {
+    "docs/snapshots/e31ef87381aa2d33cfe14b0925e58858a69e97b9573f06390d5f9699d85e97f3": {
       "kind": "directory",
       "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/3b6b3ee8cb495c16f3d54e75accf3cdacef421d72d62e679054236b8035de121/research.html": {
+    "docs/snapshots/e31ef87381aa2d33cfe14b0925e58858a69e97b9573f06390d5f9699d85e97f3/research.html": {
       "kind": "file",
       "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
       "role": "generated",
@@ -5739,7 +5739,7 @@
     },
     "site/engine/renderer.cjs": {
       "kind": "file",
-      "purpose": "Ordered Canvas commands, projected facets and adjacent-line batching.",
+      "purpose": "Ordered Canvas commands, projected facets, adjacent-line batching and exact per-paint state deduplication with custom/formula invalidation.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -5997,7 +5997,7 @@
     },
     "tests/renderer.test.cjs": {
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for renderer.",
+      "purpose": "Maintained renderer palette, ordered drawing/state equivalence and cache invalidation, bounded formula projection/sampling/cache and geometry/resource regressions.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },

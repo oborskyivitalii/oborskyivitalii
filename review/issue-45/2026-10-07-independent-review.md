@@ -386,3 +386,40 @@ The same independent reviewer reopened the lint repairs: cleanup error
 propagation occurs after finally and aborts before any further launch; extracted
 test helpers preserve all five named scenario cases. Final5/5 tests pass with
 zero skips and both-file ESLint has zero messages, without rule waivers.
+
+
+## Exact Canvas paint-state deduplication — independent runtime review
+
+An independent reviewer compares the authored repair with `be2ccde`, preserving
+all geometry, order, alpha and native draw commands. Fresh unknown state prevents
+inheriting external/reset context values; handled custom/formula paint invalidates
+the shadow. Current Color returns false before any context writes. The effect
+contract now records that boundary. Known face color replaces a native getter.
+
+Six native Skia Writing comparisons at 390/768/1440 px, Day/Night and selected
+entry/approach phases include actual Color ribbons. All RGBA channels are
+byte-identical; fill/stroke/formula submissions are unchanged, with 18.4–23.1%
+fewer native style setters. Browser TBT remains pending its original 200 ms gate.
+
+Independent cause audit verifies run 37688745681, artifact 11511998677, all four
+source/tree/parent identities and twelve raw gz hash/size records. The private
+ZIP omits `.nojekyll`; 29 retained files are exact and an in-memory canonical
+newline reconstruction reproduces each declared 30-file digest. Negative CPU
+time deltas and unresolved program samples prevent precise function-duration
+attribution. Locations/counts support the setter target, not a native formula
+causal claim. These profiling observations remain nonadmission evidence.
+
+Checksum review verifies exactly 180 new public Hex High Entropy IDs against
+pinned 1.5.0 raw rows, exact line/SHA1 values and maintained generation proof
+across 29 paths. All prior 1,452 records and top-level metadata are identical;
+the total is 1,632. Reasons now record this proof. Historical baseline, scanners,
+helper and original budgets are unchanged. Regular staging/workflow definitions,
+all eleven check definitions, six gates and AC IDs/intents remain unchanged.
+
+The existing semantic style case was extended to check actual identical facet
+draws with five setters rather than nine, no native fillStyle getter, external
+state reset between paints, handled custom state mutation/restoration, and
+24 real formula submissions followed by ordinary state restoration/final alpha.
+The independent strict owning wrapper passes all four selected existing cases
+without skips. These assertions resolve the earlier mapped-coverage concern;
+no broad browser or performance claim follows from the source fixtures.

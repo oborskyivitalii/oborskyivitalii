@@ -813,7 +813,7 @@
     {
       "path": "tests/renderer.test.cjs",
       "language": "javascript",
-      "purpose": "Current renderer exact palettes, draw-state batching, bounded formula source sampling with preserved projection/cache, insignificant pruning, culling/brain normals and Object.hasOwn fallback",
+      "purpose": "Current renderer exact palettes, ordered command/state equivalence and fresh/invalidation boundaries, native state deduplication, bounded formula sampling/projection/cache, insignificant pruning, culling/brain normals and Object.hasOwn fallback",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": [

@@ -203,7 +203,11 @@ an explicit `base`, `color` or `both` argument in
 `review/site-scroll-sync-20261004/export.cjs`. Each file has a variant/digest manifest.
 The effects loader attaches a scene `collect` / `paint` pair and a travel
 presentation through `window.SiteEffects`, contract 1. These narrow hooks cannot
-own another scene clock. One composition stage performs stable final depth sorting.
+own another scene clock. A scene painter returns true only after handling its shape;
+returning false leaves the Canvas context unchanged. The renderer starts a fresh
+paint-state shadow each frame and invalidates it after handled effects/formula
+paint, so redundant native setters cannot inherit external or resized state.
+One composition stage performs stable final depth sorting.
 Native measurement runs through a scoped presentation hook when required.
 
 `tools/site/variants.cjs` binds authored effect code, styles, input controls and

@@ -41,8 +41,11 @@ Dated continuity, not live authority. Last verified: **2026-10-07**.
   The trace attributes most additional task time to recurring browser Commit,
   without function CPU samples. SamePR adds one bounded four-input Writing
   cause-probe scope with original raw/CPU evidence and declared private controls.
-  Normal staging settings/budgets remain unchanged. Use actual attribution to
-  prepare the repair, pass exact-source staging, then merge its tested head.
+  Run37688745681 retains four valid CPU-profiled inputs atbe2ccde/treef6868e.
+  Samples support ordinary thematic Canvas face/line/setter overhead; a narrow
+  identical-state setter dedup repair is being prepared, preserving all draws.
+  Normal staging settings/budgets remain unchanged. Pass its exact-source
+  staging and stable promotion, then merge the same tested head.
   All6AC boxes remain open for literal current-source visual/evidence gates;
   complete-expression occlusion and production/native acceptance remain open.
   [Current handoff](review/issue-45/2026-10-07-handoff.md) retains exact evidence.
@@ -79,7 +82,7 @@ Dated continuity, not live authority. Last verified: **2026-10-07**.
 
 | Issue | Remaining intent |
 | --- | --- |
-| #45 | PR47 main/staging authorized; four-input attribution after failed329.5ms Writing TBT, evidence-based repair, exact staging and guarded merge. Whole-criterion evidence and AC01 visibility remain open. |
+| #45 | PR47 main/staging authorized; CPU attribution after failed329.5ms Writing TBT, exact Canvas state dedup repair, staging and guarded merge. Whole-criterion evidence and AC01 visibility remain open. |
 | #36 / #41 | #43/#44 merged; joint staging and paired/visual/editorial acceptance. |
 | #1 / #13 | First-release, physical-device and full production/recovery acceptance. |
 | #8 / #39 | Production URL/indexability, domains and analytics activation. |

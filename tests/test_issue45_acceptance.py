@@ -29,8 +29,9 @@ def node_checks(files, expected, pattern):
 
 class Issue45AcceptanceTests(unittest.TestCase):
     def test_crisp_world_layers_keep_one_bounded_cache_and_failure_containment(self):
-        node_checks(["tests/renderer.test.cjs"], 3,
-                    "^one fixed formula cache|^formula raster failure|^the Writing landmark inhabits")
+        node_checks(["tests/renderer.test.cjs"], 4,
+                    "^filled facets avoid|^one fixed formula cache|^formula raster failure|"
+                    "^the Writing landmark inhabits")
 
     def test_same_artwork_drives_live_static_and_immutable_producer_identity(self):
         node_checks(["tests/site-engine.test.cjs"], 5,
