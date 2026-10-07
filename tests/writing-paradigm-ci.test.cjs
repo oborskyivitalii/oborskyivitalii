@@ -66,6 +66,9 @@ test('bounded Writing evidence selects only its deliberate same-repository PR la
   ]){const context=event();mutate(context);assert.equal(selected(source,context),false);}
 });
 test('source binding, opt-in guards and raw failure retention cannot be weakened silently',()=>{
+  // Mutate this job and its shared header. Other opt-in jobs may use the same
+  // checkout/guard text; changing their first occurrence cannot test paradigm.
+  const isolated=source.slice(0,source.indexOf('\njobs:'))+'\njobs:\n'+job(source,'paradigm')+'\n';
   for(const change of [
     text=>text.replace('types: [labeled]','types: [labeled, synchronize]'),
     text=>text.replace(" && github.event.label.name == 'site-writing-paradigm-evidence'",''),
@@ -82,7 +85,7 @@ test('source binding, opt-in guards and raw failure retention cannot be weakened
     text=>text.replace('set -o pipefail','set +o pipefail'),
     text=>text.replace('writing-paradigm-results/\n          if-no-files-found: error\n          retention-days: 90','writing-paradigm-results/\n          if-no-files-found: ignore\n          retention-days: 1'),
     text=>text.replaceAll('actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f','actions/upload-artifact@v4')
-  ]){const changed=change(source);assert.notEqual(changed,source,'mutation must exercise a change');assert.throws(()=>contract(changed));}
+  ]){const changed=change(isolated);assert.notEqual(changed,isolated,'mutation must exercise a change');assert.throws(()=>contract(changed));}
 });
 test('original manual Writing diagnostics retain their complete jobs and dispatch isolation',()=>{
   const historical={writing:'894304d5a8e2ec60d9e2d31f533d423d64af3c50dc4b3da5ae874a30346ef928',diagnosis:'7c49f534d48d05d6f5ec0e2e91a7ccdfa7479d869b5a8b4fbad28a5db1d28a18',localization:'8fc57b9361061328315d0dbcd93f2c063c423226028acddfae47caba4964fd2c'};

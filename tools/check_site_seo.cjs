@@ -25,6 +25,9 @@ function restoreApprovedContent(html,page){
     // decorative geometry within the existing fallback, with no content band.
     html=html.replace('<p class="sr-only" data-writing-formula-description>y = f(x) → y ∼ P(y|x): a shift from deterministic mapping to conditional probabilistic modeling.</p>','');
   }
+  // Normalize this exact paint-only ink layer before matching the approved
+  // complete content amendment; unsupported wrappers or changed copy remain.
+  if(titleCopy[page])html=html.replace('<h1><span class="reading-title"><span class="reading-title-ink">'+titleCopy[page]+'</span></span></h1>','<h1><span class="reading-title">'+titleCopy[page]+'</span></h1>');
   html=restoreContentAmendment(html,page);
   if(titleCopy[page])html=html.replace('<h1><span class="reading-title">'+titleCopy[page]+'</span></h1>','<h1>'+titleCopy[page]+'</h1>');
   if(responses[page])html=html.replace(responses[page].after,responses[page].before);

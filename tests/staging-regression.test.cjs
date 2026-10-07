@@ -1,6 +1,30 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict');
 const stage=require('../tools/quality/staging-regression.cjs'),fixture=require('./fixtures/staging-evidence.cjs');
+test('selected mobile Lighthouse traces retain original Writing failure evidence without changing admission',()=>{
+  const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),cp=require('node:child_process'),zlib=require('node:zlib'),crypto=require('node:crypto');
+  const directory=fs.mkdtempSync(path.join(os.tmpdir(),'writing-trace-'));
+  try{
+    cp.execFileSync(process.execPath,['-e',`
+      const {recordTrial}=require('./tools/quality/lighthouse.cjs'),summaries=[];
+      for(const [route,formFactor]of [['research','mobile'],['writing','mobile'],['writing','desktop'],['index','mobile']]){
+        const lhr={configSettings:{formFactor,throttlingMethod:'simulate',throttling:{cpuSlowdownMultiplier:4}},categories:{},audits:{'total-blocking-time':{numericValue:269}},runWarnings:[]};
+        recordTrial(route,formFactor,1,{lhr,artifacts:{Trace:{traceEvents:[{name:'RunTask',dur:129000}]},DevtoolsLog:[{method:'Network.responseReceived'}]}},summaries);
+      }
+    `],{cwd:path.resolve(__dirname,'..'),env:{...process.env,SITE_REPORT_DIR:directory},stdio:'pipe'});
+    const rows=JSON.parse(fs.readFileSync(path.join(directory,'lighthouse-summary.json')));
+    for(const row of rows){
+      assert.equal(row.metrics['total-blocking-time'].numericValue,269);assert.equal(row.configSettings.throttlingMethod,'simulate');assert.equal(row.configSettings.throttling.cpuSlowdownMultiplier,4);
+      const selected=row.formFactor==='mobile'&&['research','writing'].includes(row.route);assert.equal(Boolean(row.originalEvidence),selected);
+      if(!selected)continue;
+      for(const [key,expected]of Object.entries({Trace:{traceEvents:[{name:'RunTask',dur:129000}]},DevtoolsLog:[{method:'Network.responseReceived'}]})){
+        const record=row.originalEvidence[key],bytes=fs.readFileSync(path.join(directory,record.file));assert.equal(record.bytes,bytes.length);assert.equal(record.sha256,crypto.createHash('sha256').update(bytes).digest('hex'));assert.deepEqual(JSON.parse(zlib.gunzipSync(bytes)),expected);
+      }
+    }
+    const failed=fixture.performanceReport();failed.lighthouse.find(row=>row.route==='writing').metrics['total-blocking-time'].numericValue=269;
+    assert.throws(()=>stage.validatePerformance(failed),/writing smoke total-blocking-time: 269 > 200/);
+  }finally{fs.rmSync(directory,{recursive:true,force:true});}
+});
 test('staging registry matches the actual bounded selectors and owns each analytics case',()=>{
   assert.equal(stage.registryCheck(),true);assert.equal(stage.journeyCases().length,6);assert.equal(stage.failureCases().length,10);
   const analytics=require('../tools/quality/analytics-browser.cjs');assert.deepEqual(analytics.selectedCases('chromium',stage.analyticsCases()),stage.analyticsCases());

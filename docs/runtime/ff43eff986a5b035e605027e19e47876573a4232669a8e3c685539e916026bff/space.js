@@ -780,7 +780,7 @@ const world=(function(math) {
     // One extruded landmark sits in the open centre of the first book/page
     // fractal. Its corners are world geometry, sharing that root's living
     // transform and the camera's forward journey on every viewport.
-    const formulas=page==='writing'?[{id:'writing-paradigm',center:[0,0,-5],rootCenter:roots[0],root:0,phase:0,width:12,aspect:1380/240,rotation:[.08,-.22,.08],extrusion:.32}]:[];
+    const formulas=page==='writing'?[{id:'writing-paradigm',center:[0,0,-5],rootCenter:roots[0],root:0,phase:0,width:12,aspect:1380/240,rotation:[.08,-.22,.08],extrusion:.10}]:[];
     return {faces,lines,objects,formulas};
   }
   function prepareFace(f,light) {
@@ -1017,12 +1017,17 @@ const renderer=(function(artwork=null,createSurface=null) {
     let saved=false;
     try{
       ctx.save();saved=true;ctx.globalAlpha=shape.alpha;ctx.globalCompositeOperation='source-over';
+      // Warped glyphs are minified; request the native high-quality sampling
+      // path rather than the default bilinear texture sampling.
+      ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';
       // A fixed four-strip mesh follows the projected world plane. Three
       // z-slices give the actual tilted glyphs thickness, using the same single
       // cache. This is one landmark with at most 24 native submissions, not
       // viewport-sized caches, per-glyph geometry or another animation clock.
       for(let layer=0;layer<shape.cameraLayers.length;layer++){
-        ctx.globalAlpha=shape.alpha*[.30,.45,1][layer];
+        // Shared world haze is sufficient. Extra translucent rear copies created
+        // a pale halo around every stroke instead of a definite solid edge.
+        ctx.globalAlpha=shape.alpha;
         const corners=shape.cameraLayers[layer];
         const at=(u,v)=>{
           const top=corners[0].map((value,i)=>value+(corners[1][i]-value)*u),bottom=corners[3].map((value,i)=>value+(corners[2][i]-value)*u),p=top.map((value,i)=>value+(bottom[i]-value)*v);
@@ -1041,11 +1046,16 @@ const renderer=(function(artwork=null,createSurface=null) {
     const [p,q,r]=source,[P,Q,R]=points,dx=q[0]-p[0],dy=q[1]-p[1],ex=r[0]-p[0],ey=r[1]-p[1],den=dx*ey-dy*ex;
     const a=((Q[0]-P[0])*ey-(R[0]-P[0])*dy)/den,c=((R[0]-P[0])*dx-(Q[0]-P[0])*ex)/den;
     const b=((Q[1]-P[1])*ey-(R[1]-P[1])*dy)/den,d=((R[1]-P[1])*dx-(Q[1]-P[1])*ex)/den;
+    // Bound native resampling to this strip while keeping a two-CSS-pixel
+    // neighbourhood in source x. The inverse affine x row is [d,-c]/det;
+    // singular or extremely minified transforms safely use the whole bitmap.
+    const determinant=Math.abs(a*d-b*c),guard=determinant>1e-12?Math.min(surface.width,Math.ceil(2*Math.hypot(c,d)/determinant)):surface.width;
+    const left=Math.max(0,Math.min(p[0],q[0],r[0])-guard),right=Math.min(surface.width,Math.max(p[0],q[0],r[0])+guard);
     ctx.save();
     try{
       path(ctx,points);ctx.closePath();ctx.clip();
       ctx.transform(a,b,c,d,P[0]-a*p[0]-c*p[1],P[1]-b*p[0]-d*p[1]);
-      ctx.drawImage(surface,0,0);formulaSubmissions++;formulaLastSubmissions++;
+      ctx.drawImage(surface,left,0,right-left,surface.height,left,0,right-left,surface.height);formulaSubmissions++;formulaLastSubmissions++;
     }finally{ctx.restore();}
   }
   function formulaDiagnostics() {
@@ -1075,9 +1085,16 @@ const renderer=(function(artwork=null,createSurface=null) {
     ctx.beginPath();ctx.moveTo(points[0][0],points[0][1]);
     for(let i=1;i<points.length;i++)ctx.lineTo(points[i][0],points[i][1]);
   }
-  function drawLineRun(ctx,shapes,index,colors) {
+  function setPaintState(ctx,state,property,value) {
+    if(state[property]===value)return;
+    ctx[property]=value;state[property]=value;
+  }
+  function invalidatePaintState(state) {
+    state.fillStyle=state.strokeStyle=state.lineWidth=state.globalAlpha=undefined;
+  }
+  function drawLineRun(ctx,shapes,index,colors,state) {
     const first=shapes[index],alpha=first.alpha;
-    ctx.beginPath();ctx.lineWidth=first.lineWidth;ctx.strokeStyle=colors[first.color];ctx.globalAlpha=alpha;
+    ctx.beginPath();setPaintState(ctx,state,'lineWidth',first.lineWidth);setPaintState(ctx,state,'strokeStyle',colors[first.color]);setPaintState(ctx,state,'globalAlpha',alpha);
     let end=index;
     while(end<shapes.length){
       const shape=shapes[end];
@@ -1088,28 +1105,32 @@ const renderer=(function(artwork=null,createSurface=null) {
   }
   function paintShapes(ctx,shapes,colors,paintCustom=null) {
     formulaVisible=0;formulaLastPaints=0;formulaLastSubmissions=0;formulaProjection=null;
+    // Every paint starts unknown: resize or external drawing may reset native
+    // state. A declining custom painter must leave the context untouched.
+    const state={};
     for(let index=0;index<shapes.length;index++) {
       const shape=shapes[index];
-      if(paintCustom?.(ctx,shape))continue;
-      if(shape.kind==='formula'){paintFormula(ctx,shape);continue;}
+      if(paintCustom?.(ctx,shape)){invalidatePaintState(state);continue;}
+      if(shape.kind==='formula'){paintFormula(ctx,shape);invalidatePaintState(state);continue;}
       // Depth order is unchanged. Only adjacent compatible lines are batched.
-      if(shape.kind==="line"&&!shape.arrow){index=drawLineRun(ctx,shapes,index,colors);continue;}
+      if(shape.kind==="line"&&!shape.arrow){index=drawLineRun(ctx,shapes,index,colors,state);continue;}
       const points=shape.points,from=points[0],to=points[1];
       path(ctx,points);
       if(shape.kind==="face") {
-        ctx.closePath();ctx.fillStyle=shape.room.faceColors[shape.material];ctx.globalAlpha=shape.alpha;ctx.fill();
-        if(shape.edgeAlpha===0){ctx.strokeStyle=ctx.fillStyle;ctx.lineWidth=.65;ctx.stroke();}
+        const fill=shape.room.faceColors[shape.material];
+        ctx.closePath();setPaintState(ctx,state,'fillStyle',fill);setPaintState(ctx,state,'globalAlpha',shape.alpha);ctx.fill();
+        if(shape.edgeAlpha===0){setPaintState(ctx,state,'strokeStyle',fill);setPaintState(ctx,state,'lineWidth',.65);ctx.stroke();}
         // Explicit silhouettes survive; faint internal mesh edges are omitted
         // on desktop as on mobile. Thousands of invisible strokes cost time.
-        else if(shape.room.world.faces[shape.material].edgeAlpha>.12){ctx.lineWidth=shape.lineWidth;ctx.strokeStyle=colors[shape.color];ctx.globalAlpha=shape.edgeAlpha;ctx.stroke();}
-      } else {ctx.lineWidth=shape.lineWidth;ctx.strokeStyle=colors[shape.color];ctx.globalAlpha=shape.alpha;ctx.stroke();}
+        else if(shape.room.world.faces[shape.material].edgeAlpha>.12){setPaintState(ctx,state,'lineWidth',shape.lineWidth);setPaintState(ctx,state,'strokeStyle',colors[shape.color]);setPaintState(ctx,state,'globalAlpha',shape.edgeAlpha);ctx.stroke();}
+      } else {setPaintState(ctx,state,'lineWidth',shape.lineWidth);setPaintState(ctx,state,'strokeStyle',colors[shape.color]);setPaintState(ctx,state,'globalAlpha',shape.alpha);ctx.stroke();}
       if(shape.arrow) {
         const dx=to[0]-from[0],dy=to[1]-from[1],length=Math.hypot(dx,dy);if(length<10)continue;
         const size=5,ux=dx/length,uy=dy/length;
         ctx.beginPath();ctx.moveTo(to[0]-ux*size-uy*size*.55,to[1]-uy*size+ux*size*.55);ctx.lineTo(...to);ctx.lineTo(to[0]-ux*size+uy*size*.55,to[1]-uy*size-ux*size*.55);ctx.stroke();
       }
     }
-    ctx.globalAlpha=1;
+    setPaintState(ctx,state,'globalAlpha',1);
   }
   return {paintShapes,facePalette,formulaDiagnostics,prepareFormula:formulaBitmap,formulaReady:()=>!!formulaSurface,formulaDrawn:()=>formulaLastPaints>0};
 })({
@@ -1671,7 +1692,7 @@ const renderer=(function(artwork=null,createSurface=null) {
 const api={...math,...definitions,...world,...projection,...renderer};
 if(typeof module!=="undefined"&&module.exports)module.exports=api;
 (function(api) {
-  const {sub,mix,clamp,LOOP_MS,rates,owns,smooth,atmosphereState,followCamera,fitScrollStops,writingProgress,cadenceFor,nextDeadline,poses,topicPaths,pageStops,initialPoses,routeOrder,roomSpacing,worldFor,projectedWorld,paintShapes,journeyPose,routePose,roomOffset,translatePose}=api;
+  const {sub,mix,clamp,LOOP_MS,rates,owns,atmosphereState,followCamera,fitScrollStops,writingProgress,cadenceFor,nextDeadline,poses,topicPaths,pageStops,initialPoses,routeOrder,roomSpacing,worldFor,projectedWorld,paintShapes,journeyPose,routePose,roomOffset,translatePose}=api;
   if (typeof document === "undefined") return;
   const canvas = document.getElementById("space-canvas");
   const control = document.getElementById("space-motion");
@@ -1698,7 +1719,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
   let idleRate=30,costAverage=0,costSamples=0,cadenceSlow=0,cadenceFast=0,lastCadenceChange=0,detailTier=0,displayedTier=0;
   let tier=0,slow=0,fast=0,lastQualityChange=0,hold=false;
   const clock=()=>window.performance?.now()??Date.now();
-  let current=routePose(page,poses[initial]), animation=null, writingAnchor=null,displayedTime=0,displayedCamera=current,journey=null;
+  let current=routePose(page,poses[initial]), animation=null, writingAnchor=null,displayedTime=0,displayedCamera=current,displayedProgress=0,journey=null;
   let travelUpdate=null;
   let colors={cyan:"#075d7b",amber:"#895710",paper:"#f8f7f3"};
   let paletteRevision=0,colorFills=new Map();
@@ -1752,7 +1773,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     layoutDirty=false;const reasons=[...layoutReasons];layoutReasons.clear();
     const start=window.SiteEngineProbe?clock():0;measure();
     if(window.SiteEngineProbe)diagnostic('layout',{reasons,passes:layoutPasses,start,duration:clock()-start});
-    const target=scrollPose();if(journey)journey.to=target;else moveTo(target);
+    const target=scrollPose();if(journey)retargetJourney(target);else moveTo(target);
     nextDraw=null;
   }
   function invalidateLayout(reason) {
@@ -1800,6 +1821,9 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     const room=variants.get(detail);if(room.paletteRevision!==paletteRevision)paintColors(room);return room;
   }
   function scrollPose() {
+    // Departure keeps the old DOM until the hidden content midpoint. Its
+    // delayed scroll events cannot describe or retarget the incoming route.
+    if(document.body.dataset.page!==page)return journey?.to||current;
     if (page==="writing") {
       if (!bounds) return journey?pathPose():current;
       localProgress=writingProgress(window.scrollY,bounds,writingAnchor);
@@ -1818,11 +1842,11 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     if(pending!==null)window.cancelAnimationFrame(pending);
     pending=null;animation=null;lastFrame=null;nextDraw=null;
     ambientTime=displayedTime;current=displayedCamera;detailTier=displayedTier;
-    if(journey){journey.from=current;journey.elapsed=0;}
+    if(journey){rebaseJourney(journey.to,displayedProgress);journey.started=false;}
   }
   function moveTo(target) {
     if (!initialized || failed || hold || document.hidden || printing || !enabled) return;
-    if(journey){journey.to=target;return;}
+    if(journey){retargetJourney(target);return;}
     if(Math.hypot(...sub(current.position,target.position),...sub(current.target,target.target))<1e-6){animation=null;return;}
     // Retarget without resetting the frame clock. Resetting start on every scroll
     // event would keep the camera at t=0 during a continuous wheel/touch gesture.
@@ -1859,6 +1883,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     if(canvas.width!==w || canvas.height!==h){canvas.width=w;canvas.height=h;}
     ctx.setTransform(ratio,0,0,ratio,0,0);ctx.clearRect(0,0,width,height);
     const state={current,width,height,ambientTime,compact,scene,detailTier};
+    if(window.SiteRibbonProbe)state.journey=journey;
     const geometry=visibleRooms();span('draw-project');
     const custom=sceneEffects?.collect(state)||[];span('draw-effects');
     const shapes=geometry.concat(custom).sort((a,b)=>b.depth-a.depth);span('draw-sort');
@@ -1868,7 +1893,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     scene.style?.setProperty("--air-x",air.x.toFixed(3)+"px");
     scene.style?.setProperty("--air-y",air.y.toFixed(3)+"px");
     scene.style?.setProperty("--air-light",air.light.toFixed(5));
-    ctx.globalAlpha=1;scene.dataset.ready="true";displayedTime=ambientTime;displayedCamera=current;displayedTier=detailTier;
+    ctx.globalAlpha=1;scene.dataset.ready="true";displayedTime=ambientTime;displayedCamera=current;displayedTier=detailTier;displayedProgress=journeyProgress();
     scene.dataset.phase=String(ambientTime);scene.dataset.camera=JSON.stringify(current);scene.dataset.detail=String(detailTier);
     scene.dataset.route=page;scene.dataset.travel=journey?"flying":"settled";scene.dataset.rooms=String(rooms.size);
     scene.dataset.geometry=compact||detailTier>=.5?"compact":"full";
@@ -1916,11 +1941,31 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     else if(fast>=100 && tier>0){tier--;ratio=pixelRatio();slow=fast=0;lastQualityChange=time;}
     scene.dataset.quality=hold?"still":String(tier);
   }
+  function journeyProgress() {
+    return journey?journey.progressStart+(1-journey.progressStart)*clamp(journey.elapsed/journey.duration):1;
+  }
+  function rebaseJourney(target,progress=journeyProgress()) {
+    // Layout/history can change the destination after its DOM is mounted.
+    // Start the remaining segment at the actual current camera, preserving
+    // both the existing arrival deadline and monotonically painted progress.
+    const segment=clamp((progress-journey.progressStart)/Math.max(1e-12,1-journey.progressStart)),remaining=Math.max(1,journey.duration*(1-segment));
+    journey={from:current,to:target,elapsed:0,duration:remaining,progressStart:progress,started:journey.started};
+  }
+  function retargetJourney(target) {
+    if(Math.hypot(...sub(journey.to.position,target.position),...sub(journey.to.target,target.target))<1e-6)return;
+    rebaseJourney(target);
+  }
   function advanceJourney(delta,living) {
     if(journey&&living) {
-      journey.elapsed+=delta;
+      // A cold room preparation cannot consume the new flight before its first
+      // displayed frame. Ambient time still advances on the shared RAF clock.
+      if(journey.started)journey.elapsed+=delta;else journey.started=true;
       const t=clamp(journey.elapsed/journey.duration);
-      current=mix(journey.from,journey.to,smooth(t));
+      // Eased suffix of the original global progress. Cancelling its squared
+      // remaining factor avoids numerical division near arrival and keeps
+      // retargets moving instead of restarting smooth() at zero velocity.
+      const remainder=1-journey.progressStart,v=1-t,eased=1-v*v*(3-2*remainder*v)/(3-2*remainder);
+      current=mix(journey.from,journey.to,eased);
       if(t===1){current=journey.to;journey=null;}
     }
   }
@@ -1949,7 +1994,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       try{draw();}catch{fail();return;}
       const renderCost=clock()-start;
       // Text follows the painted camera, including skipped frames and stalls.
-      if(travelUpdate)reportTravel(journey?clamp(journey.elapsed/journey.duration):1);
+      if(travelUpdate)reportTravel(journeyProgress());
       nextDraw=nextDeadline(nextDraw,time,interval);
       // Decorative quality responds to rendering cost. The entire callback,
       // including route mount, is still measured by the outer frame/ready gate.
@@ -1984,7 +2029,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     moveTo(scrollPose());
   },{passive:true});
   window.addEventListener("site:scene-focus",event=>{
-    if(page!=="writing" || !owns(topicPaths,event.detail?.focus))return;
+    if(document.body.dataset.page!==page || page!=="writing" || !owns(topicPaths,event.detail?.focus))return;
     focus=event.detail.focus;invalidateLayout('archive-focus');
     if(!enabled || hold || document.hidden || printing)return;
     const target=pathPose();
@@ -2018,19 +2063,34 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
   }
   observeLayout();
   document.fonts?.addEventListener?.("loadingdone",resize);
+  function landingPose(landing,from,travelling) {
+    // Writing URL filters/fragments can select a different canonical topic
+    // path, including its endpoint. Let the mounted archive identify it.
+    if(travelling&&page==="writing"&&(landing?.search||landing?.hash))return from;
+    if(landing?.position==="end") {
+      const ids=page==="writing"?topicPaths.all:Object.values(pageStops[page]||{});
+      return pose(ids.at(-1)||initialPoses[page]);
+    }
+    // Interior history and fragments need the incoming page's native layout.
+    // Keep the displayed pose until the existing hidden midpoint mount measures
+    // that landing; guessing its initial pose can pass the destination first.
+    if(travelling&&(landing?.position?.[1]>0 || (!landing?.position&&landing?.hash)))return from;
+    return pose(initialPoses[page]);
+  }
   window.SiteScene={
     managesLayout:true,
     canTravel:()=>initialized&&!failed&&enabled&&!reduced.matches&&!hold&&!printing&&!document.hidden,
-    navigate(next,animate=true,update=null){
+    navigate(next,animate=true,update=null,landing=null){
       if(!owns(initialPoses,next))return;
       // Media-query state can change before its queued change event is delivered.
       if(reduced.matches&&enabled){enabled=false;cancel();updateControl();}
-      const from=displayedCamera,sourcePage=page;page=next;focus="all";localProgress=0;writingAnchor=null;
-      const target=pose(initialPoses[page]);
-      animation=null;current=from;
-      scene.dataset.direction=target.position[2]<from.position[2]?"forward":"backward";
-      if(animate&&this.canTravel()){
-        journey={from,to:target,elapsed:0,duration:Math.min(1700,1000+Math.abs(target.position[2]-from.position[2])*2)};
+      const from=displayedCamera,sourcePage=page;page=next;focus="all";localProgress=landing?.position==="end"?1:0;writingAnchor=null;
+      const travelling=animate&&this.canTravel(),target=landingPose(landing,from,travelling);
+      animation=null;current=from;displayedProgress=0;
+      const forward=target.position[2]===from.position[2]?routeOrder.indexOf(page)>routeOrder.indexOf(sourcePage):target.position[2]<from.position[2];
+      scene.dataset.direction=forward?"forward":"backward";
+      if(travelling){
+        journey={from,to:target,elapsed:0,duration:Math.min(1700,1000+Math.abs(target.position[2]-from.position[2])*2),progressStart:0,started:false};
       }else{journey=null;current=target;}
       scene.dataset.travel=journey?"flying":"settled";
       travelUpdate=update;

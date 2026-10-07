@@ -5,17 +5,26 @@ const section=(name,next)=>{const start=source.indexOf('  function '+name+'('),e
 const flightSource=section('flight','mount'),interruptSource=section('interrupt','motionAllowed');
 const finishSource=source.match(/ {2}function finishText\(\)\{[^\n]+\}/)[0];
 function harness(options={}){
-  const tasks=new Map(),presented=[],commits=[],probes=[];let timer=0,clock=10,callback=null,route='research',throwCommit=false,clearCount=0,detachCount=0;
+  const tasks=new Map(),presented=[],commits=[],probes=[],sceneCalls=[];let timer=0,clock=10,callback=null,route='research',throwCommit=false,clearCount=0,detachCount=0;
   const content={inert:false,style:{},removeAttribute(){}};
   const presentation=options.base?null:{mountAt:.5,canTravel:()=>true,present(progress,direction){presented.push({progress,direction,route});}};
   const window={setTimeout(fn,delay){assert.equal(delay,0);const id=++timer;tasks.set(id,fn);return id;},clearTimeout(id){tasks.delete(id);},SiteEngineProbe:options.probe===false?null:event=>probes.push(event)};
-  window.SiteScene=options.noScene?null:{navigate(next,animate,update){callback=update;update(animate?0:1);},detachTravel(){detachCount++;}};
+  window.SiteScene=options.noScene?null:{navigate(next,animate,update,landing){sceneCalls.push({next,animate,landing});callback=update;update(animate?0:1);},detachTravel(){detachCount++;}};
   const context={window,document:{querySelector:()=>({dataset:{direction:'forward'}})},content,presentation,performance:{now:()=>clock++},clearText(){clearCount++;content.inert=false;},releaseEndpoint(){},releaseTail(){},Promise};
   vm.runInNewContext(`let serial=1,transition=null,request={abort(){}};${interruptSource}${flightSource}${finishSource}
-    globalThis.api={start(next='writing',animate=true){return flight(next,animate,()=>{commitHook(next);},serial,presentation?{opacity:1,z:0}:1);},interrupt(){serial++;return interrupt();},finishText,transition:()=>transition,serial:()=>serial};`,context);
+    globalThis.api={start(next='writing',animate=true,landing=null){return flight(next,animate,()=>{commitHook(next);},serial,presentation?{opacity:1,z:0}:1,landing);},interrupt(){serial++;return interrupt();},finishText,transition:()=>transition,serial:()=>serial};`,context);
   context.commitHook=next=>{if(throwCommit)throw Error('native mount failed');commits.push(next);route=next;};
-  return {api:context.api,content,tasks,presented,commits,probes,progress:progress=>callback(progress),task(){const [id,fn]=tasks.entries().next().value||[];assert.ok(fn,'expected queued mount');tasks.delete(id);fn();},captureTask(){return tasks.values().next().value;},failCommit(){throwCommit=true;},clears:()=>clearCount,detaches:()=>detachCount};
+  return {api:context.api,content,tasks,presented,commits,probes,sceneCalls,progress:progress=>callback(progress),task(){const [id,fn]=tasks.entries().next().value||[];assert.ok(fn,'expected queued mount');tasks.delete(id);fn();},captureTask(){return tasks.values().next().value;},failCommit(){throwCommit=true;},clears:()=>clearCount,detaches:()=>detachCount};
 }
+test('navigation flight forwards native endpoint, history and fragment landing intent to the scene',async()=>{
+  for(const landing of [{position:'end',hash:''},{position:[0,7050],hash:''},{position:null,hash:'#topics'},{position:'end',hash:'',search:'?topic=leadership'}]){
+    const h=harness(),promise=h.api.start('writing',true,landing);
+    assert.equal(h.sceneCalls.length,1);assert.equal(h.sceneCalls[0].next,'writing');assert.equal(h.sceneCalls[0].animate,true);
+    assert.equal(h.sceneCalls[0].landing,landing,'the renderer receives the exact native landing request before its first paint');
+    h.progress(.56);assert.deepEqual(h.commits,[]);h.task();h.progress(1);await promise;
+    assert.deepEqual(h.commits,['writing']);
+  }
+});
 test('animated Color yields the completed camera paint before native mount, with no second animation clock',async()=>{
   const h=harness(),promise=h.api.start();let settled=false;promise.then(()=>settled=true);
   h.progress(.56);assert.deepEqual(h.commits,[]);assert.equal(h.tasks.size,1);assert.equal(h.presented.at(-1).progress,.5,'old DOM stays hidden if painted progress overshoots midpoint');

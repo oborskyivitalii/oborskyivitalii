@@ -4,7 +4,7 @@ Dated continuity, not live authority. Last verified: **2026-10-07**.
 
 ## Snapshot
 
-- Main is `76f2a78` after authorized joint PR #43 merge; #35 / PR #37 is
+- Main is `709c6d0` after joint PR #43 and compatibility PR #44 merge; #35 / PR #37 is
   merged. #31/#32 and #33/#34 are completed. Read their pinned issue evidence.
 - The maintainer requests one joint staging run for [#36](https://github.com/oborskyivitalii/oborskyivitalii/issues/36)
   / [PR #38](https://github.com/oborskyivitalii/oborskyivitalii/pull/38) and
@@ -19,8 +19,36 @@ Dated continuity, not live authority. Last verified: **2026-10-07**.
   static checks; its absolute performance passed. The repaired candidate passes
   258 selected source cases. PR #44 at eb81a61 has four green minimal CI runs.
   Corrected #43 at072a7b8 passed four minimal CI runs and merged at76f2a78.
-  PR #44 is adapted on that main with the full24-check joint policy. One bounded
+  PR #44 is now merged at709c6d0. One bounded
   joint staging run and current exact deployment are tracked in the live issues.
+- #45 owns the successor DraftPR47; PR46 is closed/unmerged. Main709c6d0
+  still lacks its formula/heading/ribbon work, retained on
+  `work/issue45-camera-surfaces-20261007`. Camera repair plans native reverse
+  end landings, rejects departing-DOM retargets and measures unknown landings
+  after destination mount. Historical675b389 passes60geometry/52opaque-surface
+  cases and96cold/warm flights; those reports retain that earlier source.
+  Published3beaad56/tree8c813250 restores87% shared background alpha while
+  retaining opaque ink, crisp four12px corners and same-owner reduced-
+  transparency100%. Its required source CI/preview pass; actual live QA covers
+  26desktop Day/Night paint samples, not a new52-sample/two-width motion report.
+  At21:37 Europe/Warsaw the maintainer authorizes main/stable staging, superseding
+  the earlier stop. Stage37676079833 timed out installing Ubuntu dependencies;
+  retry37678648242 passed installation, static/host/functional/Color/motion
+  but failed Writing mobile TBT269ms against the unchanged200ms budget.
+  Source79becad/tree0fda9fe7 bounds texture source windows and retains original
+  Writing traces. Its current PR CI passes, but stage37684440827 fails only
+  Writing TBT329.5ms; no benefit is established and promotion is skipped.
+  The trace attributes most additional task time to recurring browser Commit,
+  without function CPU samples. SamePR adds one bounded four-input Writing
+  cause-probe scope with original raw/CPU evidence and declared private controls.
+  Run37688745681 retains four valid CPU-profiled inputs atbe2ccde/treef6868e.
+  Samples support ordinary thematic Canvas face/line/setter overhead; a narrow
+  identical-state setter dedup repair is being prepared, preserving all draws.
+  Normal staging settings/budgets remain unchanged. Pass its exact-source
+  staging and stable promotion, then merge the same tested head.
+  All6AC boxes remain open for literal current-source visual/evidence gates;
+  complete-expression occlusion and production/native acceptance remain open.
+  [Current handoff](review/issue-45/2026-10-07-handoff.md) retains exact evidence.
 - #36 places one tilted, pulsing formula in Writing's books/pages fractal,
   sharing its camera/clock and bounded cache. Rejected banner benchmarks are
   historical failures, not acceptance of this world-space implementation.
@@ -54,7 +82,8 @@ Dated continuity, not live authority. Last verified: **2026-10-07**.
 
 | Issue | Remaining intent |
 | --- | --- |
-| #36 / #41 | #43 merged; adapted #44/joint staging, legacy recovery compatibility; paired evidence and visual/editorial/independent gates. |
+| #45 | PR47 main/staging authorized; CPU attribution after failed329.5ms Writing TBT, exact Canvas state dedup repair, staging and guarded merge. Whole-criterion evidence and AC01 visibility remain open. |
+| #36 / #41 | #43/#44 merged; joint staging and paired/visual/editorial acceptance. |
 | #1 / #13 | First-release, physical-device and full production/recovery acceptance. |
 | #8 / #39 | Production URL/indexability, domains and analytics activation. |
 | #7 | License and editorial/third-party rights. |

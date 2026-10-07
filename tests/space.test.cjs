@@ -31,6 +31,10 @@ function visit(options={}) {
   class MutationObserver{constructor(fn){this.callback=fn;}observe(_,options){if(options?.attributeFilter?.includes('data-theme'))mutation=this.callback;}disconnect(){}}
   window.MutationObserver=MutationObserver;
   if(options.probe)window.SiteEngineProbe=options.probe;
+  if(options.ribbonProbe){
+    window.SiteRibbonProbe=()=>{};
+    window.SiteEffects={contract:1,scene:()=>({collect:state=>{options.ribbonProbe(JSON.parse(JSON.stringify({current:state.current,ambientTime:state.ambientTime,journey:state.journey})));return [];},paint:()=>false})};
+  }
   const localStorage={getItem(){if(options.blockedStorage)throw Error("blocked");return stored;},setItem(_,value){if(options.blockedStorage)throw Error("blocked");stored=value;}};
   vm.runInNewContext(source,{document,window,localStorage});
   const api={window,document,button,canvas,scene,pending,calls,media,narrow,events,formulaConstructions:()=>formulaConstructions,
@@ -421,6 +425,116 @@ test("travel progress is emitted with the displayed camera, retargets cleanly an
   p.window.SiteScene.detachTravel();const detached=next.length;p.frame(80);assert.equal(next.length,detached);
   p.window.SiteScene.navigate("index",true,value=>next.push(value));p.drawingFault();p.frame(80);
   assert.equal(next.at(-1),1);assert.equal(p.pending.size,0);
+});
+
+function assertFlightDepths(paints,sourceZ,endpointZ){
+  const direction=Math.sign(endpointZ-sourceZ),lower=Math.min(sourceZ,endpointZ),upper=Math.max(sourceZ,endpointZ);
+  const depths=paints.map(state=>state.current.position[2]);
+  assert.ok(depths.length>10,'the assertion observes the displayed flight before and after mount');
+  assert.ok(depths.every(z=>z>=lower-1e-8&&z<=upper+1e-8),'the camera never passes its actual landing depth');
+  for(let i=1;i<depths.length;i++)assert.ok(direction*(depths[i]-depths[i-1])>=-1e-8,'content mount cannot reverse the camera depth direction');
+}
+function mountSceneFixture(p,page,y,focus=null){
+  p.document.body.dataset.page=page;p.window.scrollY=y;
+  if(focus)p.event('site:scene-focus',{focus,reason:'initial'});
+  p.stops(Object.keys(model.pageStops[page]||{}).map((id,index)=>[id,index*1100]));
+  p.window.SiteScene.refresh({sync:true});
+}
+function nativeReadingPose(page,y,{narrow=false,height=900,focus=null}={}){
+  const p=visit({page,narrow});p.window.innerHeight=height;
+  if(focus)p.event('site:scene-focus',{focus,reason:'initial'});
+  p.event('resize');p.settle();p.scroll(y);p.settle();
+  return JSON.parse(p.trace());
+}
+function assertInstantLanding(to,landing,options){
+  const p=visit(options);p.settle();let progress=0;
+  p.window.SiteScene.navigate(to,options.animate!==false,value=>progress=value,landing);p.settle();
+  assert.deepEqual(JSON.parse(p.trace()),model.routePose(to,model.poses[model.initialPoses[to]]),'an unresolved landing cannot retain the old room on an instant arrival');
+  assert.equal(progress,1);assert.equal(p.scene.dataset.travel,'settled');
+}
+function reverseEndpointFlight(from,to,narrow){
+  const target=nativeReadingPose(to,14100,{narrow}),paints=[],p=visit({page:from,narrow,ribbonProbe:state=>paints.push(state)});p.settle();
+  for(const warm of [false,true]){
+    if(warm){p.window.SiteScene.navigate(from,false);mountSceneFixture(p,from,0);p.settle();}
+    const sourceZ=JSON.parse(p.trace()).position[2];let progress=0;paints.length=0;
+    p.window.SiteScene.navigate(to,true,value=>progress=value,{position:'end',hash:''});p.frame(80);
+    assert.equal(p.document.body.dataset.page,from);
+    assert.deepEqual(paints.at(-1).journey.to,target,'the native bottom is the flight target before incoming DOM exists');
+    p.scroll(0);advanceUntil(p,()=>progress>=.5,'reverse endpoint flight reaches the hidden content mount',20);
+    mountSceneFixture(p,to,14100);
+    for(let i=0;i<30;i++)p.frame(80);
+    assert.deepEqual(JSON.parse(p.trace()),target);assert.equal(progress,1);
+    assertFlightDepths(paints,sourceZ,target.position[2]);
+  }
+}
+test("departure scroll events cannot retarget a flight through source page geometry",()=>{
+  const paints=[],p=visit({ribbonProbe:state=>paints.push(state)});p.settle();p.scroll(14100);p.settle();
+  const sourceZ=JSON.parse(p.trace()).position[2],target=model.routePose('research',model.poses[model.initialPoses.research]);
+  let progress=0;paints.length=0;
+  p.window.SiteScene.navigate('research',true,value=>progress=value);
+  // A queued native scroll from the source page can arrive after scene routing,
+  // while the incoming DOM has not been mounted at the hidden midpoint yet.
+  p.scroll(14100);p.frame(80);
+  assert.equal(p.document.body.dataset.page,'index');
+  assert.deepEqual(paints.at(-1).journey.to,target,'source semantic stops cannot supply a destination target');
+  advanceUntil(p,()=>progress>=.5,'the real displayed flight reaches its mount midpoint',20);
+  mountSceneFixture(p,'research',0);
+  for(let i=0;i<30;i++)p.frame(80);
+  assert.deepEqual(JSON.parse(p.trace()),target);assert.equal(progress,1);
+  assertFlightDepths(paints,sourceZ,target.position[2]);
+});
+test("reverse endpoint flights target the destination bottom before content mount and retain depth direction",()=>{
+  for(const narrow of [false,true])for(const [from,to]of [['credits','talks'],['talks','writing'],['writing','research'],['research','index']])reverseEndpointFlight(from,to,narrow);
+});
+test("unknown history and fragment landings hold the displayed camera until destination mount",()=>{
+  const cases=[['research',{position:[0,7050],hash:''},7050,null],['research',{position:null,hash:'#topics'},2200,null],['writing',{position:'end',hash:'',search:'?topic=leadership'},14300,'leadership']];
+  for(const [to,landing,y,focus]of cases){
+    const paints=[],p=visit({ribbonProbe:state=>paints.push(state)});p.settle();p.scroll(14100);p.settle();
+    const displayed=p.trace(),phase=p.phase();let progress=0;paints.length=0;
+    p.window.SiteScene.navigate(to,true,value=>progress=value,landing);assert.equal(p.scene.dataset.direction,'forward');
+    p.scroll(14100);p.window.innerHeight=700;p.event('resize');
+    advanceUntil(p,()=>progress>=.5,'an unresolved landing still reaches the hidden content mount',20);
+    assert.equal(p.trace(),displayed,'unknown native geometry must not cause a speculative camera departure');
+    assert.ok(p.phase()>phase,'holding the camera does not stop the shared ambient clock');
+    const target=nativeReadingPose(to,y,{height:700,focus});mountSceneFixture(p,to,y,focus);
+    for(let i=0;i<30;i++)p.frame(80);
+    assert.deepEqual(JSON.parse(p.trace()),target);assert.equal(progress,1);
+    assertFlightDepths(paints,JSON.parse(displayed).position[2],target.position[2]);
+  }
+  for(const options of [{animate:false},{saved:'off'},{reduced:true}])for(const [to,landing]of [['research',{position:[0,7050],hash:''}],['research',{position:null,hash:'#topics'}],['writing',{position:null,hash:'',search:'?topic=leadership'}]])assertInstantLanding(to,landing,options);
+});
+
+test("midflight destination layout retargeting preserves the displayed camera and shared ribbon clock",()=>{
+  const paints=[],p=visit({ribbonProbe:state=>paints.push(state)});p.settle();
+  const records=[],before=p.trace(),phase=p.phase();
+  p.window.SiteScene.navigate('research',true,value=>records.push(value));p.frame(80);
+  assert.equal(p.trace(),before,'cold route preparation cannot advance before the first flight paint');
+  assert.ok(p.phase()>phase,'the existing ambient clock continues at flight start');assert.equal(records.at(-1),0);
+  for(let i=0;i<6;i++)p.frame(80);
+  const mountedCamera=p.trace(),mountedPhase=p.phase(),mountedProgress=records.at(-1);
+  p.document.body.dataset.page='research';p.window.scrollY=14100;
+  p.stops(Object.keys(model.pageStops.research).map((id,index)=>[id,index*1100]));p.window.SiteScene.refresh({sync:true});p.frame(0);
+  assert.equal(p.trace(),mountedCamera,'a destination bottom/history landing rebases rather than snapping the camera');
+  assert.equal(p.phase(),mountedPhase);assert.equal(records.at(-1),mountedProgress);
+  const retained=paints.at(-1).journey;
+  assert.deepEqual(JSON.parse(p.trace()),retained.from);assert.ok(retained.duration>0&&retained.duration<1300);
+  // A skipped RAF can advance the solver without painting. Cancellation must
+  // preserve actual displayed progress, not that newer unseen solver state.
+  p.frame(80);const displayedCamera=p.trace(),displayedPhase=p.phase(),displayedProgress=records.at(-1),paintCount=paints.length;
+  p.frame(10);assert.equal(paints.length,paintCount);p.hidden(true);p.frame(30000);p.hidden(false);p.frame(0);
+  assert.equal(p.trace(),displayedCamera);assert.equal(p.phase(),displayedPhase);assert.equal(records.at(-1),displayedProgress);
+  for(let i=0;i<30;i++)p.frame(80);
+  assert.deepEqual(JSON.parse(p.trace()),model.routePose('research',model.poses.closing));assert.equal(records.at(-1),1);
+  assert.ok(records.every((value,index)=>index===0||value>=records[index-1]),'layout/pause retargets keep painted progress monotone');
+  // Reversal before DOM mount targets a new route from the last real paint.
+  p.window.SiteScene.navigate('writing');for(let i=0;i<5;i++)p.frame(80);
+  const reversal=p.trace();p.window.SiteScene.navigate('index');p.document.body.dataset.page='index';p.window.scrollY=0;
+  p.stops(Object.keys(model.pageStops.index).map((id,index)=>[id,index*1100]));p.window.SiteScene.refresh({sync:true});p.frame(80);
+  assert.equal(p.trace(),reversal,'quick reversal plus synchronous layout retains its first displayed camera');
+  for(let i=0;i<30;i++)p.frame(80);
+  assert.deepEqual(JSON.parse(p.trace()),model.routePose('index',model.poses.overview));
+  assert.ok(paints.every(state=>[...state.current.position,...state.current.target].every(Number.isFinite)));
+  assert.ok(Number(p.scene.dataset.rooms)<=3&&Number(p.scene.dataset.roomModels)<=6);assert.equal(p.pending.size,1);
 });
 
 test("a route chosen before the reduced-motion change event paints its static arrival",()=>{

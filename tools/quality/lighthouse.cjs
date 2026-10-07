@@ -10,8 +10,9 @@ function retainResearchEvidence(label,result){
 }
 function recordTrial(route,formFactor,run,result,summaries){
   const lhr=result.lhr;
-  // Keep the ordinary mobile trace with its original metrics and flags.
-  const evidence=route==='research'&&formFactor==='mobile'?retainResearchEvidence(`lighthouse-${route}-${formFactor}-${run}`,result):undefined;
+  // Keep both selected mobile traces with their original metrics and flags,
+  // including Writing evidence when its subsequent budget check fails.
+  const evidence=['research','writing'].includes(route)&&formFactor==='mobile'?retainResearchEvidence(`lighthouse-${route}-${formFactor}-${run}`,result):undefined;
   if(lhr.configSettings.formFactor!==formFactor)throw Error('Actual Lighthouse form factor differs from scenario label');
   fs.writeFileSync(path.join(out,`lighthouse-${route}-${formFactor}-${run}.json`),JSON.stringify(lhr,null,2)+'\n');
   const keys=['first-contentful-paint','largest-contentful-paint','total-blocking-time','cumulative-layout-shift','speed-index','interactive','dom-size','dom-size-insight','mainthread-work-breakdown','bootup-time','total-byte-weight'];

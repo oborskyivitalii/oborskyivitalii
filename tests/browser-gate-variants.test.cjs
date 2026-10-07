@@ -4,6 +4,53 @@ const variants=require('../tools/quality/writing-variants.cjs'),color=require('.
 const root=path.resolve(__dirname,'..'),baseSource=fs.readFileSync(path.join(root,'docs/space.js'),'utf8');
 const effects=color.runtime(color.authoredEffects()),scripts={'space.js':effects.code+'\n'+baseSource};
 const plain=value=>JSON.parse(JSON.stringify(value));
+test('reading clarity rejects wrong landing targets and depth reversals that remain frame-continuous',()=>{
+  const {validateArrivalDepth,validateNativeEndpoints}=require('../tools/quality/reading-clarity.cjs');
+  const camera=z=>({position:[0,0,z],target:[0,0,z-29]}),start={camera:camera(-360)},leg={id:'reverse-end',to:'writing',direction:'backward'};
+  const rows=values=>values.map((z,i)=>({camera:camera(z),journey:i===values.length-1?null:{to:camera(-319)}}));
+  const good=rows([-360,-350,-340,-319]);
+  assert.doesNotThrow(()=>validateArrivalDepth(good,good.filter(row=>row.journey),start,leg));
+  const overshoot=rows([-360,-330,-294.1658,-303.6741,-319]);
+  assert.throws(()=>validateArrivalDepth(overshoot,overshoot.filter(row=>row.journey),start,leg),/cannot pass the intended endpoint/);
+  const reversal=rows([-360,-340,-350,-319]);
+  assert.throws(()=>validateArrivalDepth(reversal,reversal.filter(row=>row.journey),start,leg),/cannot reverse camera depth/);
+  const wrong=rows([-360,-350,-319]);wrong[0].journey.to=camera(-232);
+  assert.throws(()=>validateArrivalDepth(wrong,wrong.filter(row=>row.journey),start,leg),/departure already targets/);
+  const events=[{leg:'edge-reverse-end',kind:'edge-ready',scrollY:0,maxScroll:400,time:1},
+    {leg:leg.id,kind:'mount',scrollY:0,maxScroll:500,time:2},
+    {leg:leg.id,kind:'mount-ready',page:'writing',scrollY:500,maxScroll:500,time:3},
+    {leg:leg.id,kind:'navigation-ready',scrollY:500,maxScroll:500,time:4}];
+  assert.doesNotThrow(()=>validateNativeEndpoints({events},leg),'raw mount precedes the native landing');
+  const missed=plain(events);missed[2].scrollY=0;
+  assert.throws(()=>validateNativeEndpoints({events:missed},leg),/destination scroll endpoint/,'post-layout landing must reach the bottom');
+});
+test('reading clarity rejects any individual corner drift and missing Appearance paint evidence',()=>{
+  const {validateSurfaceSamples,paintAlpha}=require('../tools/quality/reading-clarity.cjs');
+  const selectors=['.hero-copy','.help-grid article','.site-footer>p','.reading-title','.research-card','.reading-title','.archive-filters','.publication','.year-heading','.reading-title','.talks-list .publication>div','.credits-page>h1','.appearance[open] .display-controls'];
+  const samples=[];
+  for(const width of [320,1440])for(const theme of ['light','dark'])for(const selector of selectors){
+    samples.push({selector,width,theme,background:theme==='light'?'rgba(243, 241, 234, 0.87)':'rgba(17, 28, 34, 0.87)',backgroundAlpha:.87,reducedTransparency:false,opacity:'1',mask:'none',filter:'none',backdropFilter:'none',shadowBlur:0,outerRadii:[12,12,12,12]});
+  }
+  assert.doesNotThrow(()=>validateSurfaceSamples(samples));
+  for(let corner=0;corner<4;corner++){
+    const changed=plain(samples);changed[0].outerRadii[corner]=3;
+    assert.throws(()=>validateSurfaceSamples(changed),/shared visible outer corner radius/,'any single changed corner fails');
+  }
+  const missing=plain(samples);missing[12].selector='.other-panel';
+  assert.throws(()=>validateSurfaceSamples(missing),/Appearance panel measured/,'the popup cannot be replaced by another sample');
+  const blurred=plain(samples);blurred[12].shadowBlur=30;
+  assert.throws(()=>validateSurfaceSamples(blurred),/shared unblurred surface edge/,'a blurred popup edge fails');
+  for(const background of ['rgba(243, 241, 234, 0.89)','rgb(243 241 234 / 100%)']){
+    const changed=plain(samples);changed[0].background=background;changed[0].backgroundAlpha=paintAlpha(background);
+    assert.throws(()=>validateSurfaceSamples(changed),/shared historical paper alpha/,'alpha drift and opaque repaints fail');
+  }
+  const faded=plain(samples);faded[0].opacity='.87';
+  assert.throws(()=>validateSurfaceSamples(faded),/full element opacity/,'transparency cannot fade text or controls');
+  assert.equal(paintAlpha('color(srgb 0.952941 0.945098 0.917647 / 0.87)'),.87,'modern computed color serialization retains the alpha');
+  const reduced=plain(samples);
+  for(const sample of reduced){sample.background=sample.theme==='light'?'rgb(243, 241, 234)':'rgb(17, 28, 34)';sample.backgroundAlpha=1;sample.reducedTransparency=true;}
+  assert.doesNotThrow(()=>validateSurfaceSamples(reduced),'the explicit accessibility preference retains opaque paint');
+});
 function scene(source,theme='dark'){
   const context={window:{},module:{exports:{}},document:{getElementById:()=>null,documentElement:{dataset:{theme}}}};
   vm.runInNewContext(source,context);
@@ -92,7 +139,7 @@ test('both explicit browser-gate artifacts keep exact Color parent lineage and c
 });
 test('unsupported renditions, repeated adaptation and missing or duplicated counterfactual anchors fail closed',()=>{
   assert.throws(()=>variants.patchRuntime(scripts,'browser-gate-unknown'),/unsupported Writing intervention/);
-  const anchors=['window.SiteScene={','      if(living)quality(renderCost,time);','shapes=[],step=compact?3:1.25+Math.max(0,Math.min(2,ribbonMesh))*.875,far=compact?64:105;'];
+  const anchors=['window.SiteScene={','      if(living)quality(renderCost,time);','meshStride=compact?1:1+Math.round(Math.max(0,Math.min(2,ribbonMesh)))'];
   for(const anchor of anchors){
     assert.throws(()=>variants.patchRuntime({'space.js':scripts['space.js'].replace(anchor,'/* controlled source drift */')},'browser-gate-fixed-ribbons'),/exactly once/);
     assert.throws(()=>variants.patchRuntime({'space.js':scripts['space.js']+'\n'+anchor},'browser-gate-fixed-ribbons'),/exactly once/);

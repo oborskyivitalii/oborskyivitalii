@@ -85,6 +85,12 @@
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
+    ".github/acceptance/issue-45.json": {
+      "kind": "file",
+      "purpose": "Issue45 scoped formula and heading reading-clarity criterion mapping.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     ".github/pull_request_template.md": {
       "kind": "file",
       "purpose": "PR execution, owning issue/commit links, checks/review and honest completion template.",
@@ -165,7 +171,7 @@
     },
     ".github/workflows/site-cause-probe.yml": {
       "kind": "file",
-      "purpose": "GitHub Actions: Cold browser cause attribution; inspect trigger/profile before running.",
+      "purpose": "Explicit historical cause replay plus issue45 same-repository PR47 Writing label attribution; four source-bound private inputs, never stage or release admission.",
       "role": "workflow",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -379,39 +385,39 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/bea73284d408fc8bcd4167f94e24a8178dc04d10c5cb5f1d69cee8d7610bfb1b": {
+    "docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff": {
       "kind": "directory",
-      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
+      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/bea73284d408fc8bcd4167f94e24a8178dc04d10c5cb5f1d69cee8d7610bfb1b/archive.js": {
+    "docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff/archive.js": {
       "kind": "file",
-      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
+      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/bea73284d408fc8bcd4167f94e24a8178dc04d10c5cb5f1d69cee8d7610bfb1b/navigation.js": {
+    "docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff/navigation.js": {
       "kind": "file",
-      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
+      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/bea73284d408fc8bcd4167f94e24a8178dc04d10c5cb5f1d69cee8d7610bfb1b/space.js": {
+    "docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff/space.js": {
       "kind": "file",
-      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
+      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/bea73284d408fc8bcd4167f94e24a8178dc04d10c5cb5f1d69cee8d7610bfb1b/styles.css": {
+    "docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff/styles.css": {
       "kind": "file",
-      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
+      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/bea73284d408fc8bcd4167f94e24a8178dc04d10c5cb5f1d69cee8d7610bfb1b/theme.js": {
+    "docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff/theme.js": {
       "kind": "file",
-      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
+      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -427,63 +433,63 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/1b9dd33f66fd7d9d4c7559cdd4b71bb856f8ab6d2dfdde9e60fb3dba52069c9d": {
+    "docs/snapshots/2f6d5fbf34aa829b133360029157fb5ee425571e9ecadd2b443ef6f1e0901986": {
       "kind": "directory",
-      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
+      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/1b9dd33f66fd7d9d4c7559cdd4b71bb856f8ab6d2dfdde9e60fb3dba52069c9d/research.html": {
+    "docs/snapshots/2f6d5fbf34aa829b133360029157fb5ee425571e9ecadd2b443ef6f1e0901986/talks.html": {
       "kind": "file",
-      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
+      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/94d743af83672cfd6e4c82d40dd6127f46c554fa1f28f1f1323899cc2a01c211": {
+    "docs/snapshots/259616bcb517d2aa0736fc66ec7fad29101355d46f0501151d2101e3b34baaad": {
       "kind": "directory",
-      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
+      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/94d743af83672cfd6e4c82d40dd6127f46c554fa1f28f1f1323899cc2a01c211/talks.html": {
+    "docs/snapshots/259616bcb517d2aa0736fc66ec7fad29101355d46f0501151d2101e3b34baaad/index.html": {
       "kind": "file",
-      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
+      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/a843d890b95366c6773eecd7eb9f8161943390b88c9e6fe65cb55e50e5ec0fd1": {
+    "docs/snapshots/3d0618ceada601d51bfc3e3e69383e0fcd2c2933cd25963eb67638328cb83207": {
       "kind": "directory",
-      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
+      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/a843d890b95366c6773eecd7eb9f8161943390b88c9e6fe65cb55e50e5ec0fd1/index.html": {
+    "docs/snapshots/3d0618ceada601d51bfc3e3e69383e0fcd2c2933cd25963eb67638328cb83207/writing.html": {
       "kind": "file",
-      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
+      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/d275895e31e0910481740b8f024c4728ddbe82e7564be345814ba174fc0442b5": {
+    "docs/snapshots/be7a4cd6562bc70e20f247ee15e4667885db74053acef7397ea075963186a9fb": {
       "kind": "directory",
-      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
+      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/d275895e31e0910481740b8f024c4728ddbe82e7564be345814ba174fc0442b5/writing.html": {
+    "docs/snapshots/be7a4cd6562bc70e20f247ee15e4667885db74053acef7397ea075963186a9fb/credits.html": {
       "kind": "file",
-      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
+      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/fb9dedbd16f8e4fc6ab6a509653307151c7f18e0ccf6dd7cf6fc9b26abac386f": {
+    "docs/snapshots/e31ef87381aa2d33cfe14b0925e58858a69e97b9573f06390d5f9699d85e97f3": {
       "kind": "directory",
-      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
+      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/fb9dedbd16f8e4fc6ab6a509653307151c7f18e0ccf6dd7cf6fc9b26abac386f/credits.html": {
+    "docs/snapshots/e31ef87381aa2d33cfe14b0925e58858a69e97b9573f06390d5f9699d85e97f3/research.html": {
       "kind": "file",
-      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
+      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -858,6 +864,24 @@
       "purpose": "Exact original LinkedIn/Reddit inputs and supplied snapshot hashes/metrics; current admitted/deferred catalog mappings with dated source-access limits.",
       "role": "history",
       "owner": "guides/SITE-SOURCE-AUDIT.md"
+    },
+    "review/issue-45": {
+      "kind": "directory",
+      "purpose": "Issue45 versioned reading clarity findings, implementation and exact-source review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-45/2026-10-07-handoff.md": {
+      "kind": "file",
+      "purpose": "Issue45 versioned reading clarity findings, implementation and exact-source review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-45/2026-10-07-independent-review.md": {
+      "kind": "file",
+      "purpose": "Independent source review of issue45 formula/reading-surface repair, corrected diagnostic findings and explicit visual limits.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     },
     "review/public-responses-20261006": {
       "kind": "directory",
@@ -5707,9 +5731,15 @@
       "role": "source",
       "owner": "site/README.md"
     },
+    "site/engine/reading-surfaces.css": {
+      "kind": "file",
+      "purpose": "Single authored reading-backdrop paint: shared paper, opacity, crisp edges, outer corners and paint-only placement across routes and renditions.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
     "site/engine/renderer.cjs": {
       "kind": "file",
-      "purpose": "Ordered Canvas commands, projected facets and adjacent-line batching.",
+      "purpose": "Ordered Canvas commands, projected facets, adjacent-line batching and exact per-paint state deduplication with custom/formula invalidation.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -5847,7 +5877,7 @@
     },
     "tests/cause-probe.test.cjs": {
       "kind": "file",
-      "purpose": "Private causal-input normal/trace identity and actual Lighthouse attribution evidence Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
+      "purpose": "Adversarial cause-input, CPU evidence and four-input Writing count/identity/failure retention contracts.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -5967,7 +5997,7 @@
     },
     "tests/renderer.test.cjs": {
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for renderer.",
+      "purpose": "Maintained renderer palette, ordered drawing/state equivalence and cache invalidation, bounded formula projection/sampling/cache and geometry/resource regressions.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -6070,6 +6100,12 @@
     "tests/test_issue41_acceptance.py": {
       "kind": "file",
       "purpose": "Issue41 selected implementation checks and negative fixtures; original preparation-only evidence remains pinned at d7ce5d3.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "tests/test_issue45_acceptance.py": {
+      "kind": "file",
+      "purpose": "Issue45 selection of maintained source checks; actual visual/browser acceptance remains separate.",
       "role": "test",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -6321,7 +6357,7 @@
     },
     "tools/quality/cause-probe.cjs": {
       "kind": "file",
-      "purpose": "Maintained quality/check helper for cause probe; applicable profiles are selected by SITE-CHECK-PROFILES.",
+      "purpose": "Maintained private browser cause attribution: original Research/WebKit protocols and bounded four-input Writing CPU/network evidence with exact parent identity.",
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md"
     },
@@ -6462,6 +6498,12 @@
       "purpose": "Maintained quality/check helper for promotion; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md"
+    },
+    "tools/quality/reading-clarity.cjs": {
+      "kind": "file",
+      "purpose": "Opt-in bounded Chromium heading geometry comparison and separately served baseline/candidate formula captures; not a release gate.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tools/quality/research-pair-probe.cjs": {
       "kind": "file",

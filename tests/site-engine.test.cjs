@@ -58,6 +58,8 @@ test('Writing formula is a tilted moving world landmark with one same-scene stat
     assert.ok(anchor.rotation.some(angle=>angle!==0));assert.ok(anchor.extrusion>0);
     assert.equal([...fallback.matchAll(/data-glyph=/g)].length,art.paths.length,'one visible front rendition of every canonical glyph');
     assert.equal([...fallback.matchAll(/data-formula-layer=/g)].length,3,'bounded world-depth extrusion');
+    const layerOpacity=[...fallback.matchAll(/data-formula-layer="\d" stroke-opacity="([^"]+)"/g)].map(match=>Number(match[1]));
+    assert.deepEqual(layerOpacity,Array(3).fill(Number(api.projectedFormula(anchor,pose,1440,900,0).alpha.toFixed(3))),'static glyph layers share world haze without additional translucent ghosts');
     assert.equal([...fallback.matchAll(/<svg\b/g)].length,1,'one existing fallback scene');
     assert.equal(/<(?:image|use|filter|text|script|foreignObject)\b|(?:href|src)=/.test(fallback),false,'no font, filter or external artwork request');
     const first=api.projectFormulaPoint(anchor,pose,1440,900,0,art.paths[0].commands[0][1]/art.width,art.paths[0].commands[0][2]/art.height);

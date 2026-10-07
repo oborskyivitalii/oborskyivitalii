@@ -32,7 +32,7 @@ and strict aggregate under #13; generation freshness alone is insufficient.
 | `routes.json` | Contract 1: ordered five route IDs, native URLs, scenes and stop IDs | Runtime, pages and fallback |
 | `engine/math.cjs`, `projection.cjs`, `lifecycle.cjs` | Math, projection and single Canvas/RAF lifecycle | Assembled `space.js` |
 | `engine/renderer.cjs` | Ordered Canvas commands, adjacent-line batching and visible outlines | Assembled `space.js` |
-| `engine/theme.js`, `archive.js`, `navigation.js`, `styles.css` | Theme, filtering, routing and presentation | Shared browser files and pages |
+| `engine/theme.js`, `archive.js`, `navigation.js`, `styles.css`, `reading-surfaces.css` | Theme, filtering, routing and presentation | Shared browser files and pages |
 | `scenes/world.cjs`, `paths.json` | Authored motifs, rest geometry and finite camera paths | Runtime and projected SVG fallbacks |
 | `assets/` | Existing portrait, cutout, favicon and `.nojekyll` source | Exact image/icon bytes |
 | `analytics.json`, `integrations/cloudflare.cjs` | Optional production-only measurement under #8; disabled by default | Shared head and one separately hashed loader when enabled |
@@ -59,15 +59,50 @@ history; the scene owns route progress and its actual arrival paint. Ambient pha
 scroll/topic pose and route flight remain separate. Off/reduced, visibility, print,
 failure, reflow and device-cost adaptation preserve the existing bounded behavior.
 Runtime projection omits subpixel facets; static SVG/model output keeps the complete
-geometry. Flights use compact facet models, then restore settled detail. Each of
-at most three active/pending rooms caches at most two detail variants; theme changes
+geometry. Flights prepare each room at its settled adaptive detail before the
+first painted flight frame. Each of at most three active/pending rooms caches
+at most two detail variants; theme changes
 repaint their color tables. No independent render loop or runtime dependency is added.
+
+Color ribbons share one route-independent world, material and ambient phase.
+Their immutable world grid uses 1.25-unit desktop cells (3-unit compact cells).
+Adaptive desktop detail groups whole cells at integer strides 1/2/3; it never
+moves retained samples, and near-plane contours retain fine cells. Visible
+crossing cells are clipped by their vertices instead of discarded by centroid.
+A route mount no longer changes shared Canvas opacity: Writing/Credits retain
+full Canvas opacity rather than their earlier 0.82 multiplier, raising
+their opacity by 18 percentage points and keeping ribbons continuous.
+A new flight first paints the displayed camera, while ambient time continues.
+Mounted layout/history retargets preserve the current camera and existing
+arrival deadline through a stable eased suffix; cancellation preserves actual
+painted travel progress as well as camera, phase and detail. Optional
+`SiteRibbonProbe` observations inspect actual submitted stations and journey
+state; ordinary visits construct no trace and add no independent clock.
+
+Large inline titles retain native wrapping while their cloned backgrounds
+extend0.16em around each fragment. An inner positioned ink span paints the
+complete title above all background fragments; adjacent line spreads cannot
+cover glyph bottoms. The exact text and explicit line breaks remain authored
+content, with no added line-box padding.
 
 The Writing room has one original outlined paradigm landmark, sourced only from
 `assets/writing-paradigm.svg`. `tools/site/scene-assets.cjs` validates and compiles
 it during generation. Renderer uses one fixed1380×240 raster cache and one native
 sorted world-plane command with mild tilt, looped pulse and three shallow
-extrusion layers. At most24 perspective triangle submissions use the same cache;
+extrusion layers. At most24 perspective triangle submissions use the same cache, with native
+high-quality image sampling for minified glyphs. Each triangle submits a bounded
+source rectangle, retaining exact affine coordinates and
+triangle clips. An inverse-affine guard covers two CSS pixels of neighboring
+source data; singular/extreme minification uses the complete bitmap. This changes
+neither the world geometry nor the24submission/cache bound. Actual browser
+visual/performance admission remains separate from source-area reduction.
+All three layers use the same
+world-haze opacity; extra translucent rear copies are omitted to avoid pale
+ghost edges. The landmark uses 0.10 world-unit extrusion, keeping its projected
+rear-to-front separation below half the nominal glyph stroke at representative
+Writing entry/approach poses. The static SVG rendition follows the same shallow
+geometry and layer opacity. Cache
+bytes, triangle count and global Canvas pixel-ratio limits remain unchanged;
 there is no separate content band or new clock/load/decode. Off/reduced freezes
 the formula with its room; unsupported Canvas restores the projected scene SVG.
 Asset and producer identity
@@ -168,7 +203,11 @@ an explicit `base`, `color` or `both` argument in
 `review/site-scroll-sync-20261004/export.cjs`. Each file has a variant/digest manifest.
 The effects loader attaches a scene `collect` / `paint` pair and a travel
 presentation through `window.SiteEffects`, contract 1. These narrow hooks cannot
-own another scene clock. One composition stage performs stable final depth sorting.
+own another scene clock. A scene painter returns true only after handling its shape;
+returning false leaves the Canvas context unchanged. The renderer starts a fresh
+paint-state shadow each frame and invalidates it after handled effects/formula
+paint, so redundant native setters cannot inherit external or resized state.
+One composition stage performs stable final depth sorting.
 Native measurement runs through a scoped presentation hook when required.
 
 `tools/site/variants.cjs` binds authored effect code, styles, input controls and
@@ -177,3 +216,5 @@ function text/formatting is not an extension boundary. An incompatible or duplic
 effect fails generation. Hosted evidence is bound to the producer's base variant;
 selecting Color for production remains a separate decision requiring its complete
 same-byte hosted behavioral/performance matrix. A base pass cannot admit Color.
+
+Reading backdrop paint is authored only in `engine/reading-surfaces.css` and concatenated into the existing stylesheet by the producer. All routes, Color and the Appearance popup share theme-paper paint at 87% background alpha (13% transparency), crisp edges and a 12px visible radius at all four outer corners; title spread adjusts its inner radius and preserves ink stacking. Element opacity stays one so text and controls do not fade. The same owner restores fully opaque paper for `prefers-reduced-transparency: reduce`. Component spacing and semantic control/CTA paint remain ordinary layout CSS.

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "review": {
-    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/36",
-    "summary": "2026-10-07 after maintainer-authorized joint PR43 merge: adapt PR44 to four-media producer; retain all23 joint source checks plus actual media-consumer12-case suite, existing gates and test registry. Package consumption rechecks finite declarations/immutable bytes and preserves legacy recovery. Canonical output regeneration follows producer fingerprint; no feature/budget/profile/platform changes.",
+    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/45",
+    "summary": "2026-10-07 issue45 formula contour and paint-only heading margin repair plus authorized continuous-ribbon amendment: maintained world/material/phase and displayed-camera retarget/detail/lifecycle checks run through the owning acceptance policy and existing changed-source allocation. Exact-source visual/flight and 60-case geometry evidence stay separate. Original profiles/budgets/release boundaries retained.",
     "date": "2026-10-07"
   },
   "layers": [
@@ -48,7 +48,10 @@
         "tests/test_issue41_acceptance.py",
         "tests/test_issue_acceptance.py",
         "tools/issue_acceptance.py",
-        "review/issue-36/2026-10-07-controller-compatibility.md"
+        "review/issue-36/2026-10-07-controller-compatibility.md",
+        ".github/acceptance/issue-45.json",
+        "tests/test_issue45_acceptance.py",
+        "review/issue-45/2026-10-07-handoff.md"
       ],
       "checks": [
         "acceptance-policy",
@@ -106,7 +109,9 @@
         "tools/quality/source-tests.cjs",
         "tools/quality/staging-gate.cjs",
         "tools/quality/staging-regression.cjs",
-        "tools/quality/test-profiles.json"
+        "tools/quality/test-profiles.json",
+        "tools/quality/reading-clarity.cjs",
+        ".github/workflows/site-writing-probe.yml"
       ],
       "checks": [
         "acceptance-policy",
@@ -172,7 +177,7 @@
     },
     {
       "id": "github-live-overlay-ci-boundary",
-      "purpose": "CI entrypoints and exact-source reports are indexed, while live issue/review/check/deployment state and owner acceptance remain external observations.",
+      "purpose": "CI entrypoints, including bounded explicit-label Writing attribution, index exact-source report routes; live issue/review/check/deployment and diagnostic versus admission remain external observations.",
       "paths": [
         ".github/workflows/issue-acceptance.yml",
         ".github/workflows/site-browser-gate-probe.yml",
@@ -354,7 +359,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "b301b7441098ad3143729c8b0f52ddfac1b2ef19058e313b78072b5e4c35e443",
+    "digest": "ab7055570234b455eec3ef93858a5e7d29b799940d183383e0b4bfcf7c908f4b",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -393,6 +398,10 @@
         "sha256": "3fe37dfcc9e7d4c0f503698e8ba91491216621073347c6ab8cb1b25302a0c44a"
       },
       {
+        "path": ".github/acceptance/issue-45.json",
+        "sha256": "23050469079306b91a34e06b761770d1fb31bf041896de81943119bbd1a6ac8e"
+      },
+      {
         "path": ".github/pull_request_template.md",
         "sha256": "9d6e001401d72e906275515a4c4921e966541cda9d7b98aad58f54980bf301de"
       },
@@ -406,7 +415,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "997c1e87a3a4168142191f840dfb2d6e0b0546e6a796518770c98525e1a7a6ee"
+        "sha256": "3c8b2e03be234ca32ec4aacf12dcfc4f2f3ff3187a25a6d347bab94cc8e10148"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -430,7 +439,7 @@
       },
       {
         "path": ".github/workflows/site-cause-probe.yml",
-        "sha256": "c46cf129e38fcfb12cba7c255e4371398627facc67f4941d3d9fb597c8ffdf06"
+        "sha256": "afeb3f75110fb431a26dd8df3a077b0f6c50090c61b4789a6fe98d008724cf6d"
       },
       {
         "path": ".github/workflows/site-checks.yml",
@@ -466,7 +475,7 @@
       },
       {
         "path": ".github/workflows/site-writing-probe.yml",
-        "sha256": "688caf2aa412d6360e2376444031c0689d235ba9b830f84aed643d79dca8cb49"
+        "sha256": "b52362e175382fdd8210316808908b7937d6e060e5d337bc44c0b41174a8f25e"
       },
       {
         "path": "AGENTS.md",
@@ -482,7 +491,7 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "f51a75e299db9b879724de1310c4b0c9fcf1ad78c7d22449912b94eb6dc3b6bc"
+        "sha256": "337a4a0945c78f630ad50c1e174b19932d171d4310fd947a5a72e72fa66eeaec"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -498,7 +507,7 @@
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "ed556cc2eb1232100cb8389c5b81a736b7d98b5f0294e60b63404738a00d29d3"
+        "sha256": "6c90437d687ce1f7c99e0e67c2a1eefa58081286777a32f9f9e1552ddd60cc75"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
@@ -523,6 +532,10 @@
       {
         "path": "tests/test_issue41_acceptance.py",
         "sha256": "e558341644520e99ff0d8cba98f64b6a2f85328565cd39afb1efdc0bef1a0451"
+      },
+      {
+        "path": "tests/test_issue45_acceptance.py",
+        "sha256": "8cf493d78ff6ad8c7ce7892b3e532b3ba7fdb82a95ec7c4409a5442884b9cd93"
       },
       {
         "path": "tests/test_issue_acceptance.py",
@@ -574,7 +587,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "519164e136ff3793debe68a2d796e9712b875829dfcd6fad7bf74c526b91b773"
+        "sha256": "9d093874ec6d902da48f733ea61f7254683efb6b55223e8b335443e21f366609"
       },
       {
         "path": "tools/repository_intelligence.py",

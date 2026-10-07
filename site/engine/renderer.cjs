@@ -35,12 +35,17 @@ module.exports=function(artwork=null,createSurface=null) {
     let saved=false;
     try{
       ctx.save();saved=true;ctx.globalAlpha=shape.alpha;ctx.globalCompositeOperation='source-over';
+      // Warped glyphs are minified; request the native high-quality sampling
+      // path rather than the default bilinear texture sampling.
+      ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';
       // A fixed four-strip mesh follows the projected world plane. Three
       // z-slices give the actual tilted glyphs thickness, using the same single
       // cache. This is one landmark with at most 24 native submissions, not
       // viewport-sized caches, per-glyph geometry or another animation clock.
       for(let layer=0;layer<shape.cameraLayers.length;layer++){
-        ctx.globalAlpha=shape.alpha*[.30,.45,1][layer];
+        // Shared world haze is sufficient. Extra translucent rear copies created
+        // a pale halo around every stroke instead of a definite solid edge.
+        ctx.globalAlpha=shape.alpha;
         const corners=shape.cameraLayers[layer];
         const at=(u,v)=>{
           const top=corners[0].map((value,i)=>value+(corners[1][i]-value)*u),bottom=corners[3].map((value,i)=>value+(corners[2][i]-value)*u),p=top.map((value,i)=>value+(bottom[i]-value)*v);
@@ -59,11 +64,16 @@ module.exports=function(artwork=null,createSurface=null) {
     const [p,q,r]=source,[P,Q,R]=points,dx=q[0]-p[0],dy=q[1]-p[1],ex=r[0]-p[0],ey=r[1]-p[1],den=dx*ey-dy*ex;
     const a=((Q[0]-P[0])*ey-(R[0]-P[0])*dy)/den,c=((R[0]-P[0])*dx-(Q[0]-P[0])*ex)/den;
     const b=((Q[1]-P[1])*ey-(R[1]-P[1])*dy)/den,d=((R[1]-P[1])*dx-(Q[1]-P[1])*ex)/den;
+    // Bound native resampling to this strip while keeping a two-CSS-pixel
+    // neighbourhood in source x. The inverse affine x row is [d,-c]/det;
+    // singular or extremely minified transforms safely use the whole bitmap.
+    const determinant=Math.abs(a*d-b*c),guard=determinant>1e-12?Math.min(surface.width,Math.ceil(2*Math.hypot(c,d)/determinant)):surface.width;
+    const left=Math.max(0,Math.min(p[0],q[0],r[0])-guard),right=Math.min(surface.width,Math.max(p[0],q[0],r[0])+guard);
     ctx.save();
     try{
       path(ctx,points);ctx.closePath();ctx.clip();
       ctx.transform(a,b,c,d,P[0]-a*p[0]-c*p[1],P[1]-b*p[0]-d*p[1]);
-      ctx.drawImage(surface,0,0);formulaSubmissions++;formulaLastSubmissions++;
+      ctx.drawImage(surface,left,0,right-left,surface.height,left,0,right-left,surface.height);formulaSubmissions++;formulaLastSubmissions++;
     }finally{ctx.restore();}
   }
   function formulaDiagnostics() {
@@ -93,9 +103,16 @@ module.exports=function(artwork=null,createSurface=null) {
     ctx.beginPath();ctx.moveTo(points[0][0],points[0][1]);
     for(let i=1;i<points.length;i++)ctx.lineTo(points[i][0],points[i][1]);
   }
-  function drawLineRun(ctx,shapes,index,colors) {
+  function setPaintState(ctx,state,property,value) {
+    if(state[property]===value)return;
+    ctx[property]=value;state[property]=value;
+  }
+  function invalidatePaintState(state) {
+    state.fillStyle=state.strokeStyle=state.lineWidth=state.globalAlpha=undefined;
+  }
+  function drawLineRun(ctx,shapes,index,colors,state) {
     const first=shapes[index],alpha=first.alpha;
-    ctx.beginPath();ctx.lineWidth=first.lineWidth;ctx.strokeStyle=colors[first.color];ctx.globalAlpha=alpha;
+    ctx.beginPath();setPaintState(ctx,state,'lineWidth',first.lineWidth);setPaintState(ctx,state,'strokeStyle',colors[first.color]);setPaintState(ctx,state,'globalAlpha',alpha);
     let end=index;
     while(end<shapes.length){
       const shape=shapes[end];
@@ -106,28 +123,32 @@ module.exports=function(artwork=null,createSurface=null) {
   }
   function paintShapes(ctx,shapes,colors,paintCustom=null) {
     formulaVisible=0;formulaLastPaints=0;formulaLastSubmissions=0;formulaProjection=null;
+    // Every paint starts unknown: resize or external drawing may reset native
+    // state. A declining custom painter must leave the context untouched.
+    const state={};
     for(let index=0;index<shapes.length;index++) {
       const shape=shapes[index];
-      if(paintCustom?.(ctx,shape))continue;
-      if(shape.kind==='formula'){paintFormula(ctx,shape);continue;}
+      if(paintCustom?.(ctx,shape)){invalidatePaintState(state);continue;}
+      if(shape.kind==='formula'){paintFormula(ctx,shape);invalidatePaintState(state);continue;}
       // Depth order is unchanged. Only adjacent compatible lines are batched.
-      if(shape.kind==="line"&&!shape.arrow){index=drawLineRun(ctx,shapes,index,colors);continue;}
+      if(shape.kind==="line"&&!shape.arrow){index=drawLineRun(ctx,shapes,index,colors,state);continue;}
       const points=shape.points,from=points[0],to=points[1];
       path(ctx,points);
       if(shape.kind==="face") {
-        ctx.closePath();ctx.fillStyle=shape.room.faceColors[shape.material];ctx.globalAlpha=shape.alpha;ctx.fill();
-        if(shape.edgeAlpha===0){ctx.strokeStyle=ctx.fillStyle;ctx.lineWidth=.65;ctx.stroke();}
+        const fill=shape.room.faceColors[shape.material];
+        ctx.closePath();setPaintState(ctx,state,'fillStyle',fill);setPaintState(ctx,state,'globalAlpha',shape.alpha);ctx.fill();
+        if(shape.edgeAlpha===0){setPaintState(ctx,state,'strokeStyle',fill);setPaintState(ctx,state,'lineWidth',.65);ctx.stroke();}
         // Explicit silhouettes survive; faint internal mesh edges are omitted
         // on desktop as on mobile. Thousands of invisible strokes cost time.
-        else if(shape.room.world.faces[shape.material].edgeAlpha>.12){ctx.lineWidth=shape.lineWidth;ctx.strokeStyle=colors[shape.color];ctx.globalAlpha=shape.edgeAlpha;ctx.stroke();}
-      } else {ctx.lineWidth=shape.lineWidth;ctx.strokeStyle=colors[shape.color];ctx.globalAlpha=shape.alpha;ctx.stroke();}
+        else if(shape.room.world.faces[shape.material].edgeAlpha>.12){setPaintState(ctx,state,'lineWidth',shape.lineWidth);setPaintState(ctx,state,'strokeStyle',colors[shape.color]);setPaintState(ctx,state,'globalAlpha',shape.edgeAlpha);ctx.stroke();}
+      } else {setPaintState(ctx,state,'lineWidth',shape.lineWidth);setPaintState(ctx,state,'strokeStyle',colors[shape.color]);setPaintState(ctx,state,'globalAlpha',shape.alpha);ctx.stroke();}
       if(shape.arrow) {
         const dx=to[0]-from[0],dy=to[1]-from[1],length=Math.hypot(dx,dy);if(length<10)continue;
         const size=5,ux=dx/length,uy=dy/length;
         ctx.beginPath();ctx.moveTo(to[0]-ux*size-uy*size*.55,to[1]-uy*size+ux*size*.55);ctx.lineTo(...to);ctx.lineTo(to[0]-ux*size+uy*size*.55,to[1]-uy*size-ux*size*.55);ctx.stroke();
       }
     }
-    ctx.globalAlpha=1;
+    setPaintState(ctx,state,'globalAlpha',1);
   }
   return {paintShapes,facePalette,formulaDiagnostics,prepareFormula:formulaBitmap,formulaReady:()=>!!formulaSurface,formulaDrawn:()=>formulaLastPaints>0};
 };

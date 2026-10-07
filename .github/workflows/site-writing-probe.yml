@@ -30,6 +30,81 @@ defaults:
     shell: bash
     working-directory: candidate
 jobs:
+  reading-clarity:
+    if: github.event_name == 'pull_request' && github.event.label.name == 'site-reading-clarity-evidence' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      SITE_CANDIDATE_SHA: ${{ github.event.pull_request.head.sha }}
+      READING_BASELINE_SHA: 76f2a786a016c8f40230e3d23b14f7ee36c16a57
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: candidate
+          persist-credentials: false
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: 76f2a786a016c8f40230e3d23b14f7ee36c16a57
+          path: baseline
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - name: Verify source and generated inputs once
+        run: |
+          test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
+          test "$(git -C ../baseline rev-parse HEAD)" = "$READING_BASELINE_SHA"
+          node tools/site/build.cjs --check
+          node ../baseline/tools/site/build.cjs --check
+          node tools/quality/artifact.cjs build "$RUNNER_TEMP/clarity-input/candidate"
+          node tools/staging/color.cjs "$RUNNER_TEMP/clarity-input/candidate"
+          SITE_CANDIDATE_SHA="$READING_BASELINE_SHA" node ../baseline/tools/quality/artifact.cjs build "$RUNNER_TEMP/clarity-input/baseline"
+          node ../baseline/tools/staging/color.cjs "$RUNNER_TEMP/clarity-input/baseline"
+      - name: Bound Ubuntu downloads and use its primary archive
+        run: |
+          sudo python3 - <<'PYTHON'
+          from pathlib import Path
+          import re
+          apt = Path('/etc/apt')
+          sources = [apt / 'sources.list', *apt.glob('sources.list.d/*.list'), *apt.glob('sources.list.d/*.sources')]
+          mirrors = {apt / 'apt-mirrors.txt'}
+          for source in sources:
+              if source.exists():
+                  active = '\n'.join(line.split('#', 1)[0] for line in source.read_text().splitlines())
+                  for name in re.findall(r'(?<!\S)mirror\+file:(?://)?(/etc/apt/[^\s#]+)', active):
+                      mirror = Path(name)
+                      if not mirror.resolve().is_relative_to(apt.resolve()) or not mirror.is_file():
+                          raise ValueError('Invalid or missing active APT mirror list: ' + name)
+                      mirrors.add(mirror)
+          pattern = r'https?://azure\.archive\.ubuntu\.com/ubuntu(?=/|\s|$)'
+          changed = []
+          for source in [*sources, *sorted(mirrors)]:
+              if not source.exists():
+                  continue
+              before = source.read_text()
+              after = re.sub(pattern, 'https://archive.ubuntu.com/ubuntu', before)
+              if after != before:
+                  source.write_text(after)
+                  changed.append(str(source))
+              if re.search(pattern, source.read_text()):
+                  raise ValueError('Azure archive remains in ' + str(source))
+          (apt / 'apt.conf.d/99-site-download-bounds').write_text('Acquire::http::Timeout "30";\nAcquire::https::Timeout "30";\nAcquire::Retries "0";\n')
+          print('Ubuntu source/mirror files moved to the primary archive:', changed)
+          PYTHON
+      - name: Install pinned Chromium only
+        run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium
+      - name: Check heading geometry, formula and bounded ribbon flights
+        run: node tools/quality/reading-clarity.cjs "$RUNNER_TEMP/clarity-input/candidate/public" "$RUNNER_TEMP/clarity-input/baseline/public" "$RUNNER_TEMP/reading-clarity"
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: reading-clarity-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/reading-clarity/
+          if-no-files-found: error
+          retention-days: 30
   writing:
     if: github.event_name == 'workflow_dispatch' && !inputs.diagnosis && !inputs.localization
     runs-on: ubuntu-24.04

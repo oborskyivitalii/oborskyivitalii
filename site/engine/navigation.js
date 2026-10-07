@@ -191,7 +191,7 @@
   window.addEventListener('blur',()=>{releaseEndpoint('blur');releaseTail();});
   window.addEventListener('resize',()=>{if(!window.SiteScene?.managesLayout)reconcileEndpoint();},{passive:true});
   document.fonts?.addEventListener?.('loadingdone',()=>{if(!window.SiteScene?.managesLayout)reconcileEndpoint();});
-  function flight(next,animate,commit,own,departure) {
+  function flight(next,animate,commit,own,departure,landing=null) {
     return new Promise((resolve,reject)=>{
       let mounted=false,mountTimer=null,settled=false,lastProgress=0;
       const mountAt=presentation?.mountAt??.18;
@@ -251,7 +251,7 @@
       };
       update.cancel=cancel;transition=update;
       content.inert=true;
-      if(window.SiteScene)window.SiteScene.navigate(next,animate,transition);
+      if(window.SiteScene)window.SiteScene.navigate(next,animate,transition,landing);
       else transition(1);
     });
   }
@@ -334,7 +334,7 @@
         else if(initial)history.replaceState({site:{page:next,scroll:[0,0]}},"",destination);
         if(start){const time=performance.now();window.SiteEngineProbe?.({kind:'stage',part:'mount-history',time,start,duration:time-start,page:next});}
         mount(prepared,destination,position);
-      },own,departure);
+      },own,departure,{position,hash:url.hash,search:url.search});
       // Arrival removes the content transform. Its temporary overflow/offset
       // must not remain the page's scroll range or semantic waypoint geometry.
       if(own===serial){if(!presentation?.layoutStableDuringTravel)window.SiteScene?.refresh({reason:'arrival'});arriveEndpoint();content.querySelector("main").focus({preventScroll:true});announcement.textContent=data.title;save();window.SiteEngineProbe?.({kind:'navigation-ready',time:performance.now(),page:next});}

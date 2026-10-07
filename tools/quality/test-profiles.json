@@ -381,7 +381,7 @@
     {
       "path": "tests/browser-gate-variants.test.cjs",
       "language": "javascript",
-      "purpose": "Private fixed-ribbon/trace counterfactuals, matched mobile outputs and parent/patch identity",
+      "purpose": "Private fixed-ribbon/trace counterfactuals, matched mobile outputs and parent/patch identity; exact endpoint and monotonic-depth validation rejects continuous camera overshoot",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "diagnostic",
       "profiles": [
@@ -393,7 +393,8 @@
       "inputs": [
         "tests/browser-gate-variants.test.cjs",
         "tools/quality/writing-variants.cjs",
-        "tools/quality/artifact.cjs"
+        "tools/quality/artifact.cjs",
+        "tools/quality/reading-clarity.cjs"
       ]
     },
     {
@@ -435,7 +436,7 @@
     {
       "path": "tests/cause-probe.test.cjs",
       "language": "javascript",
-      "purpose": "Private causal-input normal/trace identity and actual Lighthouse attribution evidence",
+      "purpose": "Private causal normal/trace identity, original CPU/network evidence, exact four-input Writing derivation/count and retained failures without performance admission.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "diagnostic",
       "profiles": [
@@ -446,7 +447,8 @@
       "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
       "inputs": [
         "tests/cause-probe.test.cjs",
-        "tools/quality/cause-probe.cjs"
+        "tools/quality/cause-probe.cjs",
+        ".github/workflows/site-cause-probe.yml"
       ]
     },
     {
@@ -811,7 +813,7 @@
     {
       "path": "tests/renderer.test.cjs",
       "language": "javascript",
-      "purpose": "Current renderer exact palettes, draw-state batching, insignificant pruning, culling/brain normals and Object.hasOwn fallback",
+      "purpose": "Current renderer exact palettes, ordered command/state equivalence and fresh/invalidation boundaries, native state deduplication, bounded formula sampling/projection/cache, insignificant pruning, culling/brain normals and Object.hasOwn fallback",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": [
@@ -857,7 +859,7 @@
     {
       "path": "tests/ribbons.test.cjs",
       "language": "javascript",
-      "purpose": "Current authored Color ribbon geometry, continuous gradients, signal motion, renderer/export and clock identity",
+      "purpose": "Current authored Color world-anchored ribbon lattice/material/phase, cross-detail projection continuity, continuous gradients, signal motion, renderer/export and clock identity",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": [
@@ -955,7 +957,7 @@
     {
       "path": "tests/space.test.cjs",
       "language": "javascript",
-      "purpose": "Current scene/runtime camera, native scrolling, route flights, preparation, CSS/failure, cadence/quality and bounded atmosphere invariants",
+      "purpose": "Current scene/runtime displayed-camera route and layout retarget continuity, native scrolling, flight preparation, CSS/failure, adaptive detail/cadence/quality and bounded atmosphere invariants",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": [
@@ -1002,7 +1004,7 @@
     {
       "path": "tests/staging-regression.test.cjs",
       "language": "javascript",
-      "purpose": "Exact bounded staging browser/performance selections, registry coupling, raw motion/failure evidence and original metric budgets.",
+      "purpose": "Exact bounded staging browser/performance selections, registry coupling, retained original mobile Writing/Research traces, raw motion/failure evidence and original metric budgets.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": [
@@ -1461,6 +1463,21 @@
       "surviving_route": ".github/acceptance/issue-41.json",
       "inputs": [
         "tests/test_issue41_acceptance.py"
+      ]
+    },
+    {
+      "path": "tests/test_issue45_acceptance.py",
+      "language": "python",
+      "purpose": "Issue #45 bounded selections of maintained crisp formula/world/cache/producer, continuous ribbon geometry/material/phase, displayed-camera retarget/detail/lifecycle and foreground safety checks; exact browser flight/readability evidence and human gates remain distinct.",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": [
+        "issue-policy"
+      ],
+      "disposition": "selected owning policy only; reuse maintained checks without duplicate full regression or unconditional historical snapshot execution",
+      "surviving_route": ".github/acceptance/issue-45.json",
+      "inputs": [
+        "tests/test_issue45_acceptance.py"
       ]
     }
   ]
