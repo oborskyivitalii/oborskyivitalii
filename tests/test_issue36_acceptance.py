@@ -58,14 +58,15 @@ def validate_asset(data):
     assert [stop.get("offset") for stop in stops] == ["0", "0.34", "0.64", "1"]
     group = root.find(NS + "g")
     assert group.attrib == {
-        "fill": "none", "stroke": "url(#ribbon)", "stroke-width": "7",
+        "fill": "none", "stroke": "url(#ribbon)", "stroke-width": "14",
         "stroke-linecap": "round", "stroke-linejoin": "round",
     }, "transparent stroke-only composition"
     paths = group.findall(NS + "path")
     assert "".join(path.get("data-glyph", "") for path in paths) == EXPRESSION.replace(" ", "")
     commands = 0
     for path in paths:
-        assert path.get("stroke-width", "7") in {"5", "7"}
+        assert path.get("stroke-width", "14") in {"10", "14"}
+        inset = float(path.get("stroke-width", "14")) / 2
         geometry = path.get("d", "")
         tokens = re.findall(r"[MLHVC]|-?\d+(?:\.\d+)?", geometry)
         assert "".join(tokens) == re.sub(r"[\s,]", "", geometry), "unsupported geometry"
@@ -79,7 +80,7 @@ def validate_asset(data):
             assert len(values) == count
             for axis, value in enumerate(values):
                 limit = 240 if command == "V" or (command != "H" and axis % 2) else 1380
-                assert math.isfinite(value) and 4 <= value <= limit - 4, "clipped control geometry"
+                assert math.isfinite(value) and inset <= value <= limit - inset, "clipped control geometry"
             commands += 1
             index += count + 1
     assert commands <= 80, "path command budget"

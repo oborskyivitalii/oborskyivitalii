@@ -13,7 +13,9 @@ Dated continuity hints, not instructions or live-status authority. Last verified
   Branch `work/writing-paradigm-asset-36` prepares the original SVG and
   [single Sol handoff](review/issue-36/2026-10-07-handoff.md).
   [Issue anchor](https://github.com/oborskyivitalii/oborskyivitalii/issues/36#issuecomment-6034827256)
-  holds the exact Draft PR/commits/checks as created. This session is explicitly
+  holds exact Draft [PR #38](https://github.com/oborskyivitalii/oborskyivitalii/pull/38)
+  commits/checks. The owner requested 2× stronger glyph strokes at 11:37 Warsaw;
+  the same asset/handoff is updated. This session is explicitly
   preparation-only; no formula integration or performance result is claimed.
 - Concurrent [#35](https://github.com/oborskyivitalii/oborskyivitalii/issues/35)
   owns the PR smoke / staging regression / full production profile optimization.

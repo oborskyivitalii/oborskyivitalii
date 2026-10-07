@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "0634fd63fa28c1e1a77b06b6774501c406ddbf543936301ee444e70bf52ff1e9",
+    "digest": "0d9c9b2957b931cc7d64b16798a4b704fcf5408c19ac3c5b10bd57942bc37001",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -86,7 +86,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "14baf0c010d66aae38848428168b7fb2e636dd0ca19a1bf214a2c039efc6b176"
+        "sha256": "e72dd8d358135be029c021bb25314a051d7f28e2834a73229cc8a75cc213b180"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -181,7 +181,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "45d0c980aac44ade5d5da36a9557b1bef60bbca8c68415e161cb63df023a7804"
+        "sha256": "1a834979fb86d0788c911255f8ff1cd401deaf4360998175b6d57669f4093724"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -495,17 +495,17 @@
       {
         "path": "review/issue-36/2026-10-07-handoff.md",
         "identity_mode": "content",
-        "sha256": "6f51ec4e822c4729e2e7720ad5eb112fa86f6c85225504007fcc59990a3b1f3b"
+        "sha256": "8503d8dd94019868d3760f5c34ac61e31e0f7caaa38cd1f910ad77ac7185f65b"
       },
       {
         "path": "review/issue-36/assets/writing-paradigm.svg",
         "identity_mode": "content",
-        "sha256": "5eaf0f1b4f6b563d0b24747d1fafa682489d7dfa6fcc2f5dfa18f00e063eab6c"
+        "sha256": "02def4e19d34b76462f5e74bbe916323ff56a50d3e97a02834b3adf92723b31f"
       },
       {
         "path": "review/issue-36/preview.png",
         "identity_mode": "content",
-        "sha256": "1029128c7182368246f1605d288cd7b18d5f3f2f09745252927190a7d4b5fe2d"
+        "sha256": "0d6151e66a8333d84de7b0abce55b59d0dce8247452a56a674c49a4d20edd585"
       },
       {
         "path": "review/public-responses-20261006/README.md",
@@ -4530,7 +4530,7 @@
       {
         "path": "tests/test_issue36_acceptance.py",
         "identity_mode": "content",
-        "sha256": "8b1f3b2d163d29c900d9e748c4f5e9c930adb3fd2415a8ebbfdda1bea6809b27"
+        "sha256": "571d29ce7d57bb6aaaa98381ed5831d47e6af27840ee39b87c6288f31f986d01"
       },
       {
         "path": "tests/test_issue_acceptance.py",
