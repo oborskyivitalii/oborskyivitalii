@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "3431f1f6a614f152c97431ef509fca92345e25f16c7cdc7f6223518fed1d4f4e",
+    "digest": "88f1c3b66554c937395f4c08a43e299b125709304b3188cd8b88b1e37d81fdd2",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -96,12 +96,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "45ed41f7a9c081b60bb01aa5bcf753032125d37acc22528986aa4e57ad5ebce8"
+        "sha256": "71c5063bad54787d4c8e35df4f99e02a97b876f9e735047a139d9b5bdac9575b"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "171903cc92459069834054b7d6339efc698274ebc755e260b239bdde769cc692"
+        "sha256": "606d9dcd393812005fefbdc4d3d4d8f60276560879f487a6c40bb4784d2646bd"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -131,7 +131,7 @@
       {
         "path": ".github/workflows/site-cause-probe.yml",
         "identity_mode": "content",
-        "sha256": "c46cf129e38fcfb12cba7c255e4371398627facc67f4941d3d9fb597c8ffdf06"
+        "sha256": "afeb3f75110fb431a26dd8df3a077b0f6c50090c61b4789a6fe98d008724cf6d"
       },
       {
         "path": ".github/workflows/site-checks.yml",
@@ -196,7 +196,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "d8dc37c85f1b1b561c991f6812ee5e17bd8fc07349c2f9427d5e2f011c03fc0c"
+        "sha256": "169f2345e7849275e0e1ebcbbd59c7e7c4be2a50e7bc1ea8046c58168592e820"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -385,7 +385,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "1c4cf619101404a341b8076f4f25bcad0fa60b10a56acbab87d3862b41af41a6"
+        "sha256": "337a4a0945c78f630ad50c1e174b19932d171d4310fd947a5a72e72fa66eeaec"
       },
       {
         "path": "guides/SITE-CONTENT-REVIEW.md",
@@ -580,12 +580,12 @@
       {
         "path": "review/issue-45/2026-10-07-handoff.md",
         "identity_mode": "content",
-        "sha256": "522b62181e195585f9a32d0bd7d062535fc43d367f27cd54a1748743f8398384"
+        "sha256": "2a73f6e8c1b2cb678a315317092386d5717ddc351f69b41432560a046963ece5"
       },
       {
         "path": "review/issue-45/2026-10-07-independent-review.md",
         "identity_mode": "content",
-        "sha256": "a6a9e382be768eca48cb1a031220541e8d76f3b2a8b68f049614275efd09087a"
+        "sha256": "4fe1e3b53dae6e6c3eceb5d9adcd207e2f80a4d1f3ca8ad3d0ede5df39dd6e06"
       },
       {
         "path": "review/public-responses-20261006/README.md",
@@ -4470,7 +4470,7 @@
       {
         "path": "tests/cause-probe.test.cjs",
         "identity_mode": "content",
-        "sha256": "e51a9ee3fdc69ec4474056e6c4e3a0c0712002e98fb2e08c7172ac312a092582"
+        "sha256": "169a83b5609a5f58aae469d2f415a78d1f58038d1598a446e5ff6273f5f5ebab"
       },
       {
         "path": "tests/color-build.test.cjs",
@@ -4855,7 +4855,7 @@
       {
         "path": "tools/quality/cause-probe.cjs",
         "identity_mode": "content",
-        "sha256": "068f6e42bd3aaac67ead6d9b755ad08797fa4a64c4f9336ba1986de84e4f677f"
+        "sha256": "013ef0a5ed3b8a69ccba0d1a68e75b473fe24d02037b563258f967d92877af12"
       },
       {
         "path": "tools/quality/cold-native-probe.cjs",
@@ -5045,7 +5045,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "3e46cd08f0239540c1c7e7c0707cb7673be4f58bcbd5e193c4076298224e874e"
+        "sha256": "0fdf116bf5d4b59199d3bf8a9aa3b2b2b6bdfbfe12a6e6a7b194bc6bd07770c8"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -5688,7 +5688,7 @@
     {
       "path": ".github/workflows/site-cause-probe.yml",
       "kind": "file",
-      "purpose": "GitHub Actions: Cold browser cause attribution; inspect trigger/profile before running.",
+      "purpose": "Explicit historical cause replay plus issue45 same-repository PR47 Writing label attribution; four source-bound private inputs, never stage or release admission.",
       "role": "workflow",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
@@ -15236,7 +15236,7 @@
     {
       "path": "tests/cause-probe.test.cjs",
       "kind": "file",
-      "purpose": "Private causal-input normal/trace identity and actual Lighthouse attribution evidence Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
+      "purpose": "Adversarial cause-input, CPU evidence and four-input Writing count/identity/failure retention contracts.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
@@ -16083,7 +16083,7 @@
     {
       "path": "tools/quality/cause-probe.cjs",
       "kind": "file",
-      "purpose": "Maintained quality/check helper for cause probe; applicable profiles are selected by SITE-CHECK-PROFILES.",
+      "purpose": "Maintained private browser cause attribution: original Research/WebKit protocols and bounded four-input Writing CPU/network evidence with exact parent identity.",
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [

@@ -327,3 +327,62 @@ to admit dynamic rows. The root must rebuild and verify final RI/coupling and
 reconcile a fresh pinned scan before final security/CI acceptance. This is a
 completed review of the 180 public checksums, not a final scanner, hosted
 performance or promotion pass.
+
+## Bounded Writing attribution workflow — independent prepared review
+
+Reviewer `/root/review_camera` inspected the workflow/metadata delta against
+`79becadfa387dd684fac90b9b20a38c300b9c969`, tree
+`0fda9fe7dd6004f536663822b588082b73873a29`, with `sourceDirty: true`.
+No blocker remains in this scope. The new job requires the exact
+`site-writing-cause-evidence` label event on same-repository PR47, checks out and
+asserts its immutable event head, disables persisted credentials and has only
+read contents permission. Actions/Node/toolchain are pinned; only Chromium is
+installed. The 12-minute job always uploads its private raw result directory
+under a run/attempt identity with 90-day retention. The bounded primary-archive
+APT step is byte-exact to the maintained reading-clarity step.
+
+The review found that PR-only concurrency would let unrelated label events
+cancel an active observation. The final label-specific PR key resolves that
+case and preserves the historical manual candidate-SHA grouping. The original
+manual Research/WebKit job is byte-identical to the parent. Regular staging
+workflows, runtime, generated public files and performance budgets are unchanged.
+Profiles, catalog/coupling purpose and continuity text consistently describe
+four private inputs, retained failures and diagnostic collection without
+performance admission; they retain the actual failed 329.5ms source79 staging
+result rather than claiming a successful repair.
+
+Helper/test implementation receives its separate review. Actual attribution
+execution and final RI/coupling refresh remain pending. This reviewer changed
+only this review artifact and ran no test, browser or diagnostic campaign.
+
+| Workflow review target | SHA256 |
+| --- | --- |
+| `.github/workflows/site-cause-probe.yml` | `afeb3f75110fb431a26dd8df3a077b0f6c50090c61b4789a6fe98d008724cf6d` |
+| `tools/quality/test-profiles.json` | `0fdf116bf5d4b59199d3bf8a9aa3b2b2b6bdfbfe12a6e6a7b194bc6bd07770c8` |
+| `guides/SITE-CHECK-PROFILES.md` | `337a4a0945c78f630ad50c1e174b19932d171d4310fd947a5a72e72fa66eeaec` |
+
+
+## Bounded Writing attribution helper — independent prepared-source review
+
+Independent reviewer `/root/review_surfaces/trace_compare` reopened the final
+helper/test files and reported no blocking findings after physical-path guards
+were added. Exactly four declared same-source/parent Writing inputs run once
+with original CPU/network evidence saved before validation; validation failures
+are retained and other safe trials continue. Unknown cleanup state aborts further
+launches and records unattempted inputs. Physical output ancestors/destinations,
+including symlinks and site/docs collisions, are checked before private derive
+can remove a destination. Historical Research3/WebKit4 protocols remain intact;
+no diagnostic grants performance/staging/release admission. Source author ran
+5/5 focused tests with zero skips. Actual profiling and final RI/source admission
+remain pending at this prepared source. Root transcribes this returned review;
+root is not claiming independent self-review.
+
+| Reviewed final file | SHA256 |
+| --- | --- |
+| `tools/quality/cause-probe.cjs` | `013ef0a5ed3b8a69ccba0d1a68e75b473fe24d02037b563258f967d92877af12` |
+| `tests/cause-probe.test.cjs` | `169a83b5609a5f58aae469d2f415a78d1f58038d1598a446e5ff6273f5f5ebab` |
+
+The same independent reviewer reopened the lint repairs: cleanup error
+propagation occurs after finally and aborts before any further launch; extracted
+test helpers preserve all five named scenario cases. Final5/5 tests pass with
+zero skips and both-file ESLint has zero messages, without rule waivers.

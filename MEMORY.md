@@ -35,10 +35,14 @@ Dated continuity, not live authority. Last verified: **2026-10-07**.
   the earlier stop. Stage37676079833 timed out installing Ubuntu dependencies;
   retry37678648242 passed installation, static/host/functional/Color/motion
   but failed Writing mobile TBT269ms against the unchanged200ms budget.
-  No stable promotion or merge occurred. Necessary follow-up in the samePR:
-  reduce actual formula bitmap submission work without changing projection,
-  cache/clock, quality, camera, reading paint, cases or budgets. Validate a new
-  exact source through existing CI/staging, then merge its tested head.
+  Source79becad/tree0fda9fe7 bounds texture source windows and retains original
+  Writing traces. Its current PR CI passes, but stage37684440827 fails only
+  Writing TBT329.5ms; no benefit is established and promotion is skipped.
+  The trace attributes most additional task time to recurring browser Commit,
+  without function CPU samples. SamePR adds one bounded four-input Writing
+  cause-probe scope with original raw/CPU evidence and declared private controls.
+  Normal staging settings/budgets remain unchanged. Use actual attribution to
+  prepare the repair, pass exact-source staging, then merge its tested head.
   All6AC boxes remain open for literal current-source visual/evidence gates;
   complete-expression occlusion and production/native acceptance remain open.
   [Current handoff](review/issue-45/2026-10-07-handoff.md) retains exact evidence.
@@ -75,7 +79,7 @@ Dated continuity, not live authority. Last verified: **2026-10-07**.
 
 | Issue | Remaining intent |
 | --- | --- |
-| #45 | PR47 main/staging authorized; reduce measured Writing TBT, pass exact-source staging, merge tested head. Whole-criterion evidence and AC01 visibility remain open. |
+| #45 | PR47 main/staging authorized; four-input attribution after failed329.5ms Writing TBT, evidence-based repair, exact staging and guarded merge. Whole-criterion evidence and AC01 visibility remain open. |
 | #36 / #41 | #43/#44 merged; joint staging and paired/visual/editorial acceptance. |
 | #1 / #13 | First-release, physical-device and full production/recovery acceptance. |
 | #8 / #39 | Production URL/indexability, domains and analytics activation. |

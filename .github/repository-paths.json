@@ -171,7 +171,7 @@
     },
     ".github/workflows/site-cause-probe.yml": {
       "kind": "file",
-      "purpose": "GitHub Actions: Cold browser cause attribution; inspect trigger/profile before running.",
+      "purpose": "Explicit historical cause replay plus issue45 same-repository PR47 Writing label attribution; four source-bound private inputs, never stage or release admission.",
       "role": "workflow",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -5877,7 +5877,7 @@
     },
     "tests/cause-probe.test.cjs": {
       "kind": "file",
-      "purpose": "Private causal-input normal/trace identity and actual Lighthouse attribution evidence Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
+      "purpose": "Adversarial cause-input, CPU evidence and four-input Writing count/identity/failure retention contracts.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -6357,7 +6357,7 @@
     },
     "tools/quality/cause-probe.cjs": {
       "kind": "file",
-      "purpose": "Maintained quality/check helper for cause probe; applicable profiles are selected by SITE-CHECK-PROFILES.",
+      "purpose": "Maintained private browser cause attribution: original Research/WebKit protocols and bounded four-input Writing CPU/network evidence with exact parent identity.",
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md"
     },

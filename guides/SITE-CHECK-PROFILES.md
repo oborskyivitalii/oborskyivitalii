@@ -86,6 +86,17 @@ Missing, duplicate, malformed, failed or wrong-source evidence fails. Stable
 staging consumes this distinct gate; a production validator cannot treat it as
 a full hosted/release report.
 
+Issue #45 also has one bounded attribution job in `site-cause-probe.yml`:
+the exact `site-writing-cause-evidence` label event on same-repository PR #47
+runs four fresh Writing mobile/simulated Lighthouse observations with explicit
+function-level CPU samples. Normal Color and the maintained private no-ribbons,
+no-canvas-draw and thematic-off controls share one exact clean source/tree and
+declared parent lineage. Raw reports, traces and network logs are retained before
+validation. Collection success is not performance acceptance; all diagnostic
+reports keep `fullGate: false` and `performanceAcceptance: false`. This does not
+change ordinary staging trials, settings, cases or admission budgets. Historical
+Research/WebKit cause-probe replay stays manual and retains its original count.
+
 ## Complete production regression
 
 `validation_level: production` is the reusable workflow's default. Run the full

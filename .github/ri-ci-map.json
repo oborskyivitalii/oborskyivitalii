@@ -177,7 +177,7 @@
     },
     {
       "id": "github-live-overlay-ci-boundary",
-      "purpose": "CI entrypoints and exact-source reports are indexed, while live issue/review/check/deployment state and owner acceptance remain external observations.",
+      "purpose": "CI entrypoints, including bounded explicit-label Writing attribution, index exact-source report routes; live issue/review/check/deployment and diagnostic versus admission remain external observations.",
       "paths": [
         ".github/workflows/issue-acceptance.yml",
         ".github/workflows/site-browser-gate-probe.yml",
@@ -359,7 +359,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "caa1451c2cbd627e073bc951365536922e93472ec372aba23b988f59cbd30cdc",
+    "digest": "a942d4642b688737bf77bd325c32ee3696be9eb38e12a67b867adfab1ac0274c",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -415,7 +415,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "45ed41f7a9c081b60bb01aa5bcf753032125d37acc22528986aa4e57ad5ebce8"
+        "sha256": "71c5063bad54787d4c8e35df4f99e02a97b876f9e735047a139d9b5bdac9575b"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -439,7 +439,7 @@
       },
       {
         "path": ".github/workflows/site-cause-probe.yml",
-        "sha256": "c46cf129e38fcfb12cba7c255e4371398627facc67f4941d3d9fb597c8ffdf06"
+        "sha256": "afeb3f75110fb431a26dd8df3a077b0f6c50090c61b4789a6fe98d008724cf6d"
       },
       {
         "path": ".github/workflows/site-checks.yml",
@@ -491,7 +491,7 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "1c4cf619101404a341b8076f4f25bcad0fa60b10a56acbab87d3862b41af41a6"
+        "sha256": "337a4a0945c78f630ad50c1e174b19932d171d4310fd947a5a72e72fa66eeaec"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -587,7 +587,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "3e46cd08f0239540c1c7e7c0707cb7673be4f58bcbd5e193c4076298224e874e"
+        "sha256": "0fdf116bf5d4b59199d3bf8a9aa3b2b2b6bdfbfe12a6e6a7b194bc6bd07770c8"
       },
       {
         "path": "tools/repository_intelligence.py",

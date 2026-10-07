@@ -436,7 +436,7 @@
     {
       "path": "tests/cause-probe.test.cjs",
       "language": "javascript",
-      "purpose": "Private causal-input normal/trace identity and actual Lighthouse attribution evidence",
+      "purpose": "Private causal normal/trace identity, original CPU/network evidence, exact four-input Writing derivation/count and retained failures without performance admission.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "diagnostic",
       "profiles": [
@@ -447,7 +447,8 @@
       "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
       "inputs": [
         "tests/cause-probe.test.cjs",
-        "tools/quality/cause-probe.cjs"
+        "tools/quality/cause-probe.cjs",
+        ".github/workflows/site-cause-probe.yml"
       ]
     },
     {
