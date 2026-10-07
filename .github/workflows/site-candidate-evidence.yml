@@ -1,14 +1,19 @@
 name: Site candidate evidence
 on:
-  pull_request:
-    types: [labeled]
+  workflow_dispatch:
+    inputs:
+      candidate_sha:
+        description: Exact candidate for optional full production automation preflight
+        required: true
+        type: string
 permissions:
   contents: read
   actions: read
 jobs:
   evidence:
-    if: github.event.label.name == 'site-release-candidate'
     uses: ./.github/workflows/site-release-checks.yml
     with:
-      candidate_sha: ${{ github.event.pull_request.head.sha }}
+      candidate_sha: ${{ inputs.candidate_sha }}
+      validation_level: production
+      automated_only: true
       full: true

@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 35,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/35",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Inventory every test module, browser scenario family, quality validator and workflow route; give duplicates and obsolete diagnostics evidence-backed dispositions.",
+      "automated_scope": "The exact-base audit accounts for every original module and verifies source hashes/purpose/owner/profile/disposition; the current registry selector proves exhaustive module coverage and safe active/manual/task allocation. Semantic duplicate claims, scenario/workflow audit adequacy and surviving unique coverage require independent review.",
+      "checks": [
+        "AUDIT",
+        "SELECTION"
+      ],
+      "gates": [
+        "G01"
+      ]
+    },
+    {
+      "id": "AC02",
+      "intent": "Run economical automatic PR smoke and source-relevant owning-issue acceptance, preserving counts, failure handling and exact source identity.",
+      "automated_scope": "Targeted selector and controller tests prove bounded PR allocation, changed-source selection, fallback for unknown changes, package/smoke/controller boundaries and failure/source binding. Node bridges require a nonempty passing TAP summary with zero skipped/cancelled/TODO tests. This policy runs shared named checks once and does not repeat the separate Basic smoke. Actual current-source PR CI is G02.",
+      "checks": [
+        "SELECTION",
+        "CONTROLLER",
+        "TRUST",
+        "TAP-NEGATIVES",
+        "POLICY"
+      ],
+      "gates": [
+        "G01",
+        "G02"
+      ]
+    },
+    {
+      "id": "AC03",
+      "intent": "Give explicit staging its own shorter representative browser/failure/runtime/performance regression and honest source-bound passing reports.",
+      "automated_scope": "The staging driver/validator fixtures check the exact reviewed matrix, raw observation/measurement/profile settings and report accounting; the stage gate/controller/trust fixtures reject missing/failed/skipped/duplicate/mismatched evidence and wrong-profile promotion. Controlled fixtures establish deterministic enforcement, not real browser runtime, observed CI duration or actual deployment. Fresh hosted execution and timing remain G02.",
+      "checks": [
+        "STAGE-MATRIX",
+        "STAGE-GATE",
+        "CONTROLLER",
+        "TRUST",
+        "TAP-NEGATIVES"
+      ],
+      "gates": [
+        "G01",
+        "G02"
+      ]
+    },
+    {
+      "id": "AC04",
+      "intent": "Keep the complete production regression and original metric/security/native/physical-device/source/artifact obligations; light staging cannot authorize production.",
+      "automated_scope": "The existing production negative-fixture module executes once, retaining complete full/native/Color/analytics/navigation/raw-metric and external device guards; production aggregate/promotion validators, metric/security budgets/toolchain bytes remain exact to ec9b836. New staging rejection fixtures prove tier separation. Served/runtime/publication and earlier review bytes remain exact; tamper/deletion fixtures fail. No automated fixture supplies real physical/independent/production-origin acceptance.",
+      "checks": [
+        "FULL-GUARDS",
+        "PRODUCTION-INVARIANTS",
+        "STAGE-GATE",
+        "UNCHANGED-PUBLIC",
+        "FIXED-BYTE-NEGATIVES"
+      ],
+      "gates": [
+        "G01"
+      ]
+    },
+    {
+      "id": "AC05",
+      "intent": "Remove redundant execution and allocate obsolete diagnostics explicitly without losing unique regression or historical evidence.",
+      "automated_scope": "The base audit and complete current selector registry exercise diagnostic/task exclusions, permanent completeness, changed-input routing, baseline exclusions and distinct checked accounting. Original production guards and old review/public byte identity protect unique release coverage and history. Whether a consolidation is semantically justified remains independent review.",
+      "checks": [
+        "AUDIT",
+        "SELECTION",
+        "FULL-GUARDS",
+        "UNCHANGED-PUBLIC",
+        "TAP-NEGATIVES"
+      ],
+      "gates": [
+        "G01"
+      ]
+    },
+    {
+      "id": "AC06",
+      "intent": "Make the final test/profile allocation canonical, owned and reachable through fresh RI and checked actual CI coupling.",
+      "automated_scope": "Current actual RI/catalog views and reviewed CI coupling are verified, all new selector/staging controls have maintained canonical owners, and selector fixtures reject missing/duplicate/unowned/invalid registry routes. Companion CI negatives execute on the permanent navigation route. Review must assess mapping adequacy beyond lexical source verification.",
+      "checks": [
+        "RI-OWNERS",
+        "SELECTION"
+      ],
+      "gates": [
+        "G01"
+      ]
+    },
+    {
+      "id": "AC07",
+      "intent": "Complete linked issue/PR/commit/review/CI and exact merged acceptance; reconcile issue #13 against original criteria and genuine remaining gates.",
+      "automated_scope": "The seven-ID selected policy, exact-source/clean workflow contract and current analysis/continuity routes are checked. The versioned #13 audit contains a complete seven-original-criterion disposition and concrete remaining gates; its presence does not certify facts, external acceptance or closure. Actual independent review, passing current-source PR/staging CI, normal merge and live original-intent disposition are recorded separately in G01-G03.",
+      "checks": [
+        "POLICY",
+        "HANDOFF",
+        "ISSUE13"
+      ],
+      "gates": [
+        "G01",
+        "G02",
+        "G03"
+      ]
+    }
+  ],
+  "checks": {
+    "AUDIT": {
+      "kind": "unittest",
+      "test": "test_issue35_acceptance.Issue35AcceptanceTests.test_complete_base_test_audit_has_identity_and_dispositions"
+    },
+    "SELECTION": {
+      "kind": "unittest",
+      "test": "test_issue35_acceptance.Issue35AcceptanceTests.test_test_profile_registry_selection_and_accounting"
+    },
+    "STAGE-MATRIX": {
+      "kind": "unittest",
+      "test": "test_issue35_acceptance.Issue35AcceptanceTests.test_staging_regression_matrix_and_raw_measurements"
+    },
+    "STAGE-GATE": {
+      "kind": "unittest",
+      "test": "test_issue35_acceptance.Issue35AcceptanceTests.test_staging_gate_exact_identity_and_failure_propagation"
+    },
+    "CONTROLLER": {
+      "kind": "unittest",
+      "test": "test_issue35_acceptance.Issue35AcceptanceTests.test_profile_controller_candidate_leases_and_promotion_boundaries"
+    },
+    "TRUST": {
+      "kind": "unittest",
+      "test": "test_issue35_acceptance.Issue35AcceptanceTests.test_staging_caller_source_and_recovery_artifact_trust"
+    },
+    "FULL-GUARDS": {
+      "kind": "unittest",
+      "test": "test_issue35_acceptance.Issue35AcceptanceTests.test_original_production_guard_controlled_negative_fixtures"
+    },
+    "TAP-NEGATIVES": {
+      "kind": "unittest",
+      "test": "test_issue35_acceptance.Issue35AcceptanceTests.test_node_bridge_rejects_empty_failed_skipped_and_todo_modules"
+    },
+    "PRODUCTION-INVARIANTS": {
+      "kind": "unittest",
+      "test": "test_issue35_acceptance.Issue35AcceptanceTests.test_production_validators_and_metric_security_budgets_are_unchanged"
+    },
+    "UNCHANGED-PUBLIC": {
+      "kind": "unittest",
+      "test": "test_issue35_acceptance.Issue35AcceptanceTests.test_public_runtime_and_previous_review_evidence_are_unchanged"
+    },
+    "FIXED-BYTE-NEGATIVES": {
+      "kind": "unittest",
+      "test": "test_issue35_acceptance.Issue35AcceptanceTests.test_fixed_source_invariants_reject_modified_or_deleted_bytes"
+    },
+    "POLICY": {
+      "kind": "unittest",
+      "test": "test_issue35_acceptance.Issue35AcceptanceTests.test_policy_has_seven_criteria_shared_checks_and_external_gates"
+    },
+    "RI-OWNERS": {
+      "kind": "unittest",
+      "test": "test_issue35_acceptance.Issue35AcceptanceTests.test_current_profile_controls_have_canonical_ri_owners_and_ci_routes"
+    },
+    "ISSUE13": {
+      "kind": "unittest",
+      "test": "test_issue35_acceptance.Issue35AcceptanceTests.test_issue13_reconciliation_records_all_original_criteria_and_remaining_gates"
+    },
+    "HANDOFF": {
+      "kind": "unittest",
+      "test": "test_issue35_acceptance.Issue35AcceptanceTests.test_analysis_and_current_continuity_route_to_owning_issue"
+    }
+  },
+  "gates": {
+    "G01": {
+      "kind": "human",
+      "description": "Independent semantic/implementation review of duplicate and diagnostic dispositions, reviewed profile matrices, unchanged production obligations, canonical ownership and actual RI/CI routing; record the exact inspected source and findings dispositions. The maintainer already authorizes this scoped optimization."
+    },
+    "G02": {
+      "kind": "merge",
+      "description": "Observe passing current-source PR smoke/targeted acceptance and a real shorter source-bound hosted staging regression; report measured job runtime and queue/install overhead separately from targets. Normal protected merge and exact merged-source acceptance reconciliation are required. Local controlled fixtures do not satisfy these observations."
+    },
+    "G03": {
+      "kind": "human",
+      "description": "Revalidate live owning issue to PR, exact Refs #35 commits, versioned independent review, reports and CI links. Update the actual issue-body AC checkboxes alongside the evidence table, checking only fully verified criteria and clearing invalidated evidence. Update #13 criterion-by-criterion against its original/current accepted intent and remaining first-release obligations; close only when the actual or explicitly superseded accepted scope is satisfied. No text-presence test supplies that human/live decision."
+    }
+  }
+}

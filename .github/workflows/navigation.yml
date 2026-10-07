@@ -19,12 +19,18 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      # site-checks.yml owns the basic site suite. Only focused RI/continuity
-      # tests run here; full browser/export suites belong to hosted profiles.
+      - name: Use the pinned source-test Node runtime
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      # site-checks.yml owns Basic and changed-source tests. Only cheap RI,
+      # profile/gate fixtures run here; hosted matrices have separate triggers.
       - name: Verify reviewed RI and CI coverage
         run: python3 tools/check_ri_ci.py verify
       - name: Check RI and CI coupling regression cases
         run: python3 -m unittest discover -s tests -p 'test_ri_ci.py'
+      - name: Check profile selection and fail-closed staging controls
+        run: node --test tests/test-profile-selection.test.cjs tests/staging-gate.test.cjs tests/staging-regression.test.cjs tests/quality-sources.test.cjs
       - name: Check repository entry points, guide routes and preserved history
         run: python3 -m unittest discover -s tests -p 'test_root_layout.py'
       - name: Check enduring and owning-issue test selection

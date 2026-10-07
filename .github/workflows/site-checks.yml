@@ -23,16 +23,27 @@ jobs:
       gate_upload_digest: ${{ steps.gate.outputs.artifact-digest }}
     env:
       SITE_CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
+      SITE_BASE_SHA: ${{ github.event.pull_request.base.sha }}
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
           ref: ${{ github.event.pull_request.head.sha || inputs.candidate_sha }}
+          fetch-depth: 0
           persist-credentials: false
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
           node-version: 24.19.0
       - name: Minimal source, route, script and size checks
         run: node tools/quality/local.cjs --package quality-artifact
+      - name: Run only additional source tests owned by the current PR changes
+        env:
+          SITE_SOURCE_EVENT: ${{ github.event_name }}
+        run: |
+          if [ "$SITE_SOURCE_EVENT" = pull_request ]; then
+            node tools/quality/source-tests.cjs --profile pr --base "$SITE_BASE_SHA" --head "$SITE_CANDIDATE_SHA" --require-clean
+          else
+            node tools/quality/source-tests.cjs --profile staging --require-clean
+          fi
       - id: identity
         run: node -e "require('node:fs').appendFileSync(process.env.GITHUB_OUTPUT,'digest='+require('./quality-artifact/artifact.json').artifactDigest+'\n')"
       - id: public

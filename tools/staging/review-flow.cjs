@@ -17,6 +17,13 @@ function stageComment(context){
   assert.equal(context.actor,context.repo.owner,'stage event actor must be the repository owner');
   return positive(context.payload.issue.number);
 }
+function previewEvidence(context){
+  if(context.eventName!=='pull_request'||context.payload?.action!=='labeled')return false;
+  assert.equal(context.payload.label?.name,'staging-regression','only the explicit staging-regression evidence label is accepted');
+  assert.equal(context.payload.sender?.login,context.repo.owner,'only the owner can request stage evidence');
+  assert.equal(context.actor,context.repo.owner,'stage evidence actor must be the owner');
+  return true;
+}
 function controller(context,main){
   assert.ok(['workflow_dispatch','issue_comment'].includes(context.eventName),'staging requires explicit workflow dispatch or owner /stage command');
   if(context.eventName==='issue_comment')stageComment(context);
@@ -33,6 +40,7 @@ function resolve(context,pr,main){
   assert.equal(context.repo.owner+'/'+context.repo.repo,repository);positive(pr.number);lease(pr,pr.head.sha);
   const mode=context.eventName==='pull_request'?'preview':'staging';
   if(mode==='preview'){
+    previewEvidence(context);
     assert.equal(context.payload.pull_request.number,pr.number);
     lease(pr,context.payload.pull_request.head.sha);
   }else{
@@ -70,6 +78,12 @@ function rendition(dir,root=path.resolve(__dirname,'../..')){
   return identity;
 }
 function fullGate(gate,record,url){
+  if(gate.kind==='staging-gate'){
+    require('../quality/staging-gate.cjs').validateGate(record.source,gate,url);
+    assert.equal(String(gate.githubArtifact.id),String(record.gate.githubArtifact.id),'staging gate public artifact ID');
+    assert.equal(gate.githubArtifact.uploadDigest,record.gate.githubArtifact.uploadDigest,'staging gate public upload digest');
+    return true;
+  }
   assert.equal(gate.kind,'hosted-gate','a preview smoke cannot authorize staging');assert.equal(gate.profile,'staging');assert.equal(gate.pass,true);
   for(const key of ['sourceCommit','sourceTree','candidateCommit','artifactDigest'])assert.equal(gate[key],record.source[key],'full gate '+key);
   assert.equal(gate.hostedOrigin,url);const sourceVariant=variant(record.source),testedVariant=variant(gate);
@@ -244,4 +258,4 @@ async function main(){
   finally{fs.mkdirSync(path.dirname(out),{recursive:true});fs.writeFileSync(out,JSON.stringify(result,null,2)+'\n');}
 }
 if(require.main===module)main().catch(error=>{console.error(error.message);process.exitCode=1;});
-module.exports={repository,project,workflow,positive,stageComment,controller,lease,resolve,configuration,variant,colorInputs,supportedRendition,rendition,fullGate,quickHttp,readyHttp,findRecovery,recoveryState,packageAttempt,recoveryArtifact,priorStable,commentBody,updateComment};
+module.exports={repository,project,workflow,positive,stageComment,previewEvidence,controller,lease,resolve,configuration,variant,colorInputs,supportedRendition,rendition,fullGate,quickHttp,readyHttp,findRecovery,recoveryState,packageAttempt,recoveryArtifact,priorStable,commentBody,updateComment};

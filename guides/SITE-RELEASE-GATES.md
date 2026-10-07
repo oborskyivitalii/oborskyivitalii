@@ -9,18 +9,22 @@ Read live issues/PRs and [MEMORY](../MEMORY.md) for the exact candidate and resu
 
 ## Coverage and source boundary
 
-The accepted check profiles supersede the original always-full PR/Linux-only
-schedule. Full staging combines Linux Chromium/Firefox 260/8/26 with native
-macOS WebKit 130/4/13: all 390 functional, 12 navigation and 39 analytics cases,
+[Test optimization #35](https://github.com/oborskyivitalii/oborskyivitalii/issues/35)
+supersedes the old full-staging schedule: PR feedback is small smoke plus the
+owning issue's targeted AC checks; explicit staging runs the bounded regression
+in SITE-CHECK-PROFILES; full regression precedes production admission. Full
+production coverage retains Linux Chromium/Firefox 260/8/26 plus native macOS
+WebKit 130/4/13: all 390 functional, 12 navigation and 39 analytics cases,
 including every no-JavaScript/failure mode. Windows 40/8/26 smoke and twelve
-original Linux Color cases remain supplemental. Legacy nonfull three-engine
-Linux behavior, pins and all original budgets remain unchanged.
+original Linux Color cases remain supplemental. Pins and original budgets remain
+unchanged. Legacy nonfull three-engine tooling remains available diagnostically.
 
-Staging uses the existing CI controller and owner request. Production activation
-and first-release rights, independent/device and maintainer visual acceptance
-remain separate. Historical successful runs admit only their matching sources,
-artifacts and controllers; neither a prior run nor green Basic checks accepts
-another full candidate.
+Staging uses the existing CI controller and owner request. Its distinct
+`staging-gate` is not full release evidence. Production activation and
+first-release rights, independent/device and maintainer visual acceptance remain
+separate. Historical successful runs admit only their matching sources,
+artifacts and controllers; neither a prior run nor green Basic/staging checks
+accepts another production candidate.
 
 The [original contract and dated amendments](https://github.com/oborskyivitalii/oborskyivitalii/blob/3ca14c54824ac6b9e7225bc88429b4b8fb3bcf10/SITE-RELEASE-GATES.md)
 preserve PR #10/S1–S4 execution, blanket publication pauses and the original
@@ -46,14 +50,17 @@ SonarQube service, Lighthouse server or device-cloud subscription is required.
 
 | Stage | Required work | Acceptance boundary |
 | --- | --- | --- |
-| PR update | The bounded Basic source checks and CI preview selected by SITE-CHECK-PROFILES | Required checks fail on missing/failed applicable results; preview does not authorize full staging. |
-| Explicit full staging | Complete exact-artifact source/security/browser/native/Color/accessibility/failure/Lighthouse/CPU/soak/capture profile | All mandatory reports, budgets and source/controller/artifact identities must match before stable promotion. |
-| Authorized production release | The full hosted automation and applicable source-bound rights/independent/device/production indexing checks | Production activation stays with #8 and the release decision. |
+| PR update | Bounded Basic source/hosted smoke, RI checks and targeted owning-issue AC checks | Required checks fail on missing/failed applicable results; preview does not authorize stable staging. |
+| Explicit staging | Exact-artifact source/lint/security/advisory/host checks and bounded browser/failure/navigation/analytics/Lighthouse/CPU/flight regression | The distinct complete staging gate and source/controller/artifact identities must match before stable staging promotion. |
+| Before production admission | Complete exact-artifact source/security/browser/native/Color/accessibility/failure/Lighthouse/CPU/soak/capture regression and applicable source-bound rights/independent/device/production-origin checks | Only the strict full gate plus applicable external release acceptance admits the candidate; activation stays with #8 and the release decision. |
 | After deployment | Served edition/digests, every route and assets, interactions, HTTPS/live headers and applicable canonical/robots/sitemap policy | Deployment is healthy only after live checks; recovery follows the reviewed same-artifact controller route. |
 
-Keep PR feedback bounded; the complete authorized hosted profile must never be
-skipped by a path-filter optimization. If a check is legitimately not applicable,
-the aggregate records a validated reason; absent/cancelled/unknown results do not
+The registry in SITE-CHECK-PROFILES owns routine, targeted and diagnostic source
+suites. At issue completion review every added/changed test's PR/staging/production
+assignment, duplicate or obsolete status, reason and owner; update RI and its CI
+mapping with those dispositions. The complete authorized production matrix must
+not be skipped by a path filter. If a check is legitimately not applicable, the
+aggregate records a validated reason; absent/cancelled/unknown results do not
 count as success. No recurring clock schedule is implied by this guide.
 
 ## Security and source quality
@@ -81,12 +88,16 @@ same approved candidate. Scanner reports must redact any discovered secret value
 
 ## Browser, platform and failure coverage
 
-| Execution environment | PR | Full release |
-| --- | --- | --- |
-| Linux, pinned supported runner image | Current bounded preview uses Chromium; legacy nonfull profiles retain all three engines. | Chromium/Firefox: full functional and failure matrix, 260/8/26; original Color12 retains all three engines. |
-| Windows, pinned supported runner image | Not required | Chromium and Firefox: all five routes, both themes, desktop/mobile layout and core interactions. |
-| macOS, pinned supported runner image | Not required | WebKit: full 130/4/13 on all five routes, both themes/widths and every original failure/no-JavaScript mode. |
-| Physical iPhone/iPad Safari and modest Android Chrome | No device-cloud requirement | First release and material rendering/layout/input/fallback/browser-policy changes: recorded physical smoke evidence. |
+| Execution environment | PR smoke | Staging regression | Full production regression |
+| --- | --- | --- | --- |
+| Linux, pinned supported runner image | Chromium at two widths | Chromium/Firefox all-route journeys and representative failure/navigation fixtures | Full functional/failure 260/8/26; original Color12 retains all three engines. |
+| Windows, pinned supported runner image | Not required | Not required | Chromium/Firefox all five routes, both themes, desktop/mobile and core interactions. |
+| macOS, pinned supported runner image | Not required | Not required | WebKit full 130/4/13, all five routes, both themes/widths and every original failure/no-JavaScript mode. |
+| Physical iPhone/iPad Safari and modest Android Chrome | No device-cloud requirement | No new automated device claim | First release and material rendering/layout/input/fallback/browser-policy changes require recorded physical smoke evidence. |
+
+The following matrix and performance section specify full production regression.
+The bounded staging sample retains the applicable individual original limits,
+but does not claim full matrix, median or soak acceptance.
 
 The combined Linux/macOS core matrix retains the audit's 1440×900 and 390×844 Day/Night
 views and 320px fallback checks. Include 200% layout/zoom inspection, keyboard
@@ -167,17 +178,21 @@ moving branch after validation. Bind external device/review records to the same
 artifact or an explicitly checked unchanged-scope fingerprint. Identify the
 candidate revision separately from GitHub's temporary PR merge ref.
 
-The final gate checks required job status, report schemas/route counts, nonempty
-scanner/browser coverage, all expected profiles, metric assertions, exception
-expiry and matching source/artifact identities. No `continue-on-error` bypass on
+The strict production gate checks required job status, report schemas/route
+counts, nonempty scanner/browser coverage, all expected profiles, metric
+assertions, exception expiry and matching source/artifact identities. The
+separate staging gate checks its smaller explicit matrix and remains
+`fullGate: false` / `productionEligible: false`. No `continue-on-error` bypass on
 mandatory checks. Prove failure propagation using synthetic secret/security-rule,
 oversize HTML, browser-error, missing-engine/report, invalid-probe and digest-
 mismatch cases. Fixtures must not contain real credentials and stay out of docs/.
 Also demonstrate a complete passing validation after #12's fixes.
 
 For future GitHub Pages hosting, #8 must configure an Actions-based deployment
-whose deploy job depends on this successful gate; direct automatic branch
-publication cannot enforce it. Preserve separate existing rights/URL/release
+whose deploy job depends on the successful strict production gate; direct
+automatic branch publication cannot enforce it. The existing `promotion.cjs`
+and GitHub Pages example retain their full hosted/device/review contract;
+`staging-gate` does not satisfy them. Preserve separate existing rights/URL/release
 decisions. If a different host is selected, implement equivalent same-artifact
 gating. Inspect any repository/environment controls at activation and record
 unavailable capabilities honestly; do not add a new approval ceremony just for CI.
@@ -206,11 +221,11 @@ session resumes from evidence.
 
 - [ ] Applicable known bugs fixed; focused regressions fail on their recorded baseline and pass on the candidate.
 - [ ] Existing portable pinned commands and applicable gates pass in a clean checkout.
-- [ ] Full browser/OS/performance matrix and validity checks run on candidate bytes.
+- [ ] Applicable profile runs on candidate bytes; before production, the full browser/OS/performance matrix and validity checks pass.
 - [ ] Controlled failing cases block the aggregate gate; complete passing case exists.
 - [ ] Same-artifact deployment dependencies verified; hosting activation and live checks tracked in #8.
 - [ ] Required device and independent review evidence recorded or explicitly pending.
-- [ ] Before/after report, new all-page visual preview, exact-head CI and durable issue/PR updates.
+- [ ] Before/after report, all-page visual preview, exact-head CI and durable issue/PR updates; test/profile dispositions and RI routes reviewed.
 
 ## Primary implementation references
 

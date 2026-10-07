@@ -127,7 +127,7 @@ jobs:
         env:
           SITE_VERSION_URL: ${{ steps.candidate.outputs.deployment-url }}
       - id: candidate_record
-        name: Retain the verified preview before the full hosted gate
+        name: Retain the verified preview before the bounded staging gate
         run: node tools/staging/state.cjs candidate
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -158,6 +158,7 @@ jobs:
     uses: ./.github/workflows/site-release-checks.yml
     with:
       candidate_sha: ${{ inputs.candidate_sha }}
+      validation_level: staging
       full: true
       base_url: ${{ needs.deploy.outputs.version_url }}
       profile: staging
@@ -194,7 +195,7 @@ jobs:
         with:
           artifact-ids: ${{ needs.deploy.outputs.session_id }}
           path: .
-      - name: Require the full hosted suite before staging promotion
+      - name: Require the bounded staging suite before staging promotion
         env:
           FULL_RESULT: ${{ needs.hosted_checks.result }}
         run: test "$FULL_RESULT" = success

@@ -28,9 +28,14 @@ function sourceGate(source,gate,expected={}){
   assert.match(source.sourceCommit,/^[0-9a-f]{40}$/);assert.match(source.sourceTree,/^[0-9a-f]{40}$/);
   assert.equal(source.candidateCommit,source.sourceCommit,'candidate/source mismatch');
   snapshot.inventory(Object.keys(source.files));
-  assert.equal(gate.schema,1);assert.equal(gate.kind,'pr-gate');assert.equal(gate.pass,true,'PR aggregate did not pass');
+  assert.equal(gate.schema,1);assert.equal(gate.pass,true,'Source package proof did not pass');
+  if(gate.kind==='package-gate'){
+    assert.equal(gate.profile,'package');assert.equal(gate.sourceTestsRun,false);
+    for(const key of ['fullGate','productionEligible','deploymentAuthorized'])assert.equal(gate[key],false,'package proof cannot authorize '+key);
+    assert.deepEqual(gate.checks,['generated source','artifact snapshot integrity','size budgets']);
+  }else{assert.equal(gate.kind,'pr-gate');assert.notEqual(gate.profile,'package','package profile requires its narrow proof kind');}
   for(const key of identityKeys)assert.equal(gate[key],source[key],'gate identity '+key);
-  for(const job of gate.profile==='local'?['build']:['build','static','linux'])assert.equal(gate.jobs[job]?.result,'success','missing successful '+job);
+  for(const job of gate.kind==='package-gate'||gate.profile==='local'?['build']:['build','static','linux'])assert.equal(gate.jobs[job]?.result,'success','missing successful '+job);
   if(expected.sourceCommit)assert.equal(source.sourceCommit,expected.sourceCommit,'wrong candidate');
   if(expected.publicDigest)assert.equal(source.artifactDigest,expected.publicDigest,'wrong public digest');
   if(expected.artifactId)assert.equal(String(gate.githubArtifact?.id),String(expected.artifactId),'wrong tested artifact ID');

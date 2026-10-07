@@ -52,7 +52,7 @@ def read_json(root, path):
 
 
 def blob_digest(content):
-    return hashlib.sha1(b"blob " + str(len(content)).encode() + b"\0" + content).hexdigest()
+    return hashlib.sha1(b"blob " + str(len(content)).encode() + b"\0" + content, usedforsecurity=False).hexdigest()
 
 
 def baseline_entries(root, paths=(), recursive=True):

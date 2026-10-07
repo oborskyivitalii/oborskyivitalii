@@ -198,7 +198,7 @@ test('workflow selects full Linux Chromium/Firefox and macOS WebKit while preser
   assert.match(linux,/playwright install-deps chromium firefox webkit/);assert.match(linux,/playwright install chromium firefox webkit/);
   assert.match(linux,/if: inputs\.public_variant == 'color' && !cancelled\(\)/);assert.match(linux,/node tools\/quality\/color-browser\.cjs/);
   assert.match(linux,/name: site-reports-linux-\$\{\{ inputs\.profile \}\}-\$\{\{ github\.run_id \}\}-\$\{\{ github\.run_attempt \}\}/);
-  assert.match(native,/\n {4}if: inputs\.full\n/);assert.match(native,/timeout-minutes: 40/);assert.match(native,/os: macos-15\n {12}platform: darwin\n {12}engines: webkit/);
+  assert.match(native,/\n {4}if: inputs\.validation_level == 'production' && inputs\.full\n/);assert.match(native,/timeout-minutes: 40/);assert.match(native,/os: macos-15\n {12}platform: darwin\n {12}engines: webkit/);
   assert.match(native,/name: Native full WebKit matrix\n {8}if: matrix\.platform == 'darwin'\n {8}run: \|\n {10}node tools\/quality\/artifact\.cjs verify quality-artifact\/public quality-artifact\/artifact\.json\n {10}node tools\/quality\/functional\.cjs\n/);
   assert.match(native,/name: Native Windows smoke matrix\n {8}if: matrix\.platform == 'win32'\n {8}run: \|\n {10}node tools\/quality\/artifact\.cjs verify quality-artifact\/public quality-artifact\/artifact\.json\n {10}node tools\/quality\/functional\.cjs --smoke\n/);
 });

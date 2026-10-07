@@ -29,8 +29,9 @@ navigation in [REPOSITORY-MAP.md](REPOSITORY-MAP.md).
   and dependent previews. Generated files are renditions, not editing sources.
 - [SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md),
   [SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) and
-  [SITE-STAGING.md](guides/SITE-STAGING.md) own checks and hosting mechanics. Preserve
-  exact source/tree/artifact binding, original budgets and all required cases.
+  [SITE-STAGING.md](guides/SITE-STAGING.md) own checks and hosting mechanics: PR
+  smoke/targeted ACs, bounded staging regression, full production regression.
+  Preserve source/tree/artifact binding and each profile's cases/original budgets.
 - [SITE-SOURCE-AUDIT.md](guides/SITE-SOURCE-AUDIT.md),
   [SITE-CONTENT-REVIEW.md](guides/SITE-CONTENT-REVIEW.md) and
   [SITE-SEO.md](guides/SITE-SEO.md) own provenance, editorial checks and discoverability.
@@ -61,16 +62,24 @@ navigation in [REPOSITORY-MAP.md](REPOSITORY-MAP.md).
   changes run RI `build` and `verify`; after RI/flow changes also run
   `python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'`.
   Runtime/content edits additionally follow the applicable hosted profiles.
+  Use the profile guide's registry for source suites; dated diagnostics are targeted.
 - At session end provide/update deterministic tests and the
   [acceptance policy](.github/ACCEPTANCE.md) for every AC. Run the mapped checks;
   report AC → test/check → result → exact source/run. Unmapped/skipped/failed or
   wrong-source evidence stays open; human decisions remain explicit gates.
+  At session end/evaluation update the actual AC checkboxes in the owning issue
+  body; an evidence table alone is insufficient. Use `[x]` only for the whole
+  criterion verified by all required current-source checks and gates. Partial,
+  failed, skipped, unmapped, stale, wrong-source or pending criteria stay `[ ]`;
+  clear a tick if evidence is invalidated. Preserve AC IDs/intent and evidence links.
 - When changing RI review its linked CI/test coverage, update the
   [RI/CI map](.github/ri-ci-map.json), verify it and rebuild the RI views.
 - Before closure compare the result with the original issue acceptance. Record
   exact refs, checks, deviations and remaining work in both issue and PR. Draft,
   implemented, merged, reviewed, staged and published are separate observations.
-  Keep umbrella issues open while required dependencies remain.
+  Review test/profile dispositions at closure: PR smoke, staging regression,
+  production regression, duplicates and obsolete/diagnostic cases. Update their
+  registry, owner and RI/CI routes. Keep umbrella issues open while dependencies remain.
 - Use the existing CI/controller for authorized previews/staging. Merge,
   production activation, domain/DNS and public release need the applicable
   maintainer decision; passing checks do not supply it.

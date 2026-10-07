@@ -17,16 +17,10 @@ function tests(files){
   return result;
 }
 function finiteGeometry(world,compact){
-  const finite=p=>Array.isArray(p)&&p.length===3&&p.every(Number.isFinite);
   assert.ok(Array.isArray(world.objects)&&Array.isArray(world.faces)&&Array.isArray(world.lines));
-  for(const object of world.objects)assert.ok(object.points.every(finite),'nonfinite object vertex');
-  for(const face of world.faces)assert.ok(face.points.every(finite),'nonfinite face vertex');
-  for(const line of world.lines)assert.ok(finite(line.a)&&finite(line.b),'nonfinite line endpoint');
-  const row={objects:world.objects.length,vertices:world.objects.reduce((n,x)=>n+x.points.length,0),faces:world.faces.length,lines:world.lines.length,modelBytes:Buffer.byteLength(JSON.stringify(world))};
-  const limits=require('./budgets.json').geometry?.[compact?'compact':'full'];
-  if(limits)for(const [key,limit]of Object.entries(limits))assert.ok(row[key]<=limit,`geometry ${key}: ${row[key]} > ${limit}`);
-  return {...row,finite:true,budget:limits?'configured':'no geometry budget in this source edition'};
+  return {...require('./geometry.cjs').check(world,compact),finite:true,budget:'configured'};
 }
+
 function checkPublicScripts(publicDir,config){
   const scripts=new Set();
   for(const entry of artifact.entries(publicDir)){
@@ -80,15 +74,25 @@ function check(){
   const result={profile:'local',pass:true,focusedTests:focused,routes:config.routes.length,workflow,geometry,extensions,checks:['generated source','finite geometry','script syntax','single main heading','footer links','artifact snapshot integrity','size budgets'],uniqueScripts,maxHtmlBytes:Math.max(...sizes.rows.map(x=>x.raw)),deploymentAuthorized:false};
   console.log(JSON.stringify(result));return result;
 }
-function gate(directory){
+function gate(directory,{profile='local'}={}){
   const manifest=JSON.parse(fs.readFileSync(path.join(directory,'artifact.json')));
   artifact.verify(path.join(directory,'public'),manifest);assert.equal(manifest.sourceDirty,false);
-  const result={...manifest,schema:1,kind:'pr-gate',profile:'local',pass:true,jobs:{build:{result:'success'}},checkedAt:new Date().toISOString(),deploymentAuthorized:false,githubArtifact:{id:process.env.SITE_ARTIFACT_ID||null,uploadDigest:process.env.SITE_UPLOAD_DIGEST||null}};
+  assert.ok(['local','package'].includes(profile),'unknown source gate profile');
+  if(profile==='package'){
+    assert.equal(cp.execFileSync('git',['status','--porcelain','--untracked-files=all'],{cwd:root,encoding:'utf8'}).trim(),'','package proof requires clean source');
+    run('tools/site/build.cjs',['--check']);
+    assert.equal(manifest.sourceCommit,cp.execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim());
+    assert.equal(manifest.sourceTree,cp.execFileSync('git',['rev-parse','HEAD^{tree}'],{cwd:root,encoding:'utf8'}).trim());
+    assert.equal(manifest.candidateCommit,manifest.sourceCommit);
+    artifact.checkSize(path.join(directory,'public'));
+  }
+  const result={...manifest,schema:1,kind:profile==='package'?'package-gate':'pr-gate',profile,pass:true,jobs:{build:{result:'success'}},checkedAt:new Date().toISOString(),deploymentAuthorized:false,githubArtifact:{id:process.env.SITE_ARTIFACT_ID||null,uploadDigest:process.env.SITE_UPLOAD_DIGEST||null}};
+  if(profile==='package')Object.assign(result,{checks:['generated source','artifact snapshot integrity','size budgets'],sourceTestsRun:false,fullGate:false,productionEligible:false});
   fs.mkdirSync(path.join(directory,'gate'),{recursive:true});
   fs.writeFileSync(path.join(directory,'gate/release-manifest.json'),JSON.stringify(result,null,2)+'\n');
 }
 if(require.main===module){
-  try{if(process.argv[2]==='--gate')gate(path.resolve(process.argv[3]));else{check();if(process.argv[2]==='--package')artifact.build(path.resolve(process.argv[3]));else if(process.argv.length>2)throw Error('Usage: local.cjs [--package OUT | --gate OUT]');}}
+  try{if(process.argv[2]==='--gate'||process.argv[2]==='--package-gate')gate(path.resolve(process.argv[3]),{profile:process.argv[2]==='--package-gate'?'package':'local'});else{check();if(process.argv[2]==='--package')artifact.build(path.resolve(process.argv[3]));else if(process.argv.length>2)throw Error('Usage: local.cjs [--package OUT | --gate OUT | --package-gate OUT]');}}
   catch(error){console.error(error.message);process.exitCode=1;}
 }
 module.exports={check,gate,finiteGeometry};

@@ -1,0 +1,2154 @@
+{
+  "schema_version": 1,
+  "issue": 35,
+  "inspected_source": "ec9b8361b619f1042bce5a3ec224d3e0c9054b01",
+  "scope": "Read-only workflow and measured execution audit. Recommendations are proposed, not implemented.",
+  "measurements": [
+    {
+      "kind": "accepted-full-staging",
+      "run_id": 37549451723,
+      "run_url": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37549451723",
+      "event": "issue_comment",
+      "controller_head_sha": "8cea728b764f0f21424c4000052b28c2b46b9304",
+      "candidate_source_sha": "985c89d71f8c3967ace8603c2fb499a1a50469e7",
+      "candidate_source_evidence": "https://github.com/oborskyivitalii/oborskyivitalii/issues/13",
+      "candidate_tree": "7265c65a18d11e0b3e3fd08088a38d08d6db1850",
+      "created_at": "2026-10-06T23:58:28Z",
+      "completed_at": "2026-10-07T00:45:05Z",
+      "duration_seconds": 2797,
+      "jobs": [
+        {
+          "name": "target",
+          "id": 112561204191,
+          "url": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37549451723/job/112561204191",
+          "conclusion": "success",
+          "start": "2026-10-06T23:58:31Z",
+          "end": "2026-10-06T23:58:39Z",
+          "duration_seconds": 8,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "start": "2026-10-06T23:58:32Z",
+              "end": "2026-10-06T23:58:33Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "start": "2026-10-06T23:58:33Z",
+              "end": "2026-10-06T23:58:36Z",
+              "duration_seconds": 3
+            },
+            {
+              "name": "Run actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd",
+              "conclusion": "success",
+              "start": "2026-10-06T23:58:36Z",
+              "end": "2026-10-06T23:58:37Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "start": "2026-10-06T23:58:37Z",
+              "end": "2026-10-06T23:58:37Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "start": "2026-10-06T23:58:37Z",
+              "end": "2026-10-06T23:58:37Z",
+              "duration_seconds": 0
+            }
+          ]
+        },
+        {
+          "name": "build",
+          "id": 112561251789,
+          "url": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37549451723/job/112561251789",
+          "conclusion": "success",
+          "start": "2026-10-06T23:58:42Z",
+          "end": "2026-10-06T23:58:58Z",
+          "duration_seconds": 16,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "start": "2026-10-06T23:58:42Z",
+              "end": "2026-10-06T23:58:43Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "start": "2026-10-06T23:58:43Z",
+              "end": "2026-10-06T23:58:47Z",
+              "duration_seconds": 4
+            },
+            {
+              "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+              "conclusion": "success",
+              "start": "2026-10-06T23:58:47Z",
+              "end": "2026-10-06T23:58:51Z",
+              "duration_seconds": 4
+            },
+            {
+              "name": "Fast source checks and one immutable public build",
+              "conclusion": "success",
+              "start": "2026-10-06T23:58:51Z",
+              "end": "2026-10-06T23:58:54Z",
+              "duration_seconds": 3
+            },
+            {
+              "name": "Select the supported source rendition and bind its visual identity",
+              "conclusion": "success",
+              "start": "2026-10-06T23:58:54Z",
+              "end": "2026-10-06T23:58:55Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+              "conclusion": "success",
+              "start": "2026-10-06T23:58:55Z",
+              "end": "2026-10-06T23:58:55Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Bind the build record and add hosting policy",
+              "conclusion": "success",
+              "start": "2026-10-06T23:58:55Z",
+              "end": "2026-10-06T23:58:56Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Run node - <<'JS'",
+              "conclusion": "success",
+              "start": "2026-10-06T23:58:56Z",
+              "end": "2026-10-06T23:58:56Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+              "conclusion": "success",
+              "start": "2026-10-06T23:58:56Z",
+              "end": "2026-10-06T23:58:56Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+              "conclusion": "success",
+              "start": "2026-10-06T23:58:56Z",
+              "end": "2026-10-06T23:58:56Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "start": "2026-10-06T23:58:56Z",
+              "end": "2026-10-06T23:58:57Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "start": "2026-10-06T23:58:57Z",
+              "end": "2026-10-06T23:58:57Z",
+              "duration_seconds": 0
+            }
+          ]
+        },
+        {
+          "name": "publish",
+          "id": 112561338068,
+          "url": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37549451723/job/112561338068",
+          "conclusion": "success",
+          "start": "2026-10-06T23:59:02Z",
+          "end": "2026-10-06T23:59:30Z",
+          "duration_seconds": 28,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "start": "2026-10-06T23:59:03Z",
+              "end": "2026-10-06T23:59:04Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "start": "2026-10-06T23:59:04Z",
+              "end": "2026-10-06T23:59:07Z",
+              "duration_seconds": 3
+            },
+            {
+              "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+              "conclusion": "success",
+              "start": "2026-10-06T23:59:07Z",
+              "end": "2026-10-06T23:59:12Z",
+              "duration_seconds": 5
+            },
+            {
+              "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+              "conclusion": "success",
+              "start": "2026-10-06T23:59:12Z",
+              "end": "2026-10-06T23:59:13Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Verify package and configured project",
+              "conclusion": "success",
+              "start": "2026-10-06T23:59:13Z",
+              "end": "2026-10-06T23:59:13Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Reject a moved PR or staging controller before deployment",
+              "conclusion": "success",
+              "start": "2026-10-06T23:59:13Z",
+              "end": "2026-10-06T23:59:14Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Run cloudflare/wrangler-action@953926a2e2182532811c01a25e53647d93bf07c0",
+              "conclusion": "success",
+              "start": "2026-10-06T23:59:14Z",
+              "end": "2026-10-06T23:59:28Z",
+              "duration_seconds": 14
+            },
+            {
+              "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+              "conclusion": "success",
+              "start": "2026-10-06T23:59:28Z",
+              "end": "2026-10-06T23:59:28Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "start": "2026-10-06T23:59:28Z",
+              "end": "2026-10-06T23:59:28Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "start": "2026-10-06T23:59:28Z",
+              "end": "2026-10-06T23:59:28Z",
+              "duration_seconds": 0
+            }
+          ]
+        },
+        {
+          "name": "smoke",
+          "id": 112561485628,
+          "url": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37549451723/job/112561485628",
+          "conclusion": "success",
+          "start": "2026-10-06T23:59:33Z",
+          "end": "2026-10-07T00:01:17Z",
+          "duration_seconds": 104,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "start": "2026-10-06T23:59:34Z",
+              "end": "2026-10-06T23:59:35Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "start": "2026-10-06T23:59:35Z",
+              "end": "2026-10-06T23:59:39Z",
+              "duration_seconds": 4
+            },
+            {
+              "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+              "conclusion": "success",
+              "start": "2026-10-06T23:59:39Z",
+              "end": "2026-10-06T23:59:44Z",
+              "duration_seconds": 5
+            },
+            {
+              "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+              "conclusion": "success",
+              "start": "2026-10-06T23:59:44Z",
+              "end": "2026-10-06T23:59:45Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+              "conclusion": "success",
+              "start": "2026-10-06T23:59:45Z",
+              "end": "2026-10-06T23:59:46Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Verify current hosted routes, revision and runtime",
+              "conclusion": "success",
+              "start": "2026-10-06T23:59:46Z",
+              "end": "2026-10-06T23:59:47Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Install locked Chromium smoke tools",
+              "conclusion": "success",
+              "start": "2026-10-06T23:59:47Z",
+              "end": "2026-10-07T00:00:11Z",
+              "duration_seconds": 24
+            },
+            {
+              "name": "Minimal two-width hosted rendition smoke",
+              "conclusion": "success",
+              "start": "2026-10-07T00:00:11Z",
+              "end": "2026-10-07T00:01:13Z",
+              "duration_seconds": 62
+            },
+            {
+              "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+              "conclusion": "success",
+              "start": "2026-10-07T00:01:13Z",
+              "end": "2026-10-07T00:01:14Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+              "conclusion": "success",
+              "start": "2026-10-07T00:01:14Z",
+              "end": "2026-10-07T00:01:15Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "start": "2026-10-07T00:01:15Z",
+              "end": "2026-10-07T00:01:15Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "start": "2026-10-07T00:01:15Z",
+              "end": "2026-10-07T00:01:15Z",
+              "duration_seconds": 0
+            }
+          ]
+        },
+        {
+          "name": "published-comment",
+          "id": 112561485708,
+          "url": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37549451723/job/112561485708",
+          "conclusion": "success",
+          "start": "2026-10-06T23:59:33Z",
+          "end": "2026-10-06T23:59:43Z",
+          "duration_seconds": 10,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "start": "2026-10-06T23:59:34Z",
+              "end": "2026-10-06T23:59:35Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "start": "2026-10-06T23:59:35Z",
+              "end": "2026-10-06T23:59:39Z",
+              "duration_seconds": 4
+            },
+            {
+              "name": "Run actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd",
+              "conclusion": "success",
+              "start": "2026-10-06T23:59:39Z",
+              "end": "2026-10-06T23:59:40Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "start": "2026-10-06T23:59:40Z",
+              "end": "2026-10-06T23:59:40Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "start": "2026-10-06T23:59:40Z",
+              "end": "2026-10-06T23:59:40Z",
+              "duration_seconds": 0
+            }
+          ]
+        },
+        {
+          "name": "full / build",
+          "id": 112562018859,
+          "url": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37549451723/job/112562018859",
+          "conclusion": "success",
+          "start": "2026-10-07T00:01:20Z",
+          "end": "2026-10-07T00:02:27Z",
+          "duration_seconds": 67,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "start": "2026-10-07T00:01:20Z",
+              "end": "2026-10-07T00:01:22Z",
+              "duration_seconds": 2
+            },
+            {
+              "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "start": "2026-10-07T00:01:22Z",
+              "end": "2026-10-07T00:01:25Z",
+              "duration_seconds": 3
+            },
+            {
+              "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+              "conclusion": "success",
+              "start": "2026-10-07T00:01:25Z",
+              "end": "2026-10-07T00:01:29Z",
+              "duration_seconds": 4
+            },
+            {
+              "name": "Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "conclusion": "success",
+              "start": "2026-10-07T00:01:29Z",
+              "end": "2026-10-07T00:01:36Z",
+              "duration_seconds": 7
+            },
+            {
+              "name": "Validate exact source and regressions",
+              "conclusion": "success",
+              "start": "2026-10-07T00:01:36Z",
+              "end": "2026-10-07T00:02:24Z",
+              "duration_seconds": 48
+            },
+            {
+              "name": "Package public files once and enforce budgets",
+              "conclusion": "skipped",
+              "start": "2026-10-07T00:02:24Z",
+              "end": "2026-10-07T00:02:24Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Build the explicit Color rendition",
+              "conclusion": "skipped",
+              "start": "2026-10-07T00:02:24Z",
+              "end": "2026-10-07T00:02:24Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:24Z",
+              "end": "2026-10-07T00:02:24Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Verify reused bytes and exact source identity",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:24Z",
+              "end": "2026-10-07T00:02:24Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Run node -e \"require('node:fs').appendFileSync(process.env.GITHUB_OUTPUT,'digest='+require('./quality-artifact/artifact.json').artifactDigest+'\\n')\"",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:24Z",
+              "end": "2026-10-07T00:02:24Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+              "conclusion": "skipped",
+              "start": "2026-10-07T00:02:24Z",
+              "end": "2026-10-07T00:02:24Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Post Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:24Z",
+              "end": "2026-10-07T00:02:25Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:25Z",
+              "end": "2026-10-07T00:02:25Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:25Z",
+              "end": "2026-10-07T00:02:25Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:25Z",
+              "end": "2026-10-07T00:02:25Z",
+              "duration_seconds": 0
+            }
+          ]
+        },
+        {
+          "name": "full / static",
+          "id": 112562362605,
+          "url": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37549451723/job/112562362605",
+          "conclusion": "success",
+          "start": "2026-10-07T00:02:30Z",
+          "end": "2026-10-07T00:04:02Z",
+          "duration_seconds": 92,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:31Z",
+              "end": "2026-10-07T00:02:33Z",
+              "duration_seconds": 2
+            },
+            {
+              "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:33Z",
+              "end": "2026-10-07T00:02:37Z",
+              "duration_seconds": 4
+            },
+            {
+              "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:37Z",
+              "end": "2026-10-07T00:02:42Z",
+              "duration_seconds": 5
+            },
+            {
+              "name": "Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:42Z",
+              "end": "2026-10-07T00:02:42Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:42Z",
+              "end": "2026-10-07T00:02:43Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Install locked tools",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:43Z",
+              "end": "2026-10-07T00:03:08Z",
+              "duration_seconds": 25
+            },
+            {
+              "name": "Verify artifact and scanner fixtures",
+              "conclusion": "success",
+              "start": "2026-10-07T00:03:08Z",
+              "end": "2026-10-07T00:03:11Z",
+              "duration_seconds": 3
+            },
+            {
+              "name": "Lint source",
+              "conclusion": "success",
+              "start": "2026-10-07T00:03:11Z",
+              "end": "2026-10-07T00:03:14Z",
+              "duration_seconds": 3
+            },
+            {
+              "name": "Security scans",
+              "conclusion": "success",
+              "start": "2026-10-07T00:03:14Z",
+              "end": "2026-10-07T00:03:56Z",
+              "duration_seconds": 42
+            },
+            {
+              "name": "Dependency advisories",
+              "conclusion": "success",
+              "start": "2026-10-07T00:03:56Z",
+              "end": "2026-10-07T00:03:58Z",
+              "duration_seconds": 2
+            },
+            {
+              "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+              "conclusion": "success",
+              "start": "2026-10-07T00:03:58Z",
+              "end": "2026-10-07T00:03:59Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Post Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "conclusion": "success",
+              "start": "2026-10-07T00:03:59Z",
+              "end": "2026-10-07T00:03:59Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+              "conclusion": "success",
+              "start": "2026-10-07T00:03:59Z",
+              "end": "2026-10-07T00:03:59Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "start": "2026-10-07T00:03:59Z",
+              "end": "2026-10-07T00:03:59Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "start": "2026-10-07T00:03:59Z",
+              "end": "2026-10-07T00:03:59Z",
+              "duration_seconds": 0
+            }
+          ]
+        },
+        {
+          "name": "full / performance",
+          "id": 112562362657,
+          "url": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37549451723/job/112562362657",
+          "conclusion": "success",
+          "start": "2026-10-07T00:02:30Z",
+          "end": "2026-10-07T00:16:07Z",
+          "duration_seconds": 817,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:31Z",
+              "end": "2026-10-07T00:02:33Z",
+              "duration_seconds": 2
+            },
+            {
+              "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:33Z",
+              "end": "2026-10-07T00:02:38Z",
+              "duration_seconds": 5
+            },
+            {
+              "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:38Z",
+              "end": "2026-10-07T00:02:46Z",
+              "duration_seconds": 8
+            },
+            {
+              "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:46Z",
+              "end": "2026-10-07T00:02:47Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Run npm ci --prefix tools/quality/toolchain --ignore-scripts",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:47Z",
+              "end": "2026-10-07T00:03:19Z",
+              "duration_seconds": 32
+            },
+            {
+              "name": "Verify performance input artifact",
+              "conclusion": "success",
+              "start": "2026-10-07T00:03:19Z",
+              "end": "2026-10-07T00:03:19Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Lighthouse samples and budgets",
+              "conclusion": "success",
+              "start": "2026-10-07T00:03:19Z",
+              "end": "2026-10-07T00:07:16Z",
+              "duration_seconds": 237
+            },
+            {
+              "name": "Motion, CPU throttling and five-minute soak",
+              "conclusion": "success",
+              "start": "2026-10-07T00:07:16Z",
+              "end": "2026-10-07T00:16:01Z",
+              "duration_seconds": 525
+            },
+            {
+              "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+              "conclusion": "success",
+              "start": "2026-10-07T00:16:01Z",
+              "end": "2026-10-07T00:16:04Z",
+              "duration_seconds": 3
+            },
+            {
+              "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+              "conclusion": "success",
+              "start": "2026-10-07T00:16:04Z",
+              "end": "2026-10-07T00:16:04Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "start": "2026-10-07T00:16:04Z",
+              "end": "2026-10-07T00:16:04Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "start": "2026-10-07T00:16:04Z",
+              "end": "2026-10-07T00:16:04Z",
+              "duration_seconds": 0
+            }
+          ]
+        },
+        {
+          "name": "full / captures",
+          "id": 112562362676,
+          "url": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37549451723/job/112562362676",
+          "conclusion": "success",
+          "start": "2026-10-07T00:02:30Z",
+          "end": "2026-10-07T00:06:41Z",
+          "duration_seconds": 251,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:31Z",
+              "end": "2026-10-07T00:02:32Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:32Z",
+              "end": "2026-10-07T00:02:36Z",
+              "duration_seconds": 4
+            },
+            {
+              "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:36Z",
+              "end": "2026-10-07T00:02:40Z",
+              "duration_seconds": 4
+            },
+            {
+              "name": "Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:40Z",
+              "end": "2026-10-07T00:02:40Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:40Z",
+              "end": "2026-10-07T00:02:41Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Install locked capture tooling",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:41Z",
+              "end": "2026-10-07T00:03:25Z",
+              "duration_seconds": 44
+            },
+            {
+              "name": "Capture all routes and actual motion from tested bytes",
+              "conclusion": "success",
+              "start": "2026-10-07T00:03:25Z",
+              "end": "2026-10-07T00:06:36Z",
+              "duration_seconds": 191
+            },
+            {
+              "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+              "conclusion": "success",
+              "start": "2026-10-07T00:06:36Z",
+              "end": "2026-10-07T00:06:38Z",
+              "duration_seconds": 2
+            },
+            {
+              "name": "Post Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "conclusion": "success",
+              "start": "2026-10-07T00:06:38Z",
+              "end": "2026-10-07T00:06:38Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+              "conclusion": "success",
+              "start": "2026-10-07T00:06:38Z",
+              "end": "2026-10-07T00:06:38Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "start": "2026-10-07T00:06:38Z",
+              "end": "2026-10-07T00:06:39Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "start": "2026-10-07T00:06:39Z",
+              "end": "2026-10-07T00:06:39Z",
+              "duration_seconds": 0
+            }
+          ]
+        },
+        {
+          "name": "full / native (macos-15, darwin, webkit)",
+          "id": 112562362687,
+          "url": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37549451723/job/112562362687",
+          "conclusion": "success",
+          "start": "2026-10-07T00:02:34Z",
+          "end": "2026-10-07T00:20:06Z",
+          "duration_seconds": 1052,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:35Z",
+              "end": "2026-10-07T00:02:36Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:36Z",
+              "end": "2026-10-07T00:02:40Z",
+              "duration_seconds": 4
+            },
+            {
+              "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:40Z",
+              "end": "2026-10-07T00:02:44Z",
+              "duration_seconds": 4
+            },
+            {
+              "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:44Z",
+              "end": "2026-10-07T00:02:45Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Install pinned native engines",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:45Z",
+              "end": "2026-10-07T00:02:58Z",
+              "duration_seconds": 13
+            },
+            {
+              "name": "Native full WebKit matrix",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:58Z",
+              "end": "2026-10-07T00:20:01Z",
+              "duration_seconds": 1023
+            },
+            {
+              "name": "Native Windows smoke matrix",
+              "conclusion": "skipped",
+              "start": "2026-10-07T00:20:01Z",
+              "end": "2026-10-07T00:20:01Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+              "conclusion": "success",
+              "start": "2026-10-07T00:20:01Z",
+              "end": "2026-10-07T00:20:02Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+              "conclusion": "success",
+              "start": "2026-10-07T00:20:02Z",
+              "end": "2026-10-07T00:20:02Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "start": "2026-10-07T00:20:02Z",
+              "end": "2026-10-07T00:20:02Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "start": "2026-10-07T00:20:02Z",
+              "end": "2026-10-07T00:20:03Z",
+              "duration_seconds": 1
+            }
+          ]
+        },
+        {
+          "name": "full / host",
+          "id": 112562362694,
+          "url": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37549451723/job/112562362694",
+          "conclusion": "success",
+          "start": "2026-10-07T00:02:30Z",
+          "end": "2026-10-07T00:02:45Z",
+          "duration_seconds": 15,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:31Z",
+              "end": "2026-10-07T00:02:32Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:32Z",
+              "end": "2026-10-07T00:02:36Z",
+              "duration_seconds": 4
+            },
+            {
+              "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:36Z",
+              "end": "2026-10-07T00:02:40Z",
+              "duration_seconds": 4
+            },
+            {
+              "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:40Z",
+              "end": "2026-10-07T00:02:41Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Verify HTTPS, MIME, redirects, 404 and every served source byte",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:41Z",
+              "end": "2026-10-07T00:02:42Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:42Z",
+              "end": "2026-10-07T00:02:43Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:43Z",
+              "end": "2026-10-07T00:02:43Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:43Z",
+              "end": "2026-10-07T00:02:43Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:43Z",
+              "end": "2026-10-07T00:02:43Z",
+              "duration_seconds": 0
+            }
+          ]
+        },
+        {
+          "name": "full / native (windows-2025, win32, chromium,firefox)",
+          "id": 112562362739,
+          "url": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37549451723/job/112562362739",
+          "conclusion": "success",
+          "start": "2026-10-07T00:02:30Z",
+          "end": "2026-10-07T00:36:38Z",
+          "duration_seconds": 2048,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:31Z",
+              "end": "2026-10-07T00:02:32Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:32Z",
+              "end": "2026-10-07T00:02:45Z",
+              "duration_seconds": 13
+            },
+            {
+              "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:45Z",
+              "end": "2026-10-07T00:02:56Z",
+              "duration_seconds": 11
+            },
+            {
+              "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:56Z",
+              "end": "2026-10-07T00:02:57Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Install pinned native engines",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:57Z",
+              "end": "2026-10-07T00:03:42Z",
+              "duration_seconds": 45
+            },
+            {
+              "name": "Native full WebKit matrix",
+              "conclusion": "skipped",
+              "start": "2026-10-07T00:03:42Z",
+              "end": "2026-10-07T00:03:42Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Native Windows smoke matrix",
+              "conclusion": "success",
+              "start": "2026-10-07T00:03:42Z",
+              "end": "2026-10-07T00:36:34Z",
+              "duration_seconds": 1972
+            },
+            {
+              "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+              "conclusion": "success",
+              "start": "2026-10-07T00:36:34Z",
+              "end": "2026-10-07T00:36:34Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+              "conclusion": "success",
+              "start": "2026-10-07T00:36:34Z",
+              "end": "2026-10-07T00:36:35Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "start": "2026-10-07T00:36:35Z",
+              "end": "2026-10-07T00:36:37Z",
+              "duration_seconds": 2
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "start": "2026-10-07T00:36:37Z",
+              "end": "2026-10-07T00:36:37Z",
+              "duration_seconds": 0
+            }
+          ]
+        },
+        {
+          "name": "full / linux",
+          "id": 112562362749,
+          "url": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37549451723/job/112562362749",
+          "conclusion": "success",
+          "start": "2026-10-07T00:02:31Z",
+          "end": "2026-10-07T00:43:30Z",
+          "duration_seconds": 2459,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:31Z",
+              "end": "2026-10-07T00:02:32Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:32Z",
+              "end": "2026-10-07T00:02:36Z",
+              "duration_seconds": 4
+            },
+            {
+              "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:36Z",
+              "end": "2026-10-07T00:02:40Z",
+              "duration_seconds": 4
+            },
+            {
+              "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:40Z",
+              "end": "2026-10-07T00:02:41Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Bound Ubuntu downloads and use its primary archive",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:41Z",
+              "end": "2026-10-07T00:02:41Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Install the pinned Node toolchain",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:41Z",
+              "end": "2026-10-07T00:02:48Z",
+              "duration_seconds": 7
+            },
+            {
+              "name": "Install Ubuntu engine dependencies without prior launch",
+              "conclusion": "success",
+              "start": "2026-10-07T00:02:48Z",
+              "end": "2026-10-07T00:03:35Z",
+              "duration_seconds": 47
+            },
+            {
+              "name": "Download pinned engines without prior launch",
+              "conclusion": "success",
+              "start": "2026-10-07T00:03:35Z",
+              "end": "2026-10-07T00:03:52Z",
+              "duration_seconds": 17
+            },
+            {
+              "name": "Assert the required Linux engine matrix",
+              "conclusion": "success",
+              "start": "2026-10-07T00:03:52Z",
+              "end": "2026-10-07T00:39:43Z",
+              "duration_seconds": 2151
+            },
+            {
+              "name": "Assert Color ribbons, spatial flight and real edge scrolling",
+              "conclusion": "success",
+              "start": "2026-10-07T00:39:43Z",
+              "end": "2026-10-07T00:43:27Z",
+              "duration_seconds": 224
+            },
+            {
+              "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+              "conclusion": "success",
+              "start": "2026-10-07T00:43:27Z",
+              "end": "2026-10-07T00:43:27Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+              "conclusion": "success",
+              "start": "2026-10-07T00:43:27Z",
+              "end": "2026-10-07T00:43:27Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "start": "2026-10-07T00:43:27Z",
+              "end": "2026-10-07T00:43:28Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "start": "2026-10-07T00:43:28Z",
+              "end": "2026-10-07T00:43:28Z",
+              "duration_seconds": 0
+            }
+          ]
+        },
+        {
+          "name": "full / gate",
+          "id": 112574120369,
+          "url": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37549451723/job/112574120369",
+          "conclusion": "success",
+          "start": "2026-10-07T00:43:33Z",
+          "end": "2026-10-07T00:43:50Z",
+          "duration_seconds": 17,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "start": "2026-10-07T00:43:33Z",
+              "end": "2026-10-07T00:43:36Z",
+              "duration_seconds": 3
+            },
+            {
+              "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "start": "2026-10-07T00:43:36Z",
+              "end": "2026-10-07T00:43:40Z",
+              "duration_seconds": 4
+            },
+            {
+              "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+              "conclusion": "success",
+              "start": "2026-10-07T00:43:40Z",
+              "end": "2026-10-07T00:43:44Z",
+              "duration_seconds": 4
+            },
+            {
+              "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+              "conclusion": "success",
+              "start": "2026-10-07T00:43:44Z",
+              "end": "2026-10-07T00:43:45Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+              "conclusion": "success",
+              "start": "2026-10-07T00:43:45Z",
+              "end": "2026-10-07T00:43:47Z",
+              "duration_seconds": 2
+            },
+            {
+              "name": "Validate external evidence identifiers",
+              "conclusion": "skipped",
+              "start": "2026-10-07T00:43:47Z",
+              "end": "2026-10-07T00:43:47Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Download immutable external review/device evidence",
+              "conclusion": "skipped",
+              "start": "2026-10-07T00:43:47Z",
+              "end": "2026-10-07T00:43:47Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Validate completeness, source identity and mandatory results",
+              "conclusion": "success",
+              "start": "2026-10-07T00:43:47Z",
+              "end": "2026-10-07T00:43:47Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+              "conclusion": "success",
+              "start": "2026-10-07T00:43:47Z",
+              "end": "2026-10-07T00:43:48Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+              "conclusion": "success",
+              "start": "2026-10-07T00:43:48Z",
+              "end": "2026-10-07T00:43:48Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "start": "2026-10-07T00:43:48Z",
+              "end": "2026-10-07T00:43:48Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "start": "2026-10-07T00:43:48Z",
+              "end": "2026-10-07T00:43:48Z",
+              "duration_seconds": 0
+            }
+          ]
+        },
+        {
+          "name": "promote",
+          "id": 112574209972,
+          "url": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37549451723/job/112574209972",
+          "conclusion": "success",
+          "start": "2026-10-07T00:43:54Z",
+          "end": "2026-10-07T00:44:52Z",
+          "duration_seconds": 58,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "start": "2026-10-07T00:43:55Z",
+              "end": "2026-10-07T00:43:56Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "start": "2026-10-07T00:43:56Z",
+              "end": "2026-10-07T00:43:59Z",
+              "duration_seconds": 3
+            },
+            {
+              "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+              "conclusion": "success",
+              "start": "2026-10-07T00:43:59Z",
+              "end": "2026-10-07T00:44:03Z",
+              "duration_seconds": 4
+            },
+            {
+              "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+              "conclusion": "success",
+              "start": "2026-10-07T00:44:03Z",
+              "end": "2026-10-07T00:44:04Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+              "conclusion": "success",
+              "start": "2026-10-07T00:44:04Z",
+              "end": "2026-10-07T00:44:04Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Verify the full hosted gate for these exact bytes",
+              "conclusion": "success",
+              "start": "2026-10-07T00:44:04Z",
+              "end": "2026-10-07T00:44:05Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Locate the last successful CI staging recovery automatically",
+              "conclusion": "success",
+              "start": "2026-10-07T00:44:05Z",
+              "end": "2026-10-07T00:44:07Z",
+              "duration_seconds": 2
+            },
+            {
+              "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+              "conclusion": "success",
+              "start": "2026-10-07T00:44:07Z",
+              "end": "2026-10-07T00:44:07Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Run actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd",
+              "conclusion": "success",
+              "start": "2026-10-07T00:44:07Z",
+              "end": "2026-10-07T00:44:07Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+              "conclusion": "success",
+              "start": "2026-10-07T00:44:07Z",
+              "end": "2026-10-07T00:44:08Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Verify retained recovery and the currently served stable revision",
+              "conclusion": "success",
+              "start": "2026-10-07T00:44:08Z",
+              "end": "2026-10-07T00:44:08Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Recheck PR and protected main immediately before promotion",
+              "conclusion": "success",
+              "start": "2026-10-07T00:44:08Z",
+              "end": "2026-10-07T00:44:09Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Promote the same tested package to the staging branch alias",
+              "conclusion": "success",
+              "start": "2026-10-07T00:44:09Z",
+              "end": "2026-10-07T00:44:22Z",
+              "duration_seconds": 13
+            },
+            {
+              "name": "Run node tools/staging/review-flow.cjs http-ready staging-package \"$REVIEW_STABLE\" staging-reports/stable-http.json",
+              "conclusion": "success",
+              "start": "2026-10-07T00:44:22Z",
+              "end": "2026-10-07T00:44:48Z",
+              "duration_seconds": 26
+            },
+            {
+              "name": "Restore the previous successful staging package through CI",
+              "conclusion": "skipped",
+              "start": "2026-10-07T00:44:48Z",
+              "end": "2026-10-07T00:44:48Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Run node tools/staging/review-flow.cjs http-ready staging-rollback \"$REVIEW_STABLE\" staging-reports/rollback-http.json",
+              "conclusion": "skipped",
+              "start": "2026-10-07T00:44:48Z",
+              "end": "2026-10-07T00:44:48Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Run node - <<'JS'",
+              "conclusion": "success",
+              "start": "2026-10-07T00:44:48Z",
+              "end": "2026-10-07T00:44:48Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+              "conclusion": "success",
+              "start": "2026-10-07T00:44:48Z",
+              "end": "2026-10-07T00:44:49Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+              "conclusion": "success",
+              "start": "2026-10-07T00:44:49Z",
+              "end": "2026-10-07T00:44:49Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Keep failed promotion or recovery red",
+              "conclusion": "skipped",
+              "start": "2026-10-07T00:44:49Z",
+              "end": "2026-10-07T00:44:49Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+              "conclusion": "success",
+              "start": "2026-10-07T00:44:49Z",
+              "end": "2026-10-07T00:44:49Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "start": "2026-10-07T00:44:49Z",
+              "end": "2026-10-07T00:44:50Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "start": "2026-10-07T00:44:50Z",
+              "end": "2026-10-07T00:44:50Z",
+              "duration_seconds": 0
+            }
+          ]
+        },
+        {
+          "name": "status-comment",
+          "id": 112574496328,
+          "url": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37549451723/job/112574496328",
+          "conclusion": "success",
+          "start": "2026-10-07T00:44:55Z",
+          "end": "2026-10-07T00:45:05Z",
+          "duration_seconds": 10,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "start": "2026-10-07T00:44:55Z",
+              "end": "2026-10-07T00:44:56Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "start": "2026-10-07T00:44:56Z",
+              "end": "2026-10-07T00:45:01Z",
+              "duration_seconds": 5
+            },
+            {
+              "name": "Run actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd",
+              "conclusion": "success",
+              "start": "2026-10-07T00:45:01Z",
+              "end": "2026-10-07T00:45:02Z",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "start": "2026-10-07T00:45:02Z",
+              "end": "2026-10-07T00:45:02Z",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "start": "2026-10-07T00:45:02Z",
+              "end": "2026-10-07T00:45:02Z",
+              "duration_seconds": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "pr-preview",
+      "run_id": 37595395817,
+      "run_url": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37595395817",
+      "candidate_source_sha": "eeaf52563f",
+      "duration_seconds": 248,
+      "jobs": [
+        {
+          "name": "target",
+          "id": 112706955045,
+          "conclusion": "success",
+          "duration_seconds": 11,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "duration_seconds": 6
+            },
+            {
+              "name": "Run actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd",
+              "conclusion": "success",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "duration_seconds": 0
+            }
+          ]
+        },
+        {
+          "name": "build",
+          "id": 112707049073,
+          "conclusion": "success",
+          "duration_seconds": 23,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "duration_seconds": 4
+            },
+            {
+              "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+              "conclusion": "success",
+              "duration_seconds": 5
+            },
+            {
+              "name": "Fast source checks and one immutable public build",
+              "conclusion": "success",
+              "duration_seconds": 5
+            },
+            {
+              "name": "Select the supported source rendition and bind its visual identity",
+              "conclusion": "success",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+              "conclusion": "success",
+              "duration_seconds": 2
+            },
+            {
+              "name": "Bind the build record and add hosting policy",
+              "conclusion": "success",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Run node - <<'JS'",
+              "conclusion": "success",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+              "conclusion": "success",
+              "duration_seconds": 2
+            },
+            {
+              "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+              "conclusion": "success",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "duration_seconds": 0
+            }
+          ]
+        },
+        {
+          "name": "publish",
+          "id": 112707218315,
+          "conclusion": "success",
+          "duration_seconds": 26,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "duration_seconds": 3
+            },
+            {
+              "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+              "conclusion": "success",
+              "duration_seconds": 5
+            },
+            {
+              "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+              "conclusion": "success",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Verify package and configured project",
+              "conclusion": "success",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Reject a moved PR or staging controller before deployment",
+              "conclusion": "success",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Run cloudflare/wrangler-action@953926a2e2182532811c01a25e53647d93bf07c0",
+              "conclusion": "success",
+              "duration_seconds": 13
+            },
+            {
+              "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+              "conclusion": "success",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "duration_seconds": 0
+            }
+          ]
+        },
+        {
+          "name": "published-comment",
+          "id": 112707392895,
+          "conclusion": "success",
+          "duration_seconds": 7,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "duration_seconds": 3
+            },
+            {
+              "name": "Run actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd",
+              "conclusion": "success",
+              "duration_seconds": 2
+            },
+            {
+              "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "duration_seconds": 0
+            }
+          ]
+        },
+        {
+          "name": "smoke",
+          "id": 112707393023,
+          "conclusion": "success",
+          "duration_seconds": 115,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "duration_seconds": 2
+            },
+            {
+              "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "duration_seconds": 4
+            },
+            {
+              "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+              "conclusion": "success",
+              "duration_seconds": 7
+            },
+            {
+              "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+              "conclusion": "success",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Run actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+              "conclusion": "success",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Verify current hosted routes, revision and runtime",
+              "conclusion": "success",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Install locked Chromium smoke tools",
+              "conclusion": "success",
+              "duration_seconds": 33
+            },
+            {
+              "name": "Minimal two-width hosted rendition smoke",
+              "conclusion": "success",
+              "duration_seconds": 61
+            },
+            {
+              "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+              "conclusion": "success",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+              "conclusion": "success",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "duration_seconds": 0
+            }
+          ]
+        },
+        {
+          "name": "full",
+          "id": 112708138143,
+          "conclusion": "skipped",
+          "duration_seconds": 0,
+          "steps": []
+        },
+        {
+          "name": "status-comment",
+          "id": 112708138325,
+          "conclusion": "success",
+          "duration_seconds": 10,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "duration_seconds": 4
+            },
+            {
+              "name": "Run actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd",
+              "conclusion": "success",
+              "duration_seconds": 2
+            },
+            {
+              "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "duration_seconds": 0
+            }
+          ]
+        },
+        {
+          "name": "promote",
+          "id": 112708139120,
+          "conclusion": "skipped",
+          "duration_seconds": 0,
+          "steps": []
+        }
+      ]
+    },
+    {
+      "kind": "pr-owning-acceptance",
+      "run_id": 37595395395,
+      "run_url": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37595395395",
+      "jobs": [
+        {
+          "name": "Owning issue deterministic acceptance mapping",
+          "id": 112706670591,
+          "conclusion": "success",
+          "duration_seconds": 19,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Check out the exact source, including immutable comparison history",
+              "conclusion": "success",
+              "duration_seconds": 4
+            },
+            {
+              "name": "Set up Node for the existing economical basic check",
+              "conclusion": "success",
+              "duration_seconds": 4
+            },
+            {
+              "name": "Select the policy from the explicit owning References line or dispatch input",
+              "conclusion": "success",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Run criterion checks and preserve explicit pending human gates",
+              "conclusion": "success",
+              "duration_seconds": 6
+            },
+            {
+              "name": "Upload the acceptance report even when checks fail",
+              "conclusion": "success",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Post Set up Node for the existing economical basic check",
+              "conclusion": "success",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Post Check out the exact source, including immutable comparison history",
+              "conclusion": "success",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "duration_seconds": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "pr-basic",
+      "run_id": 37595396307,
+      "run_url": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37595396307",
+      "jobs": [
+        {
+          "name": "checks",
+          "id": 112706673528,
+          "conclusion": "success",
+          "duration_seconds": 17,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "duration_seconds": 4
+            },
+            {
+              "name": "Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+              "conclusion": "success",
+              "duration_seconds": 5
+            },
+            {
+              "name": "Minimal source, route, script and size checks",
+              "conclusion": "success",
+              "duration_seconds": 2
+            },
+            {
+              "name": "Run node -e \"require('node:fs').appendFileSync(process.env.GITHUB_OUTPUT,'digest='+require('./quality-artifact/artifact.json').artifactDigest+'\\n')\"",
+              "conclusion": "success",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+              "conclusion": "success",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Bind successful basic checks to the uploaded artifact",
+              "conclusion": "success",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+              "conclusion": "success",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Post Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+              "conclusion": "success",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Post Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "conclusion": "success",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "duration_seconds": 0
+            }
+          ]
+        },
+        {
+          "name": "staging",
+          "id": 112706792532,
+          "conclusion": "skipped",
+          "duration_seconds": 0,
+          "steps": []
+        }
+      ]
+    },
+    {
+      "kind": "pr-ri-navigation",
+      "run_id": 37595300030,
+      "run_url": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37595300030",
+      "jobs": [
+        {
+          "name": "Local navigation and RI freshness",
+          "id": 112706359844,
+          "conclusion": "success",
+          "duration_seconds": 14,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Check out repository",
+              "conclusion": "success",
+              "duration_seconds": 3
+            },
+            {
+              "name": "Verify reviewed RI and CI coverage",
+              "conclusion": "success",
+              "duration_seconds": 0
+            },
+            {
+              "name": "Check RI and CI coupling regression cases",
+              "conclusion": "success",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Check repository entry points, guide routes and preserved history",
+              "conclusion": "success",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Check enduring and owning-issue test selection",
+              "conclusion": "success",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Check RI inventory and agent-memory contract",
+              "conclusion": "success",
+              "duration_seconds": 2
+            },
+            {
+              "name": "Verify current-source context",
+              "conclusion": "success",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Post Check out repository",
+              "conclusion": "success",
+              "duration_seconds": 1
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "duration_seconds": 0
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "conclusions": [
+    "Accepted staging took 2797 seconds (46m37s) from run creation to completion; Linux functional and Color are the critical path.",
+    "Linux job 2459s: engine matrix 2151s and Color 224s; dependency/download steps 47s+17s. Removing cold-install costs alone cannot deliver a 10-minute staging suite.",
+    "Windows job 2048s is labeled smoke but executes 40 normal rows plus 8 navigation and 26 analytics with full normal assertions; actual native smoke work 1972s.",
+    "macOS full WebKit work is 1023s, performance work 237s Lighthouse plus 525s motion/CPU/soak. Parallel workers preserve cold engine conditions but still wait for Linux.",
+    "PRs currently run no full hosted regression by default. Latest complete PR preview is 248s; installed Chromium 33s, actual smoke 61s. Basic local step is 2s; RI job 14s; owning acceptance 19s.",
+    "There are repeated source proofs and independent repeated local.cjs calls, but their durations are seconds. The long wait is caused principally by stage invoking the production-sized matrix.",
+    "Keep earliest preview publication/comment ahead of slower checks. Whole-run workflow head for owner /stage is protected main controller, not the candidate PR source."
+  ],
+  "duplication": [
+    {
+      "id": "LOCAL-PR",
+      "paths": [
+        ".github/workflows/site-checks.yml:checks",
+        ".github/workflows/site-color-review.yml:build",
+        "tools/issue_acceptance.py:node-basic check kind"
+      ],
+      "same_work": "local.cjs generated-source/theme/archive/flight/geometry/syntax/snapshot/size checks on exact same PR head",
+      "cost": "2-3 seconds per observed source invocation plus separate jobs setup/artifact uploads",
+      "disposition": "Reuse one successful source-bound common manifest or move common smoke into one canonical PR entrypoint. Preserve per-AC mapping to tested results."
+    },
+    {
+      "id": "RI-PR",
+      "paths": [
+        ".github/workflows/navigation.yml",
+        ".github/acceptance/issue-33.json",
+        ".github/workflows/site-release-checks.yml:build"
+      ],
+      "same_work": "RI verify and enduring RI/CI/root/test-selector methods are repeated across ordinary PR and owning acceptance and full source suite",
+      "cost": "seconds; not the 40-50 minute cause",
+      "disposition": "Keep unconditional current RI freshness, combine or reuse exact-source result where safe; task policy can point to canonical result and targeted methods."
+    },
+    {
+      "id": "SOURCE-FULL",
+      "paths": [
+        ".github/workflows/site-color-review.yml:build",
+        ".github/workflows/site-release-checks.yml:build"
+      ],
+      "same_work": "Full source step reruns local focused tests via all Node tests and enduring Python tests after immutable build/basic check",
+      "cost": "48 seconds full source observed",
+      "disposition": "Retain full source on production path; stage use scoped source modules plus existing basic package proof."
+    },
+    {
+      "id": "COMPETING-STAGING",
+      "paths": [
+        ".github/workflows/site-color-review.yml",
+        ".github/workflows/site-checks.yml",
+        ".github/workflows/site-staging.yml"
+      ],
+      "same_work": "Two protected-main trusted staging controllers use different recovery/state mechanisms and both invoke full regression",
+      "cost": "not simultaneous today because SITE_STAGING_ENABLED absent/false; a future opt-in could create ambiguity",
+      "disposition": "Retire the dormant legacy staging edge or route both through the same explicit tier and state owner; preserve all sourcetrust/promote/rollback protections."
+    },
+    {
+      "id": "CANDIDATE-LABEL",
+      "paths": [
+        ".github/workflows/site-candidate-evidence.yml"
+      ],
+      "same_work": "site-release-candidate label launches same full suite without host/device-review artifact inputs",
+      "cost": "potential full 40+ minute run unable to satisfy external release evidence by default",
+      "disposition": "Retire label route in favor of explicit production dispatch with exact candidate and external inputs, or redefine it as clearly non-authorizing full automation only."
+    }
+  ],
+  "hazards": [
+    {
+      "id": "BOOLEAN-TRAP",
+      "source": "site-release-checks.yml + tools/quality/validate.cjs + tools/staging/review-flow.cjs + tools/quality/promotion.cjs",
+      "detail": "full=false still runs all three Linux engines with all failure cases, emits pr-gate, and cannot satisfy staged hosted-gate mandatory jobs. Do not use this flag as a light staging shortcut."
+    },
+    {
+      "id": "TIER-TRUST",
+      "detail": "A new stage gate must carry a distinct kind/profile/check-list and strict report cardinality/source identity. Preview smoke must not authorize staging and stage gate must not authorize production."
+    },
+    {
+      "id": "RETRO-AC",
+      "detail": "Numbered old issue acceptance snapshots are historical exact-source proof, not perpetual regression. Existing run_repository_tests.py already excludes numbered task modules; selected policies remain explicit."
+    },
+    {
+      "id": "TIMING-PROMISE",
+      "detail": "Queue/download latency remains external. State a configured staging wall budget and measured new run separately; these historical timings do not prove a future profile speed."
+    },
+    {
+      "id": "ISSUE13-REMAINS",
+      "detail": "Issue13 still owns real iPhone/iPad Safari and modest Android evidence, independent production-release review, production origin checks and rollback exercise; tier optimization does not itself meet those external gates."
+    }
+  ],
+  "proposed_profiles": [
+    {
+      "profile": "pr",
+      "trigger": "same-repository PR updates",
+      "purpose": "single cheap source smoke + owning issue AC targeted checks + early hosted preview smoke",
+      "work": [
+        "one immutable source/build/size/route proof",
+        "unconditional RI current-source controls",
+        "targeted owning policy methods",
+        "hosted exact HTTP/package/runtime identity",
+        "small Chromium all-route navigation, theme, motion off and readable fallback journey"
+      ],
+      "excluded": [
+        "full cross-platform matrix",
+        "all Lighthouse profiles/runs",
+        "five-minute soak",
+        "full captures"
+      ]
+    },
+    {
+      "profile": "staging",
+      "trigger": "explicit owner /stage or protected-main dispatch",
+      "purpose": "bounded additional regression on exactly the already built/published candidate package before stable alias promotion",
+      "work": [
+        "source proofs/targeted permanent relevant modules",
+        "lint/security/advisories",
+        "exact hosted routes/security headers/noindex/404/runtime bytes",
+        "representative all-route desktop/mobile browser checks with failure/accessibility/analytics selections",
+        "bounded CPU/transition performance sanity using original thresholds"
+      ],
+      "excluded": [
+        "production-sized repeated matrix on Linux/macOS/Windows",
+        "three Lighthouse repetitions for every page/profile",
+        "five-minute soak",
+        "twenty-view full capture reel"
+      ],
+      "time_budget": "Aim/configure <=10-12 minutes, verify actual new CI; no claim of achieved timing from this audit."
+    },
+    {
+      "profile": "production",
+      "trigger": "explicit release-preflight dispatch for authorized production candidate",
+      "purpose": "complete existing release regression and required external evidence",
+      "work": [
+        "all existing native/full cases and per-case requirements",
+        "390 core functional/12 navigation/39 analytics",
+        "Windows smoke40/8/26",
+        "full Color12/12 when source rendition applies",
+        "all three Lighthouse repeats and original budgets",
+        "all motion/CPU/transition and300s soak",
+        "20 captures plus videos",
+        "device/independent/rights/origin/rollback requirements"
+      ],
+      "authorization": "passing gate does not itself authorize activation or deploy"
+    }
+  ],
+  "preserved_controls": [
+    "exact candidateCommit/sourceCommit/sourceTree",
+    "clean sourceDirty=false",
+    "public artifact ID/upload digest/public digest/variant fingerprint",
+    "test same built package; never custom republish",
+    "official Wrangler Action only",
+    "same-repository PR/open/head leases",
+    "protected main controller tip lease immediately before deploy/promote",
+    "publish preview and URL comment early",
+    "stable alias only after selected exact-source required gate",
+    "previous successful retained recovery/package binding",
+    "post-promote actual alias byte/HTTP check and automatic verified rollback",
+    "failed observations retained before convergence"
+  ],
+  "issue13_closure": "Do not close merely after this optimization; evaluate its unchanged original remaining external gates and report exact unmet requirements."
+}

@@ -58,8 +58,36 @@ class RICICouplingTests(unittest.TestCase):
         self.assertEqual({layer["id"] for layer in data["layers"]}, {
             "authority-instructions", "intent-acceptance", "path-catalog", "producer-identity",
             "generated-views", "lookup-validation-routes", "continuity", "github-live-overlay-ci-boundary",
-            "entry-root-guides"})
+            "entry-root-guides", "test-profile-selection"})
         self.assertFalse(result["live_github_state_verified"])
+
+    def test_staging_and_production_share_actual_ri_freshness_preflight(self):
+        workflow = (REPO / ".github/workflows/site-release-checks.yml").read_text()
+        start = workflow.index("      - name: Validate exact source and regressions\n")
+        end = workflow.index("      - ", start + 8)
+        script = workflow[start:end]
+        command = "check python tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify"
+
+        def unconditionally_verified(body):
+            depth = 0
+            depths = []
+            for raw in body.splitlines():
+                line = raw.strip()
+                if line.startswith("if ["):
+                    depth += 1
+                elif line == "fi":
+                    depth -= 1
+                elif line == command:
+                    depths.append(depth)
+            return depths == [0]
+
+        self.assertTrue(unconditionally_verified(script))
+        line = "          " + command + "\n"
+        self.assertFalse(unconditionally_verified(script.replace(line, "")))
+        self.assertFalse(unconditionally_verified(script.replace(
+            line, '          if [ "$SITE_VALIDATION_LEVEL" = production ]; then\n'
+            + "  " + line + "          fi\n")))
+        self.assertFalse(unconditionally_verified(script.replace(line, line.rstrip() + " || true\n")))
 
     def test_verified_definition_and_source_identity_are_deterministic(self):
         first = ci.verify(self.root)
@@ -91,6 +119,23 @@ class RICICouplingTests(unittest.TestCase):
             "kind": "file", "role": "validator", "owner": ".github/REPOSITORY-INTELLIGENCE.md"}}}))
         with self.assertRaisesRegex(ValueError, "Unmapped.*new_ri_control.py"):
             self.refresh()
+
+    def test_new_profile_owned_control_family_must_be_mapped(self):
+        path = "tools/quality/new-profile-selector.cjs"
+        self.write(path, "// New maintained profile-selection control\n")
+        self.write(ci.CATALOG, json.dumps({"entries": {path: {
+            "kind": "file", "role": "validator", "owner": "guides/SITE-CHECK-PROFILES.md"}}}))
+        # Fixed profile families cannot disappear from CI coupling merely because
+        # their editing owner differs from RI/acceptance architecture owners.
+        self.assertIn(path, ci.control_paths(self.root))
+        with self.assertRaisesRegex(ValueError, "Unmapped.*new-profile-selector.cjs"):
+            self.refresh()
+        self.data["layers"][0]["paths"].append(path)
+        self.refresh()
+        self.assertTrue(ci.verify(self.root)["pass"])
+        self.write(path, "// Changed profile-selection behavior\n")
+        with self.assertRaisesRegex(ValueError, "Stale RI/CI mapping"):
+            ci.verify(self.root)
 
     def test_missing_path_and_dangling_check_fail(self):
         (self.root / "AGENTS.md").unlink()

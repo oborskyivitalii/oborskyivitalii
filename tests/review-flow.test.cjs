@@ -9,6 +9,23 @@ test('preview tracks the latest open same-repository PR head; stale runs and for
   assert.throws(()=>flow.resolve({...context,repo:{owner:'someone',repo:'fork'}},pr));
   for(const number of ['26;echo secret','-1','0','1e3','9007199254740992'])assert.throws(()=>flow.positive(number));
 });
+test('only the exact owner staging-regression PR label selects nonpromoting stage evidence',()=>{
+  const labeled={...context,actor:context.repo.owner,payload:{...context.payload,action:'labeled',label:{name:'staging-regression'},sender:{login:context.repo.owner}}};
+  assert.equal(flow.previewEvidence(labeled),true);assert.equal(flow.resolve(labeled,pr).mode,'preview');
+  assert.equal(flow.previewEvidence(context),false);assert.equal(flow.previewEvidence({...labeled,eventName:'workflow_dispatch'}),false);
+  for(const mutate of [c=>c.actor='someone',c=>c.payload.sender.login='someone',c=>c.payload.label.name='site-release-candidate',c=>delete c.payload.label,c=>delete c.payload.sender]){
+    const invalid=structuredClone(labeled);mutate(invalid);assert.throws(()=>flow.previewEvidence(invalid));assert.throws(()=>flow.resolve(invalid,pr));
+  }
+  assert.throws(()=>flow.resolve(labeled,{...pr,head:{...pr.head,repo:{full_name:'someone/fork'}}}));
+  const source=fs.readFileSync(path.join(__dirname,'../.github/workflows/site-color-review.yml'),'utf8');
+  const evidence=source.split('\n  stage-evidence:\n')[1].split('\n  full:\n')[0];
+  assert.match(evidence,/github.event_name == 'pull_request'/);assert.match(evidence,/needs.target.outputs.evidence == 'true'/);
+  assert.match(evidence,/validation_level: staging/);assert.match(evidence,/base_url: \$\{\{ needs.publish.outputs.url \}\}/);assert.match(evidence,/public_artifact_id: \$\{\{ needs.build.outputs.public_artifact \}\}/);
+  assert.doesNotMatch(evidence,/secrets\.|environment:|wrangler|--branch=staging|promote/);
+  assert.match(source,/format\('site-stage-evidence-\{0\}', github.event.pull_request.number\)/);
+  const promote=source.split('\n  promote:\n')[1].split('\n  status-comment:\n')[0];
+  assert.match(promote,/github.event_name == 'workflow_dispatch' \|\| github.event_name == 'issue_comment'/);
+});
 test('explicit staging resolves a PR source while requiring an unchanged protected main controller',()=>{
   const dispatch={...context,eventName:'workflow_dispatch',ref:'refs/heads/main'},main={protected:true,commit:{sha:controller}};
   assert.deepEqual(flow.resolve(dispatch,pr,main),{mode:'staging',number:'26',source,branch:'candidate-staging-'+source});
@@ -48,7 +65,7 @@ function packageFixture(){
   fs.writeFileSync(path.join(input,'artifact.json'),JSON.stringify(manifest));fs.mkdirSync(path.join(input,'gate'));fs.writeFileSync(path.join(input,'gate/release-manifest.json'),JSON.stringify(gate));
   return {dir,out,record:pkg.build(input,out)};
 }
-test('promotion requires the exact hosted full gate and rendition; lightweight, failed or incomplete results cannot substitute',()=>{
+test('legacy full staging proof retains exact source, rendition and every mandatory report',()=>{
   const f=packageFixture();try{
     const url='https://abcdefgh.'+flow.project+'.pages.dev',gate={...f.record.source,kind:'hosted-gate',profile:'staging',pass:true,hostedOrigin:url,githubArtifact:f.record.gate.githubArtifact,jobs:Object.fromEntries(['build','static','linux','native','performance','captures','host'].map(x=>[x,{result:'success'}])),checkedReports:['lint','security','advisories','functional','lighthouse','motion','captures','hosted'].map(kind=>({kind}))};
     assert.equal(flow.fullGate(gate,f.record,url),true);
@@ -62,6 +79,40 @@ test('promotion requires the exact hosted full gate and rendition; lightweight, 
     assert.throws(()=>flow.fullGate(colorGate,f.record,url),/different visual/);
   }finally{fs.rmSync(f.dir,{recursive:true,force:true});}
 });
+
+function stagingGateFixture(record,url){
+  const staging=require('../tools/quality/staging-gate.cjs'),checkedReports=staging.expectedKinds(record.source).map(kind=>({kind,platform:'linux',sha256:'a'.repeat(64)}));
+  return {...record.source,schema:1,kind:'staging-gate',profile:'staging',validationLevel:'staging',stageContract:1,pass:true,fullGate:false,productionEligible:false,deploymentAuthorized:false,sourceChecks:'success',hostedOrigin:url,jobs:Object.fromEntries(staging.requiredJobs.map(job=>[job,{result:'success'}])),checkedReports,reportsDigest:artifact.digest(JSON.stringify(checkedReports)),coverage:staging.expectedCoverage(record.source),githubArtifact:structuredClone(record.gate.githubArtifact)};
+}
+test('bounded staging proof binds both consumers to actual mandatory reports, exact source and rendition without authorizing production',()=>{
+  const f=packageFixture(),url='https://abcdefgh.'+flow.project+'.pages.dev';try{
+    const state=require('../tools/staging/state.cjs'),gate=stagingGateFixture(f.record,url);
+    assert.equal(flow.fullGate(gate,f.record,url),true);assert.equal(state.promotionGate(gate,f.record,url),true);
+    const failures=[g=>g.kind='package-gate',g=>g.profile='release',g=>g.validationLevel='production',g=>g.pass=false,g=>g.sourceChecks='skipped',g=>g.sourceCommit=controller,g=>g.sourceTree=source,g=>g.hostedOrigin='https://other.'+flow.project+'.pages.dev',g=>g.jobs.staging.result='skipped',g=>g.jobs.static.result='failure',g=>g.checkedReports[0].kind='functional',g=>g.checkedReports.pop(),g=>g.reportsDigest='e'.repeat(64),g=>g.coverage.functional.failures=9,g=>g.variant={...g.variant,fingerprint:'e'.repeat(64)},g=>g.githubArtifact.id='456',g=>g.githubArtifact.uploadDigest='e'.repeat(64),g=>g.productionEligible=true,g=>g.fullGate=true];
+    for(const mutate of failures){
+      const invalid=structuredClone(gate);mutate(invalid);
+      assert.throws(()=>flow.fullGate(invalid,f.record,url));assert.throws(()=>state.promotionGate(invalid,f.record,url));
+    }
+    assert.throws(()=>require('../tools/quality/promotion.cjs').validate(f.record.source,gate,{}),'bounded stage does not authorize production');
+    const color=structuredClone(f.record);color.source.variant={id:'color',contract:1,fingerprint:color.source.components.engine};color.source.components.variant=color.source.variant;
+    const colorGate=stagingGateFixture(color,url);assert.equal(flow.fullGate(colorGate,color,url),true);
+    colorGate.checkedReports=colorGate.checkedReports.filter(row=>row.kind!=='color-preview-smoke');colorGate.reportsDigest=artifact.digest(JSON.stringify(colorGate.checkedReports));
+    assert.throws(()=>flow.fullGate(colorGate,color,url),'Color stage cannot substitute incomplete rendition coverage');
+  }finally{fs.rmSync(f.dir,{recursive:true,force:true});}
+});
+test('narrow preview package proof admits only actual generation, snapshot and size scope and cannot authorize staging or production',()=>{
+  const f=packageFixture();try{
+    const gate={...f.record.gate,kind:'package-gate',profile:'package',checks:['generated source','artifact snapshot integrity','size budgets'],sourceTestsRun:false,fullGate:false,productionEligible:false,deploymentAuthorized:false};
+    assert.doesNotThrow(()=>pkg.sourceGate(f.record.source,gate));
+    for(const mutate of [g=>g.profile='local',g=>g.kind='pr-gate',g=>g.sourceTestsRun=true,g=>g.fullGate=true,g=>g.productionEligible=true,g=>g.deploymentAuthorized=true,g=>g.checks.push('theme tests'),g=>g.jobs.build.result='skipped',g=>g.sourceTree='e'.repeat(40),g=>g.githubArtifact.id='456']){
+      const invalid=structuredClone(gate);mutate(invalid);assert.throws(()=>pkg.sourceGate(f.record.source,invalid,{artifactId:'123'}));
+    }
+    const url='https://abcdefgh.'+flow.project+'.pages.dev';
+    assert.throws(()=>flow.fullGate(gate,f.record,url),'package proof does not authorize staging');
+    assert.throws(()=>require('../tools/quality/promotion.cjs').validate(f.record.source,gate,{}),'package proof does not authorize production');
+  }finally{fs.rmSync(f.dir,{recursive:true,force:true});}
+});
+
 function fetchFixture(f,mutation){
   return async url=>{
     const u=new URL(url);let file=u.pathname.slice(1)||'index.html';
@@ -254,9 +305,9 @@ test('workflow publishes through the official action, excludes full tests from P
   assert.match(text,/github.event.comment.user.login == github.repository_owner/);
   assert.match(text,/github.actor == github.repository_owner/);
   assert.match(text,/format\('site-ignored-comment-\{0\}', github.run_id\)/,'ignored comments do not displace pending staging');
-  assert.match(text,/cancel-in-progress: \$\{\{ github.event_name == 'pull_request' \}\}/);
+  assert.match(text,/cancel-in-progress: \$\{\{ github.event_name == 'pull_request' && github.event.action != 'labeled' \}\}/);
   const full=text.split('\n  full:\n')[1].split('\n  promote:\n')[0];
-  assert.match(full,/if: needs.target.outputs.mode == 'staging'/);assert.match(full,/full: true/);assert.match(full,/public_artifact_id: \$\{\{ needs.build.outputs.public_artifact \}\}/);
+  assert.match(full,/always\(\) && needs.target.outputs.mode == 'staging'/);assert.match(full,/needs.smoke.result == 'skipped'/);assert.match(full,/validation_level: staging/);assert.match(full,/full: true/);assert.match(full,/public_artifact_id: \$\{\{ needs.build.outputs.public_artifact \}\}/);
   const promote=text.split('\n  promote:\n')[1].split('\n  status-comment:\n')[0];
   assert.match(promote,/needs.full.result == 'success'/);assert.match(promote,/review-flow.cjs gate/);assert.match(promote,/--branch=staging/);assert.match(promote,/Restore the previous successful staging package through CI/);
   assert.match(promote,/timeout-minutes: 15/);assert.equal((promote.match(/review-flow.cjs http-ready /g)||[]).length,2);
@@ -264,6 +315,9 @@ test('workflow publishes through the official action, excludes full tests from P
   assert.match(promote,/REVIEW_PACKAGE_ATTEMPT: \$\{\{ needs.build.outputs.package_attempt \}\}/);assert.match(promote,/packageAttempt:String\(flow.positive\(e.REVIEW_PACKAGE_ATTEMPT\)\)/);
   assert.match(promote,/flow.recoveryArtifact\(state,previous,artifact\)/);assert.doesNotMatch(promote,/artifact.name,'site-review-package-'\+previous.runId\+'-'\+previous.attempt/);
   const smoke=text.split('\n  smoke:\n')[1].split('\n  full:\n')[0];
-  assert.match(smoke,/local-browser.cjs --smoke/);assert.match(smoke,/SITE_PUBLIC_VARIANT: \$\{\{ needs.build.outputs.variant \}\}/);assert.doesNotMatch(smoke,/secrets\.|lighthouse|scanners.cjs|motion.cjs/);
+  assert.match(smoke,/if: needs.target.outputs.mode == 'preview'/);assert.match(smoke,/local-browser.cjs --smoke/);assert.match(smoke,/SITE_PUBLIC_VARIANT: \$\{\{ needs.build.outputs.variant \}\}/);assert.doesNotMatch(smoke,/secrets\.|lighthouse|scanners.cjs|motion.cjs/);
+  const build=text.split('\n  build:\n')[1].split('\n  publish:\n')[0];
+  assert.match(build,/artifact.cjs build color-artifact/);assert.match(build,/local.cjs --package-gate color-artifact/);
+  assert.doesNotMatch(build,/local.cjs --package color-artifact|local.cjs --gate color-artifact/,'preview packaging does not duplicate or claim Basic source tests');
   for(const match of text.matchAll(/uses: ([^\s]+)/g))if(!match[1].startsWith('./'))assert.match(match[1],/@[a-f0-9]{40}$/,'pin third-party actions');
 });
