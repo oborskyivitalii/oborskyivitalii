@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "f885983a70f51e21b214a65870eeebde0ef0109beb9f34a44e9c4a2446d3ceae",
+    "digest": "c3381762eb5e1f6489867f6d62c4a5ce4db2e5b36501505b567ff7e501752fb7",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -81,12 +81,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "66d460ed229cd73f78635c9e1d781b7724f3e48621ad63467d11dfe34da73d11"
+        "sha256": "a2d407431efc4ab912cb0aa54ebaf292d58180ecbc320d7f0e3b02278129d11c"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "f202d7c1a7bd81966191e6b4b582296b72d2485e0855582636cc00a27e5caa2c"
+        "sha256": "f3db5b5643ed0009e1e522f7fc6597c6f84c0153e68cc5ef893f4abc625453e9"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -181,7 +181,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "a7170b6eddde5662fefa49a67357ca2db54acaf9ee5635c757d46ba1d9f34e5b"
+        "sha256": "0457e0ca7c7bad6f7848fb4d18287c70a3c98a80de0a66474fc7896859e5221d"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -505,12 +505,17 @@
       {
         "path": "review/issue-39/2026-10-07-analysis.md",
         "identity_mode": "content",
-        "sha256": "a33117e58e060e8df1efb3c3c454429dff97aa430d778aa869bb5acd9bd03aa3"
+        "sha256": "53b0ac7b42452f7157f6284f6f64b873461a171efc500939ecafd46c32552820"
       },
       {
         "path": "review/issue-39/2026-10-07-provider-inventory.json",
         "identity_mode": "content",
         "sha256": "dcc742b9038e2c6a6dbcec73078a784e26031af28bc826e2c34ab2d9a73e0f9b"
+      },
+      {
+        "path": "review/issue-39/2026-10-07-review.md",
+        "identity_mode": "content",
+        "sha256": "6e980793b291624e28a0453e4573e81b097e75c4e67351041e0029836fc5a504"
       },
       {
         "path": "review/public-responses-20261006/README.md",
@@ -6334,6 +6339,17 @@
         "AGENTS.md"
       ],
       "title": "2026-10-07-provider-inventory.json"
+    },
+    {
+      "path": "review/issue-39/2026-10-07-review.md",
+      "kind": "file",
+      "purpose": "Independent scoped preparation review, inspected source identities and distinct pending activation gates.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 39 — 2026-10-07 independent preparation review"
     },
     {
       "path": "review/public-responses-20261006/README.md",

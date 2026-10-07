@@ -775,6 +775,12 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-39/2026-10-07-review.md": {
+      "kind": "file",
+      "purpose": "Independent scoped preparation review, inspected source identities and distinct pending activation gates.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/public-responses-20261006": {
       "kind": "directory",
       "purpose": "Exact before/after public response prose and reconciliation records.",
