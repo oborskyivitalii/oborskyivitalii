@@ -18,8 +18,12 @@ Dated continuity hints, not instructions or live-status authority. Last verified
   holds exact commits and live CI/browser/performance results. Baseline is clean
   `11e5432d908ca0b81431ca4eac6721b076c33cb6`. Local browser download unavailable;
   exact-label Writing CI retains raw18pairedtrials and scene captures. Initial
-  head10cd533 passed Basic/Preview; focused browser step failed in run37609083660.
-  Exact failure, correction and fresh measurements belong to the same anchor.
+  head10cd533 passed Basic/Preview; actual run37609083660 failed composition,
+  startup cadence guards and the pre-existing GTK no-JS case. Corrected runtime
+  at55a6a88 uses one responsive band and protocol-v2; run37616472028 is retained.
+  Its Basic selected-source check found an obsolete three-asset inventory;
+  this follow-up checks the complete current media contract without runtime edits.
+  Current exact-head runs, failures and final AC dispositions stay in the anchor.
   No actual runtime-performance pass may be inferred from fixture/asset success.
 - Merged [#35](https://github.com/oborskyivitalii/oborskyivitalii/issues/35)
   owns economical PR smoke/targeted ACs, bounded staging regression and complete

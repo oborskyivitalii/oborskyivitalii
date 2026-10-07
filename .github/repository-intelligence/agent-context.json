@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "6821a55a4e3617232b2479ab1d56faf4b6b1bfc6d2a1a4d22405864761f20978",
+    "digest": "fc82769fd982d326545ab98ba301bb50fc786a585b09597f4b35eb771a17073d",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -186,7 +186,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "2957ccd59e101a6c9eeef60ee68a0a93a528adbd2c90ffd6fbb3d383c5d169cf"
+        "sha256": "13318cea66b231cf922c5c441b6a8acffc5d8be2503d57a85b8f0e916131336c"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -4435,7 +4435,7 @@
       {
         "path": "tests/content.test.cjs",
         "identity_mode": "content",
-        "sha256": "aee33385e27c57bc88a870be8f616b4bcf98be7876d5172c729adce2df39e7b4"
+        "sha256": "b87c613c1be537da790c425ae0186a385d3eeacc2b019d33c23440b3936d5ff2"
       },
       {
         "path": "tests/endpoint-fixtures.test.cjs",

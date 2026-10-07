@@ -139,7 +139,9 @@ test("page IDs, ARIA targets, local resources and fragments resolve without draf
   }
   const expected = [".nojekyll", "archive.js", "assets", "credits.html", "index.html", "media", "navigation.js", "research.html", "runtime", "site-revision.json", "snapshots", "space.js", "styles.css", "talks.html", "theme.js", "writing.html"];
   assert.deepEqual(fs.readdirSync(root).sort(), expected);
-  assert.deepEqual(fs.readdirSync(path.join(root, "assets")).sort(), ["favicon.svg", "vitalii-oborskyi-cutout.webp", "vitalii-oborskyi.jpg"]);
+  const {mediaFiles}=require("../tools/site/snapshot.cjs");
+  assert.deepEqual(JSON.parse(fs.readFileSync(path.join(root,"site-revision.json"))).mediaFiles,mediaFiles,"current published revision declares the complete maintained media inventory");
+  assert.deepEqual(fs.readdirSync(path.join(root,"assets")).sort(),[...mediaFiles].sort(),"current media aliases contain every required asset and no extras");
 });
 
 test("Home provides the agreed reader path, precise public actions and a real contact alternative", () => {
