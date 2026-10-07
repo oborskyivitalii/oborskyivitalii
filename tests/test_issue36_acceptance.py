@@ -1,15 +1,16 @@
-"""Issue 36 preparation checks, not evidence of scene integration or speed."""
+"""Issue 36 source checks; actual browser/performance runs stay source-bound."""
 
 import gzip
 import math
 from pathlib import Path
 import re
+import subprocess
 import unittest
 import xml.etree.ElementTree as ET
 
 
 ROOT = Path(__file__).resolve().parents[1]
-ASSET = ROOT / "review/issue-36/assets/writing-paradigm.svg"
+ASSET = ROOT / "site/assets/writing-paradigm.svg"
 NS = "{http://www.w3.org/2000/svg}"
 EXPRESSION = "y = f(x) → y ∼ P(y|x)"
 PALETTE = ["#ff2535", "#ff008e", "#8500ff", "#0063ff"]
@@ -116,6 +117,40 @@ class Issue36AssetTests(unittest.TestCase):
         ]:
             with self.subTest(before=before), self.assertRaises(AssertionError):
                 validate_asset(original.replace(before.encode(), after.encode()))
+
+
+def node_checks(files, expected, pattern=None):
+    """Run only the fixed maintained fixture families selected by this task."""
+    arguments = ["node", "--test", "--test-reporter=tap"]
+    if pattern:
+        arguments.append("--test-name-pattern=" + pattern)
+    result = subprocess.run(arguments + files, cwd=ROOT, text=True,
+                            capture_output=True, check=False, timeout=120)
+    assert result.returncode == 0, result.stdout + result.stderr
+    counts = {key: int(value) for key, value in re.findall(
+        r"^# (tests|pass|fail|skipped|cancelled|todo) (\d+)$", result.stdout, re.M)}
+    assert counts.get("tests") == expected, (counts, result.stdout)
+    assert counts.get("pass") == expected, (counts, result.stdout)
+    assert all(counts.get(key) == 0 for key in ["fail", "skipped", "cancelled", "todo"])
+
+
+class Issue36RuntimeTests(unittest.TestCase):
+    def test_scene_producer_projection_and_immutable_artwork(self):
+        node_checks(["tests/site-engine.test.cjs"], 5,
+                    "^the canonical formula|^the formula belongs|^embedded formula artwork|^missing canonical formula|^formula media declaration")
+
+    def test_single_bounded_cache_depth_order_and_failure_containment(self):
+        node_checks(["tests/renderer.test.cjs"], 2,
+                    "^one fixed formula cache|^formula raster failure")
+
+    def test_source_bound_performance_validator_and_adversarial_reports(self):
+        node_checks(["tests/writing-paradigm-quality.test.cjs"], 4)
+
+    def test_opt_in_ci_preserves_exact_source_and_failure_evidence(self):
+        node_checks(["tests/writing-paradigm-ci.test.cjs"], 3)
+
+    def test_browser_validator_rejects_missing_misbound_and_clipped_evidence(self):
+        node_checks(["tests/writing-paradigm-browser.test.cjs"], 3)
 
 
 if __name__ == "__main__":

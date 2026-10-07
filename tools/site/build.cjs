@@ -63,14 +63,17 @@ function configuration(root) {
 }
 const factories=['site/engine/math.cjs','site/scenes/world.cjs','site/engine/projection.cjs','site/engine/lifecycle.cjs','site/engine/renderer.cjs'];
 function factory(root,name){const file=path.join(root,name);delete require.cache[require.resolve(file)];const fn=require(file);if(typeof fn!=='function')throw Error('Invalid native factory '+name);return fn;}
+function sceneCompiler(root){const file=path.join(root,'tools/site/scene-assets.cjs');delete require.cache[require.resolve(file)];return require(file);}
 function model(root,definitions) {
   const math=factory(root,factories[0])();
-  return {...math,...definitions,...factory(root,factories[1])(math),...factory(root,factories[2])(math,definitions),...factory(root,factories[4])()};
+  const compiler=sceneCompiler(root),sceneAsset=compiler.load(root);
+  return {...math,...definitions,sceneAsset,...factory(root,factories[1])(math),...factory(root,factories[2])(math,definitions),...factory(root,factories[4])(compiler.runtime(sceneAsset))};
 }
 function runtime(root,definitions) {
   const [math,world,projection,lifecycle,renderer]=factories.map(name=>factory(root,name).toString());
+  const compiler=sceneCompiler(root),art=compiler.runtime(compiler.load(root));
   return '/* Generated from site/engine and site/scenes by tools/site/build.cjs. */\n(()=>{\n"use strict";\n'+
-    `const math=(${math})();\nconst definitions=${scriptJSON(definitions)};\nconst world=(${world})(math);\nconst projection=(${projection})(math,definitions);\nconst renderer=(${renderer})();\nconst api={...math,...definitions,...world,...projection,...renderer};\n`+
+    `const math=(${math})();\nconst definitions=${scriptJSON(definitions)};\nconst world=(${world})(math);\nconst projection=(${projection})(math,definitions);\nconst renderer=(${renderer})(${scriptJSON(art)});\nconst api={...math,...definitions,...world,...projection,...renderer};\n`+
     `if(typeof module!=="undefined"&&module.exports)module.exports=api;\n(${lifecycle})(api);\n})();\n`;
 }
 function dateLabel(value,septemberStyle='Sep') {
@@ -137,7 +140,7 @@ function render(root,route,input,api,measurement='') {
   return substitute(read(root,'site/templates/shell.html'),{LANG:input.meta.lang,ROUTE:route.id,HEAD:head,HEADER:header,MAIN:input.main,FOOTER:read(root,'site/templates/footer.html'),FALLBACK:fallback(api,route.id)},'shell');
 }
 function fileDigests(root,names){return Object.fromEntries(names.sort().map(name=>[name,sha(fs.readFileSync(path.join(root,name)))]));}
-function runtimeVersion(components){return sha(json({engine:components.engine,scenes:components.scenes,routes:components.routes,variant:components.variant,contract:components.contract}));}
+function runtimeVersion(components){return sha(json({engine:components.engine,scenes:components.scenes,assets:components.assets,producer:components.producer,routes:components.routes,variant:components.variant,contract:components.contract}));}
 function versionHTML(html,version,components) {
   const engine=runtimeVersion(components),media=components.assets;
   html=html.replace('</head>',`  <meta name="site-engine" content="${engine}">\n  <meta name="site-route" content="${version}">\n  <meta name="site-contract" content="${components.contract}">\n  <meta name="site-variant" content="base">\n</head>`);
@@ -213,7 +216,7 @@ function build({root=defaultRoot,output=path.join(root,'docs'),cacheFile=path.jo
       const engine=runtimeVersion(components);
       for(const name of ['theme.js','space.js','archive.js','navigation.js','styles.css'])put(`runtime/${engine}/${name}`,fs.readFileSync(path.join(temporary,name)));
       for(const name of files(path.join(root,'site/assets')).filter(x=>x!=='nojekyll'))put(`media/${components.assets}/${name}`,fs.readFileSync(path.join(root,'site/assets',name)));
-      const revision={schema:1,contract:components.contract,variant:{id:'base',contract:1,fingerprint:components.variant},engine,scenes:components.scenes,assets:components.assets,content:sha(json(Object.fromEntries(Object.entries(result.routes).map(([id,route])=>[id,route.version])))),routes:Object.fromEntries(Object.entries(result.routes).map(([id,route])=>[id,{version:route.version,url:`snapshots/${route.version}/${route.url}`,sha256:route.snapshotSHA}]))};
+      const revision={schema:1,contract:components.contract,variant:{id:'base',contract:1,fingerprint:components.variant},engine,scenes:components.scenes,assets:components.assets,mediaFiles:require('./snapshot.cjs').mediaFiles,content:sha(json(Object.fromEntries(Object.entries(result.routes).map(([id,route])=>[id,route.version])))),routes:Object.fromEntries(Object.entries(result.routes).map(([id,route])=>[id,{version:route.version,url:`snapshots/${route.version}/${route.url}`,sha256:route.snapshotSHA}]))};
       retain(root,put);put('site-revision.json',json(revision));
     }
     result.removed=files(output).filter(name=>!Object.hasOwn(result.files,name));

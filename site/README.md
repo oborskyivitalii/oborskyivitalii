@@ -63,6 +63,13 @@ geometry. Flights use compact facet models, then restore settled detail. Each of
 at most three active/pending rooms caches at most two detail variants; theme changes
 repaint their color tables. No independent render loop or runtime dependency is added.
 
+The Writing room has one original outlined paradigm landmark, sourced only from
+`assets/writing-paradigm.svg`. `tools/site/scene-assets.cjs` validates and compiles
+it during generation. Renderer uses one fixed1380×240 raster cache and one native
+sorted draw command, with no extra clock/load/decode. Asset and producer identity
+invalidate the immutable runtime. Static/mobile and standalone renditions derive
+from that source; diagnostics and issue #36's scoped evidence verify its bounds.
+
 ## Editing and deterministic generation
 
 Edit an individual block, for example `content/pages/index/about.html`, then run:

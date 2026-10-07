@@ -369,7 +369,7 @@ module.exports=function(api) {
       observeLayout();nextDraw=null;schedule();
     },
     refresh({sync=false,reason='mount'}={}){observeLayout();invalidateLayout(reason);if(sync)flushLayout();},
-    diagnostics(){return {rooms:[...rooms].map(([route,variants])=>({route,models:[...variants].map(([compact,room])=>({compact,serializedChars:JSON.stringify(room.world).length}))})),paletteEntries:colorFills.size,layoutPasses};},
+    diagnostics(){return {rooms:[...rooms].map(([route,variants])=>({route,models:[...variants].map(([compact,room])=>({compact,serializedChars:JSON.stringify(room.world).length,formulaAnchors:room.world.formulas?.length||0}))})),paletteEntries:colorFills.size,layoutPasses,formula:api.formulaDiagnostics?.()||null};},
     detachTravel(){travelUpdate=null;}
   };
   // Stylesheet load/error is authoritative, including early WebKit deferral.

@@ -72,7 +72,26 @@ module.exports=function(math,definitions) {
       const fade=threshold?smooth((size-threshold)/2):1;
       appendObject(world,o,vertices,projected,project,visible,fade,shapes,transform.inverse(current.position),prune?(width<=640? .5: .35):0,prune?size:Infinity);
     }
+    for(const anchor of world.formulas||[]){const shape=projectedFormula(anchor,current,width,height);if(shape)shapes.push(shape);}
     return sort?shapes.sort((a,b)=>b.depth-a.depth):shapes;
+  }
+  function projectedFormula(anchor,current,width,height) {
+    const mobile=width<=640,forward=normalize(sub(current.target,current.position)),right=normalize(cross(forward,[0,1,0])),up=cross(right,forward);
+    const delta=sub(mobile?anchor.mobileCenter:anchor.center,current.position),depth=dot(delta,forward);
+    // A room landmark has actual camera depth. It leaves view when passed; it
+    // cannot remain as a foreground overlay on a neighboring route.
+    if(!Number.isFinite(depth)||depth<=.5||depth>=105)return null;
+    const focal=(mobile?Math.min(height,width*1.15):height)/(2*Math.tan(Math.PI/8));
+    const x=width*(mobile?.42:.66)+dot(delta,right)*focal/depth,y=height*.48-dot(delta,up)*focal/depth;
+    if(x<=16||x>=width-16||y<0||y>height)return null;
+    // Fit the whole expression, preserving its aspect and world-space centre.
+    // The cap prevents clipping as the camera approaches this wide landmark.
+    const w=Math.min((mobile?anchor.mobileWidth:anchor.width)*focal/depth,2*Math.min(x-16,width-16-x)),h=w/anchor.aspect;
+    if(!Number.isFinite(w)||w<24||y-h/2<0||y+h/2>height)return null;
+    // Fade before every exclusion boundary. A whole-expression fit should
+    // never turn a still-opaque landmark off in one paint during scroll/flight.
+    const edge=Math.min(y-h/2,height-y-h/2),visibility=smooth(edge/32)*smooth((w-24)/80)*smooth((depth-.5)/4)*smooth((105-depth)/14);
+    return {kind:'formula',object:anchor.id,asset:anchor.id,points:[[x-w/2,y-h/2],[x+w/2,y-h/2],[x+w/2,y+h/2],[x-w/2,y+h/2]],depth,alpha:depthVisibility(depth)*visibility};
   }
   function projectedFace(f,vertices,screen,project) {
     // Clipping changes vertex count. Sorting uses the continuous original face
@@ -139,5 +158,5 @@ module.exports=function(math,definitions) {
   const roomOffset=page=>-Math.max(0,routeOrder.indexOf(page))*roomSpacing;
   const translatePose=(pose,z)=>({position:add(pose.position,[0,0,z]),target:add(pose.target,[0,0,z])});
   const routePose=(page,pose)=>translatePose(pose,roomOffset(page));
-  return {loopTransform,cameraVertices,projectedWorld,projectedFace,journeyPose,blendColor,routePose,roomOffset,translatePose};
+  return {loopTransform,cameraVertices,projectedWorld,projectedFace,projectedFormula,journeyPose,blendColor,routePose,roomOffset,translatePose};
 };

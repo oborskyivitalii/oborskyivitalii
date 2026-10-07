@@ -5,6 +5,19 @@ Each dated section describes that edition; older counts, placement and review
 limits are historical. Use [the editorial review route](SITE-CONTENT-REVIEW.md),
 the owning issue/PR and [MEMORY](../MEMORY.md) for current acceptance.
 
+## Writing formula artwork — 2026-10-07
+
+Issue #36 / PR #38 adds the owner's requested `y = f(x) → y ∼ P(y|x)` scene
+landmark. `site/assets/writing-paradigm.svg` is the sole editable original source:
+15 manually outlined Bézier/line glyph paths, no extracted font or external
+artwork. Its continuous red/pink/violet/blue gradient uses exact current ribbon
+palette entries. The owner requested 2× stronger strokes; glyphs use14 and the
+arrow/conditional bar10 SVG units. Build-time compiled commands, cached Canvas
+and static/offline markup derive from that source; none is a second artwork owner.
+The same [handoff](../review/issue-36/2026-10-07-handoff.md) retains asset digest,
+execution decisions and acceptance evidence. This visual shorthand adds no
+publication, research-definition, attribution or validation claim.
+
 ## Selected Home responses and complete Research context — 2026-10-06
 
 The maintainer authorized implementation of the

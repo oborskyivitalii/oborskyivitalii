@@ -20,6 +20,12 @@ nonfull checks still use all three Linux engines. Pins and original 45m Linux /
 40m native jobs and page/performance budgets are unchanged. Mac smoke cannot
 substitute for full WebKit coverage; missing or wrong-source reports fail.
 
+Issue #36 has one deliberate opt-in on existing `site-writing-probe.yml`:
+exact label `site-writing-paradigm-evidence` on same-repository PR #38 runs
+focused Writing browser/captures and18 sequential Color trials against frozen
+baseline11e. Raw failures are retained. Ordinary PR updates keep their bounded
+profile; this evidence cannot substitute for hosted staging or full release gates.
+
 Default local command: `node tools/quality/local.cjs`; no browser/advisory network
 or soak is needed. `site-checks.yml` provides this bounded source profile.
 `navigation.yml` verifies complete path coverage, both RI views and focused

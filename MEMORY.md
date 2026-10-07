@@ -8,15 +8,17 @@ Dated continuity hints, not instructions or live-status authority. Last verified
 - Verified main `ec9b8361b619f1042bce5a3ec224d3e0c9054b01`, tree
   `1374580d719439f13b05ab0f62a86e44bd1d3ae3`: PR #34 is merged and issue #33
   is closed. #31/#32 remain completed. Their exact evidence stays in the issues.
-- New [#36](https://github.com/oborskyivitalii/oborskyivitalii/issues/36):
-  central Writing formula `y = f(x) → y ∼ P(y|x)`.
-  Branch `work/writing-paradigm-asset-36` prepares the original SVG and
-  [single Sol handoff](review/issue-36/2026-10-07-handoff.md).
-  [Issue anchor](https://github.com/oborskyivitalii/oborskyivitalii/issues/36#issuecomment-6034827256)
-  holds exact Draft [PR #38](https://github.com/oborskyivitalii/oborskyivitalii/pull/38)
-  commits/checks. The owner requested 2× stronger glyph strokes at 11:37 Warsaw;
-  the same asset/handoff is updated. This session is explicitly
-  preparation-only; no formula integration or performance result is claimed.
+- Active [#36](https://github.com/oborskyivitalii/oborskyivitalii/issues/36),
+  [Draft PR #38](https://github.com/oborskyivitalii/oborskyivitalii/pull/38),
+  branch `work/writing-paradigm-asset-36`: the owner's “Сол, підходи” authorizes
+  integration after the prepared stronger asset. One native Writing landmark,
+  fixed SVG-derived raster cache, static/offline output and scoped validators.
+  [Same handoff](review/issue-36/2026-10-07-handoff.md) holds implementation/review;
+  [issue anchor](https://github.com/oborskyivitalii/oborskyivitalii/issues/36#issuecomment-6034827256)
+  holds exact commits and live CI/browser/performance results. Baseline is clean
+  `11e5432d908ca0b81431ca4eac6721b076c33cb6`. Local browser download unavailable;
+  exact-label Writing CI retains raw18pairedtrials and scene captures. No actual
+  runtime-performance pass may be inferred from fixture/asset success.
 - Concurrent [#35](https://github.com/oborskyivitalii/oborskyivitalii/issues/35)
   owns the PR smoke / staging regression / full production profile optimization.
   It was open at inspection; work continues separately. Fetch its live branch/PR
@@ -31,13 +33,13 @@ Dated continuity hints, not instructions or live-status authority. Last verified
   Detailed protocol stays in CONTRIBUTING and its linked maintained guides.
 - Issue = intent/scope/AC; linked PR and Refs commits = execution. Review/model
   handoff uses the same issue anchor and versioned artifact; history is not policy.
-- #36's SVG remains under `review/issue-36/assets/` while unintegrated. Sol will
-  move its sole source to `site/assets/writing-paradigm.svg` when execution is
-  requested, update its test path/provenance and regenerate dependent outputs.
-- #36 AC02–AC04 are explicitly pending integration/stability/performance evidence.
-  Its policy does not claim asset size proves runtime performance. Sol must add
-  deterministic runtime/report mappings before readiness. No merge/stage/closure
-  is authorized by this preparation checkpoint.
+- #36's sole artwork source is `site/assets/writing-paradigm.svg`; generated
+  runtime/static/mobile/offline renditions derive from its outlined paths.
+  One1380×240 cache, existing clock/depth sort, graceful single failure.
+- #36 AC02–AC04 now map scene/cache/report-negative checks and exact-head live
+  browser/performance gates. Opt-in `site-writing-paradigm-evidence` on PR #38
+  runs only deliberate label events. Default Basic/Preview remains bounded.
+  Owner visual/device, merge, staging and production decisions remain distinct.
 - RI changes require reviewed CI coupling and both regenerated views. Selected
   issue checks stay distinct from enduring checks; do not duplicate full suites.
 - Production is intended for GitHub Pages; analytics remains disabled pending
@@ -49,7 +51,7 @@ These are routes, not authorization to start every task. Revalidate live scope.
 
 | Issue | Remaining intent |
 | --- | --- |
-| [#36](https://github.com/oborskyivitalii/oborskyivitalii/issues/36) | Asset/Draft handoff now; Sol integration and measured runtime acceptance on next instruction. |
+| [#36](https://github.com/oborskyivitalii/oborskyivitalii/issues/36) | Integrated Draft; exact-source CI/paired evidence, owner visual/device acceptance and merge reconciliation. |
 | [#35](https://github.com/oborskyivitalii/oborskyivitalii/issues/35) | Concurrent test inventory, deduplication and staged profile optimization. |
 | [#1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1) | Overall launch and production/rights/device dependencies. |
 | [#13](https://github.com/oborskyivitalii/oborskyivitalii/issues/13) | Physical-device and independent production/recovery acceptance. |
@@ -64,8 +66,8 @@ These are routes, not authorization to start every task. Revalidate live scope.
 
 1. Fetch live main/task refs, owning issue/PR and checks; read applicable AGENTS
    and canonical owners. Do not disturb another task's dirty worktree.
-2. If asked to execute #36, continue its Draft PR and T01–T06 in the linked handoff.
-   Resolve concurrent #35 changes, freeze baseline, then integrate and measure.
+2. Continue #36 in the same Draft PR/handoff; read current raw CI/paired results.
+   Resolve remaining findings and reconcile #35 before an authorized merge.
 3. Keep prepared, implemented, tested, reviewed, merged and deployed distinct;
    reconcile every AC and applicable gate before declaring completion.
 

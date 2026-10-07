@@ -1,6 +1,48 @@
 "use strict";
 // Canvas command submission is separate from projection and lifecycle clocks.
-module.exports=function() {
+module.exports=function(artwork=null,createSurface=null) {
+  // Exactly one immutable bitmap serves every Writing room/detail model. Its
+  // intrinsic size never follows viewport/DPR, and no resource owns a clock.
+  let formulaSurface=null,formulaAttempted=false,formulaBuilds=0,formulaPaints=0,formulaFailures=0,formulaVisible=0,formulaLastPaints=0;
+  function formulaBitmap() {
+    if(formulaAttempted)return formulaSurface;
+    formulaAttempted=true;formulaBuilds++;
+    try{
+      if(!artwork||artwork.width!==1380||artwork.height!==240)throw Error('bounded formula artwork unavailable');
+      const surface=createSurface?createSurface():document.createElement('canvas');
+      surface.width=artwork.width;surface.height=artwork.height;
+      const target=surface.getContext('2d');if(!target)throw Error('formula cache unavailable');
+      const gradient=target.createLinearGradient(...artwork.gradient.line);
+      for(const [offset,color]of artwork.gradient.stops)gradient.addColorStop(offset,color);
+      target.strokeStyle=gradient;target.lineCap='round';target.lineJoin='round';
+      for(const glyph of artwork.paths){
+        target.beginPath();target.lineWidth=glyph.stroke;
+        for(const [kind,...values]of glyph.commands){
+          if(kind==='M')target.moveTo(...values);
+          else if(kind==='L')target.lineTo(...values);
+          else if(kind==='C')target.bezierCurveTo(...values);
+          else throw Error('unsupported compiled formula command');
+        }
+        target.stroke();
+      }
+      formulaSurface=surface;
+    }catch{formulaFailures++;formulaSurface=null;}
+    return formulaSurface;
+  }
+  function paintFormula(ctx,shape) {
+    formulaVisible++;
+    const surface=formulaBitmap();if(!surface)return;
+    const [from,to,,bottom]=shape.points;let saved=false;
+    try{
+      ctx.save();saved=true;ctx.globalAlpha=shape.alpha;ctx.globalCompositeOperation='source-over';
+      ctx.drawImage(surface,from[0],from[1],to[0]-from[0],bottom[1]-from[1]);formulaPaints++;formulaLastPaints++;
+    }catch{formulaFailures++;formulaSurface=null;}
+    finally{if(saved)ctx.restore();}
+  }
+  function formulaDiagnostics() {
+    const width=formulaSurface?.width||0,height=formulaSurface?.height||0;
+    return {status:formulaSurface?'ready':formulaAttempted?'failed':'unused',cacheBuilds:formulaBuilds,width,height,bytes:width*height*4,paintCount:formulaPaints,failures:formulaFailures,visibleCount:formulaVisible,lastPaintCount:formulaLastPaints,attempts:formulaBuilds,builds:formulaSurface?formulaBuilds:0,failed:formulaFailures>0,draws:formulaPaints,visible:formulaVisible>0};
+  }
   function facePalette(faces,colors,cache) {
     const rgb=Object.fromEntries(Object.entries(colors).map(([key,hex])=>[key,hex.slice(1).match(/.{2}/g).map(value=>parseInt(value,16))]));
     const paper=rgb.paper;
@@ -36,9 +78,11 @@ module.exports=function() {
     ctx.stroke();return end-1;
   }
   function paintShapes(ctx,shapes,colors,paintCustom=null) {
+    formulaVisible=0;formulaLastPaints=0;
     for(let index=0;index<shapes.length;index++) {
       const shape=shapes[index];
       if(paintCustom?.(ctx,shape))continue;
+      if(shape.kind==='formula'){paintFormula(ctx,shape);continue;}
       // Depth order is unchanged. Only adjacent compatible lines are batched.
       if(shape.kind==="line"&&!shape.arrow){index=drawLineRun(ctx,shapes,index,colors);continue;}
       const points=shape.points,from=points[0],to=points[1];
@@ -58,5 +102,5 @@ module.exports=function() {
     }
     ctx.globalAlpha=1;
   }
-  return {paintShapes,facePalette};
+  return {paintShapes,facePalette,formulaDiagnostics};
 };

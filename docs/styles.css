@@ -71,6 +71,7 @@ body[data-page="writing"] .space-scene canvas,body[data-page="credits"] .space-s
    paths need no native layout while Canvas owns the scene. */
 .space-scene[data-ready] svg {visibility:hidden;display:none}
 .space-fallback {opacity:1}
+.space-fallback .formula-mobile {display:none}
 /* Protect the reading block, leaving the section and its gutters open to the world. */
 .section,.archive-intro,.credits-page,.hero-copy,.shift-intro {background:transparent}
 :where(.hero-copy,.section-heading,.archive-intro>.hero-description,.archive-intro>.eyebrow,.shift-intro>p,
@@ -260,6 +261,8 @@ body[data-page="writing"] .publication {--reading-alpha:var(--surface-row)}
   .hero :is(h1,.hero-lead,.hero-description,.audience,.eyebrow)::before {content:"";position:absolute;inset:-18px;z-index:-1;pointer-events:none;background:color-mix(in srgb,var(--paper) 97%,transparent);mask-image:linear-gradient(90deg,transparent,#000 18px,#000 calc(100% - 18px),transparent),linear-gradient(transparent,#000 18px,#000 calc(100% - 18px),transparent);mask-composite:intersect}
   /* Match the mobile camera framing for the static 1440×900 projection too. */
   .space-scene .space-fallback {width:min(184vw,160vh);height:min(115vw,100vh);left:calc(42vw - min(121.44vw,105.6vh));top:calc(48vh - min(55.2vw,48vh))}
+  .space-fallback .formula-desktop {display:none}
+  .space-fallback .formula-mobile {display:inline}
   .archive-intro>h1 {padding-inline:0;margin-inline:0}
   html {scroll-padding-top:var(--header-clearance,112px)}
   .wrap {width:calc(100% - 40px)}

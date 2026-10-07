@@ -777,7 +777,10 @@ const world=(function(math) {
     }
     const light=normalize([-.55,.85,1]);
     for(const f of faces)prepareFace(f,light);
-    return {faces,lines,objects};
+    // One readable landmark belongs to the Writing room, never the recursive
+    // symbol grammar. Mobile has its own authored framing in the same room.
+    const formulas=page==='writing'?[{id:'writing-paradigm',center:[-5.6,3,-6],mobileCenter:[1.6,3,-6],width:30,mobileWidth:19,aspect:1380/240}]:[];
+    return {faces,lines,objects,formulas};
   }
   function prepareFace(f,light) {
     // Preserve the original cross/normalize/dot arithmetic without allocating
@@ -870,7 +873,26 @@ const projection=(function(math,definitions) {
       const fade=threshold?smooth((size-threshold)/2):1;
       appendObject(world,o,vertices,projected,project,visible,fade,shapes,transform.inverse(current.position),prune?(width<=640? .5: .35):0,prune?size:Infinity);
     }
+    for(const anchor of world.formulas||[]){const shape=projectedFormula(anchor,current,width,height);if(shape)shapes.push(shape);}
     return sort?shapes.sort((a,b)=>b.depth-a.depth):shapes;
+  }
+  function projectedFormula(anchor,current,width,height) {
+    const mobile=width<=640,forward=normalize(sub(current.target,current.position)),right=normalize(cross(forward,[0,1,0])),up=cross(right,forward);
+    const delta=sub(mobile?anchor.mobileCenter:anchor.center,current.position),depth=dot(delta,forward);
+    // A room landmark has actual camera depth. It leaves view when passed; it
+    // cannot remain as a foreground overlay on a neighboring route.
+    if(!Number.isFinite(depth)||depth<=.5||depth>=105)return null;
+    const focal=(mobile?Math.min(height,width*1.15):height)/(2*Math.tan(Math.PI/8));
+    const x=width*(mobile?.42:.66)+dot(delta,right)*focal/depth,y=height*.48-dot(delta,up)*focal/depth;
+    if(x<=16||x>=width-16||y<0||y>height)return null;
+    // Fit the whole expression, preserving its aspect and world-space centre.
+    // The cap prevents clipping as the camera approaches this wide landmark.
+    const w=Math.min((mobile?anchor.mobileWidth:anchor.width)*focal/depth,2*Math.min(x-16,width-16-x)),h=w/anchor.aspect;
+    if(!Number.isFinite(w)||w<24||y-h/2<0||y+h/2>height)return null;
+    // Fade before every exclusion boundary. A whole-expression fit should
+    // never turn a still-opaque landmark off in one paint during scroll/flight.
+    const edge=Math.min(y-h/2,height-y-h/2),visibility=smooth(edge/32)*smooth((w-24)/80)*smooth((depth-.5)/4)*smooth((105-depth)/14);
+    return {kind:'formula',object:anchor.id,asset:anchor.id,points:[[x-w/2,y-h/2],[x+w/2,y-h/2],[x+w/2,y+h/2],[x-w/2,y+h/2]],depth,alpha:depthVisibility(depth)*visibility};
   }
   function projectedFace(f,vertices,screen,project) {
     // Clipping changes vertex count. Sorting uses the continuous original face
@@ -937,9 +959,51 @@ const projection=(function(math,definitions) {
   const roomOffset=page=>-Math.max(0,routeOrder.indexOf(page))*roomSpacing;
   const translatePose=(pose,z)=>({position:add(pose.position,[0,0,z]),target:add(pose.target,[0,0,z])});
   const routePose=(page,pose)=>translatePose(pose,roomOffset(page));
-  return {loopTransform,cameraVertices,projectedWorld,projectedFace,journeyPose,blendColor,routePose,roomOffset,translatePose};
+  return {loopTransform,cameraVertices,projectedWorld,projectedFace,projectedFormula,journeyPose,blendColor,routePose,roomOffset,translatePose};
 })(math,definitions);
-const renderer=(function() {
+const renderer=(function(artwork=null,createSurface=null) {
+  // Exactly one immutable bitmap serves every Writing room/detail model. Its
+  // intrinsic size never follows viewport/DPR, and no resource owns a clock.
+  let formulaSurface=null,formulaAttempted=false,formulaBuilds=0,formulaPaints=0,formulaFailures=0,formulaVisible=0,formulaLastPaints=0;
+  function formulaBitmap() {
+    if(formulaAttempted)return formulaSurface;
+    formulaAttempted=true;formulaBuilds++;
+    try{
+      if(!artwork||artwork.width!==1380||artwork.height!==240)throw Error('bounded formula artwork unavailable');
+      const surface=createSurface?createSurface():document.createElement('canvas');
+      surface.width=artwork.width;surface.height=artwork.height;
+      const target=surface.getContext('2d');if(!target)throw Error('formula cache unavailable');
+      const gradient=target.createLinearGradient(...artwork.gradient.line);
+      for(const [offset,color]of artwork.gradient.stops)gradient.addColorStop(offset,color);
+      target.strokeStyle=gradient;target.lineCap='round';target.lineJoin='round';
+      for(const glyph of artwork.paths){
+        target.beginPath();target.lineWidth=glyph.stroke;
+        for(const [kind,...values]of glyph.commands){
+          if(kind==='M')target.moveTo(...values);
+          else if(kind==='L')target.lineTo(...values);
+          else if(kind==='C')target.bezierCurveTo(...values);
+          else throw Error('unsupported compiled formula command');
+        }
+        target.stroke();
+      }
+      formulaSurface=surface;
+    }catch{formulaFailures++;formulaSurface=null;}
+    return formulaSurface;
+  }
+  function paintFormula(ctx,shape) {
+    formulaVisible++;
+    const surface=formulaBitmap();if(!surface)return;
+    const [from,to,,bottom]=shape.points;let saved=false;
+    try{
+      ctx.save();saved=true;ctx.globalAlpha=shape.alpha;ctx.globalCompositeOperation='source-over';
+      ctx.drawImage(surface,from[0],from[1],to[0]-from[0],bottom[1]-from[1]);formulaPaints++;formulaLastPaints++;
+    }catch{formulaFailures++;formulaSurface=null;}
+    finally{if(saved)ctx.restore();}
+  }
+  function formulaDiagnostics() {
+    const width=formulaSurface?.width||0,height=formulaSurface?.height||0;
+    return {status:formulaSurface?'ready':formulaAttempted?'failed':'unused',cacheBuilds:formulaBuilds,width,height,bytes:width*height*4,paintCount:formulaPaints,failures:formulaFailures,visibleCount:formulaVisible,lastPaintCount:formulaLastPaints,attempts:formulaBuilds,builds:formulaSurface?formulaBuilds:0,failed:formulaFailures>0,draws:formulaPaints,visible:formulaVisible>0};
+  }
   function facePalette(faces,colors,cache) {
     const rgb=Object.fromEntries(Object.entries(colors).map(([key,hex])=>[key,hex.slice(1).match(/.{2}/g).map(value=>parseInt(value,16))]));
     const paper=rgb.paper;
@@ -975,9 +1039,11 @@ const renderer=(function() {
     ctx.stroke();return end-1;
   }
   function paintShapes(ctx,shapes,colors,paintCustom=null) {
+    formulaVisible=0;formulaLastPaints=0;
     for(let index=0;index<shapes.length;index++) {
       const shape=shapes[index];
       if(paintCustom?.(ctx,shape))continue;
+      if(shape.kind==='formula'){paintFormula(ctx,shape);continue;}
       // Depth order is unchanged. Only adjacent compatible lines are batched.
       if(shape.kind==="line"&&!shape.arrow){index=drawLineRun(ctx,shapes,index,colors);continue;}
       const points=shape.points,from=points[0],to=points[1];
@@ -997,8 +1063,563 @@ const renderer=(function() {
     }
     ctx.globalAlpha=1;
   }
-  return {paintShapes,facePalette};
-})();
+  return {paintShapes,facePalette,formulaDiagnostics};
+})({
+  "width": 1380,
+  "height": 240,
+  "gradient": {
+    "line": [
+      50,
+      0,
+      1330,
+      0
+    ],
+    "stops": [
+      [
+        0,
+        "#ff2535"
+      ],
+      [
+        0.34,
+        "#ff008e"
+      ],
+      [
+        0.64,
+        "#8500ff"
+      ],
+      [
+        1,
+        "#0063ff"
+      ]
+    ]
+  },
+  "paths": [
+    {
+      "stroke": 14,
+      "commands": [
+        [
+          "M",
+          57,
+          95
+        ],
+        [
+          "C",
+          54,
+          125,
+          53,
+          158,
+          72,
+          159
+        ],
+        [
+          "C",
+          91,
+          160,
+          108,
+          119,
+          118,
+          94
+        ],
+        [
+          "M",
+          118,
+          94
+        ],
+        [
+          "C",
+          107,
+          134,
+          93,
+          177,
+          78,
+          192
+        ],
+        [
+          "C",
+          68,
+          202,
+          57,
+          201,
+          50,
+          194
+        ]
+      ]
+    },
+    {
+      "stroke": 14,
+      "commands": [
+        [
+          "M",
+          163,
+          116
+        ],
+        [
+          "L",
+          215,
+          116
+        ],
+        [
+          "M",
+          160,
+          141
+        ],
+        [
+          "L",
+          212,
+          141
+        ]
+      ]
+    },
+    {
+      "stroke": 14,
+      "commands": [
+        [
+          "M",
+          326,
+          68
+        ],
+        [
+          "C",
+          304,
+          54,
+          287,
+          73,
+          281,
+          100
+        ],
+        [
+          "L",
+          265,
+          177
+        ],
+        [
+          "C",
+          262,
+          194,
+          253,
+          199,
+          243,
+          193
+        ],
+        [
+          "M",
+          261,
+          109
+        ],
+        [
+          "L",
+          311,
+          109
+        ]
+      ]
+    },
+    {
+      "stroke": 14,
+      "commands": [
+        [
+          "M",
+          363,
+          62
+        ],
+        [
+          "C",
+          336,
+          83,
+          325,
+          109,
+          325,
+          134
+        ],
+        [
+          "C",
+          325,
+          159,
+          334,
+          181,
+          349,
+          196
+        ]
+      ]
+    },
+    {
+      "stroke": 14,
+      "commands": [
+        [
+          "M",
+          382,
+          99
+        ],
+        [
+          "C",
+          398,
+          91,
+          407,
+          111,
+          413,
+          132
+        ],
+        [
+          "C",
+          420,
+          154,
+          432,
+          168,
+          446,
+          158
+        ],
+        [
+          "M",
+          444,
+          100
+        ],
+        [
+          "C",
+          426,
+          118,
+          403,
+          145,
+          381,
+          162
+        ]
+      ]
+    },
+    {
+      "stroke": 14,
+      "commands": [
+        [
+          "M",
+          474,
+          62
+        ],
+        [
+          "C",
+          491,
+          79,
+          499,
+          101,
+          499,
+          125
+        ],
+        [
+          "C",
+          499,
+          153,
+          484,
+          179,
+          459,
+          196
+        ]
+      ]
+    },
+    {
+      "stroke": 10,
+      "commands": [
+        [
+          "M",
+          546,
+          128
+        ],
+        [
+          "L",
+          671,
+          128
+        ],
+        [
+          "M",
+          650,
+          109
+        ],
+        [
+          "L",
+          672,
+          128
+        ],
+        [
+          "L",
+          650,
+          147
+        ]
+      ]
+    },
+    {
+      "stroke": 14,
+      "commands": [
+        [
+          "M",
+          711,
+          95
+        ],
+        [
+          "C",
+          708,
+          125,
+          707,
+          158,
+          726,
+          159
+        ],
+        [
+          "C",
+          745,
+          160,
+          762,
+          119,
+          772,
+          94
+        ],
+        [
+          "M",
+          772,
+          94
+        ],
+        [
+          "C",
+          761,
+          134,
+          747,
+          177,
+          732,
+          192
+        ],
+        [
+          "C",
+          722,
+          202,
+          711,
+          201,
+          704,
+          194
+        ]
+      ]
+    },
+    {
+      "stroke": 14,
+      "commands": [
+        [
+          "M",
+          813,
+          133
+        ],
+        [
+          "C",
+          824,
+          112,
+          836,
+          115,
+          848,
+          128
+        ],
+        [
+          "C",
+          860,
+          141,
+          872,
+          144,
+          884,
+          123
+        ]
+      ]
+    },
+    {
+      "stroke": 14,
+      "commands": [
+        [
+          "M",
+          917,
+          167
+        ],
+        [
+          "L",
+          940,
+          64
+        ],
+        [
+          "L",
+          970,
+          64
+        ],
+        [
+          "C",
+          1007,
+          64,
+          1018,
+          112,
+          975,
+          122
+        ],
+        [
+          "L",
+          929,
+          122
+        ]
+      ]
+    },
+    {
+      "stroke": 14,
+      "commands": [
+        [
+          "M",
+          1058,
+          62
+        ],
+        [
+          "C",
+          1031,
+          83,
+          1020,
+          109,
+          1020,
+          134
+        ],
+        [
+          "C",
+          1020,
+          159,
+          1029,
+          181,
+          1044,
+          196
+        ]
+      ]
+    },
+    {
+      "stroke": 14,
+      "commands": [
+        [
+          "M",
+          1081,
+          95
+        ],
+        [
+          "C",
+          1078,
+          125,
+          1077,
+          158,
+          1096,
+          159
+        ],
+        [
+          "C",
+          1115,
+          160,
+          1132,
+          119,
+          1142,
+          94
+        ],
+        [
+          "M",
+          1142,
+          94
+        ],
+        [
+          "C",
+          1131,
+          134,
+          1117,
+          177,
+          1102,
+          192
+        ],
+        [
+          "C",
+          1092,
+          202,
+          1081,
+          201,
+          1074,
+          194
+        ]
+      ]
+    },
+    {
+      "stroke": 10,
+      "commands": [
+        [
+          "M",
+          1175,
+          79
+        ],
+        [
+          "L",
+          1175,
+          180
+        ]
+      ]
+    },
+    {
+      "stroke": 14,
+      "commands": [
+        [
+          "M",
+          1210,
+          99
+        ],
+        [
+          "C",
+          1226,
+          91,
+          1235,
+          111,
+          1241,
+          132
+        ],
+        [
+          "C",
+          1248,
+          154,
+          1260,
+          168,
+          1274,
+          158
+        ],
+        [
+          "M",
+          1272,
+          100
+        ],
+        [
+          "C",
+          1254,
+          118,
+          1231,
+          145,
+          1209,
+          162
+        ]
+      ]
+    },
+    {
+      "stroke": 14,
+      "commands": [
+        [
+          "M",
+          1304,
+          62
+        ],
+        [
+          "C",
+          1321,
+          79,
+          1329,
+          101,
+          1329,
+          125
+        ],
+        [
+          "C",
+          1329,
+          153,
+          1314,
+          179,
+          1289,
+          196
+        ]
+      ]
+    }
+  ]
+});
 const api={...math,...definitions,...world,...projection,...renderer};
 if(typeof module!=="undefined"&&module.exports)module.exports=api;
 (function(api) {
@@ -1370,7 +1991,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       observeLayout();nextDraw=null;schedule();
     },
     refresh({sync=false,reason='mount'}={}){observeLayout();invalidateLayout(reason);if(sync)flushLayout();},
-    diagnostics(){return {rooms:[...rooms].map(([route,variants])=>({route,models:[...variants].map(([compact,room])=>({compact,serializedChars:JSON.stringify(room.world).length}))})),paletteEntries:colorFills.size,layoutPasses};},
+    diagnostics(){return {rooms:[...rooms].map(([route,variants])=>({route,models:[...variants].map(([compact,room])=>({compact,serializedChars:JSON.stringify(room.world).length,formulaAnchors:room.world.formulas?.length||0}))})),paletteEntries:colorFills.size,layoutPasses,formula:api.formulaDiagnostics?.()||null};},
     detachTravel(){travelUpdate=null;}
   };
   // Stylesheet load/error is authoritative, including early WebKit deferral.

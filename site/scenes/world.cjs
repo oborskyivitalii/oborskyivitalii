@@ -395,7 +395,10 @@ module.exports=function(math) {
     }
     const light=normalize([-.55,.85,1]);
     for(const f of faces)prepareFace(f,light);
-    return {faces,lines,objects};
+    // One readable landmark belongs to the Writing room, never the recursive
+    // symbol grammar. Mobile has its own authored framing in the same room.
+    const formulas=page==='writing'?[{id:'writing-paradigm',center:[-5.6,3,-6],mobileCenter:[1.6,3,-6],width:30,mobileWidth:19,aspect:1380/240}]:[];
+    return {faces,lines,objects,formulas};
   }
   function prepareFace(f,light) {
     // Preserve the original cross/normalize/dot arithmetic without allocating

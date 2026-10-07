@@ -44,6 +44,34 @@ test('line grouping stops at opacity changes, arrows and extension geometry',()=
   paintShapes(ctx,[line(.6),line(.61),{kind:'custom'},line(.61,true),line(.61)],{cyan:'#123456'},(ctx,shape)=>{if(shape.kind!=='custom')return false;ctx.commands.push('custom');return true;});
   assert.deepEqual(ctx.commands.filter(x=>x!=='begin'),['stroke','stroke','custom','stroke','stroke','stroke']);
 });
+test('one fixed formula cache preserves scene order and is reused across room visits and viewport sizes',()=>{
+  const asset=require('../tools/site/scene-assets.cjs').load(require('node:path').resolve(__dirname,'..'));
+  let constructions=0,gradients=0;const target=recorder();target.bezierCurveTo=()=>{};target.createLinearGradient=()=>{gradients++;return {addColorStop(){}};};
+  const surface={getContext:()=>target},renderer=require('../site/engine/renderer.cjs')(asset,()=>{constructions++;return surface;}),ctx=recorder();
+  ctx.save=()=>{};ctx.restore=()=>{};ctx.drawImage=(bitmap,...bounds)=>{assert.equal(bitmap,surface);assert.ok(bounds.every(Number.isFinite));ctx.commands.push('formula');};
+  const line={kind:'line',points:[[0,0],[10,10]],color:'cyan',alpha:.5,lineWidth:1};
+  const formula={kind:'formula',points:[[16,100],[374,100],[374,162.26],[16,162.26]],depth:30,alpha:.8};
+  renderer.paintShapes(ctx,[line,formula,line],{cyan:'#123456'});
+  assert.deepEqual(ctx.commands.filter(c=>c!=='begin'),['stroke','formula','stroke'],'formula paints at its sorted depth without moving other commands');
+  assert.equal(target.commands.filter(c=>c==='stroke').length,15,'each approved glyph is rasterized exactly once');
+  for(let visit=0;visit<40;visit++){
+    renderer.paintShapes(ctx,[{...formula,points:[[200,260],[1240,260],[1240,440],[200,440]]}],{});
+    assert.equal(renderer.formulaDiagnostics().lastPaintCount,1);
+    renderer.paintShapes(ctx,[line],{cyan:'#123456'});assert.equal(renderer.formulaDiagnostics().lastPaintCount,0);
+  }
+  const diagnostic=renderer.formulaDiagnostics();assert.equal(diagnostic.status,'ready');assert.equal(diagnostic.paintCount,41);assert.equal(diagnostic.visibleCount,0);
+  assert.equal(constructions,1);assert.equal(gradients,1);assert.equal(diagnostic.cacheBuilds,1);assert.equal(diagnostic.bytes,1380*240*4);assert.equal(diagnostic.failures,0);
+  assert.equal(target.commands.filter(c=>c==='stroke').length,15,'resize/theme/route reuse adds no path construction');
+});
+test('formula raster failure is bounded once and preserves other scene commands',()=>{
+  const asset=require('../tools/site/scene-assets.cjs').load(require('node:path').resolve(__dirname,'..'));
+  let attempts=0;const renderer=require('../site/engine/renderer.cjs')(asset,()=>{attempts++;return {getContext(){throw Error('cache unavailable');}};}),ctx=recorder();
+  const formula={kind:'formula',points:[[0,0],[10,0],[10,10],[0,10]],alpha:1},line={kind:'line',points:[[0,0],[10,10]],color:'cyan',alpha:.5,lineWidth:1};
+  for(let frame=0;frame<8;frame++)assert.doesNotThrow(()=>renderer.paintShapes(ctx,[formula,line],{cyan:'#123456'}));
+  assert.equal(attempts,1);assert.equal(ctx.commands.filter(c=>c==='stroke').length,8);assert.equal(ctx.globalAlpha,1);
+  assert.equal(renderer.formulaDiagnostics().status,'failed');assert.equal(renderer.formulaDiagnostics().failures,1);assert.equal(renderer.formulaDiagnostics().bytes,0);
+  assert.equal(renderer.formulaDiagnostics().paintCount,0);
+});
 function assertPrunedShape(shape,w,m,compact,pose){
   if(shape.kind==='line'){
     const line=w.lines[shape.material],object=w.objects.find(o=>o.name===shape.object),transform=m.loopTransform(object,7317),forward=m.normalize(m.sub(pose.target,pose.position));

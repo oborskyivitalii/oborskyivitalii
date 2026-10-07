@@ -19,6 +19,89 @@ test('content links admit a plain public mailto without admitting executable sch
     assert.throws(()=>b.validateFragment('<a href="'+value+'">Email</a>','contact'),/Unsafe/);
   }
 });
+test('the canonical formula compiles once into finite strong glyphs and rejects executable, malformed and changed artwork',()=>{
+  const assets=require('../tools/site/scene-assets.cjs'),source=fs.readFileSync(path.join(root,'site/assets/writing-paradigm.svg'),'utf8'),art=assets.compile(source);
+  assert.equal(art.width,1380);assert.equal(art.height,240);assert.equal(art.paths.length,15);
+  assert.equal(art.paths.reduce((n,p)=>n+p.commands.length,0),65);assert.equal(Object.hasOwn(assets.runtime(art),'svg'),false,'runtime contains numeric commands without XML');
+  const duplicateGlyph=source.match(/<path data-glyph="y"[^>]*\/>/)[0];
+  for(const changed of [source.replace('</svg>','<script>alert(1)</script></svg>'),source.replace('M57 95','MInfinity 95'),source.replace('M57 95','M57'),source.replace('M57 95','M6 95'),source.replace('width="1380"','width="8192"'),source.replace('stroke-width="14"','stroke-width="7"'),source.replace('P(y|x)','P(x|y)'),source.replace('data-glyph="P"','data-glyph="Q"'),source.replace('d="M57','onload="alert(1)" d="M57'),source.replace('</g>','</defs>'),source.replace('</svg>',''),source.replace('</g>',duplicateGlyph+'</g>'),source.replace('</defs>','</defs><title id="title">duplicate</title>'),source.replace('M57 95','M57 95'+' L60 100'.repeat(16)),source.replace('</defs>','</defs>'+'<defs/>'.repeat(16))])assert.throws(()=>assets.compile(changed));
+});
+test('the formula belongs only to Writing, projects whole at supported widths and has coherent static mobile framing',()=>{
+  const {definitions}=b.configuration(root),api=b.model(root,definitions);
+  for(const route of definitions.routeOrder)for(const compact of [false,true]){
+    const world=api.worldFor(route,compact);assert.equal(world.formulas.length,route==='writing'?1:0);
+    for(const [width,height]of [[320,740],[390,844],[768,1024],[1440,900]]){
+      const shapes=api.projectedWorld(world,api.poses[api.initialPoses[route]],width,height),formulas=shapes.filter(shape=>shape.kind==='formula');
+      assert.equal(formulas.length,route==='writing'?1:0);
+      for(const shape of formulas){
+        assert.equal(shape.object,'writing-paradigm');assert.ok(Number.isFinite(shape.depth)&&shape.depth>.5);
+        for(const [x,y]of shape.points){assert.ok(x>=16-1e-8&&x<=width-16+1e-8,'whole horizontal expression fits');assert.ok(y>=0&&y<=height,'whole vertical expression fits');}
+        assert.ok(shape.points[1][0]-shape.points[0][0]>=width*.7,'formula retains visual prominence');
+        assert.ok(Math.abs((shape.points[1][0]-shape.points[0][0])/(shape.points[3][1]-shape.points[0][1])-1380/240)<1e-8);
+      }
+    }
+    const fallback=require('../tools/build_scene_fallbacks.cjs').fromModel(api,route);
+    if(route==='writing'){
+      assert.equal([...fallback.matchAll(/data-formula="writing-paradigm"/g)].length,2,'CSS selects one of two responsive static framings');
+      assert.ok(fallback.includes('class="formula-desktop"')&&fallback.includes('class="formula-mobile"'));
+      assert.ok(fallback.includes('id="writing-paradigm-desktop-ribbon"')&&fallback.includes('id="writing-paradigm-mobile-ribbon"'),'gradient IDs cannot collide');
+    }else assert.equal(fallback.includes('data-formula='),false);
+  }
+  const anchor=api.worldFor('writing').formulas[0],passed={position:[0,0,-12],target:[0,0,-30]};
+  assert.equal(api.projectedFormula(anchor,passed,1440,900),null,'camera passing the Writing anchor cannot carry it into another room');
+  for(const [width,height]of [[320,740],[390,844],[768,1024],[1440,900]])for(const [topic,ids]of Object.entries(definitions.topicPaths)){
+    let previous=null;
+    for(let sample=0;sample<=5000;sample++){
+      const shape=api.projectedFormula(anchor,api.journeyPose(ids,sample/5000),width,height);
+      if(previous&&!shape)assert.ok(previous.alpha<.05,`${topic} ${width}: departing whole expression fades before culling`);
+      if(!previous&&shape&&sample>0)assert.ok(shape.alpha<.05,`${topic} ${width}: entering whole expression begins transparent`);
+      previous=shape;
+    }
+  }
+});
+test('embedded formula artwork changes immutable runtime identity and packaged media coherently',t=>{
+  const dir=fixture(t),before=run(dir),oldRevision=JSON.parse(fs.readFileSync(path.join(dir,'docs/site-revision.json'))),oldRuntime=fs.readFileSync(path.join(dir,'docs/space.js'));
+  edit(dir,'site/assets/writing-paradigm.svg',source=>source.replace('M57 95','M58 95'));
+  const after=run(dir),newRevision=JSON.parse(fs.readFileSync(path.join(dir,'docs/site-revision.json'))),newRuntime=fs.readFileSync(path.join(dir,'docs/space.js'));
+  assert.notDeepEqual(newRuntime,oldRuntime);assert.notEqual(newRevision.engine,oldRevision.engine,'different embedded artwork cannot reuse an immutable runtime URL');
+  assert.notEqual(newRevision.assets,oldRevision.assets);assert.notEqual(after.files['assets/writing-paradigm.svg'],before.files['assets/writing-paradigm.svg']);
+  assert.deepEqual(after.built,['index','research','writing','talks','credits']);
+  assert.deepEqual(fs.readFileSync(path.join(dir,`docs/runtime/${newRevision.engine}/space.js`)),newRuntime);
+  assert.deepEqual(fs.readFileSync(path.join(dir,`docs/media/${newRevision.assets}/writing-paradigm.svg`)),fs.readFileSync(path.join(dir,'site/assets/writing-paradigm.svg')));
+  snapshot.verify(path.join(dir,'docs'),{files:after.files});run(dir,{check:true});
+  edit(dir,'tools/site/scene-assets.cjs',source=>source.replace('return compiled;','compiled.paths[0].commands[0][1]+=.25;return compiled;'));
+  const compilerChange=run(dir),compilerRevision=JSON.parse(fs.readFileSync(path.join(dir,'docs/site-revision.json'))),compilerRuntime=fs.readFileSync(path.join(dir,'docs/space.js'));
+  assert.notDeepEqual(compilerRuntime,newRuntime,'compiler-only changes affect the actual serialized glyph payload');
+  assert.notEqual(compilerRevision.engine,newRevision.engine,'compiler-only changes cannot reuse an immutable runtime URL');
+  assert.equal(compilerRevision.assets,newRevision.assets,'compiler-only changes preserve source artwork identity');
+  assert.deepEqual(fs.readFileSync(path.join(dir,`docs/runtime/${compilerRevision.engine}/space.js`)),compilerRuntime);
+  snapshot.verify(path.join(dir,'docs'),{files:compilerChange.files});run(dir,{check:true});
+});
+test('missing canonical formula fails generation without replacing the coherent public output',t=>{
+  const dir=fixture(t);run(dir);const before=inventory(dir);
+  fs.unlinkSync(path.join(dir,'site/assets/writing-paradigm.svg'));
+  assert.throws(()=>require('../tools/site/scene-assets.cjs').load(dir),/ENOENT/);
+  assert.throws(()=>run(dir),/ENOENT/);assert.deepEqual(inventory(dir),before);
+});
+test('formula media declaration preserves legacy artifacts while current omissions fail closed',t=>{
+  const dir=fixture(t),current=run(dir),publicDir=path.join(dir,'docs'),revisionFile=path.join(publicDir,'site-revision.json'),revision=JSON.parse(fs.readFileSync(revisionFile));
+  assert.deepEqual(revision.mediaFiles,snapshot.mediaFiles);snapshot.verify(publicDir,{files:current.files});
+  const missingAlias={files:{...current.files}};delete missingAlias.files['assets/writing-paradigm.svg'];
+  assert.throws(()=>snapshot.verify(publicDir,missingAlias),/missing public file assets\/writing-paradigm.svg/);
+  const noDeclaration={...revision};delete noDeclaration.mediaFiles;fs.writeFileSync(revisionFile,JSON.stringify(noDeclaration));
+  assert.throws(()=>snapshot.verify(publicDir,{files:current.files}),/formula artifact requires current media declaration/);
+  fs.writeFileSync(revisionFile,JSON.stringify({...revision,mediaFiles:snapshot.legacyMediaFiles}));
+  assert.throws(()=>snapshot.verify(publicDir,{files:current.files}),/finite current media declaration/);
+  // Construct the pre-feature descriptor shape from the same ordinary producer
+  // with an empty landmark vocabulary. No current formula bytes survive.
+  edit(dir,'site/scenes/world.cjs',source=>source.replace(/const formulas=page==='writing'\?[^\n]+;/,'const formulas=[];'));
+  const prior=run(dir,{all:true}),priorRevision=JSON.parse(fs.readFileSync(revisionFile));delete priorRevision.mediaFiles;
+  const legacyRecord={files:{...prior.files}};delete legacyRecord.files['assets/writing-paradigm.svg'];delete legacyRecord.files[`media/${priorRevision.assets}/writing-paradigm.svg`];
+  fs.unlinkSync(path.join(publicDir,'assets/writing-paradigm.svg'));fs.unlinkSync(path.join(publicDir,`media/${priorRevision.assets}/writing-paradigm.svg`));fs.writeFileSync(revisionFile,JSON.stringify(priorRevision));
+  assert.equal(fs.readFileSync(path.join(publicDir,'space.js'),'utf8').includes('writing-paradigm'),false);
+  assert.equal(fs.readFileSync(path.join(publicDir,'writing.html'),'utf8').includes('writing-paradigm'),false);
+  assert.doesNotThrow(()=>snapshot.verify(publicDir,legacyRecord),'legacy three-media descriptors remain verifiable for previous artifact import');
+});
 test('source migration preserves publication HTML and thematic geometry when shared vocabulary expands',()=>{
   const {config,definitions}=b.configuration(root),c=b.catalog(root),api=b.model(root,definitions);
   const context={module:{exports:{}}};vm.runInNewContext(cp.execFileSync('git',['show','6041a5801729e561c425092323a12cc8e4062f85:docs/space.js'],{cwd:root,encoding:'utf8'}),context);

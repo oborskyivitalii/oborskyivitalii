@@ -6,11 +6,24 @@ function fallback(page) {
  const builder=require("./site/build.cjs");
  return fromModel(builder.model(root,builder.configuration(root).definitions),page);
 }
-function fromModel({worldFor,projectedWorld,poses,initialPoses},page) {
+function fromModel(api,page) {
+ const {worldFor,projectedWorld,projectedFormula,poses,initialPoses,sceneAsset}=api;
  const world=worldFor(page,true),objects=new Set(world.objects.filter(o=>o.root===0&&o.depth<=1).map(o=>o.name));
- const shapes=projectedWorld(world,poses[initialPoses[page]],1440,900).filter(s=>objects.has(s.object)),groups=new Map(),number=v=>v.toFixed(2);
+ const shapes=projectedWorld(world,poses[initialPoses[page]],1440,900).filter(s=>s.kind!=='formula'&&objects.has(s.object)),groups=new Map(),number=v=>v.toFixed(2);
  for(const shape of shapes){const key=`${shape.object}:${shape.color}:${shape.kind}`;if(!groups.has(key))groups.set(key,{shape,paths:[]});const group=groups.get(key);if(shape.kind==="face"&&group.paths.length>=8)continue;group.paths.push(shape.points.map((p,i)=>(i?"L":"M")+p.map(number).join(" ")).join(" ")+(shape.kind==="face"?"Z":""));}
  const tags=[...groups.values()].map(({shape,paths})=>{const ink=shape.color==="amber"?"var(--systems)":"var(--accent)";return `<path d="${paths.join(" ")}" style="stroke:${ink};fill:${shape.kind==="face"?"var(--paper)":"none"}" stroke-opacity="${(shape.kind==="face"?shape.edgeAlpha:shape.alpha).toFixed(3)}"${shape.kind==="face"?` fill-opacity="${shape.alpha.toFixed(3)}"`:""} stroke-width="${shape.kind==="face"? .7:1}"/>`;});
+ // The established mobile SVG crop reproduces the camera's focal scaling and
+ // principal point. Give its one landmark the same authored mobile framing;
+ // CSS selects exactly one rendition, while the source artwork stays singular.
+ const anchor=world.formulas?.[0];
+ if(anchor&&sceneAsset&&projectedFormula){
+   for(const [variant,frame]of [['desktop',anchor],['mobile',{...anchor,center:anchor.mobileCenter,width:anchor.mobileWidth}]]){
+     const shape=projectedFormula(frame,poses[initialPoses[page]],1440,900);if(!shape)continue;
+     const [from,to]=shape.points,scale=(to[0]-from[0])/sceneAsset.width;
+     const prefix='writing-paradigm-'+variant+'-',art=sceneAsset.svg.replace(/^<svg\b[^>]*>/,'').replace(/<\/svg>\s*$/,'').replace(/\bid="([^"]+)"/g,(_,id)=>`id="${prefix}${id}"`).replace(/url\(#([^)]+)\)/g,(_,id)=>`url(#${prefix}${id})`);
+     tags.push(`<g class="formula-${variant}" data-formula="writing-paradigm" opacity="${shape.alpha.toFixed(3)}" transform="translate(${from.map(number).join(' ')}) scale(${scale.toFixed(6)})">${art}</g>`);
+   }
+ }
  return `<svg class="space-fallback" data-motif="${page}" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">${tags.join("")}</svg>`;
 }
 function update(check=false) {

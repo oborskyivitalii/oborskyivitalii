@@ -2,7 +2,7 @@
   "schema_version": 1,
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/36",
-    "summary": "2026-10-07: reviewed issue 36 preparation policy/test/handoff routing through existing owning-issue CI and catalog/freshness checks. Runtime/performance AC02–AC04 stay pending. No new workflow or duplicated Basic/full suite; prior entry/root controls retained."
+    "summary": "2026-10-07: reviewed #36 integrated native formula, canonical compiler/immutable media, scoped source/cache/raw browser/performance validators and exact-head opted-label Writing CI. Existing Basic/Preview and full release owners preserved; catalog and both RI views regenerated. Live measurements/owner/device/merge acceptance remain explicit, not fixture claims."
   },
   "layers": [
     {
@@ -302,7 +302,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "66d95f7ed5e23dd7c800d09cbac386ec16816602bd6f7ad07ef91c32a058bb2c",
+    "digest": "b202a3405dc05ccbd69582fdcf6d116d6e4eaf36cd1d9da753c724fbeae156fa",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -330,7 +330,7 @@
       },
       {
         "path": ".github/acceptance/issue-36.json",
-        "sha256": "b64057646060aa7025e168fb527785e98e361c11968de410df694e1e21b3ca7c"
+        "sha256": "14571ef4479737b9ad51bd42eaac617b3506cfe378901cde9710b873f1adae98"
       },
       {
         "path": ".github/pull_request_template.md",
@@ -346,7 +346,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "b0f74a4455e60c6acde3faeeebe68b4269a093e5783e56aabd86bd2940996072"
+        "sha256": "d848a1a50b6a3773139430471bdeb49bcb17b85319ba512687b29a5834bfb264"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -406,7 +406,7 @@
       },
       {
         "path": ".github/workflows/site-writing-probe.yml",
-        "sha256": "716b3cb7e7739666690d6e3b052cd2ee2b70989df6f0c42b6ed50a6c4c662c77"
+        "sha256": "05aefc93a260ea890c341530f07d1e12af76584508401dbfbe7729e050763a9c"
       },
       {
         "path": "AGENTS.md",
@@ -434,7 +434,7 @@
       },
       {
         "path": "tests/test_issue36_acceptance.py",
-        "sha256": "571d29ce7d57bb6aaaa98381ed5831d47e6af27840ee39b87c6288f31f986d01"
+        "sha256": "c20df90eb5ef42d64edf0319806628fb16139bbb2e3d40888abb819c105a5b50"
       },
       {
         "path": "tests/test_issue_acceptance.py",

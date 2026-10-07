@@ -8,52 +8,139 @@
       "id": "AC01",
       "intent": "Prepare a small transparent original vector of the exact requested expression in ribbon-family colors.",
       "automated_scope": "Actual SVG byte/gzip/element/command bounds, inert vocabulary, finite unclipped control geometry, expression metadata and continuous gradient; meaningful unsafe/incorrect mutations fail. Glyph recognizability and final-scene composition require visual review.",
-      "checks": ["ASSET", "ASSET-UNSAFE", "ASSET-SEMANTICS"],
-      "gates": ["G01"]
+      "checks": [
+        "ASSET",
+        "ASSET-UNSAFE",
+        "ASSET-SEMANTICS"
+      ],
+      "gates": [
+        "G01"
+      ]
     },
     {
       "id": "AC02",
       "intent": "Integrate one large central Writing-only formula with coherent camera/depth/media/offline behavior and readable foreground content.",
-      "automated_scope": "Not implemented in this explicitly preparation-only session. No runtime assertion is represented as passing. Sol must replace this pending-only mapping with named integration/generation/negative checks before readiness.",
-      "checks": [],
-      "gates": ["G02", "G01"]
+      "automated_scope": "Compiled SVG topology/geometry and malformed/missing-artwork failures; one Writing-only anchor in both tiers, finite whole responsive projection, two mutually exclusive static framings, immutable runtime/media identity after asset change. Actual foreground composition and glyph recognition remain visual decisions.",
+      "checks": [
+        "SCENE",
+        "BROWSER-VALIDATOR"
+      ],
+      "gates": [
+        "G01",
+        "G02"
+      ]
     },
     {
       "id": "AC03",
       "intent": "Preserve bounded single-clock lifecycle, cache/initialization, navigation and graceful fallback.",
-      "automated_scope": "Runtime integration and lifecycle tests are deferred by the user. Asset inertness does not prove engine stability. Sol must add executable lifecycle/resource/failure mappings before readiness.",
-      "checks": [],
-      "gates": ["G02"]
+      "automated_scope": "Fixed 1380\u00d7240 one-build raster cache, maintained sorted submission, repeated visits/resizes and permanent failure containment. Browser validator rejects missing/wrong-source lifecycle, duplicate/clipped/other-room artwork, unavailable cache and offline evidence. Fixtures prove the contract; the exact live browser run is a separate source-bound gate.",
+      "checks": [
+        "CACHE",
+        "BROWSER-VALIDATOR"
+      ],
+      "gates": [
+        "G02"
+      ]
     },
     {
       "id": "AC04",
       "intent": "Measure the exact implementation against paired baseline and unchanged absolute performance budgets in this PR.",
-      "automated_scope": "No runtime benchmark has been executed or claimed. Small asset bytes do not prove speed. Sol must add source-bound targeted performance report validation, including missing/invalid/failing evidence cases, before readiness.",
-      "checks": [],
-      "gates": ["G03"]
+      "automated_scope": "Maintained paired report validator recomputes raw measurements, enforces fixed Color source/artifact identities, three ordered pairs per profile, absolute budgets and declared before-measurement added-cost limits. Meaningful missing/misbound/incomplete/over-budget/concealed-quality/resource-growth negatives fail. Validator fixtures are not a measured performance result; exact-head opt-in run remains separately reviewed.",
+      "checks": [
+        "PERFORMANCE-VALIDATOR",
+        "OPT-IN-CI"
+      ],
+      "gates": [
+        "G03"
+      ]
     },
     {
       "id": "AC05",
       "intent": "Preserve owning-issue/Draft-PR handoff, RI routes and honest pending implementation, then reconcile the original acceptance before closure.",
-      "automated_scope": "Current catalog/view identity, actual CI coupling and existing runner selection/pending-gate semantics. No duplicate Basic/browser suite is introduced here; site-checks owns Basic. Live linkage, complete implementation mapping, independent review and merge remain separate.",
-      "checks": ["CURRENT-RI", "RI-CI", "PENDING-GATE", "OWNER-SELECTION"],
-      "gates": ["G02", "G03", "G04", "G05"]
+      "automated_scope": "Current catalog/views and real CI coupling, owning-issue selection, pending-gate semantics and deliberate opt-in event/source/retention controls. Basic remains owned by existing site-checks; no duplicated full release suite.",
+      "checks": [
+        "CURRENT-RI",
+        "RI-CI",
+        "PENDING-GATE",
+        "OWNER-SELECTION",
+        "OPT-IN-CI"
+      ],
+      "gates": [
+        "G04",
+        "G05"
+      ]
     }
   ],
   "checks": {
-    "ASSET": {"kind": "unittest", "test": "test_issue36_acceptance.Issue36AssetTests.test_original_vector_is_small_inert_and_finite"},
-    "ASSET-UNSAFE": {"kind": "unittest", "test": "test_issue36_acceptance.Issue36AssetTests.test_active_external_and_unbounded_assets_fail"},
-    "ASSET-SEMANTICS": {"kind": "unittest", "test": "test_issue36_acceptance.Issue36AssetTests.test_wrong_expression_palette_and_gradient_fail"},
-    "CURRENT-RI": {"kind": "unittest", "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"},
-    "RI-CI": {"kind": "unittest", "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"},
-    "PENDING-GATE": {"kind": "unittest", "test": "test_issue_acceptance.AcceptanceRunnerTests.test_manual_only_criterion_is_pending"},
-    "OWNER-SELECTION": {"kind": "unittest", "test": "test_issue_acceptance.AcceptanceRunnerTests.test_selector_uses_only_explicit_local_refs"}
+    "ASSET": {
+      "kind": "unittest",
+      "test": "test_issue36_acceptance.Issue36AssetTests.test_original_vector_is_small_inert_and_finite"
+    },
+    "ASSET-UNSAFE": {
+      "kind": "unittest",
+      "test": "test_issue36_acceptance.Issue36AssetTests.test_active_external_and_unbounded_assets_fail"
+    },
+    "ASSET-SEMANTICS": {
+      "kind": "unittest",
+      "test": "test_issue36_acceptance.Issue36AssetTests.test_wrong_expression_palette_and_gradient_fail"
+    },
+    "CURRENT-RI": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    },
+    "PENDING-GATE": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_manual_only_criterion_is_pending"
+    },
+    "OWNER-SELECTION": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_selector_uses_only_explicit_local_refs"
+    },
+    "SCENE": {
+      "kind": "unittest",
+      "test": "test_issue36_acceptance.Issue36RuntimeTests.test_scene_producer_projection_and_immutable_artwork"
+    },
+    "CACHE": {
+      "kind": "unittest",
+      "test": "test_issue36_acceptance.Issue36RuntimeTests.test_single_bounded_cache_depth_order_and_failure_containment"
+    },
+    "PERFORMANCE-VALIDATOR": {
+      "kind": "unittest",
+      "test": "test_issue36_acceptance.Issue36RuntimeTests.test_source_bound_performance_validator_and_adversarial_reports"
+    },
+    "BROWSER-VALIDATOR": {
+      "kind": "unittest",
+      "test": "test_issue36_acceptance.Issue36RuntimeTests.test_browser_validator_rejects_missing_misbound_and_clipped_evidence"
+    },
+    "OPT-IN-CI": {
+      "kind": "unittest",
+      "test": "test_issue36_acceptance.Issue36RuntimeTests.test_opt_in_ci_preserves_exact_source_and_failure_evidence"
+    }
   },
   "gates": {
-    "G01": {"kind": "human", "description": "Visual review of actual Writing composition, exact glyph meaning, foreground readability and Day/Night/mobile behavior; a standalone asset preview does not complete scene acceptance."},
-    "G02": {"kind": "human", "description": "Preparation-only hold: Sol execution has not been requested in this session. On continuation implement AC02/AC03 and replace their pending-only mappings with deterministic integration/lifecycle/failure checks; reviewer verifies source-bound results. This gate cannot substitute for those future automated tests."},
-    "G03": {"kind": "human", "description": "Performance implementation/evidence is absent. Sol must supply paired exact-source/variant runtime samples, executable report/negative validators and applicable CI/profile results; reviewer checks measurement validity. No performance acceptance from asset byte size."},
-    "G04": {"kind": "human", "description": "Live issue to Draft PR/Refs commits/exact handoff and CI links, independent implementation review and applicable physical-device/release evidence. Preserve concurrent #35 profile ownership."},
-    "G05": {"kind": "merge", "description": "Only after a subsequent applicable maintainer decision: normal merge of accepted implementation and exact merged-source reconciliation. Preparation-only PR remains Draft and issue open."}
+    "G01": {
+      "kind": "human",
+      "description": "Visual review of actual Writing composition, exact glyph meaning, foreground readability and Day/Night/mobile behavior; a standalone asset preview does not complete scene acceptance."
+    },
+    "G02": {
+      "kind": "human",
+      "description": "Exact-source browser run: positive actual formula paints, Off/reduced/hidden/print settled zero work, route/filter/history/zoom, coherent static/no-JS/no-Canvas fallback, bounded cache failure, offline export. Reviewer checks current report/captures; fixture success alone cannot establish runtime behavior."
+    },
+    "G03": {
+      "kind": "human",
+      "description": "Exact-head opted-in paired Color measurements and raw artifacts must pass the unchanged absolute limits and predeclared median added-cost guardrails. Reviewer verifies source/tree/public digest and three serial profiles; absent, failed or inconclusive measurement stays open."
+    },
+    "G04": {
+      "kind": "human",
+      "description": "Live issue to Draft PR/Refs commits/exact handoff and CI links, independent implementation review and applicable physical-device/release evidence. Preserve concurrent #35 profile ownership."
+    },
+    "G05": {
+      "kind": "merge",
+      "description": "Only after applicable maintainer decision: normal merge of accepted implementation and exact merged-source reconciliation. Implementation/CI/preview do not supply merge authorization."
+    }
   }
 }
