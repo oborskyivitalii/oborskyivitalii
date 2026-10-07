@@ -1,95 +1,73 @@
 # Session memory
 
-Dated continuity hints, not instructions or a live-status database. Revalidate
-facts that affect the next action. Last verified: **2026-10-07**.
+Dated continuity hints, not instructions or live-status authority. Last verified:
+**2026-10-07**. Revalidate refs, issue/PR, checks and hosting before acting.
 
 ## Snapshot
 
-- Cleanup [#31](https://github.com/oborskyivitalii/oborskyivitalii/issues/31) is
-  implemented in [PR #32](https://github.com/oborskyivitalii/oborskyivitalii/pull/32).
-  Independently rechecked head [3af7ee7](https://github.com/oborskyivitalii/oborskyivitalii/commit/3af7ee7afefec72a28bca8b67724760974d4c988)
-  passed all 53 mapped AC01–AC11 checks on clean raw-head
-  [acceptance run 37588698929](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37588698929).
-  RI `37588698925`, Basic `37588699779` and PR preview `37588699240` also passed.
-  All 78 focused Python tests passed independently; the downloaded CI report
-  matched source/tree, policy, producer, RI and all named-test hashes.
-  The [analysis](review/issue-31/2026-10-07-analysis.md#sol-tasks) and
-  [completion review](review/issue-31/2026-10-07-review.md#completion-review-2026-10-07)
-  keep one task route. This follow-up corrects two catalog descriptions/owners
-  and obsolete hosting-state paragraphs in the source guide/runbook; public
-  and runtime bytes remain unchanged. Current exact-head checks/CI and final dispositions stay
-  in the PR/issue. Owner semantic acceptance and protected merge remain open.
-  Recheck the latest head/CI/review; the cleanup is not merged into main.
-- Pre-cleanup protected `main`: [`07f936a`](https://github.com/oborskyivitalii/oborskyivitalii/commit/07f936a8733f56d73f34b89e2ad96d1b2ef605c7),
-  the normal merge of [PR #28](https://github.com/oborskyivitalii/oborskyivitalii/pull/28).
-  This is a baseline, not a claim about future main tips.
-- #28 source `985c89d71f8c3967ace8603c2fb499a1a50469e7`; merged tree matches
-  `7265c65a18d11e0b3e3fd08088a38d08d6db1850`. Exact-head full staging
-  [run 37549451723](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37549451723)
-  and post-merge navigation [run 37574592010](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37574592010)
-  succeeded. Gate/promotion/recovery details are in the PR completion record.
-- Stable stage: https://staging.oborskyi-author-ci-staging.pages.dev ; accepted
-  immutable candidate: https://0c1799e4.oborskyi-author-ci-staging.pages.dev .
-  Recheck the stable deployment/source before using it as current evidence.
-- [Issue #14](https://github.com/oborskyivitalii/oborskyivitalii/issues/14) was closed
-  completed after explicit maintainer acceptance on 2026-10-07.
-- The obsolete post-merge preview run `37574528402` failed its closed-PR guard;
-  it did not upload a package. Keep that failure distinct from full staging.
+- [#31](https://github.com/oborskyivitalii/oborskyivitalii/issues/31) is accepted and closed.
+  [PR #32](https://github.com/oborskyivitalii/oborskyivitalii/pull/32) merged at
+  [`3ca14c5`](https://github.com/oborskyivitalii/oborskyivitalii/commit/3ca14c54824ac6b9e7225bc88429b4b8fb3bcf10),
+  tree `9c06c9ac3f16746196bfc7d7d68056e0cbadb34d`, identical to accepted head
+  `5ac6d4adca2fb77dd061b44792ed8655fd9d6f70`. All 53 mapped checks passed on
+  clean exact merged source; [push RI CI](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37591618593)
+  passed. The issue/PR retain owner decision, review and current-head CI evidence.
+- Current work is [#33](https://github.com/oborskyivitalii/oborskyivitalii/issues/33):
+  short bootstrap, six root Markdown entry points, guides/ and byte-exact dated
+  root history. [Analysis/disposition](review/issue-33/2026-10-07-analysis.md)
+  records the accepted baseline and ordered tasks. Final candidate/PR/checks need
+  their own exact-source evidence; this checkpoint does not claim a future merge.
+- Earlier #28/#14 completion and accepted stage remain recorded in their issues.
+  Current hosting mechanics are in [the runbook](guides/SITE-STAGING.md).
+  Stable stage: https://staging.oborskyi-author-ci-staging.pages.dev ; recheck its
+  live source/deployment before citing it as current release evidence.
 
 ## Decisions
 
-- Work begins from an owning issue. Issue = intent/scope/acceptance; linked
-  PR and commits = technical execution. Return an acceptance summary and exact
-  implementation links to the issue before closure. [Cleanup #31](https://github.com/oborskyivitalii/oborskyivitalii/issues/31)
-  records the maintainer's 2026-10-07 request, stable AC01–AC11 and scope.
-- Session completion maps AC IDs to deterministic policy/check evidence and
-  remaining gates. Review/model handoff uses one issue anchor and versioned PR
-  artifact; RI changes require reviewed CI coupling. See CONTRIBUTING and
-  [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md).
-- `AGENTS.md` stays a compact rule/router; this file holds a bounded handoff.
-  Detailed historical state is preserved in issues/PRs and `review/`.
-- Production host preference is GitHub Pages. Analytics remains disabled until
-  a real production origin/token and activation decision; see
-  [SITE-ANALYTICS.md](SITE-ANALYTICS.md) and [#8](https://github.com/oborskyivitalii/oborskyivitalii/issues/8).
-  No production activation or DNS/domain changes were performed in this work.
-- Full staging still retains Linux Chromium/Firefox, full native macOS WebKit,
-  Windows smoke, twelve Color checks, source/artifact leases and original budgets.
-  [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) owns the details.
-- Existing RI baseline #4 and intake #3 are completed. This refresh belongs to
-  #31; a full UA semantic graph, external memory service and cross-repo harness
-  are outside this cleanup. UA pin is recorded in the RI config/notice.
+- Bootstrap is an entry point only. README owns project purpose; AGENTS owns
+  working rules; REPOSITORY-MAP owns area/file navigation. Detailed protocol
+  remains in CONTRIBUTING and its linked owners, not copied into the prompt.
+- Maintained internal topic guides live in guides/. Superseded root session,
+  backlog and review ledgers are dated evidence in review/root-history-20261007/.
+  Original bytes/pinned links stay historical; live issues own current acceptance.
+- Issue = intent/scope/AC; linked PR and Refs commits = execution. Reviews and
+  model handoff use the same issue anchor and versioned review artifact.
+- RI changes require reviewed CI coupling and both regenerated views. Policy
+  results prove deterministic observations; independent/live/merge gates are
+  recorded separately. #31 acceptance stays pinned to its accepted source.
+- Production is intended for GitHub Pages. Analytics stays disabled until an
+  actual production origin/token and activation decision under #8. Current
+  staging/production check profiles and budgets retain their guide owners.
 
 ## Open work
 
-Verify live state before starting; these are outstanding acceptance items at the
-snapshot, not authorization to implement or deploy them all.
+These are issue routes, not authorization to start every listed task. Revalidate
+live criteria/status before selecting the next increment.
 
 | Issue | Remaining intent |
 | --- | --- |
-| [#31](https://github.com/oborskyivitalii/oborskyivitalii/issues/31) | Reconcile owner semantic acceptance G01, normal protected merge G02 and exact merged-source checks; independent implementation/semantic review and live linkage G03 are recorded in the PR/issue. |
-| [#1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1) | Overall launch: production, rights and physical-device acceptance. |
-| [#13](https://github.com/oborskyivitalii/oborskyivitalii/issues/13) | Real iPhone/iPad Safari and modest Android Chrome on the exact digest; independent production release, production-origin checks and actual rollback exercise. |
-| [#8](https://github.com/oborskyivitalii/oborskyivitalii/issues/8) | Production URL/canonicals, activation, live links/robots/indexability and real analytics; staging setup is complete. |
-| [#7](https://github.com/oborskyivitalii/oborskyivitalii/issues/7) | Site/publication license decision and editorial rights. |
-| [#6](https://github.com/oborskyivitalii/oborskyivitalii/issues/6) | Worked cross-repository adapter/edition/manifest scenario and negative cases. |
-| [#5](https://github.com/oborskyivitalii/oborskyivitalii/issues/5) | Real article HTML/PDF adapter migration and exact edition manifest. |
-| [#2](https://github.com/oborskyivitalii/oborskyivitalii/issues/2) | PMDay explanatory article, matching deck/PDF and editorial/rights acceptance. |
-| [#11](https://github.com/oborskyivitalii/oborskyivitalii/issues/11) | Post-launch buyer-intent guides; separate from first-launch blockers. |
+| [#33](https://github.com/oborskyivitalii/oborskyivitalii/issues/33) | Exact-source tests/CI, independent root-layout review and normal merged reconciliation. |
+| [#1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1) | Overall launch and its production/rights/device dependencies. |
+| [#13](https://github.com/oborskyivitalii/oborskyivitalii/issues/13) | Physical-device and independent production/recovery acceptance. |
+| [#8](https://github.com/oborskyivitalii/oborskyivitalii/issues/8) | Production URL/indexability and actual analytics activation. |
+| [#7](https://github.com/oborskyivitalii/oborskyivitalii/issues/7) | License and editorial/third-party rights. |
+| [#6](https://github.com/oborskyivitalii/oborskyivitalii/issues/6) | Worked cross-repository adapter/edition/manifest scenario. |
+| [#5](https://github.com/oborskyivitalii/oborskyivitalii/issues/5) | Real article HTML/PDF adapter and edition migration. |
+| [#2](https://github.com/oborskyivitalii/oborskyivitalii/issues/2) | PMDay article and matching slide/PDF edition. |
+| [#11](https://github.com/oborskyivitalii/oborskyivitalii/issues/11) | Post-launch buyer-intent guides. |
 
 ## Next session
 
-1. Read root/scoped AGENTS; fetch current main and the owning issue/PR, including
-   commits, complete diff, feedback and checks.
-2. For #31, read its final review/CI and obtain the required G01 owner decision;
-   after normal merge run mapped checks on the exact merged source before closure.
-   The project prompt is [PROJECT-BOOTSTRAP.md](PROJECT-BOOTSTRAP.md).
-3. Preserve the completed #28/#14 outcome. Select the next launch/publication
-   increment from its existing issue and the maintainer's current direction.
+1. Fetch live main/task refs, owning issue/PR and exact checks; read root/scoped
+   AGENTS and source owners through the map.
+2. Follow #33's current linked review dispositions and acceptance policy; reconcile
+   every AC and external gate before closing. Do not reopen completed #31.
+3. Choose the next publication/launch increment from its issue and current owner
+   direction. Preserve separate production/publication decisions.
 
 ## Maintenance
 
-Replace stale snapshot/next-step entries after meaningful progress; keep the
-verified date, exact ref and evidence links. Maximum 120 lines. This is one current
-handoff, not an append-only changelog. Put technical logs in the PR and durable
-intent/decisions/outcomes in the issue. Rebuild/verify RI after changes. No secrets,
-private messages or unverifiable future claims. See CONTRIBUTING for the workflow.
+Replace stale snapshot/next-step entries at meaningful progress or handoff. Keep
+this file within 120 lines and its five sections. Put detailed logs and technical
+history in the owning issue/PR/review artifact. Rebuild RI after memory changes.
+Never store secrets, private messages or unverifiable completion. See CONTRIBUTING.

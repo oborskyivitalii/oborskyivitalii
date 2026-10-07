@@ -348,7 +348,7 @@ class NavigationSafetyTests(unittest.TestCase):
                              "evidence/SOURCES.md")
         else:
             self.assertEqual(surface["sources"], [])
-            self.assertEqual(ri.lookup(surface, "pmday")["owner_candidates"][0]["path"], "BACKLOG.md")
+            self.assertEqual(ri.lookup(surface, "pmday")["owner_candidates"][0]["path"], "guides/SITE-ROADMAP.md")
 
 
 if __name__ == "__main__":

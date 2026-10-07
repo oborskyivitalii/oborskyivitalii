@@ -1,9 +1,14 @@
 # Source audit for the first-site revision
 
+This guide retains claim/edition provenance and its original inspection dates.
+Each dated section describes that edition; older counts, placement and review
+limits are historical. Use [the editorial review route](SITE-CONTENT-REVIEW.md),
+the owning issue/PR and [MEMORY](../MEMORY.md) for current acceptance.
+
 ## Selected Home responses and complete Research context — 2026-10-06
 
 The maintainer authorized implementation of the
-[Home/Research plan in Draft #28](https://github.com/oborskyivitalii/oborskyivitalii/pull/28#issuecomment-6018945888).
+[Home/Research plan recorded in #28](https://github.com/oborskyivitalii/oborskyivitalii/pull/28#issuecomment-6018945888).
 Home now presents three short public-response cards: Arkadiy Dobkin, Matthew
 Skelton and Markus Kopko. Their existing profile and public-record links are
 retained exactly. Home links directly to the complete Research discussion.
@@ -27,9 +32,9 @@ statuses are unchanged.
 
 ## v8 visual-only source treatment — 2026-10-03
 
-The current revision changes scene geometry, motion and its Credits explanation.
+The v8 revision changed scene geometry, motion and its Credits explanation.
 Publication/people/research source identities and portrait bytes retain their
-previously audited scope. [Graphics source note](review/sol-visual-v8-20261003/DESIGN.md)
+previously audited scope. [Graphics source note](../review/sol-visual-v8-20261003/DESIGN.md)
 records directly reviewed original L-system and creative-coding loop explanations.
 They inform an original, finite recursive renderer; no external artwork, noise
 library, research assertion or third-party implementation is copied into the site.
@@ -38,7 +43,7 @@ library, research assertion or third-party implementation is copied into the sit
 ## v4 source treatment and preservation — 2026-10-02
 
 The maintainer instructed the exact treatment already reviewed in
-[the content brief](review/sol-plan-20261002/CONTENT-AND-CONVERSION-BRIEF.md) and its
+[the content brief](../review/sol-plan-20261002/CONTENT-AND-CONVERSION-BRIEF.md) and its
 independent plan reviews. This execution reuses that provenance rather than
 claiming to freshly re-audit every public source. Qualitative delivery/verification,
 agent runtime control and operating-model offers use the accepted input report;
@@ -46,7 +51,7 @@ the Executive Brief PDF and its unverified quantitative achievements stay privat
 
 All 27 primary title/URL/date/date-kind/language identities and the additional
 Thinking Systems LinkedIn URL/date are unchanged against the fixed
-[baseline](review/sol-execution-20261002/BASELINE.json). The primary ItemList stays
+[baseline](../review/sol-execution-20261002/BASELINE.json). The primary ItemList stays
 27 (20 EN/7 UA); all linked renditions total 28 (21 EN/7 UA). JPEG and alpha WebP
 hashes are unchanged. No article bodies, platform figures or private exchanges
 are copied. Eight public-discussion entries now appear on Home/Research.
@@ -192,7 +197,7 @@ the proposed source treatment were appended to #1/#7/#8 before implementation.
 | Publication languages | 20 English and 3 Ukrainian original articles; visible EN/UA labels, machine `en`/`uk`, Ukrainian text language markup. Titles/dates/URLs preserved, including the separate LinkedIn edition and edited-date distinction. | Catalog groups are not translated equivalent pages; no fabricated hreflang. |
 | Talk languages | PMDay grouped as Ukrainian. Corning and Betelgeuse retained as other talks with explicit unconfirmed language. | The language of a post/title or the speaker's fluency is not evidence of spoken event language. Maintainer confirmation may resolve these later. |
 | Keywords and page metadata | Natural visible topic copy and links, unique titles/descriptions, author/page/article-list JSON-LD, image alt/dimensions; [keyword map](SITE-SEO.md) names existing owners and release-dependent follow-up. | No search-volume/ranking claim, hidden keyword list or provisional absolute site identity. Draft status is not indexing. |
-| Medium overclaim | [Complete replacement draft](drafts/medium-profile-revision-20261001.html) narrows all seven interactions to their public action, removes unsupported metrics/validation/adoption claims and keeps bounded career context. | Live Medium is unchanged. No private messages, advisor role, corporate endorsement, formal Team Topologies integration or measured Corning/Risch adoption asserted. |
+| Medium overclaim | [Complete replacement draft](../drafts/medium-profile-revision-20261001.html) narrows all seven interactions to their public action, removes unsupported metrics/validation/adoption claims and keeps bounded career context. | Live Medium is unchanged. No private messages, advisor role, corporate endorsement, formal Team Topologies integration or measured Corning/Risch adoption asserted. |
 
 The new public edition needs fresh review; the previous independent outcome is
 retained as historical evidence rather than being promoted to these changed bytes.

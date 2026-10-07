@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "1e515adf14f5a66d60f84397890de9b5215b285dbc421803065689d237ce5627",
+    "digest": "68f96fcad64d995389aa4582bf543c784ffa01759db91ee2a8bf38ff0b5256fc",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -27,7 +27,7 @@
       {
         "path": ".github/ACCEPTANCE.md",
         "identity_mode": "content",
-        "sha256": "c4633fff1188acf086e04be72d14d2ec6368d7438413852d096cc32a020b862a"
+        "sha256": "72c3e26b3792c48824a6ce8412dae1e9083c63a688644645c16bc6dc8e4b0295"
       },
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -42,12 +42,17 @@
       {
         "path": ".github/REPOSITORY-INTELLIGENCE.md",
         "identity_mode": "content",
-        "sha256": "fabf68e04b45095ec42f07cc6a512cf8416ae9ddc9b9510c9fa57ec8d44e76b3"
+        "sha256": "27a23dd87bc3f0a4df2628c73778fa00b76f18f9c514438ffb6f5524b8957233"
       },
       {
         "path": ".github/acceptance/issue-31.json",
         "identity_mode": "content",
         "sha256": "a6635dd547834da79e83ab2ee9067135263fd8a3312b90ec7485c8ce12a8b3b4"
+      },
+      {
+        "path": ".github/acceptance/issue-33.json",
+        "identity_mode": "content",
+        "sha256": "0afc1ce168d1c92dbc0548aa7848ca62ff9971e9e3312d97775e9d277c8ef9a0"
       },
       {
         "path": ".github/pull_request_template.md",
@@ -57,21 +62,26 @@
       {
         "path": ".github/repository-intelligence-config.json",
         "identity_mode": "content",
-        "sha256": "0371bf5434380e26af0dcb171ef462581580a6e908800a18b647ebe7b0c83072"
+        "sha256": "1958f344d3405f9a98ce547371ab2f7e36f06b68790e39d1edcbcdeb60717abe"
       },
       {
         "path": ".github/repository-intelligence/agent-context.json",
         "identity_mode": "derived"
       },
       {
+        "path": ".github/repository-layout.json",
+        "identity_mode": "content",
+        "sha256": "aeed11013476aa5517b180a7a1009c0efc0d49a487103d798a5f8d3fcecb342a"
+      },
+      {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "bde9eeea2f41253d492c2ced1b3982a67acde467ab7fcb0f25ff0fc19c8e9334"
+        "sha256": "b254b79e68c7c273a95e29ad438717cc4eed475b7a2c55b2243bad51064fe064"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "15d287e2e6f6c34de0a31cdccaec1b73d09307a3b588970a4e0fb69c16878b71"
+        "sha256": "f82ce3009a96353b7cf5ca8f8109bbc43627c5b7b6fe4e1a4ee14bc9161e7c29"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -81,7 +91,7 @@
       {
         "path": ".github/workflows/navigation.yml",
         "identity_mode": "content",
-        "sha256": "e60f51f6185495e26e114e63934374de75311490eddd62d5a4954814fe681866"
+        "sha256": "17fd674779eef9f3606381d4ffdf956e588f0c22efc0b0499e99d1c87cd0e131"
       },
       {
         "path": ".github/workflows/site-browser-gate-probe.yml",
@@ -111,7 +121,7 @@
       {
         "path": ".github/workflows/site-color-review.yml",
         "identity_mode": "content",
-        "sha256": "e10f8aed8750f7b85ac1419bf2332bddb5ddfb8b8871a52d7d37a1cb5ff65eb7"
+        "sha256": "dc9f464e1f8408919ad94deb60d403b60cf6b1a8a75b194a0ca40b9adfdaea71"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -156,96 +166,31 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "ef48c7889e5a1fcd40e271994c482d75db70bdcf44143476d6cf69b17b67162b"
-      },
-      {
-        "path": "BACKLOG.md",
-        "identity_mode": "content",
-        "sha256": "1dd79b13b56cd0a9f54ed2266ea482140f4becb98c1d42f789866c8c37d2cde8"
+        "sha256": "3b4e74a0887524d19ce87c92adeb287099e36d6d34f3873cf43468b549f0cb2c"
       },
       {
         "path": "CONTRIBUTING.md",
         "identity_mode": "content",
-        "sha256": "3aaa6f3fe33d434d182969e15f3da57ffc3c7ee43728aa1f5fd4581acb8ec385"
+        "sha256": "b462cf1f02a325b130658ed3b6c92216deb6cfb5bb9a4a3ca9cd07c87b50e30b"
       },
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "54d3ccd6deffc7686b308bb8047f2e6cf926dd1d33c431fcbd4234be075f05c9"
+        "sha256": "8f02ea82b935b02e79fea408fdae5c7668ffb4f3cf4cdf51156ac04fe5fbce7b"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
         "identity_mode": "content",
-        "sha256": "191aeec142f55101336388b65b428e7e22af2a614b10fbd62c5872279d45083e"
+        "sha256": "b69656ee56d8b30f0b805bc69a5bbbb5d568c7889aedf09cc1c19bb4ad46851e"
       },
       {
         "path": "README.md",
         "identity_mode": "content",
-        "sha256": "25dbe1fb42245f85e4092d281b7d098624b9586e1ab23a9b71614aabcee99331"
-      },
-      {
-        "path": "REPOSITORIES.md",
-        "identity_mode": "content",
-        "sha256": "b29cbb24291a699fce92e93a9066dc18566d8311a79a5368ae2ab063abe96c1f"
+        "sha256": "fe21ad71d3534a4dcf8c81aaef82e86d8c001d7567076c7827ab0ab82f1a2965"
       },
       {
         "path": "REPOSITORY-MAP.md",
         "identity_mode": "derived"
-      },
-      {
-        "path": "SITE-ANALYTICS.md",
-        "identity_mode": "content",
-        "sha256": "63d05738a5767dbeee74f042cf1400f7930dd551bcfe0d8e5294d948721092cc"
-      },
-      {
-        "path": "SITE-CHECK-PROFILES.md",
-        "identity_mode": "content",
-        "sha256": "e47637754111de8c3f5ffb739b24e9b4fd49ad52b4e5e14b691f56c746dda989"
-      },
-      {
-        "path": "SITE-CONTENT-REVIEW.md",
-        "identity_mode": "content",
-        "sha256": "0b0204f36c50fdd30683f07c8db68c59cb1eeada3f00598775624b59acef38cc"
-      },
-      {
-        "path": "SITE-OPERATIONS.md",
-        "identity_mode": "content",
-        "sha256": "0e08d931382552a76047da845fabceda6e4c63c4146096c1515228ff0a08cc09"
-      },
-      {
-        "path": "SITE-RELEASE-GATES.md",
-        "identity_mode": "content",
-        "sha256": "b7e72dfef2c21469859ccd87b61f330ec99709d2feab76bd6652847d29838f70"
-      },
-      {
-        "path": "SITE-ROADMAP.md",
-        "identity_mode": "content",
-        "sha256": "79169b48896d3e85e0320c9df626b32249f01346a4db9566b1cf5a26e1f5ed46"
-      },
-      {
-        "path": "SITE-SEO.md",
-        "identity_mode": "content",
-        "sha256": "18ad68f198b6cbd63c97f6978a11b58b1ecb1f8f850c008bb8900c9c56e7d647"
-      },
-      {
-        "path": "SITE-SOURCE-AUDIT.md",
-        "identity_mode": "content",
-        "sha256": "c335821184ef75c60ba7278f8c8139864b9571abf373c974810ccc0c9dff0de8"
-      },
-      {
-        "path": "SITE-STAGING.md",
-        "identity_mode": "content",
-        "sha256": "42883a6c2832bab415dd4eafde50a5ecfc1ce4b299142f4e335352f9cb2e654d"
-      },
-      {
-        "path": "SITE-VISUAL-REVIEW.md",
-        "identity_mode": "content",
-        "sha256": "8dbbab1d7da4b0595c8cee9bbda61c2bdfddf6efca0ea301a1f05d749727510b"
-      },
-      {
-        "path": "SOL-HANDOFF.md",
-        "identity_mode": "content",
-        "sha256": "d9b503a9b42ff83d9f2edd91d8ecd002046e1718d5a14f5a8881ea6deadddf99"
       },
       {
         "path": "docs/.nojekyll",
@@ -393,6 +338,56 @@
         "sha256": "8500a3a89bd091df6638caad812824cf03ad3233f674b207e37c73bb4c26cc01"
       },
       {
+        "path": "guides/README.md",
+        "identity_mode": "content",
+        "sha256": "111dad4391bc155acb769abace041279bbfa489728323922ebdfcfe8cb9b607c"
+      },
+      {
+        "path": "guides/REPOSITORIES.md",
+        "identity_mode": "content",
+        "sha256": "b29cbb24291a699fce92e93a9066dc18566d8311a79a5368ae2ab063abe96c1f"
+      },
+      {
+        "path": "guides/SITE-ANALYTICS.md",
+        "identity_mode": "content",
+        "sha256": "197f85e96a311a304ee2798388fd5f77818b1e4e83c610473c2ebc71d5a2fedb"
+      },
+      {
+        "path": "guides/SITE-CHECK-PROFILES.md",
+        "identity_mode": "content",
+        "sha256": "bbe19fd04a4c31ae612d3db1d41ffdd5e3db8cdcbd27bc4acd378404ad81421b"
+      },
+      {
+        "path": "guides/SITE-CONTENT-REVIEW.md",
+        "identity_mode": "content",
+        "sha256": "6dca40708a86d890172267adebcd9380ac6ab979706f79ce62aca1abca271fad"
+      },
+      {
+        "path": "guides/SITE-RELEASE-GATES.md",
+        "identity_mode": "content",
+        "sha256": "4ce50c44384e6a20e6a5d6a706b8a720fd67c47f2f0dc344c39f343b376dd0f0"
+      },
+      {
+        "path": "guides/SITE-ROADMAP.md",
+        "identity_mode": "content",
+        "sha256": "1ab9912ad7b0574d5ef4aa6bff4094fe7f4cd3888284e1c9665550cfae09a010"
+      },
+      {
+        "path": "guides/SITE-SEO.md",
+        "identity_mode": "content",
+        "sha256": "0cf2ddbb7d7ec8b6140edece316589510fb8cd8cb93da5c215daf48c7cb2f2b5"
+      },
+      {
+        "path": "guides/SITE-SOURCE-AUDIT.md",
+        "identity_mode": "content",
+        "sha256": "b56163f57d0fa4b9db5d43be952b132a51cd390a6556a3789be7e804a8bc566e"
+      },
+      {
+        "path": "guides/SITE-STAGING.md",
+        "identity_mode": "content",
+        "sha256": "f2b58ff89b897eed44fffb91f5970284ec82501ab189db134c0526927fc871f4"
+      },
+      {
         "path": "review/REVIEW-TEMPLATE.md",
         "identity_mode": "content",
         "sha256": "fcaa167cfc290547a3a6ffb2d5b31296cc4dd2f67db025110789f7ed1b38afe0"
@@ -483,6 +478,11 @@
         "sha256": "1ea2980057bd7eae48cdf4425b0d4046be305a69d803189d71254765813b6e43"
       },
       {
+        "path": "review/issue-33/2026-10-07-analysis.md",
+        "identity_mode": "content",
+        "sha256": "462568b375edf47795fe9fdabf66dcca7fc2368001ac54a968572615b03cd863"
+      },
+      {
         "path": "review/public-responses-20261006/README.md",
         "identity_mode": "content",
         "sha256": "2c1435cfd2db54f5fd6294ff5e0511468558bbc153d4f7f783eda363450cf06b"
@@ -521,6 +521,46 @@
         "path": "review/repository-maintenance-20261007/README.md",
         "identity_mode": "content",
         "sha256": "77cafb5edd6c2c71b06f66da78f42a6c6a4250e920fc0650ff0ba8dc44b8d749"
+      },
+      {
+        "path": "review/root-history-20261007/BACKLOG.md",
+        "identity_mode": "content",
+        "sha256": "1dd79b13b56cd0a9f54ed2266ea482140f4becb98c1d42f789866c8c37d2cde8"
+      },
+      {
+        "path": "review/root-history-20261007/README.md",
+        "identity_mode": "content",
+        "sha256": "2a4fb4f4fbe5a04acbc8fa99eb834a3e9e3f54e0fa8da7446458161851988684"
+      },
+      {
+        "path": "review/root-history-20261007/SITE-CONTENT-REVIEW.md",
+        "identity_mode": "content",
+        "sha256": "0b0204f36c50fdd30683f07c8db68c59cb1eeada3f00598775624b59acef38cc"
+      },
+      {
+        "path": "review/root-history-20261007/SITE-OPERATIONS.md",
+        "identity_mode": "content",
+        "sha256": "0e08d931382552a76047da845fabceda6e4c63c4146096c1515228ff0a08cc09"
+      },
+      {
+        "path": "review/root-history-20261007/SITE-ROADMAP.md",
+        "identity_mode": "content",
+        "sha256": "79169b48896d3e85e0320c9df626b32249f01346a4db9566b1cf5a26e1f5ed46"
+      },
+      {
+        "path": "review/root-history-20261007/SITE-VISUAL-REVIEW.md",
+        "identity_mode": "content",
+        "sha256": "8dbbab1d7da4b0595c8cee9bbda61c2bdfddf6efca0ea301a1f05d749727510b"
+      },
+      {
+        "path": "review/root-history-20261007/SOL-HANDOFF.md",
+        "identity_mode": "content",
+        "sha256": "d9b503a9b42ff83d9f2edd91d8ecd002046e1718d5a14f5a8881ea6deadddf99"
+      },
+      {
+        "path": "review/root-history-20261007/manifest.json",
+        "identity_mode": "content",
+        "sha256": "4187d8b5656a626572c1bbaa2ac3e281e84142ab76255848a61496f62d70f7fb"
       },
       {
         "path": "review/seo-20261002/COLLECTION-MANIFEST.json",
@@ -4025,7 +4065,7 @@
       {
         "path": "site/README.md",
         "identity_mode": "content",
-        "sha256": "77cd5affaa3985be328f3a20937bf2a0c2f75cd1c87ed68618a94e301ed4761a"
+        "sha256": "ee5d24858f29063f7424606e845ec03c8e46d71d4b9d6d1dae6784b94edf623d"
       },
       {
         "path": "site/analytics.json",
@@ -4055,7 +4095,7 @@
       {
         "path": "site/content/catalog.json",
         "identity_mode": "content",
-        "sha256": "60d765a79dececc34050afe081456681ba5bb0e4aa3b5e27f613209b76b97172"
+        "sha256": "bd9dbdbc4c9631b531fd0f16ca6126a6e211480d9c017050c1465d576fb8f836"
       },
       {
         "path": "site/content/pages/credits/main.html",
@@ -4455,7 +4495,12 @@
       {
         "path": "tests/test_issue31_acceptance.py",
         "identity_mode": "content",
-        "sha256": "ee45e351b5be540afd216a72f85f4ce9a9f34059e1ef898cedfadfb52a512c79"
+        "sha256": "9399afd265d4ed769a56e20588eeb0bfc498cda3dc678d7c47f351f596cff3f2"
+      },
+      {
+        "path": "tests/test_issue33_acceptance.py",
+        "identity_mode": "content",
+        "sha256": "52bdd8664fc409d55bce0936705b629af0bea950faccf340019eb989094c702d"
       },
       {
         "path": "tests/test_issue_acceptance.py",
@@ -4470,12 +4515,17 @@
       {
         "path": "tests/test_repository_intelligence.py",
         "identity_mode": "content",
-        "sha256": "7ba48d71b6cc1c85543918f4d1528d55c9c4b0786d0cb718d333758f17d3b47d"
+        "sha256": "f414bd926c9fa822e7f33fa1e2509b1517e60ef3a7a0cc42fefb13110833feef"
       },
       {
         "path": "tests/test_ri_ci.py",
         "identity_mode": "content",
-        "sha256": "0bc4018d8e1d01843ce1676d6b1d2eb3d0fc25fa162805f6bf7b67cd8fd7d1f2"
+        "sha256": "1147a7178652e2de54b0922af728cbc495ea1fa5c2edab9d3a0b3c3e1851fece"
+      },
+      {
+        "path": "tests/test_root_layout.py",
+        "identity_mode": "content",
+        "sha256": "abfd110c9072996eba575ca2beefa5e1f56db0732ea8ab1d4ec3976511244487"
       },
       {
         "path": "tests/theme.test.cjs",
@@ -4548,6 +4598,11 @@
         "sha256": "db173aa4024daf743dbc42bfe5ee472c2f08baf7b7c0640373c4d9faa96d6ad4"
       },
       {
+        "path": "tools/check_repository_layout.py",
+        "identity_mode": "content",
+        "sha256": "7478911f267fcb1b265535c3db582e19b7fb429e6f17b7c19be469f294d91d63"
+      },
+      {
         "path": "tools/check_ri_ci.py",
         "identity_mode": "content",
         "sha256": "217ce60fe7caae6a78c81d5be000a46e000e0a22493eff74518f8edc14710ed6"
@@ -4575,7 +4630,7 @@
       {
         "path": "tools/quality/README.md",
         "identity_mode": "content",
-        "sha256": "466833c88b22e26836ae157da25ac34f56c16209208b829c03ce20fdced96a7e"
+        "sha256": "4a697a1c176df499a8ed1ffbee6e86fdda3e4ac225ad281163a84dad20d7b620"
       },
       {
         "path": "tools/quality/advisory-exceptions.json",
@@ -4923,12 +4978,12 @@
     "path": "tools/repository_intelligence.py",
     "sha256": "9c043c7e13c36899559f83b7941b989dfebaabd1e2d6d6e1815815704db627b3",
     "config_path": ".github/repository-intelligence-config.json",
-    "config_sha256": "0371bf5434380e26af0dcb171ef462581580a6e908800a18b647ebe7b0c83072"
+    "config_sha256": "1958f344d3405f9a98ce547371ab2f7e36f06b68790e39d1edcbcdeb60717abe"
   },
   "owners": [
     {
       "concern": "site security, quality, performance and platform release gates",
-      "path": "SITE-RELEASE-GATES.md",
+      "path": "guides/SITE-RELEASE-GATES.md",
       "queries": [
         "release pipeline",
         "quality gates",
@@ -4939,8 +4994,8 @@
       ]
     },
     {
-      "concern": "site visual direction and review proposals",
-      "path": "SITE-VISUAL-REVIEW.md",
+      "concern": "current visual and scene source with applicable acceptance routes",
+      "path": "site/README.md",
       "queries": [
         "visual review",
         "design proposal",
@@ -4952,7 +5007,7 @@
     },
     {
       "concern": "search discoverability and topic map",
-      "path": "SITE-SEO.md",
+      "path": "guides/SITE-SEO.md",
       "queries": [
         "SEO",
         "keywords",
@@ -4991,7 +5046,7 @@
     },
     {
       "concern": "milestone sequence",
-      "path": "SITE-ROADMAP.md",
+      "path": "guides/SITE-ROADMAP.md",
       "queries": [
         "roadmap",
         "milestones",
@@ -4999,8 +5054,8 @@
       ]
     },
     {
-      "concern": "publication and migration backlog",
-      "path": "BACKLOG.md",
+      "concern": "publication priorities and migration issue routes",
+      "path": "guides/SITE-ROADMAP.md",
       "queries": [
         "publication",
         "pmday",
@@ -5013,7 +5068,7 @@
     },
     {
       "concern": "canonical research ownership",
-      "path": "REPOSITORIES.md",
+      "path": "guides/REPOSITORIES.md",
       "queries": [
         "cross repository",
         "research owners",
@@ -5045,7 +5100,7 @@
     },
     {
       "concern": "production visitor analytics and search measurement preparation",
-      "path": "SITE-ANALYTICS.md",
+      "path": "guides/SITE-ANALYTICS.md",
       "queries": [
         "site analytics",
         "Cloudflare Web Analytics",
@@ -5198,6 +5253,17 @@
       "title": "issue-31.json"
     },
     {
+      "path": ".github/acceptance/issue-33.json",
+      "kind": "file",
+      "purpose": "Bootstrap/root optimization AC01–AC06 mapped to source-bound assertions and separate review, merge and linkage gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-33.json"
+    },
+    {
       "path": ".github/pull_request_template.md",
       "kind": "file",
       "purpose": "PR execution, owning issue/commit links, checks/review and honest completion template.",
@@ -5229,6 +5295,17 @@
         "AGENTS.md"
       ],
       "title": "agent-context.json"
+    },
+    {
+      "path": ".github/repository-layout.json",
+      "kind": "file",
+      "purpose": "Reviewed root file contract, complete original dispositions and current Markdown surfaces for issue #33.",
+      "role": "configuration",
+      "owner": ".github/REPOSITORY-INTELLIGENCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "repository-layout.json"
     },
     {
       "path": ".github/repository-paths.json",
@@ -5268,7 +5345,7 @@
       "kind": "file",
       "purpose": "GitHub Actions: Local navigation checks; inspect trigger/profile before running.",
       "role": "workflow",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -5279,7 +5356,7 @@
       "kind": "file",
       "purpose": "GitHub Actions: Browser gate causal diagnostic; inspect trigger/profile before running.",
       "role": "workflow",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -5290,7 +5367,7 @@
       "kind": "file",
       "purpose": "GitHub Actions: Site candidate evidence; inspect trigger/profile before running.",
       "role": "workflow",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -5301,7 +5378,7 @@
       "kind": "file",
       "purpose": "GitHub Actions: Confirm cause corrections and cold native attribution; inspect trigger/profile before running.",
       "role": "workflow",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -5312,7 +5389,7 @@
       "kind": "file",
       "purpose": "GitHub Actions: Cold browser cause attribution; inspect trigger/profile before running.",
       "role": "workflow",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -5323,7 +5400,7 @@
       "kind": "file",
       "purpose": "GitHub Actions: Site basic checks; inspect trigger/profile before running.",
       "role": "workflow",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -5334,7 +5411,7 @@
       "kind": "file",
       "purpose": "GitHub Actions: Site PR preview and staging; inspect trigger/profile before running.",
       "role": "workflow",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -5345,7 +5422,7 @@
       "kind": "file",
       "purpose": "GitHub Actions: Retain exact GTK WebProcess offline abort stack; inspect trigger/profile before running.",
       "role": "workflow",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -5356,7 +5433,7 @@
       "kind": "file",
       "purpose": "GitHub Actions: Attribute GTK disabled-script target crashes; inspect trigger/profile before running.",
       "role": "workflow",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -5367,7 +5444,7 @@
       "kind": "file",
       "purpose": "GitHub Actions: Site navigation diagnostic; inspect trigger/profile before running.",
       "role": "workflow",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -5378,7 +5455,7 @@
       "kind": "file",
       "purpose": "GitHub Actions: Site release checks; inspect trigger/profile before running.",
       "role": "workflow",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -5389,7 +5466,7 @@
       "kind": "file",
       "purpose": "GitHub Actions: Site local diagnostics; inspect trigger/profile before running.",
       "role": "workflow",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -5400,7 +5477,7 @@
       "kind": "file",
       "purpose": "GitHub Actions: Verified site staging; inspect trigger/profile before running.",
       "role": "workflow",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -5411,7 +5488,7 @@
       "kind": "file",
       "purpose": "GitHub Actions: Writing cold comparison; inspect trigger/profile before running.",
       "role": "workflow",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -5440,17 +5517,6 @@
       "title": "Agent guide"
     },
     {
-      "path": "BACKLOG.md",
-      "kind": "file",
-      "purpose": "Publication/migration backlog and historical PR audit; live issues own current acceptance.",
-      "role": "guide",
-      "owner": "BACKLOG.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "Issue backlog audit — 2026-10-01"
-    },
-    {
       "path": "CONTRIBUTING.md",
       "kind": "file",
       "purpose": "Issue intent, PR/commit linkage, research intake, review, closure and memory procedure.",
@@ -5475,13 +5541,13 @@
     {
       "path": "PROJECT-BOOTSTRAP.md",
       "kind": "file",
-      "purpose": "Copy-ready Ukrainian ChatGPT project prompt for the author site and stable issue/acceptance/RI/handoff workflow.",
+      "purpose": "Short Ukrainian entry router delegating purpose to README, rules to AGENTS and navigation to REPOSITORY-MAP.",
       "role": "guide",
       "owner": "PROJECT-BOOTSTRAP.md",
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Bootstrap для ChatGPT-проєкту"
+      "title": "Project entry point"
     },
     {
       "path": "README.md",
@@ -5492,18 +5558,7 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Vitalii Oborskyi"
-    },
-    {
-      "path": "REPOSITORIES.md",
-      "kind": "file",
-      "purpose": "Canonical boundaries and coordinated work routes across site, UA and Subprime.",
-      "role": "guide",
-      "owner": "REPOSITORIES.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "Three-repository ownership and agent routing"
+      "title": "Vitalii Oborskyi — author site and publication platform"
     },
     {
       "path": "REPOSITORY-MAP.md",
@@ -5515,127 +5570,6 @@
         "AGENTS.md"
       ],
       "title": "REPOSITORY-MAP.md"
-    },
-    {
-      "path": "SITE-ANALYTICS.md",
-      "kind": "file",
-      "purpose": "Disabled-by-default production analytics adapter contract and measurement limitations.",
-      "role": "guide",
-      "owner": "SITE-ANALYTICS.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "Site measurement before the first release"
-    },
-    {
-      "path": "SITE-CHECK-PROFILES.md",
-      "kind": "file",
-      "purpose": "Current Basic, Preview, Full staging and Full production validation profiles.",
-      "role": "guide",
-      "owner": "SITE-CHECK-PROFILES.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "Site check profiles"
-    },
-    {
-      "path": "SITE-CONTENT-REVIEW.md",
-      "kind": "file",
-      "purpose": "Editorial, source-link and rights acceptance for the authored publication inventory.",
-      "role": "guide",
-      "owner": "SITE-CONTENT-REVIEW.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "Site v1 content and release review"
-    },
-    {
-      "path": "SITE-OPERATIONS.md",
-      "kind": "file",
-      "purpose": "Historical candidate/release observations and procedures; current mechanics route to profiles/staging.",
-      "role": "history",
-      "owner": "SITE-STAGING.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "First site: candidate, review and release"
-    },
-    {
-      "path": "SITE-RELEASE-GATES.md",
-      "kind": "file",
-      "purpose": "Exact-artifact security, quality, performance, browser/device and release requirements.",
-      "role": "guide",
-      "owner": "SITE-RELEASE-GATES.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "Site release checks — Sol implementation contract"
-    },
-    {
-      "path": "SITE-ROADMAP.md",
-      "kind": "file",
-      "purpose": "Milestones and publication/site boundaries; implementation acceptance remains in issues.",
-      "role": "guide",
-      "owner": "SITE-ROADMAP.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "Vitalii Oborskyi — site and publishing roadmap"
-    },
-    {
-      "path": "SITE-SEO.md",
-      "kind": "file",
-      "purpose": "Search/topic plan, structured publication metadata and discoverability constraints.",
-      "role": "guide",
-      "owner": "SITE-SEO.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "Search discoverability and topic map"
-    },
-    {
-      "path": "SITE-SOURCE-AUDIT.md",
-      "kind": "file",
-      "purpose": "Public-source identities, publication inventory, contribution provenance and access limits.",
-      "role": "guide",
-      "owner": "SITE-SOURCE-AUDIT.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "Source audit for the first-site revision"
-    },
-    {
-      "path": "SITE-STAGING.md",
-      "kind": "file",
-      "purpose": "Existing CI preview/staging controller, source leases, exact hosted verification and recovery runbook.",
-      "role": "guide",
-      "owner": "SITE-STAGING.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "PR previews and explicit staging"
-    },
-    {
-      "path": "SITE-VISUAL-REVIEW.md",
-      "kind": "file",
-      "purpose": "Visual-design source findings and dated proposals; acceptance belongs in its owning issue.",
-      "role": "history",
-      "owner": "SITE-VISUAL-REVIEW.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "Site visual review and proposed direction"
-    },
-    {
-      "path": "SOL-HANDOFF.md",
-      "kind": "file",
-      "purpose": "Archived iteration plans and dated decisions, retained for provenance rather than current task selection.",
-      "role": "history",
-      "owner": "MEMORY.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "Sol execution plan — reviewed 2026-10-02"
     },
     {
       "path": "docs/.nojekyll",
@@ -5957,6 +5891,116 @@
       "title": "medium-profile-revision-20261001.html"
     },
     {
+      "path": "guides/README.md",
+      "kind": "file",
+      "purpose": "Topic guide index with one current owner for each concern; live issue status is retrieved separately.",
+      "role": "guide",
+      "owner": "guides/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Maintained repository guides"
+    },
+    {
+      "path": "guides/REPOSITORIES.md",
+      "kind": "file",
+      "purpose": "Canonical boundaries and coordinated work routes across site, UA and Subprime.",
+      "role": "guide",
+      "owner": "guides/REPOSITORIES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Three-repository ownership and agent routing"
+    },
+    {
+      "path": "guides/SITE-ANALYTICS.md",
+      "kind": "file",
+      "purpose": "Disabled-by-default production analytics adapter contract and measurement limitations.",
+      "role": "guide",
+      "owner": "guides/SITE-ANALYTICS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Site measurement before the first release"
+    },
+    {
+      "path": "guides/SITE-CHECK-PROFILES.md",
+      "kind": "file",
+      "purpose": "Current Basic, Preview, Full staging and Full production validation profiles.",
+      "role": "guide",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Site check profiles"
+    },
+    {
+      "path": "guides/SITE-CONTENT-REVIEW.md",
+      "kind": "file",
+      "purpose": "Maintained exact-edition editorial, source and rights review protocol; past inventory decisions remain archived.",
+      "role": "guide",
+      "owner": "guides/SITE-CONTENT-REVIEW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Editorial, edition and rights review"
+    },
+    {
+      "path": "guides/SITE-RELEASE-GATES.md",
+      "kind": "file",
+      "purpose": "Exact-artifact security, quality, performance, browser/device and release requirements.",
+      "role": "guide",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Site release requirements"
+    },
+    {
+      "path": "guides/SITE-ROADMAP.md",
+      "kind": "file",
+      "purpose": "Stable site/publication priorities and live owning-issue routes; dated backlog observations remain archived.",
+      "role": "guide",
+      "owner": "guides/SITE-ROADMAP.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Site and publishing roadmap"
+    },
+    {
+      "path": "guides/SITE-SEO.md",
+      "kind": "file",
+      "purpose": "Search/topic plan, structured publication metadata and discoverability constraints.",
+      "role": "guide",
+      "owner": "guides/SITE-SEO.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Search discoverability and topic map"
+    },
+    {
+      "path": "guides/SITE-SOURCE-AUDIT.md",
+      "kind": "file",
+      "purpose": "Public-source identities, publication inventory, contribution provenance and access limits.",
+      "role": "guide",
+      "owner": "guides/SITE-SOURCE-AUDIT.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Source audit for the first-site revision"
+    },
+    {
+      "path": "guides/SITE-STAGING.md",
+      "kind": "file",
+      "purpose": "Existing CI preview/staging controller, source leases, exact hosted verification and recovery runbook.",
+      "role": "guide",
+      "owner": "guides/SITE-STAGING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "PR previews and explicit staging"
+    },
+    {
       "path": "review/REVIEW-TEMPLATE.md",
       "kind": "file",
       "purpose": "One issue/PR review and model-handoff artifact template with inspected source, findings, ACs, tasks and evidence.",
@@ -6155,6 +6199,17 @@
       "title": "Issue 31 — independent acceptance and RI/CI review"
     },
     {
+      "path": "review/issue-33/2026-10-07-analysis.md",
+      "kind": "file",
+      "purpose": "Issue #33 inspected-source analysis, complete root dispositions, ordered tasks and public-output boundaries.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 33 — entry point and root layout analysis"
+    },
+    {
       "path": "review/public-responses-20261006/README.md",
       "kind": "file",
       "purpose": "Historical report/plan/checkpoint: README.md. Exact before/after public response prose and reconciliation records.",
@@ -6241,6 +6296,94 @@
         "AGENTS.md"
       ],
       "title": "Repository-maintenance archive — 2026-10-07"
+    },
+    {
+      "path": "review/root-history-20261007/BACKLOG.md",
+      "kind": "file",
+      "purpose": "Byte-exact BACKLOG.md at the accepted pre-cleanup source; historical context and original link bases remain commit-pinned in the archive manifest.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue backlog audit — 2026-10-01"
+    },
+    {
+      "path": "review/root-history-20261007/README.md",
+      "kind": "file",
+      "purpose": "Historical archive routing, original-root link context and current guide owners; archived text is not current instruction.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Root history — 7 October 2026"
+    },
+    {
+      "path": "review/root-history-20261007/SITE-CONTENT-REVIEW.md",
+      "kind": "file",
+      "purpose": "Byte-exact SITE-CONTENT-REVIEW.md at the accepted pre-cleanup source; historical context and original link bases remain commit-pinned in the archive manifest.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Site v1 content and release review"
+    },
+    {
+      "path": "review/root-history-20261007/SITE-OPERATIONS.md",
+      "kind": "file",
+      "purpose": "Byte-exact SITE-OPERATIONS.md at the accepted pre-cleanup source; historical context and original link bases remain commit-pinned in the archive manifest.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "First site: candidate, review and release"
+    },
+    {
+      "path": "review/root-history-20261007/SITE-ROADMAP.md",
+      "kind": "file",
+      "purpose": "Byte-exact SITE-ROADMAP.md at the accepted pre-cleanup source; historical context and original link bases remain commit-pinned in the archive manifest.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Vitalii Oborskyi — site and publishing roadmap"
+    },
+    {
+      "path": "review/root-history-20261007/SITE-VISUAL-REVIEW.md",
+      "kind": "file",
+      "purpose": "Byte-exact SITE-VISUAL-REVIEW.md at the accepted pre-cleanup source; historical context and original link bases remain commit-pinned in the archive manifest.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Site visual review and proposed direction"
+    },
+    {
+      "path": "review/root-history-20261007/SOL-HANDOFF.md",
+      "kind": "file",
+      "purpose": "Byte-exact SOL-HANDOFF.md at the accepted pre-cleanup source; historical context and original link bases remain commit-pinned in the archive manifest.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Sol execution plan — reviewed 2026-10-02"
+    },
+    {
+      "path": "review/root-history-20261007/manifest.json",
+      "kind": "file",
+      "purpose": "Accepted source commit, exact Git blob/SHA-256 identities and current owner for six preserved original documents.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "manifest.json"
     },
     {
       "path": "review/seo-20261002/COLLECTION-MANIFEST.json",
@@ -13958,7 +14101,7 @@
       "kind": "file",
       "purpose": "Disabled-by-default real production origin/token/verification source configuration.",
       "role": "configuration",
-      "owner": "SITE-ANALYTICS.md",
+      "owner": "guides/SITE-ANALYTICS.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14013,7 +14156,7 @@
       "kind": "file",
       "purpose": "Exact curated publication editions, language/rendition identities and featured selections.",
       "role": "source",
-      "owner": "SITE-SOURCE-AUDIT.md",
+      "owner": "guides/SITE-SOURCE-AUDIT.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14409,7 +14552,7 @@
       "kind": "file",
       "purpose": "Exact-origin opt-in Cloudflare analytics loader with offline/staging exclusion.",
       "role": "source",
-      "owner": "SITE-ANALYTICS.md",
+      "owner": "guides/SITE-ANALYTICS.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14508,7 +14651,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for analytics.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14519,7 +14662,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for archive.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14530,7 +14673,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for browser gate diagnostics.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14541,7 +14684,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for browser gate trace.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14552,7 +14695,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for browser gate variants.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14563,7 +14706,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for browser lifecycle.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14574,7 +14717,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for cause fix probe.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14585,7 +14728,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for cause probe.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14596,7 +14739,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for color build.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14607,7 +14750,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for content.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14618,7 +14761,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for endpoint fixtures.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14629,7 +14772,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for engine browser fixtures.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14640,7 +14783,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for executive.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14651,7 +14794,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for flight.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14662,7 +14805,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for functional fixtures.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14673,7 +14816,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for gtk native probe.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14684,7 +14827,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for gtk target probe.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14695,7 +14838,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for native display.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14706,7 +14849,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for navigation fixtures.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14717,7 +14860,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for navigation motion fixtures.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14728,7 +14871,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for navigation.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14739,7 +14882,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for preview smoke.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14750,7 +14893,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for preview.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14761,7 +14904,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for quality sources.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14772,7 +14915,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for quality.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14783,7 +14926,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for renderer.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14794,7 +14937,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for review flow.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14805,7 +14948,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for ribbons.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14816,7 +14959,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for scroll sync.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14827,7 +14970,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for site engine.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14838,7 +14981,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for site face preparation.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14849,7 +14992,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for space.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14860,7 +15003,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for staging reporting.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14871,7 +15014,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for staging trust.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14882,7 +15025,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for staging.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14900,6 +15043,17 @@
       "title": "test_issue31_acceptance.py"
     },
     {
+      "path": "tests/test_issue33_acceptance.py",
+      "kind": "file",
+      "purpose": "Issue #33 source snapshot assertions for unchanged public bytes, historic reviews, locator exceptions, policy and handoff.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "test_issue33_acceptance.py"
+    },
+    {
       "path": "tests/test_issue_acceptance.py",
       "kind": "file",
       "purpose": "Acceptance runner adversarial cases for invalid mappings, skipped/empty/failed tests and evidence identity.",
@@ -14915,7 +15069,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for offline export security.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14944,11 +15098,22 @@
       "title": "test_ri_ci.py"
     },
     {
+      "path": "tests/test_root_layout.py",
+      "kind": "file",
+      "purpose": "Permanent root/bootstrap/archive/link/ownership checks and meaningful negative fixtures; future public edits stay available.",
+      "role": "test",
+      "owner": ".github/REPOSITORY-INTELLIGENCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "test_root_layout.py"
+    },
+    {
       "path": "tests/theme.test.cjs",
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for theme.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14959,7 +15124,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for writing diagnosis.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14970,7 +15135,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for writing geometry.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14981,7 +15146,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for writing layout.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -14992,7 +15157,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for writing localization.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15003,7 +15168,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for writing models.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15014,7 +15179,7 @@
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for writing variants.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15098,6 +15263,17 @@
       "title": "capture_site_review.cjs"
     },
     {
+      "path": "tools/check_repository_layout.py",
+      "kind": "file",
+      "purpose": "Validate bounded entry routes, root/guide ownership, exact archive provenance and active links; opt-in issue #33 snapshots preserve task evidence.",
+      "role": "validator",
+      "owner": ".github/REPOSITORY-INTELLIGENCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "check_repository_layout.py"
+    },
+    {
       "path": "tools/check_ri_ci.py",
       "kind": "file",
       "purpose": "Validate and refresh reviewed RI/CI mapping, test-selector resolution and actual workflow invocations.",
@@ -15124,7 +15300,7 @@
       "kind": "file",
       "purpose": "Check frozen authored HTML/copy against the immutable baseline and exact approved editorial exceptions.",
       "role": "validator",
-      "owner": "SITE-SEO.md",
+      "owner": "guides/SITE-SEO.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15157,7 +15333,7 @@
       "kind": "file",
       "purpose": "Pinned quality tooling and source/browser/hosted artifact check entry points.",
       "role": "guide",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15168,7 +15344,7 @@
       "kind": "file",
       "purpose": "Quality/release configuration: advisory exceptions; preserve reviewed budgets, pins and exception provenance.",
       "role": "configuration",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15179,7 +15355,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for analytics browser; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15190,7 +15366,7 @@
       "kind": "file",
       "purpose": "Exact public artifact manifest/digest, byte verification and configured size budgets.",
       "role": "source",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15201,7 +15377,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for browser gate diagnostics; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15212,7 +15388,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for browser gate trace; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15223,7 +15399,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for browser lifecycle; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15234,7 +15410,7 @@
       "kind": "file",
       "purpose": "Quality/release configuration: budgets; preserve reviewed budgets, pins and exception provenance.",
       "role": "configuration",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15245,7 +15421,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for cause probe; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15256,7 +15432,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for cold native probe; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15267,7 +15443,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for color browser; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15278,7 +15454,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for common; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15289,7 +15465,7 @@
       "kind": "file",
       "purpose": "Quality/release configuration: deploy pages.example; preserve reviewed budgets, pins and exception provenance.",
       "role": "configuration",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15300,7 +15476,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for display probe; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15311,7 +15487,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for engine browser; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15322,7 +15498,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for eslint configuration; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15333,7 +15509,7 @@
       "kind": "file",
       "purpose": "Quality/release configuration: exceptions; preserve reviewed budgets, pins and exception provenance.",
       "role": "configuration",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15344,7 +15520,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for fallback url; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15355,7 +15531,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for flight detail; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15366,7 +15542,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for functional; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15377,7 +15553,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for geometry; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15388,7 +15564,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for gtk native probe; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15399,7 +15575,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for gtk target probe; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15410,7 +15586,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for hosted origin; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15421,7 +15597,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for hosted; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15432,7 +15608,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for lighthouse; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15443,7 +15619,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for local browser; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15454,7 +15630,7 @@
       "kind": "file",
       "purpose": "Economical source, generation, finite geometry, focused tests and size/profile checks.",
       "role": "validator",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15465,7 +15641,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for motion; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15476,7 +15652,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for native display; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15487,7 +15663,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for navigation; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15498,7 +15674,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for promotion; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15509,7 +15685,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for research pair probe; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15520,7 +15696,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for scanners; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15531,7 +15707,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for scroll browser; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15542,7 +15718,7 @@
       "kind": "file",
       "purpose": "Quality/release configuration: secrets baseline; preserve reviewed budgets, pins and exception provenance.",
       "role": "configuration",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15553,7 +15729,7 @@
       "kind": "file",
       "purpose": "Quality/release configuration: security rules; preserve reviewed budgets, pins and exception provenance.",
       "role": "configuration",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15564,7 +15740,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for selftest; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15575,7 +15751,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for serve; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15586,7 +15762,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for stylelint; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15597,7 +15773,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for stylelint configuration; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15641,7 +15817,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for triage engine checksums; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15652,7 +15828,7 @@
       "kind": "file",
       "purpose": "Classify exact known non-secret checksums with retained evidence; never blanket-suppress findings.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15663,7 +15839,7 @@
       "kind": "file",
       "purpose": "Release gate aggregation: mandatory reports/jobs and exact deployable artifact.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15674,7 +15850,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for workflow artifacts; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15685,7 +15861,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for writing diagnosis; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15696,7 +15872,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for writing geometry; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15707,7 +15883,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for writing layout; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15718,7 +15894,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for writing localization; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15729,7 +15905,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for writing models; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15740,7 +15916,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for writing probe; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15751,7 +15927,7 @@
       "kind": "file",
       "purpose": "Maintained quality/check helper for writing variants; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15773,7 +15949,7 @@
       "kind": "file",
       "purpose": "Validate exact-origin analytics configuration and generate optional head/loader.",
       "role": "source",
-      "owner": "SITE-ANALYTICS.md",
+      "owner": "guides/SITE-ANALYTICS.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15839,7 +16015,7 @@
       "kind": "file",
       "purpose": "Authored Color variant lineage, package construction and source preflight.",
       "role": "source",
-      "owner": "SITE-STAGING.md",
+      "owner": "guides/SITE-STAGING.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15850,7 +16026,7 @@
       "kind": "file",
       "purpose": "Exact hosted bytes/root/runtime/media/redirects/404 and alias convergence checks.",
       "role": "validator",
-      "owner": "SITE-STAGING.md",
+      "owner": "guides/SITE-STAGING.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15861,7 +16037,7 @@
       "kind": "file",
       "purpose": "Verified public artifact packaging and staging-only headers/noindex additions.",
       "role": "source",
-      "owner": "SITE-STAGING.md",
+      "owner": "guides/SITE-STAGING.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15872,7 +16048,7 @@
       "kind": "file",
       "purpose": "Issue/PR preview and owner-stage command routing with exact source/controller trust.",
       "role": "source",
-      "owner": "SITE-STAGING.md",
+      "owner": "guides/SITE-STAGING.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15883,7 +16059,7 @@
       "kind": "file",
       "purpose": "Controller/package/trust self-test entry point.",
       "role": "validator",
-      "owner": "SITE-STAGING.md",
+      "owner": "guides/SITE-STAGING.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15894,7 +16070,7 @@
       "kind": "file",
       "purpose": "Retained staging/promotion/recovery state tied to exact identities.",
       "role": "source",
-      "owner": "SITE-STAGING.md",
+      "owner": "guides/SITE-STAGING.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15905,7 +16081,7 @@
       "kind": "file",
       "purpose": "Protected source/artifact/controller/PR lease validation before hosted action.",
       "role": "source",
-      "owner": "SITE-STAGING.md",
+      "owner": "guides/SITE-STAGING.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -15968,7 +16144,7 @@
       "kind": "directory",
       "purpose": "Pinned CI workflows for navigation, site checks, hosted staging and manual diagnostics.",
       "role": "workflow",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ]
@@ -16104,6 +16280,16 @@
       ]
     },
     {
+      "path": "guides",
+      "kind": "directory",
+      "purpose": "Maintained topic guides for repository boundaries, publication, quality and hosting; root stays an entry surface.",
+      "role": "guide",
+      "owner": "guides/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "review",
       "kind": "directory",
       "purpose": "Dated plans, evidence, captures and renditions; current Color/export inputs are explicitly marked.",
@@ -16184,6 +16370,16 @@
       ]
     },
     {
+      "path": "review/issue-33",
+      "kind": "directory",
+      "purpose": "Versioned analysis and independent review evidence for short bootstrap and root organization.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "review/public-responses-20261006",
       "kind": "directory",
       "purpose": "Exact before/after public response prose and reconciliation records.",
@@ -16207,6 +16403,16 @@
       "path": "review/repository-maintenance-20261007",
       "kind": "directory",
       "purpose": "Byte-exact pre-cleanup agent guide and its provenance note.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/root-history-20261007",
+      "kind": "directory",
+      "purpose": "Preserved original root backlog, handoff and dated operational/design evidence with exact accepted-base provenance.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -16618,7 +16824,7 @@
       "kind": "directory",
       "purpose": "Authored publication catalog and route-specific curated content.",
       "role": "source",
-      "owner": "SITE-SOURCE-AUDIT.md",
+      "owner": "guides/SITE-SOURCE-AUDIT.md",
       "instructions": [
         "AGENTS.md"
       ]
@@ -16698,7 +16904,7 @@
       "kind": "directory",
       "purpose": "Production-origin-only optional external measurement integration.",
       "role": "source",
-      "owner": "SITE-ANALYTICS.md",
+      "owner": "guides/SITE-ANALYTICS.md",
       "instructions": [
         "AGENTS.md"
       ]
@@ -16728,7 +16934,7 @@
       "kind": "directory",
       "purpose": "Behavioral, adversarial and fixture checks for RI, engine, exporters and CI/staging trust.",
       "role": "test",
-      "owner": "SITE-CHECK-PROFILES.md",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
         "AGENTS.md"
       ]
@@ -16748,7 +16954,7 @@
       "kind": "directory",
       "purpose": "Maintained source, security, browser, hosted-origin, performance and release checks.",
       "role": "validator",
-      "owner": "SITE-RELEASE-GATES.md",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ]
@@ -16778,7 +16984,7 @@
       "kind": "directory",
       "purpose": "Verified artifact packaging, state/controller leases, promotion and recovery mechanics.",
       "role": "source",
-      "owner": "SITE-STAGING.md",
+      "owner": "guides/SITE-STAGING.md",
       "instructions": [
         "AGENTS.md"
       ]
@@ -16792,7 +16998,7 @@
         "MEMORY.md",
         "CONTRIBUTING.md",
         "README.md",
-        "REPOSITORIES.md",
+        "guides/REPOSITORIES.md",
         "REPOSITORY-MAP.md",
         ".github/repository-",
         ".github/REPOSITORY-INTELLIGENCE.md",
@@ -16815,6 +17021,22 @@
       "workflow": ".github/workflows/navigation.yml"
     },
     {
+      "concern": "entry points, maintained guides and preserved root history",
+      "paths": [
+        "PROJECT-BOOTSTRAP.md",
+        ".github/repository-layout.json",
+        "guides/",
+        "review/root-history-20261007/",
+        "tools/check_repository_layout.py",
+        "tests/test_root_layout.py"
+      ],
+      "commands": [
+        "python3 -m unittest discover -s tests -p 'test_root_layout.py'"
+      ],
+      "workflow": ".github/workflows/navigation.yml",
+      "note": "Permanent contracts validate current routes and archive identities; frozen public/history snapshots belong only to the selected issue policy."
+    },
+    {
       "concern": "authored site and generated output",
       "paths": [
         "site/",
@@ -16832,17 +17054,17 @@
         "tools/staging/",
         "tools/quality/",
         ".github/workflows/site-",
-        "SITE-CHECK-PROFILES.md",
-        "SITE-RELEASE-GATES.md",
-        "SITE-STAGING.md"
+        "guides/SITE-CHECK-PROFILES.md",
+        "guides/SITE-RELEASE-GATES.md",
+        "guides/SITE-STAGING.md"
       ],
       "commands": [
         "node tools/quality/local.cjs"
       ],
       "read": [
-        "SITE-CHECK-PROFILES.md",
-        "SITE-RELEASE-GATES.md",
-        "SITE-STAGING.md"
+        "guides/SITE-CHECK-PROFILES.md",
+        "guides/SITE-RELEASE-GATES.md",
+        "guides/SITE-STAGING.md"
       ],
       "note": "Select the authorized hosted profile; this route does not trigger deployment."
     },
@@ -16857,13 +17079,14 @@
         "tests/test_issue31_acceptance.py",
         "review/REVIEW-TEMPLATE.md",
         "review/issue-",
-        "PROJECT-BOOTSTRAP.md"
+        "PROJECT-BOOTSTRAP.md",
+        "tests/test_issue33_acceptance.py"
       ],
       "commands": [
-        "python3 tools/issue_acceptance.py run --policy .github/acceptance/issue-31.json --report /tmp/issue-31-acceptance.json"
+        "python3 tools/issue_acceptance.py run --policy .github/acceptance/issue-33.json --report /tmp/issue-33-acceptance.json"
       ],
       "workflow": ".github/workflows/issue-acceptance.yml",
-      "note": "Choose the owning issue policy; automated criteria cannot supply manual gates or live GitHub approval."
+      "note": "Choose the owning issue policy: #33 is the root-layout worked example, while accepted #31 evidence is pinned to its original source. Automated criteria cannot supply independent review, merge or live GitHub linkage."
     }
   ],
   "upstream": {

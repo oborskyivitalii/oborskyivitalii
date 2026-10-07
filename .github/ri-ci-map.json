@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "review": {
-    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/31",
-    "summary": "RI controls and acceptance protocol are mapped to unconditional CI entrypoints; dated memory and live GitHub facts retain separate acceptance. Refresh this record only after reviewing affected tests and workflow routes."
+    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/33",
+    "summary": "2026-10-07: reviewed short entry/root/guide/archive controls and selected issue #33 snapshot checks against unconditional navigation and owning-issue CI. Historical #31 evidence remains source-pinned; live review/merge decisions stay separate."
   },
   "layers": [
     {
@@ -32,7 +32,10 @@
         ".github/acceptance/issue-31.json",
         "tools/issue_acceptance.py",
         "tests/test_issue_acceptance.py",
-        "tests/test_issue31_acceptance.py"
+        "tests/test_issue31_acceptance.py",
+        ".github/acceptance/issue-33.json",
+        "tests/test_issue33_acceptance.py",
+        "review/issue-33/2026-10-07-analysis.md"
       ],
       "checks": [
         "acceptance-policy-selection",
@@ -50,6 +53,22 @@
         "ri-regressions",
         "ri-freshness",
         "ri-ci-map"
+      ]
+    },
+    {
+      "id": "entry-root-guides",
+      "purpose": "Bounded entry router, deliberate root files, live guide owners and exact archived-original provenance. Fixed public/history task snapshots run only when issue #33 is selected.",
+      "paths": [
+        ".github/repository-layout.json",
+        "tools/check_repository_layout.py",
+        "tests/test_root_layout.py",
+        "tests/test_issue33_acceptance.py",
+        ".github/acceptance/issue-33.json"
+      ],
+      "checks": [
+        "root-layout-regressions",
+        "ri-freshness",
+        "acceptance-policy"
       ]
     },
     {
@@ -193,6 +212,24 @@
       ]
     },
     {
+      "id": "root-layout-regressions",
+      "workflow": ".github/workflows/navigation.yml",
+      "job": "navigation",
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_root_layout.py"
+      ],
+      "test_selectors": [
+        "test_root_layout.RootLayoutTests"
+      ]
+    },
+    {
       "id": "acceptance-policy-selection",
       "workflow": ".github/workflows/issue-acceptance.yml",
       "job": "acceptance",
@@ -241,11 +278,11 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "475a23e1ab7681e0071925b6919127cb1929a795dd5fa129725b7e463de1f9cd",
+    "digest": "f87daa27291ce964566ce2fcb4985a0165b3d6afbfa78b0157e634e0e7367743",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
-        "sha256": "c4633fff1188acf086e04be72d14d2ec6368d7438413852d096cc32a020b862a"
+        "sha256": "72c3e26b3792c48824a6ce8412dae1e9083c63a688644645c16bc6dc8e4b0295"
       },
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -257,11 +294,15 @@
       },
       {
         "path": ".github/REPOSITORY-INTELLIGENCE.md",
-        "sha256": "fabf68e04b45095ec42f07cc6a512cf8416ae9ddc9b9510c9fa57ec8d44e76b3"
+        "sha256": "27a23dd87bc3f0a4df2628c73778fa00b76f18f9c514438ffb6f5524b8957233"
       },
       {
         "path": ".github/acceptance/issue-31.json",
         "sha256": "a6635dd547834da79e83ab2ee9067135263fd8a3312b90ec7485c8ce12a8b3b4"
+      },
+      {
+        "path": ".github/acceptance/issue-33.json",
+        "sha256": "0afc1ce168d1c92dbc0548aa7848ca62ff9971e9e3312d97775e9d277c8ef9a0"
       },
       {
         "path": ".github/pull_request_template.md",
@@ -269,11 +310,15 @@
       },
       {
         "path": ".github/repository-intelligence-config.json",
-        "sha256": "0371bf5434380e26af0dcb171ef462581580a6e908800a18b647ebe7b0c83072"
+        "sha256": "1958f344d3405f9a98ce547371ab2f7e36f06b68790e39d1edcbcdeb60717abe"
+      },
+      {
+        "path": ".github/repository-layout.json",
+        "sha256": "aeed11013476aa5517b180a7a1009c0efc0d49a487103d798a5f8d3fcecb342a"
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "bde9eeea2f41253d492c2ced1b3982a67acde467ab7fcb0f25ff0fc19c8e9334"
+        "sha256": "b254b79e68c7c273a95e29ad438717cc4eed475b7a2c55b2243bad51064fe064"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -281,7 +326,7 @@
       },
       {
         "path": ".github/workflows/navigation.yml",
-        "sha256": "e60f51f6185495e26e114e63934374de75311490eddd62d5a4954814fe681866"
+        "sha256": "17fd674779eef9f3606381d4ffdf956e588f0c22efc0b0499e99d1c87cd0e131"
       },
       {
         "path": ".github/workflows/site-browser-gate-probe.yml",
@@ -305,7 +350,7 @@
       },
       {
         "path": ".github/workflows/site-color-review.yml",
-        "sha256": "e10f8aed8750f7b85ac1419bf2332bddb5ddfb8b8871a52d7d37a1cb5ff65eb7"
+        "sha256": "dc9f464e1f8408919ad94deb60d403b60cf6b1a8a75b194a0ca40b9adfdaea71"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -337,15 +382,15 @@
       },
       {
         "path": "AGENTS.md",
-        "sha256": "ef48c7889e5a1fcd40e271994c482d75db70bdcf44143476d6cf69b17b67162b"
+        "sha256": "3b4e74a0887524d19ce87c92adeb287099e36d6d34f3873cf43468b549f0cb2c"
       },
       {
         "path": "CONTRIBUTING.md",
-        "sha256": "3aaa6f3fe33d434d182969e15f3da57ffc3c7ee43728aa1f5fd4581acb8ec385"
+        "sha256": "b462cf1f02a325b130658ed3b6c92216deb6cfb5bb9a4a3ca9cd07c87b50e30b"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
-        "sha256": "191aeec142f55101336388b65b428e7e22af2a614b10fbd62c5872279d45083e"
+        "sha256": "b69656ee56d8b30f0b805bc69a5bbbb5d568c7889aedf09cc1c19bb4ad46851e"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -353,7 +398,11 @@
       },
       {
         "path": "tests/test_issue31_acceptance.py",
-        "sha256": "ee45e351b5be540afd216a72f85f4ce9a9f34059e1ef898cedfadfb52a512c79"
+        "sha256": "9399afd265d4ed769a56e20588eeb0bfc498cda3dc678d7c47f351f596cff3f2"
+      },
+      {
+        "path": "tests/test_issue33_acceptance.py",
+        "sha256": "52bdd8664fc409d55bce0936705b629af0bea950faccf340019eb989094c702d"
       },
       {
         "path": "tests/test_issue_acceptance.py",
@@ -361,11 +410,19 @@
       },
       {
         "path": "tests/test_repository_intelligence.py",
-        "sha256": "7ba48d71b6cc1c85543918f4d1528d55c9c4b0786d0cb718d333758f17d3b47d"
+        "sha256": "f414bd926c9fa822e7f33fa1e2509b1517e60ef3a7a0cc42fefb13110833feef"
       },
       {
         "path": "tests/test_ri_ci.py",
-        "sha256": "0bc4018d8e1d01843ce1676d6b1d2eb3d0fc25fa162805f6bf7b67cd8fd7d1f2"
+        "sha256": "1147a7178652e2de54b0922af728cbc495ea1fa5c2edab9d3a0b3c3e1851fece"
+      },
+      {
+        "path": "tests/test_root_layout.py",
+        "sha256": "abfd110c9072996eba575ca2beefa5e1f56db0732ea8ab1d4ec3976511244487"
+      },
+      {
+        "path": "tools/check_repository_layout.py",
+        "sha256": "7478911f267fcb1b265535c3db582e19b7fb429e6f17b7c19be469f294d91d63"
       },
       {
         "path": "tools/check_ri_ci.py",

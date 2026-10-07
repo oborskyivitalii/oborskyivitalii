@@ -19,7 +19,7 @@
   "owners": [
     {
       "concern": "site security, quality, performance and platform release gates",
-      "path": "SITE-RELEASE-GATES.md",
+      "path": "guides/SITE-RELEASE-GATES.md",
       "queries": [
         "release pipeline",
         "quality gates",
@@ -30,8 +30,8 @@
       ]
     },
     {
-      "concern": "site visual direction and review proposals",
-      "path": "SITE-VISUAL-REVIEW.md",
+      "concern": "current visual and scene source with applicable acceptance routes",
+      "path": "site/README.md",
       "queries": [
         "visual review",
         "design proposal",
@@ -43,7 +43,7 @@
     },
     {
       "concern": "search discoverability and topic map",
-      "path": "SITE-SEO.md",
+      "path": "guides/SITE-SEO.md",
       "queries": [
         "SEO",
         "keywords",
@@ -82,7 +82,7 @@
     },
     {
       "concern": "milestone sequence",
-      "path": "SITE-ROADMAP.md",
+      "path": "guides/SITE-ROADMAP.md",
       "queries": [
         "roadmap",
         "milestones",
@@ -90,8 +90,8 @@
       ]
     },
     {
-      "concern": "publication and migration backlog",
-      "path": "BACKLOG.md",
+      "concern": "publication priorities and migration issue routes",
+      "path": "guides/SITE-ROADMAP.md",
       "queries": [
         "publication",
         "pmday",
@@ -104,7 +104,7 @@
     },
     {
       "concern": "canonical research ownership",
-      "path": "REPOSITORIES.md",
+      "path": "guides/REPOSITORIES.md",
       "queries": [
         "cross repository",
         "research owners",
@@ -136,7 +136,7 @@
     },
     {
       "concern": "production visitor analytics and search measurement preparation",
-      "path": "SITE-ANALYTICS.md",
+      "path": "guides/SITE-ANALYTICS.md",
       "queries": [
         "site analytics",
         "Cloudflare Web Analytics",
@@ -250,7 +250,7 @@
         "MEMORY.md",
         "CONTRIBUTING.md",
         "README.md",
-        "REPOSITORIES.md",
+        "guides/REPOSITORIES.md",
         "REPOSITORY-MAP.md",
         ".github/repository-",
         ".github/REPOSITORY-INTELLIGENCE.md",
@@ -273,6 +273,22 @@
       "workflow": ".github/workflows/navigation.yml"
     },
     {
+      "concern": "entry points, maintained guides and preserved root history",
+      "paths": [
+        "PROJECT-BOOTSTRAP.md",
+        ".github/repository-layout.json",
+        "guides/",
+        "review/root-history-20261007/",
+        "tools/check_repository_layout.py",
+        "tests/test_root_layout.py"
+      ],
+      "commands": [
+        "python3 -m unittest discover -s tests -p 'test_root_layout.py'"
+      ],
+      "workflow": ".github/workflows/navigation.yml",
+      "note": "Permanent contracts validate current routes and archive identities; frozen public/history snapshots belong only to the selected issue policy."
+    },
+    {
       "concern": "authored site and generated output",
       "paths": [
         "site/",
@@ -290,17 +306,17 @@
         "tools/staging/",
         "tools/quality/",
         ".github/workflows/site-",
-        "SITE-CHECK-PROFILES.md",
-        "SITE-RELEASE-GATES.md",
-        "SITE-STAGING.md"
+        "guides/SITE-CHECK-PROFILES.md",
+        "guides/SITE-RELEASE-GATES.md",
+        "guides/SITE-STAGING.md"
       ],
       "commands": [
         "node tools/quality/local.cjs"
       ],
       "read": [
-        "SITE-CHECK-PROFILES.md",
-        "SITE-RELEASE-GATES.md",
-        "SITE-STAGING.md"
+        "guides/SITE-CHECK-PROFILES.md",
+        "guides/SITE-RELEASE-GATES.md",
+        "guides/SITE-STAGING.md"
       ],
       "note": "Select the authorized hosted profile; this route does not trigger deployment."
     },
@@ -315,13 +331,14 @@
         "tests/test_issue31_acceptance.py",
         "review/REVIEW-TEMPLATE.md",
         "review/issue-",
-        "PROJECT-BOOTSTRAP.md"
+        "PROJECT-BOOTSTRAP.md",
+        "tests/test_issue33_acceptance.py"
       ],
       "commands": [
-        "python3 tools/issue_acceptance.py run --policy .github/acceptance/issue-31.json --report /tmp/issue-31-acceptance.json"
+        "python3 tools/issue_acceptance.py run --policy .github/acceptance/issue-33.json --report /tmp/issue-33-acceptance.json"
       ],
       "workflow": ".github/workflows/issue-acceptance.yml",
-      "note": "Choose the owning issue policy; automated criteria cannot supply manual gates or live GitHub approval."
+      "note": "Choose the owning issue policy: #33 is the root-layout worked example, while accepted #31 evidence is pinned to its original source. Automated criteria cannot supply independent review, merge or live GitHub linkage."
     }
   ]
 }

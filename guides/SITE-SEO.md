@@ -1,5 +1,9 @@
 # Search discoverability and topic map
 
+This guide owns topic vocabulary and discoverability boundaries. Dated sections
+record their inspected editions and evidence; current editorial/release decisions
+belong to the owning issues and [MEMORY](../MEMORY.md), not an old session handoff.
+
 ## Measurement preparation — 2026-10-04
 
 Production will use GitHub Pages. The maintainer requests analytics before the
@@ -16,7 +20,7 @@ production address; neither the optional tag nor analytics config replaces them.
 Source `9c12900` changes Home's problem-led H1, bounded author lead and Help/
 Research order plus decorative SVG/identity. The exact reversible comparison in
 `tools/check_site_seo.cjs` reconstructs all five pre-redesign pages and checks
-their complete non-decorative HTML against immutable `0333c4d`. [Semantic mapping](review/sol-visual-v11-20261003/SEO-PRESERVATION.md)
+their complete non-decorative HTML against immutable `0333c4d`. [Semantic mapping](../review/sol-visual-v11-20261003/SEO-PRESERVATION.md)
 records the declared differences. All metadata, schema, original publication/
 contribution/source links, edition/date/language boundaries, meaningful copy and
 portrait bytes remain. This is preservation, not new demand/ranking evidence.
@@ -27,9 +31,9 @@ inserted into production pages. Permanent-origin/indexing decisions stay with #8
 
 The maintainer explicitly requires existing SEO work to survive text/layout
 changes in [#14](https://github.com/oborskyivitalii/oborskyivitalii/issues/14).
-[Sol tasks](review/sol-visual-v11-20261003/SOL-TASKS.md#7-s4--preserve-seo-and-meaning-through-the-copylayout-changes)
+[Sol tasks](../review/sol-visual-v11-20261003/SOL-TASKS.md#7-s4--preserve-seo-and-meaning-through-the-copylayout-changes)
 define the semantic before/after mapping and exact edition/source invariants;
-[the five-page baseline](review/sol-visual-v11-20261003/seo-baseline.json) records
+[the five-page baseline](../review/sol-visual-v11-20261003/seo-baseline.json) records
 the actual `0333c4d` candidate. Keep this document and the linked buyer/query plans
 as owners. The short design mockup does not replace reviewed production copy.
 No public copy or metadata changes in this preparation; #8 still owns permanent
@@ -37,15 +41,15 @@ URL/indexing and #11 still owns later guides/demand validation.
 
 ## Evidence and v4 implementation — 2026-10-02
 
-The latest [free-source evidence](review/sol-plan-20261002/SEO-EVIDENCE.md) adds
+The latest [free-source evidence](../review/sol-plan-20261002/SEO-EVIDENCE.md) adds
 25 country/keyword checks for 20 phrases (17 positive provider estimates, 8
 explicit no-data results) and 56 Google autocomplete requests. Earlier claims
 below that no volume was measured describe the preceding stage. Null means
 unknown; paid-ad competition is not organic difficulty; this is not Search
 Console data, direct Google Ads export, or proof of C-level demand.
 
-The [buyer/page plan](review/sol-plan-20261002/SEO-BUYER-INTENT.md) and
-[SOL-HANDOFF](SOL-HANDOFF.md) govern the implemented candidate: Home uses precise
+The [buyer/page plan](../review/sol-plan-20261002/SEO-BUYER-INTENT.md) and
+[historical SOL-HANDOFF](../review/root-history-20261007/SOL-HANDOFF.md) described that candidate: Home used precise
 problem/offer language; Research explains the two directions; Writing preserves
 all editions; later guides belong to #11 after launch/PMDay #2. Public Home/Research copy and page-specific metadata now reflect the reviewed buyer problems and bounded offer. Actual canonicals/social
 URLs/sitemap and indexing checks still follow the #8 release decision.
@@ -56,7 +60,7 @@ The existing primary ItemList has 27 entries; all linked renditions total 28
 (21 EN, 7 UA). Older shorthand below does not redefine that preservation unit.
 CPC currency is unknown in the retained provider evidence. The normalized field
 is `cpc_provider_estimate` with `cpc_currency: null`; no USD or GBP is inferred.
-The [collection manifest](review/seo-20261002/COLLECTION-MANIFEST.json) distinguishes
+The [collection manifest](../review/seo-20261002/COLLECTION-MANIFEST.json) distinguishes
 the 18 historical seeds, 20 provider inputs, 28 autocomplete inputs and 15-term
 positive-result shortlist. The shortlist is not the full collection request set.
 
@@ -67,7 +71,7 @@ research vocabulary. The original clusters below remain editorial vocabulary; th
 
 ## Current buyer routes
 
-Home names adoption without delivery gains and agents difficult to control/own in production; Help defines three bounded engagement formats. Research explains AI agent governance/control theory alongside delivery/verification/TOC. Writing retains original editions; no new service/guide page is fabricated. The #11 guides still follow launch and PMDay. CPC and other provider advertising data are unused by public content and both exporters. Browser acceptance is currently blocked; canonicals/social URLs/sitemap still need #8.
+Home names adoption without delivery gains and agents difficult to control/own in production; Help defines three bounded engagement formats. Research explains AI agent governance/control theory alongside delivery/verification/TOC. Writing retains original editions; no new service/guide page is fabricated. The #11 guides still follow launch and PMDay. CPC and other provider advertising data are unused by public content and both exporters. Browser/release acceptance belongs to live #1/#8/#13; canonicals/social URLs/sitemap need the actual production address under #8.
 
 ## Keyword clusters and content owners
 
@@ -77,15 +81,15 @@ not repeat the entire list on every page or add hidden keyword text.
 
 | Cluster | Primary phrases | Supporting reader vocabulary | Existing content / owner |
 | --- | --- | --- | --- |
-| Author identity | Vitalii Oborskyi; Vitalii Oborskyi AI governance | AI architecture researcher; delivery leadership; PMO; software delivery | [Homepage/about](docs/index.html#about), portrait, real LinkedIn/GitHub/Medium profile links. These describe work areas, not certifications or a current employer. |
-| Governance and control | AI governance; control theory; AI control theory; AI Control Plane | enterprise AI governance; runtime control; AI evaluation; decision authority; governance gates | [Research lenses](docs/research.html#lenses), the control-theory article in [architecture writing](docs/writing.html#topic-systems), [UA control capabilities](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/main/02-ai-control-plane/README.md). Enterprise governance is an audience/topic, not a promise of regulatory compliance. |
-| Constraints and flow | Theory of Constraints; TOC; delivery bottlenecks | system throughput; verification capacity; work in progress; local optimization; Goldratt | [Homepage delivery route](docs/index.html#delivery), [research lenses](docs/research.html#lenses), [Subprime interpretation](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis/blob/main/report/02_broken_mechanics.md). TOC is explicitly a methodological lens in Subprime's live README, not measurement of an AI effect or UA runtime constraints. No TOC certification, novelty or validation claim. |
-| Architecture | AI architecture; LLM application architecture; Thinking Systems architecture | agentic system architecture; probabilistic software; non-deterministic systems; model-mediated behavior | [UA research route](docs/research.html#systems), architecting/modern-approach/agentic-loop articles in [architecture writing](docs/writing.html#topic-systems). “Agentic” is not a synonym for all Thinking Systems. |
-| Research vocabulary | Uncertainty Architecture; Thinking Systems; Model Judgment; Consequential Runtime Responsibility | Judgment Node; Uncertainty Boundary; AI Control Plane | [Visible topic explanations](docs/research.html#topics) link the [living UA glossary](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/main/00-doctrine/glossary.md). UA owns the engineering meanings. No claim of originating the phrase Thinking Systems or of an accepted industry standard. |
-| Operating models | AI operating models; socio-technical systems; socio-technical stack | human–AI teams; decision rights; evaluation ownership; organizational design; PMO and delivery governance | [Homepage/help](docs/index.html#help), [Research operating models](docs/research.html#topics) and [leadership/operating-model articles](docs/writing.html#topic-leadership). Roles and technical controls must be considered together; no claimed institutional adoption. |
-| Delivery and verification | The Subprime Code Crisis; AI-assisted software delivery; software verification | AI-assisted SDLC; verification capacity; system understanding; code ownership; technical debt; AI coding assistants | [Subprime research route](docs/research.html#delivery), [English and Ukrainian delivery editions](docs/writing.html#topic-delivery). This is evidence-governed research synthesis, not a universal claim that AI improves or worsens productivity. |
-| Evaluation and release | semantic drift; neuro-symbolic verification; AI evaluation | evaluation gates; release evidence; fallback; escalation; rollback; operating envelope | Beyond Embeddings and control-theory articles in [architecture writing](docs/writing.html#topic-systems); current details remain in [UA](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture). Not every supporting term yet has a dedicated site article. |
-| Product and strategy | AI product architecture; AI-native workflows | on-device LLM vs cloud API; product owners; AI strategy; AI workflow defensibility | [Architecture](docs/writing.html#topic-systems) and [AI/product strategy](docs/writing.html#topic-strategy). Keep these as supporting topics rather than diluting the site's central governance/architecture/delivery focus. |
+| Author identity | Vitalii Oborskyi; Vitalii Oborskyi AI governance | AI architecture researcher; delivery leadership; PMO; software delivery | [Homepage/about](../docs/index.html#about), portrait, real LinkedIn/GitHub/Medium profile links. These describe work areas, not certifications or a current employer. |
+| Governance and control | AI governance; control theory; AI control theory; AI Control Plane | enterprise AI governance; runtime control; AI evaluation; decision authority; governance gates | [Research lenses](../docs/research.html#lenses), the control-theory article in [architecture writing](../docs/writing.html#topic-systems), [UA control capabilities](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/main/02-ai-control-plane/README.md). Enterprise governance is an audience/topic, not a promise of regulatory compliance. |
+| Constraints and flow | Theory of Constraints; TOC; delivery bottlenecks | system throughput; verification capacity; work in progress; local optimization; Goldratt | [Homepage delivery route](../docs/index.html#delivery), [research lenses](../docs/research.html#lenses), [Subprime interpretation](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis/blob/main/report/02_broken_mechanics.md). TOC is explicitly a methodological lens in Subprime's live README, not measurement of an AI effect or UA runtime constraints. No TOC certification, novelty or validation claim. |
+| Architecture | AI architecture; LLM application architecture; Thinking Systems architecture | agentic system architecture; probabilistic software; non-deterministic systems; model-mediated behavior | [UA research route](../docs/research.html#systems), architecting/modern-approach/agentic-loop articles in [architecture writing](../docs/writing.html#topic-systems). “Agentic” is not a synonym for all Thinking Systems. |
+| Research vocabulary | Uncertainty Architecture; Thinking Systems; Model Judgment; Consequential Runtime Responsibility | Judgment Node; Uncertainty Boundary; AI Control Plane | [Visible topic explanations](../docs/research.html#topics) link the [living UA glossary](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/main/00-doctrine/glossary.md). UA owns the engineering meanings. No claim of originating the phrase Thinking Systems or of an accepted industry standard. |
+| Operating models | AI operating models; socio-technical systems; socio-technical stack | human–AI teams; decision rights; evaluation ownership; organizational design; PMO and delivery governance | [Homepage/help](../docs/index.html#help), [Research operating models](../docs/research.html#topics) and [leadership/operating-model articles](../docs/writing.html#topic-leadership). Roles and technical controls must be considered together; no claimed institutional adoption. |
+| Delivery and verification | The Subprime Code Crisis; AI-assisted software delivery; software verification | AI-assisted SDLC; verification capacity; system understanding; code ownership; technical debt; AI coding assistants | [Subprime research route](../docs/research.html#delivery), [English and Ukrainian delivery editions](../docs/writing.html#topic-delivery). This is evidence-governed research synthesis, not a universal claim that AI improves or worsens productivity. |
+| Evaluation and release | semantic drift; neuro-symbolic verification; AI evaluation | evaluation gates; release evidence; fallback; escalation; rollback; operating envelope | Beyond Embeddings and control-theory articles in [architecture writing](../docs/writing.html#topic-systems); current details remain in [UA](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture). Not every supporting term yet has a dedicated site article. |
+| Product and strategy | AI product architecture; AI-native workflows | on-device LLM vs cloud API; product owners; AI strategy; AI workflow defensibility | [Architecture](../docs/writing.html#topic-systems) and [AI/product strategy](../docs/writing.html#topic-strategy). Keep these as supporting topics rather than diluting the site's central governance/architecture/delivery focus. |
 
 The target audience is architects, engineering leaders, product owners, delivery
 managers and PMO practitioners. Future full articles should answer concrete
@@ -152,5 +156,5 @@ describes the structured-data use; eligibility is not a display guarantee.
    after the site edition is actually live. Do not silently rewrite the canonical
    history of existing publications or link the live profile to an undeployed URL.
 
-Complete Medium profile replacement: [review-only draft](drafts/medium-profile-revision-20261001.html).
+Complete Medium profile replacement: [review-only draft](../drafts/medium-profile-revision-20261001.html).
 The draft is not a live Medium edit, deletion, publication decision or approval.

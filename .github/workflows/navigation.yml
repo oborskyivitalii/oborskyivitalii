@@ -17,6 +17,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
+          fetch-depth: 0
           persist-credentials: false
       # site-checks.yml owns the basic site suite. Only focused RI/continuity
       # tests run here; full browser/export suites belong to hosted profiles.
@@ -24,6 +25,8 @@ jobs:
         run: python3 tools/check_ri_ci.py verify
       - name: Check RI and CI coupling regression cases
         run: python3 -m unittest discover -s tests -p 'test_ri_ci.py'
+      - name: Check repository entry points, guide routes and preserved history
+        run: python3 -m unittest discover -s tests -p 'test_root_layout.py'
       - name: Check RI inventory and agent-memory contract
         run: python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'
       - name: Verify current-source context

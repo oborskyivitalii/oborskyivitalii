@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "source_commit": "3ca14c54824ac6b9e7225bc88429b4b8fb3bcf10",
+  "records": [
+    {
+      "original_path": "BACKLOG.md",
+      "archive_path": "review/root-history-20261007/BACKLOG.md",
+      "git_blob": "a3337b935a912e0dadcf16113d9cd03e3b2bdd03",
+      "sha256": "1dd79b13b56cd0a9f54ed2266ea482140f4becb98c1d42f789866c8c37d2cde8",
+      "source_url": "https://github.com/oborskyivitalii/oborskyivitalii/blob/3ca14c54824ac6b9e7225bc88429b4b8fb3bcf10/BACKLOG.md",
+      "current_owner": "guides/SITE-ROADMAP.md"
+    },
+    {
+      "original_path": "SOL-HANDOFF.md",
+      "archive_path": "review/root-history-20261007/SOL-HANDOFF.md",
+      "git_blob": "9f1dd78805e7f479319736c5b352b8c9d26f0263",
+      "sha256": "d9b503a9b42ff83d9f2edd91d8ecd002046e1718d5a14f5a8881ea6deadddf99",
+      "source_url": "https://github.com/oborskyivitalii/oborskyivitalii/blob/3ca14c54824ac6b9e7225bc88429b4b8fb3bcf10/SOL-HANDOFF.md",
+      "current_owner": "AGENTS.md"
+    },
+    {
+      "original_path": "SITE-OPERATIONS.md",
+      "archive_path": "review/root-history-20261007/SITE-OPERATIONS.md",
+      "git_blob": "44bab53daebcd52f2fdf03cee2674a157c48c3e5",
+      "sha256": "0e08d931382552a76047da845fabceda6e4c63c4146096c1515228ff0a08cc09",
+      "source_url": "https://github.com/oborskyivitalii/oborskyivitalii/blob/3ca14c54824ac6b9e7225bc88429b4b8fb3bcf10/SITE-OPERATIONS.md",
+      "current_owner": "guides/SITE-STAGING.md"
+    },
+    {
+      "original_path": "SITE-VISUAL-REVIEW.md",
+      "archive_path": "review/root-history-20261007/SITE-VISUAL-REVIEW.md",
+      "git_blob": "dde5a27ecf4b811044bb901b29004973a156326a",
+      "sha256": "8dbbab1d7da4b0595c8cee9bbda61c2bdfddf6efca0ea301a1f05d749727510b",
+      "source_url": "https://github.com/oborskyivitalii/oborskyivitalii/blob/3ca14c54824ac6b9e7225bc88429b4b8fb3bcf10/SITE-VISUAL-REVIEW.md",
+      "current_owner": "guides/SITE-RELEASE-GATES.md"
+    },
+    {
+      "original_path": "SITE-ROADMAP.md",
+      "archive_path": "review/root-history-20261007/SITE-ROADMAP.md",
+      "git_blob": "947cfbbb837cd37ec619ffdc9636c56b6cbe9e7a",
+      "sha256": "79169b48896d3e85e0320c9df626b32249f01346a4db9566b1cf5a26e1f5ed46",
+      "source_url": "https://github.com/oborskyivitalii/oborskyivitalii/blob/3ca14c54824ac6b9e7225bc88429b4b8fb3bcf10/SITE-ROADMAP.md",
+      "current_owner": "guides/SITE-ROADMAP.md"
+    },
+    {
+      "original_path": "SITE-CONTENT-REVIEW.md",
+      "archive_path": "review/root-history-20261007/SITE-CONTENT-REVIEW.md",
+      "git_blob": "92c7327847e5fef44290434ed42936a9ec9623a9",
+      "sha256": "0b0204f36c50fdd30683f07c8db68c59cb1eeada3f00598775624b59acef38cc",
+      "source_url": "https://github.com/oborskyivitalii/oborskyivitalii/blob/3ca14c54824ac6b9e7225bc88429b4b8fb3bcf10/SITE-CONTENT-REVIEW.md",
+      "current_owner": "guides/SITE-CONTENT-REVIEW.md"
+    }
+  ]
+}

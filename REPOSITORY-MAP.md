@@ -17,24 +17,11 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [.gitattributes](.gitattributes) | Cross-platform LF normalization and binary-file exceptions. | configuration | [site/README.md](site/README.md) |
 | [.gitignore](.gitignore) | Local dependency, build, cache and staging package exclusions. | configuration | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [AGENTS.md](AGENTS.md) | Compact agent bootstrap, authority routes, issue-first work and completion rules. | guide | [AGENTS.md](AGENTS.md) |
-| [BACKLOG.md](BACKLOG.md) | Publication/migration backlog and historical PR audit; live issues own current acceptance. | guide | [BACKLOG.md](BACKLOG.md) |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Issue intent, PR/commit linkage, research intake, review, closure and memory procedure. | guide | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [MEMORY.md](MEMORY.md) | Bounded dated session handoff: verified baseline, decisions, open acceptance and next step. | memory | [CONTRIBUTING.md](CONTRIBUTING.md) |
-| [PROJECT-BOOTSTRAP.md](PROJECT-BOOTSTRAP.md) | Copy-ready Ukrainian ChatGPT project prompt for the author site and stable issue/acceptance/RI/handoff workflow. | guide | [PROJECT-BOOTSTRAP.md](PROJECT-BOOTSTRAP.md) |
+| [PROJECT-BOOTSTRAP.md](PROJECT-BOOTSTRAP.md) | Short Ukrainian entry router delegating purpose to README, rules to AGENTS and navigation to REPOSITORY-MAP. | guide | [PROJECT-BOOTSTRAP.md](PROJECT-BOOTSTRAP.md) |
 | [README.md](README.md) | Author/repository entry point and routes to site sources, work and ownership. | guide | [README.md](README.md) |
-| [REPOSITORIES.md](REPOSITORIES.md) | Canonical boundaries and coordinated work routes across site, UA and Subprime. | guide | [REPOSITORIES.md](REPOSITORIES.md) |
 | [REPOSITORY-MAP.md](REPOSITORY-MAP.md) | Generated readable description/index of every repository file and directory. | generated | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
-| [SITE-ANALYTICS.md](SITE-ANALYTICS.md) | Disabled-by-default production analytics adapter contract and measurement limitations. | guide | [SITE-ANALYTICS.md](SITE-ANALYTICS.md) |
-| [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) | Current Basic, Preview, Full staging and Full production validation profiles. | guide | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [SITE-CONTENT-REVIEW.md](SITE-CONTENT-REVIEW.md) | Editorial, source-link and rights acceptance for the authored publication inventory. | guide | [SITE-CONTENT-REVIEW.md](SITE-CONTENT-REVIEW.md) |
-| [SITE-OPERATIONS.md](SITE-OPERATIONS.md) | Historical candidate/release observations and procedures; current mechanics route to profiles/staging. | history | [SITE-STAGING.md](SITE-STAGING.md) |
-| [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) | Exact-artifact security, quality, performance, browser/device and release requirements. | guide | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [SITE-ROADMAP.md](SITE-ROADMAP.md) | Milestones and publication/site boundaries; implementation acceptance remains in issues. | guide | [SITE-ROADMAP.md](SITE-ROADMAP.md) |
-| [SITE-SEO.md](SITE-SEO.md) | Search/topic plan, structured publication metadata and discoverability constraints. | guide | [SITE-SEO.md](SITE-SEO.md) |
-| [SITE-SOURCE-AUDIT.md](SITE-SOURCE-AUDIT.md) | Public-source identities, publication inventory, contribution provenance and access limits. | guide | [SITE-SOURCE-AUDIT.md](SITE-SOURCE-AUDIT.md) |
-| [SITE-STAGING.md](SITE-STAGING.md) | Existing CI preview/staging controller, source leases, exact hosted verification and recovery runbook. | guide | [SITE-STAGING.md](SITE-STAGING.md) |
-| [SITE-VISUAL-REVIEW.md](SITE-VISUAL-REVIEW.md) | Visual-design source findings and dated proposals; acceptance belongs in its owning issue. | history | [SITE-VISUAL-REVIEW.md](SITE-VISUAL-REVIEW.md) |
-| [SOL-HANDOFF.md](SOL-HANDOFF.md) | Archived iteration plans and dated decisions, retained for provenance rather than current task selection. | history | [MEMORY.md](MEMORY.md) |
 
 ## Directories
 
@@ -45,7 +32,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [.github/ISSUE_TEMPLATE](.github/ISSUE_TEMPLATE) | Issue intake forms preserving intent, scope and acceptance. | configuration | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [.github/acceptance](.github/acceptance) | Owning-issue acceptance policies with stable criterion IDs and executable check mappings. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/repository-intelligence](.github/repository-intelligence) | Generated machine navigation view with exact source identity. | generated | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
-| [.github/workflows](.github/workflows) | Pinned CI workflows for navigation, site checks, hosted staging and manual diagnostics. | workflow | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
+| [.github/workflows](.github/workflows) | Pinned CI workflows for navigation, site checks, hosted staging and manual diagnostics. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [docs](docs) | Generated complete public tree and immutable rendition aliases; edit site sources instead. | generated | [site/README.md](site/README.md) |
 | [docs/assets](docs/assets) | Generated legacy-compatible aliases for authored portrait/icon assets. | generated | [site/README.md](site/README.md) |
 | [docs/media](docs/media) | Generated content-addressed asset editions. | generated | [site/README.md](site/README.md) |
@@ -59,6 +46,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/snapshots/c1f9201da9512c89628be5af019d26c5b8697288addf98def1b69f5d66e4566a](docs/snapshots/c1f9201da9512c89628be5af019d26c5b8697288addf98def1b69f5d66e4566a) | Generated immutable HTML route snapshot edition directory: c1f9201da9512c89628be5af019d26c5b8697288addf98def1b69f5d66e4566a. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/ddf2769f4ce615d00764240a6b9f1902a610ca4bf80f41229e396a059bec36c5](docs/snapshots/ddf2769f4ce615d00764240a6b9f1902a610ca4bf80f41229e396a059bec36c5) | Generated immutable HTML route snapshot edition directory: ddf2769f4ce615d00764240a6b9f1902a610ca4bf80f41229e396a059bec36c5. | generated | [site/README.md](site/README.md) |
 | [drafts](drafts) | Unpublished article/profile proposals excluded from public builds. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [guides](guides) | Maintained topic guides for repository boundaries, publication, quality and hosting; root stays an entry surface. | guide | [guides/README.md](guides/README.md) |
 | [review](review) | Dated plans, evidence, captures and renditions; current Color/export inputs are explicitly marked. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/assets](review/assets) | Historical visual concept/portrait assets. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/ci-only-staging-20261006](review/ci-only-staging-20261006) | Accepted bounded CI alias-convergence controller evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -67,9 +55,11 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/color-staging-20261006](review/color-staging-20261006) | Color hosted variant provider/package identity and target evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/color-staging-20261006/evidence](review/color-staging-20261006/evidence) | Color hosted variant provider/package identity and target evidence. Contains evidence artifacts. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-31](review/issue-31) | Dated issue 31 implementation analysis and review evidence linked from its owning issue and PR. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-33](review/issue-33) | Versioned analysis and independent review evidence for short bootstrap and root organization. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/public-responses-20261006](review/public-responses-20261006) | Exact before/after public response prose and reconciliation records. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/reading-backdrops-20261006](review/reading-backdrops-20261006) | Content-sized reading backdrop correction evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/repository-maintenance-20261007](review/repository-maintenance-20261007) | Byte-exact pre-cleanup agent guide and its provenance note. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/root-history-20261007](review/root-history-20261007) | Preserved original root backlog, handoff and dated operational/design evidence with exact accepted-base provenance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/seo-20261002](review/seo-20261002) | Search-source collection, query observations and bounded keyword evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/seo-20261002/raw](review/seo-20261002/raw) | Search-source collection, query observations and bounded keyword evidence. Contains raw artifacts. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-audit-v8-20261003](review/site-audit-v8-20261003) | Historical v8 independent source/security/browser/performance audit. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -110,7 +100,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/writing-diagnosis-20261006/traces](review/writing-diagnosis-20261006/traces) | Writing first-scroll causal localization, rejected trial and confirmed fix evidence. Contains traces artifacts. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [site](site) | Authoritative curated site source and deterministic engine contract. | source | [site/README.md](site/README.md) |
 | [site/assets](site/assets) | Authored portrait, cutout, favicon and nojekyll source bytes. | source | [site/README.md](site/README.md) |
-| [site/content](site/content) | Authored publication catalog and route-specific curated content. | source | [SITE-SOURCE-AUDIT.md](SITE-SOURCE-AUDIT.md) |
+| [site/content](site/content) | Authored publication catalog and route-specific curated content. | source | [guides/SITE-SOURCE-AUDIT.md](guides/SITE-SOURCE-AUDIT.md) |
 | [site/content/pages](site/content/pages) | Authored HTML blocks and metadata organized by the five route IDs. | source | [site/README.md](site/README.md) |
 | [site/content/pages/credits](site/content/pages/credits) | Authored credits route metadata, layout and curated HTML blocks. | source | [site/README.md](site/README.md) |
 | [site/content/pages/index](site/content/pages/index) | Authored index route metadata, layout and curated HTML blocks. | source | [site/README.md](site/README.md) |
@@ -118,15 +108,15 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [site/content/pages/talks](site/content/pages/talks) | Authored talks route metadata, layout and curated HTML blocks. | source | [site/README.md](site/README.md) |
 | [site/content/pages/writing](site/content/pages/writing) | Authored writing route metadata, layout and curated HTML blocks. | source | [site/README.md](site/README.md) |
 | [site/engine](site/engine) | Shared Canvas geometry/lifecycle, renderer, native-scroll router, theme, filters and CSS. | source | [site/README.md](site/README.md) |
-| [site/integrations](site/integrations) | Production-origin-only optional external measurement integration. | source | [SITE-ANALYTICS.md](SITE-ANALYTICS.md) |
+| [site/integrations](site/integrations) | Production-origin-only optional external measurement integration. | source | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
 | [site/scenes](site/scenes) | Finite authored world/motifs and native-scroll camera paths. | source | [site/README.md](site/README.md) |
 | [site/templates](site/templates) | Shared deterministic page shell, head, header and footer HTML. | source | [site/README.md](site/README.md) |
-| [tests](tests) | Behavioral, adversarial and fixture checks for RI, engine, exporters and CI/staging trust. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
+| [tests](tests) | Behavioral, adversarial and fixture checks for RI, engine, exporters and CI/staging trust. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tools](tools) | Repository navigation, public generation and offline review/export entry points. | source | [CONTRIBUTING.md](CONTRIBUTING.md) |
-| [tools/quality](tools/quality) | Maintained source, security, browser, hosted-origin, performance and release checks. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
+| [tools/quality](tools/quality) | Maintained source, security, browser, hosted-origin, performance and release checks. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/toolchain](tools/quality/toolchain) | Pinned isolated quality tooling packages and Python dependencies. | configuration | [tools/quality/README.md](tools/quality/README.md) |
 | [tools/site](tools/site) | Deterministic source assembly, snapshots/retention, analytics and authored effect variants. | source | [site/README.md](site/README.md) |
-| [tools/staging](tools/staging) | Verified artifact packaging, state/controller leases, promotion and recovery mechanics. | source | [SITE-STAGING.md](SITE-STAGING.md) |
+| [tools/staging](tools/staging) | Verified artifact packaging, state/controller leases, promotion and recovery mechanics. | source | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 
 ## .github/
 
@@ -136,6 +126,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) | UA comparison, site RI layers, file/check/workflow mapping, identity/bounds and coupled CI upgrade procedure. | guide | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 | [.github/pull_request_template.md](.github/pull_request_template.md) | PR execution, owning issue/commit links, checks/review and honest completion template. | configuration | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [.github/repository-intelligence-config.json](.github/repository-intelligence-config.json) | Site RI schema, upstream pin, owner aliases, memory bounds and validation routes. | configuration | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
+| [.github/repository-layout.json](.github/repository-layout.json) | Reviewed root file contract, complete original dispositions and current Markdown surfaces for issue #33. | configuration | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 | [.github/repository-paths.json](.github/repository-paths.json) | Maintained exhaustive path/purpose/role/owner catalog; unknown and stale entries fail. | configuration | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 | [.github/ri-ci-map.json](.github/ri-ci-map.json) | Reviewed RI layer/path/check/workflow coupling and source digest; stale or missing coverage fails. | configuration | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 
@@ -151,6 +142,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [.github/acceptance/issue-31.json](.github/acceptance/issue-31.json) | Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [.github/acceptance/issue-33.json](.github/acceptance/issue-33.json) | Bootstrap/root optimization AC01–AC06 mapped to source-bound assertions and separate review, merge and linkage gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 
 ## .github/repository-intelligence/
 
@@ -163,20 +155,20 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [.github/workflows/issue-acceptance.yml](.github/workflows/issue-acceptance.yml) | Run the owning issue acceptance policy on the exact PR source and retain the per-criterion CI report. | workflow | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
-| [.github/workflows/navigation.yml](.github/workflows/navigation.yml) | GitHub Actions: Local navigation checks; inspect trigger/profile before running. | workflow | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [.github/workflows/site-browser-gate-probe.yml](.github/workflows/site-browser-gate-probe.yml) | GitHub Actions: Browser gate causal diagnostic; inspect trigger/profile before running. | workflow | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [.github/workflows/site-candidate-evidence.yml](.github/workflows/site-candidate-evidence.yml) | GitHub Actions: Site candidate evidence; inspect trigger/profile before running. | workflow | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [.github/workflows/site-cause-fix-probe.yml](.github/workflows/site-cause-fix-probe.yml) | GitHub Actions: Confirm cause corrections and cold native attribution; inspect trigger/profile before running. | workflow | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [.github/workflows/site-cause-probe.yml](.github/workflows/site-cause-probe.yml) | GitHub Actions: Cold browser cause attribution; inspect trigger/profile before running. | workflow | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [.github/workflows/site-checks.yml](.github/workflows/site-checks.yml) | GitHub Actions: Site basic checks; inspect trigger/profile before running. | workflow | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [.github/workflows/site-color-review.yml](.github/workflows/site-color-review.yml) | GitHub Actions: Site PR preview and staging; inspect trigger/profile before running. | workflow | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [.github/workflows/site-gtk-native-probe.yml](.github/workflows/site-gtk-native-probe.yml) | GitHub Actions: Retain exact GTK WebProcess offline abort stack; inspect trigger/profile before running. | workflow | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [.github/workflows/site-gtk-target-probe.yml](.github/workflows/site-gtk-target-probe.yml) | GitHub Actions: Attribute GTK disabled-script target crashes; inspect trigger/profile before running. | workflow | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [.github/workflows/site-navigation-probe.yml](.github/workflows/site-navigation-probe.yml) | GitHub Actions: Site navigation diagnostic; inspect trigger/profile before running. | workflow | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [.github/workflows/site-release-checks.yml](.github/workflows/site-release-checks.yml) | GitHub Actions: Site release checks; inspect trigger/profile before running. | workflow | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [.github/workflows/site-runtime-checks.yml](.github/workflows/site-runtime-checks.yml) | GitHub Actions: Site local diagnostics; inspect trigger/profile before running. | workflow | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [.github/workflows/site-staging.yml](.github/workflows/site-staging.yml) | GitHub Actions: Verified site staging; inspect trigger/profile before running. | workflow | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [.github/workflows/site-writing-probe.yml](.github/workflows/site-writing-probe.yml) | GitHub Actions: Writing cold comparison; inspect trigger/profile before running. | workflow | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
+| [.github/workflows/navigation.yml](.github/workflows/navigation.yml) | GitHub Actions: Local navigation checks; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [.github/workflows/site-browser-gate-probe.yml](.github/workflows/site-browser-gate-probe.yml) | GitHub Actions: Browser gate causal diagnostic; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [.github/workflows/site-candidate-evidence.yml](.github/workflows/site-candidate-evidence.yml) | GitHub Actions: Site candidate evidence; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [.github/workflows/site-cause-fix-probe.yml](.github/workflows/site-cause-fix-probe.yml) | GitHub Actions: Confirm cause corrections and cold native attribution; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [.github/workflows/site-cause-probe.yml](.github/workflows/site-cause-probe.yml) | GitHub Actions: Cold browser cause attribution; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [.github/workflows/site-checks.yml](.github/workflows/site-checks.yml) | GitHub Actions: Site basic checks; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [.github/workflows/site-color-review.yml](.github/workflows/site-color-review.yml) | GitHub Actions: Site PR preview and staging; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [.github/workflows/site-gtk-native-probe.yml](.github/workflows/site-gtk-native-probe.yml) | GitHub Actions: Retain exact GTK WebProcess offline abort stack; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [.github/workflows/site-gtk-target-probe.yml](.github/workflows/site-gtk-target-probe.yml) | GitHub Actions: Attribute GTK disabled-script target crashes; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [.github/workflows/site-navigation-probe.yml](.github/workflows/site-navigation-probe.yml) | GitHub Actions: Site navigation diagnostic; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [.github/workflows/site-release-checks.yml](.github/workflows/site-release-checks.yml) | GitHub Actions: Site release checks; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [.github/workflows/site-runtime-checks.yml](.github/workflows/site-runtime-checks.yml) | GitHub Actions: Site local diagnostics; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [.github/workflows/site-staging.yml](.github/workflows/site-staging.yml) | GitHub Actions: Verified site staging; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [.github/workflows/site-writing-probe.yml](.github/workflows/site-writing-probe.yml) | GitHub Actions: Writing cold comparison; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 
 ## docs/
 
@@ -256,6 +248,21 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [drafts/medium-profile-revision-20261001.html](drafts/medium-profile-revision-20261001.html) | Unpublished proposed content: medium-profile-revision-20261001.html; excluded from current public builds. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
+
+## guides/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [guides/README.md](guides/README.md) | Topic guide index with one current owner for each concern; live issue status is retrieved separately. | guide | [guides/README.md](guides/README.md) |
+| [guides/REPOSITORIES.md](guides/REPOSITORIES.md) | Canonical boundaries and coordinated work routes across site, UA and Subprime. | guide | [guides/REPOSITORIES.md](guides/REPOSITORIES.md) |
+| [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) | Disabled-by-default production analytics adapter contract and measurement limitations. | guide | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
+| [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) | Current Basic, Preview, Full staging and Full production validation profiles. | guide | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [guides/SITE-CONTENT-REVIEW.md](guides/SITE-CONTENT-REVIEW.md) | Maintained exact-edition editorial, source and rights review protocol; past inventory decisions remain archived. | guide | [guides/SITE-CONTENT-REVIEW.md](guides/SITE-CONTENT-REVIEW.md) |
+| [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) | Exact-artifact security, quality, performance, browser/device and release requirements. | guide | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [guides/SITE-ROADMAP.md](guides/SITE-ROADMAP.md) | Stable site/publication priorities and live owning-issue routes; dated backlog observations remain archived. | guide | [guides/SITE-ROADMAP.md](guides/SITE-ROADMAP.md) |
+| [guides/SITE-SEO.md](guides/SITE-SEO.md) | Search/topic plan, structured publication metadata and discoverability constraints. | guide | [guides/SITE-SEO.md](guides/SITE-SEO.md) |
+| [guides/SITE-SOURCE-AUDIT.md](guides/SITE-SOURCE-AUDIT.md) | Public-source identities, publication inventory, contribution provenance and access limits. | guide | [guides/SITE-SOURCE-AUDIT.md](guides/SITE-SOURCE-AUDIT.md) |
+| [guides/SITE-STAGING.md](guides/SITE-STAGING.md) | Existing CI preview/staging controller, source leases, exact hosted verification and recovery runbook. | guide | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 
 ## review/
 
@@ -500,6 +507,12 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-31/2026-10-07-analysis.md](review/issue-31/2026-10-07-analysis.md) | Issue 31 acceptance/handoff/RI-CI/bootstrap analysis, AC-linked findings and ordered execution tasks. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-31/2026-10-07-review.md](review/issue-31/2026-10-07-review.md) | Independent issue 31 code/contract review with resolved findings, exact inspected file hashes, check results and acceptance limitations. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
+## review/issue-33/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-33/2026-10-07-analysis.md](review/issue-33/2026-10-07-analysis.md) | Issue #33 inspected-source analysis, complete root dispositions, ordered tasks and public-output boundaries. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+
 ## review/public-responses-20261006/
 
 | Path | Purpose | Role | Owner / editing route |
@@ -522,6 +535,19 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [review/repository-maintenance-20261007/AGENTS.before.md](review/repository-maintenance-20261007/AGENTS.before.md) | Byte-exact 1030-line pre-cleanup agent guide; historical instructions, not active agent policy. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/repository-maintenance-20261007/README.md](review/repository-maintenance-20261007/README.md) | Archive provenance, exact baseline/SHA and authority boundary for the prior agent guide. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+
+## review/root-history-20261007/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/root-history-20261007/BACKLOG.md](review/root-history-20261007/BACKLOG.md) | Byte-exact BACKLOG.md at the accepted pre-cleanup source; historical context and original link bases remain commit-pinned in the archive manifest. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/root-history-20261007/README.md](review/root-history-20261007/README.md) | Historical archive routing, original-root link context and current guide owners; archived text is not current instruction. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/root-history-20261007/SITE-CONTENT-REVIEW.md](review/root-history-20261007/SITE-CONTENT-REVIEW.md) | Byte-exact SITE-CONTENT-REVIEW.md at the accepted pre-cleanup source; historical context and original link bases remain commit-pinned in the archive manifest. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/root-history-20261007/SITE-OPERATIONS.md](review/root-history-20261007/SITE-OPERATIONS.md) | Byte-exact SITE-OPERATIONS.md at the accepted pre-cleanup source; historical context and original link bases remain commit-pinned in the archive manifest. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/root-history-20261007/SITE-ROADMAP.md](review/root-history-20261007/SITE-ROADMAP.md) | Byte-exact SITE-ROADMAP.md at the accepted pre-cleanup source; historical context and original link bases remain commit-pinned in the archive manifest. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/root-history-20261007/SITE-VISUAL-REVIEW.md](review/root-history-20261007/SITE-VISUAL-REVIEW.md) | Byte-exact SITE-VISUAL-REVIEW.md at the accepted pre-cleanup source; historical context and original link bases remain commit-pinned in the archive manifest. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/root-history-20261007/SOL-HANDOFF.md](review/root-history-20261007/SOL-HANDOFF.md) | Byte-exact SOL-HANDOFF.md at the accepted pre-cleanup source; historical context and original link bases remain commit-pinned in the archive manifest. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/root-history-20261007/manifest.json](review/root-history-20261007/manifest.json) | Accepted source commit, exact Git blob/SHA-256 identities and current owner for six preserved original documents. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 ## review/seo-20261002/
 
@@ -1233,7 +1259,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [site/README.md](site/README.md) | Authoritative source/engine contract, dependency graph, generation and immutable navigation. | guide | [site/README.md](site/README.md) |
-| [site/analytics.json](site/analytics.json) | Disabled-by-default real production origin/token/verification source configuration. | configuration | [SITE-ANALYTICS.md](SITE-ANALYTICS.md) |
+| [site/analytics.json](site/analytics.json) | Disabled-by-default real production origin/token/verification source configuration. | configuration | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
 | [site/output-lock.json](site/output-lock.json) | Generated reviewed output fingerprints and dependency identity; regenerate with tools/site/build.cjs. | generated | [tools/site/build.cjs](tools/site/build.cjs) |
 | [site/routes.json](site/routes.json) | Five route IDs, native destinations, scenes and semantic stop contract. | configuration | [site/README.md](site/README.md) |
 
@@ -1250,7 +1276,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [site/content/catalog.json](site/content/catalog.json) | Exact curated publication editions, language/rendition identities and featured selections. | source | [SITE-SOURCE-AUDIT.md](SITE-SOURCE-AUDIT.md) |
+| [site/content/catalog.json](site/content/catalog.json) | Exact curated publication editions, language/rendition identities and featured selections. | source | [guides/SITE-SOURCE-AUDIT.md](guides/SITE-SOURCE-AUDIT.md) |
 
 ## site/content/pages/credits/
 
@@ -1321,7 +1347,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [site/integrations/cloudflare.cjs](site/integrations/cloudflare.cjs) | Exact-origin opt-in Cloudflare analytics loader with offline/staging exclusion. | source | [SITE-ANALYTICS.md](SITE-ANALYTICS.md) |
+| [site/integrations/cloudflare.cjs](site/integrations/cloudflare.cjs) | Exact-origin opt-in Cloudflare analytics loader with offline/staging exclusion. | source | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
 
 ## site/scenes/
 
@@ -1343,53 +1369,55 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [tests/analytics.test.cjs](tests/analytics.test.cjs) | Behavioral/adversarial tests and fixtures for analytics. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/archive.test.cjs](tests/archive.test.cjs) | Behavioral/adversarial tests and fixtures for archive. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/browser-gate-diagnostics.test.cjs](tests/browser-gate-diagnostics.test.cjs) | Behavioral/adversarial tests and fixtures for browser gate diagnostics. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/browser-gate-trace.test.cjs](tests/browser-gate-trace.test.cjs) | Behavioral/adversarial tests and fixtures for browser gate trace. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/browser-gate-variants.test.cjs](tests/browser-gate-variants.test.cjs) | Behavioral/adversarial tests and fixtures for browser gate variants. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/browser-lifecycle.test.cjs](tests/browser-lifecycle.test.cjs) | Behavioral/adversarial tests and fixtures for browser lifecycle. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/cause-fix-probe.test.cjs](tests/cause-fix-probe.test.cjs) | Behavioral/adversarial tests and fixtures for cause fix probe. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/cause-probe.test.cjs](tests/cause-probe.test.cjs) | Behavioral/adversarial tests and fixtures for cause probe. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/color-build.test.cjs](tests/color-build.test.cjs) | Behavioral/adversarial tests and fixtures for color build. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/content.test.cjs](tests/content.test.cjs) | Behavioral/adversarial tests and fixtures for content. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/endpoint-fixtures.test.cjs](tests/endpoint-fixtures.test.cjs) | Behavioral/adversarial tests and fixtures for endpoint fixtures. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/engine-browser-fixtures.test.cjs](tests/engine-browser-fixtures.test.cjs) | Behavioral/adversarial tests and fixtures for engine browser fixtures. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/executive.test.cjs](tests/executive.test.cjs) | Behavioral/adversarial tests and fixtures for executive. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/flight.test.cjs](tests/flight.test.cjs) | Behavioral/adversarial tests and fixtures for flight. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/functional-fixtures.test.cjs](tests/functional-fixtures.test.cjs) | Behavioral/adversarial tests and fixtures for functional fixtures. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/gtk-native-probe.test.cjs](tests/gtk-native-probe.test.cjs) | Behavioral/adversarial tests and fixtures for gtk native probe. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/gtk-target-probe.test.cjs](tests/gtk-target-probe.test.cjs) | Behavioral/adversarial tests and fixtures for gtk target probe. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/native-display.test.cjs](tests/native-display.test.cjs) | Behavioral/adversarial tests and fixtures for native display. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/navigation-fixtures.test.cjs](tests/navigation-fixtures.test.cjs) | Behavioral/adversarial tests and fixtures for navigation fixtures. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/navigation-motion-fixtures.test.cjs](tests/navigation-motion-fixtures.test.cjs) | Behavioral/adversarial tests and fixtures for navigation motion fixtures. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/navigation.test.cjs](tests/navigation.test.cjs) | Behavioral/adversarial tests and fixtures for navigation. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/preview-smoke.test.cjs](tests/preview-smoke.test.cjs) | Behavioral/adversarial tests and fixtures for preview smoke. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/preview.test.cjs](tests/preview.test.cjs) | Behavioral/adversarial tests and fixtures for preview. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/quality-sources.test.cjs](tests/quality-sources.test.cjs) | Behavioral/adversarial tests and fixtures for quality sources. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/quality.test.cjs](tests/quality.test.cjs) | Behavioral/adversarial tests and fixtures for quality. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/renderer.test.cjs](tests/renderer.test.cjs) | Behavioral/adversarial tests and fixtures for renderer. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/review-flow.test.cjs](tests/review-flow.test.cjs) | Behavioral/adversarial tests and fixtures for review flow. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/ribbons.test.cjs](tests/ribbons.test.cjs) | Behavioral/adversarial tests and fixtures for ribbons. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/scroll-sync.test.cjs](tests/scroll-sync.test.cjs) | Behavioral/adversarial tests and fixtures for scroll sync. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/site-engine.test.cjs](tests/site-engine.test.cjs) | Behavioral/adversarial tests and fixtures for site engine. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/site-face-preparation.test.cjs](tests/site-face-preparation.test.cjs) | Behavioral/adversarial tests and fixtures for site face preparation. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/space.test.cjs](tests/space.test.cjs) | Behavioral/adversarial tests and fixtures for space. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/staging-reporting.test.cjs](tests/staging-reporting.test.cjs) | Behavioral/adversarial tests and fixtures for staging reporting. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/staging-trust.test.cjs](tests/staging-trust.test.cjs) | Behavioral/adversarial tests and fixtures for staging trust. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/staging.test.cjs](tests/staging.test.cjs) | Behavioral/adversarial tests and fixtures for staging. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
+| [tests/analytics.test.cjs](tests/analytics.test.cjs) | Behavioral/adversarial tests and fixtures for analytics. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/archive.test.cjs](tests/archive.test.cjs) | Behavioral/adversarial tests and fixtures for archive. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/browser-gate-diagnostics.test.cjs](tests/browser-gate-diagnostics.test.cjs) | Behavioral/adversarial tests and fixtures for browser gate diagnostics. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/browser-gate-trace.test.cjs](tests/browser-gate-trace.test.cjs) | Behavioral/adversarial tests and fixtures for browser gate trace. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/browser-gate-variants.test.cjs](tests/browser-gate-variants.test.cjs) | Behavioral/adversarial tests and fixtures for browser gate variants. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/browser-lifecycle.test.cjs](tests/browser-lifecycle.test.cjs) | Behavioral/adversarial tests and fixtures for browser lifecycle. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/cause-fix-probe.test.cjs](tests/cause-fix-probe.test.cjs) | Behavioral/adversarial tests and fixtures for cause fix probe. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/cause-probe.test.cjs](tests/cause-probe.test.cjs) | Behavioral/adversarial tests and fixtures for cause probe. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/color-build.test.cjs](tests/color-build.test.cjs) | Behavioral/adversarial tests and fixtures for color build. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/content.test.cjs](tests/content.test.cjs) | Behavioral/adversarial tests and fixtures for content. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/endpoint-fixtures.test.cjs](tests/endpoint-fixtures.test.cjs) | Behavioral/adversarial tests and fixtures for endpoint fixtures. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/engine-browser-fixtures.test.cjs](tests/engine-browser-fixtures.test.cjs) | Behavioral/adversarial tests and fixtures for engine browser fixtures. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/executive.test.cjs](tests/executive.test.cjs) | Behavioral/adversarial tests and fixtures for executive. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/flight.test.cjs](tests/flight.test.cjs) | Behavioral/adversarial tests and fixtures for flight. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/functional-fixtures.test.cjs](tests/functional-fixtures.test.cjs) | Behavioral/adversarial tests and fixtures for functional fixtures. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/gtk-native-probe.test.cjs](tests/gtk-native-probe.test.cjs) | Behavioral/adversarial tests and fixtures for gtk native probe. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/gtk-target-probe.test.cjs](tests/gtk-target-probe.test.cjs) | Behavioral/adversarial tests and fixtures for gtk target probe. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/native-display.test.cjs](tests/native-display.test.cjs) | Behavioral/adversarial tests and fixtures for native display. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/navigation-fixtures.test.cjs](tests/navigation-fixtures.test.cjs) | Behavioral/adversarial tests and fixtures for navigation fixtures. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/navigation-motion-fixtures.test.cjs](tests/navigation-motion-fixtures.test.cjs) | Behavioral/adversarial tests and fixtures for navigation motion fixtures. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/navigation.test.cjs](tests/navigation.test.cjs) | Behavioral/adversarial tests and fixtures for navigation. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/preview-smoke.test.cjs](tests/preview-smoke.test.cjs) | Behavioral/adversarial tests and fixtures for preview smoke. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/preview.test.cjs](tests/preview.test.cjs) | Behavioral/adversarial tests and fixtures for preview. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/quality-sources.test.cjs](tests/quality-sources.test.cjs) | Behavioral/adversarial tests and fixtures for quality sources. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/quality.test.cjs](tests/quality.test.cjs) | Behavioral/adversarial tests and fixtures for quality. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/renderer.test.cjs](tests/renderer.test.cjs) | Behavioral/adversarial tests and fixtures for renderer. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/review-flow.test.cjs](tests/review-flow.test.cjs) | Behavioral/adversarial tests and fixtures for review flow. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/ribbons.test.cjs](tests/ribbons.test.cjs) | Behavioral/adversarial tests and fixtures for ribbons. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/scroll-sync.test.cjs](tests/scroll-sync.test.cjs) | Behavioral/adversarial tests and fixtures for scroll sync. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/site-engine.test.cjs](tests/site-engine.test.cjs) | Behavioral/adversarial tests and fixtures for site engine. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/site-face-preparation.test.cjs](tests/site-face-preparation.test.cjs) | Behavioral/adversarial tests and fixtures for site face preparation. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/space.test.cjs](tests/space.test.cjs) | Behavioral/adversarial tests and fixtures for space. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/staging-reporting.test.cjs](tests/staging-reporting.test.cjs) | Behavioral/adversarial tests and fixtures for staging reporting. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/staging-trust.test.cjs](tests/staging-trust.test.cjs) | Behavioral/adversarial tests and fixtures for staging trust. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/staging.test.cjs](tests/staging.test.cjs) | Behavioral/adversarial tests and fixtures for staging. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/test_issue31_acceptance.py](tests/test_issue31_acceptance.py) | Issue 31 observable acceptance checks for RI provenance, inventory, memory, workflow, unchanged site and bootstrap. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [tests/test_issue33_acceptance.py](tests/test_issue33_acceptance.py) | Issue #33 source snapshot assertions for unchanged public bytes, historic reviews, locator exceptions, policy and handoff. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue_acceptance.py](tests/test_issue_acceptance.py) | Acceptance runner adversarial cases for invalid mappings, skipped/empty/failed tests and evidence identity. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
-| [tests/test_offline_export_security.py](tests/test_offline_export_security.py) | Behavioral/adversarial tests and fixtures for offline export security. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
+| [tests/test_offline_export_security.py](tests/test_offline_export_security.py) | Behavioral/adversarial tests and fixtures for offline export security. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/test_repository_intelligence.py](tests/test_repository_intelligence.py) | Behavioral/adversarial tests and fixtures for repository intelligence. | test | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 | [tests/test_ri_ci.py](tests/test_ri_ci.py) | Negative and positive cases for stale coverage, dangling paths/selectors and workflow invocation drift. | test | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
-| [tests/theme.test.cjs](tests/theme.test.cjs) | Behavioral/adversarial tests and fixtures for theme. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/writing-diagnosis.test.cjs](tests/writing-diagnosis.test.cjs) | Behavioral/adversarial tests and fixtures for writing diagnosis. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/writing-geometry.test.cjs](tests/writing-geometry.test.cjs) | Behavioral/adversarial tests and fixtures for writing geometry. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/writing-layout.test.cjs](tests/writing-layout.test.cjs) | Behavioral/adversarial tests and fixtures for writing layout. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/writing-localization.test.cjs](tests/writing-localization.test.cjs) | Behavioral/adversarial tests and fixtures for writing localization. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/writing-models.test.cjs](tests/writing-models.test.cjs) | Behavioral/adversarial tests and fixtures for writing models. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tests/writing-variants.test.cjs](tests/writing-variants.test.cjs) | Behavioral/adversarial tests and fixtures for writing variants. | test | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
+| [tests/test_root_layout.py](tests/test_root_layout.py) | Permanent root/bootstrap/archive/link/ownership checks and meaningful negative fixtures; future public edits stay available. | test | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
+| [tests/theme.test.cjs](tests/theme.test.cjs) | Behavioral/adversarial tests and fixtures for theme. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/writing-diagnosis.test.cjs](tests/writing-diagnosis.test.cjs) | Behavioral/adversarial tests and fixtures for writing diagnosis. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/writing-geometry.test.cjs](tests/writing-geometry.test.cjs) | Behavioral/adversarial tests and fixtures for writing geometry. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/writing-layout.test.cjs](tests/writing-layout.test.cjs) | Behavioral/adversarial tests and fixtures for writing layout. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/writing-localization.test.cjs](tests/writing-localization.test.cjs) | Behavioral/adversarial tests and fixtures for writing localization. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/writing-models.test.cjs](tests/writing-models.test.cjs) | Behavioral/adversarial tests and fixtures for writing models. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/writing-variants.test.cjs](tests/writing-variants.test.cjs) | Behavioral/adversarial tests and fixtures for writing variants. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 
 ## tools/
 
@@ -1402,9 +1430,10 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tools/build_site_contact_sheets.py](tools/build_site_contact_sheets.py) | Site generation/offline review helper: build site contact sheets; inspect its source and output contract before use. | source | [site/README.md](site/README.md) |
 | [tools/build_site_previews.cjs](tools/build_site_previews.cjs) | Site generation/offline review helper: build site previews; inspect its source and output contract before use. | source | [site/README.md](site/README.md) |
 | [tools/capture_site_review.cjs](tools/capture_site_review.cjs) | Site generation/offline review helper: capture site review; inspect its source and output contract before use. | source | [site/README.md](site/README.md) |
+| [tools/check_repository_layout.py](tools/check_repository_layout.py) | Validate bounded entry routes, root/guide ownership, exact archive provenance and active links; opt-in issue #33 snapshots preserve task evidence. | validator | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 | [tools/check_ri_ci.py](tools/check_ri_ci.py) | Validate and refresh reviewed RI/CI mapping, test-selector resolution and actual workflow invocations. | validator | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 | [tools/check_site_contrast.cjs](tools/check_site_contrast.cjs) | Site generation/offline review helper: check site contrast; inspect its source and output contract before use. | source | [site/README.md](site/README.md) |
-| [tools/check_site_seo.cjs](tools/check_site_seo.cjs) | Check frozen authored HTML/copy against the immutable baseline and exact approved editorial exceptions. | validator | [SITE-SEO.md](SITE-SEO.md) |
+| [tools/check_site_seo.cjs](tools/check_site_seo.cjs) | Check frozen authored HTML/copy against the immutable baseline and exact approved editorial exceptions. | validator | [guides/SITE-SEO.md](guides/SITE-SEO.md) |
 | [tools/compact_site_recordings.cjs](tools/compact_site_recordings.cjs) | Site generation/offline review helper: compact site recordings; inspect its source and output contract before use. | source | [site/README.md](site/README.md) |
 | [tools/issue_acceptance.py](tools/issue_acceptance.py) | Bounded acceptance policy runner with deterministic unittest/basic checks and exact-source per-AC evidence. | validator | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tools/repository_intelligence.py](tools/repository_intelligence.py) | Bounded deterministic site RI producer, catalog validation, scoped lookup and generated-view verification. | source | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
@@ -1413,58 +1442,58 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [tools/quality/README.md](tools/quality/README.md) | Pinned quality tooling and source/browser/hosted artifact check entry points. | guide | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/advisory-exceptions.json](tools/quality/advisory-exceptions.json) | Quality/release configuration: advisory exceptions; preserve reviewed budgets, pins and exception provenance. | configuration | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/analytics-browser.cjs](tools/quality/analytics-browser.cjs) | Maintained quality/check helper for analytics browser; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/artifact.cjs](tools/quality/artifact.cjs) | Exact public artifact manifest/digest, byte verification and configured size budgets. | source | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/browser-gate-diagnostics.cjs](tools/quality/browser-gate-diagnostics.cjs) | Maintained quality/check helper for browser gate diagnostics; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/browser-gate-trace.cjs](tools/quality/browser-gate-trace.cjs) | Maintained quality/check helper for browser gate trace; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/browser-lifecycle.cjs](tools/quality/browser-lifecycle.cjs) | Maintained quality/check helper for browser lifecycle; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/budgets.json](tools/quality/budgets.json) | Quality/release configuration: budgets; preserve reviewed budgets, pins and exception provenance. | configuration | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/cause-probe.cjs](tools/quality/cause-probe.cjs) | Maintained quality/check helper for cause probe; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/cold-native-probe.cjs](tools/quality/cold-native-probe.cjs) | Maintained quality/check helper for cold native probe; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/color-browser.cjs](tools/quality/color-browser.cjs) | Maintained quality/check helper for color browser; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/common.cjs](tools/quality/common.cjs) | Maintained quality/check helper for common; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/deploy-pages.example.yml](tools/quality/deploy-pages.example.yml) | Quality/release configuration: deploy pages.example; preserve reviewed budgets, pins and exception provenance. | configuration | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/display-probe.cjs](tools/quality/display-probe.cjs) | Maintained quality/check helper for display probe; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/engine-browser.cjs](tools/quality/engine-browser.cjs) | Maintained quality/check helper for engine browser; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/eslint.config.cjs](tools/quality/eslint.config.cjs) | Maintained quality/check helper for eslint configuration; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/exceptions.json](tools/quality/exceptions.json) | Quality/release configuration: exceptions; preserve reviewed budgets, pins and exception provenance. | configuration | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/fallback-url.cjs](tools/quality/fallback-url.cjs) | Maintained quality/check helper for fallback url; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/flight-detail.cjs](tools/quality/flight-detail.cjs) | Maintained quality/check helper for flight detail; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/functional.cjs](tools/quality/functional.cjs) | Maintained quality/check helper for functional; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/geometry.cjs](tools/quality/geometry.cjs) | Maintained quality/check helper for geometry; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/gtk-native-probe.cjs](tools/quality/gtk-native-probe.cjs) | Maintained quality/check helper for gtk native probe; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/gtk-target-probe.cjs](tools/quality/gtk-target-probe.cjs) | Maintained quality/check helper for gtk target probe; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/hosted-origin.cjs](tools/quality/hosted-origin.cjs) | Maintained quality/check helper for hosted origin; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/hosted.cjs](tools/quality/hosted.cjs) | Maintained quality/check helper for hosted; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/lighthouse.cjs](tools/quality/lighthouse.cjs) | Maintained quality/check helper for lighthouse; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/local-browser.cjs](tools/quality/local-browser.cjs) | Maintained quality/check helper for local browser; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/local.cjs](tools/quality/local.cjs) | Economical source, generation, finite geometry, focused tests and size/profile checks. | validator | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
-| [tools/quality/motion.cjs](tools/quality/motion.cjs) | Maintained quality/check helper for motion; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/native-display.cjs](tools/quality/native-display.cjs) | Maintained quality/check helper for native display; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/navigation.cjs](tools/quality/navigation.cjs) | Maintained quality/check helper for navigation; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/promotion.cjs](tools/quality/promotion.cjs) | Maintained quality/check helper for promotion; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/research-pair-probe.cjs](tools/quality/research-pair-probe.cjs) | Maintained quality/check helper for research pair probe; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/scanners.cjs](tools/quality/scanners.cjs) | Maintained quality/check helper for scanners; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/scroll-browser.cjs](tools/quality/scroll-browser.cjs) | Maintained quality/check helper for scroll browser; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/secrets-baseline.json](tools/quality/secrets-baseline.json) | Quality/release configuration: secrets baseline; preserve reviewed budgets, pins and exception provenance. | configuration | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/security-rules.yml](tools/quality/security-rules.yml) | Quality/release configuration: security rules; preserve reviewed budgets, pins and exception provenance. | configuration | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/selftest.cjs](tools/quality/selftest.cjs) | Maintained quality/check helper for selftest; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/serve.cjs](tools/quality/serve.cjs) | Maintained quality/check helper for serve; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/stylelint.cjs](tools/quality/stylelint.cjs) | Maintained quality/check helper for stylelint; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/stylelint.config.cjs](tools/quality/stylelint.config.cjs) | Maintained quality/check helper for stylelint configuration; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/triage-engine-checksums.cjs](tools/quality/triage-engine-checksums.cjs) | Maintained quality/check helper for triage engine checksums; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/triage-secrets.py](tools/quality/triage-secrets.py) | Classify exact known non-secret checksums with retained evidence; never blanket-suppress findings. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/validate.cjs](tools/quality/validate.cjs) | Release gate aggregation: mandatory reports/jobs and exact deployable artifact. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/workflow-artifacts.cjs](tools/quality/workflow-artifacts.cjs) | Maintained quality/check helper for workflow artifacts; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/writing-diagnosis.cjs](tools/quality/writing-diagnosis.cjs) | Maintained quality/check helper for writing diagnosis; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/writing-geometry.cjs](tools/quality/writing-geometry.cjs) | Maintained quality/check helper for writing geometry; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/writing-layout.cjs](tools/quality/writing-layout.cjs) | Maintained quality/check helper for writing layout; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/writing-localization.cjs](tools/quality/writing-localization.cjs) | Maintained quality/check helper for writing localization; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/writing-models.cjs](tools/quality/writing-models.cjs) | Maintained quality/check helper for writing models; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/writing-probe.cjs](tools/quality/writing-probe.cjs) | Maintained quality/check helper for writing probe; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
-| [tools/quality/writing-variants.cjs](tools/quality/writing-variants.cjs) | Maintained quality/check helper for writing variants; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [SITE-RELEASE-GATES.md](SITE-RELEASE-GATES.md) |
+| [tools/quality/README.md](tools/quality/README.md) | Pinned quality tooling and source/browser/hosted artifact check entry points. | guide | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/advisory-exceptions.json](tools/quality/advisory-exceptions.json) | Quality/release configuration: advisory exceptions; preserve reviewed budgets, pins and exception provenance. | configuration | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/analytics-browser.cjs](tools/quality/analytics-browser.cjs) | Maintained quality/check helper for analytics browser; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/artifact.cjs](tools/quality/artifact.cjs) | Exact public artifact manifest/digest, byte verification and configured size budgets. | source | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/browser-gate-diagnostics.cjs](tools/quality/browser-gate-diagnostics.cjs) | Maintained quality/check helper for browser gate diagnostics; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/browser-gate-trace.cjs](tools/quality/browser-gate-trace.cjs) | Maintained quality/check helper for browser gate trace; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/browser-lifecycle.cjs](tools/quality/browser-lifecycle.cjs) | Maintained quality/check helper for browser lifecycle; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/budgets.json](tools/quality/budgets.json) | Quality/release configuration: budgets; preserve reviewed budgets, pins and exception provenance. | configuration | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/cause-probe.cjs](tools/quality/cause-probe.cjs) | Maintained quality/check helper for cause probe; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/cold-native-probe.cjs](tools/quality/cold-native-probe.cjs) | Maintained quality/check helper for cold native probe; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/color-browser.cjs](tools/quality/color-browser.cjs) | Maintained quality/check helper for color browser; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/common.cjs](tools/quality/common.cjs) | Maintained quality/check helper for common; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/deploy-pages.example.yml](tools/quality/deploy-pages.example.yml) | Quality/release configuration: deploy pages.example; preserve reviewed budgets, pins and exception provenance. | configuration | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/display-probe.cjs](tools/quality/display-probe.cjs) | Maintained quality/check helper for display probe; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/engine-browser.cjs](tools/quality/engine-browser.cjs) | Maintained quality/check helper for engine browser; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/eslint.config.cjs](tools/quality/eslint.config.cjs) | Maintained quality/check helper for eslint configuration; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/exceptions.json](tools/quality/exceptions.json) | Quality/release configuration: exceptions; preserve reviewed budgets, pins and exception provenance. | configuration | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/fallback-url.cjs](tools/quality/fallback-url.cjs) | Maintained quality/check helper for fallback url; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/flight-detail.cjs](tools/quality/flight-detail.cjs) | Maintained quality/check helper for flight detail; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/functional.cjs](tools/quality/functional.cjs) | Maintained quality/check helper for functional; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/geometry.cjs](tools/quality/geometry.cjs) | Maintained quality/check helper for geometry; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/gtk-native-probe.cjs](tools/quality/gtk-native-probe.cjs) | Maintained quality/check helper for gtk native probe; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/gtk-target-probe.cjs](tools/quality/gtk-target-probe.cjs) | Maintained quality/check helper for gtk target probe; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/hosted-origin.cjs](tools/quality/hosted-origin.cjs) | Maintained quality/check helper for hosted origin; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/hosted.cjs](tools/quality/hosted.cjs) | Maintained quality/check helper for hosted; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/lighthouse.cjs](tools/quality/lighthouse.cjs) | Maintained quality/check helper for lighthouse; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/local-browser.cjs](tools/quality/local-browser.cjs) | Maintained quality/check helper for local browser; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/local.cjs](tools/quality/local.cjs) | Economical source, generation, finite geometry, focused tests and size/profile checks. | validator | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tools/quality/motion.cjs](tools/quality/motion.cjs) | Maintained quality/check helper for motion; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/native-display.cjs](tools/quality/native-display.cjs) | Maintained quality/check helper for native display; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/navigation.cjs](tools/quality/navigation.cjs) | Maintained quality/check helper for navigation; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/promotion.cjs](tools/quality/promotion.cjs) | Maintained quality/check helper for promotion; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/research-pair-probe.cjs](tools/quality/research-pair-probe.cjs) | Maintained quality/check helper for research pair probe; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/scanners.cjs](tools/quality/scanners.cjs) | Maintained quality/check helper for scanners; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/scroll-browser.cjs](tools/quality/scroll-browser.cjs) | Maintained quality/check helper for scroll browser; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/secrets-baseline.json](tools/quality/secrets-baseline.json) | Quality/release configuration: secrets baseline; preserve reviewed budgets, pins and exception provenance. | configuration | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/security-rules.yml](tools/quality/security-rules.yml) | Quality/release configuration: security rules; preserve reviewed budgets, pins and exception provenance. | configuration | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/selftest.cjs](tools/quality/selftest.cjs) | Maintained quality/check helper for selftest; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/serve.cjs](tools/quality/serve.cjs) | Maintained quality/check helper for serve; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/stylelint.cjs](tools/quality/stylelint.cjs) | Maintained quality/check helper for stylelint; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/stylelint.config.cjs](tools/quality/stylelint.config.cjs) | Maintained quality/check helper for stylelint configuration; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/triage-engine-checksums.cjs](tools/quality/triage-engine-checksums.cjs) | Maintained quality/check helper for triage engine checksums; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/triage-secrets.py](tools/quality/triage-secrets.py) | Classify exact known non-secret checksums with retained evidence; never blanket-suppress findings. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/validate.cjs](tools/quality/validate.cjs) | Release gate aggregation: mandatory reports/jobs and exact deployable artifact. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/workflow-artifacts.cjs](tools/quality/workflow-artifacts.cjs) | Maintained quality/check helper for workflow artifacts; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/writing-diagnosis.cjs](tools/quality/writing-diagnosis.cjs) | Maintained quality/check helper for writing diagnosis; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/writing-geometry.cjs](tools/quality/writing-geometry.cjs) | Maintained quality/check helper for writing geometry; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/writing-layout.cjs](tools/quality/writing-layout.cjs) | Maintained quality/check helper for writing layout; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/writing-localization.cjs](tools/quality/writing-localization.cjs) | Maintained quality/check helper for writing localization; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/writing-models.cjs](tools/quality/writing-models.cjs) | Maintained quality/check helper for writing models; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/writing-probe.cjs](tools/quality/writing-probe.cjs) | Maintained quality/check helper for writing probe; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/writing-variants.cjs](tools/quality/writing-variants.cjs) | Maintained quality/check helper for writing variants; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 
 ## tools/quality/toolchain/
 
@@ -1478,7 +1507,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [tools/site/analytics.cjs](tools/site/analytics.cjs) | Validate exact-origin analytics configuration and generate optional head/loader. | source | [SITE-ANALYTICS.md](SITE-ANALYTICS.md) |
+| [tools/site/analytics.cjs](tools/site/analytics.cjs) | Validate exact-origin analytics configuration and generate optional head/loader. | source | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
 | [tools/site/build.cjs](tools/site/build.cjs) | Source validation and deterministic dependency-aware complete public-tree generation. | source | [site/README.md](site/README.md) |
 | [tools/site/evidence-policy.cjs](tools/site/evidence-policy.cjs) | Advisory component-fingerprint proposal for content-only or full check scope under #13; never skips mandatory jobs or reuses evidence. | source | [site/README.md](site/README.md) |
 | [tools/site/retain.cjs](tools/site/retain.cjs) | Explicit verified prior immutable public-file retention. | source | [site/README.md](site/README.md) |
@@ -1489,10 +1518,10 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [tools/staging/color.cjs](tools/staging/color.cjs) | Authored Color variant lineage, package construction and source preflight. | source | [SITE-STAGING.md](SITE-STAGING.md) |
-| [tools/staging/hosted.cjs](tools/staging/hosted.cjs) | Exact hosted bytes/root/runtime/media/redirects/404 and alias convergence checks. | validator | [SITE-STAGING.md](SITE-STAGING.md) |
-| [tools/staging/package.cjs](tools/staging/package.cjs) | Verified public artifact packaging and staging-only headers/noindex additions. | source | [SITE-STAGING.md](SITE-STAGING.md) |
-| [tools/staging/review-flow.cjs](tools/staging/review-flow.cjs) | Issue/PR preview and owner-stage command routing with exact source/controller trust. | source | [SITE-STAGING.md](SITE-STAGING.md) |
-| [tools/staging/selftest.cjs](tools/staging/selftest.cjs) | Controller/package/trust self-test entry point. | validator | [SITE-STAGING.md](SITE-STAGING.md) |
-| [tools/staging/state.cjs](tools/staging/state.cjs) | Retained staging/promotion/recovery state tied to exact identities. | source | [SITE-STAGING.md](SITE-STAGING.md) |
-| [tools/staging/trust.cjs](tools/staging/trust.cjs) | Protected source/artifact/controller/PR lease validation before hosted action. | source | [SITE-STAGING.md](SITE-STAGING.md) |
+| [tools/staging/color.cjs](tools/staging/color.cjs) | Authored Color variant lineage, package construction and source preflight. | source | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
+| [tools/staging/hosted.cjs](tools/staging/hosted.cjs) | Exact hosted bytes/root/runtime/media/redirects/404 and alias convergence checks. | validator | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
+| [tools/staging/package.cjs](tools/staging/package.cjs) | Verified public artifact packaging and staging-only headers/noindex additions. | source | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
+| [tools/staging/review-flow.cjs](tools/staging/review-flow.cjs) | Issue/PR preview and owner-stage command routing with exact source/controller trust. | source | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
+| [tools/staging/selftest.cjs](tools/staging/selftest.cjs) | Controller/package/trust self-test entry point. | validator | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
+| [tools/staging/state.cjs](tools/staging/state.cjs) | Retained staging/promotion/recovery state tied to exact identities. | source | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
+| [tools/staging/trust.cjs](tools/staging/trust.cjs) | Protected source/artifact/controller/PR lease validation before hosted action. | source | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
