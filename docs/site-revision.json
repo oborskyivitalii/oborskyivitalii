@@ -15,7 +15,7 @@
     "vitalii-oborskyi-cutout.webp",
     "writing-paradigm.svg"
   ],
-  "content": "1e311b951a8dd74cbc327d0c769fdd48084ff736816322eed668d74cf6c634be",
+  "content": "0527b71b2c32298a9a37c911e2c84353fa2f23a2909100c7f36c07b30d344971",
   "routes": {
     "index": {
       "version": "f25e6e629e33c9a9982166c928386895fb06e7a5ae6fd47ac123c5adcc2406dc",
@@ -23,19 +23,19 @@
       "sha256": "e32e1274d64915e1bdf0df7e8da6ffc847d1db17316b2a9864ed461768bab754"
     },
     "research": {
-      "version": "0bce7f7d05997aaabddd04ab575591a6d81c0882886cce55249f60a62a6e9dd3",
-      "url": "snapshots/0bce7f7d05997aaabddd04ab575591a6d81c0882886cce55249f60a62a6e9dd3/research.html",
-      "sha256": "b9105965f2b0186b9a2b32bc646ab3d3511b69ffb3b9191ee81805aee04b0841"
+      "version": "7bb636c87d91d785da2671f477d114f335cb84aef12d54f8ef59b2ae87183909",
+      "url": "snapshots/7bb636c87d91d785da2671f477d114f335cb84aef12d54f8ef59b2ae87183909/research.html",
+      "sha256": "38ba9d7e9c86de0fd17d3a94634fe97b2f4d90c931646243013d47ea8074cd04"
     },
     "writing": {
-      "version": "602e4cef64297e857e710f1f228a8560ee6635aea823d9fb6a799a05f3cd9c6d",
-      "url": "snapshots/602e4cef64297e857e710f1f228a8560ee6635aea823d9fb6a799a05f3cd9c6d/writing.html",
-      "sha256": "70b0fccb51f40a1b1e2de07528bc76abe5c7877af0297e2915c6e8d477b34498"
+      "version": "d826957d96daefd977340a0ae7ba86b4349167afa7f4548a6f1b0ce923efe718",
+      "url": "snapshots/d826957d96daefd977340a0ae7ba86b4349167afa7f4548a6f1b0ce923efe718/writing.html",
+      "sha256": "c312715896bd783a8fb657332c1377b64243ae0161b8e64637e8427c0f4d926b"
     },
     "talks": {
-      "version": "b77359c1c64edc15eee86e40c300eb89195866870b23a1f02e353a6fcefba20c",
-      "url": "snapshots/b77359c1c64edc15eee86e40c300eb89195866870b23a1f02e353a6fcefba20c/talks.html",
-      "sha256": "e6bfb4fcaad4d3d0eaccebc87e7cd2a486f6473be9fdc1578f1ec59185476838"
+      "version": "89e11913db265fa4ba8195a44a301f57352f42c185a180ee23e4d7fb9800905b",
+      "url": "snapshots/89e11913db265fa4ba8195a44a301f57352f42c185a180ee23e4d7fb9800905b/talks.html",
+      "sha256": "a54ff60636ddc54a0255149e8a8bf3e25dd7b77ec5de7ad1b8fa80e23c5d784e"
     },
     "credits": {
       "version": "34fc151ddbd01778d5b4b05304adbe1b5a78c64144980fb26116e15552ebc074",
