@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "78107f36dfde2759492500360a3e16220f7a4f3241c84ac6517d7029784dcc78",
+    "digest": "0b6d96f9192316bb76353f60ecf7b08e70ea83cd2435d80beb2cd417507009a2",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -91,7 +91,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "44f206a51afb436f8fddd1b9093f7498d526146eea28adef44b2b3f5beeb3316"
+        "sha256": "c72a23774752f79b40e8c4d337c976377e5837303a4d44ecd0b825e6fe8e7da7"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -4950,7 +4950,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "5c26b6384dfce9fbd172347fdd5a7531de193ebdd446187fcf9dd5298aa4e864"
+        "sha256": "25278f83f09596b05899dedb73808b4e634c1e01041e36ea181958d69613b4a1"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",

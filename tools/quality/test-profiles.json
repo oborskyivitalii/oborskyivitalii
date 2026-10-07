@@ -1153,6 +1153,25 @@
       ]
     },
     {
+      "path": "tests/test_issue36_acceptance.py",
+      "language": "python",
+      "purpose": "Partial Writing controller prerequisite: strict actual TAP evidence for finite media and current/legacy package consumption; feature gates remain pending.",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": [
+        "issue-policy"
+      ],
+      "disposition": "retain only through selected issue36 compatibility policy; joint feature policy stays in PR43",
+      "surviving_route": "python3 tools/issue_acceptance.py run --policy .github/acceptance/issue-36.json",
+      "inputs": [
+        "tests/test_issue36_acceptance.py",
+        ".github/acceptance/issue-36.json",
+        "tests/staging.test.cjs",
+        "tools/site/snapshot.cjs",
+        "tools/staging/package.cjs"
+      ]
+    },
+    {
       "path": "tests/test_issue_acceptance.py",
       "language": "python",
       "purpose": "Permanent fail-closed AC/policy selection runner, exact source accounting, module fixtures and explicit manual gates",
