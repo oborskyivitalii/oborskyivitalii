@@ -1046,11 +1046,16 @@ const renderer=(function(artwork=null,createSurface=null) {
     const [p,q,r]=source,[P,Q,R]=points,dx=q[0]-p[0],dy=q[1]-p[1],ex=r[0]-p[0],ey=r[1]-p[1],den=dx*ey-dy*ex;
     const a=((Q[0]-P[0])*ey-(R[0]-P[0])*dy)/den,c=((R[0]-P[0])*dx-(Q[0]-P[0])*ex)/den;
     const b=((Q[1]-P[1])*ey-(R[1]-P[1])*dy)/den,d=((R[1]-P[1])*dx-(Q[1]-P[1])*ex)/den;
+    // Bound native resampling to this strip while keeping a two-CSS-pixel
+    // neighbourhood in source x. The inverse affine x row is [d,-c]/det;
+    // singular or extremely minified transforms safely use the whole bitmap.
+    const determinant=Math.abs(a*d-b*c),guard=determinant>1e-12?Math.min(surface.width,Math.ceil(2*Math.hypot(c,d)/determinant)):surface.width;
+    const left=Math.max(0,Math.min(p[0],q[0],r[0])-guard),right=Math.min(surface.width,Math.max(p[0],q[0],r[0])+guard);
     ctx.save();
     try{
       path(ctx,points);ctx.closePath();ctx.clip();
       ctx.transform(a,b,c,d,P[0]-a*p[0]-c*p[1],P[1]-b*p[0]-d*p[1]);
-      ctx.drawImage(surface,0,0);formulaSubmissions++;formulaLastSubmissions++;
+      ctx.drawImage(surface,left,0,right-left,surface.height,left,0,right-left,surface.height);formulaSubmissions++;formulaLastSubmissions++;
     }finally{ctx.restore();}
   }
   function formulaDiagnostics() {

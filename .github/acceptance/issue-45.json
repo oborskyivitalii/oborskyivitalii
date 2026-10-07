@@ -7,7 +7,7 @@
     {
       "id": "AC01",
       "intent": "Make the existing Writing world formula crisp while retaining its expression, ribbon palette, perspective, tilt, pulse and camera motion.",
-      "automated_scope": "Actual Canvas submissions share world haze alpha and high-quality sampling, restore sampling state, and retain one 1380x240 cache and 24 bounded submissions. World-plane separation stays below half the projected glyph stroke at narrow/medium/desktop widths and two camera positions. Existing producer checks verify finite canonical artwork, one Writing-only world landmark, matching static layer alpha and immutable packaged identity. Perceived sharpness remains visual acceptance.",
+      "automated_scope": "Actual Canvas submissions share world haze alpha and high-quality sampling, restore sampling state, and retain one 1380x240 cache and 24 bounded submissions. The same maintained owner checks bounded source rectangles against independent world-plane clips/affine UV mapping at four widths, two poses and five phases, preserves a two-CSS-pixel inverse-affine filter guard, and falls back to the full source for singular/extreme minification. World-plane separation stays below half the projected glyph stroke at narrow/medium/desktop widths and two camera positions. Existing producer checks verify finite canonical artwork, one Writing-only world landmark, matching static layer alpha and immutable packaged identity. Perceived sharpness and hosted performance remain visual/browser acceptance.",
       "checks": [
         "FORMULA-RENDERER",
         "FORMULA-PRODUCER",

@@ -260,3 +260,70 @@ compositor opacity; its reduced-transparency exception is source-proved here,
 not deliberately emulated by that browser sequence. Current-source hosted
 smoke and visual review remain separate observations, and earlier675b389
 camera/material captures retain their source identities.
+
+## Writing source-window repair and trace retention — prepared-source review
+
+Reviewer `/root/review_camera` independently inspected the prepared delta against
+`3beaad56a9294a83a9323c3dba004b7c91eb9ac6`, tree
+`8c81325039b585032e9e1c9d32eaeb0ac8430bab`, with `sourceDirty: true`.
+No blocking source correctness defect was found. The nine-argument formula draw
+uses equal source/destination rectangles, preserving the existing affine UV
+coordinates and projected triangle clips. Its inverse-affine source-x guard
+covers two CSS pixels, clamps to the fixed bitmap, and falls back to the full
+source for singular/extremely minified transforms. The cache, three layers,
+24 submissions, opacity, high-quality sampling, depth order and clock remain
+unchanged; camera/navigation and reading-surface behavior are outside this delta.
+
+The maintained renderer test now checks 40 width/pose/phase combinations against
+independently projected world-plane clips, plus anisotropic, minified and singular
+guards. The root reports all three selected formula cases passing; this reviewer
+read those checks without rerunning them. The independently inspected six local
+native Skia pixel comparisons have zero differing pixels in both 390px cases;
+the 768/1440px cases differ by at most 14 pixels, with maximum channel delta one.
+These are local equivalence observations, not Chromium or hosted acceptance.
+The separate 25-frame paired native timing is inconclusive and establishes no
+performance benefit.
+
+Writing trace absence in the failed staging artifact was caused by the existing
+Research-only retention selector, not by a budget assertion preceding gzip.
+The prepared selector also retains original mobile Writing Trace/DevtoolsLog
+bytes and their gzip SHA256/size records before later admission checks. Reviewed
+focused test coverage checks both selected routes, excludes desktop Writing and
+mobile Home, preserves the original 269ms metric and simulation flags, and still
+rejects Writing TBT `269 > 200`; the root reports that focused case passing.
+No measurement flag, selected case, validation assertion or budget was relaxed.
+
+The independently audited prior hosted run `37678648242` retains its actual
+`3beaad56` identity: functional and Color smoke pass, but mobile Writing TBT is
+269ms against 200ms. The prepared source-area reduction is a performance
+hypothesis; exact-source hosted performance and successful staging promotion
+remain pending. This reviewer edited only this review file and ran no new tests,
+browser campaign, scanner, generation or deployment.
+
+| Prepared review target | SHA256 |
+| --- | --- |
+| `site/engine/renderer.cjs` | `b25d954c3aa59ead2fc6281a43c5cb7a4d3d47292f0b4298a88b0ef6d69bc25c` |
+| `tests/renderer.test.cjs` | `5bcbc6c4c7c592af052fdd15ec614cd3e4860f860b791155d9b4312e97cd317e` |
+| `tools/quality/lighthouse.cjs` | `eefffe6d8c2d5880295bb8191a8ed8a79edabb868afd258ae42a0c8e3b1136ba` |
+| `tests/staging-regression.test.cjs` | `6c90437d687ce1f7c99e0e67c2a1eefa58081286777a32f9f9e1552ddd60cc75` |
+
+## Writing repair generated-checksum admission — independent review
+
+Against `3beaad56`, the independent maintained canonical generation, immutable
+snapshot, preview, offline-bundle and historical parity proof reproduced exactly
+180 new path/type/value admissions across 29 paths. Each uniquely matches the
+actual detect-secrets 1.5.0 raw report; all 1,272 earlier dispositions and
+top-level metadata are deep-equal, giving 1,452 total records. The historical
+baseline, scanner, proof helper and performance budgets are byte-identical to
+the parent. No wildcard, source/path exclusion or finding in the reviewed-policy
+file was introduced. This reviewer replaced only the 180 new pending reason
+fields with the completed issue45 review and appended this section.
+
+The supplied scan covers 763 tracked text files and 3,806 raw findings, SHA256
+`ce8170dd066edaeec2332353d2a29d509cd285c93dac28f0db3ff6c9e5e9deab`.
+All findings outside the two existing dynamic RI checksum paths are accounted
+for. RI context verification is stale after the policy append; it was not used
+to admit dynamic rows. The root must rebuild and verify final RI/coupling and
+reconcile a fresh pinned scan before final security/CI acceptance. This is a
+completed review of the 180 public checksums, not a final scanner, hosted
+performance or promotion pass.

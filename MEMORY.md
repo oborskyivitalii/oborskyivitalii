@@ -21,28 +21,26 @@ Dated continuity, not live authority. Last verified: **2026-10-07**.
   Corrected #43 at072a7b8 passed four minimal CI runs and merged at76f2a78.
   PR #44 is now merged at709c6d0. One bounded
   joint staging run and current exact deployment are tracked in the live issues.
-- #45 owns formula/heading clarity and ribbon continuity in PR46. At19:18
-  Europe/Warsaw the maintainer stopped merge after observing camera overshoot
-  in75860ffe preview; this suspends earlier merge/staging acceptance. PR46
-  temporarily closed/unmerged Draft blocks controller promotion. Stage37656606117
-  passed package/host/static, but browser cancelled, gate failed, promote skipped.
-  Two causes reproduced: reverse end landing guessed start pose; delayed source
-  scroll retargeted incoming route through old waypoints. At19:36 the maintainer
-  requests a new PR linked to45 and uniform reading backdrops. Live Git confirms
-  main709c6d0 still lacks46; successor branch
-  `work/issue45-camera-surfaces-20261007` preserves its unmerged work.
-  Canonical repair passes landing intent, guards DOM ownership and defers unknown
-  native landings to normal midpoint measurement. Twelve selected camera cases
-  and eight fresh cold/warm browser contexts cover actual reverse end landings.
-  `site/engine/reading-surfaces.css` owns all reading paint, including Appearance:
-  crisp edges and12px outer corners. Published675b389 passes required source CI,
-  hosted smoke and focused60-case/52-sample/eight-context browser evidence.
-  The maintainer now requests restoring prior transparency. Historical Color
-  default/title/mobile reading paper was87% opaque; retain that common alpha
-  for all backgrounds and keep text/control opacity1. Preserve the former
-  reduced-transparency100% override in the same owner. Continue in DraftPR47,
-  regenerate outputs and validate/publish its successor before review.
-  No renewed merge/stable promotion is authorized.
+- #45 owns the successor DraftPR47; PR46 is closed/unmerged. Main709c6d0
+  still lacks its formula/heading/ribbon work, retained on
+  `work/issue45-camera-surfaces-20261007`. Camera repair plans native reverse
+  end landings, rejects departing-DOM retargets and measures unknown landings
+  after destination mount. Historical675b389 passes60geometry/52opaque-surface
+  cases and96cold/warm flights; those reports retain that earlier source.
+  Published3beaad56/tree8c813250 restores87% shared background alpha while
+  retaining opaque ink, crisp four12px corners and same-owner reduced-
+  transparency100%. Its required source CI/preview pass; actual live QA covers
+  26desktop Day/Night paint samples, not a new52-sample/two-width motion report.
+  At21:37 Europe/Warsaw the maintainer authorizes main/stable staging, superseding
+  the earlier stop. Stage37676079833 timed out installing Ubuntu dependencies;
+  retry37678648242 passed installation, static/host/functional/Color/motion
+  but failed Writing mobile TBT269ms against the unchanged200ms budget.
+  No stable promotion or merge occurred. Necessary follow-up in the samePR:
+  reduce actual formula bitmap submission work without changing projection,
+  cache/clock, quality, camera, reading paint, cases or budgets. Validate a new
+  exact source through existing CI/staging, then merge its tested head.
+  All6AC boxes remain open for literal current-source visual/evidence gates;
+  complete-expression occlusion and production/native acceptance remain open.
   [Current handoff](review/issue-45/2026-10-07-handoff.md) retains exact evidence.
 - #36 places one tilted, pulsing formula in Writing's books/pages fractal,
   sharing its camera/clock and bounded cache. Rejected banner benchmarks are
@@ -77,7 +75,7 @@ Dated continuity, not live authority. Last verified: **2026-10-07**.
 
 | Issue | Remaining intent |
 | --- | --- |
-| #45 | New Draft PR: camera arrival repair, uniform reading paint and exact-source motion/style preview; merge/staging stopped. AC01 visibility remains open. |
+| #45 | PR47 main/staging authorized; reduce measured Writing TBT, pass exact-source staging, merge tested head. Whole-criterion evidence and AC01 visibility remain open. |
 | #36 / #41 | #43/#44 merged; joint staging and paired/visual/editorial acceptance. |
 | #1 / #13 | First-release, physical-device and full production/recovery acceptance. |
 | #8 / #39 | Production URL/indexability, domains and analytics activation. |

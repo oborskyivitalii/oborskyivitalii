@@ -44,14 +44,61 @@ test('line grouping stops at opacity changes, arrows and extension geometry',()=
   paintShapes(ctx,[line(.6),line(.61),{kind:'custom'},line(.61,true),line(.61)],{cyan:'#123456'},(ctx,shape)=>{if(shape.kind!=='custom')return false;ctx.commands.push('custom');return true;});
   assert.deepEqual(ctx.commands.filter(x=>x!=='begin'),['stroke','stroke','custom','stroke','stroke','stroke']);
 });
+function recordFormulaSubmissions(ctx,surface){
+  const submissions=[],states=[];let points=[],clip=[],matrix=[];
+  ctx.imageSmoothingEnabled=false;ctx.imageSmoothingQuality='low';
+  ctx.save=()=>states.push({globalAlpha:ctx.globalAlpha,imageSmoothingEnabled:ctx.imageSmoothingEnabled,imageSmoothingQuality:ctx.imageSmoothingQuality});
+  ctx.restore=()=>Object.assign(ctx,states.pop());
+  ctx.beginPath=()=>{points=[];ctx.commands.push('begin');};
+  ctx.moveTo=(x,y)=>points.push([x,y]);ctx.lineTo=(x,y)=>points.push([x,y]);
+  ctx.clip=()=>{clip=points.map(point=>point.slice());};
+  ctx.transform=(...values)=>{assert.ok(values.every(Number.isFinite));matrix=values;};
+  ctx.drawImage=(bitmap,...bounds)=>{
+    assert.equal(bitmap,surface);assert.equal(bounds.length,8,'bounded source and destination rectangles');assert.ok(bounds.every(Number.isFinite));
+    submissions.push({bounds,clip,matrix,alpha:ctx.globalAlpha,smoothing:ctx.imageSmoothingEnabled,quality:ctx.imageSmoothingQuality});ctx.commands.push('formula');
+  };
+  return submissions;
+}
+function formulaSourceTriangle(index,width,height){
+  const strip=Math.floor(index%8/2),left=strip*width/4,right=(strip+1)*width/4;
+  return index%2?[[left,0],[right,height],[left,height]]:[[left,0],[right,0],[right,height]];
+}
+function assertFormulaRectangles(submissions,surface,alpha){
+  assert.equal(submissions.length,24,'three layers keep both triangles of every strip');
+  for(const [index,row]of submissions.entries()){
+    assert.equal(row.alpha,alpha);assert.equal(row.smoothing,true);assert.equal(row.quality,'high');
+    const [left,top,width,height,...destination]=row.bounds;
+    assert.deepEqual(destination,[left,top,width,height],'cropping retains the original affine UV coordinates');
+    assert.ok(left>=0&&left+width<=surface.width&&width>0);assert.equal(top,0);assert.equal(height,surface.height);
+    const source=formulaSourceTriangle(index,surface.width,surface.height),[a,b,c,d,e,f]=row.matrix,det=a*d-b*c;
+    const inverseX=det===0?Infinity:Math.sqrt((d/det)**2+(c/det)**2),guard=Math.abs(det)<=1e-12?surface.width:Math.min(surface.width,Math.ceil(2*inverseX));
+    const first=Math.min(...source.map(point=>point[0])),last=Math.max(...source.map(point=>point[0]));
+    assert.ok(left<=Math.max(0,first-guard)+1e-8&&left+width>=Math.min(surface.width,last+guard)-1e-8,'source rectangle covers its triangle and the two-pixel inverse-affine guard');
+    for(const [vertex,[x,y]]of source.entries()){
+      const actual=[a*x+c*y+e,b*x+d*y+f];
+      assert.ok(Math.hypot(actual[0]-row.clip[vertex][0],actual[1]-row.clip[vertex][1])<1e-8,'the recorded clip and matrix preserve each source vertex');
+    }
+  }
+}
+function assertFormulaWorldClips(submissions,api,anchor,pose,width,height,time){
+  for(const [index,row]of submissions.entries()){
+    const layer=Math.floor(index/8),extrusion=[-anchor.extrusion,-anchor.extrusion/2,0][layer];
+    for(const [vertex,[x,y]]of formulaSourceTriangle(index,1380,240).entries()){
+      const expected=api.projectFormulaPoint(anchor,pose,width,height,time,x/1380,y/240,extrusion);
+      assert.ok(Math.hypot(expected[0]-row.clip[vertex][0],expected[1]-row.clip[vertex][1])<1e-8,'bounded draws keep the independently projected world-plane clips');
+    }
+  }
+  assert.ok(submissions.reduce((sum,row)=>sum+row.bounds[2]*row.bounds[3],0)<24*1380*240*.5,'ordinary views submit less than half the former source area');
+}
+function affineFormula(a,b,c,d){
+  const layer=[[0,0,1],[a*1380,-b*1380,1],[a*1380+c*240,-b*1380-d*240,1],[c*240,-d*240,1]];
+  return {kind:'formula',alpha:.8,cameraLayers:[layer,layer,layer],focal:1,origin:[0,0]};
+}
 test('one fixed formula cache preserves scene order and is reused across room visits and viewport sizes',()=>{
   const asset=require('../tools/site/scene-assets.cjs').load(require('node:path').resolve(__dirname,'..'));
   let constructions=0,gradients=0;const target=recorder();target.bezierCurveTo=()=>{};target.createLinearGradient=()=>{gradients++;return {addColorStop(){}};};
   const surface={getContext:()=>target},renderer=require('../site/engine/renderer.cjs')(asset,()=>{constructions++;return surface;}),ctx=recorder();
-  const submissions=[],states=[];ctx.imageSmoothingEnabled=false;ctx.imageSmoothingQuality='low';
-  ctx.save=()=>states.push({globalAlpha:ctx.globalAlpha,imageSmoothingEnabled:ctx.imageSmoothingEnabled,imageSmoothingQuality:ctx.imageSmoothingQuality});
-  ctx.restore=()=>Object.assign(ctx,states.pop());ctx.clip=()=>{};ctx.transform=(...matrix)=>assert.ok(matrix.every(Number.isFinite));
-  ctx.drawImage=(bitmap,...bounds)=>{assert.equal(bitmap,surface);assert.ok(bounds.every(Number.isFinite));submissions.push({alpha:ctx.globalAlpha,smoothing:ctx.imageSmoothingEnabled,quality:ctx.imageSmoothingQuality});ctx.commands.push('formula');};
+  const submissions=recordFormulaSubmissions(ctx,surface);
   const line={kind:'line',points:[[0,0],[10,10]],color:'cyan',alpha:.5,lineWidth:1};
   const builder=require('../tools/site/build.cjs'),root=require('node:path').resolve(__dirname,'..'),api=builder.model(root,builder.configuration(root).definitions),anchor=api.worldFor('writing').formulas[0];
   const formula=api.projectedFormula(anchor,api.poses.library,390,844,7317);
@@ -61,18 +108,26 @@ test('one fixed formula cache preserves scene order and is reused across room vi
   assert.equal(renderer.formulaDrawn(),true,'bitmap ownership persists until another successful paint');
   assert.deepEqual(ctx.commands.filter(c=>c!=='begin'),['stroke',...Array(24).fill('formula'),'stroke'],'one extruded perspective landmark paints at its sorted depth without moving other commands');
   assert.equal(renderer.formulaDiagnostics().lastDrawSubmissions,24);
+  assertFormulaRectangles(submissions,surface,formula.alpha);assertFormulaWorldClips(submissions,api,anchor,api.poses.library,390,844,7317);
   assert.ok(submissions.every(paint=>paint.alpha===formula.alpha&&paint.smoothing===true&&paint.quality==='high'),'all world layers retain a definite glyph edge without additional translucent ghosts');
   assert.equal(ctx.imageSmoothingEnabled,false);assert.equal(ctx.imageSmoothingQuality,'low','formula sampling state does not leak to other scene commands');
   assert.deepEqual(renderer.formulaDiagnostics().projection,formula.projection);
   assert.equal(target.commands.filter(c=>c==='stroke').length,15,'each approved glyph is rasterized exactly once');
   for(let visit=0;visit<40;visit++){
-    renderer.paintShapes(ctx,[api.projectedFormula(anchor,api.poses.library,visit%2?1440:390,900,visit*293)],{});
+    const width=[320,390,768,1440][visit%4],pose=Math.floor(visit/4)%2?api.poses.library:api.journeyPose(api.topicPaths.all,.08),time=[0,3000,7317,12000,23999][Math.floor(visit/8)];
+    const projected=api.projectedFormula(anchor,pose,width,900,time);renderer.paintShapes(ctx,[projected],{});
+    const submitted=submissions.slice(-24);assertFormulaRectangles(submitted,surface,projected.alpha);assertFormulaWorldClips(submitted,api,anchor,pose,width,900,time);
     assert.equal(renderer.formulaDiagnostics().lastPaintCount,1);
     renderer.paintShapes(ctx,[line],{cyan:'#123456'});assert.equal(renderer.formulaDiagnostics().lastPaintCount,0);assert.equal(renderer.formulaDrawn(),false,'an empty room paint carries no formula landmark');
   }
   const diagnostic=renderer.formulaDiagnostics();assert.equal(diagnostic.status,'ready');assert.equal(diagnostic.paintCount,41);assert.equal(diagnostic.visibleCount,0);
   assert.equal(constructions,1);assert.equal(gradients,1);assert.equal(diagnostic.cacheBuilds,1);assert.equal(diagnostic.drawSubmissions,41*24);assert.equal(diagnostic.bytes,1380*240*4);assert.equal(diagnostic.failures,0);
   assert.equal(target.commands.filter(c=>c==='stroke').length,15,'resize/theme/route reuse adds no path construction');
+  for(const formula of [affineFormula(.1,.01,1,.2),affineFormula(1e-9,0,0,1e-9),affineFormula(0,0,0,0)]){
+    renderer.paintShapes(ctx,[formula],{});assertFormulaRectangles(submissions.slice(-24),surface,formula.alpha);
+  }
+  assert.ok(submissions.slice(-48).every(row=>row.bounds[0]===0&&row.bounds[2]===1380),'extreme minification and singular transforms retain finite full-source rectangles');
+  assert.equal(constructions,1);assert.equal(gradients,1);assert.equal(renderer.formulaDiagnostics().drawSubmissions,44*24,'guard fallbacks add no cache or extra submission');
 });
 test('formula raster failure is bounded once and preserves other scene commands',()=>{
   const asset=require('../tools/site/scene-assets.cjs').load(require('node:path').resolve(__dirname,'..'));

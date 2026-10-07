@@ -812,7 +812,7 @@
     {
       "path": "tests/renderer.test.cjs",
       "language": "javascript",
-      "purpose": "Current renderer exact palettes, draw-state batching, insignificant pruning, culling/brain normals and Object.hasOwn fallback",
+      "purpose": "Current renderer exact palettes, draw-state batching, bounded formula source sampling with preserved projection/cache, insignificant pruning, culling/brain normals and Object.hasOwn fallback",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": [
@@ -1003,7 +1003,7 @@
     {
       "path": "tests/staging-regression.test.cjs",
       "language": "javascript",
-      "purpose": "Exact bounded staging browser/performance selections, registry coupling, raw motion/failure evidence and original metric budgets.",
+      "purpose": "Exact bounded staging browser/performance selections, registry coupling, retained original mobile Writing/Research traces, raw motion/failure evidence and original metric budgets.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": [

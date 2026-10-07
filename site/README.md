@@ -90,7 +90,13 @@ The Writing room has one original outlined paradigm landmark, sourced only from
 it during generation. Renderer uses one fixed1380×240 raster cache and one native
 sorted world-plane command with mild tilt, looped pulse and three shallow
 extrusion layers. At most24 perspective triangle submissions use the same cache, with native
-high-quality image sampling for minified glyphs. All three layers use the same
+high-quality image sampling for minified glyphs. Each triangle submits a bounded
+source rectangle, retaining exact affine coordinates and
+triangle clips. An inverse-affine guard covers two CSS pixels of neighboring
+source data; singular/extreme minification uses the complete bitmap. This changes
+neither the world geometry nor the24submission/cache bound. Actual browser
+visual/performance admission remains separate from source-area reduction.
+All three layers use the same
 world-haze opacity; extra translucent rear copies are omitted to avoid pale
 ghost edges. The landmark uses 0.10 world-unit extrusion, keeping its projected
 rear-to-front separation below half the nominal glyph stroke at representative
