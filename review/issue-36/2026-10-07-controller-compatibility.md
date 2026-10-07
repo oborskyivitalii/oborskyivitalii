@@ -1,5 +1,20 @@
 # Issue 36 — 7 October 2026 controller compatibility
 
+## Merged controller outcome — 7 October 2026
+
+The maintainer merged adapted #44 at
+`709c6d0dadb4371d7dde43fb650f948039d8cf7c`, identical tree to checked d4999fc.
+Incompatible-main statements below are historical phases. Protected main now
+includes four-media production and finite legacy three-media consumption. The
+actual retained recovery bytes verified at checked head have the same consumer
+implementation on merged main.
+
+Clean merged-source joint acceptance passes 24/24. PR Basic/navigation/acceptance/
+preview evidence stays bound to checked d4999fc and equal merge tree; no new
+stable promotion, paired or production acceptance follows from this observation.
+The [same handoff](2026-10-07-handoff.md#post-44-acceptance-audit--7-october-2026)
+and live #36/#41 anchors retain pending feature gates.
+
 Owning issue: [#36](https://github.com/oborskyivitalii/oborskyivitalii/issues/36).
 Joint candidate: [PR #43](https://github.com/oborskyivitalii/oborskyivitalii/pull/43),
 source `c927c70fb9c681787dafe3e77791679158cf4c28`, tree
