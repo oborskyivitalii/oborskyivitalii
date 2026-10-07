@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "738c23dd76f0a326cf771ca144468a8953f12313b215f03afd7bef9a6bbdbb89",
+    "digest": "a4dee7794ada9df72afde03eef7be3385e23c34aac2208ea4792a968e29e2888",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -62,7 +62,12 @@
       {
         "path": ".github/acceptance/issue-36.json",
         "identity_mode": "content",
-        "sha256": "ddf0578ac91f1c74d8d243d991a7fccd13f9bdd3a0ac0d379f07e650e35a1b80"
+        "sha256": "dcbb103111ebfca2bd931583968c869605b8c9fe188a81a6b901b83278f0625c"
+      },
+      {
+        "path": ".github/acceptance/issue-41.json",
+        "identity_mode": "content",
+        "sha256": "3fe37dfcc9e7d4c0f503698e8ba91491216621073347c6ab8cb1b25302a0c44a"
       },
       {
         "path": ".github/pull_request_template.md",
@@ -86,12 +91,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "e5d9fee2917bf55095aa96402fc94ffb45735b3904e74f8f47d2244d46074eda"
+        "sha256": "24c0a9e0df0559a32d648a4f23d9e0d6a208e322fc24c825a03ea646f58b72cc"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "d7fa530258aba28d5c78a8be21213fb85380e19e14777f01e1425cb32dd40255"
+        "sha256": "ed7ca130fc7cb1841464e632910c2ccd78a60bb4c427e1cee4d741e3c860a70d"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -186,7 +191,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "c43b61193f930cde5c1dd95091ce623e7296d11345270463728cce2ee5b1c60e"
+        "sha256": "50df6eed295ea02f4ba95727aac4a3ddf0589b18c1990ab7de3c594ccc6b399d"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -210,7 +215,7 @@
       {
         "path": "docs/archive.js",
         "identity_mode": "content",
-        "sha256": "7f4574761ea6967c0e5282bc26af4342d13b0334ae6a593a9ef9a51cf5efe1a9"
+        "sha256": "fd1d7dbbf378073d673f9d498da8a1b93153472cf045ac632e3384b2c3ca3a0b"
       },
       {
         "path": "docs/assets/favicon.svg",
@@ -235,12 +240,12 @@
       {
         "path": "docs/credits.html",
         "identity_mode": "content",
-        "sha256": "827208e5d24eca127c07265d643ded6129c85ef7dd15582b068364e781de951f"
+        "sha256": "ce70d1211d2328c9e3735a0baa3e19fde1a5327ff88fea366f1d6441a04e06be"
       },
       {
         "path": "docs/index.html",
         "identity_mode": "content",
-        "sha256": "5672cee091ce2aa2db015ec5adb155c3e9b55dff27b873398c3132f0cbcb4b41"
+        "sha256": "c5ea7832b96a924a3ca8d9e78c8a1b3a002bd1040235748b25c73a59161a0724"
       },
       {
         "path": "docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/favicon.svg",
@@ -270,62 +275,62 @@
       {
         "path": "docs/research.html",
         "identity_mode": "content",
-        "sha256": "897f3106ec020c269918f428199589747daa712282d344ae7c18290bd8a4571f"
+        "sha256": "aef2d9c65ab245b653f22e6b49eacc93678903fcc83c0d737713a17a6e43d8dd"
       },
       {
-        "path": "docs/runtime/c306e11ea2c1a67d94acc397d72ee7a4b352e79966896ad3b58a5d2e5505d75b/archive.js",
+        "path": "docs/runtime/bfc6bf5864d8d66d335398e7f89ccf45bd3bd00a68516f73c6c2f28d8379fb55/archive.js",
         "identity_mode": "content",
-        "sha256": "7f4574761ea6967c0e5282bc26af4342d13b0334ae6a593a9ef9a51cf5efe1a9"
+        "sha256": "fd1d7dbbf378073d673f9d498da8a1b93153472cf045ac632e3384b2c3ca3a0b"
       },
       {
-        "path": "docs/runtime/c306e11ea2c1a67d94acc397d72ee7a4b352e79966896ad3b58a5d2e5505d75b/navigation.js",
+        "path": "docs/runtime/bfc6bf5864d8d66d335398e7f89ccf45bd3bd00a68516f73c6c2f28d8379fb55/navigation.js",
         "identity_mode": "content",
         "sha256": "c0c3b3457edb83f5a960a98f36c8a363de8799188bb982bdbce50ba384791221"
       },
       {
-        "path": "docs/runtime/c306e11ea2c1a67d94acc397d72ee7a4b352e79966896ad3b58a5d2e5505d75b/space.js",
+        "path": "docs/runtime/bfc6bf5864d8d66d335398e7f89ccf45bd3bd00a68516f73c6c2f28d8379fb55/space.js",
         "identity_mode": "content",
         "sha256": "f20728f7073066643681b982535df67ec6ba520f38c6982e7710197c5d8c7ce8"
       },
       {
-        "path": "docs/runtime/c306e11ea2c1a67d94acc397d72ee7a4b352e79966896ad3b58a5d2e5505d75b/styles.css",
+        "path": "docs/runtime/bfc6bf5864d8d66d335398e7f89ccf45bd3bd00a68516f73c6c2f28d8379fb55/styles.css",
         "identity_mode": "content",
-        "sha256": "8ae07837e92cfb9f13fba1b71b8bde3668e14cc54b32906df60e4a5df128e739"
+        "sha256": "5ad521e5ec21083eb7ceeb15e482c0896db8f3338ecc836fbd897e8249f7f498"
       },
       {
-        "path": "docs/runtime/c306e11ea2c1a67d94acc397d72ee7a4b352e79966896ad3b58a5d2e5505d75b/theme.js",
+        "path": "docs/runtime/bfc6bf5864d8d66d335398e7f89ccf45bd3bd00a68516f73c6c2f28d8379fb55/theme.js",
         "identity_mode": "content",
         "sha256": "d11f679af05442e8b01024e9a5fe3ba9aff73554f11bd8f3ff692d14f830f8fb"
       },
       {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "4ca33ecc918f2429104a7a1280fbe6a4b711a66eb717cf39a6473bebf48020b9"
+        "sha256": "187a495c4fe0ae7c79624984a6f7a56060c48785a5a223a0811f5ca2639d7ef3"
       },
       {
-        "path": "docs/snapshots/16fe4be1f6f8dae4fd4c4bccac81f6f0e50ee0e9ef3f47f54b43f77eb6cf2031/research.html",
+        "path": "docs/snapshots/42c67754f139b1809fce7750a2e9f7b36375b3a6791dd7c471be9ab281689915/research.html",
         "identity_mode": "content",
-        "sha256": "e34e597186c2908d3e6c41aae20493e84c9b7267259dca6486a361b175acd848"
+        "sha256": "b11f6c9a66a124af5923b4e8f652b6cffd3dc2aea0839cd1e22be418b1d8c3d5"
       },
       {
-        "path": "docs/snapshots/7a1bf7f02f032af627618b741590a4fdc793d3b98b372658e7399c7993aafd97/credits.html",
+        "path": "docs/snapshots/6d9935cdf1fe5256721f27f09040c7a126089140f3e7bbb1191601fe911827c0/index.html",
         "identity_mode": "content",
-        "sha256": "119179cb91d565db1349439555a73fc504c44fdd4575ee7a74e26aa9a4c6dca7"
+        "sha256": "548f8ff9be53c9694230744a25fab4d68d5c2ea9939d71fca4394cd8ee610ca0"
       },
       {
-        "path": "docs/snapshots/b683f741123ddf50e4396772174bc314faa72de3d4d986b2d89338bdb87eda5a/talks.html",
+        "path": "docs/snapshots/8151f4bd49e9c2b713d6be38cfd5b0a1cd3cefc9b39eeba3192ced7941669465/talks.html",
         "identity_mode": "content",
-        "sha256": "41f24b9e1c5a042cc695eef0df513cd3f3293dfab1a7ed6c563d49d302d897ed"
+        "sha256": "e09b57376721a73f20e67dde60193134f78b890e36e491ee7dceec6c4bfd43c8"
       },
       {
-        "path": "docs/snapshots/e189907131fb3e47413d2b3bfceb476794d3d97cf8f6b2619e9ba19f02421dd3/writing.html",
+        "path": "docs/snapshots/c9e062cece69c151fa2e7a9956ce2c47366309250b9263dedc550f789e255403/writing.html",
         "identity_mode": "content",
-        "sha256": "e81a0e53a03dd879c5dbda0cffeec343e2433a4dc861074e3a1b9115c8f6fb83"
+        "sha256": "fd9ad6db3e31e96911fa5f1f0fcf6cb311dc47f1518bfc9d17e1561ef29e0a2f"
       },
       {
-        "path": "docs/snapshots/ff615ef695930d2a29a1485c787f36e4bae90624956dce8578f7ee266dcb96d3/index.html",
+        "path": "docs/snapshots/e4b13a63668e27303ccb52cbc3cd4d6a435637adf2edf46a2ae25ad7cd419c20/credits.html",
         "identity_mode": "content",
-        "sha256": "423e95e7d95bc866b026c3faa6e09b1ff8aff339363166d7da38af417f1ea3ef"
+        "sha256": "8111b8b229e49818c577300cddfc0cf4da7a1e241522d0be29bc4005f5a17e18"
       },
       {
         "path": "docs/space.js",
@@ -335,12 +340,12 @@
       {
         "path": "docs/styles.css",
         "identity_mode": "content",
-        "sha256": "8ae07837e92cfb9f13fba1b71b8bde3668e14cc54b32906df60e4a5df128e739"
+        "sha256": "5ad521e5ec21083eb7ceeb15e482c0896db8f3338ecc836fbd897e8249f7f498"
       },
       {
         "path": "docs/talks.html",
         "identity_mode": "content",
-        "sha256": "a6cc0375462ad984ab596b0f88d9cdc14f69c3659867cfd46d05c23149d16e30"
+        "sha256": "d69c6127a351ac3dfcca5bd29045dc1c5fe5e781117d2a0f911c6f6904f7796a"
       },
       {
         "path": "docs/theme.js",
@@ -350,7 +355,7 @@
       {
         "path": "docs/writing.html",
         "identity_mode": "content",
-        "sha256": "70b73c8b21151efca1499d82edc9393c9ae9f8c266db9704dd84e82715d9a06c"
+        "sha256": "7a5c218488c7b9f5bcd0b51d4661c5522038ed73e378bb25ba6b112bfce6483d"
       },
       {
         "path": "drafts/medium-profile-revision-20261001.html",
@@ -380,7 +385,7 @@
       {
         "path": "guides/SITE-CONTENT-REVIEW.md",
         "identity_mode": "content",
-        "sha256": "6dca40708a86d890172267adebcd9380ac6ab979706f79ce62aca1abca271fad"
+        "sha256": "20d658138ec1a33112704a723ab6748b3f43e2f46b91ec6766a4149b2aaec5d5"
       },
       {
         "path": "guides/SITE-RELEASE-GATES.md",
@@ -395,12 +400,12 @@
       {
         "path": "guides/SITE-SEO.md",
         "identity_mode": "content",
-        "sha256": "0cf2ddbb7d7ec8b6140edece316589510fb8cd8cb93da5c215daf48c7cb2f2b5"
+        "sha256": "0fdae538c48f47f0707e5d78267b2c0f7a3bd846423ea2fb6c582ba0026254fd"
       },
       {
         "path": "guides/SITE-SOURCE-AUDIT.md",
         "identity_mode": "content",
-        "sha256": "888d23774429faebfdb8909e9830ef1b6ebbb657a1b53d45ac0ca0868f62fb35"
+        "sha256": "0b11e31a206a73d7f8508b8229bb0e3b417d8ef3b40544cc1c361573226ed0d4"
       },
       {
         "path": "guides/SITE-STAGING.md",
@@ -540,12 +545,27 @@
       {
         "path": "review/issue-36/2026-10-07-handoff.md",
         "identity_mode": "content",
-        "sha256": "8be2b4f5188f5de1778a166490cb04ad479420491dfee80be7232556016b2698"
+        "sha256": "39391cf6b20cb4b782c9f4d9acc384238fc04b78bd328335b68f4e91c6339d72"
       },
       {
         "path": "review/issue-36/preview.png",
         "identity_mode": "content",
         "sha256": "0d6151e66a8333d84de7b0abce55b59d0dce8247452a56a674c49a4d20edd585"
+      },
+      {
+        "path": "review/issue-41/2026-10-07-analysis.md",
+        "identity_mode": "content",
+        "sha256": "51d6dc88d2b3d387ce159656d31c26a46a7ae61013ccd0334ffff7ca4099649e"
+      },
+      {
+        "path": "review/issue-41/content-amendment.json",
+        "identity_mode": "content",
+        "sha256": "e73b0b0e754d238b5e42046ab6c11997ba0ecf5a059318cb2a6cd683f4742b7a"
+      },
+      {
+        "path": "review/issue-41/source-inventory.json",
+        "identity_mode": "content",
+        "sha256": "e57d89853f7fcc70b1a5bb4c131455f662587fc75b6a9f70f4b09a539583cb66"
       },
       {
         "path": "review/public-responses-20261006/README.md",
@@ -3490,22 +3510,22 @@
       {
         "path": "review/site-v1-20261004-v11-credits-day.html",
         "identity_mode": "content",
-        "sha256": "e831f3540651a87b55eea97441a9e2acbeca7319b5c2b5d43cedc8a473deae7b"
+        "sha256": "e586a5af5ce412d418c9bff0314766fdbd1af400f0a868e56f55b2170d0531c5"
       },
       {
         "path": "review/site-v1-20261004-v11-credits-interactive.html",
         "identity_mode": "content",
-        "sha256": "8f1a02e2716b3c84c145e39fec80cc381b8fe4b9f5fe9f79aec7deb695770d84"
+        "sha256": "bbf3228ef6013479451c83345e5868952f394ba92845935db3a2e0997495b3c5"
       },
       {
         "path": "review/site-v1-20261004-v11-credits-night.html",
         "identity_mode": "content",
-        "sha256": "6a9a4507a8881ecc929b0d5ca16ab661ef92aa35805f3a1db4ff22939a5a3818"
+        "sha256": "503ba549c18a512f459e4e77ce1b965fd14595a9e6fce7280d1df697081473cf"
       },
       {
         "path": "review/site-v1-20261004-v11-day.html",
         "identity_mode": "content",
-        "sha256": "8bb85367356b9c6d87becc28a809a16f88fb65f057a4546362a074473e08835e"
+        "sha256": "6f785d446437652e97b165fb34d9698873c75c6ed9886cf1b0e59e9238a697a5"
       },
       {
         "path": "review/site-v1-20261004-v11-index.html",
@@ -3515,57 +3535,57 @@
       {
         "path": "review/site-v1-20261004-v11-interactive.html",
         "identity_mode": "content",
-        "sha256": "0c138c041cef2f45040bc391706f90ea8fc0e0d4d237b4e800ca5e37fe46eb9d"
+        "sha256": "7c6b672b24bfb30fb68be0eb1c35da231a4f0c4bffaf384d26c82036de172493"
       },
       {
         "path": "review/site-v1-20261004-v11-night.html",
         "identity_mode": "content",
-        "sha256": "d6746782f90d20f89f27e1b4f6fee1be3750d26c893f8c35fa9e45e93c366366"
+        "sha256": "f5f9921a41f83deeb63d0582e84f9dfe556fc6c92c30c14feeded5c75e9fe06e"
       },
       {
         "path": "review/site-v1-20261004-v11-research-day.html",
         "identity_mode": "content",
-        "sha256": "7061ba03713792fa99e1c9a12b9c03a45762e3c05aa7fb095be6e3710ba34d7a"
+        "sha256": "af2f9d0dbb98701aefc0581722a9c5e42963ea3795ee3b6303b3c0ca4f566dd0"
       },
       {
         "path": "review/site-v1-20261004-v11-research-interactive.html",
         "identity_mode": "content",
-        "sha256": "d3a550b0f6a9ee60ea56b79861793cab1760f0571d2472cb411c83c85c58351c"
+        "sha256": "78c651f42529550ac2a65fe4995df6d235dbab8de917bfda719c974ef70d793c"
       },
       {
         "path": "review/site-v1-20261004-v11-research-night.html",
         "identity_mode": "content",
-        "sha256": "0661d87e664d88cfed9faa4057389c92704d818c838431cd9595fc002127f570"
+        "sha256": "8ba1b27889ab1a9ceffad9e0602f908f51aec08290f67e82fc78560e76006d33"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-day.html",
         "identity_mode": "content",
-        "sha256": "d3333ef5f34edb0e90995d4619f77c710b0d5e136c80c8f53b5c0651bf6a5de0"
+        "sha256": "acb0050956d4804245e3c7b3fa7b743730120f9b3493e2341662a0297344ecb2"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-interactive.html",
         "identity_mode": "content",
-        "sha256": "074b4e3f65269edfecc1d9c079fdd5abfaabd33d7edf2b6752134138a00171c4"
+        "sha256": "854bb16e906429ee81252afb8ccdc37be63dd919649f44d5e085130b81816d87"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-night.html",
         "identity_mode": "content",
-        "sha256": "ed528c73476a73d92d3f8d549801f95ba25dcd050da02f570647363e4cb79741"
+        "sha256": "a70d6b0caa9ac66292b9ca13bdb6a53cf76cde22ac97e288dd0ce88022f5ddab"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-day.html",
         "identity_mode": "content",
-        "sha256": "08c90f7196c798e40302863b6fa3b82f775fa9858bb4f3cf3c9d106c27a5c4e3"
+        "sha256": "6d9ee59886f17b7d80748e75b7cdcfd176d6f0943ac002ce5cca15b6d487b184"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-interactive.html",
         "identity_mode": "content",
-        "sha256": "d23994066fe529b6bd83a6029fc47c5c3854f210fd608f03e89d6b4c8353e6de"
+        "sha256": "b73cd0ef22dbb0f43d6f31322c1331cba2d625716e1a25a064b50f0388a84583"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-night.html",
         "identity_mode": "content",
-        "sha256": "7a74cb96a6e50ad1fed0d8d0978ec658a32b170207330bf7edd4332ea232e0b4"
+        "sha256": "7bf72f740d96c73f70ee2e82519a4e367c68e43573ded0abdca0c31a29e5168d"
       },
       {
         "path": "review/site-v1-offline-bundle-v10.json",
@@ -3575,7 +3595,7 @@
       {
         "path": "review/site-v1-offline-bundle-v11.json",
         "identity_mode": "content",
-        "sha256": "bf2790c18aa060de2dd78e8afacc3582ed8ff775513f15aca959950d91d32503"
+        "sha256": "48a5a159a83e21a0db7d7a24a87d8cd427f5b8ec34aed109fbfcc9c1d5e97124"
       },
       {
         "path": "review/site-v1-offline-bundle-v3.json",
@@ -3630,7 +3650,7 @@
       {
         "path": "review/site-v1-static-previews-v11.json",
         "identity_mode": "content",
-        "sha256": "e43ba650696de6f89ff8bf86695d4ad2aafaf9ebb63de24aed27da48f195a366"
+        "sha256": "cc4852b28fb04f42697a207546d6b8aba069c08ed133962abbffc0db0d4d475e"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -4130,7 +4150,7 @@
       {
         "path": "site/README.md",
         "identity_mode": "content",
-        "sha256": "b960796342da87302159a1dbc94e8b6963f404959754b29eff1e7ee12400398b"
+        "sha256": "e1c8cadf84be802a00279879469dbe6f79a46893b36cb3607326d06444b4d689"
       },
       {
         "path": "site/analytics.json",
@@ -4165,12 +4185,12 @@
       {
         "path": "site/content/catalog.json",
         "identity_mode": "content",
-        "sha256": "bd9dbdbc4c9631b531fd0f16ca6126a6e211480d9c017050c1465d576fb8f836"
+        "sha256": "8901b5b704369bd6703b70446d6ce0a17a5a5d8f76fd534c33e9fb82f06524d6"
       },
       {
         "path": "site/content/pages/credits/main.html",
         "identity_mode": "content",
-        "sha256": "0bf5ccbc1c334ac0c1e56d1fea9bf1cc6991bb0b1c0fd6b1eafa166469640a7f"
+        "sha256": "f7a95b8fb070e17723c170e49b21b0c97c89eaa1843bcbe8ba70883c0c361255"
       },
       {
         "path": "site/content/pages/credits/metadata.json",
@@ -4185,7 +4205,7 @@
       {
         "path": "site/content/pages/index/acknowledgements.html",
         "identity_mode": "content",
-        "sha256": "4df32e8f04b7f133dc875b2a6fac053b29c63617e616c45a66069b187da6afcf"
+        "sha256": "f402d78cee499623e869443beba1cd54a82f93b7469f360868f52f1f4daae910"
       },
       {
         "path": "site/content/pages/index/contact.html",
@@ -4215,7 +4235,7 @@
       {
         "path": "site/content/pages/index/research.html",
         "identity_mode": "content",
-        "sha256": "81729f24c68d7856af461fbf7e41c7614ea412396cd29b6ec607d9a0e948d456"
+        "sha256": "0c06a445b68721f3d4ae9df62efe23142d1e647a82fc94eeb864600f11cb8c8c"
       },
       {
         "path": "site/content/pages/index/writing.html",
@@ -4225,7 +4245,7 @@
       {
         "path": "site/content/pages/research/acknowledgements.html",
         "identity_mode": "content",
-        "sha256": "84a3c9cddb92a1db2cad3323b9379ea5932dc74a14d7f3e1121d682c119b7290"
+        "sha256": "dcffd4aaadec49e0d5eba97a8c538b42b24d881278127ebe909df98eea46be16"
       },
       {
         "path": "site/content/pages/research/intro.html",
@@ -4235,12 +4255,12 @@
       {
         "path": "site/content/pages/research/lenses.html",
         "identity_mode": "content",
-        "sha256": "31baa257e6e37b2abfbdb6e50b0fddadb661dd057806b432c2edf4d0ce90b859"
+        "sha256": "0c855ab23bc1a388f8bd98194615454808c231a45167f1766a57b00ca0a26706"
       },
       {
         "path": "site/content/pages/research/main.html",
         "identity_mode": "content",
-        "sha256": "5231d53f2a159d162bf701546747986ac71841ab106abf75dd18e002a5caddda"
+        "sha256": "2cff9ce0a2f10118fde4b82d5e6e0674b38907aea9ab4c9c361f9b0d0e029ce1"
       },
       {
         "path": "site/content/pages/research/metadata.json",
@@ -4255,7 +4275,7 @@
       {
         "path": "site/content/pages/research/topics.html",
         "identity_mode": "content",
-        "sha256": "a622a8a5a11b88bd9c8083bb64577432aa8be162c8345247932863ad440830e2"
+        "sha256": "5c1953439107ce3e76c14b7e57ecdcd38ac16cee7f72e9317768ed2f7b700ad4"
       },
       {
         "path": "site/content/pages/talks/intro.html",
@@ -4280,22 +4300,22 @@
       {
         "path": "site/content/pages/writing/main.html",
         "identity_mode": "content",
-        "sha256": "abf59ec5e24b929a69446e2346b616f63f4cf5fc5016d4390ae106b8d7385052"
+        "sha256": "9f36d210f205c0bc18f3bd303fb5b823468f21f6ce20e0e28111eb2dca846b7f"
       },
       {
         "path": "site/content/pages/writing/metadata.json",
         "identity_mode": "content",
-        "sha256": "1421c8bdfe4cabaee10ec42dbc04f63a05146f74d14e25fd7a56e32289a43b23"
+        "sha256": "de1cb08ad5acd26d8654b0d3a7279bf6475709e20f1a9d296ba1a02f56c36804"
       },
       {
         "path": "site/content/pages/writing/results-year-2025.html",
         "identity_mode": "content",
-        "sha256": "80cd319515bd0772667de5fe7cf11189192b8d7b866a48a17bdee09ea8490c82"
+        "sha256": "1fca815213fc8772b73832159059cbd427c72898c4b70ddf74e42976ec479334"
       },
       {
         "path": "site/content/pages/writing/results-year-2026.html",
         "identity_mode": "content",
-        "sha256": "05f4a8b4d06da37e9e05ec968b6b616e0af8ac4ddbe5b0f7506ce64bac52388e"
+        "sha256": "4cb1714936dd0b1133e0584d8170cebcc1193506fa5a39c5695b543e0b613d3e"
       },
       {
         "path": "site/content/pages/writing/section-1.html",
@@ -4305,7 +4325,7 @@
       {
         "path": "site/engine/archive.js",
         "identity_mode": "content",
-        "sha256": "7f4574761ea6967c0e5282bc26af4342d13b0334ae6a593a9ef9a51cf5efe1a9"
+        "sha256": "fd1d7dbbf378073d673f9d498da8a1b93153472cf045ac632e3384b2c3ca3a0b"
       },
       {
         "path": "site/engine/lifecycle.cjs",
@@ -4335,7 +4355,7 @@
       {
         "path": "site/engine/styles.css",
         "identity_mode": "content",
-        "sha256": "8ae07837e92cfb9f13fba1b71b8bde3668e14cc54b32906df60e4a5df128e739"
+        "sha256": "5ad521e5ec21083eb7ceeb15e482c0896db8f3338ecc836fbd897e8249f7f498"
       },
       {
         "path": "site/engine/theme.js",
@@ -4350,7 +4370,7 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "c9aa15538ef88d668852a9ff073ef713b08e0063cf4b8ad5cc8229c6aa549b0b"
+        "sha256": "9d757e71c2b0d8f48c1e504bc45aa6fec2074faa96e15ff1e8adb14db4b97801"
       },
       {
         "path": "site/routes.json",
@@ -4395,7 +4415,7 @@
       {
         "path": "tests/archive.test.cjs",
         "identity_mode": "content",
-        "sha256": "31c924a2bea27c4ac79df16544aab6e4b86dac87d867c79ac2333fb1bdffc34a"
+        "sha256": "1ec627a41522e946c4e6d41e2db4f2e02c9b4126fda4c1beeee116aeb3e890bb"
       },
       {
         "path": "tests/browser-gate-diagnostics.test.cjs",
@@ -4435,7 +4455,7 @@
       {
         "path": "tests/content.test.cjs",
         "identity_mode": "content",
-        "sha256": "b87c613c1be537da790c425ae0186a385d3eeacc2b019d33c23440b3936d5ff2"
+        "sha256": "32405fdb47890aaeeb719bc119ef19deceed8e80d21990135ecee851dfc66e83"
       },
       {
         "path": "tests/endpoint-fixtures.test.cjs",
@@ -4450,7 +4470,7 @@
       {
         "path": "tests/executive.test.cjs",
         "identity_mode": "content",
-        "sha256": "c00b6fd122d4602b5a8847c924035499922db9b279909be308474a0b9115b239"
+        "sha256": "9b4655c6355c4343c12e30c8f34da3cebbc283223c8450342f032265550ed0dc"
       },
       {
         "path": "tests/fixtures/staging-evidence.cjs",
@@ -4505,7 +4525,7 @@
       {
         "path": "tests/preview.test.cjs",
         "identity_mode": "content",
-        "sha256": "09a5743cc52ec6eb0c9921a8697126a93c540c6aae40f16b0f42b0c83e1b92a0"
+        "sha256": "f8276fb01da9ee1de87f1462999d3d7fd3f25c6c860d8e591d9cd266d058aab7"
       },
       {
         "path": "tests/quality-sources.test.cjs",
@@ -4540,7 +4560,7 @@
       {
         "path": "tests/site-engine.test.cjs",
         "identity_mode": "content",
-        "sha256": "c06dfd7b26f85e97d7c5e51c218a311ae5ba1f5b68dbed8ba3611c011cd79c7f"
+        "sha256": "2fc29f93abb4f7ef9cbf3cf8cbb52f244857f4d05d19689b7291f10af17d8bf2"
       },
       {
         "path": "tests/site-face-preparation.test.cjs",
@@ -4601,6 +4621,11 @@
         "path": "tests/test_issue36_acceptance.py",
         "identity_mode": "content",
         "sha256": "031337cd1dbaf1b389aaa7461647fb1658af841914539721e97a3484c9df45f0"
+      },
+      {
+        "path": "tests/test_issue41_acceptance.py",
+        "identity_mode": "content",
+        "sha256": "a76ab421cc664e94933f8561579ed3c79bcda15abbd49ebc121985cb1287a66e"
       },
       {
         "path": "tests/test_issue_acceptance.py",
@@ -4695,7 +4720,7 @@
       {
         "path": "tools/build_scene_fallbacks.cjs",
         "identity_mode": "content",
-        "sha256": "f303f54fd922abbdae2ed78934edd7dabd9c42e4680714d5ea00f87f73f31853"
+        "sha256": "ec4bf32ede3aeac1cbfd4388d1349f80a44047b5b20e78a651e5f9e36d689d10"
       },
       {
         "path": "tools/build_site_bundle.py",
@@ -4735,7 +4760,7 @@
       {
         "path": "tools/check_site_seo.cjs",
         "identity_mode": "content",
-        "sha256": "eb1b1c53ef2c01e4c74458a47a9fd32e9677dab71d75d4eca9cb1431666a5c86"
+        "sha256": "5d11f22d356bca0ab9c52bca55eaec8ae231b049331f5ebaa2e4688512191a77"
       },
       {
         "path": "tools/compact_site_recordings.cjs",
@@ -4890,7 +4915,7 @@
       {
         "path": "tools/quality/local-browser.cjs",
         "identity_mode": "content",
-        "sha256": "34d6541b789da13e4367e5c262f7bfa84b78d4d1a9906043b1e3b5ccb55c8a24"
+        "sha256": "4ac1d119ec2b7dab38508bb936510aa08b91d1770d2d1430ae910a7786a26915"
       },
       {
         "path": "tools/quality/local.cjs",
@@ -4940,7 +4965,7 @@
       {
         "path": "tools/quality/secrets-reviewed.json",
         "identity_mode": "content",
-        "sha256": "dcba0f8cc59f89c5e0ead7336c013385d7709dd72c3dacfffeef448854b28212"
+        "sha256": "c2020637ac61717945fd356137a1cf12c9f2ac9a18c55873b80289fded126df9"
       },
       {
         "path": "tools/quality/security-rules.yml",
@@ -4985,7 +5010,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "d810d81e858d0678a2daaabbb9e9795d6475d8c89360b4a822f09d67573cc009"
+        "sha256": "519164e136ff3793debe68a2d796e9712b875829dfcd6fad7bf74c526b91b773"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -5090,7 +5115,7 @@
       {
         "path": "tools/site/build.cjs",
         "identity_mode": "content",
-        "sha256": "f8dc247f1a82d3d0e4ce0af7d4549343d26fbf3e4eb42b419255c7b734a14650"
+        "sha256": "cabef514506d4ae181d6fc410cdb2808ae40c4dc78eb37780ce5ecd9857cee98"
       },
       {
         "path": "tools/site/evidence-policy.cjs",
@@ -5481,6 +5506,17 @@
         "AGENTS.md"
       ],
       "title": "issue-36.json"
+    },
+    {
+      "path": ".github/acceptance/issue-41.json",
+      "kind": "file",
+      "purpose": "Issue41 AC01-AC06 implementation mapping for exact inputs, admitted editions, generated content, SEO and runtime scope; explicit editorial/browser/review-merge gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-41.json"
     },
     {
       "path": ".github/pull_request_template.md",
@@ -5945,7 +5981,7 @@
       "title": "research.html"
     },
     {
-      "path": "docs/runtime/c306e11ea2c1a67d94acc397d72ee7a4b352e79966896ad3b58a5d2e5505d75b/archive.js",
+      "path": "docs/runtime/bfc6bf5864d8d66d335398e7f89ccf45bd3bd00a68516f73c6c2f28d8379fb55/archive.js",
       "kind": "file",
       "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
@@ -5956,7 +5992,7 @@
       "title": "archive.js"
     },
     {
-      "path": "docs/runtime/c306e11ea2c1a67d94acc397d72ee7a4b352e79966896ad3b58a5d2e5505d75b/navigation.js",
+      "path": "docs/runtime/bfc6bf5864d8d66d335398e7f89ccf45bd3bd00a68516f73c6c2f28d8379fb55/navigation.js",
       "kind": "file",
       "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
@@ -5967,7 +6003,7 @@
       "title": "navigation.js"
     },
     {
-      "path": "docs/runtime/c306e11ea2c1a67d94acc397d72ee7a4b352e79966896ad3b58a5d2e5505d75b/space.js",
+      "path": "docs/runtime/bfc6bf5864d8d66d335398e7f89ccf45bd3bd00a68516f73c6c2f28d8379fb55/space.js",
       "kind": "file",
       "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
@@ -5978,7 +6014,7 @@
       "title": "space.js"
     },
     {
-      "path": "docs/runtime/c306e11ea2c1a67d94acc397d72ee7a4b352e79966896ad3b58a5d2e5505d75b/styles.css",
+      "path": "docs/runtime/bfc6bf5864d8d66d335398e7f89ccf45bd3bd00a68516f73c6c2f28d8379fb55/styles.css",
       "kind": "file",
       "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
@@ -5989,7 +6025,7 @@
       "title": "styles.css"
     },
     {
-      "path": "docs/runtime/c306e11ea2c1a67d94acc397d72ee7a4b352e79966896ad3b58a5d2e5505d75b/theme.js",
+      "path": "docs/runtime/bfc6bf5864d8d66d335398e7f89ccf45bd3bd00a68516f73c6c2f28d8379fb55/theme.js",
       "kind": "file",
       "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
@@ -6011,7 +6047,7 @@
       "title": "site-revision.json"
     },
     {
-      "path": "docs/snapshots/16fe4be1f6f8dae4fd4c4bccac81f6f0e50ee0e9ef3f47f54b43f77eb6cf2031/research.html",
+      "path": "docs/snapshots/42c67754f139b1809fce7750a2e9f7b36375b3a6791dd7c471be9ab281689915/research.html",
       "kind": "file",
       "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
@@ -6022,7 +6058,7 @@
       "title": "research.html"
     },
     {
-      "path": "docs/snapshots/7a1bf7f02f032af627618b741590a4fdc793d3b98b372658e7399c7993aafd97/credits.html",
+      "path": "docs/snapshots/6d9935cdf1fe5256721f27f09040c7a126089140f3e7bbb1191601fe911827c0/index.html",
       "kind": "file",
       "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
@@ -6030,10 +6066,10 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "credits.html"
+      "title": "index.html"
     },
     {
-      "path": "docs/snapshots/b683f741123ddf50e4396772174bc314faa72de3d4d986b2d89338bdb87eda5a/talks.html",
+      "path": "docs/snapshots/8151f4bd49e9c2b713d6be38cfd5b0a1cd3cefc9b39eeba3192ced7941669465/talks.html",
       "kind": "file",
       "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
@@ -6044,7 +6080,7 @@
       "title": "talks.html"
     },
     {
-      "path": "docs/snapshots/e189907131fb3e47413d2b3bfceb476794d3d97cf8f6b2619e9ba19f02421dd3/writing.html",
+      "path": "docs/snapshots/c9e062cece69c151fa2e7a9956ce2c47366309250b9263dedc550f789e255403/writing.html",
       "kind": "file",
       "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
@@ -6055,7 +6091,7 @@
       "title": "writing.html"
     },
     {
-      "path": "docs/snapshots/ff615ef695930d2a29a1485c787f36e4bae90624956dce8578f7ee266dcb96d3/index.html",
+      "path": "docs/snapshots/e4b13a63668e27303ccb52cbc3cd4d6a435637adf2edf46a2ae25ad7cd419c20/credits.html",
       "kind": "file",
       "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
@@ -6063,7 +6099,7 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "index.html"
+      "title": "credits.html"
     },
     {
       "path": "docs/space.js",
@@ -6548,6 +6584,39 @@
         "AGENTS.md"
       ],
       "title": "preview.png"
+    },
+    {
+      "path": "review/issue-41/2026-10-07-analysis.md",
+      "kind": "file",
+      "purpose": "Evidence-bounded site advisory, publication, community and SEO analysis; proposed copy, ordered Sol tasks and test allocation.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 41 — 2026-10-07 content analysis and Sol handoff"
+    },
+    {
+      "path": "review/issue-41/content-amendment.json",
+      "kind": "file",
+      "purpose": "Issue41 hashed exact before/after authored-content and primary schema deltas layered onto the historical SEO comparison; editorial acceptance remains separate.",
+      "role": "history",
+      "owner": "guides/SITE-SEO.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "content-amendment.json"
+    },
+    {
+      "path": "review/issue-41/source-inventory.json",
+      "kind": "file",
+      "purpose": "Exact original LinkedIn/Reddit inputs and supplied snapshot hashes/metrics; current admitted/deferred catalog mappings with dated source-access limits.",
+      "role": "history",
+      "owner": "guides/SITE-SOURCE-AUDIT.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "source-inventory.json"
     },
     {
       "path": "review/public-responses-20261006/README.md",
@@ -15471,6 +15540,17 @@
       "title": "test_issue36_acceptance.py"
     },
     {
+      "path": "tests/test_issue41_acceptance.py",
+      "kind": "file",
+      "purpose": "Issue41 selected implementation checks and negative fixtures; original preparation-only evidence remains pinned at d7ce5d3.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "test_issue41_acceptance.py"
+    },
+    {
       "path": "tests/test_issue_acceptance.py",
       "kind": "file",
       "purpose": "Acceptance runner adversarial cases for invalid mappings, skipped/empty/failed tests and evidence identity.",
@@ -16793,7 +16873,7 @@
       ]
     },
     {
-      "path": "docs/runtime/c306e11ea2c1a67d94acc397d72ee7a4b352e79966896ad3b58a5d2e5505d75b",
+      "path": "docs/runtime/bfc6bf5864d8d66d335398e7f89ccf45bd3bd00a68516f73c6c2f28d8379fb55",
       "kind": "directory",
       "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
@@ -16813,7 +16893,7 @@
       ]
     },
     {
-      "path": "docs/snapshots/16fe4be1f6f8dae4fd4c4bccac81f6f0e50ee0e9ef3f47f54b43f77eb6cf2031",
+      "path": "docs/snapshots/42c67754f139b1809fce7750a2e9f7b36375b3a6791dd7c471be9ab281689915",
       "kind": "directory",
       "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
@@ -16823,7 +16903,7 @@
       ]
     },
     {
-      "path": "docs/snapshots/7a1bf7f02f032af627618b741590a4fdc793d3b98b372658e7399c7993aafd97",
+      "path": "docs/snapshots/6d9935cdf1fe5256721f27f09040c7a126089140f3e7bbb1191601fe911827c0",
       "kind": "directory",
       "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
@@ -16833,7 +16913,7 @@
       ]
     },
     {
-      "path": "docs/snapshots/b683f741123ddf50e4396772174bc314faa72de3d4d986b2d89338bdb87eda5a",
+      "path": "docs/snapshots/8151f4bd49e9c2b713d6be38cfd5b0a1cd3cefc9b39eeba3192ced7941669465",
       "kind": "directory",
       "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
@@ -16843,7 +16923,7 @@
       ]
     },
     {
-      "path": "docs/snapshots/e189907131fb3e47413d2b3bfceb476794d3d97cf8f6b2619e9ba19f02421dd3",
+      "path": "docs/snapshots/c9e062cece69c151fa2e7a9956ce2c47366309250b9263dedc550f789e255403",
       "kind": "directory",
       "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
@@ -16853,7 +16933,7 @@
       ]
     },
     {
-      "path": "docs/snapshots/ff615ef695930d2a29a1485c787f36e4bae90624956dce8578f7ee266dcb96d3",
+      "path": "docs/snapshots/e4b13a63668e27303ccb52cbc3cd4d6a435637adf2edf46a2ae25ad7cd419c20",
       "kind": "directory",
       "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
@@ -16987,6 +17067,16 @@
       "kind": "directory",
       "purpose": "Single dated Writing formula execution handoff, original visual proof and linked source-bound integration/browser/performance acceptance.",
       "role": "draft",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-41",
+      "kind": "directory",
+      "purpose": "Dated source inventory and content-authority analysis for the same-PR Sol handoff.",
+      "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
         "AGENTS.md"

@@ -12,26 +12,35 @@ const plainTitle = html => html.replace(/<span class="publication-arrow"[^>]*>[\
     (_, entity) => ({amp: "&", quot: '"', apos: "'", lt: "<", gt: ">"})[entity]);
 
 test("selected Home responses link to the complete Research inventory with preserved evidence",()=>{
-  const names={index:["Arkadiy Dobkin","Matthew Skelton","Markus Kopko"],research:["Maximiliano Armesto","Otman Basir","Arkadiy Dobkin","Christophe Kolb &amp; Taller","Markus Kopko","Rod Montgomery","Michael Risch","Matthew Skelton"]};
+  const names={index:["Arkadiy Dobkin","Matthew Skelton","Markus Kopko"],research:["Markus Kopko","Otman Basir, Ph.D.","Maximiliano Armesto","Arkadiy Dobkin","Christophe Kolb &amp; Taller","Rod Montgomery","Michael Risch","Matthew Skelton"]};
   const section=page=>pages[page].match(/<section[^>]*\bid="acknowledgements"[\s\S]*?<\/section>/)[0];
   const articles=html=>[...html.matchAll(/<article>[\s\S]*?<\/article>/g)].map(m=>m[0]);
   const links=html=>[...html.matchAll(/href="([^"]+)"/g)].map(m=>m[1]);
   for(const page of["index","research"]) {
-    const entries=[...pages[page].matchAll(/<h3><a href="(https:\/\/www.linkedin.com\/in\/[^"]+)">([^<]+)<\/a><\/h3><p class="person-context">([^<]+)<\/p>/g)];
+    const entries=[...section(page).matchAll(/<h3><a href="(https:\/\/www.linkedin.com\/in\/[^"]+)">([^<]+)<\/a>(?:<span class="advisor-role">[^<]+<\/span>)?<\/h3><p class="person-context">([^<]+)<\/p>/g)];
     assert.deepEqual(entries.map(e=>e[2]),names[page]);
     assert.equal(new Set(entries.map(e=>e[1])).size,names[page].length,"do not assign one profile to multiple identities");
     assert.equal((section(page).match(/https:\/\/www.linkedin.com\/posts\//g)||[]).length,page==='index'?3:9);
   }
   const previous=fs.readFileSync(path.join(root,'../review/public-responses-20261006/research.before.html'),'utf8');
-  assert.deepEqual(articles(section('research')).sort(),articles(previous).sort(),'all eight complete articles, claims, credits and sources survive');
+  const current=articles(section('research'));
+  for(const article of articles(previous)){
+    const profile=article.match(/<h3><a href="([^"]+)"/)[1],replacement=current.find(a=>a.includes('href="'+profile+'"'));
+    assert.ok(replacement,'all eight people survive');
+    assert.deepEqual(links(replacement),links(article),'all contribution and provenance links survive');
+    if(!/markuskleinpmp|otman-basir-ba1258178/.test(profile))assert.equal(replacement,article,'unrelated response claims remain exact');
+  }
   for(const article of articles(section('index'))){
     const name=article.match(/<h3><a[^>]+>([^<]+)<\/a><\/h3>/)[1];
-    const complete=articles(section('research')).find(a=>a.includes('>'+name+'</a></h3>'));
+    const complete=articles(section('research')).find(a=>a.includes('>'+name+'</a>'));
     assert.deepEqual(links(article),links(complete).slice(0,2),name+' profile and primary public source');
   }
   assert.ok(section('index').includes('href="research.html#acknowledgements">Full discussion &amp; source context ↗'));
   assert.doesNotMatch(section('index'),/ack-compact|formulation|provenance/);
-  assert.ok(pages.research.includes('href="#acknowledgements">Public discussion</a>'));
+  assert.ok(pages.research.includes('href="#acknowledgements">Advisors &amp; responses</a>'));
+  assert.ok(section('index').includes('href="research.html#ua-advisors"'));
+  assert.ok(section('research').includes('Strategic Advisor on Governance and Alignment'));
+  assert.ok(section('research').includes('Academic Advisor'));
   assert.ok(section('index').includes('Offered public encouragement for the research’s development.'));
 });
 
@@ -63,11 +72,11 @@ test("English UI has distinct useful metadata and non-executable accurate page s
   assert.equal(schema(pages.index).mainEntity.sameAs.length, 3);
 });
 
-test("27 language-labelled editions match article schema and retain a useful time/topic hierarchy", () => {
+test("language-labelled editions match article schema and retain the original primary identities", () => {
+  const catalog=require('../site/content/catalog.json'),records=Object.values(catalog.records);
   const rows = articleRows(pages.writing);
-  assert.equal(rows.length, 27);
-  assert.equal(rows.filter(r => r[1] === "en").length, 20);
-  assert.equal(rows.filter(r => r[1] === "uk").length, 7);
+  assert.equal(rows.length, records.length);
+  for(const language of ['en','uk'])assert.equal(rows.filter(r=>r[1]===language).length,records.filter(r=>r.edition.inLanguage===language).length);
   assert.ok(pages.writing.includes('id="year-2026"'));
   assert.ok(pages.writing.includes('id="year-2025"'));
   for (const topic of ["delivery", "systems", "leadership", "strategy"]) assert.ok(pages.writing.includes(`id="topic-${topic}"`));
@@ -96,7 +105,9 @@ test("27 language-labelled editions match article schema and retain a useful tim
   assert.ok(featured.every(r => r[1] === "en"));
   const frozen = require("../review/sol-execution-20261002/BASELINE.json");
   const actual = items.map(({item}) => ({title:item.name,url:item.url,language:item.inLanguage,date:item.dateModified || item.datePublished,date_kind:item.dateModified ? "dateModified" : "datePublished"}));
-  assert.deepEqual(actual, frozen.primary);
+  const frozenURLs=new Set(frozen.primary.map(r=>r.url));
+  assert.deepEqual(actual.filter(r=>frozenURLs.has(r.url)), frozen.primary,'all 27 original edition identities and their relative order survive');
+  assert.equal(items.length,schema(pages.writing).mainEntity.numberOfItems);
   const expected = ["21275fe2f3db", "4f5046f9f0d0", "agentic-oborskyi-vkwve", "69822872825b", "49992bcc3088"];
   assert.ok(featured.every((row,i) => row[2].includes(expected[i])));
   assert.ok(pages.writing.includes(frozen.secondary[0].url));
@@ -156,7 +167,7 @@ test("Home provides the agreed reader path, precise public actions and a real co
   assert.ok(home.includes('href="mailto:oborskyivitalii@gmail.com">oborskyivitalii@gmail.com'));
   // Generated decorative coordinates/opacity decimals are not author claims.
   assert.doesNotMatch(home.replace(/<svg\b[\s\S]*?<\/svg>/g,""),/href="#"|Trusted by|CPC|RankSpot|4400|4,400/);
-  for (const text of ["human understanding, verification and ownership","people, evidence, authority and correction","Much remains to develop and test","outputs depend on the agreed engagement"]) assert.ok(home.includes(text));
+  for (const text of ["human understanding, verification and ownership","human roles, evidence, decision authority and corrective action","hypotheses to test in context","Much remains to develop and test","outputs depend on the agreed engagement"]) assert.ok(home.includes(text),text);
   for (const page of Object.values(pages)) assert.ok(page.includes('href="./#contact">Contact</a>'));
   const css=fs.readFileSync(path.join(root,"styles.css"),"utf8");
   assert.doesNotMatch(css,/\.portrait-composition::(?:before|after)/);

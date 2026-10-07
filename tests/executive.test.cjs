@@ -32,7 +32,7 @@ test('response reconciliation rejects missing people, sources and stronger parti
     assert.notEqual(restore(html.replace('Offered public encouragement','Validated the research'),page),preserved,'unsupported validation claim');
   }
   const research=fs.readFileSync(path.join(__dirname,'../docs/research.html'),'utf8');
-  assert.notEqual(restore(research.replace('>Public discussion</a>','>Trusted by</a>'),'research'),restore(research,'research'),'changed navigation claim');
+  assert.notEqual(restore(research.replace('>Advisors &amp; responses</a>','>Trusted by</a>'),'research'),restore(research,'research'),'changed navigation claim');
 });
 test('Day/Night semantic text and CTA pairs exceed normal-text contrast with no independent atmosphere clock',()=>{
   const css=fs.readFileSync(require('node:path').join(__dirname,'../docs/styles.css'),'utf8');

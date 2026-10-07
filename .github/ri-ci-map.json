@@ -2,7 +2,8 @@
   "schema_version": 1,
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/36",
-    "summary": "2026-10-07 #36: reconciled canonical Writing compiler/cache/scoped exact-head evidence with merged #35 registry/profile selection, selected staging/full production separation and source triage. Both owning policies and unconditional RI/test-profile companions remain mapped. Fixture passes do not assert hosted timing, visual/device acceptance, merge or closure."
+    "summary": "2026-10-07 #36: reconciled canonical Writing compiler/cache/scoped exact-head evidence with merged #35 registry/profile selection, selected staging/full production separation and source triage. Both owning policies and unconditional RI/test-profile companions remain mapped. Fixture passes do not assert hosted timing, visual/device acceptance, merge or closure.",
+    "date": "2026-10-07"
   },
   "layers": [
     {
@@ -14,9 +15,9 @@
         "PROJECT-BOOTSTRAP.md"
       ],
       "checks": [
-        "ri-regressions",
+        "acceptance-policy",
         "ri-freshness",
-        "acceptance-policy"
+        "ri-regressions"
       ]
     },
     {
@@ -24,28 +25,33 @@
       "purpose": "Owning issue intent and measurable criteria; execution and model reviews are linked PR artifacts. Automated and manual criteria stay distinct.",
       "paths": [
         ".github/ACCEPTANCE.md",
-        ".github/ISSUE_TEMPLATE/work-item.md",
         ".github/ISSUE_TEMPLATE/research-input.md",
+        ".github/ISSUE_TEMPLATE/work-item.md",
+        ".github/acceptance/issue-31.json",
+        ".github/acceptance/issue-33.json",
+        ".github/acceptance/issue-35.json",
+        ".github/acceptance/issue-36.json",
+        ".github/acceptance/issue-41.json",
         ".github/pull_request_template.md",
         "review/REVIEW-TEMPLATE.md",
         "review/issue-31/2026-10-07-analysis.md",
-        ".github/acceptance/issue-31.json",
-        "tools/issue_acceptance.py",
-        "tests/test_issue_acceptance.py",
-        "tests/test_issue31_acceptance.py",
-        ".github/acceptance/issue-33.json",
-        "tests/test_issue33_acceptance.py",
         "review/issue-33/2026-10-07-analysis.md",
-        ".github/acceptance/issue-35.json",
-        "tests/test_issue35_acceptance.py",
         "review/issue-35/2026-10-07-analysis.md",
-        ".github/acceptance/issue-36.json",
+        "review/issue-36/2026-10-07-handoff.md",
+        "review/issue-41/2026-10-07-analysis.md",
+        "review/issue-41/content-amendment.json",
+        "review/issue-41/source-inventory.json",
+        "tests/test_issue31_acceptance.py",
+        "tests/test_issue33_acceptance.py",
+        "tests/test_issue35_acceptance.py",
         "tests/test_issue36_acceptance.py",
-        "review/issue-36/2026-10-07-handoff.md"
+        "tests/test_issue41_acceptance.py",
+        "tests/test_issue_acceptance.py",
+        "tools/issue_acceptance.py"
       ],
       "checks": [
-        "acceptance-policy-selection",
         "acceptance-policy",
+        "acceptance-policy-selection",
         "ri-ci-regressions"
       ]
     },
@@ -56,28 +62,28 @@
         ".github/repository-paths.json"
       ],
       "checks": [
-        "ri-regressions",
+        "ri-ci-map",
         "ri-freshness",
-        "ri-ci-map"
+        "ri-regressions"
       ]
     },
     {
       "id": "entry-root-guides",
       "purpose": "Bounded entry router, deliberate root files, live guide owners and exact archived-original provenance. Fixed public/history task snapshots run only when issue #33 is selected.",
       "paths": [
-        ".github/repository-layout.json",
-        "tools/check_repository_layout.py",
-        "tests/test_root_layout.py",
-        "tests/test_issue33_acceptance.py",
         ".github/acceptance/issue-33.json",
-        "tools/run_repository_tests.py",
-        "tests/test_repository_test_selection.py"
+        ".github/repository-layout.json",
+        "tests/test_issue33_acceptance.py",
+        "tests/test_repository_test_selection.py",
+        "tests/test_root_layout.py",
+        "tools/check_repository_layout.py",
+        "tools/run_repository_tests.py"
       ],
       "checks": [
-        "root-layout-regressions",
-        "ri-freshness",
         "acceptance-policy",
-        "repository-test-selection"
+        "repository-test-selection",
+        "ri-freshness",
+        "root-layout-regressions"
       ]
     },
     {
@@ -85,54 +91,54 @@
       "purpose": "Canonical test inventory/source allocation, selected staging evidence and reviewed source-scanner controls; explicit cheap unconditional negatives verify source/expiry/coverage and exact selection.",
       "paths": [
         "guides/SITE-CHECK-PROFILES.md",
-        "tools/quality/test-profiles.json",
-        "tools/quality/source-tests.cjs",
-        "tools/quality/local.cjs",
-        "tools/quality/staging-gate.cjs",
-        "tools/quality/staging-regression.cjs",
-        "tests/test-profile-selection.test.cjs",
+        "tests/fixtures/staging-evidence.cjs",
+        "tests/quality-sources.test.cjs",
         "tests/staging-gate.test.cjs",
         "tests/staging-regression.test.cjs",
-        "tests/fixtures/staging-evidence.cjs",
-        "tools/quality/scanners.cjs",
-        "tools/quality/bandit-triage.cjs",
+        "tests/test-profile-selection.test.cjs",
         "tools/quality/bandit-policy.json",
+        "tools/quality/bandit-triage.cjs",
+        "tools/quality/local.cjs",
+        "tools/quality/scanners.cjs",
         "tools/quality/secrets-baseline.json",
-        "tests/quality-sources.test.cjs",
-        "tools/quality/secrets-reviewed.json"
+        "tools/quality/secrets-reviewed.json",
+        "tools/quality/source-tests.cjs",
+        "tools/quality/staging-gate.cjs",
+        "tools/quality/staging-regression.cjs",
+        "tools/quality/test-profiles.json"
       ],
       "checks": [
-        "test-profile-regressions",
+        "acceptance-policy",
         "ri-ci-map",
         "ri-ci-regressions",
         "ri-freshness",
-        "acceptance-policy"
+        "test-profile-regressions"
       ]
     },
     {
       "id": "producer-identity",
       "purpose": "Pinned upstream provenance, site interpretation, bounds, exact byte identity and input safety.",
       "paths": [
-        "tools/repository_intelligence.py",
         ".github/repository-intelligence-config.json",
-        "tests/test_repository_intelligence.py"
+        "tests/test_repository_intelligence.py",
+        "tools/repository_intelligence.py"
       ],
       "checks": [
-        "ri-regressions",
+        "ri-ci-map",
         "ri-freshness",
-        "ri-ci-map"
+        "ri-regressions"
       ]
     },
     {
       "id": "generated-views",
       "purpose": "Readable map and agent context derive from one projection; neither is editing authority.",
       "paths": [
-        "REPOSITORY-MAP.md",
-        ".github/repository-intelligence/agent-context.json"
+        ".github/repository-intelligence/agent-context.json",
+        "REPOSITORY-MAP.md"
       ],
       "checks": [
-        "ri-regressions",
-        "ri-freshness"
+        "ri-freshness",
+        "ri-regressions"
       ]
     },
     {
@@ -141,14 +147,14 @@
       "paths": [
         ".github/REPOSITORY-INTELLIGENCE.md",
         ".github/ri-ci-map.json",
-        "tools/check_ri_ci.py",
+        ".github/workflows/navigation.yml",
         "tests/test_ri_ci.py",
-        ".github/workflows/navigation.yml"
+        "tools/check_ri_ci.py"
       ],
       "checks": [
-        "ri-regressions",
         "ri-ci-map",
-        "ri-ci-regressions"
+        "ri-ci-regressions",
+        "ri-regressions"
       ]
     },
     {
@@ -158,9 +164,9 @@
         "MEMORY.md"
       ],
       "checks": [
-        "ri-regressions",
+        "acceptance-policy",
         "ri-freshness",
-        "acceptance-policy"
+        "ri-regressions"
       ]
     },
     {
@@ -168,25 +174,25 @@
       "purpose": "CI entrypoints and exact-source reports are indexed, while live issue/review/check/deployment state and owner acceptance remain external observations.",
       "paths": [
         ".github/workflows/issue-acceptance.yml",
-        ".github/workflows/site-checks.yml",
         ".github/workflows/site-browser-gate-probe.yml",
         ".github/workflows/site-candidate-evidence.yml",
-        ".github/workflows/site-release-checks.yml",
-        ".github/workflows/site-staging.yml",
-        ".github/workflows/site-cause-probe.yml",
         ".github/workflows/site-cause-fix-probe.yml",
-        ".github/workflows/site-gtk-target-probe.yml",
-        ".github/workflows/site-gtk-native-probe.yml",
+        ".github/workflows/site-cause-probe.yml",
+        ".github/workflows/site-checks.yml",
         ".github/workflows/site-color-review.yml",
+        ".github/workflows/site-gtk-native-probe.yml",
+        ".github/workflows/site-gtk-target-probe.yml",
         ".github/workflows/site-navigation-probe.yml",
-        ".github/workflows/site-writing-probe.yml",
-        ".github/workflows/site-runtime-checks.yml"
+        ".github/workflows/site-release-checks.yml",
+        ".github/workflows/site-runtime-checks.yml",
+        ".github/workflows/site-staging.yml",
+        ".github/workflows/site-writing-probe.yml"
       ],
       "checks": [
-        "acceptance-policy-selection",
         "acceptance-policy",
-        "site-basic",
-        "ri-ci-map"
+        "acceptance-policy-selection",
+        "ri-ci-map",
+        "site-basic"
       ]
     }
   ],
@@ -347,7 +353,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "ec78532ff831cc3ca6da42f5f7c96404cae9a8b7a0438cf48be59b9609d1dce1",
+    "digest": "0a2c8c445fdc119809cee2e6780d4b01a404e4d2b6d13281c392a77a91c7ad9c",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -379,7 +385,11 @@
       },
       {
         "path": ".github/acceptance/issue-36.json",
-        "sha256": "ddf0578ac91f1c74d8d243d991a7fccd13f9bdd3a0ac0d379f07e650e35a1b80"
+        "sha256": "dcbb103111ebfca2bd931583968c869605b8c9fe188a81a6b901b83278f0625c"
+      },
+      {
+        "path": ".github/acceptance/issue-41.json",
+        "sha256": "3fe37dfcc9e7d4c0f503698e8ba91491216621073347c6ab8cb1b25302a0c44a"
       },
       {
         "path": ".github/pull_request_template.md",
@@ -395,7 +405,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "e5d9fee2917bf55095aa96402fc94ffb45735b3904e74f8f47d2244d46074eda"
+        "sha256": "24c0a9e0df0559a32d648a4f23d9e0d6a208e322fc24c825a03ea646f58b72cc"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -510,6 +520,10 @@
         "sha256": "031337cd1dbaf1b389aaa7461647fb1658af841914539721e97a3484c9df45f0"
       },
       {
+        "path": "tests/test_issue41_acceptance.py",
+        "sha256": "a76ab421cc664e94933f8561579ed3c79bcda15abbd49ebc121985cb1287a66e"
+      },
+      {
         "path": "tests/test_issue_acceptance.py",
         "sha256": "51ccc40c3ccbf755ef277c7dec6437148cdf50fb7aa401e1bf8f255c2b96a426"
       },
@@ -559,7 +573,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "d810d81e858d0678a2daaabbb9e9795d6475d8c89360b4a822f09d67573cc009"
+        "sha256": "519164e136ff3793debe68a2d796e9712b875829dfcd6fad7bf74c526b91b773"
       },
       {
         "path": "tools/repository_intelligence.py",

@@ -82,35 +82,86 @@ function dateLabel(value,septemberStyle='Sep') {
   if(!/^\d{4}-\d\d-\d\d$/.test(value)||!Number.isFinite(date.getTime())||date.toISOString().slice(0,10)!==value)throw Error('Invalid publication date');
   return `${date.getUTCDate()} ${['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug',septemberStyle,'Oct','Nov','Dec'][date.getUTCMonth()]} ${date.getUTCFullYear()}`;
 }
-function editionValues(record) {
+function editionLinks(record) {
+  return (record.editions||[]).map(edition=>`<p class="edition-link"><a href="${escapeAttribute(edition.url)}" title="${escapeAttribute(edition.name)}">${escapeText(edition.platform)} edition · ${dateLabel(edition.datePublished||edition.dateModified)}${edition.datePublished?'':' · edited'}</a></p>`).join('');
+}
+function discussionLinks(record,c) {
+  return (record.discussions||[]).map(id=>`<p class="edition-link"><a href="${escapeAttribute(c.discussions[id].url)}">Reddit discussion ↗</a></p>`).join('');
+}
+function editionValues(record,c,linked=true) {
   const date=record.edition.datePublished||record.edition.dateModified;
   const values={TITLE:escapeText(record.edition.name),URL:escapeAttribute(record.edition.url),DATE:date,DATE_LABEL:dateLabel(date,record.septemberStyle)+(record.edition.datePublished?'':' · edited'),YEAR:date.slice(0,4)};
-  if(record.rendition)Object.assign(values,{RENDITION_URL:escapeAttribute(record.rendition.url),RENDITION_LABEL:escapeText(record.rendition.label),RENDITION_DATE_LABEL:dateLabel(record.rendition.datePublished)});
+  values.EDITION_LINKS=linked?editionLinks(record):(record.homeEditionLink?editionLinks(record):'');
+  values.DISCUSSION_LINKS=linked?discussionLinks(record,c):'';
   return values;
+}
+function editionURL(value) {
+  if(typeof value!=='string'||/\s/.test(value))throw Error('Invalid edition URL');
+  const url=new URL(value);
+  if(url.protocol!=='https:'||url.username||url.password||url.hash)throw Error('Invalid edition URL');
+  return url.href.replace(/\/$/,'');
+}
+function validateEdition(edition,id) {
+  if(!edition||typeof edition.name!=='string'||!edition.name.trim()||!['en','uk'].includes(edition.inLanguage)||edition.author?.name!=='Vitalii Oborskyi')throw Error('Invalid edition '+id);
+  editionURL(edition.url);
+  dateLabel(edition.datePublished||edition.dateModified);
+  if(edition.datePublished&&edition.dateModified)dateLabel(edition.dateModified);
+}
+function catalogCounts(c) {
+  const primary=Object.values(c.records).map(r=>r.edition),linked=Object.values(c.records).flatMap(r=>[r.edition,...(r.editions||[])]);
+  const count=rows=>({total:rows.length,en:rows.filter(r=>r.inLanguage==='en').length,uk:rows.filter(r=>r.inLanguage==='uk').length});
+  return {primary:count(primary),linked:count(linked),years:Object.fromEntries([...new Set(primary.map(e=>(e.datePublished||e.dateModified).slice(0,4)))].map(year=>[year,primary.filter(e=>(e.datePublished||e.dateModified).startsWith(year)).length]))};
+}
+function discussionRows(c,dependencies) {
+  return c.discussionOrder.map(id=>{
+    dependencies.add(id);const row=c.discussions[id],metrics=row.metrics;
+    const counts=metrics?`<p class="discussion-counts">≈${escapeText(metrics.views.display)} post views · ${metrics.comments} comments</p>`:'';
+    return `<li class="discussion-row"><h4><a href="${escapeAttribute(row.url)}">${escapeText(row.label)} <span aria-hidden="true">↗</span></a></h4><p>${escapeText(row.summary)}</p><p class="discussion-community">r/${escapeText(row.subreddit)}</p>${counts}</li>`;
+  }).join('\n');
 }
 function catalog(root) {
   const c=load(root,'site/content/catalog.json');
-  if(c.schema!==1||!c.records||Object.keys(c.records).length!==27||c.featured.length!==5||c.structuredOrder.length!==27)throw Error('Invalid publication catalog inventory');
+  const ids=Object.keys(c.records||{});
+  if(c.schema!==1||!ids.length||ids.length>250||!Array.isArray(c.featured)||c.featured.length!==5||new Set(c.featured).size!==5||!Array.isArray(c.structuredOrder)||c.structuredOrder.length!==ids.length||new Set(c.structuredOrder.map(e=>e.record)).size!==ids.length)throw Error('Invalid publication catalog inventory');
+  const urls=new Set(),postIds=new Set();
+  if(!c.discussions||!Array.isArray(c.discussionOrder)||c.discussionOrder.length>10||new Set(c.discussionOrder).size!==c.discussionOrder.length||Object.keys(c.discussions).length!==c.discussionOrder.length)throw Error('Invalid discussion inventory');
+  for(const id of c.discussionOrder){
+    const row=c.discussions[id];if(!row||typeof row.label!=='string'||!row.label.trim()||typeof row.summary!=='string'||!row.summary.trim())throw Error('Invalid discussion '+id);
+    const url=new URL(row.url),match=url.pathname.match(/^\/r\/([a-zA-Z0-9_]+)\/comments\/([a-z0-9]+)\/[a-z0-9_]+\/$/);
+    if(url.protocol!=='https:'||url.hostname!=='www.reddit.com'||url.username||url.password||url.search||url.hash||!match||match[1]!==row.subreddit||postIds.has(match[2]))throw Error('Invalid or duplicate discussion URL');
+    postIds.add(match[2]);
+    if(row.metrics){
+      const m=row.metrics,s=row.snapshot;
+      if(Object.keys(m).sort().join(',')!=='comments,views'||!Number.isSafeInteger(m.comments)||m.comments<0||!/^\d+K$/.test(m.views?.display)||m.views.approximateValue!==Number(m.views.display.slice(0,-1))*1000||!Number.isSafeInteger(m.views.approximateValue)||Object.keys(m.views).sort().join(',')!=='approximateValue,display')throw Error('Invalid discussion metrics');
+      if(!s||s.source!=='author-supplied-pasted-ui'||s.capturedAt!==null||!/^([a-f0-9]{64})$/.test(s.attachmentSHA256))throw Error('Invalid discussion provenance');
+      dateLabel(s.reviewedAt);dateLabel(s.receivedAt);
+    }
+  }
   for(const [id,record]of Object.entries(c.records)) {
-    if(!/^publication-\d\d$/.test(id)||!['en','uk'].includes(record.edition.inLanguage)||!/^\d{4}-\d\d-\d\d$/.test(record.edition.datePublished||record.edition.dateModified)||typeof record.edition.name!=='string'||!/^https:\/\//.test(record.edition.url))throw Error('Invalid edition '+id);
-    for(const field of ['archiveHTML','featuredHTML'])if(record[field])validateFragment(substitute(record[field],editionValues(record),id),id);
+    if(!/^publication-\d\d$/.test(id)||!Array.isArray(record.editions)||record.editions.length>2||!Array.isArray(record.discussions)||new Set(record.discussions).size!==record.discussions.length||record.discussions.length>1||record.discussions.some(key=>!c.discussions[key]))throw Error('Invalid edition relationships '+id);
+    for(const edition of [record.edition,...record.editions]){
+      validateEdition(edition,id);const url=editionURL(edition.url);if(urls.has(url))throw Error('Duplicate edition URL');urls.add(url);
+      if(edition!==record.edition&&(edition.platform!=='LinkedIn'||edition.relationship!=='same-topic-platform-edition'||edition.bodyEquivalenceVerified!==false))throw Error('Invalid alternate edition relationship');
+    }
+    for(const field of ['archiveHTML','featuredHTML'])if(record[field])validateFragment(substitute(record[field],editionValues(record,c),id),id);
   }
   for(const id of c.featured)if(!c.records[id]?.featuredHTML)throw Error('Missing featured record');
   for(const entry of c.structuredOrder)if(!c.records[entry.record])throw Error('Missing structured edition');
   return c;
 }
-function publication(html,c,dependencies) {
+function publication(html,c,dependencies,discussionDependencies,route) {
   return html.replace(/\{\{PUBLICATION:([\w-]+):(archive|featured)\}\}/g,(_,id,variant)=>{
     const record=c.records[id],fragment=record?.[variant+'HTML'];
     if(!fragment)throw Error('Missing publication fragment '+id);
     dependencies.add(id);
-    return substitute(fragment,editionValues(record),id);
+    if(route.id==='writing')for(const key of record.discussions)discussionDependencies.add(key);
+    return substitute(fragment,editionValues(record,c,route.id==='writing'),id);
   });
 }
 function routeInput(root,route,c) {
   const dir='site/content/pages/'+route.id+'/',meta=load(root,dir+'metadata.json');
   if(meta.schema!==1||meta.lang!=='en'||!meta.title||!meta.description||!meta.structuredData||!Array.isArray(meta.blocks)||new Set(meta.blocks).size!==meta.blocks.length||meta.blocks.some(x=>!/^[a-z][a-z0-9-]*$/.test(x)))throw Error('Invalid page metadata '+route.id);
-  const dependencies=new Set(),inputs=[dir+'metadata.json',dir+'main.html'];
+  const dependencies=new Set(),discussionDependencies=new Set(),inputs=[dir+'metadata.json',dir+'main.html'];
   let main=read(root,dir+'main.html');
   const used=[];
   main=main.replace(/\{\{BLOCK:([\w-]+)\}\}/g,(_,name)=>{
@@ -118,14 +169,23 @@ function routeInput(root,route,c) {
     used.push(name);const file=dir+name+'.html';inputs.push(file);return read(root,file);
   });
   if(JSON.stringify(used)!==JSON.stringify(meta.blocks))throw Error('Page block order/duplicates '+route.id);
-  main=publication(main,c,dependencies);validateFragment(main,route.id);
+  main=publication(main,c,dependencies,discussionDependencies,route);
+  if(route.id==='writing'){
+    const counts=catalogCounts(c),values={CATALOG_PRIMARY_COUNT:counts.primary.total,CATALOG_EN_COUNT:counts.primary.en,CATALOG_UK_COUNT:counts.primary.uk,CATALOG_LINKED_COUNT:counts.linked.total,CATALOG_LINKED_EN_COUNT:counts.linked.en,CATALOG_LINKED_UK_COUNT:counts.linked.uk};
+    main=main.replace(/\{\{CATALOG_YEAR:(\d{4})\}\}/g,(_,year)=>counts.years[year]||0);
+    main=substitute(main,values,'catalog totals');
+    for(const id of Object.keys(c.records))dependencies.add(id);
+  }
+  if(main.includes('{{DISCUSSION_ROWS}}'))main=main.replace('{{DISCUSSION_ROWS}}',discussionRows(c,discussionDependencies));
+  validateFragment(main,route.id);
   const schema=structuredClone(meta.structuredData);
   if(meta.catalogList) {
     if(route.id!=='writing'||!schema.mainEntity)throw Error('Invalid catalog target');
+    schema.mainEntity.numberOfItems=c.structuredOrder.length;
     schema.mainEntity.itemListElement=c.structuredOrder.map((entry,i)=>{dependencies.add(entry.record);return {'@type':'ListItem',position:i+1,item:c.records[entry.record].edition};});
   }
   if(/\{\{/.test(main))throw Error('Unresolved content token '+route.id);
-  return {meta,main,schema,inputs,records:Object.fromEntries([...dependencies].sort().map(id=>[id,c.records[id]]))};
+  return {meta,main,schema,inputs,records:Object.fromEntries([...dependencies].sort().map(id=>[id,c.records[id]])),discussions:Object.fromEntries([...discussionDependencies].sort().map(id=>[id,c.discussions[id]]))};
 }
 function fallback(api,page) {
   // Keep the established bounded SVG rendition and exact coordinates.
@@ -200,7 +260,7 @@ function build({root=defaultRoot,output=path.join(root,'docs'),cacheFile=path.jo
   let api;
   try {
     for(const route of config.routes) {
-      const input=routeInput(root,route,c),version=sha(json({components,route,inputs:fileDigests(root,input.inputs),records:input.records,versioned}));
+      const input=routeInput(root,route,c),version=sha(json({components,route,inputs:fileDigests(root,input.inputs),records:input.records,discussions:input.discussions,schema:input.schema,versioned}));
       const old=previous?.routes[route.id],file=path.join(output,route.url);
       let html;
       if(old?.version===version&&trusted?.routes[route.id]?.version===version&&previous.files[route.url]===trusted.files[route.url]&&fs.existsSync(file)&&sha(fs.readFileSync(file))===trusted.files[route.url]){html=fs.readFileSync(file,'utf8');result.reused.push(route.id);}
@@ -233,4 +293,4 @@ if(require.main===module) {
   const result=build({all:args[0]==='--all',check:args[0]==='--check'});
   console.log(JSON.stringify({built:result.built,reused:result.reused,removed:result.removed}));
 }
-module.exports={build,render,model,runtime,configuration,routeInput,catalog,fingerprints,sha,files,validateFragment,scriptJSON,runtimeVersion,versionHTML,snapshotHTML};
+module.exports={build,render,model,runtime,configuration,routeInput,catalog,catalogCounts,fingerprints,sha,files,validateFragment,scriptJSON,runtimeVersion,versionHTML,snapshotHTML};

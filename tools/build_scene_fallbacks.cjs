@@ -2,6 +2,23 @@
 // The no-JS/Canvas scene is a projection of the actual route's initial world.
 const fs=require("node:fs"),path=require("node:path");
 const pages=["index","research","writing","talks","credits"],root=path.resolve(__dirname,"..");
+function compact(svg) {
+ // Preserve every rounded coordinate and paint value. SVG implicitly draws
+ // lines after a move's first point; repeated L commands and decimal zeroes
+ // carry no geometry. Paths inherit no fill, the common accent stroke and the
+ // SVG default stroke width; other colors and the formula gradient stay explicit.
+ svg=svg.replace(/ d="([^"]*)"/g,(_,d)=>' d="'+d
+  .replace(/(-?\d+)\.00(?=[ ,MLZ]|$)/g,'$1')
+  .replace(/(-?\d+\.\d)0(?=[ ,MLZ]|$)/g,'$1')
+  .replace(/L/g,'').replace(/ M/g,'M')+'"');
+ svg=svg.replace(/ style="stroke:([^;"]+);fill:([^"]+)"/g,(_,stroke,fill)=>
+  ` stroke="${stroke}"${fill==='none'?'':` fill="${fill}"`}`);
+ svg=svg.replace(/ ((?:stroke|fill)-opacity|stroke-width)="([\d.]+)"/g,(_,name,value)=>
+  ` ${name}="${String(Number(value)).replace(/^0\./,'.')}"`);
+ return svg.replace(/ stroke="var\(--accent\)"/g,'')
+  .replace(' class="space-fallback"',' class="space-fallback" fill="none" stroke="var(--accent)"')
+  .replace(/ stroke-width="1"/g,'');
+}
 function formulaRendition(api,anchor,pose,width,height) {
  const art=api.sceneAsset,shape=api.projectedFormula?.(anchor,pose,width,height,0);
  if(!art||!shape||typeof api.projectFormulaPoint!=="function")return null;
@@ -47,7 +64,7 @@ function fromModel(api,page) {
  for(const anchor of world.formulas||[]){const rendition=formulaRendition(api,anchor,pose,1440,900);if(rendition)tags.push(rendition);}
  // The sole passive landmark occupies its actual world depth among the route's
  // fractal geometry. Off/no-Canvas/no-JS never introduces a separate banner.
- return `<svg class="space-fallback" data-motif="${page}" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">${tags.sort((a,b)=>b.depth-a.depth).map(tag=>tag.html).join("")}</svg>`;
+ return compact(`<svg class="space-fallback" data-motif="${page}" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">${tags.sort((a,b)=>b.depth-a.depth).map(tag=>tag.html).join("")}</svg>`);
 }
 function update(check=false) {
   if(!check){require("./site/build.cjs").build({all:true});return;}
@@ -65,4 +82,4 @@ if(require.main===module) {
   update(process.argv[2]==="--check");
   process.stdout.write("Five route-specific scene fallbacks are fresh.\n");
 }
-module.exports={fallback,fromModel,formulaRendition,update};
+module.exports={fallback,fromModel,formulaRendition,compact,update};

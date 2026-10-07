@@ -79,6 +79,12 @@
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
+    ".github/acceptance/issue-41.json": {
+      "kind": "file",
+      "purpose": "Issue41 AC01-AC06 implementation mapping for exact inputs, admitted editions, generated content, SEO and runtime scope; explicit editorial/browser/review-merge gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     ".github/pull_request_template.md": {
       "kind": "file",
       "purpose": "PR execution, owning issue/commit links, checks/review and honest completion template.",
@@ -373,37 +379,37 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/c306e11ea2c1a67d94acc397d72ee7a4b352e79966896ad3b58a5d2e5505d75b": {
+    "docs/runtime/bfc6bf5864d8d66d335398e7f89ccf45bd3bd00a68516f73c6c2f28d8379fb55": {
       "kind": "directory",
       "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/c306e11ea2c1a67d94acc397d72ee7a4b352e79966896ad3b58a5d2e5505d75b/archive.js": {
+    "docs/runtime/bfc6bf5864d8d66d335398e7f89ccf45bd3bd00a68516f73c6c2f28d8379fb55/archive.js": {
       "kind": "file",
       "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/c306e11ea2c1a67d94acc397d72ee7a4b352e79966896ad3b58a5d2e5505d75b/navigation.js": {
+    "docs/runtime/bfc6bf5864d8d66d335398e7f89ccf45bd3bd00a68516f73c6c2f28d8379fb55/navigation.js": {
       "kind": "file",
       "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/c306e11ea2c1a67d94acc397d72ee7a4b352e79966896ad3b58a5d2e5505d75b/space.js": {
+    "docs/runtime/bfc6bf5864d8d66d335398e7f89ccf45bd3bd00a68516f73c6c2f28d8379fb55/space.js": {
       "kind": "file",
       "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/c306e11ea2c1a67d94acc397d72ee7a4b352e79966896ad3b58a5d2e5505d75b/styles.css": {
+    "docs/runtime/bfc6bf5864d8d66d335398e7f89ccf45bd3bd00a68516f73c6c2f28d8379fb55/styles.css": {
       "kind": "file",
       "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/c306e11ea2c1a67d94acc397d72ee7a4b352e79966896ad3b58a5d2e5505d75b/theme.js": {
+    "docs/runtime/bfc6bf5864d8d66d335398e7f89ccf45bd3bd00a68516f73c6c2f28d8379fb55/theme.js": {
       "kind": "file",
       "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
@@ -421,61 +427,61 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/16fe4be1f6f8dae4fd4c4bccac81f6f0e50ee0e9ef3f47f54b43f77eb6cf2031": {
+    "docs/snapshots/42c67754f139b1809fce7750a2e9f7b36375b3a6791dd7c471be9ab281689915": {
       "kind": "directory",
       "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/16fe4be1f6f8dae4fd4c4bccac81f6f0e50ee0e9ef3f47f54b43f77eb6cf2031/research.html": {
+    "docs/snapshots/42c67754f139b1809fce7750a2e9f7b36375b3a6791dd7c471be9ab281689915/research.html": {
       "kind": "file",
       "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/7a1bf7f02f032af627618b741590a4fdc793d3b98b372658e7399c7993aafd97": {
+    "docs/snapshots/6d9935cdf1fe5256721f27f09040c7a126089140f3e7bbb1191601fe911827c0": {
       "kind": "directory",
       "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/7a1bf7f02f032af627618b741590a4fdc793d3b98b372658e7399c7993aafd97/credits.html": {
+    "docs/snapshots/6d9935cdf1fe5256721f27f09040c7a126089140f3e7bbb1191601fe911827c0/index.html": {
       "kind": "file",
       "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/b683f741123ddf50e4396772174bc314faa72de3d4d986b2d89338bdb87eda5a": {
+    "docs/snapshots/8151f4bd49e9c2b713d6be38cfd5b0a1cd3cefc9b39eeba3192ced7941669465": {
       "kind": "directory",
       "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/b683f741123ddf50e4396772174bc314faa72de3d4d986b2d89338bdb87eda5a/talks.html": {
+    "docs/snapshots/8151f4bd49e9c2b713d6be38cfd5b0a1cd3cefc9b39eeba3192ced7941669465/talks.html": {
       "kind": "file",
       "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/e189907131fb3e47413d2b3bfceb476794d3d97cf8f6b2619e9ba19f02421dd3": {
+    "docs/snapshots/c9e062cece69c151fa2e7a9956ce2c47366309250b9263dedc550f789e255403": {
       "kind": "directory",
       "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/e189907131fb3e47413d2b3bfceb476794d3d97cf8f6b2619e9ba19f02421dd3/writing.html": {
+    "docs/snapshots/c9e062cece69c151fa2e7a9956ce2c47366309250b9263dedc550f789e255403/writing.html": {
       "kind": "file",
       "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/ff615ef695930d2a29a1485c787f36e4bae90624956dce8578f7ee266dcb96d3": {
+    "docs/snapshots/e4b13a63668e27303ccb52cbc3cd4d6a435637adf2edf46a2ae25ad7cd419c20": {
       "kind": "directory",
       "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/ff615ef695930d2a29a1485c787f36e4bae90624956dce8578f7ee266dcb96d3/index.html": {
+    "docs/snapshots/e4b13a63668e27303ccb52cbc3cd4d6a435637adf2edf46a2ae25ad7cd419c20/credits.html": {
       "kind": "file",
       "purpose": "Generated public scene/runtime, immutable media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
@@ -822,6 +828,30 @@
       "purpose": "Day/Night and narrow-width rendered proof of the SVG candidate, not an integrated scene screenshot.",
       "role": "draft",
       "owner": "review/issue-36/2026-10-07-handoff.md"
+    },
+    "review/issue-41": {
+      "kind": "directory",
+      "purpose": "Dated source inventory and content-authority analysis for the same-PR Sol handoff.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-41/2026-10-07-analysis.md": {
+      "kind": "file",
+      "purpose": "Evidence-bounded site advisory, publication, community and SEO analysis; proposed copy, ordered Sol tasks and test allocation.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-41/content-amendment.json": {
+      "kind": "file",
+      "purpose": "Issue41 hashed exact before/after authored-content and primary schema deltas layered onto the historical SEO comparison; editorial acceptance remains separate.",
+      "role": "history",
+      "owner": "guides/SITE-SEO.md"
+    },
+    "review/issue-41/source-inventory.json": {
+      "kind": "file",
+      "purpose": "Exact original LinkedIn/Reddit inputs and supplied snapshot hashes/metrics; current admitted/deferred catalog mappings with dated source-access limits.",
+      "role": "history",
+      "owner": "guides/SITE-SOURCE-AUDIT.md"
     },
     "review/public-responses-20261006": {
       "kind": "directory",
@@ -6028,6 +6058,12 @@
     "tests/test_issue36_acceptance.py": {
       "kind": "file",
       "purpose": "Owning issue36 canonical SVG/inertness/geometry, native source/cache/depth/compiler/legacy-media mappings and source-bound browser/performance acceptance assertions; selected policy only.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "tests/test_issue41_acceptance.py": {
+      "kind": "file",
+      "purpose": "Issue41 selected implementation checks and negative fixtures; original preparation-only evidence remains pinned at d7ce5d3.",
       "role": "test",
       "owner": ".github/ACCEPTANCE.md"
     },

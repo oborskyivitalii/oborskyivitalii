@@ -1,6 +1,8 @@
 "use strict";
 const test=require("node:test"),assert=require("node:assert/strict"),fs=require("node:fs"),path=require("node:path"),vm=require("node:vm");
 const source=fs.readFileSync(path.join(__dirname,"../docs/archive.js"),"utf8"),html=fs.readFileSync(path.join(__dirname,"../docs/writing.html"),"utf8");
+const catalog=JSON.parse(fs.readFileSync(path.join(__dirname,"../site/content/catalog.json"),"utf8"));
+const total=Object.keys(catalog.records).length,year2025=Object.values(catalog.records).filter(r=>(r.edition.datePublished||r.edition.dateModified).startsWith('2025')).length;
 function visit(query="",historyBlocked=false) {
   const landings=[],emitted=[];
   const element=(data={})=>({hidden:false,events:{},textContent:"",...data,addEventListener(name,fn){this.events[name]=fn;},getClientRects(){return this.hidden?[]:[{height:44}];},scrollIntoView(){landings.push(this);},...data});
@@ -31,12 +33,12 @@ function visit(query="",historyBlocked=false) {
     focuses:()=>emitted.filter(e=>e.type==="site:scene-focus").map(e=>e.detail.focus)};
 }
 test("intersected filters and empty state are useful; Reset restores the fixed complete catalog",()=>{
-  const page=visit();assert.equal(page.shown().length,27);assert.ok(page.navs.every(n=>n.hidden));
+  const page=visit();assert.equal(page.shown().length,total);assert.ok(page.navs.every(n=>n.hidden));
   page.change("topic","systems");page.change("year","2025");page.change("language","uk");
   assert.equal(page.shown().length,2);assert.ok(page.shown().every(r=>r.dataset.topic==="systems"&&r.dataset.year==="2025"&&r.dataset.language==="uk"));
   page.change("year","2026");assert.equal(page.shown().length,0);assert.equal(page.ids["archive-empty"].hidden,false);
   assert.equal(page.ids["topic-systems"].hidden,false);assert.match(page.ids["archive-heading"].textContent,/AI architecture/);
-  page.reset();assert.equal(page.shown().length,27);assert.equal(page.window.location.search,"");assert.equal(page.window.location.hash,"");
+  page.reset();assert.equal(page.shown().length,total);assert.equal(page.window.location.search,"");assert.equal(page.window.location.hash,"");
 });
 test("queries precede recognized fragments, preserve other dimensions, and reach visible empty targets",()=>{
   for(const topic of["delivery","systems","leadership","strategy"]) {
@@ -54,20 +56,20 @@ test("filter/Reset clear conflicting hashes; back/forward and hash changes resto
   page.back();assert.equal(page.shown().length,3);assert.equal(page.ids["archive-topic"].value,"delivery");assert.equal(page.window.location.hash,"#topic-delivery");
   page.forward();assert.equal(page.shown().length,0);assert.equal(page.ids["archive-topic"].value,"systems");
   page.hash("#year-2025");assert.equal(page.shown().length,2);assert.equal(page.ids["archive-topic"].value,"systems");
-  page.reset();assert.equal(page.shown().length,27);assert.equal(page.window.location.searchParams.get("extra"),"keep");
+  page.reset();assert.equal(page.shown().length,total);assert.equal(page.window.location.searchParams.get("extra"),"keep");
   page.back();assert.equal(page.shown().length,2);assert.equal(page.ids["archive-year"].value,"2025");
 });
 test("only Topic/Reset starts a focus transition; printing shows all and restores the previous state",()=>{
   const page=visit("?topic=leadership");assert.deepEqual(page.focuses(),["leadership"]);
   page.change("year","2025");page.change("language","uk");assert.deepEqual(page.focuses(),["leadership"]);
   const filtered=page.shown().length;
-  page.events.beforeprint();assert.equal(page.shown().length,27);assert.match(page.ids["archive-count"].textContent,/all records/);
+  page.events.beforeprint();assert.equal(page.shown().length,total);assert.match(page.ids["archive-count"].textContent,/all records/);
   page.events.afterprint();assert.equal(page.shown().length,filtered);assert.deepEqual(page.focuses(),["leadership"]);
   page.reset();assert.deepEqual(page.focuses(),["leadership","all"]);
 });
 test("unknown URL values and blocked history do not disable the local archive",()=>{
-  assert.equal(visit("?topic=unknown&language=xx#year-2040").shown().length,27);
-  const page=visit("",true);page.change("year","2025");assert.equal(page.shown().length,19);
+  assert.equal(visit("?topic=unknown&language=xx#year-2040").shown().length,total);
+  const page=visit("",true);page.change("year","2025");assert.equal(page.shown().length,year2025);
 });
 test("without scripts every topic/year fragment belongs to visible semantic HTML, not hidden navigation",()=>{
   for(const topic of["delivery","systems","leadership","strategy"])assert.match(html,new RegExp(`<h2 id="topic-${topic}" class="topic-landing">[^<]+<a href="[^"]+">Browse articles ↓</a></h2>`));

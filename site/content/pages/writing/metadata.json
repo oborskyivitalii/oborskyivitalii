@@ -13,8 +13,7 @@
       "name": "Vitalii Oborskyi"
     },
     "mainEntity": {
-      "@type": "ItemList",
-      "numberOfItems": 27
+      "@type": "ItemList"
     }
   },
   "blocks": [

@@ -102,7 +102,7 @@
   print=() => {
     for (const element of [...rows, ...groups, ...years]) element.hidden = false;
     for (const year of yearValues) document.getElementById(`year-${year}`).hidden = false;
-    countLabel.textContent = `${rows.length} primary archive records · all records and the additional LinkedIn rendition shown for printing.`;
+    countLabel.textContent = `${rows.length} primary archive records · all records and their linked platform editions shown for printing.`;
     document.getElementById("archive-empty").hidden = true;
   };
   on(window,"beforeprint",print);

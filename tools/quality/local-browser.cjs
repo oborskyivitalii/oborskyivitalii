@@ -4,8 +4,9 @@ const fs=require('node:fs'),path=require('node:path'),assert=require('node:asser
 const {toolRequire,report,launchOptions,out}=require('./common.cjs'),{start}=require('./serve.cjs');
 const flightDetail=require('./flight-detail.cjs');
 const routes=['index','research','writing','talks','credits'];
+const catalog=require('../../site/content/catalog.json'),primaryCount=Object.keys(catalog.records).length;
 const selectedResponses=['Arkadiy Dobkin','Matthew Skelton','Markus Kopko'];
-const completeResponses=['Maximiliano Armesto','Otman Basir','Arkadiy Dobkin','Christophe Kolb & Taller','Markus Kopko','Rod Montgomery','Michael Risch','Matthew Skelton'];
+const completeResponses=['Markus Kopko','Otman Basir, Ph.D.','Maximiliano Armesto','Arkadiy Dobkin','Christophe Kolb & Taller','Rod Montgomery','Michael Risch','Matthew Skelton'];
 const hash=bytes=>crypto.createHash('sha256').update(bytes).digest('hex');
 function artifactFile(value,base,manifest){
   const url=new URL(value),scope=new URL(base.replace(/\/$/,'')+'/');
@@ -83,7 +84,11 @@ async function discussionNavigation(page,url){
   await page.goBack();await ready(page,'index');await responseNames(page,'index');
   await page.goForward();await ready(page,'research');await discussionAnchor(page);
   const nav=page.locator('nav[aria-label="Research sections"] a[href="#acknowledgements"]');
-  assert.equal(await nav.textContent(),'Public discussion');
+  assert.equal(await nav.textContent(),'Advisors & responses');
+  await page.locator(routeSelector('index')).evaluate(el=>el.click());await ready(page,'index');
+  await page.locator('#acknowledgements a[href="research.html#ua-advisors"]').evaluate(el=>el.click());await ready(page,'research');
+  assert.equal(new URL(page.url()).hash,'#ua-advisors');
+  await page.waitForFunction(()=>{const r=document.getElementById('ua-advisors').getBoundingClientRect();return r.top>=-1&&r.top<innerHeight;},null,{polling:40,timeout:3000});
   await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));
   await nav.click();await discussionAnchor(page);
   await page.goto(url+'/research.html#acknowledgements',{waitUntil:'load'});await ready(page,'research');await discussionAnchor(page);await responseNames(page,'research');
@@ -128,7 +133,28 @@ async function scenario(browser,url,manifest,variant,width,mode){
       await page.locator('.appearance summary').click();
       if(id==='writing'){
         await page.locator('#archive-topic').selectOption('systems');assert.ok(await page.locator('li.publication:visible').count()>0,'Writing filter has results');
+        await page.evaluate(()=>window.dispatchEvent(new Event('beforeprint')));
+        await page.emulateMedia({media:'print'});
+        assert.equal(await page.locator('li.publication:visible').count(),primaryCount,'print shows all primary records and their edition links');
+        assert.match(await page.locator('#archive-count').textContent(),/their linked platform editions shown for printing/);
+        await page.emulateMedia({media:'screen'});await page.evaluate(()=>window.dispatchEvent(new Event('afterprint')));
         await page.locator('.filter-reset').evaluate(el=>el.click());
+        assert.equal(await page.locator('li.publication:visible').count(),primaryCount,'Writing Reset retains every primary record');
+      }
+      if(id==='research'){
+        assert.equal(await page.locator('.discussion-row').count(),Object.keys(catalog.discussions).length,'discussion rows match the canonical catalog');
+        assert.equal(await page.locator('.advisor-role').count(),2,'two project advisors');
+        if(mode==='normal'&&width===390){
+          await page.locator('.appearance summary').click();await page.locator('#space-motion').click();
+          assert.match(await page.locator('#space-motion').textContent(),/off/);
+          await page.emulateMedia({reducedMotion:'reduce'});
+        }
+        await page.evaluate(()=>scrollTo({top:document.documentElement.scrollHeight,behavior:'instant'}));
+        const footer=await page.locator('.site-footer').boundingBox();assert.ok(footer&&footer.y<page.viewportSize().height&&footer.y+footer.height>0,'Research bottom remains reachable');
+        if(mode==='normal'&&width===390){
+          await page.emulateMedia({reducedMotion:'no-preference'});await page.locator('#space-motion').click();await page.locator('.appearance summary').click();
+        }
+        await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));
       }
       if(id==='index'||id==='research')await responseNames(page,id);
       rows.push({route:id,pass:true,state:observed,detail,checks:['exact identity','heading','viewport','persistent shell','theme control',mode==='normal'?'canvas active':'no-canvas fallback']});
