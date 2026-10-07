@@ -29,6 +29,9 @@ Dated continuity, not live authority. Last verified: **2026-10-07**.
   all reverse flight continuity, stable detail samples and camera retargeting.
   Scoped ribbon repair and maintained checks are prepared. Next: verify final
   mapped/CI checks and exact-source captures; visual acceptance remains open.
+  First3b838bc browser evidence passes60geometry/28captures/4flight contexts;
+  visual review found overlapping title-shadow ink, now repaired with an inner
+  ink layer. Fresh final-head captures and required CI are still needed.
 - #36 places one tilted, pulsing formula in Writing's books/pages fractal,
   sharing its camera/clock and bounded cache. Rejected banner benchmarks are
   historical failures, not acceptance of this world-space implementation.

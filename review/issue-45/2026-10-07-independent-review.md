@@ -98,3 +98,43 @@ The maintained runtime fixture loaded regenerated `docs/space.js` with SHA256 `0
 | `tools/quality/writing-variants.cjs` | `32cde310fd82662e7915598008743dadf330e5591d8fd5999a11dbe8bfe1d654` |
 | `tests/browser-gate-variants.test.cjs` | `42582238eed11aebd056044d5159e85c106109e9bd72b467bf23bd274a650f8a` |
 | `tests/writing-paradigm-ci.test.cjs` | `b329442edcdc758f24af3869a19e9663afff79a744d3c57c5273e3586719f904` |
+
+## Basic CI diagnostic repair — review after published continuity source
+
+Root observed [required Basic failures in run 37645505620](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37645505620) on published `3b838bceccf823e63927c0c2504c44b68aafdfa6` in three legacy Writing diagnostic cases: their family-ablation needle still expected a world return without `formulas`, and their prewarm browser mock could not construct the formula cache. The independent follow-up inspected only `tools/quality/writing-variants.cjs` and `tests/writing-variants.test.cjs`; no blocking defect was found in this repair.
+
+The exact-once needle and patched return now retain `formulas`. Existing family fixtures additionally compare the original anchors and actual projected formula commands, proving that omitting a selected motif family does not remove or move the landmark. Missing and duplicated formula-aware anchors still fail closed. The prewarm mock supports the already-existing offscreen Canvas path and observes one successful cache plus reuse; this is a fixture assertion, not a native browser or physical memory measurement.
+
+This reviewer ran the three family/prewarm/failure cases and the private-package identity case separately: four passed, with no failures/skips. The resulting private diagnostic packages still verify their immutable snapshots, parent identity, deterministic output and unchanged control artifact. No runtime/public bytes were changed by these two repair files. The review observed HEAD `3b838bceccf823e63927c0c2504c44b68aafdfa6`, tree `c88e105558d7ddaae7558f5a76c4be460619f114`, with `sourceDirty: true` for the prepared repair.
+
+| Follow-up review target | SHA256 |
+| --- | --- |
+| `tools/quality/writing-variants.cjs` | `fd76120619a1f10e3a09e5f2eeb3fdd6a66a978c68ff86103424081ad4e24815` |
+| `tests/writing-variants.test.cjs` | `ce09ea3ce48bd936d8e9b10f15c04098b45ed81afdf0b32e497f9faf0b6e0015` |
+
+The downloaded JSON from [opt-in run 37645777979](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37645777979) was independently inspected. It records `pass: true`, the exact `3b838bc`/`c88e105` candidate Color identity, all 60 heading cases, 28 retained captures and all four live navigation contexts passing. This supersedes the earlier prepared-source statement that browser execution was pending for that published head. This reviewer has not inspected the images/clips or supplied visual acceptance. Final-head CI/source reconciliation remains necessary after the diagnostic-only repair, and remains distinct from those earlier exact-head observations.
+
+## Actual capture finding — adjacent title ink was overpainted
+
+Subsequent independent inspection of the actual run-37645777979 PNGs confirms the root's blocking visual finding on `3b838bc`: the next cloned title fragment's spread shadow paints through the bottom of the preceding line's glyphs. It is visible in the paired Talks 1440 Day images, the Writing formula 1440 Day candidate image and the 390 Night title. The automated geometry pass remains a geometry observation; it does not establish unobstructed ink or AC02 visual success.
+
+An independent raw-pixel check of Talks ROI `(140,196,828,310)` reproduced the root's measurement: 23,047 baseline pixels are fully opaque ink RGB `(23,43,54)` and 1,488 of those pixels change in the candidate. The exact paired PNG SHA256 values are `f9879337ca1866567d407d544a39f4d2a15fe6803044630c6ecfcd3536c6f40a` (before) and `430483c96f0386a2c2e0557f5507ed0f872587d33ab28794e34910a49b40fea4` (after). The published candidate therefore has a confirmed paint-order regression despite unchanged glyph rectangles.
+
+The prepared correction wraps the exact three title copies in one inner `.reading-title-ink` span with `position:relative;z-index:1`. This places all title ink above the outer fragments' backgrounds/shadows without adding offsets, padding or font changes. No source-level layering defect was found in that design. The helper additionally compares actual baseline DOM geometry with the candidate DOM under baseline CSS before comparing the candidate CSS, so the new wrapper cannot conceal reflow. SEO reconciliation normalizes only the exact approved inner wrapper/copy before the whole approved content amendment; changed copy or unsupported wrapper identity remains rejected. This reviewer reran the maintained approved-contact/title reconciliation case: one passed, including its new positive/negative inner-wrapper assertions. Final helper syntax also passed.
+
+The layer correction is **not visually accepted yet**. Fresh matching-head captures must show intact adjacent-line glyph bottoms at narrow/desktop widths, both themes and zoom cases; G02 explicitly records that requirement. In the earlier desktop formula pair the visible expression strokes are materially clearer, but a foreground ribbon partly occludes the full expression. At 390 Night the reading panels obscure much of it in both baseline and candidate. Those are limits of the inspected world views, not evidence of complete-expression legibility.
+
+A separate read-only visual subreview inspected 56 extracted frames from all four `3b838bc` ribbon videos, bound to Color artifact `c190b5bca23010a2eed166e6cf26993effb3f4d89913c178e02b9ac6b0b094b9`. Sampled fresh Home→Research starts/arrivals, reverse mounts and quick retargets showed no obvious ribbon restart or color seam. Several reverse views temporarily contain large gray foreground faces occluding strands. Video/trace alignment was calibrated from visible mount changes with approximately 40–80ms uncertainty. This bounded frame review does not supply full motion/device acceptance and does not validate the newer title correction. No image asset or video was changed.
+
+The prepared layer/helper/SEO review observes HEAD `3b838bceccf823e63927c0c2504c44b68aafdfa6` with `sourceDirty: true`. Its eight authored-target hashes below have sorted filename-to-hash JSON aggregate SHA256 `98c4b55e6b9a37ed1ad73c95ea4277cb6fc08a2a85856dd21da1eb190513c3fd`; these supersede the prior bytes only for the listed targets.
+
+| Layer correction review target | SHA256 |
+| --- | --- |
+| `site/engine/styles.css` | `b29e8b7e650b7373c41385132c84c5ba853741680f7de798e23c99fdcb625f1b` |
+| `site/content/pages/research/intro.html` | `31e8aa74bcd518c93ab06e515f09bd56930565db64dee01153011a0249dba41f` |
+| `site/content/pages/talks/intro.html` | `7267afa88e0e41c4cefaec7617e18f4994b8a5fb81a7d38d52fa68b47a7443e4` |
+| `site/content/pages/writing/section-1.html` | `a53b87887d3ae3605f5fcf649559f36ab82fd7be3c23641b3e6f97b8a8cb4f54` |
+| `tools/quality/reading-clarity.cjs` | `86c5e6a95340f00d41d21b18d0e548c57b3b23e69c438ca304f08860d216c6cb` |
+| `tools/check_site_seo.cjs` | `dddfda7590c21f8a2be789240bea5d28441372fb9bbf189350b8d8184ec5e40a` |
+| `tests/executive.test.cjs` | `bc57bdc9068c4bc10747d55d79296aa6117ae2dc45fbf659b4942c4ea0cf823e` |
+| `.github/acceptance/issue-45.json` | `2e6a122f4335fac29397670d4fea41f653010a7db8fcbe59db403a9f959e5ddf` |

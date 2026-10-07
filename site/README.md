@@ -79,6 +79,12 @@ painted travel progress as well as camera, phase and detail. Optional
 `SiteRibbonProbe` observations inspect actual submitted stations and journey
 state; ordinary visits construct no trace and add no independent clock.
 
+Large inline titles retain native wrapping while their cloned backgrounds
+extend0.16em around each fragment. An inner positioned ink span paints the
+complete title above all background fragments; adjacent line spreads cannot
+cover glyph bottoms. The exact text and explicit line breaks remain authored
+content, with no added line-box padding.
+
 The Writing room has one original outlined paradigm landmark, sourced only from
 `assets/writing-paradigm.svg`. `tools/site/scene-assets.cjs` validates and compiles
 it during generation. Renderer uses one fixed1380×240 raster cache and one native

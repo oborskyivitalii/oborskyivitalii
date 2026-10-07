@@ -31,8 +31,8 @@
 
 
 
-  <meta name="site-engine" content="09020d334b0fc4dae57ae45efc6bcab4531db148531246aa1bffb667491c1f48">
-  <meta name="site-route" content="35c8d2e31a8d28f51c5df87fc076f08a252294b8db091e2da2e1bf7b6afdbd70">
+  <meta name="site-engine" content="71a5178f60c2c18e562668fbb8d00b6ba25decc27c4d0ffd4d57da8ee8398b52">
+  <meta name="site-route" content="34fc151ddbd01778d5b4b05304adbe1b5a78c64144980fb26116e15552ebc074">
   <meta name="site-contract" content="1">
   <meta name="site-variant" content="base">
 <meta name="robots" content="noindex, nofollow">
@@ -133,6 +133,8 @@ select,.motion-control,.filter-reset {min-height:44px;background:var(--paper);co
 .archive-intro>h1,.archive-intro>.hero-description {width:fit-content;max-width:100%;padding:8px 16px;margin-left:-16px}
 /* Cloned paint extends beyond each title line without changing native wrapping. */
 .reading-title {background:var(--paper);background:color-mix(in srgb,var(--paper) var(--surface-reading),transparent);box-shadow:0 0 0 .16em var(--paper);box-shadow:0 0 0 .16em color-mix(in srgb,var(--paper) var(--surface-reading),transparent);border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+/* Paint all title ink above every cloned line's backdrop and spread. */
+.reading-title-ink {position:relative;z-index:1}
 /* Padded panels already protect their headings; fitted standalone titles need a
    solid margin before the existing feather. Outset paint has no layout effect. */
 .about-grid>h2,.credits-page>h1,.hero h1 {--surface-outset:.16em}

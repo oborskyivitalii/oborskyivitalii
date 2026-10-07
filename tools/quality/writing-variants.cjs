@@ -75,7 +75,7 @@ function patchRuntime(scripts,label){
   if(label==='no-canvas-draw')patch('space.js','paintShapes(ctx,shapes,colors,sceneEffects?.paint);','void shapes; // Private Writing diagnostic: Canvas shape submission omitted.');
   if(label==='thematic-off'||label==='shared-off'){
     const family=label==='thematic-off'?'thematic':'shared';
-    patch('space.js','return {faces,lines,objects};','return {faces,lines,objects,__writingDiagnosticRoute:page};');
+    patch('space.js','return {faces,lines,objects,formulas};','return {faces,lines,objects,formulas,__writingDiagnosticRoute:page};');
     patch('space.js','for(const o of world.objects) {','for(const o of world.objects) {\n      if(world.__writingDiagnosticRoute==="writing"&&o.family==="'+family+'")continue; // Private projection-only ablation.');
   }
   if(label==='model-prewarm'){

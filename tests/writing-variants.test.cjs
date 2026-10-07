@@ -12,12 +12,13 @@ function controls(){
 }
 function api(source){const context={window:{SiteEffects:{}},module:{exports:{}}};vm.runInNewContext(source,context);return context.module.exports;}
 function browser(source){
-  const pending=[],events=[],dataset={},calls={clear:0,fill:0,stroke:0};
+  const pending=[],events=[],dataset={},calls={clear:0,fill:0,stroke:0,formulaCaches:0};
   const ctx=Object.fromEntries(['setTransform','clearRect','beginPath','moveTo','lineTo','stroke','fill','closePath','quadraticCurveTo'].map(name=>[name,()=>{if(name==='clearRect')calls.clear++;if(name==='fill')calls.fill++;if(name==='stroke')calls.stroke++;}]));
   ctx.createLinearGradient=()=>({addColorStop(){}});
   const canvas={parentElement:{dataset,style:{setProperty(){}}},getContext:()=>ctx},button={setAttribute(){},addEventListener(){}};
   const window={performance:{now:()=>12},innerWidth:390,innerHeight:844,devicePixelRatio:3,scrollY:0,matchMedia:q=>({matches:q.includes('max-width'),addEventListener(){}}),requestAnimationFrame:fn=>{pending.push(fn);return pending.length;},cancelAnimationFrame(){},addEventListener(){},getComputedStyle:()=>({getPropertyValue:key=>({'--accent':'#075d7b','--systems':'#895710','--paper':'#f8f7f3','--scene-sheet':'#fffefa'})[key]}),SiteEngineProbe:event=>events.push(event)};
-  const document={body:{dataset:{page:'research'}},documentElement:{scrollHeight:5000,dataset:{theme:'dark'}},getElementById:id=>id==='space-canvas'?canvas:id==='space-motion'?button:null,querySelector:()=>null,querySelectorAll:()=>[],addEventListener(){}};
+  const formulaContext={beginPath(){},moveTo(){},lineTo(){},bezierCurveTo(){},stroke(){},createLinearGradient:()=>({addColorStop(){}})};
+  const document={createElement(tag){assert.equal(tag,'canvas');calls.formulaCaches++;return {getContext:()=>formulaContext};},body:{dataset:{page:'research'}},documentElement:{scrollHeight:5000,dataset:{theme:'dark'}},getElementById:id=>id==='space-canvas'?canvas:id==='space-motion'?button:null,querySelector:()=>null,querySelectorAll:()=>[],addEventListener(){}};
   vm.runInNewContext(source,{window,document,localStorage:{getItem:()=>null},module:{exports:{}}});
   return {window,dataset,events,calls,frame(){const jobs=pending.splice(0);for(const job of jobs)job(40);}};
 }
@@ -48,7 +49,9 @@ test('family intervention preserves construction and all Research projection whi
     for(const route of ['writing','research']){
       const original=control.worldFor(route,true),world=altered.worldFor(route,true);
       assert.equal(world.objects.length,252);assert.equal(world.faces.length,original.faces.length);assert.equal(world.lines.length,original.lines.length);
+      assert.equal(JSON.stringify(world.formulas),JSON.stringify(original.formulas),'projection-only family omission retains canonical world formula anchors');
       const pose=control.poses[control.initialPoses[route]],before=control.projectedWorld(original,pose,390,844,0,0,true,false),after=altered.projectedWorld(world,pose,390,844,0,0,true,false);
+      assert.equal(JSON.stringify(after.filter(shape=>shape.kind==='formula')),JSON.stringify(before.filter(shape=>shape.kind==='formula')),'family omission never drops, moves or repaints the world formula');
       if(route==='research')assert.equal(JSON.stringify(after),JSON.stringify(before),'other route remains identical');
       else {const names=new Set(world.objects.filter(object=>object.family===family).map(object=>object.name));assert.ok(before.some(shape=>names.has(shape.object)),'positive selected-family control');assert.ok(!after.some(shape=>names.has(shape.object)));assert.equal(JSON.stringify(after),JSON.stringify(before.filter(shape=>!names.has(shape.object))));}
     }
@@ -61,7 +64,9 @@ test('no-canvas retains actual diagnostic frames/geometry/effects; prewarm expli
     const frame=browser(read('no-canvas-draw'));frame.frame();assert.equal(frame.calls.clear,1);assert.equal(frame.calls.fill,0);assert.equal(frame.calls.stroke,0);assert.equal(frame.dataset.ready,'true');assert.ok(Number(frame.dataset.ribbonFaces)>0);assert.ok(frame.events.some(event=>event.kind==='model'&&event.route==='research'));
     const prewarm=browser(read('model-prewarm'));const timing=prewarm.window.__writingDiagnostic.prepareWriting();assert.deepEqual(Object.keys(timing),['start','end','duration']);assert.ok(Number.isFinite(timing.duration));
     assert.equal(prewarm.events.filter(event=>event.kind==='model'&&event.route==='writing').length,1);assert.equal(prewarm.events.filter(event=>event.kind==='diagnostic-preparation').length,1);
+    assert.equal(prewarm.calls.formulaCaches,1);assert.equal(prewarm.window.SiteScene.formulaDiagnostics().status,'ready','prewarm retains the current formula cache');
     prewarm.window.__writingDiagnostic.prepareWriting();assert.equal(prewarm.events.filter(event=>event.kind==='model'&&event.route==='writing').length,1,'prewarm keeps the bounded cache');
+    assert.equal(prewarm.calls.formulaCaches,1,'repeat prewarm creates no additional formula cache');
     const noRibbon=browser(read('no-ribbons'));noRibbon.frame();assert.equal(noRibbon.dataset.ribbonFaces,undefined);assert.ok(noRibbon.calls.fill>0,'thematic/shared Canvas remains');
   }finally{fs.rmSync(dir,{recursive:true,force:true});}
 });
@@ -72,4 +77,6 @@ test('edge bypass retains serialized controls but does not register their hooks;
   assert.equal(load(nav),2);assert.equal(load(patched),1,'content preference still initializes, edge hooks do not');
   assert.throws(()=>diagnostic.patchRuntime({'space.js':'no matching source'},'no-ribbons'),/exactly once/);
   assert.throws(()=>diagnostic.patchRuntime({'space.js':'const sceneEffects=effects?.scene?.(api);const sceneEffects=effects?.scene?.(api);'},'no-ribbons'),/exactly once/);
+  const runtime=fs.readFileSync(path.join(root,'docs','space.js'),'utf8'),anchor='return {faces,lines,objects,formulas};';
+  for(const label of ['thematic-off','shared-off'])for(const changed of [runtime.replace(anchor,'/* controlled world contract drift */'),runtime+'\n'+anchor])assert.throws(()=>diagnostic.patchRuntime({'space.js':changed},label),/exactly once/,'a missing or duplicated formula-aware world contract fails closed');
 });

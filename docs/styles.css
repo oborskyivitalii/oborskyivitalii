@@ -94,6 +94,8 @@ select,.motion-control,.filter-reset {min-height:44px;background:var(--paper);co
 .archive-intro>h1,.archive-intro>.hero-description {width:fit-content;max-width:100%;padding:8px 16px;margin-left:-16px}
 /* Cloned paint extends beyond each title line without changing native wrapping. */
 .reading-title {background:var(--paper);background:color-mix(in srgb,var(--paper) var(--surface-reading),transparent);box-shadow:0 0 0 .16em var(--paper);box-shadow:0 0 0 .16em color-mix(in srgb,var(--paper) var(--surface-reading),transparent);border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+/* Paint all title ink above every cloned line's backdrop and spread. */
+.reading-title-ink {position:relative;z-index:1}
 /* Padded panels already protect their headings; fitted standalone titles need a
    solid margin before the existing feather. Outset paint has no layout effect. */
 .about-grid>h2,.credits-page>h1,.hero h1 {--surface-outset:.16em}

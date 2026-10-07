@@ -138,7 +138,7 @@
     },
     "G02": {
       "kind": "human",
-      "description": "Review the matching opt-in reading-clarity report and paired captures: all 60 route/width/theme/zoom geometry cases pass with source/CSS identities retained, equal heading and glyph Range geometry, equal scroll widths, no overflow and positive solid reading margins for every visible heading at least 25px. Inspect the 12 captures served from the exact baseline and candidate Color artifacts with their source bindings. Confirm perceived isolation on the marked Talks title and other large headings. CSS zoom/Chromium evidence does not supply physical Safari/iPad acceptance."
+      "description": "Review the matching opt-in reading-clarity report and paired captures: all 60 route/width/theme/zoom geometry cases pass with source/CSS identities retained, equal heading and glyph Range geometry, equal scroll widths, no overflow and positive solid reading margins for every visible heading at least 25px. Inspect the 12 captures served from the exact baseline and candidate Color artifacts with their source bindings. Confirm perceived isolation on the marked Talks title and other large headings. CSS zoom/Chromium evidence does not supply physical Safari/iPad acceptance. Inspect line-fragment paint ordering: the expanded background must never cover glyph bottoms on an adjacent title line."
     },
     "G03": {
       "kind": "human",

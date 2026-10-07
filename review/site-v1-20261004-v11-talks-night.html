@@ -31,8 +31,8 @@
 
 
 
-  <meta name="site-engine" content="09020d334b0fc4dae57ae45efc6bcab4531db148531246aa1bffb667491c1f48">
-  <meta name="site-route" content="48e14e3975c358d1490ee91407d68434851cec63973370ec2fdeffc6cd2fb914">
+  <meta name="site-engine" content="71a5178f60c2c18e562668fbb8d00b6ba25decc27c4d0ffd4d57da8ee8398b52">
+  <meta name="site-route" content="b77359c1c64edc15eee86e40c300eb89195866870b23a1f02e353a6fcefba20c">
   <meta name="site-contract" content="1">
   <meta name="site-variant" content="base">
 <meta name="robots" content="noindex, nofollow">
@@ -133,6 +133,8 @@ select,.motion-control,.filter-reset {min-height:44px;background:var(--paper);co
 .archive-intro>h1,.archive-intro>.hero-description {width:fit-content;max-width:100%;padding:8px 16px;margin-left:-16px}
 /* Cloned paint extends beyond each title line without changing native wrapping. */
 .reading-title {background:var(--paper);background:color-mix(in srgb,var(--paper) var(--surface-reading),transparent);box-shadow:0 0 0 .16em var(--paper);box-shadow:0 0 0 .16em color-mix(in srgb,var(--paper) var(--surface-reading),transparent);border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+/* Paint all title ink above every cloned line's backdrop and spread. */
+.reading-title-ink {position:relative;z-index:1}
 /* Padded panels already protect their headings; fitted standalone titles need a
    solid margin before the existing feather. Outset paint has no layout effect. */
 .about-grid>h2,.credits-page>h1,.hero h1 {--surface-outset:.16em}
@@ -392,7 +394,8 @@ body[data-page="writing"] .publication {--reading-alpha:var(--surface-row)}
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header wrap"><a class="wordmark" href="site-v1-20261004-v11-night.html" aria-label="Vitalii Oborskyi, home"><span class="monogram" aria-hidden="true">vo<span class="monogram-dot">.</span></span><span>Vitalii Oborskyi</span></a><nav aria-label="Main navigation"><a href="site-v1-20261004-v11-night.html">Home</a><a href="site-v1-20261004-v11-research-night.html">Research</a><a href="site-v1-20261004-v11-writing-night.html">Writing</a><a href="site-v1-20261004-v11-talks-night.html" aria-current="page">Talks</a></nav><details class="appearance"><summary>Appearance</summary><noscript><p>Display follows your browser’s color preference. Animated motion needs JavaScript.</p></noscript><div class="display-controls"><nav class="theme-control" aria-label="Review theme"><span>Preview theme</span><a href="site-v1-20261004-v11-talks-day.html">Day</a><a href="site-v1-20261004-v11-talks-night.html" aria-current="page" style="text-decoration:underline">Night</a></nav></div></details></header>
 <aside class="wrap" aria-label="Review copy" style="padding-block:14px;font-size:13px;color:var(--muted)"><a href="site-v1-20261004-v11-index.html">All five pages</a> · fixed Night review · static background. Motion, filters and Auto run in the interactive copy. Review candidate.</aside>
-<main id="main" tabindex="-1"><section class="archive-intro wrap" data-space-stop="intro"><p class="eyebrow">Talks & workshops</p><h1><span class="reading-title">Questions are better<br>in conversation.</span></h1><p class="hero-description">Public announcements and follow-ups on AI architecture, delivery and the engineering work around non-deterministic systems.</p></section><div class="wrap section">    <section id="talks" class="talks-list" aria-labelledby="talks-title" data-space-stop="talks">
+<main id="main" tabindex="-1"><section class="archive-intro wrap" data-space-stop="intro"><p class="eyebrow">Talks & workshops</p><h1><span class="reading-title"><span class="reading-title-ink">Questions are better<br>in conversation.</span></span></h1><p class="hero-description">Public announcements and follow-ups on AI architecture, delivery and the engineering work around non-deterministic systems.</p></section>
+<div class="wrap section">    <section id="talks" class="talks-list" aria-labelledby="talks-title" data-space-stop="talks">
       <div class="section-heading"><p class="eyebrow">Talks</p><h2 id="talks-title">Talks &amp; workshops.</h2></div>
       <nav class="topic-nav" aria-label="Talk language"><a href="#ukrainian-talks">UA · Ukrainian</a><a href="#other-talks">Other talks &amp; workshops</a></nav>
       <h3 id="ukrainian-talks" class="writing-topic">Ukrainian-language talks</h3>

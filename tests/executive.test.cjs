@@ -19,6 +19,10 @@ test('approved contact and decorative title reconciliation retain changed destin
     assert.ok(source.includes('class="reading-title"'));
     assert.notEqual(restore(source.replace('class="reading-title"','class="other-title"'),page),restore(source,page));
     assert.notEqual(restore(source.replace('<span class="reading-title">','<span class="reading-title">Altered title '),page),restore(source,page));
+    const layered=source.includes('class="reading-title-ink"')?source:source.replace(/(<span class="reading-title">)([\s\S]*?)(<\/span>)/,'$1<span class="reading-title-ink">$2</span>$3');
+    assert.equal(restore(layered,page),restore(source,page),'approved ink wrapper retains exact copy');
+    assert.notEqual(restore(layered.replace('class="reading-title-ink"','class="other-ink"'),page),restore(source,page),'unsupported ink wrapper identity');
+    assert.notEqual(restore(layered.replace('<span class="reading-title-ink">','<span class="reading-title-ink">Altered title '),page),restore(source,page),'changed layered title copy');
   }
 });
 test('response reconciliation rejects missing people, sources and stronger participation claims',()=>{
