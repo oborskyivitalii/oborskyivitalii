@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "review": {
-    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/36",
-    "summary": "2026-10-07 after maintainer-authorized joint PR43 merge: adapt PR44 to four-media producer; retain all23 joint source checks plus actual media-consumer12-case suite, existing gates and test registry. Package consumption rechecks finite declarations/immutable bytes and preserves legacy recovery. Canonical output regeneration follows producer fingerprint; no feature/budget/profile/platform changes.",
+    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/45",
+    "summary": "2026-10-07 scoped formula contour and paint-only heading margin repair on709c6d0; maintained checks reused and one opt-in actualColor geometry/capture diagnostic. Original profiles/budgets/release boundaries retained.",
     "date": "2026-10-07"
   },
   "layers": [
@@ -48,7 +48,10 @@
         "tests/test_issue41_acceptance.py",
         "tests/test_issue_acceptance.py",
         "tools/issue_acceptance.py",
-        "review/issue-36/2026-10-07-controller-compatibility.md"
+        "review/issue-36/2026-10-07-controller-compatibility.md",
+        ".github/acceptance/issue-45.json",
+        "tests/test_issue45_acceptance.py",
+        "review/issue-45/2026-10-07-handoff.md"
       ],
       "checks": [
         "acceptance-policy",
@@ -106,7 +109,9 @@
         "tools/quality/source-tests.cjs",
         "tools/quality/staging-gate.cjs",
         "tools/quality/staging-regression.cjs",
-        "tools/quality/test-profiles.json"
+        "tools/quality/test-profiles.json",
+        "tools/quality/reading-clarity.cjs",
+        ".github/workflows/site-writing-probe.yml"
       ],
       "checks": [
         "acceptance-policy",
@@ -354,7 +359,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "b301b7441098ad3143729c8b0f52ddfac1b2ef19058e313b78072b5e4c35e443",
+    "digest": "502402321fc54f70761719dd6160b72f7ac8e5e1b368e3bdfb11e09669eeda45",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -393,6 +398,10 @@
         "sha256": "3fe37dfcc9e7d4c0f503698e8ba91491216621073347c6ab8cb1b25302a0c44a"
       },
       {
+        "path": ".github/acceptance/issue-45.json",
+        "sha256": "16f949bd6d128651a55da1412c990923af6bb841474d88f7dc02561d902ed547"
+      },
+      {
         "path": ".github/pull_request_template.md",
         "sha256": "9d6e001401d72e906275515a4c4921e966541cda9d7b98aad58f54980bf301de"
       },
@@ -406,7 +415,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "997c1e87a3a4168142191f840dfb2d6e0b0546e6a796518770c98525e1a7a6ee"
+        "sha256": "efa17ac4b6784c9bcfa1bda797373fad8d5ac69b7b8acd7f900268fd98c6633f"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -466,7 +475,7 @@
       },
       {
         "path": ".github/workflows/site-writing-probe.yml",
-        "sha256": "688caf2aa412d6360e2376444031c0689d235ba9b830f84aed643d79dca8cb49"
+        "sha256": "de61626634ae1f6a26afaf6f83833abcd9322aa7ebdeffb0ec1bee85f6961c56"
       },
       {
         "path": "AGENTS.md",
@@ -482,7 +491,7 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "f51a75e299db9b879724de1310c4b0c9fcf1ad78c7d22449912b94eb6dc3b6bc"
+        "sha256": "1c4cf619101404a341b8076f4f25bcad0fa60b10a56acbab87d3862b41af41a6"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -523,6 +532,10 @@
       {
         "path": "tests/test_issue41_acceptance.py",
         "sha256": "e558341644520e99ff0d8cba98f64b6a2f85328565cd39afb1efdc0bef1a0451"
+      },
+      {
+        "path": "tests/test_issue45_acceptance.py",
+        "sha256": "b4133f8f3b003b045f97408547250fcae85c680c782291ec0bd37c18d2264399"
       },
       {
         "path": "tests/test_issue_acceptance.py",
@@ -574,7 +587,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "519164e136ff3793debe68a2d796e9712b875829dfcd6fad7bf74c526b91b773"
+        "sha256": "68b02abb8bff05b47b8dbc3245167f957c03c62b2316ca1dc5e37dadb70f4aa9"
       },
       {
         "path": "tools/repository_intelligence.py",

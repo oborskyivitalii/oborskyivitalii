@@ -4,7 +4,7 @@ Dated continuity, not live authority. Last verified: **2026-10-07**.
 
 ## Snapshot
 
-- Main is `76f2a78` after authorized joint PR #43 merge; #35 / PR #37 is
+- Main is `709c6d0` after joint PR #43 and compatibility PR #44 merge; #35 / PR #37 is
   merged. #31/#32 and #33/#34 are completed. Read their pinned issue evidence.
 - The maintainer requests one joint staging run for [#36](https://github.com/oborskyivitalii/oborskyivitalii/issues/36)
   / [PR #38](https://github.com/oborskyivitalii/oborskyivitalii/pull/38) and
@@ -19,8 +19,12 @@ Dated continuity, not live authority. Last verified: **2026-10-07**.
   static checks; its absolute performance passed. The repaired candidate passes
   258 selected source cases. PR #44 at eb81a61 has four green minimal CI runs.
   Corrected #43 at072a7b8 passed four minimal CI runs and merged at76f2a78.
-  PR #44 is adapted on that main with the full24-check joint policy. One bounded
+  PR #44 is now merged at709c6d0. One bounded
   joint staging run and current exact deployment are tracked in the live issues.
+- #45 owns formula-edge/heading reading margins on live main709c6d0.
+  [Current handoff](review/issue-45/2026-10-07-handoff.md) and independent source
+  review are prepared locally. Automatic review blocked Git push; no PR exists.
+  Next: maintainer authorization to push, create Draft PR and run scoped captures.
 - #36 places one tilted, pulsing formula in Writing's books/pages fractal,
   sharing its camera/clock and bounded cache. Rejected banner benchmarks are
   historical failures, not acceptance of this world-space implementation.
@@ -54,7 +58,8 @@ Dated continuity, not live authority. Last verified: **2026-10-07**.
 
 | Issue | Remaining intent |
 | --- | --- |
-| #36 / #41 | #43 merged; adapted #44/joint staging, legacy recovery compatibility; paired evidence and visual/editorial/independent gates. |
+| #45 | Formula contour/heading paint margin repair; exact CI/Color captures and visual/merge acceptance. |
+| #36 / #41 | #43/#44 merged; joint staging and paired/visual/editorial acceptance. |
 | #1 / #13 | First-release, physical-device and full production/recovery acceptance. |
 | #8 / #39 | Production URL/indexability, domains and analytics activation. |
 | #7 | License and editorial/third-party rights. |

@@ -9,7 +9,7 @@ function surfaceStyles(){
 :root[data-theme="dark"] body[data-page="writing"] .archive-intro>.hero-description{color:var(--ink)}
 .year-heading,.writing-topic{position:relative;isolation:isolate}
 .year-heading{width:fit-content;max-width:100%}
-.year-heading::before,.writing-topic::before{content:"";position:absolute;inset:calc(-1 * var(--surface-gutter));z-index:-1;pointer-events:none;background:var(--paper);background:color-mix(in srgb,var(--paper) var(--surface-reading),transparent);mask-image:linear-gradient(90deg,transparent,#000 var(--surface-gutter),#000 calc(100% - var(--surface-gutter)),transparent),linear-gradient(transparent,#000 var(--surface-gutter),#000 calc(100% - var(--surface-gutter)),transparent);mask-composite:intersect}
+.year-heading::before,.writing-topic::before{content:"";position:absolute;inset:calc(-1 * (var(--surface-gutter) + var(--surface-outset,0px)));z-index:-1;pointer-events:none;background:var(--paper);background:color-mix(in srgb,var(--paper) var(--surface-reading),transparent);mask-image:linear-gradient(90deg,transparent,#000 var(--surface-gutter),#000 calc(100% - var(--surface-gutter)),transparent),linear-gradient(transparent,#000 var(--surface-gutter),#000 calc(100% - var(--surface-gutter)),transparent);mask-composite:intersect}
 ${readingSelector}::before{border-radius:8px}
 .appearance[open] .display-controls{display:flex;flex-direction:column;align-items:stretch;min-width:260px;max-width:calc(100vw - 40px)}
 .appearance[open] .theme-control{display:flex;justify-content:space-between;gap:12px}

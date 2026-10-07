@@ -398,7 +398,7 @@ module.exports=function(math) {
     // One extruded landmark sits in the open centre of the first book/page
     // fractal. Its corners are world geometry, sharing that root's living
     // transform and the camera's forward journey on every viewport.
-    const formulas=page==='writing'?[{id:'writing-paradigm',center:[0,0,-5],rootCenter:roots[0],root:0,phase:0,width:12,aspect:1380/240,rotation:[.08,-.22,.08],extrusion:.32}]:[];
+    const formulas=page==='writing'?[{id:'writing-paradigm',center:[0,0,-5],rootCenter:roots[0],root:0,phase:0,width:12,aspect:1380/240,rotation:[.08,-.22,.08],extrusion:.10}]:[];
     return {faces,lines,objects,formulas};
   }
   function prepareFace(f,light) {

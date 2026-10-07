@@ -1462,6 +1462,21 @@
       "inputs": [
         "tests/test_issue41_acceptance.py"
       ]
+    },
+    {
+      "path": "tests/test_issue45_acceptance.py",
+      "language": "python",
+      "purpose": "Issue #45 bounded selections of maintained crisp formula/world/cache/producer, freeze/navigation and foreground safety checks; actual reading-clarity browser evidence and human visual/review gates remain distinct.",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": [
+        "issue-policy"
+      ],
+      "disposition": "selected owning policy only; reuse maintained checks without duplicate full regression or unconditional historical snapshot execution",
+      "surviving_route": ".github/acceptance/issue-45.json",
+      "inputs": [
+        "tests/test_issue45_acceptance.py"
+      ]
     }
   ]
 }

@@ -48,7 +48,10 @@ test('one fixed formula cache preserves scene order and is reused across room vi
   const asset=require('../tools/site/scene-assets.cjs').load(require('node:path').resolve(__dirname,'..'));
   let constructions=0,gradients=0;const target=recorder();target.bezierCurveTo=()=>{};target.createLinearGradient=()=>{gradients++;return {addColorStop(){}};};
   const surface={getContext:()=>target},renderer=require('../site/engine/renderer.cjs')(asset,()=>{constructions++;return surface;}),ctx=recorder();
-  ctx.save=()=>{};ctx.restore=()=>{};ctx.clip=()=>{};ctx.transform=(...matrix)=>assert.ok(matrix.every(Number.isFinite));ctx.drawImage=(bitmap,...bounds)=>{assert.equal(bitmap,surface);assert.ok(bounds.every(Number.isFinite));ctx.commands.push('formula');};
+  const submissions=[],states=[];ctx.imageSmoothingEnabled=false;ctx.imageSmoothingQuality='low';
+  ctx.save=()=>states.push({globalAlpha:ctx.globalAlpha,imageSmoothingEnabled:ctx.imageSmoothingEnabled,imageSmoothingQuality:ctx.imageSmoothingQuality});
+  ctx.restore=()=>Object.assign(ctx,states.pop());ctx.clip=()=>{};ctx.transform=(...matrix)=>assert.ok(matrix.every(Number.isFinite));
+  ctx.drawImage=(bitmap,...bounds)=>{assert.equal(bitmap,surface);assert.ok(bounds.every(Number.isFinite));submissions.push({alpha:ctx.globalAlpha,smoothing:ctx.imageSmoothingEnabled,quality:ctx.imageSmoothingQuality});ctx.commands.push('formula');};
   const line={kind:'line',points:[[0,0],[10,10]],color:'cyan',alpha:.5,lineWidth:1};
   const builder=require('../tools/site/build.cjs'),root=require('node:path').resolve(__dirname,'..'),api=builder.model(root,builder.configuration(root).definitions),anchor=api.worldFor('writing').formulas[0];
   const formula=api.projectedFormula(anchor,api.poses.library,390,844,7317);
@@ -58,6 +61,8 @@ test('one fixed formula cache preserves scene order and is reused across room vi
   assert.equal(renderer.formulaDrawn(),true,'bitmap ownership persists until another successful paint');
   assert.deepEqual(ctx.commands.filter(c=>c!=='begin'),['stroke',...Array(24).fill('formula'),'stroke'],'one extruded perspective landmark paints at its sorted depth without moving other commands');
   assert.equal(renderer.formulaDiagnostics().lastDrawSubmissions,24);
+  assert.ok(submissions.every(paint=>paint.alpha===formula.alpha&&paint.smoothing===true&&paint.quality==='high'),'all world layers retain a definite glyph edge without additional translucent ghosts');
+  assert.equal(ctx.imageSmoothingEnabled,false);assert.equal(ctx.imageSmoothingQuality,'low','formula sampling state does not leak to other scene commands');
   assert.deepEqual(renderer.formulaDiagnostics().projection,formula.projection);
   assert.equal(target.commands.filter(c=>c==='stroke').length,15,'each approved glyph is rasterized exactly once');
   for(let visit=0;visit<40;visit++){
@@ -89,6 +94,12 @@ test('the Writing landmark inhabits the book fractal and follows its periodic wo
   assert.ok(first.points[0][1]!==first.points[1][1]);assert.ok(Math.max(...first.projection.worldCorners.map(p=>p[2]))-Math.min(...first.projection.worldCorners.map(p=>p[2]))>1,'formula has true world orientation and depth');
   assert.ok(approach.depth<first.depth);assert.ok(Math.hypot(...api.sub(approach.points[1],approach.points[0]))>Math.hypot(...api.sub(first.points[1],first.points[0])),'forward travel approaches and enlarges the fixed formula');
   assert.equal(first.cameraLayers.length,3);assert.notDeepEqual(first.cameraLayers[0],first.cameraLayers[2],'extrusion uses separated world planes');
+  for(const width of [390,768,1440])for(const pose of [api.poses.library,api.journeyPose(api.topicPaths.all,.08)]){
+    const shape=api.projectedFormula(anchor,pose,width,900,0),screen=p=>[shape.origin[0]+p[0]*shape.focal/p[2],shape.origin[1]-p[1]*shape.focal/p[2]];
+    const nominalStroke=14*Math.hypot(...api.sub(shape.points[1],shape.points[0]))/api.sceneAsset.width;
+    const separation=shape.cameraLayers[0].map((point,index)=>Math.hypot(...api.sub(screen(point),screen(shape.cameraLayers[2][index]))));
+    assert.ok(Math.max(...separation)<nominalStroke/2,'shallow world thickness stays connected within the projected glyph stroke rather than creating duplicated silhouettes');
+  }
   const sorted=api.projectedWorld(world,api.poses.library,1440,900,0);assert.equal(sorted.filter(s=>s.kind==='formula').length,1);
   for(let i=1;i<sorted.length;i++)assert.ok(sorted[i].depth<=sorted[i-1].depth,'formula and surrounding geometry share the same sort');
 });

@@ -57,31 +57,37 @@
     },
     ".github/acceptance/issue-31.json": {
       "kind": "file",
-      "purpose": "Cleanup AC01\u2013AC11 mapped to source-bound deterministic tests and separate readiness gates.",
+      "purpose": "Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-33.json": {
       "kind": "file",
-      "purpose": "Bootstrap/root optimization AC01\u2013AC06 mapped to source-bound assertions and separate review, merge and linkage gates.",
+      "purpose": "Bootstrap/root optimization AC01–AC06 mapped to source-bound assertions and separate review, merge and linkage gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-35.json": {
       "kind": "file",
-      "purpose": "Test optimization AC01\u2013AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates.",
+      "purpose": "Test optimization AC01–AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-36.json": {
       "kind": "file",
-      "purpose": "Writing formula AC01\u2013AC05 mapped to canonical asset, native cache/integration, source-bound browser and paired performance evidence, with remaining human/release gates explicit.",
+      "purpose": "Writing formula AC01–AC05 mapped to canonical asset, native cache/integration, source-bound browser and paired performance evidence, with remaining human/release gates explicit.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-41.json": {
       "kind": "file",
       "purpose": "Issue41 AC01-AC06 implementation mapping for exact inputs, admitted editions, generated content, SEO and runtime scope; explicit editorial/browser/review-merge gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    ".github/acceptance/issue-45.json": {
+      "kind": "file",
+      "purpose": "Issue45 scoped formula and heading reading-clarity criterion mapping.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -379,39 +385,39 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/bea73284d408fc8bcd4167f94e24a8178dc04d10c5cb5f1d69cee8d7610bfb1b": {
+    "docs/runtime/8cad92edcb7a75893abb3dc9100ed9c154a9177cd68d05adc9c8d1815cd97368": {
       "kind": "directory",
-      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
+      "purpose": "Generated immutable route/runtime from issue45 canonical formula and reading-surface repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/bea73284d408fc8bcd4167f94e24a8178dc04d10c5cb5f1d69cee8d7610bfb1b/archive.js": {
+    "docs/runtime/8cad92edcb7a75893abb3dc9100ed9c154a9177cd68d05adc9c8d1815cd97368/archive.js": {
       "kind": "file",
-      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
+      "purpose": "Generated immutable route/runtime from issue45 canonical formula and reading-surface repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/bea73284d408fc8bcd4167f94e24a8178dc04d10c5cb5f1d69cee8d7610bfb1b/navigation.js": {
+    "docs/runtime/8cad92edcb7a75893abb3dc9100ed9c154a9177cd68d05adc9c8d1815cd97368/navigation.js": {
       "kind": "file",
-      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
+      "purpose": "Generated immutable route/runtime from issue45 canonical formula and reading-surface repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/bea73284d408fc8bcd4167f94e24a8178dc04d10c5cb5f1d69cee8d7610bfb1b/space.js": {
+    "docs/runtime/8cad92edcb7a75893abb3dc9100ed9c154a9177cd68d05adc9c8d1815cd97368/space.js": {
       "kind": "file",
-      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
+      "purpose": "Generated immutable route/runtime from issue45 canonical formula and reading-surface repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/bea73284d408fc8bcd4167f94e24a8178dc04d10c5cb5f1d69cee8d7610bfb1b/styles.css": {
+    "docs/runtime/8cad92edcb7a75893abb3dc9100ed9c154a9177cd68d05adc9c8d1815cd97368/styles.css": {
       "kind": "file",
-      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
+      "purpose": "Generated immutable route/runtime from issue45 canonical formula and reading-surface repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/bea73284d408fc8bcd4167f94e24a8178dc04d10c5cb5f1d69cee8d7610bfb1b/theme.js": {
+    "docs/runtime/8cad92edcb7a75893abb3dc9100ed9c154a9177cd68d05adc9c8d1815cd97368/theme.js": {
       "kind": "file",
-      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
+      "purpose": "Generated immutable route/runtime from issue45 canonical formula and reading-surface repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -427,63 +433,63 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/1b9dd33f66fd7d9d4c7559cdd4b71bb856f8ab6d2dfdde9e60fb3dba52069c9d": {
+    "docs/snapshots/10a8ff1927827c7a73e0db600ae53da9236d2256fcd0bc89d06fbcf43cf552ad": {
       "kind": "directory",
-      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
+      "purpose": "Generated immutable route/runtime from issue45 canonical formula and reading-surface repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/1b9dd33f66fd7d9d4c7559cdd4b71bb856f8ab6d2dfdde9e60fb3dba52069c9d/research.html": {
+    "docs/snapshots/10a8ff1927827c7a73e0db600ae53da9236d2256fcd0bc89d06fbcf43cf552ad/credits.html": {
       "kind": "file",
-      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
+      "purpose": "Generated immutable route/runtime from issue45 canonical formula and reading-surface repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/94d743af83672cfd6e4c82d40dd6127f46c554fa1f28f1f1323899cc2a01c211": {
+    "docs/snapshots/47abf3046e8e8092f1c0226cd661880927d3dcc7dcf46897cf9bc2e369a6a7c9": {
       "kind": "directory",
-      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
+      "purpose": "Generated immutable route/runtime from issue45 canonical formula and reading-surface repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/94d743af83672cfd6e4c82d40dd6127f46c554fa1f28f1f1323899cc2a01c211/talks.html": {
+    "docs/snapshots/47abf3046e8e8092f1c0226cd661880927d3dcc7dcf46897cf9bc2e369a6a7c9/research.html": {
       "kind": "file",
-      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
+      "purpose": "Generated immutable route/runtime from issue45 canonical formula and reading-surface repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/a843d890b95366c6773eecd7eb9f8161943390b88c9e6fe65cb55e50e5ec0fd1": {
+    "docs/snapshots/57120855cb2229b025af359641f7e8944d98e1284fbe319aec083fd2f310976c": {
       "kind": "directory",
-      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
+      "purpose": "Generated immutable route/runtime from issue45 canonical formula and reading-surface repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/a843d890b95366c6773eecd7eb9f8161943390b88c9e6fe65cb55e50e5ec0fd1/index.html": {
+    "docs/snapshots/57120855cb2229b025af359641f7e8944d98e1284fbe319aec083fd2f310976c/index.html": {
       "kind": "file",
-      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
+      "purpose": "Generated immutable route/runtime from issue45 canonical formula and reading-surface repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/d275895e31e0910481740b8f024c4728ddbe82e7564be345814ba174fc0442b5": {
+    "docs/snapshots/980d4e771ac6aa1d539b427fc5831c9145e93717577cbd127ad90975930b159c": {
       "kind": "directory",
-      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
+      "purpose": "Generated immutable route/runtime from issue45 canonical formula and reading-surface repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/d275895e31e0910481740b8f024c4728ddbe82e7564be345814ba174fc0442b5/writing.html": {
+    "docs/snapshots/980d4e771ac6aa1d539b427fc5831c9145e93717577cbd127ad90975930b159c/talks.html": {
       "kind": "file",
-      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
+      "purpose": "Generated immutable route/runtime from issue45 canonical formula and reading-surface repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/fb9dedbd16f8e4fc6ab6a509653307151c7f18e0ccf6dd7cf6fc9b26abac386f": {
+    "docs/snapshots/d34ecdb81cdd3bb6d55a6a33e37e643d069e822a326a8eceab6178d14bc363f3": {
       "kind": "directory",
-      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
+      "purpose": "Generated immutable route/runtime from issue45 canonical formula and reading-surface repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/fb9dedbd16f8e4fc6ab6a509653307151c7f18e0ccf6dd7cf6fc9b26abac386f/credits.html": {
+    "docs/snapshots/d34ecdb81cdd3bb6d55a6a33e37e643d069e822a326a8eceab6178d14bc363f3/writing.html": {
       "kind": "file",
-      "purpose": "Generated immutable route/runtime from the joint source after semantics-preserving staging preflight repairs.",
+      "purpose": "Generated immutable route/runtime from issue45 canonical formula and reading-surface repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -858,6 +864,24 @@
       "purpose": "Exact original LinkedIn/Reddit inputs and supplied snapshot hashes/metrics; current admitted/deferred catalog mappings with dated source-access limits.",
       "role": "history",
       "owner": "guides/SITE-SOURCE-AUDIT.md"
+    },
+    "review/issue-45": {
+      "kind": "directory",
+      "purpose": "Issue45 versioned reading clarity findings, implementation and exact-source review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-45/2026-10-07-handoff.md": {
+      "kind": "file",
+      "purpose": "Issue45 versioned reading clarity findings, implementation and exact-source review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-45/2026-10-07-independent-review.md": {
+      "kind": "file",
+      "purpose": "Independent source review of issue45 formula/reading-surface repair, corrected diagnostic findings and explicit visual limits.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     },
     "review/public-responses-20261006": {
       "kind": "directory",
@@ -6073,6 +6097,12 @@
       "role": "test",
       "owner": ".github/ACCEPTANCE.md"
     },
+    "tests/test_issue45_acceptance.py": {
+      "kind": "file",
+      "purpose": "Issue45 selection of maintained source checks; actual visual/browser acceptance remains separate.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     "tests/test_issue_acceptance.py": {
       "kind": "file",
       "purpose": "Acceptance runner adversarial cases for invalid mappings, skipped/empty/failed tests and evidence identity.",
@@ -6462,6 +6492,12 @@
       "purpose": "Maintained quality/check helper for promotion; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md"
+    },
+    "tools/quality/reading-clarity.cjs": {
+      "kind": "file",
+      "purpose": "Opt-in bounded Chromium heading geometry comparison and separately served baseline/candidate formula captures; not a release gate.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tools/quality/research-pair-probe.cjs": {
       "kind": "file",

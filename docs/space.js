@@ -780,7 +780,7 @@ const world=(function(math) {
     // One extruded landmark sits in the open centre of the first book/page
     // fractal. Its corners are world geometry, sharing that root's living
     // transform and the camera's forward journey on every viewport.
-    const formulas=page==='writing'?[{id:'writing-paradigm',center:[0,0,-5],rootCenter:roots[0],root:0,phase:0,width:12,aspect:1380/240,rotation:[.08,-.22,.08],extrusion:.32}]:[];
+    const formulas=page==='writing'?[{id:'writing-paradigm',center:[0,0,-5],rootCenter:roots[0],root:0,phase:0,width:12,aspect:1380/240,rotation:[.08,-.22,.08],extrusion:.10}]:[];
     return {faces,lines,objects,formulas};
   }
   function prepareFace(f,light) {
@@ -1017,12 +1017,17 @@ const renderer=(function(artwork=null,createSurface=null) {
     let saved=false;
     try{
       ctx.save();saved=true;ctx.globalAlpha=shape.alpha;ctx.globalCompositeOperation='source-over';
+      // Warped glyphs are minified; request the native high-quality sampling
+      // path rather than the default bilinear texture sampling.
+      ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';
       // A fixed four-strip mesh follows the projected world plane. Three
       // z-slices give the actual tilted glyphs thickness, using the same single
       // cache. This is one landmark with at most 24 native submissions, not
       // viewport-sized caches, per-glyph geometry or another animation clock.
       for(let layer=0;layer<shape.cameraLayers.length;layer++){
-        ctx.globalAlpha=shape.alpha*[.30,.45,1][layer];
+        // Shared world haze is sufficient. Extra translucent rear copies created
+        // a pale halo around every stroke instead of a definite solid edge.
+        ctx.globalAlpha=shape.alpha;
         const corners=shape.cameraLayers[layer];
         const at=(u,v)=>{
           const top=corners[0].map((value,i)=>value+(corners[1][i]-value)*u),bottom=corners[3].map((value,i)=>value+(corners[2][i]-value)*u),p=top.map((value,i)=>value+(bottom[i]-value)*v);

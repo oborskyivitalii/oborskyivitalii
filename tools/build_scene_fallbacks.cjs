@@ -47,7 +47,7 @@ function formulaRendition(api,anchor,pose,width,height) {
    const scale=(Math.hypot(x[0]-at[0],x[1]-at[1])+Math.hypot(y[0]-at[0],y[1]-at[1]))/2;
    return `<path${layer===2?` data-glyph="${index}"`:""} d="${glyphPath(glyph,z)}" stroke-width="${number(glyph.stroke*scale)}"/>`;
   }).join("");
-  return `<g data-formula-layer="${layer}" stroke-opacity="${(shape.alpha*[.32,.58,1][layer]).toFixed(3)}">${paths}</g>`;
+  return `<g data-formula-layer="${layer}" stroke-opacity="${shape.alpha.toFixed(3)}">${paths}</g>`;
  }).join("");
  return {depth:shape.depth,html:`<g class="writing-formula-fallback" data-formula="${anchor.id}" aria-hidden="true" fill="none" stroke="url(#${gradientId})" stroke-linecap="round" stroke-linejoin="round">${gradient}${layers}</g>`};
 }

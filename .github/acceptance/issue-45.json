@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 45,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/45",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Make the existing Writing world formula crisp while retaining its expression, ribbon palette, perspective, tilt, pulse and camera motion.",
+      "automated_scope": "Actual Canvas submissions share world haze alpha and high-quality sampling, restore sampling state, and retain one 1380x240 cache and 24 bounded submissions. World-plane separation stays below half the projected glyph stroke at narrow/medium/desktop widths and two camera positions. Existing producer checks verify finite canonical artwork, one Writing-only world landmark, matching static layer alpha and immutable packaged identity. Perceived sharpness remains visual acceptance.",
+      "checks": [
+        "FORMULA-RENDERER",
+        "FORMULA-PRODUCER",
+        "FORMULA-ASSET"
+      ],
+      "gates": [
+        "G01"
+      ]
+    },
+    {
+      "id": "AC02",
+      "intent": "Widen the painted reading protection around large headings across pages, keeping text and native layout intact.",
+      "automated_scope": "Reuse the maintained Day/Night foreground contrast and no-blur/no-independent-animation assertion. This source check does not establish expanded reading margins or unchanged glyph geometry; the actual 60-case browser comparison and visual captures remain an explicit gate.",
+      "checks": [
+        "FOREGROUND"
+      ],
+      "gates": [
+        "G02"
+      ]
+    },
+    {
+      "id": "AC03",
+      "intent": "Preserve responsive rendering, navigation, Off/reduced-motion freezing, graceful static fallback and bounded formula resources.",
+      "automated_scope": "Reuse the actual formula cache/failure/viewport/room cases and canonical live/static producer checks, plus existing Off/reduced/hidden/print freeze and route-mount cases. The same cache survives visits and frozen states, work stops while frozen, renderer failure is contained and no second navigation animation clock appears. Fixtures do not supply current-source browser/device observations.",
+      "checks": [
+        "FORMULA-RENDERER",
+        "FORMULA-PRODUCER",
+        "LIFECYCLE"
+      ],
+      "gates": [
+        "G03"
+      ]
+    },
+    {
+      "id": "AC04",
+      "intent": "Deliver canonical generated output and a reviewable owning-issue/Draft-PR change with exact checks and honest acceptance state.",
+      "automated_scope": "Current RI inventory/views and actual CI coupling, explicit owning-issue selection and pending human-gate semantics. Existing Basic and hosted preview CI remain separately required; this policy does not duplicate them, ingest their artifacts, grant independent review or authorize merge.",
+      "checks": [
+        "CURRENT-RI",
+        "RI-CI",
+        "OWNER-SELECTION",
+        "PENDING-GATE"
+      ],
+      "gates": [
+        "G04",
+        "G05"
+      ]
+    }
+  ],
+  "checks": {
+    "FORMULA-RENDERER": {
+      "kind": "unittest",
+      "test": "test_issue45_acceptance.Issue45AcceptanceTests.test_crisp_world_layers_keep_one_bounded_cache_and_failure_containment"
+    },
+    "FORMULA-PRODUCER": {
+      "kind": "unittest",
+      "test": "test_issue45_acceptance.Issue45AcceptanceTests.test_same_artwork_drives_live_static_and_immutable_producer_identity"
+    },
+    "FORMULA-ASSET": {
+      "kind": "unittest",
+      "test": "test_issue36_acceptance.Issue36AssetTests.test_original_vector_is_small_inert_and_finite"
+    },
+    "FOREGROUND": {
+      "kind": "unittest",
+      "test": "test_issue45_acceptance.Issue45AcceptanceTests.test_foreground_contrast_keeps_no_blur_or_independent_animation"
+    },
+    "LIFECYCLE": {
+      "kind": "unittest",
+      "test": "test_issue45_acceptance.Issue45AcceptanceTests.test_formula_and_navigation_retain_the_existing_freeze_lifecycle"
+    },
+    "CURRENT-RI": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    },
+    "OWNER-SELECTION": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_selector_uses_only_explicit_local_refs"
+    },
+    "PENDING-GATE": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_manual_only_criterion_is_pending"
+    }
+  },
+  "gates": {
+    "G01": {
+      "kind": "human",
+      "description": "Inspect exact-current-source paired Writing formula captures in Day/Night at narrow and desktop sizes against the original screenshot complaint: sharp connected contours, readable expression, coherent depth/tilt/pulse and no displaced pale copies. Maintainer visual acceptance remains explicit."
+    },
+    "G02": {
+      "kind": "human",
+      "description": "Review the matching opt-in reading-clarity report and paired captures: all 60 route/width/theme/zoom geometry cases pass with source/CSS identities retained, equal heading and glyph Range geometry, equal scroll widths, no overflow and positive solid reading margins for every visible heading at least 25px. Inspect the 12 captures served from the exact baseline and candidate Color artifacts with their source bindings. Confirm perceived isolation on the marked Talks title and other large headings. CSS zoom/Chromium evidence does not supply physical Safari/iPad acceptance."
+    },
+    "G03": {
+      "kind": "human",
+      "description": "Matching raw-head preview smoke and scoped browser evidence preserve room isolation, narrow/desktop/200% CSS-zoom readability, forward/back/filter behavior, one formula, stopped work in Off/reduced states and coherent no-JS/no-Canvas static fallback. Record current source/public identity and actual observations; native macOS WebKit and physical-device production gates retain their existing owners."
+    },
+    "G04": {
+      "kind": "human",
+      "description": "Record the exact live issue/PR/Refs commits, same-source required Basic/targeted/navigation/acceptance and opt-in evidence runs, CI-controlled preview artifact and independent review. Reconcile the actual AC checkboxes in the owning issue; local preparation, fixture success or an earlier head do not complete these requirements."
+    },
+    "G05": {
+      "kind": "merge",
+      "description": "Applicable maintainer decision, normal merge of the accepted candidate and exact merged-source reconciliation before closure. Passing checks or publishing a PR preview do not supply merge or production authorization."
+    }
+  }
+}

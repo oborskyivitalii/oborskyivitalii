@@ -67,7 +67,14 @@ The Writing room has one original outlined paradigm landmark, sourced only from
 `assets/writing-paradigm.svg`. `tools/site/scene-assets.cjs` validates and compiles
 it during generation. Renderer uses one fixed1380×240 raster cache and one native
 sorted world-plane command with mild tilt, looped pulse and three shallow
-extrusion layers. At most24 perspective triangle submissions use the same cache;
+extrusion layers. At most24 perspective triangle submissions use the same cache, with native
+high-quality image sampling for minified glyphs. All three layers use the same
+world-haze opacity; extra translucent rear copies are omitted to avoid pale
+ghost edges. The landmark uses0.10 world-unit extrusion, keeping its projected
+rear-to-front separation below half the nominal glyph stroke at representative
+Writing entry/approach poses. The static SVG rendition follows the same shallow
+geometry and layer opacity. Cache
+bytes, triangle count and global Canvas pixel-ratio limits remain unchanged;
 there is no separate content band or new clock/load/decode. Off/reduced freezes
 the formula with its room; unsupported Canvas restores the projected scene SVG.
 Asset and producer identity

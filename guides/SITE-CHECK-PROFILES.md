@@ -47,6 +47,12 @@ in the permanent renderer and engine suites.
 
 ## Bounded staging regression
 
+Issue #45 uses the existing Writing diagnostic workflow's separate
+`site-reading-clarity-evidence` label job for a bounded Chromium comparison of
+heading geometry and actual formula captures. It does not run paired performance
+trials, stage a candidate or replace ordinary preview smoke. Its source/visual
+policy and retained report distinguish automated geometry from visual acceptance.
+
 `site-release-checks.yml` uses `validation_level: staging`, `profile: staging`
 and `automated_only: true` for the owner staging controller. The owner's
 `staging-regression` label on an open same-repository PR runs the same bounded
