@@ -193,6 +193,36 @@ async function ribbonNavigation(browser,url,output,result){
   }
   assert.ok(result.navigation.every(row=>row.pass),'complete ribbon navigation evidence; inspect retained traces and clips');
 }
+async function headingCases(page,reference,fixture,baseline,candidate,baselineCss,candidateCss,output,result){
+  for(const width of [320,768,1440])for(const theme of ['light','dark'])for(const zoom of [1,2])for(const route of routes){
+    const entry={route,width,theme,zoom,pass:false};result.cases.push(entry);
+    await page.setViewportSize({width,height:900});
+    const baselineReading=readingStyle(fs.readFileSync(path.join(baseline,route+'.html'),'utf8')),candidateReading=readingStyle(fs.readFileSync(path.join(candidate,route+'.html'),'utf8'));
+    await page.goto(reference.url+'/'+route+'.html',{waitUntil:'load'});await styles(page,baselineCss,baselineReading,theme,zoom);entry.baseline=await measure(page);
+    await page.goto(fixture.url+'/'+route+'.html',{waitUntil:'load'});
+    await styles(page,baselineCss,baselineReading,theme,zoom);entry.before=await measure(page);
+    compareGeometry(entry.baseline,entry.before);
+    const capture=['talks','writing'].includes(route)&&width>=768&&zoom===1;
+    if(capture){const file='heading-'+route+'-'+width+'-'+theme+'-before.png';await page.screenshot({path:path.join(output,file)});result.captures.push(file);}
+    await styles(page,candidateCss,candidateReading,theme,zoom);entry.after=await measure(page);
+    if(capture){const file='heading-'+route+'-'+width+'-'+theme+'-after.png';await page.screenshot({path:path.join(output,file)});result.captures.push(file);}
+    compare(entry.before,entry.after);entry.pass=true;
+  }
+}
+async function formulaCaptures(page,reference,fixture,output,result){
+  result.formula=[];
+  for(const width of [390,768,1440])for(const theme of ['light','dark'])for(const edition of ['baseline','candidate']){
+    const origin=edition==='baseline'?reference.url:fixture.url;
+    await page.setViewportSize({width,height:900});
+    await page.goto(origin+'/writing.html',{waitUntil:'load'});
+    await page.evaluate(theme=>{document.documentElement.dataset.theme=theme;document.documentElement.style.zoom='1';},theme);
+    await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+    await page.waitForFunction(()=>document.querySelector('.space-scene').dataset.ready==='true'&&window.SiteScene?.formulaDiagnostics()?.lastPaintCount===1,null,{timeout:5000});
+    const observed=await page.evaluate(()=>({formula:window.SiteScene.formulaDiagnostics(),canvas:{width:document.querySelector('canvas').width,height:document.querySelector('canvas').height},overflow:document.documentElement.scrollWidth>innerWidth+1}));
+    assert.equal(observed.formula.status,'ready');assert.equal(observed.formula.cacheBuilds,1);assert.equal(observed.formula.lastPaintCount,1);assert.equal(observed.formula.lastDrawSubmissions,24);assert.equal(observed.formula.bytes,1380*240*4);
+    const file='formula-'+edition+'-'+width+'-'+theme+'.png';await page.screenshot({path:path.join(output,file)});result.captures.push(file);result.formula.push({edition,width,theme,file,observed});
+  }
+}
 async function main(){
   const [candidateArg,baselineArg,outputArg]=process.argv.slice(2);
   assert.ok(candidateArg&&baselineArg&&outputArg,'usage: reading-clarity.cjs candidate-public baseline-public report-directory');
@@ -213,32 +243,8 @@ async function main(){
     const context=await browser.newContext({reducedMotion:'reduce'});
     await context.addInitScript(()=>{try{localStorage.setItem('vo.motion','off');}catch{/* Reduced motion also freezes unavailable storage. */}});
     const page=await context.newPage();
-    for(const width of [320,768,1440])for(const theme of ['light','dark'])for(const zoom of [1,2])for(const route of routes){
-      const entry={route,width,theme,zoom,pass:false};result.cases.push(entry);
-      await page.setViewportSize({width,height:900});
-      const baselineReading=readingStyle(fs.readFileSync(path.join(baseline,route+'.html'),'utf8')),candidateReading=readingStyle(fs.readFileSync(path.join(candidate,route+'.html'),'utf8'));
-      await page.goto(reference.url+'/'+route+'.html',{waitUntil:'load'});await styles(page,baselineCss,baselineReading,theme,zoom);entry.baseline=await measure(page);
-      await page.goto(fixture.url+'/'+route+'.html',{waitUntil:'load'});
-      await styles(page,baselineCss,baselineReading,theme,zoom);entry.before=await measure(page);
-      compareGeometry(entry.baseline,entry.before);
-      const capture=['talks','writing'].includes(route)&&width>=768&&zoom===1;
-      if(capture){const file='heading-'+route+'-'+width+'-'+theme+'-before.png';await page.screenshot({path:path.join(output,file)});result.captures.push(file);}
-      await styles(page,candidateCss,candidateReading,theme,zoom);entry.after=await measure(page);
-      if(capture){const file='heading-'+route+'-'+width+'-'+theme+'-after.png';await page.screenshot({path:path.join(output,file)});result.captures.push(file);}
-      compare(entry.before,entry.after);entry.pass=true;
-    }
-    result.formula=[];
-    for(const width of [390,768,1440])for(const theme of ['light','dark'])for(const edition of ['baseline','candidate']){
-      const origin=edition==='baseline'?reference.url:fixture.url;
-      await page.setViewportSize({width,height:900});
-      await page.goto(origin+'/writing.html',{waitUntil:'load'});
-      await page.evaluate(theme=>{document.documentElement.dataset.theme=theme;document.documentElement.style.zoom='1';},theme);
-      await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
-      await page.waitForFunction(()=>document.querySelector('.space-scene').dataset.ready==='true'&&window.SiteScene?.formulaDiagnostics()?.lastPaintCount===1,null,{timeout:5000});
-      const observed=await page.evaluate(()=>({formula:window.SiteScene.formulaDiagnostics(),canvas:{width:document.querySelector('canvas').width,height:document.querySelector('canvas').height},overflow:document.documentElement.scrollWidth>innerWidth+1}));
-      assert.equal(observed.formula.status,'ready');assert.equal(observed.formula.cacheBuilds,1);assert.equal(observed.formula.lastPaintCount,1);assert.equal(observed.formula.lastDrawSubmissions,24);assert.equal(observed.formula.bytes,1380*240*4);
-      const file='formula-'+edition+'-'+width+'-'+theme+'.png';await page.screenshot({path:path.join(output,file)});result.captures.push(file);result.formula.push({edition,width,theme,file,observed});
-    }
+    await headingCases(page,reference,fixture,baseline,candidate,baselineCss,candidateCss,output,result);
+    await formulaCaptures(page,reference,fixture,output,result);
     await ribbonNavigation(browser,fixture.url,output,result);result.pass=true;
   }catch(error){result.error=String(error.stack||error);process.exitCode=1;}
   finally{

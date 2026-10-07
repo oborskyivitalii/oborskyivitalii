@@ -160,3 +160,24 @@ No blocker was found within this narrow source repair. The observed review ident
 | `tools/quality/secrets-baseline.json` | `8bff933ce846d5b1a0fa9a357f629c07d49af8626270ea40cfd658b760e293b0` |
 | `tools/quality/scanners.cjs` | `ed955d35bf240a338007186142ec345ccc539a9c7b57a07b2aea19900d266e6c` |
 | `tools/quality/triage-engine-checksums.cjs` | `b0fa06dbc3757f690f59215b692f22c68a99c1c847956208dc6cde28b6d85424` |
+
+## Complete lint repair — helper extraction review
+
+Independent inspection of the actual static artifact `11498390650` from [staging run 37653486011](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37653486011) confirms exact published `210adc29a22ef31be6347a3c428495b4176ab275`/`96b4488116cce607c9d3d9d7d243ed6a3db18ab6` Color identity. Security and advisory reports pass, but lint fails. The complete ESLint report has 134 files, zero correctness errors and two complexity warnings: the ribbon test callback at 73 and the reading-clarity main function at 38, both over the existing limit of 25. The exception policy admits only the existing contrast-tool message at 40; the first warning hid the second and prevented Stylelint/Ruff from running. No exception or budget was relaxed for this repair.
+
+The prepared ribbon-test refactor extracts the identical station predicate, Map construction and per-tier assertions into three helpers. Independent source comparison retains all nine test names, all 252 tier configurations across the two viewport modes, six reversible legs, three interpolation fractions and seven tiers, the same station/near-contour/material/finite-value assertions, and the final near-plane and mount-opacity checks. The test author reports the existing nine cases and pinned ESLint passing; this reviewer did not rerun tests.
+
+The reading-clarity refactor moves the existing heading and formula loops into awaited helpers in their original order, before the unchanged ribbon-navigation call. Independent direct and delegated read-only source comparison found equivalent inputs, cases, screenshots, baseline/candidate binding, result mutation, error propagation, cleanup and exports. No canonical runtime, scene, content or Color prototype file differs from the published parent in this amendment. Source equivalence supports retaining the earlier observations under their actual identities; it does not relabel earlier captures as a new-head execution.
+
+This reviewer inspected the root's completed local lint report, SHA256 `f73243baba13df97aedf9306265d63fad3b87ba2026664707a01520fbb9b2431`: the maintained `scanners.cjs lint` entrypoint reports 155 scanned files, no warnings, ESLint 10.12.0, Stylelint 17.16.0 and Ruff 0.16.10. It used the `210adc29` parent artifact manifest while checking dirty prepared source, with no CI run ID. This is a successful local preparation check, not a new published-head CI pass.
+
+The independent read of the published staging job log also confirms its mobile Writing Lighthouse sample had unrounded total blocking time `201.50000000000023 > 200` despite a rounded display of 200 ms. The run's staging and aggregate gate failed, and promotion was skipped. That failure remains recorded; successful fresh bounded staging is still required. No source performance or production acceptance follows from these helper-only changes.
+
+No blocker was found in this narrow extraction repair. Review identity is parent `210adc29`/`96b44881`, `sourceDirty: true`; fresh CI/staging remains pending. This reviewer edited only this review artifact and ran no browser, scanner, diagnostic or test suite.
+
+| Helper extraction review target | SHA256 |
+| --- | --- |
+| `tests/ribbons.test.cjs` | `d4b1cc27b7517227ac9e699d7697b8631d89b43ce6feb2ecc7004e58cde8a918` |
+| `tools/quality/reading-clarity.cjs` | `da2029d02f21fb9a6192fa8744bdc70a79527630c571f29a8bfb95842cac9117` |
+| `tools/quality/exceptions.json` | `4c4ad9578157a01f59eda2f51ce232dbbbe9dfc4811646ab8bb7dd903eea57cb` |
+| `tools/quality/scanners.cjs` | `ed955d35bf240a338007186142ec345ccc539a9c7b57a07b2aea19900d266e6c` |

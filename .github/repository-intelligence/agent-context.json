@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "d96cb3041103829aca07cefedcf05917fc797e15e0307c3757eab554692a717b",
+    "digest": "765b91a0e45f6b46ebf75a2d582fd3626b158755a484f669b37c6795b6a64b0e",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -196,7 +196,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "1e2ca426dda82e2595db5f4c00b53eded457f63b7891a252b4ff3b71cb14205e"
+        "sha256": "102cf21e29cc2eb56c9fbde4e35fc58bb9d8fdf70038a693c5d5256208948121"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -580,12 +580,12 @@
       {
         "path": "review/issue-45/2026-10-07-handoff.md",
         "identity_mode": "content",
-        "sha256": "71f9c5d665f88bcddfb23127d0ad5d11d6e298beee5bc36b70895c16c3e18772"
+        "sha256": "8cba071cd981425da25f982855c8a8a21921e1622ee205fac65e5149e41c46ac"
       },
       {
         "path": "review/issue-45/2026-10-07-independent-review.md",
         "identity_mode": "content",
-        "sha256": "15b962dada1d789116d69b24fa10a8757ec6b8af375b4091a14b6b4c64cb4099"
+        "sha256": "52e2ce2b2ac052626933f6b1eb6d19d10e56572d9da40be104f05b188f4d30cf"
       },
       {
         "path": "review/public-responses-20261006/README.md",
@@ -4570,7 +4570,7 @@
       {
         "path": "tests/ribbons.test.cjs",
         "identity_mode": "content",
-        "sha256": "4b6086ba526f23fd0a120c653a63a8aae979228f8d73cfbf2bbd1b1f69534668"
+        "sha256": "d4b1cc27b7517227ac9e699d7697b8631d89b43ce6feb2ecc7004e58cde8a918"
       },
       {
         "path": "tests/scroll-sync.test.cjs",
@@ -4970,7 +4970,7 @@
       {
         "path": "tools/quality/reading-clarity.cjs",
         "identity_mode": "content",
-        "sha256": "86c5e6a95340f00d41d21b18d0e548c57b3b23e69c438ca304f08860d216c6cb"
+        "sha256": "da2029d02f21fb9a6192fa8744bdc70a79527630c571f29a8bfb95842cac9117"
       },
       {
         "path": "tools/quality/research-pair-probe.cjs",

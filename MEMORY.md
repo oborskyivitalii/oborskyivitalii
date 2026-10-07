@@ -31,8 +31,11 @@ Dated continuity, not live authority. Last verified: **2026-10-07**.
   [Run37650674442](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37650674442)
   passes package/immutable-host identity but full/static fails unused smooth
   and192 untriaged public checksum/Gitref candidates. Narrow import/verified
-  exact-checksum repair is prepared in this same PR; no accepted stable
-  promotion or merge is yet claimed. [Current handoff](review/issue-45/2026-10-07-handoff.md)
+  exact-checksum repair at210adc passes security/advisories. Second staging
+  run37653486011 fails two helper complexity warnings and Writing TBT201.5ms
+  against200ms. Helper-only refactors preserve runtime and original budgets;
+  fresh bounded staging is required before merge. No stable promotion or merge
+  is yet claimed. [Current handoff](review/issue-45/2026-10-07-handoff.md)
   and the live issue retain actual failure and next-source acceptance.
 - #36 places one tilted, pulsing formula in Writing's books/pages fractal,
   sharing its camera/clock and bounded cache. Rejected banner benchmarks are
