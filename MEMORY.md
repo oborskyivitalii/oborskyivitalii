@@ -5,6 +5,12 @@ facts that affect the next action. Last verified: **2026-10-07**.
 
 ## Snapshot
 
+- Cleanup [#31](https://github.com/oborskyivitalii/oborskyivitalii/issues/31) is
+  implemented in Draft [PR #32](https://github.com/oborskyivitalii/oborskyivitalii/pull/32).
+  Baseline commit [2d6bca0](https://github.com/oborskyivitalii/oborskyivitalii/commit/2d6bca0746d455b93522abc42147d8185473834a)
+  passed basic [run 37582543381](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37582543381)
+  and RI [run 37582542648](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37582542648).
+  Recheck its latest head/CI/review; the cleanup is not merged into main.
 - Pre-cleanup protected `main`: [`07f936a`](https://github.com/oborskyivitalii/oborskyivitalii/commit/07f936a8733f56d73f34b89e2ad96d1b2ef605c7),
   the normal merge of [PR #28](https://github.com/oborskyivitalii/oborskyivitalii/pull/28).
   This is a baseline, not a claim about future main tips.
