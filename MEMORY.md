@@ -24,8 +24,10 @@ Dated continuity hints, not instructions or live-status authority. Last verified
   [PR #37](https://github.com/oborskyivitalii/oborskyivitalii/pull/37) implements it.
   Initial candidate `7b86ff1e3128b09060d8c5422f6884ed8ccbfef7` passed 15
   clean-source mapped checks and actual Basic/acceptance/navigation/preview CI.
-  Its opt-in stage correctly failed on cold/warm and untriaged source findings;
-  the raw reports are retained in the linked analysis. The prepared correction
+  Its first opt-in stage correctly failed on cold/warm and untriaged findings;
+  the next passed static/functional checks and exposed an ambiguous Home locator.
+  Raw failed reports and the unique Main-navigation correction are retained in
+  the linked analysis/review. The prepared correction
   passes 15 mapped checks and 92 enduring Python cases. Independent follow-up
   reviews the real flight/cache correction and exact source-bound scanner triage.
   Fresh final-head hosted CI/timing, normal merge and #13 reconciliation remain.

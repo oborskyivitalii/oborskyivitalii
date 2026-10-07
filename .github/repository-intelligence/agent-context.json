@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "dbc3b5ccf1fa3c1fa74438e6d2a684138922d24372aeb034889ecb17f08aa8b7",
+    "digest": "d7cc3cec927ed5335f4ec92b8b93d849e87b552342cfd11ead10f11d2c16bad6",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -86,7 +86,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "f977e6ac3f0cf385c3ecd88e22d50a9cde4319b945a0901744cd0fa1fcc9e6a7"
+        "sha256": "770cfbb1d9557dabe1f5d9c7e09b1977277e8a94974101a7ea4f62521fe3936f"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -181,7 +181,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "16aca0503d5d1e5d5dc290894b8f3e5e65ce07242f8f34245c28463e121336cb"
+        "sha256": "57f70fa6c26491d287c7ad5fe226aa947817177ee6c704913d8a580f36930ad9"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -495,7 +495,7 @@
       {
         "path": "review/issue-35/2026-10-07-analysis.md",
         "identity_mode": "content",
-        "sha256": "9fc6b627cc6498e8c68b972c66b7c75ba682364ea8da8e693fd1c59944733a94"
+        "sha256": "20bf9fc92f5ab67bf8c5021b87d02595a06a461de499d00da30238a52f15b2b2"
       },
       {
         "path": "review/issue-35/2026-10-07-ci-audit.json",
@@ -510,7 +510,7 @@
       {
         "path": "review/issue-35/2026-10-07-review.md",
         "identity_mode": "content",
-        "sha256": "fe8453051b738e7c6566b35801314e72a5c281a333db7e67d4bb3f2b088033fd"
+        "sha256": "79ae8c2f124ad78cf09cc3fb6f3ac8f8afb401a54e9c608b0ce28631276379e2"
       },
       {
         "path": "review/issue-35/2026-10-07-runtime-audit.json",
@@ -4920,7 +4920,7 @@
       {
         "path": "tools/quality/staging-regression.cjs",
         "identity_mode": "content",
-        "sha256": "c80de65a53fdf7440d153a4c0dbd297d41418b670e6565d54fb6c7bfa96b513e"
+        "sha256": "550a93c3f4048a071a4beeaad5b4113ffffb41d7ea5f114f53a188032f975a9b"
       },
       {
         "path": "tools/quality/stylelint.cjs",

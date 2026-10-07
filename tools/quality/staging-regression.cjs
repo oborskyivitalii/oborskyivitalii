@@ -240,7 +240,7 @@ async function measureFlight(pair,selected,setup){
   return {from,to:selected.to,width:390,rate:4,...motion.summarize(data,'flight'),setup,errors:[...errors],pass:!failure,...(failure?{error:failure}:{})};
 }
 async function restoreFlightIndex(pair){
-  await pair.page.locator('header a[href="./"]').evaluate(el=>el.click());
+  await pair.page.locator('header nav[aria-label="Main navigation"] a[href="./"]').evaluate(el=>el.click());
   await pair.page.waitForFunction(()=>document.body.dataset.page==='index'&&!document.querySelector('#site-content').hasAttribute('aria-busy')&&document.querySelector('.space-scene').dataset.travel==='settled',null,{polling:40,timeout:8000});
 }
 async function closeCollectedContext(handle,failure){
