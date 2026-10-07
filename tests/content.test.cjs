@@ -11,15 +11,28 @@ const plainTitle = html => html.replace(/<span class="publication-arrow"[^>]*>[\
   .replace(/<[^>]*>/g, "").replace(/&(amp|quot|apos|lt|gt);/g,
     (_, entity) => ({amp: "&", quot: '"', apos: "'", lt: "<", gt: ">"})[entity]);
 
-test("each existing discussion entry has professional context and its own LinkedIn profile, preserving public evidence links",()=>{
+test("selected Home responses link to the complete Research inventory with preserved evidence",()=>{
+  const names={index:["Arkadiy Dobkin","Matthew Skelton","Markus Kopko"],research:["Maximiliano Armesto","Otman Basir","Arkadiy Dobkin","Christophe Kolb &amp; Taller","Markus Kopko","Rod Montgomery","Michael Risch","Matthew Skelton"]};
+  const section=page=>pages[page].match(/<section[^>]*\bid="acknowledgements"[\s\S]*?<\/section>/)[0];
+  const articles=html=>[...html.matchAll(/<article>[\s\S]*?<\/article>/g)].map(m=>m[0]);
+  const links=html=>[...html.matchAll(/href="([^"]+)"/g)].map(m=>m[1]);
   for(const page of["index","research"]) {
     const entries=[...pages[page].matchAll(/<h3><a href="(https:\/\/www.linkedin.com\/in\/[^"]+)">([^<]+)<\/a><\/h3><p class="person-context">([^<]+)<\/p>/g)];
-    assert.equal(entries.length,8);
-    assert.equal(new Set(entries.map(e=>e[1])).size,8,"do not assign one profile to multiple identities");
-    assert.equal((pages[page].match(/https:\/\/www.linkedin.com\/posts\//g)||[]).length,9);
-    assert.ok(entries.find(e=>e[2]==="Michael Risch")[1].includes("michael-risch-ab8b423"),"do not conflate the law professor");
-    assert.equal(entries.find(e=>e[2]==="Arkadiy Dobkin")[3],"Principal Founder &amp; Executive Chairman · EPAM");
+    assert.deepEqual(entries.map(e=>e[2]),names[page]);
+    assert.equal(new Set(entries.map(e=>e[1])).size,names[page].length,"do not assign one profile to multiple identities");
+    assert.equal((section(page).match(/https:\/\/www.linkedin.com\/posts\//g)||[]).length,page==='index'?3:9);
   }
+  const previous=fs.readFileSync(path.join(root,'../review/public-responses-20261006/research.before.html'),'utf8');
+  assert.deepEqual(articles(section('research')).sort(),articles(previous).sort(),'all eight complete articles, claims, credits and sources survive');
+  for(const article of articles(section('index'))){
+    const name=article.match(/<h3><a[^>]+>([^<]+)<\/a><\/h3>/)[1];
+    const complete=articles(section('research')).find(a=>a.includes('>'+name+'</a></h3>'));
+    assert.deepEqual(links(article),links(complete).slice(0,2),name+' profile and primary public source');
+  }
+  assert.ok(section('index').includes('href="research.html#acknowledgements">Full discussion &amp; source context ↗'));
+  assert.doesNotMatch(section('index'),/ack-compact|formulation|provenance/);
+  assert.ok(pages.research.includes('href="#acknowledgements">Public discussion</a>'));
+  assert.ok(section('index').includes('Offered public encouragement for the research’s development.'));
 });
 
 test("English UI has distinct useful metadata and non-executable accurate page schemas", () => {
@@ -114,7 +127,7 @@ test("page IDs, ARIA targets, local resources and fragments resolve without draf
       for (const id of values.split(/\s+/)) assert.ok(ids.get(name + ".html").has(id), id);
     }
     for (const [, value] of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
-      if (value.startsWith("https://")) continue;
+      if (value.startsWith("https://") || value === "mailto:oborskyivitalii@gmail.com") continue;
       assert.doesNotMatch(value, /drafts|review\/|SEO-|\.md(?:#|$)/);
       const [base, fragment] = value.split("#");
       const target = !base ? name + ".html" : base === "./" ? "index.html" : base;
@@ -135,10 +148,10 @@ test("Home provides the agreed reader path, precise public actions and a real co
   assert.deepEqual(stops, ["hero","help","research","writing","acknowledgements","about","contact"]);
   assert.match(home,/<h1 id="author-name">AI tools everywhere\./);
   assert.ok(home.includes('Vitalii Oborskyi · Delivery leader, researcher &amp; author.'));
-  for (const person of ["Arkadiy Dobkin","Maximiliano Armesto","Markus Kopko","Christophe Kolb &amp; Taller","Michael Risch","Matthew Skelton","Rod Montgomery","Otman Basir"]) assert.ok(home.includes(`>${person}</a></h3>`));
+  for (const person of ["Arkadiy Dobkin","Matthew Skelton","Markus Kopko"]) assert.ok(home.includes(`>${person}</a></h3>`));
   assert.ok(home.includes('href="#contact">Discuss your AI challenge'));
-  assert.ok(home.includes("Direct booking will be available here."));
-  assert.ok(home.includes('href="https://www.linkedin.com/in/vitaliioborskyi/">Arrange a conversation'));
+  assert.ok(home.includes('href="https://calendar.app.google/zy9rAnUcoWygSdxH7">Book a conversation'));
+  assert.ok(home.includes('href="mailto:oborskyivitalii@gmail.com">oborskyivitalii@gmail.com'));
   // Generated decorative coordinates/opacity decimals are not author claims.
   assert.doesNotMatch(home.replace(/<svg\b[\s\S]*?<\/svg>/g,""),/href="#"|Trusted by|CPC|RankSpot|4400|4,400/);
   for (const text of ["human understanding, verification and ownership","people, evidence, authority and correction","Much remains to develop and test","outputs depend on the agreed engagement"]) assert.ok(home.includes(text));

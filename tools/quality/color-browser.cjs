@@ -2,6 +2,7 @@
 // Authored Color behavior against the same exact artifact used by generic smoke.
 const assert=require('node:assert/strict'),fs=require('node:fs');
 const {toolRequire,report,launchOptions}=require('./common.cjs'),{start}=require('./serve.cjs');
+const {liveScrollPrecondition}=require('./engine-browser.cjs'),{probe:scrollProbe}=require('./scroll-browser.cjs');
 async function settled(page,route){
   await page.waitForFunction(id=>document.body.dataset.page===id&&!document.getElementById('site-content').hasAttribute('aria-busy')&&document.querySelector('.space-scene').dataset.travel==='settled',route,{polling:25,timeout:10000});
 }
@@ -40,6 +41,11 @@ async function scenario(browser,url,artifact,engine,width,theme){
     assert.equal(await page.evaluate(()=>[...document.querySelectorAll('main *')].some(el=>{const css=getComputedStyle(el,'::before');return css.backdropFilter&&css.backdropFilter!=='none';})),false,'no retired backdrop blur');
     await page.waitForFunction(()=>Number(document.querySelector('.space-scene').dataset.ribbonFaces)>0,null,{polling:50});
     const ribbons=(await state(page)).scene;assert.equal(ribbons.ribbons,'3');assert.equal(ribbons.ribbonMaterial,'opaque-rgb');
+    const homeMotion=await liveScrollPrecondition(page),homeScroll=await scrollProbe(page,'selected-responses','index');
+    assert.equal(homeMotion.after?.label||homeMotion.before.label,'Motion: on','Home range checked with live motion');
+    await edge(page,'research',1);
+    const homeEdge=await state(page);assert.equal(homeEdge.page,'research','shortened Home continues to Research');
+    await travel(page,'index');
     const flight=await forwardFlight(page);
     await edge(page,'writing',1);await edge(page,'research',-1);
     const reverse=await state(page);assert.ok(Math.abs(reverse.y-reverse.max)<=2,'reverse arrives at real native bottom');
@@ -47,7 +53,7 @@ async function scenario(browser,url,artifact,engine,width,theme){
     await preferences(page,'end-scroll',true);await travel(page,'credits');await page.mouse.wheel(0,320);await page.waitForTimeout(350);assert.equal((await state(page)).page,'credits','Credits stays outside itinerary');
     await travel(page,'index');await page.waitForTimeout(900);await page.mouse.wheel(0,-320);await page.waitForTimeout(350);assert.equal((await state(page)).page,'index','Home has no preceding route');
     assert.deepEqual(errors,[]);
-    return {engine,width,theme,pass:true,identity,ribbons:{count:ribbons.ribbons,material:ribbons.ribbonMaterial,faces:Number(ribbons.ribbonFaces)},checks:{spatialFlight:true,forwardEdge:true,reverseNativeBottom:true,disabledEdge:true,creditsBoundary:true,homeBoundary:true,retiredReadingEffectAbsent:true},flight};
+    return {engine,width,theme,pass:true,identity,ribbons:{count:ribbons.ribbons,material:ribbons.ribbonMaterial,faces:Number(ribbons.ribbonFaces)},checks:{shortenedHomeRange:true,homeForwardEdge:true,spatialFlight:true,forwardEdge:true,reverseNativeBottom:true,disabledEdge:true,creditsBoundary:true,homeBoundary:true,retiredReadingEffectAbsent:true},home:{motion:homeMotion,scroll:homeScroll,edge:homeEdge},flight};
   }finally{await context.close();}
 }
 async function main(options={}){

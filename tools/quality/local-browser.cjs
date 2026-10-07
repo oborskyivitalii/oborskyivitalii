@@ -4,6 +4,8 @@ const fs=require('node:fs'),path=require('node:path'),assert=require('node:asser
 const {toolRequire,report,launchOptions,out}=require('./common.cjs'),{start}=require('./serve.cjs');
 const flightDetail=require('./flight-detail.cjs');
 const routes=['index','research','writing','talks','credits'];
+const selectedResponses=['Arkadiy Dobkin','Matthew Skelton','Markus Kopko'];
+const completeResponses=['Maximiliano Armesto','Otman Basir','Arkadiy Dobkin','Christophe Kolb & Taller','Markus Kopko','Rod Montgomery','Michael Risch','Matthew Skelton'];
 const hash=bytes=>crypto.createHash('sha256').update(bytes).digest('hex');
 function artifactFile(value,base,manifest){
   const url=new URL(value),scope=new URL(base.replace(/\/$/,'')+'/');
@@ -57,6 +59,36 @@ async function routeBytes(context,url,manifest){
     return {route:id,sha256:result.sha256,status:result.status};
   }));
 }
+async function responseNames(page,route){
+  const selector=route==='index'?'#acknowledgements .ack-leads article h3 a':'#acknowledgements .ack-grid article h3 a';
+  const names=await page.locator(selector).allTextContents();
+  assert.deepEqual(names,route==='index'?selectedResponses:completeResponses,route+' public-response names and order');
+  assert.equal(await page.locator('#acknowledgements article').count(),names.length,route+' no additional discussion cards');
+  return names;
+}
+async function discussionAnchor(page){
+  assert.equal(new URL(page.url()).hash,'#acknowledgements','public-discussion fragment retained');
+  await page.waitForFunction(()=>{
+    const heading=document.querySelector('#acknowledgements .section-heading'),rect=heading.getBoundingClientRect();
+    return rect.top>=-1&&rect.top<innerHeight;
+  },null,{polling:40,timeout:3000});
+}
+async function discussionNavigation(page,url){
+  await page.locator(routeSelector('index')).evaluate(el=>el.click());await ready(page,'index');
+  const home=await responseNames(page,'index'),cta=page.locator('#acknowledgements > a.text-link');
+  assert.equal(await cta.getAttribute('href'),'research.html#acknowledgements');
+  assert.equal(await cta.textContent(),'Full discussion & source context ↗');
+  await cta.evaluate(el=>el.click());await ready(page,'research');await discussionAnchor(page);
+  const research=await responseNames(page,'research');
+  await page.goBack();await ready(page,'index');await responseNames(page,'index');
+  await page.goForward();await ready(page,'research');await discussionAnchor(page);
+  const nav=page.locator('nav[aria-label="Research sections"] a[href="#acknowledgements"]');
+  assert.equal(await nav.textContent(),'Public discussion');
+  await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));
+  await nav.click();await discussionAnchor(page);
+  await page.goto(url+'/research.html#acknowledgements',{waitUntil:'load'});await ready(page,'research');await discussionAnchor(page);await responseNames(page,'research');
+  return {home,research,cta:true,localNavigation:true,history:true,directAnchor:true};
+}
 async function scenario(browser,url,manifest,variant,width,mode){
   const context=await browser.newContext({viewport:{width,height:width===390?844:900},reducedMotion:'no-preference'}),page=await context.newPage();
   const errors=[],external=[],responseChecks=[],checkedFiles=new Set(),rows=[];
@@ -98,11 +130,13 @@ async function scenario(browser,url,manifest,variant,width,mode){
         await page.locator('#archive-topic').selectOption('systems');assert.ok(await page.locator('li.publication:visible').count()>0,'Writing filter has results');
         await page.locator('.filter-reset').evaluate(el=>el.click());
       }
+      if(id==='index'||id==='research')await responseNames(page,id);
       rows.push({route:id,pass:true,state:observed,detail,checks:['exact identity','heading','viewport','persistent shell','theme control',mode==='normal'?'canvas active':'no-canvas fallback']});
     }
     await page.goBack();await ready(page,'talks');await page.goForward();await ready(page,'credits');
+    const discussion=await discussionNavigation(page,url);
     await Promise.all(responseChecks);assert.deepEqual(errors,[],'runtime and served-byte errors');assert.deepEqual(external,[],'unexpected external requests');
-    return {width,mode,pass:true,served,rows,history:true,motionOff:mode==='normal',errors,externalRequests:external,verifiedResponses:[...checkedFiles].sort()};
+    return {width,mode,pass:true,served,rows,history:true,discussion,motionOff:mode==='normal',errors,externalRequests:external,verifiedResponses:[...checkedFiles].sort()};
   }catch(error){
     fs.mkdirSync(out,{recursive:true});await page.screenshot({path:path.join(out,'preview-'+width+'-'+mode+'.png')}).catch(()=>{});
     await Promise.all(responseChecks);return {width,mode,pass:false,error:error.message,stack:error.stack,rows,state:await state(page).catch(()=>null),errors,externalRequests:external};

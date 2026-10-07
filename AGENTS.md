@@ -10,9 +10,9 @@ checks. Both promotion attempts failed strict HTTP verification immediately
 after successful deployments: the stable alias returned the preceding package,
 then the rollback check returned the candidate. These failures remain failed.
 
-Complete the necessary CI-only correction through normal protection before
-merging #28: bound exact-byte alias convergence, retain each failed observation,
-and distinguish the package producer attempt from the promotion attempt.
+CI-only PR #30 was accepted through normal protected merge. It bounds exact-byte
+alias convergence, retains each failed observation,
+and distinguishes the package producer attempt from the promotion attempt.
 Preserve every byte/header/root/404 assertion, source/artifact/controller lease,
 pin, browser scenario and original job/page/performance budget. Integrate the
 reviewed controller into #28, run all generated-source preflight checks, then
@@ -20,6 +20,60 @@ complete fresh exact-head full/stable acceptance and normal merge. No further
 blind promotion retry or GTK/core experiment is authorized. Production,
 physical-device checks and maintainer visual acceptance remain separate.
 
+## Complete PR #28 and audit issues — 2026-10-06
+
+The maintainer now requests completing PR #28 after accepted PR #23, followed
+by independent review, issue updates and a list of issues eligible for closure.
+Retarget the existing #28 to protected main and preserve its three selected Home
+responses, all eight Research records, exact contacts and fitted backdrops.
+This explicitly supersedes the earlier #28 preview-only and sole-#23 limits.
+Complete fresh exact-head full hosted staging, stable verification and merge
+that same reviewed head through normal protection. Preserve all macOS WebKit
+full coverage, Linux Chromium/Firefox and twelve Color checks, Windows smoke,
+original budgets, native evidence and source/artifact/controller leases.
+Do not restart GTK/core experiments. Production publication, physical-device
+checks and maintainer visual acceptance retain their separate issue criteria.
+Update existing issue evidence without treating a merged implementation or green
+CI as completion of unrelated publication, rights or release requirements.
+
+## Selected Home responses and complete Research context — 2026-10-06
+
+The maintainer now asks Sol to implement the [approved plan in Draft #28](https://github.com/oborskyivitalii/oborskyivitalii/pull/28#issuecomment-6018945888).
+Keep three short Home cards (Dobkin, Skelton, Kopko), all eight complete Research
+records in surname order, exact profile/source links and bounded contribution
+claims. Preserve Research formulation credit and add direct public-discussion
+navigation. Issue #14 owns this input. Edit authored content, explicitly reconcile
+only approved before/after copy, refresh generated outputs and use ordinary PR
+preview/minimal smoke. Preserve newer #23 work, contact links and backdrop alpha;
+full staging, merge and production of #28 remain outside this request.
+
+## Contact and remaining backdrop corrections — 2026-10-06
+
+The maintainer supplies the public booking URL and email and explicitly requests
+their addition. Continue Draft #28 for this follow-up, preserving useful fixes
+from duplicate #27 and recording its superseded disposition. New screenshots
+require title backing to follow rendered text lines, Talks backing to follow its
+metadata/title cells and one compact background behind Writing's filter group.
+Keep the already applied five-point alpha increase; do not apply it a second time.
+Use ordinary static CSS and preserve publication identities, scene algorithms,
+budgets, PR #23 and its separate staging work. Reconcile only the exact approved
+contact replacement and decorative title wrappers against frozen public copy.
+Regenerate public/standalone outputs, verify safe plain mailto retention and use
+the existing automatic PR preview and short smoke. Issue #14 owns this input;
+full staging, merge and production are not requested for #28.
+
+## Content-sized reading backdrops follow-up — 2026-10-06
+
+The maintainer explicitly requests one separate Draft PR stacked on the current
+PR #23 for reading-backdrop geometry and five-percentage-point higher background
+alpha. This supersedes the sole-PR restriction for this scoped follow-up only.
+Issue #14 owns the input and visual acceptance; #12/#13 keep runtime/release
+requirements. Preserve #23 and all its performance/fixture work; do not change
+its branch or staging run. Edit shared source CSS and the authored Color reading
+surface module, regenerate dependent outputs and use the existing automatic PR
+preview/short-smoke workflow. Full staging, merge and production of this follow-up
+are not requested. Calendar booking/email are advice only until real contact
+values and an implementation request are supplied. No Glass or new runtime loop.
 ## Approved macOS WebKit full coverage — 2026-10-06
 
 The maintainer approved one narrow CI-only controller PR before runtime PR #23:

@@ -116,7 +116,9 @@ for a useful explanation. The PMDay article remains [#2](https://github.com/obor
   descriptions, a useful heading, author topic metadata and this ninth cluster.
   Primary background and current Subprime source support are documented in
   SITE-SOURCE-AUDIT. No hidden keyword list or scientific acceptance is implied.
-- Five exact selected English works on Home, eight bounded public discussion entries and a working contact invitation; dedicated Research/Writing/Talks pages with
+- Five exact selected English works and three selected public-response cards on
+  Home; all eight complete public-discussion records on Research, linked directly
+  from Home, and a working contact invitation. Dedicated Research/Writing/Talks pages have
   shared navigation. Writing groups by year/topic in ordinary crawlable HTML;
   optional query filters preserve the original URLs, titles, dates and languages.
   The decorative Canvas scene does not contain publication content or replace it.

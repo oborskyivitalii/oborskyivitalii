@@ -1,5 +1,30 @@
 # Source audit for the first-site revision
 
+## Selected Home responses and complete Research context — 2026-10-06
+
+The maintainer authorized implementation of the
+[Home/Research plan in Draft #28](https://github.com/oborskyivitalii/oborskyivitalii/pull/28#issuecomment-6018945888).
+Home now presents three short public-response cards: Arkadiy Dobkin, Matthew
+Skelton and Markus Kopko. Their existing profile and public-record links are
+retained exactly. Home links directly to the complete Research discussion.
+
+Research retains all eight complete records, their existing roles, claims,
+profile/source links, secondary sources and Dobkin formulation-credit provenance.
+Only the article order changes: Armesto, Basir, Dobkin, Kolb, Kopko, Montgomery,
+Risch, Skelton. The introduction and local `Public discussion` navigation label
+make the full source context explicit. Research articles are preserved byte for
+byte; the approved before/after sections are recorded in
+`review/public-responses-20261006/`.
+
+This editorial selection reuses the previously audited 2026-10-02 sources and
+professional context. It does not claim a fresh external-source verification.
+Skelton's action remains public encouragement; Dobkin's remains a reading
+recommendation and extension of the argument; Kopko's remains a CPMAI mapping.
+No framework validation, formal integration, institutional endorsement, client
+relationship, adoption or new research evidence is inferred. The 27 primary
+publication identities, 28 linked renditions, five featured works and research
+statuses are unchanged.
+
 ## v8 visual-only source treatment — 2026-10-03
 
 The current revision changes scene geometry, motion and its Credits explanation.

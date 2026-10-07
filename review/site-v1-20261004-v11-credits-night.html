@@ -31,8 +31,8 @@
 
 
 
-  <meta name="site-engine" content="22e1e5b42356b0b36696a6aacebbd36d299c96d168c73ebcb0613da0bfd5c658">
-  <meta name="site-route" content="9801894c58765429d9ba28716c428c2bd100d7c1a664bf2fbc3f4c9b1c4bfe0f">
+  <meta name="site-engine" content="5b2239d9600bce59c2d6796b8cb1b63145b72333fe2447a19432e52b6fa74ab1">
+  <meta name="site-route" content="262639c82217291a6448dda796d6497165d58fba53c1ee1412bc71def0a6fc63">
   <meta name="site-contract" content="1">
   <meta name="site-variant" content="base">
 <meta name="robots" content="noindex, nofollow">
@@ -43,7 +43,7 @@
   --portrait-start:#deebeb; --portrait-end:#f4edde;
   --facet-1:#e7ece8;--facet-2:#dce9eb;--facet-3:#cddfe3;--facet-4:#eae1ce;--facet-5:#bfd4da;--facet-6:#eff0e9;
   --button-bg:#245866; --button-ink:#fffdf7;
-  --surface-open:86%; --surface-reading:90%; --surface-row:91%;
+  --surface-open:91%; --surface-reading:95%; --surface-row:96%; --surface-gutter:12px;
   --sans:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   color-scheme:light;
 }
@@ -53,7 +53,7 @@
   --portrait-start:#152732; --portrait-end:#24251e;
   --facet-1:#1c252e;--facet-2:#142f3b;--facet-3:#1c3f4c;--facet-4:#332e21;--facet-5:#235164;--facet-6:#253038;
   --button-bg:#78abb0; --button-ink:#111c22; color-scheme:dark;
-  --surface-open:86%; --surface-reading:90%; --surface-row:91%;
+  --surface-open:91%; --surface-reading:95%; --surface-row:96%;
 }
 @media(prefers-color-scheme:dark) {
   :root:not([data-theme]) {
@@ -62,7 +62,7 @@
     --portrait-start:#152732; --portrait-end:#24251e;
     --facet-1:#1c252e;--facet-2:#142f3b;--facet-3:#1c3f4c;--facet-4:#332e21;--facet-5:#235164;--facet-6:#253038;
     --button-bg:#78abb0; --button-ink:#111c22; color-scheme:dark;
-    --surface-open:86%; --surface-reading:90%; --surface-row:91%;
+    --surface-open:91%; --surface-reading:95%; --surface-row:96%;
   }
 }
 * {box-sizing:border-box}
@@ -112,30 +112,38 @@ body[data-page="writing"] .space-scene canvas,body[data-page="credits"] .space-s
 .space-fallback {opacity:1}
 /* Protect the reading block, leaving the section and its gutters open to the world. */
 .section,.archive-intro,.credits-page,.hero-copy,.shift-intro {background:transparent}
-:is(.hero-copy,.section-heading,.archive-intro>h1,.archive-intro>.hero-description,.archive-intro>.eyebrow,.shift-intro>p,
+:where(.hero-copy,.section-heading,.archive-intro>.hero-description,.archive-intro>.eyebrow,.shift-intro>p,
 .research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,
-.ack-grid article,.about-grid>div,.contact-grid>div,.publication,.credits-page>p,.credits-page>h2,
-.archive-landings,.archive-heading,.archive-filters,.archive-count,.empty-state,.year-landing,
-.section-note,.section-nav,.topic-nav,.next-route,.site-footer) {
+.ack-grid article,.about-grid>div,.about-grid>h2,.about-section>.eyebrow,.archive-link,.contact-grid>div,.publication,.credits-page>p,.credits-page>h1,.credits-page>h2,
+.archive-heading,.archive-count,.empty-state,.year-landing,.section-note,.next-route>p,.next-route>a,
+.archive-landings>.topic-landing,.archive-filters,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a,.talks-list .publication>div) {
   position:relative;isolation:isolate;
 }
 /* The mask feathers only the backdrop beyond the reading area, never glyphs.
    Static gradients need no backdrop blur, extra bitmap or animation scheduler. */
-:is(.hero-copy,.section-heading,.archive-intro>h1,.archive-intro>.hero-description,.archive-intro>.eyebrow,.shift-intro>p,
+:where(.hero-copy,.section-heading,.archive-intro>.hero-description,.archive-intro>.eyebrow,.shift-intro>p,
 .research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,
-.ack-grid article,.about-grid>div,.contact-grid>div,.publication,.credits-page>p,.credits-page>h2,
-.archive-landings,.archive-heading,.archive-filters,.archive-count,.empty-state,.year-landing,
-.section-note,.section-nav,.topic-nav,.next-route,.site-footer)::before {
-  content:"";position:absolute;inset:-24px;z-index:-1;pointer-events:none;
+.ack-grid article,.about-grid>div,.about-grid>h2,.about-section>.eyebrow,.archive-link,.contact-grid>div,.publication,.credits-page>p,.credits-page>h1,.credits-page>h2,
+.archive-heading,.archive-count,.empty-state,.year-landing,.section-note,.next-route>p,.next-route>a,
+.archive-landings>.topic-landing,.archive-filters,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a,.talks-list .publication>div)::before {
+  content:"";position:absolute;inset:calc(-1 * var(--surface-gutter));z-index:-1;pointer-events:none;
   background:var(--paper);background:color-mix(in srgb,var(--paper) var(--reading-alpha,var(--surface-reading)),transparent);
-  mask-image:linear-gradient(90deg,transparent,#000 24px,#000 calc(100% - 24px),transparent),linear-gradient(transparent,#000 24px,#000 calc(100% - 24px),transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 var(--surface-gutter),#000 calc(100% - var(--surface-gutter)),transparent),linear-gradient(transparent,#000 var(--surface-gutter),#000 calc(100% - var(--surface-gutter)),transparent);
   mask-composite:intersect;
 }
 .archive-intro>h1,.archive-intro>.hero-description {width:fit-content;max-width:100%;padding:8px 16px;margin-left:-16px}
+/* Inline fragments follow each rendered title line, including native wraps. */
+.reading-title {background:var(--paper);background:color-mix(in srgb,var(--paper) var(--surface-reading),transparent);border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .shift-intro>p {padding:16px}
 .about-grid>div,.contact-grid>div {padding:18px 22px}
 .credits-page>p {padding:14px 18px;margin-inline:-18px}
 .section-nav,.topic-nav {padding-inline:14px}
+/* Menus and controls need protection only behind their own text. */
+.archive-landings>.topic-landing,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a,.next-route>p,.next-route>a {--surface-gutter:8px;max-width:100%}
+/* A short column must not inherit the height of its taller neighbour. */
+.shift-intro,.research-grid,.topic-grid,.help-grid,.ack-leads,.ack-compact,.ack-grid,.about-grid,.contact-grid {align-items:start}
+.hero-copy,.about-grid>div,.about-grid>h2,.contact-grid>div,.shift-intro>p,.credits-page>p,.credits-page>h1,.empty-state {width:fit-content;max-width:100%}
+:is(.research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,.ack-grid article,.about-grid>div,.contact-grid>div) .section-note::before {content:none}
 .site-footer,.next-route {padding-inline:18px}
 .hero {display:grid;grid-template-columns:1.22fr .78fr;align-items:end;gap:0 44px;padding-top:48px}
 .hero-copy {--reading-alpha:var(--surface-open);color:var(--ink);align-self:center;padding:16px 18px 34px;margin-left:-18px}
@@ -220,6 +228,8 @@ h2 {font-size:clamp(30px,3.4vw,40px);font-weight:720;letter-spacing:-.035em;line
 .archive-link {margin-top:26px}
 .writing-topic {font-size:13px;font-weight:650;color:var(--muted);margin:32px 0 12px;text-transform:uppercase;letter-spacing:.07em}
 .talk-title {font-size:25px;font-weight:600;line-height:1.4;margin:0 0 12px}
+.talks-list .publication::before {content:none}
+.talks-list .publication>div {width:fit-content;max-width:100%;min-width:0;justify-self:start;--reading-alpha:var(--surface-row)}
 .ack-grid article {border-top:1px solid var(--line);padding-top:22px}
 .ack-grid h3 {font-size:18px;margin:0 0 12px}
 .about-grid p {margin-bottom:18px}
@@ -240,7 +250,7 @@ h2 {font-size:clamp(30px,3.4vw,40px);font-weight:720;letter-spacing:-.035em;line
   body[data-page="credits"] .credits-page {max-width:1160px}
   .credits-page>p {max-width:730px}
 }
-.archive-filters {display:flex;flex-wrap:wrap;align-items:end;gap:18px;padding-block:24px 4px}
+.archive-filters {display:flex;flex-wrap:wrap;align-items:end;gap:18px;padding:12px;margin:12px 0 0 -12px;--surface-gutter:8px;--reading-alpha:var(--surface-row)}
 .archive-filters,.archive-heading,.archive-count,.topic-nav {width:fit-content;max-width:100%}
 .archive-filters label {display:grid;gap:8px;font-size:13px;color:var(--muted)}
 .archive-filters select {min-width:130px;font-size:14px}
@@ -250,14 +260,16 @@ h2 {font-size:clamp(30px,3.4vw,40px);font-weight:720;letter-spacing:-.035em;line
 .archive-landings {display:flex;flex-wrap:wrap;gap:12px 28px;padding-top:24px}
 .topic-landing,.year-landing {font-size:15px;letter-spacing:0;line-height:1.5;margin:0;padding-block:12px}
 .topic-landing a {display:block;font-size:13px;font-weight:500;margin-top:6px}
-.year-landing {width:min(1160px,calc(100% - 80px));margin-inline:auto;font-size:19px;padding-top:38px}
+.year-landing {width:fit-content;max-width:min(1160px,calc(100% - 80px));margin-left:max(40px,calc((100% - 1160px)/2));margin-right:0;font-size:19px;padding-top:38px}
+#archive-results .year-landing {margin-left:0;max-width:100%}
 .archive-heading {font-size:21px;margin-top:24px;letter-spacing:-.015em}
 .archive-landings,.year-landing {scroll-margin-top:12px}
 .contact-grid {display:grid;grid-template-columns:1fr 1fr;gap:44px}
 .contact-grid p {color:var(--muted);font-size:15px;max-width:520px}
-.booking-placeholder {border-left:2px solid var(--accent);padding:4px 0 4px 30px;align-self:center}
-.booking-placeholder h3 {font-size:22px;margin:0}
-.booking-placeholder .button {font-size:13px;gap:16px}
+.booking-card {border-left:2px solid var(--accent);padding:4px 0 4px 30px;align-self:center}
+.booking-card h3 {font-size:22px;margin:0}
+.booking-card .button {font-size:13px;gap:16px}
+.contact-email {overflow-wrap:anywhere}
 .credits-page {max-width:800px;padding-block:60px}
 .credits-page h1 {font-size:clamp(40px,6vw,60px)}
 .credits-page h2 {font-size:21px;letter-spacing:-.01em;margin-top:36px}
@@ -273,7 +285,8 @@ body[data-page="writing"] .publication {--reading-alpha:var(--surface-row)}
 }
 @media(max-width:900px) {
   .site-header.wrap {padding-inline:24px}
-  .wrap,.year-landing {width:calc(100% - 48px)}
+  .wrap {width:calc(100% - 48px)}
+  .year-landing {max-width:calc(100% - 48px);margin-left:24px}
   body[data-page="writing"] #archive-results {width:calc(100% - 48px)}
   .hero {gap:0 24px;padding-top:40px}
   .hero h1 {font-size:clamp(40px,4.9vw,56px)}
@@ -283,12 +296,13 @@ body[data-page="writing"] .publication {--reading-alpha:var(--surface-row)}
   .site-header.wrap {padding-inline:20px}
   .hero .hero-copy::before {content:none}
   .hero :is(h1,.hero-lead,.hero-description,.audience,.eyebrow) {position:relative;isolation:isolate}
-  .hero :is(h1,.hero-lead,.hero-description,.audience,.eyebrow)::before {content:"";position:absolute;inset:-18px;z-index:-1;pointer-events:none;background:color-mix(in srgb,var(--paper) 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 18px,#000 calc(100% - 18px),transparent),linear-gradient(transparent,#000 18px,#000 calc(100% - 18px),transparent);mask-composite:intersect}
+  .hero :is(h1,.hero-lead,.hero-description,.audience,.eyebrow)::before {content:"";position:absolute;inset:-18px;z-index:-1;pointer-events:none;background:color-mix(in srgb,var(--paper) 97%,transparent);mask-image:linear-gradient(90deg,transparent,#000 18px,#000 calc(100% - 18px),transparent),linear-gradient(transparent,#000 18px,#000 calc(100% - 18px),transparent);mask-composite:intersect}
   /* Match the mobile camera framing for the static 1440×900 projection too. */
   .space-scene .space-fallback {width:min(184vw,160vh);height:min(115vw,100vh);left:calc(42vw - min(121.44vw,105.6vh));top:calc(48vh - min(55.2vw,48vh))}
   .archive-intro>h1 {padding-inline:0;margin-inline:0}
   html {scroll-padding-top:var(--header-clearance,112px)}
-  .wrap,.year-landing {width:calc(100% - 40px)}
+  .wrap {width:calc(100% - 40px)}
+  .year-landing {max-width:calc(100% - 40px);margin-left:20px}
   body[data-page="writing"] #archive-results {width:calc(100% - 40px)}
   .site-header {padding-block:8px;gap:0 14px}
   .wordmark {font-size:13px}
@@ -328,7 +342,7 @@ body[data-page="writing"] .publication {--reading-alpha:var(--surface-row)}
   .site-footer p {flex-basis:100%}
   .section-heading {padding:10px 12px;margin-left:-12px}
   .research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,.ack-grid article {padding:20px 16px}
-  .booking-placeholder {padding-left:20px}
+  .booking-card {padding-left:20px}
 }
 @media(prefers-reduced-motion:reduce) {
   html {overflow-x:clip;scroll-behavior:auto}
@@ -341,7 +355,8 @@ body[data-page="writing"] .publication {--reading-alpha:var(--surface-row)}
   .wrap {width:100%}
   .site-header {position:static}
   .site-header.wrap {padding-inline:0}
-  main ::before,.site-footer::before {display:none!important}
+  main ::before,.site-footer ::before {display:none!important}
+  .reading-title {background:transparent}
   .site-header nav,.appearance,.display-controls,.space-scene,.skip-link,.section-nav,.topic-nav,.archive-filters,.archive-landings,.archive-heading,.button {display:none!important}
   .hero {padding-top:24px}
   .section {padding-block:28px}

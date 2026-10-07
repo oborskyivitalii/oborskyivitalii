@@ -1,15 +1,15 @@
 'use strict';
 // Reading backdrops are ordinary translucent paint: no controller or observer.
-const readingSelector=':is(.hero-copy,.section-heading,.archive-intro>h1,.archive-intro>.hero-description,.archive-intro>.eyebrow,.shift-intro>p,.research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,.ack-grid article,.about-grid>div,.contact-grid>div,.publication,.credits-page>p,.credits-page>h2,.archive-landings,.archive-heading,.archive-filters,.archive-count,.empty-state,.year-landing,.section-note,.section-nav,.topic-nav,.next-route,.site-footer,.year-heading,.writing-topic)';
+const readingSelector=':where(.hero-copy,.section-heading,.archive-intro>.hero-description,.archive-intro>.eyebrow,.shift-intro>p,.research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,.ack-grid article,.about-grid>div,.about-grid>h2,.about-section>.eyebrow,.archive-link,.contact-grid>div,.publication,.talks-list .publication>div,.credits-page>p,.credits-page>h1,.credits-page>h2,.archive-heading,.archive-count,.empty-state,.year-landing,.section-note,.next-route>p,.next-route>a,.archive-landings>.topic-landing,.archive-filters,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a,.year-heading,.writing-topic)';
 const mobileReadingSelector='.hero :is(h1,.hero-lead,.hero-description,.audience,.eyebrow)';
 function surfaceStyles(){
   return `<style data-ribbon-reading-surface>
-:root,:root[data-theme="dark"]{--surface-open:78%;--surface-reading:82%;--surface-row:84%}
+:root,:root[data-theme="dark"]{--surface-open:83%;--surface-reading:87%;--surface-row:89%}
 :root:not([data-theme="dark"]){--muted:#344a53}
 :root[data-theme="dark"] body[data-page="writing"] .archive-intro>.hero-description{color:var(--ink)}
 .year-heading,.writing-topic{position:relative;isolation:isolate}
 .year-heading{width:fit-content;max-width:100%}
-.year-heading::before,.writing-topic::before{content:"";position:absolute;inset:-16px;z-index:-1;pointer-events:none;background:var(--paper);background:color-mix(in srgb,var(--paper) var(--surface-reading),transparent);mask-image:linear-gradient(90deg,transparent,#000 16px,#000 calc(100% - 16px),transparent),linear-gradient(transparent,#000 16px,#000 calc(100% - 16px),transparent);mask-composite:intersect}
+.year-heading::before,.writing-topic::before{content:"";position:absolute;inset:calc(-1 * var(--surface-gutter));z-index:-1;pointer-events:none;background:var(--paper);background:color-mix(in srgb,var(--paper) var(--surface-reading),transparent);mask-image:linear-gradient(90deg,transparent,#000 var(--surface-gutter),#000 calc(100% - var(--surface-gutter)),transparent),linear-gradient(transparent,#000 var(--surface-gutter),#000 calc(100% - var(--surface-gutter)),transparent);mask-composite:intersect}
 ${readingSelector}::before{border-radius:8px}
 .appearance[open] .display-controls{display:flex;flex-direction:column;align-items:stretch;min-width:260px;max-width:calc(100vw - 40px)}
 .appearance[open] .theme-control{display:flex;justify-content:space-between;gap:12px}
@@ -17,7 +17,7 @@ ${readingSelector}::before{border-radius:8px}
   ${mobileReadingSelector}{--reading-alpha:var(--surface-reading)}
   ${mobileReadingSelector}::before{background:var(--paper);background:color-mix(in srgb,var(--paper) var(--reading-alpha),transparent);border-radius:8px}
 }
-@media(prefers-reduced-transparency:reduce){:root,:root[data-theme="dark"]{--surface-open:96%;--surface-reading:96%;--surface-row:96%}}
+@media(prefers-reduced-transparency:reduce){:root,:root[data-theme="dark"]{--surface-open:100%;--surface-reading:100%;--surface-row:100%}}
 @media print{${readingSelector}::before,${mobileReadingSelector}::before{background:white}}
 </style>\n`;
 }
