@@ -4,75 +4,71 @@ Dated continuity, not live authority. Last verified: **2026-10-07**.
 
 ## Snapshot
 
-- Main is `76f2a78` after authorized joint PR #43 merge; #35 / PR #37 is
-  merged. #31/#32 and #33/#34 are completed. Read their pinned issue evidence.
-- The maintainer requests one joint staging run for [#36](https://github.com/oborskyivitalii/oborskyivitalii/issues/36)
-  / [PR #38](https://github.com/oborskyivitalii/oborskyivitalii/pull/38) and
-  [#41](https://github.com/oborskyivitalii/oborskyivitalii/issues/41)
-  / [PR #42](https://github.com/oborskyivitalii/oborskyivitalii/pull/42).
-  Isolated branch: `work/staging-36-41-20261007`. Exact parents are
-  `73020e86b02da64d5e7256cbaffc641a0cc5d649` and
-  `7c9ff1ee760a48669990b6df560dc54da7561a17`. Original PR branches stay open.
-  [Formula handoff](review/issue-36/2026-10-07-handoff.md) and
-  [editorial analysis](review/issue-41/2026-10-07-analysis.md) carry the same
-  joint staging amendment. Joint PR #43's first bounded run failed old-count and
-  static checks; its absolute performance passed. The repaired candidate passes
-  258 selected source cases. PR #44 at eb81a61 has four green minimal CI runs.
-  Corrected #43 at072a7b8 passed four minimal CI runs and merged at76f2a78.
-  PR #44 is adapted on that main with the full24-check joint policy. One bounded
-  joint staging run and current exact deployment are tracked in the live issues.
-- #36 places one tilted, pulsing formula in Writing's books/pages fractal,
-  sharing its camera/clock and bounded cache. Rejected banner benchmarks are
-  historical failures, not acceptance of this world-space implementation.
-- #41 supplies two bounded advisory roles, 29 primary/46 platform editions,
-  three sourced Reddit snapshot rows and precise semantic/SEO amendments.
-  Existing editions, three Home response cards and five featured works persist.
-- Stable stage is https://staging.oborskyi-author-ci-staging.pages.dev .
-  Only the successful combined controller record can establish its new source.
+- Main is `709c6d0dadb4371d7dde43fb650f948039d8cf7c` after maintainer
+  merge of PR #44. Tree `2e412ff1e4ca90a1bfeef71d18d961e130e6cfe3`
+  equals checked d4999fc. Joint #43 and original #38/#42 are merged.
+- Clean merged-main #36 policy passes 24/24 distinct checks, eleven I41 checks
+  once. Automation valid; closure false. PR run37638060284/artifact11490487632
+  and separately verified equal merge tree are recorded. No new stable promotion.
+- Maintainer requests all-issue audit and completed-only closure. Twelve open
+  issues have remaining acceptance. Preserve historical #3/#4/#12/#14/#15/#19
+  and #31/#33/#35 closures and their pinned evidence.
+- [All-issues audit](review/site-consolidation-20261006/REPORT.md#post-44-issue-acceptance-audit--7-october-2026)
+  updates the same evidence route. [Formula handoff](review/issue-36/2026-10-07-handoff.md)
+  and [editorial analysis](review/issue-41/2026-10-07-analysis.md) retain live anchors.
+- New #45 owns crisp formula edges and large-heading backdrops, allowing
+  fixed-raster supersession. Revalidate concurrent work before source edits.
+- #41 catalog is 29 primary/46 platform editions; hero prose still says 27.
+  The same editorial route records this unresolved finding.
+- #39 Draft #40 remains at47e97ce. Verification TXT already created; owner
+  GitHub Verify, actual domain/release mechanics and live acceptance remain.
+- Stable: https://staging.oborskyi-author-ci-staging.pages.dev . Last accepted
+  package/recovery is run37549451723 source985c89d; merges are not new editions.
 
 ## Decisions
 
-- One coherent combined source/artifact receives one bounded staging run under
-  the merged #35 profile. PR smoke, source ACs and full production are distinct.
-- #36 selected policy runs its original checks plus eleven I41-prefixed source
-  checks once. #41's original ACs/gates remain mapped at its own live anchor.
-- #41 catalog identities compare to c4539ad; protected runtime/workflow bytes
-  compare to its approved immutable #36 companion 73020e8, with one explicitly
-  normalized projection syntax/helper repair proven equal in all 120 cases.
-- Chromium/Firefox run on Linux; WebKit stays native macOS production coverage.
-  Do not repeat eighteen diagnostic trials to repair a report/environment error.
-- Paired formula performance, combined independent/editorial/mobile decisions,
-  device/release and maintainer merge remain explicit gates. Shared staging's
-  absolute measurements do not automatically complete paired AC04.
-- Original issue intent and AC IDs persist. Update actual issue-body checkboxes
-  only for whole verified criteria; tables alone are insufficient.
-- Canonical authored source regenerates docs/offline/RI output. Preserve pinned
-  historical checks; report candidate identity honestly and keep budgets fixed.
-- GitHub Pages production and analytics/domain activation remain #8/#39 work.
+- Update actual issue boxes only for whole verified criteria. Preserve original
+  intent/IDs and historical acceptance. No open issue is newly complete here.
+- #36 AC01–AC05 unchecked; #41 AC01 checked, AC02–AC06 pending. Merge is
+  observed; visual/editorial/independent/browser and actual paired gates remain.
+- #13 preserves seven historical original passes and six expanded pending gates.
+  Short stage is not production/physical-device acceptance.
+- Joint #36 policy runs eleven I41 checks once. Basic/navigation, targeted
+  acceptance, bounded staging and full production keep separate owners.
+- Linux Chromium/Firefox; native macOS WebKit production. Do not repeat eighteen
+  diagnostic trials or full regression for an issue-state audit.
+- Merged controller accepts finite current four-media and legacy three-media
+  packages. Preserve existing trust/artifact/recovery path and original budgets.
+- Staging continuation is authorized for one coherent joint source. Observe
+  open-source/controller leases before invoking it; production/domain and new
+  merge decisions remain separate. No new stable promotion is yet recorded.
+- Older unfinished tasks without executable policies stay unmapped/pending;
+  do not replace semantic acceptance with file/keyword tests.
 
 ## Open work
 
 | Issue | Remaining intent |
 | --- | --- |
-| #36 / #41 | #43 merged; adapted #44/joint staging, legacy recovery compatibility; paired evidence and visual/editorial/independent gates. |
-| #1 / #13 | First-release, physical-device and full production/recovery acceptance. |
-| #8 / #39 | Production URL/indexability, domains and analytics activation. |
-| #7 | License and editorial/third-party rights. |
-| #5 / #6 | Real article HTML/PDF edition and cross-repository adapter. |
-| #2 | PMDay article and matching presentation edition. |
-| #11 | Buyer-intent guides after launch. |
+| #36 / #41 | Matching bounded staging, actual paired/visual/editorial/browser/independent acceptance; reconcile hero count. |
+| #45 | Crisp Writing formula and heading margins on its separate canonical/preview route. |
+| #1 / #13 | First release, real devices, independent production, passive scan and recovery. |
+| #8 / #39 | Production domains/origin/indexability/analytics, owner Verify and live evidence. |
+| #7 | License and actual-edition rights/editorial acceptance. |
+| #5 / #6 | Pinned HTML/PDF publisher and reproducible cross-repository harness. |
+| #2 | PMDay article, accepted deck/PDF and upstream disposition. |
+| #11 | Accepted buyer guides and post-launch search evidence. |
 
 ## Next session
 
-1. Fetch live main, both original PRs and the integration branch/PR; check for
-   newer work before modifying a source. Read applicable AGENTS and owners.
-2. Read both live issue anchors and the single joint staging record. Verify
-   source/tree/artifact/alias rather than inheriting a historical green result.
-3. Continue remaining acceptance with targeted checks. Merge/production require
-   their separate maintainer decisions; do not rerun a duplicate full suite.
+1. Revalidate main, issues/open PRs and newer #45 work. Read applicable AGENTS
+   and canonical owners; memory is not live evidence.
+2. Read #36/#41 anchors and the same audit/handoff. Verify source/tree/package/
+   artifact/alias rather than inheriting a historical green result.
+3. Continue pending acceptance with its check profile. Record actual decisions
+   separately and preserve budgets and release requirements.
 
 ## Maintenance
 
-Keep these five sections within 120 lines. Update at meaningful handoff and
-rebuild RI. Detailed source/run/history stays in issues/PRs and linked artifacts.
-No private messages, credentials or inferred approvals belong in memory.
+Keep five sections within 120 lines. Refresh RI after memory edits; review CI
+coupling when maintained controls change. Detailed history belongs in issues/PRs
+and review artifacts. No secrets or inferred approvals.
