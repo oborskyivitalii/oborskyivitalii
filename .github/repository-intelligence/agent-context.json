@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "818710bb4b4736104b2307b214e913e3ed786342d799616e80594e6173193971",
+    "digest": "6821a55a4e3617232b2479ab1d56faf4b6b1bfc6d2a1a4d22405864761f20978",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -27,7 +27,7 @@
       {
         "path": ".github/ACCEPTANCE.md",
         "identity_mode": "content",
-        "sha256": "2ed4d294fdc0d8ddc8eca0efa4133bb3110d943fe5ee3ce85f40a13acdacf6ea"
+        "sha256": "bd74a60ccf2493e6ffc2e598cba737a2935a4377072cf83acecdd3a3851a3d13"
       },
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -42,7 +42,7 @@
       {
         "path": ".github/REPOSITORY-INTELLIGENCE.md",
         "identity_mode": "content",
-        "sha256": "7f11bc7bee447695de32c0bf03fa8a1aa0a5a6baa3b0889d03c53886c57e0bef"
+        "sha256": "b82d2a4d4b50c97a8fb870885e1475c51abab7971c7808fbe4eeeb104b334c3a"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -55,9 +55,14 @@
         "sha256": "f2f17864e5faca94436020ee866e068abd5de99705aaba8edd93e0b8e0420108"
       },
       {
+        "path": ".github/acceptance/issue-35.json",
+        "identity_mode": "content",
+        "sha256": "6d405a86fc607d867f6c29422cd0c98780cd185b53b785616b85bf5685f61af0"
+      },
+      {
         "path": ".github/acceptance/issue-36.json",
         "identity_mode": "content",
-        "sha256": "14571ef4479737b9ad51bd42eaac617b3506cfe378901cde9710b873f1adae98"
+        "sha256": "e08d0dc484011d35bf47f74ae6e2f7a38f3220ba8557e8a28633b9c0c12c4e30"
       },
       {
         "path": ".github/pull_request_template.md",
@@ -67,7 +72,7 @@
       {
         "path": ".github/repository-intelligence-config.json",
         "identity_mode": "content",
-        "sha256": "bcf4e16e06c9ddfb17f92ec7ce48cdf5be69819ab1306ba1bb728703083a3b89"
+        "sha256": "bf9d9b819b3a06314c668984b4830d27ac530785e64ac4937bcb9c75c42e3afd"
       },
       {
         "path": ".github/repository-intelligence/agent-context.json",
@@ -81,12 +86,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "d848a1a50b6a3773139430471bdeb49bcb17b85319ba512687b29a5834bfb264"
+        "sha256": "d8c95eaa68173b0424adf7af6eb8de74a8f13ae15191c9e79afcabf29a2872c1"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "8c64872f0be5fe767bd0684226559aad8737738201f9c4413a286cf2251a263d"
+        "sha256": "884975a6c8828512f4fcbb938db311c51b7d0826e42e39450c2d52d1e859f342"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -96,7 +101,7 @@
       {
         "path": ".github/workflows/navigation.yml",
         "identity_mode": "content",
-        "sha256": "949dbd4b27f9b881ce75c05f1958ffe11eba0087d60eec718a0efbf0ae581588"
+        "sha256": "8bb5299dfe5082381cbaa08b5a1bdc748d7e8bd060daf512096448eac8950454"
       },
       {
         "path": ".github/workflows/site-browser-gate-probe.yml",
@@ -106,7 +111,7 @@
       {
         "path": ".github/workflows/site-candidate-evidence.yml",
         "identity_mode": "content",
-        "sha256": "4f29bb722c296a012d79850b504f2a47369f450a0449f65804a277369ca5406e"
+        "sha256": "c94593e872f7868dbc526da93a5c1a417c8cd5b264c04a0b5f29288b8c529058"
       },
       {
         "path": ".github/workflows/site-cause-fix-probe.yml",
@@ -121,12 +126,12 @@
       {
         "path": ".github/workflows/site-checks.yml",
         "identity_mode": "content",
-        "sha256": "9f2a2bd1495a03e9d67b27981a744cec6f4788f61f3c137d8496f95735076e58"
+        "sha256": "2f79df17a0e2b5fd8147c69710f7aee13af32428764f2d8eca8c8104eb27be0c"
       },
       {
         "path": ".github/workflows/site-color-review.yml",
         "identity_mode": "content",
-        "sha256": "dc9f464e1f8408919ad94deb60d403b60cf6b1a8a75b194a0ca40b9adfdaea71"
+        "sha256": "1380817817ed73ccf18359afcc32d366bf8d96b0a4e46f062a2a2491a80e2752"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -146,7 +151,7 @@
       {
         "path": ".github/workflows/site-release-checks.yml",
         "identity_mode": "content",
-        "sha256": "046c7508a1b07af5c5281c99b2ca1febdc4bd42bc07c58c281322a7cc81fff0f"
+        "sha256": "27639df5efb5aac57b9f6d44764c601325dd9294aa98111b8aba5f6d9c610082"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
@@ -156,12 +161,12 @@
       {
         "path": ".github/workflows/site-staging.yml",
         "identity_mode": "content",
-        "sha256": "1f38d9a12d86e792377b2ecf81b7bcbc1ddabd4782b6c967261fae1ee67409a1"
+        "sha256": "f5803796635ea44a22dde0bf587d26368f1b1b936c2ae8ffc91d34285f0f7da5"
       },
       {
         "path": ".github/workflows/site-writing-probe.yml",
         "identity_mode": "content",
-        "sha256": "05aefc93a260ea890c341530f07d1e12af76584508401dbfbe7729e050763a9c"
+        "sha256": "489115069a17cca175a0f58e7329a1980cfb28a2e72f7713c401ebb47af9678a"
       },
       {
         "path": ".gitignore",
@@ -171,17 +176,17 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "3b4e74a0887524d19ce87c92adeb287099e36d6d34f3873cf43468b549f0cb2c"
+        "sha256": "a46a8c699e5c58247e2aa1e6be01d49ce7508e815e16a5f27f51453cda38378e"
       },
       {
         "path": "CONTRIBUTING.md",
         "identity_mode": "content",
-        "sha256": "b462cf1f02a325b130658ed3b6c92216deb6cfb5bb9a4a3ca9cd07c87b50e30b"
+        "sha256": "4294fc3e68375e674e5a1fcac8a81a8236c11c023d35e10497688e2807aa75ec"
       },
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "71af8ceabb0d1c4775a3cfc3a39b676251b8f4658fd1fa34e3e23d018fb0089f"
+        "sha256": "2957ccd59e101a6c9eeef60ee68a0a93a528adbd2c90ffd6fbb3d383c5d169cf"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -230,12 +235,12 @@
       {
         "path": "docs/credits.html",
         "identity_mode": "content",
-        "sha256": "d46b6c8df0fdf08b853b546171e0769c174794de541dd27f9d98db7e02801e3a"
+        "sha256": "a5a3174ecf1b2e852aea99000218c01c138295250a84fc9d4bfcf60e2e90bc9c"
       },
       {
         "path": "docs/index.html",
         "identity_mode": "content",
-        "sha256": "24b2c302afef603759d13839e8636224982539c2ccb1412fa013597445e0d256"
+        "sha256": "db2ffd4a7bcd2cfec8d4d25d22c5bdf262d3d95c15444421f66712b3a4077703"
       },
       {
         "path": "docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/favicon.svg",
@@ -265,77 +270,77 @@
       {
         "path": "docs/research.html",
         "identity_mode": "content",
-        "sha256": "cccf6be3564b371f5555db52aa115b638825073c8d654feac64e254ee74fb6bd"
+        "sha256": "c35d2fe8cf6ee6bfa34eb8ae3d1acbbdefa6c3b935575d06a23aad27f2f43454"
       },
       {
-        "path": "docs/runtime/bc6a8a50f97964072443917d49757d331b2057996ae0cdc8c95041833512fc1a/archive.js",
+        "path": "docs/runtime/2834c584896aa2520009f9a08c6d8b2df598df70451ae55275c1b339518d1959/archive.js",
         "identity_mode": "content",
         "sha256": "7f4574761ea6967c0e5282bc26af4342d13b0334ae6a593a9ef9a51cf5efe1a9"
       },
       {
-        "path": "docs/runtime/bc6a8a50f97964072443917d49757d331b2057996ae0cdc8c95041833512fc1a/navigation.js",
+        "path": "docs/runtime/2834c584896aa2520009f9a08c6d8b2df598df70451ae55275c1b339518d1959/navigation.js",
         "identity_mode": "content",
         "sha256": "c0c3b3457edb83f5a960a98f36c8a363de8799188bb982bdbce50ba384791221"
       },
       {
-        "path": "docs/runtime/bc6a8a50f97964072443917d49757d331b2057996ae0cdc8c95041833512fc1a/space.js",
+        "path": "docs/runtime/2834c584896aa2520009f9a08c6d8b2df598df70451ae55275c1b339518d1959/space.js",
         "identity_mode": "content",
-        "sha256": "efb3712a9f8c29c52888c7cc9e3786a50b8d3470bb2ac1a1eb9f7432f45225fe"
+        "sha256": "d3e10ba846dfd44f814664bddbf8928f1615387de99d5b14812ecb56cbb5bfce"
       },
       {
-        "path": "docs/runtime/bc6a8a50f97964072443917d49757d331b2057996ae0cdc8c95041833512fc1a/styles.css",
+        "path": "docs/runtime/2834c584896aa2520009f9a08c6d8b2df598df70451ae55275c1b339518d1959/styles.css",
         "identity_mode": "content",
-        "sha256": "5e38d5aca7fe0e2998e476b8733fe73cd49d232a9057673e612294f36592d5e4"
+        "sha256": "535c06bc014955eb5224d046777bef57d6d568dd5a1ce32c605326629da4bac5"
       },
       {
-        "path": "docs/runtime/bc6a8a50f97964072443917d49757d331b2057996ae0cdc8c95041833512fc1a/theme.js",
+        "path": "docs/runtime/2834c584896aa2520009f9a08c6d8b2df598df70451ae55275c1b339518d1959/theme.js",
         "identity_mode": "content",
         "sha256": "d11f679af05442e8b01024e9a5fe3ba9aff73554f11bd8f3ff692d14f830f8fb"
       },
       {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "d96deec4024385c28f43969cbec36cfe4b3827db7068bfa1cb885ded3674805d"
+        "sha256": "136b9526079c2d84b97552d8556e14d2e78c65dce10ef789145b0b9813e421bd"
       },
       {
-        "path": "docs/snapshots/0795654821204cda0a2b9fa16c30ca148f604a0f630432fdc50e5a4664c5b032/credits.html",
+        "path": "docs/snapshots/79ac8e19e59e6f7e1c393f153a7d0be62a3966e66bf0bd4b4e05fd4059f560e7/index.html",
         "identity_mode": "content",
-        "sha256": "cb65e162c0fab74b8b42f582fd74ba4f2250321d069819aeac218189fbcfc471"
+        "sha256": "71ae9a74c1283a5bc93680c480e4096b0984e3ab470bba707bc851304bb50062"
       },
       {
-        "path": "docs/snapshots/0ef6e36ea64773dea0544aedda46d3100471c3e99d4b15842d4608bc89142d2b/talks.html",
+        "path": "docs/snapshots/84abd4ed287bc17e3790ab6e81f1163610e97c00e0cb205d274ce132bbe64ac2/talks.html",
         "identity_mode": "content",
-        "sha256": "be22cb885101418013daa71c57d1505d3bfc7213c73792765b3f868a5942ba7c"
+        "sha256": "d16987b09cda3edde20b5b647287d831a511ebf481bf40a67d6c844c0cb91a33"
       },
       {
-        "path": "docs/snapshots/5ab610df05c4399599323c97bb0a66811df82320a7b20bcb62a3d00410b27ada/writing.html",
+        "path": "docs/snapshots/857f5dabe5b3eda30960b025f3068bfaa427ece60b55be580ddcc2732063be96/research.html",
         "identity_mode": "content",
-        "sha256": "d427a1c74532d2967e7e668aa97eb9d7c66561923bb418661e187e949738f913"
+        "sha256": "cc8f752fb3c0b9c16f54a06c267e6e548a6b5bffa1739cf20c6ae5581782a7b4"
       },
       {
-        "path": "docs/snapshots/7d38785e7d83b6b8d47e60701429d856eedd7509fefbd105e2f8a06abf19c6b9/research.html",
+        "path": "docs/snapshots/da03792d76530f19c94793ce2e232ce9d0f0b393c72e1775b1927694ba460376/writing.html",
         "identity_mode": "content",
-        "sha256": "7be00485ae54ba4a4770532a795eef6b0110268f945190d564aa5b762ff64a1c"
+        "sha256": "983dcc6af424c17c30da8e78cefb49b692469fee972fa29c9e08587aaf4a752e"
       },
       {
-        "path": "docs/snapshots/bf83e2b48e1ffd71b6f166aa5ab47969ce8da37033d201c76e10a7ecf87518da/index.html",
+        "path": "docs/snapshots/f9b8a580d8b495cade9d2617463ba0328345fad229010ca41c438e4fc72fac0b/credits.html",
         "identity_mode": "content",
-        "sha256": "edd7c1900bc58cf8b302f7761e2fe7f9d16a5f623f30f1dba2d5d8a069c18e19"
+        "sha256": "e851e79324ae6e1f8d0e92076f855592726939194fdea0905bcb65e4ac57751f"
       },
       {
         "path": "docs/space.js",
         "identity_mode": "content",
-        "sha256": "efb3712a9f8c29c52888c7cc9e3786a50b8d3470bb2ac1a1eb9f7432f45225fe"
+        "sha256": "d3e10ba846dfd44f814664bddbf8928f1615387de99d5b14812ecb56cbb5bfce"
       },
       {
         "path": "docs/styles.css",
         "identity_mode": "content",
-        "sha256": "5e38d5aca7fe0e2998e476b8733fe73cd49d232a9057673e612294f36592d5e4"
+        "sha256": "535c06bc014955eb5224d046777bef57d6d568dd5a1ce32c605326629da4bac5"
       },
       {
         "path": "docs/talks.html",
         "identity_mode": "content",
-        "sha256": "070d71ac25b6d970bfb7369e481249a365f22decfeb302c0e20cf258d6411faa"
+        "sha256": "a34ce5f924aa72dc814a94ee5e62db206c5d3aade8acbd357ae4ef45014703a8"
       },
       {
         "path": "docs/theme.js",
@@ -345,7 +350,7 @@
       {
         "path": "docs/writing.html",
         "identity_mode": "content",
-        "sha256": "87c043780c25a3f9c670df1a650c5bdbf897fae90045cbd61ed490063e2ee70f"
+        "sha256": "48418f2c347fcc18c14b3da37177a10bb6fa7ef2808da21da384df128f21cada"
       },
       {
         "path": "drafts/medium-profile-revision-20261001.html",
@@ -355,7 +360,7 @@
       {
         "path": "guides/README.md",
         "identity_mode": "content",
-        "sha256": "111dad4391bc155acb769abace041279bbfa489728323922ebdfcfe8cb9b607c"
+        "sha256": "f5531a9333501c9708c6e62189885ea1c445111411d4467b0d725c735afb89b5"
       },
       {
         "path": "guides/REPOSITORIES.md",
@@ -370,7 +375,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "778884e2e92cd0cd4d10eaa1cd0b7454fcc301ed513dcaad5e75f551f147e7dc"
+        "sha256": "6618070700e0c8306bef01f4287728933928c2bd0ae763d640aeff13d5f7ed5d"
       },
       {
         "path": "guides/SITE-CONTENT-REVIEW.md",
@@ -380,7 +385,7 @@
       {
         "path": "guides/SITE-RELEASE-GATES.md",
         "identity_mode": "content",
-        "sha256": "4ce50c44384e6a20e6a5d6a706b8a720fd67c47f2f0dc344c39f343b376dd0f0"
+        "sha256": "acde6828b7b5d154ed489e5929ded27b72aa723bbbb60ff8ed2aea3ce00ea75d"
       },
       {
         "path": "guides/SITE-ROADMAP.md",
@@ -400,7 +405,7 @@
       {
         "path": "guides/SITE-STAGING.md",
         "identity_mode": "content",
-        "sha256": "f2b58ff89b897eed44fffb91f5970284ec82501ab189db134c0526927fc871f4"
+        "sha256": "19bb42dcdfed67dd910d7acfc1c7578cb10715b257332b32c1edfed54d1a5bd9"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -503,9 +508,39 @@
         "sha256": "e26f98a7fa69e7031ec763ebb13faf2d6cdc8f7d6c7b29d513b3c685966169fa"
       },
       {
+        "path": "review/issue-35/2026-10-07-analysis.md",
+        "identity_mode": "content",
+        "sha256": "2e455ffc4813ee7804cce59e523cd989384703b84d57cf21a8836c59c3269cca"
+      },
+      {
+        "path": "review/issue-35/2026-10-07-ci-audit.json",
+        "identity_mode": "content",
+        "sha256": "b603ffa96be5232a97a2d928fbec011600291300732a5eb34d529accef9435d6"
+      },
+      {
+        "path": "review/issue-35/2026-10-07-issue13-audit.md",
+        "identity_mode": "content",
+        "sha256": "252a98b7214b12a2ed3c9db380e41d0e35a40f20aa6faeb1fc26ec0e26e7d0bb"
+      },
+      {
+        "path": "review/issue-35/2026-10-07-review.md",
+        "identity_mode": "content",
+        "sha256": "ec011252f29631c9f20486eb86e84c84ab3f7a040c9b3877aa39b200627331ec"
+      },
+      {
+        "path": "review/issue-35/2026-10-07-runtime-audit.json",
+        "identity_mode": "content",
+        "sha256": "249483bdfb573156385186b5669b67f7fabf384611a3a3ab05416a0c9ae64c33"
+      },
+      {
+        "path": "review/issue-35/2026-10-07-test-audit.json",
+        "identity_mode": "content",
+        "sha256": "94a6da1d8236bd7c2b0cbe5dc01f5806fbb5454b55a18decb0316e9e0a40c078"
+      },
+      {
         "path": "review/issue-36/2026-10-07-handoff.md",
         "identity_mode": "content",
-        "sha256": "63d433cc2a875e9f5e05cfdef94cddd99c6513a4e3b72e8683c50629b184a03f"
+        "sha256": "fee60a1c5ccd101af6c578d0b3abde4eaeb83854dde95a2f7bca1b4eb22da10a"
       },
       {
         "path": "review/issue-36/preview.png",
@@ -3455,22 +3490,22 @@
       {
         "path": "review/site-v1-20261004-v11-credits-day.html",
         "identity_mode": "content",
-        "sha256": "e1c3001b39831c49b5bfa54c8e5cfa2c96a48864c310f4faa45856ff15a30f3b"
+        "sha256": "439fe281dbe758b633028108f7b33b0e90630de1c32701dfa4b077d1ca5e3593"
       },
       {
         "path": "review/site-v1-20261004-v11-credits-interactive.html",
         "identity_mode": "content",
-        "sha256": "ad3e589862356d1761a1a8ff988abba455395322a8fe719dd232f0dc0f7bde34"
+        "sha256": "eb28464d91b2a94fc86ff874aba30659c1f00b0d0398cb5942d504d5266643bb"
       },
       {
         "path": "review/site-v1-20261004-v11-credits-night.html",
         "identity_mode": "content",
-        "sha256": "ac37d0ee940851921d65cb36e1d9238ce69d3fbf4513941ee5763aeecbcef65b"
+        "sha256": "9b59996bcdfe30d2eb10bac42b8cd727a1370cd2bb86f54fe176db25e0026fad"
       },
       {
         "path": "review/site-v1-20261004-v11-day.html",
         "identity_mode": "content",
-        "sha256": "0bc12e27b002970e74b4f1433d8b80b501cd2ade32fa208e99c6efd8e1e22655"
+        "sha256": "eab2f76d2e8215693bb992a36a6d2a861574c043c49f2c9b964dda86077aa4fd"
       },
       {
         "path": "review/site-v1-20261004-v11-index.html",
@@ -3480,57 +3515,57 @@
       {
         "path": "review/site-v1-20261004-v11-interactive.html",
         "identity_mode": "content",
-        "sha256": "a997c6c5cbc4f0e1cf87135a9c9347400a7824b986c34c4aa8d5fe6a7fc1c430"
+        "sha256": "159e80de554a2a42847c5b62881f1860262215b7cd391df7ac7df41ab27a96e3"
       },
       {
         "path": "review/site-v1-20261004-v11-night.html",
         "identity_mode": "content",
-        "sha256": "b82cfd4a4e5ff10b69140e037a712e0b26bbaaa5ac2dc446ed3b6b5c5124c6ec"
+        "sha256": "d25248a3678b48054f64adf1e1e4ffafb59f42c22417f90c979f5dfee838cb94"
       },
       {
         "path": "review/site-v1-20261004-v11-research-day.html",
         "identity_mode": "content",
-        "sha256": "ae8de68fa14349b3e7462da982ed75b969e0a943e2a80ea66d793f7922c8f4ba"
+        "sha256": "62aabcbfe4ccea1bb6000a6d8fc6651402404e7037b3f93bb0615e3080ce1348"
       },
       {
         "path": "review/site-v1-20261004-v11-research-interactive.html",
         "identity_mode": "content",
-        "sha256": "5e1078ed1beca474ee5ab421b3ac5e5798b4117437899942ad2beb9b17157288"
+        "sha256": "3707975ff1d5ea96ef9bdcc499efb90e5a8892236b8beccec5092e8e3941a910"
       },
       {
         "path": "review/site-v1-20261004-v11-research-night.html",
         "identity_mode": "content",
-        "sha256": "1189c5b6a7a72d47892968d6444196b73d39cc84a0cced6a454a0485a27be803"
+        "sha256": "0f8a43030a3bdda9c33ccf72bb260eb6accd33ca36cc3429afae11483fe2cd0b"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-day.html",
         "identity_mode": "content",
-        "sha256": "d1ec5fbe34afda6e4adc91a1a4bb74d587ea08511fe92eefebbf762440a847e9"
+        "sha256": "ea486524eb1e13e4976ffc03ef2568483d228c838e907e02fedec8efc26f6705"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-interactive.html",
         "identity_mode": "content",
-        "sha256": "4fa7dd3c7672e3cc45b9a8d8606595ab9f624cfb3b8f16201dcbeaab6c1ef8d9"
+        "sha256": "42b919eac19d60a33f425ce3a57e067209c6dc88b772677fd50274ec987cb426"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-night.html",
         "identity_mode": "content",
-        "sha256": "18ece74b32d36f88db538edf92df33322d3fa52492b808a4399ed20156978fe5"
+        "sha256": "b0145abd1a7d36e72c761591ba8bd5c1e85373617eed1d4dae1bc52b07a175df"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-day.html",
         "identity_mode": "content",
-        "sha256": "7d1136ea38f649535573769a787f6eff70a799d7423ffc8c4ca96b72face3b2d"
+        "sha256": "3c823640cf27ecfe347846a3f4e7a6402c7227f109f05152aa9bce1f54c8bc78"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-interactive.html",
         "identity_mode": "content",
-        "sha256": "2c87b823c1cbf82cb6415aa910a6f0fdff5edc61e847137ad303739b82de2b1d"
+        "sha256": "5169fadf7a75f3e02d3147d107eedf0eccc36088abb3aac296642acba023f510"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-night.html",
         "identity_mode": "content",
-        "sha256": "227b7010ae47681f6590f56ef6ff5bb48423a01394d136abc9c2bbbed12025de"
+        "sha256": "c4c7c524216a791e827e9e22c5c8a5f5f765fcc9bf1d490ea1a0b470e3bd0540"
       },
       {
         "path": "review/site-v1-offline-bundle-v10.json",
@@ -3540,7 +3575,7 @@
       {
         "path": "review/site-v1-offline-bundle-v11.json",
         "identity_mode": "content",
-        "sha256": "1088c424ac364e02ddece438312ab0d94108b52ae59304fe9c3252bf3f773e0b"
+        "sha256": "9deeb28b7418624ca9ea6e40f1c0ecc53c1f5986210c0527953c6ea92720efa7"
       },
       {
         "path": "review/site-v1-offline-bundle-v3.json",
@@ -3595,7 +3630,7 @@
       {
         "path": "review/site-v1-static-previews-v11.json",
         "identity_mode": "content",
-        "sha256": "09c078c3b8fdb1887136763c83f46742a6e2990338921c56eef2c01cc4bb9987"
+        "sha256": "da380dbd230c5f2b20fd69e5d491701ab0a5a3a535c71eac73d9da7ba45603e8"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -4245,7 +4280,7 @@
       {
         "path": "site/content/pages/writing/main.html",
         "identity_mode": "content",
-        "sha256": "4799027645e4a5d0bb6aef7b1ab1d5e534a660ef24947a5d287b0aeab5538de0"
+        "sha256": "4299d05054df4bfc73fd1820101d4d0f9c3489d9168b7798b67992cc4d8093f3"
       },
       {
         "path": "site/content/pages/writing/metadata.json",
@@ -4275,7 +4310,7 @@
       {
         "path": "site/engine/lifecycle.cjs",
         "identity_mode": "content",
-        "sha256": "89d3d2ecd868aef2f8fa61240d57829ebe8df381983a9aa1bd573e90e94a3c7b"
+        "sha256": "826b7147996cb6875ce1f907db80310045ac9ce63c4287b4b576359380adad24"
       },
       {
         "path": "site/engine/math.cjs",
@@ -4290,17 +4325,17 @@
       {
         "path": "site/engine/projection.cjs",
         "identity_mode": "content",
-        "sha256": "79705512edf25b5d7b174996fdf8c37728ce528ea16cee6a5c45d9da79c0bda8"
+        "sha256": "ed9b8312ef476e5a754bbe91784acfb8409fd0eb08efb496811c05b55f065ea6"
       },
       {
         "path": "site/engine/renderer.cjs",
         "identity_mode": "content",
-        "sha256": "1ac7720a1929354571e9de6bbe05e4c9b2e9bc7e0b5567394ef5494613c4ce97"
+        "sha256": "f192614018fb22298638368b9a5a394f4938100c3427f1261a673077354b2959"
       },
       {
         "path": "site/engine/styles.css",
         "identity_mode": "content",
-        "sha256": "5e38d5aca7fe0e2998e476b8733fe73cd49d232a9057673e612294f36592d5e4"
+        "sha256": "535c06bc014955eb5224d046777bef57d6d568dd5a1ce32c605326629da4bac5"
       },
       {
         "path": "site/engine/theme.js",
@@ -4315,7 +4350,7 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "b0ebd1a6428052e84cb61acceb29b6c285be7ad84a4cd1e6e2cad4b5918a753c"
+        "sha256": "62753c169a5c22669845c8cfed6390f686c0783fb35086afde102abdd40ac508"
       },
       {
         "path": "site/routes.json",
@@ -4418,6 +4453,11 @@
         "sha256": "c00b6fd122d4602b5a8847c924035499922db9b279909be308474a0b9115b239"
       },
       {
+        "path": "tests/fixtures/staging-evidence.cjs",
+        "identity_mode": "content",
+        "sha256": "d5c653e3e1a1d8c4653e3443d66c483f5d1a63d6d47d00d15978084a77481a9d"
+      },
+      {
         "path": "tests/flight.test.cjs",
         "identity_mode": "content",
         "sha256": "f0eb91687f6ad452a37d41ac444b79609b1af50b72fdd469e7dc95bbdb637916"
@@ -4470,22 +4510,22 @@
       {
         "path": "tests/quality-sources.test.cjs",
         "identity_mode": "content",
-        "sha256": "c251752151d00649bdbc7907d7e3f3cb1e12e15accf9617d4457ab880d375458"
+        "sha256": "685dbdd43960a3ea5b1c575a3fdb9d59378b1a57f97fa70404f70d6f24344fd3"
       },
       {
         "path": "tests/quality.test.cjs",
         "identity_mode": "content",
-        "sha256": "a38e1e612520595ef29c170c25c0d72432504c11e1d8e7585c3e0543b3f5be83"
+        "sha256": "564a61f2c4cac20ff8a92eb48e2171a98e7583ff4c453a790441a2fc487b72a4"
       },
       {
         "path": "tests/renderer.test.cjs",
         "identity_mode": "content",
-        "sha256": "994a9d4d4ffa6057fb59403db9cc8342a35f8fd4d36d97d3fcc8e31e90912b00"
+        "sha256": "31c1e946e0d9c3e6f0b0039e0f7d24587c47839c9dcecbf22e1dd813a912019e"
       },
       {
         "path": "tests/review-flow.test.cjs",
         "identity_mode": "content",
-        "sha256": "72a0e60b9f63354d1f05ed4bf9b735c94b97edc71f907c5d2c58ed3e035dd961"
+        "sha256": "81418756ee830fc20ec19549e75c5fa37d271c94bcc6280f394e8349e8aef4b7"
       },
       {
         "path": "tests/ribbons.test.cjs",
@@ -4500,7 +4540,7 @@
       {
         "path": "tests/site-engine.test.cjs",
         "identity_mode": "content",
-        "sha256": "74899bb2f2509d7a5c367e7db3490e837e6addd78594f57be20afa2a08c5fc6a"
+        "sha256": "658dd08e9edd2ff15600a5f08b43b29b6936a9e5b7724ca70a80151fac2d039b"
       },
       {
         "path": "tests/site-face-preparation.test.cjs",
@@ -4510,7 +4550,17 @@
       {
         "path": "tests/space.test.cjs",
         "identity_mode": "content",
-        "sha256": "094a8f43872601604e8b9263f7a07002bd2ff6826835b52ec07bcf8c7f649063"
+        "sha256": "2089c17b93787399b87d8c13290f70088585273c9c71d842940f0a807291d7f4"
+      },
+      {
+        "path": "tests/staging-gate.test.cjs",
+        "identity_mode": "content",
+        "sha256": "9d7eee0ec9cd535b285b166e41182050d8136dace742917ff5aa7c11915e1203"
+      },
+      {
+        "path": "tests/staging-regression.test.cjs",
+        "identity_mode": "content",
+        "sha256": "ed556cc2eb1232100cb8389c5b81a736b7d98b5f0294e60b63404738a00d29d3"
       },
       {
         "path": "tests/staging-reporting.test.cjs",
@@ -4520,7 +4570,7 @@
       {
         "path": "tests/staging-trust.test.cjs",
         "identity_mode": "content",
-        "sha256": "5c5902858f54fb8ff173d879a0485eac0d5ffe66af58f6bf8d779b55e64f9249"
+        "sha256": "5645a2f56565d78926ac083a5f02b19ceb40ecde2d471daad4d44e13ea07aae3"
       },
       {
         "path": "tests/staging.test.cjs",
@@ -4528,14 +4578,24 @@
         "sha256": "ecd099e3c7b1fa92c55c89cfb883f80120661eb7f55a72f3d61e01ad2d730bc7"
       },
       {
+        "path": "tests/test-profile-selection.test.cjs",
+        "identity_mode": "content",
+        "sha256": "3f3472e45db13b57d95ce7e7f23629b526be14d7d944b0b9adeb5531aad48c68"
+      },
+      {
         "path": "tests/test_issue31_acceptance.py",
         "identity_mode": "content",
-        "sha256": "9399afd265d4ed769a56e20588eeb0bfc498cda3dc678d7c47f351f596cff3f2"
+        "sha256": "09b726a0772b0611aa19051abc45702e7158c26d9f289081e50922d49c48cc34"
       },
       {
         "path": "tests/test_issue33_acceptance.py",
         "identity_mode": "content",
         "sha256": "629f67a932416faa3e4e0f0090200ac3bfc482ed426a1385114d1d10533a122c"
+      },
+      {
+        "path": "tests/test_issue35_acceptance.py",
+        "identity_mode": "content",
+        "sha256": "22a4451edfd4bf60d7e67c636d07c0fe189300261fca914300b209a584ea56ad"
       },
       {
         "path": "tests/test_issue36_acceptance.py",
@@ -4545,7 +4605,7 @@
       {
         "path": "tests/test_issue_acceptance.py",
         "identity_mode": "content",
-        "sha256": "63239ef57bd90d27fca4dde944ed267f5f6522dd0bfe13a6a6a830307b2f01fc"
+        "sha256": "51ccc40c3ccbf755ef277c7dec6437148cdf50fb7aa401e1bf8f255c2b96a426"
       },
       {
         "path": "tests/test_offline_export_security.py",
@@ -4565,12 +4625,12 @@
       {
         "path": "tests/test_ri_ci.py",
         "identity_mode": "content",
-        "sha256": "1147a7178652e2de54b0922af728cbc495ea1fa5c2edab9d3a0b3c3e1851fece"
+        "sha256": "e566cc57a41fc73b3da7ade2649752a4e0b038f6215b06c9bfc3e620a978ec73"
       },
       {
         "path": "tests/test_root_layout.py",
         "identity_mode": "content",
-        "sha256": "abfd110c9072996eba575ca2beefa5e1f56db0732ea8ab1d4ec3976511244487"
+        "sha256": "1eec98199b0a4ef834afc9e396d5f2c5909dd19501a2958887fc5d201df7d3a9"
       },
       {
         "path": "tests/theme.test.cjs",
@@ -4605,17 +4665,17 @@
       {
         "path": "tests/writing-paradigm-browser.test.cjs",
         "identity_mode": "content",
-        "sha256": "aac8862f2f83f1669de50c746752e0c7b451e3b887247145dd9e1d410eff677b"
+        "sha256": "a119576671201323e26549e1dd59f7ded404576897031c87e064db57d0d4bd30"
       },
       {
         "path": "tests/writing-paradigm-ci.test.cjs",
         "identity_mode": "content",
-        "sha256": "e938b83741b88512344a385a3b541cb94b94901b804db9b183fd1cb04e7fafc9"
+        "sha256": "f611c30e70c8c57a64b6927af642b2eb9e2708c3276bd95e50e5217a22ba4518"
       },
       {
         "path": "tests/writing-paradigm-quality.test.cjs",
         "identity_mode": "content",
-        "sha256": "63192575a5408e97a4485abd2b42987e69a4be72fe7dca1caefdacebcaa588c4"
+        "sha256": "8dc04df71de553cca8d113312086ff37568597451d84dd6a9bac553e129d2f84"
       },
       {
         "path": "tests/writing-variants.test.cjs",
@@ -4635,7 +4695,7 @@
       {
         "path": "tools/build_scene_fallbacks.cjs",
         "identity_mode": "content",
-        "sha256": "c3dfb72c5d3d803ecc14975ec53a4548e1ac5fa4b28a07194fd6d9b1b4dca136"
+        "sha256": "abb065b95920c40f1a6daf0b9cc47f79287bb7066074e34e5c85447c0f60b1a7"
       },
       {
         "path": "tools/build_site_bundle.py",
@@ -4660,12 +4720,12 @@
       {
         "path": "tools/check_repository_layout.py",
         "identity_mode": "content",
-        "sha256": "5c2ab75f96d70d727470b2cb91544b2295d78f1d916899b143febcd48e2fff65"
+        "sha256": "e3d46affb1f40c296943610d4557b0c15a99f87b81ce0eeb3d22ab3fc9a46c3a"
       },
       {
         "path": "tools/check_ri_ci.py",
         "identity_mode": "content",
-        "sha256": "217ce60fe7caae6a78c81d5be000a46e000e0a22493eff74518f8edc14710ed6"
+        "sha256": "0cb2ab4d9dd1c483c95d6b05f39708df7fdc27363ce1011baf0c7a444a1cf183"
       },
       {
         "path": "tools/check_site_contrast.cjs",
@@ -4675,7 +4735,7 @@
       {
         "path": "tools/check_site_seo.cjs",
         "identity_mode": "content",
-        "sha256": "6ccc2c84e4f3db5b9517ac0ad8642fc1408c1fbbb449eed06b40c10ed41750d3"
+        "sha256": "3987576e94667974d7be44ae88e3f98afb1ad1e79aea5a3d2b04a8266a1cf7ef"
       },
       {
         "path": "tools/compact_site_recordings.cjs",
@@ -4690,7 +4750,7 @@
       {
         "path": "tools/quality/README.md",
         "identity_mode": "content",
-        "sha256": "4a697a1c176df499a8ed1ffbee6e86fdda3e4ac225ad281163a84dad20d7b620"
+        "sha256": "8cd820c3b033ab0837f60350567b1f2d06750fe444f5c0dee56f33d166e2a129"
       },
       {
         "path": "tools/quality/advisory-exceptions.json",
@@ -4700,12 +4760,22 @@
       {
         "path": "tools/quality/analytics-browser.cjs",
         "identity_mode": "content",
-        "sha256": "e69474e04c48ac80a032ab36ef319be70105edabaa6bf0eb339afc325c5ec56d"
+        "sha256": "e541586fc2abf5af42231f6b2302a468abe15ef8a8238636632205dece99c308"
       },
       {
         "path": "tools/quality/artifact.cjs",
         "identity_mode": "content",
         "sha256": "200022f00cd486a47aefbb73217c97c010860adceb3d0a4fc6803b6e765c1fe1"
+      },
+      {
+        "path": "tools/quality/bandit-policy.json",
+        "identity_mode": "content",
+        "sha256": "91099518ba6f5c02694186a6c099daf4fc85dd1419267dff034bb653a43726c2"
+      },
+      {
+        "path": "tools/quality/bandit-triage.cjs",
+        "identity_mode": "content",
+        "sha256": "725e0bbd52c7dc38434e3aeac29c4edbe7bf7f25229945427ec177ebb02bf566"
       },
       {
         "path": "tools/quality/browser-gate-diagnostics.cjs",
@@ -4785,7 +4855,7 @@
       {
         "path": "tools/quality/functional.cjs",
         "identity_mode": "content",
-        "sha256": "3e0929057f9fe8ab0772b1ba2fc0f2dcd817a7f762956c3530b42f13a43b3075"
+        "sha256": "c45620e37724ed33cc951ff81469b998c9cfb08ac2c5bae44a77c93c124245b7"
       },
       {
         "path": "tools/quality/geometry.cjs",
@@ -4815,7 +4885,7 @@
       {
         "path": "tools/quality/lighthouse.cjs",
         "identity_mode": "content",
-        "sha256": "d64e9b70359608d737b904096a8cdf054eff168c08e0e2c162bf73af42437885"
+        "sha256": "e82e5a70abd5a130649ca48af8d947abc05ce712ffc5fb91297cef5db0deab62"
       },
       {
         "path": "tools/quality/local-browser.cjs",
@@ -4825,12 +4895,12 @@
       {
         "path": "tools/quality/local.cjs",
         "identity_mode": "content",
-        "sha256": "1170c7a155ca6ef3ebb63ebee72bc7a4fde939666a68ce8e2b89477164a0ac42"
+        "sha256": "22034ef0fed68c7d6b377466de52ce344ecd3115724173c3dc7b427df3afc269"
       },
       {
         "path": "tools/quality/motion.cjs",
         "identity_mode": "content",
-        "sha256": "f5f4a54c8f523f6d849ca0435d38400e32e05eb9c941472f9ced10d9c36b35d2"
+        "sha256": "8ef89edc5b0fc283c0285db18ed7def8877287356df0073d576a472204741743"
       },
       {
         "path": "tools/quality/native-display.cjs",
@@ -4855,7 +4925,7 @@
       {
         "path": "tools/quality/scanners.cjs",
         "identity_mode": "content",
-        "sha256": "2cdf30eae862a4041a1fc841d5e2d5397cbde15c64fff34ecf61012f432cca0a"
+        "sha256": "ed955d35bf240a338007186142ec345ccc539a9c7b57a07b2aea19900d266e6c"
       },
       {
         "path": "tools/quality/scroll-browser.cjs",
@@ -4866,6 +4936,11 @@
         "path": "tools/quality/secrets-baseline.json",
         "identity_mode": "content",
         "sha256": "8bff933ce846d5b1a0fa9a357f629c07d49af8626270ea40cfd658b760e293b0"
+      },
+      {
+        "path": "tools/quality/secrets-reviewed.json",
+        "identity_mode": "content",
+        "sha256": "dcba0f8cc59f89c5e0ead7336c013385d7709dd72c3dacfffeef448854b28212"
       },
       {
         "path": "tools/quality/security-rules.yml",
@@ -4883,6 +4958,21 @@
         "sha256": "bae6111af0fa9882744265c52b8d7e04ef711d04e67285d3b20345495014e393"
       },
       {
+        "path": "tools/quality/source-tests.cjs",
+        "identity_mode": "content",
+        "sha256": "c7cf375b960645ba37b9dbd63f566fc20818ddcc41e7f630288a440228cdb0a2"
+      },
+      {
+        "path": "tools/quality/staging-gate.cjs",
+        "identity_mode": "content",
+        "sha256": "c9900a7b7e0fc5fb6e0b9e29e91e6d55319644b1e4e8704b60ebee72f24d180f"
+      },
+      {
+        "path": "tools/quality/staging-regression.cjs",
+        "identity_mode": "content",
+        "sha256": "550a93c3f4048a071a4beeaad5b4113ffffb41d7ea5f114f53a188032f975a9b"
+      },
+      {
         "path": "tools/quality/stylelint.cjs",
         "identity_mode": "content",
         "sha256": "6bbef04bce4367aa2072be9216a8ca53ccf8429926b4a9588fa1917210a6b1d5"
@@ -4891,6 +4981,11 @@
         "path": "tools/quality/stylelint.config.cjs",
         "identity_mode": "content",
         "sha256": "813c64be2b3e0224234cd89eeb836cd8195b73af4b55623d13abc4931dd0be94"
+      },
+      {
+        "path": "tools/quality/test-profiles.json",
+        "identity_mode": "content",
+        "sha256": "1ced29287fde92bab8010ba9a62d0b312c30346114e7a54b919f567a37a19d2c"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -4955,17 +5050,17 @@
       {
         "path": "tools/quality/writing-paradigm-browser.cjs",
         "identity_mode": "content",
-        "sha256": "01665bf07bfc0a4aad3fa012cd08e840e1a8a06171e4ea688e9146f00dab80fc"
+        "sha256": "b040b5ae9f789a6701e262af5d41f21c020d18588a1a2eb58f02d47f4ffd30e4"
       },
       {
         "path": "tools/quality/writing-paradigm-validate.cjs",
         "identity_mode": "content",
-        "sha256": "619c4ea7679b04bcf6bcf66b2010d58b5c7a10f2ee65eca48254ba8954f32844"
+        "sha256": "d1acb3f9d93cd4e9094c0db9e62584c1aaf2db702ee520df680f4080ea2dbb09"
       },
       {
         "path": "tools/quality/writing-paradigm.cjs",
         "identity_mode": "content",
-        "sha256": "af6afe8e83bd2efc127390ee965ac456492fcd858b9063e576d26b98c86bb2d5"
+        "sha256": "59049d93dce15cb9b421cf5fc4db662a02413b0be310498dfde54125853721c8"
       },
       {
         "path": "tools/quality/writing-probe.cjs",
@@ -4995,7 +5090,7 @@
       {
         "path": "tools/site/build.cjs",
         "identity_mode": "content",
-        "sha256": "f8dc247f1a82d3d0e4ce0af7d4549343d26fbf3e4eb42b419255c7b734a14650"
+        "sha256": "5b93bf16011e9f7fadf918e79df56bdd297949fd955a8c38bc13441e50b3a32f"
       },
       {
         "path": "tools/site/evidence-policy.cjs",
@@ -5035,12 +5130,12 @@
       {
         "path": "tools/staging/package.cjs",
         "identity_mode": "content",
-        "sha256": "056f78b1df55ae394ed90fe3a311288e51e733c387eec178bf5275fa668aab73"
+        "sha256": "319aeeb18f5e576f3cb573bcfce9e81830d8dd264a935869c681a0e1754cae3a"
       },
       {
         "path": "tools/staging/review-flow.cjs",
         "identity_mode": "content",
-        "sha256": "352803ca4070ae1cdbea0744a66056fd94c90e507ebf45c820e7781646662cbd"
+        "sha256": "6d6f3335a56a5d276f2b09b67a8a300a546757166a56ae4cdaac99e39702b570"
       },
       {
         "path": "tools/staging/selftest.cjs",
@@ -5050,7 +5145,7 @@
       {
         "path": "tools/staging/state.cjs",
         "identity_mode": "content",
-        "sha256": "50269252e65450937137e2bfc35d5a8a842db071ba1550c46d6af58910dc2345"
+        "sha256": "6bba204707385496cf55267812f0558edeca88952d236844fbbcf92b1e787a3e"
       },
       {
         "path": "tools/staging/trust.cjs",
@@ -5063,7 +5158,7 @@
     "path": "tools/repository_intelligence.py",
     "sha256": "9c043c7e13c36899559f83b7941b989dfebaabd1e2d6d6e1815815704db627b3",
     "config_path": ".github/repository-intelligence-config.json",
-    "config_sha256": "bcf4e16e06c9ddfb17f92ec7ce48cdf5be69819ab1306ba1bb728703083a3b89"
+    "config_sha256": "bf9d9b819b3a06314c668984b4830d27ac530785e64ac4937bcb9c75c42e3afd"
   },
   "owners": [
     {
@@ -5260,6 +5355,23 @@
         "бутстрап",
         "опис проекту"
       ]
+    },
+    {
+      "concern": "test allocation, PR smoke, targeted acceptance, staging regression and complete production regression",
+      "path": "guides/SITE-CHECK-PROFILES.md",
+      "queries": [
+        "test profiles",
+        "test selection",
+        "smoke tests",
+        "staging regression",
+        "production regression",
+        "duplicate tests",
+        "тести",
+        "смоук",
+        "регресія",
+        "дублікати тестів",
+        "оптимізація тестів"
+      ]
     }
   ],
   "terms": [],
@@ -5349,9 +5461,20 @@
       "title": "issue-33.json"
     },
     {
+      "path": ".github/acceptance/issue-35.json",
+      "kind": "file",
+      "purpose": "Test optimization AC01–AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-35.json"
+    },
+    {
       "path": ".github/acceptance/issue-36.json",
       "kind": "file",
-      "purpose": "Writing formula preparation evidence with AC02–AC04 explicitly pending future integration and performance checks.",
+      "purpose": "Writing formula AC01–AC05 mapped to canonical asset, native cache/integration, source-bound browser and paired performance evidence, with remaining human/release gates explicit.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md",
       "instructions": [
@@ -5461,7 +5584,7 @@
     {
       "path": ".github/workflows/site-candidate-evidence.yml",
       "kind": "file",
-      "purpose": "GitHub Actions: Site candidate evidence; inspect trigger/profile before running.",
+      "purpose": "Explicit manual full production-regression evidence on an immutable candidate; no automatic heavy PR trigger or stable promotion.",
       "role": "workflow",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
@@ -5549,7 +5672,7 @@
     {
       "path": ".github/workflows/site-release-checks.yml",
       "kind": "file",
-      "purpose": "GitHub Actions: Site release checks; inspect trigger/profile before running.",
+      "purpose": "Reusable explicit selected staging or full production validation, separate report identities and exact artifact/source bindings.",
       "role": "workflow",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
@@ -5822,9 +5945,9 @@
       "title": "research.html"
     },
     {
-      "path": "docs/runtime/bc6a8a50f97964072443917d49757d331b2057996ae0cdc8c95041833512fc1a/archive.js",
+      "path": "docs/runtime/2834c584896aa2520009f9a08c6d8b2df598df70451ae55275c1b339518d1959/archive.js",
       "kind": "file",
-      "purpose": "Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs.",
+      "purpose": "Generated public rendition: archive.js; regenerate from site sources with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -5833,9 +5956,9 @@
       "title": "archive.js"
     },
     {
-      "path": "docs/runtime/bc6a8a50f97964072443917d49757d331b2057996ae0cdc8c95041833512fc1a/navigation.js",
+      "path": "docs/runtime/2834c584896aa2520009f9a08c6d8b2df598df70451ae55275c1b339518d1959/navigation.js",
       "kind": "file",
-      "purpose": "Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs.",
+      "purpose": "Generated public rendition: navigation.js; regenerate from site sources with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -5844,9 +5967,9 @@
       "title": "navigation.js"
     },
     {
-      "path": "docs/runtime/bc6a8a50f97964072443917d49757d331b2057996ae0cdc8c95041833512fc1a/space.js",
+      "path": "docs/runtime/2834c584896aa2520009f9a08c6d8b2df598df70451ae55275c1b339518d1959/space.js",
       "kind": "file",
-      "purpose": "Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs.",
+      "purpose": "Generated public rendition: space.js; regenerate from site sources with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -5855,9 +5978,9 @@
       "title": "space.js"
     },
     {
-      "path": "docs/runtime/bc6a8a50f97964072443917d49757d331b2057996ae0cdc8c95041833512fc1a/styles.css",
+      "path": "docs/runtime/2834c584896aa2520009f9a08c6d8b2df598df70451ae55275c1b339518d1959/styles.css",
       "kind": "file",
-      "purpose": "Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs.",
+      "purpose": "Generated public rendition: styles.css; regenerate from site sources with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -5866,9 +5989,9 @@
       "title": "styles.css"
     },
     {
-      "path": "docs/runtime/bc6a8a50f97964072443917d49757d331b2057996ae0cdc8c95041833512fc1a/theme.js",
+      "path": "docs/runtime/2834c584896aa2520009f9a08c6d8b2df598df70451ae55275c1b339518d1959/theme.js",
       "kind": "file",
-      "purpose": "Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs.",
+      "purpose": "Generated public rendition: theme.js; regenerate from site sources with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -5888,18 +6011,18 @@
       "title": "site-revision.json"
     },
     {
-      "path": "docs/snapshots/0795654821204cda0a2b9fa16c30ca148f604a0f630432fdc50e5a4664c5b032/credits.html",
+      "path": "docs/snapshots/79ac8e19e59e6f7e1c393f153a7d0be62a3966e66bf0bd4b4e05fd4059f560e7/index.html",
       "kind": "file",
-      "purpose": "Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs.",
+      "purpose": "Generated public rendition: index.html; regenerate from site sources with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "credits.html"
+      "title": "index.html"
     },
     {
-      "path": "docs/snapshots/0ef6e36ea64773dea0544aedda46d3100471c3e99d4b15842d4608bc89142d2b/talks.html",
+      "path": "docs/snapshots/84abd4ed287bc17e3790ab6e81f1163610e97c00e0cb205d274ce132bbe64ac2/talks.html",
       "kind": "file",
       "purpose": "Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
@@ -5910,18 +6033,7 @@
       "title": "talks.html"
     },
     {
-      "path": "docs/snapshots/5ab610df05c4399599323c97bb0a66811df82320a7b20bcb62a3d00410b27ada/writing.html",
-      "kind": "file",
-      "purpose": "Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "writing.html"
-    },
-    {
-      "path": "docs/snapshots/7d38785e7d83b6b8d47e60701429d856eedd7509fefbd105e2f8a06abf19c6b9/research.html",
+      "path": "docs/snapshots/857f5dabe5b3eda30960b025f3068bfaa427ece60b55be580ddcc2732063be96/research.html",
       "kind": "file",
       "purpose": "Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
@@ -5932,7 +6044,7 @@
       "title": "research.html"
     },
     {
-      "path": "docs/snapshots/bf83e2b48e1ffd71b6f166aa5ab47969ce8da37033d201c76e10a7ecf87518da/index.html",
+      "path": "docs/snapshots/da03792d76530f19c94793ce2e232ce9d0f0b393c72e1775b1927694ba460376/writing.html",
       "kind": "file",
       "purpose": "Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
@@ -5940,7 +6052,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "index.html"
+      "title": "writing.html"
+    },
+    {
+      "path": "docs/snapshots/f9b8a580d8b495cade9d2617463ba0328345fad229010ca41c438e4fc72fac0b/credits.html",
+      "kind": "file",
+      "purpose": "Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "credits.html"
     },
     {
       "path": "docs/space.js",
@@ -6339,9 +6462,75 @@
       "title": "Issue 33 — 7 October 2026 independent review"
     },
     {
+      "path": "review/issue-35/2026-10-07-analysis.md",
+      "kind": "file",
+      "purpose": "Owning issue35 decision, findings, ordered execution tasks, profile allocation and honest evidence limits.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 35 — test allocation and CI duration analysis"
+    },
+    {
+      "path": "review/issue-35/2026-10-07-ci-audit.json",
+      "kind": "file",
+      "purpose": "All15 workflow routes and source-bound observed accepted full-run/job/step durations.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-07-ci-audit.json"
+    },
+    {
+      "path": "review/issue-35/2026-10-07-issue13-audit.md",
+      "kind": "file",
+      "purpose": "Seven original issue13 criteria, implemented recurring pipeline and concrete first-release obligations with canonical owners.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 13 reconciliation for issue 35 — 7 October 2026"
+    },
+    {
+      "path": "review/issue-35/2026-10-07-review.md",
+      "kind": "file",
+      "purpose": "Independent exact-tree AC/trust/profile review with original finding, integration corrections and substantive follow-up evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 35 — 2026-10-07 independent implementation review"
+    },
+    {
+      "path": "review/issue-35/2026-10-07-runtime-audit.json",
+      "kind": "file",
+      "purpose": "Exact-base browser/runtime/performance scenario families, costs and bounded staging selection analysis.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-07-runtime-audit.json"
+    },
+    {
+      "path": "review/issue-35/2026-10-07-test-audit.json",
+      "kind": "file",
+      "purpose": "Exact ec9b836 inventory and identity of all50 original testmodules with unique coverage and diagnostic dispositions.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-07-test-audit.json"
+    },
+    {
       "path": "review/issue-36/2026-10-07-handoff.md",
       "kind": "file",
-      "purpose": "Preparation-only formula design, provenance, owner routes and ordered Sol integration/performance tasks.",
+      "purpose": "Owning issue36 formula design/provenance, implemented native integration, scoped validation protocol and exact-source execution/evidence handoff.",
       "role": "draft",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -14833,7 +15022,7 @@
     {
       "path": "tests/browser-gate-diagnostics.test.cjs",
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for browser gate diagnostics.",
+      "purpose": "Private causal-screen plan, CLI bounds, source lineage, raw trace completeness and honest failed-row reporting Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
@@ -14844,7 +15033,7 @@
     {
       "path": "tests/browser-gate-trace.test.cjs",
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for browser gate trace.",
+      "purpose": "Opt-in scheduler instrumentation, actual paints/events, observation retention and bounded traces Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
@@ -14855,7 +15044,7 @@
     {
       "path": "tests/browser-gate-variants.test.cjs",
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for browser gate variants.",
+      "purpose": "Private fixed-ribbon/trace counterfactuals, matched mobile outputs and parent/patch identity Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
@@ -14866,7 +15055,7 @@
     {
       "path": "tests/browser-lifecycle.test.cjs",
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for browser lifecycle.",
+      "purpose": "Optional native browser/context/page event provenance and honest teardown versus operation failure Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
@@ -14877,7 +15066,7 @@
     {
       "path": "tests/cause-fix-probe.test.cjs",
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for cause fix probe.",
+      "purpose": "Private cold interventions each vary one factor; exact normal-source and Research control lineage Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
@@ -14888,7 +15077,7 @@
     {
       "path": "tests/cause-probe.test.cjs",
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for cause probe.",
+      "purpose": "Private causal-input normal/trace identity and actual Lighthouse attribution evidence Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
@@ -14952,6 +15141,17 @@
       "title": "executive.test.cjs"
     },
     {
+      "path": "tests/fixtures/staging-evidence.cjs",
+      "kind": "file",
+      "purpose": "Honest controlled manifest/report fixtures shared by stage matrix/gate/consumer negative tests.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "staging-evidence.cjs"
+    },
+    {
       "path": "tests/flight.test.cjs",
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for flight.",
@@ -14976,7 +15176,7 @@
     {
       "path": "tests/gtk-native-probe.test.cjs",
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for gtk native probe.",
+      "purpose": "Private fresh GTK controls, abort/core/process evidence and honest bounded offline stack collection Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
@@ -14987,7 +15187,7 @@
     {
       "path": "tests/gtk-target-probe.test.cjs",
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for gtk target probe.",
+      "purpose": "Private WPE/GTK disabled-script target matrix, lifecycle cleanup and attributable failed native operations Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
@@ -15064,7 +15264,7 @@
     {
       "path": "tests/quality-sources.test.cjs",
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for quality sources.",
+      "purpose": "Active offline Color security import closure, exact Bandit scope/expiry/source/coverage negatives and verified RI/coupling checksum-only admission tests.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
@@ -15161,6 +15361,28 @@
       "title": "space.test.cjs"
     },
     {
+      "path": "tests/staging-gate.test.cjs",
+      "kind": "file",
+      "purpose": "Exact source/origin/artifact/job/report completeness and staging-versus-full-production rejection fixtures.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "staging-gate.test.cjs"
+    },
+    {
+      "path": "tests/staging-regression.test.cjs",
+      "kind": "file",
+      "purpose": "Selected hosted matrix, real measurement contracts and omitted/malformed/failed evidence negative fixtures.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "staging-regression.test.cjs"
+    },
+    {
       "path": "tests/staging-reporting.test.cjs",
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for staging reporting.",
@@ -15194,6 +15416,17 @@
       "title": "staging.test.cjs"
     },
     {
+      "path": "tests/test-profile-selection.test.cjs",
+      "kind": "file",
+      "purpose": "Exhaustive registry/futuremodule/unknownsource/exactref/source accounting and empty/skip/TODO failure regressions.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "test-profile-selection.test.cjs"
+    },
+    {
       "path": "tests/test_issue31_acceptance.py",
       "kind": "file",
       "purpose": "Issue 31 observable acceptance checks for RI provenance, inventory, memory, workflow, unchanged site and bootstrap.",
@@ -15216,9 +15449,20 @@
       "title": "test_issue33_acceptance.py"
     },
     {
+      "path": "tests/test_issue35_acceptance.py",
+      "kind": "file",
+      "purpose": "Owning issue35 targeted snapshot, real Node accounting, full-guard, registry/RI and honest source/closure assertions; selected policy only.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "test_issue35_acceptance.py"
+    },
+    {
       "path": "tests/test_issue36_acceptance.py",
       "kind": "file",
-      "purpose": "Selected issue 36 SVG budget/inertness/geometry and adversarial acceptance checks; no runtime benchmark claim.",
+      "purpose": "Owning issue36 canonical SVG/inertness/geometry, native source/cache/depth/compiler/legacy-media mappings and source-bound browser/performance acceptance assertions; selected policy only.",
       "role": "test",
       "owner": ".github/ACCEPTANCE.md",
       "instructions": [
@@ -15306,7 +15550,7 @@
     {
       "path": "tests/writing-diagnosis.test.cjs",
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for writing diagnosis.",
+      "purpose": "Dated balanced paired cold boot/flight matrix, raw preparation/tail accounting, honest failures and sample counts Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
@@ -15317,7 +15561,7 @@
     {
       "path": "tests/writing-geometry.test.cjs",
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for writing geometry.",
+      "purpose": "Private layout equality audit of row/filter/link/ink/waypoint positions and native range without masking mismatch Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
@@ -15328,7 +15572,7 @@
     {
       "path": "tests/writing-layout.test.cjs",
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for writing layout.",
+      "purpose": "Private geometry calibration/installers preserve text/links and independently retain intervention/audit failures Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
@@ -15339,7 +15583,7 @@
     {
       "path": "tests/writing-localization.test.cjs",
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for writing localization.",
+      "purpose": "Dated balanced mobile localization/control identities, separate stage/model timing and raw partial failure evidence Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
@@ -15350,7 +15594,7 @@
     {
       "path": "tests/writing-models.test.cjs",
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for writing models.",
+      "purpose": "Private symbol construction counterfactuals preserve exact surviving geometry and reject source-anchor drift Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
@@ -15394,7 +15638,7 @@
     {
       "path": "tests/writing-variants.test.cjs",
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for writing variants.",
+      "purpose": "Private ablation derivation retains exact normal parent, descriptor/patch identity and cannot satisfy a release gate Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
@@ -15588,6 +15832,28 @@
         "AGENTS.md"
       ],
       "title": "artifact.cjs"
+    },
+    {
+      "path": "tools/quality/bandit-policy.json",
+      "kind": "file",
+      "purpose": "32 independently reviewed current RI/acceptance-tooling Bandit findings, bound to exact file/line bytes and review expiry; no high-severity admission.",
+      "role": "configuration",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "bandit-policy.json"
+    },
+    {
+      "path": "tools/quality/bandit-triage.cjs",
+      "kind": "file",
+      "purpose": "Strict reviewed internal-tooling Bandit admission: exact source/line/rule/owner/expiry, raw finding and scan coverage accounting; untriaged changes fail.",
+      "role": "validator",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "bandit-triage.cjs"
     },
     {
       "path": "tools/quality/browser-gate-diagnostics.cjs",
@@ -15845,7 +16111,7 @@
     {
       "path": "tools/quality/local.cjs",
       "kind": "file",
-      "purpose": "Economical source, generation, finite geometry, focused tests and size/profile checks.",
+      "purpose": "Economical independent Basic source tests using shared geometry checker, plus honest package-only identity gate for preview builds.",
       "role": "validator",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
@@ -15911,7 +16177,7 @@
     {
       "path": "tools/quality/scanners.cjs",
       "kind": "file",
-      "purpose": "Maintained quality/check helper for scanners; applicable profiles are selected by SITE-CHECK-PROFILES.",
+      "purpose": "Pinned lint/security/advisory execution with raw coverage, exact expiring Bandit triage and verified RI/coupling checksum proof; new findings fail.",
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
@@ -15933,13 +16199,24 @@
     {
       "path": "tools/quality/secrets-baseline.json",
       "kind": "file",
-      "purpose": "Quality/release configuration: secrets baseline; preserve reviewed budgets, pins and exception provenance.",
+      "purpose": "Exact independently reviewed public source/file/line checksum and article identifier false positives; new unknown entropy remains a gate failure.",
       "role": "configuration",
       "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ],
       "title": "secrets-baseline.json"
+    },
+    {
+      "path": "tools/quality/secrets-reviewed.json",
+      "kind": "file",
+      "purpose": "105 exact independently proved current Git/file/line checksum false positives, complementing the byte-preserved historical baseline; unknown values still fail.",
+      "role": "configuration",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "secrets-reviewed.json"
     },
     {
       "path": "tools/quality/security-rules.yml",
@@ -15975,6 +16252,39 @@
       "title": "serve.cjs"
     },
     {
+      "path": "tools/quality/source-tests.cjs",
+      "kind": "file",
+      "purpose": "Fail-visible exact-Git changed-source selector, permanent/manual/task allocation and real Node execution/accounting.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "source-tests.cjs"
+    },
+    {
+      "path": "tools/quality/staging-gate.cjs",
+      "kind": "file",
+      "purpose": "Exact-source/artifact/origin/scanner/job/matrix staging aggregate; light evidence cannot authorize full production.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "staging-gate.cjs"
+    },
+    {
+      "path": "tools/quality/staging-regression.cjs",
+      "kind": "file",
+      "purpose": "Bounded Chromium/Firefox journey, failure, analytics and CPU/flight/single-Lighthouse runner with strict raw-observation validators.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "staging-regression.cjs"
+    },
+    {
       "path": "tools/quality/stylelint.cjs",
       "kind": "file",
       "purpose": "Maintained quality/check helper for stylelint; applicable profiles are selected by SITE-CHECK-PROFILES.",
@@ -15995,6 +16305,17 @@
         "AGENTS.md"
       ],
       "title": "stylelint.config.cjs"
+    },
+    {
+      "path": "tools/quality/test-profiles.json",
+      "kind": "file",
+      "purpose": "Canonical exhaustive test lifecycle/owner/input/profile registry and exact selected hosted staging matrix.",
+      "role": "configuration",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "test-profiles.json"
     },
     {
       "path": "tools/quality/toolchain/package-lock.json",
@@ -16472,9 +16793,9 @@
       ]
     },
     {
-      "path": "docs/runtime/bc6a8a50f97964072443917d49757d331b2057996ae0cdc8c95041833512fc1a",
+      "path": "docs/runtime/2834c584896aa2520009f9a08c6d8b2df598df70451ae55275c1b339518d1959",
       "kind": "directory",
-      "purpose": "Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs.",
+      "purpose": "Generated immutable runtime edition directory: 5b2239d9600bce59c2d6796b8cb1b63145b72333fe2447a19432e52b6fa74ab1.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -16492,7 +16813,7 @@
       ]
     },
     {
-      "path": "docs/snapshots/0795654821204cda0a2b9fa16c30ca148f604a0f630432fdc50e5a4664c5b032",
+      "path": "docs/snapshots/79ac8e19e59e6f7e1c393f153a7d0be62a3966e66bf0bd4b4e05fd4059f560e7",
       "kind": "directory",
       "purpose": "Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
@@ -16502,7 +16823,7 @@
       ]
     },
     {
-      "path": "docs/snapshots/0ef6e36ea64773dea0544aedda46d3100471c3e99d4b15842d4608bc89142d2b",
+      "path": "docs/snapshots/84abd4ed287bc17e3790ab6e81f1163610e97c00e0cb205d274ce132bbe64ac2",
       "kind": "directory",
       "purpose": "Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
@@ -16512,7 +16833,7 @@
       ]
     },
     {
-      "path": "docs/snapshots/5ab610df05c4399599323c97bb0a66811df82320a7b20bcb62a3d00410b27ada",
+      "path": "docs/snapshots/857f5dabe5b3eda30960b025f3068bfaa427ece60b55be580ddcc2732063be96",
       "kind": "directory",
       "purpose": "Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
@@ -16522,7 +16843,7 @@
       ]
     },
     {
-      "path": "docs/snapshots/7d38785e7d83b6b8d47e60701429d856eedd7509fefbd105e2f8a06abf19c6b9",
+      "path": "docs/snapshots/da03792d76530f19c94793ce2e232ce9d0f0b393c72e1775b1927694ba460376",
       "kind": "directory",
       "purpose": "Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
@@ -16532,7 +16853,7 @@
       ]
     },
     {
-      "path": "docs/snapshots/bf83e2b48e1ffd71b6f166aa5ab47969ce8da37033d201c76e10a7ecf87518da",
+      "path": "docs/snapshots/f9b8a580d8b495cade9d2617463ba0328345fad229010ca41c438e4fc72fac0b",
       "kind": "directory",
       "purpose": "Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
@@ -16652,9 +16973,19 @@
       ]
     },
     {
+      "path": "review/issue-35",
+      "kind": "directory",
+      "purpose": "Dated exact-base test/runtime/CI audits, original #13 reconciliation, analysis and independent review for test optimization.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "review/issue-36",
       "kind": "directory",
-      "purpose": "Issue 36 original formula asset, visual proof and the single pending Sol execution handoff.",
+      "purpose": "Single dated Writing formula execution handoff, original visual proof and linked source-bound integration/browser/performance acceptance.",
       "role": "draft",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -17222,6 +17553,16 @@
       ]
     },
     {
+      "path": "tests/fixtures",
+      "kind": "directory",
+      "purpose": "Shared controlled evidence builders for selected staging validator/consumer tests; fixtures do not claim actual browser or CI execution.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "tools",
       "kind": "directory",
       "purpose": "Repository navigation, public generation and offline review/export entry points.",
@@ -17366,13 +17707,45 @@
         "review/issue-",
         "PROJECT-BOOTSTRAP.md",
         "tests/test_issue33_acceptance.py",
+        "tests/test_issue35_acceptance.py",
         "tests/test_issue36_acceptance.py"
       ],
       "commands": [
-        "python3 tools/issue_acceptance.py run --policy .github/acceptance/issue-33.json --report /tmp/issue-33-acceptance.json"
+        "python3 tools/issue_acceptance.py run --policy .github/acceptance/issue-36.json --report /tmp/issue-36-acceptance.json"
       ],
       "workflow": ".github/workflows/issue-acceptance.yml",
-      "note": "Choose the owning issue policy: #33 is the root-layout worked example, while accepted #31 evidence is pinned to its original source. Automated criteria cannot supply independent review, merge or live GitHub linkage."
+      "note": "Choose the owning issue policy. Current #36 Writing integration uses scoped source/browser/performance mappings; completed #35 test allocation and #31/#33 snapshots remain pinned to their original sources. Automated assertions cannot supply independent review, observed hosted timing, owner/device acceptance, merge or live GitHub linkage."
+    },
+    {
+      "concern": "canonical test inventory, changed-source selection and selected staging evidence",
+      "paths": [
+        "tools/quality/test-profiles.json",
+        "tools/quality/source-tests.cjs",
+        "tools/quality/staging-regression.cjs",
+        "tools/quality/staging-gate.cjs",
+        "tests/test-profile-selection.test.cjs",
+        "tests/staging-regression.test.cjs",
+        "tests/staging-gate.test.cjs",
+        "tests/fixtures/",
+        "guides/SITE-CHECK-PROFILES.md",
+        "tools/quality/bandit-triage.cjs",
+        "tools/quality/bandit-policy.json",
+        "tools/quality/scanners.cjs",
+        "tools/quality/secrets-baseline.json",
+        "tests/quality-sources.test.cjs",
+        "tools/quality/secrets-reviewed.json"
+      ],
+      "commands": [
+        "node --test tests/test-profile-selection.test.cjs tests/staging-gate.test.cjs tests/staging-regression.test.cjs tests/quality-sources.test.cjs",
+        "node tools/quality/source-tests.cjs --profile production --plan"
+      ],
+      "read": [
+        "guides/SITE-CHECK-PROFILES.md",
+        "guides/SITE-RELEASE-GATES.md",
+        "guides/SITE-STAGING.md"
+      ],
+      "workflow": ".github/workflows/navigation.yml",
+      "note": "Plan lists allocation, not a passing run. PR execution requires exact --base/--head; staging/production selection and explicit diagnostic replay use the canonical registry. Hosted checks need an authorized exact candidate/origin; this navigation route does not deploy or provide external release acceptance."
     }
   ],
   "upstream": {

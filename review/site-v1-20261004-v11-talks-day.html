@@ -31,8 +31,8 @@
 
 
 
-  <meta name="site-engine" content="bc6a8a50f97964072443917d49757d331b2057996ae0cdc8c95041833512fc1a">
-  <meta name="site-route" content="0ef6e36ea64773dea0544aedda46d3100471c3e99d4b15842d4608bc89142d2b">
+  <meta name="site-engine" content="2834c584896aa2520009f9a08c6d8b2df598df70451ae55275c1b339518d1959">
+  <meta name="site-route" content="84abd4ed287bc17e3790ab6e81f1163610e97c00e0cb205d274ce132bbe64ac2">
   <meta name="site-contract" content="1">
   <meta name="site-variant" content="base">
 <meta name="robots" content="noindex, nofollow">
@@ -110,7 +110,6 @@ body[data-page="writing"] .space-scene canvas,body[data-page="credits"] .space-s
    paths need no native layout while Canvas owns the scene. */
 .space-scene[data-ready] svg {visibility:hidden;display:none}
 .space-fallback {opacity:1}
-.space-fallback .formula-mobile {display:none}
 /* Protect the reading block, leaving the section and its gutters open to the world. */
 .section,.archive-intro,.credits-page,.hero-copy,.shift-intro {background:transparent}
 :where(.hero-copy,.section-heading,.archive-intro>.hero-description,.archive-intro>.eyebrow,.shift-intro>p,
@@ -241,6 +240,10 @@ h2 {font-size:clamp(30px,3.4vw,40px);font-weight:720;letter-spacing:-.035em;line
 .site-footer {display:flex;flex-wrap:wrap;gap:16px 28px;border-top:1px solid var(--line);padding-block:26px;font-size:12px;color:var(--muted)}
 .site-footer p {margin:0 auto 0 0}
 .site-footer a {text-decoration:none}
+.writing-formula {width:min(960px,calc(100% - 32px));margin:0 auto 48px;padding-block:40px}
+.writing-formula-fallback {display:block;width:100%;height:auto}
+body[data-formula-mode="canvas"] .writing-formula-fallback {visibility:hidden}
+@media print {body[data-formula-mode="canvas"] .writing-formula-fallback {visibility:visible}}
 .archive-intro {padding-block:60px 32px}
 .archive-intro h1 {font-size:clamp(40px,5.7vw,72px)}
 .archive-intro .hero-description {max-width:720px}
@@ -300,8 +303,6 @@ body[data-page="writing"] .publication {--reading-alpha:var(--surface-row)}
   .hero :is(h1,.hero-lead,.hero-description,.audience,.eyebrow)::before {content:"";position:absolute;inset:-18px;z-index:-1;pointer-events:none;background:color-mix(in srgb,var(--paper) 97%,transparent);mask-image:linear-gradient(90deg,transparent,#000 18px,#000 calc(100% - 18px),transparent),linear-gradient(transparent,#000 18px,#000 calc(100% - 18px),transparent);mask-composite:intersect}
   /* Match the mobile camera framing for the static 1440×900 projection too. */
   .space-scene .space-fallback {width:min(184vw,160vh);height:min(115vw,100vh);left:calc(42vw - min(121.44vw,105.6vh));top:calc(48vh - min(55.2vw,48vh))}
-  .space-fallback .formula-desktop {display:none}
-  .space-fallback .formula-mobile {display:inline}
   .archive-intro>h1 {padding-inline:0;margin-inline:0}
   html {scroll-padding-top:var(--header-clearance,112px)}
   .wrap {width:calc(100% - 40px)}

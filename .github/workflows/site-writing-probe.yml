@@ -120,7 +120,7 @@ jobs:
   paradigm:
     if: github.event_name == 'pull_request' && github.event.action == 'labeled' && github.event.label.name == 'site-writing-paradigm-evidence' && github.event.pull_request.number == 38 && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 45
     env:
       SITE_CANDIDATE_SHA: ${{ github.event.pull_request.head.sha }}
       WRITING_BASELINE_SHA: 11e5432d908ca0b81431ca4eac6721b076c33cb6
@@ -154,7 +154,14 @@ jobs:
           npm ci --prefix tools/quality/toolchain --ignore-scripts
           tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium firefox webkit
       - name: Check Writing lifecycle and retain scene captures
-        run: node tools/quality/writing-paradigm-browser.cjs "$RUNNER_TEMP/writing-paradigm-input/candidate" "$RUNNER_TEMP/writing-paradigm-results/browser"
+        env:
+          SITE_REPORT_DIR: ${{ runner.temp }}/writing-paradigm-results/browser
+          SITE_AUDIT_LIFECYCLE: 'true'
+          DEBUG: pw:browser
+        run: |
+          set -o pipefail
+          mkdir -p "$RUNNER_TEMP/writing-paradigm-results/browser"
+          node tools/quality/writing-paradigm-browser.cjs "$RUNNER_TEMP/writing-paradigm-input/candidate" "$RUNNER_TEMP/writing-paradigm-results/browser" 2>&1 | tee "$RUNNER_TEMP/writing-paradigm-results/browser/browser-run.log"
       - name: Measure three ordered pairs per profile without parallel browsers
         if: ${{ !cancelled() && steps.inputs.outcome == 'success' && steps.browsers.outcome == 'success' }}
         run: node tools/quality/writing-paradigm.cjs "$RUNNER_TEMP/writing-paradigm-input" "$RUNNER_TEMP/writing-paradigm-results/performance"

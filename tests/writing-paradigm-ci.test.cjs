@@ -44,6 +44,10 @@ function contract(text){
   assert.match(current,/playwright install --with-deps chromium firefox webkit/);
   for(const action of current.matchAll(/uses: (\S+)/g))assert.match(action[1],/^actions\/[a-z-]+@[a-f0-9]{40}$/,'mutable action pin');
   assert.match(current,/node tools\/quality\/writing-paradigm-browser\.cjs "\$RUNNER_TEMP\/writing-paradigm-input\/candidate" "\$RUNNER_TEMP\/writing-paradigm-results\/browser"/);
+  assert.match(current,/SITE_REPORT_DIR: \$\{\{ runner\.temp \}\}\/writing-paradigm-results\/browser/);
+  assert.match(current,/SITE_AUDIT_LIFECYCLE: 'true'/);
+  assert.match(current,/set -o pipefail/);
+  assert.match(current,/2>&1 \| tee "\$RUNNER_TEMP\/writing-paradigm-results\/browser\/browser-run\.log"/);
   assert.match(current,/if: \$\{\{ !cancelled\(\) && steps\.inputs\.outcome == 'success' && steps\.browsers\.outcome == 'success' \}\}/,'paired measurements must retain evidence after a browser assertion failure');
   assert.match(current,/node tools\/quality\/writing-paradigm\.cjs "\$RUNNER_TEMP\/writing-paradigm-input" "\$RUNNER_TEMP\/writing-paradigm-results\/performance"/);
   assert.match(current,/uses: actions\/upload-artifact@[a-f0-9]{40}\n        if: always\(\)/);
@@ -71,6 +75,9 @@ test('source binding, opt-in guards and raw failure retention cannot be weakened
     text=>text.replaceAll('persist-credentials: false','persist-credentials: true'),
     text=>text.replaceAll('npm ci --prefix','npm install --prefix'),
     text=>text.replace('playwright install --with-deps chromium firefox webkit','playwright install --with-deps chromium'),
+    text=>text.replace("SITE_AUDIT_LIFECYCLE: 'true'","SITE_AUDIT_LIFECYCLE: 'false'"),
+    text=>text.replace('SITE_REPORT_DIR: ${{ runner.temp }}/writing-paradigm-results/browser','SITE_REPORT_DIR: /tmp/unretained'),
+    text=>text.replace('set -o pipefail','set +o pipefail'),
     text=>text.replace('writing-paradigm-results/\n          if-no-files-found: error\n          retention-days: 90','writing-paradigm-results/\n          if-no-files-found: ignore\n          retention-days: 1'),
     text=>text.replaceAll('actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f','actions/upload-artifact@v4')
   ]){const changed=change(source);assert.notEqual(changed,source,'mutation must exercise a change');assert.throws(()=>contract(changed));}

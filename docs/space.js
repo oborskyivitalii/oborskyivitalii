@@ -852,7 +852,7 @@ const projection=(function(math,definitions) {
       return [center[0]+m[0]*x+m[1]*y+m[2]*z,center[1]+m[3]*x+m[4]*y+m[5]*z,center[2]+m[6]*x+m[7]*y+m[8]*z];
     });
   }
-  function projectedWorld(world,current,width,height,time=0,tier=0,prune=false,sort=true) {
+  function projectedWorld(world,current,width,height,time=0,tier=0,prune=false,sort=true,formulaFrame=undefined) {
     const forward=normalize(sub(current.target,current.position)),right=normalize(cross(forward,[0,1,0])),up=cross(right,forward);
     const camera=point=>{const x=point[0]-current.position[0],y=point[1]-current.position[1],z=point[2]-current.position[2];return [x*right[0]+y*right[1]+z*right[2],x*up[0]+y*up[1]+z*up[2],x*forward[0]+y*forward[1]+z*forward[2]];};
     const focal=(width<=640?Math.min(height,width*1.15):height)/(2*Math.tan(Math.PI/8));
@@ -873,25 +873,31 @@ const projection=(function(math,definitions) {
       const fade=threshold?smooth((size-threshold)/2):1;
       appendObject(world,o,vertices,projected,project,visible,fade,shapes,transform.inverse(current.position),prune?(width<=640? .5: .35):0,prune?size:Infinity);
     }
-    for(const anchor of world.formulas||[]){const shape=projectedFormula(anchor,current,width,height);if(shape)shapes.push(shape);}
+    for(const anchor of world.formulas||[]){const shape=formulaFrame===false?null:projectedFormula(anchor,current,width,height,formulaFrame);if(shape)shapes.push(shape);}
     return sort?shapes.sort((a,b)=>b.depth-a.depth):shapes;
   }
-  function projectedFormula(anchor,current,width,height) {
+  function calibrateFormula(anchor,current,width,height,frame) {
+    // One layout-time inversion fixes the landmark in its room. Subsequent
+    // paints only project that point through the actual moving camera.
+    const forward=normalize(sub(current.target,current.position)),right=normalize(cross(forward,[0,1,0])),up=cross(right,forward);
+    const focal=(width<=640?Math.min(height,width*1.15):height)/(2*Math.tan(Math.PI/8)),depth=.95;
+    const x=(frame.x-width*(width<=640?.42:.66))*depth/focal,y=(height*.48-frame.y)*depth/focal;
+    const center=add(current.position,add(forward.map(v=>v*depth),add(right.map(v=>v*x),up.map(v=>v*y))));
+    return {...frame,center,width:frame.width*depth/focal,aspect:anchor.aspect};
+  }
+  function projectedFormula(anchor,current,width,height,frame) {
     const mobile=width<=640,forward=normalize(sub(current.target,current.position)),right=normalize(cross(forward,[0,1,0])),up=cross(right,forward);
-    const delta=sub(mobile?anchor.mobileCenter:anchor.center,current.position),depth=dot(delta,forward);
-    // A room landmark has actual camera depth. It leaves view when passed; it
-    // cannot remain as a foreground overlay on a neighboring route.
+    const delta=sub(frame?.center||(mobile?anchor.mobileCenter:anchor.center),current.position),depth=dot(delta,forward);
     if(!Number.isFinite(depth)||depth<=.5||depth>=105)return null;
     const focal=(mobile?Math.min(height,width*1.15):height)/(2*Math.tan(Math.PI/8));
     const x=width*(mobile?.42:.66)+dot(delta,right)*focal/depth,y=height*.48-dot(delta,up)*focal/depth;
-    if(x<=16||x>=width-16||y<0||y>height)return null;
-    // Fit the whole expression, preserving its aspect and world-space centre.
-    // The cap prevents clipping as the camera approaches this wide landmark.
-    const w=Math.min((mobile?anchor.mobileWidth:anchor.width)*focal/depth,2*Math.min(x-16,width-16-x)),h=w/anchor.aspect;
-    if(!Number.isFinite(w)||w<24||y-h/2<0||y+h/2>height)return null;
-    // Fade before every exclusion boundary. A whole-expression fit should
-    // never turn a still-opaque landmark off in one paint during scroll/flight.
-    const edge=Math.min(y-h/2,height-y-h/2),visibility=smooth(edge/32)*smooth((w-24)/80)*smooth((depth-.5)/4)*smooth((105-depth)/14);
+    const left=frame?.left??16,rightEdge=frame?.right??width-16,top=Math.max(0,frame?.top??0,frame?.viewportTop??0),bottom=Math.min(height,frame?.bottom??height,frame?.viewportBottom??height);
+    if(x<=left||x>=rightEdge||y<top||y>bottom)return null;
+    // Preserve the whole expression inside its reserved band and the actual
+    // physical viewport, including a CSS-zoomed Canvas content plane.
+    const w=Math.min((frame?.width||(mobile?anchor.mobileWidth:anchor.width))*focal/depth,2*Math.min(x-left,rightEdge-x)),h=w/anchor.aspect;
+    if(!Number.isFinite(w)||w<24||y-h/2<top||y+h/2>bottom)return null;
+    const edge=Math.min(y-h/2-top,bottom-y-h/2),visibility=smooth(edge/(frame?16:32))*smooth((w-24)/80)*smooth((depth-.5)/.4)*smooth((105-depth)/14);
     return {kind:'formula',object:anchor.id,asset:anchor.id,points:[[x-w/2,y-h/2],[x+w/2,y-h/2],[x+w/2,y+h/2],[x-w/2,y+h/2]],depth,alpha:depthVisibility(depth)*visibility};
   }
   function projectedFace(f,vertices,screen,project) {
@@ -959,7 +965,7 @@ const projection=(function(math,definitions) {
   const roomOffset=page=>-Math.max(0,routeOrder.indexOf(page))*roomSpacing;
   const translatePose=(pose,z)=>({position:add(pose.position,[0,0,z]),target:add(pose.target,[0,0,z])});
   const routePose=(page,pose)=>translatePose(pose,roomOffset(page));
-  return {loopTransform,cameraVertices,projectedWorld,projectedFace,projectedFormula,journeyPose,blendColor,routePose,roomOffset,translatePose};
+  return {loopTransform,cameraVertices,projectedWorld,projectedFace,projectedFormula,calibrateFormula,journeyPose,blendColor,routePose,roomOffset,translatePose};
 })(math,definitions);
 const renderer=(function(artwork=null,createSurface=null) {
   // Exactly one immutable bitmap serves every Writing room/detail model. Its
@@ -1063,7 +1069,7 @@ const renderer=(function(artwork=null,createSurface=null) {
     }
     ctx.globalAlpha=1;
   }
-  return {paintShapes,facePalette,formulaDiagnostics};
+  return {paintShapes,facePalette,formulaDiagnostics,prepareFormula:formulaBitmap,formulaReady:()=>!!formulaSurface,formulaDrawn:()=>formulaLastPaints>0};
 })({
   "width": 1380,
   "height": 240,
@@ -1642,7 +1648,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
   // Deferred scripts run while readyState is interactive. Archive filtering
   // and the navigation content plane must finish before the first layout read.
   let domReady=document.readyState!=="loading"&&document.readyState!=="interactive";
-  let width=1,height=1,ratio=1,stops=[],bounds=null,focus="all",localProgress=0;
+  let width=1,height=1,ratio=1,stops=[],bounds=null,focus="all",localProgress=0,nativeScrollY=window.scrollY,formulaFrame=false;
   const initial=initialPoses[page]||"overview";
   const rooms=new Map();
   let compact=narrow.matches,ambientTime=0,lastFrame=null,nextDraw=null;
@@ -1694,7 +1700,47 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       }
       writingAnchor={y:window.scrollY,progress:localProgress};
     }
+    measureFormulaBand();
     span('layout-writing');
+  }
+  function formulaMode() {
+    // The existing frozen preference paint removes the bitmap formula before
+    // its passive replacement appears. Never display both during that handoff.
+    const owned=enabled&&formulaFrame&&api.formulaReady?.()||api.formulaDrawn?.();
+    const mode=!failed&&!printing&&owned?'canvas':'static';
+    if(document.body.dataset.formulaMode!==mode)document.body.dataset.formulaMode=mode;
+  }
+  function updateFormulaBandScroll() {
+    if(!formulaFrame)return;
+    formulaFrame.top=formulaFrame.documentTop-nativeScrollY*formulaFrame.scaleY;
+    formulaFrame.bottom=formulaFrame.documentBottom-nativeScrollY*formulaFrame.scaleY;
+  }
+  function measureFormulaBand() {
+    nativeScrollY=window.scrollY;formulaFrame=false;
+    const band=page==='writing'?document.querySelector('[data-writing-formula]'):null;
+    const art=band?.querySelector('.writing-formula-fallback');
+    if(band&&art&&api.calibrateFormula) {
+      if(enabled)api.prepareFormula?.();
+      const box=band.getBoundingClientRect(),glyph=art.getBoundingClientRect(),surface=canvas.getBoundingClientRect();
+      const header=document.querySelector('.site-header')?.getBoundingClientRect();
+      const viewportWidth=window.innerWidth,viewportHeight=window.innerHeight;
+      const sx=width/surface.width,sy=height/surface.height,headerBottom=Math.max(0,header?.bottom||0);
+      if([sx,sy,glyph.width,glyph.height].every(v=>Number.isFinite(v)&&v>0)&&headerBottom+32<viewportHeight) {
+        const centerDocument=(glyph.top+glyph.bottom)/2+nativeScrollY;
+        const fits=glyph.top>=headerBottom+16&&glyph.bottom<=viewportHeight-16;
+        const referenceY=fits?nativeScrollY:Math.max(0,Math.min(document.documentElement.scrollHeight-viewportHeight,centerDocument-(headerBottom+viewportHeight)/2));
+        const progress=bounds?writingProgress(referenceY,bounds,writingAnchor):localProgress;
+        const reference=journeyPose(topicPaths[focus],progress);
+        const anchor=roomFor('writing').world.formulas[0];
+        formulaFrame=api.calibrateFormula(anchor,reference,width,height,{
+          x:((glyph.left+glyph.right)/2-surface.left)*sx,y:(centerDocument-referenceY-surface.top)*sy,width:glyph.width*sx,
+          left:(16-surface.left)*sx,right:(viewportWidth-16-surface.left)*sx,viewportTop:(headerBottom+16-surface.top)*sy,viewportBottom:(viewportHeight-16-surface.top)*sy,
+          documentTop:(box.top+nativeScrollY-surface.top)*sy,documentBottom:(box.bottom+nativeScrollY-surface.top)*sy,scaleY:sy
+        });
+        updateFormulaBandScroll();
+      }
+    }
+    formulaMode();
   }
   function flushLayout() {
     if(!initialized||!layoutDirty||failed)return;
@@ -1741,6 +1787,8 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     if(!variants.has(detail)){
       const start=window.SiteEngineProbe?clock():0;
       const room={world:worldFor(name,detail),name,compact:detail,faceColors:[]};variants.set(detail,room);
+      // Prepare once during the existing room work, never inside timed paint.
+      if(name==='writing'&&enabled)api.prepareFormula?.();
       if(window.SiteEngineStages)diagnostic('stage',{part:'model-build',route:name,start,duration:clock()-start});
       paintColors(room);
       if(window.SiteEngineProbe)diagnostic('model',{route:name,compact:detail,start,duration:clock()-start,objects:room.world.objects.length,vertices:room.world.objects.reduce((n,o)=>n+o.points.length,0),faces:room.world.faces.length,lines:room.world.lines.length});
@@ -1782,7 +1830,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
   function visibleRooms() {
     if(!journey){
       const room=roomFor(page);
-      const shapes=projectedWorld(room.world,translatePose(current,-roomOffset(page)),width,height,ambientTime,detailTier,true,false);
+      const shapes=projectedWorld(room.world,translatePose(current,-roomOffset(page)),width,height,ambientTime,detailTier,true,false,enabled?formulaFrame:false);
       for(const shape of shapes)shape.room=room;
       return shapes;
     }
@@ -1797,7 +1845,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       const forward=api.normalize(sub(local.target,local.position));
       if(api.dot(sub([0,0,-48],local.position),forward)+110<.5)return [];
       const room=roomFor(name);
-      return projectedWorld(room.world,translatePose(current,-roomOffset(name)),width,height,ambientTime,detailTier,true,false).map(shape=>{shape.room=room;return shape;});
+      return projectedWorld(room.world,translatePose(current,-roomOffset(name)),width,height,ambientTime,detailTier,true,false,enabled?formulaFrame:false).map(shape=>{shape.room=room;return shape;});
     });
     return shapes;
   }
@@ -1813,6 +1861,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     const custom=sceneEffects?.collect(state)||[];span('draw-effects');
     const shapes=geometry.concat(custom).sort((a,b)=>b.depth-a.depth);span('draw-sort');
     paintShapes(ctx,shapes,colors,sceneEffects?.paint);
+    formulaMode();
     span('draw-paint');
     const air=atmosphereState(ambientTime);
     scene.style?.setProperty("--air-x",air.x.toFixed(3)+"px");
@@ -1826,7 +1875,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     span('draw-state');
   }
   function fail() {
-    failed=true;cancel();delete scene.dataset.ready;scene.dataset.state="fallback";
+    failed=true;formulaMode();cancel();delete scene.dataset.ready;scene.dataset.state="fallback";
     control.hidden=false;control.disabled=true;control.setAttribute("aria-pressed","false");control.textContent="Motion: unavailable";
     reportTravel(1);
   }
@@ -1908,13 +1957,17 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     if(animation||living&&!hold)schedule();
   }
   function updateControl() {
+    formulaMode();
     if(failed)return;
     control.hidden=false;control.disabled=reduced.matches;control.setAttribute("aria-pressed",String(enabled&&!hold));
     control.textContent=reduced.matches?"Motion: reduced":!enabled?"Motion: off":hold?"Motion: still (device)":"Motion: on";
   }
   function preferenceChanged() {
     const was=enabled;enabled=choice!=="off" && !reduced.matches;
-    if(enabled&&!was)lastFrame=null;
+    if(enabled&&!was){
+      if(page==='writing'){api.prepareFormula?.();invalidateLayout('motion-resume');}
+      lastFrame=null;
+    }
     if(!enabled){if(was)cancel();}else if(!was)moveTo(page==="writing" && !bounds?pathPose():scrollPose());
     updateControl();schedule();
     if(window.dispatchEvent)window.dispatchEvent(new CustomEvent("site:motion-preference"));
@@ -1926,6 +1979,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     preferenceChanged();
   });
   window.addEventListener("scroll",()=>{
+    nativeScrollY=window.scrollY;updateFormulaBandScroll();
     if(!enabled || document.hidden || printing)return;
     if(page!=="writing" && !pageStops[page])return;
     // A new scroll takes control of any unfinished topic transition.
@@ -1948,7 +2002,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
   window.addEventListener("resize",resize,{passive:true});
   window.addEventListener("load",resize,{once:true});
   document.addEventListener("visibilitychange",()=>{if(document.hidden)cancel();else resize();});
-  window.addEventListener("beforeprint",()=>{printing=true;cancel();});
+  window.addEventListener("beforeprint",()=>{printing=true;formulaMode();cancel();});
   window.addEventListener("afterprint",()=>{printing=false;resize();});
   if(reduced.addEventListener)reduced.addEventListener("change",preferenceChanged);
   window.addEventListener("storage",event=>{if(event.key===key || event.key===null){try{choice=localStorage.getItem(key);}catch{choice=null;}preferenceChanged();}});

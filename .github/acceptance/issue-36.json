@@ -20,7 +20,7 @@
     {
       "id": "AC02",
       "intent": "Integrate one large central Writing-only formula with coherent camera/depth/media/offline behavior and readable foreground content.",
-      "automated_scope": "Compiled SVG topology/geometry and malformed/missing-artwork failures; one Writing-only anchor in both tiers, finite whole responsive projection, two mutually exclusive static framings, immutable runtime/media identity after asset change. Actual foreground composition and glyph recognition remain visual decisions.",
+      "automated_scope": "Compiled SVG topology/geometry and malformed/missing-artwork failures; one Writing-only anchor in both tiers, finite whole responsive projection, one accessible responsive band with canonical static artwork and no duplicate background rendition, immutable runtime/media identity after asset change. Actual foreground composition and glyph recognition remain visual decisions.",
       "checks": [
         "SCENE",
         "BROWSER-VALIDATOR"

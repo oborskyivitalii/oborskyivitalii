@@ -211,6 +211,23 @@
         "бутстрап",
         "опис проекту"
       ]
+    },
+    {
+      "concern": "test allocation, PR smoke, targeted acceptance, staging regression and complete production regression",
+      "path": "guides/SITE-CHECK-PROFILES.md",
+      "queries": [
+        "test profiles",
+        "test selection",
+        "smoke tests",
+        "staging regression",
+        "production regression",
+        "duplicate tests",
+        "тести",
+        "смоук",
+        "регресія",
+        "дублікати тестів",
+        "оптимізація тестів"
+      ]
     }
   ],
   "map_output": "REPOSITORY-MAP.md",
@@ -336,13 +353,45 @@
         "review/issue-",
         "PROJECT-BOOTSTRAP.md",
         "tests/test_issue33_acceptance.py",
+        "tests/test_issue35_acceptance.py",
         "tests/test_issue36_acceptance.py"
       ],
       "commands": [
-        "python3 tools/issue_acceptance.py run --policy .github/acceptance/issue-33.json --report /tmp/issue-33-acceptance.json"
+        "python3 tools/issue_acceptance.py run --policy .github/acceptance/issue-36.json --report /tmp/issue-36-acceptance.json"
       ],
       "workflow": ".github/workflows/issue-acceptance.yml",
-      "note": "Choose the owning issue policy: #33 is the root-layout worked example, while accepted #31 evidence is pinned to its original source. Automated criteria cannot supply independent review, merge or live GitHub linkage."
+      "note": "Choose the owning issue policy. Current #36 Writing integration uses scoped source/browser/performance mappings; completed #35 test allocation and #31/#33 snapshots remain pinned to their original sources. Automated assertions cannot supply independent review, observed hosted timing, owner/device acceptance, merge or live GitHub linkage."
+    },
+    {
+      "concern": "canonical test inventory, changed-source selection and selected staging evidence",
+      "paths": [
+        "tools/quality/test-profiles.json",
+        "tools/quality/source-tests.cjs",
+        "tools/quality/staging-regression.cjs",
+        "tools/quality/staging-gate.cjs",
+        "tests/test-profile-selection.test.cjs",
+        "tests/staging-regression.test.cjs",
+        "tests/staging-gate.test.cjs",
+        "tests/fixtures/",
+        "guides/SITE-CHECK-PROFILES.md",
+        "tools/quality/bandit-triage.cjs",
+        "tools/quality/bandit-policy.json",
+        "tools/quality/scanners.cjs",
+        "tools/quality/secrets-baseline.json",
+        "tests/quality-sources.test.cjs",
+        "tools/quality/secrets-reviewed.json"
+      ],
+      "commands": [
+        "node --test tests/test-profile-selection.test.cjs tests/staging-gate.test.cjs tests/staging-regression.test.cjs tests/quality-sources.test.cjs",
+        "node tools/quality/source-tests.cjs --profile production --plan"
+      ],
+      "read": [
+        "guides/SITE-CHECK-PROFILES.md",
+        "guides/SITE-RELEASE-GATES.md",
+        "guides/SITE-STAGING.md"
+      ],
+      "workflow": ".github/workflows/navigation.yml",
+      "note": "Plan lists allocation, not a passing run. PR execution requires exact --base/--head; staging/production selection and explicit diagnostic replay use the canonical registry. Hosted checks need an authorized exact candidate/origin; this navigation route does not deploy or provide external release acceptance."
     }
   ]
 }

@@ -40,16 +40,45 @@ function rasterProbe(){
   const bitmap=window.createImageBitmap;
   if(bitmap)window.createImageBitmap=function(...args){counts.imageBitmapCalls++;return bitmap.apply(this,args);};
 }
+async function startTrace(page){
+  // Observe adaptation without another animation clock or a test-controlled
+  // cadence. Retain the entire fixed preconditioning interval, including cost.
+  await page.evaluate(()=>{
+    const scene=document.querySelector('.space-scene'),rows=[];
+    const observe=records=>{
+      // Preserve excursions that return to their initial value within one
+      // batched callback. Each next oldValue gives the preceding new value.
+      const changes=records.map((record,index)=>({attribute:record.attributeName,from:record.oldValue,to:records.slice(index+1).find(next=>next.attributeName===record.attributeName)?.oldValue??scene.getAttribute(record.attributeName)}));
+      rows.push({time:performance.now(),quality:scene.dataset.quality,cadence:scene.dataset.cadence,route:document.body.dataset.page,camera:scene.dataset.camera,changes});
+    };
+    const observer=new MutationObserver(observe);observer.observe(scene,{attributes:true,attributeOldValue:true,attributeFilter:['data-quality','data-cadence']});observe([]);window.__writingWarmup={rows,observer};
+  });
+}
+async function traceSample(page,sample,stop=false){
+  const trace=await page.evaluate(stop=>{const {rows,observer}=window.__writingWarmup;if(stop){observer.disconnect();delete window.__writingWarmup;}return rows;},stop);
+  sample.trace=trace.filter(row=>row.time>=sample.window.startMs&&row.time<=sample.window.endMs);return sample;
+}
+async function traced(page,kind,duration,{continued=false,stop=true}={}){
+  if(!continued)await startTrace(page);
+  return traceSample(page,await collect(page,kind,duration,{formula:true}),stop);
+}
+async function warmup(page,state){
+  await startTrace(page);
+  const sample=await collect(page,'warmup',contract.steadyProtocol.warmupMs,{formula:true});
+  await traceSample(page,sample);sample.for=state;
+  return sample; // Final validation retains even an unstable interval in raw evidence.
+}
 async function trial(url,input,settings){
-  const {browser,context,page,errors}=await open(settings),result={settings,errors,browser:browser.version(),measurements:[],flights:[]};
+  const {browser,context,page,errors}=await open(settings),result={settings,errors,browser:browser.version(),measurements:[],flights:[],warmups:[]};
   try{
     await context.addInitScript(rasterProbe);
     await page.goto(url+'/research.html',{waitUntil:'domcontentloaded'});await page.bringToFront();await ready(page,'research');
     Object.assign(result,await variant(page));result.flights.push(await move(page,'writing'));
-    await settledCamera(page);result.measurements.push(await collect(page,'idle',4000,{formula:true}));
-    result.measurements.push(await collect(page,'scroll',4000,{formula:true}));
-    result.filteredPublications=await filters(page,false);result.measurements.push(await collect(page,'filtered',1600,{formula:true}));
-    result.emptyPublications=await filters(page,true);result.measurements.push(await collect(page,'empty',1000,{formula:true}));
+    await settledCamera(page);result.startupIdle=await traced(page,'startup-idle',contract.steadyProtocol.startupIdleMs);
+    result.warmups.push(await warmup(page,'idle'));result.measurements.push(await traced(page,'idle',contract.steadyProtocol.measurementMs,{continued:true}));
+    result.measurements.push(await traced(page,'scroll',contract.steadyProtocol.measurementMs));
+    result.filteredPublications=await filters(page,false);result.warmups.push(await warmup(page,'filtered'));result.measurements.push(await traced(page,'filtered',contract.steadyProtocol.measurementMs,{continued:true}));
+    result.emptyPublications=await filters(page,true);result.warmups.push(await warmup(page,'empty'));result.measurements.push(await traced(page,'empty',contract.steadyProtocol.measurementMs,{continued:true}));
     await page.locator('.filter-reset').evaluate(element=>element.click());await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));await settledCamera(page);
     result.formula=(await diagnostic(page)).formula;result.diagnostics=await diagnostic(page);
     for(const to of ['talks','writing','research'])result.flights.push(await move(page,to));
@@ -66,11 +95,16 @@ async function instantMove(page,to){
   // and cycle must actually paint that room before navigating away again.
   await page.waitForFunction(to=>document.querySelector('.space-scene').dataset.route===to,to,{timeout:3000,polling:40});
 }
-async function retention(url,settings){
+async function retention(url,settings,input){
   const {browser,context,page,cdp,errors}=await open(settings),result={profile:settings.id,cycles:40,warmedRoutes:['research','writing','talks','credits','index'],errors,zeroWork:[]};
   const observe=async()=>{await cdp.send('HeapProfiler.collectGarbage');return {dom:await cdp.send('Memory.getDOMCounters'),diagnostics:await diagnostic(page)};};
   try{
-    await page.goto(url+'/index.html',{waitUntil:'domcontentloaded'});await page.bringToFront();await ready(page,'index');await publicMotion(page,false);
+    await page.goto(url+'/index.html',{waitUntil:'domcontentloaded'});await page.bringToFront();await ready(page,'index');
+    // A disabled Writing room must not force allocation of its lazy bitmap.
+    // Establish the real one-cache/one-formula observation before freezing it.
+    await instantMove(page,'writing');await settledCamera(page);
+    result.positiveBeforeOff={identity:input.identity,...await variant(page),measurement:await collect(page,'idle',2000,{formula:true}),diagnostics:await diagnostic(page)};
+    await publicMotion(page,false);
     for(const to of result.warmedRoutes)await instantMove(page,to);
     await page.waitForTimeout(200);result.before=await observe();
     for(let cycle=0;cycle<40;cycle++)await instantMove(page,result.warmedRoutes[cycle%result.warmedRoutes.length]);
@@ -91,7 +125,7 @@ async function main(inputRoot,output){
   assert.ok(output!==inputRoot&&!output.startsWith(inputRoot+path.sep),'reports must not modify measured input');fs.mkdirSync(output,{recursive:true});
   const inputs=contract.loadInputs(inputRoot,{baseline:process.env.WRITING_BASELINE_SHA,candidate:process.env.SITE_CANDIDATE_SHA}),{server,url}=await serve(inputs);
   const pw=toolRequire('playwright'),launch=launchOptions('chromium');
-  const record={schema:1,kind:'writing-paradigm-performance',fullGate:false,environment:environment(),browser:{executable:launch.executablePath||pw.chromium.executablePath()},profiles:contract.profiles,orders:contract.orders,guardrails:contract.guardrails,identities:Object.fromEntries(Object.entries(inputs).map(([label,input])=>[label,input.identity])),protocol:'Three ordered serial A/B, B/A, A/B pairs per fixed profile; fresh browser/context and cache-disabled gzip loopback fixture for every trial; Writing idle, bidirectional scroll, filtered/empty reflow and cold/warm neighboring-room flights. Single candidate 40-cycle retention/lifecycle observation per profile. All failures retained. Full release gate unchanged.',rows:[],retention:[],complete:false,pass:false};
+  const record={schema:1,kind:'writing-paradigm-performance',protocolVersion:2,scope:contract.scope,steadyProtocol:contract.steadyProtocol,fullGate:false,environment:environment(),browser:{executable:launch.executablePath||pw.chromium.executablePath()},profiles:contract.profiles,orders:contract.orders,guardrails:contract.guardrails,identities:Object.fromEntries(Object.entries(inputs).map(([label,input])=>[label,input.identity])),protocol:'Three ordered serial A/B, B/A, A/B pairs per fixed profile; fresh browser/context and cache-disabled gzip loopback fixture for every trial. Retain immediate four-second post-cold-entry idle with original paired guards and every ten-second preconditioning window with CPU×4 idle absolute limits; require stable final two seconds before steady idle/filtered/empty. Four-second steady windows require at least twenty actual paints and unchanged quality/cadence throughout the measured window. Startup, warmup and steady outcomes must all pass. Bidirectional scroll and four actual cold/warm neighboring-room flights remain measured. Single candidate 40-cycle retention/lifecycle observation per profile. All failures retained. Original numeric budgets and full release gate unchanged.',rows:[],retention:[],complete:false,pass:false};
   const save=()=>fs.writeFileSync(path.join(output,'performance.json'),JSON.stringify(record,null,2)+'\n');save();
   try{
     for(const profile of contract.profiles){
@@ -101,13 +135,13 @@ async function main(inputRoot,output){
         catch(error){row.error=error.stack;}finally{row.endedMs=performance.now();save();}
         process.stdout.write(JSON.stringify({profile:profile.id,round,label,error:row.error||null,metrics:row.measurements?.map(({kind,paintCallbackMs,callbackBusyPercent,quality,cadence})=>({kind,p95:paintCallbackMs.p95,busy:callbackBusyPercent,quality,cadence}))})+'\n');
       }
-      try{record.retention.push(await retention(url+'/candidate',profile));}catch(error){record.retention.push({profile:profile.id,error:error.stack});}save();
+      try{record.retention.push(await retention(url+'/candidate',profile,inputs.candidate));}catch(error){record.retention.push({profile:profile.id,error:error.stack});}save();
     }
     record.complete=record.rows.every(row=>!row.error)&&record.retention.every(row=>!row.error);
     try{record.result=contract.validate(record,{trustedIdentities:Object.fromEntries(Object.entries(inputs).map(([label,input])=>[label,input.identity])),trustedTransfers:Object.fromEntries(Object.entries(inputs).map(([label,input])=>[label,contract.routeTransfer(input)]))});record.pass=true;}
-    catch(error){record.validationError=error.stack;throw error;}finally{save();}
+    catch(error){record.validationError=error.stack;if(error.result)record.result=error.result;throw error;}finally{save();}
     return record;
   }finally{server.close();}
 }
 if(require.main===module)main(path.resolve(process.argv[2]),path.resolve(process.argv[3])).catch(error=>{console.error(error.stack);process.exitCode=1;});
-module.exports={trial,retention,filters,transfer,main};
+module.exports={trial,retention,filters,transfer,startTrace,traceSample,traced,warmup,main};

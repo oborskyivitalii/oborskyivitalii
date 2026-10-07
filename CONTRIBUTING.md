@@ -128,6 +128,12 @@ At handoff or before interruption:
 3. In the issue add a compact table: `AC | check/test | result | source/run |
    remaining decision`. Link technical logs/results in the PR/CI artifact.
    Record partial work honestly when interrupted; rerun after relevant changes.
+   Also update the actual AC checkboxes in the owning issue body; the table does
+   not replace them. Mark `[x]` only when the whole criterion is verified by all
+   required current-source checks and non-automated gates. Keep partial, failed,
+   skipped, unmapped, stale, wrong-source or pending criteria `[ ]`; clear a tick
+   if its evidence is invalidated. Preserve the original intent, AC IDs and
+   criterion-to-evidence mapping when updating status.
 4. Before declaring the issue ready, fetch its current criteria and linked PR,
    commits, reviews and CI; rerun/verify the mapped checks and map results back
    to the criteria. Reconcile all human/dependency/release gates and the exact

@@ -26,36 +26,55 @@ test('the canonical formula compiles once into finite strong glyphs and rejects 
   const duplicateGlyph=source.match(/<path data-glyph="y"[^>]*\/>/)[0];
   for(const changed of [source.replace('</svg>','<script>alert(1)</script></svg>'),source.replace('M57 95','MInfinity 95'),source.replace('M57 95','M57'),source.replace('M57 95','M6 95'),source.replace('width="1380"','width="8192"'),source.replace('stroke-width="14"','stroke-width="7"'),source.replace('P(y|x)','P(x|y)'),source.replace('data-glyph="P"','data-glyph="Q"'),source.replace('d="M57','onload="alert(1)" d="M57'),source.replace('</g>','</defs>'),source.replace('</svg>',''),source.replace('</g>',duplicateGlyph+'</g>'),source.replace('</defs>','</defs><title id="title">duplicate</title>'),source.replace('M57 95','M57 95'+' L60 100'.repeat(16)),source.replace('</defs>','</defs>'+'<defs/>'.repeat(16))])assert.throws(()=>assets.compile(changed));
 });
-test('the formula belongs only to Writing, projects whole at supported widths and has coherent static mobile framing',()=>{
-  const {definitions}=b.configuration(root),api=b.model(root,definitions);
+test('the formula belongs only to Writing, projects whole in its reserved band and has one coherent static artwork',()=>{
+  const {definitions}=b.configuration(root),api=b.model(root,definitions),c=b.catalog(root);
+  // Run the maintained measurement with a 2:1 physical/layout transform. A
+  // viewport-fitting band must stay at its entry camera, even when native
+  // Canvas coordinates have half the dimensions of the physical viewport.
+  const life=fs.readFileSync(path.join(root,'site/engine/lifecycle.cjs'),'utf8'),start=life.indexOf('  function measureFormulaBand()'),end=life.indexOf('  function flushLayout()',start);
+  const box=(left,top,width,height)=>({left,top,right:left+width,bottom:top+height,width,height});
+  const art={getBoundingClientRect:()=>box(16,590,358,358/(1380/240))},band={getBoundingClientRect:()=>box(16,550,358,358/(1380/240)+80),querySelector:()=>art};
+  const scope=vm.createContext({page:'writing',width:195,height:422,nativeScrollY:0,formulaFrame:false,enabled:true,localProgress:0,focus:'all',bounds:{start:900,end:4000},writingAnchor:null,
+    window:{scrollY:0,innerWidth:390,innerHeight:844},document:{documentElement:{scrollHeight:4844},querySelector:selector=>selector==='[data-writing-formula]'?band:{getBoundingClientRect:()=>box(0,0,390,100)}},canvas:{getBoundingClientRect:()=>box(0,0,390,844)},api:{...api,prepareFormula(){}},topicPaths:definitions.topicPaths,writingProgress:api.writingProgress,journeyPose:api.journeyPose,roomFor:()=>({world:api.worldFor('writing')}),formulaMode(){}});
+  vm.runInContext('function updateFormulaBandScroll(){formulaFrame.top=formulaFrame.documentTop;formulaFrame.bottom=formulaFrame.documentBottom;}'+life.slice(start,end)+'measureFormulaBand();',scope);
+  const zoomed=api.projectedFormula(api.worldFor('writing').formulas[0],api.journeyPose(definitions.topicPaths.all,0),195,422,scope.formulaFrame);
+  assert.ok(zoomed&&zoomed.alpha===1,'physical viewport-fitting formula remains at entry under2:1 scaling');
+  assert.ok(Math.abs(zoomed.points[0][0]*2-16)<1e-8);assert.ok(Math.abs(zoomed.points[1][0]*2-374)<1e-8);
+  assert.ok(Math.abs(zoomed.points[0][1]*2-590)<1e-8,'native paint maps to the actual reserved band');
+
   for(const route of definitions.routeOrder)for(const compact of [false,true]){
     const world=api.worldFor(route,compact);assert.equal(world.formulas.length,route==='writing'?1:0);
+    const input=b.routeInput(root,{id:route},c),fallback=require('../tools/build_scene_fallbacks.cjs').fromModel(api,route);
+    assert.equal(fallback.includes('data-formula='),false,'background does not duplicate the reserved band artwork');
+    assert.equal(input.main.split('data-writing-formula').length-1,route==='writing'?1:0);
+    if(route!=='writing')continue;
+    const markup=b.writingFormula(root);
+    assert.ok(markup.includes('role="img" aria-label="y = f(x) → y ∼ P(y|x):'));
+    assert.ok(markup.includes('class="writing-formula-fallback" aria-hidden="true"'));
+    assert.ok(markup.includes('style="display:block;width:100%;height:auto"'),'passive artwork remains responsive when the stylesheet request is blocked');
+    assert.equal([...markup.matchAll(/data-glyph=/g)].length,15);
+    assert.ok(input.main.indexOf('archive-intro')<input.main.indexOf('data-writing-formula'));
+    assert.ok(input.main.indexOf('data-writing-formula')<input.main.indexOf('data-archive-navigation'));
     for(const [width,height]of [[320,740],[390,844],[768,1024],[1440,900]]){
-      const shapes=api.projectedWorld(world,api.poses[api.initialPoses[route]],width,height),formulas=shapes.filter(shape=>shape.kind==='formula');
-      assert.equal(formulas.length,route==='writing'?1:0);
-      for(const shape of formulas){
-        assert.equal(shape.object,'writing-paradigm');assert.ok(Number.isFinite(shape.depth)&&shape.depth>.5);
-        for(const [x,y]of shape.points){assert.ok(x>=16-1e-8&&x<=width-16+1e-8,'whole horizontal expression fits');assert.ok(y>=0&&y<=height,'whole vertical expression fits');}
-        assert.ok(shape.points[1][0]-shape.points[0][0]>=width*.7,'formula retains visual prominence');
-        assert.ok(Math.abs((shape.points[1][0]-shape.points[0][0])/(shape.points[3][1]-shape.points[0][1])-1380/240)<1e-8);
+      const pose=api.poses[api.initialPoses[route]],wanted=Math.min(960,width-32),y=height*.66,h=wanted/(1380/240);
+      const frame=api.calibrateFormula(world.formulas[0],pose,width,height,{x:width/2,y,width:wanted,left:16,right:width-16,top:y-h/2-40,bottom:y+h/2+40});
+      const formulas=api.projectedWorld(world,pose,width,height,0,0,false,true,frame).filter(shape=>shape.kind==='formula');
+      assert.equal(formulas.length,1);const shape=formulas[0];
+      assert.equal(shape.object,'writing-paradigm');assert.ok(Math.abs(shape.depth-.95)<1e-8,'entry landmark precedes every emitted ribbon depth greater than1');
+      assert.equal(shape.alpha,1,'strong entry formula is not suppressed by near fade');
+      for(const [x,y]of shape.points){assert.ok(x>=16-1e-8&&x<=width-16+1e-8);assert.ok(y>=frame.top&&y<=frame.bottom);}
+      assert.ok(Math.abs(shape.points[1][0]-shape.points[0][0]-wanted)<1e-8,'large responsive whole expression');
+      assert.equal(api.projectedWorld(world,pose,width,height,0,0,false,true,false).some(s=>s.kind==='formula'),false,'inactive/fallback frame emits no duplicate native formula');
+      for(const [topic,ids]of Object.entries(definitions.topicPaths)){
+        const fixed=api.calibrateFormula(world.formulas[0],api.journeyPose(ids,0),width,height,{x:width/2,y,width:wanted,left:16,right:width-16,top:y-h/2-40,bottom:y+h/2+40});
+        let previous=null;
+        for(let sample=0;sample<=5000;sample++){
+          const next=api.projectedFormula(world.formulas[0],api.journeyPose(ids,sample/5000),width,height,fixed);
+          if(previous&&!next)assert.ok(previous.alpha<.05,`${topic} ${width}: departing band landmark fades before culling`);
+          if(!previous&&next&&sample>0)assert.ok(next.alpha<.05,`${topic} ${width}: entering band landmark begins transparent`);
+          previous=next;
+        }
       }
-    }
-    const fallback=require('../tools/build_scene_fallbacks.cjs').fromModel(api,route);
-    if(route==='writing'){
-      assert.equal([...fallback.matchAll(/data-formula="writing-paradigm"/g)].length,2,'CSS selects one of two responsive static framings');
-      assert.ok(fallback.includes('class="formula-desktop"')&&fallback.includes('class="formula-mobile"'));
-      assert.ok(fallback.includes('id="writing-paradigm-desktop-ribbon"')&&fallback.includes('id="writing-paradigm-mobile-ribbon"'),'gradient IDs cannot collide');
-    }else assert.equal(fallback.includes('data-formula='),false);
-  }
-  const anchor=api.worldFor('writing').formulas[0],passed={position:[0,0,-12],target:[0,0,-30]};
-  assert.equal(api.projectedFormula(anchor,passed,1440,900),null,'camera passing the Writing anchor cannot carry it into another room');
-  for(const [width,height]of [[320,740],[390,844],[768,1024],[1440,900]])for(const [topic,ids]of Object.entries(definitions.topicPaths)){
-    let previous=null;
-    for(let sample=0;sample<=5000;sample++){
-      const shape=api.projectedFormula(anchor,api.journeyPose(ids,sample/5000),width,height);
-      if(previous&&!shape)assert.ok(previous.alpha<.05,`${topic} ${width}: departing whole expression fades before culling`);
-      if(!previous&&shape&&sample>0)assert.ok(shape.alpha<.05,`${topic} ${width}: entering whole expression begins transparent`);
-      previous=shape;
     }
   }
 });

@@ -107,6 +107,12 @@ function publication(html,c,dependencies) {
     return substitute(fragment,editionValues(record),id);
   });
 }
+function writingFormula(root) {
+  // The producer validates the sole artwork before embedding its passive SVG.
+  const source=sceneCompiler(root).load(root).svg;
+  const svg=source.replace(/role="img" aria-labelledby="title description"/,'class="writing-formula-fallback" aria-hidden="true" focusable="false" style="display:block;width:100%;height:auto"');
+  return '<div class="writing-formula" data-writing-formula role="img" aria-label="y = f(x) → y ∼ P(y|x): a shift from deterministic mapping to conditional probabilistic modeling.">'+svg+'</div>';
+}
 function routeInput(root,route,c) {
   const dir='site/content/pages/'+route.id+'/',meta=load(root,dir+'metadata.json');
   if(meta.schema!==1||meta.lang!=='en'||!meta.title||!meta.description||!meta.structuredData||!Array.isArray(meta.blocks)||new Set(meta.blocks).size!==meta.blocks.length||meta.blocks.some(x=>!/^[a-z][a-z0-9-]*$/.test(x)))throw Error('Invalid page metadata '+route.id);
@@ -118,6 +124,10 @@ function routeInput(root,route,c) {
     used.push(name);const file=dir+name+'.html';inputs.push(file);return read(root,file);
   });
   if(JSON.stringify(used)!==JSON.stringify(meta.blocks))throw Error('Page block order/duplicates '+route.id);
+  if(route.id==='writing') {
+    if(main.split('{{WRITING_FORMULA}}').length!==2)throw Error('One Writing formula band required');
+    main=main.replace('{{WRITING_FORMULA}}',()=>writingFormula(root));inputs.push('site/assets/writing-paradigm.svg');
+  }
   main=publication(main,c,dependencies);validateFragment(main,route.id);
   const schema=structuredClone(meta.structuredData);
   if(meta.catalogList) {
@@ -233,4 +243,4 @@ if(require.main===module) {
   const result=build({all:args[0]==='--all',check:args[0]==='--check'});
   console.log(JSON.stringify({built:result.built,reused:result.reused,removed:result.removed}));
 }
-module.exports={build,render,model,runtime,configuration,routeInput,catalog,fingerprints,sha,files,validateFragment,scriptJSON,runtimeVersion,versionHTML,snapshotHTML};
+module.exports={writingFormula,build,render,model,runtime,configuration,routeInput,catalog,fingerprints,sha,files,validateFragment,scriptJSON,runtimeVersion,versionHTML,snapshotHTML};

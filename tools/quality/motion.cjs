@@ -121,4 +121,4 @@ async function main(){
   finally{if(browser)await browser.close();server.close();}
 }
 if(require.main===module)main().catch(e=>{console.error(e.stack);process.exitCode=1;});
-module.exports={installProbe,summarize,collect,flights};
+module.exports={installProbe,summarize,flights,sample,collect};

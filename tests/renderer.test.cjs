@@ -51,13 +51,16 @@ test('one fixed formula cache preserves scene order and is reused across room vi
   ctx.save=()=>{};ctx.restore=()=>{};ctx.drawImage=(bitmap,...bounds)=>{assert.equal(bitmap,surface);assert.ok(bounds.every(Number.isFinite));ctx.commands.push('formula');};
   const line={kind:'line',points:[[0,0],[10,10]],color:'cyan',alpha:.5,lineWidth:1};
   const formula={kind:'formula',points:[[16,100],[374,100],[374,162.26],[16,162.26]],depth:30,alpha:.8};
+  assert.equal(renderer.formulaReady(),false);renderer.prepareFormula();renderer.prepareFormula();
+  assert.equal(renderer.formulaReady(),true);assert.equal(renderer.formulaDiagnostics().paintCount,0,'preparation submits no Canvas paint');
   renderer.paintShapes(ctx,[line,formula,line],{cyan:'#123456'});
+  assert.equal(renderer.formulaDrawn(),true,'bitmap ownership persists until another successful paint');
   assert.deepEqual(ctx.commands.filter(c=>c!=='begin'),['stroke','formula','stroke'],'formula paints at its sorted depth without moving other commands');
   assert.equal(target.commands.filter(c=>c==='stroke').length,15,'each approved glyph is rasterized exactly once');
   for(let visit=0;visit<40;visit++){
     renderer.paintShapes(ctx,[{...formula,points:[[200,260],[1240,260],[1240,440],[200,440]]}],{});
     assert.equal(renderer.formulaDiagnostics().lastPaintCount,1);
-    renderer.paintShapes(ctx,[line],{cyan:'#123456'});assert.equal(renderer.formulaDiagnostics().lastPaintCount,0);
+    renderer.paintShapes(ctx,[line],{cyan:'#123456'});assert.equal(renderer.formulaDiagnostics().lastPaintCount,0);assert.equal(renderer.formulaDrawn(),false,'frozen preference paint releases formula ownership');
   }
   const diagnostic=renderer.formulaDiagnostics();assert.equal(diagnostic.status,'ready');assert.equal(diagnostic.paintCount,41);assert.equal(diagnostic.visibleCount,0);
   assert.equal(constructions,1);assert.equal(gradients,1);assert.equal(diagnostic.cacheBuilds,1);assert.equal(diagnostic.bytes,1380*240*4);assert.equal(diagnostic.failures,0);
@@ -67,6 +70,7 @@ test('formula raster failure is bounded once and preserves other scene commands'
   const asset=require('../tools/site/scene-assets.cjs').load(require('node:path').resolve(__dirname,'..'));
   let attempts=0;const renderer=require('../site/engine/renderer.cjs')(asset,()=>{attempts++;return {getContext(){throw Error('cache unavailable');}};}),ctx=recorder();
   const formula={kind:'formula',points:[[0,0],[10,0],[10,10],[0,10]],alpha:1},line={kind:'line',points:[[0,0],[10,10]],color:'cyan',alpha:.5,lineWidth:1};
+  renderer.prepareFormula();renderer.prepareFormula();assert.equal(renderer.formulaReady(),false);
   for(let frame=0;frame<8;frame++)assert.doesNotThrow(()=>renderer.paintShapes(ctx,[formula,line],{cyan:'#123456'}));
   assert.equal(attempts,1);assert.equal(ctx.commands.filter(c=>c==='stroke').length,8);assert.equal(ctx.globalAlpha,1);
   assert.equal(renderer.formulaDiagnostics().status,'failed');assert.equal(renderer.formulaDiagnostics().failures,1);assert.equal(renderer.formulaDiagnostics().bytes,0);

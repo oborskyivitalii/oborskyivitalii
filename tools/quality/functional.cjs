@@ -191,21 +191,21 @@ async function failure(page,mode){
   let a=await settled(page);readable(a);
   if(['no-js','no-canvas','no-raf','no-match-media','css-blocked'].includes(mode)){
     assert.equal(a.ready,false);assert.equal(a.fallback,true);assert.equal(a.motion.hidden||a.motion.disabled,true);
-    const b=await settled(page);frozen(a,b);return {fallback:true};
+    const b=await settled(page);frozen(a,b);return {fallback:true,evidence:{before:a,after:b}};
   }
   assert.equal(a.ready,true);
   if(mode==='reduced'){
     a=await staticSettled(page);
     assert.equal(a.motion.disabled,true);assert.match(a.motion.label,/reduced/);
-    await page.evaluate(()=>scrollTo({top:600,behavior:'instant'}));frozen(a,await settled(page));return {reducedFreeze:true};
+    await page.evaluate(()=>scrollTo({top:600,behavior:'instant'}));const b=await settled(page);frozen(a,b);return {reducedFreeze:true,evidence:{before:a,after:b}};
   }
   if(mode==='draw-fault')await page.evaluate(()=>CanvasRenderingContext2D.prototype.clearRect=function(){throw Error('Synthetic draw fault');});
   if(mode==='context-loss')await page.evaluate(()=>document.querySelector('canvas').dispatchEvent(new Event('contextlost')));
   if(['draw-fault','context-loss'].includes(mode)){
     await page.waitForFunction(()=>document.querySelector('.space-scene').dataset.state==='fallback',null,{polling:50,timeout:1500});
-    a=await state(page);assert.equal(a.ready,false);assert.equal(a.fallback,true);assert.equal(a.motion.disabled,true);assert.match(a.motion.label,/unavailable/);frozen(a,await settled(page));return {boundedFailure:true,synthetic:true};
+    a=await state(page);assert.equal(a.ready,false);assert.equal(a.fallback,true);assert.equal(a.motion.disabled,true);assert.match(a.motion.label,/unavailable/);const b=await settled(page);frozen(a,b);return {boundedFailure:true,synthetic:true,evidence:{before:a,after:b}};
   }
-  assert.ok((await nextPaintReady(page,a)).paints>a.paints);return {positiveProbe:true};
+  const b=await nextPaintReady(page,a);assert.ok(b.paints>a.paints);return {positiveProbe:true,evidence:{before:a,after:b}};
 }
 async function scenario(browser,url,s){
   const ctx=await browser.newContext({viewport:{width:s.width,height:s.width===1440?900:844},colorScheme:s.theme==='light'?'light':'dark',javaScriptEnabled:s.mode!=='no-js',reducedMotion:s.mode==='reduced'?'reduce':'no-preference'});

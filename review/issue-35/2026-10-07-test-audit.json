@@ -1,0 +1,1862 @@
+{
+  "schema_version": 1,
+  "issue": 35,
+  "inspected_source": "ec9b8361b619f1042bce5a3ec224d3e0c9054b01",
+  "inventory_scope": "All tracked tests/*.test.cjs and tests/test_*.py at exact base; diagnostic quality tooling plus current shared/Color boundary tools",
+  "counts": {
+    "all_modules": 50,
+    "javascript_modules": 42,
+    "python_modules": 8,
+    "diagnostic_javascript_modules": 14,
+    "active_javascript_modules": 28,
+    "task_snapshot_python_modules": 2,
+    "permanent_python_modules": 6,
+    "statically_declared_test_cases": 439
+  },
+  "tests": [
+    {
+      "path": "tests/analytics.test.cjs",
+      "language": "javascript",
+      "purpose": "Consent/disabled/vendor and executable-boundary analytics generation; stable source retention",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "pr-targeted-on-owned-change",
+        "staging-source-regression",
+        "production-source-regression"
+      ],
+      "existing_execution": [
+        "full-release-source-glob"
+      ],
+      "disposition": "retain-active-permanent",
+      "surviving_route": "explicit test manifest + targeted selector (proposed)",
+      "declared_case_count": 10,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "81a19cd4ac3d9fc2b9b70db59f0928a8b1c14aabeeddfac2d0d872ae1095e21d",
+      "local_code_dependencies": [
+        "../tools/site/build.cjs",
+        "../tools/site/analytics.cjs",
+        "../tools/site/snapshot.cjs",
+        "../tools/quality/artifact.cjs",
+        "../tools/site/retain.cjs",
+        "../tools/site/evidence-policy.cjs"
+      ],
+      "evidence_cases": [
+        "disabled analytics emits no runtime asset or external script regardless of current production settings",
+        "missing settings or an enabled adapter fail before replacing coherent public output",
+        "activation validates finite fields and rejects incomplete, noncanonical or unsafe public settings before output replacement"
+      ]
+    },
+    {
+      "path": "tests/archive.test.cjs",
+      "language": "javascript",
+      "purpose": "Intersected filters, URL/fragment history, reset/focus, empty/no-JS archive behavior",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "pr-smoke",
+        "pr-targeted-on-owned-change",
+        "staging-source-regression",
+        "production-source-regression"
+      ],
+      "existing_execution": [
+        "full-release-source-glob",
+        "pr-basic-focused"
+      ],
+      "disposition": "retain-active-permanent",
+      "surviving_route": "tools/quality/local.cjs",
+      "declared_case_count": 6,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "31c924a2bea27c4ac79df16544aab6e4b86dac87d867c79ac2333fb1bdffc34a",
+      "local_code_dependencies": [],
+      "evidence_cases": [
+        "intersected filters and empty state are useful; Reset restores the fixed complete catalog",
+        "queries precede recognized fragments, preserve other dimensions, and reach visible empty targets",
+        "filter/Reset clear conflicting hashes; back/forward and hash changes restore form, rows and focus"
+      ]
+    },
+    {
+      "path": "tests/browser-gate-diagnostics.test.cjs",
+      "language": "javascript",
+      "purpose": "Private causal-screen plan, CLI bounds, source lineage, raw trace completeness and honest failed-row reporting",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "explicit-diagnostic",
+        "pr-targeted-on-helper-change"
+      ],
+      "existing_execution": [
+        "full-release-source-glob",
+        ".github/workflows/site-browser-gate-probe.yml"
+      ],
+      "disposition": "retain-diagnostic; remove-from-routine-release-glob",
+      "surviving_route": ".github/workflows/site-browser-gate-probe.yml",
+      "declared_case_count": 7,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "f8a4c742c554745ca9ba792a2d06dc7121a2cf7120f9de5484faedafa97c44b7",
+      "local_code_dependencies": [
+        "../tools/quality/browser-gate-diagnostics.cjs",
+        "../tools/quality/artifact.cjs"
+      ],
+      "evidence_cases": [
+        "bounded plan preserves two fresh WebKit startups and four balanced Firefox observations with all background rows",
+        "CLI rejects missing/duplicate/unknown arguments and output inside tested artifact",
+        "private variants require exact clean source, common normal parent and independently derived fingerprints"
+      ]
+    },
+    {
+      "path": "tests/browser-gate-trace.test.cjs",
+      "language": "javascript",
+      "purpose": "Opt-in scheduler instrumentation, actual paints/events, observation retention and bounded traces",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "explicit-diagnostic",
+        "pr-targeted-on-helper-change"
+      ],
+      "existing_execution": [
+        "full-release-source-glob",
+        ".github/workflows/site-browser-gate-probe.yml"
+      ],
+      "disposition": "retain-diagnostic; remove-from-routine-release-glob",
+      "surviving_route": ".github/workflows/site-browser-gate-probe.yml",
+      "declared_case_count": 9,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "918582387c5e18a419bbda0e2e088ae2f052d6b8ab98341fd791432dc51465a1",
+      "local_code_dependencies": [
+        "../tools/quality/browser-gate-trace.cjs"
+      ],
+      "evidence_cases": [
+        "explicit serialized installation adds no RAF/timer work and is idempotent",
+        "RAF preserves native ID, receiver, arguments and exactly one callback while recording pending work",
+        "cancellation preserves current receiver and return value and does not invoke a cancelled callback"
+      ]
+    },
+    {
+      "path": "tests/browser-gate-variants.test.cjs",
+      "language": "javascript",
+      "purpose": "Private fixed-ribbon/trace counterfactuals, matched mobile outputs and parent/patch identity",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "explicit-diagnostic",
+        "pr-targeted-on-helper-change"
+      ],
+      "existing_execution": [
+        "full-release-source-glob",
+        ".github/workflows/site-browser-gate-probe.yml"
+      ],
+      "disposition": "retain-diagnostic; remove-from-routine-release-glob",
+      "surviving_route": ".github/workflows/site-browser-gate-probe.yml",
+      "declared_case_count": 6,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "3939e867a4ce5d38827d16cc79b5466bcef0e1e435298240b658765d2b6329fc",
+      "local_code_dependencies": [
+        "../tools/quality/writing-variants.cjs",
+        "../tools/staging/color.cjs",
+        "../tools/quality/artifact.cjs",
+        "../tools/site/snapshot.cjs"
+      ],
+      "evidence_cases": [
+        "browser-gate diagnostics are explicit additions while the original Writing screen labels remain unchanged",
+        "normal tier zero and every mobile tier retain exactly the normal ribbon facets, colors and projection",
+        "adaptive desktop mesh reduces facets without changing shared projected vertices or visibility bounds"
+      ]
+    },
+    {
+      "path": "tests/browser-lifecycle.test.cjs",
+      "language": "javascript",
+      "purpose": "Optional native browser/context/page event provenance and honest teardown versus operation failure",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "explicit-diagnostic",
+        "pr-targeted-on-helper-change"
+      ],
+      "existing_execution": [
+        "full-release-source-glob"
+      ],
+      "disposition": "retain-diagnostic; remove-from-routine-release-glob",
+      "surviving_route": "explicit test manifest + targeted selector (proposed)",
+      "declared_case_count": 4,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "3a596e6dcfdd4134b15d9f90d2a5c5e75d4668fe46899b2297c8494554d90091",
+      "local_code_dependencies": [
+        "../tools/quality/browser-lifecycle.cjs"
+      ],
+      "evidence_cases": [
+        "native lifecycle events retain their stage and elapsed time through teardown",
+        "event retention is bounded and disposal removes only its own listeners",
+        "optional failed-row evidence distinguishes the failed operation from cleanup without retries"
+      ]
+    },
+    {
+      "path": "tests/cause-fix-probe.test.cjs",
+      "language": "javascript",
+      "purpose": "Private cold interventions each vary one factor; exact normal-source and Research control lineage",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "explicit-diagnostic",
+        "pr-targeted-on-helper-change"
+      ],
+      "existing_execution": [
+        "full-release-source-glob",
+        ".github/workflows/site-cause-fix-probe.yml"
+      ],
+      "disposition": "retain-diagnostic; remove-from-routine-release-glob",
+      "surviving_route": ".github/workflows/site-cause-fix-probe.yml",
+      "declared_case_count": 3,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "40f6aba545e94b8b034f4f6f6b78458f0162c462695839159215c24fe67ee5c6",
+      "local_code_dependencies": [
+        "../tools/quality/writing-variants.cjs",
+        "../tools/quality/cause-probe.cjs",
+        "../tools/quality/research-pair-probe.cjs",
+        "../tools/staging/color.cjs"
+      ],
+      "evidence_cases": [
+        "cold native interventions are separate from the dated Writing screen and each changes only its declared factor",
+        "normal source pairs reject dirty, stale or diagnostic editions rather than accepting a private ablation",
+        "cold private inputs require an explicitly declared matching intervention and exact normal parent"
+      ]
+    },
+    {
+      "path": "tests/cause-probe.test.cjs",
+      "language": "javascript",
+      "purpose": "Private causal-input normal/trace identity and actual Lighthouse attribution evidence",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "explicit-diagnostic",
+        "pr-targeted-on-helper-change"
+      ],
+      "existing_execution": [
+        "full-release-source-glob",
+        ".github/workflows/site-cause-fix-probe.yml",
+        ".github/workflows/site-cause-probe.yml"
+      ],
+      "disposition": "retain-diagnostic; remove-from-routine-release-glob",
+      "surviving_route": ".github/workflows/site-cause-fix-probe.yml",
+      "declared_case_count": 2,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "e51a9ee3fdc69ec4474056e6c4e3a0c0712002e98fb2e08c7172ac312a092582",
+      "local_code_dependencies": [
+        "../tools/quality/cause-probe.cjs"
+      ],
+      "evidence_cases": [
+        "causal inputs reject stale source, dirty artifacts and an unrelated normal Color parent",
+        "Lighthouse attribution requires original network and CPU samples and keeps simulated mobile settings"
+      ]
+    },
+    {
+      "path": "tests/color-build.test.cjs",
+      "language": "javascript",
+      "purpose": "Current authored Color build, complete route inventory, deterministic exact source identity and failed-build rejection",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "pr-targeted-on-owned-change",
+        "staging-source-regression",
+        "production-source-regression"
+      ],
+      "existing_execution": [
+        "full-release-source-glob",
+        ".github/workflows/site-color-review.yml"
+      ],
+      "disposition": "retain-active-permanent",
+      "surviving_route": "explicit test manifest + targeted selector (proposed)",
+      "declared_case_count": 2,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "03f5be9fbd4978582cc910247883b2aba224127f8d0383e8ae80b3a6bd388b52",
+      "local_code_dependencies": [
+        "../tools/staging/color.cjs",
+        "../tools/quality/artifact.cjs",
+        "../tools/site/snapshot.cjs",
+        "../tools/quality/validate.cjs"
+      ],
+      "evidence_cases": [
+        "collecting other hosted checks cannot accept a failed source-regression stage",
+        "Color keeps the native route inventory and packages all requested authored effects deterministically"
+      ]
+    },
+    {
+      "path": "tests/content.test.cjs",
+      "language": "javascript",
+      "purpose": "Current publication editions, metadata, provenance/names and valid local page/ARIA/resources",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "pr-targeted-on-owned-change",
+        "staging-source-regression",
+        "production-source-regression"
+      ],
+      "existing_execution": [
+        "full-release-source-glob"
+      ],
+      "disposition": "retain-active-permanent",
+      "surviving_route": "explicit test manifest + targeted selector (proposed)",
+      "declared_case_count": 6,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "aee33385e27c57bc88a870be8f616b4bcf98be7876d5172c729adce2df39e7b4",
+      "local_code_dependencies": [
+        "../review/sol-execution-20261002/BASELINE.json"
+      ],
+      "evidence_cases": [
+        "selected Home responses link to the complete Research inventory with preserved evidence",
+        "English UI has distinct useful metadata and non-executable accurate page schemas",
+        "27 language-labelled editions match article schema and retain a useful time/topic hierarchy"
+      ]
+    },
+    {
+      "path": "tests/endpoint-fixtures.test.cjs",
+      "language": "javascript",
+      "purpose": "Native wheel/scroll endpoint takeover, fresh continuation intent and strict no-progress deadlines",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "pr-targeted-on-owned-change",
+        "staging-source-regression",
+        "production-source-regression"
+      ],
+      "existing_execution": [
+        "full-release-source-glob",
+        ".github/workflows/site-browser-gate-probe.yml"
+      ],
+      "disposition": "retain-active-permanent",
+      "surviving_route": "explicit test manifest + targeted selector (proposed)",
+      "declared_case_count": 5,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "0b7f6fdfb1d549e300f1f546648e194d41909132ca544ea22fafcb8c3ac29b40",
+      "local_code_dependencies": [
+        "../tools/quality/navigation.cjs"
+      ],
+      "evidence_cases": [
+        "late endpoint growth is an actual deferred footer mutation and native reverse request",
+        "late endpoint cannot pass at the old bottom before actual growth and delayed native reconciliation",
+        "wrong route, unfinished scene, absent growth trigger and wrong native bottom retain strict endpoint failures"
+      ]
+    },
+    {
+      "path": "tests/engine-browser-fixtures.test.cjs",
+      "language": "javascript",
+      "purpose": "Stable actual engine/camera startup, delayed layout, archive filtering and first native gestures",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "pr-targeted-on-owned-change",
+        "staging-source-regression",
+        "production-source-regression"
+      ],
+      "existing_execution": [
+        "full-release-source-glob"
+      ],
+      "disposition": "retain-active-permanent",
+      "surviving_route": "explicit test manifest + targeted selector (proposed)",
+      "declared_case_count": 7,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "7448fe4891df5cb8a6cb49602559402355bba6f01e42f1f3b83ddb6012b19eba",
+      "local_code_dependencies": [
+        "../tools/quality/engine-browser.cjs"
+      ],
+      "evidence_cases": [
+        "camera settling retains two real ambient phase changes at one stable live camera",
+        "explicit adaptive hold settles only after native position, pose and measured work stay quiet",
+        "a frozen live scene or invalid hold cannot satisfy camera settling and retains all timeout samples"
+      ]
+    },
+    {
+      "path": "tests/executive.test.cjs",
+      "language": "javascript",
+      "purpose": "Current SEO/source reconciliation negative cases and semantic Day/Night contrast; first case duplicates standalone SEO positive verifier",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "pr-targeted-on-owned-change",
+        "staging-source-regression",
+        "production-source-regression"
+      ],
+      "existing_execution": [
+        "full-release-source-glob"
+      ],
+      "disposition": "retain-independent-API-and-CLI-verification; no-body-deduplication",
+      "surviving_route": "explicit test manifest + targeted selector (proposed)",
+      "declared_case_count": 5,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "c00b6fd122d4602b5a8847c924035499922db9b279909be308474a0b9115b239",
+      "local_code_dependencies": [
+        "../tools/check_site_seo.cjs"
+      ],
+      "evidence_cases": [
+        "executive hierarchy preserves the frozen SEO, editions, sources and all unrelated copy",
+        "SEO reconciliation retains unsupported effects identity and semantic metadata changes",
+        "approved contact and decorative title reconciliation retain changed destinations and copy"
+      ]
+    },
+    {
+      "path": "tests/flight.test.cjs",
+      "language": "javascript",
+      "purpose": "Current authored Color plane flight/export, native endpoint gestures, retargeting and presentation capability contract",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "pr-smoke",
+        "pr-targeted-on-owned-change",
+        "staging-source-regression",
+        "production-source-regression"
+      ],
+      "existing_execution": [
+        "full-release-source-glob",
+        "pr-basic-focused"
+      ],
+      "disposition": "retain-active-permanent",
+      "surviving_route": "tools/quality/local.cjs",
+      "declared_case_count": 10,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "f0eb91687f6ad452a37d41ac444b79609b1af50b72fdd469e7dc95bbdb637916",
+      "local_code_dependencies": [
+        "../review/site-scroll-sync-20261004/FLIGHT-PROTOTYPE.cjs",
+        "../review/site-scroll-sync-20261004/export.cjs",
+        "../review/site-scroll-sync-20261004/RIBBONS-PROTOTYPE.cjs"
+      ],
+      "evidence_cases": [
+        "forward passes the current page toward the viewer; reverse sends it into distance",
+        "retargeting preserves the actual displayed plane instead of flashing it at full size",
+        "bottom detection uses the real rounded range and tolerates native overscroll"
+      ]
+    },
+    {
+      "path": "tests/functional-fixtures.test.cjs",
+      "language": "javascript",
+      "purpose": "Browser harness serial-engine ownership, CSS hold/cleanup, delayed paint/scroll response and no invented success",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "pr-targeted-on-owned-change",
+        "staging-source-regression",
+        "production-source-regression"
+      ],
+      "existing_execution": [
+        "full-release-source-glob",
+        ".github/workflows/site-browser-gate-probe.yml"
+      ],
+      "disposition": "retain-active-permanent",
+      "surviving_route": "explicit test manifest + targeted selector (proposed)",
+      "declared_case_count": 13,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "26e9d14ef89b5f406c3f2e52001aec667dbbb47b07a62128f62dc15185f7bd01",
+      "local_code_dependencies": [
+        "../tools/quality/browser-gate-trace.cjs"
+      ],
+      "evidence_cases": [
+        "complete engine leases run serially and a failed engine does not suppress later engines",
+        "held CSS waits for the actual scene, controls and document before both no-paint assertions",
+        "missing DOM is a bounded failure and still releases and drains the held navigation"
+      ]
+    },
+    {
+      "path": "tests/gtk-native-probe.test.cjs",
+      "language": "javascript",
+      "purpose": "Private fresh GTK controls, abort/core/process evidence and honest bounded offline stack collection",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "explicit-diagnostic",
+        "pr-targeted-on-helper-change"
+      ],
+      "existing_execution": [
+        "full-release-source-glob",
+        ".github/workflows/site-gtk-native-probe.yml"
+      ],
+      "disposition": "retain-diagnostic; remove-from-routine-release-glob",
+      "surviving_route": ".github/workflows/site-gtk-native-probe.yml",
+      "declared_case_count": 10,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "f4ecc8af42bf302de759a18043cad916ae5f9daf7556e17bc92a5c92799c8e17",
+      "local_code_dependencies": [
+        "../tools/quality/gtk-native-probe.cjs",
+        "../tools/quality/gtk-target-probe.cjs"
+      ],
+      "evidence_cases": [
+        "exact three fresh constant GTK controls preserve original setup and put the aborting full-off cell last",
+        "only the current collector MiniBrowser child WebProcess is selected, never another browser or newest core",
+        "the after-load process identity retains exact executable, start ticks and boot without changing limits"
+      ]
+    },
+    {
+      "path": "tests/gtk-target-probe.test.cjs",
+      "language": "javascript",
+      "purpose": "Private WPE/GTK disabled-script target matrix, lifecycle cleanup and attributable failed native operations",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "explicit-diagnostic",
+        "pr-targeted-on-helper-change"
+      ],
+      "existing_execution": [
+        "full-release-source-glob",
+        ".github/workflows/site-gtk-native-probe.yml",
+        ".github/workflows/site-gtk-target-probe.yml"
+      ],
+      "disposition": "retain-diagnostic; remove-from-routine-release-glob",
+      "surviving_route": ".github/workflows/site-gtk-native-probe.yml",
+      "declared_case_count": 11,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "39ec60cb203c8711b8cecd368a668bd9f829432c995662f4ff480d2b2bc8a9aa",
+      "local_code_dependencies": [
+        "../tools/quality/gtk-target-probe.cjs"
+      ],
+      "evidence_cases": [
+        "fourteen one-factor cells retain the same six standards per port and two matching GTK init omissions",
+        "only exact clean normal Color source identity is admitted",
+        "real clean normal artifact and Color producers satisfy lineage and retain every failed preflight without native cells"
+      ]
+    },
+    {
+      "path": "tests/native-display.test.cjs",
+      "language": "javascript",
+      "purpose": "Current functional harness X-server readiness/client/process ownership, shared startup budget and cleanup",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "pr-targeted-on-owned-change",
+        "staging-source-regression",
+        "production-source-regression"
+      ],
+      "existing_execution": [
+        "full-release-source-glob"
+      ],
+      "disposition": "retain-active-permanent",
+      "surviving_route": "explicit test manifest + targeted selector (proposed)",
+      "declared_case_count": 6,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "f7bc3b1f8fe58cd8fe74437b7e1acb88b42a733d5ece0a8391c3ae44fe4d862d",
+      "local_code_dependencies": [
+        "../tools/quality/native-display.cjs"
+      ],
+      "evidence_cases": [
+        "only Linux WebKit starts one isolated local display and stops it after its lease",
+        "an unavailable, early-exited or malformed display fails closed without browser fallback",
+        "readiness honors the caller remaining startup deadline without warming a browser"
+      ]
+    },
+    {
+      "path": "tests/navigation-fixtures.test.cjs",
+      "language": "javascript",
+      "purpose": "Native route/history completion, native endpoint/print/hidden takeover and actual mount provenance",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "pr-targeted-on-owned-change",
+        "staging-source-regression",
+        "production-source-regression"
+      ],
+      "existing_execution": [
+        "full-release-source-glob"
+      ],
+      "disposition": "retain-active-permanent",
+      "surviving_route": "explicit test manifest + targeted selector (proposed)",
+      "declared_case_count": 8,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "7cabe0ac8795ba82233901628aaabbad22f17c0607e74609ed7de8e4ac2b55a4",
+      "local_code_dependencies": [
+        "../tools/quality/navigation.cjs"
+      ],
+      "evidence_cases": [
+        "same-document archive history waits for URL, popstate controls and finished route mounting",
+        "endpoint takeover begins after the complete native wheel, retaining a strict stall deadline",
+        "print/off/hidden fixtures execute exactly once on recorded animated or instant paths"
+      ]
+    },
+    {
+      "path": "tests/navigation-motion-fixtures.test.cjs",
+      "language": "javascript",
+      "purpose": "Flight/motion endpoints, displayed camera observations, interrupted fixtures and scroll restoration",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "pr-targeted-on-owned-change",
+        "staging-source-regression",
+        "production-source-regression"
+      ],
+      "existing_execution": [
+        "full-release-source-glob"
+      ],
+      "disposition": "retain-active-permanent",
+      "surviving_route": "explicit test manifest + targeted selector (proposed)",
+      "declared_case_count": 8,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "8a81ca0b37b3f0beaf1ca27c2123e62c9cbe4116738634b4f83fd08afa13012d",
+      "local_code_dependencies": [
+        "../tools/quality/navigation.cjs"
+      ],
+      "evidence_cases": [
+        "declared Off uses the public button from On or device hold and records exact Off rather than accepting a hold",
+        "already Off needs no public action and still records the exact declared state",
+        "declared On resumes Off once or validated hold twice, keeping the reading position and actual live evidence"
+      ]
+    },
+    {
+      "path": "tests/navigation.test.cjs",
+      "language": "javascript",
+      "purpose": "Current runtime camera-before-mount, queued retarget/cancellation, instant paths and no diagnostic task clock",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "pr-targeted-on-owned-change",
+        "staging-source-regression",
+        "production-source-regression"
+      ],
+      "existing_execution": [
+        "full-release-source-glob",
+        ".github/workflows/site-writing-probe.yml"
+      ],
+      "disposition": "retain-active-permanent",
+      "surviving_route": "explicit test manifest + targeted selector (proposed)",
+      "declared_case_count": 8,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "98562db7894cc04e4bb288722e98b0badfbb447d53e3a0df0179ff4091a29160",
+      "local_code_dependencies": [],
+      "evidence_cases": [
+        "animated Color yields the completed camera paint before native mount, with no second animation clock",
+        "retarget cancellation prevents even an already captured stale task from mounting old content",
+        "Off/reduced/hidden/print completion flushes pending mount before the navigation promise resolves"
+      ]
+    },
+    {
+      "path": "tests/preview-smoke.test.cjs",
+      "language": "javascript",
+      "purpose": "Actual PR smoke helper identity, redirects, route fingerprints, exact visible names and Color route detail",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "pr-targeted-on-owned-change",
+        "staging-source-regression",
+        "production-source-regression"
+      ],
+      "existing_execution": [
+        "full-release-source-glob",
+        ".github/workflows/site-color-review.yml"
+      ],
+      "disposition": "retain-active-permanent",
+      "surviving_route": "explicit test manifest + targeted selector (proposed)",
+      "declared_case_count": 8,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "537f239275c3747b4e94b83ef093ba289502078774ff57cfa52a4d124117fe29",
+      "local_code_dependencies": [
+        "../tools/quality/local-browser.cjs",
+        "../tools/quality/flight-detail.cjs"
+      ],
+      "evidence_cases": [
+        "preview detail observer rejects the old flight downgrade and retains adaptive/mobile detail",
+        "Cloudflare canonical routes map extensionless HTML, root, index and nested index aliases",
+        "canonical HTML redirects are validated without reading a body or counting verified bytes"
+      ]
+    },
+    {
+      "path": "tests/preview.test.cjs",
+      "language": "javascript",
+      "purpose": "Fixed/interactive/offline renditions preserve authored content, link/query/fragment destinations and executable sources",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "pr-targeted-on-owned-change",
+        "staging-source-regression",
+        "production-source-regression"
+      ],
+      "existing_execution": [
+        "full-release-source-glob"
+      ],
+      "disposition": "retain-active-permanent",
+      "surviving_route": "explicit test manifest + targeted selector (proposed)",
+      "declared_case_count": 5,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "09a5743cc52ec6eb0c9921a8697126a93c540c6aae40f16b0f42b0c83e1b92a0",
+      "local_code_dependencies": [
+        "../tools/build_site_previews.cjs"
+      ],
+      "evidence_cases": [
+        "ten fixed-theme copies preserve actual main content, CSS and external source links",
+        "every local page/gallery link and fragment resolves within the complete handoff",
+        "fixed and interactive rewriters retain query/hash intent, including the offline bundle's copies"
+      ]
+    },
+    {
+      "path": "tests/quality-sources.test.cjs",
+      "language": "javascript",
+      "purpose": "Current Color authored runtime dependency graph exactly matches lint/security scope; dated path is still active code",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "pr-targeted-on-owned-change",
+        "staging-source-regression",
+        "production-source-regression"
+      ],
+      "existing_execution": [
+        "full-release-source-glob"
+      ],
+      "disposition": "retain-active-permanent",
+      "surviving_route": "explicit test manifest + targeted selector (proposed)",
+      "declared_case_count": 3,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "c251752151d00649bdbc7907d7e3f3cb1e12e15accf9617d4457ab880d375458",
+      "local_code_dependencies": [
+        "../tools/quality/scanners.cjs"
+      ],
+      "evidence_cases": [
+        "offline security selects all tracked and present authored modules, excluding diagnostic harnesses",
+        "the authored selection matches every offline dependency of the active exporter and Color builder",
+        "both browser runtime security rules cover all three authored modules without directory-wide harness policy"
+      ]
+    },
+    {
+      "path": "tests/quality.test.cjs",
+      "language": "javascript",
+      "purpose": "Release aggregate, required evidence/counts/source identity, budgets, Lighthouse medians, motion/raw samples and hosted failure rejection",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "pr-targeted-on-owned-change",
+        "staging-source-regression",
+        "production-source-regression"
+      ],
+      "existing_execution": [
+        "full-release-source-glob"
+      ],
+      "disposition": "retain-active-permanent",
+      "surviving_route": "explicit test manifest + targeted selector (proposed)",
+      "declared_case_count": 16,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "a38e1e612520595ef29c170c25c0d72432504c11e1d8e7585c3e0543b3f5be83",
+      "local_code_dependencies": [
+        "../tools/quality/validate.cjs",
+        "../tools/quality/budgets.json",
+        "../tools/quality/scroll-browser.cjs",
+        "../tools/quality/navigation.cjs",
+        "../tools/quality/analytics-browser.cjs",
+        "../tools/quality/workflow-artifacts.cjs",
+        "../tools/quality/fallback-url.cjs",
+        "../tools/quality/geometry.cjs",
+        "../tools/quality/motion.cjs",
+        "../tools/quality/promotion.cjs",
+        "../tools/quality/hosted.cjs",
+        "../tools/quality/artifact.cjs",
+        "../tools/check_site_contrast.cjs"
+      ],
+      "evidence_cases": [
+        "complete source-bound PR evidence passes; missing and controlled failures fail closed",
+        "Lighthouse uses all three metric medians and rejects missing/mislabeled runs",
+        "motion requires positive paints, every profile, real raw samples and settled zero work"
+      ]
+    },
+    {
+      "path": "tests/renderer.test.cjs",
+      "language": "javascript",
+      "purpose": "Current renderer exact palettes, draw-state batching, insignificant pruning, culling/brain normals and Object.hasOwn fallback",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "pr-targeted-on-owned-change",
+        "staging-source-regression",
+        "production-source-regression"
+      ],
+      "existing_execution": [
+        "full-release-source-glob",
+        ".github/workflows/site-cause-fix-probe.yml"
+      ],
+      "disposition": "retain-active-permanent",
+      "surviving_route": "explicit test manifest + targeted selector (proposed)",
+      "declared_case_count": 7,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "fc07203422d3c6a56e82509ea731fa953b0b87e9ede6dc3e346f1828e1b5c9f5",
+      "local_code_dependencies": [
+        "../site/engine/renderer.cjs",
+        "../site/scenes/world.cjs",
+        "../site/engine/math.cjs",
+        "../tools/site/build.cjs"
+      ],
+      "evidence_cases": [
+        "the RGB-keyed palette matches every original face color on all routes, details and themes",
+        "filled facets avoid unused native stroke setters while every visible contour retains its effective style",
+        "batching keeps depth order and visible outlines, reducing tiny mesh strokes"
+      ]
+    },
+    {
+      "path": "tests/review-flow.test.cjs",
+      "language": "javascript",
+      "purpose": "Current PR preview/stage owner authorization, clean source/head leases, rendition/HTTP gate identity and retained recovery",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "pr-targeted-on-owned-change",
+        "staging-source-regression",
+        "production-source-regression"
+      ],
+      "existing_execution": [
+        "full-release-source-glob",
+        ".github/workflows/site-color-review.yml"
+      ],
+      "disposition": "retain-active-permanent",
+      "surviving_route": "explicit test manifest + targeted selector (proposed)",
+      "declared_case_count": 16,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "72a0e60b9f63354d1f05ed4bf9b735c94b97edc71f907c5d2c58ed3e035dd961",
+      "local_code_dependencies": [
+        "../tools/staging/review-flow.cjs",
+        "../tools/quality/artifact.cjs",
+        "../tools/staging/package.cjs"
+      ],
+      "evidence_cases": [
+        "preview tracks the latest open same-repository PR head; stale runs and forks fail",
+        "explicit staging resolves a PR source while requiring an unchanged protected main controller",
+        "only an exact new owner /stage comment on the resolved PR may stage from protected unchanged main"
+      ]
+    },
+    {
+      "path": "tests/ribbons.test.cjs",
+      "language": "javascript",
+      "purpose": "Current authored Color ribbon geometry, continuous gradients, signal motion, renderer/export and clock identity",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "pr-targeted-on-owned-change",
+        "staging-source-regression",
+        "production-source-regression"
+      ],
+      "existing_execution": [
+        "full-release-source-glob"
+      ],
+      "disposition": "retain-active-permanent",
+      "surviving_route": "explicit test manifest + targeted selector (proposed)",
+      "declared_case_count": 8,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "14faad6594ab053699c353fbf3815ca0d511c636967023dde1fbd9fe962b904a",
+      "local_code_dependencies": [
+        "../site/engine/math.cjs",
+        "../review/site-scroll-sync-20261004/RIBBONS-PROTOTYPE.cjs",
+        "../review/site-scroll-sync-20261004/export.cjs"
+      ],
+      "evidence_cases": [
+        "ribbon widths halve the previous half-width version across rooms and phases",
+        "narrowed ribbon surfaces remain finite and orthogonal across the complete five-room journey",
+        "axial twist, position, pulse and velocity close at 24 seconds without drift"
+      ]
+    },
+    {
+      "path": "tests/scroll-sync.test.cjs",
+      "language": "javascript",
+      "purpose": "Runtime semantic stops cover real content/footer, final native gestures and anchored reflow without early completion",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "pr-targeted-on-owned-change",
+        "staging-source-regression",
+        "production-source-regression"
+      ],
+      "existing_execution": [
+        "full-release-source-glob"
+      ],
+      "disposition": "retain-active-permanent",
+      "surviving_route": "explicit test manifest + targeted selector (proposed)",
+      "declared_case_count": 3,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "7aeb090b4fd38fabb9f66469de2f3e8ef517c6e188acefa813126d53322245b7",
+      "local_code_dependencies": [
+        "../site/engine/math.cjs"
+      ],
+      "evidence_cases": [
+        "semantic stops span actual content and footer growth; repeated closing poses cannot finish early",
+        "Writing endpoints and nonzero final gestures survive long, short and anchored content reflow",
+        "route position restoration is immediate and retains CSS preferences even after a native failure"
+      ]
+    },
+    {
+      "path": "tests/site-engine.test.cjs",
+      "language": "javascript",
+      "purpose": "Authored/incremental generation dependency closure, active source migration invariants, data security, retained snapshots and fail-closed classification",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "pr-targeted-on-owned-change",
+        "staging-source-regression",
+        "production-source-regression"
+      ],
+      "existing_execution": [
+        "full-release-source-glob"
+      ],
+      "disposition": "retain-active-permanent",
+      "surviving_route": "explicit test manifest + targeted selector (proposed)",
+      "declared_case_count": 11,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "0e7b244ed3404a9f83d14eb2c3fd802014efac3d78df98068978714fd8b5b6be",
+      "local_code_dependencies": [
+        "../tools/site/build.cjs",
+        "../tools/quality/artifact.cjs",
+        "../tools/site/snapshot.cjs",
+        "../tools/check_site_seo.cjs",
+        "../tools/site/retain.cjs",
+        "../tools/staging/state.cjs",
+        "../tools/site/evidence-policy.cjs",
+        "../tools/quality/triage-engine-checksums.cjs"
+      ],
+      "evidence_cases": [
+        "content links admit a plain public mailto without admitting executable schemes or mail headers",
+        "source migration preserves publication HTML and thematic geometry when shared vocabulary expands",
+        "a Home block changes only Home; unchanged assets/routes retain bytes and full equals incremental"
+      ]
+    },
+    {
+      "path": "tests/site-face-preparation.test.cjs",
+      "language": "javascript",
+      "purpose": "Current scalar shade/Newell geometry preserves every authored face and near-degenerate fallback",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "pr-targeted-on-owned-change",
+        "staging-source-regression",
+        "production-source-regression"
+      ],
+      "existing_execution": [
+        "full-release-source-glob",
+        ".github/workflows/site-writing-probe.yml"
+      ],
+      "disposition": "retain-active-permanent",
+      "surviving_route": "explicit test manifest + targeted selector (proposed)",
+      "declared_case_count": 2,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "01103b2bb482bfb239e2b36787aa34b58ac5a4134d9dca523efd941e6e367062",
+      "local_code_dependencies": [
+        "../site/engine/math.cjs",
+        "../tools/site/build.cjs",
+        "../site/scenes/world.cjs"
+      ],
+      "evidence_cases": [
+        "scalar preparation preserves original array-formula shading, paper tint and Newell planes on every authored face",
+        "scalar normal retains collinear/zero and near-threshold fallback, signed coordinates and concave Newell planes"
+      ]
+    },
+    {
+      "path": "tests/space.test.cjs",
+      "language": "javascript",
+      "purpose": "Current scene/runtime camera, native scrolling, route flights, preparation, CSS/failure, cadence/quality and bounded atmosphere invariants",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "pr-targeted-on-owned-change",
+        "staging-source-regression",
+        "production-source-regression"
+      ],
+      "existing_execution": [
+        "full-release-source-glob",
+        ".github/workflows/site-writing-probe.yml"
+      ],
+      "disposition": "retain-active-permanent",
+      "surviving_route": "explicit test manifest + targeted selector (proposed)",
+      "declared_case_count": 38,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "094a8f43872601604e8b9263f7a07002bd2ff6826835b52ec07bcf8c7f649063",
+      "local_code_dependencies": [
+        "../review/sol-visual-v11-20261003/design-settings.json"
+      ],
+      "evidence_cases": [
+        "native-scroll camera is reversible while the bounded ambient loop continues at idle",
+        "continuous gestures move immediately; pointer events never influence the camera",
+        "Off freezes the exact displayed camera and phase through theme, resize, layout, hidden and print"
+      ]
+    },
+    {
+      "path": "tests/staging-reporting.test.cjs",
+      "language": "javascript",
+      "purpose": "Reviewable candidate after full-gate failure, exact smoke/source/provider identity and stale-main rejection",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "pr-targeted-on-owned-change",
+        "staging-source-regression",
+        "production-source-regression"
+      ],
+      "existing_execution": [
+        "full-release-source-glob"
+      ],
+      "disposition": "retain-active-permanent",
+      "surviving_route": "explicit test manifest + targeted selector (proposed)",
+      "declared_case_count": 2,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "ec6c048ebf0cbce41eaed07f6f03ba1eda59dd635173d9332ff83c9e7ac80136",
+      "local_code_dependencies": [
+        "../tools/quality/artifact.cjs",
+        "../tools/staging/package.cjs",
+        "../tools/staging/trust.cjs"
+      ],
+      "evidence_cases": [
+        "a smoke-verified candidate remains reviewable when the full hosted gate fails or is missing",
+        "candidate recording rejects mismatched smoke/source/provider identities and stale main"
+      ]
+    },
+    {
+      "path": "tests/staging-trust.test.cjs",
+      "language": "javascript",
+      "purpose": "Trusted same-source workflow/PR-artifact lineage and authorization classification",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "pr-targeted-on-owned-change",
+        "staging-source-regression",
+        "production-source-regression"
+      ],
+      "existing_execution": [
+        "full-release-source-glob"
+      ],
+      "disposition": "retain-active-permanent",
+      "surviving_route": "explicit test manifest + targeted selector (proposed)",
+      "declared_case_count": 3,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "5c5902858f54fb8ff173d879a0485eac0d5ffe66af58f6bf8d779b55e64f9249",
+      "local_code_dependencies": [
+        "../tools/staging/trust.cjs"
+      ],
+      "evidence_cases": [
+        "only the approved exact protected-main manual caller can stage",
+        "source and recovery runs reject forks, another workflow, branch, commit or attempt",
+        "immutable source/recovery artifacts require exact run, attempt, source and uploaded digest"
+      ]
+    },
+    {
+      "path": "tests/staging.test.cjs",
+      "language": "javascript",
+      "purpose": "Exact hosted package/headers/routing/rollback, source leases, retained inputs and browser-visible recovery contract",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "pr-targeted-on-owned-change",
+        "staging-source-regression",
+        "production-source-regression"
+      ],
+      "existing_execution": [
+        "full-release-source-glob"
+      ],
+      "disposition": "retain-active-permanent",
+      "surviving_route": "explicit test manifest + targeted selector (proposed)",
+      "declared_case_count": 9,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "ecd099e3c7b1fa92c55c89cfb883f80120661eb7f55a72f3d61e01ad2d730bc7",
+      "local_code_dependencies": [
+        "../tools/quality/artifact.cjs",
+        "../tools/staging/package.cjs",
+        "../tools/staging/hosted.cjs",
+        "../tools/staging/state.cjs"
+      ],
+      "evidence_cases": [
+        "staging adds only host policy, real 404 and revision; every tested public byte stays exact",
+        "missing/failed/mismatched/stale gates and extra source inputs fail closed",
+        "tampering with HTML, host policy or package metadata is rejected without replacing files"
+      ]
+    },
+    {
+      "path": "tests/test_issue31_acceptance.py",
+      "language": "python",
+      "purpose": "Closed #31 task snapshots tied to immutable historical source and accepted issue policy; permanent controls live separately",
+      "owner": ".github/ACCEPTANCE.md",
+      "profiles": [
+        "owning-issue-policy-only"
+      ],
+      "existing_execution": [
+        "owning-issue-policy-only"
+      ],
+      "disposition": "preserve-source-pinned-task-snapshot; excluded-permanent-discovery",
+      "surviving_route": ".github/acceptance/issue-31.json",
+      "declared_case_count": 10,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "9399afd265d4ed769a56e20588eeb0bfc498cda3dc678d7c47f351f596cff3f2",
+      "local_code_dependencies": [],
+      "evidence_cases": [
+        "test_upstream_pin_and_component_notices",
+        "test_complete_catalog_and_fresh_generated_views",
+        "test_compact_agent_route"
+      ]
+    },
+    {
+      "path": "tests/test_issue33_acceptance.py",
+      "language": "python",
+      "purpose": "Closed #33 no-public-change/history/locator snapshots tied to accepted source; permanent root controls live separately",
+      "owner": ".github/ACCEPTANCE.md",
+      "profiles": [
+        "owning-issue-policy-only"
+      ],
+      "existing_execution": [
+        "owning-issue-policy-only"
+      ],
+      "disposition": "preserve-source-pinned-task-snapshot; excluded-permanent-discovery",
+      "surviving_route": ".github/acceptance/issue-33.json",
+      "declared_case_count": 6,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "629f67a932416faa3e4e0f0090200ac3bfc482ed426a1385114d1d10533a122c",
+      "local_code_dependencies": [],
+      "evidence_cases": [
+        "test_existing_review_evidence_is_unchanged_at_accepted_base",
+        "test_site_publications_and_runtime_bytes_are_unchanged",
+        "test_changed_or_deleted_protected_bytes_fail_against_fixed_identity"
+      ]
+    },
+    {
+      "path": "tests/test_issue_acceptance.py",
+      "language": "python",
+      "purpose": "Permanent fail-closed AC/policy selection runner, exact source accounting, module fixtures and explicit manual gates",
+      "owner": ".github/ACCEPTANCE.md",
+      "profiles": [
+        "pr-targeted-on-owned-change",
+        "staging-source-regression",
+        "production-source-regression"
+      ],
+      "existing_execution": [
+        "full-release-permanent-python"
+      ],
+      "disposition": "retain-active-permanent",
+      "surviving_route": "explicit test manifest + targeted selector (proposed)",
+      "declared_case_count": 29,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "63239ef57bd90d27fca4dde944ed267f5f6522dd0bfe13a6a6a830307b2f01fc",
+      "local_code_dependencies": [],
+      "evidence_cases": [
+        "test_ok",
+        "test_failed",
+        "test_skipped"
+      ]
+    },
+    {
+      "path": "tests/test_offline_export_security.py",
+      "language": "python",
+      "purpose": "Current active offline Color exporter parser rejects injected active elements/URLs while allowing inert citation/data assets",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "pr-targeted-on-owned-change",
+        "staging-source-regression",
+        "production-source-regression"
+      ],
+      "existing_execution": [
+        "full-release-permanent-python"
+      ],
+      "disposition": "retain-active-permanent",
+      "surviving_route": "explicit test manifest + targeted selector (proposed)",
+      "declared_case_count": 3,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "e3703408812856a714f2ba33f81f7c70b1bc941af36461b64d4849d3613a4cda",
+      "local_code_dependencies": [],
+      "evidence_cases": [
+        "test_generated_metadata_is_data_and_executable_scripts_are_extracted",
+        "test_encoded_executable_urls_and_unexpected_active_content_are_rejected",
+        "test_citations_and_embedded_images_do_not_expand_executable_trust"
+      ]
+    },
+    {
+      "path": "tests/test_repository_intelligence.py",
+      "language": "python",
+      "purpose": "Permanent complete RI inventory, upstream pin/source identity, root/memory, safe lookup/routes and generated view contracts",
+      "owner": ".github/REPOSITORY-INTELLIGENCE.md",
+      "profiles": [
+        "pr-targeted-on-owned-change",
+        "staging-source-regression",
+        "production-source-regression"
+      ],
+      "existing_execution": [
+        "full-release-permanent-python"
+      ],
+      "disposition": "retain-active-permanent",
+      "surviving_route": "explicit test manifest + targeted selector (proposed)",
+      "declared_case_count": 28,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "f414bd926c9fa822e7f33fa1e2509b1517e60ef3a7a0cc42fefb13110833feef",
+      "local_code_dependencies": [],
+      "evidence_cases": [
+        "test_deterministic_complete_inventory_and_scopes",
+        "test_add_modify_and_remove_each_invalidate_context",
+        "test_context_is_portable_between_checkout_and_worktree"
+      ]
+    },
+    {
+      "path": "tests/test_repository_test_selection.py",
+      "language": "python",
+      "purpose": "Permanent discovery includes current/future generic modules and excludes numeric task snapshots without weakening runner accounting",
+      "owner": ".github/REPOSITORY-INTELLIGENCE.md",
+      "profiles": [
+        "pr-targeted-on-owned-change",
+        "staging-source-regression",
+        "production-source-regression"
+      ],
+      "existing_execution": [
+        "full-release-permanent-python"
+      ],
+      "disposition": "retain-active-permanent",
+      "surviving_route": "explicit test manifest + targeted selector (proposed)",
+      "declared_case_count": 9,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "5e1a9b5979ba39d01918e09c86860ee974d368ca96966e0935c54d44e73ddf14",
+      "local_code_dependencies": [],
+      "evidence_cases": [
+        "test_actual_permanent_modules_and_explicit_task_policy_methods_are_available",
+        "test_future_arbitrary_modules_are_run_and_exact_numeric_task_modules_are_not_imported",
+        "test_case"
+      ]
+    },
+    {
+      "path": "tests/test_ri_ci.py",
+      "language": "python",
+      "purpose": "Permanent actual workflow-command/test/control coupling, source drift, event/job reachability and no generated hash cycle",
+      "owner": ".github/REPOSITORY-INTELLIGENCE.md",
+      "profiles": [
+        "pr-targeted-on-owned-change",
+        "staging-source-regression",
+        "production-source-regression"
+      ],
+      "existing_execution": [
+        "full-release-permanent-python"
+      ],
+      "disposition": "retain-active-permanent",
+      "surviving_route": "explicit test manifest + targeted selector (proposed)",
+      "declared_case_count": 18,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "1147a7178652e2de54b0922af728cbc495ea1fa5c2edab9d3a0b3c3e1851fece",
+      "local_code_dependencies": [],
+      "evidence_cases": [
+        "test_pass",
+        "test_current_repository_map_and_ci_routes",
+        "test_verified_definition_and_source_identity_are_deterministic"
+      ]
+    },
+    {
+      "path": "tests/test_root_layout.py",
+      "language": "python",
+      "purpose": "Permanent concise bootstrap/root/archive provenance, guide ownership and link integrity without freezing future public changes",
+      "owner": ".github/REPOSITORY-INTELLIGENCE.md",
+      "profiles": [
+        "pr-targeted-on-owned-change",
+        "staging-source-regression",
+        "production-source-regression"
+      ],
+      "existing_execution": [
+        "full-release-permanent-python"
+      ],
+      "disposition": "retain-active-permanent",
+      "surviving_route": "explicit test manifest + targeted selector (proposed)",
+      "declared_case_count": 15,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "abfd110c9072996eba575ca2beefa5e1f56db0732ea8ab1d4ec3976511244487",
+      "local_code_dependencies": [],
+      "evidence_cases": [
+        "test_bootstrap_is_bounded_and_routes_to_canonical_entries",
+        "test_bootstrap_oversize_and_missing_authority_routes_fail",
+        "test_complete_current_root_and_dispositions"
+      ]
+    },
+    {
+      "path": "tests/theme.test.cjs",
+      "language": "javascript",
+      "purpose": "Visitor-local Auto boundaries, overrides, storage/tab events, Escape and timezone independence",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "pr-smoke",
+        "pr-targeted-on-owned-change",
+        "staging-source-regression",
+        "production-source-regression"
+      ],
+      "existing_execution": [
+        "full-release-source-glob",
+        "pr-basic-focused"
+      ],
+      "disposition": "retain-active-permanent",
+      "surviving_route": "tools/quality/local.cjs",
+      "declared_case_count": 7,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "36f9a7b6a8501807c975abd8ad33d4ca5ea19f3deaded317beefb4560b657a2c",
+      "local_code_dependencies": [],
+      "evidence_cases": [
+        "Auto uses visitor-local hours and applies before body/control exists",
+        "Auto schedules both next boundaries, including tomorrow morning",
+        "manual overrides survive clock changes, persist, and Auto resets them"
+      ]
+    },
+    {
+      "path": "tests/writing-diagnosis.test.cjs",
+      "language": "javascript",
+      "purpose": "Dated balanced paired cold boot/flight matrix, raw preparation/tail accounting, honest failures and sample counts",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "explicit-diagnostic",
+        "pr-targeted-on-helper-change"
+      ],
+      "existing_execution": [
+        "full-release-source-glob",
+        ".github/workflows/site-writing-probe.yml"
+      ],
+      "disposition": "retain-diagnostic; remove-from-routine-release-glob",
+      "surviving_route": ".github/workflows/site-writing-probe.yml",
+      "declared_case_count": 11,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "0e3a98cf941e0bb90784cba46ede0667711df9134aa74bbb4f7abb2cb153be27",
+      "local_code_dependencies": [
+        "../tools/quality/writing-diagnosis.cjs"
+      ],
+      "evidence_cases": [
+        "default screen is bounded and keeps 2×2, base and edge controls",
+        "repeat counts are configurable but never become an unbounded matrix",
+        "missing optional renditions are recorded as deferred and are never substituted"
+      ]
+    },
+    {
+      "path": "tests/writing-geometry.test.cjs",
+      "language": "javascript",
+      "purpose": "Private layout equality audit of row/filter/link/ink/waypoint positions and native range without masking mismatch",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "explicit-diagnostic",
+        "pr-targeted-on-helper-change"
+      ],
+      "existing_execution": [
+        "full-release-source-glob",
+        ".github/workflows/site-writing-probe.yml"
+      ],
+      "disposition": "retain-diagnostic; remove-from-routine-release-glob",
+      "surviving_route": ".github/workflows/site-writing-probe.yml",
+      "declared_case_count": 6,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "95ca4d1d81f81fb9ece7cb12c4cdd9848a8441ff35c939c40cf08cc43f67ce4a",
+      "local_code_dependencies": [
+        "../tools/quality/writing-geometry.cjs"
+      ],
+      "evidence_cases": [
+        "bounded geometry profiles cover both sides of the actual mobile breakpoint and real filter dimensions",
+        "independent archive function audit detects wrong row visibility even if both artifacts agree",
+        "empty state, Reset URL values and frozen diagnostic height are independently rejected"
+      ]
+    },
+    {
+      "path": "tests/writing-layout.test.cjs",
+      "language": "javascript",
+      "purpose": "Private geometry calibration/installers preserve text/links and independently retain intervention/audit failures",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "explicit-diagnostic",
+        "pr-targeted-on-helper-change"
+      ],
+      "existing_execution": [
+        "full-release-source-glob",
+        ".github/workflows/site-writing-probe.yml"
+      ],
+      "disposition": "retain-diagnostic; remove-from-routine-release-glob",
+      "surviving_route": ".github/workflows/site-writing-probe.yml",
+      "declared_case_count": 5,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "8ef8f4b10e9c8c0bd0b9b9ee2328a15b52e54b4810bde35e7635ada1bc783789",
+      "local_code_dependencies": [
+        "../tools/quality/writing-layout.cjs"
+      ],
+      "evidence_cases": [
+        "separate calibration retains full unfiltered archive and native geometry before timed samples",
+        "every apply hook is serializable and performs only matched geometry writes, retaining row text and links",
+        "range/row/waypoint differences are retained explicitly and invalidate matched comparison"
+      ]
+    },
+    {
+      "path": "tests/writing-localization.test.cjs",
+      "language": "javascript",
+      "purpose": "Dated balanced mobile localization/control identities, separate stage/model timing and raw partial failure evidence",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "explicit-diagnostic",
+        "pr-targeted-on-helper-change"
+      ],
+      "existing_execution": [
+        "full-release-source-glob",
+        ".github/workflows/site-writing-probe.yml"
+      ],
+      "disposition": "retain-diagnostic; remove-from-routine-release-glob",
+      "surviving_route": ".github/workflows/site-writing-probe.yml",
+      "declared_case_count": 8,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "31d1209948a1667bc1e2041f2a140276a17d3d96ea01fa8fe06c86fd0e4430e1",
+      "local_code_dependencies": [
+        "../tools/quality/writing-localization.cjs"
+      ],
+      "evidence_cases": [
+        "localization is exactly two balanced mobile rounds with separate layout intervention identities",
+        "every artifact shares exact source tree with canonical Color and has explicit private lineage",
+        "layout experiments identify derived artifact, exact installer, calibration and canonical parent"
+      ]
+    },
+    {
+      "path": "tests/writing-models.test.cjs",
+      "language": "javascript",
+      "purpose": "Private symbol construction counterfactuals preserve exact surviving geometry and reject source-anchor drift",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "explicit-diagnostic",
+        "pr-targeted-on-helper-change"
+      ],
+      "existing_execution": [
+        "full-release-source-glob",
+        ".github/workflows/site-writing-probe.yml"
+      ],
+      "disposition": "retain-diagnostic; remove-from-routine-release-glob",
+      "surviving_route": ".github/workflows/site-writing-probe.yml",
+      "declared_case_count": 3,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "70f94664c5993a1fc081117b81b9fa97df5dd2444358609d3b6d6a89aa5dd689",
+      "local_code_dependencies": [
+        "../tools/quality/writing-models.cjs"
+      ],
+      "evidence_cases": [
+        "model profiling preserves all exact world/projection outputs and reports disjoint per-symbol construction",
+        "construction omissions retain exact remaining geometry and valid face/line boundaries; other routes stay unchanged",
+        "omissions apply with profiling disabled and patch identity rejects absent/repeated anchors"
+      ]
+    },
+    {
+      "path": "tests/writing-variants.test.cjs",
+      "language": "javascript",
+      "purpose": "Private ablation derivation retains exact normal parent, descriptor/patch identity and cannot satisfy a release gate",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "profiles": [
+        "explicit-diagnostic",
+        "pr-targeted-on-helper-change"
+      ],
+      "existing_execution": [
+        "full-release-source-glob",
+        ".github/workflows/site-writing-probe.yml"
+      ],
+      "disposition": "retain-diagnostic; remove-from-routine-release-glob",
+      "surviving_route": ".github/workflows/site-writing-probe.yml",
+      "declared_case_count": 4,
+      "case_count_note": "Static declarations; parameterized subcases/future runner accounting are not counted as independent executed tests.",
+      "source_sha256": "5641751b56cb48468f91723b6fc4040cdd3ab40715ef1fae35e8a20e00ff1d0d",
+      "local_code_dependencies": [
+        "../tools/quality/writing-variants.cjs",
+        "../tools/quality/artifact.cjs",
+        "../tools/site/snapshot.cjs",
+        "../tools/staging/color.cjs"
+      ],
+      "evidence_cases": [
+        "private Writing packages retain source identities and verify fresh immutable runtime/snapshots",
+        "family intervention preserves construction and all Research projection while omitting only the selected Writing family",
+        "no-canvas retains actual diagnostic frames/geometry/effects; prewarm explicitly prepares one cached Writing model"
+      ]
+    }
+  ],
+  "diagnostic_and_boundary_tooling": [
+    {
+      "path": "tools/quality/browser-gate-diagnostics.cjs",
+      "purpose": "Bounded historical causal screen driver",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "profiles": [
+        "explicit-diagnostic-only"
+      ],
+      "disposition": "retain-on-demand; no-automatic-PR/stage/prod execution",
+      "surviving_route": [
+        ".github/workflows/site-browser-gate-probe.yml"
+      ],
+      "called_by": [
+        "tools/quality/cause-probe.cjs"
+      ]
+    },
+    {
+      "path": "tools/quality/browser-gate-trace.cjs",
+      "purpose": "Opt-in actual scheduler/native frame instrumentation; active functional trace option uses it",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "profiles": [
+        "explicit-diagnostic-only"
+      ],
+      "disposition": "retain-on-demand; no-automatic-PR/stage/prod execution",
+      "surviving_route": [
+        "tools/quality/browser-gate-diagnostics.cjs",
+        "tools/quality/cause-probe.cjs",
+        "tools/quality/functional.cjs"
+      ],
+      "called_by": [
+        "tools/quality/browser-gate-diagnostics.cjs",
+        "tools/quality/cause-probe.cjs",
+        "tools/quality/functional.cjs"
+      ]
+    },
+    {
+      "path": "tools/quality/browser-lifecycle.cjs",
+      "purpose": "Opt-in native lifecycle evidence; active functional failed-row option uses it",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "profiles": [
+        "explicit-diagnostic-only"
+      ],
+      "disposition": "retain-on-demand; no-automatic-PR/stage/prod execution",
+      "surviving_route": [
+        "tools/quality/functional.cjs",
+        "tools/quality/gtk-native-probe.cjs",
+        "tools/quality/gtk-target-probe.cjs"
+      ],
+      "called_by": [
+        "tools/quality/functional.cjs",
+        "tools/quality/gtk-native-probe.cjs",
+        "tools/quality/gtk-target-probe.cjs"
+      ]
+    },
+    {
+      "path": "tools/quality/cause-probe.cjs",
+      "purpose": "Cold cause attribution and honest profile/raw evidence collection",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "profiles": [
+        "explicit-diagnostic-only"
+      ],
+      "disposition": "retain-on-demand; no-automatic-PR/stage/prod execution",
+      "surviving_route": [
+        ".github/workflows/site-cause-probe.yml"
+      ],
+      "called_by": [
+        "tools/quality/cold-native-probe.cjs",
+        "tools/quality/research-pair-probe.cjs"
+      ]
+    },
+    {
+      "path": "tools/quality/cold-native-probe.cjs",
+      "purpose": "One fresh native browser first-process private intervention",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "profiles": [
+        "explicit-diagnostic-only"
+      ],
+      "disposition": "retain-on-demand; no-automatic-PR/stage/prod execution",
+      "surviving_route": [
+        ".github/workflows/site-cause-fix-probe.yml"
+      ],
+      "called_by": []
+    },
+    {
+      "path": "tools/quality/display-probe.cjs",
+      "purpose": "Read-only dated Xvfb fd1/fd3/wrapper startup comparison",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "profiles": [
+        "explicit-diagnostic-only"
+      ],
+      "disposition": "retain-on-demand; no-automatic-PR/stage/prod execution",
+      "surviving_route": [
+        "manual exact-source node invocation"
+      ],
+      "called_by": []
+    },
+    {
+      "path": "tools/quality/gtk-native-probe.cjs",
+      "purpose": "Private real WebProcess abort/core debugger stack capture",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "profiles": [
+        "explicit-diagnostic-only"
+      ],
+      "disposition": "retain-on-demand; no-automatic-PR/stage/prod execution",
+      "surviving_route": [
+        ".github/workflows/site-gtk-native-probe.yml"
+      ],
+      "called_by": []
+    },
+    {
+      "path": "tools/quality/gtk-target-probe.cjs",
+      "purpose": "Private target disabled-script startup matrix",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "profiles": [
+        "explicit-diagnostic-only"
+      ],
+      "disposition": "retain-on-demand; no-automatic-PR/stage/prod execution",
+      "surviving_route": [
+        ".github/workflows/site-gtk-target-probe.yml"
+      ],
+      "called_by": [
+        "tools/quality/gtk-native-probe.cjs"
+      ]
+    },
+    {
+      "path": "tools/quality/research-pair-probe.cjs",
+      "purpose": "Balanced normal Research profiling/control comparison",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "profiles": [
+        "explicit-diagnostic-only"
+      ],
+      "disposition": "retain-on-demand; no-automatic-PR/stage/prod execution",
+      "surviving_route": [
+        ".github/workflows/site-cause-fix-probe.yml"
+      ],
+      "called_by": []
+    },
+    {
+      "path": "tools/quality/writing-diagnosis.cjs",
+      "purpose": "Balanced cold Writing paired observation and preparation accounting",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "profiles": [
+        "explicit-diagnostic-only"
+      ],
+      "disposition": "retain-on-demand; no-automatic-PR/stage/prod execution",
+      "surviving_route": [
+        ".github/workflows/site-writing-probe.yml"
+      ],
+      "called_by": [
+        "tools/quality/writing-localization.cjs"
+      ]
+    },
+    {
+      "path": "tools/quality/writing-geometry.cjs",
+      "purpose": "Diagnostic independent layout/ink/source comparator",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "profiles": [
+        "explicit-diagnostic-only"
+      ],
+      "disposition": "retain-on-demand; no-automatic-PR/stage/prod execution",
+      "surviving_route": [
+        ".github/workflows/site-writing-probe.yml"
+      ],
+      "called_by": []
+    },
+    {
+      "path": "tools/quality/writing-layout.cjs",
+      "purpose": "Private layout calibration and interventions",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "profiles": [
+        "explicit-diagnostic-only"
+      ],
+      "disposition": "retain-on-demand; no-automatic-PR/stage/prod execution",
+      "surviving_route": [
+        "tools/quality/writing-diagnosis.cjs",
+        "tools/quality/writing-localization.cjs",
+        "tools/quality/writing-variants.cjs"
+      ],
+      "called_by": [
+        "tools/quality/writing-diagnosis.cjs",
+        "tools/quality/writing-localization.cjs",
+        "tools/quality/writing-variants.cjs"
+      ]
+    },
+    {
+      "path": "tools/quality/writing-localization.cjs",
+      "purpose": "Balanced localization of stage/model/layout preparation",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "profiles": [
+        "explicit-diagnostic-only"
+      ],
+      "disposition": "retain-on-demand; no-automatic-PR/stage/prod execution",
+      "surviving_route": [
+        ".github/workflows/site-writing-probe.yml"
+      ],
+      "called_by": []
+    },
+    {
+      "path": "tools/quality/writing-models.cjs",
+      "purpose": "Private symbol construction/profiling counterfactuals",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "profiles": [
+        "explicit-diagnostic-only"
+      ],
+      "disposition": "retain-on-demand; no-automatic-PR/stage/prod execution",
+      "surviving_route": [
+        "tools/quality/writing-variants.cjs"
+      ],
+      "called_by": [
+        "tools/quality/writing-variants.cjs"
+      ]
+    },
+    {
+      "path": "tools/quality/writing-probe.cjs",
+      "purpose": "Original PR23-base/current-base/Color cold comparison; fixed base 174bef1f",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "profiles": [
+        "explicit-diagnostic-only"
+      ],
+      "disposition": "retain-on-demand; no-automatic-PR/stage/prod execution",
+      "surviving_route": [
+        ".github/workflows/site-writing-probe.yml"
+      ],
+      "called_by": [
+        "tools/quality/browser-gate-diagnostics.cjs",
+        "tools/quality/cause-probe.cjs",
+        "tools/quality/cold-native-probe.cjs",
+        "tools/quality/research-pair-probe.cjs",
+        "tools/quality/writing-diagnosis.cjs",
+        "tools/quality/writing-geometry.cjs",
+        "tools/quality/writing-localization.cjs"
+      ]
+    },
+    {
+      "path": "tools/quality/writing-variants.cjs",
+      "purpose": "Exact source-pinned private ablation/trace/layout derivation",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "profiles": [
+        "explicit-diagnostic-only"
+      ],
+      "disposition": "retain-on-demand; no-automatic-PR/stage/prod execution",
+      "surviving_route": [
+        ".github/workflows/site-browser-gate-probe.yml",
+        ".github/workflows/site-cause-fix-probe.yml",
+        ".github/workflows/site-cause-probe.yml",
+        ".github/workflows/site-writing-probe.yml"
+      ],
+      "called_by": [
+        "tools/quality/cold-native-probe.cjs"
+      ]
+    },
+    {
+      "path": "tools/quality/native-display.cjs",
+      "purpose": "ACTIVE shared normal functional engine native display launch/startup budget",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "profiles": [
+        "current-targeted",
+        "production"
+      ],
+      "disposition": "retain-active-shared",
+      "surviving_route": [
+        "tools/quality/functional.cjs",
+        "tools/quality/gtk-target-probe.cjs"
+      ],
+      "called_by": [
+        "tools/quality/functional.cjs",
+        "tools/quality/gtk-target-probe.cjs"
+      ]
+    },
+    {
+      "path": "tools/quality/selftest.cjs",
+      "purpose": "ACTIVE scanner positive controls; deliberately detects known fixture issues",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "profiles": [
+        "current-targeted",
+        "production"
+      ],
+      "disposition": "retain-active-shared",
+      "surviving_route": [
+        ".github/workflows/site-release-checks.yml"
+      ],
+      "called_by": []
+    },
+    {
+      "path": "tools/staging/selftest.cjs",
+      "purpose": "Current synthetic loopback Pages header/route/browser fixture contract",
+      "owner": "guides/SITE-STAGING.md",
+      "profiles": [
+        "pr-targeted-hosting-change",
+        "production-source-regression"
+      ],
+      "disposition": "retain-current; avoid redundant synthetic browser run when hosting source unchanged",
+      "surviving_route": "explicit hosting targeted selftest"
+    },
+    {
+      "path": "review/site-scroll-sync-20261004/export.cjs",
+      "purpose": "Still-current executable authored Color rendition/export or security owner despite dated review path",
+      "owner": "site/README.md",
+      "profiles": [
+        "pr-targeted-hosting-change",
+        "production-source-regression"
+      ],
+      "disposition": "retain-current-executable; do-not-archive-by-date",
+      "surviving_route": "tools/staging/color.cjs and quality-sources.test.cjs"
+    },
+    {
+      "path": "review/site-scroll-sync-20261004/FLIGHT-PROTOTYPE.cjs",
+      "purpose": "Still-current executable authored Color rendition/export or security owner despite dated review path",
+      "owner": "site/README.md",
+      "profiles": [
+        "pr-targeted-hosting-change",
+        "production-source-regression"
+      ],
+      "disposition": "retain-current-executable; do-not-archive-by-date",
+      "surviving_route": "tools/staging/color.cjs and quality-sources.test.cjs"
+    },
+    {
+      "path": "review/site-scroll-sync-20261004/RIBBONS-PROTOTYPE.cjs",
+      "purpose": "Still-current executable authored Color rendition/export or security owner despite dated review path",
+      "owner": "site/README.md",
+      "profiles": [
+        "pr-targeted-hosting-change",
+        "production-source-regression"
+      ],
+      "disposition": "retain-current-executable; do-not-archive-by-date",
+      "surviving_route": "tools/staging/color.cjs and quality-sources.test.cjs"
+    },
+    {
+      "path": "review/site-scroll-sync-20261004/check-offline-security.py",
+      "purpose": "Still-current executable authored Color rendition/export or security owner despite dated review path",
+      "owner": "CONTRIBUTING.md",
+      "profiles": [
+        "pr-targeted-hosting-change",
+        "production-source-regression"
+      ],
+      "disposition": "retain-current-executable; do-not-archive-by-date",
+      "surviving_route": "tools/staging/color.cjs and quality-sources.test.cjs"
+    }
+  ],
+  "duplicate_title_groups": [
+    {
+      "title": "test_ok",
+      "paths": [
+        "tests/test_issue_acceptance.py",
+        "tests/test_issue_acceptance.py"
+      ]
+    },
+    {
+      "title": "test_case",
+      "paths": [
+        "tests/test_repository_test_selection.py",
+        "tests/test_repository_test_selection.py",
+        "tests/test_repository_test_selection.py",
+        "tests/test_repository_test_selection.py",
+        "tests/test_repository_test_selection.py"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "id": "D01",
+      "kind": "execution-duplication",
+      "evidence": [
+        ".github/workflows/site-checks.yml: checks local.cjs --package",
+        ".github/workflows/site-color-review.yml: build local.cjs --package",
+        ".github/acceptance/issue-31.json: node-basic",
+        ".github/acceptance/issue-33.json: node-basic",
+        "tools/quality/local.cjs: check runs generation and theme/archive/flight"
+      ],
+      "recommendation": "PR issue targeted acceptance need not rerun entire Basic source check when AC has narrower deterministic tests; one exact-source Basic check plus candidate packaging from that artifact where rendition permits. Keep distinct PR gate identities."
+    },
+    {
+      "id": "D02",
+      "kind": "duplicate-positive-assertion",
+      "evidence": [
+        "tests/executive.test.cjs: first test calls check_site_seo.verify()",
+        ".github/workflows/site-release-checks.yml: build directly calls node tools/check_site_seo.cjs"
+      ],
+      "recommendation": "Retain both API unit positive check and separate CLI execution until exact-body substitution can prove equivalent integration coverage; no body deduplication."
+    },
+    {
+      "id": "D03",
+      "kind": "out-of-profile-diagnostic-execution",
+      "evidence": [
+        ".github/workflows/site-release-checks.yml: node --test tests/*.test.cjs",
+        "14 diagnostic modules inventoried above"
+      ],
+      "recommendation": "Replace wildcard with explicit complete permanent/diagnostic manifest and fail unknown modules; run private diagnostic modules only when those helpers change or diagnostic replay is explicitly selected."
+    },
+    {
+      "id": "D04",
+      "kind": "independent-useful-case-matrix",
+      "evidence": [
+        "tools/quality/functional.cjs: scenarios per route/theme/viewport/failuremode",
+        ".github/workflows/site-release-checks.yml: split Linux engines/native WebKit",
+        "tools/quality/analytics-browser.cjs: 13 distinct mode/entry tests per engine"
+      ],
+      "recommendation": "Preserve full 390/12/39 production coverage. Define a separate named bounded staging row set; do not relabel reduced smoke reports as full or weakening missing-row aggregate."
+    },
+    {
+      "id": "D05",
+      "kind": "expensive-profile-mismatch",
+      "evidence": [
+        ".github/workflows/site-color-review.yml: release workflow profile staging full true",
+        ".github/workflows/site-release-checks.yml: Linux45m/native40m/performance50m",
+        "tools/quality/motion.cjs: 15 samples + 3 eight-flight/40cycle journeys + 300s soak",
+        "tools/quality/lighthouse.cjs: five routes x 2 profiles x 3 runs"
+      ],
+      "recommendation": "Bound routine staging to risk-selected representative browser/failure cases and a short independently budgeted motion check; reserve native full matrix, 30 Lighthouse runs, 300s soak/capture/export regression for pre-production."
+    },
+    {
+      "id": "D06",
+      "kind": "historical-producer-still-active",
+      "evidence": [
+        "tools/staging/color.cjs",
+        "review/site-scroll-sync-20261004/export.cjs",
+        "tests/quality-sources.test.cjs"
+      ],
+      "recommendation": "Preserve current Flight/Ribbons exporter source and tests; dated path is not proof of obsolescence."
+    },
+    {
+      "id": "D07",
+      "kind": "accepted-task-snapshots",
+      "evidence": [
+        "tools/run_repository_tests.py",
+        "tests/test_repository_test_selection.py",
+        "tests/test_issue31_acceptance.py",
+        "tests/test_issue33_acceptance.py"
+      ],
+      "recommendation": "Retain selected owning-issue historical policies. Do not rerun closed task snapshots as unconditional future regression and do not rewrite accepted original evidence."
+    },
+    {
+      "id": "D08",
+      "kind": "synthetic-versus-real-overlap",
+      "evidence": [
+        "tools/staging/selftest.cjs: synthetic 20browser views/10fallbacks",
+        ".github/workflows/site-release-checks.yml: browser-linux runs synthetic before real functional",
+        "tools/staging/hosted.cjs: real hosted route/header/byte smoke"
+      ],
+      "recommendation": "Run synthetic Pages model only targeted on package/headers/router helper changes or explicit infrastructure verification, because provider verification and ordinary browser regression already run against actual candidate."
+    },
+    {
+      "id": "D09",
+      "kind": "obsolete-routing-branches",
+      "evidence": [
+        "site-browser-gate-probe.yml",
+        "site-cause-fix-probe.yml",
+        "site-gtk-target-probe.yml",
+        "site-gtk-native-probe.yml"
+      ],
+      "recommendation": "All diagnostic workflows currently dispatch-only. Remove dead PR23 event conditions/head fallbacks and classify under a single diagnostic lifecycle owner; keep exact original reproducers and raw evidence."
+    }
+  ]
+}

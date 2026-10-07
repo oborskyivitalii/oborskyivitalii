@@ -4,11 +4,12 @@ const sourceFile=process.env.SITE_SPACE_SOURCE||path.join(__dirname,"../docs/spa
 const source=fs.readFileSync(sourceFile,"utf8"),model=require(sourceFile);
 function visit(options={}) {
   const events={},docEvents={},buttonEvents={},stylesheetEvents={},canvasEvents={},pending=new Map(),calls=[];
+  let formulaConstructions=0;
   let failDraw=false,styled=options.styled!==false,paintClock=0,bitmapValid=false,resizeCount=0,draws=0,serial=0,time=0,stored=options.saved??null,mutation,rangeReads=0,styleReads=0,maxHeight=15000;
   const media={matches:!!options.reduced,addEventListener:(_,fn)=>{media.change=fn;}};
   const narrow={matches:!!options.narrow},scene={dataset:{}};
   const context=Object.fromEntries(["setTransform","clearRect","beginPath","moveTo","lineTo","stroke","arc","fill","closePath"].map(name=>[name,(...args)=>{for(const arg of args)assert.ok(Number.isFinite(arg));if(name==="clearRect"){if(failDraw)throw Error("injected");draws++;bitmapValid=false;paintClock+=options.paintCost??0;}if(name==="fill"||name==="stroke")bitmapValid=true;}]));
-  const canvas={parentElement:scene,getContext:()=>options.noCanvas?null:context,addEventListener:(name,fn)=>{canvasEvents[name]=fn;}};
+  const canvas={getBoundingClientRect:()=>({left:0,top:0,width:window.innerWidth,height:window.innerHeight}),parentElement:scene,getContext:()=>options.noCanvas?null:context,addEventListener:(name,fn)=>{canvasEvents[name]=fn;}};
   for(const [key,initial] of [["width",300],["height",150]]){let value=initial;Object.defineProperty(canvas,key,{get:()=>value,set:v=>{value=v;bitmapValid=false;resizeCount++;}});}
   const button={hidden:true,disabled:false,setAttribute:(key,value)=>{button[key]=value;},addEventListener:(name,fn)=>{buttonEvents[name]=fn;}};
   const window={performance:{now:()=>paintClock},innerWidth:options.narrow?390:1440,innerHeight:900,devicePixelRatio:4,scrollY:options.scrollY||0,
@@ -20,16 +21,21 @@ function visit(options={}) {
   let stops=(options.stops||keys.map((id,i)=>[id,i*1100])).map(pair=>makeStop(pair));
   let resultRects=options.empty?[]:options.coincident?[[1000,1000]]:options.single?[[1000,1160]]:[[1000,1160],[1800,1960]];
   const results={querySelectorAll:()=>resultRects.map(([top,bottom])=>({hidden:false,getClientRects:()=>[{}],getBoundingClientRect:()=>({top:top-window.scrollY,bottom:bottom-window.scrollY})}))};
+  const formulaWidth=()=>Math.min(960,window.innerWidth-32),formulaBox=(padding=0)=>({left:(window.innerWidth-formulaWidth())/2,right:(window.innerWidth+formulaWidth())/2,top:560-padding-window.scrollY,bottom:560+formulaWidth()/(1380/240)+padding-window.scrollY,width:formulaWidth(),height:formulaWidth()/(1380/240)+padding*2});
+  const formulaArt={getBoundingClientRect:()=>formulaBox()},formulaBand={getBoundingClientRect:()=>formulaBox(40),querySelector:()=>formulaArt};
+  Object.assign(context,{save(){},restore(){},drawImage(){bitmapValid=true;}});
+  const raster={beginPath(){},moveTo(){},lineTo(){},bezierCurveTo(){},stroke(){},createLinearGradient(){return {addColorStop(){}};}};
   const stylesheet={addEventListener:(name,fn)=>{stylesheetEvents[name]=fn;}};
   const document={readyState:options.readyState,hidden:false,body:{dataset:{page:options.page||"index"}},documentElement:{get scrollHeight(){rangeReads++;return maxHeight;},set scrollHeight(value){maxHeight=value;}},
     getElementById:id=>id==="space-canvas"?canvas:id==="space-motion"?button:results,
-    querySelectorAll:()=>stops,querySelector:selector=>selector==='link[rel="stylesheet"]'?stylesheet:{},addEventListener:(name,fn)=>{docEvents[name]=fn;}};
+    createElement:()=>{formulaConstructions++;return {getContext:()=>raster};},
+    querySelectorAll:()=>stops,querySelector:selector=>selector==='link[rel="stylesheet"]'?stylesheet:selector==='[data-writing-formula]'?(options.formula?formulaBand:null):selector==='.site-header'?{getBoundingClientRect:()=>({bottom:100})}:{},addEventListener:(name,fn)=>{docEvents[name]=fn;}};
   class MutationObserver{constructor(fn){this.callback=fn;}observe(_,options){if(options?.attributeFilter?.includes('data-theme'))mutation=this.callback;}disconnect(){}}
   window.MutationObserver=MutationObserver;
   if(options.probe)window.SiteEngineProbe=options.probe;
   const localStorage={getItem(){if(options.blockedStorage)throw Error("blocked");return stored;},setItem(_,value){if(options.blockedStorage)throw Error("blocked");stored=value;}};
   vm.runInNewContext(source,{document,window,localStorage});
-  const api={window,document,button,canvas,scene,pending,calls,media,narrow,events,
+  const api={window,document,button,canvas,scene,pending,calls,media,narrow,events,formulaConstructions:()=>formulaConstructions,
     drawingFault(){failDraw=true;},styling(value){styled=value;events.load();},paintCost(value){options.paintCost=value;},bitmapValid:()=>bitmapValid,resizeCount:()=>resizeCount,
     domReady(){document.readyState='interactive';docEvents.DOMContentLoaded?.();},stylesheetLoad(value=true){styled=value;stylesheetEvents.load?.();},stylesheetError(){stylesheetEvents.error?.();},contextLost(){canvasEvents.contextlost?.();},rangeReads:()=>rangeReads,styleReads:()=>styleReads,
     frame(delta=20){const jobs=[...pending.values()];pending.clear();calls.length=0;time+=delta;for(const fn of jobs)fn(time);},
@@ -443,4 +449,27 @@ test("Writing responds to the first small gestures before the archive, including
     for(const y of[100,200,400]){p.scroll(y);p.settle();assert.notEqual(p.trace(),last,`first gesture at ${y}px`);last=p.trace();}
     p.scroll(0);p.settle();assert.equal(p.trace(),start);assert.ok(p.phase()>phase);assert.ok(p.draws()>draws);
   }
+});
+
+// A positive first bitmap is essential: starting Off alone cannot expose the
+// frozen-Canvas plus passive-SVG duplication after a preference transition.
+test("Writing formula ownership is singular after positive paint, Off/reduced scroll and prepared activation",()=>{
+  for(const reduced of [false,true]){
+    const p=visit({page:'writing',formula:true});p.settle();
+    const before=p.window.SiteScene.diagnostics().formula;assert.ok(before.paintCount>0);assert.equal(before.lastPaintCount,1);assert.equal(p.document.body.dataset.formulaMode,'canvas');
+    const fixed=p.trace(),phase=p.phase();
+    if(reduced){p.media.matches=true;p.media.change();}else p.click();
+    assert.equal(p.document.body.dataset.formulaMode,'canvas','passive artwork waits for the existing frozen preference paint');
+    p.settle();assert.equal(p.document.body.dataset.formulaMode,'static');assert.equal(p.window.SiteScene.diagnostics().formula.lastPaintCount,0);
+    const paints=p.draws(),formulaPaints=p.window.SiteScene.diagnostics().formula.paintCount;
+    p.scroll(60);for(let i=0;i<8;i++)p.frame(60);
+    assert.equal(p.draws(),paints);assert.equal(p.window.SiteScene.diagnostics().formula.paintCount,formulaPaints);assert.equal(p.trace(),fixed);assert.equal(p.phase(),phase);assert.equal(p.pending.size,0);
+    if(reduced){p.media.matches=false;p.media.change();}else p.click();
+    for(let i=0;i<30;i++)p.frame(60);
+    assert.ok(p.window.SiteScene.diagnostics().formula.paintCount>formulaPaints,'resuming at the real band prepares its new reference before painting');assert.equal(p.formulaConstructions(),1);
+  }
+  const p=visit({page:'writing',formula:true,saved:'off'});p.settle();
+  assert.equal(p.window.SiteScene.diagnostics().formula.cacheBuilds,0);const paints=p.draws();p.click();
+  assert.equal(p.window.SiteScene.diagnostics().formula.cacheBuilds,1,'startup-Off activation prepares synchronously before the queued paint');assert.equal(p.draws(),paints);
+  p.settle();assert.ok(p.window.SiteScene.diagnostics().formula.paintCount>0);assert.equal(p.formulaConstructions(),1);
 });

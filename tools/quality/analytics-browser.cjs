@@ -71,7 +71,15 @@ async function scenario(browser,dir,producer,s) {
   finally{releaseVendor();await ctx.close();}
   return result;
 }
-async function run(browser,engine) {
+function selectedCases(engine,selection=cases(engine)) {
+  const owned=cases(engine),ids=selection.map(row=>JSON.stringify(row));
+  assert.ok(ids.length>0,'empty analytics fixture selection');
+  assert.equal(new Set(ids).size,ids.length,'duplicate analytics fixture selection');
+  for(const row of selection)assert.ok(owned.some(expected=>JSON.stringify(expected)===JSON.stringify(row)),'unowned analytics fixture selection');
+  return selection;
+}
+async function run(browser,engine,selection=cases(engine)) {
+  const selected=selectedCases(engine,selection);
   const dir=fs.mkdtempSync(path.join(os.tmpdir(),'site-analytics-browser-'));
   try {
     for(const name of ['site','tools/site','tools/build_scene_fallbacks.cjs','tools/build_site_previews.cjs']){fs.mkdirSync(path.dirname(path.join(dir,name)),{recursive:true});fs.cpSync(path.join(root,name),path.join(dir,name),{recursive:true});}
@@ -79,11 +87,11 @@ async function run(browser,engine) {
     require('../site/build.cjs').build({root:dir,all:true});
     const producer=require(path.join(dir,'tools/build_site_previews.cjs'));
     for(const [name,bytes]of Object.entries(producer.buildPreviews())){fs.mkdirSync(path.dirname(path.join(dir,name)),{recursive:true});fs.writeFileSync(path.join(dir,name),bytes);}
-    const rows=[];for(const s of cases(engine)){rows.push(await scenario(browser,dir,producer,s));process.stdout.write(`analytics fixture ${engine} ${s.entry} ${s.mode}: ${rows.at(-1).pass?'pass':rows.at(-1).error}\n`);}
+    const rows=[];for(const s of selected){rows.push(await scenario(browser,dir,producer,s));process.stdout.write(`analytics fixture ${engine} ${s.entry} ${s.mode}: ${rows.at(-1).pass?'pass':rows.at(-1).error}\n`);}
     return rows;
   }finally{fs.rmSync(dir,{recursive:true,force:true});}
 }
-module.exports={run,cases,checks,modes,model};
+module.exports={run,cases,selectedCases,checks,modes,model};
 if(require.main===module)(async()=>{
   const {toolRequire,launchOptions,save}=require('./common.cjs'),engine='chromium',browser=await toolRequire('playwright')[engine].launch(launchOptions(engine));
   try{const rows=await run(browser,engine);save('analytics-fixture',{model,browser:browser.version(),rows,liveTelemetryValidated:false});assert.ok(rows.every(row=>row.pass),'Analytics fixture failed');}

@@ -12,6 +12,12 @@ const titleCopy={research:'Two systems.<br>One engineering perspective.',writing
 const responses=Object.fromEntries(['index','research'].map(page=>[page,Object.fromEntries(['before','after'].map(version=>[version,fs.readFileSync(path.join(root,'review/public-responses-20261006',page+'.'+version+'.html'),'utf8')]))]));
 const strip=html=>html.replace(/<svg class="space-fallback"[\s\S]*?<\/svg>/,'[same-world decorative fallback]');
 function restoreApprovedContent(html,page){
+  if(page==='writing') {
+    // Reverse only this reviewed semantic wrapper and the sole passive source
+    // artwork; importing the producer's current markup would mask copy edits.
+    const svg=fs.readFileSync(path.join(root,'site/assets/writing-paradigm.svg'),'utf8').replace(/role="img" aria-labelledby="title description"/,'class="writing-formula-fallback" aria-hidden="true" focusable="false" style="display:block;width:100%;height:auto"');
+    html=html.replace('<div class="writing-formula" data-writing-formula role="img" aria-label="y = f(x) → y ∼ P(y|x): a shift from deterministic mapping to conditional probabilistic modeling.">'+svg+'</div>','');
+  }
   if(titleCopy[page])html=html.replace('<h1><span class="reading-title">'+titleCopy[page]+'</span></h1>','<h1>'+titleCopy[page]+'</h1>');
   if(responses[page])html=html.replace(responses[page].after,responses[page].before);
   if(page==='research')html=html.replace('<a href="#acknowledgements">Public discussion</a>','<a href="#acknowledgements">Conversations</a>');
@@ -53,9 +59,9 @@ function verify(){
     const file='docs/'+page+'.html',source=fs.readFileSync(path.join(root,file),'utf8');
     const old=cp.execFileSync('git',['show',baseline+':'+file],{cwd:root,encoding:'utf8',maxBuffer:1024*1024});
     assert.equal(restore(source,page),strip(old),'undeclared semantic/source change: '+file);
-    rows.push({path:file,sha256:crypto.createHash('sha256').update(source).digest('hex'),exactContentAndMetadataPreserved:true,declaredChanges:page==='index'?['three selected public responses with complete Research deep link','approved direct booking and public email','problem-led H1','author identity moved to hero lead','Help before Research','matching section/local-nav order','wordmark dot']:[...(page==='research'?['eight complete public responses in surname order, intro and navigation label']:[]),...(titleCopy[page]?['exact decorative title-line wrapper']:[]),'wordmark dot']});
+    rows.push({path:file,sha256:crypto.createHash('sha256').update(source).digest('hex'),exactContentAndMetadataPreserved:true,declaredChanges:page==='index'?['three selected public responses with complete Research deep link','approved direct booking and public email','problem-led H1','author identity moved to hero lead','Help before Research','matching section/local-nav order','wordmark dot']:[...(page==='research'?['eight complete public responses in surname order, intro and navigation label']:[]),...(titleCopy[page]?['exact decorative title-line wrapper']:[]),...(page==='writing'?['exact accessible canonical formula band']:[]),'wordmark dot']});
   }
-  return {baseline,pass:true,rows,policy:'Exact source after reversing declared Home hierarchy/wordmark changes, exact approved contact replacement/title wrappers, exact reviewed response blocks/Research nav and exact authored-base build identity/separator; decorative fallback SVG is excluded. Includes semantic metadata, JSON-LD, publication records, links, languages, dates, portrait and source attribution.'};
+  return {baseline,pass:true,rows,policy:'Exact source after reversing declared Home hierarchy/wordmark changes, exact approved contact replacement/title wrappers, exact reviewed response blocks/Research nav, exact accessible Writing formula band and exact authored-base build identity/separator; decorative fallback SVG is excluded. Includes semantic metadata, JSON-LD, publication records, links, languages, dates, portrait and source attribution.'};
 }
 if(require.main===module)process.stdout.write(JSON.stringify(verify(),null,2)+'\n');
 module.exports={verify,restore,restoreApprovedContent};

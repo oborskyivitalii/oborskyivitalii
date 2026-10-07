@@ -120,15 +120,25 @@ async function recordCandidate(){
   assert.equal(report.kind,'hosted-staging-smoke');assert.equal(report.origin,candidate.url);assert.equal(report.sourceCommit,current.sourceCommit);assert.equal(report.publicDigest,current.publicDigest);
   const verified={...current,candidate};save(path.join(stateDir,'current.json'),verified);return verified;
 }
+function promotionGate(gate,record,url){
+  if(gate.kind==='staging-gate'){
+    require('../quality/staging-gate.cjs').validateGate(record.source,gate,url);
+    assert.equal(String(gate.githubArtifact.id),String(record.gate.githubArtifact.id),'staging gate public artifact ID');
+    assert.equal(gate.githubArtifact.uploadDigest,record.gate.githubArtifact.uploadDigest,'staging gate public upload digest');
+    return true;
+  }
+  assert.equal(gate.kind,'hosted-gate');assert.equal(gate.profile,'staging');assert.equal(gate.pass,true);
+  assert.equal(gate.hostedOrigin,url);assert.equal(gate.sourceCommit,record.source.sourceCommit);
+  assert.equal(gate.artifactDigest,record.source.artifactDigest);
+  for(const job of ['build','static','linux','native','performance','captures','host'])assert.equal(gate.jobs[job]?.result,'success');
+  return true;
+}
 async function begin(){
   if(read(path.join(stateDir,'previous.json')))retained(read('staging-rollback/staging-package.json'),read(recordFile));
   const current=await recordCandidate(),candidate=current.candidate;
   const gate=read('staging-reports/full/release-manifest.json');
-  assert.equal(gate.kind,'hosted-gate');assert.equal(gate.profile,'staging');assert.equal(gate.pass,true);
-  assert.equal(gate.hostedOrigin,candidate.url);assert.equal(gate.sourceCommit,current.sourceCommit);
-  assert.equal(gate.artifactDigest,read(recordFile).source.artifactDigest);
-  for(const job of ['build','static','linux','native','performance','captures','host'])assert.equal(gate.jobs[job]?.result,'success');
-  save(path.join(stateDir,'current.json'),{...current,promotionAuthorized:true});await status(current.deploymentId,'in_progress','Full hosted checks passed; promoting the same package');
+  promotionGate(gate,read(recordFile),candidate.url);
+  save(path.join(stateDir,'current.json'),{...current,promotionAuthorized:true});await status(current.deploymentId,'in_progress','Bounded staging checks passed; promoting the same package');
 }
 async function status(id,state,description){
   return gh('/deployments/'+id+'/statuses',{state,description,environment:'staging',environment_url:'https://staging.'+process.env.CLOUDFLARE_PAGES_PROJECT+'.pages.dev',log_url:'https://github.com/'+repository+'/actions/runs/'+process.env.GITHUB_RUN_ID,auto_inactive:false});
@@ -145,7 +155,7 @@ async function finish(){
   if(!fs.existsSync(path.join(stateDir,'current.json')))return;
   const current=read(path.join(stateDir,'current.json')),stable='https://staging.'+process.env.CLOUDFLARE_PAGES_PROJECT+'.pages.dev',success=process.env.SITE_STABLE_SMOKE_OUTCOME==='success';
   let recovery;
-  if(success){assert.equal(current.promotionAuthorized,true,'full hosted checks did not authorize promotion');successfulReport('staging-reports/stable.json',current.packageDigest);await status(current.deploymentId,'success','Version and stable alias smoke passed');recovery='Stable alias and version verified; production/device/rights acceptance remains pending.';}
+  if(success){assert.equal(current.promotionAuthorized,true,'staging checks did not authorize promotion');successfulReport('staging-reports/stable.json',current.packageDigest);await status(current.deploymentId,'success','Version and stable alias smoke passed');recovery='Stable alias and version verified; production/device/rights acceptance remains pending.';}
   else{await status(current.deploymentId,'failure','Staging attempt did not pass');recovery=current.candidate?(current.promotionAuthorized?await recoveryResult():'Candidate upload and hosted smoke passed; stable promotion was not authorized or was not started. The stable alias was not changed.'):'Candidate verification was not completed; the stable alias was not changed.';}
   const links=(success?'[Whole site]('+stable+') · ':'')+(current.candidate?'[Smoke-verified immutable candidate]('+current.candidate.url+')':'No verified version URL.');
   const body=marker+'\n## Staging '+(success?'verified':'attempt failed')+'\n\n'+links+'\n\nSource `'+current.sourceCommit+'`; public digest `'+current.publicDigest+'`; staging package `'+current.packageDigest+'`.\n\n'+recovery+'\n\n[Checks/deployment run](https://github.com/'+repository+'/actions/runs/'+process.env.GITHUB_RUN_ID+'). Environment: staging only. Actual successful/failed checks are in the run artifacts; do not infer missing coverage. No production launch or merge.';
@@ -163,4 +173,4 @@ async function main(){
   if(mode==='prepare')return prepare();if(mode==='fresh')return fresh();if(mode==='rollback')return verifyRollback();if(mode==='register')return register();if(mode==='candidate')return recordCandidate();if(mode==='begin')return begin();if(mode==='verify-stable')return verifyStable();if(mode==='verify-rollback-deployment')return verifyRollbackDeployment();if(mode==='finish')return finish();throw Error('Unknown staging state operation');
 }
 if(require.main===module)main().catch(e=>{console.error(e.message);process.exitCode=1;});
-module.exports={configuration,trustedHead,projectPolicy,knownPayload,rollbackRecord,ensureProject,retained};
+module.exports={promotionGate,configuration,trustedHead,projectPolicy,knownPayload,rollbackRecord,ensureProject,retained};

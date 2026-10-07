@@ -26,12 +26,22 @@ CONTROL_FILES = {
     "tools/repository_intelligence.py", "tools/check_ri_ci.py", "tools/issue_acceptance.py",
     "tests/test_repository_intelligence.py", "tests/test_ri_ci.py",
     "tests/test_issue_acceptance.py", "tests/test_issue31_acceptance.py",
+    "guides/SITE-CHECK-PROFILES.md", "tools/quality/test-profiles.json",
+    "tools/quality/source-tests.cjs", "tools/quality/local.cjs",
+    "tools/quality/staging-gate.cjs", "tools/quality/staging-regression.cjs",
+    "tests/test-profile-selection.test.cjs", "tests/staging-gate.test.cjs",
+    "tests/staging-regression.test.cjs", "tests/fixtures/staging-evidence.cjs",
 }
 CONTROL_PATTERNS = (
     ".github/workflows/*.yml", ".github/workflows/*.yaml",
     ".github/ISSUE_TEMPLATE/*.md", ".github/acceptance/*.json",
     "tools/*intelligence*.py", "tools/*ri_ci*.py",
     "tests/test_*intelligence*.py", "tests/test_ri*.py",
+    "tools/quality/*profile*.json", "tools/quality/*profile*.cjs",
+    "tools/quality/*source-tests*.cjs", "tools/quality/*staging-gate*.cjs",
+    "tools/quality/*staging-regression*.cjs", "tests/*profile-selection*.test.cjs",
+    "tests/*staging-gate*.test.cjs", "tests/*staging-regression*.test.cjs",
+    "tests/fixtures/staging-*.cjs",
 )
 CONTROL_OWNERS = {".github/REPOSITORY-INTELLIGENCE.md", ".github/ACCEPTANCE.md"}
 DERIVED = {MAP, "REPOSITORY-MAP.md", ".github/repository-intelligence/agent-context.json"}
@@ -54,7 +64,9 @@ def control_paths(root):
 
     MEMORY content is deliberately outside coupling identity: its bounded format
     is a producer contract; changing a dated handoff still invalidates RI itself.
-    All workflow definitions are watched, including new workflow files.
+    All workflow definitions are watched, including new workflow files. Test
+    profile selection and stage-gate control families are explicitly watched;
+    sharing a hosting-guide owner does not make all historical probes RI controls.
     """
     paths = {p for p in CONTROL_FILES if (root / p).is_file()}
     for pattern in CONTROL_PATTERNS:

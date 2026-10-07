@@ -18,3 +18,11 @@ test('immutable source/recovery artifacts require exact run, attempt, source and
  for(const mutate of [a=>a.id=124,a=>a.expired=true,a=>a.name='site-staging-package-456-1',a=>a.digest='sha256:'+'d'.repeat(64),a=>delete a.digest,a=>a.workflow_run.id=789,a=>a.workflow_run.repository_id=1,a=>a.workflow_run.head_repository_id=1,a=>a.workflow_run.head_branch='work/site-v1-20261001',a=>a.workflow_run.head_sha='b'.repeat(40)]){const a=structuredClone(artifact);mutate(a);assert.throws(()=>trust.artifactSource(a,expected));}
  for(const change of [{id:'124'},{runId:'789'},{name:'site-staging-package-456-1'},{sha:'b'.repeat(40)},{uploadDigest:'d'.repeat(64)}])assert.throws(()=>trust.artifactSource(artifact,{...expected,...change}));
 });
+
+// A valid historical full-stage result remains replayable; preview/package proofs never stage.
+test('legacy staging consumer retains full gate requirements and rejects package or preview proof',()=>{
+ const state=require('../tools/staging/state.cjs'),record={source:{sourceCommit:sha,artifactDigest:'d'.repeat(64)}},url='https://preview.unit-test-staging.pages.dev';
+ const gate={kind:'hosted-gate',profile:'staging',pass:true,hostedOrigin:url,sourceCommit:sha,artifactDigest:record.source.artifactDigest,jobs:Object.fromEntries(['build','static','linux','native','performance','captures','host'].map(job=>[job,{result:'success'}]))};
+ assert.equal(state.promotionGate(gate,record,url),true);
+ for(const mutate of [g=>g.kind='package-gate',g=>g.kind='pr-gate',g=>g.pass=false,g=>g.jobs.native.result='skipped',g=>g.sourceCommit='b'.repeat(40),g=>g.artifactDigest='e'.repeat(64),g=>g.hostedOrigin='https://other.invalid']){const invalid=structuredClone(gate);mutate(invalid);assert.throws(()=>state.promotionGate(invalid,record,url));}
+});

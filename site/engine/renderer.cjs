@@ -102,5 +102,5 @@ module.exports=function(artwork=null,createSurface=null) {
     }
     ctx.globalAlpha=1;
   }
-  return {paintShapes,facePalette,formulaDiagnostics};
+  return {paintShapes,facePalette,formulaDiagnostics,prepareFormula:formulaBitmap,formulaReady:()=>!!formulaSurface,formulaDrawn:()=>formulaLastPaints>0};
 };

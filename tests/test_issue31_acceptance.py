@@ -8,7 +8,6 @@ review; issue/PR linkage and protected merge need current GitHub evidence.
 import hashlib
 import importlib.util
 import json
-import re
 import subprocess
 import unittest
 from pathlib import Path

@@ -67,9 +67,15 @@
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
+    ".github/acceptance/issue-35.json": {
+      "kind": "file",
+      "purpose": "Test optimization AC01–AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     ".github/acceptance/issue-36.json": {
       "kind": "file",
-      "purpose": "Writing formula preparation evidence with AC02–AC04 explicitly pending future integration and performance checks.",
+      "purpose": "Writing formula AC01–AC05 mapped to canonical asset, native cache/integration, source-bound browser and paired performance evidence, with remaining human/release gates explicit.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -141,7 +147,7 @@
     },
     ".github/workflows/site-candidate-evidence.yml": {
       "kind": "file",
-      "purpose": "GitHub Actions: Site candidate evidence; inspect trigger/profile before running.",
+      "purpose": "Explicit manual full production-regression evidence on an immutable candidate; no automatic heavy PR trigger or stable promotion.",
       "role": "workflow",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -189,7 +195,7 @@
     },
     ".github/workflows/site-release-checks.yml": {
       "kind": "file",
-      "purpose": "GitHub Actions: Site release checks; inspect trigger/profile before running.",
+      "purpose": "Reusable explicit selected staging or full production validation, separate report identities and exact artifact/source bindings.",
       "role": "workflow",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -367,39 +373,39 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/bc6a8a50f97964072443917d49757d331b2057996ae0cdc8c95041833512fc1a": {
+    "docs/runtime/2834c584896aa2520009f9a08c6d8b2df598df70451ae55275c1b339518d1959": {
       "kind": "directory",
-      "purpose": "Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs.",
+      "purpose": "Generated immutable runtime edition directory: 5b2239d9600bce59c2d6796b8cb1b63145b72333fe2447a19432e52b6fa74ab1.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/bc6a8a50f97964072443917d49757d331b2057996ae0cdc8c95041833512fc1a/archive.js": {
+    "docs/runtime/2834c584896aa2520009f9a08c6d8b2df598df70451ae55275c1b339518d1959/archive.js": {
       "kind": "file",
-      "purpose": "Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs.",
+      "purpose": "Generated public rendition: archive.js; regenerate from site sources with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/bc6a8a50f97964072443917d49757d331b2057996ae0cdc8c95041833512fc1a/navigation.js": {
+    "docs/runtime/2834c584896aa2520009f9a08c6d8b2df598df70451ae55275c1b339518d1959/navigation.js": {
       "kind": "file",
-      "purpose": "Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs.",
+      "purpose": "Generated public rendition: navigation.js; regenerate from site sources with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/bc6a8a50f97964072443917d49757d331b2057996ae0cdc8c95041833512fc1a/space.js": {
+    "docs/runtime/2834c584896aa2520009f9a08c6d8b2df598df70451ae55275c1b339518d1959/space.js": {
       "kind": "file",
-      "purpose": "Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs.",
+      "purpose": "Generated public rendition: space.js; regenerate from site sources with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/bc6a8a50f97964072443917d49757d331b2057996ae0cdc8c95041833512fc1a/styles.css": {
+    "docs/runtime/2834c584896aa2520009f9a08c6d8b2df598df70451ae55275c1b339518d1959/styles.css": {
       "kind": "file",
-      "purpose": "Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs.",
+      "purpose": "Generated public rendition: styles.css; regenerate from site sources with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/bc6a8a50f97964072443917d49757d331b2057996ae0cdc8c95041833512fc1a/theme.js": {
+    "docs/runtime/2834c584896aa2520009f9a08c6d8b2df598df70451ae55275c1b339518d1959/theme.js": {
       "kind": "file",
-      "purpose": "Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs.",
+      "purpose": "Generated public rendition: theme.js; regenerate from site sources with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -415,61 +421,61 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/0795654821204cda0a2b9fa16c30ca148f604a0f630432fdc50e5a4664c5b032": {
+    "docs/snapshots/79ac8e19e59e6f7e1c393f153a7d0be62a3966e66bf0bd4b4e05fd4059f560e7": {
       "kind": "directory",
       "purpose": "Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/0795654821204cda0a2b9fa16c30ca148f604a0f630432fdc50e5a4664c5b032/credits.html": {
+    "docs/snapshots/79ac8e19e59e6f7e1c393f153a7d0be62a3966e66bf0bd4b4e05fd4059f560e7/index.html": {
+      "kind": "file",
+      "purpose": "Generated public rendition: index.html; regenerate from site sources with tools/site/build.cjs.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/84abd4ed287bc17e3790ab6e81f1163610e97c00e0cb205d274ce132bbe64ac2": {
+      "kind": "directory",
+      "purpose": "Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/84abd4ed287bc17e3790ab6e81f1163610e97c00e0cb205d274ce132bbe64ac2/talks.html": {
       "kind": "file",
       "purpose": "Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/0ef6e36ea64773dea0544aedda46d3100471c3e99d4b15842d4608bc89142d2b": {
+    "docs/snapshots/857f5dabe5b3eda30960b025f3068bfaa427ece60b55be580ddcc2732063be96": {
       "kind": "directory",
       "purpose": "Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/0ef6e36ea64773dea0544aedda46d3100471c3e99d4b15842d4608bc89142d2b/talks.html": {
+    "docs/snapshots/857f5dabe5b3eda30960b025f3068bfaa427ece60b55be580ddcc2732063be96/research.html": {
       "kind": "file",
       "purpose": "Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/5ab610df05c4399599323c97bb0a66811df82320a7b20bcb62a3d00410b27ada": {
+    "docs/snapshots/da03792d76530f19c94793ce2e232ce9d0f0b393c72e1775b1927694ba460376": {
       "kind": "directory",
       "purpose": "Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/5ab610df05c4399599323c97bb0a66811df82320a7b20bcb62a3d00410b27ada/writing.html": {
+    "docs/snapshots/da03792d76530f19c94793ce2e232ce9d0f0b393c72e1775b1927694ba460376/writing.html": {
       "kind": "file",
       "purpose": "Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/7d38785e7d83b6b8d47e60701429d856eedd7509fefbd105e2f8a06abf19c6b9": {
+    "docs/snapshots/f9b8a580d8b495cade9d2617463ba0328345fad229010ca41c438e4fc72fac0b": {
       "kind": "directory",
       "purpose": "Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/7d38785e7d83b6b8d47e60701429d856eedd7509fefbd105e2f8a06abf19c6b9/research.html": {
-      "kind": "file",
-      "purpose": "Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/bf83e2b48e1ffd71b6f166aa5ab47969ce8da37033d201c76e10a7ecf87518da": {
-      "kind": "directory",
-      "purpose": "Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/bf83e2b48e1ffd71b6f166aa5ab47969ce8da37033d201c76e10a7ecf87518da/index.html": {
+    "docs/snapshots/f9b8a580d8b495cade9d2617463ba0328345fad229010ca41c438e4fc72fac0b/credits.html": {
       "kind": "file",
       "purpose": "Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs.",
       "role": "generated",
@@ -757,15 +763,57 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-35": {
+      "kind": "directory",
+      "purpose": "Dated exact-base test/runtime/CI audits, original #13 reconciliation, analysis and independent review for test optimization.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-35/2026-10-07-analysis.md": {
+      "kind": "file",
+      "purpose": "Owning issue35 decision, findings, ordered execution tasks, profile allocation and honest evidence limits.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-35/2026-10-07-ci-audit.json": {
+      "kind": "file",
+      "purpose": "All15 workflow routes and source-bound observed accepted full-run/job/step durations.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-35/2026-10-07-issue13-audit.md": {
+      "kind": "file",
+      "purpose": "Seven original issue13 criteria, implemented recurring pipeline and concrete first-release obligations with canonical owners.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-35/2026-10-07-review.md": {
+      "kind": "file",
+      "purpose": "Independent exact-tree AC/trust/profile review with original finding, integration corrections and substantive follow-up evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-35/2026-10-07-runtime-audit.json": {
+      "kind": "file",
+      "purpose": "Exact-base browser/runtime/performance scenario families, costs and bounded staging selection analysis.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-35/2026-10-07-test-audit.json": {
+      "kind": "file",
+      "purpose": "Exact ec9b836 inventory and identity of all50 original testmodules with unique coverage and diagnostic dispositions.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/issue-36": {
       "kind": "directory",
-      "purpose": "Issue 36 original formula asset, visual proof and the single pending Sol execution handoff.",
+      "purpose": "Single dated Writing formula execution handoff, original visual proof and linked source-bound integration/browser/performance acceptance.",
       "role": "draft",
       "owner": "CONTRIBUTING.md"
     },
     "review/issue-36/2026-10-07-handoff.md": {
       "kind": "file",
-      "purpose": "Preparation-only formula design, provenance, owner routes and ordered Sol integration/performance tasks.",
+      "purpose": "Owning issue36 formula design/provenance, implemented native integration, scoped validation protocol and exact-source execution/evidence handoff.",
       "role": "draft",
       "owner": "CONTRIBUTING.md"
     },
@@ -5733,37 +5781,37 @@
     },
     "tests/browser-gate-diagnostics.test.cjs": {
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for browser gate diagnostics.",
+      "purpose": "Private causal-screen plan, CLI bounds, source lineage, raw trace completeness and honest failed-row reporting Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/browser-gate-trace.test.cjs": {
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for browser gate trace.",
+      "purpose": "Opt-in scheduler instrumentation, actual paints/events, observation retention and bounded traces Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/browser-gate-variants.test.cjs": {
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for browser gate variants.",
+      "purpose": "Private fixed-ribbon/trace counterfactuals, matched mobile outputs and parent/patch identity Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/browser-lifecycle.test.cjs": {
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for browser lifecycle.",
+      "purpose": "Optional native browser/context/page event provenance and honest teardown versus operation failure Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/cause-fix-probe.test.cjs": {
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for cause fix probe.",
+      "purpose": "Private cold interventions each vary one factor; exact normal-source and Research control lineage Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/cause-probe.test.cjs": {
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for cause probe.",
+      "purpose": "Private causal-input normal/trace identity and actual Lighthouse attribution evidence Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -5797,6 +5845,18 @@
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
+    "tests/fixtures": {
+      "kind": "directory",
+      "purpose": "Shared controlled evidence builders for selected staging validator/consumer tests; fixtures do not claim actual browser or CI execution.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tests/fixtures/staging-evidence.cjs": {
+      "kind": "file",
+      "purpose": "Honest controlled manifest/report fixtures shared by stage matrix/gate/consumer negative tests.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
     "tests/flight.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for flight.",
@@ -5811,13 +5871,13 @@
     },
     "tests/gtk-native-probe.test.cjs": {
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for gtk native probe.",
+      "purpose": "Private fresh GTK controls, abort/core/process evidence and honest bounded offline stack collection Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/gtk-target-probe.test.cjs": {
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for gtk target probe.",
+      "purpose": "Private WPE/GTK disabled-script target matrix, lifecycle cleanup and attributable failed native operations Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -5859,7 +5919,7 @@
     },
     "tests/quality-sources.test.cjs": {
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for quality sources.",
+      "purpose": "Active offline Color security import closure, exact Bandit scope/expiry/source/coverage negatives and verified RI/coupling checksum-only admission tests.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -5911,6 +5971,18 @@
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
+    "tests/staging-gate.test.cjs": {
+      "kind": "file",
+      "purpose": "Exact source/origin/artifact/job/report completeness and staging-versus-full-production rejection fixtures.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tests/staging-regression.test.cjs": {
+      "kind": "file",
+      "purpose": "Selected hosted matrix, real measurement contracts and omitted/malformed/failed evidence negative fixtures.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
     "tests/staging-reporting.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for staging reporting.",
@@ -5929,6 +6001,12 @@
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
+    "tests/test-profile-selection.test.cjs": {
+      "kind": "file",
+      "purpose": "Exhaustive registry/futuremodule/unknownsource/exactref/source accounting and empty/skip/TODO failure regressions.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
     "tests/test_issue31_acceptance.py": {
       "kind": "file",
       "purpose": "Issue 31 observable acceptance checks for RI provenance, inventory, memory, workflow, unchanged site and bootstrap.",
@@ -5941,9 +6019,15 @@
       "role": "test",
       "owner": ".github/ACCEPTANCE.md"
     },
+    "tests/test_issue35_acceptance.py": {
+      "kind": "file",
+      "purpose": "Owning issue35 targeted snapshot, real Node accounting, full-guard, registry/RI and honest source/closure assertions; selected policy only.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     "tests/test_issue36_acceptance.py": {
       "kind": "file",
-      "purpose": "Selected issue 36 SVG budget/inertness/geometry and adversarial acceptance checks; no runtime benchmark claim.",
+      "purpose": "Owning issue36 canonical SVG/inertness/geometry, native source/cache/depth/compiler/legacy-media mappings and source-bound browser/performance acceptance assertions; selected policy only.",
       "role": "test",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -5991,31 +6075,31 @@
     },
     "tests/writing-diagnosis.test.cjs": {
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for writing diagnosis.",
+      "purpose": "Dated balanced paired cold boot/flight matrix, raw preparation/tail accounting, honest failures and sample counts Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/writing-geometry.test.cjs": {
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for writing geometry.",
+      "purpose": "Private layout equality audit of row/filter/link/ink/waypoint positions and native range without masking mismatch Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/writing-layout.test.cjs": {
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for writing layout.",
+      "purpose": "Private geometry calibration/installers preserve text/links and independently retain intervention/audit failures Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/writing-localization.test.cjs": {
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for writing localization.",
+      "purpose": "Dated balanced mobile localization/control identities, separate stage/model timing and raw partial failure evidence Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/writing-models.test.cjs": {
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for writing models.",
+      "purpose": "Private symbol construction counterfactuals preserve exact surviving geometry and reject source-anchor drift Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -6039,7 +6123,7 @@
     },
     "tests/writing-variants.test.cjs": {
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for writing variants.",
+      "purpose": "Private ablation derivation retains exact normal parent, descriptor/patch identity and cannot satisfy a release gate Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -6155,6 +6239,18 @@
       "kind": "file",
       "purpose": "Exact public artifact manifest/digest, byte verification and configured size budgets.",
       "role": "source",
+      "owner": "guides/SITE-RELEASE-GATES.md"
+    },
+    "tools/quality/bandit-policy.json": {
+      "kind": "file",
+      "purpose": "32 independently reviewed current RI/acceptance-tooling Bandit findings, bound to exact file/line bytes and review expiry; no high-severity admission.",
+      "role": "configuration",
+      "owner": "guides/SITE-RELEASE-GATES.md"
+    },
+    "tools/quality/bandit-triage.cjs": {
+      "kind": "file",
+      "purpose": "Strict reviewed internal-tooling Bandit admission: exact source/line/rule/owner/expiry, raw finding and scan coverage accounting; untriaged changes fail.",
+      "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md"
     },
     "tools/quality/browser-gate-diagnostics.cjs": {
@@ -6297,7 +6393,7 @@
     },
     "tools/quality/local.cjs": {
       "kind": "file",
-      "purpose": "Economical source, generation, finite geometry, focused tests and size/profile checks.",
+      "purpose": "Economical independent Basic source tests using shared geometry checker, plus honest package-only identity gate for preview builds.",
       "role": "validator",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -6333,7 +6429,7 @@
     },
     "tools/quality/scanners.cjs": {
       "kind": "file",
-      "purpose": "Maintained quality/check helper for scanners; applicable profiles are selected by SITE-CHECK-PROFILES.",
+      "purpose": "Pinned lint/security/advisory execution with raw coverage, exact expiring Bandit triage and verified RI/coupling checksum proof; new findings fail.",
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md"
     },
@@ -6345,7 +6441,13 @@
     },
     "tools/quality/secrets-baseline.json": {
       "kind": "file",
-      "purpose": "Quality/release configuration: secrets baseline; preserve reviewed budgets, pins and exception provenance.",
+      "purpose": "Exact independently reviewed public source/file/line checksum and article identifier false positives; new unknown entropy remains a gate failure.",
+      "role": "configuration",
+      "owner": "guides/SITE-RELEASE-GATES.md"
+    },
+    "tools/quality/secrets-reviewed.json": {
+      "kind": "file",
+      "purpose": "105 exact independently proved current Git/file/line checksum false positives, complementing the byte-preserved historical baseline; unknown values still fail.",
       "role": "configuration",
       "owner": "guides/SITE-RELEASE-GATES.md"
     },
@@ -6367,6 +6469,24 @@
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md"
     },
+    "tools/quality/source-tests.cjs": {
+      "kind": "file",
+      "purpose": "Fail-visible exact-Git changed-source selector, permanent/manual/task allocation and real Node execution/accounting.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tools/quality/staging-gate.cjs": {
+      "kind": "file",
+      "purpose": "Exact-source/artifact/origin/scanner/job/matrix staging aggregate; light evidence cannot authorize full production.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tools/quality/staging-regression.cjs": {
+      "kind": "file",
+      "purpose": "Bounded Chromium/Firefox journey, failure, analytics and CPU/flight/single-Lighthouse runner with strict raw-observation validators.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
     "tools/quality/stylelint.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for stylelint; applicable profiles are selected by SITE-CHECK-PROFILES.",
@@ -6378,6 +6498,12 @@
       "purpose": "Maintained quality/check helper for stylelint configuration; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md"
+    },
+    "tools/quality/test-profiles.json": {
+      "kind": "file",
+      "purpose": "Canonical exhaustive test lifecycle/owner/input/profile registry and exact selected hosted staging matrix.",
+      "role": "configuration",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tools/quality/toolchain": {
       "kind": "directory",
