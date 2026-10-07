@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "5d3ef57daf3ec994c169d565c2a96c90b3668ff2c05ba0b96448f95a7584634b",
+    "digest": "2306fad8236a9bbbbf975d8018e781bb842322f44abab14ce4db9bbe33fcd580",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -62,7 +62,7 @@
       {
         "path": ".github/acceptance/issue-41.json",
         "identity_mode": "content",
-        "sha256": "1dcd99bf437a47bce06fb838c2efe63c24e2e9facff3b066aa7be0b43a1eee12"
+        "sha256": "6e9e303918c081330bf60d4ac4a64c91fcdf79444bf77205683ecb615dc061bf"
       },
       {
         "path": ".github/pull_request_template.md",
@@ -86,12 +86,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "2c810b2f05b3a25b5b8f68cf7c1a237f55525a547673b84252207d40d57ce9f5"
+        "sha256": "af9071700cf609d166ae9fba415311472e6109bac1fdcd2bbb4bbec77b574bbf"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "c3bf5595540c9dfd91c2fd6f20fb7ca49bea26adf7612ec59d1777e50aba924b"
+        "sha256": "d67b21f90b156814b7812c9da4426384724dd8bb5cf158ace9caa2bfc163a89b"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -186,7 +186,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "f9bfae75c8fefd9a1f307fd8e7d66786a24432d75f167840d0e430f178b38bc6"
+        "sha256": "c5de6695d1f0bcf164beb0e1354f0680347366c901da5ca04fe88bacd6e33a27"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -530,12 +530,12 @@
       {
         "path": "review/issue-41/2026-10-07-analysis.md",
         "identity_mode": "content",
-        "sha256": "c695206e5a77b793cb6b698f26d0c5d82e780ac6b4d2aaa0e38a8d47f811065c"
+        "sha256": "14708d285a92fb7134c5dd9def0e36187e4a2500b5360fc7fdfe30b7916a8aa9"
       },
       {
         "path": "review/issue-41/source-inventory.json",
         "identity_mode": "content",
-        "sha256": "1d1259109fc1384c795d6ff1c26b3287f5e42808c003b214294157a5bd8abc48"
+        "sha256": "b273a0dfa17537331dbc59483c5b43aa9ac9ef98dc6f0c31ad6f6b3d9a448049"
       },
       {
         "path": "review/public-responses-20261006/README.md",
@@ -4585,7 +4585,7 @@
       {
         "path": "tests/test_issue41_acceptance.py",
         "identity_mode": "content",
-        "sha256": "23344edcea1bc36783889fb2b3aa17c2e893deb345ec04d73ab1ca0c3594d864"
+        "sha256": "8ac53c102937cfdcf896d33c72546e6211f374dbf1d7ff3d2c0a6b77533266b6"
       },
       {
         "path": "tests/test_issue_acceptance.py",
@@ -4955,7 +4955,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "8dcbcbc07057b7624c74b0e97e35120cc87bd521eab8bddd8794f053b0f2a9e4"
+        "sha256": "7a8b1c0bbf5339250d861d0ebc8390a567d8817e110b922d486fe729afab9106"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -6469,7 +6469,7 @@
     {
       "path": "review/issue-41/source-inventory.json",
       "kind": "file",
-      "purpose": "Exact supplied LinkedIn/Reddit inputs, observed metadata and proposed mappings/access limits; dated preparation evidence only.",
+      "purpose": "Exact LinkedIn/Reddit inputs, hashed supplied thread snapshots, bounded metrics and canonical mappings/access limits; dated preparation evidence only.",
       "role": "history",
       "owner": "guides/SITE-SOURCE-AUDIT.md",
       "instructions": [
@@ -15379,7 +15379,7 @@
     {
       "path": "tests/test_issue41_acceptance.py",
       "kind": "file",
-      "purpose": "Issue41-only exact-input, unresolved-source and unchanged-public preparation checks with meaningful failure fixtures.",
+      "purpose": "Issue41-only input/source and Reddit snapshot metric provenance/inflation checks, plus unchanged-public preparation checks and failure fixtures.",
       "role": "test",
       "owner": ".github/ACCEPTANCE.md",
       "instructions": [

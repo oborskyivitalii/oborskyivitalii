@@ -1378,7 +1378,7 @@
     {
       "path": "tests/test_issue41_acceptance.py",
       "language": "python",
-      "purpose": "Issue41 preparation input identity, inaccessible-source boundaries and unchanged public/source bytes; later execution replaces the preparation phase explicitly.",
+      "purpose": "Issue41 preparation input identity, supplied Reddit snapshot/provenance and metric-inflation boundaries, inaccessible-source limits and unchanged public/source bytes; execution replaces the preparation phase explicitly.",
       "owner": ".github/ACCEPTANCE.md",
       "lifecycle": "task-snapshot",
       "profiles": [

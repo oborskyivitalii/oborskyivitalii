@@ -7,10 +7,12 @@
     {
       "id": "AC01",
       "intent": "Complete source-bounded analysis and exact input accounting.",
-      "automated_scope": "Checks the supplied URL occurrences, all candidate mappings, observed/unavailable metadata boundaries and negative fixtures. Source reading, accuracy and editorial conclusions are assessed in the dated analysis, not established by schema validation.",
+      "automated_scope": "Checks the supplied URL occurrences, all candidate mappings, observed/unavailable metadata boundaries and negative fixtures. Source reading, accuracy and editorial conclusions are assessed in the dated analysis, not established by schema validation. Added supplied-snapshot identity, UI parsing, null dates, metric semantics and non-duplicated aggregate accounting. Tests check the recorded evidence contract, not attachment authenticity or live Reddit counts.",
       "checks": [
         "INPUTS",
-        "INPUT-NEGATIVES"
+        "INPUT-NEGATIVES",
+        "REDDIT-METRICS",
+        "REDDIT-NEGATIVES"
       ],
       "gates": []
     },
@@ -44,10 +46,12 @@
     {
       "id": "AC04",
       "intent": "Honest community context and clear research lenses.",
-      "automated_scope": "Preparation only: every supplied Reddit input remains deferred until resolved; a discovered candidate cannot be substituted. No rendered TOC or discussion change is claimed.",
+      "automated_scope": "Preparation only under the 2026-10-07 scope amendment: original short-link mappings stay unresolved; three newly supplied texts match canonical threads independently. Checks bind metrics to supplied post UI, reject historical/sidebar/duplicate/unique-reader inflation and retain unknown capture dates. Rendered discussions/lenses and editorial acceptance are pending.",
       "checks": [
         "INPUTS",
-        "INPUT-NEGATIVES"
+        "INPUT-NEGATIVES",
+        "REDDIT-METRICS",
+        "REDDIT-NEGATIVES"
       ],
       "gates": [
         "IMPLEMENTATION",
@@ -97,6 +101,14 @@
     "BYTE-NEGATIVES": {
       "kind": "unittest",
       "test": "test_issue41_acceptance.Issue41PreparationTests.test_protected_content_mutation_and_deletion_fail"
+    },
+    "REDDIT-METRICS": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41PreparationTests.test_reddit_snapshot_metrics_and_provenance"
+    },
+    "REDDIT-NEGATIVES": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41PreparationTests.test_reddit_metric_inflation_and_identity_errors_fail"
     }
   },
   "gates": {
@@ -106,7 +118,7 @@
     },
     "EDITORIAL": {
       "kind": "human",
-      "description": "Source/editorial review of exact roles and contribution verbs, admitted editions and per-platform dates, neutral Reddit disposition, public and structured-data claim boundaries, before/after semantics and actual readable layout. Preserve separate existing rights/device/release owners; do not invent source access or advisor correspondence inspection."
+      "description": "Source/editorial review of exact roles and contribution verbs, admitted editions and per-platform dates, neutral Reddit disposition, public and structured-data claim boundaries, before/after semantics and actual readable layout. Preserve separate existing rights/device/release owners; do not invent source access or advisor correspondence inspection. Reddit numbers require the dated snapshot note; community criticism and the supplied historical claims are not validation."
     },
     "REVIEW-MERGE": {
       "kind": "merge",

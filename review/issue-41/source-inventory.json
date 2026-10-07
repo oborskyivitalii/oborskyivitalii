@@ -372,7 +372,8 @@
       "canonical_url": null,
       "access": "unresolved-short-link",
       "proposed_treatment": "defer",
-      "observation": "Web reader DisabledError; direct public redirect lookup returned 403 Blocked. No thread identity, author, date or sentiment inferred."
+      "observation": "Web reader DisabledError; direct public redirect lookup returned 403 Blocked. No thread identity, author, date or sentiment inferred.",
+      "followup": "2026-10-07 retry still DisabledError. Keep unresolved alias; S1-S3 are separate newly supplied content inputs, all identified canonically."
     },
     {
       "id": "R2",
@@ -380,7 +381,8 @@
       "canonical_url": null,
       "access": "unresolved-short-link",
       "proposed_treatment": "defer",
-      "observation": "Web reader DisabledError; direct public redirect lookup returned 403 Blocked. No thread identity, author, date or sentiment inferred."
+      "observation": "Web reader DisabledError; direct public redirect lookup returned 403 Blocked. No thread identity, author, date or sentiment inferred.",
+      "followup": "2026-10-07 retry still DisabledError. Keep unresolved alias; S1-S3 are separate newly supplied content inputs, all identified canonically."
     },
     {
       "id": "R3",
@@ -388,14 +390,16 @@
       "canonical_url": null,
       "access": "unresolved-short-link",
       "proposed_treatment": "defer",
-      "observation": "Web reader DisabledError; direct public redirect lookup returned 403 Blocked. No thread identity, author, date or sentiment inferred."
+      "observation": "Web reader DisabledError; direct public redirect lookup returned 403 Blocked. No thread identity, author, date or sentiment inferred.",
+      "followup": "2026-10-07 retry still DisabledError. Keep unresolved alias; S1-S3 are separate newly supplied content inputs, all identified canonically."
     }
   ],
   "discovered_candidate": {
     "url": "https://www.reddit.com/r/learndatascience/comments/1pjxsb4/why_ai_engineering_is_actually_control_theory_and/",
     "matched_to_submitted_input": false,
     "finding": "Public thread explicitly links the author LinkedIn profile and control-theory articles. Contains substantive objections about verbose/anthropomorphic framing and missing technical detail, as well as author replies. Useful critique candidate, not proof of validation; identity with R3 is unconfirmed.",
-    "proposed_treatment": "Do not substitute for R3. Resolve exact submitted permalink first; then review whole thread before any inclusion."
+    "proposed_treatment": "Include as newly supplied S3 after content match; original R3 short-link redirect remains unconfirmed.",
+    "matched_to_supplied_snapshot": "S3"
   },
   "advisors": [
     {
@@ -432,5 +436,243 @@
     "https://developers.google.com/search/docs/crawling-indexing/links-crawlable",
     "https://schema.org/sameAs",
     "https://schema.org/subjectOf"
-  ]
+  ],
+  "reddit_snapshots": [
+    {
+      "id": "S1",
+      "attachment": {
+        "filename": "Pasted text.txt",
+        "sha256": "d27778e3a566f05f8a3200c8a1bd61dacb2207f0688753a0a2648ecf666c2c92",
+        "bytes": 18516,
+        "lines": 480
+      },
+      "received_at": "2026-10-07",
+      "reviewed_at": "2026-10-07",
+      "captured_at": null,
+      "published_at": null,
+      "access": "supplied-text-and-public-thread-match",
+      "completeness": "Read all supplied text. Pasted UI contains collapsed/deleted material; not a complete API export.",
+      "canonical_url": "https://www.reddit.com/r/softwarearchitecture/comments/1u7rwok/nber_study_shows_7x_more_code_but_only_30_more/",
+      "post_id": "1u7rwok",
+      "subreddit": "softwarearchitecture",
+      "observed_title": "NBER study shows 7x more code but only 30% more releases. Anyone else hitting this bottleneck?",
+      "observed_author_handle": "Much-Expression4581",
+      "identity_evidence": [
+        "Exact title, subreddit, author handle and opening body match the publicly retrieved canonical thread."
+      ],
+      "original_short_link_id": null,
+      "record": null,
+      "topic": "Subprime Code Crisis / delivery constraints",
+      "proposed_treatment": "include-context",
+      "relationship": "Topic discussion; not another publication edition or independent review.",
+      "metric_provenance": "author-supplied-pasted-ui",
+      "metrics_independently_verified": false,
+      "metrics": {
+        "views": {
+          "display": "13K",
+          "approximate_value": 13000,
+          "unit": "post_views",
+          "rounded": true
+        },
+        "comments": {
+          "display": "30",
+          "value": 30,
+          "unit": "comments_including_replies"
+        },
+        "vote_control": {
+          "display": "15",
+          "value": 15,
+          "unit": "displayed_vote_score"
+        },
+        "reposts": null,
+        "shares": null
+      },
+      "raw_post_ui": {
+        "start_line": 61,
+        "end_line": 75,
+        "text": "Upvote\n15\n\nDownvote\n \n30\nGo to comments\n\nRepost\n\nShare\n \nPromote Post\n13K views\nSee More Insights"
+      },
+      "recommended_public_metrics": [
+        "views",
+        "comments"
+      ]
+    },
+    {
+      "id": "S2",
+      "attachment": {
+        "filename": "Pasted text (2).txt",
+        "sha256": "796bf27b48e93319df4e089808e757f830fe7c9e043fd4edb402e6639d78529e",
+        "bytes": 45102,
+        "lines": 735
+      },
+      "received_at": "2026-10-07",
+      "reviewed_at": "2026-10-07",
+      "captured_at": null,
+      "published_at": null,
+      "access": "supplied-text-and-public-thread-match",
+      "completeness": "Read all supplied text. Pasted UI contains collapsed/deleted material; not a complete API export.",
+      "canonical_url": "https://www.reddit.com/r/softwarearchitecture/comments/1u5tjy8/reinventing_control_theory_one_feature_at_a_time/",
+      "post_id": "1u5tjy8",
+      "subreddit": "softwarearchitecture",
+      "observed_title": "Reinventing Control Theory one feature at a time: the fallacy of Agentic Loops",
+      "observed_author_handle": "Much-Expression4581",
+      "identity_evidence": [
+        "Exact title, subreddit, author handle and opening body match the publicly retrieved canonical thread."
+      ],
+      "original_short_link_id": null,
+      "record": "publication-07",
+      "topic": "Agentic loops / verification boundaries",
+      "proposed_treatment": "include-context",
+      "relationship": "Topic discussion; not another publication edition or independent review.",
+      "metric_provenance": "author-supplied-pasted-ui",
+      "metrics_independently_verified": false,
+      "metrics": {
+        "views": {
+          "display": "48K",
+          "approximate_value": 48000,
+          "unit": "post_views",
+          "rounded": true
+        },
+        "comments": {
+          "display": "55",
+          "value": 55,
+          "unit": "comments_including_replies"
+        },
+        "vote_control": {
+          "display": "125",
+          "value": 125,
+          "unit": "displayed_vote_score"
+        },
+        "reposts": null,
+        "shares": null
+      },
+      "raw_post_ui": {
+        "start_line": 53,
+        "end_line": 67,
+        "text": "Upvote\n125\n\nDownvote\n \n55\nGo to comments\n\nRepost\n\nShare\n \nPromote Post\n48K views\nSee More Insights"
+      },
+      "recommended_public_metrics": [
+        "views",
+        "comments"
+      ]
+    },
+    {
+      "id": "S3",
+      "attachment": {
+        "filename": "Pasted text (3).txt",
+        "sha256": "5c146f839d3f796b2e3109a1b8fe0065aa877dad41b1a9b882f0280896bf3d25",
+        "bytes": 24642,
+        "lines": 537
+      },
+      "received_at": "2026-10-07",
+      "reviewed_at": "2026-10-07",
+      "captured_at": null,
+      "published_at": null,
+      "access": "supplied-text-and-public-thread-match",
+      "completeness": "Read all supplied text. Pasted UI contains collapsed/deleted material; not a complete API export.",
+      "canonical_url": "https://www.reddit.com/r/learndatascience/comments/1pjxsb4/why_ai_engineering_is_actually_control_theory_and/",
+      "post_id": "1pjxsb4",
+      "subreddit": "learndatascience",
+      "observed_title": "Why AI Engineering is actually Control Theory (and why most stacks are missing the \"Controller\")",
+      "observed_author_handle": "Much-Expression4581",
+      "identity_evidence": [
+        "Exact title, subreddit, author handle and opening body match the publicly retrieved canonical thread.",
+        "Supplied line 183 also contains a comment permalink with the same post ID 1pjxsb4."
+      ],
+      "original_short_link_id": null,
+      "record": "publication-09",
+      "topic": "Control theory / operating models",
+      "proposed_treatment": "include-context",
+      "relationship": "Topic discussion; not another publication edition or independent review.",
+      "metric_provenance": "author-supplied-pasted-ui",
+      "metrics_independently_verified": false,
+      "metrics": {
+        "views": {
+          "display": "34K",
+          "approximate_value": 34000,
+          "unit": "post_views",
+          "rounded": true
+        },
+        "comments": {
+          "display": "41",
+          "value": 41,
+          "unit": "comments_including_replies"
+        },
+        "vote_control": {
+          "display": "56",
+          "value": 56,
+          "unit": "displayed_vote_score"
+        },
+        "reposts": 4,
+        "shares": null
+      },
+      "raw_post_ui": {
+        "start_line": 81,
+        "end_line": 96,
+        "text": "Upvote\n56\n\nDownvote\n \n41\nGo to comments\n\n4\nRepost\n\nShare\n \nPromote Post\n34K views\nSee More Insights"
+      },
+      "recommended_public_metrics": [
+        "views",
+        "comments"
+      ]
+    }
+  ],
+  "reddit_amendment": {
+    "date": "2026-10-07",
+    "request": "Maintainer supplied three thread texts/statistics and requested a revised Sol plan, including consideration of numbers.",
+    "supersedes": "Initial all-thread content deferral and blanket no-counter recommendation; original unresolved short-link aliases remain unresolved.",
+    "canonical_identity_status": "Three new content inputs matched to public canonical threads; original share-code ordering is not assumed.",
+    "metric_policy": "Small Research per-thread views/comments, with snapshot attribution and unknown capture dates; no Home counter or validation claim.",
+    "metrics_help": "https://support.reddithelp.com/hc/en-us/articles/35363096996500-Post-Comment-Insights",
+    "metrics_help_reviewed_at": "2026-10-07",
+    "limitations": [
+      "Received/reviewed dates are not capture dates or publication dates; relative age labels cannot establish timestamps.",
+      "Views count view events, not unique readers or qualified professionals; K displays are rounded.",
+      "Displayed comment totals include replies and author participation; no unique-participant or sentiment percentage was measured.",
+      "Vote-control numbers are recorded as displayed scores, not a count of endorsers or independent reviews.",
+      "Four reposts in S3 are not four shares; missing share/repost counts are null, not zero.",
+      "Subreddit visitor/contribution/member figures and account badges are not post or author-site metrics.",
+      "The public reader confirmed thread content, not private insights; no API, screenshot authenticity or current-count verification claimed."
+    ]
+  },
+  "reddit_historical_metrics": [
+    {
+      "id": "S3-H48",
+      "snapshot_id": "S3",
+      "provenance": "author-reported-post-and-comment",
+      "window": "first-48-hours",
+      "captured_at": null,
+      "occurrences": [
+        55,
+        374
+      ],
+      "observation_count": 1,
+      "displayed_mentions": 2,
+      "views_display": "13,000+",
+      "shares_display": "~80",
+      "upvote_ratio_display": "85%",
+      "upvotes_display": "28",
+      "independently_verified": false,
+      "include_in_aggregate": false,
+      "recommended_for_public_display": false,
+      "interpretation": "One historical author report repeated in an edit and comment; cannot establish silent-majority support or framework validation."
+    }
+  ],
+  "reddit_aggregate": {
+    "snapshot_ids": [
+      "S1",
+      "S2",
+      "S3"
+    ],
+    "distinct_threads": 3,
+    "approximate_post_views": 95000,
+    "display": "~95K",
+    "displayed_comments": 126,
+    "unique_readers": null,
+    "unique_participants": null,
+    "common_capture_date": null,
+    "calculation": "13K + 48K + 34K rounded post-view displays; 30 + 55 + 41 displayed comment totals; each distinct thread once.",
+    "recommended_public_display": false,
+    "reason": "Derived planning context only. Recommend the three per-thread rows; no additional aggregate badge or Home metric."
+  }
 }

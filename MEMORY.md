@@ -29,8 +29,11 @@ Dated continuity hints, not instructions or live-status authority. Last verified
   Preparation only: explicit UA advisor roles, compact public-source presentation,
   LinkedIn edition mapping, Reddit disposition and SEO/claim preservation plan.
   No authored public/runtime or hosting/workflow change. Twenty of 22 unique
-  LinkedIn inputs exposed metadata; two alternates and all three Reddit short
-  links remain unresolved. Advisory written consent is maintainer-attested.
+  LinkedIn inputs exposed metadata; two alternates remain unavailable. Follow-up
+  supplied three Reddit texts: canonical threads matched, ~95K combined displayed
+  views / 126 comments; recommend modest per-thread Research metrics with snapshot
+  provenance, not validation. Capture dates and original short-code aliases remain
+  unknown. Advisory written consent is maintainer-attested.
   Sol implementation and independent/editorial/merge gates remain pending.
 - Earlier #28/#14 completion and accepted stage remain recorded in their issues.
   Current hosting mechanics are in [the runbook](guides/SITE-STAGING.md).

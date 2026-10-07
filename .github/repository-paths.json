@@ -807,7 +807,7 @@
     },
     "review/issue-41/source-inventory.json": {
       "kind": "file",
-      "purpose": "Exact supplied LinkedIn/Reddit inputs, observed metadata and proposed mappings/access limits; dated preparation evidence only.",
+      "purpose": "Exact LinkedIn/Reddit inputs, hashed supplied thread snapshots, bounded metrics and canonical mappings/access limits; dated preparation evidence only.",
       "role": "history",
       "owner": "guides/SITE-SOURCE-AUDIT.md"
     },
@@ -6009,7 +6009,7 @@
     },
     "tests/test_issue41_acceptance.py": {
       "kind": "file",
-      "purpose": "Issue41-only exact-input, unresolved-source and unchanged-public preparation checks with meaningful failure fixtures.",
+      "purpose": "Issue41-only input/source and Reddit snapshot metric provenance/inflation checks, plus unchanged-public preparation checks and failure fixtures.",
       "role": "test",
       "owner": ".github/ACCEPTANCE.md"
     },
