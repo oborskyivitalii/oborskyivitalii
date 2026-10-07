@@ -359,7 +359,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "c605b8a363cdf404b751ce3f8c97cfdda41d3b411b00daa5f1ade52f9c4811ad",
+    "digest": "f2a4c9d668a30ab9f56ea06941558bc0f7efd60be0800a243f6005ecf45e5003",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -399,7 +399,7 @@
       },
       {
         "path": ".github/acceptance/issue-45.json",
-        "sha256": "b491c7513e7313b7e565d1128d86b5246a611edbdf2275e1a773885eee9bc556"
+        "sha256": "643c6a1aa85c477efa148e51837632df8c4f6bb5099acc129b28f0f9c8b19736"
       },
       {
         "path": ".github/pull_request_template.md",
@@ -415,7 +415,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "a5d90a8ae5a092d7ded9dd6ba2da97e57b30afc7fe7e97625d82076615407519"
+        "sha256": "3e8e64b697df5d5366480ef3e8afbe42f52287670e9e2cfca7c04642b3d0283d"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",

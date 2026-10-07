@@ -207,4 +207,4 @@ effect fails generation. Hosted evidence is bound to the producer's base variant
 selecting Color for production remains a separate decision requiring its complete
 same-byte hosted behavioral/performance matrix. A base pass cannot admit Color.
 
-Reading backdrop paint is authored only in `engine/reading-surfaces.css` and concatenated into the existing stylesheet by the producer. All routes and Color share solid theme-paper paint, crisp edges and a 12px visible outer corner radius; title spread adjusts its inner radius and preserves ink stacking. Component spacing remains ordinary layout CSS.
+Reading backdrop paint is authored only in `engine/reading-surfaces.css` and concatenated into the existing stylesheet by the producer. All routes, Color and the Appearance popup share solid theme-paper paint, crisp edges and a 12px visible radius at all four outer corners; title spread adjusts its inner radius and preserves ink stacking. Component spacing and semantic control/CTA paint remain ordinary layout CSS.

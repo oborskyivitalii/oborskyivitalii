@@ -250,22 +250,34 @@ async function ribbonNavigation(browser,url,output,result){
   assert.ok(result.navigation.every(row=>row.pass),'complete ribbon navigation evidence; inspect retained traces and clips');
 }
 async function surfaceSamples(page,route,width,theme,result){
-  const selectors={index:[width<=640?'.hero h1':'.hero-copy','.help-grid article','.site-footer>p'],research:['.reading-title','.research-card'],writing:['.reading-title','.archive-filters','.publication','.year-heading'],talks:['.reading-title','.talks-list .publication>div'],credits:['.credits-page>h1']};
-  const observed=await page.evaluate(selectors=>selectors.map(selector=>{
-    const el=document.querySelector(selector);if(!el)return {selector,missing:true};
-    const inline=el.matches('.reading-title'),css=getComputedStyle(el,inline?null:'::before'),lengths=css.boxShadow.match(/-?[\d.]+px/g)||[],spread=inline?parseFloat(lengths[3]||'0'):0;
-    return {selector,inline,background:css.backgroundColor,opacity:css.opacity,mask:css.maskImage,filter:css.filter,backdropFilter:css.backdropFilter,shadowBlur:parseFloat(lengths[2]||'0'),outerRadius:parseFloat(css.borderTopLeftRadius)+spread};
-  }),selectors[route]);
-  for(const sample of observed){
-    assert.equal(sample.missing,undefined,'actual reading sample '+sample.selector);
-    assert.equal(sample.opacity,'1','shared solid surface opacity');assert.equal(sample.mask,'none','shared crisp surface edge');
-    assert.equal(sample.filter,'none','surface paint does not blur text');assert.equal(sample.backdropFilter,'none','shared crisp surface edge');assert.equal(sample.shadowBlur,0,'shared unblurred surface edge');
-    assert.ok(Math.abs(sample.outerRadius-12)<.02,'shared visible outer corner radius');
-  }
+  const selectors={index:[width<=640?'.hero h1':'.hero-copy','.help-grid article','.site-footer>p','.appearance[open] .display-controls'],research:['.reading-title','.research-card'],writing:['.reading-title','.archive-filters','.publication','.year-heading'],talks:['.reading-title','.talks-list .publication>div'],credits:['.credits-page>h1']};
+  const observed=await page.evaluate(selectors=>{
+    const appearance=document.querySelector('.appearance'),wasOpen=appearance?.open;
+    if(appearance)appearance.open=true;
+    const samples=selectors.map(selector=>{
+      const el=document.querySelector(selector);if(!el)return {selector,missing:true};
+      const inline=el.matches('.reading-title'),direct=inline||el.matches('.display-controls'),css=getComputedStyle(el,direct?null:'::before'),lengths=css.boxShadow.match(/-?[\d.]+px/g)||[],spread=inline?parseFloat(lengths[3]||'0'):0;
+      const outerRadii=['borderTopLeftRadius','borderTopRightRadius','borderBottomRightRadius','borderBottomLeftRadius'].map(corner=>parseFloat(css[corner])+spread);
+      return {selector,inline,background:css.backgroundColor,opacity:css.opacity,mask:css.maskImage,filter:css.filter,backdropFilter:css.backdropFilter,shadowBlur:parseFloat(lengths[2]||'0'),outerRadii};
+    });
+    if(appearance)appearance.open=wasOpen;
+    return samples;
+  },selectors[route]);
+  for(const sample of observed)validateSurfaceSample(sample);
   result.surfaceSamples??=[];result.surfaceSamples.push(...observed.map(sample=>({route,width,theme,...sample})));
 }
+function validateSurfaceSample(sample){
+  assert.equal(sample.missing,undefined,'actual reading sample '+sample.selector);
+  assert.equal(sample.opacity,'1','shared solid surface opacity');assert.equal(sample.mask,'none','shared crisp surface edge');
+  assert.equal(sample.filter,'none','surface paint does not blur text');assert.equal(sample.backdropFilter,'none','shared crisp surface edge');assert.equal(sample.shadowBlur,0,'shared unblurred surface edge');
+  assert.ok(Array.isArray(sample.outerRadii)&&sample.outerRadii.length===4,'all four visible outer corners measured');
+  assert.ok(sample.outerRadii.every(radius=>Number.isFinite(radius)&&Math.abs(radius-12)<.02),'shared visible outer corner radius');
+}
 function validateSurfaceSamples(samples){
-  assert.equal(samples.length,48,'12 actual surfaces at two widths and two themes');
+  assert.equal(samples.length,52,'13 actual surfaces at two widths and two themes');
+  for(const sample of samples)validateSurfaceSample(sample);
+  const popups=samples.filter(sample=>sample.selector==='.appearance[open] .display-controls');
+  assert.deepEqual(popups.map(sample=>[sample.width,sample.theme].join('/')).sort(),['1440/dark','1440/light','320/dark','320/light'],'Appearance panel measured at both widths and themes');
   for(const theme of ['light','dark']){
     const rows=samples.filter(row=>row.theme===theme),background=rows[0].background;
     assert.ok(background!=='rgba(0, 0, 0, 0)','shared visible theme paper');
@@ -339,4 +351,4 @@ async function main(){
   }
 }
 if(require.main===module)main().catch(error=>{process.stderr.write(String(error.stack||error)+'\n');process.exitCode=1;});
-module.exports={measure,compare,compareGeometry,styles,readingStyle,validateRibbonTrace,validateArrivalDepth,validateNativeEndpoints,ribbonNavigation};
+module.exports={measure,compare,compareGeometry,styles,readingStyle,validateRibbonTrace,validateArrivalDepth,validateNativeEndpoints,ribbonNavigation,validateSurfaceSamples};

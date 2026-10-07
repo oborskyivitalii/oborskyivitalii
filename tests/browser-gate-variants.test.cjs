@@ -24,6 +24,23 @@ test('reading clarity rejects wrong landing targets and depth reversals that rem
   const missed=plain(events);missed[2].scrollY=0;
   assert.throws(()=>validateNativeEndpoints({events:missed},leg),/destination scroll endpoint/,'post-layout landing must reach the bottom');
 });
+test('reading clarity rejects any individual corner drift and missing Appearance paint evidence',()=>{
+  const {validateSurfaceSamples}=require('../tools/quality/reading-clarity.cjs');
+  const selectors=['.hero-copy','.help-grid article','.site-footer>p','.reading-title','.research-card','.reading-title','.archive-filters','.publication','.year-heading','.reading-title','.talks-list .publication>div','.credits-page>h1','.appearance[open] .display-controls'];
+  const samples=[];
+  for(const width of [320,1440])for(const theme of ['light','dark'])for(const selector of selectors){
+    samples.push({selector,width,theme,background:theme==='light'?'rgb(243, 241, 234)':'rgb(17, 28, 34)',opacity:'1',mask:'none',filter:'none',backdropFilter:'none',shadowBlur:0,outerRadii:[12,12,12,12]});
+  }
+  assert.doesNotThrow(()=>validateSurfaceSamples(samples));
+  for(let corner=0;corner<4;corner++){
+    const changed=plain(samples);changed[0].outerRadii[corner]=3;
+    assert.throws(()=>validateSurfaceSamples(changed),/shared visible outer corner radius/,'any single changed corner fails');
+  }
+  const missing=plain(samples);missing[12].selector='.other-panel';
+  assert.throws(()=>validateSurfaceSamples(missing),/Appearance panel measured/,'the popup cannot be replaced by another sample');
+  const blurred=plain(samples);blurred[12].shadowBlur=30;
+  assert.throws(()=>validateSurfaceSamples(blurred),/shared unblurred surface edge/,'a blurred popup edge fails');
+});
 function scene(source,theme='dark'){
   const context={window:{},module:{exports:{}},document:{getElementById:()=>null,documentElement:{dataset:{theme}}}};
   vm.runInNewContext(source,context);

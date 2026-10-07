@@ -223,3 +223,17 @@ The root reports opt-in run `37664883208` timed out in APT installation before a
 | --- | --- |
 | `.github/workflows/site-writing-probe.yml` | `b52362e175382fdd8210316808908b7937d6e060e5d337bc44c0b41174a8f25e` |
 | Exact copied workflow step | `bbcb7817cb909cf73b6a51b0ae64255f2106704d40f02d6503e3f47b1dab866f` |
+
+## Popup and all-corner completion — independent review
+
+A separate reviewer inspected the prepared completion against a574ac6 and
+found no blocker. The Appearance popup now shares theme paper,100% opacity,
+sharp edges and all four12px corners; title spread and native layout persist.
+The reviewer ran the exact shared-authority and per-corner/popup validator
+cases, both passing. The generation proof independently verifies all180
+new exact public checksum additions while preserving the prior912 records,
+metadata and historical baseline. Approval is recorded in the additions'
+reason fields. Lifecycle/navigation and generated JavaScript are byte-identical
+to a574ac6. Root additionally passed complete ESLint and Stylelint on this
+prepared source. Current-source hosted/browser results and maintainer visual
+acceptance remain separate; this source review supplies no merge/stage decision.

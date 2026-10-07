@@ -65,10 +65,11 @@ test('reading surfaces have one shared CSS authority across base and Color rendi
   const paint=/^(?:background(?:-[\w-]+)?|opacity|border(?:-[\w]+)*-radius|box-shadow|(?:-webkit-)?mask(?:-[\w-]+)?|(?:backdrop-)?filter)$/;
   function verifyMaterial(rule){
     for(const [property,value]of properties(rule.body)){
-      if(property==='background')assert.equal(value,rule.selector.includes('::before')||rule.selector.includes('.reading-title')?'var(--reading-surface-color)':'transparent','one theme-paper material');
+      if(property==='background')assert.equal(value,rule.selector.includes('::before')||rule.selector.includes('.reading-title')||rule.selector.includes('.display-controls')?'var(--reading-surface-color)':'transparent','one theme-paper material');
       if(property==='opacity')assert.equal(value,'var(--reading-surface-opacity)');
       if(property==='border-radius')assert.ok(['var(--reading-surface-radius)','max(0px,calc(var(--reading-surface-radius) - var(--reading-title-outset)))'].includes(value),'shared outside radius including title spread');
-      if(property==='box-shadow')assert.equal(value,'0 0 0 var(--reading-title-outset) var(--reading-surface-color)','title margin is sharp paint only');
+      if(/^border-(?:top|bottom)-(?:left|right)-radius$/.test(property))assert.equal(value,'var(--reading-surface-radius)','individual corners must preserve the shared outside radius');
+      if(property==='box-shadow')assert.equal(value,rule.selector.includes('.display-controls')?'none':'0 0 0 var(--reading-title-outset) var(--reading-surface-color)','shared sharp paint only');
     }
   }
   function verify(reading,ordinary,authoredColor,publicCSS){
@@ -93,5 +94,9 @@ test('reading surfaces have one shared CSS authority across base and Color rendi
   const duplicate='\nbody[data-page="writing"] .publication::before {background:#ffffff;opacity:.5;border-radius:3px}\n';
   assert.throws(()=>verify(owner,base+duplicate,extra,base+duplicate+'\n'+owner),/reading-paint override/,'a route override cannot become another CSS owner');
   assert.throws(()=>verify(owner,base,extra+duplicate,generated),/reading-paint override/,'Color cannot silently replace the shared material');
+  const corner='\n.section-heading::before {border-bottom-right-radius:3px}\n';
+  assert.throws(()=>verify(owner+corner,base,extra,base+'\n'+owner+corner),/individual corners/,'a single changed corner cannot bypass the material contract');
+  const popup='\n.appearance[open] .display-controls {border-radius:6px;box-shadow:0 10px 30px #0002}\n';
+  assert.throws(()=>verify(owner,base+popup,extra,base+popup+'\n'+owner),/reading-paint override/,'Appearance cannot silently restore a separate panel style');
   assert.throws(()=>verify(owner+'\n:root {--reading-surface-opacity:.5}\n',base,extra,base+'\n'+owner+'\n:root {--reading-surface-opacity:.5}\n'),/opacity authority/,'a second opacity token fails');
 });

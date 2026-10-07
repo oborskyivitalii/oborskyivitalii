@@ -52,8 +52,8 @@
 
 
 
-  <meta name="site-engine" content="e8689f408f63fb3bcb220da0e866dbab5431227d4b08b3eafdc7566ce7f2e02d">
-  <meta name="site-route" content="04baa8285b107808a8c7b40c20b008b24a8c5ac78243d19a120163265624bb97">
+  <meta name="site-engine" content="f89bdc3dc8f3c37ddc3d3164add1c28d6f4d0e84d7b910e07ef2689e9f7560eb">
+  <meta name="site-route" content="0e13f980e8b5456d7fe54d7a2f8e86d8877291c3bd3b7b9f4f1d55e8f1a8b138">
   <meta name="site-contract" content="1">
   <meta name="site-variant" content="base">
 <meta name="robots" content="noindex, nofollow">
@@ -110,7 +110,7 @@ button {cursor:pointer}
 .appearance {position:relative;font-size:13px}
 .appearance summary {cursor:pointer;min-height:44px;padding:10px 0;list-style-position:inside}
 .appearance summary:focus-visible {outline:3px solid var(--accent);outline-offset:4px}
-.appearance[open] .display-controls {position:absolute;right:0;top:48px;z-index:6;background:var(--paper);padding:18px;border:1px solid var(--line);border-radius:6px;box-shadow:0 10px 30px #0002;min-width:270px}
+.appearance[open] .display-controls {position:absolute;right:0;top:48px;z-index:6;padding:18px;border:1px solid var(--line);min-width:270px}
 .theme-control {display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
 select,.motion-control,.filter-reset {min-height:44px;background:var(--paper);color:var(--ink);border:1px solid var(--control-line);border-radius:6px;padding:8px 10px}
 .motion-control:disabled {color:var(--muted);opacity:1;cursor:default}
@@ -400,8 +400,8 @@ body[data-page="writing"] #archive-results {width:min(1010px,calc(100% - 80px));
 .ack-grid article,.discussion-row,.about-grid>div,.about-grid>h2,.about-section>.eyebrow,.archive-link,.contact-grid>div,.publication,.credits-page>p,.credits-page>h1,.credits-page>h2,
 .archive-heading,.archive-count,.empty-state,.year-landing,.year-heading,.writing-topic,.section-note,.next-route>p,.next-route>a,
 .archive-landings>.topic-landing,.archive-filters,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a,.talks-list .publication>div)::before,
-.hero :is(h1,.hero-lead,.hero-description,.audience,.eyebrow)::before,.reading-title {
-  background:var(--reading-surface-color);opacity:var(--reading-surface-opacity);border-radius:var(--reading-surface-radius);
+.hero :is(h1,.hero-lead,.hero-description,.audience,.eyebrow)::before,.reading-title,.appearance[open] .display-controls {
+  background:var(--reading-surface-color);opacity:var(--reading-surface-opacity);border-radius:var(--reading-surface-radius);box-shadow:none;
 }
 /* A spread shadow adds its spread to the base radius. Subtract it here so the
    outside of each title fragment matches the shared 12px panel corner. */

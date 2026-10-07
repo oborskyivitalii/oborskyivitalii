@@ -29,8 +29,8 @@
 .ack-grid article,.discussion-row,.about-grid>div,.about-grid>h2,.about-section>.eyebrow,.archive-link,.contact-grid>div,.publication,.credits-page>p,.credits-page>h1,.credits-page>h2,
 .archive-heading,.archive-count,.empty-state,.year-landing,.year-heading,.writing-topic,.section-note,.next-route>p,.next-route>a,
 .archive-landings>.topic-landing,.archive-filters,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a,.talks-list .publication>div)::before,
-.hero :is(h1,.hero-lead,.hero-description,.audience,.eyebrow)::before,.reading-title {
-  background:var(--reading-surface-color);opacity:var(--reading-surface-opacity);border-radius:var(--reading-surface-radius);
+.hero :is(h1,.hero-lead,.hero-description,.audience,.eyebrow)::before,.reading-title,.appearance[open] .display-controls {
+  background:var(--reading-surface-color);opacity:var(--reading-surface-opacity);border-radius:var(--reading-surface-radius);box-shadow:none;
 }
 /* A spread shadow adds its spread to the base radius. Subtract it here so the
    outside of each title fragment matches the shared 12px panel corner. */

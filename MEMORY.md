@@ -35,7 +35,8 @@ Dated continuity, not live authority. Last verified: **2026-10-07**.
   native landings to normal midpoint measurement. Twelve selected camera cases
   and eight fresh cold/warm browser contexts cover actual reverse end landings.
   `site/engine/reading-surfaces.css` owns all reading paint: theme paper100%,
-  crisp edges and12px outer corners. Draft [PR47](https://github.com/oborskyivitalii/oborskyivitalii/pull/47)
+  crisp edges and12px outer corners, including Appearance.52 computed samples
+  check all four corners; current8-context endpoint motion passes on1f60/a574. Draft [PR47](https://github.com/oborskyivitalii/oborskyivitalii/pull/47)
   at1f60f059 passes Basic23, source285, policy11 and exact hosted smoke.
   Opt-in37664883208 timed out installing Ubuntu dependencies before browser
   tests; reuse the existing primary-archive download bounds and retry on the

@@ -50,7 +50,7 @@ button {cursor:pointer}
 .appearance {position:relative;font-size:13px}
 .appearance summary {cursor:pointer;min-height:44px;padding:10px 0;list-style-position:inside}
 .appearance summary:focus-visible {outline:3px solid var(--accent);outline-offset:4px}
-.appearance[open] .display-controls {position:absolute;right:0;top:48px;z-index:6;background:var(--paper);padding:18px;border:1px solid var(--line);border-radius:6px;box-shadow:0 10px 30px #0002;min-width:270px}
+.appearance[open] .display-controls {position:absolute;right:0;top:48px;z-index:6;padding:18px;border:1px solid var(--line);min-width:270px}
 .theme-control {display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
 select,.motion-control,.filter-reset {min-height:44px;background:var(--paper);color:var(--ink);border:1px solid var(--control-line);border-radius:6px;padding:8px 10px}
 .motion-control:disabled {color:var(--muted);opacity:1;cursor:default}
