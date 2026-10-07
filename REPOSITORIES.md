@@ -35,7 +35,7 @@ publication issue.
 | UA Quartz/HTML/PDF/rendition machinery | Versioned UA publishing owner | Personal pinned adapter in site #5; UA retains its own topic output |
 | Subprime HTML/PDF adapter + article | Subprime PR #46, UA engine pin in that PR | Subprime #48; coordinated upgrade/provenance decision with site #5 |
 | PMDay editable source, notes, figures, deck/PDF | UA PR #113 selected head/edition | Personal #2 after manifest/rights/reproducibility review; UA #133 records disposition |
-| Repository Intelligence | UA architecture/producer pattern | Lean local navigation adapters in Subprime #52 and personal #4; full UA graph stays in UA |
+| Repository Intelligence | UA architecture/producer pattern | Lean local navigation adapters in Subprime #52 and completed personal #4; site inventory/memory refresh in #31; full UA graph stays in UA |
 | Research/source statuses | Owning registers in UA/Subprime | Link them; do not migrate their authority to the site |
 | Possible three sites | Current author/research boundaries | Personal #8; no rename, hosting or deployment assumed |
 

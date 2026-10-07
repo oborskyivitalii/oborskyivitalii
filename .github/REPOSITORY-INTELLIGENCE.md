@@ -1,72 +1,107 @@
-# Local Repository Intelligence adapter
+# Site Repository Intelligence
 
-## Authority and implemented subset
+## Upstream and adapted scope
 
-This is an informative local navigation adapter adapted from [UA RI architecture](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/345c8f50745e5fde1303d0d7952634f7899220c9/.github/REPOSITORY-INTELLIGENCE.md)
-and producer pattern at that pinned revision. It is not a full UA RI transplant:
-no graph view, impact traversal, trusted candidate/tested-merge comparison,
-remote caches or live PR overlay are implemented. No measured productivity or
-comprehension improvement is claimed; UA's evaluation remains its own evidence.
+This adapter follows Uncertainty Architecture's derived projection, source
+identity, instruction scope, artifact roles and validation-route pattern. The
+current UA source was compared on 2026-10-07 at
+[`345c8f50745e5fde1303d0d7952634f7899220c9`](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/tree/345c8f50745e5fde1303d0d7952634f7899220c9):
+producer v6 / schema v2,
+[producer](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/345c8f50745e5fde1303d0d7952634f7899220c9/.github/scripts/repository_intelligence.py),
+[architecture](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/345c8f50745e5fde1303d0d7952634f7899220c9/.github/REPOSITORY-INTELLIGENCE.md)
+and [contract](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/345c8f50745e5fde1303d0d7952634f7899220c9/.github/policy/repository-intelligence-contract.json).
+Exact upstream paths/blob identities are in
+[the site config](repository-intelligence-config.json); license and modification
+notices are in [RI-NOTICE](../tools/RI-NOTICE.md).
 
-The local config explicitly maps concerns/query aliases to owning files. The
-producer inventories all admitted local text paths, glossary headings, applicable
-AGENTS scopes and configured source-registry rows before lookup. Lexical matches
-are explainable candidates; read their owning text. Cross-repo links are navigation
-only. In Subprime, the registry's evidence/audit/date fields are copied exactly,
-never inferred or promoted.
+The existing #4 navigation subset was already pinned to that UA revision. #31
+adapts the missing site navigation concerns; it does not pretend an upstream
+version changed. Site schema v2 is a separate local contract, not UA schema parity.
 
-## Bootstrap and use
+| UA pattern | Site adaptation |
+| --- | --- |
+| One projection, consumer views | One source/catalog projection produces agent JSON and a readable repository map. |
+| Concern-based owners and artifact roles | Explicit query aliases plus per-path purpose, role and editing owner; history/drafts/derived files remain distinguishable. |
+| Instruction discovery | Root and directory-scoped AGENTS are routed for every file/directory. Archived AGENTS.before is evidence, not an instruction surface. |
+| Validation companions | Explicit commands/workflows for RI, site source and release tooling; suggestions never claim execution. |
+| Deterministic source identity | All source, code, asset and historical bytes are hashed; generated RI views are verified as outputs. Live PR/deployment state stays outside the projection. |
+| Fail-visible fallback | Missing/stale/unknown paths, unsupported input and bounds fail; direct source reading remains available. |
 
-Read root/nested instructions first. A connector-only agent can read the committed
-surface and owning files at the inspected ref, but cannot claim to have run local
-verification. Compare source/config/producer identities through actual retrieved
-files if available; otherwise fall back to direct repository search. Live GitHub
-PRs/reviews/checks/approvals must be fetched separately.
+UA's semantic graph, normative metadata/research-register policy, impact
+traversal, trusted accepted/proposed Git comparison, checkpoint contracts and
+benchmark machinery remain upstream. There is no remote index/cache, new runtime
+dependency, measured productivity claim or replacement for #6's cross-repo harness.
 
-From the repository root (Python 3.11+ standard library only):
+## Complete path catalog and authority
 
-```bash
+[repository-paths.json](repository-paths.json) is the maintained description
+catalog: every repository file and every ancestor directory, including root,
+has a kind, purpose, role and editing owner. Root files have individual purposes;
+no unknown-path fallback silently classifies new files. Add/remove entries with
+path changes. Missing, stale, blank-purpose and dangling-owner entries fail.
+
+The derived [REPOSITORY-MAP](../REPOSITORY-MAP.md) lists all of those entries.
+[agent-context.json](repository-intelligence/agent-context.json) adds exact source
+identity, discovered instructions, configured owner aliases and validation routes.
+Both are generated from the same projection; do not edit either by hand.
+
+Roles describe navigation: source/configuration, guide, validator/test/workflow,
+generated rendition, history, draft, license and memory. The owning issue and
+source remain authoritative; an index entry does not grant scientific, rights,
+merge or deployment acceptance. This repository has no source/glossary registry
+configured; it does not invent local copies of UA/Subprime research status.
+
+## Agent route
+
+Start with root/scoped AGENTS and an owning issue; read MEMORY as a dated hint
+and revalidate live facts. Known exact owners can be read directly. With a local
+runtime, verify before querying. Reuse that verified surface while source state
+is unchanged; inspect the full inventory before proposing a competing owner.
+
+```sh
 python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json build
 python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify
 python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json query 'ішью'
-python3 -m unittest discover -s tests -p 'test_*.py'
+python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json context-for-task 'session memory'
+python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json inventory
+python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'
 ```
 
-The committed surface is [agent-context.json](repository-intelligence/agent-context.json).
-Reuse it only for the verified same source state. Missing/stale/altered context
-exits nonzero with a direct-reading fallback. Read complete inventories before
-creating a new term or maintained owner. A miss, untranslated query or multiple
-candidates is not proof of absence or authority.
+A connector-only agent may read the committed map/JSON at a known ref, but must
+not claim local verification or CLI execution. Match CI's verified checkout/blob
+record (`source_dirty: false`) to that source when relying on freshness; missing or unavailable evidence
+requires direct-source fallback. PR checks can run on a synthetic merge, so a run
+attached to a head does not prove raw-head JSON freshness. Inspect current issue,
+PR, review, checks and deployment state through GitHub separately.
 
-## Identity and bounds
+Queries return explainable candidates, including historical matches with their
+roles; they do not select authority. Read their sources. A lexical miss or an
+untranslated Ukrainian phrase does not establish absence; retry a source-grounded
+label/path or use direct search. Validation routes suggest checks, not results.
 
-- Admitted text suffixes: Markdown, JSON, TOML, YAML, Python, CFF, TXT. Content
-  hashes bind every represented input, including config, producer, docs and tests.
-- Other files are inventory/existence-only; binary changes need separate artifact
-  digest/rights checks. This adapter cannot verify a deck/PDF content edition.
-- Git/build/cache directories and temporary Python/build files are excluded
-  explicitly by the producer; the generated surface excludes itself.
-- Addition/deletion/content changes invalidate the text projection. Config and
-  producer changes also invalidate it. Generation is deterministic and atomic.
-- Bounds: 5,000 represented files, 2 MB per text file, 50 MB total text.
-  Exceeding bounds fails visibly; do not silently truncate inventories.
-- Repository paths reject traversal and symlinks, including inside-root aliases.
-  Markdown extraction supports fenced/indented examples and balanced single-line
-  code spans. Comment-bearing multiline/unmatched code spans fail visibly as
-  unsupported; use direct source reading rather than a partial inventory.
-  Local execution is an ordinary reviewed developer operation, **not** trusted
-  interpretation of an arbitrary PR snapshot. Never run candidate code to
-  establish its own trusted comparison.
+## Identity, bounds and verification
 
-## Maintenance and cross-repository coordination
+All non-cache repository files are represented, including untracked additions
+so they cannot be forgotten. A Git checkout additionally rejects tracked paths
+hidden by exclusions, missing files, symlinks, submodules or unsupported modes.
+Local ignored build/cache packages are excluded; exclusions are explicit in the
+producer. Empty/untracked directories do not become repository artifacts.
 
-After any represented source/config/producer change, regenerate and verify before
-committing. Tests and CI exercise freshness/path/input safety; they do not replace
-content, editorial or independent review. This small component has no runtime
-service and no external Python dependencies.
+Every input's exact bytes are streamed into SHA-256, including JS/CSS/HTML,
+images, compressed logs and archived evidence. Bounds: 5000 files, 32 MB per
+hashed file, 250 MB total. Parsed navigation text remains bounded at 2 MB per
+file / 50 MB total. These site-specific streaming bounds admit the existing large
+review bundles without loading/parsing them as policy or silently dropping them.
+Unsafe paths, symlinks, unsupported source tables or bounds fail visibly.
 
-Keep the pinned upstream reference and Apache-2.0 notices in
-[RI-NOTICE](../tools/RI-NOTICE.md). Upgrade by an issue/PR with a named need and
-regression checks; manual synchronized patches are deliberate until a shared
-package is justified. Future publication/migration harnesses remain
-[personal #6](https://github.com/oborskyivitalii/oborskyivitalii/issues/6).
+The two RI outputs use `derived` identity records to avoid recursive hashing;
+`verify` regenerates and compares the complete JSON and map. Code/config/catalog
+or source edits invalidate freshness. Root AGENTS is bounded to 100 lines and
+MEMORY to 120 with required sections. Ordinary reviewed local/CI execution is
+implementation evidence, not a target-owned candidate security comparison.
+
+Upgrade in an owning issue/PR: compare pinned upstream producer, contract and
+architecture; document selected/omitted capabilities and retain notices; update
+identities, meaningful negative tests, catalog and both outputs; run verification
+and review the full diff. Never blindly copy the UA graph/CI or change research
+meaning through a tooling upgrade.

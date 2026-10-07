@@ -1,6 +1,8 @@
 ## Intent and owner
 
 Refs owning issue:
+Implementation commits each contain `Refs #N` (or full cross-repository issue URL):
+PR and exact commit links are recorded back in the issue:
 Original intent and accepted scope:
 Owning source/edition and cross-repository dependencies:
 
@@ -22,3 +24,6 @@ Remain Draft during substantive iteration. Summarize checks, merged ref, review,
 decisions and remaining work in both PR and issue before closure. Avoid closing
 keywords while publication, deployment or sibling acceptance remains. This PR
 does not establish research/evidence status in UA or Subprime.
+Tested source head / merged commit (or not merged):
+Staging / production / publication (or not deployed/published):
+MEMORY handoff refreshed; path catalog and both RI views rebuilt/verified:

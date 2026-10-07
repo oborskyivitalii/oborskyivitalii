@@ -1,5 +1,8 @@
 # Site measurement before the first release
 
+The adapter contract below remains applicable. Dated branch/hosting observations
+are historical; [MEMORY](MEMORY.md) and live #8/#13 own the current status.
+
 Owner [#8](https://github.com/oborskyivitalii/oborskyivitalii/issues/8), with
 [#13](https://github.com/oborskyivitalii/oborskyivitalii/issues/13) retaining release
 gates and [SITE-SEO](SITE-SEO.md) retaining the query/topic plan.

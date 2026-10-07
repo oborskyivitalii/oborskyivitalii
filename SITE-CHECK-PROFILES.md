@@ -1,9 +1,10 @@
 # Site check profiles
 
 Issues #8/#13 own hosting/checks. Controller PRs #26/#29 and the accepted
-#18/#22/#23 runtime lineage are on protected main. PR #28 is the current
-reading/content follow-up. Fresh full staging and stable verification precede
-each authorized runtime/content merge.
+#18/#22/#23 runtime lineage and the #28 reading/content follow-up are on protected
+main. Current source/deployment observations belong in [MEMORY](MEMORY.md) and
+the live issue/PR. Fresh full staging and stable verification precede each
+authorized runtime/content merge.
 
 | Profile | Trigger | Work |
 | --- | --- | --- |
@@ -22,7 +23,8 @@ substitute for full WebKit coverage; missing or wrong-source reports fail.
 
 Default local command: `node tools/quality/local.cjs`; no browser/advisory network
 or soak is needed. `site-checks.yml` provides this bounded source profile.
-`navigation.yml` verifies RI freshness only; runtime/navigation diagnostic
+`navigation.yml` verifies complete path coverage, both RI views and focused
+RI/agent-memory tests; runtime/navigation diagnostic
 workflows are manual. Full source/browser/security suites run only in the explicit
 hosted profile, not automatically on each PR update.
 

@@ -5,9 +5,9 @@ This repository owns personal publications and distribution. Read [AGENTS](AGENT
 ## Issue intake and durable intent
 
 Use an issue as the durable record for each substantive research, publication,
-repository-management or tooling task. Reuse an existing issue when it already
-owns the input. Strictly mechanical fixes may proceed without a new issue; state
-the narrow exception in the PR. Incoming contributor issues may be incomplete:
+repository-management or tooling task, including mechanical fixes. Find or create
+the owning issue before implementation; reuse one when it already owns the input.
+Incoming contributor issues may be incomplete:
 triage them with a comment rather than requiring a duplicate or rewriting the
 contributor's original message.
 
@@ -69,6 +69,11 @@ correspondence boundaries; link public evidence or a bounded authorized summary.
 ### Implementation, review and closure
 
 1. Link the owning issue in the PR body using `Refs #N` or a full issue URL.
+   Add `Refs #N` to every implementation commit (including the final squash
+   message); for a different repository use its full issue URL. Keep technical
+   implementation details in the PR/commits. Add the PR URL and exact commit
+   links to the issue as soon as they exist, and refresh them after a rebase or
+   squash. An issue must be navigable to both its PR and implementation commits.
    Prefer a non-closing reference while review, deployment, publication or sibling
    work remains. Do not use `Closes`/`Fixes` merely because some code is merged.
 2. Implement the accepted scope under the repository's existing review,
@@ -78,6 +83,9 @@ correspondence boundaries; link public evidence or a bounded authorized summary.
 4. Add a completion summary to **both PR and issue**: original intent versus
    actual outcome, exact merged ref/edition, acceptance evidence, review and
    decision references, deviations, remaining work and cross-repository results.
+   Use `not merged` or `not deployed` when that is the actual state; do not
+   promote local preparation or passing CI into acceptance. Record the merged
+   commit separately from the tested source head when they differ.
 5. Close as completed only when the accepted outcome is merged and checked and
    all applicable decisions/acceptance checks are satisfied. Rejection,
    duplication, supersession or deferral needs an explicit disposition and links
@@ -86,6 +94,28 @@ correspondence boundaries; link public evidence or a bounded authorized summary.
 Draft, merged, reviewed, published and deployed are separate observations.
 An umbrella issue remains open until its required dependencies are complete.
 Issue closure and green CI do not change scientific or source-verification state.
+
+## Repository navigation and session memory
+
+[AGENTS.md](AGENTS.md) is a compact agent router (maximum 100 lines), not a task
+ledger. [MEMORY.md](MEMORY.md) is the current dated handoff (maximum 120 lines).
+The owning issue, Git/GitHub and canonical source files remain authoritative.
+
+At a meaningful handoff, interruption or completion, replace stale memory with:
+the verified date/ref and evidence links; decisions that affect the next action;
+active issue/PR and remaining acceptance; the next concrete step. Keep the five
+sections `Snapshot`, `Decisions`, `Open work`, `Next session` and `Maintenance`.
+Revalidate relevant live state at the next session. Detailed experiments, run
+logs and historical checkpoints belong in the PR/issue or dated `review/` files.
+Never store secrets, private correspondence or speculative completion in memory.
+
+Every repository file and directory has an explicit purpose, role and owner in
+[the path catalog](.github/repository-paths.json). Add/remove its entry with the
+path change; missing, unclassified or stale entries fail. The generated
+[repository map](REPOSITORY-MAP.md) and RI context are two views of that catalog
+and source state. Rebuild and verify them after indexed source or memory changes.
+Historical files are preserved as evidence; their task-specific instructions do
+not become current policy merely because a search finds them.
 
 ## Publication and licensing checks
 

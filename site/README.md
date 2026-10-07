@@ -5,9 +5,11 @@ and always-full PR requirements below. Native-scroll mapping and all release
 budgets remain. Primary flights follow the four header links; Credits is a footer
 utility route with instant navigation.
 
-Owner [#15](https://github.com/oborskyivitalii/oborskyivitalii/issues/15), execution
-in stacked Draft [PR #16](https://github.com/oborskyivitalii/oborskyivitalii/pull/16).
-Publication is paused by the maintainer's 2026-10-04 instruction, including staging.
+The original engine work is recorded in completed
+[#15](https://github.com/oborskyivitalii/oborskyivitalii/issues/15) and
+[PR #16](https://github.com/oborskyivitalii/oborskyivitalii/pull/16).
+Read [MEMORY](../MEMORY.md) and the live owning issue for the current source,
+staging and release state; dated implementation plans are historical evidence.
 The website still ships complete ordinary HTML. Canvas and the persistent router
 enhance that HTML; a content editor does not need a server, CMS or browser build.
 

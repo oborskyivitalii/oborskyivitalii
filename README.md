@@ -8,10 +8,12 @@ I write about AI-assisted software delivery and how to design, evaluate, and con
 - [Actionable backlog and PR audit](BACKLOG.md) — issue links, acceptance boundaries and migration dependencies.
 - [Repository ownership](REPOSITORIES.md) — where research, source review and personal publication editions belong.
 
-Contributors and agents: start with [CONTRIBUTING](CONTRIBUTING.md) and [AGENTS](AGENTS.md).
+Contributors and agents: start from an owning [issue](https://github.com/oborskyivitalii/oborskyivitalii/issues),
+[CONTRIBUTING](CONTRIBUTING.md) and [AGENTS](AGENTS.md). The complete
+[repository map](REPOSITORY-MAP.md) describes every file/directory and its editing
+owner; [MEMORY](MEMORY.md) holds the dated handoff between sessions.
 
-The current engine candidate is in stacked [Draft PR #16](https://github.com/oborskyivitalii/oborskyivitalii/pull/16),
-with complete generated public pages in [docs/index.html](docs/index.html).
+Complete generated public pages are in [docs/index.html](docs/index.html).
 Edit separate sources in [site/](site/README.md); the deterministic generator
 updates dependent pages and preserves unchanged engine/assets. The
 [all-page gallery](review/site-v1-20261004-v11-index.html) links all five standalone
@@ -25,6 +27,7 @@ and [SEO map](SITE-SEO.md) continue to own editorial acceptance. See
 [execution evidence](review/site-engine-implementation-20261004/EXECUTION.md) for
 first-scroll diagnosis, structural parity, incremental generation and versioned
 navigation. Local/CI checks, physical devices, independent review and real host
-acceptance are distinct. All publication is currently paused, including staging.
-The personal website is not yet published. Current work is tracked in
+acceptance are distinct. Current refs, accepted staging and remaining production/
+publication work are in [MEMORY](MEMORY.md), with links to live issues and PRs.
+Current work is tracked in
 [Issues](https://github.com/oborskyivitalii/oborskyivitalii/issues).

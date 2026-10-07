@@ -18,8 +18,28 @@ jobs:
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           persist-credentials: false
-      # site-checks.yml owns the one basic suite. The complete Python/browser/
-      # export suites already run in hosted release checks; do not duplicate
-      # them here on every PR and main update.
+      # site-checks.yml owns the basic site suite. Only focused RI/continuity
+      # tests run here; full browser/export suites belong to hosted profiles.
+      - name: Check RI inventory and agent-memory contract
+        run: python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'
       - name: Verify current-source context
-        run: python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify
+        run: |
+          python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify
+          python3 - <<'PY'
+          import hashlib, json, subprocess
+          from pathlib import Path
+          surface = '.github/repository-intelligence/agent-context.json'
+          readable = 'REPOSITORY-MAP.md'
+          record = {
+              'checkout_sha': subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
+              'source_dirty': bool(subprocess.check_output(['git', 'status', '--porcelain', '--untracked-files=all'])),
+              'surface_path': surface,
+              'surface_sha256': hashlib.sha256(Path(surface).read_bytes()).hexdigest(),
+              'map_path': readable,
+              'map_sha256': hashlib.sha256(Path(readable).read_bytes()).hexdigest(),
+              'source_digest': json.loads(Path(surface).read_text())['source_identity']['digest'],
+          }
+          if record['source_dirty']:
+              raise SystemExit('Cannot bind RI evidence to a dirty checkout')
+          print('Verified context checkout: ' + json.dumps(record, sort_keys=True))
+          PY
