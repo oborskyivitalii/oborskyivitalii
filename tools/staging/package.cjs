@@ -86,6 +86,7 @@ function verify(dir,record,expected={}){
   assert.deepEqual(Object.keys(actual.files).sort(),[...Object.keys(record.source.files),...Object.keys(extra)].sort(),'unrecorded deployment input');
   for(const file of Object.keys(record.source.files))assert.deepEqual(actual.files[file],record.source.files[file],'rewritten tested public file '+file);
   for(const [file,text]of Object.entries(extra))assert.equal(fs.readFileSync(path.join(target,file),'utf8'),text,'host configuration changed '+file);
+  snapshot.verify(target,record.source);
   checkLinks(target);return true;
 }
 function expectedEnvironment(){return {sourceCommit:process.env.SITE_CANDIDATE_SHA,publicDigest:process.env.SITE_EXPECTED_PUBLIC_DIGEST,artifactId:process.env.SITE_ARTIFACT_ID,uploadDigest:process.env.SITE_UPLOAD_DIGEST};}

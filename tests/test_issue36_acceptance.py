@@ -152,5 +152,10 @@ class Issue36RuntimeTests(unittest.TestCase):
         node_checks(["tests/writing-paradigm-browser.test.cjs"], 4)
 
 
+class Issue36ControllerTests(unittest.TestCase):
+    def test_declared_media_and_legacy_package_regressions(self):
+        node_checks(["tests/staging.test.cjs"], 12)
+
+
 if __name__ == "__main__":
     unittest.main()

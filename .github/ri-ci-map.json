@@ -2,7 +2,7 @@
   "schema_version": 1,
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/36",
-    "summary": "2026-10-07 joint #36/#41: preserve all original source/profile/AC routes; mechanical projection/parser and bounded validator extraction, catalog-derived browser counts, exact individually proved public checksums. Basic23, selected source258, policy23, 120 exact projection comparisons and locked static preflight pass. No complexity/budget/scanner exclusions; editorial/visual/paired/independent gates remain pending. Maintainer proposes corrected43 merge, adapt44, then one staging run.",
+    "summary": "2026-10-07 after maintainer-authorized joint PR43 merge: adapt PR44 to four-media producer; retain all23 joint source checks plus actual media-consumer12-case suite, existing gates and test registry. Package consumption rechecks finite declarations/immutable bytes and preserves legacy recovery. Canonical output regeneration follows producer fingerprint; no feature/budget/profile/platform changes.",
     "date": "2026-10-07"
   },
   "layers": [
@@ -47,7 +47,8 @@
         "tests/test_issue36_acceptance.py",
         "tests/test_issue41_acceptance.py",
         "tests/test_issue_acceptance.py",
-        "tools/issue_acceptance.py"
+        "tools/issue_acceptance.py",
+        "review/issue-36/2026-10-07-controller-compatibility.md"
       ],
       "checks": [
         "acceptance-policy",
@@ -353,7 +354,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "c4fd49489cbf7e6d63e42dea45596c9a5e7d4cf7315aff798752c84abdd0b880",
+    "digest": "b301b7441098ad3143729c8b0f52ddfac1b2ef19058e313b78072b5e4c35e443",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -385,7 +386,7 @@
       },
       {
         "path": ".github/acceptance/issue-36.json",
-        "sha256": "dcbb103111ebfca2bd931583968c869605b8c9fe188a81a6b901b83278f0625c"
+        "sha256": "2778213cb64f100ff6dc960b7a2066acab97d87be3aeadf3f382293662bc2931"
       },
       {
         "path": ".github/acceptance/issue-41.json",
@@ -405,7 +406,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "778fcce2ea708c69cad229743ad41b58ac1b0f5ded0a71b8d7d18377d71b1300"
+        "sha256": "997c1e87a3a4168142191f840dfb2d6e0b0546e6a796518770c98525e1a7a6ee"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -517,7 +518,7 @@
       },
       {
         "path": "tests/test_issue36_acceptance.py",
-        "sha256": "7a6b3342e65ca20bb0fd86cdc88db43116fc8e76f030b402fa6bc3bab1327750"
+        "sha256": "4b00860ee1d016d83ede389495dd0183907e11d195dd313563b78ad76fe7e29f"
       },
       {
         "path": "tests/test_issue41_acceptance.py",
