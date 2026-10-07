@@ -674,5 +674,110 @@
     "calculation": "13K + 48K + 34K rounded post-view displays; 30 + 55 + 41 displayed comment totals; each distinct thread once.",
     "recommended_public_display": false,
     "reason": "Derived planning context only. Recommend the three per-thread rows; no additional aggregate badge or Home metric."
+  },
+  "implementation": {
+    "date": "2026-10-07",
+    "phase": "implementation",
+    "admissions": {
+      "L01": {
+        "record": "publication-23",
+        "treatment": "linked-platform-edition"
+      },
+      "L02": {
+        "record": "publication-05",
+        "treatment": "linked-platform-edition"
+      },
+      "L03": {
+        "record": "publication-08",
+        "treatment": "linked-platform-edition"
+      },
+      "L04": {
+        "record": "publication-07",
+        "treatment": "preserved-primary"
+      },
+      "L05": {
+        "record": "publication-02",
+        "treatment": "linked-platform-edition"
+      },
+      "L06": {
+        "record": "publication-06",
+        "treatment": "linked-platform-edition"
+      },
+      "L08": {
+        "record": "publication-09",
+        "treatment": "linked-platform-edition"
+      },
+      "L10": {
+        "record": "publication-10",
+        "treatment": "linked-platform-edition"
+      },
+      "L11": {
+        "record": "publication-12",
+        "treatment": "linked-platform-edition"
+      },
+      "L12": {
+        "record": "publication-14",
+        "treatment": "linked-platform-edition"
+      },
+      "L13": {
+        "record": "publication-15",
+        "treatment": "linked-platform-edition"
+      },
+      "L14": {
+        "record": "publication-17",
+        "treatment": "linked-platform-edition"
+      },
+      "L15": {
+        "record": "publication-18",
+        "treatment": "deferred-unavailable"
+      },
+      "L16": {
+        "record": "publication-19",
+        "treatment": "linked-platform-edition"
+      },
+      "L17": {
+        "record": "publication-20",
+        "treatment": "linked-platform-edition"
+      },
+      "L18": {
+        "record": "publication-21",
+        "treatment": "linked-platform-edition"
+      },
+      "L19": {
+        "record": "publication-27",
+        "treatment": "deferred-unavailable"
+      },
+      "L20": {
+        "record": "publication-25",
+        "treatment": "linked-platform-edition"
+      },
+      "L21": {
+        "record": "publication-22",
+        "treatment": "linked-platform-edition"
+      },
+      "L22": {
+        "record": "publication-26",
+        "treatment": "linked-platform-edition"
+      },
+      "L07": {
+        "record": "publication-28",
+        "treatment": "admitted-new-english-article"
+      },
+      "L09": {
+        "record": "publication-29",
+        "treatment": "admitted-new-english-essay"
+      }
+    },
+    "new_records": [
+      "publication-28",
+      "publication-29"
+    ],
+    "discussions": {
+      "S2": "reddit-agentic-loops",
+      "S1": "reddit-delivery-bottlenecks",
+      "S3": "reddit-controller"
+    },
+    "equivalence": "Platform relationships do not assert identical bodies or translations. Existing primary titles/URLs/dates/languages are preserved.",
+    "source_review": "Accessible opening, argument and concluding sections of new L07/L09 reviewed; L09 is an essay. LinkedIn alternates retain inspected metadata; L14 retry unavailable, so no fresh-access or body-equivalence claim. L15/L19 remain deferred."
   }
 }

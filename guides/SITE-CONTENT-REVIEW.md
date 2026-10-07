@@ -56,6 +56,24 @@ Read [MEMORY](../MEMORY.md) and live GitHub records for current work.
 | Production URL and release | [#8](https://github.com/oborskyivitalii/oborskyivitalii/issues/8), authorized activation and actual deployed-edition/indexing evidence |
 | Automated release and physical/independent coverage | [#13](https://github.com/oborskyivitalii/oborskyivitalii/issues/13), [profiles](SITE-CHECK-PROFILES.md) and [release requirements](SITE-RELEASE-GATES.md) |
 
+## Issue #41 candidate review — 2026-10-07
+
+Review the exact implementation in [PR #42](https://github.com/oborskyivitalii/oborskyivitalii/pull/42)
+against its [same-file analysis/tasks](../review/issue-41/2026-10-07-analysis.md).
+The source audit records maintainer-attested advisor consent, retained public
+contribution sources, alternate-edition metadata limits and Reddit UI snapshot
+provenance. The exact [content amendment](../review/issue-41/content-amendment.json)
+records the reversible semantic delta; it does not supply editorial approval.
+
+Check that the two UA advisor roles and six responses read naturally; institutional
+context does not become endorsement. Each alternate retains its own platform date,
+and the two new English records stay off Home. Inspect the three discussion
+summaries alongside their criticism/counterpoints and dated metric limits.
+The 27 old primary identities, five featured works and all original source links
+remain acceptance invariants. Source/structure tests, readable browser observations,
+independent/editorial review, rights, merge and release remain distinct records.
+The maintainer's existing advisory consent does not need to be requested again.
+
 ## Historical review evidence
 
 The [original content review](../review/root-history-20261007/SITE-CONTENT-REVIEW.md)

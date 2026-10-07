@@ -110,3 +110,40 @@ test('checksum triage is exact and append-only; an unknown path, type or value f
   assert.equal(helper.append({results:{[file]:[finding]}},baseline,allowed),0);
   for(const [report,map]of [[{results:{'unknown.txt':[finding]}},allowed],[{results:{[file]:[{...finding,type:'Private Key'}]}},allowed],[{results:{[file]:[finding]}},new Map([[file,new Set()]])]])assert.throws(()=>helper.append(report,{findings:[]},map));
 });
+test('catalog editions reject duplicates, unread metadata and unsafe relationships before generation',t=>{
+  const dir=fixture(t),file=path.join(dir,'site/content/catalog.json'),original=JSON.parse(fs.readFileSync(file,'utf8'));
+  const cases=[
+    c=>c.records['publication-09'].editions.push(structuredClone(c.records['publication-09'].editions[0])),
+    c=>c.records['publication-09'].editions[0].url='javascript:alert(1)',
+    c=>c.records['publication-09'].editions[0].datePublished='2025-02-30',
+    c=>delete c.records['publication-09'].editions[0].author,
+    c=>c.records['publication-09'].editions[0].bodyEquivalenceVerified=true,
+    c=>c.records['publication-09'].editions[0].inLanguage='unknown',
+    c=>c.structuredOrder[0].record='publication-99',
+    c=>c.discussions['reddit-controller'].url=c.discussions['reddit-agentic-loops'].url,
+    c=>c.records['publication-09'].discussions=['missing-thread'],
+    c=>c.discussions['reddit-controller'].metrics.shares=80,
+    c=>c.discussions['reddit-controller'].metrics.views.approximateValue=47000,
+    c=>c.discussions['reddit-controller'].snapshot.capturedAt='2026-10-07',
+  ];
+  for(const mutate of cases){const c=structuredClone(original);mutate(c);fs.writeFileSync(file,JSON.stringify(c));assert.throws(()=>b.catalog(dir),/Invalid|Duplicate|Missing/);}
+});
+test('alternate metadata, discussion data and structured order invalidate their actual route dependencies',t=>{
+  const dir=fixture(t);run(dir);
+  edit(dir,'site/content/catalog.json',s=>{const c=JSON.parse(s);c.records['publication-09'].editions[0].name='A " title < with a different date';c.records['publication-09'].editions[0].datePublished='2025-12-12';return JSON.stringify(c);});
+  assert.deepEqual(run(dir).built,['writing']);
+  const writing=fs.readFileSync(path.join(dir,'docs/writing.html'),'utf8');assert.match(writing,/title="A &quot; title &lt; with a different date"/);assert.match(writing,/LinkedIn edition · 12 Dec 2025/);
+  edit(dir,'site/content/catalog.json',s=>{const c=JSON.parse(s);c.discussions['reddit-agentic-loops'].summary+=' Further questions.';return JSON.stringify(c);});
+  assert.deepEqual(run(dir).built,['research','writing']);
+  edit(dir,'site/content/catalog.json',s=>{const c=JSON.parse(s);c.structuredOrder.reverse();return JSON.stringify(c);});
+  assert.deepEqual(run(dir).built,['writing']);
+  const once=inventory(dir);run(dir,{all:true});assert.deepEqual(inventory(dir),once);
+});
+test('discussion metrics can be omitted while links, work counts and JSON-LD retain their own identities',t=>{
+  const dir=fixture(t);edit(dir,'site/content/catalog.json',s=>{const c=JSON.parse(s);c.discussions['reddit-delivery-bottlenecks'].metrics=null;return JSON.stringify(c);});
+  const {config}=b.configuration(dir),c=b.catalog(dir),writing=b.routeInput(dir,config.routes.find(r=>r.id==='writing'),c),research=b.routeInput(dir,config.routes.find(r=>r.id==='research'),c);
+  assert.equal(writing.schema.mainEntity.numberOfItems,Object.keys(c.records).length);assert.equal(writing.schema.mainEntity.itemListElement.length,Object.keys(c.records).length);
+  assert.equal(JSON.stringify(writing.schema).includes('reddit.com'),false);assert.equal(writing.main.includes('post views'),false);
+  assert.ok(research.main.includes(c.discussions['reddit-delivery-bottlenecks'].url));assert.equal(research.main.includes('≈13K'),false);assert.ok(research.main.includes('≈48K'));
+  const counts=b.catalogCounts(c);assert.equal(counts.linked.total,counts.primary.total+Object.values(c.records).reduce((n,r)=>n+r.editions.length,0));
+});

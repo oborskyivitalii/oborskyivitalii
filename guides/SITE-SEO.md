@@ -4,6 +4,27 @@ This guide owns topic vocabulary and discoverability boundaries. Dated sections
 record their inspected editions and evidence; current editorial/release decisions
 belong to the owning issues and [MEMORY](../MEMORY.md), not an old session handoff.
 
+## Content authority amendment — 2026-10-07
+
+[Issue #41](https://github.com/oborskyivitalii/oborskyivitalii/issues/41) implements
+project advisor context, linked platform editions and three compact Research
+discussions in the same Draft PR #42. [Exact before/after fragments](../review/issue-41/content-amendment.json)
+are layered onto the existing reversible historical comparison, not a whole-page
+or metadata bypass. Unrelated copy, metadata, original source/edition links and
+all five page semantics still reconcile to `0333c4d` after the declared changes.
+
+Visible totals and the primary-only ItemList derive from the catalog: 29 primary
+records (22 EN / 7 UA), 46 linked editions (39 EN / 7 UA). All 27 prior primary
+identities and five featured works survive. LinkedIn alternates and Reddit links
+do not create additional work rows or schema items. No advisor employer
+endorsement, affiliation of the author, popularity/rating/interaction schema,
+inferred translation, provisional canonical or search uplift is claimed. Home
+keeps its existing five works and three selected responses plus one advisory line.
+Only the archive print status label changes in runtime JavaScript to describe
+multiple linked editions; scene/navigation/filter behavior and hosting workflows
+retain their previous source. Production origin/indexing and actual ranking
+measurement remain with #8.
+
 ## Measurement preparation — 2026-10-04
 
 Production will use GitHub Pages. The maintainer requests analytics before the
@@ -101,11 +122,11 @@ for a useful explanation. The PMDay article remains [#2](https://github.com/obor
 - Distinct descriptive titles, descriptions, one H1 per page, meaningful topic
   headings, readable explanatory text and crawlable publication/research links.
 - Author identity via `ProfilePage`/`Person`, and a `CollectionPage` with an
-  `ItemList` of the 27 primary archive records; the additional LinkedIn rendition remains outside it. Dates/languages refer to those
+  `ItemList` of the current primary archive records; alternate platform editions remain outside it. Dates/languages refer to those
   original editions; Atlassian's edited date is `dateModified`, not invented
   publication metadata. Structured data does not establish validation, authorship
   of a term, a rich result or a guaranteed ranking.
-- English interface with 20 English and 7 Ukrainian article editions. Visible
+- English interface with 22 English and 7 Ukrainian primary editions in the #41 candidate. Visible
   labels are EN / UA; machine language codes remain `en` / `uk`. Ukrainian text
   has `lang="uk"`. PMDay is Ukrainian; the spoken languages of Corning and
   Betelgeuse remain unconfirmed, not inferred from post/title language.

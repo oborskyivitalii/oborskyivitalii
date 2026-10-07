@@ -495,7 +495,8 @@
         "tests/content.test.cjs",
         "review/sol-execution-20261002/BASELINE.json",
         "site/content/**",
-        "site/templates/**"
+        "site/templates/**",
+        "site/content/catalog.json"
       ]
     },
     {
@@ -551,7 +552,8 @@
         "tests/executive.test.cjs",
         "tools/check_site_seo.cjs",
         "site/content/**",
-        "site/templates/**"
+        "site/templates/**",
+        "review/issue-41/content-amendment.json"
       ]
     },
     {
@@ -1378,13 +1380,13 @@
     {
       "path": "tests/test_issue41_acceptance.py",
       "language": "python",
-      "purpose": "Issue41 preparation input identity, supplied Reddit snapshot/provenance and metric-inflation boundaries, inaccessible-source limits and unchanged public/source bytes; execution replaces the preparation phase explicitly.",
+      "purpose": "Issue41 exact source/snapshot accounting, admitted and deferred edition identities, generated advisor/discussion/catalog/schema checks, reversible SEO delta and unchanged runtime/hosting. Preparation evidence stays pinned at d7ce5d3; implementation phase explicitly supersedes its byte-only check.",
       "owner": ".github/ACCEPTANCE.md",
       "lifecycle": "task-snapshot",
       "profiles": [
         "issue-policy"
       ],
-      "disposition": "selected owning policy only; no new recurring browser/source sweep or duplicate production regression",
+      "disposition": "owning implementation policy only; enduring renderer/archive/SEO and normal preview smoke are extended in their current owners; no duplicate full regression or new browser suite",
       "surviving_route": ".github/acceptance/issue-41.json",
       "inputs": [
         "tests/test_issue41_acceptance.py"

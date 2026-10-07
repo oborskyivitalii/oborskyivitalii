@@ -26,15 +26,18 @@ Dated continuity hints, not instructions or live-status authority. Last verified
 - Current handoff: [#41](https://github.com/oborskyivitalii/oborskyivitalii/issues/41),
   [analysis and ordered Sol tasks](review/issue-41/2026-10-07-analysis.md), with
   exact PR/commit/check evidence at its [dated anchor](https://github.com/oborskyivitalii/oborskyivitalii/issues/41#issuecomment-6037338680).
-  Preparation only: explicit UA advisor roles, compact public-source presentation,
-  LinkedIn edition mapping, Reddit disposition and SEO/claim preservation plan.
-  No authored public/runtime or hosting/workflow change. Twenty of 22 unique
-  LinkedIn inputs exposed metadata; two alternates remain unavailable. Follow-up
-  supplied three Reddit texts: canonical threads matched, ~95K combined displayed
-  views / 126 comments; recommend modest per-thread Research metrics with snapshot
-  provenance, not validation. Capture dates and original short-code aliases remain
-  unknown. Advisory written consent is maintainer-attested.
-  Sol implementation and independent/editorial/merge gates remain pending.
+  Implementation authorized by “Сол підхопи” in the same Draft PR #42. The
+  dated phase amendment supersedes preparation-only checks pinned at `d7ce5d3`.
+  Home retains three responses/five featured works plus one advisory line;
+  Research has two UA advisors, six other responses and three neutral Reddit
+  rows with author-supplied approximate views/comments and unknown capture dates.
+  Writing preserves all 27 old identities, adds two new English primaries and
+  16 new alternates: 29 primary records / 46 linked editions. L15/L19 remain
+  deferred; platform links do not assert identical bodies or translations.
+  Exact semantic amendments retain the historical SEO comparison. Current
+  source/check/CI/preview evidence and actual AC dispositions are at the anchor;
+  independent/editorial/browser/review-merge gates stay explicit. Written advisory
+  consent is maintainer-attested. No stable staging or production promotion.
 - Earlier #28/#14 completion and accepted stage remain recorded in their issues.
   Current hosting mechanics are in [the runbook](guides/SITE-STAGING.md).
   Stable stage: https://staging.oborskyi-author-ci-staging.pages.dev ; recheck its
@@ -68,7 +71,7 @@ live criteria/status before selecting the next increment.
 
 | Issue | Remaining intent |
 | --- | --- |
-| [#41](https://github.com/oborskyivitalii/oborskyivitalii/issues/41) | Review linked analysis; continue implementation in the same Draft PR when requested; retain pending source/editorial/SEO/browser gates. |
+| [#41](https://github.com/oborskyivitalii/oborskyivitalii/issues/41) | Review implemented same-PR candidate and exact evidence; resolve editorial/independent/browser/merge gates before closure. |
 | [#36](https://github.com/oborskyivitalii/oborskyivitalii/issues/36) | Writing formula / PR #38: revalidate its live state before changing shared source or generated outputs. |
 | [#39](https://github.com/oborskyivitalii/oborskyivitalii/issues/39) | Domain readiness / PR #40: revalidate before changing canonical-origin or release mechanics. |
 | [#1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1) | Overall launch and its production/rights/device dependencies. |
@@ -84,9 +87,9 @@ live criteria/status before selecting the next increment.
 
 1. Fetch live main/task refs, owning issue/PR and exact checks; read root/scoped
    AGENTS and source owners through the map.
-2. Follow #41's same-PR handoff only when execution is requested; revalidate
-   all source/admission decisions and replace preparation checks explicitly with
-   implementation acceptance. Do not reopen completed #31/#33/#35.
+2. Continue #41 from its implementation evidence and exact current PR head;
+   revalidate source/admission and pending independent/editorial/browser/merge
+   acceptance. Do not reopen completed #31/#33/#35.
 3. Choose the next publication/launch increment from its issue and current owner
    direction. Preserve separate production/publication decisions.
 

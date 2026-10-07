@@ -75,7 +75,7 @@
     },
     ".github/acceptance/issue-41.json": {
       "kind": "file",
-      "purpose": "Issue41 AC01-AC06 preparation mapping with explicit implementation/editorial/review/merge gates.",
+      "purpose": "Issue41 AC01-AC06 implementation mapping for exact inputs, admitted editions, generated content, SEO and runtime scope; explicit editorial/browser/review-merge gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -361,37 +361,37 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/5b2239d9600bce59c2d6796b8cb1b63145b72333fe2447a19432e52b6fa74ab1": {
+    "docs/runtime/c9913c62a9f703275d1e5da34b09839422e2ab299a5da8d59b0110f3a908b0a0": {
       "kind": "directory",
-      "purpose": "Generated immutable runtime edition directory: 5b2239d9600bce59c2d6796b8cb1b63145b72333fe2447a19432e52b6fa74ab1.",
+      "purpose": "Generated immutable runtime edition directory: c9913c62a9f703275d1e5da34b09839422e2ab299a5da8d59b0110f3a908b0a0.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/5b2239d9600bce59c2d6796b8cb1b63145b72333fe2447a19432e52b6fa74ab1/archive.js": {
+    "docs/runtime/c9913c62a9f703275d1e5da34b09839422e2ab299a5da8d59b0110f3a908b0a0/archive.js": {
       "kind": "file",
       "purpose": "Generated public rendition: archive.js; regenerate from site sources with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/5b2239d9600bce59c2d6796b8cb1b63145b72333fe2447a19432e52b6fa74ab1/navigation.js": {
+    "docs/runtime/c9913c62a9f703275d1e5da34b09839422e2ab299a5da8d59b0110f3a908b0a0/navigation.js": {
       "kind": "file",
       "purpose": "Generated public rendition: navigation.js; regenerate from site sources with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/5b2239d9600bce59c2d6796b8cb1b63145b72333fe2447a19432e52b6fa74ab1/space.js": {
+    "docs/runtime/c9913c62a9f703275d1e5da34b09839422e2ab299a5da8d59b0110f3a908b0a0/space.js": {
       "kind": "file",
       "purpose": "Generated public rendition: space.js; regenerate from site sources with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/5b2239d9600bce59c2d6796b8cb1b63145b72333fe2447a19432e52b6fa74ab1/styles.css": {
+    "docs/runtime/c9913c62a9f703275d1e5da34b09839422e2ab299a5da8d59b0110f3a908b0a0/styles.css": {
       "kind": "file",
       "purpose": "Generated public rendition: styles.css; regenerate from site sources with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/5b2239d9600bce59c2d6796b8cb1b63145b72333fe2447a19432e52b6fa74ab1/theme.js": {
+    "docs/runtime/c9913c62a9f703275d1e5da34b09839422e2ab299a5da8d59b0110f3a908b0a0/theme.js": {
       "kind": "file",
       "purpose": "Generated public rendition: theme.js; regenerate from site sources with tools/site/build.cjs.",
       "role": "generated",
@@ -409,63 +409,63 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/262639c82217291a6448dda796d6497165d58fba53c1ee1412bc71def0a6fc63": {
+    "docs/snapshots/13e32e2aaf50ccd63f8f45a00b5f78cd14b84203dc05236968efdff1c50e2379": {
       "kind": "directory",
-      "purpose": "Generated immutable HTML route snapshot edition directory: 262639c82217291a6448dda796d6497165d58fba53c1ee1412bc71def0a6fc63.",
+      "purpose": "Generated immutable HTML route snapshot directory: 13e32e2aaf50ccd63f8f45a00b5f78cd14b84203dc05236968efdff1c50e2379.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/262639c82217291a6448dda796d6497165d58fba53c1ee1412bc71def0a6fc63/credits.html": {
-      "kind": "file",
-      "purpose": "Generated public rendition: credits.html; regenerate from site sources with tools/site/build.cjs.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/5b5f80ba9c40f269cecf5988ce54e740ab5b7b1254cef4ffce26245b8a2ceb0b": {
-      "kind": "directory",
-      "purpose": "Generated immutable HTML route snapshot edition directory: 5b5f80ba9c40f269cecf5988ce54e740ab5b7b1254cef4ffce26245b8a2ceb0b.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/5b5f80ba9c40f269cecf5988ce54e740ab5b7b1254cef4ffce26245b8a2ceb0b/index.html": {
-      "kind": "file",
-      "purpose": "Generated public rendition: index.html; regenerate from site sources with tools/site/build.cjs.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/a6dc38f045a2ab206d81af560c924a9e2312c7bdd16ae34fb70ea3d22ec63762": {
-      "kind": "directory",
-      "purpose": "Generated immutable HTML route snapshot edition directory: a6dc38f045a2ab206d81af560c924a9e2312c7bdd16ae34fb70ea3d22ec63762.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/a6dc38f045a2ab206d81af560c924a9e2312c7bdd16ae34fb70ea3d22ec63762/talks.html": {
+    "docs/snapshots/13e32e2aaf50ccd63f8f45a00b5f78cd14b84203dc05236968efdff1c50e2379/talks.html": {
       "kind": "file",
       "purpose": "Generated public rendition: talks.html; regenerate from site sources with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/c1f9201da9512c89628be5af019d26c5b8697288addf98def1b69f5d66e4566a": {
+    "docs/snapshots/6a2111fd5401b5b6a02e786ba01434ae1e3b08e1d2e7adc050c892bd5218aeb8": {
       "kind": "directory",
-      "purpose": "Generated immutable HTML route snapshot edition directory: c1f9201da9512c89628be5af019d26c5b8697288addf98def1b69f5d66e4566a.",
+      "purpose": "Generated immutable HTML route snapshot directory: 6a2111fd5401b5b6a02e786ba01434ae1e3b08e1d2e7adc050c892bd5218aeb8.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/c1f9201da9512c89628be5af019d26c5b8697288addf98def1b69f5d66e4566a/research.html": {
+    "docs/snapshots/6a2111fd5401b5b6a02e786ba01434ae1e3b08e1d2e7adc050c892bd5218aeb8/index.html": {
       "kind": "file",
-      "purpose": "Generated public rendition: research.html; regenerate from site sources with tools/site/build.cjs.",
+      "purpose": "Generated public rendition: index.html; regenerate from site sources with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/ddf2769f4ce615d00764240a6b9f1902a610ca4bf80f41229e396a059bec36c5": {
+    "docs/snapshots/c11d393fbfe0bab03a83886572d307af91604626cb3e881f0efbad374cbd54a9": {
       "kind": "directory",
-      "purpose": "Generated immutable HTML route snapshot edition directory: ddf2769f4ce615d00764240a6b9f1902a610ca4bf80f41229e396a059bec36c5.",
+      "purpose": "Generated immutable HTML route snapshot directory: c11d393fbfe0bab03a83886572d307af91604626cb3e881f0efbad374cbd54a9.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/ddf2769f4ce615d00764240a6b9f1902a610ca4bf80f41229e396a059bec36c5/writing.html": {
+    "docs/snapshots/c11d393fbfe0bab03a83886572d307af91604626cb3e881f0efbad374cbd54a9/credits.html": {
+      "kind": "file",
+      "purpose": "Generated public rendition: credits.html; regenerate from site sources with tools/site/build.cjs.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/c9491b7a6c0bcfb47354feedd444254975484bebedfeaf9a888bef3c4365c9f6": {
+      "kind": "directory",
+      "purpose": "Generated immutable HTML route snapshot directory: c9491b7a6c0bcfb47354feedd444254975484bebedfeaf9a888bef3c4365c9f6.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/c9491b7a6c0bcfb47354feedd444254975484bebedfeaf9a888bef3c4365c9f6/writing.html": {
       "kind": "file",
       "purpose": "Generated public rendition: writing.html; regenerate from site sources with tools/site/build.cjs.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/f0d56f52afb78ef34df1445b8d976dac10d86c912a464a6493c1e7cd830c1d8b": {
+      "kind": "directory",
+      "purpose": "Generated immutable HTML route snapshot directory: f0d56f52afb78ef34df1445b8d976dac10d86c912a464a6493c1e7cd830c1d8b.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/f0d56f52afb78ef34df1445b8d976dac10d86c912a464a6493c1e7cd830c1d8b/research.html": {
+      "kind": "file",
+      "purpose": "Generated public rendition: research.html; regenerate from site sources with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -805,9 +805,15 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-41/content-amendment.json": {
+      "kind": "file",
+      "purpose": "Issue41 hashed exact before/after authored-content and primary schema deltas layered onto the historical SEO comparison; editorial acceptance remains separate.",
+      "role": "history",
+      "owner": "guides/SITE-SEO.md"
+    },
     "review/issue-41/source-inventory.json": {
       "kind": "file",
-      "purpose": "Exact LinkedIn/Reddit inputs, hashed supplied thread snapshots, bounded metrics and canonical mappings/access limits; dated preparation evidence only.",
+      "purpose": "Exact original LinkedIn/Reddit inputs and supplied snapshot hashes/metrics; current admitted/deferred catalog mappings with dated source-access limits.",
       "role": "history",
       "owner": "guides/SITE-SOURCE-AUDIT.md"
     },
@@ -6009,7 +6015,7 @@
     },
     "tests/test_issue41_acceptance.py": {
       "kind": "file",
-      "purpose": "Issue41-only input/source and Reddit snapshot metric provenance/inflation checks, plus unchanged-public preparation checks and failure fixtures.",
+      "purpose": "Issue41 selected implementation checks and negative fixtures; original preparation-only evidence remains pinned at d7ce5d3.",
       "role": "test",
       "owner": ".github/ACCEPTANCE.md"
     },

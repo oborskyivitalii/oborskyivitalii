@@ -28,7 +28,7 @@ and strict aggregate under #13; generation freshness alone is insufficient.
 | `templates/head.html`, `header.html`, `footer.html`, `shell.html` | Shared structure and controls | All five HTML pages |
 | `content/pages/<id>/metadata.json` | Title, description, structured metadata, ordered block names | That route |
 | `content/pages/<id>/main.html`, named blocks | Page layout and curated prose | That route |
-| `content/catalog.json` | 27 exact primary editions, one linked rendition, five featured selections | Writing; selected featured records also Home |
+| `content/catalog.json` | Primary editions, bounded platform alternates and discussion references; five featured selections | Writing; selected featured records also Home |
 | `routes.json` | Contract 1: ordered five route IDs, native URLs, scenes and stop IDs | Runtime, pages and fallback |
 | `engine/math.cjs`, `projection.cjs`, `lifecycle.cjs` | Math, projection and single Canvas/RAF lifecycle | Assembled `space.js` |
 | `engine/renderer.cjs` | Ordered Canvas commands, adjacent-line batching and visible outlines | Assembled `space.js` |
@@ -82,7 +82,7 @@ All five offline interactive entry files embed all routes, so one content edit
 regenerates those review files even when four hosted route bytes stay unchanged.
 
 Each route signature includes producer, contract/configuration, shared templates,
-engine/scenes/assets/analytics, its actual block bytes and selected catalog records. A Home
+engine/scenes/assets/analytics, its actual block bytes, selected catalog records, discussion references and structured order. A Home
 block edit builds Home only; a featured edition builds Home and Writing; a shared
 footer builds all five. A scene/code change is conservatively a complete closure:
 all scenes share one browser bundle and all fallbacks consume the same model.

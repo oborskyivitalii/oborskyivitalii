@@ -7,80 +7,81 @@
     {
       "id": "AC01",
       "intent": "Complete source-bounded analysis and exact input accounting.",
-      "automated_scope": "Checks the supplied URL occurrences, all candidate mappings, observed/unavailable metadata boundaries and negative fixtures. Source reading, accuracy and editorial conclusions are assessed in the dated analysis, not established by schema validation. Added supplied-snapshot identity, UI parsing, null dates, metric semantics and non-duplicated aggregate accounting. Tests check the recorded evidence contract, not attachment authenticity or live Reddit counts.",
+      "automated_scope": "Original inputs and supplied snapshot contracts, candidate mappings, access limits, UI metric parsing and actual admitted metadata. Recorded evidence is checked; source reading/authenticity/live counts are separate observations in the dated review.",
       "checks": [
         "INPUTS",
         "INPUT-NEGATIVES",
         "REDDIT-METRICS",
-        "REDDIT-NEGATIVES"
+        "REDDIT-NEGATIVES",
+        "ADMISSIONS"
       ],
       "gates": []
     },
     {
       "id": "AC02",
       "intent": "Confident bounded advisory and response presentation without overcrowding.",
-      "automated_scope": "Preparation only: public content and runtime remain exact to the inspected base. Proposed roles/copy and source treatment are documented; no implementation or editorial success is claimed.",
+      "automated_scope": "Generated three Home cards, two UA advisors and six other Research responses; unique profiles, all existing source links, exact bounded roles and declared copy delta. Automated structure is not editorial or independent acceptance.",
       "checks": [
-        "PREPARATION-ONLY",
-        "BYTE-NEGATIVES"
+        "ADVISORS",
+        "SEO"
       ],
       "gates": [
-        "IMPLEMENTATION",
         "EDITORIAL"
       ]
     },
     {
       "id": "AC03",
       "intent": "Useful publication and platform relationships with preserved edition identities.",
-      "automated_scope": "Preparation only: candidate targets retain existing primary identity and unread sources cannot become verified metadata. Tests do not implement the future edition renderer or prove body equivalence.",
+      "automated_scope": "All 27 original primary identities and five featured selections survive; 20 readable LinkedIn inputs are represented once, two remain deferred, two new primaries are explicit. Per-platform dates, normalized duplicates and primary-only visible/schema counts are checked. Body equivalence is not asserted. Permanent site-engine/archive suites own renderer/security/filter faults and normal Basic CI; bounded browser observations remain separate.",
       "checks": [
-        "INPUTS",
-        "INPUT-NEGATIVES",
-        "PREPARATION-ONLY"
+        "ADMISSIONS",
+        "EDITION-NEGATIVES",
+        "CATALOG-SCHEMA"
       ],
       "gates": [
-        "IMPLEMENTATION",
-        "EDITORIAL"
+        "EDITORIAL",
+        "BROWSER"
       ]
     },
     {
       "id": "AC04",
       "intent": "Honest community context and clear research lenses.",
-      "automated_scope": "Preparation only under the 2026-10-07 scope amendment: original short-link mappings stay unresolved; three newly supplied texts match canonical threads independently. Checks bind metrics to supplied post UI, reject historical/sidebar/duplicate/unique-reader inflation and retain unknown capture dates. Rendered discussions/lenses and editorial acceptance are pending.",
+      "automated_scope": "Three canonical Research rows match the supplied snapshots; only rounded views/comments render, with capture-date and reader/reply limits. Writing has two related discussion links; discussions do not enter work counts or structured data. TOC primer and Control Theory heading are checked; criticism is not validation.",
       "checks": [
-        "INPUTS",
-        "INPUT-NEGATIVES",
         "REDDIT-METRICS",
-        "REDDIT-NEGATIVES"
+        "REDDIT-NEGATIVES",
+        "DISCUSSIONS"
       ],
       "gates": [
-        "IMPLEMENTATION",
         "EDITORIAL"
       ]
     },
     {
       "id": "AC05",
       "intent": "Preserve SEO, semantics, original editions and runtime behavior.",
-      "automated_scope": "Preparation only: protected source, public pages, workflows and SEO owners are byte-identical, with meaningful mutation/deletion negatives. No SEO uplift or implemented browser/layout acceptance is inferred.",
+      "automated_scope": "All five pages reconcile to the immutable SEO baseline after the exact reviewed Issue41 amendment and earlier declared deltas. Metadata, old edition identity and all unrelated semantics remain exact. Runtime/scene logic and hosting workflows stay unchanged; archive.js changes only its exact print status label to cover multiple linked editions. Enduring SEO mutation cases and normal preview smoke complement this task snapshot; no ranking or release claim.",
       "checks": [
-        "PREPARATION-ONLY",
-        "BYTE-NEGATIVES"
+        "SEO",
+        "ADMISSIONS",
+        "CATALOG-SCHEMA",
+        "RUNTIME-SCOPE"
       ],
       "gates": [
-        "IMPLEMENTATION",
-        "EDITORIAL"
+        "EDITORIAL",
+        "BROWSER"
       ]
     },
     {
       "id": "AC06",
       "intent": "Actionable same-PR handoff, current test/RI routes and honest closure.",
-      "automated_scope": "The mapped preparation checks run once in the existing exact-head issue-acceptance workflow. Navigation CI separately verifies RI/path/CI routes; live PR/commit/issue links, semantic usefulness, implementation and merge remain explicit observations.",
+      "automated_scope": "Current implementation checks execute once in the selected raw-head acceptance workflow. Basic/source-targeted CI and navigation/RI verify their independent routes. The same-PR analysis records the explicit preparation-to-implementation transition; live CI/commit linkage, independent review, actual issue checkbox reconciliation and merge remain recorded gates.",
       "checks": [
         "INPUTS",
-        "PREPARATION-ONLY"
+        "ADMISSIONS",
+        "SEO",
+        "RUNTIME-SCOPE"
       ],
       "gates": [
-        "IMPLEMENTATION",
         "REVIEW-MERGE"
       ]
     }
@@ -88,41 +89,61 @@
   "checks": {
     "INPUTS": {
       "kind": "unittest",
-      "test": "test_issue41_acceptance.Issue41PreparationTests.test_exact_input_coverage_and_candidate_boundaries"
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_exact_input_coverage_and_candidate_boundaries"
     },
     "INPUT-NEGATIVES": {
       "kind": "unittest",
-      "test": "test_issue41_acceptance.Issue41PreparationTests.test_missing_duplicate_wrong_target_and_unread_promotions_fail"
-    },
-    "PREPARATION-ONLY": {
-      "kind": "unittest",
-      "test": "test_issue41_acceptance.Issue41PreparationTests.test_preparation_preserves_public_content_runtime_and_workflows"
-    },
-    "BYTE-NEGATIVES": {
-      "kind": "unittest",
-      "test": "test_issue41_acceptance.Issue41PreparationTests.test_protected_content_mutation_and_deletion_fail"
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_missing_duplicate_wrong_target_and_unread_promotions_fail"
     },
     "REDDIT-METRICS": {
       "kind": "unittest",
-      "test": "test_issue41_acceptance.Issue41PreparationTests.test_reddit_snapshot_metrics_and_provenance"
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_reddit_snapshot_metrics_and_provenance"
     },
     "REDDIT-NEGATIVES": {
       "kind": "unittest",
-      "test": "test_issue41_acceptance.Issue41PreparationTests.test_reddit_metric_inflation_and_identity_errors_fail"
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_reddit_metric_inflation_and_identity_errors_fail"
+    },
+    "ADMISSIONS": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_admitted_editions_preserve_primary_identity_and_deferred_inputs"
+    },
+    "EDITION-NEGATIVES": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_primary_mutation_duplicate_missing_and_unread_editions_fail"
+    },
+    "ADVISORS": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_advisor_grouping_preserves_people_sources_and_compact_home"
+    },
+    "DISCUSSIONS": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_discussion_rows_use_only_supplied_snapshot_metrics_and_relations"
+    },
+    "CATALOG-SCHEMA": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_visible_archive_counts_and_schema_match_primary_catalog"
+    },
+    "SEO": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_seo_exact_amendment_and_unrelated_semantics_reconcile"
+    },
+    "RUNTIME-SCOPE": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_runtime_and_hosting_mechanics_remain_unchanged"
     }
   },
   "gates": {
-    "IMPLEMENTATION": {
-      "kind": "human",
-      "description": "Sol implements the accepted treatments in this same PR after continuation is requested; records a dated preparation-to-implementation policy transition; maps and runs actual catalog/generated-content/SEO/archive and applicable browser acceptance. Preparation passing cannot satisfy AC02-AC05."
-    },
     "EDITORIAL": {
       "kind": "human",
       "description": "Source/editorial review of exact roles and contribution verbs, admitted editions and per-platform dates, neutral Reddit disposition, public and structured-data claim boundaries, before/after semantics and actual readable layout. Preserve separate existing rights/device/release owners; do not invent source access or advisor correspondence inspection. Reddit numbers require the dated snapshot note; community criticism and the supplied historical claims are not validation."
     },
     "REVIEW-MERGE": {
       "kind": "merge",
-      "description": "Record independent review honestly, matching current-source CI/artifacts, live PR and Refs commits at the issue anchor, actual AC checkbox reconciliation and normal maintainer merge decision. Compare merged source with accepted candidate before closure; this planning PR is not implementation or release approval."
+      "description": "Record independent review honestly, exact current-source Basic/targeted/navigation/acceptance and preview artifacts, live PR/Refs commits at the issue anchor, actual AC checkbox reconciliation and maintainer merge decision. Compare merged source with accepted candidate before closure; implementation is not release approval."
+    },
+    "BROWSER": {
+      "kind": "human",
+      "description": "Inspect matching current-source PR Chromium smoke and targeted Home/Research/Writing Day/Night desktop/narrow layout, advisory anchors, filters/history/print, Off/reduced motion and bottom reach. Record report/public digest/source binding; this policy cannot ingest hosted reports. Separate first-release physical-device requirements remain with their owners."
     }
   }
 }

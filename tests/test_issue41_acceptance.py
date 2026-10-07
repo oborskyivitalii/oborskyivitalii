@@ -1,12 +1,17 @@
-"""Issue 41 preparation evidence only; selected by its owning policy."""
+"""Issue 41 implementation evidence; selected only by its owning policy.
+
+The explicit 2026-10-07 implementation phase supersedes the preparation-only
+byte assertion. Its original evidence remains pinned at d7ce5d3. Source reading,
+editorial/independent review, browser observations and merge are separate gates.
+"""
 import copy
 import hashlib
 import json
 import re
 import subprocess
-import tempfile
 import unittest
 from datetime import date
+from html import unescape
 from pathlib import Path
 from urllib.parse import urlsplit
 
@@ -14,7 +19,9 @@ ROOT = Path(__file__).resolve().parents[1]
 BASE = 'c4539ad18f4f35169eda792a9a40677a7ea9abac'
 INVENTORY = 'review/issue-41/source-inventory.json'
 INPUT_SHA256 = '2483f7f9d70e38ffcaf3c9eb4f2bdc8f75ce6dda0d87d37ae40815f2fa2e3968'
-PROTECTED = ['site', 'docs', 'tools/site', '.github/workflows', 'guides', 'tools/check_site_seo.cjs']
+UNCHANGED = ['.github/workflows', 'site/scenes', 'site/engine/archive.js', 'site/engine/navigation.js',
+             'site/engine/theme.js', 'site/engine/renderer.cjs', 'site/engine/lifecycle.cjs',
+             'site/engine/math.cjs', 'site/engine/projection.cjs']
 SNAPSHOTS = {
     'S1': ('1u7rwok', 'softwarearchitecture', None,
            'd27778e3a566f05f8a3200c8a1bd61dacb2207f0688753a0a2648ecf666c2c92',
@@ -126,21 +133,66 @@ def validate_reddit_metrics(data, catalog):
             'unobserved people or common date')
 
 
-def blob_digest(content):
-    return hashlib.sha1(b'blob ' + str(len(content)).encode() + b'\0' + content, usedforsecurity=False).hexdigest()
+def base_json(path):
+    return json.loads(subprocess.check_output(['git', 'show', f'{BASE}:{path}'], cwd=ROOT))
 
 
-def validate_bytes(root, expected):
-    for path, digest in expected.items():
-        target = root / path
-        require(target.is_file() and not target.is_symlink(), 'missing protected file')
-        require(blob_digest(target.read_bytes()) == digest, 'changed protected file')
+def validate_admissions(data, catalog, baseline):
+    old = baseline['records']
+    require(set(catalog['records']) == set(old) | {'publication-28', 'publication-29'}, 'wrong admitted records')
+    require(catalog['featured'] == baseline['featured'], 'changed featured identity')
+    require([row for row in catalog['structuredOrder'] if row['record'] in old] == baseline['structuredOrder'],
+            'changed original relative order')
+    for key, record in old.items():
+        require(catalog['records'][key]['edition'] == record['edition'], 'changed primary edition')
+    old_rendition = old['publication-05']['rendition']
+    migrated = catalog['records']['publication-05']['editions'][0]
+    require(all(migrated[key] == old_rendition[key] for key in ['url', 'datePublished', 'inLanguage']), 'changed existing alternate')
+    implementation = data['implementation']
+    require(implementation['new_records'] == ['publication-28', 'publication-29'], 'wrong new admissions')
+    actual_urls = []
+    for source in data['linkedin']:
+        treatment = implementation['admissions'][source['id']]
+        record = catalog['records'][treatment['record']]
+        url = source['submitted_url'].rstrip('/')
+        if source['access'] == 'unavailable':
+            require(treatment['treatment'] == 'deferred-unavailable' and
+                    url not in [e['url'].rstrip('/') for e in record['editions']], 'unread edition admitted')
+            continue
+        if treatment['treatment'].startswith('admitted-new-') or treatment['treatment'] == 'preserved-primary':
+            edition = record['edition']
+        else:
+            matches = [e for e in record['editions'] if e['url'].rstrip('/') == url]
+            require(len(matches) == 1, 'missing or duplicate alternate')
+            edition = matches[0]
+            require(edition['relationship'] == 'same-topic-platform-edition' and
+                    edition['bodyEquivalenceVerified'] is False, 'invented body equivalence')
+        require(edition['url'].rstrip('/') == url and edition['name'] == source['observed_title'] and
+                edition['inLanguage'] == source['observed_language'] and
+                edition['datePublished'] == source['observed_date_published'] and
+                edition['author']['name'] == source['observed_author'], 'borrowed platform identity')
+        actual_urls.append(url)
+    require(len(actual_urls) == len(set(actual_urls)) == 20, 'wrong readable admission count')
+    all_editions = [e for record in catalog['records'].values()
+                    for e in [record['edition'], *record['editions']]]
+    require(len(all_editions) == 46 and len({e['url'].rstrip('/') for e in all_editions}) == 46,
+            'duplicate or unaccounted edition')
 
 
-class Issue41PreparationTests(unittest.TestCase):
+def section(html, identity):
+    return re.search(r'<section[^>]*\bid="' + identity + r'"[\s\S]*?</section>', html)[0]
+
+
+def schema(html):
+    return json.loads(re.search(r'<script type="application/ld\+json">([\s\S]*?)</script>', html)[1])
+
+
+class Issue41ImplementationTests(unittest.TestCase):
     def setUp(self):
         self.inventory = json.loads((ROOT / INVENTORY).read_text())
         self.catalog = json.loads((ROOT / 'site/content/catalog.json').read_text())
+        self.pages = {name: (ROOT / f'docs/{name}.html').read_text()
+                      for name in ['index', 'research', 'writing', 'talks', 'credits']}
 
     def test_exact_input_coverage_and_candidate_boundaries(self):
         validate_inventory(self.inventory, self.catalog)
@@ -192,32 +244,124 @@ class Issue41PreparationTests(unittest.TestCase):
             with self.subTest(mutation=index), self.assertRaises((ValueError, KeyError)):
                 validate_reddit_metrics(data, self.catalog)
 
-    def test_preparation_preserves_public_content_runtime_and_workflows(self):
-        entries = subprocess.check_output(['git', 'ls-tree', '-r', '-z', BASE, '--', *PROTECTED], cwd=ROOT)
-        expected = {r.split(b'\t', 1)[1].decode(): r.split(b' ')[2].split(b'\t')[0].decode()
-                    for r in entries.split(b'\0') if r}
-        self.assertGreater(len(expected), 100)
-        actual = set()
-        for prefix in PROTECTED:
-            target = ROOT / prefix
-            actual.update(str(p.relative_to(ROOT)) for p in target.rglob('*') if p.is_file()) if target.is_dir() else actual.add(prefix)
-        self.assertEqual(actual, set(expected), 'added or removed protected paths')
-        validate_bytes(ROOT, expected)
+    def test_admitted_editions_preserve_primary_identity_and_deferred_inputs(self):
+        validate_admissions(self.inventory, self.catalog, base_json('site/content/catalog.json'))
 
-    def test_protected_content_mutation_and_deletion_fail(self):
-        with tempfile.TemporaryDirectory() as directory:
-            root = Path(directory)
-            target = root / 'index.html'
-            original = b'<main>Original edition</main>'
-            target.write_bytes(original)
-            expected = {'index.html': blob_digest(original)}
-            validate_bytes(root, expected)
-            target.write_bytes(b'<main>Invented endorsement</main>')
-            with self.assertRaisesRegex(ValueError, 'changed protected'):
-                validate_bytes(root, expected)
-            target.unlink()
-            with self.assertRaisesRegex(ValueError, 'missing protected'):
-                validate_bytes(root, expected)
+    def test_primary_mutation_duplicate_missing_and_unread_editions_fail(self):
+        baseline = base_json('site/content/catalog.json')
+        mutations = [
+            lambda c: c['records']['publication-01']['edition'].update(datePublished='2026-10-07'),
+            lambda c: c['records'].pop('publication-03'),
+            lambda c: c['featured'].reverse(),
+            lambda c: c['records']['publication-05']['editions'][0].update(datePublished='2026-08-28'),
+            lambda c: c['records']['publication-02']['editions'].append(copy.deepcopy(c['records']['publication-02']['editions'][0])),
+            lambda c: c['records']['publication-02']['editions'][0].update(bodyEquivalenceVerified=True),
+            lambda c: c['records']['publication-02']['editions'][0].update(datePublished='2026-06-12'),
+            lambda c: c['records']['publication-18']['editions'].append({'url': self.inventory['linkedin'][14]['submitted_url']}),
+        ]
+        for index, mutate in enumerate(mutations):
+            data = copy.deepcopy(self.catalog)
+            mutate(data)
+            with self.subTest(mutation=index), self.assertRaises((ValueError, KeyError)):
+                validate_admissions(self.inventory, data, baseline)
+
+    def test_advisor_grouping_preserves_people_sources_and_compact_home(self):
+        for page, count in [('index', 3), ('research', 8)]:
+            current = section(self.pages[page], 'acknowledgements')
+            old = subprocess.check_output(['git', 'show', f'{BASE}:site/content/pages/{page}/acknowledgements.html'], cwd=ROOT).decode()
+            articles = re.findall(r'<article>[\s\S]*?</article>', current)
+            self.assertEqual(len(articles), count)
+            profiles = re.findall(r'<h3><a href="([^"]+)"', current)
+            self.assertEqual(len(set(profiles)), count)
+            for original in re.findall(r'<article>[\s\S]*?</article>', old):
+                profile = re.search(r'<h3><a href="([^"]+)"', original)[1]
+                replacement = next(a for a in articles if f'href="{profile}"' in a)
+                self.assertEqual(re.findall(r'href="([^"]+)"', replacement), re.findall(r'href="([^"]+)"', original))
+        research = section(self.pages['research'], 'acknowledgements')
+        advisors, responses = research.split('<h3 class="context-heading">Public responses</h3>')
+        self.assertEqual(advisors.count('<article>'), 2)
+        self.assertEqual(responses.count('<article>'), 6)
+        self.assertIn('Strategic Advisor on Governance and Alignment', advisors)
+        self.assertIn('Professor of Intelligent Systems at the University of Waterloo', advisors)
+        self.assertIn('Academic Advisor', advisors)
+        self.assertIn('CPMAI Lead Coach | PMI AI Standards Core Team', advisors)
+        self.assertIn('institutional endorsement, certification or adoption', advisors)
+        self.assertIn('href="research.html#ua-advisors"', self.pages['index'])
+        self.assertNotIn('discussion-row', self.pages['index'])
+        self.assertNotIn('trained', research)
+
+    def test_discussion_rows_use_only_supplied_snapshot_metrics_and_relations(self):
+        research = self.pages['research']
+        rows = re.findall(r'<li class="discussion-row">[\s\S]*?</li>', research)
+        self.assertEqual(len(rows), 3)
+        mapping = self.inventory['implementation']['discussions']
+        for source in self.inventory['reddit_snapshots']:
+            record = self.catalog['discussions'][mapping[source['id']]]
+            self.assertEqual(record['url'], source['canonical_url'])
+            self.assertIn('/comments/' + source['post_id'] + '/', record['url'])
+            self.assertEqual(record['snapshot']['attachmentSHA256'], source['attachment']['sha256'])
+            self.assertIsNone(record['snapshot']['capturedAt'])
+            row = next(r for r in rows if f'href="{source["canonical_url"]}"' in r)
+            self.assertIn('≈' + source['metrics']['views']['display'] + ' post views', row)
+            self.assertIn(str(source['metrics']['comments']['value']) + ' comments', row)
+            self.assertIn(unescape(record['summary']), unescape(row))
+            for unsupported in ['vote score', 'upvotes', 'shares', 'reposts', 'unique readers', '95K', '126 comments']:
+                self.assertNotIn(unsupported, row)
+            writing = self.pages['writing']
+            self.assertEqual(writing.count(source['canonical_url']), 1 if source['record'] else 0)
+        self.assertIn('capture dates were not recorded', research)
+        self.assertIn('comments include replies by the author and other participants', research)
+        self.assertIn('Views are approximate, not unique readers', research)
+        self.assertNotIn('post views', self.pages['writing'])
+        self.assertIn('https://www.tocinstitute.org/theory-of-constraints.html', research)
+        self.assertIn('<h3>Control Theory</h3>', research)
+
+    def test_visible_archive_counts_and_schema_match_primary_catalog(self):
+        writing = self.pages['writing']
+        rows = re.findall(r'<li class="publication"[^>]*>[\s\S]*?</li>', writing)
+        records = self.catalog['records']
+        self.assertEqual(len(rows), len(records))
+        main = schema(writing)['mainEntity']
+        self.assertEqual(main['numberOfItems'], len(records))
+        self.assertEqual([item['item'] for item in main['itemListElement']],
+                         [records[row['record']]['edition'] for row in self.catalog['structuredOrder']])
+        self.assertEqual([unescape(re.search(r'class="publication-title" href="([^"]+)"', row)[1]) for row in rows],
+                         [item['item']['url'] for item in main['itemListElement']])
+        for text in ['29 primary archive records', '46 platform editions', '22 EN / 7 UA']:
+            self.assertTrue(text in writing, 'missing catalog label: ' + text)
+        for html in self.pages.values():
+            data = json.dumps(schema(html))
+            self.assertNotRegex(data, r'reddit.com|Review|Rating|InteractionCounter|PMI|Waterloo')
+
+    def test_seo_exact_amendment_and_unrelated_semantics_reconcile(self):
+        output = subprocess.check_output(['node', 'tools/check_site_seo.cjs'], cwd=ROOT)
+        result = json.loads(output)
+        self.assertTrue(result['pass'])
+        self.assertEqual(len(result['rows']), 5)
+        amendment = json.loads((ROOT / 'review/issue-41/content-amendment.json').read_text())
+        for change in amendment['changes']:
+            self.assertIn(change['after'], self.pages[change['page']])
+            for version in ['before', 'after']:
+                self.assertEqual(hashlib.sha256(change[version].encode()).hexdigest(), change[version + 'SHA256'])
+
+    def test_runtime_and_hosting_mechanics_remain_unchanged(self):
+        entries = subprocess.check_output(['git', 'ls-tree', '-r', '-z', BASE, '--', *UNCHANGED], cwd=ROOT)
+        files = [r.split(b'\t', 1)[1].decode() for r in entries.split(b'\0') if r]
+        self.assertGreater(len(files), 10)
+        actual = set()
+        for prefix in UNCHANGED:
+            target = ROOT / prefix
+            if target.is_dir():
+                actual.update(str(p.relative_to(ROOT)) for p in target.rglob('*') if p.is_file())
+            else:
+                actual.add(prefix)
+        self.assertEqual(set(files), actual)
+        for path in files:
+            current = (ROOT / path).read_bytes()
+            if path == 'site/engine/archive.js':
+                current = current.replace(b'all records and their linked platform editions shown for printing.',
+                                          b'all records and the additional LinkedIn rendition shown for printing.')
+            self.assertEqual(current, subprocess.check_output(['git', 'show', f'{BASE}:{path}'], cwd=ROOT), path)
 
 
 if __name__ == '__main__':

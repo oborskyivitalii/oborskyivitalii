@@ -2,7 +2,7 @@
   "schema_version": 1,
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/41",
-    "summary": "2026-10-07 #41 follow-up: six selected preparation checks cover original inputs, supplied Reddit snapshot identity, rounded counter arithmetic and inflation/duplicate/null boundaries, and unchanged public bytes. Existing acceptance CI, Basic/navigation and #35 profiles retained; implementation/editorial gates remain pending."
+    "summary": "2026-10-07 #41 implementation phase: 11 selected checks cover original inputs/snapshots, admitted/deferred edition identities, generated advisory/discussion/catalog schema, exact SEO amendment and bounded runtime scope. Existing engine/archive/content/SEO and four-journey Chromium preview owners extended; Basic/navigation and #35 staging/production allocation retained. Editorial/browser/independent/merge acceptance stays explicit."
   },
   "layers": [
     {
@@ -42,7 +42,8 @@
         ".github/acceptance/issue-41.json",
         "tests/test_issue41_acceptance.py",
         "review/issue-41/2026-10-07-analysis.md",
-        "review/issue-41/source-inventory.json"
+        "review/issue-41/source-inventory.json",
+        "review/issue-41/content-amendment.json"
       ],
       "checks": [
         "acceptance-policy-selection",
@@ -348,7 +349,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "b67fe053c96224eabcd7d7ccfe7eb69a4350463c602e2eaac6c771bad782e904",
+    "digest": "7347eba050aa478c3c2710fab2359940506b99ca6b6720b3df15937f52596eee",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -380,7 +381,7 @@
       },
       {
         "path": ".github/acceptance/issue-41.json",
-        "sha256": "6e9e303918c081330bf60d4ac4a64c91fcdf79444bf77205683ecb615dc061bf"
+        "sha256": "9a0697cf061ccb10ab23ae95f5cea3dd55034aef245e050a37702c17258c8065"
       },
       {
         "path": ".github/pull_request_template.md",
@@ -396,7 +397,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "af9071700cf609d166ae9fba415311472e6109bac1fdcd2bbb4bbec77b574bbf"
+        "sha256": "8fae0d8d9f46e4849bbc0dbddb1e87e59be85f71010fe961038fb6314668084b"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -508,7 +509,7 @@
       },
       {
         "path": "tests/test_issue41_acceptance.py",
-        "sha256": "8ac53c102937cfdcf896d33c72546e6211f374dbf1d7ff3d2c0a6b77533266b6"
+        "sha256": "d27dd7c10423a690d453e64588c2fac7ace14cf26e58af81fb0bbb2bb0078c4a"
       },
       {
         "path": "tests/test_issue_acceptance.py",
@@ -560,7 +561,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "7a8b1c0bbf5339250d861d0ebc8390a567d8817e110b922d486fe729afab9106"
+        "sha256": "1a388e698d7445e3241da656f4a60a1039086c2af196b339a09c9d751736c6c5"
       },
       {
         "path": "tools/repository_intelligence.py",
