@@ -282,7 +282,7 @@ def render_map(surface):
             purpose = row["purpose"].replace("|", "\\|").replace("\n", " ")
             lines.append(f"| [{path}]({path}) | {purpose} | {row['role']} | [{owner}]({owner}) |")
         lines.append("")
-    return "\n".join(lines) + "\n"
+    return "\n".join(lines).rstrip() + "\n"
 
 
 def build(root, config_path):

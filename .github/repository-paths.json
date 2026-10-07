@@ -299,7 +299,7 @@
       "kind": "directory",
       "purpose": "Generated legacy-compatible aliases for authored portrait/icon assets.",
       "role": "generated",
-      "owner": "site/assets/favicon.svg"
+      "owner": "site/README.md"
     },
     "docs/assets/favicon.svg": {
       "kind": "file",

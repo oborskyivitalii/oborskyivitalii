@@ -45,7 +45,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [.github/repository-intelligence](.github/repository-intelligence) | Generated machine navigation view with exact source identity. | generated | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 | [.github/workflows](.github/workflows) | Pinned CI workflows for navigation, site checks, hosted staging and manual diagnostics. | workflow | [SITE-CHECK-PROFILES.md](SITE-CHECK-PROFILES.md) |
 | [docs](docs) | Generated complete public tree and immutable rendition aliases; edit site sources instead. | generated | [site/README.md](site/README.md) |
-| [docs/assets](docs/assets) | Generated legacy-compatible aliases for authored portrait/icon assets. | generated | [site/assets/favicon.svg](site/assets/favicon.svg) |
+| [docs/assets](docs/assets) | Generated legacy-compatible aliases for authored portrait/icon assets. | generated | [site/README.md](site/README.md) |
 | [docs/media](docs/media) | Generated content-addressed asset editions. | generated | [site/README.md](site/README.md) |
 | [docs/media/442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401](docs/media/442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401) | Generated immutable media edition directory: 442222a69c4d85a72d28debefa2dc09da8ea889303d28fb3b105a490c48db401. | generated | [site/README.md](site/README.md) |
 | [docs/runtime](docs/runtime) | Generated content-addressed browser runtime editions. | generated | [site/README.md](site/README.md) |
@@ -1471,4 +1471,3 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tools/staging/selftest.cjs](tools/staging/selftest.cjs) | Controller/package/trust self-test entry point. | validator | [SITE-STAGING.md](SITE-STAGING.md) |
 | [tools/staging/state.cjs](tools/staging/state.cjs) | Retained staging/promotion/recovery state tied to exact identities. | source | [SITE-STAGING.md](SITE-STAGING.md) |
 | [tools/staging/trust.cjs](tools/staging/trust.cjs) | Protected source/artifact/controller/PR lease validation before hosted action. | source | [SITE-STAGING.md](SITE-STAGING.md) |
-

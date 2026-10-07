@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "e31892d1d73d58f5743472eb08372c30ef8bf2f31ad03c1121bfe7403a2f3dc1",
+    "digest": "063c482b2d66e68a4ff82f804cbe5984ab9854f6bbb545e8790bdeb95a368cbb",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -56,7 +56,7 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "7dcf43032ea6eb2eeebb69190afe360517c319a9bb63d0c4fe8394a0ff50a9bd"
+        "sha256": "7e61ed30ce8de05d61771da18e2b27ba0c9649b02a320ec4c4f8c155560ac690"
       },
       {
         "path": ".github/workflows/navigation.yml",
@@ -4785,7 +4785,7 @@
       {
         "path": "tools/repository_intelligence.py",
         "identity_mode": "content",
-        "sha256": "8690fea484f3d498aad2bf6ac7647475c003e44d8061c3c8668b6ecf098ee079"
+        "sha256": "9c043c7e13c36899559f83b7941b989dfebaabd1e2d6d6e1815815704db627b3"
       },
       {
         "path": "tools/site/analytics.cjs",
@@ -4856,7 +4856,7 @@
   },
   "producer": {
     "path": "tools/repository_intelligence.py",
-    "sha256": "8690fea484f3d498aad2bf6ac7647475c003e44d8061c3c8668b6ecf098ee079",
+    "sha256": "9c043c7e13c36899559f83b7941b989dfebaabd1e2d6d6e1815815704db627b3",
     "config_path": ".github/repository-intelligence-config.json",
     "config_sha256": "4abfe930425d6a2786e2e80a8062b74c03b1716873fe4086a863f9be8b471b52"
   },
@@ -15735,7 +15735,7 @@
       "kind": "directory",
       "purpose": "Generated legacy-compatible aliases for authored portrait/icon assets.",
       "role": "generated",
-      "owner": "site/assets/favicon.svg",
+      "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ]
