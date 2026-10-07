@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "repository": "oborskyivitalii/oborskyivitalii",
   "output": ".github/repository-intelligence/agent-context.json",
   "glossaries": [],
@@ -27,17 +27,6 @@
         "performance budget",
         "пайплайн релізу",
         "перевірки перед релізом"
-      ]
-    },
-    {
-      "concern": "next site iteration and Sol execution",
-      "path": "SOL-HANDOFF.md",
-      "queries": [
-        "Sol",
-        "execution plan",
-        "final plan review",
-        "план для сол",
-        "фінальне ревью"
       ]
     },
     {
@@ -134,28 +123,6 @@
       ]
     },
     {
-      "concern": "static site engine, content and incremental generation plan",
-      "path": "review/site-engine-plan-20261004/PLAN.md",
-      "queries": [
-        "site engine",
-        "content assets separation",
-        "incremental publishing",
-        "двигун сайту",
-        "каркас і контент",
-        "інкрементальна генерація"
-      ]
-    },
-    {
-      "concern": "Writing first-scroll observation and current implementation assessment",
-      "path": "review/site-engine-plan-20261004/ASSESSMENT.md",
-      "queries": [
-        "Writing first scroll",
-        "stationary animation",
-        "анімація Writing",
-        "перший скрол"
-      ]
-    },
-    {
       "concern": "static site source, engine contract and incremental generation",
       "path": "site/README.md",
       "queries": [
@@ -179,6 +146,182 @@
         "відвідувачі",
         "пошуковий граф"
       ]
+    },
+    {
+      "concern": "session continuity and outstanding acceptance",
+      "path": "MEMORY.md",
+      "queries": [
+        "session memory",
+        "current work",
+        "handoff",
+        "памʼять",
+        "память",
+        "поточний стан",
+        "наступна сесія"
+      ]
+    },
+    {
+      "concern": "complete repository structure and editing routes",
+      "path": ".github/REPOSITORY-INTELLIGENCE.md",
+      "queries": [
+        "repository map",
+        "file inventory",
+        "root files",
+        "repo structure",
+        "структура репо",
+        "індекс репо",
+        "каталоги",
+        "файли в корені"
+      ]
+    },
+    {
+      "concern": "acceptance criteria, deterministic policy and source-bound evidence",
+      "path": ".github/ACCEPTANCE.md",
+      "queries": [
+        "acceptance criteria",
+        "AC mapping",
+        "deterministic tests",
+        "аксептанс",
+        "критерії приймання",
+        "policy"
+      ]
+    },
+    {
+      "concern": "review analysis and model-to-model execution handoff",
+      "path": "review/REVIEW-TEMPLATE.md",
+      "queries": [
+        "Astra",
+        "review handoff",
+        "analysis tasks",
+        "ревʼю",
+        "аналіз",
+        "завдання солу",
+        "Sol",
+        "execution plan",
+        "план для сол"
+      ]
+    },
+    {
+      "concern": "ChatGPT project bootstrap and stable context",
+      "path": "PROJECT-BOOTSTRAP.md",
+      "queries": [
+        "bootstrap prompt",
+        "project description",
+        "ChatGPT project",
+        "бутстрап",
+        "опис проекту"
+      ]
+    }
+  ],
+  "map_output": "REPOSITORY-MAP.md",
+  "catalog": ".github/repository-paths.json",
+  "upstream": {
+    "repository": "UncertaintyArchitectureGroup/uncertainty-architecture",
+    "ref": "345c8f50745e5fde1303d0d7952634f7899220c9",
+    "producer_version": 6,
+    "schema_version": 2,
+    "producer_path": ".github/scripts/repository_intelligence.py",
+    "producer_blob": "441f6f1d76ae45d8c479fcbebb196a3c5d3833e8",
+    "architecture_path": ".github/REPOSITORY-INTELLIGENCE.md",
+    "architecture_blob": "8d8176787eff708e912b340ab5faada3d3c3fd5c",
+    "contract_path": ".github/policy/repository-intelligence-contract.json",
+    "compared_on": "2026-10-07"
+  },
+  "continuity": {
+    "AGENTS.md": {
+      "max_lines": 100
+    },
+    "MEMORY.md": {
+      "max_lines": 120,
+      "headings": [
+        "## Snapshot",
+        "## Decisions",
+        "## Open work",
+        "## Next session",
+        "## Maintenance"
+      ]
+    }
+  },
+  "validation_routes": [
+    {
+      "concern": "repository intelligence and continuity",
+      "paths": [
+        "AGENTS.md",
+        "MEMORY.md",
+        "CONTRIBUTING.md",
+        "README.md",
+        "REPOSITORIES.md",
+        "REPOSITORY-MAP.md",
+        ".github/repository-",
+        ".github/REPOSITORY-INTELLIGENCE.md",
+        ".github/ISSUE_TEMPLATE/",
+        ".github/pull_request_template.md",
+        "tools/repository_intelligence.py",
+        "tests/test_repository_intelligence.py",
+        ".github/ri-ci-map.json",
+        "tools/check_ri_ci.py",
+        "tests/test_ri_ci.py",
+        "PROJECT-BOOTSTRAP.md"
+      ],
+      "commands": [
+        "python3 tools/check_ri_ci.py verify",
+        "python3 -m unittest discover -s tests -p 'test_ri_ci.py'",
+        "python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'",
+        "python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json build",
+        "python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify"
+      ],
+      "workflow": ".github/workflows/navigation.yml"
+    },
+    {
+      "concern": "authored site and generated output",
+      "paths": [
+        "site/",
+        "docs/",
+        "tools/site/"
+      ],
+      "commands": [
+        "node tools/quality/local.cjs"
+      ],
+      "workflow": ".github/workflows/site-checks.yml"
+    },
+    {
+      "concern": "hosting and release checks",
+      "paths": [
+        "tools/staging/",
+        "tools/quality/",
+        ".github/workflows/site-",
+        "SITE-CHECK-PROFILES.md",
+        "SITE-RELEASE-GATES.md",
+        "SITE-STAGING.md"
+      ],
+      "commands": [
+        "node tools/quality/local.cjs"
+      ],
+      "read": [
+        "SITE-CHECK-PROFILES.md",
+        "SITE-RELEASE-GATES.md",
+        "SITE-STAGING.md"
+      ],
+      "note": "Select the authorized hosted profile; this route does not trigger deployment."
+    },
+    {
+      "concern": "issue acceptance and anchored analysis/review handoff",
+      "paths": [
+        ".github/ACCEPTANCE.md",
+        ".github/acceptance/",
+        ".github/workflows/issue-acceptance.yml",
+        "tools/issue_acceptance.py",
+        "tests/test_issue_acceptance.py",
+        "tests/test_issue31_acceptance.py",
+        "review/REVIEW-TEMPLATE.md",
+        "review/issue-",
+        "PROJECT-BOOTSTRAP.md"
+      ],
+      "commands": [
+        "python3 tools/issue_acceptance.py run --policy .github/acceptance/issue-31.json --report /tmp/issue-31-acceptance.json"
+      ],
+      "workflow": ".github/workflows/issue-acceptance.yml",
+      "note": "Choose the owning issue policy; automated criteria cannot supply manual gates or live GitHub approval."
     }
   ]
 }

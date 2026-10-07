@@ -1,5 +1,10 @@
 # First site: candidate, review and release
 
+Current operating mechanics are in [SITE-CHECK-PROFILES](SITE-CHECK-PROFILES.md)
+and [SITE-STAGING](SITE-STAGING.md). Read [MEMORY](MEMORY.md) and the live owning
+issue/PR for current refs and deployment acceptance. The dated observations and
+candidate-specific instructions below are historical, not a current-state ledger.
+
 ## Live staging and current source boundary — 2026-10-05
 
 The maintainer authorizes staging configuration and upload. The dedicated

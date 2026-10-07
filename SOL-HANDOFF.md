@@ -1,5 +1,10 @@
 # Sol execution plan — reviewed 2026-10-02
 
+Historical handoff and dated implementation decisions. Current task selection,
+refs and remaining acceptance are in [MEMORY.md](MEMORY.md) and the live owning
+issue/PR. This file does not authorize restarting completed iterations or applying
+old publication pauses to a newer accepted scope.
+
 ## Current task — 2026-10-06
 
 Start with [the executed Writing diagnosis](review/writing-diagnosis-20261006/EXECUTION.md),

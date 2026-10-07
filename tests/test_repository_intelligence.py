@@ -2,6 +2,7 @@
 """Behavioral and adversarial checks for the bounded local RI adapter."""
 import importlib.util
 import json
+import subprocess
 import tempfile
 import unittest
 from pathlib import Path
@@ -9,7 +10,8 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 SPEC = importlib.util.spec_from_file_location("local_ri", REPO / "tools/repository_intelligence.py")
 ri = importlib.util.module_from_spec(SPEC)
-SPEC.loader.exec_module(ri)
+exec(compile((REPO / "tools/repository_intelligence.py").read_bytes(),
+             str(REPO / "tools/repository_intelligence.py"), "exec"), ri.__dict__)
 
 
 class NavigationSafetyTests(unittest.TestCase):
@@ -19,8 +21,9 @@ class NavigationSafetyTests(unittest.TestCase):
         self.root = Path(self.temp.name).resolve()
         self.cfg = "governance/config.json"
         self.config = {
-            "schema_version": 1, "repository": "example/research",
+            "schema_version": ri.VERSION, "repository": "example/research",
             "output": "governance/repository-intelligence/agent-context.json",
+            "map_output": "REPOSITORY-MAP.md", "catalog": "governance/paths.json",
             "glossaries": ["GLOSSARY.md"], "registries": ["evidence/SOURCES.md"],
             "owners": [{"concern": "source status", "path": "evidence/SOURCES.md",
                         "queries": ["source registry", "джерела"]}],
@@ -44,10 +47,27 @@ class NavigationSafetyTests(unittest.TestCase):
 
     def save_config(self):
         self.write(self.cfg, json.dumps(self.config))
+        self.save_catalog()
+
+    def save_catalog(self):
+        paths = {p.relative_to(self.root).as_posix() for p in self.root.rglob("*")
+                 if p.is_file() and ".git" not in p.relative_to(self.root).parts
+                 and "__pycache__" not in p.parts and not p.name.endswith((".tmp", ".pyc"))}
+        paths |= {self.config["catalog"], self.config["output"], self.config["map_output"]}
+        directories = {"."}
+        for path in paths:
+            directories.update(p.as_posix() for p in Path(path).parents)
+        entries = {p: {"kind": "file" if p in paths else "directory",
+                       "purpose": "Fixture purpose: " + p,
+                       "role": "source", "owner": "AGENTS.md"}
+                   for p in paths | directories}
+        self.write(self.config["catalog"], json.dumps({"schema_version": 1, "entries": entries}))
 
     def materialize(self):
+        self.save_catalog()
         data = ri.build(self.root, self.cfg)
         self.write(self.config["output"], json.dumps(data))
+        self.write(self.config["map_output"], ri.render_map(data))
         return data
 
     def test_deterministic_complete_inventory_and_scopes(self):
@@ -55,7 +75,10 @@ class NavigationSafetyTests(unittest.TestCase):
         self.assertEqual(first, ri.build(self.root, self.cfg))
         paths = {a["path"] for a in first["artifacts"]}
         self.assertEqual(paths, {"AGENTS.md", "GLOSSARY.md", "evidence/AGENTS.md",
-                                 "evidence/SOURCES.md", self.cfg, ri.SCRIPT})
+                                 "evidence/SOURCES.md", self.cfg, ri.SCRIPT,
+                                 self.config["catalog"], self.config["output"], self.config["map_output"]})
+        self.assertEqual({d["path"] for d in first["directories"]},
+                         {".", "evidence", "governance", "governance/repository-intelligence", "tools"})
         evidence = next(a for a in first["artifacts"] if a["path"] == "evidence/SOURCES.md")
         self.assertEqual(evidence["instructions"], ["AGENTS.md", "evidence/AGENTS.md"])
         glossary = next(a for a in first["artifacts"] if a["path"] == "GLOSSARY.md")
@@ -204,13 +227,110 @@ class NavigationSafetyTests(unittest.TestCase):
             with self.subTest(changed=changed), self.assertRaises(ValueError):
                 ri.build(self.root, self.cfg)
 
-    def test_binary_inventory_does_not_claim_content_freshness(self):
+    def test_binary_byte_changes_invalidate_freshness(self):
         (self.root / "deck.pdf").write_bytes(b"version one")
         first = self.materialize()
         (self.root / "deck.pdf").write_bytes(b"version two")
-        self.assertEqual(ri.verify(self.root, self.cfg), first)
+        with self.assertRaisesRegex(ValueError, "Stale or altered"):
+            ri.verify(self.root, self.cfg)
         record = next(x for x in first["source_identity"]["inputs"] if x["path"] == "deck.pdf")
-        self.assertEqual(record, {"path": "deck.pdf", "identity_mode": "existence"})
+        self.assertEqual(record, {"path": "deck.pdf", "identity_mode": "content",
+                                  "sha256": ri.digest(b"version one")})
+
+    def test_code_css_html_and_assets_are_all_indexed_and_hashed(self):
+        for path in ["engine.js", "helper.cjs", "style.css", "block.html", "portrait.webp"]:
+            self.write(path, "version one")
+        first = self.materialize()
+        for path in ["engine.js", "helper.cjs", "style.css", "block.html", "portrait.webp"]:
+            with self.subTest(path=path):
+                self.assertIn(path, {a["path"] for a in first["artifacts"]})
+                self.write(path, "version two")
+                with self.assertRaisesRegex(ValueError, "Stale or altered"):
+                    ri.verify(self.root, self.cfg)
+                self.write(path, "version one")
+
+    def test_new_root_and_nested_files_fail_without_purpose_entries(self):
+        self.materialize()
+        for path in ["UNKNOWN.md", "new/module.cjs"]:
+            with self.subTest(path=path):
+                self.write(path, "new input")
+                with self.assertRaisesRegex(ValueError, "unclassified"):
+                    ri.build(self.root, self.cfg)
+                (self.root / path).unlink()
+
+    def test_removed_file_and_dangling_directory_entries_fail(self):
+        self.materialize()
+        (self.root / "evidence/AGENTS.md").unlink()
+        with self.assertRaisesRegex(ValueError, "missing/stale"):
+            ri.build(self.root, self.cfg)
+
+    def test_blank_purpose_wrong_kind_and_dangling_owner_fail(self):
+        self.materialize()
+        original = json.loads((self.root / self.config["catalog"]).read_text())
+        for key, value in [("purpose", " "), ("kind", "directory"), ("owner", "missing.md")]:
+            changed = json.loads(json.dumps(original))
+            changed["entries"]["AGENTS.md"][key] = value
+            self.write(self.config["catalog"], json.dumps(changed))
+            with self.subTest(key=key), self.assertRaises(ValueError):
+                ri.build(self.root, self.cfg)
+
+    def test_map_missing_or_tampered_fails_and_is_not_recursive(self):
+        first = self.materialize()
+        self.assertEqual(ri.build(self.root, self.cfg), first)
+        self.write(self.config["map_output"], "tampered map")
+        with self.assertRaisesRegex(ValueError, "repository map"):
+            ri.verify(self.root, self.cfg)
+        (self.root / self.config["map_output"]).unlink()
+        with self.assertRaisesRegex(ValueError, "repository map"):
+            ri.verify(self.root, self.cfg)
+
+    def test_history_is_searchable_but_not_scoped_agent_instructions(self):
+        self.write("archive/AGENTS.before.md", "# Former instructions\nDo old task\n")
+        self.materialize()
+        catalog = json.loads((self.root / self.config["catalog"]).read_text())
+        catalog["entries"]["archive/AGENTS.before.md"]["role"] = "history"
+        self.write(self.config["catalog"], json.dumps(catalog))
+        data = ri.build(self.root, self.cfg)
+        hit = ri.lookup(data, "Former instructions")["artifacts"][0]
+        self.assertEqual(hit["role"], "history")
+        self.assertNotIn("archive/AGENTS.before.md", {i["path"] for i in data["instructions"]})
+
+    def test_memory_and_agent_bounds_and_required_sections_fail(self):
+        self.config["continuity"] = {"AGENTS.md": {"max_lines": 2},
+                                     "MEMORY.md": {"max_lines": 4, "headings": ["## Snapshot"]}}
+        self.write("MEMORY.md", "# Memory\n## Snapshot\n")
+        self.save_config()
+        self.materialize()
+        for path, body in [("AGENTS.md", "a\nb\nc\n"),
+                           ("MEMORY.md", "# Memory\n## Snapshot\na\nb\nc\n"),
+                           ("MEMORY.md", "# Memory\n")]:
+            with self.subTest(path=path), self.assertRaises(ValueError):
+                self.write(path, body)
+                ri.build(self.root, self.cfg)
+            self.write("AGENTS.md", "# Root instructions\n")
+            self.write("MEMORY.md", "# Memory\n## Snapshot\n")
+
+    def test_tracked_files_cannot_hide_in_excluded_directories(self):
+        subprocess.run(["git", "init", "-q", str(self.root)], check=True)
+        self.write("node_modules/hidden.js", "tracked input")
+        subprocess.run(["git", "-C", str(self.root), "add", "node_modules/hidden.js"], check=True)
+        self.save_catalog()
+        with self.assertRaisesRegex(ValueError, "Tracked file missing or excluded"):
+            ri.build(self.root, self.cfg)
+
+    def test_hash_bounds_fail_without_silently_omitting_binary(self):
+        with (self.root / "large.zip").open("wb") as stream:
+            stream.truncate(ri.MAX_HASH_FILE_BYTES + 1)
+        with self.assertRaisesRegex(ValueError, "hash bound exceeded"):
+            ri.build(self.root, self.cfg)
+
+    def test_catalog_cannot_override_a_projected_path(self):
+        self.materialize()
+        catalog = json.loads((self.root / self.config["catalog"]).read_text())
+        catalog["entries"]["AGENTS.md"]["path"] = "invented-owner.md"
+        self.write(self.config["catalog"], json.dumps(catalog))
+        with self.assertRaisesRegex(ValueError, "Unsupported path entry"):
+            ri.build(self.root, self.cfg)
 
     def test_real_adapter_owners_and_cross_repo_isolation(self):
         configs = [REPO / "governance/repository-intelligence-config.json",

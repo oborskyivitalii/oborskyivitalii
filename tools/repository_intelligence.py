@@ -13,17 +13,24 @@ import hashlib
 import json
 import os
 import re
+import subprocess
 import sys
 from pathlib import Path, PurePosixPath
 
-VERSION = 1
+VERSION = 2
 IGNORED = {".git", "node_modules", "__pycache__", ".venv", "venv", "dist", "public",
-           "quality-artifact", "quality-reports", "quality-results", ".site-cache"}
+           "quality-artifact", "quality-reports", "quality-results", ".site-cache",
+           ".ruff_cache", "color-artifact", "staging-package", "staging-rollback",
+           "staging-reports"}
 TEXT_SUFFIXES = {".md", ".json", ".toml", ".yml", ".yaml", ".py", ".cff", ".txt"}
 MAX_FILES = 5000
 MAX_FILE_BYTES = 2_000_000
 MAX_TOTAL_BYTES = 50_000_000
+MAX_HASH_FILE_BYTES = 32_000_000
+MAX_HASH_TOTAL_BYTES = 250_000_000
 SCRIPT = "tools/repository_intelligence.py"
+ROLES = {"guide", "source", "configuration", "validator", "test", "workflow",
+         "generated", "history", "draft", "license", "memory"}
 
 
 def canonical(value):
@@ -102,34 +109,72 @@ def active_markdown(text):
     return "\n".join(lines)
 
 
-def scan(root, output):
-    """Complete admitted text inventory; binary assets are existence-only."""
-    records, texts, size_total = [], {}, 0
+def scan(root, outputs):
+    """Hash every repository file; decode only bounded navigation inputs.
+
+    Generated RI views are indexed without hashing themselves. Verification
+    compares their complete derived bytes, avoiding recursive source identity.
+    """
+    records, texts, size_total, hash_total = [], {}, 0, 0
     for parent, dirs, files in os.walk(root, followlinks=False):
-        dirs[:] = sorted(d for d in dirs if d not in IGNORED)
+        dirs[:] = sorted(d for d in dirs if d not in IGNORED and not d.startswith(".site-build-"))
         for d in dirs:
             safe_path(root, (Path(parent) / d).relative_to(root).as_posix())
         for name in sorted(files):
             path = Path(parent) / name
             relative = path.relative_to(root).as_posix()
             # A worktree has a .git file where a regular checkout has a directory.
-            if name == ".git" or relative == output or name.endswith((".pyc", ".tmp")):
+            if name == ".git" or relative in outputs or name.endswith((".pyc", ".tmp")):
                 continue
             path = safe_path(root, relative)
             if not path.is_file():
                 raise ValueError(f"Unsupported input: {relative}")
-            if len(records) >= MAX_FILES:
+            if len(records) >= MAX_FILES - len(outputs):
                 raise ValueError("RI file bound exceeded; use direct repository reading")
+            size = path.stat().st_size
+            hash_total += size
+            if size > MAX_HASH_FILE_BYTES or hash_total > MAX_HASH_TOTAL_BYTES:
+                raise ValueError(f"RI content hash bound exceeded at {relative}")
+            sha = hashlib.sha256()
+            hashed = 0
+            with path.open("rb") as stream:
+                for chunk in iter(lambda: stream.read(1_000_000), b""):
+                    hashed += len(chunk)
+                    if hashed > MAX_HASH_FILE_BYTES:
+                        raise ValueError(f"RI content hash bound exceeded at {relative}")
+                    sha.update(chunk)
+            if hashed != size:
+                raise ValueError(f"Input changed while hashing: {relative}")
+            records.append({"path": relative, "identity_mode": "content",
+                            "sha256": sha.hexdigest()})
             if path.suffix.lower() in TEXT_SUFFIXES:
-                size = path.stat().st_size
                 size_total += size
                 if size > MAX_FILE_BYTES or size_total > MAX_TOTAL_BYTES:
                     raise ValueError(f"RI text bound exceeded at {relative}")
                 data = path.read_bytes()
+                if digest(data) != sha.hexdigest():
+                    raise ValueError(f"Input changed while decoding: {relative}")
                 texts[relative] = data.decode("utf-8")
-                records.append({"path": relative, "identity_mode": "content", "sha256": digest(data)})
-            else:
-                records.append({"path": relative, "identity_mode": "existence"})
+    # A tracked file must never disappear behind an excluded cache name, a
+    # missing checkout path, a temporary suffix, or an unsupported Git mode.
+    try:
+        tracked = subprocess.run(["git", "-C", str(root), "ls-files", "--stage", "-z"],
+                                 capture_output=True, check=False, timeout=15)
+    except subprocess.TimeoutExpired as exc:
+        raise ValueError("Tracked-file inventory timeout; use direct repository reading") from exc
+    if tracked.returncode == 0:
+        scanned = {x["path"] for x in records} | set(outputs)
+        for item in tracked.stdout.decode("utf-8").split("\0"):
+            if not item:
+                continue
+            metadata, relative = item.split("\t", 1)
+            if metadata.split()[2] != "0":
+                raise ValueError(f"Unresolved tracked merge: {relative}")
+            if metadata.split()[0] not in {"100644", "100755"}:
+                raise ValueError(f"Unsupported tracked file mode: {relative}")
+            if relative not in scanned:
+                raise ValueError(f"Tracked file missing or excluded: {relative}")
+    records += [{"path": p, "identity_mode": "derived"} for p in outputs]
     return sorted(records, key=lambda x: x["path"]), texts
 
 
@@ -141,6 +186,9 @@ def load_config(root, config_path):
     if not output.endswith("/repository-intelligence/agent-context.json"):
         raise ValueError("Projection output must be a dedicated repository-intelligence/agent-context.json")
     safe_path(root, output)
+    if config.get("map_output") != "REPOSITORY-MAP.md":
+        raise ValueError("Readable projection must be REPOSITORY-MAP.md")
+    safe_path(root, config["catalog"])
     if not re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", config["repository"]):
         raise ValueError("Invalid repository identity")
     for key in ("glossaries", "registries"):
@@ -158,11 +206,91 @@ def load_config(root, config_path):
     return config
 
 
+def instruction_paths(path, instructions):
+    return sorted(x["path"] for x in instructions if x["scope_root"] == "."
+                  or path == x["path"] or path.startswith(x["scope_root"] + "/"))
+
+
+def path_inventory(root, config, records, texts, instructions):
+    catalog = json.loads(texts[config["catalog"]])
+    if catalog.get("schema_version") != 1:
+        raise ValueError("Unsupported path catalog schema")
+    entries = catalog["entries"]
+    files = {x["path"] for x in records}
+    directories = {"."}
+    for path in files:
+        directories.update(p.as_posix() for p in PurePosixPath(path).parents)
+    actual = files | directories
+    if set(entries) != actual:
+        missing, stale = sorted(actual - entries.keys()), sorted(entries.keys() - actual)
+        raise ValueError(f"Path catalog coverage mismatch; unclassified={missing}; missing/stale={stale}")
+    artifacts, scopes = [], []
+    for path, entry in sorted(entries.items()):
+        if path != ".":
+            safe_path(root, path)
+        kind = "file" if path in files else "directory"
+        if not isinstance(entry, dict) or set(entry) != {"kind", "purpose", "role", "owner"}:
+            raise ValueError(f"Unsupported path entry fields: {path}")
+        if entry.get("kind") != kind or entry.get("role") not in ROLES:
+            raise ValueError(f"Invalid path kind/role: {path}")
+        if not isinstance(entry.get("purpose"), str) or not entry["purpose"].strip():
+            raise ValueError(f"Missing path purpose: {path}")
+        if entry.get("owner") not in files:
+            raise ValueError(f"Missing path owner: {path}")
+        row = {"path": path, **entry, "instructions": instruction_paths(path, instructions)}
+        if kind == "file":
+            body = texts.get(path, "")
+            title = re.search(r"^#\s+(.+)$", active_markdown(body), re.M) if path.endswith(".md") else None
+            row["title"] = title.group(1) if title else PurePosixPath(path).name
+            artifacts.append(row)
+        else:
+            scopes.append(row)
+    return artifacts, scopes
+
+
+def check_continuity(config, texts):
+    for path, contract in config.get("continuity", {}).items():
+        body = texts[path]
+        if len(body.splitlines()) > contract["max_lines"]:
+            raise ValueError(f"Continuity line bound exceeded: {path}; move detail to its owner")
+        for heading in contract.get("headings", []):
+            if heading not in body.splitlines():
+                raise ValueError(f"Missing continuity section {heading}: {path}")
+
+
+def render_map(surface):
+    lines = ["# Repository map", "", "Generated by `tools/repository_intelligence.py`; edit purposes/roles in",
+             "[the path catalog](.github/repository-paths.json), then run `build` and `verify`.",
+             "Every repository file and directory is listed, including these generated views.",
+             "Local ignored caches/build packages are excluded; tracked exclusions fail verification.", "",
+             "Start with [AGENTS.md](AGENTS.md), the owning issue and [MEMORY.md](MEMORY.md).",
+             "`source` is authored input; `generated` must be regenerated from its owner;",
+             "`history`/`draft` preserve evidence and proposals; `memory` is a dated continuity hint.",
+             "A role or index entry does not grant research, merge, publication or deployment approval.", ""]
+    groups = [("Root files", [a for a in surface["artifacts"] if "/" not in a["path"]]),
+              ("Directories", surface["directories"])]
+    for directory in surface["directories"]:
+        if directory["path"] != ".":
+            rows = [a for a in surface["artifacts"] if str(PurePosixPath(a["path"]).parent) == directory["path"]]
+            if rows:
+                groups.append((directory["path"] + "/", rows))
+    for title, rows in groups:
+        lines += [f"## {title}", "", "| Path | Purpose | Role | Owner / editing route |",
+                  "| --- | --- | --- | --- |"]
+        for row in rows:
+            path, owner = row["path"], row["owner"]
+            purpose = row["purpose"].replace("|", "\\|").replace("\n", " ")
+            lines.append(f"| [{path}]({path}) | {purpose} | {row['role']} | [{owner}]({owner}) |")
+        lines.append("")
+    return "\n".join(lines).rstrip() + "\n"
+
+
 def build(root, config_path):
     config = load_config(root, config_path)
-    records, texts = scan(root, config["output"])
-    required = [config_path, SCRIPT] + config.get("glossaries", []) + config.get("registries", [])
+    records, texts = scan(root, [config["output"], config["map_output"]])
+    required = [config_path, SCRIPT, config["catalog"]] + config.get("glossaries", []) + config.get("registries", [])
     required += [x["path"] for x in config["owners"]]
+    required += list(config.get("continuity", {}))
     missing = sorted(set(required) - texts.keys())
     if missing:
         raise ValueError("Missing represented owner/input: " + ", ".join(missing))
@@ -172,6 +300,7 @@ def build(root, config_path):
     ]
     if not any(x["path"] == "AGENTS.md" for x in instructions):
         raise ValueError("Root AGENTS.md is required")
+    check_continuity(config, texts)
     terms = []
     for p in config.get("glossaries", []):
         for title in re.findall(r"^#{2,3}\s+(.+?)\s*$", active_markdown(texts[p]), re.M):
@@ -214,30 +343,29 @@ def build(root, config_path):
             raise ValueError(f"Missing supported source-registry schema in {p}")
     if len({x["id"] for x in sources}) != len(sources):
         raise ValueError("Duplicate source ID in represented registries")
-    artifacts = []
-    for path, body in sorted(texts.items()):
-        title = re.search(r"^#\s+(.+)$", active_markdown(body), re.M) if path.endswith(".md") else None
-        scopes = [x["path"] for x in instructions if x["scope_root"] == "."
-                  or path == x["path"] or path.startswith(x["scope_root"] + "/")]
-        artifacts.append({"path": path, "title": title.group(1) if title else path,
-                          "instructions": sorted(scopes)})
+    artifacts, directories = path_inventory(root, config, records, texts, instructions)
     return {
         "schema_version": VERSION, "repository": config["repository"],
-        "capabilities": ["local-owner-candidates", "complete-admitted-inventories", "freshness"],
+        "capabilities": ["local-owner-candidates", "complete-file-and-directory-inventory",
+                         "path-purpose-and-role", "validation-routes", "content-freshness"],
         "limitations": [
             "Navigation only; read owning sources and current GitHub state.",
             "No semantic graph, impact traversal or trusted tested-merge comparison.",
-            "Excluded build/cache directories are not represented; binary assets are existence-only.",
+            "Ignored local build/cache directories are excluded; tracked exclusions fail.",
+            "Content hashes attest bytes, not publication rights or scientific acceptance.",
             "Lexical miss or untranslated query does not establish absence.",
         ],
-        "source_identity": {"algorithm": "sha256-path-content-v1",
+        "source_identity": {"algorithm": "sha256-path-content-v2",
                             "digest": digest(canonical(records).encode()), "inputs": records},
         "producer": {"path": SCRIPT, "sha256": digest(safe_path(root, SCRIPT).read_bytes()),
                      "config_path": config_path,
                      "config_sha256": digest(safe_path(root, config_path).read_bytes())},
         "owners": config["owners"], "terms": terms, "sources": sources,
         "instructions": sorted(instructions, key=lambda x: x["path"]),
-        "artifacts": artifacts, "cross_repository": config.get("cross_repository", []),
+        "artifacts": artifacts, "directories": directories,
+        "validation_routes": config.get("validation_routes", []),
+        "upstream": config.get("upstream", {}),
+        "cross_repository": config.get("cross_repository", []),
     }
 
 
@@ -250,6 +378,9 @@ def verify(root, config_path):
     actual = json.loads(path.read_text(encoding="utf-8"))
     if actual != expected:
         raise ValueError("Stale or altered RI context; rebuild or use direct repository reading")
+    readable = safe_path(root, config["map_output"])
+    if not readable.is_file() or readable.read_text(encoding="utf-8") != render_map(expected):
+        raise ValueError("Missing, stale or altered repository map; rebuild")
     return expected
 
 
@@ -264,22 +395,25 @@ def lookup(surface, query):
     sources = [s for s in surface["sources"]
                if q in s["id"].casefold() or q in s["source"].casefold()]
     artifacts = [a for a in surface["artifacts"]
-                 if q in (a["title"] + " " + a["path"]).casefold()]
+                 if q in (a["title"] + " " + a["path"] + " " + a["purpose"]).casefold()]
+    directories = [d for d in surface["directories"]
+                   if q in (d["path"] + " " + d["purpose"]).casefold()]
     if sources and not owners:
         owners = [o for o in surface["owners"] if o["path"] in {s["path"] for s in sources}]
     if terms and not owners:
         owners = [o for o in surface["owners"] if o["path"] in {t["path"] for t in terms}]
     return {"repository": surface["repository"], "query": query,
-            "status": "candidates-read-sources" if owners or terms or sources or artifacts
+            "status": "candidates-read-sources" if owners or terms or sources or artifacts or directories
                       else "unresolved-use-direct-search",
-            "owner_candidates": owners, "terms": terms, "sources": sources, "artifacts": artifacts}
+            "owner_candidates": owners, "terms": terms, "sources": sources,
+            "artifacts": artifacts, "directories": directories}
 
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=Path.cwd())
     parser.add_argument("--config", required=True, help="Repository-relative config path")
-    parser.add_argument("command", choices=("build", "verify", "query"))
+    parser.add_argument("command", choices=("build", "verify", "query", "inventory", "context-for-task"))
     parser.add_argument("query_text", nargs="?")
     args = parser.parse_args(argv)
     try:
@@ -292,13 +426,29 @@ def main(argv=None):
             safe_path(root, temporary.relative_to(root).as_posix())
             temporary.write_text(json.dumps(surface, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
             os.replace(temporary, target)
-            print(f"Built {target.relative_to(root)}: {len(surface['artifacts'])} represented texts")
+            readable = safe_path(root, load_config(root, args.config)["map_output"])
+            map_temporary = readable.with_suffix(".tmp")
+            safe_path(root, map_temporary.relative_to(root).as_posix())
+            map_temporary.write_text(render_map(surface), encoding="utf-8")
+            os.replace(map_temporary, readable)
+            print(f"Built RI views: {len(surface['artifacts'])} files, {len(surface['directories'])} directories")
         else:
             surface = verify(root, args.config)
-            if args.command == "query":
+            if args.command in {"query", "context-for-task"}:
                 if not args.query_text:
                     raise ValueError("query requires text")
-                print(json.dumps(lookup(surface, args.query_text), ensure_ascii=False, indent=2))
+                result = lookup(surface, args.query_text)
+                if args.command == "context-for-task":
+                    paths = {x["path"] for x in result["owner_candidates"] + result["artifacts"]}
+                    result["instructions"] = sorted({p for a in surface["artifacts"]
+                                                      if a["path"] in paths for p in a["instructions"]})
+                    result["validation_routes"] = [r for r in surface["validation_routes"]
+                                                   if any(p.startswith(tuple(r["paths"])) for p in paths)]
+                    result["note"] = "Read owners; commands are suggestions, not executed checks. Revalidate live issue/PR state."
+                print(json.dumps(result, ensure_ascii=False, indent=2))
+            elif args.command == "inventory":
+                print(json.dumps({"files": surface["artifacts"], "directories": surface["directories"]},
+                                 ensure_ascii=False, indent=2))
             else:
                 print("Repository Intelligence context is fresh.")
     except (ValueError, OSError, UnicodeError, KeyError, TypeError) as exc:

@@ -5,9 +5,11 @@ and always-full PR requirements below. Native-scroll mapping and all release
 budgets remain. Primary flights follow the four header links; Credits is a footer
 utility route with instant navigation.
 
-Owner [#15](https://github.com/oborskyivitalii/oborskyivitalii/issues/15), execution
-in stacked Draft [PR #16](https://github.com/oborskyivitalii/oborskyivitalii/pull/16).
-Publication is paused by the maintainer's 2026-10-04 instruction, including staging.
+The original engine work is recorded in completed
+[#15](https://github.com/oborskyivitalii/oborskyivitalii/issues/15) and
+[PR #16](https://github.com/oborskyivitalii/oborskyivitalii/pull/16).
+Read [MEMORY](../MEMORY.md) and the live owning issue for the current source,
+staging and release state; dated implementation plans are historical evidence.
 The website still ships complete ordinary HTML. Canvas and the persistent router
 enhance that HTML; a content editor does not need a server, CMS or browser build.
 
@@ -141,10 +143,12 @@ engine/scenes/assets/templates/routes/producer means full scope. It skips no job
 reuses no evidence. Generation savings do not establish permission to omit checks.
 
 Packagers consume one tested coherent artifact; they do not patch live files or
-regenerate between validation and upload. Both hosting workflow entry points are
-explicitly paused. Local Pages fixtures are controlled tests, not real Cloudflare/TLS/
-CDN acceptance. Real host, independent visual/rights review and physical-device
-acceptance are separately pending and cannot be self-confirmed by this implementation.
+regenerate between validation and upload. Current hosting controllers, check profiles
+and host acceptance follow [SITE-STAGING](../SITE-STAGING.md),
+[SITE-CHECK-PROFILES](../SITE-CHECK-PROFILES.md) and the live owning issue.
+Local Pages fixtures are controlled tests, not real Cloudflare/TLS/CDN acceptance.
+Independent visual/rights review, physical-device acceptance and production decisions
+remain separate requirements; this source contract does not supply their approval.
 
 ## Optional effects contract v1
 

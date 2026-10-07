@@ -16,3 +16,11 @@ Modification notice, 2026-10-01: reimplemented the bounded local navigation subs
 with repository-specific config, simple glossary/source tables and lexical
 candidate queries. UA-specific metadata, graph, checkpoint and candidate-merge
 interpretation were not ported. Do not claim capability parity or measured gain.
+
+Modification notice, 2026-10-07 (site issue #31): compared again with the same
+current UA revision (producer v6 / schema v2). Adapted concern-based artifact
+roles, scoped instructions, validation routes and consumer views to a strict
+site-wide file/directory purpose catalog. Added full byte identity for code,
+assets and historical files, a readable map, and bounded agent/session memory.
+UA's normative metadata, semantic graph, impact traversal, trusted accepted/
+proposed Git comparison and checkpoint/benchmark machinery remain upstream.
