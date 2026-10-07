@@ -7,12 +7,16 @@ facts that affect the next action. Last verified: **2026-10-07**.
 
 - Cleanup [#31](https://github.com/oborskyivitalii/oborskyivitalii/issues/31) is
   implemented in Draft [PR #32](https://github.com/oborskyivitalii/oborskyivitalii/pull/32).
-  Earlier head `b20fc30` passed basic run `37582992916` and RI run
-  `37582992470`; these are baseline evidence, not checks for later extensions.
-  The AC08–AC11 extension and ordered tasks are in the linked PR’s
-  [analysis](review/issue-31/2026-10-07-analysis.md#sol-tasks) and
-  [independent review](review/issue-31/2026-10-07-review.md). The policy maps
-  AC01–AC11 to 53 checks; owner acceptance and protected merge remain open.
+  Verified implementation head [284d022](https://github.com/oborskyivitalii/oborskyivitalii/commit/284d022b7128ce125933f0f12375dc353a9f2112)
+  passed all 53 mapped AC01–AC11 checks on clean raw-head
+  [acceptance run 37587378498](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37587378498).
+  RI `37587378349`, Basic `37587378960` and PR preview `37587378618` also passed.
+  Analysis, review dispositions and exact source identities stay in the
+  [PR completion record](https://github.com/oborskyivitalii/oborskyivitalii/pull/32#issuecomment-6033205001).
+  The [analysis](review/issue-31/2026-10-07-analysis.md#sol-tasks) and
+  [independent review](review/issue-31/2026-10-07-review.md) keep one task route.
+  This handoff records that verified baseline; later metadata/current heads need
+  their own matching CI. Owner semantic acceptance and protected merge remain open.
   Recheck its latest head/CI/review; the cleanup is not merged into main.
 - Pre-cleanup protected `main`: [`07f936a`](https://github.com/oborskyivitalii/oborskyivitalii/commit/07f936a8733f56d73f34b89e2ad96d1b2ef605c7),
   the normal merge of [PR #28](https://github.com/oborskyivitalii/oborskyivitalii/pull/28).
