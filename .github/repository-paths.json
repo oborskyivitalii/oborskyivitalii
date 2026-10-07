@@ -73,6 +73,12 @@
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
+    ".github/acceptance/issue-36.json": {
+      "kind": "file",
+      "purpose": "Partial Writing AC01-AC05 compatibility policy for finite trusted-controller media consumption; feature and human gates remain pending.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     ".github/pull_request_template.md": {
       "kind": "file",
       "purpose": "PR execution, owning issue/commit links, checks/review and honest completion template.",
@@ -403,63 +409,63 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/262639c82217291a6448dda796d6497165d58fba53c1ee1412bc71def0a6fc63": {
+    "docs/snapshots/120b4d0a50259f7660c16df97be0ecfe3f07f9dac660eac5f2a52d4f9470608c": {
       "kind": "directory",
-      "purpose": "Generated immutable HTML route snapshot edition directory: 262639c82217291a6448dda796d6497165d58fba53c1ee1412bc71def0a6fc63.",
+      "purpose": "Generated current immutable route snapshot from the unchanged scene/content with updated producer fingerprint.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/262639c82217291a6448dda796d6497165d58fba53c1ee1412bc71def0a6fc63/credits.html": {
+    "docs/snapshots/120b4d0a50259f7660c16df97be0ecfe3f07f9dac660eac5f2a52d4f9470608c/writing.html": {
       "kind": "file",
-      "purpose": "Generated public rendition: credits.html; regenerate from site sources with tools/site/build.cjs.",
+      "purpose": "Generated current immutable route snapshot from the unchanged scene/content with updated producer fingerprint.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/5b5f80ba9c40f269cecf5988ce54e740ab5b7b1254cef4ffce26245b8a2ceb0b": {
+    "docs/snapshots/3f502206408289e5738b113b4a032d7396fa7f79abb5c735251ab973afe0b9f1": {
       "kind": "directory",
-      "purpose": "Generated immutable HTML route snapshot edition directory: 5b5f80ba9c40f269cecf5988ce54e740ab5b7b1254cef4ffce26245b8a2ceb0b.",
+      "purpose": "Generated current immutable route snapshot from the unchanged scene/content with updated producer fingerprint.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/5b5f80ba9c40f269cecf5988ce54e740ab5b7b1254cef4ffce26245b8a2ceb0b/index.html": {
+    "docs/snapshots/3f502206408289e5738b113b4a032d7396fa7f79abb5c735251ab973afe0b9f1/research.html": {
       "kind": "file",
-      "purpose": "Generated public rendition: index.html; regenerate from site sources with tools/site/build.cjs.",
+      "purpose": "Generated current immutable route snapshot from the unchanged scene/content with updated producer fingerprint.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/a6dc38f045a2ab206d81af560c924a9e2312c7bdd16ae34fb70ea3d22ec63762": {
+    "docs/snapshots/88288916dd92103c83ff3921b750d1e3b3859d28d70927aa6111bca58e77a448": {
       "kind": "directory",
-      "purpose": "Generated immutable HTML route snapshot edition directory: a6dc38f045a2ab206d81af560c924a9e2312c7bdd16ae34fb70ea3d22ec63762.",
+      "purpose": "Generated current immutable route snapshot from the unchanged scene/content with updated producer fingerprint.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/a6dc38f045a2ab206d81af560c924a9e2312c7bdd16ae34fb70ea3d22ec63762/talks.html": {
+    "docs/snapshots/88288916dd92103c83ff3921b750d1e3b3859d28d70927aa6111bca58e77a448/credits.html": {
       "kind": "file",
-      "purpose": "Generated public rendition: talks.html; regenerate from site sources with tools/site/build.cjs.",
+      "purpose": "Generated current immutable route snapshot from the unchanged scene/content with updated producer fingerprint.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/c1f9201da9512c89628be5af019d26c5b8697288addf98def1b69f5d66e4566a": {
+    "docs/snapshots/8cbb955d0f8d0077039ac611b4b0beb73aff5741c52f49b8b7df67444f6e348d": {
       "kind": "directory",
-      "purpose": "Generated immutable HTML route snapshot edition directory: c1f9201da9512c89628be5af019d26c5b8697288addf98def1b69f5d66e4566a.",
+      "purpose": "Generated current immutable route snapshot from the unchanged scene/content with updated producer fingerprint.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/c1f9201da9512c89628be5af019d26c5b8697288addf98def1b69f5d66e4566a/research.html": {
+    "docs/snapshots/8cbb955d0f8d0077039ac611b4b0beb73aff5741c52f49b8b7df67444f6e348d/talks.html": {
       "kind": "file",
-      "purpose": "Generated public rendition: research.html; regenerate from site sources with tools/site/build.cjs.",
+      "purpose": "Generated current immutable route snapshot from the unchanged scene/content with updated producer fingerprint.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/ddf2769f4ce615d00764240a6b9f1902a610ca4bf80f41229e396a059bec36c5": {
+    "docs/snapshots/ba66f9a12dc0aca17156f1bf5b3e333705be54b9e19f09c6a7a3d688741b0eb4": {
       "kind": "directory",
-      "purpose": "Generated immutable HTML route snapshot edition directory: ddf2769f4ce615d00764240a6b9f1902a610ca4bf80f41229e396a059bec36c5.",
+      "purpose": "Generated current immutable route snapshot from the unchanged scene/content with updated producer fingerprint.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/ddf2769f4ce615d00764240a6b9f1902a610ca4bf80f41229e396a059bec36c5/writing.html": {
+    "docs/snapshots/ba66f9a12dc0aca17156f1bf5b3e333705be54b9e19f09c6a7a3d688741b0eb4/index.html": {
       "kind": "file",
-      "purpose": "Generated public rendition: writing.html; regenerate from site sources with tools/site/build.cjs.",
+      "purpose": "Generated current immutable route snapshot from the unchanged scene/content with updated producer fingerprint.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -784,6 +790,18 @@
     "review/issue-35/2026-10-07-test-audit.json": {
       "kind": "file",
       "purpose": "Exact ec9b836 inventory and identity of all50 original testmodules with unique coverage and diagnostic dispositions.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-36": {
+      "kind": "directory",
+      "purpose": "Writing formula owning-issue implementation and staging compatibility evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-36/2026-10-07-controller-compatibility.md": {
+      "kind": "file",
+      "purpose": "Single scoped controller-prerequisite analysis, preflight reproduction, finite admission proof and explicit original feature gates.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -5980,6 +5998,12 @@
     "tests/test_issue35_acceptance.py": {
       "kind": "file",
       "purpose": "Owning issue35 targeted snapshot, real Node accounting, full-guard, registry/RI and honest source/closure assertions; selected policy only.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "tests/test_issue36_acceptance.py": {
+      "kind": "file",
+      "purpose": "Owning issue compatibility-phase bridge to real declared-media and legacy package regression cases, with strict TAP accounting.",
       "role": "test",
       "owner": ".github/ACCEPTANCE.md"
     },

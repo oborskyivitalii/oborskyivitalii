@@ -1068,7 +1068,7 @@
     {
       "path": "tests/staging.test.cjs",
       "language": "javascript",
-      "purpose": "Exact hosted package/headers/routing/rollback, source leases, retained inputs and browser-visible recovery contract",
+      "purpose": "Exact hosted package/headers/routing/rollback, source leases, retained inputs and browser-visible recovery contract; finite formula-media declarations and current/legacy consumer compatibility",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": [
@@ -1081,10 +1081,11 @@
       "inputs": [
         "tests/staging.test.cjs",
         "tools/quality/artifact.cjs",
-        "tools/staging/package.cjs",
+        "tools/site/snapshot.cjs",
+        "tools/staging/**",
         "tools/staging/hosted.cjs",
-        "tools/staging/state.cjs",
-        "tools/staging/**"
+        "tools/staging/package.cjs",
+        "tools/staging/state.cjs"
       ]
     },
     {

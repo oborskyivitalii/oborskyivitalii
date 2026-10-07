@@ -3,27 +3,35 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
 const routes=['index','research','writing','talks','credits'];
 const runtimeFiles=['styles.css','theme.js','space.js','archive.js','navigation.js'];
 const mediaFiles=['favicon.svg','vitalii-oborskyi.jpg','vitalii-oborskyi-cutout.webp'];
+// Consumer compatibility must precede staging a producer with this one new asset.
+// The current producer still emits its three-media revision until #36 is accepted.
+const formulaMediaFiles=[...mediaFiles,'writing-paradigm.svg'];
 const baseFiles=['.nojekyll',...routes.map(x=>x+'.html'),...runtimeFiles,...mediaFiles.map(x=>'assets/'+x),'site-revision.json'].sort();
 const hash=bytes=>crypto.createHash('sha256').update(bytes).digest('hex');
 function immutable(name) {
   const match=name.match(/^(runtime|media|snapshots)\/([a-f0-9]{64})\/([a-z0-9.-]+)$/);
-  return !!match&&(match[1]==='runtime'?[...runtimeFiles,'analytics.js']:match[1]==='media'?mediaFiles:routes.map(x=>x+'.html')).includes(match[3]);
+  return !!match&&(match[1]==='runtime'?[...runtimeFiles,'analytics.js']:match[1]==='media'?formulaMediaFiles:routes.map(x=>x+'.html')).includes(match[3]);
 }
 function inventory(names) {
   assert.ok(names.length<=1000,'public retention inventory bound');
   for(const name of baseFiles)assert.ok(names.includes(name),'missing public file '+name);
-  for(const name of names)assert.ok(baseFiles.includes(name)||immutable(name),'unexpected public input '+name);
+  for(const name of names)assert.ok(baseFiles.includes(name)||name==='assets/writing-paradigm.svg'||immutable(name),'unexpected public input '+name);
   return true;
 }
 function verify(dir,record) {
   const files=record.files;inventory(Object.keys(files));
   const read=name=>fs.readFileSync(path.join(dir,name));
   const revision=JSON.parse(read('site-revision.json'));
+  const declaredMedia=revision.mediaFiles===undefined?mediaFiles:revision.mediaFiles;
+  if(revision.mediaFiles!==undefined){
+    assert.deepEqual(declaredMedia,formulaMediaFiles,'finite formula media declaration');
+    assert.ok(Object.hasOwn(files,'assets/writing-paradigm.svg'),'missing formula media alias');
+  }else assert.ok(!Object.hasOwn(files,'assets/writing-paradigm.svg')&&!read('space.js').toString().includes('writing-paradigm')&&!read('writing.html').toString().includes('writing-paradigm'),'formula artifact requires current media declaration');
   assert.equal(revision.schema,1);assert.equal(revision.contract,1);
   for(const key of ['engine','scenes','assets','content'])assert.match(revision[key],/^[a-f0-9]{64}$/);
   assert.deepEqual(Object.keys(revision.routes),routes);
   for(const name of runtimeFiles)assert.deepEqual(read(`runtime/${revision.engine}/${name}`),read(name),'immutable runtime differs from tested alias');
-  for(const name of mediaFiles)assert.deepEqual(read(`media/${revision.assets}/${name}`),read('assets/'+name),'immutable media differs from tested alias');
+  for(const name of declaredMedia)assert.deepEqual(read(`media/${revision.assets}/${name}`),read('assets/'+name),'immutable media differs from tested alias');
   for(const name of Object.keys(files).filter(x=>/^runtime\/[a-f0-9]{64}\/analytics\.js$/.test(x)))assert.equal(hash(read(name)),name.split('/')[1],'immutable analytics digest');
   for(const id of routes) {
     const route=revision.routes[id];assert.match(route.version,/^[a-f0-9]{64}$/);assert.match(route.sha256,/^[a-f0-9]{64}$/);

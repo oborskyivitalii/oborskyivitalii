@@ -40,11 +40,11 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/runtime](docs/runtime) | Generated content-addressed browser runtime editions. | generated | [site/README.md](site/README.md) |
 | [docs/runtime/5b2239d9600bce59c2d6796b8cb1b63145b72333fe2447a19432e52b6fa74ab1](docs/runtime/5b2239d9600bce59c2d6796b8cb1b63145b72333fe2447a19432e52b6fa74ab1) | Generated immutable runtime edition directory: 5b2239d9600bce59c2d6796b8cb1b63145b72333fe2447a19432e52b6fa74ab1. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots](docs/snapshots) | Generated exact-route HTML snapshots. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/262639c82217291a6448dda796d6497165d58fba53c1ee1412bc71def0a6fc63](docs/snapshots/262639c82217291a6448dda796d6497165d58fba53c1ee1412bc71def0a6fc63) | Generated immutable HTML route snapshot edition directory: 262639c82217291a6448dda796d6497165d58fba53c1ee1412bc71def0a6fc63. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/5b5f80ba9c40f269cecf5988ce54e740ab5b7b1254cef4ffce26245b8a2ceb0b](docs/snapshots/5b5f80ba9c40f269cecf5988ce54e740ab5b7b1254cef4ffce26245b8a2ceb0b) | Generated immutable HTML route snapshot edition directory: 5b5f80ba9c40f269cecf5988ce54e740ab5b7b1254cef4ffce26245b8a2ceb0b. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/a6dc38f045a2ab206d81af560c924a9e2312c7bdd16ae34fb70ea3d22ec63762](docs/snapshots/a6dc38f045a2ab206d81af560c924a9e2312c7bdd16ae34fb70ea3d22ec63762) | Generated immutable HTML route snapshot edition directory: a6dc38f045a2ab206d81af560c924a9e2312c7bdd16ae34fb70ea3d22ec63762. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/c1f9201da9512c89628be5af019d26c5b8697288addf98def1b69f5d66e4566a](docs/snapshots/c1f9201da9512c89628be5af019d26c5b8697288addf98def1b69f5d66e4566a) | Generated immutable HTML route snapshot edition directory: c1f9201da9512c89628be5af019d26c5b8697288addf98def1b69f5d66e4566a. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/ddf2769f4ce615d00764240a6b9f1902a610ca4bf80f41229e396a059bec36c5](docs/snapshots/ddf2769f4ce615d00764240a6b9f1902a610ca4bf80f41229e396a059bec36c5) | Generated immutable HTML route snapshot edition directory: ddf2769f4ce615d00764240a6b9f1902a610ca4bf80f41229e396a059bec36c5. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/120b4d0a50259f7660c16df97be0ecfe3f07f9dac660eac5f2a52d4f9470608c](docs/snapshots/120b4d0a50259f7660c16df97be0ecfe3f07f9dac660eac5f2a52d4f9470608c) | Generated current immutable route snapshot from the unchanged scene/content with updated producer fingerprint. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/3f502206408289e5738b113b4a032d7396fa7f79abb5c735251ab973afe0b9f1](docs/snapshots/3f502206408289e5738b113b4a032d7396fa7f79abb5c735251ab973afe0b9f1) | Generated current immutable route snapshot from the unchanged scene/content with updated producer fingerprint. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/88288916dd92103c83ff3921b750d1e3b3859d28d70927aa6111bca58e77a448](docs/snapshots/88288916dd92103c83ff3921b750d1e3b3859d28d70927aa6111bca58e77a448) | Generated current immutable route snapshot from the unchanged scene/content with updated producer fingerprint. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/8cbb955d0f8d0077039ac611b4b0beb73aff5741c52f49b8b7df67444f6e348d](docs/snapshots/8cbb955d0f8d0077039ac611b4b0beb73aff5741c52f49b8b7df67444f6e348d) | Generated current immutable route snapshot from the unchanged scene/content with updated producer fingerprint. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/ba66f9a12dc0aca17156f1bf5b3e333705be54b9e19f09c6a7a3d688741b0eb4](docs/snapshots/ba66f9a12dc0aca17156f1bf5b3e333705be54b9e19f09c6a7a3d688741b0eb4) | Generated current immutable route snapshot from the unchanged scene/content with updated producer fingerprint. | generated | [site/README.md](site/README.md) |
 | [drafts](drafts) | Unpublished article/profile proposals excluded from public builds. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [guides](guides) | Maintained topic guides for repository boundaries, publication, quality and hosting; root stays an entry surface. | guide | [guides/README.md](guides/README.md) |
 | [review](review) | Dated plans, evidence, captures and renditions; current Color/export inputs are explicitly marked. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -57,6 +57,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-31](review/issue-31) | Dated issue 31 implementation analysis and review evidence linked from its owning issue and PR. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-33](review/issue-33) | Versioned analysis and independent review evidence for short bootstrap and root organization. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-35](review/issue-35) | Dated exact-base test/runtime/CI audits, original #13 reconciliation, analysis and independent review for test optimization. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-36](review/issue-36) | Writing formula owning-issue implementation and staging compatibility evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/public-responses-20261006](review/public-responses-20261006) | Exact before/after public response prose and reconciliation records. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/reading-backdrops-20261006](review/reading-backdrops-20261006) | Content-sized reading backdrop correction evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/repository-maintenance-20261007](review/repository-maintenance-20261007) | Byte-exact pre-cleanup agent guide and its provenance note. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -146,6 +147,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [.github/acceptance/issue-31.json](.github/acceptance/issue-31.json) | Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-33.json](.github/acceptance/issue-33.json) | Bootstrap/root optimization AC01–AC06 mapped to source-bound assertions and separate review, merge and linkage gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-35.json](.github/acceptance/issue-35.json) | Test optimization AC01–AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [.github/acceptance/issue-36.json](.github/acceptance/issue-36.json) | Partial Writing AC01-AC05 compatibility policy for finite trusted-controller media consumption; feature and human gates remain pending. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 
 ## .github/repository-intelligence/
 
@@ -216,35 +218,35 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/runtime/5b2239d9600bce59c2d6796b8cb1b63145b72333fe2447a19432e52b6fa74ab1/styles.css](docs/runtime/5b2239d9600bce59c2d6796b8cb1b63145b72333fe2447a19432e52b6fa74ab1/styles.css) | Generated public rendition: styles.css; regenerate from site sources with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
 | [docs/runtime/5b2239d9600bce59c2d6796b8cb1b63145b72333fe2447a19432e52b6fa74ab1/theme.js](docs/runtime/5b2239d9600bce59c2d6796b8cb1b63145b72333fe2447a19432e52b6fa74ab1/theme.js) | Generated public rendition: theme.js; regenerate from site sources with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/262639c82217291a6448dda796d6497165d58fba53c1ee1412bc71def0a6fc63/
+## docs/snapshots/120b4d0a50259f7660c16df97be0ecfe3f07f9dac660eac5f2a52d4f9470608c/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/snapshots/262639c82217291a6448dda796d6497165d58fba53c1ee1412bc71def0a6fc63/credits.html](docs/snapshots/262639c82217291a6448dda796d6497165d58fba53c1ee1412bc71def0a6fc63/credits.html) | Generated public rendition: credits.html; regenerate from site sources with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/120b4d0a50259f7660c16df97be0ecfe3f07f9dac660eac5f2a52d4f9470608c/writing.html](docs/snapshots/120b4d0a50259f7660c16df97be0ecfe3f07f9dac660eac5f2a52d4f9470608c/writing.html) | Generated current immutable route snapshot from the unchanged scene/content with updated producer fingerprint. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/5b5f80ba9c40f269cecf5988ce54e740ab5b7b1254cef4ffce26245b8a2ceb0b/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/snapshots/5b5f80ba9c40f269cecf5988ce54e740ab5b7b1254cef4ffce26245b8a2ceb0b/index.html](docs/snapshots/5b5f80ba9c40f269cecf5988ce54e740ab5b7b1254cef4ffce26245b8a2ceb0b/index.html) | Generated public rendition: index.html; regenerate from site sources with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
-
-## docs/snapshots/a6dc38f045a2ab206d81af560c924a9e2312c7bdd16ae34fb70ea3d22ec63762/
+## docs/snapshots/3f502206408289e5738b113b4a032d7396fa7f79abb5c735251ab973afe0b9f1/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/snapshots/a6dc38f045a2ab206d81af560c924a9e2312c7bdd16ae34fb70ea3d22ec63762/talks.html](docs/snapshots/a6dc38f045a2ab206d81af560c924a9e2312c7bdd16ae34fb70ea3d22ec63762/talks.html) | Generated public rendition: talks.html; regenerate from site sources with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/3f502206408289e5738b113b4a032d7396fa7f79abb5c735251ab973afe0b9f1/research.html](docs/snapshots/3f502206408289e5738b113b4a032d7396fa7f79abb5c735251ab973afe0b9f1/research.html) | Generated current immutable route snapshot from the unchanged scene/content with updated producer fingerprint. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/c1f9201da9512c89628be5af019d26c5b8697288addf98def1b69f5d66e4566a/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/snapshots/c1f9201da9512c89628be5af019d26c5b8697288addf98def1b69f5d66e4566a/research.html](docs/snapshots/c1f9201da9512c89628be5af019d26c5b8697288addf98def1b69f5d66e4566a/research.html) | Generated public rendition: research.html; regenerate from site sources with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
-
-## docs/snapshots/ddf2769f4ce615d00764240a6b9f1902a610ca4bf80f41229e396a059bec36c5/
+## docs/snapshots/88288916dd92103c83ff3921b750d1e3b3859d28d70927aa6111bca58e77a448/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/snapshots/ddf2769f4ce615d00764240a6b9f1902a610ca4bf80f41229e396a059bec36c5/writing.html](docs/snapshots/ddf2769f4ce615d00764240a6b9f1902a610ca4bf80f41229e396a059bec36c5/writing.html) | Generated public rendition: writing.html; regenerate from site sources with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/88288916dd92103c83ff3921b750d1e3b3859d28d70927aa6111bca58e77a448/credits.html](docs/snapshots/88288916dd92103c83ff3921b750d1e3b3859d28d70927aa6111bca58e77a448/credits.html) | Generated current immutable route snapshot from the unchanged scene/content with updated producer fingerprint. | generated | [site/README.md](site/README.md) |
+
+## docs/snapshots/8cbb955d0f8d0077039ac611b4b0beb73aff5741c52f49b8b7df67444f6e348d/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/8cbb955d0f8d0077039ac611b4b0beb73aff5741c52f49b8b7df67444f6e348d/talks.html](docs/snapshots/8cbb955d0f8d0077039ac611b4b0beb73aff5741c52f49b8b7df67444f6e348d/talks.html) | Generated current immutable route snapshot from the unchanged scene/content with updated producer fingerprint. | generated | [site/README.md](site/README.md) |
+
+## docs/snapshots/ba66f9a12dc0aca17156f1bf5b3e333705be54b9e19f09c6a7a3d688741b0eb4/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/ba66f9a12dc0aca17156f1bf5b3e333705be54b9e19f09c6a7a3d688741b0eb4/index.html](docs/snapshots/ba66f9a12dc0aca17156f1bf5b3e333705be54b9e19f09c6a7a3d688741b0eb4/index.html) | Generated current immutable route snapshot from the unchanged scene/content with updated producer fingerprint. | generated | [site/README.md](site/README.md) |
 
 ## drafts/
 
@@ -527,6 +529,12 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-35/2026-10-07-review.md](review/issue-35/2026-10-07-review.md) | Independent exact-tree AC/trust/profile review with original finding, integration corrections and substantive follow-up evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-35/2026-10-07-runtime-audit.json](review/issue-35/2026-10-07-runtime-audit.json) | Exact-base browser/runtime/performance scenario families, costs and bounded staging selection analysis. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-35/2026-10-07-test-audit.json](review/issue-35/2026-10-07-test-audit.json) | Exact ec9b836 inventory and identity of all50 original testmodules with unique coverage and diagnostic dispositions. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+
+## review/issue-36/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-36/2026-10-07-controller-compatibility.md](review/issue-36/2026-10-07-controller-compatibility.md) | Single scoped controller-prerequisite analysis, preflight reproduction, finite admission proof and explicit original feature gates. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 ## review/public-responses-20261006/
 
@@ -1425,6 +1433,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/test_issue31_acceptance.py](tests/test_issue31_acceptance.py) | Issue 31 observable acceptance checks for RI provenance, inventory, memory, workflow, unchanged site and bootstrap. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue33_acceptance.py](tests/test_issue33_acceptance.py) | Issue #33 source snapshot assertions for unchanged public bytes, historic reviews, locator exceptions, policy and handoff. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue35_acceptance.py](tests/test_issue35_acceptance.py) | Owning issue35 targeted snapshot, real Node accounting, full-guard, registry/RI and honest source/closure assertions; selected policy only. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [tests/test_issue36_acceptance.py](tests/test_issue36_acceptance.py) | Owning issue compatibility-phase bridge to real declared-media and legacy package regression cases, with strict TAP accounting. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue_acceptance.py](tests/test_issue_acceptance.py) | Acceptance runner adversarial cases for invalid mappings, skipped/empty/failed tests and evidence identity. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_offline_export_security.py](tests/test_offline_export_security.py) | Behavioral/adversarial tests and fixtures for offline export security. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/test_repository_intelligence.py](tests/test_repository_intelligence.py) | Behavioral/adversarial tests and fixtures for repository intelligence. | test | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |

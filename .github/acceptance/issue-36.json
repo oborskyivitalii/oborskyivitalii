@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 36,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/36",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Prepare a small transparent original vector of the exact requested expression in ribbon-family colors.",
+      "automated_scope": "No artwork is created in this controller prerequisite; the original joint feature policy remains in PR #43.",
+      "checks": [],
+      "gates": [
+        "G01"
+      ]
+    },
+    {
+      "id": "AC02",
+      "intent": "Integrate one large central Writing-only formula with coherent camera/depth/media/offline behavior and readable foreground content.",
+      "automated_scope": "Controller-only partial check: exactly declared formula media can cross the existing immutable package boundary; unknown/undeclared/missing/tampered media are rejected. World composition is not implemented or accepted here.",
+      "checks": [
+        "MEDIA-CONSUMER"
+      ],
+      "gates": [
+        "G01",
+        "G02"
+      ]
+    },
+    {
+      "id": "AC03",
+      "intent": "Preserve bounded single-clock lifecycle, cache/initialization, navigation and graceful fallback.",
+      "automated_scope": "Controller-only partial check: actual package consumer verifies current four-media bindings while preserving original three-media producer and rollback packages. This does not measure formula clock/cache/fallback behavior.",
+      "checks": [
+        "MEDIA-CONSUMER"
+      ],
+      "gates": [
+        "G02"
+      ]
+    },
+    {
+      "id": "AC04",
+      "intent": "Measure the exact implementation against paired baseline and unchanged absolute performance budgets in this PR.",
+      "automated_scope": "No paired performance is measured by this compatibility prerequisite; current-source formula measurement remains separately required.",
+      "checks": [],
+      "gates": [
+        "G03"
+      ]
+    },
+    {
+      "id": "AC05",
+      "intent": "Preserve owning-issue/Draft-PR handoff, RI routes and honest pending implementation, then reconcile the original acceptance before closure.",
+      "automated_scope": "Current path/RI/CI routes and compatibility-phase mapping are checked. Original #36/#41 feature criteria remain pending; exact candidate/PR/live linkage, independent review and applicable merge decision are separate.",
+      "checks": [
+        "CURRENT-RI",
+        "RI-CI"
+      ],
+      "gates": [
+        "G04",
+        "G05"
+      ]
+    }
+  ],
+  "checks": {
+    "MEDIA-CONSUMER": {
+      "kind": "unittest",
+      "test": "test_issue36_acceptance.Issue36ControllerTests.test_declared_media_and_legacy_package_regressions"
+    },
+    "CURRENT-RI": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    }
+  },
+  "gates": {
+    "G01": {
+      "kind": "human",
+      "description": "Visual review of actual Writing composition, exact glyph meaning, foreground readability and Day/Night/mobile behavior; a standalone asset preview does not complete scene acceptance."
+    },
+    "G02": {
+      "kind": "human",
+      "description": "Current-source Linux Chromium/Firefox observations: one logical world formula with positive paints, Off/reduced/hidden/print settled zero work, room isolation, coherent static/no-JS/no-Canvas fallback, bounded cache failure and offline export. WebKit stays in native macOS production coverage. Fixture success alone is not measured runtime evidence."
+    },
+    "G03": {
+      "kind": "human",
+      "description": "Exact-head opted-in paired Color measurements and raw artifacts must pass the unchanged absolute limits and predeclared median added-cost guardrails. Reviewer verifies source/tree/public digest and three serial profiles; absent, failed or inconclusive measurement stays open."
+    },
+    "G04": {
+      "kind": "human",
+      "description": "Live issue/PR/Refs commits/exact handoff and CI links, independent implementation review. Applicable physical-device and full native production evidence stay with #13 before production, and do not block delivery of a smoke-checked PR preview or beginning bounded staging validation."
+    },
+    "G05": {
+      "kind": "merge",
+      "description": "Only after applicable maintainer decision: normal merge of accepted implementation and exact merged-source reconciliation. Implementation/CI/preview do not supply merge authorization."
+    }
+  }
+}

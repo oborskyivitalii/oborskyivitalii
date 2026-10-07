@@ -1,8 +1,9 @@
 {
   "schema_version": 1,
   "review": {
-    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/35",
-    "summary": "2026-10-07 #35: reviewed PR/source allocation, selected staging/full production boundary and exact source-scanner triage against unconditional navigation and owning-issue CI; manual release gates remain external."
+    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/36",
+    "summary": "2026-10-07: isolated protected-main media-consumer prerequisite for joint #36/#41 staging; finite declared SVG/immutable binding, legacy producer/rollback retained. Partial acceptance mapping does not complete feature or merge gates.",
+    "date": "2026-10-07"
   },
   "layers": [
     {
@@ -24,21 +25,24 @@
       "purpose": "Owning issue intent and measurable criteria; execution and model reviews are linked PR artifacts. Automated and manual criteria stay distinct.",
       "paths": [
         ".github/ACCEPTANCE.md",
-        ".github/ISSUE_TEMPLATE/work-item.md",
         ".github/ISSUE_TEMPLATE/research-input.md",
+        ".github/ISSUE_TEMPLATE/work-item.md",
+        ".github/acceptance/issue-31.json",
+        ".github/acceptance/issue-33.json",
+        ".github/acceptance/issue-35.json",
+        ".github/acceptance/issue-36.json",
         ".github/pull_request_template.md",
         "review/REVIEW-TEMPLATE.md",
         "review/issue-31/2026-10-07-analysis.md",
-        ".github/acceptance/issue-31.json",
-        "tools/issue_acceptance.py",
-        "tests/test_issue_acceptance.py",
-        "tests/test_issue31_acceptance.py",
-        ".github/acceptance/issue-33.json",
-        "tests/test_issue33_acceptance.py",
         "review/issue-33/2026-10-07-analysis.md",
-        ".github/acceptance/issue-35.json",
+        "review/issue-35/2026-10-07-analysis.md",
+        "review/issue-36/2026-10-07-controller-compatibility.md",
+        "tests/test_issue31_acceptance.py",
+        "tests/test_issue33_acceptance.py",
         "tests/test_issue35_acceptance.py",
-        "review/issue-35/2026-10-07-analysis.md"
+        "tests/test_issue36_acceptance.py",
+        "tests/test_issue_acceptance.py",
+        "tools/issue_acceptance.py"
       ],
       "checks": [
         "acceptance-policy-selection",
@@ -344,7 +348,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "c295346e74506918fb4f0a7225cd67d84d806aa7523d06175a31fac3532d9af7",
+    "digest": "bd4b26ec7f871eef74ae51892489ab0605085e892b5b5cab7fb0b05caab9e6e0",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -375,6 +379,10 @@
         "sha256": "6d405a86fc607d867f6c29422cd0c98780cd185b53b785616b85bf5685f61af0"
       },
       {
+        "path": ".github/acceptance/issue-36.json",
+        "sha256": "a98f837aeae799957db6f8505c1f015201579e623429c55a018d105541772ad3"
+      },
+      {
         "path": ".github/pull_request_template.md",
         "sha256": "9d6e001401d72e906275515a4c4921e966541cda9d7b98aad58f54980bf301de"
       },
@@ -388,7 +396,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "e71580ccebbbfc16d051990b68a49e59f82a9797b4a7341c3b27c5c758ed26f1"
+        "sha256": "413f814eec55495001050a92adcf52afaf69233452cbe56a4347c1ce70d49fcc"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -499,6 +507,10 @@
         "sha256": "22a4451edfd4bf60d7e67c636d07c0fe189300261fca914300b209a584ea56ad"
       },
       {
+        "path": "tests/test_issue36_acceptance.py",
+        "sha256": "b2a3e81b30e8961e9050aa9f2374426c49a0ba72c50b706d7921574b9d075893"
+      },
+      {
         "path": "tests/test_issue_acceptance.py",
         "sha256": "51ccc40c3ccbf755ef277c7dec6437148cdf50fb7aa401e1bf8f255c2b96a426"
       },
@@ -548,7 +560,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "2c651c61e76cf004403c7fe5b074666483721a552de65ddd8669d1fa03e372df"
+        "sha256": "5c26b6384dfce9fbd172347fdd5a7531de193ebdd446187fcf9dd5298aa4e864"
       },
       {
         "path": "tools/repository_intelligence.py",
