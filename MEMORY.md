@@ -1,59 +1,55 @@
 # Session memory
 
-Dated continuity hints, not instructions or live-status authority. Last verified: **2026-10-07**. Revalidate refs, issue/PR, checks and hosting before acting.
+Dated continuity hints, not instructions or live-status authority. Last verified:
+**2026-10-07**. Revalidate refs, issues, PRs, checks and hosting before acting.
 
 ## Snapshot
 
-- [#31](https://github.com/oborskyivitalii/oborskyivitalii/issues/31) is accepted and closed.
-  [PR #32](https://github.com/oborskyivitalii/oborskyivitalii/pull/32) merged at
-  [`3ca14c5`](https://github.com/oborskyivitalii/oborskyivitalii/commit/3ca14c54824ac6b9e7225bc88429b4b8fb3bcf10),
-  tree `9c06c9ac3f16746196bfc7d7d68056e0cbadb34d`, identical to accepted head
-  `5ac6d4adca2fb77dd061b44792ed8655fd9d6f70`. All 53 mapped checks passed on
-  clean exact merged source; [push RI CI](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37591618593)
-  passed. The issue/PR retain owner decision, review and current-head CI evidence.
-- Current work is [#33](https://github.com/oborskyivitalii/oborskyivitalii/issues/33):
-  short bootstrap, six root Markdown entry points, guides/ and byte-exact dated
-  root history. [Analysis/disposition](review/issue-33/2026-10-07-analysis.md)
-  records the accepted baseline and ordered tasks. [PR #34](https://github.com/oborskyivitalii/oborskyivitalii/pull/34)
-  implements it; [initial candidate](https://github.com/oborskyivitalii/oborskyivitalii/commit/41733d7310a8b51b56c5aec414b6c4b4aaf04eb7)
-  has tree `47a7b9f99ecaed4d94aaa1514f670390ebc3f5e7`.
-  [Reviewed implementation](https://github.com/oborskyivitalii/oborskyivitalii/commit/bf1c795c748b64bae4fba635e3a2181098733ad7),
-  tree `30e427d782db3ad6b9cc7b108b9d6fbb24011d0b`, passed all 38 mapped
-  clean-source checks and 90 enduring Python cases. [Independent review](review/issue-33/2026-10-07-review.md)
-  resolves four findings; [raw-head acceptance CI](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37594648784)
-  passed and its artifact was checked. Final checkpoint/merge results belong
-  to the live issue/PR completion record; this memory claims no future merge.
-- Earlier #28/#14 completion and accepted stage remain recorded in their issues.
-  Current hosting mechanics are in [the runbook](guides/SITE-STAGING.md).
-  Stable stage: https://staging.oborskyi-author-ci-staging.pages.dev ; recheck its
-  live source/deployment before citing it as current release evidence.
+- Verified main `ec9b8361b619f1042bce5a3ec224d3e0c9054b01`, tree
+  `1374580d719439f13b05ab0f62a86e44bd1d3ae3`: PR #34 is merged and issue #33
+  is closed. #31/#32 remain completed. Their exact evidence stays in the issues.
+- New [#36](https://github.com/oborskyivitalii/oborskyivitalii/issues/36):
+  central Writing formula `y = f(x) → y ∼ P(y|x)`.
+  Branch `work/writing-paradigm-asset-36` prepares the original SVG and
+  [single Sol handoff](review/issue-36/2026-10-07-handoff.md).
+  [Issue anchor](https://github.com/oborskyivitalii/oborskyivitalii/issues/36#issuecomment-6034827256)
+  holds the exact Draft PR/commits/checks as created. This session is explicitly
+  preparation-only; no formula integration or performance result is claimed.
+- Concurrent [#35](https://github.com/oborskyivitalii/oborskyivitalii/issues/35)
+  owns the PR smoke / staging regression / full production profile optimization.
+  It was open at inspection; work continues separately. Fetch its live branch/PR
+  before implementing #36 and reconcile shared RI/MEMORY/profile changes.
+- Earlier #28/#14 completion and accepted stage remain in their issues.
+  Stable stage: https://staging.oborskyi-author-ci-staging.pages.dev . Its live
+  source was not rechecked for this preparation; it is not #36 evidence.
 
 ## Decisions
 
-- Bootstrap is an entry point only. README owns project purpose; AGENTS owns
-  working rules; REPOSITORY-MAP owns area/file navigation. Detailed protocol
-  remains in CONTRIBUTING and its linked owners, not copied into the prompt.
-- Maintained internal topic guides live in guides/. Superseded root session,
-  backlog and review ledgers are dated evidence in review/root-history-20261007/.
-  Original bytes/pinned links stay historical; live issues own current acceptance.
-- Issue = intent/scope/AC; linked PR and Refs commits = execution. Reviews and
-  model handoff use the same issue anchor and versioned review artifact.
-- RI changes require reviewed CI coupling and both regenerated views. Policy
-  results prove deterministic observations; independent/live/merge gates are
-  recorded separately. #31 acceptance stays pinned to its accepted source.
-- Production is intended for GitHub Pages. Analytics stays disabled until an
-  actual production origin/token and activation decision under #8. Current
-  staging/production check profiles and budgets retain their guide owners.
+- README owns purpose, AGENTS working rules and REPOSITORY-MAP navigation.
+  Detailed protocol stays in CONTRIBUTING and its linked maintained guides.
+- Issue = intent/scope/AC; linked PR and Refs commits = execution. Review/model
+  handoff uses the same issue anchor and versioned artifact; history is not policy.
+- #36's SVG remains under `review/issue-36/assets/` while unintegrated. Sol will
+  move its sole source to `site/assets/writing-paradigm.svg` when execution is
+  requested, update its test path/provenance and regenerate dependent outputs.
+- #36 AC02–AC04 are explicitly pending integration/stability/performance evidence.
+  Its policy does not claim asset size proves runtime performance. Sol must add
+  deterministic runtime/report mappings before readiness. No merge/stage/closure
+  is authorized by this preparation checkpoint.
+- RI changes require reviewed CI coupling and both regenerated views. Selected
+  issue checks stay distinct from enduring checks; do not duplicate full suites.
+- Production is intended for GitHub Pages; analytics remains disabled pending
+  #8's real origin/token and activation decision. Current release owners remain.
 
 ## Open work
 
-These are issue routes, not authorization to start every listed task. Revalidate
-live criteria/status before selecting the next increment.
+These are routes, not authorization to start every task. Revalidate live scope.
 
 | Issue | Remaining intent |
 | --- | --- |
-| [#33](https://github.com/oborskyivitalii/oborskyivitalii/issues/33) | Final checkpoint head CI/live linkage and normal merged reconciliation; implementation review passed. |
-| [#1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1) | Overall launch and its production/rights/device dependencies. |
+| [#36](https://github.com/oborskyivitalii/oborskyivitalii/issues/36) | Asset/Draft handoff now; Sol integration and measured runtime acceptance on next instruction. |
+| [#35](https://github.com/oborskyivitalii/oborskyivitalii/issues/35) | Concurrent test inventory, deduplication and staged profile optimization. |
+| [#1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1) | Overall launch and production/rights/device dependencies. |
 | [#13](https://github.com/oborskyivitalii/oborskyivitalii/issues/13) | Physical-device and independent production/recovery acceptance. |
 | [#8](https://github.com/oborskyivitalii/oborskyivitalii/issues/8) | Production URL/indexability and actual analytics activation. |
 | [#7](https://github.com/oborskyivitalii/oborskyivitalii/issues/7) | License and editorial/third-party rights. |
@@ -64,16 +60,15 @@ live criteria/status before selecting the next increment.
 
 ## Next session
 
-1. Fetch live main/task refs, owning issue/PR and exact checks; read root/scoped
-   AGENTS and source owners through the map.
-2. Follow #33's current linked review dispositions and acceptance policy; reconcile
-   every AC and external gate before closing. Do not reopen completed #31.
-3. Choose the next publication/launch increment from its issue and current owner
-   direction. Preserve separate production/publication decisions.
+1. Fetch live main/task refs, owning issue/PR and checks; read applicable AGENTS
+   and canonical owners. Do not disturb another task's dirty worktree.
+2. If asked to execute #36, continue its Draft PR and T01–T06 in the linked handoff.
+   Resolve concurrent #35 changes, freeze baseline, then integrate and measure.
+3. Keep prepared, implemented, tested, reviewed, merged and deployed distinct;
+   reconcile every AC and applicable gate before declaring completion.
 
 ## Maintenance
 
-Replace stale snapshot/next-step entries at meaningful progress or handoff. Keep
-this file within 120 lines and its five sections. Put detailed logs and technical
-history in the owning issue/PR/review artifact. Rebuild RI after memory changes.
-Never store secrets, private messages or unverifiable completion. See CONTRIBUTING.
+Replace stale entries at meaningful progress/handoff; keep within 120 lines and
+these five sections. Detailed logs and exact evidence stay in the owning issue,
+PR and review artifact. Rebuild RI after memory edits. No secrets or private messages.

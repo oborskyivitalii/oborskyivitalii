@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "2a244af88b57cd0318e1775cafa24dc2d6a7490dc3231e9057cd1acdb1e4ad8b",
+    "digest": "0634fd63fa28c1e1a77b06b6774501c406ddbf543936301ee444e70bf52ff1e9",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -55,6 +55,11 @@
         "sha256": "f2f17864e5faca94436020ee866e068abd5de99705aaba8edd93e0b8e0420108"
       },
       {
+        "path": ".github/acceptance/issue-36.json",
+        "identity_mode": "content",
+        "sha256": "b64057646060aa7025e168fb527785e98e361c11968de410df694e1e21b3ca7c"
+      },
+      {
         "path": ".github/pull_request_template.md",
         "identity_mode": "content",
         "sha256": "9d6e001401d72e906275515a4c4921e966541cda9d7b98aad58f54980bf301de"
@@ -62,7 +67,7 @@
       {
         "path": ".github/repository-intelligence-config.json",
         "identity_mode": "content",
-        "sha256": "567b08eec4386c66c852a7ada10fbb973d02996d85946e10786b36158bf5b7e0"
+        "sha256": "bcf4e16e06c9ddfb17f92ec7ce48cdf5be69819ab1306ba1bb728703083a3b89"
       },
       {
         "path": ".github/repository-intelligence/agent-context.json",
@@ -76,12 +81,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "aacc8fd7ba15324145b2940b9567ffe0cc7eca1da17411849eca91923a70cd14"
+        "sha256": "b0f74a4455e60c6acde3faeeebe68b4269a093e5783e56aabd86bd2940996072"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "4a6909578d5a76161d1c3e044e5939b4a4cfd188a3c194726cb999c7d5030bed"
+        "sha256": "14baf0c010d66aae38848428168b7fb2e636dd0ca19a1bf214a2c039efc6b176"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -176,7 +181,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "5111002c954cdd9313806b57b3b11db4d5368a3fc309a89447ebe835d694b182"
+        "sha256": "45d0c980aac44ade5d5da36a9557b1bef60bbca8c68415e161cb63df023a7804"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -486,6 +491,21 @@
         "path": "review/issue-33/2026-10-07-review.md",
         "identity_mode": "content",
         "sha256": "e26f98a7fa69e7031ec763ebb13faf2d6cdc8f7d6c7b29d513b3c685966169fa"
+      },
+      {
+        "path": "review/issue-36/2026-10-07-handoff.md",
+        "identity_mode": "content",
+        "sha256": "6f51ec4e822c4729e2e7720ad5eb112fa86f6c85225504007fcc59990a3b1f3b"
+      },
+      {
+        "path": "review/issue-36/assets/writing-paradigm.svg",
+        "identity_mode": "content",
+        "sha256": "5eaf0f1b4f6b563d0b24747d1fafa682489d7dfa6fcc2f5dfa18f00e063eab6c"
+      },
+      {
+        "path": "review/issue-36/preview.png",
+        "identity_mode": "content",
+        "sha256": "1029128c7182368246f1605d288cd7b18d5f3f2f09745252927190a7d4b5fe2d"
       },
       {
         "path": "review/public-responses-20261006/README.md",
@@ -4508,6 +4528,11 @@
         "sha256": "629f67a932416faa3e4e0f0090200ac3bfc482ed426a1385114d1d10533a122c"
       },
       {
+        "path": "tests/test_issue36_acceptance.py",
+        "identity_mode": "content",
+        "sha256": "8b1f3b2d163d29c900d9e748c4f5e9c930adb3fd2415a8ebbfdda1bea6809b27"
+      },
+      {
         "path": "tests/test_issue_acceptance.py",
         "identity_mode": "content",
         "sha256": "63239ef57bd90d27fca4dde944ed267f5f6522dd0bfe13a6a6a830307b2f01fc"
@@ -4993,7 +5018,7 @@
     "path": "tools/repository_intelligence.py",
     "sha256": "9c043c7e13c36899559f83b7941b989dfebaabd1e2d6d6e1815815704db627b3",
     "config_path": ".github/repository-intelligence-config.json",
-    "config_sha256": "567b08eec4386c66c852a7ada10fbb973d02996d85946e10786b36158bf5b7e0"
+    "config_sha256": "bcf4e16e06c9ddfb17f92ec7ce48cdf5be69819ab1306ba1bb728703083a3b89"
   },
   "owners": [
     {
@@ -5277,6 +5302,17 @@
         "AGENTS.md"
       ],
       "title": "issue-33.json"
+    },
+    {
+      "path": ".github/acceptance/issue-36.json",
+      "kind": "file",
+      "purpose": "Writing formula preparation evidence with AC02–AC04 explicitly pending future integration and performance checks.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-36.json"
     },
     {
       "path": ".github/pull_request_template.md",
@@ -6234,6 +6270,39 @@
         "AGENTS.md"
       ],
       "title": "Issue 33 — 7 October 2026 independent review"
+    },
+    {
+      "path": "review/issue-36/2026-10-07-handoff.md",
+      "kind": "file",
+      "purpose": "Preparation-only formula design, provenance, owner routes and ordered Sol integration/performance tasks.",
+      "role": "draft",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 36 — Writing paradigm formula: asset and Sol handoff"
+    },
+    {
+      "path": "review/issue-36/assets/writing-paradigm.svg",
+      "kind": "file",
+      "purpose": "Original transparent outlined paradigm-shift formula in continuous ribbon-family colors; prepared, not integrated.",
+      "role": "draft",
+      "owner": "review/issue-36/2026-10-07-handoff.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "writing-paradigm.svg"
+    },
+    {
+      "path": "review/issue-36/preview.png",
+      "kind": "file",
+      "purpose": "Day/Night and narrow-width rendered proof of the SVG candidate, not an integrated scene screenshot.",
+      "role": "draft",
+      "owner": "review/issue-36/2026-10-07-handoff.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "preview.png"
     },
     {
       "path": "review/public-responses-20261006/README.md",
@@ -15080,6 +15149,17 @@
       "title": "test_issue33_acceptance.py"
     },
     {
+      "path": "tests/test_issue36_acceptance.py",
+      "kind": "file",
+      "purpose": "Selected issue 36 SVG budget/inertness/geometry and adversarial acceptance checks; no runtime benchmark claim.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "test_issue36_acceptance.py"
+    },
+    {
       "path": "tests/test_issue_acceptance.py",
       "kind": "file",
       "purpose": "Acceptance runner adversarial cases for invalid mappings, skipped/empty/failed tests and evidence identity.",
@@ -16428,6 +16508,26 @@
       ]
     },
     {
+      "path": "review/issue-36",
+      "kind": "directory",
+      "purpose": "Issue 36 original formula asset, visual proof and the single pending Sol execution handoff.",
+      "role": "draft",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-36/assets",
+      "kind": "directory",
+      "purpose": "Unintegrated Writing formula candidate; move its sole source to site/assets on authorized execution.",
+      "role": "draft",
+      "owner": "review/issue-36/2026-10-07-handoff.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "review/public-responses-20261006",
       "kind": "directory",
       "purpose": "Exact before/after public response prose and reconciliation records.",
@@ -17131,7 +17231,8 @@
         "review/REVIEW-TEMPLATE.md",
         "review/issue-",
         "PROJECT-BOOTSTRAP.md",
-        "tests/test_issue33_acceptance.py"
+        "tests/test_issue33_acceptance.py",
+        "tests/test_issue36_acceptance.py"
       ],
       "commands": [
         "python3 tools/issue_acceptance.py run --policy .github/acceptance/issue-33.json --report /tmp/issue-33-acceptance.json"

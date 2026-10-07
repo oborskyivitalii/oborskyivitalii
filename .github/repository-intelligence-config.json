@@ -335,7 +335,8 @@
         "review/REVIEW-TEMPLATE.md",
         "review/issue-",
         "PROJECT-BOOTSTRAP.md",
-        "tests/test_issue33_acceptance.py"
+        "tests/test_issue33_acceptance.py",
+        "tests/test_issue36_acceptance.py"
       ],
       "commands": [
         "python3 tools/issue_acceptance.py run --policy .github/acceptance/issue-33.json --report /tmp/issue-33-acceptance.json"

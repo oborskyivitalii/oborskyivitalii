@@ -56,6 +56,8 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/color-staging-20261006/evidence](review/color-staging-20261006/evidence) | Color hosted variant provider/package identity and target evidence. Contains evidence artifacts. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-31](review/issue-31) | Dated issue 31 implementation analysis and review evidence linked from its owning issue and PR. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-33](review/issue-33) | Versioned analysis and independent review evidence for short bootstrap and root organization. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-36](review/issue-36) | Issue 36 original formula asset, visual proof and the single pending Sol execution handoff. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-36/assets](review/issue-36/assets) | Unintegrated Writing formula candidate; move its sole source to site/assets on authorized execution. | draft | [review/issue-36/2026-10-07-handoff.md](review/issue-36/2026-10-07-handoff.md) |
 | [review/public-responses-20261006](review/public-responses-20261006) | Exact before/after public response prose and reconciliation records. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/reading-backdrops-20261006](review/reading-backdrops-20261006) | Content-sized reading backdrop correction evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/repository-maintenance-20261007](review/repository-maintenance-20261007) | Byte-exact pre-cleanup agent guide and its provenance note. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -143,6 +145,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [.github/acceptance/issue-31.json](.github/acceptance/issue-31.json) | Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-33.json](.github/acceptance/issue-33.json) | Bootstrap/root optimization AC01–AC06 mapped to source-bound assertions and separate review, merge and linkage gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [.github/acceptance/issue-36.json](.github/acceptance/issue-36.json) | Writing formula preparation evidence with AC02–AC04 explicitly pending future integration and performance checks. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 
 ## .github/repository-intelligence/
 
@@ -513,6 +516,19 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [review/issue-33/2026-10-07-analysis.md](review/issue-33/2026-10-07-analysis.md) | Issue #33 inspected-source analysis, complete root dispositions, ordered tasks and public-output boundaries. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-33/2026-10-07-review.md](review/issue-33/2026-10-07-review.md) | Independent structure/semantic and CI review at exact implementation source, four findings/dispositions, source-bound checks and separate live/merge gates. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+
+## review/issue-36/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-36/2026-10-07-handoff.md](review/issue-36/2026-10-07-handoff.md) | Preparation-only formula design, provenance, owner routes and ordered Sol integration/performance tasks. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-36/preview.png](review/issue-36/preview.png) | Day/Night and narrow-width rendered proof of the SVG candidate, not an integrated scene screenshot. | draft | [review/issue-36/2026-10-07-handoff.md](review/issue-36/2026-10-07-handoff.md) |
+
+## review/issue-36/assets/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-36/assets/writing-paradigm.svg](review/issue-36/assets/writing-paradigm.svg) | Original transparent outlined paradigm-shift formula in continuous ribbon-family colors; prepared, not integrated. | draft | [review/issue-36/2026-10-07-handoff.md](review/issue-36/2026-10-07-handoff.md) |
 
 ## review/public-responses-20261006/
 
@@ -1407,6 +1423,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/staging.test.cjs](tests/staging.test.cjs) | Behavioral/adversarial tests and fixtures for staging. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/test_issue31_acceptance.py](tests/test_issue31_acceptance.py) | Issue 31 observable acceptance checks for RI provenance, inventory, memory, workflow, unchanged site and bootstrap. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue33_acceptance.py](tests/test_issue33_acceptance.py) | Issue #33 source snapshot assertions for unchanged public bytes, historic reviews, locator exceptions, policy and handoff. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [tests/test_issue36_acceptance.py](tests/test_issue36_acceptance.py) | Selected issue 36 SVG budget/inertness/geometry and adversarial acceptance checks; no runtime benchmark claim. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue_acceptance.py](tests/test_issue_acceptance.py) | Acceptance runner adversarial cases for invalid mappings, skipped/empty/failed tests and evidence identity. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_offline_export_security.py](tests/test_offline_export_security.py) | Behavioral/adversarial tests and fixtures for offline export security. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/test_repository_intelligence.py](tests/test_repository_intelligence.py) | Behavioral/adversarial tests and fixtures for repository intelligence. | test | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |

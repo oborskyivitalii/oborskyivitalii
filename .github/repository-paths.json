@@ -67,6 +67,12 @@
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
+    ".github/acceptance/issue-36.json": {
+      "kind": "file",
+      "purpose": "Writing formula preparation evidence with AC02–AC04 explicitly pending future integration and performance checks.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     ".github/pull_request_template.md": {
       "kind": "file",
       "purpose": "PR execution, owning issue/commit links, checks/review and honest completion template.",
@@ -738,6 +744,36 @@
       "purpose": "Independent structure/semantic and CI review at exact implementation source, four findings/dispositions, source-bound checks and separate live/merge gates.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-36": {
+      "kind": "directory",
+      "purpose": "Issue 36 original formula asset, visual proof and the single pending Sol execution handoff.",
+      "role": "draft",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-36/2026-10-07-handoff.md": {
+      "kind": "file",
+      "purpose": "Preparation-only formula design, provenance, owner routes and ordered Sol integration/performance tasks.",
+      "role": "draft",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-36/assets": {
+      "kind": "directory",
+      "purpose": "Unintegrated Writing formula candidate; move its sole source to site/assets on authorized execution.",
+      "role": "draft",
+      "owner": "review/issue-36/2026-10-07-handoff.md"
+    },
+    "review/issue-36/assets/writing-paradigm.svg": {
+      "kind": "file",
+      "purpose": "Original transparent outlined paradigm-shift formula in continuous ribbon-family colors; prepared, not integrated.",
+      "role": "draft",
+      "owner": "review/issue-36/2026-10-07-handoff.md"
+    },
+    "review/issue-36/preview.png": {
+      "kind": "file",
+      "purpose": "Day/Night and narrow-width rendered proof of the SVG candidate, not an integrated scene screenshot.",
+      "role": "draft",
+      "owner": "review/issue-36/2026-10-07-handoff.md"
     },
     "review/public-responses-20261006": {
       "kind": "directory",
@@ -5896,6 +5932,12 @@
     "tests/test_issue33_acceptance.py": {
       "kind": "file",
       "purpose": "Issue #33 source snapshot assertions for unchanged public bytes, historic reviews, locator exceptions, policy and handoff.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "tests/test_issue36_acceptance.py": {
+      "kind": "file",
+      "purpose": "Selected issue 36 SVG budget/inertness/geometry and adversarial acceptance checks; no runtime benchmark claim.",
       "role": "test",
       "owner": ".github/ACCEPTANCE.md"
     },
