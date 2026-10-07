@@ -67,6 +67,12 @@
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
+    ".github/acceptance/issue-39.json": {
+      "kind": "file",
+      "purpose": "Issue 39 custom-domain preparation checks with distinct Pages admin, admission and live-domain gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     ".github/pull_request_template.md": {
       "kind": "file",
       "purpose": "PR execution, owning issue/commit links, checks/review and honest completion template.",
@@ -535,6 +541,12 @@
       "role": "guide",
       "owner": "guides/SITE-CONTENT-REVIEW.md"
     },
+    "guides/SITE-PRODUCTION.md": {
+      "kind": "file",
+      "purpose": "Custom-domain production plan, provider boundaries, owner settings and phased GitHub Pages release instructions.",
+      "role": "guide",
+      "owner": "guides/SITE-PRODUCTION.md"
+    },
     "guides/SITE-RELEASE-GATES.md": {
       "kind": "file",
       "purpose": "Exact-artifact security, quality, performance, browser/device and release requirements.",
@@ -564,6 +576,12 @@
       "purpose": "Existing CI preview/staging controller, source leases, exact hosted verification and recovery runbook.",
       "role": "guide",
       "owner": "guides/SITE-STAGING.md"
+    },
+    "guides/github-pages-domains.json": {
+      "kind": "file",
+      "purpose": "Prepared finite .ai Pages DNS and .com redirect desired-state; no deploy controller consumes it yet.",
+      "role": "configuration",
+      "owner": "guides/SITE-PRODUCTION.md"
     },
     "review": {
       "kind": "directory",
@@ -736,6 +754,30 @@
     "review/issue-33/2026-10-07-review.md": {
       "kind": "file",
       "purpose": "Independent structure/semantic and CI review at exact implementation source, four findings/dispositions, source-bound checks and separate live/merge gates.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-39": {
+      "kind": "directory",
+      "purpose": "Dated custom-domain readiness inspection, review and execution handoff for issue 39.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-39/2026-10-07-analysis.md": {
+      "kind": "file",
+      "purpose": "Issue 39 provider/repository findings, sequenced execution tasks and pending live acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-39/2026-10-07-provider-inventory.json": {
+      "kind": "file",
+      "purpose": "Sanitized dated exact-ref/provider observations and unavailable Pages administration, without mutation claims.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-39/2026-10-07-review.md": {
+      "kind": "file",
+      "purpose": "Independent scoped preparation review, inspected source identities and distinct pending activation gates.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -5896,6 +5938,12 @@
     "tests/test_issue33_acceptance.py": {
       "kind": "file",
       "purpose": "Issue #33 source snapshot assertions for unchanged public bytes, historic reviews, locator exceptions, policy and handoff.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "tests/test_issue39_acceptance.py": {
+      "kind": "file",
+      "purpose": "Selected issue 39 desired-state URL/topology, unsafe-mutation, unchanged-source and operator-policy acceptance.",
       "role": "test",
       "owner": ".github/ACCEPTANCE.md"
     },

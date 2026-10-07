@@ -211,6 +211,21 @@
         "бутстрап",
         "опис проекту"
       ]
+    },
+    {
+      "path": "guides/SITE-PRODUCTION.md",
+      "concern": "GitHub Pages production custom domain and canonical redirect readiness",
+      "queries": [
+        "production domain",
+        "custom domain",
+        "GitHub Pages",
+        "vitaliioborskyi.ai",
+        "vitaliioborskyi.com",
+        "domain redirect",
+        "домен",
+        "домени",
+        "гітхаб пейджес"
+      ]
     }
   ],
   "map_output": "REPOSITORY-MAP.md",

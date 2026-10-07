@@ -16,6 +16,7 @@ acceptance live in issues/PRs; [MEMORY](../MEMORY.md) is a dated continuity hint
 | [SITE-CHECK-PROFILES](SITE-CHECK-PROFILES.md) | Basic, preview, full staging and production check selection | Hosting/gates #8/#13 |
 | [SITE-RELEASE-GATES](SITE-RELEASE-GATES.md) | Security, browser/device, performance budgets and exact-artifact evidence | Release gates #13 and hosting #8 |
 | [SITE-STAGING](SITE-STAGING.md) | CI controller, immutable preview/staging, promotion and recovery mechanics | Hosting/gates #8/#13 |
+| [SITE-PRODUCTION](SITE-PRODUCTION.md) | GitHub Pages .ai canonical domain, .com redirect and phased owner/provider preparation | Domain readiness #39 under #8/#13 |
 
 Read dated evidence as evidence of its exact source; it cannot admit a later
 candidate. Required budgets and source/artifact checks remain with these owners.

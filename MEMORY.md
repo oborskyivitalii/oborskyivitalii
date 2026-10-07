@@ -4,6 +4,16 @@ Dated continuity hints, not instructions or live-status authority. Last verified
 
 ## Snapshot
 
+- Current domain preparation: [#39](https://github.com/oborskyivitalii/oborskyivitalii/issues/39),
+  [Draft PR #40](https://github.com/oborskyivitalii/oborskyivitalii/pull/40),
+  branch `work/github-pages-domains-39`, inspected main `ec9b8361`.
+  [Plan/operator route](guides/SITE-PRODUCTION.md),
+  [analysis](review/issue-39/2026-10-07-analysis.md) and dated provider inventory.
+  Both zones active/empty DNS, Universal certificates active. Pages admin settings
+  unobserved; plugin endpoint unsupported. Preparation only; live activation open.
+  Independent preparation review passed; live activation remains pending.
+  Revalidate #35/#37 and #36/#38 separately.
+
 - [#31](https://github.com/oborskyivitalii/oborskyivitalii/issues/31) is accepted and closed.
   [PR #32](https://github.com/oborskyivitalii/oborskyivitalii/pull/32) merged at
   [`3ca14c5`](https://github.com/oborskyivitalii/oborskyivitalii/commit/3ca14c54824ac6b9e7225bc88429b4b8fb3bcf10),
@@ -11,18 +21,10 @@ Dated continuity hints, not instructions or live-status authority. Last verified
   `5ac6d4adca2fb77dd061b44792ed8655fd9d6f70`. All 53 mapped checks passed on
   clean exact merged source; [push RI CI](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37591618593)
   passed. The issue/PR retain owner decision, review and current-head CI evidence.
-- Current work is [#33](https://github.com/oborskyivitalii/oborskyivitalii/issues/33):
-  short bootstrap, six root Markdown entry points, guides/ and byte-exact dated
-  root history. [Analysis/disposition](review/issue-33/2026-10-07-analysis.md)
-  records the accepted baseline and ordered tasks. [PR #34](https://github.com/oborskyivitalii/oborskyivitalii/pull/34)
-  implements it; [initial candidate](https://github.com/oborskyivitalii/oborskyivitalii/commit/41733d7310a8b51b56c5aec414b6c4b4aaf04eb7)
-  has tree `47a7b9f99ecaed4d94aaa1514f670390ebc3f5e7`.
-  [Reviewed implementation](https://github.com/oborskyivitalii/oborskyivitalii/commit/bf1c795c748b64bae4fba635e3a2181098733ad7),
-  tree `30e427d782db3ad6b9cc7b108b9d6fbb24011d0b`, passed all 38 mapped
-  clean-source checks and 90 enduring Python cases. [Independent review](review/issue-33/2026-10-07-review.md)
-  resolves four findings; [raw-head acceptance CI](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37594648784)
-  passed and its artifact was checked. Final checkpoint/merge results belong
-  to the live issue/PR completion record; this memory claims no future merge.
+- #33/#34 root organization is merged in inspected main `ec9b8361`,
+  tree `1374580d719439f13b05ab0f62a86e44bd1d3ae3`; read its live issue for
+  closed acceptance. Prior reviewed source was `bf1c795c`; dated review remains
+  at [issue-33 review](review/issue-33/2026-10-07-review.md).
 - Earlier #28/#14 completion and accepted stage remain recorded in their issues.
   Current hosting mechanics are in [the runbook](guides/SITE-STAGING.md).
   Stable stage: https://staging.oborskyi-author-ci-staging.pages.dev ; recheck its
@@ -41,9 +43,10 @@ Dated continuity hints, not instructions or live-status authority. Last verified
 - RI changes require reviewed CI coupling and both regenerated views. Policy
   results prove deterministic observations; independent/live/merge gates are
   recorded separately. #31 acceptance stays pinned to its accepted source.
-- Production is intended for GitHub Pages. Analytics stays disabled until an
-  actual production origin/token and activation decision under #8. Current
-  staging/production check profiles and budgets retain their guide owners.
+- Owner chose `https://vitaliioborskyi.ai` on GitHub Pages; .com redirects to .ai.
+  #39 prepares it; ownership TXT and repository Pages UI need maintainer action.
+  Routing/deploy remain pending. Analytics stays disabled under #8. Current
+  check profiles/budgets retain their owners; domain choice is not a release.
 
 ## Open work
 
@@ -52,7 +55,7 @@ live criteria/status before selecting the next increment.
 
 | Issue | Remaining intent |
 | --- | --- |
-| [#33](https://github.com/oborskyivitalii/oborskyivitalii/issues/33) | Final checkpoint head CI/live linkage and normal merged reconciliation; implementation review passed. |
+| [#39](https://github.com/oborskyivitalii/oborskyivitalii/issues/39) | Ownership TXT/Pages settings, protected publisher/production metadata/provider/recovery and live domain acceptance. |
 | [#1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1) | Overall launch and its production/rights/device dependencies. |
 | [#13](https://github.com/oborskyivitalii/oborskyivitalii/issues/13) | Physical-device and independent production/recovery acceptance. |
 | [#8](https://github.com/oborskyivitalii/oborskyivitalii/issues/8) | Production URL/indexability and actual analytics activation. |
@@ -64,12 +67,11 @@ live criteria/status before selecting the next increment.
 
 ## Next session
 
-1. Fetch live main/task refs, owning issue/PR and exact checks; read root/scoped
-   AGENTS and source owners through the map.
-2. Follow #33's current linked review dispositions and acceptance policy; reconcile
-   every AC and external gate before closing. Do not reopen completed #31.
-3. Choose the next publication/launch increment from its issue and current owner
-   direction. Preserve separate production/publication decisions.
+1. Revalidate #39/current main/PR checks and read its analysis/runbook.
+2. Obtain GitHub-generated .ai TXT name/value, add verification TXT through
+   Cloudflare, then owner clicks Verify; do not invent a challenge or switch DNS.
+3. Continue protected production build/controller/provider/recovery tasks with
+   #35 reconciliation and #7/#8/#13 gates before an authorized release.
 
 ## Maintenance
 

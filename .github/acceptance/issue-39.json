@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 39,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/39",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Revalidated baseline and capability inventory",
+      "automated_scope": "Snapshot schema/ref/provider observations and explicit unknown Pages settings; actual connector observations need live review.",
+      "checks": [
+        "INVENTORY"
+      ],
+      "gates": [
+        "LIVE-INVENTORY"
+      ]
+    },
+    {
+      "id": "AC02",
+      "intent": "Canonical .ai topology and lossless .com redirect plan",
+      "automated_scope": "Finite exact DNS and rule fields, negative origin/proxy/host/query/order mutations and planned URL fixtures; no claim that provider rules execute.",
+      "checks": [
+        "DOMAIN-PLAN",
+        "DOMAIN-NEGATIVES",
+        "REDIRECT-FIXTURES"
+      ],
+      "gates": [
+        "LIVE-DOMAINS"
+      ]
+    },
+    {
+      "id": "AC03",
+      "intent": "Preserve current production release controls while preparing",
+      "automated_scope": "Git blob equality and exact path sets for public/runtime/build/provider/release workflows versus inspected base; Actions/ownership/admission/routing sequence and no activation. Full publisher is still future work.",
+      "checks": [
+        "UNCHANGED-PRODUCTION",
+        "DOMAIN-PLAN"
+      ],
+      "gates": [
+        "PRODUCTION-ADMISSION"
+      ]
+    },
+    {
+      "id": "AC04",
+      "intent": "Actionable maintainer instructions and linked execution",
+      "automated_scope": "AC01-AC05/check/gate and exact operator settings routes in prepared source; human usefulness, live links and owner completion stay separate.",
+      "checks": [
+        "OPERATOR-POLICY",
+        "NODE-BASIC",
+        "RI-FRESH",
+        "RI-CI"
+      ],
+      "gates": [
+        "OWNER-SETTINGS",
+        "REVIEW",
+        "MERGE"
+      ]
+    },
+    {
+      "id": "AC05",
+      "intent": "Eventual live custom-domain acceptance",
+      "automated_scope": "Finite fixtures for both .com hosts/schemes and encoded/repeated queries; prepared URL expectations alone never admit public DNS/TLS/HTTP.",
+      "checks": [
+        "REDIRECT-FIXTURES"
+      ],
+      "gates": [
+        "LIVE-DOMAINS",
+        "PRODUCTION-ADMISSION"
+      ]
+    }
+  ],
+  "checks": {
+    "INVENTORY": {
+      "kind": "unittest",
+      "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_provider_snapshot_records_observations_and_unknown_admin_state"
+    },
+    "DOMAIN-PLAN": {
+      "kind": "unittest",
+      "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_finite_dns_and_redirect_contract"
+    },
+    "DOMAIN-NEGATIVES": {
+      "kind": "unittest",
+      "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_bad_origin_proxy_hosts_query_and_order_are_rejected"
+    },
+    "REDIRECT-FIXTURES": {
+      "kind": "unittest",
+      "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_planned_redirect_fixtures_preserve_path_and_query"
+    },
+    "UNCHANGED-PRODUCTION": {
+      "kind": "unittest",
+      "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_preparation_preserves_public_runtime_and_deploy_workflows"
+    },
+    "OPERATOR-POLICY": {
+      "kind": "unittest",
+      "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_operator_routes_and_policy_keep_external_gates_pending"
+    },
+    "NODE-BASIC": {
+      "kind": "node-basic"
+    },
+    "RI-FRESH": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    }
+  },
+  "gates": {
+    "LIVE-INVENTORY": {
+      "kind": "human",
+      "description": "Review exact live refs/API observations and re-read provider state before mutation; source snapshot is dated evidence."
+    },
+    "LIVE-DOMAINS": {
+      "kind": "human",
+      "description": "Actual DNS/TLS/.ai hosted content and .com/www both-scheme one-hop 301 path/query checks; www.ai canonical behavior and existing staging unchanged."
+    },
+    "PRODUCTION-ADMISSION": {
+      "kind": "human",
+      "description": "Implemented protected exact-artifact Actions publisher, production SEO/provider/recovery, applicable rights/device/independent acceptance and owner release decision."
+    },
+    "OWNER-SETTINGS": {
+      "kind": "human",
+      "description": "GitHub-generated TXT, observed ownership Verified, repository Actions/custom-domain/HTTPS and environment protection settings."
+    },
+    "REVIEW": {
+      "kind": "human",
+      "description": "Independent scoped implementation/document review and current issue-to-PR/commit/CI linkage."
+    },
+    "MERGE": {
+      "kind": "merge",
+      "description": "Owner-authorized protected merge and final exact-source acceptance reconciliation."
+    }
+  }
+}

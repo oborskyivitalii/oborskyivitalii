@@ -176,6 +176,7 @@ mismatch cases. Fixtures must not contain real credentials and stay out of docs/
 Also demonstrate a complete passing validation after #12's fixes.
 
 For future GitHub Pages hosting, #8 must configure an Actions-based deployment
+under [the domain readiness plan](SITE-PRODUCTION.md) in #39,
 whose deploy job depends on this successful gate; direct automatic branch
 publication cannot enforce it. Preserve separate existing rights/URL/release
 decisions. If a different host is selected, implement equivalent same-artifact

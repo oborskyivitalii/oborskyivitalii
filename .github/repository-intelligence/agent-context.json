@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "2a244af88b57cd0318e1775cafa24dc2d6a7490dc3231e9057cd1acdb1e4ad8b",
+    "digest": "c3381762eb5e1f6489867f6d62c4a5ce4db2e5b36501505b567ff7e501752fb7",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -55,6 +55,11 @@
         "sha256": "f2f17864e5faca94436020ee866e068abd5de99705aaba8edd93e0b8e0420108"
       },
       {
+        "path": ".github/acceptance/issue-39.json",
+        "identity_mode": "content",
+        "sha256": "a9ed1b5282595ebe9f90044700bd23b1b56e83b83f5d7ad7d72cb95103e41e8d"
+      },
+      {
         "path": ".github/pull_request_template.md",
         "identity_mode": "content",
         "sha256": "9d6e001401d72e906275515a4c4921e966541cda9d7b98aad58f54980bf301de"
@@ -62,7 +67,7 @@
       {
         "path": ".github/repository-intelligence-config.json",
         "identity_mode": "content",
-        "sha256": "567b08eec4386c66c852a7ada10fbb973d02996d85946e10786b36158bf5b7e0"
+        "sha256": "f1437225590da86e3bfbcca3cfd3ebdcf6beb9fdb84f9d8462addb05115ab744"
       },
       {
         "path": ".github/repository-intelligence/agent-context.json",
@@ -71,17 +76,17 @@
       {
         "path": ".github/repository-layout.json",
         "identity_mode": "content",
-        "sha256": "aeed11013476aa5517b180a7a1009c0efc0d49a487103d798a5f8d3fcecb342a"
+        "sha256": "a321d52456fdafdd903a3af69c881c0b5a12a6b281e49c298ed493f1d09d9738"
       },
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "aacc8fd7ba15324145b2940b9567ffe0cc7eca1da17411849eca91923a70cd14"
+        "sha256": "a2d407431efc4ab912cb0aa54ebaf292d58180ecbc320d7f0e3b02278129d11c"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "4a6909578d5a76161d1c3e044e5939b4a4cfd188a3c194726cb999c7d5030bed"
+        "sha256": "f3db5b5643ed0009e1e522f7fc6597c6f84c0153e68cc5ef893f4abc625453e9"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -176,7 +181,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "5111002c954cdd9313806b57b3b11db4d5368a3fc309a89447ebe835d694b182"
+        "sha256": "0457e0ca7c7bad6f7848fb4d18287c70a3c98a80de0a66474fc7896859e5221d"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -340,7 +345,7 @@
       {
         "path": "guides/README.md",
         "identity_mode": "content",
-        "sha256": "111dad4391bc155acb769abace041279bbfa489728323922ebdfcfe8cb9b607c"
+        "sha256": "57b9ce7a8b774eaf0178c8a4442d83704858faf07c603655cb802937cf113e53"
       },
       {
         "path": "guides/REPOSITORIES.md",
@@ -363,9 +368,14 @@
         "sha256": "6dca40708a86d890172267adebcd9380ac6ab979706f79ce62aca1abca271fad"
       },
       {
+        "path": "guides/SITE-PRODUCTION.md",
+        "identity_mode": "content",
+        "sha256": "6f38f9e1214174deb2ec156d5920f3c96ad0eaeaa290dbf208ba49448ee2282c"
+      },
+      {
         "path": "guides/SITE-RELEASE-GATES.md",
         "identity_mode": "content",
-        "sha256": "4ce50c44384e6a20e6a5d6a706b8a720fd67c47f2f0dc344c39f343b376dd0f0"
+        "sha256": "04c99f897d1256711006c79bde7629715fdb86e19e2d3aebda78b1d8a4072d68"
       },
       {
         "path": "guides/SITE-ROADMAP.md",
@@ -385,7 +395,12 @@
       {
         "path": "guides/SITE-STAGING.md",
         "identity_mode": "content",
-        "sha256": "f2b58ff89b897eed44fffb91f5970284ec82501ab189db134c0526927fc871f4"
+        "sha256": "030e89947b4bd519bdee54df2d15f233e0d0390dbe544fc0ba4227c75d50b2f5"
+      },
+      {
+        "path": "guides/github-pages-domains.json",
+        "identity_mode": "content",
+        "sha256": "26f842045d143eb3b6c74a4b778ecc7965fed08d92ea3e48ed2e48425a3d5d43"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -486,6 +501,21 @@
         "path": "review/issue-33/2026-10-07-review.md",
         "identity_mode": "content",
         "sha256": "e26f98a7fa69e7031ec763ebb13faf2d6cdc8f7d6c7b29d513b3c685966169fa"
+      },
+      {
+        "path": "review/issue-39/2026-10-07-analysis.md",
+        "identity_mode": "content",
+        "sha256": "53b0ac7b42452f7157f6284f6f64b873461a171efc500939ecafd46c32552820"
+      },
+      {
+        "path": "review/issue-39/2026-10-07-provider-inventory.json",
+        "identity_mode": "content",
+        "sha256": "dcc742b9038e2c6a6dbcec73078a784e26031af28bc826e2c34ab2d9a73e0f9b"
+      },
+      {
+        "path": "review/issue-39/2026-10-07-review.md",
+        "identity_mode": "content",
+        "sha256": "6e980793b291624e28a0453e4573e81b097e75c4e67351041e0029836fc5a504"
       },
       {
         "path": "review/public-responses-20261006/README.md",
@@ -4508,6 +4538,11 @@
         "sha256": "629f67a932416faa3e4e0f0090200ac3bfc482ed426a1385114d1d10533a122c"
       },
       {
+        "path": "tests/test_issue39_acceptance.py",
+        "identity_mode": "content",
+        "sha256": "089bfe5a06465a4700e439475b6a5b1fc88896ab70aab83b15efcc8d4ebd50b3"
+      },
+      {
         "path": "tests/test_issue_acceptance.py",
         "identity_mode": "content",
         "sha256": "63239ef57bd90d27fca4dde944ed267f5f6522dd0bfe13a6a6a830307b2f01fc"
@@ -4993,7 +5028,7 @@
     "path": "tools/repository_intelligence.py",
     "sha256": "9c043c7e13c36899559f83b7941b989dfebaabd1e2d6d6e1815815704db627b3",
     "config_path": ".github/repository-intelligence-config.json",
-    "config_sha256": "567b08eec4386c66c852a7ada10fbb973d02996d85946e10786b36158bf5b7e0"
+    "config_sha256": "f1437225590da86e3bfbcca3cfd3ebdcf6beb9fdb84f9d8462addb05115ab744"
   },
   "owners": [
     {
@@ -5190,6 +5225,21 @@
         "бутстрап",
         "опис проекту"
       ]
+    },
+    {
+      "path": "guides/SITE-PRODUCTION.md",
+      "concern": "GitHub Pages production custom domain and canonical redirect readiness",
+      "queries": [
+        "production domain",
+        "custom domain",
+        "GitHub Pages",
+        "vitaliioborskyi.ai",
+        "vitaliioborskyi.com",
+        "domain redirect",
+        "домен",
+        "домени",
+        "гітхаб пейджес"
+      ]
     }
   ],
   "terms": [],
@@ -5277,6 +5327,17 @@
         "AGENTS.md"
       ],
       "title": "issue-33.json"
+    },
+    {
+      "path": ".github/acceptance/issue-39.json",
+      "kind": "file",
+      "purpose": "Issue 39 custom-domain preparation checks with distinct Pages admin, admission and live-domain gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-39.json"
     },
     {
       "path": ".github/pull_request_template.md",
@@ -5961,6 +6022,17 @@
       "title": "Editorial, edition and rights review"
     },
     {
+      "path": "guides/SITE-PRODUCTION.md",
+      "kind": "file",
+      "purpose": "Custom-domain production plan, provider boundaries, owner settings and phased GitHub Pages release instructions.",
+      "role": "guide",
+      "owner": "guides/SITE-PRODUCTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "GitHub Pages production and custom domains"
+    },
+    {
       "path": "guides/SITE-RELEASE-GATES.md",
       "kind": "file",
       "purpose": "Exact-artifact security, quality, performance, browser/device and release requirements.",
@@ -6014,6 +6086,17 @@
         "AGENTS.md"
       ],
       "title": "PR previews and explicit staging"
+    },
+    {
+      "path": "guides/github-pages-domains.json",
+      "kind": "file",
+      "purpose": "Prepared finite .ai Pages DNS and .com redirect desired-state; no deploy controller consumes it yet.",
+      "role": "configuration",
+      "owner": "guides/SITE-PRODUCTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "github-pages-domains.json"
     },
     {
       "path": "review/REVIEW-TEMPLATE.md",
@@ -6234,6 +6317,39 @@
         "AGENTS.md"
       ],
       "title": "Issue 33 — 7 October 2026 independent review"
+    },
+    {
+      "path": "review/issue-39/2026-10-07-analysis.md",
+      "kind": "file",
+      "purpose": "Issue 39 provider/repository findings, sequenced execution tasks and pending live acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 39 — 2026-10-07 analysis and execution handoff"
+    },
+    {
+      "path": "review/issue-39/2026-10-07-provider-inventory.json",
+      "kind": "file",
+      "purpose": "Sanitized dated exact-ref/provider observations and unavailable Pages administration, without mutation claims.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-07-provider-inventory.json"
+    },
+    {
+      "path": "review/issue-39/2026-10-07-review.md",
+      "kind": "file",
+      "purpose": "Independent scoped preparation review, inspected source identities and distinct pending activation gates.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 39 — 2026-10-07 independent preparation review"
     },
     {
       "path": "review/public-responses-20261006/README.md",
@@ -15080,6 +15196,17 @@
       "title": "test_issue33_acceptance.py"
     },
     {
+      "path": "tests/test_issue39_acceptance.py",
+      "kind": "file",
+      "purpose": "Selected issue 39 desired-state URL/topology, unsafe-mutation, unchanged-source and operator-policy acceptance.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "test_issue39_acceptance.py"
+    },
+    {
       "path": "tests/test_issue_acceptance.py",
       "kind": "file",
       "purpose": "Acceptance runner adversarial cases for invalid mappings, skipped/empty/failed tests and evidence identity.",
@@ -16421,6 +16548,16 @@
       "path": "review/issue-33",
       "kind": "directory",
       "purpose": "Versioned analysis and independent review evidence for short bootstrap and root organization.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-39",
+      "kind": "directory",
+      "purpose": "Dated custom-domain readiness inspection, review and execution handoff for issue 39.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
