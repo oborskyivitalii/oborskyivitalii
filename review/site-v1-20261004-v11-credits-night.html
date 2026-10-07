@@ -31,8 +31,8 @@
 
 
 
-  <meta name="site-engine" content="f89bdc3dc8f3c37ddc3d3164add1c28d6f4d0e84d7b910e07ef2689e9f7560eb">
-  <meta name="site-route" content="e676167274ff6d8f981ed7c0d74820d57e469079fe774bd8e3db1bc8920fa287">
+  <meta name="site-engine" content="6ad9db704fb315c46168b05395d1afbee6ef39062ad74827f7fe2b1c477446e9">
+  <meta name="site-route" content="6970db6d1da03f726ca16ca52fd5891ad0c045f4a3e88395b0dfa7f9ce486833">
   <meta name="site-contract" content="1">
   <meta name="site-variant" content="base">
 <meta name="robots" content="noindex, nofollow">
@@ -351,7 +351,8 @@ body[data-page="writing"] #archive-results {width:min(1010px,calc(100% - 80px));
 /* Canonical reading backdrop paint for every route and base/Color rendition.
    Placement remains paint-only; text wrapping and line boxes are unchanged. */
 :where(:root) {
-  --reading-surface-color:var(--paper);
+  --reading-surface-alpha:87%;
+  --reading-surface-color:color-mix(in srgb,var(--paper) var(--reading-surface-alpha),transparent);
   --reading-surface-opacity:1;
   --reading-surface-radius:12px;
   --reading-title-outset:.16em;
@@ -372,8 +373,8 @@ body[data-page="writing"] #archive-results {width:min(1010px,calc(100% - 80px));
 .archive-landings>.topic-landing,.archive-filters,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a,.talks-list .publication>div)::before {
   content:"";position:absolute;inset:calc(-1 * (var(--surface-gutter) + var(--surface-outset,0px)));z-index:-1;pointer-events:none;
 }
-/* The same solid material prevents nested panels and cloned fragments from
-   accumulating opacity. Every visible outside corner has the same radius. */
+/* Only the paper paint is translucent; title ink and popup controls stay opaque.
+   Every visible outside corner has the same radius. */
 :where(.hero-copy,.section-heading,.archive-intro>.hero-description,.archive-intro>.eyebrow,.shift-intro>p,
 .research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,
 .ack-grid article,.discussion-row,.about-grid>div,.about-grid>h2,.about-section>.eyebrow,.archive-link,.contact-grid>div,.publication,.credits-page>p,.credits-page>h1,.credits-page>h2,
@@ -400,6 +401,9 @@ body[data-page="writing"] #archive-results {width:min(1010px,calc(100% - 80px));
   .hero .hero-copy::before {content:none}
   .hero :is(h1,.hero-lead,.hero-description,.audience,.eyebrow) {position:relative;isolation:isolate;--surface-gutter:18px}
   .hero :is(h1,.hero-lead,.hero-description,.audience,.eyebrow)::before {content:"";position:absolute;inset:calc(-1 * (var(--surface-gutter) + var(--surface-outset,0px)));z-index:-1;pointer-events:none}
+}
+@media(prefers-reduced-transparency:reduce) {
+  :where(:root) {--reading-surface-alpha:100%;}
 }
 @media print {
   .reading-title {background:transparent;box-shadow:none}

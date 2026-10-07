@@ -63,6 +63,14 @@ test('reading surfaces have one shared CSS authority across base and Color rendi
   const classes=new Set([...strip(owner).matchAll(/\.([a-z][\w-]*)/g)].map(match=>match[1]));
   const isSurface=selector=>[...selector.matchAll(/\.([a-z][\w-]*)/g)].some(match=>classes.has(match[1]));
   const paint=/^(?:background(?:-[\w-]+)?|opacity|border(?:-[\w]+)*-radius|box-shadow|(?:-webkit-)?mask(?:-[\w-]+)?|(?:backdrop-)?filter)$/;
+  const material='color-mix(in srgb,var(--paper) var(--reading-surface-alpha),transparent)';
+  function verifyAlpha(screen){
+    const accessibility=/@media\s*\(\s*prefers-reduced-transparency\s*:\s*reduce\s*\)\s*\{\s*:where\(\s*:root\s*\)\s*\{\s*--reading-surface-alpha\s*:\s*100%\s*;?\s*\}\s*\}/g;
+    assert.equal([...screen.matchAll(accessibility)].length,1,'one exact reduced-transparency alpha override');
+    const ordinary=screen.replace(accessibility,''),tokens=[...ordinary.matchAll(/--reading-surface-alpha\s*:\s*([^;}]+)/g)];
+    assert.equal(tokens.length,1,'one shared default alpha authority');assert.equal(tokens[0][1].trim(),'87%','restored Color reading alpha');
+    assert.equal((screen.match(/color-mix\s*\(/g)||[]).length,1,'only the canonical paper-alpha material may mix color');
+  }
   function verifyMaterial(rule){
     for(const [property,value]of properties(rule.body)){
       if(property==='background')assert.equal(value,rule.selector.includes('::before')||rule.selector.includes('.reading-title')||rule.selector.includes('.display-controls')?'var(--reading-surface-color)':'transparent','one theme-paper material');
@@ -76,13 +84,14 @@ test('reading surfaces have one shared CSS authority across base and Color rendi
     assert.equal(publicCSS,ordinary+'\n'+reading,'generated CSS is the exact two authored files');
     const all=strip(reading),screen=all.replace(/@media\s+print\s*\{(?:[^{}]|\{[^{}]*\})*\}/g,'');
     assert.doesNotMatch(screen,/@media\s+print/,'unsupported nested print CSS stays visible');
-    for(const [name,value]of [['color','var(--paper)'],['opacity','1'],['radius','12px']]){
+    for(const [name,value]of [['color',material],['opacity','1'],['radius','12px']]){
       const matches=[...all.matchAll(new RegExp('--reading-surface-'+name+'\\s*:\\s*([^;}]+)','g'))];
       assert.equal(matches.length,1,'one shared '+name+' authority');assert.equal(matches[0][1].trim(),value);
     }
+    verifyAlpha(screen);
     assert.match(screen,/--reading-title-outset\s*:\s*\.16em\s*;/);
     assert.doesNotMatch(screen,/(?:^|[;{}])\s*(?:padding|margin|font|line-height|width|height|display|gap)(?:-[\w-]+)?\s*:/,'reading paint cannot change native flow placement');
-    assert.doesNotMatch(screen,/(?:color-mix|(?:backdrop-)?filter\s*:|(?:-webkit-)?mask(?:-[\w-]+)?\s*:)/,'solid paint has no opacity mixing, mask or blur');
+    assert.doesNotMatch(screen,/(?:(?:backdrop-)?filter\s*:|(?:-webkit-)?mask(?:-[\w-]+)?\s*:)/,'shared translucent paint has no mask or blur');
     for(const rule of rules(screen))verifyMaterial(rule);
     assert.match(screen,/\.reading-title-ink\s*\{[^}]*z-index\s*:\s*1\s*[;}]/,'all title ink stays above neighbouring fragment paint');
     for(const css of [ordinary,authoredColor]){
@@ -99,4 +108,10 @@ test('reading surfaces have one shared CSS authority across base and Color rendi
   const popup='\n.appearance[open] .display-controls {border-radius:6px;box-shadow:0 10px 30px #0002}\n';
   assert.throws(()=>verify(owner,base+popup,extra,base+popup+'\n'+owner),/reading-paint override/,'Appearance cannot silently restore a separate panel style');
   assert.throws(()=>verify(owner+'\n:root {--reading-surface-opacity:.5}\n',base,extra,base+'\n'+owner+'\n:root {--reading-surface-opacity:.5}\n'),/opacity authority/,'a second opacity token fails');
+  const alpha='\n:root {--reading-surface-alpha:100%}\n';
+  assert.throws(()=>verify(owner+alpha,base,extra,base+'\n'+owner+alpha),/default alpha authority/,'an opaque repaint outside accessibility preferences fails');
+  const wrongAlpha=owner.replace('--reading-surface-alpha:87%','--reading-surface-alpha:89%');
+  assert.throws(()=>verify(wrongAlpha,base,extra,base+'\n'+wrongAlpha),/restored Color reading alpha/,'the historical shared alpha cannot drift');
+  const wrongAccessibility=owner.replace('prefers-reduced-transparency:reduce','prefers-color-scheme:dark');
+  assert.throws(()=>verify(wrongAccessibility,base,extra,base+'\n'+wrongAccessibility),/reduced-transparency alpha override/,'theme changes cannot select opaque paint');
 });

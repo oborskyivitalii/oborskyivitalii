@@ -34,13 +34,15 @@ Dated continuity, not live authority. Last verified: **2026-10-07**.
   Canonical repair passes landing intent, guards DOM ownership and defers unknown
   native landings to normal midpoint measurement. Twelve selected camera cases
   and eight fresh cold/warm browser contexts cover actual reverse end landings.
-  `site/engine/reading-surfaces.css` owns all reading paint: theme paper100%,
-  crisp edges and12px outer corners, including Appearance.52 computed samples
-  check all four corners; current8-context endpoint motion passes on1f60/a574. Draft [PR47](https://github.com/oborskyivitalii/oborskyivitalii/pull/47)
-  at1f60f059 passes Basic23, source285, policy11 and exact hosted smoke.
-  Opt-in37664883208 timed out installing Ubuntu dependencies before browser
-  tests; reuse the existing primary-archive download bounds and retry on the
-  new exact head. No renewed merge/stable promotion is authorized.
+  `site/engine/reading-surfaces.css` owns all reading paint, including Appearance:
+  crisp edges and12px outer corners. Published675b389 passes required source CI,
+  hosted smoke and focused60-case/52-sample/eight-context browser evidence.
+  The maintainer now requests restoring prior transparency. Historical Color
+  default/title/mobile reading paper was87% opaque; retain that common alpha
+  for all backgrounds and keep text/control opacity1. Preserve the former
+  reduced-transparency100% override in the same owner. Continue in DraftPR47,
+  regenerate outputs and validate/publish its successor before review.
+  No renewed merge/stable promotion is authorized.
   [Current handoff](review/issue-45/2026-10-07-handoff.md) retains exact evidence.
 - #36 places one tilted, pulsing formula in Writing's books/pages fractal,
   sharing its camera/clock and bounded cache. Rejected banner benchmarks are

@@ -258,17 +258,25 @@ async function surfaceSamples(page,route,width,theme,result){
       const el=document.querySelector(selector);if(!el)return {selector,missing:true};
       const inline=el.matches('.reading-title'),direct=inline||el.matches('.display-controls'),css=getComputedStyle(el,direct?null:'::before'),lengths=css.boxShadow.match(/-?[\d.]+px/g)||[],spread=inline?parseFloat(lengths[3]||'0'):0;
       const outerRadii=['borderTopLeftRadius','borderTopRightRadius','borderBottomRightRadius','borderBottomLeftRadius'].map(corner=>parseFloat(css[corner])+spread);
-      return {selector,inline,background:css.backgroundColor,opacity:css.opacity,mask:css.maskImage,filter:css.filter,backdropFilter:css.backdropFilter,shadowBlur:parseFloat(lengths[2]||'0'),outerRadii};
+      return {selector,inline,background:css.backgroundColor,reducedTransparency:matchMedia('(prefers-reduced-transparency: reduce)').matches,opacity:css.opacity,mask:css.maskImage,filter:css.filter,backdropFilter:css.backdropFilter,shadowBlur:parseFloat(lengths[2]||'0'),outerRadii};
     });
     if(appearance)appearance.open=wasOpen;
     return samples;
   },selectors[route]);
-  for(const sample of observed)validateSurfaceSample(sample);
+  for(const sample of observed){sample.backgroundAlpha=paintAlpha(sample.background);validateSurfaceSample(sample);}
   result.surfaceSamples??=[];result.surfaceSamples.push(...observed.map(sample=>({route,width,theme,...sample})));
+}
+function paintAlpha(background){
+  const value=String(background).trim(),alpha=value.match(/\/\s*([\d.]+)(%)?\s*\)$/)||value.match(/^rgba\([^,]+,[^,]+,[^,]+,\s*([\d.]+)(%)?\s*\)$/);
+  if(alpha)return Number(alpha[1])/(alpha[2]?100:1);
+  return /^(?:rgb|color)\([^/]+\)$/.test(value)?1:NaN;
 }
 function validateSurfaceSample(sample){
   assert.equal(sample.missing,undefined,'actual reading sample '+sample.selector);
-  assert.equal(sample.opacity,'1','shared solid surface opacity');assert.equal(sample.mask,'none','shared crisp surface edge');
+  const measuredAlpha=paintAlpha(sample.background),expectedAlpha=sample.reducedTransparency?1:.87;
+  assert.ok(Number.isFinite(measuredAlpha)&&Math.abs(sample.backgroundAlpha-measuredAlpha)<.00001,'actual background alpha measured independently of element opacity');
+  assert.ok(Math.abs(measuredAlpha-expectedAlpha)<.00001,'shared historical paper alpha or explicit reduced-transparency preference');
+  assert.equal(sample.opacity,'1','title ink and popup controls retain full element opacity');assert.equal(sample.mask,'none','shared crisp surface edge');
   assert.equal(sample.filter,'none','surface paint does not blur text');assert.equal(sample.backdropFilter,'none','shared crisp surface edge');assert.equal(sample.shadowBlur,0,'shared unblurred surface edge');
   assert.ok(Array.isArray(sample.outerRadii)&&sample.outerRadii.length===4,'all four visible outer corners measured');
   assert.ok(sample.outerRadii.every(radius=>Number.isFinite(radius)&&Math.abs(radius-12)<.02),'shared visible outer corner radius');
@@ -351,4 +359,4 @@ async function main(){
   }
 }
 if(require.main===module)main().catch(error=>{process.stderr.write(String(error.stack||error)+'\n');process.exitCode=1;});
-module.exports={measure,compare,compareGeometry,styles,readingStyle,validateRibbonTrace,validateArrivalDepth,validateNativeEndpoints,ribbonNavigation,validateSurfaceSamples};
+module.exports={measure,compare,compareGeometry,styles,readingStyle,validateRibbonTrace,validateArrivalDepth,validateNativeEndpoints,ribbonNavigation,validateSurfaceSamples,paintAlpha};

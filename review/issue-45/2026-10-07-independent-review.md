@@ -237,3 +237,26 @@ reason fields. Lifecycle/navigation and generated JavaScript are byte-identical
 to a574ac6. Root additionally passed complete ESLint and Stylelint on this
 prepared source. Current-source hosted/browser results and maintainer visual
 acceptance remain separate; this source review supplies no merge/stage decision.
+
+
+## Restore transparency — independent prepared-source review
+
+Reviewer `/root/review_camera` separately inspected the amendment against675b389
+and the historical Color material. Source review passes with no blocker:
+canonical background alpha87%, element opacity1, crisp/unmasked/unblurred edges,
+four12px visible corners and the same-owner reduced-transparency100% override.
+The two focused source/validator cases pass independently, including opaque
+repaint, alpha drift and faded-ink negatives. Canonical/generated camera and
+navigation files are byte-identical to675b389; this amendment changes no flight.
+
+Independent maintained generation/checksum proof reproduced exactly180
+path/type/value additions in `secrets-reviewed.json`, uniquely matched to the raw
+hashed-only scanner findings. Prior1092 dispositions and metadata and the
+historical baseline are unchanged. All additions are exact source-bound public
+checksums, with no broad exclusions, scanner changes or budget changes.
+
+The actual52-sample browser diagnostic distinguishes background alpha from
+compositor opacity; its reduced-transparency exception is source-proved here,
+not deliberately emulated by that browser sequence. Current-source hosted
+smoke and visual review remain separate observations, and earlier675b389
+camera/material captures retain their source identities.

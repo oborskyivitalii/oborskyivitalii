@@ -25,11 +25,11 @@ test('reading clarity rejects wrong landing targets and depth reversals that rem
   assert.throws(()=>validateNativeEndpoints({events:missed},leg),/destination scroll endpoint/,'post-layout landing must reach the bottom');
 });
 test('reading clarity rejects any individual corner drift and missing Appearance paint evidence',()=>{
-  const {validateSurfaceSamples}=require('../tools/quality/reading-clarity.cjs');
+  const {validateSurfaceSamples,paintAlpha}=require('../tools/quality/reading-clarity.cjs');
   const selectors=['.hero-copy','.help-grid article','.site-footer>p','.reading-title','.research-card','.reading-title','.archive-filters','.publication','.year-heading','.reading-title','.talks-list .publication>div','.credits-page>h1','.appearance[open] .display-controls'];
   const samples=[];
   for(const width of [320,1440])for(const theme of ['light','dark'])for(const selector of selectors){
-    samples.push({selector,width,theme,background:theme==='light'?'rgb(243, 241, 234)':'rgb(17, 28, 34)',opacity:'1',mask:'none',filter:'none',backdropFilter:'none',shadowBlur:0,outerRadii:[12,12,12,12]});
+    samples.push({selector,width,theme,background:theme==='light'?'rgba(243, 241, 234, 0.87)':'rgba(17, 28, 34, 0.87)',backgroundAlpha:.87,reducedTransparency:false,opacity:'1',mask:'none',filter:'none',backdropFilter:'none',shadowBlur:0,outerRadii:[12,12,12,12]});
   }
   assert.doesNotThrow(()=>validateSurfaceSamples(samples));
   for(let corner=0;corner<4;corner++){
@@ -40,6 +40,16 @@ test('reading clarity rejects any individual corner drift and missing Appearance
   assert.throws(()=>validateSurfaceSamples(missing),/Appearance panel measured/,'the popup cannot be replaced by another sample');
   const blurred=plain(samples);blurred[12].shadowBlur=30;
   assert.throws(()=>validateSurfaceSamples(blurred),/shared unblurred surface edge/,'a blurred popup edge fails');
+  for(const background of ['rgba(243, 241, 234, 0.89)','rgb(243 241 234 / 100%)']){
+    const changed=plain(samples);changed[0].background=background;changed[0].backgroundAlpha=paintAlpha(background);
+    assert.throws(()=>validateSurfaceSamples(changed),/shared historical paper alpha/,'alpha drift and opaque repaints fail');
+  }
+  const faded=plain(samples);faded[0].opacity='.87';
+  assert.throws(()=>validateSurfaceSamples(faded),/full element opacity/,'transparency cannot fade text or controls');
+  assert.equal(paintAlpha('color(srgb 0.952941 0.945098 0.917647 / 0.87)'),.87,'modern computed color serialization retains the alpha');
+  const reduced=plain(samples);
+  for(const sample of reduced){sample.background=sample.theme==='light'?'rgb(243, 241, 234)':'rgb(17, 28, 34)';sample.backgroundAlpha=1;sample.reducedTransparency=true;}
+  assert.doesNotThrow(()=>validateSurfaceSamples(reduced),'the explicit accessibility preference retains opaque paint');
 });
 function scene(source,theme='dark'){
   const context={window:{},module:{exports:{}},document:{getElementById:()=>null,documentElement:{dataset:{theme}}}};
