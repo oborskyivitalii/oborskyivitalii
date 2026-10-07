@@ -15,6 +15,9 @@ mechanics; a historical accepted run does not admit a later candidate.
 
 ## Deployment flow
 
+Custom-domain production planning is in [SITE-PRODUCTION](SITE-PRODUCTION.md).
+The Cloudflare controller below remains the preview/staging route.
+
 | Trigger | Address | Checks |
 | --- | --- | --- |
 | Open/update a same-repository PR | `https://pr-N.oborskyi-author-ci-staging.pages.dev` and an immutable version URL | Focused source, controller, package and HTTP checks; Chromium at 1440/390 widths; Color effects checked when that exact source supports them. |

@@ -4,6 +4,14 @@ Dated continuity hints, not instructions or live-status authority. Last verified
 
 ## Snapshot
 
+- Current domain preparation: [#39](https://github.com/oborskyivitalii/oborskyivitalii/issues/39),
+  branch `work/github-pages-domains-39`, inspected main `ec9b8361`.
+  [Plan/operator route](guides/SITE-PRODUCTION.md),
+  [analysis](review/issue-39/2026-10-07-analysis.md) and dated provider inventory.
+  Both zones active/empty DNS, Universal certificates active. Pages admin settings
+  unobserved; plugin endpoint unsupported. Preparation only; live activation open.
+  #33/#34 is merged in inspected main; revalidate #35/#37 and #36/#38 separately.
+
 - [#31](https://github.com/oborskyivitalii/oborskyivitalii/issues/31) is accepted and closed.
   [PR #32](https://github.com/oborskyivitalii/oborskyivitalii/pull/32) merged at
   [`3ca14c5`](https://github.com/oborskyivitalii/oborskyivitalii/commit/3ca14c54824ac6b9e7225bc88429b4b8fb3bcf10),
@@ -41,9 +49,10 @@ Dated continuity hints, not instructions or live-status authority. Last verified
 - RI changes require reviewed CI coupling and both regenerated views. Policy
   results prove deterministic observations; independent/live/merge gates are
   recorded separately. #31 acceptance stays pinned to its accepted source.
-- Production is intended for GitHub Pages. Analytics stays disabled until an
-  actual production origin/token and activation decision under #8. Current
-  staging/production check profiles and budgets retain their guide owners.
+- Owner chose `https://vitaliioborskyi.ai` on GitHub Pages; .com redirects to .ai.
+  #39 prepares it; ownership TXT and repository Pages UI need maintainer action.
+  Routing/deploy remain pending. Analytics stays disabled under #8. Current
+  check profiles/budgets retain their owners; domain choice is not a release.
 
 ## Open work
 
@@ -64,12 +73,11 @@ live criteria/status before selecting the next increment.
 
 ## Next session
 
-1. Fetch live main/task refs, owning issue/PR and exact checks; read root/scoped
-   AGENTS and source owners through the map.
-2. Follow #33's current linked review dispositions and acceptance policy; reconcile
-   every AC and external gate before closing. Do not reopen completed #31.
-3. Choose the next publication/launch increment from its issue and current owner
-   direction. Preserve separate production/publication decisions.
+1. Revalidate #39/current main/PR checks and read its analysis/runbook.
+2. Obtain GitHub-generated .ai TXT name/value, add verification TXT through
+   Cloudflare, then owner clicks Verify; do not invent a challenge or switch DNS.
+3. Continue protected production build/controller/provider/recovery tasks with
+   #35 reconciliation and #7/#8/#13 gates before an authorized release.
 
 ## Maintenance
 

@@ -56,6 +56,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/color-staging-20261006/evidence](review/color-staging-20261006/evidence) | Color hosted variant provider/package identity and target evidence. Contains evidence artifacts. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-31](review/issue-31) | Dated issue 31 implementation analysis and review evidence linked from its owning issue and PR. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-33](review/issue-33) | Versioned analysis and independent review evidence for short bootstrap and root organization. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-39](review/issue-39) | Dated custom-domain readiness inspection, review and execution handoff for issue 39. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/public-responses-20261006](review/public-responses-20261006) | Exact before/after public response prose and reconciliation records. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/reading-backdrops-20261006](review/reading-backdrops-20261006) | Content-sized reading backdrop correction evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/repository-maintenance-20261007](review/repository-maintenance-20261007) | Byte-exact pre-cleanup agent guide and its provenance note. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -143,6 +144,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [.github/acceptance/issue-31.json](.github/acceptance/issue-31.json) | Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-33.json](.github/acceptance/issue-33.json) | Bootstrap/root optimization AC01–AC06 mapped to source-bound assertions and separate review, merge and linkage gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [.github/acceptance/issue-39.json](.github/acceptance/issue-39.json) | Issue 39 custom-domain preparation checks with distinct Pages admin, admission and live-domain gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 
 ## .github/repository-intelligence/
 
@@ -258,11 +260,13 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) | Disabled-by-default production analytics adapter contract and measurement limitations. | guide | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
 | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) | Current Basic, Preview, Full staging and Full production validation profiles. | guide | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [guides/SITE-CONTENT-REVIEW.md](guides/SITE-CONTENT-REVIEW.md) | Maintained exact-edition editorial, source and rights review protocol; past inventory decisions remain archived. | guide | [guides/SITE-CONTENT-REVIEW.md](guides/SITE-CONTENT-REVIEW.md) |
+| [guides/SITE-PRODUCTION.md](guides/SITE-PRODUCTION.md) | Custom-domain production plan, provider boundaries, owner settings and phased GitHub Pages release instructions. | guide | [guides/SITE-PRODUCTION.md](guides/SITE-PRODUCTION.md) |
 | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) | Exact-artifact security, quality, performance, browser/device and release requirements. | guide | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [guides/SITE-ROADMAP.md](guides/SITE-ROADMAP.md) | Stable site/publication priorities and live owning-issue routes; dated backlog observations remain archived. | guide | [guides/SITE-ROADMAP.md](guides/SITE-ROADMAP.md) |
 | [guides/SITE-SEO.md](guides/SITE-SEO.md) | Search/topic plan, structured publication metadata and discoverability constraints. | guide | [guides/SITE-SEO.md](guides/SITE-SEO.md) |
 | [guides/SITE-SOURCE-AUDIT.md](guides/SITE-SOURCE-AUDIT.md) | Public-source identities, publication inventory, contribution provenance and access limits. | guide | [guides/SITE-SOURCE-AUDIT.md](guides/SITE-SOURCE-AUDIT.md) |
 | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) | Existing CI preview/staging controller, source leases, exact hosted verification and recovery runbook. | guide | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
+| [guides/github-pages-domains.json](guides/github-pages-domains.json) | Prepared finite .ai Pages DNS and .com redirect desired-state; no deploy controller consumes it yet. | configuration | [guides/SITE-PRODUCTION.md](guides/SITE-PRODUCTION.md) |
 
 ## review/
 
@@ -513,6 +517,13 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [review/issue-33/2026-10-07-analysis.md](review/issue-33/2026-10-07-analysis.md) | Issue #33 inspected-source analysis, complete root dispositions, ordered tasks and public-output boundaries. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-33/2026-10-07-review.md](review/issue-33/2026-10-07-review.md) | Independent structure/semantic and CI review at exact implementation source, four findings/dispositions, source-bound checks and separate live/merge gates. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+
+## review/issue-39/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-39/2026-10-07-analysis.md](review/issue-39/2026-10-07-analysis.md) | Issue 39 provider/repository findings, sequenced execution tasks and pending live acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-39/2026-10-07-provider-inventory.json](review/issue-39/2026-10-07-provider-inventory.json) | Sanitized dated exact-ref/provider observations and unavailable Pages administration, without mutation claims. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 ## review/public-responses-20261006/
 
@@ -1407,6 +1418,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/staging.test.cjs](tests/staging.test.cjs) | Behavioral/adversarial tests and fixtures for staging. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/test_issue31_acceptance.py](tests/test_issue31_acceptance.py) | Issue 31 observable acceptance checks for RI provenance, inventory, memory, workflow, unchanged site and bootstrap. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue33_acceptance.py](tests/test_issue33_acceptance.py) | Issue #33 source snapshot assertions for unchanged public bytes, historic reviews, locator exceptions, policy and handoff. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [tests/test_issue39_acceptance.py](tests/test_issue39_acceptance.py) | Selected issue 39 desired-state URL/topology, unsafe-mutation, unchanged-source and operator-policy acceptance. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue_acceptance.py](tests/test_issue_acceptance.py) | Acceptance runner adversarial cases for invalid mappings, skipped/empty/failed tests and evidence identity. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_offline_export_security.py](tests/test_offline_export_security.py) | Behavioral/adversarial tests and fixtures for offline export security. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/test_repository_intelligence.py](tests/test_repository_intelligence.py) | Behavioral/adversarial tests and fixtures for repository intelligence. | test | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
