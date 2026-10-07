@@ -512,6 +512,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [review/issue-33/2026-10-07-analysis.md](review/issue-33/2026-10-07-analysis.md) | Issue #33 inspected-source analysis, complete root dispositions, ordered tasks and public-output boundaries. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-33/2026-10-07-review.md](review/issue-33/2026-10-07-review.md) | Independent structure/semantic and CI review at exact implementation source, four findings/dispositions, source-bound checks and separate live/merge gates. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 ## review/public-responses-20261006/
 

@@ -733,6 +733,12 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-33/2026-10-07-review.md": {
+      "kind": "file",
+      "purpose": "Independent structure/semantic and CI review at exact implementation source, four findings/dispositions, source-bound checks and separate live/merge gates.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/public-responses-20261006": {
       "kind": "directory",
       "purpose": "Exact before/after public response prose and reconciliation records.",

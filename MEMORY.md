@@ -16,9 +16,13 @@ Dated continuity hints, not instructions or live-status authority. Last verified
   root history. [Analysis/disposition](review/issue-33/2026-10-07-analysis.md)
   records the accepted baseline and ordered tasks. [PR #34](https://github.com/oborskyivitalii/oborskyivitalii/pull/34)
   implements it; [initial candidate](https://github.com/oborskyivitalii/oborskyivitalii/commit/41733d7310a8b51b56c5aec414b6c4b4aaf04eb7)
-  has tree `47a7b9f99ecaed4d94aaa1514f670390ebc3f5e7` and passed 34 mapped
-  clean-source checks. Final review/selection fixes require their own head CI;
-  this checkpoint does not claim a future merge.
+  has tree `47a7b9f99ecaed4d94aaa1514f670390ebc3f5e7`.
+  [Reviewed implementation](https://github.com/oborskyivitalii/oborskyivitalii/commit/bf1c795c748b64bae4fba635e3a2181098733ad7),
+  tree `30e427d782db3ad6b9cc7b108b9d6fbb24011d0b`, passed all 38 mapped
+  clean-source checks and 90 enduring Python cases. [Independent review](review/issue-33/2026-10-07-review.md)
+  resolves four findings; [raw-head acceptance CI](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37594648784)
+  passed and its artifact was checked. Final checkpoint/merge results belong
+  to the live issue/PR completion record; this memory claims no future merge.
 - Earlier #28/#14 completion and accepted stage remain recorded in their issues.
   Current hosting mechanics are in [the runbook](guides/SITE-STAGING.md).
   Stable stage: https://staging.oborskyi-author-ci-staging.pages.dev ; recheck its
@@ -48,7 +52,7 @@ live criteria/status before selecting the next increment.
 
 | Issue | Remaining intent |
 | --- | --- |
-| [#33](https://github.com/oborskyivitalii/oborskyivitalii/issues/33) | Exact-source tests/CI, independent root-layout review and normal merged reconciliation. |
+| [#33](https://github.com/oborskyivitalii/oborskyivitalii/issues/33) | Final checkpoint head CI/live linkage and normal merged reconciliation; implementation review passed. |
 | [#1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1) | Overall launch and its production/rights/device dependencies. |
 | [#13](https://github.com/oborskyivitalii/oborskyivitalii/issues/13) | Physical-device and independent production/recovery acceptance. |
 | [#8](https://github.com/oborskyivitalii/oborskyivitalii/issues/8) | Production URL/indexability and actual analytics activation. |

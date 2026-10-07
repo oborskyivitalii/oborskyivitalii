@@ -3,6 +3,8 @@
 import importlib.util
 import io
 import json
+import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -51,6 +53,10 @@ class RepositoryTestSelectionTests(unittest.TestCase):
             result = runner.run(root, io.StringIO())
             self.assertTrue(result["pass"])
             self.assertEqual(result["tests_run"], len(permanent))
+            cli = subprocess.run([sys.executable, str(SOURCE), "--tests", str(root)],
+                                 capture_output=True, text=True, timeout=20)
+            self.assertEqual(cli.returncode, 0, cli.stderr)
+            self.assertEqual(json.loads(cli.stdout)["tests_run"], len(permanent))
 
     def test_standard_module_class_and_case_setup_teardown_are_honored(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -78,6 +84,10 @@ class RepositoryTestSelectionTests(unittest.TestCase):
             result = runner.run(Path(directory), io.StringIO())
             self.assertFalse(result["pass"])
             self.assertEqual(result["tests_run"], 0)
+            cli = subprocess.run([sys.executable, str(SOURCE), "--tests", directory],
+                                 capture_output=True, text=True, timeout=20)
+            self.assertEqual(cli.returncode, 1, cli.stderr)
+            self.assertFalse(json.loads(cli.stdout)["pass"])
 
 
 if __name__ == "__main__":

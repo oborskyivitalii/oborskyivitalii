@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "a64b422c8d4b91fb3f1ccc64db930dbc040f51264b3501f0b7c65ce6647d8eb2",
+    "digest": "02fa18385c2d4eb208f9b65a91a9bff06baa84754dd85d6eaea0af7739dcb346",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -76,12 +76,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "365347763d11b6ca2f474800e43dd3bf650e7cd0f06578d15e094d4558f39144"
+        "sha256": "aacc8fd7ba15324145b2940b9567ffe0cc7eca1da17411849eca91923a70cd14"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "420c3d6aa31e229e9452ab944a427ab46dac57b9e5cf9eabcca476e95ab46425"
+        "sha256": "4a6909578d5a76161d1c3e044e5939b4a4cfd188a3c194726cb999c7d5030bed"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -176,7 +176,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "549edc37c809b1f016c63afcb50f7a7aedc156461ff0309af85eb2c0dc3a8e79"
+        "sha256": "5111002c954cdd9313806b57b3b11db4d5368a3fc309a89447ebe835d694b182"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -481,6 +481,11 @@
         "path": "review/issue-33/2026-10-07-analysis.md",
         "identity_mode": "content",
         "sha256": "b91b966f673c573861304b20b02b4023dd4b714429503c03fcc944d20874d884"
+      },
+      {
+        "path": "review/issue-33/2026-10-07-review.md",
+        "identity_mode": "content",
+        "sha256": "7d6386ea12f0dba67472108893206fd6cc6201faa82b9ce0b5c148b721707085"
       },
       {
         "path": "review/public-responses-20261006/README.md",
@@ -4520,7 +4525,7 @@
       {
         "path": "tests/test_repository_test_selection.py",
         "identity_mode": "content",
-        "sha256": "00281bd46b9a61c97a1a7ea34d1041fa7b72fcf86db527d0caeea67c80cac77d"
+        "sha256": "5e1a9b5979ba39d01918e09c86860ee974d368ca96966e0935c54d44e73ddf14"
       },
       {
         "path": "tests/test_ri_ci.py",
@@ -6218,6 +6223,17 @@
         "AGENTS.md"
       ],
       "title": "Issue 33 — entry point and root layout analysis"
+    },
+    {
+      "path": "review/issue-33/2026-10-07-review.md",
+      "kind": "file",
+      "purpose": "Independent structure/semantic and CI review at exact implementation source, four findings/dispositions, source-bound checks and separate live/merge gates.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 33 — 7 October 2026 independent review"
     },
     {
       "path": "review/public-responses-20261006/README.md",
