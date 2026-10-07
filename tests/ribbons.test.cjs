@@ -74,6 +74,33 @@ test('projected adjacent strip segments reuse the same world-anchored material e
     assert.ok(joined>(compact?5:30),'actual continuous adjacent projected edges');
   }
 });
+test('fixed world cells keep projected ribbon stations stable across fractional adaptive tiers and reversible room flights',()=>{
+  const vm=require('node:vm'),b=require('../tools/site/build.cjs'),root=require('node:path').resolve(__dirname,'..'),model=b.model(root,b.configuration(root).definitions);
+  const material=createRibbonMaterials(api,section,ribbonSignals()),project=vm.runInNewContext('('+makeProjector.toString()+')(api,section,material)',{api,section,material,document:{documentElement:{dataset:{theme:'dark'}}}});
+  const itinerary=['index','research','writing','talks','writing','research','index'];
+  for(const compact of [false,true])for(let leg=1;leg<itinerary.length;leg++)for(const fraction of [0,.5,1]){
+    const from=model.routePose(itinerary[leg-1],model.poses[model.initialPoses[itinerary[leg-1]]]),to=model.routePose(itinerary[leg],model.poses[model.initialPoses[itinerary[leg]]]),pose=api.mix(from,to,fraction),width=compact?390:1440,time=7317,grid=compact?3:1.25;
+    const fine=project(pose,width,900,time,compact,0),near=fine.filter(shape=>shape.depth<12),stations=new Map();
+    for(const shape of fine)for(const point of shape.points)if((point[2]===0||point[2]===1)&&Math.abs(point[3]/grid-Math.round(point[3]/grid))<1e-8)stations.set([shape.ribbon,point[2],point[3]].join('/'),point);
+    assert.ok(stations.size>30,'positive actual world station observations');
+    for(const tier of [.001,.499,.501,1,1.499,1.501,2]){
+      const shapes=project(pose,width,900,time,compact,tier);
+      if(tier<.5||compact)assert.equal(JSON.stringify(shapes),JSON.stringify(fine),'a fractional tier cannot slide the world lattice');
+      for(const before of near){const after=shapes.find(shape=>shape.ribbon===before.ribbon&&shape.z===before.z);assert.ok(after,'near contour retains its fine cell');assert.equal(JSON.stringify(after),JSON.stringify(before),'quality cannot repaint the near silhouette');}
+      let shared=0;
+      for(const shape of shapes)for(const point of shape.points)if((point[2]===0||point[2]===1)&&Math.abs(point[3]/grid-Math.round(point[3]/grid))<1e-8){
+        const original=stations.get([shape.ribbon,point[2],point[3]].join('/'));if(!original)continue;assert.ok(distance(point,original)<1e-8,'shared world station retains its exact projection and material');shared++;
+      }
+      assert.ok(shared>20,'coarsening preserves observed world stations');assert.ok(shapes.every(shape=>shape.points.flat().every(Number.isFinite)));
+    }
+  }
+  // Visible near-plane crossing: the centre is behind z=1, but clipped material
+  // remains on screen. A centroid-only cull used to remove this ribbon end.
+  const crossing=project({position:[5,3,-21],target:[0,0,-50]},1440,900,0,false,2).find(shape=>shape.ribbon===0&&shape.z===-22.5);
+  assert.ok(crossing&&crossing.depth<1);assert.ok(crossing.points.length>=3&&crossing.points.every(point=>point.every(Number.isFinite)));
+  const styles=require('node:fs').readFileSync(require('node:path').join(root,'site/engine/styles.css'),'utf8');
+  assert.equal(/body\[data-page[^\n]*\.space-scene canvas[^\n]*opacity/.test(styles),false,'mounting a route cannot switch the shared Canvas opacity');
+});
 test('bounded curved edges follow the analytic ribbon more closely than straight facets',()=>{
   const vm=require('node:vm'),material=createRibbonMaterials(api,section,{packets:()=>[]});
   const projector=enabled=>vm.runInNewContext('('+makeProjector.toString()+')(api,section,material,enabled)',{

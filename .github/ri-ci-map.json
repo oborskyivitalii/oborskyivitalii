@@ -2,7 +2,7 @@
   "schema_version": 1,
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/45",
-    "summary": "2026-10-07 scoped formula contour and paint-only heading margin repair on709c6d0; maintained checks reused and one opt-in actualColor geometry/capture diagnostic. Original profiles/budgets/release boundaries retained.",
+    "summary": "2026-10-07 issue45 formula contour and paint-only heading margin repair plus authorized continuous-ribbon amendment: maintained world/material/phase and displayed-camera retarget/detail/lifecycle checks run through the owning acceptance policy and existing changed-source allocation. Exact-source visual/flight and 60-case geometry evidence stay separate. Original profiles/budgets/release boundaries retained.",
     "date": "2026-10-07"
   },
   "layers": [
@@ -359,7 +359,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "502402321fc54f70761719dd6160b72f7ac8e5e1b368e3bdfb11e09669eeda45",
+    "digest": "203bec8cc3b0c194ddc2133727afb6ecaa3e3a53afbd1bc400266b12c0cffe5f",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -399,7 +399,7 @@
       },
       {
         "path": ".github/acceptance/issue-45.json",
-        "sha256": "16f949bd6d128651a55da1412c990923af6bb841474d88f7dc02561d902ed547"
+        "sha256": "88b18196f9ab97f86f4e577def231ec190c97d7a40e48de87ad50f2955debdb4"
       },
       {
         "path": ".github/pull_request_template.md",
@@ -415,7 +415,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "efa17ac4b6784c9bcfa1bda797373fad8d5ac69b7b8acd7f900268fd98c6633f"
+        "sha256": "885841da5d3f76e8914ec99bcdbf7868f76f4080d5244fecd0c50ba7f3402b18"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -475,7 +475,7 @@
       },
       {
         "path": ".github/workflows/site-writing-probe.yml",
-        "sha256": "de61626634ae1f6a26afaf6f83833abcd9322aa7ebdeffb0ec1bee85f6961c56"
+        "sha256": "93db36afb905a677384124fc390da9e4f4dbd34a26924b816fe0d3f0c22df7b1"
       },
       {
         "path": "AGENTS.md",
@@ -535,7 +535,7 @@
       },
       {
         "path": "tests/test_issue45_acceptance.py",
-        "sha256": "b4133f8f3b003b045f97408547250fcae85c680c782291ec0bd37c18d2264399"
+        "sha256": "61f06767777b8042ec8a546627bfd0ad5a7048f272f54c47581eec88a56e092a"
       },
       {
         "path": "tests/test_issue_acceptance.py",
@@ -587,7 +587,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "68b02abb8bff05b47b8dbc3245167f957c03c62b2316ca1dc5e37dadb70f4aa9"
+        "sha256": "385ae690959378064769e033e5c7313fdfd591f8a4ed05df4ef6de513d5f163d"
       },
       {
         "path": "tools/repository_intelligence.py",

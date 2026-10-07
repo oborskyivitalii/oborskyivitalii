@@ -87,18 +87,25 @@ function makeProjector(api,section,material,smoothEdges=true){
     const camera=p=>{const x=p[0]-current.position[0],y=p[1]-current.position[1],z=p[2]-current.position[2];return [x*right[0]+y*right[1]+z*right[2],x*up[0]+y*up[1]+z*up[2],x*forward[0]+y*forward[1]+z*forward[2]];};
     const project=p=>[cx+p[0]*focal/p[2],cy-p[1]*focal/p[2],...p.slice(3)];
     const visible=points=>!points.every(p=>p[0]<-8)&&!points.every(p=>p[0]>width+8)&&!points.every(p=>p[1]<-8)&&!points.every(p=>p[1]>height+8);
-    const dark=document.documentElement.dataset.theme==='dark',shapes=[],step=compact?3:1.25+Math.max(0,Math.min(2,ribbonMesh))*.875,far=compact?64:105;
-    const start=Math.min(80,Math.ceil((current.position[2]+32)/step)*step),end=Math.max(-820,current.position[2]-(compact?96:132));
+    const dark=document.documentElement.dataset.theme==='dark',shapes=[],gridStep=compact?3:1.25,meshStride=compact?1:1+Math.round(Math.max(0,Math.min(2,ribbonMesh))),far=compact?64:105;
+    // LOD removes complete immutable world cells; it never stretches their
+    // sample lattice with the fractional quality tier. Nearby silhouettes keep
+    // their fine cells while only distant material is grouped more coarsely.
+    const startCell=Math.min(Math.floor(80/gridStep),Math.ceil((current.position[2]+32)/gridStep)),end=Math.max(-820,current.position[2]-(compact?96:132));
     for(let k=0;k<3;k++){
-      const m=material(k,dark,start,end,time,camera,far);
+      const m=material(k,dark,startCell*gridStep,end,time,camera,far);
       const verticesAt=z=>{
         const s=section(z,k,time),left=camera(s.left),right=camera(s.right),color=m.sample(z,(left[2]+right[2])/2);
         return [[...left,0,z,...color],[...right,1,z,...color]];
       };
-      let ac=verticesAt(start);
-      for(let z=start-step;z>=end;z-=step){
+      let cell=startCell,ac=verticesAt(cell*gridStep);
+      while((cell-1)*gridStep>=end){
+        const grouped=meshStride>1&&cell%meshStride===0&&ac.every(p=>p[2]>=12),stride=grouped?meshStride:1;
+        const nextCell=cell-stride,z=nextCell*gridStep,step=stride*gridStep;
+        if(z<end)break;
         const bc=verticesAt(z),vertices=[ac[0],ac[1],bc[1],bc[0]],depth=vertices.reduce((sum,p)=>sum+p[2],0)/4;
-        if(depth>1&&depth<far){
+        // A centre behind the near plane can still have a visible clipped end.
+        if(vertices.some(p=>p[2]>=1.5)&&depth<far){
           const clipped=clipPolygon(vertices,1.5),points=clipped.map(project);
           let curves;
           // Keep the same bounded mesh. Only large unclipped side edges need
@@ -114,7 +121,7 @@ function makeProjector(api,section,material,smoothEdges=true){
           }
           if(points.length>=3&&visible(curves?points.concat(curves):points))shapes.push({kind:'ribbon',points,curves,depth,ribbon:k,z,packets:m.packets.length});
         }
-        ac=bc;
+        ac=bc;cell=nextCell;
       }
     }
     return shapes;
@@ -157,10 +164,13 @@ function createSceneEffects(api,smoothEdges){
   const section=ribbonGeometry(api),signals=ribbonSignals(),materials=createRibbonMaterials(api,section,signals);
   const project=makeProjector(api,section,materials,smoothEdges);
   return {
-    collect({current,width,height,ambientTime,compact,scene,detailTier=0}){
+    collect({current,width,height,ambientTime,compact,scene,detailTier=0,journey=null}){
       const shapes=project(current,width,height,ambientTime,compact,detailTier);
       scene.dataset.ribbons="3";scene.dataset.ribbonMaterial="opaque-rgb";scene.dataset.ribbonFaces=String(shapes.length);
       scene.dataset.ribbonSignals=String([0,1,2].reduce((n,k)=>n+(shapes.find(shape=>shape.ribbon===k)?.packets||0),0));
+      // Opt-in QA observes actual submitted stations; an ordinary visitor does
+      // no trace construction, extra projection or work outside this clock.
+      if(window.SiteRibbonProbe)window.SiteRibbonProbe({current,width,height,ambientTime,compact,detailTier,gridStep:compact?3:1.25,meshStride:compact?1:1+Math.round(Math.max(0,Math.min(2,detailTier))),journey,shapes});
       return shapes;
     },
     paint(ctx,shape){if(shape.kind!=="ribbon")return false;paintRibbon(ctx,shape);return true;}

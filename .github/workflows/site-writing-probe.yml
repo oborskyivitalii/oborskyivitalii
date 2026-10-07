@@ -65,7 +65,7 @@ jobs:
         run: |
           npm ci --prefix tools/quality/toolchain --ignore-scripts
           tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium
-      - name: Check heading geometry and capture the actual formula
+      - name: Check heading geometry, formula and bounded ribbon flights
         run: node tools/quality/reading-clarity.cjs "$RUNNER_TEMP/clarity-input/candidate/public" "$RUNNER_TEMP/clarity-input/baseline/public" "$RUNNER_TEMP/reading-clarity"
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: always()

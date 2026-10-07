@@ -92,7 +92,7 @@ test('both explicit browser-gate artifacts keep exact Color parent lineage and c
 });
 test('unsupported renditions, repeated adaptation and missing or duplicated counterfactual anchors fail closed',()=>{
   assert.throws(()=>variants.patchRuntime(scripts,'browser-gate-unknown'),/unsupported Writing intervention/);
-  const anchors=['window.SiteScene={','      if(living)quality(renderCost,time);','shapes=[],step=compact?3:1.25+Math.max(0,Math.min(2,ribbonMesh))*.875,far=compact?64:105;'];
+  const anchors=['window.SiteScene={','      if(living)quality(renderCost,time);','meshStride=compact?1:1+Math.round(Math.max(0,Math.min(2,ribbonMesh)))'];
   for(const anchor of anchors){
     assert.throws(()=>variants.patchRuntime({'space.js':scripts['space.js'].replace(anchor,'/* controlled source drift */')},'browser-gate-fixed-ribbons'),/exactly once/);
     assert.throws(()=>variants.patchRuntime({'space.js':scripts['space.js']+'\n'+anchor},'browser-gate-fixed-ribbons'),/exactly once/);

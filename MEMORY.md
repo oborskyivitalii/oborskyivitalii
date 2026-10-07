@@ -21,10 +21,14 @@ Dated continuity, not live authority. Last verified: **2026-10-07**.
   Corrected #43 at072a7b8 passed four minimal CI runs and merged at76f2a78.
   PR #44 is now merged at709c6d0. One bounded
   joint staging run and current exact deployment are tracked in the live issues.
-- #45 owns formula-edge/heading reading margins on live main709c6d0.
-  [Current handoff](review/issue-45/2026-10-07-handoff.md) and independent source
-  review are prepared locally. Automatic review blocked Git push; no PR exists.
-  Next: maintainer authorization to push, create Draft PR and run scoped captures.
+- #45 owns formula-edge/heading reading margins and continuous Color ribbons
+  on live main709c6d0. [Draft PR #46](https://github.com/oborskyivitalii/oborskyivitalii/pull/46)
+  is open after explicit maintainer push/PR authorization, at660c5f1 initially
+  (same tested tree as local981597d). [Current handoff](review/issue-45/2026-10-07-handoff.md)
+  and independent review route its evidence. AC05/AC06 append first forward and
+  all reverse flight continuity, stable detail samples and camera retargeting.
+  Scoped ribbon repair and maintained checks are prepared. Next: verify final
+  mapped/CI checks and exact-source captures; visual acceptance remains open.
 - #36 places one tilted, pulsing formula in Writing's books/pages fractal,
   sharing its camera/clock and bounded cache. Rejected banner benchmarks are
   historical failures, not acceptance of this world-space implementation.
@@ -58,7 +62,7 @@ Dated continuity, not live authority. Last verified: **2026-10-07**.
 
 | Issue | Remaining intent |
 | --- | --- |
-| #45 | Formula contour/heading paint margin repair; exact CI/Color captures and visual/merge acceptance. |
+| #45 | Formula/heading/ribbon continuity repair in Draft PR46; exact CI/Color captures and visual/merge acceptance. |
 | #36 / #41 | #43/#44 merged; joint staging and paired/visual/editorial acceptance. |
 | #1 / #13 | First-release, physical-device and full production/recovery acceptance. |
 | #8 / #39 | Production URL/indexability, domains and analytics activation. |

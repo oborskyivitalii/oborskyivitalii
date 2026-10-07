@@ -70,6 +70,124 @@ function compare(before,after){
     }
   }
 }
+function installRibbonProbe({math,geometry,theme}){
+  const api=eval('('+math+')')(),section=eval('('+geometry+')')(api);
+  const trace={frames:[],events:[],leg:'boot',dropped:0,error:null};
+  const pose=value=>({position:[...value.position],target:[...value.target]});
+  const mark=(kind,detail={})=>{
+    const scene=document.querySelector('.space-scene');
+    trace.events.push({kind,time:performance.now(),leg:trace.leg,frame:trace.frames.length,camera:scene?.dataset.camera?JSON.parse(scene.dataset.camera):null,phase:Number(scene?.dataset.phase)||0,...detail});
+  };
+  trace.mark=mark;window.__readingRibbon=trace;
+  localStorage.setItem('vo.motion','on');localStorage.setItem('vo.theme',theme);localStorage.setItem('vo.content-flight','on');
+  window.SiteEngineProbe=event=>{if(['navigation-start','navigation-ready','layout'].includes(event.kind))mark(event.kind,{...event});};
+  window.addEventListener('site:page-mount',event=>mark('mount',{page:event.detail.page}));
+  window.SiteRibbonProbe=({current,width,height,ambientTime,compact,detailTier,gridStep,meshStride,journey,shapes})=>{
+    if(trace.frames.length>=1600){trace.dropped++;return;}
+    try{
+      const forward=api.normalize(api.sub(current.target,current.position)),right=api.normalize(api.cross(forward,[0,1,0])),up=api.cross(right,forward);
+      const focal=(compact?Math.min(height,width*1.15):height)/(2*Math.tan(Math.PI/8)),cx=width*(compact?.42:.66),cy=height*.48;
+      const stations=new Map(),selected=[],perRibbon=[0,0,0];
+      let residual=0,seam=0,colorSeam=0,checked=0,clipped=0;
+      for(const shape of shapes)for(const point of shape.points){
+        const side=Math.round(point[2]),z=point[3];
+        if(Math.abs(point[2]-side)>1e-8||Math.abs(z/gridStep-Math.round(z/gridStep))>1e-8){clipped++;continue;}
+        const key=shape.ribbon+'/'+side+'/'+z,world=section(z,shape.ribbon,ambientTime)[side===0?'left':'right'],relative=api.sub(world,current.position),depth=api.dot(relative,forward);
+        const expected=[cx+api.dot(relative,right)*focal/depth,cy-api.dot(relative,up)*focal/depth];
+        residual=Math.max(residual,Math.hypot(point[0]-expected[0],point[1]-expected[1]));checked++;
+        const previous=stations.get(key);
+        if(previous){seam=Math.max(seam,Math.hypot(point[0]-previous[0],point[1]-previous[1]));colorSeam=Math.max(colorSeam,...point.slice(4,7).map((v,i)=>Math.abs(v-previous[i+4])));}
+        else{
+          stations.set(key,point);
+          if(perRibbon[shape.ribbon]<8&&depth>=4&&expected[0]>-width*.2&&expected[0]<width*1.2&&expected[1]>-height*.2&&expected[1]<height*1.2){
+            selected.push({key,actual:point.slice(0,2),expected,world,depth});perRibbon[shape.ribbon]++;
+          }
+        }
+      }
+      trace.frames.push({time:performance.now(),leg:trace.leg,camera:pose(current),phase:ambientTime,width,height,compact,detailTier,gridStep,meshStride,journey:journey?{...journey,from:pose(journey.from),to:pose(journey.to)}:null,shapes:shapes.length,stations:stations.size,checked,clipped,residual,seam,colorSeam,selected});
+    }catch(error){trace.error=String(error.stack||error);}
+  };
+}
+function cameraDistance(a,b){return Math.hypot(...a.position.map((v,i)=>v-b.position[i]),...a.target.map((v,i)=>v-b.target[i]));}
+function validateRibbonTrace(trace,legs){
+  assert.equal(trace.error,null,'ribbon observer completed');assert.equal(trace.dropped,0,'bounded trace retained every observed paint');
+  assert.ok(trace.frames.length>20,'actual ribbon paints observed');
+  for(const row of trace.frames){
+    assert.ok(row.checked>0&&row.stations>0,'actual unclipped material stations');
+    assert.ok(row.residual<1e-5,'submitted stations keep their analytic world identity');
+    assert.ok(row.seam<1e-6&&row.colorSeam<1e-6,'shared material stations join exactly');
+    assert.equal(row.gridStep,row.compact?3:1.25,'viewport retains its fixed material lattice');
+    assert.ok([1,2,3].includes(row.meshStride),'bounded whole-cell adaptive grouping');
+  }
+  const deltas=[];
+  for(let i=1;i<trace.frames.length;i++){
+    const a=trace.frames[i-1],b=trace.frames[i],phase=(b.phase-a.phase+24000)%24000,wall=b.time-a.time;
+    assert.ok(phase<=wall+80,'shared ambient clock has no phase reset');
+    if(a.leg==='boot'&&b.leg==='boot')continue;
+    const speed=journey=>journey?2*cameraDistance(journey.to,journey.from)/journey.duration:0;
+    const distance=cameraDistance(a.camera,b.camera),bound=Math.max(speed(a.journey),speed(b.journey))*phase+1e-4;
+    assert.ok(distance<=bound,'painted camera follows a continuous bounded journey: '+b.leg);
+    deltas.push({from:i-1,to:i,phase,wall,distance,bound});
+  }
+  for(const leg of legs){
+    const start=trace.events.find(event=>event.leg===leg.id&&event.kind==='navigate-before');
+    assert.ok(start,leg.id+': navigation start observed');
+    const after=trace.events.find(event=>event.leg===leg.id&&event.kind==='navigate-after');
+    assert.ok(after,leg.id+': navigation handoff observed');
+    assert.deepEqual(after.camera,start.camera,leg.id+': navigation preserves displayed camera');assert.equal(after.phase,start.phase,leg.id+': navigation preserves displayed phase');
+    const frames=trace.frames.filter((row,index)=>row.leg===leg.id&&index>=start.frame),flying=frames.filter(row=>row.journey);
+    assert.ok(flying.length>=3,leg.id+': actual animated flight');
+    assert.equal(flying[0].journey.elapsed,0,leg.id+': first flight paint starts at elapsed zero');
+    assert.ok(cameraDistance(flying[0].camera,start.camera)<1e-8,leg.id+': first paint retains last displayed camera');
+    let progress=0;
+    for(const row of frames){const next=row.journey?row.journey.progressStart+(1-row.journey.progressStart)*row.journey.elapsed/row.journey.duration:1;assert.ok(next>=progress-1e-9,leg.id+': painted progress remains monotonic');progress=next;}
+    if(!leg.interrupted){
+      assert.ok(frames.some(row=>!row.journey),leg.id+': arrival paint retained');
+      assert.ok(trace.events.some(event=>event.leg===leg.id&&event.kind==='mount'&&event.page===leg.to),leg.id+': actual destination mounted');
+      assert.ok(trace.events.some(event=>event.leg===leg.id&&event.kind==='navigation-ready'&&event.page===leg.to),leg.id+': navigation arrived');
+    }
+  }
+  return {paints:trace.frames.length,stations:trace.frames.reduce((n,row)=>n+row.checked,0),maxProjectionResidual:Math.max(...trace.frames.map(row=>row.residual)),maxSeamError:Math.max(...trace.frames.map(row=>row.seam)),observedDetailTiers:[...new Set(trace.frames.map(row=>Number(row.detailTier.toFixed(3))))],deltas};
+}
+async function ribbonNavigation(browser,url,output,result){
+  const math=require('../../site/engine/math.cjs').toString(),geometry=require('../../review/site-scroll-sync-20261004/RIBBONS-PROTOTYPE.cjs').ribbonGeometry.toString();
+  result.navigation=[];result.ribbonReference={math:hash(math),geometry:hash(geometry),protocol:'Four fresh live Color contexts; actual paint commands and analytic world stations; all adjacent forward/reverse flights, midflight retarget and height reflow. No performance verdict.'};
+  for(const width of [390,1440])for(const theme of ['light','dark']){
+    const height=width===390?844:900,row={width,theme,pass:false,legs:[],errors:[]};result.navigation.push(row);
+    const context=await browser.newContext({viewport:{width,height},reducedMotion:'no-preference',recordVideo:{dir:path.join(output,'ribbon-video'),size:{width,height}}});
+    await context.addInitScript(installRibbonProbe,{math,geometry,theme});
+    const page=await context.newPage(),video=page.video();page.on('pageerror',error=>row.errors.push(error.message));
+    const ready=route=>page.waitForFunction(route=>document.body.dataset.page===route&&document.querySelector('.space-scene').dataset.ready==='true'&&document.querySelector('.space-scene').dataset.travel==='settled'&&!document.getElementById('site-content').hasAttribute('aria-busy'),route,{polling:25,timeout:8000});
+    const begin=async leg=>{
+      row.legs.push(leg);await page.evaluate(leg=>{window.__readingRibbon.leg=leg.id;window.__readingRibbon.mark('request',{to:leg.to});const href=leg.to==='index'?'./':leg.to+'.html';document.querySelector('.site-header nav a[href="'+href+'"]').click();},leg);
+    };
+    try{
+      await page.goto(url+'/index.html',{waitUntil:'load'});await ready('index');
+      assert.equal(await page.locator('meta[name="site-variant"]').getAttribute('content'),'color','navigation evidence uses actual Color artifact');
+      await page.evaluate(()=>{
+        const original=window.SiteScene.navigate;
+        window.SiteScene.navigate=function(...args){const trace=window.__readingRibbon;trace.mark('navigate-before',{to:args[0]});const result=original.apply(this,args);trace.mark('navigate-after',{to:args[0]});return result;};
+      });
+      let from='index';
+      for(const to of ['research','writing','talks','writing','research','index']){
+        const leg={id:from+'-'+to,from,to};await begin(leg);await ready(to);
+        await page.waitForFunction(id=>window.__readingRibbon.frames.filter(row=>row.leg===id&&!row.journey).length>=2,leg.id,{polling:25,timeout:2000});from=to;
+      }
+      await begin({id:'retarget-departure',from:'index',to:'research',interrupted:true});
+      await page.waitForFunction(()=>window.__readingRibbon.frames.some(row=>row.leg==='retarget-departure'&&row.journey&&row.journey.elapsed/row.journey.duration>.18),null,{polling:20,timeout:5000});
+      await begin({id:'retarget-arrival',from:'midflight-research',to:'talks'});
+      await page.waitForFunction(()=>window.__readingRibbon.frames.some(row=>row.leg==='retarget-arrival'&&row.journey&&row.journey.elapsed/row.journey.duration>.35),null,{polling:20,timeout:5000});
+      await page.evaluate(()=>window.__readingRibbon.mark('height-resize'));await page.setViewportSize({width,height:height-60});await ready('talks');
+      row.trace=await page.evaluate(()=>{const {frames,events,dropped,error}=window.__readingRibbon;return {frames,events,dropped,error};});
+      assert.ok(row.trace.frames.some(frame=>frame.leg==='retarget-arrival'&&frame.journey&&frame.height===height-60),'viewport reflow reached an actual flying paint');
+      row.summary=validateRibbonTrace(row.trace,row.legs);assert.deepEqual(row.errors,[]);row.pass=true;
+    }catch(error){row.error=String(error.stack||error);if(!row.trace)row.trace=await page.evaluate(()=>{const {frames,events,dropped,error}=window.__readingRibbon;return {frames,events,dropped,error};}).catch(()=>null);}
+    finally{
+      await context.close();row.video='ribbon-'+width+'-'+theme+'.webm';await video.saveAs(path.join(output,row.video));await video.delete();
+    }
+  }
+  assert.ok(result.navigation.every(row=>row.pass),'complete ribbon navigation evidence; inspect retained traces and clips');
+}
 async function main(){
   const [candidateArg,baselineArg,outputArg]=process.argv.slice(2);
   assert.ok(candidateArg&&baselineArg&&outputArg,'usage: reading-clarity.cjs candidate-public baseline-public report-directory');
@@ -114,13 +232,13 @@ async function main(){
       assert.equal(observed.formula.status,'ready');assert.equal(observed.formula.cacheBuilds,1);assert.equal(observed.formula.lastPaintCount,1);assert.equal(observed.formula.lastDrawSubmissions,24);assert.equal(observed.formula.bytes,1380*240*4);
       const file='formula-'+edition+'-'+width+'-'+theme+'.png';await page.screenshot({path:path.join(output,file)});result.captures.push(file);result.formula.push({edition,width,theme,file,observed});
     }
-    result.pass=true;
+    await ribbonNavigation(browser,fixture.url,output,result);result.pass=true;
   }catch(error){result.error=String(error.stack||error);process.exitCode=1;}
   finally{
     if(browser)await browser.close();if(fixture)await new Promise(resolve=>fixture.server.close(resolve));if(reference)await new Promise(resolve=>reference.server.close(resolve));
     fs.writeFileSync(path.join(output,'reading-clarity.json'),JSON.stringify(result,null,2)+'\n');
-    process.stdout.write(JSON.stringify({pass:result.pass,cases:result.cases.length,captures:result.captures.length,error:result.error||null,report:path.join(output,'reading-clarity.json')})+'\n');
+    process.stdout.write(JSON.stringify({pass:result.pass,cases:result.cases.length,captures:result.captures.length,navigation:result.navigation?.length||0,error:result.error||null,report:path.join(output,'reading-clarity.json')})+'\n');
   }
 }
 if(require.main===module)main().catch(error=>{process.stderr.write(String(error.stack||error)+'\n');process.exitCode=1;});
-module.exports={measure,compare,styles,readingStyle};
+module.exports={measure,compare,styles,readingStyle,validateRibbonTrace,ribbonNavigation};

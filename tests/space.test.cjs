@@ -31,6 +31,10 @@ function visit(options={}) {
   class MutationObserver{constructor(fn){this.callback=fn;}observe(_,options){if(options?.attributeFilter?.includes('data-theme'))mutation=this.callback;}disconnect(){}}
   window.MutationObserver=MutationObserver;
   if(options.probe)window.SiteEngineProbe=options.probe;
+  if(options.ribbonProbe){
+    window.SiteRibbonProbe=()=>{};
+    window.SiteEffects={contract:1,scene:()=>({collect:state=>{options.ribbonProbe(JSON.parse(JSON.stringify({current:state.current,ambientTime:state.ambientTime,journey:state.journey})));return [];},paint:()=>false})};
+  }
   const localStorage={getItem(){if(options.blockedStorage)throw Error("blocked");return stored;},setItem(_,value){if(options.blockedStorage)throw Error("blocked");stored=value;}};
   vm.runInNewContext(source,{document,window,localStorage});
   const api={window,document,button,canvas,scene,pending,calls,media,narrow,events,formulaConstructions:()=>formulaConstructions,
@@ -421,6 +425,39 @@ test("travel progress is emitted with the displayed camera, retargets cleanly an
   p.window.SiteScene.detachTravel();const detached=next.length;p.frame(80);assert.equal(next.length,detached);
   p.window.SiteScene.navigate("index",true,value=>next.push(value));p.drawingFault();p.frame(80);
   assert.equal(next.at(-1),1);assert.equal(p.pending.size,0);
+});
+
+test("midflight destination layout retargeting preserves the displayed camera and shared ribbon clock",()=>{
+  const paints=[],p=visit({ribbonProbe:state=>paints.push(state)});p.settle();
+  const records=[],before=p.trace(),phase=p.phase();
+  p.window.SiteScene.navigate('research',true,value=>records.push(value));p.frame(80);
+  assert.equal(p.trace(),before,'cold route preparation cannot advance before the first flight paint');
+  assert.ok(p.phase()>phase,'the existing ambient clock continues at flight start');assert.equal(records.at(-1),0);
+  for(let i=0;i<6;i++)p.frame(80);
+  const mountedCamera=p.trace(),mountedPhase=p.phase(),mountedProgress=records.at(-1);
+  p.document.body.dataset.page='research';p.window.scrollY=14100;
+  p.stops(Object.keys(model.pageStops.research).map((id,index)=>[id,index*1100]));p.window.SiteScene.refresh({sync:true});p.frame(0);
+  assert.equal(p.trace(),mountedCamera,'a destination bottom/history landing rebases rather than snapping the camera');
+  assert.equal(p.phase(),mountedPhase);assert.equal(records.at(-1),mountedProgress);
+  const retained=paints.at(-1).journey;
+  assert.deepEqual(JSON.parse(p.trace()),retained.from);assert.ok(retained.duration>0&&retained.duration<1300);
+  // A skipped RAF can advance the solver without painting. Cancellation must
+  // preserve actual displayed progress, not that newer unseen solver state.
+  p.frame(80);const displayedCamera=p.trace(),displayedPhase=p.phase(),displayedProgress=records.at(-1),paintCount=paints.length;
+  p.frame(10);assert.equal(paints.length,paintCount);p.hidden(true);p.frame(30000);p.hidden(false);p.frame(0);
+  assert.equal(p.trace(),displayedCamera);assert.equal(p.phase(),displayedPhase);assert.equal(records.at(-1),displayedProgress);
+  for(let i=0;i<30;i++)p.frame(80);
+  assert.deepEqual(JSON.parse(p.trace()),model.routePose('research',model.poses.closing));assert.equal(records.at(-1),1);
+  assert.ok(records.every((value,index)=>index===0||value>=records[index-1]),'layout/pause retargets keep painted progress monotone');
+  // Reversal before DOM mount targets a new route from the last real paint.
+  p.window.SiteScene.navigate('writing');for(let i=0;i<5;i++)p.frame(80);
+  const reversal=p.trace();p.window.SiteScene.navigate('index');p.document.body.dataset.page='index';p.window.scrollY=0;
+  p.stops(Object.keys(model.pageStops.index).map((id,index)=>[id,index*1100]));p.window.SiteScene.refresh({sync:true});p.frame(80);
+  assert.equal(p.trace(),reversal,'quick reversal plus synchronous layout retains its first displayed camera');
+  for(let i=0;i<30;i++)p.frame(80);
+  assert.deepEqual(JSON.parse(p.trace()),model.routePose('index',model.poses.overview));
+  assert.ok(paints.every(state=>[...state.current.position,...state.current.target].every(Number.isFinite)));
+  assert.ok(Number(p.scene.dataset.rooms)<=3&&Number(p.scene.dataset.roomModels)<=6);assert.equal(p.pending.size,1);
 });
 
 test("a route chosen before the reduced-motion change event paints its static arrival",()=>{

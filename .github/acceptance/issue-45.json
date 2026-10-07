@@ -55,6 +55,34 @@
         "G04",
         "G05"
       ]
+    },
+    {
+      "id": "AC05",
+      "intent": "Keep the first fresh-session Home to Research flight, subsequent adjacent forward flights and reverse Talks to Writing to Research to Home flights in one continuous ribbon world, without start, midpoint-mount or arrival resets.",
+      "automated_scope": "Maintained fixed-world-cell projection checks compare shared ribbon station IDs and projected contours across fractional adaptive tiers and forward/reverse route poses at narrow and desktop widths. Existing material checks retain world-anchored colors across mesh windows and near-plane clipping; periodic geometry/velocity checks retain the 24-second phase. The actual midflight DOM/layout camera fixture is shared with AC06. Fixtures establish mathematical and lifecycle invariants, not absence of a visible frame step in a browser.",
+      "checks": [
+        "RIBBON-CONTINUITY",
+        "CAMERA-RETARGET"
+      ],
+      "gates": [
+        "G06"
+      ]
+    },
+    {
+      "id": "AC06",
+      "intent": "Keep midflight layout and target changes and quick retargeting continuous from the displayed camera and shared ambient state; adaptive detail preserves existing ribbon samples and lifecycle/resource bounds.",
+      "automated_scope": "Maintained actual runtime fixtures exercise destination DOM/layout changes during flight, backward endpoint handling and resize retargeting without jumping the displayed camera or resetting the shared ribbon clock. Existing cases retain settled/adaptive flight detail, bounded multi-room preparation, stale-navigation cancellation, detail freezing, quality recovery and draw-failure completion. Shared ribbon, freeze and formula-cache/failure checks run once per unique selected check. Scoped hosted smoke, independent review and visual acceptance remain separate evidence.",
+      "checks": [
+        "CAMERA-RETARGET",
+        "RIBBON-CONTINUITY",
+        "LIFECYCLE",
+        "FORMULA-RENDERER"
+      ],
+      "gates": [
+        "G03",
+        "G04",
+        "G06"
+      ]
     }
   ],
   "checks": {
@@ -93,6 +121,14 @@
     "PENDING-GATE": {
       "kind": "unittest",
       "test": "test_issue_acceptance.AcceptanceRunnerTests.test_manual_only_criterion_is_pending"
+    },
+    "RIBBON-CONTINUITY": {
+      "kind": "unittest",
+      "test": "test_issue45_acceptance.Issue45AcceptanceTests.test_ribbon_world_samples_material_and_phase_stay_continuous"
+    },
+    "CAMERA-RETARGET": {
+      "kind": "unittest",
+      "test": "test_issue45_acceptance.Issue45AcceptanceTests.test_displayed_camera_retargets_keep_detail_clock_and_failure_bounds"
     }
   },
   "gates": {
@@ -115,6 +151,10 @@
     "G05": {
       "kind": "merge",
       "description": "Applicable maintainer decision, normal merge of the accepted candidate and exact merged-source reconciliation before closure. Passing checks or publishing a PR preview do not supply merge or production authorization."
+    },
+    "G06": {
+      "kind": "human",
+      "description": "Inspect a small exact-current-source Color browser sequence with retained frame evidence in Day/Night at desktop and narrow sizes. Begin with a fresh session and first Home to Research flight, continue all adjacent forward flights, then reverse Talks to Writing to Research to Home. Verify no repositioning, geometry/material/phase reset or opacity step at start, midpoint DOM mount or arrival; also inspect quick navigation and layout retargeting from the displayed camera. Record raw-head/public identity, scoped hosted smoke and actual observations; maintainer visual acceptance remains explicit and earlier-head or fixture evidence cannot close this gate."
     }
   }
 }

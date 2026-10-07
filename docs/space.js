@@ -1703,7 +1703,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
   let idleRate=30,costAverage=0,costSamples=0,cadenceSlow=0,cadenceFast=0,lastCadenceChange=0,detailTier=0,displayedTier=0;
   let tier=0,slow=0,fast=0,lastQualityChange=0,hold=false;
   const clock=()=>window.performance?.now()??Date.now();
-  let current=routePose(page,poses[initial]), animation=null, writingAnchor=null,displayedTime=0,displayedCamera=current,journey=null;
+  let current=routePose(page,poses[initial]), animation=null, writingAnchor=null,displayedTime=0,displayedCamera=current,displayedProgress=0,journey=null;
   let travelUpdate=null;
   let colors={cyan:"#075d7b",amber:"#895710",paper:"#f8f7f3"};
   let paletteRevision=0,colorFills=new Map();
@@ -1757,7 +1757,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     layoutDirty=false;const reasons=[...layoutReasons];layoutReasons.clear();
     const start=window.SiteEngineProbe?clock():0;measure();
     if(window.SiteEngineProbe)diagnostic('layout',{reasons,passes:layoutPasses,start,duration:clock()-start});
-    const target=scrollPose();if(journey)journey.to=target;else moveTo(target);
+    const target=scrollPose();if(journey)retargetJourney(target);else moveTo(target);
     nextDraw=null;
   }
   function invalidateLayout(reason) {
@@ -1823,11 +1823,11 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     if(pending!==null)window.cancelAnimationFrame(pending);
     pending=null;animation=null;lastFrame=null;nextDraw=null;
     ambientTime=displayedTime;current=displayedCamera;detailTier=displayedTier;
-    if(journey){journey.from=current;journey.elapsed=0;}
+    if(journey){rebaseJourney(journey.to,displayedProgress);journey.started=false;}
   }
   function moveTo(target) {
     if (!initialized || failed || hold || document.hidden || printing || !enabled) return;
-    if(journey){journey.to=target;return;}
+    if(journey){retargetJourney(target);return;}
     if(Math.hypot(...sub(current.position,target.position),...sub(current.target,target.target))<1e-6){animation=null;return;}
     // Retarget without resetting the frame clock. Resetting start on every scroll
     // event would keep the camera at t=0 during a continuous wheel/touch gesture.
@@ -1864,6 +1864,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     if(canvas.width!==w || canvas.height!==h){canvas.width=w;canvas.height=h;}
     ctx.setTransform(ratio,0,0,ratio,0,0);ctx.clearRect(0,0,width,height);
     const state={current,width,height,ambientTime,compact,scene,detailTier};
+    if(window.SiteRibbonProbe)state.journey=journey;
     const geometry=visibleRooms();span('draw-project');
     const custom=sceneEffects?.collect(state)||[];span('draw-effects');
     const shapes=geometry.concat(custom).sort((a,b)=>b.depth-a.depth);span('draw-sort');
@@ -1873,7 +1874,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     scene.style?.setProperty("--air-x",air.x.toFixed(3)+"px");
     scene.style?.setProperty("--air-y",air.y.toFixed(3)+"px");
     scene.style?.setProperty("--air-light",air.light.toFixed(5));
-    ctx.globalAlpha=1;scene.dataset.ready="true";displayedTime=ambientTime;displayedCamera=current;displayedTier=detailTier;
+    ctx.globalAlpha=1;scene.dataset.ready="true";displayedTime=ambientTime;displayedCamera=current;displayedTier=detailTier;displayedProgress=journeyProgress();
     scene.dataset.phase=String(ambientTime);scene.dataset.camera=JSON.stringify(current);scene.dataset.detail=String(detailTier);
     scene.dataset.route=page;scene.dataset.travel=journey?"flying":"settled";scene.dataset.rooms=String(rooms.size);
     scene.dataset.geometry=compact||detailTier>=.5?"compact":"full";
@@ -1921,11 +1922,31 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     else if(fast>=100 && tier>0){tier--;ratio=pixelRatio();slow=fast=0;lastQualityChange=time;}
     scene.dataset.quality=hold?"still":String(tier);
   }
+  function journeyProgress() {
+    return journey?journey.progressStart+(1-journey.progressStart)*clamp(journey.elapsed/journey.duration):1;
+  }
+  function rebaseJourney(target,progress=journeyProgress()) {
+    // Layout/history can change the destination after its DOM is mounted.
+    // Start the remaining segment at the actual current camera, preserving
+    // both the existing arrival deadline and monotonically painted progress.
+    const segment=clamp((progress-journey.progressStart)/Math.max(1e-12,1-journey.progressStart)),remaining=Math.max(1,journey.duration*(1-segment));
+    journey={from:current,to:target,elapsed:0,duration:remaining,progressStart:progress,started:journey.started};
+  }
+  function retargetJourney(target) {
+    if(Math.hypot(...sub(journey.to.position,target.position),...sub(journey.to.target,target.target))<1e-6)return;
+    rebaseJourney(target);
+  }
   function advanceJourney(delta,living) {
     if(journey&&living) {
-      journey.elapsed+=delta;
+      // A cold room preparation cannot consume the new flight before its first
+      // displayed frame. Ambient time still advances on the shared RAF clock.
+      if(journey.started)journey.elapsed+=delta;else journey.started=true;
       const t=clamp(journey.elapsed/journey.duration);
-      current=mix(journey.from,journey.to,smooth(t));
+      // Eased suffix of the original global progress. Cancelling its squared
+      // remaining factor avoids numerical division near arrival and keeps
+      // retargets moving instead of restarting smooth() at zero velocity.
+      const remainder=1-journey.progressStart,v=1-t,eased=1-v*v*(3-2*remainder*v)/(3-2*remainder);
+      current=mix(journey.from,journey.to,eased);
       if(t===1){current=journey.to;journey=null;}
     }
   }
@@ -1954,7 +1975,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       try{draw();}catch{fail();return;}
       const renderCost=clock()-start;
       // Text follows the painted camera, including skipped frames and stalls.
-      if(travelUpdate)reportTravel(journey?clamp(journey.elapsed/journey.duration):1);
+      if(travelUpdate)reportTravel(journeyProgress());
       nextDraw=nextDeadline(nextDraw,time,interval);
       // Decorative quality responds to rendering cost. The entire callback,
       // including route mount, is still measured by the outer frame/ready gate.
@@ -2032,10 +2053,10 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       if(reduced.matches&&enabled){enabled=false;cancel();updateControl();}
       const from=displayedCamera,sourcePage=page;page=next;focus="all";localProgress=0;writingAnchor=null;
       const target=pose(initialPoses[page]);
-      animation=null;current=from;
+      animation=null;current=from;displayedProgress=0;
       scene.dataset.direction=target.position[2]<from.position[2]?"forward":"backward";
       if(animate&&this.canTravel()){
-        journey={from,to:target,elapsed:0,duration:Math.min(1700,1000+Math.abs(target.position[2]-from.position[2])*2)};
+        journey={from,to:target,elapsed:0,duration:Math.min(1700,1000+Math.abs(target.position[2]-from.position[2])*2),progressStart:0,started:false};
       }else{journey=null;current=target;}
       scene.dataset.travel=journey?"flying":"settled";
       travelUpdate=update;

@@ -63,7 +63,6 @@ select,.motion-control,.filter-reset {min-height:44px;background:var(--paper);co
    Their only moving properties are driven by the scene's painted ambient phase. */
 .space-scene::before {content:"";position:absolute;inset:-6%;opacity:calc(.8 + var(--air-light,0));transform:translate3d(var(--air-x,0px),var(--air-y,0px),0);background:radial-gradient(ellipse 65% 62% at 88% 16%,color-mix(in srgb,var(--air) 94%,transparent),transparent 75%),radial-gradient(ellipse 60% 35% at 75% 82%,color-mix(in srgb,var(--bronze) 17%,transparent),transparent 82%),linear-gradient(180deg,transparent 22%,color-mix(in srgb,var(--air) 28%,transparent) 54%,transparent 83%)}
 .space-scene::after {content:"";position:absolute;inset:0;background:linear-gradient(90deg,color-mix(in srgb,var(--paper) 55%,transparent),transparent 64%);pointer-events:none}
-body[data-page="writing"] .space-scene canvas,body[data-page="credits"] .space-scene canvas {opacity:.82}
 .space-scene svg,.space-scene canvas {position:absolute;inset:0;width:100%;height:100%}
 .space-scene canvas {visibility:hidden}
 .space-scene[data-ready] canvas {visibility:visible}

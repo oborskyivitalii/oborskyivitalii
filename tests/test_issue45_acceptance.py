@@ -1,6 +1,6 @@
 """Issue 45 reuses maintained checks; measured browser and review gates stay open.
 
-These bounded selections prove formula/lifecycle/foreground source contracts.
+These bounded selections prove formula/ribbon/lifecycle/foreground contracts.
 They do not claim that the new contour or reading margins look right, that the
 60-case geometry diagnostic ran, or that a maintainer accepted the result.
 """
@@ -45,6 +45,18 @@ class Issue45AcceptanceTests(unittest.TestCase):
     def test_foreground_contrast_keeps_no_blur_or_independent_animation(self):
         node_checks(["tests/executive.test.cjs"], 1,
                     "^Day/Night semantic text and CTA pairs")
+
+    def test_ribbon_world_samples_material_and_phase_stay_continuous(self):
+        node_checks(["tests/ribbons.test.cjs"], 3,
+                    "^axial twist, position, pulse and velocity|^opaque RGB material|"
+                    "^fixed world cells keep projected ribbon stations stable")
+
+    def test_displayed_camera_retargets_keep_detail_clock_and_failure_bounds(self):
+        node_checks(["tests/space.test.cjs", "tests/navigation.test.cjs"], 7,
+                    "^midflight destination layout retargeting preserves|"
+                    "^flight models have their settled detail|^flight preparation preserves|"
+                    "^travel progress is emitted|^detail fades across a tier change|"
+                    "^quality recovery uses hysteresis|^retarget cancellation prevents")
 
 
 if __name__ == "__main__":

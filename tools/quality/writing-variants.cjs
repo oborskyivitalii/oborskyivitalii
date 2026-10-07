@@ -46,7 +46,7 @@ function patchBrowserGate(patch,label,source){
   patch('space.js','      if(living)quality(renderCost,time);',`      if(living)quality(renderCost,time);
       diagnostic("browser-gate-frame",{start,renderCost,...window.__browserGateScheduler,ribbonFaces:Number(scene.dataset.ribbonFaces||0),ribbonSignals:Number(scene.dataset.ribbonSignals||0)});`);
   if(label==='browser-gate-fixed-ribbons'){
-    patch('space.js','shapes=[],step=compact?3:1.25+Math.max(0,Math.min(2,ribbonMesh))*.875,far=compact?64:105;','shapes=[],step=compact?3:1.25,far=compact?64:105;');return;
+    patch('space.js','meshStride=compact?1:1+Math.round(Math.max(0,Math.min(2,ribbonMesh)))','meshStride=1');return;
   }
   if(label!=='browser-gate-adaptive-ribbons')return;
   assert.equal(source.includes('compact,scene,detailTier};'),false,'adaptive ribbons are public; use the fixed-mesh counterfactual, not a second adaptation');

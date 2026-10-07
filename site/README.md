@@ -59,9 +59,25 @@ history; the scene owns route progress and its actual arrival paint. Ambient pha
 scroll/topic pose and route flight remain separate. Off/reduced, visibility, print,
 failure, reflow and device-cost adaptation preserve the existing bounded behavior.
 Runtime projection omits subpixel facets; static SVG/model output keeps the complete
-geometry. Flights use compact facet models, then restore settled detail. Each of
-at most three active/pending rooms caches at most two detail variants; theme changes
+geometry. Flights prepare each room at its settled adaptive detail before the
+first painted flight frame. Each of at most three active/pending rooms caches
+at most two detail variants; theme changes
 repaint their color tables. No independent render loop or runtime dependency is added.
+
+Color ribbons share one route-independent world, material and ambient phase.
+Their immutable world grid uses 1.25-unit desktop cells (3-unit compact cells).
+Adaptive desktop detail groups whole cells at integer strides 1/2/3; it never
+moves retained samples, and near-plane contours retain fine cells. Visible
+crossing cells are clipped by their vertices instead of discarded by centroid.
+A route mount no longer changes shared Canvas opacity: Writing/Credits retain
+full Canvas opacity rather than their earlier 0.82 multiplier, raising
+their opacity by 18 percentage points and keeping ribbons continuous.
+A new flight first paints the displayed camera, while ambient time continues.
+Mounted layout/history retargets preserve the current camera and existing
+arrival deadline through a stable eased suffix; cancellation preserves actual
+painted travel progress as well as camera, phase and detail. Optional
+`SiteRibbonProbe` observations inspect actual submitted stations and journey
+state; ordinary visits construct no trace and add no independent clock.
 
 The Writing room has one original outlined paradigm landmark, sourced only from
 `assets/writing-paradigm.svg`. `tools/site/scene-assets.cjs` validates and compiles
@@ -70,7 +86,7 @@ sorted world-plane command with mild tilt, looped pulse and three shallow
 extrusion layers. At most24 perspective triangle submissions use the same cache, with native
 high-quality image sampling for minified glyphs. All three layers use the same
 world-haze opacity; extra translucent rear copies are omitted to avoid pale
-ghost edges. The landmark uses0.10 world-unit extrusion, keeping its projected
+ghost edges. The landmark uses 0.10 world-unit extrusion, keeping its projected
 rear-to-front separation below half the nominal glyph stroke at representative
 Writing entry/approach poses. The static SVG rendition follows the same shallow
 geometry and layer opacity. Cache
