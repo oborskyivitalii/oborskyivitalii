@@ -483,7 +483,15 @@ async function collectRow(browser, url, route, settings) {
     });
     await page.goto(`${url}/${route}.html`);
     await page.waitForFunction(
-      () => document.querySelector('.space-scene').dataset.ready === 'true'
+      () => {
+        const scene = document.querySelector('.space-scene');
+        // Geometry readiness precedes the first paint that publishes quality.
+        return (
+          scene.dataset.ready === 'true' &&
+          typeof scene.dataset.quality === 'string' &&
+          typeof scene.dataset.cadence === 'string'
+        );
+      }
     );
     await page.evaluate(() => {
       const scene = document.querySelector('.space-scene');

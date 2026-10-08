@@ -334,6 +334,8 @@ test('whole-window quality traces retain transient tier changes and reject missi
   assert.equal(metrics.compare(fixture(), candidate).observations[0].qualityComparable, false);
   for (const mutate of [
     (value) => (value.rows[0].qualityTrace = []),
+    (value) => delete value.rows[0].qualityTrace[0].quality,
+    (value) => delete value.rows[0].qualityTrace[0].cadence,
     (value) => (value.rows[0].qualityTrace[0].time = 50000),
     (value) => value.rows[0].qualityTrace.push({ time: -1, quality: 'full', cadence: '60' }),
   ]) {
