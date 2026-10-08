@@ -64,8 +64,10 @@ const fixedProtocol = {
   ...protocol,
   schema: 3,
   mode: 'fixed-diagnostic',
+  profiles: [protocol.profiles[1]],
   fixedControl,
-  lifecycleMode: 'unmodified-adaptive',
+  lifecycleCycles: 0,
+  lifecycleMode: 'not-collected-see-unmodified-adaptive-reports',
 };
 
 function walkSyntax(node, visit) {
@@ -440,6 +442,7 @@ function validateRow(row, report, fixed, limits) {
 function validateReport(report, expected, { limits = true } = {}) {
   assert.equal(report.schema, 1);
   const fixed = report.kind === 'refactor-metrics-fixed-diagnostic';
+  const observedProtocol = fixed ? fixedProtocol : protocol;
   assert.ok(fixed || report.kind === 'refactor-metrics', 'unsupported metric report');
   assert.equal(report.fullGate, false);
   assert.equal(report.performanceAcceptance, false);
@@ -447,11 +450,7 @@ function validateReport(report, expected, { limits = true } = {}) {
     report.target,
     fixed ? 'loopback-instrumented-public-artifact' : 'loopback-exact-public-artifact'
   );
-  assert.deepEqual(
-    report.protocol,
-    fixed ? fixedProtocol : protocol,
-    'measurement protocol changed'
-  );
+  assert.deepEqual(report.protocol, observedProtocol, 'measurement protocol changed');
   assert.deepEqual(report.budgets, budgets, 'original resource budgets changed');
   assert.deepEqual(report.collectorSources, collectorSources(), 'collector source changed');
   checkIdentity(report.identity, expected);
@@ -464,7 +463,9 @@ function validateReport(report, expected, { limits = true } = {}) {
   assert.equal(report.playwright, toolRequire('playwright/package.json').version);
   assert.deepEqual(
     report.rows.map((row) => ({ route: row.route, settings: row.settings })),
-    protocol.profiles.flatMap((settings) => protocol.routes.map((route) => ({ route, settings }))),
+    observedProtocol.profiles.flatMap((settings) =>
+      protocol.routes.map((route) => ({ route, settings }))
+    ),
     'missing/duplicate/out-of-order profile cases'
   );
   for (const row of report.rows) validateRow(row, report, fixed, limits);
@@ -499,6 +500,10 @@ function validateReport(report, expected, { limits = true } = {}) {
     assert.ok(row.raw > 0 && row.raw <= budgets.htmlRawBytes, 'HTML byte budget');
     assert.ok(row.totalGzipBytes > 0 && row.totalGzipBytes <= budgets.routeGzipBytes);
     assert.ok(row.svgNodes > 0 && row.svgNodes <= budgets.svgElements);
+  }
+  if (fixed) {
+    assert.equal(report.lifecycle, undefined, 'diagnostic must not duplicate lifecycle acceptance');
+    return true;
   }
   const cycle = report.lifecycle;
   assert.equal(cycle.cycles, protocol.lifecycleCycles);
@@ -859,11 +864,12 @@ async function collect(directory, destination, { fixed = false } = {}) {
   const source = identity(manifest);
   checkIdentity(source);
   let browser;
+  const observedProtocol = fixed ? fixedProtocol : protocol;
   const result = {
     schema: 1,
     kind: fixed ? 'refactor-metrics-fixed-diagnostic' : 'refactor-metrics',
     identity: source,
-    protocol: fixed ? fixedProtocol : protocol,
+    protocol: observedProtocol,
     budgets,
     browser: null,
     browserSettings: { engine: 'chromium', launch: launchOptions('chromium') },
@@ -886,13 +892,13 @@ async function collect(directory, destination, { fixed = false } = {}) {
   try {
     browser = await toolRequire('playwright').chromium.launch(result.browserSettings.launch);
     result.browser = browser.version();
-    for (const settings of protocol.profiles)
-      for (const route of protocol.routes) {
+    for (const settings of observedProtocol.profiles)
+      for (const route of observedProtocol.routes) {
         result.rows.push(await collectRow(browser, url, route, settings, fixedSource));
         save();
         process.stdout.write(`${source.variant.id} ${settings.id} ${route} measured\n`);
       }
-    result.lifecycle = await lifecycle(browser, url);
+    if (!fixed) result.lifecycle = await lifecycle(browser, url);
     artifact.verify(publicDir, manifest);
     assert.deepEqual(
       result.collectorSources,

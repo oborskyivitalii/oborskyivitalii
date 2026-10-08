@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "a19cec845fae8b7c47c94d3d934dbcabba7c696e416f8f164744ead5d2340116",
+    "digest": "033717ab79bf40e60cebf97ee4ca4778de62ddabfcf26f1829d06e47caaa2227",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -710,7 +710,7 @@
       {
         "path": "review/issue-58/2026-10-08-handoff.md",
         "identity_mode": "content",
-        "sha256": "abca500be474ffdfddcb499504313d548bd8bfa9d59121ef90695dab40994da6"
+        "sha256": "6192f4c252fc917ad43d9bea9638164edf570ac46c05b2b8b543361d5283f5c4"
       },
       {
         "path": "review/issue-58/2026-10-08-r3-r6-bandit.json",
@@ -5045,7 +5045,7 @@
       {
         "path": "tests/refactor-metrics.test.cjs",
         "identity_mode": "content",
-        "sha256": "ae2d56d6e2bc3a44ac3915f8ba22415354d7fb76f49b06d5ef8cbeec3553b405"
+        "sha256": "946a724e0bf41f124293e7d79f8279dfe230c32893f2e5c9a742c3b0fec71fc6"
       },
       {
         "path": "tests/renderer.test.cjs",
@@ -5535,7 +5535,7 @@
       {
         "path": "tools/quality/refactor-metrics.cjs",
         "identity_mode": "content",
-        "sha256": "959e4607c1064036f994663ea2fc7e50886d990c55ab4eb2bde990d1b0e25c64"
+        "sha256": "550f53b38d665b1946c1a4d2cb9026ad43f937f6c1a64fa3e7130d3d7df772c7"
       },
       {
         "path": "tools/quality/research-pair-probe.cjs",

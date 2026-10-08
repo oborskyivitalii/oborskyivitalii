@@ -193,6 +193,8 @@ function fixedFixture(candidate = false) {
   report.sizes.files['space.js'].sha256 = artifact.digest(fixedFixtureSource);
   report.identity.artifactDigest = artifact.digest(JSON.stringify(report.sizes.files));
   report.sizes.artifactDigest = report.identity.artifactDigest;
+  report.rows = report.rows.filter((row) => row.settings.id === 'mobile-x4');
+  delete report.lifecycle;
   for (const row of report.rows) {
     const settings = metrics.fixedControl[row.settings.id];
     const derivative = metrics.fixedRuntime(fixedFixtureSource, settings);
@@ -272,8 +274,10 @@ test('fixed-work evidence cannot become adaptive acceptance or omit actual serve
         value.rows[0].instrumentation.originalSHA256),
     (value) => (value.rows[0].instrumentation.requests[0].derivativeSHA256 = '0'.repeat(64)),
     (value) => (value.rows[0].qualityTrace[0].cadence = '30'),
-    (value) => (value.rows[2].qualityTrace[0].quality = '0'),
+    (value) => (value.rows[1].qualityTrace[0].quality = '0'),
     (value) => (value.protocol.fixedControl.desktop.cadenceHz = 1),
+    (value) => value.rows.push(structuredClone(value.rows[0])),
+    (value) => (value.lifecycle = fixture().lifecycle),
   ]) {
     const report = fixedFixture();
     mutate(report);
