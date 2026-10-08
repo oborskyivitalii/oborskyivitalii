@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: Apache-2.0
 """Issue #33 immutable task evidence, selected by that owning policy only."""
+
 import importlib.util
 import json
 import tempfile
@@ -47,32 +48,48 @@ class Issue33AcceptanceTests(unittest.TestCase):
 
     def test_locator_exceptions_do_not_allow_semantic_or_publication_edits(self):
         data = layout.read_json(REPO, layout.LAYOUT)
-        for path in ["site/README.md", "tools/quality/README.md", "site/content/catalog.json",
-                     ".github/workflows/site-color-review.yml"]:
+        for path in [
+            "site/README.md",
+            "tools/quality/README.md",
+            "site/content/catalog.json",
+            ".github/workflows/site-color-review.yml",
+        ]:
             expected = layout.allowed_locator_bytes(REPO, path, data)
             layout.validate_locator_content((REPO / path).read_bytes(), expected, path)
-            with self.subTest(path=path), self.assertRaisesRegex(ValueError, "Non-locator adaptation"):
+            with (
+                self.subTest(path=path),
+                self.assertRaisesRegex(ValueError, "Non-locator adaptation"),
+            ):
                 layout.validate_locator_content(expected + b"New semantic scope\n", expected, path)
         catalog = layout.allowed_locator_bytes(REPO, "site/content/catalog.json", data)
         modified = json.loads(catalog)
         modified["records"].pop(next(iter(modified["records"])))
         with self.assertRaisesRegex(ValueError, "Non-locator adaptation"):
-            layout.validate_locator_content(json.dumps(modified).encode(), catalog, "site/content/catalog.json")
+            layout.validate_locator_content(
+                json.dumps(modified).encode(), catalog, "site/content/catalog.json"
+            )
         expected = layout.allowed_full_workflow_bytes(REPO)
         self.assertEqual((REPO / layout.FULL_WORKFLOW).read_bytes(), expected)
         with self.assertRaisesRegex(ValueError, "Non-locator adaptation"):
-            layout.validate_locator_content(expected.replace(b"check node --test", b"# check node --test"),
-                                            expected, layout.FULL_WORKFLOW)
+            layout.validate_locator_content(
+                expected.replace(b"check node --test", b"# check node --test"),
+                expected,
+                layout.FULL_WORKFLOW,
+            )
 
     def test_policy_covers_six_criteria_and_separate_required_gates(self):
         acceptance = load_tool("issue_acceptance")
         policy, _ = acceptance.load_policy(REPO / ".github/acceptance/issue-33.json")
         self.assertEqual(policy["repository"], layout.REPOSITORY)
         self.assertEqual(policy["issue"], 33)
-        self.assertEqual([criterion["id"] for criterion in policy["criteria"]],
-                         [f"AC{number:02}" for number in range(1, 7)])
-        self.assertEqual({key: gate["kind"] for key, gate in policy["gates"].items()},
-                         {"G01": "human", "G02": "merge", "G03": "human"})
+        self.assertEqual(
+            [criterion["id"] for criterion in policy["criteria"]],
+            [f"AC{number:02}" for number in range(1, 7)],
+        )
+        self.assertEqual(
+            {key: gate["kind"] for key, gate in policy["gates"].items()},
+            {"G01": "human", "G02": "merge", "G03": "human"},
+        )
         self.assertEqual(policy["checks"]["NODE-BASIC"], {"kind": "node-basic"})
         workflow = (REPO / ".github/workflows/issue-acceptance.yml").read_text()
         for bound in ["--require-clean", "--expected-source", "if: always()", "fetch-depth: 0"]:

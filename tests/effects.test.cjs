@@ -13,11 +13,48 @@ const flight = require('../site/effects/flight.cjs');
 const ribbons = require('../site/effects/ribbons.cjs');
 const reading = require('../site/effects/reading-surfaces.cjs');
 
+test('offline attachment accepts formatted boundaries and rejects missing or duplicated contracts', () => {
+  const engine = 'a'.repeat(64),
+    version = 'b'.repeat(64);
+  const payload = {
+    revision: { routes: { index: { version } } },
+    pages: { index: '<meta name="site-variant" content="base">' },
+  };
+  const source =
+    '<html><head\n><meta name="site-effects-contract" content="1" />' +
+    `<meta name="site-engine" content="${engine}"><meta name="site-variant" content="base">` +
+    '</head\n><body><script type="application/json" id="site-pages">' +
+    JSON.stringify(payload) +
+    '</script></body\n></html>';
+  const part = {
+    id: 'probe',
+    effect: 'probe',
+    code: 'window.probe=1;',
+    styles: '<style>body{color:red}</style>',
+    bodyScripts: '<script>window.control=1;</script>',
+  };
+  const attached = variants.attach(source, part);
+  assert.equal((attached.match(/data-site-effect="probe"/g) || []).length, 1);
+  assert.ok(attached.includes(part.styles + '</head>'));
+  assert.ok(attached.includes(part.bodyScripts + '</body>'));
+  assert.equal(variants.identity(attached).id, 'probe');
+  for (const change of [
+    source.replace('content="1" />', 'content="2" />'),
+    source.replace('<head\n>', '<head><meta name="site-effects-contract" content="1">'),
+    source.replace('</body\n>', ''),
+    source.replace('</head\n>', '</head></head>'),
+  ])
+    assert.throws(() => variants.attach(change, part), /contract|boundary/);
+});
+
 test('explicit effect collection works with a frozen attachment API and returns fresh descriptors', () => {
   Object.freeze(variants);
   const first = color.authoredEffects();
   const second = color.authoredEffects();
-  assert.deepEqual(first.map(part => part.effect), ['travel']);
+  assert.deepEqual(
+    first.map((part) => part.effect),
+    ['travel']
+  );
   assert.deepEqual(first, second);
   const authored = flight.descriptor();
   assert.equal(second[0].code, authored.code, 'active travel retains the authored factory');
@@ -31,22 +68,50 @@ test('explicit effect collection works with a frozen attachment API and returns 
 test('the ordered raw effect contract rejects missing, duplicated, inactive and wrapped inputs', () => {
   const parts = effects.descriptors();
   const inactive = ribbons.descriptor();
-  for (const invalid of [null, [], [...parts, parts[0]], [inactive],
-    [inactive, ...parts], [...parts, inactive]]) {
+  for (const invalid of [
+    null,
+    [],
+    [...parts, parts[0]],
+    [inactive],
+    [inactive, ...parts],
+    [...parts, inactive],
+  ]) {
     assert.throws(() => effects.runtime(invalid));
   }
   for (const mutate of [
-    part => { delete part.css; },
-    part => { part.effect = 'unknown'; },
-    part => { part.code = ''; },
-    part => { part.code += '</ScRiPt>'; },
-    part => { part.controls = '</script>'; },
-    part => { part.css += '</style><script>unsafe()</script>'; },
-    part => { part.css = '<style>wrapped CSS</style>'; },
-    part => { part.controls = '<script>wrappedControls()</script>'; },
-    part => { part.head = '<script>unsafe()</script>'; },
-    part => { part.styles = '<style>second representation</style>'; },
-    part => { part.css = null; }
+    (part) => {
+      delete part.css;
+    },
+    (part) => {
+      part.effect = 'unknown';
+    },
+    (part) => {
+      part.code = '';
+    },
+    (part) => {
+      part.code += '</ScRiPt>';
+    },
+    (part) => {
+      part.controls = '</script>';
+    },
+    (part) => {
+      part.css += '</style><script>unsafe()</script>';
+    },
+    (part) => {
+      part.css = '<style>wrapped CSS</style>';
+    },
+    (part) => {
+      part.controls = '<script>wrappedControls()</script>';
+    },
+    (part) => {
+      part.head = '<script>unsafe()</script>';
+    },
+    (part) => {
+      part.styles = '<style>second representation</style>';
+    },
+    (part) => {
+      part.css = null;
+    },
   ]) {
     const invalid = structuredClone(parts);
     mutate(invalid[0]);
@@ -67,19 +132,22 @@ test('hosted assembly preserves authored JavaScript strings and CSS comments as 
   assert.ok(runtime.code.includes(codeMarker));
   assert.ok(runtime.styles.includes(cssMarker));
   assert.equal(runtime.controls, parts[0].controls);
-  vm.runInNewContext(runtime.code, {window: {}});
+  vm.runInNewContext(runtime.code, { window: {} });
 });
 
 test('serialized active effects retain travel hooks without constructing a ribbon scene', () => {
-  const window = {CSS: {supports: () => true}};
+  const window = { CSS: { supports: () => true } };
   const source = effects.runtime(effects.descriptors());
-  vm.runInNewContext(source.code, {window});
+  vm.runInNewContext(source.code, { window });
   new vm.Script(source.controls);
   assert.equal(window.SiteEffects.contract, 1);
   assert.equal(Object.hasOwn(window.SiteEffects, 'scene'), false);
-  assert.doesNotMatch(source.code, /ribbonGeometry|ribbonSignals|createRibbonMaterials|makeProjector|paintRibbon/);
+  assert.doesNotMatch(
+    source.code,
+    /ribbonGeometry|ribbonSignals|createRibbonMaterials|makeProjector|paintRibbon/
+  );
   assert.doesNotMatch(source.code, /SiteEffects\.scene\s*=/);
-  const content = {dataset: {}, style: {}, offsetTop: 0};
+  const content = { dataset: {}, style: {}, offsetTop: 0 };
   const presentation = window.SiteEffects.navigation(content);
   assert.equal(presentation.canTravel(), true);
   presentation.present(1, 'forward');
@@ -89,7 +157,7 @@ test('serialized active effects retain travel hooks without constructing a ribbo
 });
 
 test('offline adapters keep marker compatibility, safe serialization and duplicate admission', () => {
-  const {standalone} = require('../tools/site/export.cjs');
+  const { standalone } = require('../tools/site/export.cjs');
   const filename = path.join(__dirname, '../review/site-v1-20261004-v11-interactive.html');
   const base = standalone(fs.readFileSync(filename, 'utf8'));
   const ribbons = effects.decorateRibbons(base);
@@ -102,12 +170,15 @@ test('offline adapters keep marker compatibility, safe serialization and duplica
   }
   assert.throws(() => effects.decorateRibbons(ribbons), /duplicate offline ribbons/);
   assert.throws(() => effects.decorateFlight(color), /duplicate offline travel/);
-  assert.throws(() => effects.decorateRibbons(base, {smoothEdges: 'yes'}), /bounded ribbon smoothing/);
+  assert.throws(
+    () => effects.decorateRibbons(base, { smoothEdges: 'yes' }),
+    /bounded ribbon smoothing/
+  );
   assert.equal(variants.identity(effects.decorateFlight(base)).id, 'flight');
 });
 
 test('active offline Color keeps reading and travel while rejecting optional decorated inputs', () => {
-  const {standalone} = require('../tools/site/export.cjs');
+  const { standalone } = require('../tools/site/export.cjs');
   const filename = path.join(__dirname, '../review/site-v1-20261004-v11-interactive.html');
   const base = standalone(fs.readFileSync(filename, 'utf8'));
   const output = effects.decorateColor(base);
@@ -118,7 +189,10 @@ test('active offline Color keeps reading and travel while rejecting optional dec
   assert.match(output, /<style data-content-flight>/);
   assert.ok(output.includes(reading.surfaceCSS()));
   assert.doesNotMatch(output, /data-site-effect="ribbons"|data-ribbon-presentation/);
-  assert.doesNotMatch(output, /ribbonGeometry|createRibbonMaterials|paintRibbon|SiteEffects\.scene\s*=/);
+  assert.doesNotMatch(
+    output,
+    /ribbonGeometry|createRibbonMaterials|paintRibbon|SiteEffects\.scene\s*=/
+  );
   const payload = JSON.parse(output.match(/id="site-pages">([\s\S]*?)<\/script>/)[1]);
   assert.equal(payload.revision.engine, identity.fingerprint);
   for (const page of Object.values(payload.pages)) {
@@ -134,13 +208,20 @@ test('active offline Color keeps reading and travel while rejecting optional dec
 });
 
 test('maintained export emits the active Color rendition with exact variant and digest manifests', () => {
-  const {standalone, exportVariants} = require('../tools/site/export.cjs');
+  const { standalone, exportVariants } = require('../tools/site/export.cjs');
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'active-color-export-'));
   try {
     const files = exportVariants(directory);
-    assert.deepEqual(files, ['Vitalii-Oborskyi-Final.html', 'Vitalii-Oborskyi-Color-Prototype.html']);
-    const base = standalone(fs.readFileSync(
-      path.join(__dirname, '../review/site-v1-20261004-v11-interactive.html'), 'utf8'));
+    assert.deepEqual(files, [
+      'Vitalii-Oborskyi-Final.html',
+      'Vitalii-Oborskyi-Color-Prototype.html',
+    ]);
+    const base = standalone(
+      fs.readFileSync(
+        path.join(__dirname, '../review/site-v1-20261004-v11-interactive.html'),
+        'utf8'
+      )
+    );
     const expected = [base, effects.decorateColor(base)];
     for (const [index, file] of files.entries()) {
       const output = fs.readFileSync(path.join(directory, file), 'utf8');
@@ -148,13 +229,18 @@ test('maintained export emits the active Color rendition with exact variant and 
       assert.equal(output, expected[index]);
       assert.deepEqual(manifest.variant, variants.identity(output));
       assert.equal(manifest.bytes, Buffer.byteLength(output));
-      assert.equal(manifest.sha256,
-        require('node:crypto').createHash('sha256').update(output).digest('hex'));
+      assert.equal(
+        manifest.sha256,
+        require('node:crypto').createHash('sha256').update(output).digest('hex')
+      );
     }
-    assert.deepEqual(exportVariants(directory, {variant: 'base'}), [files[0]]);
-    assert.deepEqual(exportVariants(directory, {variant: 'color'}), [files[1]]);
-    assert.throws(() => exportVariants(directory, {variant: 'ribbons'}), /explicit base\/color variant/);
+    assert.deepEqual(exportVariants(directory, { variant: 'base' }), [files[0]]);
+    assert.deepEqual(exportVariants(directory, { variant: 'color' }), [files[1]]);
+    assert.throws(
+      () => exportVariants(directory, { variant: 'ribbons' }),
+      /explicit base\/color variant/
+    );
   } finally {
-    fs.rmSync(directory, {recursive: true, force: true});
+    fs.rmSync(directory, { recursive: true, force: true });
   }
 });

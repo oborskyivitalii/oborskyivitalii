@@ -16,10 +16,6 @@
       "@type": "ItemList"
     }
   },
-  "blocks": [
-    "section-1",
-    "results-year-2026",
-    "results-year-2025"
-  ],
+  "blocks": ["section-1", "results-year-2026", "results-year-2025"],
   "catalogList": true
 }

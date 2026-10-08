@@ -1587,6 +1587,68 @@
         "tests/effects.test.cjs",
         "tests/color-build.test.cjs"
       ]
+    },
+    {
+      "path": "tests/format-parity.test.cjs",
+      "language": "javascript",
+      "purpose": "Source-language semantic equivalence and behavior-change rejection across JS/Python/JSON/YAML/CSS/HTML",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": [
+        "pr-targeted",
+        "staging",
+        "production"
+      ],
+      "disposition": "permanent R2 control with meaningful violation cases; no duplicate hosted matrix",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/format-parity.test.cjs",
+        "tools/quality/format*",
+        "tools/quality/prettier.config.json",
+        "tools/quality/ruff-format.toml",
+        "tools/quality/toolchain/package.json",
+        ".github/repository-paths.json"
+      ]
+    },
+    {
+      "path": "tests/format.test.cjs",
+      "language": "javascript",
+      "purpose": "Complete maintained formatter inventory, exact pins/options, drift and idempotence rejection",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": [
+        "pr-targeted",
+        "staging",
+        "production"
+      ],
+      "disposition": "permanent R2 control with meaningful violation cases; no duplicate hosted matrix",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/format.test.cjs",
+        "tools/quality/format*",
+        "tools/quality/prettier.config.json",
+        "tools/quality/ruff-format.toml",
+        "tools/quality/toolchain/package.json",
+        ".github/repository-paths.json"
+      ]
+    },
+    {
+      "path": "tests/test_issue58_acceptance.py",
+      "language": "python",
+      "purpose": "Issue58 fixed R2 formatter/semantic/scanner-coverage/serialization/budget phase mapping",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": [
+        "issue-policy"
+      ],
+      "disposition": "fixed R2 baseline only; not a routine formatting blocker for intentional later phases",
+      "surviving_route": ".github/acceptance/issue-58.json",
+      "inputs": [
+        "tests/test_issue58_acceptance.py",
+        ".github/acceptance/issue-58.json",
+        "review/issue-58/2026-10-08-handoff.md",
+        "tools/quality/format*"
+      ]
     }
   ]
 }

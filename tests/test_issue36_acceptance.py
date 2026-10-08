@@ -27,11 +27,16 @@ def validate_asset(data):
     root = ET.fromstring(data)
     assert root.tag == NS + "svg"
     assert root.attrib == {
-        "width": "1380", "height": "240", "viewBox": "0 0 1380 240",
-        "role": "img", "aria-labelledby": "title description",
+        "width": "1380",
+        "height": "240",
+        "viewBox": "0 0 1380 240",
+        "role": "img",
+        "aria-labelledby": "title description",
     }
     allowed = {
-        "svg": set(root.attrib), "title": {"id"}, "desc": {"id"},
+        "svg": set(root.attrib),
+        "title": {"id"},
+        "desc": {"id"},
         "defs": set(),
         "linearGradient": {"id", "x1", "y1", "x2", "y2", "gradientUnits"},
         "stop": {"offset", "stop-color"},
@@ -42,7 +47,7 @@ def validate_asset(data):
     assert len(elements) <= 40, "element budget"
     for element in elements:
         assert element.tag.startswith(NS), "foreign namespace"
-        tag = element.tag[len(NS):]
+        tag = element.tag[len(NS) :]
         assert tag in allowed, "external, executable or expensive element"
         assert set(element.attrib) <= allowed[tag], "unapproved SVG attribute"
     assert root.find(NS + "title").text == EXPRESSION, "expression metadata"
@@ -50,7 +55,11 @@ def validate_asset(data):
     assert sorted(ids) == ["description", "ribbon", "title"], "local identity"
     gradient = root.find(f"{NS}defs/{NS}linearGradient")
     assert gradient.attrib == {
-        "id": "ribbon", "x1": "50", "y1": "0", "x2": "1330", "y2": "0",
+        "id": "ribbon",
+        "x1": "50",
+        "y1": "0",
+        "x2": "1330",
+        "y2": "0",
         "gradientUnits": "userSpaceOnUse",
     }, "continuous world-independent asset gradient"
     stops = gradient.findall(NS + "stop")
@@ -58,8 +67,11 @@ def validate_asset(data):
     assert [stop.get("offset") for stop in stops] == ["0", "0.34", "0.64", "1"]
     group = root.find(NS + "g")
     assert group.attrib == {
-        "fill": "none", "stroke": "url(#ribbon)", "stroke-width": "14",
-        "stroke-linecap": "round", "stroke-linejoin": "round",
+        "fill": "none",
+        "stroke": "url(#ribbon)",
+        "stroke-width": "14",
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round",
     }, "transparent stroke-only composition"
     paths = group.findall(NS + "path")
     assert "".join(path.get("data-glyph", "") for path in paths) == EXPRESSION.replace(" ", "")
@@ -76,11 +88,13 @@ def validate_asset(data):
             command = tokens[index]
             assert command in {"M", "L", "H", "V", "C"}, "explicit commands required"
             count = {"M": 2, "L": 2, "H": 1, "V": 1, "C": 6}[command]
-            values = [float(value) for value in tokens[index + 1:index + count + 1]]
+            values = [float(value) for value in tokens[index + 1 : index + count + 1]]
             assert len(values) == count
             for axis, value in enumerate(values):
                 limit = 240 if command == "V" or (command != "H" and axis % 2) else 1380
-                assert math.isfinite(value) and inset <= value <= limit - inset, "clipped control geometry"
+                assert math.isfinite(value) and inset <= value <= limit - inset, (
+                    "clipped control geometry"
+                )
             commands += 1
             index += count + 1
     assert commands <= 80, "path command budget"
@@ -123,11 +137,16 @@ def node_checks(files, expected, pattern=None):
     arguments = ["node", "--test", "--test-reporter=tap"]
     if pattern:
         arguments.append("--test-name-pattern=" + pattern)
-    result = subprocess.run(arguments + files, cwd=ROOT, text=True,
-                            capture_output=True, check=False, timeout=120)
+    result = subprocess.run(
+        arguments + files, cwd=ROOT, text=True, capture_output=True, check=False, timeout=120
+    )
     assert result.returncode == 0, result.stdout + result.stderr
-    counts = {key: int(value) for key, value in re.findall(
-        r"^# (tests|pass|fail|skipped|cancelled|todo) (\d+)$", result.stdout, re.M)}
+    counts = {
+        key: int(value)
+        for key, value in re.findall(
+            r"^# (tests|pass|fail|skipped|cancelled|todo) (\d+)$", result.stdout, re.M
+        )
+    }
     assert counts.get("tests") == expected, (counts, result.stdout)
     assert counts.get("pass") == expected, (counts, result.stdout)
     assert all(counts.get(key) == 0 for key in ["fail", "skipped", "cancelled", "todo"])
@@ -135,12 +154,16 @@ def node_checks(files, expected, pattern=None):
 
 class Issue36RuntimeTests(unittest.TestCase):
     def test_scene_producer_projection_and_immutable_artwork(self):
-        node_checks(["tests/site-engine.test.cjs"], 5,
-                    "^the canonical formula|^Writing formula is|^embedded formula artwork|^missing canonical formula|^formula media declaration")
+        node_checks(
+            ["tests/site-engine.test.cjs"],
+            5,
+            "^the canonical formula|^Writing formula is|^embedded formula artwork|^missing canonical formula|^formula media declaration",
+        )
 
     def test_single_bounded_cache_depth_order_and_failure_containment(self):
-        node_checks(["tests/renderer.test.cjs"], 2,
-                    "^one fixed formula cache|^formula raster failure")
+        node_checks(
+            ["tests/renderer.test.cjs"], 2, "^one fixed formula cache|^formula raster failure"
+        )
 
     def test_source_bound_performance_validator_and_adversarial_reports(self):
         node_checks(["tests/writing-paradigm-quality.test.cjs"], 5)

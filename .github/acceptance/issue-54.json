@@ -9,32 +9,20 @@
       "intent": "Source-grounded implementation audit.",
       "automated_scope": "No keyword test is used as proof of audit quality. Exact-base findings, dependency scope, retained strengths, priorities and limits are reviewed in the versioned analysis.",
       "checks": [],
-      "gates": [
-        "G01"
-      ]
+      "gates": ["G01"]
     },
     {
       "id": "AC02",
       "intent": "Separate actionable code style guide.",
       "automated_scope": "Mandatory entry routes are checked. Stable rule meaning, applicability, dynamic/Canvas/generated exceptions and the distinction between automatic/review/legacy obligations require substantive review.",
-      "checks": [
-        "AGENT-ROUTES"
-      ],
-      "gates": [
-        "G01"
-      ]
+      "checks": ["AGENT-ROUTES"],
+      "gates": ["G01"]
     },
     {
       "id": "AC03",
       "intent": "Mandatory agent and RI routing.",
       "automated_scope": "Actual code-path and bilingual contexts resolve the guide and commands through fresh RI. Tests reject missing owned-control coverage and stale mapped source. Current CI mapping verifies unconditional invocations; templates/AGENTS retain mandatory routes.",
-      "checks": [
-        "RI-STYLE-ROUTES",
-        "AGENT-ROUTES",
-        "CI-CURRENT",
-        "CI-OWNERS",
-        "CI-STALE"
-      ],
+      "checks": ["RI-STYLE-ROUTES", "AGENT-ROUTES", "CI-CURRENT", "CI-OWNERS", "CI-STALE"],
       "gates": []
     },
     {
@@ -60,21 +48,14 @@
       "intent": "Ordered Sol refactor plan.",
       "automated_scope": "The plan is reviewed for source owners, priorities, dependencies, parity contracts, scope limits and measurable done conditions. Tests cannot certify the quality or execution of future architectural work.",
       "checks": [],
-      "gates": [
-        "G01"
-      ]
+      "gates": ["G01"]
     },
     {
       "id": "AC06",
       "intent": "Reviewable delivery and honest reconciliation.",
       "automated_scope": "Basic and current RI/CI checks establish local source contracts. Live Draft/commit/CI links, actual checkboxes, unchanged runtime/content/public diff and truthful review status are external evidence. Merge and broad refactor execution are not supplied by this policy.",
-      "checks": [
-        "BASIC",
-        "CI-CURRENT"
-      ],
-      "gates": [
-        "G02"
-      ]
+      "checks": ["BASIC", "CI-CURRENT"],
+      "gates": ["G02"]
     }
   ],
   "checks": {

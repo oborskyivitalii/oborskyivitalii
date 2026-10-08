@@ -11,7 +11,7 @@
       "issue": 56,
       "removalTask": "R5 in issue54 refactor plan",
       "reason": "Existing projectRibbons closure was outside ESLint coverage in review/. R1 preserves its serialized bytes; R5 will simplify projection/state with geometry parity.",
-      "source_sha256": "8eba51bf47d11d482de1bae12b6a73f7ecd702e2edc169a5ed4eeb5d32bc18dc",
+      "source_sha256": "baa9bb1b5deae140ea222144c73d3a2978ba445eb28a1267fac530222ce0bc92",
       "baseline": {
         "commit": "e501da821c1cf9a3ac4bc8d251aba1bf4dc57d59",
         "path": "review/site-scroll-sync-20261004/RIBBONS-PROTOTYPE.cjs",

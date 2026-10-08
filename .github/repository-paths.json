@@ -415,42 +415,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62": {
-      "kind": "directory",
-      "purpose": "Generated immutable runtime identity directory.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/archive.js": {
-      "kind": "file",
-      "purpose": "Generated immutable shared runtime dependency.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/navigation.js": {
-      "kind": "file",
-      "purpose": "Generated immutable shared runtime dependency.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/space.js": {
-      "kind": "file",
-      "purpose": "Generated immutable shared runtime dependency.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/styles.css": {
-      "kind": "file",
-      "purpose": "Generated immutable shared runtime dependency.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/theme.js": {
-      "kind": "file",
-      "purpose": "Generated immutable shared runtime dependency.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/site-revision.json": {
       "kind": "file",
       "purpose": "Generated public rendition: site-revision.json; regenerate from site sources with tools/site/build.cjs.",
@@ -463,18 +427,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347": {
-      "kind": "directory",
-      "purpose": "Generated immutable route snapshot identity directory.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html": {
-      "kind": "file",
-      "purpose": "Generated immutable route snapshot.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa": {
       "kind": "directory",
       "purpose": "Current immutable content-addressed route snapshot; generated from the exact maintained Talks content.",
@@ -484,42 +436,6 @@
     "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html": {
       "kind": "file",
       "purpose": "Generated immutable Talks route snapshot; regenerate from site sources with tools/site/build.cjs.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68": {
-      "kind": "directory",
-      "purpose": "Generated immutable route snapshot identity directory.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html": {
-      "kind": "file",
-      "purpose": "Generated immutable route snapshot.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946": {
-      "kind": "directory",
-      "purpose": "Generated immutable route snapshot identity directory.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html": {
-      "kind": "file",
-      "purpose": "Generated immutable route snapshot.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7": {
-      "kind": "directory",
-      "purpose": "Generated immutable route snapshot identity directory.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html": {
-      "kind": "file",
-      "purpose": "Generated immutable route snapshot.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -7230,6 +7146,186 @@
       "purpose": "Shared issue58 refactor handoff: R2 phase subconditions mapped to stable AC01-AC10, source/semantic/security tasks and pending evidence.",
       "role": "history",
       "owner": ".github/ACCEPTANCE.md"
+    },
+    "docs/runtime/39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime identity directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e/archive.js": {
+      "kind": "file",
+      "purpose": "Generated immutable shared runtime dependency.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e/navigation.js": {
+      "kind": "file",
+      "purpose": "Generated immutable shared runtime dependency.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e/space.js": {
+      "kind": "file",
+      "purpose": "Generated immutable shared runtime dependency.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e/styles.css": {
+      "kind": "file",
+      "purpose": "Generated immutable shared runtime dependency.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e/theme.js": {
+      "kind": "file",
+      "purpose": "Generated immutable shared runtime dependency.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/0f64b7dca6d749808ef34136589a158b2501f1dff6ae2680a13c84b3ececb0cf": {
+      "kind": "directory",
+      "purpose": "Generated immutable route snapshot identity directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/0f64b7dca6d749808ef34136589a158b2501f1dff6ae2680a13c84b3ececb0cf/credits.html": {
+      "kind": "file",
+      "purpose": "Generated immutable route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/1ed424eccca099454bd709f1455a597fa92697aab9084488882b36bd08585cf7": {
+      "kind": "directory",
+      "purpose": "Generated immutable route snapshot identity directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/1ed424eccca099454bd709f1455a597fa92697aab9084488882b36bd08585cf7/research.html": {
+      "kind": "file",
+      "purpose": "Generated immutable route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/7b4ca6b2bcd7ca3754325686d411b8e31f15c00e87dd765bfaefc01a01e5c49a": {
+      "kind": "directory",
+      "purpose": "Generated immutable route snapshot identity directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/7b4ca6b2bcd7ca3754325686d411b8e31f15c00e87dd765bfaefc01a01e5c49a/talks.html": {
+      "kind": "file",
+      "purpose": "Generated immutable route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/c4035cecbd6221289e055a73b7f95d377920ecd7c82877a64887bebf7ee9f01a": {
+      "kind": "directory",
+      "purpose": "Generated immutable route snapshot identity directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/c4035cecbd6221289e055a73b7f95d377920ecd7c82877a64887bebf7ee9f01a/index.html": {
+      "kind": "file",
+      "purpose": "Generated immutable route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/c7382110dabbb377e484838477e7133de088ef9203d4bc8173386c01f134810f": {
+      "kind": "directory",
+      "purpose": "Generated immutable route snapshot identity directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/c7382110dabbb377e484838477e7133de088ef9203d4bc8173386c01f134810f/writing.html": {
+      "kind": "file",
+      "purpose": "Generated immutable route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "review/issue-58/2026-10-08-bandit-rebinding.json": {
+      "kind": "file",
+      "purpose": "Exact reviewed R2 Bandit finding equivalence, unchanged trust boundary and source/line rebinding proof.",
+      "role": "history",
+      "owner": "tools/quality/README.md"
+    },
+    "review/issue-58/2026-10-08-scanner-rebinding.json": {
+      "kind": "file",
+      "purpose": "R2 lint complexity, advisory source/lock and security fingerprint review; current final-scan status explicit.",
+      "role": "history",
+      "owner": "tools/quality/README.md"
+    },
+    "review/issue-58/2026-10-08-visual-captures.json.gz": {
+      "kind": "file",
+      "purpose": "Compressed immutable raw record of the eight independently inspected paired R2 viewport captures; uncompressed digest is bound by visual-parity summary.",
+      "role": "history",
+      "owner": "review/issue-58/2026-10-08-visual-parity.json"
+    },
+    "review/issue-58/2026-10-08-visual-parity.json": {
+      "kind": "file",
+      "purpose": "Independent eight paired Home/Writing Day/Night desktop/narrow viewport captures with exact served bytes, geometry/text and zero pixel differences; dirty checkpoint and bounded limitations explicit.",
+      "role": "history",
+      "owner": "review/issue-58/2026-10-08-handoff.md"
+    },
+    "tests/format-parity.test.cjs": {
+      "kind": "file",
+      "purpose": "Permanent semantic formatting equivalence and changed-language-behavior negative fixtures.",
+      "role": "test",
+      "owner": "tools/quality/README.md"
+    },
+    "tests/format.test.cjs": {
+      "kind": "file",
+      "purpose": "Permanent formatter inventory/configuration/pin/drift/idempotence adversarial contracts.",
+      "role": "test",
+      "owner": "tools/quality/README.md"
+    },
+    "tests/test_issue58_acceptance.py": {
+      "kind": "file",
+      "purpose": "Issue58 phase-specific R2 exact formatter/semantic/source/serialization evidence; selected by the shared owning policy only.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "tools/quality/format-parity-controls.json": {
+      "kind": "file",
+      "purpose": "Exact independently reviewed R2 control integration exceptions to mechanical AST/value parity; no site behavior source excluded.",
+      "role": "configuration",
+      "owner": "tools/quality/README.md"
+    },
+    "tools/quality/format-parity.cjs": {
+      "kind": "file",
+      "purpose": "Source-bound mechanical semantic comparison of JS/Python/JSON/YAML/CSS/HTML against an immutable Git baseline.",
+      "role": "validator",
+      "owner": "tools/quality/README.md"
+    },
+    "tools/quality/format-parity.py": {
+      "kind": "file",
+      "purpose": "Pinned Python AST, ordered JSON/YAML and whitespace-sensitive HTML semantic comparison helper; reads bounded explicit source inputs.",
+      "role": "validator",
+      "owner": "tools/quality/README.md"
+    },
+    "tools/quality/format-scope.json": {
+      "kind": "file",
+      "purpose": "Declared maintained formatter languages/roots, tool versions and exact generated/history/ledger exclusions.",
+      "role": "configuration",
+      "owner": "tools/quality/README.md"
+    },
+    "tools/quality/format.cjs": {
+      "kind": "file",
+      "purpose": "Complete tracked/catalogued six-language formatter inventory and exact pinned Prettier/Ruff write/check controller.",
+      "role": "validator",
+      "owner": "tools/quality/README.md"
+    },
+    "tools/quality/prettier.config.json": {
+      "kind": "file",
+      "purpose": "Explicit LF/two-space/100-column strict-whitespace Prettier configuration; opaque embedded literals are preserved.",
+      "role": "configuration",
+      "owner": "tools/quality/README.md"
+    },
+    "tools/quality/ruff-format.toml": {
+      "kind": "file",
+      "purpose": "Explicit Python four-space formatting configuration, independent of isolated Ruff lint rule selection.",
+      "role": "configuration",
+      "owner": "tools/quality/README.md"
     }
   }
 }

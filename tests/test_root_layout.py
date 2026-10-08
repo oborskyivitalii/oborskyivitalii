@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: Apache-2.0
 """Maintained root/guide routes and failure cases, without freezing future content."""
+
 import copy
 import importlib.util
 import json
@@ -35,15 +36,24 @@ class RootLayoutTests(unittest.TestCase):
         for path in self.data["active_markdown"]:
             relative = os.path.relpath(self.root / "AGENTS.md", (self.root / path).parent)
             self.write(path, "# Active route\n\n[Agent rules](" + relative + ")\n")
-        self.write("tools/repository_intelligence.py", (REPO / "tools/repository_intelligence.py").read_bytes())
-        entries = {path.relative_to(self.root).as_posix(): {
-            "role": "guide", "owner": path.relative_to(self.root).as_posix()}
-                   for path in self.root.rglob("*.md")}
+        self.write(
+            "tools/repository_intelligence.py",
+            (REPO / "tools/repository_intelligence.py").read_bytes(),
+        )
+        entries = {
+            path.relative_to(self.root).as_posix(): {
+                "role": "guide",
+                "owner": path.relative_to(self.root).as_posix(),
+            }
+            for path in self.root.rglob("*.md")
+        }
         for row in self.archive["records"]:
             entries[row["archive_path"]] = {"role": "history", "owner": row["current_owner"]}
         self.write(".github/repository-paths.json", json.dumps({"entries": entries}))
-        self.config = {"owners": [{"path": "AGENTS.md"}, {"path": "guides/SITE-ROADMAP.md"}],
-                       "validation_routes": [{"paths": ["guides/"], "read": ["guides/SITE-STAGING.md"]}]}
+        self.config = {
+            "owners": [{"path": "AGENTS.md"}, {"path": "guides/SITE-ROADMAP.md"}],
+            "validation_routes": [{"paths": ["guides/"], "read": ["guides/SITE-STAGING.md"]}],
+        }
         self.save_config()
 
     def write(self, path, content):
@@ -58,12 +68,18 @@ class RootLayoutTests(unittest.TestCase):
         layout.validate_bootstrap((REPO / "PROJECT-BOOTSTRAP.md").read_text(encoding="utf-8"))
 
     def test_bootstrap_oversize_and_missing_authority_routes_fail(self):
-        route = "https://github.com/" + layout.REPOSITORY + " refs\nREADME.md\nAGENTS.md scoped AGENTS.md\nREPOSITORY-MAP.md\nMEMORY.md\n"
+        route = (
+            "https://github.com/"
+            + layout.REPOSITORY
+            + " refs\nREADME.md\nAGENTS.md scoped AGENTS.md\nREPOSITORY-MAP.md\nMEMORY.md\n"
+        )
         layout.validate_bootstrap(route)
-        for body, message in [(route + "я" * 1000, "character bound"),
-                              (route + "more\n" * 8, "nonempty line bound"),
-                              (route.replace("README.md", "purpose elsewhere"), "missing route"),
-                              (route.replace(" refs", ""), "omits live refs")]:
+        for body, message in [
+            (route + "я" * 1000, "character bound"),
+            (route + "more\n" * 8, "nonempty line bound"),
+            (route.replace("README.md", "purpose elsewhere"), "missing route"),
+            (route.replace(" refs", ""), "omits live refs"),
+        ]:
             with self.subTest(message=message), self.assertRaisesRegex(ValueError, message):
                 layout.validate_bootstrap(body)
 
@@ -103,22 +119,39 @@ class RootLayoutTests(unittest.TestCase):
             layout.validate_layout(self.root, broken, self.original)
 
     def test_archived_originals_have_exact_git_and_sha256_provenance(self):
-        layout.validate_archives(REPO, layout.read_json(REPO, layout.LAYOUT),
-                                 layout.read_json(REPO, layout.ARCHIVE), self.original)
+        layout.validate_archives(
+            REPO,
+            layout.read_json(REPO, layout.LAYOUT),
+            layout.read_json(REPO, layout.ARCHIVE),
+            self.original,
+        )
 
     def test_archive_byte_changes_cannot_be_hidden_by_updated_sha256(self):
         layout.validate_archives(self.root, self.data, self.archive, self.original)
         row = self.archive["records"][0]
         self.write(row["archive_path"], b"Edited historical evidence\n")
-        row["sha256"] = layout.hashlib.sha256((self.root / row["archive_path"]).read_bytes()).hexdigest()
+        row["sha256"] = layout.hashlib.sha256(
+            (self.root / row["archive_path"]).read_bytes()
+        ).hexdigest()
         with self.assertRaisesRegex(ValueError, "Archive blob mismatch"):
             layout.validate_archives(self.root, self.data, self.archive, self.original)
 
     def test_archive_missing_record_wrong_source_or_historical_owner_fail(self):
         for mutation, message in [
-                (lambda value: value["records"].pop(), "coverage mismatch"),
-                (lambda value: value["records"][0].update(source_url="https://github.com/example/blob/main/BACKLOG.md"), "not immutable"),
-                (lambda value: value["records"][0].update(current_owner=value["records"][0]["archive_path"]), "Archived instruction owner")]:
+            (lambda value: value["records"].pop(), "coverage mismatch"),
+            (
+                lambda value: value["records"][0].update(
+                    source_url="https://github.com/example/blob/main/BACKLOG.md"
+                ),
+                "not immutable",
+            ),
+            (
+                lambda value: value["records"][0].update(
+                    current_owner=value["records"][0]["archive_path"]
+                ),
+                "Archived instruction owner",
+            ),
+        ]:
             broken = copy.deepcopy(self.archive)
             mutation(broken)
             with self.subTest(message=message), self.assertRaisesRegex(ValueError, message):
@@ -127,9 +160,14 @@ class RootLayoutTests(unittest.TestCase):
         changed_layout = copy.deepcopy(self.data)
         changed_archive = copy.deepcopy(self.archive)
         changed_layout["dispositions"]["SITE-CONTENT-REVIEW.md"] = {
-            "treatment": "move", "destination": "guides/SITE-CONTENT-REVIEW.md"}
-        changed_archive["records"] = [row for row in changed_archive["records"]
-                                      if row["original_path"] != "SITE-CONTENT-REVIEW.md"]
+            "treatment": "move",
+            "destination": "guides/SITE-CONTENT-REVIEW.md",
+        }
+        changed_archive["records"] = [
+            row
+            for row in changed_archive["records"]
+            if row["original_path"] != "SITE-CONTENT-REVIEW.md"
+        ]
         with self.assertRaisesRegex(ValueError, "six-original preservation dispositions changed"):
             layout.validate_layout(self.root, changed_layout, self.original)
         with self.assertRaisesRegex(ValueError, "six-original preservation dispositions changed"):
@@ -142,13 +180,19 @@ class RootLayoutTests(unittest.TestCase):
         layout.validate_links(self.root, self.data)
         for body in ["[missing](missing.md)\n", "[rules][owner]\n\n[owner]: missing.md\n"]:
             self.write("guides/README.md", body)
-            with self.subTest(body=body), self.assertRaisesRegex(ValueError, "Broken active local link"):
+            with (
+                self.subTest(body=body),
+                self.assertRaisesRegex(ValueError, "Broken active local link"),
+            ):
                 layout.validate_links(self.root, self.data)
         self.write("guides/README.md", "[missing](../AGENTS.md#missing-heading)\n")
         with self.assertRaisesRegex(ValueError, "Broken active local fragment"):
             layout.validate_links(self.root, self.data)
         self.write("docs/index.html", '<main id="about">Author</main>\n')
-        self.write("guides/README.md", "[live](../docs/index.html#about)\n[heading](../AGENTS.md#active-route)\n")
+        self.write(
+            "guides/README.md",
+            "[live](../docs/index.html#about)\n[heading](../AGENTS.md#active-route)\n",
+        )
         layout.validate_links(self.root, self.data)
         self.write("guides/README.md", "[missing](../docs/index.html#absent)\n")
         with self.assertRaisesRegex(ValueError, "Broken active local fragment"):
@@ -184,8 +228,10 @@ class RootLayoutTests(unittest.TestCase):
 
     def test_stale_alias_archived_owner_and_missing_configured_route_fail(self):
         layout.validate_current_owners(self.root, self.data)
-        for path, message in [("SITE-STAGING.md", "Missing layout file"),
-                              ("review/root-history-20261007/BACKLOG.md", "Historical or retired current owner")]:
+        for path, message in [
+            ("SITE-STAGING.md", "Missing layout file"),
+            ("review/root-history-20261007/BACKLOG.md", "Historical or retired current owner"),
+        ]:
             self.config["owners"][0]["path"] = path
             self.save_config()
             with self.subTest(path=path), self.assertRaisesRegex(ValueError, message):

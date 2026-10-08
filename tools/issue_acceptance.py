@@ -4,6 +4,7 @@
 This is an ordinary developer/CI runner, not a target-owned security validator.
 Automated observations cannot supply independent review, a merge or live linkage.
 """
+
 import argparse
 import contextlib
 import hashlib
@@ -46,13 +47,23 @@ def load_policy(path):
     if len(data) > MAX_POLICY_BYTES:
         raise ValueError("Acceptance policy exceeds byte bound")
     policy = json.loads(data)
-    exact_keys(policy, {"schema_version", "repository", "issue", "issue_url", "criteria", "checks", "gates"},
-               {"schema_version", "repository", "issue", "issue_url", "criteria", "checks", "gates"}, "policy")
+    exact_keys(
+        policy,
+        {"schema_version", "repository", "issue", "issue_url", "criteria", "checks", "gates"},
+        {"schema_version", "repository", "issue", "issue_url", "criteria", "checks", "gates"},
+        "policy",
+    )
     if policy["schema_version"] != VERSION:
         raise ValueError("Unsupported acceptance policy version")
-    if not isinstance(policy["repository"], str) or not re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", policy["repository"]):
+    if not isinstance(policy["repository"], str) or not re.fullmatch(
+        r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", policy["repository"]
+    ):
         raise ValueError("Invalid repository")
-    if isinstance(policy["issue"], bool) or not isinstance(policy["issue"], int) or policy["issue"] < 1:
+    if (
+        isinstance(policy["issue"], bool)
+        or not isinstance(policy["issue"], int)
+        or policy["issue"] < 1
+    ):
         raise ValueError("Invalid issue number")
     expected_url = f"https://github.com/{policy['repository']}/issues/{policy['issue']}"
     if policy["issue_url"] != expected_url:
@@ -84,18 +95,28 @@ def load_policy(path):
         raise ValueError("Missing, empty or excessive acceptance criteria")
     ids, used_checks, used_gates = set(), set(), set()
     for criterion in criteria:
-        exact_keys(criterion, {"id", "intent", "automated_scope", "checks", "gates"},
-                   {"id", "intent", "automated_scope", "checks", "gates"}, "criterion")
+        exact_keys(
+            criterion,
+            {"id", "intent", "automated_scope", "checks", "gates"},
+            {"id", "intent", "automated_scope", "checks", "gates"},
+            "criterion",
+        )
         key = criterion["id"]
         if not isinstance(key, str) or not AC_ID.fullmatch(key) or key in ids:
             raise ValueError("Invalid or duplicate acceptance criterion ID")
         ids.add(key)
         nonempty(criterion["intent"], "criterion intent")
         nonempty(criterion["automated_scope"], "automated scope and limitation")
-        for field, registry, used in [("checks", checks, used_checks), ("gates", gates, used_gates)]:
+        for field, registry, used in [
+            ("checks", checks, used_checks),
+            ("gates", gates, used_gates),
+        ]:
             names = criterion[field]
-            if (not isinstance(names, list) or any(not isinstance(x, str) or x not in registry for x in names)
-                    or len(names) != len(set(names))):
+            if (
+                not isinstance(names, list)
+                or any(not isinstance(x, str) or x not in registry for x in names)
+                or len(names) != len(set(names))
+            ):
                 raise ValueError(f"Missing, duplicate or unmapped {field} for {key}")
             used.update(names)
         if not criterion["checks"] and not criterion["gates"]:
@@ -113,7 +134,9 @@ def select_policy(root, event_path, event_name):
         raise ValueError("GitHub event exceeds byte bound")
     event = json.loads(payload)
     repository = event["repository"]["full_name"]
-    if not isinstance(repository, str) or not re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", repository):
+    if not isinstance(repository, str) or not re.fullmatch(
+        r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", repository
+    ):
         raise ValueError("Invalid event repository")
     if event_name == "pull_request":
         body = event["pull_request"].get("body") or ""
@@ -123,14 +146,20 @@ def select_policy(root, event_path, event_name):
         for line in visible_reference_lines(body):
             if not re.match(r"\s*Refs(?:\s|:)", line, flags=re.I):
                 continue
-            match = re.fullmatch(r"\s*Refs\s+(?:#([1-9][0-9]{0,8})|https://github\.com/([A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+)/issues/([1-9][0-9]{0,8}))\.?\s*", line, flags=re.I)
+            match = re.fullmatch(
+                r"\s*Refs\s+(?:#([1-9][0-9]{0,8})|https://github\.com/([A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+)/issues/([1-9][0-9]{0,8}))\.?\s*",
+                line,
+                flags=re.I,
+            )
             if not match:
                 raise ValueError("Owning References must be a complete `Refs #N` or issue URL line")
             local_number, owner, full_number = match.groups()
             if local_number or owner == repository:
                 owners.add(int(local_number or full_number))
         if len(owners) != 1:
-            raise ValueError("PR needs exactly one explicit local owning issue; missing or ambiguous Refs")
+            raise ValueError(
+                "PR needs exactly one explicit local owning issue; missing or ambiguous Refs"
+            )
         number = owners.pop()
     elif event_name == "workflow_dispatch":
         number = event.get("inputs", {}).get("issue_number")
@@ -146,7 +175,12 @@ def select_policy(root, event_path, event_name):
     policy, policy_digest = load_policy(target)
     if policy["repository"] != repository or policy["issue"] != number:
         raise ValueError("Selected policy does not match the owning issue and repository")
-    return {"policy": relative, "issue": number, "repository": repository, "policy_sha256": policy_digest}
+    return {
+        "policy": relative,
+        "issue": number,
+        "repository": repository,
+        "policy_sha256": policy_digest,
+    }
 
 
 def visible_reference_lines(body):
@@ -166,7 +200,9 @@ def source_identity(root):
     """A clean source is exactly the reported Git commit; dirty evidence is local."""
     entries = subprocess.check_output(["git", "-C", str(root), "ls-files", "-v", "-z"]).split(b"\0")
     if any(entry and (entry[:1].islower() or entry[:1].upper() == b"S") for entry in entries):
-        raise ValueError("Hidden index entries (assume-unchanged/skip-worktree) cannot bind exact source evidence")
+        raise ValueError(
+            "Hidden index entries (assume-unchanged/skip-worktree) cannot bind exact source evidence"
+        )
     identity = {
         "commit_sha": git(root, "rev-parse", "HEAD"),
         "tree_sha": git(root, "rev-parse", "HEAD^{tree}"),
@@ -174,10 +210,16 @@ def source_identity(root):
     }
     # This also binds a dirty local report to actual changed bytes, and detects
     # a source mutation while tests run. Clean CI still requires exact HEAD.
-    fingerprint = hashlib.sha256(subprocess.check_output([
-        "git", "-C", str(root), "diff", "--no-ext-diff", "--no-textconv", "--binary", "HEAD"]))
-    for path in sorted(subprocess.check_output([
-            "git", "-C", str(root), "ls-files", "--others", "--exclude-standard", "-z"]).split(b"\0")):
+    fingerprint = hashlib.sha256(
+        subprocess.check_output(
+            ["git", "-C", str(root), "diff", "--no-ext-diff", "--no-textconv", "--binary", "HEAD"]
+        )
+    )
+    for path in sorted(
+        subprocess.check_output(
+            ["git", "-C", str(root), "ls-files", "--others", "--exclude-standard", "-z"]
+        ).split(b"\0")
+    ):
         if not path:
             continue
         target = root / os.fsdecode(path)
@@ -217,7 +259,10 @@ def unittest_check(root, name):
             # a stale same-size/same-timestamp .pyc while we report a fresh hash.
             admitted_source = module_path.read_bytes()
             sys.modules[module_name] = module
-            exec(compile(admitted_source, str(module_path), "exec", dont_inherit=True), module.__dict__)
+            exec(
+                compile(admitted_source, str(module_path), "exec", dont_inherit=True),
+                module.__dict__,
+            )
             case = getattr(module, class_name)
             if not isinstance(case, type) or not issubclass(case, unittest.TestCase):
                 raise ValueError(f"Not a unittest case: {name}")
@@ -226,16 +271,34 @@ def unittest_check(root, name):
             suite = unittest.TestSuite([case(method_name)])
             result = unittest.TestResult()
             suite.run(result)
-        failures = [{"test": test.id(), "detail": detail} for test, detail in result.failures + result.errors]
+        failures = [
+            {"test": test.id(), "detail": detail}
+            for test, detail in result.failures + result.errors
+        ]
         skipped = [{"test": test.id(), "reason": reason} for test, reason in result.skipped]
-        expected = [{"test": test.id(), "detail": detail} for test, detail in result.expectedFailures]
+        expected = [
+            {"test": test.id(), "detail": detail} for test, detail in result.expectedFailures
+        ]
         unexpected = [test.id() for test in result.unexpectedSuccesses]
-        passed = result.testsRun == 1 and result.wasSuccessful() and not skipped and not expected and not unexpected
-        return {"status": "passed" if passed else "failed", "kind": "unittest", "test": name,
-                "tests_run": result.testsRun, "failures": failures, "skipped": skipped,
-                "expected_failures": expected, "unexpected_successes": unexpected,
-                "test_file_sha256": digest(admitted_source),
-                "captured_output_sha256": digest(capture.getvalue().encode())}
+        passed = (
+            result.testsRun == 1
+            and result.wasSuccessful()
+            and not skipped
+            and not expected
+            and not unexpected
+        )
+        return {
+            "status": "passed" if passed else "failed",
+            "kind": "unittest",
+            "test": name,
+            "tests_run": result.testsRun,
+            "failures": failures,
+            "skipped": skipped,
+            "expected_failures": expected,
+            "unexpected_successes": unexpected,
+            "test_file_sha256": digest(admitted_source),
+            "captured_output_sha256": digest(capture.getvalue().encode()),
+        }
     finally:
         if previous_module is absent:
             sys.modules.pop(module_name, None)
@@ -246,71 +309,138 @@ def unittest_check(root, name):
 
 def node_basic_check(root):
     # Fixed repository command. Policy cannot choose shell, arguments or paths.
-    result = subprocess.run(["node", "tools/quality/local.cjs"], cwd=root, text=True,
-                            capture_output=True, timeout=300, check=False)
+    result = subprocess.run(
+        ["node", "tools/quality/local.cjs"],
+        cwd=root,
+        text=True,
+        capture_output=True,
+        timeout=300,
+        check=False,
+    )
     payload = None
     try:
         payload = json.loads(result.stdout.strip().splitlines()[-1])
         tests = payload["focusedTests"]
-        passed = (result.returncode == 0 and payload["profile"] == "local" and payload["pass"] is True
-                  and tests["total"] > 0 and tests["passed"] == tests["total"]
-                  and tests["failed"] == 0 and tests["skipped"] == 0 and bool(payload["checks"]))
+        passed = (
+            result.returncode == 0
+            and payload["profile"] == "local"
+            and payload["pass"] is True
+            and tests["total"] > 0
+            and tests["passed"] == tests["total"]
+            and tests["failed"] == 0
+            and tests["skipped"] == 0
+            and bool(payload["checks"])
+        )
     except (ValueError, KeyError, TypeError, IndexError):
         passed = False
-    return {"status": "passed" if passed else "failed", "kind": "node-basic",
-            "command": ["node", "tools/quality/local.cjs"], "returncode": result.returncode,
-            "result": payload, "stdout_sha256": digest(result.stdout.encode()),
-            "stderr_sha256": digest(result.stderr.encode()),
-            "failure_detail": result.stderr[-4000:] if not passed else None}
+    return {
+        "status": "passed" if passed else "failed",
+        "kind": "node-basic",
+        "command": ["node", "tools/quality/local.cjs"],
+        "returncode": result.returncode,
+        "result": payload,
+        "stdout_sha256": digest(result.stdout.encode()),
+        "stderr_sha256": digest(result.stderr.encode()),
+        "failure_detail": result.stderr[-4000:] if not passed else None,
+    }
 
 
 def run_policy(root, path, require_clean=False, expected_source=None):
     root = Path(root).resolve()
-    report = {"schema_version": VERSION, "automation_pass": False, "evidence_valid": False,
-              "ready_for_issue_closure": False, "policy_path": str(path),
-              "limitations": ["Repository-owned developer tests; not a target-owned untrusted-candidate validator.",
-                              "Policy is an issue mapping, not proof it reproduces live issue intent.",
-                              "Manual gates remain pending; this runner does not review, merge, deploy or close issues."],
-              "checks": {}, "criteria": [], "gates": {}, "errors": []}
+    report = {
+        "schema_version": VERSION,
+        "automation_pass": False,
+        "evidence_valid": False,
+        "ready_for_issue_closure": False,
+        "policy_path": str(path),
+        "limitations": [
+            "Repository-owned developer tests; not a target-owned untrusted-candidate validator.",
+            "Policy is an issue mapping, not proof it reproduces live issue intent.",
+            "Manual gates remain pending; this runner does not review, merge, deploy or close issues.",
+        ],
+        "checks": {},
+        "criteria": [],
+        "gates": {},
+        "errors": [],
+    }
     try:
         policy, policy_digest = load_policy(path)
-        report.update({"repository": policy["repository"], "issue": policy["issue"],
-                       "issue_url": policy["issue_url"], "policy_sha256": policy_digest,
-                       "producer_sha256": digest(Path(__file__).read_bytes())})
-        report["gates"] = {key: {**gate, "status": "pending", "evidence": None}
-                           for key, gate in policy["gates"].items()}
-        report["criteria"] = [{**criterion, "status": "not-run", "gates_status": "pending"}
-                              for criterion in policy["criteria"]]
+        report.update(
+            {
+                "repository": policy["repository"],
+                "issue": policy["issue"],
+                "issue_url": policy["issue_url"],
+                "policy_sha256": policy_digest,
+                "producer_sha256": digest(Path(__file__).read_bytes()),
+            }
+        )
+        report["gates"] = {
+            key: {**gate, "status": "pending", "evidence": None}
+            for key, gate in policy["gates"].items()
+        }
+        report["criteria"] = [
+            {**criterion, "status": "not-run", "gates_status": "pending"}
+            for criterion in policy["criteria"]
+        ]
         identity = source_identity(root)
         report["source"] = identity
-        report["github"] = {key: os.environ.get(key) for key in
-                            ["GITHUB_RUN_ID", "GITHUB_RUN_ATTEMPT", "GITHUB_EVENT_NAME", "GITHUB_REPOSITORY"]}
-        if expected_source is not None and (not re.fullmatch(r"[0-9a-f]{40}", expected_source)
-                                            or expected_source != identity["commit_sha"]):
+        report["github"] = {
+            key: os.environ.get(key)
+            for key in [
+                "GITHUB_RUN_ID",
+                "GITHUB_RUN_ATTEMPT",
+                "GITHUB_EVENT_NAME",
+                "GITHUB_REPOSITORY",
+            ]
+        }
+        if expected_source is not None and (
+            not re.fullmatch(r"[0-9a-f]{40}", expected_source)
+            or expected_source != identity["commit_sha"]
+        ):
             raise ValueError("Expected source does not match exact checkout HEAD")
         if require_clean and identity["source_dirty"]:
-            raise ValueError("A clean checkout is required to bind acceptance to the reported commit")
+            raise ValueError(
+                "A clean checkout is required to bind acceptance to the reported commit"
+            )
         for key, check in policy["checks"].items():
             try:
-                result = (unittest_check(root, check["test"]) if check["kind"] == "unittest"
-                          else node_basic_check(root))
+                result = (
+                    unittest_check(root, check["test"])
+                    if check["kind"] == "unittest"
+                    else node_basic_check(root)
+                )
             except Exception as error:
-                result = {"status": "failed", "kind": check["kind"], "error": f"{type(error).__name__}: {error}"}
+                result = {
+                    "status": "failed",
+                    "kind": check["kind"],
+                    "error": f"{type(error).__name__}: {error}",
+                }
             report["checks"][key] = result
         report["criteria"] = []
         for criterion in policy["criteria"]:
             names = criterion["checks"]
-            status = ("failed" if any(report["checks"][key]["status"] != "passed" for key in names)
-                      else "automated-pass" if names else "manual-only-pending")
-            report["criteria"].append({**criterion, "status": status,
-                                      "gates_status": "pending" if criterion["gates"] else "none"})
+            status = (
+                "failed"
+                if any(report["checks"][key]["status"] != "passed" for key in names)
+                else "automated-pass"
+                if names
+                else "manual-only-pending"
+            )
+            report["criteria"].append(
+                {
+                    **criterion,
+                    "status": status,
+                    "gates_status": "pending" if criterion["gates"] else "none",
+                }
+            )
         if source_identity(root) != identity:
             raise ValueError("Source identity changed during acceptance checks")
         if digest(Path(path).read_bytes()) != policy_digest:
             raise ValueError("Policy changed during acceptance checks")
         report["evidence_valid"] = True
         report["automation_pass"] = bool(report["checks"]) and all(
-            check["status"] == "passed" for check in report["checks"].values())
+            check["status"] == "passed" for check in report["checks"].values()
+        )
     except Exception as error:
         report["errors"].append(f"{type(error).__name__}: {error}")
         for criterion in report["criteria"]:
@@ -338,14 +468,21 @@ def main():
         root = Path(args.root).resolve()
         if output == root or root in output.parents:
             parser.error("The acceptance report must be outside the checkout")
-        report = {"schema_version": VERSION, "automation_pass": False,
-                  "ready_for_issue_closure": False, "selection": None, "errors": []}
+        report = {
+            "schema_version": VERSION,
+            "automation_pass": False,
+            "ready_for_issue_closure": False,
+            "selection": None,
+            "errors": [],
+        }
         try:
             selection = select_policy(root, args.event, args.event_name)
             report["selection"] = selection
             report["source"] = source_identity(root)
             with Path(args.github_env).open("a", encoding="utf-8") as stream:
-                stream.write(f"ACCEPTANCE_POLICY={selection['policy']}\nACCEPTANCE_ISSUE={selection['issue']}\n")
+                stream.write(
+                    f"ACCEPTANCE_POLICY={selection['policy']}\nACCEPTANCE_ISSUE={selection['issue']}\n"
+                )
         except Exception as error:
             report["errors"].append(f"{type(error).__name__}: {error}")
         output.parent.mkdir(parents=True, exist_ok=True)
@@ -357,7 +494,15 @@ def main():
     if args.command == "validate":
         try:
             policy, policy_digest = load_policy(args.policy)
-            print(json.dumps({"policy_sha256": policy_digest, "criteria": [x["id"] for x in policy["criteria"]]}, sort_keys=True))
+            print(
+                json.dumps(
+                    {
+                        "policy_sha256": policy_digest,
+                        "criteria": [x["id"] for x in policy["criteria"]],
+                    },
+                    sort_keys=True,
+                )
+            )
             return 0
         except Exception as error:
             print(f"Invalid acceptance policy: {error}", file=sys.stderr)
@@ -373,12 +518,21 @@ def main():
     temporary = output.with_suffix(output.suffix + ".tmp")
     temporary.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     temporary.replace(output)
-    print(json.dumps({"issue": report.get("issue"), "source": report.get("source"),
-                      "automation_pass": report["automation_pass"],
-                      "ready_for_issue_closure": report["ready_for_issue_closure"],
-                      "criteria": {x["id"]: x["status"] for x in report["criteria"]},
-                      "pending_gates": list(report["gates"]), "errors": report["errors"],
-                      "report": str(output)}, sort_keys=True))
+    print(
+        json.dumps(
+            {
+                "issue": report.get("issue"),
+                "source": report.get("source"),
+                "automation_pass": report["automation_pass"],
+                "ready_for_issue_closure": report["ready_for_issue_closure"],
+                "criteria": {x["id"]: x["status"] for x in report["criteria"]},
+                "pending_gates": list(report["gates"]),
+                "errors": report["errors"],
+                "report": str(output),
+            },
+            sort_keys=True,
+        )
+    )
     return 0 if report["automation_pass"] else 1
 
 
