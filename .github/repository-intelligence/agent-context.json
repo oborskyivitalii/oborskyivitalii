@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "8dd11ab7599fdd2ebf2debc79d77e151019c6e7d89291cb99d104ea484450fa6",
+    "digest": "8c7fd3ac5054af1e26bbaad66deedfa4edc3c0540032d0ca6be842566bbf37c0",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -5035,7 +5035,7 @@
       {
         "path": "tests/refactor-metrics.test.cjs",
         "identity_mode": "content",
-        "sha256": "f2c64c321d4079c530c34a0237e081d425f56928995404ef650f5c5e3619a8a9"
+        "sha256": "12bd95f993fc0c650476351a9e602f8a635b2da75c67239668ecfd742bad2eb5"
       },
       {
         "path": "tests/renderer.test.cjs",
@@ -5525,7 +5525,7 @@
       {
         "path": "tools/quality/refactor-metrics.cjs",
         "identity_mode": "content",
-        "sha256": "bfa42ff150e2d8aaeaa59e93b361a2a0b1806a6fa691b3f6ba3e4098d5dba732"
+        "sha256": "3e28dcaf26a9110842f6920d35e7a883d90ad678f7dd42500cc6e65eabfc9ff8"
       },
       {
         "path": "tools/quality/research-pair-probe.cjs",
