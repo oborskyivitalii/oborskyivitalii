@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "98300f34dc64216c8761e02d43d5e78ced6103c517dac5de7729214c77d14996",
+    "digest": "4cef8d6fb179006f8002e6d0a40746d1e34b141c032add3e54a450426ee43524",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -665,7 +665,7 @@
       {
         "path": "review/issue-45/2026-10-08-writing-attribution.md",
         "identity_mode": "content",
-        "sha256": "3764ac6085dc053da9421b57816c0949d61ecbc57a4e7d8c6427d8ce6f450783"
+        "sha256": "03003525826b8698f72ec79a0785960696567bf7879a92a7dde2b5815dc694cc"
       },
       {
         "path": "review/issue-48/2026-10-08-handoff.md",
@@ -4640,7 +4640,7 @@
       {
         "path": "tests/cause-fix-probe.test.cjs",
         "identity_mode": "content",
-        "sha256": "5d7797241c009a51741bab439051aa8053126e2420032b60c00efe5114e37156"
+        "sha256": "063f9aac8b72bc99f69734449e41d54e25aed62ede01b493a538b9b05935944d"
       },
       {
         "path": "tests/cause-probe.test.cjs",

@@ -382,7 +382,7 @@ function selectedWritingSetterJob(expression, context) {
 
 test('Writing setters workflow authorizes only its same-repository label and exact source checkouts', () => {
   const workflow = fs.readFileSync(path.join(root, '.github/workflows/site-cause-probe.yml'), 'utf8');
-  const block = workflow.match(/^  writing-setter-comparison:\n[\s\S]*?(?=^  [a-z][a-z-]*:\n|$(?![\s\S]))/m)?.[0];
+  const block = workflow.match(/^ {2}writing-setter-comparison:\n[\s\S]*?(?=^ {2}[a-z][a-z-]*:\n|$(?![\s\S]))/m)?.[0];
   assert.ok(block, 'missing bounded Writing setters job');
   const folded = block.match(/^ {4}if: >-\n((?: {6}.+\n)+)/m)?.[1];
   assert.ok(folded, 'missing explicit label authorization');

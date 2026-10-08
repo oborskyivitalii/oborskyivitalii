@@ -420,3 +420,20 @@ its native-pixel report was rerun after the invalidation-order correction and
 again has six exact images. Guard review found and fixed exact-directory import
 and Boolean-schema boundary gaps; immutable allowances remain two occurrences.
 Exact clean-head source selection and mapped acceptance are run after commit.
+
+## Exact published preparation and pre-measurement CI failure
+
+Candidate3af6e61a299518c1e224b8977eee76f623ab5339, tested tree
+`c4c142c49bd6551d491fe8e82ab8faaafd4ae48b`, was published with all295 registered
+source cases passing and all14 clean-head mapped checks passing. Whole criteria
+remain automated-pass with human/merge gates pending and closure:false.
+Navigation37796399911 and acceptance37796399986/37796400484 pass.
+
+Pair run37796400361 stopped before any observation at targeted pinned ESLint:
+new workflow-test regex contained two literal spaces (no-regex-spaces). Exact
+source/artifact preparation and Chromium install had passed; no LHR or trace
+was collected, so no performance retry or discarded measurement is involved.
+Change the regex to an explicit space quantifier without changing its match or
+protocol. Canonical renderer, native parity, generated public bytes and reference
+remain identical. The retained failed job is113376857940. A test complexity32
+warning against advisory25 is also recorded; it is not an admission result.
