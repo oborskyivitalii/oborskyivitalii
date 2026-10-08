@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "review": {
-    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/56",
+    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/2",
     "date": "2026-10-08",
-    "summary": "R1 after merged standardsPR55: canonical pure effects and maintained exporter, explicit ordered adapters, existing ESLint/Stylelint/security source coverage and task-specific parity policy. Retain all accepted content, performance/release budgets and unchanged runtime bytes; refresh source catalog/profile/RI owners for generated identity changes."
+    "summary": "Bounded PMDay recording follow-up; reuse existing content/SEO negatives and canonical generation, add exact amendment before frozen historical editions, policy AC07/AC08 and preserve original pending article/PDF AC01-AC06. Existing profiles and budgets retained."
   },
   "layers": [
     {
@@ -61,7 +61,10 @@
         "review/issue-48/source-inventory.json",
         ".github/acceptance/issue-56.json",
         "tests/test_issue56_acceptance.py",
-        "review/issue-56/2026-10-08-handoff.md"
+        "review/issue-56/2026-10-08-handoff.md",
+        ".github/acceptance/issue-2.json",
+        "review/issue-2/2026-10-08-handoff.md",
+        "review/issue-2/content-amendment.json"
       ],
       "checks": [
         "acceptance-policy",
@@ -417,7 +420,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "42eabbad7ec605083fb91d1a5f699bf7086be3298e8ce6c292aeffb54900f386",
+    "digest": "29480c40e73926194718f60715598e13e457aeb8110a311c3964f6c42b8bf3f5",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -434,6 +437,10 @@
       {
         "path": ".github/REPOSITORY-INTELLIGENCE.md",
         "sha256": "b82d2a4d4b50c97a8fb870885e1475c51abab7971c7808fbe4eeeb104b334c3a"
+      },
+      {
+        "path": ".github/acceptance/issue-2.json",
+        "sha256": "a72400f1a0454e7773da4b034e00df03b5e8664b1360723ccdef20a752a82559"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -489,7 +496,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "b0ad58d7f50c945df4f30d61d235ea270baf244d3470bb7ba67ee6adc3b053fc"
+        "sha256": "0367fcee3b34b934df6613fb08339bd277ed77099f1109cc3dfedf480f247dd6"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -681,7 +688,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "8f042afdb9565d66ca1aab310b4290d322d1d74ba40e3f1d102fb9dd78ce5567"
+        "sha256": "a74ad8adcf5e409b3a9b9d3c5203600acd7abbae3e9f1778bcd1b68b3d65b50d"
       },
       {
         "path": "tools/repository_intelligence.py",

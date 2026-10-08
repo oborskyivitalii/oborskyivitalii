@@ -492,7 +492,7 @@
         "staging",
         "production"
       ],
-      "disposition": "retain current independent contract",
+      "disposition": "retain current independent contract; issue2 recording adapts existing content/reconciliation cases without a duplicate suite",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
         "tests/content.test.cjs",
@@ -501,7 +501,8 @@
         "site/templates/**",
         "site/content/catalog.json",
         "review/issue-48/content-amendment.json",
-        "review/issue-48/source-inventory.json"
+        "review/issue-48/source-inventory.json",
+        "review/issue-2/content-amendment.json"
       ]
     },
     {
@@ -551,7 +552,7 @@
         "staging",
         "production"
       ],
-      "disposition": "retain current independent contract",
+      "disposition": "retain current independent contract; issue2 recording adapts existing content/reconciliation cases without a duplicate suite",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
         "tests/executive.test.cjs",
@@ -559,7 +560,8 @@
         "site/content/**",
         "site/templates/**",
         "review/issue-41/content-amendment.json",
-        "review/issue-48/content-amendment.json"
+        "review/issue-48/content-amendment.json",
+        "review/issue-2/content-amendment.json"
       ]
     },
     {

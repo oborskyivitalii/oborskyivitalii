@@ -171,44 +171,88 @@ test("portrait is a real sized local asset and ambiguous talk languages stay exp
   assert.ok(pages.talks.includes('id="ukrainian-talks"'));
 });
 
-test("Talks curates distinct events with source-supported dates, language and resources",()=>{
-  const inventory=require('../review/issue-48/source-inventory.json').talks;
-  const amendment=require('../review/issue-48/content-amendment.json');
-  const section=amendment.changes.find(change=>change.page==='talks'&&change.id==='talks');
-  assert.equal(section.after,fs.readFileSync(path.join(root,'../site/content/pages/talks/talks.html'),'utf8'));
-  assert.ok(pages.talks.includes(section.after),'generated page carries the authored section');
-  const rows=html=>[...html.matchAll(/<article class="publication" data-language="([^"]+)">([\s\S]*?)<\/article>/g)];
-  const cards=rows(section.after),oldCards=rows(section.before);
-  assert.deepEqual(cards.map(row=>row[2].match(/<h3 class="talk-title"[^>]*>(.*?)<\/h3>/)[1]),[
-    'Uncertainty Architecture: Перезапуск SDLC','Designing Non-Deterministic Systems',
-    'Uncertainty Architecture &amp; software delivery','Discussion: Operating AI systems']);
-  assert.equal(cards[1][0],oldCards[1][0],'Corning stays exact');
-  for(const old of oldCards)for(const [,url]of old[0].matchAll(/href="([^"]+)"/g))assert.ok(section.after.includes(`href="${url}"`),'existing event source survives');
-  assert.deepEqual(inventory.map(row=>[row.id,row.event_id,row.disposition,row.event_date,row.spoken_language]),[
-    ['T1','pmday-2026-autumn','enrich-existing','2026-09-26','uk'],
-    ['T2','betelgeuse','enrich-existing',null,'unconfirmed'],
-    ['T3','swarchua','add-distinct-event',null,'unconfirmed']]);
-  const sources=[
+test("Talks curates distinct events with source-supported dates, language and resources", () => {
+  const inventory = require('../review/issue-48/source-inventory.json').talks;
+  const amendment = require('../review/issue-48/content-amendment.json');
+  const recordingAmendment = require('../review/issue-2/content-amendment.json');
+  const {restoreContentAmendment} = require('../tools/check_site_seo.cjs');
+  const section = amendment.changes.find(change => change.page === 'talks' && change.id === 'talks');
+  const authored = fs.readFileSync(path.join(root, '../site/content/pages/talks/talks.html'), 'utf8');
+  assert.equal(restoreContentAmendment(authored, 'talks', recordingAmendment), section.after,
+    'only the declared PMDay recording update supersedes the historical Talks edition');
+  assert.ok(pages.talks.includes(authored), 'generated page carries the authored section');
+  const rows = html => [
+    ...html.matchAll(/<article class="publication" data-language="([^"]+)">([\s\S]*?)<\/article>/g)
+  ];
+  const cards = rows(authored);
+  const historicalCards = rows(section.after);
+  const oldCards = rows(section.before);
+  assert.deepEqual(cards.map(row => row[2].match(/<h3 class="talk-title"[^>]*>(.*?)<\/h3>/)[1]), [
+    'AI Changes the Delivery System and the Product Itself',
+    'Designing Non-Deterministic Systems',
+    'Uncertainty Architecture &amp; software delivery',
+    'Discussion: Operating AI systems'
+  ]);
+  assert.deepEqual(cards.slice(1).map(row => row[0]), historicalCards.slice(1).map(row => row[0]),
+    'all other event cards stay exact');
+  assert.equal(cards[1][0], oldCards[1][0], 'Corning stays exact');
+  for (const old of oldCards) {
+    for (const [, url] of old[0].matchAll(/href="([^"]+)"/g)) {
+      assert.ok(authored.includes(`href="${url}"`), 'existing event source survives');
+    }
+  }
+  assert.deepEqual(inventory.map(row => [
+    row.id, row.event_id, row.disposition, row.event_date, row.spoken_language
+  ]), [
+    ['T1', 'pmday-2026-autumn', 'enrich-existing', '2026-09-26', 'uk'],
+    ['T2', 'betelgeuse', 'enrich-existing', null, 'unconfirmed'],
+    ['T3', 'swarchua', 'add-distinct-event', null, 'unconfirmed']
+  ]);
+  const sources = [
     'https://www.linkedin.com/posts/vitaliioborskyi_thank-you-to-the-ua-project-management-day-activity-7510403699689771008-L6yl',
     'https://ua.linkedin.com/posts/vitaliioborskyi_%D0%B2%D0%BE%D0%BB%D0%BE%D0%B4%D0%B8%D0%BC%D0%B8%D1%80-%D0%B4%D1%8F%D0%BA%D1%83%D1%8E-%D0%B7%D0%B0-%D0%BF%D0%BE%D1%81%D1%82-%D0%B2%D1%96%D0%BD-%D1%83%D0%B2%D1%96%D0%BC%D0%BA%D0%BD%D1%83%D0%B2-%D1%83-activity-7479802249829928961-PmrF',
     'https://ua.linkedin.com/posts/vitaliioborskyi_software-architecture-activity-7477274339411693569-dJhu'];
-  assert.deepEqual(inventory.map(row=>row.canonical_url),sources);
-  assert.deepEqual(inventory.map(row=>row.post_published_at),['2026-09-28T18:22:58.558Z','2026-07-06T07:43:44.346Z','2026-06-29T08:18:43.534Z']);
-  sources.forEach((url,i)=>assert.equal(cards[[0,2,3][i]][0].split(`href="${url}"`).length-1,1,'each new source belongs to its single event'));
-  assert.deepEqual([...section.after.matchAll(/<time datetime="([^"]+)"/g)].map(row=>row[1]),['2026-09-26']);
-  assert.doesNotMatch(cards.slice(1).map(row=>row[0]).join(''),/<time\b|2026-07-06|2026-06-29|2026-06-13/);
-  assert.doesNotMatch(cards[0][0],/recording|slides|youtube/i,'promised PMDay recording is not advertised');
-  const recording=inventory[2].recording;
-  assert.equal(recording.canonical_url,'https://www.youtube.com/watch?v=1MPsDi3wuF4');
-  assert.equal(recording.title,'AI discussion');assert.equal(recording.channel,'Neverdrak');
-  assert.equal(recording.source_link_verified,true);assert.equal(recording.target_metadata_read,true);
-  assert.equal(recording.playback_or_transcript_inspected,false);
+  assert.deepEqual(inventory.map(row => row.canonical_url), sources);
+  assert.deepEqual(inventory.map(row => row.post_published_at), [
+    '2026-09-28T18:22:58.558Z', '2026-07-06T07:43:44.346Z', '2026-06-29T08:18:43.534Z'
+  ]);
+  sources.forEach((url, i) => {
+    assert.equal(cards[[0, 2, 3][i]][0].split(`href="${url}"`).length - 1, 1,
+      'each source belongs to its single event');
+  });
+  assert.deepEqual([...authored.matchAll(/<time datetime="([^"]+)"/g)].map(row => row[1]), ['2026-09-26']);
+  assert.doesNotMatch(cards.slice(1).map(row => row[0]).join(''), /<time\b|2026-07-06|2026-06-29|2026-06-13/);
+  assert.equal(cards[0][1], 'uk', 'spoken language remains Ukrainian');
+  assert.ok(cards[0][0].includes('PMDay 2026 · Recording in Ukrainian'));
+  assert.ok(cards[0][0].includes('<h3 class="talk-title">AI Changes the Delivery System and the Product Itself</h3>'),
+    'English display title inherits the English UI language');
+  assert.ok(cards[0][0].includes('A talk on two connected shifts: how AI changes software delivery, and how model judgment changes the products we build. It explores the implications for requirements, verification, release readiness, operational control, and shared responsibility across the team.'));
+  const recordingUrl = 'https://youtu.be/xSgWjuGqC9I?is=Rf9XOk8qrTw8I9aE';
+  assert.equal(cards[0][0].split(`href="${recordingUrl}"`).length - 1, 1,
+    'PMDay recording is linked once in its event card');
+  assert.ok(cards[0][0].includes(`href="${recordingUrl}">Watch the recording`));
+  assert.doesNotMatch(cards[0][0], /<iframe\b|<video\b|slides/i,
+    'the supplied external recording does not imply a local player or slides edition');
+  const recording = inventory[2].recording;
+  assert.equal(recording.canonical_url, 'https://www.youtube.com/watch?v=1MPsDi3wuF4');
+  assert.equal(recording.title, 'AI discussion');
+  assert.equal(recording.channel, 'Neverdrak');
+  assert.equal(recording.source_link_verified, true);
+  assert.equal(recording.target_metadata_read, true);
+  assert.equal(recording.playback_or_transcript_inspected, false);
   assert.ok(cards[3][0].includes(`href="${recording.canonical_url}">Watch the recording · AI discussion`));
-  for(const card of cards)assert.doesNotMatch(card[0],/<\/div><p class="edition-link">/,'secondary links remain in the content grid column');
-  for(const row of inventory)assert.match(row.sha256,/^[a-f0-9]{64}$/);
-  const description=require('../site/content/pages/talks/metadata.json').description;
-  assert.equal(description,'Talks and workshops on AI architecture and software delivery, including PMDay, Corning Learn-AI-Palooza, Betelgeuse and swarchua, with public sources.');
-  for(const tag of ['<meta name="description"','<meta property="og:description"','<meta name="twitter:description"'])assert.ok(pages.talks.includes(`${tag} content="${description}">`));
+  for (const card of cards) {
+    assert.doesNotMatch(card[0], /<\/div><p class="edition-link">/,
+      'secondary links remain in the content grid column');
+  }
+  for (const row of inventory) {
+    assert.match(row.sha256, /^[a-f0-9]{64}$/);
+  }
+  const description = require('../site/content/pages/talks/metadata.json').description;
+  assert.equal(description, 'Talks and workshops on AI architecture and software delivery, including PMDay, Corning Learn-AI-Palooza, Betelgeuse and swarchua, with public sources.');
+  for (const tag of ['<meta name="description"', '<meta property="og:description"', '<meta name="twitter:description"']) {
+    assert.ok(pages.talks.includes(`${tag} content="${description}">`));
+  }
 });
 
 test("page IDs, ARIA targets, local resources and fragments resolve without draft leakage", () => {

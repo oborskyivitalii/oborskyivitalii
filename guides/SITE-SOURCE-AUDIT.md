@@ -5,6 +5,20 @@ Each dated section describes that edition; older counts, placement and review
 limits are historical. Use [the editorial review route](SITE-CONTENT-REVIEW.md),
 the owning issue/PR and [MEMORY](../MEMORY.md) for current acceptance.
 
+## PMDay recording follow-up — 2026-10-08
+
+Under [issue #2](https://github.com/oborskyivitalii/oborskyivitalii/issues/2), the
+maintainer supplied and authorized the English display title **AI Changes the
+Delivery System and the Product Itself**, description and
+[recording link](https://youtu.be/xSgWjuGqC9I?is=Rf9XOk8qrTw8I9aE).
+The card visibly labels **PMDay 2026 · Recording in Ukrainian** and retains the
+verified 26 September event date, organizer announcement and public summary.
+The recording's title/description/language are maintainer-supplied; this update
+does not independently assess playback, transcript or video quality.
+[Exact card amendment](../review/issue-2/content-amendment.json) reverses before
+unchanged issue48/issue41 editions during content reconciliation. Other event
+cards, public metadata and article/PDF publication status remain unchanged.
+
 ## Talks source curation — 2026-10-08
 
 The maintainer extended [issue #48](https://github.com/oborskyivitalii/oborskyivitalii/issues/48)
@@ -13,7 +27,7 @@ The [bounded inventory](../review/issue-48/source-inventory.json) records their
 canonical URLs, authors, post timestamps, acquisition hashes and admission limits.
 PMDay's new speaker follow-up supports the delivered talk's two themes and the
 organizer's explicit **26 September 2026** event date. Its 28 September post date
-is separate; the promised future recording is not advertised as available.
+is separate. The later recording follow-up above supersedes its earlier pending status.
 
 The second source enriches the existing Betelgeuse / QA Україна discussion with
 AI testing, trust, control and engineering responsibility; it does not create a
@@ -286,7 +300,7 @@ All works are by Vitalii Oborskyi; bylines and source dates were inspected. The 
 
 ## Talks and discovery corrections
 
-- PMDay remains the existing verified organizer announcement; no revised deck/article/recording is represented as released.
+- PMDay retains its verified organizer announcement and talk summary. The maintainer supplied the recording link and English copy on 8 October 2026 (see the recording follow-up above); no revised deck/article is represented as released.
 - Corning Learn-AI-Palooza is linked to [Rod Montgomery's original post](https://www.linkedin.com/posts/roderickm_one-of-the-highlights-of-our-recent-learn-al-palooza-activity-7480960628980072448-FBm4). Exact event day and public recording are not inferred.
 - The [public community-talk follow-up](https://www.linkedin.com/posts/vitaliioborskyi_github-uncertaintyarchitecturegroupuncertainty-architecture-activity-7477275989761384448-k8J9/) identifies the event as **Betelgeuse**, with QA Україна / Oleksa Mashchyts. UA's existing history entry labels its linked follow-up swarchua; do not silently conflate those labels. The website uses the original post's label and links the follow-up without asserting an independently checked recording edition.
 - The older GoPubby AI-native-workflows link redirects to the retrievable AI Advances publisher URL. The traceability entry also redirects there in subsequent reader attempts, but its destination did not retrieve; its title/byline/date were exposed by the initial cached primary retrieval. The catalog retains the original traceability entry URL and uses the neutral Medium platform label. Reader access errors do not establish whether a visitor's browser can open the article.

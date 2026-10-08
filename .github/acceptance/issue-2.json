@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 2,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/2",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Editorial review confirms the article matches the selected deck edition and accurately explains the talk.",
+      "automated_scope": "Original article/PDF publication is not implemented by this recording-only increment. No automated check or current recording authorization supplies this acceptance.",
+      "checks": [],
+      "gates": [
+        "ORIGINAL-PUBLICATION"
+      ]
+    },
+    {
+      "id": "AC02",
+      "intent": "Referenced metrics/figures link to the original source and state their units, scope and limitations.",
+      "automated_scope": "Original article/PDF publication is not implemented by this recording-only increment. No automated check or current recording authorization supplies this acceptance.",
+      "checks": [],
+      "gates": [
+        "ORIGINAL-PUBLICATION"
+      ]
+    },
+    {
+      "id": "AC03",
+      "intent": "Actual PDF is inspected visually; slides, notes, credits and third-party rights are checked.",
+      "automated_scope": "Original article/PDF publication is not implemented by this recording-only increment. No automated check or current recording authorization supplies this acceptance.",
+      "checks": [],
+      "gates": [
+        "ORIGINAL-PUBLICATION"
+      ]
+    },
+    {
+      "id": "AC04",
+      "intent": "Published page names the edition/date and links UA/Subprime accurately; drafts and the previous PDF are not confused with the release.",
+      "automated_scope": "Original article/PDF publication is not implemented by this recording-only increment. No automated check or current recording authorization supplies this acceptance.",
+      "checks": [],
+      "gates": [
+        "ORIGINAL-PUBLICATION"
+      ]
+    },
+    {
+      "id": "AC05",
+      "intent": "Publication decision is explicit. LinkedIn PDF post and recording follow-up remain separate editorial decisions.",
+      "automated_scope": "Original article/PDF publication is not implemented by this recording-only increment. No automated check or current recording authorization supplies this acceptance.",
+      "checks": [],
+      "gates": [
+        "ORIGINAL-PUBLICATION"
+      ]
+    },
+    {
+      "id": "AC06",
+      "intent": "Disposition of UA PR #113 is recorded after a verified site replacement; this issue does not itself close or merge that PR.",
+      "automated_scope": "Original article/PDF publication is not implemented by this recording-only increment. No automated check or current recording authorization supplies this acceptance.",
+      "checks": [],
+      "gates": [
+        "ORIGINAL-PUBLICATION"
+      ]
+    },
+    {
+      "id": "AC07",
+      "intent": "Replace the existing PMDay entry with the supplied title, description, Ukrainian recording label and supplied clickable URL while preserving all prior sources, event date and other cards.",
+      "automated_scope": "Existing maintained Talks content and adversarial reconciliation cases check the actual authored/generated card, English title language, Ukrainian recording classification and exact URL. They reject title/language/resource substitutions and restore only the exact hashed recording amendment before unchanged historical editions. Independent review supplies copy accuracy; playback quality is not assessed.",
+      "checks": [
+        "TALKS-CONTENT",
+        "GENERATION-SEO"
+      ],
+      "gates": [
+        "CONTENT-REVIEW"
+      ]
+    },
+    {
+      "id": "AC08",
+      "intent": "Canonical generation and code style, bounded source/hosted checks and issue-linked reviewable delivery.",
+      "automated_scope": "Basic checks generated public/offline source, geometry, scripts, artifacts and budgets. Existing generation/SEO cases protect unrelated content. Current bounded style, RI and CI mapping checks validate their declared subsets. Source checks do not observe hosted smoke, independent judgment or live PR linkage. Apply CS01-CS05/CS08-CS10; runtime CS06/CS07 behavior remains untouched.",
+      "checks": [
+        "BASIC",
+        "GENERATION-SEO",
+        "CURRENT-GUARD",
+        "CURRENT-RI",
+        "RI-CI"
+      ],
+      "gates": [
+        "CURRENT-CI-DELIVERY",
+        "CONTENT-REVIEW"
+      ]
+    }
+  ],
+  "checks": {
+    "TALKS-CONTENT": {
+      "kind": "unittest",
+      "test": "test_issue48_acceptance.Issue48AcceptanceTests.test_talks_curates_distinct_sourced_events_and_rejects_invented_details"
+    },
+    "GENERATION-SEO": {
+      "kind": "unittest",
+      "test": "test_issue48_acceptance.Issue48AcceptanceTests.test_generated_publication_and_seo_retain_all_unrelated_semantics"
+    },
+    "BASIC": {
+      "kind": "node-basic"
+    },
+    "CURRENT-GUARD": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    },
+    "CURRENT-RI": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    }
+  },
+  "gates": {
+    "ORIGINAL-PUBLICATION": {
+      "kind": "human",
+      "description": "Original AC01-AC06 remain pending for the unwritten explanatory article, selected/visually verified deck/PDF, original metric evidence, rights, publication decision and upstream UA PR113 disposition. Recording-only work supplies none of these gates."
+    },
+    "CONTENT-REVIEW": {
+      "kind": "human",
+      "description": "Independent review compares the actual card with the supplied title, description, Ukrainian-language label and URL; checks English title language and preservation of prior event sources/date/other cards. Review applicable unautomated CS01-CS05/CS08-CS10 boundaries and exact historical amendment preservation. No playback/transcript quality review or framework validation is inferred."
+    },
+    "CURRENT-CI-DELIVERY": {
+      "kind": "human",
+      "description": "Record the exact current source/tree in one Refs #2 PR, successful Basic/navigation/acceptance and normal CI-controlled hosted PR smoke. Existing CI preview is the delivery route; local checks alone do not establish hosted rendering. Merge, stable staging and production remain separate maintainer decisions."
+    }
+  }
+}

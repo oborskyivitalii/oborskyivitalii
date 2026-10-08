@@ -1,6 +1,6 @@
 'use strict';
 // Reconcile exact content against the frozen source, allowing only the declared
-// Home hierarchy/wordmark, contact, response/title wrappers and hashed Issue41/48 content deltas.
+// Home hierarchy/wordmark, contact, response/title wrappers and hashed Issue2/41/48 content deltas.
 // Decorative SVG bytes are not copy.
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),cp=require('node:child_process'),crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..'),baseline='0333c4d2b2318850fd56312d83fb63ca468f01a4';
@@ -12,6 +12,7 @@ const titleCopy={research:'Two systems.<br>One engineering perspective.',writing
 const responses=Object.fromEntries(['index','research'].map(page=>[page,Object.fromEntries(['before','after'].map(version=>[version,fs.readFileSync(path.join(root,'review/public-responses-20261006',page+'.'+version+'.html'),'utf8')]))]));
 const amendment=JSON.parse(fs.readFileSync(path.join(root,'review/issue-41/content-amendment.json'),'utf8'));
 const issue48=JSON.parse(fs.readFileSync(path.join(root,'review/issue-48/content-amendment.json'),'utf8'));
+const issue2 = JSON.parse(fs.readFileSync(path.join(root, 'review/issue-2/content-amendment.json'), 'utf8'));
 function restoreContentAmendment(html,page,record=amendment){
   for(const change of record.changes.filter(c=>c.page===page)){
     for(const version of ['before','after'])assert.equal(crypto.createHash('sha256').update(change[version]).digest('hex'),change[version+'SHA256'],'amendment snapshot integrity');
@@ -20,21 +21,40 @@ function restoreContentAmendment(html,page,record=amendment){
   return html;
 }
 const strip=html=>html.replace(/<svg class="space-fallback"[\s\S]*?<\/svg>/,'[same-world decorative fallback]');
-function restoreApprovedContent(html,page){
-  if(page==='writing') {
+function restoreApprovedContent(html, page) {
+  if (page === 'writing') {
     // Reverse only the approved accessible description; the scene landmark is
     // decorative geometry within the existing fallback, with no content band.
-    html=html.replace('<p class="sr-only" data-writing-formula-description>y = f(x) → y ∼ P(y|x): a shift from deterministic mapping to conditional probabilistic modeling.</p>','');
+    html = html.replace('<p class="sr-only" data-writing-formula-description>y = f(x) → y ∼ P(y|x): a shift from deterministic mapping to conditional probabilistic modeling.</p>', '');
   }
   // Normalize this exact paint-only ink layer before matching the approved
   // complete content amendment; unsupported wrappers or changed copy remain.
-  if(titleCopy[page])html=html.replace('<h1><span class="reading-title"><span class="reading-title-ink">'+titleCopy[page]+'</span></span></h1>','<h1><span class="reading-title">'+titleCopy[page]+'</span></h1>');
-  html=restoreContentAmendment(html,page,issue48);
-  html=restoreContentAmendment(html,page);
-  if(titleCopy[page])html=html.replace('<h1><span class="reading-title">'+titleCopy[page]+'</span></h1>','<h1>'+titleCopy[page]+'</h1>');
-  if(responses[page])html=html.replace(responses[page].after,responses[page].before);
-  if(page==='research')html=html.replace('<a href="#acknowledgements">Public discussion</a>','<a href="#acknowledgements">Conversations</a>');
-  return page==='index'?html.replace(contactCurrent,contactPrevious):html;
+  if (titleCopy[page]) {
+    html = html.replace(
+      '<h1><span class="reading-title"><span class="reading-title-ink">' + titleCopy[page] + '</span></span></h1>',
+      '<h1><span class="reading-title">' + titleCopy[page] + '</span></h1>'
+    );
+  }
+  // Later editions reverse first so the immutable earlier amendments remain exact.
+  html = restoreContentAmendment(html, page, issue2);
+  html = restoreContentAmendment(html, page, issue48);
+  html = restoreContentAmendment(html, page);
+  if (titleCopy[page]) {
+    html = html.replace(
+      '<h1><span class="reading-title">' + titleCopy[page] + '</span></h1>',
+      '<h1>' + titleCopy[page] + '</h1>'
+    );
+  }
+  if (responses[page]) {
+    html = html.replace(responses[page].after, responses[page].before);
+  }
+  if (page === 'research') {
+    html = html.replace(
+      '<a href="#acknowledgements">Public discussion</a>',
+      '<a href="#acknowledgements">Conversations</a>'
+    );
+  }
+  return page === 'index' ? html.replace(contactCurrent, contactPrevious) : html;
 }
 function restore(html,page){
   const authoredBase=html.includes('  <meta name="site-effects-contract" content="1">\n')&&html.includes('  <meta name="site-variant" content="base">\n');
@@ -66,15 +86,48 @@ function restore(html,page){
   }
   return strip(result);
 }
-function verify(){
-  const rows=[];
-  for(const page of ['index','research','writing','talks','credits']){
-    const file='docs/'+page+'.html',source=fs.readFileSync(path.join(root,file),'utf8');
-    const old=cp.execFileSync('git',['show',baseline+':'+file],{cwd:root,encoding:'utf8',maxBuffer:1024*1024});
-    assert.equal(restore(source,page),strip(old),'undeclared semantic/source change: '+file);
-    rows.push({path:file,sha256:crypto.createHash('sha256').update(source).digest('hex'),exactContentAndMetadataPreserved:true,declaredChanges:[...[...amendment.changes,...issue48.changes].filter(c=>c.page===page).map(c=>c.intent),...(page==='index'?['three selected public responses with complete Research deep link','approved direct booking and public email','problem-led H1','author identity moved to hero lead','Help before Research','matching section/local-nav order','wordmark dot']:[...(page==='research'?['eight complete public responses, intro and navigation label']:[]),...(titleCopy[page]?['exact decorative title-line wrapper']:[]),...(page==='writing'?['exact accessible canonical formula description']:[]),'wordmark dot'])]});
+function verify() {
+  const rows = [];
+  const declaredAmendments = [...amendment.changes, ...issue48.changes, ...issue2.changes];
+  for (const page of ['index', 'research', 'writing', 'talks', 'credits']) {
+    const file = 'docs/' + page + '.html';
+    const source = fs.readFileSync(path.join(root, file), 'utf8');
+    const old = cp.execFileSync('git', ['show', baseline + ':' + file], {
+      cwd: root,
+      encoding: 'utf8',
+      maxBuffer: 1024 * 1024
+    });
+    assert.equal(restore(source, page), strip(old), 'undeclared semantic/source change: ' + file);
+    const presentationChanges = page === 'index' ? [
+      'three selected public responses with complete Research deep link',
+      'approved direct booking and public email',
+      'problem-led H1',
+      'author identity moved to hero lead',
+      'Help before Research',
+      'matching section/local-nav order',
+      'wordmark dot'
+    ] : [
+      ...(page === 'research' ? ['eight complete public responses, intro and navigation label'] : []),
+      ...(titleCopy[page] ? ['exact decorative title-line wrapper'] : []),
+      ...(page === 'writing' ? ['exact accessible canonical formula description'] : []),
+      'wordmark dot'
+    ];
+    rows.push({
+      path: file,
+      sha256: crypto.createHash('sha256').update(source).digest('hex'),
+      exactContentAndMetadataPreserved: true,
+      declaredChanges: [
+        ...declaredAmendments.filter(change => change.page === page).map(change => change.intent),
+        ...presentationChanges
+      ]
+    });
   }
-  return {baseline,pass:true,rows,policy:'Exact source after reversing the exact hashed Issue48 then Issue41 content amendments and declared Home hierarchy/wordmark changes, exact approved contact replacement/title wrappers, exact reviewed response blocks/Research nav, exact accessible Writing formula description and exact authored-base build identity/separator; decorative fallback SVG is excluded. Includes semantic metadata, JSON-LD, publication records, links, languages, dates, portrait and source attribution.'};
+  return {
+    baseline,
+    pass: true,
+    rows,
+    policy: 'Exact source after reversing the exact hashed Issue2, Issue48 then Issue41 content amendments and declared Home hierarchy/wordmark changes, exact approved contact replacement/title wrappers, exact reviewed response blocks/Research nav, exact accessible Writing formula description and exact authored-base build identity/separator; decorative fallback SVG is excluded. Includes semantic metadata, JSON-LD, publication records, links, languages, dates, portrait and source attribution.'
+  };
 }
 if(require.main===module)process.stdout.write(JSON.stringify(verify(),null,2)+'\n');
 module.exports={verify,restore,restoreApprovedContent,restoreContentAmendment};

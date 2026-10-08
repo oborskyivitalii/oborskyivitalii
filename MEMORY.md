@@ -4,6 +4,14 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 
 ## Snapshot
 
+- Recording follow-up #2: current checked-out main baseline is
+  `a56b62751f3c0f7e295db07bfc23201dd838510b` after merged R1 PR57.
+  Branch `content/pmday-recording-20261008` updates the existing PMDay card
+  with maintainer-supplied English copy and a Ukrainian recording link.
+  [Recording handoff](review/issue-2/2026-10-08-handoff.md) and live issue2
+  own the exact PR/source/check links. Article/PDF AC01-AC06 stay open;
+  recording AC07 and bounded delivery AC08 are reconciled there.
+
 - Rules main `e501da821c1cf9a3ac4bc8d251aba1bf4dc57d59`: PR #55 is merged;
   issue #54 is closed completed. PR #51 was already merged.
   Its research/Writing/Talks content, formula position and shared reading
@@ -61,9 +69,10 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 
 ## Next session
 
-1. Fetch live main and issue56/its PR; PR55 rules are already merged.
-2. Continue the separate authorized R1 delivery from its source handoff.
-3. Use targeted checks, trim removed debt, rebuild RI and reconcile actual ACs.
+1. Fetch live main and active issue/PR; R1 PR57 is merged.
+2. For recording #2, inspect its PR preview and AC07/AC08 evidence before any
+   separate merge/stable-stage decision; original article/PDF work remains open.
+3. Revalidate refactoring #58/PR60 ownership and avoid mixing it with content work.
 
 ## Maintenance
 
