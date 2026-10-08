@@ -17,7 +17,12 @@ concurrency:
   cancel-in-progress: true
 jobs:
   writing-attribution:
-    if: github.event_name == 'pull_request' && github.event.label.name == 'site-writing-cause-evidence' && github.event.pull_request.number == 47 && github.event.pull_request.head.repo.full_name == github.repository
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.event.label.name == 'site-writing-cause-evidence' &&
+      (github.event.pull_request.number == 47 ||
+      github.event.pull_request.head.ref == 'work/issue45-writing-attribution-20261008') &&
+      github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-24.04
     timeout-minutes: 12
     env:

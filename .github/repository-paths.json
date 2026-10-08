@@ -195,7 +195,7 @@
     },
     ".github/workflows/site-cause-probe.yml": {
       "kind": "file",
-      "purpose": "Explicit historical cause replay plus issue45 same-repository PR47 Writing label attribution; four source-bound private inputs, never stage or release admission.",
+      "purpose": "Explicit historical cause replay plus issue45 same-repository PR47 or dated successor-branch Writing label attribution; four source-bound private inputs, never stage or release admission.",
       "role": "workflow",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -910,6 +910,12 @@
     "review/issue-45/2026-10-07-independent-review.md": {
       "kind": "file",
       "purpose": "Independent source review of issue45 formula/reading-surface repair, corrected diagnostic findings and explicit visual limits.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-45/2026-10-08-writing-attribution.md": {
+      "kind": "file",
+      "purpose": "Issue45 current Writing performance attribution, exact retained evidence, bounded diagnostic route and repair decisions.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },

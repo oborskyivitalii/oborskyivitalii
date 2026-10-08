@@ -4,69 +4,61 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 
 ## Snapshot
 
-- Rules main `e501da821c1cf9a3ac4bc8d251aba1bf4dc57d59`: PR #55 is merged;
-  issue #54 is closed completed. PR #51 was already merged.
-  Its research/Writing/Talks content, formula position and shared reading
-  backdrop changes are current sources. Older #48 pending-merge instructions
-  are obsolete; fetch its issue for remaining acceptance.
-- [#54 / PR #55](https://github.com/oborskyivitalii/oborskyivitalii/pull/55)
-  owns the source audit, mandatory [code guide](guides/CODE-STYLE.md), agent/RI/AC
-  routing and bounded CI guard. Authorized merge completed on 8 October with
-  current green CI and independent agent review. Its source audit and rules are
-  active; runtime/content/public output was unchanged by activation.
-- [#56](https://github.com/oborskyivitalii/oborskyivitalii/issues/56) owns separate
-  R1 extraction into `site/effects/` and `tools/site/`, explicit shared descriptors,
-  expanded existing tool coverage and exact runtime/offline parity. Current
-  delivery/check/review state and PR links belong in its live issue and single
-  [handoff](review/issue-56/2026-10-08-handoff.md). Do not merge it by inference.
-- The single [#54 audit and Sol plan](review/issue-54/2026-10-08-analysis.md)
-  defines R0–R6. R1 active effect/export source extraction is first; formatting,
-  content/template, CSS and runtime migrations follow separately.
-- [#49 / PR #53](https://github.com/oborskyivitalii/oborskyivitalii/pull/53)
-  and [#50 / PR #52](https://github.com/oborskyivitalii/oborskyivitalii/pull/52)
-  contain overlapping fragment-flight plans. Resolve ownership before feature
-  implementation; code-quality/refactoring does not choose their route.
+- Verified main `a56b62751f3c0f7e295db07bfc23201dd838510b`; PR57/R1 is
+  merged. Canonical effects/export owners are `site/effects/` and `tools/site/`.
+  PR55's code guide and bounded guard remain active; frozen debt cannot expand.
+- [#61 / PR63](https://github.com/oborskyivitalii/oborskyivitalii/pull/63)
+  prepares the PMDay recording card. Corrected code head `ef92b0a0cdcbf7bd8761c56549f082259be296a6`
+  passed build/static/host in stage37783614376; Writing TBT299ms exceeded200ms.
+  Promotion was skipped. Its documentation head is `0e10abc2e053ffd9cc585d88ba4e505a06b6b694`.
+  Main/stable delivery for that task remains pending; failed evidence is retained.
+- [#45](https://github.com/oborskyivitalii/oborskyivitalii/issues/45) now owns
+  authorized bounded attribution and any justified canonical runtime repair.
+  Hypotheses and tasks are in the single
+  [Writing attribution record](review/issue-45/2026-10-08-writing-attribution.md).
+  Branch: `work/issue45-writing-attribution-20261008`, based on main above.
+  Runtime/public bytes are unchanged by diagnostic-route preparation.
 
 ## Decisions
 
-- Read CODE-STYLE before code/template/style/config changes. Map applicable
-  CS rule IDs to the owning AC and PR evidence; the guard proves a subset only.
-- Frozen #54 legacy allowances cannot grow. Trim entries as debt is removed.
-- Each bounded refactor gets an execution issue/ACs and PR, linked to #54.
-  Begin from merged rules and current main; preserve accepted #48 content.
-- Reuse free ESLint/SonarJS, Stylelint and existing security tools. Evaluate
-  source coverage before adding a service/server. R2 should pin Prettier and use
-  Ruff formatting; future dependency/clone checks need scoped authored baselines.
-  SonarQube server is unnecessary for R1; free Cloud remains optional/unconfigured.
-- Preserve reading paint/layout, world/camera, generated/immutable/offline
-  identities, no-JS behavior, lifecycle bounds and original performance budgets.
-- PR smoke/targeted, bounded staging and full production retain their owners.
-  Chromium/Firefox use Linux; native macOS WebKit stays separate.
-- Whole-AC checkboxes need current checks and applicable review evidence.
-  Merge, stable staging, production and refactor completion are distinct.
+- Preserve original AC01–AC06, expression/material/geometry, shared clock,
+  freeze/failure/cache/resource bounds and TBT200ms/LCP2500ms/CLS0.1 budgets.
+- One four-control Writing CPU attribution run uses maintained normal Color,
+  no-ribbons, no-canvas-draw and thematic-off inputs on one runner. Raw evidence
+  is diagnostic, never performance admission. No lottery retry or full
+  WebKit/production campaign is included.
+- Current/accepted actual runtime JS/CSS bytes match. Failed Writing already
+  paints fewer frames, with slower substantive frame/Commit medians. Hardware,
+  native per-frame cost and scheduler feedback remain hypotheses; no bitmap,
+  quality or cadence production change is established.
+- Apply CODE-STYLE before changes; guard success proves its documented subset.
+  Source-owned runtime changes need generated parity and independent review.
+- Recording delivery uses the complete existing bounded staging gate on the
+  final exact source before authorized main integration. It does not activate
+  production or supply physical-device/visual acceptance.
 
 ## Open work
 
 | Issue | Remaining intent |
 | --- | --- |
-| #56 | R1 exact-source checks, Draft PR, independent review and live AC reconciliation; R2–R6 stay separate. |
-| #48 | PR51 is merged; reconcile remaining acceptance from live evidence. |
-| #49 / #50 | Resolve overlapping fragment-flight plans before implementation. |
-| #45 / #36 / #41 | Original visual, paired, editorial/device and release gates. |
-| #1 / #13 | First release, physical devices and full production/recovery acceptance. |
-| #8 / #39 | Production URL/indexability, domains and analytics activation. |
-| #7 | License and editorial/third-party rights. |
-| #5 / #6 | Article HTML/PDF edition and cross-repository adapter. |
-| #2 / #11 | PMDay edition and post-launch buyer-intent guides. |
+| #45 | Collect attribution, choose a justified repair, check/review/stage; all six whole-AC boxes remain unchecked. |
+| #61 / PR63 | Deliver recording after its actual complete staging gate; AC02/AC03 remain open. |
+| #58 / #59 / PR60 | Separate ordered R2–R6 refactoring. |
+| #49 / #50 | Fragment-flight ownership and feature plan remain separate. |
+| #36 / #41 / #48 | Remaining current-source visual, editorial/device and release gates. |
+| #1 / #13 / #8 / #39 | Release, hosting, physical devices and activation under their own decisions. |
+| #7 / #5 / #6 | Rights, article editions and cross-repository adapter. |
 
 ## Next session
 
-1. Fetch live main and issue56/its PR; PR55 rules are already merged.
-2. Continue the separate authorized R1 delivery from its source handoff.
-3. Use targeted checks, trim removed debt, rebuild RI and reconcile actual ACs.
+1. Revalidate live main, #45 successor PR/head and its four-input cause artifact.
+2. Read the single attribution record; distinguish unthrottled trace costs
+   from simulated Lighthouse TBT and profiler overhead.
+3. Implement only a measured source-owned repair, then exact-source checks,
+   independent review and the original bounded stage. Reconcile actual AC boxes.
 
 ## Maintenance
 
-Keep the five sections within 120 lines and rebuild RI after changes. Detailed
-source/run/review history belongs in the owning issue/PR artifact. No private
+Keep these five sections within 120 lines and rebuild RI after changes. Detailed
+source/run/review evidence belongs in the owning issue/PR artifact. No private
 messages, credentials or inferred approvals belong in memory.

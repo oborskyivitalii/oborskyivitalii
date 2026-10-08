@@ -28,6 +28,14 @@ def node_checks(files, expected, pattern):
 
 
 class Issue45AcceptanceTests(unittest.TestCase):
+    def test_writing_attribution_keeps_exact_inputs_cpu_samples_and_raw_failures(self):
+        node_checks(
+            ["tests/cause-probe.test.cjs"], 6,
+            "^Writing workflow authorization|^causal inputs reject|^Lighthouse attribution requires|"
+            "^Writing attribution derives|^Writing CPU attribution runs|"
+            "^cause scope counts preserve",
+        )
+
     def test_crisp_world_layers_keep_one_bounded_cache_and_failure_containment(self):
         node_checks(["tests/renderer.test.cjs"], 4,
                     "^filled facets avoid|^one fixed formula cache|^formula raster failure|"

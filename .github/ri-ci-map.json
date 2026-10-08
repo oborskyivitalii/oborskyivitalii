@@ -417,7 +417,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "42eabbad7ec605083fb91d1a5f699bf7086be3298e8ce6c292aeffb54900f386",
+    "digest": "3a1612d140e1316e93bf74eee8b24f9d4e01fb35f5cf16e944504c2e274cf7cb",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -457,7 +457,7 @@
       },
       {
         "path": ".github/acceptance/issue-45.json",
-        "sha256": "23050469079306b91a34e06b761770d1fb31bf041896de81943119bbd1a6ac8e"
+        "sha256": "eba94128473d0ebfac632754d3bd89de8feea24c41f52eb150ac529cb6181ea1"
       },
       {
         "path": ".github/acceptance/issue-48.json",
@@ -489,7 +489,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "b0ad58d7f50c945df4f30d61d235ea270baf244d3470bb7ba67ee6adc3b053fc"
+        "sha256": "dfa3690c878e520ab264ffbcac8a50b3311da87702b725e039b32c4e6b82e6fc"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -513,7 +513,7 @@
       },
       {
         "path": ".github/workflows/site-cause-probe.yml",
-        "sha256": "afeb3f75110fb431a26dd8df3a077b0f6c50090c61b4789a6fe98d008724cf6d"
+        "sha256": "d0d50b10cf1254cfdc5a485c394d4bd35913476a15ff221c73fd67eac2dda691"
       },
       {
         "path": ".github/workflows/site-checks.yml",
@@ -569,7 +569,7 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "d3fda7bcd9d71fb4bf28aecd801c5106fdcd1e380e580f6c91598f49bb99767c"
+        "sha256": "ca78146fdd6000fcb9d3f7803b6a582dc21623c4f541d411c289ffcf69b322f3"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -617,7 +617,7 @@
       },
       {
         "path": "tests/test_issue45_acceptance.py",
-        "sha256": "8cf493d78ff6ad8c7ce7892b3e532b3ba7fdb82a95ec7c4409a5442884b9cd93"
+        "sha256": "dc0a5637340e112e50d3714f4d7be10c10b81338d146316880c8f99552941a05"
       },
       {
         "path": "tests/test_issue48_acceptance.py",

@@ -44,10 +44,12 @@
     {
       "id": "AC04",
       "intent": "Deliver canonical generated output and a reviewable owning-issue/Draft-PR change with exact checks and honest acceptance state.",
-      "automated_scope": "Current RI inventory/views and actual CI coupling, explicit owning-issue selection and pending human-gate semantics. Existing Basic and hosted preview CI remain separately required; this policy does not duplicate them, ingest their artifacts, grant independent review or authorize merge.",
+      "automated_scope": "Current RI inventory/views and actual CI coupling, explicit owning-issue selection and pending human-gate semantics. Reuse all six maintained cause-probe cases with no missing, failed or skipped tests: actual workflow authorization denies unrelated events, labels, branches and forks, rejects unsupported condition grammar and binds checkout to the exact PR head; exact clean source/tree/parent inputs, four distinct Writing controls, required CPU samples, retained raw evidence before validation, bounded fresh processes and failed cleanup containment. Collection success is not performance acceptance. Applicable CS01 and CS04-CS10 cover source ownership, one owner, readable touched code, unchanged lifecycle and limits, measured attribution, proportional checks, the bounded style guard and honest issue/PR evidence; independent review covers rules outside the automatic subset. Existing Basic and hosted preview CI remain separately required; this policy does not duplicate them, ingest their artifacts, grant independent review or authorize merge.",
       "checks": [
         "CURRENT-RI",
         "RI-CI",
+        "WRITING-ATTRIBUTION",
+        "STYLE-GUARD",
         "OWNER-SELECTION",
         "PENDING-GATE"
       ],
@@ -114,6 +116,14 @@
       "kind": "unittest",
       "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
     },
+    "WRITING-ATTRIBUTION": {
+      "kind": "unittest",
+      "test": "test_issue45_acceptance.Issue45AcceptanceTests.test_writing_attribution_keeps_exact_inputs_cpu_samples_and_raw_failures"
+    },
+    "STYLE-GUARD": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    },
     "OWNER-SELECTION": {
       "kind": "unittest",
       "test": "test_issue_acceptance.AcceptanceRunnerTests.test_selector_uses_only_explicit_local_refs"
@@ -146,7 +156,7 @@
     },
     "G04": {
       "kind": "human",
-      "description": "Record the exact live issue/PR/Refs commits, same-source required Basic/targeted/navigation/acceptance and opt-in evidence runs, CI-controlled preview artifact and independent review. Reconcile the actual AC checkboxes in the owning issue; local preparation, fixture success or an earlier head do not complete these requirements."
+      "description": "Record the exact live issue/PR/Refs commits, same-source required Basic/targeted/navigation/acceptance and opt-in evidence runs, CI-controlled preview artifact and independent review, including applicable CS01 and CS04-CS10 rules outside the automatic guard subset. Reconcile the actual AC checkboxes in the owning issue; local preparation, fixture success or an earlier head do not complete these requirements."
     },
     "G05": {
       "kind": "merge",

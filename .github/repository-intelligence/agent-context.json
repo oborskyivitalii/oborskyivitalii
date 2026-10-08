@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "954a46281d2e3595fb1d81844419359eb8ced6c7a7f9e3b95938c9f4a283f87d",
+    "digest": "b74512e09870765209e794a458be88a3353645230abeba68d43862d59fdcaba1",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -72,7 +72,7 @@
       {
         "path": ".github/acceptance/issue-45.json",
         "identity_mode": "content",
-        "sha256": "23050469079306b91a34e06b761770d1fb31bf041896de81943119bbd1a6ac8e"
+        "sha256": "eba94128473d0ebfac632754d3bd89de8feea24c41f52eb150ac529cb6181ea1"
       },
       {
         "path": ".github/acceptance/issue-48.json",
@@ -116,12 +116,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "b0ad58d7f50c945df4f30d61d235ea270baf244d3470bb7ba67ee6adc3b053fc"
+        "sha256": "dfa3690c878e520ab264ffbcac8a50b3311da87702b725e039b32c4e6b82e6fc"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "10c086bd7b683a13f86ce68429e15b3c70886047f05d7c566c7deaf13de39cbf"
+        "sha256": "e339d498b04ce0c3219c04490c2a6250ee4f2ee5c9189dfea89ac20814cafed9"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -151,7 +151,7 @@
       {
         "path": ".github/workflows/site-cause-probe.yml",
         "identity_mode": "content",
-        "sha256": "afeb3f75110fb431a26dd8df3a077b0f6c50090c61b4789a6fe98d008724cf6d"
+        "sha256": "d0d50b10cf1254cfdc5a485c394d4bd35913476a15ff221c73fd67eac2dda691"
       },
       {
         "path": ".github/workflows/site-checks.yml",
@@ -216,7 +216,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "cf59875c3770142abef964d0048ec9ebae440d9984e2c25b9af91158fa37eee0"
+        "sha256": "95914299c7a57b9977b2d130e37ef9bad7f2310522d15c38673b8f9195ae59f6"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -410,7 +410,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "d3fda7bcd9d71fb4bf28aecd801c5106fdcd1e380e580f6c91598f49bb99767c"
+        "sha256": "ca78146fdd6000fcb9d3f7803b6a582dc21623c4f541d411c289ffcf69b322f3"
       },
       {
         "path": "guides/SITE-CONTENT-REVIEW.md",
@@ -611,6 +611,11 @@
         "path": "review/issue-45/2026-10-07-independent-review.md",
         "identity_mode": "content",
         "sha256": "f68f3f31c2e4b94aca79ceb2353cf4e0cd9702f45abb8da9abedc3eeb21a43ae"
+      },
+      {
+        "path": "review/issue-45/2026-10-08-writing-attribution.md",
+        "identity_mode": "content",
+        "sha256": "807c7bf4d4fcffd365d6e57b24dd7ccdded04aa50488f7144011b5ecaf49aeaa"
       },
       {
         "path": "review/issue-48/2026-10-08-handoff.md",
@@ -4515,7 +4520,7 @@
       {
         "path": "tests/cause-probe.test.cjs",
         "identity_mode": "content",
-        "sha256": "169a83b5609a5f58aae469d2f415a78d1f58038d1598a446e5ff6273f5f5ebab"
+        "sha256": "aabe1c70bcf1bac15a25167ba96a002c69ab087cde5ce25e5af600ad04aa6779"
       },
       {
         "path": "tests/color-build.test.cjs",
@@ -4710,7 +4715,7 @@
       {
         "path": "tests/test_issue45_acceptance.py",
         "identity_mode": "content",
-        "sha256": "8cf493d78ff6ad8c7ce7892b3e532b3ba7fdb82a95ec7c4409a5442884b9cd93"
+        "sha256": "dc0a5637340e112e50d3714f4d7be10c10b81338d146316880c8f99552941a05"
       },
       {
         "path": "tests/test_issue48_acceptance.py",
@@ -5826,7 +5831,7 @@
     {
       "path": ".github/workflows/site-cause-probe.yml",
       "kind": "file",
-      "purpose": "Explicit historical cause replay plus issue45 same-repository PR47 Writing label attribution; four source-bound private inputs, never stage or release admission.",
+      "purpose": "Explicit historical cause replay plus issue45 same-repository PR47 or dated successor-branch Writing label attribution; four source-bound private inputs, never stage or release admission.",
       "role": "workflow",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
@@ -6845,6 +6850,17 @@
         "AGENTS.md"
       ],
       "title": "Issue 45 independent scoped review — 2026-10-07"
+    },
+    {
+      "path": "review/issue-45/2026-10-08-writing-attribution.md",
+      "kind": "file",
+      "purpose": "Issue45 current Writing performance attribution, exact retained evidence, bounded diagnostic route and repair decisions.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 45 — 2026-10-08 Writing attribution and bounded repair"
     },
     {
       "path": "review/issue-48/2026-10-08-handoff.md",

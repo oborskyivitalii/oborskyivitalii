@@ -4,6 +4,77 @@ const {validateInput,lighthouseEvidence,validateWritingInputs,deriveWritingInput
 const candidate='a'.repeat(40),variant={id:'color',contract:1,fingerprint:'c'.repeat(64)};
 const normal={sourceCommit:candidate,candidateCommit:candidate,sourceTree:'b'.repeat(40),sourceDirty:false,artifactDigest:'d'.repeat(64),variant};
 const control={...normal,artifactDigest:'e'.repeat(64),fullGate:false,diagnostic:{label:'browser-gate-trace'},derivation:{parentArtifactDigest:normal.artifactDigest,parentVariant:variant}};
+test('Writing workflow authorization evaluates its actual bounded label and source guard',()=>{
+  const source=fs.readFileSync(path.resolve(__dirname,'../.github/workflows/site-cause-probe.yml'),'utf8');
+  const block=source.match(/^  writing-attribution:\n[\s\S]*?(?=^  [a-z][a-z-]*:\n|$(?![\s\S]))/m)?.[0];
+  assert.ok(block,'missing Writing attribution job');
+  const folded=block.match(/^ {4}if: >-\n((?: {6}.+\n)+)/m)?.[1];
+  assert.ok(folded,'missing folded authorization condition');
+  const expression=folded.trim().split('\n').map(line=>line.trim()).join(' ');
+  const allowedVariables=new Set(['github.event_name','github.repository','github.event.label.name',
+    'github.event.pull_request.number','github.event.pull_request.head.ref',
+    'github.event.pull_request.head.repo.full_name']);
+  // Reuse the maintained equality-clause evaluator, allowing only a parenthesized
+  // OR group within the top-level AND. No expression executes as JavaScript.
+  function selected(condition,context) {
+    const readVariable=key=>{
+      assert.ok(allowedVariables.has(key),'unsupported authorization variable');
+      return key.split('.').reduce((value,part)=>value?.[part],context);
+    };
+    const clauses=condition.split(/\s*&&\s*/).map(group=>{
+      if(group.startsWith('(')&&group.endsWith(')')){
+        group=group.slice(1,-1).trim();
+      }else{
+        assert.ok(!group.includes('||'),'OR must be parenthesized');
+      }
+      return group.split(/\s*\|\|\s*/).map(clause=>{
+        const parsed=clause.match(/^([\w.]+) == (?:'([^']*)'|(\d+)|([\w.]+))$/);
+        assert.ok(parsed,'unsupported authorization condition');
+        const [,left,string,number,right]=parsed;
+        const expected=string!==undefined?string:number!==undefined?Number(number):readVariable(right);
+        return readVariable(left)===expected;
+      });
+    });
+    return clauses.every(group=>group.some(Boolean));
+  }
+  const context={github:{event_name:'pull_request',repository:'oborskyivitalii/oborskyivitalii',
+    event:{label:{name:'site-writing-cause-evidence'},pull_request:{number:999,
+      head:{ref:'work/issue45-writing-attribution-20261008',repo:{full_name:'oborskyivitalii/oborskyivitalii'}}}}}};
+  assert.equal(selected(expression,context),true);
+  const historical=structuredClone(context);
+  historical.github.event.pull_request.number=47;
+  historical.github.event.pull_request.head.ref='historical-branch';
+  assert.equal(selected(expression,historical),true);
+  for(const original of [context,historical]){
+    for(const mutate of [
+      value=>value.github.event_name='workflow_dispatch',
+      value=>value.github.event_name='push',
+      value=>value.github.event_name='pull_request_target',
+      value=>value.github.event.label.name='performance',
+      value=>value.github.event.pull_request.head.repo.full_name='other/fork',
+      value=>{
+        value.github.event.pull_request.number=999;
+        value.github.event.pull_request.head.ref='other-branch';
+      }
+    ]){
+      const denied=structuredClone(original);
+      mutate(denied);
+      assert.equal(selected(expression,denied),false,'unrelated event or source must remain denied');
+    }
+  }
+  for(const invalid of [expression.replace(' == ',' != '),expression+' && contains(github.repository, \'other\')',
+    expression+' && github.unknown == \'value\'',expression+' || github.event_name == \'push\'']){
+    assert.throws(()=>selected(invalid,context),'unsupported grammar must fail closed');
+  }
+  const header=source.slice(0,source.indexOf('\njobs:'));
+  assert.match(header,/^ {2}pull_request:\n {4}types: \[labeled\]$/m);
+  assert.doesNotMatch(header,/pull_request_target|^ {2}push:|synchronize|opened|reopened|ready_for_review/m);
+  assert.match(header,/^permissions:\n {2}contents: read\n/m);
+  assert.doesNotMatch(source,/^\s+[a-z-]+: write$/m);
+  assert.match(block,/SITE_CANDIDATE_SHA: \$\{\{ github\.event\.pull_request\.head\.sha \}\}/);
+  assert.match(block,/ref: \$\{\{ github\.event\.pull_request\.head\.sha \}\}/);
+  assert.match(block,/test "\$\(git rev-parse HEAD\)" = "\$SITE_CANDIDATE_SHA"/);
+});
 test('causal inputs reject stale source, dirty artifacts and an unrelated normal Color parent',()=>{
   validateInput(normal,control,candidate);
   for(const patch of [{sourceCommit:'f'.repeat(40)},{sourceDirty:true},{sourceTree:'f'.repeat(40)},{artifactDigest:normal.artifactDigest},{fullGate:true},{derivation:{...control.derivation,parentArtifactDigest:'f'.repeat(64)}}])assert.throws(()=>validateInput(normal,{...control,...patch},candidate));
