@@ -13,17 +13,23 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
   failed runs and the canceled post-ready duplicate preview are not this proof.
   [#45 handoff](review/issue-45/2026-10-07-handoff.md) retains detailed history.
 - [#48](https://github.com/oborskyivitalii/oborskyivitalii/issues/48) owns the
-  new three-change request. Isolated branch `work/issue48-site-alignment-20261008`
-  starts at the main above. [Draft PR51](https://github.com/oborskyivitalii/oborskyivitalii/pull/51) is published.
-  Source4a00a998/tree73f73835 passes all four source/preview workflows; immutable
-  preview https://a8f8142b.oborskyi-author-ci-staging.pages.dev/ .
-  Run37743276316 minimal hosted smoke passed; no stable promotion ran.
-  [Current handoff](review/issue-48/2026-10-08-handoff.md) is its single review route.
+  theory/formula/Matthew request and subsequent Talks extension. Isolated branch
+  `work/issue48-site-alignment-20261008` starts at main above; same
+  [Draft PR51](https://github.com/oborskyivitalii/oborskyivitalii/pull/51) owns both.
+  Pre-Talks published checkpointb6f8fe74/tree d0fd8a4a passed all four workflows;
+  historical preview https://81c613b2.oborskyi-author-ci-staging.pages.dev/ .
+  Talks extension source/preview verification is pending publication; fetch the
+  live PR/issue for current SHA/results rather than inheriting checkpoint green.
+  [Current handoff](review/issue-48/2026-10-08-handoff.md) is the single review route.
 - #48 swaps TOC/Control to align Subprime/UA with named links and existing palette,
   derives formula center/origin at first-two-arches midpoint [-1,.5,-18], and
   reports Matthew's verified reshare of Michael Risch's discussion with commentary.
   Older encouragement remains separate. Guest source identities/digest are in
   review/issue-48/source-inventory.json; third-party raw HTML stays scratch-only.
+- Talks enriches existing PMDay/Betelgeuse and adds one distinct swarchua discussion
+  with its source-linked YouTube recording. Only PMDay has an established event
+  date (26Sep2026); other event dates and spoken languages remain unconfirmed.
+  Corning and all earlier links persist. No promised PMDay recording is inferred.
 - Reading surfaces retain87% paper alpha/13% transparency, opaque ink and crisp
   four12px corners. Reduced-transparency override stays with the same CSS owner.
 - #36/#41 work is merged through the subsequent integration/main changes. Original
@@ -34,7 +40,7 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 
 - The current explicit request authorizes #48 implementation and a linked Draft
   PR with normal CI preview. It supplies the exact treatment decision for the
-  public-source intake appended before Matthew's authored copy edit.
+  public-source intakes appended before Matthew and Talks authored copy edits.
 - The prior main/staging instruction applies to completed PR47. No new #48 merge,
   stable staging promotion, production/domain or analytics activation is authorized.
 - Preserve all other people and links, advisor roles, publication editions, formula
@@ -50,7 +56,7 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 
 | Issue | Remaining intent |
 | --- | --- |
-| #48 | Draft PR51 implementation, independent source/code+policy review and current source/preview CI passed; maintainer visual/editorial acceptance and merge remain open. |
+| #48 | Draft PR51 original implementation passed at pre-Talks checkpoint. AC05 source curation is implemented; current extension review/CI/preview pending. All five whole ACs and maintainer visual/editorial/merge gates remain open. |
 | #45 | All6 whole ACs stay open for their literal current-source visual/evidence and complete-expression occlusion/device/release gates. PR47 main/stage is complete. |
 | #36 / #41 | Original paired/visual/editorial/device criteria and whole source mapping; successful joint staging does not imply complete acceptance. |
 | #1 / #13 | First-release, physical-device and full production/recovery acceptance. |

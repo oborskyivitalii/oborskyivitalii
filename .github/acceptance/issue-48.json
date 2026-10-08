@@ -54,6 +54,21 @@
         "CURRENT-CI-REVIEW",
         "MERGE"
       ]
+    },
+    {
+      "id": "AC05",
+      "intent": "Curate the three supplied Talks follow-ups by enriching PMDay and Betelgeuse once each and adding one distinct swarchua event, with source-supported English context, dates, language and resources.",
+      "automated_scope": "The maintained content case accounts for distinct event cards and admitted source identities, preserves Corning and previous links, and checks canonical generated Talks content and its exact metadata delta. It distinguishes the supported PMDay event date of 2026-09-26 from source-post dates, rejects use of Betelgeuse or swarchua post dates as event dates, and preserves or qualifies spoken-language knowledge and recording/resource scope. Maintained adversarial reconciliation rejects missing events, substituted sources and invented dates or resources. The shared generated-publication/SEO check runs once and reverses only the exact authorized amendment while retaining all unrelated semantics. Public-source interpretation, actual recording playback or spoken language, current-preview readability and independent review remain explicit evidence and gates.",
+      "checks": [
+        "TALKS-CURATION",
+        "GENERATION-SEO"
+      ],
+      "gates": [
+        "EDITORIAL",
+        "VISUAL",
+        "CURRENT-CI-REVIEW",
+        "MERGE"
+      ]
     }
   ],
   "checks": {
@@ -88,16 +103,20 @@
     "PENDING-GATE": {
       "kind": "unittest",
       "test": "test_issue_acceptance.AcceptanceRunnerTests.test_manual_only_criterion_is_pending"
+    },
+    "TALKS-CURATION": {
+      "kind": "unittest",
+      "test": "test_issue48_acceptance.Issue48AcceptanceTests.test_talks_curates_distinct_sourced_events_and_rejects_invented_details"
     }
   },
   "gates": {
     "VISUAL": {
       "kind": "human",
-      "description": "Inspect the exact current-source CI preview in Day/Night at desktop and narrow widths. Verify theory/project association and native wrapping, unchanged 87% paper alpha/13% transparency and effective reading corners, and the same colored Writing formula visibly between the first and second book arches with coherent tilt, pulse and camera travel. Retain source/public identities and actual observations. Maintainer visual acceptance remains explicit; deterministic source assertions are not device or perceived-layout evidence."
+      "description": "Inspect the exact current-source CI preview in Day/Night at desktop and narrow widths. Verify theory/project association and native wrapping, unchanged 87% paper alpha/13% transparency and effective reading corners, and the same colored Writing formula visibly between the first and second book arches with coherent tilt, pulse and camera travel. Retain source/public identities and actual observations. Maintainer visual acceptance remains explicit; deterministic source assertions are not device or perceived-layout evidence. For the authorized Talks amendment, inspect the four distinct cards, concise context, truthful date/language/resource labels and native narrow wrapping at the same current preview; maintainer visual acceptance remains explicit."
     },
     "EDITORIAL": {
       "kind": "human",
-      "description": "Review the bounded original guest-source acquisition, exact canonical post identity, author/date and Matthew-to-Michael-Risch reshare chain against the new Home/Research wording. Distinguish the new commentary from older encouragement and preserve all unrelated responses; no scientific validation, adoption or institutional endorsement may be inferred. Record source/editorial review honestly against the exact candidate."
+      "description": "Review the bounded original guest-source acquisition, exact canonical post identity, author/date and Matthew-to-Michael-Risch reshare chain against the new Home/Research wording. Distinguish the new commentary from older encouragement and preserve all unrelated responses; no scientific validation, adoption or institutional endorsement may be inferred. Record source/editorial review honestly against the exact candidate. For AC05, inspect all three original supplied public posts and bounded source records, verify PMDay and Betelgeuse are enriched without duplicate events and swarchua is distinct, and preserve exact Corning and prior sources. Distinguish event occurrence from source-post publication; do not infer spoken language, formal titles, recording playback or promised PMDay recording/slides from uninspected material. Record independent editorial/code review of the exact Talks candidate."
     },
     "CURRENT-CI-REVIEW": {
       "kind": "human",

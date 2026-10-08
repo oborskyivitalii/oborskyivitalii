@@ -2,7 +2,7 @@
   "schema_version": 1,
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/48",
-    "summary": "2026-10-08 issue48 narrow theory/project association, Writing landmark midpoint and verified Matthew reshare amendment: strict maintained-case selections run through the new owning policy; current-preview, editorial, independent review and merge remain explicit gates. Canonical profile allocation and original budgets are retained.",
+    "summary": "2026-10-08 issue48 narrow theory/project association, Writing landmark midpoint, verified Matthew reshare and explicitly authorized distinct Talks curation: strict maintained-case selections run through the owning AC01-AC05 policy; current-preview, editorial, independent review and merge remain explicit gates. Existing companion paths, canonical profile allocation and original budgets are retained.",
     "date": "2026-10-08"
   },
   "layers": [
@@ -364,7 +364,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "620e2f3948499285ea2727ca8ed611983f823a7888328b27d794d6d5558da732",
+    "digest": "de9283f0a8c44308d8205dc52b66e45a8b96d5fde796c90efa2aa1fae083c1b1",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -408,7 +408,7 @@
       },
       {
         "path": ".github/acceptance/issue-48.json",
-        "sha256": "76fed3ec6d04d5dc348b6eae04d134a53a251103759a9c07f260ea5008cc8e30"
+        "sha256": "106d2930e28e7a686a02a59b1d8b1b0619cdb67338ab36ee2c0cabce97639f4b"
       },
       {
         "path": ".github/pull_request_template.md",
@@ -424,7 +424,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "0f7b7e8d38fed3c4429e55d28adde371909749fc955bd147a9458d3f770a6fba"
+        "sha256": "79775740845f207448ad931e6a22dfefe146583ff3bb19811cc8c69f30992e79"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -548,7 +548,7 @@
       },
       {
         "path": "tests/test_issue48_acceptance.py",
-        "sha256": "1a066edfa72034f888b5d52f4489a4bb3f2a0725cbd6be3b49cc9e9344fa5c5e"
+        "sha256": "2f1ace3adada25ad603acc1356ccbc2650c6d43efdfc92961d6c9edc64eb0c2c"
       },
       {
         "path": "tests/test_issue_acceptance.py",
@@ -600,7 +600,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "5357c46638a20a244d23f93c76bf833bdd9478d5a23757668c8c8c0571e8b9e3"
+        "sha256": "44f9afb59e4108a031df16a6e161af6fbd32a1e0116743fce086516f649ca399"
       },
       {
         "path": "tools/repository_intelligence.py",

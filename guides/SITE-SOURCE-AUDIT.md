@@ -5,6 +5,38 @@ Each dated section describes that edition; older counts, placement and review
 limits are historical. Use [the editorial review route](SITE-CONTENT-REVIEW.md),
 the owning issue/PR and [MEMORY](../MEMORY.md) for current acceptance.
 
+## Talks source curation — 2026-10-08
+
+The maintainer extended [issue #48](https://github.com/oborskyivitalii/oborskyivitalii/issues/48)
+and the same Draft PR51 with three public post sources before implementation.
+The [bounded inventory](../review/issue-48/source-inventory.json) records their
+canonical URLs, authors, post timestamps, acquisition hashes and admission limits.
+PMDay's new speaker follow-up supports the delivered talk's two themes and the
+organizer's explicit **26 September 2026** event date. Its 28 September post date
+is separate; the promised future recording is not advertised as available.
+
+The second source enriches the existing Betelgeuse / QA Україна discussion with
+AI testing, trust, control and engineering responsibility; it does not create a
+second Betelgeuse event. The third independently identifies a swarchua architects
+community discussion and adds one distinct card. This current source supersedes
+any earlier tentative association of the swarchua label with Betelgeuse; dated
+historical audit sections remain historical. Corning's card and every earlier
+event link remain exact. Descriptive swarchua wording is not an official title.
+
+The swarchua post's public recording link resolves to YouTube video
+`1MPsDi3wuF4`, titled **AI discussion**, channel Neverdrak. Ordinary public target
+metadata was inspected; playback and transcript were not. The archived broadcast
+timestamps are provenance, not independently established event occurrence or
+individual talk duration. June29 and July6 are post dates. Spoken languages for
+Corning, Betelgeuse and swarchua remain unconfirmed; the prior approved PMDay
+Ukrainian classification is retained. No slides, unsupported dates, participant
+counts, engagement metrics or third-party full text were added.
+
+Canonical Talks HTML and its three derived description tags use exact hashed
+before/after amendments. Restoration preserves the immutable Issue41 amendment
+and rejects unrelated metadata or event changes. The same
+[handoff](../review/issue-48/2026-10-08-handoff.md) owns current verification.
+
 ## Matthew Skelton reshare and theory alignment — 2026-10-08
 
 [Issue #48](https://github.com/oborskyivitalii/oborskyivitalii/issues/48) owns the

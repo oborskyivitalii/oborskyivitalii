@@ -47,8 +47,9 @@ test('response reconciliation rejects missing people, sources and stronger parti
 test('issue48 amendment reverses only declared theory and Matthew changes',()=>{
   const {restore,restoreContentAmendment}=require('../tools/check_site_seo.cjs'),path=require('node:path');
   const record=JSON.parse(fs.readFileSync(path.join(__dirname,'../review/issue-48/content-amendment.json'),'utf8'));
-  assert.equal(record.changes.length,3);
-  for(const change of record.changes) {
+  const original=record.changes.filter(change=>change.page!=='talks');
+  assert.deepEqual(original.map(change=>[change.page,change.id]),[['index','matthew-response'],['research','matthew-response'],['research','lenses']]);
+  for(const change of original) {
     assert.equal(restoreContentAmendment(change.after,change.page,record),change.before);
     const html=fs.readFileSync(path.join(__dirname,'../docs/'+change.page+'.html'),'utf8');
     assert.ok(html.includes(change.after));
@@ -57,6 +58,33 @@ test('issue48 amendment reverses only declared theory and Matthew changes',()=>{
     assert.notEqual(restore(html.replace(change.after,mutation),change.page),restore(html,change.page),'changed association/attribution is not silently reversed');
     const corrupt=JSON.parse(JSON.stringify(record));corrupt.changes.find(c=>c.page===change.page&&c.id===change.id).after+=' ';
     assert.throws(()=>restoreContentAmendment(change.after,change.page,corrupt),/snapshot integrity/);
+  }
+});
+test('Talks reconciliation rejects missing events, substituted sources and invented dates or resources',()=>{
+  const path=require('node:path'),{restore,restoreContentAmendment}=require('../tools/check_site_seo.cjs');
+  const record=require('../review/issue-48/content-amendment.json');
+  const changes=record.changes.filter(change=>change.page==='talks');
+  assert.equal(record.changes.length,7);
+  assert.deepEqual(changes.map(change=>change.id),['talks','description','og:description','twitter:description']);
+  const html=fs.readFileSync(path.join(__dirname,'../docs/talks.html'),'utf8'),preserved=restore(html,'talks');
+  const cards=[...html.matchAll(/<article class="publication"[\s\S]*?<\/article>/g)].map(row=>row[0]);
+  const mutations=[
+    [cards[3],''],[cards[1],''],[cards[3],cards[2]],
+    ['https://www.youtube.com/watch?v=1MPsDi3wuF4','https://www.youtube.com/watch?v=OtherVideo'],
+    ['2026-09-26','2026-09-28'],
+    ['activity-7479802249829928961-PmrF','activity-7477274339411693569-dJhu'],
+    [cards[3],cards[3].replace('data-language="unconfirmed"','data-language="en"')],
+    [cards[0],cards[0].replace('</article>','<a href="https://example.com/recording">Watch recording / slides</a></article>')],
+    ['including PMDay, Corning Learn-AI-Palooza, Betelgeuse and swarchua','including invented events']];
+  for(const [from,to]of mutations){
+    assert.ok(html.includes(from),'mutation input exists');assert.notEqual(from,to,'mutation is meaningful');
+    assert.notEqual(restore(html.replace(from,to),'talks'),preserved,'unsupported event/source/date/language/resource edit remains visible');
+  }
+  for(const change of changes){
+    assert.ok(html.includes(change.after));
+    assert.equal(restoreContentAmendment(change.after,'talks',record),change.before);
+    const corrupt=JSON.parse(JSON.stringify(record));corrupt.changes.find(row=>row.page==='talks'&&row.id===change.id).after+=' ';
+    assert.throws(()=>restoreContentAmendment(change.after,'talks',corrupt),/snapshot integrity/);
   }
 });
 test('Day/Night semantic text and CTA pairs exceed normal-text contrast with no independent atmosphere clock',()=>{

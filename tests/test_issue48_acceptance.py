@@ -1,4 +1,4 @@
-"""Issue 48 selects maintained theory, landmark, evidence and generation checks.
+"""Issue 48 selects maintained theory, landmark, response, Talks and generation checks.
 
 These selections prove source invariants and reject unapproved semantic changes.
 Current-preview visual acceptance, source/editorial and independent review, CI
@@ -56,6 +56,12 @@ class Issue48AcceptanceTests(unittest.TestCase):
         node_checks(["tests/executive.test.cjs", "tests/site-engine.test.cjs"], [
             "executive hierarchy preserves the frozen SEO, editions, sources and all unrelated copy",
             "source migration preserves publication HTML and thematic geometry when shared vocabulary expands",
+        ])
+
+    def test_talks_curates_distinct_sourced_events_and_rejects_invented_details(self):
+        node_checks(["tests/content.test.cjs", "tests/executive.test.cjs"], [
+            "Talks curates distinct events with source-supported dates, language and resources",
+            "Talks reconciliation rejects missing events, substituted sources and invented dates or resources",
         ])
 
 

@@ -1486,7 +1486,7 @@
     {
       "path": "tests/test_issue48_acceptance.py",
       "language": "python",
-      "purpose": "Issue48 strict selections of maintained theory/project association, formula midpoint/cache/world/static bounds, evidence-preserving Matthew/SEO mutations and canonical generation; preview/editorial/independent-review gates remain distinct.",
+      "purpose": "Issue48 strict selections of maintained theory/project association, formula midpoint/cache/world/static bounds, evidence-preserving Matthew and distinct Talks event/source/date/language/resource reconciliation, and canonical generation; preview/editorial/independent-review gates remain distinct.",
       "owner": ".github/ACCEPTANCE.md",
       "lifecycle": "task-snapshot",
       "profiles": [
