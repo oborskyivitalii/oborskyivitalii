@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "issue": 48,
+  "date": "2026-10-08",
+  "source": {
+    "id": "M48",
+    "submitted_url": "https://lnkd.in/p/e7_nrR6f",
+    "canonical_url": "https://www.linkedin.com/posts/matthewskelton_uncertainty-architecture-why-ai-governance-activity-7455172623409430528-MI9x",
+    "author": "Matthew Skelton",
+    "published_at": "2026-04-29T08:34:23.806Z",
+    "acquisition_method": "Ordinary public guest HTML fetch via the submitted short URL; no authentication.",
+    "bytes": 160647,
+    "sha256": "d8af864e30df71dea7bf04062ab28e4cfe03f3fa5dbfbdb91a131812aed27c78",
+    "reshared_author": "Michael Risch",
+    "reshared_activity": "7455141331162681344",
+    "reshared_url": "https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g",
+    "observation": "Matthew reshared Risch’s discussion of the author’s article and highlighted governance as bringing business intent back into the system.",
+    "limits": "A public reshare and commentary support reporting engagement; they do not establish validation, adoption or institutional endorsement. Full guest HTML/comments remain scratch-only."
+  },
+  "retained_secondary_source": "https://www.linkedin.com/posts/vitaliioborskyi_ua-1-ugcPost-7461016808725164033-pQg_/",
+  "impact_scope": [
+    "site/content/pages/index/acknowledgements.html",
+    "site/content/pages/research/acknowledgements.html",
+    "generated docs and Color/offline renditions",
+    "exact semantic reconciliation and current response tests"
+  ],
+  "no_change": [
+    "all seven other people and their claims/links",
+    "advisor roles and professional context",
+    "research definitions, publications and accepted editions",
+    "external UA recognition register (separate repository owner)",
+    "engagement counts and third-party comments"
+  ]
+}

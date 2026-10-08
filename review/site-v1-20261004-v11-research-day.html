@@ -31,8 +31,8 @@
 
 
 
-  <meta name="site-engine" content="ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff">
-  <meta name="site-route" content="e31ef87381aa2d33cfe14b0925e58858a69e97b9573f06390d5f9699d85e97f3">
+  <meta name="site-engine" content="c9bbe2f034871ce7b402ace16227e807839ede77df1b45dc41b280f9e3f4cbc7">
+  <meta name="site-route" content="38d8dfa3267ee2fecea29a31b3891a8032c72fb09c5b5af8f3c281c5ca931cee">
   <meta name="site-contract" content="1">
   <meta name="site-variant" content="base">
 <meta name="robots" content="noindex, nofollow">
@@ -186,6 +186,11 @@ h2 {font-size:clamp(30px,3.4vw,40px);font-weight:720;letter-spacing:-.035em;line
 .text-link span {margin-left:10px}
 .topic-card {border-top:1px solid var(--line);padding-top:22px}
 .topic-card h3 {font-size:21px;line-height:1.4;font-weight:650;letter-spacing:-.015em;margin:0 0 18px}
+.topic-card--delivery {border-top:2px solid var(--accent)}
+.topic-card--systems {border-top:2px solid var(--systems)}
+.topic-card .lens-context {font-size:12px;font-weight:650;line-height:1.6;margin:0 0 18px}
+.topic-card--delivery .lens-context {color:var(--accent)}
+.topic-card--systems .lens-context {color:var(--systems)}
 .section-note {width:fit-content;padding:8px 12px;margin:20px 0 0;max-width:850px;color:var(--muted);font-size:14px}
 .topic-nav {display:flex;flex-wrap:wrap;gap:8px 24px;margin-bottom:24px}
 .topic-nav a {font-size:13px;font-weight:600;text-decoration:none;border-bottom:1px solid var(--line);padding-block:10px}
@@ -434,7 +439,25 @@ body[data-page="writing"] #archive-results {width:min(1010px,calc(100% - 80px));
         </article>
       </div>
       <p class="section-note">The repositories hold the living research and its sources. My articles connect the ideas across both directions.</p>
-    </section><section id="lenses" class="section wrap" aria-labelledby="lenses-title" data-space-stop="lenses"><div class="section-heading"><p class="eyebrow">Two engineering lenses</p><h2 id="lenses-title">Feedback meets flow.</h2></div><div class="topic-grid"><article class="topic-card"><h3>Control Theory</h3><p>What do we observe, who can act, and how do we correct behavior? My AI governance writing connects feedback, operating boundaries and corrective action to the design of model-mediated systems.</p><a class="text-link" href="https://pub.towardsai.net/uncertainty-architecture-why-ai-governance-is-actually-control-theory-511f3e73ed6e">Read the control-theory article ↗</a></article><article class="topic-card"><h3>Theory of Constraints (TOC)</h3><p>Where is the bottleneck, and does speeding up one step improve the whole system? The Subprime Code Crisis uses Goldratt’s Theory of Constraints as a lens for verification capacity, work in progress and delivery throughput.</p><a class="text-link" href="https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis/blob/main/report/02_broken_mechanics.md">Read the delivery-system interpretation ↗</a><p class="edition-link"><a href="https://www.tocinstitute.org/theory-of-constraints.html">TOC background · Theory of Constraints Institute</a></p></article></div></section>    <section data-space-stop="topics" id="topics" class="section wrap" aria-labelledby="topics-title">
+    </section><section id="lenses" class="section wrap" aria-labelledby="lenses-title" data-space-stop="lenses">
+  <div class="section-heading"><p class="eyebrow">Two engineering lenses</p><h2 id="lenses-title">Feedback meets flow.</h2></div>
+  <div class="topic-grid">
+    <article class="topic-card topic-card--delivery">
+      <p class="lens-context"><a href="#delivery">For The Subprime Code Crisis</a></p>
+      <h3>Theory of Constraints (TOC)</h3>
+      <p>Where is the bottleneck, and does speeding up one step improve the whole system? The Subprime Code Crisis uses Goldratt’s Theory of Constraints as a lens for verification capacity, work in progress and delivery throughput.</p>
+      <a class="text-link" href="https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis/blob/main/report/02_broken_mechanics.md">Read the delivery-system interpretation ↗</a>
+      <p class="edition-link"><a href="https://www.tocinstitute.org/theory-of-constraints.html">TOC background · Theory of Constraints Institute</a></p>
+    </article>
+    <article class="topic-card topic-card--systems">
+      <p class="lens-context"><a href="#systems">For Uncertainty Architecture</a></p>
+      <h3>Control Theory</h3>
+      <p>What do we observe, who can act, and how do we correct behavior? My AI governance writing connects feedback, operating boundaries and corrective action to the design of model-mediated systems.</p>
+      <a class="text-link" href="https://pub.towardsai.net/uncertainty-architecture-why-ai-governance-is-actually-control-theory-511f3e73ed6e">Read the control-theory article ↗</a>
+    </article>
+  </div>
+</section>
+    <section data-space-stop="topics" id="topics" class="section wrap" aria-labelledby="topics-title">
       <div class="section-heading"><p class="eyebrow">Research themes</p><h2 id="topics-title">AI governance, architecture<br>&amp; operating models.</h2><p>The technical system and the human operating model have to work together. These are the questions behind my writing.</p></div>
       <div class="topic-grid">
         <article class="topic-card"><h3>Thinking Systems &amp; Model Judgment</h3><p>In UA, Thinking Systems are identified by material runtime responsibilities that depend partly on probabilistic Model Judgment. The category is about an engineering condition, not consciousness or a guarantee of reliability.</p><p>Judgment Nodes locate where model judgment influences behavior; Uncertainty Boundaries connect deterministic responsibilities with that judgment.</p><a class="text-link" href="https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/main/00-doctrine/glossary.md#thinking-system">Read the current UA vocabulary <span aria-hidden="true">↗</span></a></article>
@@ -462,7 +485,7 @@ body[data-page="writing"] #archive-results {width:min(1010px,calc(100% - 80px));
 <article><h3><a href="https://www.linkedin.com/in/christophekolb/">Christophe Kolb &amp; Taller</a></h3><p class="person-context">Founder &amp; CEO · Taller</p><p>Christophe cited UA in his explanation of agentic-system control. Taller’s public visual explainer also draws on UA to connect probability distributions, control signals and feedback.</p><a class="text-link" href="https://www.linkedin.com/posts/christophekolb_the-probability-control-theory-of-agentic-activity-7460778173597786114-rWAh">Read the public record <span aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/posts/taller-technologies_llms-and-control-theory-activity-7482866825244889089-tIsK">Taller’s public visual explainer</a></p></article>
 <article><h3><a href="https://www.linkedin.com/in/roderickm/">Rod Montgomery</a></h3><p class="person-context">AI Platform &amp; Developer Acceleration · Corning</p><p>Hosted the Corning Learn-AI-Palooza discussion and publicly reflected on UA’s relevance to system-level risks, team behavior, ownership and governance.</p><a class="text-link" href="https://www.linkedin.com/posts/roderickm_one-of-the-highlights-of-our-recent-learn-al-palooza-activity-7480960628980072448-FBm4">Read the public record <span aria-hidden="true">↗</span></a></article>
 <article><h3><a href="https://www.linkedin.com/in/michael-risch-ab8b423/">Michael Risch</a></h3><p class="person-context">Senior Project Manager</p><p>Developed a public operational interpretation of UA, connecting control loops to roles such as Prompt Steward and Evaluation Owner, evaluation signals and governance practices.</p><a class="text-link" href="https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g">Read the public record <span aria-hidden="true">↗</span></a></article>
-<article><h3><a href="https://www.linkedin.com/in/matthewskelton/">Matthew Skelton</a></h3><p class="person-context">Founder · Conflux; co-author of Team Topologies</p><p>Offered public encouragement for UA’s development in a comment on the project’s milestone summary.</p><a class="text-link" href="https://www.linkedin.com/posts/vitaliioborskyi_ua-1-ugcPost-7461016808725164033-pQg_/">Read the public record <span aria-hidden="true">↗</span></a></article></div>
+<article><h3><a href="https://www.linkedin.com/in/matthewskelton/">Matthew Skelton</a></h3><p class="person-context">Founder · Conflux; co-author of Team Topologies</p><p>Reshared Michael Risch’s discussion of my AI governance and control-theory article, quoting its framing of governance as bringing business intent back into the system.</p><a class="text-link" href="https://www.linkedin.com/posts/matthewskelton_uncertainty-architecture-why-ai-governance-activity-7455172623409430528-MI9x">Read the public record <span aria-hidden="true">↗</span></a><p class="edition-link"><a href="https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g">Michael Risch’s original discussion</a></p><p>He also offered public encouragement for UA’s development in the project’s milestone discussion.</p><p class="edition-link"><a href="https://www.linkedin.com/posts/vitaliioborskyi_ua-1-ugcPost-7461016808725164033-pQg_/">Earlier milestone discussion</a></p></article></div>
     </section></main>
   <footer class="site-footer wrap"><p>© 2026 Vitalii Oborskyi</p><a href="site-v1-20261004-v11-day.html#about">About</a><a href="site-v1-20261004-v11-day.html#contact">Contact</a><a href="site-v1-20261004-v11-credits-day.html">Reuse &amp; credits</a><a href="#main">Back to top ↑</a></footer>
 </body>

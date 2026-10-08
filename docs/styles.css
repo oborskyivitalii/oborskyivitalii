@@ -147,6 +147,11 @@ h2 {font-size:clamp(30px,3.4vw,40px);font-weight:720;letter-spacing:-.035em;line
 .text-link span {margin-left:10px}
 .topic-card {border-top:1px solid var(--line);padding-top:22px}
 .topic-card h3 {font-size:21px;line-height:1.4;font-weight:650;letter-spacing:-.015em;margin:0 0 18px}
+.topic-card--delivery {border-top:2px solid var(--accent)}
+.topic-card--systems {border-top:2px solid var(--systems)}
+.topic-card .lens-context {font-size:12px;font-weight:650;line-height:1.6;margin:0 0 18px}
+.topic-card--delivery .lens-context {color:var(--accent)}
+.topic-card--systems .lens-context {color:var(--systems)}
 .section-note {width:fit-content;padding:8px 12px;margin:20px 0 0;max-width:850px;color:var(--muted);font-size:14px}
 .topic-nav {display:flex;flex-wrap:wrap;gap:8px 24px;margin-bottom:24px}
 .topic-nav a {font-size:13px;font-weight:600;text-decoration:none;border-bottom:1px solid var(--line);padding-block:10px}

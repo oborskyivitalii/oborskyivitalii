@@ -5,6 +5,29 @@ Each dated section describes that edition; older counts, placement and review
 limits are historical. Use [the editorial review route](SITE-CONTENT-REVIEW.md),
 the owning issue/PR and [MEMORY](../MEMORY.md) for current acceptance.
 
+## Matthew Skelton reshare and theory alignment — 2026-10-08
+
+[Issue #48](https://github.com/oborskyivitalii/oborskyivitalii/issues/48) owns the
+maintainer-requested amendment. The public guest page reached from the supplied
+short URL identifies Matthew Skelton and a 29 April 2026 publication. He reshared
+Michael Risch’s discussion of the author’s AI governance/control-theory article,
+highlighting governance as bringing business intent back into the system.
+Home and Research now report this reshare with commentary and link its actual
+public record. Research retains the earlier milestone encouragement separately.
+This public engagement does not establish validation, adoption or endorsement.
+The [source inventory](../review/issue-48/source-inventory.json) records canonical
+identities, acquisition digest and limits; full third-party HTML stays outside
+the repository. Other people, professional contexts and their sources are exact.
+
+TOC is now aligned with Subprime and Control Theory with UA. Explicit project
+links and existing project colors retain those associations when cards stack.
+Original theory descriptions and reading routes persist. The Writing formula’s
+center and animation origin derive from the first two book roots’ midpoint;
+its artwork, scale, camera, motion clock and drawing/cache contracts persist.
+The [handoff](../review/issue-48/2026-10-08-handoff.md) records review and checks.
+The exact hashed amendment reverses before the immutable Issue41 delta, so the
+historical SEO/source comparison continues to reject unrelated semantic edits.
+
 ## Writing formula artwork — 2026-10-07
 
 Issue #36 / PR #38 adds the owner's requested `y = f(x) → y ∼ P(y|x)` scene

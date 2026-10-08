@@ -30,13 +30,34 @@ test('response reconciliation rejects missing people, sources and stronger parti
   for(const page of ['index','research']){
     const html=fs.readFileSync(path.join(__dirname,'../docs/'+page+'.html'),'utf8'),preserved=restore(html,page);
     const article=html.match(/<article><h3><a href="https:\/\/www.linkedin.com\/in\/matthewskelton\/">[\s\S]*?<\/article>/)[0];
-    const source='https://www.linkedin.com/posts/vitaliioborskyi_ua-1-ugcPost-7461016808725164033-pQg_/';
+    const source='https://www.linkedin.com/posts/matthewskelton_uncertainty-architecture-why-ai-governance-activity-7455172623409430528-MI9x';
+    assert.ok(article.includes(source));assert.ok(article.includes('Reshared Michael Risch’s discussion'));
     assert.notEqual(restore(html.replace(article,''),page),preserved,'missing person');
     assert.notEqual(restore(html.replace(source,'https://www.linkedin.com/posts/other'),page),preserved,'changed source');
-    assert.notEqual(restore(html.replace('Offered public encouragement','Validated the research'),page),preserved,'unsupported validation claim');
+    assert.notEqual(restore(html.replace('Reshared Michael Risch’s discussion','Validated the research'),page),preserved,'unsupported validation claim');
   }
   const research=fs.readFileSync(path.join(__dirname,'../docs/research.html'),'utf8');
+  for(const source of ['https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g','https://www.linkedin.com/posts/vitaliioborskyi_ua-1-ugcPost-7461016808725164033-pQg_/']) {
+    const matthew=research.match(/<article><h3><a href="https:\/\/www.linkedin.com\/in\/matthewskelton\/">[\s\S]*?<\/article>/)[0];
+    assert.ok(matthew.includes(source));
+    assert.notEqual(restore(research.replace(matthew,matthew.replace(source,'https://www.linkedin.com/posts/other')),'research'),restore(research,'research'),'reshare chain and older context survive');
+  }
   assert.notEqual(restore(research.replace('>Advisors &amp; responses</a>','>Trusted by</a>'),'research'),restore(research,'research'),'changed navigation claim');
+});
+test('issue48 amendment reverses only declared theory and Matthew changes',()=>{
+  const {restore,restoreContentAmendment}=require('../tools/check_site_seo.cjs'),path=require('node:path');
+  const record=JSON.parse(fs.readFileSync(path.join(__dirname,'../review/issue-48/content-amendment.json'),'utf8'));
+  assert.equal(record.changes.length,3);
+  for(const change of record.changes) {
+    assert.equal(restoreContentAmendment(change.after,change.page,record),change.before);
+    const html=fs.readFileSync(path.join(__dirname,'../docs/'+change.page+'.html'),'utf8');
+    assert.ok(html.includes(change.after));
+    const mutation=change.id==='lenses'?change.after.replace('href="#delivery"','href="#systems"'):change.after.replace('Michael Risch’s','Another person’s');
+    assert.notEqual(mutation,change.after);
+    assert.notEqual(restore(html.replace(change.after,mutation),change.page),restore(html,change.page),'changed association/attribution is not silently reversed');
+    const corrupt=JSON.parse(JSON.stringify(record));corrupt.changes.find(c=>c.page===change.page&&c.id===change.id).after+=' ';
+    assert.throws(()=>restoreContentAmendment(change.after,change.page,corrupt),/snapshot integrity/);
+  }
 });
 test('Day/Night semantic text and CTA pairs exceed normal-text contrast with no independent atmosphere clock',()=>{
   const css=fs.readFileSync(require('node:path').join(__dirname,'../docs/styles.css'),'utf8');

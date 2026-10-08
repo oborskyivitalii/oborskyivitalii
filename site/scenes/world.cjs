@@ -395,10 +395,11 @@ module.exports=function(math) {
     }
     const light=normalize([-.55,.85,1]);
     for(const f of faces)prepareFace(f,light);
-    // One extruded landmark sits in the open centre of the first book/page
-    // fractal. Its corners are world geometry, sharing that root's living
-    // transform and the camera's forward journey on every viewport.
-    const formulas=page==='writing'?[{id:'writing-paradigm',center:[0,0,-5],rootCenter:roots[0],root:0,phase:0,width:12,aspect:1380/240,rotation:[.08,-.22,.08],extrusion:.10}]:[];
+    // One extruded landmark sits midway between the first two book/page
+    // fractals. Its living transform stays centred at that world position,
+    // sharing the existing clock and forward camera journey on every viewport.
+    const formulaCenter=roots[0].map((coordinate,index)=>(coordinate+roots[1][index])/2);
+    const formulas=page==='writing'?[{id:'writing-paradigm',center:formulaCenter,rootCenter:formulaCenter,root:0,phase:0,width:12,aspect:1380/240,rotation:[.08,-.22,.08],extrusion:.10}]:[];
     return {faces,lines,objects,formulas};
   }
   function prepareFace(f,light) {

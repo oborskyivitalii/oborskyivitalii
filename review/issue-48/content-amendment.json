@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "issue": 48,
+  "date": "2026-10-08",
+  "authorization": "Maintainer explicitly requested these three changes in the current conversation.",
+  "baseline": "aa1cfa97bf42103c0547c9332b885391f0e6fe6b",
+  "scope": "Only two Matthew response articles and the complete lenses section; reverse before immutable Issue41 amendment. All unrelated semantic source remains compared.",
+  "changes": [
+    {
+      "page": "index",
+      "id": "matthew-response",
+      "intent": "AC03 verified Matthew reshare and bounded commentary",
+      "before": "<article><h3><a href=\"https://www.linkedin.com/in/matthewskelton/\">Matthew Skelton</a></h3><p class=\"person-context\">Co-author of Team Topologies</p><p>Offered public encouragement for the research’s development.</p><div class=\"mention-links\"><a href=\"https://www.linkedin.com/posts/vitaliioborskyi_ua-1-ugcPost-7461016808725164033-pQg_/\">Public record ↗</a></div></article>",
+      "after": "<article><h3><a href=\"https://www.linkedin.com/in/matthewskelton/\">Matthew Skelton</a></h3><p class=\"person-context\">Co-author of Team Topologies</p><p>Reshared Michael Risch’s discussion of my AI governance article and highlighted governance as bringing business intent back into the system.</p><div class=\"mention-links\"><a href=\"https://www.linkedin.com/posts/matthewskelton_uncertainty-architecture-why-ai-governance-activity-7455172623409430528-MI9x\">Public record ↗</a></div></article>",
+      "beforeSHA256": "050761a199efd0e8d8f9517d14ee166f5c911ae2798f92ad1bfe31ad6b28e6ab",
+      "afterSHA256": "38b6184fb913ab184a317f875ee68a77129e8abf7b0c329b0ecf9b9f597497f7"
+    },
+    {
+      "page": "research",
+      "id": "matthew-response",
+      "intent": "AC03 verified Matthew reshare and bounded commentary with separate earlier encouragement",
+      "before": "<article><h3><a href=\"https://www.linkedin.com/in/matthewskelton/\">Matthew Skelton</a></h3><p class=\"person-context\">Founder · Conflux; co-author of Team Topologies</p><p>Offered public encouragement for UA’s development in a comment on the project’s milestone summary.</p><a class=\"text-link\" href=\"https://www.linkedin.com/posts/vitaliioborskyi_ua-1-ugcPost-7461016808725164033-pQg_/\">Read the public record <span aria-hidden=\"true\">↗</span></a></article>",
+      "after": "<article><h3><a href=\"https://www.linkedin.com/in/matthewskelton/\">Matthew Skelton</a></h3><p class=\"person-context\">Founder · Conflux; co-author of Team Topologies</p><p>Reshared Michael Risch’s discussion of my AI governance and control-theory article, quoting its framing of governance as bringing business intent back into the system.</p><a class=\"text-link\" href=\"https://www.linkedin.com/posts/matthewskelton_uncertainty-architecture-why-ai-governance-activity-7455172623409430528-MI9x\">Read the public record <span aria-hidden=\"true\">↗</span></a><p class=\"edition-link\"><a href=\"https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g\">Michael Risch’s original discussion</a></p><p>He also offered public encouragement for UA’s development in the project’s milestone discussion.</p><p class=\"edition-link\"><a href=\"https://www.linkedin.com/posts/vitaliioborskyi_ua-1-ugcPost-7461016808725164033-pQg_/\">Earlier milestone discussion</a></p></article>",
+      "beforeSHA256": "8cf15ea6308b96241713fbf1600b39ad04f1be01dbe7bdb91da9a5f7ede66062",
+      "afterSHA256": "f7d7acb602de0874fbcae57854e39092cac0fbfb6bc8bb394d2b99f35a18a69f"
+    },
+    {
+      "page": "research",
+      "id": "lenses",
+      "intent": "AC01 TOC/Subprime and Control/UA order with explicit project links",
+      "before": "<section id=\"lenses\" class=\"section wrap\" aria-labelledby=\"lenses-title\" data-space-stop=\"lenses\"><div class=\"section-heading\"><p class=\"eyebrow\">Two engineering lenses</p><h2 id=\"lenses-title\">Feedback meets flow.</h2></div><div class=\"topic-grid\"><article class=\"topic-card\"><h3>Control Theory</h3><p>What do we observe, who can act, and how do we correct behavior? My AI governance writing connects feedback, operating boundaries and corrective action to the design of model-mediated systems.</p><a class=\"text-link\" href=\"https://pub.towardsai.net/uncertainty-architecture-why-ai-governance-is-actually-control-theory-511f3e73ed6e\">Read the control-theory article ↗</a></article><article class=\"topic-card\"><h3>Theory of Constraints (TOC)</h3><p>Where is the bottleneck, and does speeding up one step improve the whole system? The Subprime Code Crisis uses Goldratt’s Theory of Constraints as a lens for verification capacity, work in progress and delivery throughput.</p><a class=\"text-link\" href=\"https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis/blob/main/report/02_broken_mechanics.md\">Read the delivery-system interpretation ↗</a><p class=\"edition-link\"><a href=\"https://www.tocinstitute.org/theory-of-constraints.html\">TOC background · Theory of Constraints Institute</a></p></article></div></section>",
+      "after": "<section id=\"lenses\" class=\"section wrap\" aria-labelledby=\"lenses-title\" data-space-stop=\"lenses\">\n  <div class=\"section-heading\"><p class=\"eyebrow\">Two engineering lenses</p><h2 id=\"lenses-title\">Feedback meets flow.</h2></div>\n  <div class=\"topic-grid\">\n    <article class=\"topic-card topic-card--delivery\">\n      <p class=\"lens-context\"><a href=\"#delivery\">For The Subprime Code Crisis</a></p>\n      <h3>Theory of Constraints (TOC)</h3>\n      <p>Where is the bottleneck, and does speeding up one step improve the whole system? The Subprime Code Crisis uses Goldratt’s Theory of Constraints as a lens for verification capacity, work in progress and delivery throughput.</p>\n      <a class=\"text-link\" href=\"https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis/blob/main/report/02_broken_mechanics.md\">Read the delivery-system interpretation ↗</a>\n      <p class=\"edition-link\"><a href=\"https://www.tocinstitute.org/theory-of-constraints.html\">TOC background · Theory of Constraints Institute</a></p>\n    </article>\n    <article class=\"topic-card topic-card--systems\">\n      <p class=\"lens-context\"><a href=\"#systems\">For Uncertainty Architecture</a></p>\n      <h3>Control Theory</h3>\n      <p>What do we observe, who can act, and how do we correct behavior? My AI governance writing connects feedback, operating boundaries and corrective action to the design of model-mediated systems.</p>\n      <a class=\"text-link\" href=\"https://pub.towardsai.net/uncertainty-architecture-why-ai-governance-is-actually-control-theory-511f3e73ed6e\">Read the control-theory article ↗</a>\n    </article>\n  </div>\n</section>\n",
+      "beforeSHA256": "0c855ab23bc1a388f8bd98194615454808c231a45167f1766a57b00ca0a26706",
+      "afterSHA256": "991b9e34bc18b7d9b4eb09f9cc5e67ee3003f79bb781f526b63b34d5469be534"
+    }
+  ]
+}

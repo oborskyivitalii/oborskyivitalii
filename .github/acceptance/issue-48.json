@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 48,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/48",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Place Theory of Constraints under Subprime and Control Theory under Uncertainty Architecture, with a subtle association that remains explicit in narrow layouts.",
+      "automated_scope": "The maintained content case checks actual authored and generated project/theory order, named links to the owning project anchors, preserved theory descriptions and headings, shared project accent ownership, responsive stacking and no added reading-surface paint authority. Deterministic source checks cannot establish perceived association, actual native wrapping or current-preview Day/Night readability.",
+      "checks": [
+        "THEORY-ASSOCIATION"
+      ],
+      "gates": [
+        "VISUAL"
+      ]
+    },
+    {
+      "id": "AC02",
+      "intent": "Move the same colored Writing world landmark to the midpoint between the first two book arches while preserving its expression, geometry integration and rendering bounds.",
+      "automated_scope": "Maintained compiler negatives retain the exact finite canonical expression/artwork. Full and compact worlds derive landmark center and living-transform origin from the first two book roots; sampled ambient transforms remain between the arches with bounded displacement and close on the existing clock. Existing projection cases preserve tilt, extrusion, camera approach and the same-scene static rendition without a layout band; the maintained renderer cache case retains 1380x240 storage, bounded submissions, shared depth order and reuse across rooms and viewport sizes. Generated/source reconciliation separately retains original book geometry. Browser observations and visual acceptance remain separate.",
+      "checks": [
+        "FORMULA-MIDPOINT",
+        "GENERATION-SEO"
+      ],
+      "gates": [
+        "VISUAL"
+      ]
+    },
+    {
+      "id": "AC03",
+      "intent": "Update Matthew Skelton\u2019s Home and Research responses to accurately represent the verified reshare with commentary while preserving the older encouragement and unrelated responses.",
+      "automated_scope": "Current maintained response accounting checks the verified Matthew primary source, Michael Risch reshare attribution, distinct older encouragement on Research and matched Home/Research evidence. Exact issue48 hashed before/after deltas reverse before immutable issue41 changes; negative reconciliation cases reject missing people/sources, stronger participation claims and undeclared theory or Matthew mutations. Unrelated response cards and source identities remain protected by exact baseline reconciliation. Public-source interpretation and editorial approval cannot be supplied by fixtures or an inventory file.",
+      "checks": [
+        "MATTHEW-EVIDENCE",
+        "GENERATION-SEO"
+      ],
+      "gates": [
+        "EDITORIAL"
+      ]
+    },
+    {
+      "id": "AC04",
+      "intent": "Deliver one issue-linked Draft PR with canonical generated/offline/RI output, a versioned source/review handoff and meaningful exact-source acceptance evidence.",
+      "automated_scope": "Maintained generated-publication reconciliation checks canonical rendered content against the frozen publication baseline after only exact approved amendments and preserves thematic geometry. Current SEO reconciliation retains all unrelated editions, metadata and source semantics. Current RI catalog/views, actual RI/CI coupling and explicit issue-owner/pending-gate runner semantics are checked. Applicable Basic/targeted/normal-preview CI, offline artifact binding, live Draft-PR linkage, source/editorial and independent review remain separately recorded evidence; this policy does not duplicate hosted runs or grant review, merge or release authorization.",
+      "checks": [
+        "GENERATION-SEO",
+        "CURRENT-RI",
+        "RI-CI",
+        "OWNER-SELECTION",
+        "PENDING-GATE"
+      ],
+      "gates": [
+        "CURRENT-CI-REVIEW",
+        "MERGE"
+      ]
+    }
+  ],
+  "checks": {
+    "THEORY-ASSOCIATION": {
+      "kind": "unittest",
+      "test": "test_issue48_acceptance.Issue48AcceptanceTests.test_theories_retain_project_order_and_responsive_named_association"
+    },
+    "FORMULA-MIDPOINT": {
+      "kind": "unittest",
+      "test": "test_issue48_acceptance.Issue48AcceptanceTests.test_formula_midpoint_keeps_world_transform_projection_and_static_rendition"
+    },
+    "MATTHEW-EVIDENCE": {
+      "kind": "unittest",
+      "test": "test_issue48_acceptance.Issue48AcceptanceTests.test_verified_response_and_exact_amendment_preserve_unrelated_evidence"
+    },
+    "GENERATION-SEO": {
+      "kind": "unittest",
+      "test": "test_issue48_acceptance.Issue48AcceptanceTests.test_generated_publication_and_seo_retain_all_unrelated_semantics"
+    },
+    "CURRENT-RI": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    },
+    "OWNER-SELECTION": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_selector_uses_only_explicit_local_refs"
+    },
+    "PENDING-GATE": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_manual_only_criterion_is_pending"
+    }
+  },
+  "gates": {
+    "VISUAL": {
+      "kind": "human",
+      "description": "Inspect the exact current-source CI preview in Day/Night at desktop and narrow widths. Verify theory/project association and native wrapping, unchanged 87% paper alpha/13% transparency and effective reading corners, and the same colored Writing formula visibly between the first and second book arches with coherent tilt, pulse and camera travel. Retain source/public identities and actual observations. Maintainer visual acceptance remains explicit; deterministic source assertions are not device or perceived-layout evidence."
+    },
+    "EDITORIAL": {
+      "kind": "human",
+      "description": "Review the bounded original guest-source acquisition, exact canonical post identity, author/date and Matthew-to-Michael-Risch reshare chain against the new Home/Research wording. Distinguish the new commentary from older encouragement and preserve all unrelated responses; no scientific validation, adoption or institutional endorsement may be inferred. Record source/editorial review honestly against the exact candidate."
+    },
+    "CURRENT-CI-REVIEW": {
+      "kind": "human",
+      "description": "Record exact linked Draft PR and Refs commits, current canonical/generated/offline and public artifact identities, passing applicable Basic/targeted/navigation/acceptance and normal preview CI, versioned source/review handoff and independent review. Reconcile actual issue checkboxes and the original acceptance intent from current-source evidence. Earlier runs, local preparation or self-review do not supply these decisions."
+    },
+    "MERGE": {
+      "kind": "merge",
+      "description": "Applicable maintainer decision and normal merge of the accepted candidate, followed by exact merged-source reconciliation before issue closure. Draft-PR preview and passing checks do not authorize stable staging, production activation or closure of broader issue41/issue45 criteria."
+    }
+  }
+}

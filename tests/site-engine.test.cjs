@@ -54,7 +54,10 @@ test('Writing formula is a tilted moving world landmark with one same-scene stat
     assert.equal(input.main.includes('data-writing-formula-description'),route==='writing','one short accessible semantic description');
     if(route!=='writing')continue;
     const anchor=world.formulas[0],pose=api.poses[api.initialPoses[route]],art=api.sceneAsset;
-    assert.deepEqual(anchor.rootCenter,world.objects.find(o=>o.root===anchor.root).rootCenter,'same fractal root');
+    const archCenters=[0,1].map(index=>world.objects.find(o=>o.family==='thematic'&&o.root===index).rootCenter);
+    const midpoint=archCenters[0].map((coordinate,index)=>(coordinate+archCenters[1][index])/2);
+    assert.deepEqual(anchor.center,midpoint,'world landmark is centred between the first two book arches');
+    assert.deepEqual(anchor.rootCenter,midpoint,'living transform uses the landmark midpoint as its origin');
     assert.ok(anchor.rotation.some(angle=>angle!==0));assert.ok(anchor.extrusion>0);
     assert.equal([...fallback.matchAll(/data-glyph=/g)].length,art.paths.length,'one visible front rendition of every canonical glyph');
     assert.equal([...fallback.matchAll(/data-formula-layer=/g)].length,3,'bounded world-depth extrusion');
