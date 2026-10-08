@@ -520,3 +520,55 @@ Gate/budget/probe/variant and staging-controller owners have no difference.
 Restored-source Basic and23 renderer/cause/cause-fix cases pass with zero skips;
 RI and coupling verification and the style guard pass. Final published-head
 CI/policy identity is recorded in the live PR, never inferred from preparation.
+
+
+## Further source review after restoration
+
+Root and both independent reviewers checked further submission hypotheses on
+restored `c1e0f4ac1998bf99b5d2ae4976b97a6bd1dae565`, without another browser or
+performance run. Writing at412×823, entry pose, time0 has2327 ordinary lines
+already combined into1566 runs;1250 are singletons and the longest contains77
+lines. This fresh explicit-source recount has1944 strokes:
+1566 line runs +182 seam strokes +196 silhouettes. It does not exactly
+reproduce the earlier source-accounting table; those historical counts remain
+distinct, without a claimed runtime change. Color, width, intervening faces,
+first-run alpha and ribbons constrain
+further batching. Increasing tolerance or crossing those boundaries would
+change material, depth order or overlap compositing; no such change is selected.
+
+The ribbon painter writes fillStyle, globalAlpha and composite operation, but
+not ordinary strokeStyle/lineWidth. Precise invalidation would require an
+explicit effect-state contract while preserving full invalidation for generic
+handled custom painters. Source accounting finds only24 redundant ordinary
+stroke/width re-establishments at time0 and22 at7317, against over5000 native
+property assignments perpaint. This is an operation ceiling, not a measured
+speed benefit, and does not justify that contract expansion as the next repair.
+
+Combining ordinary color/alpha into RGBA styles is also unproved. Declining
+custom callbacks may observe native alpha/styles; final context and formula
+boundaries retain their existing state meaning. Restoring opaque styles and
+original alpha around callbacks undermines proposed savings. Alpha-varying
+style keys additionally require unique CSS strings/native parsing instead of
+numeric alpha writes. Root's54 scratch Skia cases (six palette colors, nine
+alpha values, overlapping fill/stroke) had zero differing pixels; this narrow
+algebra/pixel check does not prove browser precision, full-context parity or
+performance. No source candidate follows from it.
+
+Both independent reviews found no currently admissible next implementation.
+Path representations do not inherently reduce strokes; scratch-buffer reuse
+targets allocation while retained GC does not explain the blocker. Preserve
+geometry, material, context contracts, clock and original budgets. The remaining
+work is a justified native-paint repair and the original complete staging gate;
+source/preview success does not satisfy that performance requirement.
+
+
+The independent source counter sampled40 cases: five routes, viewports390×900,
+412×823,768×900,1440×900, and times0/7317, canonical initial poses, tier0,
+pruning and Day palette. It found no zero-length ordinary line segments or
+zero-alpha primitives in those samples. This is source accounting, not a new
+browser/performance campaign. Counter SHA256:
+`7f1f621939ec90fca37bc5faae4b940bbcf4eab7a88af96295385cc8dc18529a`.
+Retained JSON SHA256:
+`1c2c7ebb8bdfd9c946dc29fb02b4ffa82f96474948658c0381c42db39ed1ca52`.
+All input hashes/source/tree are bound in that report; inspected runtime bytes
+remain unchanged from the immutable attribution reference.

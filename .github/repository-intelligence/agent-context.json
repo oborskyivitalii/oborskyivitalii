@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "2daef4466eaa47cc3ee97ce3d84b6cf94b43fb1e39a65d22056b567870989858",
+    "digest": "ea9aea491cab29a4f5043eef9dbc38ef6b69b768b20580ecbfbbb2482be23a94",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -216,7 +216,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "61838a4da6710dc38ecc72a29279c98b38569fa03a6b03c63b783a728d522629"
+        "sha256": "286a2bf476bf9f661094897ed005eb81d934b78d13a3eca3867c922039d5c9b6"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -615,7 +615,7 @@
       {
         "path": "review/issue-45/2026-10-08-writing-attribution.md",
         "identity_mode": "content",
-        "sha256": "a4fc1218c1163ff5d70365006de39c938d7b5521f06dcafd11a6db1d85fe4088"
+        "sha256": "a3c331092d436323f08d1dd1c7434b600f57ce6156a97afb86b6fd24c83e82ef"
       },
       {
         "path": "review/issue-48/2026-10-08-handoff.md",

@@ -33,6 +33,8 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 - Current/accepted pre-candidate runtime JS/CSS bytes match. Failed Writing
   paints fewer but costlier frames. New attribution targets ordinary geometry
   and native submissions; literal specialization showed no consistent benefit.
+  Further review finds only24 redundant ribbon-boundary writes perpaint; broader
+  batching/RGBA changes lack context/material parity or measured benefit.
   No bitmap, geometry, quality, cadence or budget change is authorized here.
 - Apply CODE-STYLE before changes; guard success proves its documented subset.
   Source-owned runtime changes need generated parity and independent review.
