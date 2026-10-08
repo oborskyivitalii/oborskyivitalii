@@ -8,81 +8,43 @@
       "id": "AC01",
       "intent": "Make the existing Writing world formula crisp while retaining its expression, ribbon palette, perspective, tilt, pulse and camera motion.",
       "automated_scope": "Actual Canvas submissions share world haze alpha and high-quality sampling, restore sampling state, and retain one 1380x240 cache and 24 bounded submissions. The same maintained owner checks bounded source rectangles against independent world-plane clips/affine UV mapping at four widths, two poses and five phases, preserves a two-CSS-pixel inverse-affine filter guard, and falls back to the full source for singular/extreme minification. World-plane separation stays below half the projected glyph stroke at narrow/medium/desktop widths and two camera positions. Existing producer checks verify finite canonical artwork, one Writing-only world landmark, matching static layer alpha and immutable packaged identity. Perceived sharpness and hosted performance remain visual/browser acceptance. The same maintained renderer selection verifies exact draw/state equivalence and fresh paint-state/custom-effect boundaries while avoiding redundant native setters; hosted TBT remains the original separate browser gate.",
-      "checks": [
-        "FORMULA-RENDERER",
-        "FORMULA-PRODUCER",
-        "FORMULA-ASSET"
-      ],
-      "gates": [
-        "G01"
-      ]
+      "checks": ["FORMULA-RENDERER", "FORMULA-PRODUCER", "FORMULA-ASSET"],
+      "gates": ["G01"]
     },
     {
       "id": "AC02",
       "intent": "Widen the painted reading protection around large headings across pages, keeping text and native layout intact.",
       "automated_scope": "Reuse maintained Day/Night foreground contrast and no-blur/no-independent-animation checks, plus the single-authority contract for site/engine/reading-surfaces.css. Generated public CSS must concatenate the exact authored sources; ordinary base CSS and Color styles cannot add a second reading-paint authority. Shared reading paint uses theme paper at 87% background alpha (13% transparency), retaining full text/control opacity and the same-owner 100% reduced-transparency preference, crisp edges without masks/blur/feather and a 12px effective outer radius, including title radius plus its zero-blur paint spread. The owner does not introduce flow padding/margin/font changes; meaningful duplicate per-route/Color override mutations fail. Actual native geometry, computed cascade across the thirteen representative surfaces including Appearance and visual uniformity remain explicit browser/human evidence.",
-      "checks": [
-        "FOREGROUND"
-      ],
-      "gates": [
-        "G02"
-      ]
+      "checks": ["FOREGROUND"],
+      "gates": ["G02"]
     },
     {
       "id": "AC03",
       "intent": "Preserve responsive rendering, navigation, Off/reduced-motion freezing, graceful static fallback and bounded formula resources.",
       "automated_scope": "Reuse the actual formula cache/failure/viewport/room cases and canonical live/static producer checks, plus existing Off/reduced/hidden/print freeze and route-mount cases. The same cache survives visits and frozen states, work stops while frozen, renderer failure is contained and no second navigation animation clock appears. Fixtures do not supply current-source browser/device observations.",
-      "checks": [
-        "FORMULA-RENDERER",
-        "FORMULA-PRODUCER",
-        "LIFECYCLE"
-      ],
-      "gates": [
-        "G03"
-      ]
+      "checks": ["FORMULA-RENDERER", "FORMULA-PRODUCER", "LIFECYCLE"],
+      "gates": ["G03"]
     },
     {
       "id": "AC04",
       "intent": "Deliver canonical generated output and a reviewable owning-issue/Draft-PR change with exact checks and honest acceptance state.",
       "automated_scope": "Current RI inventory/views and actual CI coupling, explicit owning-issue selection and pending human-gate semantics. Existing Basic and hosted preview CI remain separately required; this policy does not duplicate them, ingest their artifacts, grant independent review or authorize merge.",
-      "checks": [
-        "CURRENT-RI",
-        "RI-CI",
-        "OWNER-SELECTION",
-        "PENDING-GATE"
-      ],
-      "gates": [
-        "G04",
-        "G05"
-      ]
+      "checks": ["CURRENT-RI", "RI-CI", "OWNER-SELECTION", "PENDING-GATE"],
+      "gates": ["G04", "G05"]
     },
     {
       "id": "AC05",
       "intent": "Keep the first fresh-session Home to Research flight, subsequent adjacent forward flights and reverse Talks to Writing to Research to Home flights in one continuous ribbon world, without start, midpoint-mount or arrival resets.",
       "automated_scope": "Maintained fixed-world-cell projection checks compare shared ribbon station IDs and projected contours across fractional adaptive tiers and forward/reverse route poses at narrow and desktop widths. Existing material checks retain world-anchored colors across mesh windows and near-plane clipping; periodic geometry/velocity checks retain the 24-second phase. The actual midflight DOM/layout camera fixture is shared with AC06. Fixtures establish mathematical and lifecycle invariants, not absence of a visible frame step in a browser.",
-      "checks": [
-        "RIBBON-CONTINUITY",
-        "CAMERA-RETARGET"
-      ],
-      "gates": [
-        "G06"
-      ]
+      "checks": ["RIBBON-CONTINUITY", "CAMERA-RETARGET"],
+      "gates": ["G06"]
     },
     {
       "id": "AC06",
       "intent": "Keep midflight layout and target changes and quick retargeting continuous from the displayed camera and shared ambient state; adaptive detail preserves existing ribbon samples and lifecycle/resource bounds.",
       "automated_scope": "Maintained runtime/navigation fixtures forward native top, bottom, history and fragment landing intent before the first flight paint. Known reverse endpoints plan the actual destination bottom with cold and prepared rooms, departing source-DOM events cannot retarget the destination, and unresolved history/fragment landings hold the displayed camera until destination mount. Actual sampled camera depth stays between departure and destination without mount reversal; layout and resize retargets preserve the displayed camera and shared clock. Existing cases retain settled/adaptive flight detail, bounded multi-room preparation, stale-navigation cancellation, detail freezing, quality recovery and draw-failure completion. The maintained reading-clarity validator negative rejects wrong landing targets, overshoot and depth reversal. Shared ribbon, freeze and formula-cache/failure checks run once per unique selected check. Scoped hosted smoke, independent review and current-source visual acceptance remain separate evidence.",
-      "checks": [
-        "CAMERA-RETARGET",
-        "RIBBON-CONTINUITY",
-        "LIFECYCLE",
-        "FORMULA-RENDERER"
-      ],
-      "gates": [
-        "G03",
-        "G04",
-        "G06"
-      ]
+      "checks": ["CAMERA-RETARGET", "RIBBON-CONTINUITY", "LIFECYCLE", "FORMULA-RENDERER"],
+      "gates": ["G03", "G04", "G06"]
     }
   ],
   "checks": {

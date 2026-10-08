@@ -1,4 +1,5 @@
 """Failure-oriented checks for maintained RI/CI coupling and invocation routes."""
+
 import importlib.util
 import json
 import subprocess
@@ -11,7 +12,12 @@ SPEC = importlib.util.spec_from_file_location("ri_ci_checker", REPO / "tools/che
 ci = importlib.util.module_from_spec(SPEC)
 # Local evidence must use the admitted source bytes, including same-size edits
 # within one timestamp tick; importlib's reusable bytecode cache is insufficient.
-exec(compile((REPO / "tools/check_ri_ci.py").read_bytes(), str(REPO / "tools/check_ri_ci.py"), "exec"), ci.__dict__)
+exec(
+    compile(
+        (REPO / "tools/check_ri_ci.py").read_bytes(), str(REPO / "tools/check_ri_ci.py"), "exec"
+    ),
+    ci.__dict__,
+)
 
 
 class RICICouplingTests(unittest.TestCase):
@@ -20,21 +26,55 @@ class RICICouplingTests(unittest.TestCase):
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name).resolve()
         self.workflow = ".github/workflows/navigation.yml"
-        self.command = ["python3", "-m", "unittest", "discover", "-s", "tests", "-p", "ri_ci_fixturetests.py"]
+        self.command = [
+            "python3",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests",
+            "-p",
+            "ri_ci_fixturetests.py",
+        ]
         self.write("AGENTS.md", "# Agent instructions\n")
         self.write("tools/repository_intelligence.py", "# Fixture producer\n")
         self.write("ri_ci_fixturetests.py", "# Not a selected test path\n")
-        self.write("tests/ri_ci_fixturetests.py", "import unittest\nclass FixtureCheckTests(unittest.TestCase):\n    def test_pass(self):\n        self.assertEqual(1 + 1, 2)\n")
+        self.write(
+            "tests/ri_ci_fixturetests.py",
+            "import unittest\nclass FixtureCheckTests(unittest.TestCase):\n    def test_pass(self):\n        self.assertEqual(1 + 1, 2)\n",
+        )
         self.write(ci.CATALOG, json.dumps({"entries": {}}))
-        self.write(self.workflow, "name: Fixture\non:\n  pull_request:\njobs:\n  navigation:\n    runs-on: ubuntu-latest\n    steps:\n      - name: Required fixture test\n        run: " + " ".join(self.command) + "\n")
+        self.write(
+            self.workflow,
+            "name: Fixture\non:\n  pull_request:\njobs:\n  navigation:\n    runs-on: ubuntu-latest\n    steps:\n      - name: Required fixture test\n        run: "
+            + " ".join(self.command)
+            + "\n",
+        )
         self.data = {
             "schema_version": 1,
-            "layers": [{"id": "fixture", "purpose": "Exercise real mapped paths and CI argv",
-                        "paths": ["AGENTS.md", "tools/repository_intelligence.py", ci.CATALOG,
-                                  self.workflow, "tests/ri_ci_fixturetests.py"],
-                        "checks": ["fixture-test"]}],
-            "checks": [{"id": "fixture-test", "workflow": self.workflow, "job": "navigation",
-                        "argv": self.command, "test_selectors": ["ri_ci_fixturetests.FixtureCheckTests.test_pass"]}],
+            "layers": [
+                {
+                    "id": "fixture",
+                    "purpose": "Exercise real mapped paths and CI argv",
+                    "paths": [
+                        "AGENTS.md",
+                        "tools/repository_intelligence.py",
+                        ci.CATALOG,
+                        self.workflow,
+                        "tests/ri_ci_fixturetests.py",
+                    ],
+                    "checks": ["fixture-test"],
+                }
+            ],
+            "checks": [
+                {
+                    "id": "fixture-test",
+                    "workflow": self.workflow,
+                    "job": "navigation",
+                    "argv": self.command,
+                    "test_selectors": ["ri_ci_fixturetests.FixtureCheckTests.test_pass"],
+                }
+            ],
         }
         self.refresh()
 
@@ -55,10 +95,44 @@ class RICICouplingTests(unittest.TestCase):
         result = ci.verify(REPO)
         self.assertTrue(result["pass"])
         data = json.loads((REPO / ci.MAP).read_text())
-        self.assertEqual({layer["id"] for layer in data["layers"]}, {
-            "authority-instructions", "intent-acceptance", "path-catalog", "producer-identity",
-            "generated-views", "lookup-validation-routes", "continuity", "github-live-overlay-ci-boundary",
-            "entry-root-guides", "test-profile-selection", "code-style-architecture"})
+        self.assertEqual(
+            {layer["id"] for layer in data["layers"]},
+            {
+                "authority-instructions",
+                "intent-acceptance",
+                "path-catalog",
+                "producer-identity",
+                "generated-views",
+                "lookup-validation-routes",
+                "continuity",
+                "github-live-overlay-ci-boundary",
+                "entry-root-guides",
+                "test-profile-selection",
+                "code-style-architecture",
+                "maintained-source-quality",
+                "refactoring-contracts",
+            },
+        )
+        quality = next(
+            layer for layer in data["layers"] if layer["id"] == "maintained-source-quality"
+        )
+        self.assertTrue(
+            {"maintained-format-check", "maintained-source-lint", "acceptance-policy"}.issubset(
+                quality["checks"]
+            )
+        )
+        self.assertIn("tools/quality/format.cjs", quality["paths"])
+        self.assertIn("tests/test_issue58_acceptance.py", quality["paths"])
+        refactoring = next(
+            layer for layer in data["layers"] if layer["id"] == "refactoring-contracts"
+        )
+        self.assertTrue(
+            {"authored-dependencies", "site-basic", "acceptance-policy"}.issubset(
+                refactoring["checks"]
+            )
+        )
+        self.assertIn("tools/quality/architecture.cjs", refactoring["paths"])
+        self.assertIn("tools/quality/refactor-metrics.cjs", refactoring["paths"])
         self.assertFalse(result["live_github_state_verified"])
 
     def test_staging_and_production_share_actual_ri_freshness_preflight(self):
@@ -84,10 +158,20 @@ class RICICouplingTests(unittest.TestCase):
         self.assertTrue(unconditionally_verified(script))
         line = "          " + command + "\n"
         self.assertFalse(unconditionally_verified(script.replace(line, "")))
-        self.assertFalse(unconditionally_verified(script.replace(
-            line, '          if [ "$SITE_VALIDATION_LEVEL" = production ]; then\n'
-            + "  " + line + "          fi\n")))
-        self.assertFalse(unconditionally_verified(script.replace(line, line.rstrip() + " || true\n")))
+        self.assertFalse(
+            unconditionally_verified(
+                script.replace(
+                    line,
+                    '          if [ "$SITE_VALIDATION_LEVEL" = production ]; then\n'
+                    + "  "
+                    + line
+                    + "          fi\n",
+                )
+            )
+        )
+        self.assertFalse(
+            unconditionally_verified(script.replace(line, line.rstrip() + " || true\n"))
+        )
 
     def test_verified_definition_and_source_identity_are_deterministic(self):
         first = ci.verify(self.root)
@@ -115,16 +199,40 @@ class RICICouplingTests(unittest.TestCase):
             self.refresh()
         (self.root / ".github/workflows/unmapped.yml").unlink()
         self.write("tools/new_ri_control.py", "# New catalog-owned control\n")
-        self.write(ci.CATALOG, json.dumps({"entries": {"tools/new_ri_control.py": {
-            "kind": "file", "role": "validator", "owner": ".github/REPOSITORY-INTELLIGENCE.md"}}}))
+        self.write(
+            ci.CATALOG,
+            json.dumps(
+                {
+                    "entries": {
+                        "tools/new_ri_control.py": {
+                            "kind": "file",
+                            "role": "validator",
+                            "owner": ".github/REPOSITORY-INTELLIGENCE.md",
+                        }
+                    }
+                }
+            ),
+        )
         with self.assertRaisesRegex(ValueError, "Unmapped.*new_ri_control.py"):
             self.refresh()
 
     def test_new_profile_owned_control_family_must_be_mapped(self):
         path = "tools/quality/new-profile-selector.cjs"
         self.write(path, "// New maintained profile-selection control\n")
-        self.write(ci.CATALOG, json.dumps({"entries": {path: {
-            "kind": "file", "role": "validator", "owner": "guides/SITE-CHECK-PROFILES.md"}}}))
+        self.write(
+            ci.CATALOG,
+            json.dumps(
+                {
+                    "entries": {
+                        path: {
+                            "kind": "file",
+                            "role": "validator",
+                            "owner": "guides/SITE-CHECK-PROFILES.md",
+                        }
+                    }
+                }
+            ),
+        )
         # Fixed profile families cannot disappear from CI coupling merely because
         # their editing owner differs from RI/acceptance architecture owners.
         self.assertIn(path, ci.control_paths(self.root))
@@ -140,8 +248,16 @@ class RICICouplingTests(unittest.TestCase):
     def test_new_code_style_owned_control_must_be_mapped(self):
         path = "tools/check_new_style_rule.py"
         self.write(path, "# Maintained code style control\n")
-        self.write(ci.CATALOG, json.dumps({"entries": {path: {
-            "kind": "file", "role": "validator", "owner": "guides/CODE-STYLE.md"}}}))
+        self.write(
+            ci.CATALOG,
+            json.dumps(
+                {
+                    "entries": {
+                        path: {"kind": "file", "role": "validator", "owner": "guides/CODE-STYLE.md"}
+                    }
+                }
+            ),
+        )
         with self.assertRaisesRegex(ValueError, "Unmapped.*check_new_style_rule.py"):
             self.refresh()
         self.data["layers"][0]["paths"].append(path)
@@ -159,27 +275,44 @@ class RICICouplingTests(unittest.TestCase):
             ci.verify(self.root)
 
     def test_test_selector_exists_and_is_selected_by_workflow(self):
-        self.data["checks"][0]["test_selectors"] = ["ri_ci_fixturetests.FixtureCheckTests.test_missing"]
+        self.data["checks"][0]["test_selectors"] = [
+            "ri_ci_fixturetests.FixtureCheckTests.test_missing"
+        ]
         self.save()
         with self.assertRaisesRegex(ValueError, "Missing mapped test selector"):
             ci.verify(self.root)
-        self.data["checks"][0]["test_selectors"] = ["ri_ci_fixturetests.FixtureCheckTests.test_pass"]
+        self.data["checks"][0]["test_selectors"] = [
+            "ri_ci_fixturetests.FixtureCheckTests.test_pass"
+        ]
         self.data["checks"][0]["argv"][-1] = "different-tests.py"
-        self.write(self.workflow, (self.root / self.workflow).read_text().replace("ri_ci_fixturetests.py", "different-tests.py"))
+        self.write(
+            self.workflow,
+            (self.root / self.workflow)
+            .read_text()
+            .replace("ri_ci_fixturetests.py", "different-tests.py"),
+        )
         self.save()
         with self.assertRaisesRegex(ValueError, "not selected by CI discovery"):
             ci.verify(self.root)
 
     def test_current_test_source_is_loaded_instead_of_cached_module(self):
         ci.verify(self.root)
-        self.write("tests/ri_ci_fixturetests.py", "import unittest\nclass FixtureCheckTests(unittest.TestCase):\n    def test_renamed(self):\n        self.assertEqual(2, 2)\n")
+        self.write(
+            "tests/ri_ci_fixturetests.py",
+            "import unittest\nclass FixtureCheckTests(unittest.TestCase):\n    def test_renamed(self):\n        self.assertEqual(2, 2)\n",
+        )
         with self.assertRaisesRegex(ValueError, "Missing mapped test selector"):
             self.refresh()
 
     def test_command_mentions_and_shell_guards_do_not_prove_invocation(self):
         original = (self.root / self.workflow).read_text()
         argv = " ".join(self.command)
-        for replacement in ["echo " + argv, "false && " + argv, "if false; then " + argv + "; fi", "|\n          echo report\n          " + argv]:
+        for replacement in [
+            "echo " + argv,
+            "false && " + argv,
+            "if false; then " + argv + "; fi",
+            "|\n          echo report\n          " + argv,
+        ]:
             with self.subTest(replacement=replacement):
                 self.write(self.workflow, original.replace(argv, replacement))
                 with self.assertRaisesRegex(ValueError, "not invoked unconditionally"):
@@ -202,40 +335,63 @@ class RICICouplingTests(unittest.TestCase):
 
     def test_missing_job_event_or_filtered_event_fails(self):
         original = (self.root / self.workflow).read_text()
-        for changed in [original.replace("  navigation:", "  renamed:"),
-                        original.replace("  pull_request:", "  push:"),
-                        original.replace("  pull_request:", "  pull_request:\n    paths: [elsewhere/**]")]:
+        for changed in [
+            original.replace("  navigation:", "  renamed:"),
+            original.replace("  pull_request:", "  push:"),
+            original.replace("  pull_request:", "  pull_request:\n    paths: [elsewhere/**]"),
+        ]:
             self.write(self.workflow, changed)
             with self.subTest(changed=changed), self.assertRaises(ValueError):
                 self.refresh()
 
     def test_pr_event_filters_and_types_cannot_skip_mapped_checks(self):
         original = (self.root / self.workflow).read_text()
-        for field in ["branches: [never-used-branch]", "branches-ignore: ['**']",
-                      "paths-ignore: ['**']", "types: [closed]", "types: [opened]",
-                      "types: [synchronize]", "types: []", "types:\n      - closed"]:
-            self.write(self.workflow, original.replace("  pull_request:", "  pull_request:\n    " + field))
+        for field in [
+            "branches: [never-used-branch]",
+            "branches-ignore: ['**']",
+            "paths-ignore: ['**']",
+            "types: [closed]",
+            "types: [opened]",
+            "types: [synchronize]",
+            "types: []",
+            "types:\n      - closed",
+        ]:
+            self.write(
+                self.workflow, original.replace("  pull_request:", "  pull_request:\n    " + field)
+            )
             with self.subTest(field=field), self.assertRaises(ValueError):
                 self.refresh()
         # No explicit types uses GitHub's opened/synchronize/reopened defaults.
         # Push branch filtering does not restrict the independent PR trigger.
-        for suffix in ["", "\n    types: [opened, synchronize]",
-                       "\n    types: ['opened', \"synchronize\", closed]",
-                       "\n    types:\n      - opened\n      - synchronize",
-                       "\n  push:\n    branches: [main]"]:
-            self.write(self.workflow, original.replace("  pull_request:", "  pull_request:" + suffix))
+        for suffix in [
+            "",
+            "\n    types: [opened, synchronize]",
+            "\n    types: ['opened', \"synchronize\", closed]",
+            "\n    types:\n      - opened\n      - synchronize",
+            "\n  push:\n    branches: [main]",
+        ]:
+            self.write(
+                self.workflow, original.replace("  pull_request:", "  pull_request:" + suffix)
+            )
             with self.subTest(accepted=suffix):
                 self.refresh()
                 self.assertTrue(ci.verify(self.root)["pass"])
 
     def test_mapped_job_needs_cannot_hide_unreachable_checks(self):
         original = (self.root / self.workflow).read_text()
-        upstream = ("  never:\n    if: false\n    runs-on: ubuntu-latest\n"
-                    "    steps:\n      - run: echo unreachable\n")
+        upstream = (
+            "  never:\n    if: false\n    runs-on: ubuntu-latest\n"
+            "    steps:\n      - run: echo unreachable\n"
+        )
         for needs in ["never", "[never]"]:
-            changed = original.replace("  navigation:", upstream + "  navigation:\n    needs: " + needs)
+            changed = original.replace(
+                "  navigation:", upstream + "  navigation:\n    needs: " + needs
+            )
             self.write(self.workflow, changed)
-            with self.subTest(needs=needs), self.assertRaisesRegex(ValueError, "reachability adapter"):
+            with (
+                self.subTest(needs=needs),
+                self.assertRaisesRegex(ValueError, "reachability adapter"),
+            ):
                 self.refresh()
 
     def test_unsafe_and_symlink_map_paths_fail(self):
@@ -262,6 +418,7 @@ class RICICouplingTests(unittest.TestCase):
     def test_fixed_diff_requires_commits_exact_checkout_and_clean_controls(self):
         def git(*args):
             return subprocess.check_output(["git", "-C", str(self.root), *args], text=True).strip()
+
         git("init", "-q")
         git("config", "user.name", "RI CI fixture")
         git("config", "user.email", "fixture@example.invalid")

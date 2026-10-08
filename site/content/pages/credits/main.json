@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "template": "pages/credits/main.html",
+  "text": {
+    "T001": "Publication information",
+    "T002": "Reuse & credits.",
+    "T003": "Linked publications",
+    "T004": "The writing index links to the original published articles. Those editions retain their own\n    terms and credits. The index does not reproduce the article text, illustrations, slides or\n    PDFs.",
+    "T005": "Website material",
+    "T006": "© 2026 Vitalii Oborskyi. No general reuse license has been granted for this website's original\n    text or design. Please contact me about reuse. Individual publications and repository components\n    may carry their own licenses.",
+    "T007": "Author portrait",
+    "T008": "The author supplied the source photograph for this site. The displayed portrait is an\n    AI-assisted background-removal derivative, optimized as a transparent WebP image. It is not\n    claimed to preserve every foreground pixel. No general reuse permission for the photograph is\n    granted here; contact me before using it elsewhere.",
+    "T009": "Language labels",
+    "T010": "The website interface is English. Publication-language labels use EN for English and UA for\n    Ukrainian; machine-readable language codes are en and uk. UA in a project name means Uncertainty\n    Architecture. A platform edition is not automatically a translation; unconfirmed talk languages\n    are labelled explicitly.",
+    "T011": "Display preferences",
+    "T012": "Auto uses your device's local time: Day from 07:00 until 19:00, Night otherwise. You can choose\n    either theme yourself. Theme and motion preferences are stored locally in your browser; no\n    location request, account or analytics is involved. The decorative spatial background follows\n    native scrolling on each page, and topic choices in Writing. The thematic structures also move\n    gently in a repeating cycle while you read. Motion off freezes both the camera and the\n    structures; your reduced-motion preference overrides a saved On choice. Theme changes only\n    recolor that view. No measurement or scientific simulation is represented. Without JavaScript,\n    your device's light/dark preference and a static geometric background supply the fallback.",
+    "T013": "Research and acknowledgements",
+    "T014": "Uncertainty Architecture and The Subprime Code Crisis maintain their own research, evidence and\n    attribution records. The acknowledgements identify UA project advisory roles, specific\n    contributions and public discussions. These relationships do not imply institutional\n    endorsement, certification or adoption by PMI, the University of Waterloo, EPAM or another\n    institution.",
+    "T015": "Corrections and contact",
+    "T016": "If you spot an incorrect link, date or attribution, please\n    ",
+    "T017": "open an issue",
+    "T018": " or\n    ",
+    "T019": "contact me on LinkedIn",
+    "T020": "."
+  },
+  "attributes": {},
+  "urls": {
+    "U001": "https://github.com/oborskyivitalii/oborskyivitalii/issues",
+    "U002": "https://www.linkedin.com/in/vitaliioborskyi/"
+  }
+}

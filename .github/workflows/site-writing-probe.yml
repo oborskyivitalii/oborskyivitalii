@@ -51,6 +51,8 @@ jobs:
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
           node-version: 24.19.0
+      - name: Install locked Node tools before source checks
+        run: npm ci --prefix tools/quality/toolchain --ignore-scripts
       - name: Verify source and generated inputs once
         run: |
           test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
@@ -94,7 +96,6 @@ jobs:
           PYTHON
       - name: Install pinned Chromium only
         run: |
-          npm ci --prefix tools/quality/toolchain --ignore-scripts
           tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium
       - name: Check heading geometry, formula and bounded ribbon flights
         run: node tools/quality/reading-clarity.cjs "$RUNNER_TEMP/clarity-input/candidate/public" "$RUNNER_TEMP/clarity-input/baseline/public" "$RUNNER_TEMP/reading-clarity"
@@ -126,6 +127,8 @@ jobs:
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
           node-version: 24.19.0
+      - name: Install locked Node tools before source checks
+        run: npm ci --prefix tools/quality/toolchain --ignore-scripts
       - name: Package original PR23 base, current base and current Color
         run: |
           test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
@@ -135,7 +138,6 @@ jobs:
           node tools/staging/color.cjs "$RUNNER_TEMP/writing-input/current-color"
       - name: Install pinned Chromium only
         run: |
-          npm ci --prefix tools/quality/toolchain --ignore-scripts
           tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium
       - name: Collect paired cold Writing evidence and retain every trial
         run: node tools/quality/writing-probe.cjs "$RUNNER_TEMP/writing-input" "$RUNNER_TEMP/writing-results"
@@ -168,6 +170,8 @@ jobs:
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
           node-version: 24.19.0
+      - name: Install locked Node tools before source checks
+        run: npm ci --prefix tools/quality/toolchain --ignore-scripts
       - name: Check diagnostic helpers and package exact paired inputs
         run: |
           test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
@@ -180,7 +184,6 @@ jobs:
           node tools/quality/writing-variants.cjs "$RUNNER_TEMP/writing-input"
       - name: Install pinned Chromium only
         run: |
-          npm ci --prefix tools/quality/toolchain --ignore-scripts
           tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium
       - name: Confirm the supported change with clean paired cold boots and flights
         run: node tools/quality/writing-diagnosis.cjs "$RUNNER_TEMP/writing-input" "$RUNNER_TEMP/writing-results" review/writing-diagnosis-20261006/run.json
@@ -213,6 +216,8 @@ jobs:
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
           node-version: 24.19.0
+      - name: Install locked Node tools before source checks
+        run: npm ci --prefix tools/quality/toolchain --ignore-scripts
       - name: Validate opt-in contract and package exact Color comparison
         id: inputs
         run: |
@@ -226,7 +231,6 @@ jobs:
       - name: Install pinned Linux browser engines
         id: browsers
         run: |
-          npm ci --prefix tools/quality/toolchain --ignore-scripts
           tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium firefox
       - name: Check Writing lifecycle and retain scene captures
         env:
@@ -270,6 +274,8 @@ jobs:
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
           node-version: 24.19.0
+      - name: Install locked Node tools before source checks
+        run: npm ci --prefix tools/quality/toolchain --ignore-scripts
       - name: Check localization helpers and package exact controls
         run: |
           test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
@@ -282,7 +288,6 @@ jobs:
           node tools/quality/writing-variants.cjs "$RUNNER_TEMP/writing-input"
       - name: Install locked Chromium only
         run: |
-          npm ci --prefix tools/quality/toolchain --ignore-scripts
           tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium
       - name: Localize Writing or confirm only the supported source correction
         run: |

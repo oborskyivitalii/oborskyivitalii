@@ -1,0 +1,121 @@
+{
+  "schema": 1,
+  "kind": "issue58-r3-r6-bandit-rebinding",
+  "pass": true,
+  "checkpointCommit": "8c6cf877fee92b4d2493b4c1a07df7080b987c29",
+  "rawFindings": 36,
+  "newFindings": 0,
+  "changedFindingOwners": [
+    "tools/check_code_style.py"
+  ],
+  "changedPolicyEntries": 4,
+  "findingSignaturesIncludingLinesIdentical": true,
+  "astChange": "Only TOKEN_OWNERS[site/engine/styles.css] adds --muted; every other AST node is unchanged.",
+  "oldReportSha256": "9a57ec6ef0be6f035af7ad370825025468f3fc484e9d9c3c0bfe2277a7755b86",
+  "currentReportSha256": "ee496ae8ecd40f48a613171bc0201a1eec0f516bffc305599cdb559a922d739e",
+  "sources": [
+    {
+      "path": "tools/check_code_style.py",
+      "oldSourceSha256": "e2a20504c1242d588cc2eb87246c8933b1dea798e2f0a12dd04256e3bdecc6e9",
+      "currentSourceSha256": "ca769e1f33c07f2ae47035b08a188fc2f16b29e3bb008e27d99257621ff26cf0",
+      "astOutsideTokenOwnershipIdentical": true,
+      "changed": true
+    },
+    {
+      "path": "tools/check_repository_layout.py",
+      "oldSourceSha256": "15bc9ae64f548f9906738ef31b2c0726f65d70cd1d21a68d33a464ed3c186af1",
+      "currentSourceSha256": "15bc9ae64f548f9906738ef31b2c0726f65d70cd1d21a68d33a464ed3c186af1",
+      "astOutsideTokenOwnershipIdentical": true,
+      "changed": false
+    },
+    {
+      "path": "tools/check_ri_ci.py",
+      "oldSourceSha256": "6c0be0f08e2d998d34e82fb333a3e8541607491f24943e5bb3ca4555d4d9e41d",
+      "currentSourceSha256": "6c0be0f08e2d998d34e82fb333a3e8541607491f24943e5bb3ca4555d4d9e41d",
+      "astOutsideTokenOwnershipIdentical": true,
+      "changed": false
+    },
+    {
+      "path": "tools/issue_acceptance.py",
+      "oldSourceSha256": "c4d98db96844f19d73e4f66d389d3c54b5f0eead60029395d77d970c18950a97",
+      "currentSourceSha256": "c4d98db96844f19d73e4f66d389d3c54b5f0eead60029395d77d970c18950a97",
+      "astOutsideTokenOwnershipIdentical": true,
+      "changed": false
+    },
+    {
+      "path": "tools/repository_intelligence.py",
+      "oldSourceSha256": "dad68d88d241c2cd223081d6a28961c1aa7abc19c0f4c223c9c3382c562aa792",
+      "currentSourceSha256": "dad68d88d241c2cd223081d6a28961c1aa7abc19c0f4c223c9c3382c562aa792",
+      "astOutsideTokenOwnershipIdentical": true,
+      "changed": false
+    },
+    {
+      "path": "tools/run_repository_tests.py",
+      "oldSourceSha256": "0ef371fa128a18469f4a9e73702fe7fbcdea21cf1927c1e69d576f28fc1560c0",
+      "currentSourceSha256": "0ef371fa128a18469f4a9e73702fe7fbcdea21cf1927c1e69d576f28fc1560c0",
+      "astOutsideTokenOwnershipIdentical": true,
+      "changed": false
+    }
+  ],
+  "findings": [
+    {
+      "path": "tools/check_code_style.py",
+      "rule": "B404",
+      "test_name": "blacklist",
+      "severity": "LOW",
+      "confidence": "HIGH",
+      "line": 12,
+      "lineSha256": "7d8752c4c7ea34c2c6d04a15aa31a1f25f62848f8c3c82528fd62439c01a225b",
+      "oldSourceSha256": "e2a20504c1242d588cc2eb87246c8933b1dea798e2f0a12dd04256e3bdecc6e9",
+      "currentSourceSha256": "ca769e1f33c07f2ae47035b08a188fc2f16b29e3bb008e27d99257621ff26cf0"
+    },
+    {
+      "path": "tools/check_code_style.py",
+      "rule": "B607",
+      "test_name": "start_process_with_partial_path",
+      "severity": "LOW",
+      "confidence": "HIGH",
+      "line": 216,
+      "lineSha256": "76c7e65ab710547ee0dbedcdff44662953fd05aa6e60fdd1a459e83a41362ddf",
+      "oldSourceSha256": "e2a20504c1242d588cc2eb87246c8933b1dea798e2f0a12dd04256e3bdecc6e9",
+      "currentSourceSha256": "ca769e1f33c07f2ae47035b08a188fc2f16b29e3bb008e27d99257621ff26cf0"
+    },
+    {
+      "path": "tools/check_code_style.py",
+      "rule": "B603",
+      "test_name": "subprocess_without_shell_equals_true",
+      "severity": "LOW",
+      "confidence": "HIGH",
+      "line": 216,
+      "lineSha256": "76c7e65ab710547ee0dbedcdff44662953fd05aa6e60fdd1a459e83a41362ddf",
+      "oldSourceSha256": "e2a20504c1242d588cc2eb87246c8933b1dea798e2f0a12dd04256e3bdecc6e9",
+      "currentSourceSha256": "ca769e1f33c07f2ae47035b08a188fc2f16b29e3bb008e27d99257621ff26cf0"
+    },
+    {
+      "path": "tools/check_code_style.py",
+      "rule": "B105",
+      "test_name": "hardcoded_password_string",
+      "severity": "LOW",
+      "confidence": "MEDIUM",
+      "line": 237,
+      "lineSha256": "9ba2e45538911f514e1bb21783cfefb750fb8af8d9ae9b6976780a6597e8974e",
+      "oldSourceSha256": "e2a20504c1242d588cc2eb87246c8933b1dea798e2f0a12dd04256e3bdecc6e9",
+      "currentSourceSha256": "ca769e1f33c07f2ae47035b08a188fc2f16b29e3bb008e27d99257621ff26cf0"
+    }
+  ],
+  "preserved": [
+    "path",
+    "rule",
+    "test_name",
+    "severity",
+    "confidence",
+    "line",
+    "line_sha256",
+    "owner",
+    "issue",
+    "reviewBy"
+  ],
+  "review": "Independent exact four-entry/source/finding review completed under issue58; approved proposal applied. This is a dirty-source policy rebinding proof, not final clean-source security evidence.",
+  "sourceDirty": true,
+  "finalSecurityPass": false
+}

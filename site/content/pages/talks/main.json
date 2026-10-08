@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "template": "pages/talks/main.html",
+  "text": {
+    "T001": "Continue with the original articles.",
+    "T002": "Explore the writing ↗"
+  },
+  "attributes": {},
+  "urls": {
+    "U001": "writing.html"
+  }
+}

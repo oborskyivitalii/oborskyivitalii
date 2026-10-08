@@ -14,9 +14,13 @@
         },
         "datePublished": "2026-06-17"
       },
-      "archiveHTML": "<li class=\"publication\" data-language=\"uk\" data-topic=\"delivery\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\" lang=\"uk\">UA · Українська</span> · Article · DOU</span></div><div><a class=\"publication-title\" href=\"{{URL}}\"><span lang=\"uk\">{{TITLE}}</span><span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a>{{EDITION_LINKS}}{{DISCUSSION_LINKS}}</div></li>",
       "editions": [],
-      "discussions": []
+      "discussions": [],
+      "presentation": {
+        "topic": "delivery",
+        "kind": "Article",
+        "publisher": "DOU"
+      }
     },
     "publication-02": {
       "edition": {
@@ -30,8 +34,6 @@
         },
         "datePublished": "2026-06-12"
       },
-      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"delivery\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Agile Insider</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a>{{EDITION_LINKS}}{{DISCUSSION_LINKS}}</div></li>",
-      "featuredHTML": "<li class=\"publication\" data-language=\"en\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Agile Insider</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a>{{EDITION_LINKS}}{{DISCUSSION_LINKS}}<p class=\"writing-summary\">Why faster generation raises questions of human understanding and verification.</p></div></li>",
       "editions": [
         {
           "platform": "LinkedIn",
@@ -47,7 +49,13 @@
           "bodyEquivalenceVerified": false
         }
       ],
-      "discussions": []
+      "discussions": [],
+      "presentation": {
+        "topic": "delivery",
+        "kind": "Article",
+        "publisher": "Agile Insider",
+        "summary": "Why faster generation raises questions of human understanding and verification."
+      }
     },
     "publication-03": {
       "edition": {
@@ -61,9 +69,13 @@
         },
         "datePublished": "2026-02-10"
       },
-      "archiveHTML": "<li class=\"publication\" data-language=\"uk\" data-topic=\"delivery\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\" lang=\"uk\">UA · Українська</span> · Article · DOU</span></div><div><a class=\"publication-title\" href=\"{{URL}}\"><span lang=\"uk\">{{TITLE}}</span><span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a>{{EDITION_LINKS}}{{DISCUSSION_LINKS}}</div></li>",
       "editions": [],
-      "discussions": []
+      "discussions": [],
+      "presentation": {
+        "topic": "delivery",
+        "kind": "Article",
+        "publisher": "DOU"
+      }
     },
     "publication-04": {
       "edition": {
@@ -77,9 +89,13 @@
         },
         "datePublished": "2026-01-05"
       },
-      "archiveHTML": "<li class=\"publication\" data-language=\"uk\" data-topic=\"delivery\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\" lang=\"uk\">UA · Українська</span> · Article · DOU</span></div><div><a class=\"publication-title\" href=\"{{URL}}\"><span lang=\"uk\">{{TITLE}}</span><span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a>{{EDITION_LINKS}}{{DISCUSSION_LINKS}}</div></li>",
       "editions": [],
-      "discussions": []
+      "discussions": [],
+      "presentation": {
+        "topic": "delivery",
+        "kind": "Article",
+        "publisher": "DOU"
+      }
     },
     "publication-05": {
       "edition": {
@@ -93,8 +109,6 @@
         },
         "datePublished": "2026-08-30"
       },
-      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"systems\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Generative AI</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a>{{EDITION_LINKS}}{{DISCUSSION_LINKS}}</div></li>",
-      "featuredHTML": "<li class=\"publication\" data-language=\"en\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Generative AI</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a>{{EDITION_LINKS}}{{DISCUSSION_LINKS}}<p class=\"writing-summary\">What changes when consequential runtime responsibility depends on model judgment.</p></div></li>",
       "editions": [
         {
           "platform": "LinkedIn",
@@ -111,7 +125,13 @@
         }
       ],
       "discussions": [],
-      "homeEditionLink": true
+      "homeEditionLink": true,
+      "presentation": {
+        "topic": "systems",
+        "kind": "Article",
+        "publisher": "Generative AI",
+        "summary": "What changes when consequential runtime responsibility depends on model judgment."
+      }
     },
     "publication-06": {
       "edition": {
@@ -125,8 +145,6 @@
         },
         "datePublished": "2026-06-10"
       },
-      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"systems\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Generative AI</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a>{{EDITION_LINKS}}{{DISCUSSION_LINKS}}</div></li>",
-      "featuredHTML": "<li class=\"publication\" data-language=\"en\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Generative AI</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a>{{EDITION_LINKS}}{{DISCUSSION_LINKS}}<p class=\"writing-summary\">A bounded technical example of semantic verification within a wider control architecture.</p></div></li>",
       "editions": [
         {
           "platform": "LinkedIn",
@@ -142,7 +160,13 @@
           "bodyEquivalenceVerified": false
         }
       ],
-      "discussions": []
+      "discussions": [],
+      "presentation": {
+        "topic": "systems",
+        "kind": "Article",
+        "publisher": "Generative AI",
+        "summary": "A bounded technical example of semantic verification within a wider control architecture."
+      }
     },
     "publication-07": {
       "edition": {
@@ -156,12 +180,14 @@
         },
         "datePublished": "2026-06-10"
       },
-      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"systems\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · LinkedIn</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a>{{EDITION_LINKS}}{{DISCUSSION_LINKS}}</div></li>",
-      "featuredHTML": "<li class=\"publication\" data-language=\"en\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · LinkedIn</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a>{{EDITION_LINKS}}{{DISCUSSION_LINKS}}<p class=\"writing-summary\">A control-theory perspective on agentic loops and engineering control.</p></div></li>",
       "editions": [],
-      "discussions": [
-        "reddit-agentic-loops"
-      ]
+      "discussions": ["reddit-agentic-loops"],
+      "presentation": {
+        "topic": "systems",
+        "kind": "Article",
+        "publisher": "LinkedIn",
+        "summary": "A control-theory perspective on agentic loops and engineering control."
+      }
     },
     "publication-08": {
       "edition": {
@@ -175,8 +201,6 @@
         },
         "datePublished": "2026-07-01"
       },
-      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"strategy\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · AI Advances</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a>{{EDITION_LINKS}}{{DISCUSSION_LINKS}}</div></li>",
-      "featuredHTML": "<li class=\"publication\" data-language=\"en\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · AI Advances</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a>{{EDITION_LINKS}}{{DISCUSSION_LINKS}}<p class=\"writing-summary\">Where durable differentiation can sit in AI-native workflows.</p></div></li>",
       "editions": [
         {
           "platform": "LinkedIn",
@@ -192,7 +216,13 @@
           "bodyEquivalenceVerified": false
         }
       ],
-      "discussions": []
+      "discussions": [],
+      "presentation": {
+        "topic": "strategy",
+        "kind": "Article",
+        "publisher": "AI Advances",
+        "summary": "Where durable differentiation can sit in AI-native workflows."
+      }
     },
     "publication-09": {
       "edition": {
@@ -206,7 +236,6 @@
         },
         "datePublished": "2025-12-13"
       },
-      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"systems\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Towards AI</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a>{{EDITION_LINKS}}{{DISCUSSION_LINKS}}</div></li>",
       "editions": [
         {
           "platform": "LinkedIn",
@@ -222,9 +251,12 @@
           "bodyEquivalenceVerified": false
         }
       ],
-      "discussions": [
-        "reddit-controller"
-      ]
+      "discussions": ["reddit-controller"],
+      "presentation": {
+        "topic": "systems",
+        "kind": "Article",
+        "publisher": "Towards AI"
+      }
     },
     "publication-10": {
       "edition": {
@@ -238,7 +270,6 @@
         },
         "datePublished": "2025-11-22"
       },
-      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"systems\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Towards AI</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a>{{EDITION_LINKS}}{{DISCUSSION_LINKS}}</div></li>",
       "editions": [
         {
           "platform": "LinkedIn",
@@ -254,7 +285,12 @@
           "bodyEquivalenceVerified": false
         }
       ],
-      "discussions": []
+      "discussions": [],
+      "presentation": {
+        "topic": "systems",
+        "kind": "Article",
+        "publisher": "Towards AI"
+      }
     },
     "publication-11": {
       "edition": {
@@ -268,9 +304,13 @@
         },
         "datePublished": "2025-11-18"
       },
-      "archiveHTML": "<li class=\"publication\" data-language=\"uk\" data-topic=\"systems\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\" lang=\"uk\">UA · Українська</span> · Article · DOU</span></div><div><a class=\"publication-title\" href=\"{{URL}}\"><span lang=\"uk\">{{TITLE}}</span><span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a>{{EDITION_LINKS}}{{DISCUSSION_LINKS}}</div></li>",
       "editions": [],
-      "discussions": []
+      "discussions": [],
+      "presentation": {
+        "topic": "systems",
+        "kind": "Article",
+        "publisher": "DOU"
+      }
     },
     "publication-12": {
       "edition": {
@@ -284,7 +324,6 @@
         },
         "datePublished": "2025-09-06"
       },
-      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"systems\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Data Science Collective</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a>{{EDITION_LINKS}}{{DISCUSSION_LINKS}}</div></li>",
       "editions": [
         {
           "platform": "LinkedIn",
@@ -300,7 +339,12 @@
           "bodyEquivalenceVerified": false
         }
       ],
-      "discussions": []
+      "discussions": [],
+      "presentation": {
+        "topic": "systems",
+        "kind": "Article",
+        "publisher": "Data Science Collective"
+      }
     },
     "publication-13": {
       "edition": {
@@ -314,10 +358,14 @@
         },
         "datePublished": "2025-09-03"
       },
-      "archiveHTML": "<li class=\"publication\" data-language=\"uk\" data-topic=\"systems\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\" lang=\"uk\">UA · Українська</span> · Article · DOU</span></div><div><a class=\"publication-title\" href=\"{{URL}}\"><span lang=\"uk\">{{TITLE}}</span><span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a>{{EDITION_LINKS}}{{DISCUSSION_LINKS}}</div></li>",
       "septemberStyle": "Sept",
       "editions": [],
-      "discussions": []
+      "discussions": [],
+      "presentation": {
+        "topic": "systems",
+        "kind": "Article",
+        "publisher": "DOU"
+      }
     },
     "publication-14": {
       "edition": {
@@ -331,7 +379,6 @@
         },
         "datePublished": "2025-07-29"
       },
-      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"systems\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Data Science Collective</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a>{{EDITION_LINKS}}{{DISCUSSION_LINKS}}</div></li>",
       "editions": [
         {
           "platform": "LinkedIn",
@@ -347,7 +394,12 @@
           "bodyEquivalenceVerified": false
         }
       ],
-      "discussions": []
+      "discussions": [],
+      "presentation": {
+        "topic": "systems",
+        "kind": "Article",
+        "publisher": "Data Science Collective"
+      }
     },
     "publication-15": {
       "edition": {
@@ -361,7 +413,6 @@
         },
         "datePublished": "2025-07-03"
       },
-      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"leadership\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Data Science Collective</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a>{{EDITION_LINKS}}{{DISCUSSION_LINKS}}</div></li>",
       "editions": [
         {
           "platform": "LinkedIn",
@@ -377,7 +428,12 @@
           "bodyEquivalenceVerified": false
         }
       ],
-      "discussions": []
+      "discussions": [],
+      "presentation": {
+        "topic": "leadership",
+        "kind": "Article",
+        "publisher": "Data Science Collective"
+      }
     },
     "publication-16": {
       "edition": {
@@ -391,9 +447,13 @@
         },
         "datePublished": "2025-06-18"
       },
-      "archiveHTML": "<li class=\"publication\" data-language=\"uk\" data-topic=\"leadership\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\" lang=\"uk\">UA · Українська</span> · Article · DOU</span></div><div><a class=\"publication-title\" href=\"{{URL}}\"><span lang=\"uk\">{{TITLE}}</span><span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a>{{EDITION_LINKS}}{{DISCUSSION_LINKS}}</div></li>",
       "editions": [],
-      "discussions": []
+      "discussions": [],
+      "presentation": {
+        "topic": "leadership",
+        "kind": "Article",
+        "publisher": "DOU"
+      }
     },
     "publication-17": {
       "edition": {
@@ -407,7 +467,6 @@
         },
         "datePublished": "2025-06-16"
       },
-      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"leadership\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Medium</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a>{{EDITION_LINKS}}{{DISCUSSION_LINKS}}</div></li>",
       "editions": [
         {
           "platform": "LinkedIn",
@@ -423,7 +482,12 @@
           "bodyEquivalenceVerified": false
         }
       ],
-      "discussions": []
+      "discussions": [],
+      "presentation": {
+        "topic": "leadership",
+        "kind": "Article",
+        "publisher": "Medium"
+      }
     },
     "publication-18": {
       "edition": {
@@ -437,9 +501,13 @@
         },
         "dateModified": "2025-06-03"
       },
-      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"leadership\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Atlassian Community</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a>{{EDITION_LINKS}}{{DISCUSSION_LINKS}}</div></li>",
       "editions": [],
-      "discussions": []
+      "discussions": [],
+      "presentation": {
+        "topic": "leadership",
+        "kind": "Article",
+        "publisher": "Atlassian Community"
+      }
     },
     "publication-19": {
       "edition": {
@@ -453,7 +521,6 @@
         },
         "datePublished": "2025-05-31"
       },
-      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"leadership\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Agile Insider</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a>{{EDITION_LINKS}}{{DISCUSSION_LINKS}}</div></li>",
       "editions": [
         {
           "platform": "LinkedIn",
@@ -469,7 +536,12 @@
           "bodyEquivalenceVerified": false
         }
       ],
-      "discussions": []
+      "discussions": [],
+      "presentation": {
+        "topic": "leadership",
+        "kind": "Article",
+        "publisher": "Agile Insider"
+      }
     },
     "publication-20": {
       "edition": {
@@ -483,7 +555,6 @@
         },
         "datePublished": "2025-05-05"
       },
-      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"leadership\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Generative AI</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a>{{EDITION_LINKS}}{{DISCUSSION_LINKS}}</div></li>",
       "editions": [
         {
           "platform": "LinkedIn",
@@ -499,7 +570,12 @@
           "bodyEquivalenceVerified": false
         }
       ],
-      "discussions": []
+      "discussions": [],
+      "presentation": {
+        "topic": "leadership",
+        "kind": "Article",
+        "publisher": "Generative AI"
+      }
     },
     "publication-21": {
       "edition": {
@@ -513,7 +589,6 @@
         },
         "datePublished": "2025-04-30"
       },
-      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"leadership\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Agile Insider</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a>{{EDITION_LINKS}}{{DISCUSSION_LINKS}}</div></li>",
       "editions": [
         {
           "platform": "LinkedIn",
@@ -529,7 +604,12 @@
           "bodyEquivalenceVerified": false
         }
       ],
-      "discussions": []
+      "discussions": [],
+      "presentation": {
+        "topic": "leadership",
+        "kind": "Article",
+        "publisher": "Agile Insider"
+      }
     },
     "publication-22": {
       "edition": {
@@ -543,7 +623,6 @@
         },
         "datePublished": "2025-04-23"
       },
-      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"leadership\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Data Science Collective</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a>{{EDITION_LINKS}}{{DISCUSSION_LINKS}}</div></li>",
       "editions": [
         {
           "platform": "LinkedIn",
@@ -559,7 +638,12 @@
           "bodyEquivalenceVerified": false
         }
       ],
-      "discussions": []
+      "discussions": [],
+      "presentation": {
+        "topic": "leadership",
+        "kind": "Article",
+        "publisher": "Data Science Collective"
+      }
     },
     "publication-23": {
       "edition": {
@@ -573,7 +657,6 @@
         },
         "datePublished": "2025-04-03"
       },
-      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"leadership\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Medium</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a>{{EDITION_LINKS}}{{DISCUSSION_LINKS}}</div></li>",
       "editions": [
         {
           "platform": "LinkedIn",
@@ -589,7 +672,12 @@
           "bodyEquivalenceVerified": false
         }
       ],
-      "discussions": []
+      "discussions": [],
+      "presentation": {
+        "topic": "leadership",
+        "kind": "Article",
+        "publisher": "Medium"
+      }
     },
     "publication-24": {
       "edition": {
@@ -603,9 +691,13 @@
         },
         "datePublished": "2025-05-07"
       },
-      "archiveHTML": "<li class=\"publication\" data-language=\"uk\" data-topic=\"strategy\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\" lang=\"uk\">UA · Українська</span> · Article · DOU</span></div><div><a class=\"publication-title\" href=\"{{URL}}\"><span lang=\"uk\">{{TITLE}}</span><span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a>{{EDITION_LINKS}}{{DISCUSSION_LINKS}}</div></li>",
       "editions": [],
-      "discussions": []
+      "discussions": [],
+      "presentation": {
+        "topic": "strategy",
+        "kind": "Article",
+        "publisher": "DOU"
+      }
     },
     "publication-25": {
       "edition": {
@@ -619,7 +711,6 @@
         },
         "datePublished": "2025-04-24"
       },
-      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"strategy\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Data Science Collective</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a>{{EDITION_LINKS}}{{DISCUSSION_LINKS}}</div></li>",
       "editions": [
         {
           "platform": "LinkedIn",
@@ -635,7 +726,12 @@
           "bodyEquivalenceVerified": false
         }
       ],
-      "discussions": []
+      "discussions": [],
+      "presentation": {
+        "topic": "strategy",
+        "kind": "Article",
+        "publisher": "Data Science Collective"
+      }
     },
     "publication-26": {
       "edition": {
@@ -649,7 +745,6 @@
         },
         "datePublished": "2025-04-23"
       },
-      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"strategy\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Medium</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a>{{EDITION_LINKS}}{{DISCUSSION_LINKS}}</div></li>",
       "editions": [
         {
           "platform": "LinkedIn",
@@ -665,7 +760,12 @@
           "bodyEquivalenceVerified": false
         }
       ],
-      "discussions": []
+      "discussions": [],
+      "presentation": {
+        "topic": "strategy",
+        "kind": "Article",
+        "publisher": "Medium"
+      }
     },
     "publication-27": {
       "edition": {
@@ -679,9 +779,13 @@
         },
         "datePublished": "2025-04-23"
       },
-      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"strategy\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · Medium</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a>{{EDITION_LINKS}}{{DISCUSSION_LINKS}}</div></li>",
       "editions": [],
-      "discussions": []
+      "discussions": [],
+      "presentation": {
+        "topic": "strategy",
+        "kind": "Article",
+        "publisher": "Medium"
+      }
     },
     "publication-28": {
       "edition": {
@@ -695,9 +799,13 @@
         },
         "datePublished": "2026-01-02"
       },
-      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"delivery\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · LinkedIn</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a>{{EDITION_LINKS}}{{DISCUSSION_LINKS}}</div></li>",
       "editions": [],
-      "discussions": []
+      "discussions": [],
+      "presentation": {
+        "topic": "delivery",
+        "kind": "Article",
+        "publisher": "LinkedIn"
+      }
     },
     "publication-29": {
       "edition": {
@@ -711,9 +819,13 @@
         },
         "datePublished": "2025-12-07"
       },
-      "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"strategy\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Essay · LinkedIn</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a>{{EDITION_LINKS}}{{DISCUSSION_LINKS}}</div></li>",
       "editions": [],
-      "discussions": []
+      "discussions": [],
+      "presentation": {
+        "topic": "strategy",
+        "kind": "Essay",
+        "publisher": "LinkedIn"
+      }
     }
   },
   "structuredOrder": [
@@ -877,9 +989,30 @@
       }
     }
   },
-  "discussionOrder": [
-    "reddit-agentic-loops",
-    "reddit-delivery-bottlenecks",
-    "reddit-controller"
-  ]
+  "discussionOrder": ["reddit-agentic-loops", "reddit-delivery-bottlenecks", "reddit-controller"],
+  "labels": {
+    "route.index": "Home",
+    "route.research": "Research",
+    "route.writing": "Writing",
+    "route.talks": "Talks",
+    "route.credits": "Credits",
+    "language.en": "EN · English",
+    "language.uk": "UA · Українська",
+    "topic.delivery": "AI-assisted delivery",
+    "topic.systems": "AI architecture & control",
+    "topic.leadership": "Operating models & leadership",
+    "topic.strategy": "AI strategy & society",
+    "archive.count": "{count} of {total} primary archive records · newest first within each topic.",
+    "archive.print": "{total} primary archive records · all records and their linked platform editions shown for printing.",
+    "edition.link": " edition · ",
+    "edition.edited": " · edited",
+    "discussion.link": "Reddit discussion ↗",
+    "discussion.views": " post views · ",
+    "discussion.comments": " comments"
+  },
+  "archive": {
+    "topics": ["delivery", "systems", "leadership", "strategy"],
+    "languages": ["en", "uk"],
+    "months": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+  }
 }

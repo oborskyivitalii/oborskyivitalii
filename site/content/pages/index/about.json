@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "template": "pages/index/about.html",
+  "text": {
+    "T001": "05 / About",
+    "T002": "From quality engineering",
+    "T003": "to delivery leadership.",
+    "T004": "My work has included building delivery functions, resource planning, risk governance and\n        organizational design. It shapes the questions I bring to AI: what teams need to understand,\n        how decisions are made, and who owns the outcome.",
+    "T005": "I write for architects, engineering and delivery leaders, product owners and PMO\n        practitioners. This site connects the publications and living research behind that work.",
+    "T006": "LinkedIn ↗",
+    "T007": "GitHub ↗",
+    "T008": "Medium ↗"
+  },
+  "attributes": {},
+  "urls": {
+    "U001": "https://www.linkedin.com/in/vitaliioborskyi/",
+    "U002": "https://github.com/oborskyivitalii",
+    "U003": "https://medium.com/@undersmoker"
+  }
+}

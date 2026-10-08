@@ -1,0 +1,460 @@
+{
+  "kind": "R4 source-bound preintegration CSS observations; dirty identity retained",
+  "browser": {
+    "kind": "R4 scoped CSS contract",
+    "scope": "Actual production/offline adapter markers and current authored CSS, no runtime smoke/release claim",
+    "sourceCommit": "8c6cf877fee92b4d2493b4c1a07df7080b987c29",
+    "sourceDirty": true,
+    "browser": "153.0.8010.12",
+    "sources": {
+      "site/engine/styles.css": "fcc54de958fa57a1acb0c68df99a4976c53f61b678592077c6bff5b384c07cd7",
+      "site/engine/reading-surfaces.css": "11570a2e7879e181625d7f6e365c5db6e9a5d25ae7c926dd1270c339298df6dc",
+      "site/effects/reading-surfaces.css": "e637a7e59f85b05d03ddc1c85b017debcd495fbc205b78239ce832c1007bea82",
+      "site/effects/flight.css": "5c0f5fbe9f9bf714c8757d7ed795c7945de31dc8797833846d74b30f02f29fd7",
+      "tools/site/effects.cjs": "defcb1e2a880569a692d40a05d922b295528de205f01f77ed941eaec1996bdf8",
+      "tools/staging/color.cjs": "37ab6f6a83e9164701aa4a73a162d4fdd982d09914ce7b3011f786dd6ca5a627"
+    },
+    "rows": [
+      {
+        "kind": "hosted-base",
+        "id": "base",
+        "theme": "light",
+        "meta": [
+          "base"
+        ],
+        "muted": "#435962",
+        "alpha": "87%",
+        "radius": "12px",
+        "outset": "0.16em",
+        "has": true,
+        "expected": "#435962",
+        "pass": true
+      },
+      {
+        "kind": "hosted-base",
+        "id": "base",
+        "theme": "dark",
+        "meta": [
+          "base"
+        ],
+        "muted": "#afc0c5",
+        "alpha": "87%",
+        "radius": "12px",
+        "outset": "0.16em",
+        "has": true,
+        "expected": "#afc0c5",
+        "pass": true
+      },
+      {
+        "kind": "hosted-base",
+        "id": "base",
+        "theme": "auto-dark",
+        "meta": [
+          "base"
+        ],
+        "muted": "#afc0c5",
+        "alpha": "87%",
+        "radius": "12px",
+        "outset": "0.16em",
+        "has": true,
+        "expected": "#afc0c5",
+        "pass": true
+      },
+      {
+        "kind": "hosted-color",
+        "id": "color",
+        "theme": "light",
+        "meta": [
+          "color"
+        ],
+        "muted": "#344a53",
+        "alpha": "87%",
+        "radius": "12px",
+        "outset": "0.16em",
+        "has": true,
+        "expected": "#344a53",
+        "pass": true
+      },
+      {
+        "kind": "hosted-color",
+        "id": "color",
+        "theme": "dark",
+        "meta": [
+          "color"
+        ],
+        "muted": "#afc0c5",
+        "alpha": "87%",
+        "radius": "12px",
+        "outset": "0.16em",
+        "has": true,
+        "expected": "#afc0c5",
+        "pass": true
+      },
+      {
+        "kind": "hosted-color",
+        "id": "color",
+        "theme": "auto-dark",
+        "meta": [
+          "color"
+        ],
+        "muted": "#344a53",
+        "alpha": "87%",
+        "radius": "12px",
+        "outset": "0.16em",
+        "has": true,
+        "expected": "#344a53",
+        "pass": true
+      },
+      {
+        "kind": "offline-base",
+        "id": "base",
+        "theme": "light",
+        "meta": [
+          "base"
+        ],
+        "muted": "#435962",
+        "alpha": "87%",
+        "radius": "12px",
+        "outset": "0.16em",
+        "has": true,
+        "expected": "#435962",
+        "pass": true
+      },
+      {
+        "kind": "offline-base",
+        "id": "base",
+        "theme": "dark",
+        "meta": [
+          "base"
+        ],
+        "muted": "#afc0c5",
+        "alpha": "87%",
+        "radius": "12px",
+        "outset": "0.16em",
+        "has": true,
+        "expected": "#afc0c5",
+        "pass": true
+      },
+      {
+        "kind": "offline-base",
+        "id": "base",
+        "theme": "auto-dark",
+        "meta": [
+          "base"
+        ],
+        "muted": "#afc0c5",
+        "alpha": "87%",
+        "radius": "12px",
+        "outset": "0.16em",
+        "has": true,
+        "expected": "#afc0c5",
+        "pass": true
+      },
+      {
+        "kind": "offline-flight",
+        "id": "flight",
+        "theme": "light",
+        "meta": [
+          "flight"
+        ],
+        "muted": "#435962",
+        "alpha": "87%",
+        "radius": "12px",
+        "outset": "0.16em",
+        "has": true,
+        "expected": "#435962",
+        "pass": true
+      },
+      {
+        "kind": "offline-flight",
+        "id": "flight",
+        "theme": "dark",
+        "meta": [
+          "flight"
+        ],
+        "muted": "#afc0c5",
+        "alpha": "87%",
+        "radius": "12px",
+        "outset": "0.16em",
+        "has": true,
+        "expected": "#afc0c5",
+        "pass": true
+      },
+      {
+        "kind": "offline-flight",
+        "id": "flight",
+        "theme": "auto-dark",
+        "meta": [
+          "flight"
+        ],
+        "muted": "#afc0c5",
+        "alpha": "87%",
+        "radius": "12px",
+        "outset": "0.16em",
+        "has": true,
+        "expected": "#afc0c5",
+        "pass": true
+      },
+      {
+        "kind": "offline-ribbons",
+        "id": "ribbons",
+        "theme": "light",
+        "meta": [
+          "ribbons"
+        ],
+        "muted": "#344a53",
+        "alpha": "87%",
+        "radius": "12px",
+        "outset": "0.16em",
+        "has": true,
+        "expected": "#344a53",
+        "pass": true
+      },
+      {
+        "kind": "offline-ribbons",
+        "id": "ribbons",
+        "theme": "dark",
+        "meta": [
+          "ribbons"
+        ],
+        "muted": "#afc0c5",
+        "alpha": "87%",
+        "radius": "12px",
+        "outset": "0.16em",
+        "has": true,
+        "expected": "#afc0c5",
+        "pass": true
+      },
+      {
+        "kind": "offline-ribbons",
+        "id": "ribbons",
+        "theme": "auto-dark",
+        "meta": [
+          "ribbons"
+        ],
+        "muted": "#344a53",
+        "alpha": "87%",
+        "radius": "12px",
+        "outset": "0.16em",
+        "has": true,
+        "expected": "#344a53",
+        "pass": true
+      },
+      {
+        "kind": "offline-color",
+        "id": "color",
+        "theme": "light",
+        "meta": [
+          "color"
+        ],
+        "muted": "#344a53",
+        "alpha": "87%",
+        "radius": "12px",
+        "outset": "0.16em",
+        "has": true,
+        "expected": "#344a53",
+        "pass": true
+      },
+      {
+        "kind": "offline-color",
+        "id": "color",
+        "theme": "dark",
+        "meta": [
+          "color"
+        ],
+        "muted": "#afc0c5",
+        "alpha": "87%",
+        "radius": "12px",
+        "outset": "0.16em",
+        "has": true,
+        "expected": "#afc0c5",
+        "pass": true
+      },
+      {
+        "kind": "offline-color",
+        "id": "color",
+        "theme": "auto-dark",
+        "meta": [
+          "color"
+        ],
+        "muted": "#344a53",
+        "alpha": "87%",
+        "radius": "12px",
+        "outset": "0.16em",
+        "has": true,
+        "expected": "#344a53",
+        "pass": true
+      }
+    ],
+    "portraitGeometry": [
+      {
+        "width": 1440,
+        "pairs": [
+          {
+            "version": "baseline",
+            "sample": [
+              {
+                "tag": "svg",
+                "height": "478.766px",
+                "width": "435.25px",
+                "maxWidth": "100%",
+                "maxHeight": "none",
+                "position": "absolute",
+                "inset": "-36.2031px -39.1719px -20.1094px",
+                "rect": [
+                  825.578125,
+                  249.828125,
+                  435.25,
+                  478.765625
+                ]
+              },
+              {
+                "tag": "IMG",
+                "height": "402.312px",
+                "width": "435.25px",
+                "maxWidth": "100%",
+                "maxHeight": "480px",
+                "position": "static",
+                "inset": "auto",
+                "rect": [
+                  864.75,
+                  286.03125,
+                  435.25,
+                  402.3125
+                ]
+              }
+            ]
+          },
+          {
+            "version": "candidate",
+            "sample": [
+              {
+                "tag": "svg",
+                "height": "478.766px",
+                "width": "435.25px",
+                "maxWidth": "100%",
+                "maxHeight": "none",
+                "position": "absolute",
+                "inset": "-36.2031px -39.1719px -20.1094px",
+                "rect": [
+                  825.578125,
+                  249.828125,
+                  435.25,
+                  478.765625
+                ]
+              },
+              {
+                "tag": "IMG",
+                "height": "402.312px",
+                "width": "435.25px",
+                "maxWidth": "100%",
+                "maxHeight": "480px",
+                "position": "static",
+                "inset": "auto",
+                "rect": [
+                  864.75,
+                  286.03125,
+                  435.25,
+                  402.3125
+                ]
+              }
+            ]
+          }
+        ],
+        "pass": true
+      },
+      {
+        "width": 390,
+        "pairs": [
+          {
+            "version": "baseline",
+            "sample": [
+              {
+                "tag": "svg",
+                "height": "124.391px",
+                "width": "113.094px",
+                "maxWidth": "100%",
+                "maxHeight": "none",
+                "position": "absolute",
+                "inset": "-13.5px -10.1719px -7.5px",
+                "rect": [
+                  246.734375,
+                  266.4375,
+                  113.09375,
+                  124.390625
+                ]
+              },
+              {
+                "tag": "IMG",
+                "height": "150px",
+                "width": "113.094px",
+                "maxWidth": "100%",
+                "maxHeight": "150px",
+                "position": "static",
+                "inset": "auto",
+                "rect": [
+                  256.90625,
+                  279.9375,
+                  113.09375,
+                  150
+                ]
+              }
+            ]
+          },
+          {
+            "version": "candidate",
+            "sample": [
+              {
+                "tag": "svg",
+                "height": "124.391px",
+                "width": "113.094px",
+                "maxWidth": "100%",
+                "maxHeight": "none",
+                "position": "absolute",
+                "inset": "-13.5px -10.1719px -7.5px",
+                "rect": [
+                  246.734375,
+                  266.4375,
+                  113.09375,
+                  124.390625
+                ]
+              },
+              {
+                "tag": "IMG",
+                "height": "150px",
+                "width": "113.094px",
+                "maxWidth": "100%",
+                "maxHeight": "150px",
+                "position": "static",
+                "inset": "auto",
+                "rect": [
+                  256.90625,
+                  279.9375,
+                  113.09375,
+                  150
+                ]
+              }
+            ]
+          }
+        ],
+        "pass": true
+      }
+    ],
+    "pass": true
+  },
+  "semantic": {
+    "baseline": "8c6cf877fee92b4d2493b4c1a07df7080b987c29",
+    "flightOrderedCSS": true,
+    "colorInkControlsOrderedCSS": true,
+    "paletteDeclaration": {
+      "value": "#344a53",
+      "movedFrom": "site/effects/reading-surfaces.cjs",
+      "owner": "site/engine/styles.css",
+      "selection": "canonical Color/ribbons variant metadata",
+      "browserProof": "/tmp/issue58-r4-css-browser.json"
+    },
+    "addedComment": "Color-only ink and controls. Reading backdrop paint stays in engine/reading-surfaces.css.",
+    "readingPaintOwnerByteIdentical": true,
+    "pass": true
+  }
+}

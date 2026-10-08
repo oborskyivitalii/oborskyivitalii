@@ -13,6 +13,11 @@ Do not combine a feature, repository-wide formatting and architectural migration
 in one PR. Generated copies and intentionally pinned history are not duplicate
 editing authorities.
 
+The maintainer explicitly approved the ordered R2–R6 refactoring in one Draft
+PR60 under issue58 on 2026-10-08. That scoped workflow retains the immutable R2
+checkpoint, phase checks/reviews and one final merge/main gate; see its
+[current handoff](../review/issue-58/2026-10-08-handoff.md#current-continuation--same-pr-2026-10-08).
+
 ## CS01 — Source ownership and dependency direction
 
 | Concern | Canonical editing owner | Contract |
@@ -62,6 +67,14 @@ attributes, `<style>` elements, or static CSS invented in JavaScript strings.
 Build/export code may embed bytes read from the canonical CSS for offline HTML;
 it must not maintain another copy of those rules. Theme variants and reduced
 transparency overrides live alongside their canonical component tokens.
+
+For Home's CSS-unavailable fallback, the build may also embed the exact canonical
+responsive media stylesheet in the generated head. Keep that single CSS owner
+shared with ordinary hosted/offline composition, explicit source dependencies,
+safe style-container bytes and exact one-block verification. This narrow generated
+fallback preserves intrinsic media dimensions when external CSS fails; it does
+not permit authored template/content style blocks, static CSS strings in code or
+additional inline-style allowances. Other routes retain their original budgets.
 
 Use shared component classes and explicit variants. Preserve specificity and
 paint geometry when replacing old selector lists; similarity alone does not
@@ -152,7 +165,7 @@ Both run unconditionally in the existing navigation CI workflow.
 | --- | --- |
 | CS01 active source location | Catalogued active JS under `review/`; literal local imports from authored `site/`, `tools/site/`, `tools/staging/` and those active history sources; reject imports of generated `docs/`, prior immutable `site/retained/` output and runtime imports of build tools |
 | CS03 inline style debt | Every authored HTML file under `site/content/` and `site/templates/`; HTML parser handles inline attributes and style elements |
-| CS03 shared token ownership | Reserved palette/reading token declarations across authored `site/**/*.css`; repeated theme/media declarations in the same owner are valid |
+| CS03 shared token ownership | Reserved palette/reading token declarations, including `--muted`, across authored `site/**/*.css`; repeated theme/media/variant declarations in the same owner are valid |
 | Agent/RI/CI routing | Actual code-path and bilingual RI lookups, mandatory guide links, mapped unconditional workflow invocations and stale-source rejection |
 
 Only exact `site/retained/runtime/<64hex>/styles.css` copies whose bytes match the

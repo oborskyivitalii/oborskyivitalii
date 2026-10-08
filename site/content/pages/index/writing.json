@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "template": "pages/index/writing.html",
+  "text": {
+    "T001": "03 / Selected writing",
+    "T002": "Five ways into the work.",
+    "T003": "Thinking Systems for architecture; Externalization for generation and verification; Moat for\n      strategic differentiation. All five selected editions are English.",
+    "T004": "Browse the complete EN / UA archive ↗"
+  },
+  "attributes": {},
+  "urls": {
+    "U001": "writing.html"
+  }
+}

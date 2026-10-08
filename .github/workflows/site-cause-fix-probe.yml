@@ -23,12 +23,12 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - {port: wpe, label: browser-gate-trace, replica: 1}
-          - {port: wpe, label: browser-gate-trace, replica: 2}
-          - {port: gtk, label: browser-gate-trace, replica: 1}
-          - {port: gtk, label: browser-gate-trace, replica: 2}
-          - {port: wpe, label: cold-2d-air, replica: 1}
-          - {port: wpe, label: cold-2d-air, replica: 2}
+          - { port: wpe, label: browser-gate-trace, replica: 1 }
+          - { port: wpe, label: browser-gate-trace, replica: 2 }
+          - { port: gtk, label: browser-gate-trace, replica: 1 }
+          - { port: gtk, label: browser-gate-trace, replica: 2 }
+          - { port: wpe, label: cold-2d-air, replica: 1 }
+          - { port: wpe, label: cold-2d-air, replica: 2 }
     runs-on: ubuntu-24.04
     timeout-minutes: 12
     env:
@@ -44,6 +44,8 @@ jobs:
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
           node-version: '24.19.0'
+      - name: Install locked Node tools before source checks
+        run: npm ci --prefix tools/quality/toolchain --ignore-scripts
       - name: Build exact normal Color and traced control
         run: |
           node - <<'JS'
@@ -54,7 +56,6 @@ jobs:
           JS
       - name: Install pinned WebKit without prior launch
         run: |
-          npm ci --prefix tools/quality/toolchain --ignore-scripts
           tools/quality/toolchain/node_modules/.bin/playwright install --with-deps webkit
       - name: Observe first-process WPE or GTK with the complete normal rendition
         run: >-
@@ -87,6 +88,8 @@ jobs:
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
           node-version: '24.19.0'
+      - name: Install locked Node tools before source checks
+        run: npm ci --prefix tools/quality/toolchain --ignore-scripts
       - name: Build normal Color and install native sampling tools
         run: |
           node - <<'JS'
@@ -95,7 +98,6 @@ jobs:
           require('./tools/staging/color.cjs').build(root+'/color');
           require('./tools/quality/writing-variants.cjs').derive(root+'/color',root+'/control','browser-gate-trace');
           JS
-          npm ci --prefix tools/quality/toolchain --ignore-scripts
           tools/quality/toolchain/node_modules/.bin/playwright install --with-deps webkit
           sudo apt-get update
           sudo apt-get install -y linux-tools-common linux-tools-generic
@@ -132,13 +134,14 @@ jobs:
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
           node-version: '24.19.0'
+      - name: Install locked Node tools before source checks
+        run: npm ci --prefix tools/quality/toolchain --ignore-scripts
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
         with:
           python-version: '3.12.14'
       - name: Build source identity and install locked scanners
         run: |
           node tools/quality/artifact.cjs build quality-artifact
-          npm ci --prefix tools/quality/toolchain --ignore-scripts
           python -m venv tools/quality/toolchain/venv
           tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check -r tools/quality/toolchain/requirements.txt
       - name: Lint complete current source
@@ -175,6 +178,8 @@ jobs:
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
           node-version: '24.19.0'
+      - name: Install locked Node tools before source checks
+        run: npm ci --prefix tools/quality/toolchain --ignore-scripts
       - name: Verify normal parent and one declared private intervention
         env:
           COLD_LABEL: ${{ matrix.label }}
@@ -188,7 +193,6 @@ jobs:
           JS
       - name: Install pinned WebKit without launching a browser
         run: |
-          npm ci --prefix tools/quality/toolchain --ignore-scripts
           tools/quality/toolchain/node_modules/.bin/playwright install --with-deps webkit
       - name: Retain one first-process cold observation and its original result
         run: >-
@@ -216,6 +220,8 @@ jobs:
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
           node-version: '24.19.0'
+      - name: Install locked Node tools before source checks
+        run: npm ci --prefix tools/quality/toolchain --ignore-scripts
       - name: Build two clean normal Color editions
         run: |
           node --test tests/cause-fix-probe.test.cjs tests/renderer.test.cjs
@@ -231,7 +237,6 @@ jobs:
           JS
       - name: Install pinned Chromium tools
         run: |
-          npm ci --prefix tools/quality/toolchain --ignore-scripts
           tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium
       - name: Retain all balanced normal and profiled Research trials
         run: >-

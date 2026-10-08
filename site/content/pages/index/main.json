@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "template": "pages/index/main.html",
+  "text": {
+    "T001": "Work with me",
+    "T002": {
+      "label": "route.research"
+    },
+    "T003": {
+      "label": "route.writing"
+    }
+  },
+  "attributes": {
+    "A001": "On this page"
+  },
+  "urls": {
+    "U001": "#help",
+    "U002": "#research",
+    "U003": "#writing"
+  }
+}

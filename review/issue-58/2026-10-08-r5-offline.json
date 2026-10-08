@@ -1,0 +1,219 @@
+{
+  "kind": "independent-actual-offline-color-camera-serialization",
+  "scope": "VM execution of actual exported native API and Ribbon descriptor; no browser DOM/lifecycle/paint acceptance claim",
+  "pass": true,
+  "checkpoint": {
+    "head": "8c6cf877fee92b4d2493b4c1a07df7080b987c29",
+    "tree": "2725ae4743032b2aeaafd7f2d7f7c91a08265906",
+    "dirty": true
+  },
+  "input": {
+    "path": "/tmp/issue58-r3-r6-offline/Vitalii-Oborskyi-Color-Prototype.html",
+    "sha256": "3d636e79969ceec57a8edacbe9dd2691932d4a0ee0cf7ff6cf4304eb55557a11",
+    "bytes": 742748,
+    "variant": {
+      "id": "color",
+      "contract": 1,
+      "fingerprint": "88ed5f47936b6db3065e88d11cf9f275ead1d1402ccb5f1a71ea17677b47076a"
+    }
+  },
+  "observerSHA256": "5ad5d10f3f8f495068767703484b2ac415188778ecdde599559b8bf9c1634e50",
+  "sourceSHA256": {
+    "docs/space.js": "1e7319531830cc3dd992d3817cece7daf0f66e38fd6a7622e32f518446c36db0",
+    "site/engine/math.cjs": "9781cfa7e911375201b5d730a5a8d2b1774597ee6daeaa90072b1b8099017612",
+    "site/engine/projection.cjs": "75149cf490d93d342e0ba67ab16ca1a8a300550264fa2ac72ab53ca675f757b0",
+    "site/engine/lifecycle.cjs": "6de6d59fa7a24779b03508838bd0ea61cc6b1d2c1db9d6db437736b73b95a2d2",
+    "site/effects/ribbons.cjs": "f4af3a27bdb30acc1a23c2898dca066c58b7575f87ac1fb96046838fc4fbd3c7",
+    "tools/site/effects.cjs": "defcb1e2a880569a692d40a05d922b295528de205f01f77ed941eaec1996bdf8",
+    "tools/site/export.cjs": "44642df917d15a3f57abecb0faefb4d533d68c110ad32f48fdef3f660af2d2fc",
+    "tools/site/variants.cjs": "841ea2fd5b4631b22aa973d9429f02a2647d43af1eeca85051ee57c0372e682f",
+    "review/site-v1-20261004-v11-interactive.html": "635cdb9ffe0fa7feb36d049cdac90ce210d5a78294f7fc4ad4ae54cd14e901ba"
+  },
+  "observationStable": true,
+  "actualEmbeddedNativeEqualsCurrentDocs": true,
+  "actualEmbeddedRibbonIncludesAuthoredDescriptor": true,
+  "missingCameraViewNegative": true,
+  "rows": [
+    {
+      "route": "index",
+      "width": 1440,
+      "theme": "light",
+      "shapes": 126,
+      "paints": 126,
+      "gradients": 126,
+      "coordinates": 1722
+    },
+    {
+      "route": "index",
+      "width": 1440,
+      "theme": "dark",
+      "shapes": 126,
+      "paints": 126,
+      "gradients": 126,
+      "coordinates": 1722
+    },
+    {
+      "route": "index",
+      "width": 390,
+      "theme": "light",
+      "shapes": 55,
+      "paints": 55,
+      "gradients": 55,
+      "coordinates": 732
+    },
+    {
+      "route": "index",
+      "width": 390,
+      "theme": "dark",
+      "shapes": 55,
+      "paints": 55,
+      "gradients": 55,
+      "coordinates": 732
+    },
+    {
+      "route": "research",
+      "width": 1440,
+      "theme": "light",
+      "shapes": 126,
+      "paints": 126,
+      "gradients": 126,
+      "coordinates": 1722
+    },
+    {
+      "route": "research",
+      "width": 1440,
+      "theme": "dark",
+      "shapes": 126,
+      "paints": 126,
+      "gradients": 126,
+      "coordinates": 1722
+    },
+    {
+      "route": "research",
+      "width": 390,
+      "theme": "light",
+      "shapes": 54,
+      "paints": 54,
+      "gradients": 54,
+      "coordinates": 720
+    },
+    {
+      "route": "research",
+      "width": 390,
+      "theme": "dark",
+      "shapes": 54,
+      "paints": 54,
+      "gradients": 54,
+      "coordinates": 720
+    },
+    {
+      "route": "writing",
+      "width": 1440,
+      "theme": "light",
+      "shapes": 126,
+      "paints": 126,
+      "gradients": 126,
+      "coordinates": 1710
+    },
+    {
+      "route": "writing",
+      "width": 1440,
+      "theme": "dark",
+      "shapes": 126,
+      "paints": 126,
+      "gradients": 126,
+      "coordinates": 1710
+    },
+    {
+      "route": "writing",
+      "width": 390,
+      "theme": "light",
+      "shapes": 55,
+      "paints": 55,
+      "gradients": 55,
+      "coordinates": 732
+    },
+    {
+      "route": "writing",
+      "width": 390,
+      "theme": "dark",
+      "shapes": 55,
+      "paints": 55,
+      "gradients": 55,
+      "coordinates": 732
+    },
+    {
+      "route": "talks",
+      "width": 1440,
+      "theme": "light",
+      "shapes": 128,
+      "paints": 128,
+      "gradients": 128,
+      "coordinates": 1746
+    },
+    {
+      "route": "talks",
+      "width": 1440,
+      "theme": "dark",
+      "shapes": 128,
+      "paints": 128,
+      "gradients": 128,
+      "coordinates": 1746
+    },
+    {
+      "route": "talks",
+      "width": 390,
+      "theme": "light",
+      "shapes": 57,
+      "paints": 57,
+      "gradients": 57,
+      "coordinates": 756
+    },
+    {
+      "route": "talks",
+      "width": 390,
+      "theme": "dark",
+      "shapes": 57,
+      "paints": 57,
+      "gradients": 57,
+      "coordinates": 756
+    },
+    {
+      "route": "credits",
+      "width": 1440,
+      "theme": "light",
+      "shapes": 126,
+      "paints": 126,
+      "gradients": 126,
+      "coordinates": 1722
+    },
+    {
+      "route": "credits",
+      "width": 1440,
+      "theme": "dark",
+      "shapes": 126,
+      "paints": 126,
+      "gradients": 126,
+      "coordinates": 1722
+    },
+    {
+      "route": "credits",
+      "width": 390,
+      "theme": "light",
+      "shapes": 52,
+      "paints": 52,
+      "gradients": 52,
+      "coordinates": 684
+    },
+    {
+      "route": "credits",
+      "width": 390,
+      "theme": "dark",
+      "shapes": 52,
+      "paints": 52,
+      "gradients": 52,
+      "coordinates": 684
+    }
+  ],
+  "fullGate": false
+}

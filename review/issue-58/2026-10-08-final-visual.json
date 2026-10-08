@@ -1,0 +1,420 @@
+{
+  "schema": 1,
+  "kind": "issue58-current-main-visual-comparison",
+  "pass": true,
+  "scope": "Eight paired R3\u2013R6 viewport captures against immutable approved main a8149a0: Home/Writing, Day/Night,desktop/mobile,reduced motion and Motion off. Geometry equality compares tag/id/visibility/rect/font/color/white-space while retaining source class names separately, because R4 moves portrait inline fallback styling to the canonical portrait-media class. Not a full browser matrix or production-host proof.",
+  "browser": "153.0.8010.12",
+  "playwright": "1.63.0",
+  "baseline": {
+    "commit": "a8149a0a65579d6977ccef9bb0e6e4367fd9e9dd",
+    "tree": "776610667df0c606d29891f582a7fc329faaa570",
+    "dirty": "",
+    "sourcesSha256": "f8ba651b485d664daad8eadc93a8cba35e3fc518396b5697eb357df904673a47"
+  },
+  "candidate": {
+    "commit": "13dd98f380437402dd083bb20963401d71161b8b",
+    "tree": "e6e21e25ee42022ed066a34140f0171de9187900",
+    "dirty": "",
+    "sourcesSha256": "93150369e0dc91456143c0d9aa522acf37ef213202acb739c96ca58c0edd2d7c"
+  },
+  "artifactDigests": {
+    "baseline": "cd06ab7fb12235af6170ae825a9616b1f04bf23082673930cefdc33417f8f2de",
+    "candidate": "fefeeb0cb34ec4c32cf0b702c97009d5284e164503b020e77d03ddd90e023d9b"
+  },
+  "observationStable": {
+    "baseline": true,
+    "candidate": true
+  },
+  "rows": [
+    {
+      "case": "index-light-1440x900",
+      "equal": {
+        "text": true,
+        "links": true,
+        "geometry": true,
+        "controlState": true,
+        "sourceClassChangeContract": true
+      },
+      "sourceClassChanges": [
+        {
+          "index": 38,
+          "tag": "svg",
+          "id": "",
+          "before": "portrait-facets",
+          "after": "portrait-facets portrait-media"
+        },
+        {
+          "index": 45,
+          "tag": "img",
+          "id": "",
+          "before": "",
+          "after": "portrait-media"
+        }
+      ],
+      "pixelDiff": {
+        "case": "index-light-1440x900",
+        "width": 1440,
+        "height": 900,
+        "changedPixels": 0,
+        "totalPixels": 1296000,
+        "changedFraction": 0.0,
+        "differenceBox": null,
+        "meanAbsoluteRGB": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "maxAbsoluteRGB": [
+          0,
+          0,
+          0
+        ],
+        "pairImage": "/tmp/issue58-current-main-visual/index-light-1440x900-pair.png",
+        "pairImageSha256": "e3e5963c994da473d5432c6cd04ee29ffe1389ea838438b7640b21e2d3d519b3"
+      },
+      "browserErrors": {
+        "baseline": [],
+        "candidate": []
+      },
+      "servedBytesMatchArtifact": true,
+      "screenshotSha256": {
+        "baseline": "75d06e4733b888310364eb3f982d02042c48023e8b6263c4eb624bde9eb403be",
+        "candidate": "75d06e4733b888310364eb3f982d02042c48023e8b6263c4eb624bde9eb403be"
+      }
+    },
+    {
+      "case": "index-light-390x844",
+      "equal": {
+        "text": true,
+        "links": true,
+        "geometry": true,
+        "controlState": true,
+        "sourceClassChangeContract": true
+      },
+      "sourceClassChanges": [
+        {
+          "index": 38,
+          "tag": "svg",
+          "id": "",
+          "before": "portrait-facets",
+          "after": "portrait-facets portrait-media"
+        },
+        {
+          "index": 45,
+          "tag": "img",
+          "id": "",
+          "before": "",
+          "after": "portrait-media"
+        }
+      ],
+      "pixelDiff": {
+        "case": "index-light-390x844",
+        "width": 390,
+        "height": 844,
+        "changedPixels": 0,
+        "totalPixels": 329160,
+        "changedFraction": 0.0,
+        "differenceBox": null,
+        "meanAbsoluteRGB": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "maxAbsoluteRGB": [
+          0,
+          0,
+          0
+        ],
+        "pairImage": "/tmp/issue58-current-main-visual/index-light-390x844-pair.png",
+        "pairImageSha256": "5a05feda28ea1068a718495c5ae7996a3ce157193981270c0d5daeee6db37bf6"
+      },
+      "browserErrors": {
+        "baseline": [],
+        "candidate": []
+      },
+      "servedBytesMatchArtifact": true,
+      "screenshotSha256": {
+        "baseline": "cb2d8e2d35efd8b616bc2d8bbc3ccd83f1ecb4082b36b7aed895d1e42e89ddf8",
+        "candidate": "cb2d8e2d35efd8b616bc2d8bbc3ccd83f1ecb4082b36b7aed895d1e42e89ddf8"
+      }
+    },
+    {
+      "case": "index-dark-1440x900",
+      "equal": {
+        "text": true,
+        "links": true,
+        "geometry": true,
+        "controlState": true,
+        "sourceClassChangeContract": true
+      },
+      "sourceClassChanges": [
+        {
+          "index": 38,
+          "tag": "svg",
+          "id": "",
+          "before": "portrait-facets",
+          "after": "portrait-facets portrait-media"
+        },
+        {
+          "index": 45,
+          "tag": "img",
+          "id": "",
+          "before": "",
+          "after": "portrait-media"
+        }
+      ],
+      "pixelDiff": {
+        "case": "index-dark-1440x900",
+        "width": 1440,
+        "height": 900,
+        "changedPixels": 0,
+        "totalPixels": 1296000,
+        "changedFraction": 0.0,
+        "differenceBox": null,
+        "meanAbsoluteRGB": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "maxAbsoluteRGB": [
+          0,
+          0,
+          0
+        ],
+        "pairImage": "/tmp/issue58-current-main-visual/index-dark-1440x900-pair.png",
+        "pairImageSha256": "ecdbbefc0a8263494001b006a003221053f67dfc2701459104dd2af371ff707f"
+      },
+      "browserErrors": {
+        "baseline": [],
+        "candidate": []
+      },
+      "servedBytesMatchArtifact": true,
+      "screenshotSha256": {
+        "baseline": "e8f0edd80d10b74cf1cfcbf8ea501f8a2394235712937a88e20d9f82f2e9128b",
+        "candidate": "e8f0edd80d10b74cf1cfcbf8ea501f8a2394235712937a88e20d9f82f2e9128b"
+      }
+    },
+    {
+      "case": "index-dark-390x844",
+      "equal": {
+        "text": true,
+        "links": true,
+        "geometry": true,
+        "controlState": true,
+        "sourceClassChangeContract": true
+      },
+      "sourceClassChanges": [
+        {
+          "index": 38,
+          "tag": "svg",
+          "id": "",
+          "before": "portrait-facets",
+          "after": "portrait-facets portrait-media"
+        },
+        {
+          "index": 45,
+          "tag": "img",
+          "id": "",
+          "before": "",
+          "after": "portrait-media"
+        }
+      ],
+      "pixelDiff": {
+        "case": "index-dark-390x844",
+        "width": 390,
+        "height": 844,
+        "changedPixels": 0,
+        "totalPixels": 329160,
+        "changedFraction": 0.0,
+        "differenceBox": null,
+        "meanAbsoluteRGB": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "maxAbsoluteRGB": [
+          0,
+          0,
+          0
+        ],
+        "pairImage": "/tmp/issue58-current-main-visual/index-dark-390x844-pair.png",
+        "pairImageSha256": "8082553eacacada9b33542ae1abd3deecd85363c4478e011a8859050f9fba952"
+      },
+      "browserErrors": {
+        "baseline": [],
+        "candidate": []
+      },
+      "servedBytesMatchArtifact": true,
+      "screenshotSha256": {
+        "baseline": "e86c20acf50b737adfeddea9c536c207ec8fb9e7233cb952259d317051a30f6f",
+        "candidate": "e86c20acf50b737adfeddea9c536c207ec8fb9e7233cb952259d317051a30f6f"
+      }
+    },
+    {
+      "case": "writing-light-1440x900",
+      "equal": {
+        "text": true,
+        "links": true,
+        "geometry": true,
+        "controlState": true,
+        "sourceClassChangeContract": true
+      },
+      "sourceClassChanges": [],
+      "pixelDiff": {
+        "case": "writing-light-1440x900",
+        "width": 1440,
+        "height": 900,
+        "changedPixels": 0,
+        "totalPixels": 1296000,
+        "changedFraction": 0.0,
+        "differenceBox": null,
+        "meanAbsoluteRGB": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "maxAbsoluteRGB": [
+          0,
+          0,
+          0
+        ],
+        "pairImage": "/tmp/issue58-current-main-visual/writing-light-1440x900-pair.png",
+        "pairImageSha256": "62b7da37e9f249ddbf19530314ee4d9c2d0c2c128bf2a2e73299efea9200ae35"
+      },
+      "browserErrors": {
+        "baseline": [],
+        "candidate": []
+      },
+      "servedBytesMatchArtifact": true,
+      "screenshotSha256": {
+        "baseline": "674c0efec5d3458a4146e13e6a83bd4f82fdd529b5fc14f9c6979b877f86e1c1",
+        "candidate": "674c0efec5d3458a4146e13e6a83bd4f82fdd529b5fc14f9c6979b877f86e1c1"
+      }
+    },
+    {
+      "case": "writing-light-390x844",
+      "equal": {
+        "text": true,
+        "links": true,
+        "geometry": true,
+        "controlState": true,
+        "sourceClassChangeContract": true
+      },
+      "sourceClassChanges": [],
+      "pixelDiff": {
+        "case": "writing-light-390x844",
+        "width": 390,
+        "height": 844,
+        "changedPixels": 0,
+        "totalPixels": 329160,
+        "changedFraction": 0.0,
+        "differenceBox": null,
+        "meanAbsoluteRGB": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "maxAbsoluteRGB": [
+          0,
+          0,
+          0
+        ],
+        "pairImage": "/tmp/issue58-current-main-visual/writing-light-390x844-pair.png",
+        "pairImageSha256": "5360ff34b030757204594267118b0fdfb5e9e405823510ef825791fd1b04bc9b"
+      },
+      "browserErrors": {
+        "baseline": [],
+        "candidate": []
+      },
+      "servedBytesMatchArtifact": true,
+      "screenshotSha256": {
+        "baseline": "5ca303636ba2241cbe55118aed8409b0f0986b2cb13be188c87764ed0f00ba19",
+        "candidate": "5ca303636ba2241cbe55118aed8409b0f0986b2cb13be188c87764ed0f00ba19"
+      }
+    },
+    {
+      "case": "writing-dark-1440x900",
+      "equal": {
+        "text": true,
+        "links": true,
+        "geometry": true,
+        "controlState": true,
+        "sourceClassChangeContract": true
+      },
+      "sourceClassChanges": [],
+      "pixelDiff": {
+        "case": "writing-dark-1440x900",
+        "width": 1440,
+        "height": 900,
+        "changedPixels": 0,
+        "totalPixels": 1296000,
+        "changedFraction": 0.0,
+        "differenceBox": null,
+        "meanAbsoluteRGB": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "maxAbsoluteRGB": [
+          0,
+          0,
+          0
+        ],
+        "pairImage": "/tmp/issue58-current-main-visual/writing-dark-1440x900-pair.png",
+        "pairImageSha256": "c39a7bbfc6640afc07eba550222d9fce43c0d87d7e9799db0cc330e52dcee289"
+      },
+      "browserErrors": {
+        "baseline": [],
+        "candidate": []
+      },
+      "servedBytesMatchArtifact": true,
+      "screenshotSha256": {
+        "baseline": "c9fcc686cf57a1b32f26875bdbc3d8cc0fab121bfb9b0c3e498d0c6e70f396e3",
+        "candidate": "c9fcc686cf57a1b32f26875bdbc3d8cc0fab121bfb9b0c3e498d0c6e70f396e3"
+      }
+    },
+    {
+      "case": "writing-dark-390x844",
+      "equal": {
+        "text": true,
+        "links": true,
+        "geometry": true,
+        "controlState": true,
+        "sourceClassChangeContract": true
+      },
+      "sourceClassChanges": [],
+      "pixelDiff": {
+        "case": "writing-dark-390x844",
+        "width": 390,
+        "height": 844,
+        "changedPixels": 0,
+        "totalPixels": 329160,
+        "changedFraction": 0.0,
+        "differenceBox": null,
+        "meanAbsoluteRGB": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "maxAbsoluteRGB": [
+          0,
+          0,
+          0
+        ],
+        "pairImage": "/tmp/issue58-current-main-visual/writing-dark-390x844-pair.png",
+        "pairImageSha256": "b99f5183968a9e081b6a9bdc64b3bedfd2622b7ff6e7f60025ec8d5ba950e012"
+      },
+      "browserErrors": {
+        "baseline": [],
+        "candidate": []
+      },
+      "servedBytesMatchArtifact": true,
+      "screenshotSha256": {
+        "baseline": "c42764518f8c618d614e70a1fdcff130ba43c86397873fd7962ef8ec650465cc",
+        "candidate": "c42764518f8c618d614e70a1fdcff130ba43c86397873fd7962ef8ec650465cc"
+      }
+    }
+  ],
+  "rawCaptureSha256": "06337b21f78983111c38c239c786a154354be3fa09647e029b2fa111748e734c",
+  "rawCaptureGzipSha256": "72a372d778c1a869424b4ed87100c82210b7838a2c3aef58d65d8b00316f06d5"
+}

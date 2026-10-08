@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "template": "pages/research/topics.html",
+  "text": {
+    "T001": "Research themes",
+    "T002": "AI governance, architecture",
+    "T003": "& operating models.",
+    "T004": "The technical system and the human operating model have to work together. These are the\n      questions behind my writing.",
+    "T005": "Thinking Systems & Model Judgment",
+    "T006": "In UA, Thinking Systems are identified by material runtime responsibilities that depend\n        partly on probabilistic Model Judgment. The category is about an engineering condition, not\n        consciousness or a guarantee of reliability.",
+    "T007": "Judgment Nodes locate where model judgment influences behavior; Uncertainty Boundaries\n        connect deterministic responsibilities with that judgment.",
+    "T008": "Read the current UA vocabulary ",
+    "T009": "↗",
+    "T010": "AI Control Plane & runtime control",
+    "T011": "My AI governance work applies control-theory ideas to boundaries, evidence, decision\n        authority and corrective action. UA's AI Control Plane is a distributed capability model\n        across software, evaluation, release decisions and human workflows — not necessarily a\n        central platform.",
+    "T012": "Explore the control capabilities ",
+    "T013": "↗",
+    "T014": "Consequential Runtime Responsibility",
+    "T015": "Which model-mediated outputs, decisions or actions can materially affect outcomes,\n        constraints, authority or downstream people and systems? That question helps connect AI\n        architecture with evaluation, release evidence and accountability.",
+    "T016": "Read the responsibility boundary ",
+    "T017": "↗",
+    "T018": "Socio-technical AI operating models",
+    "T019": "I study the socio-technical stack around AI: how team roles, review practices, decision\n        rights, evaluation and incident ownership fit together. AI governance is not only a model\n        setting; it also concerns how people operate and change the system.",
+    "T020": "Read about operating models & delivery ",
+    "T021": "↗",
+    "T022": "Public discussion",
+    "T023": "These Reddit exchanges include practical suggestions, alternative explanations and technical\n      criticism.",
+    "T024": "Counts from author-supplied Reddit snapshots reviewed 7 Oct 2026; capture dates were not\n      recorded. Views are approximate, not unique readers; comments include replies by the author\n      and other participants."
+  },
+  "attributes": {},
+  "urls": {
+    "U001": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/main/00-doctrine/glossary.md#thinking-system",
+    "U002": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/main/02-ai-control-plane/README.md",
+    "U003": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/main/00-doctrine/glossary.md#consequential-runtime-responsibility",
+    "U004": "writing.html#topic-leadership"
+  }
+}

@@ -9,6 +9,32 @@ only; production runtime has no package graph.
 
 ## Small PR source check and targeted acceptance
 
+R2 under issue58 adds exact Prettier 3.6.2 and the existing Ruff 0.16.10 formatter.
+The shared [formatter scope](format-scope.json) classifies every tracked maintained
+JS/CSS/HTML/Python/JSON/YAML input and declares generated/history/retained/lock/ledger
+exclusions. Missing, untracked, ignored, misclassified and symlinked sources fail;
+the canonical effect manifest is included. ESLint/SonarJS, Stylelint and Ruff use
+this inventory and require exact parsed report coverage.
+
+```sh
+node tools/quality/format.cjs --inventory
+node tools/quality/format.cjs --write
+node tools/quality/format.cjs --check
+```
+
+Explicit settings live in [prettier.config.json](prettier.config.json) and
+[ruff-format.toml](ruff-format.toml). HTML whitespace is strict; embedded literals
+are preserved. Ruff formatting does not alter the separately selected lint rules.
+The existing PR source job installs the locked Node tools and minimal pinned
+Python formatter/YAML support, then checks formatting and full lint coverage.
+Permanent tests reject scope/pin/config/coverage drift and real formatting changes.
+The issue58 policy verifies the immutable R2 checkpoint against its original
+baseline through [phase-checkpoint.cjs](phase-checkpoint.cjs), using the frozen
+formatter, parity helper and reviewed controls from that checkpoint. Current
+R3–R6 changes run permanent content, CSS, architecture and resource contracts;
+they do not broaden R2's mechanical exceptions. One final merge follows the
+user-approved continuation in the same Draft PR60.
+
 ```sh
 node tools/quality/local.cjs
 node tools/quality/source-tests.cjs --profile pr --base "$PR_BASE_SHA" --head "$PR_HEAD_SHA"
@@ -153,8 +179,8 @@ Retained diagnostic JavaScript suites run explicitly with
 `node tools/quality/source-tests.cjs --profile diagnostic`, or when their owning
 helper changes and PR selection targets them. Eight causal/probe workflows
 remain manual; removing their routine source-suite replay is distinct from
-changing workflow frequency. Current authored Color code under `review/` remains
-an active source and keeps its permanent regression coverage.
+changing workflow frequency. Current authored Color code under `site/effects/` keeps its permanent regression
+coverage; retained `review/` diagnostics preserve their declared historical role.
 
 At issue completion review each test's PR, staging, production or diagnostic
 assignment. Record duplicate removals, obsolete disabled cases and retained

@@ -25,16 +25,17 @@ and strict aggregate under #13; generation freshness alone is insufficient.
 
 | Source | Responsibility | Dependent output |
 | --- | --- | --- |
-| `templates/head.html`, `header.html`, `footer.html`, `shell.html` | Shared structure and controls | All five HTML pages |
+| `templates/head.html`, `shell.html`, `templates/shared/*.html` | Shared structure and controls | All five HTML pages |
 | `content/pages/<id>/metadata.json` | Title, description, structured metadata, ordered block names | That route |
-| `content/pages/<id>/main.html`, named blocks | Page layout and curated prose | That route |
-| `content/catalog.json` | Primary editions, bounded platform alternates and discussion references; five featured selections | Writing; selected featured records also Home |
+| `content/pages/<id>/*.json`, `content/shared/*.json` | Bounded text, attributes, URLs and explicit template/block references | That route or shared header/footer |
+| `templates/pages/<id>/*.html`, `templates/components/*.html` | Page-specific semantic layout and reusable publication/discussion markup | Declared route compositions |
+| `content/catalog.json` | Primary editions, bounded alternates/discussions, presentation records, topics and labels; five featured selections | Writing; selected featured records also Home and shared labels |
 | `routes.json` | Contract 1: ordered five route IDs, native URLs, scenes and stop IDs | Runtime, pages and fallback |
 | `engine/math.cjs`, `projection.cjs`, `lifecycle.cjs` | Math, projection and single Canvas/RAF lifecycle | Assembled `space.js` |
 | `engine/renderer.cjs` | Ordered Canvas commands, adjacent-line batching and visible outlines | Assembled `space.js` |
-| `engine/theme.js`, `archive.js`, `navigation.js`, `styles.css`, `reading-surfaces.css` | Theme, filtering, routing and presentation | Shared browser files and pages |
+| `engine/theme.js`, `archive.js`, `navigation.js`, `styles.css`, `critical-media.css`, `reading-surfaces.css` | Theme, filtering, routing and canonical presentation, including Home media fallback | Shared browser files and pages |
 | `scenes/world.cjs`, `paths.json` | Authored motifs, rest geometry and finite camera paths | Runtime and projected SVG fallbacks |
-| `effects/flight.cjs`, `reading-surfaces.cjs` | Current Color travel descriptor and retained reading/control CSS | Shared hosted/offline Color runtime |
+| `effects/flight.cjs`, `effects/*.css` | Current Color travel descriptor and canonical static reading/control CSS | Shared hosted/offline Color runtime |
 | `effects/ribbons.cjs` | Optional historical comparison factory; not serialized into active Color | Explicit legacy diagnostics only; full scanner coverage remains |
 | `../tools/site/effects.cjs`, `export.cjs` | Canonical effect source manifest, explicit delivery adapters and standalone export | Supported Color selection, scanner coverage and offline HTML |
 | `assets/` | Existing portrait, cutout, favicon and `.nojekyll` source | Exact image/icon bytes |
@@ -54,6 +55,28 @@ HTML context; JSON-LD cannot close a script. Only finite declared tokens substit
 blocks/publication fields. Templates and content never execute expressions. Authored
 CommonJS factories are trusted code and require code review. They assemble into
 one classic browser script, with no runtime dependencies or import requirements.
+
+Page JSON has exactly `schema`, `template`, `text`, `attributes` and `urls`.
+Templates consume context-typed finite slots, blocks and catalog references;
+values never execute expressions or supply raw markup. The renderer escapes each
+output context and rejects unsafe URLs, duplicate/missing/unused references and
+context mismatches. Repeated cards use the existing catalog and shared partials.
+Catalog topics/labels derive archive controls and runtime labels; no content
+parser or parallel publishing pipeline is delivered to the browser.
+
+`tools/site/html.cjs`, `validate-catalog.cjs`, `render-content.cjs`,
+`render-records.cjs` and `render-page.cjs` own pure validation/rendering.
+`content.cjs` loads/composes declared inputs; `build.cjs` owns configuration,
+hashes, cache decisions and transactional output. `fallback.cjs` owns pure SVG
+rendering; the existing fallback CLI delegates to it without a producer cycle.
+Pure camera basis/projection is shared by world/formula/Ribbon through the math
+owner; clipping thresholds and lifecycle remain with their existing callers.
+
+`engine/critical-media.css` is the sole responsive portrait media rule. The builder
+inserts its exact bytes at the declared slot in the ordinary stylesheet and in
+Home's generated head, so blocked external CSS still preserves narrow no-JS
+reading. Other routes receive no critical block. Missing, duplicate or unsafe
+owners fail before output changes; authored templates contain no CSS declaration.
 
 Native links, anchors, language badges, full text and JSON-LD remain available
 without JavaScript. Contract 1 retains `SiteScene.navigate/refresh/detachTravel/canTravel`,
@@ -110,7 +133,9 @@ from that source; diagnostics and issue #36's scoped evidence verify its bounds.
 
 ## Editing and deterministic generation
 
-Edit an individual block, for example `content/pages/index/about.html`, then run:
+Edit the text/URLs in an individual block, for example
+`content/pages/index/about.json`; its layout belongs to
+`templates/pages/index/about.html`. Then run:
 
 ```sh
 node tools/site/build.cjs

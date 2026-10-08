@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "template": "pages/index/research.html",
+  "text": {
+    "T001": "02 / Research",
+    "T002": "Two questions behind the work.",
+    "T003": "What happens when machines generate faster than people can understand and verify? And what\n      changes when the software itself relies on model judgment?",
+    "T004": "01 / How we build",
+    "T005": "How do we rebalance",
+    "T006": "AI-assisted delivery?",
+    "T007": "I see the AI-assisted SDLC as structurally unbalanced where generation accelerates faster\n        than human understanding, verification and ownership. More output can coexist with review\n        queues, rework and fragile maintenance.",
+    "T008": "The Subprime Code Crisis",
+    "T009": " investigates this gap and how teams can rebalance\n        generation, verification and ownership. It treats proposed responses as hypotheses to test\n        in context.",
+    "T010": "Explore delivery research ↗",
+    "T011": "Methods & evidence ↗",
+    "T012": "Start with\n        ",
+    "T013": "Externalization & the verification crisis",
+    "T014": ".",
+    "T015": "02 / What we build and operate",
+    "T016": "How do we engineer systems",
+    "T017": "that rely on model judgment?",
+    "T018": "Uncertainty Architecture",
+    "T019": " studies what I call Thinking Systems: software in\n        which consequential runtime responsibilities depend partly on probabilistic model judgment.\n        This is where I see the fullest expression of today's AI potential — and some of its hardest\n        engineering problems.",
+    "T020": "The controlled object is the software system. Its control perimeter also includes human\n        roles, evidence, decision authority and corrective action. It needs development lifecycles\n        and operating models suited to uncertainty. Much remains to develop and test.",
+    "T021": "Explore systems research ↗",
+    "T022": "Living specification ↗",
+    "T023": "Start with\n        ",
+    "T024": "Thinking Systems",
+    "T025": "."
+  },
+  "attributes": {},
+  "urls": {
+    "U001": "research.html#delivery",
+    "U002": "https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis",
+    "U003": "https://medium.com/agileinsider/ai-the-externalization-of-reasoning-and-the-verification-crisis-4f5046f9f0d0",
+    "U004": "research.html#systems",
+    "U005": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture",
+    "U006": "https://generativeai.pub/uncertainty-architecture-thinking-systems-when-the-controlled-object-changes-21275fe2f3db"
+  }
+}

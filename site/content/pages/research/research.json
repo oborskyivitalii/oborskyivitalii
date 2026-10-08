@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "template": "pages/research/research.html",
+  "text": {
+    "T001": "01 / Research",
+    "T002": "Two directions, connected.",
+    "T003": "01",
+    "T004": " How we deliver software",
+    "T005": "The Subprime",
+    "T006": "Code Crisis",
+    "T007": "What happens across review, testing, security and maintenance when generating code gets\n        easier? This research synthesis studies AI-assisted software delivery as a complete system:\n        verification capacity, code quality, technical debt and long-term ownership, with an\n        inspectable evidence library and adaptable operating protocols.",
+    "T008": "Verification capacity",
+    "T009": "System throughput",
+    "T010": "Long-term ownership",
+    "T011": "Explore the research ",
+    "T012": "↗",
+    "T013": "02",
+    "T014": " What we build",
+    "T015": "Uncertainty",
+    "T016": "Architecture",
+    "T017": "How do we design and operate software whose behavior depends on probabilistic Model\n        Judgment? Uncertainty Architecture develops an engineering vocabulary and draft\n        specification for Thinking Systems, AI control architecture, evaluation, decision authority,\n        runtime control and correction.",
+    "T018": "Model judgment",
+    "T019": "Control architecture",
+    "T020": "Release & runtime evidence",
+    "T021": "Explore the framework ",
+    "T022": "↗",
+    "T023": "The repositories hold the living research and its sources. My articles connect the ideas across\n    both directions."
+  },
+  "attributes": {
+    "A001": "Delivery research topics",
+    "A002": "System research topics"
+  },
+  "urls": {
+    "U001": "https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis",
+    "U002": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture"
+  }
+}

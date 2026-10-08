@@ -1,18 +1,33 @@
 'use strict';
-const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),os=require('node:os'),path=require('node:path'),vm=require('node:vm');
-const color=require('../tools/staging/color.cjs'),artifact=require('../tools/quality/artifact.cjs'),snapshot=require('../tools/site/snapshot.cjs');
-test('collecting other hosted checks cannot accept a failed source-regression stage',()=>{
-  assert.throws(()=>require('../tools/quality/validate.cjs').aggregate({sourceChecks:'failure'}),/source regressions failed/);
-  assert.throws(()=>require('../tools/quality/validate.cjs').aggregate({sourceChecks:'skipped'}),/source regressions failed/);
+const test = require('node:test'),
+  assert = require('node:assert/strict'),
+  fs = require('node:fs'),
+  os = require('node:os'),
+  path = require('node:path'),
+  vm = require('node:vm');
+const color = require('../tools/staging/color.cjs'),
+  artifact = require('../tools/quality/artifact.cjs'),
+  snapshot = require('../tools/site/snapshot.cjs');
+test('collecting other hosted checks cannot accept a failed source-regression stage', () => {
+  assert.throws(
+    () => require('../tools/quality/validate.cjs').aggregate({ sourceChecks: 'failure' }),
+    /source regressions failed/
+  );
+  assert.throws(
+    () => require('../tools/quality/validate.cjs').aggregate({ sourceChecks: 'skipped' }),
+    /source regressions failed/
+  );
 });
 test('Color keeps the native route inventory and packages all requested authored effects deterministically', () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'color-build-'));
   try {
     const first = path.join(dir, 'first');
     const second = path.join(dir, 'second');
-    const baseline = JSON.parse(fs.readFileSync(path.join(__dirname, '../docs/site-revision.json')));
+    const baseline = JSON.parse(
+      fs.readFileSync(path.join(__dirname, '../docs/site-revision.json'))
+    );
     for (const target of [first, second]) {
-      fs.cpSync(path.join(__dirname, '../docs'), target, {recursive: true});
+      fs.cpSync(path.join(__dirname, '../docs'), target, { recursive: true });
       color.decoratePublic(target);
     }
     assert.deepEqual(artifact.manifest(first), artifact.manifest(second));
@@ -33,16 +48,33 @@ test('Color keeps the native route inventory and packages all requested authored
     assert.match(space, /SiteEffects\.navigation/);
     assert.match(space, /SiteEffects\.measure/);
     assert.doesNotMatch(space, /SiteEffects\.scene\s*=/);
-    assert.doesNotMatch(space, /ribbonGeometry|ribbonSignals|createRibbonMaterials|makeProjector|paintRibbon/);
-    assert.doesNotMatch(space, /ribbonMaterial="opaque-rgb"|scene\.dataset\.ribbons\s*=/);
-    assert.ok(styles.includes(require('../site/effects/reading-surfaces.cjs').surfaceCSS()));
-    assert.match(nav, /id='end-scroll'/);
-    assert.match(nav, /id='content-flight'/);
+    assert.doesNotMatch(
+      space,
+      /ribbonGeometry|ribbonSignals|createRibbonMaterials|makeProjector|paintRibbon/
+    );
+    assert.doesNotMatch(
+      space,
+      /ribbonMaterial\s*=\s*['"]opaque-rgb['"]|scene\.dataset\.ribbons\s*=/
+    );
+    const readingStyles = fs.readFileSync(
+      path.join(__dirname, '../site/effects/reading-surfaces.css'),
+      'utf8'
+    );
+    const flightStyles = fs.readFileSync(
+      path.join(__dirname, '../site/effects/flight.css'),
+      'utf8'
+    );
+    assert.ok(
+      styles.includes(readingStyles + '\n' + flightStyles),
+      'served active Color reads canonical reading CSS before travel CSS'
+    );
+    assert.match(nav, /id\s*=\s*['"]end-scroll['"]/);
+    assert.match(nav, /id\s*=\s*['"]content-flight['"]/);
     new vm.Script(space);
     new vm.Script(nav);
     artifact.checkSize(first);
     assert.throws(() => color.decoratePublic(first), /exactly once/);
   } finally {
-    fs.rmSync(dir, {recursive: true, force: true});
+    fs.rmSync(dir, { recursive: true, force: true });
   }
 });
