@@ -354,24 +354,77 @@ test('conditional Color smoke keeps two travel cases with ordinary paint and abs
     assert.throws(() => stage.validateColor(copy, evidence.manifest));
   }
 });
-test('Color paint observer records completed scene submission rather than preparation', () => {
+test('Color scenario observes actual Canvas paints alongside completed scene submission', async () => {
   const vm = require('node:vm');
-  const { paintProbe } = require('../tools/quality/color-browser.cjs');
-  const sandbox = { window: {} };
-  vm.runInNewContext('(' + paintProbe.toString() + ')()', sandbox);
-  const sample = { kind: 'paint', ordinaryShapes: 12, customShapes: 0 };
-  sandbox.window.SiteEngineProbe({ ...sample, kind: 'model' });
-  assert.equal(sandbox.window.__colorPaint.completed, 0);
-  sandbox.window.SiteEngineProbe(sample);
-  sandbox.window.SiteEngineProbe({ ...sample, ordinaryShapes: 8 });
-  assert.deepEqual(
-    { ...sandbox.window.__colorPaint },
-    {
-      completed: 2,
-      ordinaryShapes: 8,
-      customShapes: 0,
-    }
-  );
+  const { scenario } = require('../tools/quality/color-browser.cjs');
+  for (const width of [1440, 390]) {
+    const callbacks = [],
+      clears = [];
+    const sandbox = {
+      window: { requestAnimationFrame: (fn) => callbacks.push(fn) },
+      CanvasRenderingContext2D: class CanvasRenderingContext2D {
+        clearRect(...args) {
+          clears.push({ receiver: this, args });
+        }
+      },
+    };
+    const beforeNavigation = new Error('Controlled stop before navigation');
+    let closed = false;
+    const context = {
+      addInitScript: async (fn) => vm.runInNewContext('(' + fn.toString() + ')()', sandbox),
+      newPage: async () => ({
+        on() {},
+        goto: async () => {
+          throw beforeNavigation;
+        },
+      }),
+      close: async () => {
+        closed = true;
+      },
+    };
+    await assert.rejects(
+      scenario(
+        { newContext: async () => context },
+        'https://owned.invalid',
+        {},
+        'chromium',
+        width,
+        'light'
+      ),
+      (error) => error === beforeNavigation
+    );
+    assert.equal(closed, true);
+    assert.equal(callbacks.length, 0, 'observation installs no animation work');
+    assert.deepEqual({ ...sandbox.window.__quality }, { paints: 0, callbacks: 0 });
+    assert.equal(
+      sandbox.window.requestAnimationFrame(() => {}),
+      1
+    );
+    callbacks[0](10);
+    assert.deepEqual({ ...sandbox.window.__quality }, { paints: 0, callbacks: 1 });
+    const sample = { kind: 'paint', ordinaryShapes: 12, customShapes: 0 };
+    sandbox.window.SiteEngineProbe({ ...sample, kind: 'model' });
+    assert.equal(sandbox.window.__colorPaint.completed, 0);
+    sandbox.window.SiteEngineProbe(sample);
+    assert.equal(
+      sandbox.window.__quality.paints,
+      0,
+      'scene telemetry cannot fabricate Canvas work'
+    );
+    const canvas = new sandbox.CanvasRenderingContext2D();
+    canvas.clearRect(0, 0, 100, 80);
+    canvas.clearRect(0, 0, 100, 80);
+    assert.deepEqual(clears, [
+      { receiver: canvas, args: [0, 0, 100, 80] },
+      { receiver: canvas, args: [0, 0, 100, 80] },
+    ]);
+    assert.deepEqual({ ...sandbox.window.__quality }, { paints: 2, callbacks: 1 });
+    sandbox.window.SiteEngineProbe({ ...sample, ordinaryShapes: 8 });
+    assert.deepEqual(
+      { ...sandbox.window.__colorPaint },
+      { completed: 2, ordinaryShapes: 8, customShapes: 0 }
+    );
+  }
 });
 test('the functional driver executes precisely its selected helpers and closes each engine', async () => {
   const calls = [],

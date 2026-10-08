@@ -24,6 +24,10 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
   owns the AC crosswalk, T02 fixed reading camera and T03 opt-in actual
   heading/paragraph/portrait prototype. Depth/fidelity/measured admission precedes
   broad/default fragmentation. Read live PR53 for exact current head/checks.
+- Published prototype11252e0 has desktop Night fixed-camera/native-scroll and
+  temporary-fragment/native-handoff observations in the same handoff. First CI
+  retained two tooling/probe failures; correct policy49 locked dependencies and
+  shared Color paint observation before using the new exact-head CI evidence.
 
 ## Decisions
 

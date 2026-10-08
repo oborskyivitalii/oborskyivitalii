@@ -4,7 +4,7 @@ const assert = require('node:assert/strict'),
   fs = require('node:fs');
 const { toolRequire, report, launchOptions } = require('./common.cjs'),
   { start } = require('./serve.cjs');
-const { liveScrollPrecondition } = require('./engine-browser.cjs'),
+const { paintProbe: canvasPaintProbe, liveScrollPrecondition } = require('./engine-browser.cjs'),
   { probe: scrollProbe } = require('./scroll-browser.cjs');
 const { colorPaint } = require('./validate.cjs');
 function paintProbe() {
@@ -110,6 +110,7 @@ async function scenario(browser, url, artifact, engine, width, theme) {
   });
   const errors = [];
   try {
+    await context.addInitScript(canvasPaintProbe);
     await context.addInitScript(paintProbe);
     const page = await context.newPage();
     page.on('pageerror', (error) => errors.push(error.message));

@@ -138,6 +138,21 @@ test('reading state permits native subpixel rounding while requiring fixed camer
   assert.equal(state.camera, h.baseline);
   assert.ok(state.paints > 1);
 });
+test('reading rejects missing or zero Canvas counts despite completed Color scene telemetry', async () => {
+  for (const paints of [undefined, 0]) {
+    const h = readingFixture({ defect: 'no-paint' });
+    h.context.window.__quality.paints = paints;
+    h.context.window.__colorPaint = { completed: 5, ordinaryShapes: 12, customShapes: 0 };
+    await assert.rejects(
+      scrollBrowser.readingState(h.page, h.baseline, 0),
+      paints === undefined
+        ? /reading probe observes actual Canvas paints/
+        : /ambient paints advance during native reading/
+    );
+    assert.equal(h.context.window.__colorPaint.completed, 5);
+    assert.equal(h.context.window.__quality.paints, paints);
+  }
+});
 test('reordered semantic waypoints measure actual native position while preserving canonical camera', async () => {
   for (const waypointY of [300, 700, 1200]) {
     const h = readingFixture({ waypointY }),

@@ -821,6 +821,7 @@
       "inputs": [
         "tests/staging-regression.test.cjs",
         "tools/quality/staging-regression.cjs",
+        "tools/quality/color-browser.cjs",
         "site/engine/critical-media.css",
         "tools/quality/functional.cjs",
         "tools/quality/common.cjs",

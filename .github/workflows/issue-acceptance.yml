@@ -33,8 +33,8 @@ jobs:
           node-version: 24.19.0
       - name: Select the policy from the explicit owning References line or dispatch input
         run: python3 tools/issue_acceptance.py select --event "$GITHUB_EVENT_PATH" --event-name "$GITHUB_EVENT_NAME" --github-env "$GITHUB_ENV" --report "$RUNNER_TEMP/issue-acceptance.json"
-      - name: Install pinned tools for the selected refactoring policy
-        if: env.ACCEPTANCE_POLICY == '.github/acceptance/issue-58.json'
+      - name: Install pinned tools for the selected source-parity policy
+        if: env.ACCEPTANCE_POLICY == '.github/acceptance/issue-49.json' || env.ACCEPTANCE_POLICY == '.github/acceptance/issue-58.json'
         run: |
           npm ci --prefix tools/quality/toolchain --ignore-scripts
           python3 -m venv tools/quality/toolchain/venv
