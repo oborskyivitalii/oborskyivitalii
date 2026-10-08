@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "11372971c006cd0acef92242af6d877e6047a52c39b80d6456d75b7942bba698",
+    "digest": "27ae5b0bb5a7a2289b21040a58ccf484e57b4ac15be28117b53dece1e70b2aba",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -101,12 +101,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "d1938848d262595db40e7fcdb98784caabd071103f581ae4bf63ccaf3f39f637"
+        "sha256": "582ef349cb079a7a8d82ad860bef6bcfaa028de53e210e68103a918cb00256c0"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "ae7019c8321a963e181e2de443957c89dced9563920be5fc81a51d6c3d24d803"
+        "sha256": "b90eed48ebf24219577f7135852f456d2b74316404422bbe43e902c6c03125f6"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -201,7 +201,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "b6b737a5635be47dd9398264d2f4bbc6bc586ad48128b6a9bc9d3870af79660e"
+        "sha256": "e482225695c8373633b4108e470050338e0ef5c5ecdd4ce0c88864dce60b9d0b"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -250,12 +250,12 @@
       {
         "path": "docs/credits.html",
         "identity_mode": "content",
-        "sha256": "4dab3cabf95dae7827073800dbd13dba0cbc884ae61c49ea4fb1824109e5db21"
+        "sha256": "1f2078eab697a66e0e1905e7920ee58b89b30fe0e34832f36966bfb03edb2262"
       },
       {
         "path": "docs/index.html",
         "identity_mode": "content",
-        "sha256": "077213b7baa85d59fc2a7ca9b42314e96afd7b33b7add29e12784d8bb3d5aec6"
+        "sha256": "bf1bc43384c82931b2e2e699041133e249bdca9cd765795956346545c53d817a"
       },
       {
         "path": "docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/favicon.svg",
@@ -285,62 +285,62 @@
       {
         "path": "docs/research.html",
         "identity_mode": "content",
-        "sha256": "545ca853bc37d44b7f62989884c83ef2ef25b400600c3c45de7d01b22d15bd0a"
+        "sha256": "a383aa91a07b950008daeb411b514eb02cb837bf0821978ba7ab47e68d64d24b"
       },
       {
-        "path": "docs/runtime/e3dcff227a6726f5a40df113dcf7bb3525ec7ef22017e05da169a34fbfb66894/archive.js",
+        "path": "docs/runtime/e866b8f739a6984deedd7dd5ccd60398c06bc3d5f28b7765e1f5973251f550ab/archive.js",
         "identity_mode": "content",
         "sha256": "fd1d7dbbf378073d673f9d498da8a1b93153472cf045ac632e3384b2c3ca3a0b"
       },
       {
-        "path": "docs/runtime/e3dcff227a6726f5a40df113dcf7bb3525ec7ef22017e05da169a34fbfb66894/navigation.js",
+        "path": "docs/runtime/e866b8f739a6984deedd7dd5ccd60398c06bc3d5f28b7765e1f5973251f550ab/navigation.js",
         "identity_mode": "content",
         "sha256": "d464143b30f2600cfa64a98e131f9def79ef010ff5312762dd002625cf765b98"
       },
       {
-        "path": "docs/runtime/e3dcff227a6726f5a40df113dcf7bb3525ec7ef22017e05da169a34fbfb66894/space.js",
+        "path": "docs/runtime/e866b8f739a6984deedd7dd5ccd60398c06bc3d5f28b7765e1f5973251f550ab/space.js",
         "identity_mode": "content",
         "sha256": "bdbbc653e53bb0896e83c1e6eb129b80989f367d8ef206f0233598d789d818d6"
       },
       {
-        "path": "docs/runtime/e3dcff227a6726f5a40df113dcf7bb3525ec7ef22017e05da169a34fbfb66894/styles.css",
+        "path": "docs/runtime/e866b8f739a6984deedd7dd5ccd60398c06bc3d5f28b7765e1f5973251f550ab/styles.css",
         "identity_mode": "content",
-        "sha256": "119af92ac3b0042929eecedbcf19d9c342fa1cdaf18679bea75bb336bfb0a881"
+        "sha256": "499975bea085f64d2b96efea41c0e06a9399e65f06a9a47d4f948bd1dcfd8ba8"
       },
       {
-        "path": "docs/runtime/e3dcff227a6726f5a40df113dcf7bb3525ec7ef22017e05da169a34fbfb66894/theme.js",
+        "path": "docs/runtime/e866b8f739a6984deedd7dd5ccd60398c06bc3d5f28b7765e1f5973251f550ab/theme.js",
         "identity_mode": "content",
         "sha256": "d11f679af05442e8b01024e9a5fe3ba9aff73554f11bd8f3ff692d14f830f8fb"
       },
       {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "b4f997cfad43f5643eb22eb39f684544d99891381655bd0fe3a6d72b6aec226e"
+        "sha256": "10e293247384ff6472d0a943cee19e33c9376d8b04339c28369052938d58c845"
       },
       {
-        "path": "docs/snapshots/25e29387a2fa923eb9fd01332b0e10d17b1eed3742495878d3832b6419f6125b/index.html",
+        "path": "docs/snapshots/36a28756050072adcd0d9e1ebce44356572d9ce54dbb226d58fbc494ab50d78a/credits.html",
         "identity_mode": "content",
-        "sha256": "c83aa1878fcab90adeb7d071b02a2b0186c1601c0bc3c5b2015a3db31282bba8"
+        "sha256": "a80a19fa4f491e90e2b269ffeb38fe75344e292db7178adf3eaaf5732d636a8c"
       },
       {
-        "path": "docs/snapshots/39e2b790e3b6788db22fe5bed836b2105d7607bff738eddc7178924241848024/talks.html",
+        "path": "docs/snapshots/4a15ab9a4ed10ce5692b26ede6355bf7374967e1c4b05f6a20aa4595581b3fec/writing.html",
         "identity_mode": "content",
-        "sha256": "03f0ae219b93bd8cd2137c1db3127e9a78d70d8ceb42d118b316537e991050fa"
+        "sha256": "0dfb1a955553fadfcd9f2e20b0179126fc448a6cd8fd5fe9b602b02eb4b0c6d5"
       },
       {
-        "path": "docs/snapshots/800bd872ac1d387895db4c8732b25bad78f4d8ddf8bd9eabf406f1a9439f0f39/research.html",
+        "path": "docs/snapshots/5bca4816e856f2f1038c30ebc0457709c7e3b4d2c359f70bae424c77199fe599/research.html",
         "identity_mode": "content",
-        "sha256": "ce2074393f59e31a916e09514c5e71b1ffc289945f14ddc52c44843d7da34171"
+        "sha256": "9c41a02dde9d79a4dd654d027731cb703ebe55aa8289b55fb1ad51936b74b774"
       },
       {
-        "path": "docs/snapshots/a147ac45e08f4c84d5cadcc1125b98d92d2688540123906eeb9cf4b67fc6ea4a/credits.html",
+        "path": "docs/snapshots/62c10ab461ad0898f3ef87d5b8246a6cfd0e35027d59b5cb8c843042e8560221/talks.html",
         "identity_mode": "content",
-        "sha256": "de363e436f6bb9b2b822cce58af8f106b2268afa5ef6d22fa9fdd79905fcc933"
+        "sha256": "2bd85e4af3ed1e224f8bafbfdc456b914077558af32d43f8e0493c0f220cf036"
       },
       {
-        "path": "docs/snapshots/b64484f6b610e975a0bde5f5ade34dffb27ead672209006296dd6efad4364fe4/writing.html",
+        "path": "docs/snapshots/f8fdf5ef0a85c00f7cf4e2281f780973c2fb2651f8099ccd89d20a2500d19730/index.html",
         "identity_mode": "content",
-        "sha256": "b1d0b7dc24715ccacbca989ce2d2190bbe0e1bb7fe9a06365c823660ca5eb20b"
+        "sha256": "0b12d5a624ec01c11cd5b3baa958f8a664d65e5ae0e69c0e68955f62623948c2"
       },
       {
         "path": "docs/space.js",
@@ -350,12 +350,12 @@
       {
         "path": "docs/styles.css",
         "identity_mode": "content",
-        "sha256": "119af92ac3b0042929eecedbcf19d9c342fa1cdaf18679bea75bb336bfb0a881"
+        "sha256": "499975bea085f64d2b96efea41c0e06a9399e65f06a9a47d4f948bd1dcfd8ba8"
       },
       {
         "path": "docs/talks.html",
         "identity_mode": "content",
-        "sha256": "26cf37b0e734bb01918a853d20805bed25f8e19f62b4f9175a8bb0cf8ee4d875"
+        "sha256": "ce9c06201302a06afe015fc2fe85dc041803802f8dbaf1d620c7be488238fbe7"
       },
       {
         "path": "docs/theme.js",
@@ -365,7 +365,7 @@
       {
         "path": "docs/writing.html",
         "identity_mode": "content",
-        "sha256": "936b3a240e6a686bd58d31d6766d715c6f3b1485d3cf0c7af46293a982b18b2c"
+        "sha256": "68955a8e7cf8b64ce91bdfedc64cd6a92d36425e8d541acacb5a13ba32b6d869"
       },
       {
         "path": "drafts/medium-profile-revision-20261001.html",
@@ -595,7 +595,7 @@
       {
         "path": "review/issue-48/2026-10-08-handoff.md",
         "identity_mode": "content",
-        "sha256": "d448f715e11700456e1d7e0a83d922371cb725b51419451a65b25a0f61efac89"
+        "sha256": "6c22861b4addecae1119b3db47f2f3d54bd0f36342ca6bad46f75ee17f9f5f5b"
       },
       {
         "path": "review/issue-48/content-amendment.json",
@@ -3550,22 +3550,22 @@
       {
         "path": "review/site-v1-20261004-v11-credits-day.html",
         "identity_mode": "content",
-        "sha256": "b40bb5aaea4bfdb4bd8b8069381f8bd2dab382667dc5e478a9837ff36708bf7d"
+        "sha256": "bd0308aa9d4ce4378ff4f4cedae389e8a58ab6640d9ad649ff1879dfd29b4fe3"
       },
       {
         "path": "review/site-v1-20261004-v11-credits-interactive.html",
         "identity_mode": "content",
-        "sha256": "c472d8f2276c91ddbae8b75ac840b6da4c624281e8187f3c5de6272a59c0433c"
+        "sha256": "68b3bd49060bdb8156405216e45bd7a3524195c15e83b24ec08995403aecf2fb"
       },
       {
         "path": "review/site-v1-20261004-v11-credits-night.html",
         "identity_mode": "content",
-        "sha256": "37346457f0a0517a2b5265f9b0c38111b7dbd5e04965f4461d4838a9a783e332"
+        "sha256": "a4800c399f91d212c3d29d5e0b005ee7e9db01116298f9d90f3bee0b36623a79"
       },
       {
         "path": "review/site-v1-20261004-v11-day.html",
         "identity_mode": "content",
-        "sha256": "905f071e7ca3b8eb9ae63bf4413ce780c46f0802b3d4b5eb78d347ed06bec8ce"
+        "sha256": "00788d1581479df5a8fb586ef6482b51b1ed9d37bce6e9b5d2e8398948e0e47e"
       },
       {
         "path": "review/site-v1-20261004-v11-index.html",
@@ -3575,57 +3575,57 @@
       {
         "path": "review/site-v1-20261004-v11-interactive.html",
         "identity_mode": "content",
-        "sha256": "bd0996d77f8a94c954a77b52888ea99fdc0f2915d85be7228ea151a040b5d6bb"
+        "sha256": "875bf8145a04cf57386b8d695231293193efdae24e769cb13d97b8e531418add"
       },
       {
         "path": "review/site-v1-20261004-v11-night.html",
         "identity_mode": "content",
-        "sha256": "bd9c1c6122e97fe9bd6b43ed9091cd322347f18ae46c329389b17c620f9edc47"
+        "sha256": "753fcf0be593ab722247089240b6a394a797cfa3a65bbc8697de3e3b6708eeb2"
       },
       {
         "path": "review/site-v1-20261004-v11-research-day.html",
         "identity_mode": "content",
-        "sha256": "118156fb00e66d6d14fd0bc677dc20733bcb2c9985743ebb32395e2fd47b073c"
+        "sha256": "c901aa54151d74111970058cdd929ffae23fbe89028e6987fb9d55523217c71c"
       },
       {
         "path": "review/site-v1-20261004-v11-research-interactive.html",
         "identity_mode": "content",
-        "sha256": "3b08acc8f4a46367be7d94cc495e9a8fb3d0d9842a7379a918773407025a737b"
+        "sha256": "307ef7fa0fd8b708a6aa6dc325bf9bc436baa644b8b0523474e130468a342cf4"
       },
       {
         "path": "review/site-v1-20261004-v11-research-night.html",
         "identity_mode": "content",
-        "sha256": "b336c2b0b789fc0e989bcd06cf811141f38dd6df96dc5c4444ab5377d4750b7c"
+        "sha256": "7d095c01276feafdc29544b32f70b465af7994cc12eafac610bb1b8670802e17"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-day.html",
         "identity_mode": "content",
-        "sha256": "44340d321e2df09976f164f0bf8d391a75c767abd87c7449a24c4e7052e396bd"
+        "sha256": "d26c44798ba32b6fe5cd9a77db0a6fd62ceb784a51622bdfbfe76b4bc79c1c3e"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-interactive.html",
         "identity_mode": "content",
-        "sha256": "f9eb34457f84b079aa2ada481302576229eed3ba07b1f41f47b0a17f5618f03d"
+        "sha256": "9e4e0a775e1a5c27c14c3a31ca90c434c372b74be2433d81b13923433f0abfa4"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-night.html",
         "identity_mode": "content",
-        "sha256": "c01a1d6b5ef67ae720450a6e92cb79be38d5310b32987b5152b60b8457acc647"
+        "sha256": "2c8d5aea399fd609110b2730c1d570be545b9a9a32cd5e8b33ae7e66ffc62dcf"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-day.html",
         "identity_mode": "content",
-        "sha256": "c2737fff84ff20bd131f132560693c6a14f3743dbaacc89aec218464465fa701"
+        "sha256": "3d73f9d84ad6dff12db7e8187b737f890525aa2ef29c56d0889ca8820239a279"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-interactive.html",
         "identity_mode": "content",
-        "sha256": "d577076bf26f1dc53b61b1d31ab39adecb7c03eb4e85c3b868ae360b5af03051"
+        "sha256": "4ff197e05ea6781997458be815b22d60f301977035e6e5136a19a85ebead796d"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-night.html",
         "identity_mode": "content",
-        "sha256": "4469b10ae4d6ed51f58e40bd40b36a342c2353bf5c5d8fcc902e9917c0d391b5"
+        "sha256": "0c731539ecd6d0343ae1b49f660052b553ab4952b116ad783d8014301fe484d8"
       },
       {
         "path": "review/site-v1-offline-bundle-v10.json",
@@ -3635,7 +3635,7 @@
       {
         "path": "review/site-v1-offline-bundle-v11.json",
         "identity_mode": "content",
-        "sha256": "a4114b9a89914e75ac83a64bc4ebc1478c688962a8809c057682a7f2caff65b3"
+        "sha256": "9d7fc82255af6315887ff372f642bc3fa184e5916218ffed8dc4a31fe30fcb4b"
       },
       {
         "path": "review/site-v1-offline-bundle-v3.json",
@@ -3690,7 +3690,7 @@
       {
         "path": "review/site-v1-static-previews-v11.json",
         "identity_mode": "content",
-        "sha256": "23660aa024f881f6f82b685c60f0a27236467a9cb13306fbf2f93abe131e17fc"
+        "sha256": "e382b6d5fc82618ec5f9aaa89b0e3443e58ee9c30007c3259a20c2c5ad39bd12"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -4390,7 +4390,7 @@
       {
         "path": "site/engine/reading-surfaces.css",
         "identity_mode": "content",
-        "sha256": "a6cd7aa7fc3c889079c09f2efa72143bac1f9e1215fbb4a08f1a5da12147d9ef"
+        "sha256": "ced818a229a6059182113e598a7b2a7b9e0cc79684edaf7f0aaf39f4fb833384"
       },
       {
         "path": "site/engine/renderer.cjs",
@@ -4415,7 +4415,7 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "4f65d5c8ee97948adbe2bb877beee27aefc8f9e3c50b59381286f5998cd96892"
+        "sha256": "2daccd872d0270ee6783cb751f7a04687b9b5e6f25ee2f9a0e5dec942c9a79e8"
       },
       {
         "path": "site/routes.json",
@@ -5025,7 +5025,7 @@
       {
         "path": "tools/quality/secrets-reviewed.json",
         "identity_mode": "content",
-        "sha256": "505d8c86ee6d62a5339a73446c5845d707826b868233203119c97f25f4a2cf56"
+        "sha256": "aff39d649fea8a8884ef8e5a4111532ce96b9bcf6cdb193b7881f641e21f3af1"
       },
       {
         "path": "tools/quality/security-rules.yml",
@@ -6063,7 +6063,7 @@
       "title": "research.html"
     },
     {
-      "path": "docs/runtime/e3dcff227a6726f5a40df113dcf7bb3525ec7ef22017e05da169a34fbfb66894/archive.js",
+      "path": "docs/runtime/e866b8f739a6984deedd7dd5ccd60398c06bc3d5f28b7765e1f5973251f550ab/archive.js",
       "kind": "file",
       "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
       "role": "generated",
@@ -6074,7 +6074,7 @@
       "title": "archive.js"
     },
     {
-      "path": "docs/runtime/e3dcff227a6726f5a40df113dcf7bb3525ec7ef22017e05da169a34fbfb66894/navigation.js",
+      "path": "docs/runtime/e866b8f739a6984deedd7dd5ccd60398c06bc3d5f28b7765e1f5973251f550ab/navigation.js",
       "kind": "file",
       "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
       "role": "generated",
@@ -6085,7 +6085,7 @@
       "title": "navigation.js"
     },
     {
-      "path": "docs/runtime/e3dcff227a6726f5a40df113dcf7bb3525ec7ef22017e05da169a34fbfb66894/space.js",
+      "path": "docs/runtime/e866b8f739a6984deedd7dd5ccd60398c06bc3d5f28b7765e1f5973251f550ab/space.js",
       "kind": "file",
       "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
       "role": "generated",
@@ -6096,7 +6096,7 @@
       "title": "space.js"
     },
     {
-      "path": "docs/runtime/e3dcff227a6726f5a40df113dcf7bb3525ec7ef22017e05da169a34fbfb66894/styles.css",
+      "path": "docs/runtime/e866b8f739a6984deedd7dd5ccd60398c06bc3d5f28b7765e1f5973251f550ab/styles.css",
       "kind": "file",
       "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
       "role": "generated",
@@ -6107,7 +6107,7 @@
       "title": "styles.css"
     },
     {
-      "path": "docs/runtime/e3dcff227a6726f5a40df113dcf7bb3525ec7ef22017e05da169a34fbfb66894/theme.js",
+      "path": "docs/runtime/e866b8f739a6984deedd7dd5ccd60398c06bc3d5f28b7765e1f5973251f550ab/theme.js",
       "kind": "file",
       "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
       "role": "generated",
@@ -6129,40 +6129,7 @@
       "title": "site-revision.json"
     },
     {
-      "path": "docs/snapshots/25e29387a2fa923eb9fd01332b0e10d17b1eed3742495878d3832b6419f6125b/index.html",
-      "kind": "file",
-      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "index.html"
-    },
-    {
-      "path": "docs/snapshots/39e2b790e3b6788db22fe5bed836b2105d7607bff738eddc7178924241848024/talks.html",
-      "kind": "file",
-      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "talks.html"
-    },
-    {
-      "path": "docs/snapshots/800bd872ac1d387895db4c8732b25bad78f4d8ddf8bd9eabf406f1a9439f0f39/research.html",
-      "kind": "file",
-      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "research.html"
-    },
-    {
-      "path": "docs/snapshots/a147ac45e08f4c84d5cadcc1125b98d92d2688540123906eeb9cf4b67fc6ea4a/credits.html",
+      "path": "docs/snapshots/36a28756050072adcd0d9e1ebce44356572d9ce54dbb226d58fbc494ab50d78a/credits.html",
       "kind": "file",
       "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
       "role": "generated",
@@ -6173,7 +6140,7 @@
       "title": "credits.html"
     },
     {
-      "path": "docs/snapshots/b64484f6b610e975a0bde5f5ade34dffb27ead672209006296dd6efad4364fe4/writing.html",
+      "path": "docs/snapshots/4a15ab9a4ed10ce5692b26ede6355bf7374967e1c4b05f6a20aa4595581b3fec/writing.html",
       "kind": "file",
       "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
       "role": "generated",
@@ -6182,6 +6149,39 @@
         "AGENTS.md"
       ],
       "title": "writing.html"
+    },
+    {
+      "path": "docs/snapshots/5bca4816e856f2f1038c30ebc0457709c7e3b4d2c359f70bae424c77199fe599/research.html",
+      "kind": "file",
+      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "research.html"
+    },
+    {
+      "path": "docs/snapshots/62c10ab461ad0898f3ef87d5b8246a6cfd0e35027d59b5cb8c843042e8560221/talks.html",
+      "kind": "file",
+      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "talks.html"
+    },
+    {
+      "path": "docs/snapshots/f8fdf5ef0a85c00f7cf4e2281f780973c2fb2651f8099ccd89d20a2500d19730/index.html",
+      "kind": "file",
+      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index.html"
     },
     {
       "path": "docs/space.js",
@@ -17065,7 +17065,7 @@
       ]
     },
     {
-      "path": "docs/runtime/e3dcff227a6726f5a40df113dcf7bb3525ec7ef22017e05da169a34fbfb66894",
+      "path": "docs/runtime/e866b8f739a6984deedd7dd5ccd60398c06bc3d5f28b7765e1f5973251f550ab",
       "kind": "directory",
       "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
       "role": "generated",
@@ -17085,7 +17085,7 @@
       ]
     },
     {
-      "path": "docs/snapshots/25e29387a2fa923eb9fd01332b0e10d17b1eed3742495878d3832b6419f6125b",
+      "path": "docs/snapshots/36a28756050072adcd0d9e1ebce44356572d9ce54dbb226d58fbc494ab50d78a",
       "kind": "directory",
       "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
       "role": "generated",
@@ -17095,7 +17095,7 @@
       ]
     },
     {
-      "path": "docs/snapshots/39e2b790e3b6788db22fe5bed836b2105d7607bff738eddc7178924241848024",
+      "path": "docs/snapshots/4a15ab9a4ed10ce5692b26ede6355bf7374967e1c4b05f6a20aa4595581b3fec",
       "kind": "directory",
       "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
       "role": "generated",
@@ -17105,7 +17105,7 @@
       ]
     },
     {
-      "path": "docs/snapshots/800bd872ac1d387895db4c8732b25bad78f4d8ddf8bd9eabf406f1a9439f0f39",
+      "path": "docs/snapshots/5bca4816e856f2f1038c30ebc0457709c7e3b4d2c359f70bae424c77199fe599",
       "kind": "directory",
       "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
       "role": "generated",
@@ -17115,7 +17115,7 @@
       ]
     },
     {
-      "path": "docs/snapshots/a147ac45e08f4c84d5cadcc1125b98d92d2688540123906eeb9cf4b67fc6ea4a",
+      "path": "docs/snapshots/62c10ab461ad0898f3ef87d5b8246a6cfd0e35027d59b5cb8c843042e8560221",
       "kind": "directory",
       "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
       "role": "generated",
@@ -17125,7 +17125,7 @@
       ]
     },
     {
-      "path": "docs/snapshots/b64484f6b610e975a0bde5f5ade34dffb27ead672209006296dd6efad4364fe4",
+      "path": "docs/snapshots/f8fdf5ef0a85c00f7cf4e2281f780973c2fb2651f8099ccd89d20a2500d19730",
       "kind": "directory",
       "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
       "role": "generated",

@@ -43,7 +43,7 @@
 /* All title ink paints above every cloned fragment, including its neighbours. */
 .reading-title-ink {position:relative;z-index:1}
 .about-grid>h2,.credits-page>h1,.hero h1 {--surface-outset:.16em}
-.year-heading {--surface-outset:6px}
+:where(.year-heading) {--surface-outset:6px}
 .archive-landings>.topic-landing,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a,.next-route>p,.next-route>a,.archive-filters {--surface-gutter:8px}
 /* Publication cards share one row backdrop on Writing and Talks. Intrinsic
    child widths affect text layout only, never the paper envelope. */

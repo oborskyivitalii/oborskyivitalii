@@ -6745,97 +6745,97 @@
       "role": "source",
       "owner": "guides/SITE-STAGING.md"
     },
-    "docs/runtime/e3dcff227a6726f5a40df113dcf7bb3525ec7ef22017e05da169a34fbfb66894": {
+    "docs/runtime/e866b8f739a6984deedd7dd5ccd60398c06bc3d5f28b7765e1f5973251f550ab": {
       "kind": "directory",
       "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/e3dcff227a6726f5a40df113dcf7bb3525ec7ef22017e05da169a34fbfb66894/archive.js": {
+    "docs/runtime/e866b8f739a6984deedd7dd5ccd60398c06bc3d5f28b7765e1f5973251f550ab/archive.js": {
       "kind": "file",
       "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/e3dcff227a6726f5a40df113dcf7bb3525ec7ef22017e05da169a34fbfb66894/navigation.js": {
+    "docs/runtime/e866b8f739a6984deedd7dd5ccd60398c06bc3d5f28b7765e1f5973251f550ab/navigation.js": {
       "kind": "file",
       "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/e3dcff227a6726f5a40df113dcf7bb3525ec7ef22017e05da169a34fbfb66894/space.js": {
+    "docs/runtime/e866b8f739a6984deedd7dd5ccd60398c06bc3d5f28b7765e1f5973251f550ab/space.js": {
       "kind": "file",
       "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/e3dcff227a6726f5a40df113dcf7bb3525ec7ef22017e05da169a34fbfb66894/styles.css": {
+    "docs/runtime/e866b8f739a6984deedd7dd5ccd60398c06bc3d5f28b7765e1f5973251f550ab/styles.css": {
       "kind": "file",
       "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/e3dcff227a6726f5a40df113dcf7bb3525ec7ef22017e05da169a34fbfb66894/theme.js": {
+    "docs/runtime/e866b8f739a6984deedd7dd5ccd60398c06bc3d5f28b7765e1f5973251f550ab/theme.js": {
       "kind": "file",
       "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/25e29387a2fa923eb9fd01332b0e10d17b1eed3742495878d3832b6419f6125b": {
+    "docs/snapshots/f8fdf5ef0a85c00f7cf4e2281f780973c2fb2651f8099ccd89d20a2500d19730": {
       "kind": "directory",
       "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/25e29387a2fa923eb9fd01332b0e10d17b1eed3742495878d3832b6419f6125b/index.html": {
+    "docs/snapshots/f8fdf5ef0a85c00f7cf4e2281f780973c2fb2651f8099ccd89d20a2500d19730/index.html": {
       "kind": "file",
       "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/b64484f6b610e975a0bde5f5ade34dffb27ead672209006296dd6efad4364fe4": {
+    "docs/snapshots/4a15ab9a4ed10ce5692b26ede6355bf7374967e1c4b05f6a20aa4595581b3fec": {
       "kind": "directory",
       "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/b64484f6b610e975a0bde5f5ade34dffb27ead672209006296dd6efad4364fe4/writing.html": {
+    "docs/snapshots/4a15ab9a4ed10ce5692b26ede6355bf7374967e1c4b05f6a20aa4595581b3fec/writing.html": {
       "kind": "file",
       "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/a147ac45e08f4c84d5cadcc1125b98d92d2688540123906eeb9cf4b67fc6ea4a": {
+    "docs/snapshots/36a28756050072adcd0d9e1ebce44356572d9ce54dbb226d58fbc494ab50d78a": {
       "kind": "directory",
       "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/a147ac45e08f4c84d5cadcc1125b98d92d2688540123906eeb9cf4b67fc6ea4a/credits.html": {
+    "docs/snapshots/36a28756050072adcd0d9e1ebce44356572d9ce54dbb226d58fbc494ab50d78a/credits.html": {
       "kind": "file",
       "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/800bd872ac1d387895db4c8732b25bad78f4d8ddf8bd9eabf406f1a9439f0f39": {
+    "docs/snapshots/5bca4816e856f2f1038c30ebc0457709c7e3b4d2c359f70bae424c77199fe599": {
       "kind": "directory",
       "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/800bd872ac1d387895db4c8732b25bad78f4d8ddf8bd9eabf406f1a9439f0f39/research.html": {
+    "docs/snapshots/5bca4816e856f2f1038c30ebc0457709c7e3b4d2c359f70bae424c77199fe599/research.html": {
       "kind": "file",
       "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/39e2b790e3b6788db22fe5bed836b2105d7607bff738eddc7178924241848024": {
+    "docs/snapshots/62c10ab461ad0898f3ef87d5b8246a6cfd0e35027d59b5cb8c843042e8560221": {
       "kind": "directory",
       "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/39e2b790e3b6788db22fe5bed836b2105d7607bff738eddc7178924241848024/talks.html": {
+    "docs/snapshots/62c10ab461ad0898f3ef87d5b8246a6cfd0e35027d59b5cb8c843042e8560221/talks.html": {
       "kind": "file",
       "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
       "role": "generated",

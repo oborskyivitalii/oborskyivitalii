@@ -15,10 +15,17 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 - [#48](https://github.com/oborskyivitalii/oborskyivitalii/issues/48) owns the
   theory/formula/Matthew request, Talks curation and shared backdrop-size correction. Isolated branch
   `work/issue48-site-alignment-20261008` starts at main above; same
-  [Draft PR51](https://github.com/oborskyivitalii/oborskyivitalii/pull/51) owns both.
+  [PR51](https://github.com/oborskyivitalii/oborskyivitalii/pull/51) owns this work;
+  it was marked ready following the maintainer's integration approval.
   Talks checkpointb4f1e2a/tree4a1e9516 passed source/preview CI; immutable
   historical preview https://cd3f78a6.oborskyi-author-ci-staging.pages.dev/talks#talks .
-  The current sizing correction is prepared for publication/CI/stage. Fetch the
+  The first sizing preview37758120216 attempt2 passed; bounded stage37758559968
+  passed host/browser/performance but static checks blocked promotion. One
+  duplicate combined CSS selector was corrected without changing layout or paint.
+  Its pinned Stylelint,16 focused cases and local23 cases pass. Exact new public
+  checksum dispositions are being independently proved in the append-only
+  reviewed list; the original scanner baseline and thresholds are preserved.
+  The corrected final source still requires its own CI/stage/merge evidence. Fetch the
   live PR/issue for current SHA/results rather than inheriting checkpoint green.
   [Current handoff](review/issue-48/2026-10-08-handoff.md) is the single review route.
 - #48 swaps TOC/Control to align Subprime/UA with named links and existing palette,
