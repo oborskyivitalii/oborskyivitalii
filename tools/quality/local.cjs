@@ -47,12 +47,12 @@ function checkMotifs(api,config){
   return {status:'checked',symbols:newMotifs};
 }
 function checkColor(config){
-  const colorFiles=['tools/staging/color.cjs','tools/site/variants.cjs','review/site-scroll-sync-20261004/export.cjs','review/site-scroll-sync-20261004/FLIGHT-PROTOTYPE.cjs','review/site-scroll-sync-20261004/RIBBONS-PROTOTYPE.cjs','tests/flight.test.cjs'];
+  const colorFiles=[...require('../site/effects.cjs').effectInputs,'tests/flight.test.cjs'];
   const missing=colorFiles.filter(name=>!fs.existsSync(path.join(root,name)));
   if(missing.length)return {status:'not-applicable',missing};
   const directory=fs.mkdtempSync(path.join(os.tmpdir(),'site-local-'));
   try{
-    run('review/site-scroll-sync-20261004/export.cjs',[directory]);
+    run('tools/site/export.cjs',[directory]);
     const html=fs.readFileSync(path.join(directory,'Vitalii-Oborskyi-Color-Prototype.html'),'utf8');
     assert.doesNotMatch(html,/backdrop-filter|data-glass|vo\.reading-surface|id=["']surface-mode/,'retired reading effect is absent');
     for(const script of html.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/g))if(!script[1].includes('application/'))new vm.Script(script[2]);

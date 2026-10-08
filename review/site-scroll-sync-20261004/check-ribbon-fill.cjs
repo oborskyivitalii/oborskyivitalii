@@ -1,6 +1,6 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),assert=require('node:assert/strict'),{pathToFileURL}=require('node:url');
-const {toolRequire,launchOptions}=require('../../tools/quality/common.cjs'),ribbons=require('./RIBBONS-PROTOTYPE.cjs');
+const {toolRequire,launchOptions}=require('../../tools/quality/common.cjs'),ribbons=require('../../site/effects/ribbons.cjs');
 const file=path.resolve(process.argv[2]),out=path.resolve(process.argv[3]);
 assert.ok(fs.readFileSync(file,'utf8').includes('const paintRibbon='+ribbons.paintRibbon.toString()+';'),'pixel fixture is bound to the actual exported painter');
 (async()=>{

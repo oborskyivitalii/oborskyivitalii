@@ -2,7 +2,7 @@
 // Private loopback diagnostic artifacts. Never alter the authored/public source.
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const artifact=require('./artifact.cjs'),snapshot=require('../site/snapshot.cjs');
-const flight=require('../../review/site-scroll-sync-20261004/FLIGHT-PROTOTYPE.cjs');
+const flight=require('../../site/effects/flight.cjs');
 const descriptions={
   'no-ribbons':'Suppress ribbon scene creation/collection/custom painting; retain travel, reading styles and controls.',
   'no-canvas-draw':'Omit shape submission only; retain clearRect, projection, effects, sorting and the scene clock.',

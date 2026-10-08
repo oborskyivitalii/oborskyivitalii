@@ -4,16 +4,21 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 
 ## Snapshot
 
-- Fetched main `a06b530ee42f0ddde538f719d89f9f10fc1e156c`: PR #51 is merged.
+- Rules main `e501da821c1cf9a3ac4bc8d251aba1bf4dc57d59`: PR #55 is merged;
+  issue #54 is closed completed. PR #51 was already merged.
   Its research/Writing/Talks content, formula position and shared reading
   backdrop changes are current sources. Older #48 pending-merge instructions
   are obsolete; fetch its issue for remaining acceptance.
 - [#54 / PR #55](https://github.com/oborskyivitalii/oborskyivitalii/pull/55)
   owns the source audit, mandatory [code guide](guides/CODE-STYLE.md), agent/RI/AC
-  routing and bounded CI guard. The maintainer authorized its merge on 8 October
-  and subsequent refactoring in a separate PR. Main is reconciled into this
-  branch; current checks/review and merged ref belong in the live issue/PR.
-  Runtime/content/public output is unchanged versus current main.
+  routing and bounded CI guard. Authorized merge completed on 8 October with
+  current green CI and independent agent review. Its source audit and rules are
+  active; runtime/content/public output was unchanged by activation.
+- [#56](https://github.com/oborskyivitalii/oborskyivitalii/issues/56) owns separate
+  R1 extraction into `site/effects/` and `tools/site/`, explicit shared descriptors,
+  expanded existing tool coverage and exact runtime/offline parity. Current
+  delivery/check/review state and PR links belong in its live issue and single
+  [handoff](review/issue-56/2026-10-08-handoff.md). Do not merge it by inference.
 - The single [#54 audit and Sol plan](review/issue-54/2026-10-08-analysis.md)
   defines R0–R6. R1 active effect/export source extraction is first; formatting,
   content/template, CSS and runtime migrations follow separately.
@@ -30,8 +35,9 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 - Each bounded refactor gets an execution issue/ACs and PR, linked to #54.
   Begin from merged rules and current main; preserve accepted #48 content.
 - Reuse free ESLint/SonarJS, Stylelint and existing security tools. Evaluate
-  source coverage and formatting before adding a service/server. Tool choices
-  and current free-plan constraints need official-source evidence.
+  source coverage before adding a service/server. R2 should pin Prettier and use
+  Ruff formatting; future dependency/clone checks need scoped authored baselines.
+  SonarQube server is unnecessary for R1; free Cloud remains optional/unconfigured.
 - Preserve reading paint/layout, world/camera, generated/immutable/offline
   identities, no-JS behavior, lifecycle bounds and original performance budgets.
 - PR smoke/targeted, bounded staging and full production retain their owners.
@@ -43,7 +49,7 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 
 | Issue | Remaining intent |
 | --- | --- |
-| #54 | Reconciled rules/guard PR55 review/check/merge, then separate R1 execution. |
+| #56 | R1 exact-source checks, Draft PR, independent review and live AC reconciliation; R2–R6 stay separate. |
 | #48 | PR51 is merged; reconcile remaining acceptance from live evidence. |
 | #49 / #50 | Resolve overlapping fragment-flight plans before implementation. |
 | #45 / #36 / #41 | Original visual, paired, editorial/device and release gates. |
@@ -55,8 +61,8 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 
 ## Next session
 
-1. Fetch live main and PR55 checks; verify rules are merged before R1.
-2. Continue the separate authorized R1 issue/PR from its source handoff.
+1. Fetch live main and issue56/its PR; PR55 rules are already merged.
+2. Continue the separate authorized R1 delivery from its source handoff.
 3. Use targeted checks, trim removed debt, rebuild RI and reconcile actual ACs.
 
 ## Maintenance

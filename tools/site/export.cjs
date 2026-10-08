@@ -1,8 +1,7 @@
 'use strict';
 // User comparison copies; the maintained public/export producers remain owners.
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
-const {decorate}=require('./RIBBONS-PROTOTYPE.cjs');
-const {decorate:decorateFlight}=require('./FLIGHT-PROTOTYPE.cjs');
+const {decorateRibbons,decorateFlight}=require('./effects.cjs');
 function standalone(html){
   const notice=/<aside\b[^>]*aria-label="Review copy"[^>]*>[\s\S]*?<\/aside>/g;
   assert.equal([...html.matchAll(notice)].length,1);html=html.replace(notice,'');
@@ -19,11 +18,11 @@ function exportVariants(directory,{variant='both'}={}){
   const root=path.resolve(__dirname,'../..'),html=standalone(fs.readFileSync(path.join(root,'review/site-v1-20261004-v11-interactive.html'),'utf8'));
   const editions=[];
   if(variant!=='color')editions.push(['Vitalii-Oborskyi-Final.html',html]);
-  if(variant!=='base')editions.push(['Vitalii-Oborskyi-Color-Prototype.html',decorateFlight(decorate(html))]);
+  if(variant!=='base')editions.push(['Vitalii-Oborskyi-Color-Prototype.html',decorateFlight(decorateRibbons(html))]);
   const crypto=require('node:crypto');
   for(const [file,source]of editions){
     fs.writeFileSync(path.join(directory,file),source);
-    const identity=require('../../tools/site/variants.cjs').identity(source);
+    const identity=require('./variants.cjs').identity(source);
     fs.writeFileSync(path.join(directory,file+'.manifest.json'),JSON.stringify({schema:1,variant:identity,sha256:crypto.createHash('sha256').update(source).digest('hex'),bytes:Buffer.byteLength(source),scope:'offline comparison; hosted selection remains base'},null,2)+'\n');
   }
   return editions.map(([file])=>file);

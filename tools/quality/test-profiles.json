@@ -473,11 +473,12 @@
         "site/engine/**",
         "site/scenes/**",
         "site/site.json",
-        "review/site-scroll-sync-20261004/**",
+        "site/effects/**",
         "tools/site/**",
         "tools/build_site_previews.cjs",
         "tools/build_scene_fallbacks.cjs",
-        ".github/workflows/**"
+        ".github/workflows/**",
+        "tools/site/effects.cjs"
       ]
     },
     {
@@ -577,13 +578,14 @@
       "surviving_route": "node tools/quality/local.cjs",
       "inputs": [
         "tests/flight.test.cjs",
-        "review/site-scroll-sync-20261004/FLIGHT-PROTOTYPE.cjs",
-        "review/site-scroll-sync-20261004/export.cjs",
-        "review/site-scroll-sync-20261004/RIBBONS-PROTOTYPE.cjs",
+        "site/effects/flight.cjs",
+        "tools/site/export.cjs",
+        "site/effects/ribbons.cjs",
         "site/engine/**",
         "site/scenes/**",
         "site/site.json",
-        "review/site-scroll-sync-20261004/**"
+        "site/effects/**",
+        "tools/site/effects.cjs"
       ]
     },
     {
@@ -750,7 +752,7 @@
         "tools/build_site_previews.cjs",
         "site/content/**",
         "site/templates/**",
-        "review/site-scroll-sync-20261004/**",
+        "site/effects/**",
         "tools/site/**",
         "tools/build_scene_fallbacks.cjs"
       ]
@@ -771,7 +773,7 @@
       "inputs": [
         "tests/quality-sources.test.cjs",
         "tools/quality/scanners.cjs",
-        "review/site-scroll-sync-20261004/**",
+        "site/effects/**",
         "tools/site/**",
         "tools/build_site_previews.cjs",
         "tools/build_scene_fallbacks.cjs",
@@ -779,7 +781,12 @@
         "tools/quality/bandit-triage.cjs",
         "tools/quality/bandit-policy.json",
         "tools/quality/secrets-baseline.json",
-        "tools/quality/secrets-reviewed.json"
+        "tools/quality/secrets-reviewed.json",
+        "tools/site/effects.cjs",
+        "tools/quality/stylelint.cjs",
+        "site/**/*.css",
+        "tools/quality/security-rules.yml",
+        "tools/quality/exceptions.json"
       ]
     },
     {
@@ -875,12 +882,13 @@
       "inputs": [
         "tests/ribbons.test.cjs",
         "site/engine/math.cjs",
-        "review/site-scroll-sync-20261004/RIBBONS-PROTOTYPE.cjs",
-        "review/site-scroll-sync-20261004/export.cjs",
+        "site/effects/ribbons.cjs",
+        "tools/site/export.cjs",
         "site/engine/**",
         "site/scenes/**",
         "site/site.json",
-        "review/site-scroll-sync-20261004/**"
+        "site/effects/**",
+        "tools/site/effects.cjs"
       ]
     },
     {
@@ -1205,7 +1213,10 @@
       "surviving_route": "python3 tools/run_repository_tests.py",
       "inputs": [
         "tests/test_offline_export_security.py",
-        "review/site-scroll-sync-20261004/**"
+        "site/effects/**",
+        "review/site-scroll-sync-20261004/check-offline-security.py",
+        "tools/site/effects.cjs",
+        "tools/site/export.cjs"
       ]
     },
     {
@@ -1516,6 +1527,48 @@
         "tools/check_code_style.py",
         ".github/code-style.json",
         "guides/CODE-STYLE.md"
+      ]
+    },
+    {
+      "path": "tests/effects.test.cjs",
+      "language": "javascript",
+      "purpose": "Pure ordered Color descriptors, malformed/duplicate rejection, frozen extension API and executable hosted/offline serialization",
+      "owner": "site/README.md",
+      "lifecycle": "permanent",
+      "profiles": [
+        "pr-targeted",
+        "staging",
+        "production"
+      ],
+      "disposition": "retain explicit effect contract; historical byte parity belongs only to issue56 policy",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/effects.test.cjs",
+        "site/effects/**",
+        "tools/site/effects.cjs",
+        "tools/site/variants.cjs",
+        "tools/site/export.cjs",
+        "tools/staging/color.cjs"
+      ]
+    },
+    {
+      "path": "tests/test_issue56_acceptance.py",
+      "language": "python",
+      "purpose": "Issue56 exact merged-baseline source/runtime parity and selected canonical effect/quality contracts",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": [
+        "issue-policy"
+      ],
+      "disposition": "fixed R1 parity evidence; excluded from future generic source regressions",
+      "surviving_route": "python3 tools/issue_acceptance.py run --policy .github/acceptance/issue-56.json --report /tmp/issue-56-acceptance.json",
+      "inputs": [
+        "tests/test_issue56_acceptance.py",
+        ".github/acceptance/issue-56.json",
+        "site/effects/**",
+        "tools/site/effects.cjs",
+        "tools/quality/scanners.cjs",
+        "tools/quality/stylelint.cjs"
       ]
     }
   ]

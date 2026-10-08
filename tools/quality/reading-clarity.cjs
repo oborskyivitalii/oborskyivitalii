@@ -241,7 +241,7 @@ async function ribbonContext(browser,url,output,row,math,geometry){
   }
 }
 async function ribbonNavigation(browser,url,output,result){
-  const math=require('../../site/engine/math.cjs').toString(),geometry=require('../../review/site-scroll-sync-20261004/RIBBONS-PROTOTYPE.cjs').ribbonGeometry.toString();
+  const math=require('../../site/engine/math.cjs').toString(),geometry=require('../../site/effects/ribbons.cjs').ribbonGeometry.toString();
   result.navigation=[];result.ribbonReference={math:hash(math),geometry:hash(geometry),protocol:'Eight fresh live Color contexts starting at Home or Talks; first unvisited targets in both directions, then warm page-cache flights from observed native edges, backward atEnd landing, endpoint depth bounds/no mount reversal, analytic world stations, quick retarget and height reflow. No performance verdict.'};
   for(const width of [390,1440])for(const theme of ['light','dark'])for(const startRoute of ['index','talks']){
     const row={width,theme,startRoute,pass:false,legs:[],errors:[]};result.navigation.push(row);

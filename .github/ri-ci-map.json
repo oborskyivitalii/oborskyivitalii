@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "review": {
-    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/54",
-    "summary": "2026-10-08 issue54 adds mandatory code-style ownership/routing, exact frozen legacy allowances, lightweight negative guards and existing navigation CI invocation. Extends control ownership to the guide. Retains existing profile, source/evidence and release contracts. No runtime/content/public changes. Reconciled with merged PR51 at main a06b530; retain issue48 controls and public sources unchanged.",
-    "date": "2026-10-08"
+    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/56",
+    "date": "2026-10-08",
+    "summary": "R1 after merged standardsPR55: canonical pure effects and maintained exporter, explicit ordered adapters, existing ESLint/Stylelint/security source coverage and task-specific parity policy. Retain all accepted content, performance/release budgets and unchanged runtime bytes; refresh source catalog/profile/RI owners for generated identity changes."
   },
   "layers": [
     {
@@ -58,7 +58,10 @@
         "tests/test_issue48_acceptance.py",
         "review/issue-48/2026-10-08-handoff.md",
         "review/issue-48/content-amendment.json",
-        "review/issue-48/source-inventory.json"
+        "review/issue-48/source-inventory.json",
+        ".github/acceptance/issue-56.json",
+        "tests/test_issue56_acceptance.py",
+        "review/issue-56/2026-10-08-handoff.md"
       ],
       "checks": [
         "acceptance-policy",
@@ -118,7 +121,11 @@
         "tools/quality/staging-regression.cjs",
         "tools/quality/test-profiles.json",
         "tools/quality/reading-clarity.cjs",
-        ".github/workflows/site-writing-probe.yml"
+        ".github/workflows/site-writing-probe.yml",
+        "tools/quality/exceptions.json",
+        "tools/quality/stylelint.cjs",
+        "tools/quality/security-rules.yml",
+        "tools/site/effects.cjs"
       ],
       "checks": [
         "acceptance-policy",
@@ -410,7 +417,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "d3daf676a1ebe3b084e2dba623b893fa2aceda79bf3f15e30312d5aca502276c",
+    "digest": "42eabbad7ec605083fb91d1a5f699bf7086be3298e8ce6c292aeffb54900f386",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -461,8 +468,12 @@
         "sha256": "0b1b6c961fab83e81c7716b75f932e8192261f72dafb6d158dce10d250252673"
       },
       {
+        "path": ".github/acceptance/issue-56.json",
+        "sha256": "1cfaf41f3910a1a1f141685c210db389047f67973e226bd758e6c4a65bd13dde"
+      },
+      {
         "path": ".github/code-style.json",
-        "sha256": "7eb4844eeca51ea45815a0dd74fc31ee19b2e0c0ef7d07c2f0c0d010bde4578f"
+        "sha256": "59075e735e919d7d0bb50c51eb4082870be83f89c6b01c2545b13b86e31cb83b"
       },
       {
         "path": ".github/pull_request_template.md",
@@ -478,7 +489,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "14a2f78b4b661fda010f29abb01826a74465c542e457fc072198731a50e91363"
+        "sha256": "b0ad58d7f50c945df4f30d61d235ea270baf244d3470bb7ba67ee6adc3b053fc"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -526,7 +537,7 @@
       },
       {
         "path": ".github/workflows/site-release-checks.yml",
-        "sha256": "27639df5efb5aac57b9f6d44764c601325dd9294aa98111b8aba5f6d9c610082"
+        "sha256": "bf7b1bab4b768cd2fc944fbabad3b692d4cd390ef8b39a8b63529cb8a80c1e45"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
@@ -554,7 +565,7 @@
       },
       {
         "path": "guides/CODE-STYLE.md",
-        "sha256": "b07fde3526f92d7b0e113f1a34f57584ca0734f6609fd4ac65a02dfeef3af4e5"
+        "sha256": "abb3501b7af54dd5bee2356df8124c7428613e55f78c57be4c24848d4b361178"
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
@@ -613,6 +624,10 @@
         "sha256": "bd65093c7e78ba5d466556544f932883911e720562d7aa97189467b9871ed20d"
       },
       {
+        "path": "tests/test_issue56_acceptance.py",
+        "sha256": "ff5541a89e90ddbb4d78f1f930140b26cbff1b30829601249a1eb0bdc6913ccf"
+      },
+      {
         "path": "tests/test_issue_acceptance.py",
         "sha256": "51ccc40c3ccbf755ef277c7dec6437148cdf50fb7aa401e1bf8f255c2b96a426"
       },
@@ -650,7 +665,7 @@
       },
       {
         "path": "tools/quality/local.cjs",
-        "sha256": "22034ef0fed68c7d6b377466de52ce344ecd3115724173c3dc7b427df3afc269"
+        "sha256": "d12c7754a7c089b207a7d001543fd3ab8d6dd988cb3eef0114ae01cb283fd2b7"
       },
       {
         "path": "tools/quality/source-tests.cjs",
@@ -666,7 +681,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "70c2a7808858cfcbe30cefea6f1cdda97329b43f0381190ed377438ef50f15d4"
+        "sha256": "8f042afdb9565d66ca1aab310b4290d322d1d74ba40e3f1d102fb9dd78ce5567"
       },
       {
         "path": "tools/repository_intelligence.py",

@@ -34,6 +34,8 @@ and strict aggregate under #13; generation freshness alone is insufficient.
 | `engine/renderer.cjs` | Ordered Canvas commands, adjacent-line batching and visible outlines | Assembled `space.js` |
 | `engine/theme.js`, `archive.js`, `navigation.js`, `styles.css`, `reading-surfaces.css` | Theme, filtering, routing and presentation | Shared browser files and pages |
 | `scenes/world.cjs`, `paths.json` | Authored motifs, rest geometry and finite camera paths | Runtime and projected SVG fallbacks |
+| `effects/flight.cjs`, `ribbons.cjs`, `reading-surfaces.cjs` | Pure optional Color effect descriptors and browser helpers | Shared hosted/offline Color runtime |
+| `../tools/site/effects.cjs`, `export.cjs` | Canonical effect source manifest, explicit delivery adapters and standalone export | Supported Color selection, scanner coverage and offline HTML |
 | `assets/` | Existing portrait, cutout, favicon and `.nojekyll` source | Exact image/icon bytes |
 | `analytics.json`, `integrations/cloudflare.cjs` | Optional production-only measurement under #8; disabled by default | Shared head and one separately hashed loader when enabled |
 | `retained/` when explicitly imported | Previous verified immutable public files | Coherent prior snapshot support |
@@ -200,7 +202,7 @@ remain separate requirements; this source contract does not supply their approva
 
 The base edition remains the deployable producer selection. Offline exports accept
 an explicit `base`, `color` or `both` argument in
-`review/site-scroll-sync-20261004/export.cjs`. Each file has a variant/digest manifest.
+`tools/site/export.cjs`. Each file has a variant/digest manifest.
 The effects loader attaches a scene `collect` / `paint` pair and a travel
 presentation through `window.SiteEffects`, contract 1. These narrow hooks cannot
 own another scene clock. A scene painter returns true only after handling its shape;

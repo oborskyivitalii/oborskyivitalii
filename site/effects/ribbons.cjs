@@ -159,7 +159,7 @@ function paintRibbon(ctx,shape){
   }else for(let i=1;i<coverage.length;i++)ctx.lineTo(coverage[i][0],coverage[i][1]);
   ctx.closePath();ctx.fill();
 }
-const {readingSelector,surfaceStyles}=require('./READING-SURFACES.cjs');
+const {readingSelector,surfaceCSS}=require('./reading-surfaces.cjs');
 function createSceneEffects(api,smoothEdges){
   const section=ribbonGeometry(api),signals=ribbonSignals(),materials=createRibbonMaterials(api,section,signals);
   const project=makeProjector(api,section,materials,smoothEdges);
@@ -176,9 +176,18 @@ function createSceneEffects(api,smoothEdges){
     paint(ctx,shape){if(shape.kind!=="ribbon")return false;paintRibbon(ctx,shape);return true;}
   };
 }
-function decorate(html,{smoothEdges=true}={}){
-  assert.equal(typeof smoothEdges,'boolean','bounded ribbon smoothing comparison');
+function descriptor({smoothEdges = true} = {}) {
+  assert.equal(typeof smoothEdges, 'boolean', 'bounded ribbon smoothing comparison');
   const code=`const ribbonGeometry=${ribbonGeometry.toString()};\nconst ribbonSignals=${ribbonSignals.toString()};\nconst createRibbonMaterials=${createRibbonMaterials.toString()};\nconst makeProjector=${makeProjector.toString()};\nconst paintRibbon=${paintRibbon.toString()};\nwindow.SiteEffects.scene=api=>(${createSceneEffects.toString()})(api,${smoothEdges});`;
-  return require('../../tools/site/variants.cjs').attach(html,{id:'ribbons',effect:'ribbons',code,styles:surfaceStyles()+'<meta name="review-variant" content="optional-spatial-ribbons-prototype">\n'});
+  return {
+    effect: 'ribbons',
+    code,
+    css: surfaceCSS(),
+    controls: '',
+    head: '<meta name="review-variant" content="optional-spatial-ribbons-prototype">\n'
+  };
 }
-module.exports={decorate,ribbonGeometry,ribbonSignals,createRibbonMaterials,makeProjector,paintRibbon,surfaceStyles,readingSelector};
+module.exports = {
+  descriptor, ribbonGeometry, ribbonSignals, createRibbonMaterials,
+  makeProjector, paintRibbon, surfaceCSS, readingSelector
+};

@@ -2,20 +2,11 @@
 // Explicit staging rendition of the authored Color effects. Production stays base.
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const artifact=require('../quality/artifact.cjs'),snapshot=require('../site/snapshot.cjs');
-function authoredEffects(){
-  const variants=require('../site/variants.cjs'),prior=variants.attach,parts=[];
-  variants.attach=(html,part)=>{parts.push(part);return html+' data-site-effect="'+part.effect+'"';};
-  try{require('../../review/site-scroll-sync-20261004/FLIGHT-PROTOTYPE.cjs').decorate(require('../../review/site-scroll-sync-20261004/RIBBONS-PROTOTYPE.cjs').decorate(''));}
-  finally{variants.attach=prior;}
-  assert.deepEqual(parts.map(p=>p.effect),['ribbons','travel']);
-  return parts;
+function authoredEffects() {
+  return require('../site/effects.cjs').descriptors();
 }
-function runtime(parts){
-  const code=parts.map(p=>'(()=>{window.SiteEffects={...window.SiteEffects,contract:1};\n'+p.code+'\n})();').join('\n');
-  const styles=parts.flatMap(p=>[...(p.styles||'').matchAll(/<style[^>]*>([\s\S]*?)<\/style>/g)].map(m=>m[1])).join('\n');
-  const controls=parts.flatMap(p=>[...(p.bodyScripts||'').matchAll(/<script>([\s\S]*?)<\/script>/g)].map(m=>m[1])).join('\n');
-  assert.ok(code&&styles&&controls,'complete authored effects');
-  return {code,styles,controls};
+function runtime(parts) {
+  return require('../site/effects.cjs').runtime(parts);
 }
 function identities(base,parts){
   const fingerprint=artifact.digest(JSON.stringify({contract:1,baseEngine:base.engine,parts}));

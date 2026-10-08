@@ -1,7 +1,8 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict');
 const api=require('../site/engine/math.cjs')();
-const {ribbonGeometry,ribbonSignals,createRibbonMaterials,makeProjector,decorate}=require('../review/site-scroll-sync-20261004/RIBBONS-PROTOTYPE.cjs');
+const {ribbonGeometry,ribbonSignals,createRibbonMaterials,makeProjector}=require('../site/effects/ribbons.cjs');
+const {decorateRibbons:decorate}=require('../tools/site/effects.cjs');
 const section=ribbonGeometry(api),distance=(a,b)=>Math.hypot(...api.sub(a,b));
 test('ribbon widths halve the previous half-width version across rooms and phases',()=>{
   // Frozen measurements of the wider f6b3fb5 comparison, not a duplicate of
@@ -168,7 +169,7 @@ test('seeded signals run three times per cycle with gaps, both directions and ex
 });
 test('offline ribbon treatment is exact, labelled, depth-sorted and invalidates stale engine identity',()=>{
   const fs=require('node:fs'),path=require('node:path');
-  const html=require('../review/site-scroll-sync-20261004/export.cjs').standalone(fs.readFileSync(path.join(__dirname,'../review/site-v1-20261004-v11-interactive.html'),'utf8'));
+  const html=require('../tools/site/export.cjs').standalone(fs.readFileSync(path.join(__dirname,'../review/site-v1-20261004-v11-interactive.html'),'utf8'));
   const hash=html.match(/name="site-engine" content="([a-f0-9]{64})"/)[1];
   const output=decorate(html);
   assert.match(output,/optional-spatial-ribbons-prototype/);

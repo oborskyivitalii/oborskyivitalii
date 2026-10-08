@@ -97,6 +97,24 @@
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
+    ".github/acceptance/issue-54.json": {
+      "kind": "file",
+      "purpose": "Issue54 audit, guide, enforced subset, RI routing and Sol plan acceptance mapping.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    ".github/acceptance/issue-56.json": {
+      "kind": "file",
+      "purpose": "Issue56 AC01\u2013AC06 source-bound R1 extraction/tool coverage policy with independent/live delivery gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    ".github/code-style.json": {
+      "kind": "file",
+      "purpose": "Exact issue54 legacy source/inline-style debt with frozen-baseline ceilings and removal tasks.",
+      "role": "configuration",
+      "owner": "guides/CODE-STYLE.md"
+    },
     ".github/pull_request_template.md": {
       "kind": "file",
       "purpose": "PR execution, owning issue/commit links, checks/review and honest completion template.",
@@ -391,6 +409,42 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime identity directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/archive.js": {
+      "kind": "file",
+      "purpose": "Generated immutable shared runtime dependency.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/navigation.js": {
+      "kind": "file",
+      "purpose": "Generated immutable shared runtime dependency.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/space.js": {
+      "kind": "file",
+      "purpose": "Generated immutable shared runtime dependency.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/styles.css": {
+      "kind": "file",
+      "purpose": "Generated immutable shared runtime dependency.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/theme.js": {
+      "kind": "file",
+      "purpose": "Generated immutable shared runtime dependency.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/site-revision.json": {
       "kind": "file",
       "purpose": "Generated public rendition: site-revision.json; regenerate from site sources with tools/site/build.cjs.",
@@ -400,6 +454,66 @@
     "docs/snapshots": {
       "kind": "directory",
       "purpose": "Generated exact-route HTML snapshots.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347": {
+      "kind": "directory",
+      "purpose": "Generated immutable route snapshot identity directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html": {
+      "kind": "file",
+      "purpose": "Generated immutable route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/74f6fbade22d671a8f14f5d9dd0b84f40c2c67a75ab549e5cefc6fe42954030d": {
+      "kind": "directory",
+      "purpose": "Generated immutable route snapshot identity directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/74f6fbade22d671a8f14f5d9dd0b84f40c2c67a75ab549e5cefc6fe42954030d/talks.html": {
+      "kind": "file",
+      "purpose": "Generated immutable route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68": {
+      "kind": "directory",
+      "purpose": "Generated immutable route snapshot identity directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html": {
+      "kind": "file",
+      "purpose": "Generated immutable route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946": {
+      "kind": "directory",
+      "purpose": "Generated immutable route snapshot identity directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html": {
+      "kind": "file",
+      "purpose": "Generated immutable route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7": {
+      "kind": "directory",
+      "purpose": "Generated immutable route snapshot identity directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html": {
+      "kind": "file",
+      "purpose": "Generated immutable route snapshot.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -450,6 +564,12 @@
       "purpose": "Maintained topic guides for repository boundaries, publication, quality and hosting; root stays an entry surface.",
       "role": "guide",
       "owner": "guides/README.md"
+    },
+    "guides/CODE-STYLE.md": {
+      "kind": "file",
+      "purpose": "Mandatory agent coding, content/template/CSS boundaries, performance and verification standards.",
+      "role": "guide",
+      "owner": "guides/CODE-STYLE.md"
     },
     "guides/README.md": {
       "kind": "file",
@@ -816,6 +936,30 @@
       "purpose": "Verified Matthew Skelton public reshare identity, bounded guest-source acquisition metadata/hash, Michael Risch attribution and older encouragement provenance.",
       "role": "history",
       "owner": "guides/SITE-SOURCE-AUDIT.md"
+    },
+    "review/issue-54": {
+      "kind": "directory",
+      "purpose": "Issue54 source audit, architecture and ordered Sol refactor plan.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-54/2026-10-08-analysis.md": {
+      "kind": "file",
+      "purpose": "Exact-baseline site debt findings, code standards delivery and bounded Sol work packages.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-56": {
+      "kind": "directory",
+      "purpose": "Versioned R1 implementation, tool decision, parity and review evidence for issue56.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-56/2026-10-08-handoff.md": {
+      "kind": "file",
+      "purpose": "Single source-bound R1 implementation handoff, free tooling decision, CS/AC mapping and independent review record.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
     },
     "review/public-responses-20261006": {
       "kind": "directory",
@@ -1669,12 +1813,6 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
-    "review/site-scroll-sync-20261004/FLIGHT-PROTOTYPE.cjs": {
-      "kind": "file",
-      "purpose": "Maintained authored Color content-flight effects consumed by current exporters/staging checks.",
-      "role": "source",
-      "owner": "site/README.md"
-    },
     "review/site-scroll-sync-20261004/FLIGHT.md": {
       "kind": "file",
       "purpose": "Historical report/plan/checkpoint: FLIGHT.md. Native-scroll/flight/ribbon evidence plus explicitly marked maintained Color/export sources.",
@@ -1693,12 +1831,6 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
-    "review/site-scroll-sync-20261004/READING-SURFACES.cjs": {
-      "kind": "file",
-      "purpose": "Authored reading-surface effect helper covered by current source security checks.",
-      "role": "source",
-      "owner": "site/README.md"
-    },
     "review/site-scroll-sync-20261004/REFINEMENT.md": {
       "kind": "file",
       "purpose": "Historical report/plan/checkpoint: REFINEMENT.md. Native-scroll/flight/ribbon evidence plus explicitly marked maintained Color/export sources.",
@@ -1710,12 +1842,6 @@
       "purpose": "Historical report/plan/checkpoint: REPORT.md. Native-scroll/flight/ribbon evidence plus explicitly marked maintained Color/export sources.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
-    },
-    "review/site-scroll-sync-20261004/RIBBONS-PROTOTYPE.cjs": {
-      "kind": "file",
-      "purpose": "Maintained authored Color ribbon/reading presentation consumed by current exporters/staging checks.",
-      "role": "source",
-      "owner": "site/README.md"
     },
     "review/site-scroll-sync-20261004/RIBBONS.md": {
       "kind": "file",
@@ -1800,12 +1926,6 @@
       "purpose": "Historical retained diagnostic/export script: check-ribbon-material.cjs. Native-scroll/flight/ribbon evidence plus explicitly marked maintained Color/export sources.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
-    },
-    "review/site-scroll-sync-20261004/export.cjs": {
-      "kind": "file",
-      "purpose": "Maintained complete standalone base/Color exporter used by basic and hosted checks.",
-      "role": "source",
-      "owner": "site/README.md"
     },
     "review/site-sol-continuation-20261005": {
       "kind": "directory",
@@ -5629,6 +5749,30 @@
       "role": "source",
       "owner": "site/README.md"
     },
+    "site/effects": {
+      "kind": "directory",
+      "purpose": "Canonical optional effect descriptors and browser runtime helpers, independent of build tools.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/effects/flight.cjs": {
+      "kind": "file",
+      "purpose": "Canonical pure Travel effect descriptor and runtime helpers; hosted/offline adapters share raw code, CSS and controls.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/effects/reading-surfaces.cjs": {
+      "kind": "file",
+      "purpose": "Canonical shared reading-surface CSS producer consumed by Ribbons and Travel descriptors.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/effects/ribbons.cjs": {
+      "kind": "file",
+      "purpose": "Canonical pure Ribbons effect descriptor and geometry/material helpers; optional hosted/offline reading runtime.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
     "site/engine": {
       "kind": "directory",
       "purpose": "Shared Canvas geometry/lifecycle, renderer, native-scroll router, theme, filters and CSS.",
@@ -5827,6 +5971,12 @@
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
+    "tests/effects.test.cjs": {
+      "kind": "file",
+      "purpose": "Permanent explicit effect composition, malformed descriptor, isolation and serialization regression cases.",
+      "role": "test",
+      "owner": "site/README.md"
+    },
     "tests/endpoint-fixtures.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for endpoint fixtures.",
@@ -6007,6 +6157,12 @@
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
+    "tests/test_code_style.py": {
+      "kind": "file",
+      "purpose": "Negative style-guard fixtures and actual code-path/bilingual agent/RI routing checks.",
+      "role": "test",
+      "owner": "guides/CODE-STYLE.md"
+    },
     "tests/test_issue31_acceptance.py": {
       "kind": "file",
       "purpose": "Issue 31 observable acceptance checks for RI provenance, inventory, memory, workflow, unchanged site and bootstrap.",
@@ -6046,6 +6202,12 @@
     "tests/test_issue48_acceptance.py": {
       "kind": "file",
       "purpose": "Issue48 strict exact selections of maintained theory association, formula midpoint/cache, response reconciliation and canonical generation checks.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "tests/test_issue56_acceptance.py": {
+      "kind": "file",
+      "purpose": "Owning issue56 frozen baseline parity and canonical R1 source/tool coverage acceptance; excluded from generic future regression.",
       "role": "test",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -6192,6 +6354,12 @@
       "purpose": "Site generation/offline review helper: capture site review; inspect its source and output contract before use.",
       "role": "source",
       "owner": "site/README.md"
+    },
+    "tools/check_code_style.py": {
+      "kind": "file",
+      "purpose": "Bounded authored-source style/dependency/token guard; immutable legacy debt validation.",
+      "role": "validator",
+      "owner": "guides/CODE-STYLE.md"
     },
     "tools/check_repository_layout.py": {
       "kind": "file",
@@ -6667,9 +6835,21 @@
       "role": "source",
       "owner": "site/README.md"
     },
+    "tools/site/effects.cjs": {
+      "kind": "file",
+      "purpose": "Canonical active effect manifest, descriptor validation, ordered hosted assembly and compatible offline adapters.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
     "tools/site/evidence-policy.cjs": {
       "kind": "file",
       "purpose": "Advisory component-fingerprint proposal for content-only or full check scope under #13; never skips mandatory jobs or reuses evidence.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "tools/site/export.cjs": {
+      "kind": "file",
+      "purpose": "Canonical offline export builder for Base, Ribbons, Flight and Color using maintained effect adapters.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -6744,144 +6924,6 @@
       "purpose": "Protected source/artifact/controller/PR lease validation before hosted action.",
       "role": "source",
       "owner": "guides/SITE-STAGING.md"
-    },
-    "docs/runtime/e866b8f739a6984deedd7dd5ccd60398c06bc3d5f28b7765e1f5973251f550ab": {
-      "kind": "directory",
-      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/e866b8f739a6984deedd7dd5ccd60398c06bc3d5f28b7765e1f5973251f550ab/archive.js": {
-      "kind": "file",
-      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/e866b8f739a6984deedd7dd5ccd60398c06bc3d5f28b7765e1f5973251f550ab/navigation.js": {
-      "kind": "file",
-      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/e866b8f739a6984deedd7dd5ccd60398c06bc3d5f28b7765e1f5973251f550ab/space.js": {
-      "kind": "file",
-      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/e866b8f739a6984deedd7dd5ccd60398c06bc3d5f28b7765e1f5973251f550ab/styles.css": {
-      "kind": "file",
-      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/e866b8f739a6984deedd7dd5ccd60398c06bc3d5f28b7765e1f5973251f550ab/theme.js": {
-      "kind": "file",
-      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/f8fdf5ef0a85c00f7cf4e2281f780973c2fb2651f8099ccd89d20a2500d19730": {
-      "kind": "directory",
-      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/f8fdf5ef0a85c00f7cf4e2281f780973c2fb2651f8099ccd89d20a2500d19730/index.html": {
-      "kind": "file",
-      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/4a15ab9a4ed10ce5692b26ede6355bf7374967e1c4b05f6a20aa4595581b3fec": {
-      "kind": "directory",
-      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/4a15ab9a4ed10ce5692b26ede6355bf7374967e1c4b05f6a20aa4595581b3fec/writing.html": {
-      "kind": "file",
-      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/36a28756050072adcd0d9e1ebce44356572d9ce54dbb226d58fbc494ab50d78a": {
-      "kind": "directory",
-      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/36a28756050072adcd0d9e1ebce44356572d9ce54dbb226d58fbc494ab50d78a/credits.html": {
-      "kind": "file",
-      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/5bca4816e856f2f1038c30ebc0457709c7e3b4d2c359f70bae424c77199fe599": {
-      "kind": "directory",
-      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/5bca4816e856f2f1038c30ebc0457709c7e3b4d2c359f70bae424c77199fe599/research.html": {
-      "kind": "file",
-      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/62c10ab461ad0898f3ef87d5b8246a6cfd0e35027d59b5cb8c843042e8560221": {
-      "kind": "directory",
-      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/62c10ab461ad0898f3ef87d5b8246a6cfd0e35027d59b5cb8c843042e8560221/talks.html": {
-      "kind": "file",
-      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "guides/CODE-STYLE.md": {
-      "kind": "file",
-      "purpose": "Mandatory agent coding, content/template/CSS boundaries, performance and verification standards.",
-      "role": "guide",
-      "owner": "guides/CODE-STYLE.md"
-    },
-    ".github/code-style.json": {
-      "kind": "file",
-      "purpose": "Exact issue54 legacy source/inline-style debt with frozen-baseline ceilings and removal tasks.",
-      "role": "configuration",
-      "owner": "guides/CODE-STYLE.md"
-    },
-    "tools/check_code_style.py": {
-      "kind": "file",
-      "purpose": "Bounded authored-source style/dependency/token guard; immutable legacy debt validation.",
-      "role": "validator",
-      "owner": "guides/CODE-STYLE.md"
-    },
-    "tests/test_code_style.py": {
-      "kind": "file",
-      "purpose": "Negative style-guard fixtures and actual code-path/bilingual agent/RI routing checks.",
-      "role": "test",
-      "owner": "guides/CODE-STYLE.md"
-    },
-    ".github/acceptance/issue-54.json": {
-      "kind": "file",
-      "purpose": "Issue54 audit, guide, enforced subset, RI routing and Sol plan acceptance mapping.",
-      "role": "configuration",
-      "owner": ".github/ACCEPTANCE.md"
-    },
-    "review/issue-54": {
-      "kind": "directory",
-      "purpose": "Issue54 source audit, architecture and ordered Sol refactor plan.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "review/issue-54/2026-10-08-analysis.md": {
-      "kind": "file",
-      "purpose": "Exact-baseline site debt findings, code standards delivery and bounded Sol work packages.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
     }
   }
 }
