@@ -28,7 +28,7 @@
     {
       "id": "AC03",
       "intent": "R3: content, records and templates have separate owners",
-      "automated_scope": "Current-head CONTENT contracts reject schema/presentation/topic/labels/month/identity errors, raw HTML objects/fields, unsafe attribute/URL output, missing/duplicate/order block/record references and unused template slots. The task-only R3 migration proof compares five rendered routes against accepted8c source for semantic DOM/prose/full attributes/links/order/IDs/metadata/JSONLD/edition/featured relationships, admitting only the separately reviewed R4 portrait attributes and two inert Writing labels. CANONICAL covers current generation/incremental/offline contracts. Actual no-JS/reading observations and substantive boundary/content review remain LIVE/INDEPENDENT gates.",
+      "automated_scope": "Current-head CONTENT contracts reject schema/presentation/topic/labels/month/identity errors, raw HTML objects/fields, unsafe attribute/URL output, missing/duplicate/order block/record references and unused template slots. The task-only R3 migration proof compares five rendered routes against accepted8c source for semantic DOM/prose/full attributes/links/order/IDs/metadata/JSONLD/edition/featured relationships, retaining the whole R2 route while replacing only its unique PMDay article with approved-main a8149a0 bytes; exact title, recording URL and language mutation negatives reject drift. Other route content and metadata/edition contracts stay frozen. Also admitting only the separately reviewed R4 portrait attributes and two inert Writing labels. CANONICAL covers current generation/incremental/offline contracts. Actual no-JS/reading observations and substantive boundary/content review remain LIVE/INDEPENDENT gates.",
       "checks": ["CONTENT", "CANONICAL"],
       "gates": ["PENDING-PHASES", "INDEPENDENT", "LIVE"]
     },
@@ -63,7 +63,7 @@
     {
       "id": "AC08",
       "intent": "R6: measured resource result and preserved budgets",
-      "automated_scope": "Current-head METRICS contracts reject wrong clean commit/tree/artifact/served runtime, missing/duplicate raw observations, fabricated summaries, weakened original budgets, unsafe caches, Off/reduced RAF callbacks and growing ten-cycle warm DOM/listener state. BASIC preserves current geometry/size limits. Comparable actual raw task/frame/cache/memory/lifecycle measurements and any optimization benefit or explicit rejection require LIVE/INDEPENDENT evidence.",
+      "automated_scope": "Comparable measurements use exact approved-main a8149a0/tree7766106 with the same Base[] or Color[travel] composition and actual absence of Ribbon hooks/custom paint. Frozen R2 remains formatting history and cannot attribute the separately authorized ribbon-removal benefit to refactoring. Current-head METRICS contracts reject wrong clean commit/tree/artifact/served runtime, missing/duplicate raw observations, fabricated summaries, weakened original budgets, unsafe caches, Off/reduced RAF callbacks and growing ten-cycle warm DOM/listener state. BASIC preserves current geometry/size limits. Comparable actual raw task/frame/cache/memory/lifecycle measurements and any optimization benefit or explicit rejection require LIVE/INDEPENDENT evidence.",
       "checks": ["METRICS", "BASIC"],
       "gates": ["PENDING-PHASES", "INDEPENDENT", "LIVE"]
     },

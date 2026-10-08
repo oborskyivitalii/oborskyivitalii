@@ -4,7 +4,8 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 
 ## Snapshot
 
-- Checked main `a56b62751f3c0f7e295db07bfc23201dd838510b`: R1 PR #57 is merged;
+- Checked main `a8149a0a65579d6977ccef9bb0e6e4367fd9e9dd`: PMDay recording and
+  active Color ribbon removal from PR63 are preserved. R1 PR #57 is merged;
   issue #56 is closed with all six ACs checked. Pre-merge source/acceptance/preview
   and post-merge Basic, parity and navigation/RI CI pass. Exact source/run evidence
   belongs in [#56](https://github.com/oborskyivitalii/oborskyivitalii/issues/56).
@@ -19,7 +20,7 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
   [Single handoff](review/issue-58/2026-10-08-handoff.md#current-continuation--same-pr-2026-10-08).
   Verified R2 is immutable `8c6cf877fee92b4d2493b4c1a07df7080b987c29`, tree
   `2725ae4743032b2aeaafd7f2d7f7c91a08265906`; CI/scans/independent review pass.
-  AC02 and R2.1–R2.6 are checked; R2.7/final criteria remain open. R3–R6 underway.
+  AC02 and R2.1–R2.6 are checked; R2.7/final criteria remain open. R3–R5 restored and rebased; R6 final evidence remains.
   Issue59 remains superseded/closed; retain its dated history.
 - PR #51 content/formula/shared reading-backdrop changes are merged and preserved.
   #15 is closed for the earlier engine/content increment; R3 extends its owners.
@@ -83,7 +84,7 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 | Issue | Remaining intent |
 | --- | --- |
 | #58 | Full R2-R6 execution and final acceptance; R1 is complete. |
-| #58 / PR #60 | R3–R5 implemented/reviewed; R6 measurements, clean integrated CI/staging and final merge/main verification. |
+| #58 / PR #60 | R3–R5 restored from local e4295ba and rebased as 8563545; matched-main R6, final CI/staging and merge/main acceptance. |
 | #48 | PR51 merged; fetch remaining acceptance rather than restore old prose. |
 | #49 / Draft PR #53 | Implement the consolidated fragment-flight plan; #50 and PR52 are closed duplicates/history. |
 | #45 / #36 / #41 | Original visual, paired, editorial/device and release gates. |
@@ -98,7 +99,8 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 1. Fetch main, issue58 and DraftPR60; compare refs with immutable R2 checkpoint.
 2. Read current R3/R4/R5 implementation/review sections; preserve frozen R2 and
    generation/ownership contracts while finishing the integrated evidence.
-3. Complete paired R6 measurements after candidate stabilizes, then regenerate,
+3. Compare R6 with exact main a8149a0, matching active no-ribbon effects; preserve
+   frozen R2 evidence. After candidate stabilizes regenerate,
    refresh catalogs/RI, scan and verify one exact clean integrated candidate/CI.
 4. Reconcile whole AC boxes and evidence; merge only on final maintainer decision.
 

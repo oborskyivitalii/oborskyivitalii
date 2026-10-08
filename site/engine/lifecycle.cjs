@@ -419,8 +419,15 @@ module.exports = function (api) {
     span('draw-state');
     if (window.SiteEngineProbe) {
       diagnostic('paint', {
-        current, ambientTime, width, height, compact, detailTier, journey,
-        ordinaryShapes: geometry.length, customShapes: custom.length
+        current,
+        ambientTime,
+        width,
+        height,
+        compact,
+        detailTier,
+        journey,
+        ordinaryShapes: geometry.length,
+        customShapes: custom.length,
       });
     }
   }

@@ -136,8 +136,10 @@ def collect_findings(files, catalog):
             for target in imports(path, text):
                 if target.startswith("review/"):
                     findings[("CS01-history-import", path, target)] += 1
-                elif target == RETAINED.rstrip("/") or target.startswith(("docs/", RETAINED)) or (
-                    path.startswith("site/") and target.startswith("tools/")
+                elif (
+                    target == RETAINED.rstrip("/")
+                    or target.startswith(("docs/", RETAINED))
+                    or (path.startswith("site/") and target.startswith("tools/"))
                 ):
                     findings[("CS01-generated-or-tool-import", path, target)] += 1
     return findings
@@ -145,19 +147,29 @@ def collect_findings(files, catalog):
 
 def verified_retained_styles(root, files):
     """Only manifest-bound prior public CSS copies are not authored owners."""
-    copies = {path for path in files if re.fullmatch(
-        r"site/retained/runtime/[a-f0-9]{64}/styles\.css", path)}
+    copies = {
+        path
+        for path in files
+        if re.fullmatch(r"site/retained/runtime/[a-f0-9]{64}/styles\.css", path)
+    }
     if not copies:
         return copies
     manifest = json.loads((root / RETAINED / "manifest.json").read_text(encoding="utf-8"))
-    if not isinstance(manifest, dict) or type(manifest.get("schema")) is not int \
-            or manifest["schema"] != 1 or not isinstance(manifest.get("files"), dict):
+    if (
+        not isinstance(manifest, dict)
+        or type(manifest.get("schema")) is not int
+        or manifest["schema"] != 1
+        or not isinstance(manifest.get("files"), dict)
+    ):
         raise ValueError("Invalid retained style manifest")
     for path in copies:
         expected = manifest["files"].get(path.removeprefix(RETAINED))
         actual = hashlib.sha256((root / path).read_bytes()).hexdigest()
-        if not isinstance(expected, str) or not re.fullmatch(r"[a-f0-9]{64}", expected) \
-                or expected != actual:
+        if (
+            not isinstance(expected, str)
+            or not re.fullmatch(r"[a-f0-9]{64}", expected)
+            or expected != actual
+        ):
             raise ValueError("Unverified retained style copy: " + path)
     return copies
 
