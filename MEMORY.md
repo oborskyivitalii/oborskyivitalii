@@ -4,56 +4,59 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 
 ## Snapshot
 
-- Rules main `e501da821c1cf9a3ac4bc8d251aba1bf4dc57d59`: PR #55 is merged;
-  issue #54 is closed completed. PR #51 was already merged.
-  Its research/Writing/Talks content, formula position and shared reading
-  backdrop changes are current sources. Older #48 pending-merge instructions
-  are obsolete; fetch its issue for remaining acceptance.
-- [#54 / PR #55](https://github.com/oborskyivitalii/oborskyivitalii/pull/55)
-  owns the source audit, mandatory [code guide](guides/CODE-STYLE.md), agent/RI/AC
-  routing and bounded CI guard. Authorized merge completed on 8 October with
-  current green CI and independent agent review. Its source audit and rules are
-  active; runtime/content/public output was unchanged by activation.
-- [#56](https://github.com/oborskyivitalii/oborskyivitalii/issues/56) owns separate
-  R1 extraction into `site/effects/` and `tools/site/`, explicit shared descriptors,
-  expanded existing tool coverage and exact runtime/offline parity. Current
-  delivery/check/review state and PR links belong in its live issue and single
-  [handoff](review/issue-56/2026-10-08-handoff.md). Do not merge it by inference.
-- The single [#54 audit and Sol plan](review/issue-54/2026-10-08-analysis.md)
-  defines R0–R6. R1 active effect/export source extraction is first; formatting,
-  content/template, CSS and runtime migrations follow separately.
-- [#49 / PR #53](https://github.com/oborskyivitalii/oborskyivitalii/pull/53)
-  and [#50 / PR #52](https://github.com/oborskyivitalii/oborskyivitalii/pull/52)
-  contain overlapping fragment-flight plans. Resolve ownership before feature
-  implementation; code-quality/refactoring does not choose their route.
+- Checked main `a56b62751f3c0f7e295db07bfc23201dd838510b`: R1 PR #57 is merged;
+  issue #56 is closed with all six ACs checked. Pre-merge source/acceptance/preview
+  and post-merge Basic, parity and navigation/RI CI pass. Exact source/run evidence
+  belongs in [#56](https://github.com/oborskyivitalii/oborskyivitalii/issues/56).
+- Standards PR #55 is merged; #54 is closed for audit/guide/guard/plan delivery.
+  [CODE-STYLE](guides/CODE-STYLE.md), CS01-CS10 and the bounded guard are active.
+  [Original R0-R6 audit](review/issue-54/2026-10-08-analysis.md) stays dated evidence.
+- [#58](https://github.com/oborskyivitalii/oborskyivitalii/issues/58) owns complete
+  R2-R6 refactoring acceptance. R1 is complete; remaining criteria stay open.
+- [#59](https://github.com/oborskyivitalii/oborskyivitalii/issues/59) owns R2:
+  pinned mechanical formatting and complete maintained-source quality checks.
+  Its single [handoff](review/issue-59/2026-10-08-handoff.md) and preliminary
+  policy prepare implementation. Formatter installation/broad formatting is not
+  done. Fetch its actual Draft PR/source/check state before continuing.
+- PR #51 content/formula/shared reading-backdrop changes are merged and preserved.
+  #15 is closed for the earlier engine/content increment; R3 extends its owners.
+- #49/PR #53 and #50/PR #52 retain overlapping fragment-flight plans; resolve
+  ownership before that feature. Refactoring does not choose their route.
 
 ## Decisions
 
-- Read CODE-STYLE before code/template/style/config changes. Map applicable
-  CS rule IDs to the owning AC and PR evidence; the guard proves a subset only.
-- Frozen #54 legacy allowances cannot grow. Trim entries as debt is removed.
-- Each bounded refactor gets an execution issue/ACs and PR, linked to #54.
-  Begin from merged rules and current main; preserve accepted #48 content.
-- Reuse free ESLint/SonarJS, Stylelint and existing security tools. Evaluate
-  source coverage before adding a service/server. R2 should pin Prettier and use
-  Ruff formatting; future dependency/clone checks need scoped authored baselines.
-  SonarQube server is unnecessary for R1; free Cloud remains optional/unconfigured.
-- Preserve reading paint/layout, world/camera, generated/immutable/offline
-  identities, no-JS behavior, lifecycle bounds and original performance budgets.
-- PR smoke/targeted, bounded staging and full production retain their owners.
-  Chromium/Firefox use Linux; native macOS WebKit stays separate.
-- Whole-AC checkboxes need current checks and applicable review evidence.
-  Merge, stable staging, production and refactor completion are distinct.
+- One umbrella describes the finished codebase; each bounded migration owns
+  stable ACs, one unambiguous `Refs #N` policy owner and an independently
+  reviewed PR. Merge/check dependencies before the next dependent phase.
+- Read CODE-STYLE before edits; review unautomated rules. Frozen #54 debt cannot
+  grow; trim removed exact allowances.
+- R2 preparation is explicit: baseline checks do not prove formatter compliance.
+  Expand the preliminary policy to real format/idempotence/coverage/semantic
+  checks during implementation; all whole-criterion boxes remain open.
+- Reuse free ESLint/SonarJS, Stylelint/security and existing Ruff; plan pinned
+  Prettier. Stronger dependency/clone checks need a scoped authored baseline.
+- Native factory formatting changes serialization/hashes. Preserve executable
+  and semantic parity; regenerate legitimate identities. Independently review
+  exact complexity/Bandit/public fingerprint refreshes without changing original
+  limits, expiry, immutable baselines or removal ownership.
+- R3 owns records/prose/templates, R4 static CSS, R5 cohesive runtime/build
+  seams and R6 demonstrated hotspots plus final integrated acceptance.
+- Preserve content/URLs/paint/camera, incremental/no-JS/offline contracts,
+  one scene clock, cancellation/cache bounds and original resource budgets.
+- PR smoke/targeted, bounded staging and production retain separate profiles.
+  Native macOS WebKit/device/rights/release gates stay with release owners.
+  Later merge/promotion/publication needs its applicable maintainer decision.
 
 ## Open work
 
 | Issue | Remaining intent |
 | --- | --- |
-| #56 | R1 exact-source checks, Draft PR, independent review and live AC reconciliation; R2–R6 stay separate. |
-| #48 | PR51 is merged; reconcile remaining acceptance from live evidence. |
-| #49 / #50 | Resolve overlapping fragment-flight plans before implementation. |
+| #58 | Full R2-R6 execution and final acceptance; R1 is complete. |
+| #59 | R2 implementation/checks, independent review and later merge/main verification. |
+| #48 | PR51 merged; fetch remaining acceptance rather than restore old prose. |
+| #49 / #50 | Resolve overlapping fragment-flight feature ownership. |
 | #45 / #36 / #41 | Original visual, paired, editorial/device and release gates. |
-| #1 / #13 | First release, physical devices and full production/recovery acceptance. |
+| #1 / #13 | First release, physical devices and production/recovery acceptance. |
 | #8 / #39 | Production URL/indexability, domains and analytics activation. |
 | #7 | License and editorial/third-party rights. |
 | #5 / #6 | Article HTML/PDF edition and cross-repository adapter. |
@@ -61,12 +64,14 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 
 ## Next session
 
-1. Fetch live main and issue56/its PR; PR55 rules are already merged.
-2. Continue the separate authorized R1 delivery from its source handoff.
-3. Use targeted checks, trim removed debt, rebuild RI and reconcile actual ACs.
+1. Fetch main, umbrella58 and issue59/its Draft PR; R1 is already merged.
+2. Read the single R2 handoff and confirm scope before mechanical formatting.
+3. Implement real formatter/coverage/parity checks in that PR, preserving exact
+   source/security identities and proportional test profiles.
+4. Reconcile actual AC boxes and review; merge only on maintainer decision.
 
 ## Maintenance
 
-Keep the five sections within 120 lines and rebuild RI after changes. Detailed
-source/run/review history belongs in the owning issue/PR artifact. No private
-messages, credentials or inferred approvals belong in memory.
+Keep these five sections within 120 lines; rebuild RI after changes. Detailed
+source/run/review history belongs in its issue/PR artifact. Never store private
+correspondence, credentials or inferred approvals.
