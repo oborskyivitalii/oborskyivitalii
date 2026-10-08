@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "81726ff46209c059045b540afeb7b0f3087eecd9feecbec779baa1e5e658aa25",
+    "digest": "d16e23f5d2ff3e4f5dd5befef1c50ce37d9cf1ebd05e8b054098ce2608aaa9d7",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -27,7 +27,7 @@
       {
         "path": ".github/ACCEPTANCE.md",
         "identity_mode": "content",
-        "sha256": "bd74a60ccf2493e6ffc2e598cba737a2935a4377072cf83acecdd3a3851a3d13"
+        "sha256": "c13f1e51d3055a02741798fadb06b023764116e6348c4b620f68625d13c2f991"
       },
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -37,7 +37,7 @@
       {
         "path": ".github/ISSUE_TEMPLATE/work-item.md",
         "identity_mode": "content",
-        "sha256": "5dd1607ad15da77867bf9f7f3d52f3f95e64f50a8349cbf545c41a01db1d2ca2"
+        "sha256": "c9b6d6a36ed145002834952eff069e2a7fbfd179a7cff7d5425421881655fa24"
       },
       {
         "path": ".github/REPOSITORY-INTELLIGENCE.md",
@@ -75,14 +75,24 @@
         "sha256": "23050469079306b91a34e06b761770d1fb31bf041896de81943119bbd1a6ac8e"
       },
       {
+        "path": ".github/acceptance/issue-54.json",
+        "identity_mode": "content",
+        "sha256": "0b1b6c961fab83e81c7716b75f932e8192261f72dafb6d158dce10d250252673"
+      },
+      {
+        "path": ".github/code-style.json",
+        "identity_mode": "content",
+        "sha256": "7eb4844eeca51ea45815a0dd74fc31ee19b2e0c0ef7d07c2f0c0d010bde4578f"
+      },
+      {
         "path": ".github/pull_request_template.md",
         "identity_mode": "content",
-        "sha256": "9d6e001401d72e906275515a4c4921e966541cda9d7b98aad58f54980bf301de"
+        "sha256": "c8c3d6209a86c42842c5f649a8f0837de4ff5af955b8c27769eabf7763c9a28f"
       },
       {
         "path": ".github/repository-intelligence-config.json",
         "identity_mode": "content",
-        "sha256": "bf9d9b819b3a06314c668984b4830d27ac530785e64ac4937bcb9c75c42e3afd"
+        "sha256": "9508dc0417cee94850ba538be9c8da06b2e5900554f7a6c69d09344f5e88ff3a"
       },
       {
         "path": ".github/repository-intelligence/agent-context.json",
@@ -91,17 +101,17 @@
       {
         "path": ".github/repository-layout.json",
         "identity_mode": "content",
-        "sha256": "aeed11013476aa5517b180a7a1009c0efc0d49a487103d798a5f8d3fcecb342a"
+        "sha256": "41a8c2a0fcb29fa5cea9ffcbc3f4e1202107f76459e995d4110e20cf1fa87dcc"
       },
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "3c8b2e03be234ca32ec4aacf12dcfc4f2f3ff3187a25a6d347bab94cc8e10148"
+        "sha256": "300bb32adf0410aadd9eb7cc52006e0c6752036d158d8566fa47d3428dc3303a"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "1985763be4d4a4769d647e17911a9b4f81934f925a4b0b12adf26f6bf08519e7"
+        "sha256": "a86f7d9e539e1c92c25cabf10154a42115d7b2ef053581a7576d537ddf69452a"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -111,7 +121,7 @@
       {
         "path": ".github/workflows/navigation.yml",
         "identity_mode": "content",
-        "sha256": "8bb5299dfe5082381cbaa08b5a1bdc748d7e8bd060daf512096448eac8950454"
+        "sha256": "bdba63ae8bdc3a080b8ac0383afd8a6cbf9e50984a92ad46e0420d618bbf706b"
       },
       {
         "path": ".github/workflows/site-browser-gate-probe.yml",
@@ -186,17 +196,17 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "a46a8c699e5c58247e2aa1e6be01d49ce7508e815e16a5f27f51453cda38378e"
+        "sha256": "478c6af4aa6eca644b0d85cf73f44d50526fa5c4a808f414cc6d0b654d3b4792"
       },
       {
         "path": "CONTRIBUTING.md",
         "identity_mode": "content",
-        "sha256": "4294fc3e68375e674e5a1fcac8a81a8236c11c023d35e10497688e2807aa75ec"
+        "sha256": "9d8ea10d74c48fe313e7c977ffef9e9afa894d566163220a405d2fdb154f6ebc"
       },
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "636d94da8914b1782074c81ae1522cf3b5ee34b3163fbf45fc8b991c9da29620"
+        "sha256": "e0b87593cb884b60e26a5f44e0c4609c57e3c15df349f6f7134eebc536c59d5e"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -368,9 +378,14 @@
         "sha256": "8500a3a89bd091df6638caad812824cf03ad3233f674b207e37c73bb4c26cc01"
       },
       {
+        "path": "guides/CODE-STYLE.md",
+        "identity_mode": "content",
+        "sha256": "b07fde3526f92d7b0e113f1a34f57584ca0734f6609fd4ac65a02dfeef3af4e5"
+      },
+      {
         "path": "guides/README.md",
         "identity_mode": "content",
-        "sha256": "f5531a9333501c9708c6e62189885ea1c445111411d4467b0d725c735afb89b5"
+        "sha256": "2e41e8665b2e395f3a54c96369f9cc3bdc8f55422bd37f209fbb2b5230c86dd4"
       },
       {
         "path": "guides/REPOSITORIES.md",
@@ -385,7 +400,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "337a4a0945c78f630ad50c1e174b19932d171d4310fd947a5a72e72fa66eeaec"
+        "sha256": "d3fda7bcd9d71fb4bf28aecd801c5106fdcd1e380e580f6c91598f49bb99767c"
       },
       {
         "path": "guides/SITE-CONTENT-REVIEW.md",
@@ -586,6 +601,11 @@
         "path": "review/issue-45/2026-10-07-independent-review.md",
         "identity_mode": "content",
         "sha256": "f68f3f31c2e4b94aca79ceb2353cf4e0cd9702f45abb8da9abedc3eeb21a43ae"
+      },
+      {
+        "path": "review/issue-54/2026-10-08-analysis.md",
+        "identity_mode": "content",
+        "sha256": "6d1cdc23de63f3d14f94d54244d823bc1b45d7a162f140b540bb6761c8dd4f35"
       },
       {
         "path": "review/public-responses-20261006/README.md",
@@ -4628,6 +4648,11 @@
         "sha256": "3f3472e45db13b57d95ce7e7f23629b526be14d7d944b0b9adeb5531aad48c68"
       },
       {
+        "path": "tests/test_code_style.py",
+        "identity_mode": "content",
+        "sha256": "c31f5aa311386c512e78da6aa5b36491aab732513d67eb36684b8dd39d3a1268"
+      },
+      {
         "path": "tests/test_issue31_acceptance.py",
         "identity_mode": "content",
         "sha256": "09b726a0772b0611aa19051abc45702e7158c26d9f289081e50922d49c48cc34"
@@ -4680,7 +4705,7 @@
       {
         "path": "tests/test_ri_ci.py",
         "identity_mode": "content",
-        "sha256": "e566cc57a41fc73b3da7ade2649752a4e0b038f6215b06c9bfc3e620a978ec73"
+        "sha256": "8fc37bcee5106deb6e2d581592297b588bc852a34b026d06c0bb787afd5998a0"
       },
       {
         "path": "tests/test_root_layout.py",
@@ -4773,6 +4798,11 @@
         "sha256": "db173aa4024daf743dbc42bfe5ee472c2f08baf7b7c0640373c4d9faa96d6ad4"
       },
       {
+        "path": "tools/check_code_style.py",
+        "identity_mode": "content",
+        "sha256": "970037cd81112c6021bb3eecec9fc75c998852cd9da41ad41f292744d7af91ad"
+      },
+      {
         "path": "tools/check_repository_layout.py",
         "identity_mode": "content",
         "sha256": "e3d46affb1f40c296943610d4557b0c15a99f87b81ce0eeb3d22ab3fc9a46c3a"
@@ -4780,7 +4810,7 @@
       {
         "path": "tools/check_ri_ci.py",
         "identity_mode": "content",
-        "sha256": "0cb2ab4d9dd1c483c95d6b05f39708df7fdc27363ce1011baf0c7a444a1cf183"
+        "sha256": "7712e78281ba66c00e78a31675e34e271bdeff08e2fb3e1975e59071c7616879"
       },
       {
         "path": "tools/check_site_contrast.cjs",
@@ -5045,7 +5075,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "9d093874ec6d902da48f733ea61f7254683efb6b55223e8b335443e21f366609"
+        "sha256": "01b41bfca8446a83598a97262a0223d1f9813f8381f1d93e4d8c19735f769495"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -5218,7 +5248,7 @@
     "path": "tools/repository_intelligence.py",
     "sha256": "9c043c7e13c36899559f83b7941b989dfebaabd1e2d6d6e1815815704db627b3",
     "config_path": ".github/repository-intelligence-config.json",
-    "config_sha256": "bf9d9b819b3a06314c668984b4830d27ac530785e64ac4937bcb9c75c42e3afd"
+    "config_sha256": "9508dc0417cee94850ba538be9c8da06b2e5900554f7a6c69d09344f5e88ff3a"
   },
   "owners": [
     {
@@ -5432,6 +5462,20 @@
         "дублікати тестів",
         "оптимізація тестів"
       ]
+    },
+    {
+      "concern": "mandatory agent code style, source architecture and refactoring",
+      "path": "guides/CODE-STYLE.md",
+      "queries": [
+        "code style",
+        "coding standards",
+        "refactoring",
+        "content engine separation",
+        "стиль коду",
+        "код стайл",
+        "рефакторинг",
+        "правила написання коду"
+      ]
     }
   ],
   "terms": [],
@@ -5563,6 +5607,28 @@
         "AGENTS.md"
       ],
       "title": "issue-45.json"
+    },
+    {
+      "path": ".github/acceptance/issue-54.json",
+      "kind": "file",
+      "purpose": "Issue54 audit, guide, enforced subset, RI routing and Sol plan acceptance mapping.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-54.json"
+    },
+    {
+      "path": ".github/code-style.json",
+      "kind": "file",
+      "purpose": "Exact issue54 legacy source/inline-style debt with frozen-baseline ceilings and removal tasks.",
+      "role": "configuration",
+      "owner": "guides/CODE-STYLE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "code-style.json"
     },
     {
       "path": ".github/pull_request_template.md",
@@ -6214,6 +6280,17 @@
       "title": "medium-profile-revision-20261001.html"
     },
     {
+      "path": "guides/CODE-STYLE.md",
+      "kind": "file",
+      "purpose": "Mandatory agent coding, content/template/CSS boundaries, performance and verification standards.",
+      "role": "guide",
+      "owner": "guides/CODE-STYLE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Code style and source architecture"
+    },
+    {
       "path": "guides/README.md",
       "kind": "file",
       "purpose": "Topic guide index with one current owner for each concern; live issue status is retrieved separately.",
@@ -6696,6 +6773,17 @@
         "AGENTS.md"
       ],
       "title": "Issue 45 independent scoped review — 2026-10-07"
+    },
+    {
+      "path": "review/issue-54/2026-10-08-analysis.md",
+      "kind": "file",
+      "purpose": "Exact-baseline site debt findings, code standards delivery and bounded Sol work packages.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 54 — 2026-10-08 source audit, coding standards and Sol handoff"
     },
     {
       "path": "review/public-responses-20261006/README.md",
@@ -15586,6 +15674,17 @@
       "title": "test-profile-selection.test.cjs"
     },
     {
+      "path": "tests/test_code_style.py",
+      "kind": "file",
+      "purpose": "Negative style-guard fixtures and actual code-path/bilingual agent/RI routing checks.",
+      "role": "test",
+      "owner": "guides/CODE-STYLE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "test_code_style.py"
+    },
+    {
       "path": "tests/test_issue31_acceptance.py",
       "kind": "file",
       "purpose": "Issue 31 observable acceptance checks for RI provenance, inventory, memory, workflow, unchanged site and bootstrap.",
@@ -15903,6 +16002,17 @@
         "AGENTS.md"
       ],
       "title": "capture_site_review.cjs"
+    },
+    {
+      "path": "tools/check_code_style.py",
+      "kind": "file",
+      "purpose": "Bounded authored-source style/dependency/token guard; immutable legacy debt validation.",
+      "role": "validator",
+      "owner": "guides/CODE-STYLE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "check_code_style.py"
     },
     {
       "path": "tools/check_repository_layout.py",
@@ -17205,6 +17315,16 @@
       ]
     },
     {
+      "path": "review/issue-54",
+      "kind": "directory",
+      "purpose": "Issue54 source audit, architecture and ordered Sol refactor plan.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "review/public-responses-20261006",
       "kind": "directory",
       "purpose": "Exact before/after public response prose and reconciliation records.",
@@ -17958,6 +18078,28 @@
       ],
       "workflow": ".github/workflows/navigation.yml",
       "note": "Plan lists allocation, not a passing run. PR execution requires exact --base/--head; staging/production selection and explicit diagnostic replay use the canonical registry. Hosted checks need an authorized exact candidate/origin; this navigation route does not deploy or provide external release acceptance."
+    },
+    {
+      "concern": "mandatory code style and bounded source architecture guard",
+      "paths": [
+        "site/",
+        "tools/",
+        "tests/",
+        ".github/",
+        "AGENTS.md",
+        "CONTRIBUTING.md",
+        "guides/CODE-STYLE.md",
+        "review/site-scroll-sync-20261004/"
+      ],
+      "commands": [
+        "python3 tools/check_code_style.py",
+        "python3 -m unittest discover -s tests -p 'test_code_style.py'"
+      ],
+      "read": [
+        "guides/CODE-STYLE.md"
+      ],
+      "workflow": ".github/workflows/navigation.yml",
+      "note": "Read and follow applicable CS rules before code/template/style/config edits; map them to an issue AC and PR evidence. Guard success establishes only its stated subset; review unautomated rules and exact legacy allowances. This route does not authorize refactoring historical artifacts."
     }
   ],
   "upstream": {

@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "legacy": [
+    {
+      "rule": "CS01-history-import",
+      "path": "review/site-scroll-sync-20261004/RIBBONS-PROTOTYPE.cjs",
+      "detail": "review/site-scroll-sync-20261004/READING-SURFACES.cjs",
+      "count": 1,
+      "issue": 54,
+      "remove_in": "R1",
+      "reason": "Migrate the existing Color effect/export dependency out of dated review sources, preserving artifact identity contracts."
+    },
+    {
+      "rule": "CS01-history-import",
+      "path": "review/site-scroll-sync-20261004/export.cjs",
+      "detail": "review/site-scroll-sync-20261004/FLIGHT-PROTOTYPE.cjs",
+      "count": 1,
+      "issue": 54,
+      "remove_in": "R1",
+      "reason": "Migrate the existing Color effect/export dependency out of dated review sources, preserving artifact identity contracts."
+    },
+    {
+      "rule": "CS01-history-import",
+      "path": "review/site-scroll-sync-20261004/export.cjs",
+      "detail": "review/site-scroll-sync-20261004/RIBBONS-PROTOTYPE.cjs",
+      "count": 1,
+      "issue": 54,
+      "remove_in": "R1",
+      "reason": "Migrate the existing Color effect/export dependency out of dated review sources, preserving artifact identity contracts."
+    },
+    {
+      "rule": "CS01-history-import",
+      "path": "tools/staging/color.cjs",
+      "detail": "review/site-scroll-sync-20261004/FLIGHT-PROTOTYPE.cjs",
+      "count": 1,
+      "issue": 54,
+      "remove_in": "R1",
+      "reason": "Migrate the existing Color effect/export dependency out of dated review sources, preserving artifact identity contracts."
+    },
+    {
+      "rule": "CS01-history-import",
+      "path": "tools/staging/color.cjs",
+      "detail": "review/site-scroll-sync-20261004/RIBBONS-PROTOTYPE.cjs",
+      "count": 1,
+      "issue": 54,
+      "remove_in": "R1",
+      "reason": "Migrate the existing Color effect/export dependency out of dated review sources, preserving artifact identity contracts."
+    },
+    {
+      "rule": "CS01-history-source",
+      "path": "review/site-scroll-sync-20261004/FLIGHT-PROTOTYPE.cjs",
+      "detail": "active source in review/",
+      "count": 1,
+      "issue": 54,
+      "remove_in": "R1",
+      "reason": "Migrate the existing Color effect/export dependency out of dated review sources, preserving artifact identity contracts."
+    },
+    {
+      "rule": "CS01-history-source",
+      "path": "review/site-scroll-sync-20261004/READING-SURFACES.cjs",
+      "detail": "active source in review/",
+      "count": 1,
+      "issue": 54,
+      "remove_in": "R1",
+      "reason": "Migrate the existing Color effect/export dependency out of dated review sources, preserving artifact identity contracts."
+    },
+    {
+      "rule": "CS01-history-source",
+      "path": "review/site-scroll-sync-20261004/RIBBONS-PROTOTYPE.cjs",
+      "detail": "active source in review/",
+      "count": 1,
+      "issue": 54,
+      "remove_in": "R1",
+      "reason": "Migrate the existing Color effect/export dependency out of dated review sources, preserving artifact identity contracts."
+    },
+    {
+      "rule": "CS01-history-source",
+      "path": "review/site-scroll-sync-20261004/export.cjs",
+      "detail": "active source in review/",
+      "count": 1,
+      "issue": 54,
+      "remove_in": "R1",
+      "reason": "Migrate the existing Color effect/export dependency out of dated review sources, preserving artifact identity contracts."
+    },
+    {
+      "rule": "CS03-inline-style",
+      "path": "site/content/pages/index/hero.html",
+      "detail": "img style=max-width:100%;height:auto",
+      "count": 1,
+      "issue": 54,
+      "remove_in": "R4",
+      "reason": "Move the existing portrait responsive fallback into canonical CSS without changing its layout."
+    },
+    {
+      "rule": "CS03-inline-style",
+      "path": "site/content/pages/index/hero.html",
+      "detail": "svg style=max-width:100%;height:auto",
+      "count": 1,
+      "issue": 54,
+      "remove_in": "R4",
+      "reason": "Move the existing portrait responsive fallback into canonical CSS without changing its layout."
+    }
+  ]
+}

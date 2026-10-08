@@ -18,6 +18,11 @@ Acceptance policy `.github/acceptance/issue-N.json` / exact source / CI artifact
 | --- | --- | --- | --- |
 | AC01 | | pending | |
 
+Code-style applicability: [CODE-STYLE](../guides/CODE-STYLE.md).
+Rule IDs → canonical owner/change → check/result → source → remaining review:
+Owning issue code-style AC/subcondition and exact legacy exceptions/removal tasks:
+Review of applicable rules outside the automatic guard (or reason not applicable):
+
 ## Review and rights
 
 Independent reviewer/materials/outcome:

@@ -6804,6 +6804,48 @@
       "purpose": "Protected source/artifact/controller/PR lease validation before hosted action.",
       "role": "source",
       "owner": "guides/SITE-STAGING.md"
+    },
+    "guides/CODE-STYLE.md": {
+      "kind": "file",
+      "purpose": "Mandatory agent coding, content/template/CSS boundaries, performance and verification standards.",
+      "role": "guide",
+      "owner": "guides/CODE-STYLE.md"
+    },
+    ".github/code-style.json": {
+      "kind": "file",
+      "purpose": "Exact issue54 legacy source/inline-style debt with frozen-baseline ceilings and removal tasks.",
+      "role": "configuration",
+      "owner": "guides/CODE-STYLE.md"
+    },
+    "tools/check_code_style.py": {
+      "kind": "file",
+      "purpose": "Bounded authored-source style/dependency/token guard; immutable legacy debt validation.",
+      "role": "validator",
+      "owner": "guides/CODE-STYLE.md"
+    },
+    "tests/test_code_style.py": {
+      "kind": "file",
+      "purpose": "Negative style-guard fixtures and actual code-path/bilingual agent/RI routing checks.",
+      "role": "test",
+      "owner": "guides/CODE-STYLE.md"
+    },
+    ".github/acceptance/issue-54.json": {
+      "kind": "file",
+      "purpose": "Issue54 audit, guide, enforced subset, RI routing and Sol plan acceptance mapping.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-54": {
+      "kind": "directory",
+      "purpose": "Issue54 source audit, architecture and ordered Sol refactor plan.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-54/2026-10-08-analysis.md": {
+      "kind": "file",
+      "purpose": "Exact-baseline site debt findings, code standards delivery and bounded Sol work packages.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }

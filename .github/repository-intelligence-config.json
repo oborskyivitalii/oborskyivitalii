@@ -228,6 +228,20 @@
         "дублікати тестів",
         "оптимізація тестів"
       ]
+    },
+    {
+      "concern": "mandatory agent code style, source architecture and refactoring",
+      "path": "guides/CODE-STYLE.md",
+      "queries": [
+        "code style",
+        "coding standards",
+        "refactoring",
+        "content engine separation",
+        "стиль коду",
+        "код стайл",
+        "рефакторинг",
+        "правила написання коду"
+      ]
     }
   ],
   "map_output": "REPOSITORY-MAP.md",
@@ -392,6 +406,28 @@
       ],
       "workflow": ".github/workflows/navigation.yml",
       "note": "Plan lists allocation, not a passing run. PR execution requires exact --base/--head; staging/production selection and explicit diagnostic replay use the canonical registry. Hosted checks need an authorized exact candidate/origin; this navigation route does not deploy or provide external release acceptance."
+    },
+    {
+      "concern": "mandatory code style and bounded source architecture guard",
+      "paths": [
+        "site/",
+        "tools/",
+        "tests/",
+        ".github/",
+        "AGENTS.md",
+        "CONTRIBUTING.md",
+        "guides/CODE-STYLE.md",
+        "review/site-scroll-sync-20261004/"
+      ],
+      "commands": [
+        "python3 tools/check_code_style.py",
+        "python3 -m unittest discover -s tests -p 'test_code_style.py'"
+      ],
+      "read": [
+        "guides/CODE-STYLE.md"
+      ],
+      "workflow": ".github/workflows/navigation.yml",
+      "note": "Read and follow applicable CS rules before code/template/style/config edits; map them to an issue AC and PR evidence. Guard success establishes only its stated subset; review unautomated rules and exact legacy allowances. This route does not authorize refactoring historical artifacts."
     }
   ]
 }

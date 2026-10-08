@@ -1479,6 +1479,26 @@
       "inputs": [
         "tests/test_issue45_acceptance.py"
       ]
+    },
+    {
+      "path": "tests/test_code_style.py",
+      "language": "python",
+      "purpose": "Bounded authored-source CSS/import/debt guard negatives and mandatory actual agent/RI code-style routes",
+      "owner": "guides/CODE-STYLE.md",
+      "lifecycle": "permanent",
+      "profiles": [
+        "pr-targeted",
+        "staging",
+        "production"
+      ],
+      "disposition": "retain current independent contract",
+      "surviving_route": "python3 -m unittest discover -s tests -p 'test_code_style.py'",
+      "inputs": [
+        "tests/test_code_style.py",
+        "tools/check_code_style.py",
+        ".github/code-style.json",
+        "guides/CODE-STYLE.md"
+      ]
     }
   ]
 }

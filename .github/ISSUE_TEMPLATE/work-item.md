@@ -26,6 +26,11 @@ Required human/dependency gate (or none):
 Add AC02, AC03, ... with stable IDs before implementation. The PR implements
 these criteria; `.github/acceptance/issue-N.json` maps them to executable checks.
 
+For code/template/style/config changes add a code-style AC or an explicit AC
+subcondition following [CODE-STYLE](../../guides/CODE-STYLE.md): applicable CS IDs,
+canonical owners, guard/behavior selectors, unautomated review and exact legacy
+exceptions/removal tasks. For prose-only work state the reason for non-applicability.
+
 ## Plan and decisions
 
 Next step and related issue/PR links. Preserve initial intent; append approved changes.
