@@ -180,15 +180,58 @@ test('full coverage requires complete macOS WebKit and Linux Chromium/Firefox wi
   const quick=fixture();assert.equal(aggregate(quick).pass,true);quick.reports[3].engines=['chromium','firefox'];assert.throws(()=>aggregate(quick),'nonfull still requires all three Linux engines');
   const extra=fixture();extra.reports.push(structuredClone(get(x,'darwin')));assert.throws(()=>aggregate(extra),'nonfull cannot substitute macOS for its Linux coverage');
 });
-function colorFixture(){
-    const x=fullFixture(),color={id:'color',contract:1,fingerprint:'f'.repeat(64),baseEngine:'d'.repeat(64),effects:['ribbons','travel']};
-    x.manifest.variant=color;x.manifest.components={variant:color};for(const r of [...x.reports,x.releaseEvidence])r.variant=color;
-    const rows=['chromium','firefox','webkit'].flatMap(engine=>[1440,390].flatMap(width=>['light','dark'].map(theme=>({engine,width,theme,pass:true,identity:{id:'color',engine:color.fingerprint},ribbons:{count:'3',faces:1},checks:Object.fromEntries(['spatialFlight','forwardEdge','reverseNativeBottom','disabledEdge','creditsBoundary','homeBoundary'].map(k=>[k,true])),flight:[{plane:{flightStage:'depart',flightDepth:1}},{plane:{flightStage:'arrive',flightDepth:-1}}]}))));
-    x.reports.push({...identity,variant:color,kind:'color-functional',pass:true,rows});return x;
+function colorFixture() {
+  const evidence = fullFixture();
+  const color = {
+    id: 'color', contract: 1, fingerprint: 'f'.repeat(64),
+    baseEngine: 'd'.repeat(64), effects: ['travel']
+  };
+  evidence.manifest.variant = color;
+  evidence.manifest.components = {variant: color};
+  for (const report of [...evidence.reports, evidence.releaseEvidence]) {
+    report.variant = color;
+  }
+  const rows = ['chromium', 'firefox', 'webkit'].flatMap(engine =>
+    [1440, 390].flatMap(width => ['light', 'dark'].map(theme => ({
+      engine, width, theme, pass: true,
+      identity: {id: 'color', engine: color.fingerprint},
+      ribbons: {sceneHook: 'undefined', dataset: {}},
+      paint: {completed: 2, ordinaryShapes: 12, customShapes: 0},
+      checks: Object.fromEntries(['spatialFlight', 'forwardEdge', 'reverseNativeBottom',
+        'disabledEdge', 'creditsBoundary', 'homeBoundary'].map(key => [key, true])),
+      flight: [
+        {plane: {flightStage: 'depart', flightDepth: 1}},
+        {plane: {flightStage: 'arrive', flightDepth: -1}}
+      ]
+    })))
+  );
+  evidence.reports.push({...identity, variant: color, kind: 'color-functional', pass: true, rows});
+  return evidence;
 }
-test('full macOS policy keeps all twelve Linux Color feature cells including WebKit',()=>{
-  assert.equal(aggregate(colorFixture()).pass,true);
-  for(const mutate of [r=>r.rows=r.rows.filter(row=>row.engine!=='webkit'),r=>r.rows[0].checks.spatialFlight=false,r=>r.rows[0]=structuredClone(r.rows[1])]){const x=colorFixture();mutate(x.reports.at(-1));assert.throws(()=>aggregate(x));}
+test('full macOS policy keeps twelve travel Color cells with ordinary paint including WebKit', () => {
+  assert.equal(aggregate(colorFixture()).pass, true);
+  const mutations = [
+    report => report.rows = report.rows.filter(row => row.engine !== 'webkit'),
+    report => report.rows[0].checks.spatialFlight = false,
+    report => report.rows[0] = structuredClone(report.rows[1]),
+    report => report.rows[0].ribbons.sceneHook = 'function',
+    report => report.rows[0].ribbons.dataset = {ribbons: '3'},
+    report => report.rows[0].ribbons.dataset = {ribbonFaces: '1'},
+    report => report.rows[0].ribbons.dataset = {ribbonSignals: '1'},
+    report => report.rows[0].ribbons.dataset = {ribbonMaterial: 'opaque-rgb'},
+    report => report.rows[0].paint.completed = 0,
+    report => report.rows[0].paint.ordinaryShapes = 0,
+    report => report.rows[0].paint.customShapes = 1,
+    report => delete report.rows[0].paint
+  ];
+  for (const mutate of mutations) {
+    const evidence = colorFixture();
+    mutate(evidence.reports.at(-1));
+    assert.throws(() => aggregate(evidence));
+  }
+  const oldComposition = colorFixture();
+  oldComposition.manifest.variant.effects = ['ribbons', 'travel'];
+  assert.throws(() => aggregate(oldComposition), /current Color effect composition/);
 });
 test('workflow selects full Linux Chromium/Firefox and macOS WebKit while preserving nonfull and Windows coverage',()=>{
   const fs=require('node:fs'),path=require('node:path'),source=fs.readFileSync(path.join(__dirname,'../.github/workflows/site-release-checks.yml'),'utf8');

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1380" height="240" viewBox="0 0 1380 240" role="img" aria-labelledby="title description">
+  <title id="title">y = f(x) → y ∼ P(y|x)</title>
+  <desc id="description">A shift from a deterministic mapping to conditional probabilistic modeling. Original outlined glyphs in a continuous red, pink, violet and blue ribbon gradient.</desc>
+  <defs>
+    <linearGradient id="ribbon" x1="50" y1="0" x2="1330" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff2535"/>
+      <stop offset="0.34" stop-color="#ff008e"/>
+      <stop offset="0.64" stop-color="#8500ff"/>
+      <stop offset="1" stop-color="#0063ff"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" stroke="url(#ribbon)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+    <path data-glyph="y" d="M57 95 C54 125 53 158 72 159 C91 160 108 119 118 94 M118 94 C107 134 93 177 78 192 C68 202 57 201 50 194"/>
+    <path data-glyph="=" d="M163 116 H215 M160 141 H212"/>
+    <path data-glyph="f" d="M326 68 C304 54 287 73 281 100 L265 177 C262 194 253 199 243 193 M261 109 H311"/>
+    <path data-glyph="(" d="M363 62 C336 83 325 109 325 134 C325 159 334 181 349 196"/>
+    <path data-glyph="x" d="M382 99 C398 91 407 111 413 132 C420 154 432 168 446 158 M444 100 C426 118 403 145 381 162"/>
+    <path data-glyph=")" d="M474 62 C491 79 499 101 499 125 C499 153 484 179 459 196"/>
+    <path data-glyph="→" stroke-width="10" d="M546 128 H671 M650 109 L672 128 L650 147"/>
+    <path data-glyph="y" d="M711 95 C708 125 707 158 726 159 C745 160 762 119 772 94 M772 94 C761 134 747 177 732 192 C722 202 711 201 704 194"/>
+    <path data-glyph="∼" d="M813 133 C824 112 836 115 848 128 C860 141 872 144 884 123"/>
+    <path data-glyph="P" d="M917 167 L940 64 H970 C1007 64 1018 112 975 122 H929"/>
+    <path data-glyph="(" d="M1058 62 C1031 83 1020 109 1020 134 C1020 159 1029 181 1044 196"/>
+    <path data-glyph="y" d="M1081 95 C1078 125 1077 158 1096 159 C1115 160 1132 119 1142 94 M1142 94 C1131 134 1117 177 1102 192 C1092 202 1081 201 1074 194"/>
+    <path data-glyph="|" stroke-width="10" d="M1175 79 V180"/>
+    <path data-glyph="x" d="M1210 99 C1226 91 1235 111 1241 132 C1248 154 1260 168 1274 158 M1272 100 C1254 118 1231 145 1209 162"/>
+    <path data-glyph=")" d="M1304 62 C1321 79 1329 101 1329 125 C1329 153 1314 179 1289 196"/>
+  </g>
+</svg>

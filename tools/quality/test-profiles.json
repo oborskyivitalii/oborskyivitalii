@@ -346,7 +346,7 @@
     {
       "path": "tests/browser-gate-diagnostics.test.cjs",
       "language": "javascript",
-      "purpose": "Private causal-screen plan, CLI bounds, source lineage, raw trace completeness and honest failed-row reporting",
+      "purpose": "Pinned historical ribbon-enabled fixed/adaptive causal screen; rejects active travel-only artifacts and retains exact raw trace/source lineage.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "diagnostic",
       "profiles": [
@@ -381,7 +381,7 @@
     {
       "path": "tests/browser-gate-variants.test.cjs",
       "language": "javascript",
-      "purpose": "Private fixed-ribbon/trace counterfactuals, matched mobile outputs and parent/patch identity; exact endpoint and monotonic-depth validation rejects continuous camera overshoot",
+      "purpose": "Explicit historical fixed-ribbon controls and active paint/trace lineage; actual endpoint/monotonic-depth validation rejects overshoot; native success-only paint probe remains opt-in.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "diagnostic",
       "profiles": [
@@ -869,16 +869,15 @@
     {
       "path": "tests/ribbons.test.cjs",
       "language": "javascript",
-      "purpose": "Current authored Color world-anchored ribbon lattice/material/phase, cross-detail projection continuity, continuous gradients, signal motion, renderer/export and clock identity",
+      "purpose": "Explicit optional historical ribbon lattice/material/clock comparison; active Color no longer allocates ribbons.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
-      "lifecycle": "permanent",
+      "lifecycle": "diagnostic",
       "profiles": [
-        "pr-targeted",
-        "staging",
-        "production"
+        "diagnostic",
+        "pr-targeted"
       ],
-      "disposition": "retain current independent contract",
-      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "disposition": "retired from active release regression by issue61 maintainer removal; retained for explicit historical comparisons",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
       "inputs": [
         "tests/ribbons.test.cjs",
         "site/engine/math.cjs",
@@ -1532,7 +1531,7 @@
     {
       "path": "tests/effects.test.cjs",
       "language": "javascript",
-      "purpose": "Pure ordered Color descriptors, malformed/duplicate rejection, frozen extension API and executable hosted/offline serialization",
+      "purpose": "Active travel-only Color serialization and ribbon absence, preserved reading CSS/navigation, malformed input rejection and explicit optional historical adapters.",
       "owner": "site/README.md",
       "lifecycle": "permanent",
       "profiles": [
@@ -1569,6 +1568,24 @@
         "tools/site/effects.cjs",
         "tools/quality/scanners.cjs",
         "tools/quality/stylelint.cjs"
+      ]
+    },
+    {
+      "path": "tests/test_issue61_acceptance.py",
+      "language": "python",
+      "purpose": "Issue61 executes existing active Color delivery contracts through its owning policy.",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": [
+        "issue-policy"
+      ],
+      "disposition": "owning issue61 policy only; existing maintained effect/build cases supply active behavior, no new browser suite",
+      "surviving_route": "python3 tools/issue_acceptance.py run --policy .github/acceptance/issue-61.json --report /tmp/issue-61-acceptance.json",
+      "inputs": [
+        "tests/test_issue61_acceptance.py",
+        ".github/acceptance/issue-61.json",
+        "tests/effects.test.cjs",
+        "tests/color-build.test.cjs"
       ]
     }
   ]

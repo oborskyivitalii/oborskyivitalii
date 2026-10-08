@@ -75,44 +75,47 @@ function compare(before,after){
     }
   }
 }
-function installRibbonProbe({math,geometry,theme}){
-  const api=eval('('+math+')')(),section=eval('('+geometry+')')(api);
-  const trace={frames:[],events:[],leg:'boot',dropped:0,error:null};
-  const pose=value=>({position:[...value.position],target:[...value.target]});
-  const mark=(kind,detail={})=>{
-    const scene=document.querySelector('.space-scene');
-    trace.events.push({kind,time:performance.now(),leg:trace.leg,frame:trace.frames.length,camera:scene?.dataset.camera?JSON.parse(scene.dataset.camera):null,phase:Number(scene?.dataset.phase)||0,scrollY,maxScroll:Math.max(0,document.documentElement.scrollHeight-innerHeight),...detail});
+function installPaintProbe({theme}) {
+  const trace = {frames: [], events: [], leg: 'boot', dropped: 0, error: null};
+  const pose = value => ({position: [...value.position], target: [...value.target]});
+  const mark = (kind, detail = {}) => {
+    const scene = document.querySelector('.space-scene');
+    trace.events.push({
+      kind, time: performance.now(), leg: trace.leg, frame: trace.frames.length,
+      camera: scene?.dataset.camera ? JSON.parse(scene.dataset.camera) : null,
+      phase: Number(scene?.dataset.phase) || 0,
+      scrollY, maxScroll: Math.max(0, document.documentElement.scrollHeight - innerHeight),
+      ...detail
+    });
   };
-  trace.mark=mark;window.__readingRibbon=trace;
-  localStorage.setItem('vo.motion','on');localStorage.setItem('vo.theme',theme);localStorage.setItem('vo.content-flight','on');
-  window.SiteEngineProbe=event=>{if(['navigation-start','navigation-ready','layout'].includes(event.kind))mark(event.kind,{...event});};
-  window.addEventListener('site:page-mount',event=>mark('mount',{page:event.detail.page}));
-  window.addEventListener('site:page-ready',event=>mark('mount-ready',{page:event.detail.page}));
-  window.SiteRibbonProbe=({current,width,height,ambientTime,compact,detailTier,gridStep,meshStride,journey,shapes})=>{
-    if(trace.frames.length>=1600){trace.dropped++;return;}
-    try{
-      const forward=api.normalize(api.sub(current.target,current.position)),right=api.normalize(api.cross(forward,[0,1,0])),up=api.cross(right,forward);
-      const focal=(compact?Math.min(height,width*1.15):height)/(2*Math.tan(Math.PI/8)),cx=width*(compact?.42:.66),cy=height*.48;
-      const stations=new Map(),selected=[],perRibbon=[0,0,0];
-      let residual=0,seam=0,colorSeam=0,checked=0,clipped=0;
-      for(const shape of shapes)for(const point of shape.points){
-        const side=Math.round(point[2]),z=point[3];
-        if(Math.abs(point[2]-side)>1e-8||Math.abs(z/gridStep-Math.round(z/gridStep))>1e-8){clipped++;continue;}
-        const key=shape.ribbon+'/'+side+'/'+z,world=section(z,shape.ribbon,ambientTime)[side===0?'left':'right'],relative=api.sub(world,current.position),depth=api.dot(relative,forward);
-        const expected=[cx+api.dot(relative,right)*focal/depth,cy-api.dot(relative,up)*focal/depth];
-        residual=Math.max(residual,Math.hypot(point[0]-expected[0],point[1]-expected[1]));checked++;
-        const previous=stations.get(key);
-        if(previous){seam=Math.max(seam,Math.hypot(point[0]-previous[0],point[1]-previous[1]));colorSeam=Math.max(colorSeam,...point.slice(4,7).map((v,i)=>Math.abs(v-previous[i+4])));}
-        else{
-          stations.set(key,point);
-          if(perRibbon[shape.ribbon]<8&&depth>=4&&expected[0]>-width*.2&&expected[0]<width*1.2&&expected[1]>-height*.2&&expected[1]<height*1.2){
-            selected.push({key,actual:point.slice(0,2),expected,world,depth});perRibbon[shape.ribbon]++;
-          }
-        }
-      }
-      trace.frames.push({time:performance.now(),leg:trace.leg,camera:pose(current),phase:ambientTime,width,height,compact,detailTier,gridStep,meshStride,journey:journey?{...journey,from:pose(journey.from),to:pose(journey.to)}:null,shapes:shapes.length,stations:stations.size,checked,clipped,residual,seam,colorSeam,selected});
-    }catch(error){trace.error=String(error.stack||error);}
+  trace.mark = mark;
+  window.__readingPaint = trace;
+  localStorage.setItem('vo.motion', 'on');
+  localStorage.setItem('vo.theme', theme);
+  localStorage.setItem('vo.content-flight', 'on');
+  window.SiteEngineProbe = event => {
+    if (['navigation-start', 'navigation-ready', 'layout'].includes(event.kind)) {
+      mark(event.kind, {...event});
+      return;
+    }
+    if (event.kind !== 'paint') return;
+    if (trace.frames.length >= 1600) {
+      trace.dropped++;
+      return;
+    }
+    try {
+      const {current, ambientTime, width, height, compact, detailTier, journey} = event;
+      trace.frames.push({
+        time: event.time, leg: trace.leg, camera: pose(current), phase: ambientTime,
+        width, height, compact, detailTier,
+        journey: journey ? {...journey, from: pose(journey.from), to: pose(journey.to)} : null
+      });
+    } catch (error) {
+      trace.error = String(error.stack || error);
+    }
   };
+  window.addEventListener('site:page-mount', event => mark('mount', {page: event.detail.page}));
+  window.addEventListener('site:page-ready', event => mark('mount-ready', {page: event.detail.page}));
 }
 function cameraDistance(a,b){return Math.hypot(...a.position.map((v,i)=>v-b.position[i]),...a.target.map((v,i)=>v-b.target[i]));}
 function validateArrivalDepth(frames,flying,start,leg){
@@ -143,15 +146,15 @@ function validateNativeEndpoints(trace,leg){
   assert.ok(Math.abs(edge.scrollY-(backward?0:edge.maxScroll))<=2,leg.id+': actual source departure edge');
   for(const event of [landed,ready])assert.ok(Math.abs(event.scrollY-(backward?event.maxScroll:0))<=2,leg.id+': actual destination scroll endpoint');
 }
-function validateRibbonTrace(trace,legs){
-  assert.equal(trace.error,null,'ribbon observer completed');assert.equal(trace.dropped,0,'bounded trace retained every observed paint');
-  assert.ok(trace.frames.length>20,'actual ribbon paints observed');
-  for(const row of trace.frames){
-    assert.ok(row.checked>0&&row.stations>0,'actual unclipped material stations');
-    assert.ok(row.residual<1e-5,'submitted stations keep their analytic world identity');
-    assert.ok(row.seam<1e-6&&row.colorSeam<1e-6,'shared material stations join exactly');
-    assert.equal(row.gridStep,row.compact?3:1.25,'viewport retains its fixed material lattice');
-    assert.ok([1,2,3].includes(row.meshStride),'bounded whole-cell adaptive grouping');
+function validatePaintTrace(trace,legs){
+  assert.equal(trace.error, null, 'paint observer completed');
+  assert.equal(trace.dropped, 0, 'bounded trace retained every observed paint');
+  assert.ok(trace.frames.length > 20, 'successful native paints observed');
+  for (const row of trace.frames) {
+    assert.ok(Number.isFinite(row.time) && Number.isFinite(row.phase), 'native paint clock observed');
+    assert.ok(row.width > 0 && row.height > 0, 'native paint viewport observed');
+    assert.ok(Number.isFinite(row.detailTier), 'native paint detail tier observed');
+    assert.ok([...row.camera.position, ...row.camera.target].every(Number.isFinite), 'native paint camera observed');
   }
   const deltas=[];
   for(let i=1;i<trace.frames.length;i++){
@@ -185,30 +188,34 @@ function validateRibbonTrace(trace,legs){
       if(leg.edgeFlight){validateArrivalDepth(frames,flying,start,leg);validateNativeEndpoints(trace,leg);}
     }
   }
-  return {paints:trace.frames.length,stations:trace.frames.reduce((n,row)=>n+row.checked,0),maxProjectionResidual:Math.max(...trace.frames.map(row=>row.residual)),maxSeamError:Math.max(...trace.frames.map(row=>row.seam)),observedDetailTiers:[...new Set(trace.frames.map(row=>Number(row.detailTier.toFixed(3))))],deltas};
+  return {
+    paints: trace.frames.length,
+    observedDetailTiers: [...new Set(trace.frames.map(row => Number(row.detailTier.toFixed(3))))],
+    deltas
+  };
 }
 async function prepareDepartureEdge(page,leg){
   await page.evaluate(leg=>{
-    const trace=window.__readingRibbon;trace.leg='edge-'+leg.id;trace.mark('edge-prepare',{direction:leg.direction});
+    const trace=window.__readingPaint;trace.leg='edge-'+leg.id;trace.mark('edge-prepare',{direction:leg.direction});
     window.scrollTo(0,leg.direction==='backward'?0:Math.max(0,document.documentElement.scrollHeight-innerHeight));
   },leg);
   await page.waitForFunction(id=>{
-    const rows=window.__readingRibbon.frames.filter(row=>row.leg==='edge-'+id).slice(-3);
+    const rows=window.__readingPaint.frames.filter(row=>row.leg==='edge-'+id).slice(-3);
     if(rows.length<3)return false;
     const last=rows[2].camera;
     return rows.every(row=>Math.hypot(...row.camera.position.map((value,i)=>value-last.position[i]),...row.camera.target.map((value,i)=>value-last.target[i]))<1e-6);
   },leg.id,{polling:25,timeout:5000});
-  await page.evaluate(()=>window.__readingRibbon.mark('edge-ready'));
+  await page.evaluate(()=>window.__readingPaint.mark('edge-ready'));
 }
-async function ribbonContext(browser,url,output,row,math,geometry){
+async function paintContext(browser,url,output,row){
   const {width,theme,startRoute}=row,height=width===390?844:900;
-  const context=await browser.newContext({viewport:{width,height},reducedMotion:'no-preference',recordVideo:{dir:path.join(output,'ribbon-video'),size:{width,height}}});
-  await context.addInitScript(installRibbonProbe,{math,geometry,theme});
+  const context=await browser.newContext({viewport:{width,height},reducedMotion:'no-preference',recordVideo:{dir:path.join(output,'paint-video'),size:{width,height}}});
+  await context.addInitScript(installPaintProbe,{theme});
   const page=await context.newPage(),video=page.video();page.on('pageerror',error=>row.errors.push(error.message));
   const ready=route=>page.waitForFunction(route=>document.body.dataset.page===route&&document.querySelector('.space-scene').dataset.ready==='true'&&document.querySelector('.space-scene').dataset.travel==='settled'&&!document.getElementById('site-content').hasAttribute('aria-busy'),route,{polling:25,timeout:8000});
   const begin=async leg=>{
     row.legs.push(leg);await page.evaluate(leg=>{
-      window.__readingRibbon.leg=leg.id;window.__readingRibbon.mark('request',{to:leg.to});
+      window.__readingPaint.leg=leg.id;window.__readingPaint.mark('request',{to:leg.to});
       if(leg.edgeFlight)window.SiteNavigation.go(leg.to,{atEnd:leg.direction==='backward'});
       else{const href=leg.to==='index'?'./':leg.to+'.html';document.querySelector('.site-header nav a[href="'+href+'"]').click();}
     },leg);
@@ -218,36 +225,39 @@ async function ribbonContext(browser,url,output,row,math,geometry){
     assert.equal(await page.locator('meta[name="site-variant"]').getAttribute('content'),'color','navigation evidence uses actual Color artifact');
     await page.evaluate(()=>{
       const original=window.SiteScene.navigate;
-      window.SiteScene.navigate=function(...args){const trace=window.__readingRibbon;trace.mark('navigate-before',{to:args[0]});const result=original.apply(this,args);trace.mark('navigate-after',{to:args[0]});return result;};
+      window.SiteScene.navigate=function(...args){const trace=window.__readingPaint;trace.mark('navigate-before',{to:args[0]});const result=original.apply(this,args);trace.mark('navigate-after',{to:args[0]});return result;};
     });
     let from=startRoute;
     const itinerary=startRoute==='index'?['research','writing','talks','writing','research','index']:['writing','research','index','research','writing','talks'];
     for(const round of ['cold','warm'])for(const to of itinerary){
       const leg={id:round+'-'+from+'-'+to,from,to,edgeFlight:true,direction:routes.indexOf(to)>routes.indexOf(from)?'forward':'backward'};
       await prepareDepartureEdge(page,leg);await begin(leg);await ready(to);
-      await page.waitForFunction(id=>window.__readingRibbon.frames.filter(row=>row.leg===id&&!row.journey).length>=2,leg.id,{polling:25,timeout:2000});from=to;
+      await page.waitForFunction(id=>window.__readingPaint.frames.filter(row=>row.leg===id&&!row.journey).length>=2,leg.id,{polling:25,timeout:2000});from=to;
     }
     await begin({id:'retarget-departure',from,to:from==='index'?'research':'writing',interrupted:true});
-    await page.waitForFunction(()=>window.__readingRibbon.frames.some(row=>row.leg==='retarget-departure'&&row.journey&&row.journey.elapsed/row.journey.duration>.18),null,{polling:20,timeout:5000});
+    await page.waitForFunction(()=>window.__readingPaint.frames.some(row=>row.leg==='retarget-departure'&&row.journey&&row.journey.elapsed/row.journey.duration>.18),null,{polling:20,timeout:5000});
     await begin({id:'retarget-arrival',from:'midflight',to:'talks'});
-    await page.waitForFunction(()=>window.__readingRibbon.frames.some(row=>row.leg==='retarget-arrival'&&row.journey&&row.journey.elapsed/row.journey.duration>.35),null,{polling:20,timeout:5000});
-    await page.evaluate(()=>window.__readingRibbon.mark('height-resize'));await page.setViewportSize({width,height:height-60});await ready('talks');
-    row.trace=await page.evaluate(()=>{const {frames,events,dropped,error}=window.__readingRibbon;return {frames,events,dropped,error};});
+    await page.waitForFunction(()=>window.__readingPaint.frames.some(row=>row.leg==='retarget-arrival'&&row.journey&&row.journey.elapsed/row.journey.duration>.35),null,{polling:20,timeout:5000});
+    await page.evaluate(()=>window.__readingPaint.mark('height-resize'));await page.setViewportSize({width,height:height-60});await ready('talks');
+    row.trace=await page.evaluate(()=>{const {frames,events,dropped,error}=window.__readingPaint;return {frames,events,dropped,error};});
     assert.ok(row.trace.frames.some(frame=>frame.leg==='retarget-arrival'&&frame.journey&&frame.height===height-60),'viewport reflow reached an actual flying paint');
-    row.summary=validateRibbonTrace(row.trace,row.legs);assert.deepEqual(row.errors,[]);row.pass=true;
-  }catch(error){row.error=String(error.stack||error);if(!row.trace)row.trace=await page.evaluate(()=>{const {frames,events,dropped,error}=window.__readingRibbon;return {frames,events,dropped,error};}).catch(()=>null);}
+    row.summary=validatePaintTrace(row.trace,row.legs);assert.deepEqual(row.errors,[]);row.pass=true;
+  }catch(error){row.error=String(error.stack||error);if(!row.trace)row.trace=await page.evaluate(()=>{const {frames,events,dropped,error}=window.__readingPaint;return {frames,events,dropped,error};}).catch(()=>null);}
   finally{
-    await context.close();row.video='ribbon-'+width+'-'+theme+'-'+startRoute+'.webm';await video.saveAs(path.join(output,row.video));await video.delete();
+    await context.close();row.video='paint-'+width+'-'+theme+'-'+startRoute+'.webm';await video.saveAs(path.join(output,row.video));await video.delete();
   }
 }
-async function ribbonNavigation(browser,url,output,result){
-  const math=require('../../site/engine/math.cjs').toString(),geometry=require('../../site/effects/ribbons.cjs').ribbonGeometry.toString();
-  result.navigation=[];result.ribbonReference={math:hash(math),geometry:hash(geometry),protocol:'Eight fresh live Color contexts starting at Home or Talks; first unvisited targets in both directions, then warm page-cache flights from observed native edges, backward atEnd landing, endpoint depth bounds/no mount reversal, analytic world stations, quick retarget and height reflow. No performance verdict.'};
+async function paintNavigation(browser,url,output,result){
+  result.navigation = [];
+  result.paintReference = {
+    observer: 'SiteEngineProbe paint after successful native scene paint',
+    protocol: 'Eight fresh live Color contexts starting at Home or Talks; first unvisited targets in both directions, then warm page-cache flights from observed native edges, backward atEnd landing, endpoint depth bounds/no mount reversal, shared ambient phase, quick retarget and height reflow. No performance verdict.'
+  };
   for(const width of [390,1440])for(const theme of ['light','dark'])for(const startRoute of ['index','talks']){
     const row={width,theme,startRoute,pass:false,legs:[],errors:[]};result.navigation.push(row);
-    await ribbonContext(browser,url,output,row,math,geometry);
+    await paintContext(browser,url,output,row);
   }
-  assert.ok(result.navigation.every(row=>row.pass),'complete ribbon navigation evidence; inspect retained traces and clips');
+  assert.ok(result.navigation.every(row=>row.pass),'complete native camera and paint navigation evidence; inspect retained traces and clips');
 }
 async function surfaceSamples(page,route,width,theme,result){
   const selectors={index:[width<=640?'.hero h1':'.hero-copy','.help-grid article','.site-footer>p','.appearance[open] .display-controls'],research:['.reading-title','.research-card'],writing:['.reading-title','.archive-filters','.publication','.year-heading'],talks:['.reading-title','.talks-list .publication'],credits:['.credits-page>h1']};
@@ -350,7 +360,7 @@ async function main(){
     const page=await context.newPage();
     await headingCases(page,reference,fixture,baseline,candidate,baselineCss,candidateCss,output,result);
     await formulaCaptures(page,reference,fixture,output,result);
-    await ribbonNavigation(browser,fixture.url,output,result);result.pass=true;
+    await paintNavigation(browser,fixture.url,output,result);result.pass=true;
   }catch(error){result.error=String(error.stack||error);process.exitCode=1;}
   finally{
     if(browser)await browser.close();if(fixture)await new Promise(resolve=>fixture.server.close(resolve));if(reference)await new Promise(resolve=>reference.server.close(resolve));
@@ -359,4 +369,4 @@ async function main(){
   }
 }
 if(require.main===module)main().catch(error=>{process.stderr.write(String(error.stack||error)+'\n');process.exitCode=1;});
-module.exports={measure,compare,compareGeometry,styles,readingStyle,validateRibbonTrace,validateArrivalDepth,validateNativeEndpoints,ribbonNavigation,validateSurfaceSamples,paintAlpha};
+module.exports={measure,compare,compareGeometry,styles,readingStyle,validatePaintTrace,validateArrivalDepth,validateNativeEndpoints,paintNavigation,validateSurfaceSamples,paintAlpha};

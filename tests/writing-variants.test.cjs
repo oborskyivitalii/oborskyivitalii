@@ -61,7 +61,7 @@ test('no-canvas retains actual diagnostic frames/geometry/effects; prewarm expli
   const dir=controls();
   try{
     const results=diagnostic.build(dir),read=label=>fs.readFileSync(path.join(results.inputs[label].publicDir,'space.js'),'utf8');
-    const frame=browser(read('no-canvas-draw'));frame.frame();assert.equal(frame.calls.clear,1);assert.equal(frame.calls.fill,0);assert.equal(frame.calls.stroke,0);assert.equal(frame.dataset.ready,'true');assert.ok(Number(frame.dataset.ribbonFaces)>0);assert.ok(frame.events.some(event=>event.kind==='model'&&event.route==='research'));
+    const frame=browser(read('no-canvas-draw'));frame.frame();assert.equal(frame.calls.clear,1);assert.equal(frame.calls.fill,0);assert.equal(frame.calls.stroke,0);assert.equal(frame.dataset.ready,'true');assert.equal(frame.dataset.ribbonFaces,undefined);assert.equal(frame.window.SiteEffects.scene,undefined);assert.ok(frame.events.some(event=>event.kind==='model'&&event.route==='research'));
     const prewarm=browser(read('model-prewarm'));const timing=prewarm.window.__writingDiagnostic.prepareWriting();assert.deepEqual(Object.keys(timing),['start','end','duration']);assert.ok(Number.isFinite(timing.duration));
     assert.equal(prewarm.events.filter(event=>event.kind==='model'&&event.route==='writing').length,1);assert.equal(prewarm.events.filter(event=>event.kind==='diagnostic-preparation').length,1);
     assert.equal(prewarm.calls.formulaCaches,1);assert.equal(prewarm.window.SiteScene.formulaDiagnostics().status,'ready','prewarm retains the current formula cache');

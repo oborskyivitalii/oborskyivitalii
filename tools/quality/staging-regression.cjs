@@ -167,15 +167,36 @@ function validateFlight(row,selected){
   if(selected.phase==='cold')assert.ok(targetModels.length>0,'cold flight did not observe destination model construction');
   else assert.equal(targetModels.length,0,'warm flight reconstructed its destination model');
 }
-function validateColor(report,manifest){
-  assert.equal(common.variant(manifest).id,'color');assert.equal(report.kind,'color-preview-smoke');assert.equal(report.pass,true);assert.equal(report.smoke,true);assert.equal(report.profile,'preview');assert.equal(report.fullGate,false);
-  exactRows(report.browsers,[{engine:'chromium'}],['engine'],'Color engines');assert.ok(report.browsers[0].version);
-  exactRows(report.rows,widths.map(width=>({engine:'chromium',width,theme:'light'})),['engine','width','theme'],'Color cases');
-  for(const row of report.rows){
-    assert.equal(row.pass,true,row.error);assert.equal(row.identity.id,'color');assert.equal(row.identity.engine,common.variant(manifest).fingerprint);
-    assert.equal(row.ribbons.count,'3');assert.equal(row.ribbons.material,'opaque-rgb');assert.ok(row.ribbons.faces>0);
-    for(const key of ['shortenedHomeRange','homeForwardEdge','spatialFlight','forwardEdge','reverseNativeBottom','disabledEdge','creditsBoundary','homeBoundary','retiredReadingEffectAbsent'])assert.equal(row.checks?.[key],true,'missing Color '+key);
-    assert.ok(row.flight?.some(x=>x.plane.flightStage==='depart'&&Number(x.plane.flightDepth)>0));assert.ok(row.flight.some(x=>x.plane.flightStage==='arrive'&&Number(x.plane.flightDepth)<0));
+function validateColor(report, manifest) {
+  const variant = common.variant(manifest);
+  assert.equal(variant.id, 'color');
+  assert.deepEqual(variant.effects, ['travel'], 'current Color effect composition');
+  assert.deepEqual(report.variant, variant, 'Color smoke belongs to another runtime variant');
+  assert.equal(report.kind, 'color-preview-smoke');
+  assert.equal(report.pass, true);
+  assert.equal(report.smoke, true);
+  assert.equal(report.profile, 'preview');
+  assert.equal(report.fullGate, false);
+  exactRows(report.browsers, [{engine: 'chromium'}], ['engine'], 'Color engines');
+  assert.ok(report.browsers[0].version);
+  exactRows(report.rows, widths.map(width => ({engine: 'chromium', width, theme: 'light'})),
+    ['engine', 'width', 'theme'], 'Color cases');
+  for (const row of report.rows) {
+    assert.equal(row.pass, true, row.error);
+    assert.equal(row.identity.id, 'color');
+    assert.equal(row.identity.engine, variant.fingerprint);
+    require('./validate.cjs').colorPaint(row);
+    for (const key of ['shortenedHomeRange', 'homeForwardEdge', 'spatialFlight', 'forwardEdge',
+      'reverseNativeBottom', 'disabledEdge', 'creditsBoundary', 'homeBoundary',
+      'retiredReadingEffectAbsent']) {
+      assert.equal(row.checks?.[key], true, 'missing Color ' + key);
+    }
+    assert.ok(row.flight?.some(sample =>
+      sample.plane.flightStage === 'depart' && Number(sample.plane.flightDepth) > 0
+    ));
+    assert.ok(row.flight.some(sample =>
+      sample.plane.flightStage === 'arrive' && Number(sample.plane.flightDepth) < 0
+    ));
   }
   return 2;
 }

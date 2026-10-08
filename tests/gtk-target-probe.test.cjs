@@ -2,7 +2,21 @@
 const test=require('node:test'),assert=require('node:assert/strict'),{EventEmitter}=require('node:events'),http=require('node:http');
 const fs=require('node:fs'),os=require('node:os'),path=require('node:path'),cp=require('node:child_process');
 const probe=require('../tools/quality/gtk-target-probe.cjs');
-const candidate='a'.repeat(40),base={sourceCommit:candidate,candidateCommit:candidate,sourceTree:'b'.repeat(40),sourceDirty:false,artifactDigest:'e'.repeat(64),components:{engine:'f'.repeat(64),variant:{id:'base',contract:1,fingerprint:'9'.repeat(64)}}},manifest={sourceCommit:candidate,candidateCommit:candidate,sourceTree:'b'.repeat(40),sourceDirty:false,artifactDigest:'c'.repeat(64),variant:{id:'color',contract:1,fingerprint:'d'.repeat(64),baseEngine:base.components.engine,effects:['ribbons','travel']},derivation:{kind:'authored-color-effects',baseArtifactDigest:base.artifactDigest}};
+const candidate = 'a'.repeat(40);
+const base = {
+  sourceCommit: candidate, candidateCommit: candidate, sourceTree: 'b'.repeat(40),
+  sourceDirty: false, artifactDigest: 'e'.repeat(64),
+  components: {engine: 'f'.repeat(64), variant: {id: 'base', contract: 1, fingerprint: '9'.repeat(64)}}
+};
+const manifest = {
+  sourceCommit: candidate, candidateCommit: candidate, sourceTree: 'b'.repeat(40),
+  sourceDirty: false, artifactDigest: 'c'.repeat(64),
+  variant: {
+    id: 'color', contract: 1, fingerprint: 'd'.repeat(64),
+    baseEngine: base.components.engine, effects: ['travel']
+  },
+  derivation: {kind: 'authored-color-effects', baseArtifactDigest: base.artifactDigest}
+};
 test('fourteen one-factor cells retain the same six standards per port and two matching GTK init omissions',()=>{
   const gtk=probe.plan('gtk'),wpe=probe.plan('wpe');assert.equal(gtk.length,8);assert.equal(wpe.length,6);
   assert.deepEqual(gtk.slice(0,6).map(row=>({...row,port:undefined})),wpe.map(row=>({...row,port:undefined})));
@@ -12,6 +26,9 @@ test('fourteen one-factor cells retain the same six standards per port and two m
 });
 test('only exact clean normal Color source identity is admitted',()=>{
   assert.deepEqual(probe.identity(manifest,candidate,base),manifest);
+  assert.throws(() => probe.identity({...manifest, variant: {
+    ...manifest.variant, effects: ['ribbons', 'travel']
+  }}, candidate, base));
   for(const change of [{sourceCommit:'e'.repeat(40)},{candidateCommit:'e'.repeat(40)},{sourceDirty:true},{sourceTree:'unknown'},{artifactDigest:'unknown'},{diagnostic:{label:'private'}},{derivation:undefined},{derivation:{parent:'unknown'}},{derivation:{...manifest.derivation,kind:'writing-diagnostic-intervention'}},{derivation:{...manifest.derivation,baseArtifactDigest:'0'.repeat(64)}},{derivation:{...manifest.derivation,diagnostic:'private'}},{fullGate:false},{variant:{...manifest.variant,id:'base'}},{variant:{...manifest.variant,diagnostic:{label:'private'}}},{variant:{...manifest.variant,baseEngine:'0'.repeat(64)}},{variant:{...manifest.variant,effects:['ribbons']}}])assert.throws(()=>probe.identity({...manifest,...change},candidate,base));
   for(const change of [{sourceCommit:'e'.repeat(40)},{sourceTree:'e'.repeat(40)},{sourceDirty:true},{derivation:manifest.derivation},{fullGate:false},{diagnostic:{label:'private'}},{components:{...base.components,variant:{...base.components.variant,contract:2}}},{components:{...base.components,variant:{...base.components.variant,fingerprint:'unknown'}}},{components:{...base.components,variant:{...base.components.variant,diagnostic:{label:'private'}}}},{variant:{...base.components.variant,fingerprint:'0'.repeat(64)}}])assert.throws(()=>probe.identity(manifest,candidate,{...base,...change}));
 });

@@ -5,12 +5,12 @@
     "url": "https://github.com/advisories/GHSA-vfj7-8cjw-p6xm",
     "scope": "tools/quality/toolchain/package-lock.json",
     "reviewedSource": "tools/quality/stylelint.cjs",
-    "reviewedSourceSha256": "6bbef04bce4367aa2072be9216a8ca53ccf8429926b4a9588fa1917210a6b1d5",
+    "reviewedSourceSha256": "bc178b739b7e4ee33b54f3b42a557fb6375d979c4f53529f8893d026eb33e597",
     "disposition": "tooling-only unreachable affected input",
     "owner": "oborskyivitalii",
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/13",
     "expires": "2026-11-03",
-    "reason": "No upstream patched version exists on 2026-10-03. Stylelint is called exclusively with literal CSS code and codeFilename through its code API; no file glob or attacker-controlled brace pattern enters braces recursive AST walkers. Public artifact contains no npm graph. Keep npm original findings including transitive effects; this is a scoped reachability decision, not a vulnerability-free claim. Re-review on dependency/API/path change or patched release.",
+    "reason": "No upstream patched version exists on 2026-10-03. Stylelint is called exclusively with literal CSS code and codeFilename through its code API; no file glob or attacker-controlled brace pattern enters braces recursive AST walkers. Public artifact contains no npm graph. Keep npm original findings including transitive effects; this is a scoped reachability decision, not a vulnerability-free claim. Re-review on dependency/API/path change or patched release. Re-reviewed 2026-10-08 after R1: authored CSS files are enumerated by filesystem traversal with symlink rejection, alongside generated docs CSS. Every Stylelint call still receives literal code, codeFilename and the unchanged fixed rules configuration; no file glob or attacker-controlled brace pattern is supplied. The existing advisory remains tooling-only; GitHub Advisory Database still lists affected versions through 3.0.3 and no patched version. Configuration, dependency lock, advisory scope and expiry remain unchanged; independently reviewed under issue #61.",
     "reviewedMaterials": {
       "tools/quality/stylelint.config.cjs": "813c64be2b3e0224234cd89eeb836cd8195b73af4b55623d13abc4931dd0be94",
       "tools/quality/toolchain/package-lock.json": "54466f796f3295144bdb2df71087988e13aa3886bf9cfede6f37a4f918b61052"

@@ -3,7 +3,8 @@ const test=require('node:test'),assert=require('node:assert/strict'),fs=require(
 const diagnostic=require('../tools/quality/browser-gate-diagnostics.cjs'),{digest}=require('../tools/quality/artifact.cjs');
 const candidate='a'.repeat(40),tree='b'.repeat(40);
 function inputs(){
-  const parentVariant={id:'color',contract:1,fingerprint:'c'.repeat(64),baseEngine:'d'.repeat(64),effects:['ribbons','travel']};
+  const historicalEffects=[require('../site/effects/ribbons.cjs').descriptor(),require('../site/effects/flight.cjs').descriptor()].map(part=>part.effect);
+  const parentVariant={id:'color',contract:1,fingerprint:'c'.repeat(64),baseEngine:'d'.repeat(64),effects:historicalEffects};
   return Object.fromEntries(['control','adaptive'].map(label=>{
     const intervention=label==='control'?'browser-gate-fixed-ribbons':'browser-gate-trace';
     const diagnostic={label:intervention,description:intervention,fullGate:false};
@@ -39,7 +40,7 @@ test('CLI rejects missing/duplicate/unknown arguments and output inside tested a
   assert.throws(()=>diagnostic.argumentsFor(['--control','control','--adaptive','adaptive','--other','results']),/unknown/);
   assert.throws(()=>diagnostic.argumentsFor(['--control','control','--adaptive','adaptive','--output','control/results']),/cannot modify/);
 });
-test('private variants require exact clean source, common normal parent and independently derived fingerprints',()=>{
+test('historical ribbon variants require an exact clean reference and reject active no-ribbon Color',()=>{
   assert.equal(diagnostic.validateInputs(inputs(),candidate),true);
   for(const mutate of [
     value=>value.control.manifest.sourceDirty=true,
@@ -47,9 +48,11 @@ test('private variants require exact clean source, common normal parent and inde
     value=>value.adaptive.manifest.derivation.parentArtifactDigest='9'.repeat(64),
     value=>value.control.manifest.fullGate=true,
     value=>value.control.manifest.derivation.patches[0].matches=0,
-    value=>value.control.manifest.variant.fingerprint='8'.repeat(64)
+    value=>value.control.manifest.variant.fingerprint='8'.repeat(64),
+    value=>value.control.manifest.variant.effects=['travel'],
+    value=>value.adaptive.manifest.derivation.parentVariant.effects=['travel']
   ]){const value=inputs();mutate(value);assert.throws(()=>diagnostic.validateInputs(value,candidate));}
-  assert.throws(()=>diagnostic.validateInputs(inputs(),undefined),/exact current/);
+  assert.throws(()=>diagnostic.validateInputs(inputs(),undefined),/exact historical reference/);
 });
 test('trace validation fails closed for missing, dropped, malformed or disconnected evidence',()=>{
   assert.equal(diagnostic.validateTrace(trace()),true);

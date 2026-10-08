@@ -1,5 +1,6 @@
 'use strict';
-// Private loopback observations only. Failed browser gates remain failed data.
+// Explicit historical ribbon-enabled comparisons only. Active Color has no ribbons.
+// Private loopback observations preserve failed browser gates as failed data.
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),cp=require('node:child_process'),zlib=require('node:zlib');
 const {performance}=require('node:perf_hooks'),artifact=require('./artifact.cjs');
 const variant=manifest=>require('./common.cjs').variant(manifest);
@@ -30,18 +31,18 @@ function plan(){
 }
 function validateManifest(manifest,label,candidate){
   assert.equal(manifest.sourceDirty,false,'diagnostic source must be clean');
-  assert.equal(manifest.sourceCommit,candidate,'diagnostic source differs from exact candidate');
+  assert.equal(manifest.sourceCommit,candidate,'historical diagnostic source differs from exact pinned reference');
   assert.equal(manifest.candidateCommit,candidate,'diagnostic candidate/source mismatch');
   assert.match(manifest.sourceTree||'',/^[a-f0-9]{40}$/,'invalid source tree');
   assert.match(manifest.artifactDigest||'',/^[a-f0-9]{64}$/,'invalid artifact digest');
   const visual=variant(manifest),derivation=manifest.derivation;
-  assert.equal(visual.id,'color');assert.deepEqual(visual.effects,['ribbons','travel'],'complete normal Color effects required');
+  assert.equal(visual.id,'color');assert.deepEqual(visual.effects,['ribbons','travel'],'explicit historical ribbon-enabled Color required');
   assert.equal(manifest.components.engine,visual.fingerprint,'revision/variant fingerprint mismatch');
   assert.equal(manifest.fullGate,false);assert.equal(manifest.diagnostic?.fullGate,false);assert.equal(visual.diagnostic?.fullGate,false);
   assert.equal(manifest.diagnostic.label,labels[label]);assert.equal(visual.diagnostic.label,labels[label]);
   assert.equal(derivation?.kind,'writing-diagnostic-intervention');assert.equal(derivation.intervention,labels[label]);assert.equal(derivation.fullGate,false);
   assert.match(derivation.parentArtifactDigest||'',/^[a-f0-9]{64}$/);assert.equal(derivation.baseArtifactDigest,derivation.parentArtifactDigest);
-  assert.equal(derivation.parentVariant?.id,'color');assert.equal(derivation.parentVariant.contract,1);assert.ok(!derivation.parentVariant.diagnostic,'normal Color parent required');
+  assert.equal(derivation.parentVariant?.id,'color');assert.equal(derivation.parentVariant.contract,1);assert.ok(!derivation.parentVariant.diagnostic,'unchanged historical Color parent required');
   assert.match(derivation.parentVariant.fingerprint||'',/^[a-f0-9]{64}$/);assert.match(derivation.parentVariant.baseEngine||'',/^[a-f0-9]{64}$/);
   assert.deepEqual(derivation.parentVariant.effects,['ribbons','travel']);assert.equal(visual.baseEngine,derivation.parentVariant.baseEngine);
   assert.equal(derivation.patches?.length,label==='control'?3:2,'exact declared patch count required');
@@ -52,7 +53,7 @@ function validateManifest(manifest,label,candidate){
   assert.equal(visual.fingerprint,artifact.digest(JSON.stringify({contract:1,parentEngine:derivation.parentVariant.fingerprint,intervention:derivation})),'derived fingerprint does not prove declared patches');
 }
 function validateInputs(inputs,candidate){
-  assert.match(candidate||'',/^[a-f0-9]{40}$/,'exact current candidate SHA required');
+  assert.match(candidate||'',/^[a-f0-9]{40}$/,'exact historical reference SHA required');
   for(const label of Object.keys(labels)){assert.ok(inputs[label]?.manifest,'missing diagnostic artifact '+label);validateManifest(inputs[label].manifest,label,candidate);}
   const control=inputs.control.manifest,adaptive=inputs.adaptive.manifest;
   assert.equal(control.sourceTree,adaptive.sourceTree,'diagnostic source trees differ');

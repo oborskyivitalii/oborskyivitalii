@@ -79,11 +79,51 @@ test('observed slow motion is rejected even when its derived metrics are interna
   Object.assign(row,require('../tools/quality/motion.cjs').summarize({schema:2,start:0,end:4000,elapsed:4000,frames:raw,longTasks:[],events:[],state:'active'},'idle'));
   assert.throws(()=>stage.validatePerformance(report),/slow staging motion/);
 });
-test('conditional Color smoke keeps its exact two-case feature coverage',()=>{
-  const f=fixture.aggregateFixture(true),report=f.reports.at(-1);assert.equal(stage.validateColor(report,f.manifest),2);
-  for(const mutate of [r=>r.rows.pop(),r=>r.rows[0]=structuredClone(r.rows[1]),r=>r.rows[0].engine='webkit',r=>r.rows[0].checks.reverseNativeBottom=false,r=>r.rows[0].flight=[],r=>r.rows[0].ribbons.material='transparent']){
-    const copy=structuredClone(report);mutate(copy);assert.throws(()=>stage.validateColor(copy,f.manifest));
+test('conditional Color smoke keeps two travel cases with ordinary paint and absent ribbons', () => {
+  const evidence = fixture.aggregateFixture(true);
+  const report = evidence.reports.at(-1);
+  assert.equal(stage.validateColor(report, evidence.manifest), 2);
+  const zeroDataset = structuredClone(report);
+  zeroDataset.rows[0].ribbons.dataset = {ribbons: '0', ribbonFaces: '0', ribbonSignals: '0'};
+  assert.equal(stage.validateColor(zeroDataset, evidence.manifest), 2);
+  const mutations = [
+    value => value.variant.effects = ['ribbons', 'travel'],
+    value => value.variant.fingerprint = 'f'.repeat(64),
+    value => value.rows.pop(),
+    value => value.rows[0] = structuredClone(value.rows[1]),
+    value => value.rows[0].engine = 'webkit',
+    value => value.rows[0].checks.reverseNativeBottom = false,
+    value => value.rows[0].flight = [],
+    value => value.rows[0].ribbons.sceneHook = 'function',
+    value => value.rows[0].ribbons.dataset = {ribbons: '3'},
+    value => value.rows[0].ribbons.dataset = {ribbonFaces: '1'},
+    value => value.rows[0].ribbons.dataset = {ribbonSignals: '1'},
+    value => value.rows[0].ribbons.dataset = {ribbonMaterial: 'opaque-rgb'},
+    value => value.rows[0].ribbons.dataset = null,
+    value => value.rows[0].paint.completed = 0,
+    value => value.rows[0].paint.ordinaryShapes = 0,
+    value => value.rows[0].paint.customShapes = 1,
+    value => delete value.rows[0].paint
+  ];
+  for (const mutate of mutations) {
+    const copy = structuredClone(report);
+    mutate(copy);
+    assert.throws(() => stage.validateColor(copy, evidence.manifest));
   }
+});
+test('Color paint observer records completed scene submission rather than preparation', () => {
+  const vm = require('node:vm');
+  const {paintProbe} = require('../tools/quality/color-browser.cjs');
+  const sandbox = {window: {}};
+  vm.runInNewContext('(' + paintProbe.toString() + ')()', sandbox);
+  const sample = {kind: 'paint', ordinaryShapes: 12, customShapes: 0};
+  sandbox.window.SiteEngineProbe({...sample, kind: 'model'});
+  assert.equal(sandbox.window.__colorPaint.completed, 0);
+  sandbox.window.SiteEngineProbe(sample);
+  sandbox.window.SiteEngineProbe({...sample, ordinaryShapes: 8});
+  assert.deepEqual({...sandbox.window.__colorPaint}, {
+    completed: 2, ordinaryShapes: 8, customShapes: 0
+  });
 });
 test('the functional driver executes precisely its selected helpers and closes each engine',async()=>{
   const calls=[],closed=[],m=fixture.manifest();

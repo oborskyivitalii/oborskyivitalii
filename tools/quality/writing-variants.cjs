@@ -19,7 +19,7 @@ const descriptions={
   'title-flex-off':'Replace only constrained title flex layout with positioned native text/arrow footprints; retain outer grids.',
   'browser-gate-trace':'Expose private scheduler state and post-quality draw costs; preserve the complete normal Color rendition.',
   'browser-gate-adaptive-ribbons':'Retain private browser-gate probes and interpolate desktop ribbon mesh step with actual detail tier; preserve viewport projection, visibility bounds and mobile geometry.',
-  'browser-gate-fixed-ribbons':'Retain private browser-gate probes but restore the previous fixed desktop mesh as a counterfactual to the now-public adaptive ribbon policy.',
+  'browser-gate-fixed-ribbons':'Historical ribbon-enabled Color comparison only: retain private browser-gate probes but restore its previous fixed desktop mesh.',
   'cold-no-paint':'Retain all normal projection/effects/sorting, canvas clear and scheduler; omit only native shape submission for cold WebKit attribution.',
   'cold-no-air':'Retain normal canvas/rendering and scheduler; omit only the three per-frame atmosphere CSS property writes for cold WebKit attribution.',
   'cold-small-canvas':'Retain normal geometry/paint/scheduler; keep the native canvas backing store at its default size for cold WebKit attribution.',
@@ -46,6 +46,7 @@ function patchBrowserGate(patch,label,source){
   patch('space.js','      if(living)quality(renderCost,time);',`      if(living)quality(renderCost,time);
       diagnostic("browser-gate-frame",{start,renderCost,...window.__browserGateScheduler,ribbonFaces:Number(scene.dataset.ribbonFaces||0),ribbonSignals:Number(scene.dataset.ribbonSignals||0)});`);
   if(label==='browser-gate-fixed-ribbons'){
+    assert.ok(source.includes('SiteEffects.scene='), 'fixed-ribbons requires an explicit historical ribbon-enabled control');
     patch('space.js','meshStride=compact?1:1+Math.round(Math.max(0,Math.min(2,ribbonMesh)))','meshStride=1');return;
   }
   if(label!=='browser-gate-adaptive-ribbons')return;

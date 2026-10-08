@@ -58,6 +58,94 @@ test('ESLint coverage rejects an omitted, ignored, duplicated or unparsed browse
   }
 });
 
+test('retained script lint verifies exact copies without ignoring correctness or authored complexity', () => {
+  const os = require('node:os');
+  const crypto = require('node:crypto');
+  const vm = require('node:vm');
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'retained-lint-'));
+  const relative = 'runtime/' + 'a'.repeat(64) + '/fixture.js';
+  const retainedFile = 'site/retained/' + relative;
+  const authoredFile = 'site/engine/fixture.js';
+  const manifestFile = path.join(directory, 'site/retained/manifest.json');
+  const digest = value => crypto.createHash('sha256').update(value).digest('hex');
+  const source = 'window.fixture=document.title;\n';
+  const manifest = {schema: 1, files: {[relative]: digest(source)}};
+  const configSource = fs.readFileSync(path.join(root, 'tools/quality/eslint.config.cjs'), 'utf8');
+  const packages = {
+    '@eslint/js': {configs: {recommended: {rules: {'no-undef': 'error'}}}},
+    'eslint-plugin-sonarjs': {},
+    globals: {browser: {window: 'readonly', document: 'readonly'}, node: {process: 'readonly'}}
+  };
+  const configRequire = name => {
+    if (name === 'node:module') {
+      return {createRequire: () => packageName => {
+        assert.ok(Object.hasOwn(packages, packageName), 'unexpected lint dependency');
+        return packages[packageName];
+      }};
+    }
+    assert.ok(['node:fs', 'node:path', 'node:crypto'].includes(name), 'unexpected config import');
+    return require(name);
+  };
+  const writeManifest = value => fs.writeFileSync(manifestFile, JSON.stringify(value));
+  const loadConfig = () => {
+    const sandbox = {
+      module: {exports: {}}, require: configRequire,
+      __dirname: path.join(directory, 'tools/quality'), process: {env: {}}
+    };
+    vm.runInNewContext(configSource, sandbox, {filename: 'tools/quality/eslint.config.cjs'});
+    return structuredClone(sandbox.module.exports);
+  };
+  try {
+    fs.mkdirSync(path.dirname(path.join(directory, retainedFile)), {recursive: true});
+    fs.writeFileSync(path.join(directory, retainedFile), source);
+    writeManifest(manifest);
+    const config = loadConfig();
+    const retainedOverrides = config.filter(entry =>
+      entry.rules?.['sonarjs/cognitive-complexity'] === 'off'
+    );
+    assert.equal(retainedOverrides.length, 1);
+    const retainedOverride = retainedOverrides[0];
+    assert.deepEqual(retainedOverride.files, [retainedFile]);
+    assert.equal(retainedOverride.languageOptions.sourceType, 'script');
+    assert.equal(retainedOverride.languageOptions.globals.window, 'readonly');
+    assert.equal(retainedOverride.languageOptions.globals.document, 'readonly');
+    assert.deepEqual(Object.keys(retainedOverride.rules), ['sonarjs/cognitive-complexity']);
+    assert.ok(!retainedOverride.files.includes(authoredFile));
+    assert.equal(config.find(entry => entry.rules?.['no-undef']).rules['no-undef'], 'error');
+    const sonarRules = config.find(entry => entry.plugins?.sonarjs).rules;
+    assert.deepEqual(sonarRules['sonarjs/cognitive-complexity'], ['warn', 25]);
+    for (const rule of ['sonarjs/no-identical-expressions', 'sonarjs/no-duplicate-in-composite',
+      'sonarjs/no-dead-store']) {
+      assert.equal(sonarRules[rule], 'error');
+    }
+    assert.deepEqual(config.flatMap(entry => entry.ignores || []), [
+      'review/**', 'drafts/**', '.github/repository-intelligence/**',
+      'tools/quality/toolchain/venv/**', 'docs/runtime/**'
+    ]);
+    for (const changed of [[], {...manifest, schema: true}, {...manifest, files: []},
+      {...manifest, files: {[relative]: null}}, {...manifest, files: {[relative]: 'invalid'}}]) {
+      writeManifest(changed);
+      assert.throws(loadConfig, /retained JavaScript manifest|retained JavaScript digest/);
+    }
+    writeManifest({schema: 1, files: {}});
+    const unverified = loadConfig();
+    assert.ok(!unverified.some(entry => entry.rules?.['sonarjs/cognitive-complexity'] === 'off'));
+    assert.deepEqual(unverified.find(entry => entry.plugins?.sonarjs)
+      .rules['sonarjs/cognitive-complexity'], ['warn', 25]);
+    writeManifest(manifest);
+    fs.appendFileSync(path.join(directory, retainedFile), '// Changed immutable copy\n');
+    assert.throws(loadConfig, /Changed retained JavaScript bytes/);
+    fs.writeFileSync(path.join(directory, retainedFile), source);
+    const symlinkTarget = path.join(directory, 'fixture.js');
+    fs.writeFileSync(symlinkTarget, source);
+    fs.unlinkSync(path.join(directory, retainedFile));
+    fs.symlinkSync(symlinkTarget, path.join(directory, retainedFile));
+    assert.throws(loadConfig, /Invalid retained JavaScript path/);
+  } finally {
+    fs.rmSync(directory, {recursive: true, force: true});
+  }
+});
+
 test('browser security policies cover the authored effect source directory without diagnostic harness scope', () => {
   const source = fs.readFileSync(path.join(root, 'tools/quality/security-rules.yml'), 'utf8');
   for (const id of ['browser-html-injection', 'browser-code-execution']) {

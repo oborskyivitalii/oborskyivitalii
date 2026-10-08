@@ -220,14 +220,56 @@ function aggregate({manifest:m,sizes,reports,jobs,full=false,releaseEvidence,hos
   if(full)releaseReports(reports,m,releaseEvidence,automatedOnly);
   return {schema:1,kind:automatedOnly?'hosted-gate':full?'release-manifest':'pr-gate',profile:profile||'release',pass:true,...m,jobs,checkedReports:reports.map(x=>({kind:x.kind,platform:x.environment?.platform})),checkedAt:new Date().toISOString(),hostedOrigin:hostedURL||'pending #8',deploymentAuthorized:false};
 }
-function colorReports(reports,m){
-  const found=reports.filter(r=>r.kind==='color-functional');assert.equal(found.length,1,'missing/duplicate Color feature matrix');const r=found[0];
-  assert.equal(r.variant.fingerprint,m.variant.fingerprint);assert.equal(r.rows.length,12);unique(r.rows,x=>`${x.engine}/${x.width}/${x.theme}`);
-  for(const engine of ['chromium','firefox','webkit'])for(const width of [1440,390])for(const theme of ['light','dark']){
-    const row=r.rows.find(x=>x.engine===engine&&x.width===width&&x.theme===theme);assert.ok(row);assert.equal(row.pass,true,row.error);
-    assert.equal(row.identity.id,'color');assert.equal(row.identity.engine,m.variant.fingerprint);assert.equal(row.ribbons.count,'3');assert.ok(row.ribbons.faces>0);
-    for(const key of ['spatialFlight','forwardEdge','reverseNativeBottom','disabledEdge','creditsBoundary','homeBoundary'])assert.equal(row.checks[key],true,'missing Color '+key);
-    assert.ok(row.flight.some(x=>x.plane.flightStage==='depart'&&Number(x.plane.flightDepth)>0));assert.ok(row.flight.some(x=>x.plane.flightStage==='arrive'&&Number(x.plane.flightDepth)<0));
+function colorPaint(row) {
+  assert.equal(row.ribbons?.sceneHook, 'undefined', 'retired ribbon scene hook is active');
+  const dataset = row.ribbons.dataset;
+  assert.ok(dataset && typeof dataset === 'object' && !Array.isArray(dataset),
+    'missing actual ribbon dataset observation');
+  for (const [key, value] of Object.entries(dataset)) {
+    assert.ok(key.startsWith('ribbon'), 'unexpected ribbon dataset key');
+    assert.notEqual(key, 'ribbonMaterial', 'retired ribbon material is present');
+    assert.equal(value, '0', 'retired ribbon dataset is nonzero');
+  }
+  for (const key of ['completed', 'ordinaryShapes', 'customShapes']) {
+    assert.ok(Number.isInteger(row.paint?.[key]) && row.paint[key] >= 0,
+      'missing actual Color paint ' + key);
+  }
+  assert.ok(row.paint.completed > 0, 'Color Canvas did not complete a paint');
+  assert.ok(row.paint.ordinaryShapes > 0, 'ordinary scene geometry was not painted');
+  assert.equal(row.paint.customShapes, 0, 'Color still submits custom ribbon geometry');
+}
+function colorReports(reports, manifest) {
+  const found = reports.filter(report => report.kind === 'color-functional');
+  assert.equal(found.length, 1, 'missing/duplicate Color feature matrix');
+  const report = found[0];
+  assert.deepEqual(manifest.variant.effects, ['travel'], 'current Color effect composition');
+  assert.equal(report.variant.fingerprint, manifest.variant.fingerprint);
+  assert.deepEqual(report.variant.effects, manifest.variant.effects);
+  assert.equal(report.rows.length, 12);
+  unique(report.rows, row => `${row.engine}/${row.width}/${row.theme}`);
+  for (const engine of ['chromium', 'firefox', 'webkit']) {
+    for (const width of [1440, 390]) {
+      for (const theme of ['light', 'dark']) {
+        const row = report.rows.find(item =>
+          item.engine === engine && item.width === width && item.theme === theme
+        );
+        assert.ok(row);
+        assert.equal(row.pass, true, row.error);
+        assert.equal(row.identity.id, 'color');
+        assert.equal(row.identity.engine, manifest.variant.fingerprint);
+        colorPaint(row);
+        for (const key of ['spatialFlight', 'forwardEdge', 'reverseNativeBottom',
+          'disabledEdge', 'creditsBoundary', 'homeBoundary']) {
+          assert.equal(row.checks[key], true, 'missing Color ' + key);
+        }
+        assert.ok(row.flight.some(sample =>
+          sample.plane.flightStage === 'depart' && Number(sample.plane.flightDepth) > 0
+        ));
+        assert.ok(row.flight.some(sample =>
+          sample.plane.flightStage === 'arrive' && Number(sample.plane.flightDepth) < 0
+        ));
+      }
+    }
   }
 }
 function files(dir){return fs.readdirSync(dir).flatMap(name=>{const p=path.join(dir,name);return fs.statSync(p).isDirectory()?files(p):[p];});}
@@ -263,4 +305,4 @@ function failureReport(error){
   fs.writeFileSync(path.join(dir,'release-manifest.json'),JSON.stringify(result,null,2)+'\n');
 }
 if(require.main===module){try{main();}catch(e){console.error('Site gate failed: '+e.message);try{failureReport(e);}catch{ /* A missing artifact is already a gate failure. */ }process.exitCode=1;}}
-module.exports={lighthouse,motion,transition,functional,aggregate,scanner,sourceReport,readEvidence};
+module.exports={lighthouse,motion,transition,functional,aggregate,scanner,sourceReport,readEvidence,colorPaint};

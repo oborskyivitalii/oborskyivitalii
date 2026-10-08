@@ -38,13 +38,19 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/media](docs/media) | Generated content-addressed asset editions. | generated | [site/README.md](site/README.md) |
 | [docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc](docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc) | Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
 | [docs/runtime](docs/runtime) | Generated content-addressed browser runtime editions. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/62164b66c648eb104215b272a1158e291b6c37bf7437591d4e777acef5669eb1](docs/runtime/62164b66c648eb104215b272a1158e291b6c37bf7437591d4e777acef5669eb1) | Generated immutable runtime or route snapshot; canonical site and verified retained input owners. | generated | [site/README.md](site/README.md) |
 | [docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62](docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62) | Generated immutable runtime identity directory. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots](docs/snapshots) | Generated exact-route HTML snapshots. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/1650f5f5f6f236d92dcd26edb7684aaad4ba6fc4430573f54a620c9724045330](docs/snapshots/1650f5f5f6f236d92dcd26edb7684aaad4ba6fc4430573f54a620c9724045330) | Generated immutable runtime or route snapshot; canonical site and verified retained input owners. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/4a1c226ff79929122b28b1ce2e1ffc1bd63a9e05fc003868623ef732c1fd9cc0](docs/snapshots/4a1c226ff79929122b28b1ce2e1ffc1bd63a9e05fc003868623ef732c1fd9cc0) | Generated immutable runtime or route snapshot; canonical site and verified retained input owners. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/4baf77f87b5198d819122b6e5f18e4558174f41f4fda1bb763fc849da03f4d93](docs/snapshots/4baf77f87b5198d819122b6e5f18e4558174f41f4fda1bb763fc849da03f4d93) | Generated immutable runtime or route snapshot; canonical site and verified retained input owners. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347](docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347) | Generated immutable route snapshot identity directory. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/74f6fbade22d671a8f14f5d9dd0b84f40c2c67a75ab549e5cefc6fe42954030d](docs/snapshots/74f6fbade22d671a8f14f5d9dd0b84f40c2c67a75ab549e5cefc6fe42954030d) | Generated immutable route snapshot identity directory. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/6bd49640cc57e9a540f0a0711195b85843c463be173016021e0e464687221047](docs/snapshots/6bd49640cc57e9a540f0a0711195b85843c463be173016021e0e464687221047) | Generated immutable runtime or route snapshot; canonical site and verified retained input owners. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa](docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa) | Current immutable content-addressed route snapshot; generated from the exact maintained Talks content. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68](docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68) | Generated immutable route snapshot identity directory. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946](docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946) | Generated immutable route snapshot identity directory. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7](docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7) | Generated immutable route snapshot identity directory. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/e01d012a97a564737a89613c86cdd255929d98de3d9e8a7b3aa17b876c1bc1ea](docs/snapshots/e01d012a97a564737a89613c86cdd255929d98de3d9e8a7b3aa17b876c1bc1ea) | Generated immutable runtime or route snapshot; canonical site and verified retained input owners. | generated | [site/README.md](site/README.md) |
 | [drafts](drafts) | Unpublished article/profile proposals excluded from public builds. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [guides](guides) | Maintained topic guides for repository boundaries, publication, quality and hosting; root stays an entry surface. | guide | [guides/README.md](guides/README.md) |
 | [review](review) | Dated plans, evidence, captures and renditions; current Color/export inputs are explicitly marked. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -63,6 +69,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-48](review/issue-48) | Issue48 bounded source intake, exact content amendment and dated implementation/review handoff. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-54](review/issue-54) | Issue54 source audit, architecture and ordered Sol refactor plan. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-56](review/issue-56) | Versioned R1 implementation, tool decision, parity and review evidence for issue56. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [review/issue-61](review/issue-61) | Bounded source amendment and handoff for the supplied PMDay Ukrainian recording update. | history | [review/REVIEW-TEMPLATE.md](review/REVIEW-TEMPLATE.md) |
 | [review/public-responses-20261006](review/public-responses-20261006) | Exact before/after public response prose and reconciliation records. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/reading-backdrops-20261006](review/reading-backdrops-20261006) | Content-sized reading backdrop correction evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/repository-maintenance-20261007](review/repository-maintenance-20261007) | Byte-exact pre-cleanup agent guide and its provenance note. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -117,6 +124,17 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [site/effects](site/effects) | Canonical optional effect descriptors and browser runtime helpers, independent of build tools. | source | [site/README.md](site/README.md) |
 | [site/engine](site/engine) | Shared Canvas geometry/lifecycle, renderer, native-scroll router, theme, filters and CSS. | source | [site/README.md](site/README.md) |
 | [site/integrations](site/integrations) | Production-origin-only optional external measurement integration. | source | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
+| [site/retained](site/retained) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/media](site/retained/media) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc](site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/runtime](site/retained/runtime) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62](site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/snapshots](site/retained/snapshots) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347](site/retained/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa](site/retained/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68](site/retained/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946](site/retained/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7](site/retained/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
 | [site/scenes](site/scenes) | Finite authored world/motifs and native-scroll camera paths. | source | [site/README.md](site/README.md) |
 | [site/templates](site/templates) | Shared deterministic page shell, head, header and footer HTML. | source | [site/README.md](site/README.md) |
 | [tests](tests) | Behavioral, adversarial and fixture checks for RI, engine, exporters and CI/staging trust. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
@@ -160,6 +178,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [.github/acceptance/issue-48.json](.github/acceptance/issue-48.json) | Issue48 theory association, Writing midpoint and evidence-led Matthew response mapping with separate current-preview/editorial/review/merge gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-54.json](.github/acceptance/issue-54.json) | Issue54 audit, guide, enforced subset, RI routing and Sol plan acceptance mapping. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-56.json](.github/acceptance/issue-56.json) | Issue56 AC01–AC06 source-bound R1 extraction/tool coverage policy with independent/live delivery gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [.github/acceptance/issue-61.json](.github/acceptance/issue-61.json) | PMDay recording AC01–AC03 mapped to existing current-source content/semantic/RI checks and explicit review/CI/linkage gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 
 ## .github/repository-intelligence/
 
@@ -222,6 +241,16 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi.jpg](docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi.jpg) | Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
 | [docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/writing-paradigm.svg](docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/writing-paradigm.svg) | Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
 
+## docs/runtime/62164b66c648eb104215b272a1158e291b6c37bf7437591d4e777acef5669eb1/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/runtime/62164b66c648eb104215b272a1158e291b6c37bf7437591d4e777acef5669eb1/archive.js](docs/runtime/62164b66c648eb104215b272a1158e291b6c37bf7437591d4e777acef5669eb1/archive.js) | Generated immutable runtime or route snapshot; canonical site and verified retained input owners. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/62164b66c648eb104215b272a1158e291b6c37bf7437591d4e777acef5669eb1/navigation.js](docs/runtime/62164b66c648eb104215b272a1158e291b6c37bf7437591d4e777acef5669eb1/navigation.js) | Generated immutable runtime or route snapshot; canonical site and verified retained input owners. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/62164b66c648eb104215b272a1158e291b6c37bf7437591d4e777acef5669eb1/space.js](docs/runtime/62164b66c648eb104215b272a1158e291b6c37bf7437591d4e777acef5669eb1/space.js) | Generated immutable runtime or route snapshot; canonical site and verified retained input owners. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/62164b66c648eb104215b272a1158e291b6c37bf7437591d4e777acef5669eb1/styles.css](docs/runtime/62164b66c648eb104215b272a1158e291b6c37bf7437591d4e777acef5669eb1/styles.css) | Generated immutable runtime or route snapshot; canonical site and verified retained input owners. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/62164b66c648eb104215b272a1158e291b6c37bf7437591d4e777acef5669eb1/theme.js](docs/runtime/62164b66c648eb104215b272a1158e291b6c37bf7437591d4e777acef5669eb1/theme.js) | Generated immutable runtime or route snapshot; canonical site and verified retained input owners. | generated | [site/README.md](site/README.md) |
+
 ## docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/
 
 | Path | Purpose | Role | Owner / editing route |
@@ -232,17 +261,41 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/styles.css](docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/styles.css) | Generated immutable shared runtime dependency. | generated | [site/README.md](site/README.md) |
 | [docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/theme.js](docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/theme.js) | Generated immutable shared runtime dependency. | generated | [site/README.md](site/README.md) |
 
+## docs/snapshots/1650f5f5f6f236d92dcd26edb7684aaad4ba6fc4430573f54a620c9724045330/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/1650f5f5f6f236d92dcd26edb7684aaad4ba6fc4430573f54a620c9724045330/credits.html](docs/snapshots/1650f5f5f6f236d92dcd26edb7684aaad4ba6fc4430573f54a620c9724045330/credits.html) | Generated immutable runtime or route snapshot; canonical site and verified retained input owners. | generated | [site/README.md](site/README.md) |
+
+## docs/snapshots/4a1c226ff79929122b28b1ce2e1ffc1bd63a9e05fc003868623ef732c1fd9cc0/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/4a1c226ff79929122b28b1ce2e1ffc1bd63a9e05fc003868623ef732c1fd9cc0/index.html](docs/snapshots/4a1c226ff79929122b28b1ce2e1ffc1bd63a9e05fc003868623ef732c1fd9cc0/index.html) | Generated immutable runtime or route snapshot; canonical site and verified retained input owners. | generated | [site/README.md](site/README.md) |
+
+## docs/snapshots/4baf77f87b5198d819122b6e5f18e4558174f41f4fda1bb763fc849da03f4d93/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/4baf77f87b5198d819122b6e5f18e4558174f41f4fda1bb763fc849da03f4d93/writing.html](docs/snapshots/4baf77f87b5198d819122b6e5f18e4558174f41f4fda1bb763fc849da03f4d93/writing.html) | Generated immutable runtime or route snapshot; canonical site and verified retained input owners. | generated | [site/README.md](site/README.md) |
+
 ## docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html](docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html) | Generated immutable route snapshot. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/74f6fbade22d671a8f14f5d9dd0b84f40c2c67a75ab549e5cefc6fe42954030d/
+## docs/snapshots/6bd49640cc57e9a540f0a0711195b85843c463be173016021e0e464687221047/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/snapshots/74f6fbade22d671a8f14f5d9dd0b84f40c2c67a75ab549e5cefc6fe42954030d/talks.html](docs/snapshots/74f6fbade22d671a8f14f5d9dd0b84f40c2c67a75ab549e5cefc6fe42954030d/talks.html) | Generated immutable route snapshot. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/6bd49640cc57e9a540f0a0711195b85843c463be173016021e0e464687221047/research.html](docs/snapshots/6bd49640cc57e9a540f0a0711195b85843c463be173016021e0e464687221047/research.html) | Generated immutable runtime or route snapshot; canonical site and verified retained input owners. | generated | [site/README.md](site/README.md) |
+
+## docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html](docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html) | Generated immutable Talks route snapshot; regenerate from site sources with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
 
 ## docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/
 
@@ -261,6 +314,12 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html](docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html) | Generated immutable route snapshot. | generated | [site/README.md](site/README.md) |
+
+## docs/snapshots/e01d012a97a564737a89613c86cdd255929d98de3d9e8a7b3aa17b876c1bc1ea/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/e01d012a97a564737a89613c86cdd255929d98de3d9e8a7b3aa17b876c1bc1ea/talks.html](docs/snapshots/e01d012a97a564737a89613c86cdd255929d98de3d9e8a7b3aa17b876c1bc1ea/talks.html) | Generated immutable runtime or route snapshot; canonical site and verified retained input owners. | generated | [site/README.md](site/README.md) |
 
 ## drafts/
 
@@ -587,6 +646,13 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [review/issue-56/2026-10-08-handoff.md](review/issue-56/2026-10-08-handoff.md) | Single source-bound R1 implementation handoff, free tooling decision, CS/AC mapping and independent review record. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+
+## review/issue-61/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-61/2026-10-08-handoff.md](review/issue-61/2026-10-08-handoff.md) | PMDay recording source treatment, proportional checks and style/review handoff; current live evidence belongs to issue61/its PR. | history | [review/REVIEW-TEMPLATE.md](review/REVIEW-TEMPLATE.md) |
+| [review/issue-61/content-amendment.json](review/issue-61/content-amendment.json) | Exact hashed old/new PMDay article delta authorized by the maintainer; restore before immutable Issue48/41 content amendments. | configuration | [guides/SITE-SOURCE-AUDIT.md](guides/SITE-SOURCE-AUDIT.md) |
 
 ## review/public-responses-20261006/
 
@@ -1408,7 +1474,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [site/effects/flight.cjs](site/effects/flight.cjs) | Canonical pure Travel effect descriptor and runtime helpers; hosted/offline adapters share raw code, CSS and controls. | source | [site/README.md](site/README.md) |
 | [site/effects/reading-surfaces.cjs](site/effects/reading-surfaces.cjs) | Canonical shared reading-surface CSS producer consumed by Ribbons and Travel descriptors. | source | [site/README.md](site/README.md) |
-| [site/effects/ribbons.cjs](site/effects/ribbons.cjs) | Canonical pure Ribbons effect descriptor and geometry/material helpers; optional hosted/offline reading runtime. | source | [site/README.md](site/README.md) |
+| [site/effects/ribbons.cjs](site/effects/ribbons.cjs) | Optional historical ribbon factory; not serialized into current Color delivery. Retained for explicit comparison and full source scanner coverage. | source | [site/README.md](site/README.md) |
 
 ## site/engine/
 
@@ -1429,6 +1495,61 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [site/integrations/cloudflare.cjs](site/integrations/cloudflare.cjs) | Exact-origin opt-in Cloudflare analytics loader with offline/staging exclusion. | source | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
+
+## site/retained/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/retained/manifest.json](site/retained/manifest.json) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | source | [site/README.md](site/README.md) |
+
+## site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/favicon.svg](site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/favicon.svg) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi-cutout.webp](site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi-cutout.webp) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi.jpg](site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi.jpg) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/writing-paradigm.svg](site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/writing-paradigm.svg) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+
+## site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/archive.js](site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/archive.js) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/navigation.js](site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/navigation.js) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/space.js](site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/space.js) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/styles.css](site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/styles.css) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/theme.js](site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/theme.js) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+
+## site/retained/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/retained/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html](site/retained/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+
+## site/retained/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/retained/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html](site/retained/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+
+## site/retained/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/retained/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html](site/retained/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+
+## site/retained/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/retained/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html](site/retained/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+
+## site/retained/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/retained/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html](site/retained/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
 
 ## site/scenes/
 
@@ -1478,7 +1599,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/quality.test.cjs](tests/quality.test.cjs) | Behavioral/adversarial tests and fixtures for quality. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/renderer.test.cjs](tests/renderer.test.cjs) | Maintained renderer palette, ordered drawing/state equivalence and cache invalidation, bounded formula projection/sampling/cache and geometry/resource regressions. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/review-flow.test.cjs](tests/review-flow.test.cjs) | Behavioral/adversarial tests and fixtures for review flow. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
-| [tests/ribbons.test.cjs](tests/ribbons.test.cjs) | Behavioral/adversarial tests and fixtures for ribbons. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/ribbons.test.cjs](tests/ribbons.test.cjs) | Explicit historical optional ribbon geometry/material/clock diagnostic; active Color excludes ribbons. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/scroll-sync.test.cjs](tests/scroll-sync.test.cjs) | Behavioral/adversarial tests and fixtures for scroll sync. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/site-engine.test.cjs](tests/site-engine.test.cjs) | Behavioral/adversarial tests and fixtures for site engine. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/site-face-preparation.test.cjs](tests/site-face-preparation.test.cjs) | Behavioral/adversarial tests and fixtures for site face preparation. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
@@ -1498,6 +1619,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/test_issue45_acceptance.py](tests/test_issue45_acceptance.py) | Issue45 selection of maintained source checks; actual visual/browser acceptance remains separate. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue48_acceptance.py](tests/test_issue48_acceptance.py) | Issue48 strict exact selections of maintained theory association, formula midpoint/cache, response reconciliation and canonical generation checks. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue56_acceptance.py](tests/test_issue56_acceptance.py) | Owning issue56 frozen baseline parity and canonical R1 source/tool coverage acceptance; excluded from generic future regression. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [tests/test_issue61_acceptance.py](tests/test_issue61_acceptance.py) | Issue61 mapping of existing active Color absence/navigation contracts; task-owned selection, no duplicate browser matrix. | source | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue_acceptance.py](tests/test_issue_acceptance.py) | Acceptance runner adversarial cases for invalid mappings, skipped/empty/failed tests and evidence identity. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_offline_export_security.py](tests/test_offline_export_security.py) | Behavioral/adversarial tests and fixtures for offline export security. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/test_repository_intelligence.py](tests/test_repository_intelligence.py) | Behavioral/adversarial tests and fixtures for repository intelligence. | test | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |

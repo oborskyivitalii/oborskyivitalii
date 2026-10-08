@@ -34,7 +34,8 @@ and strict aggregate under #13; generation freshness alone is insufficient.
 | `engine/renderer.cjs` | Ordered Canvas commands, adjacent-line batching and visible outlines | Assembled `space.js` |
 | `engine/theme.js`, `archive.js`, `navigation.js`, `styles.css`, `reading-surfaces.css` | Theme, filtering, routing and presentation | Shared browser files and pages |
 | `scenes/world.cjs`, `paths.json` | Authored motifs, rest geometry and finite camera paths | Runtime and projected SVG fallbacks |
-| `effects/flight.cjs`, `ribbons.cjs`, `reading-surfaces.cjs` | Pure optional Color effect descriptors and browser helpers | Shared hosted/offline Color runtime |
+| `effects/flight.cjs`, `reading-surfaces.cjs` | Current Color travel descriptor and retained reading/control CSS | Shared hosted/offline Color runtime |
+| `effects/ribbons.cjs` | Optional historical comparison factory; not serialized into active Color | Explicit legacy diagnostics only; full scanner coverage remains |
 | `../tools/site/effects.cjs`, `export.cjs` | Canonical effect source manifest, explicit delivery adapters and standalone export | Supported Color selection, scanner coverage and offline HTML |
 | `assets/` | Existing portrait, cutout, favicon and `.nojekyll` source | Exact image/icon bytes |
 | `analytics.json`, `integrations/cloudflare.cjs` | Optional production-only measurement under #8; disabled by default | Shared head and one separately hashed loader when enabled |
@@ -66,20 +67,16 @@ first painted flight frame. Each of at most three active/pending rooms caches
 at most two detail variants; theme changes
 repaint their color tables. No independent render loop or runtime dependency is added.
 
-Color ribbons share one route-independent world, material and ambient phase.
-Their immutable world grid uses 1.25-unit desktop cells (3-unit compact cells).
-Adaptive desktop detail groups whole cells at integer strides 1/2/3; it never
-moves retained samples, and near-plane contours retain fine cells. Visible
-crossing cells are clipped by their vertices instead of discarded by centroid.
-A route mount no longer changes shared Canvas opacity: Writing/Credits retain
-full Canvas opacity rather than their earlier 0.82 multiplier, raising
-their opacity by 18 percentage points and keeping ribbons continuous.
-A new flight first paints the displayed camera, while ambient time continues.
-Mounted layout/history retargets preserve the current camera and existing
-arrival deadline through a stable eased suffix; cancellation preserves actual
-painted travel progress as well as camera, phase and detail. Optional
-`SiteRibbonProbe` observations inspect actual submitted stations and journey
-state; ordinary visits construct no trace and add no independent clock.
+Current Color delivery uses only the travel effect. Issue61's explicit maintainer
+decision removes ribbon construction, collection and painting on every route,
+while keeping the thematic scene, Writing formula, shared reading/control CSS
+and the existing navigation/clock/freeze behavior. Both hosted and standalone
+Color identities declare `effects: ["travel"]`; optional ribbon adapters remain
+only for explicit historical comparisons, with their source still scanned.
+An optional `SiteEngineProbe` paint event observes successful ordinary native
+paints for camera/journey diagnostics. It uses the existing clock and constructs
+no frame evidence when the probe is absent; no independent loop is added.
+Historical ribbon material/phase evidence remains attached to its prior edition.
 
 Large inline titles retain native wrapping while their cloned backgrounds
 extend0.16em around each fragment. An inner positioned ink span paints the
