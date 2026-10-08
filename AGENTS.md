@@ -47,6 +47,10 @@ navigation in [REPOSITORY-MAP.md](REPOSITORY-MAP.md).
 
 ## Implement, verify and link
 
+- Before every code/template/style/config change, read and follow
+  [CODE-STYLE.md](guides/CODE-STYLE.md). Map applicable rule IDs to the issue's
+  code-style AC and PR evidence; run the bounded guard and relevant checks.
+  Review unautomated rules explicitly; legacy debt cannot authorize new debt.
 - Keep issue intent stable; append dated scope decisions. Put technical details,
   changed paths, implementation reasoning and checks in the linked PR/commits.
   Use `Refs #N` in the PR and each implementation commit; link the PR and exact

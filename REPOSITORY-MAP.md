@@ -61,6 +61,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-41](review/issue-41) | Dated source inventory and content-authority analysis for the same-PR Sol handoff. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-45](review/issue-45) | Issue45 versioned reading clarity findings, implementation and exact-source review evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-48](review/issue-48) | Issue48 bounded source intake, exact content amendment and dated implementation/review handoff. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-54](review/issue-54) | Issue54 source audit, architecture and ordered Sol refactor plan. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/public-responses-20261006](review/public-responses-20261006) | Exact before/after public response prose and reconciliation records. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/reading-backdrops-20261006](review/reading-backdrops-20261006) | Content-sized reading backdrop correction evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/repository-maintenance-20261007](review/repository-maintenance-20261007) | Byte-exact pre-cleanup agent guide and its provenance note. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -130,6 +131,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) | Stable issue AC contract, policy schema, deterministic evidence, session-end reconciliation and explicit live/manual gates. | guide | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) | UA comparison, site RI layers, file/check/workflow mapping, identity/bounds and coupled CI upgrade procedure. | guide | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
+| [.github/code-style.json](.github/code-style.json) | Exact issue54 legacy source/inline-style debt with frozen-baseline ceilings and removal tasks. | configuration | [guides/CODE-STYLE.md](guides/CODE-STYLE.md) |
 | [.github/pull_request_template.md](.github/pull_request_template.md) | PR execution, owning issue/commit links, checks/review and honest completion template. | configuration | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [.github/repository-intelligence-config.json](.github/repository-intelligence-config.json) | Site RI schema, upstream pin, owner aliases, memory bounds and validation routes. | configuration | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 | [.github/repository-layout.json](.github/repository-layout.json) | Reviewed root file contract, complete original dispositions and current Markdown surfaces for issue #33. | configuration | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
@@ -154,6 +156,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [.github/acceptance/issue-41.json](.github/acceptance/issue-41.json) | Issue41 AC01-AC06 implementation mapping for exact inputs, admitted editions, generated content, SEO and runtime scope; explicit editorial/browser/review-merge gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-45.json](.github/acceptance/issue-45.json) | Issue45 scoped formula and heading reading-clarity criterion mapping. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-48.json](.github/acceptance/issue-48.json) | Issue48 theory association, Writing midpoint and evidence-led Matthew response mapping with separate current-preview/editorial/review/merge gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [.github/acceptance/issue-54.json](.github/acceptance/issue-54.json) | Issue54 audit, guide, enforced subset, RI routing and Sol plan acceptance mapping. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 
 ## .github/repository-intelligence/
 
@@ -266,6 +269,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
+| [guides/CODE-STYLE.md](guides/CODE-STYLE.md) | Mandatory agent coding, content/template/CSS boundaries, performance and verification standards. | guide | [guides/CODE-STYLE.md](guides/CODE-STYLE.md) |
 | [guides/README.md](guides/README.md) | Topic guide index with one current owner for each concern; live issue status is retrieved separately. | guide | [guides/README.md](guides/README.md) |
 | [guides/REPOSITORIES.md](guides/REPOSITORIES.md) | Canonical boundaries and coordinated work routes across site, UA and Subprime. | guide | [guides/REPOSITORIES.md](guides/REPOSITORIES.md) |
 | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) | Disabled-by-default production analytics adapter contract and measurement limitations. | guide | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
@@ -568,6 +572,12 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-48/2026-10-08-handoff.md](review/issue-48/2026-10-08-handoff.md) | Issue48 versioned source/impact intake, narrow implementation tasks, independent review and exact-source acceptance handoff. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-48/content-amendment.json](review/issue-48/content-amendment.json) | Issue48 exact hashed theory order/association and Matthew Home/Research deltas, reversed before the immutable issue41 amendment. | history | [guides/SITE-SEO.md](guides/SITE-SEO.md) |
 | [review/issue-48/source-inventory.json](review/issue-48/source-inventory.json) | Verified Matthew Skelton public reshare identity, bounded guest-source acquisition metadata/hash, Michael Risch attribution and older encouragement provenance. | history | [guides/SITE-SOURCE-AUDIT.md](guides/SITE-SOURCE-AUDIT.md) |
+
+## review/issue-54/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-54/2026-10-08-analysis.md](review/issue-54/2026-10-08-analysis.md) | Exact-baseline site debt findings, code standards delivery and bounded Sol work packages. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 ## review/public-responses-20261006/
 
@@ -1465,6 +1475,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/staging-trust.test.cjs](tests/staging-trust.test.cjs) | Behavioral/adversarial tests and fixtures for staging trust. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/staging.test.cjs](tests/staging.test.cjs) | Behavioral/adversarial tests and fixtures for staging. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/test-profile-selection.test.cjs](tests/test-profile-selection.test.cjs) | Exhaustive registry/futuremodule/unknownsource/exactref/source accounting and empty/skip/TODO failure regressions. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/test_code_style.py](tests/test_code_style.py) | Negative style-guard fixtures and actual code-path/bilingual agent/RI routing checks. | test | [guides/CODE-STYLE.md](guides/CODE-STYLE.md) |
 | [tests/test_issue31_acceptance.py](tests/test_issue31_acceptance.py) | Issue 31 observable acceptance checks for RI provenance, inventory, memory, workflow, unchanged site and bootstrap. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue33_acceptance.py](tests/test_issue33_acceptance.py) | Issue #33 source snapshot assertions for unchanged public bytes, historic reviews, locator exceptions, policy and handoff. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue35_acceptance.py](tests/test_issue35_acceptance.py) | Owning issue35 targeted snapshot, real Node accounting, full-guard, registry/RI and honest source/closure assertions; selected policy only. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
@@ -1506,6 +1517,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tools/build_site_contact_sheets.py](tools/build_site_contact_sheets.py) | Site generation/offline review helper: build site contact sheets; inspect its source and output contract before use. | source | [site/README.md](site/README.md) |
 | [tools/build_site_previews.cjs](tools/build_site_previews.cjs) | Site generation/offline review helper: build site previews; inspect its source and output contract before use. | source | [site/README.md](site/README.md) |
 | [tools/capture_site_review.cjs](tools/capture_site_review.cjs) | Site generation/offline review helper: capture site review; inspect its source and output contract before use. | source | [site/README.md](site/README.md) |
+| [tools/check_code_style.py](tools/check_code_style.py) | Bounded authored-source style/dependency/token guard; immutable legacy debt validation. | validator | [guides/CODE-STYLE.md](guides/CODE-STYLE.md) |
 | [tools/check_repository_layout.py](tools/check_repository_layout.py) | Validate bounded entry routes, root/guide ownership, exact archive provenance and active links; opt-in issue #33 snapshots preserve task evidence. | validator | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 | [tools/check_ri_ci.py](tools/check_ri_ci.py) | Validate and refresh reviewed RI/CI mapping, test-selector resolution and actual workflow invocations. | validator | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 | [tools/check_site_contrast.cjs](tools/check_site_contrast.cjs) | Site generation/offline review helper: check site contrast; inspect its source and output contract before use. | source | [site/README.md](site/README.md) |

@@ -24,7 +24,11 @@ jobs:
         with:
           node-version: 24.19.0
       # site-checks.yml owns Basic and changed-source tests. Only cheap RI,
-      # profile/gate fixtures run here; hosted matrices have separate triggers.
+      # style and profile/gate fixtures run here; hosted matrices have separate triggers.
+      - name: Check bounded source architecture and CSS ownership
+        run: python3 tools/check_code_style.py
+      - name: Check code style guard negatives and agent routes
+        run: python3 -m unittest discover -s tests -p 'test_code_style.py'
       - name: Verify reviewed RI and CI coverage
         run: python3 tools/check_ri_ci.py verify
       - name: Check RI and CI coupling regression cases

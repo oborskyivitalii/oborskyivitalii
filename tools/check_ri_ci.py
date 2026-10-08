@@ -43,7 +43,10 @@ CONTROL_PATTERNS = (
     "tests/*staging-gate*.test.cjs", "tests/*staging-regression*.test.cjs",
     "tests/fixtures/staging-*.cjs",
 )
-CONTROL_OWNERS = {".github/REPOSITORY-INTELLIGENCE.md", ".github/ACCEPTANCE.md"}
+CONTROL_OWNERS = {
+    ".github/REPOSITORY-INTELLIGENCE.md", ".github/ACCEPTANCE.md",
+    "guides/CODE-STYLE.md",
+}
 DERIVED = {MAP, "REPOSITORY-MAP.md", ".github/repository-intelligence/agent-context.json"}
 
 

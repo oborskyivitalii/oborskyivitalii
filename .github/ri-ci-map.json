@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "review": {
-    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/48",
-    "summary": "2026-10-08 issue48 narrow theory/project association, Writing landmark midpoint, verified Matthew reshare and explicitly authorized distinct Talks curation: strict maintained-case selections run through the owning AC01-AC05 policy; current-preview, editorial, independent review and merge remain explicit gates. Existing companion paths, canonical profile allocation and original budgets are retained.",
+    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/54",
+    "summary": "2026-10-08 issue54 adds mandatory code-style ownership/routing, exact frozen legacy allowances, lightweight negative guards and existing navigation CI invocation. Extends control ownership to the guide. Retains existing profile, source/evidence and release contracts. No runtime/content/public changes. Reconciled with merged PR51 at main a06b530; retain issue48 controls and public sources unchanged.",
     "date": "2026-10-08"
   },
   "layers": [
@@ -52,6 +52,8 @@
         ".github/acceptance/issue-45.json",
         "tests/test_issue45_acceptance.py",
         "review/issue-45/2026-10-07-handoff.md",
+        ".github/acceptance/issue-54.json",
+        "review/issue-54/2026-10-08-analysis.md",
         ".github/acceptance/issue-48.json",
         "tests/test_issue48_acceptance.py",
         "review/issue-48/2026-10-08-handoff.md",
@@ -204,6 +206,22 @@
         "acceptance-policy-selection",
         "ri-ci-map",
         "site-basic"
+      ]
+    },
+    {
+      "id": "code-style-architecture",
+      "purpose": "Mandatory agent coding rules, bounded source/CSS guard and frozen exact debt; unautomated style and refactor judgments remain explicit review.",
+      "paths": [
+        "guides/CODE-STYLE.md",
+        ".github/code-style.json",
+        "tools/check_code_style.py",
+        "tests/test_code_style.py"
+      ],
+      "checks": [
+        "code-style-guard",
+        "code-style-regressions",
+        "ri-ci-regressions",
+        "ri-freshness"
       ]
     }
   ],
@@ -360,15 +378,43 @@
         "tests/staging-regression.test.cjs",
         "tests/quality-sources.test.cjs"
       ]
+    },
+    {
+      "id": "code-style-guard",
+      "workflow": ".github/workflows/navigation.yml",
+      "job": "navigation",
+      "argv": [
+        "python3",
+        "tools/check_code_style.py"
+      ]
+    },
+    {
+      "id": "code-style-regressions",
+      "workflow": ".github/workflows/navigation.yml",
+      "job": "navigation",
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_code_style.py"
+      ],
+      "test_selectors": [
+        "test_code_style.CodeStyleTests",
+        "test_code_style.CodeStyleRepositoryTests"
+      ]
     }
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "98db206c17a6765e19c06f00ff21b93bfefb46ab6e4dbec0eccd977a38a1ad35",
+    "digest": "d3daf676a1ebe3b084e2dba623b893fa2aceda79bf3f15e30312d5aca502276c",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
-        "sha256": "bd74a60ccf2493e6ffc2e598cba737a2935a4377072cf83acecdd3a3851a3d13"
+        "sha256": "c13f1e51d3055a02741798fadb06b023764116e6348c4b620f68625d13c2f991"
       },
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -376,7 +422,7 @@
       },
       {
         "path": ".github/ISSUE_TEMPLATE/work-item.md",
-        "sha256": "5dd1607ad15da77867bf9f7f3d52f3f95e64f50a8349cbf545c41a01db1d2ca2"
+        "sha256": "c9b6d6a36ed145002834952eff069e2a7fbfd179a7cff7d5425421881655fa24"
       },
       {
         "path": ".github/REPOSITORY-INTELLIGENCE.md",
@@ -411,20 +457,28 @@
         "sha256": "4917dc8d7b3048fd23a7a67f14c5da07b27c9a3e1296916355f89d282334f29c"
       },
       {
+        "path": ".github/acceptance/issue-54.json",
+        "sha256": "0b1b6c961fab83e81c7716b75f932e8192261f72dafb6d158dce10d250252673"
+      },
+      {
+        "path": ".github/code-style.json",
+        "sha256": "7eb4844eeca51ea45815a0dd74fc31ee19b2e0c0ef7d07c2f0c0d010bde4578f"
+      },
+      {
         "path": ".github/pull_request_template.md",
-        "sha256": "9d6e001401d72e906275515a4c4921e966541cda9d7b98aad58f54980bf301de"
+        "sha256": "c8c3d6209a86c42842c5f649a8f0837de4ff5af955b8c27769eabf7763c9a28f"
       },
       {
         "path": ".github/repository-intelligence-config.json",
-        "sha256": "bf9d9b819b3a06314c668984b4830d27ac530785e64ac4937bcb9c75c42e3afd"
+        "sha256": "9508dc0417cee94850ba538be9c8da06b2e5900554f7a6c69d09344f5e88ff3a"
       },
       {
         "path": ".github/repository-layout.json",
-        "sha256": "aeed11013476aa5517b180a7a1009c0efc0d49a487103d798a5f8d3fcecb342a"
+        "sha256": "41a8c2a0fcb29fa5cea9ffcbc3f4e1202107f76459e995d4110e20cf1fa87dcc"
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "582ef349cb079a7a8d82ad860bef6bcfaa028de53e210e68103a918cb00256c0"
+        "sha256": "14a2f78b4b661fda010f29abb01826a74465c542e457fc072198731a50e91363"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -432,7 +486,7 @@
       },
       {
         "path": ".github/workflows/navigation.yml",
-        "sha256": "8bb5299dfe5082381cbaa08b5a1bdc748d7e8bd060daf512096448eac8950454"
+        "sha256": "bdba63ae8bdc3a080b8ac0383afd8a6cbf9e50984a92ad46e0420d618bbf706b"
       },
       {
         "path": ".github/workflows/site-browser-gate-probe.yml",
@@ -488,19 +542,23 @@
       },
       {
         "path": "AGENTS.md",
-        "sha256": "a46a8c699e5c58247e2aa1e6be01d49ce7508e815e16a5f27f51453cda38378e"
+        "sha256": "478c6af4aa6eca644b0d85cf73f44d50526fa5c4a808f414cc6d0b654d3b4792"
       },
       {
         "path": "CONTRIBUTING.md",
-        "sha256": "4294fc3e68375e674e5a1fcac8a81a8236c11c023d35e10497688e2807aa75ec"
+        "sha256": "9d8ea10d74c48fe313e7c977ffef9e9afa894d566163220a405d2fdb154f6ebc"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
         "sha256": "b69656ee56d8b30f0b805bc69a5bbbb5d568c7889aedf09cc1c19bb4ad46851e"
       },
       {
+        "path": "guides/CODE-STYLE.md",
+        "sha256": "b07fde3526f92d7b0e113f1a34f57584ca0734f6609fd4ac65a02dfeef3af4e5"
+      },
+      {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "337a4a0945c78f630ad50c1e174b19932d171d4310fd947a5a72e72fa66eeaec"
+        "sha256": "d3fda7bcd9d71fb4bf28aecd801c5106fdcd1e380e580f6c91598f49bb99767c"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -521,6 +579,10 @@
       {
         "path": "tests/test-profile-selection.test.cjs",
         "sha256": "3f3472e45db13b57d95ce7e7f23629b526be14d7d944b0b9adeb5531aad48c68"
+      },
+      {
+        "path": "tests/test_code_style.py",
+        "sha256": "c31f5aa311386c512e78da6aa5b36491aab732513d67eb36684b8dd39d3a1268"
       },
       {
         "path": "tests/test_issue31_acceptance.py",
@@ -564,11 +626,15 @@
       },
       {
         "path": "tests/test_ri_ci.py",
-        "sha256": "e566cc57a41fc73b3da7ade2649752a4e0b038f6215b06c9bfc3e620a978ec73"
+        "sha256": "8fc37bcee5106deb6e2d581592297b588bc852a34b026d06c0bb787afd5998a0"
       },
       {
         "path": "tests/test_root_layout.py",
         "sha256": "1eec98199b0a4ef834afc9e396d5f2c5909dd19501a2958887fc5d201df7d3a9"
+      },
+      {
+        "path": "tools/check_code_style.py",
+        "sha256": "970037cd81112c6021bb3eecec9fc75c998852cd9da41ad41f292744d7af91ad"
       },
       {
         "path": "tools/check_repository_layout.py",
@@ -576,7 +642,7 @@
       },
       {
         "path": "tools/check_ri_ci.py",
-        "sha256": "0cb2ab4d9dd1c483c95d6b05f39708df7fdc27363ce1011baf0c7a444a1cf183"
+        "sha256": "7712e78281ba66c00e78a31675e34e271bdeff08e2fb3e1975e59071c7616879"
       },
       {
         "path": "tools/issue_acceptance.py",
@@ -600,7 +666,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "44f9afb59e4108a031df16a6e161af6fbd32a1e0116743fce086516f649ca399"
+        "sha256": "70c2a7808858cfcbe30cefea6f1cdda97329b43f0381190ed377438ef50f15d4"
       },
       {
         "path": "tools/repository_intelligence.py",

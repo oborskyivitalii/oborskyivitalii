@@ -57,25 +57,25 @@
     },
     ".github/acceptance/issue-31.json": {
       "kind": "file",
-      "purpose": "Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates.",
+      "purpose": "Cleanup AC01\u2013AC11 mapped to source-bound deterministic tests and separate readiness gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-33.json": {
       "kind": "file",
-      "purpose": "Bootstrap/root optimization AC01–AC06 mapped to source-bound assertions and separate review, merge and linkage gates.",
+      "purpose": "Bootstrap/root optimization AC01\u2013AC06 mapped to source-bound assertions and separate review, merge and linkage gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-35.json": {
       "kind": "file",
-      "purpose": "Test optimization AC01–AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates.",
+      "purpose": "Test optimization AC01\u2013AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-36.json": {
       "kind": "file",
-      "purpose": "Writing formula AC01–AC05 mapped to canonical asset, native cache/integration, source-bound browser and paired performance evidence, with remaining human/release gates explicit.",
+      "purpose": "Writing formula AC01\u2013AC05 mapped to canonical asset, native cache/integration, source-bound browser and paired performance evidence, with remaining human/release gates explicit.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -6840,6 +6840,48 @@
       "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
       "role": "generated",
       "owner": "site/README.md"
+    },
+    "guides/CODE-STYLE.md": {
+      "kind": "file",
+      "purpose": "Mandatory agent coding, content/template/CSS boundaries, performance and verification standards.",
+      "role": "guide",
+      "owner": "guides/CODE-STYLE.md"
+    },
+    ".github/code-style.json": {
+      "kind": "file",
+      "purpose": "Exact issue54 legacy source/inline-style debt with frozen-baseline ceilings and removal tasks.",
+      "role": "configuration",
+      "owner": "guides/CODE-STYLE.md"
+    },
+    "tools/check_code_style.py": {
+      "kind": "file",
+      "purpose": "Bounded authored-source style/dependency/token guard; immutable legacy debt validation.",
+      "role": "validator",
+      "owner": "guides/CODE-STYLE.md"
+    },
+    "tests/test_code_style.py": {
+      "kind": "file",
+      "purpose": "Negative style-guard fixtures and actual code-path/bilingual agent/RI routing checks.",
+      "role": "test",
+      "owner": "guides/CODE-STYLE.md"
+    },
+    ".github/acceptance/issue-54.json": {
+      "kind": "file",
+      "purpose": "Issue54 audit, guide, enforced subset, RI routing and Sol plan acceptance mapping.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-54": {
+      "kind": "directory",
+      "purpose": "Issue54 source audit, architecture and ordered Sol refactor plan.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-54/2026-10-08-analysis.md": {
+      "kind": "file",
+      "purpose": "Exact-baseline site debt findings, code standards delivery and bounded Sol work packages.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }

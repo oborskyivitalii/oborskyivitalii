@@ -58,7 +58,7 @@ class RICICouplingTests(unittest.TestCase):
         self.assertEqual({layer["id"] for layer in data["layers"]}, {
             "authority-instructions", "intent-acceptance", "path-catalog", "producer-identity",
             "generated-views", "lookup-validation-routes", "continuity", "github-live-overlay-ci-boundary",
-            "entry-root-guides", "test-profile-selection"})
+            "entry-root-guides", "test-profile-selection", "code-style-architecture"})
         self.assertFalse(result["live_github_state_verified"])
 
     def test_staging_and_production_share_actual_ri_freshness_preflight(self):
@@ -136,6 +136,17 @@ class RICICouplingTests(unittest.TestCase):
         self.write(path, "// Changed profile-selection behavior\n")
         with self.assertRaisesRegex(ValueError, "Stale RI/CI mapping"):
             ci.verify(self.root)
+
+    def test_new_code_style_owned_control_must_be_mapped(self):
+        path = "tools/check_new_style_rule.py"
+        self.write(path, "# Maintained code style control\n")
+        self.write(ci.CATALOG, json.dumps({"entries": {path: {
+            "kind": "file", "role": "validator", "owner": "guides/CODE-STYLE.md"}}}))
+        with self.assertRaisesRegex(ValueError, "Unmapped.*check_new_style_rule.py"):
+            self.refresh()
+        self.data["layers"][0]["paths"].append(path)
+        self.refresh()
+        self.assertTrue(ci.verify(self.root)["pass"])
 
     def test_missing_path_and_dangling_check_fail(self):
         (self.root / "AGENTS.md").unlink()

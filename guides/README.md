@@ -7,6 +7,7 @@ acceptance live in issues/PRs; [MEMORY](../MEMORY.md) is a dated continuity hint
 
 | Guide | Responsibility | Owning route |
 | --- | --- | --- |
+| [CODE-STYLE](CODE-STYLE.md) | Mandatory agent coding/architecture rules, bounded enforcement and exact legacy debt | Code-changing issue ACs; initial audit/refactor plan #54 |
 | [REPOSITORIES](REPOSITORIES.md) | Research/publication authority and cross-repository migration boundaries | Applicable canonical repository and local owning issue |
 | [SITE-ROADMAP](SITE-ROADMAP.md) | Priority, publication sequence and dependency routes | Launch #1, PMDay #2, publishing #5, harness #6, rights #7, hosting #8, guides #11 and gates #13 |
 | [SITE-SOURCE-AUDIT](SITE-SOURCE-AUDIT.md) | Public claim/edition provenance and source-reader limitations | Content issue and canonical source record |
