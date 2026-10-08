@@ -250,7 +250,7 @@ async function ribbonNavigation(browser,url,output,result){
   assert.ok(result.navigation.every(row=>row.pass),'complete ribbon navigation evidence; inspect retained traces and clips');
 }
 async function surfaceSamples(page,route,width,theme,result){
-  const selectors={index:[width<=640?'.hero h1':'.hero-copy','.help-grid article','.site-footer>p','.appearance[open] .display-controls'],research:['.reading-title','.research-card'],writing:['.reading-title','.archive-filters','.publication','.year-heading'],talks:['.reading-title','.talks-list .publication>div'],credits:['.credits-page>h1']};
+  const selectors={index:[width<=640?'.hero h1':'.hero-copy','.help-grid article','.site-footer>p','.appearance[open] .display-controls'],research:['.reading-title','.research-card'],writing:['.reading-title','.archive-filters','.publication','.year-heading'],talks:['.reading-title','.talks-list .publication'],credits:['.credits-page>h1']};
   const observed=await page.evaluate(selectors=>{
     const appearance=document.querySelector('.appearance'),wasOpen=appearance?.open;
     if(appearance)appearance.open=true;

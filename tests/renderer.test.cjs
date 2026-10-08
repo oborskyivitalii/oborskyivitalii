@@ -177,7 +177,18 @@ test('formula raster failure is bounded once and preserves other scene commands'
 });
 test('the Writing landmark inhabits the book fractal and follows its periodic world transform and forward camera',()=>{
   const builder=require('../tools/site/build.cjs'),root=require('node:path').resolve(__dirname,'..'),api=builder.model(root,builder.configuration(root).definitions),world=api.worldFor('writing'),anchor=world.formulas[0];
-  assert.equal(world.formulas.length,1);assert.deepEqual(anchor.center,[0,0,-5]);assert.deepEqual(anchor.rootCenter,world.objects.find(o=>o.root===0).rootCenter);
+  for(const geometry of [world,api.worldFor('writing',true)]){
+    assert.equal(geometry.formulas.length,1);
+    const landmark=geometry.formulas[0],archCenters=[0,1].map(index=>geometry.objects.find(o=>o.family==='thematic'&&o.root===index).rootCenter);
+    const midpoint=archCenters[0].map((coordinate,index)=>(coordinate+archCenters[1][index])/2);
+    assert.deepEqual(landmark.center,midpoint,'full and compact worlds place the landmark between the first two book arches');
+    assert.deepEqual(landmark.rootCenter,midpoint,'the bounded living transform stays centred at the new landmark');
+    for(const time of [0,3000,7317,12000,23999]){
+      const center=api.loopTransform(landmark,time).center;
+      assert.ok(center[2]<archCenters[0][2]&&center[2]>archCenters[1][2],'the pulsing landmark stays between the first two arch depths');
+      assert.ok(Math.hypot(...api.sub(center,midpoint))<1,'moving the landmark preserves its bounded ambient displacement');
+    }
+  }
   const first=api.projectedFormula(anchor,api.poses.library,1440,900,0),mobile=api.projectedFormula(anchor,api.poses.library,390,844,0),living=api.projectedFormula(anchor,api.poses.library,1440,900,3000),approach=api.projectedFormula(anchor,api.journeyPose(api.topicPaths.all,.08),1440,900,0);
   assert.deepEqual(first.projection.worldCorners,mobile.projection.worldCorners,'viewport does not relocate the world landmark');
   assert.notDeepEqual(living.projection.worldCorners,first.projection.worldCorners);assert.ok(living.projection.pulse>first.projection.pulse);

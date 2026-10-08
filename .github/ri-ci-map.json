@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "review": {
-    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/45",
-    "summary": "2026-10-07 issue45 formula contour and paint-only heading margin repair plus authorized continuous-ribbon amendment: maintained world/material/phase and displayed-camera retarget/detail/lifecycle checks run through the owning acceptance policy and existing changed-source allocation. Exact-source visual/flight and 60-case geometry evidence stay separate. Original profiles/budgets/release boundaries retained.",
-    "date": "2026-10-07"
+    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/48",
+    "summary": "2026-10-08 issue48 narrow theory/project association, Writing landmark midpoint, verified Matthew reshare and explicitly authorized distinct Talks curation: strict maintained-case selections run through the owning AC01-AC05 policy; current-preview, editorial, independent review and merge remain explicit gates. Existing companion paths, canonical profile allocation and original budgets are retained.",
+    "date": "2026-10-08"
   },
   "layers": [
     {
@@ -51,7 +51,12 @@
         "review/issue-36/2026-10-07-controller-compatibility.md",
         ".github/acceptance/issue-45.json",
         "tests/test_issue45_acceptance.py",
-        "review/issue-45/2026-10-07-handoff.md"
+        "review/issue-45/2026-10-07-handoff.md",
+        ".github/acceptance/issue-48.json",
+        "tests/test_issue48_acceptance.py",
+        "review/issue-48/2026-10-08-handoff.md",
+        "review/issue-48/content-amendment.json",
+        "review/issue-48/source-inventory.json"
       ],
       "checks": [
         "acceptance-policy",
@@ -359,7 +364,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "ab7055570234b455eec3ef93858a5e7d29b799940d183383e0b4bfcf7c908f4b",
+    "digest": "98db206c17a6765e19c06f00ff21b93bfefb46ab6e4dbec0eccd977a38a1ad35",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -402,6 +407,10 @@
         "sha256": "23050469079306b91a34e06b761770d1fb31bf041896de81943119bbd1a6ac8e"
       },
       {
+        "path": ".github/acceptance/issue-48.json",
+        "sha256": "4917dc8d7b3048fd23a7a67f14c5da07b27c9a3e1296916355f89d282334f29c"
+      },
+      {
         "path": ".github/pull_request_template.md",
         "sha256": "9d6e001401d72e906275515a4c4921e966541cda9d7b98aad58f54980bf301de"
       },
@@ -415,7 +424,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "3c8b2e03be234ca32ec4aacf12dcfc4f2f3ff3187a25a6d347bab94cc8e10148"
+        "sha256": "582ef349cb079a7a8d82ad860bef6bcfaa028de53e210e68103a918cb00256c0"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -538,6 +547,10 @@
         "sha256": "8cf493d78ff6ad8c7ce7892b3e532b3ba7fdb82a95ec7c4409a5442884b9cd93"
       },
       {
+        "path": "tests/test_issue48_acceptance.py",
+        "sha256": "bd65093c7e78ba5d466556544f932883911e720562d7aa97189467b9871ed20d"
+      },
+      {
         "path": "tests/test_issue_acceptance.py",
         "sha256": "51ccc40c3ccbf755ef277c7dec6437148cdf50fb7aa401e1bf8f255c2b96a426"
       },
@@ -587,7 +600,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "9d093874ec6d902da48f733ea61f7254683efb6b55223e8b335443e21f366609"
+        "sha256": "44f9afb59e4108a031df16a6e161af6fbd32a1e0116743fce086516f649ca399"
       },
       {
         "path": "tools/repository_intelligence.py",

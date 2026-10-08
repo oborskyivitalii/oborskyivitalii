@@ -20,10 +20,11 @@ test("selected Home responses link to the complete Research inventory with prese
     const entries=[...section(page).matchAll(/<h3><a href="(https:\/\/www.linkedin.com\/in\/[^"]+)">([^<]+)<\/a>(?:<span class="advisor-role">[^<]+<\/span>)?<\/h3><p class="person-context">([^<]+)<\/p>/g)];
     assert.deepEqual(entries.map(e=>e[2]),names[page]);
     assert.equal(new Set(entries.map(e=>e[1])).size,names[page].length,"do not assign one profile to multiple identities");
-    assert.equal((section(page).match(/https:\/\/www.linkedin.com\/posts\//g)||[]).length,page==='index'?3:9);
+    assert.equal((section(page).match(/https:\/\/www.linkedin.com\/posts\//g)||[]).length,page==='index'?3:11);
   }
   const previous=fs.readFileSync(path.join(root,'../review/public-responses-20261006/research.before.html'),'utf8');
-  const current=articles(section('research'));
+  const amendment=JSON.parse(fs.readFileSync(path.join(root,'../review/issue-48/content-amendment.json'),'utf8'));
+  const current=articles(require('../tools/check_site_seo.cjs').restoreContentAmendment(section('research'),'research',amendment));
   for(const article of articles(previous)){
     const profile=article.match(/<h3><a href="([^"]+)"/)[1],replacement=current.find(a=>a.includes('href="'+profile+'"'));
     assert.ok(replacement,'all eight people survive');
@@ -41,7 +42,48 @@ test("selected Home responses link to the complete Research inventory with prese
   assert.ok(section('index').includes('href="research.html#ua-advisors"'));
   assert.ok(section('research').includes('Strategic Advisor on Governance and Alignment'));
   assert.ok(section('research').includes('Academic Advisor'));
-  assert.ok(section('index').includes('Offered public encouragement for the research’s development.'));
+  const inventory=JSON.parse(fs.readFileSync(path.join(root,'../review/issue-48/source-inventory.json'),'utf8'));
+  assert.equal(inventory.source.author,'Matthew Skelton');
+  assert.equal(inventory.source.reshared_author,'Michael Risch');
+  assert.equal(inventory.source.published_at,'2026-04-29T08:34:23.806Z');
+  assert.equal(inventory.source.canonical_url,'https://www.linkedin.com/posts/matthewskelton_uncertainty-architecture-why-ai-governance-activity-7455172623409430528-MI9x');
+  assert.equal(inventory.source.reshared_url,'https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g');
+  assert.equal(inventory.source.sha256,'d8af864e30df71dea7bf04062ab28e4cfe03f3fa5dbfbdb91a131812aed27c78');
+  for(const page of ['index','research']) {
+    const matthew=articles(section(page)).find(article=>article.includes('>Matthew Skelton</a>'));
+    assert.equal(matthew,amendment.changes.find(c=>c.page===page&&c.id==='matthew-response').after,'exact admitted Matthew wording and links');
+    assert.equal(links(matthew)[1],inventory.source.canonical_url);
+    assert.match(matthew,/Reshared Michael Risch’s discussion of my AI governance/);
+    assert.match(matthew,/bringing business intent back into the system/);
+    assert.doesNotMatch(matthew,/validated|endorsed|adopted|certified/i);
+    if(page==='research') {
+      assert.deepEqual(links(matthew).slice(2),[inventory.source.reshared_url,inventory.retained_secondary_source]);
+      assert.match(matthew,/He also offered public encouragement/);
+    }
+  }
+});
+
+test("research theories retain project alignment and explicit association on narrow layouts",()=>{
+  const research=pages.research,lenses=research.match(/<section id="lenses"[\s\S]*?<\/section>/)[0];
+  const cards=[...lenses.matchAll(/<article class="topic-card topic-card--(delivery|systems)">([\s\S]*?)<\/article>/g)];
+  assert.deepEqual(cards.map(c=>c[1]),['delivery','systems']);
+  assert.ok(research.indexOf('<article id="delivery"')<research.indexOf('<article id="systems"'));
+  const amendment=JSON.parse(fs.readFileSync(path.join(root,'../review/issue-48/content-amendment.json'),'utf8'));
+  const before=amendment.changes.find(c=>c.id==='lenses').before;
+  const original=[...before.matchAll(/<article class="topic-card">([\s\S]*?)<\/article>/g)].map(m=>m[1]);
+  for(const [index,project,title] of [[0,'The Subprime Code Crisis','Theory of Constraints (TOC)'],[1,'Uncertainty Architecture','Control Theory']]) {
+    const [card,owner,body]=cards[index];
+    assert.ok(card.includes('<p class="lens-context"><a href="#'+owner+'">For '+project+'</a></p>'),'named association survives independent mobile stacking');
+    assert.ok(body.includes('<h3>'+title+'</h3>'));
+    const withoutContext=body.replace(/<p class="lens-context">[\s\S]*?<\/p>/,'').replace(/>\s+</g,'><').trim();
+    assert.equal(withoutContext,original[1-index].trim(),'theory description and external reading routes remain exact');
+  }
+  const css=fs.readFileSync(path.join(root,'styles.css'),'utf8');
+  for(const [owner,token] of [['delivery','accent'],['systems','systems']]) {
+    assert.ok(css.includes('.topic-card--'+owner+' {border-top:2px solid var(--'+token+')}'));
+    assert.ok(css.includes('.topic-card--'+owner+' .lens-context {color:var(--'+token+')}'));
+  }
+  assert.match(css,/@media\s*\(max-width:640px\)[\s\S]*?\.topic-grid[^{]*\{[^}]*grid-template-columns:1fr/);
 });
 
 test("English UI has distinct useful metadata and non-executable accurate page schemas", () => {
@@ -123,8 +165,50 @@ test("portrait is a real sized local asset and ambiguous talk languages stay exp
   assert.equal(cutout.subarray(8,12).toString(), "WEBP");
   assert.ok(cutout.length < 80000);
   assert.match(pages.index, /<img src="media\/[a-f0-9]{64}\/vitalii-oborskyi-cutout.webp" alt="Portrait of Vitalii Oborskyi with the background removed" width="780" height="721"/);
-  assert.equal([...pages.talks.matchAll(/<article class="publication" data-language="unconfirmed">/g)].length, 2);
+  const talks=[...pages.talks.matchAll(/<article class="publication" data-language="([^"]+)">([\s\S]*?)<\/article>/g)];
+  assert.deepEqual(talks.map(row=>row[1]),['uk','unconfirmed','unconfirmed','unconfirmed']);
+  for(const row of talks.slice(1))assert.ok(row[2].includes('Language unconfirmed'));
   assert.ok(pages.talks.includes('id="ukrainian-talks"'));
+});
+
+test("Talks curates distinct events with source-supported dates, language and resources",()=>{
+  const inventory=require('../review/issue-48/source-inventory.json').talks;
+  const amendment=require('../review/issue-48/content-amendment.json');
+  const section=amendment.changes.find(change=>change.page==='talks'&&change.id==='talks');
+  assert.equal(section.after,fs.readFileSync(path.join(root,'../site/content/pages/talks/talks.html'),'utf8'));
+  assert.ok(pages.talks.includes(section.after),'generated page carries the authored section');
+  const rows=html=>[...html.matchAll(/<article class="publication" data-language="([^"]+)">([\s\S]*?)<\/article>/g)];
+  const cards=rows(section.after),oldCards=rows(section.before);
+  assert.deepEqual(cards.map(row=>row[2].match(/<h3 class="talk-title"[^>]*>(.*?)<\/h3>/)[1]),[
+    'Uncertainty Architecture: Перезапуск SDLC','Designing Non-Deterministic Systems',
+    'Uncertainty Architecture &amp; software delivery','Discussion: Operating AI systems']);
+  assert.equal(cards[1][0],oldCards[1][0],'Corning stays exact');
+  for(const old of oldCards)for(const [,url]of old[0].matchAll(/href="([^"]+)"/g))assert.ok(section.after.includes(`href="${url}"`),'existing event source survives');
+  assert.deepEqual(inventory.map(row=>[row.id,row.event_id,row.disposition,row.event_date,row.spoken_language]),[
+    ['T1','pmday-2026-autumn','enrich-existing','2026-09-26','uk'],
+    ['T2','betelgeuse','enrich-existing',null,'unconfirmed'],
+    ['T3','swarchua','add-distinct-event',null,'unconfirmed']]);
+  const sources=[
+    'https://www.linkedin.com/posts/vitaliioborskyi_thank-you-to-the-ua-project-management-day-activity-7510403699689771008-L6yl',
+    'https://ua.linkedin.com/posts/vitaliioborskyi_%D0%B2%D0%BE%D0%BB%D0%BE%D0%B4%D0%B8%D0%BC%D0%B8%D1%80-%D0%B4%D1%8F%D0%BA%D1%83%D1%8E-%D0%B7%D0%B0-%D0%BF%D0%BE%D1%81%D1%82-%D0%B2%D1%96%D0%BD-%D1%83%D0%B2%D1%96%D0%BC%D0%BA%D0%BD%D1%83%D0%B2-%D1%83-activity-7479802249829928961-PmrF',
+    'https://ua.linkedin.com/posts/vitaliioborskyi_software-architecture-activity-7477274339411693569-dJhu'];
+  assert.deepEqual(inventory.map(row=>row.canonical_url),sources);
+  assert.deepEqual(inventory.map(row=>row.post_published_at),['2026-09-28T18:22:58.558Z','2026-07-06T07:43:44.346Z','2026-06-29T08:18:43.534Z']);
+  sources.forEach((url,i)=>assert.equal(cards[[0,2,3][i]][0].split(`href="${url}"`).length-1,1,'each new source belongs to its single event'));
+  assert.deepEqual([...section.after.matchAll(/<time datetime="([^"]+)"/g)].map(row=>row[1]),['2026-09-26']);
+  assert.doesNotMatch(cards.slice(1).map(row=>row[0]).join(''),/<time\b|2026-07-06|2026-06-29|2026-06-13/);
+  assert.doesNotMatch(cards[0][0],/recording|slides|youtube/i,'promised PMDay recording is not advertised');
+  const recording=inventory[2].recording;
+  assert.equal(recording.canonical_url,'https://www.youtube.com/watch?v=1MPsDi3wuF4');
+  assert.equal(recording.title,'AI discussion');assert.equal(recording.channel,'Neverdrak');
+  assert.equal(recording.source_link_verified,true);assert.equal(recording.target_metadata_read,true);
+  assert.equal(recording.playback_or_transcript_inspected,false);
+  assert.ok(cards[3][0].includes(`href="${recording.canonical_url}">Watch the recording · AI discussion`));
+  for(const card of cards)assert.doesNotMatch(card[0],/<\/div><p class="edition-link">/,'secondary links remain in the content grid column');
+  for(const row of inventory)assert.match(row.sha256,/^[a-f0-9]{64}$/);
+  const description=require('../site/content/pages/talks/metadata.json').description;
+  assert.equal(description,'Talks and workshops on AI architecture and software delivery, including PMDay, Corning Learn-AI-Palooza, Betelgeuse and swarchua, with public sources.');
+  for(const tag of ['<meta name="description"','<meta property="og:description"','<meta name="twitter:description"'])assert.ok(pages.talks.includes(`${tag} content="${description}">`));
 });
 
 test("page IDs, ARIA targets, local resources and fragments resolve without draft leakage", () => {

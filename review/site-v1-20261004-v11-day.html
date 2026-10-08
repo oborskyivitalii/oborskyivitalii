@@ -52,8 +52,8 @@
 
 
 
-  <meta name="site-engine" content="ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff">
-  <meta name="site-route" content="259616bcb517d2aa0736fc66ec7fad29101355d46f0501151d2101e3b34baaad">
+  <meta name="site-engine" content="e866b8f739a6984deedd7dd5ccd60398c06bc3d5f28b7765e1f5973251f550ab">
+  <meta name="site-route" content="f8fdf5ef0a85c00f7cf4e2281f780973c2fb2651f8099ccd89d20a2500d19730">
   <meta name="site-contract" content="1">
   <meta name="site-variant" content="base">
 <meta name="robots" content="noindex, nofollow">
@@ -207,6 +207,11 @@ h2 {font-size:clamp(30px,3.4vw,40px);font-weight:720;letter-spacing:-.035em;line
 .text-link span {margin-left:10px}
 .topic-card {border-top:1px solid var(--line);padding-top:22px}
 .topic-card h3 {font-size:21px;line-height:1.4;font-weight:650;letter-spacing:-.015em;margin:0 0 18px}
+.topic-card--delivery {border-top:2px solid var(--accent)}
+.topic-card--systems {border-top:2px solid var(--systems)}
+.topic-card .lens-context {font-size:12px;font-weight:650;line-height:1.6;margin:0 0 18px}
+.topic-card--delivery .lens-context {color:var(--accent)}
+.topic-card--systems .lens-context {color:var(--systems)}
 .section-note {width:fit-content;padding:8px 12px;margin:20px 0 0;max-width:850px;color:var(--muted);font-size:14px}
 .topic-nav {display:flex;flex-wrap:wrap;gap:8px 24px;margin-bottom:24px}
 .topic-nav a {font-size:13px;font-weight:600;text-decoration:none;border-bottom:1px solid var(--line);padding-block:10px}
@@ -384,14 +389,14 @@ body[data-page="writing"] #archive-results {width:min(1010px,calc(100% - 80px));
 .research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,
 .ack-grid article,.discussion-row,.about-grid>div,.about-grid>h2,.about-section>.eyebrow,.archive-link,.contact-grid>div,.publication,.credits-page>p,.credits-page>h1,.credits-page>h2,
 .archive-heading,.archive-count,.empty-state,.year-landing,.year-heading,.writing-topic,.section-note,.next-route>p,.next-route>a,
-.archive-landings>.topic-landing,.archive-filters,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a,.talks-list .publication>div) {
+.archive-landings>.topic-landing,.archive-filters,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a) {
   position:relative;isolation:isolate;
 }
 :where(.hero-copy,.section-heading,.archive-intro>.hero-description,.archive-intro>.eyebrow,.shift-intro>p,
 .research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,
 .ack-grid article,.discussion-row,.about-grid>div,.about-grid>h2,.about-section>.eyebrow,.archive-link,.contact-grid>div,.publication,.credits-page>p,.credits-page>h1,.credits-page>h2,
 .archive-heading,.archive-count,.empty-state,.year-landing,.year-heading,.writing-topic,.section-note,.next-route>p,.next-route>a,
-.archive-landings>.topic-landing,.archive-filters,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a,.talks-list .publication>div)::before {
+.archive-landings>.topic-landing,.archive-filters,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a)::before {
   content:"";position:absolute;inset:calc(-1 * (var(--surface-gutter) + var(--surface-outset,0px)));z-index:-1;pointer-events:none;
 }
 /* Only the paper paint is translucent; title ink and popup controls stay opaque.
@@ -400,7 +405,7 @@ body[data-page="writing"] #archive-results {width:min(1010px,calc(100% - 80px));
 .research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,
 .ack-grid article,.discussion-row,.about-grid>div,.about-grid>h2,.about-section>.eyebrow,.archive-link,.contact-grid>div,.publication,.credits-page>p,.credits-page>h1,.credits-page>h2,
 .archive-heading,.archive-count,.empty-state,.year-landing,.year-heading,.writing-topic,.section-note,.next-route>p,.next-route>a,
-.archive-landings>.topic-landing,.archive-filters,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a,.talks-list .publication>div)::before,
+.archive-landings>.topic-landing,.archive-filters,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a)::before,
 .hero :is(h1,.hero-lead,.hero-description,.audience,.eyebrow)::before,.reading-title,.appearance[open] .display-controls {
   background:var(--reading-surface-color);opacity:var(--reading-surface-opacity);border-radius:var(--reading-surface-radius);box-shadow:none;
 }
@@ -414,10 +419,11 @@ body[data-page="writing"] #archive-results {width:min(1010px,calc(100% - 80px));
 /* All title ink paints above every cloned fragment, including its neighbours. */
 .reading-title-ink {position:relative;z-index:1}
 .about-grid>h2,.credits-page>h1,.hero h1 {--surface-outset:.16em}
-.year-heading,.talks-list .publication>div:has(.talk-title) {--surface-outset:6px}
+:where(.year-heading) {--surface-outset:6px}
 .archive-landings>.topic-landing,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a,.next-route>p,.next-route>a,.archive-filters {--surface-gutter:8px}
-:is(.research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,.ack-grid article,.discussion-row,.about-grid>div,.contact-grid>div) .section-note::before,
-.talks-list .publication::before {content:none}
+/* Publication cards share one row backdrop on Writing and Talks. Intrinsic
+   child widths affect text layout only, never the paper envelope. */
+:is(.research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,.ack-grid article,.discussion-row,.about-grid>div,.contact-grid>div) .section-note::before {content:none}
 @media(max-width:640px) {
   .hero .hero-copy::before {content:none}
   .hero :is(h1,.hero-lead,.hero-description,.audience,.eyebrow) {position:relative;isolation:isolate;--surface-gutter:18px}
@@ -477,7 +483,7 @@ body[data-page="writing"] #archive-results {width:min(1010px,calc(100% - 80px));
     </section>
     <section id="acknowledgements" class="section wrap" aria-labelledby="ack-title" data-space-stop="acknowledgements">
       <div class="section-heading"><p class="eyebrow">04 / Selected public responses</p><h2 id="ack-title">How others have engaged<br>with the work.</h2><p>A selection of public responses to Uncertainty Architecture.</p></div>
-      <div class="ack-leads"><article><h3><a href="https://www.linkedin.com/in/arkadiydobkin/">Arkadiy Dobkin</a></h3><p class="person-context">EPAM · Principal Founder &amp; Executive Chairman</p><p>Recommended reading Thinking Systems and extended its argument toward bounded architecture and runtime control.</p><div class="mention-links"><a href="https://www.linkedin.com/posts/arkadiydobkin_uncertainty-architecture-thinking-systems-activity-7500661925790240768--I1H">Public record ↗</a></div></article><article><h3><a href="https://www.linkedin.com/in/matthewskelton/">Matthew Skelton</a></h3><p class="person-context">Co-author of Team Topologies</p><p>Offered public encouragement for the research’s development.</p><div class="mention-links"><a href="https://www.linkedin.com/posts/vitaliioborskyi_ua-1-ugcPost-7461016808725164033-pQg_/">Public record ↗</a></div></article><article><h3><a href="https://www.linkedin.com/in/markuskleinpmp/">Markus Kopko</a></h3><p class="person-context">CPMAI Lead Coach · PMI AI Standards Core Team</p><p>Connected UA’s control-theory framing with CPMAI practices, roles and governance gates.</p><div class="mention-links"><a href="https://www.linkedin.com/posts/markuskleinpmp_uncertainty-architecture-why-ai-governance-activity-7462053122773827584-mKwf">Public record ↗</a></div></article></div>
+      <div class="ack-leads"><article><h3><a href="https://www.linkedin.com/in/arkadiydobkin/">Arkadiy Dobkin</a></h3><p class="person-context">EPAM · Principal Founder &amp; Executive Chairman</p><p>Recommended reading Thinking Systems and extended its argument toward bounded architecture and runtime control.</p><div class="mention-links"><a href="https://www.linkedin.com/posts/arkadiydobkin_uncertainty-architecture-thinking-systems-activity-7500661925790240768--I1H">Public record ↗</a></div></article><article><h3><a href="https://www.linkedin.com/in/matthewskelton/">Matthew Skelton</a></h3><p class="person-context">Co-author of Team Topologies</p><p>Reshared Michael Risch’s discussion of my AI governance article and highlighted governance as bringing business intent back into the system.</p><div class="mention-links"><a href="https://www.linkedin.com/posts/matthewskelton_uncertainty-architecture-why-ai-governance-activity-7455172623409430528-MI9x">Public record ↗</a></div></article><article><h3><a href="https://www.linkedin.com/in/markuskleinpmp/">Markus Kopko</a></h3><p class="person-context">CPMAI Lead Coach · PMI AI Standards Core Team</p><p>Connected UA’s control-theory framing with CPMAI practices, roles and governance gates.</p><div class="mention-links"><a href="https://www.linkedin.com/posts/markuskleinpmp_uncertainty-architecture-why-ai-governance-activity-7462053122773827584-mKwf">Public record ↗</a></div></article></div>
       <p class="section-note"><a href="site-v1-20261004-v11-research-day.html#ua-advisors">UA advisors: Markus Kopko — governance and alignment; Otman Basir — academic.</a></p>
       <a class="text-link" href="site-v1-20261004-v11-research-day.html#acknowledgements">Full discussion &amp; source context ↗</a>
     </section>

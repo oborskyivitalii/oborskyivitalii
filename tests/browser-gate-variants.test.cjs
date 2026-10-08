@@ -26,7 +26,7 @@ test('reading clarity rejects wrong landing targets and depth reversals that rem
 });
 test('reading clarity rejects any individual corner drift and missing Appearance paint evidence',()=>{
   const {validateSurfaceSamples,paintAlpha}=require('../tools/quality/reading-clarity.cjs');
-  const selectors=['.hero-copy','.help-grid article','.site-footer>p','.reading-title','.research-card','.reading-title','.archive-filters','.publication','.year-heading','.reading-title','.talks-list .publication>div','.credits-page>h1','.appearance[open] .display-controls'];
+  const selectors=['.hero-copy','.help-grid article','.site-footer>p','.reading-title','.research-card','.reading-title','.archive-filters','.publication','.year-heading','.reading-title','.talks-list .publication','.credits-page>h1','.appearance[open] .display-controls'];
   const samples=[];
   for(const width of [320,1440])for(const theme of ['light','dark'])for(const selector of selectors){
     samples.push({selector,width,theme,background:theme==='light'?'rgba(243, 241, 234, 0.87)':'rgba(17, 28, 34, 0.87)',backgroundAlpha:.87,reducedTransparency:false,opacity:'1',mask:'none',filter:'none',backdropFilter:'none',shadowBlur:0,outerRadii:[12,12,12,12]});

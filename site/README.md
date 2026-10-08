@@ -218,3 +218,8 @@ selecting Color for production remains a separate decision requiring its complet
 same-byte hosted behavioral/performance matrix. A base pass cannot admit Color.
 
 Reading backdrop paint is authored only in `engine/reading-surfaces.css` and concatenated into the existing stylesheet by the producer. All routes, Color and the Appearance popup share theme-paper paint at 87% background alpha (13% transparency), crisp edges and a 12px visible radius at all four outer corners; title spread adjusts its inner radius and preserves ink stacking. Element opacity stays one so text and controls do not fade. The same owner restores fully opaque paper for `prefers-reduced-transparency: reduce`. Component spacing and semantic control/CTA paint remain ordinary layout CSS.
+
+Writing and Talks publication cards use one backdrop on the complete row, with
+the same shared 12px gutter and content-driven height. Metadata and copy do not
+paint independent panels. Child intrinsic widths remain ordinary text layout;
+only the row and the canonical shared inset determine the backdrop's bounds.
