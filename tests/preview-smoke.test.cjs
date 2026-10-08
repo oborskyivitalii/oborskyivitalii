@@ -2,8 +2,119 @@
 const test = require('node:test'),
   assert = require('node:assert/strict'),
   crypto = require('node:crypto');
-const { artifactFile, verifyResponse } = require('../tools/quality/local-browser.cjs');
+const {
+  artifactFile,
+  verifyResponse,
+  identity,
+  verifyRuntimeIdentity,
+} = require('../tools/quality/local-browser.cjs');
 const { validate } = require('../tools/quality/flight-detail.cjs');
+test('preview identity preserves real base descriptor and Color runtime fingerprints with exact bindings', (t) => {
+  const fs = require('node:fs'),
+    path = require('node:path'),
+    color = require('../tools/staging/color.cjs');
+  const components = JSON.parse(
+    fs.readFileSync(path.join(__dirname, '../docs/site-revision.json'))
+  );
+  const baseManifest = {
+    candidateCommit: 'a'.repeat(40),
+    artifactDigest: 'b'.repeat(64),
+    components,
+  };
+  const { variant } = color.identities(components, color.authoredEffects());
+  const colorManifest = {
+    ...baseManifest,
+    variant,
+    components: { ...components, variant, engine: variant.fingerprint },
+  };
+  const keys = ['SITE_CANDIDATE_SHA', 'SITE_EXPECTED_PUBLIC_DIGEST', 'SITE_PUBLIC_VARIANT'];
+  const previous = Object.fromEntries(keys.map((key) => [key, process.env[key]]));
+  t.after(() => {
+    for (const key of keys)
+      if (previous[key] === undefined) delete process.env[key];
+      else process.env[key] = previous[key];
+  });
+  for (const key of keys) delete process.env[key];
+  assert.notEqual(components.variant.fingerprint, components.engine, 'base descriptor is separate');
+  assert.strictEqual(identity(baseManifest), components.variant, 'declared base identity retained');
+  assert.strictEqual(identity(colorManifest), variant, 'declared Color identity retained');
+  for (const manifest of [baseManifest, colorManifest]) {
+    const declared = identity(manifest);
+    verifyRuntimeIdentity(
+      { engine: manifest.components.engine, variant: declared.id },
+      manifest,
+      declared,
+      'index'
+    );
+    assert.throws(
+      () =>
+        verifyRuntimeIdentity(
+          { engine: '0'.repeat(64), variant: declared.id },
+          manifest,
+          declared,
+          'index'
+        ),
+      /engine identity/
+    );
+    assert.throws(
+      () =>
+        verifyRuntimeIdentity(
+          { engine: manifest.components.engine, variant: 'unknown' },
+          manifest,
+          declared,
+          'index'
+        ),
+      /variant identity/
+    );
+    for (const engine of ['not-an-engine', 'A'.repeat(64), undefined]) {
+      const invalid = structuredClone(manifest);
+      invalid.components.engine = engine;
+      assert.throws(() => identity(invalid));
+    }
+    const conflict = structuredClone(manifest);
+    conflict.variant = { ...declared, fingerprint: '0'.repeat(64) };
+    assert.throws(() => identity(conflict), /conflicting tested runtime identity/);
+  }
+  const wrongColorEngine = structuredClone(colorManifest);
+  wrongColorEngine.components.engine = '0'.repeat(64);
+  assert.throws(() => identity(wrongColorEngine));
+  const wrongColorFingerprint = structuredClone(colorManifest);
+  wrongColorFingerprint.variant.fingerprint = '0'.repeat(64);
+  wrongColorFingerprint.components.variant.fingerprint = '0'.repeat(64);
+  assert.throws(() => identity(wrongColorFingerprint));
+  for (const mutate of [
+    (m) => (m.components.variant.id = 'unknown'),
+    (m) => (m.components.variant.contract = 2),
+    (m) => (m.components.variant.fingerprint = 'not-a-fingerprint'),
+  ]) {
+    const invalid = structuredClone(baseManifest);
+    mutate(invalid);
+    assert.throws(() => identity(invalid));
+  }
+  const legacy = structuredClone(baseManifest);
+  delete legacy.components.variant;
+  assert.deepEqual(identity(legacy), {
+    id: 'base',
+    contract: 1,
+    fingerprint: components.engine,
+  });
+  const bound = {
+    SITE_CANDIDATE_SHA: baseManifest.candidateCommit,
+    SITE_EXPECTED_PUBLIC_DIGEST: baseManifest.artifactDigest,
+    SITE_PUBLIC_VARIANT: 'base',
+  };
+  Object.assign(process.env, bound);
+  assert.strictEqual(identity(baseManifest), components.variant);
+  for (const [key, invalid] of [
+    ['SITE_CANDIDATE_SHA', 'c'.repeat(40)],
+    ['SITE_EXPECTED_PUBLIC_DIGEST', 'd'.repeat(64)],
+    ['SITE_PUBLIC_VARIANT', 'color'],
+  ]) {
+    process.env[key] = invalid;
+    assert.throws(() => identity(baseManifest), key);
+    process.env[key] = bound[key];
+  }
+});
 test('preview detail observer rejects the old flight downgrade and retains adaptive/mobile detail', () => {
   const rows = (detail) =>
     ['flying', 'settled'].map((travel) => ({

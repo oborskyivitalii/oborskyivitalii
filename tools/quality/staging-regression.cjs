@@ -210,6 +210,8 @@ function validateFailure(row) {
 }
 function validateJourney(journey, manifest) {
   const variant = common.variant(manifest);
+  assert.match(manifest.components.engine, /^[a-f0-9]{64}$/, 'journey runtime engine identity');
+  if (variant.id === 'color') assert.equal(variant.fingerprint, manifest.components.engine);
   clean(journey, 'route journey');
   assert.equal(journey.history, true);
   assert.equal(journey.motionOff, journey.mode === 'normal');
@@ -237,7 +239,7 @@ function validateJourney(journey, manifest) {
     assert.equal(row.state.page, row.route);
     assert.equal(row.state.h1, 1);
     assert.equal(row.state.overflow, false);
-    assert.equal(row.state.engine, variant.fingerprint);
+    assert.equal(row.state.engine, manifest.components.engine);
     assert.equal(row.state.variant, variant.id);
     assert.deepEqual(row.checks, [
       'exact identity',

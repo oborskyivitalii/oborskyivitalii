@@ -3,6 +3,68 @@ const test = require('node:test'),
   assert = require('node:assert/strict');
 const stage = require('../tools/quality/staging-regression.cjs'),
   fixture = require('./fixtures/staging-evidence.cjs');
+test('selected journeys compare actual base runtime and Color identities without replacing descriptor hashes', () => {
+  const fs = require('node:fs'),
+    path = require('node:path'),
+    color = require('../tools/staging/color.cjs');
+  const components = JSON.parse(
+    fs.readFileSync(path.join(__dirname, '../docs/site-revision.json'))
+  );
+  const base = { ...fixture.manifest(), components };
+  const { variant } = color.identities(components, color.authoredEffects());
+  const colored = {
+    ...base,
+    variant,
+    components: { ...components, variant, engine: variant.fingerprint },
+  };
+  assert.notEqual(components.variant.fingerprint, components.engine, 'base descriptor is separate');
+  for (const manifest of [base, colored]) {
+    const journey = fixture.journeyRow(
+      { engine: 'chromium', width: 1440, mode: 'normal' },
+      manifest
+    );
+    for (const row of journey.rows) row.state.engine = manifest.components.engine;
+    assert.doesNotThrow(() => stage.validateJourney(journey, manifest));
+    const wrongRuntime = structuredClone(journey);
+    wrongRuntime.rows[0].state.engine = '0'.repeat(64);
+    assert.throws(() => stage.validateJourney(wrongRuntime, manifest));
+    const wrongVariant = structuredClone(journey);
+    wrongVariant.rows[0].state.variant = 'unknown';
+    assert.throws(() => stage.validateJourney(wrongVariant, manifest));
+    for (const engine of ['not-an-engine', 'A'.repeat(64), undefined]) {
+      const invalid = structuredClone(manifest);
+      invalid.components.engine = engine;
+      assert.throws(() => stage.validateJourney(journey, invalid));
+    }
+    const conflict = structuredClone(manifest);
+    conflict.variant = {
+      ...manifest.components.variant,
+      fingerprint: '0'.repeat(64),
+    };
+    assert.throws(() => stage.validateJourney(journey, conflict));
+  }
+  const fingerprintAsRuntime = fixture.journeyRow(
+    { engine: 'chromium', width: 1440, mode: 'normal' },
+    base
+  );
+  assert.throws(() => stage.validateJourney(fingerprintAsRuntime, base));
+  for (const mutate of [
+    (manifest) => (manifest.components.engine = '0'.repeat(64)),
+    (manifest) => {
+      manifest.variant.fingerprint = '0'.repeat(64);
+      manifest.components.variant.fingerprint = '0'.repeat(64);
+    },
+  ]) {
+    const wrongColor = structuredClone(colored);
+    mutate(wrongColor);
+    const observed = fixture.journeyRow(
+      { engine: 'chromium', width: 1440, mode: 'normal' },
+      wrongColor
+    );
+    for (const row of observed.rows) row.state.engine = wrongColor.components.engine;
+    assert.throws(() => stage.validateJourney(observed, wrongColor));
+  }
+});
 test('selected mobile Lighthouse traces retain original Writing failure evidence without changing admission', () => {
   const fs = require('node:fs'),
     path = require('node:path'),

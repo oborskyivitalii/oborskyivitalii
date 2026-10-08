@@ -4,7 +4,13 @@ const fs = require('node:fs'),
   path = require('node:path'),
   assert = require('node:assert/strict'),
   crypto = require('node:crypto');
-const { toolRequire, report, launchOptions, out } = require('./common.cjs'),
+const {
+    toolRequire,
+    report,
+    launchOptions,
+    out,
+    variant: artifactVariant,
+  } = require('./common.cjs'),
   { start } = require('./serve.cjs');
 const flightDetail = require('./flight-detail.cjs');
 const routes = ['index', 'research', 'writing', 'talks', 'credits'];
@@ -72,19 +78,17 @@ function identity(manifest) {
     );
   if (process.env.SITE_CANDIDATE_SHA)
     assert.equal(manifest.candidateCommit, process.env.SITE_CANDIDATE_SHA, 'preview source commit');
-  const variant = manifest.variant ||
-    manifest.components?.variant || {
-      id: 'base',
-      contract: 1,
-      fingerprint: manifest.components?.engine,
-    };
-  assert.ok(['base', 'color'].includes(variant.id), 'unsupported preview rendition');
-  assert.equal(variant.contract, 1);
-  assert.equal(variant.fingerprint, manifest.components.engine);
-  if (manifest.variant && manifest.components.variant)
-    assert.deepEqual(manifest.variant, manifest.components.variant);
+  const variant = artifactVariant(manifest);
+  assert.match(manifest.components.engine, /^[a-f0-9]{64}$/, 'preview runtime engine identity');
+  // Base fingerprints its authored descriptor; Color fingerprints the derived
+  // runtime. Both retain their verified manifest identities without rewriting.
+  if (variant.id === 'color') assert.equal(variant.fingerprint, manifest.components.engine);
   if (process.env.SITE_PUBLIC_VARIANT) assert.equal(variant.id, process.env.SITE_PUBLIC_VARIANT);
   return variant;
+}
+function verifyRuntimeIdentity(observed, manifest, variant, route) {
+  assert.equal(observed.engine, manifest.components.engine, route + ' engine identity');
+  assert.equal(observed.variant, variant.id, route + ' variant identity');
 }
 async function ready(page, id) {
   await page.waitForFunction(
@@ -335,8 +339,7 @@ async function scenario(browser, url, manifest, variant, width, mode) {
       const observed = await state(page);
       assert.equal(observed.h1, 1, id + ' single main heading');
       assert.equal(observed.overflow, false, id + ' horizontal overflow');
-      assert.equal(observed.engine, variant.fingerprint, id + ' engine identity');
-      assert.equal(observed.variant, variant.id, id + ' variant identity');
+      verifyRuntimeIdentity(observed, manifest, variant, id);
       assert.equal(
         await page.evaluate(
           () =>
@@ -492,4 +495,13 @@ if (require.main === module)
     console.error(error.stack);
     process.exitCode = 1;
   });
-module.exports = { main, identity, scenario, ready, state, artifactFile, verifyResponse };
+module.exports = {
+  main,
+  identity,
+  verifyRuntimeIdentity,
+  scenario,
+  ready,
+  state,
+  artifactFile,
+  verifyResponse,
+};
