@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "dd178b9e917fafbc168a46d4162c1695372970e4ff404117544bcfd38e47a2a2",
+    "digest": "23ed3c2891ef5d2180c1d493be3160cd9af163e07026d6219fd8e1e37c37d86a",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -201,7 +201,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "67a21456beda90fc1c36b933d0e50075eadd40b6439b1982d2729b040aa675cc"
+        "sha256": "45aa42a1ecfae11f5be457c4a970a736e13602d0b69708ea6bd40c99583daaa7"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -595,7 +595,7 @@
       {
         "path": "review/issue-48/2026-10-08-handoff.md",
         "identity_mode": "content",
-        "sha256": "bc84b30264bb5d7eeca6d0f787c4b4bebe1682cd4373a1f56b6f852f3e952f51"
+        "sha256": "adde773502817d3fe6601e12c593120a61d42d8c41d61191b9098b6d273fe98a"
       },
       {
         "path": "review/issue-48/content-amendment.json",

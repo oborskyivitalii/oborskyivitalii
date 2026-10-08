@@ -14,7 +14,10 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
   [#45 handoff](review/issue-45/2026-10-07-handoff.md) retains detailed history.
 - [#48](https://github.com/oborskyivitalii/oborskyivitalii/issues/48) owns the
   new three-change request. Isolated branch `work/issue48-site-alignment-20261008`
-  starts at the main above. Draft PR publication is pending at this checkpoint.
+  starts at the main above. [Draft PR51](https://github.com/oborskyivitalii/oborskyivitalii/pull/51) is published.
+  Source4a00a998/tree73f73835 passes all four source/preview workflows; immutable
+  preview https://a8f8142b.oborskyi-author-ci-staging.pages.dev/ .
+  Run37743276316 minimal hosted smoke passed; no stable promotion ran.
   [Current handoff](review/issue-48/2026-10-08-handoff.md) is its single review route.
 - #48 swaps TOC/Control to align Subprime/UA with named links and existing palette,
   derives formula center/origin at first-two-arches midpoint [-1,.5,-18], and
@@ -47,7 +50,7 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 
 | Issue | Remaining intent |
 | --- | --- |
-| #48 | Finish targeted checks/independent review; publish Draft PR/current preview; maintainer visual/editorial acceptance and merge remain open. |
+| #48 | Draft PR51 implementation, independent source/code+policy review and current source/preview CI passed; maintainer visual/editorial acceptance and merge remain open. |
 | #45 | All6 whole ACs stay open for their literal current-source visual/evidence and complete-expression occlusion/device/release gates. PR47 main/stage is complete. |
 | #36 / #41 | Original paired/visual/editorial/device criteria and whole source mapping; successful joint staging does not imply complete acceptance. |
 | #1 / #13 | First-release, physical-device and full production/recovery acceptance. |
