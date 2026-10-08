@@ -209,7 +209,7 @@ async function custom(browser,url,output){
   return {rows,captures,ownership:await ownership(browser,url)};
 }
 async function offline(browser,output){
-  const directory=path.join(output,'offline');require('../../review/site-scroll-sync-20261004/export.cjs').exportVariants(directory,{variant:'color'});
+  const directory=path.join(output,'offline');require('../../tools/site/export.cjs').exportVariants(directory,{variant:'color'});
   const context=await browser.newContext({viewport:{width:390,height:844}});await initialize(context);const page=await context.newPage(),requests=[],errors=[];
   page.on('request',r=>{if(!r.url().startsWith('file:')&&!r.url().startsWith('data:'))requests.push(r.url());});page.on('pageerror',e=>errors.push(e.message));
   try{

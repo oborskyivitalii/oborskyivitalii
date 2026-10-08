@@ -6,13 +6,70 @@ function run(command,args,accepted=[0]){const r=cp.spawnSync(command,args,{cwd:r
 const binary=name=>path.join(tools,'node_modules/.bin',name+(process.platform==='win32'?'.cmd':''));
 const py=name=>path.join(tools,'venv',process.platform==='win32'?'Scripts':'bin',name);
 const read=file=>JSON.parse(fs.readFileSync(path.join(out,file),'utf8'));
-// These modules are the authored Color runtime import closure: the exporter
-// loads Flight and Ribbons; Ribbons loads Reading Surfaces. Diagnostic browser
-// harnesses in the same directory do not become public runtime sources.
-const authoredRuntimeSources=['FLIGHT-PROTOTYPE.cjs','RIBBONS-PROTOTYPE.cjs','READING-SURFACES.cjs'].map(file=>'review/site-scroll-sync-20261004/'+file);
-function authoredRuntime(tracked,exists=file=>fs.existsSync(path.join(root,file))){
-  const files=new Set(tracked);
-  return authoredRuntimeSources.filter(file=>files.has(file)&&exists(file));
+// The same manifest owns the browser effect import closure and build identity.
+// Missing active sources must fail coverage rather than quietly shrink the scan.
+const {effectSources: authoredRuntimeSources, effectInputs} = require('../site/effects.cjs');
+function authoredRuntime(tracked, exists = file => fs.existsSync(path.join(root, file)),
+  catalog = JSON.parse(fs.readFileSync(path.join(root, '.github/repository-paths.json'), 'utf8')).entries) {
+  const files = new Set(tracked);
+  if (!authoredRuntimeSources.length || new Set(authoredRuntimeSources).size !== authoredRuntimeSources.length) {
+    throw Error('Invalid authored effect source manifest');
+  }
+  for (const file of effectInputs) {
+    if (!files.has(file) || !exists(file)) throw Error('Missing active effect input: ' + file);
+  }
+  for (const file of authoredRuntimeSources) {
+    if (!/^site\/effects\/[^/]+\.cjs$/.test(file) || !effectInputs.includes(file) ||
+        catalog[file]?.role !== 'source' || catalog[file]?.kind !== 'file') {
+      throw Error('Misclassified authored effect source: ' + file);
+    }
+  }
+  return [...authoredRuntimeSources];
+}
+function lintEffectCoverage(report, expected = authoredRuntimeSources) {
+  for (const file of expected) {
+    const rows = report.filter(row => path.relative(root, row.filePath || '').split(path.sep).join('/') === file);
+    if (rows.length !== 1 || !Array.isArray(rows[0].messages) ||
+        rows[0].messages.some(message => message.fatal || /ignored/i.test(message.message || ''))) {
+      throw Error('Missing or misclassified effect lint coverage: ' + file);
+    }
+  }
+}
+function reviewComplexity(warnings, policy, {
+  now = new Date(),
+  sourceBytes = file => fs.readFileSync(path.join(root, file)),
+  baselineBytes = (commit, file) => run('git', ['show', commit + ':' + file]),
+} = {}) {
+  if (!Number.isFinite(Date.parse(policy.reviewBy)) || new Date(policy.reviewBy) < now) {
+    throw Error('Lint exceptions expired');
+  }
+  const digest = bytes => require('node:crypto').createHash('sha256').update(bytes).digest('hex');
+  for (const warning of warnings) {
+    const matches = policy.complexity.filter(entry => entry.path === warning.file &&
+      entry.rule === warning.rule && entry.message === warning.message);
+    if (matches.length !== 1) throw Error('New or duplicated complexity debt ' + JSON.stringify(warning));
+  }
+  for (const entry of policy.complexity) {
+    if (!warnings.some(warning => entry.path === warning.file && entry.rule === warning.rule &&
+        entry.message === warning.message)) throw Error('Stale complexity debt: ' + entry.path);
+    // Newly exposed migrated code is an exact source-bound allowance, not a
+    // license to increase complexity elsewhere or alter the admitted source.
+    if (!entry.source_sha256 && authoredRuntimeSources.includes(entry.path)) {
+      throw Error('Invalid source-bound complexity debt: ' + entry.path);
+    }
+    if (!entry.source_sha256) continue;
+    const baseline = entry.baseline;
+    if (entry.rule !== 'sonarjs/cognitive-complexity' || !Number.isInteger(entry.issue) || entry.issue < 1 ||
+        !entry.removalTask || !entry.reason || !/^[a-f0-9]{64}$/.test(entry.source_sha256) ||
+        !/^[a-f0-9]{40}$/.test(baseline?.commit || '') || !/^[a-f0-9]{64}$/.test(baseline?.sha256 || '') ||
+        !/^review\/[a-zA-Z0-9_./-]+\.cjs$/.test(baseline?.path || '') || baseline.path.includes('..')) {
+      throw Error('Invalid source-bound complexity debt: ' + entry.path);
+    }
+    if (digest(sourceBytes(entry.path)) !== entry.source_sha256 ||
+        digest(baselineBytes(baseline.commit, baseline.path)) !== baseline.sha256) {
+      throw Error('Changed source-bound complexity debt: ' + entry.path);
+    }
+  }
 }
 function verifiedChecksumIds(values){
   const ids=new Set();
@@ -27,25 +84,28 @@ function verifiedChecksumFinding(file,finding,proved){
     finding.type==='Hex High Entropy String'&&proved.get(file)?.has(finding.hashed_secret)===true;
 }
 function lint(){
+  const offlineRuntime = authoredRuntime(run('git', ['ls-files', 'site', 'tools']).trim().split('\n'));
   run(binary('eslint'),['--config','tools/quality/eslint.config.cjs','docs','site','tools','tests','--format','json','--output-file',path.join(out,'eslint.json')]);
-  const eslint=read('eslint.json'),warnings=eslint.flatMap(f=>f.messages.filter(m=>m.severity===1).map(m=>({file:path.relative(root,f.filePath).split(path.sep).join('/'),rule:m.ruleId,message:m.message})));
-  const policy=require('./exceptions.json');if(new Date(policy.reviewBy)<new Date())throw Error('Lint exceptions expired');
-  for(const w of warnings)if(!policy.complexity.some(x=>x.path===w.file&&x.rule===w.rule&&x.message===w.message))throw Error('New complexity debt '+JSON.stringify(w));
+  const eslint=read('eslint.json');
+  lintEffectCoverage(eslint, offlineRuntime);
+  const warnings=eslint.flatMap(f=>f.messages.filter(m=>m.severity===1).map(m=>({file:path.relative(root,f.filePath).split(path.sep).join('/'),rule:m.ruleId,message:m.message})));
+  reviewComplexity(warnings, require('./exceptions.json'));
   run(process.execPath,['tools/quality/stylelint.cjs']);
+  const css = read('stylelint.json');
   const ruff=JSON.parse(run(py('ruff'),['check','--no-cache','--isolated','--select','E4,E7,E9,F,I','tools','tests','--output-format','json']));
   fs.writeFileSync(path.join(out,'ruff.json'),JSON.stringify(ruff,null,2));
   const pythonFiles=run(py('ruff'),['check','--no-cache','--isolated','--show-files','tools','tests']).trim().split('\n').filter(Boolean);
-  return {scannedFiles:eslint.length+1+pythonFiles.length,pythonFiles,warnings,tools:{eslint:run(binary('eslint'),['--version']).trim(),stylelint:run(binary('stylelint'),['--version']).trim(),ruff:run(py('ruff'),['--version']).trim()}};
+  return {scannedFiles:eslint.length+css.length+pythonFiles.length,effectSources:offlineRuntime,cssFiles:css.map(row=>path.relative(root,row.source).split(path.sep).join('/')),pythonFiles,warnings,tools:{eslint:run(binary('eslint'),['--version']).trim(),stylelint:run(binary('stylelint'),['--version']).trim(),ruff:run(py('ruff'),['--version']).trim()}};
 }
 function security(){
-  const offlineRuntime=authoredRuntime(run('git',['ls-files','review/site-scroll-sync-20261004']).trim().split('\n'));
+  const offlineRuntime=authoredRuntime(run('git',['ls-files','site','tools']).trim().split('\n'));
   // Files are scanned at their real paths, including inline HTML. Reports retain
   // coverage/errors. Source snippets are removed before artifact upload.
   run(py('semgrep'),['scan','--config','tools/quality/security-rules.yml','--metrics','off','--disable-version-check','--jobs','1','--max-target-bytes','5000000','--json','--output',path.join(out,'semgrep.json'),'docs','site','tools','.github/workflows',...offlineRuntime]);
   const semgrep=read('semgrep.json');for(const finding of semgrep.results||[])if(finding.extra)delete finding.extra.lines;
   fs.writeFileSync(path.join(out,'semgrep.json'),JSON.stringify(semgrep,null,2));
   if(semgrep.results?.length||semgrep.errors?.length||!semgrep.paths?.scanned?.length)throw Error('Semgrep findings, errors, or empty coverage');
-  const scanned=new Set(semgrep.paths.scanned),expected=[...run('git',['ls-files','docs','site','tools','.github/workflows']).trim().split('\n').filter(f=>/\.(?:js|cjs|html|py)$/.test(f)||f.startsWith('.github/workflows/')),...offlineRuntime];
+  const scanned=new Set(semgrep.paths.scanned),expected=[...new Set([...run('git',['ls-files','docs','site','tools','.github/workflows']).trim().split('\n').filter(f=>/\.(?:js|cjs|html|py)$/.test(f)||f.startsWith('.github/workflows/')),...offlineRuntime])];
   for(const file of expected)if(!scanned.has(file))throw Error('Unscanned source '+file);
   run(py('bandit'),['-r','tools','-x','tools/quality/toolchain/venv','-f','json','-o',path.join(out,'bandit.json')],[0,1]);const bandit=read('bandit.json');
   for(const finding of bandit.results||[])delete finding.code;fs.writeFileSync(path.join(out,'bandit.json'),JSON.stringify(bandit,null,2));
@@ -97,4 +157,4 @@ function main(kind=process.argv[2]){
   catch(e){require('./common.cjs').report(kind,{error:e.message},false);throw e;}
 }
 if(require.main===module)main();
-module.exports={authoredRuntimeSources,authoredRuntime,verifiedChecksumIds,verifiedChecksumFinding};
+module.exports={authoredRuntimeSources,authoredRuntime,lintEffectCoverage,reviewComplexity,verifiedChecksumIds,verifiedChecksumFinding};

@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 56,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/56",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Canonical active source ownership.",
+      "automated_scope": "The four old effect/export owners are absent, canonical files and source-role catalog entries exist, scoped literal imports preserve site-to-runtime dependency direction and retained executable consumers have no stale effect imports. Maintained source closure tests reject missing or misclassified browser effects; this is the declared literal-import/source subset, not a complete computed-import analysis.",
+      "checks": [
+        "SOURCE-OWNERS",
+        "QUALITY-COVERAGE"
+      ],
+      "gates": []
+    },
+    {
+      "id": "AC02",
+      "intent": "Explicit pure effect contract.",
+      "automated_scope": "Current maintained cases collect descriptors with variants.attach frozen, reject malformed/missing/reversed/duplicate/wrapped inputs, preserve raw code/CSS data, execute closure-safe factory serialization and verify offline marker/duplicate contracts. Descriptor design and unautomated readability judgment remain review obligations.",
+      "checks": [
+        "EFFECT-CONTRACT"
+      ],
+      "gates": [
+        "SOURCE-REVIEW"
+      ]
+    },
+    {
+      "id": "AC03",
+      "intent": "Behavioral and delivery parity.",
+      "automated_scope": "Task-specific immutable e501da8 evidence checks exact Color code/CSS/control hashes and byte-equal old/new offline adapters applied to the same current base. Authored content/templates/engine/scenes/assets/integrations/configuration and base public script/CSS bytes match that baseline. Selected actual generation/packaging/preview source contracts and Basic verify maintained runtime and output semantics while producer/snapshot hashes may legitimately change. These local checks do not observe current hosted navigation or PR preview smoke; those remain an exact-source external gate.",
+      "checks": [
+        "FROZEN-PARITY",
+        "AUTHOR-PARITY",
+        "DELIVERY-CONTRACTS",
+        "BASIC"
+      ],
+      "gates": [
+        "CURRENT-CI"
+      ]
+    },
+    {
+      "id": "AC04",
+      "intent": "Ready-made quality tools cover active sources.",
+      "automated_scope": "Maintained coverage and negative cases prove canonical effect selection, complete tracked import closure, omitted/ignored/duplicate/unparsed ESLint rejection, browser security scope, authored/generated CSS coverage and exact newly exposed projector complexity debt. Actual current-source lint/security run results and interpretation of free-tool/Sonar limits are separately reviewed; no scanner success is inferred from fixtures alone.",
+      "checks": [
+        "QUALITY-COVERAGE"
+      ],
+      "gates": [
+        "SOURCE-REVIEW",
+        "CURRENT-CI"
+      ]
+    },
+    {
+      "id": "AC05",
+      "intent": "Code-style and RI compliance.",
+      "automated_scope": "The current bounded style guard verifies its declared subset, R1 legacy entries are removed, source inventory/catalog/views and RI/CI coupling are current, and maintained profile cases retain complete test inventories and pass/skip accounting. Applicable CS01-CS10 rules outside the guard, remaining source-bound exceptions and follow-up R2-R6 tasks require substantive review.",
+      "checks": [
+        "SOURCE-OWNERS",
+        "CURRENT-GUARD",
+        "CURRENT-RI",
+        "RI-CI",
+        "PROFILE-CONTRACTS"
+      ],
+      "gates": [
+        "SOURCE-REVIEW"
+      ]
+    },
+    {
+      "id": "AC06",
+      "intent": "Reviewable separate implementation PR.",
+      "automated_scope": "The local policy maps all six accepted criteria to current measurable checks and explicit gates; current RI/profile routes and acceptance-runner regressions preserve honest pending state. The policy cannot observe an actual linked Draft PR, required independent review, current raw-head CI, checkbox mutations or follow-up issue decisions; record those live facts separately. Merge/stable staging/production are outside this implementation authorization.",
+      "checks": [
+        "CURRENT-RI",
+        "RI-CI",
+        "PROFILE-CONTRACTS",
+        "PENDING-GATE"
+      ],
+      "gates": [
+        "SOURCE-REVIEW",
+        "CURRENT-CI",
+        "DELIVERY-LINKAGE"
+      ]
+    }
+  ],
+  "checks": {
+    "SOURCE-OWNERS": {
+      "kind": "unittest",
+      "test": "test_issue56_acceptance.Issue56AcceptanceTests.test_canonical_source_ownership_and_boundary"
+    },
+    "EFFECT-CONTRACT": {
+      "kind": "unittest",
+      "test": "test_issue56_acceptance.Issue56AcceptanceTests.test_explicit_descriptors_reject_bad_composition_and_keep_serialization"
+    },
+    "FROZEN-PARITY": {
+      "kind": "unittest",
+      "test": "test_issue56_acceptance.Issue56AcceptanceTests.test_frozen_runtime_and_offline_baseline_parity"
+    },
+    "AUTHOR-PARITY": {
+      "kind": "unittest",
+      "test": "test_issue56_acceptance.Issue56AcceptanceTests.test_authored_content_and_base_runtime_remain_unchanged"
+    },
+    "DELIVERY-CONTRACTS": {
+      "kind": "unittest",
+      "test": "test_issue56_acceptance.Issue56AcceptanceTests.test_generation_delivery_and_offline_source_contracts"
+    },
+    "QUALITY-COVERAGE": {
+      "kind": "unittest",
+      "test": "test_issue56_acceptance.Issue56AcceptanceTests.test_quality_coverage_and_exact_complexity_debt"
+    },
+    "PROFILE-CONTRACTS": {
+      "kind": "unittest",
+      "test": "test_issue56_acceptance.Issue56AcceptanceTests.test_profile_selection_preserves_inventory_and_bounds"
+    },
+    "CURRENT-GUARD": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    },
+    "CURRENT-RI": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    },
+    "PENDING-GATE": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_manual_only_criterion_is_pending"
+    },
+    "BASIC": {
+      "kind": "node-basic"
+    }
+  },
+  "gates": {
+    "SOURCE-REVIEW": {
+      "kind": "human",
+      "description": "Record substantive independent review of the exact issue56 candidate: explicit descriptor/source boundaries, applicable CS01-CS10 rules, immutable source/runtime parity, exact reviewed projector complexity debt, actual lint/security coverage and the source-grounded free-tool decision. Review rules outside the bounded guard and preserve broader R2-R6/fragment-flight scope. Identify reviewer role honestly; self-review cannot substitute for independent review."
+    },
+    "CURRENT-CI": {
+      "kind": "human",
+      "description": "Record the applicable passing current raw-head Basic/targeted/navigation/acceptance/source-quality checks and normal CI-controlled PR preview smoke. Bind evidence to the exact candidate source/tree/artifact/variant and preview URL. Source fixtures and local dirty preparation cannot establish actual hosted smoke, source scanner results or another head\u2019s CI. No stable staging or production activation is granted."
+    },
+    "DELIVERY-LINKAGE": {
+      "kind": "human",
+      "description": "Verify one separate issue56-linked Draft PR with exact Refs commits, AC-to-check/run evidence and independent review; reconcile actual issue checkboxes against original intent and preserve pending criteria. Record the remaining R2-R6 work and existing owning phases. PR merge/deployment/issue closure remain separate observations; this policy does not supply them."
+    }
+  }
+}

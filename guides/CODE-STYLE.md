@@ -21,15 +21,16 @@ editing authorities.
 | Semantic HTML and repeated views | `site/templates/` | Render validated content; no business or animation logic |
 | Runtime, navigation and lifecycle | `site/engine/` | Consume scene/content contracts; never import generated output or build tools |
 | Scene models and visual geometry | `site/scenes/` | Explicit parameters and pure computations where possible |
+| Optional effect descriptors and helpers | `site/effects/` | Pure effect exports; hosted/offline adapters remain in `tools/site/` |
 | Media | `site/assets/` | Referenced through existing asset/edition identity contracts |
 | Build/export orchestration | `tools/site/` | Validate, render, hash and emit; do not become a second content registry |
 | Hosting and checks | `tools/staging/`, `tools/quality/`, `tests/` | Consume declared sources/artifacts and preserve evidence identity |
 | Public renditions | `docs/`, declared offline outputs | Generated; change their authored owners and regenerate |
 | Decisions, diagnostics and history | `review/`, `drafts/` | Not a home for new active runtime/build code |
 
-The four active Color sources still in `review/site-scroll-sync-20261004/` are
-explicit migration debt, not abandoned files. R1 will move effect ownership to
-`site/effects/` and the exporter to `tools/site/`. Update all consumers, catalog,
+R1 in [issue56](https://github.com/oborskyivitalii/oborskyivitalii/issues/56) moved
+the active Color sources from `review/site-scroll-sync-20261004/` into
+`site/effects/` and the exporter into `tools/site/`. Update all consumers, catalog,
 source hashes and test/scanner inventory together; preserve real historical
 evidence. No circular dependencies, process-global monkey patches to capture
 exports, or hidden `require` side effects. Prefer explicit inputs and returned

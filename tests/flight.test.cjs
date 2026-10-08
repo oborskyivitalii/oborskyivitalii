@@ -1,6 +1,7 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
-const {flightPose,endScrollGate,atPageEnd,atPageStart,decorate}=require('../review/site-scroll-sync-20261004/FLIGHT-PROTOTYPE.cjs');
+const {flightPose,endScrollGate,atPageEnd,atPageStart}=require('../site/effects/flight.cjs');
+const {decorateFlight:decorate}=require('../tools/site/effects.cjs');
 test('forward passes the current page toward the viewer; reverse sends it into distance',()=>{
   for(const direction of ['forward','backward']){
     for(let i=0;i<=100;i++){
@@ -70,10 +71,10 @@ test('short-page reversal clears the other direction, and reverse key/touch are 
   }
 });
 test('optional exporter compiles, keeps one scheduler and changes both embedded engine identities',()=>{
-  const {standalone}=require('../review/site-scroll-sync-20261004/export.cjs'),ribbons=require('../review/site-scroll-sync-20261004/RIBBONS-PROTOTYPE.cjs');
+  const {standalone}=require('../tools/site/export.cjs'),ribbons={decorate:require('../tools/site/effects.cjs').decorateRibbons};
   const source=standalone(fs.readFileSync(require('node:path').join(__dirname,'../review/site-v1-20261004-v11-interactive.html'),'utf8'));
   const previous=ribbons.decorate(source),output=decorate(previous),hash=output.match(/name="site-engine" content="([a-f0-9]{64})"/)[1];
-  const createPresentation=require('../review/site-scroll-sync-20261004/FLIGHT-PROTOTYPE.cjs').createPresentation;
+  const createPresentation=require('../site/effects/flight.cjs').createPresentation;
   for(const supports of [undefined,()=>false,()=>true]){
     assert.equal(vm.runInNewContext('('+createPresentation.toString()+')({}).canTravel()', {window:{CSS:{supports}}}),supports?.()===true,'missing capability cannot become the scene API default On');
   }

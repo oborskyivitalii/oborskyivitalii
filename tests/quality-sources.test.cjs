@@ -1,46 +1,131 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),cp=require('node:child_process');
-const {authoredRuntimeSources,authoredRuntime}=require('../tools/quality/scanners.cjs');
-const root=path.resolve(__dirname,'..'),directory='review/site-scroll-sync-20261004/';
-test('offline security selects all tracked and present authored modules, excluding diagnostic harnesses',()=>{
-  const diagnostics=['check-content-flight.cjs','check-ribbon-fill.cjs','check-ribbon-material.cjs'].map(file=>directory+file);
-  assert.deepEqual(authoredRuntime([],()=>true),[],'legacy source has no offline runtime');
-  assert.deepEqual(authoredRuntime(diagnostics,()=>true),[],'diagnostic harnesses are not authored browser source');
-  assert.deepEqual(authoredRuntime([...authoredRuntimeSources,...diagnostics],()=>true),authoredRuntimeSources);
-  assert.deepEqual(authoredRuntime(authoredRuntimeSources,file=>file!==authoredRuntimeSources[0]),authoredRuntimeSources.slice(1));
-  assert.deepEqual(authoredRuntime(authoredRuntimeSources.slice(1),()=>true),authoredRuntimeSources.slice(1),'untracked sources are not admitted');
-});
-test('the authored selection matches every offline dependency of the active exporter and Color builder',()=>{
-  const tracked=cp.execFileSync('git',['ls-files',directory],{cwd:root,encoding:'utf8'}).trim().split('\n');
-  const exporter=fs.existsSync(path.join(root,directory+'export.cjs'));
-  const authoredPresent=authoredRuntimeSources.some(file=>fs.existsSync(path.join(root,file))),authoredTracked=authoredRuntimeSources.some(file=>tracked.includes(file));
-  if(!exporter&&!authoredPresent&&!authoredTracked){
-    assert.deepEqual(authoredRuntime(tracked),[],'legacy source has no active authored offline runtime');
-    return;
+const {authoredRuntimeSources, authoredRuntime, lintEffectCoverage} = require('../tools/quality/scanners.cjs');
+const {effectInputs} = require('../tools/site/effects.cjs');
+const root = path.resolve(__dirname, '..');
+const sourceCatalog = () => Object.fromEntries(authoredRuntimeSources.map(file =>
+  [file, {kind: 'file', role: 'source'}]));
+
+test('effect scanning uses the canonical manifest and rejects missing or misclassified active sources', () => {
+  const diagnostics = ['review/site-scroll-sync-20261004/check-content-flight.cjs'];
+  const catalog = sourceCatalog();
+  assert.deepEqual(authoredRuntime([...effectInputs, ...diagnostics], () => true, catalog), authoredRuntimeSources);
+  assert.throws(() => authoredRuntime([], () => true, catalog), /Missing active effect input/);
+  for (const file of effectInputs) {
+    assert.throws(() => authoredRuntime(effectInputs.filter(input => input !== file), () => true, catalog), /Missing active effect input/);
+    assert.throws(() => authoredRuntime(effectInputs, input => input !== file, catalog), /Missing active effect input/);
   }
-  assert.ok(exporter,'an authored runtime source requires its active exporter');
-  const pending=['tools/staging/color.cjs',directory+'export.cjs'],visited=new Set(),imported=new Set();
-  while(pending.length){
-    const file=pending.pop();if(visited.has(file))continue;visited.add(file);
-    const source=fs.readFileSync(path.join(root,file),'utf8');
-    for(const match of source.matchAll(/require\(['"](\.[^'"]+)['"]\)/g)){
-      const dependency=path.relative(root,path.resolve(root,path.dirname(file),match[1])).split(path.sep).join('/');
-      if(dependency.startsWith(directory)&&dependency.endsWith('.cjs')){imported.add(dependency);pending.push(dependency);}
+  for (const file of authoredRuntimeSources) {
+    for (const record of [undefined, {kind: 'file', role: 'history'}, {kind: 'directory', role: 'source'}]) {
+      const invalid = {...catalog, [file]: record};
+      assert.throws(() => authoredRuntime(effectInputs, () => true, invalid), /Misclassified authored effect source/);
     }
   }
-  assert.deepEqual([...imported].sort(),[...authoredRuntimeSources].sort(),'new authored dependencies must extend scanner coverage');
-  assert.deepEqual(authoredRuntime(tracked),authoredRuntimeSources,'every active authored module is tracked and present');
-  assert.deepEqual(authoredRuntime([...imported]),authoredRuntimeSources,'every active authored module exists');
 });
-test('both browser runtime security rules cover all three authored modules without directory-wide harness policy',()=>{
-  const source=fs.readFileSync(path.join(root,'tools/quality/security-rules.yml'),'utf8');
-  for(const id of ['browser-html-injection','browser-code-execution']){
-    const rule=source.split('  - id: '+id+'\n')[1].split('\n  - id: ')[0];
-    for(const file of authoredRuntimeSources)assert.ok(rule.includes(file),id+' missing '+file);
-    for(const directoryScope of ['docs/**','site/engine/**','site/scenes/**','site/integrations/**'])assert.ok(rule.includes(directoryScope),id+' lost public source scope');
-    assert.ok(!rule.includes(directory+'*.cjs'),'diagnostic files do not define browser runtime policy');
+
+test('the effect manifest matches all active browser dependencies and tracked source classification', () => {
+  const tracked = cp.execFileSync('git', ['ls-files', 'site', 'tools'], {cwd: root, encoding: 'utf8'}).trim().split('\n');
+  const pending = ['tools/site/effects.cjs', 'tools/site/export.cjs', 'tools/staging/color.cjs'];
+  const visited = new Set(), imported = new Set();
+  while (pending.length) {
+    const file = pending.pop();
+    if (visited.has(file)) continue;
+    visited.add(file);
+    const source = fs.readFileSync(path.join(root, file), 'utf8');
+    for (const match of source.matchAll(/require\(['"](\.[^'"]+)['"]\)/g)) {
+      const dependency = path.relative(root, path.resolve(root, path.dirname(file), match[1])).split(path.sep).join('/');
+      if (dependency.startsWith('site/effects/') && dependency.endsWith('.cjs')) {
+        imported.add(dependency);
+        pending.push(dependency);
+      }
+    }
+  }
+  assert.deepEqual([...imported].sort(), [...authoredRuntimeSources].sort(), 'new browser effect dependencies must extend the canonical manifest');
+  assert.deepEqual(authoredRuntime(tracked), authoredRuntimeSources, 'all declared effect inputs must remain tracked and present');
+});
+
+test('ESLint coverage rejects an omitted, ignored, duplicated or unparsed browser effect', () => {
+  const report = authoredRuntimeSources.map(file => ({filePath: path.join(root, file), messages: []}));
+  lintEffectCoverage(report);
+  for (const file of authoredRuntimeSources) {
+    const row = report.find(item => item.filePath === path.join(root, file));
+    assert.throws(() => lintEffectCoverage(report.filter(item => item !== row)), /effect lint coverage/);
+    assert.throws(() => lintEffectCoverage([...report, row]), /effect lint coverage/);
+    for (const message of [{message: 'File ignored because of a matching ignore pattern'}, {fatal: true, message: 'Parsing error'}]) {
+      const changed = report.map(item => item === row ? {...item, messages: [message]} : item);
+      assert.throws(() => lintEffectCoverage(changed), /effect lint coverage/);
+    }
   }
 });
+
+test('browser security policies cover the authored effect source directory without diagnostic harness scope', () => {
+  const source = fs.readFileSync(path.join(root, 'tools/quality/security-rules.yml'), 'utf8');
+  for (const id of ['browser-html-injection', 'browser-code-execution']) {
+    const rule = source.split('  - id: ' + id + '\n')[1].split('\n  - id: ')[0];
+    for (const directoryScope of ['docs/**', 'site/engine/**', 'site/scenes/**', 'site/integrations/**', 'site/effects/**']) {
+      assert.ok(rule.includes(directoryScope), id + ' lost public source scope');
+    }
+    for (const file of authoredRuntimeSources) assert.ok(file.startsWith('site/effects/'), id + ' missing canonical effect ' + file);
+    assert.ok(!rule.includes('review/'), 'diagnostic files do not define browser runtime policy');
+  }
+});
+
+test('Stylelint covers every authored CSS file and generated stylesheet, including newly added components', async () => {
+  const {cssSources, scanStyles} = require('../tools/quality/stylelint.cjs');
+  const os = require('node:os'), directory = fs.mkdtempSync(path.join(os.tmpdir(), 'css-coverage-'));
+  try {
+    fs.mkdirSync(path.join(directory, 'site/effects'), {recursive: true});
+    fs.mkdirSync(path.join(directory, 'site/engine'), {recursive: true});
+    fs.mkdirSync(path.join(directory, 'docs'));
+    const files = ['site/engine/styles.css', 'site/engine/reading-surfaces.css', 'site/effects/component.css', 'docs/styles.css'];
+    for (const file of files) fs.writeFileSync(path.join(directory, file), '.reading { color: red; }');
+    const scanned = [];
+    const rows = await scanStyles(directory, async ({codeFilename, code}) => {
+      scanned.push(path.relative(directory, codeFilename).split(path.sep).join('/'));
+      assert.equal(code, '.reading { color: red; }');
+      return {results: [{source: codeFilename, warnings: [], parseErrors: [], invalidOptionWarnings: [], errored: false}]};
+    });
+    assert.deepEqual(scanned, [...files.filter(file => file.startsWith('site/')).sort(), 'docs/styles.css']);
+    assert.equal(rows.length, files.length);
+    for (const result of [{results: []}, {results: [{source: path.join(directory, 'docs/other.css')}]}]) {
+      await assert.rejects(scanStyles(directory, async () => result), /missing or mismatched coverage/);
+    }
+    fs.unlinkSync(path.join(directory, 'docs/styles.css'));
+    assert.throws(() => cssSources(directory), /ENOENT|generated CSS/);
+  } finally {
+    fs.rmSync(directory, {recursive: true, force: true});
+  }
+  const authored = cp.execFileSync('git', ['ls-files', 'site'], {cwd: root, encoding: 'utf8'}).trim().split('\n').filter(file => file.endsWith('.css'));
+  assert.deepEqual(cssSources(root), [...authored.sort(), 'docs/styles.css']);
+});
+
+test('newly exposed effect complexity preserves exact source debt and rejects stale or expanded allowances', () => {
+  const {reviewComplexity} = require('../tools/quality/scanners.cjs');
+  const digest = bytes => require('node:crypto').createHash('sha256').update(bytes).digest('hex');
+  const source = 'function projector() { return 1; }\n', baseline = '// Original source\n' + source;
+  const warning = {file: 'site/effects/ribbons.cjs', rule: 'sonarjs/cognitive-complexity', message: 'Existing exact complexity warning'};
+  const entry = {
+    path: warning.file, rule: warning.rule, message: warning.message, issue: 56,
+    removalTask: 'R5', reason: 'Preserved browser bytes; projection simplification remains a separately reviewed task.',
+    source_sha256: digest(source),
+    baseline: {commit: 'a'.repeat(40), path: 'review/legacy/RIBBONS-PROTOTYPE.cjs', sha256: digest(baseline)},
+  };
+  const policy = {reviewBy: '2026-11-03', complexity: [entry]};
+  const options = {now: new Date('2026-10-08T12:00:00Z'), sourceBytes: () => source, baselineBytes: () => baseline};
+  reviewComplexity([warning], policy, options);
+  assert.throws(() => reviewComplexity([warning], policy, {...options, sourceBytes: () => source + '// Changed source\n'}), /Changed source-bound/);
+  assert.throws(() => reviewComplexity([warning], policy, {...options, baselineBytes: () => baseline + '// Wrong baseline\n'}), /Changed source-bound/);
+  assert.throws(() => reviewComplexity([warning], policy, {...options, now: new Date('2026-11-04T00:00:00Z')}), /expired/);
+  assert.throws(() => reviewComplexity([], policy, options), /Stale complexity/);
+  assert.throws(() => reviewComplexity([warning, {...warning, message: 'New complexity'}], policy, options), /New or duplicated/);
+  assert.throws(() => reviewComplexity([warning], {...policy, complexity: [entry, entry]}, options), /New or duplicated/);
+  for (const field of ['source_sha256', 'issue', 'removalTask', 'reason', 'baseline']) {
+    const changed = structuredClone(policy);
+    delete changed.complexity[0][field];
+    assert.throws(() => reviewComplexity([warning], changed, options), /Invalid source-bound/);
+  }
+});
+
 function banditFixture(){
   const os=require('node:os'),triage=require('../tools/quality/bandit-triage.cjs'),directory=fs.mkdtempSync(path.join(os.tmpdir(),'bandit-review-')),file='tools/reviewed.py',source='import subprocess\n';
   fs.mkdirSync(path.join(directory,'tools'));fs.mkdirSync(path.join(directory,'.github'));

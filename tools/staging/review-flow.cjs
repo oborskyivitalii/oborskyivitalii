@@ -63,7 +63,7 @@ function variant(record){
   if(record.variant&&record.components?.variant)assert.deepEqual(record.variant,record.components.variant,'conflicting visual identity');
   return value;
 }
-const colorInputs=['tools/staging/color.cjs','tools/site/variants.cjs','review/site-scroll-sync-20261004/FLIGHT-PROTOTYPE.cjs','review/site-scroll-sync-20261004/RIBBONS-PROTOTYPE.cjs'];
+const colorInputs=require('../site/effects.cjs').effectInputs;
 function supportedRendition(root=path.resolve(__dirname,'../..')){
   return colorInputs.every(file=>fs.existsSync(path.join(root,file)))?'color':'base';
 }

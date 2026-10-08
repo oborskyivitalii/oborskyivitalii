@@ -1,6 +1,5 @@
 'use strict';
 // Optional offline navigation comparison. Authored production sources stay intact.
-const assert=require('node:assert/strict');
 function flightPose(progress,direction,departure={z:0,opacity:1}){
   const clamp=t=>Math.max(0,Math.min(1,t)),smooth=t=>{t=clamp(t);return t*t*(3-2*t);};
   progress=clamp(progress);
@@ -170,17 +169,26 @@ function measurePlane(read){
     return result;
   }finally{if(transform)plane.style.transform=transform;}
 }
-function decorate(html){
+function descriptor() {
   const code=`const flightPose=${flightPose.toString()};\nwindow.SiteEffects.navigation=${createPresentation.toString()};\nwindow.SiteEffects.measure=${measurePlane.toString()};`;
-  const settings='<script>('+installFlightPreference.toString()+')();('+installEndScroll.toString()+')('+endScrollGate.toString()+','+atPageEnd.toString()+','+atPageStart.toString()+');</script>\n';
-  const styles=`<style data-content-flight>
+  const controls='('+installFlightPreference.toString()+')();('+installEndScroll.toString()+')('+endScrollGate.toString()+','+atPageEnd.toString()+','+atPageStart.toString()+');';
+  const css=`
 #site-content-frame{overflow:clip}
 .end-scroll-control input{width:16px;height:16px;accent-color:var(--accent)}
 .scroll-continue{position:relative;color:var(--ink);font-size:13px;font-weight:600;padding-block:8px;align-self:center;text-decoration:none}
 .scroll-continue::after{content:"";position:absolute;bottom:2px;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(var(--scroll-intent,0));transform-origin:left}
 .scroll-continue[hidden]{display:none}
 @media print{#site-content-frame{overflow:visible}.scroll-continue{display:none}}
-</style>\n<meta name="review-navigation" content="directional-content-flight-and-edge-scroll">\n`;
-  return require('../../tools/site/variants.cjs').attach(html,{id:html.includes('data-site-effect="ribbons"')?'color':'flight',effect:'travel',code,styles,bodyScripts:settings});
+`;
+  return {
+    effect: 'travel',
+    code,
+    css,
+    controls,
+    head: '<meta name="review-navigation" content="directional-content-flight-and-edge-scroll">\n'
+  };
 }
-module.exports={flightPose,endScrollGate,atPageEnd,atPageStart,installEndScroll,installFlightPreference,createPresentation,measurePlane,decorate};
+module.exports = {
+  flightPose, endScrollGate, atPageEnd, atPageStart, installEndScroll,
+  installFlightPreference, createPresentation, measurePlane, descriptor
+};
