@@ -7716,6 +7716,18 @@
       "purpose": "Independent exact four-row Bandit rebinding proof after approved-main rebase; preserves findings, sources and deadlines.",
       "role": "history",
       "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-58/2026-10-08-resume-base-observations.json": {
+      "kind": "file",
+      "purpose": "Interruption recovery exact Base measurements; raw identities, failed budgets and adaptive-quality limitations remain explicit.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-58/2026-10-08-resume-base-measurements.json.gz": {
+      "kind": "file",
+      "purpose": "Interruption recovery exact Base measurements; raw identities, failed budgets and adaptive-quality limitations remain explicit.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
     }
   }
 }

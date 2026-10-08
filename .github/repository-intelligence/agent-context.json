@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "8c7fd3ac5054af1e26bbaad66deedfa4edc3c0540032d0ca6be842566bbf37c0",
+    "digest": "c74bea2b8a4b43ce38c80e88196f37a6d30ae31bf8514b6b3a6afb8f3784d487",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -131,7 +131,7 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "03f69e7c8acd7287ec8e78d6b802e6360559e69163df32d7cf13a58694729305"
+        "sha256": "db4eccace2bae20d5b35857575dc705d261dd1f4b2603d946a6dbb5e09488fbb"
       },
       {
         "path": ".github/ri-ci-map.json",
@@ -231,7 +231,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "0f0d611a17faf85146640bb9d7551e8f3faba990e206d271a2ff929f3adf7e67"
+        "sha256": "c2dd99eef54b7582c8c130bcdca0bfb86f223e735f4570541b9dd3d9adfa21c9"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -710,7 +710,7 @@
       {
         "path": "review/issue-58/2026-10-08-handoff.md",
         "identity_mode": "content",
-        "sha256": "ba114c01a450d409f43a542a7f2db0fecdcea381275c136e15328f4fde63036b"
+        "sha256": "a4f896beef8b0d33e64a608bc2f246ade0dc47e293a8040a6e83c0627815cd6a"
       },
       {
         "path": "review/issue-58/2026-10-08-r3-r6-bandit.json",
@@ -751,6 +751,16 @@
         "path": "review/issue-58/2026-10-08-rebase-bandit.json",
         "identity_mode": "content",
         "sha256": "c5bc511504ea610636e75e4f201b96e1113b48329bacf92ae24a9a5e475acb83"
+      },
+      {
+        "path": "review/issue-58/2026-10-08-resume-base-measurements.json.gz",
+        "identity_mode": "content",
+        "sha256": "a4f7352fc7a617007d8042e9db88335960453536b560668f8296ca896831d12b"
+      },
+      {
+        "path": "review/issue-58/2026-10-08-resume-base-observations.json",
+        "identity_mode": "content",
+        "sha256": "78f76b1f446a74799b5e85a129387b343f7a46e235a04bf3c20092504d872482"
       },
       {
         "path": "review/issue-58/2026-10-08-scanner-rebinding.json",
@@ -7673,6 +7683,28 @@
         "AGENTS.md"
       ],
       "title": "2026-10-08-rebase-bandit.json"
+    },
+    {
+      "path": "review/issue-58/2026-10-08-resume-base-measurements.json.gz",
+      "kind": "file",
+      "purpose": "Interruption recovery exact Base measurements; raw identities, failed budgets and adaptive-quality limitations remain explicit.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-08-resume-base-measurements.json.gz"
+    },
+    {
+      "path": "review/issue-58/2026-10-08-resume-base-observations.json",
+      "kind": "file",
+      "purpose": "Interruption recovery exact Base measurements; raw identities, failed budgets and adaptive-quality limitations remain explicit.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-08-resume-base-observations.json"
     },
     {
       "path": "review/issue-58/2026-10-08-scanner-rebinding.json",

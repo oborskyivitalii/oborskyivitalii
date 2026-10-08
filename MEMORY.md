@@ -20,7 +20,9 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
   [Single handoff](review/issue-58/2026-10-08-handoff.md#current-continuation--same-pr-2026-10-08).
   Verified R2 is immutable `8c6cf877fee92b4d2493b4c1a07df7080b987c29`, tree
   `2725ae4743032b2aeaafd7f2d7f7c91a08265906`; CI/scans/independent review pass.
-  AC02 and R2.1–R2.6 are checked; R2.7/final criteria remain open. R3–R5 restored and rebased; R6 final evidence remains.
+  AC02 and R2.1–R2.6 are checked; R2.7/final criteria remain open. R3–R5 restored
+  and rebased locally; remote PR60 still holds R2 because Git HTTPS push lacks
+  credentials. Latest clean code checkpoint `a68043a`; all 11 issue58 tests pass.
   Issue59 remains superseded/closed; retain its dated history.
 - PR #51 content/formula/shared reading-backdrop changes are merged and preserved.
   #15 is closed for the earlier engine/content increment; R3 extends its owners.
@@ -99,10 +101,13 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 1. Fetch main, issue58 and DraftPR60; compare refs with immutable R2 checkpoint.
 2. Read current R3/R4/R5 implementation/review sections; preserve frozen R2 and
    generation/ownership contracts while finishing the integrated evidence.
-3. Compare R6 with exact main a8149a0, matching active no-ribbon effects; preserve
-   frozen R2 evidence. After candidate stabilizes regenerate,
-   refresh catalogs/RI, scan and verify one exact clean integrated candidate/CI.
-4. Reconcile whole AC boxes and evidence; merge only on final maintainer decision.
+3. Paired Base R6 raw observations are saved in the dated resume evidence.
+   Main passes; candidate fails 33ms paint/20% idle busy budgets. Mobile Research
+   adaptive tiers differ; do not claim speedup/regression. Fix collector readiness
+   is complete. Resolve matched-quality/Color evidence without raising limits.
+4. Publish the rebased source after resolving HTTPS Git write access, then bind
+   final CI/preview/staging/scans/review to the exact published candidate.
+5. Reconcile whole AC boxes and evidence; merge only on final maintainer decision.
 
 ## Maintenance
 
