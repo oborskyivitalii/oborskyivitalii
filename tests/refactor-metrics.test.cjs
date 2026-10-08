@@ -7,6 +7,7 @@ const motion = require('../tools/quality/motion.cjs');
 const common = require('../tools/quality/common.cjs');
 const budgets = require('../tools/quality/budgets.json');
 const artifact = require('../tools/quality/artifact.cjs');
+const childProcess = require('node:child_process');
 
 function sample(kind) {
   const stopped = ['off', 'reduced'].includes(kind);
@@ -36,9 +37,19 @@ function sample(kind) {
 function rooms() {
   return {
     rooms: [
-      { route: 'index', models: [{ compact: false, serializedChars: 1000, formulaAnchors: 0 }] },
+      {
+        route: 'index',
+        models: [{ compact: false, serializedChars: 1000, formulaAnchors: 0 }],
+      },
     ],
-    formula: { status: 'unused', cacheBuilds: 0, width: 0, height: 0, bytes: 0, failures: 0 },
+    formula: {
+      status: 'unused',
+      cacheBuilds: 0,
+      width: 0,
+      height: 0,
+      bytes: 0,
+      failures: 0,
+    },
   };
 }
 
@@ -78,7 +89,11 @@ function fixture(candidate = false, variant = 'base') {
     nodes: [
       {
         id: 1,
-        callFrame: { functionName: 'paint', url: 'http://127.0.0.1:8888/space.js', lineNumber: 12 },
+        callFrame: {
+          functionName: 'paint',
+          url: 'http://127.0.0.1:8888/space.js',
+          lineNumber: 12,
+        },
       },
     ],
     samples: [1],
@@ -91,7 +106,10 @@ function fixture(candidate = false, variant = 'base') {
     protocol: structuredClone(metrics.protocol),
     budgets: structuredClone(budgets),
     browser: '153.0.8010.12',
-    browserSettings: { engine: 'chromium', launch: common.launchOptions('chromium') },
+    browserSettings: {
+      engine: 'chromium',
+      launch: common.launchOptions('chromium'),
+    },
     playwright: common.toolRequire('playwright/package.json').version,
     environment: { platform: 'linux', node: 'v24.19.0', cpus: ['fixture'] },
     collectorSources: metrics.collectorSources(),
@@ -158,6 +176,109 @@ test('bounded paired observations preserve original limits without asserting a s
   assert.equal(comparison.fullGate, false);
   assert.equal(comparison.performanceAcceptance, false);
   assert.ok(comparison.observations.every((row) => row.qualityComparable));
+});
+
+const fixedFixtureSource =
+  childProcess.execFileSync(
+    'git',
+    ['show', metrics.baselineCommit + ':site/engine/lifecycle.cjs'],
+    { cwd: common.root, encoding: 'utf8' }
+  ) + "\nconst untouchedRenderer = 'drawing bytes stay intact';";
+
+function fixedFixture(candidate = false) {
+  const report = fixture(candidate);
+  report.kind = 'refactor-metrics-fixed-diagnostic';
+  report.target = 'loopback-instrumented-public-artifact';
+  report.protocol = structuredClone(metrics.fixedProtocol);
+  report.sizes.files['space.js'].sha256 = artifact.digest(fixedFixtureSource);
+  report.identity.artifactDigest = artifact.digest(JSON.stringify(report.sizes.files));
+  report.sizes.artifactDigest = report.identity.artifactDigest;
+  for (const row of report.rows) {
+    const settings = metrics.fixedControl[row.settings.id];
+    const derivative = metrics.fixedRuntime(fixedFixtureSource, settings);
+    row.instrumentation = {
+      ...derivative.evidence,
+      requests: [
+        {
+          originalSHA256: derivative.evidence.originalSHA256,
+          derivativeSHA256: derivative.evidence.derivativeSHA256,
+        },
+      ],
+    };
+    row.qualityTrace = [
+      {
+        time: 0,
+        quality: String(settings.qualityTier),
+        cadence: String(settings.cadenceHz),
+      },
+    ];
+    for (const sample of [row.warmup, ...row.samples, row.hotspotWindow]) {
+      sample.quality = String(settings.qualityTier);
+      sample.cadence = String(settings.cadenceHz);
+    }
+  }
+  return report;
+}
+
+test('fixed diagnostics transform only explicit controller owners and reject drift', () => {
+  const settings = metrics.fixedControl['mobile-x4'];
+  const derivative = metrics.fixedRuntime(fixedFixtureSource, settings);
+  let restored = derivative.source;
+  // Reverse at the original offsets after accounting for each preceding edit.
+  let shift = 0;
+  const applied = [...derivative.evidence.edits]
+    .sort((a, b) => a.range[0] - b.range[0])
+    .map((edit) => {
+      const start = edit.range[0] + shift;
+      shift += edit.replacement.length - edit.original.length;
+      return { ...edit, start };
+    });
+  for (const edit of applied.reverse())
+    restored =
+      restored.slice(0, edit.start) +
+      edit.original +
+      restored.slice(edit.start + edit.replacement.length);
+  assert.equal(restored, fixedFixtureSource);
+  assert.ok(derivative.source.includes("const untouchedRenderer = 'drawing bytes stay intact';"));
+  assert.match(derivative.source, /tier\s*=\s*1/);
+  assert.match(derivative.source, /interval\s*=\s*1000 \/ 7\.5/);
+  for (const source of [
+    fixedFixtureSource.replace(/let tier\s*=\s*0/, 'let tier=1'),
+    fixedFixtureSource.replace(/detailTier\s*=\s*0/, 'otherDetail=0'),
+    fixedFixtureSource.replace(/adaptCadence\(cost,\s*time\);/, 'unreviewedController(cost,time);'),
+    fixedFixtureSource.replace('slow>=8', 'slow>=9'),
+    fixedFixtureSource.replace('animation||journey?', 'animation?'),
+    fixedFixtureSource + '\nfunction other() { const interval = 10; }',
+  ])
+    assert.throws(() => metrics.fixedRuntime(source, settings));
+  assert.throws(() => metrics.fixedRuntime(fixedFixtureSource, { qualityTier: 2, cadenceHz: 1 }));
+});
+
+test('fixed-work evidence cannot become adaptive acceptance or omit actual served derivatives', () => {
+  const baseline = fixedFixture();
+  const candidate = fixedFixture(true);
+  const comparison = metrics.compare(baseline, candidate);
+  assert.equal(comparison.mode, 'fixed-diagnostic');
+  assert.ok(comparison.observations.every((row) => row.qualityComparable));
+  assert.equal(comparison.performanceAcceptance, false);
+  assert.throws(() => metrics.compare(fixture(), candidate), /report mismatch/);
+  for (const mutate of [
+    (value) => (value.kind = 'refactor-metrics'),
+    (value) => (value.target = 'loopback-exact-public-artifact'),
+    (value) => (value.rows[0].instrumentation.requests = []),
+    (value) => (value.rows[0].instrumentation.originalSHA256 = '0'.repeat(64)),
+    (value) =>
+      (value.rows[0].instrumentation.derivativeSHA256 =
+        value.rows[0].instrumentation.originalSHA256),
+    (value) => (value.rows[0].instrumentation.requests[0].derivativeSHA256 = '0'.repeat(64)),
+    (value) => (value.rows[0].qualityTrace[0].cadence = '30'),
+    (value) => (value.rows[2].qualityTrace[0].quality = '0'),
+    (value) => (value.protocol.fixedControl.desktop.cadenceHz = 1),
+  ]) {
+    const report = fixedFixture();
+    mutate(report);
+    assert.throws(() => metrics.validateReport(report));
+  }
 });
 
 test('source, runtime, budget, profile and browser substitutions fail closed', () => {
@@ -337,7 +458,12 @@ test('whole-window quality traces retain transient tier changes and reject missi
     (value) => delete value.rows[0].qualityTrace[0].quality,
     (value) => delete value.rows[0].qualityTrace[0].cadence,
     (value) => (value.rows[0].qualityTrace[0].time = 50000),
-    (value) => value.rows[0].qualityTrace.push({ time: -1, quality: 'full', cadence: '60' }),
+    (value) =>
+      value.rows[0].qualityTrace.push({
+        time: -1,
+        quality: 'full',
+        cadence: '60',
+      }),
   ]) {
     const value = fixture();
     mutate(value);

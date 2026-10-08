@@ -3,6 +3,7 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const childProcess = require('node:child_process');
 const { environment, toolRequire, launchOptions, variant } = require('./common.cjs');
 const artifact = require('./artifact.cjs');
 const motion = require('./motion.cjs');
@@ -21,7 +22,11 @@ const baselineCommit = 'a8149a0a65579d6977ccef9bb0e6e4367fd9e9dd';
 const baselineTree = '776610667df0c606d29891f582a7fc329faaa570';
 const protocol = {
   schema: 2,
-  baseline: { kind: 'approved-main', sourceCommit: baselineCommit, sourceTree: baselineTree },
+  baseline: {
+    kind: 'approved-main',
+    sourceCommit: baselineCommit,
+    sourceTree: baselineTree,
+  },
   routes: ['research', 'writing'],
   profiles: [
     {
@@ -49,6 +54,129 @@ const protocol = {
   effects: { base: [], color: ['travel'] },
   reducedMotion: 'no-preference',
 };
+// Fixed work diagnoses equal renderer workloads; it never accepts the shipped
+// adaptive artifact. These settings are explicit, not fitted to a passing result.
+const fixedControl = {
+  desktop: { qualityTier: 0, cadenceHz: 12 },
+  'mobile-x4': { qualityTier: 1, cadenceHz: 7.5 },
+};
+const fixedProtocol = {
+  ...protocol,
+  schema: 3,
+  mode: 'fixed-diagnostic',
+  fixedControl,
+  lifecycleMode: 'unmodified-adaptive',
+};
+
+function walkSyntax(node, visit) {
+  if (!node || typeof node !== 'object') return;
+  if (node.type) visit(node);
+  for (const value of Object.values(node)) {
+    if (Array.isArray(value)) value.forEach((child) => walkSyntax(child, visit));
+    else if (value && typeof value === 'object') walkSyntax(value, visit);
+  }
+}
+
+function syntaxValue(node) {
+  if (Array.isArray(node)) return node.map(syntaxValue);
+  if (!node || typeof node !== 'object') return node;
+  return Object.fromEntries(
+    Object.entries(node)
+      .filter(([name]) => !['range', 'loc', 'start', 'end', 'raw'].includes(name))
+      .map(([name, value]) => [name, syntaxValue(value)])
+  );
+}
+
+let reviewedController;
+function controllerContracts() {
+  if (reviewedController) return reviewedController;
+  const source = childProcess.execFileSync(
+    'git',
+    ['show', baselineCommit + ':site/engine/lifecycle.cjs'],
+    { cwd: path.resolve(__dirname, '../..'), encoding: 'utf8' }
+  );
+  const ast = toolRequire('espree').parse(source, { ecmaVersion: 'latest' });
+  reviewedController = {};
+  walkSyntax(ast, (node) => {
+    if (node.type === 'FunctionDeclaration' && node.id.name === 'quality')
+      reviewedController.quality = syntaxValue(node);
+    if (node.type === 'VariableDeclarator' && node.id.name === 'interval')
+      reviewedController.interval = syntaxValue(node.init);
+  });
+  assert.deepEqual(Object.keys(reviewedController).sort(), ['interval', 'quality']);
+  return reviewedController;
+}
+
+function fixedRuntime(source, settings) {
+  assert.ok(
+    Object.values(fixedControl).some((value) => JSON.stringify(value) === JSON.stringify(settings))
+  );
+  const parser = toolRequire('espree');
+  const ast = parser.parse(source, { ecmaVersion: 'latest', range: true });
+  const owners = new Map();
+  walkSyntax(ast, (node) => {
+    const key =
+      node.type === 'VariableDeclarator'
+        ? node.id.name
+        : node.type === 'FunctionDeclaration'
+          ? node.id.name
+          : null;
+    if (!['tier', 'detailTier', 'idleRate', 'interval', 'quality'].includes(key)) return;
+    assert.ok(!owners.has(key), 'ambiguous fixed-work owner ' + key);
+    owners.set(key, node);
+  });
+  assert.equal(owners.size, 5, 'missing fixed-work owner');
+  const edits = ['tier', 'detailTier', 'idleRate'].map((name) => {
+    const init = owners.get(name).init;
+    assert.equal(init.type, 'Literal', 'unexpected quality initializer');
+    assert.equal(init.value, name === 'idleRate' ? 30 : 0, 'quality initializer changed');
+    return {
+      owner: name,
+      range: init.range,
+      replacement: String(name === 'idleRate' ? settings.cadenceHz : settings.qualityTier),
+    };
+  });
+  const quality = owners.get('quality');
+  assert.deepEqual(
+    syntaxValue(quality),
+    controllerContracts().quality,
+    'quality controller changed'
+  );
+  edits.push({
+    owner: 'quality',
+    range: quality.body.range,
+    replacement:
+      '{ scene.dataset.cadence = String(idleRate); scene.dataset.quality = String(tier); }',
+  });
+  const interval = owners.get('interval').init;
+  assert.deepEqual(
+    syntaxValue(interval),
+    controllerContracts().interval,
+    'frame controller changed'
+  );
+  edits.push({
+    owner: 'interval',
+    range: interval.range,
+    replacement: '1000 / ' + settings.cadenceHz,
+  });
+  let derivative = source;
+  for (const edit of [...edits].sort((a, b) => b.range[0] - a.range[0]))
+    derivative =
+      derivative.slice(0, edit.range[0]) + edit.replacement + derivative.slice(edit.range[1]);
+  parser.parse(derivative, { ecmaVersion: 'latest' });
+  return {
+    source: derivative,
+    evidence: {
+      settings,
+      originalSHA256: artifact.digest(source),
+      derivativeSHA256: artifact.digest(derivative),
+      edits: edits.map((edit) => ({
+        ...edit,
+        original: source.slice(...edit.range),
+      })),
+    },
+  };
+}
 
 function identity(manifest) {
   return {
@@ -235,7 +363,10 @@ function qualityStates(row, sample) {
   const within = trace.filter(
     (state) => state.time > sample.window.startMs && state.time <= sample.window.endMs
   );
-  return [before, ...within].map(({ quality, cadence }) => ({ quality, cadence }));
+  return [before, ...within].map(({ quality, cadence }) => ({
+    quality,
+    cadence,
+  }));
 }
 
 function collectorSources() {
@@ -254,13 +385,73 @@ function collectorSources() {
   );
 }
 
+function validateRow(row, report, fixed, limits) {
+  assert.deepEqual(row.errors, [], 'browser errors');
+  validateSample(row.warmup, 'warmup');
+  assert.deepEqual(
+    row.samples.map((sample) => sample.kind),
+    ['idle', 'scroll', 'off', 'reduced']
+  );
+  const applicable = row.settings.width === 390 && row.settings.cpuRate === 4;
+  for (const sample of row.samples)
+    validateSample(sample, sample.kind, { limits: limits && applicable });
+  validateSample(row.hotspotWindow, 'hotspot');
+  assert.ok(row.hotspotWindow.paints >= budgets.motion.minimumPaints, 'missing hotspot paint');
+  for (const sample of [row.warmup, ...row.samples, row.hotspotWindow]) {
+    const states = qualityStates(row, sample);
+    if (fixed) {
+      const settings = fixedControl[row.settings.id];
+      assert.ok(
+        states.every(
+          (state) =>
+            state.quality === String(settings.qualityTier) &&
+            state.cadence === String(settings.cadenceHz)
+        ),
+        'fixed workload changed'
+      );
+    }
+  }
+  if (fixed)
+    validateInstrumentation(
+      row.instrumentation,
+      fixedControl[row.settings.id],
+      report.sizes.files['space.js'].sha256
+    );
+  else assert.equal(row.instrumentation, undefined, 'instrumented adaptive artifact');
+  assert.deepEqual(row.hotspots, cpuHotspots(row.rawCPUProfile), 'CPU summary differs from raw');
+  checkRooms(row.diagnostics);
+  colorPaint(row);
+  assert.equal(
+    row.runtime.navigationHook,
+    report.identity.variant.id === 'color' ? 'function' : 'undefined',
+    'wrong actual navigation effect'
+  );
+  assert.equal(row.runtime.variant, report.identity.variant.id, 'wrong served runtime variant');
+  assert.equal(row.runtime.engine, report.identity.engine, 'wrong served runtime engine');
+  assert.equal(row.runtime.theme, protocol.theme, 'wrong actual theme');
+  assert.deepEqual(
+    row.runtime.viewport,
+    { width: row.settings.width, height: row.settings.height },
+    'wrong actual viewport'
+  );
+  assert.equal(row.runtime.deviceScaleFactor, row.settings.deviceScaleFactor, 'wrong actual DPR');
+}
+
 function validateReport(report, expected, { limits = true } = {}) {
   assert.equal(report.schema, 1);
-  assert.equal(report.kind, 'refactor-metrics');
+  const fixed = report.kind === 'refactor-metrics-fixed-diagnostic';
+  assert.ok(fixed || report.kind === 'refactor-metrics', 'unsupported metric report');
   assert.equal(report.fullGate, false);
   assert.equal(report.performanceAcceptance, false);
-  assert.equal(report.target, 'loopback-exact-public-artifact');
-  assert.deepEqual(report.protocol, protocol, 'measurement protocol changed');
+  assert.equal(
+    report.target,
+    fixed ? 'loopback-instrumented-public-artifact' : 'loopback-exact-public-artifact'
+  );
+  assert.deepEqual(
+    report.protocol,
+    fixed ? fixedProtocol : protocol,
+    'measurement protocol changed'
+  );
   assert.deepEqual(report.budgets, budgets, 'original resource budgets changed');
   assert.deepEqual(report.collectorSources, collectorSources(), 'collector source changed');
   checkIdentity(report.identity, expected);
@@ -276,38 +467,7 @@ function validateReport(report, expected, { limits = true } = {}) {
     protocol.profiles.flatMap((settings) => protocol.routes.map((route) => ({ route, settings }))),
     'missing/duplicate/out-of-order profile cases'
   );
-  for (const row of report.rows) {
-    assert.deepEqual(row.errors, [], 'browser errors');
-    validateSample(row.warmup, 'warmup');
-    assert.deepEqual(
-      row.samples.map((sample) => sample.kind),
-      ['idle', 'scroll', 'off', 'reduced']
-    );
-    const applicable = row.settings.width === 390 && row.settings.cpuRate === 4;
-    for (const sample of row.samples)
-      validateSample(sample, sample.kind, { limits: limits && applicable });
-    validateSample(row.hotspotWindow, 'hotspot');
-    assert.ok(row.hotspotWindow.paints >= budgets.motion.minimumPaints, 'missing hotspot paint');
-    for (const sample of [row.warmup, ...row.samples, row.hotspotWindow])
-      qualityStates(row, sample);
-    assert.deepEqual(row.hotspots, cpuHotspots(row.rawCPUProfile), 'CPU summary differs from raw');
-    checkRooms(row.diagnostics);
-    colorPaint(row);
-    assert.equal(
-      row.runtime.navigationHook,
-      report.identity.variant.id === 'color' ? 'function' : 'undefined',
-      'wrong actual navigation effect'
-    );
-    assert.equal(row.runtime.variant, report.identity.variant.id, 'wrong served runtime variant');
-    assert.equal(row.runtime.engine, report.identity.engine, 'wrong served runtime engine');
-    assert.equal(row.runtime.theme, protocol.theme, 'wrong actual theme');
-    assert.deepEqual(
-      row.runtime.viewport,
-      { width: row.settings.width, height: row.settings.height },
-      'wrong actual viewport'
-    );
-    assert.equal(row.runtime.deviceScaleFactor, row.settings.deviceScaleFactor, 'wrong actual DPR');
-  }
+  for (const row of report.rows) validateRow(row, report, fixed, limits);
   assert.equal(report.sizes.artifactDigest, report.identity.artifactDigest, 'wrong sizes artifact');
   assert.equal(
     artifact.digest(JSON.stringify(report.sizes.files)),
@@ -369,6 +529,34 @@ function validateReport(report, expected, { limits = true } = {}) {
   return true;
 }
 
+function validateInstrumentation(evidence, settings, originalSHA256) {
+  assert.deepEqual(evidence.settings, settings, 'fixed-work settings changed');
+  assert.equal(
+    evidence.originalSHA256,
+    originalSHA256,
+    'diagnostic input differs from original artifact'
+  );
+  assert.match(evidence.derivativeSHA256, /^[a-f0-9]{64}$/);
+  assert.notEqual(
+    evidence.derivativeSHA256,
+    evidence.originalSHA256,
+    'missing actual diagnostic derivative'
+  );
+  assert.deepEqual(
+    evidence.edits.map((edit) => edit.owner),
+    ['tier', 'detailTier', 'idleRate', 'quality', 'interval']
+  );
+  assert.ok(evidence.requests.length > 0, 'fixed runtime was not served');
+  assert.ok(
+    evidence.requests.every(
+      (request) =>
+        request.originalSHA256 === evidence.originalSHA256 &&
+        request.derivativeSHA256 === evidence.derivativeSHA256
+    ),
+    'wrong served diagnostic runtime'
+  );
+}
+
 function compare(baseline, candidate) {
   validateReport(baseline, undefined, { limits: false });
   validateReport(candidate);
@@ -376,6 +564,7 @@ function compare(baseline, candidate) {
   assert.equal(baseline.identity.sourceTree, baselineTree, 'wrong approved-main baseline tree');
   assert.notEqual(candidate.identity.sourceCommit, baselineCommit, 'candidate is baseline');
   assert.equal(baseline.identity.variant.id, candidate.identity.variant.id, 'variant mismatch');
+  assert.equal(baseline.kind, candidate.kind, 'adaptive/diagnostic report mismatch');
   assert.deepEqual(
     baseline.identity.variant.effects,
     candidate.identity.variant.effects,
@@ -413,6 +602,10 @@ function compare(baseline, candidate) {
     schema: 1,
     kind: 'refactor-metrics-comparison',
     measurementBaseline: protocol.baseline,
+    mode:
+      candidate.kind === 'refactor-metrics-fixed-diagnostic'
+        ? 'fixed-diagnostic'
+        : 'adaptive-unmodified',
     baseline: baseline.identity,
     candidate: candidate.identity,
     observations,
@@ -466,7 +659,7 @@ function measurementProbeScript() {
   })();`;
 }
 
-async function collectRow(browser, url, route, settings) {
+async function collectRow(browser, url, route, settings, fixedSource) {
   const context = await browser.newContext({
     viewport: { width: settings.width, height: settings.height },
     deviceScaleFactor: settings.deviceScaleFactor,
@@ -475,6 +668,25 @@ async function collectRow(browser, url, route, settings) {
   await context.addInitScript({ content: measurementProbeScript() });
   const page = await context.newPage();
   const errors = [];
+  let instrumentation;
+  if (fixedSource) {
+    const derivative = fixedRuntime(fixedSource, fixedControl[settings.id]);
+    instrumentation = { ...derivative.evidence, requests: [] };
+    await page.route('**/space.js', async (request) => {
+      const response = await request.fetch();
+      const originalSHA256 = artifact.digest(await response.body());
+      assert.equal(
+        originalSHA256,
+        instrumentation.originalSHA256,
+        'intercepted runtime differs from artifact'
+      );
+      instrumentation.requests.push({
+        originalSHA256,
+        derivativeSHA256: artifact.digest(derivative.source),
+      });
+      await request.fulfill({ response, body: derivative.source });
+    });
+  }
   page.on('pageerror', (error) => errors.push(error.message));
   const cdp = await context.newCDPSession(page);
   try {
@@ -482,21 +694,23 @@ async function collectRow(browser, url, route, settings) {
       rate: settings.cpuRate,
     });
     await page.goto(`${url}/${route}.html`);
-    await page.waitForFunction(
-      () => {
-        const scene = document.querySelector('.space-scene');
-        // Geometry readiness precedes the first paint that publishes quality.
-        return (
-          scene.dataset.ready === 'true' &&
-          typeof scene.dataset.quality === 'string' &&
-          typeof scene.dataset.cadence === 'string'
-        );
-      }
-    );
+    await page.waitForFunction(() => {
+      const scene = document.querySelector('.space-scene');
+      // Geometry readiness precedes the first paint that publishes quality.
+      return (
+        scene.dataset.ready === 'true' &&
+        typeof scene.dataset.quality === 'string' &&
+        typeof scene.dataset.cadence === 'string'
+      );
+    });
     await page.evaluate(() => {
       const scene = document.querySelector('.space-scene');
       const rows = [
-        { time: performance.now(), quality: scene.dataset.quality, cadence: scene.dataset.cadence },
+        {
+          time: performance.now(),
+          quality: scene.dataset.quality,
+          cadence: scene.dataset.cadence,
+        },
       ];
       const observer = new MutationObserver((records) => {
         // Retain transient changes rather than only the final quality tier.
@@ -569,6 +783,7 @@ async function collectRow(browser, url, route, settings) {
       qualityTrace,
       hotspots: cpuHotspots(rawCPUProfile),
       ...detail,
+      ...(instrumentation ? { instrumentation } : {}),
       errors,
     };
   } finally {
@@ -637,7 +852,7 @@ async function lifecycle(browser, url) {
   }
 }
 
-async function collect(directory, destination) {
+async function collect(directory, destination, { fixed = false } = {}) {
   const manifest = JSON.parse(fs.readFileSync(path.join(directory, 'artifact.json')));
   const publicDir = path.join(directory, 'public');
   artifact.verify(publicDir, manifest);
@@ -646,31 +861,34 @@ async function collect(directory, destination) {
   let browser;
   const result = {
     schema: 1,
-    kind: 'refactor-metrics',
+    kind: fixed ? 'refactor-metrics-fixed-diagnostic' : 'refactor-metrics',
     identity: source,
-    protocol,
+    protocol: fixed ? fixedProtocol : protocol,
     budgets,
     browser: null,
     browserSettings: { engine: 'chromium', launch: launchOptions('chromium') },
     playwright: toolRequire('playwright/package.json').version,
     environment: environment(),
     collectorSources: collectorSources(),
-    target: 'loopback-exact-public-artifact',
+    target: fixed ? 'loopback-instrumented-public-artifact' : 'loopback-exact-public-artifact',
     sizes: artifact.checkSize(publicDir),
     rows: [],
     fullGate: false,
     performanceAcceptance: false,
   };
   const save = () => fs.writeFileSync(destination, JSON.stringify(result, null, 2) + '\n');
-  const served = await require('./writing-probe.cjs').serve({ sample: { publicDir } });
+  const served = await require('./writing-probe.cjs').serve({
+    sample: { publicDir },
+  });
   const server = served.server;
   const url = served.url + '/sample';
+  const fixedSource = fixed ? fs.readFileSync(path.join(publicDir, 'space.js'), 'utf8') : undefined;
   try {
     browser = await toolRequire('playwright').chromium.launch(result.browserSettings.launch);
     result.browser = browser.version();
     for (const settings of protocol.profiles)
       for (const route of protocol.routes) {
-        result.rows.push(await collectRow(browser, url, route, settings));
+        result.rows.push(await collectRow(browser, url, route, settings, fixedSource));
         save();
         process.stdout.write(`${source.variant.id} ${settings.id} ${route} measured\n`);
       }
@@ -696,8 +914,10 @@ async function collect(directory, destination) {
 
 if (require.main === module) {
   const [mode, first, second, destination] = process.argv.slice(2);
-  if (mode === 'collect')
-    collect(path.resolve(first), path.resolve(second)).catch((error) => {
+  if (['collect', 'collect-fixed'].includes(mode))
+    collect(path.resolve(first), path.resolve(second), {
+      fixed: mode === 'collect-fixed',
+    }).catch((error) => {
       console.error(error.stack);
       process.exitCode = 1;
     });
@@ -722,9 +942,22 @@ if (require.main === module) {
       'output byte observations differ from verified artifact'
     );
     validateReport(report, identity(manifest));
+    if (report.kind === 'refactor-metrics-fixed-diagnostic') {
+      const source = fs.readFileSync(path.join(publicDir, 'space.js'), 'utf8');
+      for (const row of report.rows) {
+        const expected = fixedRuntime(source, fixedControl[row.settings.id]).evidence;
+        const { requests, ...evidence } = row.instrumentation;
+        assert.ok(requests.length > 0);
+        assert.deepEqual(
+          evidence,
+          expected,
+          'diagnostic transformation differs from trusted artifact'
+        );
+      }
+    }
   } else
     throw Error(
-      'Usage: refactor-metrics.cjs collect ARTIFACT OUT | compare BASE CAND OUT | verify REPORT ARTIFACT'
+      'Usage: refactor-metrics.cjs collect|collect-fixed ARTIFACT OUT | compare BASE CAND OUT | verify REPORT ARTIFACT'
     );
 }
 
@@ -733,6 +966,9 @@ module.exports = {
   baselineCommit,
   baselineTree,
   protocol,
+  fixedProtocol,
+  fixedControl,
+  fixedRuntime,
   identity,
   checkIdentity,
   validateSample,

@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "c74bea2b8a4b43ce38c80e88196f37a6d30ae31bf8514b6b3a6afb8f3784d487",
+    "digest": "a19cec845fae8b7c47c94d3d934dbcabba7c696e416f8f164744ead5d2340116",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -92,7 +92,7 @@
       {
         "path": ".github/acceptance/issue-58.json",
         "identity_mode": "content",
-        "sha256": "4de2a4dc2a4de5e67d3bbc13252edcaefcc644a916e447b01dc566f376c4bb94"
+        "sha256": "c1c261a4506cc290b5438bd41aa2dbabcb4dee94de9a4b918216abb3d43192e3"
       },
       {
         "path": ".github/acceptance/issue-59.json",
@@ -710,7 +710,7 @@
       {
         "path": "review/issue-58/2026-10-08-handoff.md",
         "identity_mode": "content",
-        "sha256": "a4f896beef8b0d33e64a608bc2f246ade0dc47e293a8040a6e83c0627815cd6a"
+        "sha256": "abca500be474ffdfddcb499504313d548bd8bfa9d59121ef90695dab40994da6"
       },
       {
         "path": "review/issue-58/2026-10-08-r3-r6-bandit.json",
@@ -5045,7 +5045,7 @@
       {
         "path": "tests/refactor-metrics.test.cjs",
         "identity_mode": "content",
-        "sha256": "12bd95f993fc0c650476351a9e602f8a635b2da75c67239668ecfd742bad2eb5"
+        "sha256": "ae2d56d6e2bc3a44ac3915f8ba22415354d7fb76f49b06d5ef8cbeec3553b405"
       },
       {
         "path": "tests/renderer.test.cjs",
@@ -5535,7 +5535,7 @@
       {
         "path": "tools/quality/refactor-metrics.cjs",
         "identity_mode": "content",
-        "sha256": "3e28dcaf26a9110842f6920d35e7a883d90ad678f7dd42500cc6e65eabfc9ff8"
+        "sha256": "959e4607c1064036f994663ea2fc7e50886d990c55ab4eb2bde990d1b0e25c64"
       },
       {
         "path": "tools/quality/research-pair-probe.cjs",
