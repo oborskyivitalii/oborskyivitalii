@@ -10,11 +10,7 @@
   "source_profiles": {
     "pr": {
       "baseline_command": "node tools/quality/local.cjs",
-      "baseline_files": [
-        "tests/theme.test.cjs",
-        "tests/archive.test.cjs",
-        "tests/flight.test.cjs"
-      ],
+      "baseline_files": ["tests/theme.test.cjs", "tests/archive.test.cjs", "tests/flight.test.cjs"],
       "known_non_node_paths": [
         "AGENTS.md",
         "CONTRIBUTING.md",
@@ -60,11 +56,7 @@
     },
     "staging": {
       "baseline_command": "node tools/quality/local.cjs",
-      "baseline_files": [
-        "tests/theme.test.cjs",
-        "tests/archive.test.cjs",
-        "tests/flight.test.cjs"
-      ],
+      "baseline_files": ["tests/theme.test.cjs", "tests/archive.test.cjs", "tests/flight.test.cjs"],
       "selection": "all permanent JavaScript except baseline files already checked in this build; permanent Python selected separately"
     },
     "production": {
@@ -78,32 +70,16 @@
     "preview": {
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "job_budget_minutes": 10,
-      "report_kinds": [
-        "preview-smoke",
-        "color-preview-smoke"
-      ],
-      "engines": [
-        "chromium"
-      ],
-      "widths": [
-        1440,
-        390
-      ],
-      "modes": [
-        "normal",
-        "no-canvas"
-      ],
+      "report_kinds": ["preview-smoke", "color-preview-smoke"],
+      "engines": ["chromium"],
+      "widths": [1440, 390],
+      "modes": ["normal", "no-canvas"],
       "full_gate": false
     },
     "staging": {
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "job_budget_minutes": 15,
-      "required_jobs": [
-        "build",
-        "static",
-        "host",
-        "staging"
-      ],
+      "required_jobs": ["build", "static", "host", "staging"],
       "report_kinds": [
         "hosted",
         "lint",
@@ -113,21 +89,9 @@
         "stage-performance"
       ],
       "functional": {
-        "engines": [
-          "chromium",
-          "firefox"
-        ],
-        "routes": [
-          "index",
-          "research",
-          "writing",
-          "talks",
-          "credits"
-        ],
-        "widths": [
-          1440,
-          390
-        ],
+        "engines": ["chromium", "firefox"],
+        "routes": ["index", "research", "writing", "talks", "credits"],
+        "widths": [1440, 390],
         "normal_journeys": 4,
         "normal_route_observations": 20,
         "theme_by_route": {
@@ -209,16 +173,8 @@
       },
       "performance": {
         "cpu_rate": 4,
-        "route_samples": [
-          "research",
-          "writing"
-        ],
-        "flight_destinations": [
-          "research",
-          "research",
-          "writing",
-          "writing"
-        ],
+        "route_samples": ["research", "writing"],
+        "flight_destinations": ["research", "research", "writing", "writing"],
         "flight_cold": 2,
         "flight_warm": 2,
         "lighthouse": [
@@ -260,10 +216,7 @@
         "kind": "color-preview-smoke",
         "engine": "chromium",
         "theme": "light",
-        "widths": [
-          1440,
-          390
-        ],
+        "widths": [1440, 390],
         "rows": 2
       },
       "full_gate": false
@@ -274,10 +227,7 @@
       "functional_rows": 390,
       "navigation_rows": 12,
       "analytics_rows": 39,
-      "linux_engines": [
-        "chromium",
-        "firefox"
-      ],
+      "linux_engines": ["chromium", "firefox"],
       "native_full_engine": "webkit",
       "native_full_platform": "darwin",
       "windows_smoke": {
@@ -299,11 +249,7 @@
       "purpose": "Consent/disabled/vendor and executable-boundary analytics generation; stable source retention",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
-      "profiles": [
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
+      "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
@@ -329,30 +275,18 @@
       "purpose": "Intersected filters, URL/fragment history, reset/focus, empty/no-JS archive behavior",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
-      "profiles": [
-        "pr-smoke",
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
+      "profiles": ["pr-smoke", "pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/local.cjs",
-      "inputs": [
-        "tests/archive.test.cjs",
-        "site/content/**",
-        "site/templates/**"
-      ]
+      "inputs": ["tests/archive.test.cjs", "site/content/**", "site/templates/**"]
     },
     {
       "path": "tests/browser-gate-diagnostics.test.cjs",
       "language": "javascript",
-      "purpose": "Private causal-screen plan, CLI bounds, source lineage, raw trace completeness and honest failed-row reporting",
+      "purpose": "Pinned historical ribbon-enabled fixed/adaptive causal screen; rejects active travel-only artifacts and retains exact raw trace/source lineage.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "diagnostic",
-      "profiles": [
-        "diagnostic",
-        "pr-targeted"
-      ],
+      "profiles": ["diagnostic", "pr-targeted"],
       "disposition": "retain explicit targeted/manual diagnostic; removed from routine release",
       "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
       "inputs": [
@@ -367,27 +301,18 @@
       "purpose": "Opt-in scheduler instrumentation, actual paints/events, observation retention and bounded traces",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "diagnostic",
-      "profiles": [
-        "diagnostic",
-        "pr-targeted"
-      ],
+      "profiles": ["diagnostic", "pr-targeted"],
       "disposition": "retain explicit targeted/manual diagnostic; removed from routine release",
       "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
-      "inputs": [
-        "tests/browser-gate-trace.test.cjs",
-        "tools/quality/browser-gate-trace.cjs"
-      ]
+      "inputs": ["tests/browser-gate-trace.test.cjs", "tools/quality/browser-gate-trace.cjs"]
     },
     {
       "path": "tests/browser-gate-variants.test.cjs",
       "language": "javascript",
-      "purpose": "Private fixed-ribbon/trace counterfactuals, matched mobile outputs and parent/patch identity; exact endpoint and monotonic-depth validation rejects continuous camera overshoot",
+      "purpose": "Explicit historical fixed-ribbon controls and active paint/trace lineage; actual endpoint/monotonic-depth validation rejects overshoot; native success-only paint probe remains opt-in.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "diagnostic",
-      "profiles": [
-        "diagnostic",
-        "pr-targeted"
-      ],
+      "profiles": ["diagnostic", "pr-targeted"],
       "disposition": "retain explicit targeted/manual diagnostic; removed from routine release",
       "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
       "inputs": [
@@ -403,16 +328,10 @@
       "purpose": "Optional native browser/context/page event provenance and honest teardown versus operation failure",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "diagnostic",
-      "profiles": [
-        "diagnostic",
-        "pr-targeted"
-      ],
+      "profiles": ["diagnostic", "pr-targeted"],
       "disposition": "retain explicit targeted/manual diagnostic; removed from routine release",
       "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
-      "inputs": [
-        "tests/browser-lifecycle.test.cjs",
-        "tools/quality/browser-lifecycle.cjs"
-      ]
+      "inputs": ["tests/browser-lifecycle.test.cjs", "tools/quality/browser-lifecycle.cjs"]
     },
     {
       "path": "tests/cause-fix-probe.test.cjs",
@@ -420,10 +339,7 @@
       "purpose": "Private cold interventions each vary one factor; exact normal-source and Research control lineage",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "diagnostic",
-      "profiles": [
-        "diagnostic",
-        "pr-targeted"
-      ],
+      "profiles": ["diagnostic", "pr-targeted"],
       "disposition": "retain explicit targeted/manual diagnostic; removed from routine release",
       "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
       "inputs": [
@@ -439,10 +355,7 @@
       "purpose": "Private causal normal/trace identity, original CPU/network evidence, exact four-input Writing derivation/count and retained failures without performance admission.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "diagnostic",
-      "profiles": [
-        "diagnostic",
-        "pr-targeted"
-      ],
+      "profiles": ["diagnostic", "pr-targeted"],
       "disposition": "retain explicit targeted/manual diagnostic; removed from routine release",
       "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
       "inputs": [
@@ -457,11 +370,7 @@
       "purpose": "Current authored Color build, complete route inventory, deterministic exact source identity and failed-build rejection",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
-      "profiles": [
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
+      "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
@@ -473,11 +382,12 @@
         "site/engine/**",
         "site/scenes/**",
         "site/site.json",
-        "review/site-scroll-sync-20261004/**",
+        "site/effects/**",
         "tools/site/**",
         "tools/build_site_previews.cjs",
         "tools/build_scene_fallbacks.cjs",
-        ".github/workflows/**"
+        ".github/workflows/**",
+        "tools/site/effects.cjs"
       ]
     },
     {
@@ -486,11 +396,7 @@
       "purpose": "Current publication editions, metadata, provenance/names and valid local page/ARIA/resources",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
-      "profiles": [
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
+      "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
@@ -498,7 +404,9 @@
         "review/sol-execution-20261002/BASELINE.json",
         "site/content/**",
         "site/templates/**",
-        "site/content/catalog.json"
+        "site/content/catalog.json",
+        "review/issue-48/content-amendment.json",
+        "review/issue-48/source-inventory.json"
       ]
     },
     {
@@ -507,17 +415,10 @@
       "purpose": "Native wheel/scroll endpoint takeover, fresh continuation intent and strict no-progress deadlines",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
-      "profiles": [
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
+      "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
-      "inputs": [
-        "tests/endpoint-fixtures.test.cjs",
-        "tools/quality/navigation.cjs"
-      ]
+      "inputs": ["tests/endpoint-fixtures.test.cjs", "tools/quality/navigation.cjs"]
     },
     {
       "path": "tests/engine-browser-fixtures.test.cjs",
@@ -525,17 +426,10 @@
       "purpose": "Stable actual engine/camera startup, delayed layout, archive filtering and first native gestures",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
-      "profiles": [
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
+      "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
-      "inputs": [
-        "tests/engine-browser-fixtures.test.cjs",
-        "tools/quality/engine-browser.cjs"
-      ]
+      "inputs": ["tests/engine-browser-fixtures.test.cjs", "tools/quality/engine-browser.cjs"]
     },
     {
       "path": "tests/executive.test.cjs",
@@ -543,19 +437,20 @@
       "purpose": "Current SEO/source reconciliation negative cases and semantic Day/Night contrast; first case duplicates standalone SEO positive verifier",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
-      "profiles": [
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
+      "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
         "tests/executive.test.cjs",
         "tools/check_site_seo.cjs",
+        "tools/site/render-page.cjs",
+        "site/engine/critical-media.css",
+        "site/engine/styles.css",
+        "site/engine/reading-surfaces.css",
         "site/content/**",
         "site/templates/**",
-        "review/issue-41/content-amendment.json"
+        "review/issue-41/content-amendment.json",
+        "review/issue-48/content-amendment.json"
       ]
     },
     {
@@ -564,41 +459,35 @@
       "purpose": "Current authored Color plane flight/export, native endpoint gestures, retargeting and presentation capability contract",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
-      "profiles": [
-        "pr-smoke",
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
+      "profiles": ["pr-smoke", "pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/local.cjs",
       "inputs": [
         "tests/flight.test.cjs",
-        "review/site-scroll-sync-20261004/FLIGHT-PROTOTYPE.cjs",
-        "review/site-scroll-sync-20261004/export.cjs",
-        "review/site-scroll-sync-20261004/RIBBONS-PROTOTYPE.cjs",
+        "site/effects/flight.cjs",
+        "tools/site/export.cjs",
+        "site/effects/ribbons.cjs",
         "site/engine/**",
         "site/scenes/**",
         "site/site.json",
-        "review/site-scroll-sync-20261004/**"
+        "site/effects/**",
+        "tools/site/effects.cjs"
       ]
     },
     {
       "path": "tests/functional-fixtures.test.cjs",
       "language": "javascript",
-      "purpose": "Browser harness serial-engine ownership, CSS hold/cleanup, delayed paint/scroll response and no invented success",
+      "purpose": "Browser harness serial-engine ownership, CSS hold/cleanup, canonical media route/history observations, delayed paint/scroll response and no invented success",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
-      "profiles": [
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
+      "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
         "tests/functional-fixtures.test.cjs",
-        "tools/quality/browser-gate-trace.cjs"
+        "tools/quality/browser-gate-trace.cjs",
+        "tools/quality/functional.cjs",
+        "site/engine/critical-media.css"
       ]
     },
     {
@@ -607,10 +496,7 @@
       "purpose": "Private fresh GTK controls, abort/core/process evidence and honest bounded offline stack collection",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "diagnostic",
-      "profiles": [
-        "diagnostic",
-        "pr-targeted"
-      ],
+      "profiles": ["diagnostic", "pr-targeted"],
       "disposition": "retain explicit targeted/manual diagnostic; removed from routine release",
       "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
       "inputs": [
@@ -625,16 +511,10 @@
       "purpose": "Private WPE/GTK disabled-script target matrix, lifecycle cleanup and attributable failed native operations",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "diagnostic",
-      "profiles": [
-        "diagnostic",
-        "pr-targeted"
-      ],
+      "profiles": ["diagnostic", "pr-targeted"],
       "disposition": "retain explicit targeted/manual diagnostic; removed from routine release",
       "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
-      "inputs": [
-        "tests/gtk-target-probe.test.cjs",
-        "tools/quality/gtk-target-probe.cjs"
-      ]
+      "inputs": ["tests/gtk-target-probe.test.cjs", "tools/quality/gtk-target-probe.cjs"]
     },
     {
       "path": "tests/native-display.test.cjs",
@@ -642,17 +522,10 @@
       "purpose": "Current functional harness X-server readiness/client/process ownership, shared startup budget and cleanup",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
-      "profiles": [
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
+      "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
-      "inputs": [
-        "tests/native-display.test.cjs",
-        "tools/quality/native-display.cjs"
-      ]
+      "inputs": ["tests/native-display.test.cjs", "tools/quality/native-display.cjs"]
     },
     {
       "path": "tests/navigation-fixtures.test.cjs",
@@ -660,17 +533,10 @@
       "purpose": "Native route/history completion, native endpoint/print/hidden takeover and actual mount provenance",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
-      "profiles": [
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
+      "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
-      "inputs": [
-        "tests/navigation-fixtures.test.cjs",
-        "tools/quality/navigation.cjs"
-      ]
+      "inputs": ["tests/navigation-fixtures.test.cjs", "tools/quality/navigation.cjs"]
     },
     {
       "path": "tests/navigation-motion-fixtures.test.cjs",
@@ -678,37 +544,21 @@
       "purpose": "Flight/motion endpoints, displayed camera observations, interrupted fixtures and scroll restoration",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
-      "profiles": [
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
+      "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
-      "inputs": [
-        "tests/navigation-motion-fixtures.test.cjs",
-        "tools/quality/navigation.cjs"
-      ]
+      "inputs": ["tests/navigation-motion-fixtures.test.cjs", "tools/quality/navigation.cjs"]
     },
     {
       "path": "tests/navigation.test.cjs",
       "language": "javascript",
-      "purpose": "Current runtime camera-before-mount, queued retarget/cancellation, instant paths and no diagnostic task clock",
+      "purpose": "Current runtime camera-before-mount, queued retarget/cancellation, cloned route-head media ownership, instant paths and no diagnostic task clock",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
-      "profiles": [
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
+      "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
-      "inputs": [
-        "tests/navigation.test.cjs",
-        "site/engine/**",
-        "site/scenes/**",
-        "site/site.json"
-      ]
+      "inputs": ["tests/navigation.test.cjs", "site/engine/**", "site/scenes/**", "site/site.json"]
     },
     {
       "path": "tests/preview-smoke.test.cjs",
@@ -716,11 +566,7 @@
       "purpose": "Actual PR smoke helper identity, redirects, route fingerprints, exact visible names and Color route detail",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
-      "profiles": [
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
+      "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
@@ -735,11 +581,7 @@
       "purpose": "Fixed/interactive/offline renditions preserve authored content, link/query/fragment destinations and executable sources",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
-      "profiles": [
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
+      "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
@@ -747,7 +589,7 @@
         "tools/build_site_previews.cjs",
         "site/content/**",
         "site/templates/**",
-        "review/site-scroll-sync-20261004/**",
+        "site/effects/**",
         "tools/site/**",
         "tools/build_scene_fallbacks.cjs"
       ]
@@ -758,17 +600,13 @@
       "purpose": "Active authored Color scanner closure and fail-visible exact Bandit review/coverage/source/expiry plus verified public checksum-only admission",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
-      "profiles": [
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
+      "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
         "tests/quality-sources.test.cjs",
         "tools/quality/scanners.cjs",
-        "review/site-scroll-sync-20261004/**",
+        "site/effects/**",
         "tools/site/**",
         "tools/build_site_previews.cjs",
         "tools/build_scene_fallbacks.cjs",
@@ -776,7 +614,12 @@
         "tools/quality/bandit-triage.cjs",
         "tools/quality/bandit-policy.json",
         "tools/quality/secrets-baseline.json",
-        "tools/quality/secrets-reviewed.json"
+        "tools/quality/secrets-reviewed.json",
+        "tools/site/effects.cjs",
+        "tools/quality/stylelint.cjs",
+        "site/**/*.css",
+        "tools/quality/security-rules.yml",
+        "tools/quality/exceptions.json"
       ]
     },
     {
@@ -785,11 +628,7 @@
       "purpose": "Release aggregate, required evidence/counts/source identity, budgets, Lighthouse medians, motion/raw samples and hosted failure rejection",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
-      "profiles": [
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
+      "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
@@ -816,11 +655,7 @@
       "purpose": "Current renderer exact palettes, ordered command/state equivalence and fresh/invalidation boundaries, native state deduplication, bounded formula sampling/projection/cache, insignificant pruning, culling/brain normals and Object.hasOwn fallback",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
-      "profiles": [
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
+      "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
@@ -840,11 +675,7 @@
       "purpose": "Current PR preview/stage owner authorization, clean source/head leases, rendition/HTTP gate identity and retained recovery",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
-      "profiles": [
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
+      "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
@@ -859,25 +690,22 @@
     {
       "path": "tests/ribbons.test.cjs",
       "language": "javascript",
-      "purpose": "Current authored Color world-anchored ribbon lattice/material/phase, cross-detail projection continuity, continuous gradients, signal motion, renderer/export and clock identity",
+      "purpose": "Explicit optional historical ribbon lattice/material/clock comparison; active Color no longer allocates ribbons.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
-      "lifecycle": "permanent",
-      "profiles": [
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
-      "disposition": "retain current independent contract",
-      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "lifecycle": "diagnostic",
+      "profiles": ["diagnostic", "pr-targeted"],
+      "disposition": "retired from active release regression by issue61 maintainer removal; retained for explicit historical comparisons",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
       "inputs": [
         "tests/ribbons.test.cjs",
         "site/engine/math.cjs",
-        "review/site-scroll-sync-20261004/RIBBONS-PROTOTYPE.cjs",
-        "review/site-scroll-sync-20261004/export.cjs",
+        "site/effects/ribbons.cjs",
+        "tools/site/export.cjs",
         "site/engine/**",
         "site/scenes/**",
         "site/site.json",
-        "review/site-scroll-sync-20261004/**"
+        "site/effects/**",
+        "tools/site/effects.cjs"
       ]
     },
     {
@@ -886,11 +714,7 @@
       "purpose": "Runtime semantic stops cover real content/footer, final native gestures and anchored reflow without early completion",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
-      "profiles": [
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
+      "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
@@ -907,11 +731,7 @@
       "purpose": "Authored/incremental generation dependency closure, active source migration invariants, data security, retained snapshots and fail-closed classification",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
-      "profiles": [
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
+      "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
@@ -937,11 +757,7 @@
       "purpose": "Current scalar shade/Newell geometry preserves every authored face and near-degenerate fallback",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
-      "profiles": [
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
+      "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
@@ -960,11 +776,7 @@
       "purpose": "Current scene/runtime displayed-camera route and layout retarget continuity, native scrolling, flight preparation, CSS/failure, adaptive detail/cadence/quality and bounded atmosphere invariants",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
-      "profiles": [
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
+      "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
@@ -981,11 +793,7 @@
       "purpose": "Fail-closed bounded staging aggregate requires exact source/tree/artifact/variant, every selected report/job and honest nonproduction authorization.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
-      "profiles": [
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
+      "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independently bounded staging control",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
@@ -1004,19 +812,16 @@
     {
       "path": "tests/staging-regression.test.cjs",
       "language": "javascript",
-      "purpose": "Exact bounded staging browser/performance selections, registry coupling, retained original mobile Writing/Research traces, raw motion/failure evidence and original metric budgets.",
+      "purpose": "Exact bounded staging browser/performance selections, registry coupling, canonical media route/history negatives, retained original mobile Writing/Research traces, raw motion/failure evidence and original metric budgets.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
-      "profiles": [
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
+      "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independently bounded staging control",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
         "tests/staging-regression.test.cjs",
         "tools/quality/staging-regression.cjs",
+        "site/engine/critical-media.css",
         "tools/quality/functional.cjs",
         "tools/quality/common.cjs",
         "tools/quality/local-browser.cjs",
@@ -1034,11 +839,7 @@
       "purpose": "Reviewable candidate after full-gate failure, exact smoke/source/provider identity and stale-main rejection",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
-      "profiles": [
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
+      "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
@@ -1055,11 +856,7 @@
       "purpose": "Trusted same-source workflow/PR-artifact lineage and authorization classification",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
-      "profiles": [
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
+      "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
@@ -1075,11 +872,7 @@
       "purpose": "Exact hosted package/headers/routing/rollback, source leases, retained inputs and browser-visible recovery contract",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
-      "profiles": [
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
+      "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
@@ -1097,11 +890,7 @@
       "purpose": "Complete test registry and bounded source selection, conservative changed-source fallback and strict failed/skipped/TAP accounting.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
-      "profiles": [
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
+      "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current profile control",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
@@ -1116,14 +905,10 @@
       "purpose": "Closed #31 task snapshots tied to immutable historical source and accepted issue policy; permanent controls live separately",
       "owner": ".github/ACCEPTANCE.md",
       "lifecycle": "task-snapshot",
-      "profiles": [
-        "issue-policy"
-      ],
+      "profiles": ["issue-policy"],
       "disposition": "preserve accepted source-pinned evidence; owning policy only",
       "surviving_route": ".github/acceptance/issue-31.json",
-      "inputs": [
-        "tests/test_issue31_acceptance.py"
-      ]
+      "inputs": ["tests/test_issue31_acceptance.py"]
     },
     {
       "path": "tests/test_issue33_acceptance.py",
@@ -1131,14 +916,10 @@
       "purpose": "Closed #33 no-public-change/history/locator snapshots tied to accepted source; permanent root controls live separately",
       "owner": ".github/ACCEPTANCE.md",
       "lifecycle": "task-snapshot",
-      "profiles": [
-        "issue-policy"
-      ],
+      "profiles": ["issue-policy"],
       "disposition": "preserve accepted source-pinned evidence; owning policy only",
       "surviving_route": ".github/acceptance/issue-33.json",
-      "inputs": [
-        "tests/test_issue33_acceptance.py"
-      ]
+      "inputs": ["tests/test_issue33_acceptance.py"]
     },
     {
       "path": "tests/test_issue35_acceptance.py",
@@ -1146,14 +927,10 @@
       "purpose": "Issue #35 acceptance of audited test ownership, explicit release profiles, fail-closed stage/prod gates and exact CI/issue intent routes.",
       "owner": ".github/ACCEPTANCE.md",
       "lifecycle": "task-snapshot",
-      "profiles": [
-        "issue-policy"
-      ],
+      "profiles": ["issue-policy"],
       "disposition": "selected owning policy only; never unconditional later snapshot regression",
       "surviving_route": ".github/acceptance/issue-35.json",
-      "inputs": [
-        "tests/test_issue35_acceptance.py"
-      ]
+      "inputs": ["tests/test_issue35_acceptance.py"]
     },
     {
       "path": "tests/test_issue36_acceptance.py",
@@ -1161,14 +938,10 @@
       "purpose": "Issue #36 exact formula asset, producer/cache assertions and source-bound browser/performance evidence policies.",
       "owner": ".github/ACCEPTANCE.md",
       "lifecycle": "task-snapshot",
-      "profiles": [
-        "issue-policy"
-      ],
+      "profiles": ["issue-policy"],
       "disposition": "selected owning policy only; exact measured browser/performance reports and human gates remain distinct",
       "surviving_route": ".github/acceptance/issue-36.json",
-      "inputs": [
-        "tests/test_issue36_acceptance.py"
-      ]
+      "inputs": ["tests/test_issue36_acceptance.py"]
     },
     {
       "path": "tests/test_issue_acceptance.py",
@@ -1176,16 +949,10 @@
       "purpose": "Permanent fail-closed AC/policy selection runner, exact source accounting, module fixtures and explicit manual gates",
       "owner": ".github/ACCEPTANCE.md",
       "lifecycle": "permanent",
-      "profiles": [
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
+      "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "python3 tools/run_repository_tests.py",
-      "inputs": [
-        "tests/test_issue_acceptance.py"
-      ]
+      "inputs": ["tests/test_issue_acceptance.py"]
     },
     {
       "path": "tests/test_offline_export_security.py",
@@ -1193,16 +960,15 @@
       "purpose": "Current active offline Color exporter parser rejects injected active elements/URLs while allowing inert citation/data assets",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
-      "profiles": [
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
+      "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "python3 tools/run_repository_tests.py",
       "inputs": [
         "tests/test_offline_export_security.py",
-        "review/site-scroll-sync-20261004/**"
+        "site/effects/**",
+        "review/site-scroll-sync-20261004/check-offline-security.py",
+        "tools/site/effects.cjs",
+        "tools/site/export.cjs"
       ]
     },
     {
@@ -1211,16 +977,10 @@
       "purpose": "Permanent complete RI inventory, upstream pin/source identity, root/memory, safe lookup/routes and generated view contracts",
       "owner": ".github/REPOSITORY-INTELLIGENCE.md",
       "lifecycle": "permanent",
-      "profiles": [
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
+      "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "python3 tools/run_repository_tests.py",
-      "inputs": [
-        "tests/test_repository_intelligence.py"
-      ]
+      "inputs": ["tests/test_repository_intelligence.py"]
     },
     {
       "path": "tests/test_repository_test_selection.py",
@@ -1228,16 +988,10 @@
       "purpose": "Permanent discovery includes current/future generic modules and excludes numeric task snapshots without weakening runner accounting",
       "owner": ".github/REPOSITORY-INTELLIGENCE.md",
       "lifecycle": "permanent",
-      "profiles": [
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
+      "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "python3 tools/run_repository_tests.py",
-      "inputs": [
-        "tests/test_repository_test_selection.py"
-      ]
+      "inputs": ["tests/test_repository_test_selection.py"]
     },
     {
       "path": "tests/test_ri_ci.py",
@@ -1245,16 +999,10 @@
       "purpose": "Permanent actual workflow-command/test/control coupling, source drift, event/job reachability and no generated hash cycle",
       "owner": ".github/REPOSITORY-INTELLIGENCE.md",
       "lifecycle": "permanent",
-      "profiles": [
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
+      "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "python3 tools/run_repository_tests.py",
-      "inputs": [
-        "tests/test_ri_ci.py"
-      ]
+      "inputs": ["tests/test_ri_ci.py"]
     },
     {
       "path": "tests/test_root_layout.py",
@@ -1262,16 +1010,10 @@
       "purpose": "Permanent concise bootstrap/root/archive provenance, guide ownership and link integrity without freezing future public changes",
       "owner": ".github/REPOSITORY-INTELLIGENCE.md",
       "lifecycle": "permanent",
-      "profiles": [
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
+      "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "python3 tools/run_repository_tests.py",
-      "inputs": [
-        "tests/test_root_layout.py"
-      ]
+      "inputs": ["tests/test_root_layout.py"]
     },
     {
       "path": "tests/theme.test.cjs",
@@ -1279,17 +1021,10 @@
       "purpose": "Visitor-local Auto boundaries, overrides, storage/tab events, Escape and timezone independence",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
-      "profiles": [
-        "pr-smoke",
-        "pr-targeted",
-        "staging",
-        "production"
-      ],
+      "profiles": ["pr-smoke", "pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/local.cjs",
-      "inputs": [
-        "tests/theme.test.cjs"
-      ]
+      "inputs": ["tests/theme.test.cjs"]
     },
     {
       "path": "tests/writing-diagnosis.test.cjs",
@@ -1297,16 +1032,10 @@
       "purpose": "Dated balanced paired cold boot/flight matrix, raw preparation/tail accounting, honest failures and sample counts",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "diagnostic",
-      "profiles": [
-        "diagnostic",
-        "pr-targeted"
-      ],
+      "profiles": ["diagnostic", "pr-targeted"],
       "disposition": "retain explicit targeted/manual diagnostic; removed from routine release",
       "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
-      "inputs": [
-        "tests/writing-diagnosis.test.cjs",
-        "tools/quality/writing-diagnosis.cjs"
-      ]
+      "inputs": ["tests/writing-diagnosis.test.cjs", "tools/quality/writing-diagnosis.cjs"]
     },
     {
       "path": "tests/writing-geometry.test.cjs",
@@ -1314,16 +1043,10 @@
       "purpose": "Private layout equality audit of row/filter/link/ink/waypoint positions and native range without masking mismatch",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "diagnostic",
-      "profiles": [
-        "diagnostic",
-        "pr-targeted"
-      ],
+      "profiles": ["diagnostic", "pr-targeted"],
       "disposition": "retain explicit targeted/manual diagnostic; removed from routine release",
       "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
-      "inputs": [
-        "tests/writing-geometry.test.cjs",
-        "tools/quality/writing-geometry.cjs"
-      ]
+      "inputs": ["tests/writing-geometry.test.cjs", "tools/quality/writing-geometry.cjs"]
     },
     {
       "path": "tests/writing-layout.test.cjs",
@@ -1331,16 +1054,10 @@
       "purpose": "Private geometry calibration/installers preserve text/links and independently retain intervention/audit failures",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "diagnostic",
-      "profiles": [
-        "diagnostic",
-        "pr-targeted"
-      ],
+      "profiles": ["diagnostic", "pr-targeted"],
       "disposition": "retain explicit targeted/manual diagnostic; removed from routine release",
       "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
-      "inputs": [
-        "tests/writing-layout.test.cjs",
-        "tools/quality/writing-layout.cjs"
-      ]
+      "inputs": ["tests/writing-layout.test.cjs", "tools/quality/writing-layout.cjs"]
     },
     {
       "path": "tests/writing-localization.test.cjs",
@@ -1348,16 +1065,10 @@
       "purpose": "Dated balanced mobile localization/control identities, separate stage/model timing and raw partial failure evidence",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "diagnostic",
-      "profiles": [
-        "diagnostic",
-        "pr-targeted"
-      ],
+      "profiles": ["diagnostic", "pr-targeted"],
       "disposition": "retain explicit targeted/manual diagnostic; removed from routine release",
       "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
-      "inputs": [
-        "tests/writing-localization.test.cjs",
-        "tools/quality/writing-localization.cjs"
-      ]
+      "inputs": ["tests/writing-localization.test.cjs", "tools/quality/writing-localization.cjs"]
     },
     {
       "path": "tests/writing-models.test.cjs",
@@ -1365,16 +1076,10 @@
       "purpose": "Private symbol construction counterfactuals preserve exact surviving geometry and reject source-anchor drift",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "diagnostic",
-      "profiles": [
-        "diagnostic",
-        "pr-targeted"
-      ],
+      "profiles": ["diagnostic", "pr-targeted"],
       "disposition": "retain explicit targeted/manual diagnostic; removed from routine release",
       "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
-      "inputs": [
-        "tests/writing-models.test.cjs",
-        "tools/quality/writing-models.cjs"
-      ]
+      "inputs": ["tests/writing-models.test.cjs", "tools/quality/writing-models.cjs"]
     },
     {
       "path": "tests/writing-paradigm-browser.test.cjs",
@@ -1382,10 +1087,7 @@
       "purpose": "Scoped #36 Linux Chromium/Firefox report checks one world3D perspective landmark, bounded Canvas submissions/cache, frozen lifecycle and static fallback; native WebKit remains on macOS production.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "diagnostic",
-      "profiles": [
-        "diagnostic",
-        "pr-targeted"
-      ],
+      "profiles": ["diagnostic", "pr-targeted"],
       "disposition": "retain focused feature/helper checks; Linux GTK is excluded; preview follows small hosted smoke and staging uses bounded #35 regression",
       "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
       "inputs": [
@@ -1400,16 +1102,10 @@
       "purpose": "Scoped #36 opt-in CI event/source/pin/raw-retention contract, deliberate same-repository PR label selection and unchanged historical manual diagnostic jobs.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "diagnostic",
-      "profiles": [
-        "diagnostic",
-        "pr-targeted"
-      ],
+      "profiles": ["diagnostic", "pr-targeted"],
       "disposition": "retain bounded exact-baseline PR #38 diagnostic control; never launch browser/performance matrix on ordinary PR updates",
       "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
-      "inputs": [
-        "tests/writing-paradigm-ci.test.cjs",
-        ".github/workflows/site-writing-probe.yml"
-      ]
+      "inputs": ["tests/writing-paradigm-ci.test.cjs", ".github/workflows/site-writing-probe.yml"]
     },
     {
       "path": "tests/writing-paradigm-quality.test.cjs",
@@ -1417,10 +1113,7 @@
       "purpose": "Scoped #36 paired evidence recomputes raw samples, preserves historical baseline bytes, rejects wrong identity/profile, changed budgets, concealed quality and growing resources.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "diagnostic",
-      "profiles": [
-        "diagnostic",
-        "pr-targeted"
-      ],
+      "profiles": ["diagnostic", "pr-targeted"],
       "disposition": "retain exact-baseline feature comparison and adversarial validator fixtures; not routine staging/production measurement or release acceptance",
       "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
       "inputs": [
@@ -1438,10 +1131,7 @@
       "purpose": "Private ablation derivation retains exact normal parent, descriptor/patch identity and cannot satisfy a release gate",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "diagnostic",
-      "profiles": [
-        "diagnostic",
-        "pr-targeted"
-      ],
+      "profiles": ["diagnostic", "pr-targeted"],
       "disposition": "retain explicit targeted/manual diagnostic; removed from routine release",
       "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
       "inputs": [
@@ -1456,14 +1146,10 @@
       "purpose": "Issue41 exact source/snapshot accounting, admitted and deferred edition identities, generated advisor/discussion/catalog/schema checks, reversible SEO delta and exact approved #36 runtime companion and unchanged hosting. Preparation evidence stays pinned at d7ce5d3; implementation phase explicitly supersedes its byte-only check.",
       "owner": ".github/ACCEPTANCE.md",
       "lifecycle": "task-snapshot",
-      "profiles": [
-        "issue-policy"
-      ],
+      "profiles": ["issue-policy"],
       "disposition": "owning implementation policy only; enduring renderer/archive/SEO and normal preview smoke are extended in their current owners; no duplicate full regression or new browser suite; joint #36/#41 integration maps the same tests once through the #36 policy",
       "surviving_route": ".github/acceptance/issue-41.json",
-      "inputs": [
-        "tests/test_issue41_acceptance.py"
-      ]
+      "inputs": ["tests/test_issue41_acceptance.py"]
     },
     {
       "path": "tests/test_issue45_acceptance.py",
@@ -1471,13 +1157,257 @@
       "purpose": "Issue #45 bounded selections of maintained crisp formula/world/cache/producer, continuous ribbon geometry/material/phase, displayed-camera retarget/detail/lifecycle and foreground safety checks; exact browser flight/readability evidence and human gates remain distinct.",
       "owner": ".github/ACCEPTANCE.md",
       "lifecycle": "task-snapshot",
-      "profiles": [
-        "issue-policy"
-      ],
+      "profiles": ["issue-policy"],
       "disposition": "selected owning policy only; reuse maintained checks without duplicate full regression or unconditional historical snapshot execution",
       "surviving_route": ".github/acceptance/issue-45.json",
+      "inputs": ["tests/test_issue45_acceptance.py"]
+    },
+    {
+      "path": "tests/test_issue48_acceptance.py",
+      "language": "python",
+      "purpose": "Issue48 strict selections of maintained theory/project association, formula midpoint/cache/world/static bounds, evidence-preserving Matthew and distinct Talks event/source/date/language/resource reconciliation, and canonical generation; preview/editorial/independent-review gates remain distinct.",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": ["issue-policy"],
+      "disposition": "selected owning policy only; reuse maintained deterministic cases without a duplicate full regression, browser matrix or unconditional historical task execution",
+      "surviving_route": ".github/acceptance/issue-48.json",
+      "inputs": ["tests/test_issue48_acceptance.py"]
+    },
+    {
+      "path": "tests/test_code_style.py",
+      "language": "python",
+      "purpose": "Bounded authored-source CSS/import/debt guard negatives and mandatory actual agent/RI code-style routes",
+      "owner": "guides/CODE-STYLE.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "retain current independent contract",
+      "surviving_route": "python3 -m unittest discover -s tests -p 'test_code_style.py'",
       "inputs": [
-        "tests/test_issue45_acceptance.py"
+        "tests/test_code_style.py",
+        "tools/check_code_style.py",
+        ".github/code-style.json",
+        "guides/CODE-STYLE.md"
+      ]
+    },
+    {
+      "path": "tests/effects.test.cjs",
+      "language": "javascript",
+      "purpose": "Active travel-only Color serialization and ribbon absence, preserved reading CSS/navigation, malformed input rejection and explicit optional historical adapters.",
+      "owner": "site/README.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "retain explicit effect contract; historical byte parity belongs only to issue56 policy",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/effects.test.cjs",
+        "site/effects/**",
+        "tools/site/effects.cjs",
+        "tools/site/variants.cjs",
+        "tools/site/export.cjs",
+        "tools/staging/color.cjs"
+      ]
+    },
+    {
+      "path": "tests/test_issue56_acceptance.py",
+      "language": "python",
+      "purpose": "Issue56 exact merged-baseline source/runtime parity and selected canonical effect/quality contracts",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": ["issue-policy"],
+      "disposition": "fixed R1 parity evidence; excluded from future generic source regressions",
+      "surviving_route": "python3 tools/issue_acceptance.py run --policy .github/acceptance/issue-56.json --report /tmp/issue-56-acceptance.json",
+      "inputs": [
+        "tests/test_issue56_acceptance.py",
+        ".github/acceptance/issue-56.json",
+        "site/effects/**",
+        "tools/site/effects.cjs",
+        "tools/quality/scanners.cjs",
+        "tools/quality/stylelint.cjs"
+      ]
+    },
+    {
+      "path": "tests/test_issue61_acceptance.py",
+      "language": "python",
+      "purpose": "Issue61 executes existing active Color delivery contracts through its owning policy.",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": ["issue-policy"],
+      "disposition": "owning issue61 policy only; existing maintained effect/build cases supply active behavior, no new browser suite",
+      "surviving_route": "python3 tools/issue_acceptance.py run --policy .github/acceptance/issue-61.json --report /tmp/issue-61-acceptance.json",
+      "inputs": [
+        "tests/test_issue61_acceptance.py",
+        ".github/acceptance/issue-61.json",
+        "tests/effects.test.cjs",
+        "tests/color-build.test.cjs"
+      ]
+    },
+    {
+      "path": "tests/format-parity.test.cjs",
+      "language": "javascript",
+      "purpose": "Source-language semantic equivalence and behavior-change rejection across JS/Python/JSON/YAML/CSS/HTML",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "permanent R2 control with meaningful violation cases; no duplicate hosted matrix",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/format-parity.test.cjs",
+        "tools/quality/format*",
+        "tools/quality/prettier.config.json",
+        "tools/quality/ruff-format.toml",
+        "tools/quality/toolchain/package.json",
+        ".github/repository-paths.json"
+      ]
+    },
+    {
+      "path": "tests/format.test.cjs",
+      "language": "javascript",
+      "purpose": "Complete maintained formatter inventory, exact pins/options, drift and idempotence rejection",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "permanent R2 control with meaningful violation cases; no duplicate hosted matrix",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/format.test.cjs",
+        "tools/quality/format*",
+        "tools/quality/prettier.config.json",
+        "tools/quality/ruff-format.toml",
+        "tools/quality/toolchain/package.json",
+        ".github/repository-paths.json"
+      ]
+    },
+    {
+      "path": "tests/test_issue58_acceptance.py",
+      "language": "python",
+      "purpose": "Issue58 frozen R2 checkpoint and current content/CSS/cohesion/resource criterion mapping",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": ["issue-policy"],
+      "disposition": "fixed R2 baseline only; not a routine formatting blocker for intentional later phases",
+      "surviving_route": ".github/acceptance/issue-58.json",
+      "inputs": [
+        "tests/test_issue58_acceptance.py",
+        ".github/acceptance/issue-58.json",
+        "review/issue-58/2026-10-08-handoff.md",
+        "tools/quality/format*",
+        "tools/quality/phase-checkpoint.cjs",
+        "tools/quality/architecture.cjs",
+        "tools/quality/refactor-metrics.cjs"
+      ]
+    },
+    {
+      "path": "tests/architecture.test.cjs",
+      "language": "javascript",
+      "purpose": "AST authored ownership/dependency/cycle violations and current graph",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "retain meaningful current refactoring contracts; no duplicate hosted matrix",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/architecture.test.cjs",
+        "tools/quality/architecture.cjs",
+        "site/**",
+        "tools/site/**"
+      ]
+    },
+    {
+      "path": "tests/build-cohesion.test.cjs",
+      "language": "javascript",
+      "purpose": "Pure catalog/page/SVG versus filesystem orchestration boundaries and unsafe-input negatives",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "retain meaningful current refactoring contracts; no duplicate hosted matrix",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/build-cohesion.test.cjs",
+        "tools/site/**",
+        "site/content/**",
+        "site/templates/**"
+      ]
+    },
+    {
+      "path": "tests/camera-view.test.cjs",
+      "language": "javascript",
+      "purpose": "Shared finite camera basis/projection and caller clipping/payload contract equivalence",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "retain meaningful current refactoring contracts; no duplicate hosted matrix",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/camera-view.test.cjs",
+        "site/engine/math.cjs",
+        "site/engine/projection.cjs",
+        "site/effects/ribbons.cjs",
+        "site/scenes/world.cjs"
+      ]
+    },
+    {
+      "path": "tests/content-rendering.test.cjs",
+      "language": "javascript",
+      "purpose": "Bounded context-typed prose/URL/template/catalog validation and dependency-sensitive output",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "retain meaningful current refactoring contracts; no duplicate hosted matrix",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/content-rendering.test.cjs",
+        "tools/site/**",
+        "site/content/**",
+        "site/templates/**"
+      ]
+    },
+    {
+      "path": "tests/content-migration.test.cjs",
+      "language": "javascript",
+      "purpose": "Issue58 fixed R2 all-route/representative semantic metadata and edition migration proof",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": ["issue-policy"],
+      "disposition": "fixed issue58 R2 checkpoint only; preserve as migration evidence outside routine profiles",
+      "surviving_route": ".github/acceptance/issue-58.json",
+      "inputs": [
+        "tests/content-migration.test.cjs",
+        "tools/site/**",
+        "site/content/**",
+        "site/templates/**"
+      ]
+    },
+    {
+      "path": "tests/phase-checkpoint.test.cjs",
+      "language": "javascript",
+      "purpose": "Issue58 immutable R2 checkpoint tool/source/pin/tamper and historical parity proof",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": ["issue-policy"],
+      "disposition": "fixed issue58 R2 checkpoint only; preserve as migration evidence outside routine profiles",
+      "surviving_route": ".github/acceptance/issue-58.json",
+      "inputs": [
+        "tests/phase-checkpoint.test.cjs",
+        "tools/quality/phase-checkpoint.cjs",
+        "tools/quality/toolchain/package.json",
+        "tools/quality/toolchain/package-lock.json",
+        "tests/test_issue58_acceptance.py"
+      ]
+    },
+    {
+      "path": "tests/refactor-metrics.test.cjs",
+      "language": "javascript",
+      "purpose": "Comparable source/artifact/profile-bound measurements, lifecycle/cache bounds and original-budget negatives",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "retain meaningful current refactoring contracts; no duplicate hosted matrix",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/refactor-metrics.test.cjs",
+        "tools/quality/refactor-metrics.cjs",
+        "tools/quality/motion.cjs",
+        "tools/quality/budgets.json"
       ]
     }
   ]

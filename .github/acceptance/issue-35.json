@@ -8,45 +8,22 @@
       "id": "AC01",
       "intent": "Inventory every test module, browser scenario family, quality validator and workflow route; give duplicates and obsolete diagnostics evidence-backed dispositions.",
       "automated_scope": "The exact-base audit accounts for every original module and verifies source hashes/purpose/owner/profile/disposition; the current registry selector proves exhaustive module coverage and safe active/manual/task allocation. Semantic duplicate claims, scenario/workflow audit adequacy and surviving unique coverage require independent review.",
-      "checks": [
-        "AUDIT",
-        "SELECTION"
-      ],
-      "gates": [
-        "G01"
-      ]
+      "checks": ["AUDIT", "SELECTION"],
+      "gates": ["G01"]
     },
     {
       "id": "AC02",
       "intent": "Run economical automatic PR smoke and source-relevant owning-issue acceptance, preserving counts, failure handling and exact source identity.",
       "automated_scope": "Targeted selector and controller tests prove bounded PR allocation, changed-source selection, fallback for unknown changes, package/smoke/controller boundaries and failure/source binding. Node bridges require a nonempty passing TAP summary with zero skipped/cancelled/TODO tests. This policy runs shared named checks once and does not repeat the separate Basic smoke. Actual current-source PR CI is G02.",
-      "checks": [
-        "SELECTION",
-        "CONTROLLER",
-        "TRUST",
-        "TAP-NEGATIVES",
-        "POLICY"
-      ],
-      "gates": [
-        "G01",
-        "G02"
-      ]
+      "checks": ["SELECTION", "CONTROLLER", "TRUST", "TAP-NEGATIVES", "POLICY"],
+      "gates": ["G01", "G02"]
     },
     {
       "id": "AC03",
       "intent": "Give explicit staging its own shorter representative browser/failure/runtime/performance regression and honest source-bound passing reports.",
       "automated_scope": "The staging driver/validator fixtures check the exact reviewed matrix, raw observation/measurement/profile settings and report accounting; the stage gate/controller/trust fixtures reject missing/failed/skipped/duplicate/mismatched evidence and wrong-profile promotion. Controlled fixtures establish deterministic enforcement, not real browser runtime, observed CI duration or actual deployment. Fresh hosted execution and timing remain G02.",
-      "checks": [
-        "STAGE-MATRIX",
-        "STAGE-GATE",
-        "CONTROLLER",
-        "TRUST",
-        "TAP-NEGATIVES"
-      ],
-      "gates": [
-        "G01",
-        "G02"
-      ]
+      "checks": ["STAGE-MATRIX", "STAGE-GATE", "CONTROLLER", "TRUST", "TAP-NEGATIVES"],
+      "gates": ["G01", "G02"]
     },
     {
       "id": "AC04",
@@ -59,51 +36,28 @@
         "UNCHANGED-PUBLIC",
         "FIXED-BYTE-NEGATIVES"
       ],
-      "gates": [
-        "G01"
-      ]
+      "gates": ["G01"]
     },
     {
       "id": "AC05",
       "intent": "Remove redundant execution and allocate obsolete diagnostics explicitly without losing unique regression or historical evidence.",
       "automated_scope": "The base audit and complete current selector registry exercise diagnostic/task exclusions, permanent completeness, changed-input routing, baseline exclusions and distinct checked accounting. Original production guards and old review/public byte identity protect unique release coverage and history. Whether a consolidation is semantically justified remains independent review.",
-      "checks": [
-        "AUDIT",
-        "SELECTION",
-        "FULL-GUARDS",
-        "UNCHANGED-PUBLIC",
-        "TAP-NEGATIVES"
-      ],
-      "gates": [
-        "G01"
-      ]
+      "checks": ["AUDIT", "SELECTION", "FULL-GUARDS", "UNCHANGED-PUBLIC", "TAP-NEGATIVES"],
+      "gates": ["G01"]
     },
     {
       "id": "AC06",
       "intent": "Make the final test/profile allocation canonical, owned and reachable through fresh RI and checked actual CI coupling.",
       "automated_scope": "Current actual RI/catalog views and reviewed CI coupling are verified, all new selector/staging controls have maintained canonical owners, and selector fixtures reject missing/duplicate/unowned/invalid registry routes. Companion CI negatives execute on the permanent navigation route. Review must assess mapping adequacy beyond lexical source verification.",
-      "checks": [
-        "RI-OWNERS",
-        "SELECTION"
-      ],
-      "gates": [
-        "G01"
-      ]
+      "checks": ["RI-OWNERS", "SELECTION"],
+      "gates": ["G01"]
     },
     {
       "id": "AC07",
       "intent": "Complete linked issue/PR/commit/review/CI and exact merged acceptance; reconcile issue #13 against original criteria and genuine remaining gates.",
       "automated_scope": "The seven-ID selected policy, exact-source/clean workflow contract and current analysis/continuity routes are checked. The versioned #13 audit contains a complete seven-original-criterion disposition and concrete remaining gates; its presence does not certify facts, external acceptance or closure. Actual independent review, passing current-source PR/staging CI, normal merge and live original-intent disposition are recorded separately in G01-G03.",
-      "checks": [
-        "POLICY",
-        "HANDOFF",
-        "ISSUE13"
-      ],
-      "gates": [
-        "G01",
-        "G02",
-        "G03"
-      ]
+      "checks": ["POLICY", "HANDOFF", "ISSUE13"],
+      "gates": ["G01", "G02", "G03"]
     }
   ],
   "checks": {

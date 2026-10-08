@@ -38,13 +38,19 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/media](docs/media) | Generated content-addressed asset editions. | generated | [site/README.md](site/README.md) |
 | [docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc](docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc) | Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
 | [docs/runtime](docs/runtime) | Generated content-addressed browser runtime editions. | generated | [site/README.md](site/README.md) |
-| [docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff](docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff) | Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/bf00029e91c5bfd7177ca04fd7eb32dc4348e57b227c201a8652b87bad0519b9](docs/runtime/bf00029e91c5bfd7177ca04fd7eb32dc4348e57b227c201a8652b87bad0519b9) | Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62](docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62) | Generated exact public runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots](docs/snapshots) | Generated exact-route HTML snapshots. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/259616bcb517d2aa0736fc66ec7fad29101355d46f0501151d2101e3b34baaad](docs/snapshots/259616bcb517d2aa0736fc66ec7fad29101355d46f0501151d2101e3b34baaad) | Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/2f6d5fbf34aa829b133360029157fb5ee425571e9ecadd2b443ef6f1e0901986](docs/snapshots/2f6d5fbf34aa829b133360029157fb5ee425571e9ecadd2b443ef6f1e0901986) | Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/3d0618ceada601d51bfc3e3e69383e0fcd2c2933cd25963eb67638328cb83207](docs/snapshots/3d0618ceada601d51bfc3e3e69383e0fcd2c2933cd25963eb67638328cb83207) | Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/be7a4cd6562bc70e20f247ee15e4667885db74053acef7397ea075963186a9fb](docs/snapshots/be7a4cd6562bc70e20f247ee15e4667885db74053acef7397ea075963186a9fb) | Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/e31ef87381aa2d33cfe14b0925e58858a69e97b9573f06390d5f9699d85e97f3](docs/snapshots/e31ef87381aa2d33cfe14b0925e58858a69e97b9573f06390d5f9699d85e97f3) | Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/0374a6fd1886f2cc759d4a481ea4e2aca8c074f826ebd13f2066621074efda29](docs/snapshots/0374a6fd1886f2cc759d4a481ea4e2aca8c074f826ebd13f2066621074efda29) | Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/13cacc74bef65a345dfa1604153bce5575bd922f5fd78c4222dfab334782184b](docs/snapshots/13cacc74bef65a345dfa1604153bce5575bd922f5fd78c4222dfab334782184b) | Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347](docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347) | Generated exact public runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/70866d67e4679052e5a7599114376b38ae855beb439f7db061a0a7606c2ca8a8](docs/snapshots/70866d67e4679052e5a7599114376b38ae855beb439f7db061a0a7606c2ca8a8) | Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa](docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa) | Current immutable content-addressed route snapshot; generated from the exact maintained Talks content. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68](docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68) | Generated exact public runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946](docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946) | Generated exact public runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7](docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7) | Generated exact public runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/df68c60e052fa89f1fedecda35f055a8023803f53ba878eca17574209dc7fa9f](docs/snapshots/df68c60e052fa89f1fedecda35f055a8023803f53ba878eca17574209dc7fa9f) | Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/e951707ca8af51e97d351b275ef73ddece0afc9d5e59c2e164b60d84fb2276c5](docs/snapshots/e951707ca8af51e97d351b275ef73ddece0afc9d5e59c2e164b60d84fb2276c5) | Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [drafts](drafts) | Unpublished article/profile proposals excluded from public builds. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [guides](guides) | Maintained topic guides for repository boundaries, publication, quality and hosting; root stays an entry surface. | guide | [guides/README.md](guides/README.md) |
 | [review](review) | Dated plans, evidence, captures and renditions; current Color/export inputs are explicitly marked. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -60,7 +66,12 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-36](review/issue-36) | Single dated Writing formula execution handoff, original visual proof and linked source-bound integration/browser/performance acceptance. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-41](review/issue-41) | Dated source inventory and content-authority analysis for the same-PR Sol handoff. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-45](review/issue-45) | Issue45 versioned reading clarity findings, implementation and exact-source review evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-48](review/issue-48) | Issue48 bounded source intake, exact content amendment and dated implementation/review handoff. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-49](review/issue-49) | Versioned architecture and execution handoff for fragments emerging from the existing fractal. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-54](review/issue-54) | Issue54 source audit, architecture and ordered Sol refactor plan. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-56](review/issue-56) | Versioned R1 implementation, tool decision, parity and review evidence for issue56. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [review/issue-58](review/issue-58) | Single R2–R6 refactoring handoff, immutable phase observations and integrated evidence under continuing DraftPR60. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [review/issue-61](review/issue-61) | Bounded source amendment and handoff for the supplied PMDay Ukrainian recording update. | history | [review/REVIEW-TEMPLATE.md](review/REVIEW-TEMPLATE.md) |
 | [review/public-responses-20261006](review/public-responses-20261006) | Exact before/after public response prose and reconciliation records. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/reading-backdrops-20261006](review/reading-backdrops-20261006) | Content-sized reading backdrop correction evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/repository-maintenance-20261007](review/repository-maintenance-20261007) | Byte-exact pre-cleanup agent guide and its provenance note. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -105,17 +116,38 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/writing-diagnosis-20261006/traces](review/writing-diagnosis-20261006/traces) | Writing first-scroll causal localization, rejected trial and confirmed fix evidence. Contains traces artifacts. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [site](site) | Authoritative curated site source and deterministic engine contract. | source | [site/README.md](site/README.md) |
 | [site/assets](site/assets) | Authored portrait, cutout, favicon and nojekyll source bytes. | source | [site/README.md](site/README.md) |
-| [site/content](site/content) | Authored publication catalog and route-specific curated content. | source | [guides/SITE-SOURCE-AUDIT.md](guides/SITE-SOURCE-AUDIT.md) |
-| [site/content/pages](site/content/pages) | Authored HTML blocks and metadata organized by the five route IDs. | source | [site/README.md](site/README.md) |
+| [site/content](site/content) | Canonical publication/catalog and bounded context-typed prose, labels, URLs and page composition inputs. | source | [guides/SITE-SOURCE-AUDIT.md](guides/SITE-SOURCE-AUDIT.md) |
+| [site/content/pages](site/content/pages) | Five route metadata and bounded JSON content documents; markup belongs to site/templates. | source | [site/README.md](site/README.md) |
 | [site/content/pages/credits](site/content/pages/credits) | Authored credits route metadata, layout and curated HTML blocks. | source | [site/README.md](site/README.md) |
 | [site/content/pages/index](site/content/pages/index) | Authored index route metadata, layout and curated HTML blocks. | source | [site/README.md](site/README.md) |
 | [site/content/pages/research](site/content/pages/research) | Authored research route metadata, layout and curated HTML blocks. | source | [site/README.md](site/README.md) |
 | [site/content/pages/talks](site/content/pages/talks) | Authored talks route metadata, layout and curated HTML blocks. | source | [site/README.md](site/README.md) |
 | [site/content/pages/writing](site/content/pages/writing) | Authored writing route metadata, layout and curated HTML blocks. | source | [site/README.md](site/README.md) |
+| [site/content/shared](site/content/shared) | Declared issue58 authored content/template or dated evidence grouping. | source | [site/README.md](site/README.md) |
+| [site/effects](site/effects) | Canonical optional effect descriptors and browser runtime helpers, independent of build tools. | source | [site/README.md](site/README.md) |
 | [site/engine](site/engine) | Shared Canvas geometry/lifecycle, renderer, native-scroll router, theme, filters and CSS. | source | [site/README.md](site/README.md) |
 | [site/integrations](site/integrations) | Production-origin-only optional external measurement integration. | source | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
+| [site/retained](site/retained) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/media](site/retained/media) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc](site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/runtime](site/retained/runtime) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62](site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/snapshots](site/retained/snapshots) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347](site/retained/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa](site/retained/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68](site/retained/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946](site/retained/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7](site/retained/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
 | [site/scenes](site/scenes) | Finite authored world/motifs and native-scroll camera paths. | source | [site/README.md](site/README.md) |
-| [site/templates](site/templates) | Shared deterministic page shell, head, header and footer HTML. | source | [site/README.md](site/README.md) |
+| [site/templates](site/templates) | Canonical shared, page-specific and repeated component markup; consumes validated content. | source | [site/README.md](site/README.md) |
+| [site/templates/components](site/templates/components) | Declared issue58 authored content/template or dated evidence grouping. | source | [site/README.md](site/README.md) |
+| [site/templates/pages](site/templates/pages) | Declared issue58 authored content/template or dated evidence grouping. | source | [site/README.md](site/README.md) |
+| [site/templates/pages/credits](site/templates/pages/credits) | Declared issue58 authored content/template or dated evidence grouping. | source | [site/README.md](site/README.md) |
+| [site/templates/pages/index](site/templates/pages/index) | Declared issue58 authored content/template or dated evidence grouping. | source | [site/README.md](site/README.md) |
+| [site/templates/pages/research](site/templates/pages/research) | Declared issue58 authored content/template or dated evidence grouping. | source | [site/README.md](site/README.md) |
+| [site/templates/pages/talks](site/templates/pages/talks) | Declared issue58 authored content/template or dated evidence grouping. | source | [site/README.md](site/README.md) |
+| [site/templates/pages/writing](site/templates/pages/writing) | Declared issue58 authored content/template or dated evidence grouping. | source | [site/README.md](site/README.md) |
+| [site/templates/shared](site/templates/shared) | Declared issue58 authored content/template or dated evidence grouping. | source | [site/README.md](site/README.md) |
 | [tests](tests) | Behavioral, adversarial and fixture checks for RI, engine, exporters and CI/staging trust. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/fixtures](tests/fixtures) | Shared controlled evidence builders for selected staging validator/consumer tests; fixtures do not claim actual browser or CI execution. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tools](tools) | Repository navigation, public generation and offline review/export entry points. | source | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -130,6 +162,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) | Stable issue AC contract, policy schema, deterministic evidence, session-end reconciliation and explicit live/manual gates. | guide | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) | UA comparison, site RI layers, file/check/workflow mapping, identity/bounds and coupled CI upgrade procedure. | guide | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
+| [.github/code-style.json](.github/code-style.json) | Exact issue54 legacy source/inline-style debt with frozen-baseline ceilings and removal tasks. | configuration | [guides/CODE-STYLE.md](guides/CODE-STYLE.md) |
 | [.github/pull_request_template.md](.github/pull_request_template.md) | PR execution, owning issue/commit links, checks/review and honest completion template. | configuration | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [.github/repository-intelligence-config.json](.github/repository-intelligence-config.json) | Site RI schema, upstream pin, owner aliases, memory bounds and validation routes. | configuration | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 | [.github/repository-layout.json](.github/repository-layout.json) | Reviewed root file contract, complete original dispositions and current Markdown surfaces for issue #33. | configuration | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
@@ -153,7 +186,13 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [.github/acceptance/issue-36.json](.github/acceptance/issue-36.json) | Writing formula AC01–AC05 mapped to canonical asset, native cache/integration, source-bound browser and paired performance evidence, with remaining human/release gates explicit. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-41.json](.github/acceptance/issue-41.json) | Issue41 AC01-AC06 implementation mapping for exact inputs, admitted editions, generated content, SEO and runtime scope; explicit editorial/browser/review-merge gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-45.json](.github/acceptance/issue-45.json) | Issue45 scoped formula and heading reading-clarity criterion mapping. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
-| [.github/acceptance/issue-49.json](.github/acceptance/issue-49.json) | Planning-stage AC01-AC07 mapping: current-source preservation checks with explicit pending fragment implementation and visual/performance gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [.github/acceptance/issue-48.json](.github/acceptance/issue-48.json) | Issue48 theory association, Writing midpoint and evidence-led Matthew response mapping with separate current-preview/editorial/review/merge gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [.github/acceptance/issue-49.json](.github/acceptance/issue-49.json) | Issue49 AC01-AC08 planning and pending feature gates for stationary reading camera and two-sided fragment flight. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [.github/acceptance/issue-54.json](.github/acceptance/issue-54.json) | Issue54 audit, guide, enforced subset, RI routing and Sol plan acceptance mapping. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [.github/acceptance/issue-56.json](.github/acceptance/issue-56.json) | Issue56 AC01–AC06 source-bound R1 extraction/tool coverage policy with independent/live delivery gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [.github/acceptance/issue-58.json](.github/acceptance/issue-58.json) | Shared issue58 AC01–AC10 mapping: frozen R2 checkpoint and current content/CSS/cohesion/resource contracts with final review/live/merge gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [.github/acceptance/issue-59.json](.github/acceptance/issue-59.json) | Superseded issue59 original preparation policy retained as nonselected audit/transition history; current phase PRs select issue58 only. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [.github/acceptance/issue-61.json](.github/acceptance/issue-61.json) | PMDay recording AC01–AC03 mapped to existing current-source content/semantic/RI checks and explicit review/CI/linkage gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 
 ## .github/repository-intelligence/
 
@@ -216,45 +255,85 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi.jpg](docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi.jpg) | Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
 | [docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/writing-paradigm.svg](docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/writing-paradigm.svg) | Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
 
-## docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff/
+## docs/runtime/bf00029e91c5bfd7177ca04fd7eb32dc4348e57b227c201a8652b87bad0519b9/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff/archive.js](docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff/archive.js) | Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair. | generated | [site/README.md](site/README.md) |
-| [docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff/navigation.js](docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff/navigation.js) | Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair. | generated | [site/README.md](site/README.md) |
-| [docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff/space.js](docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff/space.js) | Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair. | generated | [site/README.md](site/README.md) |
-| [docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff/styles.css](docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff/styles.css) | Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair. | generated | [site/README.md](site/README.md) |
-| [docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff/theme.js](docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff/theme.js) | Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/bf00029e91c5bfd7177ca04fd7eb32dc4348e57b227c201a8652b87bad0519b9/archive.js](docs/runtime/bf00029e91c5bfd7177ca04fd7eb32dc4348e57b227c201a8652b87bad0519b9/archive.js) | Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/bf00029e91c5bfd7177ca04fd7eb32dc4348e57b227c201a8652b87bad0519b9/navigation.js](docs/runtime/bf00029e91c5bfd7177ca04fd7eb32dc4348e57b227c201a8652b87bad0519b9/navigation.js) | Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/bf00029e91c5bfd7177ca04fd7eb32dc4348e57b227c201a8652b87bad0519b9/space.js](docs/runtime/bf00029e91c5bfd7177ca04fd7eb32dc4348e57b227c201a8652b87bad0519b9/space.js) | Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/bf00029e91c5bfd7177ca04fd7eb32dc4348e57b227c201a8652b87bad0519b9/styles.css](docs/runtime/bf00029e91c5bfd7177ca04fd7eb32dc4348e57b227c201a8652b87bad0519b9/styles.css) | Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/bf00029e91c5bfd7177ca04fd7eb32dc4348e57b227c201a8652b87bad0519b9/theme.js](docs/runtime/bf00029e91c5bfd7177ca04fd7eb32dc4348e57b227c201a8652b87bad0519b9/theme.js) | Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/259616bcb517d2aa0736fc66ec7fad29101355d46f0501151d2101e3b34baaad/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/snapshots/259616bcb517d2aa0736fc66ec7fad29101355d46f0501151d2101e3b34baaad/index.html](docs/snapshots/259616bcb517d2aa0736fc66ec7fad29101355d46f0501151d2101e3b34baaad/index.html) | Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair. | generated | [site/README.md](site/README.md) |
-
-## docs/snapshots/2f6d5fbf34aa829b133360029157fb5ee425571e9ecadd2b443ef6f1e0901986/
+## docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/snapshots/2f6d5fbf34aa829b133360029157fb5ee425571e9ecadd2b443ef6f1e0901986/talks.html](docs/snapshots/2f6d5fbf34aa829b133360029157fb5ee425571e9ecadd2b443ef6f1e0901986/talks.html) | Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/archive.js](docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/archive.js) | Generated exact public runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/navigation.js](docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/navigation.js) | Generated exact public runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/space.js](docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/space.js) | Generated exact public runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/styles.css](docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/styles.css) | Generated exact public runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/theme.js](docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/theme.js) | Generated exact public runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/3d0618ceada601d51bfc3e3e69383e0fcd2c2933cd25963eb67638328cb83207/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/snapshots/3d0618ceada601d51bfc3e3e69383e0fcd2c2933cd25963eb67638328cb83207/writing.html](docs/snapshots/3d0618ceada601d51bfc3e3e69383e0fcd2c2933cd25963eb67638328cb83207/writing.html) | Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair. | generated | [site/README.md](site/README.md) |
-
-## docs/snapshots/be7a4cd6562bc70e20f247ee15e4667885db74053acef7397ea075963186a9fb/
+## docs/snapshots/0374a6fd1886f2cc759d4a481ea4e2aca8c074f826ebd13f2066621074efda29/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/snapshots/be7a4cd6562bc70e20f247ee15e4667885db74053acef7397ea075963186a9fb/credits.html](docs/snapshots/be7a4cd6562bc70e20f247ee15e4667885db74053acef7397ea075963186a9fb/credits.html) | Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/0374a6fd1886f2cc759d4a481ea4e2aca8c074f826ebd13f2066621074efda29/index.html](docs/snapshots/0374a6fd1886f2cc759d4a481ea4e2aca8c074f826ebd13f2066621074efda29/index.html) | Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/e31ef87381aa2d33cfe14b0925e58858a69e97b9573f06390d5f9699d85e97f3/
+## docs/snapshots/13cacc74bef65a345dfa1604153bce5575bd922f5fd78c4222dfab334782184b/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/snapshots/e31ef87381aa2d33cfe14b0925e58858a69e97b9573f06390d5f9699d85e97f3/research.html](docs/snapshots/e31ef87381aa2d33cfe14b0925e58858a69e97b9573f06390d5f9699d85e97f3/research.html) | Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/13cacc74bef65a345dfa1604153bce5575bd922f5fd78c4222dfab334782184b/research.html](docs/snapshots/13cacc74bef65a345dfa1604153bce5575bd922f5fd78c4222dfab334782184b/research.html) | Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
+
+## docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html](docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html) | Generated exact public runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
+
+## docs/snapshots/70866d67e4679052e5a7599114376b38ae855beb439f7db061a0a7606c2ca8a8/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/70866d67e4679052e5a7599114376b38ae855beb439f7db061a0a7606c2ca8a8/writing.html](docs/snapshots/70866d67e4679052e5a7599114376b38ae855beb439f7db061a0a7606c2ca8a8/writing.html) | Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
+
+## docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html](docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html) | Generated immutable Talks route snapshot; regenerate from site sources with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
+
+## docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html](docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html) | Generated exact public runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
+
+## docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html](docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html) | Generated exact public runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
+
+## docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html](docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html) | Generated exact public runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
+
+## docs/snapshots/df68c60e052fa89f1fedecda35f055a8023803f53ba878eca17574209dc7fa9f/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/df68c60e052fa89f1fedecda35f055a8023803f53ba878eca17574209dc7fa9f/talks.html](docs/snapshots/df68c60e052fa89f1fedecda35f055a8023803f53ba878eca17574209dc7fa9f/talks.html) | Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
+
+## docs/snapshots/e951707ca8af51e97d351b275ef73ddece0afc9d5e59c2e164b60d84fb2276c5/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/e951707ca8af51e97d351b275ef73ddece0afc9d5e59c2e164b60d84fb2276c5/credits.html](docs/snapshots/e951707ca8af51e97d351b275ef73ddece0afc9d5e59c2e164b60d84fb2276c5/credits.html) | Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 
 ## drafts/
 
@@ -266,6 +345,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
+| [guides/CODE-STYLE.md](guides/CODE-STYLE.md) | Mandatory agent coding, content/template/CSS boundaries, performance and verification standards. | guide | [guides/CODE-STYLE.md](guides/CODE-STYLE.md) |
 | [guides/README.md](guides/README.md) | Topic guide index with one current owner for each concern; live issue status is retrieved separately. | guide | [guides/README.md](guides/README.md) |
 | [guides/REPOSITORIES.md](guides/REPOSITORIES.md) | Canonical boundaries and coordinated work routes across site, UA and Subprime. | guide | [guides/REPOSITORIES.md](guides/REPOSITORIES.md) |
 | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) | Disabled-by-default production analytics adapter contract and measurement limitations. | guide | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
@@ -561,11 +641,62 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-45/2026-10-07-handoff.md](review/issue-45/2026-10-07-handoff.md) | Issue45 versioned reading clarity findings, implementation and exact-source review evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-45/2026-10-07-independent-review.md](review/issue-45/2026-10-07-independent-review.md) | Independent source review of issue45 formula/reading-surface repair, corrected diagnostic findings and explicit visual limits. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
+## review/issue-48/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-48/2026-10-08-handoff.md](review/issue-48/2026-10-08-handoff.md) | Issue48 versioned source/impact intake, narrow implementation tasks, independent review and exact-source acceptance handoff. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-48/content-amendment.json](review/issue-48/content-amendment.json) | Issue48 exact hashed theory order/association and Matthew Home/Research deltas, reversed before the immutable issue41 amendment. | history | [guides/SITE-SEO.md](guides/SITE-SEO.md) |
+| [review/issue-48/source-inventory.json](review/issue-48/source-inventory.json) | Verified Matthew Skelton public reshare identity, bounded guest-source acquisition metadata/hash, Michael Risch attribution and older encouragement provenance. | history | [guides/SITE-SOURCE-AUDIT.md](guides/SITE-SOURCE-AUDIT.md) |
+
 ## review/issue-49/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [review/issue-49/2026-10-08-analysis.md](review/issue-49/2026-10-08-analysis.md) | Source-backed clipped-content flight architecture, feasibility limits, resource proposal, test allocation and ordered Sol tasks; no implementation claim. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-49/2026-10-08-analysis.md](review/issue-49/2026-10-08-analysis.md) | Revised source-backed architecture, limits, staged Sol tasks and test dispositions for fixed reading camera and departing/arriving content fragments. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
+
+## review/issue-54/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-54/2026-10-08-analysis.md](review/issue-54/2026-10-08-analysis.md) | Exact-baseline site debt findings, code standards delivery and bounded Sol work packages. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+
+## review/issue-56/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-56/2026-10-08-handoff.md](review/issue-56/2026-10-08-handoff.md) | Single source-bound R1 implementation handoff, free tooling decision, CS/AC mapping and independent review record. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+
+## review/issue-58/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-58/2026-10-08-bandit-rebinding.json](review/issue-58/2026-10-08-bandit-rebinding.json) | Exact reviewed R2 Bandit finding equivalence, unchanged trust boundary and source/line rebinding proof. | history | [tools/quality/README.md](tools/quality/README.md) |
+| [review/issue-58/2026-10-08-final-visual-captures.json.gz](review/issue-58/2026-10-08-final-visual-captures.json.gz) | Compressed immutable raw current visual observations; source/artifact/file maps, served byte hashes and geometry bind original observed identities. | history | [review/issue-58/2026-10-08-final-visual.json](review/issue-58/2026-10-08-final-visual.json) |
+| [review/issue-58/2026-10-08-final-visual.json](review/issue-58/2026-10-08-final-visual.json) | Eight actual clean approved-main/current candidate Home/Writing Day/Night desktop/mobile visual pairs; exact pixel/semantic/HTTP identity with bounded scope. | history | [review/issue-58/2026-10-08-handoff.md](review/issue-58/2026-10-08-handoff.md) |
+| [review/issue-58/2026-10-08-handoff.md](review/issue-58/2026-10-08-handoff.md) | Shared issue58 refactor handoff: R2 phase subconditions mapped to stable AC01-AC10, source/semantic/security tasks and pending evidence. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [review/issue-58/2026-10-08-r3-r6-bandit.json](review/issue-58/2026-10-08-r3-r6-bandit.json) | Dated independently reviewed preintegration source proof; original dirty identity and bounded scope retained. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [review/issue-58/2026-10-08-r4-css.json](review/issue-58/2026-10-08-r4-css.json) | Dated R4/R5 raw phase observations preserving original source identity; final integrated acceptance remains separately bound. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [review/issue-58/2026-10-08-r5-offline.json](review/issue-58/2026-10-08-r5-offline.json) | Dated independently reviewed preintegration source proof; original dirty identity and bounded scope retained. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [review/issue-58/2026-10-08-r5-output.json](review/issue-58/2026-10-08-r5-output.json) | Dated R4/R5 raw phase observations preserving original source identity; final integrated acceptance remains separately bound. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [review/issue-58/2026-10-08-r5-projection.json](review/issue-58/2026-10-08-r5-projection.json) | Dated R4/R5 raw phase observations preserving original source identity; final integrated acceptance remains separately bound. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [review/issue-58/2026-10-08-r6-matched-observations.json](review/issue-58/2026-10-08-r6-matched-observations.json) | Source-bound R6 unmodified adaptive acceptance, matched counterfactual observations, exact scoped reuse and honest optimization disposition. | history | [review/issue-58/2026-10-08-handoff.md](review/issue-58/2026-10-08-handoff.md) |
+| [review/issue-58/2026-10-08-r6-matched-raw.json.gz](review/issue-58/2026-10-08-r6-matched-raw.json.gz) | Exact raw R6 reports, failed CPU-sampling attempt, artifact manifests and frozen collector source bytes; immutable historical evidence, not an active runtime. | history | [review/issue-58/2026-10-08-handoff.md](review/issue-58/2026-10-08-handoff.md) |
+| [review/issue-58/2026-10-08-r6-triage.json](review/issue-58/2026-10-08-r6-triage.json) | Dated exact-source refactoring observation with explicit admission/status and raw evidence. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [review/issue-58/2026-10-08-r6-triage.json.gz](review/issue-58/2026-10-08-r6-triage.json.gz) | Dated exact-source refactoring observation with explicit admission/status and raw evidence. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [review/issue-58/2026-10-08-rebase-bandit.json](review/issue-58/2026-10-08-rebase-bandit.json) | Independent exact four-row Bandit rebinding proof after approved-main rebase; preserves findings, sources and deadlines. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [review/issue-58/2026-10-08-resume-base-measurements.json.gz](review/issue-58/2026-10-08-resume-base-measurements.json.gz) | Interruption recovery exact Base measurements; raw identities, failed budgets and adaptive-quality limitations remain explicit. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [review/issue-58/2026-10-08-resume-base-observations.json](review/issue-58/2026-10-08-resume-base-observations.json) | Interruption recovery exact Base measurements; raw identities, failed budgets and adaptive-quality limitations remain explicit. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [review/issue-58/2026-10-08-scanner-rebinding.json](review/issue-58/2026-10-08-scanner-rebinding.json) | R2 lint complexity, advisory source/lock and security fingerprint review; current final-scan status explicit. | history | [tools/quality/README.md](tools/quality/README.md) |
+| [review/issue-58/2026-10-08-visual-captures.json.gz](review/issue-58/2026-10-08-visual-captures.json.gz) | Compressed immutable raw record of the eight independently inspected paired R2 viewport captures; uncompressed digest is bound by visual-parity summary. | history | [review/issue-58/2026-10-08-visual-parity.json](review/issue-58/2026-10-08-visual-parity.json) |
+| [review/issue-58/2026-10-08-visual-parity.json](review/issue-58/2026-10-08-visual-parity.json) | Independent eight paired Home/Writing Day/Night desktop/narrow viewport captures with exact served bytes, geometry/text and zero pixel differences; dirty checkpoint and bounded limitations explicit. | history | [review/issue-58/2026-10-08-handoff.md](review/issue-58/2026-10-08-handoff.md) |
+
+## review/issue-61/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-61/2026-10-08-handoff.md](review/issue-61/2026-10-08-handoff.md) | PMDay recording source treatment, proportional checks and style/review handoff; current live evidence belongs to issue61/its PR. | history | [review/REVIEW-TEMPLATE.md](review/REVIEW-TEMPLATE.md) |
+| [review/issue-61/content-amendment.json](review/issue-61/content-amendment.json) | Exact hashed old/new PMDay article delta authorized by the maintainer; restore before immutable Issue48/41 content amendments. | configuration | [guides/SITE-SOURCE-AUDIT.md](guides/SITE-SOURCE-AUDIT.md) |
 
 ## review/public-responses-20261006/
 
@@ -788,14 +919,11 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [review/site-scroll-sync-20261004/EDGES-AND-HOTSPOTS.md](review/site-scroll-sync-20261004/EDGES-AND-HOTSPOTS.md) | Historical report/plan/checkpoint: EDGES-AND-HOTSPOTS.md. Native-scroll/flight/ribbon evidence plus explicitly marked maintained Color/export sources. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
-| [review/site-scroll-sync-20261004/FLIGHT-PROTOTYPE.cjs](review/site-scroll-sync-20261004/FLIGHT-PROTOTYPE.cjs) | Maintained authored Color content-flight effects consumed by current exporters/staging checks. | source | [site/README.md](site/README.md) |
 | [review/site-scroll-sync-20261004/FLIGHT.md](review/site-scroll-sync-20261004/FLIGHT.md) | Historical report/plan/checkpoint: FLIGHT.md. Native-scroll/flight/ribbon evidence plus explicitly marked maintained Color/export sources. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-scroll-sync-20261004/GLASS.md](review/site-scroll-sync-20261004/GLASS.md) | Historical report/plan/checkpoint: GLASS.md. Native-scroll/flight/ribbon evidence plus explicitly marked maintained Color/export sources. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-scroll-sync-20261004/OPTIMIZATION.md](review/site-scroll-sync-20261004/OPTIMIZATION.md) | Historical report/plan/checkpoint: OPTIMIZATION.md. Native-scroll/flight/ribbon evidence plus explicitly marked maintained Color/export sources. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
-| [review/site-scroll-sync-20261004/READING-SURFACES.cjs](review/site-scroll-sync-20261004/READING-SURFACES.cjs) | Authored reading-surface effect helper covered by current source security checks. | source | [site/README.md](site/README.md) |
 | [review/site-scroll-sync-20261004/REFINEMENT.md](review/site-scroll-sync-20261004/REFINEMENT.md) | Historical report/plan/checkpoint: REFINEMENT.md. Native-scroll/flight/ribbon evidence plus explicitly marked maintained Color/export sources. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-scroll-sync-20261004/REPORT.md](review/site-scroll-sync-20261004/REPORT.md) | Historical report/plan/checkpoint: REPORT.md. Native-scroll/flight/ribbon evidence plus explicitly marked maintained Color/export sources. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
-| [review/site-scroll-sync-20261004/RIBBONS-PROTOTYPE.cjs](review/site-scroll-sync-20261004/RIBBONS-PROTOTYPE.cjs) | Maintained authored Color ribbon/reading presentation consumed by current exporters/staging checks. | source | [site/README.md](site/README.md) |
 | [review/site-scroll-sync-20261004/RIBBONS.md](review/site-scroll-sync-20261004/RIBBONS.md) | Historical report/plan/checkpoint: RIBBONS.md. Native-scroll/flight/ribbon evidence plus explicitly marked maintained Color/export sources. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-scroll-sync-20261004/SIGNALS.md](review/site-scroll-sync-20261004/SIGNALS.md) | Historical report/plan/checkpoint: SIGNALS.md. Native-scroll/flight/ribbon evidence plus explicitly marked maintained Color/export sources. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-scroll-sync-20261004/SURFACE-AUDIT.md](review/site-scroll-sync-20261004/SURFACE-AUDIT.md) | Historical report/plan/checkpoint: SURFACE-AUDIT.md. Native-scroll/flight/ribbon evidence plus explicitly marked maintained Color/export sources. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -810,7 +938,6 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/site-scroll-sync-20261004/check-offline-security.py](review/site-scroll-sync-20261004/check-offline-security.py) | Historical retained diagnostic script: check-offline-security.py. Native-scroll/flight/ribbon evidence plus explicitly marked maintained Color/export sources. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-scroll-sync-20261004/check-ribbon-fill.cjs](review/site-scroll-sync-20261004/check-ribbon-fill.cjs) | Historical retained diagnostic/export script: check-ribbon-fill.cjs. Native-scroll/flight/ribbon evidence plus explicitly marked maintained Color/export sources. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-scroll-sync-20261004/check-ribbon-material.cjs](review/site-scroll-sync-20261004/check-ribbon-material.cjs) | Historical retained diagnostic/export script: check-ribbon-material.cjs. Native-scroll/flight/ribbon evidence plus explicitly marked maintained Color/export sources. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
-| [review/site-scroll-sync-20261004/export.cjs](review/site-scroll-sync-20261004/export.cjs) | Maintained complete standalone base/Color exporter used by basic and hosted checks. | source | [site/README.md](site/README.md) |
 
 ## review/site-sol-continuation-20261005/
 
@@ -1337,59 +1464,76 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [site/content/pages/credits/main.html](site/content/pages/credits/main.html) | Authored credits route layout and finite block/publication substitutions. | source | [site/README.md](site/README.md) |
+| [site/content/pages/credits/main.json](site/content/pages/credits/main.json) | Bounded context-typed authored content, URLs, labels and explicit template references. | source | [site/README.md](site/README.md) |
 | [site/content/pages/credits/metadata.json](site/content/pages/credits/metadata.json) | Authored credits title/description/metadata and ordered content block names. | source | [site/README.md](site/README.md) |
 
 ## site/content/pages/index/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [site/content/pages/index/about.html](site/content/pages/index/about.html) | Curated index HTML content block: about. | source | [site/README.md](site/README.md) |
-| [site/content/pages/index/acknowledgements.html](site/content/pages/index/acknowledgements.html) | Curated index HTML content block: acknowledgements. | source | [site/README.md](site/README.md) |
-| [site/content/pages/index/contact.html](site/content/pages/index/contact.html) | Curated index HTML content block: contact. | source | [site/README.md](site/README.md) |
-| [site/content/pages/index/help.html](site/content/pages/index/help.html) | Curated index HTML content block: help. | source | [site/README.md](site/README.md) |
-| [site/content/pages/index/hero.html](site/content/pages/index/hero.html) | Curated index HTML content block: hero. | source | [site/README.md](site/README.md) |
-| [site/content/pages/index/main.html](site/content/pages/index/main.html) | Authored index route layout and finite block/publication substitutions. | source | [site/README.md](site/README.md) |
+| [site/content/pages/index/about.json](site/content/pages/index/about.json) | Bounded context-typed authored content, URLs, labels and explicit template references. | source | [site/README.md](site/README.md) |
+| [site/content/pages/index/acknowledgements.json](site/content/pages/index/acknowledgements.json) | Bounded context-typed authored content, URLs, labels and explicit template references. | source | [site/README.md](site/README.md) |
+| [site/content/pages/index/contact.json](site/content/pages/index/contact.json) | Bounded context-typed authored content, URLs, labels and explicit template references. | source | [site/README.md](site/README.md) |
+| [site/content/pages/index/help.json](site/content/pages/index/help.json) | Bounded context-typed authored content, URLs, labels and explicit template references. | source | [site/README.md](site/README.md) |
+| [site/content/pages/index/hero.json](site/content/pages/index/hero.json) | Bounded context-typed authored content, URLs, labels and explicit template references. | source | [site/README.md](site/README.md) |
+| [site/content/pages/index/main.json](site/content/pages/index/main.json) | Bounded context-typed authored content, URLs, labels and explicit template references. | source | [site/README.md](site/README.md) |
 | [site/content/pages/index/metadata.json](site/content/pages/index/metadata.json) | Authored index title/description/metadata and ordered content block names. | source | [site/README.md](site/README.md) |
-| [site/content/pages/index/research.html](site/content/pages/index/research.html) | Curated index HTML content block: research. | source | [site/README.md](site/README.md) |
-| [site/content/pages/index/writing.html](site/content/pages/index/writing.html) | Curated index HTML content block: writing. | source | [site/README.md](site/README.md) |
+| [site/content/pages/index/research.json](site/content/pages/index/research.json) | Bounded context-typed authored content, URLs, labels and explicit template references. | source | [site/README.md](site/README.md) |
+| [site/content/pages/index/writing.json](site/content/pages/index/writing.json) | Bounded context-typed authored content, URLs, labels and explicit template references. | source | [site/README.md](site/README.md) |
 
 ## site/content/pages/research/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [site/content/pages/research/acknowledgements.html](site/content/pages/research/acknowledgements.html) | Curated research HTML content block: acknowledgements. | source | [site/README.md](site/README.md) |
-| [site/content/pages/research/intro.html](site/content/pages/research/intro.html) | Curated research HTML content block: intro. | source | [site/README.md](site/README.md) |
-| [site/content/pages/research/lenses.html](site/content/pages/research/lenses.html) | Curated research HTML content block: lenses. | source | [site/README.md](site/README.md) |
-| [site/content/pages/research/main.html](site/content/pages/research/main.html) | Authored research route layout and finite block/publication substitutions. | source | [site/README.md](site/README.md) |
+| [site/content/pages/research/acknowledgements.json](site/content/pages/research/acknowledgements.json) | Bounded context-typed authored content, URLs, labels and explicit template references. | source | [site/README.md](site/README.md) |
+| [site/content/pages/research/intro.json](site/content/pages/research/intro.json) | Bounded context-typed authored content, URLs, labels and explicit template references. | source | [site/README.md](site/README.md) |
+| [site/content/pages/research/lenses.json](site/content/pages/research/lenses.json) | Bounded context-typed authored content, URLs, labels and explicit template references. | source | [site/README.md](site/README.md) |
+| [site/content/pages/research/main.json](site/content/pages/research/main.json) | Bounded context-typed authored content, URLs, labels and explicit template references. | source | [site/README.md](site/README.md) |
 | [site/content/pages/research/metadata.json](site/content/pages/research/metadata.json) | Authored research title/description/metadata and ordered content block names. | source | [site/README.md](site/README.md) |
-| [site/content/pages/research/research.html](site/content/pages/research/research.html) | Curated research HTML content block: research. | source | [site/README.md](site/README.md) |
-| [site/content/pages/research/topics.html](site/content/pages/research/topics.html) | Curated research HTML content block: topics. | source | [site/README.md](site/README.md) |
+| [site/content/pages/research/research.json](site/content/pages/research/research.json) | Bounded context-typed authored content, URLs, labels and explicit template references. | source | [site/README.md](site/README.md) |
+| [site/content/pages/research/topics.json](site/content/pages/research/topics.json) | Bounded context-typed authored content, URLs, labels and explicit template references. | source | [site/README.md](site/README.md) |
 
 ## site/content/pages/talks/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [site/content/pages/talks/intro.html](site/content/pages/talks/intro.html) | Curated talks HTML content block: intro. | source | [site/README.md](site/README.md) |
-| [site/content/pages/talks/main.html](site/content/pages/talks/main.html) | Authored talks route layout and finite block/publication substitutions. | source | [site/README.md](site/README.md) |
+| [site/content/pages/talks/intro.json](site/content/pages/talks/intro.json) | Bounded context-typed authored content, URLs, labels and explicit template references. | source | [site/README.md](site/README.md) |
+| [site/content/pages/talks/main.json](site/content/pages/talks/main.json) | Bounded context-typed authored content, URLs, labels and explicit template references. | source | [site/README.md](site/README.md) |
 | [site/content/pages/talks/metadata.json](site/content/pages/talks/metadata.json) | Authored talks title/description/metadata and ordered content block names. | source | [site/README.md](site/README.md) |
-| [site/content/pages/talks/talks.html](site/content/pages/talks/talks.html) | Curated talks HTML content block: talks. | source | [site/README.md](site/README.md) |
+| [site/content/pages/talks/talks.json](site/content/pages/talks/talks.json) | Bounded context-typed authored content, URLs, labels and explicit template references. | source | [site/README.md](site/README.md) |
 
 ## site/content/pages/writing/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [site/content/pages/writing/main.html](site/content/pages/writing/main.html) | Authored writing route layout and finite block/publication substitutions. | source | [site/README.md](site/README.md) |
+| [site/content/pages/writing/main.json](site/content/pages/writing/main.json) | Bounded context-typed authored content, URLs, labels and explicit template references. | source | [site/README.md](site/README.md) |
 | [site/content/pages/writing/metadata.json](site/content/pages/writing/metadata.json) | Authored writing title/description/metadata and ordered content block names. | source | [site/README.md](site/README.md) |
-| [site/content/pages/writing/results-year-2025.html](site/content/pages/writing/results-year-2025.html) | Curated writing HTML content block: results year 2025. | source | [site/README.md](site/README.md) |
-| [site/content/pages/writing/results-year-2026.html](site/content/pages/writing/results-year-2026.html) | Curated writing HTML content block: results year 2026. | source | [site/README.md](site/README.md) |
-| [site/content/pages/writing/section-1.html](site/content/pages/writing/section-1.html) | Curated writing HTML content block: section 1. | source | [site/README.md](site/README.md) |
+| [site/content/pages/writing/results-year-2025.json](site/content/pages/writing/results-year-2025.json) | Bounded context-typed authored content, URLs, labels and explicit template references. | source | [site/README.md](site/README.md) |
+| [site/content/pages/writing/results-year-2026.json](site/content/pages/writing/results-year-2026.json) | Bounded context-typed authored content, URLs, labels and explicit template references. | source | [site/README.md](site/README.md) |
+| [site/content/pages/writing/section-1.json](site/content/pages/writing/section-1.json) | Bounded context-typed authored content, URLs, labels and explicit template references. | source | [site/README.md](site/README.md) |
+
+## site/content/shared/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/content/shared/footer.json](site/content/shared/footer.json) | Bounded context-typed authored content, URLs, labels and explicit template references. | source | [site/README.md](site/README.md) |
+| [site/content/shared/header.json](site/content/shared/header.json) | Bounded context-typed authored content, URLs, labels and explicit template references. | source | [site/README.md](site/README.md) |
+
+## site/effects/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/effects/flight.cjs](site/effects/flight.cjs) | Canonical pure Travel effect descriptor and runtime helpers; hosted/offline adapters share raw code, CSS and controls. | source | [site/README.md](site/README.md) |
+| [site/effects/flight.css](site/effects/flight.css) | Canonical static effect CSS consumed byte-identically by hosted/offline descriptors. | source | [site/README.md](site/README.md) |
+| [site/effects/reading-surfaces.css](site/effects/reading-surfaces.css) | Canonical static effect CSS consumed byte-identically by hosted/offline descriptors. | source | [site/README.md](site/README.md) |
+| [site/effects/ribbons.cjs](site/effects/ribbons.cjs) | Optional historical ribbon factory; not serialized into current Color delivery. Retained for explicit comparison and full source scanner coverage. | source | [site/README.md](site/README.md) |
 
 ## site/engine/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [site/engine/archive.js](site/engine/archive.js) | Accessible Writing topic filters, curated publication rendering and reflow. | source | [site/README.md](site/README.md) |
+| [site/engine/critical-media.css](site/engine/critical-media.css) | Single authored responsive portrait rule; generated Home fallback and ordinary stylesheet preserve the same CSS bytes and normal selector order. | source | [site/README.md](site/README.md) |
 | [site/engine/lifecycle.cjs](site/engine/lifecycle.cjs) | Single scene lifecycle/RAF, displayed-phase freeze and native-scroll progress. | source | [site/README.md](site/README.md) |
 | [site/engine/math.cjs](site/engine/math.cjs) | Pure finite vector and transform math used by world projection. | source | [site/README.md](site/README.md) |
 | [site/engine/navigation.js](site/engine/navigation.js) | Persistent header/Canvas route mounting, exact pinned snapshots and history fallback. | source | [site/README.md](site/README.md) |
@@ -1405,6 +1549,61 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [site/integrations/cloudflare.cjs](site/integrations/cloudflare.cjs) | Exact-origin opt-in Cloudflare analytics loader with offline/staging exclusion. | source | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
 
+## site/retained/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/retained/manifest.json](site/retained/manifest.json) | Verified imported prior-public manifest generated by tools/site/retain.cjs; preserve exact retained byte identities. | generated | [site/README.md](site/README.md) |
+
+## site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/favicon.svg](site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/favicon.svg) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi-cutout.webp](site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi-cutout.webp) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi.jpg](site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi.jpg) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/writing-paradigm.svg](site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/writing-paradigm.svg) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+
+## site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/archive.js](site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/archive.js) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/navigation.js](site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/navigation.js) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/space.js](site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/space.js) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/styles.css](site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/styles.css) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+| [site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/theme.js](site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/theme.js) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+
+## site/retained/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/retained/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html](site/retained/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+
+## site/retained/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/retained/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html](site/retained/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+
+## site/retained/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/retained/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html](site/retained/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+
+## site/retained/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/retained/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html](site/retained/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+
+## site/retained/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/retained/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html](site/retained/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
+
 ## site/scenes/
 
 | Path | Purpose | Role | Owner / editing route |
@@ -1416,29 +1615,102 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [site/templates/footer.html](site/templates/footer.html) | Shared utility/credits navigation and footer structure. | source | [site/README.md](site/README.md) |
 | [site/templates/head.html](site/templates/head.html) | Shared escaped metadata, JSON-LD, engine/effects identity and optional analytics head. | source | [site/README.md](site/README.md) |
-| [site/templates/header.html](site/templates/header.html) | Shared accessible primary links and theme/motion controls. | source | [site/README.md](site/README.md) |
 | [site/templates/shell.html](site/templates/shell.html) | Finite-token page assembly around route content and shared structure. | source | [site/README.md](site/README.md) |
+
+## site/templates/components/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/templates/components/discussion-counts.html](site/templates/components/discussion-counts.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
+| [site/templates/components/discussion-link.html](site/templates/components/discussion-link.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
+| [site/templates/components/discussion-row.html](site/templates/components/discussion-row.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
+| [site/templates/components/edition-link.html](site/templates/components/edition-link.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
+| [site/templates/components/language-badge.html](site/templates/components/language-badge.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
+| [site/templates/components/publication-summary.html](site/templates/components/publication-summary.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
+| [site/templates/components/publication-title.html](site/templates/components/publication-title.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
+| [site/templates/components/publication.html](site/templates/components/publication.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
+
+## site/templates/pages/credits/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/templates/pages/credits/main.html](site/templates/pages/credits/main.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
+
+## site/templates/pages/index/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/templates/pages/index/about.html](site/templates/pages/index/about.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
+| [site/templates/pages/index/acknowledgements.html](site/templates/pages/index/acknowledgements.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
+| [site/templates/pages/index/contact.html](site/templates/pages/index/contact.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
+| [site/templates/pages/index/help.html](site/templates/pages/index/help.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
+| [site/templates/pages/index/hero.html](site/templates/pages/index/hero.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
+| [site/templates/pages/index/main.html](site/templates/pages/index/main.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
+| [site/templates/pages/index/research.html](site/templates/pages/index/research.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
+| [site/templates/pages/index/writing.html](site/templates/pages/index/writing.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
+
+## site/templates/pages/research/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/templates/pages/research/acknowledgements.html](site/templates/pages/research/acknowledgements.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
+| [site/templates/pages/research/intro.html](site/templates/pages/research/intro.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
+| [site/templates/pages/research/lenses.html](site/templates/pages/research/lenses.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
+| [site/templates/pages/research/main.html](site/templates/pages/research/main.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
+| [site/templates/pages/research/research.html](site/templates/pages/research/research.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
+| [site/templates/pages/research/topics.html](site/templates/pages/research/topics.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
+
+## site/templates/pages/talks/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/templates/pages/talks/intro.html](site/templates/pages/talks/intro.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
+| [site/templates/pages/talks/main.html](site/templates/pages/talks/main.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
+| [site/templates/pages/talks/talks.html](site/templates/pages/talks/talks.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
+
+## site/templates/pages/writing/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/templates/pages/writing/main.html](site/templates/pages/writing/main.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
+| [site/templates/pages/writing/results-year-2025.html](site/templates/pages/writing/results-year-2025.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
+| [site/templates/pages/writing/results-year-2026.html](site/templates/pages/writing/results-year-2026.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
+| [site/templates/pages/writing/section-1.html](site/templates/pages/writing/section-1.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
+
+## site/templates/shared/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/templates/shared/footer.html](site/templates/shared/footer.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
+| [site/templates/shared/header.html](site/templates/shared/header.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
 
 ## tests/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [tests/analytics.test.cjs](tests/analytics.test.cjs) | Behavioral/adversarial tests and fixtures for analytics. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/architecture.test.cjs](tests/architecture.test.cjs) | Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/archive.test.cjs](tests/archive.test.cjs) | Behavioral/adversarial tests and fixtures for archive. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/browser-gate-diagnostics.test.cjs](tests/browser-gate-diagnostics.test.cjs) | Private causal-screen plan, CLI bounds, source lineage, raw trace completeness and honest failed-row reporting Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/browser-gate-trace.test.cjs](tests/browser-gate-trace.test.cjs) | Opt-in scheduler instrumentation, actual paints/events, observation retention and bounded traces Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/browser-gate-variants.test.cjs](tests/browser-gate-variants.test.cjs) | Private fixed-ribbon/trace counterfactuals, matched mobile outputs and parent/patch identity Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/browser-lifecycle.test.cjs](tests/browser-lifecycle.test.cjs) | Optional native browser/context/page event provenance and honest teardown versus operation failure Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/build-cohesion.test.cjs](tests/build-cohesion.test.cjs) | Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/camera-view.test.cjs](tests/camera-view.test.cjs) | Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/cause-fix-probe.test.cjs](tests/cause-fix-probe.test.cjs) | Private cold interventions each vary one factor; exact normal-source and Research control lineage Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/cause-probe.test.cjs](tests/cause-probe.test.cjs) | Adversarial cause-input, CPU evidence and four-input Writing count/identity/failure retention contracts. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/color-build.test.cjs](tests/color-build.test.cjs) | Behavioral/adversarial tests and fixtures for color build. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/content-migration.test.cjs](tests/content-migration.test.cjs) | Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/content-rendering.test.cjs](tests/content-rendering.test.cjs) | Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/content.test.cjs](tests/content.test.cjs) | Behavioral/adversarial tests and fixtures for content. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/effects.test.cjs](tests/effects.test.cjs) | Permanent explicit effect composition, malformed descriptor, isolation and serialization regression cases. | test | [site/README.md](site/README.md) |
 | [tests/endpoint-fixtures.test.cjs](tests/endpoint-fixtures.test.cjs) | Behavioral/adversarial tests and fixtures for endpoint fixtures. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/engine-browser-fixtures.test.cjs](tests/engine-browser-fixtures.test.cjs) | Behavioral/adversarial tests and fixtures for engine browser fixtures. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/executive.test.cjs](tests/executive.test.cjs) | Behavioral/adversarial tests and fixtures for executive. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/flight.test.cjs](tests/flight.test.cjs) | Behavioral/adversarial tests and fixtures for flight. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/format-parity.test.cjs](tests/format-parity.test.cjs) | Permanent semantic formatting equivalence and changed-language-behavior negative fixtures. | test | [tools/quality/README.md](tools/quality/README.md) |
+| [tests/format.test.cjs](tests/format.test.cjs) | Permanent formatter inventory/configuration/pin/drift/idempotence adversarial contracts. | test | [tools/quality/README.md](tools/quality/README.md) |
 | [tests/functional-fixtures.test.cjs](tests/functional-fixtures.test.cjs) | Behavioral/adversarial tests and fixtures for functional fixtures. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/gtk-native-probe.test.cjs](tests/gtk-native-probe.test.cjs) | Private fresh GTK controls, abort/core/process evidence and honest bounded offline stack collection Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/gtk-target-probe.test.cjs](tests/gtk-target-probe.test.cjs) | Private WPE/GTK disabled-script target matrix, lifecycle cleanup and attributable failed native operations Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
@@ -1446,13 +1718,15 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/navigation-fixtures.test.cjs](tests/navigation-fixtures.test.cjs) | Behavioral/adversarial tests and fixtures for navigation fixtures. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/navigation-motion-fixtures.test.cjs](tests/navigation-motion-fixtures.test.cjs) | Behavioral/adversarial tests and fixtures for navigation motion fixtures. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/navigation.test.cjs](tests/navigation.test.cjs) | Behavioral/adversarial tests and fixtures for navigation. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/phase-checkpoint.test.cjs](tests/phase-checkpoint.test.cjs) | Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/preview-smoke.test.cjs](tests/preview-smoke.test.cjs) | Behavioral/adversarial tests and fixtures for preview smoke. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/preview.test.cjs](tests/preview.test.cjs) | Behavioral/adversarial tests and fixtures for preview. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/quality-sources.test.cjs](tests/quality-sources.test.cjs) | Active offline Color security import closure, exact Bandit scope/expiry/source/coverage negatives and verified RI/coupling checksum-only admission tests. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/quality.test.cjs](tests/quality.test.cjs) | Behavioral/adversarial tests and fixtures for quality. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/refactor-metrics.test.cjs](tests/refactor-metrics.test.cjs) | Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/renderer.test.cjs](tests/renderer.test.cjs) | Maintained renderer palette, ordered drawing/state equivalence and cache invalidation, bounded formula projection/sampling/cache and geometry/resource regressions. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/review-flow.test.cjs](tests/review-flow.test.cjs) | Behavioral/adversarial tests and fixtures for review flow. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
-| [tests/ribbons.test.cjs](tests/ribbons.test.cjs) | Behavioral/adversarial tests and fixtures for ribbons. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/ribbons.test.cjs](tests/ribbons.test.cjs) | Explicit historical optional ribbon geometry/material/clock diagnostic; active Color excludes ribbons. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/scroll-sync.test.cjs](tests/scroll-sync.test.cjs) | Behavioral/adversarial tests and fixtures for scroll sync. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/site-engine.test.cjs](tests/site-engine.test.cjs) | Behavioral/adversarial tests and fixtures for site engine. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/site-face-preparation.test.cjs](tests/site-face-preparation.test.cjs) | Behavioral/adversarial tests and fixtures for site face preparation. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
@@ -1463,12 +1737,17 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/staging-trust.test.cjs](tests/staging-trust.test.cjs) | Behavioral/adversarial tests and fixtures for staging trust. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/staging.test.cjs](tests/staging.test.cjs) | Behavioral/adversarial tests and fixtures for staging. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/test-profile-selection.test.cjs](tests/test-profile-selection.test.cjs) | Exhaustive registry/futuremodule/unknownsource/exactref/source accounting and empty/skip/TODO failure regressions. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/test_code_style.py](tests/test_code_style.py) | Negative style-guard fixtures and actual code-path/bilingual agent/RI routing checks. | test | [guides/CODE-STYLE.md](guides/CODE-STYLE.md) |
 | [tests/test_issue31_acceptance.py](tests/test_issue31_acceptance.py) | Issue 31 observable acceptance checks for RI provenance, inventory, memory, workflow, unchanged site and bootstrap. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue33_acceptance.py](tests/test_issue33_acceptance.py) | Issue #33 source snapshot assertions for unchanged public bytes, historic reviews, locator exceptions, policy and handoff. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue35_acceptance.py](tests/test_issue35_acceptance.py) | Owning issue35 targeted snapshot, real Node accounting, full-guard, registry/RI and honest source/closure assertions; selected policy only. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue36_acceptance.py](tests/test_issue36_acceptance.py) | Owning issue36 canonical SVG/inertness/geometry, native source/cache/depth/compiler/legacy-media mappings and source-bound browser/performance acceptance assertions; selected policy only. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue41_acceptance.py](tests/test_issue41_acceptance.py) | Issue41 selected implementation checks and negative fixtures; original preparation-only evidence remains pinned at d7ce5d3. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue45_acceptance.py](tests/test_issue45_acceptance.py) | Issue45 selection of maintained source checks; actual visual/browser acceptance remains separate. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [tests/test_issue48_acceptance.py](tests/test_issue48_acceptance.py) | Issue48 strict exact selections of maintained theory association, formula midpoint/cache, response reconciliation and canonical generation checks. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [tests/test_issue56_acceptance.py](tests/test_issue56_acceptance.py) | Owning issue56 frozen baseline parity and canonical R1 source/tool coverage acceptance; excluded from generic future regression. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [tests/test_issue58_acceptance.py](tests/test_issue58_acceptance.py) | Issue58 phase-specific R2 exact formatter/semantic/source/serialization evidence; selected by the shared owning policy only. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [tests/test_issue61_acceptance.py](tests/test_issue61_acceptance.py) | Issue61 mapping of existing active Color absence/navigation contracts; task-owned selection, no duplicate browser matrix. | source | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue_acceptance.py](tests/test_issue_acceptance.py) | Acceptance runner adversarial cases for invalid mappings, skipped/empty/failed tests and evidence identity. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_offline_export_security.py](tests/test_offline_export_security.py) | Behavioral/adversarial tests and fixtures for offline export security. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/test_repository_intelligence.py](tests/test_repository_intelligence.py) | Behavioral/adversarial tests and fixtures for repository intelligence. | test | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
@@ -1503,6 +1782,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tools/build_site_contact_sheets.py](tools/build_site_contact_sheets.py) | Site generation/offline review helper: build site contact sheets; inspect its source and output contract before use. | source | [site/README.md](site/README.md) |
 | [tools/build_site_previews.cjs](tools/build_site_previews.cjs) | Site generation/offline review helper: build site previews; inspect its source and output contract before use. | source | [site/README.md](site/README.md) |
 | [tools/capture_site_review.cjs](tools/capture_site_review.cjs) | Site generation/offline review helper: capture site review; inspect its source and output contract before use. | source | [site/README.md](site/README.md) |
+| [tools/check_code_style.py](tools/check_code_style.py) | Bounded authored-source style/dependency/token guard; immutable legacy debt validation. | validator | [guides/CODE-STYLE.md](guides/CODE-STYLE.md) |
 | [tools/check_repository_layout.py](tools/check_repository_layout.py) | Validate bounded entry routes, root/guide ownership, exact archive provenance and active links; opt-in issue #33 snapshots preserve task evidence. | validator | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 | [tools/check_ri_ci.py](tools/check_ri_ci.py) | Validate and refresh reviewed RI/CI mapping, test-selector resolution and actual workflow invocations. | validator | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 | [tools/check_site_contrast.cjs](tools/check_site_contrast.cjs) | Site generation/offline review helper: check site contrast; inspect its source and output contract before use. | source | [site/README.md](site/README.md) |
@@ -1519,6 +1799,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tools/quality/README.md](tools/quality/README.md) | Pinned quality tooling and source/browser/hosted artifact check entry points. | guide | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/advisory-exceptions.json](tools/quality/advisory-exceptions.json) | Quality/release configuration: advisory exceptions; preserve reviewed budgets, pins and exception provenance. | configuration | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/analytics-browser.cjs](tools/quality/analytics-browser.cjs) | Maintained quality/check helper for analytics browser; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/architecture.cjs](tools/quality/architecture.cjs) | Issue58 checkpoint, authored architecture or bounded comparable resource evidence control. | validator | [tools/quality/README.md](tools/quality/README.md) |
 | [tools/quality/artifact.cjs](tools/quality/artifact.cjs) | Exact public artifact manifest/digest, byte verification and configured size budgets. | source | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/bandit-policy.json](tools/quality/bandit-policy.json) | 32 independently reviewed current RI/acceptance-tooling Bandit findings, bound to exact file/line bytes and review expiry; no high-severity admission. | configuration | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/bandit-triage.cjs](tools/quality/bandit-triage.cjs) | Strict reviewed internal-tooling Bandit admission: exact source/line/rule/owner/expiry, raw finding and scan coverage accounting; untriaged changes fail. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
@@ -1537,6 +1818,11 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tools/quality/exceptions.json](tools/quality/exceptions.json) | Quality/release configuration: exceptions; preserve reviewed budgets, pins and exception provenance. | configuration | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/fallback-url.cjs](tools/quality/fallback-url.cjs) | Maintained quality/check helper for fallback url; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/flight-detail.cjs](tools/quality/flight-detail.cjs) | Maintained quality/check helper for flight detail; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/format-parity-controls.json](tools/quality/format-parity-controls.json) | Exact independently reviewed R2 control integration exceptions to mechanical AST/value parity; no site behavior source excluded. | configuration | [tools/quality/README.md](tools/quality/README.md) |
+| [tools/quality/format-parity.cjs](tools/quality/format-parity.cjs) | Source-bound mechanical semantic comparison of JS/Python/JSON/YAML/CSS/HTML against an immutable Git baseline. | validator | [tools/quality/README.md](tools/quality/README.md) |
+| [tools/quality/format-parity.py](tools/quality/format-parity.py) | Pinned Python AST, ordered JSON/YAML and whitespace-sensitive HTML semantic comparison helper; reads bounded explicit source inputs. | validator | [tools/quality/README.md](tools/quality/README.md) |
+| [tools/quality/format-scope.json](tools/quality/format-scope.json) | Declared maintained formatter languages/roots, tool versions and exact generated/history/ledger exclusions. | configuration | [tools/quality/README.md](tools/quality/README.md) |
+| [tools/quality/format.cjs](tools/quality/format.cjs) | Complete tracked/catalogued six-language formatter inventory and exact pinned Prettier/Ruff write/check controller. | validator | [tools/quality/README.md](tools/quality/README.md) |
 | [tools/quality/functional.cjs](tools/quality/functional.cjs) | Maintained quality/check helper for functional; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/geometry.cjs](tools/quality/geometry.cjs) | Maintained quality/check helper for geometry; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/gtk-native-probe.cjs](tools/quality/gtk-native-probe.cjs) | Maintained quality/check helper for gtk native probe; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
@@ -1549,9 +1835,13 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tools/quality/motion.cjs](tools/quality/motion.cjs) | Maintained quality/check helper for motion; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/native-display.cjs](tools/quality/native-display.cjs) | Maintained quality/check helper for native display; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/navigation.cjs](tools/quality/navigation.cjs) | Maintained quality/check helper for navigation; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/phase-checkpoint.cjs](tools/quality/phase-checkpoint.cjs) | Issue58 checkpoint, authored architecture or bounded comparable resource evidence control. | validator | [tools/quality/README.md](tools/quality/README.md) |
+| [tools/quality/prettier.config.json](tools/quality/prettier.config.json) | Explicit LF/two-space/100-column strict-whitespace Prettier configuration; opaque embedded literals are preserved. | configuration | [tools/quality/README.md](tools/quality/README.md) |
 | [tools/quality/promotion.cjs](tools/quality/promotion.cjs) | Maintained quality/check helper for promotion; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/reading-clarity.cjs](tools/quality/reading-clarity.cjs) | Opt-in bounded Chromium heading geometry comparison and separately served baseline/candidate formula captures; not a release gate. | validator | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tools/quality/refactor-metrics.cjs](tools/quality/refactor-metrics.cjs) | Issue58 checkpoint, authored architecture or bounded comparable resource evidence control. | validator | [tools/quality/README.md](tools/quality/README.md) |
 | [tools/quality/research-pair-probe.cjs](tools/quality/research-pair-probe.cjs) | Maintained quality/check helper for research pair probe; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/ruff-format.toml](tools/quality/ruff-format.toml) | Explicit Python four-space formatting configuration, independent of isolated Ruff lint rule selection. | configuration | [tools/quality/README.md](tools/quality/README.md) |
 | [tools/quality/scanners.cjs](tools/quality/scanners.cjs) | Pinned lint/security/advisory execution with raw coverage, exact expiring Bandit triage and verified RI/coupling checksum proof; new findings fail. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/scroll-browser.cjs](tools/quality/scroll-browser.cjs) | Maintained quality/check helper for scroll browser; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/secrets-baseline.json](tools/quality/secrets-baseline.json) | Exact independently reviewed public source/file/line checksum and article identifier false positives; new unknown entropy remains a gate failure. | configuration | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
@@ -1593,11 +1883,20 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [tools/site/analytics.cjs](tools/site/analytics.cjs) | Validate exact-origin analytics configuration and generate optional head/loader. | source | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
-| [tools/site/build.cjs](tools/site/build.cjs) | Source validation and deterministic dependency-aware complete public-tree generation. | source | [site/README.md](site/README.md) |
+| [tools/site/build.cjs](tools/site/build.cjs) | Dependency-aware source/hash/cache and transactional generation orchestration consuming pure content, validation, page and SVG owners. | source | [site/README.md](site/README.md) |
+| [tools/site/content.cjs](tools/site/content.cjs) | Cohesive validated content/render/geometry owner with explicit inputs and delivery boundaries. | source | [site/README.md](site/README.md) |
+| [tools/site/effects.cjs](tools/site/effects.cjs) | Canonical active effect manifest, descriptor validation, ordered hosted assembly and compatible offline adapters. | source | [site/README.md](site/README.md) |
 | [tools/site/evidence-policy.cjs](tools/site/evidence-policy.cjs) | Advisory component-fingerprint proposal for content-only or full check scope under #13; never skips mandatory jobs or reuses evidence. | source | [site/README.md](site/README.md) |
+| [tools/site/export.cjs](tools/site/export.cjs) | Canonical offline export builder for Base, Ribbons, Flight and Color using maintained effect adapters. | source | [site/README.md](site/README.md) |
+| [tools/site/fallback.cjs](tools/site/fallback.cjs) | Cohesive validated content/render/geometry owner with explicit inputs and delivery boundaries. | source | [site/README.md](site/README.md) |
+| [tools/site/html.cjs](tools/site/html.cjs) | Cohesive validated content/render/geometry owner with explicit inputs and delivery boundaries. | source | [site/README.md](site/README.md) |
+| [tools/site/render-content.cjs](tools/site/render-content.cjs) | Cohesive validated content/render/geometry owner with explicit inputs and delivery boundaries. | source | [site/README.md](site/README.md) |
+| [tools/site/render-page.cjs](tools/site/render-page.cjs) | Cohesive validated content/render/geometry owner with explicit inputs and delivery boundaries. | source | [site/README.md](site/README.md) |
+| [tools/site/render-records.cjs](tools/site/render-records.cjs) | Cohesive validated content/render/geometry owner with explicit inputs and delivery boundaries. | source | [site/README.md](site/README.md) |
 | [tools/site/retain.cjs](tools/site/retain.cjs) | Explicit verified prior immutable public-file retention. | source | [site/README.md](site/README.md) |
 | [tools/site/scene-assets.cjs](tools/site/scene-assets.cjs) | Bounded canonical formula SVG compiler; generation-only validation and finite numeric browser drawing commands. | validator | [site/README.md](site/README.md) |
 | [tools/site/snapshot.cjs](tools/site/snapshot.cjs) | Exact content-addressed route/runtime/media descriptor construction. | source | [site/README.md](site/README.md) |
+| [tools/site/validate-catalog.cjs](tools/site/validate-catalog.cjs) | Cohesive validated content/render/geometry owner with explicit inputs and delivery boundaries. | source | [site/README.md](site/README.md) |
 | [tools/site/variants.cjs](tools/site/variants.cjs) | Authored effect API/identity attachment shared by offline and hosted Color variants. | source | [site/README.md](site/README.md) |
 
 ## tools/staging/

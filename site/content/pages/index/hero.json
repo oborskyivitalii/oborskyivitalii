@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "template": "pages/index/hero.html",
+  "text": {
+    "T001": "AI delivery governance & agentic\n      operating models",
+    "T002": "AI tools everywhere.",
+    "T003": "Better delivery?",
+    "T004": "Harder to\n      tell.",
+    "T005": "Vitalii Oborskyi · Delivery leader, researcher & author.",
+    "T006": "I help software organizations investigate why AI adoption is not improving delivery,\n      rebalance review and ownership, and define controls for agentic systems in production.",
+    "T007": "For enterprise software teams and IT services companies.",
+    "T008": "Discuss your AI challenge ",
+    "T009": "↗",
+    "T010": "Explore the research ",
+    "T011": "↓",
+    "T012": "AI is a fundamental shift: an attempt to delegate parts of thinking to machines.",
+    "T013": "I study what that changes in software delivery and the systems we design. My work draws on\n      more than 20 years across quality engineering, project management, PMO and delivery\n      leadership."
+  },
+  "attributes": {
+    "A001": "Portrait of Vitalii Oborskyi with the background removed"
+  },
+  "urls": {
+    "U001": "#contact",
+    "U002": "#research",
+    "U003": "assets/vitalii-oborskyi-cutout.webp"
+  }
+}

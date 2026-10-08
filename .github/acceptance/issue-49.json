@@ -6,79 +6,59 @@
   "criteria": [
     {
       "id": "AC01",
-      "intent": "Publish the source-backed architecture, limitations and ordered model handoff.",
+      "intent": "Publish the revised source-backed stationary-reading and two-sided fragment-flight architecture and ordered model handoff.",
       "automated_scope": "Current navigation/coupling and ownership checks only. Semantic design review and the live Draft PR/artifact linkage are separately recorded at the issue.",
-      "checks": [
-        "CURRENT-RI",
-        "RI-CI",
-        "OWNER"
-      ],
-      "gates": [
-        "G-DESIGN"
-      ]
+      "checks": ["CURRENT-RI", "RI-CI", "OWNER"],
+      "gates": ["G-DESIGN"]
     },
     {
       "id": "AC02",
-      "intent": "Assemble incoming content from the unchanged fractal using its painted camera.",
-      "automated_scope": "Planning-only: no fragment projection exists and no geometry or depth acceptance is claimed. Add named implemented spatial checks before evaluating the feature.",
+      "intent": "Disassemble outgoing visible content and assemble incoming content through the unchanged fractal using its painted camera.",
+      "automated_scope": "Planning-only: no fragment projection exists. Both departure and arrival are required by the 2026-10-08 amendment; shared-camera geometry, near-plane and visual depth checks must be implemented before feature acceptance.",
       "checks": [],
-      "gates": [
-        "G-DEPTH"
-      ]
+      "gates": ["G-DEPTH"]
     },
     {
       "id": "AC03",
-      "intent": "Show mixed sub-glyph, glyph, word and picture fragments with an exact native handoff.",
+      "intent": "Show mixed sub-glyph, glyph, word and picture fragments on departure and arrival with exact native handoffs.",
       "automated_scope": "Planning-only: no new fragmentation or native-paint fidelity test exists. Add partition/image/text tests and actual visual evidence before implementation acceptance.",
       "checks": [],
-      "gates": [
-        "G-FIDELITY"
-      ]
+      "gates": ["G-FIDELITY"]
     },
     {
       "id": "AC04",
       "intent": "Preserve route, landing, interruption and lifecycle continuity.",
-      "automated_scope": "Existing Basic flight/theme/archive checks preserve the unchanged current source. They do not exercise a future fragment transaction; its implemented race/landing/cleanup checks remain required.",
-      "checks": [
-        "BASIC"
-      ],
-      "gates": [
-        "G-NAVIGATION"
-      ]
+      "automated_scope": "Existing Basic navigation checks preserve current main only. Implementation must retain native scroll/history/filter/edge intent while adopting fixed route reading poses and adding fragment race, landing and cleanup checks. Old scroll-camera assertions are explicitly superseded only when their meaningful replacement exists.",
+      "checks": ["BASIC"],
+      "gates": ["G-NAVIGATION"]
     },
     {
       "id": "AC05",
       "intent": "Preserve semantic content, accessible controls and ordinary fallback behavior.",
       "automated_scope": "Existing Basic source checks only; fragment accessibility, disabled modes, cleanup and actual browser fallback are unimplemented and cannot pass from this policy.",
-      "checks": [
-        "BASIC"
-      ],
-      "gates": [
-        "G-ACCESSIBILITY"
-      ]
+      "checks": ["BASIC"],
+      "gates": ["G-ACCESSIBILITY"]
     },
     {
       "id": "AC06",
       "intent": "Keep bounded fragment resources and pass original plus predeclared added-cost budgets.",
       "automated_scope": "Planning-only: proposed bounds are not implemented or measured. Resource/measurement validators and exact-source raw paired evidence must be added before admission.",
       "checks": [],
-      "gates": [
-        "G-PERFORMANCE"
-      ]
+      "gates": ["G-PERFORMANCE"]
     },
     {
       "id": "AC07",
-      "intent": "Deliver reviewed implementation, mapped evidence and reconciled issue/PR state.",
+      "intent": "Deliver reviewed implementation, CS01-CS10 compliance, mapped evidence and reconciled issue/PR state.",
       "automated_scope": "Current RI, coupling, issue-owner selection and manual-pending runner behavior verify this handoff infrastructure only. No feature implementation, independent review, merge or release is inferred.",
-      "checks": [
-        "CURRENT-RI",
-        "RI-CI",
-        "OWNER",
-        "PENDING"
-      ],
-      "gates": [
-        "G-DELIVERY"
-      ]
+      "checks": ["CURRENT-RI", "RI-CI", "OWNER", "PENDING"],
+      "gates": ["G-DELIVERY"]
+    },
+    {
+      "id": "AC08",
+      "intent": "Keep the settled route camera independent of reading scroll, filters, hashes and native history position while retaining ambient motion and edge-triggered route travel.",
+      "automated_scope": "Planning-only: main still implements scroll-coupled camera movement. No stationary-reading feature check exists yet. Replace active movement assertions with meaningful fixed-pose, native-scroll, ambient-motion and route-flight tests before acceptance.",
+      "checks": [],
+      "gates": ["G-READING"]
     }
   ],
   "checks": {
@@ -109,15 +89,15 @@
     },
     "G-DEPTH": {
       "kind": "human",
-      "description": "Implementation is pending. Require real scene-projected fragment behavior and meaningful source tests, plus source-bound forward/reverse visual depth acceptance with unchanged scene geometry/camera/ribbons."
+      "description": "Implementation pending. Require shared painted-camera departure breakup, forward flight-through, safe near-plane behavior and incoming emergence from a real scene anchor. Inspect source-bound two-sided clips in both route directions and nonadjacent navigation. Preserve current fractal/formula/room geometry and active no-ribbons composition; this user amendment deliberately changes settled camera policy, not world geometry. Native overlay depth is provisional until visual admission."
     },
     "G-FIDELITY": {
       "kind": "human",
-      "description": "Implementation is pending. Require real mixed-mask text/image coverage tests, final native layout and pixel/fidelity observations at Day/Night desktop/narrow sizes. Missing images or generic letter-only motion cannot satisfy this gate."
+      "description": "Implementation pending. Require mixed-mask text/image coverage on both outgoing actual viewport and incoming actual landing, exact native final layout, safe SVG/crop/alpha and Day/Night desktop/narrow handoff evidence. Missing images or word-only motion cannot satisfy this gate."
     },
     "G-NAVIGATION": {
       "kind": "human",
-      "description": "Implementation is pending. Add and run actual fragment transaction/retarget/landings/readiness/cleanup checks, then inspect matching hosted navigation observations. Existing legacy checks are insufficient."
+      "description": "Implementation pending. Run real fragment transaction, interruption, native bottom/hash/filter/history and cleanup tests. Preserve deliberate edge input, tails, Credits instant behavior and proposed existing reverse direction. Review always-forward Back separately if requested; no new choreography is inferred."
     },
     "G-ACCESSIBILITY": {
       "kind": "human",
@@ -125,11 +105,15 @@
     },
     "G-PERFORMANCE": {
       "kind": "human",
-      "description": "Implementation is pending. Validate declared resource bounds and same-source old/new raw paired observations at unchanged scene quality against original and predeclared added-cost budgets. No measurements were made in this planning session. Existing production/native release gates stay with issue13."
+      "description": "Implementation pending. Enforce one combined departure/arrival resource cap and compare same-source stationary-camera legacy presentation versus stationary-camera fragments at identical quality/cache/landing conditions. Retain raw inclusive timing/layout/paint/resource evidence and all original budgets. Camera-policy savings cannot mask fragment cost. No measurement is made in this planning revision; release/native/device gates retain their owners."
     },
     "G-DELIVERY": {
       "kind": "human",
-      "description": "Require implemented deterministic mappings, canonical/generated/offline/RI outputs, scoped current-source CI/preview/evidence, honest independent implementation review, author visual acceptance, actual issue checkboxes and applicable maintainer merge decision. Planning-only publication cannot satisfy full delivery; no production authorization is supplied."
+      "description": "Require implemented named checks for AC02-AC08, canonical/generated/offline and RI/profile updates, CS01-CS10 evidence including substantive review, current-source scoped CI/preview/staging, author visual acceptance, independent implementation review, actual checkboxes and final maintainer merge/main gate. Planning publication is not feature completion or production authorization."
+    },
+    "G-READING": {
+      "kind": "human",
+      "description": "Implementation pending. Verify fixed settled route camera through real native scroll, Writing filtering, layout/font/image changes, resize/zoom, anchors and history restoration. Preserve actual scroll endpoints, edge-triggered route flights, living ambient scene and Off/reduced/hidden/print semantics. Inspect thematic framing including Writing formula; do not hide missing camera work by disabling Motion."
     }
   }
 }

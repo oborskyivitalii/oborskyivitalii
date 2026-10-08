@@ -91,11 +91,47 @@
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
-    ".github/acceptance/issue-49.json": {
+    ".github/acceptance/issue-48.json": {
       "kind": "file",
-      "purpose": "Planning-stage AC01-AC07 mapping: current-source preservation checks with explicit pending fragment implementation and visual/performance gates.",
+      "purpose": "Issue48 theory association, Writing midpoint and evidence-led Matthew response mapping with separate current-preview/editorial/review/merge gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
+    },
+    ".github/acceptance/issue-54.json": {
+      "kind": "file",
+      "purpose": "Issue54 audit, guide, enforced subset, RI routing and Sol plan acceptance mapping.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    ".github/acceptance/issue-56.json": {
+      "kind": "file",
+      "purpose": "Issue56 AC01\u2013AC06 source-bound R1 extraction/tool coverage policy with independent/live delivery gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    ".github/acceptance/issue-58.json": {
+      "kind": "file",
+      "purpose": "Shared issue58 AC01\u2013AC10 mapping: frozen R2 checkpoint and current content/CSS/cohesion/resource contracts with final review/live/merge gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    ".github/acceptance/issue-59.json": {
+      "kind": "file",
+      "purpose": "Superseded issue59 original preparation policy retained as nonselected audit/transition history; current phase PRs select issue58 only.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    ".github/acceptance/issue-61.json": {
+      "kind": "file",
+      "purpose": "PMDay recording AC01\u2013AC03 mapped to existing current-source content/semantic/RI checks and explicit review/CI/linkage gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    ".github/code-style.json": {
+      "kind": "file",
+      "purpose": "Exact issue54 legacy source/inline-style debt with frozen-baseline ceilings and removal tasks.",
+      "role": "configuration",
+      "owner": "guides/CODE-STYLE.md"
     },
     ".github/pull_request_template.md": {
       "kind": "file",
@@ -391,39 +427,75 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff": {
+    "docs/runtime/bf00029e91c5bfd7177ca04fd7eb32dc4348e57b227c201a8652b87bad0519b9": {
       "kind": "directory",
-      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff/archive.js": {
+    "docs/runtime/bf00029e91c5bfd7177ca04fd7eb32dc4348e57b227c201a8652b87bad0519b9/archive.js": {
       "kind": "file",
-      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff/navigation.js": {
+    "docs/runtime/bf00029e91c5bfd7177ca04fd7eb32dc4348e57b227c201a8652b87bad0519b9/navigation.js": {
       "kind": "file",
-      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff/space.js": {
+    "docs/runtime/bf00029e91c5bfd7177ca04fd7eb32dc4348e57b227c201a8652b87bad0519b9/space.js": {
       "kind": "file",
-      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff/styles.css": {
+    "docs/runtime/bf00029e91c5bfd7177ca04fd7eb32dc4348e57b227c201a8652b87bad0519b9/styles.css": {
       "kind": "file",
-      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff/theme.js": {
+    "docs/runtime/bf00029e91c5bfd7177ca04fd7eb32dc4348e57b227c201a8652b87bad0519b9/theme.js": {
       "kind": "file",
-      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62": {
+      "kind": "directory",
+      "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/archive.js": {
+      "kind": "file",
+      "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/navigation.js": {
+      "kind": "file",
+      "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/space.js": {
+      "kind": "file",
+      "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/styles.css": {
+      "kind": "file",
+      "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/theme.js": {
+      "kind": "file",
+      "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -439,63 +511,123 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/2f6d5fbf34aa829b133360029157fb5ee425571e9ecadd2b443ef6f1e0901986": {
+    "docs/snapshots/0374a6fd1886f2cc759d4a481ea4e2aca8c074f826ebd13f2066621074efda29": {
       "kind": "directory",
-      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/2f6d5fbf34aa829b133360029157fb5ee425571e9ecadd2b443ef6f1e0901986/talks.html": {
+    "docs/snapshots/0374a6fd1886f2cc759d4a481ea4e2aca8c074f826ebd13f2066621074efda29/index.html": {
       "kind": "file",
-      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/259616bcb517d2aa0736fc66ec7fad29101355d46f0501151d2101e3b34baaad": {
+    "docs/snapshots/13cacc74bef65a345dfa1604153bce5575bd922f5fd78c4222dfab334782184b": {
       "kind": "directory",
-      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/259616bcb517d2aa0736fc66ec7fad29101355d46f0501151d2101e3b34baaad/index.html": {
+    "docs/snapshots/13cacc74bef65a345dfa1604153bce5575bd922f5fd78c4222dfab334782184b/research.html": {
       "kind": "file",
-      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/3d0618ceada601d51bfc3e3e69383e0fcd2c2933cd25963eb67638328cb83207": {
+    "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347": {
       "kind": "directory",
-      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
+      "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/3d0618ceada601d51bfc3e3e69383e0fcd2c2933cd25963eb67638328cb83207/writing.html": {
+    "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html": {
       "kind": "file",
-      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
+      "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/be7a4cd6562bc70e20f247ee15e4667885db74053acef7397ea075963186a9fb": {
+    "docs/snapshots/70866d67e4679052e5a7599114376b38ae855beb439f7db061a0a7606c2ca8a8": {
       "kind": "directory",
-      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/be7a4cd6562bc70e20f247ee15e4667885db74053acef7397ea075963186a9fb/credits.html": {
+    "docs/snapshots/70866d67e4679052e5a7599114376b38ae855beb439f7db061a0a7606c2ca8a8/writing.html": {
       "kind": "file",
-      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/e31ef87381aa2d33cfe14b0925e58858a69e97b9573f06390d5f9699d85e97f3": {
+    "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa": {
       "kind": "directory",
-      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
+      "purpose": "Current immutable content-addressed route snapshot; generated from the exact maintained Talks content.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/e31ef87381aa2d33cfe14b0925e58858a69e97b9573f06390d5f9699d85e97f3/research.html": {
+    "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html": {
       "kind": "file",
-      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
+      "purpose": "Generated immutable Talks route snapshot; regenerate from site sources with tools/site/build.cjs.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68": {
+      "kind": "directory",
+      "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html": {
+      "kind": "file",
+      "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946": {
+      "kind": "directory",
+      "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html": {
+      "kind": "file",
+      "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7": {
+      "kind": "directory",
+      "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html": {
+      "kind": "file",
+      "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/df68c60e052fa89f1fedecda35f055a8023803f53ba878eca17574209dc7fa9f": {
+      "kind": "directory",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/df68c60e052fa89f1fedecda35f055a8023803f53ba878eca17574209dc7fa9f/talks.html": {
+      "kind": "file",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/e951707ca8af51e97d351b275ef73ddece0afc9d5e59c2e164b60d84fb2276c5": {
+      "kind": "directory",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/e951707ca8af51e97d351b275ef73ddece0afc9d5e59c2e164b60d84fb2276c5/credits.html": {
+      "kind": "file",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -546,6 +678,12 @@
       "purpose": "Maintained topic guides for repository boundaries, publication, quality and hosting; root stays an entry surface.",
       "role": "guide",
       "owner": "guides/README.md"
+    },
+    "guides/CODE-STYLE.md": {
+      "kind": "file",
+      "purpose": "Mandatory agent coding, content/template/CSS boundaries, performance and verification standards.",
+      "role": "guide",
+      "owner": "guides/CODE-STYLE.md"
     },
     "guides/README.md": {
       "kind": "file",
@@ -889,17 +1027,191 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
-    "review/issue-49": {
+    "review/issue-48": {
       "kind": "directory",
-      "purpose": "Versioned architecture and execution handoff for fragments emerging from the existing fractal.",
-      "role": "draft",
+      "purpose": "Issue48 bounded source intake, exact content amendment and dated implementation/review handoff.",
+      "role": "history",
       "owner": "CONTRIBUTING.md"
     },
-    "review/issue-49/2026-10-08-analysis.md": {
+    "review/issue-48/2026-10-08-handoff.md": {
       "kind": "file",
-      "purpose": "Source-backed clipped-content flight architecture, feasibility limits, resource proposal, test allocation and ordered Sol tasks; no implementation claim.",
-      "role": "draft",
+      "purpose": "Issue48 versioned source/impact intake, narrow implementation tasks, independent review and exact-source acceptance handoff.",
+      "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-48/content-amendment.json": {
+      "kind": "file",
+      "purpose": "Issue48 exact hashed theory order/association and Matthew Home/Research deltas, reversed before the immutable issue41 amendment.",
+      "role": "history",
+      "owner": "guides/SITE-SEO.md"
+    },
+    "review/issue-48/source-inventory.json": {
+      "kind": "file",
+      "purpose": "Verified Matthew Skelton public reshare identity, bounded guest-source acquisition metadata/hash, Michael Risch attribution and older encouragement provenance.",
+      "role": "history",
+      "owner": "guides/SITE-SOURCE-AUDIT.md"
+    },
+    "review/issue-54": {
+      "kind": "directory",
+      "purpose": "Issue54 source audit, architecture and ordered Sol refactor plan.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-54/2026-10-08-analysis.md": {
+      "kind": "file",
+      "purpose": "Exact-baseline site debt findings, code standards delivery and bounded Sol work packages.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-56": {
+      "kind": "directory",
+      "purpose": "Versioned R1 implementation, tool decision, parity and review evidence for issue56.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-56/2026-10-08-handoff.md": {
+      "kind": "file",
+      "purpose": "Single source-bound R1 implementation handoff, free tooling decision, CS/AC mapping and independent review record.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-58": {
+      "kind": "directory",
+      "purpose": "Single R2\u2013R6 refactoring handoff, immutable phase observations and integrated evidence under continuing DraftPR60.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-58/2026-10-08-bandit-rebinding.json": {
+      "kind": "file",
+      "purpose": "Exact reviewed R2 Bandit finding equivalence, unchanged trust boundary and source/line rebinding proof.",
+      "role": "history",
+      "owner": "tools/quality/README.md"
+    },
+    "review/issue-58/2026-10-08-final-visual-captures.json.gz": {
+      "kind": "file",
+      "purpose": "Compressed immutable raw current visual observations; source/artifact/file maps, served byte hashes and geometry bind original observed identities.",
+      "role": "history",
+      "owner": "review/issue-58/2026-10-08-final-visual.json"
+    },
+    "review/issue-58/2026-10-08-final-visual.json": {
+      "kind": "file",
+      "purpose": "Eight actual clean approved-main/current candidate Home/Writing Day/Night desktop/mobile visual pairs; exact pixel/semantic/HTTP identity with bounded scope.",
+      "role": "history",
+      "owner": "review/issue-58/2026-10-08-handoff.md"
+    },
+    "review/issue-58/2026-10-08-handoff.md": {
+      "kind": "file",
+      "purpose": "Shared issue58 refactor handoff: R2 phase subconditions mapped to stable AC01-AC10, source/semantic/security tasks and pending evidence.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-58/2026-10-08-r3-r6-bandit.json": {
+      "kind": "file",
+      "purpose": "Dated independently reviewed preintegration source proof; original dirty identity and bounded scope retained.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-58/2026-10-08-r4-css.json": {
+      "kind": "file",
+      "purpose": "Dated R4/R5 raw phase observations preserving original source identity; final integrated acceptance remains separately bound.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-58/2026-10-08-r5-offline.json": {
+      "kind": "file",
+      "purpose": "Dated independently reviewed preintegration source proof; original dirty identity and bounded scope retained.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-58/2026-10-08-r5-output.json": {
+      "kind": "file",
+      "purpose": "Dated R4/R5 raw phase observations preserving original source identity; final integrated acceptance remains separately bound.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-58/2026-10-08-r5-projection.json": {
+      "kind": "file",
+      "purpose": "Dated R4/R5 raw phase observations preserving original source identity; final integrated acceptance remains separately bound.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-58/2026-10-08-r6-matched-observations.json": {
+      "kind": "file",
+      "purpose": "Source-bound R6 unmodified adaptive acceptance, matched counterfactual observations, exact scoped reuse and honest optimization disposition.",
+      "role": "history",
+      "owner": "review/issue-58/2026-10-08-handoff.md"
+    },
+    "review/issue-58/2026-10-08-r6-matched-raw.json.gz": {
+      "kind": "file",
+      "purpose": "Exact raw R6 reports, failed CPU-sampling attempt, artifact manifests and frozen collector source bytes; immutable historical evidence, not an active runtime.",
+      "role": "history",
+      "owner": "review/issue-58/2026-10-08-handoff.md"
+    },
+    "review/issue-58/2026-10-08-r6-triage.json": {
+      "kind": "file",
+      "purpose": "Dated exact-source refactoring observation with explicit admission/status and raw evidence.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-58/2026-10-08-r6-triage.json.gz": {
+      "kind": "file",
+      "purpose": "Dated exact-source refactoring observation with explicit admission/status and raw evidence.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-58/2026-10-08-rebase-bandit.json": {
+      "kind": "file",
+      "purpose": "Independent exact four-row Bandit rebinding proof after approved-main rebase; preserves findings, sources and deadlines.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-58/2026-10-08-resume-base-measurements.json.gz": {
+      "kind": "file",
+      "purpose": "Interruption recovery exact Base measurements; raw identities, failed budgets and adaptive-quality limitations remain explicit.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-58/2026-10-08-resume-base-observations.json": {
+      "kind": "file",
+      "purpose": "Interruption recovery exact Base measurements; raw identities, failed budgets and adaptive-quality limitations remain explicit.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-58/2026-10-08-scanner-rebinding.json": {
+      "kind": "file",
+      "purpose": "R2 lint complexity, advisory source/lock and security fingerprint review; current final-scan status explicit.",
+      "role": "history",
+      "owner": "tools/quality/README.md"
+    },
+    "review/issue-58/2026-10-08-visual-captures.json.gz": {
+      "kind": "file",
+      "purpose": "Compressed immutable raw record of the eight independently inspected paired R2 viewport captures; uncompressed digest is bound by visual-parity summary.",
+      "role": "history",
+      "owner": "review/issue-58/2026-10-08-visual-parity.json"
+    },
+    "review/issue-58/2026-10-08-visual-parity.json": {
+      "kind": "file",
+      "purpose": "Independent eight paired Home/Writing Day/Night desktop/narrow viewport captures with exact served bytes, geometry/text and zero pixel differences; dirty checkpoint and bounded limitations explicit.",
+      "role": "history",
+      "owner": "review/issue-58/2026-10-08-handoff.md"
+    },
+    "review/issue-61": {
+      "kind": "directory",
+      "purpose": "Bounded source amendment and handoff for the supplied PMDay Ukrainian recording update.",
+      "role": "history",
+      "owner": "review/REVIEW-TEMPLATE.md"
+    },
+    "review/issue-61/2026-10-08-handoff.md": {
+      "kind": "file",
+      "purpose": "PMDay recording source treatment, proportional checks and style/review handoff; current live evidence belongs to issue61/its PR.",
+      "role": "history",
+      "owner": "review/REVIEW-TEMPLATE.md"
+    },
+    "review/issue-61/content-amendment.json": {
+      "kind": "file",
+      "purpose": "Exact hashed old/new PMDay article delta authorized by the maintainer; restore before immutable Issue48/41 content amendments.",
+      "role": "configuration",
+      "owner": "guides/SITE-SOURCE-AUDIT.md"
     },
     "review/public-responses-20261006": {
       "kind": "directory",
@@ -1753,12 +2065,6 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
-    "review/site-scroll-sync-20261004/FLIGHT-PROTOTYPE.cjs": {
-      "kind": "file",
-      "purpose": "Maintained authored Color content-flight effects consumed by current exporters/staging checks.",
-      "role": "source",
-      "owner": "site/README.md"
-    },
     "review/site-scroll-sync-20261004/FLIGHT.md": {
       "kind": "file",
       "purpose": "Historical report/plan/checkpoint: FLIGHT.md. Native-scroll/flight/ribbon evidence plus explicitly marked maintained Color/export sources.",
@@ -1777,12 +2083,6 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
-    "review/site-scroll-sync-20261004/READING-SURFACES.cjs": {
-      "kind": "file",
-      "purpose": "Authored reading-surface effect helper covered by current source security checks.",
-      "role": "source",
-      "owner": "site/README.md"
-    },
     "review/site-scroll-sync-20261004/REFINEMENT.md": {
       "kind": "file",
       "purpose": "Historical report/plan/checkpoint: REFINEMENT.md. Native-scroll/flight/ribbon evidence plus explicitly marked maintained Color/export sources.",
@@ -1794,12 +2094,6 @@
       "purpose": "Historical report/plan/checkpoint: REPORT.md. Native-scroll/flight/ribbon evidence plus explicitly marked maintained Color/export sources.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
-    },
-    "review/site-scroll-sync-20261004/RIBBONS-PROTOTYPE.cjs": {
-      "kind": "file",
-      "purpose": "Maintained authored Color ribbon/reading presentation consumed by current exporters/staging checks.",
-      "role": "source",
-      "owner": "site/README.md"
     },
     "review/site-scroll-sync-20261004/RIBBONS.md": {
       "kind": "file",
@@ -1884,12 +2178,6 @@
       "purpose": "Historical retained diagnostic/export script: check-ribbon-material.cjs. Native-scroll/flight/ribbon evidence plus explicitly marked maintained Color/export sources.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
-    },
-    "review/site-scroll-sync-20261004/export.cjs": {
-      "kind": "file",
-      "purpose": "Maintained complete standalone base/Color exporter used by basic and hosted checks.",
-      "role": "source",
-      "owner": "site/README.md"
     },
     "review/site-sol-continuation-20261005": {
       "kind": "directory",
@@ -5505,7 +5793,7 @@
     },
     "site/content": {
       "kind": "directory",
-      "purpose": "Authored publication catalog and route-specific curated content.",
+      "purpose": "Canonical publication/catalog and bounded context-typed prose, labels, URLs and page composition inputs.",
       "role": "source",
       "owner": "guides/SITE-SOURCE-AUDIT.md"
     },
@@ -5517,7 +5805,7 @@
     },
     "site/content/pages": {
       "kind": "directory",
-      "purpose": "Authored HTML blocks and metadata organized by the five route IDs.",
+      "purpose": "Five route metadata and bounded JSON content documents; markup belongs to site/templates.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -5527,9 +5815,9 @@
       "role": "source",
       "owner": "site/README.md"
     },
-    "site/content/pages/credits/main.html": {
+    "site/content/pages/credits/main.json": {
       "kind": "file",
-      "purpose": "Authored credits route layout and finite block/publication substitutions.",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -5545,39 +5833,39 @@
       "role": "source",
       "owner": "site/README.md"
     },
-    "site/content/pages/index/about.html": {
+    "site/content/pages/index/about.json": {
       "kind": "file",
-      "purpose": "Curated index HTML content block: about.",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
       "role": "source",
       "owner": "site/README.md"
     },
-    "site/content/pages/index/acknowledgements.html": {
+    "site/content/pages/index/acknowledgements.json": {
       "kind": "file",
-      "purpose": "Curated index HTML content block: acknowledgements.",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
       "role": "source",
       "owner": "site/README.md"
     },
-    "site/content/pages/index/contact.html": {
+    "site/content/pages/index/contact.json": {
       "kind": "file",
-      "purpose": "Curated index HTML content block: contact.",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
       "role": "source",
       "owner": "site/README.md"
     },
-    "site/content/pages/index/help.html": {
+    "site/content/pages/index/help.json": {
       "kind": "file",
-      "purpose": "Curated index HTML content block: help.",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
       "role": "source",
       "owner": "site/README.md"
     },
-    "site/content/pages/index/hero.html": {
+    "site/content/pages/index/hero.json": {
       "kind": "file",
-      "purpose": "Curated index HTML content block: hero.",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
       "role": "source",
       "owner": "site/README.md"
     },
-    "site/content/pages/index/main.html": {
+    "site/content/pages/index/main.json": {
       "kind": "file",
-      "purpose": "Authored index route layout and finite block/publication substitutions.",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -5587,15 +5875,15 @@
       "role": "source",
       "owner": "site/README.md"
     },
-    "site/content/pages/index/research.html": {
+    "site/content/pages/index/research.json": {
       "kind": "file",
-      "purpose": "Curated index HTML content block: research.",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
       "role": "source",
       "owner": "site/README.md"
     },
-    "site/content/pages/index/writing.html": {
+    "site/content/pages/index/writing.json": {
       "kind": "file",
-      "purpose": "Curated index HTML content block: writing.",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -5605,27 +5893,27 @@
       "role": "source",
       "owner": "site/README.md"
     },
-    "site/content/pages/research/acknowledgements.html": {
+    "site/content/pages/research/acknowledgements.json": {
       "kind": "file",
-      "purpose": "Curated research HTML content block: acknowledgements.",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
       "role": "source",
       "owner": "site/README.md"
     },
-    "site/content/pages/research/intro.html": {
+    "site/content/pages/research/intro.json": {
       "kind": "file",
-      "purpose": "Curated research HTML content block: intro.",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
       "role": "source",
       "owner": "site/README.md"
     },
-    "site/content/pages/research/lenses.html": {
+    "site/content/pages/research/lenses.json": {
       "kind": "file",
-      "purpose": "Curated research HTML content block: lenses.",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
       "role": "source",
       "owner": "site/README.md"
     },
-    "site/content/pages/research/main.html": {
+    "site/content/pages/research/main.json": {
       "kind": "file",
-      "purpose": "Authored research route layout and finite block/publication substitutions.",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -5635,15 +5923,15 @@
       "role": "source",
       "owner": "site/README.md"
     },
-    "site/content/pages/research/research.html": {
+    "site/content/pages/research/research.json": {
       "kind": "file",
-      "purpose": "Curated research HTML content block: research.",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
       "role": "source",
       "owner": "site/README.md"
     },
-    "site/content/pages/research/topics.html": {
+    "site/content/pages/research/topics.json": {
       "kind": "file",
-      "purpose": "Curated research HTML content block: topics.",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -5653,15 +5941,15 @@
       "role": "source",
       "owner": "site/README.md"
     },
-    "site/content/pages/talks/intro.html": {
+    "site/content/pages/talks/intro.json": {
       "kind": "file",
-      "purpose": "Curated talks HTML content block: intro.",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
       "role": "source",
       "owner": "site/README.md"
     },
-    "site/content/pages/talks/main.html": {
+    "site/content/pages/talks/main.json": {
       "kind": "file",
-      "purpose": "Authored talks route layout and finite block/publication substitutions.",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -5671,9 +5959,9 @@
       "role": "source",
       "owner": "site/README.md"
     },
-    "site/content/pages/talks/talks.html": {
+    "site/content/pages/talks/talks.json": {
       "kind": "file",
-      "purpose": "Curated talks HTML content block: talks.",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -5683,9 +5971,9 @@
       "role": "source",
       "owner": "site/README.md"
     },
-    "site/content/pages/writing/main.html": {
+    "site/content/pages/writing/main.json": {
       "kind": "file",
-      "purpose": "Authored writing route layout and finite block/publication substitutions.",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -5695,21 +5983,69 @@
       "role": "source",
       "owner": "site/README.md"
     },
-    "site/content/pages/writing/results-year-2025.html": {
+    "site/content/pages/writing/results-year-2025.json": {
       "kind": "file",
-      "purpose": "Curated writing HTML content block: results year 2025.",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
       "role": "source",
       "owner": "site/README.md"
     },
-    "site/content/pages/writing/results-year-2026.html": {
+    "site/content/pages/writing/results-year-2026.json": {
       "kind": "file",
-      "purpose": "Curated writing HTML content block: results year 2026.",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
       "role": "source",
       "owner": "site/README.md"
     },
-    "site/content/pages/writing/section-1.html": {
+    "site/content/pages/writing/section-1.json": {
       "kind": "file",
-      "purpose": "Curated writing HTML content block: section 1.",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/content/shared": {
+      "kind": "directory",
+      "purpose": "Declared issue58 authored content/template or dated evidence grouping.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/content/shared/footer.json": {
+      "kind": "file",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/content/shared/header.json": {
+      "kind": "file",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/effects": {
+      "kind": "directory",
+      "purpose": "Canonical optional effect descriptors and browser runtime helpers, independent of build tools.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/effects/flight.cjs": {
+      "kind": "file",
+      "purpose": "Canonical pure Travel effect descriptor and runtime helpers; hosted/offline adapters share raw code, CSS and controls.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/effects/flight.css": {
+      "kind": "file",
+      "purpose": "Canonical static effect CSS consumed byte-identically by hosted/offline descriptors.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/effects/reading-surfaces.css": {
+      "kind": "file",
+      "purpose": "Canonical static effect CSS consumed byte-identically by hosted/offline descriptors.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/effects/ribbons.cjs": {
+      "kind": "file",
+      "purpose": "Optional historical ribbon factory; not serialized into current Color delivery. Retained for explicit comparison and full source scanner coverage.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -5722,6 +6058,12 @@
     "site/engine/archive.js": {
       "kind": "file",
       "purpose": "Accessible Writing topic filters, curated publication rendering and reflow.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/engine/critical-media.css": {
+      "kind": "file",
+      "purpose": "Single authored responsive portrait rule; generated Home fallback and ordinary stylesheet preserve the same CSS bytes and normal selector order.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -5791,6 +6133,162 @@
       "role": "generated",
       "owner": "tools/site/build.cjs"
     },
+    "site/retained": {
+      "kind": "directory",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/manifest.json": {
+      "kind": "file",
+      "purpose": "Verified imported prior-public manifest generated by tools/site/retain.cjs; preserve exact retained byte identities.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "site/retained/media": {
+      "kind": "directory",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc": {
+      "kind": "directory",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/favicon.svg": {
+      "kind": "file",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi-cutout.webp": {
+      "kind": "file",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi.jpg": {
+      "kind": "file",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/writing-paradigm.svg": {
+      "kind": "file",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime": {
+      "kind": "directory",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62": {
+      "kind": "directory",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/archive.js": {
+      "kind": "file",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/navigation.js": {
+      "kind": "file",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/space.js": {
+      "kind": "file",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/styles.css": {
+      "kind": "file",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/theme.js": {
+      "kind": "file",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots": {
+      "kind": "directory",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347": {
+      "kind": "directory",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html": {
+      "kind": "file",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa": {
+      "kind": "directory",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html": {
+      "kind": "file",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68": {
+      "kind": "directory",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html": {
+      "kind": "file",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946": {
+      "kind": "directory",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html": {
+      "kind": "file",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7": {
+      "kind": "directory",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html": {
+      "kind": "file",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
     "site/routes.json": {
       "kind": "file",
       "purpose": "Five route IDs, native destinations, scenes and semantic stop contract.",
@@ -5817,13 +6315,61 @@
     },
     "site/templates": {
       "kind": "directory",
-      "purpose": "Shared deterministic page shell, head, header and footer HTML.",
+      "purpose": "Canonical shared, page-specific and repeated component markup; consumes validated content.",
       "role": "source",
       "owner": "site/README.md"
     },
-    "site/templates/footer.html": {
+    "site/templates/components": {
+      "kind": "directory",
+      "purpose": "Declared issue58 authored content/template or dated evidence grouping.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/components/discussion-counts.html": {
       "kind": "file",
-      "purpose": "Shared utility/credits navigation and footer structure.",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/components/discussion-link.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/components/discussion-row.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/components/edition-link.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/components/language-badge.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/components/publication-summary.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/components/publication-title.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/components/publication.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -5833,9 +6379,189 @@
       "role": "source",
       "owner": "site/README.md"
     },
-    "site/templates/header.html": {
+    "site/templates/pages": {
+      "kind": "directory",
+      "purpose": "Declared issue58 authored content/template or dated evidence grouping.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/credits": {
+      "kind": "directory",
+      "purpose": "Declared issue58 authored content/template or dated evidence grouping.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/credits/main.html": {
       "kind": "file",
-      "purpose": "Shared accessible primary links and theme/motion controls.",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/index": {
+      "kind": "directory",
+      "purpose": "Declared issue58 authored content/template or dated evidence grouping.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/index/about.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/index/acknowledgements.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/index/contact.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/index/help.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/index/hero.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/index/main.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/index/research.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/index/writing.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/research": {
+      "kind": "directory",
+      "purpose": "Declared issue58 authored content/template or dated evidence grouping.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/research/acknowledgements.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/research/intro.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/research/lenses.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/research/main.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/research/research.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/research/topics.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/talks": {
+      "kind": "directory",
+      "purpose": "Declared issue58 authored content/template or dated evidence grouping.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/talks/intro.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/talks/main.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/talks/talks.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/writing": {
+      "kind": "directory",
+      "purpose": "Declared issue58 authored content/template or dated evidence grouping.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/writing/main.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/writing/results-year-2025.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/writing/results-year-2026.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/writing/section-1.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/shared": {
+      "kind": "directory",
+      "purpose": "Declared issue58 authored content/template or dated evidence grouping.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/shared/footer.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/shared/header.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -5854,6 +6580,12 @@
     "tests/analytics.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for analytics.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tests/architecture.test.cjs": {
+      "kind": "file",
+      "purpose": "Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -5887,6 +6619,18 @@
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
+    "tests/build-cohesion.test.cjs": {
+      "kind": "file",
+      "purpose": "Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tests/camera-view.test.cjs": {
+      "kind": "file",
+      "purpose": "Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
     "tests/cause-fix-probe.test.cjs": {
       "kind": "file",
       "purpose": "Private cold interventions each vary one factor; exact normal-source and Research control lineage Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
@@ -5905,11 +6649,29 @@
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
+    "tests/content-migration.test.cjs": {
+      "kind": "file",
+      "purpose": "Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tests/content-rendering.test.cjs": {
+      "kind": "file",
+      "purpose": "Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
     "tests/content.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for content.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tests/effects.test.cjs": {
+      "kind": "file",
+      "purpose": "Permanent explicit effect composition, malformed descriptor, isolation and serialization regression cases.",
+      "role": "test",
+      "owner": "site/README.md"
     },
     "tests/endpoint-fixtures.test.cjs": {
       "kind": "file",
@@ -5946,6 +6708,18 @@
       "purpose": "Behavioral/adversarial tests and fixtures for flight.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tests/format-parity.test.cjs": {
+      "kind": "file",
+      "purpose": "Permanent semantic formatting equivalence and changed-language-behavior negative fixtures.",
+      "role": "test",
+      "owner": "tools/quality/README.md"
+    },
+    "tests/format.test.cjs": {
+      "kind": "file",
+      "purpose": "Permanent formatter inventory/configuration/pin/drift/idempotence adversarial contracts.",
+      "role": "test",
+      "owner": "tools/quality/README.md"
     },
     "tests/functional-fixtures.test.cjs": {
       "kind": "file",
@@ -5989,6 +6763,12 @@
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
+    "tests/phase-checkpoint.test.cjs": {
+      "kind": "file",
+      "purpose": "Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
     "tests/preview-smoke.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for preview smoke.",
@@ -6013,6 +6793,12 @@
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
+    "tests/refactor-metrics.test.cjs": {
+      "kind": "file",
+      "purpose": "Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
     "tests/renderer.test.cjs": {
       "kind": "file",
       "purpose": "Maintained renderer palette, ordered drawing/state equivalence and cache invalidation, bounded formula projection/sampling/cache and geometry/resource regressions.",
@@ -6027,7 +6813,7 @@
     },
     "tests/ribbons.test.cjs": {
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for ribbons.",
+      "purpose": "Explicit historical optional ribbon geometry/material/clock diagnostic; active Color excludes ribbons.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -6091,6 +6877,12 @@
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
+    "tests/test_code_style.py": {
+      "kind": "file",
+      "purpose": "Negative style-guard fixtures and actual code-path/bilingual agent/RI routing checks.",
+      "role": "test",
+      "owner": "guides/CODE-STYLE.md"
+    },
     "tests/test_issue31_acceptance.py": {
       "kind": "file",
       "purpose": "Issue 31 observable acceptance checks for RI provenance, inventory, memory, workflow, unchanged site and bootstrap.",
@@ -6125,6 +6917,30 @@
       "kind": "file",
       "purpose": "Issue45 selection of maintained source checks; actual visual/browser acceptance remains separate.",
       "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "tests/test_issue48_acceptance.py": {
+      "kind": "file",
+      "purpose": "Issue48 strict exact selections of maintained theory association, formula midpoint/cache, response reconciliation and canonical generation checks.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "tests/test_issue56_acceptance.py": {
+      "kind": "file",
+      "purpose": "Owning issue56 frozen baseline parity and canonical R1 source/tool coverage acceptance; excluded from generic future regression.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "tests/test_issue58_acceptance.py": {
+      "kind": "file",
+      "purpose": "Issue58 phase-specific R2 exact formatter/semantic/source/serialization evidence; selected by the shared owning policy only.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "tests/test_issue61_acceptance.py": {
+      "kind": "file",
+      "purpose": "Issue61 mapping of existing active Color absence/navigation contracts; task-owned selection, no duplicate browser matrix.",
+      "role": "source",
       "owner": ".github/ACCEPTANCE.md"
     },
     "tests/test_issue_acceptance.py": {
@@ -6271,6 +7087,12 @@
       "role": "source",
       "owner": "site/README.md"
     },
+    "tools/check_code_style.py": {
+      "kind": "file",
+      "purpose": "Bounded authored-source style/dependency/token guard; immutable legacy debt validation.",
+      "role": "validator",
+      "owner": "guides/CODE-STYLE.md"
+    },
     "tools/check_repository_layout.py": {
       "kind": "file",
       "purpose": "Validate bounded entry routes, root/guide ownership, exact archive provenance and active links; opt-in issue #33 snapshots preserve task evidence.",
@@ -6330,6 +7152,12 @@
       "purpose": "Maintained quality/check helper for analytics browser; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md"
+    },
+    "tools/quality/architecture.cjs": {
+      "kind": "file",
+      "purpose": "Issue58 checkpoint, authored architecture or bounded comparable resource evidence control.",
+      "role": "validator",
+      "owner": "tools/quality/README.md"
     },
     "tools/quality/artifact.cjs": {
       "kind": "file",
@@ -6439,6 +7267,36 @@
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md"
     },
+    "tools/quality/format-parity-controls.json": {
+      "kind": "file",
+      "purpose": "Exact independently reviewed R2 control integration exceptions to mechanical AST/value parity; no site behavior source excluded.",
+      "role": "configuration",
+      "owner": "tools/quality/README.md"
+    },
+    "tools/quality/format-parity.cjs": {
+      "kind": "file",
+      "purpose": "Source-bound mechanical semantic comparison of JS/Python/JSON/YAML/CSS/HTML against an immutable Git baseline.",
+      "role": "validator",
+      "owner": "tools/quality/README.md"
+    },
+    "tools/quality/format-parity.py": {
+      "kind": "file",
+      "purpose": "Pinned Python AST, ordered JSON/YAML and whitespace-sensitive HTML semantic comparison helper; reads bounded explicit source inputs.",
+      "role": "validator",
+      "owner": "tools/quality/README.md"
+    },
+    "tools/quality/format-scope.json": {
+      "kind": "file",
+      "purpose": "Declared maintained formatter languages/roots, tool versions and exact generated/history/ledger exclusions.",
+      "role": "configuration",
+      "owner": "tools/quality/README.md"
+    },
+    "tools/quality/format.cjs": {
+      "kind": "file",
+      "purpose": "Complete tracked/catalogued six-language formatter inventory and exact pinned Prettier/Ruff write/check controller.",
+      "role": "validator",
+      "owner": "tools/quality/README.md"
+    },
     "tools/quality/functional.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for functional; applicable profiles are selected by SITE-CHECK-PROFILES.",
@@ -6511,6 +7369,18 @@
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md"
     },
+    "tools/quality/phase-checkpoint.cjs": {
+      "kind": "file",
+      "purpose": "Issue58 checkpoint, authored architecture or bounded comparable resource evidence control.",
+      "role": "validator",
+      "owner": "tools/quality/README.md"
+    },
+    "tools/quality/prettier.config.json": {
+      "kind": "file",
+      "purpose": "Explicit LF/two-space/100-column strict-whitespace Prettier configuration; opaque embedded literals are preserved.",
+      "role": "configuration",
+      "owner": "tools/quality/README.md"
+    },
     "tools/quality/promotion.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for promotion; applicable profiles are selected by SITE-CHECK-PROFILES.",
@@ -6523,11 +7393,23 @@
       "role": "validator",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
+    "tools/quality/refactor-metrics.cjs": {
+      "kind": "file",
+      "purpose": "Issue58 checkpoint, authored architecture or bounded comparable resource evidence control.",
+      "role": "validator",
+      "owner": "tools/quality/README.md"
+    },
     "tools/quality/research-pair-probe.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for research pair probe; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md"
+    },
+    "tools/quality/ruff-format.toml": {
+      "kind": "file",
+      "purpose": "Explicit Python four-space formatting configuration, independent of isolated Ruff lint rule selection.",
+      "role": "configuration",
+      "owner": "tools/quality/README.md"
     },
     "tools/quality/scanners.cjs": {
       "kind": "file",
@@ -6741,13 +7623,61 @@
     },
     "tools/site/build.cjs": {
       "kind": "file",
-      "purpose": "Source validation and deterministic dependency-aware complete public-tree generation.",
+      "purpose": "Dependency-aware source/hash/cache and transactional generation orchestration consuming pure content, validation, page and SVG owners.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "tools/site/content.cjs": {
+      "kind": "file",
+      "purpose": "Cohesive validated content/render/geometry owner with explicit inputs and delivery boundaries.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "tools/site/effects.cjs": {
+      "kind": "file",
+      "purpose": "Canonical active effect manifest, descriptor validation, ordered hosted assembly and compatible offline adapters.",
       "role": "source",
       "owner": "site/README.md"
     },
     "tools/site/evidence-policy.cjs": {
       "kind": "file",
       "purpose": "Advisory component-fingerprint proposal for content-only or full check scope under #13; never skips mandatory jobs or reuses evidence.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "tools/site/export.cjs": {
+      "kind": "file",
+      "purpose": "Canonical offline export builder for Base, Ribbons, Flight and Color using maintained effect adapters.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "tools/site/fallback.cjs": {
+      "kind": "file",
+      "purpose": "Cohesive validated content/render/geometry owner with explicit inputs and delivery boundaries.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "tools/site/html.cjs": {
+      "kind": "file",
+      "purpose": "Cohesive validated content/render/geometry owner with explicit inputs and delivery boundaries.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "tools/site/render-content.cjs": {
+      "kind": "file",
+      "purpose": "Cohesive validated content/render/geometry owner with explicit inputs and delivery boundaries.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "tools/site/render-page.cjs": {
+      "kind": "file",
+      "purpose": "Cohesive validated content/render/geometry owner with explicit inputs and delivery boundaries.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "tools/site/render-records.cjs": {
+      "kind": "file",
+      "purpose": "Cohesive validated content/render/geometry owner with explicit inputs and delivery boundaries.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -6766,6 +7696,12 @@
     "tools/site/snapshot.cjs": {
       "kind": "file",
       "purpose": "Exact content-addressed route/runtime/media descriptor construction.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "tools/site/validate-catalog.cjs": {
+      "kind": "file",
+      "purpose": "Cohesive validated content/render/geometry owner with explicit inputs and delivery boundaries.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -6822,6 +7758,24 @@
       "purpose": "Protected source/artifact/controller/PR lease validation before hosted action.",
       "role": "source",
       "owner": "guides/SITE-STAGING.md"
+    },
+    ".github/acceptance/issue-49.json": {
+      "kind": "file",
+      "purpose": "Issue49 AC01-AC08 planning and pending feature gates for stationary reading camera and two-sided fragment flight.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-49": {
+      "kind": "directory",
+      "purpose": "Versioned architecture and execution handoff for fragments emerging from the existing fractal.",
+      "role": "draft",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-49/2026-10-08-analysis.md": {
+      "kind": "file",
+      "purpose": "Revised source-backed architecture, limits, staged Sol tasks and test dispositions for fixed reading camera and departing/arriving content fragments.",
+      "role": "draft",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }

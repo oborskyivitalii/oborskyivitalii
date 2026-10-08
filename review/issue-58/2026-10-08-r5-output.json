@@ -1,0 +1,229 @@
+{
+  "checkpoint": {
+    "head": "8c6cf877fee92b4d2493b4c1a07df7080b987c29",
+    "tree": "2725ae4743032b2aeaafd7f2d7f7c91a08265906",
+    "dirty": true
+  },
+  "observerSHA256": "c73829be556a6cd89c0bc0193508f977667f644cbefca2226f63389b49cb1ae2",
+  "sourceSHA256": {
+    "site/README.md": "af103b2e84dc534448bfc56ada4f8eea00e5648cf41f72aa70bd9ab518462a53",
+    "site/analytics.json": "81ccb148d11b1f5cdb69893cda701ef4701bd7158d65c0067ce1ae148a67623e",
+    "site/assets/favicon.svg": "a27a6f79b42bfa41fa8a8d3fe39e3c9570bcd992410c91a17d021de4dc28636e",
+    "site/assets/nojekyll": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "site/assets/vitalii-oborskyi-cutout.webp": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae",
+    "site/assets/vitalii-oborskyi.jpg": "5321e48f08b075cb1cbd522d0f36bc01276aece65d1a04cf09102aa5dd2b59bc",
+    "site/assets/writing-paradigm.svg": "02def4e19d34b76462f5e74bbe916323ff56a50d3e97a02834b3adf92723b31f",
+    "site/content/catalog.json": "7d7a3f1914c72668a34eb02bbad45e82ed76f2ab309d75a145f396ff93a84463",
+    "site/content/pages/credits/main.json": "389376323db4f6d7cafe66fac050c1fed59638b663f058d61d4acb454f67a19c",
+    "site/content/pages/credits/metadata.json": "476266becebc042960ca538da755bc970e3f8145bdd0202de74b580b9cda3850",
+    "site/content/pages/index/about.json": "0bb4065393b85ce63798fdf3d907d3fd640b1af082f6bbb9d3dd9423e7271043",
+    "site/content/pages/index/acknowledgements.json": "8fed1590dd318882de2be332d13a8780bc91d2d96a2b92bae18d0053114c120d",
+    "site/content/pages/index/contact.json": "9041a7c800077c2a9df033a2cba95ab4607028b5de10a82afa59ab5a2385fce5",
+    "site/content/pages/index/help.json": "eed8953cf2ced5dbc8687e924c94d3324a7b0e1200cf02ac230145184d50dcf3",
+    "site/content/pages/index/hero.json": "9f32e7e69311a3af577206105400bc9e27e839985f9f65cd1e66a59efd42b88e",
+    "site/content/pages/index/main.json": "8709c546052fef74ca280654bfbd6fef107439df1e79a8cb05175645c97f717a",
+    "site/content/pages/index/metadata.json": "634739e7825d05f1f4dfc407cde51b6ca7f6e351acf0a3098cc8c10b950e7f72",
+    "site/content/pages/index/research.json": "ca58b71c46a79df3dc150e244ffcdfdc7338b983ee887bf75b39a902229f027f",
+    "site/content/pages/index/writing.json": "8087d36c9e6d1f094c703f9b1ed91571613284a292d3da91505d2183028d3ac4",
+    "site/content/pages/research/acknowledgements.json": "f2b12935aa11e41ccd721fd62d93bfda79abd76d00fe4f8fec380d394188f408",
+    "site/content/pages/research/intro.json": "297b820872487250679c7bb81428a91b44ab630305625340271a0e3a447a5f95",
+    "site/content/pages/research/lenses.json": "72c170b11c3571dd677c8cc150a82610e5869402656efc3197fa155478ea7d76",
+    "site/content/pages/research/main.json": "2971ddc24f8ec0f346d9ffaaae0d11f2f2dc077bc731703d8ccb82923c88c6dd",
+    "site/content/pages/research/metadata.json": "cb29a883d9152cea05f54e7f4d450fff8bbb3345d86892bdc581516e8f7024bf",
+    "site/content/pages/research/research.json": "3832bfdc06a130b33b0d780396de7dd93faa349466a11db40a161b35f22b01f6",
+    "site/content/pages/research/topics.json": "44286f3093288014e17345b707916b5c39638d9825f54d808e4565e3f03fe976",
+    "site/content/pages/talks/intro.json": "7b558ba58124c1daa0a4d0505c61467e12fed4fccf93d54d731b3a653c6da256",
+    "site/content/pages/talks/main.json": "3c0e8f8430b08c38280a05e5f51a8e79c213447269fae9e1fe1f4f347080dde1",
+    "site/content/pages/talks/metadata.json": "5a732fd79192226a213b7ca4a55b67c700eabdf82c0e9a6cac8fdfda701e78ff",
+    "site/content/pages/talks/talks.json": "e06027575ceeff4dd11c3ec019dcf5a0ab08a8ee171ea49760e76935ec1ecdf8",
+    "site/content/pages/writing/main.json": "b28ebf3b502744a5d71bb66267bc0b39abaf244dba4cef7a8a833332c4dc06d2",
+    "site/content/pages/writing/metadata.json": "f87216a52b0361d6bed7ea5bbe100bf41d6083110ffc67ddd31990b5659888a8",
+    "site/content/pages/writing/results-year-2025.json": "8d9c355fb28eaacadd3daa8de26a302230d00f3ea7fe6173a5055f0c91661686",
+    "site/content/pages/writing/results-year-2026.json": "59275b81478a94cef44ddaff2d5b2a0e9255f3970c9c2447e2de63c44b62f33c",
+    "site/content/pages/writing/section-1.json": "17c01dd20adcaa18e036b624bf569a22b7e4b446a0cbc26e334ca8c0a7f7afb5",
+    "site/content/shared/footer.json": "6cf911d243aef5e08b786a10a7032c9fbc016abc3f6ff075fa06dfb0ccea22f7",
+    "site/content/shared/header.json": "026b9f491bf26516ffe6fa21e04612e8a523320071fdcbad7dbc786b7ae9eb10",
+    "site/effects/flight.cjs": "5a4170e889742afc558dfd7bb405bd645828bf1003b756f7f54cb4e18684dd9f",
+    "site/effects/flight.css": "5c0f5fbe9f9bf714c8757d7ed795c7945de31dc8797833846d74b30f02f29fd7",
+    "site/effects/reading-surfaces.css": "e637a7e59f85b05d03ddc1c85b017debcd495fbc205b78239ce832c1007bea82",
+    "site/effects/ribbons.cjs": "f4af3a27bdb30acc1a23c2898dca066c58b7575f87ac1fb96046838fc4fbd3c7",
+    "site/engine/archive.js": "1307b2405daa50937e5746f4d8a71230842718377d853b4d0cf4704e7f2de9ad",
+    "site/engine/lifecycle.cjs": "6de6d59fa7a24779b03508838bd0ea61cc6b1d2c1db9d6db437736b73b95a2d2",
+    "site/engine/math.cjs": "9781cfa7e911375201b5d730a5a8d2b1774597ee6daeaa90072b1b8099017612",
+    "site/engine/navigation.js": "bd246a3e0021f7f01bb38cf1961085b65e8ac17c35536ad907a98be7f55b85d9",
+    "site/engine/projection.cjs": "75149cf490d93d342e0ba67ab16ca1a8a300550264fa2ac72ab53ca675f757b0",
+    "site/engine/reading-surfaces.css": "11570a2e7879e181625d7f6e365c5db6e9a5d25ae7c926dd1270c339298df6dc",
+    "site/engine/renderer.cjs": "14e1bfa80b72b82ad0417241b917c325222eb011abb072e0c5a25800a2bce991",
+    "site/engine/styles.css": "fcc54de958fa57a1acb0c68df99a4976c53f61b678592077c6bff5b384c07cd7",
+    "site/engine/theme.js": "b6df1591a86ce1f18662e26679926f5433febd935c453952f2443f78f2c0e0ee",
+    "site/integrations/cloudflare.cjs": "362e9b5da60a515953071f0f206257a0c04a38206a997d960d1e0e452a54de05",
+    "site/output-lock.json": "0075ed07745fe68ec24df80d3b0e5c489641841c39fc92d3298203a5e82f32ad",
+    "site/routes.json": "d6caa59aa69462f83115642a602aea669f48316765b487c09b01f721c933c7fe",
+    "site/scenes/paths.json": "cfeed123b0268fd89a737d9dfc9aaddd9d10504a42b2b21c619d9c35b3917c40",
+    "site/scenes/world.cjs": "f4f4d2e1bf87dd7f009c7c302729f96cf1f7b50301a0334ddea133caadcfd3a9",
+    "site/templates/components/discussion-counts.html": "8d3bbabe9974823edebb4ec55ee0dea81b6ac5e17abca1f9ebf3dde1b7efa93a",
+    "site/templates/components/discussion-link.html": "e2d3181ce1aea34e6f65a62ad04616f33763b6c974bc22c9a78ee04928a658fe",
+    "site/templates/components/discussion-row.html": "e8ccf2b1f836e8410af4a3adcddd9c15b57d58f9b1c92f992939dbc35e3599a6",
+    "site/templates/components/edition-link.html": "f62471c474f9bc0dfeaa009f00b8b9f12eb3b4f6e5cbf8b16074b60a15d1e275",
+    "site/templates/components/language-badge.html": "c52c5eda2f53cad3dccbaa029822a6feeb9f9ec0ff785a733a5574c0ff7d0a62",
+    "site/templates/components/publication-summary.html": "e7721067f73a025634b657ec8c503e52d14a48c225395b860bdbde22dbde4d90",
+    "site/templates/components/publication-title.html": "bd5bd7da4a65d5362e9632f732960a1be59be8f47f1c759a75506630335a29ed",
+    "site/templates/components/publication.html": "472b7d41fab55fd9d178cd80dca52492184b41481ed37b222815cb02b8d853dc",
+    "site/templates/head.html": "1e1463ff28c0bf65d7aceab5de4c5c0a286c34f5379016390498eb8092ffbe1c",
+    "site/templates/pages/credits/main.html": "e103c0380f620370f6a20d6b0580922179c6cf058ab345029c4d81db0ab669cc",
+    "site/templates/pages/index/about.html": "8a4f70c1dbe2e96b12240cbbd39b8740ae8cbad6d276ce61f0167ed2e4b66b91",
+    "site/templates/pages/index/acknowledgements.html": "013726bcf6cf5f03a06b16ac56044ba2e28132572765079a110b850c23231769",
+    "site/templates/pages/index/contact.html": "b42e60bf0ddbebcf5527fd71a46a3ecc0e7d7da4b27023083b5947c7bcdf91b0",
+    "site/templates/pages/index/help.html": "95ea1a3af0fafc7f864145a06d0162e3ffdf92ec83887b035409e69690f7bc58",
+    "site/templates/pages/index/hero.html": "c3343799f162eb04aee7c0ed2b174dd1979d3d3bb7c06719a56aadb8e1eecee9",
+    "site/templates/pages/index/main.html": "93cf82b6decbb524738d808cdcf8a656e5d8a0d851b3346deb07a775028ef16f",
+    "site/templates/pages/index/research.html": "63a9de64520d91c076cae21f3158652d91bee6c33129ac51ef7b2e6139091cce",
+    "site/templates/pages/index/writing.html": "a6cc6d847fa2d22f67801956fac0cd3513aef28d66d37372d40b263dc0d83f82",
+    "site/templates/pages/research/acknowledgements.html": "cbc4842ee10d4c05ce5996ef240cd92587848d4b80fc2523656b1f124e549bda",
+    "site/templates/pages/research/intro.html": "32136e629d8fee03bfa2f225bb8986e0ceb6b668dc5935cff66bbf25c7cc182e",
+    "site/templates/pages/research/lenses.html": "59d3bcd92a6f2a3bfb15f284fa039d86b7e3395c917c6774940d953393e70dfb",
+    "site/templates/pages/research/main.html": "e2a7928c6afd6d9e4ecf9fe4d8991bf52f935daaecb5797808837b3a5b021f0e",
+    "site/templates/pages/research/research.html": "151d396ad4752a4ac465f3b8daa097665db53ba050224d592d1f5292df2a0a37",
+    "site/templates/pages/research/topics.html": "d7e65260a94f4ba963051739b9a094c9d238cdc137d742f391e9c347fc38574d",
+    "site/templates/pages/talks/intro.html": "32136e629d8fee03bfa2f225bb8986e0ceb6b668dc5935cff66bbf25c7cc182e",
+    "site/templates/pages/talks/main.html": "5b236288d268a55c1b9fec23087b4584e00a51382056408b3f78e9b1fee2ffbc",
+    "site/templates/pages/talks/talks.html": "7db1d7b2482d0a137e8639c587bcbda25a66fd544dac78439a444bfce77053b6",
+    "site/templates/pages/writing/main.html": "dee240c04986627be52acc11cbfb744ca7a10a35267cbf5525b79d6b59026be0",
+    "site/templates/pages/writing/results-year-2025.html": "04cbf0727973875b1f2f9c5528378f510d414b08dad0f3f77b424f888c16da10",
+    "site/templates/pages/writing/results-year-2026.html": "79d962a8df7ea69b5186c670ebd942a8d599b8c6636f7b6e10f4bb11e254cabe",
+    "site/templates/pages/writing/section-1.html": "7423a60b5328925e2a5557f6978472dd1ce84c05c60e125c1403de520fd4a672",
+    "site/templates/shared/footer.html": "92f1504694e7a440dd0856b3e7b07bd35917cd5b6acc06458a28292422f918e7",
+    "site/templates/shared/header.html": "b200fb11b6c2595cd804d063627263476549399fd441f1bc0b72185beba9744e",
+    "site/templates/shell.html": "7592cd46484c4093a0ed49a534941bf30b63a18b46290e00bd99250a48baa3c4",
+    "tools/build_scene_fallbacks.cjs": "9cf1c707980d973c27eba308f97427ead471cda6ab347e6e5624a4dad946948c",
+    "tools/site/analytics.cjs": "9170499ce19a8dd4856af6415b77dcee493c89e028711a1cd6e7d6987ca2f1a7",
+    "tools/site/build.cjs": "0a01a4e32cea551601ee5058be7b92c0f8f11cd4deb211a34a30eda9aea3bb7f",
+    "tools/site/content.cjs": "3ba838e86260f46c0057c2b3fa4c2094aef07e5ae2e950931ce3ad30009075a2",
+    "tools/site/effects.cjs": "defcb1e2a880569a692d40a05d922b295528de205f01f77ed941eaec1996bdf8",
+    "tools/site/evidence-policy.cjs": "421526b93f2c6ad5d311479b60de7fa356b5e44dc243a6c99ee499cafae14394",
+    "tools/site/export.cjs": "44642df917d15a3f57abecb0faefb4d533d68c110ad32f48fdef3f660af2d2fc",
+    "tools/site/fallback.cjs": "01f5632eeaff0969aa86fc386445802e07f143ab04f6f843003a96d09ff89c9a",
+    "tools/site/html.cjs": "b2cf3036a917dad8cd36755f14c293d2714f61dafbc98d01ee0c370f30445711",
+    "tools/site/render-content.cjs": "d41abe47bec0c5698e49f1bc114c9bdf55e1d6fcf348374a8587f20e373fcf33",
+    "tools/site/render-page.cjs": "a538f9f22fbd2c4d17b3e88c1bcf57f9421c4c01efddce4807b9f0f3e0ed3a38",
+    "tools/site/render-records.cjs": "e59903c97c922db6a2fcc0ffb4bd0b8c8e2b333a25e45f2f16c35ed4e2b94169",
+    "tools/site/retain.cjs": "2816b60974384195d20c09ad4c776f4982ed0fa71b888cc366bcc281d95b0257",
+    "tools/site/scene-assets.cjs": "90f49c5621a3413a60b1574ee865c46399f38f0bde0f510b6cd7fb6dc9ab39b8",
+    "tools/site/snapshot.cjs": "e1630f84846f0d87435e11193267b278e76d1e640b8fbd0ee63a5d1a3b51e9e5",
+    "tools/site/validate-catalog.cjs": "49edc3d8ffd1b9c75d4fffcb7acdacc045b7b6175bc306964c823527e13b025f",
+    "tools/site/variants.cjs": "841ea2fd5b4631b22aa973d9429f02a2647d43af1eeca85051ee57c0372e682f"
+  },
+  "control": {
+    "oldNormalizerFile": "/tmp/issue58-r5-before-build-5MpUVX/tools/site/html.cjs",
+    "oldNormalizerSourceSHA256": "3f38442240e4c9713d0c4413ed7407bbafabae5c7234f9a9b4f28b44035656c9",
+    "oldNormalizerFunctionSHA256": "6b095016bfce07a67ea1458463c288adcbaafb9d93be2a4fed1695fc5daafd02",
+    "currentNormalizerFunctionSHA256": "2594610f20be539f48d45e591a418781370a8f7e5de4beb9450835f98cb1da40",
+    "onlyVariation": "stableTagEndings function; all current inputs include the approved short inert attribute names"
+  },
+  "variants": {
+    "off": {
+      "root": "/tmp/issue58-r5-final-normalizer-off-NA7XWP",
+      "raw": {
+        "index": {
+          "bytes": 51122,
+          "sha256": "77d385b2feba29c16baffe9434bc8ecbcb4c3a909aeced090764401d624becd2"
+        },
+        "research": {
+          "bytes": 55468,
+          "sha256": "b5931b46c1b032cfc4eb1c542b0a731e4e260242ec481b34583afce15d432394"
+        },
+        "writing": {
+          "bytes": 99366,
+          "sha256": "35ebe06ac72c219c7d5b582548fe3e462d6bd6c9194d9684bfed7ad7955722b1"
+        },
+        "talks": {
+          "bytes": 47351,
+          "sha256": "8db7887eac294835abb4bc01501077a347a506cb6fe25e98c55031a661922665"
+        },
+        "credits": {
+          "bytes": 38477,
+          "sha256": "bfadcb2cf5e649fd3808001e7ec7259fc119345736d92bb9d1e934d5425013cd"
+        }
+      },
+      "versioned": {
+        "index": {
+          "bytes": 51906,
+          "sha256": "722980eeb91904f201bfc75cff4d6ac5afad8271a175e43cec6dbc0e3a8fc60a"
+        },
+        "research": {
+          "bytes": 56188,
+          "sha256": "a93c2d791a2ad0c19355a478fdcdb3aa355c45c128e99d9d0003f9cb693c23c4"
+        },
+        "writing": {
+          "bytes": 100086,
+          "sha256": "4863eef641664fbfc8b1608f76ff247715caba224f2a507a4bc85c139c4ea28a"
+        },
+        "talks": {
+          "bytes": 48071,
+          "sha256": "f7fdb4aca962155d1988c147d6e25c0131eea63003ed84f095195f1eea7f2319"
+        },
+        "credits": {
+          "bytes": 39197,
+          "sha256": "9cab9bdc6be644413bcb4052a3587ab44b0c2b86670c1df7f84b9b1a10e4109b"
+        }
+      }
+    },
+    "on": {
+      "root": "/tmp/issue58-r5-final-normalizer-on-FY21zO",
+      "raw": {
+        "index": {
+          "bytes": 50782,
+          "sha256": "bbd541a82924e4319ce91ce6e98b8d37e3b0b02bef7fc8c0478fe58180b47131"
+        },
+        "research": {
+          "bytes": 55434,
+          "sha256": "5aad198c5491b9027bab4673561fb78d08fc64f501559a0954a939ad0060d414"
+        },
+        "writing": {
+          "bytes": 99276,
+          "sha256": "99c69876cd1970ca0dd91eb08f6f37192e9b9870906e00ad0094a5ce9a99418f"
+        },
+        "talks": {
+          "bytes": 47333,
+          "sha256": "3f6523857248862d24dcdfa9d0f99aeb8c740d57a34a200e8dd29f446bce2be5"
+        },
+        "credits": {
+          "bytes": 38459,
+          "sha256": "aac0f6ef65cac5ca2ac4883af53da85c6894dd4f70394c157cec9564d7b25c82"
+        }
+      },
+      "versioned": {
+        "index": {
+          "bytes": 51566,
+          "sha256": "c49f6f3276cf4ca5ecbf2c5647a3a463e20085228622d7ceab0a0f3c18c3e42f"
+        },
+        "research": {
+          "bytes": 56154,
+          "sha256": "d28fe8c369da0c062503e857f341b8b7ca82e74b067023443375d53a498932e8"
+        },
+        "writing": {
+          "bytes": 99996,
+          "sha256": "34454c76d7a1f06c8a97ff9b90d3aa94cde128bdf56d639b05ece7c17af79378"
+        },
+        "talks": {
+          "bytes": 48053,
+          "sha256": "7e8e5371fff68109494fb86f6e55f99e47d0fdbe664b3f6f126c02f0da3f29e6"
+        },
+        "credits": {
+          "bytes": 39179,
+          "sha256": "b50e08cc65f266970d1c308419ad0751678f133a50297dc788dbd3b5c7d92218"
+        }
+      }
+    }
+  },
+  "strictHTMLContractsEqual": 5,
+  "idempotentRoutes": 5,
+  "byteSavings": {
+    "index": 340,
+    "research": 34,
+    "writing": 90,
+    "talks": 18,
+    "credits": 18
+  },
+  "observationStable": true
+}

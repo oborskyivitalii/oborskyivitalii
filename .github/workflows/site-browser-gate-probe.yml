@@ -28,6 +28,8 @@ jobs:
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
           node-version: '24.19.0'
+      - name: Install locked Node tools before source checks
+        run: npm ci --prefix tools/quality/toolchain --ignore-scripts
       - name: Verify helpers and build exact private Color inputs
         run: |
           test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
@@ -42,7 +44,6 @@ jobs:
           JS
       - name: Install the locked three browser engines
         run: |
-          npm ci --prefix tools/quality/toolchain --ignore-scripts
           tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium firefox webkit
       - name: Retain bounded startup and balanced Writing observations
         run: >-

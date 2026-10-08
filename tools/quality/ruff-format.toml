@@ -1,0 +1,12 @@
+# Formatting only. Existing Ruff lint uses its separately owned isolated rules.
+line-length = 100
+indent-width = 4
+exclude = []
+extend-exclude = []
+respect-gitignore = false
+
+[format]
+quote-style = "preserve"
+indent-style = "space"
+line-ending = "lf"
+docstring-code-format = false

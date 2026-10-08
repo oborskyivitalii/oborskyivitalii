@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 54,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/54",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Source-grounded implementation audit.",
+      "automated_scope": "No keyword test is used as proof of audit quality. Exact-base findings, dependency scope, retained strengths, priorities and limits are reviewed in the versioned analysis.",
+      "checks": [],
+      "gates": ["G01"]
+    },
+    {
+      "id": "AC02",
+      "intent": "Separate actionable code style guide.",
+      "automated_scope": "Mandatory entry routes are checked. Stable rule meaning, applicability, dynamic/Canvas/generated exceptions and the distinction between automatic/review/legacy obligations require substantive review.",
+      "checks": ["AGENT-ROUTES"],
+      "gates": ["G01"]
+    },
+    {
+      "id": "AC03",
+      "intent": "Mandatory agent and RI routing.",
+      "automated_scope": "Actual code-path and bilingual contexts resolve the guide and commands through fresh RI. Tests reject missing owned-control coverage and stale mapped source. Current CI mapping verifies unconditional invocations; templates/AGENTS retain mandatory routes.",
+      "checks": ["RI-STYLE-ROUTES", "AGENT-ROUTES", "CI-CURRENT", "CI-OWNERS", "CI-STALE"],
+      "gates": []
+    },
+    {
+      "id": "AC04",
+      "intent": "Real bounded compliance checks.",
+      "automated_scope": "The actual repository guard and independent fixture mutations cover canonical token owners, authored HTML inline styles, scoped literal imports, active-source placement/coverage and exact frozen debt. This proves the declared subset, not general formatting, semantic architecture, full JS dependency analysis or speed.",
+      "checks": [
+        "CURRENT-GUARD",
+        "STYLE-POSITIVE",
+        "STYLE-NEGATIVES",
+        "STYLE-REMOVAL",
+        "EXCEPTION-NEGATIVES",
+        "NEW-DEBT",
+        "TOKEN-OWNERS",
+        "SOURCE-OWNERS",
+        "IMPORT-NEGATIVES",
+        "MISSING-COVERAGE"
+      ],
+      "gates": []
+    },
+    {
+      "id": "AC05",
+      "intent": "Ordered Sol refactor plan.",
+      "automated_scope": "The plan is reviewed for source owners, priorities, dependencies, parity contracts, scope limits and measurable done conditions. Tests cannot certify the quality or execution of future architectural work.",
+      "checks": [],
+      "gates": ["G01"]
+    },
+    {
+      "id": "AC06",
+      "intent": "Reviewable delivery and honest reconciliation.",
+      "automated_scope": "Basic and current RI/CI checks establish local source contracts. Live Draft/commit/CI links, actual checkboxes, unchanged runtime/content/public diff and truthful review status are external evidence. Merge and broad refactor execution are not supplied by this policy.",
+      "checks": ["BASIC", "CI-CURRENT"],
+      "gates": ["G02"]
+    }
+  ],
+  "checks": {
+    "CURRENT-GUARD": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    },
+    "AGENT-ROUTES": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_mandatory_agent_contributor_and_acceptance_routes"
+    },
+    "RI-STYLE-ROUTES": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_code_path_and_bilingual_ri_queries_route_to_guide_and_check"
+    },
+    "CI-CURRENT": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    },
+    "CI-OWNERS": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_new_code_style_owned_control_must_be_mapped"
+    },
+    "CI-STALE": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_source_edits_require_mapping_refresh"
+    },
+    "STYLE-POSITIVE": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleTests.test_exact_baseline_and_same_owner_theme_overrides_pass"
+    },
+    "STYLE-NEGATIVES": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleTests.test_new_inline_styles_style_elements_and_debt_growth_fail"
+    },
+    "STYLE-REMOVAL": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleTests.test_debt_removal_requires_ledger_trim_and_then_passes"
+    },
+    "EXCEPTION-NEGATIVES": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleTests.test_expanded_duplicate_unowned_and_wildcard_allowances_fail"
+    },
+    "NEW-DEBT": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleTests.test_new_debt_cannot_be_admitted_by_adding_an_exception"
+    },
+    "TOKEN-OWNERS": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleTests.test_competing_or_missing_canonical_css_token_fails"
+    },
+    "SOURCE-OWNERS": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleTests.test_new_active_history_source_and_hidden_dependency_fail"
+    },
+    "IMPORT-NEGATIVES": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleTests.test_new_history_generated_and_reverse_tool_imports_fail"
+    },
+    "MISSING-COVERAGE": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleTests.test_missing_source_and_missing_scan_scope_fail"
+    },
+    "BASIC": {
+      "kind": "node-basic"
+    }
+  },
+  "gates": {
+    "G01": {
+      "kind": "human",
+      "description": "Review the source-grounded audit, separate guide and ordered Sol plan against original intent. Record reviewer role and findings honestly: primary-agent self-review is not independent review or maintainer approval. Verify source/generated/history distinctions, practical rules/exceptions, target ownership, phased parity tests and unchanged visual/content/release contracts."
+    },
+    "G02": {
+      "kind": "human",
+      "description": "Record the actual Draft PR, exact commit/tree and current required CI runs; verify the diff contains no site runtime/content/public changes; reconcile actual issue checkboxes and review status. Draft delivery does not authorize merge, production or future broad refactor implementation."
+    }
+  }
+}

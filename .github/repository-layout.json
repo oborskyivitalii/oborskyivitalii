@@ -130,6 +130,7 @@
     "site/README.md",
     "tools/RI-NOTICE.md",
     "tools/quality/README.md",
-    "review/root-history-20261007/README.md"
+    "review/root-history-20261007/README.md",
+    "guides/CODE-STYLE.md"
   ]
 }

@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "template": "shared/header.html",
+  "text": {
+    "T001": "vo",
+    "T002": ".",
+    "T003": "Vitalii Oborskyi",
+    "T004": {
+      "label": "route.index"
+    },
+    "T005": {
+      "label": "route.research"
+    },
+    "T006": {
+      "label": "route.writing"
+    },
+    "T007": {
+      "label": "route.talks"
+    },
+    "T008": "Appearance",
+    "T009": "Display follows your browser’s color preference. Animated motion needs JavaScript.",
+    "T010": "Theme\n        ",
+    "T011": "Auto · local time",
+    "T012": "Day",
+    "T013": "Night",
+    "T014": "Motion: off"
+  },
+  "attributes": {
+    "A001": "Vitalii Oborskyi, home",
+    "A002": "Main navigation",
+    "A003": "Color theme"
+  },
+  "urls": {
+    "U001": "./",
+    "U002": "./",
+    "U003": "research.html",
+    "U004": "writing.html",
+    "U005": "talks.html"
+  }
+}

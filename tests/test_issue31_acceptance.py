@@ -5,6 +5,7 @@ These checks prove identities, bounded formats, checked navigation and documente
 routes. Whether the writing satisfies the maintainer's intent needs independent
 review; issue/PR linkage and protected merge need current GitHub evidence.
 """
+
 import hashlib
 import importlib.util
 import json
@@ -36,7 +37,9 @@ class Issue31AcceptanceTests(unittest.TestCase):
     def test_upstream_pin_and_component_notices(self):
         config = json.loads(text(".github/repository-intelligence-config.json"))
         upstream = config["upstream"]
-        self.assertEqual(upstream["repository"], "UncertaintyArchitectureGroup/uncertainty-architecture")
+        self.assertEqual(
+            upstream["repository"], "UncertaintyArchitectureGroup/uncertainty-architecture"
+        )
         self.assertEqual(upstream["ref"], UPSTREAM)
         self.assertEqual(upstream["producer_version"], 6)
         self.assertEqual(upstream["producer_path"], ".github/scripts/repository_intelligence.py")
@@ -53,7 +56,12 @@ class Issue31AcceptanceTests(unittest.TestCase):
         ri = load_tool("repository_intelligence")
         surface = ri.verify(REPO, ".github/repository-intelligence-config.json")
         inventory = {item["path"] for item in surface["artifacts"]}
-        tracked = set(subprocess.check_output(["git", "-C", str(REPO), "ls-files", "-z"]).decode().rstrip("\0").split("\0"))
+        tracked = set(
+            subprocess.check_output(["git", "-C", str(REPO), "ls-files", "-z"])
+            .decode()
+            .rstrip("\0")
+            .split("\0")
+        )
         self.assertTrue(tracked <= inventory, "Tracked paths must not be omitted from RI")
         expected_directories = {"."}
         for path in inventory:
@@ -70,8 +78,13 @@ class Issue31AcceptanceTests(unittest.TestCase):
     def test_compact_agent_route(self):
         guide = text("AGENTS.md")
         self.assertLessEqual(len(guide.splitlines()), 100)
-        for path in ["MEMORY.md", "REPOSITORY-MAP.md", "CONTRIBUTING.md",
-                     ".github/REPOSITORY-INTELLIGENCE.md", ".github/ACCEPTANCE.md"]:
+        for path in [
+            "MEMORY.md",
+            "REPOSITORY-MAP.md",
+            "CONTRIBUTING.md",
+            ".github/REPOSITORY-INTELLIGENCE.md",
+            ".github/ACCEPTANCE.md",
+        ]:
             self.assertIn(path, guide)
             self.assertTrue((REPO / path).is_file())
         self.assertIn("## Start from an issue", guide)
@@ -98,7 +111,10 @@ class Issue31AcceptanceTests(unittest.TestCase):
 
     def test_issue_and_pr_templates_expose_evidence_routes(self):
         contributing = text("CONTRIBUTING.md")
-        for heading in ["## Acceptance criteria and session evidence", "## Review, analysis and model handoff"]:
+        for heading in [
+            "## Acceptance criteria and session evidence",
+            "## Review, analysis and model handoff",
+        ]:
             self.assertIn(heading, contributing)
         self.assertIn(".github/ACCEPTANCE.md", contributing)
         self.assertIn("Refs #N", contributing)
@@ -109,22 +125,73 @@ class Issue31AcceptanceTests(unittest.TestCase):
             self.assertRegex(template, r"(?i)report|evidence")
 
     def test_public_and_runtime_paths_match_immutable_baseline(self):
-        expected = subprocess.check_output(["git", "-C", str(REPO), "ls-tree", "-r", "--name-only", "-z", BASE, "--", *PUBLIC_PATHS])
-        actual = subprocess.check_output(["git", "-C", str(REPO), "ls-files", "--cached", "--others", "--exclude-standard", "-z", "--", *PUBLIC_PATHS])
+        expected = subprocess.check_output(
+            [
+                "git",
+                "-C",
+                str(REPO),
+                "ls-tree",
+                "-r",
+                "--name-only",
+                "-z",
+                BASE,
+                "--",
+                *PUBLIC_PATHS,
+            ]
+        )
+        actual = subprocess.check_output(
+            [
+                "git",
+                "-C",
+                str(REPO),
+                "ls-files",
+                "--cached",
+                "--others",
+                "--exclude-standard",
+                "-z",
+                "--",
+                *PUBLIC_PATHS,
+            ]
+        )
         # The sole site documentation exception was part of the original cleanup.
         guide_exception = b"site/README.md"
-        self.assertEqual(set(expected.split(b"\0")) - {guide_exception}, set(actual.split(b"\0")) - {guide_exception}, "Public/runtime path set changed")
-        difference = subprocess.run(["git", "-C", str(REPO), "diff", "--no-ext-diff", "--no-textconv", "--exit-code",
-                                     BASE, "--", *PUBLIC_PATHS, ":(exclude)site/README.md"], text=True, capture_output=True)
-        self.assertEqual(difference.returncode, 0, "Public/runtime source differs from immutable baseline: " + difference.stdout[:4000])
+        self.assertEqual(
+            set(expected.split(b"\0")) - {guide_exception},
+            set(actual.split(b"\0")) - {guide_exception},
+            "Public/runtime path set changed",
+        )
+        difference = subprocess.run(
+            [
+                "git",
+                "-C",
+                str(REPO),
+                "diff",
+                "--no-ext-diff",
+                "--no-textconv",
+                "--exit-code",
+                BASE,
+                "--",
+                *PUBLIC_PATHS,
+                ":(exclude)site/README.md",
+            ],
+            text=True,
+            capture_output=True,
+        )
+        self.assertEqual(
+            difference.returncode,
+            0,
+            "Public/runtime source differs from immutable baseline: " + difference.stdout[:4000],
+        )
 
     def test_policy_maps_all_agreed_ids_and_has_nonautomated_gates(self):
         acceptance = load_tool("issue_acceptance")
         policy, _ = acceptance.load_policy(REPO / ".github/acceptance/issue-31.json")
         self.assertEqual(policy["repository"], "oborskyivitalii/oborskyivitalii")
         self.assertEqual(policy["issue"], 31)
-        self.assertEqual([criterion["id"] for criterion in policy["criteria"]],
-                         [f"AC{number:02}" for number in range(1, 12)])
+        self.assertEqual(
+            [criterion["id"] for criterion in policy["criteria"]],
+            [f"AC{number:02}" for number in range(1, 12)],
+        )
         self.assertEqual(policy["gates"]["G02"]["kind"], "merge")
         self.assertEqual(policy["gates"]["G01"]["kind"], "human")
         self.assertEqual(policy["gates"]["G03"]["kind"], "human")
@@ -149,8 +216,13 @@ class Issue31AcceptanceTests(unittest.TestCase):
 
     def test_bootstrap_prompt_is_repository_anchored(self):
         prompt = text("PROJECT-BOOTSTRAP.md")
-        for fragment in ["oborskyivitalii/oborskyivitalii", "README.md", "AGENTS.md",
-                         "MEMORY.md", "REPOSITORY-MAP.md"]:
+        for fragment in [
+            "oborskyivitalii/oborskyivitalii",
+            "README.md",
+            "AGENTS.md",
+            "MEMORY.md",
+            "REPOSITORY-MAP.md",
+        ]:
             self.assertIn(fragment, prompt)
         self.assertLessEqual(len(prompt), 1000)
         self.assertLessEqual(len([line for line in prompt.splitlines() if line.strip()]), 12)

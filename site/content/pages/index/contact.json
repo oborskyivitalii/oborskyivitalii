@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "template": "pages/index/contact.html",
+  "text": {
+    "T001": "06 / Contact",
+    "T002": "Working through one",
+    "T003": "of these problems?",
+    "T004": "Bring a system, a delivery bottleneck, or a question you cannot yet frame. We can discuss\n        where the uncertainty sits and what a useful next step could look like.",
+    "T005": "Research collaboration, speaking invitations and professional opportunities are welcome\n        too.",
+    "T006": "Book a conversation",
+    "T007": "Choose a time for a conversation, or send me an email.",
+    "T008": "Book a conversation ",
+    "T009": "↗",
+    "T010": "Prefer email? ",
+    "T011": "oborskyivitalii@gmail.com",
+    "T012": "Connect on LinkedIn ",
+    "T013": "↗"
+  },
+  "attributes": {},
+  "urls": {
+    "U001": "https://calendar.app.google/zy9rAnUcoWygSdxH7",
+    "U002": "mailto:oborskyivitalii@gmail.com",
+    "U003": "https://www.linkedin.com/in/vitaliioborskyi/"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "template": "pages/research/lenses.html",
+  "text": {
+    "T001": "Two engineering lenses",
+    "T002": "Feedback meets flow.",
+    "T003": "For The Subprime Code Crisis",
+    "T004": "Theory of Constraints (TOC)",
+    "T005": "Where is the bottleneck, and does speeding up one step improve the whole system? The\n        Subprime Code Crisis uses Goldratt’s Theory of Constraints as a lens for verification\n        capacity, work in progress and delivery throughput.",
+    "T006": "Read the delivery-system interpretation ↗",
+    "T007": "TOC background · Theory of Constraints Institute",
+    "T008": "For Uncertainty Architecture",
+    "T009": "Control Theory",
+    "T010": "What do we observe, who can act, and how do we correct behavior? My AI governance writing\n        connects feedback, operating boundaries and corrective action to the design of\n        model-mediated systems.",
+    "T011": "Read the control-theory article ↗"
+  },
+  "attributes": {},
+  "urls": {
+    "U001": "#delivery",
+    "U002": "https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis/blob/main/report/02_broken_mechanics.md",
+    "U003": "https://www.tocinstitute.org/theory-of-constraints.html",
+    "U004": "#systems",
+    "U005": "https://pub.towardsai.net/uncertainty-architecture-why-ai-governance-is-actually-control-theory-511f3e73ed6e"
+  }
+}

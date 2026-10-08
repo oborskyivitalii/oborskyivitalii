@@ -7,6 +7,16 @@ or merge decisions. Preserve IDs when adding scope; append dated decisions in
 the issue. A test chosen after implementation must still test the original goal,
 including meaningful failure cases, rather than merely describe current code.
 
+For every code/template/style/config change, apply [CODE-STYLE](../guides/CODE-STYLE.md).
+Add a code-style AC or an explicit subcondition in an existing AC before editing.
+Record rule IDs, affected canonical owners, named check selectors and review
+obligations. Reuse `test_code_style.CodeStyleRepositoryTests.test_current_repository_guard`
+for the bounded enforced subset; add relevant behavioral checks, not one test
+per prose rule. Map architectural/readability judgment to an explicit review
+gate, identifying self-review versus independent review. Exact legacy exceptions
+and their removal tasks must be linked; guard success cannot tick the whole AC
+while applicable review or behavior remains unverified.
+
 ## Policy and the session handoff
 
 A bounded policy at `acceptance/issue-N.json` maps every criterion to existing

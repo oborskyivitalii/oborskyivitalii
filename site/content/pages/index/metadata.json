@@ -31,13 +31,5 @@
       ]
     }
   },
-  "blocks": [
-    "hero",
-    "help",
-    "research",
-    "writing",
-    "acknowledgements",
-    "about",
-    "contact"
-  ]
+  "blocks": ["hero", "help", "research", "writing", "acknowledgements", "about", "contact"]
 }

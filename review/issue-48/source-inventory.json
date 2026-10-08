@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "issue": 48,
+  "date": "2026-10-08",
+  "source": {
+    "id": "M48",
+    "submitted_url": "https://lnkd.in/p/e7_nrR6f",
+    "canonical_url": "https://www.linkedin.com/posts/matthewskelton_uncertainty-architecture-why-ai-governance-activity-7455172623409430528-MI9x",
+    "author": "Matthew Skelton",
+    "published_at": "2026-04-29T08:34:23.806Z",
+    "acquisition_method": "Ordinary public guest HTML fetch via the submitted short URL; no authentication.",
+    "bytes": 160647,
+    "sha256": "d8af864e30df71dea7bf04062ab28e4cfe03f3fa5dbfbdb91a131812aed27c78",
+    "reshared_author": "Michael Risch",
+    "reshared_activity": "7455141331162681344",
+    "reshared_url": "https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g",
+    "observation": "Matthew reshared Risch’s discussion of the author’s article and highlighted governance as bringing business intent back into the system.",
+    "limits": "A public reshare and commentary support reporting engagement; they do not establish validation, adoption or institutional endorsement. Full guest HTML/comments remain scratch-only."
+  },
+  "retained_secondary_source": "https://www.linkedin.com/posts/vitaliioborskyi_ua-1-ugcPost-7461016808725164033-pQg_/",
+  "impact_scope": [
+    "site/content/pages/index/acknowledgements.html",
+    "site/content/pages/research/acknowledgements.html",
+    "generated docs and Color/offline renditions",
+    "exact semantic reconciliation and current response tests"
+  ],
+  "no_change": [
+    "all seven other people and their claims/links",
+    "advisor roles and professional context",
+    "research definitions, publications and accepted editions",
+    "external UA recognition register (separate repository owner)",
+    "engagement counts and third-party comments"
+  ],
+  "talks": [
+    {
+      "id": "T1",
+      "submitted_url": "https://lnkd.in/p/eDDq8m8c",
+      "canonical_url": "https://www.linkedin.com/posts/vitaliioborskyi_thank-you-to-the-ua-project-management-day-activity-7510403699689771008-L6yl",
+      "author": "Vitalii Oborskyi",
+      "post_published_at": "2026-09-28T18:22:58.558Z",
+      "acquisition_method": "Ordinary public guest HTML request; no authentication or retries.",
+      "bytes": 118457,
+      "sha256": "328df6a61b2f3ef2ecb5bcb0f51af752f1860d7a79552d8b46fc1cdf357f118a",
+      "event_id": "pmday-2026-autumn",
+      "disposition": "enrich-existing",
+      "event_date": "2026-09-26",
+      "event_date_basis": "Nested organizer follow-up explicitly names September26; author states he contributed as speaker.",
+      "spoken_language": "uk",
+      "spoken_language_basis": "Retain existing approved index classification; not independently re-established by new post.",
+      "observation": "Author describes how AI changes delivery flow and engineering controls around probabilistic product runtime.",
+      "retain_sources": [
+        "https://ua.linkedin.com/posts/pmday_we-are-glad-to-introduce-new-speaker-of-activity-7493632835547889664-67od"
+      ],
+      "exclude": "Recording is promised later; no recording or slides URL supplied. Do not add organizer attendance/speaker counts."
+    },
+    {
+      "id": "T2",
+      "submitted_url": "https://lnkd.in/p/ehvMnhQF",
+      "canonical_url": "https://ua.linkedin.com/posts/vitaliioborskyi_%D0%B2%D0%BE%D0%BB%D0%BE%D0%B4%D0%B8%D0%BC%D0%B8%D1%80-%D0%B4%D1%8F%D0%BA%D1%83%D1%8E-%D0%B7%D0%B0-%D0%BF%D0%BE%D1%81%D1%82-%D0%B2%D1%96%D0%BD-%D1%83%D0%B2%D1%96%D0%BC%D0%BA%D0%BD%D1%83%D0%B2-%D1%83-activity-7479802249829928961-PmrF",
+      "author": "Vitalii Oborskyi",
+      "post_published_at": "2026-07-06T07:43:44.346Z",
+      "acquisition_method": "Ordinary public guest HTML request; no authentication or retries.",
+      "bytes": 137549,
+      "sha256": "da611ec8242c152929eb0b6226c7908e9c9fff195dd78da09705705ab7149221",
+      "event_id": "betelgeuse",
+      "disposition": "enrich-existing",
+      "event_date": null,
+      "spoken_language": "unconfirmed",
+      "reshared_author": "Volodymyr Kurenkov",
+      "reshared_activity": "7479657562947108865",
+      "observation": "Author reflects on the existing Betelgeuse/QAУкраїна live community discussion of AI testing, trust, control and engineering responsibility.",
+      "retain_sources": [
+        "https://www.linkedin.com/posts/vitaliioborskyi_github-uncertaintyarchitecturegroupuncertainty-architecture-activity-7477275989761384448-k8J9/"
+      ],
+      "exclude": "July6 is a post date, not an event day. No official talk title, spoken language or recording established."
+    },
+    {
+      "id": "T3",
+      "submitted_url": "https://lnkd.in/p/eU4A3ywz",
+      "canonical_url": "https://ua.linkedin.com/posts/vitaliioborskyi_software-architecture-activity-7477274339411693569-dJhu",
+      "author": "Vitalii Oborskyi",
+      "post_published_at": "2026-06-29T08:18:43.534Z",
+      "acquisition_method": "Ordinary public guest HTML request; no authentication or retries.",
+      "bytes": 125676,
+      "sha256": "db57b4724769b7b1e29ee83410b0caa25ea30e6eb3b96d29817a233706ce59a5",
+      "event_id": "swarchua",
+      "disposition": "add-distinct-event",
+      "event_date": null,
+      "spoken_language": "unconfirmed",
+      "title_kind": "Descriptive discussion topic, not an official event title.",
+      "observation": "Author describes a delivered discussion with the swarchua architects community on AI operationalization, probabilistic runtime behavior and control responsibilities.",
+      "recording": {
+        "source_short_url": "https://lnkd.in/d_z6Xnab",
+        "canonical_url": "https://www.youtube.com/watch?v=1MPsDi3wuF4",
+        "video_id": "1MPsDi3wuF4",
+        "title": "AI discussion",
+        "channel": "Neverdrak",
+        "source_link_verified": true,
+        "target_metadata_read": true,
+        "playback_or_transcript_inspected": false,
+        "archived_broadcast_start": "2026-06-13T08:07:50+00:00",
+        "archived_broadcast_end": "2026-06-13T09:37:42+00:00",
+        "bytes": 1247420,
+        "sha256": "b63e777ccb60bd17b626d4810c41d2ee3ff85d318cd399e33d260aa60ebe0113"
+      },
+      "exclude": "June29 is a post date; broadcast metadata is not independently verified event occurrence or individual talk duration. Spoken language and slides remain unconfirmed."
+    }
+  ],
+  "talks_impact_scope": [
+    "site/content/pages/talks/talks.html",
+    "site/content/pages/talks/metadata.json",
+    "dependent generated docs/preview/offline output",
+    "existing exact semantic restoration and maintained content/acceptance checks"
+  ],
+  "talks_no_change": [
+    "Corning row and original source",
+    "other pages and publication/response identities",
+    "scenes/camera/renderer/artwork/style/surface owners",
+    "upstream UA talk history and PMDay deck/article publication",
+    "raw third-party content and engagement counts"
+  ]
+}

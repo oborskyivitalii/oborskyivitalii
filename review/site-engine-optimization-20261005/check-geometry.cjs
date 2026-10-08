@@ -1,7 +1,7 @@
 'use strict';
 // Diagnostic sampling of actual model complexity, separate from the basic suite.
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
-const root=path.resolve(__dirname,'../..'),api=require('../../docs/space.js'),ribbons=require('../site-scroll-sync-20261004/RIBBONS-PROTOTYPE.cjs');
+const root=path.resolve(__dirname,'../..'),api=require('../../docs/space.js'),ribbons=require('../../site/effects/ribbons.cjs');
 const file=path.resolve(process.argv[2]),output=path.resolve(process.argv[3]);
 const source=fs.readFileSync(file),variant=require('../../tools/site/variants.cjs').identity(source.toString());
 global.document={documentElement:{dataset:{theme:'dark'}}}; // Bounded projector theme fixture; no DOM is rendered here.

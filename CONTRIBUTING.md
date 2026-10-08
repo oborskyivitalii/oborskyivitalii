@@ -69,6 +69,13 @@ correspondence boundaries; link public evidence or a bounded authorized summary.
 
 ### Implementation, review and closure
 
+Read [CODE-STYLE.md](guides/CODE-STYLE.md) before changing code, templates, styles
+or configuration. Every such issue must include a code-style AC (or an explicit
+subcondition of an existing AC): applicable rule IDs, owner paths, bounded guard
+and relevant checks, review of unautomated rules, and exact owned exceptions.
+Include the same rule-to-evidence mapping in the PR. The automatic subset is not
+proof of complete architectural, formatting or performance compliance.
+
 1. Link the owning issue in the PR body using `Refs #N` or a full issue URL.
    Add `Refs #N` to every implementation commit (including the final squash
    message); for a different repository use its full issue URL. Keep technical

@@ -1,0 +1,421 @@
+{
+  "schema": 1,
+  "kind": "issue58-interruption-recovery-base-observations",
+  "baseline": {
+    "sourceCommit": "a8149a0a65579d6977ccef9bb0e6e4367fd9e9dd",
+    "sourceTree": "776610667df0c606d29891f582a7fc329faaa570",
+    "candidateCommit": "a8149a0a65579d6977ccef9bb0e6e4367fd9e9dd",
+    "sourceDirty": false,
+    "artifactDigest": "cd06ab7fb12235af6170ae825a9616b1f04bf23082673930cefdc33417f8f2de",
+    "engine": "62164b66c648eb104215b272a1158e291b6c37bf7437591d4e777acef5669eb1",
+    "variant": {
+      "id": "base",
+      "contract": 1,
+      "fingerprint": "48153b94fbae4f314eaa11b156df8a20227dec429abfee9e45c14fda4a1f1b2a"
+    }
+  },
+  "candidate": {
+    "sourceCommit": "a68043a45100d61bd1baf1566ae088f166ddb147",
+    "sourceTree": "8cddbeb3233b996fd2cb28a45fe280beb722b2d9",
+    "candidateCommit": "a68043a45100d61bd1baf1566ae088f166ddb147",
+    "sourceDirty": false,
+    "artifactDigest": "fefeeb0cb34ec4c32cf0b702c97009d5284e164503b020e77d03ddd90e023d9b",
+    "engine": "cfbf9ec0e253e92c3e79fe9d1f82d5a79a30aff5bf255e0156be4f89e6b6a0ba",
+    "variant": {
+      "id": "base",
+      "contract": 1,
+      "fingerprint": "48153b94fbae4f314eaa11b156df8a20227dec429abfee9e45c14fda4a1f1b2a"
+    }
+  },
+  "scope": "Base only; local loopback exact-artifact observations, not hosted or release acceptance",
+  "collectorSourcesEqual": true,
+  "environmentEqual": true,
+  "browserEqual": true,
+  "protocolEqual": true,
+  "baselineCollectionPass": true,
+  "candidateCollectionPass": false,
+  "candidateError": "AssertionError [ERR_ASSERTION]: paint budget\n    at validateSample (/workspace/scratch/8bf2a63ae9d5/oborskyivitalii/tools/quality/refactor-metrics.cjs:161:14)\n    at validateReport (/workspace/scratch/8bf2a63ae9d5/oborskyivitalii/tools/quality/refactor-metrics.cjs:288:7)\n    at collect (/workspace/scratch/8bf2a63ae9d5/oborskyivitalii/tools/quality/refactor-metrics.cjs:685:5)",
+  "observations": [
+    {
+      "route": "research",
+      "profile": "desktop",
+      "kind": "idle",
+      "mainP95Ms": 22.5,
+      "candidateP95Ms": 14.900000005960464,
+      "mainBusyPercent": 17.067511602729056,
+      "candidateBusyPercent": 12.898557957109638,
+      "mainQualityStates": [
+        [
+          "0",
+          "12"
+        ]
+      ],
+      "candidateQualityStates": [
+        [
+          "0",
+          "12"
+        ]
+      ],
+      "qualityComparable": true
+    },
+    {
+      "route": "research",
+      "profile": "desktop",
+      "kind": "scroll",
+      "mainP95Ms": 18.399999998509884,
+      "candidateP95Ms": 13.800000004470348,
+      "mainBusyPercent": 26.703941021447125,
+      "candidateBusyPercent": 21.349950641695216,
+      "mainQualityStates": [
+        [
+          "0",
+          "12"
+        ]
+      ],
+      "candidateQualityStates": [
+        [
+          "0",
+          "12"
+        ],
+        [
+          "0",
+          "15"
+        ]
+      ],
+      "qualityComparable": false
+    },
+    {
+      "route": "research",
+      "profile": "desktop",
+      "kind": "off",
+      "mainP95Ms": null,
+      "candidateP95Ms": null,
+      "mainBusyPercent": 0,
+      "candidateBusyPercent": 0,
+      "mainQualityStates": [
+        [
+          "0",
+          "12"
+        ]
+      ],
+      "candidateQualityStates": [
+        [
+          "0",
+          "15"
+        ]
+      ],
+      "qualityComparable": false
+    },
+    {
+      "route": "research",
+      "profile": "desktop",
+      "kind": "reduced",
+      "mainP95Ms": null,
+      "candidateP95Ms": null,
+      "mainBusyPercent": 0,
+      "candidateBusyPercent": 0,
+      "mainQualityStates": [
+        [
+          "0",
+          "12"
+        ]
+      ],
+      "candidateQualityStates": [
+        [
+          "0",
+          "15"
+        ]
+      ],
+      "qualityComparable": false
+    },
+    {
+      "route": "writing",
+      "profile": "desktop",
+      "kind": "idle",
+      "mainP95Ms": 12,
+      "candidateP95Ms": 15.200000002980232,
+      "mainBusyPercent": 17.36472102651186,
+      "candidateBusyPercent": 23.66074773222455,
+      "mainQualityStates": [
+        [
+          "0",
+          "20"
+        ],
+        [
+          "0",
+          "30"
+        ]
+      ],
+      "candidateQualityStates": [
+        [
+          "0",
+          "20"
+        ],
+        [
+          "0",
+          "30"
+        ]
+      ],
+      "qualityComparable": false
+    },
+    {
+      "route": "writing",
+      "profile": "desktop",
+      "kind": "scroll",
+      "mainP95Ms": 12.100000001490116,
+      "candidateP95Ms": 11.799999997019768,
+      "mainBusyPercent": 20.09298414908757,
+      "candidateBusyPercent": 20.139302002783563,
+      "mainQualityStates": [
+        [
+          "0",
+          "30"
+        ]
+      ],
+      "candidateQualityStates": [
+        [
+          "0",
+          "20"
+        ],
+        [
+          "0",
+          "30"
+        ]
+      ],
+      "qualityComparable": false
+    },
+    {
+      "route": "writing",
+      "profile": "desktop",
+      "kind": "off",
+      "mainP95Ms": null,
+      "candidateP95Ms": null,
+      "mainBusyPercent": 0,
+      "candidateBusyPercent": 0,
+      "mainQualityStates": [
+        [
+          "0",
+          "20"
+        ]
+      ],
+      "candidateQualityStates": [
+        [
+          "0",
+          "30"
+        ]
+      ],
+      "qualityComparable": false
+    },
+    {
+      "route": "writing",
+      "profile": "desktop",
+      "kind": "reduced",
+      "mainP95Ms": null,
+      "candidateP95Ms": null,
+      "mainBusyPercent": 0,
+      "candidateBusyPercent": 0,
+      "mainQualityStates": [
+        [
+          "0",
+          "20"
+        ]
+      ],
+      "candidateQualityStates": [
+        [
+          "0",
+          "30"
+        ]
+      ],
+      "qualityComparable": false
+    },
+    {
+      "route": "research",
+      "profile": "mobile-x4",
+      "kind": "idle",
+      "mainP95Ms": 26.700000002980232,
+      "candidateP95Ms": 53.5,
+      "mainBusyPercent": 14.004791375985912,
+      "candidateBusyPercent": 17.53572230274366,
+      "mainQualityStates": [
+        [
+          "1",
+          "7.5"
+        ]
+      ],
+      "candidateQualityStates": [
+        [
+          "0",
+          "7.5"
+        ]
+      ],
+      "qualityComparable": false
+    },
+    {
+      "route": "research",
+      "profile": "mobile-x4",
+      "kind": "scroll",
+      "mainP95Ms": 21.599999994039536,
+      "candidateP95Ms": 29.399999998509884,
+      "mainBusyPercent": 23.791886248209604,
+      "candidateBusyPercent": 33.10486132991168,
+      "mainQualityStates": [
+        [
+          "1",
+          "7.5"
+        ]
+      ],
+      "candidateQualityStates": [
+        [
+          "0",
+          "7.5"
+        ]
+      ],
+      "qualityComparable": false
+    },
+    {
+      "route": "research",
+      "profile": "mobile-x4",
+      "kind": "off",
+      "mainP95Ms": null,
+      "candidateP95Ms": null,
+      "mainBusyPercent": 0,
+      "candidateBusyPercent": 0,
+      "mainQualityStates": [
+        [
+          "1",
+          "7.5"
+        ]
+      ],
+      "candidateQualityStates": [
+        [
+          "0",
+          "7.5"
+        ]
+      ],
+      "qualityComparable": false
+    },
+    {
+      "route": "research",
+      "profile": "mobile-x4",
+      "kind": "reduced",
+      "mainP95Ms": null,
+      "candidateP95Ms": null,
+      "mainBusyPercent": 0,
+      "candidateBusyPercent": 0,
+      "mainQualityStates": [
+        [
+          "1",
+          "7.5"
+        ]
+      ],
+      "candidateQualityStates": [
+        [
+          "0",
+          "7.5"
+        ]
+      ],
+      "qualityComparable": false
+    },
+    {
+      "route": "writing",
+      "profile": "mobile-x4",
+      "kind": "idle",
+      "mainP95Ms": 28.700000002980232,
+      "candidateP95Ms": 27.5,
+      "mainBusyPercent": 14.618702167812456,
+      "candidateBusyPercent": 15.834643115963715,
+      "mainQualityStates": [
+        [
+          "0",
+          "7.5"
+        ]
+      ],
+      "candidateQualityStates": [
+        [
+          "1",
+          "7.5"
+        ]
+      ],
+      "qualityComparable": false
+    },
+    {
+      "route": "writing",
+      "profile": "mobile-x4",
+      "kind": "scroll",
+      "mainP95Ms": 26.100000001490116,
+      "candidateP95Ms": 37.600000001490116,
+      "mainBusyPercent": 27.618813704839724,
+      "candidateBusyPercent": 26.49276591763774,
+      "mainQualityStates": [
+        [
+          "0",
+          "7.5"
+        ]
+      ],
+      "candidateQualityStates": [
+        [
+          "1",
+          "7.5"
+        ]
+      ],
+      "qualityComparable": false
+    },
+    {
+      "route": "writing",
+      "profile": "mobile-x4",
+      "kind": "off",
+      "mainP95Ms": null,
+      "candidateP95Ms": null,
+      "mainBusyPercent": 0,
+      "candidateBusyPercent": 0,
+      "mainQualityStates": [
+        [
+          "0",
+          "7.5"
+        ]
+      ],
+      "candidateQualityStates": [
+        [
+          "1",
+          "7.5"
+        ]
+      ],
+      "qualityComparable": false
+    },
+    {
+      "route": "writing",
+      "profile": "mobile-x4",
+      "kind": "reduced",
+      "mainP95Ms": null,
+      "candidateP95Ms": null,
+      "mainBusyPercent": 0,
+      "candidateBusyPercent": 0,
+      "mainQualityStates": [
+        [
+          "0",
+          "7.5"
+        ]
+      ],
+      "candidateQualityStates": [
+        [
+          "1",
+          "7.5"
+        ]
+      ],
+      "qualityComparable": false
+    }
+  ],
+  "raw": {
+    "path": "review/issue-58/2026-10-08-resume-base-measurements.json.gz",
+    "sha256": "a4f7352fc7a617007d8042e9db88335960453536b560668f8296ca896831d12b"
+  },
+  "optimizationBenefitProved": false,
+  "performanceAcceptance": false,
+  "remaining": [
+    "matched quality-tier measurements",
+    "Color observations",
+    "exact published CI/hosted/visual/security evidence",
+    "independent integrated review",
+    "maintainer merge and actual main checks"
+  ]
+}

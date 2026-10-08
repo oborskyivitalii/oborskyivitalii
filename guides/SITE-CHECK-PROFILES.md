@@ -20,6 +20,11 @@ belong to source-bound results in the live issue/PR, not the profile name.
 Default local command: `node tools/quality/local.cjs`. It needs no browser
 download, advisory feed or soak. `site-checks.yml` runs this Basic profile;
 `navigation.yml` validates RI, its CI mapping and maintained repository contracts.
+It also runs the bounded [code-style guard](CODE-STYLE.md#cs09--what-the-current-automatic-guard-proves)
+and `test_code_style.py` negatives/agent routes without installing a toolchain.
+This is a permanent cheap governance suite; `run_repository_tests.py` also
+discovers it for the maintained repository-contract layer. Do not interpret its
+passing subset as full formatting, architecture or performance acceptance.
 The acceptance workflow selects the owning issue's policy. Targeted additions
 must exercise that issue's observable ACs; a generic green smoke does not replace
 them. Hosted smoke remains a distinct report and cannot authorize stable staging.

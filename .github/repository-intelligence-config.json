@@ -44,83 +44,42 @@
     {
       "concern": "search discoverability and topic map",
       "path": "guides/SITE-SEO.md",
-      "queries": [
-        "SEO",
-        "keywords",
-        "search visibility",
-        "ключові слова",
-        "оптимізація сайту"
-      ]
+      "queries": ["SEO", "keywords", "search visibility", "ключові слова", "оптимізація сайту"]
     },
     {
       "concern": "agent operation",
       "path": "AGENTS.md",
-      "queries": [
-        "agent workflow",
-        "агент"
-      ]
+      "queries": ["agent workflow", "агент"]
     },
     {
       "concern": "task intake and closure",
       "path": "CONTRIBUTING.md",
-      "queries": [
-        "issue workflow",
-        "backlog",
-        "ішью",
-        "беклог"
-      ]
+      "queries": ["issue workflow", "backlog", "ішью", "беклог"]
     },
     {
       "concern": "author profile entry point",
       "path": "README.md",
-      "queries": [
-        "author",
-        "about",
-        "профіль",
-        "про автора"
-      ]
+      "queries": ["author", "about", "профіль", "про автора"]
     },
     {
       "concern": "milestone sequence",
       "path": "guides/SITE-ROADMAP.md",
-      "queries": [
-        "roadmap",
-        "milestones",
-        "план сайту"
-      ]
+      "queries": ["roadmap", "milestones", "план сайту"]
     },
     {
       "concern": "publication priorities and migration issue routes",
       "path": "guides/SITE-ROADMAP.md",
-      "queries": [
-        "publication",
-        "pmday",
-        "publisher",
-        "pdf",
-        "quartz",
-        "публікація",
-        "пдф"
-      ]
+      "queries": ["publication", "pmday", "publisher", "pdf", "quartz", "публікація", "пдф"]
     },
     {
       "concern": "canonical research ownership",
       "path": "guides/REPOSITORIES.md",
-      "queries": [
-        "cross repository",
-        "research owners",
-        "migration",
-        "міграція",
-        "дослідження"
-      ]
+      "queries": ["cross repository", "research owners", "migration", "міграція", "дослідження"]
     },
     {
       "concern": "navigation projection",
       "path": ".github/REPOSITORY-INTELLIGENCE.md",
-      "queries": [
-        "repository intelligence",
-        "RI adapter",
-        "навігація репо"
-      ]
+      "queries": ["repository intelligence", "RI adapter", "навігація репо"]
     },
     {
       "concern": "static site source, engine contract and incremental generation",
@@ -228,6 +187,20 @@
         "дублікати тестів",
         "оптимізація тестів"
       ]
+    },
+    {
+      "concern": "mandatory agent code style, source architecture and refactoring",
+      "path": "guides/CODE-STYLE.md",
+      "queries": [
+        "code style",
+        "coding standards",
+        "refactoring",
+        "content engine separation",
+        "стиль коду",
+        "код стайл",
+        "рефакторинг",
+        "правила написання коду"
+      ]
     }
   ],
   "map_output": "REPOSITORY-MAP.md",
@@ -310,14 +283,8 @@
     },
     {
       "concern": "authored site and generated output",
-      "paths": [
-        "site/",
-        "docs/",
-        "tools/site/"
-      ],
-      "commands": [
-        "node tools/quality/local.cjs"
-      ],
+      "paths": ["site/", "docs/", "tools/site/"],
+      "commands": ["node tools/quality/local.cjs"],
       "workflow": ".github/workflows/site-checks.yml"
     },
     {
@@ -330,9 +297,7 @@
         "guides/SITE-RELEASE-GATES.md",
         "guides/SITE-STAGING.md"
       ],
-      "commands": [
-        "node tools/quality/local.cjs"
-      ],
+      "commands": ["node tools/quality/local.cjs"],
       "read": [
         "guides/SITE-CHECK-PROFILES.md",
         "guides/SITE-RELEASE-GATES.md",
@@ -392,6 +357,26 @@
       ],
       "workflow": ".github/workflows/navigation.yml",
       "note": "Plan lists allocation, not a passing run. PR execution requires exact --base/--head; staging/production selection and explicit diagnostic replay use the canonical registry. Hosted checks need an authorized exact candidate/origin; this navigation route does not deploy or provide external release acceptance."
+    },
+    {
+      "concern": "mandatory code style and bounded source architecture guard",
+      "paths": [
+        "site/",
+        "tools/",
+        "tests/",
+        ".github/",
+        "AGENTS.md",
+        "CONTRIBUTING.md",
+        "guides/CODE-STYLE.md",
+        "review/site-scroll-sync-20261004/"
+      ],
+      "commands": [
+        "python3 tools/check_code_style.py",
+        "python3 -m unittest discover -s tests -p 'test_code_style.py'"
+      ],
+      "read": ["guides/CODE-STYLE.md"],
+      "workflow": ".github/workflows/navigation.yml",
+      "note": "Read and follow applicable CS rules before code/template/style/config edits; map them to an issue AC and PR evidence. Guard success establishes only its stated subset; review unautomated rules and exact legacy allowances. This route does not authorize refactoring historical artifacts."
     }
   ]
 }

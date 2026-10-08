@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 58,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/58",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "R1: canonical effects and explicit shared contracts",
+      "automated_scope": "Historical R1 completion is recorded in issue56/merged PR57 and checked main a56b627. The bounded current guard checks only existing ownership/CSS/import invariants. Do not rerun issue56 frozen payload snapshots as universal formatting gates; verify historical evidence separately and retain permanent descriptor contracts.",
+      "checks": ["GUARD"],
+      "gates": ["HISTORICAL-R1"]
+    },
+    {
+      "id": "AC02",
+      "intent": "R2: reproducible formatting and complete source lint",
+      "automated_scope": "Accepted R2 mechanical formatting is reobserved from immutable checkpoint8c6cf877/tree2725 using its frozen formatter, semantic tools, catalog and49 reviewed controls against baseline2138131. Current candidate formatting/idempotence/drift/config/version/full-scope coverage negatives remain active; source/scanner/review observations remain LIVE/INDEPENDENT gates. Later intentional semantics require their own phase checks, never broader R2 exclusions.",
+      "checks": [
+        "FORMAT",
+        "FORMAT-CONTRACTS",
+        "MECHANICAL",
+        "CHECKPOINT-CONTRACTS",
+        "SCANNER-CONTRACTS",
+        "GUARD"
+      ],
+      "gates": ["INDEPENDENT", "LIVE"]
+    },
+    {
+      "id": "AC03",
+      "intent": "R3: content, records and templates have separate owners",
+      "automated_scope": "Current-head CONTENT contracts reject schema/presentation/topic/labels/month/identity errors, raw HTML objects/fields, unsafe attribute/URL output, missing/duplicate/order block/record references and unused template slots. The task-only R3 migration proof compares five rendered routes against accepted8c source for semantic DOM/prose/full attributes/links/order/IDs/metadata/JSONLD/edition/featured relationships, retaining the whole R2 route while replacing only its unique PMDay article with approved-main a8149a0 bytes; exact title, recording URL and language mutation negatives reject drift. Other route content and metadata/edition contracts stay frozen. Also admitting only the separately reviewed R4 portrait attributes and two inert Writing labels. CANONICAL covers current generation/incremental/offline contracts. Actual no-JS/reading observations and substantive boundary/content review remain LIVE/INDEPENDENT gates.",
+      "checks": ["CONTENT", "CANONICAL"],
+      "gates": ["PENDING-PHASES", "INDEPENDENT", "LIVE"]
+    },
+    {
+      "id": "AC04",
+      "intent": "R4: canonical CSS owns static presentation",
+      "automated_scope": "Current-head canonical hosted/offline effect CSS order/byte ownership, missing/duplicate/swapped/unsafe/symlink CSS rejection, exact Color variant selection and shared reading paint contracts are mapped to CSS; GUARD verifies the actual portrait inline-debt removal and palette ownership. Actual Day/Night desktop/narrow paint, typography, responsive/stacking geometry remain LIVE/INDEPENDENT gates.",
+      "checks": ["CSS", "GUARD"],
+      "gates": ["PENDING-PHASES", "INDEPENDENT", "LIVE"]
+    },
+    {
+      "id": "AC05",
+      "intent": "R5: cohesive runtime/build boundaries and lifecycle",
+      "automated_scope": "Current-head COHESION checks literal AST dependency/ownership/cycle/computed-runtime/pure-ambient violations, extracted camera/projector coordinate equivalence, ribbon behavior, navigation cancellation/stale ownership and scene clock/cadence/detail/cache/Off/hidden/reflow contracts. CANONICAL checks current generation/incremental behavior; BASIC checks route/geometry limits. Actual complete complexity/lint findings, browser lifecycle and substantive architectural review remain LIVE/INDEPENDENT gates; lexical/serialized-edge limits remain explicit.",
+      "checks": ["COHESION", "CANONICAL", "BASIC"],
+      "gates": ["PENDING-PHASES", "INDEPENDENT", "LIVE"]
+    },
+    {
+      "id": "AC06",
+      "intent": "End-to-end behavior and generation parity",
+      "automated_scope": "Frozen R2 AST/value/strict-inline-text preservation remains independently checked at its accepted checkpoint. Current candidate executable serialization, canonical/offline/Color generation, incremental/source identity and unchanged budgets remain active. R3-R6 must add their current-head phase parity contracts; final integrated browser/fallback/visual evidence remains explicit LIVE/INDEPENDENT acceptance.",
+      "checks": ["BASIC", "MECHANICAL", "CANONICAL", "BUDGETS", "CSS", "COHESION", "CONTENT"],
+      "gates": ["PENDING-PHASES", "INDEPENDENT", "LIVE"]
+    },
+    {
+      "id": "AC07",
+      "intent": "Free quality tools and architecture enforcement",
+      "automated_scope": "Current candidate maintained lint coverage/finding-debt rejection fixtures and byte-identical original security baseline remain active. Actual exact candidate ESLint/Stylelint/Ruff/security scans and review of exact finding rebindings remain external LIVE/INDEPENDENT evidence. R2 numerical inventory/debt observations belong to its frozen checkpoint; subsequent inventories evolve only through validated maintained catalogs and exact reviewed owners.",
+      "checks": ["SCANNER-CONTRACTS", "BUDGETS", "CSS", "COHESION", "CONTENT"],
+      "gates": ["PENDING-PHASES", "INDEPENDENT", "LIVE"]
+    },
+    {
+      "id": "AC08",
+      "intent": "R6: measured resource result and preserved budgets",
+      "automated_scope": "Comparable measurements use exact approved-main a8149a0/tree7766106 with the same Base[] or Color[travel] composition and actual absence of Ribbon hooks/custom paint. Frozen R2 remains formatting history and cannot attribute the separately authorized ribbon-removal benefit to refactoring. Current-head METRICS contracts reject wrong clean commit/tree/artifact/served runtime, missing/duplicate raw observations, fabricated summaries, weakened original budgets, unsafe caches, Off/reduced RAF callbacks and growing ten-cycle warm DOM/listener state. BASIC preserves current geometry/size limits. Comparable actual raw task/frame/cache/memory/lifecycle measurements and any optimization benefit or explicit rejection require LIVE/INDEPENDENT evidence. Fixed-tier/cadence local diagnostics must retain original and served-derivative identities, exact bounded controller edits and actual whole-window states; instrumented reports cannot be mixed with unmodified adaptive reports or complete performance acceptance.",
+      "checks": ["METRICS", "BASIC"],
+      "gates": ["PENDING-PHASES", "INDEPENDENT", "LIVE"]
+    },
+    {
+      "id": "AC09",
+      "intent": "Code-style, inventories and proportionate tests",
+      "automated_scope": "Current formatter/coverage negatives, checkpoint-isolation negatives, bounded CS guard and fresh inventory/RI/CI remain active throughout this single DraftPR. Independent readability/semantic review and per-phase/final test dispositions remain explicit gates; accepted R2 snapshots never impose old source cardinalities on intentional current-head migrations.",
+      "checks": [
+        "GUARD",
+        "RI",
+        "RI-CI",
+        "FORMAT-CONTRACTS",
+        "SCANNER-CONTRACTS",
+        "CHECKPOINT-CONTRACTS",
+        "METRICS",
+        "COHESION",
+        "CONTENT"
+      ],
+      "gates": ["PENDING-PHASES", "INDEPENDENT"]
+    },
+    {
+      "id": "AC10",
+      "intent": "Integrated completion and honest review/release state",
+      "automated_scope": "RI/CI checks support current source-bound phase records but do not establish implementation/review decisions, issue checkbox state or final staging/visual acceptance. User-approved R2-R6 execution remains in one DraftPR60, preserving separately reviewed exact phase checkpoints. One final maintainer merge decision and actual merged-main checks follow integrated completion; intermediate phase merges are no longer prerequisites.",
+      "checks": ["RI", "RI-CI"],
+      "gates": ["PENDING-PHASES", "INDEPENDENT", "LIVE", "MERGED"]
+    }
+  ],
+  "checks": {
+    "BASIC": {
+      "kind": "node-basic"
+    },
+    "GUARD": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    },
+    "RI": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    },
+    "FORMAT": {
+      "kind": "unittest",
+      "test": "test_issue58_acceptance.Issue58R2AcceptanceTests.test_actual_maintained_formatting"
+    },
+    "FORMAT-CONTRACTS": {
+      "kind": "unittest",
+      "test": "test_issue58_acceptance.Issue58R2AcceptanceTests.test_formatter_and_semantic_failure_contracts"
+    },
+    "MECHANICAL": {
+      "kind": "unittest",
+      "test": "test_issue58_acceptance.Issue58R2AcceptanceTests.test_original_maintained_source_semantics"
+    },
+    "SCANNER-CONTRACTS": {
+      "kind": "unittest",
+      "test": "test_issue58_acceptance.Issue58R2AcceptanceTests.test_source_coverage_and_exact_debt_contracts"
+    },
+    "CANONICAL": {
+      "kind": "unittest",
+      "test": "test_issue58_acceptance.Issue58R2AcceptanceTests.test_serialized_generation_and_incremental_contracts"
+    },
+    "BUDGETS": {
+      "kind": "unittest",
+      "test": "test_issue58_acceptance.Issue58R2AcceptanceTests.test_original_budgets_and_frozen_security_baseline"
+    },
+    "CHECKPOINT-CONTRACTS": {
+      "kind": "unittest",
+      "test": "test_issue58_acceptance.Issue58R2AcceptanceTests.test_phase_checkpoint_failure_contracts"
+    },
+    "CSS": {
+      "kind": "unittest",
+      "test": "test_issue58_acceptance.Issue58PhaseAcceptanceTests.test_static_css_ownership_and_parity"
+    },
+    "METRICS": {
+      "kind": "unittest",
+      "test": "test_issue58_acceptance.Issue58PhaseAcceptanceTests.test_resource_measurement_failure_contracts"
+    },
+    "COHESION": {
+      "kind": "unittest",
+      "test": "test_issue58_acceptance.Issue58PhaseAcceptanceTests.test_runtime_build_cohesion_and_lifecycle"
+    },
+    "CONTENT": {
+      "kind": "unittest",
+      "test": "test_issue58_acceptance.Issue58PhaseAcceptanceTests.test_content_ownership_and_parity"
+    }
+  },
+  "gates": {
+    "HISTORICAL-R1": {
+      "kind": "human",
+      "description": "Verify recorded R1 completion from issue56, PR57 and actual merge/main checks at a56b627. That accepted historical phase remains checked in issue58. This local runner cannot fetch/approve live historical evidence; do not confuse its pending gate with a new request to rerun fixed R1 hashes after formatting."
+    },
+    "PENDING-PHASES": {
+      "kind": "human",
+      "description": "Verify each R3-R6 phase against its stable criterion and current-head phase contracts, recording incomplete subconditions honestly in issue58. All phases continue in DraftPR60 after the 2026-10-08 maintainer decision, with reviewed source checkpoints rather than intermediate merges. Frozen R2 proof cannot complete future/shared criteria; meaningful phase checks and independent review remain required."
+    },
+    "INDEPENDENT": {
+      "kind": "human",
+      "description": "Review each actual affected phase source/semantics/CS/dependency/scanner proof independently, recording exact reviewer/source findings in issue58 and DraftPR60. Planning reviews are not implementation reviews; separately reviewed checkpoints do not replace final integrated review."
+    },
+    "LIVE": {
+      "kind": "human",
+      "description": "Verify exact current-source actual formatter/lint/security/CI/hosted/visual/resource reports and source/tree/artifact identity for each applicable phase and final integrated scope. Preserve frozen historical R2 identities as historical evidence; they cannot be relabelled as current-head browser/scanner observations."
+    },
+    "MERGED": {
+      "kind": "merge",
+      "description": "After complete R2-R6 implementation, scoped current-source checks, independent phase/integrated review and a separate final maintainer merge decision, merge PR60 once and record its actual merged commit/tree and successful main checks in58. Intermediate phase merges are not required by the approved 2026-10-08 same-PR plan. Issue58 remains open until all integrated criteria/gates are satisfied; promotion/production retain separate authorization."
+    }
+  }
+}

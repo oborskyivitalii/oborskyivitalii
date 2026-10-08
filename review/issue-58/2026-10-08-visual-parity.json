@@ -1,0 +1,361 @@
+{
+  "scope": "Eight paired viewport captures: Home/Writing, Day/Night,desktop/mobile,reduced motion and Motion off; not a full browser matrix or production-host proof.",
+  "baseline": {
+    "commit": "2138131b718d1ac4734f6b2c55520eb37e98ca6a",
+    "headTree": "0fb766af72125a6cfe2833547df6c677c4c6a8fa",
+    "sourceDirty": false,
+    "observedMaintainedSourcesSha256": "cc79e7c0da030bafd78e4df4ef1225c0abb5ec924d489b3c5c468cb750da5580"
+  },
+  "candidate": {
+    "headCommit": "2138131b718d1ac4734f6b2c55520eb37e98ca6a",
+    "headTree": "0fb766af72125a6cfe2833547df6c677c4c6a8fa",
+    "sourceDirty": true,
+    "observedMaintainedSourcesSha256": "56923ab32eefc3e52ff90e9c3a6d6b3a7d0d75a7f442bf110b33f62d1702eeed"
+  },
+  "browser": "153.0.8010.12",
+  "playwright": "1.63.0",
+  "observationStable": {
+    "baseline": true,
+    "candidate": true
+  },
+  "resources": {
+    "baseline": {
+      "/index.html": {
+        "sha256": "3c3e973e05dc887a37864cab835ff2be6fd611252a3eab926f1add95562f2cb7",
+        "bytes": 51448
+      },
+      "/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi-cutout.webp": {
+        "sha256": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae",
+        "bytes": 55458
+      },
+      "/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/archive.js": {
+        "sha256": "fd1d7dbbf378073d673f9d498da8a1b93153472cf045ac632e3384b2c3ca3a0b",
+        "bytes": 5873
+      },
+      "/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/navigation.js": {
+        "sha256": "d464143b30f2600cfa64a98e131f9def79ef010ff5312762dd002625cf765b98",
+        "bytes": 23482
+      },
+      "/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/space.js": {
+        "sha256": "bdbbc653e53bb0896e83c1e6eb129b80989f367d8ef206f0233598d789d818d6",
+        "bytes": 94405
+      },
+      "/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/styles.css": {
+        "sha256": "499975bea085f64d2b96efea41c0e06a9399e65f06a9a47d4f948bd1dcfd8ba8",
+        "bytes": 27836
+      },
+      "/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/theme.js": {
+        "sha256": "d11f679af05442e8b01024e9a5fe3ba9aff73554f11bd8f3ff692d14f830f8fb",
+        "bytes": 2907
+      },
+      "/writing.html": {
+        "sha256": "4e9ee63287de86dc805ab94656ddf31a44a15fa64489cd96e988cb578a117e90",
+        "bytes": 99661
+      }
+    },
+    "candidate": {
+      "/index.html": {
+        "sha256": "d08ef073d77a2bb45b97bcdc19df9c2e5c2f931a566eff0ad5bd78cbb3c2df57",
+        "bytes": 52075
+      },
+      "/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi-cutout.webp": {
+        "sha256": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae",
+        "bytes": 55458
+      },
+      "/runtime/39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e/archive.js": {
+        "sha256": "06d69715728f315be30170f6e0f8149b67833f03c00c64c65decdfefb9f42a65",
+        "bytes": 6419
+      },
+      "/runtime/39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e/navigation.js": {
+        "sha256": "bd246a3e0021f7f01bb38cf1961085b65e8ac17c35536ad907a98be7f55b85d9",
+        "bytes": 28302
+      },
+      "/runtime/39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e/space.js": {
+        "sha256": "e0e420db9819790d73dedb7251f66bf2152fbff3c0c4acd58352d8b897329ea6",
+        "bytes": 122840
+      },
+      "/runtime/39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e/styles.css": {
+        "sha256": "0a64f756eead721bb3f5d84949332bc74488780cd95902a62d2067971bd643b0",
+        "bytes": 33228
+      },
+      "/runtime/39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e/theme.js": {
+        "sha256": "b6df1591a86ce1f18662e26679926f5433febd935c453952f2443f78f2c0e0ee",
+        "bytes": 2993
+      },
+      "/writing.html": {
+        "sha256": "e9c46fc1f83093c6f7b30a814d345637795f323ece9eca316078f3bb4ebacbe4",
+        "bytes": 99879
+      }
+    }
+  },
+  "cases": [
+    {
+      "case": "index-light-1440x900",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "equal": {
+        "text": true,
+        "links": true,
+        "geometry": true,
+        "controlState": true
+      },
+      "changedPixels": 0,
+      "totalPixels": 1296000,
+      "baselineScreenshotSha256": "75d06e4733b888310364eb3f982d02042c48023e8b6263c4eb624bde9eb403be",
+      "candidateScreenshotSha256": "75d06e4733b888310364eb3f982d02042c48023e8b6263c4eb624bde9eb403be",
+      "errors": [
+        [],
+        []
+      ],
+      "responseStatuses": [
+        200
+      ],
+      "candidateIdentity": {
+        "site-engine": "39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e",
+        "site-route": "c4035cecbd6221289e055a73b7f95d377920ecd7c82877a64887bebf7ee9f01a",
+        "site-contract": "1",
+        "site-variant": "base"
+      }
+    },
+    {
+      "case": "index-light-390x844",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "light",
+      "equal": {
+        "text": true,
+        "links": true,
+        "geometry": true,
+        "controlState": true
+      },
+      "changedPixels": 0,
+      "totalPixels": 329160,
+      "baselineScreenshotSha256": "cb2d8e2d35efd8b616bc2d8bbc3ccd83f1ecb4082b36b7aed895d1e42e89ddf8",
+      "candidateScreenshotSha256": "cb2d8e2d35efd8b616bc2d8bbc3ccd83f1ecb4082b36b7aed895d1e42e89ddf8",
+      "errors": [
+        [],
+        []
+      ],
+      "responseStatuses": [
+        200
+      ],
+      "candidateIdentity": {
+        "site-engine": "39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e",
+        "site-route": "c4035cecbd6221289e055a73b7f95d377920ecd7c82877a64887bebf7ee9f01a",
+        "site-contract": "1",
+        "site-variant": "base"
+      }
+    },
+    {
+      "case": "index-dark-1440x900",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "equal": {
+        "text": true,
+        "links": true,
+        "geometry": true,
+        "controlState": true
+      },
+      "changedPixels": 0,
+      "totalPixels": 1296000,
+      "baselineScreenshotSha256": "e8f0edd80d10b74cf1cfcbf8ea501f8a2394235712937a88e20d9f82f2e9128b",
+      "candidateScreenshotSha256": "e8f0edd80d10b74cf1cfcbf8ea501f8a2394235712937a88e20d9f82f2e9128b",
+      "errors": [
+        [],
+        []
+      ],
+      "responseStatuses": [
+        200
+      ],
+      "candidateIdentity": {
+        "site-engine": "39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e",
+        "site-route": "c4035cecbd6221289e055a73b7f95d377920ecd7c82877a64887bebf7ee9f01a",
+        "site-contract": "1",
+        "site-variant": "base"
+      }
+    },
+    {
+      "case": "index-dark-390x844",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "dark",
+      "equal": {
+        "text": true,
+        "links": true,
+        "geometry": true,
+        "controlState": true
+      },
+      "changedPixels": 0,
+      "totalPixels": 329160,
+      "baselineScreenshotSha256": "e86c20acf50b737adfeddea9c536c207ec8fb9e7233cb952259d317051a30f6f",
+      "candidateScreenshotSha256": "e86c20acf50b737adfeddea9c536c207ec8fb9e7233cb952259d317051a30f6f",
+      "errors": [
+        [],
+        []
+      ],
+      "responseStatuses": [
+        200
+      ],
+      "candidateIdentity": {
+        "site-engine": "39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e",
+        "site-route": "c4035cecbd6221289e055a73b7f95d377920ecd7c82877a64887bebf7ee9f01a",
+        "site-contract": "1",
+        "site-variant": "base"
+      }
+    },
+    {
+      "case": "writing-light-1440x900",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "equal": {
+        "text": true,
+        "links": true,
+        "geometry": true,
+        "controlState": true
+      },
+      "changedPixels": 0,
+      "totalPixels": 1296000,
+      "baselineScreenshotSha256": "674c0efec5d3458a4146e13e6a83bd4f82fdd529b5fc14f9c6979b877f86e1c1",
+      "candidateScreenshotSha256": "674c0efec5d3458a4146e13e6a83bd4f82fdd529b5fc14f9c6979b877f86e1c1",
+      "errors": [
+        [],
+        []
+      ],
+      "responseStatuses": [
+        200
+      ],
+      "candidateIdentity": {
+        "site-engine": "39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e",
+        "site-route": "c7382110dabbb377e484838477e7133de088ef9203d4bc8173386c01f134810f",
+        "site-contract": "1",
+        "site-variant": "base"
+      }
+    },
+    {
+      "case": "writing-light-390x844",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "light",
+      "equal": {
+        "text": true,
+        "links": true,
+        "geometry": true,
+        "controlState": true
+      },
+      "changedPixels": 0,
+      "totalPixels": 329160,
+      "baselineScreenshotSha256": "5ca303636ba2241cbe55118aed8409b0f0986b2cb13be188c87764ed0f00ba19",
+      "candidateScreenshotSha256": "5ca303636ba2241cbe55118aed8409b0f0986b2cb13be188c87764ed0f00ba19",
+      "errors": [
+        [],
+        []
+      ],
+      "responseStatuses": [
+        200
+      ],
+      "candidateIdentity": {
+        "site-engine": "39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e",
+        "site-route": "c7382110dabbb377e484838477e7133de088ef9203d4bc8173386c01f134810f",
+        "site-contract": "1",
+        "site-variant": "base"
+      }
+    },
+    {
+      "case": "writing-dark-1440x900",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "equal": {
+        "text": true,
+        "links": true,
+        "geometry": true,
+        "controlState": true
+      },
+      "changedPixels": 0,
+      "totalPixels": 1296000,
+      "baselineScreenshotSha256": "c9fcc686cf57a1b32f26875bdbc3d8cc0fab121bfb9b0c3e498d0c6e70f396e3",
+      "candidateScreenshotSha256": "c9fcc686cf57a1b32f26875bdbc3d8cc0fab121bfb9b0c3e498d0c6e70f396e3",
+      "errors": [
+        [],
+        []
+      ],
+      "responseStatuses": [
+        200
+      ],
+      "candidateIdentity": {
+        "site-engine": "39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e",
+        "site-route": "c7382110dabbb377e484838477e7133de088ef9203d4bc8173386c01f134810f",
+        "site-contract": "1",
+        "site-variant": "base"
+      }
+    },
+    {
+      "case": "writing-dark-390x844",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "dark",
+      "equal": {
+        "text": true,
+        "links": true,
+        "geometry": true,
+        "controlState": true
+      },
+      "changedPixels": 0,
+      "totalPixels": 329160,
+      "baselineScreenshotSha256": "c42764518f8c618d614e70a1fdcff130ba43c86397873fd7962ef8ec650465cc",
+      "candidateScreenshotSha256": "c42764518f8c618d614e70a1fdcff130ba43c86397873fd7962ef8ec650465cc",
+      "errors": [
+        [],
+        []
+      ],
+      "responseStatuses": [
+        200
+      ],
+      "candidateIdentity": {
+        "site-engine": "39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e",
+        "site-route": "c7382110dabbb377e484838477e7133de088ef9203d4bc8173386c01f134810f",
+        "site-contract": "1",
+        "site-variant": "base"
+      }
+    }
+  ],
+  "visualInspection": {
+    "reviewer": "/root/r2_independent_review/html_css_review",
+    "performed": true,
+    "images": [
+      "/tmp/issue58-paired-visual/index-light-1440x900-pair.png",
+      "/tmp/issue58-paired-visual/index-light-390x844-pair.png",
+      "/tmp/issue58-paired-visual/index-dark-1440x900-pair.png",
+      "/tmp/issue58-paired-visual/index-dark-390x844-pair.png",
+      "/tmp/issue58-paired-visual/writing-light-1440x900-pair.png",
+      "/tmp/issue58-paired-visual/writing-light-390x844-pair.png",
+      "/tmp/issue58-paired-visual/writing-dark-1440x900-pair.png",
+      "/tmp/issue58-paired-visual/writing-dark-390x844-pair.png"
+    ],
+    "observations": "Inspected all eight baseline/candidate pairs. Desktop and narrow Home/Writing preserve header navigation, line wrapping, portrait placement, reading backdrops, themes, Writing filters and background framing. Every pair has zero changed decoded RGB pixels. Current-route underline is preserved on Writing. No new clipping or visual discrepancy observed in captured viewports.",
+    "limits": "Viewport-only screenshots of two routes with reducedMotion reduce and vo.motion off. No full route/interaction matrix, offline Color screenshot, real device, external hosting or production performance claim."
+  },
+  "rawRecord": {
+    "path": "review/issue-58/2026-10-08-visual-captures.json.gz",
+    "sha256": "fb5f5a2613a4f6300d7a1b3eb6cc26b048bd11394d4ecdf5793213478df4c9c4"
+  }
+}

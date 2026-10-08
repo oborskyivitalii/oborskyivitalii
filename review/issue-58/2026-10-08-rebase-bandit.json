@@ -1,0 +1,259 @@
+{
+  "schema": 1,
+  "kind": "issue58-rebase-bandit-rebinding",
+  "pass": true,
+  "refs": {
+    "main": "a8149a0a65579d6977ccef9bb0e6e4367fd9e9dd",
+    "frozen-r2": "8c6cf877fee92b4d2493b4c1a07df7080b987c29",
+    "before-rebase": "e4295ba68a5e434a64450a2071dcd447b2a77ccf",
+    "currentHead": "856354557c7db759e68efc98fa095a698fa3ac34"
+  },
+  "toolchain": "Bandit 1.9.4 / Python 3.12.14; existing pinned developer toolchain",
+  "rawReports": [
+    {
+      "source": "main",
+      "sha256": "65cd98a931cffa7c5056714dbfba34b4a128e03ad06d072c2cde08b5e3339c83",
+      "findings": 36,
+      "scannerErrors": 0
+    },
+    {
+      "source": "frozen-r2",
+      "sha256": "afb01a943360ced64d535f4c924a4c8610569428ac4f66e147178e0ea5209447",
+      "findings": 36,
+      "scannerErrors": 0
+    },
+    {
+      "source": "before-rebase",
+      "sha256": "42f840b9c2ec067aecfe89b54b928bb50aca56fbf96c49fd5bbcc79e7c2a65c2",
+      "findings": 36,
+      "scannerErrors": 0
+    },
+    {
+      "source": "current",
+      "sha256": "663826a69376297cbe27786160cca7994e5b581ff63b4585fe18fb4a3e223f41",
+      "findings": 36,
+      "scannerErrors": 0
+    }
+  ],
+  "trackedCurrentPythonFiles": [
+    "tools/build_site_bundle.py",
+    "tools/build_site_contact_sheets.py",
+    "tools/check_code_style.py",
+    "tools/check_repository_layout.py",
+    "tools/check_ri_ci.py",
+    "tools/issue_acceptance.py",
+    "tools/quality/format-parity.py",
+    "tools/quality/triage-secrets.py",
+    "tools/repository_intelligence.py",
+    "tools/run_repository_tests.py"
+  ],
+  "rawFindings": 36,
+  "newFindings": 0,
+  "changedPolicyEntries": 4,
+  "sameRuleTestTextCweSeverityConfidenceAndStatementAst": true,
+  "sourceProvenance": "Current check_code_style.py AST equals immutable main AST plus --muted in TOKEN_OWNERS[site/engine/styles.css]. Pre-rebase e429 AST equals frozen-R2 AST plus the same tuple item. Retained manifest validation and import rejection are inherited exactly from main. All reviewed finding statement ASTs remain identical. Other five finding-owner bytes match pre-rebase.",
+  "changed": [
+    {
+      "test_id": "B404",
+      "test_name": "blacklist",
+      "issue_severity": "LOW",
+      "issue_confidence": "HIGH",
+      "issue_text": "Consider possible security implications associated with the subprocess module.",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "path": "tools/check_code_style.py",
+      "statementAstSha256": "9d97d469cf8d66465563e1e22c6dab3b6107819aba2d9956c7080016c1ab9c1b",
+      "observations": [
+        {
+          "source": "main",
+          "sourceSha256": "e5ec36b89fcbe38563e95e9bd7c5a9a06f00fa06c561c15853fac2afb37317ed",
+          "line": 13,
+          "sourceLine": "import subprocess",
+          "lineSha256": "7d8752c4c7ea34c2c6d04a15aa31a1f25f62848f8c3c82528fd62439c01a225b"
+        },
+        {
+          "source": "frozen-r2",
+          "sourceSha256": "e2a20504c1242d588cc2eb87246c8933b1dea798e2f0a12dd04256e3bdecc6e9",
+          "line": 12,
+          "sourceLine": "import subprocess",
+          "lineSha256": "7d8752c4c7ea34c2c6d04a15aa31a1f25f62848f8c3c82528fd62439c01a225b"
+        },
+        {
+          "source": "before-rebase",
+          "sourceSha256": "ca769e1f33c07f2ae47035b08a188fc2f16b29e3bb008e27d99257621ff26cf0",
+          "line": 12,
+          "sourceLine": "import subprocess",
+          "lineSha256": "7d8752c4c7ea34c2c6d04a15aa31a1f25f62848f8c3c82528fd62439c01a225b"
+        },
+        {
+          "source": "current",
+          "sourceSha256": "351fb58d39f7f9866bca52f04bc0ebb3f049600c9e3a694602b06cc04f443d3e",
+          "line": 13,
+          "sourceLine": "import subprocess",
+          "lineSha256": "7d8752c4c7ea34c2c6d04a15aa31a1f25f62848f8c3c82528fd62439c01a225b"
+        }
+      ]
+    },
+    {
+      "test_id": "B607",
+      "test_name": "start_process_with_partial_path",
+      "issue_severity": "LOW",
+      "issue_confidence": "HIGH",
+      "issue_text": "Starting a process with a partial executable path",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "path": "tools/check_code_style.py",
+      "statementAstSha256": "5240883499a5d073eb717088d439a8fb4e02041845f84aae0ce0354475515c77",
+      "observations": [
+        {
+          "source": "main",
+          "sourceSha256": "e5ec36b89fcbe38563e95e9bd7c5a9a06f00fa06c561c15853fac2afb37317ed",
+          "line": 201,
+          "sourceLine": "            return subprocess.check_output(",
+          "lineSha256": "76c7e65ab710547ee0dbedcdff44662953fd05aa6e60fdd1a459e83a41362ddf"
+        },
+        {
+          "source": "frozen-r2",
+          "sourceSha256": "e2a20504c1242d588cc2eb87246c8933b1dea798e2f0a12dd04256e3bdecc6e9",
+          "line": 216,
+          "sourceLine": "            return subprocess.check_output(",
+          "lineSha256": "76c7e65ab710547ee0dbedcdff44662953fd05aa6e60fdd1a459e83a41362ddf"
+        },
+        {
+          "source": "before-rebase",
+          "sourceSha256": "ca769e1f33c07f2ae47035b08a188fc2f16b29e3bb008e27d99257621ff26cf0",
+          "line": 216,
+          "sourceLine": "            return subprocess.check_output(",
+          "lineSha256": "76c7e65ab710547ee0dbedcdff44662953fd05aa6e60fdd1a459e83a41362ddf"
+        },
+        {
+          "source": "current",
+          "sourceSha256": "351fb58d39f7f9866bca52f04bc0ebb3f049600c9e3a694602b06cc04f443d3e",
+          "line": 249,
+          "sourceLine": "            return subprocess.check_output(",
+          "lineSha256": "76c7e65ab710547ee0dbedcdff44662953fd05aa6e60fdd1a459e83a41362ddf"
+        }
+      ]
+    },
+    {
+      "test_id": "B603",
+      "test_name": "subprocess_without_shell_equals_true",
+      "issue_severity": "LOW",
+      "issue_confidence": "HIGH",
+      "issue_text": "subprocess call - check for execution of untrusted input.",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "path": "tools/check_code_style.py",
+      "statementAstSha256": "5240883499a5d073eb717088d439a8fb4e02041845f84aae0ce0354475515c77",
+      "observations": [
+        {
+          "source": "main",
+          "sourceSha256": "e5ec36b89fcbe38563e95e9bd7c5a9a06f00fa06c561c15853fac2afb37317ed",
+          "line": 201,
+          "sourceLine": "            return subprocess.check_output(",
+          "lineSha256": "76c7e65ab710547ee0dbedcdff44662953fd05aa6e60fdd1a459e83a41362ddf"
+        },
+        {
+          "source": "frozen-r2",
+          "sourceSha256": "e2a20504c1242d588cc2eb87246c8933b1dea798e2f0a12dd04256e3bdecc6e9",
+          "line": 216,
+          "sourceLine": "            return subprocess.check_output(",
+          "lineSha256": "76c7e65ab710547ee0dbedcdff44662953fd05aa6e60fdd1a459e83a41362ddf"
+        },
+        {
+          "source": "before-rebase",
+          "sourceSha256": "ca769e1f33c07f2ae47035b08a188fc2f16b29e3bb008e27d99257621ff26cf0",
+          "line": 216,
+          "sourceLine": "            return subprocess.check_output(",
+          "lineSha256": "76c7e65ab710547ee0dbedcdff44662953fd05aa6e60fdd1a459e83a41362ddf"
+        },
+        {
+          "source": "current",
+          "sourceSha256": "351fb58d39f7f9866bca52f04bc0ebb3f049600c9e3a694602b06cc04f443d3e",
+          "line": 249,
+          "sourceLine": "            return subprocess.check_output(",
+          "lineSha256": "76c7e65ab710547ee0dbedcdff44662953fd05aa6e60fdd1a459e83a41362ddf"
+        }
+      ]
+    },
+    {
+      "test_id": "B105",
+      "test_name": "hardcoded_password_string",
+      "issue_severity": "LOW",
+      "issue_confidence": "MEDIUM",
+      "issue_text": "Possible hardcoded password: 'True'",
+      "issue_cwe": {
+        "id": 259,
+        "link": "https://cwe.mitre.org/data/definitions/259.html"
+      },
+      "path": "tools/check_code_style.py",
+      "statementAstSha256": "5d4536aca49b007e5f6eeaaf00bb2ec09a9bb687abdb662f442af17484409264",
+      "observations": [
+        {
+          "source": "main",
+          "sourceSha256": "e5ec36b89fcbe38563e95e9bd7c5a9a06f00fa06c561c15853fac2afb37317ed",
+          "line": 217,
+          "sourceLine": "    return {\"pass\": True, \"guide\": \"guides/CODE-STYLE.md\", \"baseline\": BASELINE,",
+          "lineSha256": "5a752bff524535c51e3a65c3e696e5d651c1548bef5410255aa11ab0c7db8b45"
+        },
+        {
+          "source": "frozen-r2",
+          "sourceSha256": "e2a20504c1242d588cc2eb87246c8933b1dea798e2f0a12dd04256e3bdecc6e9",
+          "line": 237,
+          "sourceLine": "        \"pass\": True,",
+          "lineSha256": "9ba2e45538911f514e1bb21783cfefb750fb8af8d9ae9b6976780a6597e8974e"
+        },
+        {
+          "source": "before-rebase",
+          "sourceSha256": "ca769e1f33c07f2ae47035b08a188fc2f16b29e3bb008e27d99257621ff26cf0",
+          "line": 237,
+          "sourceLine": "        \"pass\": True,",
+          "lineSha256": "9ba2e45538911f514e1bb21783cfefb750fb8af8d9ae9b6976780a6597e8974e"
+        },
+        {
+          "source": "current",
+          "sourceSha256": "351fb58d39f7f9866bca52f04bc0ebb3f049600c9e3a694602b06cc04f443d3e",
+          "line": 270,
+          "sourceLine": "        \"pass\": True,",
+          "lineSha256": "9ba2e45538911f514e1bb21783cfefb750fb8af8d9ae9b6976780a6597e8974e"
+        }
+      ]
+    }
+  ],
+  "oldPolicySha256": "51e6e804295a3af6d859b635421505ccec3dce8853ef604dc4f5cb2c742db4dd",
+  "newPolicySha256": "6cf77d93e3c73462e9f194dcddc48339cca287a49a8d378850759df3c98a0bbe",
+  "preserved": [
+    "36-entry count",
+    "finding paths/rules/test names/severity/confidence/text/CWE",
+    "enclosing statement AST contexts",
+    "owners/issues/deadlines",
+    "immutable inspected_baseline",
+    "prior review evidence"
+  ],
+  "advisoryBindings": [
+    {
+      "path": "tools/quality/stylelint.cjs",
+      "sha256": "e1cfaf46003f21f9e6e8558da0d15de25c4bb7d7b7b5012d509dce0a93c5486a",
+      "bindingCurrent": true
+    },
+    {
+      "path": "tools/quality/stylelint.config.cjs",
+      "sha256": "62ce76e7e7074a20ed0394903e0bb6557a96075b38009f21cf934814b1ea64c0",
+      "bindingCurrent": true
+    },
+    {
+      "path": "tools/quality/toolchain/package-lock.json",
+      "sha256": "f9495aa394d54cc5886d837d07ebd52bcbacd1ff893fd5baca92b2e5b48d8ba5",
+      "bindingCurrent": true
+    }
+  ],
+  "review": "Independent exact-source rebinding review by security_rebinding agent. No changed finding trust boundary and no broader allowance. Current dirty-worktree preflight, not final clean-source security or CI evidence.",
+  "sourceDirty": true,
+  "finalSecurityPass": false
+}

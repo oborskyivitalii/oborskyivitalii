@@ -1,0 +1,42 @@
+{
+  "baseline": "8c6cf877fee92b4d2493b4c1a07df7080b987c29",
+  "baselineTree": "2725ae4743032b2aeaafd7f2d7f7c91a08265906",
+  "checkpoint": {
+    "head": "8c6cf877fee92b4d2493b4c1a07df7080b987c29",
+    "tree": "2725ae4743032b2aeaafd7f2d7f7c91a08265906",
+    "dirty": true
+  },
+  "observerSHA256": "b912d5d6ddfab9771e18879f2a333f2806e9f65095aa0c538bd1e6cb7e66105e",
+  "sourceSHA256": {
+    "site/assets/writing-paradigm.svg": "02def4e19d34b76462f5e74bbe916323ff56a50d3e97a02834b3adf92723b31f",
+    "site/effects/ribbons.cjs": "f4af3a27bdb30acc1a23c2898dca066c58b7575f87ac1fb96046838fc4fbd3c7",
+    "site/engine/lifecycle.cjs": "6de6d59fa7a24779b03508838bd0ea61cc6b1d2c1db9d6db437736b73b95a2d2",
+    "site/engine/math.cjs": "9781cfa7e911375201b5d730a5a8d2b1774597ee6daeaa90072b1b8099017612",
+    "site/engine/projection.cjs": "75149cf490d93d342e0ba67ab16ca1a8a300550264fa2ac72ab53ca675f757b0",
+    "site/engine/renderer.cjs": "14e1bfa80b72b82ad0417241b917c325222eb011abb072e0c5a25800a2bce991",
+    "site/routes.json": "d6caa59aa69462f83115642a602aea669f48316765b487c09b01f721c933c7fe",
+    "site/scenes/paths.json": "cfeed123b0268fd89a737d9dfc9aaddd9d10504a42b2b21c619d9c35b3917c40",
+    "site/scenes/world.cjs": "f4f4d2e1bf87dd7f009c7c302729f96cf1f7b50301a0334ddea133caadcfd3a9",
+    "tools/build_scene_fallbacks.cjs": "9cf1c707980d973c27eba308f97427ead471cda6ab347e6e5624a4dad946948c",
+    "tools/site/analytics.cjs": "9170499ce19a8dd4856af6415b77dcee493c89e028711a1cd6e7d6987ca2f1a7",
+    "tools/site/build.cjs": "0a01a4e32cea551601ee5058be7b92c0f8f11cd4deb211a34a30eda9aea3bb7f",
+    "tools/site/content.cjs": "3ba838e86260f46c0057c2b3fa4c2094aef07e5ae2e950931ce3ad30009075a2",
+    "tools/site/effects.cjs": "defcb1e2a880569a692d40a05d922b295528de205f01f77ed941eaec1996bdf8",
+    "tools/site/evidence-policy.cjs": "421526b93f2c6ad5d311479b60de7fa356b5e44dc243a6c99ee499cafae14394",
+    "tools/site/export.cjs": "44642df917d15a3f57abecb0faefb4d533d68c110ad32f48fdef3f660af2d2fc",
+    "tools/site/fallback.cjs": "01f5632eeaff0969aa86fc386445802e07f143ab04f6f843003a96d09ff89c9a",
+    "tools/site/html.cjs": "b2cf3036a917dad8cd36755f14c293d2714f61dafbc98d01ee0c370f30445711",
+    "tools/site/render-content.cjs": "d41abe47bec0c5698e49f1bc114c9bdf55e1d6fcf348374a8587f20e373fcf33",
+    "tools/site/render-page.cjs": "a538f9f22fbd2c4d17b3e88c1bcf57f9421c4c01efddce4807b9f0f3e0ed3a38",
+    "tools/site/render-records.cjs": "e59903c97c922db6a2fcc0ffb4bd0b8c8e2b333a25e45f2f16c35ed4e2b94169",
+    "tools/site/retain.cjs": "2816b60974384195d20c09ad4c776f4982ed0fa71b888cc366bcc281d95b0257",
+    "tools/site/scene-assets.cjs": "90f49c5621a3413a60b1574ee865c46399f38f0bde0f510b6cd7fb6dc9ab39b8",
+    "tools/site/snapshot.cjs": "e1630f84846f0d87435e11193267b278e76d1e640b8fbd0ee63a5d1a3b51e9e5",
+    "tools/site/validate-catalog.cjs": "49edc3d8ffd1b9c75d4fffcb7acdacc045b7b6175bc306964c823527e13b025f",
+    "tools/site/variants.cjs": "841ea2fd5b4631b22aa973d9429f02a2647d43af1eeca85051ee57c0372e682f"
+  },
+  "observationStable": true,
+  "ribbonExactRows": 960,
+  "worldExactRows": 240,
+  "formulaExactRows": 48
+}

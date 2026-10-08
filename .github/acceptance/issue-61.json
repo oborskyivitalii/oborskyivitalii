@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 61,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/61",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Update the existing PMDay event with the exact supplied recording information.",
+      "automated_scope": "The existing maintained Talks curation and adversarial reconciliation cases verify the exact supplied title, description, Ukrainian metadata and recording URL in one existing PMDay card, preserve its established date and both prior sources, and reject undeclared mutations while retaining the other events. Input provenance is the explicit maintainer request; these checks do not assess recording playback or quality.",
+      "checks": ["TALKS"],
+      "gates": []
+    },
+    {
+      "id": "AC02",
+      "intent": "Regenerate canonical hosted/offline renditions and pass bounded current-source verification.",
+      "automated_scope": "Existing generated-publication/SEO checks reverse only the exact issue61 fragment before immutable issue48/41 deltas and retain all unrelated semantics; normal source build/preview freshness cases verify generated renditions. Basic and fresh RI/coupling checks retain current source identity. Actual CI and normal two-width hosted smoke are separately observed, not inferred from local checks. No new browser matrix is added. The maintainer-authorized integration also requires the existing bounded staging profile, including exact checksum dispositions and current advisory reachability bindings; these are separately observed human gates.",
+      "checks": ["TALKS", "GENERATION-SEO", "BASIC", "CURRENT-RI", "RI-CI"],
+      "gates": ["CURRENT-CI"]
+    },
+    {
+      "id": "AC03",
+      "intent": "Preserve canonical ownership, style and honest linked handoff.",
+      "automated_scope": "The bounded code-style guard checks its declared subset. Current RI catalog/views and RI/CI coupling validate added acceptance/review paths and current routes. CS01-CS05 and CS08-CS10 ownership, semantic preservation, readability and proportional checks are independently reviewed; CS06-CS07 preserve the shared clock, failure/freeze and resource bounds while the maintainer-authorized AC04 removes ribbon allocation/painting. Live issue/PR/commit linkage and actual checkbox updates require separate recorded evidence. Independent security review proves newly generated public checksums by exact path/type/hashed-value and revalidates any stale existing advisory source binding without changing scanner scope, dependency locks, expiry or budgets.",
+      "checks": ["CURRENT-GUARD", "CURRENT-RI", "RI-CI"],
+      "gates": ["SOURCE-REVIEW", "DELIVERY-LINKAGE"]
+    },
+    {
+      "id": "AC04",
+      "intent": "Disable colored ribbons in active hosted and standalone Color delivery while preserving the remaining scene and navigation.",
+      "automated_scope": "Existing effects and deterministic Color build tests execute the travel-only composition, reject malformed/legacy ribbon composition in the active assembler, preserve reading CSS and navigation controls, and check absence of ribbon constructors/painter/scene installation in serialized hosted and offline scripts. Explicit historical library adapters remain optional; original formula gradient names remain valid. Existing hosted smoke and staging journeys separately prove absence of ribbon resources and positive ordinary scene paints on the selected artifact. CS01/CS03-CS10 review, exact scanner coverage, retained input identity and unchanged profile budgets remain required.",
+      "checks": ["ACTIVE-COLOR", "BASIC", "CURRENT-GUARD", "CURRENT-RI", "RI-CI"],
+      "gates": ["CURRENT-CI", "SOURCE-REVIEW", "DELIVERY-LINKAGE"]
+    }
+  ],
+  "checks": {
+    "TALKS": {
+      "kind": "unittest",
+      "test": "test_issue48_acceptance.Issue48AcceptanceTests.test_talks_curates_distinct_sourced_events_and_rejects_invented_details"
+    },
+    "GENERATION-SEO": {
+      "kind": "unittest",
+      "test": "test_issue48_acceptance.Issue48AcceptanceTests.test_generated_publication_and_seo_retain_all_unrelated_semantics"
+    },
+    "BASIC": {
+      "kind": "node-basic"
+    },
+    "CURRENT-GUARD": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    },
+    "CURRENT-RI": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    },
+    "ACTIVE-COLOR": {
+      "kind": "unittest",
+      "test": "test_issue61_acceptance.Issue61AcceptanceTests.test_active_color_delivery_excludes_ribbons_and_keeps_navigation"
+    }
+  },
+  "gates": {
+    "CURRENT-CI": {
+      "kind": "human",
+      "description": "Observe passing raw-head Basic, navigation/RI, owning acceptance and CI-controlled normal preview/minimal hosted smoke. For the maintainer-authorized standard integration, additionally observe the complete existing bounded staging gate (build/static/host/staging), matching source/tree/package, promotion and exact stable verification while the PR remains open. Retain failed attempts honestly. No full production admission is implied."
+    },
+    "SOURCE-REVIEW": {
+      "kind": "human",
+      "description": "Record independent review of exact supplied content, title language annotation, retained dates/sources/unrelated events, exact reversible amendment and meaningful negative coverage, generated/offline owners and applicable CS01-CS05/CS08-CS10 rules. Preserve runtime/style/scene/budget boundaries; do not infer recording playback verification. For integration corrections, record independent proof of every exact public checksum disposition and current advisory reachability source binding; historical baseline and prior reviewed records remain intact. Review AC04 active ribbon removal, shared reading CSS ownership, truthful Color identity, all remaining scene/formula/navigation/freeze behavior and proportional browser-check migration. Historical ribbon parity evidence remains historical and cannot establish current visual parity."
+    },
+    "DELIVERY-LINKAGE": {
+      "kind": "human",
+      "description": "Record one issue61-linked PR and exact Refs commits, mapped checks/source evidence, independent review and actual whole-AC checkbox reconciliation. The maintainer authorized standard stage-then-merge integration on 2026-10-08; merge only the unchanged tested head after successful stable verification, then reconcile and close the issue. Production remains separate; this local policy never performs a merge or closes an issue."
+    }
+  }
+}

@@ -3,7 +3,7 @@
 // Run with an explicit output directory; does not change production artifacts.
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const {chromium}=require('../../tools/quality/toolchain/node_modules/playwright');
-const math=require('../../site/engine/math.cjs'),source=require('./RIBBONS-PROTOTYPE.cjs');
+const math=require('../../site/engine/math.cjs'),source=require('../../site/effects/ribbons.cjs');
 async function check(page){
   return page.evaluate(strings=>{
     const api=eval('('+strings.math+')')(),section=eval('('+strings.ribbonGeometry+')')(api),signals=eval('('+strings.ribbonSignals+')')();

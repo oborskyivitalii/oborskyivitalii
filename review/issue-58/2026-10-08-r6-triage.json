@@ -1,0 +1,616 @@
+{
+  "schema": 1,
+  "kind": "r6-initial-triage",
+  "source": {
+    "sourceCommit": "8c6cf877fee92b4d2493b4c1a07df7080b987c29",
+    "sourceTree": "2725ae4743032b2aeaafd7f2d7f7c91a08265906",
+    "candidateCommit": "8c6cf877fee92b4d2493b4c1a07df7080b987c29",
+    "sourceDirty": false,
+    "artifactDigest": "8b425e32f740d5ab6c07dacd5adfc5c799decda3cc73a074d59a4b7f928d648f",
+    "engine": "910c2561d5c8b5be6745255fcf15f0465d96f328dc8e0c1d487ff0c9c8be7039",
+    "variant": {
+      "id": "color",
+      "contract": 1,
+      "fingerprint": "910c2561d5c8b5be6745255fcf15f0465d96f328dc8e0c1d487ff0c9c8be7039",
+      "baseEngine": "39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e",
+      "effects": ["ribbons", "travel"]
+    }
+  },
+  "outcome": "failed-initial-triage-retained-not-admitted",
+  "protocol": {
+    "schema": 1,
+    "routes": ["research", "writing"],
+    "profiles": [
+      {
+        "id": "desktop",
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 1,
+        "cpuRate": 1
+      },
+      {
+        "id": "mobile-x4",
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 3,
+        "cpuRate": 4
+      }
+    ],
+    "theme": "dark",
+    "warmupMs": 2000,
+    "measurementMs": 4000,
+    "stoppedMs": 1000,
+    "lifecycleCycles": 10,
+    "variants": ["base", "color"]
+  },
+  "raw": {
+    "path": "review/issue-58/2026-10-08-r6-triage.json.gz",
+    "sha256": "feaf1c1e8df6b6b929048303368c045015a1a3063b6b9dfac947e8b217dd3464",
+    "gzipSha256": "2b14372ca3972722af94e453f8c90d15f5e5c58821bd6254c9441f238f32cd64"
+  },
+  "observed": [
+    {
+      "route": "research",
+      "profile": "desktop",
+      "samples": [
+        {
+          "kind": "idle",
+          "paints": 30,
+          "paintCallbackMs": {
+            "p50": 15.899999998509884,
+            "p95": 38.600000001490116,
+            "max": 59.399999998509884
+          },
+          "callbackBusyPercent": 15.55705334639437,
+          "quality": "0",
+          "cadence": "7.5"
+        },
+        {
+          "kind": "scroll",
+          "paints": 109,
+          "paintCallbackMs": {
+            "p50": 10.100000001490116,
+            "p95": 26.700000002980232,
+            "max": 46.20000000298023
+          },
+          "callbackBusyPercent": 31.172563701187865,
+          "quality": "0",
+          "cadence": "7.5"
+        },
+        {
+          "kind": "off",
+          "paints": 0,
+          "paintCallbackMs": {
+            "p50": null,
+            "p95": null,
+            "max": null
+          },
+          "callbackBusyPercent": 0,
+          "quality": "1",
+          "cadence": "7.5"
+        },
+        {
+          "kind": "reduced",
+          "paints": 0,
+          "paintCallbackMs": {
+            "p50": null,
+            "p95": null,
+            "max": null
+          },
+          "callbackBusyPercent": 0,
+          "quality": "1",
+          "cadence": "7.5"
+        }
+      ],
+      "cpuHotspots": [
+        {
+          "function": "(program)",
+          "path": "",
+          "line": -1,
+          "sampledSelfMs": 2151.685
+        },
+        {
+          "function": "(idle)",
+          "path": "",
+          "line": -1,
+          "sampledSelfMs": 709.014
+        },
+        {
+          "function": "setPaintState",
+          "path": "/runtime/39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e/space.js",
+          "line": 2591,
+          "sampledSelfMs": 190.309
+        },
+        {
+          "function": "fill",
+          "path": "",
+          "line": -1,
+          "sampledSelfMs": 164.202
+        },
+        {
+          "function": "draw",
+          "path": "/runtime/39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e/space.js",
+          "line": 3629,
+          "sampledSelfMs": 159.553
+        },
+        {
+          "function": "(garbage collector)",
+          "path": "",
+          "line": -1,
+          "sampledSelfMs": 125.571
+        },
+        {
+          "function": "paintShapes",
+          "path": "/runtime/39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e/space.js",
+          "line": 2625,
+          "sampledSelfMs": 87.309
+        },
+        {
+          "function": "",
+          "path": "/runtime/39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e/space.js",
+          "line": 3653,
+          "sampledSelfMs": 81.062
+        }
+      ]
+    },
+    {
+      "route": "writing",
+      "profile": "desktop",
+      "samples": [
+        {
+          "kind": "idle",
+          "paints": 81,
+          "paintCallbackMs": {
+            "p50": 8.300000004470348,
+            "p95": 18.299999997019768,
+            "max": 33.599999994039536
+          },
+          "callbackBusyPercent": 21.12283495856517,
+          "quality": "0",
+          "cadence": "20"
+        },
+        {
+          "kind": "scroll",
+          "paints": 111,
+          "paintCallbackMs": {
+            "p50": 7.5999999940395355,
+            "p95": 12.200000002980232,
+            "max": 29.600000001490116
+          },
+          "callbackBusyPercent": 22.299124308641023,
+          "quality": "0",
+          "cadence": "20"
+        },
+        {
+          "kind": "off",
+          "paints": 0,
+          "paintCallbackMs": {
+            "p50": null,
+            "p95": null,
+            "max": null
+          },
+          "callbackBusyPercent": 0,
+          "quality": "0",
+          "cadence": "20"
+        },
+        {
+          "kind": "reduced",
+          "paints": 0,
+          "paintCallbackMs": {
+            "p50": null,
+            "p95": null,
+            "max": null
+          },
+          "callbackBusyPercent": 0,
+          "quality": "0",
+          "cadence": "20"
+        }
+      ],
+      "cpuHotspots": [
+        {
+          "function": "(program)",
+          "path": "",
+          "line": -1,
+          "sampledSelfMs": 2517.959
+        },
+        {
+          "function": "(idle)",
+          "path": "",
+          "line": -1,
+          "sampledSelfMs": 722.058
+        },
+        {
+          "function": "setPaintState",
+          "path": "/runtime/39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e/space.js",
+          "line": 2591,
+          "sampledSelfMs": 159.615
+        },
+        {
+          "function": "draw",
+          "path": "/runtime/39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e/space.js",
+          "line": 3629,
+          "sampledSelfMs": 112.881
+        },
+        {
+          "function": "fill",
+          "path": "",
+          "line": -1,
+          "sampledSelfMs": 106.643
+        },
+        {
+          "function": "paintShapes",
+          "path": "/runtime/39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e/space.js",
+          "line": 2625,
+          "sampledSelfMs": 56.134
+        },
+        {
+          "function": "",
+          "path": "/runtime/39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e/space.js",
+          "line": 3653,
+          "sampledSelfMs": 52.007
+        },
+        {
+          "function": "stroke",
+          "path": "",
+          "line": -1,
+          "sampledSelfMs": 43.646
+        }
+      ]
+    },
+    {
+      "route": "research",
+      "profile": "mobile-x4",
+      "samples": [
+        {
+          "kind": "idle",
+          "paints": 29,
+          "paintCallbackMs": {
+            "p50": 20.700000002980232,
+            "p95": 31.200000002980232,
+            "max": 45
+          },
+          "callbackBusyPercent": 16.584605489178568,
+          "quality": "1",
+          "cadence": "7.5"
+        },
+        {
+          "kind": "scroll",
+          "paints": 79,
+          "paintCallbackMs": {
+            "p50": 9.799999997019768,
+            "p95": 22.600000001490116,
+            "max": 42.79999999701977
+          },
+          "callbackBusyPercent": 23.354678483847067,
+          "quality": "1",
+          "cadence": "7.5"
+        },
+        {
+          "kind": "off",
+          "paints": 0,
+          "paintCallbackMs": {
+            "p50": null,
+            "p95": null,
+            "max": null
+          },
+          "callbackBusyPercent": 0,
+          "quality": "1",
+          "cadence": "7.5"
+        },
+        {
+          "kind": "reduced",
+          "paints": 0,
+          "paintCallbackMs": {
+            "p50": null,
+            "p95": null,
+            "max": null
+          },
+          "callbackBusyPercent": 0,
+          "quality": "1",
+          "cadence": "7.5"
+        }
+      ],
+      "cpuHotspots": [
+        {
+          "function": "(program)",
+          "path": "",
+          "line": -1,
+          "sampledSelfMs": 2108.976
+        },
+        {
+          "function": "(idle)",
+          "path": "",
+          "line": -1,
+          "sampledSelfMs": 1253.834
+        },
+        {
+          "function": "setPaintState",
+          "path": "/runtime/39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e/space.js",
+          "line": 2591,
+          "sampledSelfMs": 111.901
+        },
+        {
+          "function": "draw",
+          "path": "/runtime/39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e/space.js",
+          "line": 3629,
+          "sampledSelfMs": 110.467
+        },
+        {
+          "function": "fill",
+          "path": "",
+          "line": -1,
+          "sampledSelfMs": 70.369
+        },
+        {
+          "function": "paintShapes",
+          "path": "/runtime/39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e/space.js",
+          "line": 2625,
+          "sampledSelfMs": 67.706
+        },
+        {
+          "function": "appendLines",
+          "path": "/runtime/39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e/space.js",
+          "line": 2300,
+          "sampledSelfMs": 60.833
+        },
+        {
+          "function": "",
+          "path": "/runtime/39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e/space.js",
+          "line": 3653,
+          "sampledSelfMs": 57.804
+        }
+      ]
+    },
+    {
+      "route": "writing",
+      "profile": "mobile-x4",
+      "samples": [
+        {
+          "kind": "idle",
+          "paints": 30,
+          "paintCallbackMs": {
+            "p50": 20.899999998509884,
+            "p95": 29.099999994039536,
+            "max": 39.69999999552965
+          },
+          "callbackBusyPercent": 17.049851468159495,
+          "quality": "0",
+          "cadence": "7.5"
+        },
+        {
+          "kind": "scroll",
+          "paints": 57,
+          "paintCallbackMs": {
+            "p50": 14.799999997019768,
+            "p95": 63.5,
+            "max": 106.39999999850988
+          },
+          "callbackBusyPercent": 28.16601288261348,
+          "quality": "0",
+          "cadence": "7.5"
+        },
+        {
+          "kind": "off",
+          "paints": 0,
+          "paintCallbackMs": {
+            "p50": null,
+            "p95": null,
+            "max": null
+          },
+          "callbackBusyPercent": 0,
+          "quality": "0",
+          "cadence": "7.5"
+        },
+        {
+          "kind": "reduced",
+          "paints": 0,
+          "paintCallbackMs": {
+            "p50": null,
+            "p95": null,
+            "max": null
+          },
+          "callbackBusyPercent": 0,
+          "quality": "0",
+          "cadence": "7.5"
+        }
+      ],
+      "cpuHotspots": [
+        {
+          "function": "(program)",
+          "path": "",
+          "line": -1,
+          "sampledSelfMs": 2640.896
+        },
+        {
+          "function": "(idle)",
+          "path": "",
+          "line": -1,
+          "sampledSelfMs": 614.17
+        },
+        {
+          "function": "draw",
+          "path": "/runtime/39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e/space.js",
+          "line": 3629,
+          "sampledSelfMs": 131.248
+        },
+        {
+          "function": "setPaintState",
+          "path": "/runtime/39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e/space.js",
+          "line": 2591,
+          "sampledSelfMs": 115.994
+        },
+        {
+          "function": "paintShapes",
+          "path": "/runtime/39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e/space.js",
+          "line": 2625,
+          "sampledSelfMs": 77.8
+        },
+        {
+          "function": "appendFaces",
+          "path": "/runtime/39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e/space.js",
+          "line": 2272,
+          "sampledSelfMs": 67.046
+        },
+        {
+          "function": "setPaintState",
+          "path": "/runtime/39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e/space.js",
+          "line": 2591,
+          "sampledSelfMs": 64.894
+        },
+        {
+          "function": "",
+          "path": "/runtime/39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e/space.js",
+          "line": 3653,
+          "sampledSelfMs": 64.35
+        }
+      ]
+    }
+  ],
+  "lifecycle": {
+    "cycles": 10,
+    "first": {
+      "cycle": 0,
+      "heapUsedBytes": 9192156,
+      "dom": {
+        "documents": 5,
+        "nodes": 5049,
+        "jsEventListeners": 60
+      },
+      "route": "index",
+      "pendingRAF": 0,
+      "diagnostics": {
+        "rooms": [
+          {
+            "route": "talks",
+            "models": [
+              {
+                "compact": true,
+                "serializedChars": 4305425,
+                "formulaAnchors": 0
+              }
+            ]
+          },
+          {
+            "route": "credits",
+            "models": [
+              {
+                "compact": true,
+                "serializedChars": 3933005,
+                "formulaAnchors": 0
+              }
+            ]
+          },
+          {
+            "route": "index",
+            "models": [
+              {
+                "compact": true,
+                "serializedChars": 4093877,
+                "formulaAnchors": 0
+              }
+            ]
+          }
+        ],
+        "paletteEntries": 344,
+        "layoutPasses": 18,
+        "formula": {
+          "status": "ready",
+          "cacheBuilds": 1,
+          "width": 1380,
+          "height": 240,
+          "bytes": 1324800,
+          "paintCount": 2,
+          "failures": 0,
+          "visibleCount": 0,
+          "lastPaintCount": 0,
+          "drawSubmissions": 48,
+          "lastDrawSubmissions": 0,
+          "projection": null,
+          "attempts": 1,
+          "builds": 1,
+          "failed": false,
+          "draws": 2,
+          "visible": false
+        }
+      }
+    },
+    "last": {
+      "cycle": 10,
+      "heapUsedBytes": 9352328,
+      "dom": {
+        "documents": 5,
+        "nodes": 5049,
+        "jsEventListeners": 60
+      },
+      "route": "index",
+      "pendingRAF": 0,
+      "diagnostics": {
+        "rooms": [
+          {
+            "route": "talks",
+            "models": [
+              {
+                "compact": true,
+                "serializedChars": 4305425,
+                "formulaAnchors": 0
+              }
+            ]
+          },
+          {
+            "route": "credits",
+            "models": [
+              {
+                "compact": true,
+                "serializedChars": 3933005,
+                "formulaAnchors": 0
+              }
+            ]
+          },
+          {
+            "route": "index",
+            "models": [
+              {
+                "compact": true,
+                "serializedChars": 4093877,
+                "formulaAnchors": 0
+              }
+            ]
+          }
+        ],
+        "paletteEntries": 344,
+        "layoutPasses": 48,
+        "formula": {
+          "status": "ready",
+          "cacheBuilds": 1,
+          "width": 1380,
+          "height": 240,
+          "bytes": 1324800,
+          "paintCount": 6,
+          "failures": 0,
+          "visibleCount": 0,
+          "lastPaintCount": 0,
+          "drawSubmissions": 144,
+          "lastDrawSubmissions": 0,
+          "projection": null,
+          "attempts": 1,
+          "builds": 1,
+          "failed": false,
+          "draws": 6,
+          "visible": false
+        }
+      }
+    }
+  },
+  "rejectionReasons": [
+    "Other agents were running tests; this is initial hotspot triage, not a quiet comparable pair.",
+    "The initial CPU profiler overlapped the scroll timing window; final measurement separates profiler collection from timing admission.",
+    "The initial two-second warmup/protocol was replaced before final measurement by the fixed existing ten-second Writing lab warmup, retained in full.",
+    "The initial validator mistakenly applied mobile CPUx4 absolute budgets to desktop observations; this is corrected before final admission to match tools/quality/validate.cjs exactly. Desktop Research idle p95 38.6ms and Writing idle busy21.12% are observations without those original absolute caps. Mobile CPUx4 Writing scroll p9563.5ms does exceed the applicable original33ms cap. Raw measurements and the original failed collector result remain preserved."
+  ],
+  "optimization": {
+    "implemented": false,
+    "speedupClaim": false
+  },
+  "fullGate": false,
+  "performanceAcceptance": false
+}

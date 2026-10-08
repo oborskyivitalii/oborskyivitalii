@@ -25,15 +25,19 @@ and strict aggregate under #13; generation freshness alone is insufficient.
 
 | Source | Responsibility | Dependent output |
 | --- | --- | --- |
-| `templates/head.html`, `header.html`, `footer.html`, `shell.html` | Shared structure and controls | All five HTML pages |
+| `templates/head.html`, `shell.html`, `templates/shared/*.html` | Shared structure and controls | All five HTML pages |
 | `content/pages/<id>/metadata.json` | Title, description, structured metadata, ordered block names | That route |
-| `content/pages/<id>/main.html`, named blocks | Page layout and curated prose | That route |
-| `content/catalog.json` | Primary editions, bounded platform alternates and discussion references; five featured selections | Writing; selected featured records also Home |
+| `content/pages/<id>/*.json`, `content/shared/*.json` | Bounded text, attributes, URLs and explicit template/block references | That route or shared header/footer |
+| `templates/pages/<id>/*.html`, `templates/components/*.html` | Page-specific semantic layout and reusable publication/discussion markup | Declared route compositions |
+| `content/catalog.json` | Primary editions, bounded alternates/discussions, presentation records, topics and labels; five featured selections | Writing; selected featured records also Home and shared labels |
 | `routes.json` | Contract 1: ordered five route IDs, native URLs, scenes and stop IDs | Runtime, pages and fallback |
 | `engine/math.cjs`, `projection.cjs`, `lifecycle.cjs` | Math, projection and single Canvas/RAF lifecycle | Assembled `space.js` |
 | `engine/renderer.cjs` | Ordered Canvas commands, adjacent-line batching and visible outlines | Assembled `space.js` |
-| `engine/theme.js`, `archive.js`, `navigation.js`, `styles.css`, `reading-surfaces.css` | Theme, filtering, routing and presentation | Shared browser files and pages |
+| `engine/theme.js`, `archive.js`, `navigation.js`, `styles.css`, `critical-media.css`, `reading-surfaces.css` | Theme, filtering, routing and canonical presentation, including Home media fallback | Shared browser files and pages |
 | `scenes/world.cjs`, `paths.json` | Authored motifs, rest geometry and finite camera paths | Runtime and projected SVG fallbacks |
+| `effects/flight.cjs`, `effects/*.css` | Current Color travel descriptor and canonical static reading/control CSS | Shared hosted/offline Color runtime |
+| `effects/ribbons.cjs` | Optional historical comparison factory; not serialized into active Color | Explicit legacy diagnostics only; full scanner coverage remains |
+| `../tools/site/effects.cjs`, `export.cjs` | Canonical effect source manifest, explicit delivery adapters and standalone export | Supported Color selection, scanner coverage and offline HTML |
 | `assets/` | Existing portrait, cutout, favicon and `.nojekyll` source | Exact image/icon bytes |
 | `analytics.json`, `integrations/cloudflare.cjs` | Optional production-only measurement under #8; disabled by default | Shared head and one separately hashed loader when enabled |
 | `retained/` when explicitly imported | Previous verified immutable public files | Coherent prior snapshot support |
@@ -52,6 +56,28 @@ blocks/publication fields. Templates and content never execute expressions. Auth
 CommonJS factories are trusted code and require code review. They assemble into
 one classic browser script, with no runtime dependencies or import requirements.
 
+Page JSON has exactly `schema`, `template`, `text`, `attributes` and `urls`.
+Templates consume context-typed finite slots, blocks and catalog references;
+values never execute expressions or supply raw markup. The renderer escapes each
+output context and rejects unsafe URLs, duplicate/missing/unused references and
+context mismatches. Repeated cards use the existing catalog and shared partials.
+Catalog topics/labels derive archive controls and runtime labels; no content
+parser or parallel publishing pipeline is delivered to the browser.
+
+`tools/site/html.cjs`, `validate-catalog.cjs`, `render-content.cjs`,
+`render-records.cjs` and `render-page.cjs` own pure validation/rendering.
+`content.cjs` loads/composes declared inputs; `build.cjs` owns configuration,
+hashes, cache decisions and transactional output. `fallback.cjs` owns pure SVG
+rendering; the existing fallback CLI delegates to it without a producer cycle.
+Pure camera basis/projection is shared by world/formula/Ribbon through the math
+owner; clipping thresholds and lifecycle remain with their existing callers.
+
+`engine/critical-media.css` is the sole responsive portrait media rule. The builder
+inserts its exact bytes at the declared slot in the ordinary stylesheet and in
+Home's generated head, so blocked external CSS still preserves narrow no-JS
+reading. Other routes receive no critical block. Missing, duplicate or unsafe
+owners fail before output changes; authored templates contain no CSS declaration.
+
 Native links, anchors, language badges, full text and JSON-LD remain available
 without JavaScript. Contract 1 retains `SiteScene.navigate/refresh/detachTravel/canTravel`,
 `SiteArchive.mount/destroy` and `SiteNavigation`. The router owns mount/unmount and
@@ -64,20 +90,16 @@ first painted flight frame. Each of at most three active/pending rooms caches
 at most two detail variants; theme changes
 repaint their color tables. No independent render loop or runtime dependency is added.
 
-Color ribbons share one route-independent world, material and ambient phase.
-Their immutable world grid uses 1.25-unit desktop cells (3-unit compact cells).
-Adaptive desktop detail groups whole cells at integer strides 1/2/3; it never
-moves retained samples, and near-plane contours retain fine cells. Visible
-crossing cells are clipped by their vertices instead of discarded by centroid.
-A route mount no longer changes shared Canvas opacity: Writing/Credits retain
-full Canvas opacity rather than their earlier 0.82 multiplier, raising
-their opacity by 18 percentage points and keeping ribbons continuous.
-A new flight first paints the displayed camera, while ambient time continues.
-Mounted layout/history retargets preserve the current camera and existing
-arrival deadline through a stable eased suffix; cancellation preserves actual
-painted travel progress as well as camera, phase and detail. Optional
-`SiteRibbonProbe` observations inspect actual submitted stations and journey
-state; ordinary visits construct no trace and add no independent clock.
+Current Color delivery uses only the travel effect. Issue61's explicit maintainer
+decision removes ribbon construction, collection and painting on every route,
+while keeping the thematic scene, Writing formula, shared reading/control CSS
+and the existing navigation/clock/freeze behavior. Both hosted and standalone
+Color identities declare `effects: ["travel"]`; optional ribbon adapters remain
+only for explicit historical comparisons, with their source still scanned.
+An optional `SiteEngineProbe` paint event observes successful ordinary native
+paints for camera/journey diagnostics. It uses the existing clock and constructs
+no frame evidence when the probe is absent; no independent loop is added.
+Historical ribbon material/phase evidence remains attached to its prior edition.
 
 Large inline titles retain native wrapping while their cloned backgrounds
 extend0.16em around each fragment. An inner positioned ink span paints the
@@ -111,7 +133,9 @@ from that source; diagnostics and issue #36's scoped evidence verify its bounds.
 
 ## Editing and deterministic generation
 
-Edit an individual block, for example `content/pages/index/about.html`, then run:
+Edit the text/URLs in an individual block, for example
+`content/pages/index/about.json`; its layout belongs to
+`templates/pages/index/about.html`. Then run:
 
 ```sh
 node tools/site/build.cjs
@@ -200,7 +224,7 @@ remain separate requirements; this source contract does not supply their approva
 
 The base edition remains the deployable producer selection. Offline exports accept
 an explicit `base`, `color` or `both` argument in
-`review/site-scroll-sync-20261004/export.cjs`. Each file has a variant/digest manifest.
+`tools/site/export.cjs`. Each file has a variant/digest manifest.
 The effects loader attaches a scene `collect` / `paint` pair and a travel
 presentation through `window.SiteEffects`, contract 1. These narrow hooks cannot
 own another scene clock. A scene painter returns true only after handling its shape;
@@ -218,3 +242,8 @@ selecting Color for production remains a separate decision requiring its complet
 same-byte hosted behavioral/performance matrix. A base pass cannot admit Color.
 
 Reading backdrop paint is authored only in `engine/reading-surfaces.css` and concatenated into the existing stylesheet by the producer. All routes, Color and the Appearance popup share theme-paper paint at 87% background alpha (13% transparency), crisp edges and a 12px visible radius at all four outer corners; title spread adjusts its inner radius and preserves ink stacking. Element opacity stays one so text and controls do not fade. The same owner restores fully opaque paper for `prefers-reduced-transparency: reduce`. Component spacing and semantic control/CTA paint remain ordinary layout CSS.
+
+Writing and Talks publication cards use one backdrop on the complete row, with
+the same shared 12px gutter and content-driven height. Metadata and copy do not
+paint independent panels. Child intrinsic widths remain ordinary text layout;
+only the row and the canonical shared inset determine the backdrop's bounds.

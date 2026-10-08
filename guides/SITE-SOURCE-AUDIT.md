@@ -5,6 +5,81 @@ Each dated section describes that edition; older counts, placement and review
 limits are historical. Use [the editorial review route](SITE-CONTENT-REVIEW.md),
 the owning issue/PR and [MEMORY](../MEMORY.md) for current acceptance.
 
+## PMDay recording update — 2026-10-08, issue #61
+
+The maintainer supplied the published recording URL
+https://youtu.be/xSgWjuGqC9I?is=Rf9XOk8qrTw8I9aE, the English display title
+**AI Changes the Delivery System and the Product Itself**, its full description
+and explicit **PMDay 2026 · Recording in Ukrainian** metadata. That instruction
+authorizes updating the existing PMDay card and resolves the earlier
+recording-not-yet-available limitation below. The title is the supplied English
+site title; the recording remains classified as Ukrainian. No independent
+playback, transcript, quality assessment or organizer-title verification is
+claimed by this content update.
+
+The recording becomes the primary outbound link. The established 26 September
+event date, organizer announcement and author follow-up are preserved, as are
+Corning, Betelgeuse and swarchua. No recording is embedded or imported; article,
+slide/PDF and production-release work retain their separate owners.
+[Exact article amendment](../review/issue-61/content-amendment.json) reverses
+before the immutable Issue48/41 deltas; unrelated semantics still fail the
+existing content/SEO comparison.
+
+## Talks source curation — 2026-10-08
+
+The maintainer extended [issue #48](https://github.com/oborskyivitalii/oborskyivitalii/issues/48)
+and the same Draft PR51 with three public post sources before implementation.
+The [bounded inventory](../review/issue-48/source-inventory.json) records their
+canonical URLs, authors, post timestamps, acquisition hashes and admission limits.
+PMDay's new speaker follow-up supports the delivered talk's two themes and the
+organizer's explicit **26 September 2026** event date. Its 28 September post date
+is separate; the promised future recording is not advertised as available.
+
+The second source enriches the existing Betelgeuse / QA Україна discussion with
+AI testing, trust, control and engineering responsibility; it does not create a
+second Betelgeuse event. The third independently identifies a swarchua architects
+community discussion and adds one distinct card. This current source supersedes
+any earlier tentative association of the swarchua label with Betelgeuse; dated
+historical audit sections remain historical. Corning's card and every earlier
+event link remain exact. Descriptive swarchua wording is not an official title.
+
+The swarchua post's public recording link resolves to YouTube video
+`1MPsDi3wuF4`, titled **AI discussion**, channel Neverdrak. Ordinary public target
+metadata was inspected; playback and transcript were not. The archived broadcast
+timestamps are provenance, not independently established event occurrence or
+individual talk duration. June29 and July6 are post dates. Spoken languages for
+Corning, Betelgeuse and swarchua remain unconfirmed; the prior approved PMDay
+Ukrainian classification is retained. No slides, unsupported dates, participant
+counts, engagement metrics or third-party full text were added.
+
+Canonical Talks HTML and its three derived description tags use exact hashed
+before/after amendments. Restoration preserves the immutable Issue41 amendment
+and rejects unrelated metadata or event changes. The same
+[handoff](../review/issue-48/2026-10-08-handoff.md) owns current verification.
+
+## Matthew Skelton reshare and theory alignment — 2026-10-08
+
+[Issue #48](https://github.com/oborskyivitalii/oborskyivitalii/issues/48) owns the
+maintainer-requested amendment. The public guest page reached from the supplied
+short URL identifies Matthew Skelton and a 29 April 2026 publication. He reshared
+Michael Risch’s discussion of the author’s AI governance/control-theory article,
+highlighting governance as bringing business intent back into the system.
+Home and Research now report this reshare with commentary and link its actual
+public record. Research retains the earlier milestone encouragement separately.
+This public engagement does not establish validation, adoption or endorsement.
+The [source inventory](../review/issue-48/source-inventory.json) records canonical
+identities, acquisition digest and limits; full third-party HTML stays outside
+the repository. Other people, professional contexts and their sources are exact.
+
+TOC is now aligned with Subprime and Control Theory with UA. Explicit project
+links and existing project colors retain those associations when cards stack.
+Original theory descriptions and reading routes persist. The Writing formula’s
+center and animation origin derive from the first two book roots’ midpoint;
+its artwork, scale, camera, motion clock and drawing/cache contracts persist.
+The [handoff](../review/issue-48/2026-10-08-handoff.md) records review and checks.
+The exact hashed amendment reverses before the immutable Issue41 delta, so the
+historical SEO/source comparison continues to reject unrelated semantic edits.
+
 ## Writing formula artwork — 2026-10-07
 
 Issue #36 / PR #38 adds the owner's requested `y = f(x) → y ∼ P(y|x)` scene

@@ -4,79 +4,76 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 
 ## Snapshot
 
-- Live main is `aa1cfa97bf42103c0547c9332b885391f0e6fe6b`, tree
-  `64f68e79a1463f70075a54e0b4099861d27eebdb`, after normal PR47 merge.
-  It has the same tree as tested `d1df76f3d1889a397a931b45ec72f0271458cd87`.
-  [Issue45's final live record](https://github.com/oborskyivitalii/oborskyivitalii/issues/45)
-  supersedes the earlier pending merge/staging checkpoint in this file.
-- That record reports successful bounded stage run37692745507 and stable
-  promotion at https://staging.oborskyi-author-ci-staging.pages.dev/ .
-  It records Writing mobile LCP1599.5745ms/TBT21ms/CLS0 and Research
-  LCP1643.2935ms/TBT10.5ms/CLS0. These are one trial per selected route, not
-  full production medians. No fresh deployment/measurement was run in this
-  planning session. All six literal #45 ACs remain open for full visual evidence.
-- [Issue49](https://github.com/oborskyivitalii/oborskyivitalii/issues/49) owns the new
-  idea: page text/image fragments assemble from inside the unchanged fractal.
-  Branch: `docs/fractal-content-flight-plan-20261008`.
-  [One architecture/Sol handoff](review/issue-49/2026-10-08-analysis.md)
-  contains current-source findings, backend options, bounds and ordered tasks.
-  The live issue's dated anchor owns exact Draft PR/commit/check links.
-  This is planning only: AC01 is design delivery; AC02-AC07 await feature work.
-- [Issue48](https://github.com/oborskyivitalii/oborskyivitalii/issues/48) is concurrent
-  theory alignment, deeper Writing formula and sourced Matthew response work.
-  Revalidate its branch/PR before runtime or content edits; it had no linked
-  open PR in the initial inspection. Do not override its changes.
-- PR40 remains open for domains/production preparation. PR47 is merged;
-  PR46 is closed/unmerged. Earlier #36/#41 integration reached main via #43/#44;
-  their remaining literal visual/editorial acceptance stays in those issues.
+- Checked main `9da2476c9269345a242c7524374a645b0a21c2d4`, tree
+  `a1426cdf9ca1f740f56a6a66bd8f555d8820ddd6`: PR60 merged after the explicit
+  maintainer decision. [Issue58](https://github.com/oborskyivitalii/oborskyivitalii/issues/58)
+  is closed with all ten global and seven phase boxes checked. Main navigation
+  CI37835350431 and clean actual-main local acceptance15/15 passed; raw report
+  and complete final evidence are in [PR60](https://github.com/oborskyivitalii/oborskyivitalii/pull/60#issuecomment-6067959337).
+- Refactoring preserves PMDay recording content and active Color ribbon removal.
+  Canonical runtime/effects/build/content/CSS ownership is current; edit `site/`
+  and generate public/offline renditions. The old active review prototype is history.
+- [Issue49](https://github.com/oborskyivitalii/oborskyivitalii/issues/49) and
+  [Draft PR53](https://github.com/oborskyivitalii/oborskyivitalii/pull/53) are the sole
+  fragment-flight route. Issue50/PR52 remain duplicate/superseded history.
+- The latest requested work is a revised plan: camera fixed while reading,
+  ordinary native scroll and edge navigation retained, outgoing breakup and
+  incoming assembly both required. Runtime implementation is not authorized by
+  that planning request. Read the [single updated analysis](review/issue-49/2026-10-08-analysis.md).
 
 ## Decisions
 
-- #49 recommends bounded clipped native paint copies, driven by the existing
-  painted camera/progress. DOM pieces do not automatically have Canvas-face
-  occlusion. Prove perceived depth, final native fidelity and cost in a small
-  real-scene prototype before broad integration. No feature implemented yet.
-- Fragment the actual landing viewport/overscan, including reverse-bottom and
-  history, not an entire archive. Preserve native final content, fractal placement,
-  camera duration, current reading surfaces, header and existing Content flight
-  switch/fallback. No second animation clock or runtime dependency is proposed.
-- Sol can build the prototype and integrate after the recorded visual/cost
-  decision. Architecture/visual review should decide any backend redesign.
-- Original issue AC IDs and actual checkboxes persist. Source tests alone cannot
-  complete visual, measured, editorial, device, merge or publication criteria.
-- PR source/smoke, bounded staging and full production are distinct profiles.
-  Use existing CI/preview/controller; no duplicate full diagnostic campaign.
-  Chromium/Firefox are Linux; native WebKit remains macOS production coverage.
-- Canonical sources regenerate docs/offline/RI. Current phase changes only
-  planning/acceptance/navigation metadata, not public/runtime/generated site bytes.
-- Stable-stage/merge/production decisions remain separate. #49 planning gives
-  no authorization for them. Production/domain/analytics remain #8/#39 scope.
+- Issue49 retains AC01-AC07 and adds AC08 for stationary reading camera.
+  AC01 is design delivery; feature AC02-AC08 remain open. Preserve actual boxes
+  and live evidence; planning checks cannot establish an implemented animation.
+- Start with a bounded two-sided real heading/paragraph/portrait prototype,
+  using the existing painted camera/clock and route serial. Native clipped paint
+  is provisional: separate Canvas faces do not automatically occlude DOM pieces.
+  Author visual/depth/fidelity and measured-cost admission precede broad integration.
+- Fixed reading pose must replace all scroll/topic/layout/history camera consumers,
+  not just the scroll listener. Keep ambient fractal motion, native Y/filters,
+  focus/history, edge intent, freeze modes and room/cache bounds.
+- Proposed direction default preserves reverse travel for Back/top-edge. Literal
+  always-forward Back is a separate choreography choice, not an approved change.
+- Current world/formula composition and active no-ribbons selection remain.
+  Validate fixed pose framing, especially Writing formula; no silent geometry move.
+- Measure fragment overhead against the same-source stationary-camera legacy
+  presentation. Camera-policy savings cannot hide fragment costs. Use one shared
+  departure/arrival cap and the existing original budgets and profile boundaries.
+- CS01-CS10 and pinned Prettier/Ruff/source lint/security remain mandatory.
+  Frozen R2/checkpoint evidence belongs to issue58 history; new behavior gets
+  current meaningful contracts, not broader historical parity exclusions.
+- Writing has99,996 raw bytes within the100,000-byte limit. New shared runtime
+  belongs in declared canonical sources, not a page-inline payload.
+- Merge, stable promotion, production/native/device/rights/domain and publication
+  retain their separate decisions. No new browser campaign is needed for this plan.
 
 ## Open work
 
 | Issue | Remaining intent |
 | --- | --- |
-| #49 | Published design/handoff first; feature prototype, implementation and AC02-AC07 evidence pending. |
-| #48 | Theory/content/formula-placement corrections; verify live execution state. |
-| #45 | Merged/staged; full literal visual/continuity/native evidence remains open. |
-| #36 / #41 | Merged integration; outstanding paired/visual/editorial acceptance. |
-| #1 / #13 | First release, physical-device and full production/recovery acceptance. |
+| #49 / Draft PR53 | Revised design handoff, then requested implementation/prototype admission and AC02-AC08 evidence. |
+| #48 / #61 | Content/editorial work: fetch live owners/PRs before touching accepted prose. |
+| #45 / #36 / #41 | Preserve historical source-bound visual/editorial evidence; check live remaining release gates. |
+| #1 / #13 | First release, physical devices and production/recovery acceptance. |
 | #8 / #39 | Production URL/indexability, domains and analytics activation. |
 | #7 | License and editorial/third-party rights. |
-| #5 / #6 | Real article HTML/PDF edition and cross-repository adapter. |
-| #2 / #11 | PMDay article/edition and post-launch buyer-intent guides. |
+| #5 / #6 | Article HTML/PDF edition and cross-repository adapter. |
+| #2 / #11 | PMDay edition and post-launch buyer-intent guides. |
 
 ## Next session
 
-1. Fetch live refs/issues/PRs; read applicable owners and the current owning issue.
-2. For #49, read its single versioned analysis and dated anchor. When execution
-   is requested, start with the bounded text/portrait depth prototype, preserving
-   any newer #48 changes. Do not treat architecture recommendations as measured.
-3. Update meaningful implemented checks and real evidence before checking feature
-   ACs. Preserve original budgets and existing flight/camera/fallback coverage.
+1. Fetch main, issue49 and PR53; revalidate source, decisions, Draft and checks.
+2. Read the current issue amendment and single versioned analysis/Sol tasks.
+3. After execution is requested, implement the fixed reading-pose checkpoint,
+   then the small departing/arriving prototype. Preserve native route semantics.
+4. Review actual depth, framing, native seam and bounded measurements before
+   integrating all visible owners. Record fallback reasons and failed observations.
+5. Update existing policy/source/profile contracts, RI and actual issue boxes.
+   Do not replay unrelated matrices or claim feature completion from design CI.
 
 ## Maintenance
 
-Keep these five sections within 120 lines. Update at meaningful handoff and
-rebuild RI. Detailed source/run/history stays in issues/PRs and linked artifacts.
-No private messages, credentials or inferred approvals belong in memory.
+Keep these five sections within120lines; rebuild RI after changes. Detailed
+source/run/review history belongs in its issue/PR artifact. Never store private
+correspondence, credentials or inferred approvals.
