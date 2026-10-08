@@ -16,7 +16,7 @@
     {
       "id": "AC02",
       "intent": "Regenerate canonical hosted/offline renditions and pass bounded current-source verification.",
-      "automated_scope": "Existing generated-publication/SEO checks reverse only the exact issue61 fragment before immutable issue48/41 deltas and retain all unrelated semantics; normal source build/preview freshness cases verify generated renditions. Basic and fresh RI/coupling checks retain current source identity. Actual CI and normal two-width hosted smoke are separately observed, not inferred from local checks. No new browser matrix is added.",
+      "automated_scope": "Existing generated-publication/SEO checks reverse only the exact issue61 fragment before immutable issue48/41 deltas and retain all unrelated semantics; normal source build/preview freshness cases verify generated renditions. Basic and fresh RI/coupling checks retain current source identity. Actual CI and normal two-width hosted smoke are separately observed, not inferred from local checks. No new browser matrix is added. The maintainer-authorized integration also requires the existing bounded staging profile, including exact checksum dispositions and current advisory reachability bindings; these are separately observed human gates.",
       "checks": [
         "TALKS",
         "GENERATION-SEO",
@@ -31,7 +31,7 @@
     {
       "id": "AC03",
       "intent": "Preserve canonical ownership, style and honest linked handoff.",
-      "automated_scope": "The bounded code-style guard checks its declared subset. Current RI catalog/views and RI/CI coupling validate added acceptance/review paths and current routes. CS01-CS05 and CS08-CS10 ownership, semantic preservation, readability and proportional checks are independently reviewed; runtime/state/resource rules CS06-CS07 are preserved by the narrow content-only treatment. Live issue/PR/commit linkage and actual checkbox updates require separate recorded evidence.",
+      "automated_scope": "The bounded code-style guard checks its declared subset. Current RI catalog/views and RI/CI coupling validate added acceptance/review paths and current routes. CS01-CS05 and CS08-CS10 ownership, semantic preservation, readability and proportional checks are independently reviewed; runtime/state/resource rules CS06-CS07 are preserved by the narrow content-only treatment. Live issue/PR/commit linkage and actual checkbox updates require separate recorded evidence. Independent security review proves newly generated public checksums by exact path/type/hashed-value and revalidates any stale existing advisory source binding without changing scanner scope, dependency locks, expiry or budgets.",
       "checks": [
         "CURRENT-GUARD",
         "CURRENT-RI",
@@ -71,15 +71,15 @@
   "gates": {
     "CURRENT-CI": {
       "kind": "human",
-      "description": "Observe passing raw-head Basic, navigation/RI, owning acceptance and existing CI-controlled normal preview/minimal hosted smoke; retain exact candidate source/tree and immutable preview URL. No stable staging or production admission is implied."
+      "description": "Observe passing raw-head Basic, navigation/RI, owning acceptance and CI-controlled normal preview/minimal hosted smoke. For the maintainer-authorized standard integration, additionally observe the complete existing bounded staging gate (build/static/host/staging), matching source/tree/package, promotion and exact stable verification while the PR remains open. Retain failed attempts honestly. No full production admission is implied."
     },
     "SOURCE-REVIEW": {
       "kind": "human",
-      "description": "Record independent review of exact supplied content, title language annotation, retained dates/sources/unrelated events, exact reversible amendment and meaningful negative coverage, generated/offline owners and applicable CS01-CS05/CS08-CS10 rules. Preserve runtime/style/scene/budget boundaries; do not infer recording playback verification."
+      "description": "Record independent review of exact supplied content, title language annotation, retained dates/sources/unrelated events, exact reversible amendment and meaningful negative coverage, generated/offline owners and applicable CS01-CS05/CS08-CS10 rules. Preserve runtime/style/scene/budget boundaries; do not infer recording playback verification. For integration corrections, record independent proof of every exact public checksum disposition and current advisory reachability source binding; historical baseline and prior reviewed records remain intact."
     },
     "DELIVERY-LINKAGE": {
       "kind": "human",
-      "description": "Record one issue61-linked Draft PR and exact Refs commit, mapped checks/source evidence, independent review and actual whole-AC checkbox reconciliation. Merge/stable staging/production remain separate maintainer decisions; this policy never closes the issue."
+      "description": "Record one issue61-linked PR and exact Refs commits, mapped checks/source evidence, independent review and actual whole-AC checkbox reconciliation. The maintainer authorized standard stage-then-merge integration on 2026-10-08; merge only the unchanged tested head after successful stable verification, then reconcile and close the issue. Production remains separate; this local policy never performs a merge or closes an issue."
     }
   }
 }

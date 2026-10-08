@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "8668e2137d242d077d4694d3768b882d6a055a6eab98c26b2581a77548b87374",
+    "digest": "be3e256c28655ed54a91af639278a0dbc4403517a1435d75aacb8f694b5f07ea",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -92,7 +92,7 @@
       {
         "path": ".github/acceptance/issue-61.json",
         "identity_mode": "content",
-        "sha256": "bcec467915ce906fea2cbd840861b9eb771e13ab604293e3ab2650c900bc4d20"
+        "sha256": "c39ed1ed33a3cd7d50bd093e764d3b3179b576695f0eed680c327989c0431b35"
       },
       {
         "path": ".github/code-style.json",
@@ -126,7 +126,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "5669b1ac50b5f994aad0831ff7c5ac8f9387e23e9d46d47ba4805fb44d92a7c3"
+        "sha256": "d5419cbd2419e9600d85fc8ab89336f0eaf0b588b31118a40b916ffa01a24b90"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -645,7 +645,7 @@
       {
         "path": "review/issue-61/2026-10-08-handoff.md",
         "identity_mode": "content",
-        "sha256": "e717c4b55b981963a4ff02c274771077ce2de4bd8b1c36ca29edd80fc550ad22"
+        "sha256": "5dfb755df5a27a3d81df1e3709297ef4b0673cdd9c8a5fa8d94ea1db18810236"
       },
       {
         "path": "review/issue-61/content-amendment.json",
@@ -4895,7 +4895,7 @@
       {
         "path": "tools/quality/advisory-exceptions.json",
         "identity_mode": "content",
-        "sha256": "3e8e02cd4871d81f04562c7709fd7f875f7ac7f45dfc9df0b9317d4eba218e1f"
+        "sha256": "3f494333e7cd7f1c8f083c58928611f6b25a50d0ce64a4a18067e1c479c8103e"
       },
       {
         "path": "tools/quality/analytics-browser.cjs",
@@ -5085,7 +5085,7 @@
       {
         "path": "tools/quality/secrets-reviewed.json",
         "identity_mode": "content",
-        "sha256": "e74fea9c90db032bd1bf2722b2daafa5b9fb457230b6371fe60a11b5f814f5bd"
+        "sha256": "7c904a2169588dfe5213a1f0ad23a7d315a18e401d9cc5f1200c018d3764f9d3"
       },
       {
         "path": "tools/quality/security-rules.yml",
