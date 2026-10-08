@@ -218,5 +218,25 @@
     "path": "tests/test_ri_ci.py",
     "reason": "Verify the new maintained-source-quality RI layer and exact formatter/lint/acceptance routes alongside unchanged prior layer coverage.",
     "owner": ".github/REPOSITORY-INTELLIGENCE.md"
+  },
+  {
+    "path": "tools/quality/local-browser.cjs",
+    "reason": "Correct the required Base smoke/journey observer to distinguish the canonical Base descriptor fingerprint from the runtime engine. Preserve exact source/artifact/served-byte binding, 64-hex engine validation, Color engine/fingerprint equality, existing profile cases and budgets; reject malformed, stale or conflicting identities with negative fixtures. This same field-assumption defect is reproduced on immutable R2 baseline.",
+    "owner": "review/issue-58/2026-10-08-handoff.md"
+  },
+  {
+    "path": "tests/preview-smoke.test.cjs",
+    "reason": "Correct the required Base smoke/journey observer to distinguish the canonical Base descriptor fingerprint from the runtime engine. Preserve exact source/artifact/served-byte binding, 64-hex engine validation, Color engine/fingerprint equality, existing profile cases and budgets; reject malformed, stale or conflicting identities with negative fixtures. This same field-assumption defect is reproduced on immutable R2 baseline.",
+    "owner": "review/issue-58/2026-10-08-handoff.md"
+  },
+  {
+    "path": "tools/quality/staging-regression.cjs",
+    "reason": "Correct the required Base smoke/journey observer to distinguish the canonical Base descriptor fingerprint from the runtime engine. Preserve exact source/artifact/served-byte binding, 64-hex engine validation, Color engine/fingerprint equality, existing profile cases and budgets; reject malformed, stale or conflicting identities with negative fixtures. This same field-assumption defect is reproduced on immutable R2 baseline.",
+    "owner": "review/issue-58/2026-10-08-handoff.md"
+  },
+  {
+    "path": "tests/staging-regression.test.cjs",
+    "reason": "Correct the required Base smoke/journey observer to distinguish the canonical Base descriptor fingerprint from the runtime engine. Preserve exact source/artifact/served-byte binding, 64-hex engine validation, Color engine/fingerprint equality, existing profile cases and budgets; reject malformed, stale or conflicting identities with negative fixtures. This same field-assumption defect is reproduced on immutable R2 baseline.",
+    "owner": "review/issue-58/2026-10-08-handoff.md"
   }
 ]

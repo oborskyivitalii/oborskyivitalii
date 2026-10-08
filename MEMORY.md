@@ -16,9 +16,11 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 - [PR #60](https://github.com/oborskyivitalii/oborskyivitalii/pull/60) advances R2
   directly under issue58. Its single [handoff](review/issue-58/2026-10-08-handoff.md)
   and shared issue58 policy now cover implemented formatting/parity/lint controls
-  and the mechanically formatted working tree. HEAD `2138131b718d1ac4734f6b2c55520eb37e98ca6a`
-  is the preparation baseline, not the final implementation candidate. Final clean
-  checks, independent implementation review, hosted CI/preview and merge are pending.
+  and mechanical formatting. Preparation baseline is `2138131b718d1ac4734f6b2c55520eb37e98ca6a`.
+  Published checkpoint `235048e`, tree `1cde2b8ffbc68f21b7409a5832e901c6fbdcf4ae`,
+  passed CI/scans and hosted Color smoke; exact run links belong in PR60/#58.
+  Required Base smoke then exposed a pre-existing validation identity bug;
+  its narrow adapter correction and final clean revalidation/review remain pending.
   Issue59 is superseded/closed as a duplicate; retain only its dated history.
 - PR #51 content/formula/shared reading-backdrop changes are merged and preserved.
   #15 is closed for the earlier engine/content increment; R3 extends its owners.
@@ -40,11 +42,16 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
   Strict HTML whitespace, embedded formatting off, LF, 100 columns and explicit
   exclusions are checked; missing/untracked/ignored/misclassified sources fail.
 - The shared policy maps real formatter, semantic, coverage, serialization and
-  budget checks. Current semantic comparison passes 192 baseline files, 177 changed,
+  budget checks. Pre-Base-adapter semantic comparison passed 192 baseline files, 177 changed,
   with 44 exact control dispositions and 9 new controls. It reports `sourceDirty: true`
   and stable observed bytes: working evidence only. All 415 selected JS cases and
   actual lint over 173 inputs (144 JS, 3 CSS, 26 Python) pass. Final clean-source/hosted
   acceptance remains pending. AC02-AC10 stay open and AC01 retains R1 completion.
+- Base variant descriptor fingerprint and runtime engine hash already differ at
+  baseline `2138131`. Preview/staging consumers must read the canonical variant, retain
+  Color fingerprint equality and compare DOM engine with `manifest.components.engine`.
+  Four consumer/test adapters are intentional R2 control edits; final counts/results
+  come from the new exact candidate rather than the earlier 44-control observation.
 - Ordinary generation adapters now accept equivalent formatted markers, void tags
   and tag endings without changing raw payloads, inline boundaries or size limits.
   Writing is 99,879 bytes within its original 100,000-byte limit. Exact SEO block
@@ -55,7 +62,7 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
   text/links/geometry and stable dirty-tree observation. Motion is off/reduced;
   it does not prove every route, Color interaction, device or production performance.
 - RI/CI maps 14 checks over 12 layers, including maintained source quality.
-  Final RI/security verification and exact clean commit/run evidence remain pending.
+  The final Base-adapter candidate needs fresh RI/security/source-bound evidence.
 - Native factory formatting changes serialization/hashes. Preserve executable
   and semantic parity; regenerate legitimate identities. Independently review
   exact complexity/Bandit/public fingerprint refreshes without changing original
@@ -64,7 +71,7 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
   [Bandit proof](review/issue-58/2026-10-08-bandit-rebinding.json) record equivalent
   existing dispositions: same Ribbon 52/25 warning and 36 Bandit findings over six
   finding sources. They explicitly leave final security/public checksum admission
-  pending; they are not a clean candidate security report.
+  pending in that proof; later actual scanner/run evidence belongs in PR60/#58.
 - R3 owns records/prose/templates, R4 static CSS, R5 cohesive runtime/build
   seams and R6 demonstrated hotspots plus final integrated acceptance.
 - Preserve content/URLs/paint/camera, incremental/no-JS/offline contracts,
@@ -94,7 +101,7 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
    checkpoint. R1 is merged; R2 controls and mechanical edits are implemented.
 2. Read the single R2 handoff and exact control dispositions; generation adapters,
    selected source cases, actual lint and paired viewport evidence are implemented.
-3. Finish security/public fingerprint proof, RI and one clean exact candidate's
+3. Finish the Base validation adapter and rebind RI/security and one clean candidate's
    formatter/idempotence/parity/source suites/CI/two-width PR smoke.
 4. Reconcile actual AC boxes and review; merge only on maintainer decision.
 

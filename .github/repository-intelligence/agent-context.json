@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "04aee3d7837c845e25722140372754da7e19dc524028f9188431c422b6147a87",
+    "digest": "5f6172fe7ded83c849e925cd8794f5b560b54d0c21b5a19b1a1d04f63af476c5",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -131,7 +131,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "996e094eede80df0f2403ec03727de3d71827b361725475fbbfa09692b6f5607"
+        "sha256": "5f5b331abbfa57ef3781ce9c20d844816b57fc434c1ee2cbe1068b6c632bb33c"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -226,7 +226,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "a57749bb984aa1ec0f59a0765428c29b2ee7c59746c8d73a21e0bc12b5d36c4b"
+        "sha256": "5b4b0bc8a5490a929d8f24194ab46fe987778f0f46a976d3dd6c3731d420e88a"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -655,7 +655,7 @@
       {
         "path": "review/issue-58/2026-10-08-handoff.md",
         "identity_mode": "content",
-        "sha256": "e877ebaf1ed9e01f916ca9eaf06a945b29fc5352494b31f1dc58eb6b2dec2d3c"
+        "sha256": "f10bfb3e4236d5fe58caccf8cb3e6dcdf451debd65ca5cf8a644922c0f8aa506"
       },
       {
         "path": "review/issue-58/2026-10-08-scanner-rebinding.json",
@@ -4640,7 +4640,7 @@
       {
         "path": "tests/preview-smoke.test.cjs",
         "identity_mode": "content",
-        "sha256": "755bf52cfcd152b3f27518aee10cb43807201da2031944aed7ae5f44b95ff48e"
+        "sha256": "2daa05ee76905e38a5124e3e76f09bca7bf655667146e10d5f5a54146a82ef73"
       },
       {
         "path": "tests/preview.test.cjs",
@@ -4700,7 +4700,7 @@
       {
         "path": "tests/staging-regression.test.cjs",
         "identity_mode": "content",
-        "sha256": "68ff8a6cc3862b16887de87dab6673eea7d15c02cbd2215780332154e77dd5b5"
+        "sha256": "66ef2032c9b8bb981c50b1b764fcdadf422b734601d454c7ee2725b23222387d"
       },
       {
         "path": "tests/staging-reporting.test.cjs",
@@ -5030,7 +5030,7 @@
       {
         "path": "tools/quality/format-parity-controls.json",
         "identity_mode": "content",
-        "sha256": "61e75e39fa824af6ff1cdbd4585e228c2c60254919f45c9e961e5af7fe7604bf"
+        "sha256": "e18f8b6807ec729f1053829407cea817c610435db0ce00a597ff7353c67dbf1d"
       },
       {
         "path": "tools/quality/format-parity.cjs",
@@ -5090,7 +5090,7 @@
       {
         "path": "tools/quality/local-browser.cjs",
         "identity_mode": "content",
-        "sha256": "3986ed4bd3d10aa0fe0b7719ef318a32dd0665e352c07615dd88ebf1b1efec7c"
+        "sha256": "8671284d66f18c714a0643dfe8139199659ab60fd1aaf9ad5293b25f268df206"
       },
       {
         "path": "tools/quality/local.cjs",
@@ -5185,7 +5185,7 @@
       {
         "path": "tools/quality/staging-regression.cjs",
         "identity_mode": "content",
-        "sha256": "a827b8bdb40ecd5bfa372584369f215011acccca770c9aa07cde55e20e65908b"
+        "sha256": "ce5973ac184708473bc963a1a8a15663b6c105673fb6c7d05782e533aae4c620"
       },
       {
         "path": "tools/quality/stylelint.cjs",
