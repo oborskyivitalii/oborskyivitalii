@@ -1,0 +1,898 @@
+{
+  "schema": 1,
+  "kind": "issue58-r6-matched-observations",
+  "owningIssue": 58,
+  "approvedMain": "a8149a0a65579d6977ccef9bb0e6e4367fd9e9dd",
+  "frozenAdaptiveCheckpoint": "983ec655fce6dc51082b684bfedf319e0500c6a6",
+  "diagnosticCheckpoint": "898653d1de7a701e4d8c0eb818b0d21f67586750",
+  "acceptanceDisposition": {
+    "AC08": "Measured current public runtime applicable original budgets pass for unmodified Base and Color; matched fixed tier/cadence diagnostic and complete raw resource evidence are retained. Apply only after final exact-public-byte parity and integrated independent review.",
+    "optimization": "No runtime optimization introduced; cameraView hotspot hypothesis deferred. No repeatable speedup demonstrated or claimed.",
+    "fullProductionGate": false,
+    "physicalDeviceAcceptance": false
+  },
+  "rawArchive": {
+    "path": "review/issue-58/2026-10-08-r6-matched-raw.json.gz",
+    "compressedSHA256": "bccceb2dcdf464feee610da2910a04ab5d2c62695a1057124292d0aeeef9cbbb",
+    "compressedBytes": 407923,
+    "decodedSHA256": "8150bf64e42f496a3c1993284bf4738a8612dbe76078bf9e045f1b8a22caf507"
+  },
+  "reports": [
+    {
+      "name": "issue58-matched-candidate-adaptive-base.json",
+      "archiveKey": "issue58-matched-candidate-adaptive-base.json",
+      "rawSHA256": "081109eb929b17197324a581d7cf8e6c8f4bf56fbddf5f4de08892eccca84dd7",
+      "mode": "adaptive",
+      "case": "candidate-base",
+      "identity": {
+        "sourceCommit": "983ec655fce6dc51082b684bfedf319e0500c6a6",
+        "sourceTree": "8ec05902c763c421f3c827c9b40cd3768942952e",
+        "candidateCommit": "983ec655fce6dc51082b684bfedf319e0500c6a6",
+        "sourceDirty": false,
+        "artifactDigest": "fefeeb0cb34ec4c32cf0b702c97009d5284e164503b020e77d03ddd90e023d9b",
+        "engine": "cfbf9ec0e253e92c3e79fe9d1f82d5a79a30aff5bf255e0156be4f89e6b6a0ba",
+        "variant": {
+          "id": "base",
+          "contract": 1,
+          "fingerprint": "48153b94fbae4f314eaa11b156df8a20227dec429abfee9e45c14fda4a1f1b2a"
+        }
+      },
+      "protocol": {
+        "schema": 2,
+        "baseline": {
+          "kind": "approved-main",
+          "sourceCommit": "a8149a0a65579d6977ccef9bb0e6e4367fd9e9dd",
+          "sourceTree": "776610667df0c606d29891f582a7fc329faaa570"
+        },
+        "routes": ["research", "writing"],
+        "profiles": [
+          {
+            "id": "desktop",
+            "width": 1440,
+            "height": 900,
+            "deviceScaleFactor": 1,
+            "cpuRate": 1
+          },
+          {
+            "id": "mobile-x4",
+            "width": 390,
+            "height": 844,
+            "deviceScaleFactor": 3,
+            "cpuRate": 4
+          }
+        ],
+        "theme": "dark",
+        "warmupMs": 10000,
+        "measurementMs": 4000,
+        "hotspotMs": 2000,
+        "stoppedMs": 1000,
+        "lifecycleCycles": 10,
+        "variants": ["base", "color"],
+        "effects": {
+          "base": [],
+          "color": ["travel"]
+        },
+        "reducedMotion": "no-preference"
+      },
+      "structuralAndTrustedArtifactVerification": true,
+      "collectionErrorRetained": null,
+      "rows": [
+        {
+          "route": "research",
+          "profile": "desktop",
+          "samples": [
+            {
+              "kind": "idle",
+              "quality": "0",
+              "cadence": "15",
+              "p95Ms": 24.399999998509884,
+              "idleOrScrollBusyPercent": 22.94349605604578,
+              "withinMappedOriginalBudgets": null
+            },
+            {
+              "kind": "scroll",
+              "quality": "0",
+              "cadence": "20",
+              "p95Ms": 17.399999998509884,
+              "idleOrScrollBusyPercent": 24.828678162184744,
+              "withinMappedOriginalBudgets": null
+            }
+          ]
+        },
+        {
+          "route": "writing",
+          "profile": "desktop",
+          "samples": [
+            {
+              "kind": "idle",
+              "quality": "0",
+              "cadence": "30",
+              "p95Ms": 11.600000001490116,
+              "idleOrScrollBusyPercent": 22.557268010641998,
+              "withinMappedOriginalBudgets": null
+            },
+            {
+              "kind": "scroll",
+              "quality": "0",
+              "cadence": "30",
+              "p95Ms": 10.899999998509884,
+              "idleOrScrollBusyPercent": 18.584329283691947,
+              "withinMappedOriginalBudgets": null
+            }
+          ]
+        },
+        {
+          "route": "research",
+          "profile": "mobile-x4",
+          "samples": [
+            {
+              "kind": "idle",
+              "quality": "0",
+              "cadence": "7.5",
+              "p95Ms": 27.700000002980232,
+              "idleOrScrollBusyPercent": 14.671843499043394,
+              "withinMappedOriginalBudgets": true
+            },
+            {
+              "kind": "scroll",
+              "quality": "0",
+              "cadence": "7.5",
+              "p95Ms": 25,
+              "idleOrScrollBusyPercent": 28.58439423966677,
+              "withinMappedOriginalBudgets": true
+            }
+          ]
+        },
+        {
+          "route": "writing",
+          "profile": "mobile-x4",
+          "samples": [
+            {
+              "kind": "idle",
+              "quality": "0",
+              "cadence": "7.5",
+              "p95Ms": 26,
+              "idleOrScrollBusyPercent": 13.550331224244925,
+              "withinMappedOriginalBudgets": true
+            },
+            {
+              "kind": "scroll",
+              "quality": "0",
+              "cadence": "7.5",
+              "p95Ms": 30.299999997019768,
+              "idleOrScrollBusyPercent": 28.61551272258166,
+              "withinMappedOriginalBudgets": true
+            }
+          ]
+        }
+      ],
+      "lifecycleRetained": true
+    },
+    {
+      "name": "issue58-matched-candidate-adaptive-color.json",
+      "archiveKey": "issue58-matched-candidate-adaptive-color.json",
+      "rawSHA256": "b56b9c3f2404e97c657d4fb6de084da36f9c53539a4116e747ced0cc4abdae7f",
+      "mode": "adaptive",
+      "case": "candidate-color",
+      "identity": {
+        "sourceCommit": "983ec655fce6dc51082b684bfedf319e0500c6a6",
+        "sourceTree": "8ec05902c763c421f3c827c9b40cd3768942952e",
+        "candidateCommit": "983ec655fce6dc51082b684bfedf319e0500c6a6",
+        "sourceDirty": false,
+        "artifactDigest": "74ac7d8440167cc0f4a74893e9c23c6fa4e760711c3d2e86ef8b1ce9ee03a982",
+        "engine": "91b3792924ff82f3418e8d86126bc1786ed290c2db23a242a9d746780426ca8a",
+        "variant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "91b3792924ff82f3418e8d86126bc1786ed290c2db23a242a9d746780426ca8a",
+          "baseEngine": "cfbf9ec0e253e92c3e79fe9d1f82d5a79a30aff5bf255e0156be4f89e6b6a0ba",
+          "effects": ["travel"]
+        }
+      },
+      "protocol": {
+        "schema": 2,
+        "baseline": {
+          "kind": "approved-main",
+          "sourceCommit": "a8149a0a65579d6977ccef9bb0e6e4367fd9e9dd",
+          "sourceTree": "776610667df0c606d29891f582a7fc329faaa570"
+        },
+        "routes": ["research", "writing"],
+        "profiles": [
+          {
+            "id": "desktop",
+            "width": 1440,
+            "height": 900,
+            "deviceScaleFactor": 1,
+            "cpuRate": 1
+          },
+          {
+            "id": "mobile-x4",
+            "width": 390,
+            "height": 844,
+            "deviceScaleFactor": 3,
+            "cpuRate": 4
+          }
+        ],
+        "theme": "dark",
+        "warmupMs": 10000,
+        "measurementMs": 4000,
+        "hotspotMs": 2000,
+        "stoppedMs": 1000,
+        "lifecycleCycles": 10,
+        "variants": ["base", "color"],
+        "effects": {
+          "base": [],
+          "color": ["travel"]
+        },
+        "reducedMotion": "no-preference"
+      },
+      "structuralAndTrustedArtifactVerification": true,
+      "collectionErrorRetained": null,
+      "rows": [
+        {
+          "route": "research",
+          "profile": "desktop",
+          "samples": [
+            {
+              "kind": "idle",
+              "quality": "0",
+              "cadence": "12",
+              "p95Ms": 15.5,
+              "idleOrScrollBusyPercent": 13.639883108524234,
+              "withinMappedOriginalBudgets": null
+            },
+            {
+              "kind": "scroll",
+              "quality": "0",
+              "cadence": "15",
+              "p95Ms": 19.399999998509884,
+              "idleOrScrollBusyPercent": 23.857153439516573,
+              "withinMappedOriginalBudgets": null
+            }
+          ]
+        },
+        {
+          "route": "writing",
+          "profile": "desktop",
+          "samples": [
+            {
+              "kind": "idle",
+              "quality": "0",
+              "cadence": "12",
+              "p95Ms": 19,
+              "idleOrScrollBusyPercent": 22.948260481187344,
+              "withinMappedOriginalBudgets": null
+            },
+            {
+              "kind": "scroll",
+              "quality": "0",
+              "cadence": "15",
+              "p95Ms": 17.899999998509884,
+              "idleOrScrollBusyPercent": 23.312506150914814,
+              "withinMappedOriginalBudgets": null
+            }
+          ]
+        },
+        {
+          "route": "research",
+          "profile": "mobile-x4",
+          "samples": [
+            {
+              "kind": "idle",
+              "quality": "1",
+              "cadence": "7.5",
+              "p95Ms": 26.30000000447035,
+              "idleOrScrollBusyPercent": 13.697502058901723,
+              "withinMappedOriginalBudgets": true
+            },
+            {
+              "kind": "scroll",
+              "quality": "1",
+              "cadence": "7.5",
+              "p95Ms": 21.799999997019768,
+              "idleOrScrollBusyPercent": 20.592526645563417,
+              "withinMappedOriginalBudgets": true
+            }
+          ]
+        },
+        {
+          "route": "writing",
+          "profile": "mobile-x4",
+          "samples": [
+            {
+              "kind": "idle",
+              "quality": "2",
+              "cadence": "7.5",
+              "p95Ms": 32.69999999552965,
+              "idleOrScrollBusyPercent": 15.038906625025659,
+              "withinMappedOriginalBudgets": true
+            },
+            {
+              "kind": "scroll",
+              "quality": "2",
+              "cadence": "7.5",
+              "p95Ms": 25.700000002980232,
+              "idleOrScrollBusyPercent": 20.36643259861005,
+              "withinMappedOriginalBudgets": true
+            }
+          ]
+        }
+      ],
+      "lifecycleRetained": true
+    },
+    {
+      "name": "issue58-fixed-main-base.json",
+      "archiveKey": "issue58-fixed-main-base.json",
+      "rawSHA256": "ba29e206d7fe86b3ce3edc44b2bba9bcdba72f963d3afcc285dd4aa82de86534",
+      "mode": "fixed",
+      "case": "main-base",
+      "identity": {
+        "sourceCommit": "a8149a0a65579d6977ccef9bb0e6e4367fd9e9dd",
+        "sourceTree": "776610667df0c606d29891f582a7fc329faaa570",
+        "candidateCommit": "a8149a0a65579d6977ccef9bb0e6e4367fd9e9dd",
+        "sourceDirty": false,
+        "artifactDigest": "cd06ab7fb12235af6170ae825a9616b1f04bf23082673930cefdc33417f8f2de",
+        "engine": "62164b66c648eb104215b272a1158e291b6c37bf7437591d4e777acef5669eb1",
+        "variant": {
+          "id": "base",
+          "contract": 1,
+          "fingerprint": "48153b94fbae4f314eaa11b156df8a20227dec429abfee9e45c14fda4a1f1b2a"
+        }
+      },
+      "protocol": {
+        "schema": 3,
+        "baseline": {
+          "kind": "approved-main",
+          "sourceCommit": "a8149a0a65579d6977ccef9bb0e6e4367fd9e9dd",
+          "sourceTree": "776610667df0c606d29891f582a7fc329faaa570"
+        },
+        "routes": ["research", "writing"],
+        "profiles": [
+          {
+            "id": "mobile-x4",
+            "width": 390,
+            "height": 844,
+            "deviceScaleFactor": 3,
+            "cpuRate": 4
+          }
+        ],
+        "theme": "dark",
+        "warmupMs": 10000,
+        "measurementMs": 4000,
+        "hotspotMs": 2000,
+        "stoppedMs": 1000,
+        "lifecycleCycles": 0,
+        "variants": ["base", "color"],
+        "effects": {
+          "base": [],
+          "color": ["travel"]
+        },
+        "reducedMotion": "no-preference",
+        "mode": "fixed-diagnostic",
+        "fixedControl": {
+          "desktop": {
+            "qualityTier": 0,
+            "cadenceHz": 12
+          },
+          "mobile-x4": {
+            "qualityTier": 1,
+            "cadenceHz": 7.5
+          }
+        },
+        "lifecycleMode": "not-collected-see-unmodified-adaptive-reports"
+      },
+      "structuralAndTrustedArtifactVerification": true,
+      "collectionErrorRetained": "AssertionError [ERR_ASSERTION]: paint budget\n    at validateSample (/workspace/scratch/8bf2a63ae9d5/issue58-r6/tools/quality/refactor-metrics.cjs:291:14)\n    at validateRow (/workspace/scratch/8bf2a63ae9d5/issue58-r6/tools/quality/refactor-metrics.cjs:399:5)\n    at validateReport (/workspace/scratch/8bf2a63ae9d5/issue58-r6/tools/quality/refactor-metrics.cjs:471:34)\n    at collect (/workspace/scratch/8bf2a63ae9d5/issue58-r6/tools/quality/refactor-metrics.cjs:909:5)",
+      "rows": [
+        {
+          "route": "research",
+          "profile": "mobile-x4",
+          "samples": [
+            {
+              "kind": "idle",
+              "quality": "1",
+              "cadence": "7.5",
+              "p95Ms": 40.399999998509884,
+              "idleOrScrollBusyPercent": 16.13844350746595,
+              "withinMappedOriginalBudgets": false
+            },
+            {
+              "kind": "scroll",
+              "quality": "1",
+              "cadence": "7.5",
+              "p95Ms": 23.80000000447035,
+              "idleOrScrollBusyPercent": 10.62426911515743,
+              "withinMappedOriginalBudgets": true
+            }
+          ]
+        },
+        {
+          "route": "writing",
+          "profile": "mobile-x4",
+          "samples": [
+            {
+              "kind": "idle",
+              "quality": "1",
+              "cadence": "7.5",
+              "p95Ms": 34.69999999552965,
+              "idleOrScrollBusyPercent": 17.68732885200644,
+              "withinMappedOriginalBudgets": false
+            },
+            {
+              "kind": "scroll",
+              "quality": "1",
+              "cadence": "7.5",
+              "p95Ms": 35.69999999552965,
+              "idleOrScrollBusyPercent": 14.763444309393073,
+              "withinMappedOriginalBudgets": false
+            }
+          ]
+        }
+      ],
+      "lifecycleRetained": false
+    },
+    {
+      "name": "issue58-fixed-candidate-base.json",
+      "archiveKey": "issue58-fixed-candidate-base.json",
+      "rawSHA256": "70492d81194b6cf70a7dbcc8f3343d0b50397d0e09cfee289a6debd4d5b6ca11",
+      "mode": "fixed",
+      "case": "candidate-base",
+      "identity": {
+        "sourceCommit": "898653d1de7a701e4d8c0eb818b0d21f67586750",
+        "sourceTree": "e6e21e25ee42022ed066a34140f0171de9187900",
+        "candidateCommit": "898653d1de7a701e4d8c0eb818b0d21f67586750",
+        "sourceDirty": false,
+        "artifactDigest": "fefeeb0cb34ec4c32cf0b702c97009d5284e164503b020e77d03ddd90e023d9b",
+        "engine": "cfbf9ec0e253e92c3e79fe9d1f82d5a79a30aff5bf255e0156be4f89e6b6a0ba",
+        "variant": {
+          "id": "base",
+          "contract": 1,
+          "fingerprint": "48153b94fbae4f314eaa11b156df8a20227dec429abfee9e45c14fda4a1f1b2a"
+        }
+      },
+      "protocol": {
+        "schema": 3,
+        "baseline": {
+          "kind": "approved-main",
+          "sourceCommit": "a8149a0a65579d6977ccef9bb0e6e4367fd9e9dd",
+          "sourceTree": "776610667df0c606d29891f582a7fc329faaa570"
+        },
+        "routes": ["research", "writing"],
+        "profiles": [
+          {
+            "id": "mobile-x4",
+            "width": 390,
+            "height": 844,
+            "deviceScaleFactor": 3,
+            "cpuRate": 4
+          }
+        ],
+        "theme": "dark",
+        "warmupMs": 10000,
+        "measurementMs": 4000,
+        "hotspotMs": 2000,
+        "stoppedMs": 1000,
+        "lifecycleCycles": 0,
+        "variants": ["base", "color"],
+        "effects": {
+          "base": [],
+          "color": ["travel"]
+        },
+        "reducedMotion": "no-preference",
+        "mode": "fixed-diagnostic",
+        "fixedControl": {
+          "desktop": {
+            "qualityTier": 0,
+            "cadenceHz": 12
+          },
+          "mobile-x4": {
+            "qualityTier": 1,
+            "cadenceHz": 7.5
+          }
+        },
+        "lifecycleMode": "not-collected-see-unmodified-adaptive-reports"
+      },
+      "structuralAndTrustedArtifactVerification": true,
+      "collectionErrorRetained": null,
+      "rows": [
+        {
+          "route": "research",
+          "profile": "mobile-x4",
+          "samples": [
+            {
+              "kind": "idle",
+              "quality": "1",
+              "cadence": "7.5",
+              "p95Ms": 29.600000001490116,
+              "idleOrScrollBusyPercent": 16.492375271519673,
+              "withinMappedOriginalBudgets": true
+            },
+            {
+              "kind": "scroll",
+              "quality": "1",
+              "cadence": "7.5",
+              "p95Ms": 22.200000002980232,
+              "idleOrScrollBusyPercent": 9.703029249977652,
+              "withinMappedOriginalBudgets": true
+            }
+          ]
+        },
+        {
+          "route": "writing",
+          "profile": "mobile-x4",
+          "samples": [
+            {
+              "kind": "idle",
+              "quality": "1",
+              "cadence": "7.5",
+              "p95Ms": 24.900000005960464,
+              "idleOrScrollBusyPercent": 15.021395164174239,
+              "withinMappedOriginalBudgets": true
+            },
+            {
+              "kind": "scroll",
+              "quality": "1",
+              "cadence": "7.5",
+              "p95Ms": 17.600000001490116,
+              "idleOrScrollBusyPercent": 9.11444718287268,
+              "withinMappedOriginalBudgets": true
+            }
+          ]
+        }
+      ],
+      "lifecycleRetained": false
+    },
+    {
+      "name": "issue58-fixed-main-color.json",
+      "archiveKey": "issue58-fixed-main-color.json",
+      "rawSHA256": "65507163b4a14438f0335d6ce93b8194ac2bbea419c55d774eaa602996f495ae",
+      "mode": "fixed",
+      "case": "main-color",
+      "identity": {
+        "sourceCommit": "a8149a0a65579d6977ccef9bb0e6e4367fd9e9dd",
+        "sourceTree": "776610667df0c606d29891f582a7fc329faaa570",
+        "candidateCommit": "a8149a0a65579d6977ccef9bb0e6e4367fd9e9dd",
+        "sourceDirty": false,
+        "artifactDigest": "c2245b9579c0f591cb25d3ae120058d7961d21d7a5b2f9ef04fa6b32bc3a8a7e",
+        "engine": "2a631913dcc551deceab24aa4f4336e76a2715351d2a5d266c62e4caf175e5d6",
+        "variant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "2a631913dcc551deceab24aa4f4336e76a2715351d2a5d266c62e4caf175e5d6",
+          "baseEngine": "62164b66c648eb104215b272a1158e291b6c37bf7437591d4e777acef5669eb1",
+          "effects": ["travel"]
+        }
+      },
+      "protocol": {
+        "schema": 3,
+        "baseline": {
+          "kind": "approved-main",
+          "sourceCommit": "a8149a0a65579d6977ccef9bb0e6e4367fd9e9dd",
+          "sourceTree": "776610667df0c606d29891f582a7fc329faaa570"
+        },
+        "routes": ["research", "writing"],
+        "profiles": [
+          {
+            "id": "mobile-x4",
+            "width": 390,
+            "height": 844,
+            "deviceScaleFactor": 3,
+            "cpuRate": 4
+          }
+        ],
+        "theme": "dark",
+        "warmupMs": 10000,
+        "measurementMs": 4000,
+        "hotspotMs": 2000,
+        "stoppedMs": 1000,
+        "lifecycleCycles": 0,
+        "variants": ["base", "color"],
+        "effects": {
+          "base": [],
+          "color": ["travel"]
+        },
+        "reducedMotion": "no-preference",
+        "mode": "fixed-diagnostic",
+        "fixedControl": {
+          "desktop": {
+            "qualityTier": 0,
+            "cadenceHz": 12
+          },
+          "mobile-x4": {
+            "qualityTier": 1,
+            "cadenceHz": 7.5
+          }
+        },
+        "lifecycleMode": "not-collected-see-unmodified-adaptive-reports"
+      },
+      "structuralAndTrustedArtifactVerification": true,
+      "collectionErrorRetained": "AssertionError [ERR_ASSERTION]: paint budget\n    at validateSample (/workspace/scratch/8bf2a63ae9d5/issue58-r6/tools/quality/refactor-metrics.cjs:291:14)\n    at validateRow (/workspace/scratch/8bf2a63ae9d5/issue58-r6/tools/quality/refactor-metrics.cjs:399:5)\n    at validateReport (/workspace/scratch/8bf2a63ae9d5/issue58-r6/tools/quality/refactor-metrics.cjs:471:34)\n    at collect (/workspace/scratch/8bf2a63ae9d5/issue58-r6/tools/quality/refactor-metrics.cjs:909:5)",
+      "rows": [
+        {
+          "route": "research",
+          "profile": "mobile-x4",
+          "samples": [
+            {
+              "kind": "idle",
+              "quality": "1",
+              "cadence": "7.5",
+              "p95Ms": 32.20000000298023,
+              "idleOrScrollBusyPercent": 16.265947619200116,
+              "withinMappedOriginalBudgets": true
+            },
+            {
+              "kind": "scroll",
+              "quality": "1",
+              "cadence": "7.5",
+              "p95Ms": 27.899999998509884,
+              "idleOrScrollBusyPercent": 11.63508701882068,
+              "withinMappedOriginalBudgets": true
+            }
+          ]
+        },
+        {
+          "route": "writing",
+          "profile": "mobile-x4",
+          "samples": [
+            {
+              "kind": "idle",
+              "quality": "1",
+              "cadence": "7.5",
+              "p95Ms": 64.09999999403954,
+              "idleOrScrollBusyPercent": 19.300388948958123,
+              "withinMappedOriginalBudgets": false
+            },
+            {
+              "kind": "scroll",
+              "quality": "1",
+              "cadence": "7.5",
+              "p95Ms": 22.700000002980232,
+              "idleOrScrollBusyPercent": 11.414583228955395,
+              "withinMappedOriginalBudgets": true
+            }
+          ]
+        }
+      ],
+      "lifecycleRetained": false
+    },
+    {
+      "name": "issue58-fixed-candidate-color.json",
+      "archiveKey": "issue58-fixed-candidate-color.json",
+      "rawSHA256": "cb0218e6ac31569c48eabcb377c56c24428a5bbe79f972b549b1b4cdd0e6b1e5",
+      "mode": "fixed",
+      "case": "candidate-color",
+      "identity": {
+        "sourceCommit": "898653d1de7a701e4d8c0eb818b0d21f67586750",
+        "sourceTree": "e6e21e25ee42022ed066a34140f0171de9187900",
+        "candidateCommit": "898653d1de7a701e4d8c0eb818b0d21f67586750",
+        "sourceDirty": false,
+        "artifactDigest": "74ac7d8440167cc0f4a74893e9c23c6fa4e760711c3d2e86ef8b1ce9ee03a982",
+        "engine": "91b3792924ff82f3418e8d86126bc1786ed290c2db23a242a9d746780426ca8a",
+        "variant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "91b3792924ff82f3418e8d86126bc1786ed290c2db23a242a9d746780426ca8a",
+          "baseEngine": "cfbf9ec0e253e92c3e79fe9d1f82d5a79a30aff5bf255e0156be4f89e6b6a0ba",
+          "effects": ["travel"]
+        }
+      },
+      "protocol": {
+        "schema": 3,
+        "baseline": {
+          "kind": "approved-main",
+          "sourceCommit": "a8149a0a65579d6977ccef9bb0e6e4367fd9e9dd",
+          "sourceTree": "776610667df0c606d29891f582a7fc329faaa570"
+        },
+        "routes": ["research", "writing"],
+        "profiles": [
+          {
+            "id": "mobile-x4",
+            "width": 390,
+            "height": 844,
+            "deviceScaleFactor": 3,
+            "cpuRate": 4
+          }
+        ],
+        "theme": "dark",
+        "warmupMs": 10000,
+        "measurementMs": 4000,
+        "hotspotMs": 2000,
+        "stoppedMs": 1000,
+        "lifecycleCycles": 0,
+        "variants": ["base", "color"],
+        "effects": {
+          "base": [],
+          "color": ["travel"]
+        },
+        "reducedMotion": "no-preference",
+        "mode": "fixed-diagnostic",
+        "fixedControl": {
+          "desktop": {
+            "qualityTier": 0,
+            "cadenceHz": 12
+          },
+          "mobile-x4": {
+            "qualityTier": 1,
+            "cadenceHz": 7.5
+          }
+        },
+        "lifecycleMode": "not-collected-see-unmodified-adaptive-reports"
+      },
+      "structuralAndTrustedArtifactVerification": true,
+      "collectionErrorRetained": "AssertionError [ERR_ASSERTION]: paint budget\n    at validateSample (/workspace/scratch/8bf2a63ae9d5/issue58-r6/tools/quality/refactor-metrics.cjs:291:14)\n    at validateRow (/workspace/scratch/8bf2a63ae9d5/issue58-r6/tools/quality/refactor-metrics.cjs:399:5)\n    at validateReport (/workspace/scratch/8bf2a63ae9d5/issue58-r6/tools/quality/refactor-metrics.cjs:471:34)\n    at collect (/workspace/scratch/8bf2a63ae9d5/issue58-r6/tools/quality/refactor-metrics.cjs:909:5)",
+      "rows": [
+        {
+          "route": "research",
+          "profile": "mobile-x4",
+          "samples": [
+            {
+              "kind": "idle",
+              "quality": "1",
+              "cadence": "7.5",
+              "p95Ms": 22.799999997019768,
+              "idleOrScrollBusyPercent": 12.610497926448563,
+              "withinMappedOriginalBudgets": true
+            },
+            {
+              "kind": "scroll",
+              "quality": "1",
+              "cadence": "7.5",
+              "p95Ms": 27.299999997019768,
+              "idleOrScrollBusyPercent": 10.24950771574158,
+              "withinMappedOriginalBudgets": true
+            }
+          ]
+        },
+        {
+          "route": "writing",
+          "profile": "mobile-x4",
+          "samples": [
+            {
+              "kind": "idle",
+              "quality": "1",
+              "cadence": "7.5",
+              "p95Ms": 489,
+              "idleOrScrollBusyPercent": 46.24664041497588,
+              "withinMappedOriginalBudgets": false
+            },
+            {
+              "kind": "scroll",
+              "quality": "1",
+              "cadence": "7.5",
+              "p95Ms": 340,
+              "idleOrScrollBusyPercent": 24.006188202220624,
+              "withinMappedOriginalBudgets": false
+            }
+          ]
+        }
+      ],
+      "lifecycleRetained": false
+    }
+  ],
+  "fixedComparisons": {
+    "base": [
+      {
+        "route": "research",
+        "actualWholeWindowTier": 1,
+        "actualWholeWindowCadenceHz": 7.5,
+        "pairedSamples": [
+          {
+            "kind": "idle",
+            "mainP95Ms": 40.399999998509884,
+            "candidateP95Ms": 29.600000001490116
+          },
+          {
+            "kind": "scroll",
+            "mainP95Ms": 23.80000000447035,
+            "candidateP95Ms": 22.200000002980232
+          }
+        ]
+      },
+      {
+        "route": "writing",
+        "actualWholeWindowTier": 1,
+        "actualWholeWindowCadenceHz": 7.5,
+        "pairedSamples": [
+          {
+            "kind": "idle",
+            "mainP95Ms": 34.69999999552965,
+            "candidateP95Ms": 24.900000005960464
+          },
+          {
+            "kind": "scroll",
+            "mainP95Ms": 35.69999999552965,
+            "candidateP95Ms": 17.600000001490116
+          }
+        ]
+      }
+    ],
+    "color": [
+      {
+        "route": "research",
+        "actualWholeWindowTier": 1,
+        "actualWholeWindowCadenceHz": 7.5,
+        "pairedSamples": [
+          {
+            "kind": "idle",
+            "mainP95Ms": 32.20000000298023,
+            "candidateP95Ms": 22.799999997019768
+          },
+          {
+            "kind": "scroll",
+            "mainP95Ms": 27.899999998509884,
+            "candidateP95Ms": 27.299999997019768
+          }
+        ]
+      },
+      {
+        "route": "writing",
+        "actualWholeWindowTier": 1,
+        "actualWholeWindowCadenceHz": 7.5,
+        "pairedSamples": [
+          {
+            "kind": "idle",
+            "mainP95Ms": 64.09999999403954,
+            "candidateP95Ms": 489
+          },
+          {
+            "kind": "scroll",
+            "mainP95Ms": 22.700000002980232,
+            "candidateP95Ms": 340
+          }
+        ]
+      }
+    ]
+  },
+  "scopedReuse": {
+    "originalReportsRelabeled": false,
+    "frozen983TrustedArtifactVerification": true,
+    "publicParity": [
+      {
+        "variant": "base",
+        "frozenAdaptiveSourceCommit": "983ec655fce6dc51082b684bfedf319e0500c6a6",
+        "diagnosticSourceCommit": "898653d1de7a701e4d8c0eb818b0d21f67586750",
+        "artifactDigest": "fefeeb0cb34ec4c32cf0b702c97009d5284e164503b020e77d03ddd90e023d9b",
+        "publicFileCount": 40,
+        "completeFileMapAndComponentsEqual": true
+      },
+      {
+        "variant": "color",
+        "frozenAdaptiveSourceCommit": "983ec655fce6dc51082b684bfedf319e0500c6a6",
+        "diagnosticSourceCommit": "898653d1de7a701e4d8c0eb818b0d21f67586750",
+        "artifactDigest": "74ac7d8440167cc0f4a74893e9c23c6fa4e760711c3d2e86ef8b1ce9ee03a982",
+        "publicFileCount": 30,
+        "completeFileMapAndComponentsEqual": true
+      }
+    ],
+    "unchangedOwners": [
+      "site",
+      "docs",
+      "tools/site",
+      "tools/staging/color.cjs",
+      "tools/build_scene_fallbacks.cjs",
+      "tools/quality/motion.cjs",
+      "tools/quality/common.cjs",
+      "tools/quality/color-browser.cjs",
+      "tools/quality/writing-probe.cjs",
+      "tools/quality/artifact.cjs",
+      "tools/quality/budgets.json",
+      "tools/quality/validate.cjs",
+      "tools/quality/writing-paradigm-validate.cjs"
+    ],
+    "GitDeltaForOwners": [],
+    "independentReviewer": "/root/issue58_review",
+    "review": "Independent full artifact/file/component/source parity and fixed-only branch review passed. Original adaptive four cases, budgets, probe, validateRow, collectRow, lifecycle and dependencies preserved. Frozen reports are replayed with their recorded original collector hashes, not changed to the final source identity.",
+    "finalHostedStaging": "Separate exact published final-head gate remains required."
+  },
+  "boundedRejectedAttempt": {
+    "archiveKey": "issue58-fixed-candidate-color-cpu-rejected.json",
+    "reason": "One Color fixed candidate attempt rejected a negative Chromium CPU sampling timeDelta before returning the first row; no timing clamping, acceptance admission or wider matrix. Only that two-case diagnostic was retried once unchanged."
+  },
+  "fixedDiagnosticLimitations": {
+    "controller": "Forced controls disable normal adaptation and do not establish shipped performance acceptance. Existing budget failures are retained.",
+    "ColorWriting": "Candidate idle489ms/scroll340ms; CPU hotspot window dominated by native(program)/(idle). A prior separate negative CPU timeDelta was rejected. Causality is not established.",
+    "workload": "Exact tier and cadence are matched throughout; camera/ambient phases and statistical repeatability are not controlled.",
+    "comparisonDisposition": "Base exported comparator succeeded without claiming speedup; Color strict comparator is not asserted because candidate fixed workload fails original limits. Independently structurally verified raw pairs remain retained.",
+    "optimization": "Hypothesis deferred; no speculative runtime tuning, thresholds changed or demonstrated benefit claimed."
+  }
+}
