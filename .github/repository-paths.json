@@ -7206,6 +7206,24 @@
       "purpose": "Generated immutable runtime or route snapshot; canonical site and verified retained input owners.",
       "role": "generated",
       "owner": "site/README.md"
+    },
+    ".github/acceptance/issue-59.json": {
+      "kind": "file",
+      "purpose": "Preliminary issue59 R2 acceptance mapping: baseline invariants and explicit missing-implementation/review/live/merge gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-59": {
+      "kind": "directory",
+      "purpose": "Single versioned R2 formatting/quality scope, tasks and source-bound handoff for issue59.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-59/2026-10-08-handoff.md": {
+      "kind": "file",
+      "purpose": "R2 preparation baseline, formatter/semantic/security rebinding tasks, AC01-AC07 and honest pending implementation evidence.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
     }
   }
 }

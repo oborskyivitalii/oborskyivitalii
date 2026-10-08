@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 59,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/59",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Explicit formatter scope, configuration and pinning.",
+      "automated_scope": "Preparation only: the bounded guard proves its current ownership/CSS/literal-import subset. Actual formatter inventory, pinning and coverage negatives are not implemented; add deterministic R2 checks before claiming this criterion.",
+      "checks": [
+        "GUARD"
+      ],
+      "gates": [
+        "IMPLEMENTATION",
+        "INDEPENDENT"
+      ]
+    },
+    {
+      "id": "AC02",
+      "intent": "Mechanical formatting, idempotence and semantic preservation.",
+      "automated_scope": "Preparation only: Basic proves existing generated/script/route/geometry/size/runtime invariants. Format check, second-write idempotence and JS/Python/HTML/CSS equivalence checks are missing and must be implemented/mapped.",
+      "checks": [
+        "BASIC"
+      ],
+      "gates": [
+        "IMPLEMENTATION",
+        "INDEPENDENT"
+      ]
+    },
+    {
+      "id": "AC03",
+      "intent": "Actual source quality checks run in CI.",
+      "automated_scope": "Preparation only: no formatter CI or new drift/lint-coverage implementation exists. Actual formatter/lint reports and meaningful coverage/drift tests must be implemented/mapped; baseline green CI is not completion.",
+      "checks": [],
+      "gates": [
+        "IMPLEMENTATION",
+        "LIVE"
+      ]
+    },
+    {
+      "id": "AC04",
+      "intent": "Serialization, generation and delivery parity.",
+      "automated_scope": "Preparation only: Basic proves current generation/Color-export syntax/route/geometry/budget invariants. Permanent serialization/semantic/incremental/offline checks and current-head hosted/layout evidence must be mapped and executed for the formatted candidate.",
+      "checks": [
+        "BASIC"
+      ],
+      "gates": [
+        "IMPLEMENTATION",
+        "LIVE"
+      ]
+    },
+    {
+      "id": "AC05",
+      "intent": "Exact scanner debt and public fingerprint rebinding.",
+      "automated_scope": "Preparation only: no scanner disposition is changed. Actual lint/security scans and semantic-equivalent exact fingerprint refresh are not proved by this policy; current candidate reports and independent proof remain blocking.",
+      "checks": [],
+      "gates": [
+        "IMPLEMENTATION",
+        "INDEPENDENT",
+        "LIVE"
+      ]
+    },
+    {
+      "id": "AC06",
+      "intent": "Code-style, RI and test ownership.",
+      "automated_scope": "Current guard, catalog/RI freshness and RI/CI checks prove existing bounded repository invariants, not all CS judgments or future formatter/profile coverage. Review unautomated rules and run complete candidate checks.",
+      "checks": [
+        "GUARD",
+        "RI",
+        "RI-CI"
+      ],
+      "gates": [
+        "IMPLEMENTATION",
+        "INDEPENDENT"
+      ]
+    },
+    {
+      "id": "AC07",
+      "intent": "Separate reviewed delivery, merge and post-merge checks.",
+      "automated_scope": "Current RI/CI routes support source-bound checks, but this runner cannot observe implementation completion, Draft linkage, review/CI/checkbox mutation, maintainer authorization or merged-main checks. All required gates remain pending.",
+      "checks": [
+        "RI",
+        "RI-CI"
+      ],
+      "gates": [
+        "IMPLEMENTATION",
+        "INDEPENDENT",
+        "LIVE",
+        "MERGED"
+      ]
+    }
+  ],
+  "checks": {
+    "BASIC": {
+      "kind": "node-basic"
+    },
+    "GUARD": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    },
+    "RI": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    }
+  },
+  "gates": {
+    "IMPLEMENTATION": {
+      "kind": "human",
+      "description": "Blocking preparation state: R2 is not implemented. Actual deterministic formatter inventory/pinning/check/second-write/drift, coverage and semantic/serialization/output checks are missing. Expand this preliminary policy to real named checks and run them at the exact R2 candidate before any whole-AC checkbox. Baseline passing checks cannot resolve this gate or claim R2 completion."
+    },
+    "INDEPENDENT": {
+      "kind": "human",
+      "description": "Independently review the complete implementation diff, CS applicability, JS/Python/HTML/CSS semantics, serialized factories and exact complexity/Bandit/public fingerprint rebinding. Planning review is distinct from future code review; record exact reviewer/source findings."
+    },
+    "LIVE": {
+      "kind": "human",
+      "description": "Verify actual current-head formatter/lint/security/CI reports, complete source coverage, hosted/layout evidence, source/tree/artifact identity and actual checkbox/PR linkage. Preliminary baseline or older R1 reports do not satisfy R2."
+    },
+    "MERGED": {
+      "kind": "merge",
+      "description": "After a separate maintainer decision, record actual merged R2 commit/tree and post-merge checks, reconcile child59/parent58. This preparation does not authorize merge, stable staging/promotion or production."
+    }
+  }
+}
+

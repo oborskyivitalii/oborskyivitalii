@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "review": {
-    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/61",
+    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/59",
     "date": "2026-10-08",
-    "summary": "Maintainer-authorized PMDay delivery and active Color ribbon removal: reuse effect/build tests, normal two-width smoke and complete bounded staging; preserve historical comparisons, scanner scope and all budgets."
+    "summary": "R2 preparation under full refactor umbrella58 after merged/checked R1: one versioned scope/task handoff and preliminary policy with four baseline checks and explicitly pending implementation/review/live/merge gates. No formatter/runtime/content/public changes; preserve existing CI/profile routes and map the new policy/handoff."
   },
   "layers": [
     {
@@ -65,7 +65,9 @@
         ".github/acceptance/issue-61.json",
         "review/issue-61/2026-10-08-handoff.md",
         "review/issue-61/content-amendment.json",
-        "tests/test_issue61_acceptance.py"
+        "tests/test_issue61_acceptance.py",
+        ".github/acceptance/issue-59.json",
+        "review/issue-59/2026-10-08-handoff.md"
       ],
       "checks": [
         "acceptance-policy",
@@ -421,7 +423,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "81c4a0c9e42c27af8272e36d98c4317d608d1a3a38f8faed7ca3774823580092",
+    "digest": "8e8a9add6cfe86a220ff90819b8736f09decc11716b7e37af2d3f732f8c2ef00",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -497,7 +499,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "45a7dd6ef7a0f609cc5a8549e8f3527e94510c6576cb21efcf08dcff70bd24c1"
+        "sha256": "99f6c883b2e6b7ac7e2d64948ff89b52b61d08166300cd58dced60f94e12627a"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -702,6 +704,10 @@
       {
         "path": "tools/run_repository_tests.py",
         "sha256": "a8279bb3777722a60692f791854b4c8b4b47f0c1bf976f36262b2ca9f99b00e8"
+      },
+      {
+        "path": ".github/acceptance/issue-59.json",
+        "sha256": "94864842557a732c416a9fda7109c44d2bce147898a45fee15dc3370db8a51b7"
       }
     ]
   }
