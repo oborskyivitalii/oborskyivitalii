@@ -5,6 +5,26 @@ Each dated section describes that edition; older counts, placement and review
 limits are historical. Use [the editorial review route](SITE-CONTENT-REVIEW.md),
 the owning issue/PR and [MEMORY](../MEMORY.md) for current acceptance.
 
+## PMDay recording update — 2026-10-08, issue #61
+
+The maintainer supplied the published recording URL
+https://youtu.be/xSgWjuGqC9I?is=Rf9XOk8qrTw8I9aE, the English display title
+**AI Changes the Delivery System and the Product Itself**, its full description
+and explicit **PMDay 2026 · Recording in Ukrainian** metadata. That instruction
+authorizes updating the existing PMDay card and resolves the earlier
+recording-not-yet-available limitation below. The title is the supplied English
+site title; the recording remains classified as Ukrainian. No independent
+playback, transcript, quality assessment or organizer-title verification is
+claimed by this content update.
+
+The recording becomes the primary outbound link. The established 26 September
+event date, organizer announcement and author follow-up are preserved, as are
+Corning, Betelgeuse and swarchua. No recording is embedded or imported; article,
+slide/PDF and production-release work retain their separate owners.
+[Exact article amendment](../review/issue-61/content-amendment.json) reverses
+before the immutable Issue48/41 deltas; unrelated semantics still fail the
+existing content/SEO comparison.
+
 ## Talks source curation — 2026-10-08
 
 The maintainer extended [issue #48](https://github.com/oborskyivitalii/oborskyivitalii/issues/48)

@@ -109,6 +109,12 @@
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
+    ".github/acceptance/issue-61.json": {
+      "kind": "file",
+      "purpose": "PMDay recording AC01\u2013AC03 mapped to existing current-source content/semantic/RI checks and explicit review/CI/linkage gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     ".github/code-style.json": {
       "kind": "file",
       "purpose": "Exact issue54 legacy source/inline-style debt with frozen-baseline ceilings and removal tasks.",
@@ -469,15 +475,15 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/74f6fbade22d671a8f14f5d9dd0b84f40c2c67a75ab549e5cefc6fe42954030d": {
+    "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa": {
       "kind": "directory",
-      "purpose": "Generated immutable route snapshot identity directory.",
+      "purpose": "Current immutable content-addressed route snapshot; generated from the exact maintained Talks content.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/74f6fbade22d671a8f14f5d9dd0b84f40c2c67a75ab549e5cefc6fe42954030d/talks.html": {
+    "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html": {
       "kind": "file",
-      "purpose": "Generated immutable route snapshot.",
+      "purpose": "Generated immutable Talks route snapshot; regenerate from site sources with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -960,6 +966,24 @@
       "purpose": "Single source-bound R1 implementation handoff, free tooling decision, CS/AC mapping and independent review record.",
       "role": "history",
       "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-61": {
+      "kind": "directory",
+      "purpose": "Bounded source amendment and handoff for the supplied PMDay Ukrainian recording update.",
+      "role": "history",
+      "owner": "review/REVIEW-TEMPLATE.md"
+    },
+    "review/issue-61/2026-10-08-handoff.md": {
+      "kind": "file",
+      "purpose": "PMDay recording source treatment, proportional checks and style/review handoff; current live evidence belongs to issue61/its PR.",
+      "role": "history",
+      "owner": "review/REVIEW-TEMPLATE.md"
+    },
+    "review/issue-61/content-amendment.json": {
+      "kind": "file",
+      "purpose": "Exact hashed old/new PMDay article delta authorized by the maintainer; restore before immutable Issue48/41 content amendments.",
+      "role": "configuration",
+      "owner": "guides/SITE-SOURCE-AUDIT.md"
     },
     "review/public-responses-20261006": {
       "kind": "directory",

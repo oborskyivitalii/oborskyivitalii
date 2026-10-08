@@ -4,6 +4,11 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 
 ## Snapshot
 
+- [#61](https://github.com/oborskyivitalii/oborskyivitalii/issues/61) owns the
+  supplied PMDay Ukrainian recording update to the existing Talks card.
+  [Handoff](review/issue-61/2026-10-08-handoff.md); exact source/CI/PR and integration
+  status belong to the live issue. Article/deck/PDF #2 remains separate.
+
 - Rules main `e501da821c1cf9a3ac4bc8d251aba1bf4dc57d59`: PR #55 is merged;
   issue #54 is closed completed. PR #51 was already merged.
   Its research/Writing/Talks content, formula position and shared reading

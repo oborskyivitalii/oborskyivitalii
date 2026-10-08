@@ -60,31 +60,60 @@ test('issue48 amendment reverses only declared theory and Matthew changes',()=>{
     assert.throws(()=>restoreContentAmendment(change.after,change.page,corrupt),/snapshot integrity/);
   }
 });
-test('Talks reconciliation rejects missing events, substituted sources and invented dates or resources',()=>{
-  const path=require('node:path'),{restore,restoreContentAmendment}=require('../tools/check_site_seo.cjs');
-  const record=require('../review/issue-48/content-amendment.json');
-  const changes=record.changes.filter(change=>change.page==='talks');
-  assert.equal(record.changes.length,7);
-  assert.deepEqual(changes.map(change=>change.id),['talks','description','og:description','twitter:description']);
-  const html=fs.readFileSync(path.join(__dirname,'../docs/talks.html'),'utf8'),preserved=restore(html,'talks');
-  const cards=[...html.matchAll(/<article class="publication"[\s\S]*?<\/article>/g)].map(row=>row[0]);
-  const mutations=[
-    [cards[3],''],[cards[1],''],[cards[3],cards[2]],
-    ['https://www.youtube.com/watch?v=1MPsDi3wuF4','https://www.youtube.com/watch?v=OtherVideo'],
-    ['2026-09-26','2026-09-28'],
-    ['activity-7479802249829928961-PmrF','activity-7477274339411693569-dJhu'],
-    [cards[3],cards[3].replace('data-language="unconfirmed"','data-language="en"')],
-    [cards[0],cards[0].replace('</article>','<a href="https://example.com/recording">Watch recording / slides</a></article>')],
-    ['including PMDay, Corning Learn-AI-Palooza, Betelgeuse and swarchua','including invented events']];
-  for(const [from,to]of mutations){
-    assert.ok(html.includes(from),'mutation input exists');assert.notEqual(from,to,'mutation is meaningful');
-    assert.notEqual(restore(html.replace(from,to),'talks'),preserved,'unsupported event/source/date/language/resource edit remains visible');
+test('Talks reconciliation rejects missing events, substituted sources and invented dates or resources', () => {
+  const path = require('node:path');
+  const {restore, restoreContentAmendment} = require('../tools/check_site_seo.cjs');
+  const record = require('../review/issue-48/content-amendment.json');
+  const recordingRecord = require('../review/issue-61/content-amendment.json');
+  const changes = record.changes.filter(change => change.page === 'talks');
+  assert.equal(record.changes.length, 7);
+  assert.deepEqual(changes.map(change => change.id), ['talks', 'description', 'og:description', 'twitter:description']);
+  assert.equal(recordingRecord.changes.length, 1);
+  assert.deepEqual(recordingRecord.changes.map(change => [change.page, change.id]), [['talks', 'pmday-recording']]);
+  const html = fs.readFileSync(path.join(__dirname, '../docs/talks.html'), 'utf8');
+  const preserved = restore(html, 'talks');
+  const cards = [...html.matchAll(/<article class="publication"[\s\S]*?<\/article>/g)].map(row => row[0]);
+  const recordingUrl = 'https://youtu.be/xSgWjuGqC9I?is=Rf9XOk8qrTw8I9aE';
+  const mutations = [
+    [cards[3], ''], [cards[1], ''], [cards[3], cards[2]],
+    ['https://www.youtube.com/watch?v=1MPsDi3wuF4', 'https://www.youtube.com/watch?v=OtherVideo'],
+    ['2026-09-26', '2026-09-28'],
+    ['activity-7479802249829928961-PmrF', 'activity-7477274339411693569-dJhu'],
+    [cards[3], cards[3].replace('data-language="unconfirmed"', 'data-language="en"')],
+    [cards[0], cards[0].replace('</article>', '<a href="https://example.com/recording">Watch recording / slides</a></article>')],
+    ['including PMDay, Corning Learn-AI-Palooza, Betelgeuse and swarchua', 'including invented events'],
+    [recordingUrl, 'https://youtu.be/OtherVideo'],
+    [cards[0], cards[0].replace(/<a class="text-link"[^>]+>Watch the recording[\s\S]*?<\/a>/, '')],
+    ['AI Changes the Delivery System and the Product Itself', 'AI Proves Delivery Success'],
+    ['PMDay 2026 · Recording in Ukrainian', 'PMDay 2026 · Recording in English'],
+    [cards[0], cards[0].replace('data-language="uk"', 'data-language="en"')],
+    [cards[0], cards[0].replace('<h3 class="talk-title">', '<h3 class="talk-title" lang="uk">')],
+    ['how model judgment changes the products we build', 'how model judgment eliminates operational risk'],
+    ['activity-7493632835547889664-67od', 'activity-unrelated-announcement']
+  ];
+  for (const [from, to] of mutations) {
+    assert.ok(html.includes(from), 'mutation input exists');
+    assert.notEqual(from, to, 'mutation is meaningful');
+    assert.notEqual(restore(html.replace(from, to), 'talks'), preserved,
+      'unsupported event/source/date/language/resource edit remains visible');
   }
-  for(const change of changes){
-    assert.ok(html.includes(change.after));
-    assert.equal(restoreContentAmendment(change.after,'talks',record),change.before);
-    const corrupt=JSON.parse(JSON.stringify(record));corrupt.changes.find(row=>row.page==='talks'&&row.id===change.id).after+=' ';
-    assert.throws(()=>restoreContentAmendment(change.after,'talks',corrupt),/snapshot integrity/);
+  const earlierHtml = restoreContentAmendment(html, 'talks', recordingRecord);
+  for (const change of changes) {
+    assert.ok(earlierHtml.includes(change.after), 'the earlier accepted amendment remains intact');
+    assert.equal(restoreContentAmendment(change.after, 'talks', record), change.before);
+    const corrupt = JSON.parse(JSON.stringify(record));
+    corrupt.changes.find(row => row.page === 'talks' && row.id === change.id).after += ' ';
+    assert.throws(() => restoreContentAmendment(change.after, 'talks', corrupt), /snapshot integrity/);
+  }
+  const [recordingChange] = recordingRecord.changes;
+  assert.equal(recordingChange.after, cards[0]);
+  assert.equal(restoreContentAmendment(recordingChange.after, 'talks', recordingRecord), recordingChange.before);
+  assert.equal(restoreContentAmendment(recordingChange.after, 'research', recordingRecord), recordingChange.after,
+    'the PMDay allowance cannot affect another route');
+  for (const version of ['before', 'after']) {
+    const corrupt = JSON.parse(JSON.stringify(recordingRecord));
+    corrupt.changes[0][version] += ' ';
+    assert.throws(() => restoreContentAmendment(recordingChange.after, 'talks', corrupt), /snapshot integrity/);
   }
 });
 test('Day/Night semantic text and CTA pairs exceed normal-text contrast with no independent atmosphere clock',()=>{

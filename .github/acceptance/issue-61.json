@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 61,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/61",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Update the existing PMDay event with the exact supplied recording information.",
+      "automated_scope": "The existing maintained Talks curation and adversarial reconciliation cases verify the exact supplied title, description, Ukrainian metadata and recording URL in one existing PMDay card, preserve its established date and both prior sources, and reject undeclared mutations while retaining the other events. Input provenance is the explicit maintainer request; these checks do not assess recording playback or quality.",
+      "checks": [
+        "TALKS"
+      ],
+      "gates": []
+    },
+    {
+      "id": "AC02",
+      "intent": "Regenerate canonical hosted/offline renditions and pass bounded current-source verification.",
+      "automated_scope": "Existing generated-publication/SEO checks reverse only the exact issue61 fragment before immutable issue48/41 deltas and retain all unrelated semantics; normal source build/preview freshness cases verify generated renditions. Basic and fresh RI/coupling checks retain current source identity. Actual CI and normal two-width hosted smoke are separately observed, not inferred from local checks. No new browser matrix is added.",
+      "checks": [
+        "TALKS",
+        "GENERATION-SEO",
+        "BASIC",
+        "CURRENT-RI",
+        "RI-CI"
+      ],
+      "gates": [
+        "CURRENT-CI"
+      ]
+    },
+    {
+      "id": "AC03",
+      "intent": "Preserve canonical ownership, style and honest linked handoff.",
+      "automated_scope": "The bounded code-style guard checks its declared subset. Current RI catalog/views and RI/CI coupling validate added acceptance/review paths and current routes. CS01-CS05 and CS08-CS10 ownership, semantic preservation, readability and proportional checks are independently reviewed; runtime/state/resource rules CS06-CS07 are preserved by the narrow content-only treatment. Live issue/PR/commit linkage and actual checkbox updates require separate recorded evidence.",
+      "checks": [
+        "CURRENT-GUARD",
+        "CURRENT-RI",
+        "RI-CI"
+      ],
+      "gates": [
+        "SOURCE-REVIEW",
+        "DELIVERY-LINKAGE"
+      ]
+    }
+  ],
+  "checks": {
+    "TALKS": {
+      "kind": "unittest",
+      "test": "test_issue48_acceptance.Issue48AcceptanceTests.test_talks_curates_distinct_sourced_events_and_rejects_invented_details"
+    },
+    "GENERATION-SEO": {
+      "kind": "unittest",
+      "test": "test_issue48_acceptance.Issue48AcceptanceTests.test_generated_publication_and_seo_retain_all_unrelated_semantics"
+    },
+    "BASIC": {
+      "kind": "node-basic"
+    },
+    "CURRENT-GUARD": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    },
+    "CURRENT-RI": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    }
+  },
+  "gates": {
+    "CURRENT-CI": {
+      "kind": "human",
+      "description": "Observe passing raw-head Basic, navigation/RI, owning acceptance and existing CI-controlled normal preview/minimal hosted smoke; retain exact candidate source/tree and immutable preview URL. No stable staging or production admission is implied."
+    },
+    "SOURCE-REVIEW": {
+      "kind": "human",
+      "description": "Record independent review of exact supplied content, title language annotation, retained dates/sources/unrelated events, exact reversible amendment and meaningful negative coverage, generated/offline owners and applicable CS01-CS05/CS08-CS10 rules. Preserve runtime/style/scene/budget boundaries; do not infer recording playback verification."
+    },
+    "DELIVERY-LINKAGE": {
+      "kind": "human",
+      "description": "Record one issue61-linked Draft PR and exact Refs commit, mapped checks/source evidence, independent review and actual whole-AC checkbox reconciliation. Merge/stable staging/production remain separate maintainer decisions; this policy never closes the issue."
+    }
+  }
+}

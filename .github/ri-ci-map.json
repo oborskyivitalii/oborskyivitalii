@@ -61,7 +61,10 @@
         "review/issue-48/source-inventory.json",
         ".github/acceptance/issue-56.json",
         "tests/test_issue56_acceptance.py",
-        "review/issue-56/2026-10-08-handoff.md"
+        "review/issue-56/2026-10-08-handoff.md",
+        ".github/acceptance/issue-61.json",
+        "review/issue-61/2026-10-08-handoff.md",
+        "review/issue-61/content-amendment.json"
       ],
       "checks": [
         "acceptance-policy",
@@ -417,7 +420,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "42eabbad7ec605083fb91d1a5f699bf7086be3298e8ce6c292aeffb54900f386",
+    "digest": "008b17b9c2765e3608e4428af6e06f6c5c87ada38e1f6dc60b8a3c6b0214a156",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -472,6 +475,10 @@
         "sha256": "1cfaf41f3910a1a1f141685c210db389047f67973e226bd758e6c4a65bd13dde"
       },
       {
+        "path": ".github/acceptance/issue-61.json",
+        "sha256": "bcec467915ce906fea2cbd840861b9eb771e13ab604293e3ab2650c900bc4d20"
+      },
+      {
         "path": ".github/code-style.json",
         "sha256": "59075e735e919d7d0bb50c51eb4082870be83f89c6b01c2545b13b86e31cb83b"
       },
@@ -489,7 +496,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "b0ad58d7f50c945df4f30d61d235ea270baf244d3470bb7ba67ee6adc3b053fc"
+        "sha256": "10473880f1575987c150d44781d11f32ad89ae821399b9ac86e7146ebb2b137e"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
