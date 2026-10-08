@@ -1,91 +1,62 @@
 # Session memory
 
-Dated continuity, not live authority. Last verified: **2026-10-07**.
+Dated continuity, not live authority. Last verified: **2026-10-08**.
 
 ## Snapshot
 
-- Main is `709c6d0` after joint PR #43 and compatibility PR #44 merge; #35 / PR #37 is
-  merged. #31/#32 and #33/#34 are completed. Read their pinned issue evidence.
-- The maintainer requests one joint staging run for [#36](https://github.com/oborskyivitalii/oborskyivitalii/issues/36)
-  / [PR #38](https://github.com/oborskyivitalii/oborskyivitalii/pull/38) and
-  [#41](https://github.com/oborskyivitalii/oborskyivitalii/issues/41)
-  / [PR #42](https://github.com/oborskyivitalii/oborskyivitalii/pull/42).
-  Isolated branch: `work/staging-36-41-20261007`. Exact parents are
-  `73020e86b02da64d5e7256cbaffc641a0cc5d649` and
-  `7c9ff1ee760a48669990b6df560dc54da7561a17`. Original PR branches stay open.
-  [Formula handoff](review/issue-36/2026-10-07-handoff.md) and
-  [editorial analysis](review/issue-41/2026-10-07-analysis.md) carry the same
-  joint staging amendment. Joint PR #43's first bounded run failed old-count and
-  static checks; its absolute performance passed. The repaired candidate passes
-  258 selected source cases. PR #44 at eb81a61 has four green minimal CI runs.
-  Corrected #43 at072a7b8 passed four minimal CI runs and merged at76f2a78.
-  PR #44 is now merged at709c6d0. One bounded
-  joint staging run and current exact deployment are tracked in the live issues.
-- #45 owns the successor DraftPR47; PR46 is closed/unmerged. Main709c6d0
-  still lacks its formula/heading/ribbon work, retained on
-  `work/issue45-camera-surfaces-20261007`. Camera repair plans native reverse
-  end landings, rejects departing-DOM retargets and measures unknown landings
-  after destination mount. Historical675b389 passes60geometry/52opaque-surface
-  cases and96cold/warm flights; those reports retain that earlier source.
-  Published3beaad56/tree8c813250 restores87% shared background alpha while
-  retaining opaque ink, crisp four12px corners and same-owner reduced-
-  transparency100%. Its required source CI/preview pass; actual live QA covers
-  26desktop Day/Night paint samples, not a new52-sample/two-width motion report.
-  At21:37 Europe/Warsaw the maintainer authorizes main/stable staging, superseding
-  the earlier stop. Stage37676079833 timed out installing Ubuntu dependencies;
-  retry37678648242 passed installation, static/host/functional/Color/motion
-  but failed Writing mobile TBT269ms against the unchanged200ms budget.
-  Source79becad/tree0fda9fe7 bounds texture source windows and retains original
-  Writing traces. Its current PR CI passes, but stage37684440827 fails only
-  Writing TBT329.5ms; no benefit is established and promotion is skipped.
-  The trace attributes most additional task time to recurring browser Commit,
-  without function CPU samples. SamePR adds one bounded four-input Writing
-  cause-probe scope with original raw/CPU evidence and declared private controls.
-  Run37688745681 retains four valid CPU-profiled inputs atbe2ccde/treef6868e.
-  Samples support ordinary thematic Canvas face/line/setter overhead; a narrow
-  identical-state setter dedup repair is being prepared, preserving all draws.
-  Normal staging settings/budgets remain unchanged. Pass its exact-source
-  staging and stable promotion, then merge the same tested head.
-  All6AC boxes remain open for literal current-source visual/evidence gates;
-  complete-expression occlusion and production/native acceptance remain open.
-  [Current handoff](review/issue-45/2026-10-07-handoff.md) retains exact evidence.
-- #36 places one tilted, pulsing formula in Writing's books/pages fractal,
-  sharing its camera/clock and bounded cache. Rejected banner benchmarks are
-  historical failures, not acceptance of this world-space implementation.
-- #41 supplies two bounded advisory roles, 29 primary/46 platform editions,
-  three sourced Reddit snapshot rows and precise semantic/SEO amendments.
-  Existing editions, three Home response cards and five featured works persist.
-- Stable stage is https://staging.oborskyi-author-ci-staging.pages.dev .
-  Only the successful combined controller record can establish its new source.
+- Fetched main is `aa1cfa97bf42103c0547c9332b885391f0e6fe6b`, tree
+  `64f68e79a1463f70075a54e0b4099861d27eebdb`. Live GitHub confirms PR47
+  merged normally; this supersedes the prior memory's pending stage/merge.
+- [Issue45](https://github.com/oborskyivitalii/oborskyivitalii/issues/45) records
+  successful bounded staging run37692745507 and identical-tree merge. Its six
+  whole visual/device criteria remain open. Existing Canvas setter dedup,
+  camera continuity and shared87% paper alpha are in main.
+  Stable-stage identity/evidence is in that live issue; this planning session
+  did not independently re-run HTTP, browser or performance measurements.
+- [Issue50](https://github.com/oborskyivitalii/oborskyivitalii/issues/50) owns
+  incoming text/image assembly from mixed fragments inside the unchanged
+  fractal. Current branch: `work/issue50-fragment-arrival-plan-20261008`.
+  This task delivers a planning Draft PR, not runtime implementation.
+  [Single analysis/handoff](review/issue-50/2026-10-08-analysis.md) and
+  [dated issue anchor](https://github.com/oborskyivitalii/oborskyivitalii/issues/50#issuecomment-6054739896)
+  hold architecture, source owners, risks, Sol tasks and exact publication/check
+  links. The planning acceptance policy leaves implementation criteria pending.
+- [Issue48 / PR51](https://github.com/oborskyivitalii/oborskyivitalii/pull/51)
+  separately owns theory associations, deeper Writing formula and Matthew
+  response changes. PR51 is open during this session; inspect its current
+  source before implementing issue50. Its worktree was not modified here.
+- Hosting preparation PR40 remains open under issue39. Main already contains
+  earlier joint PR43/44 and test-profile PR37 work; refer to their live issues
+  for literal remaining acceptance rather than treating merge as closure.
 
 ## Decisions
 
-- One coherent combined source/artifact receives one bounded staging run under
-  the merged #35 profile. PR smoke, source ACs and full production are distinct.
-- #36 selected policy runs its original checks plus eleven I41-prefixed source
-  checks once. #41's original ACs/gates remain mapped at its own live anchor.
-- #41 catalog identities compare to c4539ad; protected runtime/workflow bytes
-  compare to its approved immutable #36 companion 73020e8, with one explicitly
-  normalized projection syntax/helper repair proven equal in all 120 cases.
-- Chromium/Firefox run on Linux; WebKit stays native macOS production coverage.
-  Do not repeat eighteen diagnostic trials to repair a report/environment error.
-- Paired formula performance, combined independent/editorial/mobile decisions,
-  device/release and maintainer merge remain explicit gates. Shared staging's
-  absolute measurements do not automatically complete paired AC04.
-- Original issue intent and AC IDs persist. Update actual issue-body checkboxes
-  only for whole verified criteria; tables alone are insufficient.
-- Canonical authored source regenerates docs/offline/RI output. Preserve pinned
-  historical checks; report candidate identity honestly and keep budgets fixed.
-- GitHub Pages production and analytics/domain activation remain #8/#39 work.
+- Issue50 recommendation: bounded decorative native text/image fragments,
+  actual scene camera/projection and painted progress, then exact original
+  HTML. Preserve world geometry, camera deadline, semantics and all budgets.
+  DOM-over-Canvas cannot automatically supply per-face depth occlusion.
+- Sol should first prototype a real heading and Home transparent portrait/SVG;
+  prove shaping/image fidelity, perceived origin and compositing cost before
+  generalizing. Native fragment architecture is proposed, not yet measured.
+- Issue50 has no runtime/merge/stable-stage/production authorization from this
+  assessment request. Continue the same issue/PR when execution is requested;
+  do not make another model-specific task record.
+- Canonical source regenerates public/offline/RI output. PR smoke and targeted
+  ACs, bounded staging and full production remain distinct. Native WebKit
+  stays on macOS; no Linux WebKit or duplicate full diagnostic campaign.
+- Actual issue-body AC checkboxes require the whole criterion's current-source
+  evidence; planning automation or an evidence table alone is insufficient.
 
 ## Open work
 
 | Issue | Remaining intent |
 | --- | --- |
-| #45 | PR47 main/staging authorized; CPU attribution after failed329.5ms Writing TBT, exact Canvas state dedup repair, staging and guarded merge. Whole-criterion evidence and AC01 visibility remain open. |
-| #36 / #41 | #43/#44 merged; joint staging and paired/visual/editorial acceptance. |
+| #50 | Architecture/handoff delivery, then bounded fragment prototype and actual runtime/visual/performance acceptance. |
+| #48 / PR51 | Independent content/theory/formula-depth amendment; current PR evidence controls its status. |
+| #45 | Complete-expression visibility and complete current-source visual/geometry/device evidence. Main/staging delivery already succeeded. |
+| #36 / #41 | Formula and editorial whole-criterion evidence retained at their owning issues. |
 | #1 / #13 | First-release, physical-device and full production/recovery acceptance. |
-| #8 / #39 | Production URL/indexability, domains and analytics activation. |
+| #8 / #39 | Production URL/indexability, domains and analytics activation; PR40 preparation. |
 | #7 | License and editorial/third-party rights. |
 | #5 / #6 | Real article HTML/PDF edition and cross-repository adapter. |
 | #2 | PMDay article and matching presentation edition. |
@@ -93,15 +64,17 @@ Dated continuity, not live authority. Last verified: **2026-10-07**.
 
 ## Next session
 
-1. Fetch live main, both original PRs and the integration branch/PR; check for
-   newer work before modifying a source. Read applicable AGENTS and owners.
-2. Read both live issue anchors and the single joint staging record. Verify
-   source/tree/artifact/alias rather than inheriting a historical green result.
-3. Continue remaining acceptance with targeted checks. Merge/production require
-   their separate maintainer decisions; do not rerun a duplicate full suite.
+1. Fetch current main, issue50/its planning PR and issue48/PR51. Read the issue
+   anchor and the versioned analysis before editing implementation sources.
+2. If Sol execution is requested, reconcile the baseline, then start T01/T02:
+   bounded real-heading plus portrait/SVG fidelity and resource prototype.
+3. Replace preparation-only AC02-AC06 policy mappings with real outcome tests
+   during implementation; report every missing browser/native/visual gate.
+4. Preserve unchanged world/camera and ordinary page semantics. Use existing
+   check profiles; request no repeated permission for already authorized work.
 
 ## Maintenance
 
-Keep these five sections within 120 lines. Update at meaningful handoff and
-rebuild RI. Detailed source/run/history stays in issues/PRs and linked artifacts.
+Keep these five sections within120 lines. Revalidate live state each session
+and rebuild RI after changes. Detailed evidence/history belongs in issues/PRs.
 No private messages, credentials or inferred approvals belong in memory.

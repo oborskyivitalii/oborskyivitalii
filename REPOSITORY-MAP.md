@@ -60,6 +60,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-36](review/issue-36) | Single dated Writing formula execution handoff, original visual proof and linked source-bound integration/browser/performance acceptance. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-41](review/issue-41) | Dated source inventory and content-authority analysis for the same-PR Sol handoff. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-45](review/issue-45) | Issue45 versioned reading clarity findings, implementation and exact-source review evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-50](review/issue-50) | Current-source fragment-arrival architecture, design risks and ordered Sol execution handoff for issue50. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/public-responses-20261006](review/public-responses-20261006) | Exact before/after public response prose and reconciliation records. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/reading-backdrops-20261006](review/reading-backdrops-20261006) | Content-sized reading backdrop correction evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/repository-maintenance-20261007](review/repository-maintenance-20261007) | Byte-exact pre-cleanup agent guide and its provenance note. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -152,6 +153,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [.github/acceptance/issue-36.json](.github/acceptance/issue-36.json) | Writing formula AC01–AC05 mapped to canonical asset, native cache/integration, source-bound browser and paired performance evidence, with remaining human/release gates explicit. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-41.json](.github/acceptance/issue-41.json) | Issue41 AC01-AC06 implementation mapping for exact inputs, admitted editions, generated content, SEO and runtime scope; explicit editorial/browser/review-merge gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-45.json](.github/acceptance/issue-45.json) | Issue45 scoped formula and heading reading-clarity criterion mapping. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [.github/acceptance/issue-50.json](.github/acceptance/issue-50.json) | Issue50 planning-only AC routing; runtime feature criteria remain explicitly pending until meaningful implementation checks and evidence exist. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 
 ## .github/repository-intelligence/
 
@@ -558,6 +560,12 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [review/issue-45/2026-10-07-handoff.md](review/issue-45/2026-10-07-handoff.md) | Issue45 versioned reading clarity findings, implementation and exact-source review evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-45/2026-10-07-independent-review.md](review/issue-45/2026-10-07-independent-review.md) | Independent source review of issue45 formula/reading-surface repair, corrected diagnostic findings and explicit visual limits. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+
+## review/issue-50/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-50/2026-10-08-analysis.md](review/issue-50/2026-10-08-analysis.md) | Issue50 scene-projection and native-fragment assessment, bounded prototype architecture, acceptance allocation and Sol execution tasks. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 ## review/public-responses-20261006/
 

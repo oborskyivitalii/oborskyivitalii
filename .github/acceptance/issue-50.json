@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 50,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/50",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Deliver current-source analysis, architecture, limitations and an executable Sol handoff in a linked planning Draft PR.",
+      "automated_scope": "Planning only: existing checks validate current repository navigation, CI coupling, explicit owner selection and pending-gate behavior. They do not assess prose quality or prove that the runtime effect exists.",
+      "checks": [
+        "CURRENT-RI",
+        "RI-CI",
+        "OWNER-SELECTION",
+        "PENDING-GATE"
+      ],
+      "gates": [
+        "PLAN-REVIEW"
+      ]
+    },
+    {
+      "id": "AC02",
+      "intent": "Make incoming content emerge from the unchanged fractal using its actual painted camera and projection.",
+      "automated_scope": "No feature automation claim in this planning commit: implementation and outcome tests are absent. The criterion remains manual-only-pending in the existing runner. Before implementation readiness replace this preparation scope with meaningful runtime tests from the analysis mapping; this is not an assertion that the behavior is inherently manual.",
+      "checks": [],
+      "gates": [
+        "WORLD-ARRIVAL"
+      ]
+    },
+    {
+      "id": "AC03",
+      "intent": "Assemble mixed partial-letter, letter, word and real-image fragments without fidelity or coverage gaps.",
+      "automated_scope": "No feature automation claim in this planning commit: implementation and outcome tests are absent. The criterion remains manual-only-pending in the existing runner. Before implementation readiness replace this preparation scope with meaningful runtime tests from the analysis mapping; this is not an assertion that the behavior is inherently manual.",
+      "checks": [],
+      "gates": [
+        "FRAGMENT-FIDELITY"
+      ]
+    },
+    {
+      "id": "AC04",
+      "intent": "Finish with the exact readable native destination, layout and semantics.",
+      "automated_scope": "No feature automation claim in this planning commit: implementation and outcome tests are absent. The criterion remains manual-only-pending in the existing runner. Before implementation readiness replace this preparation scope with meaningful runtime tests from the analysis mapping; this is not an assertion that the behavior is inherently manual.",
+      "checks": [],
+      "gates": [
+        "NATIVE-DESTINATION"
+      ]
+    },
+    {
+      "id": "AC05",
+      "intent": "Bound fragment ownership, cancellation, readiness, frozen states and graceful fallback.",
+      "automated_scope": "No feature automation claim in this planning commit: implementation and outcome tests are absent. The criterion remains manual-only-pending in the existing runner. Before implementation readiness replace this preparation scope with meaningful runtime tests from the analysis mapping; this is not an assertion that the behavior is inherently manual.",
+      "checks": [],
+      "gates": [
+        "LIFECYCLE"
+      ]
+    },
+    {
+      "id": "AC06",
+      "intent": "Demonstrate bounded fragment resources and browser performance within all original budgets.",
+      "automated_scope": "No feature automation claim in this planning commit: implementation and outcome tests are absent. The criterion remains manual-only-pending in the existing runner. Before implementation readiness replace this preparation scope with meaningful runtime tests from the analysis mapping; this is not an assertion that the behavior is inherently manual.",
+      "checks": [],
+      "gates": [
+        "PERFORMANCE"
+      ]
+    },
+    {
+      "id": "AC07",
+      "intent": "Integrate canonical output and meaningful runtime checks, independent/visual review and exact delivery evidence before closure.",
+      "automated_scope": "Planning routing only: current catalog/RI and explicit owner selection are checked. No runtime integration, browser acceptance, independent review, staging, merge or publication is established.",
+      "checks": [
+        "CURRENT-RI",
+        "OWNER-SELECTION"
+      ],
+      "gates": [
+        "IMPLEMENTATION-DELIVERY",
+        "MERGE"
+      ]
+    }
+  ],
+  "checks": {
+    "CURRENT-RI": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    },
+    "OWNER-SELECTION": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_selector_uses_only_explicit_local_refs"
+    },
+    "PENDING-GATE": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_manual_only_criterion_is_pending"
+    }
+  },
+  "gates": {
+    "PLAN-REVIEW": {
+      "kind": "human",
+      "description": "Read the current-source architecture/handoff, confirm original intent, source owners, alternatives, risks, pending runtime evidence and ordered Sol tasks; record the actual owning PR, immutable file and dated issue anchor. This gate concerns planning delivery only; it requires no invented independent implementation review."
+    },
+    "WORLD-ARRIVAL": {
+      "kind": "human",
+      "description": "Pending implementation. Add deterministic projection/inverse, finite near-plane, exact terminal and retarget tests; preserve world/camera/phase identities. Inspect exact-source forward/reverse/nonadjacent Day/Night desktop/narrow motion and obtain maintainer visual acceptance. A screen-center overlay or generic baseline pass is insufficient."
+    },
+    "FRAGMENT-FIDELITY": {
+      "kind": "human",
+      "description": "Pending implementation. Add partition coverage/no-overlap/seed/size/resource tests and real partial-glyph, whole-glyph, word, transparent portrait and inline SVG fixtures. Inspect current-source font/shaping/wrapping/crop/alpha/seam captures. Text-only or card-only animation cannot satisfy the issue."
+    },
+    "NATIVE-DESTINATION": {
+      "kind": "human",
+      "description": "Pending implementation. Add exact native terminal/scroll/history/anchor/filter/cancellation assertions and current-source browser selection/click/focus/announcement/zoom observations. Original DOM, metadata and shared reading paint must remain intact, decorative IDs/semantics safe and all fragment nodes removed."
+    },
+    "LIFECYCLE": {
+      "kind": "human",
+      "description": "Pending implementation. Exercise the actual new manager with stale navigation, decode/font/geometry failure, Off/reduced/hidden/print, resize/theme, retarget and cleanup cases. Add named runtime tests before readiness and verify bounded source-matched browser fallback behavior, one existing clock and no stuck hidden/inert content."
+    },
+    "PERFORMANCE": {
+      "kind": "human",
+      "description": "Pending implementation. Add resource/lifetime/idle-work checks, then retain the bounded same-environment paired prototype flights and representative browser paint/compositing traces. Keep original byte/geometry/Lighthouse/motion/flight budgets and report native Safari/iPad evidence or its absence. Current callbacks alone are not GPU/display-FPS evidence; a planning CI pass is no performance measurement."
+    },
+    "IMPLEMENTATION-DELIVERY": {
+      "kind": "human",
+      "description": "Pending implementation. Replace AC02-AC06 preparation-only scope with meaningful executable runtime mappings; regenerate required canonical/public/offline/RI output, classify tests, obtain exact-source required CI/preview, independent review, maintainer visual decision and applicable bounded staging evidence. Reconcile the actual issue-body checkboxes; do not close on this planning PR."
+    },
+    "MERGE": {
+      "kind": "merge",
+      "description": "Record the applicable maintainer decision, accepted runtime candidate normal merge and exact merged-source reconciliation. This planning session authorizes no runtime rollout, stable staging or production activation."
+    }
+  }
+}

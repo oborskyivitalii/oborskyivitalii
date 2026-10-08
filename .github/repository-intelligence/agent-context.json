@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "81726ff46209c059045b540afeb7b0f3087eecd9feecbec779baa1e5e658aa25",
+    "digest": "069b5cb1c977641a398f70a7a43ec06bc44eb7353f0575b895410ca5b05c9172",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -75,6 +75,11 @@
         "sha256": "23050469079306b91a34e06b761770d1fb31bf041896de81943119bbd1a6ac8e"
       },
       {
+        "path": ".github/acceptance/issue-50.json",
+        "identity_mode": "content",
+        "sha256": "2cdae58aab258f1d91c7d9eaf4690db850467952a032377f186641a7e90d29e1"
+      },
+      {
         "path": ".github/pull_request_template.md",
         "identity_mode": "content",
         "sha256": "9d6e001401d72e906275515a4c4921e966541cda9d7b98aad58f54980bf301de"
@@ -96,12 +101,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "3c8b2e03be234ca32ec4aacf12dcfc4f2f3ff3187a25a6d347bab94cc8e10148"
+        "sha256": "0dfaeacf935e4ed82db5ecc89c23cdcbe0661b590d0e55c04263e2520f940f93"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "1985763be4d4a4769d647e17911a9b4f81934f925a4b0b12adf26f6bf08519e7"
+        "sha256": "a959ffc51e3f61d5e90d66b92ddcaaa7b921a40dd45df595487673747a952b28"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -196,7 +201,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "636d94da8914b1782074c81ae1522cf3b5ee34b3163fbf45fc8b991c9da29620"
+        "sha256": "93eaaa02a3e9c59aea831cc405c792ed36eb14ab6b0e03db8252ae98d37b248b"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -586,6 +591,11 @@
         "path": "review/issue-45/2026-10-07-independent-review.md",
         "identity_mode": "content",
         "sha256": "f68f3f31c2e4b94aca79ceb2353cf4e0cd9702f45abb8da9abedc3eeb21a43ae"
+      },
+      {
+        "path": "review/issue-50/2026-10-08-analysis.md",
+        "identity_mode": "content",
+        "sha256": "28ab136a45af9fb8b215770c4c5a9bd1eb74c51b254d9ed1ceaee9b96dbb689f"
       },
       {
         "path": "review/public-responses-20261006/README.md",
@@ -5565,6 +5575,17 @@
       "title": "issue-45.json"
     },
     {
+      "path": ".github/acceptance/issue-50.json",
+      "kind": "file",
+      "purpose": "Issue50 planning-only AC routing; runtime feature criteria remain explicitly pending until meaningful implementation checks and evidence exist.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-50.json"
+    },
+    {
       "path": ".github/pull_request_template.md",
       "kind": "file",
       "purpose": "PR execution, owning issue/commit links, checks/review and honest completion template.",
@@ -6696,6 +6717,17 @@
         "AGENTS.md"
       ],
       "title": "Issue 45 independent scoped review — 2026-10-07"
+    },
+    {
+      "path": "review/issue-50/2026-10-08-analysis.md",
+      "kind": "file",
+      "purpose": "Issue50 scene-projection and native-fragment assessment, bounded prototype architecture, acceptance allocation and Sol execution tasks.",
+      "role": "draft",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 50 — 2026-10-08 architecture and Sol handoff"
     },
     {
       "path": "review/public-responses-20261006/README.md",
@@ -17199,6 +17231,16 @@
       "kind": "directory",
       "purpose": "Issue45 versioned reading clarity findings, implementation and exact-source review evidence.",
       "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-50",
+      "kind": "directory",
+      "purpose": "Current-source fragment-arrival architecture, design risks and ordered Sol execution handoff for issue50.",
+      "role": "draft",
       "owner": "CONTRIBUTING.md",
       "instructions": [
         "AGENTS.md"

@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "review": {
-    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/45",
-    "summary": "2026-10-07 issue45 formula contour and paint-only heading margin repair plus authorized continuous-ribbon amendment: maintained world/material/phase and displayed-camera retarget/detail/lifecycle checks run through the owning acceptance policy and existing changed-source allocation. Exact-source visual/flight and 60-case geometry evidence stay separate. Original profiles/budgets/release boundaries retained.",
-    "date": "2026-10-07"
+    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/50",
+    "summary": "2026-10-08 issue50 planning-only fragment-arrival architecture and acceptance route. Reviewed existing acceptance/manual-pending semantics, catalog/RI freshness and normal CI ownership; added no runtime, test suite, workflow or profile. AC02-AC06 remain pending implementation and meaningful outcome checks.",
+    "date": "2026-10-08"
   },
   "layers": [
     {
@@ -51,7 +51,9 @@
         "review/issue-36/2026-10-07-controller-compatibility.md",
         ".github/acceptance/issue-45.json",
         "tests/test_issue45_acceptance.py",
-        "review/issue-45/2026-10-07-handoff.md"
+        "review/issue-45/2026-10-07-handoff.md",
+        ".github/acceptance/issue-50.json",
+        "review/issue-50/2026-10-08-analysis.md"
       ],
       "checks": [
         "acceptance-policy",
@@ -359,7 +361,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "ab7055570234b455eec3ef93858a5e7d29b799940d183383e0b4bfcf7c908f4b",
+    "digest": "2769e200625da9995c9c137b3702de6ae98435f95841ee01ffb0c2618f09b894",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -402,6 +404,10 @@
         "sha256": "23050469079306b91a34e06b761770d1fb31bf041896de81943119bbd1a6ac8e"
       },
       {
+        "path": ".github/acceptance/issue-50.json",
+        "sha256": "2cdae58aab258f1d91c7d9eaf4690db850467952a032377f186641a7e90d29e1"
+      },
+      {
         "path": ".github/pull_request_template.md",
         "sha256": "9d6e001401d72e906275515a4c4921e966541cda9d7b98aad58f54980bf301de"
       },
@@ -415,7 +421,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "3c8b2e03be234ca32ec4aacf12dcfc4f2f3ff3187a25a6d347bab94cc8e10148"
+        "sha256": "0dfaeacf935e4ed82db5ecc89c23cdcbe0661b590d0e55c04263e2520f940f93"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",

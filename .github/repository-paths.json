@@ -91,6 +91,12 @@
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
+    ".github/acceptance/issue-50.json": {
+      "kind": "file",
+      "purpose": "Issue50 planning-only AC routing; runtime feature criteria remain explicitly pending until meaningful implementation checks and evidence exist.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     ".github/pull_request_template.md": {
       "kind": "file",
       "purpose": "PR execution, owning issue/commit links, checks/review and honest completion template.",
@@ -433,18 +439,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/2f6d5fbf34aa829b133360029157fb5ee425571e9ecadd2b443ef6f1e0901986": {
-      "kind": "directory",
-      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/2f6d5fbf34aa829b133360029157fb5ee425571e9ecadd2b443ef6f1e0901986/talks.html": {
-      "kind": "file",
-      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/snapshots/259616bcb517d2aa0736fc66ec7fad29101355d46f0501151d2101e3b34baaad": {
       "kind": "directory",
       "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
@@ -452,6 +446,18 @@
       "owner": "site/README.md"
     },
     "docs/snapshots/259616bcb517d2aa0736fc66ec7fad29101355d46f0501151d2101e3b34baaad/index.html": {
+      "kind": "file",
+      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/2f6d5fbf34aa829b133360029157fb5ee425571e9ecadd2b443ef6f1e0901986": {
+      "kind": "directory",
+      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/2f6d5fbf34aa829b133360029157fb5ee425571e9ecadd2b443ef6f1e0901986/talks.html": {
       "kind": "file",
       "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
       "role": "generated",
@@ -881,6 +887,18 @@
       "kind": "file",
       "purpose": "Independent source review of issue45 formula/reading-surface repair, corrected diagnostic findings and explicit visual limits.",
       "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-50": {
+      "kind": "directory",
+      "purpose": "Current-source fragment-arrival architecture, design risks and ordered Sol execution handoff for issue50.",
+      "role": "draft",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-50/2026-10-08-analysis.md": {
+      "kind": "file",
+      "purpose": "Issue50 scene-projection and native-fragment assessment, bounded prototype architecture, acceptance allocation and Sol execution tasks.",
+      "role": "draft",
       "owner": "CONTRIBUTING.md"
     },
     "review/public-responses-20261006": {
