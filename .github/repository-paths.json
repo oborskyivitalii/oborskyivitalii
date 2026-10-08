@@ -109,9 +109,15 @@
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
+    ".github/acceptance/issue-58.json": {
+      "kind": "file",
+      "purpose": "Shared issue58 AC01-AC10 phase acceptance policy; preparation checks and explicit pending phase/review/live/merge gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     ".github/acceptance/issue-59.json": {
       "kind": "file",
-      "purpose": "Preliminary issue59 R2 acceptance mapping: baseline invariants and explicit missing-implementation/review/live/merge gates.",
+      "purpose": "Superseded issue59 original preparation policy retained as nonselected audit/transition history; current phase PRs select issue58 only.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -967,15 +973,15 @@
       "role": "history",
       "owner": ".github/ACCEPTANCE.md"
     },
-    "review/issue-59": {
+    "review/issue-58": {
       "kind": "directory",
-      "purpose": "Single versioned R2 formatting/quality scope, tasks and source-bound handoff for issue59.",
+      "purpose": "Single refactoring issue58 phased handoff and review route; current R2 under PR60.",
       "role": "history",
       "owner": ".github/ACCEPTANCE.md"
     },
-    "review/issue-59/2026-10-08-handoff.md": {
+    "review/issue-58/2026-10-08-handoff.md": {
       "kind": "file",
-      "purpose": "R2 preparation baseline, formatter/semantic/security rebinding tasks, AC01-AC07 and honest pending implementation evidence.",
+      "purpose": "Shared issue58 refactor handoff: R2 phase subconditions mapped to stable AC01-AC10, source/semantic/security tasks and pending evidence.",
       "role": "history",
       "owner": ".github/ACCEPTANCE.md"
     },

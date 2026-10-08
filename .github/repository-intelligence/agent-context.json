@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "6a74ff2154ab2074e2dc48dd207d4bbe0998cb6d9ed3940dea0bb08b23ff3282",
+    "digest": "f8566eac897305a1b2b9379983b16121ac629915954ee07206e60900c9a09255",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -90,6 +90,11 @@
         "sha256": "1cfaf41f3910a1a1f141685c210db389047f67973e226bd758e6c4a65bd13dde"
       },
       {
+        "path": ".github/acceptance/issue-58.json",
+        "identity_mode": "content",
+        "sha256": "9c2c58df67ec6341b6405308bec895258b06b5395eeb6cd1ef5262d8a7b81185"
+      },
+      {
         "path": ".github/acceptance/issue-59.json",
         "identity_mode": "content",
         "sha256": "94864842557a732c416a9fda7109c44d2bce147898a45fee15dc3370db8a51b7"
@@ -121,12 +126,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "99f6c883b2e6b7ac7e2d64948ff89b52b61d08166300cd58dced60f94e12627a"
+        "sha256": "d5145dfa8fa423ecd08592817917cc13aaf114dfe6c00d1f4b80074f5153b3c1"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "53312478df24892026792f1ab4e0209f29c98d4b208e3806e9884b4740b90054"
+        "sha256": "137dcdeef46dc75da6cc016b58c67df24e0f50768f160969ff19ab6515adcdc0"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -221,7 +226,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "e408b021123c0f32b016f77968e6e5f13bf20b137807f1b703e73bde0e86405d"
+        "sha256": "b622d33e12049f9928762c5a03bd6e8085f7f5134a20d83f700a5f87b56b946d"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -643,9 +648,9 @@
         "sha256": "270a0f02a3f5777edc693ddbf8e18976cfaec8a7aef5f92cb07166c300655741"
       },
       {
-        "path": "review/issue-59/2026-10-08-handoff.md",
+        "path": "review/issue-58/2026-10-08-handoff.md",
         "identity_mode": "content",
-        "sha256": "7b51c8977f3fab6f912bb31c829413f8891ee053a4115897f709bafa88218c7f"
+        "sha256": "069c4167706cb54954c223ecc35f5c6bdf5ae7db193c908c462e9751616a80a8"
       },
       {
         "path": "review/public-responses-20261006/README.md",
@@ -5702,9 +5707,20 @@
       "title": "issue-56.json"
     },
     {
+      "path": ".github/acceptance/issue-58.json",
+      "kind": "file",
+      "purpose": "Shared issue58 AC01-AC10 phase acceptance policy; preparation checks and explicit pending phase/review/live/merge gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-58.json"
+    },
+    {
       "path": ".github/acceptance/issue-59.json",
       "kind": "file",
-      "purpose": "Preliminary issue59 R2 acceptance mapping: baseline invariants and explicit missing-implementation/review/live/merge gates.",
+      "purpose": "Superseded issue59 original preparation policy retained as nonselected audit/transition history; current phase PRs select issue58 only.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md",
       "instructions": [
@@ -6923,15 +6939,15 @@
       "title": "Issue 56 — R1 explicit maintained effects"
     },
     {
-      "path": "review/issue-59/2026-10-08-handoff.md",
+      "path": "review/issue-58/2026-10-08-handoff.md",
       "kind": "file",
-      "purpose": "R2 preparation baseline, formatter/semantic/security rebinding tasks, AC01-AC07 and honest pending implementation evidence.",
+      "purpose": "Shared issue58 refactor handoff: R2 phase subconditions mapped to stable AC01-AC10, source/semantic/security tasks and pending evidence.",
       "role": "history",
       "owner": ".github/ACCEPTANCE.md",
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "Issue 59 — 2026-10-08 R2 formatting review / analysis / handoff"
+      "title": "Issue 58 — 2026-10-08 R2 formatting review / analysis / handoff"
     },
     {
       "path": "review/public-responses-20261006/README.md",
@@ -17537,9 +17553,9 @@
       ]
     },
     {
-      "path": "review/issue-59",
+      "path": "review/issue-58",
       "kind": "directory",
-      "purpose": "Single versioned R2 formatting/quality scope, tasks and source-bound handoff for issue59.",
+      "purpose": "Single refactoring issue58 phased handoff and review route; current R2 under PR60.",
       "role": "history",
       "owner": ".github/ACCEPTANCE.md",
       "instructions": [
