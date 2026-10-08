@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 49,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/49",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Publish the source-backed architecture, limitations and ordered model handoff.",
+      "automated_scope": "Current navigation/coupling and ownership checks only. Semantic design review and the live Draft PR/artifact linkage are separately recorded at the issue.",
+      "checks": [
+        "CURRENT-RI",
+        "RI-CI",
+        "OWNER"
+      ],
+      "gates": [
+        "G-DESIGN"
+      ]
+    },
+    {
+      "id": "AC02",
+      "intent": "Assemble incoming content from the unchanged fractal using its painted camera.",
+      "automated_scope": "Planning-only: no fragment projection exists and no geometry or depth acceptance is claimed. Add named implemented spatial checks before evaluating the feature.",
+      "checks": [],
+      "gates": [
+        "G-DEPTH"
+      ]
+    },
+    {
+      "id": "AC03",
+      "intent": "Show mixed sub-glyph, glyph, word and picture fragments with an exact native handoff.",
+      "automated_scope": "Planning-only: no new fragmentation or native-paint fidelity test exists. Add partition/image/text tests and actual visual evidence before implementation acceptance.",
+      "checks": [],
+      "gates": [
+        "G-FIDELITY"
+      ]
+    },
+    {
+      "id": "AC04",
+      "intent": "Preserve route, landing, interruption and lifecycle continuity.",
+      "automated_scope": "Existing Basic flight/theme/archive checks preserve the unchanged current source. They do not exercise a future fragment transaction; its implemented race/landing/cleanup checks remain required.",
+      "checks": [
+        "BASIC"
+      ],
+      "gates": [
+        "G-NAVIGATION"
+      ]
+    },
+    {
+      "id": "AC05",
+      "intent": "Preserve semantic content, accessible controls and ordinary fallback behavior.",
+      "automated_scope": "Existing Basic source checks only; fragment accessibility, disabled modes, cleanup and actual browser fallback are unimplemented and cannot pass from this policy.",
+      "checks": [
+        "BASIC"
+      ],
+      "gates": [
+        "G-ACCESSIBILITY"
+      ]
+    },
+    {
+      "id": "AC06",
+      "intent": "Keep bounded fragment resources and pass original plus predeclared added-cost budgets.",
+      "automated_scope": "Planning-only: proposed bounds are not implemented or measured. Resource/measurement validators and exact-source raw paired evidence must be added before admission.",
+      "checks": [],
+      "gates": [
+        "G-PERFORMANCE"
+      ]
+    },
+    {
+      "id": "AC07",
+      "intent": "Deliver reviewed implementation, mapped evidence and reconciled issue/PR state.",
+      "automated_scope": "Current RI, coupling, issue-owner selection and manual-pending runner behavior verify this handoff infrastructure only. No feature implementation, independent review, merge or release is inferred.",
+      "checks": [
+        "CURRENT-RI",
+        "RI-CI",
+        "OWNER",
+        "PENDING"
+      ],
+      "gates": [
+        "G-DELIVERY"
+      ]
+    }
+  ],
+  "checks": {
+    "CURRENT-RI": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    },
+    "OWNER": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_selector_uses_only_explicit_local_refs"
+    },
+    "BASIC": {
+      "kind": "node-basic"
+    },
+    "PENDING": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_manual_only_criterion_is_pending"
+    }
+  },
+  "gates": {
+    "G-DESIGN": {
+      "kind": "human",
+      "description": "Evaluate the versioned source-backed design, explicit limitations, source/PR/issue linkage, tasks and model-role recommendation. This is design self-analysis, not independent implementation review. Record the actual planning-deliverable decision at AC01."
+    },
+    "G-DEPTH": {
+      "kind": "human",
+      "description": "Implementation is pending. Require real scene-projected fragment behavior and meaningful source tests, plus source-bound forward/reverse visual depth acceptance with unchanged scene geometry/camera/ribbons."
+    },
+    "G-FIDELITY": {
+      "kind": "human",
+      "description": "Implementation is pending. Require real mixed-mask text/image coverage tests, final native layout and pixel/fidelity observations at Day/Night desktop/narrow sizes. Missing images or generic letter-only motion cannot satisfy this gate."
+    },
+    "G-NAVIGATION": {
+      "kind": "human",
+      "description": "Implementation is pending. Add and run actual fragment transaction/retarget/landings/readiness/cleanup checks, then inspect matching hosted navigation observations. Existing legacy checks are insufficient."
+    },
+    "G-ACCESSIBILITY": {
+      "kind": "human",
+      "description": "Implementation is pending. Check final semantic/native behavior, inert inaccessible visual copies, focus, announcements, no duplicate live identities, Off/reduced/hidden/print/failure and zero retained fragment resources."
+    },
+    "G-PERFORMANCE": {
+      "kind": "human",
+      "description": "Implementation is pending. Validate declared resource bounds and same-source old/new raw paired observations at unchanged scene quality against original and predeclared added-cost budgets. No measurements were made in this planning session. Existing production/native release gates stay with issue13."
+    },
+    "G-DELIVERY": {
+      "kind": "human",
+      "description": "Require implemented deterministic mappings, canonical/generated/offline/RI outputs, scoped current-source CI/preview/evidence, honest independent implementation review, author visual acceptance, actual issue checkboxes and applicable maintainer merge decision. Planning-only publication cannot satisfy full delivery; no production authorization is supplied."
+    }
+  }
+}

@@ -91,6 +91,12 @@
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
+    ".github/acceptance/issue-49.json": {
+      "kind": "file",
+      "purpose": "Planning-stage AC01-AC07 mapping: current-source preservation checks with explicit pending fragment implementation and visual/performance gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     ".github/pull_request_template.md": {
       "kind": "file",
       "purpose": "PR execution, owning issue/commit links, checks/review and honest completion template.",
@@ -881,6 +887,18 @@
       "kind": "file",
       "purpose": "Independent source review of issue45 formula/reading-surface repair, corrected diagnostic findings and explicit visual limits.",
       "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-49": {
+      "kind": "directory",
+      "purpose": "Versioned architecture and execution handoff for fragments emerging from the existing fractal.",
+      "role": "draft",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-49/2026-10-08-analysis.md": {
+      "kind": "file",
+      "purpose": "Source-backed clipped-content flight architecture, feasibility limits, resource proposal, test allocation and ordered Sol tasks; no implementation claim.",
+      "role": "draft",
       "owner": "CONTRIBUTING.md"
     },
     "review/public-responses-20261006": {

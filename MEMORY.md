@@ -1,104 +1,79 @@
 # Session memory
 
-Dated continuity, not live authority. Last verified: **2026-10-07**.
+Dated continuity, not live authority. Last verified: **2026-10-08**.
 
 ## Snapshot
 
-- Main is `709c6d0` after joint PR #43 and compatibility PR #44 merge; #35 / PR #37 is
-  merged. #31/#32 and #33/#34 are completed. Read their pinned issue evidence.
-- The maintainer requests one joint staging run for [#36](https://github.com/oborskyivitalii/oborskyivitalii/issues/36)
-  / [PR #38](https://github.com/oborskyivitalii/oborskyivitalii/pull/38) and
-  [#41](https://github.com/oborskyivitalii/oborskyivitalii/issues/41)
-  / [PR #42](https://github.com/oborskyivitalii/oborskyivitalii/pull/42).
-  Isolated branch: `work/staging-36-41-20261007`. Exact parents are
-  `73020e86b02da64d5e7256cbaffc641a0cc5d649` and
-  `7c9ff1ee760a48669990b6df560dc54da7561a17`. Original PR branches stay open.
-  [Formula handoff](review/issue-36/2026-10-07-handoff.md) and
-  [editorial analysis](review/issue-41/2026-10-07-analysis.md) carry the same
-  joint staging amendment. Joint PR #43's first bounded run failed old-count and
-  static checks; its absolute performance passed. The repaired candidate passes
-  258 selected source cases. PR #44 at eb81a61 has four green minimal CI runs.
-  Corrected #43 at072a7b8 passed four minimal CI runs and merged at76f2a78.
-  PR #44 is now merged at709c6d0. One bounded
-  joint staging run and current exact deployment are tracked in the live issues.
-- #45 owns the successor DraftPR47; PR46 is closed/unmerged. Main709c6d0
-  still lacks its formula/heading/ribbon work, retained on
-  `work/issue45-camera-surfaces-20261007`. Camera repair plans native reverse
-  end landings, rejects departing-DOM retargets and measures unknown landings
-  after destination mount. Historical675b389 passes60geometry/52opaque-surface
-  cases and96cold/warm flights; those reports retain that earlier source.
-  Published3beaad56/tree8c813250 restores87% shared background alpha while
-  retaining opaque ink, crisp four12px corners and same-owner reduced-
-  transparency100%. Its required source CI/preview pass; actual live QA covers
-  26desktop Day/Night paint samples, not a new52-sample/two-width motion report.
-  At21:37 Europe/Warsaw the maintainer authorizes main/stable staging, superseding
-  the earlier stop. Stage37676079833 timed out installing Ubuntu dependencies;
-  retry37678648242 passed installation, static/host/functional/Color/motion
-  but failed Writing mobile TBT269ms against the unchanged200ms budget.
-  Source79becad/tree0fda9fe7 bounds texture source windows and retains original
-  Writing traces. Its current PR CI passes, but stage37684440827 fails only
-  Writing TBT329.5ms; no benefit is established and promotion is skipped.
-  The trace attributes most additional task time to recurring browser Commit,
-  without function CPU samples. SamePR adds one bounded four-input Writing
-  cause-probe scope with original raw/CPU evidence and declared private controls.
-  Run37688745681 retains four valid CPU-profiled inputs atbe2ccde/treef6868e.
-  Samples support ordinary thematic Canvas face/line/setter overhead; a narrow
-  identical-state setter dedup repair is being prepared, preserving all draws.
-  Normal staging settings/budgets remain unchanged. Pass its exact-source
-  staging and stable promotion, then merge the same tested head.
-  All6AC boxes remain open for literal current-source visual/evidence gates;
-  complete-expression occlusion and production/native acceptance remain open.
-  [Current handoff](review/issue-45/2026-10-07-handoff.md) retains exact evidence.
-- #36 places one tilted, pulsing formula in Writing's books/pages fractal,
-  sharing its camera/clock and bounded cache. Rejected banner benchmarks are
-  historical failures, not acceptance of this world-space implementation.
-- #41 supplies two bounded advisory roles, 29 primary/46 platform editions,
-  three sourced Reddit snapshot rows and precise semantic/SEO amendments.
-  Existing editions, three Home response cards and five featured works persist.
-- Stable stage is https://staging.oborskyi-author-ci-staging.pages.dev .
-  Only the successful combined controller record can establish its new source.
+- Live main is `aa1cfa97bf42103c0547c9332b885391f0e6fe6b`, tree
+  `64f68e79a1463f70075a54e0b4099861d27eebdb`, after normal PR47 merge.
+  It has the same tree as tested `d1df76f3d1889a397a931b45ec72f0271458cd87`.
+  [Issue45's final live record](https://github.com/oborskyivitalii/oborskyivitalii/issues/45)
+  supersedes the earlier pending merge/staging checkpoint in this file.
+- That record reports successful bounded stage run37692745507 and stable
+  promotion at https://staging.oborskyi-author-ci-staging.pages.dev/ .
+  It records Writing mobile LCP1599.5745ms/TBT21ms/CLS0 and Research
+  LCP1643.2935ms/TBT10.5ms/CLS0. These are one trial per selected route, not
+  full production medians. No fresh deployment/measurement was run in this
+  planning session. All six literal #45 ACs remain open for full visual evidence.
+- [Issue49](https://github.com/oborskyivitalii/oborskyivitalii/issues/49) owns the new
+  idea: page text/image fragments assemble from inside the unchanged fractal.
+  Branch: `docs/fractal-content-flight-plan-20261008`.
+  [One architecture/Sol handoff](review/issue-49/2026-10-08-analysis.md)
+  contains current-source findings, backend options, bounds and ordered tasks.
+  The live issue's dated anchor owns exact Draft PR/commit/check links.
+  This is planning only: AC01 is design delivery; AC02-AC07 await feature work.
+- [Issue48](https://github.com/oborskyivitalii/oborskyivitalii/issues/48) is concurrent
+  theory alignment, deeper Writing formula and sourced Matthew response work.
+  Revalidate its branch/PR before runtime or content edits; it had no linked
+  open PR in the initial inspection. Do not override its changes.
+- PR40 remains open for domains/production preparation. PR47 is merged;
+  PR46 is closed/unmerged. Earlier #36/#41 integration reached main via #43/#44;
+  their remaining literal visual/editorial acceptance stays in those issues.
 
 ## Decisions
 
-- One coherent combined source/artifact receives one bounded staging run under
-  the merged #35 profile. PR smoke, source ACs and full production are distinct.
-- #36 selected policy runs its original checks plus eleven I41-prefixed source
-  checks once. #41's original ACs/gates remain mapped at its own live anchor.
-- #41 catalog identities compare to c4539ad; protected runtime/workflow bytes
-  compare to its approved immutable #36 companion 73020e8, with one explicitly
-  normalized projection syntax/helper repair proven equal in all 120 cases.
-- Chromium/Firefox run on Linux; WebKit stays native macOS production coverage.
-  Do not repeat eighteen diagnostic trials to repair a report/environment error.
-- Paired formula performance, combined independent/editorial/mobile decisions,
-  device/release and maintainer merge remain explicit gates. Shared staging's
-  absolute measurements do not automatically complete paired AC04.
-- Original issue intent and AC IDs persist. Update actual issue-body checkboxes
-  only for whole verified criteria; tables alone are insufficient.
-- Canonical authored source regenerates docs/offline/RI output. Preserve pinned
-  historical checks; report candidate identity honestly and keep budgets fixed.
-- GitHub Pages production and analytics/domain activation remain #8/#39 work.
+- #49 recommends bounded clipped native paint copies, driven by the existing
+  painted camera/progress. DOM pieces do not automatically have Canvas-face
+  occlusion. Prove perceived depth, final native fidelity and cost in a small
+  real-scene prototype before broad integration. No feature implemented yet.
+- Fragment the actual landing viewport/overscan, including reverse-bottom and
+  history, not an entire archive. Preserve native final content, fractal placement,
+  camera duration, current reading surfaces, header and existing Content flight
+  switch/fallback. No second animation clock or runtime dependency is proposed.
+- Sol can build the prototype and integrate after the recorded visual/cost
+  decision. Architecture/visual review should decide any backend redesign.
+- Original issue AC IDs and actual checkboxes persist. Source tests alone cannot
+  complete visual, measured, editorial, device, merge or publication criteria.
+- PR source/smoke, bounded staging and full production are distinct profiles.
+  Use existing CI/preview/controller; no duplicate full diagnostic campaign.
+  Chromium/Firefox are Linux; native WebKit remains macOS production coverage.
+- Canonical sources regenerate docs/offline/RI. Current phase changes only
+  planning/acceptance/navigation metadata, not public/runtime/generated site bytes.
+- Stable-stage/merge/production decisions remain separate. #49 planning gives
+  no authorization for them. Production/domain/analytics remain #8/#39 scope.
 
 ## Open work
 
 | Issue | Remaining intent |
 | --- | --- |
-| #45 | PR47 main/staging authorized; CPU attribution after failed329.5ms Writing TBT, exact Canvas state dedup repair, staging and guarded merge. Whole-criterion evidence and AC01 visibility remain open. |
-| #36 / #41 | #43/#44 merged; joint staging and paired/visual/editorial acceptance. |
-| #1 / #13 | First-release, physical-device and full production/recovery acceptance. |
+| #49 | Published design/handoff first; feature prototype, implementation and AC02-AC07 evidence pending. |
+| #48 | Theory/content/formula-placement corrections; verify live execution state. |
+| #45 | Merged/staged; full literal visual/continuity/native evidence remains open. |
+| #36 / #41 | Merged integration; outstanding paired/visual/editorial acceptance. |
+| #1 / #13 | First release, physical-device and full production/recovery acceptance. |
 | #8 / #39 | Production URL/indexability, domains and analytics activation. |
 | #7 | License and editorial/third-party rights. |
 | #5 / #6 | Real article HTML/PDF edition and cross-repository adapter. |
-| #2 | PMDay article and matching presentation edition. |
-| #11 | Buyer-intent guides after launch. |
+| #2 / #11 | PMDay article/edition and post-launch buyer-intent guides. |
 
 ## Next session
 
-1. Fetch live main, both original PRs and the integration branch/PR; check for
-   newer work before modifying a source. Read applicable AGENTS and owners.
-2. Read both live issue anchors and the single joint staging record. Verify
-   source/tree/artifact/alias rather than inheriting a historical green result.
-3. Continue remaining acceptance with targeted checks. Merge/production require
-   their separate maintainer decisions; do not rerun a duplicate full suite.
+1. Fetch live refs/issues/PRs; read applicable owners and the current owning issue.
+2. For #49, read its single versioned analysis and dated anchor. When execution
+   is requested, start with the bounded text/portrait depth prototype, preserving
+   any newer #48 changes. Do not treat architecture recommendations as measured.
+3. Update meaningful implemented checks and real evidence before checking feature
+   ACs. Preserve original budgets and existing flight/camera/fallback coverage.
 
 ## Maintenance
 
