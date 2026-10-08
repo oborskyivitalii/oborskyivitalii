@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "review": {
-    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/59",
+    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/58",
     "date": "2026-10-08",
-    "summary": "R2 preparation under full refactor umbrella58 after merged/checked R1: one versioned scope/task handoff and preliminary policy with four baseline checks and explicitly pending implementation/review/live/merge gates. No formatter/runtime/content/public changes; preserve existing CI/profile routes and map the new policy/handoff."
+    "summary": "Maintainer ownership correction: one issue58 with stable global AC01-AC10 and phase subconditions; multiple PRs all Refs58. Transfer R2 PR60 handoff/policy/routes from unnecessary issue59; preserve its original policy as nonselected history/transition compatibility. No formatter/runtime/content/public change."
   },
   "layers": [
     {
@@ -67,7 +67,8 @@
         "review/issue-61/content-amendment.json",
         "tests/test_issue61_acceptance.py",
         ".github/acceptance/issue-59.json",
-        "review/issue-59/2026-10-08-handoff.md"
+        "review/issue-58/2026-10-08-handoff.md",
+        ".github/acceptance/issue-58.json"
       ],
       "checks": [
         "acceptance-policy",
@@ -423,7 +424,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "8e8a9add6cfe86a220ff90819b8736f09decc11716b7e37af2d3f732f8c2ef00",
+    "digest": "aadf5042983e645201dacdd598df0394c170ebfd987429b1064636377dfc208a",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -499,7 +500,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "99f6c883b2e6b7ac7e2d64948ff89b52b61d08166300cd58dced60f94e12627a"
+        "sha256": "d5145dfa8fa423ecd08592817917cc13aaf114dfe6c00d1f4b80074f5153b3c1"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -708,6 +709,10 @@
       {
         "path": ".github/acceptance/issue-59.json",
         "sha256": "94864842557a732c416a9fda7109c44d2bce147898a45fee15dc3370db8a51b7"
+      },
+      {
+        "path": ".github/acceptance/issue-58.json",
+        "sha256": "9c2c58df67ec6341b6405308bec895258b06b5395eeb6cd1ef5262d8a7b81185"
       }
     ]
   }

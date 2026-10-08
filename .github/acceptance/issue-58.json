@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 58,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/58",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "R1: canonical effects and explicit shared contracts",
+      "automated_scope": "Historical R1 completion is recorded in issue56/merged PR57 and checked main a56b627. The bounded current guard checks only existing ownership/CSS/import invariants. Do not rerun issue56 frozen payload snapshots as universal formatting gates; verify historical evidence separately and retain permanent descriptor contracts.",
+      "checks": [
+        "GUARD"
+      ],
+      "gates": [
+        "HISTORICAL-R1"
+      ]
+    },
+    {
+      "id": "AC02",
+      "intent": "R2: reproducible formatting and complete source lint",
+      "automated_scope": "R2 preparation only: current guard/Basic are baseline invariants, not formatting proof. Implement and map actual pins/inventory, format check/empty second write, semantic/drift/coverage negatives and CI reports for phase subconditions R2.1-R2.3; R2 remains unimplemented.",
+      "checks": [
+        "GUARD",
+        "BASIC"
+      ],
+      "gates": [
+        "PENDING-PHASES",
+        "INDEPENDENT",
+        "LIVE"
+      ]
+    },
+    {
+      "id": "AC03",
+      "intent": "R3: content, records and templates have separate owners",
+      "automated_scope": "R3 is unimplemented. Actual schema/reference/URL negatives, five-route text/link/order/ID/metadata/no-JS/offline parity and content/template ownership checks must be mapped during its PR.",
+      "checks": [],
+      "gates": [
+        "PENDING-PHASES",
+        "INDEPENDENT"
+      ]
+    },
+    {
+      "id": "AC04",
+      "intent": "R4: canonical CSS owns static presentation",
+      "automated_scope": "Current guard proves only existing inline-debt/token-owner subset. R4 static effect/portrait CSS extraction, debt removal, theme/reading geometry and actual paint parity checks are not implemented; expand mapping in its PR.",
+      "checks": [
+        "GUARD"
+      ],
+      "gates": [
+        "PENDING-PHASES",
+        "INDEPENDENT",
+        "LIVE"
+      ]
+    },
+    {
+      "id": "AC05",
+      "intent": "R5: cohesive runtime/build boundaries and lifecycle",
+      "automated_scope": "Basic observes current bounded route/geometry/runtime baseline. R5 cohesion/projector equivalence/cancellation/disposal/cache/complexity checks are pending and must be implemented/mapped without changed budgets.",
+      "checks": [
+        "BASIC"
+      ],
+      "gates": [
+        "PENDING-PHASES",
+        "INDEPENDENT",
+        "LIVE"
+      ]
+    },
+    {
+      "id": "AC06",
+      "intent": "End-to-end behavior and generation parity",
+      "automated_scope": "Basic observes current generation/script/route/Color/geometry/size contracts only. R2.2/R2.4 and later phase semantic/serialization/incremental/offline/hosted/fallback checks plus final integrated evidence remain pending; expand this shared mapping as each phase lands.",
+      "checks": [
+        "BASIC"
+      ],
+      "gates": [
+        "PENDING-PHASES",
+        "INDEPENDENT",
+        "LIVE"
+      ]
+    },
+    {
+      "id": "AC07",
+      "intent": "Free quality tools and architecture enforcement",
+      "automated_scope": "No actual new candidate formatter/lint/security/dependency/clone check is proved by this preparation policy. R2.3/R2.5 source coverage, exact reviewed scanner bindings and later architecture negatives/current reports remain pending and must be mapped.",
+      "checks": [],
+      "gates": [
+        "PENDING-PHASES",
+        "INDEPENDENT",
+        "LIVE"
+      ]
+    },
+    {
+      "id": "AC08",
+      "intent": "R6: measured resource result and preserved budgets",
+      "automated_scope": "Basic checks current configured geometry/size budgets, not task/frame/cache measurements or an optimization benefit. R6 needs comparable raw measurements and original limits; rejecting an unproven optimization is valid only with recorded evidence.",
+      "checks": [
+        "BASIC"
+      ],
+      "gates": [
+        "PENDING-PHASES",
+        "INDEPENDENT",
+        "LIVE"
+      ]
+    },
+    {
+      "id": "AC09",
+      "intent": "Code-style, inventories and proportionate tests",
+      "automated_scope": "Current bounded guard, catalog/RI freshness and RI/CI coupling verify existing metadata routes. R2.6 and every phase must add actual CS/check/profile/source evidence. Pending whole-program criteria cannot be ticked from baseline green CI.",
+      "checks": [
+        "GUARD",
+        "RI",
+        "RI-CI"
+      ],
+      "gates": [
+        "PENDING-PHASES",
+        "INDEPENDENT"
+      ]
+    },
+    {
+      "id": "AC10",
+      "intent": "Integrated completion and honest review/release state",
+      "automated_scope": "RI/CI checks support source-bound records, but cannot observe phase implementation/reviews/merge/main/checkboxes or final bounded staging/visual evidence. R2.7 and later phase results are recorded in this single issue; it remains open until all required phases and integrated criteria are satisfied.",
+      "checks": [
+        "RI",
+        "RI-CI"
+      ],
+      "gates": [
+        "PENDING-PHASES",
+        "INDEPENDENT",
+        "LIVE",
+        "MERGED"
+      ]
+    }
+  ],
+  "checks": {
+    "BASIC": {
+      "kind": "node-basic"
+    },
+    "GUARD": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    },
+    "RI": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    }
+  },
+  "gates": {
+    "HISTORICAL-R1": {
+      "kind": "human",
+      "description": "Verify recorded R1 completion from issue56, PR57 and actual merge/main checks at a56b627. That accepted historical phase remains checked in issue58. This local runner cannot fetch/approve live historical evidence; do not confuse its pending gate with a new request to rerun fixed R1 hashes after formatting."
+    },
+    "PENDING-PHASES": {
+      "kind": "human",
+      "description": "Blocking preparation state: R2-R6 remain unimplemented. Missing formatter/semantic/coverage/content/CSS/cohesion/resource/integrated deterministic checks are explicit in each automated_scope. Expand this single issue58 policy to real named checks in the relevant phase PR and execute exact-source results before each subcondition/whole-AC tick. Baseline passing checks never supply those missing implementations. Evaluate this gate per criterion against only its applicable phases: verified R2 can complete AC02 while future/shared criteria remain open. Update phase state and real check mappings as work lands; final cross-phase criteria require all their relevant phases."
+    },
+    "INDEPENDENT": {
+      "kind": "human",
+      "description": "Review the actual affected phase source/semantics/CS/dependency/scanner proof independently, recording exact reviewer/source findings in issue58 and that PR. Planning reviews are not implementation reviews; preserve final integrated obligations."
+    },
+    "LIVE": {
+      "kind": "human",
+      "description": "Verify exact current-source actual formatter/lint/security/CI/hosted/visual/resource reports and source/tree/artifact identity for applicable phase/final scope. Record partial R2 or other phase subconditions in58 without prematurely completing cross-phase criteria."
+    },
+    "MERGED": {
+      "kind": "merge",
+      "description": "After each separate maintainer merge decision, record the accepted phase commit/tree and actual main checks directly in58. All required phases and final integrated bounded staging/visual evidence must be complete before closing58. Multiple PRs share this one owner; no childissue is required. Promotion/production retain separate authorization."
+    }
+  }
+}
