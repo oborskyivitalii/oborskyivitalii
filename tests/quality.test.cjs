@@ -17,15 +17,19 @@ function scan(kind, detail) {
 }
 function checks(mode, route) {
   const contract = require('../tools/quality/scroll-browser.cjs'),
+    baseline = JSON.stringify(contract.routeCamera(route)),
     syncFixture = (label) => ({
       label,
       end: 1000,
-      start: 'opening',
-      samples: [0.9, 0.95, 0.99, 1].map((fraction) => ({
+      start: baseline,
+      startPaints: 1,
+      samples: [0.9, 0.95, 0.99, 1].map((fraction, i) => ({
         fraction,
         y: fraction * 1000,
-        camera: 'camera-' + fraction,
+        camera: baseline,
+        paints: i + 2,
       })),
+      reverse: { y: 0, camera: baseline, paints: 6 },
     });
   if (mode === 'normal')
     return {
@@ -35,7 +39,7 @@ function checks(mode, route) {
       syntheticVisibility: true,
       keyboard: true,
       reverse: true,
-      forward: 'camera changed',
+      forward: 'camera fixed',
       archive: route === 'writing' ? true : 'not applicable',
       zoom: true,
       axePasses: 1,
@@ -46,9 +50,12 @@ function checks(mode, route) {
         waypoint: {
           id: 'semantic-stop',
           y: 100,
+          targetY: 100,
+          end: 1000,
+          paints: 1,
           distance: 0,
-          actual: { position: [0, 0, 0], target: [0, 0, -1] },
-          expected: { position: [0, 0, 0], target: [0, 0, -1] },
+          actual: contract.routeCamera(route),
+          expected: contract.routeCamera(route),
         },
         checks: Object.fromEntries(
           contract.checks.map((k) => [
@@ -121,12 +128,7 @@ function fixture() {
         errors: [],
         scrollArrivals: ['research', 'writing', 'talks', 'credits'].map((route) => ({
           route,
-          end: 1000,
-          samples: [0.9, 0.95, 0.99, 1].map((fraction) => ({
-            fraction,
-            y: fraction * 1000,
-            camera: 'arrival-' + fraction,
-          })),
+          ...checks('normal', route).scrollSync.fixtures[0],
         })),
         checks: Object.fromEntries(
           require('../tools/quality/navigation.cjs').checks.map((k) => [k, true])
@@ -213,9 +215,13 @@ test('complete source-bound PR evidence passes; missing and controlled failures 
     (x) => delete x.reports[3].rows[0].checks.scrollSync.checks.contentGrowth,
     (x) => delete x.reports[3].rows[0].checks.scrollSync.waypoint,
     (x) => (x.reports[3].rows[0].checks.scrollSync.waypoint.actual.position[0] = 1),
-    (x) =>
-      (x.reports[3].rows[0].checks.scrollSync.fixtures[0].samples[3].camera =
-        x.reports[3].rows[0].checks.scrollSync.fixtures[0].samples[2].camera),
+    (x) => (x.reports[3].rows[0].checks.scrollSync.fixtures[0].samples[3].camera = 'drift'),
+    (x) => (x.reports[3].rows[0].checks.scrollSync.fixtures[0].samples[1].y = 900),
+    (x) => delete x.reports[3].rows[0].checks.scrollSync.fixtures[0].start,
+    (x) => (x.reports[3].rows[0].checks.scrollSync.fixtures[0].samples[2].paints = 3),
+    (x) => (x.reports[3].rows[0].checks.scrollSync.fixtures[0].reverse.y = 10),
+    (x) => (x.reports[3].navigation[0].scrollArrivals[0].samples[2].camera = 'drift'),
+    (x) => (x.reports[3].rows[0].checks.forward = 'camera changed'),
     (x) => (x.reports[3].rows[0].checks.scrollSync.fixtures[0].samples[3].y = 990),
     (x) =>
       x.reports[3].rows

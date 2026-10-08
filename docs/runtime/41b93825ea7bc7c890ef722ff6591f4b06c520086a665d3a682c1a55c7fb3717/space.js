@@ -3265,21 +3265,16 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     rates,
     owns,
     atmosphereState,
-    followCamera,
-    fitScrollStops,
-    writingProgress,
     cadenceFor,
     nextDeadline,
+    cameraView,
     poses,
-    topicPaths,
-    pageStops,
     initialPoses,
     routeOrder,
     roomSpacing,
     worldFor,
     projectedWorld,
     paintShapes,
-    journeyPose,
     routePose,
     roomOffset,
     translatePose,
@@ -3316,11 +3311,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
   let domReady = document.readyState !== 'loading' && document.readyState !== 'interactive';
   let width = 1,
     height = 1,
-    ratio = 1,
-    stops = [],
-    bounds = null,
-    focus = 'all',
-    localProgress = 0;
+    ratio = 1;
   const initial = initialPoses[page] || 'overview';
   const rooms = new Map();
   let compact = narrow.matches,
@@ -3345,29 +3336,28 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     hold = false;
   const clock = () => window.performance?.now() ?? Date.now();
   let current = routePose(page, poses[initial]),
-    animation = null,
-    writingAnchor = null,
     displayedTime = 0,
     displayedCamera = current,
+    displayedWidth = width,
+    displayedHeight = height,
+    displayedCompact = compact,
+    painted = false,
     displayedProgress = 0,
     journey = null;
   let travelUpdate = null;
+  let travelAnchor = null;
   let colors = { cyan: '#075d7b', amber: '#895710', paper: '#f8f7f3' };
   let paletteRevision = 0,
     colorFills = new Map();
-  const pose = (id) => routePose(page, poses[id]);
-  const pathPose = () =>
-    routePose(page, journeyPose(topicPaths[focus], localProgress, narrow.matches));
+  const settledPose = () => routePose(page, poses[initialPoses[page] || 'overview']);
   const effects = window.SiteEffects;
   if (effects && effects.contract !== 1) throw Error('Incompatible scene effect contract');
+  effects?.registerView?.(cameraView);
   const sceneEffects = effects?.scene?.(api);
   // The decorative mobile bitmap uses one physical pixel per CSS pixel.
   // Text and controls retain their native resolution; timing is independent.
   const pixelRatio = () =>
     Math.min(compact || tier === 2 ? 1 : tier === 1 ? 1.25 : 1.5, window.devicePixelRatio || 1);
-  function visible(el) {
-    return !el.hidden && el.getClientRects().length > 0;
-  }
   function measure() {
     const read = () => measureNative();
     if (effects?.measure) return effects.measure(read);
@@ -3389,30 +3379,6 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     const maxScroll = Math.max(0, document.documentElement.scrollHeight - height);
     window.SiteNavigation?.reconcileEndpoint?.(maxScroll);
     span('layout-range');
-    const markers = [...document.querySelectorAll('[data-space-stop]')]
-      .filter((el) => visible(el) && pageStops[page]?.[el.dataset.spaceStop])
-      .map((el) => ({
-        id: pageStops[page][el.dataset.spaceStop],
-        y: Math.max(0, el.getBoundingClientRect().top + window.scrollY - height * 0.22),
-      }));
-    stops = fitScrollStops(markers, maxScroll);
-    span('layout-stops');
-    bounds = null;
-    if (page === 'writing') {
-      const results = document.getElementById('archive-results');
-      const row = results ? [...results.querySelectorAll('li.publication')].find(visible) : null;
-      if (row) {
-        const first = row.getBoundingClientRect();
-        const firstY = Math.max(0, first.top + window.scrollY - height * 0.22),
-          end = maxScroll;
-        // A one-record archive can start below the maximum viewport offset.
-        // In that case its entire real scroll range still forms a valid path.
-        const start = firstY < end - 0.5 ? firstY : 0;
-        if (end > start + 0.5) bounds = { start, end };
-      }
-      writingAnchor = { y: window.scrollY, progress: localProgress };
-    }
-    span('layout-writing');
   }
   function flushLayout() {
     if (!initialized || !layoutDirty || failed) return;
@@ -3426,9 +3392,8 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     measure();
     if (window.SiteEngineProbe)
       diagnostic('layout', { reasons, passes: layoutPasses, start, duration: clock() - start });
-    const target = scrollPose();
-    if (journey) retargetJourney(target);
-    else moveTo(target);
+    // Native landing and layout belong to the router. Neither reading position
+    // nor content reflow can change the route's settled camera or flight target.
     nextDraw = null;
   }
   function invalidateLayout(reason) {
@@ -3516,31 +3481,6 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     if (room.paletteRevision !== paletteRevision) paintColors(room);
     return room;
   }
-  function scrollPose() {
-    // Departure keeps the old DOM until the hidden content midpoint. Its
-    // delayed scroll events cannot describe or retarget the incoming route.
-    if (document.body.dataset.page !== page) return journey?.to || current;
-    if (page === 'writing') {
-      if (!bounds) return journey ? pathPose() : current;
-      localProgress = writingProgress(window.scrollY, bounds, writingAnchor);
-      return pathPose();
-    }
-    if (!pageStops[page] || stops.length < 2) return journey ? pose(initialPoses[page]) : current;
-    if (window.scrollY <= stops[0].y) return pose(stops[0].id);
-    let i = 0;
-    while (i < stops.length - 2 && window.scrollY >= stops[i + 1].y) i++;
-    const a = stops[i],
-      b = stops[i + 1],
-      t = clamp((window.scrollY - a.y) / (b.y - a.y));
-    return routePose(
-      page,
-      journeyPose(
-        stops.map((s) => s.id),
-        (i + t) / (stops.length - 1),
-        narrow.matches
-      )
-    );
-  }
   function schedule() {
     if (initialized && !failed && pending === null && !document.hidden && !printing)
       pending = window.requestAnimationFrame(frame);
@@ -3548,7 +3488,6 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
   function cancel() {
     if (pending !== null) window.cancelAnimationFrame(pending);
     pending = null;
-    animation = null;
     lastFrame = null;
     nextDraw = null;
     ambientTime = displayedTime;
@@ -3558,25 +3497,6 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       rebaseJourney(journey.to, displayedProgress);
       journey.started = false;
     }
-  }
-  function moveTo(target) {
-    if (!initialized || failed || hold || document.hidden || printing || !enabled) return;
-    if (journey) {
-      retargetJourney(target);
-      return;
-    }
-    if (
-      Math.hypot(...sub(current.position, target.position), ...sub(current.target, target.target)) <
-      1e-6
-    ) {
-      animation = null;
-      return;
-    }
-    // Retarget without resetting the frame clock. Resetting start on every scroll
-    // event would keep the camera at t=0 during a continuous wheel/touch gesture.
-    if (!animation) nextDraw = null;
-    animation = { to: target, last: animation?.last ?? null };
-    schedule();
   }
   function visibleRooms() {
     if (!journey) {
@@ -3660,6 +3580,10 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     scene.dataset.ready = 'true';
     displayedTime = ambientTime;
     displayedCamera = current;
+    displayedWidth = width;
+    displayedHeight = height;
+    displayedCompact = compact;
+    painted = true;
     displayedTier = detailTier;
     displayedProgress = journeyProgress();
     scene.dataset.phase = String(ambientTime);
@@ -3702,7 +3626,31 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     scene.dataset.progress = String(progress);
     const update = travelUpdate;
     if (progress === 1) travelUpdate = null;
-    update?.(progress);
+    if (!update) return;
+    // Route notification may precede a paint or complete an unavailable scene.
+    // Snapshot only the last successful paint, never a newer layout/solver state.
+    // The router's callback closure owns the transaction; this adds no clock/cache.
+    const pose = Object.freeze({
+      position: Object.freeze([...displayedCamera.position]),
+      target: Object.freeze([...displayedCamera.target]),
+    });
+    const projection = cameraView(pose, displayedWidth, displayedHeight, displayedCompact);
+    for (const axis of ['forward', 'right', 'up', 'origin']) Object.freeze(projection[axis]);
+    update(
+      progress,
+      Object.freeze({
+        progress,
+        pose,
+        width: displayedWidth,
+        height: displayedHeight,
+        compact: displayedCompact,
+        projection: Object.freeze(projection),
+        anchor: travelAnchor,
+        remainingMs: journey ? Math.max(0, journey.duration - journey.elapsed) : 0,
+        capturedAt: clock(),
+        painted,
+      })
+    );
   }
   function adaptCadence(cost, time) {
     // Ignore the one-time initial paint for cadence estimation. Adapt to actual
@@ -3777,9 +3725,8 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       : 1;
   }
   function rebaseJourney(target, progress = journeyProgress()) {
-    // Layout/history can change the destination after its DOM is mounted.
-    // Start the remaining segment at the actual current camera, preserving
-    // both the existing arrival deadline and monotonically painted progress.
+    // Pause/cancellation resumes from the actual displayed camera, preserving
+    // the remaining flight duration and monotonically painted progress.
     const segment = clamp(
         (progress - journey.progressStart) / Math.max(1e-12, 1 - journey.progressStart)
       ),
@@ -3792,16 +3739,6 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       progressStart: progress,
       started: journey.started,
     };
-  }
-  function retargetJourney(target) {
-    if (
-      Math.hypot(
-        ...sub(journey.to.position, target.position),
-        ...sub(journey.to.target, target.target)
-      ) < 1e-6
-    )
-      return;
-    rebaseJourney(target);
   }
   function advanceJourney(delta, living) {
     if (journey && living) {
@@ -3823,21 +3760,6 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       }
     }
   }
-  function advanceAnimation(delta, time) {
-    if (!animation || !enabled || hold) return;
-    const dt = animation.last === null ? delta : Math.min(80, Math.max(0, time - animation.last));
-    animation.last = time;
-    current = followCamera(current, animation.to, dt);
-    const done =
-      Math.hypot(
-        ...sub(current.position, animation.to.position),
-        ...sub(current.target, animation.to.target)
-      ) < 1e-5;
-    if (done) {
-      current = animation.to;
-      animation = null;
-    }
-  }
   function frame(time) {
     pending = null;
     if (document.hidden || printing || !initialized || failed) return;
@@ -3855,11 +3777,10 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       detailTier += (tier - detailTier) * (1 - Math.exp(-delta / 180));
     }
     advanceJourney(delta, living);
-    advanceAnimation(delta, time);
     // Camera response gets a temporary, cost-bounded higher cadence. Deadlines
     // retain fractional phase instead of rounding every frame down to 20/15Hz.
     const cameraRate = Math.min([30, 20, 15][tier], cadenceFor(costAverage, compact, true));
-    const interval = 1000 / (animation || journey ? Math.max(idleRate, cameraRate) : idleRate);
+    const interval = 1000 / (journey ? Math.max(idleRate, cameraRate) : idleRate);
     if (nextDraw === null || time + 0.5 >= nextDraw || !living) {
       const start = clock();
       try {
@@ -3876,7 +3797,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       // including route mount, is still measured by the outer frame/ready gate.
       if (living) quality(renderCost, time);
     }
-    if (animation || (living && !hold)) schedule();
+    if (living && !hold) schedule();
   }
   function updateControl() {
     if (failed) return;
@@ -3899,7 +3820,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     }
     if (!enabled) {
       if (was) cancel();
-    } else if (!was) moveTo(page === 'writing' && !bounds ? pathPose() : scrollPose());
+    }
     updateControl();
     schedule();
     if (window.dispatchEvent) window.dispatchEvent(new CustomEvent('site:motion-preference'));
@@ -3917,33 +3838,6 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       /* In-tab preference still applies. */
     }
     preferenceChanged();
-  });
-  window.addEventListener(
-    'scroll',
-    () => {
-      if (!enabled || document.hidden || printing) return;
-      if (page !== 'writing' && !pageStops[page]) return;
-      // A new scroll takes control of any unfinished topic transition.
-      moveTo(scrollPose());
-    },
-    { passive: true }
-  );
-  window.addEventListener('site:scene-focus', (event) => {
-    if (
-      document.body.dataset.page !== page ||
-      page !== 'writing' ||
-      !owns(topicPaths, event.detail?.focus)
-    )
-      return;
-    focus = event.detail.focus;
-    invalidateLayout('archive-focus');
-    if (!enabled || hold || document.hidden || printing) return;
-    const target = pathPose();
-    if (event.detail.reason === 'initial' && !journey) {
-      current = target;
-      animation = null;
-      schedule();
-    } else moveTo(target);
   });
   const resize = () => {
     if (failed) return;
@@ -4015,21 +3909,6 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
   }
   observeLayout();
   document.fonts?.addEventListener?.('loadingdone', resize);
-  function landingPose(landing, from, travelling) {
-    // Writing URL filters/fragments can select a different canonical topic
-    // path, including its endpoint. Let the mounted archive identify it.
-    if (travelling && page === 'writing' && (landing?.search || landing?.hash)) return from;
-    if (landing?.position === 'end') {
-      const ids = page === 'writing' ? topicPaths.all : Object.values(pageStops[page] || {});
-      return pose(ids.at(-1) || initialPoses[page]);
-    }
-    // Interior history and fragments need the incoming page's native layout.
-    // Keep the displayed pose until the existing hidden midpoint mount measures
-    // that landing; guessing its initial pose can pass the destination first.
-    if (travelling && (landing?.position?.[1] > 0 || (!landing?.position && landing?.hash)))
-      return from;
-    return pose(initialPoses[page]);
-  }
   window.SiteScene = {
     managesLayout: true,
     canTravel: () =>
@@ -4040,7 +3919,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       !hold &&
       !printing &&
       !document.hidden,
-    navigate(next, animate = true, update = null, landing = null) {
+    navigate(next, animate = true, update = null) {
       if (!owns(initialPoses, next)) return;
       // Media-query state can change before its queued change event is delivered.
       if (reduced.matches && enabled) {
@@ -4051,12 +3930,8 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       const from = displayedCamera,
         sourcePage = page;
       page = next;
-      focus = 'all';
-      localProgress = landing?.position === 'end' ? 1 : 0;
-      writingAnchor = null;
       const travelling = animate && this.canTravel(),
-        target = landingPose(landing, from, travelling);
-      animation = null;
+        target = settledPose();
       current = from;
       displayedProgress = 0;
       const forward =
@@ -4079,6 +3954,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       }
       scene.dataset.travel = journey ? 'flying' : 'settled';
       travelUpdate = update;
+      travelAnchor = null;
       // Prepare the bounded source/target working set at its settled detail
       // before either can be painted in flight. Avoid a visible downgrade and
       // post-arrival rebuild; mobile/adaptive compact detail still applies.
@@ -4086,7 +3962,8 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       if (journey) {
         try {
           roomFor(sourcePage);
-          roomFor(page);
+          const root = roomFor(page).world.objects.find((object) => object.rootCenter)?.rootCenter;
+          if (root) travelAnchor = Object.freeze([root[0], root[1], root[2] + roomOffset(page)]);
         } catch {
           fail();
           return;
@@ -4130,11 +4007,6 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     layoutReasons.clear();
     initialized = true;
     scene.dataset.state = 'active';
-    if (enabled) {
-      if (page === 'writing') current = pathPose();
-      else if (stops.length === 1) current = pose(stops[0].id);
-      else current = scrollPose();
-    }
     updateControl();
     schedule();
   }

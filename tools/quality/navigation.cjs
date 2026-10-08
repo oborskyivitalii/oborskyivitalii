@@ -508,6 +508,11 @@ async function reverseEndpoints(page) {
         const endpointEvidence = await endpointReady(page, { route: to, late, token });
         const state = await range();
         const actualMotion = await page.evaluate(require('./engine-browser.cjs').motionState);
+        assert.deepEqual(
+          JSON.parse(actualMotion.camera),
+          require('./scroll-browser.cjs').routeCamera(to),
+          'reverse native endpoint and content growth preserve camera'
+        );
         rows.push({ from, to, motion, late, ...state, actualMotion, endpointEvidence });
         await page.evaluate((rows) => (window.__reverseEndpointRows = rows), rows);
         assert.ok(
@@ -576,6 +581,7 @@ async function scenario(browser, url, s) {
     errors = [];
   page.on('pageerror', (error) => errors.push(error.message));
   await ctx.addInitScript(timingProbe);
+  await ctx.addInitScript(require('./engine-browser.cjs').paintProbe);
   await ctx.addInitScript((theme) => localStorage.setItem('vo.theme', theme), s.theme);
   if (process.env.SITE_NAVIGATION_PROBE === 'true')
     await ctx.addInitScript(() => {
@@ -684,9 +690,19 @@ async function scenario(browser, url, s) {
     await page.goBack();
     await ready(page, 'credits');
     await settled(page);
+    assert.deepEqual(
+      JSON.parse(await page.locator('.space-scene').getAttribute('data-camera')),
+      require('./scroll-browser.cjs').routeCamera('credits'),
+      'Back restores the settled route camera'
+    );
     await page.goForward();
     await ready(page, 'index');
     await settled(page);
+    assert.equal(
+      await page.locator('.space-scene').getAttribute('data-camera'),
+      initial,
+      'Forward restores the settled route camera'
+    );
     result.checks.history = true;
     await page.evaluate(() =>
       addEventListener('site:page-ready', () => scrollTo({ top: 400, behavior: 'instant' }), {
@@ -695,6 +711,11 @@ async function scenario(browser, url, s) {
     );
     await click(page, 'research');
     await settled(page);
+    assert.deepEqual(
+      JSON.parse(await page.locator('.space-scene').getAttribute('data-camera')),
+      require('./scroll-browser.cjs').routeCamera('research'),
+      'early native reading preserves camera'
+    );
     assert.equal(await page.evaluate(() => history.state.site.scroll[1]), 400);
     result.checks.earlyScroll = true;
     await page.waitForFunction(
@@ -714,6 +735,11 @@ async function scenario(browser, url, s) {
       position,
       'Forward restores the last reading position'
     );
+    assert.deepEqual(
+      JSON.parse(await page.locator('.space-scene').getAttribute('data-camera')),
+      require('./scroll-browser.cjs').routeCamera('research'),
+      'restored native reading position preserves camera'
+    );
     result.checks.historyScroll = true;
     result.reverseEndpoints = await reverseEndpoints(page);
     result.checks.reverseEndpoint = true;
@@ -728,9 +754,19 @@ async function scenario(browser, url, s) {
     await page.goBack();
     await archiveHistoryReady(page, archiveBack, { topic: 'systems', language: 'all' });
     assert.equal(await page.locator('#archive-language').inputValue(), 'all');
+    assert.deepEqual(
+      JSON.parse(await page.locator('.space-scene').getAttribute('data-camera')),
+      require('./scroll-browser.cjs').routeCamera('writing'),
+      'archive Back preserves camera while Off'
+    );
     await page.goForward();
     await archiveHistoryReady(page, archiveForward, { topic: 'systems', language: 'uk' });
     assert.equal(await page.locator('#archive-language').inputValue(), 'uk');
+    assert.deepEqual(
+      JSON.parse(await page.locator('.space-scene').getAttribute('data-camera')),
+      require('./scroll-browser.cjs').routeCamera('writing'),
+      'archive Forward preserves camera while Off'
+    );
     await click(page, 'talks');
     await page.goBack();
     await ready(page, 'writing');

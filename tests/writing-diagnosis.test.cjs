@@ -15,6 +15,53 @@ const {
 const candidate = 'a'.repeat(40),
   tree = 'b'.repeat(40),
   engine = 'c'.repeat(64);
+test('current diagnostic scrolls keep canonical camera and real native painting; historical cameras are observations', () => {
+  const {
+      readingCameraPolicy,
+      validateReadingScroll,
+    } = require('../tools/quality/writing-probe.cjs'),
+    camera = JSON.stringify(require('../tools/quality/scroll-browser.cjs').routeCamera('writing')),
+    current = {
+      policy: 'stationary',
+      end: 9000,
+      requestedY: 100,
+      y: 100,
+      beforePaints: 0,
+      paints: 2,
+      before: camera,
+      camera,
+    };
+  assert.equal(validateReadingScroll(current), true);
+  assert.equal(readingCameraPolicy('current-base'), 'stationary');
+  assert.equal(readingCameraPolicy('current-color'), 'stationary');
+  assert.equal(readingCameraPolicy('no-ribbons'), 'stationary');
+  assert.equal(readingCameraPolicy('pr23-base'), 'historical-observation');
+  assert.equal(readingCameraPolicy('before-color'), 'historical-observation');
+  assert.equal(
+    validateReadingScroll({
+      ...current,
+      policy: 'historical-observation',
+      before: 'old-opening',
+      camera: 'old-scroll',
+    }),
+    true
+  );
+  for (const change of [
+    { y: 0 },
+    { camera: 'scroll-retarget' },
+    { paints: 0 },
+    { paints: Infinity },
+    { end: NaN },
+    { requestedY: NaN },
+    {
+      before: JSON.stringify({ position: [0, 0, 0], target: [0, 0, 0] }),
+      camera: JSON.stringify({ position: [0, 0, 0], target: [0, 0, 0] }),
+    },
+    { policy: 'skip' },
+  ])
+    assert.throws(() => validateReadingScroll({ ...current, ...change }));
+  assert.equal(validateReadingScroll({ ...current, end: 50, y: 50 }), true);
+});
 function identities() {
   const base = {
     sourceDirty: false,

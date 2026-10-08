@@ -3,7 +3,7 @@
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/49",
     "date": "2026-10-08",
-    "summary": "Planning-only issue49 revision after merged R2-R6: map the revised eight-criterion policy and one versioned analysis to existing acceptance/selection/RI checks. Preserve all current source-quality, profile and release layers; no new runtime or browser workflow is added."
+    "summary": "Issue49 consolidates inherited issue48 acceptance in one bound PR53 and begins stationary-camera/opt-in two-sided fragment contracts. Map the14-criterion owning policy, individual inherited source checks and permanent fragment/stationary suites while preserving historical PR51/issue48 evidence and pending actual visual/resource/merge gates; existing check/profile budgets and workflow boundaries remain."
   },
   "layers": [
     {
@@ -62,7 +62,8 @@
         "review/issue-58/2026-10-08-handoff.md",
         ".github/acceptance/issue-58.json",
         ".github/acceptance/issue-49.json",
-        "review/issue-49/2026-10-08-analysis.md"
+        "review/issue-49/2026-10-08-analysis.md",
+        "tests/test_issue49_acceptance.py"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -219,7 +220,7 @@
     },
     {
       "id": "refactoring-contracts",
-      "purpose": "Content/template and canonical CSS ownership, pure camera/build seams, authored dependency/cycle negatives and comparable original-budget measurements under issue58.",
+      "purpose": "Permanent content/template/CSS/cohesion controls, authored dependency negatives and current bounded stationary-camera/fragment source contracts. Issue58 measurements remain source-bound history; issue49 visual/depth/resource admission remains separately evidenced.",
       "paths": [
         "tools/quality/architecture.cjs",
         "tools/quality/refactor-metrics.cjs",
@@ -235,7 +236,11 @@
         "tests/build-cohesion.test.cjs",
         "tests/camera-view.test.cjs",
         "tests/architecture.test.cjs",
-        "tests/refactor-metrics.test.cjs"
+        "tests/refactor-metrics.test.cjs",
+        "site/effects/fragment-plan.cjs",
+        "site/effects/fragment-dom.cjs",
+        "tests/fragment-plan.test.cjs",
+        "tests/fragment-dom.test.cjs"
       ],
       "checks": [
         "authored-dependencies",
@@ -402,7 +407,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "1eb793be021422b06d74c08eaff865b704a34faa32098f6097b5ed413c266a5f",
+    "digest": "9686ea8ef53a7a91671f23247a4c67d98cccccb75dcb4a56a03f4a52b54ba3ef",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -450,7 +455,7 @@
       },
       {
         "path": ".github/acceptance/issue-49.json",
-        "sha256": "c04ff86ea9522baa48e0d0a88a84425eeb7e6f8c9b770e191b70b397f78e9d8b"
+        "sha256": "87e9214b58b6927b016862cc02f4dfb63610a694a96b8d4cd01322f0d0ad3f39"
       },
       {
         "path": ".github/acceptance/issue-54.json",
@@ -490,7 +495,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "9abc6ed20ec62fb14b537f8be5e2e3e5a664d6c7cb23511053b149f9837f02b8"
+        "sha256": "fb807aad36a52ee145cfe79517c5e3557574afdc646b6f70b287b3d11653315c"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -554,11 +559,11 @@
       },
       {
         "path": "AGENTS.md",
-        "sha256": "478c6af4aa6eca644b0d85cf73f44d50526fa5c4a808f414cc6d0b654d3b4792"
+        "sha256": "3993eec929a10fc3246a484eb7d7b0b81e18fe6467e0d007fd7a0e19c1683321"
       },
       {
         "path": "CONTRIBUTING.md",
-        "sha256": "9d8ea10d74c48fe313e7c977ffef9e9afa894d566163220a405d2fdb154f6ebc"
+        "sha256": "c8f7ac052ceff260e9fd9a9b8e7a12787f5e1aa25831342cda9586955767855a"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -570,7 +575,7 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "d3fda7bcd9d71fb4bf28aecd801c5106fdcd1e380e580f6c91598f49bb99767c"
+        "sha256": "27ba5bc1e6be35f24e605edc925f196a74a96eaf31ef43af9be6964a2e3ce09f"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -578,7 +583,7 @@
       },
       {
         "path": "tests/fixtures/staging-evidence.cjs",
-        "sha256": "bd0c1565f657a7a0944f74ceecc755c8342ca93306315564ccb61e718d080a53"
+        "sha256": "a12c30da2f4828924dd5c8181ce4cd75d30ad93db8b14f4a1a37a093e878ae0a"
       },
       {
         "path": "tests/staging-gate.test.cjs",
@@ -586,7 +591,7 @@
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "b32301616da5fafd4f8ed5d898a6d2cadd2c71b7d5387c4699874ef6d12b6710"
+        "sha256": "8adb46cb609378d8648be7b3edf3cce6e3261bf3f95dc1f3d565a142d5678e63"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
@@ -623,6 +628,10 @@
       {
         "path": "tests/test_issue48_acceptance.py",
         "sha256": "4be8985f921ee15ede634cca75c37353ff225648ff3c4a6be02806e368185ad8"
+      },
+      {
+        "path": "tests/test_issue49_acceptance.py",
+        "sha256": "4fff00203f5f37ba84c2a57eed96fe59139ae236fab5fad8a3f80a16cba47bb3"
       },
       {
         "path": "tests/test_issue56_acceptance.py",
@@ -686,11 +695,11 @@
       },
       {
         "path": "tools/quality/staging-regression.cjs",
-        "sha256": "53fb2c18a73f99fca3a0ef71944b6a0c32b8ddd0a412610abb640d93e4b129c2"
+        "sha256": "bd53ed0c68a67fd4268dddeeedab2fed446fd39a99a78cadf762b4d88ae3a6c2"
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "d855852dbaad6b393ca772ac2285bfa3469d87c9008d37f53afe5213afb0510a"
+        "sha256": "fed9e36f47456b36233284b2a2d130aa8070155d313ffb727d777fdb12554253"
       },
       {
         "path": "tools/repository_intelligence.py",

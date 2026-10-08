@@ -9,52 +9,63 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
   maintainer decision. [Issue58](https://github.com/oborskyivitalii/oborskyivitalii/issues/58)
   is closed with all ten global and seven phase boxes checked. Main navigation
   CI37835350431 and clean actual-main local acceptance15/15 passed; raw report
-  and complete final evidence are in [PR60](https://github.com/oborskyivitalii/oborskyivitalii/pull/60#issuecomment-6067959337).
-- Refactoring preserves PMDay recording content and active Color ribbon removal.
+  and final evidence are in [PR60](https://github.com/oborskyivitalii/oborskyivitalii/pull/60#issuecomment-6067959337).
+- Refactoring preserves PMDay recording and active Color ribbon removal.
   Canonical runtime/effects/build/content/CSS ownership is current; edit `site/`
   and generate public/offline renditions. The old active review prototype is history.
 - [Issue49](https://github.com/oborskyivitalii/oborskyivitalii/issues/49) and
-  [Draft PR53](https://github.com/oborskyivitalii/oborskyivitalii/pull/53) are the sole
-  fragment-flight route. Issue50/PR52 remain duplicate/superseded history.
-- The latest requested work is a revised plan: camera fixed while reading,
-  ordinary native scroll and edge navigation retained, outgoing breakup and
-  incoming assembly both required. Runtime implementation is not authorized by
-  that planning request. Read the [single updated analysis](review/issue-49/2026-10-08-analysis.md).
+  [Draft PR53](https://github.com/oborskyivitalii/oborskyivitalii/pull/53) are now the
+  sole consolidated content/theory/formula and fragment-flight execution route.
+  Issue48 is superseded after its full acceptance transfer, not completed or an
+  identical duplicate. Merged PR51 remains historical delivery. Issue50/PR52
+  remain duplicate/superseded history.
+- Latest explicit instruction consolidates48/49 and their PR routes, then implements.
+  It supersedes the earlier plan-only request. The [single execution handoff](review/issue-49/2026-10-08-analysis.md)
+  owns the AC crosswalk, T02 fixed reading camera and T03 opt-in actual
+  heading/paragraph/portrait prototype. Depth/fidelity/measured admission precedes
+  broad/default fragmentation. Read live PR53 for exact current head/checks.
 
 ## Decisions
 
-- Issue49 retains AC01-AC07 and adds AC08 for stationary reading camera.
-  AC01 is design delivery; feature AC02-AC08 remain open. Preserve actual boxes
-  and live evidence; planning checks cannot establish an implemented animation.
-- Start with a bounded two-sided real heading/paragraph/portrait prototype,
-  using the existing painted camera/clock and route serial. Native clipped paint
-  is provisional: separate Canvas faces do not automatically occlude DOM pieces.
-  Author visual/depth/fidelity and measured-cost admission precede broad integration.
-- Fixed reading pose must replace all scroll/topic/layout/history camera consumers,
-  not just the scroll listener. Keep ambient fractal motion, native Y/filters,
-  focus/history, edge intent, freeze modes and room/cache bounds.
-- Proposed direction default preserves reverse travel for Back/top-edge. Literal
-  always-forward Back is a separate choreography choice, not an approved change.
-- Current world/formula composition and active no-ribbons selection remain.
-  Validate fixed pose framing, especially Writing formula; no silent geometry move.
+- Stay bound to issue49/PR53 across implementation, fixes, phases and model handoffs.
+  Append dated scope/criteria; do not create another phase owner. Preserve one
+  complete `Refs #49` line and link historical issues as dependencies/evidence.
+- Issue49 AC01-AC08 remain; new AC09-AC14 map original48 AC01-AC06 respectively.
+  AC01 and inheritedAC11-AC14 are checked for accepted design/historical scope.
+  FeatureAC02-AC08 and inherited narrow visualAC09-AC10 remain open. Preserve
+  original issue-qualified IDs, exact source evidence and actual checkboxes.
+- PR51 accepted head `3e8944af`, merge `a06b530e`, tree `ca02b382` and its stable-stage
+  evidence remain historical. They do not admit fragments or authorize new staging.
+- Begin with fixed settled poses and an opt-in two-sided real paint prototype,
+  using the existing painted camera/clock and router serial. Native clipped paint
+  is provisional: Canvas faces do not automatically occlude DOM pieces.
+- Replace every scroll/topic/layout/history camera consumer while preserving
+  ambient fractal phase, actual native Y/filters/anchors, focus/history, edge intent,
+  freeze modes and finite room/cache bounds. Retain reverse Back/top-edge travel;
+  always-forward Back is a separate choreography choice.
+- Preserve formula/book/fractal world geometry and active no-ribbons composition.
+  Validate stationary Writing framing and inherited narrow Day/Night formula
+  visibility; moving geometry or turning Motion off cannot hide a defect.
 - Measure fragment overhead against the same-source stationary-camera legacy
-  presentation. Camera-policy savings cannot hide fragment costs. Use one shared
-  departure/arrival cap and the existing original budgets and profile boundaries.
-- CS01-CS10 and pinned Prettier/Ruff/source lint/security remain mandatory.
-  Frozen R2/checkpoint evidence belongs to issue58 history; new behavior gets
-  current meaningful contracts, not broader historical parity exclusions.
-- Writing has99,996 raw bytes within the100,000-byte limit. New shared runtime
-  belongs in declared canonical sources, not a page-inline payload.
-- Merge, stable promotion, production/native/device/rights/domain and publication
-  retain their separate decisions. No new browser campaign is needed for this plan.
+  presentation at identical quality/cache/landing conditions. Use one shared
+  departure/arrival cap, original budgets and retained raw failures.
+- The issue49 policy selects current fragment-plan/DOM/space/navigation contracts
+  and individually reuses meaningful inherited source checks. Issue48's whole
+  policy and frozen unrelated task snapshots remain historical, not second owners.
+- CS01-CS10, pinned formatting and actual complete source lint/security remain.
+  New behavior needs meaningful negatives and independent implementation review.
+  Writing stays within its100000-byte limit; shared runtime has canonical owners.
+- Final merge, stable promotion, production/native/device/rights/domain and public
+  release retain separate applicable decisions. Green prototype tests cannot admit
+  visual depth/fidelity or browser performance.
 
 ## Open work
 
 | Issue | Remaining intent |
 | --- | --- |
-| #49 / Draft PR53 | Revised design handoff, then requested implementation/prototype admission and AC02-AC08 evidence. |
-| #48 / #61 | Content/editorial work: fetch live owners/PRs before touching accepted prose. |
-| #45 / #36 / #41 | Preserve historical source-bound visual/editorial evidence; check live remaining release gates. |
+| #49 / Draft PR53 | T02-T03 source prototype implemented/reviewed; obtain visual/cost admission and complete AC02-AC10 while preserving historicalAC11-AC14. |
+| #61 | Separate content/editorial owner; fetch live issue/PR before editing accepted prose. |
+| #45 / #36 / #41 | Historical source-bound visual/editorial evidence and remaining release gates. |
 | #1 / #13 | First release, physical devices and production/recovery acceptance. |
 | #8 / #39 | Production URL/indexability, domains and analytics activation. |
 | #7 | License and editorial/third-party rights. |
@@ -63,14 +74,14 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 
 ## Next session
 
-1. Fetch main, issue49 and PR53; revalidate source, decisions, Draft and checks.
-2. Read the current issue amendment and single versioned analysis/Sol tasks.
-3. After execution is requested, implement the fixed reading-pose checkpoint,
-   then the small departing/arriving prototype. Preserve native route semantics.
-4. Review actual depth, framing, native seam and bounded measurements before
-   integrating all visible owners. Record fallback reasons and failed observations.
-5. Update existing policy/source/profile contracts, RI and actual issue boxes.
-   Do not replay unrelated matrices or claim feature completion from design CI.
+1. Fetch actual main, issue49 and PR53; revalidate bound source, decisions and checks.
+2. Read the consolidation/execution section and ordered tasks in the same handoff.
+3. Inspect the fixed-camera and opt-in departure/arrival checkpoint and current
+   source/CI evidence; active movement checks now have stationary replacements.
+4. Inspect actual depth/framing/native seams and bounded same-source raw measurements
+   before broad/default rollout. Keep fallbacks and failed observations honest.
+5. Refresh policy/catalog/profile/RI/CI and exact current generated/scanner evidence;
+   independently review, update actual boxes and retain final merge/main gates.
 
 ## Maintenance
 

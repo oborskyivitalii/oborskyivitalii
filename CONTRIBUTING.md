@@ -11,6 +11,15 @@ Incoming contributor issues may be incomplete:
 triage them with a comment rather than requiring a duplicate or rewriting the
 contributor's original message.
 
+When the maintainer supplies an issue, bind the task to that issue and its active
+PR across planning, implementation, fixes and model handoffs. A new technical
+phase, larger diff or changed model is not a reason to create another owner.
+Append overlapping instructions as dated scope decisions in the bound issue;
+create another issue only when the maintainer explicitly requests it. For an
+authorized consolidation, transfer original criteria, accepted evidence and
+open gates before closing the former owner as superseded. Preserve merged PRs
+as linked delivery history and use one active PR for continuing execution.
+
 The issue records the intent; PRs and their commits record its execution. When
 asked to create an issue, recover the request and clarify the intended outcome,
 reason, boundaries and acceptance with the maintainer. If a material choice is

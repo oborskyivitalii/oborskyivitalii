@@ -124,6 +124,25 @@ retained recovery. Production activation remains outside routine staging.
 
 ## Registry and issue completion
 
+Issue49 consolidates issue48's six criteria as AC09-AC14 while preserving the
+original issue-qualified IDs and historical PR51 delivery. Its single policy
+selects current fragment/stationary contracts and meaningful inherited source
+checks individually; the old whole issue48 policy is not a second execution owner.
+The transferred theory/formula narrow Day/Night visual gates remain open, and
+accepted historical content/surface criteria do not admit the new animation.
+
+`fragment-plan.test.cjs` and `fragment-dom.test.cjs` are permanent source contracts
+selected for relevant PR changes, staging and production. Their canonical helpers
+are `site/effects/fragment-plan.cjs` and `site/effects/fragment-dom.cjs`; the numeric
+`test_issue49_acceptance.py` selector is owning-policy-only. Existing scene/router
+and browser-fixture module IDs stay active: replace conflicting scroll-driven
+camera assertions with fixed reading-pose observations while retaining native
+scroll/filter/history/edge intent, ambient motion, freeze and original limits.
+The opt-in heading/paragraph/portrait prototype requires actual two-sided depth,
+native-paint fidelity and same-source measured-cost admission before broad/default
+rollout. Source/DOM fixtures do not supply those observations. Extend applicable
+existing hosted cases rather than add another full matrix.
+
 The registry inventories current suites, scheduled profiles, changed-path targets
 and retained diagnostics. Use `tools/quality/source-tests.cjs` to select registered
 source suites instead of a wildcard that revives every historical snapshot.

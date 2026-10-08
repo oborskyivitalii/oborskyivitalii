@@ -1,6 +1,29 @@
 #site-content-frame {
   overflow: clip;
 }
+.fragment-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  overflow: clip;
+  contain: strict;
+}
+.fragment-piece {
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: clip;
+  transform-origin: 0 0;
+  pointer-events: none;
+  contain: paint;
+}
+.fragment-paint {
+  position: absolute;
+  margin: 0;
+  max-width: none;
+  pointer-events: none;
+}
 .end-scroll-control input {
   width: 16px;
   height: 16px;
@@ -30,6 +53,9 @@
   display: none;
 }
 @media print {
+  .fragment-layer {
+    display: none;
+  }
   #site-content-frame {
     overflow: visible;
   }

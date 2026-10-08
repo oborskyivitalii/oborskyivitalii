@@ -36,6 +36,7 @@ and strict aggregate under #13; generation freshness alone is insufficient.
 | `engine/theme.js`, `archive.js`, `navigation.js`, `styles.css`, `critical-media.css`, `reading-surfaces.css` | Theme, filtering, routing and canonical presentation, including Home media fallback | Shared browser files and pages |
 | `scenes/world.cjs`, `paths.json` | Authored motifs, rest geometry and finite camera paths | Runtime and projected SVG fallbacks |
 | `effects/flight.cjs`, `effects/*.css` | Current Color travel descriptor and canonical static reading/control CSS | Shared hosted/offline Color runtime |
+| `effects/fragment-plan.cjs`, `fragment-dom.cjs` | Bounded shared-camera geometry and temporary native paint | Issue49 opt-in two-sided prototype; visual/cost admission precedes default rollout |
 | `effects/ribbons.cjs` | Optional historical comparison factory; not serialized into active Color | Explicit legacy diagnostics only; full scanner coverage remains |
 | `../tools/site/effects.cjs`, `export.cjs` | Canonical effect source manifest, explicit delivery adapters and standalone export | Supported Color selection, scanner coverage and offline HTML |
 | `assets/` | Existing portrait, cutout, favicon and `.nojekyll` source | Exact image/icon bytes |

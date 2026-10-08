@@ -1029,13 +1029,17 @@
     {
       "path": "tests/writing-diagnosis.test.cjs",
       "language": "javascript",
-      "purpose": "Dated balanced paired cold boot/flight matrix, raw preparation/tail accounting, honest failures and sample counts",
+      "purpose": "Dated balanced paired cold boot/flight matrix, raw preparation/tail accounting, honest failures/sample counts and current stationary/native reading observations; historical camera observations never become current acceptance",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "diagnostic",
       "profiles": ["diagnostic", "pr-targeted"],
       "disposition": "retain explicit targeted/manual diagnostic; removed from routine release",
       "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
-      "inputs": ["tests/writing-diagnosis.test.cjs", "tools/quality/writing-diagnosis.cjs"]
+      "inputs": [
+        "tests/writing-diagnosis.test.cjs",
+        "tools/quality/writing-diagnosis.cjs",
+        "tools/quality/writing-probe.cjs"
+      ]
     },
     {
       "path": "tests/writing-geometry.test.cjs",
@@ -1408,6 +1412,63 @@
         "tools/quality/refactor-metrics.cjs",
         "tools/quality/motion.cjs",
         "tools/quality/budgets.json"
+      ]
+    },
+    {
+      "path": "tests/fragment-plan.test.cjs",
+      "language": "javascript",
+      "purpose": "Issue49 current pure fragment partition/shared-resource admission, native/world projection/near-plane and serialized-factory negatives",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "retain current opt-in prototype geometry/resource rejection contracts; actual depth/fidelity/browser cost stay external admission gates, without a duplicate hosted matrix",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/fragment-plan.test.cjs",
+        "site/effects/fragment-plan.cjs",
+        "site/engine/math.cjs",
+        "site/engine/lifecycle.cjs",
+        "site/effects/flight.cjs",
+        "tools/site/effects.cjs"
+      ]
+    },
+    {
+      "path": "tests/fragment-dom.test.cjs",
+      "language": "javascript",
+      "purpose": "Issue49 current opt-in native-paint fragment owner/copy/handoff/cancellation/cleanup and malformed/over-budget rejection contracts",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "retain bounded real-source prototype fixtures and failure surfaces; DOM fixtures do not establish browser depth/fidelity/performance admission or default rollout",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/fragment-dom.test.cjs",
+        "site/effects/fragment-dom.cjs",
+        "site/effects/fragment-plan.cjs",
+        "site/effects/flight.cjs",
+        "site/effects/flight.css",
+        "site/engine/navigation.js",
+        "site/engine/lifecycle.cjs",
+        "tools/site/effects.cjs"
+      ]
+    },
+    {
+      "path": "tests/test_issue49_acceptance.py",
+      "language": "python",
+      "purpose": "Consolidated issue49 fourteen-criterion policy-only current fragment/stationary source selectors with fail-closed test accounting",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": ["issue-policy"],
+      "disposition": "owning issue49 selector only; meaningful underlying JS suites remain permanent current-source contracts, inherited48 whole policy and unrelated frozen snapshots stay historical",
+      "surviving_route": ".github/acceptance/issue-49.json",
+      "inputs": [
+        "tests/test_issue49_acceptance.py",
+        ".github/acceptance/issue-49.json",
+        "review/issue-49/2026-10-08-analysis.md",
+        "tests/fragment-plan.test.cjs",
+        "tests/fragment-dom.test.cjs",
+        "tests/space.test.cjs",
+        "tests/navigation.test.cjs"
       ]
     }
   ]

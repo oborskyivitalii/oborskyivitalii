@@ -406,7 +406,8 @@
       let mounted = false,
         mountTimer = null,
         settled = false,
-        lastProgress = 0;
+        lastProgress = 0,
+        lastView = null;
       const mountAt = presentation?.mountAt ?? 0.18;
       const cancelTask = () => {
         if (mountTimer !== null) window.clearTimeout(mountTimer);
@@ -440,6 +441,7 @@
         try {
           mounted = true;
           commit();
+          presentation?.mounted?.(lastView);
         } finally {
           if (start) {
             const time = performance.now();
@@ -467,7 +469,7 @@
           }
           try {
             mountNow(true);
-            if (!settled) update(lastProgress);
+            if (!settled) update(lastProgress, lastView);
           } catch (error) {
             fail(error);
           }
@@ -480,7 +482,7 @@
         if (transition === update) transition = null;
         resolve();
       }
-      const update = (progress) => {
+      const update = (progress, paintedView = null) => {
         if (settled) return;
         if (own !== serial) {
           cancel();
@@ -488,6 +490,7 @@
         }
         try {
           lastProgress = progress;
+          if (paintedView) lastView = paintedView;
           if (progress >= mountAt && !mounted) {
             if (animate && presentation?.mountAt === 0.5 && progress < 1) queueMount();
             else mountNow(mountTimer !== null);
@@ -505,7 +508,8 @@
               presentation.present(
                 progress,
                 document.querySelector('.space-scene')?.dataset.direction || 'forward',
-                departure
+                departure,
+                lastView
               );
             return;
           }
@@ -527,6 +531,7 @@
       update.cancel = cancel;
       transition = update;
       content.inert = true;
+      presentation?.begin?.(animate);
       if (window.SiteScene) window.SiteScene.navigate(next, animate, transition, landing);
       else transition(1);
     });
@@ -800,6 +805,9 @@
     reconcileEndpoint,
     contentFlight(value) {
       return presentation?.contentFlight?.(value) ?? false;
+    },
+    fragmentPreview(value) {
+      return presentation?.fragmentPreview?.(value) ?? false;
     },
     go(next, { atEnd = false, input = null } = {}) {
       if (

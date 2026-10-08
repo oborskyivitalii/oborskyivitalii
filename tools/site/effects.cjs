@@ -8,7 +8,12 @@ const ribbons = require('../../site/effects/ribbons.cjs');
 const flight = require('../../site/effects/flight.cjs');
 const variants = require('./variants.cjs');
 
-const effectSources = Object.freeze(['site/effects/flight.cjs', 'site/effects/ribbons.cjs']);
+const effectSources = Object.freeze([
+  'site/effects/flight.cjs',
+  'site/effects/fragment-plan.cjs',
+  'site/effects/fragment-dom.cjs',
+  'site/effects/ribbons.cjs',
+]);
 // CSS paths are a closed ownership contract, not arbitrary descriptor file reads.
 const effectStyles = Object.freeze({
   ribbons: Object.freeze(['site/effects/reading-surfaces.css']),

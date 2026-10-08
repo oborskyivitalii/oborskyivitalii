@@ -11,9 +11,10 @@ navigation in [REPOSITORY-MAP.md](REPOSITORY-MAP.md).
 2. Find or create the owning issue **before implementation**. Read its original
    intent, accepted scope, decisions, acceptance checks and dependencies. Assign
    stable AC IDs and observable pass conditions before implementation. Reuse
-   an existing owner. Follow [CONTRIBUTING.md](CONTRIBUTING.md).
-3. Read `MEMORY.md` as a dated handoff; revalidate relevant refs, issue/PR state,
-   checks and deployments through Git/GitHub. Memory is never live evidence.
+   an existing owner. A user-provided issue stays bound across phases and handoffs;
+   another owner requires the user's explicit request. See [CONTRIBUTING.md](CONTRIBUTING.md).
+3. Read `MEMORY.md` as a dated handoff, not live evidence; revalidate relevant
+   refs, issue/PR state, checks and deployments through Git/GitHub.
 4. Use the repository map or verified [RI](.github/REPOSITORY-INTELLIGENCE.md)
    to find the owning source, instructions and checks. Known owners can be read
    directly. A stale, missing, ambiguous or untranslated lookup needs source

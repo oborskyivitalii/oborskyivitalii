@@ -337,35 +337,38 @@ function visit(options = {}) {
   };
   return api;
 }
-test('native-scroll camera is reversible while the bounded ambient loop continues at idle', () => {
-  const p = visit();
-  p.settle();
-  const start = p.trace(),
-    phase = p.phase();
-  p.scroll(1400);
-  p.scroll(1750);
-  assert.equal(p.pending.size, 1);
-  p.settle();
-  assert.notEqual(p.trace(), start);
-  p.scroll(0);
-  p.settle();
-  assert.equal(p.trace(), start);
-  assert.ok(p.phase() > phase);
-  assert.equal(p.pending.size, 1);
-  const fixed = p.trace();
-  p.frame(60);
-  assert.equal(p.trace(), fixed);
-  assert.equal(p.canvas.width, 2160);
+test('every settled route keeps its canonical camera through native scrolling while ambient motion continues', () => {
+  for (const page of Object.keys(model.initialPoses)) {
+    const p = visit({ page, scrollY: 7000 });
+    p.settle();
+    const start = p.trace(),
+      phase = p.phase(),
+      rangeReads = p.rangeReads();
+    assert.deepEqual(
+      JSON.parse(start),
+      model.routePose(page, model.poses[model.initialPoses[page]])
+    );
+    for (const y of [1400, 1750, 14100, 0]) {
+      p.scroll(y);
+      p.settle();
+      assert.equal(p.window.scrollY, y, 'the scene does not consume native reading scroll');
+      assert.equal(p.trace(), start);
+      assert.equal(p.pending.size, 1, 'ambient motion keeps exactly one RAF owner');
+    }
+    assert.equal(p.rangeReads(), rangeReads, 'reading scroll does not remeasure page geometry');
+    assert.ok(p.phase() > phase);
+    assert.equal(p.canvas.width, 2160);
+  }
 });
-test('continuous gestures move immediately; pointer events never influence the camera', () => {
+test('continuous native gestures and pointer events never move the settled camera', () => {
   const p = visit();
   p.settle();
   let last = p.trace();
   for (let i = 0; i < 8; i++) {
     p.scroll(200 + i * 140);
     p.frame(65);
-    assert.notEqual(p.trace(), last);
-    last = p.trace();
+    assert.equal(p.trace(), last);
+    assert.equal(p.window.scrollY, 200 + i * 140);
   }
   p.settle();
   last = p.trace();
@@ -493,13 +496,13 @@ test('short/degenerate pages keep their camera and still breathe without manufac
     const start = p.trace();
     p.scroll(1200);
     p.settle();
-    assert.notEqual(p.trace(), start);
+    assert.equal(p.trace(), start);
     p.scroll(0);
     p.settle();
     assert.equal(p.trace(), start);
   }
 });
-test('Writing topic travel, reflow, empty restoration and unchanged scroll preserve local progress', () => {
+test('Writing filters, reflow, empty restoration and native history position keep one settled pose', () => {
   const p = visit({ page: 'writing' });
   p.event('site:scene-focus', { focus: 'systems', reason: 'initial' });
   p.settle();
@@ -524,14 +527,21 @@ test('Writing topic travel, reflow, empty restoration and unchanged scroll prese
   assert.equal(p.trace(), fixed);
   p.scroll(1450);
   p.settle();
-  assert.notEqual(p.trace(), fixed);
+  assert.equal(p.trace(), fixed);
   p.event('site:scene-focus', { focus: 'delivery', reason: 'filter' });
   p.settle();
-  const changed = p.trace();
+  assert.equal(p.trace(), fixed, 'changing topic cannot fly the settled camera');
+  assert.equal(p.window.scrollY, 1450, 'scene focus does not reset native reading position');
+  p.window.innerHeight = 700;
+  p.window.innerWidth = 390;
+  p.narrow.matches = true;
+  p.event('resize');
+  p.settle();
+  assert.equal(p.trace(), fixed, 'viewport projection can change without moving the camera');
   for (const focus of ['__proto__', 'verification', 'unknown'])
     p.event('site:scene-focus', { focus });
   p.settle();
-  assert.equal(p.trace(), changed);
+  assert.equal(p.trace(), fixed);
   p.click();
   p.settle();
   const frozen = p.trace(),
@@ -778,7 +788,7 @@ test('camera traverses multiple structures, is continuous/reversible and clips s
   }
 });
 
-test('rapid reversal clears obsolete targets on every route', () => {
+test('rapid reading-scroll reversals cannot create a camera target on any route', () => {
   for (const page of Object.keys(model.initialPoses)) {
     const p = visit({ page });
     p.settle();
@@ -845,8 +855,8 @@ test('direct boot waits for deferred archive/navigation setup and measures the f
     p.settle();
     assert.deepEqual(
       JSON.parse(p.trace()),
-      model.routePose('writing', model.journeyPose(model.topicPaths.leadership, 0, false)),
-      'initial archive focus survives the deferred initialization'
+      model.routePose('writing', model.poses[model.initialPoses.writing]),
+      'initial archive focus cannot replace the canonical route camera'
     );
     p.domReady();
     p.stylesheetLoad();
@@ -1061,21 +1071,20 @@ test('camera convergence depends on elapsed time, not the RAF frequency', () => 
       for (let i = 0; i < 3; i++) assert.ok(Math.abs(p[key][i] - poses[0][key][i]) < 1e-10);
   assert.deepEqual(model.followCamera(from, target, 0), from);
 });
-test('the live RAF camera uses actual elapsed time from its first scroll frame', () => {
-  const reference = visit();
-  reference.settle();
-  reference.scroll(1800);
-  reference.settle();
-  const target = JSON.parse(reference.trace());
+test('route camera progress uses elapsed time consistently at different RAF frequencies', () => {
+  const target = model.routePose('research', model.poses[model.initialPoses.research]);
   for (const fps of [30, 60, 120]) {
     const p = visit();
     p.settle();
-    const start = JSON.parse(p.trace()),
-      phase = p.phase();
+    const start = JSON.parse(p.trace());
+    p.window.SiteScene.navigate('research');
+    p.frame(0);
+    const phase = p.phase();
     p.scroll(1800);
     for (let i = 0; i < fps / 5; i++) p.frame(1000 / fps);
     const actual = JSON.parse(p.trace()),
-      expected = model.followCamera(start, target, p.phase() - phase);
+      duration = Math.min(1700, 1000 + Math.abs(target.position[2] - start.position[2]) * 2),
+      expected = model.mix(start, target, model.smooth((p.phase() - phase) / duration));
     for (const key of ['position', 'target'])
       for (let i = 0; i < 3; i++)
         assert.ok(Math.abs(actual[key][i] - expected[key][i]) < 1e-10, `live camera at ${fps}Hz`);
@@ -1251,8 +1260,8 @@ test('travel progress is emitted with the displayed camera, retargets cleanly an
   const p = visit();
   p.settle();
   const records = [];
-  p.window.SiteScene.navigate('research', true, (value) =>
-    records.push({ value, camera: p.trace() })
+  p.window.SiteScene.navigate('research', true, (value, frame) =>
+    records.push({ value, camera: p.trace(), frame })
   );
   assert.equal(records.length, 1);
   assert.equal(records[0].value, 0);
@@ -1261,6 +1270,20 @@ test('travel progress is emitted with the displayed camera, retargets cleanly an
   assert.equal(records.at(-1).camera, p.trace());
   assert.ok(records.some((x) => x.value > 0.2 && x.value < 0.7));
   assert.ok(records.every((x, i) => i === 0 || x.value >= records[i - 1].value));
+  for (const { value, camera, frame } of records) {
+    assert.equal(frame.progress, value);
+    assert.equal(JSON.stringify(frame.pose), camera, 'presentation observes the displayed camera');
+    assert.equal(frame.painted, true);
+    assert.equal(frame.width, 1440);
+    assert.equal(frame.height, 900);
+    assert.equal(frame.compact, false);
+    for (const frozen of [frame, frame.pose, frame.pose.position, frame.projection.origin])
+      assert.equal(Object.isFrozen(frozen), true, 'presentation cannot mutate scene geometry');
+    const world = frame.pose.position.map((x, i) => x + frame.projection.forward[i] * 10),
+      point = frame.projection.project(frame.projection.camera(world));
+    assert.ok(Math.abs(point[0] - frame.projection.origin[0]) < 1e-9);
+    assert.ok(Math.abs(point[1] - frame.projection.origin[1]) < 1e-9);
+  }
   const next = [];
   p.window.SiteScene.navigate('credits', true, (value) => next.push(value));
   p.frame(80);
@@ -1272,6 +1295,48 @@ test('travel progress is emitted with the displayed camera, retargets cleanly an
   p.drawingFault();
   p.frame(80);
   assert.equal(next.at(-1), 1);
+  assert.equal(p.pending.size, 0);
+});
+
+test('travel presentation snapshots exclude unpainted viewport and camera state', () => {
+  const cold = visit(),
+    coldFrames = [];
+  cold.window.SiteScene.navigate('research', true, (progress, frame) => coldFrames.push(frame));
+  assert.equal(coldFrames[0].painted, false, 'a route notification is not proof of a Canvas paint');
+  cold.frame(80);
+  assert.equal(coldFrames.at(-1).painted, true);
+  const p = visit();
+  p.settle();
+  const camera = p.trace(),
+    frames = [];
+  p.window.innerWidth = 390;
+  p.window.innerHeight = 700;
+  p.narrow.matches = true;
+  p.window.SiteScene.refresh({ sync: true });
+  p.window.SiteScene.navigate('research', true, (progress, frame) => frames.push(frame));
+  assert.equal(frames[0].width, 1440, 'a measured viewport is not yet a displayed viewport');
+  assert.equal(frames[0].height, 900);
+  assert.equal(frames[0].compact, false);
+  assert.equal(JSON.stringify(frames[0].pose), camera);
+  p.event('resize');
+  p.frame(80);
+  assert.equal(frames.at(-1).width, 390);
+  assert.equal(frames.at(-1).height, 700);
+  assert.equal(frames.at(-1).compact, true);
+  assert.equal(JSON.stringify(frames.at(-1).pose), p.trace());
+  const paintedFrame = frames.at(-1);
+  p.document.body.dataset.page = 'research';
+  p.window.innerWidth = 900;
+  p.window.SiteScene.refresh({ sync: true });
+  p.drawingFault();
+  p.frame(80);
+  assert.equal(frames.at(-1).progress, 1);
+  assert.equal(
+    frames.at(-1).width,
+    paintedFrame.width,
+    'failure reports the last successful paint'
+  );
+  assert.equal(JSON.stringify(frames.at(-1).pose), JSON.stringify(paintedFrame.pose));
   assert.equal(p.pending.size, 0);
 });
 
@@ -1353,7 +1418,7 @@ function reverseEndpointFlight(from, to, narrow) {
     assert.deepEqual(
       paints.at(-1).journey.to,
       target,
-      'the native bottom is the flight target before incoming DOM exists'
+      'the canonical route pose is known before the native bottom landing is mounted'
     );
     p.scroll(0);
     advanceUntil(
@@ -1402,7 +1467,7 @@ test('departure scroll events cannot retarget a flight through source page geome
   assert.equal(progress, 1);
   assertFlightDepths(paints, sourceZ, target.position[2]);
 });
-test('reverse endpoint flights target the destination bottom before content mount and retain depth direction', () => {
+test('reverse bottom landings keep canonical route targets and depth direction before and after mount', () => {
   for (const narrow of [false, true])
     for (const [from, to] of [
       ['credits', 'talks'],
@@ -1412,7 +1477,7 @@ test('reverse endpoint flights target the destination bottom before content moun
     ])
       reverseEndpointFlight(from, to, narrow);
 });
-test('unknown history and fragment landings hold the displayed camera until destination mount', () => {
+test('history, fragment and filtered landings share the canonical camera without waiting for native geometry', () => {
   const cases = [
     ['research', { position: [0, 7050], hash: '' }, 7050, null],
     ['research', { position: null, hash: '#topics' }, 2200, null],
@@ -1439,16 +1504,22 @@ test('unknown history and fragment landings hold the displayed camera until dest
       'an unresolved landing still reaches the hidden content mount',
       20
     );
-    assert.equal(
+    assert.notEqual(
       p.trace(),
       displayed,
-      'unknown native geometry must not cause a speculative camera departure'
+      'known route pose allows flight before native history/hash geometry exists'
     );
-    assert.ok(p.phase() > phase, 'holding the camera does not stop the shared ambient clock');
+    assert.deepEqual(
+      paints.at(-1).journey.to,
+      model.routePose(to, model.poses[model.initialPoses[to]]),
+      'history, hash and filter intent cannot replace the route camera target'
+    );
+    assert.ok(p.phase() > phase, 'the existing ambient clock continues during route travel');
     const target = nativeReadingPose(to, y, { height: 700, focus });
     mountSceneFixture(p, to, y, focus);
     for (let i = 0; i < 30; i++) p.frame(80);
     assert.deepEqual(JSON.parse(p.trace()), target);
+    assert.equal(p.window.scrollY, y, 'camera travel preserves the router-owned native landing');
     assert.equal(progress, 1);
     assertFlightDepths(paints, JSON.parse(displayed).position[2], target.position[2]);
   }
@@ -1461,7 +1532,7 @@ test('unknown history and fragment landings hold the displayed camera until dest
       assertInstantLanding(to, landing, options);
 });
 
-test('midflight destination layout retargeting preserves the displayed camera and shared ribbon clock', () => {
+test('midflight native layout cannot retarget the camera; pause and reversal retain displayed progress', () => {
   const paints = [],
     p = visit({ ribbonProbe: (state) => paints.push(state) });
   p.settle();
@@ -1489,12 +1560,13 @@ test('midflight destination layout retargeting preserves the displayed camera an
   assert.equal(
     p.trace(),
     mountedCamera,
-    'a destination bottom/history landing rebases rather than snapping the camera'
+    'a destination bottom/history landing cannot snap the camera'
   );
   assert.equal(p.phase(), mountedPhase);
   assert.equal(records.at(-1), mountedProgress);
   const retained = paints.at(-1).journey;
-  assert.deepEqual(JSON.parse(p.trace()), retained.from);
+  assert.deepEqual(retained.from, JSON.parse(before), 'layout does not rebase the route journey');
+  assert.deepEqual(retained.to, model.routePose('research', model.poses.researchOverview));
   assert.ok(retained.duration > 0 && retained.duration < 1300);
   // A skipped RAF can advance the solver without painting. Cancellation must
   // preserve actual displayed progress, not that newer unseen solver state.
@@ -1513,11 +1585,14 @@ test('midflight destination layout retargeting preserves the displayed camera an
   assert.equal(p.phase(), displayedPhase);
   assert.equal(records.at(-1), displayedProgress);
   for (let i = 0; i < 30; i++) p.frame(80);
-  assert.deepEqual(JSON.parse(p.trace()), model.routePose('research', model.poses.closing));
+  assert.deepEqual(
+    JSON.parse(p.trace()),
+    model.routePose('research', model.poses.researchOverview)
+  );
   assert.equal(records.at(-1), 1);
   assert.ok(
     records.every((value, index) => index === 0 || value >= records[index - 1]),
-    'layout/pause retargets keep painted progress monotone'
+    'layout and pause keep painted progress monotone'
   );
   // Reversal before DOM mount targets a new route from the last real paint.
   p.window.SiteScene.navigate('writing');
@@ -1561,8 +1636,8 @@ test('a route chosen before the reduced-motion change event paints its static ar
   assert.equal(p.pending.size, 0);
 });
 
-// User-visible regression: archive-bound progress formerly stayed zero here.
-test('Writing responds to the first small gestures before the archive, including after route arrival', () => {
+// Native reading must remain usable before the archive without moving the scene.
+test('Writing keeps a fixed camera through first small native gestures, including after route arrival', () => {
   for (const arrival of [false, true])
     for (const single of [false, true]) {
       const p = visit({ page: arrival ? 'index' : 'writing', single });
@@ -1577,12 +1652,11 @@ test('Writing responds to the first small gestures before the archive, including
       const start = p.trace(),
         phase = p.phase(),
         draws = p.draws();
-      let last = start;
       for (const y of [100, 200, 400]) {
         p.scroll(y);
         p.settle();
-        assert.notEqual(p.trace(), last, `first gesture at ${y}px`);
-        last = p.trace();
+        assert.equal(p.trace(), start, `fixed camera at ${y}px`);
+        assert.equal(p.window.scrollY, y);
       }
       p.scroll(0);
       p.settle();
@@ -1633,8 +1707,10 @@ test('Writing world formula stays singular and frozen through Off/reduced and re
     for (let i = 0; i < 30; i++) p.frame(60);
     assert.ok(
       p.window.SiteScene.diagnostics().formula.paintCount > formulaPaints,
-      'resuming moves the existing world landmark with the camera and ambient phase'
+      'resuming advances the existing world landmark through ambient phase'
     );
+    assert.equal(p.trace(), fixed, 'resuming does not follow the frozen reading-scroll position');
+    assert.ok(p.phase() > phase);
     assert.equal(p.formulaConstructions(), 1);
     assert.equal(p.window.SiteScene.diagnostics().formula.lastPaintCount, 1);
   }
