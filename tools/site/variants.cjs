@@ -2,13 +2,18 @@
 // Effects attach through authored API v1. Runtime formatting is not a contract.
 const assert=require('node:assert/strict'),crypto=require('node:crypto');
 const hash=value=>crypto.createHash('sha256').update(value).digest('hex');
-function attach(html,{id,effect,code,styles='',bodyScripts=''}){
+function attach(html,{id,effect,code,styles='',bodyScripts='',effects}){
   assert.match(html,/<meta name="site-effects-contract" content="1">/,'compatible authored effects contract');
   assert.ok(!html.includes('data-site-effect="'+effect+'"'),'duplicate offline '+effect+' effect');
   assert.ok(!code.includes('</script>'),'effect serialization must remain inert to HTML');
   const engine=html.match(/name="site-engine" content="([a-f0-9]{64})"/)?.[1];assert.ok(engine,'engine identity');
-  const fingerprint=hash(JSON.stringify({contract:1,id,engine,code,styles,bodyScripts}));
-  const variant={id,contract:1,fingerprint};
+  const composition = effects === undefined ? {} : {effects};
+  if (effects !== undefined) {
+    assert.deepEqual(effects, ['travel'], 'active offline Color composition');
+    assert.equal(id, 'color', 'active offline Color identity');
+  }
+  const fingerprint=hash(JSON.stringify({contract:1,id,engine,code,styles,bodyScripts,...composition}));
+  const variant={id,contract:1,fingerprint,...composition};
   const script=`<script data-site-effect="${effect}">window.SiteEffects={...window.SiteEffects,contract:1};\n${code}\n</script>\n`;
   html=html.replace('<head>','<head>\n'+script).replace('</head>',styles+'</head>').replace('</body>',bodyScripts+'</body>');
   html=html.replaceAll(engine,fingerprint);

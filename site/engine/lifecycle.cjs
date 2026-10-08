@@ -208,6 +208,12 @@ module.exports=function(api) {
     scene.dataset.geometry=compact||detailTier>=.5?"compact":"full";
     scene.dataset.roomModels=String([...rooms.values()].reduce((count,variants)=>count+variants.size,0));
     span('draw-state');
+    if (window.SiteEngineProbe) {
+      diagnostic('paint', {
+        current, ambientTime, width, height, compact, detailTier, journey,
+        ordinaryShapes: geometry.length, customShapes: custom.length
+      });
+    }
   }
   function fail() {
     failed=true;cancel();delete scene.dataset.ready;scene.dataset.state="fallback";

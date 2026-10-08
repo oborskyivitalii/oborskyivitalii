@@ -31,13 +31,30 @@
     {
       "id": "AC03",
       "intent": "Preserve canonical ownership, style and honest linked handoff.",
-      "automated_scope": "The bounded code-style guard checks its declared subset. Current RI catalog/views and RI/CI coupling validate added acceptance/review paths and current routes. CS01-CS05 and CS08-CS10 ownership, semantic preservation, readability and proportional checks are independently reviewed; runtime/state/resource rules CS06-CS07 are preserved by the narrow content-only treatment. Live issue/PR/commit linkage and actual checkbox updates require separate recorded evidence. Independent security review proves newly generated public checksums by exact path/type/hashed-value and revalidates any stale existing advisory source binding without changing scanner scope, dependency locks, expiry or budgets.",
+      "automated_scope": "The bounded code-style guard checks its declared subset. Current RI catalog/views and RI/CI coupling validate added acceptance/review paths and current routes. CS01-CS05 and CS08-CS10 ownership, semantic preservation, readability and proportional checks are independently reviewed; CS06-CS07 preserve the shared clock, failure/freeze and resource bounds while the maintainer-authorized AC04 removes ribbon allocation/painting. Live issue/PR/commit linkage and actual checkbox updates require separate recorded evidence. Independent security review proves newly generated public checksums by exact path/type/hashed-value and revalidates any stale existing advisory source binding without changing scanner scope, dependency locks, expiry or budgets.",
       "checks": [
         "CURRENT-GUARD",
         "CURRENT-RI",
         "RI-CI"
       ],
       "gates": [
+        "SOURCE-REVIEW",
+        "DELIVERY-LINKAGE"
+      ]
+    },
+    {
+      "id": "AC04",
+      "intent": "Disable colored ribbons in active hosted and standalone Color delivery while preserving the remaining scene and navigation.",
+      "automated_scope": "Existing effects and deterministic Color build tests execute the travel-only composition, reject malformed/legacy ribbon composition in the active assembler, preserve reading CSS and navigation controls, and check absence of ribbon constructors/painter/scene installation in serialized hosted and offline scripts. Explicit historical library adapters remain optional; original formula gradient names remain valid. Existing hosted smoke and staging journeys separately prove absence of ribbon resources and positive ordinary scene paints on the selected artifact. CS01/CS03-CS10 review, exact scanner coverage, retained input identity and unchanged profile budgets remain required.",
+      "checks": [
+        "ACTIVE-COLOR",
+        "BASIC",
+        "CURRENT-GUARD",
+        "CURRENT-RI",
+        "RI-CI"
+      ],
+      "gates": [
+        "CURRENT-CI",
         "SOURCE-REVIEW",
         "DELIVERY-LINKAGE"
       ]
@@ -66,6 +83,10 @@
     "RI-CI": {
       "kind": "unittest",
       "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    },
+    "ACTIVE-COLOR": {
+      "kind": "unittest",
+      "test": "test_issue61_acceptance.Issue61AcceptanceTests.test_active_color_delivery_excludes_ribbons_and_keeps_navigation"
     }
   },
   "gates": {
@@ -75,7 +96,7 @@
     },
     "SOURCE-REVIEW": {
       "kind": "human",
-      "description": "Record independent review of exact supplied content, title language annotation, retained dates/sources/unrelated events, exact reversible amendment and meaningful negative coverage, generated/offline owners and applicable CS01-CS05/CS08-CS10 rules. Preserve runtime/style/scene/budget boundaries; do not infer recording playback verification. For integration corrections, record independent proof of every exact public checksum disposition and current advisory reachability source binding; historical baseline and prior reviewed records remain intact."
+      "description": "Record independent review of exact supplied content, title language annotation, retained dates/sources/unrelated events, exact reversible amendment and meaningful negative coverage, generated/offline owners and applicable CS01-CS05/CS08-CS10 rules. Preserve runtime/style/scene/budget boundaries; do not infer recording playback verification. For integration corrections, record independent proof of every exact public checksum disposition and current advisory reachability source binding; historical baseline and prior reviewed records remain intact. Review AC04 active ribbon removal, shared reading CSS ownership, truthful Color identity, all remaining scene/formula/navigation/freeze behavior and proportional browser-check migration. Historical ribbon parity evidence remains historical and cannot establish current visual parity."
     },
     "DELIVERY-LINKAGE": {
       "kind": "human",

@@ -57,25 +57,25 @@
     },
     ".github/acceptance/issue-31.json": {
       "kind": "file",
-      "purpose": "Cleanup AC01\u2013AC11 mapped to source-bound deterministic tests and separate readiness gates.",
+      "purpose": "Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-33.json": {
       "kind": "file",
-      "purpose": "Bootstrap/root optimization AC01\u2013AC06 mapped to source-bound assertions and separate review, merge and linkage gates.",
+      "purpose": "Bootstrap/root optimization AC01–AC06 mapped to source-bound assertions and separate review, merge and linkage gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-35.json": {
       "kind": "file",
-      "purpose": "Test optimization AC01\u2013AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates.",
+      "purpose": "Test optimization AC01–AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-36.json": {
       "kind": "file",
-      "purpose": "Writing formula AC01\u2013AC05 mapped to canonical asset, native cache/integration, source-bound browser and paired performance evidence, with remaining human/release gates explicit.",
+      "purpose": "Writing formula AC01–AC05 mapped to canonical asset, native cache/integration, source-bound browser and paired performance evidence, with remaining human/release gates explicit.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -105,13 +105,13 @@
     },
     ".github/acceptance/issue-56.json": {
       "kind": "file",
-      "purpose": "Issue56 AC01\u2013AC06 source-bound R1 extraction/tool coverage policy with independent/live delivery gates.",
+      "purpose": "Issue56 AC01–AC06 source-bound R1 extraction/tool coverage policy with independent/live delivery gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-61.json": {
       "kind": "file",
-      "purpose": "PMDay recording AC01\u2013AC03 mapped to existing current-source content/semantic/RI checks and explicit review/CI/linkage gates.",
+      "purpose": "PMDay recording AC01–AC03 mapped to existing current-source content/semantic/RI checks and explicit review/CI/linkage gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -5793,7 +5793,7 @@
     },
     "site/effects/ribbons.cjs": {
       "kind": "file",
-      "purpose": "Canonical pure Ribbons effect descriptor and geometry/material helpers; optional hosted/offline reading runtime.",
+      "purpose": "Optional historical ribbon factory; not serialized into current Color delivery. Retained for explicit comparison and full source scanner coverage.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -6117,7 +6117,7 @@
     },
     "tests/ribbons.test.cjs": {
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for ribbons.",
+      "purpose": "Explicit historical optional ribbon geometry/material/clock diagnostic; active Color excludes ribbons.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -6948,6 +6948,264 @@
       "purpose": "Protected source/artifact/controller/PR lease validation before hosted action.",
       "role": "source",
       "owner": "guides/SITE-STAGING.md"
+    },
+    "tests/test_issue61_acceptance.py": {
+      "kind": "file",
+      "purpose": "Issue61 mapping of existing active Color absence/navigation contracts; task-owned selection, no duplicate browser matrix.",
+      "role": "source",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "site/retained": {
+      "kind": "directory",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/manifest.json": {
+      "kind": "file",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/retained/media": {
+      "kind": "directory",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc": {
+      "kind": "directory",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/favicon.svg": {
+      "kind": "file",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi-cutout.webp": {
+      "kind": "file",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi.jpg": {
+      "kind": "file",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/writing-paradigm.svg": {
+      "kind": "file",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime": {
+      "kind": "directory",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62": {
+      "kind": "directory",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/archive.js": {
+      "kind": "file",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/navigation.js": {
+      "kind": "file",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/space.js": {
+      "kind": "file",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/styles.css": {
+      "kind": "file",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/theme.js": {
+      "kind": "file",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots": {
+      "kind": "directory",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347": {
+      "kind": "directory",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html": {
+      "kind": "file",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa": {
+      "kind": "directory",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html": {
+      "kind": "file",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68": {
+      "kind": "directory",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html": {
+      "kind": "file",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946": {
+      "kind": "directory",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html": {
+      "kind": "file",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7": {
+      "kind": "directory",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html": {
+      "kind": "file",
+      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/62164b66c648eb104215b272a1158e291b6c37bf7437591d4e777acef5669eb1": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot; canonical site and verified retained input owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/62164b66c648eb104215b272a1158e291b6c37bf7437591d4e777acef5669eb1/archive.js": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; canonical site and verified retained input owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/62164b66c648eb104215b272a1158e291b6c37bf7437591d4e777acef5669eb1/navigation.js": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; canonical site and verified retained input owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/62164b66c648eb104215b272a1158e291b6c37bf7437591d4e777acef5669eb1/space.js": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; canonical site and verified retained input owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/62164b66c648eb104215b272a1158e291b6c37bf7437591d4e777acef5669eb1/styles.css": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; canonical site and verified retained input owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/62164b66c648eb104215b272a1158e291b6c37bf7437591d4e777acef5669eb1/theme.js": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; canonical site and verified retained input owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/1650f5f5f6f236d92dcd26edb7684aaad4ba6fc4430573f54a620c9724045330": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot; canonical site and verified retained input owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/1650f5f5f6f236d92dcd26edb7684aaad4ba6fc4430573f54a620c9724045330/credits.html": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; canonical site and verified retained input owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/4a1c226ff79929122b28b1ce2e1ffc1bd63a9e05fc003868623ef732c1fd9cc0": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot; canonical site and verified retained input owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/4a1c226ff79929122b28b1ce2e1ffc1bd63a9e05fc003868623ef732c1fd9cc0/index.html": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; canonical site and verified retained input owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/4baf77f87b5198d819122b6e5f18e4558174f41f4fda1bb763fc849da03f4d93": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot; canonical site and verified retained input owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/4baf77f87b5198d819122b6e5f18e4558174f41f4fda1bb763fc849da03f4d93/writing.html": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; canonical site and verified retained input owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/6bd49640cc57e9a540f0a0711195b85843c463be173016021e0e464687221047": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot; canonical site and verified retained input owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/6bd49640cc57e9a540f0a0711195b85843c463be173016021e0e464687221047/research.html": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; canonical site and verified retained input owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/e01d012a97a564737a89613c86cdd255929d98de3d9e8a7b3aa17b876c1bc1ea": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot; canonical site and verified retained input owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/e01d012a97a564737a89613c86cdd255929d98de3d9e8a7b3aa17b876c1bc1ea/talks.html": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; canonical site and verified retained input owners.",
+      "role": "generated",
+      "owner": "site/README.md"
     }
   }
 }

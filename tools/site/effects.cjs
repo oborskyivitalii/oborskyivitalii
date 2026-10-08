@@ -1,9 +1,10 @@
 'use strict';
 
-// One active-source manifest and explicit assembly for hosted/offline effects.
+// One source manifest for active Color delivery and optional comparison adapters.
 const assert = require('node:assert/strict');
 const ribbons = require('../../site/effects/ribbons.cjs');
 const flight = require('../../site/effects/flight.cjs');
+const reading = require('../../site/effects/reading-surfaces.cjs');
 const variants = require('./variants.cjs');
 
 const effectSources = Object.freeze([
@@ -45,15 +46,15 @@ function validateDescriptor(part) {
 }
 
 function descriptors() {
-  const parts = [ribbons.descriptor(), flight.descriptor()];
-  for (const part of parts) validateDescriptor(part);
-  return parts;
+  const travel = flight.descriptor();
+  travel.css = reading.surfaceCSS() + '\n' + travel.css;
+  return [validateDescriptor(travel)];
 }
 
 function runtime(parts) {
   assert.ok(Array.isArray(parts), 'ordered authored effects');
   for (const part of parts) validateDescriptor(part);
-  assert.deepEqual(parts.map(part => part.effect), ['ribbons', 'travel'], 'Color effect composition order');
+  assert.deepEqual(parts.map(part => part.effect), ['travel'], 'active Color effect composition');
   const code = parts.map(part =>
     '(()=>{window.SiteEffects={...window.SiteEffects,contract:1};\n' + part.code + '\n})();'
   ).join('\n');
@@ -62,7 +63,7 @@ function runtime(parts) {
   return {code, styles, controls};
 }
 
-function attach(html, part, id) {
+function attach(html, part, id, effects) {
   validateDescriptor(part);
   // Keep existing offline wrappers, markers and fingerprint bytes unchanged.
   const descriptor = {
@@ -72,6 +73,7 @@ function attach(html, part, id) {
     styles: '<style ' + styleMarkers[part.effect] + '>' + part.css + '</style>\n' + part.head
   };
   if (part.controls) descriptor.bodyScripts = '<script>' + part.controls + '</script>\n';
+  if (effects !== undefined) descriptor.effects = effects;
   return variants.attach(html, descriptor);
 }
 
@@ -84,7 +86,12 @@ function decorateFlight(html) {
   return attach(html, flight.descriptor(), id);
 }
 
+function decorateColor(html) {
+  assert.equal(variants.identity(html).id, 'base', 'active Color requires a base edition');
+  return attach(html, descriptors()[0], 'color', ['travel']);
+}
+
 module.exports = {
   effectSources, effectInputs, validateDescriptor, descriptors, runtime,
-  decorateRibbons, decorateFlight
+  decorateRibbons, decorateFlight, decorateColor
 };

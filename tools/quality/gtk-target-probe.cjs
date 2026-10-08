@@ -15,17 +15,37 @@ function cleanSource(manifest,candidate){
   assert.equal(manifest.diagnostic,undefined);assert.notEqual(manifest.fullGate,false);
   return {sourceCommit:manifest.sourceCommit,sourceTree:manifest.sourceTree,candidateCommit:manifest.candidateCommit,sourceDirty:false,artifactDigest:manifest.artifactDigest};
 }
-function identity(manifest,candidate,base){
-  const source=cleanSource(manifest,candidate),parent=cleanSource(base,candidate),derivation=manifest.derivation;
-  assert.ok(derivation&&typeof derivation==='object');assert.deepEqual(Object.keys(derivation).sort(),['baseArtifactDigest','kind']);
-  assert.equal(derivation.kind,'authored-color-effects');assert.match(derivation.baseArtifactDigest||'',/^[a-f0-9]{64}$/);
-  assert.equal(base.derivation,undefined);assert.equal(parent.sourceTree,source.sourceTree);assert.equal(derivation.baseArtifactDigest,parent.artifactDigest);
-  const baseVariant=base.components?.variant||base.variant;assert.equal(baseVariant?.id,'base');assert.equal(baseVariant.contract,1);assert.match(baseVariant.fingerprint||'',/^[a-f0-9]{64}$/);assert.equal(baseVariant.diagnostic,undefined);assert.match(base.components?.engine||'',/^[a-f0-9]{64}$/);
-  if(base.components?.variant&&base.variant)assert.deepEqual(base.components.variant,base.variant);
-  const variant=manifest.components?.variant||manifest.variant;assert.equal(variant?.id,'color');assert.equal(variant.contract,1);assert.match(variant.fingerprint,/^[a-f0-9]{64}$/);assert.equal(variant.diagnostic,undefined);
-  assert.equal(variant.baseEngine,base.components.engine);assert.deepEqual(variant.effects,['ribbons','travel']);
-  if(manifest.components?.variant&&manifest.variant)assert.deepEqual(manifest.components.variant,manifest.variant);
-  return {...source,variant,derivation:{...derivation}};
+function identity(manifest, candidate, base) {
+  const source = cleanSource(manifest, candidate);
+  const parent = cleanSource(base, candidate);
+  const derivation = manifest.derivation;
+  assert.ok(derivation && typeof derivation === 'object');
+  assert.deepEqual(Object.keys(derivation).sort(), ['baseArtifactDigest', 'kind']);
+  assert.equal(derivation.kind, 'authored-color-effects');
+  assert.match(derivation.baseArtifactDigest || '', /^[a-f0-9]{64}$/);
+  assert.equal(base.derivation, undefined);
+  assert.equal(parent.sourceTree, source.sourceTree);
+  assert.equal(derivation.baseArtifactDigest, parent.artifactDigest);
+  const baseVariant = base.components?.variant || base.variant;
+  assert.equal(baseVariant?.id, 'base');
+  assert.equal(baseVariant.contract, 1);
+  assert.match(baseVariant.fingerprint || '', /^[a-f0-9]{64}$/);
+  assert.equal(baseVariant.diagnostic, undefined);
+  assert.match(base.components?.engine || '', /^[a-f0-9]{64}$/);
+  if (base.components?.variant && base.variant) {
+    assert.deepEqual(base.components.variant, base.variant);
+  }
+  const variant = manifest.components?.variant || manifest.variant;
+  assert.equal(variant?.id, 'color');
+  assert.equal(variant.contract, 1);
+  assert.match(variant.fingerprint, /^[a-f0-9]{64}$/);
+  assert.equal(variant.diagnostic, undefined);
+  assert.equal(variant.baseEngine, base.components.engine);
+  assert.deepEqual(variant.effects, ['travel']);
+  if (manifest.components?.variant && manifest.variant) {
+    assert.deepEqual(manifest.components.variant, manifest.variant);
+  }
+  return {...source, variant, derivation: {...derivation}};
 }
 function originalInit(functional,cell){
   const mode=cell.javaScriptEnabled?'normal':'no-js';

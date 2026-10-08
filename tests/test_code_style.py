@@ -1,6 +1,7 @@
 """Enduring code-style guard negatives and actual agent/RI entry routes."""
 
 import copy
+import hashlib
 import json
 import runpy
 import subprocess
@@ -122,6 +123,41 @@ class CodeStyleTests(unittest.TestCase):
         (self.root / "site/engine/reading-surfaces.css").unlink()
         with self.assertRaisesRegex(ValueError, "Missing canonical CSS token"):
             self.verify()
+
+    def test_prior_immutable_output_is_not_an_authored_owner_or_import_source(self):
+        retained = "site/retained/runtime/" + "a" * 64
+        css = ":root { --paper: white; }"
+        self.write(retained + "/styles.css", css)
+        self.write(retained + "/space.js", "module.exports = {};\n")
+        manifest = {"schema": 1, "files": {
+            retained.removeprefix(style.RETAINED) + "/styles.css":
+                hashlib.sha256(css.encode()).hexdigest(),
+        }}
+        self.write(style.RETAINED + "manifest.json", json.dumps(manifest))
+        self.assertTrue(self.verify()["pass"])
+        for invalid in [css + " /* changed */", css.replace("white", "red")]:
+            self.write(retained + "/styles.css", invalid)
+            with self.assertRaisesRegex(ValueError, "Unverified retained style"):
+                self.verify()
+        self.write(retained + "/styles.css", css)
+        self.write(style.RETAINED + "manifest.json", '{"schema":1,"files":{}}')
+        with self.assertRaisesRegex(ValueError, "Unverified retained style"):
+            self.verify()
+        for invalid in [[], {**manifest, "schema": True}]:
+            self.write(style.RETAINED + "manifest.json", json.dumps(invalid))
+            with self.assertRaisesRegex(ValueError, "Invalid retained style manifest"):
+                self.verify()
+        self.write(style.RETAINED + "manifest.json", json.dumps(manifest))
+        self.write("site/engine/new.css", ":root { --paper: red; }")
+        self.catalog["entries"]["site/engine/new.css"] = {"kind": "file", "role": "generated"}
+        self.write(style.CATALOG, json.dumps(self.catalog))
+        with self.assertRaisesRegex(ValueError, "Competing CSS token owner"):
+            self.verify()
+        (self.root / "site/engine/new.css").unlink()
+        for target in ["../retained", "../retained/runtime/" + "a" * 64 + "/space.js"]:
+            self.write("site/engine/new.cjs", "require('" + target + "');\n")
+            with self.assertRaisesRegex(ValueError, "generated-or-tool-import"):
+                self.verify()
 
     def test_new_active_history_source_and_hidden_dependency_fail(self):
         new = "review/old/new.cjs"

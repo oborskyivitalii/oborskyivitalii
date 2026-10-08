@@ -14,15 +14,29 @@ const steadyProtocol={warmupMs:10000,stableTailMs:2000,measurementMs:4000,minimu
 const scope={startup:'original-paired-guards',warmup:'retained-cpu-x4-idle-absolutes',steady:'whole-window-mutation-trace-v1',acceptance:'startup-and-warmup-and-steady'};
 const frozenBaselineSHA='11e5432d908ca0b81431ca4eac6721b076c33cb6';
 function identity(manifest){return {sourceCommit:manifest.sourceCommit,sourceTree:manifest.sourceTree,candidateCommit:manifest.candidateCommit,sourceDirty:manifest.sourceDirty,artifactDigest:manifest.artifactDigest,variant:variant(manifest),derivation:manifest.derivation,engine:manifest.components?.engine};}
-function checkIdentity(value,expected){
-  for(const field of ['sourceCommit','sourceTree','candidateCommit'])assert.match(value[field]||'',/^[a-f0-9]{40}$/,'missing exact source '+field);
-  assert.equal(value.sourceCommit,value.candidateCommit,'artifact candidate/source mismatch');assert.equal(value.sourceDirty,false,'dirty performance source');
-  assert.match(value.artifactDigest||'',/^[a-f0-9]{64}$/,'missing public digest');
-  assert.equal(value.variant?.id,'color','Writing formula must measure authored Color');assert.equal(value.variant.contract,1);
-  assert.match(value.variant.fingerprint||'',/^[a-f0-9]{64}$/);assert.equal(value.engine,value.variant.fingerprint,'runtime/variant mismatch');
-  assert.deepEqual(value.variant.effects,['ribbons','travel'],'incomplete Color effects');
-  assert.equal(value.derivation?.kind,'authored-color-effects');assert.match(value.derivation.baseArtifactDigest||'',/^[a-f0-9]{64}$/,'missing base derivation');
-  if(expected)assert.deepEqual(value,expected,'performance evidence belongs to another artifact');
+function checkIdentity(value, expected, {historicalBaseline = false} = {}) {
+  for (const field of ['sourceCommit', 'sourceTree', 'candidateCommit']) {
+    assert.match(value[field] || '', /^[a-f0-9]{40}$/, 'missing exact source ' + field);
+  }
+  assert.equal(value.sourceCommit, value.candidateCommit, 'artifact candidate/source mismatch');
+  assert.equal(value.sourceDirty, false, 'dirty performance source');
+  assert.match(value.artifactDigest || '', /^[a-f0-9]{64}$/, 'missing public digest');
+  assert.equal(value.variant?.id, 'color', 'Writing formula must measure authored Color');
+  assert.equal(value.variant.contract, 1);
+  assert.match(value.variant.fingerprint || '', /^[a-f0-9]{64}$/);
+  assert.equal(value.engine, value.variant.fingerprint, 'runtime/variant mismatch');
+  if (historicalBaseline) {
+    assert.equal(value.sourceCommit, frozenBaselineSHA, 'unapproved historical baseline');
+    assert.deepEqual(value.variant.effects, ['ribbons', 'travel'], 'historical Color effects');
+  } else {
+    assert.deepEqual(value.variant.effects, ['travel'], 'current Color effects');
+  }
+  assert.equal(value.derivation?.kind, 'authored-color-effects');
+  assert.match(value.derivation.baseArtifactDigest || '', /^[a-f0-9]{64}$/,
+    'missing base derivation');
+  if (expected) {
+    assert.deepEqual(value, expected, 'performance evidence belongs to another artifact');
+  }
 }
 function verifyBaseline(publicDir,manifest){
   // Snapshot's maintained declared-media compatibility handles this old source;
@@ -30,15 +44,26 @@ function verifyBaseline(publicDir,manifest){
   assert.equal(manifest.sourceCommit,frozenBaselineSHA,'unapproved historical baseline');
   return artifact.verify(publicDir,manifest);
 }
-function loadInputs(root,expected){
-  const inputs={};
-  for(const label of ['baseline','candidate']){
-    const directory=path.join(root,label),manifest=JSON.parse(fs.readFileSync(path.join(directory,'artifact.json'))),publicDir=path.join(directory,'public');
-    if(label==='baseline')verifyBaseline(publicDir,manifest);else artifact.verify(publicDir,manifest);const source=identity(manifest);checkIdentity(source);
-    assert.match(expected?.[label]||'',/^[a-f0-9]{40}$/,'explicit baseline/candidate SHA required');assert.equal(source.sourceCommit,expected[label],'unexpected '+label+' source');
-    inputs[label]={manifest,publicDir,identity:source,sizes:artifact.checkSize(publicDir)};
+function loadInputs(root, expected) {
+  const inputs = {};
+  for (const label of ['baseline', 'candidate']) {
+    const directory = path.join(root, label);
+    const manifest = JSON.parse(fs.readFileSync(path.join(directory, 'artifact.json')));
+    const publicDir = path.join(directory, 'public');
+    if (label === 'baseline') {
+      verifyBaseline(publicDir, manifest);
+    } else {
+      artifact.verify(publicDir, manifest);
+    }
+    const source = identity(manifest);
+    checkIdentity(source, undefined, {historicalBaseline: label === 'baseline'});
+    assert.match(expected?.[label] || '', /^[a-f0-9]{40}$/,
+      'explicit baseline/candidate SHA required');
+    assert.equal(source.sourceCommit, expected[label], 'unexpected ' + label + ' source');
+    inputs[label] = {manifest, publicDir, identity: source, sizes: artifact.checkSize(publicDir)};
   }
-  assert.notEqual(inputs.baseline.identity.sourceCommit,inputs.candidate.identity.sourceCommit,'comparison needs distinct sources');
+  assert.notEqual(inputs.baseline.identity.sourceCommit, inputs.candidate.identity.sourceCommit,
+    'comparison needs distinct sources');
   return inputs;
 }
 function routeTransfer(input){
@@ -302,7 +327,11 @@ function validate(record,{trustedIdentities,trustedTransfers}={}){
   assert.equal(record.protocolVersion,2,'historical protocol cannot supply steady evidence');assert.deepEqual(record.scope,scope,'changed startup/warmup/steady acceptance scope');assert.deepEqual(record.steadyProtocol,steadyProtocol,'changed steady preconditioning');
   assert.deepEqual(record.profiles,profiles,'wrong benchmark profiles');assert.deepEqual(record.orders,orders,'unbalanced benchmark order');assert.deepEqual(record.guardrails,guardrails,'changed added-cost guardrails');
   assert.ok(record.environment?.platform&&record.environment.os&&record.environment.node&&record.environment.cpus?.length,'missing runner environment');assert.ok(record.browser?.version&&record.browser.executable,'missing actual browser');
-  for(const label of ['baseline','candidate'])checkIdentity(record.identities?.[label],trustedIdentities?.[label]);
+  for (const label of ['baseline', 'candidate']) {
+    checkIdentity(record.identities?.[label], trustedIdentities?.[label], {
+      historicalBaseline: label === 'baseline'
+    });
+  }
   assert.notEqual(record.identities.baseline.sourceCommit,record.identities.candidate.sourceCommit,'identical comparison source');
   const outcomes=Object.fromEntries(['startup','warmup','steady'].map(scope=>[scope,{pass:true,failures:[]}]));
   const gate=(scope,condition,message)=>{if(!condition){outcomes[scope].pass=false;outcomes[scope].failures.push(message);}};

@@ -17,7 +17,39 @@ function historicalFixture(run){
     const manifest={...source('baseline'),sourceCommit:contract.frozenBaselineSHA,candidateCommit:contract.frozenBaselineSHA,components:revision,...artifact.manifest(directory)};run({directory,manifest,write,artifact});
   }finally{fs.rmSync(directory,{recursive:true,force:true});}
 }
-function source(label){const candidate=label==='candidate';return {sourceCommit:(candidate?'2':'1').repeat(40),sourceTree:(candidate?'4':'3').repeat(40),candidateCommit:(candidate?'2':'1').repeat(40),sourceDirty:false,artifactDigest:(candidate?'b':'a').repeat(64),variant:{id:'color',contract:1,fingerprint:(candidate?'d':'c').repeat(64),effects:['ribbons','travel']},engine:(candidate?'d':'c').repeat(64),derivation:{kind:'authored-color-effects',baseArtifactDigest:(candidate?'f':'e').repeat(64)}};}
+function source(label) {
+  const candidate = label === 'candidate';
+  const commit = candidate ? '2'.repeat(40) : contract.frozenBaselineSHA;
+  return {
+    sourceCommit: commit,
+    sourceTree: (candidate ? '4' : '3').repeat(40),
+    candidateCommit: commit,
+    sourceDirty: false,
+    artifactDigest: (candidate ? 'b' : 'a').repeat(64),
+    variant: {
+      id: 'color', contract: 1, fingerprint: (candidate ? 'd' : 'c').repeat(64),
+      effects: candidate ? ['travel'] : ['ribbons', 'travel']
+    },
+    engine: (candidate ? 'd' : 'c').repeat(64),
+    derivation: {kind: 'authored-color-effects', baseArtifactDigest: (candidate ? 'f' : 'e').repeat(64)}
+  };
+}
+test('current Color identity excludes ribbons and only the frozen baseline retains them', () => {
+  assert.doesNotThrow(() => contract.checkIdentity(source('candidate')));
+  assert.doesNotThrow(() => contract.checkIdentity(source('baseline'), undefined, {
+    historicalBaseline: true
+  }));
+  assert.throws(() => contract.checkIdentity(source('baseline')), /current Color effects/);
+  const currentRibbons = source('candidate');
+  currentRibbons.variant.effects = ['ribbons', 'travel'];
+  assert.throws(() => contract.checkIdentity(currentRibbons), /current Color effects/);
+  const movingBaseline = source('baseline');
+  movingBaseline.sourceCommit = '1'.repeat(40);
+  movingBaseline.candidateCommit = movingBaseline.sourceCommit;
+  assert.throws(() => contract.checkIdentity(movingBaseline, undefined, {
+    historicalBaseline: true
+  }), /unapproved historical baseline/);
+});
 function cache(){return {status:'ready',cacheBuilds:1,width:1380,height:240,bytes:1324800,paintCount:40,visibleCount:0,lastPaintCount:0,failures:0};}
 function diagnostics(){return {formula:cache(),rooms:[{route:'writing',models:[{formulaAnchors:1,compact:true}]},{route:'talks',models:[{formulaAnchors:0,compact:true}]}]};}
 function measure(kind,{cost=2,zero=false,cold=false,duration=1200}={}){

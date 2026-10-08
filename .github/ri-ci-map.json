@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "review": {
-    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/56",
+    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/61",
     "date": "2026-10-08",
-    "summary": "R1 after merged standardsPR55: canonical pure effects and maintained exporter, explicit ordered adapters, existing ESLint/Stylelint/security source coverage and task-specific parity policy. Retain all accepted content, performance/release budgets and unchanged runtime bytes; refresh source catalog/profile/RI owners for generated identity changes."
+    "summary": "Maintainer-authorized PMDay delivery and active Color ribbon removal: reuse effect/build tests, normal two-width smoke and complete bounded staging; preserve historical comparisons, scanner scope and all budgets."
   },
   "layers": [
     {
@@ -64,7 +64,8 @@
         "review/issue-56/2026-10-08-handoff.md",
         ".github/acceptance/issue-61.json",
         "review/issue-61/2026-10-08-handoff.md",
-        "review/issue-61/content-amendment.json"
+        "review/issue-61/content-amendment.json",
+        "tests/test_issue61_acceptance.py"
       ],
       "checks": [
         "acceptance-policy",
@@ -420,7 +421,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "fa7107726a01929ef0b8fde9ab33831d470c64e9a8bbc80643a91f55139c23a6",
+    "digest": "81c4a0c9e42c27af8272e36d98c4317d608d1a3a38f8faed7ca3774823580092",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -476,7 +477,7 @@
       },
       {
         "path": ".github/acceptance/issue-61.json",
-        "sha256": "c39ed1ed33a3cd7d50bd093e764d3b3179b576695f0eed680c327989c0431b35"
+        "sha256": "4b28edf99f48adf3395424c26a50c2370a379a14efab06dd9b546b21320af5db"
       },
       {
         "path": ".github/code-style.json",
@@ -496,7 +497,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "10473880f1575987c150d44781d11f32ad89ae821399b9ac86e7146ebb2b137e"
+        "sha256": "45a7dd6ef7a0f609cc5a8549e8f3527e94510c6576cb21efcf08dcff70bd24c1"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -572,7 +573,7 @@
       },
       {
         "path": "guides/CODE-STYLE.md",
-        "sha256": "abb3501b7af54dd5bee2356df8124c7428613e55f78c57be4c24848d4b361178"
+        "sha256": "f7fdb9082b555aaed472d92e417e4c8b9761af854df518fc86c00a16dc8ee69f"
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
@@ -584,7 +585,7 @@
       },
       {
         "path": "tests/fixtures/staging-evidence.cjs",
-        "sha256": "d5c653e3e1a1d8c4653e3443d66c483f5d1a63d6d47d00d15978084a77481a9d"
+        "sha256": "2964363e637f85dd2cfb07478ce1cbcc9aeb3ca0012e56633deadda6570b943a"
       },
       {
         "path": "tests/staging-gate.test.cjs",
@@ -592,15 +593,15 @@
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "6c90437d687ce1f7c99e0e67c2a1eefa58081286777a32f9f9e1552ddd60cc75"
+        "sha256": "a72ed7af55d6788c93c7fc1e762796d53535a1d0bddd9ef5fdcfa9659e01e6eb"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
-        "sha256": "3f3472e45db13b57d95ce7e7f23629b526be14d7d944b0b9adeb5531aad48c68"
+        "sha256": "6251bf17dae8606617862e7bab276e93033a1c3df8916bd64813472aa80d5da8"
       },
       {
         "path": "tests/test_code_style.py",
-        "sha256": "c31f5aa311386c512e78da6aa5b36491aab732513d67eb36684b8dd39d3a1268"
+        "sha256": "68678bad0964fe39dd20ccaf962fb1da60e1f69c0417e62f0349de4fc775a8bb"
       },
       {
         "path": "tests/test_issue31_acceptance.py",
@@ -635,6 +636,10 @@
         "sha256": "ff5541a89e90ddbb4d78f1f930140b26cbff1b30829601249a1eb0bdc6913ccf"
       },
       {
+        "path": "tests/test_issue61_acceptance.py",
+        "sha256": "bccd437617f007f642307d6495f0e583a78a6db12d4212f04026a2024e53d695"
+      },
+      {
         "path": "tests/test_issue_acceptance.py",
         "sha256": "51ccc40c3ccbf755ef277c7dec6437148cdf50fb7aa401e1bf8f255c2b96a426"
       },
@@ -656,7 +661,7 @@
       },
       {
         "path": "tools/check_code_style.py",
-        "sha256": "970037cd81112c6021bb3eecec9fc75c998852cd9da41ad41f292744d7af91ad"
+        "sha256": "e5ec36b89fcbe38563e95e9bd7c5a9a06f00fa06c561c15853fac2afb37317ed"
       },
       {
         "path": "tools/check_repository_layout.py",
@@ -684,11 +689,11 @@
       },
       {
         "path": "tools/quality/staging-regression.cjs",
-        "sha256": "550a93c3f4048a071a4beeaad5b4113ffffb41d7ea5f114f53a188032f975a9b"
+        "sha256": "0a19a90a49bb48a508561a8029a3082190b6539668ae0534ad606bc1c77eb97b"
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "8f042afdb9565d66ca1aab310b4290d322d1d74ba40e3f1d102fb9dd78ce5567"
+        "sha256": "3c59ca91c50e9a68ed63a418618cc9cb26d21cdbca2f79e1e2270169c055cf44"
       },
       {
         "path": "tools/repository_intelligence.py",

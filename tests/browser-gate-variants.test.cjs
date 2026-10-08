@@ -2,7 +2,11 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),os=require('node:os'),path=require('node:path'),vm=require('node:vm');
 const variants=require('../tools/quality/writing-variants.cjs'),color=require('../tools/staging/color.cjs'),artifact=require('../tools/quality/artifact.cjs'),snapshot=require('../tools/site/snapshot.cjs');
 const root=path.resolve(__dirname,'..'),baseSource=fs.readFileSync(path.join(root,'docs/space.js'),'utf8');
-const effects=color.runtime(color.authoredEffects()),scripts={'space.js':effects.code+'\n'+baseSource};
+const effects=color.runtime(color.authoredEffects());
+// Mesh comparisons explicitly exercise the optional historical ribbon library.
+const ribbon=require('../site/effects/ribbons.cjs').descriptor();
+const historicalCode='(()=>{window.SiteEffects={...window.SiteEffects,contract:1};\n'+ribbon.code+'\n})();';
+const scripts={'space.js':historicalCode+'\n'+effects.code+'\n'+baseSource};
 const plain=value=>JSON.parse(JSON.stringify(value));
 test('reading clarity rejects wrong landing targets and depth reversals that remain frame-continuous',()=>{
   const {validateArrivalDepth,validateNativeEndpoints}=require('../tools/quality/reading-clarity.cjs');
@@ -70,7 +74,7 @@ test('browser-gate diagnostics are explicit additions while the original Writing
     assert.equal(variants.labels.includes(label),false);
     const result=variants.patchRuntime(scripts,label);new vm.Script(result.scripts['space.js']);
     assert.equal(result.patches.length,label==='browser-gate-trace'?2:3);assert.ok(result.patches.every(row=>row.matches===1));
-    assert.equal(scripts['space.js'],effects.code+'\n'+baseSource,'normal Color control stays unchanged');
+    assert.equal(scripts['space.js'],historicalCode+'\n'+effects.code+'\n'+baseSource,'explicit historical comparison control stays unchanged');
   }
 });
 test('normal tier zero and every mobile tier retain exactly the normal ribbon facets, colors and projection',()=>{
@@ -95,17 +99,31 @@ test('adaptive desktop mesh reduces facets without changing shared projected ver
     for(const [key,point]of shared)assert.deepEqual(point,before.get(key),'shared camera projection, RGB and UV remain exact');
   }
 });
-function browser(source){
+function browser(source,{failPaint=false,probe=true}={}){
   let clock=0,time=0,serial=0;const pending=new Map(),events=[],dataset={};
   const ctx=Object.fromEntries(['setTransform','beginPath','moveTo','lineTo','stroke','fill','closePath','quadraticCurveTo'].map(name=>[name,()=>{}]));
-  ctx.clearRect=()=>{clock+=60;};ctx.createLinearGradient=()=>({addColorStop(){}});
+  ctx.clearRect=()=>{if(failPaint)throw Error('native paint unavailable');clock+=60;};ctx.createLinearGradient=()=>({addColorStop(){}});
   const canvas={parentElement:{dataset,style:{setProperty(){}}},getContext:()=>ctx},button={setAttribute(){},addEventListener(){}};
   const window={performance:{now:()=>clock},innerWidth:1440,innerHeight:900,devicePixelRatio:1.5,scrollY:0,matchMedia:()=>({matches:false,addEventListener(){}}),requestAnimationFrame:fn=>{pending.set(++serial,fn);return serial;},cancelAnimationFrame:id=>pending.delete(id),addEventListener(){},getComputedStyle:()=>({getPropertyValue:key=>({'--accent':'#075d7b','--systems':'#895710','--paper':'#f8f7f3','--scene-sheet':'#fffefa'})[key]}),SiteEngineProbe:event=>events.push(event)};
+  if(!probe)delete window.SiteEngineProbe;
   const document={body:{dataset:{page:'research'}},documentElement:{scrollHeight:5000,dataset:{theme:'dark'}},getElementById:id=>id==='space-canvas'?canvas:id==='space-motion'?button:null,querySelector:()=>null,querySelectorAll:()=>[],addEventListener(){}};
   vm.runInNewContext(source,{window,document,localStorage:{getItem:()=>null},module:{exports:{}}});
   return {window,events,pending,frame(){time+=200;const jobs=[...pending.values()];pending.clear();for(const fn of jobs)fn(time);}};
 }
 test('private getter and frame events report actual post-quality state while preserving the severe hold policy',()=>{
+  const producer=require('../tools/site/build.cjs');
+  const active=effects.code+'\n'+producer.runtime(root,producer.configuration(root).definitions);
+  const native=browser(active);native.frame();
+  const paint=native.events.find(event=>event.kind==='paint');
+  assert.ok(paint,'a completed native paint is observed');
+  assert.ok(paint.ordinaryShapes>0);assert.equal(paint.customShapes,0);
+  assert.equal(native.window.SiteEffects.scene,undefined,'active Color has no ribbon scene hook');
+  assert.equal(paint.ambientTime,0,'initial paint uses the existing ambient clock');
+  const unavailable=browser(active,{failPaint:true});unavailable.frame();
+  assert.equal(unavailable.events.some(event=>event.kind==='paint'),false,'failed native painting produces no successful paint event');
+  const unobserved=browser(active,{probe:false});unobserved.frame();
+  assert.equal(unobserved.events.length,0,'ordinary rendering needs no observer');
+  assert.ok(unobserved.pending.size>0,'the original scene clock remains live without a probe');
   const source=variants.patchRuntime(scripts,'browser-gate-trace').scripts['space.js'],b=browser(source);
   const descriptor=Object.getOwnPropertyDescriptor(b.window,'__browserGateScheduler');assert.equal(typeof descriptor.get,'function');assert.equal(descriptor.set,undefined);
   const keys=['pending','enabled','hold','printing','initialized','failed','page','tier','detailTier','slow','fast','idleRate','costAverage','lastFrame','nextDraw'];assert.deepEqual(Object.keys(b.window.__browserGateScheduler),keys);
@@ -122,11 +140,11 @@ function controlPackage(directory){
   manifest.components=snapshot.verify(path.join(base,'public'),manifest);fs.writeFileSync(path.join(base,'artifact.json'),JSON.stringify(manifest));
   const normal=path.join(directory,'current-color');fs.cpSync(base,normal,{recursive:true});color.build(normal);return normal;
 }
-test('both explicit browser-gate artifacts keep exact Color parent lineage and can never satisfy a full gate',()=>{
+test('active browser-gate trace retains Color lineage and historical ribbon comparison fails closed',()=>{
   const directory=fs.mkdtempSync(path.join(os.tmpdir(),'browser-gate-variants-'));
   try{
     const parentDir=controlPackage(directory),parent=JSON.parse(fs.readFileSync(path.join(parentDir,'artifact.json')));
-    for(const label of variants.browserGateLabels){
+    for(const label of ['browser-gate-trace']){
       const target=path.join(directory,label),derived=variants.derive(parentDir,target,label),m=derived.manifest;artifact.verify(derived.publicDir,m);snapshot.verify(derived.publicDir,m);
       assert.equal(m.fullGate,false);assert.equal(m.diagnostic.fullGate,false);assert.equal(m.variant.diagnostic.fullGate,false);assert.equal(m.derivation.fullGate,false);
       assert.equal(m.derivation.baseArtifactDigest,parent.artifactDigest);assert.equal(m.derivation.parentArtifactDigest,parent.artifactDigest);assert.deepEqual(m.derivation.parentVariant,parent.variant);assert.equal(m.sourceCommit,parent.sourceCommit);assert.equal(m.sourceTree,parent.sourceTree);assert.equal(m.sourceDirty,false);
@@ -134,6 +152,7 @@ test('both explicit browser-gate artifacts keep exact Color parent lineage and c
       assert.equal(variants.derive(parentDir,target,label).manifest.artifactDigest,m.artifactDigest,'private derivation is deterministic');
       assert.throws(()=>variants.derive(target,path.join(directory,'nested-'+label),label),/unchanged Color control/);
     }
+    assert.throws(()=>variants.derive(parentDir,path.join(directory,'browser-gate-fixed-ribbons'),'browser-gate-fixed-ribbons'),/explicit historical ribbon-enabled control/);
     assert.equal(artifact.manifest(path.join(parentDir,'public')).artifactDigest,parent.artifactDigest);
   }finally{fs.rmSync(directory,{recursive:true,force:true});}
 });

@@ -17,7 +17,13 @@ test('registry covers every actual JS/Python module with explicit permanent, dia
   for(const name of ['browser-gate-diagnostics','browser-gate-trace','browser-gate-variants','browser-lifecycle','cause-fix-probe','cause-probe','gtk-native-probe','gtk-target-probe','writing-diagnosis','writing-geometry','writing-layout','writing-localization','writing-models','writing-variants'])assert.ok(diagnostic.some(row=>row.path==='tests/'+name+'.test.cjs'),'dated diagnostic route '+name);
   for(const number of [31,33,35])assert.deepEqual(registry.tests.find(row=>row.path==='tests/test_issue'+number+'_acceptance.py').profiles,['issue-policy']);
   assert.ok(registry.tests.some(row=>row.path==='tests/flight.test.cjs'&&row.lifecycle==='permanent'));
-  assert.ok(registry.tests.some(row=>row.path==='tests/ribbons.test.cjs'&&row.lifecycle==='permanent'));
+  const ribbons = registry.tests.find(row => row.path === 'tests/ribbons.test.cjs');
+  assert.equal(ribbons.lifecycle, 'diagnostic', 'retired ribbons retain an explicit comparison route');
+  assert.deepEqual(ribbons.profiles, ['diagnostic', 'pr-targeted']);
+  for (const profile of ['staging', 'production']) {
+    assert.ok(!runner.select(root, profile).modules.includes(ribbons.path),
+      'active delivery cannot claim historical ribbon coverage');
+  }
   assert.ok(registry.tests.some(row=>row.path==='tests/native-display.test.cjs'&&row.lifecycle==='permanent'));
 });
 test('production keeps all active JS while staging delegates only the real local smoke baseline',()=>{

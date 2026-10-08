@@ -4,13 +4,14 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 
 ## Snapshot
 
-- [#61](https://github.com/oborskyivitalii/oborskyivitalii/issues/61) owns the
-  supplied PMDay Ukrainian recording update to the existing Talks card.
-  [Handoff](review/issue-61/2026-10-08-handoff.md); exact source/CI/PR and integration
-  status belong to the live issue. PR63 stage is blocked by Writing TBT with unchanged runtime
-  (299 ms > 200 ms); current source/PR/static checks pass. Issue45 owns
-  the retained rendering investigation; main/stable are unchanged by this task.
-  Article/deck/PDF #2 remains separate.
+- [#61](https://github.com/oborskyivitalii/oborskyivitalii/issues/61) / PR63 owns
+  the exact supplied PMDay recording and the newly authorized removal of colored
+  ribbons from active hosted/offline Color. Main remains verified `a56b627`.
+  [Handoff](review/issue-61/2026-10-08-handoff.md). Current source is being
+  regenerated/reviewed; complete current bounded staging, exact stable verification
+  and same-head merge remain pending. Earlier Writing TBT stage failures remain.
+  Issue45/PR64 rejected optimization experiments are not incorporated; explicit
+  ribbon comparisons become historical. Article/deck/PDF #2 stays separate.
 
 - Rules main `e501da821c1cf9a3ac4bc8d251aba1bf4dc57d59`: PR #55 is merged;
   issue #54 is closed completed. PR #51 was already merged.
@@ -69,9 +70,9 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 
 ## Next session
 
-1. Fetch live main and issue56/its PR; PR55 rules are already merged.
-2. Continue the separate authorized R1 delivery from its source handoff.
-3. Use targeted checks, trim removed debt, rebuild RI and reconcile actual ACs.
+1. Fetch live main and issue61/PR63; current authorized scope removes ribbons.
+2. Complete exact current staging/stable gate, merge tested head, reconcile ACs.
+3. Keep PR64/R2-R6 and production acceptance separate.
 
 ## Maintenance
 

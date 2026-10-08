@@ -34,9 +34,39 @@ function flight(to,from,phase){
 function flightSetup(to,phase){return {destination:to,phase,timeoutMs:3000,quietMs:200,status:'settled',samples:[{elapsedMs:400,page:'index',sceneRoute:'index',travel:'settled',ready:true,hidden:false,motion:'Motion: on',paints:4,lastPreparationAgeMs:300,targetCached:phase==='warm'}]};}
 function lighthouseRow(route){return {route,formFactor:'mobile',run:1,lighthouseVersion:'controlled fixture; not a real audit',fetchTime:'2026-10-07T00:00:00.000Z',environment:{networkUserAgent:'controlled fixture'},configSettings:{formFactor:'mobile',throttlingMethod:'simulate',...clone(budgets.lighthouse.profiles.mobile)},metrics:{'largest-contentful-paint':{numericValue:2000},'total-blocking-time':{numericValue:100},'cumulative-layout-shift':{numericValue:.05}}};}
 function performanceReport(m=manifest()){return {...identity(m),kind:'stage-performance',profile:'staging',stageContract:1,fullGate:false,productionEligible:false,elapsedMs:1000,selection:stage.performanceContract(),lighthouseAggregation:'single trial per selected route; not release medians',soakPerformed:false,retentionCycles:0,browser:'controlled fixture',samples:['research','writing'].map(route=>({route,width:390,rate:4,positiveProbe:true,errors:[],measurements:['idle','scroll','off','reduced'].map(kind=>measurement(kind))})),flights:stage.flightCases().map(({to,from,phase})=>flight(to,from,phase)),lighthouse:['research','writing'].map(lighthouseRow)};}
-function colorReport(m){return {...identity(m),kind:'color-preview-smoke',profile:'preview',smoke:true,fullGate:false,browsers:[{engine:'chromium',version:'controlled fixture'}],rows:[1440,390].map(width=>({engine:'chromium',width,theme:'light',pass:true,identity:{id:'color',engine:common.variant(m).fingerprint},ribbons:{count:'3',material:'opaque-rgb',faces:3},checks:Object.fromEntries(['shortenedHomeRange','homeForwardEdge','spatialFlight','forwardEdge','reverseNativeBottom','disabledEdge','creditsBoundary','homeBoundary','retiredReadingEffectAbsent'].map(key=>[key,true])),flight:[{plane:{flightStage:'depart',flightDepth:1}},{plane:{flightStage:'arrive',flightDepth:-1}}]}))};}
+function colorReport(manifest) {
+  return {
+    ...identity(manifest),
+    kind: 'color-preview-smoke',
+    profile: 'preview',
+    smoke: true,
+    fullGate: false,
+    browsers: [{engine: 'chromium', version: 'controlled fixture'}],
+    rows: [1440, 390].map(width => ({
+      engine: 'chromium',
+      width,
+      theme: 'light',
+      pass: true,
+      identity: {id: 'color', engine: common.variant(manifest).fingerprint},
+      ribbons: {sceneHook: 'undefined', dataset: {}},
+      paint: {completed: 2, ordinaryShapes: 12, customShapes: 0},
+      checks: Object.fromEntries(['shortenedHomeRange', 'homeForwardEdge', 'spatialFlight',
+        'forwardEdge', 'reverseNativeBottom', 'disabledEdge', 'creditsBoundary', 'homeBoundary',
+        'retiredReadingEffectAbsent'].map(key => [key, true])),
+      flight: [
+        {plane: {flightStage: 'depart', flightDepth: 1}},
+        {plane: {flightStage: 'arrive', flightDepth: -1}}
+      ]
+    }))
+  };
+}
 function aggregateFixture(color=false){
-  const m=manifest();if(color){m.components.variant.id='color';m.variant={...m.components.variant};}
+  const m = manifest();
+  if (color) {
+    m.components.variant.id = 'color';
+    m.components.variant.effects = ['travel'];
+    m.variant = {...m.components.variant};
+  }
   const host={...identity(m),kind:'hosted',profile:'staging',root:true,actual404:true,redirectsStayWithinSite:true,rows:Object.keys(m.files).filter(file=>file!=='.nojekyll').map(file=>({file,status:200,sha256:m.files[file].sha256,url:target+'/'+file,mime:file.endsWith('.html')?'text/html':file.endsWith('.js')?'application/javascript':file.endsWith('.css')?'text/css':'application/json'}))};
   const scan=(kind,detail)=>({...identity(m),kind,detail});
   const reports=[host,scan('lint',{scannedFiles:10,tools:{eslint:'controlled fixture',stylelint:'controlled fixture',ruff:'controlled fixture'}}),scan('security',{semgrep:{files:['space.js'],rules:7,errors:0},bandit:{loc:10,findings:0},secrets:{trackedTextFiles:10}}),scan('advisories',{feedDate:'2026-10-07',npm:{},pythonDependencies:10,runtimeDependencies:'none'}),functional(m),performanceReport(m),...(color?[colorReport(m)]:[])];
