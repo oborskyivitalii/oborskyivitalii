@@ -238,5 +238,10 @@
     "path": "tests/staging-regression.test.cjs",
     "reason": "Correct the required Base smoke/journey observer to distinguish the canonical Base descriptor fingerprint from the runtime engine. Preserve exact source/artifact/served-byte binding, 64-hex engine validation, Color engine/fingerprint equality, existing profile cases and budgets; reject malformed, stale or conflicting identities with negative fixtures. This same field-assumption defect is reproduced on immutable R2 baseline.",
     "owner": "review/issue-58/2026-10-08-handoff.md"
+  },
+  {
+    "path": "tests/staging-gate.test.cjs",
+    "reason": "Preserve the existing wrong-report-variant negative by replacing only that report variant object. The fixture aliases its original variant to the trusted manifest and other reports; in-place mutation changed all expected identities together and was masked by the old Base engine/descriptor assertion. Keep the same rejection assertion and every production gate/profile/budget.",
+    "owner": "review/issue-58/2026-10-08-handoff.md"
   }
 ]
