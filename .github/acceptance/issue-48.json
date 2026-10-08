@@ -9,7 +9,8 @@
       "intent": "Place Theory of Constraints under Subprime and Control Theory under Uncertainty Architecture, with a subtle association that remains explicit in narrow layouts.",
       "automated_scope": "The maintained content case checks actual authored and generated project/theory order, named links to the owning project anchors, preserved theory descriptions and headings, shared project accent ownership, responsive stacking and no added reading-surface paint authority. Deterministic source checks cannot establish perceived association, actual native wrapping or current-preview Day/Night readability.",
       "checks": [
-        "THEORY-ASSOCIATION"
+        "THEORY-ASSOCIATION",
+        "SHARED-READING-SURFACES"
       ],
       "gates": [
         "VISUAL"
@@ -69,6 +70,22 @@
         "CURRENT-CI-REVIEW",
         "MERGE"
       ]
+    },
+    {
+      "id": "AC06",
+      "intent": "Give all four Talks cards one shared publication-row backdrop matching Writing, with consistent row width, natural content-driven height and centrally owned material and bounds; stage and merge the exact tested candidate through the existing controller.",
+      "automated_scope": "The strengthened maintained reading-surfaces case checks a single shared publication-row panel around metadata, title, context and links, canonical backdrop material/outset ownership and source geometry rules for consistent width and native content-driven height. It retains theme-paper background at 87% alpha, full foreground opacity, crisp 12px outer corners and the same-owner reduced-transparency override, with no separately painted Talks child rectangles or competing base/route/Color authority. The check is shared with AC01 and executes once. Maintained generation/SEO checks preserve exact event content, sources and all unrelated semantics; current RI and RI/CI checks bind generated output and source/check routing. These source/fixture checks do not establish actual browser dimensions, current-preview visual acceptance, successful bounded staging or a merge; exact source/tree/run/alias evidence remains externally reviewed.",
+      "checks": [
+        "SHARED-READING-SURFACES",
+        "GENERATION-SEO",
+        "CURRENT-RI",
+        "RI-CI"
+      ],
+      "gates": [
+        "VISUAL",
+        "CURRENT-CI-REVIEW",
+        "MERGE"
+      ]
     }
   ],
   "checks": {
@@ -107,12 +124,16 @@
     "TALKS-CURATION": {
       "kind": "unittest",
       "test": "test_issue48_acceptance.Issue48AcceptanceTests.test_talks_curates_distinct_sourced_events_and_rejects_invented_details"
+    },
+    "SHARED-READING-SURFACES": {
+      "kind": "unittest",
+      "test": "test_issue48_acceptance.Issue48AcceptanceTests.test_shared_reading_surfaces_keep_one_publication_panel_and_canonical_bounds"
     }
   },
   "gates": {
     "VISUAL": {
       "kind": "human",
-      "description": "Inspect the exact current-source CI preview in Day/Night at desktop and narrow widths. Verify theory/project association and native wrapping, unchanged 87% paper alpha/13% transparency and effective reading corners, and the same colored Writing formula visibly between the first and second book arches with coherent tilt, pulse and camera travel. Retain source/public identities and actual observations. Maintainer visual acceptance remains explicit; deterministic source assertions are not device or perceived-layout evidence. For the authorized Talks amendment, inspect the four distinct cards, concise context, truthful date/language/resource labels and native narrow wrapping at the same current preview; maintainer visual acceptance remains explicit."
+      "description": "Inspect the exact current-source CI preview in Day/Night at desktop and narrow widths. Verify theory/project association and native wrapping, unchanged 87% paper alpha/13% transparency and effective reading corners, and the same colored Writing formula visibly between the first and second book arches with coherent tilt, pulse and camera travel. Retain source/public identities and actual observations. Maintainer visual acceptance remains explicit; deterministic source assertions are not device or perceived-layout evidence. For the authorized Talks amendment, inspect the four distinct cards, concise context, truthful date/language/resource labels and native narrow wrapping at the same current preview; maintainer visual acceptance remains explicit. For AC06, inspect actual current-preview desktop and narrow Talks panels in Day/Night against Writing: each card has one backdrop covering both columns and all links, consistent row width, natural content height and unchanged transparency/corners. Verify native wrapping and no separate metadata/prose paint rectangles; source geometry assertions are not actual browser measurements."
     },
     "EDITORIAL": {
       "kind": "human",
@@ -120,11 +141,11 @@
     },
     "CURRENT-CI-REVIEW": {
       "kind": "human",
-      "description": "Record exact linked Draft PR and Refs commits, current canonical/generated/offline and public artifact identities, passing applicable Basic/targeted/navigation/acceptance and normal preview CI, versioned source/review handoff and independent review. Reconcile actual issue checkboxes and the original acceptance intent from current-source evidence. Earlier runs, local preparation or self-review do not supply these decisions."
+      "description": "Record exact linked Draft PR and Refs commits, current canonical/generated/offline and public artifact identities, passing applicable Basic/targeted/navigation/acceptance and normal preview CI, versioned source/review handoff and independent review. Reconcile actual issue checkboxes and the original acceptance intent from current-source evidence. Earlier runs, local preparation or self-review do not supply these decisions. The dated AC06 amendment explicitly authorizes main and stable staging after the backdrop fix. Record current independent review and the existing controller\u2019s complete bounded staging gate, exact source/tree/public/package identities and successful stable alias verification while PR51 remains open. A normal preview, selected fixture pass or another head cannot substitute for that staging evidence."
     },
     "MERGE": {
       "kind": "merge",
-      "description": "Applicable maintainer decision and normal merge of the accepted candidate, followed by exact merged-source reconciliation before issue closure. Draft-PR preview and passing checks do not authorize stable staging, production activation or closure of broader issue41/issue45 criteria."
+      "description": "Applicable maintainer decision and normal merge of the accepted candidate, followed by exact merged-source reconciliation before issue closure. Draft-PR preview and passing checks do not authorize stable staging, production activation or closure of broader issue41/issue45 criteria. Under the maintainer\u2019s explicit AC06 main/staging authorization, first complete and verify bounded stable staging of the open PR\u2019s fixed head, then normally merge that exact tested head and reconcile the merged commit/tree. Do not move the PR head or main during staging; production activation and broader issue41/issue45 criteria retain their separate owners."
     }
   }
 }

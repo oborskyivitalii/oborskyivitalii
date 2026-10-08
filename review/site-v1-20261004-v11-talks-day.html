@@ -31,8 +31,8 @@
 
 
 
-  <meta name="site-engine" content="c9bbe2f034871ce7b402ace16227e807839ede77df1b45dc41b280f9e3f4cbc7">
-  <meta name="site-route" content="4b7abc1967daccf5ee5704ce384ae2ca91c29e7df863455df0b4db599009d036">
+  <meta name="site-engine" content="e3dcff227a6726f5a40df113dcf7bb3525ec7ef22017e05da169a34fbfb66894">
+  <meta name="site-route" content="39e2b790e3b6788db22fe5bed836b2105d7607bff738eddc7178924241848024">
   <meta name="site-contract" content="1">
   <meta name="site-variant" content="base">
 <meta name="robots" content="noindex, nofollow">
@@ -368,14 +368,14 @@ body[data-page="writing"] #archive-results {width:min(1010px,calc(100% - 80px));
 .research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,
 .ack-grid article,.discussion-row,.about-grid>div,.about-grid>h2,.about-section>.eyebrow,.archive-link,.contact-grid>div,.publication,.credits-page>p,.credits-page>h1,.credits-page>h2,
 .archive-heading,.archive-count,.empty-state,.year-landing,.year-heading,.writing-topic,.section-note,.next-route>p,.next-route>a,
-.archive-landings>.topic-landing,.archive-filters,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a,.talks-list .publication>div) {
+.archive-landings>.topic-landing,.archive-filters,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a) {
   position:relative;isolation:isolate;
 }
 :where(.hero-copy,.section-heading,.archive-intro>.hero-description,.archive-intro>.eyebrow,.shift-intro>p,
 .research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,
 .ack-grid article,.discussion-row,.about-grid>div,.about-grid>h2,.about-section>.eyebrow,.archive-link,.contact-grid>div,.publication,.credits-page>p,.credits-page>h1,.credits-page>h2,
 .archive-heading,.archive-count,.empty-state,.year-landing,.year-heading,.writing-topic,.section-note,.next-route>p,.next-route>a,
-.archive-landings>.topic-landing,.archive-filters,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a,.talks-list .publication>div)::before {
+.archive-landings>.topic-landing,.archive-filters,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a)::before {
   content:"";position:absolute;inset:calc(-1 * (var(--surface-gutter) + var(--surface-outset,0px)));z-index:-1;pointer-events:none;
 }
 /* Only the paper paint is translucent; title ink and popup controls stay opaque.
@@ -384,7 +384,7 @@ body[data-page="writing"] #archive-results {width:min(1010px,calc(100% - 80px));
 .research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,
 .ack-grid article,.discussion-row,.about-grid>div,.about-grid>h2,.about-section>.eyebrow,.archive-link,.contact-grid>div,.publication,.credits-page>p,.credits-page>h1,.credits-page>h2,
 .archive-heading,.archive-count,.empty-state,.year-landing,.year-heading,.writing-topic,.section-note,.next-route>p,.next-route>a,
-.archive-landings>.topic-landing,.archive-filters,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a,.talks-list .publication>div)::before,
+.archive-landings>.topic-landing,.archive-filters,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a)::before,
 .hero :is(h1,.hero-lead,.hero-description,.audience,.eyebrow)::before,.reading-title,.appearance[open] .display-controls {
   background:var(--reading-surface-color);opacity:var(--reading-surface-opacity);border-radius:var(--reading-surface-radius);box-shadow:none;
 }
@@ -398,10 +398,11 @@ body[data-page="writing"] #archive-results {width:min(1010px,calc(100% - 80px));
 /* All title ink paints above every cloned fragment, including its neighbours. */
 .reading-title-ink {position:relative;z-index:1}
 .about-grid>h2,.credits-page>h1,.hero h1 {--surface-outset:.16em}
-.year-heading,.talks-list .publication>div:has(.talk-title) {--surface-outset:6px}
+.year-heading {--surface-outset:6px}
 .archive-landings>.topic-landing,.section-nav>a,.topic-nav>a,.site-footer>p,.site-footer>a,.next-route>p,.next-route>a,.archive-filters {--surface-gutter:8px}
-:is(.research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,.ack-grid article,.discussion-row,.about-grid>div,.contact-grid>div) .section-note::before,
-.talks-list .publication::before {content:none}
+/* Publication cards share one row backdrop on Writing and Talks. Intrinsic
+   child widths affect text layout only, never the paper envelope. */
+:is(.research-card,.topic-card,.help-grid article,.ack-leads article,.ack-compact article,.ack-grid article,.discussion-row,.about-grid>div,.contact-grid>div) .section-note::before {content:none}
 @media(max-width:640px) {
   .hero .hero-copy::before {content:none}
   .hero :is(h1,.hero-lead,.hero-description,.audience,.eyebrow) {position:relative;isolation:isolate;--surface-gutter:18px}

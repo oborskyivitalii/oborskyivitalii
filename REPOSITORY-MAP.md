@@ -38,13 +38,13 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/media](docs/media) | Generated content-addressed asset editions. | generated | [site/README.md](site/README.md) |
 | [docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc](docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc) | Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
 | [docs/runtime](docs/runtime) | Generated content-addressed browser runtime editions. | generated | [site/README.md](site/README.md) |
-| [docs/runtime/c9bbe2f034871ce7b402ace16227e807839ede77df1b45dc41b280f9e3f4cbc7](docs/runtime/c9bbe2f034871ce7b402ace16227e807839ede77df1b45dc41b280f9e3f4cbc7) | Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/e3dcff227a6726f5a40df113dcf7bb3525ec7ef22017e05da169a34fbfb66894](docs/runtime/e3dcff227a6726f5a40df113dcf7bb3525ec7ef22017e05da169a34fbfb66894) | Generated immutable route/runtime with issue48 shared publication-card backdrop sizing. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots](docs/snapshots) | Generated exact-route HTML snapshots. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/3304f365cff35ec9bb97da2f5f199b15c29076da7e6f5c571cb7e1c1796a5a46](docs/snapshots/3304f365cff35ec9bb97da2f5f199b15c29076da7e6f5c571cb7e1c1796a5a46) | Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/38d8dfa3267ee2fecea29a31b3891a8032c72fb09c5b5af8f3c281c5ca931cee](docs/snapshots/38d8dfa3267ee2fecea29a31b3891a8032c72fb09c5b5af8f3c281c5ca931cee) | Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/4b7abc1967daccf5ee5704ce384ae2ca91c29e7df863455df0b4db599009d036](docs/snapshots/4b7abc1967daccf5ee5704ce384ae2ca91c29e7df863455df0b4db599009d036) | Generated immutable Talks route from issue48 sourced event curation. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/b51fb2a425e87ca9bfe8bef76ee8dccda19a70d36263c5eaa552ea235b471e50](docs/snapshots/b51fb2a425e87ca9bfe8bef76ee8dccda19a70d36263c5eaa552ea235b471e50) | Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/dd80cad0f256ab6dfa84c00a1585e97aff07a068d4bb9c1bd7717cc12497452f](docs/snapshots/dd80cad0f256ab6dfa84c00a1585e97aff07a068d4bb9c1bd7717cc12497452f) | Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/25e29387a2fa923eb9fd01332b0e10d17b1eed3742495878d3832b6419f6125b](docs/snapshots/25e29387a2fa923eb9fd01332b0e10d17b1eed3742495878d3832b6419f6125b) | Generated immutable route/runtime with issue48 shared publication-card backdrop sizing. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/39e2b790e3b6788db22fe5bed836b2105d7607bff738eddc7178924241848024](docs/snapshots/39e2b790e3b6788db22fe5bed836b2105d7607bff738eddc7178924241848024) | Generated immutable route/runtime with issue48 shared publication-card backdrop sizing. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/800bd872ac1d387895db4c8732b25bad78f4d8ddf8bd9eabf406f1a9439f0f39](docs/snapshots/800bd872ac1d387895db4c8732b25bad78f4d8ddf8bd9eabf406f1a9439f0f39) | Generated immutable route/runtime with issue48 shared publication-card backdrop sizing. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/a147ac45e08f4c84d5cadcc1125b98d92d2688540123906eeb9cf4b67fc6ea4a](docs/snapshots/a147ac45e08f4c84d5cadcc1125b98d92d2688540123906eeb9cf4b67fc6ea4a) | Generated immutable route/runtime with issue48 shared publication-card backdrop sizing. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/b64484f6b610e975a0bde5f5ade34dffb27ead672209006296dd6efad4364fe4](docs/snapshots/b64484f6b610e975a0bde5f5ade34dffb27ead672209006296dd6efad4364fe4) | Generated immutable route/runtime with issue48 shared publication-card backdrop sizing. | generated | [site/README.md](site/README.md) |
 | [drafts](drafts) | Unpublished article/profile proposals excluded from public builds. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [guides](guides) | Maintained topic guides for repository boundaries, publication, quality and hosting; root stays an entry surface. | guide | [guides/README.md](guides/README.md) |
 | [review](review) | Dated plans, evidence, captures and renditions; current Color/export inputs are explicitly marked. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -216,45 +216,45 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi.jpg](docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi.jpg) | Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
 | [docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/writing-paradigm.svg](docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/writing-paradigm.svg) | Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
 
-## docs/runtime/c9bbe2f034871ce7b402ace16227e807839ede77df1b45dc41b280f9e3f4cbc7/
+## docs/runtime/e3dcff227a6726f5a40df113dcf7bb3525ec7ef22017e05da169a34fbfb66894/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/runtime/c9bbe2f034871ce7b402ace16227e807839ede77df1b45dc41b280f9e3f4cbc7/archive.js](docs/runtime/c9bbe2f034871ce7b402ace16227e807839ede77df1b45dc41b280f9e3f4cbc7/archive.js) | Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair. | generated | [site/README.md](site/README.md) |
-| [docs/runtime/c9bbe2f034871ce7b402ace16227e807839ede77df1b45dc41b280f9e3f4cbc7/navigation.js](docs/runtime/c9bbe2f034871ce7b402ace16227e807839ede77df1b45dc41b280f9e3f4cbc7/navigation.js) | Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair. | generated | [site/README.md](site/README.md) |
-| [docs/runtime/c9bbe2f034871ce7b402ace16227e807839ede77df1b45dc41b280f9e3f4cbc7/space.js](docs/runtime/c9bbe2f034871ce7b402ace16227e807839ede77df1b45dc41b280f9e3f4cbc7/space.js) | Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair. | generated | [site/README.md](site/README.md) |
-| [docs/runtime/c9bbe2f034871ce7b402ace16227e807839ede77df1b45dc41b280f9e3f4cbc7/styles.css](docs/runtime/c9bbe2f034871ce7b402ace16227e807839ede77df1b45dc41b280f9e3f4cbc7/styles.css) | Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair. | generated | [site/README.md](site/README.md) |
-| [docs/runtime/c9bbe2f034871ce7b402ace16227e807839ede77df1b45dc41b280f9e3f4cbc7/theme.js](docs/runtime/c9bbe2f034871ce7b402ace16227e807839ede77df1b45dc41b280f9e3f4cbc7/theme.js) | Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/e3dcff227a6726f5a40df113dcf7bb3525ec7ef22017e05da169a34fbfb66894/archive.js](docs/runtime/e3dcff227a6726f5a40df113dcf7bb3525ec7ef22017e05da169a34fbfb66894/archive.js) | Generated immutable route/runtime with issue48 shared publication-card backdrop sizing. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/e3dcff227a6726f5a40df113dcf7bb3525ec7ef22017e05da169a34fbfb66894/navigation.js](docs/runtime/e3dcff227a6726f5a40df113dcf7bb3525ec7ef22017e05da169a34fbfb66894/navigation.js) | Generated immutable route/runtime with issue48 shared publication-card backdrop sizing. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/e3dcff227a6726f5a40df113dcf7bb3525ec7ef22017e05da169a34fbfb66894/space.js](docs/runtime/e3dcff227a6726f5a40df113dcf7bb3525ec7ef22017e05da169a34fbfb66894/space.js) | Generated immutable route/runtime with issue48 shared publication-card backdrop sizing. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/e3dcff227a6726f5a40df113dcf7bb3525ec7ef22017e05da169a34fbfb66894/styles.css](docs/runtime/e3dcff227a6726f5a40df113dcf7bb3525ec7ef22017e05da169a34fbfb66894/styles.css) | Generated immutable route/runtime with issue48 shared publication-card backdrop sizing. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/e3dcff227a6726f5a40df113dcf7bb3525ec7ef22017e05da169a34fbfb66894/theme.js](docs/runtime/e3dcff227a6726f5a40df113dcf7bb3525ec7ef22017e05da169a34fbfb66894/theme.js) | Generated immutable route/runtime with issue48 shared publication-card backdrop sizing. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/3304f365cff35ec9bb97da2f5f199b15c29076da7e6f5c571cb7e1c1796a5a46/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/snapshots/3304f365cff35ec9bb97da2f5f199b15c29076da7e6f5c571cb7e1c1796a5a46/writing.html](docs/snapshots/3304f365cff35ec9bb97da2f5f199b15c29076da7e6f5c571cb7e1c1796a5a46/writing.html) | Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair. | generated | [site/README.md](site/README.md) |
-
-## docs/snapshots/38d8dfa3267ee2fecea29a31b3891a8032c72fb09c5b5af8f3c281c5ca931cee/
+## docs/snapshots/25e29387a2fa923eb9fd01332b0e10d17b1eed3742495878d3832b6419f6125b/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/snapshots/38d8dfa3267ee2fecea29a31b3891a8032c72fb09c5b5af8f3c281c5ca931cee/research.html](docs/snapshots/38d8dfa3267ee2fecea29a31b3891a8032c72fb09c5b5af8f3c281c5ca931cee/research.html) | Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/25e29387a2fa923eb9fd01332b0e10d17b1eed3742495878d3832b6419f6125b/index.html](docs/snapshots/25e29387a2fa923eb9fd01332b0e10d17b1eed3742495878d3832b6419f6125b/index.html) | Generated immutable route/runtime with issue48 shared publication-card backdrop sizing. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/4b7abc1967daccf5ee5704ce384ae2ca91c29e7df863455df0b4db599009d036/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/snapshots/4b7abc1967daccf5ee5704ce384ae2ca91c29e7df863455df0b4db599009d036/talks.html](docs/snapshots/4b7abc1967daccf5ee5704ce384ae2ca91c29e7df863455df0b4db599009d036/talks.html) | Generated immutable Talks route from issue48 sourced event curation. | generated | [site/README.md](site/README.md) |
-
-## docs/snapshots/b51fb2a425e87ca9bfe8bef76ee8dccda19a70d36263c5eaa552ea235b471e50/
+## docs/snapshots/39e2b790e3b6788db22fe5bed836b2105d7607bff738eddc7178924241848024/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/snapshots/b51fb2a425e87ca9bfe8bef76ee8dccda19a70d36263c5eaa552ea235b471e50/credits.html](docs/snapshots/b51fb2a425e87ca9bfe8bef76ee8dccda19a70d36263c5eaa552ea235b471e50/credits.html) | Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/39e2b790e3b6788db22fe5bed836b2105d7607bff738eddc7178924241848024/talks.html](docs/snapshots/39e2b790e3b6788db22fe5bed836b2105d7607bff738eddc7178924241848024/talks.html) | Generated immutable route/runtime with issue48 shared publication-card backdrop sizing. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/dd80cad0f256ab6dfa84c00a1585e97aff07a068d4bb9c1bd7717cc12497452f/
+## docs/snapshots/800bd872ac1d387895db4c8732b25bad78f4d8ddf8bd9eabf406f1a9439f0f39/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/snapshots/dd80cad0f256ab6dfa84c00a1585e97aff07a068d4bb9c1bd7717cc12497452f/index.html](docs/snapshots/dd80cad0f256ab6dfa84c00a1585e97aff07a068d4bb9c1bd7717cc12497452f/index.html) | Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/800bd872ac1d387895db4c8732b25bad78f4d8ddf8bd9eabf406f1a9439f0f39/research.html](docs/snapshots/800bd872ac1d387895db4c8732b25bad78f4d8ddf8bd9eabf406f1a9439f0f39/research.html) | Generated immutable route/runtime with issue48 shared publication-card backdrop sizing. | generated | [site/README.md](site/README.md) |
+
+## docs/snapshots/a147ac45e08f4c84d5cadcc1125b98d92d2688540123906eeb9cf4b67fc6ea4a/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/a147ac45e08f4c84d5cadcc1125b98d92d2688540123906eeb9cf4b67fc6ea4a/credits.html](docs/snapshots/a147ac45e08f4c84d5cadcc1125b98d92d2688540123906eeb9cf4b67fc6ea4a/credits.html) | Generated immutable route/runtime with issue48 shared publication-card backdrop sizing. | generated | [site/README.md](site/README.md) |
+
+## docs/snapshots/b64484f6b610e975a0bde5f5ade34dffb27ead672209006296dd6efad4364fe4/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/b64484f6b610e975a0bde5f5ade34dffb27ead672209006296dd6efad4364fe4/writing.html](docs/snapshots/b64484f6b610e975a0bde5f5ade34dffb27ead672209006296dd6efad4364fe4/writing.html) | Generated immutable route/runtime with issue48 shared publication-card backdrop sizing. | generated | [site/README.md](site/README.md) |
 
 ## drafts/
 

@@ -34,6 +34,10 @@ class Issue48AcceptanceTests(unittest.TestCase):
         node_checks(["tests/content.test.cjs", "tests/executive.test.cjs"], [
             "research theories retain project alignment and explicit association on narrow layouts",
             "Day/Night semantic text and CTA pairs exceed normal-text contrast with no independent atmosphere clock",
+        ])
+
+    def test_shared_reading_surfaces_keep_one_publication_panel_and_canonical_bounds(self):
+        node_checks(["tests/executive.test.cjs"], [
             "reading surfaces have one shared CSS authority across base and Color renditions",
         ])
 

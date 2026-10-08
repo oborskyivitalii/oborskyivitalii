@@ -138,6 +138,22 @@ test('reading surfaces have one shared CSS authority across base and Color rendi
       assert.equal(matches.length,1,'one shared '+name+' authority');assert.equal(matches[0][1].trim(),value);
     }
     verifyAlpha(screen);
+    assert.doesNotMatch(screen,/\.talks-list\s+\.publication/,'Talks uses the shared publication row, with no child-panel or row-disable exception');
+    const envelope=rules(screen).find(rule=>rule.selector.includes('.publication')&&rule.selector.trim().endsWith('::before')&&properties(rule.body).some(([property])=>property==='content'));
+    assert.ok(envelope,'the publication row owns its paper envelope');
+    const bounds=Object.fromEntries(properties(envelope.body));
+    assert.equal(bounds.content,'""');
+    assert.equal(bounds.inset,'calc(-1 * (var(--surface-gutter) + var(--surface-outset,0px)))','one shared, content-driven row envelope');
+    for(const rule of rules(screen).filter(rule=>rule.selector.includes('.publication')&&rule.selector.includes('::before'))){
+      for(const [property,value]of properties(rule.body)){
+        if(property==='content')assert.equal(value,'""','the canonical row cannot disable paper content');
+        if(property==='inset')assert.equal(value,bounds.inset,'every row-envelope rule retains shared bounds');
+        assert.ok(!/^(?:inset-[\w-]+|top|right|bottom|left)$/.test(property),'row bounds have one inset authority');
+      }
+    }
+    const gutters=[...screen.matchAll(/--surface-gutter\s*:\s*([^;}]+)/g)];
+    assert.equal(gutters[0][1].trim(),'12px','publication rows inherit the shared12px gutter');
+    assert.doesNotMatch(screen,/\.publication[^{}]*\{[^}]*(?:--surface-(?:gutter|outset)|height|width)\s*:/,'publication bounds have no second sizing authority');
     assert.match(screen,/--reading-title-outset\s*:\s*\.16em\s*;/);
     assert.doesNotMatch(screen,/(?:^|[;{}])\s*(?:padding|margin|font|line-height|width|height|display|gap)(?:-[\w-]+)?\s*:/,'reading paint cannot change native flow placement');
     assert.doesNotMatch(screen,/(?:(?:backdrop-)?filter\s*:|(?:-webkit-)?mask(?:-[\w-]+)?\s*:)/,'shared translucent paint has no mask or blur');
@@ -145,10 +161,25 @@ test('reading surfaces have one shared CSS authority across base and Color rendi
     assert.match(screen,/\.reading-title-ink\s*\{[^}]*z-index\s*:\s*1\s*[;}]/,'all title ink stays above neighbouring fragment paint');
     for(const css of [ordinary,authoredColor]){
       assert.doesNotMatch(strip(css),/--(?:reading-surface-[\w-]+|reading-title-outset|reading-alpha|surface-(?:open|reading|row|gutter|outset))\s*:/,'no second token authority');
-      for(const rule of rules(css))if(isSurface(rule.selector))assert.ok(properties(rule.body).every(([property])=>!paint.test(property)),'no base/Color reading-paint override: '+rule.selector.trim());
+      for(const rule of rules(css))if(isSurface(rule.selector)){
+        assert.ok(properties(rule.body).every(([property])=>!paint.test(property)),'no base/Color reading-paint override: '+rule.selector.trim());
+        if(rule.selector.includes('::before'))assert.ok(properties(rule.body).every(([property])=>!/^(?:content|inset(?:-[\w-]+)?|top|right|bottom|left|width|height)$/.test(property)),'no base/Color reading-bounds override: '+rule.selector.trim());
+      }
     }
   }
   verify(owner,base,extra,generated);
+  const split='\n.talks-list .publication>div::before {content:"";background:var(--reading-surface-color)}\n';
+  assert.throws(()=>verify(owner+split,base,extra,base+'\n'+owner+split),/shared publication row/,'separate metadata/copy panels cannot return');
+  const disabled='\n.talks-list .publication::before {content:none}\n';
+  assert.throws(()=>verify(owner+disabled,base,extra,base+'\n'+owner+disabled),/shared publication row/,'the shared Talks row cannot be silently disabled');
+  const sizing='\n.publication::before {inset:-30px}\n';
+  assert.throws(()=>verify(owner+sizing,base,extra,base+'\n'+owner+sizing),/every row-envelope rule/,'a later canonical row rule cannot change the shared envelope');
+  assert.throws(()=>verify(owner,base+sizing,extra,base+sizing+'\n'+owner),/reading-bounds override/,'route/layout CSS cannot grow the shared paper envelope');
+  assert.throws(()=>verify(owner,base,extra+sizing,generated),/reading-bounds override/,'Color cannot become a second envelope owner');
+  const hidden='\n.publication::before {content:none}\n';
+  assert.throws(()=>verify(owner+hidden,base,extra,base+'\n'+owner+hidden),/cannot disable paper content/,'a later canonical row rule cannot hide the backdrop');
+  assert.throws(()=>verify(owner,base+hidden,extra,base+hidden+'\n'+owner),/reading-bounds override/,'layout CSS cannot suppress shared paper');
+  assert.throws(()=>verify(owner,base,extra+hidden,generated),/reading-bounds override/,'Color cannot suppress shared paper');
   const duplicate='\nbody[data-page="writing"] .publication::before {background:#ffffff;opacity:.5;border-radius:3px}\n';
   assert.throws(()=>verify(owner,base+duplicate,extra,base+duplicate+'\n'+owner),/reading-paint override/,'a route override cannot become another CSS owner');
   assert.throws(()=>verify(owner,base,extra+duplicate,generated),/reading-paint override/,'Color cannot silently replace the shared material');

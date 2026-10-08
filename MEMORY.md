@@ -13,12 +13,12 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
   failed runs and the canceled post-ready duplicate preview are not this proof.
   [#45 handoff](review/issue-45/2026-10-07-handoff.md) retains detailed history.
 - [#48](https://github.com/oborskyivitalii/oborskyivitalii/issues/48) owns the
-  theory/formula/Matthew request and subsequent Talks extension. Isolated branch
+  theory/formula/Matthew request, Talks curation and shared backdrop-size correction. Isolated branch
   `work/issue48-site-alignment-20261008` starts at main above; same
   [Draft PR51](https://github.com/oborskyivitalii/oborskyivitalii/pull/51) owns both.
-  Pre-Talks published checkpointb6f8fe74/tree d0fd8a4a passed all four workflows;
-  historical preview https://81c613b2.oborskyi-author-ci-staging.pages.dev/ .
-  Talks extension source/preview verification is pending publication; fetch the
+  Talks checkpointb4f1e2a/tree4a1e9516 passed source/preview CI; immutable
+  historical preview https://cd3f78a6.oborskyi-author-ci-staging.pages.dev/talks#talks .
+  The current sizing correction is prepared for publication/CI/stage. Fetch the
   live PR/issue for current SHA/results rather than inheriting checkpoint green.
   [Current handoff](review/issue-48/2026-10-08-handoff.md) is the single review route.
 - #48 swaps TOC/Control to align Subprime/UA with named links and existing palette,
@@ -31,7 +31,9 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
   date (26Sep2026); other event dates and spoken languages remain unconfirmed.
   Corning and all earlier links persist. No promised PMDay recording is inferred.
 - Reading surfaces retain87% paper alpha/13% transparency, opaque ink and crisp
-  four12px corners. Reduced-transparency override stays with the same CSS owner.
+  four12px corners. Talks now shares Writing's whole publication-row envelope
+  and12px gutter; child text widths no longer determine paper bounds. The shared
+  CSS owner preserves the reduced-transparency override and native text flow.
 - #36/#41 work is merged through the subsequent integration/main changes. Original
   formula paired/visual/device and editorial criteria remain distinct from a
   successful absolute staging run or this new narrow placement amendment.
@@ -41,8 +43,10 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 - The current explicit request authorizes #48 implementation and a linked Draft
   PR with normal CI preview. It supplies the exact treatment decision for the
   public-source intakes appended before Matthew and Talks authored copy edits.
-- The prior main/staging instruction applies to completed PR47. No new #48 merge,
-  stable staging promotion, production/domain or analytics activation is authorized.
+- On8Oct2026 the maintainer explicitly authorized #48 main and stable staging
+  after fixing Talks backdrop sizes in the shared owner. Existing controller needs
+  the PR open: stage/verify the final head first, then merge that exact tested head.
+  Production/domain and analytics activation remain separate.
 - Preserve all other people and links, advisor roles, publication editions, formula
   artwork/scale/tilt/pulse, book geometry, camera, cache/producer/draw contracts.
 - Reverse exact hashed #48 copy/layout changes before immutable #41 deltas.
@@ -56,7 +60,7 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 
 | Issue | Remaining intent |
 | --- | --- |
-| #48 | Draft PR51 original implementation passed at pre-Talks checkpoint. AC05 source curation is implemented; current extension review/CI/preview pending. All five whole ACs and maintainer visual/editorial/merge gates remain open. |
+| #48 | Current shared-backdrop sizing prepared in PR51, with newAC06. User authorizes main/stable stage after fix; exact-head CI/staging/merge evidence pending. Fetch live issue/PR for whole-criterion reconciliation. |
 | #45 | All6 whole ACs stay open for their literal current-source visual/evidence and complete-expression occlusion/device/release gates. PR47 main/stage is complete. |
 | #36 / #41 | Original paired/visual/editorial/device criteria and whole source mapping; successful joint staging does not imply complete acceptance. |
 | #1 / #13 | First-release, physical-device and full production/recovery acceptance. |
@@ -72,8 +76,9 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
    check newer work before editing and read applicable source owners.
 2. Read the single #48 handoff and source inventory. Verify source/tree/run identity
    rather than inheriting green history. Finish only outstanding targeted work.
-3. Obtain visual/editorial decisions at the concrete preview. Merge or stable
-   release needs its own maintainer decision; do not repeat completed suites.
+3. Finish authorized #48 staging before merge if still pending; preserve exact
+   tested head/main lease. If complete, follow live issue remaining gates only.
+   Do not repeat successful suites or infer production/device acceptance.
 
 ## Maintenance
 
