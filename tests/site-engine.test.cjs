@@ -540,6 +540,58 @@ test('shared footer, scene and producer edits invalidate their complete dependen
     assert.deepEqual(run(dir).built, snapshot.routes, name);
   }
 });
+test('critical media has one canonical stylesheet slot and exact dependency-bound Home fallback', (t) => {
+  const dir = fixture(t),
+    before = run(dir),
+    source = fs.readFileSync(path.join(dir, 'site/engine/critical-media.css'), 'utf8'),
+    authoredStyles = fs.readFileSync(path.join(dir, 'site/engine/styles.css'), 'utf8'),
+    readingStyles = fs.readFileSync(path.join(dir, 'site/engine/reading-surfaces.css'), 'utf8'),
+    stylesheet = fs.readFileSync(path.join(dir, 'docs/styles.css'), 'utf8');
+  const marker = '/* {{CRITICAL_MEDIA}} */\n';
+  assert.equal(authoredStyles.split(marker).length - 1, 1, 'one declared stylesheet position');
+  assert.equal(
+    stylesheet,
+    authoredStyles.replace(marker, source) + '\n' + readingStyles,
+    'current canonical sources retain their declared order and exact bytes'
+  );
+  assert.equal(stylesheet.split(source).length - 1, 1);
+  assert.ok(before.routes.index.inputs.includes('site/engine/critical-media.css'));
+  for (const id of snapshot.routes.filter((id) => id !== 'index'))
+    assert.equal(before.routes[id].inputs.includes('site/engine/critical-media.css'), false);
+  edit(dir, 'site/engine/critical-media.css', (css) => css.replace('100%;', '100%;\n'));
+  const after = run(dir);
+  assert.notEqual(after.components.engine, before.components.engine);
+  assert.notEqual(after.routes.index.version, before.routes.index.version);
+  assert.deepEqual(after.built, snapshot.routes, 'engine changes retain the complete closure');
+  const once = inventory(dir);
+  run(dir, { all: true });
+  assert.deepEqual(inventory(dir), once, 'cold and incremental assembly agree');
+});
+test('missing, duplicate or unsafe critical media owners leave the coherent output intact', (t) => {
+  const dir = fixture(t);
+  run(dir);
+  const before = inventory(dir),
+    owner = path.join(dir, 'site/engine/critical-media.css'),
+    stylesheet = path.join(dir, 'site/engine/styles.css'),
+    css = fs.readFileSync(owner, 'utf8'),
+    styles = fs.readFileSync(stylesheet, 'utf8'),
+    marker = '/* {{CRITICAL_MEDIA}} */\n';
+  fs.rmSync(owner);
+  assert.throws(() => run(dir), /ENOENT/);
+  assert.deepEqual(inventory(dir), before);
+  fs.writeFileSync(owner, css);
+  for (const altered of [styles.replace(marker, ''), styles + marker, styles + css]) {
+    fs.writeFileSync(stylesheet, altered);
+    assert.throws(() => run(dir), /one canonical critical media stylesheet include/);
+    assert.deepEqual(inventory(dir), before);
+  }
+  fs.writeFileSync(stylesheet, styles);
+  for (const altered of [css + css, css + '</style><script>bad()</script>']) {
+    fs.writeFileSync(owner, altered);
+    assert.throws(() => run(dir), /critical media CSS/);
+    assert.deepEqual(inventory(dir), before);
+  }
+});
 test('renamed blocks work after descriptor update; missing inputs leave the last coherent output intact', (t) => {
   const dir = fixture(t);
   run(dir);

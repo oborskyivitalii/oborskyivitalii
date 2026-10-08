@@ -14,6 +14,10 @@ function prepared(route, input, api, c) {
   return {
     route,
     input,
+    criticalMediaCSS:
+      route.id === 'index'
+        ? fs.readFileSync(path.join(root, 'site/engine/critical-media.css'), 'utf8')
+        : '',
     templates: {
       head: fs.readFileSync(path.join(root, 'site/templates/head.html'), 'utf8'),
       shell: fs.readFileSync(path.join(root, 'site/templates/shell.html'), 'utf8'),
@@ -43,6 +47,44 @@ test('pure route renderer receives explicit validated inputs and equals the file
       route.id === 'credits' ? 0 : 1
     );
   }
+});
+test('Home embeds one exact bounded critical CSS source and other routes embed none', () => {
+  const { config, definitions } = builder.configuration(root),
+    c = content.catalog(root),
+    api = builder.model(root, definitions);
+  const css = fs.readFileSync(path.join(root, 'site/engine/critical-media.css'), 'utf8');
+  for (const route of config.routes) {
+    const values = prepared(route, content.routeInput(root, route, c), api, c),
+      html = renderPage(values),
+      blocks = [...html.matchAll(/<style data-critical-media>\n([\s\S]*?)<\/style>/g)];
+    assert.equal(blocks.length, route.id === 'index' ? 1 : 0);
+    if (route.id !== 'index') continue;
+    assert.equal(blocks[0][1], css, 'generated fallback consumes exact canonical CSS bytes');
+    assert.ok(html.indexOf(blocks[0][0]) < html.indexOf('href="styles.css"'));
+    assert.match(html, /width="780" height="721"/);
+    for (const invalid of [
+      '',
+      css + css,
+      css.replace('100%', '780px'),
+      css + '</StYlE><script>bad()</script>',
+      css + '@import url(https://example.test/style.css);',
+    ])
+      assert.throws(
+        () => renderPage({ ...values, criticalMediaCSS: invalid }),
+        /critical media CSS/
+      );
+    for (const head of [
+      values.templates.head.replace('{{CRITICAL_MEDIA}}', ''),
+      values.templates.head + '{{CRITICAL_MEDIA}}',
+    ])
+      assert.throws(
+        () => renderPage({ ...values, templates: { ...values.templates, head } }),
+        /one Home-only critical media block/
+      );
+  }
+  const route = config.routes[1],
+    values = prepared(route, content.routeInput(root, route, c), api, c);
+  assert.throws(() => renderPage({ ...values, criticalMediaCSS: css }), /Home-only/);
 });
 test('pure page boundary escapes metadata and refuses missing or duplicate current navigation owners', () => {
   const { config, definitions } = builder.configuration(root),

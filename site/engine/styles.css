@@ -501,10 +501,7 @@ h1 {
   z-index: -1;
 }
 /* Responsive media matches the former inline fallback, including SVG height. */
-.portrait-composition .portrait-media {
-  max-width: 100%;
-  height: auto;
-}
+/* {{CRITICAL_MEDIA}} */
 .portrait-facets polygon {
   stroke: var(--line);
 }

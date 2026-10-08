@@ -534,7 +534,7 @@ test('unsupported renditions, repeated adaptation and missing or duplicated coun
   const anchors = [
     'window.SiteScene={',
     '      if(living)quality(renderCost,time);',
-    'meshStride=compact?1:1+Math.round(Math.max(0,Math.min(2,ribbonMesh)))',
+    'stride:compact?1:1+Math.round(Math.max(0,Math.min(2,ribbonMesh)))',
   ];
   for (const anchor of anchors) {
     const matched = require('../tools/quality/writing-models.cjs').javascriptAnchor(

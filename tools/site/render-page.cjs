@@ -7,6 +7,19 @@ const {
   scriptJSON,
   stableTagEndings,
 } = require('./html.cjs');
+function validateCriticalMedia(css) {
+  if (typeof css !== 'string' || !css || /</.test(css))
+    throw Error('Missing or unsafe critical media CSS');
+  // This bounded fallback preserves the exact existing media selector and rules.
+  // Additional layout, resources or duplicate owners require their own review.
+  if (
+    !/^\s*\.portrait-composition\s+\.portrait-media\s*\{\s*max-width\s*:\s*100%\s*;\s*height\s*:\s*auto\s*;\s*\}\s*$/.test(
+      css
+    )
+  )
+    throw Error('Invalid or duplicate critical media CSS');
+  return css;
+}
 function renderPage({
   route,
   input,
@@ -16,6 +29,7 @@ function renderPage({
   fallbackHTML,
   routeLabel,
   measurement = '',
+  criticalMediaCSS = '',
 }) {
   const title = escapeText(input.meta.title),
     description = escapeAttribute(input.meta.description);
@@ -27,9 +41,18 @@ function renderPage({
       DESCRIPTION: description,
       SCHEMA: scriptJSON(input.schema),
       MEASUREMENT: measurement,
+      CRITICAL_MEDIA:
+        route.id === 'index'
+          ? '<style data-critical-media>\n' + validateCriticalMedia(criticalMediaCSS) + '</style>\n'
+          : '',
     },
     'head'
   );
+  if (
+    (route.id !== 'index' && criticalMediaCSS !== '') ||
+    (head.match(/\bdata-critical-media\b/g) || []).length !== (route.id === 'index' ? 1 : 0)
+  )
+    throw Error('Expected one Home-only critical media block');
   let header = headerHTML;
   const target = route.id === 'index' ? './' : route.url;
   const label = escapeText(routeLabel);
@@ -65,4 +88,4 @@ function renderPage({
   }
   return stableTagEndings(page);
 }
-module.exports = { renderPage };
+module.exports = { renderPage, validateCriticalMedia };

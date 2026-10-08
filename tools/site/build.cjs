@@ -7,10 +7,12 @@ const fs = require('node:fs'),
 const { catalog, catalogCounts, routeInput, fragment, validateFragment } = require('./content.cjs');
 const { contentLabel } = require('./render-content.cjs');
 const { scriptJSON, stableTagEndings } = require('./html.cjs');
-const { renderPage } = require('./render-page.cjs');
+const { renderPage, validateCriticalMedia } = require('./render-page.cjs');
 const defaultRoot = path.resolve(__dirname, '../..');
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 const json = (value) => JSON.stringify(value, null, 2) + '\n';
+const criticalMediaSource = 'site/engine/critical-media.css';
+const criticalMediaMarker = '/* {{CRITICAL_MEDIA}} */\n';
 
 function files(dir, base = dir) {
   if (!fs.existsSync(dir)) return [];
@@ -139,6 +141,7 @@ function render(root, route, input, api, measurement = '') {
     route,
     input,
     measurement,
+    criticalMediaCSS: route.id === 'index' ? read(root, criticalMediaSource) : '',
     templates: {
       head: read(root, 'site/templates/head.html'),
       shell: read(root, 'site/templates/shell.html'),
@@ -148,6 +151,15 @@ function render(root, route, input, api, measurement = '') {
     fallbackHTML: fallback(api, route.id),
     routeLabel: contentLabel(c, 'route.' + route.id),
   });
+}
+
+function styles(root) {
+  const source = read(root, 'site/engine/styles.css'),
+    reading = read(root, 'site/engine/reading-surfaces.css'),
+    critical = validateCriticalMedia(read(root, criticalMediaSource));
+  if (source.split(criticalMediaMarker).length !== 2 || /\.portrait-media\b/.test(source + reading))
+    throw Error('Expected one canonical critical media stylesheet include');
+  return source.replace(criticalMediaMarker, critical) + '\n' + reading;
 }
 
 function fileDigests(root, names) {
@@ -355,11 +367,12 @@ function build({
   try {
     for (const route of config.routes) {
       const input = routeInput(root, route, c),
+        pageInputs = input.inputs.concat(route.id === 'index' ? [criticalMediaSource] : []),
         version = sha(
           json({
             components,
             route,
-            inputs: fileDigests(root, input.inputs),
+            inputs: fileDigests(root, pageInputs),
             records: input.records,
             discussions: input.discussions,
             schema: input.schema,
@@ -389,7 +402,7 @@ function build({
       result.routes[route.id] = {
         version,
         url: route.url,
-        inputs: input.inputs,
+        inputs: pageInputs,
         records: Object.keys(input.records),
       };
       if (versioned) {
@@ -400,10 +413,7 @@ function build({
     }
     for (const name of ['theme.js', 'archive.js', 'navigation.js'])
       put(name, read(root, 'site/engine/' + name));
-    put(
-      'styles.css',
-      read(root, 'site/engine/styles.css') + '\n' + read(root, 'site/engine/reading-surfaces.css')
-    );
+    put('styles.css', styles(root));
     put('space.js', runtime(root, definitions));
     for (const name of files(path.join(root, 'site/assets')))
       put(

@@ -68,6 +68,14 @@ Build/export code may embed bytes read from the canonical CSS for offline HTML;
 it must not maintain another copy of those rules. Theme variants and reduced
 transparency overrides live alongside their canonical component tokens.
 
+For Home's CSS-unavailable fallback, the build may also embed the exact canonical
+responsive media stylesheet in the generated head. Keep that single CSS owner
+shared with ordinary hosted/offline composition, explicit source dependencies,
+safe style-container bytes and exact one-block verification. This narrow generated
+fallback preserves intrinsic media dimensions when external CSS fails; it does
+not permit authored template/content style blocks, static CSS strings in code or
+additional inline-style allowances. Other routes retain their original budgets.
+
 Use shared component classes and explicit variants. Preserve specificity and
 paint geometry when replacing old selector lists; similarity alone does not
 prove two selectors have the same job. The reading backdrop's sole parameter

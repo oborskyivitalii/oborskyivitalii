@@ -162,11 +162,31 @@ test('private Writing packages retain source identities and verify fresh immutab
       );
       for (const file of ['space.js', 'navigation.js'])
         new vm.Script(fs.readFileSync(path.join(publicDir, file), 'utf8'));
-      for (const route of snapshot.routes)
-        assert.match(
-          fs.readFileSync(path.join(publicDir, route + '.html'), 'utf8'),
-          new RegExp('name="writing-diagnostic" content="' + label + '"')
+      for (const route of snapshot.routes) {
+        const before = fs.readFileSync(
+            path.join(dir, 'current-color', 'public', route + '.html'),
+            'utf8'
+          ),
+          after = fs.readFileSync(path.join(publicDir, route + '.html'), 'utf8'),
+          structuredData = (html) =>
+            [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(
+              (match) => JSON.parse(match[1])
+            );
+        assert.match(after, new RegExp('name="writing-diagnostic" content="' + label + '"'));
+        assert.deepEqual(structuredData(after), structuredData(before));
+        let expectedBody = before.slice(before.indexOf('<body'));
+        expectedBody = expectedBody.replaceAll(
+          parent.components.engine,
+          manifest.components.engine
         );
+        for (const id of snapshot.routes)
+          expectedBody = expectedBody.replaceAll(
+            parent.components.routes[id].version,
+            manifest.components.routes[id].version
+          );
+        assert.equal(after.slice(after.indexOf('<body')), expectedBody, 'visible body stays exact');
+      }
+      assert.equal(artifact.checkSize(publicDir).pass, true, 'original delivery budgets remain');
     }
     assert.equal(
       artifact.manifest(path.join(dir, 'current-color', 'public')).artifactDigest,
@@ -180,6 +200,56 @@ test('private Writing packages retain source identities and verify fresh immutab
         result.inputs[label].manifest.artifactDigest,
         'deterministic intervention ' + label
       );
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
+test('private metadata compaction escapes script delimiters and still rejects oversized semantic data', () => {
+  const dir = controls();
+  try {
+    const parentDir = path.join(dir, 'current-color'),
+      publicDir = path.join(parentDir, 'public'),
+      manifestFile = path.join(parentDir, 'artifact.json'),
+      revisionFile = path.join(publicDir, 'site-revision.json');
+    const changeMetadata = (value) => {
+      const revision = JSON.parse(fs.readFileSync(revisionFile)),
+        route = revision.routes.writing;
+      for (const file of ['writing.html', route.url]) {
+        const source = fs.readFileSync(path.join(publicDir, file), 'utf8'),
+          altered = source.replace(
+            /(<script type="application\/ld\+json">)([\s\S]*?)(<\/script>)/,
+            (_, opening, data, closing) =>
+              opening +
+              JSON.stringify({ ...JSON.parse(data), diagnosticFixture: value }).replaceAll(
+                '<',
+                '\\u003c'
+              ) +
+              closing
+          );
+        fs.writeFileSync(path.join(publicDir, file), altered);
+      }
+      route.sha256 = artifact.digest(fs.readFileSync(path.join(publicDir, route.url)));
+      fs.writeFileSync(revisionFile, JSON.stringify(revision));
+      const manifest = {
+        ...JSON.parse(fs.readFileSync(manifestFile)),
+        ...artifact.manifest(publicDir),
+      };
+      manifest.components = snapshot.verify(publicDir, manifest);
+      fs.writeFileSync(manifestFile, JSON.stringify(manifest));
+    };
+    const dangerous = '</script><script>unexpected()</script>';
+    changeMetadata(dangerous);
+    const result = diagnostic.derive(parentDir, path.join(dir, 'safe-data'), 'browser-gate-trace'),
+      html = fs.readFileSync(path.join(result.publicDir, 'writing.html'), 'utf8'),
+      data = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1];
+    assert.equal(JSON.parse(data).diagnosticFixture, dangerous);
+    assert.equal(data.includes('<'), false, 'JSON data cannot terminate its script container');
+    changeMetadata('x'.repeat(require('../tools/quality/budgets.json').htmlRawBytes));
+    assert.throws(
+      () => diagnostic.derive(parentDir, path.join(dir, 'oversized'), 'browser-gate-trace'),
+      /Size budget writing/,
+      'compaction cannot hide oversized semantic metadata from the original limit'
+    );
   } finally {
     fs.rmSync(dir, { recursive: true, force: true });
   }

@@ -27,10 +27,10 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
   [R6 evidence](review/issue-58/2026-10-08-r6-matched-observations.json) preserves
   original adaptive Base/Color passes and failed fixed counterfactual profiles.
   No optimization/speedup is claimed; independent acceptance remains explicit.
-  [Current visual proof](review/issue-58/2026-10-08-final-visual.json) has eight
-  clean approved-main pairs with zero changed pixels. Issue59 is superseded.
-- PR #51 content/formula/shared reading-backdrop changes are merged and preserved.
-  #15 is closed for the earlier engine/content increment; R3 extends its owners.
+  Published896 acceptance passes15 checks; exact static scans and stage performance pass.
+  Stage37823514965 exposes Home320 CSS-unavailable portrait overflow; canonical
+  Home-only critical CSS corrects it. Final corrected-head CI/review must be observed.
+  [Visual proof](review/issue-58/2026-10-08-final-visual.json) is bound to its original source.
 - #49 is the sole open fragment-flight owner; #50 is closed as its duplicate.
   Draft PR #53 is active; #52 is closed/superseded, with both PRs linked to #49.
   Fragment-flight remains outside refactoring scope.
@@ -58,11 +58,9 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
   Color fingerprint equality and compare DOM engine with `manifest.components.engine`.
   Four consumer/test adapters and the isolated alias negative are reviewed R2
   controls; Base/Color smoke pass with honest original checkpoint identities.
-- Ordinary generation adapters now accept equivalent formatted markers, void tags
-  and tag endings without changing raw payloads, inline boundaries or size limits.
-  Writing is 99,879 bytes within its original 100,000-byte limit. Exact SEO block
-  canonicalization, diagnostic token anchors and CI dependency sequencing have
-  named control dispositions and negative tests; they are intentional control edits.
+- R2 generation/control adapters retain strict raw/inline/SEO contracts and budgets.
+  Current Writing is99,996 bytes within its original100,000-byte limit; private
+  diagnostics compact JSON-LD only, with semantic/body/unsafe/oversize negatives.
 - [Paired visual evidence](review/issue-58/2026-10-08-visual-parity.json) records eight
   pixel-identical Home/Writing Day/Night pairs at widths 1440 and 390, with matching
   text/links/geometry and stable dirty-tree observation. Motion is off/reduced;
@@ -106,8 +104,9 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 1. Fetch main, issue58 and PR60; compare the exact current head and immutable R2.
 2. Read the current integrated handoff and live issue checkbox/evidence summary.
    Historical failed or dirty measurements are retained with original identities.
-3. Reuse frozen983 adaptive/13dd98f visual evidence only with independently verified
-   complete public/runtime byte equivalence; never rewrite their identities.
+3. Old983/13dd evidence has complete-byte applicability only through896.
+   Critical-CSS correction changes public identities: verify scoped runtime reuse
+   separately and inspect fresh corrected-head hosted/staging evidence.
 4. Follow the live PR60 CI/scanner/hosted/bounded staging and independent-review
    outcome. Do not replay complete matrices for metadata or parser-only changes.
 5. Resolve any recorded blocker; merge only on the final maintainer decision,

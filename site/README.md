@@ -33,7 +33,7 @@ and strict aggregate under #13; generation freshness alone is insufficient.
 | `routes.json` | Contract 1: ordered five route IDs, native URLs, scenes and stop IDs | Runtime, pages and fallback |
 | `engine/math.cjs`, `projection.cjs`, `lifecycle.cjs` | Math, projection and single Canvas/RAF lifecycle | Assembled `space.js` |
 | `engine/renderer.cjs` | Ordered Canvas commands, adjacent-line batching and visible outlines | Assembled `space.js` |
-| `engine/theme.js`, `archive.js`, `navigation.js`, `styles.css`, `reading-surfaces.css` | Theme, filtering, routing and presentation | Shared browser files and pages |
+| `engine/theme.js`, `archive.js`, `navigation.js`, `styles.css`, `critical-media.css`, `reading-surfaces.css` | Theme, filtering, routing and canonical presentation, including Home media fallback | Shared browser files and pages |
 | `scenes/world.cjs`, `paths.json` | Authored motifs, rest geometry and finite camera paths | Runtime and projected SVG fallbacks |
 | `effects/flight.cjs`, `effects/*.css` | Current Color travel descriptor and canonical static reading/control CSS | Shared hosted/offline Color runtime |
 | `effects/ribbons.cjs` | Optional historical comparison factory; not serialized into active Color | Explicit legacy diagnostics only; full scanner coverage remains |
@@ -71,6 +71,12 @@ hashes, cache decisions and transactional output. `fallback.cjs` owns pure SVG
 rendering; the existing fallback CLI delegates to it without a producer cycle.
 Pure camera basis/projection is shared by world/formula/Ribbon through the math
 owner; clipping thresholds and lifecycle remain with their existing callers.
+
+`engine/critical-media.css` is the sole responsive portrait media rule. The builder
+inserts its exact bytes at the declared slot in the ordinary stylesheet and in
+Home's generated head, so blocked external CSS still preserves narrow no-JS
+reading. Other routes receive no critical block. Missing, duplicate or unsafe
+owners fail before output changes; authored templates contain no CSS declaration.
 
 Native links, anchors, language badges, full text and JSON-LD remain available
 without JavaScript. Contract 1 retains `SiteScene.navigate/refresh/detachTravel/canTravel`,

@@ -134,8 +134,8 @@ function patchBrowserGate(patch, label, source) {
     );
     patch(
       'space.js',
-      'meshStride=compact?1:1+Math.round(Math.max(0,Math.min(2,ribbonMesh)))',
-      'meshStride=1'
+      'stride:compact?1:1+Math.round(Math.max(0,Math.min(2,ribbonMesh)))',
+      'stride:1'
     );
     return;
   }
@@ -357,6 +357,13 @@ function derive(parentDir, targetDir, label) {
     let result = html.replaceAll(prior.engine, fingerprint);
     for (const id of snapshot.routes)
       result = result.replaceAll(prior.routes[id].version, versions[id]);
+    // Diagnostic metadata needs room under the same delivery budget. Compact
+    // JSON-LD formatting only; preserve its data and every visible body byte.
+    result = result.replace(
+      /(<script type="application\/ld\+json">)([\s\S]*?)(<\/script>)/g,
+      (_, opening, data, closing) =>
+        opening + JSON.stringify(JSON.parse(data)).replaceAll('<', '\\u003c') + closing
+    );
     return result.replace(
       '<head>',
       '<head>\n<meta name="writing-diagnostic" content="' + label + '">'
