@@ -5481,7 +5481,7 @@
     },
     "site/content": {
       "kind": "directory",
-      "purpose": "Authored publication catalog and route-specific curated content.",
+      "purpose": "Canonical publication/catalog and bounded context-typed prose, labels, URLs and page composition inputs.",
       "role": "source",
       "owner": "guides/SITE-SOURCE-AUDIT.md"
     },
@@ -5493,19 +5493,13 @@
     },
     "site/content/pages": {
       "kind": "directory",
-      "purpose": "Authored HTML blocks and metadata organized by the five route IDs.",
+      "purpose": "Five route metadata and bounded JSON content documents; markup belongs to site/templates.",
       "role": "source",
       "owner": "site/README.md"
     },
     "site/content/pages/credits": {
       "kind": "directory",
       "purpose": "Authored credits route metadata, layout and curated HTML blocks.",
-      "role": "source",
-      "owner": "site/README.md"
-    },
-    "site/content/pages/credits/main.html": {
-      "kind": "file",
-      "purpose": "Authored credits route layout and finite block/publication substitutions.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -5521,57 +5515,9 @@
       "role": "source",
       "owner": "site/README.md"
     },
-    "site/content/pages/index/about.html": {
-      "kind": "file",
-      "purpose": "Curated index HTML content block: about.",
-      "role": "source",
-      "owner": "site/README.md"
-    },
-    "site/content/pages/index/acknowledgements.html": {
-      "kind": "file",
-      "purpose": "Curated index HTML content block: acknowledgements.",
-      "role": "source",
-      "owner": "site/README.md"
-    },
-    "site/content/pages/index/contact.html": {
-      "kind": "file",
-      "purpose": "Curated index HTML content block: contact.",
-      "role": "source",
-      "owner": "site/README.md"
-    },
-    "site/content/pages/index/help.html": {
-      "kind": "file",
-      "purpose": "Curated index HTML content block: help.",
-      "role": "source",
-      "owner": "site/README.md"
-    },
-    "site/content/pages/index/hero.html": {
-      "kind": "file",
-      "purpose": "Curated index HTML content block: hero.",
-      "role": "source",
-      "owner": "site/README.md"
-    },
-    "site/content/pages/index/main.html": {
-      "kind": "file",
-      "purpose": "Authored index route layout and finite block/publication substitutions.",
-      "role": "source",
-      "owner": "site/README.md"
-    },
     "site/content/pages/index/metadata.json": {
       "kind": "file",
       "purpose": "Authored index title/description/metadata and ordered content block names.",
-      "role": "source",
-      "owner": "site/README.md"
-    },
-    "site/content/pages/index/research.html": {
-      "kind": "file",
-      "purpose": "Curated index HTML content block: research.",
-      "role": "source",
-      "owner": "site/README.md"
-    },
-    "site/content/pages/index/writing.html": {
-      "kind": "file",
-      "purpose": "Curated index HTML content block: writing.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -5581,45 +5527,9 @@
       "role": "source",
       "owner": "site/README.md"
     },
-    "site/content/pages/research/acknowledgements.html": {
-      "kind": "file",
-      "purpose": "Curated research HTML content block: acknowledgements.",
-      "role": "source",
-      "owner": "site/README.md"
-    },
-    "site/content/pages/research/intro.html": {
-      "kind": "file",
-      "purpose": "Curated research HTML content block: intro.",
-      "role": "source",
-      "owner": "site/README.md"
-    },
-    "site/content/pages/research/lenses.html": {
-      "kind": "file",
-      "purpose": "Curated research HTML content block: lenses.",
-      "role": "source",
-      "owner": "site/README.md"
-    },
-    "site/content/pages/research/main.html": {
-      "kind": "file",
-      "purpose": "Authored research route layout and finite block/publication substitutions.",
-      "role": "source",
-      "owner": "site/README.md"
-    },
     "site/content/pages/research/metadata.json": {
       "kind": "file",
       "purpose": "Authored research title/description/metadata and ordered content block names.",
-      "role": "source",
-      "owner": "site/README.md"
-    },
-    "site/content/pages/research/research.html": {
-      "kind": "file",
-      "purpose": "Curated research HTML content block: research.",
-      "role": "source",
-      "owner": "site/README.md"
-    },
-    "site/content/pages/research/topics.html": {
-      "kind": "file",
-      "purpose": "Curated research HTML content block: topics.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -5629,27 +5539,9 @@
       "role": "source",
       "owner": "site/README.md"
     },
-    "site/content/pages/talks/intro.html": {
-      "kind": "file",
-      "purpose": "Curated talks HTML content block: intro.",
-      "role": "source",
-      "owner": "site/README.md"
-    },
-    "site/content/pages/talks/main.html": {
-      "kind": "file",
-      "purpose": "Authored talks route layout and finite block/publication substitutions.",
-      "role": "source",
-      "owner": "site/README.md"
-    },
     "site/content/pages/talks/metadata.json": {
       "kind": "file",
       "purpose": "Authored talks title/description/metadata and ordered content block names.",
-      "role": "source",
-      "owner": "site/README.md"
-    },
-    "site/content/pages/talks/talks.html": {
-      "kind": "file",
-      "purpose": "Curated talks HTML content block: talks.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -5659,33 +5551,9 @@
       "role": "source",
       "owner": "site/README.md"
     },
-    "site/content/pages/writing/main.html": {
-      "kind": "file",
-      "purpose": "Authored writing route layout and finite block/publication substitutions.",
-      "role": "source",
-      "owner": "site/README.md"
-    },
     "site/content/pages/writing/metadata.json": {
       "kind": "file",
       "purpose": "Authored writing title/description/metadata and ordered content block names.",
-      "role": "source",
-      "owner": "site/README.md"
-    },
-    "site/content/pages/writing/results-year-2025.html": {
-      "kind": "file",
-      "purpose": "Curated writing HTML content block: results year 2025.",
-      "role": "source",
-      "owner": "site/README.md"
-    },
-    "site/content/pages/writing/results-year-2026.html": {
-      "kind": "file",
-      "purpose": "Curated writing HTML content block: results year 2026.",
-      "role": "source",
-      "owner": "site/README.md"
-    },
-    "site/content/pages/writing/section-1.html": {
-      "kind": "file",
-      "purpose": "Curated writing HTML content block: section 1.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -5698,12 +5566,6 @@
     "site/effects/flight.cjs": {
       "kind": "file",
       "purpose": "Canonical pure Travel effect descriptor and runtime helpers; hosted/offline adapters share raw code, CSS and controls.",
-      "role": "source",
-      "owner": "site/README.md"
-    },
-    "site/effects/reading-surfaces.cjs": {
-      "kind": "file",
-      "purpose": "Canonical shared reading-surface CSS producer consumed by Ribbons and Travel descriptors.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -5817,25 +5679,13 @@
     },
     "site/templates": {
       "kind": "directory",
-      "purpose": "Shared deterministic page shell, head, header and footer HTML.",
-      "role": "source",
-      "owner": "site/README.md"
-    },
-    "site/templates/footer.html": {
-      "kind": "file",
-      "purpose": "Shared utility/credits navigation and footer structure.",
+      "purpose": "Canonical shared, page-specific and repeated component markup; consumes validated content.",
       "role": "source",
       "owner": "site/README.md"
     },
     "site/templates/head.html": {
       "kind": "file",
       "purpose": "Shared escaped metadata, JSON-LD, engine/effects identity and optional analytics head.",
-      "role": "source",
-      "owner": "site/README.md"
-    },
-    "site/templates/header.html": {
-      "kind": "file",
-      "purpose": "Shared accessible primary links and theme/motion controls.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -6771,7 +6621,7 @@
     },
     "tools/site/build.cjs": {
       "kind": "file",
-      "purpose": "Source validation and deterministic dependency-aware complete public-tree generation.",
+      "purpose": "Dependency-aware source/hash/cache and transactional generation orchestration consuming pure content, validation, page and SVG owners.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -7131,13 +6981,13 @@
     },
     ".github/acceptance/issue-58.json": {
       "kind": "file",
-      "purpose": "Shared issue58 AC01-AC10 phase acceptance policy; preparation checks and explicit pending phase/review/live/merge gates.",
+      "purpose": "Shared issue58 AC01–AC10 mapping: frozen R2 checkpoint and current content/CSS/cohesion/resource contracts with final review/live/merge gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     "review/issue-58": {
       "kind": "directory",
-      "purpose": "Single refactoring issue58 phased handoff and review route; current R2 under PR60.",
+      "purpose": "Single R2–R6 refactoring handoff, immutable phase observations and integrated evidence under continuing DraftPR60.",
       "role": "history",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -7146,102 +6996,6 @@
       "purpose": "Shared issue58 refactor handoff: R2 phase subconditions mapped to stable AC01-AC10, source/semantic/security tasks and pending evidence.",
       "role": "history",
       "owner": ".github/ACCEPTANCE.md"
-    },
-    "docs/runtime/39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e": {
-      "kind": "directory",
-      "purpose": "Generated immutable runtime identity directory.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e/archive.js": {
-      "kind": "file",
-      "purpose": "Generated immutable shared runtime dependency.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e/navigation.js": {
-      "kind": "file",
-      "purpose": "Generated immutable shared runtime dependency.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e/space.js": {
-      "kind": "file",
-      "purpose": "Generated immutable shared runtime dependency.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e/styles.css": {
-      "kind": "file",
-      "purpose": "Generated immutable shared runtime dependency.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/39d193bcfc20e2947af66a5116fe48230ce9efebaf1d7b597c4f959a13685d3e/theme.js": {
-      "kind": "file",
-      "purpose": "Generated immutable shared runtime dependency.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/0f64b7dca6d749808ef34136589a158b2501f1dff6ae2680a13c84b3ececb0cf": {
-      "kind": "directory",
-      "purpose": "Generated immutable route snapshot identity directory.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/0f64b7dca6d749808ef34136589a158b2501f1dff6ae2680a13c84b3ececb0cf/credits.html": {
-      "kind": "file",
-      "purpose": "Generated immutable route snapshot.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/1ed424eccca099454bd709f1455a597fa92697aab9084488882b36bd08585cf7": {
-      "kind": "directory",
-      "purpose": "Generated immutable route snapshot identity directory.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/1ed424eccca099454bd709f1455a597fa92697aab9084488882b36bd08585cf7/research.html": {
-      "kind": "file",
-      "purpose": "Generated immutable route snapshot.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/7b4ca6b2bcd7ca3754325686d411b8e31f15c00e87dd765bfaefc01a01e5c49a": {
-      "kind": "directory",
-      "purpose": "Generated immutable route snapshot identity directory.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/7b4ca6b2bcd7ca3754325686d411b8e31f15c00e87dd765bfaefc01a01e5c49a/talks.html": {
-      "kind": "file",
-      "purpose": "Generated immutable route snapshot.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/c4035cecbd6221289e055a73b7f95d377920ecd7c82877a64887bebf7ee9f01a": {
-      "kind": "directory",
-      "purpose": "Generated immutable route snapshot identity directory.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/c4035cecbd6221289e055a73b7f95d377920ecd7c82877a64887bebf7ee9f01a/index.html": {
-      "kind": "file",
-      "purpose": "Generated immutable route snapshot.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/c7382110dabbb377e484838477e7133de088ef9203d4bc8173386c01f134810f": {
-      "kind": "directory",
-      "purpose": "Generated immutable route snapshot identity directory.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/c7382110dabbb377e484838477e7133de088ef9203d4bc8173386c01f134810f/writing.html": {
-      "kind": "file",
-      "purpose": "Generated immutable route snapshot.",
-      "role": "generated",
-      "owner": "site/README.md"
     },
     "review/issue-58/2026-10-08-bandit-rebinding.json": {
       "kind": "file",
@@ -7326,6 +7080,648 @@
       "purpose": "Explicit Python four-space formatting configuration, independent of isolated Ruff lint rule selection.",
       "role": "configuration",
       "owner": "tools/quality/README.md"
+    },
+    "docs/runtime/eb7f767039d271853507863ffbbe8c275457556945f6f12b7eaf596bd555be3e": {
+      "kind": "directory",
+      "purpose": "Canonical current generated runtime or route snapshot with producer-bound immutable identity.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/eb7f767039d271853507863ffbbe8c275457556945f6f12b7eaf596bd555be3e/archive.js": {
+      "kind": "file",
+      "purpose": "Canonical current generated runtime or route snapshot with producer-bound immutable identity.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/eb7f767039d271853507863ffbbe8c275457556945f6f12b7eaf596bd555be3e/navigation.js": {
+      "kind": "file",
+      "purpose": "Canonical current generated runtime or route snapshot with producer-bound immutable identity.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/eb7f767039d271853507863ffbbe8c275457556945f6f12b7eaf596bd555be3e/space.js": {
+      "kind": "file",
+      "purpose": "Canonical current generated runtime or route snapshot with producer-bound immutable identity.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/eb7f767039d271853507863ffbbe8c275457556945f6f12b7eaf596bd555be3e/styles.css": {
+      "kind": "file",
+      "purpose": "Canonical current generated runtime or route snapshot with producer-bound immutable identity.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/eb7f767039d271853507863ffbbe8c275457556945f6f12b7eaf596bd555be3e/theme.js": {
+      "kind": "file",
+      "purpose": "Canonical current generated runtime or route snapshot with producer-bound immutable identity.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/245c3df18bf55951bc52851767a794f75d020cf77a1c6bfd2064c2bf0311b6d7": {
+      "kind": "directory",
+      "purpose": "Canonical current generated runtime or route snapshot with producer-bound immutable identity.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/245c3df18bf55951bc52851767a794f75d020cf77a1c6bfd2064c2bf0311b6d7/index.html": {
+      "kind": "file",
+      "purpose": "Canonical current generated runtime or route snapshot with producer-bound immutable identity.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/303a58c31f411512b7daacbc4589bd3815faa297d040ac827cab2f7dd4d4436b": {
+      "kind": "directory",
+      "purpose": "Canonical current generated runtime or route snapshot with producer-bound immutable identity.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/303a58c31f411512b7daacbc4589bd3815faa297d040ac827cab2f7dd4d4436b/writing.html": {
+      "kind": "file",
+      "purpose": "Canonical current generated runtime or route snapshot with producer-bound immutable identity.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/3f2403ddd15892c4abfe208a1c6f87c8e5b01842e2a6020950f6df5871ed23f4": {
+      "kind": "directory",
+      "purpose": "Canonical current generated runtime or route snapshot with producer-bound immutable identity.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/3f2403ddd15892c4abfe208a1c6f87c8e5b01842e2a6020950f6df5871ed23f4/talks.html": {
+      "kind": "file",
+      "purpose": "Canonical current generated runtime or route snapshot with producer-bound immutable identity.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/c43f9b1a88b6113794e40c8621c8a541baf629f45c4e42d4d4e8bf7d7ab06ecf": {
+      "kind": "directory",
+      "purpose": "Canonical current generated runtime or route snapshot with producer-bound immutable identity.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/c43f9b1a88b6113794e40c8621c8a541baf629f45c4e42d4d4e8bf7d7ab06ecf/credits.html": {
+      "kind": "file",
+      "purpose": "Canonical current generated runtime or route snapshot with producer-bound immutable identity.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/e9b913717f1318e90004106f6fb668f60784efebcc91af39f1f514685d240d14": {
+      "kind": "directory",
+      "purpose": "Canonical current generated runtime or route snapshot with producer-bound immutable identity.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/e9b913717f1318e90004106f6fb668f60784efebcc91af39f1f514685d240d14/research.html": {
+      "kind": "file",
+      "purpose": "Canonical current generated runtime or route snapshot with producer-bound immutable identity.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "review/issue-58/2026-10-08-r3-r6-bandit.json": {
+      "kind": "file",
+      "purpose": "Dated independently reviewed preintegration source proof; original dirty identity and bounded scope retained.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-58/2026-10-08-r4-css.json": {
+      "kind": "file",
+      "purpose": "Dated R4/R5 raw phase observations preserving original source identity; final integrated acceptance remains separately bound.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-58/2026-10-08-r5-offline.json": {
+      "kind": "file",
+      "purpose": "Dated independently reviewed preintegration source proof; original dirty identity and bounded scope retained.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-58/2026-10-08-r5-output.json": {
+      "kind": "file",
+      "purpose": "Dated R4/R5 raw phase observations preserving original source identity; final integrated acceptance remains separately bound.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-58/2026-10-08-r5-projection.json": {
+      "kind": "file",
+      "purpose": "Dated R4/R5 raw phase observations preserving original source identity; final integrated acceptance remains separately bound.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-58/2026-10-08-r6-triage.json": {
+      "kind": "file",
+      "purpose": "Dated exact-source refactoring observation with explicit admission/status and raw evidence.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-58/2026-10-08-r6-triage.json.gz": {
+      "kind": "file",
+      "purpose": "Dated exact-source refactoring observation with explicit admission/status and raw evidence.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "site/content/pages/credits/main.json": {
+      "kind": "file",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/content/pages/index/about.json": {
+      "kind": "file",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/content/pages/index/acknowledgements.json": {
+      "kind": "file",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/content/pages/index/contact.json": {
+      "kind": "file",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/content/pages/index/help.json": {
+      "kind": "file",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/content/pages/index/hero.json": {
+      "kind": "file",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/content/pages/index/main.json": {
+      "kind": "file",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/content/pages/index/research.json": {
+      "kind": "file",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/content/pages/index/writing.json": {
+      "kind": "file",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/content/pages/research/acknowledgements.json": {
+      "kind": "file",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/content/pages/research/intro.json": {
+      "kind": "file",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/content/pages/research/lenses.json": {
+      "kind": "file",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/content/pages/research/main.json": {
+      "kind": "file",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/content/pages/research/research.json": {
+      "kind": "file",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/content/pages/research/topics.json": {
+      "kind": "file",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/content/pages/talks/intro.json": {
+      "kind": "file",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/content/pages/talks/main.json": {
+      "kind": "file",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/content/pages/talks/talks.json": {
+      "kind": "file",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/content/pages/writing/main.json": {
+      "kind": "file",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/content/pages/writing/results-year-2025.json": {
+      "kind": "file",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/content/pages/writing/results-year-2026.json": {
+      "kind": "file",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/content/pages/writing/section-1.json": {
+      "kind": "file",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/content/shared": {
+      "kind": "directory",
+      "purpose": "Declared issue58 authored content/template or dated evidence grouping.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/content/shared/footer.json": {
+      "kind": "file",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/content/shared/header.json": {
+      "kind": "file",
+      "purpose": "Bounded context-typed authored content, URLs, labels and explicit template references.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/effects/flight.css": {
+      "kind": "file",
+      "purpose": "Canonical static effect CSS consumed byte-identically by hosted/offline descriptors.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/effects/reading-surfaces.css": {
+      "kind": "file",
+      "purpose": "Canonical static effect CSS consumed byte-identically by hosted/offline descriptors.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/components": {
+      "kind": "directory",
+      "purpose": "Declared issue58 authored content/template or dated evidence grouping.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/components/discussion-counts.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/components/discussion-link.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/components/discussion-row.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/components/edition-link.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/components/language-badge.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/components/publication-summary.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/components/publication-title.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/components/publication.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages": {
+      "kind": "directory",
+      "purpose": "Declared issue58 authored content/template or dated evidence grouping.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/credits": {
+      "kind": "directory",
+      "purpose": "Declared issue58 authored content/template or dated evidence grouping.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/credits/main.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/index": {
+      "kind": "directory",
+      "purpose": "Declared issue58 authored content/template or dated evidence grouping.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/index/about.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/index/acknowledgements.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/index/contact.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/index/help.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/index/hero.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/index/main.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/index/research.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/index/writing.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/research": {
+      "kind": "directory",
+      "purpose": "Declared issue58 authored content/template or dated evidence grouping.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/research/acknowledgements.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/research/intro.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/research/lenses.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/research/main.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/research/research.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/research/topics.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/talks": {
+      "kind": "directory",
+      "purpose": "Declared issue58 authored content/template or dated evidence grouping.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/talks/intro.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/talks/main.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/talks/talks.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/writing": {
+      "kind": "directory",
+      "purpose": "Declared issue58 authored content/template or dated evidence grouping.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/writing/main.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/writing/results-year-2025.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/writing/results-year-2026.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/pages/writing/section-1.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/shared": {
+      "kind": "directory",
+      "purpose": "Declared issue58 authored content/template or dated evidence grouping.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/shared/footer.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/shared/header.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "tests/architecture.test.cjs": {
+      "kind": "file",
+      "purpose": "Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tests/build-cohesion.test.cjs": {
+      "kind": "file",
+      "purpose": "Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tests/camera-view.test.cjs": {
+      "kind": "file",
+      "purpose": "Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tests/content-migration.test.cjs": {
+      "kind": "file",
+      "purpose": "Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tests/content-rendering.test.cjs": {
+      "kind": "file",
+      "purpose": "Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tests/phase-checkpoint.test.cjs": {
+      "kind": "file",
+      "purpose": "Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tests/refactor-metrics.test.cjs": {
+      "kind": "file",
+      "purpose": "Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tools/quality/architecture.cjs": {
+      "kind": "file",
+      "purpose": "Issue58 checkpoint, authored architecture or bounded comparable resource evidence control.",
+      "role": "validator",
+      "owner": "tools/quality/README.md"
+    },
+    "tools/quality/phase-checkpoint.cjs": {
+      "kind": "file",
+      "purpose": "Issue58 checkpoint, authored architecture or bounded comparable resource evidence control.",
+      "role": "validator",
+      "owner": "tools/quality/README.md"
+    },
+    "tools/quality/refactor-metrics.cjs": {
+      "kind": "file",
+      "purpose": "Issue58 checkpoint, authored architecture or bounded comparable resource evidence control.",
+      "role": "validator",
+      "owner": "tools/quality/README.md"
+    },
+    "tools/site/content.cjs": {
+      "kind": "file",
+      "purpose": "Cohesive validated content/render/geometry owner with explicit inputs and delivery boundaries.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "tools/site/fallback.cjs": {
+      "kind": "file",
+      "purpose": "Cohesive validated content/render/geometry owner with explicit inputs and delivery boundaries.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "tools/site/html.cjs": {
+      "kind": "file",
+      "purpose": "Cohesive validated content/render/geometry owner with explicit inputs and delivery boundaries.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "tools/site/render-content.cjs": {
+      "kind": "file",
+      "purpose": "Cohesive validated content/render/geometry owner with explicit inputs and delivery boundaries.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "tools/site/render-page.cjs": {
+      "kind": "file",
+      "purpose": "Cohesive validated content/render/geometry owner with explicit inputs and delivery boundaries.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "tools/site/render-records.cjs": {
+      "kind": "file",
+      "purpose": "Cohesive validated content/render/geometry owner with explicit inputs and delivery boundaries.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "tools/site/validate-catalog.cjs": {
+      "kind": "file",
+      "purpose": "Cohesive validated content/render/geometry owner with explicit inputs and delivery boundaries.",
+      "role": "source",
+      "owner": "site/README.md"
     }
   }
 }

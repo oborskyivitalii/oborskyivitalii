@@ -56,7 +56,18 @@ test('Color keeps the native route inventory and packages all requested authored
       space,
       /ribbonMaterial\s*=\s*['"]opaque-rgb['"]|scene\.dataset\.ribbons\s*=/
     );
-    assert.ok(styles.includes(require('../site/effects/reading-surfaces.cjs').surfaceCSS()));
+    const readingStyles = fs.readFileSync(
+      path.join(__dirname, '../site/effects/reading-surfaces.css'),
+      'utf8'
+    );
+    const flightStyles = fs.readFileSync(
+      path.join(__dirname, '../site/effects/flight.css'),
+      'utf8'
+    );
+    assert.ok(
+      styles.includes(readingStyles + '\n' + flightStyles),
+      'served active Color reads canonical reading CSS before travel CSS'
+    );
     assert.match(nav, /id\s*=\s*['"]end-scroll['"]/);
     assert.match(nav, /id\s*=\s*['"]content-flight['"]/);
     new vm.Script(space);

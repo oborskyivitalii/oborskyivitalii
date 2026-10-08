@@ -170,7 +170,7 @@ test('optional exporter compiles, keeps one scheduler and changes both embedded 
     (previous.match(/requestAnimationFrame/g) || []).length
   );
   assert.match(output, /\bpassive\s*:\s*true\b/);
-  assert.match(output, /overflow:clip/);
+  assert.match(output, /overflow\s*:\s*clip/);
   assert.match(
     output,
     /\bfinally\s*\{\s*if\s*\(\s*transform\s*\)\s*plane\.style\.transform\s*=\s*transform\b/

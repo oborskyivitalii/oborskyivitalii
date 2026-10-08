@@ -40,6 +40,8 @@ jobs:
           tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps ruff==0.16.10 PyYAML==6.0.3
       - name: Check maintained formatting
         run: node tools/quality/format.cjs --check
+      - name: Check authored dependency and ownership boundaries
+        run: node tools/quality/architecture.cjs
       - name: Minimal source, route, script and size checks
         run: node tools/quality/local.cjs --package quality-artifact
       - name: Check complete maintained and generated lint coverage

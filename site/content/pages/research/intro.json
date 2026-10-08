@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "template": "pages/research/intro.html",
+  "text": {
+    "T001": "Research / Living questions",
+    "T002": "Two systems.",
+    "T003": "One engineering perspective.",
+    "T004": "How we deliver software, and how we govern systems whose behavior relies on model judgment —\n    including AI agents in production."
+  },
+  "attributes": {},
+  "urls": {}
+}

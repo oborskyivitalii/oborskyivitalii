@@ -1,0 +1,16 @@
+/* Color-only ink and controls. Reading backdrop paint stays in engine/reading-surfaces.css. */
+:root[data-theme='dark'] body[data-page='writing'] .archive-intro > .hero-description {
+  color: var(--ink);
+}
+.appearance[open] .display-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-width: 260px;
+  max-width: calc(100vw - 40px);
+}
+.appearance[open] .theme-control {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}

@@ -531,6 +531,29 @@ test('newly exposed effect complexity preserves exact source debt and rejects st
   }
 });
 
+test('removed complexity debt has no expiry gate while invalid dates and new warnings stay blocking', () => {
+  const { reviewComplexity } = require('../tools/quality/scanners.cjs');
+  const policy = { reviewBy: '2026-11-03', complexity: [] };
+  const options = { now: new Date('2026-11-04T00:00:00Z') };
+  reviewComplexity([], policy, options);
+  assert.throws(
+    () =>
+      reviewComplexity(
+        [
+          {
+            file: 'site/effects/ribbons.cjs',
+            rule: 'sonarjs/cognitive-complexity',
+            message: 'New complexity warning',
+          },
+        ],
+        policy,
+        options
+      ),
+    /New or duplicated complexity debt/
+  );
+  assert.throws(() => reviewComplexity([], { ...policy, reviewBy: 'invalid' }, options), /expired/);
+});
+
 function banditFixture() {
   const os = require('node:os'),
     triage = require('../tools/quality/bandit-triage.cjs'),

@@ -4,10 +4,17 @@ const test = require('node:test'),
   fs = require('node:fs'),
   path = require('node:path'),
   vm = require('node:vm');
-const source = fs.readFileSync(path.join(__dirname, '../docs/archive.js'), 'utf8'),
-  html = fs.readFileSync(path.join(__dirname, '../docs/writing.html'), 'utf8');
-const catalog = JSON.parse(
-  fs.readFileSync(path.join(__dirname, '../site/content/catalog.json'), 'utf8')
+const root = path.resolve(__dirname, '..');
+const source = fs.readFileSync(path.join(root, 'site/engine/archive.js'), 'utf8');
+const content = require('../tools/site/content.cjs');
+const build = require('../tools/site/build.cjs');
+const catalog = content.catalog(root);
+const html = build.stableTagEndings(
+  content.routeInput(
+    root,
+    build.configuration(root).config.routes.find((route) => route.id === 'writing'),
+    catalog
+  ).main
 );
 const total = Object.keys(catalog.records).length,
   year2025 = Object.values(catalog.records).filter((r) =>
@@ -70,6 +77,10 @@ function visit(query = '', historyBlocked = false) {
   }
   for (const key of ['filters', 'count', 'empty', 'heading']) ids['archive-' + key] = element();
   ids['archive-filters'].hidden = true;
+  ids['archive-count'].dataset = {
+    count: catalog.labels['archive.count'],
+    print: catalog.labels['archive.print'],
+  };
   for (const key of ['delivery', 'systems', 'leadership', 'strategy'])
     ids['topic-' + key] = element();
   for (const year of ['2026', '2025']) ids['year-' + year] = element();

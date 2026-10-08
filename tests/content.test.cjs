@@ -339,7 +339,7 @@ test('portrait is a real sized local asset and ambiguous talk languages stay exp
   assert.ok(cutout.length < 80000);
   assert.match(
     pages.index,
-    /<img src="media\/[a-f0-9]{64}\/vitalii-oborskyi-cutout.webp" alt="Portrait of Vitalii Oborskyi with the background removed" width="780" height="721"/
+    /<img class="portrait-media" src="media\/[a-f0-9]{64}\/vitalii-oborskyi-cutout.webp" alt="Portrait of Vitalii Oborskyi with the background removed" width="780" height="721"/
   );
   const talks = [
     ...pages.talks.matchAll(
@@ -368,7 +368,11 @@ test('Talks curates distinct events with source-supported dates, language and re
     after: normalizeHTML(historical.after),
   };
   const currentSection = normalizeHTML(
-    fs.readFileSync(path.join(root, '../site/content/pages/talks/talks.html'), 'utf8')
+    require('../tools/site/content.cjs').fragment(
+      path.join(root, '..'),
+      'site/content/pages/talks/talks.json',
+      require('../tools/site/content.cjs').catalog(path.join(root, '..'))
+    ).html
   );
   assert.equal(
     restoreContentAmendment(currentSection, 'talks', recordingAmendment),

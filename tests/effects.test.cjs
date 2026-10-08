@@ -3,15 +3,92 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
-const path = require('node:path');
 const os = require('node:os');
+const path = require('node:path');
 const vm = require('node:vm');
 const effects = require('../tools/site/effects.cjs');
 const color = require('../tools/staging/color.cjs');
 const variants = require('../tools/site/variants.cjs');
-const flight = require('../site/effects/flight.cjs');
 const ribbons = require('../site/effects/ribbons.cjs');
-const reading = require('../site/effects/reading-surfaces.cjs');
+const flight = require('../site/effects/flight.cjs');
+
+test('hosted and offline effects read the same canonical CSS bytes in declared order', () => {
+  const root = path.resolve(__dirname, '..');
+  const source = [flight.descriptor()];
+  const parts = effects.descriptors();
+  for (const [index, descriptor] of source.entries()) {
+    assert.equal(Object.hasOwn(descriptor, 'css'), false, 'pure effects do not own CSS strings');
+    const canonical = descriptor.cssSources
+      .map((file) => fs.readFileSync(path.join(root, file), 'utf8'))
+      .join('\n');
+    assert.equal(parts[index].css, canonical, 'adapter reads authored CSS without rewriting it');
+    assert.deepEqual(effects.readDescriptor(descriptor), parts[index]);
+  }
+  assert.equal(effects.runtime(parts).styles, parts.map((part) => part.css).join('\n'));
+  const { standalone } = require('../tools/site/export.cjs');
+  const filename = path.join(root, 'review/site-v1-20261004-v11-interactive.html');
+  const offline = effects.decorateColor(standalone(fs.readFileSync(filename, 'utf8')));
+  const optional = effects.readDescriptor(ribbons.descriptor());
+  const optionalCSS = ribbons
+    .descriptor()
+    .cssSources.map((file) => fs.readFileSync(path.join(root, file), 'utf8'))
+    .join('\n');
+  assert.equal(optional.css, optionalCSS, 'comparison adapter reads the same canonical owner');
+  for (const part of parts) assert.ok(offline.includes(part.css), 'offline embeds canonical bytes');
+});
+
+test('effect CSS reader rejects swapped owners, duplicate paths, generated paths and embedded copies', () => {
+  for (const change of [
+    (part) => {
+      part.cssSources = ['site/effects/flight.css'];
+    },
+    (part) => {
+      part.cssSources.push(part.cssSources[0]);
+    },
+    (part) => {
+      part.cssSources = ['docs/styles.css'];
+    },
+    (part) => {
+      part.cssSources = ['site/effects/../engine/styles.css'];
+    },
+    (part) => {
+      part.cssSources = null;
+    },
+    (part) => {
+      delete part.cssSources;
+    },
+    (part) => {
+      part.css = 'body{color:red}';
+    },
+    (part) => {
+      part.effect = 'unknown';
+    },
+  ]) {
+    const part = ribbons.descriptor();
+    change(part);
+    assert.throws(() => effects.readDescriptor(part), /effect|authored/);
+  }
+});
+
+test('canonical effect CSS cannot disappear, become empty, inject HTML or redirect through a symlink', (t) => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'effect-css-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const file = path.join(root, 'site/effects/reading-surfaces.css');
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  assert.throws(() => effects.readDescriptor(ribbons.descriptor(), root), /ENOENT/);
+  fs.writeFileSync(file, '   \n');
+  assert.throws(() => effects.readDescriptor(ribbons.descriptor(), root), /cannot be empty/);
+  fs.writeFileSync(file, 'body{color:red}</style><script>unsafe()</script>');
+  assert.throws(() => effects.readDescriptor(ribbons.descriptor(), root), /raw and inert/);
+  const redirected = path.join(root, 'copy.css');
+  fs.writeFileSync(redirected, 'body{color:red}');
+  fs.unlinkSync(file);
+  fs.symlinkSync(redirected, file);
+  assert.throws(() => effects.readDescriptor(ribbons.descriptor(), root), /regular file/);
+  fs.unlinkSync(file);
+  fs.writeFileSync(file, 'body{color:red}');
+  assert.equal(effects.readDescriptor(ribbons.descriptor(), root).css, 'body{color:red}');
+});
 
 test('offline attachment accepts formatted boundaries and rejects missing or duplicated contracts', () => {
   const engine = 'a'.repeat(64),
@@ -59,7 +136,7 @@ test('explicit effect collection works with a frozen attachment API and returns 
   const authored = flight.descriptor();
   assert.equal(second[0].code, authored.code, 'active travel retains the authored factory');
   assert.equal(second[0].controls, authored.controls, 'active travel retains its controls');
-  assert.equal(second[0].css, reading.surfaceCSS() + '\n' + authored.css);
+  assert.equal(second[0].css, effects.readDescriptor(authored).css);
   first[0].code = 'changed local descriptor';
   assert.notEqual(first[0].code, color.authoredEffects()[0].code);
   assert.doesNotThrow(() => color.runtime(second));
@@ -175,6 +252,52 @@ test('offline adapters keep marker compatibility, safe serialization and duplica
     /bounded ribbon smoothing/
   );
   assert.equal(variants.identity(effects.decorateFlight(base)).id, 'flight');
+  for (const mutate of [
+    (html) => html.replace('<meta name="site-variant" content="base">', ''),
+    (html) =>
+      html.replace(
+        '<meta name="site-variant" content="base">',
+        '<meta name="site-variant" content="base"><meta name="site-variant" content="base">'
+      ),
+    (html) => html.replace('</head>', '<meta name="site-variant" content="unknown"></head>'),
+  ])
+    assert.throws(() => effects.decorateRibbons(mutate(base)), /one canonical offline variant/);
+});
+
+test('hosted Color requires exactly one base variant marker for canonical palette selection', () => {
+  const source = '<html><head><meta name="site-variant" content="base"></head></html>';
+  const routes = require('../tools/site/snapshot.cjs').routes;
+  const identity = {
+    variant: { fingerprint: 'b'.repeat(64) },
+    versions: Object.fromEntries(routes.map((route) => [route, 'd'.repeat(64)])),
+  };
+  const base = {
+    engine: 'a'.repeat(64),
+    routes: Object.fromEntries(routes.map((route) => [route, { version: 'c'.repeat(64) }])),
+  };
+  assert.match(color.render(source, base, identity), /name="site-variant" content="color"/);
+  assert.throws(
+    () => color.render(source.replace('content="base"', 'content="flight"'), base, identity),
+    /canonical base variant/
+  );
+  assert.throws(
+    () =>
+      color.render(
+        source.replace('</head>', '<meta name="site-variant" content="base"></head>'),
+        base,
+        identity
+      ),
+    /canonical base variant/
+  );
+  assert.throws(
+    () =>
+      color.render(
+        source.replace('</head>', '<meta name="site-variant" content="unknown"></head>'),
+        base,
+        identity
+      ),
+    /canonical base variant/
+  );
 });
 
 test('active offline Color keeps reading and travel while rejecting optional decorated inputs', () => {
@@ -187,7 +310,11 @@ test('active offline Color keeps reading and travel while rejecting optional dec
   assert.deepEqual(identity.effects, ['travel']);
   assert.notEqual(identity.fingerprint, variants.identity(base).fingerprint);
   assert.match(output, /<style data-content-flight>/);
-  assert.ok(output.includes(reading.surfaceCSS()));
+  assert.ok(
+    output.includes(
+      fs.readFileSync(path.join(__dirname, '../site/effects/reading-surfaces.css'), 'utf8')
+    )
+  );
   assert.doesNotMatch(output, /data-site-effect="ribbons"|data-ribbon-presentation/);
   assert.doesNotMatch(
     output,

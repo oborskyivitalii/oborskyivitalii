@@ -22,12 +22,18 @@
     const rows = [...document.querySelectorAll('li.publication')];
     const groups = [...document.querySelectorAll('.archive-group')];
     const years = [...document.querySelectorAll('.archive-year')];
-    const topics = ['delivery', 'systems', 'leadership', 'strategy'];
+    const topics = [...controls.topic.options]
+      .map((option) => option.value)
+      .filter((value) => value !== 'all');
     const yearValues = [...controls.year.options]
       .map((option) => option.value)
       .filter((value) => value !== 'all');
     const countLabel = document.getElementById('archive-count');
     const heading = document.getElementById('archive-heading');
+    const countText = (name, count) =>
+      countLabel.dataset[name]
+        .replaceAll('{count}', String(count))
+        .replaceAll('{total}', String(rows.length));
     let lastTopic = null;
     function label(control) {
       const option = [...control.options].find((option) => option.value === control.value);
@@ -44,11 +50,9 @@
           ? value
           : 'all';
       }
-      const topic = window.location.hash.match(
-        /^#topic-(delivery|systems|leadership|strategy)(?:-(\d{4}))?$/
-      );
+      const topic = window.location.hash.match(/^#topic-([a-z][a-z0-9-]*?)(?:-(\d{4}))?$/);
       const year = window.location.hash.match(/^#year-(\d{4})$/);
-      if (topic) {
+      if (topic && topics.includes(topic[1])) {
         controls.topic.value = topic[1];
         if (yearValues.includes(topic[2])) controls.year.value = topic[2];
       } else if (year && yearValues.includes(year[1])) controls.year.value = year[1];
@@ -100,7 +104,7 @@
       }
       heading.hidden = false;
       heading.textContent = `${label(controls.topic)} · ${label(controls.year)} · ${label(controls.language)}`;
-      countLabel.textContent = `${count} of ${rows.length} primary archive records · newest first within each topic.`;
+      countLabel.textContent = countText('count', count);
       document.getElementById('archive-empty').hidden = count !== 0;
       emit('site:archive-layout', {});
       if (lastTopic !== controls.topic.value || reason === 'initial' || reason === 'reset') {
@@ -139,7 +143,7 @@
     print = () => {
       for (const element of [...rows, ...groups, ...years]) element.hidden = false;
       for (const year of yearValues) document.getElementById(`year-${year}`).hidden = false;
-      countLabel.textContent = `${rows.length} primary archive records · all records and their linked platform editions shown for printing.`;
+      countLabel.textContent = countText('print', rows.length);
       document.getElementById('archive-empty').hidden = true;
     };
     on(window, 'beforeprint', print);

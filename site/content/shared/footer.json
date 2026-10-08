@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "template": "shared/footer.html",
+  "text": {
+    "T001": "© 2026 Vitalii Oborskyi",
+    "T002": "About",
+    "T003": "Contact",
+    "T004": "Reuse & credits",
+    "T005": "Back to top ↑"
+  },
+  "attributes": {},
+  "urls": {
+    "U001": "./#about",
+    "U002": "./#contact",
+    "U003": "credits.html",
+    "U004": "#main"
+  }
+}

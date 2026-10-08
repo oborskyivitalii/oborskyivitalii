@@ -84,8 +84,8 @@ test('formatted shell boundaries preserve identity, current navigation and rejec
     assert.throws(() => run(dir), /Expected one document/);
   }
   fs.writeFileSync(path.join(dir, 'site/templates/shell.html'), shell);
-  edit(dir, 'site/templates/header.html', (source) =>
-    source.replace('<a href="writing.html">', '<a href="wrong.html">')
+  edit(dir, 'site/content/shared/header.json', (source) =>
+    source.replace('writing.html', 'wrong.html')
   );
   assert.throws(() => run(dir), /Expected one current-route header link/);
 });
@@ -490,9 +490,7 @@ test('source migration preserves publication HTML and thematic geometry when sha
 test('a Home block changes only Home; unchanged assets/routes retain bytes and full equals incremental', (t) => {
   const dir = fixture(t),
     before = run(dir);
-  edit(dir, 'site/content/pages/index/about.html', (s) =>
-    s.replace('About', 'About<!-- editorial edit -->')
-  );
+  edit(dir, 'site/content/pages/index/about.json', (s) => s.replace('About', 'About revised'));
   const after = run(dir);
   assert.deepEqual(after.built, ['index']);
   assert.deepEqual(after.reused, ['research', 'writing', 'talks', 'credits']);
@@ -530,7 +528,7 @@ test('shared footer, scene and producer edits invalidate their complete dependen
   const dir = fixture(t);
   run(dir);
   for (const name of [
-    'site/templates/footer.html',
+    'site/templates/shared/footer.html',
     'site/scenes/world.cjs',
     'tools/site/build.cjs',
   ]) {
@@ -547,18 +545,18 @@ test('renamed blocks work after descriptor update; missing inputs leave the last
   run(dir);
   const before = inventory(dir);
   fs.renameSync(
-    path.join(dir, 'site/content/pages/index/about.html'),
-    path.join(dir, 'site/content/pages/index/biography.html')
+    path.join(dir, 'site/content/pages/index/about.json'),
+    path.join(dir, 'site/content/pages/index/biography.json')
   );
   assert.throws(() => run(dir), /ENOENT/);
   assert.deepEqual(inventory(dir), before);
-  edit(dir, 'site/content/pages/index/main.html', (s) =>
+  edit(dir, 'site/templates/pages/index/main.html', (s) =>
     s.replace('BLOCK:about', 'BLOCK:biography')
   );
   edit(dir, 'site/content/pages/index/metadata.json', (s) => s.replace('"about"', '"biography"'));
   assert.deepEqual(run(dir).built, ['index']);
   const after = inventory(dir);
-  fs.unlinkSync(path.join(dir, 'site/content/pages/index/biography.html'));
+  fs.unlinkSync(path.join(dir, 'site/content/pages/index/biography.json'));
   assert.throws(() => run(dir), /ENOENT/);
   assert.deepEqual(inventory(dir), after);
 });
@@ -588,7 +586,7 @@ test('content executable boundaries fail before replacing output; metadata canno
   const dir = fixture(t);
   run(dir);
   const before = inventory(dir),
-    file = 'site/content/pages/index/about.html',
+    file = 'site/templates/pages/index/about.html',
     original = fs.readFileSync(path.join(dir, file), 'utf8');
   for (const injection of [
     '<script>alert(1)</script>',

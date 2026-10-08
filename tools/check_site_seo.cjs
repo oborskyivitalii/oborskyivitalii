@@ -150,8 +150,49 @@ function restoreFormatterBlockSeams(html, page) {
   }
   return html;
 }
+function restoreRefactorPresentation(html, page) {
+  // R3/R4 move exact presentation-only owners. Everything else remains in the
+  // ordered HTML comparison, including changed geometry, labels and attributes.
+  html = normalizeHTML(html);
+  if (page === 'index') {
+    for (const [from, to] of [
+      [
+        '<svg class="portrait-facets portrait-media" viewbox="0 0 500 550" aria-hidden="true">',
+        '<svg class="portrait-facets" viewbox="0 0 500 550" aria-hidden="true" style="max-width:100%;height:auto">',
+      ],
+      [
+        '<img class="portrait-media" src="assets/vitalii-oborskyi-cutout.webp" alt="Portrait of Vitalii Oborskyi with the background removed" width="780" height="721" decoding="async" fetchpriority="high">',
+        '<img src="assets/vitalii-oborskyi-cutout.webp" alt="Portrait of Vitalii Oborskyi with the background removed" width="780" height="721" style="max-width:100%;height:auto" decoding="async" fetchpriority="high">',
+      ],
+    ]) {
+      const occurrences = html.split(from).length - 1;
+      assert.ok(occurrences <= 1, 'Duplicate declared portrait presentation');
+      html = html.replace(from, to);
+    }
+  }
+  if (page === 'writing') {
+    const owner = /<p id="archive-count"(?:[^>"']|"[^"]*"|'[^']*')*>/g;
+    assert.ok([...html.matchAll(owner)].length <= 1, 'Duplicate archive label owner');
+    html = html.replace(owner, (opening) => {
+      for (const [key, value] of [
+        ['count', '{count} of {total} primary archive records · newest first within each topic.'],
+        [
+          'print',
+          '{total} primary archive records · all records and their linked platform editions shown for printing.',
+        ],
+      ]) {
+        const attribute = ' data-' + key + '="' + value + '"';
+        assert.ok(opening.split(attribute).length <= 2, 'Duplicate declared archive label');
+        opening = opening.replace(attribute, '');
+      }
+      return opening;
+    });
+  }
+  return html;
+}
 function restoreApprovedContent(html, page) {
   html = normalizeHTML(html);
+  html = restoreRefactorPresentation(html, page);
   if (page === 'writing') {
     // Reverse only the approved accessible description; the scene landmark is
     // decorative geometry within the existing fallback, with no content band.
@@ -303,5 +344,6 @@ module.exports = {
   restore,
   restoreApprovedContent,
   restoreContentAmendment,
+  restoreRefactorPresentation,
   normalizeHTML,
 };

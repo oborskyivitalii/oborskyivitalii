@@ -157,7 +157,10 @@ function reviewComplexity(
     baselineBytes = (commit, file) => run('git', ['show', commit + ':' + file]),
   } = {}
 ) {
-  if (!Number.isFinite(Date.parse(policy.reviewBy)) || new Date(policy.reviewBy) < now) {
+  if (
+    !Number.isFinite(Date.parse(policy.reviewBy)) ||
+    (policy.complexity.length > 0 && new Date(policy.reviewBy) < now)
+  ) {
     throw Error('Lint exceptions expired');
   }
   const digest = (bytes) => require('node:crypto').createHash('sha256').update(bytes).digest('hex');

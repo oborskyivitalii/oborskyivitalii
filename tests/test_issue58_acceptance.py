@@ -1,6 +1,6 @@
-"""R2 phase evidence for issue58; future phases retain their own open acceptance.
+"""Issue58 phase checks: accepted R2 snapshot and current candidate contracts.
 
-The fixed baseline belongs to mechanical formatting, not routine site regression.
+The fixed R2 baseline is observed with frozen tools, independently of later code.
 Actual hosted/scanner/review/merge decisions are separately recorded in the issue.
 """
 
@@ -44,17 +44,14 @@ class Issue58R2AcceptanceTests(unittest.TestCase):
         node_cases(["tests/format.test.cjs", "tests/format-parity.test.cjs"])
 
     def test_original_maintained_source_semantics(self):
-        output = execute(
-            [
-                "node",
-                "tools/quality/format-parity.cjs",
-                "--baseline",
-                BASELINE,
-                "--controls",
-                "tools/quality/format-parity-controls.json",
-            ]
-        )
-        self.assertTrue(output.strip())
+        output = execute(["node", "tools/quality/phase-checkpoint.cjs"])
+        report = json.loads(output)
+        self.assertTrue(report["pass"])
+        self.assertEqual(report["baselineCommit"], BASELINE)
+        self.assertEqual(report["checkpointCommit"], "8c6cf877fee92b4d2493b4c1a07df7080b987c29")
+
+    def test_phase_checkpoint_failure_contracts(self):
+        node_cases(["tests/phase-checkpoint.test.cjs"])
 
     def test_source_coverage_and_exact_debt_contracts(self):
         node_cases(["tests/quality-sources.test.cjs"])
@@ -77,6 +74,36 @@ class Issue58R2AcceptanceTests(unittest.TestCase):
                 self.assertEqual(json.loads(current), json.loads(before), name)
             else:
                 self.assertEqual(current, before, name)
+
+
+class Issue58PhaseAcceptanceTests(unittest.TestCase):
+    def test_content_ownership_and_parity(self):
+        node_cases(
+            [
+                "tests/content-rendering.test.cjs",
+                "tests/content-migration.test.cjs",
+                "tests/content.test.cjs",
+                "tests/archive.test.cjs",
+            ]
+        )
+
+    def test_runtime_build_cohesion_and_lifecycle(self):
+        node_cases(
+            [
+                "tests/architecture.test.cjs",
+                "tests/build-cohesion.test.cjs",
+                "tests/camera-view.test.cjs",
+                "tests/ribbons.test.cjs",
+                "tests/navigation.test.cjs",
+                "tests/space.test.cjs",
+            ]
+        )
+
+    def test_static_css_ownership_and_parity(self):
+        node_cases(["tests/effects.test.cjs", "tests/executive.test.cjs"])
+
+    def test_resource_measurement_failure_contracts(self):
+        node_cases(["tests/refactor-metrics.test.cjs"])
 
 
 if __name__ == "__main__":

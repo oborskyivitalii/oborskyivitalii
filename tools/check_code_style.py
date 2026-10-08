@@ -24,7 +24,7 @@ RETAINED = "site/retained/"
 JS = {".js", ".cjs", ".mjs"}
 EXTENSIONS = JS | {".css", ".html"}
 TOKEN_OWNERS = {
-    "site/engine/styles.css": ("--paper", "--ink", "--accent"),
+    "site/engine/styles.css": ("--paper", "--ink", "--muted", "--accent"),
     "site/engine/reading-surfaces.css": (
         "--reading-surface-alpha",
         "--reading-surface-color",

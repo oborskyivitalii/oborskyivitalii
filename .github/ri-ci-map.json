@@ -240,7 +240,7 @@
     },
     {
       "id": "maintained-source-quality",
-      "purpose": "Complete formatter/lint source classification, pins, semantic preservation and fail-closed coverage; mechanical changes are distinct from reviewed control integration.",
+      "purpose": "Current complete formatting/lint coverage and original budgets, with immutable R2 mechanical checkpoint reobserved separately from intentional later refactoring.",
       "paths": [
         "tools/quality/format.cjs",
         "tools/quality/format-scope.json",
@@ -251,11 +251,41 @@
         "tools/quality/format-parity-controls.json",
         "tests/format.test.cjs",
         "tests/format-parity.test.cjs",
-        "tests/test_issue58_acceptance.py"
+        "tests/test_issue58_acceptance.py",
+        "tools/quality/phase-checkpoint.cjs",
+        "tests/phase-checkpoint.test.cjs"
       ],
       "checks": [
         "maintained-format-check",
         "maintained-source-lint",
+        "acceptance-policy",
+        "ri-freshness",
+        "ri-ci-regressions"
+      ]
+    },
+    {
+      "id": "refactoring-contracts",
+      "purpose": "Content/template and canonical CSS ownership, pure camera/build seams, authored dependency/cycle negatives and comparable original-budget measurements under issue58.",
+      "paths": [
+        "tools/quality/architecture.cjs",
+        "tools/quality/refactor-metrics.cjs",
+        "tools/site/content.cjs",
+        "tools/site/html.cjs",
+        "tools/site/validate-catalog.cjs",
+        "tools/site/render-content.cjs",
+        "tools/site/render-records.cjs",
+        "tools/site/render-page.cjs",
+        "tools/site/fallback.cjs",
+        "tests/content-rendering.test.cjs",
+        "tests/content-migration.test.cjs",
+        "tests/build-cohesion.test.cjs",
+        "tests/camera-view.test.cjs",
+        "tests/architecture.test.cjs",
+        "tests/refactor-metrics.test.cjs"
+      ],
+      "checks": [
+        "authored-dependencies",
+        "site-basic",
         "acceptance-policy",
         "ri-freshness",
         "ri-ci-regressions"
@@ -463,11 +493,20 @@
         "tools/quality/scanners.cjs",
         "lint"
       ]
+    },
+    {
+      "id": "authored-dependencies",
+      "workflow": ".github/workflows/site-checks.yml",
+      "job": "checks",
+      "argv": [
+        "node",
+        "tools/quality/architecture.cjs"
+      ]
     }
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "116bae6602119718d3e6bd0d043a1ec111d722a09d14d851706525f125616324",
+    "digest": "fd4fa12ee8d87f2c40c9fe991007a624dc75bf9c52b09d65da0a3ff7ad6eb59d",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -522,12 +561,20 @@
         "sha256": "78d4b78b96392b6b3c3df7006a40340e883a8f6d90fe2b21fe035e69cfff89cf"
       },
       {
+        "path": ".github/acceptance/issue-58.json",
+        "sha256": "e70e03f3ee392fdf909beccf5f659dff98d03777a33eb5170e351f6e0656be4a"
+      },
+      {
+        "path": ".github/acceptance/issue-59.json",
+        "sha256": "ca2c95e47584679e89ad4a9b8b2beadd4eaf5f226b006a52df41b0887ca1f14d"
+      },
+      {
         "path": ".github/acceptance/issue-61.json",
         "sha256": "4b28edf99f48adf3395424c26a50c2370a379a14efab06dd9b546b21320af5db"
       },
       {
         "path": ".github/code-style.json",
-        "sha256": "59075e735e919d7d0bb50c51eb4082870be83f89c6b01c2545b13b86e31cb83b"
+        "sha256": "7f275850381b10adcc9cce83ecc8969fbbdd0d267ac565141c5bfef11fd4a7fc"
       },
       {
         "path": ".github/pull_request_template.md",
@@ -543,7 +590,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "bae5c54be62e34f51b13022e87360d7116db85f3f43ce3d986cda311cb7dc7c5"
+        "sha256": "177c2e9699ac4ed5b735d4fced2aaba42e5920e8a19fa3c795a90d95a6ecd984"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -571,7 +618,7 @@
       },
       {
         "path": ".github/workflows/site-checks.yml",
-        "sha256": "f3206998fa7c492082ce20b4e583f2c7deaba7de3b006321d5644191f54bb3c3"
+        "sha256": "e789f463dde84cf9a3a2bc3df813065c237f3f533689d7eda5b3994fc359bb27"
       },
       {
         "path": ".github/workflows/site-color-review.yml",
@@ -619,7 +666,7 @@
       },
       {
         "path": "guides/CODE-STYLE.md",
-        "sha256": "f7fdb9082b555aaed472d92e417e4c8b9761af854df518fc86c00a16dc8ee69f"
+        "sha256": "1270d587ee3e1dd031b5b6d4371019c7abaa2e5f2c944effe7c1197a2415d833"
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
@@ -631,7 +678,7 @@
       },
       {
         "path": "tests/fixtures/staging-evidence.cjs",
-        "sha256": "74ed5a2894d0cc2751bf5a56a03a3f82fa19348c0e8f150b50f79b23b71f2d3d"
+        "sha256": "f6002aa1b592924a9250616a715502a5bc3dfb1992d70e319a476d406f10a7d5"
       },
       {
         "path": "tests/staging-gate.test.cjs",
@@ -639,15 +686,15 @@
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "66ef2032c9b8bb981c50b1b764fcdadf422b734601d454c7ee2725b23222387d"
+        "sha256": "8b9477653fd5eea5a18b23e783f0b75b58415c0fb17269819b99a72f1027a8e7"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
-        "sha256": "44f017b7a3e16234d95953d4da228f825db68c08d70ae2e171273178c554f031"
+        "sha256": "57248b59a7193577fd6891f18213d8e17d105ba369131426b7c0e6d2a56d4c4a"
       },
       {
         "path": "tests/test_code_style.py",
-        "sha256": "b8caad1281cc8d10828171964f74851a2b800394c08dcf29299a87063b5226b3"
+        "sha256": "6928de833df06bfaf092442c719db0919bd936d3cd19c33d8c04006f29c8ab1c"
       },
       {
         "path": "tests/test_issue31_acceptance.py",
@@ -682,6 +729,10 @@
         "sha256": "7d0e6248d8ed02f536192591dfd889d63afb5eb9c31474b8f05b623d29327380"
       },
       {
+        "path": "tests/test_issue58_acceptance.py",
+        "sha256": "b971868d02730e3ddf4f3371114e4541c3558f084b4587aab84cb24806ff44b8"
+      },
+      {
         "path": "tests/test_issue61_acceptance.py",
         "sha256": "bccd437617f007f642307d6495f0e583a78a6db12d4212f04026a2024e53d695"
       },
@@ -699,7 +750,7 @@
       },
       {
         "path": "tests/test_ri_ci.py",
-        "sha256": "7b4daa6786fe3126d455e37db72c08faed3f9dcbf4d70375ddb6fbcd00eddbe5"
+        "sha256": "26eca6ca6c6931dec3ba0f04366c6df25808388079c53dfc09f81891d1bcda80"
       },
       {
         "path": "tests/test_root_layout.py",
@@ -707,7 +758,7 @@
       },
       {
         "path": "tools/check_code_style.py",
-        "sha256": "e2a20504c1242d588cc2eb87246c8933b1dea798e2f0a12dd04256e3bdecc6e9"
+        "sha256": "9239bbd63871a419d24cb5e630f5941c2f70d7ac8b6082326baf95c5fc008439"
       },
       {
         "path": "tools/check_repository_layout.py",
@@ -735,11 +786,11 @@
       },
       {
         "path": "tools/quality/staging-regression.cjs",
-        "sha256": "ce5973ac184708473bc963a1a8a15663b6c105673fb6c7d05782e533aae4c620"
+        "sha256": "39998f6e6bb1b1e77d316a635ef5e5ef559531d555d9ba3f299235e651214020"
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "20bb1df652577b2015208bb1852345597d08d9565346066509dc62563e0077ab"
+        "sha256": "ad3c203381323f0af0a98479fcfe484a936d35842c61b01bf70c50b0ef3e6423"
       },
       {
         "path": "tools/repository_intelligence.py",
@@ -748,18 +799,6 @@
       {
         "path": "tools/run_repository_tests.py",
         "sha256": "0ef371fa128a18469f4a9e73702fe7fbcdea21cf1927c1e69d576f28fc1560c0"
-      },
-      {
-        "path": ".github/acceptance/issue-59.json",
-        "sha256": "ca2c95e47584679e89ad4a9b8b2beadd4eaf5f226b006a52df41b0887ca1f14d"
-      },
-      {
-        "path": ".github/acceptance/issue-58.json",
-        "sha256": "1a1793e3697a505846fdf98a77d6f8963acb0ac93edc07f8a379924a8812aebf"
-      },
-      {
-        "path": "tests/test_issue58_acceptance.py",
-        "sha256": "6379e8faa9b762134331f22f6e61d94999b924c8f79aabe4322896a47ef1bc2e"
       }
     ]
   }

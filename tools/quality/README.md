@@ -28,10 +28,12 @@ are preserved. Ruff formatting does not alter the separately selected lint rules
 The existing PR source job installs the locked Node tools and minimal pinned
 Python formatter/YAML support, then checks formatting and full lint coverage.
 Permanent tests reject scope/pin/config/coverage drift and real formatting changes.
-The issue58 policy additionally compares the R2 candidate with its immutable
-baseline through [format-parity.cjs](format-parity.cjs), using explicit reviewed
-[control integration exceptions](format-parity-controls.json); future intentional
-phase changes update that task-specific mapping rather than run old snapshots.
+The issue58 policy verifies the immutable R2 checkpoint against its original
+baseline through [phase-checkpoint.cjs](phase-checkpoint.cjs), using the frozen
+formatter, parity helper and reviewed controls from that checkpoint. Current
+R3–R6 changes run permanent content, CSS, architecture and resource contracts;
+they do not broaden R2's mechanical exceptions. One final merge follows the
+user-approved continuation in the same Draft PR60.
 
 ```sh
 node tools/quality/local.cjs

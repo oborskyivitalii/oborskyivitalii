@@ -106,6 +106,25 @@ class CodeStyleTests(unittest.TestCase):
         self.save_policy()
         self.assertTrue(self.verify()["pass"])
 
+    def test_fixed_portrait_cannot_restore_inline_debt_or_move_it_to_a_template(self):
+        self.write(self.html, '<img class="portrait-media" src="portrait.webp">')
+        self.policy["legacy"].pop()
+        self.save_policy()
+        self.assertTrue(self.verify()["pass"])
+        for path, html in [
+            (self.html, '<img class="portrait-media" style="max-width:100%;height:auto">'),
+            ("site/templates/portrait.html", '<svg style="max-width:100%;height:auto"></svg>'),
+        ]:
+            with self.subTest(path=path):
+                original = (self.root / path).read_text() if (self.root / path).exists() else None
+                self.write(path, html)
+                with self.assertRaisesRegex(ValueError, "violations"):
+                    self.verify()
+                if original is None:
+                    (self.root / path).unlink()
+                else:
+                    self.write(path, original)
+
     def test_expanded_duplicate_unowned_and_wildcard_allowances_fail(self):
         original = copy.deepcopy(self.policy)
         mutations = [
@@ -151,10 +170,14 @@ class CodeStyleTests(unittest.TestCase):
         css = ":root { --paper: white; }"
         self.write(retained + "/styles.css", css)
         self.write(retained + "/space.js", "module.exports = {};\n")
-        manifest = {"schema": 1, "files": {
-            retained.removeprefix(style.RETAINED) + "/styles.css":
-                hashlib.sha256(css.encode()).hexdigest(),
-        }}
+        manifest = {
+            "schema": 1,
+            "files": {
+                retained.removeprefix(style.RETAINED) + "/styles.css": hashlib.sha256(
+                    css.encode()
+                ).hexdigest(),
+            },
+        }
         self.write(style.RETAINED + "manifest.json", json.dumps(manifest))
         self.assertTrue(self.verify()["pass"])
         for invalid in [css + " /* changed */", css.replace("white", "red")]:
@@ -180,6 +203,14 @@ class CodeStyleTests(unittest.TestCase):
             self.write("site/engine/new.cjs", "require('" + target + "');\n")
             with self.assertRaisesRegex(ValueError, "generated-or-tool-import"):
                 self.verify()
+
+    def test_color_effect_cannot_become_a_second_muted_palette_owner(self):
+        self.write(
+            "site/effects/reading-surfaces.css",
+            ':root:not([data-theme="dark"]) { --muted: #344a53; }',
+        )
+        with self.assertRaisesRegex(ValueError, "Competing CSS token owner"):
+            self.verify()
 
     def test_new_active_history_source_and_hidden_dependency_fail(self):
         new = "review/old/new.cjs"

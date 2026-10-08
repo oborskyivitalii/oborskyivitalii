@@ -142,119 +142,106 @@ function createRibbonMaterials(api, section, signals) {
   };
 }
 function makeProjector(api, section, material, smoothEdges = true) {
-  const { sub, cross, normalize, clipPolygon } = api;
-  return function projectRibbons(current, width, height, time, compact, ribbonMesh = 0) {
-    const forward = normalize(sub(current.target, current.position)),
-      right = normalize(cross(forward, [0, 1, 0])),
-      up = cross(right, forward);
-    const focal = (compact ? Math.min(height, width * 1.15) : height) / (2 * Math.tan(Math.PI / 8)),
-      cx = width * (compact ? 0.42 : 0.66),
-      cy = height * 0.48;
-    const camera = (p) => {
-      const x = p[0] - current.position[0],
-        y = p[1] - current.position[1],
-        z = p[2] - current.position[2];
+  const { cameraView, clipPolygon } = api;
+  function sideCurves(vertices, points, z, step, k, time, view, compact) {
+    if (!smoothEdges || !vertices.every((point) => point[2] >= 1.5) || points.length !== 4)
+      return undefined;
+    const ends = [
+      [points[0], points[3]],
+      [points[1], points[2]],
+    ];
+    if (Math.max(...ends.map(([a, b]) => Math.hypot(a[0] - b[0], a[1] - b[1]))) <= 20)
+      return undefined;
+    const midpoint = section(z + step / 2, k, time);
+    const left = view.camera(midpoint.left),
+      right = view.camera(midpoint.right);
+    if (left[2] < 1.5 || right[2] < 1.5) return undefined;
+    const middle = [view.project(left), view.project(right)];
+    const error = middle.map((point, i) =>
+      Math.hypot(
+        point[0] - (ends[i][0][0] + ends[i][1][0]) / 2,
+        point[1] - (ends[i][0][1] + ends[i][1][1]) / 2
+      )
+    );
+    if (Math.max(...error) <= (compact ? 0.8 : 0.5)) return undefined;
+    return middle.map((point, i) => [
+      2 * point[0] - (ends[i][0][0] + ends[i][1][0]) / 2,
+      2 * point[1] - (ends[i][0][1] + ends[i][1][1]) / 2,
+    ]);
+  }
+  function projectedCell(vertices, k, z, step, time, compact, view, m, far) {
+    const depth = vertices.reduce((sum, point) => sum + point[2], 0) / 4;
+    // A centre behind the near plane can still have a visible clipped end.
+    if (!vertices.some((point) => point[2] >= 1.5) || depth >= far) return null;
+    const points = clipPolygon(vertices, 1.5).map(view.project);
+    // Only large, unclipped side edges need analytic midpoint curves.
+    const curves = sideCurves(vertices, points, z, step, k, time, view, compact);
+    if (points.length < 3 || !view.visible(curves ? points.concat(curves) : points)) return null;
+    return { kind: 'ribbon', points, curves, depth, ribbon: k, z, packets: m.packets.length };
+  }
+  function ribbonStrip(k, time, compact, view, m, mesh, shapes) {
+    const verticesAt = (z) => {
+      const s = section(z, k, time),
+        left = view.camera(s.left),
+        right = view.camera(s.right),
+        color = m.sample(z, (left[2] + right[2]) / 2);
       return [
-        x * right[0] + y * right[1] + z * right[2],
-        x * up[0] + y * up[1] + z * up[2],
-        x * forward[0] + y * forward[1] + z * forward[2],
+        [...left, 0, z, ...color],
+        [...right, 1, z, ...color],
       ];
     };
-    const project = (p) => [cx + (p[0] * focal) / p[2], cy - (p[1] * focal) / p[2], ...p.slice(3)];
-    const visible = (points) =>
-      !points.every((p) => p[0] < -8) &&
-      !points.every((p) => p[0] > width + 8) &&
-      !points.every((p) => p[1] < -8) &&
-      !points.every((p) => p[1] > height + 8);
-    const dark = document.documentElement.dataset.theme === 'dark',
+    let cell = mesh.startCell,
+      ac = verticesAt(cell * mesh.gridStep);
+    while ((cell - 1) * mesh.gridStep >= mesh.end) {
+      // LOD groups whole immutable world cells. Near silhouettes stay fine.
+      const grouped = mesh.stride > 1 && cell % mesh.stride === 0 && ac.every((p) => p[2] >= 12),
+        stride = grouped ? mesh.stride : 1;
+      const nextCell = cell - stride,
+        z = nextCell * mesh.gridStep,
+        step = stride * mesh.gridStep;
+      if (z < mesh.end) break;
+      const bc = verticesAt(z);
+      const shape = projectedCell(
+        [ac[0], ac[1], bc[1], bc[0]],
+        k,
+        z,
+        step,
+        time,
+        compact,
+        view,
+        m,
+        mesh.far
+      );
+      if (shape) shapes.push(shape);
+      ac = bc;
+      cell = nextCell;
+    }
+  }
+  return function projectRibbons(
+    current,
+    width,
+    height,
+    time,
+    compact,
+    ribbonMesh = 0,
+    dark = false
+  ) {
+    const view = cameraView(current, width, height, compact),
       shapes = [],
-      gridStep = compact ? 3 : 1.25,
-      meshStride = compact ? 1 : 1 + Math.round(Math.max(0, Math.min(2, ribbonMesh))),
-      far = compact ? 64 : 105;
-    // LOD removes complete immutable world cells; it never stretches their
-    // sample lattice with the fractional quality tier. Nearby silhouettes keep
-    // their fine cells while only distant material is grouped more coarsely.
-    const startCell = Math.min(
+      gridStep = compact ? 3 : 1.25;
+    const mesh = {
+      gridStep,
+      stride: compact ? 1 : 1 + Math.round(Math.max(0, Math.min(2, ribbonMesh))),
+      far: compact ? 64 : 105,
+      startCell: Math.min(
         Math.floor(80 / gridStep),
         Math.ceil((current.position[2] + 32) / gridStep)
       ),
-      end = Math.max(-820, current.position[2] - (compact ? 96 : 132));
+      end: Math.max(-820, current.position[2] - (compact ? 96 : 132)),
+    };
     for (let k = 0; k < 3; k++) {
-      const m = material(k, dark, startCell * gridStep, end, time, camera, far);
-      const verticesAt = (z) => {
-        const s = section(z, k, time),
-          left = camera(s.left),
-          right = camera(s.right),
-          color = m.sample(z, (left[2] + right[2]) / 2);
-        return [
-          [...left, 0, z, ...color],
-          [...right, 1, z, ...color],
-        ];
-      };
-      let cell = startCell,
-        ac = verticesAt(cell * gridStep);
-      while ((cell - 1) * gridStep >= end) {
-        const grouped = meshStride > 1 && cell % meshStride === 0 && ac.every((p) => p[2] >= 12),
-          stride = grouped ? meshStride : 1;
-        const nextCell = cell - stride,
-          z = nextCell * gridStep,
-          step = stride * gridStep;
-        if (z < end) break;
-        const bc = verticesAt(z),
-          vertices = [ac[0], ac[1], bc[1], bc[0]],
-          depth = vertices.reduce((sum, p) => sum + p[2], 0) / 4;
-        // A centre behind the near plane can still have a visible clipped end.
-        if (vertices.some((p) => p[2] >= 1.5) && depth < far) {
-          const clipped = clipPolygon(vertices, 1.5),
-            points = clipped.map(project);
-          let curves;
-          // Keep the same bounded mesh. Only large unclipped side edges need
-          // analytic midpoint curves; small/distant/near-clipped facets stay cheap.
-          if (
-            smoothEdges &&
-            vertices.every((p) => p[2] >= 1.5) &&
-            points.length === 4 &&
-            Math.max(
-              Math.hypot(points[0][0] - points[3][0], points[0][1] - points[3][1]),
-              Math.hypot(points[1][0] - points[2][0], points[1][1] - points[2][1])
-            ) > 20
-          ) {
-            const middle = section(z + step / 2, k, time),
-              left = camera(middle.left),
-              right = camera(middle.right);
-            if (left[2] >= 1.5 && right[2] >= 1.5) {
-              const mid = [project(left), project(right)],
-                ends = [
-                  [points[0], points[3]],
-                  [points[1], points[2]],
-                ];
-              const error = mid.map((p, i) =>
-                Math.hypot(
-                  p[0] - (ends[i][0][0] + ends[i][1][0]) / 2,
-                  p[1] - (ends[i][0][1] + ends[i][1][1]) / 2
-                )
-              );
-              if (Math.max(...error) > (compact ? 0.8 : 0.5))
-                curves = mid.map((p, i) => [
-                  2 * p[0] - (ends[i][0][0] + ends[i][1][0]) / 2,
-                  2 * p[1] - (ends[i][0][1] + ends[i][1][1]) / 2,
-                ]);
-            }
-          }
-          if (points.length >= 3 && visible(curves ? points.concat(curves) : points))
-            shapes.push({
-              kind: 'ribbon',
-              points,
-              curves,
-              depth,
-              ribbon: k,
-              z,
-              packets: m.packets.length,
-            });
-        }
-        ac = bc;
-        cell = nextCell;
-      }
+      const m = material(k, dark, mesh.startCell * gridStep, mesh.end, time, view.camera, mesh.far);
+      ribbonStrip(k, time, compact, view, m, mesh, shapes);
     }
     return shapes;
   };
@@ -324,7 +311,6 @@ function paintRibbon(ctx, shape) {
   ctx.closePath();
   ctx.fill();
 }
-const { readingSelector, surfaceCSS } = require('./reading-surfaces.cjs');
 function createSceneEffects(api, smoothEdges) {
   const section = ribbonGeometry(api),
     signals = ribbonSignals(),
@@ -341,7 +327,15 @@ function createSceneEffects(api, smoothEdges) {
       detailTier = 0,
       journey = null,
     }) {
-      const shapes = project(current, width, height, ambientTime, compact, detailTier);
+      const shapes = project(
+        current,
+        width,
+        height,
+        ambientTime,
+        compact,
+        detailTier,
+        document.documentElement.dataset.theme === 'dark'
+      );
       scene.dataset.ribbons = '3';
       scene.dataset.ribbonMaterial = 'opaque-rgb';
       scene.dataset.ribbonFaces = String(shapes.length);
@@ -381,7 +375,7 @@ function descriptor({ smoothEdges = true } = {}) {
   return {
     effect: 'ribbons',
     code,
-    css: surfaceCSS(),
+    cssSources: ['site/effects/reading-surfaces.css'],
     controls: '',
     head: '<meta name="review-variant" content="optional-spatial-ribbons-prototype">\n',
   };
@@ -393,6 +387,4 @@ module.exports = {
   createRibbonMaterials,
   makeProjector,
   paintRibbon,
-  surfaceCSS,
-  readingSelector,
 };

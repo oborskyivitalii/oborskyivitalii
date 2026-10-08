@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "template": "pages/writing/results-year-2026.html",
+  "text": {
+    "T001": "2026",
+    "T002": " records",
+    "T003": {
+      "label": "topic.delivery"
+    },
+    "T004": {
+      "label": "topic.systems"
+    },
+    "T005": {
+      "label": "topic.strategy"
+    }
+  },
+  "attributes": {},
+  "urls": {}
+}

@@ -3,10 +3,7 @@
 module.exports = function (math, definitions) {
   const {
     add,
-    sub,
     dot,
-    cross,
-    normalize,
     lerp,
     clamp,
     spline,
@@ -15,6 +12,7 @@ module.exports = function (math, definitions) {
     depthVisibility,
     clipSegment,
     clipPolygon,
+    cameraView,
   } = math;
   const { poses, routeOrder, roomSpacing } = definitions;
   // Authored spline waypoints pass through the open centres of successive structures.
@@ -122,30 +120,13 @@ module.exports = function (math, definitions) {
     prune = false,
     sort = true
   ) {
-    const forward = normalize(sub(current.target, current.position)),
-      right = normalize(cross(forward, [0, 1, 0])),
-      up = cross(right, forward);
-    const camera = (point) => {
-      const x = point[0] - current.position[0],
-        y = point[1] - current.position[1],
-        z = point[2] - current.position[2];
-      return [
-        x * right[0] + y * right[1] + z * right[2],
-        x * up[0] + y * up[1] + z * up[2],
-        x * forward[0] + y * forward[1] + z * forward[2],
-      ];
-    };
-    const focal =
-      (width <= 640 ? Math.min(height, width * 1.15) : height) / (2 * Math.tan(Math.PI / 8));
-    const cx = width * (width <= 640 ? 0.42 : 0.66),
-      cy = height * 0.48;
-    const project = (p) => [cx + (p[0] * focal) / p[2], cy - (p[1] * focal) / p[2]];
+    const { forward, right, up, camera, project, visible, focal, origin } = cameraView(
+      current,
+      width,
+      height
+    );
+    const [cx, cy] = origin;
     const shapes = [];
-    const visible = (pts) =>
-      !pts.every((p) => p[0] < -8) &&
-      !pts.every((p) => p[0] > width + 8) &&
-      !pts.every((p) => p[1] < -8) &&
-      !pts.every((p) => p[1] > height + 8);
     // Exact animated-centre sphere bounds; the eight-pixel viewport margin
     // includes stroke coverage. No extra world-space motion pad is needed.
     const planes = [
@@ -212,30 +193,13 @@ module.exports = function (math, definitions) {
       time
     )(add(anchor.center, [X * cc - Y * sc, X * sc + Y * cc, -x * sb + Z * cb]));
   }
-  function formulaCamera(current, width, height) {
-    const forward = normalize(sub(current.target, current.position)),
-      right = normalize(cross(forward, [0, 1, 0])),
-      up = cross(right, forward);
-    const focal =
-        (width <= 640 ? Math.min(height, width * 1.15) : height) / (2 * Math.tan(Math.PI / 8)),
-      origin = [width * (width <= 640 ? 0.42 : 0.66), height * 0.48];
-    const camera = (point) => {
-      const delta = sub(point, current.position);
-      return [dot(delta, right), dot(delta, up), dot(delta, forward)];
-    };
-    const project = (point) => [
-      origin[0] + (point[0] * focal) / point[2],
-      origin[1] - (point[1] * focal) / point[2],
-    ];
-    return { camera, project, focal, origin };
-  }
   function projectFormulaPoint(anchor, current, width, height, time, u, v, z = 0) {
-    const view = formulaCamera(current, width, height),
+    const view = cameraView(current, width, height),
       point = view.camera(formulaWorldPoint(anchor, time, u, v, z));
     return point[2] > 0.5 ? view.project(point) : null;
   }
   function projectedFormula(anchor, current, width, height, time = 0) {
-    const view = formulaCamera(current, width, height),
+    const view = cameraView(current, width, height),
       uv = [
         [0, 0],
         [1, 0],

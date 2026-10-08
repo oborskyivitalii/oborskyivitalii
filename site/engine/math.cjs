@@ -46,6 +46,38 @@ module.exports = function () {
     return { x: 6 * Math.sin(phase), y: 3 * Math.cos(phase), light: 0.015 * Math.sin(phase) };
   };
   const followCamera = (from, to, dt) => mix(from, to, 1 - Math.exp(-Math.max(0, dt) / 32));
+  // World, formula and ribbon geometry share this right-handed camera contract.
+  // Clipping distances and material payloads remain the caller's responsibility.
+  function cameraView(current, width, height, compact = width <= 640) {
+    const forward = normalize(sub(current.target, current.position)),
+      right = normalize(cross(forward, [0, 1, 0])),
+      up = cross(right, forward);
+    const focal = (compact ? Math.min(height, width * 1.15) : height) / (2 * Math.tan(Math.PI / 8)),
+      origin = [width * (compact ? 0.42 : 0.66), height * 0.48];
+    const camera = (point) => {
+      const x = point[0] - current.position[0],
+        y = point[1] - current.position[1],
+        z = point[2] - current.position[2];
+      return [
+        x * right[0] + y * right[1] + z * right[2],
+        x * up[0] + y * up[1] + z * up[2],
+        x * forward[0] + y * forward[1] + z * forward[2],
+      ];
+    };
+    const project = (point) => {
+      const x = origin[0] + (point[0] * focal) / point[2],
+        y = origin[1] - (point[1] * focal) / point[2];
+      // Ordinary geometry allocates its original two-coordinate output only.
+      // Ribbon material carries the payload from the clipped camera vertex.
+      return point.length > 3 ? [x, y, ...point.slice(3)] : [x, y];
+    };
+    const visible = (points) =>
+      !points.every((point) => point[0] < -8) &&
+      !points.every((point) => point[0] > width + 8) &&
+      !points.every((point) => point[1] < -8) &&
+      !points.every((point) => point[1] > height + 8);
+    return { forward, right, up, camera, project, visible, focal, origin };
+  }
   // Semantic headings set interior waypoints. The actual scroll range owns
   // both endpoints, including unmarked trailing blocks and the footer.
   function fitScrollStops(markers, end) {
@@ -152,6 +184,7 @@ module.exports = function () {
     depthVisibility,
     atmosphereState,
     followCamera,
+    cameraView,
     fitScrollStops,
     writingProgress,
     cadenceFor,

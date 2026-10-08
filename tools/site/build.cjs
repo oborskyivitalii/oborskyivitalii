@@ -4,17 +4,14 @@ const fs = require('node:fs'),
   path = require('node:path'),
   crypto = require('node:crypto'),
   cp = require('node:child_process');
+const { catalog, catalogCounts, routeInput, fragment, validateFragment } = require('./content.cjs');
+const { contentLabel } = require('./render-content.cjs');
+const { scriptJSON, stableTagEndings } = require('./html.cjs');
+const { renderPage } = require('./render-page.cjs');
 const defaultRoot = path.resolve(__dirname, '../..');
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 const json = (value) => JSON.stringify(value, null, 2) + '\n';
-const escapeText = (value) =>
-  String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-const escapeAttribute = (value) => escapeText(value).replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-const scriptJSON = (value) =>
-  JSON.stringify(value, null, 2)
-    .replace(/</g, '\\u003c')
-    .replace(/\u2028/g, '\\u2028')
-    .replace(/\u2029/g, '\\u2029');
+
 function files(dir, base = dir) {
   if (!fs.existsSync(dir)) return [];
   return fs
@@ -34,71 +31,6 @@ function read(root, name) {
 }
 function load(root, name) {
   return JSON.parse(read(root, name));
-}
-function decoded(value) {
-  return value
-    .replace(/&#(?:x([\da-f]+)|(\d+));?/gi, (_, hex, decimal) =>
-      String.fromCodePoint(parseInt(hex || decimal, hex ? 16 : 10))
-    )
-    .replace(
-      /&(amp|lt|gt|quot|apos|colon|Tab|NewLine);/g,
-      (_, key) =>
-        ({
-          amp: '&',
-          lt: '<',
-          gt: '>',
-          quot: '"',
-          apos: "'",
-          colon: ':',
-          Tab: '\t',
-          NewLine: '\n',
-        })[key]
-    );
-}
-function validateFragment(html, name) {
-  if (
-    /<(?:script|style|iframe|object|embed|base|link|meta|canvas|foreignobject|animate|animatetransform|animatemotion|set|use|image)\b/i.test(
-      html
-    )
-  )
-    throw Error('Executable/resource tag in ' + name);
-  for (const [, key, double, single, bare] of html.matchAll(
-    /\s([^\s"'<>/=]+)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))/g
-  )) {
-    const value = decoded(double ?? single ?? bare),
-      attribute = key.toLowerCase();
-    if (attribute.startsWith('on') || attribute === 'srcdoc')
-      throw Error('Executable attribute in ' + name);
-    if (attribute === 'style' && /url\s*\(|@import|expression\s*\(|-moz-binding/i.test(value))
-      throw Error('Resource CSS in ' + name);
-    if (
-      ['href', 'src', 'action', 'formaction', 'poster', 'xlink:href', 'srcset'].includes(attribute)
-    ) {
-      const normalized = [...value]
-        .filter((char) => char.charCodeAt(0) > 32 && char.charCodeAt(0) !== 127)
-        .join('');
-      if (/^https:\/\//i.test(normalized)) {
-        const url = new URL(normalized);
-        if (url.username || url.password) throw Error('Credentials in URL ' + name);
-      } else if (/^mailto:[a-z0-9._+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i.test(value)) {
-        // A plain public address only: no headers, parameters or control bytes.
-        if (value !== normalized) throw Error('Unsafe URL in ' + name);
-      } else if (
-        !/^(?:#[^\s]*|\.\/[^\s]*|[a-z0-9][a-z0-9_./-]*(?:[?#][^\s]*)?)$/i.test(normalized) ||
-        normalized.includes('..') ||
-        normalized.includes(':')
-      )
-        throw Error('Unsafe URL in ' + name);
-    }
-  }
-  return html;
-}
-function substitute(source, values, name) {
-  const result = source.replace(/\{\{([A-Z_]+)\}\}/g, (_, key) => {
-    if (!Object.hasOwn(values, key)) throw Error('Unknown template token ' + key + ' in ' + name);
-    return values[key];
-  });
-  return result;
 }
 function configuration(root) {
   const config = load(root, 'site/routes.json'),
@@ -197,356 +129,27 @@ function runtime(root, definitions) {
     `if(typeof module!=="undefined"&&module.exports)module.exports=api;\n(${lifecycle})(api);\n})();\n`
   );
 }
-function dateLabel(value, septemberStyle = 'Sep') {
-  if (!['Sep', 'Sept'].includes(septemberStyle)) throw Error('Invalid date presentation');
-  const date = new Date(value + 'T00:00:00Z');
-  if (
-    !/^\d{4}-\d\d-\d\d$/.test(value) ||
-    !Number.isFinite(date.getTime()) ||
-    date.toISOString().slice(0, 10) !== value
-  )
-    throw Error('Invalid publication date');
-  return `${date.getUTCDate()} ${['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', septemberStyle, 'Oct', 'Nov', 'Dec'][date.getUTCMonth()]} ${date.getUTCFullYear()}`;
-}
-function editionLinks(record) {
-  return (record.editions || [])
-    .map(
-      (edition) =>
-        `<p class="edition-link"><a href="${escapeAttribute(edition.url)}" title="${escapeAttribute(edition.name)}">${escapeText(edition.platform)} edition · ${dateLabel(edition.datePublished || edition.dateModified)}${edition.datePublished ? '' : ' · edited'}</a></p>`
-    )
-    .join('');
-}
-function discussionLinks(record, c) {
-  return (record.discussions || [])
-    .map(
-      (id) =>
-        `<p class="edition-link"><a href="${escapeAttribute(c.discussions[id].url)}">Reddit discussion ↗</a></p>`
-    )
-    .join('');
-}
-function editionValues(record, c, linked = true) {
-  const date = record.edition.datePublished || record.edition.dateModified;
-  const values = {
-    TITLE: escapeText(record.edition.name),
-    URL: escapeAttribute(record.edition.url),
-    DATE: date,
-    DATE_LABEL:
-      dateLabel(date, record.septemberStyle) + (record.edition.datePublished ? '' : ' · edited'),
-    YEAR: date.slice(0, 4),
-  };
-  values.EDITION_LINKS = linked
-    ? editionLinks(record)
-    : record.homeEditionLink
-      ? editionLinks(record)
-      : '';
-  values.DISCUSSION_LINKS = linked ? discussionLinks(record, c) : '';
-  return values;
-}
-function editionURL(value) {
-  if (typeof value !== 'string' || /\s/.test(value)) throw Error('Invalid edition URL');
-  const url = new URL(value);
-  if (url.protocol !== 'https:' || url.username || url.password || url.hash)
-    throw Error('Invalid edition URL');
-  return url.href.replace(/\/$/, '');
-}
-function validateEdition(edition, id) {
-  if (
-    !edition ||
-    typeof edition.name !== 'string' ||
-    !edition.name.trim() ||
-    !['en', 'uk'].includes(edition.inLanguage) ||
-    edition.author?.name !== 'Vitalii Oborskyi'
-  )
-    throw Error('Invalid edition ' + id);
-  editionURL(edition.url);
-  dateLabel(edition.datePublished || edition.dateModified);
-  if (edition.datePublished && edition.dateModified) dateLabel(edition.dateModified);
-}
-function catalogCounts(c) {
-  const primary = Object.values(c.records).map((r) => r.edition),
-    linked = Object.values(c.records).flatMap((r) => [r.edition, ...(r.editions || [])]);
-  const count = (rows) => ({
-    total: rows.length,
-    en: rows.filter((r) => r.inLanguage === 'en').length,
-    uk: rows.filter((r) => r.inLanguage === 'uk').length,
-  });
-  return {
-    primary: count(primary),
-    linked: count(linked),
-    years: Object.fromEntries(
-      [...new Set(primary.map((e) => (e.datePublished || e.dateModified).slice(0, 4)))].map(
-        (year) => [
-          year,
-          primary.filter((e) => (e.datePublished || e.dateModified).startsWith(year)).length,
-        ]
-      )
-    ),
-  };
-}
-function discussionRows(c, dependencies) {
-  return c.discussionOrder
-    .map((id) => {
-      dependencies.add(id);
-      const row = c.discussions[id],
-        metrics = row.metrics;
-      const counts = metrics
-        ? `<p class="discussion-counts">≈${escapeText(metrics.views.display)} post views · ${metrics.comments} comments</p>`
-        : '';
-      return `<li class="discussion-row"><h4><a href="${escapeAttribute(row.url)}">${escapeText(row.label)} <span aria-hidden="true">↗</span></a></h4><p>${escapeText(row.summary)}</p><p class="discussion-community">r/${escapeText(row.subreddit)}</p>${counts}</li>`;
-    })
-    .join('\n');
-}
-function validateDiscussion(row, id, postIds) {
-  if (
-    !row ||
-    typeof row.label !== 'string' ||
-    !row.label.trim() ||
-    typeof row.summary !== 'string' ||
-    !row.summary.trim()
-  )
-    throw Error('Invalid discussion ' + id);
-  const url = new URL(row.url),
-    match = url.pathname.match(/^\/r\/([a-zA-Z0-9_]+)\/comments\/([a-z0-9]+)\/[a-z0-9_]+\/$/);
-  if (
-    url.protocol !== 'https:' ||
-    url.hostname !== 'www.reddit.com' ||
-    url.username ||
-    url.password ||
-    url.search ||
-    url.hash ||
-    !match ||
-    match[1] !== row.subreddit ||
-    postIds.has(match[2])
-  )
-    throw Error('Invalid or duplicate discussion URL');
-  postIds.add(match[2]);
-  if (row.metrics) {
-    const m = row.metrics,
-      s = row.snapshot;
-    if (
-      Object.keys(m).sort().join(',') !== 'comments,views' ||
-      !Number.isSafeInteger(m.comments) ||
-      m.comments < 0 ||
-      !/^\d+K$/.test(m.views?.display) ||
-      m.views.approximateValue !== Number(m.views.display.slice(0, -1)) * 1000 ||
-      !Number.isSafeInteger(m.views.approximateValue) ||
-      Object.keys(m.views).sort().join(',') !== 'approximateValue,display'
-    )
-      throw Error('Invalid discussion metrics');
-    if (
-      !s ||
-      s.source !== 'author-supplied-pasted-ui' ||
-      s.capturedAt !== null ||
-      !/^([a-f0-9]{64})$/.test(s.attachmentSHA256)
-    )
-      throw Error('Invalid discussion provenance');
-    dateLabel(s.reviewedAt);
-    dateLabel(s.receivedAt);
-  }
-}
-function validateCatalogOrder(c) {
-  for (const id of c.featured)
-    if (!c.records[id]?.featuredHTML) throw Error('Missing featured record');
-  for (const entry of c.structuredOrder)
-    if (!c.records[entry.record]) throw Error('Missing structured edition');
-}
-function catalog(root) {
-  const c = load(root, 'site/content/catalog.json');
-  const ids = Object.keys(c.records || {});
-  if (
-    c.schema !== 1 ||
-    !ids.length ||
-    ids.length > 250 ||
-    !Array.isArray(c.featured) ||
-    c.featured.length !== 5 ||
-    new Set(c.featured).size !== 5 ||
-    !Array.isArray(c.structuredOrder) ||
-    c.structuredOrder.length !== ids.length ||
-    new Set(c.structuredOrder.map((e) => e.record)).size !== ids.length
-  )
-    throw Error('Invalid publication catalog inventory');
-  const urls = new Set(),
-    postIds = new Set();
-  if (
-    !c.discussions ||
-    !Array.isArray(c.discussionOrder) ||
-    c.discussionOrder.length > 10 ||
-    new Set(c.discussionOrder).size !== c.discussionOrder.length ||
-    Object.keys(c.discussions).length !== c.discussionOrder.length
-  )
-    throw Error('Invalid discussion inventory');
-  for (const id of c.discussionOrder) validateDiscussion(c.discussions[id], id, postIds);
-  for (const [id, record] of Object.entries(c.records)) {
-    if (
-      !/^publication-\d\d$/.test(id) ||
-      !Array.isArray(record.editions) ||
-      record.editions.length > 2 ||
-      !Array.isArray(record.discussions) ||
-      new Set(record.discussions).size !== record.discussions.length ||
-      record.discussions.length > 1 ||
-      record.discussions.some((key) => !c.discussions[key])
-    )
-      throw Error('Invalid edition relationships ' + id);
-    for (const edition of [record.edition, ...record.editions]) {
-      validateEdition(edition, id);
-      const url = editionURL(edition.url);
-      if (urls.has(url)) throw Error('Duplicate edition URL');
-      urls.add(url);
-      if (
-        edition !== record.edition &&
-        (edition.platform !== 'LinkedIn' ||
-          edition.relationship !== 'same-topic-platform-edition' ||
-          edition.bodyEquivalenceVerified !== false)
-      )
-        throw Error('Invalid alternate edition relationship');
-    }
-    for (const field of ['archiveHTML', 'featuredHTML'])
-      if (record[field])
-        validateFragment(substitute(record[field], editionValues(record, c), id), id);
-  }
-  validateCatalogOrder(c);
-  return c;
-}
-function publication(html, c, dependencies, discussionDependencies, route) {
-  return html.replace(/\{\{PUBLICATION:([\w-]+):(archive|featured)\}\}/g, (_, id, variant) => {
-    const record = c.records[id],
-      fragment = record?.[variant + 'HTML'];
-    if (!fragment) throw Error('Missing publication fragment ' + id);
-    dependencies.add(id);
-    if (route.id === 'writing')
-      for (const key of record.discussions) discussionDependencies.add(key);
-    return substitute(fragment, editionValues(record, c, route.id === 'writing'), id);
-  });
-}
-function routeInput(root, route, c) {
-  const dir = 'site/content/pages/' + route.id + '/',
-    meta = load(root, dir + 'metadata.json');
-  if (
-    meta.schema !== 1 ||
-    meta.lang !== 'en' ||
-    !meta.title ||
-    !meta.description ||
-    !meta.structuredData ||
-    !Array.isArray(meta.blocks) ||
-    new Set(meta.blocks).size !== meta.blocks.length ||
-    meta.blocks.some((x) => !/^[a-z][a-z0-9-]*$/.test(x))
-  )
-    throw Error('Invalid page metadata ' + route.id);
-  const dependencies = new Set(),
-    discussionDependencies = new Set(),
-    inputs = [dir + 'metadata.json', dir + 'main.html'];
-  let main = read(root, dir + 'main.html');
-  const used = [];
-  main = main.replace(/\{\{BLOCK:([\w-]+)\}\}/g, (_, name) => {
-    if (!meta.blocks.includes(name)) throw Error('Unknown block ' + name);
-    used.push(name);
-    const file = dir + name + '.html';
-    inputs.push(file);
-    return read(root, file);
-  });
-  if (JSON.stringify(used) !== JSON.stringify(meta.blocks))
-    throw Error('Page block order/duplicates ' + route.id);
-  main = publication(main, c, dependencies, discussionDependencies, route);
-  if (route.id === 'writing') {
-    const counts = catalogCounts(c),
-      values = {
-        CATALOG_PRIMARY_COUNT: counts.primary.total,
-        CATALOG_EN_COUNT: counts.primary.en,
-        CATALOG_UK_COUNT: counts.primary.uk,
-        CATALOG_LINKED_COUNT: counts.linked.total,
-        CATALOG_LINKED_EN_COUNT: counts.linked.en,
-        CATALOG_LINKED_UK_COUNT: counts.linked.uk,
-      };
-    main = main.replace(/\{\{CATALOG_YEAR:(\d{4})\}\}/g, (_, year) => counts.years[year] || 0);
-    main = substitute(main, values, 'catalog totals');
-    for (const id of Object.keys(c.records)) dependencies.add(id);
-  }
-  if (main.includes('{{DISCUSSION_ROWS}}'))
-    main = main.replace('{{DISCUSSION_ROWS}}', discussionRows(c, discussionDependencies));
-  validateFragment(main, route.id);
-  const schema = structuredClone(meta.structuredData);
-  if (meta.catalogList) {
-    if (route.id !== 'writing' || !schema.mainEntity) throw Error('Invalid catalog target');
-    schema.mainEntity.numberOfItems = c.structuredOrder.length;
-    schema.mainEntity.itemListElement = c.structuredOrder.map((entry, i) => {
-      dependencies.add(entry.record);
-      return { '@type': 'ListItem', position: i + 1, item: c.records[entry.record].edition };
-    });
-  }
-  if (/\{\{/.test(main)) throw Error('Unresolved content token ' + route.id);
-  return {
-    meta,
-    main,
-    schema,
-    inputs,
-    records: Object.fromEntries([...dependencies].sort().map((id) => [id, c.records[id]])),
-    discussions: Object.fromEntries(
-      [...discussionDependencies].sort().map((id) => [id, c.discussions[id]])
-    ),
-  };
-}
 function fallback(api, page) {
   // Keep the established bounded SVG rendition and exact coordinates.
-  return require('../build_scene_fallbacks.cjs').fromModel(api, page);
+  return require('./fallback.cjs').fromModel(api, page);
 }
 function render(root, route, input, api, measurement = '') {
-  const title = escapeText(input.meta.title),
-    description = escapeAttribute(input.meta.description);
-  const head = substitute(
-    read(root, 'site/templates/head.html'),
-    {
-      TITLE: title,
-      TITLE_ATTRIBUTE: escapeAttribute(input.meta.title),
-      DESCRIPTION: description,
-      SCHEMA: scriptJSON(input.schema),
-      MEASUREMENT: measurement,
+  const c = catalog(root);
+  return renderPage({
+    route,
+    input,
+    measurement,
+    templates: {
+      head: read(root, 'site/templates/head.html'),
+      shell: read(root, 'site/templates/shell.html'),
     },
-    'head'
-  );
-  let header = read(root, 'site/templates/header.html');
-  const target = route.id === 'index' ? './' : route.url;
-  const label = route.id === 'index' ? 'Home' : route.id[0].toUpperCase() + route.id.slice(1);
-  const currentLink = new RegExp(
-    `<a href="${target.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"[ \\t\\r\\n]*>${label}</a[ \\t\\r\\n]*>`,
-    'g'
-  );
-  if ([...header.matchAll(currentLink)].length !== (route.id === 'credits' ? 0 : 1))
-    throw Error('Expected one current-route header link');
-  header = header.replace(currentLink, `<a href="${target}" aria-current="page">${label}</a>`);
-  let page = substitute(
-    read(root, 'site/templates/shell.html'),
-    {
-      LANG: input.meta.lang,
-      ROUTE: route.id,
-      HEAD: head,
-      HEADER: header,
-      MAIN: input.main,
-      FOOTER: read(root, 'site/templates/footer.html'),
-      FALLBACK: fallback(api, route.id),
-    },
-    'shell'
-  );
-  // Delivery adapters consume these document boundaries; tag whitespace has no text value.
-  for (const name of ['head', 'body']) {
-    const closing = new RegExp(`</${name}[ \\t\\r\\n]*>`, 'g');
-    if ([...page.matchAll(closing)].length !== 1) throw Error('Expected one document ' + name);
-    page = page.replace(closing, `</${name}>`);
-  }
-  return stableTagEndings(page);
+    headerHTML: fragment(root, 'site/content/shared/header.json', c).html,
+    footerHTML: fragment(root, 'site/content/shared/footer.json', c).html,
+    fallbackHTML: fallback(api, route.id),
+    routeLabel: contentLabel(c, 'route.' + route.id),
+  });
 }
-function stableTagEndings(html) {
-  // Source indentation remains readable; equivalent tag endings keep the original byte budget.
-  // Raw elements, comments, quoted attribute values and unquoted-value separators retain bytes.
-  const tokens =
-    /<(script|style|textarea|title|xmp|iframe|noembed|noframes|noscript)\b[\s\S]*?<\/\1[ \t\r\n]*>|<plaintext\b[\s\S]*$|<!--[\s\S]*?-->|<(?:[^>"']|"[^"]*"|'[^']*')*>/gi;
-  return html.replace(tokens, (token) =>
-    /^(?:<(?:script|style|textarea|title|xmp|iframe|noembed|noframes|noscript|plaintext)\b|<!--)/i.test(
-      token
-    )
-      ? token
-      : token.replace(/(["']|^<[a-z][\w:-]*|^<\/[a-z][\w:-]*)[ \t\r\n]+(\/?>)$/i, '$1$2')
-  );
-}
+
 function fileDigests(root, names) {
   return Object.fromEntries(
     names.sort().map((name) => [name, sha(fs.readFileSync(path.join(root, name)))])
@@ -606,7 +209,7 @@ function retain(root, put) {
     put(name, fs.readFileSync(path.join(directory, name)));
   }
 }
-function fingerprints(root, config) {
+function fingerprints(root, config, c = catalog(root)) {
   const producers = files(path.join(root, 'tools/site'))
     .map((x) => 'tools/site/' + x)
     .concat('tools/build_scene_fallbacks.cjs');
@@ -639,12 +242,26 @@ function fingerprints(root, config) {
       )
     ),
     templates: sha(
-      json(
-        fileDigests(
+      json({
+        files: fileDigests(
           root,
-          files(path.join(root, 'site/templates')).map((x) => 'site/templates/' + x)
-        )
-      )
+          files(path.join(root, 'site/templates'))
+            .filter((name) => !name.startsWith('pages/'))
+            .map((x) => 'site/templates/' + x)
+            .concat(
+              files(path.join(root, 'site/content/shared')).map((x) => 'site/content/shared/' + x)
+            )
+        ),
+        // Shared data resolves catalog labels; their rendered bytes are dependencies too.
+        rendered: Object.fromEntries(
+          files(path.join(root, 'site/content/shared'))
+            .filter((name) => name.endsWith('.json'))
+            .map((name) => [
+              'site/content/shared/' + name,
+              fragment(root, 'site/content/shared/' + name, c).html,
+            ])
+        ),
+      })
     ),
     analytics: sha(
       json(
@@ -708,7 +325,7 @@ function build({
 } = {}) {
   const { config, definitions } = configuration(root),
     c = catalog(root),
-    components = fingerprints(root, config);
+    components = fingerprints(root, config, c);
   const measurement = require('./analytics.cjs').compile(
     root,
     config.routes.map((route) => route.url)
@@ -746,6 +363,7 @@ function build({
             records: input.records,
             discussions: input.discussions,
             schema: input.schema,
+            rendered: sha(input.main),
             versioned,
           })
         );

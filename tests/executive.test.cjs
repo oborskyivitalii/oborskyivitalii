@@ -27,6 +27,44 @@ test('HTML reconciliation accepts source spelling changes while preserving inlin
 });
 test('executive hierarchy preserves the frozen SEO, editions, sources and all unrelated copy', () =>
   assert.equal(require('../tools/check_site_seo.cjs').verify().pass, true));
+test('R3/R4 reconciliation reverses only exact portrait ownership and inert original archive labels', () => {
+  const { restoreRefactorPresentation } = require('../tools/check_site_seo.cjs');
+  const portrait =
+    '<svg class="portrait-facets portrait-media" viewBox="0 0 500 550" aria-hidden="true"></svg>' +
+    '<img class="portrait-media" src="assets/vitalii-oborskyi-cutout.webp" alt="Portrait of Vitalii Oborskyi with the background removed" width="780" height="721" decoding="async" fetchpriority="high">';
+  const restored = restoreRefactorPresentation(portrait, 'index');
+  assert.equal((restored.match(/style="max-width:100%;height:auto"/g) || []).length, 2);
+  for (const changed of [
+    portrait.replace('500 550', '501 550'),
+    portrait.replace('height="721"', 'height="722"'),
+    portrait.replace('portrait-facets portrait-media', 'portrait-facets other'),
+    portrait.replace('cutout.webp', 'other.webp'),
+    portrait.replace('background removed', 'background altered'),
+  ])
+    assert.notEqual(restoreRefactorPresentation(changed, 'index'), restored);
+  assert.throws(() => restoreRefactorPresentation(portrait + portrait, 'index'), /Duplicate/);
+  const labels =
+    '<p id="archive-count" data-count="{count} of {total} primary archive records · newest first within each topic."' +
+    ' data-print="{total} primary archive records · all records and their linked platform editions shown for printing.">Text <a href="#x">link</a></p>';
+  const original = '<p id="archive-count">Text <a href="#x">link</a></p>';
+  assert.equal(restoreRefactorPresentation(labels, 'writing'), original);
+  assert.notEqual(
+    restoreRefactorPresentation(labels.replace('newest', 'oldest'), 'writing'),
+    original
+  );
+  assert.notEqual(
+    restoreRefactorPresentation(labels.replace('Text <a', 'Text<a'), 'writing'),
+    original
+  );
+  assert.equal(restoreRefactorPresentation(labels, 'talks'), labels);
+  assert.notEqual(
+    restoreRefactorPresentation(
+      labels.replace('id="archive-count"', 'id="another-owner"'),
+      'writing'
+    ),
+    original.replace('archive-count', 'another-owner')
+  );
+});
 test('SEO reconciliation retains unsupported effects identity and semantic metadata changes', () => {
   const html = readHTML(require('node:path').join(__dirname, '../docs/index.html')),
     { restore } = require('../tools/check_site_seo.cjs');

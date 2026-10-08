@@ -14,63 +14,80 @@
     {
       "id": "AC02",
       "intent": "R2: reproducible formatting and complete source lint",
-      "automated_scope": "R2 actual pinned six-language inventory/format check, real idempotence/drift/config/version/coverage negatives and immutable-baseline language semantic comparison. Scanner contracts validate fail-closed full source coverage; actual source lint/CI/review observations remain LIVE/INDEPENDENT gates.",
-      "checks": ["FORMAT", "FORMAT-CONTRACTS", "MECHANICAL", "SCANNER-CONTRACTS", "GUARD"],
+      "automated_scope": "Accepted R2 mechanical formatting is reobserved from immutable checkpoint8c6cf877/tree2725 using its frozen formatter, semantic tools, catalog and49 reviewed controls against baseline2138131. Current candidate formatting/idempotence/drift/config/version/full-scope coverage negatives remain active; source/scanner/review observations remain LIVE/INDEPENDENT gates. Later intentional semantics require their own phase checks, never broader R2 exclusions.",
+      "checks": [
+        "FORMAT",
+        "FORMAT-CONTRACTS",
+        "MECHANICAL",
+        "CHECKPOINT-CONTRACTS",
+        "SCANNER-CONTRACTS",
+        "GUARD"
+      ],
       "gates": ["INDEPENDENT", "LIVE"]
     },
     {
       "id": "AC03",
       "intent": "R3: content, records and templates have separate owners",
-      "automated_scope": "R3 is unimplemented. Actual schema/reference/URL negatives, five-route text/link/order/ID/metadata/no-JS/offline parity and content/template ownership checks must be mapped during its PR.",
-      "checks": [],
-      "gates": ["PENDING-PHASES", "INDEPENDENT"]
+      "automated_scope": "Current-head CONTENT contracts reject schema/presentation/topic/labels/month/identity errors, raw HTML objects/fields, unsafe attribute/URL output, missing/duplicate/order block/record references and unused template slots. The task-only R3 migration proof compares five rendered routes against accepted8c source for semantic DOM/prose/full attributes/links/order/IDs/metadata/JSONLD/edition/featured relationships, admitting only the separately reviewed R4 portrait attributes and two inert Writing labels. CANONICAL covers current generation/incremental/offline contracts. Actual no-JS/reading observations and substantive boundary/content review remain LIVE/INDEPENDENT gates.",
+      "checks": ["CONTENT", "CANONICAL"],
+      "gates": ["PENDING-PHASES", "INDEPENDENT", "LIVE"]
     },
     {
       "id": "AC04",
       "intent": "R4: canonical CSS owns static presentation",
-      "automated_scope": "Current guard proves only existing inline-debt/token-owner subset. R4 static effect/portrait CSS extraction, debt removal, theme/reading geometry and actual paint parity checks are not implemented; expand mapping in its PR.",
-      "checks": ["GUARD"],
+      "automated_scope": "Current-head canonical hosted/offline effect CSS order/byte ownership, missing/duplicate/swapped/unsafe/symlink CSS rejection, exact Color variant selection and shared reading paint contracts are mapped to CSS; GUARD verifies the actual portrait inline-debt removal and palette ownership. Actual Day/Night desktop/narrow paint, typography, responsive/stacking geometry remain LIVE/INDEPENDENT gates.",
+      "checks": ["CSS", "GUARD"],
       "gates": ["PENDING-PHASES", "INDEPENDENT", "LIVE"]
     },
     {
       "id": "AC05",
       "intent": "R5: cohesive runtime/build boundaries and lifecycle",
-      "automated_scope": "Basic observes current bounded route/geometry/runtime baseline. R5 cohesion/projector equivalence/cancellation/disposal/cache/complexity checks are pending and must be implemented/mapped without changed budgets.",
-      "checks": ["BASIC"],
+      "automated_scope": "Current-head COHESION checks literal AST dependency/ownership/cycle/computed-runtime/pure-ambient violations, extracted camera/projector coordinate equivalence, ribbon behavior, navigation cancellation/stale ownership and scene clock/cadence/detail/cache/Off/hidden/reflow contracts. CANONICAL checks current generation/incremental behavior; BASIC checks route/geometry limits. Actual complete complexity/lint findings, browser lifecycle and substantive architectural review remain LIVE/INDEPENDENT gates; lexical/serialized-edge limits remain explicit.",
+      "checks": ["COHESION", "CANONICAL", "BASIC"],
       "gates": ["PENDING-PHASES", "INDEPENDENT", "LIVE"]
     },
     {
       "id": "AC06",
       "intent": "End-to-end behavior and generation parity",
-      "automated_scope": "R2 AST/value/strict-inline-text preservation, executable serialization, canonical/offline/Color generation and incremental/source-identity contracts. R3-R6 final integrated browser/fallback/visual evidence remains pending; this R2 portion cannot tick whole AC06.",
-      "checks": ["BASIC", "MECHANICAL", "CANONICAL", "BUDGETS"],
+      "automated_scope": "Frozen R2 AST/value/strict-inline-text preservation remains independently checked at its accepted checkpoint. Current candidate executable serialization, canonical/offline/Color generation, incremental/source identity and unchanged budgets remain active. R3-R6 must add their current-head phase parity contracts; final integrated browser/fallback/visual evidence remains explicit LIVE/INDEPENDENT acceptance.",
+      "checks": ["BASIC", "MECHANICAL", "CANONICAL", "BUDGETS", "CSS", "COHESION", "CONTENT"],
       "gates": ["PENDING-PHASES", "INDEPENDENT", "LIVE"]
     },
     {
       "id": "AC07",
       "intent": "Free quality tools and architecture enforcement",
-      "automated_scope": "R2 maintained lint coverage/finding-debt rejection fixtures and byte-identical original security baseline. Actual exact candidate ESLint/Stylelint/Ruff/security scans and semantic proof for unchanged reviewed rebindings are external LIVE/INDEPENDENT evidence. Later architecture/dependency controls remain pending.",
-      "checks": ["SCANNER-CONTRACTS", "BUDGETS"],
+      "automated_scope": "Current candidate maintained lint coverage/finding-debt rejection fixtures and byte-identical original security baseline remain active. Actual exact candidate ESLint/Stylelint/Ruff/security scans and review of exact finding rebindings remain external LIVE/INDEPENDENT evidence. R2 numerical inventory/debt observations belong to its frozen checkpoint; subsequent inventories evolve only through validated maintained catalogs and exact reviewed owners.",
+      "checks": ["SCANNER-CONTRACTS", "BUDGETS", "CSS", "COHESION", "CONTENT"],
       "gates": ["PENDING-PHASES", "INDEPENDENT", "LIVE"]
     },
     {
       "id": "AC08",
       "intent": "R6: measured resource result and preserved budgets",
-      "automated_scope": "Basic checks current configured geometry/size budgets, not task/frame/cache measurements or an optimization benefit. R6 needs comparable raw measurements and original limits; rejecting an unproven optimization is valid only with recorded evidence.",
-      "checks": ["BASIC"],
+      "automated_scope": "Current-head METRICS contracts reject wrong clean commit/tree/artifact/served runtime, missing/duplicate raw observations, fabricated summaries, weakened original budgets, unsafe caches, Off/reduced RAF callbacks and growing ten-cycle warm DOM/listener state. BASIC preserves current geometry/size limits. Comparable actual raw task/frame/cache/memory/lifecycle measurements and any optimization benefit or explicit rejection require LIVE/INDEPENDENT evidence.",
+      "checks": ["METRICS", "BASIC"],
       "gates": ["PENDING-PHASES", "INDEPENDENT", "LIVE"]
     },
     {
       "id": "AC09",
       "intent": "Code-style, inventories and proportionate tests",
-      "automated_scope": "Current formatter/coverage negatives, bounded CS guard and fresh inventory/RI/CI prove R2 automated controls. Independent readability/semantic review and later-phase/final test dispositions remain explicit gates.",
-      "checks": ["GUARD", "RI", "RI-CI", "FORMAT-CONTRACTS", "SCANNER-CONTRACTS"],
+      "automated_scope": "Current formatter/coverage negatives, checkpoint-isolation negatives, bounded CS guard and fresh inventory/RI/CI remain active throughout this single DraftPR. Independent readability/semantic review and per-phase/final test dispositions remain explicit gates; accepted R2 snapshots never impose old source cardinalities on intentional current-head migrations.",
+      "checks": [
+        "GUARD",
+        "RI",
+        "RI-CI",
+        "FORMAT-CONTRACTS",
+        "SCANNER-CONTRACTS",
+        "CHECKPOINT-CONTRACTS",
+        "METRICS",
+        "COHESION",
+        "CONTENT"
+      ],
       "gates": ["PENDING-PHASES", "INDEPENDENT"]
     },
     {
       "id": "AC10",
       "intent": "Integrated completion and honest review/release state",
-      "automated_scope": "RI/CI checks support source-bound records, but cannot observe phase implementation/reviews/merge/main/checkboxes or final bounded staging/visual evidence. R2.7 and later phase results are recorded in this single issue; it remains open until all required phases and integrated criteria are satisfied.",
+      "automated_scope": "RI/CI checks support current source-bound phase records but do not establish implementation/review decisions, issue checkbox state or final staging/visual acceptance. User-approved R2-R6 execution remains in one DraftPR60, preserving separately reviewed exact phase checkpoints. One final maintainer merge decision and actual merged-main checks follow integrated completion; intermediate phase merges are no longer prerequisites.",
       "checks": ["RI", "RI-CI"],
       "gates": ["PENDING-PHASES", "INDEPENDENT", "LIVE", "MERGED"]
     }
@@ -114,6 +131,26 @@
     "BUDGETS": {
       "kind": "unittest",
       "test": "test_issue58_acceptance.Issue58R2AcceptanceTests.test_original_budgets_and_frozen_security_baseline"
+    },
+    "CHECKPOINT-CONTRACTS": {
+      "kind": "unittest",
+      "test": "test_issue58_acceptance.Issue58R2AcceptanceTests.test_phase_checkpoint_failure_contracts"
+    },
+    "CSS": {
+      "kind": "unittest",
+      "test": "test_issue58_acceptance.Issue58PhaseAcceptanceTests.test_static_css_ownership_and_parity"
+    },
+    "METRICS": {
+      "kind": "unittest",
+      "test": "test_issue58_acceptance.Issue58PhaseAcceptanceTests.test_resource_measurement_failure_contracts"
+    },
+    "COHESION": {
+      "kind": "unittest",
+      "test": "test_issue58_acceptance.Issue58PhaseAcceptanceTests.test_runtime_build_cohesion_and_lifecycle"
+    },
+    "CONTENT": {
+      "kind": "unittest",
+      "test": "test_issue58_acceptance.Issue58PhaseAcceptanceTests.test_content_ownership_and_parity"
     }
   },
   "gates": {
@@ -123,19 +160,19 @@
     },
     "PENDING-PHASES": {
       "kind": "human",
-      "description": "R3-R6 and final shared acceptance remain unimplemented/pending. R2 executable checks are mapped now; evaluate each stable criterion only against its affected phases. Verified R2 can complete AC02 and its subconditions, but cannot complete future/shared criteria or supply independent/current CI/merge evidence. Add meaningful phase checks without weakening original intent."
+      "description": "Verify each R3-R6 phase against its stable criterion and current-head phase contracts, recording incomplete subconditions honestly in issue58. All phases continue in DraftPR60 after the 2026-10-08 maintainer decision, with reviewed source checkpoints rather than intermediate merges. Frozen R2 proof cannot complete future/shared criteria; meaningful phase checks and independent review remain required."
     },
     "INDEPENDENT": {
       "kind": "human",
-      "description": "Review the actual affected phase source/semantics/CS/dependency/scanner proof independently, recording exact reviewer/source findings in issue58 and that PR. Planning reviews are not implementation reviews; preserve final integrated obligations."
+      "description": "Review each actual affected phase source/semantics/CS/dependency/scanner proof independently, recording exact reviewer/source findings in issue58 and DraftPR60. Planning reviews are not implementation reviews; separately reviewed checkpoints do not replace final integrated review."
     },
     "LIVE": {
       "kind": "human",
-      "description": "Verify exact current-source actual formatter/lint/security/CI/hosted/visual/resource reports and source/tree/artifact identity for applicable phase/final scope. Record partial R2 or other phase subconditions in58 without prematurely completing cross-phase criteria."
+      "description": "Verify exact current-source actual formatter/lint/security/CI/hosted/visual/resource reports and source/tree/artifact identity for each applicable phase and final integrated scope. Preserve frozen historical R2 identities as historical evidence; they cannot be relabelled as current-head browser/scanner observations."
     },
     "MERGED": {
       "kind": "merge",
-      "description": "After each separate maintainer merge decision, record the accepted phase commit/tree and actual main checks directly in58. All required phases and final integrated bounded staging/visual evidence must be complete before closing58. Multiple PRs share this one owner; no childissue is required. Promotion/production retain separate authorization."
+      "description": "After complete R2-R6 implementation, scoped current-source checks, independent phase/integrated review and a separate final maintainer merge decision, merge PR60 once and record its actual merged commit/tree and successful main checks in58. Intermediate phase merges are not required by the approved 2026-10-08 same-PR plan. Issue58 remains open until all integrated criteria/gates are satisfied; promotion/production retain separate authorization."
     }
   }
 }

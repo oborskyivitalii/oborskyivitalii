@@ -13,15 +13,14 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
   [Original R0-R6 audit](review/issue-54/2026-10-08-analysis.md) stays dated evidence.
 - [#58](https://github.com/oborskyivitalii/oborskyivitalii/issues/58) owns complete
   R2-R6 refactoring acceptance. R1 is complete; remaining criteria stay open.
-- [PR #60](https://github.com/oborskyivitalii/oborskyivitalii/pull/60) advances R2
-  directly under issue58. Its single [handoff](review/issue-58/2026-10-08-handoff.md)
-  and shared issue58 policy now cover implemented formatting/parity/lint controls
-  and mechanical formatting. Preparation baseline is `2138131b718d1ac4734f6b2c55520eb37e98ca6a`.
-  Published checkpoint `235048e`, tree `1cde2b8ffbc68f21b7409a5832e901c6fbdcf4ae`,
-  passed CI/scans and hosted Color smoke; exact run links belong in PR60/#58.
-  Required Base smoke then exposed a pre-existing validation identity bug;
-  its narrow adapter correction and final clean revalidation/review remain pending.
-  Issue59 is superseded/closed as a duplicate; retain only its dated history.
+- [PR #60](https://github.com/oborskyivitalii/oborskyivitalii/pull/60) now advances
+  R2–R6 in one continuing Draft under issue58. The maintainer approved this on
+  2026-10-08: preserve reviewed phase checkpoints; one final merge/main gate.
+  [Single handoff](review/issue-58/2026-10-08-handoff.md#current-continuation--same-pr-2026-10-08).
+  Verified R2 is immutable `8c6cf877fee92b4d2493b4c1a07df7080b987c29`, tree
+  `2725ae4743032b2aeaafd7f2d7f7c91a08265906`; CI/scans/independent review pass.
+  AC02 and R2.1–R2.6 are checked; R2.7/final criteria remain open. R3–R6 underway.
+  Issue59 remains superseded/closed; retain its dated history.
 - PR #51 content/formula/shared reading-backdrop changes are merged and preserved.
   #15 is closed for the earlier engine/content increment; R3 extends its owners.
 - #49 is the sole open fragment-flight owner; #50 is closed as its duplicate.
@@ -30,10 +29,10 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 
 ## Decisions
 
-- One issue58 owns the whole refactor and stable AC01-AC10, with phase
-  subconditions/progress updated there. Each phase has a separate reviewed PR
-  using exactly `Refs #58` and the shared issue58 policy; no child issues.
-  Merge/check dependencies before the next dependent phase.
+- One issue58 owns stable AC01–AC10 and phase progress. User-approved revision:
+  continue R3–R6 in the same Draft PR60 using exactly one `Refs #58`; no interim
+  merge or child issue. Preserve separate phase commits/checks/reviews; final
+  maintainer merge decision and actual-main checks remain before closure.
 - Read CODE-STYLE before edits; review unautomated rules. Frozen #54 debt cannot
   grow; trim removed exact allowances.
 - R2 uses exact Prettier 3.6.2 and Ruff 0.16.10, alongside existing free
@@ -41,17 +40,16 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
   245 maintained inputs: JS 140, CSS 2, HTML 26, Python 26, JSON 34, YAML 17.
   Strict HTML whitespace, embedded formatting off, LF, 100 columns and explicit
   exclusions are checked; missing/untracked/ignored/misclassified sources fail.
-- The shared policy maps real formatter, semantic, coverage, serialization and
-  budget checks. Pre-Base-adapter semantic comparison passed 192 baseline files, 177 changed,
-  with 44 exact control dispositions and 9 new controls. It reports `sourceDirty: true`
-  and stable observed bytes: working evidence only. All 415 selected JS cases and
-  actual lint over 173 inputs (144 JS, 3 CSS, 26 Python) pass. Final clean-source/hosted
-  acceptance remains pending. AC02-AC10 stay open and AC01 retains R1 completion.
+- Preserve R2 mechanical proof at the frozen 8c checkpoint using its own tools
+  and controls against original2138131. Final R2 parity: 245 maintained/187
+  compared/172 changed, 49 reviewed controls/9 new. Current formatter/coverage,
+  lint/security/identity/budgets stay permanent; later phases need their own
+  semantic contracts. No expanding formatting exclusions for intentional changes.
 - Base variant descriptor fingerprint and runtime engine hash already differ at
   baseline `2138131`. Preview/staging consumers must read the canonical variant, retain
   Color fingerprint equality and compare DOM engine with `manifest.components.engine`.
-  Four consumer/test adapters are intentional R2 control edits; final counts/results
-  come from the new exact candidate rather than the earlier 44-control observation.
+  Four consumer/test adapters and the isolated alias negative are reviewed R2
+  controls; Base/Color smoke pass with honest original checkpoint identities.
 - Ordinary generation adapters now accept equivalent formatted markers, void tags
   and tag endings without changing raw payloads, inline boundaries or size limits.
   Writing is 99,879 bytes within its original 100,000-byte limit. Exact SEO block
@@ -62,7 +60,7 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
   text/links/geometry and stable dirty-tree observation. Motion is off/reduced;
   it does not prove every route, Color interaction, device or production performance.
 - RI/CI maps 14 checks over 12 layers, including maintained source quality.
-  The final Base-adapter candidate needs fresh RI/security/source-bound evidence.
+  R3–R6 need refreshed RI/security/source-bound evidence after integration.
 - Native factory formatting changes serialization/hashes. Preserve executable
   and semantic parity; regenerate legitimate identities. Independently review
   exact complexity/Bandit/public fingerprint refreshes without changing original
@@ -85,7 +83,7 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 | Issue | Remaining intent |
 | --- | --- |
 | #58 | Full R2-R6 execution and final acceptance; R1 is complete. |
-| #58 / PR #60 | Final clean R2 generation/parity/lint/security/RI/CI/browser checks, independent review and later merge/main verification. |
+| #58 / PR #60 | R3–R5 implemented/reviewed; R6 measurements, clean integrated CI/staging and final merge/main verification. |
 | #48 | PR51 merged; fetch remaining acceptance rather than restore old prose. |
 | #49 / Draft PR #53 | Implement the consolidated fragment-flight plan; #50 and PR52 are closed duplicates/history. |
 | #45 / #36 / #41 | Original visual, paired, editorial/device and release gates. |
@@ -97,13 +95,12 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 
 ## Next session
 
-1. Fetch main, issue58 and Draft PR60; compare current refs with the implementation
-   checkpoint. R1 is merged; R2 controls and mechanical edits are implemented.
-2. Read the single R2 handoff and exact control dispositions; generation adapters,
-   selected source cases, actual lint and paired viewport evidence are implemented.
-3. Finish the Base validation adapter and rebind RI/security and one clean candidate's
-   formatter/idempotence/parity/source suites/CI/two-width PR smoke.
-4. Reconcile actual AC boxes and review; merge only on maintainer decision.
+1. Fetch main, issue58 and DraftPR60; compare refs with immutable R2 checkpoint.
+2. Read current R3/R4/R5 implementation/review sections; preserve frozen R2 and
+   generation/ownership contracts while finishing the integrated evidence.
+3. Complete paired R6 measurements after candidate stabilizes, then regenerate,
+   refresh catalogs/RI, scan and verify one exact clean integrated candidate/CI.
+4. Reconcile whole AC boxes and evidence; merge only on final maintainer decision.
 
 ## Maintenance
 

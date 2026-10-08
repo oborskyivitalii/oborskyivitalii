@@ -1635,7 +1635,7 @@
     {
       "path": "tests/test_issue58_acceptance.py",
       "language": "python",
-      "purpose": "Issue58 fixed R2 formatter/semantic/scanner-coverage/serialization/budget phase mapping",
+      "purpose": "Issue58 frozen R2 checkpoint and current content/CSS/cohesion/resource criterion mapping",
       "owner": ".github/ACCEPTANCE.md",
       "lifecycle": "task-snapshot",
       "profiles": [
@@ -1647,7 +1647,148 @@
         "tests/test_issue58_acceptance.py",
         ".github/acceptance/issue-58.json",
         "review/issue-58/2026-10-08-handoff.md",
-        "tools/quality/format*"
+        "tools/quality/format*",
+        "tools/quality/phase-checkpoint.cjs",
+        "tools/quality/architecture.cjs",
+        "tools/quality/refactor-metrics.cjs"
+      ]
+    },
+    {
+      "path": "tests/architecture.test.cjs",
+      "language": "javascript",
+      "purpose": "AST authored ownership/dependency/cycle violations and current graph",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": [
+        "pr-targeted",
+        "staging",
+        "production"
+      ],
+      "disposition": "retain meaningful current refactoring contracts; no duplicate hosted matrix",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/architecture.test.cjs",
+        "tools/quality/architecture.cjs",
+        "site/**",
+        "tools/site/**"
+      ]
+    },
+    {
+      "path": "tests/build-cohesion.test.cjs",
+      "language": "javascript",
+      "purpose": "Pure catalog/page/SVG versus filesystem orchestration boundaries and unsafe-input negatives",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": [
+        "pr-targeted",
+        "staging",
+        "production"
+      ],
+      "disposition": "retain meaningful current refactoring contracts; no duplicate hosted matrix",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/build-cohesion.test.cjs",
+        "tools/site/**",
+        "site/content/**",
+        "site/templates/**"
+      ]
+    },
+    {
+      "path": "tests/camera-view.test.cjs",
+      "language": "javascript",
+      "purpose": "Shared finite camera basis/projection and caller clipping/payload contract equivalence",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": [
+        "pr-targeted",
+        "staging",
+        "production"
+      ],
+      "disposition": "retain meaningful current refactoring contracts; no duplicate hosted matrix",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/camera-view.test.cjs",
+        "site/engine/math.cjs",
+        "site/engine/projection.cjs",
+        "site/effects/ribbons.cjs",
+        "site/scenes/world.cjs"
+      ]
+    },
+    {
+      "path": "tests/content-rendering.test.cjs",
+      "language": "javascript",
+      "purpose": "Bounded context-typed prose/URL/template/catalog validation and dependency-sensitive output",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": [
+        "pr-targeted",
+        "staging",
+        "production"
+      ],
+      "disposition": "retain meaningful current refactoring contracts; no duplicate hosted matrix",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/content-rendering.test.cjs",
+        "tools/site/**",
+        "site/content/**",
+        "site/templates/**"
+      ]
+    },
+    {
+      "path": "tests/content-migration.test.cjs",
+      "language": "javascript",
+      "purpose": "Issue58 fixed R2 all-route/representative semantic metadata and edition migration proof",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": [
+        "issue-policy"
+      ],
+      "disposition": "fixed issue58 R2 checkpoint only; preserve as migration evidence outside routine profiles",
+      "surviving_route": ".github/acceptance/issue-58.json",
+      "inputs": [
+        "tests/content-migration.test.cjs",
+        "tools/site/**",
+        "site/content/**",
+        "site/templates/**"
+      ]
+    },
+    {
+      "path": "tests/phase-checkpoint.test.cjs",
+      "language": "javascript",
+      "purpose": "Issue58 immutable R2 checkpoint tool/source/pin/tamper and historical parity proof",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": [
+        "issue-policy"
+      ],
+      "disposition": "fixed issue58 R2 checkpoint only; preserve as migration evidence outside routine profiles",
+      "surviving_route": ".github/acceptance/issue-58.json",
+      "inputs": [
+        "tests/phase-checkpoint.test.cjs",
+        "tools/quality/phase-checkpoint.cjs",
+        "tools/quality/toolchain/package.json",
+        "tools/quality/toolchain/package-lock.json",
+        "tests/test_issue58_acceptance.py"
+      ]
+    },
+    {
+      "path": "tests/refactor-metrics.test.cjs",
+      "language": "javascript",
+      "purpose": "Comparable source/artifact/profile-bound measurements, lifecycle/cache bounds and original-budget negatives",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": [
+        "pr-targeted",
+        "staging",
+        "production"
+      ],
+      "disposition": "retain meaningful current refactoring contracts; no duplicate hosted matrix",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/refactor-metrics.test.cjs",
+        "tools/quality/refactor-metrics.cjs",
+        "tools/quality/motion.cjs",
+        "tools/quality/budgets.json"
       ]
     }
   ]

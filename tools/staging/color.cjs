@@ -34,7 +34,13 @@ function render(html, base, identity) {
   html = html.replaceAll(base.engine, identity.variant.fingerprint);
   for (const id of snapshot.routes)
     html = html.replaceAll(base.routes[id].version, identity.versions[id]);
-  assert.ok(html.includes('name="site-variant" content="base"'), 'base producer input required');
+  assert.deepEqual(
+    [...html.matchAll(/<meta name="site-variant" content="([^"]*)"\s*\/?\s*>/g)].map(
+      (match) => match[1]
+    ),
+    ['base'],
+    'one canonical base variant metadata for Color palette selection'
+  );
   return html.replaceAll(
     'name="site-variant" content="base"',
     'name="site-variant" content="color"'

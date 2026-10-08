@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "template": "pages/talks/intro.html",
+  "text": {
+    "T001": "Talks & workshops",
+    "T002": "Questions are better",
+    "T003": "in conversation.",
+    "T004": "Public announcements and follow-ups on AI architecture, delivery and the engineering work\n    around non-deterministic systems."
+  },
+  "attributes": {},
+  "urls": {}
+}

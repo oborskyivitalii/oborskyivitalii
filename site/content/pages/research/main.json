@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "template": "pages/research/main.html",
+  "text": {
+    "T001": "Projects",
+    "T002": "Control & constraints",
+    "T003": "Vocabulary",
+    "T004": "Discussions",
+    "T005": "Advisors & responses"
+  },
+  "attributes": {
+    "A001": "Research sections"
+  },
+  "urls": {
+    "U001": "#research",
+    "U002": "#lenses",
+    "U003": "#topics",
+    "U004": "#public-discussion",
+    "U005": "#acknowledgements"
+  }
+}

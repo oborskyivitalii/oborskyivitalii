@@ -73,6 +73,13 @@
     color-scheme: dark;
   }
 }
+/* Color/ribbons retain their light ink palette through the canonical emitted
+   variant metadata. :has support follows the maintained browser profiles. */
+:root:not([data-theme='dark']):has(
+    meta[name='site-variant']:is([content='color'], [content='ribbons'])
+  ) {
+  --muted: #344a53;
+}
 * {
   box-sizing: border-box;
 }
@@ -492,6 +499,11 @@ h1 {
   width: 118%;
   height: 114%;
   z-index: -1;
+}
+/* Responsive media matches the former inline fallback, including SVG height. */
+.portrait-composition .portrait-media {
+  max-width: 100%;
+  height: auto;
 }
 .portrait-facets polygon {
   stroke: var(--line);

@@ -1,0 +1,99 @@
+{
+  "schema": 1,
+  "template": "pages/writing/main.html",
+  "text": {
+    "T001": "y = f(x) → y ∼ P(y|x): a shift from deterministic mapping to conditional probabilistic\n    modeling.",
+    "T002": {
+      "label": "topic.delivery"
+    },
+    "T003": {
+      "label": "topic.systems"
+    },
+    "T004": {
+      "label": "topic.leadership"
+    },
+    "T005": {
+      "label": "topic.strategy"
+    },
+    "T006": "2026",
+    "T007": "2025",
+    "T008": "Topic",
+    "T009": "All topics",
+    "T010": {
+      "label": "topic.delivery"
+    },
+    "T011": {
+      "label": "topic.systems"
+    },
+    "T012": {
+      "label": "topic.leadership"
+    },
+    "T013": {
+      "label": "topic.strategy"
+    },
+    "T014": "Year",
+    "T015": "All years",
+    "T016": "2026",
+    "T017": "2025",
+    "T018": "Language",
+    "T019": "EN + UA",
+    "T020": {
+      "label": "language.en"
+    },
+    "T021": {
+      "label": "language.uk"
+    },
+    "T022": "Reset",
+    "T023": {
+      "label": "topic.delivery"
+    },
+    "T024": "Browse articles ↓",
+    "T025": {
+      "label": "topic.systems"
+    },
+    "T026": "Browse articles ↓",
+    "T027": {
+      "label": "topic.leadership"
+    },
+    "T028": "Browse articles ↓",
+    "T029": {
+      "label": "topic.strategy"
+    },
+    "T030": "Browse articles ↓",
+    "T031": "All topics · All years · EN + UA",
+    "T032": " primary archive records · ",
+    "T033": " EN /\n      ",
+    "T034": " UA.",
+    "T035": "The catalog links ",
+    "T036": " platform editions (",
+    "T037": " EN\n      / ",
+    "T038": " UA). Alternate platforms and community discussions share a\n      work’s row. Dates belong to the linked platform edition. “Edited” marks a last-updated date.\n      Related articles are not assumed to be translations.",
+    "T039": "No editions match these filters. Change a filter or reset to see everything.",
+    "T040": "2026 archive",
+    "T041": "2025 archive"
+  },
+  "attributes": {
+    "A001": "Browse article topics",
+    "A002": "Browse publication year",
+    "A003": "Filter publications",
+    "A004": "Archive topics",
+    "A005": {
+      "label": "archive.count"
+    },
+    "A006": {
+      "label": "archive.print"
+    }
+  },
+  "urls": {
+    "U001": "#topic-delivery",
+    "U002": "#topic-systems",
+    "U003": "#topic-leadership",
+    "U004": "#topic-strategy",
+    "U005": "#year-2026",
+    "U006": "#year-2025",
+    "U007": "#topic-delivery-2026",
+    "U008": "#topic-systems-2026",
+    "U009": "#topic-leadership-2025",
+    "U010": "#topic-strategy-2026"
+  }
+}

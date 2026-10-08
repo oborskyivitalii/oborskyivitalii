@@ -110,6 +110,7 @@ class RICICouplingTests(unittest.TestCase):
                 "test-profile-selection",
                 "code-style-architecture",
                 "maintained-source-quality",
+                "refactoring-contracts",
             },
         )
         quality = next(
@@ -122,6 +123,16 @@ class RICICouplingTests(unittest.TestCase):
         )
         self.assertIn("tools/quality/format.cjs", quality["paths"])
         self.assertIn("tests/test_issue58_acceptance.py", quality["paths"])
+        refactoring = next(
+            layer for layer in data["layers"] if layer["id"] == "refactoring-contracts"
+        )
+        self.assertTrue(
+            {"authored-dependencies", "site-basic", "acceptance-policy"}.issubset(
+                refactoring["checks"]
+            )
+        )
+        self.assertIn("tools/quality/architecture.cjs", refactoring["paths"])
+        self.assertIn("tools/quality/refactor-metrics.cjs", refactoring["paths"])
         self.assertFalse(result["live_github_state_verified"])
 
     def test_staging_and_production_share_actual_ri_freshness_preflight(self):

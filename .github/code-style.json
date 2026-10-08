@@ -1,23 +1,4 @@
 {
   "schema_version": 1,
-  "legacy": [
-    {
-      "rule": "CS03-inline-style",
-      "path": "site/content/pages/index/hero.html",
-      "detail": "img style=max-width:100%;height:auto",
-      "count": 1,
-      "issue": 54,
-      "remove_in": "R4",
-      "reason": "Move the existing portrait responsive fallback into canonical CSS without changing its layout."
-    },
-    {
-      "rule": "CS03-inline-style",
-      "path": "site/content/pages/index/hero.html",
-      "detail": "svg style=max-width:100%;height:auto",
-      "count": 1,
-      "issue": 54,
-      "remove_in": "R4",
-      "reason": "Move the existing portrait responsive fallback into canonical CSS without changing its layout."
-    }
-  ]
+  "legacy": []
 }

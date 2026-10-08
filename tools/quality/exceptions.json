@@ -2,21 +2,6 @@
   "owner": "Vitalii Oborskyi",
   "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/13",
   "reviewBy": "2026-11-03",
-  "reason": "Exact newly exposed unchanged Color ribbon-projector debt during issue56 source relocation. The old contrast-sampler allowance was stale and removed. No correctness/security suppression; migrated debt is source-bound and removed in R5.",
-  "complexity": [
-    {
-      "path": "site/effects/ribbons.cjs",
-      "rule": "sonarjs/cognitive-complexity",
-      "message": "Refactor this function to reduce its Cognitive Complexity from 52 to the 25 allowed.",
-      "issue": 56,
-      "removalTask": "R5 in issue54 refactor plan",
-      "reason": "Existing projectRibbons closure was outside ESLint coverage in review/. R1 preserves its serialized bytes; R5 will simplify projection/state with geometry parity.",
-      "source_sha256": "baa9bb1b5deae140ea222144c73d3a2978ba445eb28a1267fac530222ce0bc92",
-      "baseline": {
-        "commit": "e501da821c1cf9a3ac4bc8d251aba1bf4dc57d59",
-        "path": "review/site-scroll-sync-20261004/RIBBONS-PROTOTYPE.cjs",
-        "sha256": "f38ec48e8b24ae60a64aed1524d416e3c942ccf5ecae328106846c3888b151fd"
-      }
-    }
-  ]
+  "reason": "The source-bound Color Ribbon projector debt was removed through R5 camera/strip/cell/curve decomposition in issue58. Original issue56 bindings and reviewed immutable baseline remain in Git history; no active complexity allowance remains.",
+  "complexity": []
 }

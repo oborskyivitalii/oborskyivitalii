@@ -515,18 +515,10 @@ function descriptor() {
     ',' +
     atPageStart.toString() +
     ');';
-  const css = `
-#site-content-frame{overflow:clip}
-.end-scroll-control input{width:16px;height:16px;accent-color:var(--accent)}
-.scroll-continue{position:relative;color:var(--ink);font-size:13px;font-weight:600;padding-block:8px;align-self:center;text-decoration:none}
-.scroll-continue::after{content:"";position:absolute;bottom:2px;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(var(--scroll-intent,0));transform-origin:left}
-.scroll-continue[hidden]{display:none}
-@media print{#site-content-frame{overflow:visible}.scroll-continue{display:none}}
-`;
   return {
     effect: 'travel',
     code,
-    css,
+    cssSources: ['site/effects/reading-surfaces.css', 'site/effects/flight.css'],
     controls,
     head: '<meta name="review-navigation" content="directional-content-flight-and-edge-scroll">\n',
   };
