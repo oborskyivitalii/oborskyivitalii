@@ -1,6 +1,7 @@
 'use strict';
 const primaryCount = Object.keys(require('../../site/content/catalog.json').records).length;
 const assert = require('node:assert/strict'),
+  fs = require('node:fs'),
   path = require('node:path');
 const { toolRequire, out, report, launchOptions } = require('./common.cjs');
 const pw = toolRequire('playwright'),
@@ -489,6 +490,61 @@ async function normal(page, scenario) {
     axePasses: axe.passes.length,
   };
 }
+async function criticalMediaJourney(page) {
+  const css =
+    '\n' + fs.readFileSync(path.resolve(__dirname, '../../site/engine/critical-media.css'), 'utf8');
+  await page.evaluate(() => {
+    window.__criticalMediaDocument = document;
+  });
+  const states = [];
+  let documentPreserved = true;
+  const observe = async () => {
+    const row = await page.evaluate(() => {
+      const blocks = [...document.head.querySelectorAll('style[data-critical-media]')],
+        image = document.querySelector('img.portrait-media');
+      return {
+        page: document.body.dataset.page,
+        criticalMedia: blocks.map((node) => node.textContent),
+        criticalMediaOutsideHead:
+          document.querySelectorAll('style[data-critical-media]').length - blocks.length,
+        portrait: image
+          ? { width: image.getBoundingClientRect().width, viewportWidth: innerWidth }
+          : null,
+        overflow: document.documentElement.scrollWidth > innerWidth + 1,
+        documentPreserved: window.__criticalMediaDocument === document,
+      };
+    });
+    documentPreserved = documentPreserved && row.documentPreserved;
+    assert.equal(row.criticalMediaOutsideHead, 0, 'critical media belongs to the route head');
+    assert.equal(row.overflow, false, 'CSS-unavailable navigation preserves narrow reading');
+    assert.deepEqual(row.criticalMedia, row.page === 'index' ? [css] : []);
+    if (row.page === 'index') {
+      assert.ok(row.portrait && row.portrait.width > 0);
+      assert.ok(row.portrait.width <= row.portrait.viewportWidth + 1);
+    } else assert.equal(row.portrait, null);
+    states.push(row);
+  };
+  const ready = (route) =>
+    page.waitForFunction(
+      (expected) =>
+        document.body.dataset.page === expected &&
+        !document.querySelector('#site-content').hasAttribute('aria-busy'),
+      route,
+      { polling: 40, timeout: 6000 }
+    );
+  for (const route of ['research', 'index', 'research']) {
+    await page
+      .locator(`header nav a[href="${route === 'index' ? './' : route + '.html'}"]`)
+      .evaluate((link) => link.click());
+    await ready(route);
+    await observe();
+  }
+  await page.goBack();
+  await ready('index');
+  await observe();
+  assert.equal(documentPreserved, true, 'CSS-unavailable route and Back reuse the same document');
+  return { states, history: true, documentPreserved };
+}
 async function failure(page, mode) {
   let a = await settled(page);
   readable(a);
@@ -580,6 +636,8 @@ async function scenario(browser, url, s) {
     lifecycle?.stage('scenario-check');
     const checks = s.mode === 'normal' ? await normal(page, s) : await failure(page, s.mode);
     if (s.mode === 'css-delayed') checks.beforeCSSNoPaint = true;
+    if (s.mode === 'css-blocked' && s.route === 'index')
+      checks.criticalMediaJourney = await criticalMediaJourney(page);
     assert.deepEqual(errors, []);
     assert.deepEqual(external, []);
     return {
@@ -791,4 +849,5 @@ module.exports = {
   nextPaintReady,
   nextPaintSample,
   serialEngines,
+  criticalMediaJourney,
 };

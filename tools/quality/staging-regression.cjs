@@ -163,6 +163,36 @@ function clean(row, label) {
   assert.deepEqual(row.errors, [], `${label} runtime errors`);
   assert.deepEqual(row.externalRequests, [], `${label} external requests`);
 }
+function validateCriticalMediaJourney(journey, width) {
+  assert.ok(Array.isArray(journey?.states), 'missing CSS-blocked route observations');
+  assert.deepEqual(
+    journey.states.map((state) => state.page),
+    ['research', 'index', 'research', 'index'],
+    'incomplete CSS-blocked route and history journey'
+  );
+  assert.equal(journey.history, true, 'missing CSS-blocked history observation');
+  assert.equal(journey.documentPreserved, true, 'CSS-blocked journey replaced the document');
+  const css =
+    '\n' + fs.readFileSync(path.join(common.root, 'site/engine/critical-media.css'), 'utf8');
+  for (const state of journey.states) {
+    assert.equal(state.documentPreserved, true, 'CSS-blocked route replaced the document');
+    assert.equal(state.criticalMediaOutsideHead, 0, 'critical media outside the document head');
+    assert.equal(state.overflow, false, 'CSS-blocked route overflow');
+    if (state.page === 'research') {
+      assert.deepEqual(state.criticalMedia, [], 'critical media retained on Research');
+      assert.equal(state.portrait, null, 'unexpected Research portrait');
+    } else {
+      assert.deepEqual(state.criticalMedia, [css], 'missing or changed canonical Home media CSS');
+      assert.equal(state.portrait?.viewportWidth, width, 'wrong observed portrait viewport');
+      assert.ok(
+        Number.isFinite(state.portrait.width) &&
+          state.portrait.width > 0 &&
+          state.portrait.width <= width + 1,
+        'unbounded CSS-blocked Home portrait'
+      );
+    }
+  }
+}
 function validateFailure(row) {
   clean(row, 'capability fixture');
   const checks = row.checks,
@@ -207,6 +237,8 @@ function validateFailure(row) {
     assert.ok(after.paints > before.paints, 'failure fixture did not observe an actual new paint');
   }
   if (row.mode === 'css-delayed') assert.equal(checks.beforeCSSNoPaint, true);
+  if (row.mode === 'css-blocked')
+    validateCriticalMediaJourney(checks.criticalMediaJourney, row.width);
 }
 function validateJourney(journey, manifest) {
   const variant = common.variant(manifest);

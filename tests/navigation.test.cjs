@@ -256,3 +256,139 @@ test('ordinary visitor has no diagnostic task clock/event work', async () => {
   await promise;
   assert.deepEqual(h.probes, []);
 });
+function routeHeadHarness(candidate = source) {
+  const css =
+    '\n' + fs.readFileSync(path.join(__dirname, '../site/engine/critical-media.css'), 'utf8');
+  class Node {
+    constructor(tag, attributes = {}, text = '') {
+      this.tag = tag;
+      this.attributes = attributes;
+      this.textContent = text;
+      this.content = attributes.content;
+    }
+    cloneNode() {
+      return new Node(this.tag, { ...this.attributes }, this.textContent);
+    }
+    remove() {
+      this.owner.nodes.splice(this.owner.nodes.indexOf(this), 1);
+    }
+    replaceWith() {}
+  }
+  function head(nodes) {
+    const owner = {
+      nodes: [],
+      append(...added) {
+        for (const node of added) {
+          node.owner = owner;
+          owner.nodes.push(node);
+        }
+      },
+      querySelectorAll(selector) {
+        return owner.nodes.filter((node) =>
+          selector.split(',').some((part) => {
+            const match = part.match(/^([a-z]+)(?:\[([\w-]+)(?:(\^?=)"([^"]*)")?\])?$/);
+            assert.ok(match, 'unsupported DOM fixture selector ' + part);
+            const [, tag, key, operator, value] = match;
+            return (
+              node.tag === tag &&
+              (!key ||
+                (Object.hasOwn(node.attributes, key) &&
+                  (!operator ||
+                    (operator === '^='
+                      ? node.attributes[key].startsWith(value)
+                      : node.attributes[key] === value))))
+            );
+          })
+        );
+      },
+    };
+    owner.append(...nodes);
+    return owner;
+  }
+  function routeDocument(route, critical = route === 'index' ? [css] : []) {
+    const elements = {
+      main: new Node('main'),
+      footer: new Node('footer'),
+      '.space-fallback': new Node('svg'),
+    };
+    return {
+      title: route,
+      body: { dataset: { page: route } },
+      documentElement: { lang: 'en' },
+      head: head([
+        new Node('meta', { name: 'description', content: route }),
+        new Node('script', { type: 'application/ld+json' }, '{}'),
+        ...critical.map((text) => new Node('style', { 'data-critical-media': '' }, text)),
+      ]),
+      querySelector: (selector) => elements[selector] || new Node('meta', { content: 'version' }),
+    };
+  }
+  const document = routeDocument('research');
+  document.head.append(new Node('style', { 'data-unrelated': '' }, '.persistent{}'));
+  document.querySelectorAll = () => [];
+  document.importNode = (node) => node.cloneNode(true);
+  const declaration = candidate.match(/ {2}const metadata =\n[\s\S]*?;/)[0];
+  const context = {
+    document,
+    window: { location: { href: 'https://site.test/research.html' }, dispatchEvent() {} },
+    content: { replaceChildren() {} },
+    cache: new Map(),
+    routes: ['index', 'research', 'writing', 'talks', 'credits'],
+    restoreScroll() {},
+    URL,
+    CustomEvent: class CustomEvent {},
+  };
+  const prepare = source.slice(
+    source.indexOf('  function prepare('),
+    source.indexOf('  async function navigate(')
+  );
+  vm.runInNewContext(
+    `let page='research';${declaration}${section('extract', 'routeFor')}${section('mountNative', 'prepare')}${prepare}
+    globalThis.api={extract,prepare,mountNative};`,
+    context
+  );
+  return {
+    css,
+    document,
+    read: (route, critical) => context.api.extract(routeDocument(route, critical)),
+    mount: (data) =>
+      context.api.mountNative(context.api.prepare(data), new URL('https://site.test/'), null),
+    blocks: () =>
+      document.head.querySelectorAll('style[data-critical-media]').map((node) => node.textContent),
+  };
+}
+test('verified Home critical media head is cloned on mount and Back, and removed on other routes', () => {
+  const h = routeHeadHarness(),
+    home = h.read('index'),
+    research = h.read('research');
+  for (const route of [home, research, home]) {
+    h.mount(route);
+    assert.deepEqual(h.blocks(), route.page === 'index' ? [h.css] : []);
+    assert.equal(h.document.head.querySelectorAll('style[data-unrelated]').length, 1);
+    if (route.page === 'index') {
+      const mounted = h.document.head.querySelectorAll('style[data-critical-media]')[0];
+      assert.notEqual(
+        mounted,
+        home.metadata.find((node) => node.tag === 'style')
+      );
+    }
+  }
+});
+test('route-head preservation contract rejects missing, duplicate or changed Home rules and a block on Research', () => {
+  const h = routeHeadHarness();
+  for (const [route, blocks] of [
+    ['index', []],
+    ['index', [h.css, h.css]],
+    ['index', [h.css.replace('100%', '780px')]],
+    ['research', [h.css]],
+  ]) {
+    h.mount(h.read(route, blocks));
+    assert.throws(() => assert.deepEqual(h.blocks(), route === 'index' ? [h.css] : []));
+  }
+  const dropped = routeHeadHarness(source.replace(',style[data-critical-media]', ''));
+  dropped.mount(dropped.read('index'));
+  assert.throws(
+    () => assert.deepEqual(dropped.blocks(), [dropped.css]),
+    'removing the real transfer selector loses the former intrinsic media fallback'
+  );
+});

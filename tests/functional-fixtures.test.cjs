@@ -10,6 +10,119 @@ const begin = source.indexOf('async function navigateDocument('),
 assert.ok(begin >= 0 && end > begin, 'real functional fixture helpers must be present');
 const helpersSource = source.slice(begin, end);
 const plain = (value) => JSON.parse(JSON.stringify(value));
+function criticalJourneyPage(defect) {
+  const css =
+    '\n' + fs.readFileSync(path.join(__dirname, '../site/engine/critical-media.css'), 'utf8');
+  let page = 'index',
+    blocks = [{ textContent: css }],
+    outside = [],
+    imageWidth = 304;
+  const history = ['index'],
+    events = [];
+  const document = {
+    body: { dataset: { page } },
+    documentElement: { scrollWidth: 320 },
+    head: { querySelectorAll: () => blocks },
+    querySelectorAll: () => [...blocks, ...outside],
+    querySelector: (selector) =>
+      selector === 'img.portrait-media'
+        ? page === 'index'
+          ? { getBoundingClientRect: () => ({ width: imageWidth }) }
+          : null
+        : { hasAttribute: () => false },
+  };
+  const context = vm.createContext({
+    assert,
+    fs,
+    path,
+    document,
+    window: {},
+    innerWidth: 320,
+    __dirname: path.join(__dirname, '../tools/quality'),
+  });
+  const start = source.indexOf('async function criticalMediaJourney('),
+    finish = source.indexOf('\nasync function failure(', start);
+  assert.ok(start >= 0 && finish > start);
+  const run = vm.runInContext('(' + source.slice(start, finish) + ')', context);
+  function mount(route) {
+    page = route;
+    document.body.dataset.page = route;
+    blocks = route === 'index' ? [{ textContent: css }] : [];
+    if (route === 'index') {
+      if (defect === 'missing') blocks = [];
+      if (defect === 'duplicate') blocks.push({ textContent: css });
+      if (defect === 'changed') blocks[0].textContent = css.replace('100%', '780px');
+      if (defect === 'outside') outside = [{ textContent: css }];
+      if (defect === 'intrinsic-width') imageWidth = 780;
+      if (defect === 'overflow') document.documentElement.scrollWidth = 780;
+    }
+    if (defect === 'document-replaced') delete context.window.__criticalMediaDocument;
+    events.push(route);
+  }
+  return {
+    run,
+    events,
+    page: {
+      evaluate: async (fn) => fn(),
+      locator(selector) {
+        const route = selector.includes('"./"') ? 'index' : 'research';
+        return {
+          evaluate: async (fn) =>
+            fn({
+              click() {
+                history.push(route);
+                mount(route);
+              },
+            }),
+        };
+      },
+      async waitForFunction(fn, route, options) {
+        assert.deepEqual(plain(options), { polling: 40, timeout: 6000 });
+        if (!fn(route)) throw Error('Controlled CSS-unavailable route deadline');
+      },
+      async goBack() {
+        if (defect === 'no-back') return;
+        history.pop();
+        mount(history.at(-1));
+      },
+    },
+  };
+}
+test('CSS-unavailable fixture observes route-owned critical media through real click and Back steps', async () => {
+  const h = criticalJourneyPage(),
+    result = plain(await h.run(h.page));
+  assert.deepEqual(h.events, ['research', 'index', 'research', 'index']);
+  assert.deepEqual(
+    result.states.map((row) => row.page),
+    h.events
+  );
+  assert.equal(result.history, true);
+  assert.equal(result.documentPreserved, true);
+  assert.ok(result.states.every((row) => row.documentPreserved));
+  assert.deepEqual(
+    result.states.map((row) => row.criticalMedia.length),
+    [0, 1, 0, 1]
+  );
+  assert.deepEqual(
+    result.states.map((row) => row.criticalMediaOutsideHead),
+    [0, 0, 0, 0]
+  );
+});
+test('CSS-unavailable fixture fails missing, duplicate, changed, misplaced and overflowing media or a lost journey', async () => {
+  for (const defect of [
+    'missing',
+    'duplicate',
+    'changed',
+    'outside',
+    'intrinsic-width',
+    'overflow',
+    'document-replaced',
+    'no-back',
+  ]) {
+    const h = criticalJourneyPage(defect);
+    await assert.rejects(h.run(h.page), undefined, defect);
+  }
+});
 test('complete engine leases run serially and a failed engine does not suppress later engines', async () => {
   const begin = source.indexOf('async function serialEngines('),
     end = source.indexOf('\nasync function runEngine(', begin);

@@ -190,6 +190,43 @@ function restoreRefactorPresentation(html, page) {
   }
   return html;
 }
+function restoreCriticalMedia(html, page, projectRoot = root) {
+  const blocks = [...html.matchAll(/<style\b[^>]*\bdata-critical-media\b[^>]*>[\s\S]*?<\/style>/g)];
+  if (!blocks.length) {
+    assert.ok(
+      page !== 'index' || !html.includes('<head>') || !html.includes('portrait-media'),
+      'Missing declared Home critical media block'
+    );
+    return html;
+  }
+  assert.equal(page, 'index', 'Critical media belongs only to Home');
+  assert.equal(blocks.length, 1, 'Duplicate critical media block');
+  const owner = path.join(projectRoot, 'site/engine/critical-media.css'),
+    stat = fs.lstatSync(owner);
+  assert.ok(stat.isFile() && !stat.isSymbolicLink(), 'Canonical critical media CSS owner');
+  const css = require('./site/render-page.cjs').validateCriticalMedia(
+      fs.readFileSync(owner, 'utf8')
+    ),
+    expected = '<style data-critical-media>\n' + css + '</style>';
+  assert.equal(blocks[0][0], expected, 'Exact canonical critical media CSS bytes and attributes');
+  const heads = [...html.matchAll(/<head>[\s\S]*?<\/head>/g)];
+  assert.equal(heads.length, 1, 'One critical media document head');
+  const head = heads[0][0],
+    position = head.indexOf(expected);
+  assert.ok(position >= 0, 'Critical media must remain inside Home head');
+  assert.match(
+    head.slice(0, position),
+    /<script type="application\/ld\+json">[\s\S]*?<\/script> $/,
+    'Critical media follows the unchanged structured metadata'
+  );
+  assert.ok(
+    head.slice(position + expected.length).startsWith(' <script src="theme.js"></script>'),
+    'Critical media precedes the existing theme script and external stylesheet'
+  );
+  // Reverse this exact generated fallback only. Other styles and all metadata,
+  // body, raw data and relative ordering remain in the frozen comparison.
+  return html.replace(expected + ' ', '');
+}
 function restoreApprovedContent(html, page) {
   html = normalizeHTML(html);
   html = restoreRefactorPresentation(html, page);
@@ -238,6 +275,7 @@ function restoreApprovedContent(html, page) {
 }
 function restore(html, page) {
   html = normalizeHTML(strip(require('./build_site_previews.cjs').sourceForPreview(html)));
+  html = restoreCriticalMedia(html, page);
   // Authored-effects identity is build metadata. Only these exact production
   // values are reversible; a different variant/contract still fails comparison.
   html = html.replace(/<head>[\s\S]*?<\/head>/, (head) =>
@@ -318,6 +356,7 @@ function verify() {
               'Help before Research',
               'matching section/local-nav order',
               'wordmark dot',
+              'exact same-owner generated critical media fallback in Home head',
             ]
           : [
               ...(page === 'research'
@@ -335,7 +374,7 @@ function verify() {
     pass: true,
     rows,
     policy:
-      'Ordered HTML contracts after reversing the exact hashed Issue61 PMDay recording, Issue48 then Issue41 content amendments and declared Home hierarchy/wordmark changes, approved contact/title wrappers, reviewed response blocks/Research nav, accessible Writing formula description and authored-base build identity. ASCII whitespace runs and void-tag spellings are canonicalized; only named Research/Writing/Talks block-fragment EOF seams are reversible. Inline separators, attributes/order and raw JSON-LD remain exact; decorative fallback SVG is excluded. Includes semantic metadata, publication records, links, languages, dates, portrait and source attribution.',
+      'Ordered HTML contracts after reversing the exact hashed Issue61 PMDay recording, Issue48 then Issue41 content amendments and declared Home hierarchy/wordmark changes, approved contact/title wrappers, reviewed response blocks/Research nav, accessible Writing formula description, exact canonical Home critical media head block and authored-base build identity. ASCII whitespace runs and void-tag spellings are canonicalized; only named Research/Writing/Talks block-fragment EOF seams are reversible. Inline separators, attributes/order and raw JSON-LD remain exact; decorative fallback SVG is excluded. Includes semantic metadata, publication records, links, languages, dates, portrait and source attribution.',
   };
 }
 if (require.main === module) process.stdout.write(JSON.stringify(verify(), null, 2) + '\n');
@@ -345,5 +384,6 @@ module.exports = {
   restoreApprovedContent,
   restoreContentAmendment,
   restoreRefactorPresentation,
+  restoreCriticalMedia,
   normalizeHTML,
 };

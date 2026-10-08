@@ -3,7 +3,9 @@
 const stage = require('../../tools/quality/staging-regression.cjs'),
   common = require('../../tools/quality/common.cjs'),
   motion = require('../../tools/quality/motion.cjs'),
-  budgets = require('../../tools/quality/budgets.json');
+  budgets = require('../../tools/quality/budgets.json'),
+  fs = require('node:fs'),
+  path = require('node:path');
 const clone = globalThis.structuredClone;
 const target = 'https://candidate.example.invalid/author';
 const variant = { id: 'base', contract: 1, fingerprint: 'd'.repeat(64) };
@@ -86,6 +88,23 @@ function failureRow(selected) {
     checks = {
       positiveProbe: true,
       ...(selected.mode === 'css-delayed' ? { beforeCSSNoPaint: true } : {}),
+    };
+  }
+  if (selected.mode === 'css-blocked') {
+    const css =
+      '\n' + fs.readFileSync(path.join(common.root, 'site/engine/critical-media.css'), 'utf8');
+    checks.criticalMediaJourney = {
+      states: ['research', 'index', 'research', 'index'].map((page) => ({
+        page,
+        criticalMedia: page === 'index' ? [css] : [],
+        criticalMediaOutsideHead: 0,
+        portrait:
+          page === 'index' ? { width: selected.width - 16, viewportWidth: selected.width } : null,
+        overflow: false,
+        documentPreserved: true,
+      })),
+      history: true,
+      documentPreserved: true,
     };
   }
   return {

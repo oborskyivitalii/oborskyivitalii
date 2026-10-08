@@ -13,7 +13,7 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
   [CODE-STYLE](guides/CODE-STYLE.md), CS01-CS10 and the bounded guard are active.
   [Original R0-R6 audit](review/issue-54/2026-10-08-analysis.md) stays dated evidence.
 - [#58](https://github.com/oborskyivitalii/oborskyivitalii/issues/58) owns complete
-  R2-R6 refactoring acceptance. R1 is complete; remaining criteria stay open.
+  R2-R6 refactoring acceptance. R1 is complete; final whole-criterion results belong to the live issue.
 - [PR #60](https://github.com/oborskyivitalii/oborskyivitalii/pull/60) now advances
   R2–R6 in one continuing Draft under issue58. The maintainer approved this on
   2026-10-08: preserve reviewed phase checkpoints; one final merge/main gate.
@@ -21,15 +21,16 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
   Verified R2 is immutable `8c6cf877fee92b4d2493b4c1a07df7080b987c29`, tree
   `2725ae4743032b2aeaafd7f2d7f7c91a08265906`; CI/scans/independent review pass.
   AC02 and R2.1–R2.6 retain frozen phase evidence; R2.7 needs final merge/main.
-  Recovered R3–R5/R6 observer chain was published as `4018f098`, tree
-  `a3c5eb41cd8bd184f2c8ce5cd95acdbb0ad6ca32`, using exact Git-data trees.
-  HTTPS credentials no longer block publication; use live PR60 for its exact head/checks.
+  Recovered R3–R6 is published through exact Git-data trees; historical source
+  checkpoints remain in the handoff. Use live PR60 for its exact head/checks.
   [R6 evidence](review/issue-58/2026-10-08-r6-matched-observations.json) preserves
   original adaptive Base/Color passes and failed fixed counterfactual profiles.
   No optimization/speedup is claimed; independent acceptance remains explicit.
   Published896 acceptance passes15 checks; exact static scans and stage performance pass.
-  Stage37823514965 exposes Home320 CSS-unavailable portrait overflow; canonical
-  Home-only critical CSS corrects it. Final corrected-head CI/review must be observed.
+  Stage37823514965 exposed Home320 CSS-unavailable overflow; canonical Home CSS
+  corrects it at1d2. Stage37827282319 browser/performance passes; aggregate source
+  gate fails stale SEO/CSS proof. Reviewed exact proof and route-head transfer
+  correction now need final current-source CI/static/hosted/bounded staging.
   [Visual proof](review/issue-58/2026-10-08-final-visual.json) is bound to its original source.
 - #49 is the sole open fragment-flight owner; #50 is closed as its duplicate.
   Draft PR #53 is active; #52 is closed/superseded, with both PRs linked to #49.
@@ -65,7 +66,7 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
   pixel-identical Home/Writing Day/Night pairs at widths 1440 and 390, with matching
   text/links/geometry and stable dirty-tree observation. Motion is off/reduced;
   it does not prove every route, Color interaction, device or production performance.
-- RI/CI maps 14 checks over 12 layers, including maintained source quality.
+- RI/CI maps 15 checks over 13 layers, including maintained source quality.
   Final current-source RI/security/CI/staging outcomes belong to PR60/issue58.
 - Native factory formatting changes serialization/hashes. Preserve executable
   and semantic parity; regenerate legitimate identities. Independently review
@@ -105,8 +106,8 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 2. Read the current integrated handoff and live issue checkbox/evidence summary.
    Historical failed or dirty measurements are retained with original identities.
 3. Old983/13dd evidence has complete-byte applicability only through896.
-   Critical-CSS correction changes public identities: verify scoped runtime reuse
-   separately and inspect fresh corrected-head hosted/staging evidence.
+   Critical CSS and route-head navigation change public/runtime identities: scope
+   old reuse to unchanged renderer/CSS owners and verify fresh final staged limits.
 4. Follow the live PR60 CI/scanner/hosted/bounded staging and independent-review
    outcome. Do not replay complete matrices for metadata or parser-only changes.
 5. Resolve any recorded blocker; merge only on the final maintainer decision,

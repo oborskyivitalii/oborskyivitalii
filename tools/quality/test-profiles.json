@@ -443,6 +443,10 @@
       "inputs": [
         "tests/executive.test.cjs",
         "tools/check_site_seo.cjs",
+        "tools/site/render-page.cjs",
+        "site/engine/critical-media.css",
+        "site/engine/styles.css",
+        "site/engine/reading-surfaces.css",
         "site/content/**",
         "site/templates/**",
         "review/issue-41/content-amendment.json",
@@ -473,13 +477,18 @@
     {
       "path": "tests/functional-fixtures.test.cjs",
       "language": "javascript",
-      "purpose": "Browser harness serial-engine ownership, CSS hold/cleanup, delayed paint/scroll response and no invented success",
+      "purpose": "Browser harness serial-engine ownership, CSS hold/cleanup, canonical media route/history observations, delayed paint/scroll response and no invented success",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
-      "inputs": ["tests/functional-fixtures.test.cjs", "tools/quality/browser-gate-trace.cjs"]
+      "inputs": [
+        "tests/functional-fixtures.test.cjs",
+        "tools/quality/browser-gate-trace.cjs",
+        "tools/quality/functional.cjs",
+        "site/engine/critical-media.css"
+      ]
     },
     {
       "path": "tests/gtk-native-probe.test.cjs",
@@ -543,7 +552,7 @@
     {
       "path": "tests/navigation.test.cjs",
       "language": "javascript",
-      "purpose": "Current runtime camera-before-mount, queued retarget/cancellation, instant paths and no diagnostic task clock",
+      "purpose": "Current runtime camera-before-mount, queued retarget/cancellation, cloned route-head media ownership, instant paths and no diagnostic task clock",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -803,7 +812,7 @@
     {
       "path": "tests/staging-regression.test.cjs",
       "language": "javascript",
-      "purpose": "Exact bounded staging browser/performance selections, registry coupling, retained original mobile Writing/Research traces, raw motion/failure evidence and original metric budgets.",
+      "purpose": "Exact bounded staging browser/performance selections, registry coupling, canonical media route/history negatives, retained original mobile Writing/Research traces, raw motion/failure evidence and original metric budgets.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -812,6 +821,7 @@
       "inputs": [
         "tests/staging-regression.test.cjs",
         "tools/quality/staging-regression.cjs",
+        "site/engine/critical-media.css",
         "tools/quality/functional.cjs",
         "tools/quality/common.cjs",
         "tools/quality/local-browser.cjs",

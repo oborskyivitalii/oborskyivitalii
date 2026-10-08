@@ -147,6 +147,42 @@ test('staging registry matches the actual bounded selectors and owns each analyt
   changed.hosted_profiles.staging.functional.analytics_rows = 6;
   assert.throws(() => stage.registryCheck(changed));
 });
+test('CSS-blocked fixture requires canonical Home head CSS across persistent routes and history', () => {
+  const selected = stage.failureCases().find((row) => row.mode === 'css-blocked'),
+    observed = fixture.failureRow(selected);
+  assert.doesNotThrow(() => stage.validateFailure(observed));
+  const mutations = [
+    (journey) => journey.states.pop(),
+    (journey) => (journey.states[0].page = 'index'),
+    (journey) => (journey.states[1].criticalMedia = []),
+    (journey) => journey.states[1].criticalMedia.push(journey.states[1].criticalMedia[0]),
+    (journey) => (journey.states[1].criticalMedia[0] += '\n'),
+    (journey) => (journey.states[1].criticalMedia[0] = journey.states[1].criticalMedia[0].trim()),
+    (journey) => (journey.states[0].criticalMedia = journey.states[1].criticalMedia.slice()),
+    (journey) => (journey.states[1].criticalMediaOutsideHead = 1),
+    (journey) => delete journey.states[0].criticalMediaOutsideHead,
+    (journey) => (journey.states[3].overflow = true),
+    (journey) => delete journey.states[1].documentPreserved,
+    (journey) => (journey.states[1].documentPreserved = false),
+    (journey) => (journey.states[3].portrait.width = 828),
+    (journey) => (journey.states[3].portrait.width = 0),
+    (journey) => (journey.states[3].portrait.width = Infinity),
+    (journey) => (journey.states[3].portrait.viewportWidth = 1440),
+    (journey) => (journey.states[0].portrait = journey.states[1].portrait),
+    (journey) => delete journey.history,
+    (journey) => (journey.history = false),
+    (journey) => delete journey.documentPreserved,
+    (journey) => (journey.documentPreserved = false),
+  ];
+  for (const mutate of mutations) {
+    const row = structuredClone(observed);
+    mutate(row.checks.criticalMediaJourney);
+    assert.throws(() => stage.validateFailure(row));
+  }
+  const missing = structuredClone(observed);
+  delete missing.checks.criticalMediaJourney;
+  assert.throws(() => stage.validateFailure(missing), /missing CSS-blocked route observations/);
+});
 test('selected browser regression requires all route observations, navigation, failures and analytics', () => {
   assert.equal(
     stage.validateFunctional(fixture.functional(), fixture.manifest()).normalRouteObservations,

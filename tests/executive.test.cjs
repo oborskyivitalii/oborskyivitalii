@@ -27,6 +27,60 @@ test('HTML reconciliation accepts source spelling changes while preserving inlin
 });
 test('executive hierarchy preserves the frozen SEO, editions, sources and all unrelated copy', () =>
   assert.equal(require('../tools/check_site_seo.cjs').verify().pass, true));
+test('critical media reconciliation admits only exact Home head ownership, bytes and original order', (t) => {
+  const path = require('node:path'),
+    os = require('node:os'),
+    { restoreCriticalMedia, restore } = require('../tools/check_site_seo.cjs');
+  const html = normalizeHTML(
+      require('../tools/build_site_previews.cjs').sourceForPreview(
+        fs.readFileSync(path.join(__dirname, '../docs/index.html'), 'utf8')
+      )
+    ),
+    css = fs.readFileSync(path.join(__dirname, '../site/engine/critical-media.css'), 'utf8'),
+    block = '<style data-critical-media>\n' + css + '</style>',
+    preserved = restoreCriticalMedia(html, 'index');
+  assert.equal(preserved, html.replace(block + ' ', ''), 'only the exact generated block reverses');
+  for (const changed of [
+    html.replace(block, block + ' ' + block),
+    html.replace(block + ' ', ''),
+    html.replace(css, css.replace('100%', '99%')),
+    html.replace(css, css.replace('.portrait-media', '.other-media')),
+    html.replace(css, css.replace('height: auto;', 'height: 721px;')),
+    html.replace(css, css.replace('  max-width:', ' max-width:')),
+    html.replace('data-critical-media>', 'data-critical-media media="screen">'),
+    html.replace(block + ' ', '').replace('<body data-page="index">', '$&' + block),
+    html.replace(block + ' ', '').replace('<title>', block + ' <title>'),
+  ])
+    assert.throws(() => restoreCriticalMedia(changed, 'index'), /[Cc]ritical media/);
+  assert.throws(() => restoreCriticalMedia(html, 'writing'), /only to Home/);
+  const unrelated = '<style>.unrelated{color:red}</style> ',
+    extra = html.replace('<script src="theme.js"></script>', '$& ' + unrelated);
+  assert.ok(restoreCriticalMedia(extra, 'index').includes(unrelated));
+  assert.notEqual(restore(extra, 'index'), restore(html, 'index'), 'unrelated CSS stays in parity');
+  for (const changed of [
+    html.replace('"@type": "ProfilePage"', '"@type": "OtherPage"'),
+    html.replace('Portrait of Vitalii Oborskyi', 'Portrait of another person'),
+    html.replace('height="721"', 'height="722"'),
+  ])
+    assert.notEqual(restore(changed, 'index'), restore(html, 'index'));
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'critical-media-seo-')),
+    owner = path.join(directory, 'site/engine/critical-media.css');
+  t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
+  fs.mkdirSync(path.dirname(owner), { recursive: true });
+  assert.throws(() => restoreCriticalMedia(html, 'index', directory), /ENOENT/);
+  for (const changed of [
+    css + css,
+    css.replace('100%', '780px'),
+    css.replace('.portrait-media', '.other-media'),
+    css + '</style>',
+  ]) {
+    fs.writeFileSync(owner, changed);
+    assert.throws(() => restoreCriticalMedia(html, 'index', directory), /critical media CSS/);
+  }
+  fs.rmSync(owner);
+  fs.symlinkSync(path.join(__dirname, '../site/engine/critical-media.css'), owner);
+  assert.throws(() => restoreCriticalMedia(html, 'index', directory), /Canonical critical media/);
+});
 test('R3/R4 reconciliation reverses only exact portrait ownership and inert original archive labels', () => {
   const { restoreRefactorPresentation } = require('../tools/check_site_seo.cjs');
   const portrait =
@@ -358,8 +412,15 @@ test('Day/Night semantic text and CTA pairs exceed normal-text contrast with no 
 test('reading surfaces have one shared CSS authority across base and Color renditions', () => {
   const path = require('node:path'),
     read = (name) => fs.readFileSync(path.join(__dirname, '..', name), 'utf8');
-  const base = read('site/engine/styles.css'),
+  const authoredBase = read('site/engine/styles.css'),
+    critical = require('../tools/site/render-page.cjs').validateCriticalMedia(
+      read('site/engine/critical-media.css')
+    ),
+    marker = '/* {{CRITICAL_MEDIA}} */\n',
+    base = authoredBase.replace(marker, critical),
     owner = read('site/engine/reading-surfaces.css');
+  assert.equal(authoredBase.split(marker).length, 2, 'one canonical critical media include');
+  assert.equal(base.split(critical).length, 2, 'same canonical critical media bytes occur once');
   const color = require('../tools/staging/color.cjs'),
     extra = color.runtime(color.authoredEffects()).styles;
   const generated = read('docs/styles.css');
@@ -447,7 +508,7 @@ test('reading surfaces have one shared CSS authority across base and Color rendi
     assert.equal(
       publicCSS,
       ordinary + '\n' + reading,
-      'generated CSS is the exact two authored files'
+      'generated CSS preserves ordered ordinary, critical media and reading owners'
     );
     const all = strip(reading),
       screen = all.replace(/@media\s+print\s*\{(?:[^{}]|\{[^{}]*\})*\}/g, '');

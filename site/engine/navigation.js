@@ -41,8 +41,10 @@
   announcement.setAttribute('role', 'status');
   announcement.setAttribute('aria-live', 'polite');
   document.body.append(announcement);
+  // The exact Home media fallback travels with the verified route head, including
+  // CSS-unavailable navigation. Other routes remove it with their prior metadata.
   const metadata =
-    'meta[name="description"],meta[property^="og:"],meta[name^="twitter:"],link[rel="canonical"],script[type="application/ld+json"]';
+    'meta[name="description"],meta[property^="og:"],meta[name^="twitter:"],link[rel="canonical"],script[type="application/ld+json"],style[data-critical-media]';
   function extract(doc, immutable = false) {
     const next = doc.body.dataset.page;
     const main = doc.querySelector('main'),
