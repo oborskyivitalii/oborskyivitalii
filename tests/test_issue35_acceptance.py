@@ -4,6 +4,7 @@
 These source-bound tests do not manufacture a hosted run, an independent review,
 production acceptance, or a decision to close issue #13.
 """
+
 import hashlib
 import importlib.util
 import json
@@ -24,8 +25,11 @@ def git(*arguments):
 
 
 def base_files(*prefixes):
-    return {path.decode("utf-8") for path in git(
-        "ls-tree", "-r", "--name-only", "-z", BASE, "--", *prefixes).split(b"\0") if path}
+    return {
+        path.decode("utf-8")
+        for path in git("ls-tree", "-r", "--name-only", "-z", BASE, "--", *prefixes).split(b"\0")
+        if path
+    }
 
 
 def base_bytes(path):
@@ -86,10 +90,16 @@ def tap_accounting(tap, module=None):
 def run_node(module):
     process = subprocess.run(
         ["node", "--test", "--test-reporter=tap", str(module)],
-        cwd=REPO, capture_output=True, text=True, timeout=120, check=False,
+        cwd=REPO,
+        capture_output=True,
+        text=True,
+        timeout=120,
+        check=False,
     )
     if process.returncode != 0:
-        raise AssertionError(f"Node module failed: {module}\n{process.stdout[-5000:]}\n{process.stderr[-2000:]}")
+        raise AssertionError(
+            f"Node module failed: {module}\n{process.stdout[-5000:]}\n{process.stderr[-2000:]}"
+        )
     return tap_accounting(process.stdout, module)
 
 
@@ -106,8 +116,11 @@ class Issue35AcceptanceTests(unittest.TestCase):
         audit = json.loads((REPO / "review/issue-35/2026-10-07-test-audit.json").read_text())
         self.assertEqual(audit["issue"], 35)
         self.assertEqual(audit["inspected_source"], BASE)
-        expected = {path for path in base_files("tests") if re.fullmatch(
-            r"tests/(?:[a-z0-9-]+\.test\.cjs|test_[a-z0-9_]+\.py)", path)}
+        expected = {
+            path
+            for path in base_files("tests")
+            if re.fullmatch(r"tests/(?:[a-z0-9-]+\.test\.cjs|test_[a-z0-9_]+\.py)", path)
+        }
         rows = audit["tests"]
         self.assertTrue(expected)
         self.assertEqual(len(rows), len(expected))
@@ -115,7 +128,9 @@ class Issue35AcceptanceTests(unittest.TestCase):
         self.assertEqual(audit["counts"]["all_modules"], len(expected))
         for row in rows:
             with self.subTest(path=row["path"]):
-                self.assertEqual(row["source_sha256"], hashlib.sha256(base_bytes(row["path"])).hexdigest())
+                self.assertEqual(
+                    row["source_sha256"], hashlib.sha256(base_bytes(row["path"])).hexdigest()
+                )
                 for key in ("purpose", "owner", "disposition", "surviving_route"):
                     self.assertTrue(row[key], key)
                 self.assertTrue(row["profiles"])
@@ -145,10 +160,15 @@ class Issue35AcceptanceTests(unittest.TestCase):
         # Includes the complete production fixture plus missing native, duplicate,
         # raw-metric, source/artifact/variant and external device-evidence failures.
         report = run_node(REPO / "tests/quality.test.cjs")
-        original_names = re.findall(r"(?m)^test\('([^'\n]+)'", base_bytes("tests/quality.test.cjs").decode())
+        original_names = re.findall(
+            r"(?m)^test\('([^'\n]+)'", base_bytes("tests/quality.test.cjs").decode()
+        )
         self.assertTrue(original_names)
-        self.assertEqual(report["case_names"], original_names,
-                         "Every original production guard case must actually execute once")
+        self.assertEqual(
+            report["case_names"],
+            original_names,
+            "Every original production guard case must actually execute once",
+        )
 
     def test_node_bridge_rejects_empty_failed_skipped_and_todo_modules(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -157,29 +177,46 @@ class Issue35AcceptanceTests(unittest.TestCase):
             self.assertEqual(run_node(module)["tests"], 1)
             for source, error in [
                 ("", ValueError),
-                ("const test=require('node:test');test('controlled failure',()=>{throw Error('failure');});", AssertionError),
-                ("const test=require('node:test');test('controlled skip',{skip:true},()=>{});", ValueError),
+                (
+                    "const test=require('node:test');test('controlled failure',()=>{throw Error('failure');});",
+                    AssertionError,
+                ),
+                (
+                    "const test=require('node:test');test('controlled skip',{skip:true},()=>{});",
+                    ValueError,
+                ),
                 ("const test=require('node:test');test.todo('controlled TODO');", ValueError),
             ]:
                 module.write_text(source)
                 with self.subTest(source=source), self.assertRaises(error):
                     run_node(module)
         summary = "# Subtest: control\nok 1 - control\n" + "\n".join(
-            f"# {key} {1 if key in {'tests', 'pass'} else 0}" for key in ACCOUNTING)
+            f"# {key} {1 if key in {'tests', 'pass'} else 0}" for key in ACCOUNTING
+        )
         self.assertEqual(tap_accounting(summary)["pass"], 1)
-        for bad in (summary.replace("# skipped 0", ""), summary + "\n# tests 1",
-                    summary.replace("# cancelled 0", "# cancelled 1")):
+        for bad in (
+            summary.replace("# skipped 0", ""),
+            summary + "\n# tests 1",
+            summary.replace("# cancelled 0", "# cancelled 1"),
+        ):
             with self.assertRaises(ValueError):
                 tap_accounting(bad)
 
     def test_production_validators_and_metric_security_budgets_are_unchanged(self):
         protected = [
-            "tools/quality/validate.cjs", "tools/quality/promotion.cjs", "tools/quality/budgets.json",
-            "tools/quality/selftest.cjs", "tools/quality/security-rules.yml",
-            "tools/quality/exceptions.json", "tools/quality/advisory-exceptions.json",
-            "tools/quality/toolchain/package-lock.json", "tools/quality/toolchain/requirements.txt",
+            "tools/quality/validate.cjs",
+            "tools/quality/promotion.cjs",
+            "tools/quality/budgets.json",
+            "tools/quality/selftest.cjs",
+            "tools/quality/security-rules.yml",
+            "tools/quality/exceptions.json",
+            "tools/quality/advisory-exceptions.json",
+            "tools/quality/toolchain/package-lock.json",
+            "tools/quality/toolchain/requirements.txt",
         ]
-        unchanged_bytes(REPO, {path: hashlib.sha256(base_bytes(path)).hexdigest() for path in protected})
+        unchanged_bytes(
+            REPO, {path: hashlib.sha256(base_bytes(path)).hexdigest() for path in protected}
+        )
 
     def test_public_runtime_and_previous_review_evidence_are_unchanged(self):
         expected = base_blobs("docs", "site", "review")
@@ -189,8 +226,14 @@ class Issue35AcceptanceTests(unittest.TestCase):
         unchanged_bytes(REPO, expected, git_blobs=True)
         # New internal review records are allowed; new served/runtime bytes are not.
         for directory in ("docs", "site"):
-            actual = {path.relative_to(REPO).as_posix() for path in (REPO / directory).rglob("*") if path.is_file()}
-            self.assertEqual(actual, {path for path in expected if path.startswith(directory + "/")})
+            actual = {
+                path.relative_to(REPO).as_posix()
+                for path in (REPO / directory).rglob("*")
+                if path.is_file()
+            }
+            self.assertEqual(
+                actual, {path for path in expected if path.startswith(directory + "/")}
+            )
 
     def test_fixed_source_invariants_reject_modified_or_deleted_bytes(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -215,14 +258,27 @@ class Issue35AcceptanceTests(unittest.TestCase):
         policy, _ = acceptance.load_policy(REPO / POLICY)
         self.assertEqual(policy["repository"], "oborskyivitalii/oborskyivitalii")
         self.assertEqual(policy["issue"], 35)
-        self.assertEqual([row["id"] for row in policy["criteria"]], [f"AC{n:02}" for n in range(1, 8)])
-        self.assertEqual({key: value["kind"] for key, value in policy["gates"].items()},
-                         {"G01": "human", "G02": "merge", "G03": "human"})
-        self.assertTrue(all(check["kind"] == "unittest" for check in policy["checks"].values()),
-                        "The targeted policy must not repeat the separately executed Basic smoke")
+        self.assertEqual(
+            [row["id"] for row in policy["criteria"]], [f"AC{n:02}" for n in range(1, 8)]
+        )
+        self.assertEqual(
+            {key: value["kind"] for key, value in policy["gates"].items()},
+            {"G01": "human", "G02": "merge", "G03": "human"},
+        )
+        self.assertTrue(
+            all(check["kind"] == "unittest" for check in policy["checks"].values()),
+            "The targeted policy must not repeat the separately executed Basic smoke",
+        )
         methods = [check["test"] for check in policy["checks"].values()]
-        self.assertEqual(len(methods), len(set(methods)), "One shared check ID executes each test once")
-        self.assertFalse(any("test_issue31_acceptance." in method or "test_issue33_acceptance." in method for method in methods))
+        self.assertEqual(
+            len(methods), len(set(methods)), "One shared check ID executes each test once"
+        )
+        self.assertFalse(
+            any(
+                "test_issue31_acceptance." in method or "test_issue33_acceptance." in method
+                for method in methods
+            )
+        )
         workflow = (REPO / ".github/workflows/issue-acceptance.yml").read_text()
         for bound in ("--require-clean", "--expected-source", "if: always()", "fetch-depth: 0"):
             self.assertIn(bound, workflow)
@@ -233,19 +289,30 @@ class Issue35AcceptanceTests(unittest.TestCase):
         surface = ri.verify(REPO, ".github/repository-intelligence-config.json")
         self.assertTrue(ci.verify(REPO)["pass"])
         catalog = json.loads((REPO / ".github/repository-paths.json").read_text())["entries"]
-        profile_controls = ["tools/quality/test-profiles.json", "tools/quality/source-tests.cjs",
-                            "tests/test-profile-selection.test.cjs", "tools/quality/staging-regression.cjs",
-                            "tools/quality/staging-gate.cjs", "tests/staging-regression.test.cjs",
-                            "tests/staging-gate.test.cjs"]
+        profile_controls = [
+            "tools/quality/test-profiles.json",
+            "tools/quality/source-tests.cjs",
+            "tests/test-profile-selection.test.cjs",
+            "tools/quality/staging-regression.cjs",
+            "tools/quality/staging-gate.cjs",
+            "tests/staging-regression.test.cjs",
+            "tests/staging-gate.test.cjs",
+        ]
         artifact_paths = {row["path"] for row in surface["artifacts"]}
         for path in profile_controls:
             with self.subTest(path=path):
                 self.assertIn(path, artifact_paths)
                 self.assertIn(path, catalog)
                 self.assertTrue((REPO / catalog[path]["owner"]).is_file())
-                self.assertIn(catalog[path]["owner"], {"guides/SITE-CHECK-PROFILES.md",
-                              "guides/SITE-RELEASE-GATES.md", "guides/SITE-STAGING.md",
-                              ".github/REPOSITORY-INTELLIGENCE.md"})
+                self.assertIn(
+                    catalog[path]["owner"],
+                    {
+                        "guides/SITE-CHECK-PROFILES.md",
+                        "guides/SITE-RELEASE-GATES.md",
+                        "guides/SITE-STAGING.md",
+                        ".github/REPOSITORY-INTELLIGENCE.md",
+                    },
+                )
 
     def test_issue13_reconciliation_records_all_original_criteria_and_remaining_gates(self):
         text = (REPO / "review/issue-35/2026-10-07-issue13-audit.md").read_text()
@@ -257,7 +324,12 @@ class Issue35AcceptanceTests(unittest.TestCase):
             self.assertEqual(len(row.split("|")), 6)
             self.assertTrue(all(cell.strip() for cell in row.split("|")[1:-1]))
         self.assertIn("## Remaining current-release obligations", text)
-        for pending in ("Physical iPhone/iPad", "Independent production-release review", "ZAP", "rollback"):
+        for pending in (
+            "Physical iPhone/iPad",
+            "Independent production-release review",
+            "ZAP",
+            "rollback",
+        ):
             self.assertIn(pending, text)
         # This proves a complete recorded disposition, never that gates passed or
         # that GitHub #13 was closed. Those are G03 live/human observations.

@@ -1,0 +1,90 @@
+{
+  "schema": 1,
+  "kind": "issue58-scanner-policy-rebinding",
+  "issue": 58,
+  "baselineCommit": "2138131b718d1ac4734f6b2c55520eb37e98ca6a",
+  "policyRebindingPass": true,
+  "finalSecurityPass": false,
+  "scope": "Exact existing scanner policy source/line rebinding only; actual final lint/security and generated checksum review remain distinct owning-PR gates. No threshold, rule, expiry, owner or allowed-finding expansion.",
+  "complexity": {
+    "path": "site/effects/ribbons.cjs",
+    "language": "js",
+    "pass": true,
+    "sourceChanged": true,
+    "baselineSourceSha256": "8eba51bf47d11d482de1bae12b6a73f7ecd702e2edc169a5ed4eeb5d32bc18dc",
+    "currentSourceSha256": "baa9bb1b5deae140ea222144c73d3a2978ba445eb28a1267fac530222ce0bc92",
+    "baselineContractSha256": "db045ae1cea75f5d86b44f7c168d3368c739ab34b45d85094bd6df18a3c319df",
+    "currentContractSha256": "db045ae1cea75f5d86b44f7c168d3368c739ab34b45d85094bd6df18a3c319df",
+    "warnings": [
+      {
+        "file": "site/effects/ribbons.cjs",
+        "rule": "sonarjs/cognitive-complexity",
+        "message": "Refactor this function to reduce its Cognitive Complexity from 52 to the 25 allowed."
+      }
+    ],
+    "lintScannedFiles": 144,
+    "rawEslintSha256": "98af7a7183fcead90034d2d2ded3c03924d9985a31511e604b5bdec45340e070",
+    "retainedImmutableBaseline": {
+      "commit": "e501da821c1cf9a3ac4bc8d251aba1bf4dc57d59",
+      "path": "review/site-scroll-sync-20261004/RIBBONS-PROTOTYPE.cjs",
+      "sha256": "f38ec48e8b24ae60a64aed1524d416e3c942ccf5ecae328106846c3888b151fd"
+    },
+    "retainedWarning": "52/25",
+    "retainedOwnerReviewByAndRemovalTask": true,
+    "independentAstReview": "r2_semantic confirms normalized AST equality; overall runtime suite remains the owning PR gate"
+  },
+  "bandit": {
+    "proof": "review/issue-58/2026-10-08-bandit-rebinding.json",
+    "rawFindings": 36,
+    "newFindings": 0,
+    "trackedPythonTools": 10,
+    "loc": 2739,
+    "policyAdmissionPass": true
+  },
+  "advisory": {
+    "schema": 1,
+    "kind": "issue58-advisory-rebinding-proof",
+    "pass": true,
+    "baselineCommit": "2138131b718d1ac4734f6b2c55520eb37e98ca6a",
+    "package": "braces",
+    "version": "3.0.3",
+    "url": "https://github.com/advisories/GHSA-vfj7-8cjw-p6xm",
+    "oldSourceSha256": "6bbef04bce4367aa2072be9216a8ca53ccf8429926b4a9588fa1917210a6b1d5",
+    "newSourceSha256": "e1cfaf46003f21f9e6e8558da0d15de25c4bb7d7b7b5012d509dce0a93c5486a",
+    "oldMaterials": {
+      "tools/quality/stylelint.config.cjs": "813c64be2b3e0224234cd89eeb836cd8195b73af4b55623d13abc4931dd0be94",
+      "tools/quality/toolchain/package-lock.json": "54466f796f3295144bdb2df71087988e13aa3886bf9cfede6f37a4f918b61052"
+    },
+    "newMaterials": {
+      "tools/quality/stylelint.config.cjs": "62ce76e7e7074a20ed0394903e0bb6557a96075b38009f21cf934814b1ea64c0",
+      "tools/quality/toolchain/package-lock.json": "f9495aa394d54cc5886d837d07ebd52bcbacd1ff893fd5baca92b2e5b48d8ba5"
+    },
+    "stylelintRuleAstIdentical": true,
+    "codeApiFields": [
+      "code",
+      "codeFilename",
+      "config",
+      "ignoreDisables",
+      "fix"
+    ],
+    "fileGlobInput": false,
+    "existingLockGraphIdentical": true,
+    "additionalDependency": {
+      "package": "prettier",
+      "version": "3.6.2"
+    },
+    "leafSignaturesEqual": true,
+    "rawNpmFindings": 5,
+    "oldNpmReportSha256": "ddd2c1c5d11658c2ad6364001e3961346ef4140cabca8fe15da3c2d340466f60",
+    "newNpmReportSha256": "ddd2c1c5d11658c2ad6364001e3961346ef4140cabca8fe15da3c2d340466f60",
+    "originalAdmittedSourceCommit": "301a2f6169a4d377448032310f58aea76c93a86d",
+    "baselineSourceSha256": "bc178b739b7e4ee33b54f3b42a557fb6375d979c4f53529f8893d026eb33e597",
+    "preExistingStalePin": "R1 expanded authored CSS code-API coverage without refreshing the earlier source SHA. Original admitted source, R1 baseline and current helper all retain the reviewed literal code/codeFilename reachability boundary; issue58 refreshes exact current material binding."
+  },
+  "secrets": {
+    "status": "pending final generation and RI verification",
+    "frozenBaselineSha256": "8bff933ce846d5b1a0fa9a357f629c07d49af8626270ea40cfd658b760e293b0",
+    "originalReviewedRecords": 2032,
+    "requirement": "Use the existing append proof in memory; preserve all prior records, admit only exact recomputed public path/type/value candidates and require independent review."
+  }
+}

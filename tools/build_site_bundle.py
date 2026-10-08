@@ -1,4 +1,5 @@
 """Deterministic offline review handoff; no deployment or external dependency."""
+
 import hashlib
 import json
 import sys
@@ -13,7 +14,11 @@ MANIFEST = ROOT / "review/site-v1-offline-bundle-v11.json"
 def build():
     inputs = {}
     for folder, prefix in [(ROOT / "docs", "site"), (ROOT / "review", "review")]:
-        candidates = sorted(folder.rglob("*")) if prefix == "site" else sorted(folder.glob("site-v1-20261004-v11-*.html"))
+        candidates = (
+            sorted(folder.rglob("*"))
+            if prefix == "site"
+            else sorted(folder.glob("site-v1-20261004-v11-*.html"))
+        )
         for file in candidates:
             if file.is_file():
                 inputs[f"{prefix}/{file.relative_to(folder).as_posix()}"] = file.read_bytes()
@@ -45,6 +50,7 @@ def build():
         "site/ retains exact production-source bytes; review/ contains noindex renditions.\n"
     ).encode()
     import io
+
     result = io.BytesIO()
     with zipfile.ZipFile(result, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as archive:
         for name, content in sorted(inputs.items()):
@@ -58,7 +64,9 @@ def build():
         "generator": "tools/build_site_bundle.py",
         "indexing_scope": "site/ retains exact docs bytes; separate review/ HTML is noindex, nofollow",
         "zip_sha256": hashlib.sha256(payload).hexdigest(),
-        "entries": {name: hashlib.sha256(content).hexdigest() for name, content in sorted(inputs.items())},
+        "entries": {
+            name: hashlib.sha256(content).hexdigest() for name, content in sorted(inputs.items())
+        },
     }
     return payload, (json.dumps(manifest, indent=2) + "\n").encode()
 
@@ -70,7 +78,11 @@ if __name__ == "__main__":
     if sys.argv[1:] == ["--check"]:
         # The committed manifest binds every entry AND the complete ZIP digest.
         # CI reconstructs that digest without storing a duplicate 18 MB binary.
-        if not MANIFEST.exists() or MANIFEST.read_bytes() != manifest or (OUTPUT.exists() and OUTPUT.read_bytes() != payload):
+        if (
+            not MANIFEST.exists()
+            or MANIFEST.read_bytes() != manifest
+            or (OUTPUT.exists() and OUTPUT.read_bytes() != payload)
+        ):
             raise SystemExit("Stale offline bundle; run python3 tools/build_site_bundle.py")
     else:
         OUTPUT.parent.mkdir(parents=True, exist_ok=True)

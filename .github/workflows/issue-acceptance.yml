@@ -33,6 +33,12 @@ jobs:
           node-version: 24.19.0
       - name: Select the policy from the explicit owning References line or dispatch input
         run: python3 tools/issue_acceptance.py select --event "$GITHUB_EVENT_PATH" --event-name "$GITHUB_EVENT_NAME" --github-env "$GITHUB_ENV" --report "$RUNNER_TEMP/issue-acceptance.json"
+      - name: Install pinned tools for the selected refactoring policy
+        if: env.ACCEPTANCE_POLICY == '.github/acceptance/issue-58.json'
+        run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          python3 -m venv tools/quality/toolchain/venv
+          tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps ruff==0.16.10 PyYAML==6.0.3
       - name: Run criterion checks and preserve explicit pending human gates
         run: python3 tools/issue_acceptance.py run --policy "$ACCEPTANCE_POLICY" --report "$RUNNER_TEMP/issue-acceptance.json" --require-clean --expected-source "$ACCEPTANCE_SOURCE_SHA"
       - name: Upload the acceptance report even when checks fail

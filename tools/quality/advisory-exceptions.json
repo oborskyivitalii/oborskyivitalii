@@ -5,15 +5,15 @@
     "url": "https://github.com/advisories/GHSA-vfj7-8cjw-p6xm",
     "scope": "tools/quality/toolchain/package-lock.json",
     "reviewedSource": "tools/quality/stylelint.cjs",
-    "reviewedSourceSha256": "6bbef04bce4367aa2072be9216a8ca53ccf8429926b4a9588fa1917210a6b1d5",
+    "reviewedSourceSha256": "e1cfaf46003f21f9e6e8558da0d15de25c4bb7d7b7b5012d509dce0a93c5486a",
     "disposition": "tooling-only unreachable affected input",
     "owner": "oborskyivitalii",
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/13",
     "expires": "2026-11-03",
-    "reason": "No upstream patched version exists on 2026-10-03. Stylelint is called exclusively with literal CSS code and codeFilename through its code API; no file glob or attacker-controlled brace pattern enters braces recursive AST walkers. Public artifact contains no npm graph. Keep npm original findings including transitive effects; this is a scoped reachability decision, not a vulnerability-free claim. Re-review on dependency/API/path change or patched release.",
+    "reason": "No upstream patched version exists on 2026-10-03. Stylelint is called exclusively with literal CSS code and codeFilename through its code API; no file glob or attacker-controlled brace pattern enters braces recursive AST walkers. Public artifact contains no npm graph. Keep npm original findings including transitive effects; this is a scoped reachability decision, not a vulnerability-free claim. Re-review on dependency/API/path change or patched release. Issue58 R2 revalidation on 2026-10-08: actual npm report retains the same GHSA leaf and five transitive high findings; the existing lock graph is unchanged apart from pinned Prettier 3.6.2. Stylelint still receives CSS bytes through the code/codeFilename API, with no file glob or brace-pattern input; new ignoreDisables and fix:false settings tighten coverage without changing advisory reachability. The original admitted helper is byte-proved at Git commit 301a2f6169a4d377448032310f58aea76c93a86d; R1 had already expanded authored CSS coverage through the same code API, leaving that earlier fingerprint stale. This refresh explicitly revalidates the original, R1 baseline and current helper reachability boundary.",
     "reviewedMaterials": {
-      "tools/quality/stylelint.config.cjs": "813c64be2b3e0224234cd89eeb836cd8195b73af4b55623d13abc4931dd0be94",
-      "tools/quality/toolchain/package-lock.json": "54466f796f3295144bdb2df71087988e13aa3886bf9cfede6f37a4f918b61052"
+      "tools/quality/stylelint.config.cjs": "62ce76e7e7074a20ed0394903e0bb6557a96075b38009f21cf934814b1ea64c0",
+      "tools/quality/toolchain/package-lock.json": "f9495aa394d54cc5886d837d07ebd52bcbacd1ff893fd5baca92b2e5b48d8ba5"
     }
   }
 ]

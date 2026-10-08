@@ -159,9 +159,7 @@
       "archiveHTML": "<li class=\"publication\" data-language=\"en\" data-topic=\"systems\" data-year=\"{{YEAR}}\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · LinkedIn</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a>{{EDITION_LINKS}}{{DISCUSSION_LINKS}}</div></li>",
       "featuredHTML": "<li class=\"publication\" data-language=\"en\"><div class=\"publication-meta\"><time datetime=\"{{DATE}}\">{{DATE_LABEL}}</time><span><span class=\"language-badge\">EN · English</span> · Article · LinkedIn</span></div><div><a class=\"publication-title\" href=\"{{URL}}\">{{TITLE}}<span class=\"publication-arrow\" aria-hidden=\"true\">↗</span></a>{{EDITION_LINKS}}{{DISCUSSION_LINKS}}<p class=\"writing-summary\">A control-theory perspective on agentic loops and engineering control.</p></div></li>",
       "editions": [],
-      "discussions": [
-        "reddit-agentic-loops"
-      ]
+      "discussions": ["reddit-agentic-loops"]
     },
     "publication-08": {
       "edition": {
@@ -222,9 +220,7 @@
           "bodyEquivalenceVerified": false
         }
       ],
-      "discussions": [
-        "reddit-controller"
-      ]
+      "discussions": ["reddit-controller"]
     },
     "publication-10": {
       "edition": {
@@ -877,9 +873,5 @@
       }
     }
   },
-  "discussionOrder": [
-    "reddit-agentic-loops",
-    "reddit-delivery-bottlenecks",
-    "reddit-controller"
-  ]
+  "discussionOrder": ["reddit-agentic-loops", "reddit-delivery-bottlenecks", "reddit-controller"]
 }

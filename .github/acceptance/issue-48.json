@@ -8,84 +8,43 @@
       "id": "AC01",
       "intent": "Place Theory of Constraints under Subprime and Control Theory under Uncertainty Architecture, with a subtle association that remains explicit in narrow layouts.",
       "automated_scope": "The maintained content case checks actual authored and generated project/theory order, named links to the owning project anchors, preserved theory descriptions and headings, shared project accent ownership, responsive stacking and no added reading-surface paint authority. Deterministic source checks cannot establish perceived association, actual native wrapping or current-preview Day/Night readability.",
-      "checks": [
-        "THEORY-ASSOCIATION",
-        "SHARED-READING-SURFACES"
-      ],
-      "gates": [
-        "VISUAL"
-      ]
+      "checks": ["THEORY-ASSOCIATION", "SHARED-READING-SURFACES"],
+      "gates": ["VISUAL"]
     },
     {
       "id": "AC02",
       "intent": "Move the same colored Writing world landmark to the midpoint between the first two book arches while preserving its expression, geometry integration and rendering bounds.",
       "automated_scope": "Maintained compiler negatives retain the exact finite canonical expression/artwork. Full and compact worlds derive landmark center and living-transform origin from the first two book roots; sampled ambient transforms remain between the arches with bounded displacement and close on the existing clock. Existing projection cases preserve tilt, extrusion, camera approach and the same-scene static rendition without a layout band; the maintained renderer cache case retains 1380x240 storage, bounded submissions, shared depth order and reuse across rooms and viewport sizes. Generated/source reconciliation separately retains original book geometry. Browser observations and visual acceptance remain separate.",
-      "checks": [
-        "FORMULA-MIDPOINT",
-        "GENERATION-SEO"
-      ],
-      "gates": [
-        "VISUAL"
-      ]
+      "checks": ["FORMULA-MIDPOINT", "GENERATION-SEO"],
+      "gates": ["VISUAL"]
     },
     {
       "id": "AC03",
       "intent": "Update Matthew Skelton\u2019s Home and Research responses to accurately represent the verified reshare with commentary while preserving the older encouragement and unrelated responses.",
       "automated_scope": "Current maintained response accounting checks the verified Matthew primary source, Michael Risch reshare attribution, distinct older encouragement on Research and matched Home/Research evidence. Exact issue48 hashed before/after deltas reverse before immutable issue41 changes; negative reconciliation cases reject missing people/sources, stronger participation claims and undeclared theory or Matthew mutations. Unrelated response cards and source identities remain protected by exact baseline reconciliation. Public-source interpretation and editorial approval cannot be supplied by fixtures or an inventory file.",
-      "checks": [
-        "MATTHEW-EVIDENCE",
-        "GENERATION-SEO"
-      ],
-      "gates": [
-        "EDITORIAL"
-      ]
+      "checks": ["MATTHEW-EVIDENCE", "GENERATION-SEO"],
+      "gates": ["EDITORIAL"]
     },
     {
       "id": "AC04",
       "intent": "Deliver one issue-linked Draft PR with canonical generated/offline/RI output, a versioned source/review handoff and meaningful exact-source acceptance evidence.",
       "automated_scope": "Maintained generated-publication reconciliation checks canonical rendered content against the frozen publication baseline after only exact approved amendments and preserves thematic geometry. Current SEO reconciliation retains all unrelated editions, metadata and source semantics. Current RI catalog/views, actual RI/CI coupling and explicit issue-owner/pending-gate runner semantics are checked. Applicable Basic/targeted/normal-preview CI, offline artifact binding, live Draft-PR linkage, source/editorial and independent review remain separately recorded evidence; this policy does not duplicate hosted runs or grant review, merge or release authorization.",
-      "checks": [
-        "GENERATION-SEO",
-        "CURRENT-RI",
-        "RI-CI",
-        "OWNER-SELECTION",
-        "PENDING-GATE"
-      ],
-      "gates": [
-        "CURRENT-CI-REVIEW",
-        "MERGE"
-      ]
+      "checks": ["GENERATION-SEO", "CURRENT-RI", "RI-CI", "OWNER-SELECTION", "PENDING-GATE"],
+      "gates": ["CURRENT-CI-REVIEW", "MERGE"]
     },
     {
       "id": "AC05",
       "intent": "Curate the three supplied Talks follow-ups by enriching PMDay and Betelgeuse once each and adding one distinct swarchua event, with source-supported English context, dates, language and resources.",
       "automated_scope": "The maintained content case accounts for distinct event cards and admitted source identities, preserves Corning and previous links, and checks canonical generated Talks content and its exact metadata delta. It distinguishes the supported PMDay event date of 2026-09-26 from source-post dates, rejects use of Betelgeuse or swarchua post dates as event dates, and preserves or qualifies spoken-language knowledge and recording/resource scope. Maintained adversarial reconciliation rejects missing events, substituted sources and invented dates or resources. The shared generated-publication/SEO check runs once and reverses only the exact authorized amendment while retaining all unrelated semantics. Public-source interpretation, actual recording playback or spoken language, current-preview readability and independent review remain explicit evidence and gates.",
-      "checks": [
-        "TALKS-CURATION",
-        "GENERATION-SEO"
-      ],
-      "gates": [
-        "EDITORIAL",
-        "VISUAL",
-        "CURRENT-CI-REVIEW",
-        "MERGE"
-      ]
+      "checks": ["TALKS-CURATION", "GENERATION-SEO"],
+      "gates": ["EDITORIAL", "VISUAL", "CURRENT-CI-REVIEW", "MERGE"]
     },
     {
       "id": "AC06",
       "intent": "Give all four Talks cards one shared publication-row backdrop matching Writing, with consistent row width, natural content-driven height and centrally owned material and bounds; stage and merge the exact tested candidate through the existing controller.",
       "automated_scope": "The strengthened maintained reading-surfaces case checks a single shared publication-row panel around metadata, title, context and links, canonical backdrop material/outset ownership and source geometry rules for consistent width and native content-driven height. It retains theme-paper background at 87% alpha, full foreground opacity, crisp 12px outer corners and the same-owner reduced-transparency override, with no separately painted Talks child rectangles or competing base/route/Color authority. The check is shared with AC01 and executes once. Maintained generation/SEO checks preserve exact event content, sources and all unrelated semantics; current RI and RI/CI checks bind generated output and source/check routing. These source/fixture checks do not establish actual browser dimensions, current-preview visual acceptance, successful bounded staging or a merge; exact source/tree/run/alias evidence remains externally reviewed.",
-      "checks": [
-        "SHARED-READING-SURFACES",
-        "GENERATION-SEO",
-        "CURRENT-RI",
-        "RI-CI"
-      ],
-      "gates": [
-        "VISUAL",
-        "CURRENT-CI-REVIEW",
-        "MERGE"
-      ]
+      "checks": ["SHARED-READING-SURFACES", "GENERATION-SEO", "CURRENT-RI", "RI-CI"],
+      "gates": ["VISUAL", "CURRENT-CI-REVIEW", "MERGE"]
     }
   ],
   "checks": {

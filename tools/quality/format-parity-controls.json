@@ -1,0 +1,222 @@
+[
+  {
+    "path": ".github/acceptance/issue-58.json",
+    "reason": "Replace preparation-only evidence with named R2 checks; future global criteria retain pending gates.",
+    "owner": ".github/ACCEPTANCE.md"
+  },
+  {
+    "path": ".github/repository-paths.json",
+    "reason": "Register formatter/parity controls and their test owners; regenerate map from the catalog.",
+    "owner": "tools/quality/README.md"
+  },
+  {
+    "path": ".github/ri-ci-map.json",
+    "reason": "Bind maintained formatter/lint controls and exact CI execution routes.",
+    "owner": "tools/quality/README.md"
+  },
+  {
+    "path": ".github/workflows/issue-acceptance.yml",
+    "reason": "Install the exact minimal toolchain only for the selected issue58 policy.",
+    "owner": "tools/quality/README.md"
+  },
+  {
+    "path": ".github/workflows/site-checks.yml",
+    "reason": "Run exact pinned formatter and complete source lint in the existing bounded PR source path.",
+    "owner": "tools/quality/README.md"
+  },
+  {
+    "path": "tests/quality-sources.test.cjs",
+    "reason": "Extend fail-closed source-lint coverage fixtures; existing source-debt invariants remain.",
+    "owner": "tools/quality/README.md"
+  },
+  {
+    "path": "tools/quality/advisory-exceptions.json",
+    "reason": "Rebind only independently reviewed exact helper/config/lock bytes for the same tooling-only advisory.",
+    "owner": "tools/quality/README.md"
+  },
+  {
+    "path": "tools/quality/bandit-policy.json",
+    "reason": "Rebind exact equivalent reviewed Python findings after AST/raw-findings proof without new allowances.",
+    "owner": "tools/quality/README.md"
+  },
+  {
+    "path": "tools/quality/eslint.config.cjs",
+    "reason": "Explicitly parse every inventory JS source and preserve original lint rules/threshold.",
+    "owner": "tools/quality/README.md"
+  },
+  {
+    "path": "tools/quality/exceptions.json",
+    "reason": "Rebind the same exact52/25 ribbon warning while preserving immutable original debt and removal task.",
+    "owner": "tools/quality/README.md"
+  },
+  {
+    "path": "tools/quality/scanners.cjs",
+    "reason": "Scan explicit complete declared sources and reject omitted/ignored/duplicate/failed coverage.",
+    "owner": "tools/quality/README.md"
+  },
+  {
+    "path": "tools/quality/stylelint.cjs",
+    "reason": "Consume shared explicit CSS inventory while retaining literal-code API and source coverage checks.",
+    "owner": "tools/quality/README.md"
+  },
+  {
+    "path": "tools/quality/test-profiles.json",
+    "reason": "Register permanent formatter/parity violation tests and issue58-only phase snapshot without replaying old tasks.",
+    "owner": "tools/quality/README.md"
+  },
+  {
+    "path": "tools/quality/toolchain/package.json",
+    "reason": "Add exact development-only Prettier3.6.2; retain all existing pins.",
+    "owner": "tools/quality/README.md"
+  },
+  {
+    "path": "tests/flight.test.cjs",
+    "reason": "Make existing serialized-source assertions whitespace/quote tolerant after proved AST-equivalent formatting; retain all navigation/scheduler/geometry/failure outcomes.",
+    "owner": "guides/SITE-CHECK-PROFILES.md"
+  },
+  {
+    "path": "tests/ribbons.test.cjs",
+    "reason": "Make existing serialized-source assertions whitespace/quote tolerant after proved AST-equivalent formatting; retain all navigation/scheduler/geometry/failure outcomes.",
+    "owner": "guides/SITE-CHECK-PROFILES.md"
+  },
+  {
+    "path": "tools/build_site_previews.cjs",
+    "reason": "Recognize the same declared stylesheet/control markers with formatter-added ASCII whitespace and void-link slash; retain exact stylesheet count, attributes, local-link rejection and resource inlining.",
+    "owner": "guides/SITE-CHECK-PROFILES.md"
+  },
+  {
+    "path": "tests/preview.test.cjs",
+    "reason": "Extend existing preview parity/safety tests with legacy and formatted void-link variants, malformed/duplicate/foreign marker rejection and retained review notices/control removal.",
+    "owner": "guides/SITE-CHECK-PROFILES.md"
+  },
+  {
+    "path": "tools/site/build.cjs",
+    "reason": "Exactly-one document/head/body and current-route navigation markers tolerate equivalent ASCII tag whitespace. Generated tag endings preserve raw/RCDATA/quoted/unquoted text while retaining the unchanged100000-byte HTML budget; no authored runtime algorithm changes.",
+    "owner": "review/issue-58/2026-10-08-handoff.md"
+  },
+  {
+    "path": "tools/site/variants.cjs",
+    "reason": "R2 delivery and regression controls accept only equivalent formatted markup/source spellings and reject missing or duplicate generation markers.",
+    "owner": "review/issue-58/2026-10-08-handoff.md"
+  },
+  {
+    "path": "tests/site-engine.test.cjs",
+    "reason": "R2 delivery and regression controls accept only equivalent formatted markup/source spellings and reject missing or duplicate generation markers.",
+    "owner": "review/issue-58/2026-10-08-handoff.md"
+  },
+  {
+    "path": "tests/effects.test.cjs",
+    "reason": "R2 delivery and regression controls accept only equivalent formatted markup/source spellings and reject missing or duplicate generation markers.",
+    "owner": "review/issue-58/2026-10-08-handoff.md"
+  },
+  {
+    "path": "tests/color-build.test.cjs",
+    "reason": "R2 delivery and regression controls accept only equivalent formatted markup/source spellings and reject missing or duplicate generation markers.",
+    "owner": "review/issue-58/2026-10-08-handoff.md"
+  },
+  {
+    "path": "tools/quality/writing-models.cjs",
+    "reason": "Formatting-tolerant exact token diagnostic anchors preserve operator/literal identity and exact once-only mutation; omission oracle retains the unchanged canonical formula contract.",
+    "owner": "review/issue-58/2026-10-08-handoff.md"
+  },
+  {
+    "path": "tools/quality/writing-variants.cjs",
+    "reason": "Formatting-tolerant exact token diagnostic anchors preserve operator/literal identity and exact once-only mutation; omission oracle retains the unchanged canonical formula contract.",
+    "owner": "review/issue-58/2026-10-08-handoff.md"
+  },
+  {
+    "path": "tests/browser-gate-variants.test.cjs",
+    "reason": "Formatting-tolerant exact token diagnostic anchors preserve operator/literal identity and exact once-only mutation; omission oracle retains the unchanged canonical formula contract.",
+    "owner": "review/issue-58/2026-10-08-handoff.md"
+  },
+  {
+    "path": "tests/cause-fix-probe.test.cjs",
+    "reason": "Formatting-tolerant exact token diagnostic anchors preserve operator/literal identity and exact once-only mutation; omission oracle retains the unchanged canonical formula contract.",
+    "owner": "review/issue-58/2026-10-08-handoff.md"
+  },
+  {
+    "path": "tests/writing-models.test.cjs",
+    "reason": "Formatting-tolerant exact token diagnostic anchors preserve operator/literal identity and exact once-only mutation; omission oracle retains the unchanged canonical formula contract.",
+    "owner": "review/issue-58/2026-10-08-handoff.md"
+  },
+  {
+    "path": "tests/writing-variants.test.cjs",
+    "reason": "Formatting-tolerant exact token diagnostic anchors preserve operator/literal identity and exact once-only mutation; omission oracle retains the unchanged canonical formula contract.",
+    "owner": "review/issue-58/2026-10-08-handoff.md"
+  },
+  {
+    "path": "tests/content.test.cjs",
+    "reason": "Strict formatting-tolerant content/source probes preserve meaningful text, attributes, raw payloads, existing functional expectations and negative mutations.",
+    "owner": "review/issue-58/2026-10-08-handoff.md"
+  },
+  {
+    "path": "tests/executive.test.cjs",
+    "reason": "Strict formatting-tolerant content/source probes preserve meaningful text, attributes, raw payloads, existing functional expectations and negative mutations.",
+    "owner": "review/issue-58/2026-10-08-handoff.md"
+  },
+  {
+    "path": "tests/navigation.test.cjs",
+    "reason": "Strict formatting-tolerant content/source probes preserve meaningful text, attributes, raw payloads, existing functional expectations and negative mutations.",
+    "owner": "review/issue-58/2026-10-08-handoff.md"
+  },
+  {
+    "path": "tests/scroll-sync.test.cjs",
+    "reason": "Strict formatting-tolerant content/source probes preserve meaningful text, attributes, raw payloads, existing functional expectations and negative mutations.",
+    "owner": "review/issue-58/2026-10-08-handoff.md"
+  },
+  {
+    "path": "tests/site-face-preparation.test.cjs",
+    "reason": "Strict formatting-tolerant content/source probes preserve meaningful text, attributes, raw payloads, existing functional expectations and negative mutations.",
+    "owner": "review/issue-58/2026-10-08-handoff.md"
+  },
+  {
+    "path": "tests/functional-fixtures.test.cjs",
+    "reason": "Strict formatting-tolerant content/source probes preserve meaningful text, attributes, raw payloads, existing functional expectations and negative mutations.",
+    "owner": "review/issue-58/2026-10-08-handoff.md"
+  },
+  {
+    "path": "tests/quality.test.cjs",
+    "reason": "Strict formatting-tolerant content/source probes preserve meaningful text, attributes, raw payloads, existing functional expectations and negative mutations.",
+    "owner": "review/issue-58/2026-10-08-handoff.md"
+  },
+  {
+    "path": "tools/check_site_seo.cjs",
+    "reason": "Hash immutable approved blocks before strict ordered HTML canonicalization. Reverse only exact declared block-fragment EOF seams (Research3, Writing3, Talks2) under unchanged block/flex CSS; preserve all wording, links, attrs/order, inline separators, raw JSON-LD and tamper failures.",
+    "owner": "review/issue-58/2026-10-08-handoff.md"
+  },
+  {
+    "path": ".github/workflows/site-release-checks.yml",
+    "reason": "Install locked dependencies before permanent formatter/parity/diagnostic source contracts; preserve release and profile gates.",
+    "owner": "review/issue-58/2026-10-08-handoff.md"
+  },
+  {
+    "path": ".github/workflows/site-browser-gate-probe.yml",
+    "reason": "Move exactly the existing locked npm install before parser-dependent source checks/diagnostic derivation; preserve all guards, resources, profile cases and other step contents/order. Historical job hashes retain an exact reviewed move normalization with negative install controls.",
+    "owner": "review/issue-58/2026-10-08-handoff.md"
+  },
+  {
+    "path": ".github/workflows/site-cause-fix-probe.yml",
+    "reason": "Move exactly the existing locked npm install before parser-dependent source checks/diagnostic derivation; preserve all guards, resources, profile cases and other step contents/order. Historical job hashes retain an exact reviewed move normalization with negative install controls.",
+    "owner": "review/issue-58/2026-10-08-handoff.md"
+  },
+  {
+    "path": ".github/workflows/site-cause-probe.yml",
+    "reason": "Move exactly the existing locked npm install before parser-dependent source checks/diagnostic derivation; preserve all guards, resources, profile cases and other step contents/order. Historical job hashes retain an exact reviewed move normalization with negative install controls.",
+    "owner": "review/issue-58/2026-10-08-handoff.md"
+  },
+  {
+    "path": ".github/workflows/site-writing-probe.yml",
+    "reason": "Move exactly the existing locked npm install before parser-dependent source checks/diagnostic derivation; preserve all guards, resources, profile cases and other step contents/order. Historical job hashes retain an exact reviewed move normalization with negative install controls.",
+    "owner": "review/issue-58/2026-10-08-handoff.md"
+  },
+  {
+    "path": "tests/writing-paradigm-ci.test.cjs",
+    "reason": "Move exactly the existing locked npm install before parser-dependent source checks/diagnostic derivation; preserve all guards, resources, profile cases and other step contents/order. Historical job hashes retain an exact reviewed move normalization with negative install controls.",
+    "owner": "review/issue-58/2026-10-08-handoff.md"
+  },
+  {
+    "path": "tests/test_ri_ci.py",
+    "reason": "Verify the new maintained-source-quality RI layer and exact formatter/lint/acceptance routes alongside unchanged prior layer coverage.",
+    "owner": ".github/REPOSITORY-INTELLIGENCE.md"
+  }
+]

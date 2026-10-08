@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: Apache-2.0
 """Run enduring Python regressions; numbered task acceptance uses its own policy."""
+
 import argparse
 import contextlib
 import importlib.util
@@ -17,8 +18,9 @@ def selected_modules(tests_directory):
     tests_directory = Path(tests_directory).resolve()
     if not tests_directory.is_dir():
         raise ValueError("Missing repository tests directory")
-    paths = sorted(path for path in tests_directory.rglob("test_*.py")
-                   if not TASK_MODULE.fullmatch(path.name))
+    paths = sorted(
+        path for path in tests_directory.rglob("test_*.py") if not TASK_MODULE.fullmatch(path.name)
+    )
     if any(path.is_symlink() for path in paths):
         raise ValueError("Symlink is not an enduring test module")
     return paths
@@ -58,13 +60,25 @@ def run(tests_directory, stream=None):
     with enduring_suite(tests_directory) as (suite, paths):
         expected = suite.countTestCases()
         result = unittest.TextTestRunner(stream=stream, verbosity=1).run(suite)
-        passed = (expected > 0 and result.testsRun == expected and result.wasSuccessful()
-                  and not result.skipped and not result.expectedFailures and not result.unexpectedSuccesses)
-        return {"pass": passed, "modules": [path.relative_to(tests_directory).as_posix() for path in paths],
-                "tests_expected": expected, "tests_run": result.testsRun,
-                "failures": len(result.failures), "errors": len(result.errors),
-                "skipped": len(result.skipped), "expected_failures": len(result.expectedFailures),
-                "unexpected_successes": len(result.unexpectedSuccesses)}
+        passed = (
+            expected > 0
+            and result.testsRun == expected
+            and result.wasSuccessful()
+            and not result.skipped
+            and not result.expectedFailures
+            and not result.unexpectedSuccesses
+        )
+        return {
+            "pass": passed,
+            "modules": [path.relative_to(tests_directory).as_posix() for path in paths],
+            "tests_expected": expected,
+            "tests_run": result.testsRun,
+            "failures": len(result.failures),
+            "errors": len(result.errors),
+            "skipped": len(result.skipped),
+            "expected_failures": len(result.expectedFailures),
+            "unexpected_successes": len(result.unexpectedSuccesses),
+        }
 
 
 if __name__ == "__main__":

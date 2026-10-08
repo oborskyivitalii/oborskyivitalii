@@ -1,170 +1,524 @@
 'use strict';
-const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),os=require('node:os');
-const artifact=require('../tools/quality/artifact.cjs'),staging=require('../tools/staging/package.cjs');
-const hosted=require('../tools/staging/hosted.cjs');
-const state=require('../tools/staging/state.cjs');
-const snapshot=require('../tools/site/snapshot.cjs');
-function fixture(){
-  const dir=fs.mkdtempSync(path.join(os.tmpdir(),'site-staging-test-')),input=path.join(dir,'input'),out=path.join(dir,'package');
-  fs.mkdirSync(input);fs.cpSync(path.resolve(__dirname,'../docs'),path.join(input,'public'),{recursive:true});
-  const source={schema:1,sourceDirty:false,sourceCommit:'a'.repeat(40),candidateCommit:'a'.repeat(40),sourceTree:'b'.repeat(40),...artifact.manifest(path.join(input,'public'))};
-  const gate={schema:1,kind:'pr-gate',pass:true,...source,jobs:{build:{result:'success'},static:{result:'success'},linux:{result:'success'}},githubArtifact:{id:'123',uploadDigest:'c'.repeat(64)}};
-  fs.writeFileSync(path.join(input,'artifact.json'),JSON.stringify(source));fs.mkdirSync(path.join(input,'gate'));fs.writeFileSync(path.join(input,'gate/release-manifest.json'),JSON.stringify(gate));
-  return {dir,input,out,source,gate,expected:{sourceCommit:source.sourceCommit,publicDigest:source.artifactDigest,artifactId:'123',uploadDigest:'c'.repeat(64)}};
+const test = require('node:test'),
+  assert = require('node:assert/strict'),
+  fs = require('node:fs'),
+  path = require('node:path'),
+  os = require('node:os');
+const artifact = require('../tools/quality/artifact.cjs'),
+  staging = require('../tools/staging/package.cjs');
+const hosted = require('../tools/staging/hosted.cjs');
+const state = require('../tools/staging/state.cjs');
+const snapshot = require('../tools/site/snapshot.cjs');
+function fixture() {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'site-staging-test-')),
+    input = path.join(dir, 'input'),
+    out = path.join(dir, 'package');
+  fs.mkdirSync(input);
+  fs.cpSync(path.resolve(__dirname, '../docs'), path.join(input, 'public'), { recursive: true });
+  const source = {
+    schema: 1,
+    sourceDirty: false,
+    sourceCommit: 'a'.repeat(40),
+    candidateCommit: 'a'.repeat(40),
+    sourceTree: 'b'.repeat(40),
+    ...artifact.manifest(path.join(input, 'public')),
+  };
+  const gate = {
+    schema: 1,
+    kind: 'pr-gate',
+    pass: true,
+    ...source,
+    jobs: {
+      build: { result: 'success' },
+      static: { result: 'success' },
+      linux: { result: 'success' },
+    },
+    githubArtifact: { id: '123', uploadDigest: 'c'.repeat(64) },
+  };
+  fs.writeFileSync(path.join(input, 'artifact.json'), JSON.stringify(source));
+  fs.mkdirSync(path.join(input, 'gate'));
+  fs.writeFileSync(path.join(input, 'gate/release-manifest.json'), JSON.stringify(gate));
+  return {
+    dir,
+    input,
+    out,
+    source,
+    gate,
+    expected: {
+      sourceCommit: source.sourceCommit,
+      publicDigest: source.artifactDigest,
+      artifactId: '123',
+      uploadDigest: 'c'.repeat(64),
+    },
+  };
 }
 // Synthetic legacy-declaration fixture exercises consumer compatibility only;
 // current scene/browser behavior remains owned by the actual joint artifact.
-function legacyFixture(){
-  const f=fixture(),publicDir=path.join(f.input,'public'),revisionFile=path.join(publicDir,'site-revision.json');
-  const revision=JSON.parse(fs.readFileSync(revisionFile));delete revision.mediaFiles;
-  for(const file of ['assets/writing-paradigm.svg',`media/${revision.assets}/writing-paradigm.svg`])fs.rmSync(path.join(publicDir,file));
-  for(const file of ['space.js',`runtime/${revision.engine}/space.js`,'writing.html',revision.routes.writing.url]){
-    const target=path.join(publicDir,file);fs.writeFileSync(target,fs.readFileSync(target,'utf8').replaceAll('writing-paradigm','legacy-fixture'));
+function legacyFixture() {
+  const f = fixture(),
+    publicDir = path.join(f.input, 'public'),
+    revisionFile = path.join(publicDir, 'site-revision.json');
+  const revision = JSON.parse(fs.readFileSync(revisionFile));
+  delete revision.mediaFiles;
+  for (const file of [
+    'assets/writing-paradigm.svg',
+    `media/${revision.assets}/writing-paradigm.svg`,
+  ])
+    fs.rmSync(path.join(publicDir, file));
+  for (const file of [
+    'space.js',
+    `runtime/${revision.engine}/space.js`,
+    'writing.html',
+    revision.routes.writing.url,
+  ]) {
+    const target = path.join(publicDir, file);
+    fs.writeFileSync(
+      target,
+      fs.readFileSync(target, 'utf8').replaceAll('writing-paradigm', 'legacy-fixture')
+    );
   }
-  revision.routes.writing.sha256=artifact.digest(fs.readFileSync(path.join(publicDir,revision.routes.writing.url)));
-  fs.writeFileSync(revisionFile,JSON.stringify(revision));
-  const manifest=artifact.manifest(publicDir);Object.assign(f.source,manifest);Object.assign(f.gate,manifest);f.expected.publicDigest=manifest.artifactDigest;
-  fs.writeFileSync(path.join(f.input,'artifact.json'),JSON.stringify(f.source));fs.writeFileSync(path.join(f.input,'gate/release-manifest.json'),JSON.stringify(f.gate));
+  revision.routes.writing.sha256 = artifact.digest(
+    fs.readFileSync(path.join(publicDir, revision.routes.writing.url))
+  );
+  fs.writeFileSync(revisionFile, JSON.stringify(revision));
+  const manifest = artifact.manifest(publicDir);
+  Object.assign(f.source, manifest);
+  Object.assign(f.gate, manifest);
+  f.expected.publicDigest = manifest.artifactDigest;
+  fs.writeFileSync(path.join(f.input, 'artifact.json'), JSON.stringify(f.source));
+  fs.writeFileSync(path.join(f.input, 'gate/release-manifest.json'), JSON.stringify(f.gate));
   return f;
 }
-function formulaFixture(){
-  const f=fixture(),publicDir=path.join(f.input,'public'),revisionFile=path.join(publicDir,'site-revision.json');
-  const revision=JSON.parse(fs.readFileSync(revisionFile));
-  revision.mediaFiles=[...snapshot.mediaFiles];
-  const svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><path d="M1 1L9 9"/></svg>\n';
-  for(const file of ['assets/writing-paradigm.svg',`media/${revision.assets}/writing-paradigm.svg`])fs.writeFileSync(path.join(publicDir,file),svg);
-  fs.writeFileSync(revisionFile,JSON.stringify(revision));
-  const manifest=artifact.manifest(publicDir);Object.assign(f.source,manifest);Object.assign(f.gate,manifest);f.expected.publicDigest=manifest.artifactDigest;
-  fs.writeFileSync(path.join(f.input,'artifact.json'),JSON.stringify(f.source));fs.writeFileSync(path.join(f.input,'gate/release-manifest.json'),JSON.stringify(f.gate));
-  return {...f,publicDir,revision,revisionFile};
+function formulaFixture() {
+  const f = fixture(),
+    publicDir = path.join(f.input, 'public'),
+    revisionFile = path.join(publicDir, 'site-revision.json');
+  const revision = JSON.parse(fs.readFileSync(revisionFile));
+  revision.mediaFiles = [...snapshot.mediaFiles];
+  const svg =
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><path d="M1 1L9 9"/></svg>\n';
+  for (const file of [
+    'assets/writing-paradigm.svg',
+    `media/${revision.assets}/writing-paradigm.svg`,
+  ])
+    fs.writeFileSync(path.join(publicDir, file), svg);
+  fs.writeFileSync(revisionFile, JSON.stringify(revision));
+  const manifest = artifact.manifest(publicDir);
+  Object.assign(f.source, manifest);
+  Object.assign(f.gate, manifest);
+  f.expected.publicDigest = manifest.artifactDigest;
+  fs.writeFileSync(path.join(f.input, 'artifact.json'), JSON.stringify(f.source));
+  fs.writeFileSync(path.join(f.input, 'gate/release-manifest.json'), JSON.stringify(f.gate));
+  return { ...f, publicDir, revision, revisionFile };
 }
-test('trusted controller admits the declared formula alias and immutable copy while retaining legacy staging and rollback packages',()=>{
-  for(const create of [fixture,legacyFixture,formulaFixture]){
-    const f=create();try{const record=staging.build(f.input,f.out,f.expected);assert.equal(staging.verify(f.out,record,f.expected),true);}
-    finally{fs.rmSync(f.dir,{recursive:true,force:true});}
+test('trusted controller admits the declared formula alias and immutable copy while retaining legacy staging and rollback packages', () => {
+  for (const create of [fixture, legacyFixture, formulaFixture]) {
+    const f = create();
+    try {
+      const record = staging.build(f.input, f.out, f.expected);
+      assert.equal(staging.verify(f.out, record, f.expected), true);
+    } finally {
+      fs.rmSync(f.dir, { recursive: true, force: true });
+    }
   }
 });
-test('formula media declarations, required copies and unknown inputs fail closed',()=>{
-  const f=formulaFixture();try{
-    const withoutDeclaration={...f.revision};delete withoutDeclaration.mediaFiles;fs.writeFileSync(f.revisionFile,JSON.stringify(withoutDeclaration));
-    assert.throws(()=>snapshot.verify(f.publicDir,f.source),/requires current media declaration/);
-    for(const mediaFiles of [snapshot.legacyMediaFiles,[...f.revision.mediaFiles,'arbitrary.svg'],[...f.revision.mediaFiles].reverse()]){
-      fs.writeFileSync(f.revisionFile,JSON.stringify({...f.revision,mediaFiles}));assert.throws(()=>snapshot.verify(f.publicDir,f.source),/finite current media declaration/);
+test('formula media declarations, required copies and unknown inputs fail closed', () => {
+  const f = formulaFixture();
+  try {
+    const withoutDeclaration = { ...f.revision };
+    delete withoutDeclaration.mediaFiles;
+    fs.writeFileSync(f.revisionFile, JSON.stringify(withoutDeclaration));
+    assert.throws(
+      () => snapshot.verify(f.publicDir, f.source),
+      /requires current media declaration/
+    );
+    for (const mediaFiles of [
+      snapshot.legacyMediaFiles,
+      [...f.revision.mediaFiles, 'arbitrary.svg'],
+      [...f.revision.mediaFiles].reverse(),
+    ]) {
+      fs.writeFileSync(f.revisionFile, JSON.stringify({ ...f.revision, mediaFiles }));
+      assert.throws(
+        () => snapshot.verify(f.publicDir, f.source),
+        /finite current media declaration/
+      );
     }
-    fs.writeFileSync(f.revisionFile,JSON.stringify(f.revision));
-    const missingAlias={...f.source,files:{...f.source.files}};delete missingAlias.files['assets/writing-paradigm.svg'];
-    assert.throws(()=>snapshot.verify(f.publicDir,missingAlias),/missing public file assets\/writing-paradigm.svg/);
-    const immutable=path.join(f.publicDir,`media/${f.revision.assets}/writing-paradigm.svg`),original=fs.readFileSync(immutable);
-    fs.appendFileSync(immutable,'<!-- changed -->');assert.throws(()=>snapshot.verify(f.publicDir,f.source),/immutable media differs/);fs.writeFileSync(immutable,original);
-    fs.rmSync(immutable);assert.throws(()=>snapshot.verify(f.publicDir,f.source),/ENOENT/);
-    for(const name of ['assets/arbitrary.svg',`media/${f.revision.assets}/arbitrary.svg`])assert.throws(()=>snapshot.inventory([...Object.keys(f.source.files),name]),/unexpected public input/);
-  }finally{fs.rmSync(f.dir,{recursive:true,force:true});}
+    fs.writeFileSync(f.revisionFile, JSON.stringify(f.revision));
+    const missingAlias = { ...f.source, files: { ...f.source.files } };
+    delete missingAlias.files['assets/writing-paradigm.svg'];
+    assert.throws(
+      () => snapshot.verify(f.publicDir, missingAlias),
+      /missing public file assets\/writing-paradigm.svg/
+    );
+    const immutable = path.join(f.publicDir, `media/${f.revision.assets}/writing-paradigm.svg`),
+      original = fs.readFileSync(immutable);
+    fs.appendFileSync(immutable, '<!-- changed -->');
+    assert.throws(() => snapshot.verify(f.publicDir, f.source), /immutable media differs/);
+    fs.writeFileSync(immutable, original);
+    fs.rmSync(immutable);
+    assert.throws(() => snapshot.verify(f.publicDir, f.source), /ENOENT/);
+    for (const name of ['assets/arbitrary.svg', `media/${f.revision.assets}/arbitrary.svg`])
+      assert.throws(
+        () => snapshot.inventory([...Object.keys(f.source.files), name]),
+        /unexpected public input/
+      );
+  } finally {
+    fs.rmSync(f.dir, { recursive: true, force: true });
+  }
 });
-test('controller package consumer rechecks formula media binding even when package manifests are internally consistent',()=>{
-  const f=formulaFixture();try{
-    const record=staging.build(f.input,f.out,f.expected),publicDir=path.join(f.out,'public'),revisionFile=path.join(publicDir,'site-revision.json');
-    const revision={...f.revision};delete revision.mediaFiles;fs.writeFileSync(revisionFile,JSON.stringify(revision));
-    const actual=artifact.manifest(publicDir);record.files=actual.files;record.packageDigest=actual.artifactDigest;
-    for(const name of Object.keys(record.source.files))record.source.files[name]=actual.files[name];
-    assert.throws(()=>staging.verify(f.out,record,f.expected),/requires current media declaration/);
-  }finally{fs.rmSync(f.dir,{recursive:true,force:true});}
+test('controller package consumer rechecks formula media binding even when package manifests are internally consistent', () => {
+  const f = formulaFixture();
+  try {
+    const record = staging.build(f.input, f.out, f.expected),
+      publicDir = path.join(f.out, 'public'),
+      revisionFile = path.join(publicDir, 'site-revision.json');
+    const revision = { ...f.revision };
+    delete revision.mediaFiles;
+    fs.writeFileSync(revisionFile, JSON.stringify(revision));
+    const actual = artifact.manifest(publicDir);
+    record.files = actual.files;
+    record.packageDigest = actual.artifactDigest;
+    for (const name of Object.keys(record.source.files))
+      record.source.files[name] = actual.files[name];
+    assert.throws(
+      () => staging.verify(f.out, record, f.expected),
+      /requires current media declaration/
+    );
+  } finally {
+    fs.rmSync(f.dir, { recursive: true, force: true });
+  }
 });
-test('staging adds only host policy, real 404 and revision; every tested public byte stays exact',()=>{
-  const f=fixture();try{
-    const record=staging.build(f.input,f.out,f.expected);assert.equal(staging.verify(f.out,record,f.expected),true);
-    assert.notEqual(record.packageDigest,f.source.artifactDigest);
-    assert.match(staging.headers,/X-Robots-Tag: noindex, nofollow/);assert.match(staging.headers,/max-age=0/);
-    assert.deepEqual(record.hostFiles,['404.html','_headers','_staging/revision.json']);
-    for(const file of staging.publicFiles)assert.deepEqual(fs.readFileSync(path.join(f.out,'public',file)),fs.readFileSync(path.join(f.input,'public',file)));
-    assert.equal(fs.existsSync(path.join(f.out,'public','_redirects')),false,'no SPA catch-all');
-    assert.equal(fs.existsSync(path.join(f.out,'public','review')),false);
-  }finally{fs.rmSync(f.dir,{recursive:true,force:true});}
+test('staging adds only host policy, real 404 and revision; every tested public byte stays exact', () => {
+  const f = fixture();
+  try {
+    const record = staging.build(f.input, f.out, f.expected);
+    assert.equal(staging.verify(f.out, record, f.expected), true);
+    assert.notEqual(record.packageDigest, f.source.artifactDigest);
+    assert.match(staging.headers, /X-Robots-Tag: noindex, nofollow/);
+    assert.match(staging.headers, /max-age=0/);
+    assert.deepEqual(record.hostFiles, ['404.html', '_headers', '_staging/revision.json']);
+    for (const file of staging.publicFiles)
+      assert.deepEqual(
+        fs.readFileSync(path.join(f.out, 'public', file)),
+        fs.readFileSync(path.join(f.input, 'public', file))
+      );
+    assert.equal(
+      fs.existsSync(path.join(f.out, 'public', '_redirects')),
+      false,
+      'no SPA catch-all'
+    );
+    assert.equal(fs.existsSync(path.join(f.out, 'public', 'review')), false);
+  } finally {
+    fs.rmSync(f.dir, { recursive: true, force: true });
+  }
 });
-test('missing/failed/mismatched/stale gates and extra source inputs fail closed',()=>{
-  const f=fixture();try{
-    for(const mutate of [g=>g.pass=false,g=>g.kind='release-manifest',g=>g.jobs.linux.result='cancelled',g=>g.sourceCommit='d'.repeat(40),g=>g.githubArtifact.id='456']){
-      const g=structuredClone(f.gate);mutate(g);assert.throws(()=>staging.sourceGate(f.source,g,f.expected));
+test('missing/failed/mismatched/stale gates and extra source inputs fail closed', () => {
+  const f = fixture();
+  try {
+    for (const mutate of [
+      (g) => (g.pass = false),
+      (g) => (g.kind = 'release-manifest'),
+      (g) => (g.jobs.linux.result = 'cancelled'),
+      (g) => (g.sourceCommit = 'd'.repeat(40)),
+      (g) => (g.githubArtifact.id = '456'),
+    ]) {
+      const g = structuredClone(f.gate);
+      mutate(g);
+      assert.throws(() => staging.sourceGate(f.source, g, f.expected));
     }
-    assert.throws(()=>staging.sourceGate(f.source,f.gate,{...f.expected,sourceCommit:'e'.repeat(40)}));
-    assert.throws(()=>staging.sourceGate({...f.source,sourceDirty:true},f.gate,f.expected));
-    assert.throws(()=>staging.sourceGate({...f.source,files:{...f.source.files,'research-attachment.docx':{}}},f.gate,f.expected));
-  }finally{fs.rmSync(f.dir,{recursive:true,force:true});}
+    assert.throws(() =>
+      staging.sourceGate(f.source, f.gate, { ...f.expected, sourceCommit: 'e'.repeat(40) })
+    );
+    assert.throws(() => staging.sourceGate({ ...f.source, sourceDirty: true }, f.gate, f.expected));
+    assert.throws(() =>
+      staging.sourceGate(
+        { ...f.source, files: { ...f.source.files, 'research-attachment.docx': {} } },
+        f.gate,
+        f.expected
+      )
+    );
+  } finally {
+    fs.rmSync(f.dir, { recursive: true, force: true });
+  }
 });
-test('tampering with HTML, host policy or package metadata is rejected without replacing files',()=>{
-  const f=fixture();try{
-    const record=staging.build(f.input,f.out,f.expected),html=path.join(f.out,'public','index.html'),original=fs.readFileSync(html);
-    fs.appendFileSync(html,'<!-- mutation -->');assert.throws(()=>staging.verify(f.out,record,f.expected));fs.writeFileSync(html,original);
-    fs.writeFileSync(path.join(f.out,'public','_headers'),'/*\n  X-Robots-Tag: all\n');assert.throws(()=>staging.verify(f.out,record,f.expected));
-    assert.throws(()=>staging.build(f.input,f.out,f.expected),'existing output is not erased');
-  }finally{fs.rmSync(f.dir,{recursive:true,force:true});}
+test('tampering with HTML, host policy or package metadata is rejected without replacing files', () => {
+  const f = fixture();
+  try {
+    const record = staging.build(f.input, f.out, f.expected),
+      html = path.join(f.out, 'public', 'index.html'),
+      original = fs.readFileSync(html);
+    fs.appendFileSync(html, '<!-- mutation -->');
+    assert.throws(() => staging.verify(f.out, record, f.expected));
+    fs.writeFileSync(html, original);
+    fs.writeFileSync(path.join(f.out, 'public', '_headers'), '/*\n  X-Robots-Tag: all\n');
+    assert.throws(() => staging.verify(f.out, record, f.expected));
+    assert.throws(() => staging.build(f.input, f.out, f.expected), 'existing output is not erased');
+  } finally {
+    fs.rmSync(f.dir, { recursive: true, force: true });
+  }
 });
-test('hosted origin and redirect boundary cannot crawl another site or the production apex',async()=>{
-  const project='unit-test-staging',base='https://preview.'+project+'.pages.dev';
-  assert.equal(hosted.origin(base,project),base);assert.equal(hosted.origin('https://staging.'+project+'.pages.dev',project,true),'https://staging.'+project+'.pages.dev');
-  for(const url of ['http://preview.'+project+'.pages.dev','https://'+project+'.pages.dev','https://preview.other-project.pages.dev','https://user:pass@preview.'+project+'.pages.dev','https://preview.'+project+'.pages.dev/path'])assert.throws(()=>hosted.origin(url,project));
-  await assert.rejects(()=>hosted.request(base+'/',base,async()=>new Response(null,{status:302,headers:{location:'https://example.org/'}})),/left staging origin/);
-  await assert.rejects(()=>hosted.request(base+'/',base,async()=>new Response(null,{status:302,headers:{location:'/'}})),/Too many/);
+test('hosted origin and redirect boundary cannot crawl another site or the production apex', async () => {
+  const project = 'unit-test-staging',
+    base = 'https://preview.' + project + '.pages.dev';
+  assert.equal(hosted.origin(base, project), base);
+  assert.equal(
+    hosted.origin('https://staging.' + project + '.pages.dev', project, true),
+    'https://staging.' + project + '.pages.dev'
+  );
+  for (const url of [
+    'http://preview.' + project + '.pages.dev',
+    'https://' + project + '.pages.dev',
+    'https://preview.other-project.pages.dev',
+    'https://user:pass@preview.' + project + '.pages.dev',
+    'https://preview.' + project + '.pages.dev/path',
+  ])
+    assert.throws(() => hosted.origin(url, project));
+  await assert.rejects(
+    () =>
+      hosted.request(
+        base + '/',
+        base,
+        async () =>
+          new Response(null, { status: 302, headers: { location: 'https://example.org/' } })
+      ),
+    /left staging origin/
+  );
+  await assert.rejects(
+    () =>
+      hosted.request(
+        base + '/',
+        base,
+        async () => new Response(null, { status: 302, headers: { location: '/' } })
+      ),
+    /Too many/
+  );
 });
-test('mutable staging headers admit stronger no-store without admitting immutable or missing cache policy',()=>{
-  const headers=cache=>new Headers({'x-robots-tag':'noindex, nofollow','x-content-type-options':'nosniff','cache-control':cache});
-  for(const cache of ['no-cache, max-age=0, must-revalidate','no-store','private, NO-STORE'])assert.doesNotThrow(()=>hosted.responseHeaders(headers(cache)));
-  for(const cache of ['','public, max-age=3600','private, max-age=0','x-no-store','no-cache="x-robots-tag"','no-store, immutable','no-cache, IMMUTABLE'])assert.throws(()=>hosted.responseHeaders(headers(cache)));
-  assert.doesNotThrow(()=>hosted.responseHeaders(headers('public, max-age=31536000, immutable'),true));
-  for(const cache of ['public, max-age=31536000, immutable, no-store','public, max-age=31536000, immutable, no-cache','no-store'])assert.throws(()=>hosted.responseHeaders(headers(cache),true));
+test('mutable staging headers admit stronger no-store without admitting immutable or missing cache policy', () => {
+  const headers = (cache) =>
+    new Headers({
+      'x-robots-tag': 'noindex, nofollow',
+      'x-content-type-options': 'nosniff',
+      'cache-control': cache,
+    });
+  for (const cache of ['no-cache, max-age=0, must-revalidate', 'no-store', 'private, NO-STORE'])
+    assert.doesNotThrow(() => hosted.responseHeaders(headers(cache)));
+  for (const cache of [
+    '',
+    'public, max-age=3600',
+    'private, max-age=0',
+    'x-no-store',
+    'no-cache="x-robots-tag"',
+    'no-store, immutable',
+    'no-cache, IMMUTABLE',
+  ])
+    assert.throws(() => hosted.responseHeaders(headers(cache)));
+  assert.doesNotThrow(() =>
+    hosted.responseHeaders(headers('public, max-age=31536000, immutable'), true)
+  );
+  for (const cache of [
+    'public, max-age=31536000, immutable, no-store',
+    'public, max-age=31536000, immutable, no-cache',
+    'no-store',
+  ])
+    assert.throws(() => hosted.responseHeaders(headers(cache), true));
 });
-function fetchFixture(f,options={}){
-  return async url=>{
-    const u=new URL(url),headers={'x-robots-tag':options.robots||'noindex, nofollow','cache-control':staging.policyHeaders(u.pathname.slice(1))['Cache-Control'],'x-content-type-options':'nosniff'};
-    if(u.pathname.endsWith('.html'))return new Response(null,{status:301,headers:{location:u.pathname.slice(0,-5)+(options.dropQuery?'':u.search)}});
-    let file=u.pathname.slice(1)||'index';if(!path.extname(file)&&fs.existsSync(path.join(f.out,'public',file+'.html')))file+='.html';
-    const missing=!fs.existsSync(path.join(f.out,'public',file));if(missing)file=options.spa?'index.html':'404.html';
-    if(missing&&options.noStore404)headers['cache-control']='no-store';
-    const extensions={'.html':'text/html','.css':'text/css','.js':'text/javascript','.svg':'image/svg+xml','.webp':'image/webp','.jpg':'image/jpeg','.json':'application/json'};
-    headers['content-type']=extensions[path.extname(file)];const bytes=fs.readFileSync(path.join(f.out,'public',file));
-    return new Response(options.tamper&&file==='styles.css'?Buffer.from('bad bytes'):bytes,{status:missing&&!options.spa?404:200,headers});
+function fetchFixture(f, options = {}) {
+  return async (url) => {
+    const u = new URL(url),
+      headers = {
+        'x-robots-tag': options.robots || 'noindex, nofollow',
+        'cache-control': staging.policyHeaders(u.pathname.slice(1))['Cache-Control'],
+        'x-content-type-options': 'nosniff',
+      };
+    if (u.pathname.endsWith('.html'))
+      return new Response(null, {
+        status: 301,
+        headers: { location: u.pathname.slice(0, -5) + (options.dropQuery ? '' : u.search) },
+      });
+    let file = u.pathname.slice(1) || 'index';
+    if (!path.extname(file) && fs.existsSync(path.join(f.out, 'public', file + '.html')))
+      file += '.html';
+    const missing = !fs.existsSync(path.join(f.out, 'public', file));
+    if (missing) file = options.spa ? 'index.html' : '404.html';
+    if (missing && options.noStore404) headers['cache-control'] = 'no-store';
+    const extensions = {
+      '.html': 'text/html',
+      '.css': 'text/css',
+      '.js': 'text/javascript',
+      '.svg': 'image/svg+xml',
+      '.webp': 'image/webp',
+      '.jpg': 'image/jpeg',
+      '.json': 'application/json',
+    };
+    headers['content-type'] = extensions[path.extname(file)];
+    const bytes = fs.readFileSync(path.join(f.out, 'public', file));
+    return new Response(
+      options.tamper && file === 'styles.css' ? Buffer.from('bad bytes') : bytes,
+      { status: missing && !options.spa ? 404 : 200, headers }
+    );
   };
 }
-test('real-HTTP smoke model checks every served byte, extensionless query redirects, noindex and actual 404',async()=>{
-  const f=fixture();try{
-    const record=staging.build(f.input,f.out,f.expected),base='https://preview.unit-test-staging.pages.dev';
-    const result=await hosted.httpSmoke(base,record,fetchFixture(f));assert.equal(result.actual404,true);assert.equal(result.queryRedirect,true);assert.equal(result.files.length,Object.keys(f.source.files).length);
-    assert.equal((await hosted.httpSmoke(base,record,fetchFixture(f,{noStore404:true}))).actual404,true);
-    for(const options of [{robots:'noindex'},{tamper:true},{dropQuery:true},{spa:true}])await assert.rejects(()=>hosted.httpSmoke(base,record,fetchFixture(f,options)));
-  }finally{fs.rmSync(f.dir,{recursive:true,force:true});}
+test('real-HTTP smoke model checks every served byte, extensionless query redirects, noindex and actual 404', async () => {
+  const f = fixture();
+  try {
+    const record = staging.build(f.input, f.out, f.expected),
+      base = 'https://preview.unit-test-staging.pages.dev';
+    const result = await hosted.httpSmoke(base, record, fetchFixture(f));
+    assert.equal(result.actual404, true);
+    assert.equal(result.queryRedirect, true);
+    assert.equal(result.files.length, Object.keys(f.source.files).length);
+    assert.equal(
+      (await hosted.httpSmoke(base, record, fetchFixture(f, { noStore404: true }))).actual404,
+      true
+    );
+    for (const options of [
+      { robots: 'noindex' },
+      { tamper: true },
+      { dropQuery: true },
+      { spa: true },
+    ])
+      await assert.rejects(() => hosted.httpSmoke(base, record, fetchFixture(f, options)));
+  } finally {
+    fs.rmSync(f.dir, { recursive: true, force: true });
+  }
 });
-test('trusted source, dedicated provider project and known rollback metadata fail closed',()=>{
-  const sha='a'.repeat(40);
-  const previousProject=process.env.CLOUDFLARE_PAGES_PROJECT;process.env.CLOUDFLARE_PAGES_PROJECT='unit-test-staging';
-  try{
-    const project={name:'unit-test-staging',production_branch:'production-disabled'};assert.equal(state.projectPolicy(project),true);
-    for(const mutation of [{production_branch:'staging'},{source:{type:'github'}},{uses_functions:true},{build_config:{web_analytics_tag:'enabled'}}])assert.throws(()=>state.projectPolicy({...project,...mutation}));
-    const record={source:{sourceCommit:sha,artifactDigest:'c'.repeat(64)},packageDigest:'d'.repeat(64)},previous={schema:2,provider:'cloudflare-pages',project:project.name,sourceBranch:'main',workflow:'.github/workflows/site-checks.yml',sourceCommit:sha,publicDigest:'c'.repeat(64),packageDigest:'d'.repeat(64),packageUploadDigest:'e'.repeat(64),packageArtifactId:'123',runId:'456',runAttempt:'1'};
-    assert.equal(state.knownPayload(previous,project.name),true);assert.equal(state.knownPayload(previous,'other-project'),false);assert.equal(state.rollbackRecord(record,previous),true);
-    for(const mutation of [{schema:1},{sourceBranch:'work/site-v1-20261001'},{workflow:'.github/workflows/other.yml'},{runAttempt:null},{packageUploadDigest:null}])assert.equal(state.knownPayload({...previous,...mutation},project.name),false);
-    assert.throws(()=>state.rollbackRecord(record,{...previous,packageDigest:'e'.repeat(64)}));assert.throws(()=>state.rollbackRecord(record,null));
-  }finally{if(previousProject===undefined)delete process.env.CLOUDFLARE_PAGES_PROJECT;else process.env.CLOUDFLARE_PAGES_PROJECT=previousProject;}
+test('trusted source, dedicated provider project and known rollback metadata fail closed', () => {
+  const sha = 'a'.repeat(40);
+  const previousProject = process.env.CLOUDFLARE_PAGES_PROJECT;
+  process.env.CLOUDFLARE_PAGES_PROJECT = 'unit-test-staging';
+  try {
+    const project = { name: 'unit-test-staging', production_branch: 'production-disabled' };
+    assert.equal(state.projectPolicy(project), true);
+    for (const mutation of [
+      { production_branch: 'staging' },
+      { source: { type: 'github' } },
+      { uses_functions: true },
+      { build_config: { web_analytics_tag: 'enabled' } },
+    ])
+      assert.throws(() => state.projectPolicy({ ...project, ...mutation }));
+    const record = {
+        source: { sourceCommit: sha, artifactDigest: 'c'.repeat(64) },
+        packageDigest: 'd'.repeat(64),
+      },
+      previous = {
+        schema: 2,
+        provider: 'cloudflare-pages',
+        project: project.name,
+        sourceBranch: 'main',
+        workflow: '.github/workflows/site-checks.yml',
+        sourceCommit: sha,
+        publicDigest: 'c'.repeat(64),
+        packageDigest: 'd'.repeat(64),
+        packageUploadDigest: 'e'.repeat(64),
+        packageArtifactId: '123',
+        runId: '456',
+        runAttempt: '1',
+      };
+    assert.equal(state.knownPayload(previous, project.name), true);
+    assert.equal(state.knownPayload(previous, 'other-project'), false);
+    assert.equal(state.rollbackRecord(record, previous), true);
+    for (const mutation of [
+      { schema: 1 },
+      { sourceBranch: 'work/site-v1-20261001' },
+      { workflow: '.github/workflows/other.yml' },
+      { runAttempt: null },
+      { packageUploadDigest: null },
+    ])
+      assert.equal(state.knownPayload({ ...previous, ...mutation }, project.name), false);
+    assert.throws(() =>
+      state.rollbackRecord(record, { ...previous, packageDigest: 'e'.repeat(64) })
+    );
+    assert.throws(() => state.rollbackRecord(record, null));
+  } finally {
+    if (previousProject === undefined) delete process.env.CLOUDFLARE_PAGES_PROJECT;
+    else process.env.CLOUDFLARE_PAGES_PROJECT = previousProject;
+  }
 });
-test('provisioning reuses an existing project and never converts permission/rate errors into creation',async()=>{
-  let writes=0;const create=async body=>{writes++;return body;},missing=async()=>{const error=Error('missing');error.status=404;throw error;};
-  const existing={name:'existing-staging'};assert.equal(await state.ensureProject(async()=>existing,create,true,'existing-staging'),existing);assert.equal(writes,0);
-  await assert.rejects(()=>state.ensureProject(missing,create,false,'new-staging'));assert.equal(writes,0);
-  assert.deepEqual(await state.ensureProject(missing,create,true,'new-staging'),{name:'new-staging',production_branch:'production-disabled'});assert.equal(writes,1);
-  for(const status of [401,403,429,500])await assert.rejects(()=>state.ensureProject(async()=>{const error=Error('blocked');error.status=status;throw error;},create,true,'new-staging'));
-  await assert.rejects(()=>state.ensureProject(missing,create,true,'production'));assert.equal(writes,1);
+test('provisioning reuses an existing project and never converts permission/rate errors into creation', async () => {
+  let writes = 0;
+  const create = async (body) => {
+      writes++;
+      return body;
+    },
+    missing = async () => {
+      const error = Error('missing');
+      error.status = 404;
+      throw error;
+    };
+  const existing = { name: 'existing-staging' };
+  assert.equal(
+    await state.ensureProject(async () => existing, create, true, 'existing-staging'),
+    existing
+  );
+  assert.equal(writes, 0);
+  await assert.rejects(() => state.ensureProject(missing, create, false, 'new-staging'));
+  assert.equal(writes, 0);
+  assert.deepEqual(await state.ensureProject(missing, create, true, 'new-staging'), {
+    name: 'new-staging',
+    production_branch: 'production-disabled',
+  });
+  assert.equal(writes, 1);
+  for (const status of [401, 403, 429, 500])
+    await assert.rejects(() =>
+      state.ensureProject(
+        async () => {
+          const error = Error('blocked');
+          error.status = status;
+          throw error;
+        },
+        create,
+        true,
+        'new-staging'
+      )
+    );
+  await assert.rejects(() => state.ensureProject(missing, create, true, 'production'));
+  assert.equal(writes, 1);
 });
-test('staging workflow depends on successful immutable gates, serializes promotion and never uses privileged PR execution',()=>{
-  const caller=fs.readFileSync(path.resolve(__dirname,'../.github/workflows/site-checks.yml'),'utf8'),workflow=fs.readFileSync(path.resolve(__dirname,'../.github/workflows/site-staging.yml'),'utf8');
-  assert.match(caller,/needs: checks/);assert.match(caller,/SITE_STAGING_ENABLED == 'true'/);assert.match(caller,/github\.event_name == 'workflow_dispatch'/);assert.match(caller,/github\.ref == 'refs\/heads\/main'/);assert.match(caller,/github\.sha == inputs\.candidate_sha/);
-  assert.doesNotMatch(caller,/false &&/);assert.doesNotMatch(workflow,/if: false &&/);assert.doesNotMatch(caller,/pull_request\.number == 10|work\/site-v1-20261001/);
-  assert.match(caller,/issues: write/);assert.match(workflow,/issues: write/);assert.match(workflow,/SITE_GATE_UPLOAD_DIGEST/);assert.match(workflow,/SITE_PACKAGE_UPLOAD_DIGEST/);
-  assert.doesNotMatch(caller,/secrets: inherit/,'do not expose all repository secrets');
-  assert.match(workflow,/artifact-ids: \$\{\{ inputs.public_artifact_id \}\}/);assert.match(workflow,/artifact-ids: \$\{\{ inputs.gate_artifact_id \}\}/);
-  assert.match(workflow,/environment: staging/);assert.match(workflow,/cancel-in-progress: false/);assert.doesNotMatch(workflow,/pull_request_target|--branch=production|gitHubToken:/);
-  assert.ok(workflow.indexOf('Candidate HTTPS')<workflow.indexOf('Promote identical'));assert.ok(workflow.indexOf('state.cjs begin')<workflow.indexOf('Promote identical'));
-  assert.ok(workflow.indexOf('state.cjs candidate')>workflow.indexOf('Candidate HTTPS'));assert.ok(workflow.indexOf('state.cjs candidate')<workflow.indexOf('site-staging-session-'));
-  assert.match(workflow,/steps.candidate_record.outcome != 'success'/,'failed candidate identity recording must finalize the failed attempt');
-  assert.match(workflow,/steps.stable_smoke.outcome != 'success'/);assert.match(workflow,/state.cjs verify-rollback-deployment/);assert.match(workflow,/Fail the candidate even when recovery succeeds/);
-  const promotion=workflow.slice(workflow.indexOf('\n  promote:'));
-  assert.doesNotMatch(promotion,/steps\.prepare\./,'recovery metadata must cross the job boundary');
-  assert.match(promotion,/needs\.deploy\.outputs\.rollback_artifact_id/);assert.match(promotion,/needs\.deploy\.outputs\.rollback_sha/);
+test('staging workflow depends on successful immutable gates, serializes promotion and never uses privileged PR execution', () => {
+  const caller = fs.readFileSync(
+      path.resolve(__dirname, '../.github/workflows/site-checks.yml'),
+      'utf8'
+    ),
+    workflow = fs.readFileSync(
+      path.resolve(__dirname, '../.github/workflows/site-staging.yml'),
+      'utf8'
+    );
+  assert.match(caller, /needs: checks/);
+  assert.match(caller, /SITE_STAGING_ENABLED == 'true'/);
+  assert.match(caller, /github\.event_name == 'workflow_dispatch'/);
+  assert.match(caller, /github\.ref == 'refs\/heads\/main'/);
+  assert.match(caller, /github\.sha == inputs\.candidate_sha/);
+  assert.doesNotMatch(caller, /false &&/);
+  assert.doesNotMatch(workflow, /if: false &&/);
+  assert.doesNotMatch(caller, /pull_request\.number == 10|work\/site-v1-20261001/);
+  assert.match(caller, /issues: write/);
+  assert.match(workflow, /issues: write/);
+  assert.match(workflow, /SITE_GATE_UPLOAD_DIGEST/);
+  assert.match(workflow, /SITE_PACKAGE_UPLOAD_DIGEST/);
+  assert.doesNotMatch(caller, /secrets: inherit/, 'do not expose all repository secrets');
+  assert.match(workflow, /artifact-ids: \$\{\{ inputs.public_artifact_id \}\}/);
+  assert.match(workflow, /artifact-ids: \$\{\{ inputs.gate_artifact_id \}\}/);
+  assert.match(workflow, /environment: staging/);
+  assert.match(workflow, /cancel-in-progress: false/);
+  assert.doesNotMatch(workflow, /pull_request_target|--branch=production|gitHubToken:/);
+  assert.ok(workflow.indexOf('Candidate HTTPS') < workflow.indexOf('Promote identical'));
+  assert.ok(workflow.indexOf('state.cjs begin') < workflow.indexOf('Promote identical'));
+  assert.ok(workflow.indexOf('state.cjs candidate') > workflow.indexOf('Candidate HTTPS'));
+  assert.ok(workflow.indexOf('state.cjs candidate') < workflow.indexOf('site-staging-session-'));
+  assert.match(
+    workflow,
+    /steps.candidate_record.outcome != 'success'/,
+    'failed candidate identity recording must finalize the failed attempt'
+  );
+  assert.match(workflow, /steps.stable_smoke.outcome != 'success'/);
+  assert.match(workflow, /state.cjs verify-rollback-deployment/);
+  assert.match(workflow, /Fail the candidate even when recovery succeeds/);
+  const promotion = workflow.slice(workflow.indexOf('\n  promote:'));
+  assert.doesNotMatch(
+    promotion,
+    /steps\.prepare\./,
+    'recovery metadata must cross the job boundary'
+  );
+  assert.match(promotion, /needs\.deploy\.outputs\.rollback_artifact_id/);
+  assert.match(promotion, /needs\.deploy\.outputs\.rollback_sha/);
 });

@@ -8,79 +8,43 @@
       "id": "AC01",
       "intent": "Canonical active source ownership.",
       "automated_scope": "The four old effect/export owners are absent, canonical files and source-role catalog entries exist, scoped literal imports preserve site-to-runtime dependency direction and retained executable consumers have no stale effect imports. Maintained source closure tests reject missing or misclassified browser effects; this is the declared literal-import/source subset, not a complete computed-import analysis.",
-      "checks": [
-        "SOURCE-OWNERS",
-        "QUALITY-COVERAGE"
-      ],
+      "checks": ["SOURCE-OWNERS", "QUALITY-COVERAGE"],
       "gates": []
     },
     {
       "id": "AC02",
       "intent": "Explicit pure effect contract.",
       "automated_scope": "Current maintained cases collect descriptors with variants.attach frozen, reject malformed/missing/reversed/duplicate/wrapped inputs, preserve raw code/CSS data, execute closure-safe factory serialization and verify offline marker/duplicate contracts. Descriptor design and unautomated readability judgment remain review obligations.",
-      "checks": [
-        "EFFECT-CONTRACT"
-      ],
-      "gates": [
-        "SOURCE-REVIEW"
-      ]
+      "checks": ["EFFECT-CONTRACT"],
+      "gates": ["SOURCE-REVIEW"]
     },
     {
       "id": "AC03",
       "intent": "Behavioral and delivery parity.",
       "automated_scope": "Task-specific immutable e501da8 evidence checks exact Color code/CSS/control hashes and byte-equal old/new offline adapters applied to the same current base. Authored content/templates/engine/scenes/assets/integrations/configuration and base public script/CSS bytes match that baseline. Selected actual generation/packaging/preview source contracts and Basic verify maintained runtime and output semantics while producer/snapshot hashes may legitimately change. These local checks do not observe current hosted navigation or PR preview smoke; those remain an exact-source external gate.",
-      "checks": [
-        "FROZEN-PARITY",
-        "AUTHOR-PARITY",
-        "DELIVERY-CONTRACTS",
-        "BASIC"
-      ],
-      "gates": [
-        "CURRENT-CI"
-      ]
+      "checks": ["FROZEN-PARITY", "AUTHOR-PARITY", "DELIVERY-CONTRACTS", "BASIC"],
+      "gates": ["CURRENT-CI"]
     },
     {
       "id": "AC04",
       "intent": "Ready-made quality tools cover active sources.",
       "automated_scope": "Maintained coverage and negative cases prove canonical effect selection, complete tracked import closure, omitted/ignored/duplicate/unparsed ESLint rejection, browser security scope, authored/generated CSS coverage and exact newly exposed projector complexity debt. Actual current-source lint/security run results and interpretation of free-tool/Sonar limits are separately reviewed; no scanner success is inferred from fixtures alone.",
-      "checks": [
-        "QUALITY-COVERAGE"
-      ],
-      "gates": [
-        "SOURCE-REVIEW",
-        "CURRENT-CI"
-      ]
+      "checks": ["QUALITY-COVERAGE"],
+      "gates": ["SOURCE-REVIEW", "CURRENT-CI"]
     },
     {
       "id": "AC05",
       "intent": "Code-style and RI compliance.",
       "automated_scope": "The current bounded style guard verifies its declared subset, R1 legacy entries are removed, source inventory/catalog/views and RI/CI coupling are current, and maintained profile cases retain complete test inventories and pass/skip accounting. Applicable CS01-CS10 rules outside the guard, remaining source-bound exceptions and follow-up R2-R6 tasks require substantive review.",
-      "checks": [
-        "SOURCE-OWNERS",
-        "CURRENT-GUARD",
-        "CURRENT-RI",
-        "RI-CI",
-        "PROFILE-CONTRACTS"
-      ],
-      "gates": [
-        "SOURCE-REVIEW"
-      ]
+      "checks": ["SOURCE-OWNERS", "CURRENT-GUARD", "CURRENT-RI", "RI-CI", "PROFILE-CONTRACTS"],
+      "gates": ["SOURCE-REVIEW"]
     },
     {
       "id": "AC06",
       "intent": "Reviewable separate implementation PR.",
       "automated_scope": "The local policy maps all six accepted criteria to current measurable checks and explicit gates; current RI/profile routes and acceptance-runner regressions preserve honest pending state. The policy cannot observe an actual linked Draft PR, required independent review, current raw-head CI, checkbox mutations or follow-up issue decisions; record those live facts separately. Merge/stable staging/production are outside this implementation authorization.",
-      "checks": [
-        "CURRENT-RI",
-        "RI-CI",
-        "PROFILE-CONTRACTS",
-        "PENDING-GATE"
-      ],
-      "gates": [
-        "SOURCE-REVIEW",
-        "CURRENT-CI",
-        "DELIVERY-LINKAGE"
-      ]
+      "checks": ["CURRENT-RI", "RI-CI", "PROFILE-CONTRACTS", "PENDING-GATE"],
+      "gates": ["SOURCE-REVIEW", "CURRENT-CI", "DELIVERY-LINKAGE"]
     }
   ],
   "checks": {

@@ -8,53 +8,29 @@
       "id": "AC01",
       "intent": "Prepare a small transparent original vector of the exact requested expression in ribbon-family colors.",
       "automated_scope": "Actual SVG byte/gzip/element/command bounds, inert vocabulary, finite unclipped control geometry, expression metadata and continuous gradient; meaningful unsafe/incorrect mutations fail. Glyph recognizability and final-scene composition require visual review.",
-      "checks": [
-        "ASSET",
-        "ASSET-UNSAFE",
-        "ASSET-SEMANTICS"
-      ],
-      "gates": [
-        "G01"
-      ]
+      "checks": ["ASSET", "ASSET-UNSAFE", "ASSET-SEMANTICS"],
+      "gates": ["G01"]
     },
     {
       "id": "AC02",
       "intent": "Integrate one large central Writing-only formula with coherent camera/depth/media/offline behavior and readable foreground content.",
       "automated_scope": "One Writing-only world landmark in both detail tiers, finite perspective corners, mild authored tilt and closed ambient pulse/depth motion, normal scene depth sorting and no DOM banner. Canonical artwork is projected in the existing static scene; immutable runtime/media identity derives from that artwork. Visual composition remains an explicit review decision. The staging package consumer also rechecks the exact four-media declaration and immutable copies while preserving the legacy three-media contract.",
-      "checks": [
-        "SCENE",
-        "BROWSER-VALIDATOR",
-        "MEDIA-CONSUMER"
-      ],
-      "gates": [
-        "G01",
-        "G02"
-      ]
+      "checks": ["SCENE", "BROWSER-VALIDATOR", "MEDIA-CONSUMER"],
+      "gates": ["G01", "G02"]
     },
     {
       "id": "AC03",
       "intent": "Preserve bounded single-clock lifecycle, cache/initialization, navigation and graceful fallback.",
       "automated_scope": "Fixed 1380\u00d7240 single raster cache, bounded perspective/extrusion draw submissions, one logical landmark per paint, existing clock and frozen Off/reduced scene ownership, failure containment. Focused Linux Chromium/Firefox report fixtures preserve writing-only/fallback/zero-work observations; actual current-source measurements remain separate evidence. The staging package consumer also rechecks the exact four-media declaration and immutable copies while preserving the legacy three-media contract.",
-      "checks": [
-        "CACHE",
-        "BROWSER-VALIDATOR",
-        "MEDIA-CONSUMER"
-      ],
-      "gates": [
-        "G02"
-      ]
+      "checks": ["CACHE", "BROWSER-VALIDATOR", "MEDIA-CONSUMER"],
+      "gates": ["G02"]
     },
     {
       "id": "AC04",
       "intent": "Measure the exact implementation against paired baseline and unchanged absolute performance budgets in this PR.",
       "automated_scope": "Maintained paired report validator recomputes raw measurements, enforces fixed Color source/artifact identities, three ordered pairs per profile, absolute budgets and declared before-measurement added-cost limits. Meaningful missing/misbound/incomplete/over-budget/concealed-quality/resource-growth negatives fail. Validator fixtures are not a measured performance result; exact-head opt-in run remains separately reviewed.",
-      "checks": [
-        "PERFORMANCE-VALIDATOR",
-        "OPT-IN-CI"
-      ],
-      "gates": [
-        "G03"
-      ]
+      "checks": ["PERFORMANCE-VALIDATOR", "OPT-IN-CI"],
+      "gates": ["G03"]
     },
     {
       "id": "AC05",
@@ -78,13 +54,7 @@
         "I41-SEO",
         "I41-RUNTIME-SCOPE"
       ],
-      "gates": [
-        "G04",
-        "G05",
-        "I41-EDITORIAL",
-        "I41-REVIEW-MERGE",
-        "I41-BROWSER"
-      ]
+      "gates": ["G04", "G05", "I41-EDITORIAL", "I41-REVIEW-MERGE", "I41-BROWSER"]
     }
   ],
   "checks": {

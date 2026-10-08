@@ -21,9 +21,11 @@ class CodeStyleTests(unittest.TestCase):
         self.history = "review/old/effect.cjs"
         self.importer = "tools/staging/color.cjs"
         self.html = "site/content/pages/home/main.html"
-        self.catalog = {"entries": {
-            self.history: {"kind": "file", "role": "source", "owner": "site/README.md"},
-        }}
+        self.catalog = {
+            "entries": {
+                self.history: {"kind": "file", "role": "source", "owner": "site/README.md"},
+            }
+        }
         self.write(style.CATALOG, json.dumps(self.catalog))
         self.write(self.history, "module.exports = {};\n")
         self.write(self.importer, "require('../../review/old/effect.cjs');\n")
@@ -32,14 +34,24 @@ class CodeStyleTests(unittest.TestCase):
         self.write("site/templates/shell.html", "<main>{{content}}</main>\n")
         for owner, tokens in style.TOKEN_OWNERS.items():
             self.write(owner, ":root {\n" + "\n".join(token + ": 1;" for token in tokens) + "\n}\n")
-        self.policy = {"schema_version": 1, "legacy": [
-            self.allowance("CS01-history-source", self.history, "active source in review/", "R1"),
-            self.allowance("CS01-history-import", self.importer, self.history, "R1"),
-            self.allowance("CS03-inline-style", self.html, "img style=max-width:100%;height:auto", "R4"),
-        ]}
+        self.policy = {
+            "schema_version": 1,
+            "legacy": [
+                self.allowance(
+                    "CS01-history-source", self.history, "active source in review/", "R1"
+                ),
+                self.allowance("CS01-history-import", self.importer, self.history, "R1"),
+                self.allowance(
+                    "CS03-inline-style", self.html, "img style=max-width:100%;height:auto", "R4"
+                ),
+            ],
+        }
         self.save_policy()
-        self.baseline = {path.relative_to(self.root).as_posix(): path.read_text()
-                         for path in self.root.rglob("*") if path.is_file()}
+        self.baseline = {
+            path.relative_to(self.root).as_posix(): path.read_text()
+            for path in self.root.rglob("*")
+            if path.is_file()
+        }
 
     def write(self, path, text):
         target = self.root / path
@@ -47,9 +59,15 @@ class CodeStyleTests(unittest.TestCase):
         target.write_text(text, encoding="utf-8")
 
     def allowance(self, rule, path, detail, task):
-        return {"rule": rule, "path": path, "detail": detail, "count": 1,
-                "issue": 54, "remove_in": task,
-                "reason": "Fixture: migrate existing source debt while retaining parity."}
+        return {
+            "rule": rule,
+            "path": path,
+            "detail": detail,
+            "count": 1,
+            "issue": 54,
+            "remove_in": task,
+            "reason": "Fixture: migrate existing source debt while retaining parity.",
+        }
 
     def save_policy(self):
         self.write(style.POLICY, json.dumps(self.policy))
@@ -59,8 +77,11 @@ class CodeStyleTests(unittest.TestCase):
 
     def test_exact_baseline_and_same_owner_theme_overrides_pass(self):
         owner = "site/engine/reading-surfaces.css"
-        self.write(owner, (self.root / owner).read_text() +
-                   "@media (prefers-reduced-transparency: reduce) { :root { --reading-surface-alpha: 100%; } }")
+        self.write(
+            owner,
+            (self.root / owner).read_text()
+            + "@media (prefers-reduced-transparency: reduce) { :root { --reading-surface-alpha: 100%; } }",
+        )
         self.assertTrue(self.verify()["pass"])
         self.assertEqual(self.verify()["legacy_occurrences"], 3)
 
@@ -108,7 +129,8 @@ class CodeStyleTests(unittest.TestCase):
     def test_new_debt_cannot_be_admitted_by_adding_an_exception(self):
         self.write(self.html, (self.root / self.html).read_text() + '<p style="color:red">text</p>')
         self.policy["legacy"].append(
-            self.allowance("CS03-inline-style", self.html, "p style=color:red", "R4"))
+            self.allowance("CS03-inline-style", self.html, "p style=color:red", "R4")
+        )
         self.save_policy()
         with self.assertRaisesRegex(ValueError, "immutable baseline"):
             self.verify()
@@ -163,24 +185,43 @@ class CodeStyleRepositoryTests(unittest.TestCase):
         self.assertTrue(style.verify(REPO)["pass"])
 
     def test_code_path_and_bilingual_ri_queries_route_to_guide_and_check(self):
-        command = ["python3", "tools/repository_intelligence.py", "--config",
-                   ".github/repository-intelligence-config.json"]
-        for query in ["site/engine/navigation.js", "tools/staging/color.cjs",
-                      "tests/test_code_style.py", "code style", "стиль коду"]:
+        command = [
+            "python3",
+            "tools/repository_intelligence.py",
+            "--config",
+            ".github/repository-intelligence-config.json",
+        ]
+        for query in [
+            "site/engine/navigation.js",
+            "tools/staging/color.cjs",
+            "tests/test_code_style.py",
+            "code style",
+            "стиль коду",
+        ]:
             with self.subTest(query=query):
                 output = subprocess.check_output(
-                    command + ["context-for-task", query], cwd=REPO, text=True)
+                    command + ["context-for-task", query], cwd=REPO, text=True
+                )
                 result = json.loads(output)
                 routes = result["validation_routes"]
-                self.assertTrue(any("guides/CODE-STYLE.md" in route.get("read", [])
-                                    and "python3 tools/check_code_style.py" in route["commands"]
-                                    for route in routes))
+                self.assertTrue(
+                    any(
+                        "guides/CODE-STYLE.md" in route.get("read", [])
+                        and "python3 tools/check_code_style.py" in route["commands"]
+                        for route in routes
+                    )
+                )
                 self.assertIn("AGENTS.md", result["instructions"])
 
     def test_mandatory_agent_contributor_and_acceptance_routes(self):
-        for path in ["AGENTS.md", "CONTRIBUTING.md", ".github/ACCEPTANCE.md",
-                     ".github/ISSUE_TEMPLATE/work-item.md", ".github/pull_request_template.md",
-                     "guides/README.md"]:
+        for path in [
+            "AGENTS.md",
+            "CONTRIBUTING.md",
+            ".github/ACCEPTANCE.md",
+            ".github/ISSUE_TEMPLATE/work-item.md",
+            ".github/pull_request_template.md",
+            "guides/README.md",
+        ]:
             with self.subTest(path=path):
                 self.assertIn("CODE-STYLE.md", (REPO / path).read_text())
         self.assertIn("code-style AC", (REPO / ".github/ISSUE_TEMPLATE/work-item.md").read_text())

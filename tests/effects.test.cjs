@@ -10,11 +10,48 @@ const color = require('../tools/staging/color.cjs');
 const variants = require('../tools/site/variants.cjs');
 const math = require('../site/engine/math.cjs')();
 
+test('offline attachment accepts formatted boundaries and rejects missing or duplicated contracts', () => {
+  const engine = 'a'.repeat(64),
+    version = 'b'.repeat(64);
+  const payload = {
+    revision: { routes: { index: { version } } },
+    pages: { index: '<meta name="site-variant" content="base">' },
+  };
+  const source =
+    '<html><head\n><meta name="site-effects-contract" content="1" />' +
+    `<meta name="site-engine" content="${engine}"><meta name="site-variant" content="base">` +
+    '</head\n><body><script type="application/json" id="site-pages">' +
+    JSON.stringify(payload) +
+    '</script></body\n></html>';
+  const part = {
+    id: 'probe',
+    effect: 'probe',
+    code: 'window.probe=1;',
+    styles: '<style>body{color:red}</style>',
+    bodyScripts: '<script>window.control=1;</script>',
+  };
+  const attached = variants.attach(source, part);
+  assert.equal((attached.match(/data-site-effect="probe"/g) || []).length, 1);
+  assert.ok(attached.includes(part.styles + '</head>'));
+  assert.ok(attached.includes(part.bodyScripts + '</body>'));
+  assert.equal(variants.identity(attached).id, 'probe');
+  for (const change of [
+    source.replace('content="1" />', 'content="2" />'),
+    source.replace('<head\n>', '<head><meta name="site-effects-contract" content="1">'),
+    source.replace('</body\n>', ''),
+    source.replace('</head\n>', '</head></head>'),
+  ])
+    assert.throws(() => variants.attach(change, part), /contract|boundary/);
+});
+
 test('explicit effect collection works with a frozen attachment API and returns fresh descriptors', () => {
   Object.freeze(variants);
   const first = color.authoredEffects();
   const second = color.authoredEffects();
-  assert.deepEqual(first.map(part => part.effect), ['ribbons', 'travel']);
+  assert.deepEqual(
+    first.map((part) => part.effect),
+    ['ribbons', 'travel']
+  );
   assert.deepEqual(first, second);
   first[0].code = 'changed local descriptor';
   assert.notEqual(first[0].code, color.authoredEffects()[0].code);
@@ -27,17 +64,39 @@ test('the ordered raw effect contract rejects missing, duplicated, reversed and 
     assert.throws(() => effects.runtime(invalid));
   }
   for (const mutate of [
-    part => { delete part.css; },
-    part => { part.effect = 'unknown'; },
-    part => { part.code = ''; },
-    part => { part.code += '</ScRiPt>'; },
-    part => { part.controls = '</script>'; },
-    part => { part.css += '</style><script>unsafe()</script>'; },
-    part => { part.css = '<style>wrapped CSS</style>'; },
-    part => { part.controls = '<script>wrappedControls()</script>'; },
-    part => { part.head = '<script>unsafe()</script>'; },
-    part => { part.styles = '<style>second representation</style>'; },
-    part => { part.css = null; }
+    (part) => {
+      delete part.css;
+    },
+    (part) => {
+      part.effect = 'unknown';
+    },
+    (part) => {
+      part.code = '';
+    },
+    (part) => {
+      part.code += '</ScRiPt>';
+    },
+    (part) => {
+      part.controls = '</script>';
+    },
+    (part) => {
+      part.css += '</style><script>unsafe()</script>';
+    },
+    (part) => {
+      part.css = '<style>wrapped CSS</style>';
+    },
+    (part) => {
+      part.controls = '<script>wrappedControls()</script>';
+    },
+    (part) => {
+      part.head = '<script>unsafe()</script>';
+    },
+    (part) => {
+      part.styles = '<style>second representation</style>';
+    },
+    (part) => {
+      part.css = null;
+    },
   ]) {
     const invalid = structuredClone(parts);
     mutate(invalid[0]);
@@ -58,20 +117,20 @@ test('hosted assembly preserves authored JavaScript strings and CSS comments as 
   assert.ok(runtime.code.includes(codeMarker));
   assert.ok(runtime.styles.includes(cssMarker));
   assert.equal(runtime.controls, parts[1].controls);
-  vm.runInNewContext(runtime.code, {window: {}});
+  vm.runInNewContext(runtime.code, { window: {} });
 });
 
 test('serialized effects execute without build/module closures and retain existing scene hooks', () => {
-  const window = {CSS: {supports: () => true}};
+  const window = { CSS: { supports: () => true } };
   const source = effects.runtime(effects.descriptors());
-  vm.runInNewContext(source.code, {window});
+  vm.runInNewContext(source.code, { window });
   new vm.Script(source.controls);
   assert.equal(window.SiteEffects.contract, 1);
   const scene = window.SiteEffects.scene(math);
   assert.equal(typeof scene.collect, 'function');
   assert.equal(typeof scene.paint, 'function');
-  assert.equal(scene.paint({}, {kind: 'native'}), false);
-  const content = {dataset: {}, style: {}, offsetTop: 0};
+  assert.equal(scene.paint({}, { kind: 'native' }), false);
+  const content = { dataset: {}, style: {}, offsetTop: 0 };
   const presentation = window.SiteEffects.navigation(content);
   assert.equal(presentation.canTravel(), true);
   presentation.present(1, 'forward');
@@ -81,7 +140,7 @@ test('serialized effects execute without build/module closures and retain existi
 });
 
 test('offline adapters keep marker compatibility, safe serialization and duplicate admission', () => {
-  const {standalone} = require('../tools/site/export.cjs');
+  const { standalone } = require('../tools/site/export.cjs');
   const filename = path.join(__dirname, '../review/site-v1-20261004-v11-interactive.html');
   const base = standalone(fs.readFileSync(filename, 'utf8'));
   const ribbons = effects.decorateRibbons(base);
@@ -94,6 +153,9 @@ test('offline adapters keep marker compatibility, safe serialization and duplica
   }
   assert.throws(() => effects.decorateRibbons(ribbons), /duplicate offline ribbons/);
   assert.throws(() => effects.decorateFlight(color), /duplicate offline travel/);
-  assert.throws(() => effects.decorateRibbons(base, {smoothEdges: 'yes'}), /bounded ribbon smoothing/);
+  assert.throws(
+    () => effects.decorateRibbons(base, { smoothEdges: 'yes' }),
+    /bounded ribbon smoothing/
+  );
   assert.equal(variants.identity(effects.decorateFlight(base)).id, 'flight');
 });

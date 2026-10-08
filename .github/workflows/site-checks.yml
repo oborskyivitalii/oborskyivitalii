@@ -33,8 +33,19 @@ jobs:
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
           node-version: 24.19.0
+      - name: Install the locked source-quality toolchain
+        run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          python3 -m venv tools/quality/toolchain/venv
+          tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps ruff==0.16.10 PyYAML==6.0.3
+      - name: Check maintained formatting
+        run: node tools/quality/format.cjs --check
       - name: Minimal source, route, script and size checks
         run: node tools/quality/local.cjs --package quality-artifact
+      - name: Check complete maintained and generated lint coverage
+        env:
+          SITE_ARTIFACT_MANIFEST: quality-artifact/artifact.json
+        run: node tools/quality/scanners.cjs lint
       - name: Run only additional source tests owned by the current PR changes
         env:
           SITE_SOURCE_EVENT: ${{ github.event_name }}

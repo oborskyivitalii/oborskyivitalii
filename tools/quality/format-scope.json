@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "issue": 58,
+  "versions": {
+    "prettier": "3.6.2",
+    "ruff": "0.16.10"
+  },
+  "roots": ["site/", "tools/", "tests/", ".github/"],
+  "languages": {
+    "js": [".js", ".cjs", ".mjs"],
+    "css": [".css"],
+    "html": [".html"],
+    "python": [".py"],
+    "json": [".json"],
+    "yaml": [".yml", ".yaml"]
+  },
+  "directoryExclusions": [
+    {
+      "path": "docs/",
+      "owner": "site/README.md",
+      "reason": "Generated public renditions have authored owners and separate output checks.",
+      "reviewCondition": "Regenerate through the ordinary producer after source changes."
+    },
+    {
+      "path": "review/",
+      "owner": "AGENTS.md",
+      "reason": "Dated evidence and diagnostic copies preserve their original bytes.",
+      "reviewCondition": "Move a newly active source to its canonical owner before formatting it."
+    },
+    {
+      "path": "drafts/",
+      "owner": "AGENTS.md",
+      "reason": "Historical proposals are not maintained runtime or configuration sources.",
+      "reviewCondition": "Review ownership if a proposal becomes an active source."
+    },
+    {
+      "path": "site/retained/",
+      "owner": "site/README.md",
+      "reason": "Accepted retained artifacts preserve byte and import identity.",
+      "reviewCondition": "Change only through an explicitly accepted edition migration."
+    },
+    {
+      "path": ".github/repository-intelligence/",
+      "owner": ".github/REPOSITORY-INTELLIGENCE.md",
+      "reason": "RI views are generated from maintained catalog and source inputs.",
+      "reviewCondition": "Rebuild and verify RI after changing its inputs."
+    }
+  ],
+  "exactExclusions": [
+    {
+      "path": "site/output-lock.json",
+      "owner": "site/README.md",
+      "reason": "Producer output identities are generated rather than formatter authored.",
+      "reviewCondition": "Regenerate and verify output freshness after source changes."
+    },
+    {
+      "path": "tools/quality/toolchain/package-lock.json",
+      "owner": "tools/quality/README.md",
+      "reason": "Package-manager lock bytes change through exact dependency pinning.",
+      "reviewCondition": "Update only with the pinned package manager and review dependency changes."
+    },
+    {
+      "path": "tools/quality/secrets-baseline.json",
+      "owner": "tools/quality/README.md",
+      "reason": "Frozen secret findings are an immutable security baseline.",
+      "reviewCondition": "Preserve original records; admit reviewed exact findings separately."
+    },
+    {
+      "path": "tools/quality/secrets-reviewed.json",
+      "owner": "tools/quality/README.md",
+      "reason": "Append-only reviewed fingerprints retain their original records.",
+      "reviewCondition": "Append only independently proved exact dispositions under the owning issue."
+    }
+  ],
+  "nonSourceDirectories": [
+    "node_modules",
+    "venv",
+    ".venv",
+    "__pycache__",
+    ".ruff_cache",
+    ".site-cache",
+    "quality-results",
+    "quality-artifact",
+    "color-artifact",
+    "quality-reports",
+    "staging-package",
+    "staging-rollback",
+    "staging-reports"
+  ]
+}

@@ -15,7 +15,16 @@
       "id": "AC02",
       "intent": "Index every repository file and directory, with explicit root purposes; reject new, missing, unclassified or stale paths and generated views.",
       "automated_scope": "Actual complete catalog and current-source JSON/map verification plus missing/unclassified/binary/symlink and tampering regressions. Purpose usefulness needs independent review.",
-      "checks": ["CURRENT-INVENTORY", "RI-UNKNOWN-PATH", "RI-MISSING-PATH", "RI-BLANK-PURPOSE", "RI-BINARY-IDENTITY", "RI-MAP-TAMPER", "RI-TRACKED-EXCLUSION", "RI-SYMLINK"],
+      "checks": [
+        "CURRENT-INVENTORY",
+        "RI-UNKNOWN-PATH",
+        "RI-MISSING-PATH",
+        "RI-BLANK-PURPOSE",
+        "RI-BINARY-IDENTITY",
+        "RI-MAP-TAMPER",
+        "RI-TRACKED-EXCLUSION",
+        "RI-SYMLINK"
+      ],
       "gates": ["G01"]
     },
     {
@@ -57,7 +66,33 @@
       "id": "AC08",
       "intent": "Map stable acceptance IDs to deterministic tests and CI/policy evidence, rerun at session handoff and issue evaluation, and keep human/merge gates explicit.",
       "automated_scope": "All eleven policy IDs, actual workflow source/clean/artifact settings and runner accounting/binding/adversarial checks. The policy's match to live intent still needs review.",
-      "checks": ["POLICY-STRUCTURE", "RUNNER-SUCCESS", "RUNNER-UNMAPPED", "RUNNER-ORPHANS", "RUNNER-SKIPPED", "RUNNER-MISSING", "RUNNER-INJECTION", "RUNNER-MANUAL", "RUNNER-SOURCE", "RUNNER-MUTATION", "RUNNER-POLICY-MUTATION", "RUNNER-NODE", "RUNNER-REPORT", "SELECTOR-EXPLICIT", "SELECTOR-AMBIGUOUS", "SELECTOR-DISPATCH", "SELECTOR-OWNER", "SELECTOR-ENV", "RUNNER-CURRENT-BYTES", "RUNNER-MODULE-HOOKS", "RUNNER-MODULE-RESTORE", "SELECTOR-TEMPLATE", "SELECTOR-VISIBILITY", "RUNNER-INDEX-FLAGS", "SELECTOR-INLINE-LITERALS"],
+      "checks": [
+        "POLICY-STRUCTURE",
+        "RUNNER-SUCCESS",
+        "RUNNER-UNMAPPED",
+        "RUNNER-ORPHANS",
+        "RUNNER-SKIPPED",
+        "RUNNER-MISSING",
+        "RUNNER-INJECTION",
+        "RUNNER-MANUAL",
+        "RUNNER-SOURCE",
+        "RUNNER-MUTATION",
+        "RUNNER-POLICY-MUTATION",
+        "RUNNER-NODE",
+        "RUNNER-REPORT",
+        "SELECTOR-EXPLICIT",
+        "SELECTOR-AMBIGUOUS",
+        "SELECTOR-DISPATCH",
+        "SELECTOR-OWNER",
+        "SELECTOR-ENV",
+        "RUNNER-CURRENT-BYTES",
+        "RUNNER-MODULE-HOOKS",
+        "RUNNER-MODULE-RESTORE",
+        "SELECTOR-TEMPLATE",
+        "SELECTOR-VISIBILITY",
+        "RUNNER-INDEX-FLAGS",
+        "SELECTOR-INLINE-LITERALS"
+      ],
       "gates": ["G01", "G02"]
     },
     {
@@ -71,7 +106,16 @@
       "id": "AC10",
       "intent": "Document and check the mapping between RI layers, repository paths and CI validators; review coupled checks whenever RI changes.",
       "automated_scope": "Actual RI-CI map source identity, represented paths/test selectors and unguarded exact workflow invocations. Adequacy of the architecture map requires review.",
-      "checks": ["RI-CI-COUPLING", "RI-CI-SOURCE", "RI-CI-UNMAPPED", "RI-CI-SELECTOR", "RI-CI-INVOCATION", "RI-CI-GUARDS", "RI-CI-EVENTS", "RI-CI-NEEDS"],
+      "checks": [
+        "RI-CI-COUPLING",
+        "RI-CI-SOURCE",
+        "RI-CI-UNMAPPED",
+        "RI-CI-SELECTOR",
+        "RI-CI-INVOCATION",
+        "RI-CI-GUARDS",
+        "RI-CI-EVENTS",
+        "RI-CI-NEEDS"
+      ],
       "gates": ["G01"]
     },
     {
@@ -83,63 +127,228 @@
     }
   ],
   "checks": {
-    "UPSTREAM": {"kind": "unittest", "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_upstream_pin_and_component_notices"},
-    "RI-CONFIG-IDENTITY": {"kind": "unittest", "test": "test_repository_intelligence.NavigationSafetyTests.test_config_and_producer_edits_invalidate"},
-    "CURRENT-INVENTORY": {"kind": "unittest", "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"},
-    "RI-UNKNOWN-PATH": {"kind": "unittest", "test": "test_repository_intelligence.NavigationSafetyTests.test_new_root_and_nested_files_fail_without_purpose_entries"},
-    "RI-MISSING-PATH": {"kind": "unittest", "test": "test_repository_intelligence.NavigationSafetyTests.test_removed_file_and_dangling_directory_entries_fail"},
-    "RI-BLANK-PURPOSE": {"kind": "unittest", "test": "test_repository_intelligence.NavigationSafetyTests.test_blank_purpose_wrong_kind_and_dangling_owner_fail"},
-    "RI-BINARY-IDENTITY": {"kind": "unittest", "test": "test_repository_intelligence.NavigationSafetyTests.test_binary_byte_changes_invalidate_freshness"},
-    "RI-MAP-TAMPER": {"kind": "unittest", "test": "test_repository_intelligence.NavigationSafetyTests.test_map_missing_or_tampered_fails_and_is_not_recursive"},
-    "RI-TRACKED-EXCLUSION": {"kind": "unittest", "test": "test_repository_intelligence.NavigationSafetyTests.test_tracked_files_cannot_hide_in_excluded_directories"},
-    "RI-SYMLINK": {"kind": "unittest", "test": "test_repository_intelligence.NavigationSafetyTests.test_symlink_input_and_directory_escape_rejected"},
-    "AGENT-ROUTE": {"kind": "unittest", "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_compact_agent_route"},
-    "CONTINUITY-BOUNDS": {"kind": "unittest", "test": "test_repository_intelligence.NavigationSafetyTests.test_memory_and_agent_bounds_and_required_sections_fail"},
-    "ARCHIVE-IDENTITY": {"kind": "unittest", "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_archived_guide_exactly_matches_baseline"},
-    "RI-HISTORY-SCOPE": {"kind": "unittest", "test": "test_repository_intelligence.NavigationSafetyTests.test_history_is_searchable_but_not_scoped_agent_instructions"},
-    "MEMORY-FORMAT": {"kind": "unittest", "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_memory_is_bounded_dated_and_has_sections"},
-    "ISSUE-PR-ROUTE": {"kind": "unittest", "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_issue_and_pr_templates_expose_evidence_routes"},
-    "UNCHANGED-PUBLIC": {"kind": "unittest", "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_public_and_runtime_paths_match_immutable_baseline"},
-    "NODE-BASIC": {"kind": "node-basic"},
-    "POLICY-STRUCTURE": {"kind": "unittest", "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_policy_maps_all_agreed_ids_and_has_nonautomated_gates"},
-    "RUNNER-SUCCESS": {"kind": "unittest", "test": "test_issue_acceptance.AcceptanceRunnerTests.test_success_reports_exact_source_and_pending_gates"},
-    "RUNNER-UNMAPPED": {"kind": "unittest", "test": "test_issue_acceptance.AcceptanceRunnerTests.test_empty_and_unmapped_criteria_fail"},
-    "RUNNER-ORPHANS": {"kind": "unittest", "test": "test_issue_acceptance.AcceptanceRunnerTests.test_duplicate_or_orphan_mapping_fails"},
-    "RUNNER-SKIPPED": {"kind": "unittest", "test": "test_issue_acceptance.AcceptanceRunnerTests.test_skipped_failed_expected_and_empty_tests_cannot_pass"},
-    "RUNNER-MISSING": {"kind": "unittest", "test": "test_issue_acceptance.AcceptanceRunnerTests.test_missing_named_tests_fail"},
-    "RUNNER-INJECTION": {"kind": "unittest", "test": "test_issue_acceptance.AcceptanceRunnerTests.test_policy_cannot_supply_shell_code_arguments_or_approval"},
-    "RUNNER-MANUAL": {"kind": "unittest", "test": "test_issue_acceptance.AcceptanceRunnerTests.test_manual_only_criterion_is_pending"},
-    "RUNNER-SOURCE": {"kind": "unittest", "test": "test_issue_acceptance.AcceptanceRunnerTests.test_dirty_or_wrong_head_cannot_be_clean_source_evidence"},
-    "RUNNER-MUTATION": {"kind": "unittest", "test": "test_issue_acceptance.AcceptanceRunnerTests.test_source_mutation_during_checks_invalidates_evidence"},
-    "RUNNER-POLICY-MUTATION": {"kind": "unittest", "test": "test_issue_acceptance.AcceptanceRunnerTests.test_policy_mutation_during_checks_invalidates_evidence"},
-    "RUNNER-NODE": {"kind": "unittest", "test": "test_issue_acceptance.AcceptanceRunnerTests.test_node_basic_is_fixed_and_missing_accounting_fails"},
-    "RUNNER-REPORT": {"kind": "unittest", "test": "test_issue_acceptance.AcceptanceRunnerTests.test_cli_preserves_a_failure_report"},
-    "SELECTOR-EXPLICIT": {"kind": "unittest", "test": "test_issue_acceptance.AcceptanceRunnerTests.test_selector_uses_only_explicit_local_refs"},
-    "SELECTOR-AMBIGUOUS": {"kind": "unittest", "test": "test_issue_acceptance.AcceptanceRunnerTests.test_selector_missing_ambiguous_or_malformed_owner_fails"},
-    "SELECTOR-DISPATCH": {"kind": "unittest", "test": "test_issue_acceptance.AcceptanceRunnerTests.test_selector_dispatch_bounds_and_missing_policy_fail"},
-    "SELECTOR-OWNER": {"kind": "unittest", "test": "test_issue_acceptance.AcceptanceRunnerTests.test_selector_wrong_policy_owner_and_symlink_fail"},
-    "SELECTOR-ENV": {"kind": "unittest", "test": "test_issue_acceptance.AcceptanceRunnerTests.test_cli_selector_writes_safe_env_and_keeps_failure_report"},
-    "RUNNER-CURRENT-BYTES": {"kind": "unittest", "test": "test_issue_acceptance.AcceptanceRunnerTests.test_same_size_same_timestamp_bytecode_cannot_hide_new_source"},
-    "RUNNER-MODULE-HOOKS": {"kind": "unittest", "test": "test_issue_acceptance.AcceptanceRunnerTests.test_module_setup_teardown_errors_and_skips_cannot_pass"},
-    "RUNNER-MODULE-RESTORE": {"kind": "unittest", "test": "test_issue_acceptance.AcceptanceRunnerTests.test_temporary_test_module_registration_preserves_previous_module"},
-    "SELECTOR-TEMPLATE": {"kind": "unittest", "test": "test_issue_acceptance.AcceptanceRunnerTests.test_filled_repository_pr_template_selects_its_owning_issue"},
-    "SELECTOR-VISIBILITY": {"kind": "unittest", "test": "test_issue_acceptance.AcceptanceRunnerTests.test_selector_ignores_fenced_indented_and_commented_examples"},
-    "RUNNER-INDEX-FLAGS": {"kind": "unittest", "test": "test_issue_acceptance.AcceptanceRunnerTests.test_hidden_index_flags_cannot_claim_clean_exact_source"},
-    "SELECTOR-INLINE-LITERALS": {"kind": "unittest", "test": "test_issue_acceptance.AcceptanceRunnerTests.test_selector_inline_code_comment_literals_cannot_change_owner"},
-    "REVIEW-ROUTE": {"kind": "unittest", "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_canonical_review_and_analysis_artifact_routes"},
-    "RI-CI-COUPLING": {"kind": "unittest", "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"},
-    "RI-CI-SOURCE": {"kind": "unittest", "test": "test_ri_ci.RICICouplingTests.test_source_edits_require_mapping_refresh"},
-    "RI-CI-UNMAPPED": {"kind": "unittest", "test": "test_ri_ci.RICICouplingTests.test_new_workflow_and_owned_control_must_be_mapped"},
-    "RI-CI-SELECTOR": {"kind": "unittest", "test": "test_ri_ci.RICICouplingTests.test_test_selector_exists_and_is_selected_by_workflow"},
-    "RI-CI-INVOCATION": {"kind": "unittest", "test": "test_ri_ci.RICICouplingTests.test_command_mentions_and_shell_guards_do_not_prove_invocation"},
-    "RI-CI-GUARDS": {"kind": "unittest", "test": "test_ri_ci.RICICouplingTests.test_conditionally_skipped_or_optional_jobs_and_steps_fail"},
-    "RI-CI-EVENTS": {"kind": "unittest", "test": "test_ri_ci.RICICouplingTests.test_pr_event_filters_and_types_cannot_skip_mapped_checks"},
-    "RI-CI-NEEDS": {"kind": "unittest", "test": "test_ri_ci.RICICouplingTests.test_mapped_job_needs_cannot_hide_unreachable_checks"},
-    "BOOTSTRAP": {"kind": "unittest", "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_bootstrap_prompt_is_repository_anchored"}
+    "UPSTREAM": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_upstream_pin_and_component_notices"
+    },
+    "RI-CONFIG-IDENTITY": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_config_and_producer_edits_invalidate"
+    },
+    "CURRENT-INVENTORY": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "RI-UNKNOWN-PATH": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_new_root_and_nested_files_fail_without_purpose_entries"
+    },
+    "RI-MISSING-PATH": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_removed_file_and_dangling_directory_entries_fail"
+    },
+    "RI-BLANK-PURPOSE": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_blank_purpose_wrong_kind_and_dangling_owner_fail"
+    },
+    "RI-BINARY-IDENTITY": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_binary_byte_changes_invalidate_freshness"
+    },
+    "RI-MAP-TAMPER": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_map_missing_or_tampered_fails_and_is_not_recursive"
+    },
+    "RI-TRACKED-EXCLUSION": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_tracked_files_cannot_hide_in_excluded_directories"
+    },
+    "RI-SYMLINK": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_symlink_input_and_directory_escape_rejected"
+    },
+    "AGENT-ROUTE": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_compact_agent_route"
+    },
+    "CONTINUITY-BOUNDS": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_memory_and_agent_bounds_and_required_sections_fail"
+    },
+    "ARCHIVE-IDENTITY": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_archived_guide_exactly_matches_baseline"
+    },
+    "RI-HISTORY-SCOPE": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_history_is_searchable_but_not_scoped_agent_instructions"
+    },
+    "MEMORY-FORMAT": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_memory_is_bounded_dated_and_has_sections"
+    },
+    "ISSUE-PR-ROUTE": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_issue_and_pr_templates_expose_evidence_routes"
+    },
+    "UNCHANGED-PUBLIC": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_public_and_runtime_paths_match_immutable_baseline"
+    },
+    "NODE-BASIC": { "kind": "node-basic" },
+    "POLICY-STRUCTURE": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_policy_maps_all_agreed_ids_and_has_nonautomated_gates"
+    },
+    "RUNNER-SUCCESS": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_success_reports_exact_source_and_pending_gates"
+    },
+    "RUNNER-UNMAPPED": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_empty_and_unmapped_criteria_fail"
+    },
+    "RUNNER-ORPHANS": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_duplicate_or_orphan_mapping_fails"
+    },
+    "RUNNER-SKIPPED": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_skipped_failed_expected_and_empty_tests_cannot_pass"
+    },
+    "RUNNER-MISSING": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_missing_named_tests_fail"
+    },
+    "RUNNER-INJECTION": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_policy_cannot_supply_shell_code_arguments_or_approval"
+    },
+    "RUNNER-MANUAL": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_manual_only_criterion_is_pending"
+    },
+    "RUNNER-SOURCE": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_dirty_or_wrong_head_cannot_be_clean_source_evidence"
+    },
+    "RUNNER-MUTATION": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_source_mutation_during_checks_invalidates_evidence"
+    },
+    "RUNNER-POLICY-MUTATION": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_policy_mutation_during_checks_invalidates_evidence"
+    },
+    "RUNNER-NODE": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_node_basic_is_fixed_and_missing_accounting_fails"
+    },
+    "RUNNER-REPORT": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_cli_preserves_a_failure_report"
+    },
+    "SELECTOR-EXPLICIT": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_selector_uses_only_explicit_local_refs"
+    },
+    "SELECTOR-AMBIGUOUS": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_selector_missing_ambiguous_or_malformed_owner_fails"
+    },
+    "SELECTOR-DISPATCH": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_selector_dispatch_bounds_and_missing_policy_fail"
+    },
+    "SELECTOR-OWNER": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_selector_wrong_policy_owner_and_symlink_fail"
+    },
+    "SELECTOR-ENV": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_cli_selector_writes_safe_env_and_keeps_failure_report"
+    },
+    "RUNNER-CURRENT-BYTES": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_same_size_same_timestamp_bytecode_cannot_hide_new_source"
+    },
+    "RUNNER-MODULE-HOOKS": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_module_setup_teardown_errors_and_skips_cannot_pass"
+    },
+    "RUNNER-MODULE-RESTORE": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_temporary_test_module_registration_preserves_previous_module"
+    },
+    "SELECTOR-TEMPLATE": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_filled_repository_pr_template_selects_its_owning_issue"
+    },
+    "SELECTOR-VISIBILITY": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_selector_ignores_fenced_indented_and_commented_examples"
+    },
+    "RUNNER-INDEX-FLAGS": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_hidden_index_flags_cannot_claim_clean_exact_source"
+    },
+    "SELECTOR-INLINE-LITERALS": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_selector_inline_code_comment_literals_cannot_change_owner"
+    },
+    "REVIEW-ROUTE": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_canonical_review_and_analysis_artifact_routes"
+    },
+    "RI-CI-COUPLING": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    },
+    "RI-CI-SOURCE": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_source_edits_require_mapping_refresh"
+    },
+    "RI-CI-UNMAPPED": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_new_workflow_and_owned_control_must_be_mapped"
+    },
+    "RI-CI-SELECTOR": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_test_selector_exists_and_is_selected_by_workflow"
+    },
+    "RI-CI-INVOCATION": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_command_mentions_and_shell_guards_do_not_prove_invocation"
+    },
+    "RI-CI-GUARDS": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_conditionally_skipped_or_optional_jobs_and_steps_fail"
+    },
+    "RI-CI-EVENTS": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_pr_event_filters_and_types_cannot_skip_mapped_checks"
+    },
+    "RI-CI-NEEDS": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_mapped_job_needs_cannot_hide_unreachable_checks"
+    },
+    "BOOTSTRAP": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_bootstrap_prompt_is_repository_anchored"
+    }
   },
   "gates": {
-    "G01": {"kind": "human", "description": "Independent review and maintainer assessment of semantic intent, useful descriptions, instructions, architecture and bootstrap; record exact source and outcome."},
-    "G02": {"kind": "merge", "description": "Normal protected merge and required checks of the accepted merged result; record the merged commit separately from tested head."},
-    "G03": {"kind": "human", "description": "Fetch current owning issue and linked PR/implementation commits; confirm original AC intent, exact links, review/analysis anchor and evidence. Local policy/text cannot supply live acceptance."}
+    "G01": {
+      "kind": "human",
+      "description": "Independent review and maintainer assessment of semantic intent, useful descriptions, instructions, architecture and bootstrap; record exact source and outcome."
+    },
+    "G02": {
+      "kind": "merge",
+      "description": "Normal protected merge and required checks of the accepted merged result; record the merged commit separately from tested head."
+    },
+    "G03": {
+      "kind": "human",
+      "description": "Fetch current owning issue and linked PR/implementation commits; confirm original AC intent, exact links, review/analysis anchor and evidence. Local policy/text cannot supply live acceptance."
+    }
   }
 }

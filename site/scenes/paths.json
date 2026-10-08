@@ -1,252 +1,84 @@
 {
   "poses": {
     "overview": {
-      "position": [
-        6,
-        4,
-        24
-      ],
-      "target": [
-        0,
-        0,
-        -5
-      ]
+      "position": [6, 4, 24],
+      "target": [0, 0, -5]
     },
     "researchOverview": {
-      "position": [
-        5,
-        4,
-        23
-      ],
-      "target": [
-        0,
-        0,
-        -5
-      ]
+      "position": [5, 4, 23],
+      "target": [0, 0, -5]
     },
     "control": {
-      "position": [
-        -1,
-        1,
-        3
-      ],
-      "target": [
-        -2,
-        1,
-        -25
-      ]
+      "position": [-1, 1, 3],
+      "target": [-2, 1, -25]
     },
     "help": {
-      "position": [
-        2,
-        -1,
-        -14
-      ],
-      "target": [
-        -2,
-        1,
-        -33
-      ]
+      "position": [2, -1, -14],
+      "target": [-2, 1, -33]
     },
     "feedback": {
-      "position": [
-        -1,
-        -2,
-        -32
-      ],
-      "target": [
-        2,
-        -1,
-        -55
-      ]
+      "position": [-1, -2, -32],
+      "target": [2, -1, -55]
     },
     "context": {
-      "position": [
-        3,
-        1,
-        -45
-      ],
-      "target": [
-        1,
-        0,
-        -69
-      ]
+      "position": [3, 1, -45],
+      "target": [1, 0, -69]
     },
     "closing": {
-      "position": [
-        -2,
-        2,
-        -64
-      ],
-      "target": [
-        0,
-        0,
-        -82
-      ]
+      "position": [-2, 2, -64],
+      "target": [0, 0, -82]
     },
     "verification": {
-      "position": [
-        2,
-        2,
-        4
-      ],
-      "target": [
-        -2,
-        1,
-        -26
-      ]
+      "position": [2, 2, 4],
+      "target": [-2, 1, -26]
     },
     "verificationEnd": {
-      "position": [
-        -1,
-        2,
-        -60
-      ],
-      "target": [
-        0,
-        0,
-        -80
-      ]
+      "position": [-1, 2, -60],
+      "target": [0, 0, -80]
     },
     "controller": {
-      "position": [
-        4,
-        2,
-        22
-      ],
-      "target": [
-        0,
-        0,
-        -5
-      ]
+      "position": [4, 2, 22],
+      "target": [0, 0, -5]
     },
     "controllerEnd": {
-      "position": [
-        1,
-        -2,
-        -63
-      ],
-      "target": [
-        0,
-        0,
-        -81
-      ]
+      "position": [1, -2, -63],
+      "target": [0, 0, -81]
     },
     "library": {
-      "position": [
-        5,
-        3,
-        24
-      ],
-      "target": [
-        0,
-        0,
-        -5
-      ]
+      "position": [5, 3, 24],
+      "target": [0, 0, -5]
     },
     "libraryMid": {
-      "position": [
-        -1,
-        1,
-        -18
-      ],
-      "target": [
-        -2,
-        1,
-        -35
-      ]
+      "position": [-1, 1, -18],
+      "target": [-2, 1, -35]
     },
     "libraryEnd": {
-      "position": [
-        2,
-        -1,
-        -63
-      ],
-      "target": [
-        0,
-        0,
-        -81
-      ]
+      "position": [2, -1, -63],
+      "target": [0, 0, -81]
     },
     "signal": {
-      "position": [
-        5,
-        3,
-        24
-      ],
-      "target": [
-        0,
-        0,
-        -5
-      ]
+      "position": [5, 3, 24],
+      "target": [0, 0, -5]
     },
     "signalEnd": {
-      "position": [
-        -1,
-        1,
-        -28
-      ],
-      "target": [
-        2,
-        -1,
-        -55
-      ]
+      "position": [-1, 1, -28],
+      "target": [2, -1, -55]
     },
     "network": {
-      "position": [
-        5,
-        4,
-        24
-      ],
-      "target": [
-        0,
-        0,
-        -5
-      ]
+      "position": [5, 4, 24],
+      "target": [0, 0, -5]
     },
     "networkEnd": {
-      "position": [
-        1,
-        -1,
-        -30
-      ],
-      "target": [
-        2,
-        -1,
-        -54
-      ]
+      "position": [1, -1, -30],
+      "target": [2, -1, -54]
     }
   },
   "topicPaths": {
-    "all": [
-      "library",
-      "control",
-      "libraryMid",
-      "feedback",
-      "libraryEnd"
-    ],
-    "strategy": [
-      "library",
-      "help",
-      "closing"
-    ],
-    "systems": [
-      "researchOverview",
-      "control",
-      "feedback",
-      "closing"
-    ],
-    "delivery": [
-      "library",
-      "verification",
-      "libraryMid",
-      "verificationEnd"
-    ],
-    "leadership": [
-      "controller",
-      "help",
-      "controllerEnd"
-    ]
+    "all": ["library", "control", "libraryMid", "feedback", "libraryEnd"],
+    "strategy": ["library", "help", "closing"],
+    "systems": ["researchOverview", "control", "feedback", "closing"],
+    "delivery": ["library", "verification", "libraryMid", "verificationEnd"],
+    "leadership": ["controller", "help", "controllerEnd"]
   },
   "roomSpacing": 128
 }

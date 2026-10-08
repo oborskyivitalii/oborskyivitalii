@@ -1,4 +1,5 @@
 """Labelled thumbnails of real captures; optional Pillow review tooling."""
+
 import hashlib
 import io
 import json
@@ -9,7 +10,13 @@ from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "review/site-v1-20261004-v11-captures"
-PAGES = {"index": "Home", "research": "Research", "writing": "Writing", "talks": "Talks", "credits": "Credits"}
+PAGES = {
+    "index": "Home",
+    "research": "Research",
+    "writing": "Writing",
+    "talks": "Talks",
+    "credits": "Credits",
+}
 FONT = ImageFont.truetype("DejaVuSans.ttf", 18)
 
 
@@ -42,7 +49,9 @@ def build():
             source = Image.open(OUT / f"{route}-{theme}-desktop.png").convert("RGB")
             source.thumbnail((532, 333), Image.Resampling.LANCZOS)
             x, y = col * 540 + 4, row * 378
-            draw.text((x + 4, y + 6), f"{label} / {theme.title()} / 1440 x 900", font=FONT, fill="#142632")
+            draw.text(
+                (x + 4, y + 6), f"{label} / {theme.title()} / 1440 x 900", font=FONT, fill="#142632"
+            )
             desktop.paste(source, (x, y + 36))
     save_image(desktop, OUT / "desktop-contact-sheet.png", "PNG")
 
@@ -58,11 +67,18 @@ def build():
     save_image(mobile, OUT / "mobile-contact-sheet.png", "PNG")
     manifest_path = OUT / "captures.json"
     manifest = json.loads(manifest_path.read_text())
-    for name in ["desktop-contact-sheet.png", "mobile-contact-sheet.png", "contrast.json", *thumbnails]:
+    for name in [
+        "desktop-contact-sheet.png",
+        "mobile-contact-sheet.png",
+        "contrast.json",
+        *thumbnails,
+    ]:
         file = OUT / name
         if file.exists():
             manifest["files"][name] = hashlib.sha256(file.read_bytes()).hexdigest()
-    manifest["contact_sheets"] = "tools/build_site_contact_sheets.py; scaled real browser PNGs with route/theme labels"
+    manifest["contact_sheets"] = (
+        "tools/build_site_contact_sheets.py; scaled real browser PNGs with route/theme labels"
+    )
     manifest_path.write_text(json.dumps(manifest, indent=2) + "\n")
 
 

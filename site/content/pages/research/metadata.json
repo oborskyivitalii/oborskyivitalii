@@ -10,11 +10,5 @@
     "inLanguage": "en",
     "description": "AI architecture, control theory, Theory of Constraints and socio-technical operating models."
   },
-  "blocks": [
-    "intro",
-    "research",
-    "lenses",
-    "topics",
-    "acknowledgements"
-  ]
+  "blocks": ["intro", "research", "lenses", "topics", "acknowledgements"]
 }
