@@ -37,9 +37,12 @@ class Issue45AcceptanceTests(unittest.TestCase):
         )
 
     def test_crisp_world_layers_keep_one_bounded_cache_and_failure_containment(self):
-        node_checks(["tests/renderer.test.cjs"], 4,
+        node_checks(["tests/renderer.test.cjs"], 5,
                     "^filled facets avoid|^one fixed formula cache|^formula raster failure|"
-                    "^the Writing landmark inhabits")
+                    "^the Writing landmark inhabits|^issue45 literal setters")
+
+    def test_writing_setter_pair_keeps_four_ordinary_observations_and_raw_failures(self):
+        node_checks(["tests/cause-fix-probe.test.cjs"], 7, ".*")
 
     def test_same_artwork_drives_live_static_and_immutable_producer_identity(self):
         node_checks(["tests/site-engine.test.cjs"], 5,

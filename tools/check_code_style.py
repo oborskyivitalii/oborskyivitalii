@@ -6,6 +6,7 @@ Legacy allowances must describe debt present at the immutable inspected base.
 This is checked-out repository validation, not a hostile-code security boundary.
 """
 
+import hashlib
 import json
 import posixpath
 import re
@@ -19,6 +20,7 @@ BASELINE = "aa1cfa97bf42103c0547c9332b885391f0e6fe6b"
 POLICY = ".github/code-style.json"
 CATALOG = ".github/repository-paths.json"
 SCOPE = ("site", "tools/site", "tools/staging")
+RETAINED = "site/retained/"
 JS = {".js", ".cjs", ".mjs"}
 EXTENSIONS = JS | {".css", ".html"}
 TOKEN_OWNERS = {
@@ -118,17 +120,36 @@ def collect_findings(files, catalog):
             for target in imports(path, text):
                 if target.startswith("review/"):
                     findings[("CS01-history-import", path, target)] += 1
-                elif target.startswith("docs/") or (
+                elif target == RETAINED.rstrip("/") or target.startswith(("docs/", RETAINED)) or (
                     path.startswith("site/") and target.startswith("tools/")
                 ):
                     findings[("CS01-generated-or-tool-import", path, target)] += 1
     return findings
 
 
-def check_tokens(files):
+def verified_retained_styles(root, files):
+    """Only manifest-bound prior public CSS copies are not authored owners."""
+    copies = {path for path in files if re.fullmatch(
+        r"site/retained/runtime/[a-f0-9]{64}/styles\.css", path)}
+    if not copies:
+        return copies
+    manifest = json.loads((root / RETAINED / "manifest.json").read_text(encoding="utf-8"))
+    if not isinstance(manifest, dict) or type(manifest.get("schema")) is not int \
+            or manifest["schema"] != 1 or not isinstance(manifest.get("files"), dict):
+        raise ValueError("Invalid retained style manifest")
+    for path in copies:
+        expected = manifest["files"].get(path.removeprefix(RETAINED))
+        actual = hashlib.sha256((root / path).read_bytes()).hexdigest()
+        if not isinstance(expected, str) or not re.fullmatch(r"[a-f0-9]{64}", expected) \
+                or expected != actual:
+            raise ValueError("Unverified retained style copy: " + path)
+    return copies
+
+
+def check_tokens(files, retained_styles=()):
     declared = {}
     for path, text in files.items():
-        if path.startswith("site/") and path.endswith(".css"):
+        if path.startswith("site/") and path.endswith(".css") and path not in retained_styles:
             clean = re.sub(r"/\*.*?\*/", "", text, flags=re.S)
             declared[path] = set(re.findall(r"(--[\w-]+)\s*:", clean))
     for owner, tokens in TOKEN_OWNERS.items():
@@ -184,7 +205,7 @@ def verify(root, baseline_read=None):
     catalog = json.loads((root / CATALOG).read_text(encoding="utf-8"))
     policy = json.loads((root / POLICY).read_text(encoding="utf-8"))
     files = load_sources(root, catalog)
-    check_tokens(files)
+    check_tokens(files, verified_retained_styles(root, files))
     allowances = validate_legacy(policy, baseline_read)
     findings = collect_findings(files, catalog)
     violations = findings - allowances

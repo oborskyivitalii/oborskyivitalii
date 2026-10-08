@@ -195,7 +195,7 @@
     },
     ".github/workflows/site-cause-probe.yml": {
       "kind": "file",
-      "purpose": "Explicit historical cause replay plus issue45 same-repository PR47 or dated successor-branch Writing label attribution; four source-bound private inputs, never stage or release admission.",
+      "purpose": "Explicit historical replay, four source-bound Writing attribution controls and four ordinary Writing AB/BA source observations on authorized same-repository labels; no stage or release admission.",
       "role": "workflow",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -409,6 +409,42 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/runtime/036f4dd964428ba404d595cfea36fc21b9d4e9e10afc52db3622275fdd4f7197": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime dependency.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/036f4dd964428ba404d595cfea36fc21b9d4e9e10afc52db3622275fdd4f7197/archive.js": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime dependency.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/036f4dd964428ba404d595cfea36fc21b9d4e9e10afc52db3622275fdd4f7197/navigation.js": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime dependency.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/036f4dd964428ba404d595cfea36fc21b9d4e9e10afc52db3622275fdd4f7197/space.js": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime dependency.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/036f4dd964428ba404d595cfea36fc21b9d4e9e10afc52db3622275fdd4f7197/styles.css": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime dependency.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/036f4dd964428ba404d595cfea36fc21b9d4e9e10afc52db3622275fdd4f7197/theme.js": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime dependency.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62": {
       "kind": "directory",
       "purpose": "Generated immutable runtime identity directory.",
@@ -457,6 +493,30 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/0675faa0cddff0b703819973974ec1ba31c65f1ec3bb1a67bf599890ed8c4c45": {
+      "kind": "directory",
+      "purpose": "Generated immutable route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/0675faa0cddff0b703819973974ec1ba31c65f1ec3bb1a67bf599890ed8c4c45/credits.html": {
+      "kind": "file",
+      "purpose": "Generated immutable route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/5509e6f376516e6afa8a8a46f4d62bf7f7787842838e7daa74f49e65b48468ab": {
+      "kind": "directory",
+      "purpose": "Generated immutable route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/5509e6f376516e6afa8a8a46f4d62bf7f7787842838e7daa74f49e65b48468ab/index.html": {
+      "kind": "file",
+      "purpose": "Generated immutable route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347": {
       "kind": "directory",
       "purpose": "Generated immutable route snapshot identity directory.",
@@ -464,6 +524,18 @@
       "owner": "site/README.md"
     },
     "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html": {
+      "kind": "file",
+      "purpose": "Generated immutable route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/5c44a8238080215562ff9640cb999e524619c51584ee85634ab8b654c65b045c": {
+      "kind": "directory",
+      "purpose": "Generated immutable route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/5c44a8238080215562ff9640cb999e524619c51584ee85634ab8b654c65b045c/talks.html": {
       "kind": "file",
       "purpose": "Generated immutable route snapshot.",
       "role": "generated",
@@ -505,6 +577,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/a10b5277379ffaa75eddf93eb8e0723dcad2abc50e4fe01c09f488cfefed622c": {
+      "kind": "directory",
+      "purpose": "Generated immutable route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/a10b5277379ffaa75eddf93eb8e0723dcad2abc50e4fe01c09f488cfefed622c/writing.html": {
+      "kind": "file",
+      "purpose": "Generated immutable route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7": {
       "kind": "directory",
       "purpose": "Generated immutable route snapshot identity directory.",
@@ -512,6 +596,18 @@
       "owner": "site/README.md"
     },
     "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html": {
+      "kind": "file",
+      "purpose": "Generated immutable route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/ee8b8d18819cf784e046cffd613936c6775d32370730b7010ec7faa293d88fc6": {
+      "kind": "directory",
+      "purpose": "Generated immutable route snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/ee8b8d18819cf784e046cffd613936c6775d32370730b7010ec7faa293d88fc6/research.html": {
       "kind": "file",
       "purpose": "Generated immutable route snapshot.",
       "role": "generated",
@@ -5857,6 +5953,162 @@
       "role": "generated",
       "owner": "tools/site/build.cjs"
     },
+    "site/retained": {
+      "kind": "directory",
+      "purpose": "Verified prior immutable public dependency retained for coherent existing sessions; imported by tools/site/retain.cjs.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/retained/manifest.json": {
+      "kind": "file",
+      "purpose": "Verified prior immutable public dependency retained for coherent existing sessions; imported by tools/site/retain.cjs.",
+      "role": "configuration",
+      "owner": "site/README.md"
+    },
+    "site/retained/media": {
+      "kind": "directory",
+      "purpose": "Verified prior immutable public dependency retained for coherent existing sessions; imported by tools/site/retain.cjs.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc": {
+      "kind": "directory",
+      "purpose": "Verified prior immutable public dependency retained for coherent existing sessions; imported by tools/site/retain.cjs.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/favicon.svg": {
+      "kind": "file",
+      "purpose": "Verified prior immutable public dependency retained for coherent existing sessions; imported by tools/site/retain.cjs.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi-cutout.webp": {
+      "kind": "file",
+      "purpose": "Verified prior immutable public dependency retained for coherent existing sessions; imported by tools/site/retain.cjs.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi.jpg": {
+      "kind": "file",
+      "purpose": "Verified prior immutable public dependency retained for coherent existing sessions; imported by tools/site/retain.cjs.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/writing-paradigm.svg": {
+      "kind": "file",
+      "purpose": "Verified prior immutable public dependency retained for coherent existing sessions; imported by tools/site/retain.cjs.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime": {
+      "kind": "directory",
+      "purpose": "Verified prior immutable public dependency retained for coherent existing sessions; imported by tools/site/retain.cjs.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62": {
+      "kind": "directory",
+      "purpose": "Verified prior immutable public dependency retained for coherent existing sessions; imported by tools/site/retain.cjs.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/archive.js": {
+      "kind": "file",
+      "purpose": "Verified prior immutable public dependency retained for coherent existing sessions; imported by tools/site/retain.cjs.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/navigation.js": {
+      "kind": "file",
+      "purpose": "Verified prior immutable public dependency retained for coherent existing sessions; imported by tools/site/retain.cjs.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/space.js": {
+      "kind": "file",
+      "purpose": "Verified prior immutable public dependency retained for coherent existing sessions; imported by tools/site/retain.cjs.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/styles.css": {
+      "kind": "file",
+      "purpose": "Verified prior immutable public dependency retained for coherent existing sessions; imported by tools/site/retain.cjs.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/retained/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/theme.js": {
+      "kind": "file",
+      "purpose": "Verified prior immutable public dependency retained for coherent existing sessions; imported by tools/site/retain.cjs.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots": {
+      "kind": "directory",
+      "purpose": "Verified prior immutable public dependency retained for coherent existing sessions; imported by tools/site/retain.cjs.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347": {
+      "kind": "directory",
+      "purpose": "Verified prior immutable public dependency retained for coherent existing sessions; imported by tools/site/retain.cjs.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html": {
+      "kind": "file",
+      "purpose": "Verified prior immutable public dependency retained for coherent existing sessions; imported by tools/site/retain.cjs.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/74f6fbade22d671a8f14f5d9dd0b84f40c2c67a75ab549e5cefc6fe42954030d": {
+      "kind": "directory",
+      "purpose": "Verified prior immutable public dependency retained for coherent existing sessions; imported by tools/site/retain.cjs.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/74f6fbade22d671a8f14f5d9dd0b84f40c2c67a75ab549e5cefc6fe42954030d/talks.html": {
+      "kind": "file",
+      "purpose": "Verified prior immutable public dependency retained for coherent existing sessions; imported by tools/site/retain.cjs.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68": {
+      "kind": "directory",
+      "purpose": "Verified prior immutable public dependency retained for coherent existing sessions; imported by tools/site/retain.cjs.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html": {
+      "kind": "file",
+      "purpose": "Verified prior immutable public dependency retained for coherent existing sessions; imported by tools/site/retain.cjs.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946": {
+      "kind": "directory",
+      "purpose": "Verified prior immutable public dependency retained for coherent existing sessions; imported by tools/site/retain.cjs.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html": {
+      "kind": "file",
+      "purpose": "Verified prior immutable public dependency retained for coherent existing sessions; imported by tools/site/retain.cjs.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7": {
+      "kind": "directory",
+      "purpose": "Verified prior immutable public dependency retained for coherent existing sessions; imported by tools/site/retain.cjs.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/retained/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html": {
+      "kind": "file",
+      "purpose": "Verified prior immutable public dependency retained for coherent existing sessions; imported by tools/site/retain.cjs.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
     "site/routes.json": {
       "kind": "file",
       "purpose": "Five route IDs, native destinations, scenes and semantic stop contract.",
@@ -6621,7 +6873,7 @@
     },
     "tools/quality/research-pair-probe.cjs": {
       "kind": "file",
-      "purpose": "Maintained quality/check helper for research pair probe; applicable profiles are selected by SITE-CHECK-PROFILES.",
+      "purpose": "Historical Research12 source comparison and opt-in four ordinary Writing AB/BA observations; exact normal Color inputs, raw failure retention and cleanup stopping, never admission.",
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md"
     },

@@ -285,3 +285,138 @@ accepted source-identical runtime. Layout-aware simulated CPU scaling exposes
 threshold crossing, while native Commit dominates the same-run route delta.
 The single dated successor collects maintained controls to choose a justified
 repair. All original acceptance and failed evidence remain intact.
+
+## Current four-control result and candidate scope
+
+Draft [PR64](https://github.com/oborskyivitalii/oborskyivitalii/pull/64) publishes
+head `4e9a83df8b0eb7c7fb129d0eebbf87b71f9d1607`, tree
+`e9785bfbe86585f669913eb04d01e6e409307985`. Basic37790271814,
+RI/navigation37790270933 and acceptance37790270864 passed. The local clean-head
+policy also passes all13 mapped checks and all six automated criteria, with
+human/merge gates pending and ready_for_issue_closure:false. Registered targeted
+source selection passes58 cases with zero failures/skips; RI regressions28 and
+RI/CI regressions19 pass. These checks do not admit the runtime's performance.
+
+The single [Writing attribution37790298632](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37790298632)
+completed successfully at that exact head in94s elapsed, initial queue0s.
+Artifact11556391682 ZIP SHA256
+`d5b659fdc6c1ddd4e746c8158fea372e6c123dd9bd13b8f95f042440a58fc9ac`
+agrees with downloaded bytes. All12 original row LHR/trace/network digests,
+clean source/tree and parent lineage were independently verified. The normal
+Color digest is `fac2b2f824b7486a4bad0be4c56a7f9a02b50ed326ca4c0f26ae6a8e52ae4c60`.
+The job uses EPYC9V74/four vCPUs, pinned Lighthouse13.5.0 and Chromium153.
+Collection complete/pass is true; fullGate/performanceAcceptance remain false.
+
+| Input | Profiled TBT ms | Benchmark index | Callbacks in common window | Median task / frame / Commit ms |
+| --- | ---: | ---: | ---: | --- |
+| Color | 163 | 3072 | 30 | 11.123 / 4.308 / 5.9585 |
+| No ribbons | 81.5 | 3012 | 45 | 8.952 / 3.119 / 5.103 |
+| No Canvas submission | 35 | 3070.5 | 45 | 2.992 / 2.274 / 0.187 |
+| Thematic off | 59 | 2934.5 | 45 | 6.029 / 1.796 / 3.438 |
+
+The common recurring window is500–2000ms after each input's first substantive
+render callback, fully within all profile spans. Color settles near20Hz after
++302ms; controls remain near30Hz. Totals/TBT are cadence-confounded: no-ribbons
+has MORE task CPU410.189ms than Color340.878ms in that window, despite a cheaper
+individual paint. Thematic-off retains formula/ribbons and reduces native cost
+per callback materially; ordinary renderer work is therefore the stronger target.
+Each input is a single ordered observation; calibration and ambient phases vary.
+These values establish no precise population effect size or hosted admission.
+
+CPU ProfileChunks were grouped by pid+profile ID, mapped to the Profile head's
+tid/start timestamp, and cumulative sample deltas including negative deltas were
+preserved before stable ordering. Node and parent resolution has zero misses.
+Collector chunk tid differs from sampled main thread. The common window is fully
+covered; final no-ribbons/no-canvas tasks extend beyond retained samples, so
+whole-tail function completeness is not claimed. All Commit samples resolve only
+to(program), rather than a named native routine.
+
+| Source samples per recurring callback, leaf / inclusive | Color | Thematic off |
+| --- | ---: | ---: |
+| drawLineRun | 3.667 / 4.967 | 1.222 / 1.578 |
+| paintShapes | 3.033 / 12.533 | 0.311 / 4.556 |
+| setPaintState | 2.700 / 2.700 | 0.622 / 0.622 |
+| paintFormula inclusive | 0.833 | 0.711 |
+| paintRibbon inclusive | 1.767 | 1.556 |
+
+Most setPaintState samples locate its native/shadow assignment line. This does
+not distinguish dynamic JavaScript dispatch from native Canvas setter cost.
+The accepted dated scope therefore allows one parity-preserving candidate:
+four constant-property setters, preserving strict equality suppression,
+native-before-shadow order, all state invalidation, effective commands and counts.
+Root authors the canonical renderer and required touched-function readability;
+independent review checks its semantics. This remains an experiment, not a fix.
+
+A checked zero-alpha pruning idea was rejected without code: all18 route/phase
+observations have zero fully transparent lines/runs, and depthVisibility has a
+nonzero0.0355 floor. Treating tiny positive alpha as zero would change the image.
+
+| Task | Exact obligation | Check | Status |
+| --- | --- | --- | --- |
+| T05 | Specialize only four existing Canvas/shadow slots; preserve native command/state streams and all geometry/lifecycle/resource contracts. | Existing renderer boundaries + immutable-reference full-stream parity | Prepared candidate; benefit pending |
+| T06 | Compare six fixed native Skia Writing Day/Night images at390/768/1440, including actual ribbons and24 formula submissions. | Exact RGBA equality, source/backend/script identities | Pass: six images, zero differing pixels; no timing claim |
+| T07 | Collect normal Writing reference/candidate AB then BA, four fresh sequential processes, unchanged Lighthouse flags and retained raw failures. Historical Research12 remains intact. | Bounded pair/count/identity/failure tests and exact-source read-only CI | Route and contracts prepared; actual trial pending |
+| T08 | Reject candidate if consistent benefit is not established; retain evidence. An accepted repair needs independent review and original complete hosted staging. | Per-paint startup/recurring metrics, source/visual invariants and original gate | Pending |
+
+Protocol refinement precedes implementation in the live issue: all four pair
+observations use ordinary unprofiled settings because source attribution is
+already retained. Two AB/BA pairs reduce ordering ambiguity; they do not prove
+statistical repeatability. No metric limit, full production or original gate is
+changed. All six actual issue45 AC checkboxes remain unchecked.
+
+## Prepared candidate parity and review
+
+The candidate replaces only dynamic native/shadow property dispatch with four
+literal setters. Strict equality, native-before-shadow writes, fresh state and
+custom/formula invalidation remain intact. Readable invalidation preserves the
+original right-to-left chained assignment order (globalAlpha, lineWidth,
+strokeStyle, fillStyle), avoiding a hidden-class-order confound. Geometry,
+formulas, ribbons, painter counts, caches, cadence and lifecycle are unchanged.
+Canonical generated hosted/offline outputs were regenerated; the prior verified
+public immutable dependencies were imported through the maintained retainer.
+
+The independently authored immutable-parent full-stream oracle compares44
+actual current-route Day/Night compact/full geometry cases, including Color
+ribbons, Writing formula approach, every property write/get, gradient/stop,
+path/transform/clip and effective draw state. It also compares all four native
+setter rejection streams and formula draw failure restoration. Paths retain
+the transform at append time and survive save/restore. The full renderer suite
+passes11 cases; this issue-owned oracle needs full Git history and protects
+unchanged submission semantics, rather than future intentional visual redesign.
+
+A separate native Skia check (@napi-rs/canvas0.1.100) compares six Writing images
+at390/768/1440 by900 in Day/Night against immutable4e9a83d. All six have zero
+differing pixels and identical RGBA SHA256. Actual ribbon counts are55/209/236
+for those widths and all use24 formula submissions. Narrow captures use entry
+at time0; larger captures use all-topic progress0.13 at time7317. This local
+backend observation is neither a browser benchmark nor physical-device evidence.
+The diagnostic script SHA256 is
+`fd32887082673e543738f5ffbe35915a128b970309e712d0667cad31d26df9ea`.
+
+The four-trial ordinary source comparison is explicit read-only CI on the exact
+PR head and immutable4e9a83d reference, both normal Color. Seven maintained
+cause-fix cases protect identity, frozen order/count, ordinary flags, raw failure
+retention and cleanup stopping; thirteen combined cause/cause-fix cases pass.
+No retries, discarded trials, profiler, Research12 replay or release admission
+are added. Measured benefit and original complete staging remain pending.
+
+The required prior-version import exposed a style-guard false owner: old public
+styles are a concatenated copy, not a second authored token authority. AC04
+records the narrow correction before implementation: only exact retained runtime
+styles.css copies matching their manifest digest are excluded from token-owner
+selection. JS/import coverage and immutable debt allowances are unchanged;
+authored imports into retained output fail. New negatives reject changed or
+undeclared retained CSS and competing authored CSS even if catalogued generated.
+Manifest agreement proves byte consistency, not independent historic authenticity;
+the importer plus comparison to exact4e9a83d supplies the latter lineage.
+Independent review found no remaining renderer blocker after preserving shadow
+invalidation order and independently reran the44-case ordered-stream parity.
+
+Prepared-source checks pass: Basic, all24 renderer/cause/cause-fix cases with
+zero failures/skips, style13 regressions, RI28 regressions and RI/CI19 regressions.
+The final prepared canonical renderer SHA256 is
+`25404b17686718d4946d9332a223299700c172a2f26a3b7826095ad0f35c369c`;
+its native-pixel report was rerun after the invalidation-order correction and
+again has six exact images. Guard review found and fixed exact-directory import
+and Boolean-schema boundary gaps; immutable allowances remain two occurrences.
+Exact clean-head source selection and mapped acceptance are run after commit.

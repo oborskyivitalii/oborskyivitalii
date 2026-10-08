@@ -7,7 +7,7 @@
     {
       "id": "AC01",
       "intent": "Make the existing Writing world formula crisp while retaining its expression, ribbon palette, perspective, tilt, pulse and camera motion.",
-      "automated_scope": "Actual Canvas submissions share world haze alpha and high-quality sampling, restore sampling state, and retain one 1380x240 cache and 24 bounded submissions. The same maintained owner checks bounded source rectangles against independent world-plane clips/affine UV mapping at four widths, two poses and five phases, preserves a two-CSS-pixel inverse-affine filter guard, and falls back to the full source for singular/extreme minification. World-plane separation stays below half the projected glyph stroke at narrow/medium/desktop widths and two camera positions. Existing producer checks verify finite canonical artwork, one Writing-only world landmark, matching static layer alpha and immutable packaged identity. Perceived sharpness and hosted performance remain visual/browser acceptance. The same maintained renderer selection verifies exact draw/state equivalence and fresh paint-state/custom-effect boundaries while avoiding redundant native setters; hosted TBT remains the original separate browser gate.",
+      "automated_scope": "Actual Canvas submissions share world haze alpha and high-quality sampling, restore sampling state, and retain one 1380x240 cache and 24 bounded submissions. The same maintained owner checks bounded source rectangles against independent world-plane clips/affine UV mapping at four widths, two poses and five phases, preserves a two-CSS-pixel inverse-affine filter guard, and falls back to the full source for singular/extreme minification. World-plane separation stays below half the projected glyph stroke at narrow/medium/desktop widths and two camera positions. Existing producer checks verify finite canonical artwork, one Writing-only world landmark, matching static layer alpha and immutable packaged identity. Perceived sharpness and hosted performance remain visual/browser acceptance. The same maintained renderer selection verifies exact draw/state equivalence and fresh paint-state/custom-effect boundaries while avoiding redundant native setters; hosted TBT remains the original separate browser gate. The immutable-reference oracle compares the complete ordered Canvas command/property stream and effective draw state on 44 actual current-route Color geometry cases, including native setter rejection and formula draw failure. Native pixel parity and measured browser benefit remain separately recorded observations.",
       "checks": [
         "FORMULA-RENDERER",
         "FORMULA-PRODUCER",
@@ -44,11 +44,12 @@
     {
       "id": "AC04",
       "intent": "Deliver canonical generated output and a reviewable owning-issue/Draft-PR change with exact checks and honest acceptance state.",
-      "automated_scope": "Current RI inventory/views and actual CI coupling, explicit owning-issue selection and pending human-gate semantics. Reuse all six maintained cause-probe cases with no missing, failed or skipped tests: actual workflow authorization denies unrelated events, labels, branches and forks, rejects unsupported condition grammar and binds checkout to the exact PR head; exact clean source/tree/parent inputs, four distinct Writing controls, required CPU samples, retained raw evidence before validation, bounded fresh processes and failed cleanup containment. Collection success is not performance acceptance. Applicable CS01 and CS04-CS10 cover source ownership, one owner, readable touched code, unchanged lifecycle and limits, measured attribution, proportional checks, the bounded style guard and honest issue/PR evidence; independent review covers rules outside the automatic subset. Existing Basic and hosted preview CI remain separately required; this policy does not duplicate them, ingest their artifacts, grant independent review or authorize merge.",
+      "automated_scope": "Current RI inventory/views and actual CI coupling, explicit owning-issue selection and pending human-gate semantics. Reuse all six maintained cause-probe cases with no missing, failed or skipped tests: actual workflow authorization denies unrelated events, labels, branches and forks, rejects unsupported condition grammar and binds checkout to the exact PR head; exact clean source/tree/parent inputs, four distinct Writing controls, required CPU samples, retained raw evidence before validation, bounded fresh processes and failed cleanup containment. Collection success is not performance acceptance. Applicable CS01 and CS04-CS10 cover source ownership, one owner, readable touched code, unchanged lifecycle and limits, measured attribution, proportional checks, the bounded style guard and honest issue/PR evidence; independent review covers rules outside the automatic subset. Existing Basic and hosted preview CI remain separately required; this policy does not duplicate them, ingest their artifacts, grant independent review or authorize merge. The maintained seven cause-fix cases also bind the four ordinary unprofiled Writing AB/BA observations, exact normal Color identities on both sides, retained raw validation failures and cleanup stopping; the historical Research12 schedule remains unchanged. This protocol proves collection contracts, not performance benefit. The style guard admits only exact retained runtime CSS copies matching the imported manifest into non-owner status; JS/import coverage remains, retained imports fail, and authored competitors cannot hide through catalog relabelling. Importer/build checks own complete retained inventory/provenance.",
       "checks": [
         "CURRENT-RI",
         "RI-CI",
         "WRITING-ATTRIBUTION",
+        "WRITING-SETTER-PAIR",
         "STYLE-GUARD",
         "OWNER-SELECTION",
         "PENDING-GATE"
@@ -139,6 +140,10 @@
     "CAMERA-RETARGET": {
       "kind": "unittest",
       "test": "test_issue45_acceptance.Issue45AcceptanceTests.test_displayed_camera_retargets_keep_detail_clock_and_failure_bounds"
+    },
+    "WRITING-SETTER-PAIR": {
+      "kind": "unittest",
+      "test": "test_issue45_acceptance.Issue45AcceptanceTests.test_writing_setter_pair_keeps_four_ordinary_observations_and_raw_failures"
     }
   },
   "gates": {

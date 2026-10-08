@@ -46,7 +46,8 @@ jobs:
           require('./tools/staging/color.cjs').build(root+'/color');
           require('./tools/quality/writing-variants.cjs').derive(root+'/color',root+'/control','browser-gate-trace');
           JS
-      - name: Bound Ubuntu downloads and use its primary archive
+      - &bounded_ubuntu_downloads
+        name: Bound Ubuntu downloads and use its primary archive
         run: |
           sudo python3 - <<'PYTHON'
           from pathlib import Path
@@ -92,6 +93,77 @@ jobs:
         with:
           name: writing-cause-${{ github.run_id }}-${{ github.run_attempt }}
           path: ${{ runner.temp }}/writing-cause-results/
+          if-no-files-found: error
+          retention-days: 90
+  writing-setter-comparison:
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.repository == 'oborskyivitalii/oborskyivitalii' &&
+      github.event.label.name == 'site-writing-setter-evidence' &&
+      (github.event.pull_request.number == 64 ||
+      github.event.pull_request.head.ref == 'work/issue45-writing-attribution-20261008') &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    defaults:
+      run:
+        working-directory: candidate
+    env:
+      SITE_CANDIDATE_SHA: ${{ github.event.pull_request.head.sha }}
+      CAUSE_REFERENCE_SHA: 4e9a83df8b0eb7c7fb129d0eebbf87b71f9d1607
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: candidate
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: 4e9a83df8b0eb7c7fb129d0eebbf87b71f9d1607
+          path: reference
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: '24.19.0'
+      - name: Verify exact normal Color source pair
+        run: |
+          test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
+          test "$(git -C ../reference rev-parse HEAD)" = "$CAUSE_REFERENCE_SHA"
+          node --test tests/cause-fix-probe.test.cjs
+          node - <<'JS'
+          const root = process.env.RUNNER_TEMP + '/writing-setter-input';
+          require('./tools/quality/artifact.cjs').build(root + '/candidate');
+          require('./tools/staging/color.cjs').build(root + '/candidate');
+          JS
+          SITE_CANDIDATE_SHA="$CAUSE_REFERENCE_SHA" node - <<'JS'
+          const root = process.env.RUNNER_TEMP + '/writing-setter-input';
+          require('../reference/tools/quality/artifact.cjs').build(root + '/reference');
+          require('../reference/tools/staging/color.cjs').build(root + '/reference');
+          JS
+      - *bounded_ubuntu_downloads
+      - name: Install pinned Chromium only
+        run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium
+      - name: Lint changed renderer and probe sources
+        run: >-
+          node tools/quality/toolchain/node_modules/eslint/bin/eslint.js
+          --config tools/quality/eslint.config.cjs
+          site/engine/renderer.cjs tools/quality/research-pair-probe.cjs
+          tests/renderer.test.cjs tests/cause-fix-probe.test.cjs
+      - name: Retain four ordinary Writing source observations
+        run: >-
+          node tools/quality/research-pair-probe.cjs --writing-setters
+          "$RUNNER_TEMP/writing-setter-input/candidate"
+          "$RUNNER_TEMP/writing-setter-input/reference"
+          "$RUNNER_TEMP/writing-setter-results"
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: writing-setter-pair-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/writing-setter-results/
           if-no-files-found: error
           retention-days: 90
   diagnose:

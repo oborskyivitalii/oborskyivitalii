@@ -417,7 +417,7 @@
     {
       "path": "tests/cause-fix-probe.test.cjs",
       "language": "javascript",
-      "purpose": "Private cold interventions each vary one factor; exact normal-source and Research control lineage",
+      "purpose": "Exact normal-source/private intervention lineage; opt-in four ordinary Writing AB/BA trials retain raw failures and cleanup bounds while historical Research12 remains unchanged",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "diagnostic",
       "profiles": [
@@ -430,7 +430,8 @@
         "tests/cause-fix-probe.test.cjs",
         "tools/quality/writing-variants.cjs",
         "tools/quality/cause-probe.cjs",
-        "tools/quality/research-pair-probe.cjs"
+        "tools/quality/research-pair-probe.cjs",
+        ".github/workflows/site-cause-probe.yml"
       ]
     },
     {
@@ -823,7 +824,7 @@
     {
       "path": "tests/renderer.test.cjs",
       "language": "javascript",
-      "purpose": "Current renderer exact palettes, ordered command/state equivalence and fresh/invalidation boundaries, native state deduplication, bounded formula sampling/projection/cache, insignificant pruning, culling/brain normals and Object.hasOwn fallback",
+      "purpose": "Current renderer exact palettes, ordered command/state equivalence and fresh/invalidation boundaries, native state deduplication, bounded formula sampling/projection/cache, insignificant pruning, culling/brain normals and Object.hasOwn fallback; issue45 immutable-parent full ordered Canvas/effective-state parity on current Color geometry",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": [

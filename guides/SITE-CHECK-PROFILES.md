@@ -106,6 +106,25 @@ The successor route is for the current issue #45 attribution only; remove its
 dated branch allowance after that work completes. Manual dispatch still selects
 the historical Research/WebKit matrix and does not select Writing attribution.
 
+The issue #45 setter experiment uses the separate `site-writing-setter-evidence`
+label on same-repository PR #64 or that exact dated successor branch. Its
+`research-pair-probe.cjs --writing-setters` mode compares normal Color at the
+exact candidate head and pinned reference
+`4e9a83df8b0eb7c7fb129d0eebbf87b71f9d1607` in one job. It runs four ordinary
+mobile/simulated Writing observations in the predetermined order
+reference/candidate, then candidate/reference: two observations per source,
+four fresh sequential Chromium processes, and no CPU-profiler category. Existing
+function attribution remains separate evidence. Original LHR, trace and network
+files are saved before validation, including invalid results. A browser cleanup
+failure records unattempted observations and stops the remaining schedule.
+Missing, extra, duplicate, reordered or failed evidence cannot establish complete
+collection; collection still keeps `fullGate: false` and
+`performanceAcceptance: false`. This source-pair diagnostic cannot admit staging
+or change its trials, settings or budgets. Historical Research's default CLI and
+twelve normal/profiled observations remain unchanged; dispatch does not select
+the new Writing comparison. Remove its dated branch allowance when issue #45's
+experiment closes.
+
 ## Complete production regression
 
 `validation_level: production` is the reusable workflow's default. Run the full
