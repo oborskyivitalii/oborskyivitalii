@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "fa1e5d13e4a1c7ca805abf49cafb96dda12649a1e81862d2270226c4ece37edf",
+    "digest": "8dd11ab7599fdd2ebf2debc79d77e151019c6e7d89291cb99d104ea484450fa6",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -5155,7 +5155,7 @@
       {
         "path": "tests/test_issue61_acceptance.py",
         "identity_mode": "content",
-        "sha256": "28903f0455b220de7d4ad801a352ab328eef119f4d32aa1255c63f37e85091e5"
+        "sha256": "23da1dc4b786b62b720b01f7f11dbdb782cc460223c02e5e621ab8a9a45260b7"
       },
       {
         "path": "tests/test_issue_acceptance.py",
