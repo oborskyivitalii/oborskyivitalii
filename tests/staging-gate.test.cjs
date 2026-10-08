@@ -24,7 +24,7 @@ test('staging gate rejects missing, duplicate, wrong-source and preview-as-regre
     (f) => (f.reports[5].sourceTree = 'f'.repeat(40)),
     (f) => (f.reports[4].candidateCommit = 'f'.repeat(40)),
     (f) => (f.reports[4].artifactDigest = 'f'.repeat(64)),
-    (f) => (f.reports[4].variant.fingerprint = 'f'.repeat(64)),
+    (f) => (f.reports[4].variant = { ...f.reports[4].variant, fingerprint: 'f'.repeat(64) }),
     (f) => (f.reports[4].target = null),
     (f) => (f.reports[0].target = 'https://other.example.invalid'),
     (f) => (f.reports[4].profile = 'production'),

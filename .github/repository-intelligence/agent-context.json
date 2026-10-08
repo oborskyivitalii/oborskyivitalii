@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "5f6172fe7ded83c849e925cd8794f5b560b54d0c21b5a19b1a1d04f63af476c5",
+    "digest": "0f205ca493e270dcc47fb0dbeee8bedb1274cba5aa5694a0e5e1e2e189a70a13",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -131,7 +131,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "5f5b331abbfa57ef3781ce9c20d844816b57fc434c1ee2cbe1068b6c632bb33c"
+        "sha256": "2071f9fc33d231655d14417abe12ec0cdbc9ebd481d1af2fe9d62864f7e2b872"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -655,7 +655,7 @@
       {
         "path": "review/issue-58/2026-10-08-handoff.md",
         "identity_mode": "content",
-        "sha256": "f10bfb3e4236d5fe58caccf8cb3e6dcdf451debd65ca5cf8a644922c0f8aa506"
+        "sha256": "5a62f4775ace77a2935b6bbf86e4b584f4fc4f4c84e4d965face25881e4afdc0"
       },
       {
         "path": "review/issue-58/2026-10-08-scanner-rebinding.json",
@@ -4695,7 +4695,7 @@
       {
         "path": "tests/staging-gate.test.cjs",
         "identity_mode": "content",
-        "sha256": "c1a62e07e00e39f13e9eb5f41fd040b37518f1cd8c170784063b66baf683a2c5"
+        "sha256": "16b8888327b3c6784a67be677d9461b6670c783813518570e08078d097de1c8a"
       },
       {
         "path": "tests/staging-regression.test.cjs",
@@ -5030,7 +5030,7 @@
       {
         "path": "tools/quality/format-parity-controls.json",
         "identity_mode": "content",
-        "sha256": "e18f8b6807ec729f1053829407cea817c610435db0ce00a597ff7353c67dbf1d"
+        "sha256": "339ffce0052bb5caedab9fdd3c761bb6c566019258f09719ba90743e308816f7"
       },
       {
         "path": "tools/quality/format-parity.cjs",
