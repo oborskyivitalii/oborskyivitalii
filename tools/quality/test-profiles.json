@@ -824,7 +824,7 @@
     {
       "path": "tests/renderer.test.cjs",
       "language": "javascript",
-      "purpose": "Current renderer exact palettes, ordered command/state equivalence and fresh/invalidation boundaries, native state deduplication, bounded formula sampling/projection/cache, insignificant pruning, culling/brain normals and Object.hasOwn fallback; issue45 immutable-parent full ordered Canvas/effective-state parity on current Color geometry",
+      "purpose": "Current renderer exact palettes, ordered command/state equivalence and fresh/invalidation boundaries, native state deduplication, bounded formula sampling/projection/cache, insignificant pruning, culling/brain normals and Object.hasOwn fallback",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": [

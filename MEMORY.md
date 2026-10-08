@@ -17,9 +17,10 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
   Hypotheses and tasks are in the single
   [Writing attribution record](review/issue-45/2026-10-08-writing-attribution.md).
   Branch: `work/issue45-writing-attribution-20261008`, based on main above.
-  Draft PR64 publishes diagnostic head `4e9a83df8b0eb7c7fb129d0eebbf87b71f9d1607`.
-  Its four-control attribution completed in run37790298632; a literal-setter
-  candidate preserves commands/pixels and awaits the four ordinary AB/BA trial.
+  Draft PR64 retains attribution checkpoint `4e9a83df8b0eb7c7fb129d0eebbf87b71f9d1607`.
+  Its four-control attribution completed in run37790298632. Literal setters
+  preserved commands/pixels but failed benefit in pair37796870792. Runtime and
+  generated/offline output are restored to that checkpoint; live PR owns latest head.
 
 ## Decisions
 
@@ -31,7 +32,7 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
   WebKit/production campaign is included.
 - Current/accepted pre-candidate runtime JS/CSS bytes match. Failed Writing
   paints fewer but costlier frames. New attribution targets ordinary geometry
-  and state submissions; literal property specialization is experimental.
+  and native submissions; literal specialization showed no consistent benefit.
   No bitmap, geometry, quality, cadence or budget change is authorized here.
 - Apply CODE-STYLE before changes; guard success proves its documented subset.
   Source-owned runtime changes need generated parity and independent review.
@@ -43,7 +44,7 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 
 | Issue | Remaining intent |
 | --- | --- |
-| #45 | Measure the parity-preserving setter candidate, reject without benefit, then check/review/stage any justified repair; six whole-AC boxes remain unchecked. |
+| #45 | Setter experiment rejected and runtime restored; evidence retained, justified native-paint repair still needed; six whole-AC boxes remain unchecked. |
 | #61 / PR63 | Deliver recording after its actual complete staging gate; AC02/AC03 remain open. |
 | #58 / #59 / PR60 | Separate ordered R2–R6 refactoring. |
 | #49 / #50 | Fragment-flight ownership and feature plan remain separate. |
@@ -53,7 +54,7 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 
 ## Next session
 
-1. Revalidate live main, Draft PR64 head and its four ordinary Writing pair artifact.
+1. Revalidate live main and Draft PR64; read rejected pair37796870792 evidence.
 2. Read the single attribution record; distinguish unthrottled trace costs
    from simulated Lighthouse TBT and profiler overhead.
 3. Implement only a measured source-owned repair, then exact-source checks,

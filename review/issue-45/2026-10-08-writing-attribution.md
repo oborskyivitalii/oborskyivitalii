@@ -353,10 +353,10 @@ nonzero0.0355 floor. Treating tiny positive alpha as zero would change the image
 
 | Task | Exact obligation | Check | Status |
 | --- | --- | --- | --- |
-| T05 | Specialize only four existing Canvas/shadow slots; preserve native command/state streams and all geometry/lifecycle/resource contracts. | Existing renderer boundaries + immutable-reference full-stream parity | Prepared candidate; benefit pending |
+| T05 | Specialize only four existing Canvas/shadow slots; preserve native command/state streams and all geometry/lifecycle/resource contracts. | Existing renderer boundaries + immutable-reference full-stream parity | Rejected: no consistent measured benefit; runtime reverted |
 | T06 | Compare six fixed native Skia Writing Day/Night images at390/768/1440, including actual ribbons and24 formula submissions. | Exact RGBA equality, source/backend/script identities | Pass: six images, zero differing pixels; no timing claim |
-| T07 | Collect normal Writing reference/candidate AB then BA, four fresh sequential processes, unchanged Lighthouse flags and retained raw failures. Historical Research12 remains intact. | Bounded pair/count/identity/failure tests and exact-source read-only CI | Route and contracts prepared; actual trial pending |
-| T08 | Reject candidate if consistent benefit is not established; retain evidence. An accepted repair needs independent review and original complete hosted staging. | Per-paint startup/recurring metrics, source/visual invariants and original gate | Pending |
+| T07 | Collect normal Writing reference/candidate AB then BA, four fresh sequential processes, unchanged Lighthouse flags and retained raw failures. Historical Research12 remains intact. | Bounded pair/count/identity/failure tests and exact-source read-only CI | Complete: four ordinary observations retained; no performance admission |
+| T08 | Reject candidate if consistent benefit is not established; retain evidence. An accepted repair needs independent review and original complete hosted staging. | Per-paint startup/recurring metrics, source/visual invariants and original gate | Rejected without retry; original stage/main remain pending |
 
 Protocol refinement precedes implementation in the live issue: all four pair
 observations use ordinary unprofiled settings because source attribution is
@@ -437,3 +437,86 @@ Change the regex to an explicit space quantifier without changing its match or
 protocol. Canonical renderer, native parity, generated public bytes and reference
 remain identical. The retained failed job is113376857940. A test complexity32
 warning against advisory25 is also recorded; it is not an admission result.
+
+## Four ordinary observations: candidate rejected
+
+Run [37796870792](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/37796870792)
+completed successfully on exact candidate262c45dd87e9c3b9d0f1cc5048a86ba6329b24cd,
+tree436fc3e062ec451a8c3ba6f4e7cd396195d0ded7, against immutable4e9a83d/treee978.
+Artifact11559091888 ZIP SHA256
+`07526c3a3d8acc3b6e31bcffcce85d110009903ce1dc7d00436ed2f65f1ac88d`
+agrees with downloaded bytes. Collection complete/pass:true, errors:none;
+fullGate/performanceAcceptance:false. All12 raw LHR/trace/network digests and
+source/configuration/order identities were checked independently twice.
+Node24.19.0/Ubuntu24/pinned Lighthouse13.5.0/Chromium153 were unchanged.
+This runner uses four EPYC7763 vCPUs, rather than the attribution runner's9V74.
+Elapsed run time265s includes installation and collection; no retries occurred.
+
+Before results, the live issue fixed the same500–2000ms window and required
+favorable recurring frame/task cost in both AB and BA, reviewing p95/startup,
+cadence and calibration. Lower TBT alone or one favorable pair was insufficient.
+Each observation has30 distinct paint tasks at approximately20Hz in that window,
+with one Commit each; no CPU profiler, overlapping/shared paint tasks or missing
+window coverage. Median values are followed by p95, in raw unthrottled ms:
+
+| Observation | Calibration | Simulated TBT ms | Frame median / p95 | Task median / p95 | Commit median / p95 |
+| --- | ---: | ---: | --- | --- | --- |
+| Reference1 |2398|193.5|4.5655 /7.240|11.990 /14.921|6.5125 /6.819|
+| Candidate1 |2417|245|4.7875 /6.784|12.6005 /15.128|6.790 /7.164|
+| Candidate2 |2231|398|5.2905 /8.764|13.4215 /19.586|6.683 /9.443|
+| Reference2 |2394|261|4.861 /7.463|12.588 /15.469|6.7095 /6.962|
+
+AB frame/task medians worsen4.86%/5.09%; BA worsen8.84%/6.62%.
+Native Commit medians are mixed, and task/native tails give no consistent gain.
+Candidate2 calibration is6.81% lower than reference2; reference2 also costs more
+than reference1 at almost equal calibration. These limits prevent claiming a
+precise causal regression, but cannot establish benefit. Startup and non-paint
+tasks supply no consistent improvement. The independently reviewed fixed-window
+analysis and a separate raw recomputation agree: reject benefit without retry.
+
+Latest exact candidate Basic37796870251, navigation37796869411,
+acceptance37796869438/37796925632 and normal preview37796869916 pass.
+These are source/preview observations, not the original complete staging gate.
+The source selection's small lint-only delta passes7/7 with zero skips.
+
+The rejected renderer and generated hosted/offline changes are restored to
+immutable4e9a83d bytes. Its newly imported retained dependencies are removed
+with those experimental outputs. The experiment-specific immutable-parent command oracle
+is retired with the rejected experiment, avoiding an unnecessary future runtime
+freeze or Git-history dependency. The six native-pixel and44 command comparisons
+remain evidence for that historical candidate only. The maintained opt-in
+four-source comparison and its diagnostic contracts retain the actual experiment
+route; no routine performance campaign or production gate is added. The independently
+reviewed, manifest-bound retained-CSS guard correction remains a compatible
+repair to the existing importer/authoring boundary, not a performance claim.
+
+## Follow-up hypothesis checked without a new browser run
+
+Per-primitive culling already rejects face/line AABBs outside the viewport plus
+8px stroke guard, after object sphere culling. Thirty entry-pose cases across
+all five routes at390/768/1440 and times0/7317 were independently clipped against
+the same expanded rectangle: zero submitted ordinary shapes were geometrically
+disjoint in every case. Another identical bounds filter is redundant; these
+samples justify no culling candidate. They do not cover every flight/phase.
+
+Independent source review also found a parity hazard in deleting invisible
+shapes: a first line owns alpha for its whole compatible run, and invisible
+barriers keep strokes separate. Deletion could change visible alpha/compositing.
+Any future support-based omission must preserve groups/first alpha and account
+for strokes, arrows, antialiasing, transforms and custom painters. No culling
+code is introduced.
+
+The remaining supported target is ordinary Canvas submission/native Commit cost.
+A future candidate needs a concrete safe reduction of native work, measured
+benefit and the unchanged original complete staging gate. This record supplies
+no proven repair. Main and recording delivery remain blocked by actual Writing
+performance evidence; all six whole AC checkboxes stay unchecked, issue open.
+
+Final independent disposition review verifies all56 canonical site files and
+all30 public docs files match immutable4e9a83d exactly, with no extras/missing
+files. V11 offline/static renditions, output-lock and existing renderer tests
+also match; no retired experiment oracle remains in permanent source checks.
+Gate/budget/probe/variant and staging-controller owners have no difference.
+Restored-source Basic and23 renderer/cause/cause-fix cases pass with zero skips;
+RI and coupling verification and the style guard pass. Final published-head
+CI/policy identity is recorded in the live PR, never inferred from preparation.

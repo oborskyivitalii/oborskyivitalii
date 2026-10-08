@@ -1086,135 +1086,52 @@ const renderer=(function(artwork=null,createSurface=null) {
     ctx.beginPath();ctx.moveTo(points[0][0],points[0][1]);
     for(let i=1;i<points.length;i++)ctx.lineTo(points[i][0],points[i][1]);
   }
-  // Literal native/shadow slots preserve the exact setter stream. A controlled
-  // comparison must establish benefit; this does not omit more paint work.
-  function setFillStyle(ctx, state, value) {
-    if (state.fillStyle === value) {
-      return;
-    }
-    ctx.fillStyle = value;
-    state.fillStyle = value;
-  }
-  function setStrokeStyle(ctx, state, value) {
-    if (state.strokeStyle === value) {
-      return;
-    }
-    ctx.strokeStyle = value;
-    state.strokeStyle = value;
-  }
-  function setLineWidth(ctx, state, value) {
-    if (state.lineWidth === value) {
-      return;
-    }
-    ctx.lineWidth = value;
-    state.lineWidth = value;
-  }
-  function setGlobalAlpha(ctx, state, value) {
-    if (state.globalAlpha === value) {
-      return;
-    }
-    ctx.globalAlpha = value;
-    state.globalAlpha = value;
+  function setPaintState(ctx,state,property,value) {
+    if(state[property]===value)return;
+    ctx[property]=value;state[property]=value;
   }
   function invalidatePaintState(state) {
-    state.globalAlpha = undefined;
-    state.lineWidth = undefined;
-    state.strokeStyle = undefined;
-    state.fillStyle = undefined;
+    state.fillStyle=state.strokeStyle=state.lineWidth=state.globalAlpha=undefined;
   }
-  function drawLineRun(ctx, shapes, index, colors, state) {
-    const first = shapes[index];
-    const alpha = first.alpha;
-    ctx.beginPath();
-    setLineWidth(ctx, state, first.lineWidth);
-    setStrokeStyle(ctx, state, colors[first.color]);
-    setGlobalAlpha(ctx, state, alpha);
-    let end = index;
-    while (end < shapes.length) {
-      const shape = shapes[end];
-      if (shape.kind !== "line" || shape.arrow || shape.color !== first.color ||
-          shape.lineWidth !== first.lineWidth || Math.abs(shape.alpha - alpha) > 1 / 256) {
-        break;
-      }
-      const [from, to] = shape.points;
-      ctx.moveTo(from[0], from[1]);
-      ctx.lineTo(to[0], to[1]);
-      end++;
+  function drawLineRun(ctx,shapes,index,colors,state) {
+    const first=shapes[index],alpha=first.alpha;
+    ctx.beginPath();setPaintState(ctx,state,'lineWidth',first.lineWidth);setPaintState(ctx,state,'strokeStyle',colors[first.color]);setPaintState(ctx,state,'globalAlpha',alpha);
+    let end=index;
+    while(end<shapes.length){
+      const shape=shapes[end];
+      if(shape.kind!=="line"||shape.arrow||shape.color!==first.color||shape.lineWidth!==first.lineWidth||Math.abs(shape.alpha-alpha)>1/256)break;
+      const [from,to]=shape.points;ctx.moveTo(from[0],from[1]);ctx.lineTo(to[0],to[1]);end++;
     }
-    ctx.stroke();
-    return end - 1;
+    ctx.stroke();return end-1;
   }
-  function paintShapes(ctx, shapes, colors, paintCustom = null) {
-    formulaVisible = 0;
-    formulaLastPaints = 0;
-    formulaLastSubmissions = 0;
-    formulaProjection = null;
+  function paintShapes(ctx,shapes,colors,paintCustom=null) {
+    formulaVisible=0;formulaLastPaints=0;formulaLastSubmissions=0;formulaProjection=null;
     // Every paint starts unknown: resize or external drawing may reset native
     // state. A declining custom painter must leave the context untouched.
-    const state = {};
-    for (let index = 0; index < shapes.length; index++) {
-      const shape = shapes[index];
-      if (paintCustom?.(ctx, shape)) {
-        invalidatePaintState(state);
-        continue;
-      }
-      if (shape.kind === 'formula') {
-        paintFormula(ctx, shape);
-        invalidatePaintState(state);
-        continue;
-      }
+    const state={};
+    for(let index=0;index<shapes.length;index++) {
+      const shape=shapes[index];
+      if(paintCustom?.(ctx,shape)){invalidatePaintState(state);continue;}
+      if(shape.kind==='formula'){paintFormula(ctx,shape);invalidatePaintState(state);continue;}
       // Depth order is unchanged. Only adjacent compatible lines are batched.
-      if (shape.kind === "line" && !shape.arrow) {
-        index = drawLineRun(ctx, shapes, index, colors, state);
-        continue;
-      }
-      const points = shape.points;
-      const from = points[0];
-      const to = points[1];
-      path(ctx, points);
-      if (shape.kind === "face") {
-        const fill = shape.room.faceColors[shape.material];
-        ctx.closePath();
-        setFillStyle(ctx, state, fill);
-        setGlobalAlpha(ctx, state, shape.alpha);
-        ctx.fill();
-        if (shape.edgeAlpha === 0) {
-          setStrokeStyle(ctx, state, fill);
-          setLineWidth(ctx, state, .65);
-          ctx.stroke();
-        }
+      if(shape.kind==="line"&&!shape.arrow){index=drawLineRun(ctx,shapes,index,colors,state);continue;}
+      const points=shape.points,from=points[0],to=points[1];
+      path(ctx,points);
+      if(shape.kind==="face") {
+        const fill=shape.room.faceColors[shape.material];
+        ctx.closePath();setPaintState(ctx,state,'fillStyle',fill);setPaintState(ctx,state,'globalAlpha',shape.alpha);ctx.fill();
+        if(shape.edgeAlpha===0){setPaintState(ctx,state,'strokeStyle',fill);setPaintState(ctx,state,'lineWidth',.65);ctx.stroke();}
         // Explicit silhouettes survive; faint internal mesh edges are omitted
         // on desktop as on mobile. Thousands of invisible strokes cost time.
-        else if (shape.room.world.faces[shape.material].edgeAlpha > .12) {
-          setLineWidth(ctx, state, shape.lineWidth);
-          setStrokeStyle(ctx, state, colors[shape.color]);
-          setGlobalAlpha(ctx, state, shape.edgeAlpha);
-          ctx.stroke();
-        }
-      } else {
-        setLineWidth(ctx, state, shape.lineWidth);
-        setStrokeStyle(ctx, state, colors[shape.color]);
-        setGlobalAlpha(ctx, state, shape.alpha);
-        ctx.stroke();
-      }
-      if (shape.arrow) {
-        const dx = to[0] - from[0];
-        const dy = to[1] - from[1];
-        const length = Math.hypot(dx, dy);
-        if (length < 10) {
-          continue;
-        }
-        const size = 5;
-        const ux = dx / length;
-        const uy = dy / length;
-        ctx.beginPath();
-        ctx.moveTo(to[0] - ux * size - uy * size * .55, to[1] - uy * size + ux * size * .55);
-        ctx.lineTo(...to);
-        ctx.lineTo(to[0] - ux * size + uy * size * .55, to[1] - uy * size - ux * size * .55);
-        ctx.stroke();
+        else if(shape.room.world.faces[shape.material].edgeAlpha>.12){setPaintState(ctx,state,'lineWidth',shape.lineWidth);setPaintState(ctx,state,'strokeStyle',colors[shape.color]);setPaintState(ctx,state,'globalAlpha',shape.edgeAlpha);ctx.stroke();}
+      } else {setPaintState(ctx,state,'lineWidth',shape.lineWidth);setPaintState(ctx,state,'strokeStyle',colors[shape.color]);setPaintState(ctx,state,'globalAlpha',shape.alpha);ctx.stroke();}
+      if(shape.arrow) {
+        const dx=to[0]-from[0],dy=to[1]-from[1],length=Math.hypot(dx,dy);if(length<10)continue;
+        const size=5,ux=dx/length,uy=dy/length;
+        ctx.beginPath();ctx.moveTo(to[0]-ux*size-uy*size*.55,to[1]-uy*size+ux*size*.55);ctx.lineTo(...to);ctx.lineTo(to[0]-ux*size+uy*size*.55,to[1]-uy*size-ux*size*.55);ctx.stroke();
       }
     }
-    setGlobalAlpha(ctx, state, 1);
+    setPaintState(ctx,state,'globalAlpha',1);
   }
   return {paintShapes,facePalette,formulaDiagnostics,prepareFormula:formulaBitmap,formulaReady:()=>!!formulaSurface,formulaDrawn:()=>formulaLastPaints>0};
 })({
