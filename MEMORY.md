@@ -20,10 +20,15 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
   [Single handoff](review/issue-58/2026-10-08-handoff.md#current-continuation--same-pr-2026-10-08).
   Verified R2 is immutable `8c6cf877fee92b4d2493b4c1a07df7080b987c29`, tree
   `2725ae4743032b2aeaafd7f2d7f7c91a08265906`; CI/scans/independent review pass.
-  AC02 and R2.1–R2.6 are checked; R2.7/final criteria remain open. R3–R5 restored
-  and rebased locally; remote PR60 still holds R2 because Git HTTPS push lacks
-  credentials. Latest clean code checkpoint `a68043a`; all 11 issue58 tests pass.
-  Issue59 remains superseded/closed; retain its dated history.
+  AC02 and R2.1–R2.6 retain frozen phase evidence; R2.7 needs final merge/main.
+  Recovered R3–R5/R6 observer chain was published as `4018f098`, tree
+  `a3c5eb41cd8bd184f2c8ce5cd95acdbb0ad6ca32`, using exact Git-data trees.
+  HTTPS credentials no longer block publication; use live PR60 for its exact head/checks.
+  [R6 evidence](review/issue-58/2026-10-08-r6-matched-observations.json) preserves
+  original adaptive Base/Color passes and failed fixed counterfactual profiles.
+  No optimization/speedup is claimed; independent acceptance remains explicit.
+  [Current visual proof](review/issue-58/2026-10-08-final-visual.json) has eight
+  clean approved-main pairs with zero changed pixels. Issue59 is superseded.
 - PR #51 content/formula/shared reading-backdrop changes are merged and preserved.
   #15 is closed for the earlier engine/content increment; R3 extends its owners.
 - #49 is the sole open fragment-flight owner; #50 is closed as its duplicate.
@@ -63,7 +68,7 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
   text/links/geometry and stable dirty-tree observation. Motion is off/reduced;
   it does not prove every route, Color interaction, device or production performance.
 - RI/CI maps 14 checks over 12 layers, including maintained source quality.
-  R3–R6 need refreshed RI/security/source-bound evidence after integration.
+  Final current-source RI/security/CI/staging outcomes belong to PR60/issue58.
 - Native factory formatting changes serialization/hashes. Preserve executable
   and semantic parity; regenerate legitimate identities. Independently review
   exact complexity/Bandit/public fingerprint refreshes without changing original
@@ -86,7 +91,7 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 | Issue | Remaining intent |
 | --- | --- |
 | #58 | Full R2-R6 execution and final acceptance; R1 is complete. |
-| #58 / PR #60 | R3–R5 restored from local e4295ba and rebased as 8563545; matched-main R6, final CI/staging and merge/main acceptance. |
+| #58 / PR #60 | Current integrated evidence/AC disposition is in the live issue and single handoff; final merge/main remains a separate gate. |
 | #48 | PR51 merged; fetch remaining acceptance rather than restore old prose. |
 | #49 / Draft PR #53 | Implement the consolidated fragment-flight plan; #50 and PR52 are closed duplicates/history. |
 | #45 / #36 / #41 | Original visual, paired, editorial/device and release gates. |
@@ -98,16 +103,15 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 
 ## Next session
 
-1. Fetch main, issue58 and DraftPR60; compare refs with immutable R2 checkpoint.
-2. Read current R3/R4/R5 implementation/review sections; preserve frozen R2 and
-   generation/ownership contracts while finishing the integrated evidence.
-3. Paired Base R6 raw observations are saved in the dated resume evidence.
-   Main passes; candidate fails 33ms paint/20% idle busy budgets. Mobile Research
-   adaptive tiers differ; do not claim speedup/regression. Fix collector readiness
-   is complete. Resolve matched-quality/Color evidence without raising limits.
-4. Publish the rebased source after resolving HTTPS Git write access, then bind
-   final CI/preview/staging/scans/review to the exact published candidate.
-5. Reconcile whole AC boxes and evidence; merge only on final maintainer decision.
+1. Fetch main, issue58 and PR60; compare the exact current head and immutable R2.
+2. Read the current integrated handoff and live issue checkbox/evidence summary.
+   Historical failed or dirty measurements are retained with original identities.
+3. Reuse frozen983 adaptive/13dd98f visual evidence only with independently verified
+   complete public/runtime byte equivalence; never rewrite their identities.
+4. Follow the live PR60 CI/scanner/hosted/bounded staging and independent-review
+   outcome. Do not replay complete matrices for metadata or parser-only changes.
+5. Resolve any recorded blocker; merge only on the final maintainer decision,
+   then verify actual main and reconcile AC10/R2.7 before closing issue58.
 
 ## Maintenance
 

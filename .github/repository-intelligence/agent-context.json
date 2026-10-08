@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "033717ab79bf40e60cebf97ee4ca4778de62ddabfcf26f1829d06e47caaa2227",
+    "digest": "34df711f03db24128ea8d1851c475672169eb5b1a65ccde7e440c1818b39bab8",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -131,12 +131,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "db4eccace2bae20d5b35857575dc705d261dd1f4b2603d946a6dbb5e09488fbb"
+        "sha256": "f75016ec4adc999b0756f65d1ed6a784ba2a4a07c384925dd393ae3cc4eb1a17"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "86f446eced48e7e790c3746d9b883ccdb3ca96d973d7960c5803c008b61a147e"
+        "sha256": "99a957f18b9793c631762f7d20d3826f85117ba7a0ac5e074538a0347200b9db"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -231,7 +231,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "c2dd99eef54b7582c8c130bcdca0bfb86f223e735f4570541b9dd3d9adfa21c9"
+        "sha256": "f5a34e9e6427bfe91cbe99505faaace9520050247036fdab088dad375af6694d"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -708,9 +708,19 @@
         "sha256": "0386102dcdacd405409d67eaddc5674c2b7283c9e1ab5aab15e3493b87ada844"
       },
       {
+        "path": "review/issue-58/2026-10-08-final-visual-captures.json.gz",
+        "identity_mode": "content",
+        "sha256": "72a372d778c1a869424b4ed87100c82210b7838a2c3aef58d65d8b00316f06d5"
+      },
+      {
+        "path": "review/issue-58/2026-10-08-final-visual.json",
+        "identity_mode": "content",
+        "sha256": "dd85bf0be6c1471f0ebfa693e6fa136517a1d5e3f14fd80627d035888104bc81"
+      },
+      {
         "path": "review/issue-58/2026-10-08-handoff.md",
         "identity_mode": "content",
-        "sha256": "6192f4c252fc917ad43d9bea9638164edf570ac46c05b2b8b543361d5283f5c4"
+        "sha256": "71260198355bb8330d57d5c5fe96faab545532d2d3a356648565a2a8b18d058c"
       },
       {
         "path": "review/issue-58/2026-10-08-r3-r6-bandit.json",
@@ -736,6 +746,16 @@
         "path": "review/issue-58/2026-10-08-r5-projection.json",
         "identity_mode": "content",
         "sha256": "0e3154408565ac1d179bfbd4cd77c2e314b8c73c8d0e99cdfb0258233116d43a"
+      },
+      {
+        "path": "review/issue-58/2026-10-08-r6-matched-observations.json",
+        "identity_mode": "content",
+        "sha256": "32ddb7ac4fdc4a4914747bb1337da0e312e53cb72a983ac7734a48041ae89377"
+      },
+      {
+        "path": "review/issue-58/2026-10-08-r6-matched-raw.json.gz",
+        "identity_mode": "content",
+        "sha256": "bccceb2dcdf464feee610da2910a04ab5d2c62695a1057124292d0aeeef9cbbb"
       },
       {
         "path": "review/issue-58/2026-10-08-r6-triage.json",
@@ -5535,7 +5555,7 @@
       {
         "path": "tools/quality/refactor-metrics.cjs",
         "identity_mode": "content",
-        "sha256": "550f53b38d665b1946c1a4d2cb9026ad43f937f6c1a64fa3e7130d3d7df772c7"
+        "sha256": "5883281e4cbe65456ecde236f09b674c1002c04f69dbd4c84505b62e6129113d"
       },
       {
         "path": "tools/quality/research-pair-probe.cjs",
@@ -5565,7 +5585,7 @@
       {
         "path": "tools/quality/secrets-reviewed.json",
         "identity_mode": "content",
-        "sha256": "17520d71a14653890c4134bbb89d29364956d2a6acfb65af1f2e31665a87d02f"
+        "sha256": "ece87ec239b944d193ffca360414a7228ad6ca5f12b3031c3e9addc0aa95ee32"
       },
       {
         "path": "tools/quality/security-rules.yml",
@@ -7586,6 +7606,28 @@
       "title": "2026-10-08-bandit-rebinding.json"
     },
     {
+      "path": "review/issue-58/2026-10-08-final-visual-captures.json.gz",
+      "kind": "file",
+      "purpose": "Compressed immutable raw current visual observations; source/artifact/file maps, served byte hashes and geometry bind original observed identities.",
+      "role": "history",
+      "owner": "review/issue-58/2026-10-08-final-visual.json",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-08-final-visual-captures.json.gz"
+    },
+    {
+      "path": "review/issue-58/2026-10-08-final-visual.json",
+      "kind": "file",
+      "purpose": "Eight actual clean approved-main/current candidate Home/Writing Day/Night desktop/mobile visual pairs; exact pixel/semantic/HTTP identity with bounded scope.",
+      "role": "history",
+      "owner": "review/issue-58/2026-10-08-handoff.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-08-final-visual.json"
+    },
+    {
       "path": "review/issue-58/2026-10-08-handoff.md",
       "kind": "file",
       "purpose": "Shared issue58 refactor handoff: R2 phase subconditions mapped to stable AC01-AC10, source/semantic/security tasks and pending evidence.",
@@ -7650,6 +7692,28 @@
         "AGENTS.md"
       ],
       "title": "2026-10-08-r5-projection.json"
+    },
+    {
+      "path": "review/issue-58/2026-10-08-r6-matched-observations.json",
+      "kind": "file",
+      "purpose": "Source-bound R6 unmodified adaptive acceptance, matched counterfactual observations, exact scoped reuse and honest optimization disposition.",
+      "role": "history",
+      "owner": "review/issue-58/2026-10-08-handoff.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-08-r6-matched-observations.json"
+    },
+    {
+      "path": "review/issue-58/2026-10-08-r6-matched-raw.json.gz",
+      "kind": "file",
+      "purpose": "Exact raw R6 reports, failed CPU-sampling attempt, artifact manifests and frozen collector source bytes; immutable historical evidence, not an active runtime.",
+      "role": "history",
+      "owner": "review/issue-58/2026-10-08-handoff.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-08-r6-matched-raw.json.gz"
     },
     {
       "path": "review/issue-58/2026-10-08-r6-triage.json",

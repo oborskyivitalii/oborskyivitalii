@@ -54,7 +54,7 @@ const protocol = {
   effects: { base: [], color: ['travel'] },
   reducedMotion: 'no-preference',
 };
-// Fixed work diagnoses equal renderer workloads; it never accepts the shipped
+// Fixed tier/cadence profiles compare renderer cost without locking camera/ambient phase; it never accepts the shipped
 // adaptive artifact. These settings are explicit, not fitted to a passing result.
 const fixedControl = {
   desktop: { qualityTier: 0, cadenceHz: 12 },
