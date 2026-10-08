@@ -2,7 +2,7 @@
   "schema_version": 1,
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/54",
-    "summary": "2026-10-08 issue54 adds mandatory code-style ownership/routing, exact frozen legacy allowances, lightweight negative guards and existing navigation CI invocation. Extends control ownership to the guide. Retains existing profile, source/evidence and release contracts. No runtime/content/public changes.",
+    "summary": "2026-10-08 issue54 adds mandatory code-style ownership/routing, exact frozen legacy allowances, lightweight negative guards and existing navigation CI invocation. Extends control ownership to the guide. Retains existing profile, source/evidence and release contracts. No runtime/content/public changes. Reconciled with merged PR51 at main a06b530; retain issue48 controls and public sources unchanged.",
     "date": "2026-10-08"
   },
   "layers": [
@@ -53,7 +53,12 @@
         "tests/test_issue45_acceptance.py",
         "review/issue-45/2026-10-07-handoff.md",
         ".github/acceptance/issue-54.json",
-        "review/issue-54/2026-10-08-analysis.md"
+        "review/issue-54/2026-10-08-analysis.md",
+        ".github/acceptance/issue-48.json",
+        "tests/test_issue48_acceptance.py",
+        "review/issue-48/2026-10-08-handoff.md",
+        "review/issue-48/content-amendment.json",
+        "review/issue-48/source-inventory.json"
       ],
       "checks": [
         "acceptance-policy",
@@ -405,7 +410,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "0f185ed6b91c003a8b9e058a3ec9c69a092e2dcdb3e79bbea9141c2806f00796",
+    "digest": "d3daf676a1ebe3b084e2dba623b893fa2aceda79bf3f15e30312d5aca502276c",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -448,6 +453,10 @@
         "sha256": "23050469079306b91a34e06b761770d1fb31bf041896de81943119bbd1a6ac8e"
       },
       {
+        "path": ".github/acceptance/issue-48.json",
+        "sha256": "4917dc8d7b3048fd23a7a67f14c5da07b27c9a3e1296916355f89d282334f29c"
+      },
+      {
         "path": ".github/acceptance/issue-54.json",
         "sha256": "0b1b6c961fab83e81c7716b75f932e8192261f72dafb6d158dce10d250252673"
       },
@@ -469,7 +478,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "300bb32adf0410aadd9eb7cc52006e0c6752036d158d8566fa47d3428dc3303a"
+        "sha256": "14a2f78b4b661fda010f29abb01826a74465c542e457fc072198731a50e91363"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -600,6 +609,10 @@
         "sha256": "8cf493d78ff6ad8c7ce7892b3e532b3ba7fdb82a95ec7c4409a5442884b9cd93"
       },
       {
+        "path": "tests/test_issue48_acceptance.py",
+        "sha256": "bd65093c7e78ba5d466556544f932883911e720562d7aa97189467b9871ed20d"
+      },
+      {
         "path": "tests/test_issue_acceptance.py",
         "sha256": "51ccc40c3ccbf755ef277c7dec6437148cdf50fb7aa401e1bf8f255c2b96a426"
       },
@@ -653,7 +666,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "01b41bfca8446a83598a97262a0223d1f9813f8381f1d93e4d8c19735f769495"
+        "sha256": "70c2a7808858cfcbe30cefea6f1cdda97329b43f0381190ed377438ef50f15d4"
       },
       {
         "path": "tools/repository_intelligence.py",

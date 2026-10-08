@@ -30,13 +30,62 @@ test('response reconciliation rejects missing people, sources and stronger parti
   for(const page of ['index','research']){
     const html=fs.readFileSync(path.join(__dirname,'../docs/'+page+'.html'),'utf8'),preserved=restore(html,page);
     const article=html.match(/<article><h3><a href="https:\/\/www.linkedin.com\/in\/matthewskelton\/">[\s\S]*?<\/article>/)[0];
-    const source='https://www.linkedin.com/posts/vitaliioborskyi_ua-1-ugcPost-7461016808725164033-pQg_/';
+    const source='https://www.linkedin.com/posts/matthewskelton_uncertainty-architecture-why-ai-governance-activity-7455172623409430528-MI9x';
+    assert.ok(article.includes(source));assert.ok(article.includes('Reshared Michael Risch’s discussion'));
     assert.notEqual(restore(html.replace(article,''),page),preserved,'missing person');
     assert.notEqual(restore(html.replace(source,'https://www.linkedin.com/posts/other'),page),preserved,'changed source');
-    assert.notEqual(restore(html.replace('Offered public encouragement','Validated the research'),page),preserved,'unsupported validation claim');
+    assert.notEqual(restore(html.replace('Reshared Michael Risch’s discussion','Validated the research'),page),preserved,'unsupported validation claim');
   }
   const research=fs.readFileSync(path.join(__dirname,'../docs/research.html'),'utf8');
+  for(const source of ['https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g','https://www.linkedin.com/posts/vitaliioborskyi_ua-1-ugcPost-7461016808725164033-pQg_/']) {
+    const matthew=research.match(/<article><h3><a href="https:\/\/www.linkedin.com\/in\/matthewskelton\/">[\s\S]*?<\/article>/)[0];
+    assert.ok(matthew.includes(source));
+    assert.notEqual(restore(research.replace(matthew,matthew.replace(source,'https://www.linkedin.com/posts/other')),'research'),restore(research,'research'),'reshare chain and older context survive');
+  }
   assert.notEqual(restore(research.replace('>Advisors &amp; responses</a>','>Trusted by</a>'),'research'),restore(research,'research'),'changed navigation claim');
+});
+test('issue48 amendment reverses only declared theory and Matthew changes',()=>{
+  const {restore,restoreContentAmendment}=require('../tools/check_site_seo.cjs'),path=require('node:path');
+  const record=JSON.parse(fs.readFileSync(path.join(__dirname,'../review/issue-48/content-amendment.json'),'utf8'));
+  const original=record.changes.filter(change=>change.page!=='talks');
+  assert.deepEqual(original.map(change=>[change.page,change.id]),[['index','matthew-response'],['research','matthew-response'],['research','lenses']]);
+  for(const change of original) {
+    assert.equal(restoreContentAmendment(change.after,change.page,record),change.before);
+    const html=fs.readFileSync(path.join(__dirname,'../docs/'+change.page+'.html'),'utf8');
+    assert.ok(html.includes(change.after));
+    const mutation=change.id==='lenses'?change.after.replace('href="#delivery"','href="#systems"'):change.after.replace('Michael Risch’s','Another person’s');
+    assert.notEqual(mutation,change.after);
+    assert.notEqual(restore(html.replace(change.after,mutation),change.page),restore(html,change.page),'changed association/attribution is not silently reversed');
+    const corrupt=JSON.parse(JSON.stringify(record));corrupt.changes.find(c=>c.page===change.page&&c.id===change.id).after+=' ';
+    assert.throws(()=>restoreContentAmendment(change.after,change.page,corrupt),/snapshot integrity/);
+  }
+});
+test('Talks reconciliation rejects missing events, substituted sources and invented dates or resources',()=>{
+  const path=require('node:path'),{restore,restoreContentAmendment}=require('../tools/check_site_seo.cjs');
+  const record=require('../review/issue-48/content-amendment.json');
+  const changes=record.changes.filter(change=>change.page==='talks');
+  assert.equal(record.changes.length,7);
+  assert.deepEqual(changes.map(change=>change.id),['talks','description','og:description','twitter:description']);
+  const html=fs.readFileSync(path.join(__dirname,'../docs/talks.html'),'utf8'),preserved=restore(html,'talks');
+  const cards=[...html.matchAll(/<article class="publication"[\s\S]*?<\/article>/g)].map(row=>row[0]);
+  const mutations=[
+    [cards[3],''],[cards[1],''],[cards[3],cards[2]],
+    ['https://www.youtube.com/watch?v=1MPsDi3wuF4','https://www.youtube.com/watch?v=OtherVideo'],
+    ['2026-09-26','2026-09-28'],
+    ['activity-7479802249829928961-PmrF','activity-7477274339411693569-dJhu'],
+    [cards[3],cards[3].replace('data-language="unconfirmed"','data-language="en"')],
+    [cards[0],cards[0].replace('</article>','<a href="https://example.com/recording">Watch recording / slides</a></article>')],
+    ['including PMDay, Corning Learn-AI-Palooza, Betelgeuse and swarchua','including invented events']];
+  for(const [from,to]of mutations){
+    assert.ok(html.includes(from),'mutation input exists');assert.notEqual(from,to,'mutation is meaningful');
+    assert.notEqual(restore(html.replace(from,to),'talks'),preserved,'unsupported event/source/date/language/resource edit remains visible');
+  }
+  for(const change of changes){
+    assert.ok(html.includes(change.after));
+    assert.equal(restoreContentAmendment(change.after,'talks',record),change.before);
+    const corrupt=JSON.parse(JSON.stringify(record));corrupt.changes.find(row=>row.page==='talks'&&row.id===change.id).after+=' ';
+    assert.throws(()=>restoreContentAmendment(change.after,'talks',corrupt),/snapshot integrity/);
+  }
 });
 test('Day/Night semantic text and CTA pairs exceed normal-text contrast with no independent atmosphere clock',()=>{
   const css=fs.readFileSync(require('node:path').join(__dirname,'../docs/styles.css'),'utf8');
@@ -89,6 +138,22 @@ test('reading surfaces have one shared CSS authority across base and Color rendi
       assert.equal(matches.length,1,'one shared '+name+' authority');assert.equal(matches[0][1].trim(),value);
     }
     verifyAlpha(screen);
+    assert.doesNotMatch(screen,/\.talks-list\s+\.publication/,'Talks uses the shared publication row, with no child-panel or row-disable exception');
+    const envelope=rules(screen).find(rule=>rule.selector.includes('.publication')&&rule.selector.trim().endsWith('::before')&&properties(rule.body).some(([property])=>property==='content'));
+    assert.ok(envelope,'the publication row owns its paper envelope');
+    const bounds=Object.fromEntries(properties(envelope.body));
+    assert.equal(bounds.content,'""');
+    assert.equal(bounds.inset,'calc(-1 * (var(--surface-gutter) + var(--surface-outset,0px)))','one shared, content-driven row envelope');
+    for(const rule of rules(screen).filter(rule=>rule.selector.includes('.publication')&&rule.selector.includes('::before'))){
+      for(const [property,value]of properties(rule.body)){
+        if(property==='content')assert.equal(value,'""','the canonical row cannot disable paper content');
+        if(property==='inset')assert.equal(value,bounds.inset,'every row-envelope rule retains shared bounds');
+        assert.ok(!/^(?:inset-[\w-]+|top|right|bottom|left)$/.test(property),'row bounds have one inset authority');
+      }
+    }
+    const gutters=[...screen.matchAll(/--surface-gutter\s*:\s*([^;}]+)/g)];
+    assert.equal(gutters[0][1].trim(),'12px','publication rows inherit the shared12px gutter');
+    assert.doesNotMatch(screen,/\.publication[^{}]*\{[^}]*(?:--surface-(?:gutter|outset)|height|width)\s*:/,'publication bounds have no second sizing authority');
     assert.match(screen,/--reading-title-outset\s*:\s*\.16em\s*;/);
     assert.doesNotMatch(screen,/(?:^|[;{}])\s*(?:padding|margin|font|line-height|width|height|display|gap)(?:-[\w-]+)?\s*:/,'reading paint cannot change native flow placement');
     assert.doesNotMatch(screen,/(?:(?:backdrop-)?filter\s*:|(?:-webkit-)?mask(?:-[\w-]+)?\s*:)/,'shared translucent paint has no mask or blur');
@@ -96,10 +161,25 @@ test('reading surfaces have one shared CSS authority across base and Color rendi
     assert.match(screen,/\.reading-title-ink\s*\{[^}]*z-index\s*:\s*1\s*[;}]/,'all title ink stays above neighbouring fragment paint');
     for(const css of [ordinary,authoredColor]){
       assert.doesNotMatch(strip(css),/--(?:reading-surface-[\w-]+|reading-title-outset|reading-alpha|surface-(?:open|reading|row|gutter|outset))\s*:/,'no second token authority');
-      for(const rule of rules(css))if(isSurface(rule.selector))assert.ok(properties(rule.body).every(([property])=>!paint.test(property)),'no base/Color reading-paint override: '+rule.selector.trim());
+      for(const rule of rules(css))if(isSurface(rule.selector)){
+        assert.ok(properties(rule.body).every(([property])=>!paint.test(property)),'no base/Color reading-paint override: '+rule.selector.trim());
+        if(rule.selector.includes('::before'))assert.ok(properties(rule.body).every(([property])=>!/^(?:content|inset(?:-[\w-]+)?|top|right|bottom|left|width|height)$/.test(property)),'no base/Color reading-bounds override: '+rule.selector.trim());
+      }
     }
   }
   verify(owner,base,extra,generated);
+  const split='\n.talks-list .publication>div::before {content:"";background:var(--reading-surface-color)}\n';
+  assert.throws(()=>verify(owner+split,base,extra,base+'\n'+owner+split),/shared publication row/,'separate metadata/copy panels cannot return');
+  const disabled='\n.talks-list .publication::before {content:none}\n';
+  assert.throws(()=>verify(owner+disabled,base,extra,base+'\n'+owner+disabled),/shared publication row/,'the shared Talks row cannot be silently disabled');
+  const sizing='\n.publication::before {inset:-30px}\n';
+  assert.throws(()=>verify(owner+sizing,base,extra,base+'\n'+owner+sizing),/every row-envelope rule/,'a later canonical row rule cannot change the shared envelope');
+  assert.throws(()=>verify(owner,base+sizing,extra,base+sizing+'\n'+owner),/reading-bounds override/,'route/layout CSS cannot grow the shared paper envelope');
+  assert.throws(()=>verify(owner,base,extra+sizing,generated),/reading-bounds override/,'Color cannot become a second envelope owner');
+  const hidden='\n.publication::before {content:none}\n';
+  assert.throws(()=>verify(owner+hidden,base,extra,base+'\n'+owner+hidden),/cannot disable paper content/,'a later canonical row rule cannot hide the backdrop');
+  assert.throws(()=>verify(owner,base+hidden,extra,base+hidden+'\n'+owner),/reading-bounds override/,'layout CSS cannot suppress shared paper');
+  assert.throws(()=>verify(owner,base,extra+hidden,generated),/reading-bounds override/,'Color cannot suppress shared paper');
   const duplicate='\nbody[data-page="writing"] .publication::before {background:#ffffff;opacity:.5;border-radius:3px}\n';
   assert.throws(()=>verify(owner,base+duplicate,extra,base+duplicate+'\n'+owner),/reading-paint override/,'a route override cannot become another CSS owner');
   assert.throws(()=>verify(owner,base,extra+duplicate,generated),/reading-paint override/,'Color cannot silently replace the shared material');

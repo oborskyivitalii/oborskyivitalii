@@ -4,50 +4,49 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 
 ## Snapshot
 
-- Fetched main: `aa1cfa97bf42103c0547c9332b885391f0e6fe6b`, tree
-  `64f68e79a1463f70075a54e0b4099861d27eebdb`. PR #47 is merged; the earlier
-  memory's pending camera/Canvas staging and merge instructions are obsolete.
-  Remaining literal visual/device/paired acceptance stays with #45/#36/#41;
-  main membership alone does not complete those criteria.
-- [#54](https://github.com/oborskyivitalii/oborskyivitalii/issues/54) owns the
-  current source audit, mandatory code guide, RI/AC/CI routing and Sol refactor
-  plan. Branch `docs/code-style-refactor-plan-20261008` contains the
-  [single analysis](review/issue-54/2026-10-08-analysis.md) and
-  [guide](guides/CODE-STYLE.md). Its issue links the exact Draft PR/commit/checks.
-  Runtime, content and public output are not refactored in this delivery.
+- Fetched main `a06b530ee42f0ddde538f719d89f9f10fc1e156c`: PR #51 is merged.
+  Its research/Writing/Talks content, formula position and shared reading
+  backdrop changes are current sources. Older #48 pending-merge instructions
+  are obsolete; fetch its issue for remaining acceptance.
+- [#54 / PR #55](https://github.com/oborskyivitalii/oborskyivitalii/pull/55)
+  owns the source audit, mandatory [code guide](guides/CODE-STYLE.md), agent/RI/AC
+  routing and bounded CI guard. The maintainer authorized its merge on 8 October
+  and subsequent refactoring in a separate PR. Main is reconciled into this
+  branch; current checks/review and merged ref belong in the live issue/PR.
+  Runtime/content/public output is unchanged versus current main.
+- The single [#54 audit and Sol plan](review/issue-54/2026-10-08-analysis.md)
+  defines R0–R6. R1 active effect/export source extraction is first; formatting,
+  content/template, CSS and runtime migrations follow separately.
 - [#49 / PR #53](https://github.com/oborskyivitalii/oborskyivitalii/pull/53)
-  plans content-fragment flight; [#50 / PR #52](https://github.com/oborskyivitalii/oborskyivitalii/pull/52)
-  independently covers overlapping work. Resolve ownership before implementing
-  that effect; neither route is closed or selected by #54.
-- [#48 / PR #51](https://github.com/oborskyivitalii/oborskyivitalii/pull/51)
-  is concurrent research/Writing content work. Revalidate/rebase before migrating
-  page content; preserve its accepted wording and formula decisions.
+  and [#50 / PR #52](https://github.com/oborskyivitalii/oborskyivitalii/pull/52)
+  contain overlapping fragment-flight plans. Resolve ownership before feature
+  implementation; code-quality/refactoring does not choose their route.
 
 ## Decisions
 
-- Before code/template/style/config edits, read CODE-STYLE; map applicable CS IDs
-  to an owning AC and PR evidence. The new guard enforces a declared subset only.
-- Exact issue54 legacy allowances are bounded by immutable main aa1cfa9.
-  No new active code in history, inline-style debt or competing shared CSS owners.
-- Sol plan: R1 active-source/effect extraction first; then readable formatting
-  and source lint, content/templates, CSS, cohesive runtime/build, measured speed.
-  Each execution scope gets its own issue/ACs; #54 remains the architecture route.
-- Preserve the existing reading backdrop owner and visual contract, camera/world,
-  generated/immutable/offline identity, no-JS behavior and original budgets.
-- PR smoke, bounded staging and production matrices retain their profile owners.
-  Chromium/Firefox use Linux; native macOS WebKit/device gates stay separate.
-- Whole AC checkboxes need actual current-source evidence; report self-review,
-  independent review, Draft, merged, staged and published as separate facts.
-  Merge/production/domain decisions remain separate from preparing a Draft PR.
+- Read CODE-STYLE before code/template/style/config changes. Map applicable
+  CS rule IDs to the owning AC and PR evidence; the guard proves a subset only.
+- Frozen #54 legacy allowances cannot grow. Trim entries as debt is removed.
+- Each bounded refactor gets an execution issue/ACs and PR, linked to #54.
+  Begin from merged rules and current main; preserve accepted #48 content.
+- Reuse free ESLint/SonarJS, Stylelint and existing security tools. Evaluate
+  source coverage and formatting before adding a service/server. Tool choices
+  and current free-plan constraints need official-source evidence.
+- Preserve reading paint/layout, world/camera, generated/immutable/offline
+  identities, no-JS behavior, lifecycle bounds and original performance budgets.
+- PR smoke/targeted, bounded staging and full production retain their owners.
+  Chromium/Firefox use Linux; native macOS WebKit stays separate.
+- Whole-AC checkboxes need current checks and applicable review evidence.
+  Merge, stable staging, production and refactor completion are distinct.
 
 ## Open work
 
 | Issue | Remaining intent |
 | --- | --- |
-| #54 | Guide/audit/guard Draft review and merge; R0–R6 refactor tasks are planned, not executed. Live check/AC evidence is in the issue/PR. |
-| #48 | Current content/formula amendments and their own source/visual acceptance. |
-| #49 / #50 | Resolve overlapping fragment-flight plans, then prototype/implementation with unchanged fractal placement. |
-| #45 / #36 / #41 | Original exact-source visual, paired/editorial/device/independent gates remain with their owning records. |
+| #54 | Reconciled rules/guard PR55 review/check/merge, then separate R1 execution. |
+| #48 | PR51 is merged; reconcile remaining acceptance from live evidence. |
+| #49 / #50 | Resolve overlapping fragment-flight plans before implementation. |
+| #45 / #36 / #41 | Original visual, paired, editorial/device and release gates. |
 | #1 / #13 | First release, physical devices and full production/recovery acceptance. |
 | #8 / #39 | Production URL/indexability, domains and analytics activation. |
 | #7 | License and editorial/third-party rights. |
@@ -56,13 +55,12 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 
 ## Next session
 
-1. Fetch main and inspect live #54/PR/head/checks, current AGENTS and guide.
-2. Reconcile concurrent content/effect PRs before changing their owners.
-3. Start the authorized scoped task from the versioned plan; use targeted checks,
-   update exact legacy entries as debt disappears, rebuild RI and reconcile ACs.
+1. Fetch live main and PR55 checks; verify rules are merged before R1.
+2. Continue the separate authorized R1 issue/PR from its source handoff.
+3. Use targeted checks, trim removed debt, rebuild RI and reconcile actual ACs.
 
 ## Maintenance
 
-Keep these five sections within 120 lines. Update at meaningful handoff and
-rebuild RI. Detailed source/run/history stays in issues/PRs and linked artifacts.
-No private messages, credentials or inferred approvals belong in memory.
+Keep the five sections within 120 lines and rebuild RI after changes. Detailed
+source/run/review history belongs in the owning issue/PR artifact. No private
+messages, credentials or inferred approvals belong in memory.

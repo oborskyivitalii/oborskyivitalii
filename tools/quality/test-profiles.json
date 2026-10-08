@@ -498,7 +498,9 @@
         "review/sol-execution-20261002/BASELINE.json",
         "site/content/**",
         "site/templates/**",
-        "site/content/catalog.json"
+        "site/content/catalog.json",
+        "review/issue-48/content-amendment.json",
+        "review/issue-48/source-inventory.json"
       ]
     },
     {
@@ -555,7 +557,8 @@
         "tools/check_site_seo.cjs",
         "site/content/**",
         "site/templates/**",
-        "review/issue-41/content-amendment.json"
+        "review/issue-41/content-amendment.json",
+        "review/issue-48/content-amendment.json"
       ]
     },
     {
@@ -1478,6 +1481,21 @@
       "surviving_route": ".github/acceptance/issue-45.json",
       "inputs": [
         "tests/test_issue45_acceptance.py"
+      ]
+    },
+    {
+      "path": "tests/test_issue48_acceptance.py",
+      "language": "python",
+      "purpose": "Issue48 strict selections of maintained theory/project association, formula midpoint/cache/world/static bounds, evidence-preserving Matthew and distinct Talks event/source/date/language/resource reconciliation, and canonical generation; preview/editorial/independent-review gates remain distinct.",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": [
+        "issue-policy"
+      ],
+      "disposition": "selected owning policy only; reuse maintained deterministic cases without a duplicate full regression, browser matrix or unconditional historical task execution",
+      "surviving_route": ".github/acceptance/issue-48.json",
+      "inputs": [
+        "tests/test_issue48_acceptance.py"
       ]
     },
     {

@@ -91,6 +91,12 @@
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
+    ".github/acceptance/issue-48.json": {
+      "kind": "file",
+      "purpose": "Issue48 theory association, Writing midpoint and evidence-led Matthew response mapping with separate current-preview/editorial/review/merge gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     ".github/pull_request_template.md": {
       "kind": "file",
       "purpose": "PR execution, owning issue/commit links, checks/review and honest completion template.",
@@ -385,42 +391,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff": {
-      "kind": "directory",
-      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff/archive.js": {
-      "kind": "file",
-      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff/navigation.js": {
-      "kind": "file",
-      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff/space.js": {
-      "kind": "file",
-      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff/styles.css": {
-      "kind": "file",
-      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/ff43eff986a5b035e605027e19e47876573a4232669a8e3c685539e916026bff/theme.js": {
-      "kind": "file",
-      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/site-revision.json": {
       "kind": "file",
       "purpose": "Generated public rendition: site-revision.json; regenerate from site sources with tools/site/build.cjs.",
@@ -430,66 +400,6 @@
     "docs/snapshots": {
       "kind": "directory",
       "purpose": "Generated exact-route HTML snapshots.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/2f6d5fbf34aa829b133360029157fb5ee425571e9ecadd2b443ef6f1e0901986": {
-      "kind": "directory",
-      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/2f6d5fbf34aa829b133360029157fb5ee425571e9ecadd2b443ef6f1e0901986/talks.html": {
-      "kind": "file",
-      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/259616bcb517d2aa0736fc66ec7fad29101355d46f0501151d2101e3b34baaad": {
-      "kind": "directory",
-      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/259616bcb517d2aa0736fc66ec7fad29101355d46f0501151d2101e3b34baaad/index.html": {
-      "kind": "file",
-      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/3d0618ceada601d51bfc3e3e69383e0fcd2c2933cd25963eb67638328cb83207": {
-      "kind": "directory",
-      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/3d0618ceada601d51bfc3e3e69383e0fcd2c2933cd25963eb67638328cb83207/writing.html": {
-      "kind": "file",
-      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/be7a4cd6562bc70e20f247ee15e4667885db74053acef7397ea075963186a9fb": {
-      "kind": "directory",
-      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/be7a4cd6562bc70e20f247ee15e4667885db74053acef7397ea075963186a9fb/credits.html": {
-      "kind": "file",
-      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/e31ef87381aa2d33cfe14b0925e58858a69e97b9573f06390d5f9699d85e97f3": {
-      "kind": "directory",
-      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/e31ef87381aa2d33cfe14b0925e58858a69e97b9573f06390d5f9699d85e97f3/research.html": {
-      "kind": "file",
-      "purpose": "Generated immutable route/runtime from issue45 canonical camera and shared reading-paint repair.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -882,6 +792,30 @@
       "purpose": "Independent source review of issue45 formula/reading-surface repair, corrected diagnostic findings and explicit visual limits.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-48": {
+      "kind": "directory",
+      "purpose": "Issue48 bounded source intake, exact content amendment and dated implementation/review handoff.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-48/2026-10-08-handoff.md": {
+      "kind": "file",
+      "purpose": "Issue48 versioned source/impact intake, narrow implementation tasks, independent review and exact-source acceptance handoff.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-48/content-amendment.json": {
+      "kind": "file",
+      "purpose": "Issue48 exact hashed theory order/association and Matthew Home/Research deltas, reversed before the immutable issue41 amendment.",
+      "role": "history",
+      "owner": "guides/SITE-SEO.md"
+    },
+    "review/issue-48/source-inventory.json": {
+      "kind": "file",
+      "purpose": "Verified Matthew Skelton public reshare identity, bounded guest-source acquisition metadata/hash, Michael Risch attribution and older encouragement provenance.",
+      "role": "history",
+      "owner": "guides/SITE-SOURCE-AUDIT.md"
     },
     "review/public-responses-20261006": {
       "kind": "directory",
@@ -6109,6 +6043,12 @@
       "role": "test",
       "owner": ".github/ACCEPTANCE.md"
     },
+    "tests/test_issue48_acceptance.py": {
+      "kind": "file",
+      "purpose": "Issue48 strict exact selections of maintained theory association, formula midpoint/cache, response reconciliation and canonical generation checks.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     "tests/test_issue_acceptance.py": {
       "kind": "file",
       "purpose": "Acceptance runner adversarial cases for invalid mappings, skipped/empty/failed tests and evidence identity.",
@@ -6804,6 +6744,102 @@
       "purpose": "Protected source/artifact/controller/PR lease validation before hosted action.",
       "role": "source",
       "owner": "guides/SITE-STAGING.md"
+    },
+    "docs/runtime/e866b8f739a6984deedd7dd5ccd60398c06bc3d5f28b7765e1f5973251f550ab": {
+      "kind": "directory",
+      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/e866b8f739a6984deedd7dd5ccd60398c06bc3d5f28b7765e1f5973251f550ab/archive.js": {
+      "kind": "file",
+      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/e866b8f739a6984deedd7dd5ccd60398c06bc3d5f28b7765e1f5973251f550ab/navigation.js": {
+      "kind": "file",
+      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/e866b8f739a6984deedd7dd5ccd60398c06bc3d5f28b7765e1f5973251f550ab/space.js": {
+      "kind": "file",
+      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/e866b8f739a6984deedd7dd5ccd60398c06bc3d5f28b7765e1f5973251f550ab/styles.css": {
+      "kind": "file",
+      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/e866b8f739a6984deedd7dd5ccd60398c06bc3d5f28b7765e1f5973251f550ab/theme.js": {
+      "kind": "file",
+      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/f8fdf5ef0a85c00f7cf4e2281f780973c2fb2651f8099ccd89d20a2500d19730": {
+      "kind": "directory",
+      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/f8fdf5ef0a85c00f7cf4e2281f780973c2fb2651f8099ccd89d20a2500d19730/index.html": {
+      "kind": "file",
+      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/4a15ab9a4ed10ce5692b26ede6355bf7374967e1c4b05f6a20aa4595581b3fec": {
+      "kind": "directory",
+      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/4a15ab9a4ed10ce5692b26ede6355bf7374967e1c4b05f6a20aa4595581b3fec/writing.html": {
+      "kind": "file",
+      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/36a28756050072adcd0d9e1ebce44356572d9ce54dbb226d58fbc494ab50d78a": {
+      "kind": "directory",
+      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/36a28756050072adcd0d9e1ebce44356572d9ce54dbb226d58fbc494ab50d78a/credits.html": {
+      "kind": "file",
+      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/5bca4816e856f2f1038c30ebc0457709c7e3b4d2c359f70bae424c77199fe599": {
+      "kind": "directory",
+      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/5bca4816e856f2f1038c30ebc0457709c7e3b4d2c359f70bae424c77199fe599/research.html": {
+      "kind": "file",
+      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/62c10ab461ad0898f3ef87d5b8246a6cfd0e35027d59b5cb8c843042e8560221": {
+      "kind": "directory",
+      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/62c10ab461ad0898f3ef87d5b8246a6cfd0e35027d59b5cb8c843042e8560221/talks.html": {
+      "kind": "file",
+      "purpose": "Generated immutable route/runtime with issue48 shared publication-card backdrop sizing.",
+      "role": "generated",
+      "owner": "site/README.md"
     },
     "guides/CODE-STYLE.md": {
       "kind": "file",
