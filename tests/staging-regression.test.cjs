@@ -520,6 +520,54 @@ test('incoming Color observation rejects simultaneous, invisible, unbounded and 
     assert.throws(() => validateFragmentAssembly(observation, invalid));
   }
 });
+test('Off cancellation requires native readiness and cleanup while its camera journey can remain paused', () => {
+  const { fragmentCancellationReady } = require('../tools/quality/color-browser.cjs'),
+    vm = require('node:vm');
+  const complete = {
+    route: 'research',
+    busy: false,
+    motion: 'Motion: off',
+    resources: [],
+    dataset: {},
+    opacity: '1',
+    inert: false,
+    owners: [{ style: { visibility: '' } }],
+    sceneTravel: 'flying',
+  };
+  const ready = (state) =>
+    vm.runInNewContext('(' + fragmentCancellationReady.toString() + ')("research")', {
+      document: {
+        body: { dataset: { page: state.route } },
+        getElementById: (id) =>
+          id === 'space-motion'
+            ? { textContent: state.motion }
+            : {
+                hasAttribute: () => state.busy,
+                dataset: state.dataset,
+                style: { opacity: state.opacity },
+                inert: state.inert,
+                querySelectorAll: () => state.owners,
+              },
+        querySelectorAll: () => state.resources,
+        querySelector: () => ({ dataset: { travel: state.sceneTravel } }),
+      },
+    });
+  assert.equal(ready(complete), true);
+  for (const mutate of [
+    (state) => (state.route = 'index'),
+    (state) => (state.busy = true),
+    (state) => (state.motion = 'Motion: on'),
+    (state) => state.resources.push({}),
+    (state) => (state.dataset.fragmentPhase = 'arrive'),
+    (state) => (state.opacity = '0.5'),
+    (state) => (state.inert = true),
+    (state) => (state.owners[0].style.visibility = 'hidden'),
+  ]) {
+    const incomplete = structuredClone(complete);
+    mutate(incomplete);
+    assert.equal(ready(incomplete), false);
+  }
+});
 test('failed incoming Color wait preserves raw observations and the original failure', async () => {
   const { fragmentAssembly } = require('../tools/quality/color-browser.cjs');
   const raw = {

@@ -407,7 +407,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "146accbcd85e6202b225b44075688144deeb41e8afca4a8fc62bdfe50599efdd",
+    "digest": "b463a6bd31e568d89d73090e4df74a9347988c92896d4293351afaa1f206dd48",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -591,7 +591,7 @@
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "70cbc7c1d3c118d97b108a9fbac03c41222e88d36e2b9a924ed80e56a295fd95"
+        "sha256": "ae9d13e11488e8c1ec6987a56fde520667563fad21cad3eb2647421f59e05d34"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",

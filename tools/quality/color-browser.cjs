@@ -380,7 +380,12 @@ async function fragmentAssembly(page) {
       { polling: 20, timeout: 5000 }
     );
     await page.locator('#space-motion').click();
-    await settled(page, 'research');
+    // Off preserves the displayed camera and pauses any remaining journey.
+    // Native route readiness and cleanup complete without a camera arrival.
+    await page.waitForFunction(fragmentCancellationReady, 'research', {
+      polling: 25,
+      timeout: 10000,
+    });
     evidence.canceled = await page.evaluate(fragmentCleanupState);
     assert.deepEqual(evidence.canceled, {
       pieces: 0,
@@ -390,9 +395,22 @@ async function fragmentAssembly(page) {
       nativeHidden: 0,
       motion: 'Motion: off',
     });
+    const before = await page.evaluate(fragmentFrozenState);
+    const camera = JSON.parse(before.camera);
+    for (const vector of [camera.position, camera.target])
+      assert.ok(Array.isArray(vector) && vector.length === 3 && vector.every(Number.isFinite));
+    assert.ok(
+      before.phase?.length && Number.isFinite(Number(before.phase)) && Number(before.phase) >= 0
+    );
+    assert.ok(['flying', 'settled'].includes(before.travel));
+    await page.waitForTimeout(120);
+    const after = await page.evaluate(fragmentFrozenState);
+    assert.deepEqual(after, before, 'Off must preserve the displayed camera and ambient phase');
+    evidence.offFreeze = { before, after };
+    await page.locator('#space-motion').click();
+    await settled(page, 'research');
     await preferences(page, 'fragment-flight-preview', false);
     await travel(page, 'index');
-    await page.locator('#space-motion').click();
     return evidence;
   } catch (error) {
     // Keep the original failure even if the browser is gone. Measurements made
@@ -412,6 +430,29 @@ async function fragmentAssembly(page) {
     error.fragmentObservation = evidence;
     throw error;
   }
+}
+function fragmentCancellationReady(route) {
+  const content = document.getElementById('site-content');
+  return (
+    document.body.dataset.page === route &&
+    !content.hasAttribute('aria-busy') &&
+    document.getElementById('space-motion').textContent === 'Motion: off' &&
+    document.querySelectorAll('.fragment-piece, .fragment-layer').length === 0 &&
+    !Object.keys(content.dataset).some((key) => key.startsWith('fragment')) &&
+    Number(content.style.opacity || 1) === 1 &&
+    content.inert === false &&
+    [...content.querySelectorAll('main h1, main h2, main h3, main p, main img')].every(
+      (owner) => owner.style.visibility !== 'hidden'
+    )
+  );
+}
+function fragmentFrozenState() {
+  const scene = document.querySelector('.space-scene');
+  return {
+    camera: scene.dataset.camera,
+    phase: scene.dataset.phase,
+    travel: scene.dataset.travel,
+  };
 }
 function fragmentCleanupState() {
   const content = document.getElementById('site-content');
@@ -598,4 +639,5 @@ module.exports = {
   paintProbe,
   validateFragmentAssembly,
   fragmentAssembly,
+  fragmentCancellationReady,
 };
