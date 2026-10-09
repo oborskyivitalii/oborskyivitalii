@@ -1,6 +1,6 @@
 'use strict';
 // Bounded native-paint adapter. The producer injects the pure geometry factory.
-module.exports = function (content, geometry, onFallback = null) {
+module.exports = function (content, geometry, onFallback = null, shared = {}) {
   const settings = geometry.settings;
   let layer = null,
     pieces = [],
@@ -15,6 +15,13 @@ module.exports = function (content, geometry, onFallback = null) {
   const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)');
   const transparency = window.matchMedia?.('(prefers-reduced-transparency: reduce)');
   const clock = () => performance.now();
+  function availableCaps(snapshot) {
+    const caps = snapshot.compact ? settings.caps.compact : settings.caps.full;
+    const reserve = shared.reserve?.() || {};
+    return Object.fromEntries(
+      Object.entries(caps).map(([key, value]) => [key, Math.max(0, value - (reserve[key] || 0))])
+    );
+  }
   const smooth = (value) => {
     const t = Math.max(0, Math.min(1, value));
     return t * t * (3 - 2 * t);
@@ -334,10 +341,11 @@ module.exports = function (content, geometry, onFallback = null) {
   }
   function candidates(snapshot, start) {
     const result = [];
-    const caps = snapshot.compact ? settings.caps.compact : settings.caps.full;
+    const caps = availableCaps(snapshot);
     const selectors =
       'h1,h2,h3,h4,h5,h6,p,img,figure,li,dt,dd,figcaption,blockquote,pre,a,button,label,input,select,textarea,span,time,strong,small';
     function visit(owner) {
+      if (owner === shared.exclude?.()) return;
       if (clock() - start > settings.acquisitionMs || result.length >= caps.owners) return;
       if (owner.matches('canvas,video,iframe')) return;
       const paint = nativePaint(owner);
@@ -639,7 +647,7 @@ module.exports = function (content, geometry, onFallback = null) {
     }
   }
   function planOwners(snapshot, view, start) {
-    const caps = snapshot.compact ? settings.caps.compact : settings.caps.full;
+    const caps = availableCaps(snapshot);
     const pixelRatio = window.devicePixelRatio || 1;
     if (!Number.isFinite(pixelRatio) || pixelRatio <= 0) return false;
     const planned = [];

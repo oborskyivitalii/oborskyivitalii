@@ -55,7 +55,7 @@
     {
       "id": "AC07",
       "intent": "Deliver reviewed implementation, CS01-CS10 compliance, mapped evidence and reconciled issue/PR state.",
-      "automated_scope": "Current RI/coupling, owner and manual-pending checks map the consolidated14 criteria and shared geometry/DOM/flight/scene/router suites. Canonical/generated/offline/profile/scanner delivery, CS01-CS10 review, exact current-source CI and immutable preview must be recorded externally. The maintainer authorizes all-route default fragments in the Color preview; stable promotion, production, visual/cost admission and final merge/main acceptance remain separate. The dated whole-block follow-up and backdrop-specific source/hosted evidence remain on the same issue49/PR53 route.",
+      "automated_scope": "Current RI/coupling, owner and manual-pending checks map the consolidated15 criteria and shared geometry/DOM/flight/scene/router suites. Canonical/generated/offline/profile/scanner delivery, CS01-CS10 review, exact current-source CI and immutable preview must be recorded externally. The maintainer authorizes all-route default fragments in the Color preview; stable promotion, production, visual/cost admission and final merge/main acceptance remain separate. The dated whole-block follow-up and backdrop-specific source/hosted evidence remain on the same issue49/PR53 route.",
       "checks": [
         "CURRENT-RI",
         "RI-CI",
@@ -117,6 +117,20 @@
       "automated_scope": "SHARED-READING-SURFACES checks one canonical material/bounds owner, consistent shared row panels and rejection of competing route/Color paint. Original PR51 actual visual/bounded stage/stable-alias and merge evidence retain their historical source IDs; current fragment visual/native handoff and release decisions remain separate.",
       "checks": ["SHARED-READING-SURFACES"],
       "gates": ["G-INHERITED-HISTORY"]
+    },
+    {
+      "id": "AC15",
+      "intent": "Prototype one Home-to-Research native paragraph as persistent closed 3D shards embedded in the shared fractal scene before navigation, then assemble those same objects into the native reading block.",
+      "automated_scope": "EMBEDDED-PLAN checks persistent shard identity, finite closed front/rear/side geometry, target-camera native endpoints, shared scene depth and material/haze sampling. EMBEDDED-TEXTURE checks bounded native paragraph/backdrop capture, escaped source serialization, capability/font/decode/taint rejection and texture disposal. EMBEDDED-SCENE exercises one-block prewarming, same-object arrival, exact native-owner handoff, generation cancellation, resource reservation and capability fallback; it also selects the current effect-delivery suite. Existing FRAGMENT-PLAN, FRAGMENT-DOM and STATIONARY retain original all-route geometry, shared-cap, flight-controller, scene/router and lifecycle guards. This scoped prototype uses the current Color travel descriptor, common depth collection and painted clock; it does not authorize all-page rasterization, another renderer/runtime or a second animation clock. Deterministic fixtures do not establish native raster fidelity, visible fractal occlusion, perceived solid depth or paired performance admission.",
+      "checks": [
+        "EMBEDDED-PLAN",
+        "EMBEDDED-TEXTURE",
+        "EMBEDDED-SCENE",
+        "FRAGMENT-PLAN",
+        "FRAGMENT-DOM",
+        "STATIONARY"
+      ],
+      "gates": ["G-EMBEDDED", "G-FIDELITY", "G-PERFORMANCE", "G-ACCESSIBILITY", "G-DELIVERY"]
     }
   ],
   "checks": {
@@ -174,6 +188,18 @@
     "SHARED-READING-SURFACES": {
       "kind": "unittest",
       "test": "test_issue48_acceptance.Issue48AcceptanceTests.test_shared_reading_surfaces_keep_one_publication_panel_and_canonical_bounds"
+    },
+    "EMBEDDED-PLAN": {
+      "kind": "unittest",
+      "test": "test_issue49_acceptance.Issue49AcceptanceTests.test_embedded_plan_persistent_volume_contracts"
+    },
+    "EMBEDDED-TEXTURE": {
+      "kind": "unittest",
+      "test": "test_issue49_acceptance.Issue49AcceptanceTests.test_embedded_native_texture_capability_contracts"
+    },
+    "EMBEDDED-SCENE": {
+      "kind": "unittest",
+      "test": "test_issue49_acceptance.Issue49AcceptanceTests.test_embedded_scene_and_effect_delivery_contracts"
     }
   },
   "gates": {
@@ -216,6 +242,10 @@
     "G-INHERITED-HISTORY": {
       "kind": "human",
       "description": "Verify inherited issue48 AC03-AC06 accepted historical scope from PR51: tested head3e8944af985d8d06c24348fc5227f27f97cad97d, mergea06b530ee42f0ddde538f719d89f9f10fc1e156c, identical treeca02b3829ec67d806598705cfcc38cbafaf7966a, original source/editorial/independent/CI/visual/stable-staging evidence and actual checked boxes. Preserve original issue48 IDs and evidence; its superseded/not_planned disposition is a transfer, not full completion or identical duplication. Record inherited acceptance separately from current feature AC07 and clear a tick if new work invalidates that preserved outcome. Historical staging approval is not authorization for new-fragment stable promotion or production."
+    },
+    "G-EMBEDDED": {
+      "kind": "human",
+      "description": "Pending explicit visual admission for the maintainer-authorized one-block Home-to-Research prototype. Require source-bound desktop/narrow Day/Night captures or clips showing identifiable shards present among the Home fractal before the click, those same objects assembling with consistent camera/light/haze and genuine common-scene depth occlusion, visible closed side/rear volume and a faithful native paragraph/backdrop texture. Verify seamless final native text/selection/link behavior without heading or layout shift. Unsupported native capture, nonzero/hash/end landings and interrupted/lifecycle paths must retain ordinary shared fragments or native fallback with zero leaked texture/staging resources. No deterministic fixture or prior preview approval ticks AC15; all-page expansion, native-device/paired-cost acceptance, stable promotion, production and merge remain separate decisions."
     }
   }
 }

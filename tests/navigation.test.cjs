@@ -77,7 +77,7 @@ function harness(options = {}) {
     Promise,
   };
   vm.runInNewContext(
-    `let serial=1,transition=null,request={abort(){}};${interruptSource}${flightSource}${finishSource}
+    `let serial=1,transition=null,request={abort(){}},warmRequest=null,warmAgain=false;${interruptSource}${flightSource}${finishSource}
     globalThis.api={start(next='writing',animate=true,landing=null){return flight(next,animate,()=>{commitHook(next);},serial,presentation?{opacity:1,z:0}:1,landing);},interrupt(){serial++;return interrupt();},finishText,transition:()=>transition,serial:()=>serial};`,
     context
   );
@@ -305,6 +305,7 @@ function routeNavigationHarness(options = {}) {
     mounts = [],
     historyEntries = [],
     beginnings = [],
+    warmed = [],
     events = new Map();
   let timer = 0,
     callback = null;
@@ -374,6 +375,7 @@ function routeNavigationHarness(options = {}) {
     },
     present() {},
   };
+  if (options.warm) presentation.prepareNext = (data) => warmed.push(data.page);
   const context = {
     window,
     document,
@@ -428,11 +430,15 @@ function routeNavigationHarness(options = {}) {
     eventSource = source.slice(
       source.indexOf("  document.addEventListener('click'"),
       source.indexOf('  function finishText(')
+    ),
+    neighborSource = source.slice(
+      source.indexOf('  async function prepareNeighbor('),
+      source.indexOf('  async function navigate(')
     );
   vm.runInNewContext(
-    `let page='index',serial=0,request=null,requestedPage=null,transition=null,endpoint=null,inputTail=null,lastKey=null;
-    ${interruptSource}${section('motionAllowed', 'restoreScroll')}${flightSource}${navigateSource}${apiSource}${eventSource}
-    globalThis.readPage=()=>page;globalThis.mountRoute=(next)=>{page=next;document.body.dataset.page=next;};`,
+    `let page='index',serial=0,request=null,requestedPage=null,transition=null,endpoint=null,inputTail=null,lastKey=null,warmRequest=null,warmAgain=false;
+    ${interruptSource}${section('motionAllowed', 'restoreScroll')}${flightSource}${neighborSource}${navigateSource}${apiSource}${eventSource}
+    globalThis.readPage=()=>page;globalThis.mountRoute=(next)=>{page=next;document.body.dataset.page=next;};globalThis.prepareNeighbor=prepareNeighbor;`,
     context
   );
   context.mount = (data, url, position) => {
@@ -448,6 +454,11 @@ function routeNavigationHarness(options = {}) {
     beginnings,
     mounts,
     historyEntries,
+    warmed,
+    warm: context.prepareNeighbor,
+    emit(name) {
+      window.dispatchEvent({ type: name });
+    },
     click(next) {
       let prevented = false;
       const link = {
@@ -500,6 +511,7 @@ test('all five authored routes animate through one itinerary, including Credits 
     assert.deepEqual(JSON.parse(JSON.stringify(h.beginnings.at(-1).itinerary)), {
       from,
       to: next,
+      landing: { position: null, hash: '', search: '' },
       direction:
         h.api.primaryRoutes.indexOf(next) > h.api.primaryRoutes.indexOf(from)
           ? 'forward'
@@ -596,6 +608,61 @@ test('history retargets an active incoming flight and preserves its native store
   assert.equal(h.flights.at(-1).animate, true);
   assert.equal(h.api.pendingRoute(), null);
 });
+
+test('neighbor warming coalesces page, theme and resize triggers into one pending read and one follow-up', async () => {
+  const h = routeNavigationHarness({ warm: true });
+  const first = h.warm();
+  assert.equal(h.reads.length, 1);
+  for (let index = 0; index < 5; index++) {
+    h.emit('site:page-ready');
+    h.emit('site:embedded-invalidated');
+    h.emit('resize');
+  }
+  assert.equal(h.reads.length, 1, 'only one speculative route acquisition may remain pending');
+  assert.equal(h.reads[0].signal.aborted, false);
+  await h.resolve('research');
+  await first;
+  assert.equal(h.reads.length, 2, 'all pending invalidations coalesce into one fresh preparation');
+  await h.resolve('research');
+  await new Promise(setImmediate);
+  assert.deepEqual(h.warmed, ['research', 'research']);
+  assert.equal(h.reads.length, 2);
+  assert.equal(h.api.pendingRoute(), null);
+  assert.deepEqual(h.mounts, [], 'speculative warming never mounts content or changes history');
+  assert.deepEqual(h.historyEntries, []);
+});
+
+test('navigation aborts stale neighbor warming and each successful Home return warms again', async () => {
+  const h = routeNavigationHarness({ warm: true });
+  const stale = h.warm();
+  const oldRead = h.reads[0];
+  assert.equal(h.api.go('writing'), true);
+  assert.equal(oldRead.signal.aborted, true);
+  await h.resolve('research');
+  await stale;
+  assert.deepEqual(h.warmed, [], 'an aborted warm read cannot prepare after navigation starts');
+  await h.resolve('writing');
+  await h.arrive();
+  for (let turn = 0; turn < 2; turn++) {
+    assert.equal(h.api.go('index'), true);
+    await h.resolve('index');
+    await h.arrive();
+    await new Promise(setImmediate);
+    const warmRead = h.reads.find((read) => read.next === 'research' && !read.resolved);
+    assert.ok(warmRead, 'a successful Home return must acquire its visible destination again');
+    assert.equal(warmRead.signal.aborted, false);
+    await h.resolve('research');
+    await new Promise(setImmediate);
+    assert.equal(h.warmed.length, turn + 1);
+    assert.equal(h.page(), 'index');
+    assert.equal(h.api.pendingRoute(), null);
+    assert.equal(h.api.go('writing'), true);
+    await h.resolve('writing');
+    await h.arrive();
+  }
+  assert.deepEqual(h.warmed, ['research', 'research']);
+});
+
 function routeHeadHarness(candidate = source) {
   const css =
     '\n' + fs.readFileSync(path.join(__dirname, '../site/engine/critical-media.css'), 'utf8');

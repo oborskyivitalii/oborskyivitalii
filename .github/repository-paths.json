@@ -57,25 +57,25 @@
     },
     ".github/acceptance/issue-31.json": {
       "kind": "file",
-      "purpose": "Cleanup AC01\u2013AC11 mapped to source-bound deterministic tests and separate readiness gates.",
+      "purpose": "Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-33.json": {
       "kind": "file",
-      "purpose": "Bootstrap/root optimization AC01\u2013AC06 mapped to source-bound assertions and separate review, merge and linkage gates.",
+      "purpose": "Bootstrap/root optimization AC01–AC06 mapped to source-bound assertions and separate review, merge and linkage gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-35.json": {
       "kind": "file",
-      "purpose": "Test optimization AC01\u2013AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates.",
+      "purpose": "Test optimization AC01–AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-36.json": {
       "kind": "file",
-      "purpose": "Writing formula AC01\u2013AC05 mapped to canonical asset, native cache/integration, source-bound browser and paired performance evidence, with remaining human/release gates explicit.",
+      "purpose": "Writing formula AC01–AC05 mapped to canonical asset, native cache/integration, source-bound browser and paired performance evidence, with remaining human/release gates explicit.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -99,7 +99,7 @@
     },
     ".github/acceptance/issue-49.json": {
       "kind": "file",
-      "purpose": "Consolidated issue49 AC01-AC14 implementation/prototype and inherited issue48 acceptance mappings with explicit visual/resource/history/delivery gates.",
+      "purpose": "Consolidated issue49 AC01-AC15 fragment/embedded prototype and inherited issue48 mappings with explicit visual/resource/history/delivery gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -111,13 +111,13 @@
     },
     ".github/acceptance/issue-56.json": {
       "kind": "file",
-      "purpose": "Issue56 AC01\u2013AC06 source-bound R1 extraction/tool coverage policy with independent/live delivery gates.",
+      "purpose": "Issue56 AC01–AC06 source-bound R1 extraction/tool coverage policy with independent/live delivery gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-58.json": {
       "kind": "file",
-      "purpose": "Shared issue58 AC01\u2013AC10 mapping: frozen R2 checkpoint and current content/CSS/cohesion/resource contracts with final review/live/merge gates.",
+      "purpose": "Shared issue58 AC01–AC10 mapping: frozen R2 checkpoint and current content/CSS/cohesion/resource contracts with final review/live/merge gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -129,7 +129,7 @@
     },
     ".github/acceptance/issue-61.json": {
       "kind": "file",
-      "purpose": "PMDay recording AC01\u2013AC03 mapped to existing current-source content/semantic/RI checks and explicit review/CI/linkage gates.",
+      "purpose": "PMDay recording AC01–AC03 mapped to existing current-source content/semantic/RI checks and explicit review/CI/linkage gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -433,6 +433,42 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/runtime/59c9dde1f7465d07ec317d435a8520b95150f6fe2177410a49d6cbe516b321d8": {
+      "kind": "directory",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/59c9dde1f7465d07ec317d435a8520b95150f6fe2177410a49d6cbe516b321d8/archive.js": {
+      "kind": "file",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/59c9dde1f7465d07ec317d435a8520b95150f6fe2177410a49d6cbe516b321d8/navigation.js": {
+      "kind": "file",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/59c9dde1f7465d07ec317d435a8520b95150f6fe2177410a49d6cbe516b321d8/space.js": {
+      "kind": "file",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/59c9dde1f7465d07ec317d435a8520b95150f6fe2177410a49d6cbe516b321d8/styles.css": {
+      "kind": "file",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/59c9dde1f7465d07ec317d435a8520b95150f6fe2177410a49d6cbe516b321d8/theme.js": {
+      "kind": "file",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62": {
       "kind": "directory",
       "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
@@ -469,42 +505,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/d314f0a07282d3f1969e1760f849ad657437f7a40a4b122ee64346d0c9418fba": {
-      "kind": "directory",
-      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/d314f0a07282d3f1969e1760f849ad657437f7a40a4b122ee64346d0c9418fba/archive.js": {
-      "kind": "file",
-      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/d314f0a07282d3f1969e1760f849ad657437f7a40a4b122ee64346d0c9418fba/navigation.js": {
-      "kind": "file",
-      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/d314f0a07282d3f1969e1760f849ad657437f7a40a4b122ee64346d0c9418fba/space.js": {
-      "kind": "file",
-      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/d314f0a07282d3f1969e1760f849ad657437f7a40a4b122ee64346d0c9418fba/styles.css": {
-      "kind": "file",
-      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/d314f0a07282d3f1969e1760f849ad657437f7a40a4b122ee64346d0c9418fba/theme.js": {
-      "kind": "file",
-      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/site-revision.json": {
       "kind": "file",
       "purpose": "Generated public rendition: site-revision.json; regenerate from site sources with tools/site/build.cjs.",
@@ -517,13 +517,25 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/03e125e8e0ee86f8cc409643e9e2f9badd4d354f47da2feacca94e5612fc78b3": {
+    "docs/snapshots/09e9bf8820736855cd4276666edceea2470d019546ab63175c5e21d615094549": {
       "kind": "directory",
       "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/03e125e8e0ee86f8cc409643e9e2f9badd4d354f47da2feacca94e5612fc78b3/writing.html": {
+    "docs/snapshots/09e9bf8820736855cd4276666edceea2470d019546ab63175c5e21d615094549/writing.html": {
+      "kind": "file",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/42219125cdd82f12c9fd39adf48e2036b1e3a4c67c369d2aac6e7b0c9744309b": {
+      "kind": "directory",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/42219125cdd82f12c9fd39adf48e2036b1e3a4c67c369d2aac6e7b0c9744309b/credits.html": {
       "kind": "file",
       "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
@@ -536,6 +548,30 @@
       "owner": "site/README.md"
     },
     "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html": {
+      "kind": "file",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/619b9e03b52df3ee9aa2afeb367c397cff32eedbd4f68b56b5a9a7abaa2a3297": {
+      "kind": "directory",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/619b9e03b52df3ee9aa2afeb367c397cff32eedbd4f68b56b5a9a7abaa2a3297/research.html": {
+      "kind": "file",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/7c6b48018b43a1147e0e7848acb64a864fce5910934fe4a249c4c712e9aa5aa5": {
+      "kind": "directory",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/7c6b48018b43a1147e0e7848acb64a864fce5910934fe4a249c4c712e9aa5aa5/talks.html": {
       "kind": "file",
       "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
@@ -565,6 +601,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/8a5335bc957c59f58875c523c68f84f639ac4dc970479aac66819bc9f8f87403": {
+      "kind": "directory",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/8a5335bc957c59f58875c523c68f84f639ac4dc970479aac66819bc9f8f87403/index.html": {
+      "kind": "file",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946": {
       "kind": "directory",
       "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
@@ -584,54 +632,6 @@
       "owner": "site/README.md"
     },
     "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html": {
-      "kind": "file",
-      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/c2a96d1d907c7a38fcdb759180ffd08ac337d85e199a92c823171b56ca2424a0": {
-      "kind": "directory",
-      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/c2a96d1d907c7a38fcdb759180ffd08ac337d85e199a92c823171b56ca2424a0/talks.html": {
-      "kind": "file",
-      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/c9fa0f8af20ad1c880365e165d93a77d941075186a9b4e5be5cfd09990be3280": {
-      "kind": "directory",
-      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/c9fa0f8af20ad1c880365e165d93a77d941075186a9b4e5be5cfd09990be3280/credits.html": {
-      "kind": "file",
-      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/de9f228b2fb7a6db7c0ea721c97457827d6e68cbfab7124a64809b05b32ca5a9": {
-      "kind": "directory",
-      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/de9f228b2fb7a6db7c0ea721c97457827d6e68cbfab7124a64809b05b32ca5a9/index.html": {
-      "kind": "file",
-      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/f41fdfd166bd650ea8c955593385ad6ca28616d5cd9b30788cff2c1660476048": {
-      "kind": "directory",
-      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/f41fdfd166bd650ea8c955593385ad6ca28616d5cd9b30788cff2c1660476048/research.html": {
       "kind": "file",
       "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
@@ -1095,7 +1095,7 @@
     },
     "review/issue-58": {
       "kind": "directory",
-      "purpose": "Single R2\u2013R6 refactoring handoff, immutable phase observations and integrated evidence under continuing DraftPR60.",
+      "purpose": "Single R2–R6 refactoring handoff, immutable phase observations and integrated evidence under continuing DraftPR60.",
       "role": "history",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -6043,6 +6043,24 @@
       "role": "source",
       "owner": "site/README.md"
     },
+    "site/effects/embedded-plan.cjs": {
+      "kind": "file",
+      "purpose": "Pure persistent closed-shard model, target-camera native endpoints, shared-depth geometry and bounded material/haze sampling for one issue49 block.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/effects/embedded-scene.cjs": {
+      "kind": "file",
+      "purpose": "Same-travel-descriptor one-block Home-to-Research prewarm, persistent shared-scene collection, native handoff and shared resource/cancellation lifecycle.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/effects/embedded-texture.cjs": {
+      "kind": "file",
+      "purpose": "Bounded capability-gated native paragraph/backdrop texture capture, source escaping, readiness/cancellation rejection and disposal for one issue49 block.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
     "site/effects/flight.cjs": {
       "kind": "file",
       "purpose": "Shared Color five-route bidirectional fragment transaction, phase admission, finite painted-clock assembly and cleanup/fallback orchestration.",
@@ -6703,6 +6721,24 @@
       "role": "test",
       "owner": "site/README.md"
     },
+    "tests/embedded-plan.test.cjs": {
+      "kind": "file",
+      "purpose": "Permanent issue49 persistent identity, closed volume, finite depth/native endpoint, bounded prism projection and serialized geometry rejection contracts; visual depth remains pending.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tests/embedded-scene.test.cjs": {
+      "kind": "file",
+      "purpose": "Permanent issue49 one-block shared-scene prewarm, same-object arrival, native-owner handoff, reservation/cancellation/lifecycle and capability fallback contracts; browser admission remains pending.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tests/embedded-texture.test.cjs": {
+      "kind": "file",
+      "purpose": "Permanent issue49 native paragraph/backdrop serialization, pixel/font/decode/capability/taint rejection and cancellation/disposal contracts; native visual fidelity remains pending.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
     "tests/endpoint-fixtures.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for endpoint fixtures.",
@@ -6969,7 +7005,7 @@
     },
     "tests/test_issue49_acceptance.py": {
       "kind": "file",
-      "purpose": "Issue49 policy-only selectors for current fragment/stationary source contracts with fail-closed accounting; inherited issue48 checks are selected individually by the consolidated14-criterion policy.",
+      "purpose": "Issue49 policy-only selectors for current fragment, stationary and embedded-native-texture source contracts with fail-closed accounting; meaningful issue48 checks remain individually mapped by the consolidated15-criterion policy.",
       "role": "test",
       "owner": ".github/ACCEPTANCE.md"
     },

@@ -37,6 +37,7 @@ own source/hosted coverage; generation freshness alone is insufficient.
 | `scenes/world.cjs`, `paths.json` | Authored motifs, rest geometry and finite camera paths | Runtime and projected SVG fallbacks |
 | `effects/flight.cjs`, `effects/*.css` | Current Color travel descriptor and canonical static reading/control CSS | Shared hosted/offline Color runtime |
 | `effects/fragment-plan.cjs`, `fragment-dom.cjs` | Shared shard settings/geometry, visible native paint acquisition and staggered 1.8-second assembly | Issue49 all-route bidirectional Color preview; finite painted-clock tail preserves camera duration and resource caps |
+| `effects/embedded-plan.cjs`, `embedded-texture.cjs`, `embedded-scene.cjs` | Scoped persistent closed shards, capability-gated native block texture and shared-scene prewarm/handoff | Issue49 one-block Home-to-Research prototype within the same Color travel descriptor and scene clock |
 | `effects/ribbons.cjs` | Optional historical comparison factory; not serialized into active Color | Explicit legacy diagnostics only; full scanner coverage remains |
 | `../tools/site/effects.cjs`, `export.cjs` | Canonical effect source manifest, explicit delivery adapters and standalone export | Supported Color selection, scanner coverage and offline HTML |
 | `assets/` | Existing portrait, cutout, favicon and `.nojekyll` source | Exact image/icon bytes |
@@ -123,6 +124,32 @@ paints for camera/journey diagnostics. It uses the existing clock and constructs
 no frame evidence when the probe is absent; no independent loop is added.
 Historical ribbon material/phase evidence remains attached to its prior edition.
 
+Issue49's embedded extension prototypes only Research's introductory paragraph
+with its canonical reading backdrop on Home-to-Research travel. The router may
+prewarm that exact pinned destination through its existing verified route cache;
+an inert, inaccessible staging copy measures one native block at the target width.
+`embedded-texture.cjs` admits a bounded local texture only when the native font,
+paint and image-decoding capabilities can preserve it. Unsupported paint,
+capture/decode failure, invalidation or a different landing retains the existing
+shared fragments or native fallback. This is not an all-page rasterization path.
+
+`embedded-plan.cjs` gives those same identified shards closed front, rear and
+side faces, target-camera endpoints and a persistent world anchor.
+`embedded-scene.cjs` attaches collection/paint to the current travel effect;
+the existing scene composition sorts its faces with the fractal. It owns no
+runtime dependency, second renderer or animation clock. Preparation, native
+owner hiding, texture lifetime, cancellation and disposal remain bounded and
+reserve resources against the shared departure/arrival caps. Arrival returns
+the ordinary HTML paragraph for reading, selection and interaction. The final
+180ms of the same 1.8-second assembly clock may blend the native paragraph in
+as the corresponding Canvas faces fade out, only after the shared camera reaches
+its exact target pose. This preserves the ordinary scene atmosphere overlay
+without a hard color seam between Canvas texture and foreground HTML; it adds
+no independent clock or generic content-plane fade. Source
+fixtures do not establish native texture fidelity or perceived depth: the
+explicit AC15 embedded visual gate and existing fidelity/performance/device
+gates remain pending before expansion or release admission.
+
 Large inline titles retain native wrapping while their cloned backgrounds
 extend0.16em around each fragment. An inner positioned ink span paints the
 complete title above all background fragments; adjacent line spreads cannot
@@ -193,13 +220,18 @@ No claim is made that this filesystem operation publishes an atomic CDN update.
 to `runtime/<digest>/` and `media/<digest>/`; fetchable HTML lives in
 `snapshots/<route-digest>/<route>.html`. Root aliases remain identical for existing
 tooling and the offline exporter. The revision and root HTML revalidate; immutable
-paths use the prepared host policy. No idle revision fetch, remote CMS or automatic
+paths use the prepared host policy. No periodic revision fetch, remote CMS or automatic
 refresh is added. Default output has no telemetry; [SITE-ANALYTICS](../guides/SITE-ANALYTICS.md)
 owns the optional exact-origin adapter and tracking-free standalone exports.
 
-On the first user route navigation, the router pins a descriptor compatible with
-the initial shell/route. It fetches only the named immutable route and checks its
-bytes and version before caching/mounting. Later navigation uses that pinned set.
+The router pins a descriptor compatible with the initial shell/route on its first
+verified route read. Base delivery first reads it on user navigation. The scoped
+Color embedded prototype may make that read earlier on Home to prewarm only
+Research's native introductory block. This speculative read shares the existing
+finite route cache and exact descriptor/byte/version checks; failure cannot block
+ordinary navigation. It does not poll for revisions or refresh the pinned edition.
+The router fetches only the named immutable route and checks its bytes and version
+before caching/mounting. Later navigation uses that pinned set.
 A changed descriptor, bad MIME, missing route, mismatched engine or corrupted bytes
 falls back once to the ordinary destination document. The next fresh document
 chooses its own version; there is no reload loop. Standalone files embed the finite

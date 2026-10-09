@@ -1,6 +1,9 @@
 'use strict';
 const fragmentPlan = require('./fragment-plan.cjs');
 const fragmentDOM = require('./fragment-dom.cjs');
+const embeddedPlan = require('./embedded-plan.cjs');
+const embeddedTexture = require('./embedded-texture.cjs');
+const embeddedScene = require('./embedded-scene.cjs');
 // Optional offline navigation comparison. Authored production sources stay intact.
 function flightPose(progress, direction, departure = { z: 0, opacity: 1 }) {
   const clamp = (t) => Math.max(0, Math.min(1, t)),
@@ -252,14 +255,23 @@ function installEndScroll(gateFactory, isEnd, isStart) {
         clear();
         return false;
       }
-      const accepted = gate.offer({ type, delta, deliberate, ...bounds(), now: clock() });
+      const accepted = gate.offer({
+        type,
+        delta,
+        deliberate,
+        ...bounds(),
+        now: clock(),
+      });
       hint?.style.setProperty('--scroll-intent', String(direction > 0 ? gate.progress() : 0));
       if (accepted) {
         const route = neighbor(direction);
         if (type === 'touch' && touch) touch.consumed = true;
         clear();
         return route
-          ? window.SiteNavigation.go(route, { atEnd: direction < 0, input: type })
+          ? window.SiteNavigation.go(route, {
+              atEnd: direction < 0,
+              input: type,
+            })
           : false;
       }
       return false;
@@ -476,6 +488,7 @@ function createPresentation(content) {
     },
     canTravel: () => window.CSS?.supports?.('overflow', 'clip') === true,
     clear() {
+      window.SiteEffects.embedded?.cancel();
       fragments?.clear();
       useFragments = false;
       phaseFragments = false;
@@ -509,13 +522,21 @@ function createPresentation(content) {
       phaseFragments = false;
       capturing = useFragments;
       waitingArrival = false;
+      if (useFragments) window.SiteEffects.embedded?.begin(context);
+      else window.SiteEffects.embedded?.invalidate();
       if (useFragments) {
         fragments ||= fragmentDOM(
           content,
-          fragmentPlan({ cameraView: (...args) => window.SiteEffects.cameraView(...args) }),
+          fragmentPlan({
+            cameraView: (...args) => window.SiteEffects.cameraView(...args),
+          }),
           () => {
             phaseFragments = false;
             setPlane(lastPose);
+          },
+          {
+            exclude: () => window.SiteEffects.embedded?.owner(),
+            reserve: () => window.SiteEffects.embedded?.reservation(),
           }
         );
         fragments.begin(journeyContext);
@@ -526,13 +547,17 @@ function createPresentation(content) {
       phaseFragments = false;
       // A newly mounted native page gets a fresh local admission attempt even
       // when departure's clone/deadline fallback rejected its old paint.
-      if (useFragments) fragments.begin(journeyContext);
+      if (useFragments) {
+        window.SiteEffects.embedded?.land(content);
+        fragments.begin(journeyContext);
+      }
       waitingArrival = useFragments;
     },
     present(progress, direction, departure, snapshot) {
       const painted = snapshot && { ...snapshot, direction: journeyDirection };
       lastPose = flightPose(progress, journeyDirection, departure);
       if (snapshot?.active === false) {
+        window.SiteEffects.embedded?.invalidate();
         fragments?.clear();
         useFragments = false;
         phaseFragments = false;
@@ -553,19 +578,23 @@ function createPresentation(content) {
         capturing = false;
         phaseFragments = fragments.prepare('depart', painted);
       }
-      if (phaseFragments && fragments.present(progress, painted))
-        return progress === 1 ? fragments.complete() : undefined;
+      if (phaseFragments && fragments.present(progress, painted)) {
+        const embeddedDone = window.SiteEffects.embedded?.complete() !== false;
+        return progress === 1 ? fragments.complete() && embeddedDone : undefined;
+      }
       if (phaseFragments && fragments.active() === false) phaseFragments = false;
       setPlane(lastPose);
+      if (progress === 1 && window.SiteEffects.embedded?.complete() === false) return false;
     },
     contentFlight(value) {
       if (typeof value === 'boolean') {
         contentFlight = value;
         if (!value) {
+          window.SiteEffects.embedded?.invalidate();
           fragments?.clear();
           useFragments = false;
           phaseFragments = false;
-        }
+        } else window.SiteEffects.embedded?.refresh();
         if (content.dataset.flightStage)
           setPlane({
             stage: content.dataset.flightStage,
@@ -579,10 +608,11 @@ function createPresentation(content) {
       if (typeof value === 'boolean') {
         fragmentPreview = value;
         if (!value) {
+          window.SiteEffects.embedded?.invalidate();
           fragments?.clear();
           useFragments = false;
           phaseFragments = false;
-        }
+        } else window.SiteEffects.embedded?.refresh();
         try {
           localStorage.setItem('vo.fragment-preview', value ? 'on' : 'off');
         } catch {
@@ -591,6 +621,11 @@ function createPresentation(content) {
       }
       return fragmentPreview;
     },
+    canPrepareNext: () => contentFlight && fragmentPreview,
+    prepareNext: (data) =>
+      contentFlight &&
+      fragmentPreview &&
+      window.SiteEffects.embedded?.prime(data, content.offsetTop),
   };
 }
 function measurePlane(read) {
@@ -608,7 +643,7 @@ function measurePlane(read) {
   }
 }
 function descriptor() {
-  const code = `const flightPose=${flightPose.toString()};\nconst fragmentPlan=${fragmentPlan.toString()};\nconst fragmentDOM=${fragmentDOM.toString()};\nwindow.SiteEffects.registerView=(view)=>{window.SiteEffects.cameraView=view;};\nwindow.SiteEffects.navigation=${createPresentation.toString()};\nwindow.SiteEffects.measure=${measurePlane.toString()};`;
+  const code = `const flightPose=${flightPose.toString()};\nconst fragmentPlan=${fragmentPlan.toString()};\nconst fragmentDOM=${fragmentDOM.toString()};\nconst embeddedPlan=${embeddedPlan.toString()};\nconst embeddedTexture=${embeddedTexture.toString()};\nconst embeddedScene=${embeddedScene.toString()};\nwindow.SiteEffects.scene=(api)=>embeddedScene(api,{fragmentPlan,embeddedPlan,embeddedTexture});\nwindow.SiteEffects.registerView=(view)=>{window.SiteEffects.cameraView=view;};\nwindow.SiteEffects.navigation=${createPresentation.toString()};\nwindow.SiteEffects.measure=${measurePlane.toString()};`;
   const controls =
     '(' +
     installFlightPreference.toString() +

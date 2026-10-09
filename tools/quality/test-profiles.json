@@ -1457,7 +1457,7 @@
     {
       "path": "tests/test_issue49_acceptance.py",
       "language": "python",
-      "purpose": "Consolidated issue49 fourteen-criterion policy-only current fragment/stationary source selectors with fail-closed test accounting",
+      "purpose": "Consolidated issue49 fifteen-criterion policy-only fragment/stationary/embedded source selectors with fail-closed test accounting",
       "owner": ".github/ACCEPTANCE.md",
       "lifecycle": "task-snapshot",
       "profiles": ["issue-policy"],
@@ -1470,7 +1470,71 @@
         "tests/fragment-plan.test.cjs",
         "tests/fragment-dom.test.cjs",
         "tests/space.test.cjs",
-        "tests/navigation.test.cjs"
+        "tests/navigation.test.cjs",
+        "tests/embedded-plan.test.cjs",
+        "tests/embedded-texture.test.cjs",
+        "tests/embedded-scene.test.cjs",
+        "tests/effects.test.cjs"
+      ]
+    },
+    {
+      "path": "tests/embedded-plan.test.cjs",
+      "language": "javascript",
+      "purpose": "Permanent issue49 persistent identity, closed volume, finite depth/native endpoint, bounded prism projection and serialized geometry rejection contracts; visual depth remains pending.",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "retain scoped one-block same-scene prototype and meaningful failure contracts; native texture/depth/fidelity/device and paired-cost admission remain human gates without another hosted matrix",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/embedded-plan.test.cjs",
+        "site/effects/embedded-plan.cjs",
+        "tools/site/effects.cjs",
+        "site/effects/fragment-plan.cjs",
+        "site/engine/math.cjs",
+        "site/engine/lifecycle.cjs"
+      ]
+    },
+    {
+      "path": "tests/embedded-texture.test.cjs",
+      "language": "javascript",
+      "purpose": "Permanent issue49 native paragraph/backdrop serialization, pixel/font/decode/capability/taint rejection and cancellation/disposal contracts; native visual fidelity remains pending.",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "retain scoped one-block same-scene prototype and meaningful failure contracts; native texture/depth/fidelity/device and paired-cost admission remain human gates without another hosted matrix",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/embedded-texture.test.cjs",
+        "site/effects/embedded-texture.cjs",
+        "tools/site/effects.cjs",
+        "site/engine/reading-surfaces.css",
+        "site/content/pages/research/**",
+        "site/templates/pages/research/**"
+      ]
+    },
+    {
+      "path": "tests/embedded-scene.test.cjs",
+      "language": "javascript",
+      "purpose": "Permanent issue49 one-block shared-scene prewarm, same-object arrival, native-owner handoff, reservation/cancellation/lifecycle and capability fallback contracts; browser admission remains pending.",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "retain scoped one-block same-scene prototype and meaningful failure contracts; native texture/depth/fidelity/device and paired-cost admission remain human gates without another hosted matrix",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/embedded-scene.test.cjs",
+        "site/effects/embedded-scene.cjs",
+        "tools/site/effects.cjs",
+        "site/effects/embedded-plan.cjs",
+        "site/effects/embedded-texture.cjs",
+        "site/effects/fragment-plan.cjs",
+        "site/effects/fragment-dom.cjs",
+        "site/effects/flight.cjs",
+        "site/effects/flight.css",
+        "site/engine/navigation.js",
+        "site/engine/lifecycle.cjs",
+        "site/engine/renderer.cjs"
       ]
     }
   ]

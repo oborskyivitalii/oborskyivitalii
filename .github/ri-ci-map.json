@@ -220,7 +220,7 @@
     },
     {
       "id": "refactoring-contracts",
-      "purpose": "Permanent content/template/CSS/cohesion controls, authored dependency negatives and current bounded stationary-camera/fragment source contracts. Issue58 measurements remain source-bound history; issue49 visual/depth/resource admission remains separately evidenced.",
+      "purpose": "Permanent content/template/CSS/cohesion controls, authored dependency negatives and current bounded stationary-camera/fragment and bounded embedded-native-texture source contracts. Issue58 measurements remain source-bound history; issue49 visual/depth/resource admission remains separately evidenced.",
       "paths": [
         "tools/quality/architecture.cjs",
         "tools/quality/refactor-metrics.cjs",
@@ -240,7 +240,13 @@
         "site/effects/fragment-plan.cjs",
         "site/effects/fragment-dom.cjs",
         "tests/fragment-plan.test.cjs",
-        "tests/fragment-dom.test.cjs"
+        "tests/fragment-dom.test.cjs",
+        "site/effects/embedded-plan.cjs",
+        "tests/embedded-plan.test.cjs",
+        "site/effects/embedded-texture.cjs",
+        "tests/embedded-texture.test.cjs",
+        "site/effects/embedded-scene.cjs",
+        "tests/embedded-scene.test.cjs"
       ],
       "checks": [
         "authored-dependencies",
@@ -407,7 +413,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "b3a2c7dff916b1154b7d89b7e40772b195224848adf4fa22b22d376daae1d25e",
+    "digest": "1428e34c42633ff3a1ee84702668eaf5f8ea6d14f77f921a21090fa07ff367eb",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -423,7 +429,7 @@
       },
       {
         "path": ".github/REPOSITORY-INTELLIGENCE.md",
-        "sha256": "b82d2a4d4b50c97a8fb870885e1475c51abab7971c7808fbe4eeeb104b334c3a"
+        "sha256": "14842e1e64071d8cf08b37dec6e881cc2af4384355d91edcbf8f6c9c733e6ea7"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -455,7 +461,7 @@
       },
       {
         "path": ".github/acceptance/issue-49.json",
-        "sha256": "ef0bdfbc5f1d0e06131e1d7179cade9669abace8a152bf3f3aa1f70d0b7fd58a"
+        "sha256": "4f242926df2ca974470cd1a5b8ada97c14e865c0ca896798903457864d480271"
       },
       {
         "path": ".github/acceptance/issue-54.json",
@@ -495,7 +501,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "8bd250d88a6b6f672fc35f2140c0bb70f620c11288aa8fcef6956831f774820b"
+        "sha256": "6c37d092076f37fd127ef0b386e458cebe088cf9848290962c1b0150899ff745"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -575,7 +581,7 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "a4b84315b0e0be4aef55e55d5bc79021c99e0d460fa1e7e41890f0bd654777ce"
+        "sha256": "d2e5c29a8fbb25639ecf64bbd16401412c3d7646cc3717670ec0f8f267e5f3bc"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -591,7 +597,7 @@
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "0475073deaa517c72d4ec364761a938cc98324a6f4c6e67c4fca7310533dcb2d"
+        "sha256": "b1ef592154f421188f64e6ef2d215f24cfc20c35caf29c9725fc41b83e3b9296"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
@@ -631,7 +637,7 @@
       },
       {
         "path": "tests/test_issue49_acceptance.py",
-        "sha256": "ea382e21e0fc3a174e13cd3c0794ab47f1a2753569199ac1d2bacf3419b039a2"
+        "sha256": "883e300eec18b076ff8c460fe25801a35a05a69a55a2fb522dc600f19d7e9062"
       },
       {
         "path": "tests/test_issue56_acceptance.py",
@@ -651,7 +657,7 @@
       },
       {
         "path": "tests/test_repository_intelligence.py",
-        "sha256": "0990ed9c23f6b9955148941b3b4fbf9ef2bbda99f63c32a020540fdc0944ccc7"
+        "sha256": "13aad82008ba787e51d55eabc7e80567c6196ce6380df24e7839ed84f1cbb31e"
       },
       {
         "path": "tests/test_repository_test_selection.py",
@@ -683,7 +689,7 @@
       },
       {
         "path": "tools/quality/local.cjs",
-        "sha256": "b6930efe9a36568d8be0fcf3d7f0ea431cda1146eaa1701db3182a43585f95ec"
+        "sha256": "d1c2a9c6d48a14f4f9b337234b9b61013ea3a5400dc57df7bf096b762262ffdf"
       },
       {
         "path": "tools/quality/source-tests.cjs",
@@ -699,11 +705,11 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "8404f58442bb177fd7ca6c73d14147a331bc77ed46607ca110fcbfeda4dcd081"
+        "sha256": "8853abd3eeb45b7d3e2a2b60ee2d5a54a8429302d7bf92a54dca249715bba298"
       },
       {
         "path": "tools/repository_intelligence.py",
-        "sha256": "dad68d88d241c2cd223081d6a28961c1aa7abc19c0f4c223c9c3382c562aa792"
+        "sha256": "4f9210685ce3ff67bd8655e4b6a9a737bcccfbad34361165e75c528c59037320"
       },
       {
         "path": "tools/run_repository_tests.py",

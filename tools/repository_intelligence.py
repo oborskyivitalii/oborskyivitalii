@@ -38,6 +38,9 @@ IGNORED = {
     "staging-reports",
 }
 TEXT_SUFFIXES = {".md", ".json", ".toml", ".yml", ".yaml", ".py", ".cff", ".txt"}
+# The append-only checksum ledger is an inventoried, fully hashed input, not
+# navigation prose. This exact-path disposition cannot cover other JSON files.
+HASH_ONLY_TEXT_PATHS = frozenset({"tools/quality/secrets-reviewed.json"})
 MAX_FILES = 5000
 MAX_FILE_BYTES = 2_000_000
 MAX_TOTAL_BYTES = 50_000_000
@@ -179,7 +182,7 @@ def scan(root, outputs):
             records.append(
                 {"path": relative, "identity_mode": "content", "sha256": sha.hexdigest()}
             )
-            if path.suffix.lower() in TEXT_SUFFIXES:
+            if path.suffix.lower() in TEXT_SUFFIXES and relative not in HASH_ONLY_TEXT_PATHS:
                 size_total += size
                 if size > MAX_FILE_BYTES or size_total > MAX_TOTAL_BYTES:
                     raise ValueError(f"RI text bound exceeded at {relative}")

@@ -12,6 +12,9 @@ const effectSources = Object.freeze([
   'site/effects/flight.cjs',
   'site/effects/fragment-plan.cjs',
   'site/effects/fragment-dom.cjs',
+  'site/effects/embedded-plan.cjs',
+  'site/effects/embedded-texture.cjs',
+  'site/effects/embedded-scene.cjs',
   'site/effects/ribbons.cjs',
 ]);
 // CSS paths are a closed ownership contract, not arbitrary descriptor file reads.

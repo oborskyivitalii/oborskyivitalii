@@ -16,7 +16,9 @@
     request = null,
     requestedPage = null,
     transition = null,
-    scrollSave = null;
+    scrollSave = null,
+    warmRequest = null,
+    warmAgain = false;
   let endpoint = null,
     endpointTimer = null,
     endpointObserver = null,
@@ -111,7 +113,10 @@
     if (routeFor(new URL(window.location.href)) !== page) return;
     try {
       history.replaceState(
-        { ...history.state, site: { page, scroll: [window.scrollX, window.scrollY] } },
+        {
+          ...history.state,
+          site: { page, scroll: [window.scrollX, window.scrollY] },
+        },
         '',
         window.location.href
       );
@@ -215,6 +220,9 @@
     releaseTail();
     request?.abort();
     request = null;
+    warmRequest?.abort();
+    warmRequest = null;
+    warmAgain = false;
     transition?.cancel?.();
     window.SiteScene?.detachTravel();
     transition?.(1);
@@ -629,6 +637,37 @@
       });
     return result;
   }
+  async function prepareNeighbor() {
+    if (page !== 'index' || request || !presentation?.prepareNext) return;
+    if (presentation.canPrepareNext?.() === false) return;
+    if (warmRequest) {
+      warmAgain = true;
+      return;
+    }
+    const own = serial;
+    const controller = new AbortController();
+    warmRequest = controller;
+    const timeout = window.setTimeout(() => controller.abort(), 8000);
+    try {
+      const data = await read('research', controller.signal);
+      if (!controller.signal.aborted && own === serial && page === 'index' && !request)
+        await presentation.prepareNext(data);
+    } catch {
+      // Speculative decoration never blocks verified ordinary navigation.
+    } finally {
+      window.clearTimeout(timeout);
+      if (warmRequest === controller) {
+        warmRequest = null;
+        if (warmAgain) {
+          warmAgain = false;
+          if (own === serial) void prepareNeighbor();
+        }
+      }
+    }
+  }
+  window.addEventListener?.('site:page-ready', prepareNeighbor);
+  window.addEventListener?.('site:embedded-invalidated', prepareNeighbor);
+  window.addEventListener?.('resize', prepareNeighbor, { passive: true });
   async function navigate(
     url,
     { pop = false, position = null, initial = false, input = null } = {}
@@ -657,6 +696,7 @@
     const controller = new AbortController();
     request = controller;
     const timeout = window.setTimeout(() => controller.abort(), 8000);
+    let succeeded = false;
     content.setAttribute('aria-busy', 'true');
     try {
       const data = await read(next, controller.signal);
@@ -694,6 +734,7 @@
         {
           from: page,
           to: next,
+          landing: { position, hash: url.hash, search: url.search },
           direction: window.SiteScene?.direction?.(next) ?? window.SiteRoutes.direction(page, next),
         }
       );
@@ -706,7 +747,12 @@
         content.querySelector('main').focus({ preventScroll: true });
         announcement.textContent = data.title;
         save();
-        window.SiteEngineProbe?.({ kind: 'navigation-ready', time: performance.now(), page: next });
+        succeeded = true;
+        window.SiteEngineProbe?.({
+          kind: 'navigation-ready',
+          time: performance.now(),
+          page: next,
+        });
       }
     } catch {
       if (own === serial) {
@@ -721,6 +767,7 @@
         request = null;
         requestedPage = null;
         clearText();
+        if (succeeded) void prepareNeighbor();
       }
     }
   }
@@ -751,7 +798,10 @@
     if (next === page) {
       ++serial;
       if (interrupt()) window.SiteScene?.navigate(page, motionAllowed());
-      if (link.getAttribute('href').startsWith('#')) return;
+      if (link.getAttribute('href').startsWith('#')) {
+        void prepareNeighbor();
+        return;
+      }
       event.preventDefault();
       const dest = address(url, next);
       if (dest.href !== window.location.href) push(dest);
@@ -774,6 +824,7 @@
       if (interrupt()) window.SiteScene?.navigate(page, motionAllowed());
       if (event.state?.site?.scroll)
         restoreScroll(event.state.site.scroll[0], event.state.site.scroll[1]);
+      void prepareNeighbor();
     }
   });
   function finishText() {
@@ -839,5 +890,8 @@
   };
   const first = embedded ? routeFor(new URL(window.location.href)) : page;
   if (first !== page) navigate(new URL(window.location.href), { initial: true });
-  else save();
+  else {
+    save();
+    if (presentation?.prepareNext) window.setTimeout(prepareNeighbor, 0);
+  }
 })();

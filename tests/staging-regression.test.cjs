@@ -3,6 +3,96 @@ const test = require('node:test'),
   assert = require('node:assert/strict');
 const stage = require('../tools/quality/staging-regression.cjs'),
   fixture = require('./fixtures/staging-evidence.cjs');
+function embeddedPrototypeFixture() {
+  const ids = ['research-intro:0', 'research-intro:1', 'research-intro:2'];
+  const nativeRect = { left: 52.125, top: 320.25, width: 640.5, height: 70.4 };
+  const nativeLines = [{ left: 68.125, top: 332.25, width: 512.25, height: 19 }];
+  const envelope = {
+    left: nativeRect.left - 12,
+    top: nativeRect.top - 12,
+    width: nativeRect.width + 24,
+    height: nativeRect.height + 24,
+  };
+  const handoff = (progress) => Math.max(0, (progress - 0.9) / 0.1);
+  const faces = (progress) =>
+    ids.map((id, index) => ({
+      id,
+      face: progress >= 0.9 || index !== 2 ? 'front' : 'side',
+      points:
+        progress >= 0.9
+          ? [
+              [envelope.left + (envelope.width * index) / 3, envelope.top],
+              [envelope.left + (envelope.width * (index + 1)) / 3, envelope.top],
+              [envelope.left + (envelope.width * (index + 1)) / 3, envelope.top + envelope.height],
+              [envelope.left + (envelope.width * index) / 3, envelope.top + envelope.height],
+            ]
+          : [
+              [50 + progress * 100, 20],
+              [62 + progress * 100, 20],
+              [50 + progress * 100, 28],
+            ],
+      alpha: progress >= 0.9 ? 1 - handoff(progress) : 0.2 + progress * 0.8,
+      textureMix: progress >= 0.9 ? 1 : 0.16 + progress * 0.84,
+    }));
+  const diagnostics = (progress = 0, assembling = false) => ({
+    ready: true,
+    ids,
+    texturePixels: 100000,
+    nativeRect,
+    nativeLines,
+    envelope,
+    phase: assembling ? 'assembling' : null,
+    progress,
+    physicalProgress: Math.min(1, progress / 0.9),
+    handoff: handoff(progress),
+    faces: faces(progress),
+  });
+  const native = {
+    hidden: true,
+    visibility: 'hidden',
+    opacity: 1,
+    rect: nativeRect,
+    lines: nativeLines,
+    copies: 0,
+  };
+  const initial = { page: 'index', theme: 'light', paints: 1, diagnostics: diagnostics() };
+  const frames = [
+    { ...initial, customShapes: 3 },
+    ...[0.2, 0.4, 0.6, 0.9, 0.94, 0.98].map((progress, index) => ({
+      page: index === 0 ? 'index' : 'research',
+      theme: 'light',
+      paints: index + 2,
+      customShapes: 3,
+      camera: progress > 0.9 ? 'settled-native-camera' : 'moving-camera-' + progress,
+      diagnostics: diagnostics(progress, true),
+      native:
+        index === 0
+          ? null
+          : progress > 0.9
+            ? {
+                ...native,
+                hidden: false,
+                visibility: 'visible',
+                opacity: handoff(progress),
+              }
+            : native,
+    })),
+  ];
+  return {
+    initial,
+    frames,
+    final: {
+      page: 'research',
+      theme: 'light',
+      busy: false,
+      inert: false,
+      stages: 0,
+      camera: 'settled-native-camera',
+      native: { ...native, hidden: false, visibility: 'visible' },
+      diagnostics: { ready: false, phase: null, texturePixels: 0, ids: [], faces: [] },
+    },
+  };
+}
 function fragmentBackdropFixture(phase, timeMs = 0) {
   const native = {
     content: '""',
@@ -1534,4 +1624,68 @@ test('failed flight collection retains previous and failing raw records instead 
     }
   );
   assert.equal(measurementClosed, true);
+});
+
+test('embedded native prototype requires painted persistent identities and clean accurate handoff', () => {
+  const { validateEmbeddedPrototype } = require('../tools/quality/color-browser.cjs');
+  const observed = embeddedPrototypeFixture();
+  const accepted = validateEmbeddedPrototype(observed, 'light');
+  assert.equal(accepted.frames, 7);
+  assert.deepEqual(accepted.ids, observed.initial.diagnostics.ids);
+  assert.equal(accepted.rectDeltaPx, 0);
+  assert.equal(accepted.lineDeltaPx, 0);
+  const mutations = [
+    (value) => (value.initial.diagnostics.ready = false),
+    (value) => (value.initial.diagnostics.ids = []),
+    (value) => (value.initial.diagnostics.texturePixels = 0),
+    (value) => (value.initial.diagnostics.texturePixels = 1000001),
+    (value) => (value.frames[0].customShapes = 0),
+    (value) => (value.frames[0].diagnostics.faces = []),
+    (value) => (value.frames[1].diagnostics.ids[0] = 'replacement-object'),
+    (value) => value.frames.slice(1).forEach((frame) => (frame.paints = 1)),
+    (value) => value.frames.slice(1).forEach((frame) => (frame.customShapes = 0)),
+    (value) =>
+      value.frames.slice(1).forEach((frame) => {
+        frame.diagnostics.faces = structuredClone(value.frames[0].diagnostics.faces);
+      }),
+    (value) =>
+      value.frames.slice(1).forEach((frame) => {
+        frame.diagnostics.faces.forEach((face) => (face.face = 'front'));
+      }),
+    (value) =>
+      value.frames.slice(1).forEach((frame) => {
+        frame.diagnostics.faces.forEach((face) => (face.textureMix = 0));
+      }),
+    (value) => (value.frames[2].native.hidden = false),
+    (value) => (value.frames[2].native.copies = 1),
+    (value) => delete value.frames[2].diagnostics.handoff,
+    (value) => (value.frames[2].diagnostics.handoff = 0.1),
+    (value) => (value.frames[5].native.opacity = 0.9),
+    (value) => (value.frames[5].diagnostics.physicalProgress = 0.98),
+    (value) => (value.frames[5].camera = 'camera-still-moving'),
+    (value) => (value.frames[5].diagnostics.faces[0].points[0][0] -= 2),
+    (value) => (value.frames[6].diagnostics.faces[1].points[0][0] += 0.5),
+    (value) => (value.frames[5].diagnostics.faces[0].alpha = 1),
+    (value) => (value.final.native.opacity = 0.8),
+    (value) => (value.final.native.hidden = true),
+    (value) => (value.final.native.visibility = 'hidden'),
+    (value) => (value.final.stages = 1),
+    (value) => (value.final.diagnostics.texturePixels = 100000),
+    (value) => (value.final.diagnostics.ids = ['research-intro:0']),
+    (value) => (value.final.diagnostics.faces = value.frames[0].diagnostics.faces),
+    (value) => (value.final.native.rect.left += 1),
+    (value) => (value.final.native.lines[0].top += 1),
+    (value) => (value.final.native.lines = []),
+  ];
+  for (const mutate of mutations) {
+    const changed = structuredClone(observed);
+    // Fixture aliases represent identical native values, not mutable identity.
+    changed.initial.diagnostics.nativeRect = { ...observed.initial.diagnostics.nativeRect };
+    changed.initial.diagnostics.nativeLines = structuredClone(
+      observed.initial.diagnostics.nativeLines
+    );
+    changed.initial.diagnostics.ids = [...observed.initial.diagnostics.ids];
+    mutate(changed);
+    assert.throws(() => validateEmbeddedPrototype(changed, 'light'), String(mutate));
+  }
 });

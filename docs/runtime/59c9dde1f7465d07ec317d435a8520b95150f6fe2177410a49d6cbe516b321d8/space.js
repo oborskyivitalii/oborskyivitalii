@@ -3413,7 +3413,12 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     const start = window.SiteEngineProbe ? clock() : 0;
     measure();
     if (window.SiteEngineProbe)
-      diagnostic('layout', { reasons, passes: layoutPasses, start, duration: clock() - start });
+      diagnostic('layout', {
+        reasons,
+        passes: layoutPasses,
+        start,
+        duration: clock() - start,
+      });
     // Native landing and layout belong to the router. Neither reading position
     // nor content reflow can change the route's settled camera or flight target.
     nextDraw = null;
@@ -3474,12 +3479,22 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     const variants = rooms.get(name);
     if (!variants.has(detail)) {
       const start = window.SiteEngineProbe ? clock() : 0;
-      const room = { world: worldFor(name, detail), name, compact: detail, faceColors: [] };
+      const room = {
+        world: worldFor(name, detail),
+        name,
+        compact: detail,
+        faceColors: [],
+      };
       variants.set(detail, room);
       // Prepare once during the existing room work, never inside timed paint.
       if (name === 'writing') api.prepareFormula?.();
       if (window.SiteEngineStages)
-        diagnostic('stage', { part: 'model-build', route: name, start, duration: clock() - start });
+        diagnostic('stage', {
+          part: 'model-build',
+          route: name,
+          start,
+          duration: clock() - start,
+        });
       paintColors(room);
       if (window.SiteEngineProbe)
         diagnostic('model', {
@@ -3584,8 +3599,18 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     }
     ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
     ctx.clearRect(0, 0, width, height);
-    const state = { current, width, height, ambientTime, compact, scene, detailTier };
-    if (window.SiteRibbonProbe) state.journey = journey;
+    const state = {
+      current,
+      width,
+      height,
+      ambientTime,
+      compact,
+      scene,
+      detailTier,
+      page,
+      colors,
+      journey,
+    };
     const geometry = visibleRooms();
     span('draw-project');
     const custom = sceneEffects?.collect(state) || [];
@@ -3914,7 +3939,10 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
         return;
       }
       if (!failed && readColors()) schedule();
-    }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    }).observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    });
   const observer = window.ResizeObserver
     ? new window.ResizeObserver(() => invalidateLayout('size'))
     : null;

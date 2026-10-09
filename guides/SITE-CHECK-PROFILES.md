@@ -155,6 +155,21 @@ header clicks, edge landing, footer/cross-links, history and VO. It retains orig
 timing/resource limits, exact heading line handoff and Off cleanup. These targeted
 observations do not replace the full release/device matrix or paired-cost gate.
 
+The next scoped amendment adds AC15 for one Home-to-Research introductory
+paragraph embedded in the shared fractal before navigation. Permanent
+`embedded-plan.test.cjs`, `embedded-texture.test.cjs` and
+`embedded-scene.test.cjs` exercise persistent closed-shard geometry, bounded
+native paragraph/backdrop capture and the shared scene/prewarm/handoff lifecycle.
+They are selected for relevant PR changes, staging and production; the owning
+issue49 policy selects them with existing fragment, scene/router and effect
+delivery guards. Their canonical owners are the three corresponding
+`site/effects/embedded-*.cjs` modules within the same travel descriptor.
+No second effect runtime, transition clock or hosted matrix is introduced.
+The pending `G-EMBEDDED` human gate requires actual persistent-shard depth,
+fractal occlusion, faithful native texture and native handoff evidence. A source
+pass cannot tick AC15 or replace original resource, fidelity, paired-cost,
+native-device and release requirements; all profile caps and budgets remain.
+
 The registry inventories current suites, scheduled profiles, changed-path targets
 and retained diagnostics. Use `tools/quality/source-tests.cjs` to select registered
 source suites instead of a wildcard that revives every historical snapshot.

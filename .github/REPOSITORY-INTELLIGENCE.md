@@ -177,6 +177,18 @@ file / 50 MB total. These site-specific streaming bounds admit the existing larg
 review bundles without loading/parsing them as policy or silently dropping them.
 Unsafe paths, symlinks, unsupported source tables or bounds fail visibly.
 
+The one exact path `tools/quality/secrets-reviewed.json` is a hash-only text
+disposition. Its append-only checksum evidence remains fully streamed into
+SHA-256 under the same 32 MB file / 250 MB aggregate hash bounds and remains in
+the complete path catalog, source identity and instruction/owner inventory.
+Every byte change invalidates projection freshness. RI does not decode this
+ledger as navigation prose or use its raw contents for text/term extraction;
+the quality scanner still owns its schema and reviewed-finding validity.
+No other JSON path inherits this disposition. All ordinary navigation text keeps
+the unchanged 2 MB file / 50 MB aggregate limits, and configuring the checksum
+ledger as a required parsed owner/input fails visibly. This preserves full proof
+history without increasing navigation limits or silently omitting an artifact.
+
 The two RI outputs use `derived` identity records to avoid recursive hashing;
 `verify` regenerates and compares the complete JSON and map. Code/config/catalog
 or source edits invalidate freshness. Root AGENTS is bounded to 100 lines and

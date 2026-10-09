@@ -360,7 +360,7 @@ function fixture(options = {}) {
     };
   }
   const factory = vm.runInContext('(' + fragmentDOM.toString() + ')', context);
-  const adapter = factory(content, geometry);
+  const adapter = factory(content, geometry, null, options.shared);
   function snapshot(position = [0, 0, 0], extra = {}) {
     const pose = {
       position,
@@ -419,6 +419,31 @@ function fixture(options = {}) {
     },
   };
 }
+
+test('scene-owned native paint is excluded and its reservation limits DOM cloning', () => {
+  let excluded;
+  const h = fixture({
+    shared: {
+      exclude: () => excluded,
+      reserve: () => ({ pieces: 94, owners: 31 }),
+    },
+  });
+  excluded = h.paragraph;
+  assert.equal(h.adapter.prepare('arrive', h.snapshot()), true);
+  assert.ok(Number(h.content.dataset.fragmentPieces) <= 2);
+  assert.equal(h.content.dataset.fragmentOwners, '1');
+  assert.notEqual(h.paragraph.style.visibility, 'hidden');
+  assert.ok(h.tiles().every((tile) => tile.children[0].textContent !== h.paragraph.textContent));
+  h.adapter.clear();
+  assertDisposed(h);
+});
+
+test('a fully reserved scene piece budget retains whole native DOM fallback', () => {
+  const h = fixture({ shared: { reserve: () => ({ pieces: 96 }) } });
+  assert.equal(h.adapter.prepare('arrive', h.snapshot()), false);
+  assert.equal(h.counts.clones, 0);
+  assertDisposed(h);
+});
 
 function assertDisposed(h) {
   assert.equal(h.layer(), undefined);

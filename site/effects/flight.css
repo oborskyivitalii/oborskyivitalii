@@ -1,6 +1,15 @@
 #site-content-frame {
   overflow: clip;
 }
+.embedded-stage {
+  position: fixed;
+  top: var(--embedded-stage-top);
+  left: 0;
+  width: var(--embedded-stage-width);
+  visibility: hidden;
+  pointer-events: none;
+  contain: layout style;
+}
 .fragment-layer {
   position: fixed;
   inset: 0;

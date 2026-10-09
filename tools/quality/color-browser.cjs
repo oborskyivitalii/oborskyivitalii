@@ -33,7 +33,308 @@ function paintProbe() {
     paint.completed++;
     paint.ordinaryShapes = sample.ordinaryShapes;
     paint.customShapes = sample.customShapes;
+    window.__sampleEmbeddedPrototype?.(sample);
   };
+}
+function embeddedPrototypeState(action = null) {
+  function snapshot() {
+    const content = document.getElementById('site-content');
+    const native = content.querySelector('.archive-intro > .hero-description');
+    const rectangle = (rect) => ({
+      left: rect.left,
+      top: rect.top,
+      width: rect.width,
+      height: rect.height,
+    });
+    let nativeLines = [];
+    if (native) {
+      const range = document.createRange();
+      range.selectNodeContents(native);
+      nativeLines = [...range.getClientRects()].map(rectangle);
+      range.detach?.();
+    }
+    return {
+      page: document.body.dataset.page,
+      theme: document.documentElement.dataset.theme,
+      camera: document.querySelector('.space-scene').dataset.camera,
+      diagnostics: window.SiteEffects?.embedded?.diagnostics() || null,
+      native: native
+        ? {
+            hidden: native.style.visibility === 'hidden',
+            visibility: getComputedStyle(native).visibility,
+            opacity: Number(getComputedStyle(native).opacity),
+            opacityStyle: native.style.opacity,
+            rect: rectangle(native.getBoundingClientRect()),
+            lines: nativeLines,
+            copies: [...document.querySelectorAll('.fragment-paint')].filter(
+              (copy) => copy.textContent === native.textContent
+            ).length,
+          }
+        : null,
+      busy: content.hasAttribute('aria-busy'),
+      inert: content.inert,
+      stages: document.querySelectorAll('.embedded-stage').length,
+      paints: window.__quality?.paints || 0,
+    };
+  }
+  if (action !== 'observe') return snapshot();
+  const observation = { frames: [], start: performance.now() };
+  window.__embeddedPrototype = observation;
+  // The existing scene paint probe invokes this after actual native Canvas work.
+  // No observer-owned RAF, fabricated scene frame or independent clock is added.
+  window.__sampleEmbeddedPrototype = (paint) => {
+    if (observation.frames.length >= 240) return;
+    observation.frames.push({
+      ...snapshot(),
+      timeMs: performance.now(),
+      customShapes: paint.customShapes,
+    });
+  };
+  window.__finishEmbeddedPrototype = () => {
+    delete window.__sampleEmbeddedPrototype;
+    delete window.__embeddedPrototype;
+    delete window.__finishEmbeddedPrototype;
+    return { ...observation, final: snapshot(), end: performance.now() };
+  };
+}
+function validateEmbeddedPrototype(observation, expectedTheme) {
+  const { initial, final, frames } = observation;
+  const compareRect = (native, expected) =>
+    Math.max(
+      ...['left', 'top', 'width', 'height'].map((key) => Math.abs(native[key] - expected[key]))
+    );
+  assert.equal(initial.page, 'index');
+  assert.equal(initial.theme, expectedTheme);
+  assert.equal(initial.diagnostics?.ready, true, 'native embedded texture must be primed');
+  const ids = initial.diagnostics.ids;
+  assert.ok(Array.isArray(ids) && ids.length >= 3 && ids.length <= 24, 'bounded embedded IDs');
+  assert.equal(new Set(ids).size, ids.length, 'duplicate embedded object IDs');
+  assert.ok(
+    initial.diagnostics.texturePixels > 0 && initial.diagnostics.texturePixels <= 1000000,
+    'missing or unbounded native texture'
+  );
+  const resting = frames.filter(
+    (frame) => frame.page === 'index' && frame.diagnostics?.phase === null
+  );
+  assert.ok(
+    resting.some((frame) => frame.customShapes > 0),
+    'embedded rest has no actual paint'
+  );
+  const restFaces = resting.flatMap((frame) => frame.diagnostics.faces || []);
+  assert.ok(
+    restFaces.some((face) => face.alpha > 0.01),
+    'embedded rest is invisible'
+  );
+  const active = frames.filter((frame) => frame.diagnostics?.phase === 'assembling');
+  assert.ok(active.length >= 4, 'missing actual embedded assembly frames');
+  assert.ok(
+    active.filter((frame) => frame.customShapes > 0).length >= 2,
+    'moving embedded faces have no actual scene paint'
+  );
+  for (const frame of active) {
+    assert.deepEqual(frame.diagnostics.ids, ids, 'assembly replaced resting embedded objects');
+    assert.ok(frame.paints > initial.paints, 'assembly has no actual Canvas paint');
+    assert.equal(frame.diagnostics.texturePixels, initial.diagnostics.texturePixels);
+    for (const face of frame.diagnostics.faces || []) {
+      assert.ok(ids.includes(face.id), 'painted face has another object identity');
+      assert.ok(
+        face.points.length >= 3 &&
+          face.points.every((point) => point.length === 2 && point.every(Number.isFinite)),
+        'nonfinite embedded face projection'
+      );
+    }
+    if (frame.page === 'research') {
+      const handoff = frame.diagnostics.handoff;
+      assert.ok(
+        Number.isFinite(handoff) && handoff >= 0 && handoff <= 1,
+        'missing bounded native handoff state'
+      );
+      if (handoff === 0) {
+        assert.equal(frame.native?.hidden, true, 'native paragraph exposed before aligned tail');
+      } else {
+        assert.ok(frame.diagnostics.progress >= 0.9, 'native handoff starts before assembly tail');
+        assert.equal(
+          frame.diagnostics.physicalProgress,
+          1,
+          'native handoff starts before shard geometry reaches its endpoint'
+        );
+        assert.equal(frame.native?.hidden, false);
+        assert.equal(frame.native?.visibility, 'visible');
+        assert.ok(
+          Math.abs(frame.native?.opacity - handoff) <= 0.001,
+          'native opacity differs from its declared handoff'
+        );
+        assert.equal(frame.camera, final.camera, 'handoff camera has not reached native endpoint');
+        assert.ok(
+          compareRect(frame.native.rect, initial.diagnostics.nativeRect) <= 0.75,
+          'native tail rectangle differs from captured endpoint'
+        );
+        assert.equal(frame.native.lines.length, initial.diagnostics.nativeLines.length);
+        assert.ok(
+          frame.native.lines.every(
+            (line, index) => compareRect(line, initial.diagnostics.nativeLines[index]) <= 0.75
+          ),
+          'native text lines shift during aligned handoff'
+        );
+        const fronts = (frame.diagnostics.faces || []).filter((face) => face.face === 'front');
+        assert.equal(
+          new Set(fronts.map((face) => face.id)).size,
+          ids.length,
+          'handoff is missing aligned native front faces'
+        );
+        const points = fronts.flatMap((face) => face.points);
+        const left = Math.min(...points.map((point) => point[0]));
+        const top = Math.min(...points.map((point) => point[1]));
+        const right = Math.max(...points.map((point) => point[0]));
+        const bottom = Math.max(...points.map((point) => point[1]));
+        assert.ok(
+          compareRect(
+            { left, top, width: right - left, height: bottom - top },
+            initial.diagnostics.envelope
+          ) <= 0.75,
+          'shards continue moving or miss the native envelope during handoff'
+        );
+        assert.ok(
+          fronts.every((face) => Math.abs(face.alpha - (1 - handoff)) <= 0.001),
+          'shard opacity does not complement native handoff'
+        );
+      }
+      assert.equal(frame.native?.copies, 0, 'embedded paragraph also uses DOM fragments');
+    }
+  }
+  const assembled = active.filter((frame) => frame.page === 'research');
+  assert.ok(assembled.length >= 2, 'missing destination native handoff observation');
+  const tail = assembled.filter((frame) => frame.diagnostics.handoff > 0);
+  assert.ok(
+    tail.length >= 2 && new Set(tail.map((frame) => frame.diagnostics.handoff)).size >= 2,
+    'native handoff lacks a visibly progressive bounded crossfade'
+  );
+  const tailFronts = new Map(
+    tail[0].diagnostics.faces
+      .filter((face) => face.face === 'front')
+      .map((face) => [face.id, face.points])
+  );
+  for (const frame of tail.slice(1)) {
+    for (const face of frame.diagnostics.faces.filter((face) => face.face === 'front')) {
+      const expected = tailFronts.get(face.id);
+      assert.equal(face.points.length, expected?.length);
+      assert.ok(
+        face.points.every((point, index) =>
+          point.every((value, axis) => Math.abs(value - expected[index][axis]) <= 0.001)
+        ),
+        'individual shard geometry moves during the native handoff'
+      );
+    }
+  }
+  const faces = active.flatMap((frame) => frame.diagnostics.faces || []);
+  assert.ok(
+    faces.some((face) => face.face === 'front' && face.alpha > 0.8 && face.textureMix > 0.8),
+    'native textured front never becomes visible'
+  );
+  assert.ok(
+    faces.some((face) => face.face === 'side' && face.alpha > 0.01),
+    'embedded objects have no visibly painted thickness'
+  );
+  const centroid = (face) =>
+    face.points[0].map((_, axis) =>
+      face.points.reduce((sum, point) => sum + point[axis] / face.points.length, 0)
+    );
+  const moving = restFaces.some((rest) =>
+    faces.some(
+      (face) =>
+        face.id === rest.id &&
+        face.face === rest.face &&
+        Math.hypot(...centroid(face).map((value, axis) => value - centroid(rest)[axis])) > 2
+    )
+  );
+  assert.equal(moving, true, 'resting objects do not actually move into the page');
+  assert.ok(
+    active.some((frame) => frame.diagnostics.progress > 0.5),
+    'assembly never approaches its native destination'
+  );
+  assert.equal(final.page, 'research');
+  assert.equal(final.theme, expectedTheme);
+  assert.equal(final.busy, false);
+  assert.equal(final.inert, false);
+  assert.equal(final.native?.hidden, false);
+  assert.equal(final.native?.visibility, 'visible');
+  assert.equal(final.native?.opacity, 1, 'native paragraph opacity was not restored');
+  assert.equal(final.native?.copies, 0);
+  assert.equal(final.stages, 0, 'preparatory native stage leaked');
+  assert.equal(final.diagnostics?.ready, false);
+  assert.equal(final.diagnostics?.phase, null);
+  assert.equal(final.diagnostics?.texturePixels, 0, 'texture survives native handoff');
+  assert.deepEqual(final.diagnostics?.ids, []);
+  assert.deepEqual(final.diagnostics?.faces, []);
+  const expectedRect = initial.diagnostics.nativeRect;
+  assert.ok(
+    expectedRect && initial.diagnostics.nativeLines?.length,
+    'native capture lacks layout seam evidence'
+  );
+  const rectDeltaPx = compareRect(final.native.rect, expectedRect);
+  assert.ok(Number.isFinite(rectDeltaPx) && rectDeltaPx <= 0.75, 'native paragraph seam shifted');
+  assert.equal(
+    final.native.lines.length,
+    initial.diagnostics.nativeLines.length,
+    'native paragraph wrapping differs from captured texture'
+  );
+  const lineDeltaPx = Math.max(
+    ...final.native.lines.map((line, index) =>
+      compareRect(line, initial.diagnostics.nativeLines[index])
+    )
+  );
+  assert.ok(Number.isFinite(lineDeltaPx) && lineDeltaPx <= 0.75, 'native text line seam shifted');
+  return {
+    theme: expectedTheme,
+    ids,
+    frames: frames.length,
+    rectDeltaPx,
+    lineDeltaPx,
+    nativeHandoff: final,
+    observation,
+  };
+}
+async function embeddedPrototype(page, theme) {
+  const evidence = {};
+  try {
+    await preferences(page, 'fragment-flight-preview', true);
+    await page.evaluate((mode) => {
+      const control = document.getElementById('theme-mode');
+      control.value = mode;
+      control.dispatchEvent(new Event('change', { bubbles: true }));
+    }, theme);
+    await page.waitForFunction(
+      () => {
+        const state = window.SiteEffects?.embedded?.diagnostics();
+        return state?.ready && state.texturePixels > 0 && state.faces?.length > 0;
+      },
+      null,
+      { polling: 40, timeout: 5000 }
+    );
+    evidence.initial = await page.evaluate(embeddedPrototypeState);
+    await page.evaluate(embeddedPrototypeState, 'observe');
+    await page.waitForFunction(
+      () =>
+        window.__embeddedPrototype?.frames.some(
+          (frame) => frame.page === 'index' && frame.customShapes > 0
+        ),
+      null,
+      { polling: 20, timeout: 3000 }
+    );
+    await travel(page, 'research');
+    Object.assign(evidence, await page.evaluate(() => window.__finishEmbeddedPrototype()));
+    const validated = validateEmbeddedPrototype(evidence, theme);
+    await travel(page, 'index');
+    return validated;
+  } catch (error) {
+    const pending = await page
+      .evaluate(() => window.__finishEmbeddedPrototype?.() || null)
+      .catch(() => null);
+    if (pending) Object.assign(evidence, pending);
+    evidence.failureState = await page.evaluate(embeddedPrototypeState).catch(() => null);
+    error.embeddedObservation = evidence;
+    throw error;
+  }
 }
 function observeFragmentFlight() {
   const content = document.getElementById('site-content'),
@@ -1364,6 +1665,17 @@ async function scenario(browser, url, artifact, engine, width, theme) {
     assert.equal(identity.flight, true);
     assert.equal(identity.edge, true);
     assert.equal(identity.fragments, true, 'fragment flight is the default Color presentation');
+    const embedded = [];
+    if (engine === 'chromium') {
+      // Four focused native prototype cases fit the existing two-width smoke;
+      // the much larger route/controls matrix keeps its original case count.
+      for (const mode of ['light', 'dark']) embedded.push(await embeddedPrototype(page, mode));
+      await page.evaluate((mode) => {
+        const control = document.getElementById('theme-mode');
+        control.value = mode;
+        control.dispatchEvent(new Event('change', { bubbles: true }));
+      }, theme);
+    }
     // Preserve the existing plane observations as an explicit legacy comparison.
     await preferences(page, 'fragment-flight-preview', false);
     assert.equal(
@@ -1444,11 +1756,13 @@ async function scenario(browser, url, artifact, engine, width, theme) {
         defaultFragments: true,
         allRouteFragments: true,
         interruptedFragments: true,
+        embeddedNativePrototype: engine === 'chromium',
       },
       home: { motion: homeMotion, scroll: homeScroll, edge: homeEdge },
       flight,
       fragments,
       fragmentRoutes,
+      embedded,
     };
   } finally {
     await context.close();
@@ -1458,6 +1772,7 @@ function failedScenario(error, engine, width, theme) {
   const row = { engine, width, theme, pass: false, error: error.message };
   if (error.fragmentObservation) row.fragments = error.fragmentObservation;
   if (error.fragmentRouteObservation) row.fragmentRoutes = error.fragmentRouteObservation;
+  if (error.embeddedObservation) row.embedded = error.embeddedObservation;
   return row;
 }
 async function main(options = {}) {
@@ -1526,4 +1841,7 @@ module.exports = {
   validateCopyPlacement,
   fragmentTransaction,
   fragmentRouteCoverage,
+  embeddedPrototypeState,
+  validateEmbeddedPrototype,
+  embeddedPrototype,
 };
