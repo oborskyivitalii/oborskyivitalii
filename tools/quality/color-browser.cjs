@@ -663,17 +663,37 @@ function validateBackdropOwner(owner, viewport) {
   validateCopyPlacement(owner);
   validatePaintCoverage(owner.cells, backdropBounds(owner), viewport);
 }
+function serializedTranslation(transform) {
+  assert.ok(
+    typeof transform === 'string' && transform.startsWith('translate3d(') && transform.endsWith(')')
+  );
+  const lengths = transform
+    .slice(12, -1)
+    .split(',')
+    .map((value) => value.trim());
+  assert.equal(lengths.length, 3);
+  for (const [axis, length] of lengths.entries())
+    assert.ok(
+      /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?px$/i.test(length) ||
+        (axis === 2 && length === '0'),
+      'clone translation needs finite CSS pixel lengths'
+    );
+  const values = lengths.map(parseFloat);
+  assert.ok(values.every(Number.isFinite) && values[2] === 0);
+  return values;
+}
 function validateCopyPlacement(record) {
   assert.ok(record.nativeOrigin.length === 2 && record.nativeOrigin.every(Number.isFinite));
   assert.equal(record.copyPlacements.length, record.cells.length);
   for (const [index, placement] of record.copyPlacements.entries()) {
-    assert.ok(placement.transform.startsWith('translate3d(') && placement.transform.endsWith(')'));
-    const values = placement.transform.slice(12, -1).split(',').map(parseFloat);
-    assert.ok(values.length === 3 && values.every(Number.isFinite) && values[2] === 0);
+    const values = serializedTranslation(placement.transform);
     assert.ok(placement.translation.length === 2 && placement.translation.every(Number.isFinite));
     for (const axis of [0, 1]) {
+      // CSS transform parsing may store translation components as Float32.
+      // Match the exact resolved representation rather than a decimal epsilon.
       assert.ok(
-        Math.abs(values[axis] - placement.translation[axis]) <= 1e-8,
+        placement.translation[axis] === values[axis] ||
+          placement.translation[axis] === Math.fround(values[axis]),
         'raw clone transform disagrees with its actual DOMMatrix translation'
       );
       assert.ok(
@@ -1503,6 +1523,7 @@ module.exports = {
   validateFragmentRoute,
   validateFragmentBackdrops,
   validateFragmentVectors,
+  validateCopyPlacement,
   fragmentTransaction,
   fragmentRouteCoverage,
 };

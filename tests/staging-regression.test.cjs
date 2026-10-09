@@ -743,8 +743,8 @@ test('whole-block acquisition preserves fractional paint translation when absolu
     DOMMatrix: class {
       constructor(transform) {
         assert.equal(transform, copy.style.transform, 'observe the actual native clone transform');
-        this.m41 = 12.12345;
-        this.m42 = 12.56789;
+        this.m41 = Math.fround(12.12345);
+        this.m42 = Math.fround(12.56789);
       }
     },
     MutationObserver: class {
@@ -763,11 +763,52 @@ test('whole-block acquisition preserves fractional paint translation when absolu
   const observed = JSON.parse(JSON.stringify(sandbox.window.__finishFragmentFlight())),
     owner = observed.backdrops[0].owners[0];
   assert.deepEqual(owner.copyPlacements, [
-    { transform: copy.style.transform, translation: [12.12345, 12.56789] },
+    {
+      transform: copy.style.transform,
+      translation: [Math.fround(12.12345), Math.fround(12.56789)],
+    },
   ]);
-  assert.ok(Math.abs(owner.cells[0][0] - 87.87655) < 1e-8);
-  assert.ok(Math.abs(owner.cells[0][1] - 87.43211) < 1e-8);
+  assert.equal(owner.cells[0][0], 87.87654972076416);
+  assert.equal(owner.cells[0][1], 87.43210983276367);
   validateFragmentBackdrops(observed, 'depart');
+});
+test('clone placement matches exact CSS Float32 or double values and rejects the next representable wrong offset', () => {
+  const { validateCopyPlacement } = require('../tools/quality/color-browser.cjs'),
+    placement = {
+      nativeOrigin: [0, 0],
+      copyPlacements: [
+        {
+          transform: 'translate3d(-373.129px, -410.255px, 0px)',
+          translation: [-373.1289978027344, -410.2550048828125],
+        },
+      ],
+      cells: [[373.1289978027344, 410.2550048828125, 524, 124]],
+    };
+  validateCopyPlacement(placement);
+  const double = structuredClone(placement);
+  double.copyPlacements[0].translation = [-373.129, -410.255];
+  double.cells[0][0] = 373.129;
+  double.cells[0][1] = 410.255;
+  validateCopyPlacement(double);
+  const next = structuredClone(placement),
+    float = new Float32Array([next.copyPlacements[0].translation[0]]),
+    bits = new Uint32Array(float.buffer);
+  bits[0]--;
+  next.copyPlacements[0].translation[0] = float[0];
+  next.cells[0][0] = -float[0];
+  assert.throws(() => validateCopyPlacement(next), /actual DOMMatrix translation/);
+  for (const transform of [
+    'translate3d(-373.129em, -410.255px, 0px)',
+    'translate3d(-373.129garbage, -410.255px, 0px)',
+    'translate3d(NaNpx, -410.255px, 0px)',
+    'translate3d(-373.129px, Infinitypx, 0px)',
+    'translate3d(-373.129px, -410.255px, 1px)',
+    'translate3d(-373.129px, -410.255px)',
+  ]) {
+    const invalid = structuredClone(placement);
+    invalid.copyPlacements[0].transform = transform;
+    assert.throws(() => validateCopyPlacement(invalid));
+  }
 });
 test('whole-block paper evidence rejects native fades, wrong copied material and shards that omit the gutter', () => {
   const { validateFragmentBackdrops } = require('../tools/quality/color-browser.cjs');
