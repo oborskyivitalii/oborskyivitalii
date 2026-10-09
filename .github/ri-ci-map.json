@@ -66,7 +66,9 @@
         "review/issue-65/2026-10-09-dispositions.json",
         "review/issue-41/2026-10-09-positioning-amendment.json",
         "review/issue-41/2026-10-09-positioning.md",
-        "review/issue-41/2026-10-09-positioning-review.md"
+        "review/issue-41/2026-10-09-positioning-review.md",
+        "review/issue-41/2026-10-09-ci-followup.md",
+        "review/issue-41/2026-10-09-positioning-browser.md"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -406,7 +408,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "ce997f9cc254d30bac0a99044b7cf792cb3fb884405f4f2aab979bb55260049d",
+    "digest": "7eeb0078d4b4289e15c1eca907aba714288ef199efbe87f762968e5fa73ca58d",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -442,7 +444,7 @@
       },
       {
         "path": ".github/acceptance/issue-41.json",
-        "sha256": "2bc427f2beee74a35ea3308143c6017e2e21228c5b18a6c3c14c5c41dbf8c5bb"
+        "sha256": "f1e67b1018b34f1502f9bbfe35ec718908ed185eadac2ab793bda80409aaf833"
       },
       {
         "path": ".github/acceptance/issue-45.json",
@@ -494,11 +496,11 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "a5250c6489bc4a9fb5558967aeefa6858580b03caaaa75a145c5ab5e0307b996"
+        "sha256": "e998acb5dda56bfc0db80efe40cc53e65b098cb0db8e1780fcc555fb6874bcd8"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
-        "sha256": "dfbe7c4ba909a8ccb054529d50ed0474fd2311cdf4eb9e19406953aad4b45a85"
+        "sha256": "c25fff96e085686ba944766c41500b9391f34339cd0f30fcaf7ddaf8df757b0a"
       },
       {
         "path": ".github/workflows/navigation.yml",
@@ -618,7 +620,7 @@
       },
       {
         "path": "tests/test_issue41_acceptance.py",
-        "sha256": "69a5e0064dfcbe6e85b3938db944b88bf007d7499f3422714a449392508aa249"
+        "sha256": "afd36a8129c4bf36058e895048cc6b6762e543710a446e0512ee47bfba91392e"
       },
       {
         "path": "tests/test_issue45_acceptance.py",

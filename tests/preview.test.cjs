@@ -70,10 +70,9 @@ test('ten fixed-theme copies preserve actual main content, CSS and external sour
       );
       assert.equal(
         restored,
-        main(sourceForPreview(source)).replace(
-          /<form[\t\n\f\r ]+id="archive-filters"[\s\S]*?<\/form[\t\n\f\r ]*>/,
-          ''
-        )
+        main(sourceForPreview(source))
+          .replace(/href="index\.html(?=["?#])/g, 'href="./')
+          .replace(/<form[\t\n\f\r ]+id="archive-filters"[\s\S]*?<\/form[\t\n\f\r ]*>/, '')
       );
       if (page === 'index')
         assert.ok(html.includes(`src="data:image/webp;base64,${portrait.toString('base64')}"`));

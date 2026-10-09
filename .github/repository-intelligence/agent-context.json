@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "bdd0fd9b4bc66055cd107ccf81c27fc9cc331ed20517d9c251074aa525cf0e45",
+    "digest": "7346aa33f69bc034ff7fb8f089aa7b420f455421da0defa6c99e2f38e4a3464f",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -67,7 +67,7 @@
       {
         "path": ".github/acceptance/issue-41.json",
         "identity_mode": "content",
-        "sha256": "2bc427f2beee74a35ea3308143c6017e2e21228c5b18a6c3c14c5c41dbf8c5bb"
+        "sha256": "f1e67b1018b34f1502f9bbfe35ec718908ed185eadac2ab793bda80409aaf833"
       },
       {
         "path": ".github/acceptance/issue-45.json",
@@ -136,17 +136,17 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "a5250c6489bc4a9fb5558967aeefa6858580b03caaaa75a145c5ab5e0307b996"
+        "sha256": "e998acb5dda56bfc0db80efe40cc53e65b098cb0db8e1780fcc555fb6874bcd8"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "69e3fcd6d446184aeebd847e85d8ec7642669e957f7339e2c00255e555206c9f"
+        "sha256": "66f42d92a476c81d704272d81f5e3a1e45549bd94fb216ce9ce0abc8f2ced718"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
         "identity_mode": "content",
-        "sha256": "dfbe7c4ba909a8ccb054529d50ed0474fd2311cdf4eb9e19406953aad4b45a85"
+        "sha256": "c25fff96e085686ba944766c41500b9391f34339cd0f30fcaf7ddaf8df757b0a"
       },
       {
         "path": ".github/workflows/navigation.yml",
@@ -236,7 +236,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "c0c62c647ec3b621605d182465088f98d2fbdb802d1c05a3ee415bf66e39a254"
+        "sha256": "145d88c7aab937910ae462b8d9eb17def0fa7de0addcec33170840fbc25184d0"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -663,9 +663,19 @@
         "sha256": "304a7c51e52aefba43ee56e8acfeb90308be0405af30d5363105e38a3636607b"
       },
       {
+        "path": "review/issue-41/2026-10-09-ci-followup.md",
+        "identity_mode": "content",
+        "sha256": "27dbd5d920bd6d668df8a48a507cd49f2dd1f39bbbbd487ba2f1837af0c908a9"
+      },
+      {
         "path": "review/issue-41/2026-10-09-positioning-amendment.json",
         "identity_mode": "content",
         "sha256": "2603f0a58c03736ed0313cb5db81ff25f59991ad28a4bd59190e81846e64773e"
+      },
+      {
+        "path": "review/issue-41/2026-10-09-positioning-browser.md",
+        "identity_mode": "content",
+        "sha256": "619c9ef2161dd94cb6ae654857a995839682884969b6bcace41d8a133339533e"
       },
       {
         "path": "review/issue-41/2026-10-09-positioning-review.md",
@@ -5025,7 +5035,7 @@
       {
         "path": "tests/executive.test.cjs",
         "identity_mode": "content",
-        "sha256": "7d2bb5238eeb82bfa92d95801fd838ec5d26797d3f2144e3b6c3a37585396434"
+        "sha256": "d69b47353fb6d82744e24831e1e8aeb004e4d23bc6e452161cd15a0d56c3b2ce"
       },
       {
         "path": "tests/fixtures/staging-evidence.cjs",
@@ -5095,7 +5105,7 @@
       {
         "path": "tests/preview.test.cjs",
         "identity_mode": "content",
-        "sha256": "5015845d9869dd27ee63bda5c1a44ad81a1534cf03bb08fc6f0bdf2eba257ae2"
+        "sha256": "6f47da67d099d4bd6e6e46b064b89453d4a90b0172624bb1f6a6463bef2bdad6"
       },
       {
         "path": "tests/quality-sources.test.cjs",
@@ -5205,7 +5215,7 @@
       {
         "path": "tests/test_issue41_acceptance.py",
         "identity_mode": "content",
-        "sha256": "69a5e0064dfcbe6e85b3938db944b88bf007d7499f3422714a449392508aa249"
+        "sha256": "afd36a8129c4bf36058e895048cc6b6762e543710a446e0512ee47bfba91392e"
       },
       {
         "path": "tests/test_issue45_acceptance.py",
@@ -7557,6 +7567,17 @@
       "title": "Issue 41 — 2026-10-07 content analysis and Sol handoff"
     },
     {
+      "path": "review/issue-41/2026-10-09-ci-followup.md",
+      "kind": "file",
+      "purpose": "Independent inspection of the bounded selected-policy dependency repair and maintained content-test fixture corrections; new CI remains separate evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 41 — 2026-10-09 CI follow-up review"
+    },
+    {
       "path": "review/issue-41/2026-10-09-positioning-amendment.json",
       "kind": "file",
       "purpose": "Dated issue41 practical-positioning source review or exact six-fragment content amendment, preserving historical evidence.",
@@ -7566,6 +7587,17 @@
         "AGENTS.md"
       ],
       "title": "2026-10-09-positioning-amendment.json"
+    },
+    {
+      "path": "review/issue-41/2026-10-09-positioning-browser.md",
+      "kind": "file",
+      "purpose": "Current immutable positioning-preview readability and contact observations with actual desktop/mobile coverage and explicit historical browser-gate limits.",
+      "role": "history",
+      "owner": "guides/SITE-CONTENT-REVIEW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 41 — 2026-10-09 focused positioning browser review"
     },
     {
       "path": "review/issue-41/2026-10-09-positioning-review.md",

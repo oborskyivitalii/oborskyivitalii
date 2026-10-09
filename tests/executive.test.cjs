@@ -313,7 +313,13 @@ test('Talks reconciliation rejects missing events, substituted sources and inven
     ['https://www.youtube.com/watch?v=1MPsDi3wuF4', 'https://www.youtube.com/watch?v=OtherVideo'],
     ['2026-09-26', '2026-09-28'],
     ['activity-7479802249829928961-PmrF', 'activity-7477274339411693569-dJhu'],
-    [cards[3], cards[3].replace('data-language="unconfirmed"', 'data-language="en"')],
+    [
+      cards[3],
+      cards[3].replace(
+        '<article class="publication"',
+        '<article class="publication" data-language="en"'
+      ),
+    ],
     [
       cards[0],
       cards[0].replace(
@@ -369,7 +375,12 @@ test('Talks reconciliation rejects missing events, substituted sources and inven
     );
   }
   const [recordingChange] = recordingRecord.changes;
-  assert.equal(normalizeHTML(recordingChange.after), cards[0]);
+  const earlierCards = [
+    ...restoreContentAmendment(html, 'talks', positioningRecord).matchAll(
+      /<article class="publication"[\s\S]*?<\/article>/g
+    ),
+  ].map((row) => row[0]);
+  assert.equal(normalizeHTML(recordingChange.after), earlierCards[0]);
   assert.equal(
     restoreContentAmendment(recordingChange.after, 'talks', recordingRecord),
     normalizeHTML(recordingChange.before)

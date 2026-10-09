@@ -17,7 +17,10 @@ Dated continuity, not live authority. Last verified: **2026-10-09**.
   verification/compaction is merged through PR66 and closed; retain its evidence.
   [Analysis](review/issue-65/2026-10-09-analysis.md).
 - [#41](https://github.com/oborskyivitalii/oborskyivitalii/issues/41) now also owns
-  the maintainer's practical-positioning brief. [Current source review](review/issue-41/2026-10-09-positioning.md).
+  the maintainer's practical-positioning brief, implemented in
+  [Draft PR #67](https://github.com/oborskyivitalii/oborskyivitalii/pull/67).
+  [Current source review](review/issue-41/2026-10-09-positioning.md) and
+  [CI follow-up](review/issue-41/2026-10-09-ci-followup.md) record separate evidence.
   No invented management case; record missing facts in the issue. Keep graphics,
   runtime, routes and production outside the content continuation.
 - A user-supplied issue stays bound across phases/model handoffs; consolidation
@@ -27,7 +30,7 @@ Dated continuity, not live authority. Last verified: **2026-10-09**.
 
 | Owner | Next acceptance route |
 | --- | --- |
-| #41 | Content-positioning continuation: exact-source CI/preview, editorial/independent evidence, then full-intent reconciliation; original gates remain distinct. |
+| #41 / Draft PR #67 | Revalidate raw head and its immutable preview/CI, reconcile actual AC evidence; keep merge/full-intent gates and post-launch content work distinct. |
 | #49 / Draft PR #53 | Consolidated fragment-flight work; revalidate its current head and visual acceptance. |
 | #39 / Draft PR #40 | GitHub Pages/custom-domain preparation; retain domain/production decisions. |
 | #45 / #36 | Check original visual/editorial/device/release gates in the live owners. |

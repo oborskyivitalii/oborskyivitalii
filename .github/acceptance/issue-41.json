@@ -35,14 +35,14 @@
     {
       "id": "AC05",
       "intent": "Preserve SEO, semantics, original editions and runtime behavior.",
-      "automated_scope": "All five pages reconcile to the immutable SEO baseline after the exact reviewed Issue41/48/61 deltas and the explicit 9 October positioning amendment. Metadata, original edition identities and unrelated semantics remain exact. Original catalog/edition comparisons stay at c4539ad; this new content phase preserves runtime, scenes, routes, build architecture and workflows exactly against the protected-main starting source 338e3ff. Earlier joint-staging evidence and its73020e8 companion remain historical, not a claim that later accepted runtime work never occurred. Enduring SEO mutation cases and normal preview smoke complement this task snapshot; no ranking or release claim.",
+      "automated_scope": "All five pages reconcile to the immutable SEO baseline after the exact reviewed Issue41/48/61 deltas and the explicit 9 October positioning amendment. Metadata, original edition identities and unrelated semantics remain exact. Original catalog/edition comparisons stay at c4539ad; this new content phase preserves runtime, scenes, routes and build architecture against the protected-main starting source 338e3ff. Workflows remain byte-exact except the single existing acceptance-tool installation step name/selector: issue41 now receives the same pinned toolchain already installed for issue58, repairing the observed format-parity Python ENOENT. Tool versions, commands, actions, triggers and gates stay unchanged. Earlier joint-staging evidence and its 73020e8 companion remain historical, not a claim that later accepted runtime work never occurred. Enduring SEO mutation cases and normal preview smoke complement this task snapshot; no ranking or release claim.",
       "checks": ["SEO", "ADMISSIONS", "CATALOG-SCHEMA", "RUNTIME-SCOPE"],
       "gates": ["EDITORIAL", "BROWSER"]
     },
     {
       "id": "AC06",
       "intent": "Actionable same-PR handoff, current test/RI routes and honest closure.",
-      "automated_scope": "Current implementation checks execute once in the selected raw-head acceptance workflow. Basic/source-targeted CI and navigation/RI verify their independent routes. The same-PR analysis records the explicit preparation-to-implementation transition; live CI/commit linkage, independent review, actual issue checkbox reconciliation and merge remain recorded gates.",
+      "automated_scope": "Current implementation checks execute once in the selected raw-head acceptance workflow with its required existing pinned tools installed. The first current-head CI dependency failure and the bounded setup remedy are recorded separately; a local toolchain cannot establish that CI succeeded. Basic/source-targeted CI and navigation/RI verify their independent routes. The same-PR analysis records the explicit preparation-to-implementation transition; live CI/commit linkage, independent review, actual issue checkbox reconciliation and merge remain recorded gates.",
       "checks": ["INPUTS", "ADMISSIONS", "SEO", "RUNTIME-SCOPE"],
       "gates": ["REVIEW-MERGE"]
     },
@@ -93,7 +93,7 @@
       "intent": "Finish Talks reader-facing status and use the existing contact path.",
       "automated_scope": "Generated non-PMDay cards omit unverified language fields; PMDay card/known Ukrainian recording and original event links remain exact. The speaking invitation resolves to the existing Home contact before the next-route utility. Source and hosted layout/interaction observations remain separate.",
       "checks": ["TALKS-POSITIONING", "CONTENT-LINKS"],
-      "gates": ["BROWSER"]
+      "gates": ["POSITIONING-BROWSER"]
     },
     {
       "id": "AC14",
@@ -105,16 +105,16 @@
     {
       "id": "AC15",
       "intent": "Keep changed pages readable and navigation/contact links working at desktop and narrow widths.",
-      "automated_scope": "Maintained content tests resolve all current page IDs, ARIA/resources/local fragments and existing contact transitions. Required current-source Basic/navigation/preview CI is observed separately; hosted1440/390 layout in Day/Night is an explicit browser gate, not a deterministic string assertion.",
+      "automated_scope": "Maintained content tests resolve all current page IDs, ARIA/resources/local fragments and existing contact transitions. Matching current-source Basic/navigation/preview CI and the ordinary 1440/390 hosted smoke are observed separately. Human review assesses changed copy readability and links at actual desktop/narrow hosted viewports, recording dimensions, themes and access limits honestly; it does not claim four exact manual viewport/theme combinations or native-device acceptance.",
       "checks": ["CONTENT-LINKS"],
-      "gates": ["BROWSER"]
+      "gates": ["POSITIONING-BROWSER"]
     },
     {
       "id": "AC16",
       "intent": "Preserve graphics, animation, routes and rendering architecture with applicable source style.",
-      "automated_scope": "Exact protected-main engine/effects/assets/scenes/routes/build/workflow bytes remain unchanged; the bounded current repository style guard is reused. New templates/content/checks follow applicable CS01/02/03/05/08/09/10. Formatter/lint/architecture CI and unautomated source/readability review remain external evidence, not inferred from guard success.",
+      "automated_scope": "Exact protected-main engine/effects/assets/scenes/routes/build bytes remain unchanged. The workflow comparison admits only the exact existing acceptance installation-step name/selector repair for issue41; all other workflow bytes, pinned tools/actions, triggers and gates remain protected; the bounded current repository style guard is reused. New templates/content/checks follow applicable CS01/02/03/05/08/09/10. Formatter/lint/architecture CI and unautomated source/readability review remain external evidence, not inferred from guard success.",
       "checks": ["RUNTIME-SCOPE", "CODE-STYLE"],
-      "gates": ["REVIEW-MERGE"]
+      "gates": ["POSITIONING-REVIEW"]
     }
   ],
   "checks": {
@@ -203,6 +203,14 @@
     "SOURCE-EDITORIAL": {
       "kind": "human",
       "description": "Read the approved current author biography and original public organizer source. Verify every new factual clause and distinguish portfolio responsibility from direct reporting and general experience from director tenure. Review the management-example disposition: supported context/responsibility/change/result or specific missing inputs recorded in the same issue without fabricated case. Corning is a hosted technical/community speaking event, not a client, deployment, methodology validation or institutional endorsement; do not publish private correspondence. Record exact source/access limits and independent versus self-review honestly. A string or route-existence test cannot satisfy factual authenticity."
+    },
+    "POSITIONING-REVIEW": {
+      "kind": "human",
+      "description": "Independent review of the exact current positioning content, applicable CS rules, bounded source/template/check scope, preserved runtime/routes/graphics, current RI/CI routes and criterion-to-evidence mapping. Inspect the one recorded mandatory-CI installation-selector repair without treating it as permission for broader workflow changes. Record reviewed source/policy/amendment identities, findings, dispositions and remaining external requirements. This gate establishes review of this content phase; it supplies no maintainer merge approval and cannot close the original issue. Original AC01–AC06 review, browser and merge obligations retain their own unchanged gates."
+    },
+    "POSITIONING-BROWSER": {
+      "kind": "human",
+      "description": "Inspect matching exact-source ordinary PR hosted smoke at registry widths 1440/390, including normal/no-Canvas routes and existing theme/control/navigation contracts, plus actual hosted desktop/narrow readability of the changed Home/Writing/Talks/Credits copy and its existing links/contact transitions. Record actual manual viewport dimensions or named mobile preset, observed themes, browser capabilities and access limits. Manual review may use the available desktop and mobile viewports; do not invent four exact 1440/390 Day/Night manual combinations or claim native-device, physical-device or performance acceptance from these observations. Preserve source/public-digest/run binding. Historical Research/archive/physical-device/release requirements remain with the original BROWSER and separate owners; this focused content gate does not satisfy or remove them."
     }
   }
 }
