@@ -18,7 +18,7 @@ Dated continuity, not live authority. Last verified: **2026-10-09**.
   [Analysis](review/issue-65/2026-10-09-analysis.md).
 - [#41](https://github.com/oborskyivitalii/oborskyivitalii/issues/41) now also owns
   the maintainer's practical-positioning brief, implemented in
-  [Draft PR #67](https://github.com/oborskyivitalii/oborskyivitalii/pull/67).
+  [PR #67](https://github.com/oborskyivitalii/oborskyivitalii/pull/67).
   [Current source review](review/issue-41/2026-10-09-positioning.md) and
   [CI follow-up](review/issue-41/2026-10-09-ci-followup.md) record separate evidence.
   No invented management case; record missing facts in the issue. Keep graphics,
@@ -29,8 +29,12 @@ Dated continuity, not live authority. Last verified: **2026-10-09**.
   [independent review](review/issue-41/2026-10-09-sitecase-review.md) and
   [focused preview observations](review/issue-41/2026-10-09-sitecase-browser.md)
   retain exact source/public-byte identities and observation limits; current-head
-  CI and whole-AC reconciliation live in the issue/PR. No merge until the
-  maintainer confirms; original issue/release obligations remain open.
+  CI and whole-AC reconciliation live in the issue/PR. The maintainer authorized
+  merge and stable staging on 9 October. The first stage failed on untriaged
+  checksum candidates; its browser profile passed. The exact follow-up is in
+  [staging security review](review/issue-41/2026-10-09-staging-security.md).
+  Revalidate its final source, current gate, stable alias and merge in the live
+  issue/PR; original issue/release obligations remain open.
 - A user-supplied issue stays bound across phases/model handoffs; consolidation
   transfers original ACs, evidence and open gates before superseding an owner.
 
@@ -38,7 +42,7 @@ Dated continuity, not live authority. Last verified: **2026-10-09**.
 
 | Owner | Next acceptance route |
 | --- | --- |
-| #41 / Draft PR #67 | Revalidate raw head and its immutable preview/CI, reconcile actual AC evidence; keep merge/full-intent gates and post-launch content work distinct. |
+| #41 / PR #67 | Authorized merge/staging: verify the security follow-up, exact current CI, successful staging promotion and actual merge; keep original full-intent work distinct. |
 | #49 / Draft PR #53 | Consolidated fragment-flight work; revalidate its current head and visual acceptance. |
 | #39 / Draft PR #40 | GitHub Pages/custom-domain preparation; retain domain/production decisions. |
 | #45 / #36 | Check original visual/editorial/device/release gates in the live owners. |

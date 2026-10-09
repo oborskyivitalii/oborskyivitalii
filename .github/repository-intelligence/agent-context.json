@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "ca7351bb8139474fa5b55147e5e89118f3ac504d7409e4c6bbe7f650eb524827",
+    "digest": "a033b81ebc0eaa6b818da867c5c1af30697682318286f60f4af8903aeaba08e2",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -136,12 +136,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "fbf0942c9441721a1b658a849591523dc6b6edcc46c6b0da9adc4fbb894874cc"
+        "sha256": "dc82008feaad83ea4936f249aa48d18e673a8affa33411b4bf66f1f6d5e6e950"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "d3b61dc7bd833e737d3a6aa47d6e3bdbda018f13a361ae300fe467cad3be9309"
+        "sha256": "4b7de371e61e34eea6289df636415df66a7eceb1d26a55bcb948ed0613a9e123"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -236,7 +236,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "1bd96ccd14deec687554864216cf067cafa018af78c5873cf6f415ffed548bf2"
+        "sha256": "08fd3d1b6bc3609d74910221f358456c6f8ef3d37f7d6ee6937df6ced0524f93"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -706,6 +706,11 @@
         "path": "review/issue-41/2026-10-09-sitecase.md",
         "identity_mode": "content",
         "sha256": "bb3f375566dab676817294e9849a43859cbbac33ba504a2e68fce44625efaed4"
+      },
+      {
+        "path": "review/issue-41/2026-10-09-staging-security.md",
+        "identity_mode": "content",
+        "sha256": "18e16092886b63870053ba7da5e6f1b3a4bbf73073f14c740ab63684589295b4"
       },
       {
         "path": "review/issue-41/content-amendment.json",
@@ -3885,7 +3890,7 @@
       {
         "path": "review/site-v1-offline-bundle-v11.json",
         "identity_mode": "content",
-        "sha256": "e886d2d22d1f09bdfc91daa2023eb452b4a4dac035bc671b8120e1c1b54b24bd"
+        "sha256": "ab8b3d4e2504b8d5f2073a14499e828cd24653db8807aee6770c85aff9d90c0c"
       },
       {
         "path": "review/site-v1-offline-bundle-v3.json",
@@ -5665,7 +5670,7 @@
       {
         "path": "tools/quality/secrets-reviewed.json",
         "identity_mode": "content",
-        "sha256": "7e43dcbe09033e2aef2b73ac99806974d02088ee53b68db821dcb71ced586440"
+        "sha256": "99a4dd04ec5cae9b749f0b5843663177f294ab1baea508184fa2593e37a27c57"
       },
       {
         "path": "tools/quality/security-rules.yml",
@@ -7684,6 +7689,17 @@
         "AGENTS.md"
       ],
       "title": "Issue 41 — 2026-10-09 AI-assisted delivery case"
+    },
+    {
+      "path": "review/issue-41/2026-10-09-staging-security.md",
+      "kind": "file",
+      "purpose": "Issue41 exact staging failure, bounded public-checksum triage and offline-generation correction; current-source independent review and deployment evidence remain linked from the same PR.",
+      "role": "history",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 41 — staging security follow-up, 9 October 2026"
     },
     {
       "path": "review/issue-41/content-amendment.json",

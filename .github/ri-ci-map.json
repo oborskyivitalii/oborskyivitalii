@@ -3,7 +3,7 @@
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/41",
     "date": "2026-10-09",
-    "summary": "Review issue41 practical-positioning successor policy, preserved original gates, existing catalog build tokens, permanent count/semantic negatives, new review/amendment catalog paths and unchanged workflow selection; factual/editorial decisions remain external evidence. Same-issue AI-assisted sitecase appends AC17–AC26, one exact-fragment/public-destination check and existing semantic negatives; preserves original gates/runtime controls and distinguishes implementation/history review from automated link structure."
+    "summary": "Review issue41 practical-positioning successor policy, preserved original gates, existing catalog build tokens, permanent count/semantic negatives, new review/amendment catalog paths and unchanged workflow selection; factual/editorial decisions remain external evidence. Same-issue AI-assisted sitecase appends AC17–AC26, one exact-fragment/public-destination check and existing semantic negatives; preserves original gates/runtime controls and distinguishes implementation/history review from automated link structure. Same-issue staging follow-up admits only independently proved exact checksum false positives and canonical offline manifest regeneration; scanner controls and public runtime bytes remain unchanged."
   },
   "layers": [
     {
@@ -72,7 +72,8 @@
         "review/issue-41/2026-10-09-sitecase-amendment.json",
         "review/issue-41/2026-10-09-sitecase.md",
         "review/issue-41/2026-10-09-sitecase-review.md",
-        "review/issue-41/2026-10-09-sitecase-browser.md"
+        "review/issue-41/2026-10-09-sitecase-browser.md",
+        "review/issue-41/2026-10-09-staging-security.md"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -412,7 +413,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "87b870fdfd0884e0c49a6025afe1c474f9324d7943f5bcbaf20013b86bd52b2e",
+    "digest": "52d008fccaa24af18c275a3e5176546c6cb5b1e069d81d41309aeb819c48e1cd",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -500,7 +501,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "fbf0942c9441721a1b658a849591523dc6b6edcc46c6b0da9adc4fbb894874cc"
+        "sha256": "dc82008feaad83ea4936f249aa48d18e673a8affa33411b4bf66f1f6d5e6e950"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
