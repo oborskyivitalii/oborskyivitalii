@@ -16,7 +16,9 @@ const effects = color.runtime(color.authoredEffects());
 const ribbon = require('../site/effects/ribbons.cjs').descriptor();
 const historicalCode =
   '(()=>{window.SiteEffects={...window.SiteEffects,contract:1};\n' + ribbon.code + '\n})();';
-const scripts = { 'space.js': historicalCode + '\n' + effects.code + '\n' + baseSource };
+// The explicit historical control owns its scene hook after active travel has
+// installed the optional embedded block hook; active packages omit this override.
+const scripts = { 'space.js': effects.code + '\n' + historicalCode + '\n' + baseSource };
 const plain = (value) => JSON.parse(JSON.stringify(value));
 test('reading clarity rejects wrong landing targets and depth reversals that remain frame-continuous', () => {
   const {
@@ -235,7 +237,7 @@ test('browser-gate diagnostics are explicit additions while the original Writing
     assert.ok(result.patches.every((row) => row.matches === 1));
     assert.equal(
       scripts['space.js'],
-      historicalCode + '\n' + effects.code + '\n' + baseSource,
+      effects.code + '\n' + historicalCode + '\n' + baseSource,
       'explicit historical comparison control stays unchanged'
     );
   }
@@ -341,6 +343,9 @@ function browser(source, { failPaint = false, probe = true } = {}) {
     },
     cancelAnimationFrame: (id) => pending.delete(id),
     addEventListener() {},
+    MutationObserver: class {
+      observe() {}
+    },
     getComputedStyle: () => ({
       getPropertyValue: (key) =>
         ({
@@ -390,7 +395,13 @@ test('private getter and frame events report actual post-quality state while pre
   assert.ok(paint, 'a completed native paint is observed');
   assert.ok(paint.ordinaryShapes > 0);
   assert.equal(paint.customShapes, 0);
-  assert.equal(native.window.SiteEffects.scene, undefined, 'active Color has no ribbon scene hook');
+  assert.equal(typeof native.window.SiteEffects.scene, 'function');
+  assert.equal(native.window.SiteEffects.embedded.diagnostics().ready, false);
+  assert.doesNotMatch(
+    effects.code,
+    /ribbonGeometry|ribbonSignals|createRibbonMaterials|makeProjector|paintRibbon/,
+    'the embedded block hook must not construct retired ribbons'
+  );
   assert.equal(paint.ambientTime, 0, 'initial paint uses the existing ambient clock');
   const unavailable = browser(active, { failPaint: true });
   unavailable.frame();

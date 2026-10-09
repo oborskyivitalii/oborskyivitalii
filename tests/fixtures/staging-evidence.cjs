@@ -386,8 +386,14 @@ function colorReport(manifest) {
       theme: 'light',
       pass: true,
       identity: { id: 'color', engine: common.variant(manifest).fingerprint },
-      ribbons: { sceneHook: 'undefined', dataset: {} },
-      paint: { completed: 2, ordinaryShapes: 12, customShapes: 0 },
+      ribbons: {
+        sceneHook: 'undefined',
+        ribbonHook: 'undefined',
+        submissions: 0,
+        shapes: 0,
+        dataset: {},
+      },
+      paint: { completed: 2, ordinaryShapes: 12, customShapes: 0, embeddedShapes: 0 },
       checks: Object.fromEntries(
         [
           'shortenedHomeRange',

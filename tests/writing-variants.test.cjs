@@ -77,6 +77,9 @@ function browser(source) {
     },
     cancelAnimationFrame() {},
     addEventListener() {},
+    MutationObserver: class {
+      observe() {}
+    },
     getComputedStyle: () => ({
       getPropertyValue: (key) =>
         ({
@@ -321,7 +324,12 @@ test('no-canvas retains actual diagnostic frames/geometry/effects; prewarm expli
     assert.equal(frame.calls.stroke, 0);
     assert.equal(frame.dataset.ready, 'true');
     assert.equal(frame.dataset.ribbonFaces, undefined);
-    assert.equal(frame.window.SiteEffects.scene, undefined);
+    assert.equal(typeof frame.window.SiteEffects.scene, 'function');
+    assert.equal(frame.window.SiteEffects.embedded.diagnostics().ready, false);
+    assert.doesNotMatch(
+      read('no-canvas-draw'),
+      /ribbonGeometry|ribbonSignals|createRibbonMaterials|makeProjector|paintRibbon/
+    );
     assert.ok(frame.events.some((event) => event.kind === 'model' && event.route === 'research'));
     const prewarm = browser(read('model-prewarm'));
     const timing = prewarm.window.__writingDiagnostic.prepareWriting();

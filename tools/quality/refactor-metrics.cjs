@@ -756,14 +756,7 @@ async function collectRow(browser, url, route, settings, fixedSource) {
     samples.push(await motion.collect(page, 'reduced', protocol.stoppedMs));
     const detail = await page.evaluate(() => ({
       diagnostics: window.SiteScene.diagnostics(),
-      ribbons: {
-        sceneHook: typeof window.SiteEffects?.scene,
-        dataset: Object.fromEntries(
-          Object.entries(document.querySelector('.space-scene').dataset).filter(([key]) =>
-            key.startsWith('ribbon')
-          )
-        ),
-      },
+      ribbons: window.__ribbonObservation(),
       paint: { ...window.__colorPaint },
       runtime: {
         navigationHook: typeof window.SiteEffects?.navigation,

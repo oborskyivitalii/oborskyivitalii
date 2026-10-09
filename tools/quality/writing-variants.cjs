@@ -12,7 +12,7 @@ const artifact = require('./artifact.cjs'),
 const flight = require('../../site/effects/flight.cjs');
 const descriptions = {
   'no-ribbons':
-    'Suppress ribbon scene creation/collection/custom painting; retain travel, reading styles and controls.',
+    'Suppress an explicit historical ribbon scene; retain unrelated scene effects, travel, reading styles and controls.',
   'no-canvas-draw':
     'Omit shape submission only; retain clearRect, projection, effects, sorting and the scene clock.',
   'thematic-off':
@@ -109,6 +109,21 @@ function replaceOnce(source, needle, replacement, file, patches) {
   });
   return result;
 }
+function hasScriptAnchor(source, needle) {
+  try {
+    require('./writing-models.cjs').javascriptAnchor(source, needle);
+    return true;
+  } catch (error) {
+    if (error.code === 'ERR_ASSERTION' && error.actual === 0) return false;
+    throw error;
+  }
+}
+function hasRibbonFactory(source) {
+  return (
+    hasScriptAnchor(source, 'const ribbonGeometry=') &&
+    hasScriptAnchor(source, 'const createRibbonMaterials=')
+  );
+}
 function patchBrowserGate(patch, label, source) {
   assert.equal(
     source.includes('__browserGateScheduler'),
@@ -129,7 +144,7 @@ function patchBrowserGate(patch, label, source) {
   );
   if (label === 'browser-gate-fixed-ribbons') {
     assert.ok(
-      source.includes('SiteEffects.scene='),
+      hasRibbonFactory(source),
       'fixed-ribbons requires an explicit historical ribbon-enabled control'
     );
     patch(
@@ -141,18 +156,11 @@ function patchBrowserGate(patch, label, source) {
   }
   if (label !== 'browser-gate-adaptive-ribbons') return;
   assert.equal(
-    (() => {
-      try {
-        require('./writing-models.cjs').javascriptAnchor(
-          source,
-          'const state={current,width,height,ambientTime,compact,scene,detailTier};'
-        );
-        return true;
-      } catch (error) {
-        if (error.code !== 'ERR_ASSERTION') throw error;
-        return false;
-      }
-    })(),
+    [
+      'const state={current,width,height,ambientTime,compact,scene,detailTier};',
+      'const state={current,width,height,ambientTime,compact,scene,detailTier,page,colors,journey};',
+      'const state={current,width,height,ambientTime,compact,scene,detailTier,page,colors,journey,};',
+    ].some((anchor) => hasScriptAnchor(source, anchor)),
     false,
     'adaptive ribbons are public; use the fixed-mesh counterfactual, not a second adaptation'
   );
@@ -236,7 +244,9 @@ function patchRuntime(scripts, label) {
     patch(
       'space.js',
       'const sceneEffects=effects?.scene?.(api);',
-      'const sceneEffects=null; // Private Writing diagnostic: ribbons omitted.'
+      hasRibbonFactory(result['space.js'])
+        ? 'const sceneEffects=null; // Private Writing diagnostic: historical ribbons omitted.'
+        : 'const sceneEffects=effects?.scene?.(api); // Private no-ribbons control: unrelated scene retained.'
     );
   if (label === 'no-canvas-draw')
     patch(

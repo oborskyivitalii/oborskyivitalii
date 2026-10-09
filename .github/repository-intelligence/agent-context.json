@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "a6d4ef8750aa473c95069d14018cb84a4df5b999cf93feefef7e20199ce21893",
+    "digest": "6e426cf8dc1c12fa5dff388d7f2ac66e922b4dfa460a91435ae9cd1087f6fff0",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -141,7 +141,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "4df4b511ebdef1e097f0ee79e08105a287eb3043114917f34e78629e9b657ec3"
+        "sha256": "75e6c04fde70e63a734a024395ec99edbac3477dd21b19d76cc12cf8d48c12e5"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -236,7 +236,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "51e9e5837540becf54441ea60a7bb3df6494498af634c529f4e8f97f7f682e4a"
+        "sha256": "b72d834ceb0031436b3c84228b64780f6800660f24ae36ba6f34c4eb1470f8b3"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -700,7 +700,7 @@
       {
         "path": "review/issue-49/2026-10-08-analysis.md",
         "identity_mode": "content",
-        "sha256": "cfd970bdd78f32fb5e173f76bc7bf7acafe482a9d282711d59ae878a9e02aa78"
+        "sha256": "056a8da210266ca91f382f1deb67f0668d44a10e85bec778313ebe6463b41081"
       },
       {
         "path": "review/issue-54/2026-10-08-analysis.md",
@@ -4955,7 +4955,7 @@
       {
         "path": "tests/browser-gate-variants.test.cjs",
         "identity_mode": "content",
-        "sha256": "16e25e6c160c3ed035503c51a39f097dfb5904a952fca13b00c254c31d77cf93"
+        "sha256": "ed95d88ba02dbf92b4a902f3d22b0577aeab7e9c9371b2127ab3ddc91d7720ff"
       },
       {
         "path": "tests/browser-lifecycle.test.cjs",
@@ -4985,7 +4985,7 @@
       {
         "path": "tests/color-build.test.cjs",
         "identity_mode": "content",
-        "sha256": "29d4b81ef910b8fad11e2177e8802f9fd4dfd434298c9b225e6cd1a7441523a1"
+        "sha256": "7d5ecb1702be5365297c4653460063def09f60bb24872116f785cd988ad56c77"
       },
       {
         "path": "tests/content-migration.test.cjs",
@@ -5040,7 +5040,7 @@
       {
         "path": "tests/fixtures/staging-evidence.cjs",
         "identity_mode": "content",
-        "sha256": "a12c30da2f4828924dd5c8181ce4cd75d30ad93db8b14f4a1a37a093e878ae0a"
+        "sha256": "1c5348c46e699c7b33bf6a59b411b56b466e1060ca8e4223d215c0f8a6dbad09"
       },
       {
         "path": "tests/flight.test.cjs",
@@ -5125,12 +5125,12 @@
       {
         "path": "tests/quality.test.cjs",
         "identity_mode": "content",
-        "sha256": "703675d18e66a2d2f9ed71babbbe7640c7ba284348db6fbbb6f8ae4d0e7503a2"
+        "sha256": "d4fe4b0951e0978b7b901cbb619b31cf6c8b5a00177ef0414a3f426b09312dfc"
       },
       {
         "path": "tests/refactor-metrics.test.cjs",
         "identity_mode": "content",
-        "sha256": "946a724e0bf41f124293e7d79f8279dfe230c32893f2e5c9a742c3b0fec71fc6"
+        "sha256": "a65aaa41efea797d53c2f80bbde3a5c6d9a68d85674fe7fbfc88bc8c832d0324"
       },
       {
         "path": "tests/renderer.test.cjs",
@@ -5175,7 +5175,7 @@
       {
         "path": "tests/staging-regression.test.cjs",
         "identity_mode": "content",
-        "sha256": "b1ef592154f421188f64e6ef2d215f24cfc20c35caf29c9725fc41b83e3b9296"
+        "sha256": "9b1fc409de546a2b07e1cd5268f891cf6ba86db34a530a3e0292a8f993f991a3"
       },
       {
         "path": "tests/staging-reporting.test.cjs",
@@ -5335,7 +5335,7 @@
       {
         "path": "tests/writing-variants.test.cjs",
         "identity_mode": "content",
-        "sha256": "f4f1571b48a2aef015fe47a402726163fe9cc58dee121d5b3344e9ed40e5d385"
+        "sha256": "2584fe38a33813e9c5697e217e2a469768181d7a8c80b4415c7549829ed5d222"
       },
       {
         "path": "tools/RI-LICENSE.md",
@@ -5435,7 +5435,7 @@
       {
         "path": "tools/quality/bandit-policy.json",
         "identity_mode": "content",
-        "sha256": "6cf77d93e3c73462e9f194dcddc48339cca287a49a8d378850759df3c98a0bbe"
+        "sha256": "d83ebce21e87a84ed4f028cfc51641791cb7e40cadbab5c85072ca5ab0bf8e65"
       },
       {
         "path": "tools/quality/bandit-triage.cjs",
@@ -5475,7 +5475,7 @@
       {
         "path": "tools/quality/color-browser.cjs",
         "identity_mode": "content",
-        "sha256": "8a5419504c4cd09690ca18c11b79c56f3ac7710191b15ac61f0c420428c041ee"
+        "sha256": "c4d060e7a472147933d9d4038d8f285815e39edda16b97b9e5a1117c51fb2243"
       },
       {
         "path": "tools/quality/common.cjs",
@@ -5625,7 +5625,7 @@
       {
         "path": "tools/quality/refactor-metrics.cjs",
         "identity_mode": "content",
-        "sha256": "5883281e4cbe65456ecde236f09b674c1002c04f69dbd4c84505b62e6129113d"
+        "sha256": "ec6c7ee93d2ef3bba1d39f48fe31e5ba93d975b050af152de278f96ce71142d9"
       },
       {
         "path": "tools/quality/research-pair-probe.cjs",
@@ -5730,7 +5730,7 @@
       {
         "path": "tools/quality/validate.cjs",
         "identity_mode": "content",
-        "sha256": "312a82e5bb217b65c234470baaf9e31365d45097b5f2dbd980a945c9893a5a12"
+        "sha256": "08efa8da809562d34d6a150f49413b473f6586899d05ec7360ca0ce190b57870"
       },
       {
         "path": "tools/quality/workflow-artifacts.cjs",
@@ -5785,7 +5785,7 @@
       {
         "path": "tools/quality/writing-variants.cjs",
         "identity_mode": "content",
-        "sha256": "383d928bd96dc6d12e81f0abee1545d3a0595bf33ac6091d896073bf79441f42"
+        "sha256": "76bae5a6e185f4f4bafc9bee52884e97fbfc957f304a895d01017529e8bce24f"
       },
       {
         "path": "tools/repository_intelligence.py",

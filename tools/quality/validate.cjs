@@ -662,7 +662,13 @@ function aggregate({
   };
 }
 function colorPaint(row) {
-  assert.equal(row.ribbons?.sceneHook, 'undefined', 'retired ribbon scene hook is active');
+  assert.ok(
+    ['undefined', 'function'].includes(row.ribbons?.sceneHook),
+    'missing actual shared scene hook observation'
+  );
+  assert.equal(row.ribbons?.ribbonHook, 'undefined', 'retired ribbon-specific hook is active');
+  assert.equal(row.ribbons?.submissions, 0, 'retired ribbon collector was invoked');
+  assert.equal(row.ribbons?.shapes, 0, 'retired ribbon shapes were submitted');
   const dataset = row.ribbons.dataset;
   assert.ok(
     dataset && typeof dataset === 'object' && !Array.isArray(dataset),
@@ -673,7 +679,7 @@ function colorPaint(row) {
     assert.notEqual(key, 'ribbonMaterial', 'retired ribbon material is present');
     assert.equal(value, '0', 'retired ribbon dataset is nonzero');
   }
-  for (const key of ['completed', 'ordinaryShapes', 'customShapes']) {
+  for (const key of ['completed', 'ordinaryShapes', 'customShapes', 'embeddedShapes']) {
     assert.ok(
       Number.isInteger(row.paint?.[key]) && row.paint[key] >= 0,
       'missing actual Color paint ' + key
@@ -681,7 +687,11 @@ function colorPaint(row) {
   }
   assert.ok(row.paint.completed > 0, 'Color Canvas did not complete a paint');
   assert.ok(row.paint.ordinaryShapes > 0, 'ordinary scene geometry was not painted');
-  assert.equal(row.paint.customShapes, 0, 'Color still submits custom ribbon geometry');
+  assert.equal(
+    row.paint.customShapes,
+    row.paint.embeddedShapes,
+    'Color submits unrecognized custom geometry outside the embedded prototype'
+  );
 }
 function colorReports(reports, manifest) {
   const found = reports.filter((report) => report.kind === 'color-functional');

@@ -52,14 +52,15 @@ Dated continuity, not live authority. Last verified: **2026-10-09**.
   complete `Refs #49` line and link historical issues as dependencies/evidence.
 - Issue49 AC01-AC08 remain; new AC09-AC14 map original48 AC01-AC06 respectively.
   AC01 and inheritedAC11-AC14 are checked for accepted design/historical scope.
-  FeatureAC02-AC08 and inherited narrow visualAC09-AC10 remain open. Preserve
+  FeatureAC02-AC08, inherited visualAC09-AC10 and embeddedAC15 remain open. Preserve
   original issue-qualified IDs, exact source evidence and actual checkboxes.
 - PR51 accepted head `3e8944af`, merge `a06b530e`, tree `ca02b382` and its stable-stage
   evidence remain historical. They do not admit fragments or authorize new staging.
 - Fixed settled poses and two-sided native fragments use the painted camera/clock
   and router serial. Latest user scope adds Credits, all navigation entries and
   arbitrary-scroll/in-flight retargets, shared small shards and both directions.
-  Native clipped paint is provisional: Canvas faces do not occlude DOM pieces.
+  DOM fragments remain provisional; only AC15's bounded paragraph joins Canvas
+  depth sorting, with approximate painter occlusion rather than a GPU depth buffer.
 - Replace every scroll/topic/layout/history camera consumer while preserving
   ambient fractal phase, actual native Y/filters/anchors, focus/history, edge intent,
   freeze modes and finite room/cache bounds. Retain reverse Back/top-edge travel;
@@ -88,7 +89,7 @@ Dated continuity, not live authority. Last verified: **2026-10-09**.
 
 | Issue | Remaining intent |
 | --- | --- |
-| #49 / Draft PR53 | Deliver embeddedAC15 preview/browser observation; visual/device/paired-cost and completeAC02-AC10 remain, preserving historicalAC11-AC14. |
+| #49 / Draft PR53 | Embedded AC15 preview/browser observation; visual/device/paired-cost and AC02-AC10/AC15 remain open, preserving historicalAC11-AC14. |
 | #61 | Separate content/editorial owner; fetch live issue/PR before editing accepted prose. |
 | #45 / #36 / #41 | Historical source-bound visual/editorial evidence and remaining release gates. |
 | #1 / #13 | First release, physical devices and production/recovery acceptance. |

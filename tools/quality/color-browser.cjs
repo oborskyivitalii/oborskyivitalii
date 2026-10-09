@@ -10,9 +10,25 @@ const { colorPaint } = require('./validate.cjs');
 const motion = require('./motion.cjs'),
   { transition: flightBudgets } = require('./budgets.json').motion;
 function paintProbe() {
-  const paint = { completed: 0, ordinaryShapes: 0, customShapes: 0 };
+  const paint = { completed: 0, ordinaryShapes: 0, customShapes: 0, embeddedShapes: 0 };
+  const ribbons = { submissions: 0, shapes: 0 };
   const raf = window.requestAnimationFrame;
   window.__colorPaint = paint;
+  window.SiteRibbonProbe = (sample) => {
+    ribbons.submissions++;
+    ribbons.shapes += sample.shapes.length;
+  };
+  window.__ribbonObservation = () => ({
+    sceneHook: typeof window.SiteEffects?.scene,
+    ribbonHook: ribbons.submissions ? 'function' : typeof window.SiteEffects?.ribbons,
+    submissions: ribbons.submissions,
+    shapes: ribbons.shapes,
+    dataset: Object.fromEntries(
+      Object.entries(document.querySelector('.space-scene').dataset).filter(([key]) =>
+        key.startsWith('ribbon')
+      )
+    ),
+  });
   window.requestAnimationFrame = (callback) =>
     raf((time) => {
       const observation = window.__fragmentFlight;
@@ -33,6 +49,7 @@ function paintProbe() {
     paint.completed++;
     paint.ordinaryShapes = sample.ordinaryShapes;
     paint.customShapes = sample.customShapes;
+    paint.embeddedShapes = window.SiteEffects?.embedded?.diagnostics().faces.length || 0;
     window.__sampleEmbeddedPrototype?.(sample);
   };
 }
@@ -1306,9 +1323,6 @@ async function state(page) {
   return page.evaluate(() => {
     const scene = document.querySelector('.space-scene');
     const plane = document.getElementById('site-content');
-    const ribbonDataset = Object.fromEntries(
-      Object.entries(scene.dataset).filter(([key]) => key.startsWith('ribbon'))
-    );
     return {
       page: document.body.dataset.page,
       scene: { ...scene.dataset },
@@ -1316,10 +1330,7 @@ async function state(page) {
       transform: plane.style.transform,
       y: scrollY,
       max: Math.max(0, document.documentElement.scrollHeight - innerHeight),
-      ribbons: {
-        sceneHook: typeof window.SiteEffects?.scene,
-        dataset: ribbonDataset,
-      },
+      ribbons: window.__ribbonObservation(),
       paint: { ...window.__colorPaint },
     };
   });

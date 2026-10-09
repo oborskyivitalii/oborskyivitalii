@@ -519,7 +519,7 @@ test('conditional Color smoke keeps two travel cases with ordinary paint and abs
     (value) => (value.rows[0].engine = 'webkit'),
     (value) => (value.rows[0].checks.reverseNativeBottom = false),
     (value) => (value.rows[0].flight = []),
-    (value) => (value.rows[0].ribbons.sceneHook = 'function'),
+    (value) => (value.rows[0].ribbons.ribbonHook = 'function'),
     (value) => (value.rows[0].ribbons.dataset = { ribbons: '3' }),
     (value) => (value.rows[0].ribbons.dataset = { ribbonFaces: '1' }),
     (value) => (value.rows[0].ribbons.dataset = { ribbonSignals: '1' }),
@@ -584,7 +584,7 @@ test('Color scenario observes actual Canvas paints alongside completed scene sub
     );
     callbacks[0](10);
     assert.deepEqual({ ...sandbox.window.__quality }, { paints: 0, callbacks: 1 });
-    const sample = { kind: 'paint', ordinaryShapes: 12, customShapes: 0 };
+    const sample = { kind: 'paint', ordinaryShapes: 12, customShapes: 0, embeddedShapes: 0 };
     sandbox.window.SiteEngineProbe({ ...sample, kind: 'model' });
     assert.equal(sandbox.window.__colorPaint.completed, 0);
     sandbox.window.SiteEngineProbe(sample);
@@ -604,7 +604,7 @@ test('Color scenario observes actual Canvas paints alongside completed scene sub
     sandbox.window.SiteEngineProbe({ ...sample, ordinaryShapes: 8 });
     assert.deepEqual(
       { ...sandbox.window.__colorPaint },
-      { completed: 2, ordinaryShapes: 8, customShapes: 0 }
+      { completed: 2, ordinaryShapes: 8, customShapes: 0, embeddedShapes: 0 }
     );
   }
 });

@@ -727,8 +727,14 @@ function colorFixture() {
         theme,
         pass: true,
         identity: { id: 'color', engine: color.fingerprint },
-        ribbons: { sceneHook: 'undefined', dataset: {} },
-        paint: { completed: 2, ordinaryShapes: 12, customShapes: 0 },
+        ribbons: {
+          sceneHook: 'undefined',
+          ribbonHook: 'undefined',
+          submissions: 0,
+          shapes: 0,
+          dataset: {},
+        },
+        paint: { completed: 2, ordinaryShapes: 12, customShapes: 0, embeddedShapes: 0 },
         checks: Object.fromEntries(
           [
             'spatialFlight',
@@ -761,7 +767,7 @@ test('full macOS policy keeps twelve travel Color cells with ordinary paint incl
     (report) => (report.rows = report.rows.filter((row) => row.engine !== 'webkit')),
     (report) => (report.rows[0].checks.spatialFlight = false),
     (report) => (report.rows[0] = structuredClone(report.rows[1])),
-    (report) => (report.rows[0].ribbons.sceneHook = 'function'),
+    (report) => (report.rows[0].ribbons.ribbonHook = 'function'),
     (report) => (report.rows[0].ribbons.dataset = { ribbons: '3' }),
     (report) => (report.rows[0].ribbons.dataset = { ribbonFaces: '1' }),
     (report) => (report.rows[0].ribbons.dataset = { ribbonSignals: '1' }),
@@ -1094,5 +1100,39 @@ test('Color navigation requires both depth planes and a clear handover without c
     const changed = structuredClone(samples);
     mutate(changed);
     assert.throws(() => checkTiming(changed, 'color'));
+  }
+});
+
+test('shared embedded scene capability does not stand in for retired ribbon activity', () => {
+  const vm = require('node:vm');
+  const { paintProbe } = require('../tools/quality/color-browser.cjs');
+  const { colorPaint } = require('../tools/quality/validate.cjs');
+  const window = {
+    requestAnimationFrame() {},
+    SiteEffects: { scene() {}, embedded: { diagnostics: () => ({ faces: [{}, {}] }) } },
+  };
+  const document = { querySelector: () => ({ dataset: {} }) };
+  vm.runInNewContext('(' + paintProbe.toString() + ')()', { window, document });
+  window.SiteEngineProbe({ kind: 'paint', ordinaryShapes: 12, customShapes: 2 });
+  const row = { ribbons: window.__ribbonObservation(), paint: { ...window.__colorPaint } };
+  assert.equal(row.ribbons.sceneHook, 'function');
+  assert.equal(row.ribbons.ribbonHook, 'undefined');
+  assert.equal(row.paint.embeddedShapes, 2);
+  assert.doesNotThrow(() => colorPaint(row));
+  assert.throws(() => colorPaint({ ...row, paint: { ...row.paint, customShapes: 3 } }));
+  window.SiteRibbonProbe({ shapes: [{ kind: 'ribbon' }] });
+  assert.equal(window.__ribbonObservation().submissions, 1);
+  assert.equal(window.__ribbonObservation().shapes, 1);
+  assert.throws(() => colorPaint({ ...row, ribbons: window.__ribbonObservation() }));
+  for (const mutate of [
+    (value) => (value.ribbons.ribbonHook = 'function'),
+    (value) => (value.ribbons.submissions = 1),
+    (value) => (value.ribbons.shapes = 1),
+    (value) => delete value.paint.embeddedShapes,
+    (value) => (value.paint.embeddedShapes = 3),
+  ]) {
+    const changed = structuredClone(row);
+    mutate(changed);
+    assert.throws(() => colorPaint(changed));
   }
 });
