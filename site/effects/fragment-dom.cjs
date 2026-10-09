@@ -1,6 +1,7 @@
 'use strict';
-// Temporary native-paint prototype. The producer injects the pure geometry factory.
+// Bounded native-paint adapter. The producer injects the pure geometry factory.
 module.exports = function (content, geometry, onFallback = null) {
+  const settings = geometry.settings;
   let layer = null,
     pieces = [],
     hidden = [],
@@ -51,7 +52,7 @@ module.exports = function (content, geometry, onFallback = null) {
     }
   }
   // Decorative paint cannot outlive the native layout/theme on which it depends.
-  // This small prototype falls back atomically rather than allocating a retarget.
+  // A transaction falls back atomically rather than allocating a retarget.
   function watch() {
     const listen = (target, name, handler, options) => {
       if (!target?.addEventListener) return;
@@ -59,6 +60,18 @@ module.exports = function (content, geometry, onFallback = null) {
       subscriptions.push(() => target.removeEventListener(name, handler, options));
     };
     listen(window, 'resize', invalidate, { passive: true });
+    listen(
+      window,
+      'scroll',
+      () => {
+        if (
+          (window.scrollX || 0) !== viewState?.scrollX ||
+          (window.scrollY || 0) !== viewState?.scrollY
+        )
+          invalidate();
+      },
+      { passive: true }
+    );
     listen(window, 'beforeprint', invalidate);
     listen(window, 'pagehide', invalidate);
     listen(document, 'visibilitychange', () => {
@@ -98,37 +111,55 @@ module.exports = function (content, geometry, onFallback = null) {
       ? rect
       : null;
   }
-  function inspectCandidate(owner, snapshot, nextPhase, start) {
-    if (clock() - start > 160) return false;
-    if (
-      owner.matches('p') &&
-      (owner.textContent?.trim().length || 0) < (nextPhase === 'arrive' ? 1 : 60)
-    )
+  function inspectCandidate(owner, start, rect) {
+    if (clock() - start > settings.acquisitionMs) return false;
+    if (!rect) return null;
+    const images = owner.matches('img') ? [owner] : [...owner.querySelectorAll('img')];
+    if (images.some((image) => !image.complete || !image.naturalWidth || !image.currentSrc))
       return null;
-    const rect = candidateRect(owner, snapshot);
-    if (clock() - start > 160) return false;
-    if (!rect || (nextPhase === 'arrive' && (rect.width < 4 || rect.height < 4))) return null;
-    if (owner.matches('img') && (!owner.complete || !owner.naturalWidth || !owner.currentSrc))
-      return false;
-    // No SVG IDs/references, media, controls or dynamic paint in this backend.
-    if (owner.querySelector('svg,canvas,video,iframe,input,button,select,textarea')) return false;
-    return { owner, rect };
+    // Unsupported dynamic paint is local: ordinary sibling content still flies.
+    if (owner.matches('svg,canvas,video,iframe') || owner.querySelector('svg,canvas,video,iframe'))
+      return null;
+    if (!owner.matches('img,input,select,textarea') && !owner.textContent?.trim()) return null;
+    const descendants = owner.querySelectorAll('*').length;
+    const measuredLineHeight = parseFloat(getComputedStyle(owner).getPropertyValue('line-height'));
+    const lineHeight =
+      Number.isFinite(measuredLineHeight) && measuredLineHeight > 0
+        ? measuredLineHeight
+        : undefined;
+    return { owner, rect, descendants, lineHeight };
   }
-  function candidates(snapshot, nextPhase, start) {
+  function candidates(snapshot, start) {
     const result = [];
+    const caps = snapshot.compact ? settings.caps.compact : settings.caps.full;
     const selectors =
-      nextPhase === 'arrive'
-        ? ['main h1, main h2, main h3, main p, main img']
-        : ['main h1, main h2, main h3', 'main p', 'main img'];
-    for (const selector of selectors) {
-      for (const owner of content.querySelectorAll(selector)) {
-        const candidate = inspectCandidate(owner, snapshot, nextPhase, start);
-        if (candidate === false) return null;
-        if (!candidate) continue;
-        result.push(candidate);
-        if (nextPhase === 'depart') break;
+      'h1,h2,h3,h4,h5,h6,p,img,li,dt,dd,figcaption,blockquote,pre,a,button,label,input,select,textarea,span,time,strong,small';
+    function visit(owner) {
+      if (clock() - start > settings.acquisitionMs || result.length >= caps.owners) return;
+      if (owner.matches('svg,canvas,video,iframe')) return;
+      const rect = candidateRect(owner, snapshot);
+      if (!rect) return;
+      const inlineGroup =
+        owner.matches('div') &&
+        owner.children.length > 0 &&
+        [...owner.children].every((child) => child.matches('span,time,strong,small'));
+      if (owner.matches(selectors) || inlineGroup) {
+        const candidate = inspectCandidate(owner, start, rect);
+        if (candidate === false) return;
+        if (
+          candidate &&
+          candidate.descendants + 6 <= caps.descendants &&
+          (owner.textContent?.length || 0) * 6 <= caps.textBytes
+        ) {
+          result.push(candidate);
+          return;
+        }
       }
+      for (const child of owner.children) visit(child);
     }
+    // Prune offscreen sections/cards before inspecting their archived descendants.
+    // Selecting an ancestor ends traversal, so inline links/glyphs never paint twice.
+    for (const root of content.querySelectorAll('main,footer')) visit(root);
     return result;
   }
   function arrivalStatus(snapshot) {
@@ -141,9 +172,12 @@ module.exports = function (content, geometry, onFallback = null) {
       snapshot.active === false ||
       !(snapshot.progress >= 0.5 && snapshot.progress <= 1) ||
       !Number.isFinite(snapshot.capturedAt) ||
-      clock() - snapshot.capturedAt > 160
+      clock() - snapshot.capturedAt > settings.preparationMs
     )
       return 'fallback';
+    // Reverse arrivals emerge from behind the camera; a forward-anchor gate
+    // would suppress the effect precisely on that navigation direction.
+    if (snapshot.direction === 'backward') return 'ready';
     const center = view.camera(snapshot.anchor);
     if (center[2] <= 0.5) return snapshot.progress === 1 ? 'fallback' : 'wait';
     const point = view.project(center);
@@ -166,7 +200,7 @@ module.exports = function (content, geometry, onFallback = null) {
         paint = getComputedStyle(original);
       for (const attribute of [...copy.attributes]) {
         if (
-          /^(id|name|href|tabindex|autofocus|contenteditable|role|aria-.+|on.+)$/i.test(
+          /^(id|name|href|form|formaction|formmethod|formenctype|formtarget|tabindex|autofocus|contenteditable|role|aria-.+|on.+)$/i.test(
             attribute.name
           )
         )
@@ -194,6 +228,14 @@ module.exports = function (content, geometry, onFallback = null) {
         'hyphens',
         'direction',
         'vertical-align',
+        'list-style-type',
+        'list-style-position',
+        'flex-direction',
+        'flex-wrap',
+        'align-items',
+        'align-self',
+        'justify-content',
+        'gap',
         'text-decoration',
         'object-fit',
         'object-position',
@@ -206,6 +248,28 @@ module.exports = function (content, geometry, onFallback = null) {
         'border-radius',
       ])
         copy.style.setProperty(property, paint.getPropertyValue(property));
+      if (i > 0) {
+        for (const property of [
+          'margin-top',
+          'margin-right',
+          'margin-bottom',
+          'margin-left',
+          'width',
+          'height',
+          'min-width',
+          'max-width',
+          'min-height',
+          'max-height',
+          'position',
+          'top',
+          'right',
+          'bottom',
+          'left',
+          'flex',
+          'order',
+        ])
+          copy.style.setProperty(property, paint.getPropertyValue(property));
+      }
       // Copies leave their original parent selectors. Their native border-box
       // padding and line layout must survive that move so the final glyphs land
       // at their reading positions, not just their outer element rectangles.
@@ -215,101 +279,112 @@ module.exports = function (content, geometry, onFallback = null) {
         copy.src = original.currentSrc;
         copy.draggable = false;
       }
+      if (copy.matches('input,textarea,select')) copy.value = original.value;
+      if (copy.matches('input')) copy.checked = original.checked;
     }
     clone.classList.add('fragment-paint');
     return clone;
   }
-  function planOwners(snapshot, view, start, nextPhase) {
-    const compact = snapshot.compact,
-      maxPieces = compact ? 40 : 96,
-      caps = {
-        pieces: maxPieces,
-        owners: compact ? 20 : 32,
-        descendants: compact ? 600 : 1500,
-        textBytes: compact ? 12288 : 32768,
-        layerPixels: compact ? 3000000 : 8000000,
-      },
-      usage = {
-        pieces: 0,
-        owners: 0,
-        descendants: 2,
-        textBytes: 0,
-        layerPixels: 0,
-      },
-      planned = [];
-    const pixelRatio = window.devicePixelRatio || 1;
-    if (!Number.isFinite(pixelRatio) || pixelRatio <= 0) return false;
-    // All native reads and admission happen before any clone or visibility write.
-    const selected = candidates(snapshot, nextPhase, start);
-    if (!selected) return false;
-    const measured = selected.map((item) => ({
-      ...item,
-      descendants: item.owner.querySelectorAll('*').length,
-    }));
-    const arrivalCount =
-      nextPhase === 'arrive' ? arrivalAllowance(measured, caps, pixelRatio) : Infinity;
-    if (arrivalCount < 1) return false;
-    for (const { owner, rect, descendants } of measured) {
-      const image = owner.matches('img'),
-        count = Math.min(arrivalCount, compact ? (image ? 8 : 6) : image ? 12 : 10),
-        visible = {
-          x: Math.max(-64, rect.left),
-          y: Math.max(-64, rect.top),
-          width: Math.min(snapshot.width + 64, rect.right) - Math.max(-64, rect.left),
-          height: Math.min(snapshot.height + 64, rect.bottom) - Math.max(-64, rect.top),
-        },
-        cells = geometry.partition(
-          visible,
-          { count, seed: planned.length + 1 },
-          { maxPieces, usedPieces: usage.pieces }
-        );
-      if (!cells) return false;
+  function planUsage(planned, pixelRatio) {
+    const usage = {
+      pieces: 0,
+      owners: planned.length,
+      descendants: 2,
+      textBytes: 0,
+      layerPixels: 0,
+    };
+    for (const { owner, descendants, cells } of planned) {
       usage.pieces += cells.length;
-      usage.owners++;
       usage.descendants += (descendants + 5) * cells.length + descendants + 1;
       usage.textBytes += (owner.textContent?.length || 0) * 3 * (cells.length + 1);
-      // Native DOM paint uses actual device DPR, unlike the separately capped Canvas.
-      const volumePixels = cells.reduce(
-        (sum, cell) => sum + (cell.width + 36) * (cell.height + 36),
-        0
-      );
+      // contain:paint and the convex mask bound each tile's raster to its clip
+      // box. The absolute native clone extends outside it but cannot paint there.
       usage.layerPixels +=
-        (rect.width * rect.height * cells.length + volumePixels) * pixelRatio ** 2;
-      if (!geometry.admit(usage, caps) || clock() - start > 160) return false;
-      const cellsPrepared = cells.map((cell) => ({
-        cell,
-        geometry: geometry.piece(cell, view, { depth: 12 }),
-      }));
-      if (cellsPrepared.some((cell) => !cell.geometry)) return false;
-      planned.push({ owner, rect, cells: cellsPrepared });
+        cells.reduce(
+          (sum, cell) =>
+            sum +
+            cell.width * cell.height +
+            (cell.width + settings.facetGutterPx) * (cell.height + settings.facetGutterPx),
+          0
+        ) *
+        pixelRatio ** 2;
     }
-    return planned.length ? planned : null;
+    return usage;
   }
-  function arrivalAllowance(measured, caps, pixelRatio) {
-    if (!measured.length || measured.length > caps.owners) return 0;
-    const descendantCopies = measured.reduce((sum, item) => sum + item.descendants + 5, 0);
-    const retainedDescendants = measured.reduce((sum, item) => sum + item.descendants + 1, 0);
-    const textBytes = measured.reduce(
-      (sum, item) => sum + (item.owner.textContent?.length || 0) * 3,
-      0
-    );
-    const nativePixels = measured.reduce(
-      (sum, item) =>
-        sum +
-        (item.rect.width * item.rect.height + (item.rect.width + 36) * (item.rect.height + 36)) *
-          pixelRatio ** 2,
-      0
-    );
-    // Share the unchanged transaction caps across all visible incoming owners,
-    // instead of spending the allowance on only one heading and one paragraph.
-    return Math.floor(
-      Math.min(
-        caps.pieces / measured.length,
-        (caps.descendants - 2 - retainedDescendants) / descendantCopies,
-        textBytes ? caps.textBytes / textBytes - 1 : Infinity,
-        caps.layerPixels / nativePixels
-      )
-    );
+  function growShardCounts(planned, caps, pixelRatio, start) {
+    let changed = true;
+    while (changed && clock() - start <= settings.allocationMs) {
+      changed = false;
+      for (const item of planned) {
+        if (clock() - start > settings.allocationMs) return;
+        if (item.blocked || item.cells.length >= item.desired) continue;
+        const previous = item.cells;
+        const usage = planUsage(planned, pixelRatio);
+        const cells = geometry.partition(
+          item.visible,
+          { count: previous.length + 1, seed: item.seed, minSize: settings.shard.minSizePx },
+          { maxPieces: caps.pieces, usedPieces: usage.pieces - previous.length }
+        );
+        if (!cells) {
+          item.blocked = true;
+          continue;
+        }
+        item.cells = cells;
+        if (!geometry.admit(planUsage(planned, pixelRatio), caps)) {
+          item.cells = previous;
+          item.blocked = true;
+        } else changed = true;
+      }
+    }
+  }
+  function planOwners(snapshot, view, start) {
+    const caps = snapshot.compact ? settings.caps.compact : settings.caps.full;
+    const pixelRatio = window.devicePixelRatio || 1;
+    if (!Number.isFinite(pixelRatio) || pixelRatio <= 0) return false;
+    const planned = [];
+    const selected = candidates(snapshot, start);
+    // Every admitted visible owner gets complete paint coverage first. Extra
+    // small shards share the remaining transaction allowance in both directions.
+    for (const candidate of selected) {
+      const { owner, rect, lineHeight } = candidate;
+      const visible = {
+        x: Math.max(-64, rect.left),
+        y: Math.max(-64, rect.top),
+        width: Math.min(snapshot.width + 64, rect.right) - Math.max(-64, rect.left),
+        height: Math.min(snapshot.height + 64, rect.bottom) - Math.max(-64, rect.top),
+      };
+      const seed = planned.length + 1;
+      const cells = geometry.partition(
+        visible,
+        { count: 1, seed, minSize: settings.shard.minSizePx },
+        { maxPieces: caps.pieces, usedPieces: planUsage(planned, pixelRatio).pieces }
+      );
+      if (!cells) continue;
+      const item = {
+        ...candidate,
+        visible,
+        seed,
+        cells,
+        desired: geometry.pieceCount(visible, {
+          image: owner.matches('img'),
+          lineHeight,
+          compact: snapshot.compact,
+        }),
+      };
+      if (!geometry.admit(planUsage([...planned, item], pixelRatio), caps)) continue;
+      planned.push(item);
+    }
+    if (!planned.length) return null;
+    growShardCounts(planned, caps, pixelRatio, start);
+    if (clock() - start > settings.preparationMs) return false;
+    for (const item of planned) {
+      item.cells = item.cells.map((cell) => ({
+        cell,
+        geometry: geometry.piece(cell, view, { depth: settings.nativeDepth }),
+      }));
+      if (item.cells.some((cell) => !cell.geometry)) return false;
+    }
+    return planned;
   }
   function prepare(nextPhase, snapshot) {
     clear();
@@ -326,23 +401,22 @@ module.exports = function (content, geometry, onFallback = null) {
     const view = camera(snapshot);
     if (!view || (nextPhase === 'arrive' && arrivalStatus(snapshot) !== 'ready')) return false;
     const start = clock();
-    const planned = planOwners(snapshot, view, start, nextPhase);
+    const planned = planOwners(snapshot, view, start);
     if (!planned) return false;
+    const groups = planned.map(({ rect, cells }) => ({
+      rect: {
+        x: rect.left,
+        y: rect.top,
+        width: rect.width,
+        height: rect.height,
+      },
+      cells: cells.map(({ cell }) => cell),
+    }));
     const timings =
       nextPhase === 'arrive'
-        ? geometry.arrivalSchedule(
-            planned.map(({ rect, cells }) => ({
-              rect: {
-                x: rect.left,
-                y: rect.top,
-                width: rect.width,
-                height: rect.height,
-              },
-              cells: cells.map(({ cell }) => cell),
-            }))
-          )
-        : null;
-    if (nextPhase === 'arrive' && !timings) return false;
+        ? geometry.arrivalSchedule(groups)
+        : geometry.departureSchedule(groups);
+    if (!timings) return false;
     const container = document.createElement('div');
     container.className = 'fragment-layer';
     container.inert = true;
@@ -388,12 +462,13 @@ module.exports = function (content, geometry, onFallback = null) {
             solid,
             facets,
             prepared,
-            facetAreaLimit: (cell.width + 36) * (cell.height + 36),
+            facetAreaLimit:
+              (cell.width + settings.facetGutterPx) * (cell.height + settings.facetGutterPx),
             timing: timings?.[ownerIndex][cellIndex],
           });
         }
       }
-      if (clock() - start > 160) throw Error('Fragment preparation deadline');
+      if (clock() - start > settings.preparationMs) throw Error('Fragment preparation deadline');
       if (nextPhase === 'arrive') {
         arrivalWindowMs = geometry.arrivalWindow(
           snapshot.travelElapsedMs ?? 0,
@@ -415,7 +490,7 @@ module.exports = function (content, geometry, onFallback = null) {
         owner.style.visibility = 'hidden';
       }
       phase = nextPhase;
-      viewState = snapshot;
+      viewState = { ...snapshot, scrollX: window.scrollX || 0, scrollY: window.scrollY || 0 };
       if (nextPhase === 'arrive') arrivalStartedAt = clock();
       content.dataset.fragmentPieces = String(pieces.length);
       content.dataset.fragmentOwners = String(planned.length);
@@ -491,6 +566,8 @@ module.exports = function (content, geometry, onFallback = null) {
     if (
       snapshot?.width !== viewState.width ||
       snapshot?.height !== viewState.height ||
+      (window.scrollX || 0) !== viewState.scrollX ||
+      (window.scrollY || 0) !== viewState.scrollY ||
       document.hidden ||
       reduced.matches
     ) {
@@ -516,7 +593,7 @@ module.exports = function (content, geometry, onFallback = null) {
         Math.min(
           1,
           phase === 'depart'
-            ? progress / 0.46
+            ? (progress - timing.delayProgress) / timing.durationProgress
             : (arrivalElapsedMs - timing.delayMs) / timing.durationMs
         )
       );
@@ -526,6 +603,8 @@ module.exports = function (content, geometry, onFallback = null) {
         progress: local,
         view,
         anchor: viewState.anchor,
+        sourceAnchor: viewState.sourceAnchor,
+        direction: viewState.direction || 'forward',
       });
       const transform =
         projected && matrix(projected.points, prepared.rect.width, prepared.rect.height);

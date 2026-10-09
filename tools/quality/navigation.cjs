@@ -26,7 +26,7 @@ const checks = [
   'versionFallback',
   'digestFallback',
   'offlineEntries',
-  'utilityNoFlight',
+  'creditsFlight',
   'reverseEndpoint',
   'endpointTakeover',
 ];
@@ -604,6 +604,18 @@ async function scenario(browser, url, s) {
       : 'base';
     assert.ok(['base', 'color'].includes(variant), 'known tested navigation variant');
     result.variant = variant;
+    if (variant === 'color') {
+      const fragments = await page.evaluate(() => {
+        const control = document.getElementById('fragment-flight-preview');
+        if (!control) return null;
+        const defaultValue = control.checked;
+        control.checked = false;
+        control.dispatchEvent(new Event('change', { bubbles: true }));
+        return defaultValue;
+      });
+      assert.equal(fragments, true, 'current Color defaults to fragment flight');
+      result.defaultFragments = fragments;
+    }
     await page.bringToFront();
     await page.waitForFunction(
       () =>
@@ -637,11 +649,8 @@ async function scenario(browser, url, s) {
       await settled(page);
       const samples = await page.evaluate(() => window.__flightSamples);
       (result.flightEvidence ??= []).push({ route, samples });
-      if (route !== 'credits') checkTiming(samples, variant);
-      else {
-        assert.ok(samples.every((x) => x.progress === 1));
-        result.checks.utilityNoFlight = true;
-      }
+      checkTiming(samples, variant);
+      if (route === 'credits') result.checks.creditsFlight = true;
       const state = await page.evaluate(() => ({
         page: document.body.dataset.page,
         title: document.title,

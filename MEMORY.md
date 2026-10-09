@@ -21,9 +21,9 @@ Dated continuity, not live authority. Last verified: **2026-10-09**.
   remain duplicate/superseded history.
 - Latest explicit instruction consolidates48/49 and their PR routes, then implements.
   It supersedes the earlier plan-only request. The [single execution handoff](review/issue-49/2026-10-08-analysis.md)
-  owns the AC crosswalk, T02 fixed reading camera and T03 opt-in actual
-  heading/paragraph/portrait prototype. Depth/fidelity/measured admission precedes
-  broad/default fragmentation. Read live PR53 for exact current head/checks.
+  owns the AC crosswalk and the9October all-route amendment. All five routes
+  share bidirectional Color preview fragments, enabled by default unless stored
+  Off. Depth/fidelity/device/paired-cost gates remain; read live PR53 for exact head.
 - Published prototype11252e0 has desktop Night fixed-camera/native-scroll and
   temporary-fragment/native-handoff observations in the same handoff. First CI
   retained two tooling/probe failures; correct policy49 locked dependencies and
@@ -48,9 +48,10 @@ Dated continuity, not live authority. Last verified: **2026-10-09**.
   original issue-qualified IDs, exact source evidence and actual checkboxes.
 - PR51 accepted head `3e8944af`, merge `a06b530e`, tree `ca02b382` and its stable-stage
   evidence remain historical. They do not admit fragments or authorize new staging.
-- Begin with fixed settled poses and an opt-in two-sided real paint prototype,
-  using the existing painted camera/clock and router serial. Native clipped paint
-  is provisional: Canvas faces do not automatically occlude DOM pieces.
+- Fixed settled poses and two-sided native fragments use the painted camera/clock
+  and router serial. Latest user scope adds Credits, all navigation entries and
+  arbitrary-scroll/in-flight retargets, shared small shards and both directions.
+  Native clipped paint is provisional: Canvas faces do not occlude DOM pieces.
 - Replace every scroll/topic/layout/history camera consumer while preserving
   ambient fractal phase, actual native Y/filters/anchors, focus/history, edge intent,
   freeze modes and finite room/cache bounds. Retain reverse Back/top-edge travel;
@@ -94,8 +95,8 @@ Dated continuity, not live authority. Last verified: **2026-10-09**.
 2. Read the consolidation/execution section and ordered tasks in the same handoff.
 3. Inspect the refined staggered incoming assembly and its finite painted-clock
    tail, exact source/CI/preview, cleanup/Off/device-hold and native handoff evidence.
-4. Inspect actual depth/framing/native seams and bounded same-source raw measurements
-   before broad/default rollout. Keep fallbacks and failed observations honest.
+4. Inspect all-five forward/reverse flights, native seams and interruption coverage;
+   paired-cost/device/full visual admission remains open. Retain raw failures.
 5. Refresh policy/catalog/profile/RI/CI and exact current generated/scanner evidence;
    independently review, update actual boxes and retain final merge/main gates.
 

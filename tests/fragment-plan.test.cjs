@@ -46,6 +46,77 @@ test('arrival timing rejects malformed or unbounded groups before creating a sch
     assert.equal(fragments.arrivalSchedule(groups), null);
 });
 
+test('departure releases page shards in separate bounded steps before the route handoff', () => {
+  const groups = [
+    { x: 30, y: 190, width: 420, height: 120 },
+    { x: 30, y: 70, width: 420, height: 80 },
+  ].map((rect, index) => ({
+    rect,
+    cells: fragments.partition(rect, { count: 10, seed: index + 1 }, { maxPieces: 96 }),
+  }));
+  const before = JSON.stringify(groups);
+  const schedule = fragments.departureSchedule(groups);
+  assert.equal(JSON.stringify(groups), before);
+  assert.deepEqual(
+    schedule.map((cells) => cells.length),
+    groups.map((group) => group.cells.length)
+  );
+  const timing = schedule.flat();
+  assert.ok(new Set(timing.map((item) => item.delayProgress)).size > 10);
+  assert.equal(Math.min(...timing.map((item) => item.delayProgress)), 0);
+  for (const item of timing) {
+    assert.ok(Number.isFinite(item.delayProgress) && item.delayProgress >= 0);
+    assert.ok(Number.isFinite(item.durationProgress) && item.durationProgress > 0);
+    assert.ok(
+      item.delayProgress + item.durationProgress < 0.5,
+      'all decorative departure pieces must finish before the new native page mounts'
+    );
+  }
+  assert.ok(
+    Math.max(...schedule[1].map((item) => item.delayProgress)) <
+      Math.min(...schedule[0].map((item) => item.delayProgress))
+  );
+  assert.deepEqual(fragments.departureSchedule(groups), schedule);
+  for (const invalid of [null, [], [{ rect: groups[0].rect, cells: [] }]]) {
+    assert.equal(fragments.departureSchedule(invalid), null);
+  }
+});
+
+test('shared sizing responds to native paint area and glyph height within unchanged caps', () => {
+  const rect = { x: 30, y: 70, width: 280, height: 28 };
+  const smaller = fragments.pieceCount({ ...rect, width: 140 }, { lineHeight: 28 });
+  const ordinary = fragments.pieceCount(rect, { lineHeight: 28 });
+  const tallerGlyphs = fragments.pieceCount(rect, { lineHeight: 56 });
+  const image = fragments.pieceCount(rect, { image: true, lineHeight: 28 });
+  assert.ok(smaller >= 1 && ordinary > smaller);
+  assert.ok(tallerGlyphs >= 1 && tallerGlyphs < ordinary);
+  assert.ok(image >= 1 && image < ordinary, 'images need larger paint fragments than text');
+  for (const compact of [false, true]) {
+    const maximum = fragments.pieceCount(
+      { ...rect, width: 100000, height: 100000 },
+      {
+        lineHeight: 1,
+        compact,
+      }
+    );
+    assert.ok(Number.isInteger(maximum) && maximum > 0 && maximum <= 32);
+  }
+  assert.equal(fragments.pieceCount({ ...rect, width: NaN }), 0);
+  assert.equal(fragments.pieceCount({ ...rect, height: 0 }), 0);
+  for (const lineHeight of [NaN, Infinity, 0, -1]) {
+    assert.equal(fragments.pieceCount(rect, { lineHeight }), 0);
+  }
+  assert.ok(Object.isFrozen(fragments.settings) && Object.isFrozen(fragments.settings.shard));
+  assert.ok(
+    Object.isFrozen(fragments.settings.caps) &&
+      Object.values(fragments.settings.caps).every(Object.isFrozen)
+  );
+  assert.equal(fragments.settings.caps.compact.pieces, 40);
+  assert.equal(fragments.settings.caps.full.pieces, 96);
+  assert.ok(fragments.settings.caps.compact.layerPixels <= 3000000);
+  assert.ok(fragments.settings.caps.full.layerPixels <= 8000000);
+});
+
 test('late arrival keeps at least one second of staggered construction inside the unchanged ready budget', () => {
   for (const elapsedMs of [0, 750, 1400, 1700]) {
     const preparedMs = 160;
@@ -167,6 +238,69 @@ test('seeded angled shards cover fractional text and image owners without gaps o
   }
 });
 
+test('one heading mixes tiny glyph portions and larger word shards with exact native endpoints', () => {
+  const rect = { x: 30.25, y: 70.5, width: 790, height: 72 };
+  const glyphWidth = 24;
+  const glyphHeight = 52;
+  const glyphArea = glyphWidth * glyphHeight;
+  const camera = fragments.view(pose, 1440, 900);
+  const shifted = {
+    position: pose.position.map((value, index) => value + (index === 2 ? -128 : 0)),
+    target: pose.target.map((value, index) => value + (index === 2 ? -128 : 0)),
+  };
+  const finalView = fragments.view(shifted, 1440, 900);
+  const anchor = fragments.unproject(camera, camera.origin, 44);
+  for (const seed of [1, 17, 71, 72]) {
+    const cells = fragments.partition(rect, { count: 32, seed }, { maxPieces: 96 });
+    assertCoverage(rect, cells);
+    const areas = cells.map((cell) => signedArea(cell.polygon));
+    assert.ok(
+      cells.some((cell, index) => cell.width < glyphWidth * 0.5 && areas[index] < glyphArea * 0.4),
+      'the same owner must include portions smaller than one glyph'
+    );
+    assert.ok(
+      areas.some((area) => area >= glyphArea * 0.5 && area <= glyphArea * 2),
+      'ordinary glyph-scale paint fragments must remain present'
+    );
+    assert.ok(
+      cells.some((cell, index) => cell.width >= glyphWidth * 3 && areas[index] >= glyphArea * 3),
+      'larger word portions must coexist with tiny shards'
+    );
+    assert.ok(Math.max(...areas) / Math.min(...areas) > 50);
+    for (const cell of cells) {
+      const prepared = fragments.piece(cell, camera);
+      assert.ok(prepared);
+      const expected = [
+        [cell.x, cell.y],
+        [cell.x + cell.width, cell.y],
+        [cell.x + cell.width, cell.y + cell.height],
+        [cell.x, cell.y + cell.height],
+      ];
+      for (const direction of ['forward', 'backward']) {
+        for (const [phase, progress, view] of [
+          ['depart', 0, camera],
+          ['arrive', 1, finalView],
+        ]) {
+          const sample = fragments.sample(prepared, { phase, progress, view, direction, anchor });
+          assert.ok(sample);
+          assert.equal(sample.opacity, 1);
+          assert.deepEqual(sample.facets, []);
+          sample.points.forEach((point, index) => assertPoint(point, expected[index]));
+          prepared.polygon.forEach(([u, v], index) => {
+            const native = sample.points[0].map(
+              (value, coordinate) =>
+                value +
+                (sample.points[1][coordinate] - value) * u +
+                (sample.points[3][coordinate] - value) * v
+            );
+            assertPoint(native, cell.polygon[index]);
+          });
+        }
+      }
+    }
+  }
+});
+
 test('combined piece cap rejects excessive allocation before even reading the paint owner', () => {
   const unreadable = new Proxy(
     {},
@@ -274,7 +408,7 @@ test('departure begins at native identity, scatters in world space and safely va
   assert.deepEqual(start.facets, [], 'native content has no remaining prism sides');
   const middle = fragments.sample(prepared, {
     phase: 'depart',
-    progress: 0.5,
+    progress: 0.25,
     view: camera,
   });
   assert.notDeepEqual(middle.points, start.points);
@@ -331,6 +465,18 @@ test('arrival emerges from an admitted world anchor and ends exactly at the curr
       }),
       null
     );
+  for (const direction of [null, 0, NaN, 'sideways']) {
+    assert.equal(
+      fragments.sample(prepared, {
+        phase: 'arrive',
+        progress: 0.5,
+        direction,
+        view: camera,
+        anchor,
+      }),
+      null
+    );
+  }
   assert.equal(
     fragments.sample(prepared, {
       phase: 'arrive',
@@ -382,7 +528,7 @@ test('angled triangular and larger shards have finite visible prism sides during
     for (const phase of ['depart', 'arrive']) {
       const sample = fragments.sample(prepared, {
         phase,
-        progress: 0.5,
+        progress: phase === 'depart' ? 0.25 : 0.5,
         view: camera,
         anchor: fragments.unproject(camera, camera.origin, 40),
       });
@@ -419,11 +565,241 @@ test('a frontal shard centered on the optical axis hides its rear prism sides', 
   };
   const sample = fragments.sample(prepared, {
     phase: 'depart',
-    progress: 0.5,
+    progress: 0.25,
     view: camera,
   });
   assert.ok(sample && prepared.thickness > 0);
   assert.deepEqual(sample.facets, [], 'rear extrusion must not paint over the frontal silhouette');
+});
+
+test('forward departure crosses behind the camera while reverse departure retreats into its room', () => {
+  for (const [width, height] of [
+    [1440, 900],
+    [390, 844],
+  ]) {
+    for (const offset of [0, -128, -384]) {
+      const shifted = {
+        position: pose.position.map((value, index) => value + (index === 2 ? offset : 0)),
+        target: pose.target.map((value, index) => value + (index === 2 ? offset : 0)),
+      };
+      const camera = fragments.view(shifted, width, height);
+      const rect = {
+        x: camera.origin[0] - 40,
+        y: camera.origin[1] - 15,
+        width: 80,
+        height: 30,
+      };
+      const prepared = {
+        ...fragments.piece(rect, camera, { seed: 73 }),
+        scatter: [0, 0, 0],
+        roll: 0,
+        tilt: 0,
+        pitch: 0,
+      };
+      const sourceAnchor = fragments.unproject(camera, camera.origin, 44);
+      const samples = ['forward', 'backward'].map((direction) =>
+        [0, 0.2, 0.3, 0.8, 1].map((progress) =>
+          fragments.sample(prepared, {
+            phase: 'depart',
+            progress,
+            direction,
+            view: camera,
+            sourceAnchor,
+          })
+        )
+      );
+      for (const [start] of samples) {
+        assert.equal(start.opacity, 1);
+        assert.deepEqual(start.facets, []);
+        assertPoint(start.points[0], [rect.x, rect.y]);
+        assertPoint(start.points[2], [rect.x + rect.width, rect.y + rect.height]);
+      }
+      const [forward, backward] = samples;
+      assert.ok(forward[1] && forward[2]);
+      assert.ok(forward[1].depth < forward[0].depth && forward[2].depth < forward[1].depth);
+      assert.equal(forward[3], null);
+      assert.equal(forward[4], null, 'crossed fragments must be culled behind the near plane');
+      assert.ok(backward.every(Boolean));
+      assert.ok(backward[1].depth > backward[0].depth && backward[2].depth > backward[1].depth);
+      assert.ok(backward[3].depth > backward[2].depth);
+      assert.ok(backward[3].opacity < backward[1].opacity);
+      assert.ok(
+        Math.abs(signedArea(backward[3].points)) < Math.abs(signedArea(backward[1].points))
+      );
+      assertPoint([backward[4].depth], [44]);
+      assert.equal(backward[4].opacity, 0);
+    }
+  }
+});
+
+test('reverse departures reject behind and near source anchors in translated and rotated rooms', () => {
+  for (const cameraPose of [pose, { position: [128, -31, -100], target: [130, -33, -104] }]) {
+    for (const [width, height] of [
+      [1440, 900],
+      [390, 844],
+    ]) {
+      const camera = fragments.view(cameraPose, width, height);
+      const rect = {
+        x: camera.origin[0] - 40,
+        y: camera.origin[1] - 15,
+        width: 80,
+        height: 30,
+      };
+      const prepared = {
+        ...fragments.piece(rect, camera, { seed: 73 }),
+        scatter: [0, 0, 0],
+        roll: 0,
+        tilt: 0,
+        pitch: 0,
+      };
+      const unsafeAnchors = [-12, 0, 0.4, 4, 11.99].map((depth) =>
+        camera.position.map((value, index) => value + camera.forward[index] * depth)
+      );
+      const anchors = [...unsafeAnchors, null, {}, [], [NaN, 0, 0], [0, 0, Infinity]];
+      for (const sourceAnchor of anchors) {
+        const samples = [0, 0.25, 0.6].map((progress) =>
+          fragments.sample(prepared, {
+            phase: 'depart',
+            direction: 'backward',
+            progress,
+            view: camera,
+            sourceAnchor,
+          })
+        );
+        assert.ok(samples.every(Boolean));
+        assert.ok(
+          samples[1].depth > samples[0].depth && samples[2].depth > samples[1].depth,
+          'an unsafe source anchor must not pull reverse departure toward the camera'
+        );
+        assert.ok(
+          samples[1].opacity > samples[2].opacity,
+          'retreating fallback shards must keep actual scene depth haze'
+        );
+        for (const sample of samples) {
+          assert.ok(Number.isFinite(sample.opacity) && sample.opacity > 0 && sample.opacity <= 1);
+          assert.ok(
+            sample.points.every((point) =>
+              point.every(
+                (value) => Number.isFinite(value) && Math.abs(value) <= Math.max(width, height) * 8
+              )
+            )
+          );
+        }
+      }
+    }
+  }
+});
+
+test('source anchor admission stays tied to the captured plane as the live camera crosses its depth', () => {
+  for (const cameraPose of [pose, { position: [128, -31, -100], target: [130, -33, -104] }]) {
+    const camera = fragments.view(cameraPose, 1440, 900);
+    const rect = {
+      x: camera.origin[0] - 40,
+      y: camera.origin[1] - 15,
+      width: 80,
+      height: 30,
+    };
+    const prepared = {
+      ...fragments.piece(rect, camera, { seed: 73 }),
+      scatter: [0, 0, 0],
+      roll: 0,
+      tilt: 0,
+      pitch: 0,
+    };
+    for (const [anchorDepth, cameraStep] of [
+      [11.99, -0.02],
+      [12.01, 0.02],
+    ]) {
+      const sourceAnchor = fragments.unproject(camera, camera.origin, anchorDepth);
+      const shifted = {
+        position: cameraPose.position.map(
+          (value, index) => value + camera.forward[index] * cameraStep
+        ),
+        target: cameraPose.target.map((value, index) => value + camera.forward[index] * cameraStep),
+      };
+      const nextView = fragments.view(shifted, 1440, 900);
+      const samples = [camera, nextView].map((view) =>
+        fragments.sample(prepared, {
+          phase: 'depart',
+          direction: 'backward',
+          progress: 0.5,
+          view,
+          sourceAnchor,
+        })
+      );
+      assert.ok(samples.every(Boolean));
+      assertPoint([samples[1].depth - samples[0].depth], [-cameraStep]);
+      assert.ok(Math.abs(samples[1].opacity - samples[0].opacity) < 0.01);
+      samples[1].points.forEach((point, index) => {
+        assert.ok(
+          Math.hypot(
+            ...point.map((value, coordinate) => value - samples[0].points[index][coordinate])
+          ) < 0.1,
+          'a tiny camera step must not switch the entire world-space destination'
+        );
+      });
+    }
+  }
+});
+
+test('backward arrival safely crosses the near plane from behind and settles at native paint', () => {
+  for (const [width, height] of [
+    [1440, 900],
+    [390, 844],
+  ]) {
+    const camera = fragments.view(pose, width, height);
+    const rect = {
+      x: camera.origin[0] - 40,
+      y: camera.origin[1] - 15,
+      width: 80,
+      height: 30,
+    };
+    const prepared = {
+      ...fragments.piece(rect, camera, { seed: 73 }),
+      scatter: [0, 0, 0],
+      roll: 0,
+      tilt: 0,
+      pitch: 0,
+    };
+    const anchor = fragments.unproject(camera, camera.origin, 44);
+    const sampleAt = (progress) =>
+      fragments.sample(prepared, {
+        phase: 'arrive',
+        direction: 'backward',
+        progress,
+        view: camera,
+        anchor,
+      });
+    assert.equal(sampleAt(0), null);
+    assert.equal(sampleAt(0.2), null);
+    const visible = [0.5, 0.7, 0.9].map(sampleAt);
+    visible.forEach((sample, index) => {
+      assert.ok(sample && sample.depth > 0.5);
+      assert.ok(Number.isFinite(sample.opacity) && sample.opacity > 0 && sample.opacity <= 1);
+      assert.ok(
+        sample.points.every((point) =>
+          point.every(
+            (value) => Number.isFinite(value) && Math.abs(value) <= Math.max(width, height) * 8
+          )
+        )
+      );
+      if (index > 0) {
+        assert.ok(sample.depth > visible[index - 1].depth);
+        assert.ok(
+          Math.abs(signedArea(sample.points)) < Math.abs(signedArea(visible[index - 1].points))
+        );
+      }
+    });
+    for (let step = 0; step <= 100; step++) {
+      const sample = sampleAt(step / 100);
+      if (sample) assert.ok(sample.depth > 0.5 && Number.isFinite(sample.opacity));
+    }
+    const final = sampleAt(1);
+    assert.equal(final.opacity, 1);
+    assert.deepEqual(final.facets, []);
+    assertPoint(final.points[0], [rect.x, rect.y]);
+    assertPoint(final.points[2], [rect.x + rect.width, rect.y + rect.height]);
+  }
 });
 
 test('piece admission rejects malformed, degenerate and nonconvex shard outlines', () => {

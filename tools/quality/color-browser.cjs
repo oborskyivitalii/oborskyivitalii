@@ -100,23 +100,32 @@ function observeFragmentFlight() {
   const sample = () => {
     if (observation.samples.length >= 400) return;
     const tiles = [...document.querySelectorAll('.fragment-piece')];
+    const scene = document.querySelector('.space-scene');
     if (content.dataset.fragmentPhase === 'arrive')
       observeHeadingSeam(tiles, Number(content.dataset.fragmentSettled || 0));
     observation.samples.push({
       timeMs: performance.now(),
+      page: document.body.dataset.page,
+      direction: scene.dataset.direction,
+      camera: scene.dataset.camera,
+      y: scrollY,
+      busy: content.hasAttribute('aria-busy'),
+      inert: content.inert,
       phase: content.dataset.fragmentPhase || null,
       elapsedMs: Number(content.dataset.fragmentElapsedMs || 0),
       durationMs: Number(content.dataset.fragmentDurationMs || 0),
       settled: Number(content.dataset.fragmentSettled || 0),
       owners: Number(content.dataset.fragmentOwners || 0),
       pieces: tiles.length,
+      layers: document.querySelectorAll('.fragment-layer').length,
       visiblePieces: tiles.filter((tile) => Number(tile.style.opacity || 0) > 0).length,
       transformedPieces: tiles.filter((tile) => tile.style.transform.startsWith('matrix3d('))
         .length,
       nativeOpacity: Number(content.style.opacity || 1),
-      nativeHidden: [
-        ...content.querySelectorAll('main h1, main h2, main h3, main p, main img'),
-      ].filter((owner) => owner.style.visibility === 'hidden').length,
+      nativeHidden: [...content.querySelectorAll('[style*="visibility"]')].filter(
+        (owner) => owner.style.visibility === 'hidden'
+      ).length,
+      headingSelected: content.querySelector('main h1')?.style.visibility === 'hidden',
       fragmentFields: Object.keys(content.dataset).filter((key) => key.startsWith('fragment')),
     });
   };
@@ -208,8 +217,25 @@ function validateFragmentAssembly(observation, measured) {
   assert.equal(final.nativeHidden, 0, 'native owners remain hidden after handoff');
   assert.equal(final.nativeOpacity, 1, 'native reading content was not restored');
   assert.deepEqual(final.fragmentFields, [], 'fragment counters remain after handoff');
-  assert.ok(observation.headingSeam, 'settled incoming heading seam was not observed');
-  const seam = observation.headingSeam;
+  validateHeadingSeam(observation.headingSeam);
+  validateFragmentTiming(measured);
+  assert.ok(
+    arriving.every((row) => row.durationMs === first.durationMs),
+    'incoming duration changed during assembly'
+  );
+  assert.ok(
+    Math.abs(durationMs - first.durationMs) <= measured.paintIntervalsMs.max + 25,
+    'observed assembly does not match its declared painted duration'
+  );
+  return {
+    durationMs,
+    settledCounts: [...counts],
+    nativeHandoff: final,
+    measured,
+  };
+}
+function validateHeadingSeam(seam) {
+  assert.ok(seam, 'settled incoming heading seam was not observed');
   assert.ok(
     Number.isFinite(seam.boxDeltaPx) && seam.boxDeltaPx <= 0.0001 && seam.boxDeltaPx >= 0,
     'heading seam was sampled before its border box settled'
@@ -231,6 +257,8 @@ function validateFragmentAssembly(observation, measured) {
   );
   assert.equal(seam.glyphDeltaPx, observedGlyphDeltaPx, 'heading seam summary is inconsistent');
   assert.ok(observedGlyphDeltaPx <= 0.75, 'incoming heading glyphs shift at native handoff');
+}
+function validateFragmentTiming(measured) {
   for (const value of [
     measured.paintCallbackMs?.p95,
     measured.paintCallbackMs?.max,
@@ -239,14 +267,6 @@ function validateFragmentAssembly(observation, measured) {
   ])
     assert.ok(Number.isFinite(value) && value >= 0, 'missing finite flight timing');
   assert.ok(Number.isInteger(measured.paints), 'missing integer actual flight paint count');
-  assert.ok(
-    arriving.every((row) => row.durationMs === first.durationMs),
-    'incoming duration changed during assembly'
-  );
-  assert.ok(
-    Math.abs(durationMs - first.durationMs) <= measured.paintIntervalsMs.max + 25,
-    'observed assembly does not match its declared painted duration'
-  );
   assert.ok(measured.paints >= flightBudgets.minimumPaints, 'missing actual flight paint work');
   assert.ok(measured.paintCallbackMs.p95 <= flightBudgets.paintCallbackP95Ms, 'slow flight p95');
   assert.ok(
@@ -258,11 +278,59 @@ function validateFragmentAssembly(observation, measured) {
     measured.readyMs > 0 && measured.readyMs <= flightBudgets.readyMaxMs,
     'slow flight ready'
   );
+}
+function validateFragmentRoute(observation, measured, expected) {
+  const active = observation.samples.filter((sample) => sample.phase),
+    final = observation.samples.at(-1);
+  for (const phase of ['depart', 'arrive']) {
+    const painted = active.filter((sample) => sample.phase === phase);
+    assert.ok(
+      painted.some(
+        (sample) => sample.pieces > 0 && sample.visiblePieces > 0 && sample.transformedPieces > 0
+      ),
+      expected.from + '→' + expected.to + ' lacks actual ' + phase + ' fragments'
+    );
+    assert.ok(painted.every((sample) => sample.direction === expected.direction));
+    assert.ok(
+      painted.every((sample) => sample.page === (phase === 'depart' ? expected.from : expected.to)),
+      'fragments belong to the wrong native route'
+    );
+  }
+  assert.equal(final.page, expected.to);
+  assert.equal(final.phase, null);
+  assert.equal(final.pieces, 0);
+  assert.equal(final.layers, 0);
+  assert.equal(final.nativeHidden, 0);
+  assert.equal(final.nativeOpacity, 1);
+  assert.equal(final.busy, false);
+  assert.equal(final.inert, false);
+  assert.deepEqual(final.fragmentFields, []);
+  const sourceCamera = JSON.parse(expected.sourceCamera || active[0].camera),
+    targetCamera = JSON.parse(final.camera);
+  for (const camera of [sourceCamera, targetCamera])
+    for (const vector of [camera.position, camera.target])
+      assert.ok(Array.isArray(vector) && vector.length === 3 && vector.every(Number.isFinite));
+  if (sourceCamera.position[2] !== targetCamera.position[2])
+    assert.equal(
+      expected.direction,
+      targetCamera.position[2] < sourceCamera.position[2] ? 'forward' : 'backward',
+      'fragment direction differs from the actual camera depth journey'
+    );
+  if (active.some((sample) => sample.phase === 'arrive' && sample.headingSelected))
+    validateHeadingSeam(observation.headingSeam);
+  validateFragmentTiming(measured);
   return {
-    durationMs,
-    settledCounts: [...counts],
+    ...expected,
+    departurePieces: Math.max(
+      ...active.filter((sample) => sample.phase === 'depart').map((sample) => sample.pieces)
+    ),
+    arrivalPieces: Math.max(
+      ...active.filter((sample) => sample.phase === 'arrive').map((sample) => sample.pieces)
+    ),
+    headingSeam: observation.headingSeam || null,
     nativeHandoff: final,
     measured,
+    observation,
   };
 }
 async function settled(page, route) {
@@ -367,8 +435,8 @@ async function fragmentAssembly(page) {
     evidence.measured = motion.summarize(evidence.observation, 'flight');
     Object.assign(evidence, validateFragmentAssembly(evidence.observation, evidence.measured));
 
-    // Use the identical forward route for cancellation, avoiding reverse-anchor
-    // admission as a separate concern of this incoming-only refinement.
+    // Keep the same forward route for the established Off cancellation check.
+    // All-route and reverse choreography have their own focused observations.
     await preferences(page, 'fragment-flight-preview', false);
     await travel(page, 'index');
     await preferences(page, 'fragment-flight-preview', true);
@@ -409,6 +477,7 @@ async function fragmentAssembly(page) {
     evidence.offFreeze = { before, after };
     await page.locator('#space-motion').click();
     await settled(page, 'research');
+    await page.locator('.appearance summary').click();
     await preferences(page, 'fragment-flight-preview', false);
     await travel(page, 'index');
     return evidence;
@@ -431,6 +500,130 @@ async function fragmentAssembly(page) {
     throw error;
   }
 }
+async function triggerFragmentTrip(page, trip, direction) {
+  if (trip.trigger === 'edge') {
+    await edge(page, trip.to, direction === 'forward' ? 1 : -1);
+    return;
+  }
+  if (trip.trigger === 'history') {
+    await page.goBack();
+    await settled(page, trip.to);
+    return;
+  }
+  const selectors = {
+    wordmark: '.site-header .wordmark',
+    'footer-home': 'footer a[href="./#about"]',
+    footer: 'footer a[href="credits.html"]',
+    'cross-link': '#site-content main a[href="' + trip.to + '.html"]',
+    header: '.site-header nav a[href="' + trip.to + '.html"]',
+  };
+  const link = page.locator(selectors[trip.trigger]);
+  if (trip.trigger === 'cross-link') await link.first().evaluate((element) => element.click());
+  else await link.click();
+  await settled(page, trip.to);
+}
+async function fragmentRouteCoverage(page) {
+  const evidence = { routes: [], interruption: null };
+  try {
+    await preferences(page, 'fragment-flight-preview', true);
+    const order = await page.evaluate(() => [...window.SiteRoutes.order]);
+    assert.deepEqual(order, ['index', 'research', 'writing', 'talks', 'credits']);
+    const cases = [
+      { to: 'research', trigger: 'header', position: 'middle' },
+      { to: 'writing', trigger: 'edge', position: 'bottom' },
+      { to: 'talks', trigger: 'header', position: 'middle' },
+      { to: 'credits', trigger: 'footer', position: 'bottom' },
+      { to: 'talks', trigger: 'edge', position: 'top' },
+      { to: 'writing', trigger: 'header', position: 'middle' },
+      { to: 'research', trigger: 'header', position: 'bottom' },
+      { to: 'index', trigger: 'wordmark', position: 'middle' },
+      { to: 'writing', trigger: 'cross-link', position: 'middle' },
+      { to: 'credits', trigger: 'footer', position: 'bottom' },
+      { to: 'index', trigger: 'footer-home', position: 'bottom' },
+      { to: 'credits', trigger: 'history', position: 'preserved' },
+      { to: 'index', trigger: 'wordmark', position: 'bottom' },
+    ];
+    for (const trip of cases) {
+      if (trip.position !== 'preserved') {
+        await page.evaluate((position) => {
+          const max = Math.max(0, document.documentElement.scrollHeight - innerHeight);
+          scrollTo({
+            top: position === 'bottom' ? max : position === 'middle' ? max / 2 : 0,
+            behavior: 'instant',
+          });
+        }, trip.position);
+        await page.waitForTimeout(80);
+      }
+      const before = await state(page),
+        direction = order.indexOf(trip.to) > order.indexOf(before.page) ? 'forward' : 'backward';
+      evidence.pending = { ...trip, from: before.page, direction, before };
+      await page.evaluate(observeFragmentFlight);
+      await triggerFragmentTrip(page, trip, direction);
+      const observation = await page.evaluate(() => window.__finishFragmentFlight()),
+        measured = motion.summarize(observation, 'flight');
+      Object.assign(evidence.pending, { observation, measured });
+      evidence.routes.push(
+        validateFragmentRoute(observation, measured, {
+          ...trip,
+          from: before.page,
+          direction,
+          sourceY: before.y,
+          sourceMax: before.max,
+          sourceCamera: before.scene.camera,
+        })
+      );
+      delete evidence.pending;
+    }
+
+    // Reverse a real visible departure through VO while Home is still mounted.
+    await page.evaluate(observeFragmentFlight);
+    await page.locator('.site-header nav a[href="research.html"]').click();
+    await page.waitForFunction(
+      () =>
+        document.getElementById('site-content').dataset.fragmentPhase === 'depart' &&
+        [...document.querySelectorAll('.fragment-piece')].some(
+          (piece) => Number(piece.style.opacity) > 0
+        ),
+      null,
+      { polling: 20, timeout: 5000 }
+    );
+    const interrupted = await page.evaluate(() => window.__finishFragmentFlight());
+    evidence.pending = { trigger: 'wordmark-interruption', interrupted };
+    await page.evaluate(observeFragmentFlight);
+    const retarget = await page.evaluate(() => {
+      const scene = document.querySelector('.space-scene'),
+        before = scene.dataset.camera;
+      document.querySelector('.site-header .wordmark').click();
+      return { before, after: scene.dataset.camera, nativePage: document.body.dataset.page };
+    });
+    assert.equal(retarget.nativePage, 'index');
+    assert.equal(retarget.after, retarget.before, 'VO interruption preserves the displayed camera');
+    await settled(page, 'index');
+    const observation = await page.evaluate(() => window.__finishFragmentFlight()),
+      measured = motion.summarize(observation, 'flight');
+    Object.assign(evidence.pending, { retarget, observation, measured });
+    evidence.interruption = {
+      ...validateFragmentRoute(observation, measured, {
+        from: 'index',
+        to: 'index',
+        direction: 'backward',
+        trigger: 'wordmark-interruption',
+      }),
+      retarget,
+      interrupted,
+    };
+    delete evidence.pending;
+    return evidence;
+  } catch (error) {
+    const pending = await page
+      .evaluate(() => window.__finishFragmentFlight?.() || null)
+      .catch(() => null);
+    if (pending) evidence.pending = { ...evidence.pending, observation: pending };
+    evidence.failureState = await page.evaluate(fragmentCleanupState).catch(() => null);
+    error.fragmentRouteObservation = evidence;
+    throw error;
+  }
+}
 function fragmentCancellationReady(route) {
   const content = document.getElementById('site-content');
   return (
@@ -441,7 +634,7 @@ function fragmentCancellationReady(route) {
     !Object.keys(content.dataset).some((key) => key.startsWith('fragment')) &&
     Number(content.style.opacity || 1) === 1 &&
     content.inert === false &&
-    [...content.querySelectorAll('main h1, main h2, main h3, main p, main img')].every(
+    [...content.querySelectorAll('[style*="visibility"]')].every(
       (owner) => owner.style.visibility !== 'hidden'
     )
   );
@@ -461,9 +654,9 @@ function fragmentCleanupState() {
     layers: document.querySelectorAll('.fragment-layer').length,
     fragmentFields: Object.keys(content.dataset).filter((key) => key.startsWith('fragment')),
     nativeOpacity: Number(content.style.opacity || 1),
-    nativeHidden: [
-      ...content.querySelectorAll('main h1, main h2, main h3, main p, main img'),
-    ].filter((owner) => owner.style.visibility === 'hidden').length,
+    nativeHidden: [...content.querySelectorAll('[style*="visibility"]')].filter(
+      (owner) => owner.style.visibility === 'hidden'
+    ).length,
     motion: document.getElementById('space-motion').textContent,
   };
 }
@@ -490,11 +683,15 @@ async function scenario(browser, url, artifact, engine, width, theme) {
       engine: document.querySelector('meta[name="site-engine"]').content,
       flight: document.getElementById('content-flight')?.checked,
       edge: document.getElementById('end-scroll')?.checked,
+      fragments: document.getElementById('fragment-flight-preview')?.checked,
     }));
     assert.equal(identity.id, 'color');
     assert.equal(identity.engine, artifact.variant.fingerprint);
     assert.equal(identity.flight, true);
     assert.equal(identity.edge, true);
+    assert.equal(identity.fragments, true, 'fragment flight is the default Color presentation');
+    // Preserve the existing plane observations as an explicit legacy comparison.
+    await preferences(page, 'fragment-flight-preview', false);
     assert.equal(
       await page.locator('#surface-mode,[data-glass-visible]').count(),
       0,
@@ -535,9 +732,13 @@ async function scenario(browser, url, artifact, engine, width, theme) {
     assert.equal((await state(page)).page, 'research', 'disabled edge scrolling remains native');
     await preferences(page, 'end-scroll', true);
     await travel(page, 'credits');
+    await page.evaluate(() =>
+      scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' })
+    );
+    await page.waitForTimeout(900);
     await page.mouse.wheel(0, 320);
     await page.waitForTimeout(350);
-    assert.equal((await state(page)).page, 'credits', 'Credits stays outside itinerary');
+    assert.equal((await state(page)).page, 'credits', 'Credits is the last itinerary route');
     await travel(page, 'index');
     await page.waitForTimeout(900);
     await page.mouse.wheel(0, -320);
@@ -545,6 +746,7 @@ async function scenario(browser, url, artifact, engine, width, theme) {
     assert.equal((await state(page)).page, 'index', 'Home has no preceding route');
     colorPaint(await state(page));
     const fragments = await fragmentAssembly(page);
+    const fragmentRoutes = await fragmentRouteCoverage(page);
     colorPaint(await state(page));
     assert.deepEqual(errors, []);
     return {
@@ -565,14 +767,24 @@ async function scenario(browser, url, artifact, engine, width, theme) {
         creditsBoundary: true,
         homeBoundary: true,
         retiredReadingEffectAbsent: true,
+        defaultFragments: true,
+        allRouteFragments: true,
+        interruptedFragments: true,
       },
       home: { motion: homeMotion, scroll: homeScroll, edge: homeEdge },
       flight,
       fragments,
+      fragmentRoutes,
     };
   } finally {
     await context.close();
   }
+}
+function failedScenario(error, engine, width, theme) {
+  const row = { engine, width, theme, pass: false, error: error.message };
+  if (error.fragmentObservation) row.fragments = error.fragmentObservation;
+  if (error.fragmentRouteObservation) row.fragmentRoutes = error.fragmentRouteObservation;
+  return row;
 }
 async function main(options = {}) {
   const artifact = JSON.parse(fs.readFileSync(process.env.SITE_ARTIFACT_MANIFEST)),
@@ -597,14 +809,7 @@ async function main(options = {}) {
               rows.push(await scenario(browser, url, artifact, engine, width, theme));
             } catch (error) {
               pass = false;
-              rows.push({
-                engine,
-                width,
-                theme,
-                pass: false,
-                error: error.message,
-                ...(error.fragmentObservation ? { fragments: error.fragmentObservation } : {}),
-              });
+              rows.push(failedScenario(error, engine, width, theme));
             }
           }
       } finally {
@@ -640,4 +845,6 @@ module.exports = {
   validateFragmentAssembly,
   fragmentAssembly,
   fragmentCancellationReady,
+  validateFragmentRoute,
+  fragmentRouteCoverage,
 };

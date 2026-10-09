@@ -1,6 +1,54 @@
 'use strict';
 // Pure bounded geometry; the effect producer serializes this exact factory.
 module.exports = function ({ cameraView }) {
+  // Fragment policy is shared by every route and both presentation directions.
+  // Pixel dimensions describe native paint; depth describes scene world units.
+  const settings = Object.freeze({
+    preparationMs: 160,
+    acquisitionMs: 80,
+    allocationMs: 110,
+    nativeDepth: 12,
+    facetGutterPx: 36,
+    arrivalDurationMs: 1800,
+    departureEndProgress: 0.46,
+    departureReleaseProgress: 0.2,
+    depthHaze: 22,
+    motion: Object.freeze({
+      forwardDepartureDepths: 2.5,
+      backwardDepartureDepths: 3,
+      reverseArrivalDepths: 0.65,
+      minimumScale: 0.08,
+      curvedSpread: 0.65,
+      arrivalVisibleFraction: 0.2,
+      departureFadeFraction: 0.25,
+    }),
+    shard: Object.freeze({
+      minSizePx: 2,
+      textWidthPx: 28,
+      imageWidthPx: 72,
+      maxOwnerPieces: 32,
+      thicknessMinPx: 2,
+      thicknessMaxPx: 14,
+      rollRadians: 1.8,
+      tiltRadians: 1.6,
+    }),
+    caps: Object.freeze({
+      compact: Object.freeze({
+        pieces: 40,
+        owners: 20,
+        descendants: 600,
+        textBytes: 12288,
+        layerPixels: 3000000,
+      }),
+      full: Object.freeze({
+        pieces: 96,
+        owners: 32,
+        descendants: 1500,
+        textBytes: 32768,
+        layerPixels: 8000000,
+      }),
+    }),
+  });
   const finiteVector = (value, length) =>
     Array.isArray(value) && value.length === length && value.every(Number.isFinite);
   const validRect = (rect) =>
@@ -16,7 +64,18 @@ module.exports = function ({ cameraView }) {
       points.reduce((sum, point) => sum + point[index] / points.length, 0)
     );
   const smooth = (progress) => progress * progress * (3 - 2 * progress);
-  const arrivalDurationMs = 1800;
+  const arrivalDurationMs = settings.arrivalDurationMs;
+
+  function pieceCount(rect, { image = false, lineHeight = 28 } = {}) {
+    if (!validRect(rect) || !Number.isFinite(lineHeight) || lineHeight <= 0) return 0;
+    const targetArea = image
+      ? settings.shard.imageWidthPx ** 2
+      : settings.shard.textWidthPx * lineHeight;
+    return Math.max(
+      1,
+      Math.min(settings.shard.maxOwnerPieces, Math.ceil((rect.width * rect.height) / targetArea))
+    );
+  }
 
   function arrivalWindow(elapsedMs, preparedMs) {
     if (![elapsedMs, preparedMs].every((value) => Number.isFinite(value) && value >= 0)) return 0;
@@ -67,6 +126,17 @@ module.exports = function ({ cameraView }) {
       };
     }
     return result;
+  }
+
+  function departureSchedule(groups) {
+    const arrivals = arrivalSchedule(groups);
+    if (!arrivals) return null;
+    return arrivals.map((cells) =>
+      cells.map(({ delayMs }) => ({
+        delayProgress: (delayMs / arrivalDurationMs) * settings.departureReleaseProgress * 2,
+        durationProgress: settings.departureEndProgress - settings.departureReleaseProgress,
+      }))
+    );
   }
 
   function randomSource(seed) {
@@ -148,7 +218,44 @@ module.exports = function ({ cameraView }) {
     return result;
   }
 
-  function partition(rect, { count, seed = 1, minSize = 2 }, { maxPieces, usedPieces = 0 }) {
+  function splitPolygon(points, random, minSize, fine) {
+    const bounds = polygonBounds(points);
+    for (let attempt = 0; attempt < 12; attempt++) {
+      const fineCut = fine && attempt < 6;
+      const angle =
+        (bounds.width >= bounds.height ? 0 : Math.PI / 2) +
+        (random() - 0.5) * (fineCut ? 0.16 : 1.5);
+      const normal = [Math.cos(angle), Math.sin(angle)];
+      const distances = points.map((point) => point[0] * normal[0] + point[1] * normal[1]);
+      const low = Math.min(...distances);
+      const fraction = fineCut ? 0.04 + random() * 0.16 : 0.18 + random() * 0.64;
+      const offset = low + (Math.max(...distances) - low) * fraction;
+      const candidate = [
+        cutPolygon(points, normal, offset, 1),
+        cutPolygon(points, normal, offset, -1),
+      ];
+      if (
+        candidate.every((part) => {
+          const box = polygonBounds(part);
+          return (
+            part.length >= 3 &&
+            part.length <= 10 &&
+            box.width >= minSize &&
+            box.height >= minSize &&
+            polygonArea(part) >= minSize * minSize
+          );
+        })
+      )
+        return candidate;
+    }
+    return null;
+  }
+
+  function partition(
+    rect,
+    { count, seed = 1, minSize = settings.shard.minSizePx },
+    { maxPieces, usedPieces = 0 }
+  ) {
     // Validate the combined transaction allowance before reading/cloning an owner.
     if (
       !Number.isInteger(maxPieces) ||
@@ -176,42 +283,23 @@ module.exports = function ({ cameraView }) {
     const random = randomSource(seed);
     while (cells.length < count) {
       let chosen = -1;
-      let largest = 0;
+      const smallLeaf = cells.length % 4 === 0;
+      const ranked = [];
       for (let index = 0; index < cells.length; index++) {
         const cell = polygonBounds(cells[index]);
         const area = polygonArea(cells[index]) * (0.65 + random() * 0.7);
-        if ((cell.width >= minSize * 2 || cell.height >= minSize * 2) && area > largest) {
-          chosen = index;
-          largest = area;
-        }
+        const priority = smallLeaf ? -area : area;
+        if (cell.width >= minSize * 2 || cell.height >= minSize * 2)
+          ranked.push({ index, priority });
       }
-      if (chosen === -1) return null;
-      const points = cells[chosen];
-      const bounds = polygonBounds(points);
+      ranked.sort((a, b) => b.priority - a.priority);
       let halves = null;
-      for (let attempt = 0; attempt < 12 && !halves; attempt++) {
-        const angle = (bounds.width >= bounds.height ? 0 : Math.PI / 2) + (random() - 0.5) * 1.5;
-        const normal = [Math.cos(angle), Math.sin(angle)];
-        const distances = points.map((point) => point[0] * normal[0] + point[1] * normal[1]);
-        const low = Math.min(...distances);
-        const offset = low + (Math.max(...distances) - low) * (0.18 + random() * 0.64);
-        const candidate = [
-          cutPolygon(points, normal, offset, 1),
-          cutPolygon(points, normal, offset, -1),
-        ];
-        if (
-          candidate.every((part) => {
-            const box = polygonBounds(part);
-            return (
-              part.length >= 3 &&
-              part.length <= 10 &&
-              box.width >= minSize &&
-              box.height >= minSize &&
-              polygonArea(part) >= minSize * minSize
-            );
-          })
-        )
-          halves = candidate;
+      for (const item of ranked) {
+        halves = splitPolygon(cells[item.index], random, minSize, cells.length % 3 === 0);
+        if (halves) {
+          chosen = item.index;
+          break;
+        }
       }
       if (!halves) return null;
       cells.splice(chosen, 1, ...halves);
@@ -258,7 +346,7 @@ module.exports = function ({ cameraView }) {
     return finiteVector(result, 3) ? result : null;
   }
 
-  function quad(camera, rect, depth = 12) {
+  function quad(camera, rect, depth = settings.nativeDepth) {
     if (!validRect(rect)) return null;
     const { x, y, width, height } = rect;
     const corners = [
@@ -307,7 +395,7 @@ module.exports = function ({ cameraView }) {
     };
   }
 
-  function piece(rect, camera, { depth = 12, seed = rect?.seed ?? 1 } = {}) {
+  function piece(rect, camera, { depth = settings.nativeDepth, seed = rect?.seed ?? 1 } = {}) {
     if (!Number.isInteger(seed)) return null;
     const corners = quad(camera, rect, depth);
     if (!corners || !projectQuad(camera, corners)) return null;
@@ -346,13 +434,19 @@ module.exports = function ({ cameraView }) {
         (point[1] - rect.y) / rect.height,
       ]),
       thickness:
-        (Math.min(18, Math.max(4, Math.min(rect.width, rect.height) * (0.1 + random() * 0.22))) *
+        (Math.min(
+          settings.shard.thicknessMaxPx,
+          Math.max(
+            settings.shard.thicknessMinPx,
+            Math.min(rect.width, rect.height) * (0.1 + random() * 0.22)
+          )
+        ) *
           depth) /
         camera.focal,
       scatter: [(random() - 0.5) * depth, (random() - 0.5) * depth, (random() - 0.5) * depth * 0.3],
-      roll: (random() - 0.5) * 1.8,
-      tilt: (random() - 0.5) * 1.6,
-      pitch: (random() - 0.5) * 1.6,
+      roll: (random() - 0.5) * settings.shard.rollRadians,
+      tilt: (random() - 0.5) * settings.shard.tiltRadians,
+      pitch: (random() - 0.5) * settings.shard.tiltRadians,
     };
   }
 
@@ -422,20 +516,52 @@ module.exports = function ({ cameraView }) {
     return result;
   }
 
-  function sample(prepared, { phase, progress, view: camera, anchor = null }) {
+  function sample(
+    prepared,
+    { phase, progress, view: camera, anchor = null, sourceAnchor = null, direction = 'forward' }
+  ) {
     if (
       !prepared ||
       !camera ||
       !Number.isFinite(progress) ||
       progress < 0 ||
       progress > 1 ||
-      !['depart', 'arrive'].includes(phase)
+      !['depart', 'arrive'].includes(phase) ||
+      !['forward', 'backward'].includes(direction)
     )
       return null;
     const eased = smooth(progress);
     let corners;
     if (phase === 'depart') {
-      const origin = scatterCenter(center(prepared.corners), prepared, eased);
+      const nativeCenter = center(prepared.corners);
+      // Admit the source against the captured departure plane once. Rechecking
+      // against a moving camera would switch destinations halfway through a tile.
+      const anchorDepth = finiteVector(sourceAnchor, 3)
+        ? sourceAnchor.reduce(
+            (depth, value, index) =>
+              depth + (value - nativeCenter[index]) * prepared.forward[index],
+            prepared.depth
+          )
+        : -Infinity;
+      const end =
+        direction === 'forward'
+          ? nativeCenter.map(
+              (value, index) =>
+                value -
+                prepared.forward[index] * prepared.depth * settings.motion.forwardDepartureDepths
+            )
+          : anchorDepth >= prepared.depth
+            ? sourceAnchor
+            : nativeCenter.map(
+                (value, index) =>
+                  value +
+                  prepared.forward[index] * prepared.depth * settings.motion.backwardDepartureDepths
+              );
+      const origin = scatterCenter(
+        blend(nativeCenter, end, eased),
+        prepared,
+        Math.sin(progress * Math.PI)
+      );
       corners = turn(
         prepared.corners,
         origin,
@@ -443,18 +569,26 @@ module.exports = function ({ cameraView }) {
         prepared.roll * eased,
         prepared.tilt * eased,
         prepared.pitch * eased,
-        1
+        direction === 'backward' ? 1 - eased * (1 - settings.motion.minimumScale) : 1
       );
     } else {
-      if (!finiteVector(anchor, 3)) return null;
+      if (direction === 'forward' && !finiteVector(anchor, 3)) return null;
       const target = quad(camera, prepared.rect, prepared.depth);
       if (!target) return null;
-      // Every incoming tile leaves the real room center, then fans into its own
-      // reading position. The curved spread closes exactly at the native plane.
+      const start =
+        direction === 'backward'
+          ? camera.position.map(
+              (value, index) =>
+                value -
+                camera.forward[index] * prepared.depth * settings.motion.reverseArrivalDepths
+            )
+          : anchor;
+      // Forward arrivals leave the real room; reverse arrivals cross the camera
+      // from behind. Both close at the same exact native reading rectangle.
       const origin = scatterCenter(
-        blend(anchor, center(target), eased),
+        blend(start, center(target), eased),
         prepared,
-        Math.sin(progress * Math.PI) * 0.65
+        Math.sin(progress * Math.PI) * settings.motion.curvedSpread
       );
       corners = turn(
         target,
@@ -463,16 +597,22 @@ module.exports = function ({ cameraView }) {
         prepared.roll * (1 - eased),
         prepared.tilt * (1 - eased),
         prepared.pitch * (1 - eased),
-        0.08 + eased * 0.92
+        direction === 'backward'
+          ? 1
+          : settings.motion.minimumScale + eased * (1 - settings.motion.minimumScale)
       );
     }
     const result = projectQuad(camera, corners);
     if (!result) return null;
     const visibility =
-      phase === 'arrive' ? Math.min(1, progress * 5) : Math.min(1, (1 - progress) * 4);
+      phase === 'arrive'
+        ? Math.min(1, progress / settings.motion.arrivalVisibleFraction)
+        : Math.min(1, (1 - progress) / settings.motion.departureFadeFraction);
     // World-space attenuation changes with the actual painted camera, so two
     // equally timed pieces at different depths do not have the same opacity.
-    const depthOpacity = Math.exp(-Math.max(0, result.depth - prepared.depth - 1e-8) / 22);
+    const depthOpacity = Math.exp(
+      -Math.max(0, result.depth - prepared.depth - 1e-8) / settings.depthHaze
+    );
     return {
       ...result,
       opacity: result.opacity * visibility * depthOpacity,
@@ -481,6 +621,9 @@ module.exports = function ({ cameraView }) {
   }
 
   return {
+    settings,
+    pieceCount,
+    departureSchedule,
     arrivalDurationMs,
     arrivalWindow,
     arrivalSchedule,

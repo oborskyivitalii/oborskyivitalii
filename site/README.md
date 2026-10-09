@@ -1,9 +1,10 @@
 # Static site source and engine contract
 
 The [current check profiles](../guides/SITE-CHECK-PROFILES.md) supersede older full-local
-and always-full PR requirements below. Native-scroll mapping and all release
-budgets remain. Primary flights follow the four header links; Credits is a footer
-utility route with instant navigation.
+and always-full PR requirements below. Native scroll and all release budgets
+remain. The issue49 amendment uses one five-route depth itinerary:
+Home, Research, Writing, Talks, Credits. Credits participates in the same flight
+policy as every header, footer, cross-link, VO and history route change.
 
 The original engine work is recorded in completed
 [#15](https://github.com/oborskyivitalii/oborskyivitalii/issues/15) and
@@ -13,13 +14,12 @@ staging and release state; dated implementation plans are historical evidence.
 The website still ships complete ordinary HTML. Canvas and the persistent router
 enhance that HTML; a content editor does not need a server, CMS or browser build.
 
-Native-scroll camera endpoints follow 0/the actual current page bottom on every
-route, including added unmarked blocks and the footer. Semantic markers define
-interior stops; repeated closing poses are coalesced. Main/body content reflow,
-font loading, viewport resize and route mounts recalculate the mapping. Writing
-retains its topic path, early-scroll response and valid anchored filter reflow.
-Every content edit still runs the normal all-route browser synchronization fixtures
-and strict aggregate under #13; generation freshness alone is insufficient.
+Issue49 keeps each settled route camera stationary while ordinary native scroll,
+filters, hashes and history positions remain active. The actual painted camera
+starts every route flight, including retargets from arbitrary native scroll or
+another unfinished journey. Semantic markers and topic paths remain authored
+scene data, without driving the settled reading camera. Current check profiles
+own source/hosted coverage; generation freshness alone is insufficient.
 
 ## Authoritative sources and dependencies
 
@@ -36,7 +36,7 @@ and strict aggregate under #13; generation freshness alone is insufficient.
 | `engine/theme.js`, `archive.js`, `navigation.js`, `styles.css`, `critical-media.css`, `reading-surfaces.css` | Theme, filtering, routing and canonical presentation, including Home media fallback | Shared browser files and pages |
 | `scenes/world.cjs`, `paths.json` | Authored motifs, rest geometry and finite camera paths | Runtime and projected SVG fallbacks |
 | `effects/flight.cjs`, `effects/*.css` | Current Color travel descriptor and canonical static reading/control CSS | Shared hosted/offline Color runtime |
-| `effects/fragment-plan.cjs`, `fragment-dom.cjs` | Bounded shared-camera geometry, staggered 1.8-second incoming assembly and temporary native paint | Issue49 opt-in two-sided prototype; finite painted-clock tail preserves camera duration; visual/cost admission precedes default rollout |
+| `effects/fragment-plan.cjs`, `fragment-dom.cjs` | Shared shard settings/geometry, visible native paint acquisition and staggered 1.8-second assembly | Issue49 all-route bidirectional Color preview; finite painted-clock tail preserves camera duration and resource caps |
 | `effects/ribbons.cjs` | Optional historical comparison factory; not serialized into active Color | Explicit legacy diagnostics only; full scanner coverage remains |
 | `../tools/site/effects.cjs`, `export.cjs` | Canonical effect source manifest, explicit delivery adapters and standalone export | Supported Color selection, scanner coverage and offline HTML |
 | `assets/` | Existing portrait, cutout, favicon and `.nojekyll` source | Exact image/icon bytes |
@@ -82,8 +82,10 @@ owners fail before output changes; authored templates contain no CSS declaration
 Native links, anchors, language badges, full text and JSON-LD remain available
 without JavaScript. Contract 1 retains `SiteScene.navigate/refresh/detachTravel/canTravel`,
 `SiteArchive.mount/destroy` and `SiteNavigation`. The router owns mount/unmount and
-history; the scene owns route progress and its actual arrival paint. Ambient phase,
-scroll/topic pose and route flight remain separate. Off/reduced, visibility, print,
+history; the scene owns route progress and its actual arrival paint. Frozen
+`SiteRoutes.order` and its direction helper are shared with navigation even when
+Canvas is unavailable. Ambient phase, native reading scroll and route flight
+remain separate. Off/reduced, visibility, print,
 failure, reflow and device-cost adaptation preserve the existing bounded behavior.
 Runtime projection omits subpixel facets; static SVG/model output keeps the complete
 geometry. Flights prepare each room at its settled adaptive detail before the
@@ -97,6 +99,14 @@ while keeping the thematic scene, Writing formula, shared reading/control CSS
 and the existing navigation/clock/freeze behavior. Both hosted and standalone
 Color identities declare `effects: ["travel"]`; optional ribbon adapters remain
 only for explicit historical comparisons, with their source still scanned.
+Issue49's Color preview enables fragments by default unless the user has stored
+Content flight Off. `fragment-plan.cjs` owns the single settings object, convex
+shard generator and both directional geometry functions; `fragment-dom.cjs` owns
+bounded visible paint acquisition and cleanup; `flight.cjs` owns phase orchestration.
+Forward travel releases outgoing pieces behind the advancing camera and brings
+incoming pieces from the destination fractal. Reverse travel sends outgoing paint
+into the source fractal and assembles incoming paint from behind the retreating
+camera. Native-scroll/reflow invalidation uses ordinary cleanup and fallback.
 An optional `SiteEngineProbe` paint event observes successful ordinary native
 paints for camera/journey diagnostics. It uses the existing clock and constructs
 no frame evidence when the probe is absent; no independent loop is added.

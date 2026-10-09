@@ -433,37 +433,37 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/bde71c511786f8c823ab35f2ff92130343392dc2e8baaa258b70e0fc579b8aaa": {
+    "docs/runtime/70e7a8404ad0337c0d0d7ef26250a1d4a5bbced3213ae3125b5b1268e0f934d6": {
       "kind": "directory",
       "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/bde71c511786f8c823ab35f2ff92130343392dc2e8baaa258b70e0fc579b8aaa/archive.js": {
+    "docs/runtime/70e7a8404ad0337c0d0d7ef26250a1d4a5bbced3213ae3125b5b1268e0f934d6/archive.js": {
       "kind": "file",
       "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/bde71c511786f8c823ab35f2ff92130343392dc2e8baaa258b70e0fc579b8aaa/navigation.js": {
+    "docs/runtime/70e7a8404ad0337c0d0d7ef26250a1d4a5bbced3213ae3125b5b1268e0f934d6/navigation.js": {
       "kind": "file",
       "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/bde71c511786f8c823ab35f2ff92130343392dc2e8baaa258b70e0fc579b8aaa/space.js": {
+    "docs/runtime/70e7a8404ad0337c0d0d7ef26250a1d4a5bbced3213ae3125b5b1268e0f934d6/space.js": {
       "kind": "file",
       "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/bde71c511786f8c823ab35f2ff92130343392dc2e8baaa258b70e0fc579b8aaa/styles.css": {
+    "docs/runtime/70e7a8404ad0337c0d0d7ef26250a1d4a5bbced3213ae3125b5b1268e0f934d6/styles.css": {
       "kind": "file",
       "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/bde71c511786f8c823ab35f2ff92130343392dc2e8baaa258b70e0fc579b8aaa/theme.js": {
+    "docs/runtime/70e7a8404ad0337c0d0d7ef26250a1d4a5bbced3213ae3125b5b1268e0f934d6/theme.js": {
       "kind": "file",
       "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
@@ -517,6 +517,30 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/1e0cc7f793eecf46e6bb507c8a5b278fda12dbde8e2b0e7c43dc2b2324ee634b": {
+      "kind": "directory",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/1e0cc7f793eecf46e6bb507c8a5b278fda12dbde8e2b0e7c43dc2b2324ee634b/talks.html": {
+      "kind": "file",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/2c1598a0884e46d13a40929e01e92b75aecb880041c9b8e6f359f297b006e8ff": {
+      "kind": "directory",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/2c1598a0884e46d13a40929e01e92b75aecb880041c9b8e6f359f297b006e8ff/index.html": {
+      "kind": "file",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347": {
       "kind": "directory",
       "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
@@ -529,25 +553,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/5f18c2bad82bd3fc2559ffe7658866fbec022d7efc741716371bac0f3af0f4a9": {
+    "docs/snapshots/5f141004bb37191554464dbfebf64096aca11daec485219fb1f439464c6a4859": {
       "kind": "directory",
       "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/5f18c2bad82bd3fc2559ffe7658866fbec022d7efc741716371bac0f3af0f4a9/index.html": {
-      "kind": "file",
-      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/7856f300a301a794ff9714e06a05decf6c229ee69a8f2e3b616bc63b32bf9b7a": {
-      "kind": "directory",
-      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/7856f300a301a794ff9714e06a05decf6c229ee69a8f2e3b616bc63b32bf9b7a/writing.html": {
+    "docs/snapshots/5f141004bb37191554464dbfebf64096aca11daec485219fb1f439464c6a4859/research.html": {
       "kind": "file",
       "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
@@ -560,6 +572,18 @@
       "owner": "site/README.md"
     },
     "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html": {
+      "kind": "file",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/86409f518e7f5ca2fca5a0d39c8771a4ae05f551f655fe46f8b8ec02c40af93f": {
+      "kind": "directory",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/86409f518e7f5ca2fca5a0d39c8771a4ae05f551f655fe46f8b8ec02c40af93f/credits.html": {
       "kind": "file",
       "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
@@ -589,6 +613,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/9352f59d041c99af650ba3372f582044f1b489f0f37290ab5ac07f4234297f07": {
+      "kind": "directory",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/9352f59d041c99af650ba3372f582044f1b489f0f37290ab5ac07f4234297f07/writing.html": {
+      "kind": "file",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7": {
       "kind": "directory",
       "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
@@ -596,42 +632,6 @@
       "owner": "site/README.md"
     },
     "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html": {
-      "kind": "file",
-      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/be36db8d0e5368e512c5a996ffed140d791bb4096ab344969fc3b02244e04d2d": {
-      "kind": "directory",
-      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/be36db8d0e5368e512c5a996ffed140d791bb4096ab344969fc3b02244e04d2d/talks.html": {
-      "kind": "file",
-      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/e310be947d4eb3bcf8c8b82fe577f71da2fb79ab8392da0110ed780804ac2de0": {
-      "kind": "directory",
-      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/e310be947d4eb3bcf8c8b82fe577f71da2fb79ab8392da0110ed780804ac2de0/credits.html": {
-      "kind": "file",
-      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/f3125ec8bdcfdaf9701529d60c9d14fdb6a06e05f34bcc3860b62562903d8889": {
-      "kind": "directory",
-      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/f3125ec8bdcfdaf9701529d60c9d14fdb6a06e05f34bcc3860b62562903d8889/research.html": {
       "kind": "file",
       "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
@@ -6045,7 +6045,7 @@
     },
     "site/effects/flight.cjs": {
       "kind": "file",
-      "purpose": "Canonical pure Travel effect descriptor and runtime helpers; hosted/offline adapters share raw code, CSS and controls.",
+      "purpose": "Shared Color five-route bidirectional fragment transaction, phase admission, finite painted-clock assembly and cleanup/fallback orchestration.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -6057,13 +6057,13 @@
     },
     "site/effects/fragment-dom.cjs": {
       "kind": "file",
-      "purpose": "Canonical opt-in bounded native-paint fragments with measured line-box fidelity, polygon shard volumes, staggered 1.8-second painted-clock assembly and serial native restoration/disposal.",
+      "purpose": "Shared bounded visible semantic paint acquisition, style-preserving inert shards, native-scroll invalidation and both-phase resource cleanup.",
       "role": "source",
       "owner": "site/README.md"
     },
     "site/effects/fragment-plan.cjs": {
       "kind": "file",
-      "purpose": "Canonical pure serialized unequal polygon partitions, bounded shard volumes and camera-depth haze, incoming stagger schedule and exact world/native projection; issue49 opt-in prototype, not visual or measured admission.",
+      "purpose": "Pure configurable convex shard partition, resource caps and shared painted-camera forward/reverse fragment geometry.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -6099,7 +6099,7 @@
     },
     "site/engine/lifecycle.cjs": {
       "kind": "file",
-      "purpose": "Single scene lifecycle/RAF, displayed-phase freeze and native-scroll progress.",
+      "purpose": "Single Canvas/RAF scene lifecycle with fixed reading camera, shared route policy, immutable source/destination snapshots and retarget travel.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -6111,13 +6111,13 @@
     },
     "site/engine/navigation.js": {
       "kind": "file",
-      "purpose": "Persistent header/Canvas route mounting, exact pinned snapshots and history fallback.",
+      "purpose": "Persistent five-route navigation for all links/history/edge entries with arbitrary-scroll and in-flight retarget transaction ownership.",
       "role": "source",
       "owner": "site/README.md"
     },
     "site/engine/projection.cjs": {
       "kind": "file",
-      "purpose": "Camera/depth projection and visibility/detail calculations.",
+      "purpose": "Canonical projection, camera bases and shared ordered five-route actual-painted-pose direction policy.",
       "role": "source",
       "owner": "site/README.md"
     },

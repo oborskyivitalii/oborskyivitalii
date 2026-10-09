@@ -520,6 +520,77 @@ test('incoming Color observation rejects simultaneous, invisible, unbounded and 
     assert.throws(() => validateFragmentAssembly(observation, invalid));
   }
 });
+test('all-route Color observations require actual two-sided fragments, camera direction and complete native cleanup', () => {
+  const { validateFragmentRoute } = require('../tools/quality/color-browser.cjs');
+  const camera = (z) => JSON.stringify({ position: [0, 4, z], target: [0, 0, z - 30] }),
+    source = camera(24),
+    target = camera(-480),
+    observation = {
+      samples: ['depart', 'arrive', null].map((phase, index) => ({
+        phase,
+        page: index ? 'credits' : 'index',
+        direction: 'forward',
+        camera: index ? target : source,
+        pieces: phase ? 12 : 0,
+        layers: phase ? 1 : 0,
+        visiblePieces: phase ? 12 : 0,
+        transformedPieces: phase ? 12 : 0,
+        nativeHidden: phase ? 4 : 0,
+        nativeOpacity: 1,
+        busy: !!phase,
+        inert: !!phase,
+        fragmentFields: phase ? ['fragmentPhase'] : [],
+        headingSelected: false,
+      })),
+    },
+    measured = {
+      paints: 20,
+      paintCallbackMs: { p95: 12, max: 25 },
+      paintIntervalsMs: { max: 80 },
+      readyMs: 2600,
+    },
+    expected = { from: 'index', to: 'credits', direction: 'forward', sourceCamera: source };
+  const report = validateFragmentRoute(observation, measured, expected);
+  assert.equal(report.departurePieces, 12);
+  assert.equal(report.arrivalPieces, 12);
+  for (const mutate of [
+    (data) => data.samples.shift(),
+    (data) => data.samples.splice(1, 1),
+    (data) => (data.samples[0].pieces = 0),
+    (data) => (data.samples[1].visiblePieces = 0),
+    (data) => (data.samples[1].transformedPieces = 0),
+    (data) => (data.samples[0].direction = 'backward'),
+    (data) => (data.samples[0].page = 'writing'),
+    (data) => (data.samples[1].page = 'writing'),
+    (data) => (data.samples.at(-1).page = 'writing'),
+    (data) => (data.samples.at(-1).phase = 'arrive'),
+    (data) => (data.samples.at(-1).pieces = 1),
+    (data) => (data.samples.at(-1).layers = 1),
+    (data) => (data.samples.at(-1).nativeHidden = 1),
+    (data) => (data.samples.at(-1).nativeOpacity = 0.5),
+    (data) => (data.samples.at(-1).busy = true),
+    (data) => (data.samples.at(-1).inert = true),
+    (data) => data.samples.at(-1).fragmentFields.push('fragmentPhase'),
+    (data) => (data.samples[1].headingSelected = true),
+    (data) => (data.samples.at(-1).camera = camera(100)),
+    (data) => (data.samples.at(-1).camera = '{}'),
+  ]) {
+    const invalid = structuredClone(observation);
+    mutate(invalid);
+    assert.throws(() => validateFragmentRoute(invalid, measured, expected));
+  }
+  for (const mutate of [
+    (data) => (data.paints = 0),
+    (data) => (data.paintCallbackMs.p95 = 81),
+    (data) => (data.paintCallbackMs.max = 201),
+    (data) => (data.paintIntervalsMs.max = 301),
+    (data) => (data.readyMs = 3201),
+  ]) {
+    const invalid = structuredClone(measured);
+    mutate(invalid);
+    assert.throws(() => validateFragmentRoute(observation, invalid, expected));
+  }
+});
 test('Off cancellation requires native readiness and cleanup while its camera journey can remain paused', () => {
   const { fragmentCancellationReady } = require('../tools/quality/color-browser.cjs'),
     vm = require('node:vm');
@@ -610,6 +681,37 @@ test('failed incoming Color wait preserves raw observations and the original fai
       return true;
     });
   }
+});
+test('failed all-route Color collection retains its source trip and original partial observation', async () => {
+  const { fragmentRouteCoverage } = require('../tools/quality/color-browser.cjs'),
+    original = Error('Controlled route click failure'),
+    raw = { samples: [{ phase: 'depart', page: 'index', pieces: 12 }], frames: [] };
+  let evaluations = 0;
+  const page = {
+    evaluate: async () => {
+      evaluations++;
+      if (evaluations === 2) return ['index', 'research', 'writing', 'talks', 'credits'];
+      if (evaluations === 4)
+        return { page: 'index', y: 300, max: 600, scene: { camera: 'source-camera' } };
+      if (evaluations === 6) return raw;
+      if (evaluations === 7) return { pieces: 12, nativeHidden: 3 };
+    },
+    waitForTimeout: async () => {},
+    locator: () => ({
+      click: async () => {
+        throw original;
+      },
+    }),
+  };
+  await assert.rejects(fragmentRouteCoverage(page), (error) => {
+    assert.equal(error, original);
+    assert.deepEqual(error.fragmentRouteObservation.routes, []);
+    assert.equal(error.fragmentRouteObservation.pending.from, 'index');
+    assert.equal(error.fragmentRouteObservation.pending.to, 'research');
+    assert.deepEqual(error.fragmentRouteObservation.pending.observation, raw);
+    assert.deepEqual(error.fragmentRouteObservation.failureState, { pieces: 12, nativeHidden: 3 });
+    return true;
+  });
 });
 test('the functional driver executes precisely its selected helpers and closes each engine', async () => {
   const calls = [],

@@ -7,35 +7,35 @@
     {
       "id": "AC01",
       "intent": "Publish the revised source-backed stationary-reading and two-sided fragment-flight architecture and ordered model handoff.",
-      "automated_scope": "Current RI/coupling and explicit owner selection check the active consolidated route. The revised design and dated implementation decision, independent design review and live PR53/artifact linkage remain external observations; neither the historical design tick nor this policy admits a prototype.",
+      "automated_scope": "Current RI/coupling and explicit owner selection check the active consolidated route. The dated all-route amendment records the maintainer-authorized Color preview scope and shared ownership; exact source/PR/artifact linkage and design review remain external observations.",
       "checks": ["CURRENT-RI", "RI-CI", "OWNER"],
       "gates": ["G-DESIGN"]
     },
     {
       "id": "AC02",
       "intent": "Disassemble outgoing visible content and assemble incoming content through the unchanged fractal using its painted camera.",
-      "automated_scope": "Current FRAGMENT-PLAN tests exercise injected canonical projection, finite world/native roundtrips, bounded departure/arrival endpoints, near-plane/camera-crossing rejection and closure-safe serialization. FRAGMENT-DOM checks the 2026-10-09 incoming refinement: approximately 1.8-second assembly with staggered piece arrival, exact native endpoints and finite shared-painted-clock completion after unchanged camera travel. STATIONARY exercises actual camera/lifecycle ownership. These deterministic contracts do not prove perceived scene depth, clips, all-route rollout or visual admission. The second9October refinement adds actual depth-based opacity, convex irregular masks, projected rear prism sides and exact terminal opacity/geometry, with original painted-clock timing.",
+      "automated_scope": "FRAGMENT-PLAN checks painted-camera forward departure through the camera, reverse departure into the actual source fractal or a safe captured forward corridor, and direction-specific arrival with depth opacity, finite prism facets and exact native endpoints. FRAGMENT-DOM and the shared flight controller check staggered 1.8-second assembly, phase-local fallback, locked journey direction and completion on the existing painted clock. STATIONARY exercises actual camera ownership. Deterministic contracts do not establish perceived scene depth or complete visual admission.",
       "checks": ["FRAGMENT-PLAN", "FRAGMENT-DOM", "STATIONARY"],
       "gates": ["G-DEPTH"]
     },
     {
       "id": "AC03",
       "intent": "Show mixed sub-glyph, glyph, word and picture fragments on departure and arrival with exact native handoffs.",
-      "automated_scope": "Current FRAGMENT-PLAN and FRAGMENT-DOM suites exercise seeded unequal complete/nonoverlapping partitions and the bounded heading/paragraph/portrait prototype, native paint copies and handoff/cleanup rejection surfaces. Full shaped glyph/image fidelity and every visible owner are not inferred from a prototype or DOM fixtures; Day/Night desktop/narrow visual acceptance remains required. Polygon coverage uses actual signed area and independent separating-axis nonoverlap, including angled triangle/quad/many-sided silhouettes. Measured native padding/box/line styles are preserved; the existing hosted observer compares actual settled heading glyph-line rectangles within0.75CSSpx rather than just outer boxes.",
+      "automated_scope": "FRAGMENT-PLAN and FRAGMENT-DOM exercise seeded convex unequal partitions, small sub-glyph cuts, visible semantic owner acquisition and bounded native paint preservation across all routes. Signed-area and separating-axis oracles reject gaps/interior overlap. Native padding, line wrapping, lists, image and control styles are retained; the existing hosted observer compares actual heading glyph-line rectangles within0.75CSSpx. Full shaped text/image fidelity and Day/Night narrow visual acceptance remain external.",
       "checks": ["FRAGMENT-PLAN", "FRAGMENT-DOM"],
       "gates": ["G-FIDELITY"]
     },
     {
       "id": "AC04",
       "intent": "Preserve route, landing, interruption and lifecycle continuity.",
-      "automated_scope": "Current STATIONARY suite runs the actual generated scene and router contracts for fixed reading poses, native scroll/filter/history/reflow, ambient/freeze behavior, painted camera/progress, route direction, cancellation and stale mounts. FRAGMENT-DOM covers prototype ownership/disposal; BASIC retains current source/generation limits. Broad fragment landing/reversal/readiness behavior and actual browser continuity remain pending until implemented and observed.",
+      "automated_scope": "STATIONARY covers all20 ordered route pairs, canonical five-route direction including Credits, arbitrary native scroll, header/footer/cross-link/VO/history and retargeting while fetch, departure or arrival is pending. FRAGMENT-DOM and shared flight-controller cases cover phase admission reset, capture/direction continuity, cleanup and fallback. The existing two-width Color smoke observes both fragment phases in13 focused trips plus interruption per width; broader device/visual continuity remains separately gated.",
       "checks": ["STATIONARY", "FRAGMENT-DOM", "BASIC"],
       "gates": ["G-NAVIGATION"]
     },
     {
       "id": "AC05",
       "intent": "Preserve semantic content, accessible controls and ordinary fallback behavior.",
-      "automated_scope": "Current FRAGMENT-DOM exercises inert decorative paint-copy identity and native restoration on prototype completion/cancellation/failure. BASIC and the individually selected inherited Matthew/Talks/source/surface checks preserve canonical semantics and final reading appearance. Accessibility, selection/copy, disabled modes and actual browser fallback remain separate implementation/visual obligations.",
+      "automated_scope": "FRAGMENT-DOM checks inert inaccessible temporary paint, removal of live identity/action attributes and restoration on completion, scroll/reflow invalidation, cancellation and local unsupported-owner failure. BASIC and individually selected inherited source/surface checks preserve canonical semantics. Existing Off preferences, reduced motion, hidden/print and no-Canvas ordinary navigation remain. Real assistive technology and selection/copy checks retain their external gates.",
       "checks": [
         "FRAGMENT-DOM",
         "BASIC",
@@ -48,14 +48,14 @@
     {
       "id": "AC06",
       "intent": "Keep bounded fragment resources and pass original plus predeclared added-cost budgets.",
-      "automated_scope": "Current FRAGMENT-PLAN and FRAGMENT-DOM reject invalid/exceeded shared partition/resource admission and exercise disposal before reuse. BASIC preserves original byte/geometry limits. No browser layout/compositor cost, same-source paired timing, current heap/retention observation or final performance pass follows from these deterministic caps; exact raw measured admission remains pending. SVG sides share the original descendants/pixel caps with paint clones; every projected side-group bounding area is checked before paint and excess decorative facets are culled without suppressing the native face.",
+      "automated_scope": "Shared settings retain original piece/owner/descendant/text/pixel caps with separately bounded acquisition/allocation preparation. Pixel admission measures contained clipped native tiles plus facet gutters at actual DPR instead of reserving the complete owner for every shard. Shared tests reject invalid/exceeded resources and disposal faults; hosted smoke retains original timing budgets. Same-source paired added-cost and native-device memory/compositor observations remain pending.",
       "checks": ["FRAGMENT-PLAN", "FRAGMENT-DOM", "BASIC"],
       "gates": ["G-PERFORMANCE"]
     },
     {
       "id": "AC07",
       "intent": "Deliver reviewed implementation, CS01-CS10 compliance, mapped evidence and reconciled issue/PR state.",
-      "automated_scope": "Current RI/coupling, explicit owner and manual-pending runner checks plus named prototype/stationary and inherited source contracts map the consolidated14 criteria. Exact canonical/generated/offline/profile/scanner delivery, CS01-CS10 substantive review, current CI/preview/staging, actual boxes and final maintainer merge/main acceptance remain required; neither inherited PR51 delivery nor local fixtures complete the new implementation.",
+      "automated_scope": "Current RI/coupling, owner and manual-pending checks map the consolidated14 criteria and shared geometry/DOM/flight/scene/router suites. Canonical/generated/offline/profile/scanner delivery, CS01-CS10 review, exact current-source CI and immutable preview must be recorded externally. The maintainer authorizes all-route default fragments in the Color preview; stable promotion, production, visual/cost admission and final merge/main acceptance remain separate.",
       "checks": [
         "CURRENT-RI",
         "RI-CI",
@@ -72,7 +72,7 @@
     {
       "id": "AC08",
       "intent": "Keep the settled route camera independent of reading scroll, filters, hashes and native history position while retaining ambient motion and edge-triggered route travel.",
-      "automated_scope": "Current STATIONARY suite exercises the actual generated lifecycle through native scroll/gestures, filters/history/layout/resize, route flights and Off/reduced/hidden/print while ambient phase and finite scene/cache bounds remain active. It replaces contradictory active scroll-camera expectations with fixed-pose contracts; real current-source desktop/narrow thematic framing, especially Writing formula, remains a visual gate.",
+      "automated_scope": "STATIONARY exercises fixed settled camera through native scroll/filter/history/layout, all20 route directions, source/target snapshot anchors and actual painted-pose retargeting. Edge intent remains deliberate; direct navigation requires no top/bottom preparation. Ambient phase, finite scene/cache bounds and Off/reduced/hidden/print semantics remain. Current-source desktop/narrow thematic framing, especially Writing formula, remains a visual gate.",
       "checks": ["STATIONARY"],
       "gates": ["G-READING"]
     },
@@ -191,7 +191,7 @@
     },
     "G-NAVIGATION": {
       "kind": "human",
-      "description": "Prototype/implementation admission remains pending. Run real fragment transaction, interruption, native bottom/hash/filter/history and cleanup tests. Preserve deliberate edge input, tails, Credits instant behavior and proposed existing reverse direction. Review always-forward Back separately if requested; no new choreography is inferred."
+      "description": "Require real all-five fragment transactions in both directions, arbitrary-scroll header/footer/cross-link/VO/history landings, interruption and cleanup evidence. The 2026-10-09 user amendment places Credits in the canonical Home/Research/Writing/Talks/Credits depth itinerary and supersedes its earlier instant utility exception. Preserve deliberate fresh edge input, native hashes/history and finite arrival tails."
     },
     "G-ACCESSIBILITY": {
       "kind": "human",
@@ -203,7 +203,7 @@
     },
     "G-DELIVERY": {
       "kind": "human",
-      "description": "Require implemented named checks for AC02-AC10 and preservation of inherited AC11-AC14, canonical/generated/offline and RI/profile updates, CS01-CS10 substantive review, exact current-source CI/preview/bounded evidence, author visual acceptance, independent implementation review, actual checkboxes and separate final maintainer merge/main decision. User authorization starts T02-T03 implementation; it does not supply native-depth/fidelity/measured-cost admission for broad default rollout. Inherited PR51 merge/stable staging is historical and cannot approve this new feature or production."
+      "description": "Require implemented named checks for AC02-AC10, preserved inheritedAC11-AC14, canonical/generated/offline and RI/profile updates, CS01-CS10 substantive review, exact current-source CI/preview, independent review and actual boxes. User explicitly authorizes all-route default fragments in the Color preview; this does not supply whole depth/fidelity/device/paired-cost acceptance, stable promotion, production or final maintainer merge/main approval."
     },
     "G-READING": {
       "kind": "human",

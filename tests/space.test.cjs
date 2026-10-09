@@ -637,6 +637,69 @@ test('all five worlds share the same multiscale angular geometry beside their ow
     }));
   for (const page of model.routeOrder) assert.deepEqual(signature(common(page)), signature(first));
 });
+test('one authored five-route contract supplies ordered direction even without Canvas', () => {
+  const expected = require('../site/routes.json').routes.map((route) => route.id),
+    p = visit({ noCanvas: true });
+  assert.deepEqual(Array.from(p.window.SiteRoutes.order), expected);
+  assert.ok(Object.isFrozen(p.window.SiteRoutes) && Object.isFrozen(p.window.SiteRoutes.order));
+  assert.equal(p.window.SiteScene, undefined);
+  for (const [sourceIndex, from] of expected.entries())
+    for (const [targetIndex, to] of expected.entries()) {
+      if (from === to) continue;
+      const direction = targetIndex > sourceIndex ? 'forward' : 'backward',
+        pose = model.routePose(from, model.poses[model.initialPoses[from]]);
+      assert.equal(model.routeDirection(from, to), direction);
+      assert.equal(p.window.SiteRoutes.direction(from, to, pose), direction);
+    }
+  assert.equal(model.routeDirection('missing', 'index'), null);
+  assert.equal(model.routeDirection('index', 'missing'), null);
+  assert.equal(
+    model.routeDirection('index', 'research', { position: [0, 0, Infinity] }),
+    'forward'
+  );
+});
+test('painted travel snapshots retain native source and destination roots through a VO Home reversal', () => {
+  for (const from of ['index', 'credits']) {
+    const p = visit({ page: from });
+    p.settle();
+    p.scroll(14100);
+    p.settle();
+    const snapshots = [],
+      target = from === 'index' ? 'research' : 'index',
+      root = (page) => {
+        const center = model.worldFor(page).objects.find((object) => object.rootCenter).rootCenter;
+        return [center[0], center[1], center[2] + model.roomOffset(page)];
+      };
+    p.window.SiteScene.navigate(target, true, (_, snapshot) => snapshots.push(snapshot));
+    const started = snapshots[0];
+    assert.equal(started.fromRoute, from);
+    assert.equal(started.toRoute, target);
+    assert.deepEqual(Array.from(started.sourceAnchor), root(from));
+    assert.deepEqual(Array.from(started.anchor), root(target));
+    assert.ok(Object.isFrozen(started.sourceAnchor) && Object.isFrozen(started.anchor));
+    assert.equal(started.direction, from === 'index' ? 'forward' : 'backward');
+    for (let i = 0; i < 5; i++) p.frame(80);
+    const displayed = p.trace();
+    if (from === 'index') {
+      p.window.SiteScene.navigate('index', true, (_, snapshot) => snapshots.push(snapshot));
+      assert.equal(p.trace(), displayed, 'retarget does not write a newer unpainted pose');
+      assert.equal(snapshots.at(-1).direction, 'backward');
+      assert.equal(snapshots.at(-1).fromRoute, 'index', 'pre-mount source still owns Home paint');
+      assert.equal(snapshots.at(-1).toRoute, 'index');
+      p.frame(80);
+      assert.equal(
+        p.trace(),
+        displayed,
+        'first reversal frame retains the last actual camera paint'
+      );
+    }
+    for (let i = 0; i < 30; i++) p.frame(80);
+    assert.deepEqual(JSON.parse(p.trace()), model.routePose('index', model.poses.overview));
+    assert.equal(p.window.scrollY, 14100, 'camera routing cannot change native scroll position');
+    assert.equal(p.scene.dataset.travel, 'settled');
+    assert.ok(Number(p.scene.dataset.rooms) <= 3 && Number(p.scene.dataset.roomModels) <= 6);
+  }
+});
 test('route flights use one canvas and global space; retarget, Off and hidden preserve the painted pose', () => {
   const p = visit();
   p.settle();

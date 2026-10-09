@@ -148,7 +148,7 @@ function installEndScroll(gateFactory, isEnd, isStart) {
     )
       return;
     const routes = window.SiteNavigation.primaryRoutes,
-      names = ['Home', 'Research', 'Writing', 'Talks'];
+      names = ['Home', 'Research', 'Writing', 'Talks', 'Credits'];
     const gate = gateFactory(),
       clock = () => performance.now();
     let enabled = true,
@@ -434,15 +434,18 @@ function installEndScroll(gateFactory, isEnd, isStart) {
 }
 function createPresentation(content) {
   let contentFlight = true,
-    fragmentPreview = false,
+    fragmentPreview = true,
     useFragments = false,
+    phaseFragments = false,
     capturing = false,
     waitingArrival = false,
     fragments = null,
-    lastPose = null;
+    lastPose = null,
+    journeyDirection = 'forward',
+    journeyContext = {};
   try {
     contentFlight = localStorage.getItem('vo.content-flight') !== 'off';
-    fragmentPreview = localStorage.getItem('vo.fragment-preview') === 'on';
+    fragmentPreview = localStorage.getItem('vo.fragment-preview') !== 'off';
   } catch {
     /* In-tab preference is sufficient. */
   }
@@ -475,6 +478,7 @@ function createPresentation(content) {
     clear() {
       fragments?.clear();
       useFragments = false;
+      phaseFragments = false;
       capturing = false;
       waitingArrival = false;
       content.style.removeProperty('transform-origin');
@@ -492,13 +496,17 @@ function createPresentation(content) {
     },
     prepareMount() {
       fragments?.clear();
+      phaseFragments = false;
       content.style.transform = 'none';
       content.style.opacity = '0';
       content.style.removeProperty('transform-origin');
       delete content.dataset.flightStage;
     },
-    begin(animate) {
+    begin(animate, context = {}) {
+      journeyDirection = context?.direction || 'forward';
+      journeyContext = { ...context, direction: journeyDirection };
       useFragments = animate && contentFlight && fragmentPreview;
+      phaseFragments = false;
       capturing = useFragments;
       waitingArrival = false;
       if (useFragments) {
@@ -506,42 +514,48 @@ function createPresentation(content) {
           content,
           fragmentPlan({ cameraView: (...args) => window.SiteEffects.cameraView(...args) }),
           () => {
-            useFragments = false;
+            phaseFragments = false;
             setPlane(lastPose);
           }
         );
-        fragments.begin();
+        fragments.begin(journeyContext);
       }
     },
     mounted() {
       capturing = false;
+      phaseFragments = false;
+      // A newly mounted native page gets a fresh local admission attempt even
+      // when departure's clone/deadline fallback rejected its old paint.
+      if (useFragments) fragments.begin(journeyContext);
       waitingArrival = useFragments;
     },
     present(progress, direction, departure, snapshot) {
-      lastPose = flightPose(progress, direction, departure);
+      const painted = snapshot && { ...snapshot, direction: journeyDirection };
+      lastPose = flightPose(progress, journeyDirection, departure);
       if (snapshot?.active === false) {
         fragments?.clear();
         useFragments = false;
+        phaseFragments = false;
         capturing = false;
         waitingArrival = false;
       }
       if (useFragments && waitingArrival) {
-        const status = fragments.arrivalStatus(snapshot);
+        const status = fragments.arrivalStatus(painted);
         if (status === 'wait') {
           content.style.opacity = '0';
           content.style.transform = 'none';
           return;
         }
         waitingArrival = false;
-        if (status !== 'ready' || !fragments.prepare('arrive', snapshot)) useFragments = false;
+        phaseFragments = status === 'ready' && fragments.prepare('arrive', painted);
       }
-      if (useFragments && capturing) {
+      if (useFragments && capturing && painted?.painted) {
         capturing = false;
-        if (!fragments.prepare('depart', snapshot)) useFragments = false;
+        phaseFragments = fragments.prepare('depart', painted);
       }
-      if (useFragments && fragments.present(progress, snapshot))
+      if (phaseFragments && fragments.present(progress, painted))
         return progress === 1 ? fragments.complete() : undefined;
-      if (useFragments && fragments.active() === false) useFragments = false;
+      if (phaseFragments && fragments.active() === false) phaseFragments = false;
       setPlane(lastPose);
     },
     contentFlight(value) {
@@ -550,6 +564,7 @@ function createPresentation(content) {
         if (!value) {
           fragments?.clear();
           useFragments = false;
+          phaseFragments = false;
         }
         if (content.dataset.flightStage)
           setPlane({
@@ -566,6 +581,7 @@ function createPresentation(content) {
         if (!value) {
           fragments?.clear();
           useFragments = false;
+          phaseFragments = false;
         }
         try {
           localStorage.setItem('vo.fragment-preview', value ? 'on' : 'off');

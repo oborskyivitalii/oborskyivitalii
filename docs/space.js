@@ -1975,7 +1975,7 @@ const projection=(function (math, definitions) {
     clipPolygon,
     cameraView,
   } = math;
-  const { poses, routeOrder, roomSpacing } = definitions;
+  const { poses, initialPoses, routeOrder, roomSpacing } = definitions;
   // Authored spline waypoints pass through the open centres of successive structures.
   function journeyPose(ids, progress) {
     const path = ids.map((id) => poses[id]);
@@ -2358,6 +2358,18 @@ const projection=(function (math, definitions) {
     target: add(pose.target, [0, 0, z]),
   });
   const routePose = (page, pose) => translatePose(pose, roomOffset(page));
+  function routeDirection(from, to, paintedPose = null) {
+    const sourceIndex = routeOrder.indexOf(from),
+      targetIndex = routeOrder.indexOf(to);
+    if (sourceIndex < 0 || targetIndex < 0) return null;
+    const sourceDepth = paintedPose?.position?.[2],
+      targetDepth = routePose(to, poses[initialPoses[to]]).position[2];
+    // Retargets start at the last real paint, which may still be between rooms.
+    // Equal depth uses the same ordered route contract as ordinary navigation.
+    if (Number.isFinite(sourceDepth) && sourceDepth !== targetDepth)
+      return targetDepth < sourceDepth ? 'forward' : 'backward';
+    return targetIndex > sourceIndex ? 'forward' : 'backward';
+  }
   return {
     loopTransform,
     cameraVertices,
@@ -2369,6 +2381,7 @@ const projection=(function (math, definitions) {
     journeyPose,
     blendColor,
     routePose,
+    routeDirection,
     roomOffset,
     translatePose,
   };
@@ -3276,10 +3289,16 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     projectedWorld,
     paintShapes,
     routePose,
+    routeDirection,
     roomOffset,
     translatePose,
   } = api;
   if (typeof document === 'undefined') return;
+  // The serialized route source also serves native navigation without Canvas.
+  window.SiteRoutes = Object.freeze({
+    order: Object.freeze([...routeOrder]),
+    direction: routeDirection,
+  });
   const canvas = document.getElementById('space-canvas');
   const control = document.getElementById('space-motion');
   if (!canvas || !control || !window.matchMedia || !window.requestAnimationFrame) return;
@@ -3346,6 +3365,8 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     journey = null;
   let travelUpdate = null;
   let travelAnchor = null;
+  let travelSourceAnchor = null;
+  let travelSourcePage = page;
   let travelStartedAt = 0;
   let colors = { cyan: '#075d7b', amber: '#895710', paper: '#f8f7f3' };
   let paletteRevision = 0,
@@ -3648,6 +3669,10 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
         compact: displayedCompact,
         projection: Object.freeze(projection),
         anchor: travelAnchor,
+        sourceAnchor: travelSourceAnchor,
+        fromRoute: travelSourcePage,
+        toRoute: page,
+        direction: scene.dataset.direction,
         remainingMs: journey ? Math.max(0, journey.duration - journey.elapsed) : 0,
         capturedAt,
         travelElapsedMs: Math.max(0, capturedAt - travelStartedAt),
@@ -3927,6 +3952,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       !hold &&
       !printing &&
       !document.hidden,
+    direction: (next) => routeDirection(document.body.dataset.page, next, displayedCamera),
     navigate(next, animate = true, update = null) {
       if (!owns(initialPoses, next)) return;
       travelStartedAt = clock();
@@ -3937,17 +3963,13 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
         updateControl();
       }
       const from = displayedCamera,
-        sourcePage = page;
+        sourcePage = document.body.dataset.page;
       page = next;
       const travelling = animate && this.canTravel(),
         target = settledPose();
       current = from;
       displayedProgress = 0;
-      const forward =
-        target.position[2] === from.position[2]
-          ? routeOrder.indexOf(page) > routeOrder.indexOf(sourcePage)
-          : target.position[2] < from.position[2];
-      scene.dataset.direction = forward ? 'forward' : 'backward';
+      scene.dataset.direction = routeDirection(sourcePage, page, from);
       if (travelling) {
         journey = {
           from,
@@ -3964,13 +3986,23 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       scene.dataset.travel = journey ? 'flying' : 'settled';
       travelUpdate = update;
       travelAnchor = null;
+      travelSourceAnchor = null;
+      travelSourcePage = sourcePage;
       // Prepare the bounded source/target working set at its settled detail
       // before either can be painted in flight. Avoid a visible downgrade and
       // post-arrival rebuild; mobile/adaptive compact detail still applies.
       // Probe costs remain part of input-to-ready evidence.
       if (journey) {
         try {
-          roomFor(sourcePage);
+          const sourceRoot = roomFor(sourcePage).world.objects.find(
+            (object) => object.rootCenter
+          )?.rootCenter;
+          if (sourceRoot)
+            travelSourceAnchor = Object.freeze([
+              sourceRoot[0],
+              sourceRoot[1],
+              sourceRoot[2] + roomOffset(sourcePage),
+            ]);
           const root = roomFor(page).world.objects.find((object) => object.rootCenter)?.rootCenter;
           if (root) travelAnchor = Object.freeze([root[0], root[1], root[2] + roomOffset(page)]);
         } catch {

@@ -175,6 +175,8 @@ function fixture(options = {}) {
       copy.complete = this.complete;
       copy.naturalWidth = this.naturalWidth;
       copy.draggable = this.draggable;
+      copy.value = this.value;
+      copy.checked = this.checked;
       if (deep) copy.append(...this.children.map((child) => child.cloneNode(true)));
       return copy;
     }
@@ -282,9 +284,21 @@ function fixture(options = {}) {
     },
   });
   const geometry = fragmentPlan(math);
+  const partition = geometry.partition;
+  counts.growthCalls = 0;
+  geometry.partition = (rect, policy, caps) => {
+    if (policy.count > 1) {
+      counts.growthCalls++;
+      now += options.partitionCost || 0;
+    }
+    return partition(rect, policy, caps);
+  };
   if (options.sample) {
     const sample = geometry.sample;
-    geometry.sample = (prepared, input) => options.sample(sample(prepared, input), input);
+    geometry.sample = (prepared, input) => {
+      const projected = sample(prepared, input);
+      return projected ? options.sample(projected, input) : null;
+    };
   }
   const factory = vm.runInContext('(' + fragmentDOM.toString() + ')', context);
   const adapter = factory(content, geometry);
@@ -435,19 +449,30 @@ function assertNativeCorners(h, tile) {
   }
 }
 
-test('fragment admission rejects excess text, descendants or owner area before any clone or mutation', () => {
-  for (const overflow of ['text', 'descendants', 'area', 'actual DPR']) {
+test('unadmittable native paint fails before copying but does not suppress admissible siblings', () => {
+  for (const mode of ['text', 'actual DPR']) {
     const h = fixture();
-    if (overflow === 'text') h.heading.textContent = 'x'.repeat(4000);
-    if (overflow === 'descendants')
-      for (let i = 0; i < 200; i++) h.heading.append(new h.Node('span', 'x'));
-    if (overflow === 'area') h.heading.rect = { left: 0, top: 0, width: 3000, height: 1000 };
-    if (overflow === 'actual DPR') h.window.devicePixelRatio = 5;
-    assert.equal(h.adapter.prepare('depart', h.snapshot()), false, overflow);
-    assert.equal(h.counts.clones, 0, overflow + ' must be admitted before cloning');
+    if (mode === 'text') {
+      h.paragraph.remove();
+      h.image.remove();
+      h.heading.textContent = 'x'.repeat(20000);
+    } else h.window.devicePixelRatio = 100;
+    assert.equal(h.adapter.prepare('depart', h.snapshot()), false, mode);
+    assert.equal(h.counts.clones, 0);
     assert.equal(h.counts.created, 0);
     assertDisposed(h);
   }
+  const partial = fixture();
+  partial.image.complete = false;
+  partial.heading.textContent = 'x'.repeat(20000);
+  assert.equal(partial.adapter.prepare('depart', partial.snapshot()), true);
+  assert.equal(partial.content.dataset.fragmentOwners, '1');
+  assert.equal(partial.paragraph.style.visibility, 'hidden');
+  assert.notEqual(partial.heading.style.visibility, 'hidden');
+  assert.notEqual(partial.image.style.visibility, 'hidden');
+  assert.ok(partial.tiles().every((tile) => tile.children[0].matches('p')));
+  partial.adapter.clear();
+  assertDisposed(partial);
 });
 
 test('unsupported polygon clipping or SVG falls back before measuring or copying native paint', () => {
@@ -516,7 +541,7 @@ test('oversized or nonfinite side walls are culled while the front native paint 
       }),
     });
     assert.equal(h.adapter.prepare('depart', h.snapshot()), true);
-    h.adapter.present(0.1, h.snapshot());
+    h.adapter.present(0.02, h.snapshot());
     assert.ok(h.tiles().every((tile) => Number(tile.style.opacity) > 0));
     assert.ok(h.tiles().every((tile) => tile.style.transform.startsWith('matrix3d(')));
     const faces = h.layer().querySelectorAll('path');
@@ -583,11 +608,15 @@ test('serialized fragment adapter sanitizes decorative copies and preserves nati
   const layer = h.layer();
   assert.equal(layer.inert, true);
   assert.equal(layer.getAttribute('aria-hidden'), 'true');
-  assert.equal(h.tiles().length, 32);
-  assert.equal(layer.children.length, 33, 'one SVG volume accompanies the bounded paint pieces');
+  assert.ok(h.tiles().length >= 3 && h.tiles().length <= 96);
+  assert.equal(
+    layer.children.length,
+    h.tiles().length + 1,
+    'one SVG volume accompanies the bounded paint pieces'
+  );
   const volume = layer.children[0];
   assert.equal(volume.namespaceURI, 'http://www.w3.org/2000/svg');
-  assert.equal(volume.children.length, 32);
+  assert.equal(volume.children.length, h.tiles().length);
   for (const solid of volume.children) assert.equal(solid.children.length, 2);
   for (const node of layer.querySelectorAll('*')) {
     assert.ok(
@@ -612,7 +641,7 @@ test('fragment paint uses the supplied camera and progress without native layout
   const h = fixture();
   const start = h.snapshot();
   assert.equal(h.adapter.prepare('depart', start), true);
-  assert.equal(h.counts.rects, 3, 'each admitted visible owner is measured once');
+  assert.equal(h.counts.rects, 4, 'the root and each admitted visible owner are measured once');
   const reads = { rects: h.counts.rects, styles: h.counts.styles };
   h.adapter.present(0.1, start);
   const first = h.tiles().map((tile) => tile.style.transform);
@@ -836,6 +865,205 @@ test('incoming capture includes visible short copy and later headings within unc
   assertDisposed(h);
 });
 
+test('both navigation legs capture all viewport copy, standalone links, lists and footer at native scroll', () => {
+  for (const phase of ['depart', 'arrive']) {
+    const h = fixture();
+    h.window.scrollY = 1600;
+    h.main.rect = { left: 20, top: -1200, width: 400, height: 2100 };
+    for (const owner of [h.heading, h.paragraph, h.image]) owner.rect.top = -400;
+    const short = new h.Node('p', 'Short copy');
+    short.rect = { left: 30, top: 180, width: 150, height: 28 };
+    const link = new h.Node('a', 'A standalone route', { href: '/research', id: 'route' });
+    link.rect = { left: 30, top: 220, width: 180, height: 30 };
+    const list = new h.Node('ul');
+    list.rect = { left: 30, top: 270, width: 250, height: 100 };
+    list.append(new h.Node('li', 'First list item'), new h.Node('li', 'Second item'));
+    for (let index = 0; index < list.children.length; index++) {
+      list.children[index].rect = { left: 60, top: 280 + index * 40, width: 220, height: 30 };
+      list.children[index].computed['list-style-type'] = 'disc';
+    }
+    const metadata = new h.Node('div');
+    metadata.rect = { left: 30, top: 380, width: 200, height: 70 };
+    metadata.append(new h.Node('span', '2026'), new h.Node('span', 'Ukrainian recording'));
+    h.main.append(short, link, list, metadata);
+    const footer = new h.Node('footer');
+    footer.rect = { left: 20, top: 650, width: 400, height: 80 };
+    const footerCopy = new h.Node('p', 'Footer copy');
+    footerCopy.rect = { left: 30, top: 660, width: 200, height: 30 };
+    const footerLink = new h.Node('a', 'Credits', { href: '/credits' });
+    footerLink.rect = { left: 260, top: 660, width: 80, height: 30 };
+    footer.append(footerCopy, footerLink);
+    h.content.append(footer);
+    const owners = [short, link, ...list.children, metadata, footerCopy, footerLink];
+    assert.equal(h.adapter.prepare(phase, h.snapshot()), true, phase);
+    assert.equal(Number(h.content.dataset.fragmentOwners), owners.length);
+    for (const owner of owners) assert.equal(owner.style.visibility, 'hidden');
+    assert.notEqual(
+      list.style.visibility,
+      'hidden',
+      'the list container cannot become a giant slab'
+    );
+    assert.ok(h.tiles().length >= owners.length && h.tiles().length <= 96);
+    const copies = h.tiles().map((tile) => tile.children[0]);
+    assert.ok(copies.some((copy) => copy.matches('li') && copy.style.listStyleType === 'disc'));
+    assert.ok(copies.some((copy) => copy.matches('div') && copy.textContent.includes('2026')));
+    assert.ok(copies.every((copy) => copy.getAttribute('href') === null));
+    h.adapter.clear();
+    for (const owner of owners) assert.notEqual(owner.style.visibility, 'hidden');
+    assert.equal(h.window.scrollY, 1600);
+    assertDisposed(h);
+  }
+});
+
+test('backward arrivals prepare from behind the camera while invalid snapshots still fall back', () => {
+  const h = fixture();
+  const behind = h.snapshot([0, 0, -60], { direction: 'backward', progress: 0.5 });
+  assert.equal(h.adapter.arrivalStatus(behind), 'ready');
+  assert.equal(h.adapter.prepare('arrive', behind), true);
+  h.advance(1800);
+  h.adapter.present(1, h.snapshot([0, 0, -60], { direction: 'backward', progress: 1 }));
+  assert.equal(h.adapter.complete(), true);
+  for (const tile of h.tiles()) assertNativeCorners(h, tile);
+  h.adapter.clear();
+  assertDisposed(h);
+  for (const extra of [{ painted: false }, { capturedAt: NaN }, { active: false }]) {
+    assert.equal(
+      h.adapter.arrivalStatus(h.snapshot([0, 0, -60], { direction: 'backward', ...extra })),
+      'fallback'
+    );
+  }
+});
+
+test('departure releases successive pieces before its shared midpoint and never measures in flight', () => {
+  const h = fixture();
+  assert.equal(h.adapter.prepare('depart', h.snapshot()), true);
+  h.adapter.present(0, h.snapshot());
+  const initial = h.tiles().map((tile) => tile.style.transform);
+  const reads = { rects: h.counts.rects, styles: h.counts.styles };
+  h.adapter.present(0.05, h.snapshot());
+  const changed = h.tiles().map((tile, index) => tile.style.transform !== initial[index]);
+  assert.ok(changed.some(Boolean) && changed.some((value) => !value));
+  h.adapter.present(0.46, h.snapshot());
+  assert.ok(h.tiles().every((tile) => tile.style.opacity === '0'));
+  assert.deepEqual({ rects: h.counts.rects, styles: h.counts.styles }, reads);
+  h.adapter.clear();
+  assertDisposed(h);
+});
+
+test('large lists copy only visible rows with multiple shards instead of their entire archive', () => {
+  const h = fixture();
+  h.heading.remove();
+  h.paragraph.remove();
+  h.image.remove();
+  const list = new h.Node('ol');
+  list.rect = { left: 30, top: 140, width: 800, height: 7000 };
+  for (let index = 0; index < 100; index++) {
+    const row = new h.Node(
+      'li',
+      'An archived row with enough words to make several small fragments.'
+    );
+    row.rect = {
+      left: 60,
+      top: index < 3 ? 160 + index * 100 : 1500 + index * 60,
+      width: 740,
+      height: 80,
+    };
+    list.append(row);
+  }
+  h.main.append(list);
+  assert.equal(h.adapter.prepare('arrive', h.snapshot()), true);
+  assert.equal(Number(h.content.dataset.fragmentOwners), 3);
+  assert.notEqual(list.style.visibility, 'hidden');
+  assert.ok(list.children.slice(3).every((row) => row.style.visibility !== 'hidden'));
+  const copies = h.tiles().map((tile) => tile.children[0]);
+  assert.ok(copies.length > 3 && copies.length <= 96);
+  assert.ok(copies.every((copy) => copy.matches('li') && copy.children.length === 0));
+  h.adapter.clear();
+  assertDisposed(h);
+});
+
+test('slow optional shard growth keeps baseline coverage and leaves time to copy native paint', () => {
+  const h = fixture({ partitionCost: 120, cloneCost: 1 });
+  assert.equal(h.adapter.prepare('arrive', h.snapshot()), true);
+  assert.equal(h.content.dataset.fragmentOwners, '3');
+  assert.equal(h.counts.growthCalls, 1, 'allocation reserve stops additional partition work');
+  assert.ok(h.tiles().length >= 3);
+  assert.ok(h.counts.clones > 0);
+  h.adapter.clear();
+  assertDisposed(h);
+});
+
+test('a nested undecoded image cannot hide its container while safe sibling text still flies', () => {
+  const h = fixture();
+  const mixed = new h.Node('blockquote', 'Native copy beside a still-loading picture');
+  mixed.rect = { left: 40, top: 350, width: 300, height: 120 };
+  const pending = new h.Node('img');
+  pending.complete = false;
+  pending.currentSrc = '';
+  pending.rect = { left: 40, top: 380, width: 80, height: 80 };
+  mixed.append(pending);
+  h.main.append(mixed);
+  assert.equal(h.adapter.prepare('arrive', h.snapshot()), true);
+  assert.notEqual(mixed.style.visibility, 'hidden');
+  assert.notEqual(pending.style.visibility, 'hidden');
+  assert.equal(h.content.dataset.fragmentOwners, '3');
+  assert.ok(h.tiles().every((tile) => !tile.children[0].matches('blockquote')));
+  h.adapter.clear();
+  assertDisposed(h);
+});
+
+test('decorative control copies cannot retain association with native forms', () => {
+  const h = fixture();
+  const attrs = {
+    form: 'native-form',
+    formaction: '/submit',
+    formmethod: 'post',
+    formenctype: 'multipart/form-data',
+    formtarget: '_blank',
+  };
+  const button = new h.Node('button', 'Reset', attrs);
+  button.rect = { left: 40, top: 350, width: 100, height: 44 };
+  h.main.append(button);
+  assert.equal(h.adapter.prepare('arrive', h.snapshot()), true);
+  const copies = h
+    .tiles()
+    .map((tile) => tile.children[0])
+    .filter((copy) => copy.matches('button'));
+  assert.ok(copies.length > 0);
+  for (const name of Object.keys(attrs)) {
+    assert.equal(button.getAttribute(name), attrs[name]);
+    assert.ok(copies.every((copy) => copy.getAttribute(name) === null));
+  }
+  assert.equal(h.layer().inert, true);
+  h.adapter.clear();
+  assertDisposed(h);
+});
+
+test('queued unchanged scroll is harmless while actual scroll restores native paint before handoff', () => {
+  for (const axis of ['scrollX', 'scrollY']) {
+    const h = fixture();
+    h.window.scrollX = 40;
+    h.window.scrollY = 200;
+    assert.equal(h.adapter.prepare('arrive', h.snapshot()), true);
+    h.fire('scroll');
+    assert.equal(h.adapter.active(), true, 'the queued mount scroll retains identical coordinates');
+    h.window[axis] += 1;
+    h.fire('scroll');
+    assertDisposed(h);
+    assert.equal(h.content.style.opacity, '1');
+    assert.equal(h.content.style.transform, 'none');
+  }
+  const h = fixture();
+  assert.equal(h.adapter.prepare('arrive', h.snapshot()), true);
+  h.window.scrollY = 100;
+  assert.equal(
+    h.adapter.present(1, h.snapshot()),
+    false,
+    'a frame also rejects scroll before its event is delivered'
+  );
+  assertDisposed(h);
+});
+
 test('a late settled camera still builds incoming text for a full second without missing ready admission', () => {
   const h = fixture();
   const ready = h.snapshot([0, 0, 0], {
@@ -860,24 +1088,19 @@ test('a late settled camera still builds incoming text for a full second without
   assertDisposed(h);
 });
 
-test('long offscreen archives stop native measurement at the preparation deadline before cloning', () => {
+test('long offscreen archives preserve captured viewport paint inside the acquisition reserve', () => {
   const h = fixture({ rectCost: 5 });
   for (let index = 0; index < 100; index++) {
     const paragraph = new h.Node('p', 'More archived copy');
-    paragraph.rect = {
-      left: 40,
-      top: 1500 + index * 40,
-      width: 240,
-      height: 24,
-    };
+    paragraph.rect = { left: 40, top: 1500 + index * 40, width: 240, height: 24 };
     h.main.append(paragraph);
   }
-  assert.equal(h.adapter.prepare('arrive', h.snapshot()), false);
-  assert.ok(
-    h.counts.rects <= 33,
-    'preparation cannot keep scanning the full archive after its allowance'
-  );
-  assert.equal(h.counts.clones, 0);
+  assert.equal(h.adapter.prepare('arrive', h.snapshot()), true);
+  assert.ok(h.counts.rects <= 17, 'acquisition must reserve time for actual native paint copies');
+  assert.equal(h.content.dataset.fragmentOwners, '3');
+  assert.ok(h.counts.clones > 0);
+  assert.ok(h.main.children.slice(3).every((owner) => owner.style.visibility !== 'hidden'));
+  h.adapter.clear();
   assertDisposed(h);
 });
 
@@ -1030,7 +1253,10 @@ test('serialized presentation invalidation switches atomically to its current le
 });
 
 test('serialized travel descriptor keeps disabled preview and Content flight from allocating pieces', () => {
-  for (const storage of [{}, { 'vo.fragment-preview': 'on', 'vo.content-flight': 'off' }]) {
+  for (const storage of [
+    { 'vo.fragment-preview': 'off' },
+    { 'vo.fragment-preview': 'on', 'vo.content-flight': 'off' },
+  ]) {
     const h = fixture({ storage });
     vm.runInContext(flight.descriptor().code, h.context);
     h.window.SiteEffects.registerView(math.cameraView);

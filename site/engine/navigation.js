@@ -1,7 +1,8 @@
 /* One document, one header and one canvas. Every route remains ordinary HTML. */
 (() => {
   'use strict';
-  const routes = ['index', 'research', 'writing', 'talks', 'credits'];
+  const routes = window.SiteRoutes?.order;
+  if (!routes) return;
   const bundle = document.getElementById('site-pages');
   const embedded = bundle ? JSON.parse(bundle.textContent) : null;
   const entry = new URL(window.location.href);
@@ -13,6 +14,7 @@
   let page = document.body.dataset.page,
     serial = 0,
     request = null,
+    requestedPage = null,
     transition = null,
     scrollSave = null;
   let endpoint = null,
@@ -103,12 +105,8 @@
     result.searchParams.set('view', next);
     return result;
   }
-  // The scroll/flight itinerary follows the header; utility links stay accessible.
-  const primaryRoutes = Object.freeze(
-    [...document.querySelectorAll('.site-header nav a[href]')]
-      .map((link) => routeFor(new URL(link.href, entry)))
-      .filter((route, index, list) => route && list.indexOf(route) === index)
-  );
+  // All five rooms share one order for links, history and end-scroll travel.
+  const primaryRoutes = routes;
   function save() {
     if (routeFor(new URL(window.location.href)) !== page) return;
     try {
@@ -401,7 +399,7 @@
   document.fonts?.addEventListener?.('loadingdone', () => {
     if (!window.SiteScene?.managesLayout) reconcileEndpoint();
   });
-  function flight(next, animate, commit, own, departure, landing = null) {
+  function flight(next, animate, commit, own, departure, landing = null, itinerary = null) {
     return new Promise((resolve, reject) => {
       let mounted = false,
         mountTimer = null,
@@ -539,7 +537,7 @@
       update.cancel = cancel;
       transition = update;
       content.inert = true;
-      presentation?.begin?.(animate);
+      presentation?.begin?.(animate, itinerary);
       if (window.SiteScene) window.SiteScene.navigate(next, animate, transition, landing);
       else transition(1);
     });
@@ -640,6 +638,7 @@
     const departure = presentation?.departure?.() ?? Number(content.style.opacity || 1);
     const own = ++serial;
     interrupt();
+    requestedPage = next;
     if (position === 'end') endpoint = { own, page: next, mounted: false, arrived: false };
     if (input === 'wheel' || input === 'key') {
       inputTail = { own, type: input, key: lastKey };
@@ -691,7 +690,12 @@
         },
         own,
         departure,
-        { position, hash: url.hash, search: url.search }
+        { position, hash: url.hash, search: url.search },
+        {
+          from: page,
+          to: next,
+          direction: window.SiteScene?.direction?.(next) ?? window.SiteRoutes.direction(page, next),
+        }
       );
       // Arrival removes the content transform. Its temporary overflow/offset
       // must not remain the page's scroll range or semantic waypoint geometry.
@@ -715,6 +719,7 @@
       if (own === serial) {
         content.removeAttribute('aria-busy');
         request = null;
+        requestedPage = null;
         clearText();
       }
     }
@@ -810,6 +815,7 @@
   window.SiteNavigation = {
     push,
     primaryRoutes,
+    pendingRoute: () => requestedPage,
     reconcileEndpoint,
     contentFlight(value) {
       return presentation?.contentFlight?.(value) ?? false;
@@ -819,11 +825,9 @@
     },
     go(next, { atEnd = false, input = null } = {}) {
       if (
-        next === page ||
+        next === (requestedPage || page) ||
         !primaryRoutes.includes(page) ||
-        !primaryRoutes.includes(next) ||
-        request ||
-        transition
+        !primaryRoutes.includes(next)
       )
         return false;
       navigate(

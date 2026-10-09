@@ -297,6 +297,305 @@ test('forced completion and retarget cannot leave a retained fragment tail inert
     assert.deepEqual(h.commits, ['writing']);
   }
 });
+function routeNavigationHarness(options = {}) {
+  const routes = require('../site/routes.json').routes.map((route) => route.id),
+    reads = [],
+    timers = new Map(),
+    flights = [],
+    mounts = [],
+    historyEntries = [],
+    beginnings = [],
+    events = new Map();
+  let timer = 0,
+    callback = null;
+  const attributes = new Set(),
+    style = {
+      removeProperty(name) {
+        delete this[name];
+      },
+    },
+    content = {
+      style,
+      inert: false,
+      setAttribute(name) {
+        attributes.add(name);
+      },
+      removeAttribute(name) {
+        attributes.delete(name);
+      },
+      querySelector: () => ({ focus() {} }),
+    };
+  const document = { hidden: false, body: { dataset: { page: 'index' } } },
+    window = {
+      SiteRoutes: {
+        order: routes,
+        direction: (from, to) =>
+          routes.indexOf(to) > routes.indexOf(from) ? 'forward' : 'backward',
+      },
+      location: { href: 'https://site.test/', assign: assert.fail },
+      SiteScene: {
+        canTravel: () => options.motion !== false,
+        direction: (next) =>
+          options.direction || window.SiteRoutes.direction(document.body.dataset.page, next),
+        navigate(next, animate, update, landing) {
+          callback = update;
+          flights.push({ next, animate, landing });
+          update(animate ? 0 : 1);
+        },
+        detachTravel() {
+          callback = null;
+        },
+        refresh() {},
+      },
+      setTimeout(fn, delay) {
+        const id = ++timer;
+        timers.set(id, { fn, delay });
+        return id;
+      },
+      clearTimeout(id) {
+        timers.delete(id);
+      },
+      addEventListener(name, fn) {
+        events.set(name, fn);
+      },
+      dispatchEvent(event) {
+        events.get(event.type)?.(event);
+      },
+    };
+  document.querySelector = () => ({ dataset: { direction: options.direction || 'forward' } });
+  document.addEventListener = window.addEventListener;
+  const presentation = {
+    mountAt: 0.5,
+    canTravel: () => true,
+    departure: () => ({ opacity: 1 }),
+    restoreDeparture() {},
+    begin(animate, itinerary) {
+      beginnings.push({ animate, itinerary });
+    },
+    present() {},
+  };
+  const context = {
+    window,
+    document,
+    content,
+    presentation,
+    routes,
+    primaryRoutes: routes,
+    embedded: null,
+    directory: new URL('https://site.test/'),
+    performance: { now: () => 0 },
+    AbortController,
+    URL,
+    PopStateEvent: class PopStateEvent {
+      constructor(type, values) {
+        this.type = type;
+        Object.assign(this, values);
+      }
+    },
+    history: {
+      pushState(state, _, url) {
+        historyEntries.push({ state, url: url.href });
+        window.location.href = url.href;
+      },
+    },
+    announcement: {},
+    routeFor: (url) =>
+      url.pathname === '/' ? 'index' : url.pathname.slice(1).replace('.html', ''),
+    read(next, signal) {
+      return new Promise((resolve) => reads.push({ next, signal, resolve }));
+    },
+    prepare: (data) => data,
+    address: (url) => url,
+    clearText() {
+      content.inert = false;
+    },
+    releaseEndpoint() {},
+    releaseTail() {},
+    arriveEndpoint() {},
+    save() {},
+    push() {},
+    reconcileEndpoint() {},
+    restoreScroll() {},
+  };
+  const navigateSource = source.slice(
+      source.indexOf('  async function navigate('),
+      source.indexOf('  document.body.dataset.entryPage')
+    ),
+    apiSource = source.slice(
+      source.indexOf('  window.SiteNavigation = {'),
+      source.indexOf('  const first =')
+    ),
+    eventSource = source.slice(
+      source.indexOf("  document.addEventListener('click'"),
+      source.indexOf('  function finishText(')
+    );
+  vm.runInNewContext(
+    `let page='index',serial=0,request=null,requestedPage=null,transition=null,endpoint=null,inputTail=null,lastKey=null;
+    ${interruptSource}${section('motionAllowed', 'restoreScroll')}${flightSource}${navigateSource}${apiSource}${eventSource}
+    globalThis.readPage=()=>page;globalThis.mountRoute=(next)=>{page=next;document.body.dataset.page=next;};`,
+    context
+  );
+  context.mount = (data, url, position) => {
+    context.mountRoute(data.page);
+    mounts.push({ page: data.page, url: url.href, position });
+  };
+  return {
+    api: window.SiteNavigation,
+    content,
+    attributes,
+    reads,
+    flights,
+    beginnings,
+    mounts,
+    historyEntries,
+    click(next) {
+      let prevented = false;
+      const link = {
+        href: 'https://site.test/' + (next === 'index' ? '' : next + '.html'),
+        getAttribute: () => next + '.html',
+        hasAttribute: () => false,
+      };
+      events.get('click')({
+        button: 0,
+        target: { closest: () => link },
+        preventDefault: () => (prevented = true),
+      });
+      return prevented;
+    },
+    pop(next, scroll) {
+      window.location.href = 'https://site.test/' + (next === 'index' ? '' : next + '.html');
+      events.get('popstate')({ state: { site: { page: next, scroll } } });
+    },
+    page: context.readPage,
+    async resolve(next) {
+      const read = reads.find((entry) => entry.next === next && !entry.resolved);
+      assert.ok(read, 'expected route read ' + next);
+      read.resolved = true;
+      read.resolve({ page: next, title: next });
+      await Promise.resolve();
+      await Promise.resolve();
+    },
+    async arrive() {
+      callback(1);
+      await Promise.resolve();
+      await Promise.resolve();
+    },
+    midpoint() {
+      callback(0.5, { painted: true });
+      const [id, task] = [...timers].find(([, entry]) => entry.delay === 0);
+      timers.delete(id);
+      task.fn();
+    },
+  };
+}
+test('all five authored routes animate through one itinerary, including Credits and Home reversals', async () => {
+  const h = routeNavigationHarness();
+  assert.deepEqual(h.api.primaryRoutes, ['index', 'research', 'writing', 'talks', 'credits']);
+  for (const next of ['research', 'writing', 'talks', 'credits', 'talks', 'index']) {
+    const from = h.page();
+    assert.equal(h.api.go(next), true);
+    assert.equal(h.api.pendingRoute(), next);
+    await h.resolve(next);
+    assert.equal(h.flights.at(-1).animate, true);
+    assert.deepEqual(JSON.parse(JSON.stringify(h.beginnings.at(-1).itinerary)), {
+      from,
+      to: next,
+      direction:
+        h.api.primaryRoutes.indexOf(next) > h.api.primaryRoutes.indexOf(from)
+          ? 'forward'
+          : 'backward',
+    });
+    await h.arrive();
+    assert.equal(h.page(), next);
+    assert.equal(h.api.pendingRoute(), null);
+    assert.equal(h.attributes.has('aria-busy'), false);
+    assert.equal(h.content.inert, false);
+  }
+});
+test('API travel accepts fresh fetch, departure and incoming reversals while rejecting duplicate destinations', async () => {
+  const h = routeNavigationHarness({ direction: 'backward' });
+  assert.equal(h.api.go('credits'), true);
+  assert.equal(h.api.go('credits'), false);
+  const stale = h.reads[0];
+  assert.equal(
+    h.api.go('index'),
+    true,
+    'return to mounted source before the first destination mounts'
+  );
+  assert.equal(stale.signal.aborted, true);
+  await h.resolve('credits');
+  assert.equal(h.flights.length, 0, 'a stale fetch cannot start the old flight');
+  await h.resolve('index');
+  assert.equal(h.beginnings.at(-1).itinerary.direction, 'backward');
+  assert.equal(h.api.go('research'), true, 'a fresh route replaces an active departure');
+  await h.resolve('research');
+  h.midpoint();
+  assert.equal(h.page(), 'research');
+  assert.equal(h.api.go('credits', { atEnd: true, input: 'wheel' }), true);
+  await h.resolve('credits');
+  assert.equal(h.flights.at(-1).landing.position, 'end');
+  await h.arrive();
+  assert.deepEqual(
+    h.mounts.map((entry) => entry.page),
+    ['research', 'credits']
+  );
+  assert.equal(h.api.go('unknown'), false);
+  assert.equal(h.api.go('credits'), false);
+  assert.equal(h.api.pendingRoute(), null);
+  assert.equal(h.attributes.has('aria-busy'), false);
+  assert.equal(h.content.inert, false);
+});
+test('all-five native routes retain instant completion when motion cannot travel', async () => {
+  const h = routeNavigationHarness({ motion: false });
+  assert.equal(h.api.go('credits'), true);
+  await h.resolve('credits');
+  await Promise.resolve();
+  assert.equal(h.flights[0].animate, false);
+  assert.equal(h.page(), 'credits');
+  assert.equal(h.api.pendingRoute(), null);
+  assert.equal(h.content.inert, false);
+});
+test('VO Home click reverses a pending departure and Credits arrival through the shared transaction', async () => {
+  const h = routeNavigationHarness({ direction: 'backward' });
+  assert.equal(h.click('research'), true);
+  await h.resolve('research');
+  assert.equal(h.page(), 'index', 'source Home can still be mounted at any native scroll position');
+  assert.equal(
+    h.click('index'),
+    true,
+    'VO Home does not take the idle same-page branch while busy'
+  );
+  await h.resolve('index');
+  await h.arrive();
+  assert.deepEqual(
+    h.mounts.map((entry) => entry.page),
+    ['index']
+  );
+  assert.equal(h.click('credits'), true);
+  await h.resolve('credits');
+  await h.arrive();
+  assert.equal(h.click('index'), true);
+  await h.resolve('index');
+  assert.equal(h.flights.at(-1).animate, true);
+  assert.equal(h.beginnings.at(-1).itinerary.direction, 'backward');
+  await h.arrive();
+  assert.equal(h.page(), 'index');
+  assert.equal(h.api.pendingRoute(), null);
+});
+test('history retargets an active incoming flight and preserves its native stored scroll landing', async () => {
+  const h = routeNavigationHarness({ direction: 'backward' });
+  h.click('writing');
+  await h.resolve('writing');
+  h.midpoint();
+  h.pop('credits', [0, 7190]);
+  await h.resolve('credits');
+  await h.arrive();
+  assert.equal(h.page(), 'credits');
+  assert.deepEqual(h.mounts.at(-1).position, [0, 7190]);
+  assert.equal(h.historyEntries.length, 1, 'popstate does not push a replacement history entry');
+  assert.equal(h.flights.at(-1).animate, true);
+  assert.equal(h.api.pendingRoute(), null);
+});
 function routeHeadHarness(candidate = source) {
   const css =
     '\n' + fs.readFileSync(path.join(__dirname, '../site/engine/critical-media.css'), 'utf8');

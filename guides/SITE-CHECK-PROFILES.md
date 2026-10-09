@@ -138,16 +138,22 @@ are `site/effects/fragment-plan.cjs` and `site/effects/fragment-dom.cjs`; the nu
 and browser-fixture module IDs stay active: replace conflicting scroll-driven
 camera assertions with fixed reading-pose observations while retaining native
 scroll/filter/history/edge intent, ambient motion, freeze and original limits.
-The opt-in heading/paragraph/portrait prototype requires actual two-sided depth,
-native-paint fidelity and same-source measured-cost admission before broad/default
-rollout. Source/DOM fixtures do not supply those observations. Extend applicable
-existing hosted cases rather than add another full matrix.
+The initial opt-in prototype remains historical. The next9October user amendment
+explicitly enables the shared fragment effect across all five Color preview routes,
+including Credits, in both itinerary directions. Stored Off preferences and reduced,
+hidden/print/no-Canvas fallback remain. Depth/fidelity/device and same-source
+paired added-cost acceptance stay separate from this authorized preview scope.
 
-The 9 October incoming refinement uses the existing fragment and scene/router
-suites for staggered 1.8-second assembly and a finite painted-clock tail after
-unchanged camera travel. The same two-width Color smoke also exercises the opt-in
-arrival and cleanup/Off fallback. Keep that targeted observation separate from
-full visual acceptance and the paired added-cost admission; no matrix is added.
+The same permanent fragment-plan/DOM and scene/router suites cover shared settings,
+small variable convex shards, native viewport owners,20 ordered route pairs and
+arbitrary-scroll or in-flight retargets. The owning policy also selects the existing
+flight-controller suite for locked direction, phase-local fallback/admission and
+finite painted-clock completion. No second transition clock or suite is introduced.
+The existing two-width Color smoke observes13 focused two-sided trips plus one
+interruption at each width: forward/reverse chains, Credits, native mid/bottom
+header clicks, edge landing, footer/cross-links, history and VO. It retains original
+timing/resource limits, exact heading line handoff and Off cleanup. These targeted
+observations do not replace the full release/device matrix or paired-cost gate.
 
 The registry inventories current suites, scheduled profiles, changed-path targets
 and retained diagnostics. Use `tools/quality/source-tests.cjs` to select registered
