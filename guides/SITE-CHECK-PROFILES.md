@@ -143,6 +143,12 @@ native-paint fidelity and same-source measured-cost admission before broad/defau
 rollout. Source/DOM fixtures do not supply those observations. Extend applicable
 existing hosted cases rather than add another full matrix.
 
+The 9 October incoming refinement uses the existing fragment and scene/router
+suites for staggered 1.8-second assembly and a finite painted-clock tail after
+unchanged camera travel. The same two-width Color smoke also exercises the opt-in
+arrival and cleanup/Off fallback. Keep that targeted observation separate from
+full visual acceptance and the paired added-cost admission; no matrix is added.
+
 The registry inventories current suites, scheduled profiles, changed-path targets
 and retained diagnostics. Use `tools/quality/source-tests.cjs` to select registered
 source suites instead of a wildcard that revives every historical snapshot.

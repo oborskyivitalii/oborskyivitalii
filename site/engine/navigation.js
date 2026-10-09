@@ -482,6 +482,24 @@
         if (transition === update) transition = null;
         resolve();
       }
+      function presentFrame(progress, paintedView) {
+        // A finite fragment arrival can finish after the unchanged camera
+        // flight, on this same painted callback. Forced completion has no
+        // new paint and must resolve Off/print/hidden/failure immediately.
+        const completed =
+          progress === 1 && !paintedView
+            ? true
+            : presentation.present(
+                progress,
+                document.querySelector('.space-scene')?.dataset.direction || 'forward',
+                departure,
+                lastView
+              );
+        if (progress === 1) {
+          if (completed === false) return false;
+          finish();
+        }
+      }
       const update = (progress, paintedView = null) => {
         if (settled) return;
         if (own !== serial) {
@@ -502,17 +520,7 @@
           // Do not reveal the old DOM if a painted progress jumps past the
           // midpoint before its queued native mount has completed.
           if (!mounted && mountTimer !== null) progress = mountAt;
-          if (presentation) {
-            if (progress === 1) finish();
-            else
-              presentation.present(
-                progress,
-                document.querySelector('.space-scene')?.dataset.direction || 'forward',
-                departure,
-                lastView
-              );
-            return;
-          }
+          if (presentation) return presentFrame(progress, paintedView);
           // Smooth exit, empty tunnel, then arrival. No independent clock/RAF.
           const t = progress < 0.18 ? progress / 0.18 : Math.max(0, (progress - 0.72) / 0.28);
           const eased = t * t * (3 - 2 * t);

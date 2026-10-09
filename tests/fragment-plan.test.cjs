@@ -7,6 +7,66 @@ const factory = require('../site/effects/fragment-plan.cjs');
 const fragments = factory(math);
 const pose = { position: [5, 3, 24], target: [0, 0, -5] };
 
+test('arrival releases owners and their unequal text cells in reading order over a finite build', () => {
+  const heading = { x: 30, y: 70, width: 420, height: 80 };
+  const paragraph = { x: 30, y: 190, width: 420, height: 120 };
+  const groups = [paragraph, heading].map((rect, index) => ({
+    rect,
+    cells: fragments.partition(rect, { count: 10, seed: index + 1 }, { maxPieces: 96 }),
+  }));
+  const before = JSON.stringify(groups);
+  const timing = fragments.arrivalSchedule(groups);
+  assert.equal(JSON.stringify(groups), before, 'a timing plan cannot reorder authored cells');
+  const headingTimings = timing[1].map((item) => item.delayMs);
+  const paragraphTimings = timing[0].map((item) => item.delayMs);
+  assert.ok(Math.max(...headingTimings) < Math.min(...paragraphTimings));
+  assert.equal(Math.min(...timing.flat().map((item) => item.delayMs)), 0);
+  const completion = timing.flat().map((item) => item.delayMs + item.durationMs);
+  assert.ok(Math.min(...completion) >= 850);
+  assert.equal(Math.max(...completion), 1800);
+  assert.ok(
+    new Set(completion).size > 10,
+    'text portions settle separately, rather than as one plane'
+  );
+  assert.deepEqual(fragments.arrivalSchedule(groups), timing);
+});
+
+test('arrival timing rejects malformed or unbounded groups before creating a schedule', () => {
+  const rect = { x: 30, y: 70, width: 420, height: 80 };
+  for (const groups of [
+    null,
+    [],
+    [null],
+    [{ rect, cells: [] }],
+    [{ rect: { ...rect, y: NaN }, cells: [rect] }],
+    [{ rect, cells: [{ ...rect, width: 0 }] }],
+    [{ rect, cells: Array(97).fill(rect) }],
+    Array(33).fill({ rect, cells: [rect] }),
+  ])
+    assert.equal(fragments.arrivalSchedule(groups), null);
+});
+
+test('late arrival keeps at least one second of staggered construction inside the unchanged ready budget', () => {
+  for (const elapsedMs of [0, 750, 1400, 1700]) {
+    const preparedMs = 160;
+    const durationMs = fragments.arrivalWindow(elapsedMs, preparedMs);
+    assert.ok(durationMs >= 1000 && durationMs <= 1800);
+    assert.ok(elapsedMs + preparedMs + durationMs <= 2900);
+    const rect = { x: 30, y: 70, width: 420, height: 80 };
+    const groups = [{ rect, cells: fragments.partition(rect, { count: 10 }, { maxPieces: 96 }) }];
+    const timing = fragments.arrivalSchedule(groups, durationMs).flat();
+    assert.equal(Math.max(...timing.map((tile) => tile.delayMs + tile.durationMs)), durationMs);
+    assert.ok(new Set(timing.map((tile) => tile.delayMs)).size > 1);
+  }
+  for (const input of [
+    [1900, 160],
+    [1700, 201],
+    [NaN, 0],
+    [0, -1],
+  ])
+    assert.equal(fragments.arrivalWindow(...input), 0);
+});
+
 function assertPoint(actual, expected, tolerance = 1e-8) {
   assert.equal(actual.length, expected.length);
   actual.forEach((value, index) =>

@@ -1418,7 +1418,7 @@
     {
       "path": "tests/fragment-plan.test.cjs",
       "language": "javascript",
-      "purpose": "Issue49 current pure fragment partition/shared-resource admission, native/world projection/near-plane and serialized-factory negatives",
+      "purpose": "Issue49 pure fragment partition/shared-resource admission, staggered incoming schedule, native/world projection/near-plane and serialized-factory negatives",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -1436,7 +1436,7 @@
     {
       "path": "tests/fragment-dom.test.cjs",
       "language": "javascript",
-      "purpose": "Issue49 current opt-in native-paint fragment owner/copy/handoff/cancellation/cleanup and malformed/over-budget rejection contracts",
+      "purpose": "Issue49 opt-in native-paint owner/copy/handoff, 1.8-second staggered assembly, cancellation/cleanup and malformed/over-budget rejection contracts",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],

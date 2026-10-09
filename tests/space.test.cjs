@@ -1340,6 +1340,65 @@ test('travel presentation snapshots exclude unpainted viewport and camera state'
   assert.equal(p.pending.size, 0);
 });
 
+test('finite presentation tails reuse settled scene paints without extending or moving the camera flight', () => {
+  const p = visit();
+  p.settle();
+  const reports = [];
+  let ready = false;
+  p.window.SiteScene.navigate('research', true, (progress, snapshot) => {
+    reports.push({ progress, snapshot });
+    return progress === 1 ? ready : undefined;
+  });
+  advanceUntil(p, () => reports.some(({ progress }) => progress === 1), 'camera must settle');
+  const pose = p.trace();
+  const before = reports.length;
+  for (let index = 0; index < 4; index++) p.frame(80);
+  assert.ok(reports.length > before, 'remaining fragments receive the existing painted callbacks');
+  assert.equal(p.scene.dataset.travel, 'settled');
+  assert.equal(p.trace(), pose);
+  assert.ok(
+    reports.slice(before).every(({ progress, snapshot }) => progress === 1 && snapshot.active)
+  );
+  ready = true;
+  p.frame(80);
+  const completed = reports.length;
+  p.frame(80);
+  assert.equal(reports.length, completed, 'the finite tail releases its callback once complete');
+  assert.equal(p.trace(), pose);
+});
+
+test('device hold or drawing failure resolves a retained arrival tail before the shared clock stops', () => {
+  for (const reason of ['hold', 'failure']) {
+    const p = visit();
+    p.settle();
+    const reports = [];
+    p.window.SiteScene.navigate('research', false, (progress, snapshot) => {
+      reports.push({ progress, snapshot });
+      return false;
+    });
+    p.settle();
+    const pose = p.trace();
+    if (reason === 'hold') {
+      p.paintCost(60);
+      advanceUntil(
+        p,
+        () => p.button.textContent === 'Motion: still (device)',
+        'device must enter its bounded hold'
+      );
+    } else {
+      p.drawingFault();
+      p.frame(80);
+    }
+    assert.equal(reports.at(-1).progress, 1);
+    assert.equal(reports.at(-1).snapshot.active, false);
+    assert.equal(p.pending.size, 0);
+    assert.equal(p.trace(), pose, 'the tail cannot change the frozen camera');
+    const completed = reports.length;
+    p.frame(80);
+    assert.equal(reports.length, completed);
+  }
+});
+
 function assertFlightDepths(paints, sourceZ, endpointZ) {
   const direction = Math.sign(endpointZ - sourceZ),
     lower = Math.min(sourceZ, endpointZ),

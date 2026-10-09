@@ -519,6 +519,12 @@ function createPresentation(content) {
     },
     present(progress, direction, departure, snapshot) {
       lastPose = flightPose(progress, direction, departure);
+      if (snapshot?.active === false) {
+        fragments?.clear();
+        useFragments = false;
+        capturing = false;
+        waitingArrival = false;
+      }
       if (useFragments && waitingArrival) {
         const status = fragments.arrivalStatus(snapshot);
         if (status === 'wait') {
@@ -533,7 +539,8 @@ function createPresentation(content) {
         capturing = false;
         if (!fragments.prepare('depart', snapshot)) useFragments = false;
       }
-      if (useFragments && fragments.present(progress, snapshot)) return;
+      if (useFragments && fragments.present(progress, snapshot))
+        return progress === 1 ? fragments.complete() : undefined;
       if (useFragments && fragments.active() === false) useFragments = false;
       setPlane(lastPose);
     },

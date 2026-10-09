@@ -3346,6 +3346,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     journey = null;
   let travelUpdate = null;
   let travelAnchor = null;
+  let travelStartedAt = 0;
   let colors = { cyan: '#075d7b', amber: '#895710', paper: '#f8f7f3' };
   let paletteRevision = 0,
     colorFills = new Map();
@@ -3625,8 +3626,9 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
   function reportTravel(progress) {
     scene.dataset.progress = String(progress);
     const update = travelUpdate;
-    if (progress === 1) travelUpdate = null;
     if (!update) return;
+    const active = enabled && !hold && !failed && !printing && !document.hidden && !reduced.matches;
+    const capturedAt = clock();
     // Route notification may precede a paint or complete an unavailable scene.
     // Snapshot only the last successful paint, never a newer layout/solver state.
     // The router's callback closure owns the transaction; this adds no clock/cache.
@@ -3636,7 +3638,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     });
     const projection = cameraView(pose, displayedWidth, displayedHeight, displayedCompact);
     for (const axis of ['forward', 'right', 'up', 'origin']) Object.freeze(projection[axis]);
-    update(
+    const completed = update(
       progress,
       Object.freeze({
         progress,
@@ -3647,10 +3649,16 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
         projection: Object.freeze(projection),
         anchor: travelAnchor,
         remainingMs: journey ? Math.max(0, journey.duration - journey.elapsed) : 0,
-        capturedAt: clock(),
+        capturedAt,
+        travelElapsedMs: Math.max(0, capturedAt - travelStartedAt),
         painted,
+        active,
       })
     );
+    // The existing painted clock may own a bounded presentation tail after the
+    // camera has settled. Legacy callbacks retain their immediate completion.
+    if (progress === 1 && (completed !== false || !active) && travelUpdate === update)
+      travelUpdate = null;
   }
   function adaptCadence(cost, time) {
     // Ignore the one-time initial paint for cadence estimation. Adapt to actual
@@ -3708,7 +3716,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
         current = arrival;
         journey = null;
         schedule();
-      }
+      } else if (travelUpdate) reportTravel(1);
       updateControl();
     } else if (fast >= 100 && tier > 0) {
       tier--;
@@ -3921,6 +3929,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       !document.hidden,
     navigate(next, animate = true, update = null) {
       if (!owns(initialPoses, next)) return;
+      travelStartedAt = clock();
       // Media-query state can change before its queued change event is delivered.
       if (reduced.matches && enabled) {
         enabled = false;

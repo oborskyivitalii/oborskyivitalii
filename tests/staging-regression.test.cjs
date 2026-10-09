@@ -426,6 +426,123 @@ test('Color scenario observes actual Canvas paints alongside completed scene sub
     );
   }
 });
+test('incoming Color observation rejects simultaneous, invisible, unbounded and uncleared assembly', () => {
+  const { validateFragmentAssembly } = require('../tools/quality/color-browser.cjs');
+  const observation = {
+    samples: Array.from({ length: 10 }, (_, index) => ({
+      timeMs: 100 + index * 180,
+      phase: 'arrive',
+      elapsedMs: index * 180,
+      durationMs: 1800,
+      settled: index < 5 ? 0 : (index - 4) * 2,
+      owners: 4,
+      pieces: 12,
+      visiblePieces: index ? 12 : 0,
+      transformedPieces: 12,
+      nativeOpacity: index >= 2 ? 1 : 0,
+      nativeHidden: 4,
+      fragmentFields: ['fragmentPhase', 'fragmentElapsedMs', 'fragmentSettled'],
+    })).concat({
+      timeMs: 1900,
+      phase: null,
+      elapsedMs: 0,
+      settled: 0,
+      owners: 0,
+      pieces: 0,
+      visiblePieces: 0,
+      transformedPieces: 0,
+      nativeOpacity: 1,
+      nativeHidden: 0,
+      fragmentFields: [],
+    }),
+  };
+  const measured = {
+    paints: 20,
+    paintCallbackMs: { p95: 12, max: 25 },
+    paintIntervalsMs: { max: 80 },
+    readyMs: 2600,
+  };
+  assert.equal(validateFragmentAssembly(observation, measured).durationMs, 1800);
+  for (const mutate of [
+    (data) => (data.samples = []),
+    (data) => (data.samples[0].elapsedMs = 900),
+    (data) => (data.samples[0].durationMs = 0),
+    (data) => data.samples.forEach((row) => (row.settled = 0)),
+    (data) => data.samples.forEach((row) => (row.settled = row.pieces)),
+    (data) => data.samples.forEach((row) => (row.visiblePieces = 0)),
+    (data) => data.samples.forEach((row) => (row.transformedPieces = 0)),
+    (data) => (data.samples[3].nativeOpacity = 0.5),
+    (data) => (data.samples[3].nativeHidden = 0),
+    (data) => (data.samples[3].owners = 0),
+    (data) => (data.samples.at(-1).timeMs = 3000),
+    (data) => (data.samples.at(-1).pieces = 1),
+    (data) => (data.samples.at(-1).nativeHidden = 1),
+    (data) => (data.samples.at(-1).nativeOpacity = 0),
+    (data) => (data.samples.at(-1).fragmentFields = ['fragmentSettled']),
+  ]) {
+    const invalid = structuredClone(observation);
+    mutate(invalid);
+    assert.throws(() => validateFragmentAssembly(invalid, measured));
+  }
+  for (const mutate of [
+    (data) => (data.paints = 0),
+    (data) => (data.paintCallbackMs.p95 = 81),
+    (data) => (data.paintCallbackMs.max = 201),
+    (data) => (data.paintIntervalsMs.max = 301),
+    (data) => (data.readyMs = 3201),
+    (data) => (data.readyMs = null),
+    (data) => (data.paintCallbackMs.p95 = NaN),
+    (data) => (data.paintCallbackMs.max = -1),
+    (data) => (data.paintIntervalsMs.max = null),
+  ]) {
+    const invalid = structuredClone(measured);
+    mutate(invalid);
+    assert.throws(() => validateFragmentAssembly(observation, invalid));
+  }
+});
+test('failed incoming Color wait preserves raw observations and the original failure', async () => {
+  const { fragmentAssembly } = require('../tools/quality/color-browser.cjs');
+  const raw = {
+    schema: 2,
+    start: 0,
+    end: 200,
+    elapsed: 200,
+    samples: [{ phase: 'arrive', pieces: 10, settled: 0 }],
+    frames: [{ time: 20, started: 20, duration: 5, painted: true }],
+    events: [],
+    longTasks: [{ start: 30, duration: 70 }],
+  };
+  for (const captureFails of [false, true]) {
+    const original = Error('Controlled incoming wait failure');
+    let evaluations = 0;
+    const page = {
+      evaluate: async () => {
+        evaluations++;
+        if (evaluations <= 2) return;
+        if (captureFails) throw Error('Controlled closed browser');
+        return evaluations === 3 ? structuredClone(raw) : { pieces: 10, motion: 'Motion: on' };
+      },
+      locator: () => ({ click: async () => {} }),
+      waitForFunction: async () => {
+        throw original;
+      },
+    };
+    await assert.rejects(fragmentAssembly(page), (error) => {
+      assert.equal(error, original);
+      if (captureFails) assert.equal(error.fragmentObservation.failureState, null);
+      else {
+        assert.deepEqual(error.fragmentObservation.observation, raw);
+        assert.deepEqual(error.fragmentObservation.measured.rawFrames, raw.frames);
+        assert.deepEqual(error.fragmentObservation.measured.rawLongTasks, raw.longTasks);
+        assert.deepEqual(error.fragmentObservation.failureState, {
+          pieces: 10,
+          motion: 'Motion: on',
+        });
+      }
+      return true;
+    });
+  }
+});
 test('the functional driver executes precisely its selected helpers and closes each engine', async () => {
   const calls = [],
     closed = [],

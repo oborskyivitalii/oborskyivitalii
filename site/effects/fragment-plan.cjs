@@ -16,6 +16,58 @@ module.exports = function ({ cameraView }) {
       points.reduce((sum, point) => sum + point[index] / points.length, 0)
     );
   const smooth = (progress) => progress * progress * (3 - 2 * progress);
+  const arrivalDurationMs = 1800;
+
+  function arrivalWindow(elapsedMs, preparedMs) {
+    if (![elapsedMs, preparedMs].every((value) => Number.isFinite(value) && value >= 0)) return 0;
+    // Reserve a painted-frame/ready-task margin inside the existing 3200ms
+    // admission gate. A late reverse arrival still gets at least one full second.
+    const availableMs = Math.min(arrivalDurationMs, 2900 - elapsedMs - preparedMs);
+    return availableMs >= 1000 ? availableMs : 0;
+  }
+
+  function arrivalSchedule(groups, durationMs = arrivalDurationMs) {
+    if (
+      !Number.isFinite(durationMs) ||
+      durationMs < 1000 ||
+      durationMs > arrivalDurationMs ||
+      !Array.isArray(groups) ||
+      !groups.length ||
+      groups.length > 32 ||
+      groups.some(
+        (group) =>
+          !group ||
+          !validRect(group.rect) ||
+          !Array.isArray(group.cells) ||
+          !group.cells.length ||
+          group.cells.some((cell) => !validRect(cell))
+      )
+    )
+      return null;
+    const arrivalPieceMs = durationMs / 2;
+    const ordered = groups
+      .map((group, owner) => ({ ...group, owner }))
+      .sort((a, b) => a.rect.y - b.rect.y || a.rect.x - b.rect.x);
+    const tiles = [];
+    for (const group of ordered) {
+      const cells = group.cells
+        .map((cell, index) => ({ cell, index }))
+        .sort((a, b) => a.cell.y - b.cell.y || a.cell.x - b.cell.x);
+      for (const { cell, index } of cells) {
+        if (!validRect(cell) || tiles.length >= 96) return null;
+        tiles.push({ owner: group.owner, index });
+      }
+    }
+    const result = groups.map((group) => group.cells.map(() => null));
+    for (let rank = 0; rank < tiles.length; rank++) {
+      const { owner, index } = tiles[rank];
+      result[owner][index] = {
+        delayMs: ((durationMs - arrivalPieceMs) * rank) / Math.max(1, tiles.length - 1),
+        durationMs: arrivalPieceMs,
+      };
+    }
+    return result;
+  }
 
   function randomSource(seed) {
     let state = seed >>> 0;
@@ -257,14 +309,20 @@ module.exports = function ({ cameraView }) {
       if (!finiteVector(anchor, 3)) return null;
       const target = quad(camera, prepared.rect, prepared.depth);
       if (!target) return null;
-      const origin = blend(scatterCenter(anchor, prepared, 0.2), center(target), eased);
+      // Every incoming tile leaves the real room center, then fans into its own
+      // reading position. The curved spread closes exactly at the native plane.
+      const origin = scatterCenter(
+        blend(anchor, center(target), eased),
+        prepared,
+        Math.sin(progress * Math.PI) * 0.65
+      );
       corners = turn(
         target,
         origin,
         camera,
-        prepared.roll * (1 - eased),
-        prepared.tilt * (1 - eased),
-        0.15 + eased * 0.85
+        prepared.roll * 2.5 * (1 - eased),
+        prepared.tilt * 2.5 * (1 - eased),
+        0.08 + eased * 0.92
       );
     }
     const result = projectQuad(camera, corners);
@@ -275,6 +333,9 @@ module.exports = function ({ cameraView }) {
   }
 
   return {
+    arrivalDurationMs,
+    arrivalWindow,
+    arrivalSchedule,
     admit,
     partition,
     view,

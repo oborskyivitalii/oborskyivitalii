@@ -6,6 +6,9 @@ module.exports = function (content, geometry, onFallback = null) {
     hidden = [],
     phase = null,
     viewState = null,
+    arrivalStartedAt = null,
+    arrivalElapsedMs = 0,
+    arrivalWindowMs = 0,
     failed = false,
     subscriptions = [];
   const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)');
@@ -27,8 +30,15 @@ module.exports = function (content, geometry, onFallback = null) {
     hidden = [];
     phase = null;
     viewState = null;
+    arrivalStartedAt = null;
+    arrivalElapsedMs = 0;
+    arrivalWindowMs = 0;
     delete content.dataset.fragmentPhase;
     delete content.dataset.fragmentPieces;
+    delete content.dataset.fragmentOwners;
+    delete content.dataset.fragmentElapsedMs;
+    delete content.dataset.fragmentSettled;
+    delete content.dataset.fragmentDurationMs;
   }
   function invalidate() {
     if (!phase) return;
@@ -75,30 +85,48 @@ module.exports = function (content, geometry, onFallback = null) {
       height: snapshot.height,
     };
   }
-  function candidates(snapshot) {
+  function candidateRect(owner, snapshot) {
+    const rect = owner.getBoundingClientRect();
+    return rect.width > 0 &&
+      rect.height > 0 &&
+      rect.right > -64 &&
+      rect.left < snapshot.width + 64 &&
+      rect.bottom > -64 &&
+      rect.top < snapshot.height + 64 &&
+      !owner.closest('[hidden]') &&
+      getComputedStyle(owner).visibility === 'visible'
+      ? rect
+      : null;
+  }
+  function inspectCandidate(owner, snapshot, nextPhase, start) {
+    if (clock() - start > 160) return false;
+    if (
+      owner.matches('p') &&
+      (owner.textContent?.trim().length || 0) < (nextPhase === 'arrive' ? 1 : 60)
+    )
+      return null;
+    const rect = candidateRect(owner, snapshot);
+    if (clock() - start > 160) return false;
+    if (!rect || (nextPhase === 'arrive' && (rect.width < 4 || rect.height < 4))) return null;
+    if (owner.matches('img') && (!owner.complete || !owner.naturalWidth || !owner.currentSrc))
+      return false;
+    // No SVG IDs/references, media, controls or dynamic paint in this backend.
+    if (owner.querySelector('svg,canvas,video,iframe,input,button,select,textarea')) return false;
+    return { owner, rect };
+  }
+  function candidates(snapshot, nextPhase, start) {
     const result = [];
-    for (const selector of ['main h1, main h2, main h3', 'main p', 'main img']) {
+    const selectors =
+      nextPhase === 'arrive'
+        ? ['main h1, main h2, main h3, main p, main img']
+        : ['main h1, main h2, main h3', 'main p', 'main img'];
+    for (const selector of selectors) {
       for (const owner of content.querySelectorAll(selector)) {
-        if (owner.matches('p') && (owner.textContent?.trim().length || 0) < 60) continue;
-        const rect = owner.getBoundingClientRect();
-        if (
-          rect.width <= 0 ||
-          rect.height <= 0 ||
-          rect.right <= -64 ||
-          rect.left >= snapshot.width + 64 ||
-          rect.bottom <= -64 ||
-          rect.top >= snapshot.height + 64 ||
-          owner.closest('[hidden]') ||
-          getComputedStyle(owner).visibility !== 'visible'
-        )
-          continue;
-        if (owner.matches('img') && (!owner.complete || !owner.naturalWidth || !owner.currentSrc))
-          return null;
-        // No SVG IDs/references, media, controls or dynamic paint in this backend.
-        if (owner.querySelector('svg,canvas,video,iframe,input,button,select,textarea'))
-          return null;
-        result.push({ owner, rect });
-        break;
+        const candidate = inspectCandidate(owner, snapshot, nextPhase, start);
+        if (candidate === false) return null;
+        if (!candidate) continue;
+        result.push(candidate);
+        if (nextPhase === 'depart') break;
       }
     }
     return result;
@@ -110,12 +138,14 @@ module.exports = function (content, geometry, onFallback = null) {
       !Array.isArray(snapshot.anchor) ||
       snapshot.anchor.length !== 3 ||
       !snapshot.anchor.every(Number.isFinite) ||
-      !(snapshot.progress >= 0.5 && snapshot.progress < 1) ||
-      !(snapshot.remainingMs - Math.max(0, clock() - (snapshot.capturedAt ?? clock())) >= 250)
+      snapshot.active === false ||
+      !(snapshot.progress >= 0.5 && snapshot.progress <= 1) ||
+      !Number.isFinite(snapshot.capturedAt) ||
+      clock() - snapshot.capturedAt > 160
     )
       return 'fallback';
     const center = view.camera(snapshot.anchor);
-    if (center[2] <= 0.5) return 'wait';
+    if (center[2] <= 0.5) return snapshot.progress === 1 ? 'fallback' : 'wait';
     const point = view.project(center);
     return point.every(Number.isFinite) &&
       point[0] >= -64 &&
@@ -123,7 +153,9 @@ module.exports = function (content, geometry, onFallback = null) {
       point[1] >= -64 &&
       point[1] <= snapshot.height + 64
       ? 'ready'
-      : 'wait';
+      : snapshot.progress === 1
+        ? 'fallback'
+        : 'wait';
   }
   function freezePaint(owner, clone) {
     const originals = [owner, ...owner.querySelectorAll('*')];
@@ -152,6 +184,12 @@ module.exports = function (content, geometry, onFallback = null) {
         'text-decoration',
         'object-fit',
         'object-position',
+        'background-color',
+        'box-shadow',
+        'border-top',
+        'border-right',
+        'border-bottom',
+        'border-left',
         'border-radius',
       ])
         copy.style.setProperty(property, paint.getPropertyValue(property));
@@ -165,7 +203,7 @@ module.exports = function (content, geometry, onFallback = null) {
     clone.classList.add('fragment-paint');
     return clone;
   }
-  function planOwners(snapshot, view, start) {
+  function planOwners(snapshot, view, start, nextPhase) {
     const compact = snapshot.compact,
       maxPieces = compact ? 40 : 96,
       caps = {
@@ -180,11 +218,18 @@ module.exports = function (content, geometry, onFallback = null) {
     const pixelRatio = window.devicePixelRatio || 1;
     if (!Number.isFinite(pixelRatio) || pixelRatio <= 0) return false;
     // All native reads and admission happen before any clone or visibility write.
-    const selected = candidates(snapshot);
+    const selected = candidates(snapshot, nextPhase, start);
     if (!selected) return false;
-    for (const { owner, rect } of selected) {
+    const measured = selected.map((item) => ({
+      ...item,
+      descendants: item.owner.querySelectorAll('*').length,
+    }));
+    const arrivalCount =
+      nextPhase === 'arrive' ? arrivalAllowance(measured, caps, pixelRatio) : Infinity;
+    if (arrivalCount < 1) return false;
+    for (const { owner, rect, descendants } of measured) {
       const image = owner.matches('img'),
-        count = compact ? (image ? 8 : 6) : image ? 12 : 10,
+        count = Math.min(arrivalCount, compact ? (image ? 8 : 6) : image ? 12 : 10),
         visible = {
           x: Math.max(-64, rect.left),
           y: Math.max(-64, rect.top),
@@ -199,7 +244,6 @@ module.exports = function (content, geometry, onFallback = null) {
       if (!cells) return false;
       usage.pieces += cells.length;
       usage.owners++;
-      const descendants = owner.querySelectorAll('*').length;
       usage.descendants += (descendants + 2) * cells.length + descendants + 1;
       usage.textBytes += (owner.textContent?.length || 0) * 3 * (cells.length + 1);
       // Native DOM paint uses actual device DPR, unlike the separately capped Canvas.
@@ -214,6 +258,29 @@ module.exports = function (content, geometry, onFallback = null) {
     }
     return planned.length ? planned : null;
   }
+  function arrivalAllowance(measured, caps, pixelRatio) {
+    if (!measured.length || measured.length > caps.owners) return 0;
+    const descendantCopies = measured.reduce((sum, item) => sum + item.descendants + 2, 0);
+    const retainedDescendants = measured.reduce((sum, item) => sum + item.descendants + 1, 0);
+    const textBytes = measured.reduce(
+      (sum, item) => sum + (item.owner.textContent?.length || 0) * 3,
+      0
+    );
+    const nativePixels = measured.reduce(
+      (sum, item) => sum + item.rect.width * item.rect.height * pixelRatio ** 2,
+      0
+    );
+    // Share the unchanged transaction caps across all visible incoming owners,
+    // instead of spending the allowance on only one heading and one paragraph.
+    return Math.floor(
+      Math.min(
+        caps.pieces / measured.length,
+        (caps.descendants - 1 - retainedDescendants) / descendantCopies,
+        textBytes ? caps.textBytes / textBytes - 1 : Infinity,
+        caps.layerPixels / nativePixels
+      )
+    );
+  }
   function prepare(nextPhase, snapshot) {
     clear();
     if (
@@ -227,19 +294,28 @@ module.exports = function (content, geometry, onFallback = null) {
     const view = camera(snapshot);
     if (!view || (nextPhase === 'arrive' && arrivalStatus(snapshot) !== 'ready')) return false;
     const start = clock();
-    const arrivalTime = () =>
-      snapshot.remainingMs - Math.max(0, clock() - (snapshot.capturedAt ?? start));
-    if (nextPhase === 'arrive' && arrivalTime() < 250) return false;
-    const planned = planOwners(snapshot, view, start);
+    const planned = planOwners(snapshot, view, start, nextPhase);
     if (!planned) return false;
+    const timings =
+      nextPhase === 'arrive'
+        ? geometry.arrivalSchedule(
+            planned.map(({ rect, cells }) => ({
+              rect: { x: rect.left, y: rect.top, width: rect.width, height: rect.height },
+              cells: cells.map(({ cell }) => cell),
+            }))
+          )
+        : null;
+    if (nextPhase === 'arrive' && !timings) return false;
     const container = document.createElement('div');
     container.className = 'fragment-layer';
     container.inert = true;
     container.setAttribute('aria-hidden', 'true');
     try {
-      for (const { owner, rect, cells } of planned) {
+      for (let ownerIndex = 0; ownerIndex < planned.length; ownerIndex++) {
+        const { owner, rect, cells } = planned[ownerIndex];
         const nativePaint = freezePaint(owner, owner.cloneNode(true));
-        for (const { cell, geometry: prepared } of cells) {
+        for (let cellIndex = 0; cellIndex < cells.length; cellIndex++) {
+          const { cell, geometry: prepared } = cells[cellIndex];
           const tile = document.createElement('div');
           tile.className = 'fragment-piece';
           tile.style.width = cell.width + 'px';
@@ -251,11 +327,24 @@ module.exports = function (content, geometry, onFallback = null) {
           paint.style.top = rect.top - cell.y + 'px';
           tile.append(paint);
           container.append(tile);
-          pieces.push({ tile, prepared });
+          pieces.push({ tile, prepared, timing: timings?.[ownerIndex][cellIndex] });
         }
       }
-      if (clock() - start > 160 || (nextPhase === 'arrive' && arrivalTime() < 250))
-        throw Error('Fragment preparation deadline');
+      if (clock() - start > 160) throw Error('Fragment preparation deadline');
+      if (nextPhase === 'arrive') {
+        arrivalWindowMs = geometry.arrivalWindow(
+          snapshot.travelElapsedMs ?? 0,
+          clock() - (snapshot.capturedAt ?? start)
+        );
+        if (!arrivalWindowMs) throw Error('Fragment assembly deadline');
+        const scale = arrivalWindowMs / geometry.arrivalDurationMs;
+        for (const item of pieces) {
+          item.timing = {
+            delayMs: item.timing.delayMs * scale,
+            durationMs: item.timing.durationMs * scale,
+          };
+        }
+      }
       layer = container;
       content.after(layer);
       for (const { owner } of planned) {
@@ -264,8 +353,11 @@ module.exports = function (content, geometry, onFallback = null) {
       }
       phase = nextPhase;
       viewState = snapshot;
+      if (nextPhase === 'arrive') arrivalStartedAt = clock();
       content.dataset.fragmentPieces = String(pieces.length);
+      content.dataset.fragmentOwners = String(planned.length);
       content.dataset.fragmentPhase = phase;
+      if (nextPhase === 'arrive') content.dataset.fragmentDurationMs = String(arrivalWindowMs);
       watch();
       return true;
     } catch {
@@ -323,15 +415,25 @@ module.exports = function (content, geometry, onFallback = null) {
       invalidate();
       return false;
     }
-    const arrivalStart = Math.max(0.5, viewState.progress || 0.5);
-    const local = Math.max(
-      0,
-      Math.min(
-        1,
-        phase === 'depart' ? progress / 0.46 : (progress - arrivalStart) / (1 - arrivalStart)
-      )
-    );
-    for (const { tile, prepared } of pieces) {
+    if (phase === 'arrive') {
+      if (!Number.isFinite(snapshot.capturedAt)) {
+        invalidate();
+        return false;
+      }
+      arrivalElapsedMs = Math.max(arrivalElapsedMs, snapshot.capturedAt - arrivalStartedAt);
+    }
+    let settledPieces = 0;
+    for (const { tile, prepared, timing } of pieces) {
+      const local = Math.max(
+        0,
+        Math.min(
+          1,
+          phase === 'depart'
+            ? progress / 0.46
+            : (arrivalElapsedMs - timing.delayMs) / timing.durationMs
+        )
+      );
+      if (phase === 'arrive' && local === 1) settledPieces++;
       const projected = geometry.sample(prepared, {
         phase,
         progress: local,
@@ -343,9 +445,13 @@ module.exports = function (content, geometry, onFallback = null) {
       tile.style.opacity = transform ? String(projected.opacity) : '0';
       if (transform) tile.style.transform = transform;
     }
+    if (phase === 'arrive') {
+      content.dataset.fragmentElapsedMs = String(arrivalElapsedMs);
+      content.dataset.fragmentSettled = String(settledPieces);
+    }
     content.style.transform = 'none';
     content.style.opacity = String(
-      phase === 'depart' ? 1 - smooth(progress / 0.18) : smooth((progress - 0.78) / 0.22)
+      phase === 'depart' ? 1 - smooth(progress / 0.18) : smooth(arrivalElapsedMs / 300)
     );
     return true;
   }
@@ -359,5 +465,6 @@ module.exports = function (content, geometry, onFallback = null) {
     present,
     clear,
     active: () => phase !== null && !failed,
+    complete: () => phase === 'arrive' && arrivalElapsedMs >= arrivalWindowMs,
   };
 };

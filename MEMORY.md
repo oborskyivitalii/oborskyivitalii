@@ -1,6 +1,6 @@
 # Session memory
 
-Dated continuity, not live authority. Last verified: **2026-10-08**.
+Dated continuity, not live authority. Last verified: **2026-10-09**.
 
 ## Snapshot
 
@@ -28,6 +28,10 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
   temporary-fragment/native-handoff observations in the same handoff. First CI
   retained two tooling/probe failures; correct policy49 locked dependencies and
   shared Color paint observation before using the new exact-head CI evidence.
+- Incoming refinement follows the maintainer's 9 October preview feedback:
+  visibly stagger text/block construction for 1–2seconds from the real fractal.
+  Continue the same issue49/PR53; other outstanding visual concerns stay open.
+  Read live PR53 for the refined exact head, checks and immutable preview.
 
 ## Decisions
 
@@ -53,6 +57,10 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 - Measure fragment overhead against the same-source stationary-camera legacy
   presentation at identical quality/cache/landing conditions. Use one shared
   departure/arrival cap, original budgets and retained raw failures.
+- Incoming assembly uses1.8seconds with piece-local staggering and a finite tail
+  on the existing painted callback. Camera travel geometry/duration stays fixed.
+  Off/hidden/print/failure/device hold must finish native handoff immediately;
+  settled offscreen anchors use fallback rather than retain a waiting transaction.
 - The issue49 policy selects current fragment-plan/DOM/space/navigation contracts
   and individually reuses meaningful inherited source checks. Issue48's whole
   policy and frozen unrelated task snapshots remain historical, not second owners.
@@ -80,8 +88,8 @@ Dated continuity, not live authority. Last verified: **2026-10-08**.
 
 1. Fetch actual main, issue49 and PR53; revalidate bound source, decisions and checks.
 2. Read the consolidation/execution section and ordered tasks in the same handoff.
-3. Inspect the fixed-camera and opt-in departure/arrival checkpoint and current
-   source/CI evidence; active movement checks now have stationary replacements.
+3. Inspect the refined staggered incoming assembly and its finite painted-clock
+   tail, exact source/CI/preview, cleanup/Off/device-hold and native handoff evidence.
 4. Inspect actual depth/framing/native seams and bounded same-source raw measurements
    before broad/default rollout. Keep fallbacks and failed observations honest.
 5. Refresh policy/catalog/profile/RI/CI and exact current generated/scanner evidence;

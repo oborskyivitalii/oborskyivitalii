@@ -145,6 +145,7 @@ function fixture(options = {}) {
     }
     getBoundingClientRect() {
       counts.rects++;
+      now += options.rectCost || 0;
       return {
         ...this.rect,
         right: this.rect.left + this.rect.width,
@@ -270,6 +271,7 @@ function fixture(options = {}) {
     const pose = { position, target: [position[0], position[1], position[2] - 10] };
     return {
       painted: true,
+      active: true,
       pose,
       width: 1440,
       height: 900,
@@ -323,6 +325,10 @@ function assertDisposed(h) {
   assert.equal(h.adapter.active(), false);
   assert.equal(h.content.dataset.fragmentPieces, undefined);
   assert.equal(h.content.dataset.fragmentPhase, undefined);
+  assert.equal(h.content.dataset.fragmentOwners, undefined);
+  assert.equal(h.content.dataset.fragmentElapsedMs, undefined);
+  assert.equal(h.content.dataset.fragmentSettled, undefined);
+  assert.equal(h.content.dataset.fragmentDurationMs, undefined);
   assert.equal(h.counts.observers, 0);
   assert.equal(h.listeners(), 0);
   for (const owner of [h.heading, h.paragraph, h.image])
@@ -434,7 +440,9 @@ test('arrival cleanup restores exact owner visibility and leaves no copied resou
   for (let i = 0; i < 3; i++) {
     h.adapter.begin();
     assert.equal(h.adapter.prepare('arrive', h.snapshot()), true);
+    h.advance(1800);
     assert.equal(h.adapter.present(1, h.snapshot()), true);
+    assert.equal(h.adapter.complete(), true);
     assert.equal(h.content.style.opacity, '1');
     for (const tile of h.layer().children) {
       assert.equal(tile.style.opacity, '1');
@@ -502,35 +510,48 @@ test('preparation deadline or clone failure falls back with no hidden native own
   }
 });
 
-test('arrival readiness requires the remaining assembly window before any native measurement', () => {
+test('arrival starts from a finite painted center even when the camera is already settled', () => {
   for (const remainingMs of [undefined, 0, 249]) {
     const h = fixture();
-    assert.equal(h.adapter.prepare('arrive', h.snapshot([0, 0, 0], { remainingMs })), false);
+    assert.equal(
+      h.adapter.prepare('arrive', h.snapshot([0, 0, 0], { progress: 1, remainingMs })),
+      true
+    );
+    h.adapter.present(1, h.snapshot([0, 0, 0], { progress: 1 }));
+    assert.equal(h.adapter.complete(), false, 'camera arrival must not skip text assembly');
+    assert.equal(h.content.style.opacity, '0');
+    h.adapter.clear();
+    assertDisposed(h);
+  }
+  for (const extra of [
+    { active: false },
+    { capturedAt: NaN },
+    { progress: 1.1 },
+    { progress: 0.49 },
+  ]) {
+    const h = fixture();
+    assert.equal(h.adapter.prepare('arrive', h.snapshot([0, 0, 0], extra)), false);
     assert.equal(h.counts.rects, 0);
     assert.equal(h.counts.clones, 0);
     assertDisposed(h);
   }
-  const h = fixture();
-  assert.equal(h.adapter.prepare('arrive', h.snapshot([0, 0, 0], { remainingMs: 250 })), true);
-  h.adapter.clear();
-  assertDisposed(h);
 });
 
-test('arrival admission subtracts captured-frame age and preparation work from its assembly window', () => {
+test('arrival rejects stale paint and excessive preparation without consuming its finite assembly', () => {
   const aged = fixture();
   const oldFrame = aged.snapshot([0, 0, 0], { remainingMs: 400 });
-  aged.advance(151);
+  aged.advance(161);
   assert.equal(aged.adapter.prepare('arrive', oldFrame), false);
   assert.equal(aged.counts.rects, 0, 'a stale frame fails before measuring or cloning');
   assertDisposed(aged);
-  const late = fixture({ cloneCost: 3 });
+  const late = fixture({ cloneCost: 6 });
   assert.equal(
     late.adapter.prepare('arrive', late.snapshot([0, 0, 0], { remainingMs: 350 })),
     false
   );
   assert.ok(late.counts.clones > 0, 'bounded preparation consumes the otherwise adequate window');
   assertDisposed(late);
-  const ready = fixture({ cloneCost: 3 });
+  const ready = fixture({ cloneCost: 1 });
   assert.equal(
     ready.adapter.prepare('arrive', ready.snapshot([0, 0, 0], { remainingMs: 500 })),
     true
@@ -539,7 +560,7 @@ test('arrival admission subtracts captured-frame age and preparation work from i
   assertDisposed(ready);
 });
 
-test('late admitted arrival begins at its actual painted progress and still meets native corners', () => {
+test('incoming text builds over separate painted times while native content waits for exact handoff', () => {
   const h = fixture();
   const initial = h.snapshot([0, 0, 0], { progress: 0.7, remainingMs: 500 });
   assert.equal(h.adapter.prepare('arrive', initial), true);
@@ -548,12 +569,132 @@ test('late admitted arrival begins at its actual painted progress and still meet
     h.layer().children.every((tile) => tile.style.opacity === '0'),
     'late capture cannot skip into an already assembled visual'
   );
+  const reads = { rects: h.counts.rects, styles: h.counts.styles };
+  h.advance(350);
   h.adapter.present(0.85, h.snapshot([0, 0, -2], { progress: 0.85 }));
   assert.ok(h.layer().children.some((tile) => Number(tile.style.opacity) > 0));
+  assert.ok(h.layer().children.some((tile) => Number(tile.style.opacity) === 0));
+  h.advance(700);
   h.adapter.present(1, h.snapshot([0, 0, -4], { progress: 1 }));
+  const settled = Number(h.content.dataset.fragmentSettled);
+  assert.ok(
+    settled > 0 && settled < h.layer().children.length,
+    'some text is already built while other pieces are flying'
+  );
+  assert.equal(h.adapter.complete(), false);
+  assert.equal(
+    h.content.style.opacity,
+    '1',
+    'reading surfaces are visible before text has finished assembling'
+  );
+  for (const owner of [h.heading, h.paragraph, h.image])
+    assert.equal(
+      owner.style.visibility,
+      'hidden',
+      'only decorative fragments can paint their text'
+    );
+  const settledCount = settled;
+  h.advance(350);
+  h.adapter.present(1, h.snapshot([0, 0, -4], { progress: 1 }));
+  assert.ok(Number(h.content.dataset.fragmentSettled) > settledCount);
+  assert.equal(h.content.style.opacity, '1');
+  h.advance(400);
+  h.adapter.present(1, h.snapshot([0, 0, -4], { progress: 1 }));
+  assert.equal(h.adapter.complete(), true);
+  assert.equal(h.content.style.opacity, '1');
+  for (const tile of h.layer().children) assertNativeCorners(h, tile);
+  assert.deepEqual({ rects: h.counts.rects, styles: h.counts.styles }, reads);
+  assert.equal(h.counts.rafs, 0);
+  h.adapter.clear();
+  assertDisposed(h);
+});
+
+test('incoming capture includes visible short copy and later headings within unchanged transaction caps', () => {
+  const h = fixture();
+  const later = new h.Node('h2', 'A later content block');
+  later.rect = { left: 40, top: 330, width: 260, height: 50 };
+  const eyebrow = new h.Node('p', 'Short context');
+  eyebrow.rect = { left: 40, top: 420, width: 220, height: 24 };
+  h.main.append(later, eyebrow);
+  assert.equal(h.adapter.prepare('arrive', h.snapshot()), true);
+  assert.equal(h.content.dataset.fragmentOwners, '5');
+  assert.ok(Number(h.content.dataset.fragmentPieces) <= 96);
+  assert.equal(later.style.visibility, 'hidden');
+  assert.equal(eyebrow.style.visibility, 'hidden');
+  h.advance(1200);
+  h.adapter.present(1, h.snapshot([0, 0, 0], { progress: 1 }));
+  assert.equal(h.content.style.opacity, '1');
+  assert.equal(later.style.visibility, 'hidden');
+  assert.equal(eyebrow.style.visibility, 'hidden');
+  h.adapter.clear();
+  assert.notEqual(later.style.visibility, 'hidden');
+  assert.notEqual(eyebrow.style.visibility, 'hidden');
+  assertDisposed(h);
+});
+
+test('a late settled camera still builds incoming text for a full second without missing ready admission', () => {
+  const h = fixture();
+  const ready = h.snapshot([0, 0, 0], { progress: 1, travelElapsedMs: 1700, remainingMs: 0 });
+  assert.equal(h.adapter.prepare('arrive', ready), true);
+  const duration = Number(h.content.dataset.fragmentDurationMs);
+  assert.ok(duration >= 1000 && duration <= 1800);
+  assert.ok(1700 + duration <= 2900);
+  h.advance(duration - 1);
+  h.adapter.present(1, h.snapshot([0, 0, 0], { progress: 1 }));
+  assert.equal(h.adapter.complete(), false);
+  const settled = Number(h.content.dataset.fragmentSettled);
+  assert.ok(settled > 0 && settled < h.layer().children.length);
+  h.advance(1);
+  h.adapter.present(1, h.snapshot([0, 0, 0], { progress: 1 }));
+  assert.equal(h.adapter.complete(), true);
   for (const tile of h.layer().children) assertNativeCorners(h, tile);
   h.adapter.clear();
   assertDisposed(h);
+});
+
+test('long offscreen archives stop native measurement at the preparation deadline before cloning', () => {
+  const h = fixture({ rectCost: 5 });
+  for (let index = 0; index < 100; index++) {
+    const paragraph = new h.Node('p', 'More archived copy');
+    paragraph.rect = { left: 40, top: 1500 + index * 40, width: 240, height: 24 };
+    h.main.append(paragraph);
+  }
+  assert.equal(h.adapter.prepare('arrive', h.snapshot()), false);
+  assert.ok(
+    h.counts.rects <= 33,
+    'preparation cannot keep scanning the full archive after its allowance'
+  );
+  assert.equal(h.counts.clones, 0);
+  assertDisposed(h);
+});
+
+test('unavailable scene completes the serialized arrival tail without waiting for another paint', () => {
+  const h = fixture({ storage: { 'vo.fragment-preview': 'on' } });
+  vm.runInContext(flight.descriptor().code, h.context);
+  h.window.SiteEffects.registerView(math.cameraView);
+  const presentation = h.window.SiteEffects.navigation(h.content);
+  const departure = { opacity: 1, z: 0 };
+  presentation.begin(true);
+  presentation.prepareMount();
+  presentation.mounted();
+  presentation.present(0.7, 'forward', departure, h.snapshot([0, 0, 0], { progress: 0.7 }));
+  assert.ok(h.layer());
+  assert.equal(
+    presentation.present(1, 'forward', departure, h.snapshot([0, 0, 0], { progress: 1 })),
+    false
+  );
+  assert.notEqual(
+    presentation.present(
+      1,
+      'forward',
+      departure,
+      h.snapshot([0, 0, 0], { progress: 1, active: false })
+    ),
+    false
+  );
+  assertDisposed(h);
+  assert.equal(h.content.style.opacity, '1');
+  assert.equal(h.counts.rafs, 0);
 });
 
 test('reverse arrival waits for a visible forward corridor before measuring or cloning', () => {
@@ -578,7 +719,7 @@ test('reverse arrival waits for a visible forward corridor before measuring or c
   assert.ok(h.layer().children.every((tile) => tile.style.opacity === '0'));
   h.adapter.clear();
   assertDisposed(h);
-  const late = h.snapshot([0, 0, 0], { progress: 0.9, remainingMs: 100 });
+  const late = h.snapshot([0, 0, -60], { progress: 1, remainingMs: 0 });
   assert.equal(h.adapter.arrivalStatus(late), 'fallback');
   const reads = h.counts.rects;
   const clones = h.counts.clones;
@@ -587,7 +728,7 @@ test('reverse arrival waits for a visible forward corridor before measuring or c
   assert.equal(h.counts.clones, clones);
 });
 
-test('serialized presentation waits without DOM work, then assembles or takes one coherent late fallback', () => {
+test('serialized presentation waits for depth, then completes a finite tail or a coherent settled fallback', () => {
   for (const canAssemble of [true, false]) {
     const h = fixture({ storage: { 'vo.fragment-preview': 'on' } });
     vm.runInContext(flight.descriptor().code, h.context);
@@ -617,17 +758,25 @@ test('serialized presentation waits without DOM work, then assembles or takes on
       assert.ok(h.layer());
       assert.equal(h.content.dataset.fragmentPhase, 'arrive');
       assert.ok(h.layer().children.every((tile) => tile.style.opacity === '0'));
-      presentation.present(1, 'backward', departure, h.snapshot([0, 0, 5], { progress: 1 }));
+      assert.equal(
+        presentation.present(1, 'backward', departure, h.snapshot([0, 0, 5], { progress: 1 })),
+        false
+      );
+      h.advance(1800);
+      assert.equal(
+        presentation.present(1, 'backward', departure, h.snapshot([0, 0, 5], { progress: 1 })),
+        true
+      );
       for (const tile of h.layer().children) assertNativeCorners(h, tile);
       assert.equal(h.content.style.opacity, '1');
     } else {
       presentation.present(
-        0.9,
+        1,
         'backward',
         departure,
-        h.snapshot([0, 0, 0], { progress: 0.9, remainingMs: 100 })
+        h.snapshot([0, 0, -60], { progress: 1, remainingMs: 0 })
       );
-      const expected = flight.flightPose(0.9, 'backward', departure);
+      const expected = flight.flightPose(1, 'backward', departure);
       assert.equal(h.layer(), undefined);
       assert.equal(h.counts.clones, 0);
       assert.equal(Number(h.content.style.opacity), expected.opacity);

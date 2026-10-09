@@ -14,7 +14,7 @@
     {
       "id": "AC02",
       "intent": "Disassemble outgoing visible content and assemble incoming content through the unchanged fractal using its painted camera.",
-      "automated_scope": "Current FRAGMENT-PLAN tests exercise injected canonical projection, finite world/native roundtrips, bounded departure/arrival endpoints, near-plane/camera-crossing rejection and closure-safe serialization. FRAGMENT-DOM exercises the opt-in native-paint prototype; STATIONARY exercises actual camera/lifecycle ownership. These deterministic contracts do not prove perceived scene depth, clips, all-route rollout or visual admission.",
+      "automated_scope": "Current FRAGMENT-PLAN tests exercise injected canonical projection, finite world/native roundtrips, bounded departure/arrival endpoints, near-plane/camera-crossing rejection and closure-safe serialization. FRAGMENT-DOM checks the 2026-10-09 incoming refinement: approximately 1.8-second assembly with staggered piece arrival, exact native endpoints and finite shared-painted-clock completion after unchanged camera travel. STATIONARY exercises actual camera/lifecycle ownership. These deterministic contracts do not prove perceived scene depth, clips, all-route rollout or visual admission.",
       "checks": ["FRAGMENT-PLAN", "FRAGMENT-DOM", "STATIONARY"],
       "gates": ["G-DEPTH"]
     },
@@ -183,7 +183,7 @@
     },
     "G-DEPTH": {
       "kind": "human",
-      "description": "Prototype/implementation admission remains pending. Require shared painted-camera departure breakup, forward flight-through, safe near-plane behavior and incoming emergence from a real scene anchor. Inspect source-bound two-sided clips in both route directions and nonadjacent navigation. Preserve current fractal/formula/room geometry and active no-ribbons composition; this user amendment deliberately changes settled camera policy, not world geometry. Native overlay depth is provisional until visual admission."
+      "description": "Prototype/implementation admission remains pending. Require shared painted-camera departure breakup, forward flight-through, safe near-plane behavior and incoming emergence from a real scene anchor. The 2026-10-09 refinement requires visible staggered text/block construction for 1–2 seconds; a finite content-presentation tail is allowed on the existing painted clock while camera travel duration remains unchanged. Inspect source-bound two-sided clips in both route directions and nonadjacent navigation. Preserve current fractal/formula/room geometry and active no-ribbons composition; this user amendment deliberately changes settled camera policy, not world geometry. Native overlay depth is provisional until visual admission."
     },
     "G-FIDELITY": {
       "kind": "human",

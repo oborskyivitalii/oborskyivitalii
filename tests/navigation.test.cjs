@@ -35,6 +35,7 @@ function harness(options = {}) {
         canTravel: () => true,
         present(progress, direction) {
           presented.push({ progress, direction, route });
+          if (progress === 1 && options.tail) return options.tail();
         },
       };
   const window = {
@@ -93,7 +94,7 @@ function harness(options = {}) {
     commits,
     probes,
     sceneCalls,
-    progress: (progress) => callback(progress),
+    progress: (progress, snapshot = null) => callback(progress, snapshot),
     task() {
       const [id, fn] = tasks.entries().next().value || [];
       assert.ok(fn, 'expected queued mount');
@@ -255,6 +256,46 @@ test('ordinary visitor has no diagnostic task clock/event work', async () => {
   h.progress(1);
   await promise;
   assert.deepEqual(h.probes, []);
+});
+
+test('finite fragment assembly keeps one painted callback after camera arrival and then resolves once', async () => {
+  let ready = false;
+  const h = harness({ tail: () => ready });
+  let resolved = false;
+  const promise = h.api.start().then(() => {
+    resolved = true;
+  });
+  h.progress(0.5, { painted: true });
+  h.task();
+  assert.equal(h.progress(1, { painted: true, capturedAt: 1300 }), false);
+  await Promise.resolve();
+  assert.equal(resolved, false);
+  assert.equal(h.tasks.size, 0, 'assembly uses the scene callback without a second mount or timer');
+  assert.equal(h.content.inert, true);
+  assert.equal(h.progress(1, { painted: true, capturedAt: 2000 }), false);
+  ready = true;
+  h.progress(1, { painted: true, capturedAt: 2600 });
+  await promise;
+  assert.equal(resolved, true);
+  assert.equal(h.content.inert, false);
+  assert.equal(h.api.transition(), null);
+  assert.deepEqual(h.commits, ['writing']);
+});
+
+test('forced completion and retarget cannot leave a retained fragment tail inert or pending', async () => {
+  for (const stop of ['finishText', 'interrupt']) {
+    const h = harness({ tail: () => false });
+    const promise = h.api.start();
+    h.progress(0.5, { painted: true });
+    h.task();
+    assert.equal(h.progress(1, { painted: true }), false);
+    h.api[stop]();
+    await promise;
+    assert.equal(h.api.transition(), null);
+    assert.equal(h.content.inert, false);
+    assert.equal(h.tasks.size, 0);
+    assert.deepEqual(h.commits, ['writing']);
+  }
 });
 function routeHeadHarness(candidate = source) {
   const css =
