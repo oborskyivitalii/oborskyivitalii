@@ -327,7 +327,11 @@ test('conditional Color smoke keeps two travel cases with ordinary paint and abs
   const report = evidence.reports.at(-1);
   assert.equal(stage.validateColor(report, evidence.manifest), 2);
   const zeroDataset = structuredClone(report);
-  zeroDataset.rows[0].ribbons.dataset = { ribbons: '0', ribbonFaces: '0', ribbonSignals: '0' };
+  zeroDataset.rows[0].ribbons.dataset = {
+    ribbons: '0',
+    ribbonFaces: '0',
+    ribbonSignals: '0',
+  };
   assert.equal(stage.validateColor(zeroDataset, evidence.manifest), 2);
   const mutations = [
     (value) => (value.variant.effects = ['ribbons', 'travel']),
@@ -429,6 +433,12 @@ test('Color scenario observes actual Canvas paints alongside completed scene sub
 test('incoming Color observation rejects simultaneous, invisible, unbounded and uncleared assembly', () => {
   const { validateFragmentAssembly } = require('../tools/quality/color-browser.cjs');
   const observation = {
+    headingSeam: {
+      boxDeltaPx: 0,
+      glyphDeltaPx: 0,
+      nativeGlyphRects: [[40, 158, 220, 65.28]],
+      fragmentGlyphRects: [[40, 158, 220, 65.28]],
+    },
     samples: Array.from({ length: 10 }, (_, index) => ({
       timeMs: 100 + index * 180,
       phase: 'arrive',
@@ -479,6 +489,16 @@ test('incoming Color observation rejects simultaneous, invisible, unbounded and 
     (data) => (data.samples.at(-1).nativeHidden = 1),
     (data) => (data.samples.at(-1).nativeOpacity = 0),
     (data) => (data.samples.at(-1).fragmentFields = ['fragmentSettled']),
+    (data) => delete data.headingSeam,
+    (data) => (data.headingSeam.glyphDeltaPx = null),
+    (data) => (data.headingSeam.glyphDeltaPx = 16),
+    (data) => (data.headingSeam.boxDeltaPx = 1),
+    (data) => (data.headingSeam.nativeGlyphRects = []),
+    (data) => (data.headingSeam.fragmentGlyphRects = [[NaN, 158, 220, 65.28]]),
+    (data) => {
+      data.headingSeam.fragmentGlyphRects[0][0] -= 16;
+      data.headingSeam.glyphDeltaPx = 16;
+    },
   ]) {
     const invalid = structuredClone(observation);
     mutate(invalid);
@@ -638,8 +658,11 @@ test('performance driver runs two route samples and two audits serially with a c
     'audit writing',
   ]);
   assert.equal(
-    stage.validatePerformance({ ...fixture.identity(), kind: 'stage-performance', ...report })
-      .soakSeconds,
+    stage.validatePerformance({
+      ...fixture.identity(),
+      kind: 'stage-performance',
+      ...report,
+    }).soakSeconds,
     0
   );
 });
@@ -658,7 +681,10 @@ test('selected flight driver uses a fresh context for each destination and measu
     },
     measure: async (pair, selected, setup) => {
       calls.push('measure ' + pair.id + ' ' + selected.to + ' ' + selected.phase);
-      return { ...fixture.flight(selected.to, selected.from, selected.phase), setup };
+      return {
+        ...fixture.flight(selected.to, selected.from, selected.phase),
+        setup,
+      };
     },
     restore: async (pair) => calls.push('restore index ' + pair.id),
   });
@@ -679,7 +705,11 @@ test('selected flight driver uses a fresh context for each destination and measu
     'close 2',
   ]);
   assert.deepEqual(
-    rows.map(({ from, to, transitionPhase }) => ({ from, to, phase: transitionPhase })),
+    rows.map(({ from, to, transitionPhase }) => ({
+      from,
+      to,
+      phase: transitionPhase,
+    })),
     stage.flightCases()
   );
 });
@@ -699,7 +729,9 @@ test('flight setup observes live paints and quiet preparation while preserving a
     __stageFlightSetup: probe,
     __qualityMotion: { paints: 4, events: [{ kind: 'model', time: 100 }] },
     SiteScene: {
-      diagnostics: () => ({ rooms: [{ route: 'research', models: [{ compact: true }] }] }),
+      diagnostics: () => ({
+        rooms: [{ route: 'research', models: [{ compact: true }] }],
+      }),
     },
   };
   const document = {
@@ -742,7 +774,10 @@ test('failed flight collection retains previous and failing raw records instead 
         measure: async (pair, selected) =>
           selected.phase === 'cold'
             ? cold
-            : { ...fixture.flight('research', 'index', 'warm'), transitionPhase: 'cold' },
+            : {
+                ...fixture.flight('research', 'index', 'warm'),
+                transitionPhase: 'cold',
+              },
       }),
     (error) => {
       assert.equal(error.flightEvidence.length, 2);

@@ -14,14 +14,14 @@
     {
       "id": "AC02",
       "intent": "Disassemble outgoing visible content and assemble incoming content through the unchanged fractal using its painted camera.",
-      "automated_scope": "Current FRAGMENT-PLAN tests exercise injected canonical projection, finite world/native roundtrips, bounded departure/arrival endpoints, near-plane/camera-crossing rejection and closure-safe serialization. FRAGMENT-DOM checks the 2026-10-09 incoming refinement: approximately 1.8-second assembly with staggered piece arrival, exact native endpoints and finite shared-painted-clock completion after unchanged camera travel. STATIONARY exercises actual camera/lifecycle ownership. These deterministic contracts do not prove perceived scene depth, clips, all-route rollout or visual admission.",
+      "automated_scope": "Current FRAGMENT-PLAN tests exercise injected canonical projection, finite world/native roundtrips, bounded departure/arrival endpoints, near-plane/camera-crossing rejection and closure-safe serialization. FRAGMENT-DOM checks the 2026-10-09 incoming refinement: approximately 1.8-second assembly with staggered piece arrival, exact native endpoints and finite shared-painted-clock completion after unchanged camera travel. STATIONARY exercises actual camera/lifecycle ownership. These deterministic contracts do not prove perceived scene depth, clips, all-route rollout or visual admission. The second9October refinement adds actual depth-based opacity, convex irregular masks, projected rear prism sides and exact terminal opacity/geometry, with original painted-clock timing.",
       "checks": ["FRAGMENT-PLAN", "FRAGMENT-DOM", "STATIONARY"],
       "gates": ["G-DEPTH"]
     },
     {
       "id": "AC03",
       "intent": "Show mixed sub-glyph, glyph, word and picture fragments on departure and arrival with exact native handoffs.",
-      "automated_scope": "Current FRAGMENT-PLAN and FRAGMENT-DOM suites exercise seeded unequal complete/nonoverlapping partitions and the bounded heading/paragraph/portrait prototype, native paint copies and handoff/cleanup rejection surfaces. Full shaped glyph/image fidelity and every visible owner are not inferred from a prototype or DOM fixtures; Day/Night desktop/narrow visual acceptance remains required.",
+      "automated_scope": "Current FRAGMENT-PLAN and FRAGMENT-DOM suites exercise seeded unequal complete/nonoverlapping partitions and the bounded heading/paragraph/portrait prototype, native paint copies and handoff/cleanup rejection surfaces. Full shaped glyph/image fidelity and every visible owner are not inferred from a prototype or DOM fixtures; Day/Night desktop/narrow visual acceptance remains required. Polygon coverage uses actual signed area and independent separating-axis nonoverlap, including angled triangle/quad/many-sided silhouettes. Measured native padding/box/line styles are preserved; the existing hosted observer compares actual settled heading glyph-line rectangles within0.75CSSpx rather than just outer boxes.",
       "checks": ["FRAGMENT-PLAN", "FRAGMENT-DOM"],
       "gates": ["G-FIDELITY"]
     },
@@ -48,7 +48,7 @@
     {
       "id": "AC06",
       "intent": "Keep bounded fragment resources and pass original plus predeclared added-cost budgets.",
-      "automated_scope": "Current FRAGMENT-PLAN and FRAGMENT-DOM reject invalid/exceeded shared partition/resource admission and exercise disposal before reuse. BASIC preserves original byte/geometry limits. No browser layout/compositor cost, same-source paired timing, current heap/retention observation or final performance pass follows from these deterministic caps; exact raw measured admission remains pending.",
+      "automated_scope": "Current FRAGMENT-PLAN and FRAGMENT-DOM reject invalid/exceeded shared partition/resource admission and exercise disposal before reuse. BASIC preserves original byte/geometry limits. No browser layout/compositor cost, same-source paired timing, current heap/retention observation or final performance pass follows from these deterministic caps; exact raw measured admission remains pending. SVG sides share the original descendants/pixel caps with paint clones; every projected side-group bounding area is checked before paint and excess decorative facets are culled without suppressing the native face.",
       "checks": ["FRAGMENT-PLAN", "FRAGMENT-DOM", "BASIC"],
       "gates": ["G-PERFORMANCE"]
     },

@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "a50cc25fccdd6ab1018b7d6805e79c1c61624341c2768256fdf753086f2bdccf",
+    "digest": "23cae8f3d07009a702f3b6f80a39ae2e404e5523d710074f312886c2c3b78589",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -82,7 +82,7 @@
       {
         "path": ".github/acceptance/issue-49.json",
         "identity_mode": "content",
-        "sha256": "963a2a70176640fecd19646878c2388468e302ac0b13f4ef83051a959323d8f4"
+        "sha256": "f2d2d29d8ab1962613d9aa1a1c4927f04a8afa2e3aa8d7d0de045dae795abb66"
       },
       {
         "path": ".github/acceptance/issue-54.json",
@@ -136,12 +136,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "098189ddbf76f610f0ee6f7763ff209fec8dc5c028d72692bf9a0ae1dbf3d8ce"
+        "sha256": "696c05683f6583220849260180febf7b5d793bdeb5efdc968028802394267c33"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "fda078c6cb224b4197f521bbaddc7176cc2d34e634a2e543acbc0a388407cac4"
+        "sha256": "25d604ec5e7af2bbef3d6d82d07165f562eafc7aa83980fcc465d16511251a72"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -236,7 +236,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "090ab30a21a3b240ab513494301cb77519a06b0a4df9a6a6d97a0a194b858e5f"
+        "sha256": "ba91c4da1967498f5f6fd1fd0d1e6acb3f68301a7e3f87f95c5822b9efa18b15"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -700,7 +700,7 @@
       {
         "path": "review/issue-49/2026-10-08-analysis.md",
         "identity_mode": "content",
-        "sha256": "866ca10a8a3f6f9d13eb02d94b4f66c630afbf7c41f20f1b8c7aca634f9e0884"
+        "sha256": "2acc1908021d6ec4543dc1a4d1fa286cf796303e3ce2a35aff1341bffac99cf6"
       },
       {
         "path": "review/issue-54/2026-10-08-analysis.md",
@@ -4570,17 +4570,17 @@
       {
         "path": "site/effects/flight.css",
         "identity_mode": "content",
-        "sha256": "856bea5ac98a54bf78968d92f1abab3e66a1b5fdb219d8c2724b9d6046e8c95e"
+        "sha256": "5418719162de5dca562306c8f78f31912d52d9d03f6e8986942b15e5e02f26d1"
       },
       {
         "path": "site/effects/fragment-dom.cjs",
         "identity_mode": "content",
-        "sha256": "e59ae734b55e658a2c39c83c3b504c34a2c90fceadd1a509c65694bda8dcde93"
+        "sha256": "9e4ec4c2ebfa2e89071b6029c81327222e673dce6a8e268e2c99f0d3577c8719"
       },
       {
         "path": "site/effects/fragment-plan.cjs",
         "identity_mode": "content",
-        "sha256": "4bdd9a3029ea5ee4a0646c413963a660cb825fcf13eee39cbd97dad671df7839"
+        "sha256": "926f6d6fa63a470425687e1f95b80a447ec273a3ff0269e8e6b0440be95d36f1"
       },
       {
         "path": "site/effects/reading-surfaces.css",
@@ -5030,12 +5030,12 @@
       {
         "path": "tests/fragment-dom.test.cjs",
         "identity_mode": "content",
-        "sha256": "bf6c0ab8d2155b066e94a72f9ccf68838737a7b14015dadb5b82840401d34daa"
+        "sha256": "f580c342523197b6897ba7380e9879a3e83a302f52dbedc59ce52cb45b88eeb5"
       },
       {
         "path": "tests/fragment-plan.test.cjs",
         "identity_mode": "content",
-        "sha256": "a534132ad3aa57d0e364cdb1983dc338e136f35ceeee1ae39f68aecd6eeaa10a"
+        "sha256": "0cb09153c06a7a383c9e5ebec975af7a41a5b141c48bc216ed7c5b55358163ac"
       },
       {
         "path": "tests/functional-fixtures.test.cjs",
@@ -5145,7 +5145,7 @@
       {
         "path": "tests/staging-regression.test.cjs",
         "identity_mode": "content",
-        "sha256": "8230fdd61051b269e5c60abb70c65070495adf53ab312e76c268b969dfd3b7df"
+        "sha256": "70cbc7c1d3c118d97b108a9fbac03c41222e88d36e2b9a924ed80e56a295fd95"
       },
       {
         "path": "tests/staging-reporting.test.cjs",
@@ -5445,7 +5445,7 @@
       {
         "path": "tools/quality/color-browser.cjs",
         "identity_mode": "content",
-        "sha256": "cba730cbc2ef62302ef95336ffea4fb7956dd95f6e6be8a0aee13daa0f265a16"
+        "sha256": "1b574f673ba406ab6aedf4d62e82bab23839f97009e262e7b27a7f6aba751585"
       },
       {
         "path": "tools/quality/common.cjs",
@@ -16140,7 +16140,7 @@
     {
       "path": "site/effects/flight.css",
       "kind": "file",
-      "purpose": "Canonical static effect CSS consumed byte-identically by hosted/offline descriptors.",
+      "purpose": "Canonical static effect CSS, including inert finite shard-volume layers, consumed byte-identically by hosted/offline descriptors.",
       "role": "source",
       "owner": "site/README.md",
       "instructions": [
@@ -16151,7 +16151,7 @@
     {
       "path": "site/effects/fragment-dom.cjs",
       "kind": "file",
-      "purpose": "Canonical opt-in bounded native-paint fragments for visible incoming owners, staggered 1.8-second painted-clock assembly and serial native restoration/disposal.",
+      "purpose": "Canonical opt-in bounded native-paint fragments with measured line-box fidelity, polygon shard volumes, staggered 1.8-second painted-clock assembly and serial native restoration/disposal.",
       "role": "source",
       "owner": "site/README.md",
       "instructions": [
@@ -16162,7 +16162,7 @@
     {
       "path": "site/effects/fragment-plan.cjs",
       "kind": "file",
-      "purpose": "Canonical pure serialized partition/resource, incoming stagger schedule and world/native projection factory using shared cameraView; issue49 opt-in prototype, not visual or measured admission.",
+      "purpose": "Canonical pure serialized unequal polygon partitions, bounded shard volumes and camera-depth haze, incoming stagger schedule and exact world/native projection; issue49 opt-in prototype, not visual or measured admission.",
       "role": "source",
       "owner": "site/README.md",
       "instructions": [
@@ -17152,7 +17152,7 @@
     {
       "path": "tests/fragment-dom.test.cjs",
       "kind": "file",
-      "purpose": "Permanent opt-in fragment paint-copy, native handoff, ownership/cancellation/disposal and invalid/over-budget input rejection contracts under issue49; no browser visual/performance claim.",
+      "purpose": "Permanent opt-in native paint/line-box copying, bounded shard-volume, native handoff, ownership/cancellation/disposal and invalid/over-budget input rejection contracts under issue49; no browser visual/performance claim.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
@@ -17163,7 +17163,7 @@
     {
       "path": "tests/fragment-plan.test.cjs",
       "kind": "file",
-      "purpose": "Permanent partition/nonoverlap/shared-cap, finite camera projection/near-plane, native endpoint and serialized fragment-factory rejection contracts under issue49.",
+      "purpose": "Permanent unequal polygon partition/shared-cap, convex/nonoverlap volume, depth-haze, finite camera projection/near-plane, native endpoint and serialized fragment-factory rejection contracts under issue49.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
@@ -18065,7 +18065,7 @@
     {
       "path": "tools/quality/color-browser.cjs",
       "kind": "file",
-      "purpose": "Maintained Color browser checks, including opt-in staggered assembly and cleanup/Off observations within existing two-width preview smoke; profiles owned by SITE-CHECK-PROFILES.",
+      "purpose": "Maintained Color browser checks, including opt-in staggered assembly, native heading line-box handoff and visible-control cleanup/Off observations within existing two-width preview smoke; profiles owned by SITE-CHECK-PROFILES.",
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [

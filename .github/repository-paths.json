@@ -6051,19 +6051,19 @@
     },
     "site/effects/flight.css": {
       "kind": "file",
-      "purpose": "Canonical static effect CSS consumed byte-identically by hosted/offline descriptors.",
+      "purpose": "Canonical static effect CSS, including inert finite shard-volume layers, consumed byte-identically by hosted/offline descriptors.",
       "role": "source",
       "owner": "site/README.md"
     },
     "site/effects/fragment-dom.cjs": {
       "kind": "file",
-      "purpose": "Canonical opt-in bounded native-paint fragments for visible incoming owners, staggered 1.8-second painted-clock assembly and serial native restoration/disposal.",
+      "purpose": "Canonical opt-in bounded native-paint fragments with measured line-box fidelity, polygon shard volumes, staggered 1.8-second painted-clock assembly and serial native restoration/disposal.",
       "role": "source",
       "owner": "site/README.md"
     },
     "site/effects/fragment-plan.cjs": {
       "kind": "file",
-      "purpose": "Canonical pure serialized partition/resource, incoming stagger schedule and world/native projection factory using shared cameraView; issue49 opt-in prototype, not visual or measured admission.",
+      "purpose": "Canonical pure serialized unequal polygon partitions, bounded shard volumes and camera-depth haze, incoming stagger schedule and exact world/native projection; issue49 opt-in prototype, not visual or measured admission.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -6753,13 +6753,13 @@
     },
     "tests/fragment-dom.test.cjs": {
       "kind": "file",
-      "purpose": "Permanent opt-in fragment paint-copy, native handoff, ownership/cancellation/disposal and invalid/over-budget input rejection contracts under issue49; no browser visual/performance claim.",
+      "purpose": "Permanent opt-in native paint/line-box copying, bounded shard-volume, native handoff, ownership/cancellation/disposal and invalid/over-budget input rejection contracts under issue49; no browser visual/performance claim.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tests/fragment-plan.test.cjs": {
       "kind": "file",
-      "purpose": "Permanent partition/nonoverlap/shared-cap, finite camera projection/near-plane, native endpoint and serialized fragment-factory rejection contracts under issue49.",
+      "purpose": "Permanent unequal polygon partition/shared-cap, convex/nonoverlap volume, depth-haze, finite camera projection/near-plane, native endpoint and serialized fragment-factory rejection contracts under issue49.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -7263,7 +7263,7 @@
     },
     "tools/quality/color-browser.cjs": {
       "kind": "file",
-      "purpose": "Maintained Color browser checks, including opt-in staggered assembly and cleanup/Off observations within existing two-width preview smoke; profiles owned by SITE-CHECK-PROFILES.",
+      "purpose": "Maintained Color browser checks, including opt-in staggered assembly, native heading line-box handoff and visible-control cleanup/Off observations within existing two-width preview smoke; profiles owned by SITE-CHECK-PROFILES.",
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md"
     },

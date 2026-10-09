@@ -96,6 +96,58 @@ module.exports = function ({ cameraView }) {
     );
   }
 
+  const polygonArea = (points) =>
+    Math.abs(
+      points.reduce((sum, point, index) => {
+        const next = points[(index + 1) % points.length];
+        return sum + point[0] * next[1] - next[0] * point[1];
+      }, 0)
+    ) / 2;
+
+  function polygonBounds(points) {
+    const x = Math.min(...points.map((point) => point[0]));
+    const y = Math.min(...points.map((point) => point[1]));
+    return {
+      x,
+      y,
+      width: Math.max(...points.map((point) => point[0])) - x,
+      height: Math.max(...points.map((point) => point[1])) - y,
+    };
+  }
+
+  function convexPolygon(points) {
+    let orientation = 0;
+    for (let index = 0; index < points.length; index++) {
+      const a = points[index];
+      const b = points[(index + 1) % points.length];
+      const c = points[(index + 2) % points.length];
+      if (Math.hypot(b[0] - a[0], b[1] - a[1]) < 1e-8) return false;
+      const cross = (b[0] - a[0]) * (c[1] - b[1]) - (b[1] - a[1]) * (c[0] - b[0]);
+      if (Math.abs(cross) < 1e-8) continue;
+      const sign = Math.sign(cross);
+      if (orientation && sign !== orientation) return false;
+      orientation = sign;
+    }
+    // Front silhouettes and prism side winding use screen-clockwise vertices.
+    return orientation === 1;
+  }
+
+  function cutPolygon(points, normal, offset, side) {
+    const result = [];
+    for (let index = 0; index < points.length; index++) {
+      const a = points[index];
+      const b = points[(index + 1) % points.length];
+      const da = a[0] * normal[0] + a[1] * normal[1] - offset;
+      const db = b[0] * normal[0] + b[1] * normal[1] - offset;
+      if (da * side >= 0) result.push(a);
+      if ((da < 0 && db > 0) || (da > 0 && db < 0)) {
+        const progress = da / (da - db);
+        result.push([a[0] + (b[0] - a[0]) * progress, a[1] + (b[1] - a[1]) * progress]);
+      }
+    }
+    return result;
+  }
+
   function partition(rect, { count, seed = 1, minSize = 2 }, { maxPieces, usedPieces = 0 }) {
     // Validate the combined transaction allowance before reading/cloning an owner.
     if (
@@ -113,41 +165,60 @@ module.exports = function ({ cameraView }) {
     )
       return null;
     if (!validRect(rect)) return null;
-    const cells = [{ x: rect.x, y: rect.y, width: rect.width, height: rect.height }];
+    const cells = [
+      [
+        [rect.x, rect.y],
+        [rect.x + rect.width, rect.y],
+        [rect.x + rect.width, rect.y + rect.height],
+        [rect.x, rect.y + rect.height],
+      ],
+    ];
     const random = randomSource(seed);
     while (cells.length < count) {
       let chosen = -1;
       let largest = 0;
       for (let index = 0; index < cells.length; index++) {
-        const cell = cells[index];
-        const area = cell.width * cell.height;
+        const cell = polygonBounds(cells[index]);
+        const area = polygonArea(cells[index]) * (0.65 + random() * 0.7);
         if ((cell.width >= minSize * 2 || cell.height >= minSize * 2) && area > largest) {
           chosen = index;
           largest = area;
         }
       }
       if (chosen === -1) return null;
-      const cell = cells[chosen];
-      const horizontal =
-        cell.width >= minSize * 2 &&
-        (cell.height < minSize * 2 || cell.width > cell.height * (0.6 + random() * 1.2));
-      const size = horizontal ? cell.width : cell.height;
-      const cut = Math.max(minSize, Math.min(size - minSize, size * (0.22 + random() * 0.56)));
-      const first = { ...cell };
-      const second = { ...cell };
-      if (horizontal) {
-        first.width = cut;
-        second.x += cut;
-        second.width -= cut;
-      } else {
-        first.height = cut;
-        second.y += cut;
-        second.height -= cut;
+      const points = cells[chosen];
+      const bounds = polygonBounds(points);
+      let halves = null;
+      for (let attempt = 0; attempt < 12 && !halves; attempt++) {
+        const angle = (bounds.width >= bounds.height ? 0 : Math.PI / 2) + (random() - 0.5) * 1.5;
+        const normal = [Math.cos(angle), Math.sin(angle)];
+        const distances = points.map((point) => point[0] * normal[0] + point[1] * normal[1]);
+        const low = Math.min(...distances);
+        const offset = low + (Math.max(...distances) - low) * (0.18 + random() * 0.64);
+        const candidate = [
+          cutPolygon(points, normal, offset, 1),
+          cutPolygon(points, normal, offset, -1),
+        ];
+        if (
+          candidate.every((part) => {
+            const box = polygonBounds(part);
+            return (
+              part.length >= 3 &&
+              part.length <= 10 &&
+              box.width >= minSize &&
+              box.height >= minSize &&
+              polygonArea(part) >= minSize * minSize
+            );
+          })
+        )
+          halves = candidate;
       }
-      cells.splice(chosen, 1, first, second);
+      if (!halves) return null;
+      cells.splice(chosen, 1, ...halves);
     }
     return cells.map((cell) => ({
-      ...cell,
+      ...polygonBounds(cell),
+      polygon: cell,
       seed: Math.floor(random() * 4294967296),
     }));
   }
@@ -240,6 +311,28 @@ module.exports = function ({ cameraView }) {
     if (!Number.isInteger(seed)) return null;
     const corners = quad(camera, rect, depth);
     if (!corners || !projectQuad(camera, corners)) return null;
+    const polygon = rect.polygon ?? [
+      [rect.x, rect.y],
+      [rect.x + rect.width, rect.y],
+      [rect.x + rect.width, rect.y + rect.height],
+      [rect.x, rect.y + rect.height],
+    ];
+    if (
+      !Array.isArray(polygon) ||
+      polygon.length < 3 ||
+      polygon.length > 10 ||
+      polygon.some(
+        (point) =>
+          !finiteVector(point, 2) ||
+          point[0] < rect.x - 1e-8 ||
+          point[1] < rect.y - 1e-8 ||
+          point[0] > rect.x + rect.width + 1e-8 ||
+          point[1] > rect.y + rect.height + 1e-8
+      ) ||
+      polygonArea(polygon) < 1e-6 ||
+      !convexPolygon(polygon)
+    )
+      return null;
     const random = randomSource(seed);
     return {
       rect: { x: rect.x, y: rect.y, width: rect.width, height: rect.height },
@@ -248,9 +341,18 @@ module.exports = function ({ cameraView }) {
       up: [...camera.up],
       forward: [...camera.forward],
       depth,
+      polygon: polygon.map((point) => [
+        (point[0] - rect.x) / rect.width,
+        (point[1] - rect.y) / rect.height,
+      ]),
+      thickness:
+        (Math.min(18, Math.max(4, Math.min(rect.width, rect.height) * (0.1 + random() * 0.22))) *
+          depth) /
+        camera.focal,
       scatter: [(random() - 0.5) * depth, (random() - 0.5) * depth, (random() - 0.5) * depth * 0.3],
-      roll: (random() - 0.5) * 0.48,
-      tilt: (random() - 0.5) * 0.48,
+      roll: (random() - 0.5) * 1.8,
+      tilt: (random() - 0.5) * 1.6,
+      pitch: (random() - 0.5) * 1.6,
     };
   }
 
@@ -265,7 +367,7 @@ module.exports = function ({ cameraView }) {
     );
   }
 
-  function turn(corners, origin, basis, roll, tilt, scale) {
+  function turn(corners, origin, basis, roll, tilt, pitch, scale) {
     const source = center(corners);
     return corners.map((point) => {
       const delta = point.map((value, index) => value - source[index]);
@@ -273,14 +375,51 @@ module.exports = function ({ cameraView }) {
       const v = delta.reduce((sum, value, index) => sum + value * basis.up[index], 0);
       const x = (u * Math.cos(roll) - v * Math.sin(roll)) * scale;
       const y = (u * Math.sin(roll) + v * Math.cos(roll)) * scale;
+      const z = -x * Math.sin(tilt);
+      const turnedY = y * Math.cos(pitch) - z * Math.sin(pitch);
+      const turnedZ = y * Math.sin(pitch) + z * Math.cos(pitch);
       return origin.map(
         (value, index) =>
           value +
           basis.right[index] * x * Math.cos(tilt) +
-          basis.up[index] * y -
-          basis.forward[index] * x * Math.sin(tilt)
+          basis.up[index] * turnedY +
+          basis.forward[index] * turnedZ
       );
     });
+  }
+
+  function facets(prepared, corners, camera, amount) {
+    if (amount <= 1e-8) return [];
+    const u = corners[1].map((value, index) => value - corners[0][index]);
+    const v = corners[3].map((value, index) => value - corners[0][index]);
+    const normal = [
+      u[1] * v[2] - u[2] * v[1],
+      u[2] * v[0] - u[0] * v[2],
+      u[0] * v[1] - u[1] * v[0],
+    ];
+    const length = Math.hypot(...normal);
+    if (length < 1e-9) return [];
+    const offset = normal.map((value) => (value * prepared.thickness * amount) / length);
+    const front = prepared.polygon.map(([x, y]) =>
+      corners[0].map((value, index) => value + u[index] * x + v[index] * y)
+    );
+    const back = front.map((point) => point.map((value, index) => value + offset[index]));
+    const result = [];
+    for (let index = 0; index < front.length; index++) {
+      const next = (index + 1) % front.length;
+      const projected = projectQuad(camera, [front[index], front[next], back[next], back[index]]);
+      if (!projected) continue;
+      // Only the sides outside the front silhouette can be seen. The back stays
+      // behind its native-paint face and never adds a second text copy.
+      const [a, b, c] = projected.points;
+      const facing = (b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0]);
+      if (facing < -1e-8)
+        result.push({
+          points: projected.points,
+          light: b[1] - a[1] < b[0] - a[0],
+        });
+    }
+    return result;
   }
 
   function sample(prepared, { phase, progress, view: camera, anchor = null }) {
@@ -303,6 +442,7 @@ module.exports = function ({ cameraView }) {
         prepared,
         prepared.roll * eased,
         prepared.tilt * eased,
+        prepared.pitch * eased,
         1
       );
     } else {
@@ -320,8 +460,9 @@ module.exports = function ({ cameraView }) {
         target,
         origin,
         camera,
-        prepared.roll * 2.5 * (1 - eased),
-        prepared.tilt * 2.5 * (1 - eased),
+        prepared.roll * (1 - eased),
+        prepared.tilt * (1 - eased),
+        prepared.pitch * (1 - eased),
         0.08 + eased * 0.92
       );
     }
@@ -329,7 +470,14 @@ module.exports = function ({ cameraView }) {
     if (!result) return null;
     const visibility =
       phase === 'arrive' ? Math.min(1, progress * 5) : Math.min(1, (1 - progress) * 4);
-    return { ...result, opacity: result.opacity * visibility };
+    // World-space attenuation changes with the actual painted camera, so two
+    // equally timed pieces at different depths do not have the same opacity.
+    const depthOpacity = Math.exp(-Math.max(0, result.depth - prepared.depth - 1e-8) / 22);
+    return {
+      ...result,
+      opacity: result.opacity * visibility * depthOpacity,
+      facets: facets(prepared, corners, camera, Math.sin(progress * Math.PI)),
+    };
   }
 
   return {

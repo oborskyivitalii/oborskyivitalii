@@ -18,6 +18,18 @@
   pointer-events: none;
   contain: paint;
 }
+.fragment-volume {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+.fragment-facet-light {
+  fill: color-mix(in srgb, var(--accent) 48%, var(--paper));
+}
+.fragment-facet-dark {
+  fill: color-mix(in srgb, var(--accent) 32%, var(--ink));
+}
 .fragment-paint {
   position: absolute;
   margin: 0;

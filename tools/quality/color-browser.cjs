@@ -45,9 +45,63 @@ function observeFragmentFlight() {
       events: [],
       longTasks: [],
     };
+  let lastSeamSettled = 0;
+  function textRects(owner) {
+    const walker = document.createTreeWalker(owner, NodeFilter.SHOW_TEXT);
+    const rects = [];
+    for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+      if (!node.textContent.trim()) continue;
+      const range = document.createRange();
+      range.selectNodeContents(node);
+      for (const rect of range.getClientRects())
+        rects.push([rect.left, rect.top, rect.width, rect.height]);
+    }
+    return rects;
+  }
+  function observeHeadingSeam(tiles, settled) {
+    if (observation.headingSeam || settled <= lastSeamSettled) return;
+    lastSeamSettled = settled;
+    const native = content.querySelector('main h1');
+    if (!native || native.style.visibility !== 'hidden') return;
+    const nativeBox = native.getBoundingClientRect();
+    // A settled piece has its complete cloned heading at the native border
+    // box, even though only its own shard mask is painted. Compare the actual
+    // glyph line boxes once, before that paint is removed at native handoff.
+    for (const tile of tiles) {
+      const copy = tile.querySelector('h1.fragment-paint');
+      if (!copy || Number(tile.style.opacity) < 1) continue;
+      const copyBox = copy.getBoundingClientRect();
+      const boxDeltaPx = Math.max(
+        ...['left', 'top', 'width', 'height'].map((key) => Math.abs(copyBox[key] - nativeBox[key]))
+      );
+      if (boxDeltaPx > 0.0001) continue;
+      const nativeGlyphRects = textRects(native);
+      const fragmentGlyphRects = textRects(copy);
+      const matching =
+        native.textContent === copy.textContent &&
+        nativeGlyphRects.length > 0 &&
+        nativeGlyphRects.length === fragmentGlyphRects.length;
+      const glyphDeltaPx = matching
+        ? Math.max(
+            ...nativeGlyphRects.flatMap((rect, index) =>
+              rect.map((value, axis) => Math.abs(value - fragmentGlyphRects[index][axis]))
+            )
+          )
+        : null;
+      observation.headingSeam = {
+        boxDeltaPx,
+        glyphDeltaPx,
+        nativeGlyphRects,
+        fragmentGlyphRects,
+      };
+      return;
+    }
+  }
   const sample = () => {
     if (observation.samples.length >= 400) return;
     const tiles = [...document.querySelectorAll('.fragment-piece')];
+    if (content.dataset.fragmentPhase === 'arrive')
+      observeHeadingSeam(tiles, Number(content.dataset.fragmentSettled || 0));
     observation.samples.push({
       timeMs: performance.now(),
       phase: content.dataset.fragmentPhase || null,
@@ -98,7 +152,10 @@ function observeFragmentFlight() {
     sample();
     observer.disconnect();
     for (const task of tasks?.takeRecords?.() || [])
-      observation.longTasks.push({ start: task.startTime, duration: task.duration });
+      observation.longTasks.push({
+        start: task.startTime,
+        duration: task.duration,
+      });
     tasks?.disconnect();
     observation.end = performance.now();
     observation.elapsed = observation.end - observation.start;
@@ -151,6 +208,29 @@ function validateFragmentAssembly(observation, measured) {
   assert.equal(final.nativeHidden, 0, 'native owners remain hidden after handoff');
   assert.equal(final.nativeOpacity, 1, 'native reading content was not restored');
   assert.deepEqual(final.fragmentFields, [], 'fragment counters remain after handoff');
+  assert.ok(observation.headingSeam, 'settled incoming heading seam was not observed');
+  const seam = observation.headingSeam;
+  assert.ok(
+    Number.isFinite(seam.boxDeltaPx) && seam.boxDeltaPx <= 0.0001 && seam.boxDeltaPx >= 0,
+    'heading seam was sampled before its border box settled'
+  );
+  for (const rects of [seam.nativeGlyphRects, seam.fragmentGlyphRects])
+    assert.ok(
+      Array.isArray(rects) &&
+        rects.length > 0 &&
+        rects.every(
+          (rect) => Array.isArray(rect) && rect.length === 4 && rect.every(Number.isFinite)
+        ),
+      'heading seam lacks actual finite glyph line boxes'
+    );
+  assert.equal(seam.nativeGlyphRects.length, seam.fragmentGlyphRects.length);
+  const observedGlyphDeltaPx = Math.max(
+    ...seam.nativeGlyphRects.flatMap((rect, index) =>
+      rect.map((value, axis) => Math.abs(value - seam.fragmentGlyphRects[index][axis]))
+    )
+  );
+  assert.equal(seam.glyphDeltaPx, observedGlyphDeltaPx, 'heading seam summary is inconsistent');
+  assert.ok(observedGlyphDeltaPx <= 0.75, 'incoming heading glyphs shift at native handoff');
   for (const value of [
     measured.paintCallbackMs?.p95,
     measured.paintCallbackMs?.max,
@@ -292,6 +372,7 @@ async function fragmentAssembly(page) {
     await preferences(page, 'fragment-flight-preview', false);
     await travel(page, 'index');
     await preferences(page, 'fragment-flight-preview', true);
+    await page.locator('.appearance summary').click();
     await page.locator('.site-header nav a[href="research.html"]').click();
     await page.waitForFunction(
       () => document.getElementById('site-content').dataset.fragmentPhase === 'arrive',
@@ -385,7 +466,9 @@ async function scenario(browser, url, artifact, engine, width, theme) {
       })
     );
     assert.equal(backdropBlur, false, 'no retired backdrop blur');
-    await page.waitForFunction(() => window.__colorPaint?.completed > 0, null, { polling: 50 });
+    await page.waitForFunction(() => window.__colorPaint?.completed > 0, null, {
+      polling: 50,
+    });
     const rendered = await state(page);
     colorPaint(rendered);
     const homeMotion = await liveScrollPrecondition(page);

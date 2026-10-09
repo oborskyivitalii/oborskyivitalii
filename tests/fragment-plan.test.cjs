@@ -74,47 +74,96 @@ function assertPoint(actual, expected, tolerance = 1e-8) {
   );
 }
 
+function signedArea(points) {
+  return (
+    points.reduce((sum, point, index) => {
+      const next = points[(index + 1) % points.length];
+      return sum + point[0] * next[1] - next[0] * point[1];
+    }, 0) / 2
+  );
+}
+
+function interiorsOverlap(a, b) {
+  // Separating axes use actual polygon edges, not their overlapping paint bounds.
+  for (const polygon of [a, b]) {
+    for (let index = 0; index < polygon.length; index++) {
+      const point = polygon[index];
+      const next = polygon[(index + 1) % polygon.length];
+      const length = Math.hypot(next[0] - point[0], next[1] - point[1]);
+      const axis = [(point[1] - next[1]) / length, (next[0] - point[0]) / length];
+      const project = (vertices) => vertices.map(([x, y]) => x * axis[0] + y * axis[1]);
+      const pa = project(a);
+      const pb = project(b);
+      const overlap =
+        Math.min(Math.max(...pa), Math.max(...pb)) - Math.max(Math.min(...pa), Math.min(...pb));
+      if (overlap <= 1e-7) return false;
+    }
+  }
+  return true;
+}
+
 function assertCoverage(rect, cells) {
   assert.ok(
     Math.abs(
-      cells.reduce((sum, cell) => sum + cell.width * cell.height, 0) - rect.width * rect.height
-    ) < 1e-6
+      cells.reduce((sum, cell) => sum + signedArea(cell.polygon), 0) - rect.width * rect.height
+    ) < 1e-6,
+    'polygon area must cover the complete native paint owner'
   );
   cells.forEach((cell, index) => {
-    assert.ok(cell.x >= rect.x && cell.y >= rect.y && cell.width > 0 && cell.height > 0);
-    assert.ok(cell.x + cell.width <= rect.x + rect.width + 1e-9);
-    assert.ok(cell.y + cell.height <= rect.y + rect.height + 1e-9);
+    assert.ok(cell.polygon.length >= 3 && cell.polygon.length <= 10);
+    assert.ok(signedArea(cell.polygon) > 0, 'front winding must stay consistent');
+    const xs = cell.polygon.map((point) => point[0]);
+    const ys = cell.polygon.map((point) => point[1]);
+    assertPoint([cell.x, cell.y], [Math.min(...xs), Math.min(...ys)]);
+    assertPoint([cell.width, cell.height], [Math.max(...xs) - cell.x, Math.max(...ys) - cell.y]);
+    cell.polygon.forEach((point, vertex) => {
+      assert.ok(point.every(Number.isFinite));
+      assert.ok(point[0] >= rect.x - 1e-8 && point[0] <= rect.x + rect.width + 1e-8);
+      assert.ok(point[1] >= rect.y - 1e-8 && point[1] <= rect.y + rect.height + 1e-8);
+      const next = cell.polygon[(vertex + 1) % cell.polygon.length];
+      const after = cell.polygon[(vertex + 2) % cell.polygon.length];
+      assert.ok(Math.hypot(next[0] - point[0], next[1] - point[1]) > 1e-8);
+      const turn =
+        (next[0] - point[0]) * (after[1] - next[1]) - (next[1] - point[1]) * (after[0] - next[0]);
+      assert.ok(turn >= -1e-7, 'each fragment must be convex');
+    });
     for (const other of cells.slice(index + 1)) {
-      const overlapX =
-        Math.min(cell.x + cell.width, other.x + other.width) - Math.max(cell.x, other.x);
-      const overlapY =
-        Math.min(cell.y + cell.height, other.y + other.height) - Math.max(cell.y, other.y);
-      assert.ok(overlapX <= 1e-9 || overlapY <= 1e-9, 'partition interiors overlap');
+      assert.equal(
+        interiorsOverlap(cell.polygon, other.polygon),
+        false,
+        'partition interiors overlap'
+      );
     }
   });
 }
 
-test('unequal seeded partitions completely cover fractional text and image rectangles', () => {
+test('seeded angled shards cover fractional text and image owners without gaps or overlap', () => {
   for (const rect of [
     { x: 17.25, y: 42.75, width: 512.5, height: 47.5 },
     { x: -9.5, y: 100.25, width: 224.5, height: 206.75 },
   ]) {
-    const cells = fragments.partition(
-      rect,
-      { count: 32, seed: 71 },
-      { maxPieces: 40, usedPieces: 8 }
-    );
-    assert.equal(cells.length, 32);
-    assertCoverage(rect, cells);
-    assert.ok(new Set(cells.map((cell) => Math.round(cell.width * cell.height))).size > 8);
-    assert.deepEqual(
-      cells,
-      fragments.partition(rect, { count: 32, seed: 71 }, { maxPieces: 40, usedPieces: 8 })
-    );
-    assert.notDeepEqual(
-      cells,
-      fragments.partition(rect, { count: 32, seed: 72 }, { maxPieces: 40, usedPieces: 8 })
-    );
+    for (const seed of [1, 17, 71, 72]) {
+      const options = { count: 32, seed };
+      const allowance = { maxPieces: 40, usedPieces: 8 };
+      const cells = fragments.partition(rect, options, allowance);
+      assert.equal(cells.length, 32);
+      assertCoverage(rect, cells);
+      const shapes = new Set(cells.map((cell) => cell.polygon.length));
+      assert.ok(shapes.has(3) && shapes.has(4) && [...shapes].some((vertices) => vertices >= 5));
+      assert.ok(new Set(cells.map((cell) => Math.round(signedArea(cell.polygon)))).size > 8);
+      const angled = cells.filter((cell) =>
+        cell.polygon.some((point, index) => {
+          const next = cell.polygon[(index + 1) % cell.polygon.length];
+          return Math.abs(point[0] - next[0]) > 1e-5 && Math.abs(point[1] - next[1]) > 1e-5;
+        })
+      );
+      assert.equal(angled.length, cells.length, 'fragments cannot remain a rectangular grid');
+      assert.deepEqual(cells, fragments.partition(rect, options, allowance));
+      assert.notDeepEqual(
+        cells,
+        fragments.partition(rect, { ...options, seed: seed + 1 }, allowance)
+      );
+    }
   }
 });
 
@@ -222,6 +271,7 @@ test('departure begins at native identity, scatters in world space and safely va
   });
   start.points.forEach((point, index) => assertPoint(point, expected.points[index]));
   assert.equal(start.opacity, 1);
+  assert.deepEqual(start.facets, [], 'native content has no remaining prism sides');
   const middle = fragments.sample(prepared, {
     phase: 'depart',
     progress: 0.5,
@@ -270,6 +320,7 @@ test('arrival emerges from an admitted world anchor and ends exactly at the curr
   const expected = fragments.projectQuad(finalView, fragments.quad(finalView, rect));
   final.points.forEach((point, index) => assertPoint(point, expected.points[index]));
   assert.equal(final.opacity, 1);
+  assert.deepEqual(final.facets, [], 'prism thickness must disappear before native handoff');
   for (const progress of [NaN, -0.1, 1.1])
     assert.equal(
       fragments.sample(prepared, {
@@ -288,6 +339,155 @@ test('arrival emerges from an admitted world anchor and ends exactly at the curr
     }),
     null
   );
+});
+
+test('equally timed arrivals become progressively transparent at greater actual scene depths', () => {
+  const camera = fragments.view(pose, 1440, 900);
+  const rect = { x: 100, y: 250, width: 220, height: 46 };
+  const prepared = fragments.piece(rect, camera, { seed: 73, depth: 12 });
+  const samples = [20, 30, 40, 60, 90].map((depth) =>
+    fragments.sample(prepared, {
+      phase: 'arrive',
+      progress: 0.5,
+      view: camera,
+      anchor: fragments.unproject(camera, camera.origin, depth),
+    })
+  );
+  samples.forEach((sample, index) => {
+    assert.ok(sample && Number.isFinite(sample.depth));
+    assert.ok(Number.isFinite(sample.opacity) && sample.opacity > 0 && sample.opacity < 1);
+    if (index > 0) {
+      assert.ok(sample.depth > samples[index - 1].depth);
+      assert.ok(
+        sample.opacity < samples[index - 1].opacity,
+        'depth must change opacity even when flight progress is identical'
+      );
+    }
+  });
+  assert.ok(samples.at(-1).opacity < samples[0].opacity * 0.5);
+});
+
+test('angled triangular and larger shards have finite visible prism sides during both flights', () => {
+  const camera = fragments.view(pose, 1440, 900);
+  const rect = { x: 100, y: 250, width: 420, height: 120 };
+  const cells = fragments.partition(rect, { count: 16, seed: 17 }, { maxPieces: 96 });
+  const shapes = new Map();
+  for (const cell of cells) {
+    if (!shapes.has(cell.polygon.length)) shapes.set(cell.polygon.length, cell);
+  }
+  assert.ok(shapes.has(3) && shapes.has(4) && [...shapes.keys()].some((size) => size >= 5));
+  for (const cell of shapes.values()) {
+    const prepared = fragments.piece(cell, camera);
+    assert.ok(prepared && Number.isFinite(prepared.thickness) && prepared.thickness > 0);
+    for (const phase of ['depart', 'arrive']) {
+      const sample = fragments.sample(prepared, {
+        phase,
+        progress: 0.5,
+        view: camera,
+        anchor: fragments.unproject(camera, camera.origin, 40),
+      });
+      assert.ok(sample && sample.facets.length > 0 && sample.facets.length < cell.polygon.length);
+      for (const facet of sample.facets) {
+        assert.equal(facet.points.length, 4);
+        assert.ok(
+          facet.points.every((point) => point.length === 2 && point.every(Number.isFinite))
+        );
+        assert.ok(
+          Math.abs(signedArea(facet.points)) > 1e-6,
+          'side facets need painted area, rather than a flat line'
+        );
+        assert.equal(typeof facet.light, 'boolean');
+      }
+    }
+  }
+});
+
+test('a frontal shard centered on the optical axis hides its rear prism sides', () => {
+  const camera = fragments.view(pose, 1440, 900);
+  const rect = {
+    x: camera.origin[0] - 100,
+    y: camera.origin[1] - 40,
+    width: 200,
+    height: 80,
+  };
+  const prepared = {
+    ...fragments.piece(rect, camera, { seed: 73 }),
+    scatter: [0, 0, 0],
+    roll: 0,
+    tilt: 0,
+    pitch: 0,
+  };
+  const sample = fragments.sample(prepared, {
+    phase: 'depart',
+    progress: 0.5,
+    view: camera,
+  });
+  assert.ok(sample && prepared.thickness > 0);
+  assert.deepEqual(sample.facets, [], 'rear extrusion must not paint over the frontal silhouette');
+});
+
+test('piece admission rejects malformed, degenerate and nonconvex shard outlines', () => {
+  const camera = fragments.view(pose, 1440, 900);
+  const rect = { x: 0, y: 0, width: 100, height: 80 };
+  const valid = [
+    [0, 0],
+    [100, 0],
+    [100, 80],
+    [0, 80],
+  ];
+  assert.ok(fragments.piece({ ...rect, polygon: valid }, camera));
+  for (const polygon of [
+    {},
+    [],
+    [
+      [0, 0],
+      [100, 0],
+    ],
+    Array(11).fill([0, 0]),
+    [
+      [0, 0],
+      [NaN, 0],
+      [100, 80],
+    ],
+    [
+      [0, 0],
+      [101, 0],
+      [100, 80],
+    ],
+    [
+      [0, 0],
+      [50, 0],
+      [100, 0],
+    ],
+    [
+      [0, 0],
+      [100, 0],
+      [100, 0],
+      [100, 80],
+      [0, 80],
+    ],
+    [
+      [0, 0],
+      [100, 0],
+      [50, 40],
+      [100, 80],
+      [0, 80],
+    ],
+    [
+      [0, 0],
+      [100, 0],
+      [0, 80],
+      [100, 80],
+      [40, 20],
+    ],
+    [...valid].reverse(),
+  ]) {
+    assert.equal(
+      fragments.piece({ ...rect, polygon }, camera),
+      null,
+      `invalid shard outline was admitted: ${JSON.stringify(polygon)}`
+    );
+  }
 });
 
 test('serialized factory depends only on explicitly supplied canonical projection', () => {

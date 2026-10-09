@@ -32,6 +32,10 @@ Dated continuity, not live authority. Last verified: **2026-10-09**.
   visibly stagger text/block construction for 1–2seconds from the real fractal.
   Continue the same issue49/PR53; other outstanding visual concerns stay open.
   Read live PR53 for the refined exact head, checks and immutable preview.
+- Next9October refinement fixes native heading padding/line geometry, adds seeded
+  convex shard masks, projected rear facets and camera-depth opacity. Original
+  caps/clock/timing remain; projected side bounds are enforced before paint.
+  Latest source/CI/preview and remaining visual gates belong in live PR53.
 
 ## Decisions
 

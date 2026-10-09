@@ -175,12 +175,25 @@ module.exports = function (content, geometry, onFallback = null) {
       // These are measured native paint values, never a second authored style sheet.
       for (const property of [
         'font',
+        'line-height',
         'color',
+        'box-sizing',
+        'display',
+        'padding-top',
+        'padding-right',
+        'padding-bottom',
+        'padding-left',
         'letter-spacing',
         'word-spacing',
         'text-align',
+        'text-indent',
         'text-transform',
         'white-space',
+        'overflow-wrap',
+        'word-break',
+        'hyphens',
+        'direction',
+        'vertical-align',
         'text-decoration',
         'object-fit',
         'object-position',
@@ -193,6 +206,9 @@ module.exports = function (content, geometry, onFallback = null) {
         'border-radius',
       ])
         copy.style.setProperty(property, paint.getPropertyValue(property));
+      // Copies leave their original parent selectors. Their native border-box
+      // padding and line layout must survive that move so the final glyphs land
+      // at their reading positions, not just their outer element rectangles.
       if (copy.matches('img')) {
         copy.removeAttribute('srcset');
         copy.removeAttribute('sizes');
@@ -213,7 +229,13 @@ module.exports = function (content, geometry, onFallback = null) {
         textBytes: compact ? 12288 : 32768,
         layerPixels: compact ? 3000000 : 8000000,
       },
-      usage = { pieces: 0, owners: 0, descendants: 1, textBytes: 0, layerPixels: 0 },
+      usage = {
+        pieces: 0,
+        owners: 0,
+        descendants: 2,
+        textBytes: 0,
+        layerPixels: 0,
+      },
       planned = [];
     const pixelRatio = window.devicePixelRatio || 1;
     if (!Number.isFinite(pixelRatio) || pixelRatio <= 0) return false;
@@ -244,10 +266,15 @@ module.exports = function (content, geometry, onFallback = null) {
       if (!cells) return false;
       usage.pieces += cells.length;
       usage.owners++;
-      usage.descendants += (descendants + 2) * cells.length + descendants + 1;
+      usage.descendants += (descendants + 5) * cells.length + descendants + 1;
       usage.textBytes += (owner.textContent?.length || 0) * 3 * (cells.length + 1);
       // Native DOM paint uses actual device DPR, unlike the separately capped Canvas.
-      usage.layerPixels += rect.width * rect.height * cells.length * pixelRatio ** 2;
+      const volumePixels = cells.reduce(
+        (sum, cell) => sum + (cell.width + 36) * (cell.height + 36),
+        0
+      );
+      usage.layerPixels +=
+        (rect.width * rect.height * cells.length + volumePixels) * pixelRatio ** 2;
       if (!geometry.admit(usage, caps) || clock() - start > 160) return false;
       const cellsPrepared = cells.map((cell) => ({
         cell,
@@ -260,14 +287,17 @@ module.exports = function (content, geometry, onFallback = null) {
   }
   function arrivalAllowance(measured, caps, pixelRatio) {
     if (!measured.length || measured.length > caps.owners) return 0;
-    const descendantCopies = measured.reduce((sum, item) => sum + item.descendants + 2, 0);
+    const descendantCopies = measured.reduce((sum, item) => sum + item.descendants + 5, 0);
     const retainedDescendants = measured.reduce((sum, item) => sum + item.descendants + 1, 0);
     const textBytes = measured.reduce(
       (sum, item) => sum + (item.owner.textContent?.length || 0) * 3,
       0
     );
     const nativePixels = measured.reduce(
-      (sum, item) => sum + item.rect.width * item.rect.height * pixelRatio ** 2,
+      (sum, item) =>
+        sum +
+        (item.rect.width * item.rect.height + (item.rect.width + 36) * (item.rect.height + 36)) *
+          pixelRatio ** 2,
       0
     );
     // Share the unchanged transaction caps across all visible incoming owners,
@@ -275,7 +305,7 @@ module.exports = function (content, geometry, onFallback = null) {
     return Math.floor(
       Math.min(
         caps.pieces / measured.length,
-        (caps.descendants - 1 - retainedDescendants) / descendantCopies,
+        (caps.descendants - 2 - retainedDescendants) / descendantCopies,
         textBytes ? caps.textBytes / textBytes - 1 : Infinity,
         caps.layerPixels / nativePixels
       )
@@ -285,6 +315,8 @@ module.exports = function (content, geometry, onFallback = null) {
     clear();
     if (
       failed ||
+      !document.createElementNS ||
+      !window.CSS?.supports('clip-path', 'polygon(0 0,100% 0,0 100%)') ||
       !reduced?.addEventListener ||
       reduced.matches ||
       document.hidden ||
@@ -300,7 +332,12 @@ module.exports = function (content, geometry, onFallback = null) {
       nextPhase === 'arrive'
         ? geometry.arrivalSchedule(
             planned.map(({ rect, cells }) => ({
-              rect: { x: rect.left, y: rect.top, width: rect.width, height: rect.height },
+              rect: {
+                x: rect.left,
+                y: rect.top,
+                width: rect.width,
+                height: rect.height,
+              },
               cells: cells.map(({ cell }) => cell),
             }))
           )
@@ -310,6 +347,13 @@ module.exports = function (content, geometry, onFallback = null) {
     container.className = 'fragment-layer';
     container.inert = true;
     container.setAttribute('aria-hidden', 'true');
+    const svgNamespace = 'http://www.w3.org/2000/svg';
+    const volume = document.createElementNS(svgNamespace, 'svg');
+    volume.setAttribute('class', 'fragment-volume');
+    volume.setAttribute('width', String(snapshot.width));
+    volume.setAttribute('height', String(snapshot.height));
+    volume.setAttribute('viewBox', '0 0 ' + snapshot.width + ' ' + snapshot.height);
+    container.append(volume);
     try {
       for (let ownerIndex = 0; ownerIndex < planned.length; ownerIndex++) {
         const { owner, rect, cells } = planned[ownerIndex];
@@ -320,6 +364,10 @@ module.exports = function (content, geometry, onFallback = null) {
           tile.className = 'fragment-piece';
           tile.style.width = cell.width + 'px';
           tile.style.height = cell.height + 'px';
+          tile.style.clipPath =
+            'polygon(' +
+            prepared.polygon.map(([x, y]) => x * 100 + '% ' + y * 100 + '%').join(',') +
+            ')';
           const paint = nativePaint.cloneNode(true);
           paint.style.width = rect.width + 'px';
           paint.style.height = rect.height + 'px';
@@ -327,7 +375,22 @@ module.exports = function (content, geometry, onFallback = null) {
           paint.style.top = rect.top - cell.y + 'px';
           tile.append(paint);
           container.append(tile);
-          pieces.push({ tile, prepared, timing: timings?.[ownerIndex][cellIndex] });
+          const solid = document.createElementNS(svgNamespace, 'g');
+          const facets = ['light', 'dark'].map((shade) => {
+            const face = document.createElementNS(svgNamespace, 'path');
+            face.setAttribute('class', 'fragment-facet-' + shade);
+            solid.append(face);
+            return face;
+          });
+          volume.append(solid);
+          pieces.push({
+            tile,
+            solid,
+            facets,
+            prepared,
+            facetAreaLimit: (cell.width + 36) * (cell.height + 36),
+            timing: timings?.[ownerIndex][cellIndex],
+          });
         }
       }
       if (clock() - start > 160) throw Error('Fragment preparation deadline');
@@ -399,6 +462,30 @@ module.exports = function (content, geometry, onFallback = null) {
       ];
     return values.every(Number.isFinite) ? 'matrix3d(' + values.join(',') + ')' : null;
   }
+  function presentFacets(solid, facets, projected, facetAreaLimit, opacity) {
+    solid.style.opacity = opacity;
+    const sidePoints = projected?.facets.flatMap((face) => face.points) || [];
+    const sideArea = sidePoints.length
+      ? (Math.max(...sidePoints.map((point) => point[0])) -
+          Math.min(...sidePoints.map((point) => point[0]))) *
+        (Math.max(...sidePoints.map((point) => point[1])) -
+          Math.min(...sidePoints.map((point) => point[1])))
+      : 0;
+    // Cull only decorative sides if rotation/near-plane scale expands their
+    // projected surface beyond its reserved pixels. Native text keeps flying.
+    const showFacets = projected && Number.isFinite(sideArea) && sideArea <= facetAreaLimit;
+    for (let index = 0; index < facets.length; index++) {
+      const faces = showFacets
+        ? projected.facets.filter((face) => face.light === (index === 0))
+        : [];
+      facets[index].setAttribute(
+        'd',
+        faces
+          .map(({ points }) => 'M' + points.map((point) => point.join(' ')).join('L') + 'Z')
+          .join('')
+      );
+    }
+  }
   function present(progress, snapshot) {
     if (!phase || failed) return false;
     if (
@@ -423,7 +510,7 @@ module.exports = function (content, geometry, onFallback = null) {
       arrivalElapsedMs = Math.max(arrivalElapsedMs, snapshot.capturedAt - arrivalStartedAt);
     }
     let settledPieces = 0;
-    for (const { tile, prepared, timing } of pieces) {
+    for (const { tile, solid, facets, prepared, facetAreaLimit, timing } of pieces) {
       const local = Math.max(
         0,
         Math.min(
@@ -444,6 +531,13 @@ module.exports = function (content, geometry, onFallback = null) {
         projected && matrix(projected.points, prepared.rect.width, prepared.rect.height);
       tile.style.opacity = transform ? String(projected.opacity) : '0';
       if (transform) tile.style.transform = transform;
+      presentFacets(
+        solid,
+        facets,
+        transform ? projected : null,
+        facetAreaLimit,
+        tile.style.opacity
+      );
     }
     if (phase === 'arrive') {
       content.dataset.fragmentElapsedMs = String(arrivalElapsedMs);
