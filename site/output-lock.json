@@ -13,7 +13,7 @@
   },
   "routes": {
     "index": {
-      "version": "02276c28386686e9aa06485d0f2fbdedeadecb9b1e82d3a5b714bc72e30a8737",
+      "version": "e55fd3050b029c0f57e73ad50d58cf857a6f9ee3ca8318a9dbe14aa72783241b",
       "url": "index.html",
       "inputs": [
         "site/content/pages/index/about.json",
@@ -42,7 +42,7 @@
         "publication-07",
         "publication-08"
       ],
-      "snapshotSHA": "dd0c255ce2822b170ee3cd3d0697a073b168d99be3608245f96f7c850764d0df"
+      "snapshotSHA": "ae1ddeffd3e5a1ddc18bbd4eedc569155fdeb381c365997e896f652b74e08627"
     },
     "research": {
       "version": "13cacc74bef65a345dfa1604153bce5575bd922f5fd78c4222dfab334782184b",
@@ -128,7 +128,7 @@
       "snapshotSHA": "9ebe13a463da7c3f1acffae8e7850dd15e2013f3e80249d67013e4d6df268316"
     },
     "credits": {
-      "version": "4d0afb3e40ae2103446a62b90edcceb4db338320f4c93f1c6558a4d239be8a84",
+      "version": "032db9409f685170c57d33d3c8cc3593854eed74ac9286f60387d24156c88ee4",
       "url": "credits.html",
       "inputs": [
         "site/content/pages/credits/main.json",
@@ -136,20 +136,20 @@
         "site/templates/pages/credits/main.html"
       ],
       "records": [],
-      "snapshotSHA": "a280dac891430113dc2a1b6e8680a116cfbfbd213e2716b1d2185b84d6fd6186"
+      "snapshotSHA": "0e293d702434504abba30d286bde8271cd63fbf7a63100abd57b290bd63958eb"
     }
   },
   "files": {
-    "index.html": "6599eaef18617fb3780d065155cbd4df328930afab7b65f9f1cfe2be13930c7c",
-    "snapshots/02276c28386686e9aa06485d0f2fbdedeadecb9b1e82d3a5b714bc72e30a8737/index.html": "dd0c255ce2822b170ee3cd3d0697a073b168d99be3608245f96f7c850764d0df",
+    "index.html": "61c8e74077024c7bf2ef912b92f176fe7ac49641b3dc8beaead540ab61ea8600",
+    "snapshots/e55fd3050b029c0f57e73ad50d58cf857a6f9ee3ca8318a9dbe14aa72783241b/index.html": "ae1ddeffd3e5a1ddc18bbd4eedc569155fdeb381c365997e896f652b74e08627",
     "research.html": "fc79ba36b7372496266fcd97f36f155240ace5eb26e8f4c07e2eeb29afc5c1ff",
     "snapshots/13cacc74bef65a345dfa1604153bce5575bd922f5fd78c4222dfab334782184b/research.html": "91f241bc629f12daba87fa203b6a1e276963e6fe33a5e3068682990a8efead24",
     "writing.html": "074bbcc9281f3ad4e5a5c05ec6da0b5007c6116b42622216c66d870958223b8e",
     "snapshots/be195546aed16e6358e4555a1781631ebb2455ccbf05e48da811d9f37898d524/writing.html": "49ab3b67fd49720a8c5848b8b5e9b43242e27f5a30f8ff4da45b2666c0d91c48",
     "talks.html": "cf16f7f4605d271bbefec78b4832e2dfe93896fad9d896fcbb2228336933d90f",
     "snapshots/f1a98c7f2749db4eaf26f0a698e6cdb23e9941cb10a7f2ede26ac9754d158c36/talks.html": "9ebe13a463da7c3f1acffae8e7850dd15e2013f3e80249d67013e4d6df268316",
-    "credits.html": "6890ed459c82ea3a11fc84b106d38d742253ce18740ed2a6795851a9ab9e585f",
-    "snapshots/4d0afb3e40ae2103446a62b90edcceb4db338320f4c93f1c6558a4d239be8a84/credits.html": "a280dac891430113dc2a1b6e8680a116cfbfbd213e2716b1d2185b84d6fd6186",
+    "credits.html": "6802356932f9210e540f2a679ff1cd53d39215e47391a0b7ae05cce40c903357",
+    "snapshots/032db9409f685170c57d33d3c8cc3593854eed74ac9286f60387d24156c88ee4/credits.html": "0e293d702434504abba30d286bde8271cd63fbf7a63100abd57b290bd63958eb",
     "theme.js": "b6df1591a86ce1f18662e26679926f5433febd935c453952f2443f78f2c0e0ee",
     "archive.js": "1307b2405daa50937e5746f4d8a71230842718377d853b4d0cf4704e7f2de9ad",
     "navigation.js": "908f05a548dedc176825a1bed94f40dd7f6ed44164e0aab3b16eafe9c41c53ee",
@@ -179,6 +179,6 @@
     "snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html": "4284e646405e3c2dc1288fd3e222e15b8564e44cbaeca8be0b0b01927a248736",
     "snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html": "b5f2a67bafcaa7275bdf27c5a4b174168c6e9442614ed592a19b1ea748eec942",
     "snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html": "1d7a5aeb831c51e49667095bb29f51108ff47e32cf89853b54002ffad693e312",
-    "site-revision.json": "5fd1e06aa2dcbfc247ded2883feb360750942e3f2fb56752d81f017bb3627047"
+    "site-revision.json": "bc16031ddc5e80fa429692cb535e0a39401e14ff1e484ac6e48e39384cfe49d4"
   }
 }

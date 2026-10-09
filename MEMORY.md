@@ -23,6 +23,10 @@ Dated continuity, not live authority. Last verified: **2026-10-09**.
   [CI follow-up](review/issue-41/2026-10-09-ci-followup.md) record separate evidence.
   No invented management case; record missing facts in the issue. Keep graphics,
   runtime, routes and production outside the content continuation.
+  The same issue/PR also owns the compact AI-assisted delivery case, AC17–26:
+  [source/history analysis](review/issue-41/2026-10-09-sitecase.md), About→Credits
+  evidence links, explicit human/AI/enterprise boundaries. No merge until the
+  maintainer confirms; current-head CI and focused preview review remain required.
 - A user-supplied issue stays bound across phases/model handoffs; consolidation
   transfers original ACs, evidence and open gates before superseding an owner.
 

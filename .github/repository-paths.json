@@ -517,13 +517,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/02276c28386686e9aa06485d0f2fbdedeadecb9b1e82d3a5b714bc72e30a8737": {
+    "docs/snapshots/e55fd3050b029c0f57e73ad50d58cf857a6f9ee3ca8318a9dbe14aa72783241b": {
       "kind": "directory",
       "purpose": "Generated immutable route snapshot for the current content edition.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/02276c28386686e9aa06485d0f2fbdedeadecb9b1e82d3a5b714bc72e30a8737/index.html": {
+    "docs/snapshots/e55fd3050b029c0f57e73ad50d58cf857a6f9ee3ca8318a9dbe14aa72783241b/index.html": {
       "kind": "file",
       "purpose": "Generated exact-source public route snapshot; regenerate from canonical site content/templates.",
       "role": "generated",
@@ -541,13 +541,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/4d0afb3e40ae2103446a62b90edcceb4db338320f4c93f1c6558a4d239be8a84": {
+    "docs/snapshots/032db9409f685170c57d33d3c8cc3593854eed74ac9286f60387d24156c88ee4": {
       "kind": "directory",
       "purpose": "Generated immutable route snapshot for the current content edition.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/4d0afb3e40ae2103446a62b90edcceb4db338320f4c93f1c6558a4d239be8a84/credits.html": {
+    "docs/snapshots/032db9409f685170c57d33d3c8cc3593854eed74ac9286f60387d24156c88ee4/credits.html": {
       "kind": "file",
       "purpose": "Generated exact-source public route snapshot; regenerate from canonical site content/templates.",
       "role": "generated",
@@ -1030,6 +1030,30 @@
     "review/issue-41/2026-10-09-positioning.md": {
       "kind": "file",
       "purpose": "Dated issue41 practical-positioning source review or exact six-fragment content amendment, preserving historical evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-41/2026-10-09-sitecase-amendment.json": {
+      "kind": "file",
+      "purpose": "Exact two-fragment About/Credits AI-assisted delivery case amendment starting at the immutable prior positioning candidate; original six-fragment record remains unchanged.",
+      "role": "history",
+      "owner": "guides/SITE-SEO.md"
+    },
+    "review/issue-41/2026-10-09-sitecase-browser.md": {
+      "kind": "file",
+      "purpose": "Exact-preview Home-to-Credits case-anchor and public evidence-link observations with actual desktop/narrow readability and explicit access limits.",
+      "role": "history",
+      "owner": "guides/SITE-CONTENT-REVIEW.md"
+    },
+    "review/issue-41/2026-10-09-sitecase-review.md": {
+      "kind": "file",
+      "purpose": "Independent current-byte source, history, editorial and scope review of the compact AI-assisted delivery case and preserved prior positioning.",
+      "role": "history",
+      "owner": "guides/SITE-CONTENT-REVIEW.md"
+    },
+    "review/issue-41/2026-10-09-sitecase.md": {
+      "kind": "file",
+      "purpose": "Dated same-issue AI-assisted delivery case analysis with actual code/history support, role/enterprise boundaries and ordered content-only execution tasks.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },

@@ -407,7 +407,8 @@
         "site/content/catalog.json",
         "review/issue-48/content-amendment.json",
         "review/issue-48/source-inventory.json",
-        "review/issue-41/2026-10-09-positioning-amendment.json"
+        "review/issue-41/2026-10-09-positioning-amendment.json",
+        "review/issue-41/2026-10-09-sitecase-amendment.json"
       ]
     },
     {
@@ -439,7 +440,7 @@
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
-      "disposition": "retain enduring edition/semantic failure checks; issue41 positioning removes stale visible unknown-language assertions, adds catalog-count mutation coverage and exact successor amendment negatives; no new browser/performance suite",
+      "disposition": "retain enduring edition/semantic failure checks; issue41 positioning removes stale visible unknown-language assertions, adds catalog-count mutation coverage and exact successor amendment negatives; no new browser/performance suite; same-issue sitecase layers exact About/Credits restoration and extends existing claim/evidence-link negatives rather than adding a new suite",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
         "tests/executive.test.cjs",
@@ -452,7 +453,8 @@
         "site/templates/**",
         "review/issue-41/content-amendment.json",
         "review/issue-48/content-amendment.json",
-        "review/issue-41/2026-10-09-positioning-amendment.json"
+        "review/issue-41/2026-10-09-positioning-amendment.json",
+        "review/issue-41/2026-10-09-sitecase-amendment.json"
       ]
     },
     {
@@ -1145,13 +1147,16 @@
     {
       "path": "tests/test_issue41_acceptance.py",
       "language": "python",
-      "purpose": "Issue41 source/input/edition invariants and dated practical-positioning continuation, existing catalog-derived count mutations, source-bound semantic amendments and unchanged current-main runtime/hosting; historical evidence remains pinned.",
+      "purpose": "Issue41 source/input/edition invariants and dated practical-positioning continuation, existing catalog-derived count mutations, source-bound semantic amendments and unchanged current-main runtime/hosting; historical evidence remains pinned. Same-issue compact sitecase verifies exact fragments and immutable public proof destinations; source truth remains separately reviewed.",
       "owner": ".github/ACCEPTANCE.md",
       "lifecycle": "task-snapshot",
       "profiles": ["issue-policy"],
-      "disposition": "owning issue41 policy only; AC01–AC06 and manual gates preserved, AC07–AC16 append positioning checks; current permanent content/executive and ordinary PR smoke own enduring failure surfaces",
+      "disposition": "owning issue41 policy only; AC01–AC06 and manual gates preserved, AC07–AC16 append positioning checks; current permanent content/executive and ordinary PR smoke own enduring failure surfaces; AC17–AC26 add one bounded fragment/hash/link check and reuse existing gates/checks; no new staging/performance infrastructure",
       "surviving_route": ".github/acceptance/issue-41.json",
-      "inputs": ["tests/test_issue41_acceptance.py"]
+      "inputs": [
+        "tests/test_issue41_acceptance.py",
+        "review/issue-41/2026-10-09-sitecase-amendment.json"
+      ]
     },
     {
       "path": "tests/test_issue45_acceptance.py",

@@ -3,7 +3,7 @@
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/41",
     "date": "2026-10-09",
-    "summary": "Review issue41 practical-positioning successor policy, preserved original gates, existing catalog build tokens, permanent count/semantic negatives, new review/amendment catalog paths and unchanged workflow selection; factual/editorial decisions remain external evidence."
+    "summary": "Review issue41 practical-positioning successor policy, preserved original gates, existing catalog build tokens, permanent count/semantic negatives, new review/amendment catalog paths and unchanged workflow selection; factual/editorial decisions remain external evidence. Same-issue AI-assisted sitecase appends AC17–AC26, one exact-fragment/public-destination check and existing semantic negatives; preserves original gates/runtime controls and distinguishes implementation/history review from automated link structure."
   },
   "layers": [
     {
@@ -68,7 +68,11 @@
         "review/issue-41/2026-10-09-positioning.md",
         "review/issue-41/2026-10-09-positioning-review.md",
         "review/issue-41/2026-10-09-ci-followup.md",
-        "review/issue-41/2026-10-09-positioning-browser.md"
+        "review/issue-41/2026-10-09-positioning-browser.md",
+        "review/issue-41/2026-10-09-sitecase-amendment.json",
+        "review/issue-41/2026-10-09-sitecase.md",
+        "review/issue-41/2026-10-09-sitecase-review.md",
+        "review/issue-41/2026-10-09-sitecase-browser.md"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -408,7 +412,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "7eeb0078d4b4289e15c1eca907aba714288ef199efbe87f762968e5fa73ca58d",
+    "digest": "87b870fdfd0884e0c49a6025afe1c474f9324d7943f5bcbaf20013b86bd52b2e",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -444,7 +448,7 @@
       },
       {
         "path": ".github/acceptance/issue-41.json",
-        "sha256": "f1e67b1018b34f1502f9bbfe35ec718908ed185eadac2ab793bda80409aaf833"
+        "sha256": "5d79585dcd7bc927487b381769352becd9900715b3c8ca5dd9b75e06ae4ec3d5"
       },
       {
         "path": ".github/acceptance/issue-45.json",
@@ -496,7 +500,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "e998acb5dda56bfc0db80efe40cc53e65b098cb0db8e1780fcc555fb6874bcd8"
+        "sha256": "fbf0942c9441721a1b658a849591523dc6b6edcc46c6b0da9adc4fbb894874cc"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -620,7 +624,7 @@
       },
       {
         "path": "tests/test_issue41_acceptance.py",
-        "sha256": "afd36a8129c4bf36058e895048cc6b6762e543710a446e0512ee47bfba91392e"
+        "sha256": "809977718e2c32a2a7f62fedbd2f42f82419fbc37b0a75b6c6eb9c4a96f005ee"
       },
       {
         "path": "tests/test_issue45_acceptance.py",
@@ -700,7 +704,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "8460c9f2cf0a5a32a6adaa883344391efa8048312438b1c2de755cc4c874da41"
+        "sha256": "dd160c8895b4f6b84f7c9ae760147afd94ca421e322b19b6fc6fa6419d63f2e4"
       },
       {
         "path": "tools/repository_intelligence.py",

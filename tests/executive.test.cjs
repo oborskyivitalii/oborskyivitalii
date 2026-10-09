@@ -402,13 +402,15 @@ test('Talks reconciliation rejects missing events, substituted sources and inven
 test('practical positioning allowances reject unsupported claims, status and contact changes', () => {
   const { restore, restoreContentAmendment } = require('../tools/check_site_seo.cjs');
   const record = require('../review/issue-41/2026-10-09-positioning-amendment.json');
-  for (const change of record.changes) {
+  const sitecase = require('../review/issue-41/2026-10-09-sitecase-amendment.json');
+  for (const change of [...record.changes, ...sitecase.changes]) {
+    const owner = change.id.startsWith('sitecase-') ? sitecase : record;
     assert.equal(
-      restoreContentAmendment(change.after, change.page, record),
+      restoreContentAmendment(change.after, change.page, owner),
       normalizeHTML(change.before),
       'only the declared successor fragment is reversed'
     );
-    const corrupt = structuredClone(record);
+    const corrupt = structuredClone(owner);
     corrupt.changes.find((row) => row.page === change.page && row.id === change.id).after += ' ';
     assert.throws(
       () => restoreContentAmendment(change.after, change.page, corrupt),
@@ -422,6 +424,18 @@ test('practical positioning allowances reject unsupported claims, status and con
     ['talks', 'internal technical AI workshop', 'validated enterprise AI deployment'],
     ['talks', 'index.html#contact', 'https://unapproved.example/book'],
     ['writing', '29 primary archive records', '27 primary archive records'],
+    ['index', 'credits.html#built-with-ai', 'credits.html#missing-case'],
+    ['credits', 'I direct its architecture', 'AI autonomously directs its architecture'],
+    [
+      'credits',
+      'does not establish enterprise-scale effectiveness',
+      'establishes enterprise-scale effectiveness',
+    ],
+    [
+      'credits',
+      '338e3ff341dc35b64cba7854289e1385cbaf1562/tools/site/build.cjs',
+      'main/tools/site/build.cjs',
+    ],
   ];
   for (const [page, from, to] of mutations) {
     const html = readHTML(require('node:path').join(__dirname, '../docs/' + page + '.html'));

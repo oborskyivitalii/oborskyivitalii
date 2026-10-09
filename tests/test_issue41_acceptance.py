@@ -26,6 +26,8 @@ BASE = 'c4539ad18f4f35169eda792a9a40677a7ea9abac'
 # this content phase cannot silently edit that current engine or its routes.
 RUNTIME_BASE = '338e3ff341dc35b64cba7854289e1385cbaf1562'
 POSITIONING = 'review/issue-41/2026-10-09-positioning-amendment.json'
+SITECASE = 'review/issue-41/2026-10-09-sitecase-amendment.json'
+SITECASE_BASE = 'da36ccf03e1d749a540aa6bb39fe7b4083f1ef66'
 INVENTORY = 'review/issue-41/source-inventory.json'
 INPUT_SHA256 = '2483f7f9d70e38ffcaf3c9eb4f2bdc8f75ce6dda0d87d37ae40815f2fa2e3968'
 UNCHANGED = [
@@ -391,23 +393,29 @@ def node_checks(names):
     )
 
 
-def positioning_projection():
+def positioning_projection(record_path=POSITIONING, restore_sitecase=True):
     """Normalize immutable/current fragments using the maintained HTML owner."""
     script = r"""
 const fs = require('node:fs');
 const cp = require('node:child_process');
-const {normalizeHTML} = require('./tools/check_site_seo.cjs');
+const {normalizeHTML,restoreContentAmendment} = require('./tools/check_site_seo.cjs');
 const {sourceForPreview} = require('./tools/build_site_previews.cjs');
-const record = require('./review/issue-41/2026-10-09-positioning-amendment.json');
+const record = require('./'+process.argv[1]);
+const sitecase = require('./review/issue-41/2026-10-09-sitecase-amendment.json');
 const normalize = html => normalizeHTML(sourceForPreview(html));
 const pages = {}, baseline = {};
 for (const page of ['index','research','writing','talks','credits']) {
   pages[page] = normalize(fs.readFileSync('docs/'+page+'.html','utf8'));
+  if(process.argv[2] === 'true') pages[page] = restoreContentAmendment(pages[page],page,sitecase);
   baseline[page] = normalize(cp.execFileSync('git',['show',record.base+':docs/'+page+'.html'],{encoding:'utf8'}));
 }
 process.stdout.write(JSON.stringify({pages,baseline,changes:record.changes.map(change=>({...change,before:normalize(change.before),after:normalize(change.after)}))}));
 """
-    return json.loads(subprocess.check_output(['node', '-e', script], cwd=ROOT))
+    return json.loads(
+        subprocess.check_output(
+            ["node", "-e", script, record_path, str(restore_sitecase).lower()], cwd=ROOT
+        )
+    )
 
 
 class Issue41ImplementationTests(unittest.TestCase):
@@ -708,6 +716,68 @@ class Issue41ImplementationTests(unittest.TestCase):
         for text in ['hypotheses to test in context', 'Much remains to develop and test']:
             self.assertIn(text, home)
         self.assertNotRegex(help_section, r'guarantee|proven methodology|guaranteed transformation')
+
+    def test_site_case_amendment_binds_fragments_and_public_evidence_destinations(self):
+        """Check exact admission and link structure, not claim truth or live PR status."""
+        amendment = json.loads((ROOT / SITECASE).read_text())
+        self.assertEqual(
+            (amendment["schema"], amendment["issue"], amendment["base"]),
+            (1, 41, SITECASE_BASE),
+        )
+        self.assertEqual(
+            [(row["page"], row["id"]) for row in amendment["changes"]],
+            [("index", "sitecase-about"), ("credits", "sitecase-main")],
+        )
+        projection = positioning_projection(SITECASE, False)
+        for original, change in zip(amendment["changes"], projection["changes"]):
+            for version in ["before", "after"]:
+                self.assertEqual(
+                    hashlib.sha256(original[version].encode()).hexdigest(),
+                    original[version + "SHA256"],
+                )
+            self.assertNotEqual(change["before"], change["after"])
+            self.assertEqual(projection["baseline"][change["page"]].count(change["before"]), 1)
+            self.assertEqual(projection["pages"][change["page"]].count(change["after"]), 1)
+        home = projection["pages"]["index"]
+        credits = projection["pages"]["credits"]
+        self.assertEqual(section(home, "about").count('href="credits.html#built-with-ai"'), 1)
+        self.assertEqual(credits.count('id="built-with-ai"'), 1)
+        case = credits.split('<h2 id="built-with-ai">', 1)[1].split("<h2 ", 1)[0]
+        urls = re.findall(r'href="([^"]+)"', case)
+        self.assertEqual(len(urls), len(set(urls)))
+        self.assertEqual(len(urls), 7)
+        blob_paths = []
+        pull_paths = []
+        for url in urls:
+            source = urlsplit(unescape(url))
+            self.assertEqual((source.scheme, source.netloc), ("https", "github.com"))
+            prefix = "/oborskyivitalii/oborskyivitalii/"
+            self.assertTrue(source.path.startswith(prefix))
+            target = source.path.removeprefix(prefix)
+            if target.startswith("blob/"):
+                _, commit, path = target.split("/", 2)
+                self.assertEqual(commit, RUNTIME_BASE, "code proofs use the immutable source")
+                lines = subprocess.check_output(
+                    ["git", "show", f"{commit}:{path}"], cwd=ROOT, text=True
+                ).splitlines()
+                bounds = re.fullmatch(r"L(\d+)-L(\d+)", source.fragment)
+                self.assertIsNotNone(bounds, "bounded public source link")
+                start, end = map(int, bounds.groups())
+                self.assertTrue(1 <= start <= end <= len(lines))
+                blob_paths.append(path)
+            else:
+                pull_paths.append(target)
+        self.assertEqual(
+            blob_paths,
+            [
+                "tools/site/build.cjs",
+                "tools/quality/functional.cjs",
+                "tools/issue_acceptance.py",
+                "tools/quality/test-profiles.json",
+                "tools/quality/staging-gate.cjs",
+            ],
+        )
+        self.assertEqual(pull_paths, ["pull/66", "pull/63"])
 
     def test_talks_positioning_keeps_source_contact_and_known_language_contracts(self):
         projection = positioning_projection()

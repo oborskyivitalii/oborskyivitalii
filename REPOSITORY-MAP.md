@@ -41,15 +41,15 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/runtime/bf00029e91c5bfd7177ca04fd7eb32dc4348e57b227c201a8652b87bad0519b9](docs/runtime/bf00029e91c5bfd7177ca04fd7eb32dc4348e57b227c201a8652b87bad0519b9) | Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62](docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62) | Generated exact public runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots](docs/snapshots) | Generated exact-route HTML snapshots. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/02276c28386686e9aa06485d0f2fbdedeadecb9b1e82d3a5b714bc72e30a8737](docs/snapshots/02276c28386686e9aa06485d0f2fbdedeadecb9b1e82d3a5b714bc72e30a8737) | Generated immutable route snapshot for the current content edition. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/032db9409f685170c57d33d3c8cc3593854eed74ac9286f60387d24156c88ee4](docs/snapshots/032db9409f685170c57d33d3c8cc3593854eed74ac9286f60387d24156c88ee4) | Generated immutable route snapshot for the current content edition. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/13cacc74bef65a345dfa1604153bce5575bd922f5fd78c4222dfab334782184b](docs/snapshots/13cacc74bef65a345dfa1604153bce5575bd922f5fd78c4222dfab334782184b) | Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/4d0afb3e40ae2103446a62b90edcceb4db338320f4c93f1c6558a4d239be8a84](docs/snapshots/4d0afb3e40ae2103446a62b90edcceb4db338320f4c93f1c6558a4d239be8a84) | Generated immutable route snapshot for the current content edition. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347](docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347) | Generated exact public runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa](docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa) | Current immutable content-addressed route snapshot; generated from the exact maintained Talks content. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68](docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68) | Generated exact public runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946](docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946) | Generated exact public runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7](docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7) | Generated exact public runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/be195546aed16e6358e4555a1781631ebb2455ccbf05e48da811d9f37898d524](docs/snapshots/be195546aed16e6358e4555a1781631ebb2455ccbf05e48da811d9f37898d524) | Generated immutable route snapshot for the current content edition. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/e55fd3050b029c0f57e73ad50d58cf857a6f9ee3ca8318a9dbe14aa72783241b](docs/snapshots/e55fd3050b029c0f57e73ad50d58cf857a6f9ee3ca8318a9dbe14aa72783241b) | Generated immutable route snapshot for the current content edition. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/f1a98c7f2749db4eaf26f0a698e6cdb23e9941cb10a7f2ede26ac9754d158c36](docs/snapshots/f1a98c7f2749db4eaf26f0a698e6cdb23e9941cb10a7f2ede26ac9754d158c36) | Generated immutable route snapshot for the current content edition. | generated | [site/README.md](site/README.md) |
 | [drafts](drafts) | Unpublished article/profile proposals excluded from public builds. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [guides](guides) | Maintained topic guides for repository boundaries, publication, quality and hosting; root stays an entry surface. | guide | [guides/README.md](guides/README.md) |
@@ -275,23 +275,17 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/styles.css](docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/styles.css) | Generated exact public runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/theme.js](docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/theme.js) | Generated exact public runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/02276c28386686e9aa06485d0f2fbdedeadecb9b1e82d3a5b714bc72e30a8737/
+## docs/snapshots/032db9409f685170c57d33d3c8cc3593854eed74ac9286f60387d24156c88ee4/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/snapshots/02276c28386686e9aa06485d0f2fbdedeadecb9b1e82d3a5b714bc72e30a8737/index.html](docs/snapshots/02276c28386686e9aa06485d0f2fbdedeadecb9b1e82d3a5b714bc72e30a8737/index.html) | Generated exact-source public route snapshot; regenerate from canonical site content/templates. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/032db9409f685170c57d33d3c8cc3593854eed74ac9286f60387d24156c88ee4/credits.html](docs/snapshots/032db9409f685170c57d33d3c8cc3593854eed74ac9286f60387d24156c88ee4/credits.html) | Generated exact-source public route snapshot; regenerate from canonical site content/templates. | generated | [site/README.md](site/README.md) |
 
 ## docs/snapshots/13cacc74bef65a345dfa1604153bce5575bd922f5fd78c4222dfab334782184b/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [docs/snapshots/13cacc74bef65a345dfa1604153bce5575bd922f5fd78c4222dfab334782184b/research.html](docs/snapshots/13cacc74bef65a345dfa1604153bce5575bd922f5fd78c4222dfab334782184b/research.html) | Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
-
-## docs/snapshots/4d0afb3e40ae2103446a62b90edcceb4db338320f4c93f1c6558a4d239be8a84/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/snapshots/4d0afb3e40ae2103446a62b90edcceb4db338320f4c93f1c6558a4d239be8a84/credits.html](docs/snapshots/4d0afb3e40ae2103446a62b90edcceb4db338320f4c93f1c6558a4d239be8a84/credits.html) | Generated exact-source public route snapshot; regenerate from canonical site content/templates. | generated | [site/README.md](site/README.md) |
 
 ## docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/
 
@@ -328,6 +322,12 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [docs/snapshots/be195546aed16e6358e4555a1781631ebb2455ccbf05e48da811d9f37898d524/writing.html](docs/snapshots/be195546aed16e6358e4555a1781631ebb2455ccbf05e48da811d9f37898d524/writing.html) | Generated exact-source public route snapshot; regenerate from canonical site content/templates. | generated | [site/README.md](site/README.md) |
+
+## docs/snapshots/e55fd3050b029c0f57e73ad50d58cf857a6f9ee3ca8318a9dbe14aa72783241b/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/e55fd3050b029c0f57e73ad50d58cf857a6f9ee3ca8318a9dbe14aa72783241b/index.html](docs/snapshots/e55fd3050b029c0f57e73ad50d58cf857a6f9ee3ca8318a9dbe14aa72783241b/index.html) | Generated exact-source public route snapshot; regenerate from canonical site content/templates. | generated | [site/README.md](site/README.md) |
 
 ## docs/snapshots/f1a98c7f2749db4eaf26f0a698e6cdb23e9941cb10a7f2ede26ac9754d158c36/
 
@@ -636,6 +636,10 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-41/2026-10-09-positioning-browser.md](review/issue-41/2026-10-09-positioning-browser.md) | Current immutable positioning-preview readability and contact observations with actual desktop/mobile coverage and explicit historical browser-gate limits. | history | [guides/SITE-CONTENT-REVIEW.md](guides/SITE-CONTENT-REVIEW.md) |
 | [review/issue-41/2026-10-09-positioning-review.md](review/issue-41/2026-10-09-positioning-review.md) | Dated issue41 practical-positioning source/independent review or exact content amendment, preserving historical evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-41/2026-10-09-positioning.md](review/issue-41/2026-10-09-positioning.md) | Dated issue41 practical-positioning source review or exact six-fragment content amendment, preserving historical evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-41/2026-10-09-sitecase-amendment.json](review/issue-41/2026-10-09-sitecase-amendment.json) | Exact two-fragment About/Credits AI-assisted delivery case amendment starting at the immutable prior positioning candidate; original six-fragment record remains unchanged. | history | [guides/SITE-SEO.md](guides/SITE-SEO.md) |
+| [review/issue-41/2026-10-09-sitecase-browser.md](review/issue-41/2026-10-09-sitecase-browser.md) | Exact-preview Home-to-Credits case-anchor and public evidence-link observations with actual desktop/narrow readability and explicit access limits. | history | [guides/SITE-CONTENT-REVIEW.md](guides/SITE-CONTENT-REVIEW.md) |
+| [review/issue-41/2026-10-09-sitecase-review.md](review/issue-41/2026-10-09-sitecase-review.md) | Independent current-byte source, history, editorial and scope review of the compact AI-assisted delivery case and preserved prior positioning. | history | [guides/SITE-CONTENT-REVIEW.md](guides/SITE-CONTENT-REVIEW.md) |
+| [review/issue-41/2026-10-09-sitecase.md](review/issue-41/2026-10-09-sitecase.md) | Dated same-issue AI-assisted delivery case analysis with actual code/history support, role/enterprise boundaries and ordered content-only execution tasks. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-41/content-amendment.json](review/issue-41/content-amendment.json) | Issue41 hashed exact before/after authored-content and primary schema deltas layered onto the historical SEO comparison; editorial acceptance remains separate. | history | [guides/SITE-SEO.md](guides/SITE-SEO.md) |
 | [review/issue-41/source-inventory.json](review/issue-41/source-inventory.json) | Exact original LinkedIn/Reddit inputs and supplied snapshot hashes/metrics; current admitted/deferred catalog mappings with dated source-access limits. | history | [guides/SITE-SOURCE-AUDIT.md](guides/SITE-SOURCE-AUDIT.md) |
 
