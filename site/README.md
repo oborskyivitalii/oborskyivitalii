@@ -103,6 +103,17 @@ Issue49's Color preview enables fragments by default unless the user has stored
 Content flight Off. `fragment-plan.cjs` owns the single settings object, convex
 shard generator and both directional geometry functions; `fragment-dom.cjs` owns
 bounded visible paint acquisition and cleanup; `flight.cjs` owns phase orchestration.
+Acquisition selects the first actual painted block, including its measured
+before/after backdrop, decoded images, controls and text. A surface's children
+cannot fly independently over its native paper. Detached decorative copies replay
+resolved pseudo paint from the canonical reading-surface owner, including inactive
+pseudos, grid layout and the full backdrop gutter envelope. Mobile `display: contents`
+wrappers descend to their actual painted children. Unsupported or unadmittable
+surfaces retain a whole-block local fallback under the existing caps.
+Media figures acquire decoded images with supported static primitive SVG
+backdrops as one owner. Resolved vector colors/geometry and viewport outsets are
+preserved; executable, animated, referenced or unsupported SVG falls back as a
+whole figure. Vector attribute bytes share the existing cloned-text allowance.
 Forward travel releases outgoing pieces behind the advancing camera and brings
 incoming pieces from the destination fractal. Reverse travel sends outgoing paint
 into the source fractal and assembles incoming paint from behind the retreating

@@ -13,6 +13,7 @@ module.exports = function (content, geometry, onFallback = null) {
     failed = false,
     subscriptions = [];
   const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)');
+  const transparency = window.matchMedia?.('(prefers-reduced-transparency: reduce)');
   const clock = () => performance.now();
   const smooth = (value) => {
     const t = Math.max(0, Math.min(1, value));
@@ -79,6 +80,7 @@ module.exports = function (content, geometry, onFallback = null) {
     });
     listen(document.fonts, 'loadingdone', invalidate);
     listen(reduced, 'change', invalidate);
+    listen(transparency, 'change', invalidate);
     if (window.MutationObserver) {
       const observer = new window.MutationObserver(invalidate);
       observer.observe(document.documentElement, {
@@ -98,7 +100,79 @@ module.exports = function (content, geometry, onFallback = null) {
       height: snapshot.height,
     };
   }
-  function candidateRect(owner, snapshot) {
+  function painted(style, pseudo = false) {
+    const value = (name) => style.getPropertyValue(name);
+    if (pseudo && ['none', 'normal', ''].includes(value('content'))) return false;
+    if (value('display') === 'none' || value('visibility') === 'hidden' || value('opacity') === '0')
+      return false;
+    const color = value('background-color');
+    return (
+      (color && !['transparent', 'rgba(0, 0, 0, 0)'].includes(color)) ||
+      (value('background-image') && value('background-image') !== 'none') ||
+      (value('box-shadow') && value('box-shadow') !== 'none') ||
+      (pseudo &&
+        ['top', 'right', 'bottom', 'left'].some(
+          (side) => parseFloat(value('border-' + side + '-width')) > 0
+        ))
+    );
+  }
+  function nativePaint(owner) {
+    return {
+      style: getComputedStyle(owner),
+      before: getComputedStyle(owner, '::before'),
+      after: getComputedStyle(owner, '::after'),
+    };
+  }
+  function paintBounds(rect, paint) {
+    const bounds = {
+      left: rect.left,
+      top: rect.top,
+      right: rect.right,
+      bottom: rect.bottom,
+    };
+    function shadow(box, style) {
+      for (const part of style.getPropertyValue('box-shadow').split(/,(?![^()]*\))/)) {
+        if (/\binset\b/.test(part)) continue;
+        const lengths = (part.match(/[-+]?(?:\d*\.)?\d+px/g) || []).map(parseFloat);
+        if (lengths.length < 2 || !lengths.every(Number.isFinite)) continue;
+        const spread = Math.max(0, (lengths[2] || 0) * 2 + (lengths[3] || 0));
+        bounds.left = Math.min(bounds.left, box.left + lengths[0] - spread);
+        bounds.top = Math.min(bounds.top, box.top + lengths[1] - spread);
+        bounds.right = Math.max(bounds.right, box.right + lengths[0] + spread);
+        bounds.bottom = Math.max(bounds.bottom, box.bottom + lengths[1] + spread);
+      }
+    }
+    shadow(rect, paint.style);
+    for (const pseudo of [paint.before, paint.after]) {
+      if (!painted(pseudo, true) || pseudo.getPropertyValue('position') !== 'absolute') continue;
+      const left = parseFloat(pseudo.getPropertyValue('left'));
+      const top = parseFloat(pseudo.getPropertyValue('top'));
+      let width = parseFloat(pseudo.getPropertyValue('width'));
+      let height = parseFloat(pseudo.getPropertyValue('height'));
+      if (pseudo.getPropertyValue('box-sizing') !== 'border-box') {
+        for (const side of ['left', 'right'])
+          width +=
+            (parseFloat(pseudo.getPropertyValue('padding-' + side)) || 0) +
+            (parseFloat(pseudo.getPropertyValue('border-' + side + '-width')) || 0);
+        for (const side of ['top', 'bottom'])
+          height +=
+            (parseFloat(pseudo.getPropertyValue('padding-' + side)) || 0) +
+            (parseFloat(pseudo.getPropertyValue('border-' + side + '-width')) || 0);
+      }
+      if (![left, top, width, height].every(Number.isFinite)) continue;
+      const x =
+        rect.left + (parseFloat(paint.style.getPropertyValue('border-left-width')) || 0) + left;
+      const y =
+        rect.top + (parseFloat(paint.style.getPropertyValue('border-top-width')) || 0) + top;
+      bounds.left = Math.min(bounds.left, x);
+      bounds.top = Math.min(bounds.top, y);
+      bounds.right = Math.max(bounds.right, x + width);
+      bounds.bottom = Math.max(bounds.bottom, y + height);
+      shadow({ left: x, top: y, right: x + width, bottom: y + height }, pseudo);
+    }
+    return { ...bounds, width: bounds.right - bounds.left, height: bounds.bottom - bounds.top };
+  }
+  function candidateRect(owner, snapshot, paint) {
     const rect = owner.getBoundingClientRect();
     return rect.width > 0 &&
       rect.height > 0 &&
@@ -107,44 +181,152 @@ module.exports = function (content, geometry, onFallback = null) {
       rect.bottom > -64 &&
       rect.top < snapshot.height + 64 &&
       !owner.closest('[hidden]') &&
-      getComputedStyle(owner).visibility === 'visible'
+      paint.style.visibility === 'visible'
       ? rect
       : null;
   }
-  function inspectCandidate(owner, start, rect) {
+  function inspectCandidate(owner, start, rect, paint, caps) {
     if (clock() - start > settings.acquisitionMs) return false;
     if (!rect) return null;
+    const descendants = owner.querySelectorAll('*').length;
+    if (descendants + 6 > caps.descendants || (owner.textContent?.length || 0) * 6 > caps.textBytes)
+      return null;
     const images = owner.matches('img') ? [owner] : [...owner.querySelectorAll('img')];
     if (images.some((image) => !image.complete || !image.naturalWidth || !image.currentSrc))
       return null;
     // Unsupported dynamic paint is local: ordinary sibling content still flies.
-    if (owner.matches('svg,canvas,video,iframe') || owner.querySelector('svg,canvas,video,iframe'))
+    if (owner.matches('canvas,video,iframe') || owner.querySelector('canvas,video,iframe'))
       return null;
-    if (!owner.matches('img,input,select,textarea') && !owner.textContent?.trim()) return null;
-    const descendants = owner.querySelectorAll('*').length;
-    const measuredLineHeight = parseFloat(getComputedStyle(owner).getPropertyValue('line-height'));
+    const vectors = owner.matches('svg') ? [owner] : [...owner.querySelectorAll('svg')];
+    const vectorNodes = [
+      ...new Set(vectors.flatMap((vector) => [vector, ...vector.querySelectorAll('*')])),
+    ];
+    const paintChars =
+      (owner.textContent?.length || 0) +
+      vectorNodes.reduce(
+        (sum, node) =>
+          sum +
+          [...node.attributes].reduce(
+            (size, { name, value }) => size + name.length + value.length + 4,
+            0
+          ),
+        0
+      );
+    if (paintChars * 6 > caps.textBytes) return null;
+    if (vectors.some((vector) => !staticVector(vector))) return null;
+    if (owner.matches('svg') && (!staticVectorPaint(paint.style) || !vectorViewport(paint.style)))
+      return null;
+    if (
+      !owner.matches('img,input,select,textarea') &&
+      !images.length &&
+      !vectors.length &&
+      !owner.textContent?.trim()
+    )
+      return null;
+    const measuredLineHeight = parseFloat(paint.style.getPropertyValue('line-height'));
     const lineHeight =
       Number.isFinite(measuredLineHeight) && measuredLineHeight > 0
         ? measuredLineHeight
         : undefined;
-    return { owner, rect, descendants, lineHeight };
+    const captured = capturePaint(owner, start, rect, paint);
+    return captured && { owner, rect, ...captured, descendants, lineHeight, paintChars };
+  }
+  function capturePaint(owner, start, rect, paint) {
+    const paints = [paint],
+      bounds = paintBounds(rect, paint);
+    // Inline title paper and nested surface outsets are native paint too. Keep
+    // their measured line boxes, not just the outer semantic owner's rectangle.
+    for (const child of owner.querySelectorAll('*')) {
+      if (clock() - start > settings.acquisitionMs) return false;
+      const measured = nativePaint(child);
+      if (child.namespaceURI === 'http://www.w3.org/2000/svg' && !staticVectorPaint(measured.style))
+        return null;
+      if (child.matches('svg') && !vectorViewport(measured.style)) return null;
+      paints.push(measured);
+      if (
+        !child.matches('svg') &&
+        !painted(measured.style) &&
+        !painted(measured.before, true) &&
+        !painted(measured.after, true)
+      )
+        continue;
+      const boxes = child.getClientRects
+        ? [...child.getClientRects()]
+        : [child.getBoundingClientRect()];
+      for (const box of boxes) {
+        const childBounds = paintBounds(box, measured);
+        bounds.left = Math.min(bounds.left, childBounds.left);
+        bounds.top = Math.min(bounds.top, childBounds.top);
+        bounds.right = Math.max(bounds.right, childBounds.right);
+        bounds.bottom = Math.max(bounds.bottom, childBounds.bottom);
+      }
+    }
+    bounds.width = bounds.right - bounds.left;
+    bounds.height = bounds.bottom - bounds.top;
+    return { paints, bounds };
+  }
+  function staticVector(vector) {
+    return [vector, ...vector.querySelectorAll('*')].every(
+      (node) =>
+        node.namespaceURI === 'http://www.w3.org/2000/svg' &&
+        node.matches('svg,g,polygon,polyline,path,rect,circle,ellipse,line,title,desc') &&
+        [...node.attributes].every(
+          ({ name, value }) => !/^(?:href|xlink:href|on.+)$/i.test(name) && !/url\s*\(/i.test(value)
+        )
+    );
+  }
+  function staticVectorPaint(style) {
+    const animation = style.getPropertyValue('animation-name');
+    return (
+      (!animation || animation === 'none') &&
+      ['filter', 'clip-path', 'mask-image'].every((property) =>
+        ['none', ''].includes(style.getPropertyValue(property))
+      ) &&
+      [
+        'fill',
+        'stroke',
+        'filter',
+        'clip-path',
+        'mask',
+        'marker-start',
+        'marker-mid',
+        'marker-end',
+        'cursor',
+        'background-image',
+        'content',
+      ].every((property) => !/url\s*\(/i.test(style.getPropertyValue(property)))
+    );
+  }
+  function vectorViewport(style) {
+    return ['overflow-x', 'overflow-y'].every((property) =>
+      ['hidden', 'clip'].includes(style.getPropertyValue(property))
+    );
   }
   function candidates(snapshot, start) {
     const result = [];
     const caps = snapshot.compact ? settings.caps.compact : settings.caps.full;
     const selectors =
-      'h1,h2,h3,h4,h5,h6,p,img,li,dt,dd,figcaption,blockquote,pre,a,button,label,input,select,textarea,span,time,strong,small';
+      'h1,h2,h3,h4,h5,h6,p,img,figure,li,dt,dd,figcaption,blockquote,pre,a,button,label,input,select,textarea,span,time,strong,small';
     function visit(owner) {
       if (clock() - start > settings.acquisitionMs || result.length >= caps.owners) return;
-      if (owner.matches('svg,canvas,video,iframe')) return;
-      const rect = candidateRect(owner, snapshot);
+      if (owner.matches('canvas,video,iframe')) return;
+      const paint = nativePaint(owner);
+      if (paint.style.getPropertyValue('display') === 'contents') {
+        if (!owner.closest('[hidden]') && paint.style.visibility === 'visible')
+          for (const child of owner.children) visit(child);
+        return;
+      }
+      const rect = candidateRect(owner, snapshot, paint);
       if (!rect) return;
       const inlineGroup =
         owner.matches('div') &&
         owner.children.length > 0 &&
         [...owner.children].every((child) => child.matches('span,time,strong,small'));
-      if (owner.matches(selectors) || inlineGroup) {
-        const candidate = inspectCandidate(owner, start, rect);
+      const surface =
+        painted(paint.style) || painted(paint.before, true) || painted(paint.after, true);
+      const atomic = surface || owner.matches('figure,svg');
+      if (atomic || owner.matches(selectors) || inlineGroup) {
+        const candidate = inspectCandidate(owner, start, rect, paint, caps);
         if (candidate === false) return;
         if (
           candidate &&
@@ -154,6 +336,9 @@ module.exports = function (content, geometry, onFallback = null) {
           result.push(candidate);
           return;
         }
+        // A shared paper block is atomic. A local fallback keeps the whole
+        // block native instead of flying its children over a stationary paper.
+        if (atomic) return;
       }
       for (const child of owner.children) visit(child);
     }
@@ -191,13 +376,66 @@ module.exports = function (content, geometry, onFallback = null) {
         ? 'fallback'
         : 'wait';
   }
-  function freezePaint(owner, clone) {
+  function freezePseudo(copy, name, pseudo) {
+    // Freeze inactive pseudos too: a mobile block must not gain a desktop
+    // backdrop merely because its clone left an ancestor-scoped selector.
+    copy.style.setProperty(
+      '--fragment-' + name + '-content',
+      pseudo.getPropertyValue('content') || 'none'
+    );
+    if (['none', 'normal', ''].includes(pseudo.getPropertyValue('content'))) return;
+    for (const property of [
+      'position',
+      'display',
+      'top',
+      'right',
+      'bottom',
+      'left',
+      'width',
+      'height',
+      'box-sizing',
+      'padding',
+      'background',
+      'border',
+      'border-radius',
+      'box-shadow',
+      'opacity',
+      'z-index',
+      'transform',
+    ])
+      copy.style.setProperty(
+        '--fragment-' + name + '-' + property,
+        pseudo.getPropertyValue(property)
+      );
+    if (painted(pseudo, true)) copy.classList.add('fragment-surface-' + name);
+  }
+  function freezeVector(original, copy, paint) {
+    if (original.namespaceURI !== 'http://www.w3.org/2000/svg') return;
+    for (const property of [
+      'fill',
+      'fill-opacity',
+      'fill-rule',
+      'stroke',
+      'stroke-opacity',
+      'stroke-width',
+      'stroke-dasharray',
+      'stroke-dashoffset',
+      'stroke-linecap',
+      'stroke-linejoin',
+      'stroke-miterlimit',
+      'vector-effect',
+      'paint-order',
+    ])
+      copy.style.setProperty(property, paint.getPropertyValue(property));
+  }
+  function freezePaint(owner, clone, paints) {
     const originals = [owner, ...owner.querySelectorAll('*')];
     const copies = [clone, ...clone.querySelectorAll('*')];
     for (let i = 0; i < originals.length; i++) {
       const original = originals[i],
         copy = copies[i],
-        paint = getComputedStyle(original);
+        measured = paints[i],
+        paint = measured.style;
       for (const attribute of [...copy.attributes]) {
         if (
           /^(id|name|href|form|formaction|formmethod|formenctype|formtarget|tabindex|autofocus|contenteditable|role|aria-.+|on.+)$/i.test(
@@ -235,17 +473,41 @@ module.exports = function (content, geometry, onFallback = null) {
         'align-items',
         'align-self',
         'justify-content',
+        'justify-items',
+        'justify-self',
+        'align-content',
+        'grid-template-columns',
+        'grid-template-rows',
+        'grid-auto-flow',
+        'grid-auto-columns',
+        'grid-auto-rows',
+        'grid-column',
+        'grid-row',
         'gap',
+        'row-gap',
+        'column-gap',
         'text-decoration',
         'object-fit',
         'object-position',
         'background-color',
+        'background-image',
+        'background-position',
+        'background-size',
+        'background-repeat',
+        'background-origin',
+        'background-clip',
         'box-shadow',
         'border-top',
         'border-right',
         'border-bottom',
         'border-left',
         'border-radius',
+        'box-decoration-break',
+        '-webkit-box-decoration-break',
+        'isolation',
+        'z-index',
+        'opacity',
+        'overflow',
       ])
         copy.style.setProperty(property, paint.getPropertyValue(property));
       if (i > 0) {
@@ -270,6 +532,10 @@ module.exports = function (content, geometry, onFallback = null) {
         ])
           copy.style.setProperty(property, paint.getPropertyValue(property));
       }
+      freezeVector(original, copy, paint);
+      copy.classList.add('fragment-frozen-paint');
+      if (painted(paint)) copy.classList.add('fragment-surface-paint');
+      for (const name of ['before', 'after']) freezePseudo(copy, name, measured[name]);
       // Copies leave their original parent selectors. Their native border-box
       // padding and line layout must survive that move so the final glyphs land
       // at their reading positions, not just their outer element rectangles.
@@ -293,10 +559,10 @@ module.exports = function (content, geometry, onFallback = null) {
       textBytes: 0,
       layerPixels: 0,
     };
-    for (const { owner, descendants, cells } of planned) {
+    for (const { paintChars, descendants, cells } of planned) {
       usage.pieces += cells.length;
       usage.descendants += (descendants + 5) * cells.length + descendants + 1;
-      usage.textBytes += (owner.textContent?.length || 0) * 3 * (cells.length + 1);
+      usage.textBytes += paintChars * 3 * (cells.length + 1);
       // contain:paint and the convex mask bound each tile's raster to its clip
       // box. The absolute native clone extends outside it but cannot paint there.
       usage.layerPixels +=
@@ -346,12 +612,12 @@ module.exports = function (content, geometry, onFallback = null) {
     // Every admitted visible owner gets complete paint coverage first. Extra
     // small shards share the remaining transaction allowance in both directions.
     for (const candidate of selected) {
-      const { owner, rect, lineHeight } = candidate;
+      const { owner, bounds, lineHeight } = candidate;
       const visible = {
-        x: Math.max(-64, rect.left),
-        y: Math.max(-64, rect.top),
-        width: Math.min(snapshot.width + 64, rect.right) - Math.max(-64, rect.left),
-        height: Math.min(snapshot.height + 64, rect.bottom) - Math.max(-64, rect.top),
+        x: Math.max(-64, bounds.left),
+        y: Math.max(-64, bounds.top),
+        width: Math.min(snapshot.width + 64, bounds.right) - Math.max(-64, bounds.left),
+        height: Math.min(snapshot.height + 64, bounds.bottom) - Math.max(-64, bounds.top),
       };
       const seed = planned.length + 1;
       const cells = geometry.partition(
@@ -366,7 +632,7 @@ module.exports = function (content, geometry, onFallback = null) {
         seed,
         cells,
         desired: geometry.pieceCount(visible, {
-          image: owner.matches('img'),
+          image: owner.matches('img,figure,svg'),
           lineHeight,
           compact: snapshot.compact,
         }),
@@ -430,8 +696,8 @@ module.exports = function (content, geometry, onFallback = null) {
     container.append(volume);
     try {
       for (let ownerIndex = 0; ownerIndex < planned.length; ownerIndex++) {
-        const { owner, rect, cells } = planned[ownerIndex];
-        const nativePaint = freezePaint(owner, owner.cloneNode(true));
+        const { owner, rect, paints, cells } = planned[ownerIndex];
+        const nativePaint = freezePaint(owner, owner.cloneNode(true), paints);
         for (let cellIndex = 0; cellIndex < cells.length; cellIndex++) {
           const { cell, geometry: prepared } = cells[cellIndex];
           const tile = document.createElement('div');

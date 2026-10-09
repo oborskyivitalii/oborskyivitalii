@@ -1436,7 +1436,7 @@
     {
       "path": "tests/fragment-dom.test.cjs",
       "language": "javascript",
-      "purpose": "Issue49 opt-in native-paint owner/copy/handoff, 1.8-second staggered assembly, cancellation/cleanup and malformed/over-budget rejection contracts",
+      "purpose": "Issue49 opt-in native-paint owner/copy/handoff, 1.8-second staggered assembly, cancellation/cleanup and malformed/over-budget rejection contracts; atomic whole painted blocks, resolved pseudo material/gutter bounds and mobile display-contents acquisition",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -1450,7 +1450,8 @@
         "site/effects/flight.css",
         "site/engine/navigation.js",
         "site/engine/lifecycle.cjs",
-        "tools/site/effects.cjs"
+        "tools/site/effects.cjs",
+        "site/engine/reading-surfaces.css"
       ]
     },
     {

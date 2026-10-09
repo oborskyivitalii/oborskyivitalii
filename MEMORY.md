@@ -36,6 +36,10 @@ Dated continuity, not live authority. Last verified: **2026-10-09**.
   convex shard masks, projected rear facets and camera-depth opacity. Original
   caps/clock/timing remain; projected side bounds are enforced before paint.
   Latest source/CI/preview and remaining visual gates belong in live PR53.
+- Whole-block9October follow-up captures actual painted ancestors and their
+  measured pseudo backdrops with text/images; mobile display-contents wrappers
+  descend to their painted children. Existing two-width smoke now observes
+  backdrop material/envelope and native-owner hiding; read live PR53 for evidence.
 
 ## Decisions
 

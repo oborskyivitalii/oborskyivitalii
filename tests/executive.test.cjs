@@ -504,6 +504,68 @@ test('reading surfaces have one shared CSS authority across base and Color rendi
         );
     }
   }
+  function nativeSurfaceRules(screen) {
+    const measuredProperties = [
+      'content',
+      'position',
+      'display',
+      'top',
+      'right',
+      'bottom',
+      'left',
+      'width',
+      'height',
+      'box-sizing',
+      'padding',
+      'background',
+      'border',
+      'border-radius',
+      'box-shadow',
+      'opacity',
+      'z-index',
+      'transform',
+      'pointer-events',
+    ];
+    const authoredRules = rules(screen);
+    const replay = authoredRules.filter(
+      (rule) => rule.selector.includes('fragment-frozen-paint') || rule.body.includes('--fragment-')
+    );
+    assert.equal(replay.length, 2, 'exactly two scoped measured pseudo replay rules');
+    const seen = new Set();
+    for (const rule of replay) {
+      const selector = rule.selector.trim().replace(/\s+/g, ' ');
+      const matched = selector.match(/^\.fragment-layer \.fragment-frozen-paint::(before|after)$/);
+      assert.ok(matched, 'measured pseudo replay must stay scoped to the inert fragment layer');
+      const pseudo = matched[1];
+      assert.ok(!seen.has(pseudo), 'one measured replay rule for each exact pseudo');
+      seen.add(pseudo);
+      const declarations = properties(rule.body);
+      assert.deepEqual(
+        declarations.map(([property]) => property),
+        measuredProperties,
+        'measured pseudo replay has only its complete declared property set'
+      );
+      for (const [property, value] of declarations) {
+        const expected =
+          property === 'pointer-events'
+            ? 'none'
+            : 'var(--fragment-' +
+              pseudo +
+              '-' +
+              property +
+              ',' +
+              (property === 'content' ? 'none' : 'initial') +
+              ')';
+        assertValue(
+          value,
+          expected,
+          'pseudo replay reads only its corresponding measured native value'
+        );
+      }
+    }
+    assert.deepEqual([...seen].sort(), ['after', 'before']);
+    return authoredRules.filter((rule) => !replay.includes(rule));
+  }
   function verify(reading, ordinary, authoredColor, publicCSS) {
     assert.equal(
       publicCSS,
@@ -566,8 +628,10 @@ test('reading surfaces have one shared CSS authority across base and Color rendi
       'publication bounds have no second sizing authority'
     );
     assert.match(screen, /--reading-title-outset\s*:\s*0?\.16em\s*;/);
+    const nativeRules = nativeSurfaceRules(screen);
+    const nativeCSS = nativeRules.map((rule) => rule.selector + '{' + rule.body + '}').join('\n');
     assert.doesNotMatch(
-      screen,
+      nativeCSS,
       /(?:^|[;{}])\s*(?:padding|margin|font|line-height|width|height|display|gap)(?:-[\w-]+)?\s*:/,
       'reading paint cannot change native flow placement'
     );
@@ -576,7 +640,7 @@ test('reading surfaces have one shared CSS authority across base and Color rendi
       /(?:(?:backdrop-)?filter\s*:|(?:-webkit-)?mask(?:-[\w-]+)?\s*:)/,
       'shared translucent paint has no mask or blur'
     );
-    for (const rule of rules(screen)) verifyMaterial(rule);
+    for (const rule of nativeRules) verifyMaterial(rule);
     assert.match(
       screen,
       /\.reading-title-ink\s*\{[^}]*z-index\s*:\s*1\s*[;}]/,
@@ -608,6 +672,42 @@ test('reading surfaces have one shared CSS authority across base and Color rendi
     }
   }
   verify(owner, base, extra, generated);
+  const nativeFlow = '\n.section-heading::before {width:720px}\n';
+  assert.throws(
+    () => verify(owner + nativeFlow, base, extra, base + '\n' + owner + nativeFlow),
+    /cannot change native flow placement/,
+    'native reading surfaces retain their original flow prohibition'
+  );
+  for (const mutate of [
+    (css) =>
+      css.replace(
+        '.fragment-layer .fragment-frozen-paint::before',
+        '.fragment-frozen-paint::before'
+      ),
+    (css) =>
+      css.replace(
+        '.fragment-layer .fragment-frozen-paint::after',
+        '.fragment-layer .fragment-frozen-paint'
+      ),
+    (css) => css.replace('--fragment-before-width, initial', '--fragment-after-width, initial'),
+    (css) => css.replace('var(--fragment-before-width, initial)', '720px'),
+    (css) => css.replace('var(--fragment-before-background, initial)', 'var(--paper)'),
+    (css) => css.replace('var(--fragment-before-background, initial)', '#ffffff'),
+    (css) =>
+      css.replace(
+        'var(--fragment-before-background, initial)',
+        'var(--fragment-before-background, #ffffff)'
+      ),
+    (css) => css + '\n:root {--fragment-before-background:#ffffff}\n',
+  ]) {
+    const changed = mutate(owner);
+    assert.notEqual(changed, owner, 'the replay mutation changes actual canonical source');
+    assert.throws(
+      () => verify(changed, base, extra, base + '\n' + changed),
+      /scoped measured pseudo replay|scoped to the inert fragment layer|corresponding measured native value/,
+      'fragment replay cannot become an unscoped layout or palette authority'
+    );
+  }
   const split =
     '\n.talks-list .publication>div::before {content:"";background:var(--reading-surface-color)}\n';
   assert.throws(

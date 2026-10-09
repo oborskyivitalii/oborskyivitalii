@@ -44,8 +44,253 @@ function observeFragmentFlight() {
       frames: [],
       events: [],
       longTasks: [],
+      backdrops: [],
+      vectors: [],
     };
-  let lastSeamSettled = 0;
+  let lastSeamSettled = 0,
+    backdropLayer = null,
+    backdropTiles = new WeakSet(),
+    vectorLayer = null,
+    vectorTiles = new WeakSet(),
+    portraitEligible = false;
+  function hiddenOwner(node) {
+    for (let owner = node; owner && owner !== content; owner = owner.parentElement)
+      if (owner.style.visibility === 'hidden') return true;
+    return false;
+  }
+  function paintIdentity(node) {
+    return (
+      node.tagName +
+      ':' +
+      [...node.classList]
+        .filter((name) => !name.startsWith('fragment-'))
+        .sort()
+        .join(' ') +
+      ':' +
+      node.textContent
+    );
+  }
+  function pseudoPaint(node, pseudo) {
+    const style = getComputedStyle(node, pseudo);
+    return Object.fromEntries(
+      [
+        'content',
+        'background-color',
+        'background-image',
+        'opacity',
+        'top',
+        'left',
+        'width',
+        'height',
+        'box-sizing',
+        'padding-top',
+        'padding-right',
+        'padding-bottom',
+        'padding-left',
+        'border-top-width',
+        'border-right-width',
+        'border-bottom-width',
+        'border-left-width',
+        'border-top-color',
+        'border-right-color',
+        'border-bottom-color',
+        'border-left-color',
+        'border-top-style',
+        'border-right-style',
+        'border-bottom-style',
+        'border-left-style',
+        'border-radius',
+        'box-shadow',
+        'box-decoration-break',
+      ].map((property) => [property, style.getPropertyValue(property)])
+    );
+  }
+  function backdropRecord(native, copy, cells, pseudo = null) {
+    const box = native.getBoundingClientRect(),
+      style = getComputedStyle(native);
+    return {
+      kind: pseudo ? 'pseudo' : 'direct',
+      tag: native.tagName,
+      classes: [...native.classList],
+      nativeText: native.textContent,
+      copiedText: copy.textContent,
+      nativeHidden: hiddenOwner(native),
+      nativeRect: [box.left, box.top, box.width, box.height],
+      nativeBorder: [
+        parseFloat(style.getPropertyValue('border-left-width')) || 0,
+        parseFloat(style.getPropertyValue('border-top-width')) || 0,
+      ],
+      nativeBoxes: pseudo
+        ? null
+        : [...native.getClientRects()].map((rect) => [
+            rect.left,
+            rect.top,
+            rect.width,
+            rect.height,
+          ]),
+      pseudo,
+      native: pseudoPaint(native, pseudo),
+      copied: pseudoPaint(copy, pseudo),
+      cells,
+    };
+  }
+  function visibleDecodedPortrait() {
+    const portrait = content.querySelector('figure.portrait-composition'),
+      portraitBox = portrait?.getBoundingClientRect(),
+      image = portrait?.querySelector('img');
+    return !!(
+      portraitBox &&
+      portraitBox.width > 0 &&
+      portraitBox.height > 0 &&
+      portraitBox.right > -64 &&
+      portraitBox.left < innerWidth + 64 &&
+      portraitBox.bottom > -64 &&
+      portraitBox.top < innerHeight + 64 &&
+      image?.complete &&
+      image.naturalWidth > 0 &&
+      image.currentSrc
+    );
+  }
+  function copiedBackdrops(native, copy, cells) {
+    const originals = [native, ...native.querySelectorAll('*')],
+      paints = [copy, ...copy.querySelectorAll('*')],
+      owners = [];
+    for (let index = 0; index < paints.length; index++) {
+      const paint = paints[index];
+      if (paint.namespaceURI === 'http://www.w3.org/2000/svg') continue;
+      if (paint.classList.contains('fragment-surface-paint'))
+        owners.push(backdropRecord(originals[index], paint, cells));
+      for (const side of ['before', 'after'])
+        if (paint.classList.contains('fragment-surface-' + side))
+          owners.push(backdropRecord(originals[index], paint, cells, '::' + side));
+    }
+    return owners;
+  }
+  function observeBackdrops(tiles, phase) {
+    const current = tiles[0]?.closest('.fragment-layer');
+    if (!current || current === backdropLayer) return;
+    backdropLayer = current;
+    backdropTiles = new WeakSet();
+    vectorLayer = null;
+    vectorTiles = new WeakSet();
+    portraitEligible = visibleDecodedPortrait();
+    const groups = new Map();
+    const selector = '.fragment-surface-paint,.fragment-surface-before,.fragment-surface-after';
+    for (const tile of tiles) {
+      const copy = tile.querySelector('.fragment-paint');
+      if (!copy?.matches(selector) && !copy?.querySelector?.(selector)) continue;
+      backdropTiles.add(tile);
+      const id = paintIdentity(copy);
+      if (!groups.has(id)) groups.set(id, []);
+      groups.get(id).push({ tile, copy });
+    }
+    const owners = [];
+    for (const native of content.querySelectorAll('[style*="visibility"]')) {
+      if (native.style.visibility !== 'hidden') continue;
+      const copies = groups.get(paintIdentity(native));
+      if (!copies) continue;
+      const box = native.getBoundingClientRect(),
+        cells = copies.map(({ tile, copy }) => [
+          box.left - parseFloat(copy.style.left),
+          box.top - parseFloat(copy.style.top),
+          parseFloat(tile.style.width),
+          parseFloat(tile.style.height),
+        ]);
+      owners.push(...copiedBackdrops(native, copies[0].copy, cells));
+    }
+    observation.backdrops.push({
+      timeMs: performance.now(),
+      phase,
+      viewport: [innerWidth, innerHeight],
+      owners,
+    });
+  }
+  function vectorPaint(node) {
+    if (!node) return null;
+    const style = getComputedStyle(node);
+    return {
+      tag: node.tagName,
+      namespace: node.namespaceURI,
+      points: node.getAttribute('points'),
+      paint: Object.fromEntries(
+        ['fill', 'stroke', 'fill-opacity', 'stroke-opacity', 'stroke-width', 'opacity'].map(
+          (name) => [name, style.getPropertyValue(name)]
+        )
+      ),
+    };
+  }
+  function vectorImage(image) {
+    return image
+      ? {
+          complete: image.complete,
+          naturalWidth: image.naturalWidth,
+          naturalHeight: image.naturalHeight,
+          currentSrc: image.currentSrc,
+          src: image.src,
+        }
+      : null;
+  }
+  function vectorViewport(svg) {
+    if (!svg) return null;
+    const style = getComputedStyle(svg);
+    return { x: style.getPropertyValue('overflow-x'), y: style.getPropertyValue('overflow-y') };
+  }
+  function vectorFigure(native, copies, phase) {
+    const root = copies[0].copy,
+      box = native.getBoundingClientRect(),
+      nativeSvg = native.querySelector('svg'),
+      copiedSvg = root.querySelector('svg'),
+      svgBox = nativeSvg.getBoundingClientRect();
+    return {
+      timeMs: performance.now(),
+      phase,
+      viewport: [innerWidth, innerHeight],
+      nativeHidden: native.style.visibility === 'hidden',
+      nativeRect: [box.left, box.top, box.width, box.height],
+      svgRect: [svgBox.left, svgBox.top, svgBox.width, svgBox.height],
+      namespace: nativeSvg.namespaceURI,
+      copiedNamespace: copiedSvg?.namespaceURI ?? null,
+      nativeOverflow: vectorViewport(nativeSvg),
+      copiedOverflow: vectorViewport(copiedSvg),
+      viewBox: nativeSvg.getAttribute('viewBox'),
+      copiedViewBox: copiedSvg?.getAttribute('viewBox') ?? null,
+      nativeImage: vectorImage(native.querySelector('img')),
+      copiedImage: vectorImage(root.querySelector('img')),
+      nativeNodes: [...nativeSvg.querySelectorAll('*')].map(vectorPaint),
+      copiedNodes: [...(copiedSvg?.querySelectorAll('*') || [])].map(vectorPaint),
+      cells: copies.map(({ tile, copy }) => [
+        box.left - parseFloat(copy.style.left),
+        box.top - parseFloat(copy.style.top),
+        parseFloat(tile.style.width),
+        parseFloat(tile.style.height),
+      ]),
+    };
+  }
+  function observeVectors(tiles, phase) {
+    const current = tiles[0]?.closest('.fragment-layer');
+    if (!portraitEligible || !current || current === vectorLayer) return;
+    const native = content.querySelector('figure.portrait-composition'),
+      copies = tiles
+        .map((tile) => ({
+          tile,
+          copy: tile.querySelector('figure.portrait-composition.fragment-paint'),
+        }))
+        .filter(({ copy }) => copy);
+    if (
+      !copies.some(
+        ({ tile }) =>
+          Number(tile.style.opacity || 0) > 0 && tile.style.transform.startsWith('matrix3d(')
+      )
+    )
+      return;
+    const image = copies[0].copy.querySelector('img');
+    // Cached cloned media may finish its load task after initial acquisition.
+    // Observe its first real decoded paint within the existing flight window.
+    if (image && (!image.complete || !image.naturalWidth || !image.currentSrc)) return;
+    observation.vectors.push(vectorFigure(native, copies, phase));
+    for (const { tile } of copies) vectorTiles.add(tile);
+    vectorLayer = current;
+  }
   function textRects(owner) {
     const walker = document.createTreeWalker(owner, NodeFilter.SHOW_TEXT);
     const rects = [];
@@ -62,13 +307,13 @@ function observeFragmentFlight() {
     if (observation.headingSeam || settled <= lastSeamSettled) return;
     lastSeamSettled = settled;
     const native = content.querySelector('main h1');
-    if (!native || native.style.visibility !== 'hidden') return;
+    if (!native || !hiddenOwner(native)) return;
     const nativeBox = native.getBoundingClientRect();
     // A settled piece has its complete cloned heading at the native border
     // box, even though only its own shard mask is painted. Compare the actual
     // glyph line boxes once, before that paint is removed at native handoff.
     for (const tile of tiles) {
-      const copy = tile.querySelector('h1.fragment-paint');
+      const copy = tile.querySelector('h1.fragment-paint,.fragment-paint h1');
       if (!copy || Number(tile.style.opacity) < 1) continue;
       const copyBox = copy.getBoundingClientRect();
       const boxDeltaPx = Math.max(
@@ -101,6 +346,8 @@ function observeFragmentFlight() {
     if (observation.samples.length >= 400) return;
     const tiles = [...document.querySelectorAll('.fragment-piece')];
     const scene = document.querySelector('.space-scene');
+    if (content.dataset.fragmentPhase) observeBackdrops(tiles, content.dataset.fragmentPhase);
+    if (content.dataset.fragmentPhase) observeVectors(tiles, content.dataset.fragmentPhase);
     if (content.dataset.fragmentPhase === 'arrive')
       observeHeadingSeam(tiles, Number(content.dataset.fragmentSettled || 0));
     observation.samples.push({
@@ -121,11 +368,26 @@ function observeFragmentFlight() {
       visiblePieces: tiles.filter((tile) => Number(tile.style.opacity || 0) > 0).length,
       transformedPieces: tiles.filter((tile) => tile.style.transform.startsWith('matrix3d('))
         .length,
+      backdropPieces: tiles.filter((tile) => backdropTiles.has(tile)).length,
+      paintedBackdropPieces: tiles.filter(
+        (tile) =>
+          backdropTiles.has(tile) &&
+          Number(tile.style.opacity || 0) > 0 &&
+          tile.style.transform.startsWith('matrix3d(')
+      ).length,
+      portraitEligible,
+      vectorPieces: tiles.filter((tile) => vectorTiles.has(tile)).length,
+      paintedVectorPieces: tiles.filter(
+        (tile) =>
+          vectorTiles.has(tile) &&
+          Number(tile.style.opacity || 0) > 0 &&
+          tile.style.transform.startsWith('matrix3d(')
+      ).length,
       nativeOpacity: Number(content.style.opacity || 1),
       nativeHidden: [...content.querySelectorAll('[style*="visibility"]')].filter(
         (owner) => owner.style.visibility === 'hidden'
       ).length,
-      headingSelected: content.querySelector('main h1')?.style.visibility === 'hidden',
+      headingSelected: hiddenOwner(content.querySelector('main h1')),
       fragmentFields: Object.keys(content.dataset).filter((key) => key.startsWith('fragment')),
     });
   };
@@ -279,9 +541,301 @@ function validateFragmentTiming(measured) {
     'slow flight ready'
   );
 }
+function directBackdropBounds(owner) {
+  assert.ok(owner.nativeBoxes.length > 0, 'missing actual native inline paint rectangles');
+  for (const box of owner.nativeBoxes)
+    assert.ok(box.length === 4 && box.every(Number.isFinite) && box[2] > 0 && box[3] > 0);
+  let spread = 0;
+  if (owner.classes.includes('reading-title')) {
+    const lengths = (owner.native['box-shadow'].match(/[-+]?(?:\d*\.)?\d+px/g) || []).map(
+      parseFloat
+    );
+    assert.deepEqual(
+      lengths.slice(0, 3),
+      [0, 0, 0],
+      'inline title needs its authored simple spread shadow'
+    );
+    assert.ok(lengths.length === 4 && Number.isFinite(lengths[3]) && lengths[3] > 0);
+    spread = lengths[3];
+  }
+  return [
+    Math.min(...owner.nativeBoxes.map((box) => box[0])) - spread,
+    Math.min(...owner.nativeBoxes.map((box) => box[1])) - spread,
+    Math.max(...owner.nativeBoxes.map((box) => box[0] + box[2])) + spread,
+    Math.max(...owner.nativeBoxes.map((box) => box[1] + box[3])) + spread,
+  ];
+}
+function backdropBounds(owner) {
+  if (owner.kind === 'direct') return directBackdropBounds(owner);
+  const [x, y, width, height] = owner.nativeRect,
+    style = owner.native,
+    [borderLeft, borderTop] = owner.nativeBorder,
+    left = x + borderLeft + parseFloat(style.left),
+    top = y + borderTop + parseFloat(style.top);
+  let paperWidth = parseFloat(style.width),
+    paperHeight = parseFloat(style.height);
+  if (style['box-sizing'] !== 'border-box') {
+    for (const side of ['left', 'right'])
+      paperWidth +=
+        parseFloat(style['padding-' + side]) + parseFloat(style['border-' + side + '-width']);
+    for (const side of ['top', 'bottom'])
+      paperHeight +=
+        parseFloat(style['padding-' + side]) + parseFloat(style['border-' + side + '-width']);
+  }
+  assert.ok([left, top, paperWidth, paperHeight].every(Number.isFinite));
+  assert.ok(paperWidth > 0 && paperHeight > 0);
+  return [
+    Math.min(x, left),
+    Math.min(y, top),
+    Math.max(x + width, left + paperWidth),
+    Math.max(y + height, top + paperHeight),
+  ];
+}
+function validateBackdropOwner(owner, viewport) {
+  assert.equal(owner.nativeHidden, true, 'whole native paper block remained visible');
+  assert.equal(owner.copiedText, owner.nativeText, 'paper and its native content were separated');
+  if (owner.kind !== 'direct') {
+    assert.ok(['::before', '::after'].includes(owner.pseudo));
+    assert.ok(!['none', 'normal', ''].includes(owner.native.content));
+  }
+  assert.ok(Number(owner.native.opacity) > 0);
+  assert.ok(
+    !['transparent', 'rgba(0, 0, 0, 0)', ''].includes(owner.native['background-color']) ||
+      owner.native['background-image'] !== 'none' ||
+      owner.native['box-shadow'] !== 'none' ||
+      ['top', 'right', 'bottom', 'left'].some(
+        (side) => parseFloat(owner.native['border-' + side + '-width']) > 0
+      ),
+    'native pseudo lacks actual paper paint'
+  );
+  for (const property of [
+    'content',
+    'background-color',
+    'background-image',
+    'opacity',
+    'border-radius',
+    'box-shadow',
+    'box-sizing',
+    'box-decoration-break',
+    'border-top-color',
+    'border-right-color',
+    'border-bottom-color',
+    'border-left-color',
+    'border-top-style',
+    'border-right-style',
+    'border-bottom-style',
+    'border-left-style',
+  ])
+    assert.equal(
+      owner.copied[property],
+      owner.native[property],
+      'copied paper changed ' + property
+    );
+  const dimensions = owner.kind === 'direct' ? [] : ['left', 'top', 'width', 'height'];
+  for (const property of [
+    ...dimensions,
+    'padding-left',
+    'padding-top',
+    'padding-right',
+    'padding-bottom',
+    'border-left-width',
+    'border-top-width',
+    'border-right-width',
+    'border-bottom-width',
+  ]) {
+    const native = parseFloat(owner.native[property]),
+      copied = parseFloat(owner.copied[property]);
+    assert.ok(
+      Number.isFinite(native) && Number.isFinite(copied) && Math.abs(native - copied) <= 0.75,
+      'copied paper changed its native ' + property
+    );
+  }
+  for (const values of [owner.nativeRect, owner.nativeBorder, viewport])
+    assert.ok(Array.isArray(values) && values.every(Number.isFinite));
+  assert.equal(owner.nativeRect.length, 4);
+  assert.equal(owner.nativeBorder.length, 2);
+  assert.equal(viewport.length, 2);
+  validatePaintCoverage(owner.cells, backdropBounds(owner), viewport);
+}
+function validatePaintCoverage(cells, bounds, viewport) {
+  assert.ok(cells.length > 0);
+  for (const cell of cells)
+    assert.ok(cell.length === 4 && cell.every(Number.isFinite) && cell[2] > 0 && cell[3] > 0);
+  const coverage = [
+      Math.min(...cells.map((cell) => cell[0])),
+      Math.min(...cells.map((cell) => cell[1])),
+      Math.max(...cells.map((cell) => cell[0] + cell[2])),
+      Math.max(...cells.map((cell) => cell[1] + cell[3])),
+    ],
+    expected = [
+      Math.max(-64, bounds[0]),
+      Math.max(-64, bounds[1]),
+      Math.min(viewport[0] + 64, bounds[2]),
+      Math.min(viewport[1] + 64, bounds[3]),
+    ];
+  assert.ok(
+    coverage[0] <= expected[0] + 0.75 &&
+      coverage[1] <= expected[1] + 0.75 &&
+      coverage[2] >= expected[2] - 0.75 &&
+      coverage[3] >= expected[3] - 0.75,
+    'fragment cells omit the complete native paint envelope'
+  );
+}
+function validateVectorNode(native, copied) {
+  assert.equal(native.namespace, 'http://www.w3.org/2000/svg');
+  assert.equal(copied.namespace, native.namespace);
+  assert.equal(native.tag.toLowerCase(), 'polygon');
+  assert.equal(copied.tag, native.tag);
+  assert.equal(copied.points, native.points);
+  const points = native.points
+    .trim()
+    .split(/[\s,]+/)
+    .map(Number);
+  assert.ok(points.length >= 6 && points.length % 2 === 0 && points.every(Number.isFinite));
+  for (const property of [
+    'fill',
+    'stroke',
+    'fill-opacity',
+    'stroke-opacity',
+    'stroke-width',
+    'opacity',
+  ]) {
+    assert.equal(
+      copied.paint[property],
+      native.paint[property],
+      'copied vector changed native ' + property
+    );
+    assert.ok(typeof native.paint[property] === 'string' && native.paint[property].length > 0);
+    assert.ok(!/url\s*\(/i.test(native.paint[property]));
+  }
+  for (const property of ['fill-opacity', 'stroke-opacity', 'opacity'])
+    assert.ok(
+      Number.isFinite(Number(native.paint[property])) &&
+        Number(native.paint[property]) > 0 &&
+        Number(native.paint[property]) <= 1
+    );
+  assert.ok(
+    Number.isFinite(parseFloat(native.paint['stroke-width'])) &&
+      parseFloat(native.paint['stroke-width']) > 0
+  );
+  assert.ok(native.paint.fill !== 'none' && native.paint.stroke !== 'none');
+}
+function validateVectorFigure(record) {
+  assert.equal(record.nativeHidden, true, 'portrait image flew without hiding its vector figure');
+  assert.equal(record.namespace, 'http://www.w3.org/2000/svg');
+  assert.equal(record.copiedNamespace, record.namespace);
+  assert.equal(record.copiedViewBox, record.viewBox);
+  assert.deepEqual(
+    record.viewBox
+      .trim()
+      .split(/[\s,]+/)
+      .map(Number),
+    [0, 0, 500, 550]
+  );
+  for (const axis of ['x', 'y']) {
+    assert.ok(
+      ['hidden', 'clip'].includes(record.nativeOverflow[axis]),
+      'native vector viewport is unbounded'
+    );
+    assert.equal(record.copiedOverflow[axis], record.nativeOverflow[axis]);
+  }
+  for (const image of [record.nativeImage, record.copiedImage]) {
+    assert.equal(image?.complete, true, 'atomic portrait image was not decoded');
+    assert.ok(image.naturalWidth > 0 && image.naturalHeight > 0 && image.currentSrc);
+  }
+  assert.equal(record.copiedImage.currentSrc, record.nativeImage.currentSrc);
+  assert.equal(record.copiedImage.src, record.nativeImage.currentSrc);
+  assert.equal(record.copiedImage.naturalWidth, record.nativeImage.naturalWidth);
+  assert.equal(record.copiedImage.naturalHeight, record.nativeImage.naturalHeight);
+  assert.equal(record.nativeNodes.length, 6, 'missing actual six-facet native portrait');
+  assert.equal(
+    record.copiedNodes.length,
+    record.nativeNodes.length,
+    'image-only copy lost its vector backdrop'
+  );
+  record.nativeNodes.forEach((node, index) => validateVectorNode(node, record.copiedNodes[index]));
+  for (const rect of [record.nativeRect, record.svgRect])
+    assert.ok(rect.length === 4 && rect.every(Number.isFinite) && rect[2] > 0 && rect[3] > 0);
+  assert.ok(record.viewport.length === 2 && record.viewport.every(Number.isFinite));
+  const [figure, svg] = [record.nativeRect, record.svgRect];
+  validatePaintCoverage(
+    record.cells,
+    [
+      Math.min(figure[0], svg[0]),
+      Math.min(figure[1], svg[1]),
+      Math.max(figure[0] + figure[2], svg[0] + svg[2]),
+      Math.max(figure[1] + figure[3], svg[1] + svg[3]),
+    ],
+    record.viewport
+  );
+}
+function validateFragmentVectors(observation, phase) {
+  const samples = observation.samples.filter((sample) => sample.phase === phase);
+  if (!samples.some((sample) => sample.portraitEligible)) return { figures: 0, paintedPieces: 0 };
+  const records = (observation.vectors || []).filter((record) => record.phase === phase);
+  assert.ok(records.length > 0, 'visible Home portrait lacks its atomic SVG/image fragments');
+  for (const record of records) validateVectorFigure(record);
+  assert.ok(
+    samples.some((sample) => sample.paintedVectorPieces > 0),
+    'no visible transformed portrait-vector shards'
+  );
+  for (const sample of samples)
+    assert.ok(
+      Number.isInteger(sample.vectorPieces) &&
+        Number.isInteger(sample.paintedVectorPieces) &&
+        sample.paintedVectorPieces >= 0 &&
+        sample.paintedVectorPieces <= sample.vectorPieces &&
+        sample.vectorPieces <= sample.pieces
+    );
+  return {
+    figures: records.length,
+    paintedPieces: Math.max(...samples.map((sample) => sample.paintedVectorPieces)),
+  };
+}
+function validateFragmentBackdrops(observation, phase) {
+  const acquisitions = (observation.backdrops || []).filter((record) => record.phase === phase),
+    samples = observation.samples.filter((sample) => sample.phase === phase);
+  assert.ok(acquisitions.length > 0, 'missing actual ' + phase + ' paper acquisition');
+  for (const record of acquisitions) {
+    assert.ok(record.owners.length > 0, 'paper remained outside the whole-block fragments');
+    for (const owner of record.owners) validateBackdropOwner(owner, record.viewport);
+  }
+  if (
+    samples.some(
+      (sample) => sample.headingSelected && ['research', 'writing', 'talks'].includes(sample.page)
+    )
+  )
+    assert.ok(
+      acquisitions.some((record) =>
+        record.owners.some(
+          (owner) => owner.kind === 'direct' && owner.classes.includes('reading-title')
+        )
+      ),
+      'selected intro heading lacks its actual inline title paper'
+    );
+  assert.ok(
+    samples.some((sample) => sample.paintedBackdropPieces > 0),
+    'no visible transformed ' + phase + ' paper shards'
+  );
+  for (const sample of samples)
+    assert.ok(
+      Number.isInteger(sample.backdropPieces) &&
+        Number.isInteger(sample.paintedBackdropPieces) &&
+        sample.paintedBackdropPieces >= 0 &&
+        sample.paintedBackdropPieces <= sample.backdropPieces &&
+        sample.backdropPieces <= sample.pieces,
+      'invalid actual paper shard counts'
+    );
+  return {
+    owners: acquisitions.reduce((total, record) => total + record.owners.length, 0),
+    paintedPieces: Math.max(...samples.map((sample) => sample.paintedBackdropPieces)),
+  };
+}
 function validateFragmentRoute(observation, measured, expected) {
   const active = observation.samples.filter((sample) => sample.phase),
-    final = observation.samples.at(-1);
+    final = observation.samples.at(-1),
+    backdrops = {},
+    vectors = {};
   for (const phase of ['depart', 'arrive']) {
     const painted = active.filter((sample) => sample.phase === phase);
     assert.ok(
@@ -295,6 +849,8 @@ function validateFragmentRoute(observation, measured, expected) {
       painted.every((sample) => sample.page === (phase === 'depart' ? expected.from : expected.to)),
       'fragments belong to the wrong native route'
     );
+    backdrops[phase] = validateFragmentBackdrops(observation, phase);
+    vectors[phase] = validateFragmentVectors(observation, phase);
   }
   assert.equal(final.page, expected.to);
   assert.equal(final.phase, null);
@@ -328,6 +884,8 @@ function validateFragmentRoute(observation, measured, expected) {
       ...active.filter((sample) => sample.phase === 'arrive').map((sample) => sample.pieces)
     ),
     headingSeam: observation.headingSeam || null,
+    backdrops,
+    vectors,
     nativeHandoff: final,
     measured,
     observation,
@@ -342,6 +900,14 @@ function fragmentTransaction(observation, expected) {
     observation.samples.every((sample) => Number.isFinite(sample.timeMs)),
     'missing finite fragment sample time'
   );
+  assert.ok(
+    (observation.backdrops || []).every((record) => Number.isFinite(record.timeMs)),
+    'missing finite backdrop acquisition time'
+  );
+  assert.ok(
+    (observation.vectors || []).every((record) => Number.isFinite(record.timeMs)),
+    'missing finite vector acquisition time'
+  );
   assert.equal(navigationStart.from, expected.from);
   assert.equal(navigationStart.to, expected.to);
   return {
@@ -351,10 +917,20 @@ function fragmentTransaction(observation, expected) {
       frames: observation.frames.filter((frame) => frame.started < navigationStart.time),
       events: observation.events.filter((event) => event.time < navigationStart.time),
       longTasks: observation.longTasks.filter((task) => task.start < navigationStart.time),
+      backdrops: (observation.backdrops || []).filter(
+        (record) => record.timeMs < navigationStart.time
+      ),
+      vectors: (observation.vectors || []).filter((record) => record.timeMs < navigationStart.time),
     },
     observation: {
       ...observation,
       samples: observation.samples.filter((sample) => sample.timeMs >= navigationStart.time),
+      backdrops: (observation.backdrops || []).filter(
+        (record) => record.timeMs >= navigationStart.time
+      ),
+      vectors: (observation.vectors || []).filter(
+        (record) => record.timeMs >= navigationStart.time
+      ),
     },
   };
 }
@@ -459,6 +1035,18 @@ async function fragmentAssembly(page) {
     evidence.observation = await page.evaluate(() => window.__finishFragmentFlight());
     evidence.measured = motion.summarize(evidence.observation, 'flight');
     Object.assign(evidence, validateFragmentAssembly(evidence.observation, evidence.measured));
+    evidence.backdrops = Object.fromEntries(
+      ['depart', 'arrive'].map((phase) => [
+        phase,
+        validateFragmentBackdrops(evidence.observation, phase),
+      ])
+    );
+    evidence.vectors = Object.fromEntries(
+      ['depart', 'arrive'].map((phase) => [
+        phase,
+        validateFragmentVectors(evidence.observation, phase),
+      ])
+    );
 
     // Keep the same forward route for the established Off cancellation check.
     // All-route and reverse choreography have their own focused observations.
@@ -879,10 +1467,13 @@ module.exports = {
   scenario,
   settled,
   paintProbe,
+  observeFragmentFlight,
   validateFragmentAssembly,
   fragmentAssembly,
   fragmentCancellationReady,
   validateFragmentRoute,
+  validateFragmentBackdrops,
+  validateFragmentVectors,
   fragmentTransaction,
   fragmentRouteCoverage,
 };

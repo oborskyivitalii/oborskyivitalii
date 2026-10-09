@@ -12,6 +12,7 @@ const flight = require('../site/effects/flight.cjs');
 function fixture(options = {}) {
   const counts = {
     rects: 0,
+    clientRects: 0,
     styles: 0,
     clones: 0,
     created: 0,
@@ -22,6 +23,7 @@ function fixture(options = {}) {
   const documentEvents = new Map();
   const fontEvents = new Map();
   const mediaEvents = new Map();
+  const transparencyEvents = new Map();
   let now = 0;
   let themeChanged = null;
   function listen(events, name, listener) {
@@ -39,10 +41,14 @@ function fixture(options = {}) {
     );
   }
   function style() {
-    const nameFor = (name) => name.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
+    const nameFor = (name) =>
+      name.startsWith('--') ? name : name.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
     return {
       setProperty(name, value) {
         this[nameFor(name)] = String(value);
+      },
+      getPropertyValue(name) {
+        return this[nameFor(name)] || '';
       },
       removeProperty(name) {
         delete this[nameFor(name)];
@@ -52,6 +58,8 @@ function fixture(options = {}) {
   class Node {
     constructor(tag, text = '', attributes = {}) {
       this.tagName = tag.toUpperCase();
+      this.localName = tag.toLowerCase();
+      this.namespaceURI = 'http://www.w3.org/1999/xhtml';
       this.text = text;
       this.attrs = new Map(Object.entries(attributes));
       this.children = [];
@@ -72,7 +80,15 @@ function fixture(options = {}) {
         font: '20px serif',
         color: 'rgb(20, 30, 40)',
         visibility: 'visible',
+        display: 'block',
+        opacity: '1',
+        'background-color': 'rgba(0, 0, 0, 0)',
+        'background-image': 'none',
+        'box-shadow': 'none',
       };
+      this.pseudoComputed = {};
+      this.styleReads = new Map();
+      this.cloneCalls = 0;
       this.complete = true;
       this.naturalWidth = 120;
       this.currentSrc = 'https://example.test/portrait.webp';
@@ -130,7 +146,13 @@ function fixture(options = {}) {
       this.parentNode = null;
     }
     matches(selector) {
-      return selector.split(',').some((tag) => this.tagName === tag.trim().toUpperCase());
+      return selector.split(',').some((item) => {
+        const [tag, ...classes] = item.trim().split('.');
+        return (
+          (!tag || this.tagName === tag.toUpperCase()) &&
+          classes.every((name) => this.className.split(/\s+/).includes(name))
+        );
+      });
     }
     closest(selector) {
       for (let node = this; node; node = node.parentNode)
@@ -163,13 +185,27 @@ function fixture(options = {}) {
         bottom: this.rect.top + this.rect.height,
       };
     }
+    getClientRects() {
+      if (!this.clientRects) return [this.getBoundingClientRect()];
+      counts.rects++;
+      counts.clientRects++;
+      now += options.rectCost || 0;
+      return this.clientRects.map((rect) => ({
+        ...rect,
+        right: rect.left + rect.width,
+        bottom: rect.top + rect.height,
+      }));
+    }
     cloneNode(deep) {
       counts.clones++;
+      this.cloneCalls++;
       now += options.cloneCost || 0;
       if (options.cloneError) throw Error('Controlled clone failure');
       const copy = new Node(this.tagName, this.text, Object.fromEntries(this.attrs));
       Object.assign(copy.style, this.style);
       copy.className = this.className;
+      copy.localName = this.localName;
+      copy.namespaceURI = this.namespaceURI;
       copy.src = this.src;
       copy.currentSrc = this.currentSrc;
       copy.complete = this.complete;
@@ -218,6 +254,11 @@ function fixture(options = {}) {
     addEventListener: (name, listener) => listen(mediaEvents, name, listener),
     removeEventListener: (name, listener) => unlisten(mediaEvents, name, listener),
   };
+  const transparency = {
+    matches: !!options.transparency,
+    addEventListener: (name, listener) => listen(transparencyEvents, name, listener),
+    removeEventListener: (name, listener) => unlisten(transparencyEvents, name, listener),
+  };
   const document = {
     body,
     hidden: !!options.hidden,
@@ -245,7 +286,8 @@ function fixture(options = {}) {
     scrollY: 0,
     SiteEffects: {},
     CSS: { supports: () => true },
-    matchMedia: () => reduced,
+    matchMedia: (query) =>
+      query === '(prefers-reduced-transparency: reduce)' ? transparency : reduced,
     addEventListener: (name, listener) => listen(windowEvents, name, listener),
     removeEventListener: (name, listener) => unlisten(windowEvents, name, listener),
     requestAnimationFrame() {
@@ -270,12 +312,26 @@ function fixture(options = {}) {
     document,
     window,
     performance: { now: () => now },
-    getComputedStyle(owner) {
+    getComputedStyle(owner, pseudo = null) {
       counts.styles++;
+      const channel = pseudo || 'element';
+      owner.styleReads.set(channel, (owner.styleReads.get(channel) || 0) + 1);
       now += options.styleCost || 0;
+      const computed = pseudo
+        ? {
+            content: 'none',
+            display: 'block',
+            visibility: 'visible',
+            opacity: '1',
+            'background-color': 'rgba(0, 0, 0, 0)',
+            'background-image': 'none',
+            'box-shadow': 'none',
+            ...owner.pseudoComputed[pseudo],
+          }
+        : { ...owner.computed, visibility: owner.style.visibility || owner.computed.visibility };
       return {
-        visibility: owner.style.visibility || owner.computed.visibility,
-        getPropertyValue: (name) => owner.computed[name] || '',
+        ...computed,
+        getPropertyValue: (name) => computed[name] || '',
       };
     },
     localStorage: {
@@ -334,6 +390,7 @@ function fixture(options = {}) {
     document,
     window,
     reduced,
+    transparency,
     counts,
     snapshot,
     advance: (elapsed) => {
@@ -344,7 +401,7 @@ function fixture(options = {}) {
     layer: () => body.querySelectorAll('*').find((node) => node.className === 'fragment-layer'),
     tiles: () => body.querySelectorAll('*').filter((node) => node.className === 'fragment-piece'),
     listeners: () =>
-      [windowEvents, documentEvents, fontEvents, mediaEvents].reduce(
+      [windowEvents, documentEvents, fontEvents, mediaEvents, transparencyEvents].reduce(
         (total, events) =>
           total + [...events.values()].reduce((sum, listeners) => sum + listeners.length, 0),
         0
@@ -353,6 +410,7 @@ function fixture(options = {}) {
       if (name === 'theme') themeChanged();
       else if (name === 'font') emit(fontEvents, 'loadingdone');
       else if (name === 'reduced') emit(mediaEvents, 'change');
+      else if (name === 'transparency') emit(transparencyEvents, 'change');
       else if (name === 'visibilitychange') emit(documentEvents, name);
       else emit(windowEvents, name);
     },
@@ -373,6 +431,657 @@ function assertDisposed(h) {
   for (const owner of [h.heading, h.paragraph, h.image])
     assert.notEqual(owner.style.visibility, 'hidden');
 }
+
+function paintedWrapper(h, includeParagraph = true) {
+  const wrapper = new h.Node('section');
+  wrapper.rect = { left: 40, top: 150, width: 430, height: 160 };
+  Object.assign(wrapper.computed, {
+    display: 'grid',
+    'grid-template-columns': '240px 120px',
+    'grid-template-rows': '50px 60px',
+    'row-gap': '12px',
+    'column-gap': '70px',
+    gap: '12px 70px',
+    isolation: 'isolate',
+    'line-height': '24px',
+    'background-image': 'linear-gradient(rgb(20, 30, 40), rgb(40, 30, 20))',
+  });
+  wrapper.pseudoComputed['::before'] = {
+    content: '""',
+    position: 'absolute',
+    display: 'block',
+    left: '-16px',
+    top: '-12px',
+    width: '462px',
+    height: '184px',
+    'box-sizing': 'border-box',
+    padding: '0px',
+    background: 'rgba(10, 20, 30, 0.3)',
+    'background-color': 'rgba(10, 20, 30, 0.3)',
+    border: '2px solid rgb(60, 70, 80)',
+    'border-radius': '18px',
+    'box-shadow': '0px 0px 0px rgba(0, 0, 0, 0)',
+    opacity: '0.8',
+    'z-index': '-1',
+    transform: 'none',
+  };
+  wrapper.append(h.heading, h.image);
+  if (includeParagraph) wrapper.append(h.paragraph);
+  h.main.append(wrapper);
+  return wrapper;
+}
+
+function portraitFigure(h) {
+  const vectorNode = (tag, attributes = {}) => {
+    const node = new h.Node(tag, '', attributes);
+    node.namespaceURI = 'http://www.w3.org/2000/svg';
+    node.rect = { left: 326, top: 130, width: 164, height: 164 };
+    return node;
+  };
+  const figure = new h.Node('figure', '', { id: 'portrait-figure' });
+  figure.rect = { left: 350, top: 150, width: 120, height: 120 };
+  const vector = vectorNode('svg', {
+    id: 'portrait-vector',
+    viewBox: '0 0 164 164',
+    width: '164',
+    height: '164',
+    'aria-hidden': 'true',
+  });
+  vector.clientRects = [{ ...vector.rect }];
+  Object.assign(vector.computed, {
+    position: 'absolute',
+    left: '-24px',
+    top: '-20px',
+    width: '164px',
+    height: '164px',
+    fill: 'rgb(11, 22, 33)',
+    stroke: 'none',
+    opacity: '0.7',
+    overflow: 'hidden',
+    'overflow-x': 'hidden',
+    'overflow-y': 'hidden',
+    'animation-name': 'none',
+    'mask-image': 'none',
+    mask: 'none 0% 0% / auto repeat border-box border-box add match-source',
+  });
+  const group = vectorNode('g', { id: 'portrait-group', transform: 'translate(2 2)' });
+  const polygons = [
+    vectorNode('polygon', {
+      id: 'portrait-shape-a',
+      points: '2,2 158,18 134,158 12,144',
+      fill: '#112233',
+    }),
+    vectorNode('polygon', {
+      id: 'portrait-shape-b',
+      points: '12,4 160,34 122,160 4,122',
+      fill: '#443322',
+    }),
+  ];
+  polygons.forEach((polygon, index) =>
+    Object.assign(polygon.computed, {
+      fill: index === 0 ? 'rgb(90, 30, 60)' : 'rgb(30, 60, 90)',
+      'fill-opacity': '0.6',
+      stroke: 'rgb(110, 120, 130)',
+      'stroke-width': '2px',
+      'stroke-opacity': '0.8',
+      'stroke-linejoin': 'round',
+      'vector-effect': 'non-scaling-stroke',
+      'paint-order': 'stroke fill',
+      opacity: '0.75',
+    })
+  );
+  group.append(...polygons);
+  vector.append(group);
+  Object.assign(h.image.computed, { width: '120px', height: '120px', 'object-fit': 'cover' });
+  figure.append(vector, h.image);
+  h.main.append(figure);
+  return { figure, vector, group, polygons, vectorNode };
+}
+
+function invalidatePortrait(h, portrait, mode) {
+  const { vector, group, polygons, vectorNode } = portrait;
+  if (['use', 'foreignObject', 'animate', 'filter', 'script'].includes(mode)) {
+    group.append(vectorNode(mode));
+    return;
+  }
+  const mutations = {
+    href: () => vector.setAttribute('href', '#shape'),
+    'attribute URL': () => polygons[0].setAttribute('fill', 'url(#gradient)'),
+    'computed fill URL': () => (polygons[0].computed.fill = 'url("#gradient")'),
+    'computed root stroke URL': () => (vector.computed.stroke = 'url("#pattern")'),
+    'unknown namespace': () => (polygons[0].namespaceURI = 'http://www.w3.org/1999/xhtml'),
+    'CSS animation': () => (polygons[0].computed['animation-name'] = 'pulse'),
+    'computed filter': () => (vector.computed.filter = 'blur(2px)'),
+    'computed clipping': () => (polygons[0].computed['clip-path'] = 'inset(0)'),
+    'computed mask image': () =>
+      (polygons[0].computed['mask-image'] = 'linear-gradient(black, transparent)'),
+    'computed cursor URL': () => (polygons[0].computed.cursor = 'url("cursor.svg"), auto'),
+    'computed marker URL': () => (polygons[0].computed['marker-start'] = 'url("#arrow")'),
+    'computed background URL': () => (vector.computed['background-image'] = 'url("texture.svg")'),
+    'computed content URL': () => (polygons[0].computed.content = 'url("other.svg")'),
+    'visible horizontal overflow': () => (vector.computed['overflow-x'] = 'visible'),
+    'visible vertical overflow': () => (vector.computed['overflow-y'] = 'visible'),
+    'auto overflow': () => (vector.computed['overflow-x'] = 'auto'),
+    'scroll overflow': () => (vector.computed['overflow-y'] = 'scroll'),
+    'undecoded image': () => (h.image.complete = false),
+  };
+  mutations[mode]();
+}
+
+function assertPaintCoverage(tiles, owner, expected) {
+  const polygons = tiles.map((tile) => {
+    const paint = tile.children[0];
+    const left = owner.rect.left - parseFloat(paint.style.left);
+    const top = owner.rect.top - parseFloat(paint.style.top);
+    const width = parseFloat(tile.style.width);
+    const height = parseFloat(tile.style.height);
+    return tile.style.clipPath
+      .slice('polygon('.length, -1)
+      .split(',')
+      .map((vertex) => {
+        const [x, y] = vertex.trim().split(/\s+/).map(parseFloat);
+        return [left + (width * x) / 100, top + (height * y) / 100];
+      });
+  });
+  const points = polygons.flat();
+  const area = polygons.reduce(
+    (total, polygon) =>
+      total +
+      Math.abs(
+        polygon.reduce((sum, point, index) => {
+          const next = polygon[(index + 1) % polygon.length];
+          return sum + point[0] * next[1] - next[0] * point[1];
+        }, 0)
+      ) /
+        2,
+    0
+  );
+  assert.ok(
+    Math.abs(area - expected.width * expected.height) < 1e-6,
+    'the fragment masks must cover the complete paper outset, not only the text border box'
+  );
+  for (const [axis, lower, extent] of [
+    [0, expected.left, expected.width],
+    [1, expected.top, expected.height],
+  ]) {
+    assert.ok(Math.abs(Math.min(...points.map((point) => point[axis])) - lower) < 1e-6);
+    assert.ok(Math.abs(Math.max(...points.map((point) => point[axis])) - lower - extent) < 1e-6);
+  }
+}
+
+test('static portrait SVG and decoded image share one atomic figure with complete vector outset paint', () => {
+  for (const phase of ['depart', 'arrive']) {
+    for (const direction of ['forward', 'backward']) {
+      const h = fixture();
+      h.heading.remove();
+      h.paragraph.remove();
+      const { figure, vector, group, polygons } = portraitFigure(h);
+      assert.equal(figure.textContent, '', 'a visual figure needs no text to be admitted');
+      const snapshot = () => h.snapshot([0, 0, 0], { direction });
+      assert.equal(h.adapter.prepare(phase, snapshot()), true);
+      assert.equal(h.content.dataset.fragmentOwners, '1', direction + ' ' + phase);
+      assert.equal(figure.style.visibility, 'hidden');
+      assert.notEqual(vector.style.visibility, 'hidden');
+      assert.notEqual(h.image.style.visibility, 'hidden');
+      assert.ok(h.tiles().length > 1 && h.tiles().length <= 96);
+      assert.equal(h.counts.clientRects, 1, 'the native SVG visual envelope is measured once');
+      assertPaintCoverage(h.tiles(), figure, { left: 326, top: 130, width: 164, height: 164 });
+      for (const tile of h.tiles()) {
+        const copy = tile.children[0];
+        assert.ok(copy.matches('figure'));
+        assert.equal(copy.style.width, '120px');
+        assert.equal(copy.style.height, '120px');
+        assert.equal(copy.querySelectorAll('svg').length, 1);
+        assert.equal(copy.querySelectorAll('img').length, 1);
+        const clonedVector = copy.querySelector('svg');
+        assert.equal(clonedVector.namespaceURI, 'http://www.w3.org/2000/svg');
+        assert.equal(clonedVector.getAttribute('viewBox'), vector.getAttribute('viewBox'));
+        assert.equal(clonedVector.style.opacity, vector.computed.opacity);
+        assert.equal(clonedVector.style.fill, vector.computed.fill);
+        assert.equal(clonedVector.style.overflow, vector.computed.overflow);
+        assert.equal(clonedVector.style.left, '-24px');
+        assert.equal(clonedVector.style.top, '-20px');
+        assert.equal(
+          copy.querySelector('g').getAttribute('transform'),
+          group.getAttribute('transform')
+        );
+        const clonedPolygons = copy.querySelectorAll('polygon');
+        assert.equal(clonedPolygons.length, polygons.length);
+        clonedPolygons.forEach((polygon, index) => {
+          assert.equal(polygon.getAttribute('points'), polygons[index].getAttribute('points'));
+          for (const property of [
+            'fill',
+            'fill-opacity',
+            'stroke',
+            'stroke-width',
+            'stroke-opacity',
+            'stroke-linejoin',
+            'vector-effect',
+            'paint-order',
+            'opacity',
+          ]) {
+            assert.equal(
+              polygon.style.getPropertyValue(property),
+              polygons[index].computed[property]
+            );
+          }
+        });
+        for (const node of [copy, ...copy.querySelectorAll('*')]) {
+          assert.equal(node.getAttribute('id'), null);
+          assert.equal(node.getAttribute('aria-hidden'), null);
+          assert.equal(node.events.size, 0);
+        }
+        const image = copy.querySelector('img');
+        assert.equal(image.src, h.image.currentSrc);
+        assert.equal(image.style.objectFit, 'cover');
+        assert.equal(image.getAttribute('srcset'), null);
+        assert.equal(image.getAttribute('sizes'), null);
+      }
+      const reads = { rects: h.counts.rects, styles: h.counts.styles };
+      if (phase === 'arrive') h.advance(1800);
+      h.adapter.present(phase === 'depart' ? 0 : 1, snapshot());
+      for (const tile of h.tiles()) assertNativeCorners(h, tile, figure);
+      assert.deepEqual({ rects: h.counts.rects, styles: h.counts.styles }, reads);
+      assert.equal(vector.getAttribute('id'), 'portrait-vector');
+      assert.equal(h.image.getAttribute('id'), 'portrait');
+      h.adapter.clear();
+      assert.notEqual(figure.style.visibility, 'hidden');
+      assertDisposed(h);
+    }
+  }
+});
+
+test('unsupported portrait vectors and undecoded images retain the whole figure beside safe sibling paint', () => {
+  for (const mode of [
+    'use',
+    'foreignObject',
+    'animate',
+    'filter',
+    'script',
+    'href',
+    'attribute URL',
+    'computed fill URL',
+    'computed root stroke URL',
+    'unknown namespace',
+    'CSS animation',
+    'computed filter',
+    'computed clipping',
+    'computed mask image',
+    'computed cursor URL',
+    'computed marker URL',
+    'computed background URL',
+    'computed content URL',
+    'visible horizontal overflow',
+    'visible vertical overflow',
+    'auto overflow',
+    'scroll overflow',
+    'undecoded image',
+  ]) {
+    for (const phase of ['depart', 'arrive']) {
+      const h = fixture();
+      h.heading.remove();
+      h.paragraph.rect = { left: 40, top: 450, width: 120, height: 30 };
+      const portrait = portraitFigure(h);
+      const { figure, vector } = portrait;
+      invalidatePortrait(h, portrait, mode);
+      assert.equal(h.adapter.prepare(phase, h.snapshot()), true, mode + ' ' + phase);
+      assert.equal(h.content.dataset.fragmentOwners, '1', mode + ' ' + phase);
+      assert.equal(h.paragraph.style.visibility, 'hidden');
+      assert.notEqual(figure.style.visibility, 'hidden');
+      assert.notEqual(vector.style.visibility, 'hidden');
+      assert.notEqual(h.image.style.visibility, 'hidden');
+      assert.equal(figure.cloneCalls, 0, mode + ' ' + phase);
+      assert.equal(vector.cloneCalls, 0, mode + ' ' + phase);
+      assert.equal(h.image.cloneCalls, 0, mode + ' ' + phase);
+      assert.ok(
+        h.tiles().every((tile) => tile.children[0].matches('p')),
+        'rejected vector paint must not leave a detached portrait image flying alone'
+      );
+      h.adapter.clear();
+      assertDisposed(h);
+    }
+  }
+});
+
+test('SVG geometry bytes bound atomic cloning while ordinary sibling paint remains admissible', () => {
+  for (const attribute of ['points', 'd']) {
+    for (const phase of ['depart', 'arrive']) {
+      const h = fixture();
+      h.heading.remove();
+      h.paragraph.rect = { left: 40, top: 450, width: 120, height: 30 };
+      const { figure, vector, polygons, vectorNode } = portraitFigure(h);
+      const shape = attribute === 'points' ? polygons[0] : vectorNode('path');
+      if (attribute === 'd') vector.append(shape);
+      shape.setAttribute(
+        attribute,
+        attribute === 'points' ? '1,1 '.repeat(5000) : 'L1,1 '.repeat(4000)
+      );
+      assert.equal(h.adapter.prepare(phase, h.snapshot()), true);
+      assert.equal(h.content.dataset.fragmentOwners, '1');
+      assert.equal(h.paragraph.style.visibility, 'hidden');
+      for (const node of [figure, vector, shape, h.image]) {
+        assert.notEqual(node.style.visibility, 'hidden');
+        assert.equal(node.cloneCalls, 0, 'oversized geometry is rejected before any atomic clone');
+      }
+      assert.ok(h.tiles().every((tile) => tile.children[0].matches('p')));
+      h.adapter.clear();
+      assertDisposed(h);
+    }
+  }
+  const counts = [];
+  for (const geometryCopies of [1, 100]) {
+    const h = fixture();
+    h.heading.remove();
+    h.paragraph.remove();
+    const { figure, polygons } = portraitFigure(h);
+    polygons[0].setAttribute(
+      'points',
+      (polygons[0].getAttribute('points') + ' ').repeat(geometryCopies)
+    );
+    assert.equal(h.adapter.prepare('arrive', h.snapshot()), true);
+    assert.equal(h.content.dataset.fragmentOwners, '1');
+    assert.equal(figure.style.visibility, 'hidden');
+    const paintChars = [figure, ...figure.querySelectorAll('*')]
+      .filter((node) => node.namespaceURI === 'http://www.w3.org/2000/svg')
+      .reduce(
+        (total, node) =>
+          total +
+          node.attributes.reduce((sum, { name, value }) => sum + name.length + value.length + 4, 0),
+        0
+      );
+    assert.ok(
+      paintChars * 3 * (h.tiles().length + 1) <=
+        fragmentPlan({ cameraView: math.cameraView }).settings.caps.full.textBytes
+    );
+    counts.push(h.tiles().length);
+    h.adapter.clear();
+    assertDisposed(h);
+  }
+  assert.ok(
+    counts[0] > counts[1] && counts[1] > 1,
+    'admissible larger geometry reduces shard count inside the same byte budget'
+  );
+});
+
+test('painted wrapper background, grid text and decoded image fly as one complete owner', () => {
+  for (const phase of ['depart', 'arrive']) {
+    const h = fixture();
+    const wrapper = paintedWrapper(h);
+    wrapper.pseudoComputed['::after'] = {
+      content: '""',
+      position: 'absolute',
+      left: '420px',
+      top: '145px',
+      width: '34px',
+      height: '25px',
+      'box-sizing': 'border-box',
+      'background-image': 'linear-gradient(rgb(20, 40, 60), rgb(60, 40, 20))',
+      background: 'linear-gradient(rgb(20, 40, 60), rgb(60, 40, 20))',
+    };
+    assert.equal(h.adapter.prepare(phase, h.snapshot()), true);
+    assert.equal(h.content.dataset.fragmentOwners, '1');
+    assert.equal(wrapper.style.visibility, 'hidden');
+    assert.ok(
+      [h.heading, h.paragraph, h.image].every((node) => node.style.visibility !== 'hidden'),
+      'children must remain part of their one parent paint owner'
+    );
+    assert.ok(h.tiles().length > 1 && h.tiles().length <= 96);
+    for (const tile of h.tiles()) {
+      const copy = tile.children[0];
+      assert.ok(
+        copy.matches('section.fragment-frozen-paint.fragment-surface-before.fragment-surface-after')
+      );
+      assert.equal(copy.querySelectorAll('h1').length, 1);
+      assert.equal(copy.querySelectorAll('p').length, 1);
+      assert.equal(copy.querySelectorAll('img').length, 1);
+      assert.equal(copy.querySelector('img').src, h.image.currentSrc);
+      assert.equal(copy.style.width, wrapper.rect.width + 'px');
+      assert.equal(copy.style.height, wrapper.rect.height + 'px');
+      for (const property of [
+        'display',
+        'grid-template-columns',
+        'grid-template-rows',
+        'gap',
+        'row-gap',
+        'column-gap',
+        'isolation',
+        'background-image',
+      ]) {
+        assert.equal(copy.style.getPropertyValue(property), wrapper.computed[property]);
+      }
+      for (const name of ['before', 'after']) {
+        const pseudo = wrapper.pseudoComputed['::' + name];
+        for (const property of [
+          'content',
+          'left',
+          'top',
+          'width',
+          'height',
+          'background',
+          'box-sizing',
+        ]) {
+          assert.equal(
+            copy.style.getPropertyValue('--fragment-' + name + '-' + property),
+            pseudo[property]
+          );
+        }
+      }
+      for (const child of copy.querySelectorAll('*')) {
+        assert.ok(child.matches('.fragment-frozen-paint'));
+        assert.equal(child.style.getPropertyValue('--fragment-before-content'), 'none');
+        assert.equal(child.style.getPropertyValue('--fragment-after-content'), 'none');
+        assert.ok(!child.matches('.fragment-surface-before,.fragment-surface-after'));
+      }
+    }
+    assertPaintCoverage(h.tiles(), wrapper, { left: 24, top: 138, width: 470, height: 184 });
+    if (phase === 'arrive') h.advance(1800);
+    h.adapter.present(phase === 'depart' ? 0 : 1, h.snapshot());
+    for (const tile of h.tiles()) assertNativeCorners(h, tile, wrapper);
+    h.adapter.clear();
+    assert.notEqual(wrapper.style.visibility, 'hidden');
+    assertDisposed(h);
+  }
+});
+
+test('wrapped reading-title line backgrounds and spread shadows stay inside their native heading shards', () => {
+  for (const phase of ['depart', 'arrive']) {
+    for (const direction of ['forward', 'backward']) {
+      const h = fixture();
+      h.paragraph.remove();
+      h.image.remove();
+      h.link.remove();
+      h.heading.textContent = '';
+      h.heading.rect = { left: 40, top: 150, width: 240, height: 100 };
+      const title = new h.Node('span', 'A wrapped reading title');
+      title.className = 'reading-title';
+      title.rect = { ...h.heading.rect };
+      title.clientRects = [
+        { left: 40, top: 150, width: 240, height: 42 },
+        { left: 40, top: 208, width: 120, height: 42 },
+      ];
+      Object.assign(title.computed, {
+        display: 'inline',
+        font: '700 32px sans-serif',
+        'line-height': '42px',
+        'background-color': 'rgba(30, 50, 70, 0.8)',
+        'box-shadow': 'rgba(40, 60, 80, 0.18) 0px 0px 0px 8px',
+        'box-decoration-break': 'clone',
+        '-webkit-box-decoration-break': 'clone',
+      });
+      h.heading.append(title);
+      const snapshot = () => h.snapshot([0, 0, 0], { direction });
+      assert.equal(h.adapter.prepare(phase, snapshot()), true);
+      assert.equal(h.content.dataset.fragmentOwners, '1');
+      assert.equal(h.counts.clientRects, 1, 'actual inline line boxes are acquired once');
+      for (const channel of ['element', '::before', '::after']) {
+        assert.equal(
+          title.styleReads.get(channel),
+          1,
+          'the acquired descendant paint must be reused while freezing copies'
+        );
+      }
+      assertPaintCoverage(h.tiles(), h.heading, { left: 32, top: 142, width: 256, height: 116 });
+      for (const tile of h.tiles()) {
+        const copy = tile.children[0];
+        assert.ok(copy.matches('h1'));
+        assert.equal(copy.style.width, '240px');
+        assert.equal(copy.style.height, '100px');
+        const readingTitle = copy.querySelector('.reading-title');
+        assert.ok(readingTitle && readingTitle.matches('.fragment-frozen-paint'));
+        for (const property of [
+          'font',
+          'line-height',
+          'background-color',
+          'box-shadow',
+          'box-decoration-break',
+          '-webkit-box-decoration-break',
+        ]) {
+          assert.equal(readingTitle.style.getPropertyValue(property), title.computed[property]);
+        }
+      }
+      const reads = { rects: h.counts.rects, styles: h.counts.styles };
+      if (phase === 'arrive') h.advance(1800);
+      h.adapter.present(phase === 'depart' ? 0 : 1, snapshot());
+      for (const tile of h.tiles()) assertNativeCorners(h, tile);
+      assert.deepEqual({ rects: h.counts.rects, styles: h.counts.styles }, reads);
+      h.adapter.clear();
+      assertDisposed(h);
+    }
+  }
+});
+
+test('direct owner spread shadows extend mask coverage without changing native clone geometry', () => {
+  for (const phase of ['depart', 'arrive']) {
+    for (const direction of ['forward', 'backward']) {
+      const h = fixture();
+      h.paragraph.remove();
+      h.image.remove();
+      h.heading.computed['box-shadow'] = 'rgba(40, 60, 80, 0.18) 0px 0px 0px 8px';
+      const snapshot = () => h.snapshot([0, 0, 0], { direction });
+      assert.equal(h.adapter.prepare(phase, snapshot()), true);
+      assert.equal(h.content.dataset.fragmentOwners, '1');
+      assertPaintCoverage(h.tiles(), h.heading, { left: 32, top: 142, width: 256, height: 66 });
+      for (const tile of h.tiles()) {
+        const copy = tile.children[0];
+        assert.equal(copy.style.width, '240px');
+        assert.equal(copy.style.height, '50px');
+        assert.equal(copy.style.boxShadow, h.heading.computed['box-shadow']);
+      }
+      if (phase === 'arrive') h.advance(1800);
+      h.adapter.present(phase === 'depart' ? 0 : 1, snapshot());
+      for (const tile of h.tiles()) assertNativeCorners(h, tile);
+      h.adapter.clear();
+      assertDisposed(h);
+    }
+  }
+});
+
+test('expanded shadow raster is charged at actual DPR and rejects only its own paint owner', () => {
+  for (const { shadow, pixelRatio, owners } of [
+    { shadow: false, pixelRatio: 3, owners: 2 },
+    { shadow: true, pixelRatio: 1, owners: 2 },
+    { shadow: true, pixelRatio: 3, owners: 1 },
+  ]) {
+    const h = fixture();
+    h.image.remove();
+    h.paragraph.rect = { left: 40, top: 450, width: 120, height: 30 };
+    h.window.devicePixelRatio = pixelRatio;
+    if (shadow) h.heading.computed['box-shadow'] = 'rgba(40, 60, 80, 0.18) 0px 0px 0px 450px';
+    assert.equal(h.adapter.prepare('arrive', h.snapshot()), true);
+    assert.equal(Number(h.content.dataset.fragmentOwners), owners);
+    assert.equal(h.paragraph.style.visibility, 'hidden');
+    if (owners === 1) {
+      assert.notEqual(h.heading.style.visibility, 'hidden');
+      assert.ok(
+        h.tiles().every((tile) => tile.children[0].matches('p')),
+        'expanded shadow rejection must retain its entire native heading'
+      );
+    } else {
+      assert.equal(h.heading.style.visibility, 'hidden');
+      assert.ok(h.tiles().some((tile) => tile.children[0].matches('h1')));
+    }
+    h.adapter.clear();
+    assertDisposed(h);
+  }
+});
+
+test('mobile contents wrappers with inactive paper descend to the child paper actually painted', () => {
+  const h = fixture();
+  const wrapper = paintedWrapper(h);
+  wrapper.rect = { left: 0, top: 0, width: 0, height: 0 };
+  wrapper.computed.display = 'contents';
+  wrapper.pseudoComputed['::before'].content = 'none';
+  h.heading.pseudoComputed['::before'] = {
+    ...wrapper.pseudoComputed['::before'],
+    content: '""',
+    width: '272px',
+    height: '74px',
+  };
+  const snapshot = () => {
+    const frame = h.snapshot([0, 0, 0], { width: 390, height: 844, compact: true });
+    frame.projection = math.cameraView(frame.pose, frame.width, frame.height, true);
+    return frame;
+  };
+  assert.equal(h.adapter.prepare('arrive', snapshot()), true);
+  assert.equal(h.content.dataset.fragmentOwners, '3');
+  assert.notEqual(wrapper.style.visibility, 'hidden');
+  assert.equal(h.heading.style.visibility, 'hidden');
+  assert.ok(h.tiles().every((tile) => !tile.children[0].matches('section')));
+  const headingTiles = h.tiles().filter((tile) => tile.children[0].matches('h1'));
+  assert.ok(headingTiles.length > 0);
+  assert.ok(headingTiles.every((tile) => tile.children[0].matches('.fragment-surface-before')));
+  assertPaintCoverage(headingTiles, h.heading, { left: 24, top: 138, width: 272, height: 74 });
+  h.advance(1800);
+  h.adapter.present(1, snapshot());
+  for (const tile of h.tiles()) assertNativeCorners(h, tile);
+  h.adapter.clear();
+  assertDisposed(h);
+});
+
+test('reduced transparency changes dispose frozen paper alpha and restore the whole native block', () => {
+  const h = fixture();
+  const wrapper = paintedWrapper(h);
+  assert.equal(h.adapter.prepare('arrive', h.snapshot()), true);
+  assert.equal(wrapper.style.visibility, 'hidden');
+  assert.ok(h.tiles().every((tile) => tile.children[0].matches('.fragment-surface-before')));
+  const reads = { rects: h.counts.rects, styles: h.counts.styles };
+  h.transparency.matches = true;
+  h.fire('transparency');
+  assert.equal(h.reduced.matches, false, 'transparency and motion preferences are independent');
+  assert.notEqual(wrapper.style.visibility, 'hidden');
+  assert.equal(h.content.style.opacity, '1');
+  assert.equal(h.content.style.transform, 'none');
+  assert.deepEqual({ rects: h.counts.rects, styles: h.counts.styles }, reads);
+  assert.equal(h.counts.rafs, 0);
+  assertDisposed(h);
+});
+
+test('unsupported or unadmittable painted blocks remain whole while safe siblings still fly', () => {
+  for (const mode of ['dynamic child', 'undecoded image', 'text budget', 'pixel budget']) {
+    const h = fixture();
+    const wrapper = paintedWrapper(h, false);
+    h.paragraph.rect = { left: 40, top: 450, width: 120, height: 30 };
+    if (mode === 'dynamic child') wrapper.append(new h.Node('canvas'));
+    if (mode === 'undecoded image') h.image.complete = false;
+    if (mode === 'text budget') wrapper.text = 'x'.repeat(20000);
+    if (mode === 'pixel budget') {
+      wrapper.rect = { left: 40, top: 150, width: 2000, height: 1200 };
+      h.window.devicePixelRatio = 3;
+    }
+    assert.equal(h.adapter.prepare('arrive', h.snapshot()), true, mode);
+    assert.equal(h.content.dataset.fragmentOwners, '1');
+    assert.equal(h.paragraph.style.visibility, 'hidden');
+    assert.notEqual(wrapper.style.visibility, 'hidden');
+    assert.notEqual(h.heading.style.visibility, 'hidden');
+    assert.notEqual(h.image.style.visibility, 'hidden');
+    assert.ok(
+      h.tiles().every((tile) => tile.children[0].matches('p')),
+      'no child text may fly alone over its rejected native background'
+    );
+    h.adapter.clear();
+    assertDisposed(h);
+  }
+});
 
 test('native heading padding and descendant line layout survive leaving their source ancestors', () => {
   const h = fixture();
@@ -421,9 +1130,10 @@ test('native heading padding and descendant line layout survive leaving their so
   assertDisposed(h);
 });
 
-function assertNativeCorners(h, tile) {
+function assertNativeCorners(h, tile, nativeOwner = null) {
   const paint = tile.children[0];
-  const owner = [h.heading, h.paragraph, h.image].find((node) => node.tagName === paint.tagName);
+  const owner =
+    nativeOwner || [h.heading, h.paragraph, h.image].find((node) => node.tagName === paint.tagName);
   const width = parseFloat(tile.style.width);
   const height = parseFloat(tile.style.height);
   const left = owner.rect.left - parseFloat(paint.style.left);

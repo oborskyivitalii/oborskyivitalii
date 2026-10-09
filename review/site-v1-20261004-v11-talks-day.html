@@ -32,8 +32,8 @@
 
 
 
-  <meta name="site-engine" content="70e7a8404ad0337c0d0d7ef26250a1d4a5bbced3213ae3125b5b1268e0f934d6">
-  <meta name="site-route" content="1e0cc7f793eecf46e6bb507c8a5b278fda12dbde8e2b0e7c43dc2b2324ee634b">
+  <meta name="site-engine" content="d314f0a07282d3f1969e1760f849ad657437f7a40a4b122ee64346d0c9418fba">
+  <meta name="site-route" content="c2a96d1d907c7a38fcdb759180ffd08ac337d85e199a92c823171b56ca2424a0">
   <meta name="site-contract" content="1">
   <meta name="site-variant" content="base">
 <meta name="robots" content="noindex, nofollow">
@@ -1794,6 +1794,52 @@ body[data-page='writing'] #archive-results {
     background: transparent;
     box-shadow: none;
   }
+}
+/* Decorative flight copies replay resolved native paint, including inactive
+   pseudos. They do not acquire a new surface from a detached ancestor selector.
+   Geometry clips the complete measured paper envelope with the same shards as
+   its text and images; these values are snapshots, not a second palette. */
+.fragment-layer .fragment-frozen-paint::before {
+  content: var(--fragment-before-content, none);
+  position: var(--fragment-before-position, initial);
+  display: var(--fragment-before-display, initial);
+  top: var(--fragment-before-top, initial);
+  right: var(--fragment-before-right, initial);
+  bottom: var(--fragment-before-bottom, initial);
+  left: var(--fragment-before-left, initial);
+  width: var(--fragment-before-width, initial);
+  height: var(--fragment-before-height, initial);
+  box-sizing: var(--fragment-before-box-sizing, initial);
+  padding: var(--fragment-before-padding, initial);
+  background: var(--fragment-before-background, initial);
+  border: var(--fragment-before-border, initial);
+  border-radius: var(--fragment-before-border-radius, initial);
+  box-shadow: var(--fragment-before-box-shadow, initial);
+  opacity: var(--fragment-before-opacity, initial);
+  z-index: var(--fragment-before-z-index, initial);
+  transform: var(--fragment-before-transform, initial);
+  pointer-events: none;
+}
+.fragment-layer .fragment-frozen-paint::after {
+  content: var(--fragment-after-content, none);
+  position: var(--fragment-after-position, initial);
+  display: var(--fragment-after-display, initial);
+  top: var(--fragment-after-top, initial);
+  right: var(--fragment-after-right, initial);
+  bottom: var(--fragment-after-bottom, initial);
+  left: var(--fragment-after-left, initial);
+  width: var(--fragment-after-width, initial);
+  height: var(--fragment-after-height, initial);
+  box-sizing: var(--fragment-after-box-sizing, initial);
+  padding: var(--fragment-after-padding, initial);
+  background: var(--fragment-after-background, initial);
+  border: var(--fragment-after-border, initial);
+  border-radius: var(--fragment-after-border-radius, initial);
+  box-shadow: var(--fragment-after-box-shadow, initial);
+  opacity: var(--fragment-after-opacity, initial);
+  z-index: var(--fragment-after-z-index, initial);
+  transform: var(--fragment-after-transform, initial);
+  pointer-events: none;
 }
 </style>
 </head>

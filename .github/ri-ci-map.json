@@ -2,8 +2,8 @@
   "schema_version": 1,
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/49",
-    "date": "2026-10-08",
-    "summary": "Issue49 consolidates inherited issue48 acceptance in one bound PR53 and begins stationary-camera/opt-in two-sided fragment contracts. Map the14-criterion owning policy, individual inherited source checks and permanent fragment/stationary suites while preserving historical PR51/issue48 evidence and pending actual visual/resource/merge gates; existing check/profile budgets and workflow boundaries remain."
+    "date": "2026-10-09",
+    "summary": "Issue49 retains the same bound PR53 for all-route bidirectional Color fragments, enabled by default unless stored Off. Whole-block acquisition preserves native paper, text/images, pseudo gutters and wrapped title shadows in one shared flight. Map the14-criterion owning policy, individual inherited checks and permanent fragment/stationary suites; exact two-width backdrop evidence and independent review preserve pending visual/device/cost/merge gates and unchanged workflow budgets."
   },
   "layers": [
     {
@@ -407,7 +407,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "6df96bb4e7fc94c1166fd172363d684a0e2ad530210ff42a2f342003d1b09fe5",
+    "digest": "6d90d6a58062d8547d9a8724a529ebd6fe5aba31af63a78aee1c8bcac4852c0b",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -455,7 +455,7 @@
       },
       {
         "path": ".github/acceptance/issue-49.json",
-        "sha256": "b47f399328790fb6b3501b4d75f5063d072a12fac6c6114f0b0b9ac6745796f8"
+        "sha256": "ef0bdfbc5f1d0e06131e1d7179cade9669abace8a152bf3f3aa1f70d0b7fd58a"
       },
       {
         "path": ".github/acceptance/issue-54.json",
@@ -495,7 +495,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "8d65b08685ec91c330d4e7f09d7b72167eab29daa066833d7ddda4120fb06bba"
+        "sha256": "8bd250d88a6b6f672fc35f2140c0bb70f620c11288aa8fcef6956831f774820b"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -591,7 +591,7 @@
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "75600dabd5185f9e68fa7b8de28a5a5c38476c8f88e09f7a19ba5bd4cef99f19"
+        "sha256": "91aef3b28ac0928c894ea85e14c41978c9ab5c27eadce75174798fc0ddcc6885"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
@@ -699,7 +699,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "9df3074e8b8739e3644013ce8022d29c88b851f310f8d9c1613d2ffc13a44cd3"
+        "sha256": "8404f58442bb177fd7ca6c73d14147a331bc77ed46607ca110fcbfeda4dcd081"
       },
       {
         "path": "tools/repository_intelligence.py",

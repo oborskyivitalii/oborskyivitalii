@@ -3,6 +3,90 @@ const test = require('node:test'),
   assert = require('node:assert/strict');
 const stage = require('../tools/quality/staging-regression.cjs'),
   fixture = require('./fixtures/staging-evidence.cjs');
+function fragmentBackdropFixture(phase, timeMs = 0) {
+  const native = {
+    content: '""',
+    'background-color': 'rgba(244, 240, 232, 0.87)',
+    'background-image': 'none',
+    opacity: '1',
+    left: '-12px',
+    top: '-12px',
+    width: '524px',
+    height: '124px',
+    'box-sizing': 'border-box',
+    'padding-left': '0px',
+    'padding-top': '0px',
+    'padding-right': '0px',
+    'padding-bottom': '0px',
+    'border-left-width': '0px',
+    'border-top-width': '0px',
+    'border-right-width': '0px',
+    'border-bottom-width': '0px',
+    'border-radius': '12px',
+    'box-shadow': 'none',
+  };
+  return {
+    phase,
+    timeMs,
+    viewport: [1440, 900],
+    owners: [
+      {
+        tag: 'ARTICLE',
+        classes: ['publication'],
+        nativeText: 'Measured native publication',
+        copiedText: 'Measured native publication',
+        nativeHidden: true,
+        pseudo: '::before',
+        nativeRect: [100, 100, 500, 100],
+        nativeBorder: [0, 0],
+        native,
+        copied: { ...native },
+        cells: [[88, 88, 524, 124]],
+      },
+    ],
+  };
+}
+function fragmentVectorFixture(phase, timeMs = 0) {
+  const image = {
+      complete: true,
+      naturalWidth: 780,
+      naturalHeight: 721,
+      currentSrc: 'https://preview.example/media/portrait.webp',
+      src: 'https://preview.example/media/portrait.webp',
+    },
+    nodes = Array.from({ length: 6 }, (_, index) => ({
+      tag: 'polygon',
+      namespace: 'http://www.w3.org/2000/svg',
+      points: `${index},30 447,157 279,277 28,217`,
+      paint: {
+        fill: `rgb(${200 + index}, 220, 230)`,
+        stroke: 'rgb(205, 214, 218)',
+        'fill-opacity': '1',
+        'stroke-opacity': '1',
+        'stroke-width': '1px',
+        opacity: '1',
+      },
+    }));
+  return {
+    phase,
+    timeMs,
+    viewport: [1440, 900],
+    nativeHidden: true,
+    nativeRect: [100, 100, 100, 100],
+    svgRect: [91, 91, 114, 114],
+    namespace: 'http://www.w3.org/2000/svg',
+    copiedNamespace: 'http://www.w3.org/2000/svg',
+    nativeOverflow: { x: 'hidden', y: 'hidden' },
+    copiedOverflow: { x: 'hidden', y: 'hidden' },
+    viewBox: '0 0 500 550',
+    copiedViewBox: '0 0 500 550',
+    nativeImage: image,
+    copiedImage: { ...image },
+    nativeNodes: nodes,
+    copiedNodes: structuredClone(nodes),
+    cells: [[91, 91, 114, 114]],
+  };
+}
 test('selected journeys compare actual base runtime and Color identities without replacing descriptor hashes', () => {
   const fs = require('node:fs'),
     path = require('node:path'),
@@ -520,12 +604,252 @@ test('incoming Color observation rejects simultaneous, invisible, unbounded and 
     assert.throws(() => validateFragmentAssembly(observation, invalid));
   }
 });
+test('whole-block heading observation compares descendant glyphs when the native ancestor is hidden', () => {
+  const { observeFragmentFlight } = require('../tools/quality/color-browser.cjs'),
+    vm = require('node:vm'),
+    box = { left: 40, top: 158, width: 500, height: 70 },
+    native = {
+      style: { visibility: '' },
+      textContent: 'Native heading',
+      getBoundingClientRect: () => box,
+    },
+    copied = { textContent: native.textContent, getBoundingClientRect: () => box },
+    layer = {},
+    tile = {
+      style: { opacity: '1', transform: 'matrix3d(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1)' },
+      closest: () => layer,
+      querySelector: (selector) =>
+        selector === '.fragment-paint'
+          ? { matches: () => false }
+          : selector === 'h1.fragment-paint,.fragment-paint h1'
+            ? copied
+            : null,
+    },
+    parent = {
+      tagName: 'DIV',
+      classList: ['hero-copy'],
+      textContent: native.textContent,
+      style: { visibility: 'hidden' },
+    },
+    content = {
+      dataset: { fragmentPhase: 'arrive', fragmentSettled: '1' },
+      style: {},
+      querySelector: (selector) => (selector === 'main h1' ? native : null),
+      querySelectorAll: () => [parent],
+      hasAttribute: () => false,
+    },
+    scene = { dataset: { direction: 'forward', camera: '{}' } };
+  native.parentElement = parent;
+  parent.parentElement = content;
+  const sandbox = {
+    window: {},
+    innerWidth: 1440,
+    innerHeight: 900,
+    scrollY: 0,
+    performance: { now: () => 100 },
+    NodeFilter: { SHOW_TEXT: 4 },
+    MutationObserver: class {
+      observe() {}
+      disconnect() {}
+    },
+    document: {
+      body: { dataset: { page: 'index' } },
+      getElementById: () => content,
+      querySelector: () => scene,
+      querySelectorAll: (selector) => (selector === '.fragment-piece' ? [tile] : [layer]),
+      createTreeWalker: (owner) => {
+        let visited = false;
+        return {
+          nextNode: () =>
+            visited ? null : ((visited = true), { textContent: owner.textContent, owner }),
+        };
+      },
+      createRange: () => {
+        let owner;
+        return {
+          selectNodeContents: (node) => {
+            owner = node.owner;
+          },
+          getClientRects: () => [
+            { left: 40, top: owner === native ? 158 : 158.5, width: 220, height: 65 },
+          ],
+        };
+      },
+    },
+  };
+  vm.runInNewContext('(' + observeFragmentFlight.toString() + ')()', sandbox);
+  const observed = JSON.parse(JSON.stringify(sandbox.window.__finishFragmentFlight()));
+  assert.equal(native.style.visibility, '', 'the heading itself was not the hidden owner');
+  assert.equal(observed.samples[0].headingSelected, true);
+  assert.equal(observed.headingSeam.boxDeltaPx, 0);
+  assert.equal(observed.headingSeam.glyphDeltaPx, 0.5);
+  assert.deepEqual(observed.headingSeam.nativeGlyphRects, [[40, 158, 220, 65]]);
+  assert.deepEqual(observed.headingSeam.fragmentGlyphRects, [[40, 158.5, 220, 65]]);
+});
+test('whole-block paper evidence rejects native fades, wrong copied material and shards that omit the gutter', () => {
+  const { validateFragmentBackdrops } = require('../tools/quality/color-browser.cjs');
+  const observation = {
+    backdrops: ['depart', 'arrive'].map((phase) => fragmentBackdropFixture(phase)),
+    samples: ['depart', 'arrive'].map((phase) => ({
+      phase,
+      pieces: 12,
+      backdropPieces: 12,
+      paintedBackdropPieces: 12,
+    })),
+  };
+  for (const phase of ['depart', 'arrive']) {
+    assert.deepEqual(validateFragmentBackdrops(observation, phase), {
+      owners: 1,
+      paintedPieces: 12,
+    });
+    for (const mutate of [
+      (data) => (data.backdrops = data.backdrops.filter((record) => record.phase !== phase)),
+      (data, owner) => (owner.nativeHidden = false),
+      (data, owner) => (owner.copiedText = 'Detached text'),
+      (data, owner) => (owner.copied['background-color'] = 'transparent'),
+      (data, owner) => (owner.copied.opacity = '0'),
+      (data, owner) => (owner.copied.content = 'none'),
+      (data, owner) => (owner.copied['border-radius'] = '0px'),
+      (data, owner) => (owner.copied.left = '0px'),
+      (data, owner) => (owner.copied.width = '500px'),
+      (data, owner) => (owner.native.width = 'auto'),
+      (data, owner) => (owner.cells = [[100, 100, 500, 100]]),
+      (data, owner) => (owner.cells = [[88, 88, NaN, 124]]),
+      (data, owner) => (owner.cells = []),
+      (data) => (data.backdrops.find((record) => record.phase === phase).owners = []),
+      (data) => (data.samples.find((sample) => sample.phase === phase).paintedBackdropPieces = 0),
+      (data) => (data.samples.find((sample) => sample.phase === phase).backdropPieces = 0),
+    ]) {
+      const invalid = structuredClone(observation),
+        owner = invalid.backdrops.find((record) => record.phase === phase).owners[0];
+      mutate(invalid, owner);
+      assert.throws(() => validateFragmentBackdrops(invalid, phase));
+    }
+  }
+});
+test('selected intro title paper requires measured descendant line boxes and the actual native spread shadow', () => {
+  const { validateFragmentBackdrops } = require('../tools/quality/color-browser.cjs'),
+    observation = {
+      backdrops: ['depart', 'arrive'].map((phase) => {
+        const record = fragmentBackdropFixture(phase),
+          title = structuredClone(record.owners[0]);
+        title.kind = 'direct';
+        title.tag = 'SPAN';
+        title.classes = ['reading-title'];
+        title.pseudo = null;
+        title.nativeRect = [100, 100, 220, 150];
+        title.nativeBoxes = [
+          [100, 100, 220, 65],
+          [100, 185, 160, 65],
+        ];
+        title.cells = [[90, 90, 240, 170]];
+        Object.assign(title.native, {
+          content: 'normal',
+          left: 'auto',
+          top: 'auto',
+          width: 'auto',
+          height: 'auto',
+          'box-shadow': 'rgba(244, 240, 232, 0.87) 0px 0px 0px 10px',
+          'box-decoration-break': 'clone',
+        });
+        title.copied = { ...title.native };
+        record.owners.push(title);
+        return record;
+      }),
+      samples: ['depart', 'arrive'].map((phase) => ({
+        phase,
+        page: 'research',
+        headingSelected: true,
+        pieces: 12,
+        backdropPieces: 12,
+        paintedBackdropPieces: 12,
+      })),
+    };
+  for (const phase of ['depart', 'arrive']) {
+    validateFragmentBackdrops(observation, phase);
+    for (const mutate of [
+      (data, title) => (title.cells = [[100, 100, 220, 150]]),
+      (data, title) => (title.nativeBoxes = []),
+      (data, title) => (title.nativeBoxes[1][2] = NaN),
+      (data, title) => (title.copied['box-shadow'] = 'none'),
+      (data, title) => (title.copied['box-decoration-break'] = 'slice'),
+      (data, title) => (title.native['box-shadow'] = title.copied['box-shadow'] = 'none'),
+      (data) => data.backdrops.find((record) => record.phase === phase).owners.pop(),
+    ]) {
+      const invalid = structuredClone(observation),
+        title = invalid.backdrops.find((record) => record.phase === phase).owners[1];
+      mutate(invalid, title);
+      assert.throws(() => validateFragmentBackdrops(invalid, phase));
+    }
+  }
+});
+test('visible Home portrait evidence requires its decoded image and resolved SVG facets inside the complete clipped envelope', () => {
+  const { validateFragmentVectors } = require('../tools/quality/color-browser.cjs'),
+    observation = {
+      vectors: ['depart', 'arrive'].map((phase) => fragmentVectorFixture(phase)),
+      samples: ['depart', 'arrive'].map((phase) => ({
+        phase,
+        portraitEligible: true,
+        pieces: 12,
+        vectorPieces: 12,
+        paintedVectorPieces: 12,
+      })),
+    };
+  for (const phase of ['depart', 'arrive']) {
+    assert.deepEqual(validateFragmentVectors(observation, phase), {
+      figures: 1,
+      paintedPieces: 12,
+    });
+    for (const mutate of [
+      (data, figure) => (figure.copiedNodes = []),
+      (data, figure) => figure.copiedNodes.pop(),
+      (data, figure) => (figure.copiedNodes[0].paint.fill = 'rgb(0, 0, 0)'),
+      (data, figure) => (figure.copiedNodes[0].paint.stroke = 'none'),
+      (data, figure) => (figure.copiedNodes[0].paint['stroke-width'] = '0px'),
+      (data, figure) => (figure.copiedNodes[0].paint['fill-opacity'] = '0'),
+      (data, figure) => (figure.copiedNodes[0].points = '0,0 100,0 100,100'),
+      (data, figure) =>
+        (figure.nativeNodes[0].points = figure.copiedNodes[0].points = 'NaN,0 100,0 100,100'),
+      (data, figure) => (figure.copiedNodes[0].namespace = 'http://www.w3.org/1999/xhtml'),
+      (data, figure) => (figure.copiedNamespace = 'http://www.w3.org/1999/xhtml'),
+      (data, figure) => (figure.copiedViewBox = '0 0 100 100'),
+      (data, figure) => (figure.nativeOverflow.x = figure.copiedOverflow.x = 'visible'),
+      (data, figure) => (figure.copiedOverflow.y = 'visible'),
+      (data, figure) => (figure.copiedImage.complete = false),
+      (data, figure) => (figure.copiedImage.naturalWidth = 0),
+      (data, figure) => (figure.copiedImage.currentSrc = 'https://preview.example/other.webp'),
+      (data, figure) => (figure.nativeHidden = false),
+      (data, figure) => (figure.cells = [[100, 100, 100, 100]]),
+      (data, figure) => (figure.svgRect[2] = NaN),
+      (data) => (data.vectors = data.vectors.filter((record) => record.phase !== phase)),
+      (data) => (data.samples.find((sample) => sample.phase === phase).paintedVectorPieces = 0),
+      (data) => (data.samples.find((sample) => sample.phase === phase).vectorPieces = 0),
+    ]) {
+      const invalid = structuredClone(observation),
+        figure = invalid.vectors.find((record) => record.phase === phase);
+      mutate(invalid, figure);
+      assert.throws(() => validateFragmentVectors(invalid, phase));
+    }
+    assert.deepEqual(
+      validateFragmentVectors(
+        { samples: [{ phase, portraitEligible: false }], vectors: [] },
+        phase
+      ),
+      {
+        figures: 0,
+        paintedPieces: 0,
+      },
+      'offscreen portraits do not add a smoke journey'
+    );
+  }
+});
 test('all-route Color observations require actual two-sided fragments, camera direction and complete native cleanup', () => {
   const { validateFragmentRoute } = require('../tools/quality/color-browser.cjs');
   const camera = (z) => JSON.stringify({ position: [0, 4, z], target: [0, 0, z - 30] }),
     source = camera(24),
     target = camera(-480),
     observation = {
+      backdrops: ['depart', 'arrive'].map((phase) => fragmentBackdropFixture(phase)),
       samples: ['depart', 'arrive', null].map((phase, index) => ({
         phase,
         page: index ? 'credits' : 'index',
@@ -535,6 +859,8 @@ test('all-route Color observations require actual two-sided fragments, camera di
         layers: phase ? 1 : 0,
         visiblePieces: phase ? 12 : 0,
         transformedPieces: phase ? 12 : 0,
+        backdropPieces: phase ? 12 : 0,
+        paintedBackdropPieces: phase ? 12 : 0,
         nativeHidden: phase ? 4 : 0,
         nativeOpacity: 1,
         busy: !!phase,
@@ -600,6 +926,16 @@ test('VO interruption keeps abandoned raw paint but validates only the actual fr
     source = camera(20),
     expected = { from: 'index', to: 'index', direction: 'backward', sourceCamera: source },
     observation = {
+      backdrops: [
+        fragmentBackdropFixture('depart', 95),
+        fragmentBackdropFixture('depart', 100),
+        fragmentBackdropFixture('arrive', 200),
+      ],
+      vectors: [
+        fragmentVectorFixture('depart', 95),
+        fragmentVectorFixture('depart', 100),
+        fragmentVectorFixture('arrive', 200),
+      ],
       samples: ['depart', 'depart', 'arrive', null].map((phase, index) => ({
         timeMs: [95, 100, 200, 300][index],
         phase,
@@ -610,6 +946,8 @@ test('VO interruption keeps abandoned raw paint but validates only the actual fr
         layers: phase ? 1 : 0,
         visiblePieces: phase ? 12 : 0,
         transformedPieces: phase ? 12 : 0,
+        backdropPieces: phase ? 12 : 0,
+        paintedBackdropPieces: phase ? 12 : 0,
         nativeHidden: phase ? 4 : 0,
         nativeOpacity: 1,
         busy: !!phase,
@@ -641,6 +979,8 @@ test('VO interruption keeps abandoned raw paint but validates only the actual fr
     frames: [observation.frames[0]],
     events: [observation.events[0]],
     longTasks: observation.longTasks,
+    backdrops: [observation.backdrops[0]],
+    vectors: [observation.vectors[0]],
   });
   assert.equal(transaction.observation.frames, observation.frames);
   assert.equal(transaction.observation.events, observation.events);
@@ -649,6 +989,14 @@ test('VO interruption keeps abandoned raw paint but validates only the actual fr
   assert.deepEqual(
     [...transaction.previous.samples, ...transaction.observation.samples],
     observation.samples
+  );
+  assert.deepEqual(
+    [...transaction.previous.backdrops, ...transaction.observation.backdrops],
+    observation.backdrops
+  );
+  assert.deepEqual(
+    [...transaction.previous.vectors, ...transaction.observation.vectors],
+    observation.vectors
   );
   assert.equal(observation.samples.length, 4, 'the complete original raw record remains intact');
   for (const mutate of [
@@ -670,6 +1018,8 @@ test('VO interruption keeps abandoned raw paint but validates only the actual fr
     (data) => (data.events[1].to = 'research'),
     (data) => (data.events[1].time = NaN),
     (data) => (data.samples[1].timeMs = NaN),
+    (data) => (data.backdrops[1].timeMs = NaN),
+    (data) => (data.vectors[1].timeMs = NaN),
   ]) {
     const invalid = structuredClone(observation);
     mutate(invalid);
