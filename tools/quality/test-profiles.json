@@ -397,7 +397,7 @@
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
-      "disposition": "retain current independent contract",
+      "disposition": "retain enduring edition/semantic failure checks; issue41 positioning removes stale visible unknown-language assertions, adds catalog-count mutation coverage and exact successor amendment negatives; no new browser/performance suite",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
         "tests/content.test.cjs",
@@ -406,7 +406,8 @@
         "site/templates/**",
         "site/content/catalog.json",
         "review/issue-48/content-amendment.json",
-        "review/issue-48/source-inventory.json"
+        "review/issue-48/source-inventory.json",
+        "review/issue-41/2026-10-09-positioning-amendment.json"
       ]
     },
     {
@@ -438,7 +439,7 @@
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
-      "disposition": "retain current independent contract",
+      "disposition": "retain enduring edition/semantic failure checks; issue41 positioning removes stale visible unknown-language assertions, adds catalog-count mutation coverage and exact successor amendment negatives; no new browser/performance suite",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
         "tests/executive.test.cjs",
@@ -450,7 +451,8 @@
         "site/content/**",
         "site/templates/**",
         "review/issue-41/content-amendment.json",
-        "review/issue-48/content-amendment.json"
+        "review/issue-48/content-amendment.json",
+        "review/issue-41/2026-10-09-positioning-amendment.json"
       ]
     },
     {
@@ -1143,11 +1145,11 @@
     {
       "path": "tests/test_issue41_acceptance.py",
       "language": "python",
-      "purpose": "Issue41 exact source/snapshot accounting, admitted and deferred edition identities, generated advisor/discussion/catalog/schema checks, reversible SEO delta and exact approved #36 runtime companion and unchanged hosting. Preparation evidence stays pinned at d7ce5d3; implementation phase explicitly supersedes its byte-only check.",
+      "purpose": "Issue41 source/input/edition invariants and dated practical-positioning continuation, existing catalog-derived count mutations, source-bound semantic amendments and unchanged current-main runtime/hosting; historical evidence remains pinned.",
       "owner": ".github/ACCEPTANCE.md",
       "lifecycle": "task-snapshot",
       "profiles": ["issue-policy"],
-      "disposition": "owning implementation policy only; enduring renderer/archive/SEO and normal preview smoke are extended in their current owners; no duplicate full regression or new browser suite; joint #36/#41 integration maps the same tests once through the #36 policy",
+      "disposition": "owning issue41 policy only; AC01–AC06 and manual gates preserved, AC07–AC16 append positioning checks; current permanent content/executive and ordinary PR smoke own enduring failure surfaces",
       "surviving_route": ".github/acceptance/issue-41.json",
       "inputs": ["tests/test_issue41_acceptance.py"]
     },

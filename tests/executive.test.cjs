@@ -346,7 +346,12 @@ test('Talks reconciliation rejects missing events, substituted sources and inven
       'unsupported event/source/date/language/resource edit remains visible'
     );
   }
-  const earlierHtml = restoreContentAmendment(html, 'talks', recordingRecord);
+  const positioningRecord = require('../review/issue-41/2026-10-09-positioning-amendment.json');
+  const earlierHtml = restoreContentAmendment(
+    restoreContentAmendment(html, 'talks', positioningRecord),
+    'talks',
+    recordingRecord
+  );
   for (const change of changes) {
     assert.ok(
       earlierHtml.includes(normalizeHTML(change.after)),
@@ -380,6 +385,40 @@ test('Talks reconciliation rejects missing events, substituted sources and inven
     assert.throws(
       () => restoreContentAmendment(recordingChange.after, 'talks', corrupt),
       /snapshot integrity/
+    );
+  }
+});
+test('practical positioning allowances reject unsupported claims, status and contact changes', () => {
+  const { restore, restoreContentAmendment } = require('../tools/check_site_seo.cjs');
+  const record = require('../review/issue-41/2026-10-09-positioning-amendment.json');
+  for (const change of record.changes) {
+    assert.equal(
+      restoreContentAmendment(change.after, change.page, record),
+      normalizeHTML(change.before),
+      'only the declared successor fragment is reversed'
+    );
+    const corrupt = structuredClone(record);
+    corrupt.changes.find((row) => row.page === change.page && row.id === change.id).after += ' ';
+    assert.throws(
+      () => restoreContentAmendment(change.after, change.page, corrupt),
+      /snapshot integrity/
+    );
+  }
+  const mutations = [
+    ['index', 'around 25 projects', '250 projects'],
+    ['index', 'more than 120 engineers', '120 direct reports'],
+    ['talks', 'Invited speaker at Corning’s', 'Consulting partner of Corning’s'],
+    ['talks', 'internal technical AI workshop', 'validated enterprise AI deployment'],
+    ['talks', 'index.html#contact', 'https://unapproved.example/book'],
+    ['writing', '29 primary archive records', '27 primary archive records'],
+  ];
+  for (const [page, from, to] of mutations) {
+    const html = readHTML(require('node:path').join(__dirname, '../docs/' + page + '.html'));
+    assert.ok(html.includes(from), 'mutation input exists');
+    assert.notEqual(
+      restore(html.replace(from, to), page),
+      restore(html, page),
+      'unapproved copy/source/contact change cannot disappear through restoration'
     );
   }
 });

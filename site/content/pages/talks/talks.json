@@ -21,16 +21,13 @@
     "T013": "↗",
     "T014": "Read the talk summary ↗",
     "T015": "Other talks & workshops",
-    "T016": "These events have public write-ups. Their presentation languages have not yet been confirmed in\n    this index.",
     "T017": "Corning · Learn-AI-Palooza",
     "T018": "Technical workshop",
-    "T019": "Language unconfirmed",
     "T020": "Designing Non-Deterministic Systems",
     "T021": "Host’s public reflection ",
     "T022": "↗",
     "T023": "Betelgeuse · QA Україна",
     "T024": "Community talk",
-    "T025": "Language unconfirmed",
     "T026": "Uncertainty Architecture & software delivery",
     "T027": "A community discussion on AI engineering and QA, connecting practical testing with trust,\n        control, nondeterministic behavior and engineering responsibility.",
     "T028": "Read the public follow-up ",
@@ -38,13 +35,15 @@
     "T030": "Read the discussion reflection ↗",
     "T031": "swarchua · Ukrainian architects community",
     "T032": "Community discussion",
-    "T033": "Language unconfirmed",
     "T034": "Discussion: Operating AI systems",
     "T035": "A discussion with the swarchua architects community on operationalizing AI, runtime\n        uncertainty and the control responsibilities of LLM-based systems.",
     "T036": "Watch the recording · AI discussion ",
     "T037": "↗",
     "T038": "Read the discussion context ↗",
-    "T039": "Speaker announcement ↗"
+    "T039": "Speaker announcement ↗",
+    "T040": "Invited speaker at Corning’s internal technical AI workshop. Discussed how model-driven\n        systems change architecture, operating models and accountability with the company’s\n        technology community.",
+    "T041": "Invite me to speak",
+    "T042": "For talks and workshops on AI-assisted delivery, agentic systems and operational responsibility."
   },
   "attributes": {
     "A001": "Talk language"
@@ -59,6 +58,7 @@
     "U007": "https://ua.linkedin.com/posts/vitaliioborskyi_%D0%B2%D0%BE%D0%BB%D0%BE%D0%B4%D0%B8%D0%BC%D0%B8%D1%80-%D0%B4%D1%8F%D0%BA%D1%83%D1%8E-%D0%B7%D0%B0-%D0%BF%D0%BE%D1%81%D1%82-%D0%B2%D1%96%D0%BD-%D1%83%D0%B2%D1%96%D0%BC%D0%BA%D0%BD%D1%83%D0%B2-%D1%83-activity-7479802249829928961-PmrF",
     "U008": "https://www.youtube.com/watch?v=1MPsDi3wuF4",
     "U009": "https://ua.linkedin.com/posts/vitaliioborskyi_software-architecture-activity-7477274339411693569-dJhu",
-    "U010": "https://ua.linkedin.com/posts/pmday_we-are-glad-to-introduce-new-speaker-of-activity-7493632835547889664-67od"
+    "U010": "https://ua.linkedin.com/posts/pmday_we-are-glad-to-introduce-new-speaker-of-activity-7493632835547889664-67od",
+    "U011": "index.html#contact"
   }
 }

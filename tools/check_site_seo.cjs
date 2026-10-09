@@ -1,6 +1,6 @@
 'use strict';
 // Reconcile exact content against the frozen source, allowing only the declared
-// Home hierarchy/wordmark, contact, response/title wrappers and hashed Issue41/48/61 content deltas.
+// Home hierarchy/wordmark, contact, response/title wrappers and hashed content deltas.
 // Decorative SVG bytes are not copy.
 const fs = require('node:fs'),
   path = require('node:path'),
@@ -98,6 +98,9 @@ const issue48 = JSON.parse(
 );
 const issue61 = JSON.parse(
   fs.readFileSync(path.join(root, 'review/issue-61/content-amendment.json'), 'utf8')
+);
+const positioning = JSON.parse(
+  fs.readFileSync(path.join(root, 'review/issue-41/2026-10-09-positioning-amendment.json'), 'utf8')
 );
 function restoreContentAmendment(html, page, record = amendment) {
   for (const change of record.changes.filter((c) => c.page === page)) {
@@ -229,6 +232,8 @@ function restoreCriticalMedia(html, page, projectRoot = root) {
 }
 function restoreApprovedContent(html, page) {
   html = normalizeHTML(html);
+  // This successor uses current template bytes, before historical presentation reversal.
+  html = restoreContentAmendment(html, page, positioning);
   html = restoreRefactorPresentation(html, page);
   if (page === 'writing') {
     // Reverse only the approved accessible description; the scene landmark is
@@ -344,7 +349,7 @@ function verify() {
       sha256: crypto.createHash('sha256').update(source).digest('hex'),
       exactContentAndMetadataPreserved: true,
       declaredChanges: [
-        ...[...amendment.changes, ...issue48.changes, ...issue61.changes]
+        ...[...amendment.changes, ...issue48.changes, ...issue61.changes, ...positioning.changes]
           .filter((change) => change.page === page)
           .map((change) => change.intent),
         ...(page === 'index'
@@ -374,7 +379,7 @@ function verify() {
     pass: true,
     rows,
     policy:
-      'Ordered HTML contracts after reversing the exact hashed Issue61 PMDay recording, Issue48 then Issue41 content amendments and declared Home hierarchy/wordmark changes, approved contact/title wrappers, reviewed response blocks/Research nav, accessible Writing formula description, exact canonical Home critical media head block and authored-base build identity. ASCII whitespace runs and void-tag spellings are canonicalized; only named Research/Writing/Talks block-fragment EOF seams are reversible. Inline separators, attributes/order and raw JSON-LD remain exact; decorative fallback SVG is excluded. Includes semantic metadata, publication records, links, languages, dates, portrait and source attribution.',
+      'Ordered HTML contracts after reversing the exact hashed Issue41 positioning, Issue61 PMDay recording, Issue48 then original Issue41 content amendments and declared Home hierarchy/wordmark changes, approved contact/title wrappers, reviewed response blocks/Research nav, accessible Writing formula description, exact canonical Home critical media head block and authored-base build identity. ASCII whitespace runs and void-tag spellings are canonicalized; only named Research/Writing/Talks block-fragment EOF seams are reversible. Inline separators, attributes/order and raw JSON-LD remain exact; decorative fallback SVG is excluded. Includes semantic metadata, publication records, links, languages, dates, portrait and source attribution.',
   };
 }
 if (require.main === module) process.stdout.write(JSON.stringify(verify(), null, 2) + '\n');
