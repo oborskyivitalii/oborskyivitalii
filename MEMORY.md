@@ -25,8 +25,12 @@ Dated continuity, not live authority. Last verified: **2026-10-09**.
   runtime, routes and production outside the content continuation.
   The same issue/PR also owns the compact AI-assisted delivery case, AC17–26:
   [source/history analysis](review/issue-41/2026-10-09-sitecase.md), About→Credits
-  evidence links, explicit human/AI/enterprise boundaries. No merge until the
-  maintainer confirms; current-head CI and focused preview review remain required.
+  evidence links, explicit human/AI/enterprise boundaries. Its
+  [independent review](review/issue-41/2026-10-09-sitecase-review.md) and
+  [focused preview observations](review/issue-41/2026-10-09-sitecase-browser.md)
+  retain exact source/public-byte identities and observation limits; current-head
+  CI and whole-AC reconciliation live in the issue/PR. No merge until the
+  maintainer confirms; original issue/release obligations remain open.
 - A user-supplied issue stays bound across phases/model handoffs; consolidation
   transfers original ACs, evidence and open gates before superseding an owner.
 

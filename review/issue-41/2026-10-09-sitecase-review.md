@@ -140,6 +140,14 @@ Prepared check/metadata identities inspected:
 | `.github/repository-paths.json` | `388a4c4fe78edd851da8b99446de95a03cfe102d4af38198855ea5987b4d865a` |
 | `.github/ri-ci-map.json` | `e75046d1dfb93a1222c9d16f2aa9c6407847f1db3a5b5c30a8e9c0159d701764` |
 
+The catalog/map identities above record the prepared state before the generated
+routing refresh. A read-only follow-up verified all four index/Credits snapshot
+path renames against the current manifest, with entry values and owners unchanged;
+all refreshed RI input hashes matched disk and layer check selections remained
+exact. The other eleven reviewed owner hashes remained exact at first candidate
+`bcab6a5b59806c7073f5d680fc36e611a704a5c6`. No current map hash is embedded here:
+this review participates in the evidence inputs, so such a binding could cycle.
+
 ## Exact reviewed prepared-source identities
 
 | Owner | SHA256 |
