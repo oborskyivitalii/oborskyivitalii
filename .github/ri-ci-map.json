@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "review": {
-    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/58",
-    "date": "2026-10-08",
-    "summary": "Issue58 R2: maintained six-language exact formatter inventory, pinned tools, fail-closed full source lint, semantic/generation contracts and phase-specific owning-policy evidence. Review actual unconditional source-quality and existing acceptance paths; preserve later-phase and release gates."
+    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/65",
+    "date": "2026-10-09",
+    "summary": "Issue65 task router and bounded memory preserve current acceptance/style/RI guards. Review task-policy selection, permanent negative checks, catalog/profile additions and unchanged workflow invocation; semantic and live decisions remain external gates."
   },
   "layers": [
     {
@@ -60,7 +60,10 @@
         "tests/test_issue61_acceptance.py",
         ".github/acceptance/issue-59.json",
         "review/issue-58/2026-10-08-handoff.md",
-        ".github/acceptance/issue-58.json"
+        ".github/acceptance/issue-58.json",
+        ".github/acceptance/issue-65.json",
+        "tests/test_issue65_acceptance.py",
+        "review/issue-65/2026-10-09-dispositions.json"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -400,7 +403,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "72f7742d81fdfb62946273ec9e52c68f4eacf51fa748822e87c5031803b8a1e5",
+    "digest": "d77b00893af3a7af32adce541fc89e145a57b2a00e5382cce0c575f7f1213124",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -416,7 +419,7 @@
       },
       {
         "path": ".github/REPOSITORY-INTELLIGENCE.md",
-        "sha256": "b82d2a4d4b50c97a8fb870885e1475c51abab7971c7808fbe4eeeb104b334c3a"
+        "sha256": "397878fce81257274efb815587e2fa6923e3368c8da242e538c2fd3144a823f5"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -467,6 +470,10 @@
         "sha256": "0a45538f557750e8604935e1591edccac0847d6014a256f1fe8d285ab3fe5cbf"
       },
       {
+        "path": ".github/acceptance/issue-65.json",
+        "sha256": "3f7489a42a98ea85dfe6062bf96bb970a132d9e1ebd89a294475afb37c106de9"
+      },
+      {
         "path": ".github/code-style.json",
         "sha256": "7f275850381b10adcc9cce83ecc8969fbbdd0d267ac565141c5bfef11fd4a7fc"
       },
@@ -484,7 +491,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "5dcf39a6babcbcf4455ff5f1c1006759b5deffea705ca4fda720e10cea58f870"
+        "sha256": "5ab32517fe06105e2fa9d79075f79df7719a51afad911c472f76c0323fde7de0"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -548,11 +555,11 @@
       },
       {
         "path": "AGENTS.md",
-        "sha256": "478c6af4aa6eca644b0d85cf73f44d50526fa5c4a808f414cc6d0b654d3b4792"
+        "sha256": "60e88a430d100d72926bfea030495353f92085fe073e95cc9d0405d0f70d78cc"
       },
       {
         "path": "CONTRIBUTING.md",
-        "sha256": "9d8ea10d74c48fe313e7c977ffef9e9afa894d566163220a405d2fdb154f6ebc"
+        "sha256": "01b7051da63ca5473ad0e3774bdceab010c48e28933a670fada9ff7d94463339"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -560,7 +567,7 @@
       },
       {
         "path": "guides/CODE-STYLE.md",
-        "sha256": "034ba9529dba8aa3d88de8d42d0d4e989661f37a0c10bc715394dc19fbe5ad2f"
+        "sha256": "41e3a04a7150cc982db9a4f5f0dd80096ffeda552638023be67d37927d986d6f"
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
@@ -631,6 +638,10 @@
         "sha256": "23da1dc4b786b62b720b01f7f11dbdb782cc460223c02e5e621ab8a9a45260b7"
       },
       {
+        "path": "tests/test_issue65_acceptance.py",
+        "sha256": "f7362fa370ed37b324803fed158b068eea53da8a961b349154422704db50089d"
+      },
+      {
         "path": "tests/test_issue_acceptance.py",
         "sha256": "51b509df5b1bb8838d85c1c25ee1c07e5323d7cf882ae2b1bbe8846709f3bd8d"
       },
@@ -684,7 +695,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "d855852dbaad6b393ca772ac2285bfa3469d87c9008d37f53afe5213afb0510a"
+        "sha256": "f7b9c2145457df2373e6c1892b7473f13af56d4966de11978da239f4fdbbd148"
       },
       {
         "path": "tools/repository_intelligence.py",

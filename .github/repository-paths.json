@@ -127,6 +127,12 @@
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
+    ".github/acceptance/issue-65.json": {
+      "kind": "file",
+      "purpose": "Issue65 AC01-AC09 source checks with separate review, live and merge gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     ".github/code-style.json": {
       "kind": "file",
       "purpose": "Exact issue54 legacy source/inline-style debt with frozen-baseline ceilings and removal tasks.",
@@ -1212,6 +1218,36 @@
       "purpose": "Exact hashed old/new PMDay article delta authorized by the maintainer; restore before immutable Issue48/41 content amendments.",
       "role": "configuration",
       "owner": "guides/SITE-SOURCE-AUDIT.md"
+    },
+    "review/issue-65": {
+      "kind": "directory",
+      "purpose": "Harness simplification evidence and independent review under issue65.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-65/2026-10-09-analysis.md": {
+      "kind": "file",
+      "purpose": "Verified findings, invariant dispositions, task walkthroughs and five-PR overhead analysis.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-65/2026-10-09-dispositions.json": {
+      "kind": "file",
+      "purpose": "Pinned finding classifications and destinations for preserved or consolidated rules.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-65/2026-10-09-overhead-input.json": {
+      "kind": "file",
+      "purpose": "Frozen five-PR metadata, Git line counts, classification rules and bounded workflow observations.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-65/2026-10-09-review.md": {
+      "kind": "file",
+      "purpose": "Independent implementation review of harness rules, findings and bounded acceptance.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
     },
     "review/public-responses-20261006": {
       "kind": "directory",
@@ -6941,6 +6977,12 @@
       "kind": "file",
       "purpose": "Issue61 mapping of existing active Color absence/navigation contracts; task-owned selection, no duplicate browser matrix.",
       "role": "source",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "tests/test_issue65_acceptance.py": {
+      "kind": "file",
+      "purpose": "Owning issue65 assertions for reading, disposition topology, preserved sources and pinned overhead.",
+      "role": "test",
       "owner": ".github/ACCEPTANCE.md"
     },
     "tests/test_issue_acceptance.py": {
