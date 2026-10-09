@@ -333,6 +333,31 @@ function validateFragmentRoute(observation, measured, expected) {
     observation,
   };
 }
+function fragmentTransaction(observation, expected) {
+  const starts = observation.events.filter((event) => event.kind === 'navigation-start');
+  assert.equal(starts.length, 1, 'fragment observation needs one actual navigation start');
+  const navigationStart = starts[0];
+  assert.ok(Number.isFinite(navigationStart.time), 'missing finite navigation boundary');
+  assert.ok(
+    observation.samples.every((sample) => Number.isFinite(sample.timeMs)),
+    'missing finite fragment sample time'
+  );
+  assert.equal(navigationStart.from, expected.from);
+  assert.equal(navigationStart.to, expected.to);
+  return {
+    navigationStart,
+    previous: {
+      samples: observation.samples.filter((sample) => sample.timeMs < navigationStart.time),
+      frames: observation.frames.filter((frame) => frame.started < navigationStart.time),
+      events: observation.events.filter((event) => event.time < navigationStart.time),
+      longTasks: observation.longTasks.filter((task) => task.start < navigationStart.time),
+    },
+    observation: {
+      ...observation,
+      samples: observation.samples.filter((sample) => sample.timeMs >= navigationStart.time),
+    },
+  };
+}
 async function settled(page, route) {
   await page.waitForFunction(
     (id) =>
@@ -576,15 +601,18 @@ async function fragmentRouteCoverage(page) {
     }
 
     // Reverse a real visible departure through VO while Home is still mounted.
+    const departureStart = await state(page);
     await page.evaluate(observeFragmentFlight);
     await page.locator('.site-header nav a[href="research.html"]').click();
     await page.waitForFunction(
-      () =>
+      (initialCamera) =>
         document.getElementById('site-content').dataset.fragmentPhase === 'depart' &&
+        JSON.parse(document.querySelector('.space-scene').dataset.camera).position[2] <
+          JSON.parse(initialCamera).position[2] &&
         [...document.querySelectorAll('.fragment-piece')].some(
           (piece) => Number(piece.style.opacity) > 0
         ),
-      null,
+      departureStart.scene.camera,
       { polling: 20, timeout: 5000 }
     );
     const interrupted = await page.evaluate(() => window.__finishFragmentFlight());
@@ -602,12 +630,21 @@ async function fragmentRouteCoverage(page) {
     const observation = await page.evaluate(() => window.__finishFragmentFlight()),
       measured = motion.summarize(observation, 'flight');
     Object.assign(evidence.pending, { retarget, observation, measured });
+    const transaction = fragmentTransaction(observation, { from: 'index', to: 'index' });
+    // The observer starts before VO is clicked, so retain the abandoned paint
+    // in its own raw record and validate the new transaction from its real
+    // navigation-start. Inclusive callback/timing measurements stay unchanged.
+    interrupted.retargetBoundary = {
+      navigationStart: transaction.navigationStart,
+      ...transaction.previous,
+    };
     evidence.interruption = {
-      ...validateFragmentRoute(observation, measured, {
+      ...validateFragmentRoute(transaction.observation, measured, {
         from: 'index',
         to: 'index',
         direction: 'backward',
         trigger: 'wordmark-interruption',
+        sourceCamera: retarget.before,
       }),
       retarget,
       interrupted,
@@ -846,5 +883,6 @@ module.exports = {
   fragmentAssembly,
   fragmentCancellationReady,
   validateFragmentRoute,
+  fragmentTransaction,
   fragmentRouteCoverage,
 };

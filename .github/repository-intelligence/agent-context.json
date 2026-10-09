@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "c5ef1b8c651c272557b93df8133f896730da903e67d634f3041b6b53c6b14ef6",
+    "digest": "63bb9a2c4be830f235389619e446e934eb7f4a841f03c31a8d8ff641283c17cf",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -141,7 +141,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "d5d2510fdb79a566fdd1c6fcac9e743dba70436071bf035242be780583d65677"
+        "sha256": "71539de67e2af5eb49a929b1665ff63039bae3b2666546e6854c5e66e6c91cc9"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -700,7 +700,7 @@
       {
         "path": "review/issue-49/2026-10-08-analysis.md",
         "identity_mode": "content",
-        "sha256": "31d5f12f09d951d020020006b6501591f84f46c60b4def61b14e7a4b926429db"
+        "sha256": "a0b7083251e32a205aae360c0d44e7a57bea56bbe4d68cb5187c9a8c0a2305a0"
       },
       {
         "path": "review/issue-54/2026-10-08-analysis.md",
@@ -5145,7 +5145,7 @@
       {
         "path": "tests/staging-regression.test.cjs",
         "identity_mode": "content",
-        "sha256": "a5e430ecab6079ccf7b938d48d5e964b363bca4dd3e9bd78b5b95520d0fdf7cc"
+        "sha256": "75600dabd5185f9e68fa7b8de28a5a5c38476c8f88e09f7a19ba5bd4cef99f19"
       },
       {
         "path": "tests/staging-reporting.test.cjs",
@@ -5445,7 +5445,7 @@
       {
         "path": "tools/quality/color-browser.cjs",
         "identity_mode": "content",
-        "sha256": "2663be479b33208c54babda85dea40196e38c610b779d6f97404b0f29374d2ec"
+        "sha256": "057f8cf633fd8539caaaa7a62d1972d165f318e452d8ba8d0970dd441e4f703d"
       },
       {
         "path": "tools/quality/common.cjs",

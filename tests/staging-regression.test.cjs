@@ -591,6 +591,94 @@ test('all-route Color observations require actual two-sided fragments, camera di
     assert.throws(() => validateFragmentRoute(observation, invalid, expected));
   }
 });
+test('VO interruption keeps abandoned raw paint but validates only the actual fresh navigation transaction', () => {
+  const {
+    fragmentTransaction,
+    validateFragmentRoute,
+  } = require('../tools/quality/color-browser.cjs');
+  const camera = (z) => JSON.stringify({ position: [0, 4, z], target: [0, 0, z - 30] }),
+    source = camera(20),
+    expected = { from: 'index', to: 'index', direction: 'backward', sourceCamera: source },
+    observation = {
+      samples: ['depart', 'depart', 'arrive', null].map((phase, index) => ({
+        timeMs: [95, 100, 200, 300][index],
+        phase,
+        page: 'index',
+        direction: index ? 'backward' : 'forward',
+        camera: index > 1 ? camera(24) : source,
+        pieces: phase ? 12 : 0,
+        layers: phase ? 1 : 0,
+        visiblePieces: phase ? 12 : 0,
+        transformedPieces: phase ? 12 : 0,
+        nativeHidden: phase ? 4 : 0,
+        nativeOpacity: 1,
+        busy: !!phase,
+        inert: !!phase,
+        fragmentFields: phase ? ['fragmentPhase'] : [],
+        headingSelected: false,
+      })),
+      frames: [
+        { started: 94, duration: 3 },
+        { started: 111, duration: 4 },
+      ],
+      events: [
+        { kind: 'paint', time: 96 },
+        { kind: 'navigation-start', time: 100, from: 'index', to: 'index' },
+      ],
+      longTasks: [{ start: 90, duration: 12 }],
+    },
+    measured = {
+      paints: 20,
+      paintCallbackMs: { p95: 12, max: 25 },
+      paintIntervalsMs: { max: 80 },
+      readyMs: 2600,
+    };
+  assert.throws(() => validateFragmentRoute(observation, measured, expected));
+  const transaction = fragmentTransaction(observation, expected);
+  validateFragmentRoute(transaction.observation, measured, expected);
+  assert.deepEqual(transaction.previous, {
+    samples: [observation.samples[0]],
+    frames: [observation.frames[0]],
+    events: [observation.events[0]],
+    longTasks: observation.longTasks,
+  });
+  assert.equal(transaction.observation.frames, observation.frames);
+  assert.equal(transaction.observation.events, observation.events);
+  assert.equal(transaction.observation.longTasks, observation.longTasks);
+  assert.equal(transaction.observation.samples[0].timeMs, transaction.navigationStart.time);
+  assert.deepEqual(
+    [...transaction.previous.samples, ...transaction.observation.samples],
+    observation.samples
+  );
+  assert.equal(observation.samples.length, 4, 'the complete original raw record remains intact');
+  for (const mutate of [
+    (data) => (data.samples[1].direction = 'forward'),
+    (data) => data.samples.splice(1, 1),
+    (data) => (data.samples[2].visiblePieces = 0),
+    (data) => (data.samples.at(-1).pieces = 1),
+  ]) {
+    const invalid = structuredClone(observation);
+    mutate(invalid);
+    assert.throws(() =>
+      validateFragmentRoute(fragmentTransaction(invalid, expected).observation, measured, expected)
+    );
+  }
+  for (const mutate of [
+    (data) => data.events.pop(),
+    (data) => data.events.push({ ...data.events.at(-1) }),
+    (data) => (data.events[1].from = 'research'),
+    (data) => (data.events[1].to = 'research'),
+    (data) => (data.events[1].time = NaN),
+    (data) => (data.samples[1].timeMs = NaN),
+  ]) {
+    const invalid = structuredClone(observation);
+    mutate(invalid);
+    assert.throws(() => fragmentTransaction(invalid, expected));
+  }
+  assert.throws(() =>
+    validateFragmentRoute(transaction.observation, { ...measured, readyMs: 3201 }, expected)
+  );
+});
 test('Off cancellation requires native readiness and cleanup while its camera journey can remain paused', () => {
   const { fragmentCancellationReady } = require('../tools/quality/color-browser.cjs'),
     vm = require('node:vm');
