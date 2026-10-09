@@ -1409,6 +1409,22 @@
         "tools/quality/motion.cjs",
         "tools/quality/budgets.json"
       ]
+    },
+    {
+      "path": "tests/test_issue65_acceptance.py",
+      "language": "python",
+      "purpose": "Issue65 source reading/disposition/scope and pinned five-PR overhead observables; semantic and live guarantees stay independent gates.",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": ["issue-policy"],
+      "disposition": "owning policy only; reuse maintained acceptance/style negatives without duplicate browser or historical task suites",
+      "surviving_route": ".github/acceptance/issue-65.json",
+      "inputs": [
+        "tests/test_issue65_acceptance.py",
+        ".github/acceptance/issue-65.json",
+        "review/issue-65/2026-10-09-dispositions.json",
+        "review/issue-65/2026-10-09-overhead-input.json"
+      ]
     }
   ]
 }

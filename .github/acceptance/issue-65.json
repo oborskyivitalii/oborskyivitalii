@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 65,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/65",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Verify external claims and task reading/action baseline",
+      "automated_scope": "Named current-source assertions establish only their reported numeric/topological/negative/scope checks. Semantic adequacy, actual live GitHub state and maintainer decisions remain the listed external gates; no historical report is relabelled as current approval.",
+      "checks": ["DISPOSITIONS", "OVERHEAD", "READING"],
+      "gates": ["REVIEW"]
+    },
+    {
+      "id": "AC02",
+      "intent": "Preserve guarantees and dispositions including deleted substantive rules",
+      "automated_scope": "Named current-source assertions establish only their reported numeric/topological/negative/scope checks. Semantic adequacy, actual live GitHub state and maintainer decisions remain the listed external gates; no historical report is relabelled as current approval.",
+      "checks": [
+        "DISPOSITIONS",
+        "SCOPE",
+        "I2-ACCOUNTING",
+        "I2-HEAD",
+        "I2-MUTATION",
+        "I2-APPROVAL",
+        "I7-GROWTH",
+        "I7-ALLOWANCES"
+      ],
+      "gates": ["REVIEW"]
+    },
+    {
+      "id": "AC03",
+      "intent": "Task routing reduces complete minimum reading",
+      "automated_scope": "Named current-source assertions establish only their reported numeric/topological/negative/scope checks. Semantic adequacy, actual live GitHub state and maintainer decisions remain the listed external gates; no historical report is relabelled as current approval.",
+      "checks": ["READING", "RI-BOUNDS", "POLICY-RI"],
+      "gates": ["REVIEW"]
+    },
+    {
+      "id": "AC04",
+      "intent": "Concise current MEMORY with linked history",
+      "automated_scope": "Named current-source assertions establish only their reported numeric/topological/negative/scope checks. Semantic adequacy, actual live GitHub state and maintainer decisions remain the listed external gates; no historical report is relabelled as current approval.",
+      "checks": ["READING", "RI-BOUNDS", "DISPOSITIONS"],
+      "gates": ["REVIEW"]
+    },
+    {
+      "id": "AC05",
+      "intent": "Enduring guides and clear formatting exception route",
+      "automated_scope": "Named current-source assertions establish only their reported numeric/topological/negative/scope checks. Semantic adequacy, actual live GitHub state and maintainer decisions remain the listed external gates; no historical report is relabelled as current approval.",
+      "checks": ["DISPOSITIONS", "GUARD-ROUTES"],
+      "gates": ["REVIEW"]
+    },
+    {
+      "id": "AC06",
+      "intent": "Honest existing enforcement and separate live review",
+      "automated_scope": "Named current-source assertions establish only their reported numeric/topological/negative/scope checks. Semantic adequacy, actual live GitHub state and maintainer decisions remain the listed external gates; no historical report is relabelled as current approval.",
+      "checks": ["DISPOSITIONS", "I1-REFS", "I2-APPROVAL", "GUARD"],
+      "gates": ["REVIEW", "LIVE"]
+    },
+    {
+      "id": "AC07",
+      "intent": "Reproducible five-PR overhead facts and bounded proposals",
+      "automated_scope": "Named current-source assertions establish only their reported numeric/topological/negative/scope checks. Semantic adequacy, actual live GitHub state and maintainer decisions remain the listed external gates; no historical report is relabelled as current approval.",
+      "checks": ["OVERHEAD"],
+      "gates": ["REVIEW"]
+    },
+    {
+      "id": "AC08",
+      "intent": "Two disclosed source-based comparisons, not universal behavioral proof",
+      "automated_scope": "Named current-source assertions establish only their reported numeric/topological/negative/scope checks. Semantic adequacy, actual live GitHub state and maintainer decisions remain the listed external gates; no historical report is relabelled as current approval.",
+      "checks": ["READING"],
+      "gates": ["REVIEW"]
+    },
+    {
+      "id": "AC09",
+      "intent": "Current source, reviewed Draft linkage and eventual authorized merged closure",
+      "automated_scope": "Named current-source assertions establish only their reported numeric/topological/negative/scope checks. Semantic adequacy, actual live GitHub state and maintainer decisions remain the listed external gates; no historical report is relabelled as current approval.",
+      "checks": ["SCOPE", "POLICY-RI", "RI-CI", "GUARD", "BASIC"],
+      "gates": ["REVIEW", "LIVE", "MERGED"]
+    }
+  ],
+  "checks": {
+    "READING": {
+      "kind": "unittest",
+      "test": "test_issue65_acceptance.Issue65AcceptanceTests.test_reading_cost_and_existing_bounds"
+    },
+    "DISPOSITIONS": {
+      "kind": "unittest",
+      "test": "test_issue65_acceptance.Issue65AcceptanceTests.test_disposition_structure_and_destination_anchors"
+    },
+    "SCOPE": {
+      "kind": "unittest",
+      "test": "test_issue65_acceptance.Issue65AcceptanceTests.test_frozen_product_and_debt_sources"
+    },
+    "OVERHEAD": {
+      "kind": "unittest",
+      "test": "test_issue65_acceptance.Issue65AcceptanceTests.test_overhead_snapshot_matches_pinned_git_diffs"
+    },
+    "POLICY-RI": {
+      "kind": "unittest",
+      "test": "test_issue65_acceptance.Issue65AcceptanceTests.test_current_policy_and_navigation"
+    },
+    "GUARD": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    },
+    "GUARD-ROUTES": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_mandatory_agent_contributor_and_acceptance_routes"
+    },
+    "RI-BOUNDS": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_memory_and_agent_bounds_and_required_sections_fail"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    },
+    "BASIC": {
+      "kind": "node-basic"
+    },
+    "I2-ACCOUNTING": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_skipped_failed_expected_and_empty_tests_cannot_pass"
+    },
+    "I2-HEAD": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_dirty_or_wrong_head_cannot_be_clean_source_evidence"
+    },
+    "I2-MUTATION": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_source_mutation_during_checks_invalidates_evidence"
+    },
+    "I2-APPROVAL": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_policy_cannot_supply_shell_code_arguments_or_approval"
+    },
+    "I1-REFS": {
+      "kind": "unittest",
+      "test": "test_issue_acceptance.AcceptanceRunnerTests.test_selector_missing_ambiguous_or_malformed_owner_fails"
+    },
+    "I7-GROWTH": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleTests.test_new_debt_cannot_be_admitted_by_adding_an_exception"
+    },
+    "I7-ALLOWANCES": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleTests.test_expanded_duplicate_unowned_and_wildcard_allowances_fail"
+    }
+  },
+  "gates": {
+    "REVIEW": {
+      "kind": "human",
+      "description": "Independent final review of F01-F14 accuracy, I1-I8 and all changed/deleted substantive rules, memory history destinations, CS applicability, overhead limits and both T0/T1 walkthroughs; separately inspect T2/T3/T4 routes."
+    },
+    "LIVE": {
+      "kind": "human",
+      "description": "Inspect the current raw-head PR/Refs commits/CI and live issue checkbox/review/dependency state. Offline runner cannot supply those observations or human approvals."
+    },
+    "MERGED": {
+      "kind": "merge",
+      "description": "Explicit maintainer merge decision followed by actual merge/main verification and original-intent closure. No merge, promotion, production or domain authority comes from passing checks."
+    }
+  }
+}

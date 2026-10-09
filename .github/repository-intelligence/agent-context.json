@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "720cb86652098a36462187da7c0e82633aefd00b9a80b0b1b1a55306fc4f751a",
+    "digest": "5a3e9331e1ecab3ca24c4f64e1616ba0dfd3bb1f04c0ba9dc74a0b83e8bd9ae5",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -42,7 +42,7 @@
       {
         "path": ".github/REPOSITORY-INTELLIGENCE.md",
         "identity_mode": "content",
-        "sha256": "b82d2a4d4b50c97a8fb870885e1475c51abab7971c7808fbe4eeeb104b334c3a"
+        "sha256": "397878fce81257274efb815587e2fa6923e3368c8da242e538c2fd3144a823f5"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -105,6 +105,11 @@
         "sha256": "0a45538f557750e8604935e1591edccac0847d6014a256f1fe8d285ab3fe5cbf"
       },
       {
+        "path": ".github/acceptance/issue-65.json",
+        "identity_mode": "content",
+        "sha256": "3f7489a42a98ea85dfe6062bf96bb970a132d9e1ebd89a294475afb37c106de9"
+      },
+      {
         "path": ".github/code-style.json",
         "identity_mode": "content",
         "sha256": "7f275850381b10adcc9cce83ecc8969fbbdd0d267ac565141c5bfef11fd4a7fc"
@@ -131,12 +136,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "5dcf39a6babcbcf4455ff5f1c1006759b5deffea705ca4fda720e10cea58f870"
+        "sha256": "5ab32517fe06105e2fa9d79075f79df7719a51afad911c472f76c0323fde7de0"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "52f5207927ff04af607d568ebca475bd25008a5d7182b88ddea4e825bef7ffca"
+        "sha256": "556d54cfd6814e5c79a8814b50560989101afee7111e862a0e72f7f38e994175"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -221,17 +226,17 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "478c6af4aa6eca644b0d85cf73f44d50526fa5c4a808f414cc6d0b654d3b4792"
+        "sha256": "60e88a430d100d72926bfea030495353f92085fe073e95cc9d0405d0f70d78cc"
       },
       {
         "path": "CONTRIBUTING.md",
         "identity_mode": "content",
-        "sha256": "9d8ea10d74c48fe313e7c977ffef9e9afa894d566163220a405d2fdb154f6ebc"
+        "sha256": "01b7051da63ca5473ad0e3774bdceab010c48e28933a670fada9ff7d94463339"
       },
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "6d0b706047874700a603e8820c5d640046a7adfeaf156339683280beba453a29"
+        "sha256": "ffedd3767afb06a8e04a8ac99c1f9b159e6b07ba1c6c35183093f012b90060b3"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -455,7 +460,7 @@
       {
         "path": "guides/CODE-STYLE.md",
         "identity_mode": "content",
-        "sha256": "034ba9529dba8aa3d88de8d42d0d4e989661f37a0c10bc715394dc19fbe5ad2f"
+        "sha256": "41e3a04a7150cc982db9a4f5f0dd80096ffeda552638023be67d37927d986d6f"
       },
       {
         "path": "guides/README.md",
@@ -806,6 +811,26 @@
         "path": "review/issue-61/content-amendment.json",
         "identity_mode": "content",
         "sha256": "1822c75bb0a6e48e831ea245d762b45a6518b95e6d98a4baf0efe4345f77b6f5"
+      },
+      {
+        "path": "review/issue-65/2026-10-09-analysis.md",
+        "identity_mode": "content",
+        "sha256": "b6d03ccbd76ac06ebac42111ec0e60c13089f1d97cd1cc04ef690ad1b393eb26"
+      },
+      {
+        "path": "review/issue-65/2026-10-09-dispositions.json",
+        "identity_mode": "content",
+        "sha256": "d9baac8bf176bc24e81556b6563b7830bf8f233320aceb6c93d65d3544f6fc5f"
+      },
+      {
+        "path": "review/issue-65/2026-10-09-overhead-input.json",
+        "identity_mode": "content",
+        "sha256": "d107e60cd72231b5baaaa401dd023c3bbcf2a805592342d22f0662f55a04d3d9"
+      },
+      {
+        "path": "review/issue-65/2026-10-09-review.md",
+        "identity_mode": "content",
+        "sha256": "155001616582d5be95c5648a3ccf3b2cdecb3bc691e73301117620e922d23d01"
       },
       {
         "path": "review/public-responses-20261006/README.md",
@@ -5193,6 +5218,11 @@
         "sha256": "23da1dc4b786b62b720b01f7f11dbdb782cc460223c02e5e621ab8a9a45260b7"
       },
       {
+        "path": "tests/test_issue65_acceptance.py",
+        "identity_mode": "content",
+        "sha256": "f7362fa370ed37b324803fed158b068eea53da8a961b349154422704db50089d"
+      },
+      {
         "path": "tests/test_issue_acceptance.py",
         "identity_mode": "content",
         "sha256": "51b509df5b1bb8838d85c1c25ee1c07e5323d7cf882ae2b1bbe8846709f3bd8d"
@@ -5635,7 +5665,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "d855852dbaad6b393ca772ac2285bfa3469d87c9008d37f53afe5213afb0510a"
+        "sha256": "f7b9c2145457df2373e6c1892b7473f13af56d4966de11978da239f4fdbbd148"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -6278,6 +6308,17 @@
         "AGENTS.md"
       ],
       "title": "issue-61.json"
+    },
+    {
+      "path": ".github/acceptance/issue-65.json",
+      "kind": "file",
+      "purpose": "Issue65 AC01-AC09 source checks with separate review, live and merge gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-65.json"
     },
     {
       "path": ".github/code-style.json",
@@ -7829,6 +7870,50 @@
         "AGENTS.md"
       ],
       "title": "content-amendment.json"
+    },
+    {
+      "path": "review/issue-65/2026-10-09-analysis.md",
+      "kind": "file",
+      "purpose": "Verified findings, invariant dispositions, task walkthroughs and five-PR overhead analysis.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 65 — 2026-10-09 harness analysis / execution handoff"
+    },
+    {
+      "path": "review/issue-65/2026-10-09-dispositions.json",
+      "kind": "file",
+      "purpose": "Pinned finding classifications and destinations for preserved or consolidated rules.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-09-dispositions.json"
+    },
+    {
+      "path": "review/issue-65/2026-10-09-overhead-input.json",
+      "kind": "file",
+      "purpose": "Frozen five-PR metadata, Git line counts, classification rules and bounded workflow observations.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-09-overhead-input.json"
+    },
+    {
+      "path": "review/issue-65/2026-10-09-review.md",
+      "kind": "file",
+      "purpose": "Independent implementation review of harness rules, findings and bounded acceptance.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 65 — 2026-10-09 independent implementation review"
     },
     {
       "path": "review/public-responses-20261006/README.md",
@@ -17478,6 +17563,17 @@
       "title": "test_issue61_acceptance.py"
     },
     {
+      "path": "tests/test_issue65_acceptance.py",
+      "kind": "file",
+      "purpose": "Owning issue65 assertions for reading, disposition topology, preserved sources and pinned overhead.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "test_issue65_acceptance.py"
+    },
+    {
       "path": "tests/test_issue_acceptance.py",
       "kind": "file",
       "purpose": "Acceptance runner adversarial cases for invalid mappings, skipped/empty/failed tests and evidence identity.",
@@ -19356,6 +19452,16 @@
       "purpose": "Bounded source amendment and handoff for the supplied PMDay Ukrainian recording update.",
       "role": "history",
       "owner": "review/REVIEW-TEMPLATE.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-65",
+      "kind": "directory",
+      "purpose": "Harness simplification evidence and independent review under issue65.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md",
       "instructions": [
         "AGENTS.md"
       ]

@@ -1,0 +1,338 @@
+{
+  "schema_version": 1,
+  "base_sha": "9da2476c9269345a242c7524374a645b0a21c2d4",
+  "base_tree": "a1426cdf9ca1f740f56a6a66bd8f555d8820ddd6",
+  "findings": [
+    {
+      "id": "F01",
+      "status": "verified",
+      "reason": "AGENTS is 99 lines and 6575 UTF-8 bytes; current cap is 100 lines.",
+      "evidence": [
+        "https://github.com/oborskyivitalii/oborskyivitalii/blob/9da2476c9269345a242c7524374a645b0a21c2d4/AGENTS.md",
+        "https://github.com/oborskyivitalii/oborskyivitalii/blob/9da2476c9269345a242c7524374a645b0a21c2d4/CONTRIBUTING.md"
+      ]
+    },
+    {
+      "id": "F02",
+      "status": "verified",
+      "reason": "MEMORY is 120 lines and 8219 bytes; current cap is 120 lines.",
+      "evidence": [
+        "https://github.com/oborskyivitalii/oborskyivitalii/blob/9da2476c9269345a242c7524374a645b0a21c2d4/MEMORY.md",
+        "https://github.com/oborskyivitalii/oborskyivitalii/blob/9da2476c9269345a242c7524374a645b0a21c2d4/CONTRIBUTING.md"
+      ]
+    },
+    {
+      "id": "F03",
+      "status": "verified",
+      "reason": "Four instruction documents total 632 lines and 41422 bytes. CODE-STYLE is conditional; route/owner documents add task-specific costs.",
+      "evidence": [
+        "https://github.com/oborskyivitalii/oborskyivitalii/blob/9da2476c9269345a242c7524374a645b0a21c2d4/AGENTS.md",
+        "https://github.com/oborskyivitalii/oborskyivitalii/blob/9da2476c9269345a242c7524374a645b0a21c2d4/CONTRIBUTING.md",
+        "https://github.com/oborskyivitalii/oborskyivitalii/blob/9da2476c9269345a242c7524374a645b0a21c2d4/guides/CODE-STYLE.md",
+        "https://github.com/oborskyivitalii/oborskyivitalii/blob/9da2476c9269345a242c7524374a645b0a21c2d4/MEMORY.md"
+      ]
+    },
+    {
+      "id": "F04",
+      "status": "verified",
+      "reason": "MEMORY contains phase SHAs, stage identifiers, byte/timing counts and parity history despite its short-handoff contract.",
+      "evidence": [
+        "https://github.com/oborskyivitalii/oborskyivitalii/blob/9da2476c9269345a242c7524374a645b0a21c2d4/MEMORY.md",
+        "https://github.com/oborskyivitalii/oborskyivitalii/blob/9da2476c9269345a242c7524374a645b0a21c2d4/CONTRIBUTING.md"
+      ]
+    },
+    {
+      "id": "F05",
+      "status": "verified",
+      "reason": "Raw bytes contain Published896 acceptance passes15 checks and Stage37823514965. These are source tokens, not rendering artifacts.",
+      "evidence": [
+        "https://github.com/oborskyivitalii/oborskyivitalii/blob/9da2476c9269345a242c7524374a645b0a21c2d4/MEMORY.md"
+      ]
+    },
+    {
+      "id": "F06",
+      "status": "verified",
+      "reason": "Standing CODE-STYLE preamble/CS01 retain issue54/R1 and dated PR60 approvals; CS02/CS05 retain obsolete future-phase language.",
+      "evidence": [
+        "https://github.com/oborskyivitalii/oborskyivitalii/blob/9da2476c9269345a242c7524374a645b0a21c2d4/guides/CODE-STYLE.md"
+      ]
+    },
+    {
+      "id": "F07",
+      "status": "corrected",
+      "reason": "PR60 has a recorded maintainer exception and is merged; no unapproved scope violation is established. Generic formatting wording is clarified.",
+      "evidence": [
+        "https://github.com/oborskyivitalii/oborskyivitalii/blob/9da2476c9269345a242c7524374a645b0a21c2d4/guides/CODE-STYLE.md",
+        "https://github.com/oborskyivitalii/oborskyivitalii/blob/9da2476c9269345a242c7524374a645b0a21c2d4/review/issue-58/2026-10-08-handoff.md"
+      ]
+    },
+    {
+      "id": "F08",
+      "status": "corrected",
+      "reason": "Repeated and same-head acceptance runs are observed, but PR size/exact-source-binding causality and work time are not isolated. Preserve I2.",
+      "evidence": [
+        "https://github.com/oborskyivitalii/oborskyivitalii/blob/9da2476c9269345a242c7524374a645b0a21c2d4/review/issue-58/2026-10-08-handoff.md"
+      ]
+    },
+    {
+      "id": "F09",
+      "status": "corrected",
+      "reason": "Initial PR63 checkpoint is a one-field content example; final PR63 includes authorized runtime ribbon removal. The five merged PRs contain no pure small-content delivery.",
+      "evidence": [
+        "https://github.com/oborskyivitalii/oborskyivitalii/blob/9da2476c9269345a242c7524374a645b0a21c2d4/review/issue-61/2026-10-08-handoff.md"
+      ]
+    },
+    {
+      "id": "F10",
+      "status": "verified",
+      "reason": "Indexed instruction/memory edits require RI rebuild; producer hashes source bytes and verify rejects stale views.",
+      "evidence": [
+        "https://github.com/oborskyivitalii/oborskyivitalii/blob/9da2476c9269345a242c7524374a645b0a21c2d4/AGENTS.md",
+        "https://github.com/oborskyivitalii/oborskyivitalii/blob/9da2476c9269345a242c7524374a645b0a21c2d4/tools/repository_intelligence.py",
+        "https://github.com/oborskyivitalii/oborskyivitalii/blob/9da2476c9269345a242c7524374a645b0a21c2d4/.github/REPOSITORY-INTELLIGENCE.md"
+      ]
+    },
+    {
+      "id": "F11",
+      "status": "corrected",
+      "reason": "Exactly-one local PR Refs ownership is already enforced. Commit Refs, honest independent-review attribution and live AC/human gates need separate review.",
+      "evidence": [
+        "https://github.com/oborskyivitalii/oborskyivitalii/blob/9da2476c9269345a242c7524374a645b0a21c2d4/tools/issue_acceptance.py",
+        "https://github.com/oborskyivitalii/oborskyivitalii/blob/9da2476c9269345a242c7524374a645b0a21c2d4/tests/test_issue_acceptance.py",
+        "https://github.com/oborskyivitalii/oborskyivitalii/blob/9da2476c9269345a242c7524374a645b0a21c2d4/.github/workflows/issue-acceptance.yml"
+      ]
+    },
+    {
+      "id": "F12",
+      "status": "corrected",
+      "reason": "Baseline contains 228 commits and recent harness history. Age alone proves neither ineffectiveness nor productivity; no broad effectiveness claim is made.",
+      "evidence": [
+        "https://github.com/oborskyivitalii/oborskyivitalii/blob/9da2476c9269345a242c7524374a645b0a21c2d4/review/issue-31/2026-10-07-analysis.md",
+        "https://github.com/oborskyivitalii/oborskyivitalii/blob/9da2476c9269345a242c7524374a645b0a21c2d4/review/issue-54/2026-10-08-analysis.md"
+      ]
+    },
+    {
+      "id": "F13",
+      "status": "corrected",
+      "reason": "Issue58 owns site source refactoring R2-R6, not a second harness exercise, and is completed after PR60 merge.",
+      "evidence": [
+        "https://github.com/oborskyivitalii/oborskyivitalii/blob/9da2476c9269345a242c7524374a645b0a21c2d4/review/issue-58/2026-10-08-handoff.md"
+      ]
+    },
+    {
+      "id": "F14",
+      "status": "verified",
+      "reason": "Root has PROJECT-BOOTSTRAP and no CLAUDE-specific entry file; no model-specific entry is needed to fix the confirmed current issues.",
+      "evidence": [
+        "https://github.com/oborskyivitalii/oborskyivitalii/blob/9da2476c9269345a242c7524374a645b0a21c2d4/README.md",
+        "https://github.com/oborskyivitalii/oborskyivitalii/blob/9da2476c9269345a242c7524374a645b0a21c2d4/PROJECT-BOOTSTRAP.md"
+      ]
+    }
+  ],
+  "invariants": [
+    {
+      "id": "I1",
+      "disposition": "kept; compact owner routes preserve the guarantee",
+      "destinations": [
+        "AGENTS.md#start-from-an-issue"
+      ],
+      "review_route": "PR selection and policy schema; live issue/intended AC adequacy reviewed"
+    },
+    {
+      "id": "I2",
+      "disposition": "kept; compact owner routes preserve the guarantee",
+      "destinations": [
+        "CONTRIBUTING.md#acceptance-criteria-and-session-evidence"
+      ],
+      "review_route": "Acceptance runner current-source/failure negatives; semantic adequacy and external evidence reviewed"
+    },
+    {
+      "id": "I3",
+      "disposition": "kept; compact owner routes preserve the guarantee",
+      "destinations": [
+        "CONTRIBUTING.md#review-analysis-and-model-handoff"
+      ],
+      "review_route": "Pending human gates cannot supply approvals; actual attribution reviewed"
+    },
+    {
+      "id": "I4",
+      "disposition": "kept; compact owner routes preserve the guarantee",
+      "destinations": [
+        "CONTRIBUTING.md#implementation-review-and-closure"
+      ],
+      "review_route": "Pending merge gates and staging authorization controls; explicit decisions reviewed"
+    },
+    {
+      "id": "I5",
+      "disposition": "kept; compact owner routes preserve the guarantee",
+      "destinations": [
+        "CONTRIBUTING.md#repository-navigation-and-session-memory"
+      ],
+      "review_route": "Existing RI memory sections/bounds/freshness negatives; live facts reviewed"
+    },
+    {
+      "id": "I6",
+      "disposition": "kept; compact owner routes preserve the guarantee",
+      "destinations": [
+        "AGENTS.md#implement-verify-and-link"
+      ],
+      "review_route": "Existing generated import/build owner controls; authored diff reviewed"
+    },
+    {
+      "id": "I7",
+      "disposition": "kept; compact owner routes preserve the guarantee",
+      "destinations": [
+        "guides/CODE-STYLE.md#cs09--what-the-current-automatic-guard-proves"
+      ],
+      "review_route": "Existing immutable debt-growth negatives; no guard/baseline/policy edits"
+    },
+    {
+      "id": "I8",
+      "disposition": "kept; compact owner routes preserve the guarantee",
+      "destinations": [
+        "CONTRIBUTING.md#implementation-review-and-closure"
+      ],
+      "review_route": "Acceptance/staging reports preserve distinct pending states; live state reviewed"
+    }
+  ],
+  "changed_rules": [
+    {
+      "id": "D01",
+      "original_rule": "Issue-first, stable ACs, original intent and user issue binding",
+      "disposition": "kept and clarified; PR53 pending binding guarantee preserved",
+      "destinations": [
+        "CONTRIBUTING.md#issue-intake-and-durable-intent"
+      ],
+      "review_route": "Independent final diff review against pinned baseline, including deleted substantive text"
+    },
+    {
+      "id": "D02",
+      "original_rule": "Live refs, full PR inspection, non-authoritative dated memory",
+      "disposition": "kept; stale task state corrected without claiming fresh sibling acceptance",
+      "destinations": [
+        "AGENTS.md#start-from-an-issue",
+        "AGENTS.md#implement-verify-and-link"
+      ],
+      "review_route": "Independent final diff review against pinned baseline, including deleted substantive text"
+    },
+    {
+      "id": "D03",
+      "original_rule": "Inventory, source-search fallback and owner conflicts",
+      "disposition": "kept",
+      "destinations": [
+        "AGENTS.md#implement-verify-and-link",
+        "AGENTS.md#start-from-an-issue"
+      ],
+      "review_route": "Independent final diff review against pinned baseline, including deleted substantive text"
+    },
+    {
+      "id": "D04",
+      "original_rule": "Authored sources, generated renditions, research/publication boundaries",
+      "disposition": "kept; authority detail routed to existing source owners",
+      "destinations": [
+        "CONTRIBUTING.md#publication-and-licensing-checks",
+        "AGENTS.md#implement-verify-and-link"
+      ],
+      "review_route": "Independent final diff review against pinned baseline, including deleted substantive text"
+    },
+    {
+      "id": "D05",
+      "original_rule": "Code-style ACs, bounded guard, unautomated review and exact exceptions",
+      "disposition": "kept; duplicated prose compacted",
+      "destinations": [
+        "CONTRIBUTING.md#implementation-review-and-closure"
+      ],
+      "review_route": "Independent final diff review against pinned baseline, including deleted substantive text"
+    },
+    {
+      "id": "D06",
+      "original_rule": "Refs every implementation commit, PR, squash and exact reverse links",
+      "disposition": "kept",
+      "destinations": [
+        "CONTRIBUTING.md#implementation-review-and-closure"
+      ],
+      "review_route": "Independent final diff review against pinned baseline, including deleted substantive text"
+    },
+    {
+      "id": "D07",
+      "original_rule": "Draft iteration, honest independent/editorial/rights/device review",
+      "disposition": "kept",
+      "destinations": [
+        "AGENTS.md#implement-verify-and-link"
+      ],
+      "review_route": "Independent final diff review against pinned baseline, including deleted substantive text"
+    },
+    {
+      "id": "D08",
+      "original_rule": "Versioned review artifact, template, dated issue anchor, single handoff route",
+      "disposition": "kept",
+      "destinations": [
+        "CONTRIBUTING.md#review-analysis-and-model-handoff"
+      ],
+      "review_route": "Independent final diff review against pinned baseline, including deleted substantive text"
+    },
+    {
+      "id": "D09",
+      "original_rule": "Current-source policy/evidence and actual whole-criterion checkboxes",
+      "disposition": "kept; executable detail remains in already-required .github/ACCEPTANCE.md",
+      "destinations": [
+        "CONTRIBUTING.md#acceptance-criteria-and-session-evidence"
+      ],
+      "review_route": "Independent final diff review against pinned baseline, including deleted substantive text"
+    },
+    {
+      "id": "D10",
+      "original_rule": "Basic, original budgets, profile distinction and authorized controllers",
+      "disposition": "kept",
+      "destinations": [
+        "AGENTS.md#implement-verify-and-link"
+      ],
+      "review_route": "Independent final diff review against pinned baseline, including deleted substantive text"
+    },
+    {
+      "id": "D11",
+      "original_rule": "RI/catalog views and dependent test/workflow coupling",
+      "disposition": "kept",
+      "destinations": [
+        "CONTRIBUTING.md#repository-navigation-and-session-memory"
+      ],
+      "review_route": "Independent final diff review against pinned baseline, including deleted substantive text"
+    },
+    {
+      "id": "D12",
+      "original_rule": "Merged/checked closure, umbrella dependencies and test dispositions",
+      "disposition": "kept",
+      "destinations": [
+        "CONTRIBUTING.md#implementation-review-and-closure"
+      ],
+      "review_route": "Independent final diff review against pinned baseline, including deleted substantive text"
+    },
+    {
+      "id": "D13",
+      "original_rule": "Memory five sections, caps, privacy and historical logs",
+      "disposition": "kept; history routed to issue58/PR60 and pinned artifacts listed in analysis",
+      "destinations": [
+        "CONTRIBUTING.md#repository-navigation-and-session-memory"
+      ],
+      "review_route": "Independent final diff review against pinned baseline, including deleted substantive text"
+    },
+    {
+      "id": "D14",
+      "original_rule": "Research input report six information groups and required decision",
+      "disposition": "kept; all information groups retained",
+      "destinations": [
+        "CONTRIBUTING.md#research-input-report-before-integration"
+      ],
+      "review_route": "Independent final diff review against pinned baseline, including deleted substantive text"
+    },
+    {
+      "id": "D15",
+      "original_rule": "Standing guide R1/R2/R3 narrative and dated exception",
+      "disposition": "historical task prose deleted from standing guide; preserved at baseline and owning issue54/56/58 artifacts; enduring owner/formatter/exception rules retained",
+      "destinations": [
+        "guides/CODE-STYLE.md#cs05--readable-authored-code"
+      ],
+      "review_route": "Independent final diff review against pinned baseline, including deleted substantive text"
+    }
+  ]
+}
