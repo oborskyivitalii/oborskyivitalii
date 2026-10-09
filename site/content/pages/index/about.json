@@ -9,12 +9,18 @@
     "T005": "I write for architects, engineering and delivery leaders, product owners and PMO\n        practitioners. This site connects the publications and living research behind that work.",
     "T006": "LinkedIn ↗",
     "T007": "GitHub ↗",
-    "T008": "Medium ↗"
+    "T008": "Medium ↗",
+    "T009": "Invited speaker at Corning’s internal technical AI workshop. ",
+    "T010": "Explore the talk ↗",
+    "T011": "This site is also a practical example of human-directed, AI-assisted delivery. ",
+    "T012": "About the build ↗"
   },
   "attributes": {},
   "urls": {
     "U001": "https://www.linkedin.com/in/vitaliioborskyi/",
     "U002": "https://github.com/oborskyivitalii",
-    "U003": "https://medium.com/@undersmoker"
+    "U003": "https://medium.com/@undersmoker",
+    "U004": "talks.html#corning",
+    "U005": "credits.html#built-with-ai"
   }
 }

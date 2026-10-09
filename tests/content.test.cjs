@@ -16,6 +16,12 @@ const schema = (html) =>
 const articleRows = (html) => [
   ...html.matchAll(/<li class="publication" data-language="(en|uk)"[^>]*>([\s\S]*?)<\/li>/g),
 ];
+const talkRows = (html) =>
+  [...html.matchAll(/<article class="publication"([^>]*)>([\s\S]*?)<\/article>/g)].map((row) => [
+    row[0],
+    row[1].match(/\bdata-language="([^"]+)"/)?.[1],
+    row[2],
+  ]);
 const plainTitle = (html) =>
   html
     .replace(/<span class="publication-arrow"[^>]*>[\s\S]*?<\/span>/g, '')
@@ -329,7 +335,7 @@ test('language-labelled editions match article schema and retain the original pr
   assert.ok(pages.writing.includes('LinkedIn edition · 27 Aug 2026'));
 });
 
-test('portrait is a real sized local asset and ambiguous talk languages stay explicit', () => {
+test('portrait is a real sized local asset and unverified talk languages are omitted', () => {
   const photo = fs.readFileSync(path.join(root, 'assets/vitalii-oborskyi.jpg'));
   assert.equal(photo[0], 0xff);
   assert.equal(photo[1], 0xd8);
@@ -341,16 +347,16 @@ test('portrait is a real sized local asset and ambiguous talk languages stay exp
     pages.index,
     /<img class="portrait-media" src="media\/[a-f0-9]{64}\/vitalii-oborskyi-cutout.webp" alt="Portrait of Vitalii Oborskyi with the background removed" width="780" height="721"/
   );
-  const talks = [
-    ...pages.talks.matchAll(
-      /<article class="publication" data-language="([^"]+)">([\s\S]*?)<\/article>/g
-    ),
-  ];
+  const talks = talkRows(pages.talks);
   assert.deepEqual(
     talks.map((row) => row[1]),
-    ['uk', 'unconfirmed', 'unconfirmed', 'unconfirmed']
+    ['uk', undefined, undefined, undefined]
   );
-  for (const row of talks.slice(1)) assert.ok(row[2].includes('Language unconfirmed'));
+  for (const row of talks.slice(1)) {
+    assert.doesNotMatch(row[0], /data-language|language-badge|Language unconfirmed/);
+  }
+  assert.doesNotMatch(pages.talks, /not yet been confirmed|Language unconfirmed/);
+  assert.ok(talks[0][2].includes('PMDay 2026 · Recording in Ukrainian'));
   assert.ok(pages.talks.includes('id="ukrainian-talks"'));
 });
 
@@ -358,6 +364,7 @@ test('Talks curates distinct events with source-supported dates, language and re
   const inventory = require('../review/issue-48/source-inventory.json').talks;
   const amendment = require('../review/issue-48/content-amendment.json');
   const recordingAmendment = require('../review/issue-61/content-amendment.json');
+  const positioningAmendment = require('../review/issue-41/2026-10-09-positioning-amendment.json');
   const { restoreContentAmendment } = require('../tools/check_site_seo.cjs');
   const historical = amendment.changes.find(
     (change) => change.page === 'talks' && change.id === 'talks'
@@ -375,17 +382,21 @@ test('Talks curates distinct events with source-supported dates, language and re
     ).html
   );
   assert.equal(
-    restoreContentAmendment(currentSection, 'talks', recordingAmendment),
+    restoreContentAmendment(
+      restoreContentAmendment(currentSection, 'talks', positioningAmendment),
+      'talks',
+      recordingAmendment
+    ),
     section.after,
-    'the exact PMDay recording amendment preserves the earlier event inventory'
+    'the exact positioning and PMDay amendments preserve the earlier event inventory'
   );
   assert.ok(pages.talks.includes(currentSection), 'generated page carries the authored section');
-  const rows = (html) => [
-    ...html.matchAll(/<article class="publication" data-language="([^"]+)">([\s\S]*?)<\/article>/g),
-  ];
-  const cards = rows(currentSection);
-  const priorCards = rows(section.after);
-  const oldCards = rows(section.before);
+  const cards = talkRows(currentSection);
+  const earlierCards = talkRows(
+    restoreContentAmendment(currentSection, 'talks', positioningAmendment)
+  );
+  const priorCards = talkRows(section.after);
+  const oldCards = talkRows(section.before);
   assert.deepEqual(
     cards.map((row) => row[2].match(/<h3 class="talk-title"[^>]*>(.*?)<\/h3>/)[1]),
     [
@@ -396,11 +407,11 @@ test('Talks curates distinct events with source-supported dates, language and re
     ]
   );
   assert.deepEqual(
-    cards.slice(1).map((row) => row[0]),
+    earlierCards.slice(1).map((row) => row[0]),
     priorCards.slice(1).map((row) => row[0]),
-    'all other events stay exact'
+    'reversing only the declared positioning changes preserves all other events'
   );
-  assert.equal(cards[1][0], oldCards[1][0], 'Corning stays exact');
+  assert.equal(earlierCards[1][0], oldCards[1][0], 'historical Corning remains exact');
   for (const old of oldCards) {
     for (const [, url] of old[0].matchAll(/href="([^"]+)"/g)) {
       assert.ok(currentSection.includes(`href="${url}"`), 'existing event source survives');
@@ -455,7 +466,7 @@ test('Talks curates distinct events with source-supported dates, language and re
   assert.equal(recordingAmendment.changes.length, 1, 'one existing PMDay card changes');
   assert.deepEqual([pmdayChange.page, pmdayChange.id], ['talks', 'pmday-recording']);
   assert.equal(normalizeHTML(pmdayChange.before), priorCards[0][0]);
-  assert.equal(normalizeHTML(pmdayChange.after), cards[0][0]);
+  assert.equal(normalizeHTML(pmdayChange.after), earlierCards[0][0]);
   assert.equal(cards[0][1], 'uk', 'spoken language remains Ukrainian');
   assert.ok(cards[0][0].includes('<span>PMDay 2026 · Recording in Ukrainian</span>'));
   assert.ok(
@@ -515,6 +526,94 @@ test('Talks curates distinct events with source-supported dates, language and re
   ]) {
     assert.ok(pages.talks.includes(`${tag} content="${description}">`));
   }
+});
+
+test('Writing intro and archive counters derive from the same catalog under edition and language changes', () => {
+  const projectRoot = path.resolve(root, '..');
+  const { catalog, routeInput } = require('../tools/site/content.cjs');
+  const { validateCatalog, catalogCounts } = require('../tools/site/validate-catalog.cjs');
+  const route = require('../site/routes.json').routes.find((entry) => entry.id === 'writing');
+  const original = catalog(projectRoot);
+  const readCounts = (candidate) => {
+    validateCatalog(candidate);
+    const rendered = routeInput(projectRoot, route, candidate);
+    const html = normalizeHTML(rendered.main);
+    const intro = html.match(
+      /<p class="hero-description">(\d+) primary archive records: (\d+) English and (\d+) Ukrainian[.;] (\d+) linked platform editions/
+    );
+    const archive = html.match(
+      /<p id="archive-count"[^>]*>(\d+) primary archive records · (\d+) EN \/ (\d+) UA\.<\/p>/
+    );
+    const editions = html.match(
+      /The catalog links (\d+) platform editions \((\d+) EN \/ (\d+) UA\)/
+    );
+    assert.ok(intro && archive && editions, 'all declared count presentations render');
+    const observed = {
+      intro: intro.slice(1).map(Number),
+      primary: archive.slice(1).map(Number),
+      linked: editions.slice(1).map(Number),
+    };
+    const counts = catalogCounts(candidate);
+    assert.deepEqual(observed.intro, [
+      counts.primary.total,
+      counts.primary.en,
+      counts.primary.uk,
+      counts.linked.total,
+    ]);
+    assert.deepEqual(observed.primary, [
+      counts.primary.total,
+      counts.primary.en,
+      counts.primary.uk,
+    ]);
+    assert.deepEqual(observed.linked, [counts.linked.total, counts.linked.en, counts.linked.uk]);
+    assert.equal(rendered.schema.mainEntity.numberOfItems, counts.primary.total);
+    assert.equal(rendered.schema.mainEntity.itemListElement.length, counts.primary.total);
+    assert.doesNotMatch(html, /\{\{CATALOG_|27 primary archive records: 20 English/);
+    return observed;
+  };
+  const before = readCounts(original);
+  const languageChange = structuredClone(original);
+  languageChange.records['publication-19'].edition.inLanguage = 'uk';
+  const languageCounts = readCounts(languageChange);
+  assert.deepEqual(languageCounts.primary, [
+    before.primary[0],
+    before.primary[1] - 1,
+    before.primary[2] + 1,
+  ]);
+  assert.deepEqual(languageCounts.linked, [
+    before.linked[0],
+    before.linked[1] - 1,
+    before.linked[2] + 1,
+  ]);
+  const alternateChange = structuredClone(original);
+  const target = Object.values(alternateChange.records).find(
+    (record) => record.editions.length < 2 && record.edition.inLanguage === 'en'
+  );
+  target.editions.push({
+    ...target.edition,
+    url: 'https://www.linkedin.com/pulse/issue41-counter-fixture/',
+    platform: 'LinkedIn',
+    relationship: 'same-topic-platform-edition',
+    bodyEquivalenceVerified: false,
+  });
+  const alternateCounts = readCounts(alternateChange);
+  assert.deepEqual(
+    alternateCounts.primary,
+    before.primary,
+    'an alternate is not another primary work'
+  );
+  assert.deepEqual(alternateCounts.linked, [
+    before.linked[0] + 1,
+    before.linked[1] + 1,
+    before.linked[2],
+  ]);
+  const duplicate = structuredClone(alternateChange);
+  duplicate.records['publication-19'].editions.push(structuredClone(target.editions.at(-1)));
+  assert.throws(
+    () => validateCatalog(duplicate),
+    /Duplicate edition URL/,
+    'duplicated links cannot inflate the catalog'
+  );
 });
 
 test('page IDs, ARIA targets, local resources and fragments resolve without draft leakage', () => {
@@ -603,7 +702,7 @@ test('Home provides the agreed reader path, precise public actions and a real co
     'human roles, evidence, decision authority and corrective action',
     'hypotheses to test in context',
     'Much remains to develop and test',
-    'outputs depend on the agreed engagement',
+    'Potential outputs, depending on the agreed scope',
   ])
     assert.ok(home.includes(text), text);
   for (const page of Object.values(pages))

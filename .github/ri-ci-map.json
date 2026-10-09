@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "review": {
-    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/65",
+    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/41",
     "date": "2026-10-09",
-    "summary": "Issue65 task router and bounded memory preserve current acceptance/style/RI guards. Review task-policy selection, permanent negative checks, catalog/profile additions and unchanged workflow invocation; semantic and live decisions remain external gates."
+    "summary": "Review issue41 practical-positioning successor policy, preserved original gates, existing catalog build tokens, permanent count/semantic negatives, new review/amendment catalog paths and unchanged workflow selection; factual/editorial decisions remain external evidence. Same-issue AI-assisted sitecase appends AC17–AC26, one exact-fragment/public-destination check and existing semantic negatives; preserves original gates/runtime controls and distinguishes implementation/history review from automated link structure. Same-issue staging follow-up admits only independently proved exact checksum false positives and canonical offline manifest regeneration; scanner controls and public runtime bytes remain unchanged."
   },
   "layers": [
     {
@@ -63,7 +63,17 @@
         ".github/acceptance/issue-58.json",
         ".github/acceptance/issue-65.json",
         "tests/test_issue65_acceptance.py",
-        "review/issue-65/2026-10-09-dispositions.json"
+        "review/issue-65/2026-10-09-dispositions.json",
+        "review/issue-41/2026-10-09-positioning-amendment.json",
+        "review/issue-41/2026-10-09-positioning.md",
+        "review/issue-41/2026-10-09-positioning-review.md",
+        "review/issue-41/2026-10-09-ci-followup.md",
+        "review/issue-41/2026-10-09-positioning-browser.md",
+        "review/issue-41/2026-10-09-sitecase-amendment.json",
+        "review/issue-41/2026-10-09-sitecase.md",
+        "review/issue-41/2026-10-09-sitecase-review.md",
+        "review/issue-41/2026-10-09-sitecase-browser.md",
+        "review/issue-41/2026-10-09-staging-security.md"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -403,7 +413,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "d77b00893af3a7af32adce541fc89e145a57b2a00e5382cce0c575f7f1213124",
+    "digest": "52d008fccaa24af18c275a3e5176546c6cb5b1e069d81d41309aeb819c48e1cd",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -439,7 +449,7 @@
       },
       {
         "path": ".github/acceptance/issue-41.json",
-        "sha256": "02cdcbb693ee30e259ca4ec4869af81ab37e6c38478e51d45de15e22a6e4a555"
+        "sha256": "5d79585dcd7bc927487b381769352becd9900715b3c8ca5dd9b75e06ae4ec3d5"
       },
       {
         "path": ".github/acceptance/issue-45.json",
@@ -491,11 +501,11 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "5ab32517fe06105e2fa9d79075f79df7719a51afad911c472f76c0323fde7de0"
+        "sha256": "dc82008feaad83ea4936f249aa48d18e673a8affa33411b4bf66f1f6d5e6e950"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
-        "sha256": "dfbe7c4ba909a8ccb054529d50ed0474fd2311cdf4eb9e19406953aad4b45a85"
+        "sha256": "c25fff96e085686ba944766c41500b9391f34339cd0f30fcaf7ddaf8df757b0a"
       },
       {
         "path": ".github/workflows/navigation.yml",
@@ -615,7 +625,7 @@
       },
       {
         "path": "tests/test_issue41_acceptance.py",
-        "sha256": "5586ac0942dffdd1fad5493b1bcf167fb1940cf672afd3298296b70bc9bcfd21"
+        "sha256": "809977718e2c32a2a7f62fedbd2f42f82419fbc37b0a75b6c6eb9c4a96f005ee"
       },
       {
         "path": "tests/test_issue45_acceptance.py",
@@ -695,7 +705,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "f7b9c2145457df2373e6c1892b7473f13af56d4966de11978da239f4fdbbd148"
+        "sha256": "dd160c8895b4f6b84f7c9ae760147afd94ca421e322b19b6fc6fa6419d63f2e4"
       },
       {
         "path": "tools/repository_intelligence.py",

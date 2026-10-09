@@ -313,7 +313,13 @@ test('Talks reconciliation rejects missing events, substituted sources and inven
     ['https://www.youtube.com/watch?v=1MPsDi3wuF4', 'https://www.youtube.com/watch?v=OtherVideo'],
     ['2026-09-26', '2026-09-28'],
     ['activity-7479802249829928961-PmrF', 'activity-7477274339411693569-dJhu'],
-    [cards[3], cards[3].replace('data-language="unconfirmed"', 'data-language="en"')],
+    [
+      cards[3],
+      cards[3].replace(
+        '<article class="publication"',
+        '<article class="publication" data-language="en"'
+      ),
+    ],
     [
       cards[0],
       cards[0].replace(
@@ -346,7 +352,12 @@ test('Talks reconciliation rejects missing events, substituted sources and inven
       'unsupported event/source/date/language/resource edit remains visible'
     );
   }
-  const earlierHtml = restoreContentAmendment(html, 'talks', recordingRecord);
+  const positioningRecord = require('../review/issue-41/2026-10-09-positioning-amendment.json');
+  const earlierHtml = restoreContentAmendment(
+    restoreContentAmendment(html, 'talks', positioningRecord),
+    'talks',
+    recordingRecord
+  );
   for (const change of changes) {
     assert.ok(
       earlierHtml.includes(normalizeHTML(change.after)),
@@ -364,7 +375,12 @@ test('Talks reconciliation rejects missing events, substituted sources and inven
     );
   }
   const [recordingChange] = recordingRecord.changes;
-  assert.equal(normalizeHTML(recordingChange.after), cards[0]);
+  const earlierCards = [
+    ...restoreContentAmendment(html, 'talks', positioningRecord).matchAll(
+      /<article class="publication"[\s\S]*?<\/article>/g
+    ),
+  ].map((row) => row[0]);
+  assert.equal(normalizeHTML(recordingChange.after), earlierCards[0]);
   assert.equal(
     restoreContentAmendment(recordingChange.after, 'talks', recordingRecord),
     normalizeHTML(recordingChange.before)
@@ -380,6 +396,54 @@ test('Talks reconciliation rejects missing events, substituted sources and inven
     assert.throws(
       () => restoreContentAmendment(recordingChange.after, 'talks', corrupt),
       /snapshot integrity/
+    );
+  }
+});
+test('practical positioning allowances reject unsupported claims, status and contact changes', () => {
+  const { restore, restoreContentAmendment } = require('../tools/check_site_seo.cjs');
+  const record = require('../review/issue-41/2026-10-09-positioning-amendment.json');
+  const sitecase = require('../review/issue-41/2026-10-09-sitecase-amendment.json');
+  for (const change of [...record.changes, ...sitecase.changes]) {
+    const owner = change.id.startsWith('sitecase-') ? sitecase : record;
+    assert.equal(
+      restoreContentAmendment(change.after, change.page, owner),
+      normalizeHTML(change.before),
+      'only the declared successor fragment is reversed'
+    );
+    const corrupt = structuredClone(owner);
+    corrupt.changes.find((row) => row.page === change.page && row.id === change.id).after += ' ';
+    assert.throws(
+      () => restoreContentAmendment(change.after, change.page, corrupt),
+      /snapshot integrity/
+    );
+  }
+  const mutations = [
+    ['index', 'around 25 projects', '250 projects'],
+    ['index', 'more than 120 engineers', '120 direct reports'],
+    ['talks', 'Invited speaker at Corning’s', 'Consulting partner of Corning’s'],
+    ['talks', 'internal technical AI workshop', 'validated enterprise AI deployment'],
+    ['talks', 'index.html#contact', 'https://unapproved.example/book'],
+    ['writing', '29 primary archive records', '27 primary archive records'],
+    ['index', 'credits.html#built-with-ai', 'credits.html#missing-case'],
+    ['credits', 'I direct its architecture', 'AI autonomously directs its architecture'],
+    [
+      'credits',
+      'does not establish enterprise-scale effectiveness',
+      'establishes enterprise-scale effectiveness',
+    ],
+    [
+      'credits',
+      '338e3ff341dc35b64cba7854289e1385cbaf1562/tools/site/build.cjs',
+      'main/tools/site/build.cjs',
+    ],
+  ];
+  for (const [page, from, to] of mutations) {
+    const html = readHTML(require('node:path').join(__dirname, '../docs/' + page + '.html'));
+    assert.ok(html.includes(from), 'mutation input exists');
+    assert.notEqual(
+      restore(html.replace(from, to), page),
+      restore(html, page),
+      'unapproved copy/source/contact change cannot disappear through restoration'
     );
   }
 });

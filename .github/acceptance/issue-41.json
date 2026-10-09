@@ -35,16 +35,156 @@
     {
       "id": "AC05",
       "intent": "Preserve SEO, semantics, original editions and runtime behavior.",
-      "automated_scope": "All five pages reconcile to the immutable SEO baseline after the exact reviewed Issue41 amendment and earlier declared deltas. Metadata, old edition identity and all unrelated semantics remain exact. Under the maintainer joint-staging amendment, runtime/scene logic and workflows exactly match the immutable #36 companion 73020e8; catalog/edition comparison stays at c4539ad; archive.js changes only its exact print status label to cover multiple linked editions. Enduring SEO mutation cases and normal preview smoke complement this task snapshot; no ranking or release claim.",
+      "automated_scope": "All five pages reconcile to the immutable SEO baseline after the exact reviewed Issue41/48/61 deltas and the explicit 9 October positioning amendment. Metadata, original edition identities and unrelated semantics remain exact. Original catalog/edition comparisons stay at c4539ad; this new content phase preserves runtime, scenes, routes and build architecture against the protected-main starting source 338e3ff. Workflows remain byte-exact except the single existing acceptance-tool installation step name/selector: issue41 now receives the same pinned toolchain already installed for issue58, repairing the observed format-parity Python ENOENT. Tool versions, commands, actions, triggers and gates stay unchanged. Earlier joint-staging evidence and its 73020e8 companion remain historical, not a claim that later accepted runtime work never occurred. Enduring SEO mutation cases and normal preview smoke complement this task snapshot; no ranking or release claim. The same-issue AI-assisted site case adds only its separately hashed two-fragment successor, reversed before the unchanged six-fragment positioning record; its immutable starting source is da36ccf.",
       "checks": ["SEO", "ADMISSIONS", "CATALOG-SCHEMA", "RUNTIME-SCOPE"],
       "gates": ["EDITORIAL", "BROWSER"]
     },
     {
       "id": "AC06",
       "intent": "Actionable same-PR handoff, current test/RI routes and honest closure.",
-      "automated_scope": "Current implementation checks execute once in the selected raw-head acceptance workflow. Basic/source-targeted CI and navigation/RI verify their independent routes. The same-PR analysis records the explicit preparation-to-implementation transition; live CI/commit linkage, independent review, actual issue checkbox reconciliation and merge remain recorded gates.",
+      "automated_scope": "Current implementation checks execute once in the selected raw-head acceptance workflow with its required existing pinned tools installed. The first current-head CI dependency failure and the bounded setup remedy are recorded separately; a local toolchain cannot establish that CI succeeded. Basic/source-targeted CI and navigation/RI verify their independent routes. The same-PR analysis records the explicit preparation-to-implementation transition; live CI/commit linkage, independent review, actual issue checkbox reconciliation and merge remain recorded gates.",
       "checks": ["INPUTS", "ADMISSIONS", "SEO", "RUNTIME-SCOPE"],
       "gates": ["REVIEW-MERGE"]
+    },
+    {
+      "id": "AC07",
+      "intent": "Make leadership responsibility visible with verified factual wording.",
+      "automated_scope": "Compact generated Home experience wording distinguishes total experience, leadership duration and portfolio responsibility. Exact copy/source deltas are bound to current public bytes; biography factual sufficiency and approval are a separate source/editorial gate.",
+      "checks": ["POSITIONING", "POSITIONING-PROVENANCE"],
+      "gates": ["SOURCE-EDITORIAL"]
+    },
+    {
+      "id": "AC08",
+      "intent": "Preserve the original headline, practical entry and research identity.",
+      "automated_scope": "Generated Home retains the supplied problem-led headline, problem-to-author-to-research order, audience and bounded research caveats. Exact SEO/content reconciliation rejects undeclared semantic changes; editorial usefulness remains separate.",
+      "checks": ["POSITIONING", "SEO"],
+      "gates": ["EDITORIAL"]
+    },
+    {
+      "id": "AC09",
+      "intent": "Assess a management example without inventing a case or blocking other changes.",
+      "automated_scope": "The dated review/provenance routes and exact admitted content amendment exist at the current source. Source review and the issue record must confirm a supported context/responsibility/change/result example or explicitly list missing inputs; file existence cannot establish their truth.",
+      "checks": ["POSITIONING-PROVENANCE"],
+      "gates": ["SOURCE-EDITORIAL"]
+    },
+    {
+      "id": "AC10",
+      "intent": "State concrete potential work outputs without business guarantees.",
+      "automated_scope": "Generated delivery/runtime outputs describe scoped work, preserve genuinely preliminary draft role boundaries and avoid an automated success guarantee. Exact approved copy is reconciled; editorial/research-method boundary review remains required.",
+      "checks": ["POSITIONING", "SEO"],
+      "gates": ["EDITORIAL"]
+    },
+    {
+      "id": "AC11",
+      "intent": "Explain Corning context with its source and honest relationship boundaries.",
+      "automated_scope": "One Home line reaches the existing Talks section; Corning retains the original host source and its scoped technical/community wording. Historical cards reconcile after the exact new amendment. Presence tests establish structure, not organizer source authenticity or institutional/client status.",
+      "checks": ["TALKS-POSITIONING", "POSITIONING-PROVENANCE", "SEO"],
+      "gates": ["SOURCE-EDITORIAL"]
+    },
+    {
+      "id": "AC12",
+      "intent": "Use one canonical catalog for consistently defined Writing counts.",
+      "automated_scope": "Current primary rows/schema/counts agree; a maintained content test mutates primary language and adds an alternate edition to verify synchronized intro/archive counts and independent primary/edition definitions. Duplicate alternate URLs are rejected; no runtime counter code is added.",
+      "checks": ["CATALOG-SCHEMA", "CATALOG-COUNTS"],
+      "gates": []
+    },
+    {
+      "id": "AC13",
+      "intent": "Finish Talks reader-facing status and use the existing contact path.",
+      "automated_scope": "Generated non-PMDay cards omit unverified language fields; PMDay card/known Ukrainian recording and original event links remain exact. The speaking invitation resolves to the existing Home contact before the next-route utility. Source and hosted layout/interaction observations remain separate.",
+      "checks": ["TALKS-POSITIONING", "CONTENT-LINKS"],
+      "gates": ["POSITIONING-BROWSER"]
+    },
+    {
+      "id": "AC14",
+      "intent": "Keep added facts traceable without private or unverified organizational claims.",
+      "automated_scope": "The exact dated source/amendment routes bind admitted current content to the immutable starting page fragments. Automated checks do not authenticate biography, organizer statements, correspondence or result evidence; each new factual claim needs recorded source/editorial review.",
+      "checks": ["POSITIONING-PROVENANCE", "TALKS-POSITIONING"],
+      "gates": ["SOURCE-EDITORIAL"]
+    },
+    {
+      "id": "AC15",
+      "intent": "Keep changed pages readable and navigation/contact links working at desktop and narrow widths.",
+      "automated_scope": "Maintained content tests resolve all current page IDs, ARIA/resources/local fragments and existing contact transitions. Matching current-source Basic/navigation/preview CI and the ordinary 1440/390 hosted smoke are observed separately. Human review assesses changed copy readability and links at actual desktop/narrow hosted viewports, recording dimensions, themes and access limits honestly; it does not claim four exact manual viewport/theme combinations or native-device acceptance.",
+      "checks": ["CONTENT-LINKS"],
+      "gates": ["POSITIONING-BROWSER"]
+    },
+    {
+      "id": "AC16",
+      "intent": "Preserve graphics, animation, routes and rendering architecture with applicable source style.",
+      "automated_scope": "Exact protected-main engine/effects/assets/scenes/routes/build bytes remain unchanged. The workflow comparison admits only the exact existing acceptance installation-step name/selector repair for issue41; all other workflow bytes, pinned tools/actions, triggers and gates remain protected; the bounded current repository style guard is reused. New templates/content/checks follow applicable CS01/02/03/05/08/09/10. Formatter/lint/architecture CI and unautomated source/readability review remain external evidence, not inferred from guard success.",
+      "checks": ["RUNTIME-SCOPE", "CODE-STYLE"],
+      "gates": ["POSITIONING-REVIEW"]
+    },
+    {
+      "id": "AC17",
+      "intent": "Present the site as a compact practical AI-assisted delivery example.",
+      "automated_scope": "Exact new About and Credits fragments, one existing-page deep link and unchanged whole-page semantics are checked. Editorial review decides whether the compact example is clear and unobtrusive.",
+      "checks": ["SITECASE-PROVENANCE", "SEO"],
+      "gates": ["EDITORIAL"]
+    },
+    {
+      "id": "AC18",
+      "intent": "Explain Vitalii’s responsibility for architecture, requirements, decisions and acceptance.",
+      "automated_scope": "The exact admitted public copy is bound to current generated bytes. Personal direction and AI-supported execution are the current maintainer’s supplied first-person declaration; code structure cannot establish personal authorship or who made each decision.",
+      "checks": ["SITECASE-PROVENANCE"],
+      "gates": ["SOURCE-EDITORIAL"]
+    },
+    {
+      "id": "AC19",
+      "intent": "Show at least three implemented technical or process aspects.",
+      "automated_scope": "The case’s five immutable code links resolve to actual repository files and bounded line ranges; its two PR links retain their exact destinations. Reading implementation, maintained behavior tests and current history must establish source sufficiency beyond link presence.",
+      "checks": ["SITECASE-PROVENANCE"],
+      "gates": ["SOURCE-EDITORIAL"]
+    },
+    {
+      "id": "AC20",
+      "intent": "Describe one real engineering problem, decision or tradeoff with its completion boundary.",
+      "automated_scope": "The exact compact ribbon-removal paragraph and public PR destination are preserved by the new amendment. Source/history review verifies the scoped change and matching bounded staging evidence; it cannot promote the broader unfinished performance issue or claim a measured causal gain.",
+      "checks": ["SITECASE-PROVENANCE", "SEO"],
+      "gates": ["SOURCE-EDITORIAL"]
+    },
+    {
+      "id": "AC21",
+      "intent": "Make concrete public proof links available for technical claims.",
+      "automated_scope": "The existing-page anchor and unique public proof URLs are checked; immutable code refs, actual file existence and line bounds are verified. Link structure is not proof of source authenticity, live PR status or claim truth; those require recorded implementation/history review.",
+      "checks": ["SITECASE-PROVENANCE", "CONTENT-LINKS"],
+      "gates": ["SOURCE-EDITORIAL"]
+    },
+    {
+      "id": "AC22",
+      "intent": "Separate AI execution, human direction and enterprise or research validation.",
+      "automated_scope": "Exact current copy and full SEO restoration reject undeclared claim changes. Source/editorial review checks human and AI roles, relevant but unproven enterprise applicability, and absence of autonomy, implemented-UA or scientific-validation claims.",
+      "checks": ["SITECASE-PROVENANCE", "SEO"],
+      "gates": ["SOURCE-EDITORIAL"]
+    },
+    {
+      "id": "AC23",
+      "intent": "Keep Home compact and avoid duplicating Research or repository documentation.",
+      "automated_scope": "Only the exact About paragraph and existing Credits main fragment are admitted. Research and all other page semantics remain protected by the whole-page comparator. Editorial review checks the short reader-facing rationale and four evidence paragraphs.",
+      "checks": ["SITECASE-PROVENANCE", "SEO"],
+      "gates": ["EDITORIAL"]
+    },
+    {
+      "id": "AC24",
+      "intent": "Preserve structure, navigation, SEO URLs and visual behavior with applicable style.",
+      "automated_scope": "Current engine/effects/assets/scenes/routes/build bytes remain protected by the unchanged runtime baseline and existing exact workflow-selector exception. Full metadata/semantic reconciliation and maintained page-link checks run; source/template/readability review assesses CS01/02/03/05/08/09/10 without inferring broad compliance from one guard.",
+      "checks": ["SEO", "RUNTIME-SCOPE", "CONTENT-LINKS", "CODE-STYLE"],
+      "gates": ["POSITIONING-REVIEW"]
+    },
+    {
+      "id": "AC25",
+      "intent": "Pass applicable lightweight content and page checks on the current candidate.",
+      "automated_scope": "Existing link/resource/anchor and full semantic checks complement mandatory current-source Basic/navigation/owning-policy CI and ordinary immutable-preview smoke. Focused Home and Credits readability and the About-to-case link are observed separately; no full staging/performance or production acceptance is supplied.",
+      "checks": ["SITECASE-PROVENANCE", "CONTENT-LINKS", "SEO"],
+      "gates": ["POSITIONING-BROWSER"]
+    },
+    {
+      "id": "AC26",
+      "intent": "Reconcile performed criteria and exact-source evidence in the same issue.",
+      "automated_scope": "The new exact fragment/proof destination check and current policy retain stable AC01–AC16 and append AC17–AC26. Independent review must inspect criterion-to-evidence mapping and actual issue checkbox reconciliation after matching CI/preview observations. This content-phase gate supplies no merge decision or issue closure.",
+      "checks": ["SITECASE-PROVENANCE"],
+      "gates": ["POSITIONING-REVIEW"]
     }
   ],
   "checks": {
@@ -91,12 +231,40 @@
     "RUNTIME-SCOPE": {
       "kind": "unittest",
       "test": "test_issue41_acceptance.Issue41ImplementationTests.test_runtime_and_hosting_mechanics_remain_unchanged"
+    },
+    "POSITIONING": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_home_positioning_keeps_problem_author_research_order_and_bounded_outputs"
+    },
+    "POSITIONING-PROVENANCE": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_positioning_amendment_binds_exact_current_and_immutable_fragments"
+    },
+    "TALKS-POSITIONING": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_talks_positioning_keeps_source_contact_and_known_language_contracts"
+    },
+    "CATALOG-COUNTS": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_writing_counters_follow_canonical_catalog_mutations"
+    },
+    "CONTENT-LINKS": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_changed_page_links_and_existing_contact_contracts"
+    },
+    "CODE-STYLE": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    },
+    "SITECASE-PROVENANCE": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_site_case_amendment_binds_fragments_and_public_evidence_destinations"
     }
   },
   "gates": {
     "EDITORIAL": {
       "kind": "human",
-      "description": "Source/editorial review of exact roles and contribution verbs, admitted editions and per-platform dates, neutral Reddit disposition, public and structured-data claim boundaries, before/after semantics and actual readable layout. Preserve separate existing rights/device/release owners; do not invent source access or advisor correspondence inspection. Reddit numbers require the dated snapshot note; community criticism and the supplied historical claims are not validation."
+      "description": "Source/editorial review of exact roles and contribution verbs, admitted editions and per-platform dates, neutral Reddit disposition, public and structured-data claim boundaries, before/after semantics and actual readable layout. Preserve separate existing rights/device/release owners; do not invent source access or advisor correspondence inspection. Reddit numbers require the dated snapshot note; community criticism and the supplied historical claims are not validation. The same-issue AI-assisted site case additionally needs a compact About mention and readable Credits evidence block, without Research duplication or a developer-document wall."
     },
     "REVIEW-MERGE": {
       "kind": "merge",
@@ -104,7 +272,19 @@
     },
     "BROWSER": {
       "kind": "human",
-      "description": "Inspect matching current-source PR Chromium smoke and targeted Home/Research/Writing Day/Night desktop/narrow layout, advisory anchors, filters/history/print, Off/reduced motion and bottom reach. Record report/public digest/source binding; this policy cannot ingest hosted reports. Separate first-release physical-device requirements remain with their owners."
+      "description": "Inspect matching current-source PR Chromium smoke and targeted Home/Research/Writing Day/Night desktop/narrow layout, advisory anchors, filters/history/print, Off/reduced motion and bottom reach. Record report/public digest/source binding; this policy cannot ingest hosted reports. Separate first-release physical-device requirements remain with their owners. For the9October positioning phase also inspect matching Home/Writing/Talks and Credits at desktop1440/narrow390, speaking invitation/contact and Home-to-Corning section navigation. Ordinary PR hosted smoke is sufficient automation; full performance/browser regression is not required for this prose/template change."
+    },
+    "SOURCE-EDITORIAL": {
+      "kind": "human",
+      "description": "Read the approved current author biography and original public organizer source. Verify every new factual clause and distinguish portfolio responsibility from direct reporting and general experience from director tenure. Review the management-example disposition: supported context/responsibility/change/result or specific missing inputs recorded in the same issue without fabricated case. Corning is a hosted technical/community speaking event, not a client, deployment, methodology validation or institutional endorsement; do not publish private correspondence. Record exact source/access limits and independent versus self-review honestly. A string or route-existence test cannot satisfy factual authenticity. For AC17–AC26, inspect the actual immutable build, fallback, acceptance and release/profile code, maintained negative checks and live PR/history evidence. Separate implemented mechanisms from plans; verify scoped ribbon removal and matching bounded staging without claiming causal performance gain or closure of wider performance work. Vitalii’s direction and AI-supported execution use the current maintainer-supplied declaration, not an inference that he personally authored every line. Review enterprise-applicability and research-validation limits; public proof-link presence alone is insufficient."
+    },
+    "POSITIONING-REVIEW": {
+      "kind": "human",
+      "description": "Independent review of the exact current positioning content, applicable CS rules, bounded source/template/check scope, preserved runtime/routes/graphics, current RI/CI routes and criterion-to-evidence mapping. Inspect the one recorded mandatory-CI installation-selector repair without treating it as permission for broader workflow changes. Record reviewed source/policy/amendment identities, findings, dispositions and remaining external requirements. This gate establishes review of this content phase; it supplies no maintainer merge approval and cannot close the original issue. Original AC01–AC06 review, browser and merge obligations retain their own unchanged gates. The same-issue case extension additionally requires independent current-byte review of changed About/Credits, the exact two-fragment amendment and its order before the prior positioning record, actual implementation/history support, preserved Corning/language context, current RI/profile routes and actual AC17–AC26 issue reconciliation. Earlier review hashes for changed files remain historical; record new file/source identities."
+    },
+    "POSITIONING-BROWSER": {
+      "kind": "human",
+      "description": "Inspect matching exact-source ordinary PR hosted smoke at registry widths 1440/390, including normal/no-Canvas routes and existing theme/control/navigation contracts, plus actual hosted desktop/narrow readability of the changed Home/Writing/Talks/Credits copy and its existing links/contact transitions. Record actual manual viewport dimensions or named mobile preset, observed themes, browser capabilities and access limits. Manual review may use the available desktop and mobile viewports; do not invent four exact 1440/390 Day/Night manual combinations or claim native-device, physical-device or performance acceptance from these observations. Preserve source/public-digest/run binding. Historical Research/archive/physical-device/release requirements remain with the original BROWSER and separate owners; this focused content gate does not satisfy or remove them. For the current case extension, inspect the matching updated immutable preview’s About mention, About-to-Credits built-with-ai anchor, Credits evidence link destinations and compact block readability at actual desktop/narrow viewports; preserve previous unaffected content evidence as historical rather than asserting old captures show this addition."
     }
   }
 }

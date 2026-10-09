@@ -1,8 +1,11 @@
 """Issue 41 implementation evidence; selected only by its owning policy.
 
 The explicit 2026-10-07 implementation phase supersedes the preparation-only
-byte assertion. Its original evidence remains pinned at d7ce5d3. Source reading,
-editorial/independent review, browser observations and merge are separate gates.
+byte assertion. Its original evidence remains pinned at d7ce5d3. The approved
+2026-10-09 positioning phase reverses its exact new content delta before those
+historical assertions and preserves the current protected-main runtime bytes.
+Source reading, editorial/independent review, browser observations and merge
+are separate gates; structural copy assertions do not prove factual truth.
 """
 
 import copy
@@ -18,22 +21,26 @@ from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = 'c4539ad18f4f35169eda792a9a40677a7ea9abac'
-# The maintainer's joint-staging decision pins the formula companion from #36.
-# Catalog/edition baselines stay at BASE; only the protected runtime comparison
-# follows this immutable companion. Any additional runtime/workflow edit fails.
-RUNTIME_BASE = '73020e86b02da64d5e7256cbaffc641a0cc5d649'
+# The 9 October positioning amendment starts at protected main after accepted
+# #36/#48/#54/#58/#61/#65 work. Their old runtime evidence stays in Git history;
+# this content phase cannot silently edit that current engine or its routes.
+RUNTIME_BASE = '338e3ff341dc35b64cba7854289e1385cbaf1562'
+POSITIONING = 'review/issue-41/2026-10-09-positioning-amendment.json'
+SITECASE = 'review/issue-41/2026-10-09-sitecase-amendment.json'
+SITECASE_BASE = 'da36ccf03e1d749a540aa6bb39fe7b4083f1ef66'
 INVENTORY = 'review/issue-41/source-inventory.json'
 INPUT_SHA256 = '2483f7f9d70e38ffcaf3c9eb4f2bdc8f75ce6dda0d87d37ae40815f2fa2e3968'
 UNCHANGED = [
     '.github/workflows',
     'site/scenes',
-    'site/engine/archive.js',
-    'site/engine/navigation.js',
-    'site/engine/theme.js',
-    'site/engine/renderer.cjs',
-    'site/engine/lifecycle.cjs',
-    'site/engine/math.cjs',
-    'site/engine/projection.cjs',
+    'site/engine',
+    'site/effects',
+    'site/assets',
+    'site/routes.json',
+    'site/analytics.json',
+    'tools/site',
+    'tools/build_site_previews.cjs',
+    'tools/build_site_bundle.py',
 ]
 SNAPSHOTS = {
     'S1': (
@@ -356,12 +363,67 @@ def schema(html):
     )
 
 
+def node_checks(names):
+    """Select fixed existing content cases; missing/failed/skipped is never pass."""
+    pattern = '^(?:' + '|'.join(re.escape(name) for name in names) + ')$'
+    result = subprocess.run(
+        [
+            'node',
+            '--test',
+            '--test-reporter=tap',
+            '--test-name-pattern=' + pattern,
+            'tests/content.test.cjs',
+        ],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+        check=False,
+        timeout=120,
+    )
+    require(result.returncode == 0, result.stdout + result.stderr)
+    counts = {
+        key: int(value)
+        for key, value in re.findall(
+            r'^# (tests|pass|fail|skipped|cancelled|todo) (\d+)$', result.stdout, re.M
+        )
+    }
+    require(counts.get('tests') == counts.get('pass') == len(names), str(counts))
+    require(
+        all(counts.get(key) == 0 for key in ['fail', 'skipped', 'cancelled', 'todo']), str(counts)
+    )
+
+
+def positioning_projection(record_path=POSITIONING, restore_sitecase=True):
+    """Normalize immutable/current fragments using the maintained HTML owner."""
+    script = r"""
+const fs = require('node:fs');
+const cp = require('node:child_process');
+const {normalizeHTML,restoreContentAmendment} = require('./tools/check_site_seo.cjs');
+const {sourceForPreview} = require('./tools/build_site_previews.cjs');
+const record = require('./'+process.argv[1]);
+const sitecase = require('./review/issue-41/2026-10-09-sitecase-amendment.json');
+const normalize = html => normalizeHTML(sourceForPreview(html));
+const pages = {}, baseline = {};
+for (const page of ['index','research','writing','talks','credits']) {
+  pages[page] = normalize(fs.readFileSync('docs/'+page+'.html','utf8'));
+  if(process.argv[2] === 'true') pages[page] = restoreContentAmendment(pages[page],page,sitecase);
+  baseline[page] = normalize(cp.execFileSync('git',['show',record.base+':docs/'+page+'.html'],{encoding:'utf8'}));
+}
+process.stdout.write(JSON.stringify({pages,baseline,changes:record.changes.map(change=>({...change,before:normalize(change.before),after:normalize(change.after)}))}));
+"""
+    return json.loads(
+        subprocess.check_output(
+            ["node", "-e", script, record_path, str(restore_sitecase).lower()], cwd=ROOT
+        )
+    )
+
+
 class Issue41ImplementationTests(unittest.TestCase):
     def setUp(self):
         self.inventory = json.loads((ROOT / INVENTORY).read_text())
         self.catalog = json.loads((ROOT / 'site/content/catalog.json').read_text())
         self.pages = {
-            name: (ROOT / f'docs/{name}.html').read_text()
+            name: re.sub(r'\s+', ' ', (ROOT / f'docs/{name}.html').read_text())
             for name in ['index', 'research', 'writing', 'talks', 'credits']
         }
 
@@ -454,9 +516,12 @@ class Issue41ImplementationTests(unittest.TestCase):
     def test_advisor_grouping_preserves_people_sources_and_compact_home(self):
         for page, count in [('index', 3), ('research', 8)]:
             current = section(self.pages[page], 'acknowledgements')
-            old = subprocess.check_output(
-                ['git', 'show', f'{BASE}:site/content/pages/{page}/acknowledgements.html'], cwd=ROOT
-            ).decode()
+            old = section(
+                subprocess.check_output(
+                    ['git', 'show', f'{RUNTIME_BASE}:docs/{page}.html'], cwd=ROOT
+                ).decode(),
+                'acknowledgements',
+            )
             articles = re.findall(r'<article>[\s\S]*?</article>', current)
             self.assertEqual(len(articles), count)
             profiles = re.findall(r'<h3><a href="([^"]+)"', current)
@@ -545,17 +610,11 @@ class Issue41ImplementationTests(unittest.TestCase):
         self.assertTrue(result['pass'])
         self.assertEqual(len(result['rows']), 5)
         amendment = json.loads((ROOT / 'review/issue-41/content-amendment.json').read_text())
+        # The maintained verifier reverses positioning and all accepted later
+        # amendments/presentation seams before the exact historical comparison.
+        # Requiring an old raw after-fragment in today's page duplicates that
+        # owner and would reject its explicitly approved successor amendments.
         for change in amendment['changes']:
-            page = self.pages[change['page']]
-            if change['page'] == 'writing':
-                description = (
-                    '<p class="sr-only" data-writing-formula-description>'
-                    'y = f(x) → y ∼ P(y|x): a shift from deterministic mapping '
-                    'to conditional probabilistic modeling.</p>'
-                )
-                self.assertEqual(page.count(description), 1)
-                page = page.replace(description, '')
-            self.assertIn(change['after'], page)
             for version in ['before', 'after']:
                 self.assertEqual(
                     hashlib.sha256(change[version].encode()).hexdigest(), change[version + 'SHA256']
@@ -577,30 +636,218 @@ class Issue41ImplementationTests(unittest.TestCase):
         self.assertEqual(set(files), actual)
         for path in files:
             current = (ROOT / path).read_bytes()
-            if path == 'site/engine/archive.js':
-                current = current.replace(
-                    b'all records and their linked platform editions shown for printing.',
-                    b'all records and the additional LinkedIn rendition shown for printing.',
-                )
             expected = subprocess.check_output(['git', 'show', f'{RUNTIME_BASE}:{path}'], cwd=ROOT)
-            if path == 'site/engine/projection.cjs':
-                # Joint staging repair: same expression values and ordered loop,
-                # extracted for the unchanged cognitive-complexity limit.
-                loop = b'    for(const anchor of world.formulas||[]){const shape=projectedFormula(anchor,current,width,height,time);if(shape)shapes.push(shape);}'
-                self.assertEqual(expected.count(loop), 1)
-                expected = expected.replace(b'width<=640?.42:.66', b'width<=640 ? 0.42 : 0.66')
-                expected = expected.replace(
-                    loop, b'    appendFormulas(world,current,width,height,time,shapes);'
+            if path == '.github/workflows/issue-acceptance.yml':
+                # Raw-head CI initially failed with ENOENT for the existing
+                # format-parity Python owner: only issue58 installed its tools.
+                # Admit exactly this installation selector/name repair; the
+                # pinned commands, other steps, triggers and all gates remain
+                # in the whole-file byte comparison below.
+                before = (
+                    b'      - name: Install pinned tools for the selected refactoring policy\n'
+                    b"        if: env.ACCEPTANCE_POLICY == '.github/acceptance/issue-58.json'\n"
                 )
-                helper = (
-                    b'  function appendFormulas(world,current,width,height,time,shapes) {\n'
-                    + loop
-                    + b'\n  }\n'
+                after = (
+                    b'      - name: Install pinned tools for selected acceptance policies\n'
+                    b'        if: >-\n'
+                    b"          env.ACCEPTANCE_POLICY == '.github/acceptance/issue-58.json' ||\n"
+                    b"          env.ACCEPTANCE_POLICY == '.github/acceptance/issue-41.json'\n"
                 )
-                expected = expected.replace(
-                    b'  function formulaWorldPoint(', helper + b'  function formulaWorldPoint('
-                )
+                self.assertEqual(expected.count(before), 1, 'one immutable setup selector')
+                expected = expected.replace(before, after)
             self.assertEqual(current, expected, path)
+
+    def test_positioning_amendment_binds_exact_current_and_immutable_fragments(self):
+        amendment = json.loads((ROOT / POSITIONING).read_text())
+        self.assertEqual(
+            (amendment['schema'], amendment['issue'], amendment['base']), (1, 41, RUNTIME_BASE)
+        )
+        expected = [
+            ('index', 'positioning-hero'),
+            ('index', 'positioning-about'),
+            ('index', 'positioning-help'),
+            ('talks', 'positioning-talks'),
+            ('writing', 'positioning-section-1'),
+            ('credits', 'positioning-main'),
+        ]
+        self.assertEqual([(row['page'], row['id']) for row in amendment['changes']], expected)
+        projection = positioning_projection()
+        for original, change in zip(amendment['changes'], projection['changes']):
+            for version in ['before', 'after']:
+                self.assertEqual(
+                    hashlib.sha256(original[version].encode()).hexdigest(),
+                    original[version + 'SHA256'],
+                )
+            self.assertNotEqual(change['before'], change['after'])
+            self.assertEqual(
+                projection['baseline'][change['page']].count(change['before']),
+                1,
+                'before fragment must come from immutable current-main source',
+            )
+            self.assertEqual(
+                projection['pages'][change['page']].count(change['after']),
+                1,
+                'one exact new fragment must appear in generated public content',
+            )
+        self.assertTrue((ROOT / 'review/issue-41/2026-10-09-positioning.md').is_file())
+        self.assertIn(
+            'Practical positioning — 2026-10-09', (ROOT / 'guides/SITE-SOURCE-AUDIT.md').read_text()
+        )
+
+    def test_home_positioning_keeps_problem_author_research_order_and_bounded_outputs(self):
+        home = unescape(positioning_projection()['pages']['index'])
+        headline = 'AI tools everywhere.<br><span class="accent">Better delivery?</span><br>Harder to tell.'
+        self.assertIn(headline, home)
+        problem = home.index('I help software organizations investigate why AI adoption')
+        author = home.index('More than 20 years in software engineering and technology delivery')
+        research = home.index('That experience shapes my research into software delivery')
+        self.assertLess(problem, author)
+        self.assertLess(author, research)
+        self.assertIn('including over a decade in leadership', home)
+        self.assertIn('across a portfolio of around 25 projects and more than 120 engineers', home)
+        help_section = section(home, 'help')
+        for text in [
+            'A prioritized diagnosis of delivery constraints and a plan for testing the next changes.',
+            'A review of decision authority, operating limits and evidence gaps, with priorities for addressing them.',
+            'Potential outputs, depending on the agreed scope.',
+            'draft role and decision boundaries',
+        ]:
+            self.assertIn(text, help_section)
+        for text in ['hypotheses to test in context', 'Much remains to develop and test']:
+            self.assertIn(text, home)
+        self.assertNotRegex(help_section, r'guarantee|proven methodology|guaranteed transformation')
+
+    def test_site_case_amendment_binds_fragments_and_public_evidence_destinations(self):
+        """Check exact admission and link structure, not claim truth or live PR status."""
+        amendment = json.loads((ROOT / SITECASE).read_text())
+        self.assertEqual(
+            (amendment["schema"], amendment["issue"], amendment["base"]),
+            (1, 41, SITECASE_BASE),
+        )
+        self.assertEqual(
+            [(row["page"], row["id"]) for row in amendment["changes"]],
+            [("index", "sitecase-about"), ("credits", "sitecase-main")],
+        )
+        projection = positioning_projection(SITECASE, False)
+        for original, change in zip(amendment["changes"], projection["changes"]):
+            for version in ["before", "after"]:
+                self.assertEqual(
+                    hashlib.sha256(original[version].encode()).hexdigest(),
+                    original[version + "SHA256"],
+                )
+            self.assertNotEqual(change["before"], change["after"])
+            self.assertEqual(projection["baseline"][change["page"]].count(change["before"]), 1)
+            self.assertEqual(projection["pages"][change["page"]].count(change["after"]), 1)
+        home = projection["pages"]["index"]
+        credits = projection["pages"]["credits"]
+        self.assertEqual(section(home, "about").count('href="credits.html#built-with-ai"'), 1)
+        self.assertEqual(credits.count('id="built-with-ai"'), 1)
+        case = credits.split('<h2 id="built-with-ai">', 1)[1].split("<h2 ", 1)[0]
+        urls = re.findall(r'href="([^"]+)"', case)
+        self.assertEqual(len(urls), len(set(urls)))
+        self.assertEqual(len(urls), 7)
+        blob_paths = []
+        pull_paths = []
+        for url in urls:
+            source = urlsplit(unescape(url))
+            self.assertEqual((source.scheme, source.netloc), ("https", "github.com"))
+            prefix = "/oborskyivitalii/oborskyivitalii/"
+            self.assertTrue(source.path.startswith(prefix))
+            target = source.path.removeprefix(prefix)
+            if target.startswith("blob/"):
+                _, commit, path = target.split("/", 2)
+                self.assertEqual(commit, RUNTIME_BASE, "code proofs use the immutable source")
+                lines = subprocess.check_output(
+                    ["git", "show", f"{commit}:{path}"], cwd=ROOT, text=True
+                ).splitlines()
+                bounds = re.fullmatch(r"L(\d+)-L(\d+)", source.fragment)
+                self.assertIsNotNone(bounds, "bounded public source link")
+                start, end = map(int, bounds.groups())
+                self.assertTrue(1 <= start <= end <= len(lines))
+                blob_paths.append(path)
+            else:
+                pull_paths.append(target)
+        self.assertEqual(
+            blob_paths,
+            [
+                "tools/site/build.cjs",
+                "tools/quality/functional.cjs",
+                "tools/issue_acceptance.py",
+                "tools/quality/test-profiles.json",
+                "tools/quality/staging-gate.cjs",
+            ],
+        )
+        self.assertEqual(pull_paths, ["pull/66", "pull/63"])
+
+    def test_talks_positioning_keeps_source_contact_and_known_language_contracts(self):
+        projection = positioning_projection()
+        talks = projection['pages']['talks']
+        home = projection['pages']['index']
+        cards = re.findall(r'<article class="publication"[^>]*>[\s\S]*?</article>', talks)
+        prior = re.findall(
+            r'<article class="publication"[^>]*>[\s\S]*?</article>', projection['baseline']['talks']
+        )
+        self.assertEqual(len(cards), 4)
+
+        def event_contract(card):
+            text = re.sub(r'\s+', ' ', re.sub(r'<[^>]*>', ' ', unescape(card))).strip()
+            return (
+                re.findall(r'\bdata-language="([^"]+)"', card),
+                re.findall(r'<time datetime="([^"]+)"', card),
+                re.findall(r'href="([^"]+)"', card),
+                text,
+            )
+
+        self.assertEqual(
+            event_contract(cards[0]),
+            event_contract(prior[0]),
+            'PMDay event/date/language/text and resources stay exact',
+        )
+        self.assertIn('PMDay 2026 · Recording in Ukrainian', cards[0])
+        self.assertNotRegex(
+            talks, r'Language unconfirmed|not yet been confirmed|data-language="unconfirmed"'
+        )
+        for card in cards[1:]:
+            self.assertNotRegex(card, r'data-language|language-badge')
+        for old, current in zip(prior, cards):
+            for url in re.findall(r'href="([^"]+)"', old):
+                self.assertEqual(
+                    current.count(f'href="{url}"'), 1, 'each original event link survives'
+                )
+        self.assertIn(
+            'Invited speaker at Corning’s internal technical AI workshop.', unescape(cards[1])
+        )
+        self.assertIn('architecture, operating models and accountability', cards[1])
+        self.assertIn('technology community', unescape(cards[1]))
+        self.assertIn('href="talks.html#corning"', section(home, 'about'))
+        self.assertIn('id="corning"', cards[1])
+        self.assertIn('href="index.html#contact">Invite me to speak</a>', talks)
+        self.assertIn(
+            'For talks and workshops on AI-assisted delivery, agentic systems and operational responsibility.',
+            talks,
+        )
+        self.assertLess(talks.index('Invite me to speak'), talks.index('<aside class="next-route'))
+        self.assertIn('id="contact"', home)
+        self.assertNotRegex(
+            unescape(cards[1]), r'client|adopted UA|validated approach|institutional endorsement'
+        )
+
+    def test_writing_counters_follow_canonical_catalog_mutations(self):
+        node_checks(
+            [
+                'Writing intro and archive counters derive from the same catalog under edition and language changes',
+            ]
+        )
+
+    def test_changed_page_links_and_existing_contact_contracts(self):
+        node_checks(
+            [
+                'page IDs, ARIA targets, local resources and fragments resolve without draft leakage',
+                'Home provides the agreed reader path, precise public actions and a real contact alternative',
+                'portrait is a real sized local asset and unverified talk languages are omitted',
+                'Talks curates distinct events with source-supported dates, language and resources',
+            ]
+        )
 
 
 if __name__ == '__main__':

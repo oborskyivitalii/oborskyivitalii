@@ -5,6 +5,55 @@ Each dated section describes that edition; older counts, placement and review
 limits are historical. Use [the editorial review route](SITE-CONTENT-REVIEW.md),
 the owning issue/PR and [MEMORY](../MEMORY.md) for current acceptance.
 
+## Practical positioning — 2026-10-09
+
+[Issue #41](https://github.com/oborskyivitalii/oborskyivitalii/issues/41) continues
+the same content intent under the maintainer's supplied pre-launch brief. The
+[dated source review](../review/issue-41/2026-10-09-positioning.md) and
+[exact content amendment](../review/issue-41/2026-10-09-positioning-amendment.json)
+identify the bounded successor to main `338e3ff`. Earlier dated content/source
+records remain evidence of their editions, not conflicting current copy.
+
+The compact professional biography follows the current maintainer-supplied
+wording and the earlier approved 20+ year QA/project-management/PMO/delivery
+context. The author's [public career profile](https://medium.com/@undersmoker/public-profile-achievements-vitalii-oborskyi-7c2f4ec34e7e)
+states 20+ years and a delivery portfolio of 120+ engineers. Its project-management
+chronology starts in 2015, followed by division management and PMO/delivery
+leadership, supporting the bounded inference "over a decade in leadership" as
+of this review. The current self-reported LinkedIn headline, visible in the
+[host's Corning record](https://www.linkedin.com/posts/roderickm_one-of-the-highlights-of-our-recent-learn-al-palooza-activity-7480960628980072448-FBm4),
+states 120+ Engineers / 25+ Projects. These are maintainer-confirmed, self-reported
+professional facts, not independent employer verification. The site describes
+portfolio responsibility; it does not imply 120 direct reports or 20 director
+years. No current employer, client name or quantified delivery result is added.
+The direct LinkedIn profile was not retrieved; its public embedded headline was.
+
+Rod Montgomery's original Corning post confirms that Vitalii shared his work
+with the Technology Community and discussed systems, team behavior, operating
+models, ownership, governance and accountability. Its embedded public author
+follow-up explicitly describes external-speaker participation in an internal
+technical AI workshop, including Science & Technology, architecture and development
+teams. Talks uses this bounded context and retains the original host link. One
+Home/About line points to that existing Talks section. This is event participation,
+not a consultancy/client relationship, institutional endorsement, UA adoption
+or evidence of efficacy. No private correspondence is used or published.
+
+No management case is added. The public career profile's claimed percentages
+lack measurement definitions, baselines and periods. The
+[Terraforming article](https://medium.com/@undersmoker/terraforming-your-organization-a-data-driven-journey-from-chaos-to-stability-of-human-and-ai-84790092d2df)
+describes preliminary modeling, not a confirmed implementation result. The issue
+records missing dated/publication-safe context, specific responsibility,
+implemented change/rollout scope and confirmed result evidence. That optional
+case gap does not block these content changes.
+
+Writing's intro now consumes the existing catalog tokens at build time. Primary
+archive records and all linked platform editions are distinct categories; at
+this source they total 29 primary (22 EN / 7 UA) and 46 linked editions. Unknown
+spoken-language fields are omitted from Talks and the Credits explanation now
+matches that treatment; omission does not establish the language. PMDay retains
+the maintainer-confirmed "Recording in Ukrainian". The speaking invitation uses
+the existing Home contact route. No new contact service or publication is added.
+
 ## PMDay recording update — 2026-10-08, issue #61
 
 The maintainer supplied the published recording URL
