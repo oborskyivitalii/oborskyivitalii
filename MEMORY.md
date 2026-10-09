@@ -36,10 +36,14 @@ Dated continuity, not live authority. Last verified: **2026-10-09**.
   convex shard masks, projected rear facets and camera-depth opacity. Original
   caps/clock/timing remain; projected side bounds are enforced before paint.
   Latest source/CI/preview and remaining visual gates belong in live PR53.
-- Whole-block9October follow-up captures actual painted ancestors and their
-  measured pseudo backdrops with text/images; mobile display-contents wrappers
-  descend to their painted children. Existing two-width smoke now observes
-  backdrop material/envelope and native-owner hiding; read live PR53 for evidence.
+- Whole-block previewcb9fb026 passed its exact two-width smoke; historical evidence
+  remains in PR53. New embedded AC15 prototype060480ff is published in the same PR.
+  One Research intro paragraph becomes persistent textured closed solids in Home.
+  T15.1–T15.5 source work and151 contracts passed; T15.6/browser remains open.
+- Recovery found060480ff Basic37942601340 and preview37942601038 failed on one
+  stale color-build assertion rejecting all scene hooks. The correction preserves
+  no-ribbon guards and exercises canonical emitted embedded collect/paint hooks.
+  Fetch live PR53 for corrected-head browser/check/deployment evidence.
 
 ## Decisions
 
@@ -84,7 +88,7 @@ Dated continuity, not live authority. Last verified: **2026-10-09**.
 
 | Issue | Remaining intent |
 | --- | --- |
-| #49 / Draft PR53 | T02-T03 source prototype implemented/reviewed; obtain visual/cost admission and complete AC02-AC10 while preserving historicalAC11-AC14. |
+| #49 / Draft PR53 | Deliver embeddedAC15 preview/browser observation; visual/device/paired-cost and completeAC02-AC10 remain, preserving historicalAC11-AC14. |
 | #61 | Separate content/editorial owner; fetch live issue/PR before editing accepted prose. |
 | #45 / #36 / #41 | Historical source-bound visual/editorial evidence and remaining release gates. |
 | #1 / #13 | First release, physical devices and production/recovery acceptance. |
@@ -97,8 +101,8 @@ Dated continuity, not live authority. Last verified: **2026-10-09**.
 
 1. Fetch actual main, issue49 and PR53; revalidate bound source, decisions and checks.
 2. Read the consolidation/execution section and ordered tasks in the same handoff.
-3. Inspect the refined staggered incoming assembly and its finite painted-clock
-   tail, exact source/CI/preview, cleanup/Off/device-hold and native handoff evidence.
+3. Check the corrected color-build source contract and exact new preview. Inspect
+   AC15 native texture/glyphs, persistent shard IDs, closed faces and aligned handoff.
 4. Inspect all-five forward/reverse flights, native seams and interruption coverage;
    paired-cost/device/full visual admission remains open. Retain raw failures.
 5. Refresh policy/catalog/profile/RI/CI and exact current generated/scanner evidence;
