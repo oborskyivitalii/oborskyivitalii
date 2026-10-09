@@ -42,6 +42,8 @@ function fragmentBackdropFixture(phase, timeMs = 0) {
         native,
         copied: { ...native },
         cells: [[88, 88, 524, 124]],
+        nativeOrigin: [100, 100],
+        copyPlacements: [{ transform: 'translate3d(12px, 12px, 0px)', translation: [12, 12] }],
       },
     ],
   };
@@ -85,6 +87,8 @@ function fragmentVectorFixture(phase, timeMs = 0) {
     nativeNodes: nodes,
     copiedNodes: structuredClone(nodes),
     cells: [[91, 91, 114, 114]],
+    nativeOrigin: [100, 100],
+    copyPlacements: [{ transform: 'translate3d(9px, 9px, 0px)', translation: [9, 9] }],
   };
 }
 test('selected journeys compare actual base runtime and Color identities without replacing descriptor hashes', () => {
@@ -686,6 +690,85 @@ test('whole-block heading observation compares descendant glyphs when the native
   assert.deepEqual(observed.headingSeam.nativeGlyphRects, [[40, 158, 220, 65]]);
   assert.deepEqual(observed.headingSeam.fragmentGlyphRects, [[40, 158.5, 220, 65]]);
 });
+test('whole-block acquisition preserves fractional paint translation when absolute layout offsets are zero', () => {
+  const {
+      observeFragmentFlight,
+      validateFragmentBackdrops,
+    } = require('../tools/quality/color-browser.cjs'),
+    vm = require('node:vm'),
+    material = fragmentBackdropFixture('depart').owners[0].native,
+    classes = (values) => Object.assign(values, { contains: (name) => values.includes(name) }),
+    box = { left: 100, top: 100, width: 500, height: 100 },
+    native = {
+      tagName: 'ARTICLE',
+      classList: classes(['publication']),
+      textContent: 'Measured native publication',
+      style: { visibility: 'hidden' },
+      getBoundingClientRect: () => box,
+      querySelectorAll: () => [],
+    },
+    copy = {
+      tagName: native.tagName,
+      classList: classes(['publication', 'fragment-paint', 'fragment-surface-before']),
+      textContent: native.textContent,
+      style: { left: '0px', top: '0px', transform: 'translate3d(12.12345px, 12.56789px, 0px)' },
+      matches: () => true,
+      querySelectorAll: () => [],
+    },
+    layer = {},
+    tile = {
+      style: {
+        width: '525px',
+        height: '125px',
+        opacity: '1',
+        transform: 'matrix3d(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1)',
+      },
+      closest: () => layer,
+      querySelector: (selector) => (selector === '.fragment-paint' ? copy : null),
+    },
+    content = {
+      dataset: { fragmentPhase: 'depart' },
+      style: {},
+      querySelector: () => null,
+      querySelectorAll: () => [native],
+      hasAttribute: () => false,
+    };
+  native.parentElement = content;
+  const sandbox = {
+    window: {},
+    innerWidth: 1440,
+    innerHeight: 900,
+    scrollY: 0,
+    performance: { now: () => 100 },
+    DOMMatrix: class {
+      constructor(transform) {
+        assert.equal(transform, copy.style.transform, 'observe the actual native clone transform');
+        this.m41 = 12.12345;
+        this.m42 = 12.56789;
+      }
+    },
+    MutationObserver: class {
+      observe() {}
+      disconnect() {}
+    },
+    getComputedStyle: () => ({ getPropertyValue: (name) => material[name] || '' }),
+    document: {
+      body: { dataset: { page: 'research' } },
+      getElementById: () => content,
+      querySelector: () => ({ dataset: { direction: 'forward', camera: '{}' } }),
+      querySelectorAll: (selector) => (selector === '.fragment-piece' ? [tile] : [layer]),
+    },
+  };
+  vm.runInNewContext('(' + observeFragmentFlight.toString() + ')()', sandbox);
+  const observed = JSON.parse(JSON.stringify(sandbox.window.__finishFragmentFlight())),
+    owner = observed.backdrops[0].owners[0];
+  assert.deepEqual(owner.copyPlacements, [
+    { transform: copy.style.transform, translation: [12.12345, 12.56789] },
+  ]);
+  assert.ok(Math.abs(owner.cells[0][0] - 87.87655) < 1e-8);
+  assert.ok(Math.abs(owner.cells[0][1] - 87.43211) < 1e-8);
+  validateFragmentBackdrops(observed, 'depart');
+});
 test('whole-block paper evidence rejects native fades, wrong copied material and shards that omit the gutter', () => {
   const { validateFragmentBackdrops } = require('../tools/quality/color-browser.cjs');
   const observation = {
@@ -716,6 +799,9 @@ test('whole-block paper evidence rejects native fades, wrong copied material and
       (data, owner) => (owner.cells = [[100, 100, 500, 100]]),
       (data, owner) => (owner.cells = [[88, 88, NaN, 124]]),
       (data, owner) => (owner.cells = []),
+      (data, owner) => (owner.copyPlacements[0].translation[0] = NaN),
+      (data, owner) => (owner.copyPlacements[0].transform = 'translate3d(NaNpx, 12px, 0px)'),
+      (data, owner) => (owner.copyPlacements[0].transform = 'translate3d(0px, 0px, 0px)'),
       (data) => (data.backdrops.find((record) => record.phase === phase).owners = []),
       (data) => (data.samples.find((sample) => sample.phase === phase).paintedBackdropPieces = 0),
       (data) => (data.samples.find((sample) => sample.phase === phase).backdropPieces = 0),
@@ -743,6 +829,9 @@ test('selected intro title paper requires measured descendant line boxes and the
           [100, 185, 160, 65],
         ];
         title.cells = [[90, 90, 240, 170]];
+        title.copyPlacements = [
+          { transform: 'translate3d(10px, 10px, 0px)', translation: [10, 10] },
+        ];
         Object.assign(title.native, {
           content: 'normal',
           left: 'auto',

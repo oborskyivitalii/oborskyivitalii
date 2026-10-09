@@ -239,6 +239,7 @@ module.exports = function (content, geometry, onFallback = null) {
     for (const child of owner.querySelectorAll('*')) {
       if (clock() - start > settings.acquisitionMs) return false;
       const measured = nativePaint(child);
+      measured.dimensions = captureDimensions(child, measured.style);
       if (child.namespaceURI === 'http://www.w3.org/2000/svg' && !staticVectorPaint(measured.style))
         return null;
       if (child.matches('svg') && !vectorViewport(measured.style)) return null;
@@ -264,6 +265,35 @@ module.exports = function (content, geometry, onFallback = null) {
     bounds.width = bounds.right - bounds.left;
     bounds.height = bounds.bottom - bounds.top;
     return { paints, bounds };
+  }
+  function captureDimensions(owner, paint) {
+    if (
+      owner.namespaceURI === 'http://www.w3.org/2000/svg' ||
+      ['inline', 'contents', 'none'].includes(paint.getPropertyValue('display')) ||
+      ['transform', 'translate', 'rotate', 'scale'].some(
+        (property) => !['', 'none'].includes(paint.getPropertyValue(property))
+      )
+    )
+      return null;
+    const rect = owner.getBoundingClientRect();
+    const dimensions = { width: rect.width, height: rect.height };
+    // Computed dimensions can serialize below the native layout-unit boundary.
+    // Preserve measured block sizes without assigning dimensions to inline runs.
+    if (paint.getPropertyValue('box-sizing') !== 'border-box') {
+      for (const [axis, sides] of [
+        ['width', ['left', 'right']],
+        ['height', ['top', 'bottom']],
+      ]) {
+        for (const side of sides) {
+          dimensions[axis] -=
+            (parseFloat(paint.getPropertyValue('padding-' + side)) || 0) +
+            (parseFloat(paint.getPropertyValue('border-' + side + '-width')) || 0);
+        }
+      }
+    }
+    return Object.values(dimensions).every((value) => Number.isFinite(value) && value > 0)
+      ? dimensions
+      : null;
   }
   function staticVector(vector) {
     return [vector, ...vector.querySelectorAll('*')].every(
@@ -428,6 +458,32 @@ module.exports = function (content, geometry, onFallback = null) {
     ])
       copy.style.setProperty(property, paint.getPropertyValue(property));
   }
+  function freezeLayout(copy, measured) {
+    for (const property of [
+      'margin-top',
+      'margin-right',
+      'margin-bottom',
+      'margin-left',
+      'width',
+      'height',
+      'min-width',
+      'max-width',
+      'min-height',
+      'max-height',
+      'position',
+      'top',
+      'right',
+      'bottom',
+      'left',
+      'flex',
+      'order',
+    ])
+      copy.style.setProperty(property, measured.style.getPropertyValue(property));
+    if (measured.dimensions) {
+      copy.style.width = measured.dimensions.width + 'px';
+      copy.style.height = measured.dimensions.height + 'px';
+    }
+  }
   function freezePaint(owner, clone, paints) {
     const originals = [owner, ...owner.querySelectorAll('*')];
     const copies = [clone, ...clone.querySelectorAll('*')];
@@ -510,28 +566,7 @@ module.exports = function (content, geometry, onFallback = null) {
         'overflow',
       ])
         copy.style.setProperty(property, paint.getPropertyValue(property));
-      if (i > 0) {
-        for (const property of [
-          'margin-top',
-          'margin-right',
-          'margin-bottom',
-          'margin-left',
-          'width',
-          'height',
-          'min-width',
-          'max-width',
-          'min-height',
-          'max-height',
-          'position',
-          'top',
-          'right',
-          'bottom',
-          'left',
-          'flex',
-          'order',
-        ])
-          copy.style.setProperty(property, paint.getPropertyValue(property));
-      }
+      if (i > 0) freezeLayout(copy, measured);
       freezeVector(original, copy, paint);
       copy.classList.add('fragment-frozen-paint');
       if (painted(paint)) copy.classList.add('fragment-surface-paint');
@@ -711,8 +746,12 @@ module.exports = function (content, geometry, onFallback = null) {
           const paint = nativePaint.cloneNode(true);
           paint.style.width = rect.width + 'px';
           paint.style.height = rect.height + 'px';
-          paint.style.left = rect.left - cell.x + 'px';
-          paint.style.top = rect.top - cell.y + 'px';
+          // Paper outsets can fall between layout units. Keep their local
+          // offset in the transform so it cancels the shard's exact origin.
+          paint.style.left = '0px';
+          paint.style.top = '0px';
+          paint.style.transform =
+            'translate3d(' + (rect.left - cell.x) + 'px,' + (rect.top - cell.y) + 'px,0)';
           tile.append(paint);
           container.append(tile);
           const solid = document.createElementNS(svgNamespace, 'g');

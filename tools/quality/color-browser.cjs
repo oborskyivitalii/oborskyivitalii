@@ -105,7 +105,23 @@ function observeFragmentFlight() {
       ].map((property) => [property, style.getPropertyValue(property)])
     );
   }
-  function backdropRecord(native, copy, cells, pseudo = null) {
+  function copiedCells(box, copies) {
+    const copyPlacements = copies.map(({ copy }) => {
+      const matrix = new DOMMatrix(copy.style.transform);
+      return { transform: copy.style.transform, translation: [matrix.m41, matrix.m42] };
+    });
+    return {
+      nativeOrigin: [box.left, box.top],
+      copyPlacements,
+      cells: copies.map(({ tile }, index) => [
+        box.left - copyPlacements[index].translation[0],
+        box.top - copyPlacements[index].translation[1],
+        parseFloat(tile.style.width),
+        parseFloat(tile.style.height),
+      ]),
+    };
+  }
+  function backdropRecord(native, copy, placement, pseudo = null) {
     const box = native.getBoundingClientRect(),
       style = getComputedStyle(native);
     return {
@@ -131,7 +147,7 @@ function observeFragmentFlight() {
       pseudo,
       native: pseudoPaint(native, pseudo),
       copied: pseudoPaint(copy, pseudo),
-      cells,
+      ...placement,
     };
   }
   function visibleDecodedPortrait() {
@@ -151,7 +167,7 @@ function observeFragmentFlight() {
       image.currentSrc
     );
   }
-  function copiedBackdrops(native, copy, cells) {
+  function copiedBackdrops(native, copy, placement) {
     const originals = [native, ...native.querySelectorAll('*')],
       paints = [copy, ...copy.querySelectorAll('*')],
       owners = [];
@@ -159,10 +175,10 @@ function observeFragmentFlight() {
       const paint = paints[index];
       if (paint.namespaceURI === 'http://www.w3.org/2000/svg') continue;
       if (paint.classList.contains('fragment-surface-paint'))
-        owners.push(backdropRecord(originals[index], paint, cells));
+        owners.push(backdropRecord(originals[index], paint, placement));
       for (const side of ['before', 'after'])
         if (paint.classList.contains('fragment-surface-' + side))
-          owners.push(backdropRecord(originals[index], paint, cells, '::' + side));
+          owners.push(backdropRecord(originals[index], paint, placement, '::' + side));
     }
     return owners;
   }
@@ -189,14 +205,8 @@ function observeFragmentFlight() {
       if (native.style.visibility !== 'hidden') continue;
       const copies = groups.get(paintIdentity(native));
       if (!copies) continue;
-      const box = native.getBoundingClientRect(),
-        cells = copies.map(({ tile, copy }) => [
-          box.left - parseFloat(copy.style.left),
-          box.top - parseFloat(copy.style.top),
-          parseFloat(tile.style.width),
-          parseFloat(tile.style.height),
-        ]);
-      owners.push(...copiedBackdrops(native, copies[0].copy, cells));
+      const placement = copiedCells(native.getBoundingClientRect(), copies);
+      owners.push(...copiedBackdrops(native, copies[0].copy, placement));
     }
     observation.backdrops.push({
       timeMs: performance.now(),
@@ -258,12 +268,7 @@ function observeFragmentFlight() {
       copiedImage: vectorImage(root.querySelector('img')),
       nativeNodes: [...nativeSvg.querySelectorAll('*')].map(vectorPaint),
       copiedNodes: [...(copiedSvg?.querySelectorAll('*') || [])].map(vectorPaint),
-      cells: copies.map(({ tile, copy }) => [
-        box.left - parseFloat(copy.style.left),
-        box.top - parseFloat(copy.style.top),
-        parseFloat(tile.style.width),
-        parseFloat(tile.style.height),
-      ]),
+      ...copiedCells(box, copies),
     };
   }
   function observeVectors(tiles, phase) {
@@ -655,7 +660,30 @@ function validateBackdropOwner(owner, viewport) {
   assert.equal(owner.nativeRect.length, 4);
   assert.equal(owner.nativeBorder.length, 2);
   assert.equal(viewport.length, 2);
+  validateCopyPlacement(owner);
   validatePaintCoverage(owner.cells, backdropBounds(owner), viewport);
+}
+function validateCopyPlacement(record) {
+  assert.ok(record.nativeOrigin.length === 2 && record.nativeOrigin.every(Number.isFinite));
+  assert.equal(record.copyPlacements.length, record.cells.length);
+  for (const [index, placement] of record.copyPlacements.entries()) {
+    assert.ok(placement.transform.startsWith('translate3d(') && placement.transform.endsWith(')'));
+    const values = placement.transform.slice(12, -1).split(',').map(parseFloat);
+    assert.ok(values.length === 3 && values.every(Number.isFinite) && values[2] === 0);
+    assert.ok(placement.translation.length === 2 && placement.translation.every(Number.isFinite));
+    for (const axis of [0, 1]) {
+      assert.ok(
+        Math.abs(values[axis] - placement.translation[axis]) <= 1e-8,
+        'raw clone transform disagrees with its actual DOMMatrix translation'
+      );
+      assert.ok(
+        Math.abs(
+          record.cells[index][axis] + placement.translation[axis] - record.nativeOrigin[axis]
+        ) <= 1e-8,
+        'fragment cell origin no longer reconstructs its native border box'
+      );
+    }
+  }
 }
 function validatePaintCoverage(cells, bounds, viewport) {
   assert.ok(cells.length > 0);
@@ -758,6 +786,7 @@ function validateVectorFigure(record) {
     assert.ok(rect.length === 4 && rect.every(Number.isFinite) && rect[2] > 0 && rect[3] > 0);
   assert.ok(record.viewport.length === 2 && record.viewport.every(Number.isFinite));
   const [figure, svg] = [record.nativeRect, record.svgRect];
+  validateCopyPlacement(record);
   validatePaintCoverage(
     record.cells,
     [

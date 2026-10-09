@@ -88,6 +88,7 @@ function fixture(options = {}) {
       };
       this.pseudoComputed = {};
       this.styleReads = new Map();
+      this.rectReads = 0;
       this.cloneCalls = 0;
       this.complete = true;
       this.naturalWidth = 120;
@@ -178,6 +179,7 @@ function fixture(options = {}) {
     }
     getBoundingClientRect() {
       counts.rects++;
+      this.rectReads++;
       now += options.rectCost || 0;
       return {
         ...this.rect,
@@ -232,6 +234,7 @@ function fixture(options = {}) {
     tabindex: '0',
     onfocus: 'unsafe()',
   });
+  link.computed.display = 'inline';
   heading.append(link);
   link.addEventListener('click', () => assert.fail('native listener must never reach a clone'));
   const paragraph = new Node(
@@ -571,8 +574,9 @@ function invalidatePortrait(h, portrait, mode) {
 function assertPaintCoverage(tiles, owner, expected) {
   const polygons = tiles.map((tile) => {
     const paint = tile.children[0];
-    const left = owner.rect.left - parseFloat(paint.style.left);
-    const top = owner.rect.top - parseFloat(paint.style.top);
+    const offset = nativePaintOffset(paint);
+    const left = owner.rect.left - offset[0];
+    const top = owner.rect.top - offset[1];
     const width = parseFloat(tile.style.width);
     const height = parseFloat(tile.style.height);
     return tile.style.clipPath
@@ -608,6 +612,99 @@ function assertPaintCoverage(tiles, owner, expected) {
     assert.ok(Math.abs(Math.max(...points.map((point) => point[axis])) - lower - extent) < 1e-6);
   }
 }
+
+function nativePaintOffset(paint) {
+  assert.equal(parseFloat(paint.style.left), 0);
+  assert.equal(parseFloat(paint.style.top), 0);
+  assert.match(paint.style.transform, /^translate3d\(.+px,\s*.+px,\s*0(?:px)?\)$/);
+  const offset = paint.style.transform.slice('translate3d('.length, -1).split(',').map(parseFloat);
+  assert.ok(offset.every(Number.isFinite));
+  assert.equal(offset[2], 0);
+  return offset;
+}
+
+function fractionalPaper(h, sizing) {
+  const wrapper = paintedWrapper(h, false);
+  h.paragraph.remove();
+  h.image.remove();
+  wrapper.rect = { left: 40.09375, top: 150.03125, width: 430.03125, height: 280.03125 };
+  Object.assign(wrapper.pseudoComputed['::before'], {
+    left: '-10.24px',
+    top: '-6.4px',
+    width: '450.51125px',
+    height: '292.83125px',
+  });
+  h.heading.rect = { left: 56.09375, top: 166.03125, width: 400.015625, height: 207.5625 };
+  const contentBox = sizing === 'content-box';
+  Object.assign(h.heading.computed, {
+    'box-sizing': contentBox ? 'content-box' : 'border-box',
+    width: contentBox ? '364.016px' : '400.016px',
+    height: contentBox ? '187.562px' : '207.562px',
+    'padding-top': '8px',
+    'padding-right': '16px',
+    'padding-bottom': '8px',
+    'padding-left': '16px',
+    'border-top-width': '2px',
+    'border-right-width': '2px',
+    'border-bottom-width': '2px',
+    'border-left-width': '2px',
+    transform: sizing === 'transformed' ? 'matrix(1.1, 0, 0, 1.1, 0, 0)' : 'none',
+  });
+  const inline = new h.Node('span', ' with inline auto dimensions');
+  Object.assign(inline.computed, { display: 'inline', width: 'auto', height: 'auto' });
+  h.heading.append(inline);
+  const expected = {
+    'border-box': ['400.015625px', '207.5625px'],
+    'content-box': ['364.015625px', '187.5625px'],
+    transformed: ['400.016px', '207.562px'],
+  };
+  return { wrapper, inline, size: expected[sizing] };
+}
+
+function presentNativeEndpoint(h, phase, snapshot) {
+  if (phase === 'arrive') h.advance(1800);
+  h.adapter.present(phase === 'depart' ? 0 : 1, snapshot());
+}
+
+test('fractional paper offsets and cached descendant border boxes retain exact native handoff dimensions', () => {
+  for (const sizing of ['border-box', 'content-box', 'transformed']) {
+    for (const phase of ['depart', 'arrive']) {
+      for (const direction of ['forward', 'backward']) {
+        const h = fixture();
+        const { wrapper, inline, size } = fractionalPaper(h, sizing);
+        const snapshot = () => h.snapshot([0, 0, 0], { direction });
+        assert.equal(h.adapter.prepare(phase, snapshot()), true);
+        assert.equal(h.content.dataset.fragmentOwners, '1');
+        assert.equal(h.heading.rectReads, sizing === 'transformed' ? 0 : 1);
+        assert.equal(inline.rectReads, 0, 'inline auto sizes must not become measured block sizes');
+        assertPaintCoverage(h.tiles(), wrapper, {
+          left: 29.85375,
+          top: 143.63125,
+          width: 450.51125,
+          height: 292.83125,
+        });
+        for (const tile of h.tiles()) {
+          const copy = tile.children[0];
+          assert.equal(copy.style.width, '430.03125px');
+          assert.equal(copy.style.height, '280.03125px');
+          const heading = copy.querySelector('h1');
+          assert.equal(heading.style.width, size[0]);
+          assert.equal(heading.style.height, size[1]);
+          const span = heading.querySelector('span');
+          assert.equal(span.style.width, 'auto');
+          assert.equal(span.style.height, 'auto');
+        }
+        const reads = { rects: h.counts.rects, styles: h.counts.styles };
+        presentNativeEndpoint(h, phase, snapshot);
+        for (const tile of h.tiles()) assertNativeCorners(h, tile, wrapper);
+        assert.deepEqual({ rects: h.counts.rects, styles: h.counts.styles }, reads);
+        h.adapter.clear();
+        assert.notEqual(wrapper.style.visibility, 'hidden');
+        assertDisposed(h);
+      }
+    }
+  }
+});
 
 test('static portrait SVG and decoded image share one atomic figure with complete vector outset paint', () => {
   for (const phase of ['depart', 'arrive']) {
@@ -1136,8 +1233,9 @@ function assertNativeCorners(h, tile, nativeOwner = null) {
     nativeOwner || [h.heading, h.paragraph, h.image].find((node) => node.tagName === paint.tagName);
   const width = parseFloat(tile.style.width);
   const height = parseFloat(tile.style.height);
-  const left = owner.rect.left - parseFloat(paint.style.left);
-  const top = owner.rect.top - parseFloat(paint.style.top);
+  const offset = nativePaintOffset(paint);
+  const left = owner.rect.left - offset[0];
+  const top = owner.rect.top - offset[1];
   const values = tile.style.transform.slice('matrix3d('.length, -1).split(',').map(Number);
   assert.equal(values.length, 16);
   assert.ok(values.every(Number.isFinite));

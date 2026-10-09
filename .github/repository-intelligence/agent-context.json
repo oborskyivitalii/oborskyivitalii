@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "a16159d62367b023d40a9813d6d84731707a6431a4e9804b2c9f5b3cf2614b63",
+    "digest": "dbf25e611446e8c6a16e1bfd32b152fe6bee1ac76046b5eada2c6ca1bdede31a",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -141,7 +141,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "7fcd302ac968f63f5ae6326eda567b786106df71ea5533fbf383de6f572a6436"
+        "sha256": "4a82677381d34225d03184442fd0efa82387df0be8dbb6144903693e23f8aa4d"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -700,7 +700,7 @@
       {
         "path": "review/issue-49/2026-10-08-analysis.md",
         "identity_mode": "content",
-        "sha256": "cc76aff90fe3f67106c235dd25262cdedab7f12f3413d97f78a4a4e4273b4781"
+        "sha256": "e8ccd75b27cfa3fa964a99359cd0b0dbf84e984fb6294cb2e07a4ccc3fd23f00"
       },
       {
         "path": "review/issue-54/2026-10-08-analysis.md",
@@ -4575,7 +4575,7 @@
       {
         "path": "site/effects/fragment-dom.cjs",
         "identity_mode": "content",
-        "sha256": "54e743f7d892838e3c5b9063052b4080f7cad2b24d9af9e884adb3f0a6168d44"
+        "sha256": "ac7c7070e2b609079b62252de2c508dc56e2303d157969e6698215021edc9c12"
       },
       {
         "path": "site/effects/fragment-plan.cjs",
@@ -5030,7 +5030,7 @@
       {
         "path": "tests/fragment-dom.test.cjs",
         "identity_mode": "content",
-        "sha256": "3a9dfe4a08ca6baa4ef5f57303b510eb2dd80dbefd6d6eed8158b77d5f471d9f"
+        "sha256": "a21e9ed4d019dd7be45a6b97e527fff9e050034d8ff3234903d98b70b315404a"
       },
       {
         "path": "tests/fragment-plan.test.cjs",
@@ -5145,7 +5145,7 @@
       {
         "path": "tests/staging-regression.test.cjs",
         "identity_mode": "content",
-        "sha256": "91aef3b28ac0928c894ea85e14c41978c9ab5c27eadce75174798fc0ddcc6885"
+        "sha256": "736eee0d4a4d6d3ff0d2961c83660dac14b3f46e0ff24237e37e9144d58c4121"
       },
       {
         "path": "tests/staging-reporting.test.cjs",
@@ -5445,7 +5445,7 @@
       {
         "path": "tools/quality/color-browser.cjs",
         "identity_mode": "content",
-        "sha256": "53316ac6c76cd4f279c371026a38c9ce1a2666f68175822608aabf325351f9c0"
+        "sha256": "423b5fe3726c546ccf07e6eebbca2811ecf519465d585cdbdd8e133494f53c65"
       },
       {
         "path": "tools/quality/common.cjs",
