@@ -876,6 +876,7 @@ test('whole-block heading observation compares descendant glyphs when the native
     scene = { dataset: { direction: 'forward', camera: '{}' } };
   native.parentElement = parent;
   parent.parentElement = content;
+  let mutation;
   const sandbox = {
     window: {},
     innerWidth: 1440,
@@ -884,6 +885,9 @@ test('whole-block heading observation compares descendant glyphs when the native
     performance: { now: () => 100 },
     NodeFilter: { SHOW_TEXT: 4 },
     MutationObserver: class {
+      constructor(callback) {
+        mutation = callback;
+      }
       observe() {}
       disconnect() {}
     },
@@ -918,7 +922,14 @@ test('whole-block heading observation compares descendant glyphs when the native
     },
   };
   vm.runInNewContext('(' + observeFragmentFlight.toString() + ')()', sandbox);
+  sandbox.window.__sampleFragmentFlight();
+  mutation([{ type: 'attributes' }]);
   const observed = JSON.parse(JSON.stringify(sandbox.window.__finishFragmentFlight()));
+  assert.deepEqual(
+    observed.samples.map((sample) => sample.painted),
+    [false, true, false, false],
+    'only the scene paint hook marks a sample as actual Canvas evidence'
+  );
   assert.equal(native.style.visibility, '', 'the heading itself was not the hidden owner');
   assert.equal(observed.samples[0].headingSelected, true);
   assert.equal(observed.headingSeam.boxDeltaPx, 0);
@@ -1987,6 +1998,45 @@ test('failed initial Research warm is reported before any theme dispatch can ret
     return true;
   });
   assert.deepEqual(calls, [{ route: 'research', nativePage: 'index' }, 'failureState']);
+});
+
+test('embedded flight geometry uses actual scene paints while native mount mutations remain strict', () => {
+  const {
+    embeddedFragmentObservation,
+    validateEmbeddedPrototype,
+  } = require('../tools/quality/color-browser.cjs');
+  const observed = embeddedPrototypeFixture();
+  const raw = {
+    embeddedInitial: observed.initial,
+    mounts: observed.mounts,
+    samples: observed.frames.map((embedded) => ({ embedded, painted: true })),
+  };
+  const stale = structuredClone(raw.samples[5]);
+  stale.painted = false;
+  stale.embedded.diagnostics.travelProgress = 0.78;
+  raw.samples.splice(6, 0, stale);
+  raw.samples.push({ embedded: observed.final, painted: false });
+  const accepted = embeddedFragmentObservation(raw);
+  assert.equal(raw.samples.length, 14, 'unpainted mount state stays in raw evidence');
+  assert.equal(accepted.frames.length, 12, 'unpainted geometry is never used as Canvas evidence');
+  assert.equal(validateEmbeddedPrototype(accepted, 'light').rectDeltaPx, 0);
+  for (const mutate of [
+    (value) => (value.samples[6].painted = true),
+    (value) => (value.samples[7].embedded.diagnostics.progress = 0),
+    (value) => (value.samples[6].embedded.nativeOpacity = 1),
+    (value) => (value.samples[6].embedded.rootVisibility = 'visible'),
+    (value) => (value.samples[6].embedded.nativeCoverage.selected = 1),
+    (value) => (value.mounts = [{ page: 'writing' }, { page: 'research' }]),
+    (value) => (value.samples.at(-1).embedded.natives[0].hidden = true),
+    (value) => value.samples.forEach((sample) => (sample.painted = false)),
+  ]) {
+    const invalid = structuredClone(raw);
+    mutate(invalid);
+    assert.throws(
+      () => validateEmbeddedPrototype(embeddedFragmentObservation(invalid), 'light'),
+      String(mutate)
+    );
+  }
 });
 
 test('Home Writing skip traverses the existing Research world and mounts only native Writing', () => {

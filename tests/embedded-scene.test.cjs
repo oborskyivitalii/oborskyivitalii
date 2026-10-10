@@ -48,6 +48,7 @@ function harness({ compact = false, deferred = false, wholeViewport = false } = 
   const assets = [];
   const stages = [];
   const oracleReads = [];
+  const statusOwner = { dataset: {} };
   const worlds = new Map();
   let canTravel = true;
   let theme;
@@ -62,6 +63,9 @@ function harness({ compact = false, deferred = false, wholeViewport = false } = 
       },
     },
     documentElement: { clientWidth: width },
+    getElementById(id) {
+      return id === 'space-canvas' ? { parentElement: statusOwner } : null;
+    },
     fonts: eventTarget(),
     createElement() {
       return {
@@ -268,6 +272,7 @@ function harness({ compact = false, deferred = false, wholeViewport = false } = 
     assets,
     stages,
     oracleReads,
+    statusOwner,
     native,
     data,
     pose,
@@ -635,6 +640,74 @@ test('failed source capture exposes a bounded reason through fallback without lo
   assert.equal(h.bridge.diagnostics().lastFailure.reason, 'unsupported-native-paint');
   assert.equal(h.bridge.diagnostics().bank.length, 1);
   assert.equal(h.assets[0].disposeCount, 0);
+});
+
+test('existing scene DOM publishes only cached bounded capture status through success, fallback and retry', async () => {
+  const h = harness({ deferred: true });
+  let writes = 0;
+  h.statusOwner.dataset = new Proxy(
+    {},
+    {
+      set(target, key, value) {
+        writes++;
+        target[key] = value;
+        return true;
+      },
+      deleteProperty(target, key) {
+        writes++;
+        delete target[key];
+        return true;
+      },
+    }
+  );
+  h.collect('index', 100);
+  assert.deepEqual(h.statusOwner.dataset, { embeddedPhase: 'idle' });
+  const unchanged = writes;
+  h.collect('index', 500);
+  assert.equal(writes, unchanged, 'ambient frames cannot rewrite unchanged status attributes');
+  const warm = h.bridge.prime(h.data('research'), 78);
+  h.collect('index', 600);
+  assert.equal(h.statusOwner.dataset.embeddedPending, 'research');
+  h.captures[0].resolve();
+  await warm;
+  h.collect('index', 700);
+  assert.equal(h.statusOwner.dataset.embeddedBank, 'research');
+  assert.equal(h.statusOwner.dataset.embeddedPending, undefined);
+  const failed = h.bridge.prepareDeparture(h.native('index'));
+  h.captures[1].options.onReject({
+    reason: 'unsupported-native-paint',
+    tag: 'svg',
+    limit: 'layerPixels',
+    path: [0, 1],
+    text: 'private native content',
+  });
+  h.captures[1].resolve(null);
+  await failed;
+  h.bridge.begin({ from: 'index', to: 'research', landing: { position: [0, 0] } });
+  h.collect('index', 800);
+  assert.deepEqual(h.statusOwner.dataset, {
+    embeddedBank: 'research',
+    embeddedPhase: 'idle',
+    embeddedFailureStage: 'departure',
+    embeddedFailureRoute: 'index',
+    embeddedFailureReason: 'unsupported-native-paint',
+    embeddedFailureTag: 'svg',
+    embeddedFailureLimit: 'layerPixels',
+  });
+  const retry = h.bridge.prime(h.data('writing'), 78);
+  h.collect('index', 900);
+  assert.equal(h.statusOwner.dataset.embeddedFailureReason, undefined);
+  assert.equal(h.statusOwner.dataset.embeddedPending, 'writing');
+  h.captures[2].resolve();
+  await retry;
+  h.collect('index', 1000);
+  assert.equal(h.statusOwner.dataset.embeddedBank, 'research writing');
+  assert.equal(h.statusOwner.dataset.embeddedPending, undefined);
+  assert.ok(
+    Object.values(h.statusOwner.dataset).every(
+      (value) => typeof value === 'string' && value.length <= 192
+    )
+  );
 });
 
 test('aborted stale acquisition cannot overwrite or retain resources after invalidation', async () => {

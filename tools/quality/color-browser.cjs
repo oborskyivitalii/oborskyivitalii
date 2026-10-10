@@ -1420,7 +1420,7 @@ function observeFragmentFlight() {
       return;
     }
   }
-  const sample = () => {
+  const sample = (source = null) => {
     if (observation.samples.length >= 400) return;
     const tiles = [...document.querySelectorAll('.fragment-piece')];
     const scene = document.querySelector('.space-scene');
@@ -1429,6 +1429,7 @@ function observeFragmentFlight() {
     if (content.dataset.fragmentPhase === 'arrive')
       observeHeadingSeam(tiles, Number(content.dataset.fragmentSettled || 0));
     observation.samples.push({
+      painted: source === 'paint',
       timeMs: performance.now(),
       page: document.body.dataset.page,
       direction: scene.dataset.direction,
@@ -1509,7 +1510,7 @@ function observeFragmentFlight() {
     /* Callback timing and real Canvas observations remain available. */
   }
   window.__fragmentFlight = observation;
-  window.__sampleFragmentFlight = sample;
+  window.__sampleFragmentFlight = () => sample('paint');
   window.__finishFragmentFlight = () => {
     sample();
     observer.disconnect();
@@ -1606,14 +1607,49 @@ function validateFragmentAssembly(observation, measured) {
   };
 }
 function embeddedFragmentObservation(observation) {
-  const frames = observation.samples.map((sample) => sample.embedded).filter(Boolean);
-  if (!frames.some((frame) => ['departing', 'assembling'].includes(frame.diagnostics?.phase)))
+  const samples = observation.samples.filter((sample) => sample.embedded);
+  if (
+    !samples.some((sample) =>
+      ['departing', 'assembling'].includes(sample.embedded.diagnostics?.phase)
+    )
+  )
     return null;
+  const to = samples.find((sample) => sample.embedded.diagnostics?.phase).embedded.diagnostics
+    .groups[0].route;
+  for (const sample of samples) {
+    const frame = sample.embedded;
+    if (!frame.diagnostics?.phase) continue;
+    assert.ok(
+      frame.nativeCoverage?.expected > 0 &&
+        frame.nativeCoverage.selected === frame.nativeCoverage.expected,
+      'world mount fails to cover actual visible native owners'
+    );
+    assert.deepEqual(frame.nativeCoverage.uncovered, []);
+    assert.equal(frame.pieces, 0, 'world mount uses DOM fragments');
+    assert.equal(frame.layers, 0, 'world mount retains a DOM fragment layer');
+    if (frame.page !== to) continue;
+    const handoff = frame.diagnostics.handoff;
+    assert.ok(Number.isFinite(handoff) && handoff >= 0 && handoff <= 1, 'unbounded native handoff');
+    assert.ok(
+      Math.abs(frame.nativeOpacity - handoff) <= 0.001,
+      'world mount exposes native text before handoff'
+    );
+    if (!handoff)
+      assert.equal(
+        frame.rootVisibility,
+        'hidden',
+        'world mount reveals native text before handoff'
+      );
+    assert.ok(
+      frame.natives.filter((native) => native.route === to).every((native) => native.copies === 0),
+      'world mount also paints native content through DOM copies'
+    );
+  }
   return {
     initial: observation.embeddedInitial,
-    frames,
+    frames: samples.filter((sample) => sample.painted === true).map((sample) => sample.embedded),
     mounts: observation.mounts,
-    final: frames.at(-1),
+    final: samples.at(-1).embedded,
   };
 }
 function validateHeadingSeam(seam) {
@@ -2730,6 +2766,7 @@ module.exports = {
   fragmentRouteCoverage,
   embeddedPrototypeState,
   validateEmbeddedPrototype,
+  embeddedFragmentObservation,
   validateEmbeddedCorridor,
   embeddedFirstLoad,
   embeddedPrototype,

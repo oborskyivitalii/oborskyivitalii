@@ -8,6 +8,7 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
     loopTransform: api.loopTransform,
   });
   const textures = embeddedTexture();
+  const statusOwner = document.getElementById?.('space-canvas')?.parentElement;
   const bank = new Map();
   const surfaces = new Map();
   const settings = Object.freeze({
@@ -34,6 +35,7 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
   let faces = [];
   let departureFaces = [];
   let lastFailure = null;
+  let publishedStatus = null;
   const clamp = (amount) => Math.max(0, Math.min(1, amount));
   const validRoute = (route) => api.routeOrder.includes(route);
   const caps = () => geometry.settings.caps[state?.compact ? 'compact' : 'full'];
@@ -750,6 +752,37 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
       entry.owner.style.opacity = String(handoff);
     }
   }
+  function publishStatus() {
+    if (!statusOwner?.dataset) return;
+    const routes = [...bank.keys()].join(' ');
+    const failure = lastFailure || {};
+    const signature = [
+      routes,
+      phase,
+      pendingRoute,
+      failure.stage,
+      failure.route,
+      failure.reason,
+      failure.tag,
+      failure.limit,
+    ].join('|');
+    if (signature === publishedStatus) return;
+    publishedStatus = signature;
+    const values = {
+      embeddedBank: routes,
+      embeddedPhase: phase || 'idle',
+      embeddedPending: pendingRoute,
+      embeddedFailureStage: failure.stage,
+      embeddedFailureRoute: failure.route,
+      embeddedFailureReason: failure.reason,
+      embeddedFailureTag: failure.tag,
+      embeddedFailureLimit: failure.limit,
+    };
+    for (const [key, value] of Object.entries(values)) {
+      if (value) statusOwner.dataset[key] = value;
+      else delete statusOwner.dataset[key];
+    }
+  }
   return {
     collect(frame) {
       state = frame;
@@ -776,6 +809,7 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
         if (phase && entry === outgoing) departureFaces = shapes;
         faces.push(...shapes);
       }
+      publishStatus();
       return faces;
     },
     paint: (ctx, shape) => solids.paint(ctx, shape, surfaces.get(shape.ownerKey), state?.colors),
