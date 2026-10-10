@@ -18,11 +18,13 @@ Dated continuity, not live authority. Last verified: **2026-10-10**.
 - Read the same [issue49 handoff](review/issue-49/2026-10-08-analysis.md) and
   [raw synthetic diagnostics](review/issue-49/2026-10-10-performance.json).
   Pure geometry snapshots remain bit-exact; synthetic timings are not browser
-  performance acceptance. Exactab63 Basic/Navigation/owning CI pass; compact
+  performance acceptance. Exactb9c9 Basic/Navigation/owning CI pass; compact
   hosted smoke passes all13 world trips and six Day/Night core checkpoints.
-  Wide middle Writing capture still exceeds160ms, mainly waiting for SVG image
-  completion. No whole-browser pass is claimed. Next candidate defers idle
-  scene drawing during capture; original sampling/caps/deadlines remain.
+  Bounded idle scene capture pause reduces the failed wide Writing capture
+  from184 to35.1ms in one run. Strict ink proof now rejects a paper stripe fully
+  hidden behind the opaque sticky header. Current correction clips proven native
+  visibility inside original clocks; independent122-case review passes. Exact
+  published-head hosted proof is still required; no whole-browser pass is claimed.
 - Prior failed preview37985227296 remains failed evidence: desktop cold
   preparation timed out; mobile warming lost current Home. Its raw ZIP was
   inspected during this continuation; no old result is reclassified as passing.
@@ -43,6 +45,10 @@ Dated continuity, not live authority. Last verified: **2026-10-10**.
 - Capture pause retains the painted scene and visible native page on the same
   RAF; initial paint and active journeys stay live. Exact-head hosted proof is
   required. Owning acceptance has17 checks,15 automated criteria and11 human gates.
+- Header occlusion may exclude only paint proven invisible beneath a full-width
+  opaque header above the isolated capture plane. Preserve native coordinates,
+  inspect outsets first and revalidate coverage after decode; uncertain proof
+  keeps original viewport and visible-owner ink gates.
 - AC01 and accepted historicalAC11–AC14 retain their original scope. AC02–AC10
   andAC15 remain open for whole visual/device/accessibility/paired-cost/delivery
   gates. Preview authorization does not authorize stable promotion or merge.

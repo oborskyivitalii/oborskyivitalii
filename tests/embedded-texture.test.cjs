@@ -466,6 +466,64 @@ function pageFixture(options = {}) {
 const pageCaps = { owners: 32, descendants: 1500, textBytes: 32768, layerPixels: 8000000 };
 const pageOptions = { ...viewport, caps: pageCaps };
 
+function opaqueHeaderFixture(options = {}) {
+  const f = pageFixture(options);
+  const html = new f.Node('html', '', {}, { left: 0, top: 0, width: viewport.width, height: 6000 });
+  const body = new f.Node(
+    'body',
+    '',
+    { 'overflow-x': 'clip' },
+    { left: 0, top: 0, width: viewport.width, height: 6000 }
+  );
+  for (const node of [html, body])
+    for (const corner of ['top-left', 'top-right', 'bottom-left', 'bottom-right'])
+      node.computed['border-' + corner + '-radius'] = '0px';
+  const frame = new f.Node('div');
+  const header = new f.Node(
+    'header',
+    '',
+    {
+      position: 'sticky',
+      'z-index': '5',
+      'background-color': 'rgb(243, 241, 234)',
+      'background-image': 'none',
+      'background-clip': 'border-box',
+      'border-top-left-radius': '0px',
+      'border-top-right-radius': '0px',
+      'border-bottom-left-radius': '0px',
+      'border-bottom-right-radius': '0px',
+    },
+    { left: 0, top: 0, width: viewport.width, height: 81 }
+  );
+  f.root.id = 'site-content';
+  f.root.computed.isolation = 'isolate';
+  html.clientWidth = viewport.width;
+  html.append(body);
+  body.append(header, frame);
+  frame.append(f.root);
+  f.document.body = body;
+  f.document.documentElement = html;
+  f.document.querySelector = (selector) => (selector === '.site-header' ? header : null);
+  const paper = (top, text) => {
+    const node = new f.Node('li', text, {}, { left: 20, top, width: 400, height: 149.4375 });
+    node.pseudos['::before'] = {
+      content: '""',
+      position: 'absolute',
+      left: '-12px',
+      top: '-12px',
+      width: '424px',
+      height: '173.4375px',
+      'background-color': 'rgba(243, 241, 234, 0.87)',
+      'border-radius': '12px',
+    };
+    return node;
+  };
+  const covered = paper(-155.46875, 'Paper gutter entirely behind header');
+  const visible = paper(5.96875, 'Partly covered publication still has visible native paint');
+  f.main.append(covered, visible);
+  return { ...f, html, body, frame, header, covered, visible };
+}
+
 test('page acquisition keeps complete paper owners with headings, links and lists', async () => {
   const f = pageFixture();
   const card = new f.Node(
@@ -2524,5 +2582,246 @@ test('isolated proof timing remains one main decode and total, including cancell
   await lateProofLoad();
   assert.equal(timings.length, reports);
   assert.equal(f.timers.size, 0);
+  assert.ok(f.canvases.every((canvas) => canvas.width === 0 && canvas.height === 0));
+});
+
+test('an opaque header excludes only the covered paper gutter and preserves partial native coordinates', async () => {
+  const f = opaqueHeaderFixture();
+  // The header spans clientWidth, including layouts with a reserved scrollbar.
+  f.html.clientWidth = viewport.width - 15;
+  f.header.rect.width = f.html.clientWidth;
+  const textures = embeddedTexture();
+  const field = await textures.captureField(f.root, { ...pageOptions, dpr: 1 });
+  assert.ok(field);
+  assert.equal(field.sourceOwners.length, 1);
+  assert.deepEqual(field.sourceOwners[0].ownerPath, [0, 1]);
+  assert.deepEqual(field.sourceOwners[0].rect, f.visible.getBoundingClientRect());
+  assert.deepEqual(field.sourceOwners[0].lines, [f.visible.getBoundingClientRect()]);
+  assert.equal(field.sourceOwners[0].envelope.top, 81);
+  assert.equal(field.sourceOwners[0].envelope.bottom, 167.40625);
+  assert.equal(field.envelope.top, 81);
+  assert.equal(field.canvas.width, 424);
+  assert.equal(field.canvas.height, 86);
+  assert.equal(f.images.length, 1);
+  assert.equal(f.canvases.length, 1);
+  assert.equal(textures.matchesField(f.root, field.sourceOwners, pageOptions), true);
+  f.root.computed.visibility = 'hidden';
+  assert.equal(textures.matchesField(f.root, field.sourceOwners, pageOptions), true);
+  f.root.computed.visibility = 'visible';
+  f.header.computed.opacity = '0.87';
+  assert.equal(textures.matchesField(f.root, field.sourceOwners, pageOptions), false);
+  f.header.computed.opacity = '1';
+  f.header.rect.height = 60;
+  assert.equal(textures.matchesField(f.root, field.sourceOwners, pageOptions), false);
+  f.header.rect.height = 81;
+  assert.equal(textures.matchesField(f.root, field.sourceOwners, pageOptions), true);
+  field.dispose();
+});
+
+test('header clipping cannot borrow alpha for visible blank paint or genuine overlap below the header', async () => {
+  for (const overlap of [false, true]) {
+    const f = opaqueHeaderFixture({ blank: !overlap });
+    if (overlap) {
+      f.covered.rect.top = 100;
+      f.visible.rect.top = 100;
+    }
+    const failures = [];
+    assert.equal(
+      await embeddedTexture().captureField(f.root, {
+        ...pageOptions,
+        dpr: 1,
+        onReject: (detail) => failures.push(detail),
+      }),
+      null
+    );
+    assert.equal(failures[0].reason, 'native-owner-raster-blank');
+    assert.deepEqual(failures[0].path, [0, overlap ? 0 : 1]);
+    assert.equal(f.images.length, 1);
+    assert.ok(f.canvases.every((canvas) => canvas.width === 0 && canvas.height === 0));
+  }
+});
+
+test('uncertain header opacity, geometry, effects or stacking preserve the original ownership rejection', async () => {
+  const cases = [
+    (f) => (f.header.computed.opacity = '0.87'),
+    (f) => (f.header.computed['background-color'] = 'rgba(243, 241, 234, 0.87)'),
+    (f) => (f.header.rect.width = 1000),
+    (f) => (f.header.rect.top = 1),
+    (f) => (f.header.computed.position = 'static'),
+    (f) => (f.header.computed['background-clip'] = 'padding-box'),
+    (f) => (f.header.computed['border-top-left-radius'] = '12px'),
+    (f) => (f.header.computed.filter = 'blur(1px)'),
+    (f) => (f.header.computed['clip-path'] = 'inset(1px)'),
+    (f) => (f.header.computed['mask-image'] = 'linear-gradient(black, transparent)'),
+    (f) => (f.header.computed['mask-border-source'] = 'linear-gradient(black, transparent)'),
+    (f) => (f.header.computed['mix-blend-mode'] = 'multiply'),
+    (f) => (f.header.computed.visibility = 'hidden'),
+    (f) => (f.header.computed['z-index'] = 'auto'),
+    (f) => (f.root.computed.isolation = 'auto'),
+    (f) => (f.root.computed.display = 'contents'),
+    (f) => (f.frame.computed['z-index'] = '6'),
+    (f) => (f.frame.computed.transform = 'translateY(1px)'),
+    (f) => (f.body.computed.opacity = '0.9'),
+    (f) => (f.html.computed.opacity = '0.9'),
+    (f) => (f.body.computed.contain = 'paint'),
+    (f) => (f.html.computed.contain = 'strict'),
+    (f) => (f.body.rect.width = 1000),
+    (f) => (f.body.computed['border-top-left-radius'] = '12px'),
+    (f) => {
+      f.body.computed['overflow-y'] = 'hidden';
+      f.body.rect.height = 20;
+    },
+    (f) => {
+      f.html.computed['overflow-y'] = 'clip';
+      f.html.rect.height = 20;
+    },
+    (f) => {
+      f.body.children = [f.frame];
+      f.frame.append(f.header);
+    },
+  ];
+  for (const mutate of cases) {
+    const f = opaqueHeaderFixture();
+    mutate(f);
+    const failures = [];
+    assert.equal(
+      await embeddedTexture().captureField(f.root, {
+        ...pageOptions,
+        dpr: 1,
+        onReject: (detail) => failures.push(detail),
+      }),
+      null,
+      mutate.toString()
+    );
+    assert.equal(failures[0].reason, 'native-owner-raster-blank', mutate.toString());
+    assert.ok(f.canvases.every((canvas) => canvas.width === 0 && canvas.height === 0));
+  }
+});
+
+test('the same opaque header clip covers fixed staging and skips covered structural border paint', async () => {
+  const f = opaqueHeaderFixture();
+  f.root.id = '';
+  f.root.classList = { contains: (name) => name === 'embedded-stage' };
+  f.root.computed.position = 'fixed';
+  f.root.computed.isolation = 'auto';
+  f.root.computed.visibility = 'hidden';
+  f.root.rect.top = -2162;
+  f.root.rect.height = 6000;
+  const section = new f.Node(
+    'section',
+    '',
+    { 'border-top-width': '1px', 'border-top-style': 'solid' },
+    { left: 0, top: 20, width: 1440, height: 100 }
+  );
+  f.main.append(section);
+  const textures = embeddedTexture();
+  const field = await textures.captureField(f.root, { ...pageOptions, dpr: 1 });
+  assert.ok(field);
+  assert.deepEqual(field.decorations, []);
+  assert.deepEqual(field.sourceOwners[0].rect, f.visible.getBoundingClientRect());
+  assert.equal(field.sourceOwners[0].envelope.top, 81);
+  assert.equal(textures.matchesField(f.root, field.sourceOwners, pageOptions), true);
+  field.dispose();
+});
+
+test('a header changed while the shared raster decodes rejects its stale exclusion and releases pixels', async () => {
+  for (const mutate of [
+    (f) => (f.header.computed.opacity = '0.5'),
+    (f) => (f.header.rect.height = 60),
+    (f) => (f.frame.computed['z-index'] = '6'),
+  ]) {
+    const f = opaqueHeaderFixture({ autoLoad: false });
+    const failures = [];
+    const pending = embeddedTexture().captureField(f.root, {
+      ...pageOptions,
+      dpr: 1,
+      onReject: (detail) => failures.push(detail),
+    });
+    assert.equal(f.images.length, 1);
+    mutate(f);
+    f.images[0].onload();
+    assert.equal(await pending, null);
+    assert.equal(failures[0].reason, 'native-occlusion-changed');
+    assert.ok(f.canvases.every((canvas) => canvas.width === 0 && canvas.height === 0));
+    assert.equal(f.timers.size, 0);
+  }
+  const f = opaqueHeaderFixture({ autoLoad: false });
+  f.main.children = [f.visible];
+  f.main.childNodes = [f.visible];
+  f.header.computed.opacity = '0.5';
+  const failures = [];
+  const pending = embeddedTexture().captureField(f.root, {
+    ...pageOptions,
+    dpr: 1,
+    onReject: (detail) => failures.push(detail),
+  });
+  assert.equal(f.images.length, 1);
+  f.header.computed.opacity = '1';
+  f.images[0].onload();
+  assert.equal(await pending, null);
+  assert.equal(failures[0].reason, 'native-occlusion-changed');
+  assert.ok(f.canvases.every((canvas) => canvas.width === 0 && canvas.height === 0));
+  assert.equal(f.timers.size, 0);
+});
+
+test('native paper extending below the header survives even when its semantic box is wholly covered', async () => {
+  const f = opaqueHeaderFixture();
+  f.main.children = [f.covered];
+  f.main.childNodes = [f.covered];
+  f.covered.rect.top = 50;
+  f.covered.rect.height = 20;
+  f.covered.pseudos['::before'].height = '44px';
+  const field = await embeddedTexture().captureField(f.root, { ...pageOptions, dpr: 1 });
+  assert.ok(field);
+  assert.equal(field.sourceOwners.length, 1);
+  assert.equal(field.sourceOwners[0].rect.bottom, 70);
+  assert.equal(field.sourceOwners[0].envelope.top, 81);
+  assert.equal(field.sourceOwners[0].envelope.bottom, 82);
+  assert.equal(field.canvas.height, 1);
+  assert.deepEqual(field.sourceOwners[0].lines, [f.covered.getBoundingClientRect()]);
+  field.dispose();
+});
+
+test('header proof and its fresh exclusion check cannot extend acquisition or preparation clocks', async () => {
+  for (const fresh of [false, true]) {
+    const f = opaqueHeaderFixture();
+    let now = 0;
+    let headerReads = 0;
+    f.view.performance = { now: () => now };
+    const computedStyle = f.view.getComputedStyle;
+    f.view.getComputedStyle = (node, pseudo) => {
+      if (node === f.header && ++headerReads === (fresh ? 2 : 1)) now = fresh ? 161 : 81;
+      return computedStyle(node, pseudo);
+    };
+    const failures = [];
+    assert.equal(
+      await embeddedTexture().captureField(f.root, {
+        ...pageOptions,
+        dpr: 1,
+        onReject: (detail) => failures.push(detail),
+      }),
+      null
+    );
+    assert.equal(failures[0].reason, fresh ? 'preparation-deadline' : 'acquisition-deadline');
+    assert.equal(f.images.length, fresh ? 1 : 0);
+    assert.ok(f.canvases.every((canvas) => canvas.width === 0 && canvas.height === 0));
+  }
+});
+
+test('caller-supplied occlusion cannot exclude paint without the independent opaque-header proof', async () => {
+  const f = opaqueHeaderFixture();
+  f.document.querySelector = () => null;
+  const failures = [];
+  assert.equal(
+    await embeddedTexture().captureField(f.root, {
+      ...pageOptions,
+      dpr: 1,
+      occludedTop: 81,
+      onReject: (detail) => failures.push(detail),
+    }),
+    null
+  );
+  assert.equal(failures[0].reason, 'native-owner-raster-blank');
+  assert.deepEqual(failures[0].path, [0, 0]);
   assert.ok(f.canvases.every((canvas) => canvas.width === 0 && canvas.height === 0));
 });

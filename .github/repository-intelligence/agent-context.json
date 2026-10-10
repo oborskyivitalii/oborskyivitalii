@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "3b70665dfb665e420e90305e91b8e1556985f40e918a8a4bacba37e5935db282",
+    "digest": "3e44f53460b2ffb1780ebc5b47439713c3d3b0b07bd2b91e0e1f65edac2a416d",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -146,7 +146,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "0d0d97d58fee0db49a7484087fe8ffedd034876edf911430ebb1914ac3ce3278"
+        "sha256": "798ca43695f726f372b970e01670272388f193d57ec322ea24fa5b336f333c61"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -241,7 +241,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "c016bb88db52b82b25ca3a721b6160b3db8ae15459d670f921f1feffa4cabbfc"
+        "sha256": "9068ce8fcf2bea6f96fdb99482b50b42709d09945defad0a002b9f3b24dde95c"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -755,7 +755,7 @@
       {
         "path": "review/issue-49/2026-10-08-analysis.md",
         "identity_mode": "content",
-        "sha256": "7c30b70ddc496b728d52d90d7a0a79827cf8176be6397868ba5f51ded1643630"
+        "sha256": "9ef7ed966213409459b186fd098686d0d87a5371e1d10f5d9c1265c8c1a2f2df"
       },
       {
         "path": "review/issue-49/2026-10-10-performance.json",
@@ -4655,7 +4655,7 @@
       {
         "path": "site/effects/embedded-texture.cjs",
         "identity_mode": "content",
-        "sha256": "091d93cb1eb3a4a672a5d0970e04dfbcde3dfab5b30bd0e48ec723bd37f354fb"
+        "sha256": "9671e1ba2b65a6ce0d3d04273b9c69dd5a4b8948767a715be605dceca85831b3"
       },
       {
         "path": "site/effects/flight.cjs",
@@ -5100,7 +5100,7 @@
       {
         "path": "tests/embedded-texture.test.cjs",
         "identity_mode": "content",
-        "sha256": "769cc567c1fd3978eaa115b2a0702c788e926a642e935292e67fbe06a0c2c8e7"
+        "sha256": "e698dcdc0fd8dabc040db039cb18053b8ab19674ce2fe896e857efa3695d3b27"
       },
       {
         "path": "tests/endpoint-fixtures.test.cjs",
@@ -5255,7 +5255,7 @@
       {
         "path": "tests/staging-regression.test.cjs",
         "identity_mode": "content",
-        "sha256": "a2f6430bbf85dc3d42cc7e8b9d98b33d586718c637a0a94c62fbf12111d5cc40"
+        "sha256": "54ce5a773a65525e9a109d4194f35173d9bb381a6825eb20be8c15a8d0a9d8c5"
       },
       {
         "path": "tests/staging-reporting.test.cjs",
@@ -5560,7 +5560,7 @@
       {
         "path": "tools/quality/color-browser.cjs",
         "identity_mode": "content",
-        "sha256": "d506de6c4255c3997a106efa01f2f023bfddbfa4da7eb431a302ea24f98302f4"
+        "sha256": "4db44545297beb908c8581239fe314e0e5dc75307eca7c860386f54b0e68bea3"
       },
       {
         "path": "tools/quality/common.cjs",

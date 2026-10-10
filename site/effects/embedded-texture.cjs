@@ -796,7 +796,7 @@ module.exports = function () {
     }
     const envelope = {
       left: Math.max(0, bounds.left),
-      top: Math.max(0, bounds.top),
+      top: Math.max(options.occludedTop || 0, bounds.top),
       right: Math.min(options.width, bounds.right),
       bottom: Math.min(options.height, bounds.bottom),
     };
@@ -923,7 +923,7 @@ module.exports = function () {
       if (side === 'left') box.right = rect.left + width;
       if (side === 'right') box.left = rect.right - width;
       box.left = Math.max(0, box.left);
-      box.top = Math.max(0, box.top);
+      box.top = Math.max(options.occludedTop || 0, box.top);
       box.right = Math.min(options.width, box.right);
       box.bottom = Math.min(options.height, box.bottom);
       if (box.right <= box.left || box.bottom <= box.top) continue;
@@ -949,6 +949,147 @@ module.exports = function () {
         ['visible', ''].includes(value(style, property))
       )
     );
+  }
+  function unmodifiedOcclusionStyle(style, hidden = false) {
+    const opacity = value(style, 'opacity');
+    return (
+      (hidden
+        ? opacity !== '' &&
+          Number.isFinite(Number(opacity)) &&
+          Number(opacity) >= 0 &&
+          Number(opacity) <= 1
+        : opacity === '1') &&
+      !['none', 'contents'].includes(value(style, 'display')) &&
+      (hidden
+        ? ['visible', 'hidden'].includes(value(style, 'visibility'))
+        : value(style, 'visibility') === 'visible') &&
+      [
+        'transform',
+        'translate',
+        'rotate',
+        'scale',
+        'perspective',
+        'filter',
+        'backdrop-filter',
+        'clip-path',
+        'mask-image',
+        '-webkit-mask-image',
+        'mask-border-source',
+        '-webkit-mask-box-image-source',
+        'animation-name',
+      ].every((property) => ['none', ''].includes(value(style, property))) &&
+      ['auto', ''].includes(value(style, 'clip')) &&
+      ['normal', ''].includes(value(style, 'mix-blend-mode'))
+    );
+  }
+  function nativeOccludedTop(root, document, view, options) {
+    const body = document.body;
+    const viewport = document.documentElement;
+    const header = document.querySelector?.('.site-header');
+    if (
+      !options.fieldCapture ||
+      !body ||
+      !viewport ||
+      !header ||
+      header.parentElement !== body ||
+      !Number.isFinite(viewport.clientWidth) ||
+      viewport.clientWidth <= 0
+    )
+      return 0;
+    const sourceStyle = nativeStyle(view, root, undefined, options);
+    const staged = root.classList?.contains('embedded-stage');
+    if (
+      !finiteRect(nativeRect(root, options)) ||
+      !(
+        (root.id === 'site-content' && value(sourceStyle, 'isolation') === 'isolate') ||
+        (staged && value(sourceStyle, 'position') === 'fixed')
+      )
+    )
+      return 0;
+    const style = nativeStyle(view, header, undefined, options);
+    const zIndex = value(style, 'z-index');
+    const color = value(style, 'background-color');
+    const opaque =
+      /^rgb\(\s*\d+(?:\.\d+)?\s*,\s*\d+(?:\.\d+)?\s*,\s*\d+(?:\.\d+)?\s*\)$/.test(color) ||
+      /^rgba\(\s*\d+(?:\.\d+)?\s*,\s*\d+(?:\.\d+)?\s*,\s*\d+(?:\.\d+)?\s*,\s*1(?:\.0+)?\s*\)$/.test(
+        color
+      );
+    if (
+      !unmodifiedOcclusionStyle(style) ||
+      !['sticky', 'fixed'].includes(value(style, 'position')) ||
+      !/^\d+$/.test(zIndex) ||
+      !Number.isSafeInteger(Number(zIndex)) ||
+      Number(zIndex) <= 0 ||
+      !opaque ||
+      value(style, 'background-image') !== 'none' ||
+      value(style, 'background-clip') !== 'border-box' ||
+      !['none', ''].includes(value(style, 'box-shadow')) ||
+      !['top-left', 'top-right', 'bottom-left', 'bottom-right'].every((corner) =>
+        /^(?:0|0px)(?:\s+(?:0|0px))*$/.test(value(style, 'border-' + corner + '-radius'))
+      )
+    )
+      return 0;
+    let reachedBody = false;
+    for (let node = root, depth = 0; node; node = node.parentElement, depth++) {
+      if (depth > 16 || options.clock() > options.acquisitionDeadline) return 0;
+      const ancestor = nativeStyle(view, node, undefined, options);
+      const stacking = value(ancestor, 'z-index');
+      if (
+        !unmodifiedOcclusionStyle(ancestor, node === root) ||
+        !(
+          ['auto', ''].includes(stacking) ||
+          (/^-?\d+$/.test(stacking) && Number(stacking) < Number(zIndex))
+        )
+      )
+        return 0;
+      if (node === body) {
+        reachedBody = true;
+        break;
+      }
+    }
+    const rect = nativeRect(header, options);
+    if (
+      !finiteRect(rect) ||
+      rect.left > 0 ||
+      rect.right < viewport.clientWidth ||
+      rect.top > 0 ||
+      rect.bottom <= 0
+    )
+      return 0;
+    if (
+      !reachedBody ||
+      ![body, viewport].every((node) => {
+        const common = nativeStyle(view, node, undefined, options);
+        if (
+          !unmodifiedOcclusionStyle(common) ||
+          /(?:^|\s)(?:paint|strict|content)(?:\s|$)/.test(value(common, 'contain'))
+        )
+          return false;
+        const clipped = ['x', 'y'].filter(
+          (axis) => !['visible', ''].includes(value(common, 'overflow-' + axis))
+        );
+        if (!clipped.length) return true;
+        if (
+          clipped.some((axis) => !['clip', 'hidden'].includes(value(common, 'overflow-' + axis))) ||
+          !['top-left', 'top-right', 'bottom-left', 'bottom-right'].every((corner) =>
+            /^(?:0|0px)(?:\s+(?:0|0px))*$/.test(value(common, 'border-' + corner + '-radius'))
+          )
+        )
+          return false;
+        const box = nativeRect(node, options);
+        if (!finiteRect(box)) return false;
+        const border = (side) => parseFloat(value(common, 'border-' + side + '-width')) || 0;
+        return (
+          (!clipped.includes('x') ||
+            (box.left + border('left') <= 0 &&
+              box.right - border('right') >= viewport.clientWidth)) &&
+          (!clipped.includes('y') ||
+            (box.top + border('top') <= 0 && box.bottom - border('bottom') >= rect.bottom))
+        );
+      })
+    )
+      return 0;
+    return Math.max(0, Math.min(options.height, rect.bottom - options.offsetY));
   }
   function nativeImageDimensions(measured, node, box) {
     const scale = Math.min(
@@ -1161,6 +1302,10 @@ module.exports = function () {
     normalized.styleCache = new WeakMap();
     normalized.rectCache = new WeakMap();
     normalized.fontCache = { families: new Map() };
+    // A proven opaque header covers this part of the native viewport. Keep
+    // source geometry unchanged; only visible native paint belongs to the atlas.
+    // These fresh style reads share the original acquisition deadline.
+    normalized.occludedTop = nativeOccludedTop(root, document, view, normalized);
     const measured = [];
     const usage = { owners: 0, descendants: 0, textBytes: 0, layerPixels: 0 };
     const semantic = new Set([
@@ -1216,6 +1361,7 @@ module.exports = function () {
       if (!fieldAncestorSupported(style)) fail('unsupported-field-ancestor', path, node);
       if (!nativeBorderBounds(box, style, normalized)) return;
       const decoration = inspectNative(node, path, document, view, normalized, caps, true);
+      if (decoration === false) return;
       if (!decoration) fail('unsupported-field-decoration', path, node);
       admit(decoration, path, node);
     }
@@ -1305,6 +1451,7 @@ module.exports = function () {
       offsetX: options.offsetX ?? 0,
       offsetY: options.offsetY ?? 0,
       dpr: options.dpr ?? view.devicePixelRatio ?? 1,
+      occludedTop: 0,
       clock,
       deadline: Math.min(
         started + Math.min(160, options.preparationMs ?? 160),
@@ -1800,6 +1947,19 @@ module.exports = function () {
       if (!capture) return null;
       if (normalized.signal?.aborted || normalized.clock() > normalized.deadline)
         return rejectNative(normalized, 'preparation-deadline', root.localName);
+      // Decode may yield to changes in the header. Never hide native content
+      // using a field that omitted paint newly exposed during that await.
+      const fresh = {
+        ...normalized,
+        styleCache: new WeakMap(),
+        rectCache: new WeakMap(),
+        acquisitionDeadline: normalized.deadline,
+      };
+      const occludedTop = nativeOccludedTop(root, document, view, fresh);
+      if (normalized.signal?.aborted || normalized.clock() > normalized.deadline)
+        return rejectNative(normalized, 'preparation-deadline', root.localName);
+      if (occludedTop !== normalized.occludedTop)
+        return rejectNative(normalized, 'native-occlusion-changed', root.localName);
       const asset = fieldAsset(
         root,
         measured.map(fieldSource),

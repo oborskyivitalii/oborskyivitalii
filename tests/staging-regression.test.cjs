@@ -2673,3 +2673,272 @@ test('embedded native coverage ignores wholly offscreen DOM and requires every v
   assert.equal(missing.selected, 0);
   assert.equal(missing.uncovered.length, 1);
 });
+
+function nativeHeaderCoverageFixture() {
+  const { embeddedPrototypeState } = require('../tools/quality/color-browser.cjs');
+  const vm = require('node:vm');
+  const rect = (left, top, width, height) => ({
+    left,
+    top,
+    right: left + width,
+    bottom: top + height,
+    width,
+    height,
+  });
+  const ordinary = {
+    display: 'block',
+    opacity: '1',
+    visibility: 'visible',
+    transform: 'none',
+    translate: 'none',
+    rotate: 'none',
+    scale: 'none',
+    perspective: 'none',
+    filter: 'none',
+    'backdrop-filter': 'none',
+    'mask-image': 'none',
+    '-webkit-mask-image': 'none',
+    'clip-path': 'none',
+    clip: 'auto',
+    'mix-blend-mode': 'normal',
+    'animation-name': 'none',
+    'z-index': 'auto',
+    contain: 'none',
+    'overflow-x': 'visible',
+    'overflow-y': 'visible',
+    'border-left-width': '0px',
+    'border-right-width': '0px',
+    'border-top-width': '0px',
+    'border-bottom-width': '0px',
+    'border-top-left-radius': '0px',
+    'border-top-right-radius': '0px',
+    'border-bottom-left-radius': '0px',
+    'border-bottom-right-radius': '0px',
+  };
+  const html = {
+    dataset: { theme: 'light' },
+    clientWidth: 375,
+    css: {},
+    rect: rect(0, 0, 375, 1800),
+    getBoundingClientRect() {
+      return this.rect;
+    },
+  };
+  const body = {
+    dataset: { page: 'index' },
+    parentElement: html,
+    css: { 'overflow-x': 'clip' },
+    rect: rect(0, 0, 375, 1800),
+    getBoundingClientRect() {
+      return this.rect;
+    },
+  };
+  const frame = {
+    id: 'site-content-frame',
+    parentElement: body,
+    css: { 'overflow-x': 'clip', 'overflow-y': 'clip' },
+  };
+  const header = {
+    parentElement: body,
+    css: {
+      position: 'sticky',
+      'z-index': '5',
+      'background-color': 'rgb(243, 241, 234)',
+      'background-image': 'none',
+      'background-clip': 'border-box',
+      'box-shadow': 'none',
+      'border-top-left-radius': '0px',
+      'border-top-right-radius': '0px',
+      'border-bottom-left-radius': '0px',
+      'border-bottom-right-radius': '0px',
+    },
+    rect: rect(0, 0, 375, 100),
+    getBoundingClientRect() {
+      return this.rect;
+    },
+  };
+  const native = (textContent, top, tagName = 'H2') => ({
+    tagName,
+    textContent,
+    css: {},
+    closest: () => null,
+    getBoundingClientRect: () => rect(20, top, 280, 40),
+  });
+  const covered = native('Covered heading', 20);
+  const boundary = native('Heading ending at the header edge', 60);
+  const partial = native('Partly visible paragraph', 80, 'P');
+  const descendant = native('Visible paragraph link', 95, 'A');
+  const below = native('Uncovered heading below the header', 120);
+  const nodes = [covered, boundary, partial, descendant, below, native('Offscreen heading', 844)];
+  const owner = { isConnected: false, contains: (candidate) => nodes.includes(candidate) };
+  const content = {
+    id: 'site-content',
+    parentElement: frame,
+    css: { isolation: 'isolate', visibility: 'hidden', opacity: '0' },
+    style: { opacity: '0' },
+    querySelectorAll: () => nodes,
+    getBoundingClientRect: () => rect(0, 0, 375, 1800),
+    hasAttribute: () => false,
+    inert: false,
+  };
+  const window = {
+    SiteEffects: {
+      embedded: {
+        diagnostics: () => ({ phase: 'assembling', groups: [{ key: 'field', route: 'index' }] }),
+        owners: () => [owner],
+      },
+    },
+    __quality: { paints: 1 },
+  };
+  const sandbox = {
+    window,
+    document: {
+      body,
+      documentElement: html,
+      getElementById: () => content,
+      querySelector: (selector) =>
+        selector === 'body > .site-header' ? header : { dataset: { camera: 'native-pose' } },
+      querySelectorAll: () => [],
+    },
+    innerWidth: 390,
+    innerHeight: 844,
+    getComputedStyle: (node) => {
+      const values = { ...ordinary, ...node.css };
+      return { ...values, getPropertyValue: (property) => values[property] ?? '' };
+    },
+  };
+  return {
+    html,
+    body,
+    frame,
+    header,
+    content,
+    owner,
+    below,
+    nodes,
+    snapshot: () => vm.runInNewContext('(' + embeddedPrototypeState.toString() + ')()', sandbox),
+  };
+}
+
+test('native coverage independently proves opaque header occlusion while requiring partial owners and descendants', () => {
+  const fixture = nativeHeaderCoverageFixture();
+  const accepted = fixture.snapshot().nativeCoverage;
+  assert.equal(accepted.expected, 3, 'actual client width is covered despite the scrollbar gutter');
+  assert.equal(accepted.selected, 3, 'hidden native root keeps its physical header occlusion');
+  assert.equal(accepted.uncovered.length, 0);
+  fixture.body.css['overflow-y'] = 'hidden';
+  fixture.html.css['overflow-x'] = 'hidden';
+  assert.equal(
+    fixture.snapshot().nativeCoverage.expected,
+    3,
+    'proven ancestor clips contain the entire opaque band'
+  );
+  fixture.owner.contains = (node) => node !== fixture.below;
+  const missing = fixture.snapshot().nativeCoverage;
+  assert.equal(missing.expected, 3);
+  assert.equal(missing.selected, 2);
+  assert.deepEqual(Array.from(missing.uncovered), ['H2:Uncovered heading below the header']);
+  const { validateEmbeddedPrototype } = require('../tools/quality/color-browser.cjs');
+  const invalid = JSON.parse(JSON.stringify(embeddedPrototypeFixture()));
+  invalid.frames[6].nativeCoverage = JSON.parse(JSON.stringify(missing));
+  assert.throws(
+    () => validateEmbeddedPrototype(invalid, 'light'),
+    /atlas root fails to cover actual visible native owners/
+  );
+  fixture.owner.contains = (node) => ![fixture.nodes[2], fixture.nodes[3]].includes(node);
+  const missingPartial = fixture.snapshot().nativeCoverage;
+  assert.equal(missingPartial.selected, 1);
+  assert.deepEqual(Array.from(missingPartial.uncovered), [
+    'P:Partly visible paragraph',
+    'A:Visible paragraph link',
+  ]);
+});
+
+test('native coverage preserves exact fractional edges and supports an opaque fixed header during native handoff', () => {
+  const fixture = nativeHeaderCoverageFixture();
+  fixture.header.css.position = 'fixed';
+  fixture.header.css['background-color'] = 'rgba(243, 241, 234, 1)';
+  fixture.content.css.opacity = '0.5';
+  assert.equal(fixture.snapshot().nativeCoverage.expected, 3);
+  fixture.header.rect.bottom = 99.5;
+  fixture.header.rect.height = 99.5;
+  assert.equal(
+    fixture.snapshot().nativeCoverage.expected,
+    4,
+    'fractional native ink below the header edge remains required'
+  );
+});
+
+test('native coverage retains behind-header owners whenever header occlusion is uncertain', () => {
+  const cases = [
+    ['transparent header', (f) => (f.header.css['background-color'] = 'rgba(243, 241, 234, 0.8)')],
+    ['transparent ancestor', (f) => (f.body.css.opacity = '0.8')],
+    ['paint-contained ancestor', (f) => (f.body.css.contain = 'paint')],
+    ['strictly contained ancestor', (f) => (f.html.css.contain = 'strict')],
+    ['content-contained ancestor', (f) => (f.body.css.contain = 'content')],
+    ['narrow clipped body', (f) => (f.body.rect.right = 374)],
+    ['border inside clipped body', (f) => (f.body.css['border-right-width'] = '1px')],
+    ['rounded clipped body', (f) => (f.body.css['border-top-left-radius'] = '6px')],
+    [
+      'short vertically clipped body',
+      (f) => {
+        f.body.css['overflow-y'] = 'clip';
+        f.body.rect.bottom = 99;
+      },
+    ],
+    [
+      'short vertically hidden html',
+      (f) => {
+        f.html.css['overflow-y'] = 'hidden';
+        f.html.rect.bottom = 99;
+      },
+    ],
+    ['unproved scrolling ancestor', (f) => (f.body.css['overflow-y'] = 'auto')],
+    ['missing ancestor clip geometry', (f) => (f.body.rect.left = NaN)],
+    ['faded header', (f) => (f.header.css.opacity = '0.8')],
+    ['partial width', (f) => (f.header.rect.right = 374)],
+    ['gap above header', (f) => (f.header.rect.top = 1)],
+    ['nonfinite header box', (f) => (f.header.rect.bottom = NaN)],
+    ['nested header', (f) => (f.header.parentElement = f.frame)],
+    ['print/static header', (f) => (f.header.css.position = 'static')],
+    ['unproven header stacking', (f) => (f.header.css['z-index'] = 'auto')],
+    ['raised native root', (f) => (f.content.css['z-index'] = '5')],
+    ['raised native ancestor', (f) => (f.frame.css['z-index'] = '6')],
+    ['unisolated root', (f) => (f.content.css.isolation = 'auto')],
+    ['boxless isolated root', (f) => (f.content.css.display = 'contents')],
+    [
+      'empty isolated root box',
+      (f) => (f.content.getBoundingClientRect = () => ({ width: 0, height: 0 })),
+    ],
+    ['missing source stacking evidence', (f) => (f.frame.css['z-index'] = '')],
+    ['missing paint evidence', (f) => (f.html.css.transform = '')],
+    ['transformed ancestor', (f) => (f.frame.css.transform = 'translateY(1px)')],
+    ['filtered header', (f) => (f.header.css.filter = 'blur(1px)')],
+    ['masked header', (f) => (f.header.css['mask-image'] = 'linear-gradient(black, transparent)')],
+    ['prefixed mask', (f) => (f.header.css['-webkit-mask-image'] = 'url(mask.svg)')],
+    ['mask border', (f) => (f.header.css['mask-border-source'] = 'url(mask.svg)')],
+    [
+      'prefixed mask border',
+      (f) => (f.header.css['-webkit-mask-box-image-source'] = 'url(mask.svg)'),
+    ],
+    ['clipped header', (f) => (f.header.css['clip-path'] = 'inset(1px)')],
+    ['legacy clipping', (f) => (f.header.css.clip = 'rect(1px, 375px, 100px, 0px)')],
+    ['blended header', (f) => (f.header.css['mix-blend-mode'] = 'multiply')],
+    ['animated header', (f) => (f.header.css['animation-name'] = 'fade')],
+    ['rounded corner', (f) => (f.header.css['border-bottom-left-radius'] = '6px')],
+    ['background padding gap', (f) => (f.header.css['background-clip'] = 'padding-box')],
+    ['background image', (f) => (f.header.css['background-image'] = 'url(header.png)')],
+    ['header shadow', (f) => (f.header.css['box-shadow'] = '0 1px 1px black')],
+    ['invisible header', (f) => (f.header.css.visibility = 'hidden')],
+    ['missing header', (f) => (f.header.parentElement = null)],
+  ];
+  for (const [name, mutate] of cases) {
+    const fixture = nativeHeaderCoverageFixture();
+    mutate(fixture);
+    fixture.owner.contains = (node) => node !== fixture.nodes[0];
+    const coverage = fixture.snapshot().nativeCoverage;
+    assert.equal(coverage.expected, 5, name);
+    assert.equal(coverage.selected, 4, name);
+    assert.deepEqual(Array.from(coverage.uncovered), ['H2:Covered heading'], name);
+  }
+});

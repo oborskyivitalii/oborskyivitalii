@@ -98,6 +98,172 @@ function embeddedPrototypeState(action = null) {
       ).length,
     };
   }
+  const occlusionValue = (computed, property) => computed.getPropertyValue(property).trim();
+  function positiveOcclusionRect(rect) {
+    return (
+      ['left', 'top', 'right', 'bottom', 'width', 'height'].every((key) =>
+        Number.isFinite(rect[key])
+      ) &&
+      rect.width > 0 &&
+      rect.height > 0
+    );
+  }
+  function rectangularOcclusionStyle(computed) {
+    return ['top-left', 'top-right', 'bottom-left', 'bottom-right'].every((corner) =>
+      /^0(?:px)?(?:\s+0(?:px)?)?$/.test(occlusionValue(computed, 'border-' + corner + '-radius'))
+    );
+  }
+  function unmodifiedOcclusionPaint(computed) {
+    const display = occlusionValue(computed, 'display');
+    const effects = {
+      transform: 'none',
+      translate: 'none',
+      rotate: 'none',
+      scale: 'none',
+      perspective: 'none',
+      filter: 'none',
+      'backdrop-filter': 'none',
+      'mask-image': 'none',
+      'clip-path': 'none',
+      clip: 'auto',
+      'mix-blend-mode': 'normal',
+      'animation-name': 'none',
+    };
+    return (
+      display !== '' &&
+      !['none', 'contents'].includes(display) &&
+      Object.entries(effects).every(
+        ([property, initial]) => occlusionValue(computed, property) === initial
+      ) &&
+      ['-webkit-mask-image', 'mask-border-source', '-webkit-mask-box-image-source'].every(
+        (property) => ['none', ''].includes(occlusionValue(computed, property))
+      )
+    );
+  }
+  function sourceBelowHeader(content, headerZ) {
+    if (content?.id !== 'site-content') return false;
+    const sourceStyle = getComputedStyle(content);
+    if (
+      occlusionValue(sourceStyle, 'isolation') !== 'isolate' ||
+      !positiveOcclusionRect(content.getBoundingClientRect())
+    )
+      return false;
+    let node = content;
+    for (let depth = 0; node && node !== document.body; depth++) {
+      if (depth >= 16) return false;
+      const computed = node === content ? sourceStyle : getComputedStyle(node);
+      if (!unmodifiedOcclusionPaint(computed)) return false;
+      // World handoff deliberately hides/fades this isolated root. Its ancestors
+      // remain ordinary opaque paint contexts below the persistent header.
+      const opacity = occlusionValue(computed, 'opacity');
+      const visibility = occlusionValue(computed, 'visibility');
+      if (node === content) {
+        if (
+          !opacity ||
+          !Number.isFinite(Number(opacity)) ||
+          Number(opacity) < 0 ||
+          Number(opacity) > 1 ||
+          !['visible', 'hidden'].includes(visibility)
+        )
+          return false;
+      } else if (opacity !== '1' || visibility !== 'visible') return false;
+      const z = occlusionValue(computed, 'z-index');
+      if (
+        z !== 'auto' &&
+        (!/^-?\d+$/.test(z) || !Number.isSafeInteger(Number(z)) || Number(z) >= headerZ)
+      )
+        return false;
+      node = node.parentElement;
+    }
+    return node === document.body;
+  }
+  function opaqueHeaderStyle(computed) {
+    const color = occlusionValue(computed, 'background-color').match(/^rgba?\(([^()]*)\)$/i);
+    const channels = color?.[1].trim().split(/[,\s/]+/);
+    return (
+      !!channels &&
+      [3, 4].includes(channels.length) &&
+      channels.every((channel) => /^(?:\d+(?:\.\d*)?|\.\d+)$/.test(channel)) &&
+      channels.slice(0, 3).every((channel) => Number(channel) <= 255) &&
+      (channels.length === 3 || Number(channels[3]) === 1) &&
+      ['sticky', 'fixed'].includes(occlusionValue(computed, 'position')) &&
+      occlusionValue(computed, 'background-image') === 'none' &&
+      occlusionValue(computed, 'background-clip') === 'border-box' &&
+      occlusionValue(computed, 'box-shadow') === 'none' &&
+      rectangularOcclusionStyle(computed)
+    );
+  }
+  function ancestorClipCoversBand(node, computed, axis, near, far, extent) {
+    const overflow = occlusionValue(computed, 'overflow-' + axis);
+    if (overflow === 'visible') return true;
+    if (!['hidden', 'clip'].includes(overflow) || !rectangularOcclusionStyle(computed))
+      return false;
+    const bounds = node.getBoundingClientRect();
+    const nearBorder = occlusionValue(computed, 'border-' + near + '-width');
+    const farBorder = occlusionValue(computed, 'border-' + far + '-width');
+    return (
+      Number.isFinite(bounds[near]) &&
+      Number.isFinite(bounds[far]) &&
+      /^\d+(?:\.\d+)?px$/.test(nearBorder) &&
+      /^\d+(?:\.\d+)?px$/.test(farBorder) &&
+      bounds[near] + parseFloat(nearBorder) <= 0 &&
+      bounds[far] - parseFloat(farBorder) >= extent
+    );
+  }
+  function commonAncestorsCoverBand(width, bottom) {
+    for (const node of [document.body, document.documentElement]) {
+      const computed = getComputedStyle(node);
+      const containment = occlusionValue(computed, 'contain');
+      if (
+        !unmodifiedOcclusionPaint(computed) ||
+        occlusionValue(computed, 'opacity') !== '1' ||
+        occlusionValue(computed, 'visibility') !== 'visible' ||
+        !containment ||
+        /\b(?:paint|strict|content)\b/.test(containment) ||
+        ![
+          ['x', 'left', 'right', width],
+          ['y', 'top', 'bottom', bottom],
+        ].every(([axis, near, far, extent]) =>
+          ancestorClipCoversBand(node, computed, axis, near, far, extent)
+        )
+      )
+        return false;
+    }
+    return true;
+  }
+  function opaqueHeaderBottom(content) {
+    // Prove physical occlusion independently of texture admission. Unknown
+    // paint, shape or stacking keeps the entire native viewport required.
+    const header = document.querySelector('body > .site-header');
+    const width = document.documentElement.clientWidth;
+    if (!header || header.parentElement !== document.body || !Number.isFinite(width) || width <= 0)
+      return 0;
+    const computed = getComputedStyle(header);
+    const stacking = occlusionValue(computed, 'z-index');
+    const headerZ = Number(stacking);
+    if (
+      !/^\d+$/.test(stacking) ||
+      !Number.isSafeInteger(headerZ) ||
+      headerZ <= 0 ||
+      !unmodifiedOcclusionPaint(computed) ||
+      occlusionValue(computed, 'opacity') !== '1' ||
+      occlusionValue(computed, 'visibility') !== 'visible' ||
+      !opaqueHeaderStyle(computed) ||
+      !sourceBelowHeader(content, headerZ)
+    )
+      return 0;
+    const rect = header.getBoundingClientRect();
+    if (
+      !positiveOcclusionRect(rect) ||
+      rect.left > 0 ||
+      rect.right < width ||
+      rect.top > 0 ||
+      rect.bottom <= 0
+    )
+      return 0;
+    const bottom = Math.min(innerHeight, rect.bottom);
+    return commonAncestorsCoverBand(width, bottom) ? bottom : 0;
+  }
   function snapshot() {
     const content = document.getElementById('site-content');
     const bridge = window.SiteEffects?.embedded;
@@ -138,6 +304,7 @@ function embeddedPrototypeState(action = null) {
     if (diagnostics?.phase && coverageKey !== coveragePhase) {
       const semantic =
         'h1,h2,h3,h4,h5,h6,p,li,dt,dd,figure,img,a,button,label,span,time,strong,small';
+      const clipTop = opaqueHeaderBottom(content);
       const expected = [...content.querySelectorAll(semantic)].filter((node) => {
         const rect = node.getBoundingClientRect();
         const style = getComputedStyle(node);
@@ -149,7 +316,7 @@ function embeddedPrototypeState(action = null) {
           rect.height > 0 &&
           rect.right > 0 &&
           rect.left < innerWidth &&
-          rect.bottom > 0 &&
+          rect.bottom > clipTop &&
           rect.top < innerHeight
         );
       });
