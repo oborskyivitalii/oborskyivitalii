@@ -42,19 +42,30 @@ and [analysis/tasks](../review/issue-39/2026-10-07-analysis.md).
 No browser fallback was attempted. Repository admin permission does not make an
 unsupported connector endpoint callable.
 
-## Step 1 — your action now: ownership proof
+## Current readiness — 10 October 2026
+
+[The current audit](../review/issue-39/2026-10-10-readiness.md) supersedes dated
+provider/task-status observations above. Ownership TXT was created on 7 October
+and exists live; do not repeat generation or creation. GitHub Verified is still
+unobserved. Production build, protected publisher/recovery, current-candidate
+admission and routing/redirect/live acceptance remain pending. PR40 is still
+Draft and conflicts with current main. The stable Color rendition is distinct
+from the base docs artifact; reconcile its production selection explicitly.
+
+## Step 1 — ownership proof (TXT creation already completed)
 
 1. Open [personal GitHub Settings → Pages](https://github.com/settings/pages)
    while signed in as **oborskyivitalii**.
-2. Select **Add a domain**, enter **vitaliioborskyi.ai**, and continue.
-3. GitHub displays a TXT **name and value**. Send both to the agent. Expected
-   full name: `_github-pages-challenge-oborskyivitalii.vitaliioborskyi.ai`.
-   The value must come from GitHub; the plan deliberately leaves it null.
-4. The agent adds exactly that TXT to the .ai Cloudflare zone. TXT is DNS only;
-   it neither publishes a site nor changes web routing.
-5. Return to the same GitHub screen and click **Verify** after TXT resolves.
-   Keep the TXT permanently. If GitHub displays a different name, report it
-   before a write; do not substitute a guessed challenge.
+2. Inspect the existing **vitaliioborskyi.ai** entry. If it already shows
+   **Verified**, record that observation. If verification is pending, click
+   **Verify** using the existing TXT; report a failure before changing records.
+3. Keep `_github-pages-challenge-oborskyivitalii.vitaliioborskyi.ai` permanently.
+   The maintainer supplied GitHub's exact challenge and the agent created record
+   `466edebf239247c914621e5e5d3e858d` on 7 October. The 10 October API read
+   confirms one DNS-only, Auto-TTL record. Do not generate or create another one.
+4. If the existing entry is missing or GitHub requires a different challenge,
+   reconcile the actual account/name/value before any write. TXT verification
+   neither publishes the site nor switches web routing.
 
 No .com GitHub verification is needed: .com will not point to Pages.
 

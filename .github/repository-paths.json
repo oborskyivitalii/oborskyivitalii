@@ -781,6 +781,12 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-39/2026-10-10-readiness.md": {
+      "kind": "file",
+      "purpose": "Issue39 current production-readiness audit: exact main/staging/provider state, capability limits, acceptance gaps and same-issue execution tasks.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/public-responses-20261006": {
       "kind": "directory",
       "purpose": "Exact before/after public response prose and reconciliation records.",

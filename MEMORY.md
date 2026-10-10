@@ -1,18 +1,21 @@
 # Session memory
 
-Dated continuity hints, not instructions or live-status authority. Last verified: **2026-10-07**. Revalidate refs, issue/PR, checks and hosting before acting.
+Dated continuity hints, not instructions or live-status authority. Last verified: **2026-10-10**. Revalidate refs, issue/PR, checks and hosting before acting.
 
 ## Snapshot
 
 - Current domain preparation: [#39](https://github.com/oborskyivitalii/oborskyivitalii/issues/39),
   [Draft PR #40](https://github.com/oborskyivitalii/oborskyivitalii/pull/40),
-  branch `work/github-pages-domains-39`, inspected main `ec9b8361`.
-  [Plan/operator route](guides/SITE-PRODUCTION.md),
-  [analysis](review/issue-39/2026-10-07-analysis.md) and dated provider inventory.
-  Both zones active/empty DNS, Universal certificates active. Pages admin settings
-  unobserved; plugin endpoint unsupported. Preparation only; live activation open.
-  Independent preparation review passed; live activation remains pending.
-  Revalidate #35/#37 and #36/#38 separately.
+  branch `work/github-pages-domains-39`; original preparation baseline `ec9b8361`.
+  Live main inspected at `93a818dbc3239b97b47b7d56edb83f5a7ebf65fc`.
+  [10 October readiness](review/issue-39/2026-10-10-readiness.md) records NO-GO:
+  production build/publisher/recovery/admission and live domains remain pending.
+  Ownership TXT exists; no routing DNS/redirect. GitHub Verified/Pages/environment
+  settings remain unobserved through this connector. Keep TXT; do not recreate it.
+  PR40 conflicts with current main; reconcile frozen preparation policy before rebase.
+  Current stable stage is Color from PR67, tree-identical to main source; its bounded
+  gate explicitly has productionEligible=false. Main docs is the base rendition.
+  Report-only continuation preserves this PR's original public/runtime/workflows.
 
 - [#31](https://github.com/oborskyivitalii/oborskyivitalii/issues/31) is accepted and closed.
   [PR #32](https://github.com/oborskyivitalii/oborskyivitalii/pull/32) merged at
@@ -44,7 +47,7 @@ Dated continuity hints, not instructions or live-status authority. Last verified
   results prove deterministic observations; independent/live/merge gates are
   recorded separately. #31 acceptance stays pinned to its accepted source.
 - Owner chose `https://vitaliioborskyi.ai` on GitHub Pages; .com redirects to .ai.
-  #39 prepares it; ownership TXT and repository Pages UI need maintainer action.
+  #39 prepares it; TXT is created, GitHub Verify/settings still need observation.
   Routing/deploy remain pending. Analytics stays disabled under #8. Current
   check profiles/budgets retain their owners; domain choice is not a release.
 
@@ -55,7 +58,7 @@ live criteria/status before selecting the next increment.
 
 | Issue | Remaining intent |
 | --- | --- |
-| [#39](https://github.com/oborskyivitalii/oborskyivitalii/issues/39) | Ownership TXT/Pages settings, protected publisher/production metadata/provider/recovery and live domain acceptance. |
+| [#39](https://github.com/oborskyivitalii/oborskyivitalii/issues/39) | Existing TXT; verify owner/Pages settings, reconcile PR40/main, implement publisher/production metadata/provider/recovery and live domain acceptance. |
 | [#1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1) | Overall launch and its production/rights/device dependencies. |
 | [#13](https://github.com/oborskyivitalii/oborskyivitalii/issues/13) | Physical-device and independent production/recovery acceptance. |
 | [#8](https://github.com/oborskyivitalii/oborskyivitalii/issues/8) | Production URL/indexability and actual analytics activation. |
@@ -67,11 +70,11 @@ live criteria/status before selecting the next increment.
 
 ## Next session
 
-1. Revalidate #39/current main/PR checks and read its analysis/runbook.
-2. Obtain GitHub-generated .ai TXT name/value, add verification TXT through
-   Cloudflare, then owner clicks Verify; do not invent a challenge or switch DNS.
-3. Continue protected production build/controller/provider/recovery tasks with
-   #35 reconciliation and #7/#8/#13 gates before an authorized release.
+1. Revalidate #39/main/PR40 and read the 10 October readiness report.
+2. Preserve existing .ai TXT; observe GitHub Verified and settings separately.
+3. Reconcile PR40 with current main and its frozen preparation policy before
+   implementation; decide production rendition, prepare build/publisher/recovery
+   and current-artifact #7/#8/#13 gates before any authorized routing/release.
 
 ## Maintenance
 

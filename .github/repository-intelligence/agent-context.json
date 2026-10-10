@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "c3381762eb5e1f6489867f6d62c4a5ce4db2e5b36501505b567ff7e501752fb7",
+    "digest": "aeafbac11b49dabaac51ff90487d9bdf1e765668659df1d80a4aee016c5cdfac",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -81,12 +81,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "a2d407431efc4ab912cb0aa54ebaf292d58180ecbc320d7f0e3b02278129d11c"
+        "sha256": "3730af9e2bd029674ba75945190fb4abf5a037952e68d502347cada3afb7a46c"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "f3db5b5643ed0009e1e522f7fc6597c6f84c0153e68cc5ef893f4abc625453e9"
+        "sha256": "2910ed07f929b4a7b3355adcf366239f04d8a7883f6e87dfc5ccb8ff2b7448f0"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -181,7 +181,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "0457e0ca7c7bad6f7848fb4d18287c70a3c98a80de0a66474fc7896859e5221d"
+        "sha256": "8b02cdc99ca97222702d5272240177f5fc525db4f8eb9ddc178d4e637e9812ef"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -370,7 +370,7 @@
       {
         "path": "guides/SITE-PRODUCTION.md",
         "identity_mode": "content",
-        "sha256": "6f38f9e1214174deb2ec156d5920f3c96ad0eaeaa290dbf208ba49448ee2282c"
+        "sha256": "6c340abcb9e24c43f0812bee872b0b876d2e44c50aa5b468656cd3961dfddf35"
       },
       {
         "path": "guides/SITE-RELEASE-GATES.md",
@@ -516,6 +516,11 @@
         "path": "review/issue-39/2026-10-07-review.md",
         "identity_mode": "content",
         "sha256": "6e980793b291624e28a0453e4573e81b097e75c4e67351041e0029836fc5a504"
+      },
+      {
+        "path": "review/issue-39/2026-10-10-readiness.md",
+        "identity_mode": "content",
+        "sha256": "d21cfc6177d76c7b11f9a3416abee3db358404e4bddacdc9fa90f90a9a0c1da8"
       },
       {
         "path": "review/public-responses-20261006/README.md",
@@ -6350,6 +6355,17 @@
         "AGENTS.md"
       ],
       "title": "Issue 39 — 2026-10-07 independent preparation review"
+    },
+    {
+      "path": "review/issue-39/2026-10-10-readiness.md",
+      "kind": "file",
+      "purpose": "Issue39 current production-readiness audit: exact main/staging/provider state, capability limits, acceptance gaps and same-issue execution tasks.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 39 — 2026-10-10 production readiness"
     },
     {
       "path": "review/public-responses-20261006/README.md",
