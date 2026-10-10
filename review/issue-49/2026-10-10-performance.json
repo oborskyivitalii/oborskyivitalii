@@ -3173,5 +3173,5164 @@
         }
       }
     }
+  },
+  "fractalDensityCorrection": {
+    "scope": "10 October finer canonical fractal content and shared whole-solid/host fade; exact dirty runtime capture, before/new painter observations and24 same-source trial collection complete; performance admission unmet/deferred and clean delivery pending.",
+    "status": "dirty-runtime-observed-performance-unmet-awaiting-clean-delivery",
+    "fullGate": false,
+    "physicalIPadVerified": false,
+    "browserPerformanceAcceptance": false,
+    "wholeAdmission": false,
+    "baseline": {
+      "sourceCommit": "28dde434566299affaed14eda0cda0a9843b7880",
+      "sourceTree": "c217c2e850fe3f820ccdd44a50bd5d3cc34d4ca1",
+      "artifactDigest": "a376f881d4c328481e8754b0f61bf8857e665105f7feec9e858fd9f025630570",
+      "engine": "f88f2d44d4bfc67a428c6fb160afba522cab988ef0078dd6d883294d2257f47f",
+      "additionalBasicCases": 699,
+      "additionalBasicModules": 45,
+      "acceptanceChecks": 17,
+      "automatedCriteria": 15,
+      "pendingHumanGates": 11,
+      "scope": "Published historical comparison baseline; its checks do not admit the next correction."
+    },
+    "historicalPreview": {
+      "runId": 38056657684,
+      "overall": "failure",
+      "attempt1ColdPreparationMs": {
+        "portrait": 293,
+        "landscape": 167
+      },
+      "attempt2": {
+        "portrait": {
+          "firstLoad": "pass",
+          "journeysPassed": 5,
+          "journeys": 5
+        },
+        "landscape": {
+          "firstLoad": "failure",
+          "preparationMs": 222,
+          "decodeMs": 206,
+          "journeys": 0,
+          "nativeCleanup": "ordinary native visible, no leaked stages/pieces/layers"
+        }
+      },
+      "preparationLimitMs": 160,
+      "chromiumSmoke": "pass",
+      "disposition": "Preserve exact28dde/a376 failures; successful lanes and later candidates do not erase them."
+    },
+    "rejectedIntermediate": {
+      "chipRadiusMax": 0.6,
+      "visualDisposition": "Rejected as tiny grain in primary visual review; not final delivery or measured acceptance."
+    },
+    "hierarchy": {
+      "chipRadiusMax": 0.9,
+      "chipBranchRadiusFraction": 0.85,
+      "chipThicknessRadiusFraction": 0.22,
+      "depth1Members": {
+        "full": 8,
+        "compact": 3
+      },
+      "membersPerField": {
+        "full": 32,
+        "compact": 13
+      },
+      "remainingDepth": 2,
+      "forwardWholeVolumeGrowthStart": 0.35,
+      "departureBreakup": 0.26,
+      "geometryContract": "Actual positive-radius faceted branch, facet vertex attachment, right-handed orthonormal surface axes and exact loopTransform; unique branch pools; closed bounded geometry and complete native endpoints. Earlier4.5CSSpx resting glyph minimum superseded explicitly by finer-grain radius/facet/native/density/span contracts.",
+      "radiusBoundPhase": "Model bound before existing shared0.96–1.04 breathing; animated world radius can reach0.936 while0.85 ratio to animated branch remains."
+    },
+    "sharedFade": {
+      "closestSolidNearClearance": "Same alpha on all visible faces before unchanged0.5 near cull",
+      "settledHost": "Only current-room hosted fields paint at rest",
+      "wrongDestinationHost": "Existing180ms handoff fade before settled exclusion; preserve field IDs/assets",
+      "correctHost": "Research on Home continuous across completion",
+      "newClock": false,
+      "limitation": "Analytic near-fade source correction does not establish physical-device flicker causation or cure."
+    },
+    "originalCaps": {
+      "acquisitionMs": 80,
+      "preparationMs": 160,
+      "drawPauseMs": 100,
+      "piecesFull": 96,
+      "piecesCompact": 40,
+      "layerPixelsFull": 8000000,
+      "layerPixelsCompact": 3000000,
+      "texturePixels": 1000000,
+      "fields": 3,
+      "residentRevealMs": 420
+    },
+    "visualEvidence": {
+      "status": "observed-exact-dirty-runtime",
+      "rawPath": "/workspace/scratch/fa77374a3907/issue49-fractal-final/result.json",
+      "rawSha256": "5ad2d0384e2cd8f656f783c328a08273d2dd2f3c0ba08967bcd9481714a04381",
+      "artifactDigest": "a43ade17d455e1b883e67a8722f9300c44a38f684bd5bc0b915dffd828623d64",
+      "engine": "749a9d99b7667548436be0200c9099d694d3dc749eedb347b493003074f06dfa",
+      "journeys": 8,
+      "passedViewports": 2,
+      "jpegFrames": 358,
+      "actualPaints": 330,
+      "pageErrors": 0,
+      "captureFailureFrames": 0,
+      "peakPieces": 96,
+      "peakFields": 3,
+      "peakLayerPixels": 2996792,
+      "rows": [
+        {
+          "viewport": {
+            "width": 1024,
+            "height": 1366
+          },
+          "dpr": 2,
+          "journeys": 4,
+          "rest": {
+            "visibleFronts": 21,
+            "visibleFrontAreaSum": 5861.789713215094,
+            "frontAreaBurdenPercent": 0.41906325159675073,
+            "maxSpanCssPx": 88.41019149341497,
+            "medianSpanCssPx": 16.64217058417853
+          },
+          "midIncoming": {
+            "actualProgress": 0.6120826709062003,
+            "fronts": 27,
+            "medianSpanCssPx": 29.83609261172944,
+            "maxSpanCssPx": 106.16205365223703
+          }
+        },
+        {
+          "viewport": {
+            "width": 1366,
+            "height": 1024
+          },
+          "dpr": 2,
+          "journeys": 4,
+          "rest": {
+            "visibleFronts": 32,
+            "visibleFrontAreaSum": 4385.784473759264,
+            "frontAreaBurdenPercent": 0.3135426537449144,
+            "maxSpanCssPx": 59.54495988061245,
+            "medianSpanCssPx": 14.068392027416763
+          },
+          "midIncoming": {
+            "actualProgress": 0.5802861685214626,
+            "fronts": 31,
+            "medianSpanCssPx": 21.90941773698347,
+            "maxSpanCssPx": 70.54623472809226
+          }
+        }
+      ],
+      "limitations": "Actual Chromium138 local frozen candidate; CSS tablet viewport+DPR2 emulation. Lean front-area sums are coverage burden, not polygon-union coverage; front-only excludes back/bevel. No physical iPad or whole performance admission."
+    },
+    "changedPainterProbe": {
+      "status": "observed-before-new-implementation-descriptive",
+      "implementation": "Cache triangle edge error until split; scalar source ROI, skip inactive seam centre, direct coordinate args, alpha0 faces skip Canvas without state changes;1px/eight-draw caps remain",
+      "scope": "Three serial Chromium138 touch/DPR2 portrait before/new implementation probes with fixed Home/Research round trip and short resting windows; changed geometry and face visibility affect work; separate from same-source added cost.",
+      "preservedEarlierDiagnostic": "/tmp/issue49-fractal-cost-before-0.json",
+      "rawPaths": [
+        "/tmp/issue49-fractal-cost-before-1.json",
+        "/tmp/issue49-fractal-cost-after-1.json",
+        "/tmp/issue49-fractal-cost-before-2.json",
+        "/tmp/issue49-fractal-cost-after-2.json",
+        "/tmp/issue49-fractal-cost-before-3.json",
+        "/tmp/issue49-fractal-cost-after-3.json"
+      ],
+      "pairs": [
+        {
+          "index": 1,
+          "arms": {
+            "before": {
+              "rawPath": "/tmp/issue49-fractal-cost-before-1.json",
+              "rawSha256": "500be42d012eb70478ca959e4f0bd62e6ffe5c0204fe0020400020fa84042937",
+              "sourceCommit": "28dde434566299affaed14eda0cda0a9843b7880",
+              "sourceTree": "c217c2e850fe3f820ccdd44a50bd5d3cc34d4ca1",
+              "sourceDirty": false,
+              "artifactDigest": "a376f881d4c328481e8754b0f61bf8857e665105f7feec9e858fd9f025630570",
+              "engine": "f88f2d44d4bfc67a428c6fb160afba522cab988ef0078dd6d883294d2257f47f",
+              "runtimeSpaceSha256": "d99252bf5dc8dd5f4d7857a69b9b4c6e726bf9d8758efe22e694096cce1c0838",
+              "chromium": "138.0.7204.0",
+              "observations": 5,
+              "pass": true,
+              "pageErrors": 0,
+              "captureFailures": 0,
+              "windows": [
+                {
+                  "name": "Home resting",
+                  "paint": {
+                    "count": 27,
+                    "min": 5.100000001490116,
+                    "p50": 6.9000000059604645,
+                    "p95": 11.099999994039536,
+                    "max": 13.299999997019768
+                  },
+                  "medianDrawSubmissions": 101,
+                  "cadence": "20",
+                  "quality": "0"
+                },
+                {
+                  "name": "Flight to research",
+                  "paint": {
+                    "count": 39,
+                    "min": 4.5,
+                    "p50": 8.699999995529652,
+                    "p95": 12.800000004470348,
+                    "max": 14.200000002980232
+                  },
+                  "medianDrawSubmissions": 98,
+                  "cadence": "20",
+                  "quality": "0"
+                },
+                {
+                  "name": "research resting",
+                  "paint": {
+                    "count": 32,
+                    "min": 5.100000001490116,
+                    "p50": 9.100000001490116,
+                    "p95": 10.100000001490116,
+                    "max": 10.299999997019768
+                  },
+                  "medianDrawSubmissions": 103,
+                  "cadence": "20",
+                  "quality": "0"
+                },
+                {
+                  "name": "Flight to index",
+                  "paint": {
+                    "count": 33,
+                    "min": 5.899999998509884,
+                    "p50": 9,
+                    "p95": 13.200000002980232,
+                    "max": 13.399999998509884
+                  },
+                  "medianDrawSubmissions": 161,
+                  "cadence": "20",
+                  "quality": "0"
+                },
+                {
+                  "name": "index resting",
+                  "paint": {
+                    "count": 26,
+                    "min": 6,
+                    "p50": 6.699999995529652,
+                    "p95": 9.600000001490116,
+                    "max": 10.399999998509884
+                  },
+                  "medianDrawSubmissions": 157,
+                  "cadence": "20",
+                  "quality": "0"
+                }
+              ]
+            },
+            "after": {
+              "rawPath": "/tmp/issue49-fractal-cost-after-1.json",
+              "rawSha256": "8f77dfb6329ae79203a36b425ab81d81b7b6d8cac42744a140d0ba595e5f1a5a",
+              "sourceCommit": "28dde434566299affaed14eda0cda0a9843b7880",
+              "sourceTree": "c217c2e850fe3f820ccdd44a50bd5d3cc34d4ca1",
+              "sourceDirty": true,
+              "artifactDigest": "a43ade17d455e1b883e67a8722f9300c44a38f684bd5bc0b915dffd828623d64",
+              "engine": "749a9d99b7667548436be0200c9099d694d3dc749eedb347b493003074f06dfa",
+              "runtimeSpaceSha256": "ff9ced46b1307c46c3c4136da1d4a0c42a0bf91cc5b80017eaaf790b604d5039",
+              "chromium": "138.0.7204.0",
+              "observations": 5,
+              "pass": true,
+              "pageErrors": 0,
+              "captureFailures": 0,
+              "windows": [
+                {
+                  "name": "Home resting",
+                  "paint": {
+                    "count": 40,
+                    "min": 4.899999998509884,
+                    "p50": 7,
+                    "p95": 8,
+                    "max": 8.100000001490116
+                  },
+                  "medianDrawSubmissions": 42,
+                  "cadence": "30",
+                  "quality": "0"
+                },
+                {
+                  "name": "Flight to research",
+                  "paint": {
+                    "count": 43,
+                    "min": 3.600000001490116,
+                    "p50": 6.300000004470348,
+                    "p95": 10.299999997019768,
+                    "max": 13.5
+                  },
+                  "medianDrawSubmissions": 48,
+                  "cadence": "20",
+                  "quality": "0"
+                },
+                {
+                  "name": "research resting",
+                  "paint": {
+                    "count": 37,
+                    "min": 4.899999998509884,
+                    "p50": 5.5999999940395355,
+                    "p95": 7.799999997019768,
+                    "max": 8.199999995529652
+                  },
+                  "medianDrawSubmissions": 48,
+                  "cadence": "20",
+                  "quality": "0"
+                },
+                {
+                  "name": "Flight to index",
+                  "paint": {
+                    "count": 26,
+                    "min": 4.799999997019768,
+                    "p50": 6.799999997019768,
+                    "p95": 11.599999994039536,
+                    "max": 13.300000004470348
+                  },
+                  "medianDrawSubmissions": 116,
+                  "cadence": "20",
+                  "quality": "0"
+                },
+                {
+                  "name": "index resting",
+                  "paint": {
+                    "count": 34,
+                    "min": 5.5999999940395355,
+                    "p50": 7,
+                    "p95": 10,
+                    "max": 13.299999997019768
+                  },
+                  "medianDrawSubmissions": 42,
+                  "cadence": "20",
+                  "quality": "0"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "index": 2,
+          "arms": {
+            "before": {
+              "rawPath": "/tmp/issue49-fractal-cost-before-2.json",
+              "rawSha256": "195b9cec2849035912d4fabb1b2d83d2bf1a8ebbb49e69b599d0f02d7c307e61",
+              "sourceCommit": "28dde434566299affaed14eda0cda0a9843b7880",
+              "sourceTree": "c217c2e850fe3f820ccdd44a50bd5d3cc34d4ca1",
+              "sourceDirty": false,
+              "artifactDigest": "a376f881d4c328481e8754b0f61bf8857e665105f7feec9e858fd9f025630570",
+              "engine": "f88f2d44d4bfc67a428c6fb160afba522cab988ef0078dd6d883294d2257f47f",
+              "runtimeSpaceSha256": "d99252bf5dc8dd5f4d7857a69b9b4c6e726bf9d8758efe22e694096cce1c0838",
+              "chromium": "138.0.7204.0",
+              "observations": 5,
+              "pass": true,
+              "pageErrors": 0,
+              "captureFailures": 0,
+              "windows": [
+                {
+                  "name": "Home resting",
+                  "paint": {
+                    "count": 26,
+                    "min": 5.5,
+                    "p50": 8.600000001490116,
+                    "p95": 11.600000001490116,
+                    "max": 14.399999998509884
+                  },
+                  "medianDrawSubmissions": 101,
+                  "cadence": "20",
+                  "quality": "0"
+                },
+                {
+                  "name": "Flight to research",
+                  "paint": {
+                    "count": 40,
+                    "min": 4.300000004470348,
+                    "p50": 7.899999998509884,
+                    "p95": 13.5,
+                    "max": 92.80000000447035
+                  },
+                  "medianDrawSubmissions": 98,
+                  "cadence": "20",
+                  "quality": "0"
+                },
+                {
+                  "name": "research resting",
+                  "paint": {
+                    "count": 27,
+                    "min": 5.5,
+                    "p50": 7.899999998509884,
+                    "p95": 11.699999995529652,
+                    "max": 12
+                  },
+                  "medianDrawSubmissions": 103,
+                  "cadence": "15",
+                  "quality": "0"
+                },
+                {
+                  "name": "Flight to index",
+                  "paint": {
+                    "count": 31,
+                    "min": 6,
+                    "p50": 9,
+                    "p95": 13.199999995529652,
+                    "max": 14.800000004470348
+                  },
+                  "medianDrawSubmissions": 161,
+                  "cadence": "15",
+                  "quality": "0"
+                },
+                {
+                  "name": "index resting",
+                  "paint": {
+                    "count": 24,
+                    "min": 6.799999997019768,
+                    "p50": 9.299999997019768,
+                    "p95": 10.899999998509884,
+                    "max": 11.100000001490116
+                  },
+                  "medianDrawSubmissions": 157,
+                  "cadence": "15",
+                  "quality": "0"
+                }
+              ]
+            },
+            "after": {
+              "rawPath": "/tmp/issue49-fractal-cost-after-2.json",
+              "rawSha256": "eeca2401df1e67ce0ff7f3d80013c0c08ea886940c0e7a22f24541b251657152",
+              "sourceCommit": "28dde434566299affaed14eda0cda0a9843b7880",
+              "sourceTree": "c217c2e850fe3f820ccdd44a50bd5d3cc34d4ca1",
+              "sourceDirty": true,
+              "artifactDigest": "a43ade17d455e1b883e67a8722f9300c44a38f684bd5bc0b915dffd828623d64",
+              "engine": "749a9d99b7667548436be0200c9099d694d3dc749eedb347b493003074f06dfa",
+              "runtimeSpaceSha256": "ff9ced46b1307c46c3c4136da1d4a0c42a0bf91cc5b80017eaaf790b604d5039",
+              "chromium": "138.0.7204.0",
+              "observations": 5,
+              "pass": true,
+              "pageErrors": 0,
+              "captureFailures": 0,
+              "windows": [
+                {
+                  "name": "Home resting",
+                  "paint": {
+                    "count": 36,
+                    "min": 4.600000001490116,
+                    "p50": 7,
+                    "p95": 8.700000002980232,
+                    "max": 9.899999998509884
+                  },
+                  "medianDrawSubmissions": 42,
+                  "cadence": "20",
+                  "quality": "0"
+                },
+                {
+                  "name": "Flight to research",
+                  "paint": {
+                    "count": 42,
+                    "min": 4.300000004470348,
+                    "p50": 6.600000001490116,
+                    "p95": 10.700000002980232,
+                    "max": 10.900000005960464
+                  },
+                  "medianDrawSubmissions": 47,
+                  "cadence": "20",
+                  "quality": "0"
+                },
+                {
+                  "name": "research resting",
+                  "paint": {
+                    "count": 36,
+                    "min": 5,
+                    "p50": 5.700000002980232,
+                    "p95": 8.299999997019768,
+                    "max": 9.899999998509884
+                  },
+                  "medianDrawSubmissions": 48,
+                  "cadence": "20",
+                  "quality": "0"
+                },
+                {
+                  "name": "Flight to index",
+                  "paint": {
+                    "count": 26,
+                    "min": 4.5,
+                    "p50": 7.800000004470348,
+                    "p95": 10.100000001490116,
+                    "max": 11.5
+                  },
+                  "medianDrawSubmissions": 115,
+                  "cadence": "20",
+                  "quality": "0"
+                },
+                {
+                  "name": "index resting",
+                  "paint": {
+                    "count": 37,
+                    "min": 4.899999998509884,
+                    "p50": 6.5,
+                    "p95": 8.299999997019768,
+                    "max": 8.399999998509884
+                  },
+                  "medianDrawSubmissions": 42,
+                  "cadence": "20",
+                  "quality": "0"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "index": 3,
+          "arms": {
+            "before": {
+              "rawPath": "/tmp/issue49-fractal-cost-before-3.json",
+              "rawSha256": "694a932419fc17c7d6b5c43257b33d8b6c3fc30973d850f5b5ca2191325007b6",
+              "sourceCommit": "28dde434566299affaed14eda0cda0a9843b7880",
+              "sourceTree": "c217c2e850fe3f820ccdd44a50bd5d3cc34d4ca1",
+              "sourceDirty": false,
+              "artifactDigest": "a376f881d4c328481e8754b0f61bf8857e665105f7feec9e858fd9f025630570",
+              "engine": "f88f2d44d4bfc67a428c6fb160afba522cab988ef0078dd6d883294d2257f47f",
+              "runtimeSpaceSha256": "d99252bf5dc8dd5f4d7857a69b9b4c6e726bf9d8758efe22e694096cce1c0838",
+              "chromium": "138.0.7204.0",
+              "observations": 5,
+              "pass": true,
+              "pageErrors": 0,
+              "captureFailures": 0,
+              "windows": [
+                {
+                  "name": "Home resting",
+                  "paint": {
+                    "count": 26,
+                    "min": 4.899999998509884,
+                    "p50": 7,
+                    "p95": 11.600000001490116,
+                    "max": 18.099999994039536
+                  },
+                  "medianDrawSubmissions": 101,
+                  "cadence": "20",
+                  "quality": "0"
+                },
+                {
+                  "name": "Flight to research",
+                  "paint": {
+                    "count": 39,
+                    "min": 4.5,
+                    "p50": 8,
+                    "p95": 13,
+                    "max": 15.399999998509884
+                  },
+                  "medianDrawSubmissions": 98,
+                  "cadence": "20",
+                  "quality": "0"
+                },
+                {
+                  "name": "research resting",
+                  "paint": {
+                    "count": 30,
+                    "min": 6.299999997019768,
+                    "p50": 9.299999997019768,
+                    "p95": 10.100000001490116,
+                    "max": 10.5
+                  },
+                  "medianDrawSubmissions": 103,
+                  "cadence": "20",
+                  "quality": "0"
+                },
+                {
+                  "name": "Flight to index",
+                  "paint": {
+                    "count": 33,
+                    "min": 5.700000002980232,
+                    "p50": 7.299999997019768,
+                    "p95": 14.299999997019768,
+                    "max": 14.699999995529652
+                  },
+                  "medianDrawSubmissions": 161,
+                  "cadence": "20",
+                  "quality": "0"
+                },
+                {
+                  "name": "index resting",
+                  "paint": {
+                    "count": 24,
+                    "min": 6.5,
+                    "p50": 7.399999998509884,
+                    "p95": 12.100000001490116,
+                    "max": 14.100000001490116
+                  },
+                  "medianDrawSubmissions": 157,
+                  "cadence": "20",
+                  "quality": "0"
+                }
+              ]
+            },
+            "after": {
+              "rawPath": "/tmp/issue49-fractal-cost-after-3.json",
+              "rawSha256": "639ba244c4e7cfa8c99d1390f86f55ce083aa74739cc6b98cdcc80ed6249a42c",
+              "sourceCommit": "28dde434566299affaed14eda0cda0a9843b7880",
+              "sourceTree": "c217c2e850fe3f820ccdd44a50bd5d3cc34d4ca1",
+              "sourceDirty": true,
+              "artifactDigest": "a43ade17d455e1b883e67a8722f9300c44a38f684bd5bc0b915dffd828623d64",
+              "engine": "749a9d99b7667548436be0200c9099d694d3dc749eedb347b493003074f06dfa",
+              "runtimeSpaceSha256": "ff9ced46b1307c46c3c4136da1d4a0c42a0bf91cc5b80017eaaf790b604d5039",
+              "chromium": "138.0.7204.0",
+              "observations": 5,
+              "pass": true,
+              "pageErrors": 0,
+              "captureFailures": 0,
+              "windows": [
+                {
+                  "name": "Home resting",
+                  "paint": {
+                    "count": 36,
+                    "min": 4.899999998509884,
+                    "p50": 5.700000002980232,
+                    "p95": 10.5,
+                    "max": 11.200000002980232
+                  },
+                  "medianDrawSubmissions": 42,
+                  "cadence": "20",
+                  "quality": "0"
+                },
+                {
+                  "name": "Flight to research",
+                  "paint": {
+                    "count": 41,
+                    "min": 4.399999998509884,
+                    "p50": 7.4000000059604645,
+                    "p95": 11.100000001490116,
+                    "max": 18.600000001490116
+                  },
+                  "medianDrawSubmissions": 48,
+                  "cadence": "20",
+                  "quality": "0"
+                },
+                {
+                  "name": "research resting",
+                  "paint": {
+                    "count": 37,
+                    "min": 4.799999997019768,
+                    "p50": 6,
+                    "p95": 7.299999997019768,
+                    "max": 8.899999998509884
+                  },
+                  "medianDrawSubmissions": 48,
+                  "cadence": "20",
+                  "quality": "0"
+                },
+                {
+                  "name": "Flight to index",
+                  "paint": {
+                    "count": 26,
+                    "min": 4.899999998509884,
+                    "p50": 7,
+                    "p95": 11.199999995529652,
+                    "max": 11.400000005960464
+                  },
+                  "medianDrawSubmissions": 115,
+                  "cadence": "20",
+                  "quality": "0"
+                },
+                {
+                  "name": "index resting",
+                  "paint": {
+                    "count": 37,
+                    "min": 4.899999998509884,
+                    "p50": 5.600000001490116,
+                    "p95": 8.100000001490116,
+                    "max": 10.799999997019768
+                  },
+                  "medianDrawSubmissions": 42,
+                  "cadence": "20",
+                  "quality": "0"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "aggregation": "Median of the three per-run summaries for each window; no pooled frames across unequal actual cadence.",
+      "windows": [
+        {
+          "name": "Home resting",
+          "before": {
+            "medianPaintP50Ms": 7,
+            "medianPaintP95Ms": 11.600000001490116,
+            "medianDrawSubmissions": 101,
+            "actualCadence": [
+              "20",
+              "20",
+              "20"
+            ],
+            "actualQuality": [
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "after": {
+            "medianPaintP50Ms": 7,
+            "medianPaintP95Ms": 8.700000002980232,
+            "medianDrawSubmissions": 42,
+            "actualCadence": [
+              "30",
+              "20",
+              "20"
+            ],
+            "actualQuality": [
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        {
+          "name": "Flight to research",
+          "before": {
+            "medianPaintP50Ms": 8,
+            "medianPaintP95Ms": 13,
+            "medianDrawSubmissions": 98,
+            "actualCadence": [
+              "20",
+              "20",
+              "20"
+            ],
+            "actualQuality": [
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "after": {
+            "medianPaintP50Ms": 6.600000001490116,
+            "medianPaintP95Ms": 10.700000002980232,
+            "medianDrawSubmissions": 48,
+            "actualCadence": [
+              "20",
+              "20",
+              "20"
+            ],
+            "actualQuality": [
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        {
+          "name": "research resting",
+          "before": {
+            "medianPaintP50Ms": 9.100000001490116,
+            "medianPaintP95Ms": 10.100000001490116,
+            "medianDrawSubmissions": 103,
+            "actualCadence": [
+              "20",
+              "15",
+              "20"
+            ],
+            "actualQuality": [
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "after": {
+            "medianPaintP50Ms": 5.700000002980232,
+            "medianPaintP95Ms": 7.799999997019768,
+            "medianDrawSubmissions": 48,
+            "actualCadence": [
+              "20",
+              "20",
+              "20"
+            ],
+            "actualQuality": [
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        {
+          "name": "Flight to index",
+          "before": {
+            "medianPaintP50Ms": 9,
+            "medianPaintP95Ms": 13.200000002980232,
+            "medianDrawSubmissions": 161,
+            "actualCadence": [
+              "20",
+              "15",
+              "20"
+            ],
+            "actualQuality": [
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "after": {
+            "medianPaintP50Ms": 7,
+            "medianPaintP95Ms": 11.199999995529652,
+            "medianDrawSubmissions": 115,
+            "actualCadence": [
+              "20",
+              "20",
+              "20"
+            ],
+            "actualQuality": [
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        },
+        {
+          "name": "index resting",
+          "before": {
+            "medianPaintP50Ms": 7.399999998509884,
+            "medianPaintP95Ms": 10.899999998509884,
+            "medianDrawSubmissions": 157,
+            "actualCadence": [
+              "20",
+              "15",
+              "20"
+            ],
+            "actualQuality": [
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "after": {
+            "medianPaintP50Ms": 6.5,
+            "medianPaintP95Ms": 8.299999997019768,
+            "medianDrawSubmissions": 42,
+            "actualCadence": [
+              "20",
+              "20",
+              "20"
+            ],
+            "actualQuality": [
+              "0",
+              "0",
+              "0"
+            ]
+          }
+        }
+      ],
+      "comparability": "Initial Home cadence differs in run1; Research/reverse/returned Home cadence differs in run2. All quality0. These windows and aggregate remain descriptive, not whole matched-run/FPS/lag or Canvas/GPU/iPad acceptance.",
+      "preservedEarlierDiagnosticSha256": "65c43110051d483477b9b9d1d08ad9b3e00cbcc373f0212b876a815b64731e27"
+    },
+    "sameSourceAddedCost": {
+      "status": "collected-all-trials-performance-condition-unmet-native-work-deferred",
+      "transitionsPlanned": 24,
+      "pairsPerCase": 3,
+      "cases": 4,
+      "runner": "/tmp/issue49-paired-cost.cjs",
+      "control": "One exact candidate Color artifact; contentFlight/Motion on; fragment preview off/on before first goto",
+      "profiles": {
+        "desktop": {
+          "width": 1440,
+          "height": 900,
+          "deviceScaleFactor": 1.5,
+          "cpuRate": 1,
+          "theme": "dark"
+        },
+        "compact": {
+          "width": 390,
+          "height": 844,
+          "deviceScaleFactor": 3,
+          "cpuRate": 4,
+          "theme": "dark"
+        }
+      },
+      "limits": {
+        "medianAddedPreparationMs": {
+          "desktop": 30,
+          "compactCpu4": 50
+        },
+        "inclusiveNativeWorkP95DeltaMs": {
+          "desktop": 8,
+          "compactCpu4": 12
+        },
+        "addedInputToReadyMs": 100
+      },
+      "reversePictureDeparture": "unmet/deferred: Research has no native picture; real reverse-to-bottom remains measured without synthetic content or changed direction",
+      "dirtyBinding": "Explicit dirty flag retains base/tree, public/engine/owner/factory hashes and serialized literal match; clean rebinding requires equal public/runtime bytes",
+      "missingNativeTrace": "unavailable/deferred, no callback substitution",
+      "scope": "24 collected transitions, not24 passes. All4 cases incomparable and numeric partial diagnostic false; raw deltas exceed predeclared preparation/ready limits but cannot establish matched final added cost. Native inclusive work deferred/null, no callback replacement. All failures and unavailable reverse-picture condition retained.",
+      "rawPath": "/tmp/issue49-paired-fractal-final/issue49-paired-cost.json",
+      "rawSha256": "9909f080e857d8135adbf47927199b53cc2a90953d169da66ebe553de1640150",
+      "source": {
+        "sourceCommit": "28dde434566299affaed14eda0cda0a9843b7880",
+        "sourceTree": "c217c2e850fe3f820ccdd44a50bd5d3cc34d4ca1",
+        "candidateCommit": "28dde434566299affaed14eda0cda0a9843b7880",
+        "sourceDirty": true,
+        "artifactDigest": "a43ade17d455e1b883e67a8722f9300c44a38f684bd5bc0b915dffd828623d64",
+        "variant": {
+          "id": "color",
+          "contract": 1,
+          "fingerprint": "749a9d99b7667548436be0200c9099d694d3dc749eedb347b493003074f06dfa",
+          "baseEngine": "f470b679148091b0cf1a4d25c83e00b9c36ee7d27013a35d23a34de30d0b53ef",
+          "effects": [
+            "travel"
+          ]
+        },
+        "engine": "749a9d99b7667548436be0200c9099d694d3dc749eedb347b493003074f06dfa",
+        "derivation": {
+          "kind": "authored-color-effects",
+          "baseArtifactDigest": "06458ea7fbb358c73ade8ef53732fcde67cd9fb2e517bdc6b0712e3698294f05"
+        },
+        "cleanSourceBound": false,
+        "description": "Dirty frozen snapshot based on this commit/tree; current owner and factory hashes bind changed runtime. This is not clean-commit evidence."
+      },
+      "ownerHashes": {
+        "site/effects/embedded-plan.cjs": "5df4198e160cd18bd959c50319cae76d23738c93a18781c42bd84046f9885b91",
+        "site/effects/embedded-scene.cjs": "ae953716d0f5af7f305a62153769a558f5c927499c3edbcf8c605e36b77ed48f",
+        "site/effects/embedded-texture.cjs": "1af1ce23c932092b7eb8d6311107cde18e6f61b831c3bc90fb704e54259ce952",
+        "site/effects/flight.cjs": "5274ce85a2cc58c9bd38b22a445809b1845b06fc57237a902f3fee4c8a29f8e4",
+        "site/effects/fragment-plan.cjs": "b913665e36b93f72418be1d72835040e8fb823c100c6a0ab5d9fe9da5c5c981a",
+        "site/engine/math.cjs": "9781cfa7e911375201b5d730a5a8d2b1774597ee6daeaa90072b1b8099017612",
+        "site/engine/lifecycle.cjs": "d583ab97f4b491330b75781a7f47f494b598b04d7fa89673a093de7e3191e82a",
+        "site/engine/navigation.js": "ecaa44b9ebca02aedd881c5f434bac5a9fc66011a3c1149a70fbbca33201cf44"
+      },
+      "factoryHashes": {
+        "embedded-plan": "417a0259b6a45d85e6110ee11f5951e60ec41ec1fb5fb4a56339f46a38cc279f",
+        "embedded-scene": "1c6a4774da7c48aefa5585abf06e9806fbb34dd5d82f93247c452a97484a35ee",
+        "embedded-texture": "85751db0a0085195a251d723107ae76a7bbb7928dc378189994e672e9bb9f171"
+      },
+      "serializedFactoryBinding": {
+        "runtimeName": "runtime/749a9d99b7667548436be0200c9099d694d3dc749eedb347b493003074f06dfa/space.js",
+        "runtimeSHA256": "ff9ced46b1307c46c3c4136da1d4a0c42a0bf91cc5b80017eaaf790b604d5039",
+        "exactLiteralMatch": true
+      },
+      "collectors": {
+        "tools/quality/writing-probe.cjs": "982b56f8d73e3976f2d60697c1affd2621a2d116644fc1f165d3b0b7ad1ff853",
+        "tools/quality/writing-diagnosis.cjs": "0703ec236f1842dbf747f0cf6c51db81e0c7abf6932f21f99ab21f66c5171757",
+        "tools/quality/motion.cjs": "963f9cb1db27023d6e2f69c2b4bc37e76a236c7688e8c2369749b51ebdf764ff",
+        "tools/quality/validate.cjs": "08efa8da809562d34d6a150f49413b473f6586899d05ec7360ca0ce190b57870",
+        "tools/quality/budgets.json": "96295838b7406e27407d0227c64929b49680c23062985631594b51846142e0a0",
+        "tools/quality/common.cjs": "ebc93266cc01d3ed05f27059e47664da00afb640e4916b1c0a23674259324b47",
+        "tools/quality/local-browser.cjs": "eb189744d5c89e0a3ccbd6faac538471d6f19abde88e57c9b19156248e25c179",
+        "tools/quality/artifact.cjs": "d16be270473140c5b4ea05a775e13f1be9d22192b241d6e6048c5e37143f5373"
+      },
+      "runnerDigest": "5c6b4ac93ba0d15c5e6eba1c04099f0dbf339d33c863838e0ef95cef428321c6",
+      "traceCollectorDigest": "2345f52a8d023d2d4c128dfb106c621bfdbc8fde5c66191e2346986675873270",
+      "browserExecutableDigest": "7ddc6837ec0e0c9ff488cf8c8fa64d8eef71cc3fa7c79752c52367bddbfe94dd",
+      "browser": "138.0.7204.0",
+      "protocol": {
+        "authority": "review/issue-49/2026-10-08-analysis.md: Measurement and economical verification",
+        "pairsPerCase": 3,
+        "measuredTransitions": 24,
+        "orders": [
+          [
+            "legacy",
+            "fragments"
+          ],
+          [
+            "fragments",
+            "legacy"
+          ],
+          [
+            "legacy",
+            "fragments"
+          ]
+        ],
+        "cache": "Fresh Chromium process/context per arm; HTTP cache disabled; gzip no-store loopback; no test model prewarm or previous navigation. Endogenous fragment neighbor warming is retained and startup cost is recorded.",
+        "motion": "Motion on; content flight on in both arms; fragment preview off/on before first goto; stationary reading camera; no forced quality, camera or cadence.",
+        "startupIdleMs": 4000,
+        "sourcePositionSettleMs": 300,
+        "arrivalTailMs": 400,
+        "input": "One canonical SiteNavigation.go call; atEnd=false gives native top, atEnd=true preserves canonical native-bottom endpoint.",
+        "nativePosition": "Forward departures center the real Home portrait figure using bounded native scroll. Research departures begin at native top. Record exact scroll and visible owner/media rectangles before input and after landing.",
+        "workDefinition": "Native inclusive transition-work p95 is the clipped outermost renderer-main RunTask duration distribution in the CDP marker window navigation-start through navigation-ready+400ms. Layout/paint and compositor/raster unions are retained separately; JavaScript callback timings are never substituted for this native metric.",
+        "preparationDefinition": "Union of existing model/layout/route preparation spans and elapsed embedded.prime/prepareDeparture spans, clipped to input through ready+400ms. Nested preparation spans are merged, never summed. All capture failures and asynchronous waits remain in the recorded spans.",
+        "percentile": "sorted[min(n-1,floor(n*p))], matching motion.cjs",
+        "tracing": "Same devtools.timeline,v8.execute,blink.user_timing,cc categories in every arm. Tracing perturbs timings; this is a bounded diagnostic and has no physical-device or whole-gate authority.",
+        "incremental": {
+          "desktopPreparationMs": 30,
+          "compactPreparationMs": 50,
+          "desktopInclusiveWorkP95Ms": 8,
+          "compactInclusiveWorkP95Ms": 12,
+          "inputToReadyMs": 100
+        }
+      },
+      "counts": {
+        "planned": 24,
+        "collected": 24,
+        "failed": 0,
+        "originalBudgetPass": 11,
+        "originalBudgetFailed": 13
+      },
+      "ownerHashesUnchanged": true,
+      "artifactStillVerified": true,
+      "pairs": [
+        {
+          "case": "desktop-forward-cold",
+          "pair": 1,
+          "order": [
+            "legacy",
+            "fragments"
+          ],
+          "complete": true,
+          "originalPictureCondition": "required where specified",
+          "frozenInputMatched": false,
+          "sameQualityAndCadenceTrace": false,
+          "nativeWorkAvailable": false,
+          "delta": {
+            "preparationMs": 302.5,
+            "inclusiveNativeWorkP95Ms": null,
+            "inputToReadyMs": 571.2000000029802,
+            "callbackP95Ms": 5.700000002980232,
+            "idleBusyPercentagePoints": 8.37672023483664
+          },
+          "observableFragments": true,
+          "originalBudgetsPass": false
+        },
+        {
+          "case": "desktop-forward-cold",
+          "pair": 2,
+          "order": [
+            "fragments",
+            "legacy"
+          ],
+          "complete": true,
+          "originalPictureCondition": "required where specified",
+          "frozenInputMatched": false,
+          "sameQualityAndCadenceTrace": false,
+          "nativeWorkAvailable": false,
+          "delta": {
+            "preparationMs": 342.59999999403954,
+            "inclusiveNativeWorkP95Ms": null,
+            "inputToReadyMs": 615.5,
+            "callbackP95Ms": 16.899999998509884,
+            "idleBusyPercentagePoints": 2.6317902673221205
+          },
+          "observableFragments": true,
+          "originalBudgetsPass": false
+        },
+        {
+          "case": "desktop-forward-cold",
+          "pair": 3,
+          "order": [
+            "legacy",
+            "fragments"
+          ],
+          "complete": true,
+          "originalPictureCondition": "required where specified",
+          "frozenInputMatched": true,
+          "sameQualityAndCadenceTrace": false,
+          "nativeWorkAvailable": false,
+          "delta": {
+            "preparationMs": 304.1000000089407,
+            "inclusiveNativeWorkP95Ms": null,
+            "inputToReadyMs": 461.70000000298023,
+            "callbackP95Ms": 7,
+            "idleBusyPercentagePoints": 6.4306491203652065
+          },
+          "observableFragments": true,
+          "originalBudgetsPass": false
+        },
+        {
+          "case": "compact-forward-cold",
+          "pair": 1,
+          "order": [
+            "legacy",
+            "fragments"
+          ],
+          "complete": true,
+          "originalPictureCondition": "required where specified",
+          "frozenInputMatched": true,
+          "sameQualityAndCadenceTrace": true,
+          "nativeWorkAvailable": false,
+          "delta": {
+            "preparationMs": 920.2999999970198,
+            "inclusiveNativeWorkP95Ms": null,
+            "inputToReadyMs": 624.0000000074506,
+            "callbackP95Ms": 12,
+            "idleBusyPercentagePoints": 0.8581228935931229
+          },
+          "observableFragments": false,
+          "originalBudgetsPass": false
+        },
+        {
+          "case": "compact-forward-cold",
+          "pair": 2,
+          "order": [
+            "fragments",
+            "legacy"
+          ],
+          "complete": true,
+          "originalPictureCondition": "required where specified",
+          "frozenInputMatched": true,
+          "sameQualityAndCadenceTrace": true,
+          "nativeWorkAvailable": false,
+          "delta": {
+            "preparationMs": 734.5000000074506,
+            "inclusiveNativeWorkP95Ms": null,
+            "inputToReadyMs": 462.20000000298023,
+            "callbackP95Ms": 10.600000001490116,
+            "idleBusyPercentagePoints": 1.7956090330800407
+          },
+          "observableFragments": false,
+          "originalBudgetsPass": false
+        },
+        {
+          "case": "compact-forward-cold",
+          "pair": 3,
+          "order": [
+            "legacy",
+            "fragments"
+          ],
+          "complete": true,
+          "originalPictureCondition": "required where specified",
+          "frozenInputMatched": true,
+          "sameQualityAndCadenceTrace": true,
+          "nativeWorkAvailable": false,
+          "delta": {
+            "preparationMs": 825.6999999955297,
+            "inclusiveNativeWorkP95Ms": null,
+            "inputToReadyMs": 672.4999999925494,
+            "callbackP95Ms": -7.299999997019768,
+            "idleBusyPercentagePoints": -0.36806085226324115
+          },
+          "observableFragments": false,
+          "originalBudgetsPass": false
+        },
+        {
+          "case": "desktop-reverse-portrait-arrival",
+          "pair": 1,
+          "order": [
+            "legacy",
+            "fragments"
+          ],
+          "complete": true,
+          "originalPictureCondition": "required where specified",
+          "frozenInputMatched": true,
+          "sameQualityAndCadenceTrace": true,
+          "nativeWorkAvailable": false,
+          "delta": {
+            "preparationMs": 91.40000001341105,
+            "inclusiveNativeWorkP95Ms": null,
+            "inputToReadyMs": 559.2999999970198,
+            "callbackP95Ms": 7.200000002980232,
+            "idleBusyPercentagePoints": 2.872830100219801
+          },
+          "observableFragments": true,
+          "originalBudgetsPass": false
+        },
+        {
+          "case": "desktop-reverse-portrait-arrival",
+          "pair": 2,
+          "order": [
+            "fragments",
+            "legacy"
+          ],
+          "complete": true,
+          "originalPictureCondition": "required where specified",
+          "frozenInputMatched": true,
+          "sameQualityAndCadenceTrace": true,
+          "nativeWorkAvailable": false,
+          "delta": {
+            "preparationMs": 92.70000000298023,
+            "inclusiveNativeWorkP95Ms": null,
+            "inputToReadyMs": 665.1000000014901,
+            "callbackP95Ms": 11.5,
+            "idleBusyPercentagePoints": 2.6253212461611817
+          },
+          "observableFragments": true,
+          "originalBudgetsPass": false
+        },
+        {
+          "case": "desktop-reverse-portrait-arrival",
+          "pair": 3,
+          "order": [
+            "legacy",
+            "fragments"
+          ],
+          "complete": true,
+          "originalPictureCondition": "required where specified",
+          "frozenInputMatched": true,
+          "sameQualityAndCadenceTrace": true,
+          "nativeWorkAvailable": false,
+          "delta": {
+            "preparationMs": 93.89999999850988,
+            "inclusiveNativeWorkP95Ms": null,
+            "inputToReadyMs": 652.1999999955297,
+            "callbackP95Ms": 10,
+            "idleBusyPercentagePoints": 4.446503524734712
+          },
+          "observableFragments": true,
+          "originalBudgetsPass": false
+        },
+        {
+          "case": "compact-reverse-bottom",
+          "pair": 1,
+          "order": [
+            "legacy",
+            "fragments"
+          ],
+          "complete": true,
+          "originalPictureCondition": "unmet/deferred",
+          "frozenInputMatched": true,
+          "sameQualityAndCadenceTrace": true,
+          "nativeWorkAvailable": false,
+          "delta": {
+            "preparationMs": 508.19999998807907,
+            "inclusiveNativeWorkP95Ms": null,
+            "inputToReadyMs": 183.2000000104308,
+            "callbackP95Ms": 3.100000001490116,
+            "idleBusyPercentagePoints": 6.42162798393467
+          },
+          "observableFragments": false,
+          "originalBudgetsPass": false
+        },
+        {
+          "case": "compact-reverse-bottom",
+          "pair": 2,
+          "order": [
+            "fragments",
+            "legacy"
+          ],
+          "complete": true,
+          "originalPictureCondition": "unmet/deferred",
+          "frozenInputMatched": true,
+          "sameQualityAndCadenceTrace": true,
+          "nativeWorkAvailable": false,
+          "delta": {
+            "preparationMs": 543.3999999836087,
+            "inclusiveNativeWorkP95Ms": null,
+            "inputToReadyMs": 194.39999999850988,
+            "callbackP95Ms": 3.5999999940395355,
+            "idleBusyPercentagePoints": 4.686344853488935
+          },
+          "observableFragments": false,
+          "originalBudgetsPass": false
+        },
+        {
+          "case": "compact-reverse-bottom",
+          "pair": 3,
+          "order": [
+            "legacy",
+            "fragments"
+          ],
+          "complete": true,
+          "originalPictureCondition": "unmet/deferred",
+          "frozenInputMatched": true,
+          "sameQualityAndCadenceTrace": true,
+          "nativeWorkAvailable": false,
+          "delta": {
+            "preparationMs": 503.30000001192093,
+            "inclusiveNativeWorkP95Ms": null,
+            "inputToReadyMs": 123,
+            "callbackP95Ms": -47.899999998509884,
+            "idleBusyPercentagePoints": 6.030076427141218
+          },
+          "observableFragments": false,
+          "originalBudgetsPass": false
+        }
+      ],
+      "addedCost": [
+        {
+          "case": "desktop-forward-cold",
+          "medians": {
+            "preparationMs": 304.1000000089407,
+            "inclusiveNativeWorkP95Ms": null,
+            "inputToReadyMs": 571.2000000029802
+          },
+          "limits": {
+            "preparationMs": 30,
+            "inclusiveNativeWorkP95Ms": 8,
+            "inputToReadyMs": 100
+          },
+          "comparable": false,
+          "numericPartialDiagnosticPass": false,
+          "originalPictureDepartureDeferred": false,
+          "wholeAdmission": false
+        },
+        {
+          "case": "compact-forward-cold",
+          "medians": {
+            "preparationMs": 825.6999999955297,
+            "inclusiveNativeWorkP95Ms": null,
+            "inputToReadyMs": 624.0000000074506
+          },
+          "limits": {
+            "preparationMs": 50,
+            "inclusiveNativeWorkP95Ms": 12,
+            "inputToReadyMs": 100
+          },
+          "comparable": false,
+          "numericPartialDiagnosticPass": false,
+          "originalPictureDepartureDeferred": false,
+          "wholeAdmission": false
+        },
+        {
+          "case": "desktop-reverse-portrait-arrival",
+          "medians": {
+            "preparationMs": 92.70000000298023,
+            "inclusiveNativeWorkP95Ms": null,
+            "inputToReadyMs": 652.1999999955297
+          },
+          "limits": {
+            "preparationMs": 30,
+            "inclusiveNativeWorkP95Ms": 8,
+            "inputToReadyMs": 100
+          },
+          "comparable": false,
+          "numericPartialDiagnosticPass": false,
+          "originalPictureDepartureDeferred": false,
+          "wholeAdmission": false
+        },
+        {
+          "case": "compact-reverse-bottom",
+          "medians": {
+            "preparationMs": 508.19999998807907,
+            "inclusiveNativeWorkP95Ms": null,
+            "inputToReadyMs": 183.2000000104308
+          },
+          "limits": {
+            "preparationMs": 50,
+            "inclusiveNativeWorkP95Ms": 12,
+            "inputToReadyMs": 100
+          },
+          "comparable": false,
+          "numericPartialDiagnosticPass": false,
+          "originalPictureDepartureDeferred": true,
+          "wholeAdmission": false
+        }
+      ],
+      "pending": [
+        "Original reverse picture-bearing departure",
+        "Physical iPad/native device",
+        "Whole AC06/G-PERFORMANCE admission",
+        "Visual/glyph/occlusion/accessibility admission",
+        "Production/stable/merge"
+      ],
+      "rows": [
+        {
+          "id": "desktop-forward-cold/pair-1/legacy",
+          "pair": 1,
+          "arm": "legacy",
+          "status": "collected",
+          "originalBudgetPass": true,
+          "idleBudgetPass": true,
+          "embeddedObserved": false,
+          "pictureDepartureObserved": true,
+          "portraitArrivalObserved": false,
+          "nativeLandingPass": true,
+          "nativeCleanupPass": true,
+          "fragmentPreparationBudgetPass": true,
+          "inclusivePreparationUnionMs": 31.19999999552965,
+          "normalBudgetPass": true,
+          "budgetReasons": [],
+          "errors": [],
+          "idle": {
+            "paints": 61,
+            "paintCallbackP95Ms": 13,
+            "callbackBusyPercent": 15.057246717246574
+          },
+          "normal": {
+            "paints": 37,
+            "paintCallbackMs": {
+              "p50": 11.599999994039536,
+              "p95": 21.100000001490116,
+              "max": 27.599999994039536
+            },
+            "paintIntervalsMs": {
+              "count": 36,
+              "p50": 41.899999998509884,
+              "p95": 66.10000000149012,
+              "max": 69.40000000596046
+            },
+            "preparationMs": {
+              "count": 5,
+              "max": 15.099999994039536,
+              "total": 31.19999999552965
+            },
+            "budgetError": null
+          },
+          "inputToReadyMs": 1620,
+          "preparationSpans": [],
+          "coldPreparationFailures": [],
+          "captureFailureSnapshots": [],
+          "nativeWork": {
+            "valid": false,
+            "errors": [
+              "No native RunTask spans; native cost condition is deferred"
+            ],
+            "inclusiveNativeWorkP95Ms": null,
+            "rawPath": "/tmp/issue49-paired-fractal-final/desktop-forward-cold-pair-1-legacy.trace.json",
+            "rawSha256": "ae0c59ec463e8172e24703f57a0422e3d18495f130160486c3e9cd578e0048a9",
+            "layoutUnionMs": 35.848,
+            "paintUnionMs": 11.985,
+            "otherThreads": [
+              {
+                "threadName": "Compositor",
+                "kind": "compositor",
+                "unionMs": 75.075,
+                "eventCount": 6692
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 125.313,
+                "eventCount": 480
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 119.767,
+                "eventCount": 334
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 111.064,
+                "eventCount": 346
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 100.281,
+                "eventCount": 268
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 2.481,
+                "eventCount": 4
+              }
+            ]
+          },
+          "before": {
+            "page": "index",
+            "scroll": [
+              0,
+              118
+            ],
+            "maximumY": 5029,
+            "quality": "0",
+            "cadence": "15"
+          },
+          "after": {
+            "page": "writing",
+            "scroll": [
+              0,
+              0
+            ],
+            "maximumY": 5358,
+            "quality": "0",
+            "cadence": "15",
+            "nativeOpacity": 1,
+            "nativeVisibility": "visible",
+            "nativeInert": false,
+            "transientPieces": 0,
+            "transientLayers": 0
+          }
+        },
+        {
+          "id": "desktop-forward-cold/pair-1/fragments",
+          "pair": 1,
+          "arm": "fragments",
+          "status": "collected",
+          "originalBudgetPass": false,
+          "idleBudgetPass": false,
+          "embeddedObserved": true,
+          "pictureDepartureObserved": true,
+          "portraitArrivalObserved": false,
+          "nativeLandingPass": true,
+          "nativeCleanupPass": true,
+          "fragmentPreparationBudgetPass": true,
+          "inclusivePreparationUnionMs": 333.69999999552965,
+          "normalBudgetPass": true,
+          "budgetReasons": [
+            "idle callback busy exceeds20percent"
+          ],
+          "errors": [],
+          "idle": {
+            "paints": 77,
+            "paintCallbackP95Ms": 18,
+            "callbackBusyPercent": 23.433966952083214
+          },
+          "normal": {
+            "paints": 34,
+            "paintCallbackMs": {
+              "p50": 14.200000002980232,
+              "p95": 26.80000000447035,
+              "max": 33.30000000447035
+            },
+            "paintIntervalsMs": {
+              "count": 33,
+              "p50": 55.19999999552965,
+              "p95": 115.09999999403954,
+              "max": 119.5
+            },
+            "preparationMs": {
+              "count": 5,
+              "max": 9.899999998509884,
+              "total": 20.99999999254942
+            },
+            "budgetError": null
+          },
+          "inputToReadyMs": 2191.2000000029802,
+          "preparationSpans": [
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prime",
+              "time": 5272,
+              "start": 5272,
+              "duration": 0,
+              "outcome": true,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prime",
+              "time": 5343.19999999553,
+              "start": 5272,
+              "duration": 71.19999999552965,
+              "outcome": true,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prepareDeparture",
+              "time": 5450.19999999553,
+              "start": 5343.19999999553,
+              "duration": 107,
+              "outcome": true,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prime",
+              "time": 6786,
+              "start": 6636.39999999851,
+              "duration": 149.60000000149012,
+              "outcome": true,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prime",
+              "time": 7971,
+              "start": 7970.79999999702,
+              "duration": 0.20000000298023224,
+              "outcome": true,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prepareDeparture",
+              "time": 7978.19999999553,
+              "start": 7971.10000000149,
+              "duration": 7.0999999940395355,
+              "outcome": true,
+              "failure": null
+            }
+          ],
+          "coldPreparationFailures": [],
+          "captureFailureSnapshots": [],
+          "nativeWork": {
+            "valid": false,
+            "errors": [
+              "No native RunTask spans; native cost condition is deferred"
+            ],
+            "inclusiveNativeWorkP95Ms": null,
+            "rawPath": "/tmp/issue49-paired-fractal-final/desktop-forward-cold-pair-1-fragments.trace.json",
+            "rawSha256": "da1770eceae05921a002464d782979fe12e37babfafc4a078951e69af1282534",
+            "layoutUnionMs": 57.919,
+            "paintUnionMs": 9.444,
+            "otherThreads": [
+              {
+                "threadName": "Compositor",
+                "kind": "compositor",
+                "unionMs": 48.34,
+                "eventCount": 4901
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 6.895,
+                "eventCount": 54
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 6.163,
+                "eventCount": 48
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 5.001,
+                "eventCount": 40
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 10.903,
+                "eventCount": 42
+              }
+            ]
+          },
+          "before": {
+            "page": "index",
+            "scroll": [
+              0,
+              118
+            ],
+            "maximumY": 5029,
+            "quality": "0",
+            "cadence": "20"
+          },
+          "after": {
+            "page": "writing",
+            "scroll": [
+              0,
+              0
+            ],
+            "maximumY": 5358,
+            "quality": "0",
+            "cadence": "20",
+            "nativeOpacity": 1,
+            "nativeVisibility": "visible",
+            "nativeInert": false,
+            "transientPieces": 0,
+            "transientLayers": 0
+          }
+        },
+        {
+          "id": "compact-forward-cold/pair-1/legacy",
+          "pair": 1,
+          "arm": "legacy",
+          "status": "collected",
+          "originalBudgetPass": true,
+          "idleBudgetPass": true,
+          "embeddedObserved": false,
+          "pictureDepartureObserved": true,
+          "portraitArrivalObserved": false,
+          "nativeLandingPass": true,
+          "nativeCleanupPass": true,
+          "fragmentPreparationBudgetPass": true,
+          "inclusivePreparationUnionMs": 111.70000000298023,
+          "normalBudgetPass": true,
+          "budgetReasons": [],
+          "errors": [],
+          "idle": {
+            "paints": 30,
+            "paintCallbackP95Ms": 26.599999994039536,
+            "callbackBusyPercent": 14.331719006557101
+          },
+          "normal": {
+            "paints": 24,
+            "paintCallbackMs": {
+              "p50": 25.30000000447035,
+              "p95": 36.70000000298023,
+              "max": 76.89999999850988
+            },
+            "paintIntervalsMs": {
+              "count": 23,
+              "p50": 67.09999999403954,
+              "p95": 105,
+              "max": 113.29999999701977
+            },
+            "preparationMs": {
+              "count": 5,
+              "max": 48.100000001490116,
+              "total": 111.70000000298023
+            },
+            "budgetError": null
+          },
+          "inputToReadyMs": 1834.2999999970198,
+          "preparationSpans": [],
+          "coldPreparationFailures": [],
+          "captureFailureSnapshots": [],
+          "nativeWork": {
+            "valid": false,
+            "errors": [
+              "No native RunTask spans; native cost condition is deferred"
+            ],
+            "inclusiveNativeWorkP95Ms": null,
+            "rawPath": "/tmp/issue49-paired-fractal-final/compact-forward-cold-pair-1-legacy.trace.json",
+            "rawSha256": "f937613847def2959086c7173f888a17c778f709380001f7a44d722ab0397d78",
+            "layoutUnionMs": 122.888,
+            "paintUnionMs": 46.083,
+            "otherThreads": [
+              {
+                "threadName": "Compositor",
+                "kind": "compositor",
+                "unionMs": 47.83,
+                "eventCount": 4162
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 32.703,
+                "eventCount": 76
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 36.873,
+                "eventCount": 106
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 15.162,
+                "eventCount": 46
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 25.623,
+                "eventCount": 114
+              }
+            ]
+          },
+          "before": {
+            "page": "index",
+            "scroll": [
+              0,
+              15
+            ],
+            "maximumY": 9325,
+            "quality": "0",
+            "cadence": "7.5"
+          },
+          "after": {
+            "page": "writing",
+            "scroll": [
+              0,
+              0
+            ],
+            "maximumY": 9602,
+            "quality": "0",
+            "cadence": "7.5",
+            "nativeOpacity": 1,
+            "nativeVisibility": "visible",
+            "nativeInert": false,
+            "transientPieces": 0,
+            "transientLayers": 0
+          }
+        },
+        {
+          "id": "compact-forward-cold/pair-1/fragments",
+          "pair": 1,
+          "arm": "fragments",
+          "status": "collected",
+          "originalBudgetPass": false,
+          "idleBudgetPass": true,
+          "embeddedObserved": false,
+          "pictureDepartureObserved": true,
+          "portraitArrivalObserved": false,
+          "nativeLandingPass": true,
+          "nativeCleanupPass": true,
+          "fragmentPreparationBudgetPass": false,
+          "inclusivePreparationUnionMs": 1032,
+          "normalBudgetPass": false,
+          "budgetReasons": [
+            "transition paint gap",
+            "embedded preparation span exceeds160ms",
+            "cold preparation-deadline observations",
+            "retained capture failure snapshots"
+          ],
+          "errors": [],
+          "idle": {
+            "paints": 31,
+            "paintCallbackP95Ms": 28.100000001490116,
+            "callbackBusyPercent": 15.189841900150224
+          },
+          "normal": {
+            "paints": 29,
+            "paintCallbackMs": {
+              "p50": 20.200000002980232,
+              "p95": 48.70000000298023,
+              "max": 49.79999999701977
+            },
+            "paintIntervalsMs": {
+              "count": 28,
+              "p50": 66.29999999701977,
+              "p95": 280.59999999403954,
+              "max": 316.5
+            },
+            "preparationMs": {
+              "count": 5,
+              "max": 37.099999994039536,
+              "total": 106.10000000149012
+            },
+            "budgetError": "transition paint gap"
+          },
+          "inputToReadyMs": 2458.3000000044703,
+          "preparationSpans": [
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prime",
+              "time": 5719.20000000298,
+              "start": 5455.60000000149,
+              "duration": 263.6000000014901,
+              "outcome": true,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prime",
+              "time": 6021.30000000447,
+              "start": 5722,
+              "duration": 299.30000000447035,
+              "outcome": true,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prepareDeparture",
+              "time": 6226.60000000149,
+              "start": 6021.30000000447,
+              "duration": 205.29999999701977,
+              "outcome": false,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prime",
+              "time": 8113.30000000447,
+              "start": 7921.60000000149,
+              "duration": 191.70000000298023,
+              "outcome": true,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prepareDeparture",
+              "time": 8144.10000000149,
+              "start": 8113.30000000447,
+              "duration": 30.799999997019768,
+              "outcome": true,
+              "failure": null
+            }
+          ],
+          "coldPreparationFailures": [
+            {
+              "time": 4958.5,
+              "failureStage": "incoming",
+              "failureRoute": "research",
+              "failureReason": "preparation-deadline",
+              "failureLimit": null
+            },
+            {
+              "time": 7845.60000000149,
+              "failureStage": "departure",
+              "failureRoute": "index",
+              "failureReason": "preparation-deadline",
+              "failureLimit": null
+            }
+          ],
+          "captureFailureSnapshots": [
+            {
+              "stage": "incoming",
+              "route": "research",
+              "reason": "preparation-deadline",
+              "tag": "div",
+              "path": []
+            },
+            {
+              "stage": "incoming",
+              "route": "research",
+              "reason": "preparation-deadline",
+              "tag": "div",
+              "path": []
+            }
+          ],
+          "nativeWork": {
+            "valid": false,
+            "errors": [
+              "No native RunTask spans; native cost condition is deferred"
+            ],
+            "inclusiveNativeWorkP95Ms": null,
+            "rawPath": "/tmp/issue49-paired-fractal-final/compact-forward-cold-pair-1-fragments.trace.json",
+            "rawSha256": "c6f948f9c9bd6c6b2243c0d553b2dced72a69f583f874433c85b9e3d5123446f",
+            "layoutUnionMs": 245.643,
+            "paintUnionMs": 58.213,
+            "otherThreads": [
+              {
+                "threadName": "Compositor",
+                "kind": "compositor",
+                "unionMs": 55.849,
+                "eventCount": 4846
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 47.749,
+                "eventCount": 100
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 24.28,
+                "eventCount": 58
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 24.87,
+                "eventCount": 96
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 29.472,
+                "eventCount": 130
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 0.717,
+                "eventCount": 6
+              }
+            ]
+          },
+          "before": {
+            "page": "index",
+            "scroll": [
+              0,
+              15
+            ],
+            "maximumY": 9325,
+            "quality": "0",
+            "cadence": "7.5"
+          },
+          "after": {
+            "page": "writing",
+            "scroll": [
+              0,
+              0
+            ],
+            "maximumY": 9602,
+            "quality": "0",
+            "cadence": "7.5",
+            "nativeOpacity": 1,
+            "nativeVisibility": "visible",
+            "nativeInert": false,
+            "transientPieces": 0,
+            "transientLayers": 0
+          }
+        },
+        {
+          "id": "desktop-reverse-portrait-arrival/pair-1/legacy",
+          "pair": 1,
+          "arm": "legacy",
+          "status": "collected",
+          "originalBudgetPass": false,
+          "idleBudgetPass": false,
+          "embeddedObserved": false,
+          "pictureDepartureObserved": false,
+          "portraitArrivalObserved": true,
+          "nativeLandingPass": true,
+          "nativeCleanupPass": true,
+          "fragmentPreparationBudgetPass": true,
+          "inclusivePreparationUnionMs": 20.899999991059303,
+          "normalBudgetPass": true,
+          "budgetReasons": [
+            "idle callback busy exceeds20percent"
+          ],
+          "errors": [],
+          "idle": {
+            "paints": 81,
+            "paintCallbackP95Ms": 17.69999999552965,
+            "callbackBusyPercent": 21.838249949047515
+          },
+          "normal": {
+            "paints": 31,
+            "paintCallbackMs": {
+              "p50": 11.199999995529652,
+              "p95": 21.69999999552965,
+              "max": 25.100000001490116
+            },
+            "paintIntervalsMs": {
+              "count": 30,
+              "p50": 43.5,
+              "p95": 56.29999999701977,
+              "max": 59.900000005960464
+            },
+            "preparationMs": {
+              "count": 5,
+              "max": 9.399999998509884,
+              "total": 20.899999991059303
+            },
+            "budgetError": null
+          },
+          "inputToReadyMs": 1310.7000000029802,
+          "preparationSpans": [],
+          "coldPreparationFailures": [],
+          "captureFailureSnapshots": [],
+          "nativeWork": {
+            "valid": false,
+            "errors": [
+              "No native RunTask spans; native cost condition is deferred"
+            ],
+            "inclusiveNativeWorkP95Ms": null,
+            "rawPath": "/tmp/issue49-paired-fractal-final/desktop-reverse-portrait-arrival-pair-1-legacy.trace.json",
+            "rawSha256": "ae661c683b8c5908cb64e2e894abbd4030ac3ddcb5ce91af870c01ee4bb3a871",
+            "layoutUnionMs": 24.357,
+            "paintUnionMs": 10.378,
+            "otherThreads": [
+              {
+                "threadName": "Compositor",
+                "kind": "compositor",
+                "unionMs": 91.459,
+                "eventCount": 7432
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 140.087,
+                "eventCount": 820
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 98.344,
+                "eventCount": 412
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 104.643,
+                "eventCount": 432
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 84.737,
+                "eventCount": 320
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 7.52,
+                "eventCount": 24
+              }
+            ]
+          },
+          "before": {
+            "page": "research",
+            "scroll": [
+              0,
+              0
+            ],
+            "maximumY": 5173,
+            "quality": "0",
+            "cadence": "20"
+          },
+          "after": {
+            "page": "index",
+            "scroll": [
+              0,
+              0
+            ],
+            "maximumY": 5029,
+            "quality": "0",
+            "cadence": "20",
+            "nativeOpacity": 1,
+            "nativeVisibility": "visible",
+            "nativeInert": false,
+            "transientPieces": 0,
+            "transientLayers": 0
+          }
+        },
+        {
+          "id": "desktop-reverse-portrait-arrival/pair-1/fragments",
+          "pair": 1,
+          "arm": "fragments",
+          "status": "collected",
+          "originalBudgetPass": false,
+          "idleBudgetPass": false,
+          "embeddedObserved": true,
+          "pictureDepartureObserved": false,
+          "portraitArrivalObserved": true,
+          "nativeLandingPass": true,
+          "nativeCleanupPass": true,
+          "fragmentPreparationBudgetPass": true,
+          "inclusivePreparationUnionMs": 112.30000000447035,
+          "normalBudgetPass": true,
+          "budgetReasons": [
+            "idle callback busy exceeds20percent"
+          ],
+          "errors": [],
+          "idle": {
+            "paints": 78,
+            "paintCallbackP95Ms": 20.5,
+            "callbackBusyPercent": 24.711080049267316
+          },
+          "normal": {
+            "paints": 23,
+            "paintCallbackMs": {
+              "p50": 17.200000002980232,
+              "p95": 28.899999998509884,
+              "max": 31.599999994039536
+            },
+            "paintIntervalsMs": {
+              "count": 22,
+              "p50": 81.09999999403954,
+              "p95": 102.89999999850988,
+              "max": 105.39999999850988
+            },
+            "preparationMs": {
+              "count": 3,
+              "max": 4,
+              "total": 4.500000007450581
+            },
+            "budgetError": null
+          },
+          "inputToReadyMs": 1870,
+          "preparationSpans": [
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prime",
+              "time": 5126.20000000298,
+              "start": 5026.4000000059605,
+              "duration": 99.79999999701977,
+              "outcome": true,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prepareDeparture",
+              "time": 5134.20000000298,
+              "start": 5126.20000000298,
+              "duration": 8,
+              "outcome": true,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prime",
+              "time": 7444.10000000149,
+              "start": 7444.10000000149,
+              "duration": 0,
+              "outcome": true,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prepareDeparture",
+              "time": 7452.10000000149,
+              "start": 7444.20000000298,
+              "duration": 7.899999998509884,
+              "outcome": true,
+              "failure": null
+            }
+          ],
+          "coldPreparationFailures": [],
+          "captureFailureSnapshots": [],
+          "nativeWork": {
+            "valid": false,
+            "errors": [
+              "No native RunTask spans; native cost condition is deferred"
+            ],
+            "inclusiveNativeWorkP95Ms": null,
+            "rawPath": "/tmp/issue49-paired-fractal-final/desktop-reverse-portrait-arrival-pair-1-fragments.trace.json",
+            "rawSha256": "861ea8663687eace961ddd0586dbb7b990c97b31918c2904b3959d205acd6fda",
+            "layoutUnionMs": 29.758,
+            "paintUnionMs": 6.151,
+            "otherThreads": [
+              {
+                "threadName": "Compositor",
+                "kind": "compositor",
+                "unionMs": 43.601,
+                "eventCount": 3857
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 6.074,
+                "eventCount": 48
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 7.202,
+                "eventCount": 56
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 6.1,
+                "eventCount": 36
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 5.973,
+                "eventCount": 44
+              }
+            ]
+          },
+          "before": {
+            "page": "research",
+            "scroll": [
+              0,
+              0
+            ],
+            "maximumY": 5173,
+            "quality": "0",
+            "cadence": "20"
+          },
+          "after": {
+            "page": "index",
+            "scroll": [
+              0,
+              0
+            ],
+            "maximumY": 5029,
+            "quality": "0",
+            "cadence": "20",
+            "nativeOpacity": 1,
+            "nativeVisibility": "visible",
+            "nativeInert": false,
+            "transientPieces": 0,
+            "transientLayers": 0
+          }
+        },
+        {
+          "id": "compact-reverse-bottom/pair-1/legacy",
+          "pair": 1,
+          "arm": "legacy",
+          "status": "collected",
+          "originalBudgetPass": true,
+          "idleBudgetPass": true,
+          "embeddedObserved": false,
+          "pictureDepartureObserved": false,
+          "portraitArrivalObserved": false,
+          "nativeLandingPass": true,
+          "nativeCleanupPass": true,
+          "fragmentPreparationBudgetPass": true,
+          "inclusivePreparationUnionMs": 78.30000000447035,
+          "normalBudgetPass": true,
+          "budgetReasons": [],
+          "errors": [],
+          "idle": {
+            "paints": 30,
+            "paintCallbackP95Ms": 20.69999999552965,
+            "callbackBusyPercent": 11.847098771216064
+          },
+          "normal": {
+            "paints": 21,
+            "paintCallbackMs": {
+              "p50": 21.600000001490116,
+              "p95": 32,
+              "max": 87.29999999701977
+            },
+            "paintIntervalsMs": {
+              "count": 20,
+              "p50": 66.60000000149012,
+              "p95": 119.89999999850988,
+              "max": 119.89999999850988
+            },
+            "preparationMs": {
+              "count": 6,
+              "max": 36.899999998509884,
+              "total": 78.30000000447035
+            },
+            "budgetError": null
+          },
+          "inputToReadyMs": 1460.1999999955297,
+          "preparationSpans": [],
+          "coldPreparationFailures": [],
+          "captureFailureSnapshots": [],
+          "nativeWork": {
+            "valid": false,
+            "errors": [
+              "No native RunTask spans; native cost condition is deferred"
+            ],
+            "inclusiveNativeWorkP95Ms": null,
+            "rawPath": "/tmp/issue49-paired-fractal-final/compact-reverse-bottom-pair-1-legacy.trace.json",
+            "rawSha256": "b0c95fd0288ea940f0abb6ab31251e539a85b5b278cfc0e6ccfed9829e9e8764",
+            "layoutUnionMs": 89.538,
+            "paintUnionMs": 48.904,
+            "otherThreads": [
+              {
+                "threadName": "Compositor",
+                "kind": "compositor",
+                "unionMs": 54.521,
+                "eventCount": 4235
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 36.061,
+                "eventCount": 156
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 35.181,
+                "eventCount": 138
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 27.095,
+                "eventCount": 206
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 19.062,
+                "eventCount": 104
+              }
+            ]
+          },
+          "before": {
+            "page": "research",
+            "scroll": [
+              0,
+              0
+            ],
+            "maximumY": 9840,
+            "quality": "0",
+            "cadence": "7.5"
+          },
+          "after": {
+            "page": "index",
+            "scroll": [
+              0,
+              9325
+            ],
+            "maximumY": 9325,
+            "quality": "0",
+            "cadence": "7.5",
+            "nativeOpacity": 1,
+            "nativeVisibility": "visible",
+            "nativeInert": false,
+            "transientPieces": 0,
+            "transientLayers": 0
+          }
+        },
+        {
+          "id": "compact-reverse-bottom/pair-1/fragments",
+          "pair": 1,
+          "arm": "fragments",
+          "status": "collected",
+          "originalBudgetPass": false,
+          "idleBudgetPass": false,
+          "embeddedObserved": false,
+          "pictureDepartureObserved": false,
+          "portraitArrivalObserved": false,
+          "nativeLandingPass": true,
+          "nativeCleanupPass": true,
+          "fragmentPreparationBudgetPass": false,
+          "inclusivePreparationUnionMs": 586.4999999925494,
+          "normalBudgetPass": true,
+          "budgetReasons": [
+            "idle paint callback p95 exceeds33ms",
+            "embedded preparation span exceeds160ms",
+            "cold preparation-deadline observations",
+            "retained capture failure snapshots"
+          ],
+          "errors": [],
+          "idle": {
+            "paints": 28,
+            "paintCallbackP95Ms": 36.600000001490116,
+            "callbackBusyPercent": 18.268726755150734
+          },
+          "normal": {
+            "paints": 22,
+            "paintCallbackMs": {
+              "p50": 23.100000001490116,
+              "p95": 35.100000001490116,
+              "max": 44.19999999552965
+            },
+            "paintIntervalsMs": {
+              "count": 21,
+              "p50": 66.5,
+              "p95": 88.20000000298023,
+              "max": 104.60000000149012
+            },
+            "preparationMs": {
+              "count": 5,
+              "max": 30.299999997019768,
+              "total": 43.599999986588955
+            },
+            "budgetError": null
+          },
+          "inputToReadyMs": 1643.4000000059605,
+          "preparationSpans": [
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prime",
+              "time": 5511.89999999851,
+              "start": 5303.0999999940395,
+              "duration": 208.80000000447035,
+              "outcome": false,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prime",
+              "time": 7127.69999999553,
+              "start": 6964.5999999940395,
+              "duration": 163.10000000149012,
+              "outcome": true,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prepareDeparture",
+              "time": 7298.79999999702,
+              "start": 7127.79999999702,
+              "duration": 171,
+              "outcome": true,
+              "failure": null
+            }
+          ],
+          "coldPreparationFailures": [
+            {
+              "time": 4843.29999999702,
+              "failureStage": "departure",
+              "failureRoute": "research",
+              "failureReason": "preparation-deadline",
+              "failureLimit": null
+            },
+            {
+              "time": 6945.5999999940395,
+              "failureStage": "incoming",
+              "failureRoute": "index",
+              "failureReason": "preparation-deadline",
+              "failureLimit": null
+            }
+          ],
+          "captureFailureSnapshots": [
+            {
+              "stage": "departure",
+              "route": "research",
+              "reason": "preparation-deadline",
+              "tag": "div",
+              "path": []
+            },
+            {
+              "stage": "departure",
+              "route": "research",
+              "reason": "preparation-deadline",
+              "tag": "div",
+              "path": []
+            }
+          ],
+          "nativeWork": {
+            "valid": false,
+            "errors": [
+              "No native RunTask spans; native cost condition is deferred"
+            ],
+            "inclusiveNativeWorkP95Ms": null,
+            "rawPath": "/tmp/issue49-paired-fractal-final/compact-reverse-bottom-pair-1-fragments.trace.json",
+            "rawSha256": "8d8002044eeaa32b5b7c84593a43eb92979a976bae25c04a4f760691e31c8595",
+            "layoutUnionMs": 177.746,
+            "paintUnionMs": 58.501,
+            "otherThreads": [
+              {
+                "threadName": "Compositor",
+                "kind": "compositor",
+                "unionMs": 65.888,
+                "eventCount": 4138
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 34.131,
+                "eventCount": 82
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 35.579,
+                "eventCount": 158
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 20.948,
+                "eventCount": 136
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 23.277,
+                "eventCount": 112
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 5.529,
+                "eventCount": 18
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 1.997,
+                "eventCount": 6
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 0.542,
+                "eventCount": 4
+              }
+            ]
+          },
+          "before": {
+            "page": "research",
+            "scroll": [
+              0,
+              0
+            ],
+            "maximumY": 9840,
+            "quality": "0",
+            "cadence": "7.5"
+          },
+          "after": {
+            "page": "index",
+            "scroll": [
+              0,
+              9325
+            ],
+            "maximumY": 9325,
+            "quality": "0",
+            "cadence": "7.5",
+            "nativeOpacity": 1,
+            "nativeVisibility": "visible",
+            "nativeInert": false,
+            "transientPieces": 0,
+            "transientLayers": 0
+          }
+        },
+        {
+          "id": "desktop-forward-cold/pair-2/fragments",
+          "pair": 2,
+          "arm": "fragments",
+          "status": "collected",
+          "originalBudgetPass": false,
+          "idleBudgetPass": false,
+          "embeddedObserved": true,
+          "pictureDepartureObserved": true,
+          "portraitArrivalObserved": false,
+          "nativeLandingPass": true,
+          "nativeCleanupPass": true,
+          "fragmentPreparationBudgetPass": true,
+          "inclusivePreparationUnionMs": 374.20000000298023,
+          "normalBudgetPass": true,
+          "budgetReasons": [
+            "idle callback busy exceeds20percent"
+          ],
+          "errors": [],
+          "idle": {
+            "paints": 58,
+            "paintCallbackP95Ms": 32.900000005960464,
+            "callbackBusyPercent": 21.76552547747169
+          },
+          "normal": {
+            "paints": 33,
+            "paintCallbackMs": {
+              "p50": 17.299999997019768,
+              "p95": 34.100000001490116,
+              "max": 48.900000005960464
+            },
+            "paintIntervalsMs": {
+              "count": 32,
+              "p50": 57.5,
+              "p95": 116.80000000447035,
+              "max": 123
+            },
+            "preparationMs": {
+              "count": 5,
+              "max": 8.5,
+              "total": 23.80000000447035
+            },
+            "budgetError": null
+          },
+          "inputToReadyMs": 2295.10000000149,
+          "preparationSpans": [
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prime",
+              "time": 5273.5,
+              "start": 5273.5,
+              "duration": 0,
+              "outcome": true,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prime",
+              "time": 5349.9000000059605,
+              "start": 5273.5,
+              "duration": 76.40000000596046,
+              "outcome": true,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prepareDeparture",
+              "time": 5474.9000000059605,
+              "start": 5349.9000000059605,
+              "duration": 125,
+              "outcome": true,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prime",
+              "time": 6807.20000000298,
+              "start": 6652.30000000447,
+              "duration": 154.89999999850988,
+              "outcome": true,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prime",
+              "time": 7790.10000000149,
+              "start": 7790,
+              "duration": 0.10000000149011612,
+              "outcome": true,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prepareDeparture",
+              "time": 7800,
+              "start": 7790.10000000149,
+              "duration": 9.899999998509884,
+              "outcome": true,
+              "failure": null
+            }
+          ],
+          "coldPreparationFailures": [],
+          "captureFailureSnapshots": [],
+          "nativeWork": {
+            "valid": false,
+            "errors": [
+              "No native RunTask spans; native cost condition is deferred"
+            ],
+            "inclusiveNativeWorkP95Ms": null,
+            "rawPath": "/tmp/issue49-paired-fractal-final/desktop-forward-cold-pair-2-fragments.trace.json",
+            "rawSha256": "2457d459567107b572fc96f8f0da3be6512439c98cd6fa81f76a246c1689a552",
+            "layoutUnionMs": 58.493,
+            "paintUnionMs": 10.318,
+            "otherThreads": [
+              {
+                "threadName": "Compositor",
+                "kind": "compositor",
+                "unionMs": 54.542,
+                "eventCount": 4768
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 4.852,
+                "eventCount": 26
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 4.917,
+                "eventCount": 50
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 7.498,
+                "eventCount": 60
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 4.13,
+                "eventCount": 48
+              }
+            ]
+          },
+          "before": {
+            "page": "index",
+            "scroll": [
+              0,
+              118
+            ],
+            "maximumY": 5029,
+            "quality": "0",
+            "cadence": "15"
+          },
+          "after": {
+            "page": "writing",
+            "scroll": [
+              0,
+              0
+            ],
+            "maximumY": 5358,
+            "quality": "0",
+            "cadence": "15",
+            "nativeOpacity": 1,
+            "nativeVisibility": "visible",
+            "nativeInert": false,
+            "transientPieces": 0,
+            "transientLayers": 0
+          }
+        },
+        {
+          "id": "desktop-forward-cold/pair-2/legacy",
+          "pair": 2,
+          "arm": "legacy",
+          "status": "collected",
+          "originalBudgetPass": true,
+          "idleBudgetPass": true,
+          "embeddedObserved": false,
+          "pictureDepartureObserved": true,
+          "portraitArrivalObserved": false,
+          "nativeLandingPass": true,
+          "nativeCleanupPass": true,
+          "fragmentPreparationBudgetPass": true,
+          "inclusivePreparationUnionMs": 31.600000008940697,
+          "normalBudgetPass": true,
+          "budgetReasons": [],
+          "errors": [],
+          "idle": {
+            "paints": 81,
+            "paintCallbackP95Ms": 14.699999995529652,
+            "callbackBusyPercent": 19.13373521014957
+          },
+          "normal": {
+            "paints": 40,
+            "paintCallbackMs": {
+              "p50": 10.199999995529652,
+              "p95": 17.200000002980232,
+              "max": 30.899999998509884
+            },
+            "paintIntervalsMs": {
+              "count": 39,
+              "p50": 41.5,
+              "p95": 64.30000000447035,
+              "max": 64.69999999552965
+            },
+            "preparationMs": {
+              "count": 5,
+              "max": 18.69999999552965,
+              "total": 31.600000008940697
+            },
+            "budgetError": null
+          },
+          "inputToReadyMs": 1679.6000000014901,
+          "preparationSpans": [],
+          "coldPreparationFailures": [],
+          "captureFailureSnapshots": [],
+          "nativeWork": {
+            "valid": false,
+            "errors": [
+              "No native RunTask spans; native cost condition is deferred"
+            ],
+            "inclusiveNativeWorkP95Ms": null,
+            "rawPath": "/tmp/issue49-paired-fractal-final/desktop-forward-cold-pair-2-legacy.trace.json",
+            "rawSha256": "a099da97cd6731fa43c100680f78baac4beef6913c64732dca95ab3578cb25e2",
+            "layoutUnionMs": 38.516,
+            "paintUnionMs": 11.919,
+            "otherThreads": [
+              {
+                "threadName": "Compositor",
+                "kind": "compositor",
+                "unionMs": 78.439,
+                "eventCount": 7093
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 98.921,
+                "eventCount": 346
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 109.022,
+                "eventCount": 460
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 92.446,
+                "eventCount": 256
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 8.503,
+                "eventCount": 36
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 96.15,
+                "eventCount": 386
+              }
+            ]
+          },
+          "before": {
+            "page": "index",
+            "scroll": [
+              0,
+              118
+            ],
+            "maximumY": 5029,
+            "quality": "0",
+            "cadence": "20"
+          },
+          "after": {
+            "page": "writing",
+            "scroll": [
+              0,
+              0
+            ],
+            "maximumY": 5358,
+            "quality": "0",
+            "cadence": "20",
+            "nativeOpacity": 1,
+            "nativeVisibility": "visible",
+            "nativeInert": false,
+            "transientPieces": 0,
+            "transientLayers": 0
+          }
+        },
+        {
+          "id": "compact-forward-cold/pair-2/fragments",
+          "pair": 2,
+          "arm": "fragments",
+          "status": "collected",
+          "originalBudgetPass": false,
+          "idleBudgetPass": false,
+          "embeddedObserved": false,
+          "pictureDepartureObserved": true,
+          "portraitArrivalObserved": false,
+          "nativeLandingPass": true,
+          "nativeCleanupPass": true,
+          "fragmentPreparationBudgetPass": false,
+          "inclusivePreparationUnionMs": 871.6000000089407,
+          "normalBudgetPass": true,
+          "budgetReasons": [
+            "idle paint callback p95 exceeds33ms",
+            "embedded preparation span exceeds160ms",
+            "cold preparation-deadline observations",
+            "retained capture failure snapshots"
+          ],
+          "errors": [],
+          "idle": {
+            "paints": 30,
+            "paintCallbackP95Ms": 33.5,
+            "callbackBusyPercent": 14.795234548443451
+          },
+          "normal": {
+            "paints": 23,
+            "paintCallbackMs": {
+              "p50": 28.5,
+              "p95": 48.80000000447035,
+              "max": 50.100000001490116
+            },
+            "paintIntervalsMs": {
+              "count": 22,
+              "p50": 83,
+              "p95": 149.60000000149012,
+              "max": 297.1000000014901
+            },
+            "preparationMs": {
+              "count": 5,
+              "max": 39.70000000298023,
+              "total": 99.69999999552965
+            },
+            "budgetError": null
+          },
+          "inputToReadyMs": 2277.2000000029802,
+          "preparationSpans": [
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prime",
+              "time": 5716.10000000149,
+              "start": 5437.69999999553,
+              "duration": 278.40000000596046,
+              "outcome": true,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prime",
+              "time": 5958.79999999702,
+              "start": 5718.89999999851,
+              "duration": 239.89999999850988,
+              "outcome": false,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prime",
+              "time": 7989.19999999553,
+              "start": 7768.19999999553,
+              "duration": 221,
+              "outcome": true,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prepareDeparture",
+              "time": 8161.79999999702,
+              "start": 7989.19999999553,
+              "duration": 172.60000000149012,
+              "outcome": true,
+              "failure": null
+            }
+          ],
+          "coldPreparationFailures": [
+            {
+              "time": 4924.10000000149,
+              "failureStage": "incoming",
+              "failureRoute": "research",
+              "failureReason": "preparation-deadline",
+              "failureLimit": null
+            },
+            {
+              "time": 7743.10000000149,
+              "failureStage": "incoming",
+              "failureRoute": "writing",
+              "failureReason": "preparation-deadline",
+              "failureLimit": null
+            }
+          ],
+          "captureFailureSnapshots": [
+            {
+              "stage": "incoming",
+              "route": "research",
+              "reason": "preparation-deadline",
+              "tag": "div",
+              "path": []
+            },
+            {
+              "stage": "incoming",
+              "route": "research",
+              "reason": "preparation-deadline",
+              "tag": "div",
+              "path": []
+            }
+          ],
+          "nativeWork": {
+            "valid": false,
+            "errors": [
+              "No native RunTask spans; native cost condition is deferred"
+            ],
+            "inclusiveNativeWorkP95Ms": null,
+            "rawPath": "/tmp/issue49-paired-fractal-final/compact-forward-cold-pair-2-fragments.trace.json",
+            "rawSha256": "c52167df4aa875fdfd7ceadbe507ef440a414f40cf95bfe3be0da6dce06573c1",
+            "layoutUnionMs": 258.823,
+            "paintUnionMs": 64.442,
+            "otherThreads": [
+              {
+                "threadName": "Compositor",
+                "kind": "compositor",
+                "unionMs": 55.495,
+                "eventCount": 4072
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 40.45,
+                "eventCount": 86
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 34.943,
+                "eventCount": 78
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 22.853,
+                "eventCount": 70
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 16.597,
+                "eventCount": 52
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 2.465,
+                "eventCount": 8
+              }
+            ]
+          },
+          "before": {
+            "page": "index",
+            "scroll": [
+              0,
+              15
+            ],
+            "maximumY": 9325,
+            "quality": "0",
+            "cadence": "7.5"
+          },
+          "after": {
+            "page": "writing",
+            "scroll": [
+              0,
+              0
+            ],
+            "maximumY": 9602,
+            "quality": "0",
+            "cadence": "7.5",
+            "nativeOpacity": 1,
+            "nativeVisibility": "visible",
+            "nativeInert": false,
+            "transientPieces": 0,
+            "transientLayers": 0
+          }
+        },
+        {
+          "id": "compact-forward-cold/pair-2/legacy",
+          "pair": 2,
+          "arm": "legacy",
+          "status": "collected",
+          "originalBudgetPass": true,
+          "idleBudgetPass": true,
+          "embeddedObserved": false,
+          "pictureDepartureObserved": true,
+          "portraitArrivalObserved": false,
+          "nativeLandingPass": true,
+          "nativeCleanupPass": true,
+          "fragmentPreparationBudgetPass": true,
+          "inclusivePreparationUnionMs": 137.10000000149012,
+          "normalBudgetPass": true,
+          "budgetReasons": [],
+          "errors": [],
+          "idle": {
+            "paints": 30,
+            "paintCallbackP95Ms": 22.899999998509884,
+            "callbackBusyPercent": 12.99962551536341
+          },
+          "normal": {
+            "paints": 26,
+            "paintCallbackMs": {
+              "p50": 21.200000002980232,
+              "p95": 38.20000000298023,
+              "max": 57.099999994039536
+            },
+            "paintIntervalsMs": {
+              "count": 25,
+              "p50": 66.60000000149012,
+              "p95": 79.59999999403954,
+              "max": 124.60000000149012
+            },
+            "preparationMs": {
+              "count": 5,
+              "max": 59.5,
+              "total": 137.10000000149012
+            },
+            "budgetError": null
+          },
+          "inputToReadyMs": 1815,
+          "preparationSpans": [],
+          "coldPreparationFailures": [],
+          "captureFailureSnapshots": [],
+          "nativeWork": {
+            "valid": false,
+            "errors": [
+              "No native RunTask spans; native cost condition is deferred"
+            ],
+            "inclusiveNativeWorkP95Ms": null,
+            "rawPath": "/tmp/issue49-paired-fractal-final/compact-forward-cold-pair-2-legacy.trace.json",
+            "rawSha256": "1796db54b02eb9d7f08147050a0b6539b5b57726d7f007d4314910f54eb79854",
+            "layoutUnionMs": 113.436,
+            "paintUnionMs": 46.603,
+            "otherThreads": [
+              {
+                "threadName": "Compositor",
+                "kind": "compositor",
+                "unionMs": 51.499,
+                "eventCount": 4355
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 29.31,
+                "eventCount": 80
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 24.224,
+                "eventCount": 98
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 47.2,
+                "eventCount": 144
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 22.89,
+                "eventCount": 84
+              }
+            ]
+          },
+          "before": {
+            "page": "index",
+            "scroll": [
+              0,
+              15
+            ],
+            "maximumY": 9325,
+            "quality": "0",
+            "cadence": "7.5"
+          },
+          "after": {
+            "page": "writing",
+            "scroll": [
+              0,
+              0
+            ],
+            "maximumY": 9602,
+            "quality": "0",
+            "cadence": "7.5",
+            "nativeOpacity": 1,
+            "nativeVisibility": "visible",
+            "nativeInert": false,
+            "transientPieces": 0,
+            "transientLayers": 0
+          }
+        },
+        {
+          "id": "desktop-reverse-portrait-arrival/pair-2/fragments",
+          "pair": 2,
+          "arm": "fragments",
+          "status": "collected",
+          "originalBudgetPass": false,
+          "idleBudgetPass": false,
+          "embeddedObserved": true,
+          "pictureDepartureObserved": false,
+          "portraitArrivalObserved": true,
+          "nativeLandingPass": true,
+          "nativeCleanupPass": true,
+          "fragmentPreparationBudgetPass": true,
+          "inclusivePreparationUnionMs": 118,
+          "normalBudgetPass": true,
+          "budgetReasons": [
+            "idle callback busy exceeds20percent"
+          ],
+          "errors": [],
+          "idle": {
+            "paints": 79,
+            "paintCallbackP95Ms": 16.5,
+            "callbackBusyPercent": 22.255126417626194
+          },
+          "normal": {
+            "paints": 25,
+            "paintCallbackMs": {
+              "p50": 16.100000001490116,
+              "p95": 27.80000000447035,
+              "max": 31.799999997019768
+            },
+            "paintIntervalsMs": {
+              "count": 24,
+              "p50": 81.20000000298023,
+              "p95": 109.70000000298023,
+              "max": 151.89999999850988
+            },
+            "preparationMs": {
+              "count": 3,
+              "max": 4.399999998509884,
+              "total": 4.899999998509884
+            },
+            "budgetError": null
+          },
+          "inputToReadyMs": 2030.3000000044703,
+          "preparationSpans": [
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prime",
+              "time": 5054.20000000298,
+              "start": 4958.60000000149,
+              "duration": 95.60000000149012,
+              "outcome": true,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prepareDeparture",
+              "time": 5063.60000000149,
+              "start": 5054.20000000298,
+              "duration": 9.399999998509884,
+              "outcome": true,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prime",
+              "time": 7078,
+              "start": 7077.89999999851,
+              "duration": 0.10000000149011612,
+              "outcome": true,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prepareDeparture",
+              "time": 7086,
+              "start": 7078,
+              "duration": 8,
+              "outcome": true,
+              "failure": null
+            }
+          ],
+          "coldPreparationFailures": [],
+          "captureFailureSnapshots": [],
+          "nativeWork": {
+            "valid": false,
+            "errors": [
+              "No native RunTask spans; native cost condition is deferred"
+            ],
+            "inclusiveNativeWorkP95Ms": null,
+            "rawPath": "/tmp/issue49-paired-fractal-final/desktop-reverse-portrait-arrival-pair-2-fragments.trace.json",
+            "rawSha256": "03da631a4c9e162f5c33eec7e6f4aec357182324de1dfa57fe057b658230cdb4",
+            "layoutUnionMs": 30.772,
+            "paintUnionMs": 6.163,
+            "otherThreads": [
+              {
+                "threadName": "Compositor",
+                "kind": "compositor",
+                "unionMs": 48.803,
+                "eventCount": 4101
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 0.532,
+                "eventCount": 2
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 0.258,
+                "eventCount": 2
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 8.589,
+                "eventCount": 60
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 6.742,
+                "eventCount": 44
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 5.451,
+                "eventCount": 32
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 5.474,
+                "eventCount": 44
+              }
+            ]
+          },
+          "before": {
+            "page": "research",
+            "scroll": [
+              0,
+              0
+            ],
+            "maximumY": 5173,
+            "quality": "0",
+            "cadence": "20"
+          },
+          "after": {
+            "page": "index",
+            "scroll": [
+              0,
+              0
+            ],
+            "maximumY": 5029,
+            "quality": "0",
+            "cadence": "20",
+            "nativeOpacity": 1,
+            "nativeVisibility": "visible",
+            "nativeInert": false,
+            "transientPieces": 0,
+            "transientLayers": 0
+          }
+        },
+        {
+          "id": "desktop-reverse-portrait-arrival/pair-2/legacy",
+          "pair": 2,
+          "arm": "legacy",
+          "status": "collected",
+          "originalBudgetPass": true,
+          "idleBudgetPass": true,
+          "embeddedObserved": false,
+          "pictureDepartureObserved": false,
+          "portraitArrivalObserved": true,
+          "nativeLandingPass": true,
+          "nativeCleanupPass": true,
+          "fragmentPreparationBudgetPass": true,
+          "inclusivePreparationUnionMs": 25.299999997019768,
+          "normalBudgetPass": true,
+          "budgetReasons": [],
+          "errors": [],
+          "idle": {
+            "paints": 81,
+            "paintCallbackP95Ms": 14.600000001490116,
+            "callbackBusyPercent": 19.629805171465012
+          },
+          "normal": {
+            "paints": 32,
+            "paintCallbackMs": {
+              "p50": 12.100000001490116,
+              "p95": 16.30000000447035,
+              "max": 29
+            },
+            "paintIntervalsMs": {
+              "count": 31,
+              "p50": 44.19999999552965,
+              "p95": 60.100000001490116,
+              "max": 62.099999994039536
+            },
+            "preparationMs": {
+              "count": 5,
+              "max": 11.299999997019768,
+              "total": 25.299999997019768
+            },
+            "budgetError": null
+          },
+          "inputToReadyMs": 1365.2000000029802,
+          "preparationSpans": [],
+          "coldPreparationFailures": [],
+          "captureFailureSnapshots": [],
+          "nativeWork": {
+            "valid": false,
+            "errors": [
+              "No native RunTask spans; native cost condition is deferred"
+            ],
+            "inclusiveNativeWorkP95Ms": null,
+            "rawPath": "/tmp/issue49-paired-fractal-final/desktop-reverse-portrait-arrival-pair-2-legacy.trace.json",
+            "rawSha256": "8995dc3263088678cb134b96921f36dccde4756cfd8c437ad5a4cea6f675ac22",
+            "layoutUnionMs": 27.598,
+            "paintUnionMs": 10.17,
+            "otherThreads": [
+              {
+                "threadName": "Compositor",
+                "kind": "compositor",
+                "unionMs": 80.837,
+                "eventCount": 7340
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 121.352,
+                "eventCount": 874
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 84.686,
+                "eventCount": 292
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 79.145,
+                "eventCount": 334
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 92.061,
+                "eventCount": 402
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 6.688,
+                "eventCount": 34
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 2.828,
+                "eventCount": 24
+              }
+            ]
+          },
+          "before": {
+            "page": "research",
+            "scroll": [
+              0,
+              0
+            ],
+            "maximumY": 5173,
+            "quality": "0",
+            "cadence": "20"
+          },
+          "after": {
+            "page": "index",
+            "scroll": [
+              0,
+              0
+            ],
+            "maximumY": 5029,
+            "quality": "0",
+            "cadence": "20",
+            "nativeOpacity": 1,
+            "nativeVisibility": "visible",
+            "nativeInert": false,
+            "transientPieces": 0,
+            "transientLayers": 0
+          }
+        },
+        {
+          "id": "compact-reverse-bottom/pair-2/fragments",
+          "pair": 2,
+          "arm": "fragments",
+          "status": "collected",
+          "originalBudgetPass": false,
+          "idleBudgetPass": false,
+          "embeddedObserved": false,
+          "pictureDepartureObserved": false,
+          "portraitArrivalObserved": false,
+          "nativeLandingPass": true,
+          "nativeCleanupPass": true,
+          "fragmentPreparationBudgetPass": false,
+          "inclusivePreparationUnionMs": 612.6999999955297,
+          "normalBudgetPass": true,
+          "budgetReasons": [
+            "idle paint callback p95 exceeds33ms",
+            "embedded preparation span exceeds160ms",
+            "cold preparation-deadline observations",
+            "retained capture failure snapshots"
+          ],
+          "errors": [],
+          "idle": {
+            "paints": 29,
+            "paintCallbackP95Ms": 37.29999999701977,
+            "callbackBusyPercent": 18.11724241059693
+          },
+          "normal": {
+            "paints": 22,
+            "paintCallbackMs": {
+              "p50": 23,
+              "p95": 35.69999999552965,
+              "max": 40.29999999701977
+            },
+            "paintIntervalsMs": {
+              "count": 21,
+              "p50": 66.19999999552965,
+              "p95": 94.20000000298023,
+              "max": 102
+            },
+            "preparationMs": {
+              "count": 5,
+              "max": 31.5,
+              "total": 42.100000001490116
+            },
+            "budgetError": null
+          },
+          "inputToReadyMs": 1648.7999999970198,
+          "preparationSpans": [
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prime",
+              "time": 5458.19999999553,
+              "start": 5244,
+              "duration": 214.19999999552965,
+              "outcome": false,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prime",
+              "time": 7168.19999999553,
+              "start": 6931.19999999553,
+              "duration": 237,
+              "outcome": true,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prepareDeparture",
+              "time": 7333.5,
+              "start": 7168.19999999553,
+              "duration": 165.30000000447035,
+              "outcome": false,
+              "failure": null
+            }
+          ],
+          "coldPreparationFailures": [
+            {
+              "time": 4761.0999999940395,
+              "failureStage": "departure",
+              "failureRoute": "research",
+              "failureReason": "preparation-deadline",
+              "failureLimit": null
+            },
+            {
+              "time": 6902.39999999851,
+              "failureStage": "incoming",
+              "failureRoute": "index",
+              "failureReason": "preparation-deadline",
+              "failureLimit": null
+            },
+            {
+              "time": 7452,
+              "failureStage": "departure",
+              "failureRoute": "index",
+              "failureReason": "preparation-deadline",
+              "failureLimit": null
+            }
+          ],
+          "captureFailureSnapshots": [
+            {
+              "stage": "departure",
+              "route": "research",
+              "reason": "preparation-deadline",
+              "tag": "div",
+              "path": []
+            },
+            {
+              "stage": "departure",
+              "route": "research",
+              "reason": "preparation-deadline",
+              "tag": "div",
+              "path": []
+            },
+            {
+              "stage": "departure",
+              "route": "index",
+              "reason": "preparation-deadline",
+              "tag": "div",
+              "path": []
+            }
+          ],
+          "nativeWork": {
+            "valid": false,
+            "errors": [
+              "No native RunTask spans; native cost condition is deferred"
+            ],
+            "inclusiveNativeWorkP95Ms": null,
+            "rawPath": "/tmp/issue49-paired-fractal-final/compact-reverse-bottom-pair-2-fragments.trace.json",
+            "rawSha256": "84d52b1b4f143e00d66480e8e146bfac9f8d95d775f049ebd72afc6ef3ca406e",
+            "layoutUnionMs": 198.631,
+            "paintUnionMs": 54.207,
+            "otherThreads": [
+              {
+                "threadName": "Compositor",
+                "kind": "compositor",
+                "unionMs": 78.112,
+                "eventCount": 4113
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 33.716,
+                "eventCount": 122
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 20.204,
+                "eventCount": 124
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 35.993,
+                "eventCount": 166
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 0.477,
+                "eventCount": 4
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 25.014,
+                "eventCount": 124
+              }
+            ]
+          },
+          "before": {
+            "page": "research",
+            "scroll": [
+              0,
+              0
+            ],
+            "maximumY": 9840,
+            "quality": "0",
+            "cadence": "7.5"
+          },
+          "after": {
+            "page": "index",
+            "scroll": [
+              0,
+              9325
+            ],
+            "maximumY": 9325,
+            "quality": "0",
+            "cadence": "7.5",
+            "nativeOpacity": 1,
+            "nativeVisibility": "visible",
+            "nativeInert": false,
+            "transientPieces": 0,
+            "transientLayers": 0
+          }
+        },
+        {
+          "id": "compact-reverse-bottom/pair-2/legacy",
+          "pair": 2,
+          "arm": "legacy",
+          "status": "collected",
+          "originalBudgetPass": true,
+          "idleBudgetPass": true,
+          "embeddedObserved": false,
+          "pictureDepartureObserved": false,
+          "portraitArrivalObserved": false,
+          "nativeLandingPass": true,
+          "nativeCleanupPass": true,
+          "fragmentPreparationBudgetPass": true,
+          "inclusivePreparationUnionMs": 69.30000001192093,
+          "normalBudgetPass": true,
+          "budgetReasons": [],
+          "errors": [],
+          "idle": {
+            "paints": 30,
+            "paintCallbackP95Ms": 26,
+            "callbackBusyPercent": 13.430897557107995
+          },
+          "normal": {
+            "paints": 21,
+            "paintCallbackMs": {
+              "p50": 22.399999998509884,
+              "p95": 32.100000001490116,
+              "max": 63.5
+            },
+            "paintIntervalsMs": {
+              "count": 20,
+              "p50": 66.5,
+              "p95": 108.59999999403954,
+              "max": 108.59999999403954
+            },
+            "preparationMs": {
+              "count": 6,
+              "max": 38,
+              "total": 69.30000001192093
+            },
+            "budgetError": null
+          },
+          "inputToReadyMs": 1454.3999999985099,
+          "preparationSpans": [],
+          "coldPreparationFailures": [],
+          "captureFailureSnapshots": [],
+          "nativeWork": {
+            "valid": false,
+            "errors": [
+              "No native RunTask spans; native cost condition is deferred"
+            ],
+            "inclusiveNativeWorkP95Ms": null,
+            "rawPath": "/tmp/issue49-paired-fractal-final/compact-reverse-bottom-pair-2-legacy.trace.json",
+            "rawSha256": "d580be2aa45c9cfbc2c64953bc0fc4722a3ff7980ba67b5b46a7df91338a318d",
+            "layoutUnionMs": 87.193,
+            "paintUnionMs": 39.218,
+            "otherThreads": [
+              {
+                "threadName": "Compositor",
+                "kind": "compositor",
+                "unionMs": 64.183,
+                "eventCount": 4011
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 18.852,
+                "eventCount": 86
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 17.047,
+                "eventCount": 86
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 39.152,
+                "eventCount": 150
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 35.49,
+                "eventCount": 194
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 0.067,
+                "eventCount": 2
+              }
+            ]
+          },
+          "before": {
+            "page": "research",
+            "scroll": [
+              0,
+              0
+            ],
+            "maximumY": 9840,
+            "quality": "0",
+            "cadence": "7.5"
+          },
+          "after": {
+            "page": "index",
+            "scroll": [
+              0,
+              9325
+            ],
+            "maximumY": 9325,
+            "quality": "0",
+            "cadence": "7.5",
+            "nativeOpacity": 1,
+            "nativeVisibility": "visible",
+            "nativeInert": false,
+            "transientPieces": 0,
+            "transientLayers": 0
+          }
+        },
+        {
+          "id": "desktop-forward-cold/pair-3/legacy",
+          "pair": 3,
+          "arm": "legacy",
+          "status": "collected",
+          "originalBudgetPass": true,
+          "idleBudgetPass": true,
+          "embeddedObserved": false,
+          "pictureDepartureObserved": true,
+          "portraitArrivalObserved": false,
+          "nativeLandingPass": true,
+          "nativeCleanupPass": true,
+          "fragmentPreparationBudgetPass": true,
+          "inclusivePreparationUnionMs": 42.099999994039536,
+          "normalBudgetPass": true,
+          "budgetReasons": [],
+          "errors": [],
+          "idle": {
+            "paints": 81,
+            "paintCallbackP95Ms": 14.5,
+            "callbackBusyPercent": 19.19918375510619
+          },
+          "normal": {
+            "paints": 41,
+            "paintCallbackMs": {
+              "p50": 11.599999994039536,
+              "p95": 18.700000002980232,
+              "max": 34.5
+            },
+            "paintIntervalsMs": {
+              "count": 40,
+              "p50": 42.19999999552965,
+              "p95": 67,
+              "max": 73.5
+            },
+            "preparationMs": {
+              "count": 5,
+              "max": 17.299999997019768,
+              "total": 42.099999994039536
+            },
+            "budgetError": null
+          },
+          "inputToReadyMs": 1741.2999999970198,
+          "preparationSpans": [],
+          "coldPreparationFailures": [],
+          "captureFailureSnapshots": [],
+          "nativeWork": {
+            "valid": false,
+            "errors": [
+              "No native RunTask spans; native cost condition is deferred"
+            ],
+            "inclusiveNativeWorkP95Ms": null,
+            "rawPath": "/tmp/issue49-paired-fractal-final/desktop-forward-cold-pair-3-legacy.trace.json",
+            "rawSha256": "fc098095f039839194d074638728a08122bdc65c1c12d24e8a0114d768276099",
+            "layoutUnionMs": 37.535,
+            "paintUnionMs": 13.146,
+            "otherThreads": [
+              {
+                "threadName": "Compositor",
+                "kind": "compositor",
+                "unionMs": 76.935,
+                "eventCount": 7125
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 91.849,
+                "eventCount": 282
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 3.801,
+                "eventCount": 14
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 102.353,
+                "eventCount": 380
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 3.971,
+                "eventCount": 34
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 114.835,
+                "eventCount": 400
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 104.471,
+                "eventCount": 306
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 1.475,
+                "eventCount": 26
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 2.311,
+                "eventCount": 4
+              }
+            ]
+          },
+          "before": {
+            "page": "index",
+            "scroll": [
+              0,
+              118
+            ],
+            "maximumY": 5029,
+            "quality": "0",
+            "cadence": "20"
+          },
+          "after": {
+            "page": "writing",
+            "scroll": [
+              0,
+              0
+            ],
+            "maximumY": 5358,
+            "quality": "0",
+            "cadence": "20",
+            "nativeOpacity": 1,
+            "nativeVisibility": "visible",
+            "nativeInert": false,
+            "transientPieces": 0,
+            "transientLayers": 0
+          }
+        },
+        {
+          "id": "desktop-forward-cold/pair-3/fragments",
+          "pair": 3,
+          "arm": "fragments",
+          "status": "collected",
+          "originalBudgetPass": false,
+          "idleBudgetPass": false,
+          "embeddedObserved": true,
+          "pictureDepartureObserved": true,
+          "portraitArrivalObserved": false,
+          "nativeLandingPass": true,
+          "nativeCleanupPass": true,
+          "fragmentPreparationBudgetPass": true,
+          "inclusivePreparationUnionMs": 346.20000000298023,
+          "normalBudgetPass": true,
+          "budgetReasons": [
+            "idle callback busy exceeds20percent"
+          ],
+          "errors": [],
+          "idle": {
+            "paints": 76,
+            "paintCallbackP95Ms": 19.100000001490116,
+            "callbackBusyPercent": 25.629832875471397
+          },
+          "normal": {
+            "paints": 34,
+            "paintCallbackMs": {
+              "p50": 13.299999997019768,
+              "p95": 25.700000002980232,
+              "max": 34.80000000447035
+            },
+            "paintIntervalsMs": {
+              "count": 33,
+              "p50": 53.100000001490116,
+              "p95": 114.89999999850988,
+              "max": 127.90000000596046
+            },
+            "preparationMs": {
+              "count": 5,
+              "max": 8.100000001490116,
+              "total": 21.100000001490116
+            },
+            "budgetError": null
+          },
+          "inputToReadyMs": 2203,
+          "preparationSpans": [
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prime",
+              "time": 5193.10000000149,
+              "start": 5192.89999999851,
+              "duration": 0.20000000298023224,
+              "outcome": true,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prime",
+              "time": 5261.5,
+              "start": 5193.10000000149,
+              "duration": 68.39999999850988,
+              "outcome": true,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prepareDeparture",
+              "time": 5373.5,
+              "start": 5261.5,
+              "duration": 112,
+              "outcome": true,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prime",
+              "time": 6676.89999999851,
+              "start": 6523.79999999702,
+              "duration": 153.10000000149012,
+              "outcome": true,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prime",
+              "time": 7495.5,
+              "start": 7495.5,
+              "duration": 0,
+              "outcome": true,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prepareDeparture",
+              "time": 7501.5,
+              "start": 7495.5,
+              "duration": 6,
+              "outcome": true,
+              "failure": null
+            }
+          ],
+          "coldPreparationFailures": [],
+          "captureFailureSnapshots": [],
+          "nativeWork": {
+            "valid": false,
+            "errors": [
+              "No native RunTask spans; native cost condition is deferred"
+            ],
+            "inclusiveNativeWorkP95Ms": null,
+            "rawPath": "/tmp/issue49-paired-fractal-final/desktop-forward-cold-pair-3-fragments.trace.json",
+            "rawSha256": "685485c04547be96ed5309113b22c5faeaa32d66177fa04b88077ae5e192bba0",
+            "layoutUnionMs": 52.81,
+            "paintUnionMs": 10.028,
+            "otherThreads": [
+              {
+                "threadName": "Compositor",
+                "kind": "compositor",
+                "unionMs": 46.889,
+                "eventCount": 4881
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 5.04,
+                "eventCount": 38
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 7.069,
+                "eventCount": 54
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 6.438,
+                "eventCount": 54
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 4.727,
+                "eventCount": 38
+              }
+            ]
+          },
+          "before": {
+            "page": "index",
+            "scroll": [
+              0,
+              118
+            ],
+            "maximumY": 5029,
+            "quality": "0",
+            "cadence": "20"
+          },
+          "after": {
+            "page": "writing",
+            "scroll": [
+              0,
+              0
+            ],
+            "maximumY": 5358,
+            "quality": "0",
+            "cadence": "15",
+            "nativeOpacity": 1,
+            "nativeVisibility": "visible",
+            "nativeInert": false,
+            "transientPieces": 0,
+            "transientLayers": 0
+          }
+        },
+        {
+          "id": "compact-forward-cold/pair-3/legacy",
+          "pair": 3,
+          "arm": "legacy",
+          "status": "collected",
+          "originalBudgetPass": true,
+          "idleBudgetPass": true,
+          "embeddedObserved": false,
+          "pictureDepartureObserved": true,
+          "portraitArrivalObserved": false,
+          "nativeLandingPass": true,
+          "nativeCleanupPass": true,
+          "fragmentPreparationBudgetPass": true,
+          "inclusivePreparationUnionMs": 115.29999999701977,
+          "normalBudgetPass": true,
+          "budgetReasons": [],
+          "errors": [],
+          "idle": {
+            "paints": 30,
+            "paintCallbackP95Ms": 27.399999998509884,
+            "callbackBusyPercent": 14.404535917929268
+          },
+          "normal": {
+            "paints": 23,
+            "paintCallbackMs": {
+              "p50": 24.600000001490116,
+              "p95": 46.19999999552965,
+              "max": 75.29999999701977
+            },
+            "paintIntervalsMs": {
+              "count": 22,
+              "p50": 69.79999999701977,
+              "p95": 139.10000000149012,
+              "max": 150.69999999552965
+            },
+            "preparationMs": {
+              "count": 5,
+              "max": 49.19999999552965,
+              "total": 115.29999999701977
+            },
+            "budgetError": null
+          },
+          "inputToReadyMs": 1803.3000000044703,
+          "preparationSpans": [],
+          "coldPreparationFailures": [],
+          "captureFailureSnapshots": [],
+          "nativeWork": {
+            "valid": false,
+            "errors": [
+              "No native RunTask spans; native cost condition is deferred"
+            ],
+            "inclusiveNativeWorkP95Ms": null,
+            "rawPath": "/tmp/issue49-paired-fractal-final/compact-forward-cold-pair-3-legacy.trace.json",
+            "rawSha256": "89e4aeed4298d7f58adbb6a9628dec42c22d0c32a8e08948cb43e167acea55cf",
+            "layoutUnionMs": 130.547,
+            "paintUnionMs": 44.697,
+            "otherThreads": [
+              {
+                "threadName": "Compositor",
+                "kind": "compositor",
+                "unionMs": 55.903,
+                "eventCount": 4069
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 24.247,
+                "eventCount": 90
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 25.765,
+                "eventCount": 62
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 29.275,
+                "eventCount": 94
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 42.018,
+                "eventCount": 104
+              }
+            ]
+          },
+          "before": {
+            "page": "index",
+            "scroll": [
+              0,
+              15
+            ],
+            "maximumY": 9325,
+            "quality": "0",
+            "cadence": "7.5"
+          },
+          "after": {
+            "page": "writing",
+            "scroll": [
+              0,
+              0
+            ],
+            "maximumY": 9602,
+            "quality": "0",
+            "cadence": "7.5",
+            "nativeOpacity": 1,
+            "nativeVisibility": "visible",
+            "nativeInert": false,
+            "transientPieces": 0,
+            "transientLayers": 0
+          }
+        },
+        {
+          "id": "compact-forward-cold/pair-3/fragments",
+          "pair": 3,
+          "arm": "fragments",
+          "status": "collected",
+          "originalBudgetPass": false,
+          "idleBudgetPass": true,
+          "embeddedObserved": false,
+          "pictureDepartureObserved": true,
+          "portraitArrivalObserved": false,
+          "nativeLandingPass": true,
+          "nativeCleanupPass": true,
+          "fragmentPreparationBudgetPass": false,
+          "inclusivePreparationUnionMs": 940.9999999925494,
+          "normalBudgetPass": false,
+          "budgetReasons": [
+            "transition paint gap",
+            "embedded preparation span exceeds160ms",
+            "cold preparation-deadline observations",
+            "retained capture failure snapshots"
+          ],
+          "errors": [],
+          "idle": {
+            "paints": 30,
+            "paintCallbackP95Ms": 28.30000000447035,
+            "callbackBusyPercent": 14.036475065666027
+          },
+          "normal": {
+            "paints": 28,
+            "paintCallbackMs": {
+              "p50": 22.399999998509884,
+              "p95": 38.899999998509884,
+              "max": 41.900000005960464
+            },
+            "paintIntervalsMs": {
+              "count": 27,
+              "p50": 66.80000000447035,
+              "p95": 226.5,
+              "max": 321.6000000014901
+            },
+            "preparationMs": {
+              "count": 5,
+              "max": 36.29999999701977,
+              "total": 107.5
+            },
+            "budgetError": "transition paint gap"
+          },
+          "inputToReadyMs": 2475.7999999970198,
+          "preparationSpans": [
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prime",
+              "time": 5583,
+              "start": 5373.39999999851,
+              "duration": 209.60000000149012,
+              "outcome": false,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prime",
+              "time": 5913.39999999851,
+              "start": 5587.39999999851,
+              "duration": 326,
+              "outcome": true,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prepareDeparture",
+              "time": 6089.29999999702,
+              "start": 5914.19999999553,
+              "duration": 175.10000000149012,
+              "outcome": false,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prime",
+              "time": 7999.5999999940395,
+              "start": 7810.89999999851,
+              "duration": 188.69999999552965,
+              "outcome": false,
+              "failure": null
+            }
+          ],
+          "coldPreparationFailures": [
+            {
+              "time": 5294.5,
+              "failureStage": "incoming",
+              "failureRoute": "research",
+              "failureReason": "preparation-deadline",
+              "failureLimit": null
+            },
+            {
+              "time": 7715,
+              "failureStage": "departure",
+              "failureRoute": "index",
+              "failureReason": "preparation-deadline",
+              "failureLimit": null
+            },
+            {
+              "time": 8217.09999999404,
+              "failureStage": "incoming",
+              "failureRoute": "talks",
+              "failureReason": "preparation-deadline",
+              "failureLimit": null
+            }
+          ],
+          "captureFailureSnapshots": [
+            {
+              "stage": "incoming",
+              "route": "research",
+              "reason": "preparation-deadline",
+              "tag": "div",
+              "path": []
+            },
+            {
+              "stage": "incoming",
+              "route": "research",
+              "reason": "preparation-deadline",
+              "tag": "div",
+              "path": []
+            },
+            {
+              "stage": "incoming",
+              "route": "talks",
+              "reason": "preparation-deadline",
+              "tag": "div",
+              "path": []
+            }
+          ],
+          "nativeWork": {
+            "valid": false,
+            "errors": [
+              "No native RunTask spans; native cost condition is deferred"
+            ],
+            "inclusiveNativeWorkP95Ms": null,
+            "rawPath": "/tmp/issue49-paired-fractal-final/compact-forward-cold-pair-3-fragments.trace.json",
+            "rawSha256": "babbfb9bab4c61e4f0e07cf8f3cb69c6689e42e20135469e4e4cf53d4069d571",
+            "layoutUnionMs": 270.83,
+            "paintUnionMs": 64.351,
+            "otherThreads": [
+              {
+                "threadName": "Compositor",
+                "kind": "compositor",
+                "unionMs": 63.604,
+                "eventCount": 4734
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 54.928,
+                "eventCount": 122
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 37.925,
+                "eventCount": 70
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 24.517,
+                "eventCount": 62
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 29.125,
+                "eventCount": 78
+              }
+            ]
+          },
+          "before": {
+            "page": "index",
+            "scroll": [
+              0,
+              15
+            ],
+            "maximumY": 9325,
+            "quality": "0",
+            "cadence": "7.5"
+          },
+          "after": {
+            "page": "writing",
+            "scroll": [
+              0,
+              0
+            ],
+            "maximumY": 9602,
+            "quality": "0",
+            "cadence": "7.5",
+            "nativeOpacity": 1,
+            "nativeVisibility": "visible",
+            "nativeInert": false,
+            "transientPieces": 0,
+            "transientLayers": 0
+          }
+        },
+        {
+          "id": "desktop-reverse-portrait-arrival/pair-3/legacy",
+          "pair": 3,
+          "arm": "legacy",
+          "status": "collected",
+          "originalBudgetPass": true,
+          "idleBudgetPass": true,
+          "embeddedObserved": false,
+          "pictureDepartureObserved": false,
+          "portraitArrivalObserved": true,
+          "nativeLandingPass": true,
+          "nativeCleanupPass": true,
+          "fragmentPreparationBudgetPass": true,
+          "inclusivePreparationUnionMs": 25.899999998509884,
+          "normalBudgetPass": true,
+          "budgetReasons": [],
+          "errors": [],
+          "idle": {
+            "paints": 81,
+            "paintCallbackP95Ms": 12.799999997019768,
+            "callbackBusyPercent": 19.347620706849494
+          },
+          "normal": {
+            "paints": 31,
+            "paintCallbackMs": {
+              "p50": 12,
+              "p95": 16.799999997019768,
+              "max": 32.899999998509884
+            },
+            "paintIntervalsMs": {
+              "count": 30,
+              "p50": 43.70000000298023,
+              "p95": 62.79999999701977,
+              "max": 65.79999999701977
+            },
+            "preparationMs": {
+              "count": 5,
+              "max": 9.899999998509884,
+              "total": 25.899999998509884
+            },
+            "budgetError": null
+          },
+          "inputToReadyMs": 1335,
+          "preparationSpans": [],
+          "coldPreparationFailures": [],
+          "captureFailureSnapshots": [],
+          "nativeWork": {
+            "valid": false,
+            "errors": [
+              "No native RunTask spans; native cost condition is deferred"
+            ],
+            "inclusiveNativeWorkP95Ms": null,
+            "rawPath": "/tmp/issue49-paired-fractal-final/desktop-reverse-portrait-arrival-pair-3-legacy.trace.json",
+            "rawSha256": "a60c882ff717303013a7792a97f684422b60a5f6d83ab56b09d8f15a5fcd3848",
+            "layoutUnionMs": 24.894,
+            "paintUnionMs": 10.331,
+            "otherThreads": [
+              {
+                "threadName": "Compositor",
+                "kind": "compositor",
+                "unionMs": 123.051,
+                "eventCount": 7031
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 161.116,
+                "eventCount": 874
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 70.77,
+                "eventCount": 278
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 89.191,
+                "eventCount": 370
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 79.229,
+                "eventCount": 284
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 6.104,
+                "eventCount": 16
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 1.277,
+                "eventCount": 2
+              }
+            ]
+          },
+          "before": {
+            "page": "research",
+            "scroll": [
+              0,
+              0
+            ],
+            "maximumY": 5173,
+            "quality": "0",
+            "cadence": "20"
+          },
+          "after": {
+            "page": "index",
+            "scroll": [
+              0,
+              0
+            ],
+            "maximumY": 5029,
+            "quality": "0",
+            "cadence": "20",
+            "nativeOpacity": 1,
+            "nativeVisibility": "visible",
+            "nativeInert": false,
+            "transientPieces": 0,
+            "transientLayers": 0
+          }
+        },
+        {
+          "id": "desktop-reverse-portrait-arrival/pair-3/fragments",
+          "pair": 3,
+          "arm": "fragments",
+          "status": "collected",
+          "originalBudgetPass": false,
+          "idleBudgetPass": false,
+          "embeddedObserved": true,
+          "pictureDepartureObserved": false,
+          "portraitArrivalObserved": true,
+          "nativeLandingPass": true,
+          "nativeCleanupPass": true,
+          "fragmentPreparationBudgetPass": true,
+          "inclusivePreparationUnionMs": 119.79999999701977,
+          "normalBudgetPass": true,
+          "budgetReasons": [
+            "idle callback busy exceeds20percent"
+          ],
+          "errors": [],
+          "idle": {
+            "paints": 79,
+            "paintCallbackP95Ms": 20.80000000447035,
+            "callbackBusyPercent": 23.794124231584206
+          },
+          "normal": {
+            "paints": 25,
+            "paintCallbackMs": {
+              "p50": 15.200000002980232,
+              "p95": 26.799999997019768,
+              "max": 30.799999997019768
+            },
+            "paintIntervalsMs": {
+              "count": 24,
+              "p50": 77.89999999850988,
+              "p95": 114.5,
+              "max": 160.20000000298023
+            },
+            "preparationMs": {
+              "count": 3,
+              "max": 3.7999999970197678,
+              "total": 4.200000002980232
+            },
+            "budgetError": null
+          },
+          "inputToReadyMs": 1987.1999999955297,
+          "preparationSpans": [
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prime",
+              "time": 5104.79999999702,
+              "start": 5003.89999999851,
+              "duration": 100.89999999850988,
+              "outcome": true,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prepareDeparture",
+              "time": 5113.29999999702,
+              "start": 5104.79999999702,
+              "duration": 8.5,
+              "outcome": true,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prime",
+              "time": 7010.89999999851,
+              "start": 7010.89999999851,
+              "duration": 0,
+              "outcome": true,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prepareDeparture",
+              "time": 7017.19999999553,
+              "start": 7011,
+              "duration": 6.199999995529652,
+              "outcome": true,
+              "failure": null
+            }
+          ],
+          "coldPreparationFailures": [],
+          "captureFailureSnapshots": [],
+          "nativeWork": {
+            "valid": false,
+            "errors": [
+              "No native RunTask spans; native cost condition is deferred"
+            ],
+            "inclusiveNativeWorkP95Ms": null,
+            "rawPath": "/tmp/issue49-paired-fractal-final/desktop-reverse-portrait-arrival-pair-3-fragments.trace.json",
+            "rawSha256": "b699caddcd74430df0fe85f5718b76c804804fadc077ef9adc214bc4f537af2c",
+            "layoutUnionMs": 32.045,
+            "paintUnionMs": 6.561,
+            "otherThreads": [
+              {
+                "threadName": "Compositor",
+                "kind": "compositor",
+                "unionMs": 46.399,
+                "eventCount": 4106
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 9.09,
+                "eventCount": 66
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 6.457,
+                "eventCount": 36
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 5.874,
+                "eventCount": 34
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 5.419,
+                "eventCount": 48
+              }
+            ]
+          },
+          "before": {
+            "page": "research",
+            "scroll": [
+              0,
+              0
+            ],
+            "maximumY": 5173,
+            "quality": "0",
+            "cadence": "20"
+          },
+          "after": {
+            "page": "index",
+            "scroll": [
+              0,
+              0
+            ],
+            "maximumY": 5029,
+            "quality": "0",
+            "cadence": "20",
+            "nativeOpacity": 1,
+            "nativeVisibility": "visible",
+            "nativeInert": false,
+            "transientPieces": 0,
+            "transientLayers": 0
+          }
+        },
+        {
+          "id": "compact-reverse-bottom/pair-3/legacy",
+          "pair": 3,
+          "arm": "legacy",
+          "status": "collected",
+          "originalBudgetPass": true,
+          "idleBudgetPass": true,
+          "embeddedObserved": false,
+          "pictureDepartureObserved": false,
+          "portraitArrivalObserved": false,
+          "nativeLandingPass": true,
+          "nativeCleanupPass": true,
+          "fragmentPreparationBudgetPass": true,
+          "inclusivePreparationUnionMs": 75.99999999254942,
+          "normalBudgetPass": true,
+          "budgetReasons": [],
+          "errors": [],
+          "idle": {
+            "paints": 30,
+            "paintCallbackP95Ms": 26.100000001490116,
+            "callbackBusyPercent": 12.85539552238237
+          },
+          "normal": {
+            "paints": 20,
+            "paintCallbackMs": {
+              "p50": 24.5,
+              "p95": 78,
+              "max": 78
+            },
+            "paintIntervalsMs": {
+              "count": 19,
+              "p50": 66.5,
+              "p95": 111.19999999552965,
+              "max": 111.19999999552965
+            },
+            "preparationMs": {
+              "count": 6,
+              "max": 37.5,
+              "total": 75.99999999254942
+            },
+            "budgetError": null
+          },
+          "inputToReadyMs": 1456.8999999985099,
+          "preparationSpans": [],
+          "coldPreparationFailures": [],
+          "captureFailureSnapshots": [],
+          "nativeWork": {
+            "valid": false,
+            "errors": [
+              "No native RunTask spans; native cost condition is deferred"
+            ],
+            "inclusiveNativeWorkP95Ms": null,
+            "rawPath": "/tmp/issue49-paired-fractal-final/compact-reverse-bottom-pair-3-legacy.trace.json",
+            "rawSha256": "180bf1ab9ab31c53b4b95aff030bc5649dc5e0c19d03ffc284fc8e3ec82aaf02",
+            "layoutUnionMs": 89.044,
+            "paintUnionMs": 37.047,
+            "otherThreads": [
+              {
+                "threadName": "Compositor",
+                "kind": "compositor",
+                "unionMs": 56.017,
+                "eventCount": 3780
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 23.326,
+                "eventCount": 100
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 30.726,
+                "eventCount": 116
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 19.189,
+                "eventCount": 102
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 2.035,
+                "eventCount": 12
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 45.138,
+                "eventCount": 112
+              }
+            ]
+          },
+          "before": {
+            "page": "research",
+            "scroll": [
+              0,
+              0
+            ],
+            "maximumY": 9840,
+            "quality": "0",
+            "cadence": "7.5"
+          },
+          "after": {
+            "page": "index",
+            "scroll": [
+              0,
+              9325
+            ],
+            "maximumY": 9325,
+            "quality": "0",
+            "cadence": "7.5",
+            "nativeOpacity": 1,
+            "nativeVisibility": "visible",
+            "nativeInert": false,
+            "transientPieces": 0,
+            "transientLayers": 0
+          }
+        },
+        {
+          "id": "compact-reverse-bottom/pair-3/fragments",
+          "pair": 3,
+          "arm": "fragments",
+          "status": "collected",
+          "originalBudgetPass": false,
+          "idleBudgetPass": false,
+          "embeddedObserved": false,
+          "pictureDepartureObserved": false,
+          "portraitArrivalObserved": false,
+          "nativeLandingPass": true,
+          "nativeCleanupPass": true,
+          "fragmentPreparationBudgetPass": false,
+          "inclusivePreparationUnionMs": 579.3000000044703,
+          "normalBudgetPass": true,
+          "budgetReasons": [
+            "idle paint callback p95 exceeds33ms",
+            "embedded preparation span exceeds160ms",
+            "cold preparation-deadline observations",
+            "retained capture failure snapshots"
+          ],
+          "errors": [],
+          "idle": {
+            "paints": 29,
+            "paintCallbackP95Ms": 40.69999999552965,
+            "callbackBusyPercent": 18.885471949523588
+          },
+          "normal": {
+            "paints": 23,
+            "paintCallbackMs": {
+              "p50": 21,
+              "p95": 30.100000001490116,
+              "max": 30.399999998509884
+            },
+            "paintIntervalsMs": {
+              "count": 22,
+              "p50": 66,
+              "p95": 95.5,
+              "max": 115.89999999850988
+            },
+            "preparationMs": {
+              "count": 5,
+              "max": 31.700000002980232,
+              "total": 45.6000000089407
+            },
+            "budgetError": null
+          },
+          "inputToReadyMs": 1579.8999999985099,
+          "preparationSpans": [
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prime",
+              "time": 5461.39999999851,
+              "start": 5262.20000000298,
+              "duration": 199.19999999552965,
+              "outcome": false,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prime",
+              "time": 7126.39999999851,
+              "start": 6879.89999999851,
+              "duration": 246.5,
+              "outcome": true,
+              "failure": null
+            },
+            {
+              "kind": "diagnostic-preparation",
+              "part": "embedded.prepareDeparture",
+              "time": 7297.60000000149,
+              "start": 7126.39999999851,
+              "duration": 171.20000000298023,
+              "outcome": false,
+              "failure": null
+            }
+          ],
+          "coldPreparationFailures": [
+            {
+              "time": 4787.10000000149,
+              "failureStage": "departure",
+              "failureRoute": "research",
+              "failureReason": "preparation-deadline",
+              "failureLimit": null
+            },
+            {
+              "time": 6860.30000000447,
+              "failureStage": "incoming",
+              "failureRoute": "index",
+              "failureReason": "preparation-deadline",
+              "failureLimit": null
+            },
+            {
+              "time": 7382.89999999851,
+              "failureStage": "departure",
+              "failureRoute": "index",
+              "failureReason": "preparation-deadline",
+              "failureLimit": null
+            }
+          ],
+          "captureFailureSnapshots": [
+            {
+              "stage": "departure",
+              "route": "research",
+              "reason": "preparation-deadline",
+              "tag": "div",
+              "path": []
+            },
+            {
+              "stage": "departure",
+              "route": "research",
+              "reason": "preparation-deadline",
+              "tag": "div",
+              "path": []
+            },
+            {
+              "stage": "departure",
+              "route": "index",
+              "reason": "preparation-deadline",
+              "tag": "div",
+              "path": []
+            }
+          ],
+          "nativeWork": {
+            "valid": false,
+            "errors": [
+              "No native RunTask spans; native cost condition is deferred"
+            ],
+            "inclusiveNativeWorkP95Ms": null,
+            "rawPath": "/tmp/issue49-paired-fractal-final/compact-reverse-bottom-pair-3-fragments.trace.json",
+            "rawSha256": "a0bd5e336ee2c58108eb53a8992e0024a545bb043a1902aa9e0538cbf9ff2f5b",
+            "layoutUnionMs": 173.838,
+            "paintUnionMs": 48.276,
+            "otherThreads": [
+              {
+                "threadName": "Compositor",
+                "kind": "compositor",
+                "unionMs": 60.77,
+                "eventCount": 4117
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 22.49,
+                "eventCount": 92
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 37.503,
+                "eventCount": 182
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 34.387,
+                "eventCount": 152
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 29.15,
+                "eventCount": 118
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 1.08,
+                "eventCount": 4
+              },
+              {
+                "threadName": "ThreadPoolForegroundWorker",
+                "kind": "raster",
+                "unionMs": 3.283,
+                "eventCount": 14
+              }
+            ]
+          },
+          "before": {
+            "page": "research",
+            "scroll": [
+              0,
+              0
+            ],
+            "maximumY": 9840,
+            "quality": "0",
+            "cadence": "7.5"
+          },
+          "after": {
+            "page": "index",
+            "scroll": [
+              0,
+              9325
+            ],
+            "maximumY": 9325,
+            "quality": "0",
+            "cadence": "7.5",
+            "nativeOpacity": 1,
+            "nativeVisibility": "visible",
+            "nativeInert": false,
+            "transientPieces": 0,
+            "transientLayers": 0
+          }
+        }
+      ],
+      "conditionCounts": {
+        "pairs": 12,
+        "frozenInputMatched": 10,
+        "qualityCadenceCombinationsMatched": 9,
+        "nativeWorkAvailable": 0,
+        "observableFragmentPairs": 6,
+        "originalBudgetsPassedPairs": 0,
+        "comparableCases": 0,
+        "numericPartialDiagnosticPassedCases": 0,
+        "nativeLandingPass": 24,
+        "nativeCleanupPass": 24,
+        "compactFragmentFallbackRows": 6
+      },
+      "diagnosticLimits": "Quality/cadence matching compares ordered unique combinations rather than frame-by-frame/time-weighted identity. Existing preparation arrival window retains whole boundary callbacks; native trace fixes exact ready+400ms. Bounded cleanup checks content opacity/visibility/inert and fragment-piece/layer absence, not full header/exclusive-ink/glyph/accessibility acceptance."
+    },
+    "finalDeliveryValidation": {
+      "status": "pending",
+      "required": [
+        "existing registered source suites and Basic",
+        "full pinned format/lint",
+        "bounded style guard",
+        "canonical/generated/previews/both offline outputs",
+        "independent review",
+        "RI/CI coupling and clean exact-source policy/preview"
+      ],
+      "policyChecks": 17,
+      "criteria": 15,
+      "pendingHumanGates": 11,
+      "newProfileOrMatrix": false,
+      "wholeAcTick": false
+    },
+    "limitations": "Local Chromium138 emulation, not hosted or physical iPad. Changed before/new work is descriptive with unequal cadence windows. All24 same-source trials collected but only11 original-budget passes; all4 added-cost cases incomparable and numeric partial false; native task p95 missing/deferred, never zero. Original reverse-picture condition and historical28dde deadline failures retained. No whole/stable/production/merge admission.",
+    "precedingCapturedCandidate": {
+      "baseCommit": "28dde434566299affaed14eda0cda0a9843b7880",
+      "baseTree": "c217c2e850fe3f820ccdd44a50bd5d3cc34d4ca1",
+      "sourceDirty": true,
+      "artifactDigest": "3f62e63715c7994f386fe1ccba05c30df91ac74265243d92f6004872b4d9328c",
+      "engine": "bb73d0519e6f83a61f7165fff73a99fc1a7d57f23aae3c489c67e5a44cafc3ce",
+      "owners": {
+        "embeddedPlan": "5df4198e160cd18bd959c50319cae76d23738c93a18781c42bd84046f9885b91",
+        "embeddedScene": "2e534e623d96d337e884126bbc257634acb788392b7989dce6fa05758e173b87",
+        "embeddedTexture": "1af1ce23c932092b7eb8d6311107cde18e6f61b831c3bc90fb704e54259ce952",
+        "flight": "5274ce85a2cc58c9bd38b22a445809b1845b06fc57237a902f3fee4c8a29f8e4"
+      },
+      "sourceValidation": {
+        "integratedSuites": 8,
+        "integratedCases": 297,
+        "passed": 297,
+        "failed": 0,
+        "skipped": 0,
+        "focusedGeometryCases": 28,
+        "scope": "Primary-agent source result on frozen dirty candidate; not hosted/native/visual/cost admission."
+      },
+      "actualCapture": {
+        "rawPath": "/workspace/scratch/fa77374a3907/issue49-fractal-refined-before-extraction/result.json",
+        "rawSha256": "084a33bbae9d219973518b32b6a2e3899bba28324e1b95f5145589cb52c0ef03",
+        "journeys": 8,
+        "passed": 8,
+        "failed": 0,
+        "jpegFrames": 372,
+        "actualPaints": 335,
+        "pageErrors": 0,
+        "captureFailures": 0,
+        "peakPieces": 96,
+        "peakFields": 3,
+        "peakLayerPixelsApprox": 2997000,
+        "frontAreaBurdenPercent": {
+          "portrait": {
+            "baseline": 17.56,
+            "candidate": 0.419
+          },
+          "landscape": {
+            "baseline": 20.12,
+            "candidate": 0.314
+          }
+        },
+        "maxSpanCssPx": {
+          "portrait": {
+            "baseline": 563,
+            "candidate": 89
+          },
+          "landscape": {
+            "baseline": 535,
+            "candidate": 60
+          }
+        },
+        "medianSpanCssPx": {
+          "portrait": {
+            "baseline": 150,
+            "candidate": 16.7
+          },
+          "landscape": {
+            "baseline": 143,
+            "candidate": 14.1
+          }
+        },
+        "midIncoming": {
+          "portrait": {
+            "progress": 0.6,
+            "medianSpanCssPx": 28,
+            "fronts": 27,
+            "total": 32
+          },
+          "landscape": {
+            "progress": 0.625,
+            "medianSpanCssPx": 26,
+            "fronts": 27,
+            "total": 32
+          }
+        },
+        "limitations": "Actual local Chromium138 touch/DPR2 observation preceding readability extraction. Front-area sums are coverage burden, not polygon-union coverage; rear/bevel excluded. No final-source hosted/native/iPad/whole admission."
+      }
+    },
+    "candidate": {
+      "baseCommit": "28dde434566299affaed14eda0cda0a9843b7880",
+      "baseTree": "c217c2e850fe3f820ccdd44a50bd5d3cc34d4ca1",
+      "sourceDirty": true,
+      "artifactDigest": "a43ade17d455e1b883e67a8722f9300c44a38f684bd5bc0b915dffd828623d64",
+      "engine": "749a9d99b7667548436be0200c9099d694d3dc749eedb347b493003074f06dfa",
+      "owners": {
+        "embeddedPlan": "5df4198e160cd18bd959c50319cae76d23738c93a18781c42bd84046f9885b91",
+        "embeddedScene": "ae953716d0f5af7f305a62153769a558f5c927499c3edbcf8c605e36b77ed48f",
+        "embeddedTexture": "1af1ce23c932092b7eb8d6311107cde18e6f61b831c3bc90fb704e54259ce952",
+        "flight": "5274ce85a2cc58c9bd38b22a445809b1845b06fc57237a902f3fee4c8a29f8e4"
+      },
+      "sourceValidation": {
+        "fullLint": "pass on rebuilt dirty candidate",
+        "integratedFinalRerun": "pass",
+        "scope": "Source validation does not supply actual final-runtime/hosted/native/visual/cost admission.",
+        "integratedSuites": 8,
+        "integratedCases": 297,
+        "passed": 297,
+        "failed": 0,
+        "skipped": 0,
+        "rawTapPath": "/tmp/issue49-fractal-frozen-integrated.tap"
+      }
+    },
+    "collectorReadabilityParity": {
+      "rawPath": "/tmp/issue49-collector-parity.json",
+      "rawSha256": "01f44125a276d36609bfbae34c33bdf5ab1da54a80ffa7f316694e89bd07bbe8",
+      "beforeSourceSha256": "2e534e623d96d337e884126bbc257634acb788392b7989dce6fa05758e173b87",
+      "afterSourceSha256": "ae953716d0f5af7f305a62153769a558f5c927499c3edbcf8c605e36b77ed48f",
+      "samples": 204,
+      "sampleSha256": "ca180054185e9afac4b23051433644a42d5ace297f8c702836cb003104384018",
+      "exactEquality": true,
+      "scope": "Pure source-model shapes/bank/resources/reveal/native equality with unchanged multiplication order; preceding actual capture retains its3f62 artifact, never relabelled."
+    },
+    "painterNoOpParity": {
+      "rawPath": "/tmp/issue49-painter-parity-perf.json",
+      "rawSha256": "b0a1fef1a349b81749f11de93945932fde4451deac3af15d836aa427c01dd2e3",
+      "beforeSourceSha256": "8f9d994518d4ca1bf53487a957e3ad909860c248ecfbca44bc4511dbce2c5c74",
+      "afterSourceSha256": "5df4198e160cd18bd959c50319cae76d23738c93a18781c42bd84046f9885b91",
+      "faces": 25935,
+      "unchangedDrawSubmissions": 36773,
+      "exactCanvasCommandEquality": true,
+      "balancedPairs": 6,
+      "medianBeforeMs": 156.41283599999997,
+      "medianAfterMs": 79.97380599999997,
+      "medianPairedSavedPercent": 46.6190083018506,
+      "scope": "Fixed original28dde corpus across3widths/2rooms/3times/rest-forward-departure; no-op Canvas CPU isolates painter JavaScript, excluding actual Canvas/GPU/browser/iPad and whole-effect added cost."
+    },
+    "historicalNearEvidence": {
+      "nearAfterRawPath": "/tmp/issue49-near-after.json",
+      "sourceDisposition": "Precedingc616 geometry, not rerun for final mixed hierarchy/growth",
+      "sharedClearanceRawPath": "/tmp/issue49-shared-solid-clearance.json",
+      "sharedClearanceDisposition": "Preceding source-model audit; current whole-solid28-case regression is separate analytic evidence; no relabelling as final browser proof",
+      "nearAfterRawSha256": "6f7e625527937f40d7915ca8768ffcf36ac223a87d5f927cfb94e3e4353a7346",
+      "nearAfterSourceSha256": "c616945f44b3b99a0421b6cc269de634351db0751eae48fa61a148e00e31f26f",
+      "sharedClearanceRawSha256": "370dd215c97302d02e86f3d2b581c12fe381a4c007bafb61c226bf14888c2c80",
+      "sharedClearanceCandidateSource": "c616945f"
+    },
+    "durableRawEvidence": {
+      "scope": "Raw reports and inert diagnostic helper snapshots, four selected final forward JPEGs, all24 native CDP traces; per-member hashes and original observed bindings in both manifests. Full screencast sequences and native PNGs remain temporary. No current/clean/native-device or whole-gate admission by archiving.",
+      "files": [
+        {
+          "path": "review/issue-49/2026-10-10-fractal-evidence.tar.gz",
+          "bytes": 3037476,
+          "sha256": "5ab36ae26bb508c703004a24942efa5737e7403554643959da445f754debac6b"
+        },
+        {
+          "path": "review/issue-49/2026-10-10-fractal-traces.tar.gz",
+          "bytes": 8974076,
+          "sha256": "6be20a36fb290d98ba673dab7f1457d20fe7b7ecd1dcf42851743a8fe9a720f0"
+        }
+      ]
+    }
   }
 }

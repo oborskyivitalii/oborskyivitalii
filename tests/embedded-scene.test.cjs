@@ -663,6 +663,183 @@ test('idle next-page field retains real branch membership, readable paint and th
   assert.equal(h.assets[0].disposeCount, 0);
 });
 
+test('resident chips inherit the radius and a proper actual facet basis on full and compact worlds', async () => {
+  for (const compact of [false, true])
+    for (const route of definitions.routeOrder.slice(1)) {
+      const h = harness({ compact });
+      const host = definitions.routeOrder[definitions.routeOrder.indexOf(route) - 1];
+      h.document.body.dataset.page = host;
+      h.collect(host, 100);
+      assert.equal(await h.bridge.prime(h.data(route), 78), true);
+      const group = h.bridge.diagnostics().bank[0].groups[0];
+      const world = h.api.worldForRoom(host);
+      assert.equal(group.pieces, compact ? 13 : 32);
+      assert.equal(new Set(group.members.map(({ name }) => name)).size, group.pieces);
+      assert.deepEqual([...new Set(group.members.map(({ root }) => root))].sort(), [0, 1, 2]);
+      const depths = group.members.map(
+        (member) => world.objects.find(({ name }) => name === member.name).depth
+      );
+      assert.equal(depths.filter((depth) => depth === 1).length, compact ? 3 : 8);
+      assert.equal(depths.filter((depth) => depth === 2).length, compact ? 10 : 24);
+      assert.ok(group.members.every((member, index) => member.root === index % 3));
+      for (const member of group.members) {
+        const branch = world.objects.find(({ name }) => name === member.name);
+        assert.ok(branch.depth === 1 || branch.depth === 2);
+        assert.ok(branch.faceCount > 0);
+        assert.equal(member.radius, branch.radius);
+        assert.ok(member.radius > 0 && Number.isFinite(member.radius));
+        const [tangent, bitangent, normal] = member.surfaceAxes;
+        for (const axis of member.surfaceAxes) {
+          assert.ok(axis.every(Number.isFinite));
+          assert.ok(Math.abs(Math.hypot(...axis) - 1) < 1e-8);
+        }
+        for (const [a, b] of [
+          [tangent, bitangent],
+          [tangent, normal],
+          [bitangent, normal],
+        ])
+          assert.ok(Math.abs(math.dot(a, b)) < 1e-8);
+        assert.ok(math.dot(math.cross(tangent, bitangent), normal) > 1 - 1e-8);
+        const face = world.faces
+          .slice(branch.firstFace, branch.firstFace + branch.faceCount)
+          .find(({ points }) => {
+            if (
+              !points.some((point) =>
+                point.every((value, index) => value === member.attachment[index])
+              )
+            )
+              return false;
+            const plane = math.facePlane(points).slice(0, 3);
+            if (Math.hypot(...plane) < 1e-9) return false;
+            return Math.abs(math.dot(math.normalize(plane), normal)) > 1 - 1e-8;
+          });
+        assert.ok(face, 'attachment and normal must belong to one actual branch facet');
+        assert.ok(
+          face.points.some((point, index) => {
+            const edge = math.sub(face.points[(index + 1) % face.points.length], point);
+            const distance = math.dot(edge, normal);
+            const projected = edge.map((value, axis) => value - normal[axis] * distance);
+            return (
+              Math.hypot(...projected) > 1e-9 &&
+              Math.abs(math.dot(math.normalize(projected), tangent)) > 1 - 1e-8
+            );
+          }),
+          'tangent follows a real facet edge'
+        );
+      }
+    }
+});
+
+test('faceless, degenerate and incomplete hierarchy worlds cannot create fabricated chip planes', async () => {
+  for (const invalid of ['faceless', 'degenerate', 'radius', 'parents']) {
+    const h = harness();
+    const world = h.api.worldForRoom('index');
+    if (invalid === 'faceless') for (const branch of world.objects) branch.faceCount = 0;
+    if (invalid === 'degenerate')
+      for (const face of world.faces) face.points = face.points.map(() => [0, 0, 0]);
+    if (invalid === 'radius') for (const branch of world.objects) branch.radius = NaN;
+    if (invalid === 'parents')
+      for (const branch of world.objects) if (branch.depth === 1) branch.faceCount = 0;
+    h.collect('index', 100);
+    assert.equal(await h.bridge.prime(h.data('research'), 78), false, invalid);
+    assert.equal(h.bridge.diagnostics().lastFailure.reason, 'world-membership-unavailable');
+    assert.equal(h.bridge.diagnostics().bank.length, 0);
+    assert.equal(h.collect('index', 200).length, 0);
+    assert.equal(h.assets[0].disposeCount, 1);
+    assert.equal(h.stages.filter((stage) => stage.connected).length, 0);
+  }
+});
+
+test('a retained field fades with the existing handoff before its absent host stops painting at Home', async () => {
+  for (const compact of [false, true]) {
+    const h = harness({ compact });
+    h.document.body.dataset.page = 'research';
+    h.collect('research', 100);
+    await h.bridge.prime(h.data('writing'), 78);
+    await h.prepare('research', 'index');
+    h.collect('research', 100);
+    const bankIds = () =>
+      plain(
+        h.bridge
+          .diagnostics()
+          .bank.map(({ route, groups }) => ({
+            route,
+            ids: groups.flatMap(({ ids }) => ids),
+          }))
+          .sort((a, b) => a.route.localeCompare(b.route))
+      );
+    const retained = bankIds();
+    const reserved = plain(h.bridge.reservation());
+    const writing = (shapes) => shapes.filter((shape) => shape.id.startsWith('writing:'));
+    const research = (shapes) => shapes.filter((shape) => shape.id.startsWith('research:'));
+    const native = h.native('index');
+    h.document.body.dataset.page = 'index';
+    h.bridge.land(native);
+    h.bridge.present(1);
+    assert.ok(writing(h.collect('index', 1000)).some((shape) => shape.alpha > 0));
+    const half = h.collect('index', 1090);
+    assert.equal(h.bridge.diagnostics().handoff, 0.5);
+    assert.ok(writing(half).some((shape) => shape.alpha > 0));
+    assert.ok(writing(half).every((shape) => shape.alpha <= 0.5));
+    assert.ok(research(half).some((shape) => shape.alpha > 0));
+    const last = h.collect('index', 1180);
+    assert.equal(h.bridge.diagnostics().handoff, 1);
+    assert.ok(writing(last).length > 0, 'passive field reaches zero on the existing tail paint');
+    assert.ok(writing(last).every((shape) => shape.alpha === 0));
+    assert.ok(research(last).some((shape) => shape.alpha > 0));
+    assert.equal(h.bridge.complete(), true);
+    const settled = h.collect('index', 1180);
+    assert.equal(writing(settled).length, 0, 'Research-hosted Writing cannot paint at Home rest');
+    assert.deepEqual(
+      plain(research(settled)),
+      plain(research(last)),
+      'Research retains continuous paint on its correct Home host through phase completion'
+    );
+    assert.deepEqual(bankIds(), retained);
+    assert.deepEqual(plain(h.bridge.reservation()), reserved);
+    assert.ok(
+      fragmentPlan(math).admit(
+        reserved,
+        fragmentPlan(math).settings.caps[compact ? 'compact' : 'full']
+      )
+    );
+    assert.ok(h.assets.every((asset) => asset.disposeCount === 0));
+    assert.notEqual(native.style.visibility, 'hidden');
+    assert.equal(native.style.opacity, undefined);
+  }
+});
+
+test('a skipped Credits reverse fades its outgoing Talks-hosted field before Home rest without releasing it', async () => {
+  for (const compact of [false, true]) {
+    const h = harness({ compact });
+    await h.prepare('credits', 'index');
+    h.collect('credits', 100);
+    const reserved = plain(h.bridge.reservation());
+    const ids = plain(
+      h.bridge.diagnostics().bank.find(({ route }) => route === 'credits').groups[0].ids
+    );
+    const credits = (shapes) => shapes.filter((shape) => shape.id.startsWith('credits:'));
+    h.document.body.dataset.page = 'index';
+    h.bridge.land(h.native('index'));
+    h.bridge.present(1);
+    assert.ok(credits(h.collect('index', 1000)).some((shape) => shape.alpha > 0));
+    const half = credits(h.collect('index', 1090));
+    assert.ok(half.some((shape) => shape.alpha > 0));
+    assert.ok(half.every((shape) => shape.alpha <= 0.5));
+    const last = credits(h.collect('index', 1180));
+    assert.ok(last.length > 0);
+    assert.ok(last.every((shape) => shape.alpha === 0));
+    assert.equal(h.bridge.complete(), true);
+    assert.equal(credits(h.collect('index', 1180)).length, 0);
+    assert.deepEqual(
+      plain(h.bridge.diagnostics().bank.find(({ route }) => route === 'credits').groups[0].ids),
+      ids
+    );
+    assert.deepEqual(plain(h.bridge.reservation()), reserved);
+    assert.ok(h.assets.every((asset) => asset.disposeCount === 0));
+  }
+});
+
 test('forward field assembles during camera flight, land preserves progress, handoff keeps both resident bitmaps', async () => {
   const h = harness();
   const { content } = await h.prepare('index', 'research');

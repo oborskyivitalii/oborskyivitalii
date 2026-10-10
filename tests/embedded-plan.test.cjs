@@ -51,27 +51,32 @@ function livingPlate({
   returnRoom = null,
   planner = plan,
   depthRoots = false,
+  facets = false,
+  mixedDepth = false,
   width = compact ? 390 : 1440,
   height = compact ? 844 : 900,
 } = {}) {
   const count = compact ? 13 : 32;
   const rect = { x: 0, y: 78, width, height: height - 78 };
   const cells = fragments.partition(rect, { count, seed: 49 }, { maxPieces: count });
-  const branches = models
-    .worldFor(host, compact)
-    .objects.filter(
-      (object) =>
-        (depthRoots ? object.root <= 2 : object.root === 1) &&
-        object.depth === 2 &&
-        object.points?.length
-    );
+  const world = models.worldFor(host, compact);
+  const branches = world.objects.filter(
+    (object) =>
+      (depthRoots ? object.root <= 2 : object.root === 1) &&
+      (mixedDepth ? object.depth === 1 || object.depth === 2 : object.depth === 2) &&
+      object.points?.length &&
+      (!facets || object.faceCount > 0)
+  );
   const members = cells.map((_, index) => {
-    const candidates = depthRoots
+    const rootBranches = depthRoots
       ? branches.filter((branch) => branch.root === index % 3)
       : branches;
+    const candidates = mixedDepth
+      ? rootBranches.filter((branch) => branch.depth === (index % 4 === 3 ? 1 : 2))
+      : rootBranches;
     const branch =
       candidates[(37 + (depthRoots ? Math.floor(index / 3) : index) * 7) % candidates.length];
-    return {
+    const member = {
       name: branch.name,
       parent: branch.parent,
       center: [...branch.center],
@@ -80,6 +85,25 @@ function livingPlate({
       phase: branch.phase,
       attachment: [...branch.points[(37 + index * 11) % branch.points.length]],
     };
+    if (facets) {
+      const facing = definitions.poses[definitions.initialPoses[host]].position;
+      const face = world.faces
+        .slice(branch.firstFace, branch.firstFace + branch.faceCount)
+        .map((candidate) => ({
+          candidate,
+          normal: math.normalize(math.facePlane(candidate.points).slice(0, 3)),
+        }))
+        .sort(
+          (a, b) =>
+            math.dot(b.normal, math.normalize(math.sub(facing, pointCenter(b.candidate.points)))) -
+            math.dot(a.normal, math.normalize(math.sub(facing, pointCenter(a.candidate.points))))
+        )[0];
+      const tangent = math.normalize(math.sub(face.candidate.points[1], face.candidate.points[0]));
+      member.attachment = [...face.candidate.points[index % face.candidate.points.length]];
+      member.radius = branch.radius;
+      member.surfaceAxes = [tangent, math.cross(face.normal, tangent), face.normal];
+    }
+    return member;
   });
   const returnBranches = returnRoom
     ? models
@@ -498,7 +522,15 @@ test('reverse world path passes an existing destination branch with unchanged re
   }
 });
 
-test('resting next-page body glyphs remain identifiable in the actual Home and Research camera projections', () => {
+const polygonArea = (points) =>
+  Math.abs(
+    points.reduce((sum, point, index) => {
+      const next = points[(index + 1) % points.length];
+      return sum + point[0] * next[1] - next[0] * point[1];
+    }, 0)
+  ) / 2;
+
+test('canonical resting chips follow real facet orientation and bounded branch grain without losing native coverage', () => {
   for (const compact of [false, true])
     for (const [host, route] of [
       ['index', 'research'],
@@ -513,56 +545,139 @@ test('resting next-page body glyphs remain identifiable in the actual Home and R
         compact,
         host,
         pose: target,
+        facets: true,
+        depthRoots: true,
+        mixedDepth: true,
         hostOffset: projection.roomOffset(host),
       });
       const view = plan.view(target, prepared.width, prepared.height);
-      const camera = plan.view(current, prepared.width, prepared.height);
-      for (const time of [0, 6000]) {
-        const readable = [];
-        const shapes = plan.sample(prepared, {
-          pose: current,
-          width: prepared.width,
-          height: prepared.height,
-          time,
-        });
-        const frontIds = new Set(
-          shapes.filter((shape) => shape.face === 'front').map((shape) => shape.id)
-        );
-        assert.ok(frontIds.size >= (compact ? 10 : 24));
+      const ids = prepared.shards.map((shard) => shard.id);
+      assert.equal(ids.length, compact ? 13 : 32);
+      assert.equal(new Set(ids).size, ids.length);
+      assertPoint([prepared.shards.reduce((sum, shard) => sum + polygonArea(shard.uv), 0)], [1]);
+      for (const time of [0, 6000, math.LOOP_MS]) {
+        let nativeArea = 0;
         for (const shard of prepared.shards) {
-          if (!frontIds.has(shard.id)) continue;
-          const [u, v] = shard.centroid;
-          const glyph = {
-            ...shard,
-            uv: [
-              [u, v],
-              [u, v + 16 / prepared.rect.height],
-              [u + 1 / prepared.rect.width, v],
-            ],
-          };
-          const solid = plan.geometry(glyph, {
-            view,
-            rect: prepared.rect,
-            depth: 12,
-            progress: 0,
-            time,
-          });
-          const top = camera.project(camera.camera(solid.vertices[0]));
-          const bottom = camera.project(camera.camera(solid.vertices[1]));
-          readable.push(Math.hypot(...math.sub(bottom, top)));
+          const member = shard.member;
+          const transform = projection.loopTransform(member, time);
+          const attachment = math.add(transform(member.attachment), [0, 0, shard.hostOffset]);
+          const radius = Math.min(0.9, member.radius * 0.85) * transform.scale;
+          const options = { view, rect: prepared.rect, depth: 12, time };
+          const rest = plan.geometry(shard, { ...options, progress: 0 });
+          const count = shard.uv.length;
+          assert.ok(Object.isFrozen(member) && Object.isFrozen(member.surfaceAxes));
+          assert.ok(member.surfaceAxes.every(Object.isFrozen));
+          assert.ok(shard.restThickness > 0 && shard.restThickness <= shard.chipRadius * 0.22);
+          assert.ok(
+            rest.vertices.every(
+              (point) => Math.hypot(...math.sub(point, attachment)) <= radius + 1e-7
+            )
+          );
+          assertPoint(pointCenter(rest.vertices.slice(count)), attachment);
+          const normal = math.normalize(
+            math.facePlane(rest.faces[0].indices.map((index) => rest.vertices[index])).slice(0, 3)
+          );
+          const branchNormal = math.normalize(
+            math.sub(
+              transform(math.add(member.attachment, member.surfaceAxes[2])),
+              transform(member.attachment)
+            )
+          );
+          assertPoint(normal, branchNormal);
+          assert.equal(rest.faces.length, count + 2);
+          if (time === math.LOOP_MS)
+            assert.deepEqual(rest, plan.geometry(shard, { ...options, time: 0, progress: 0 }));
+          const native = plan.geometry(shard, { ...options, progress: 1, forwardPath: true });
+          const points = native.vertices
+            .slice(0, count)
+            .map((point) => view.project(view.camera(point)));
+          shard.uv.forEach(([u, v], index) =>
+            assertPoint(points[index], [
+              prepared.rect.x + u * prepared.rect.width,
+              prepared.rect.y + v * prepared.rect.height,
+            ])
+          );
+          nativeArea += polygonArea(points);
+          assertPoint(
+            [Math.hypot(...math.sub(native.vertices[0], native.vertices[count]))],
+            [
+              Math.hypot(
+                (((shard.uv[0][0] - shard.centroid[0]) * prepared.rect.width * 12) / view.focal) *
+                  0.1,
+                (((shard.centroid[1] - shard.uv[0][1]) * prepared.rect.height * 12) / view.focal) *
+                  0.1,
+                shard.thickness
+              ),
+            ]
+          );
         }
-        readable.sort((a, b) => a - b);
+        assertPoint([nativeArea], [prepared.rect.width * prepared.rect.height], 1e-5);
+        const fronts = plan
+          .sample(prepared, { pose: current, width: prepared.width, height: prepared.height, time })
+          .filter((shape) => shape.face === 'front');
         assert.ok(
-          readable[0] >= 4.5,
-          `16px glyph compressed below4.5px in ${host}/${prepared.width}px`
+          fronts.length > 0,
+          'canonical grain must remain present in the actual host camera'
+        );
+        const area = fronts.reduce((sum, shape) => sum + polygonArea(shape.points), 0);
+        assert.ok(
+          area < prepared.width * prepared.height * 0.01,
+          `resting grain covers ${area / (prepared.width * prepared.height)} of viewport`
+        );
+        const spans = fronts.map((shape) =>
+          Math.max(
+            ...[0, 1].map(
+              (axis) =>
+                Math.max(...shape.points.map((point) => point[axis])) -
+                Math.min(...shape.points.map((point) => point[axis]))
+            )
+          )
         );
         assert.ok(
-          readable[Math.floor(readable.length / 2)] >= 6,
-          `median body glyph must exceed6px in ${host}/${prepared.width}px`
+          Math.max(...spans) >= (compact ? 10 : 20),
+          'the hierarchy must contain visible content bits as well as fine grain'
         );
-        assert.equal(prepared.shards.length, compact ? 13 : 32);
+        assert.ok(Math.max(...spans) < 128, 'resting chips cannot become page-sized boards');
       }
     }
+});
+
+test('invalid or reflected canonical surface descriptors fail closed instead of growing arbitrary boards', () => {
+  const prepared = livingPlate({ facets: true });
+  const cells = fragments.partition(prepared.rect, { count: 32, seed: 49 }, { maxPieces: 32 });
+  const members = prepared.shards.map((shard) => JSON.parse(JSON.stringify(shard.member)));
+  const config = { ...prepared, cells, members };
+  for (const patch of [
+    { radius: 0 },
+    { radius: NaN },
+    { radius: undefined },
+    { surfaceAxes: undefined },
+    {
+      surfaceAxes: [
+        [1, 0, 0],
+        [0, 1, 0],
+        [0, 0, -1],
+      ],
+    },
+    {
+      surfaceAxes: [
+        [1, 0, 0],
+        [1, 0, 0],
+        [0, 0, 1],
+      ],
+    },
+    {
+      surfaceAxes: [
+        [2, 0, 0],
+        [0, 1, 0],
+        [0, 0, 1],
+      ],
+    },
+  ])
+    assert.equal(
+      plan.prepare({ ...config, members: [{ ...members[0], ...patch }, ...members.slice(1)] }),
+      null
+    );
 });
 
 test('world rest contains readable content and normal-lit closed faces sorted by canonical depth', () => {
@@ -676,7 +791,7 @@ test('front and rear atlas corners keep an asymmetric glyph upright and readable
 });
 
 test('forward departure leaves a broken volume for the camera to cross instead of following it', () => {
-  const prepared = livingPlate({ pose: home });
+  const prepared = livingPlate({ pose: home, depthRoots: true, facets: true, mixedDepth: true });
   const target = plan.view(home, prepared.width, prepared.height);
   const depths = [];
   for (const shard of prepared.shards) {
@@ -691,7 +806,15 @@ test('forward departure leaves a broken volume for the camera to cross instead o
     const broken = plan.geometry(shard, { ...options, progress: 0.6 });
     const later = plan.geometry(shard, { ...options, progress: 0.2 });
     assert.deepEqual(broken.vertices, later.vertices, 'broken objects remain in the source world');
-    depths.push(target.camera(pointCenter(broken.vertices.slice(0, shard.uv.length)))[2]);
+    const center = pointCenter(broken.vertices.slice(0, shard.uv.length));
+    const transform = projection.loopTransform(shard.member, 0);
+    assert.ok(
+      broken.vertices.every(
+        (point) =>
+          Math.hypot(...math.sub(point, center)) <= shard.chipRadius * transform.scale + 1e-7
+      )
+    );
+    depths.push(target.camera(center)[2]);
   }
   assert.ok(
     Math.max(...depths) - Math.min(...depths) > 12,
@@ -717,7 +840,15 @@ test('forward incoming assembly has a fixed deep corridor and a late axial appro
   ]) {
     const from = projection.routePose('index', definitions.poses.overview);
     const to = projection.routePose('research', definitions.poses.researchOverview);
-    const prepared = livingPlate({ compact, pose: to, width, height, depthRoots: true });
+    const prepared = livingPlate({
+      compact,
+      pose: to,
+      width,
+      height,
+      depthRoots: true,
+      facets: true,
+      mixedDepth: true,
+    });
     const target = plan.view(to, prepared.width, prepared.height);
     const original = JSON.stringify(prepared);
     const centers = [];
@@ -779,6 +910,47 @@ test('forward incoming assembly has a fixed deep corridor and a late axial appro
       }
     }
     assert.equal(JSON.stringify(prepared), original);
+  }
+});
+
+test('forward fine chips retain their whole volume until late growth and reach exact native front and thickness together', () => {
+  for (const compact of [false, true]) {
+    const prepared = livingPlate({ compact, depthRoots: true, facets: true, mixedDepth: true });
+    const view = plan.view(prepared.pose, prepared.width, prepared.height);
+    for (const time of [0, 6000, math.LOOP_MS])
+      for (const shard of prepared.shards) {
+        const options = { view, rect: prepared.rect, depth: 12, time, forwardPath: true };
+        const count = shard.uv.length;
+        const rest = plan.geometry(shard, { ...options, progress: 0 });
+        const native = plan.geometry(shard, { ...options, progress: 1 });
+        const edge = (solid) => Math.hypot(...math.sub(solid.vertices[0], solid.vertices[1]));
+        const thickness = (solid) =>
+          Math.hypot(
+            ...math.sub(
+              pointCenter(solid.vertices.slice(0, count)),
+              pointCenter(solid.vertices.slice(count))
+            )
+          );
+        for (const progress of [0.2, 0.3, 0.35]) {
+          const early = plan.geometry(shard, { ...options, progress });
+          assertPoint([edge(early)], [edge(rest)]);
+          assertPoint([thickness(early)], [thickness(rest)]);
+        }
+        const growing = plan.geometry(shard, { ...options, progress: 0.675 });
+        assert.ok(
+          edge(growing) > Math.min(edge(rest), edge(native)) &&
+            edge(growing) < Math.max(edge(rest), edge(native))
+        );
+        assert.ok(
+          thickness(growing) >= Math.min(thickness(rest), thickness(native)) - 1e-7 &&
+            thickness(growing) <= Math.max(thickness(rest), thickness(native)) + 1e-7
+        );
+        assertPoint([thickness(native)], [shard.thickness]);
+        assert.deepEqual(
+          native,
+          plan.geometry(shard, { ...options, forwardPath: false, progress: 1 })
+        );
+      }
   }
 });
 
@@ -866,6 +1038,68 @@ test('near plane and malformed input fail closed without nonfinite native submis
     { width: NaN },
   ])
     assert.equal(plan.prepare({ ...config, ...changes }), null);
+});
+
+test('every visible face fades against the closest solid vertex before the existing whole-solid near cull', () => {
+  const rect = { x: 400, y: 150, width: 200, height: 200 };
+  const pose = { position: [0, 0, 24], target: [0, 0, 0] };
+  const prepared = plan.prepare({
+    id: 'near-clearance',
+    rect,
+    cells: fragments.partition(rect, { count: 1, seed: 49 }, { maxPieces: 32 }),
+    pose,
+    width: 1000,
+    height: 700,
+    anchor: [0, 0, 0],
+  });
+  const shard = prepared.shards[0];
+  shard.restCenter = [0, 0, 0];
+  shard.restSize = [6, 6];
+  shard.restThickness = 2;
+  shard.restOrientation = [0.2, 0.3, 0.1, Math.sqrt(0.86)];
+  const solid = plan.geometry(shard, {
+    view: plan.view(pose, 1000, 700),
+    rect,
+    depth: 12,
+  });
+  const frontmost = Math.max(...solid.vertices.map((point) => point[2]));
+  let olderOpaqueSide = false;
+  for (const nearest of [1, 0.75, 0.51, 0.5, 0.49]) {
+    const position = [6, 3, frontmost + nearest];
+    const observer = { position, target: [6, 3, position[2] - 10] };
+    const camera = plan.view(observer, 1000, 700);
+    const shapes = plan.sample(prepared, { pose: observer, width: 1000, height: 700 });
+    if (nearest <= 0.5) {
+      assert.deepEqual(shapes, []);
+      continue;
+    }
+    assert.ok(shapes.length > 0);
+    const alpha = (nearest - 0.5) / 2;
+    assert.ok(shapes.every((shape) => shape.alpha <= alpha + 1e-8));
+    for (const shape of shapes) {
+      const face = solid.faces.find(
+        (candidate) =>
+          candidate.face === shape.face &&
+          candidate.indices.every((index, offset) => {
+            const point = camera.project(camera.camera(solid.vertices[index]));
+            return Math.hypot(...math.sub(point, shape.points[offset])) < 1e-7;
+          })
+      );
+      assert.ok(face);
+      const ownNearest = Math.min(
+        ...face.indices.map((index) => camera.camera(solid.vertices[index])[2])
+      );
+      if (shape.face === 'side' && ownNearest > 2.5) {
+        olderOpaqueSide = true;
+        assert.ok(math.depthVisibility(shape.depth) > 0.9);
+        assert.ok(
+          shape.alpha < 0.26,
+          'a farther visible face must fade before a hidden vertex reaches the near guard'
+        );
+      }
+    }
+  }
+  assert.ok(olderOpaqueSide, 'the fixture must expose the former face-local alpha mismatch');
 });
 
 function canvasContext() {
@@ -1072,6 +1306,26 @@ test('one bounded source bitmap paints front texture and restores Canvas state, 
       .filter(([kind]) => kind === 'transform')
       .every(([, ...values]) => values.every(Number.isFinite))
   );
+});
+
+test('fully hidden content faces submit no texture or Canvas state changes', () => {
+  const prepared = plate();
+  const shape = plan.sample(prepared, {
+    pose: research,
+    width: 1440,
+    height: 900,
+    progress: 1,
+  })[0];
+  const { context, calls } = canvasContext();
+  context.globalAlpha = 0.7;
+  context.fillStyle = '#123456';
+  assert.equal(
+    plan.paint(context, { ...shape, alpha: 0 }, { width: 581, height: 141 }, colors),
+    true
+  );
+  assert.deepEqual(calls, []);
+  assert.equal(context.globalAlpha, 0.7);
+  assert.equal(context.fillStyle, '#123456');
 });
 
 test('serialized factory only needs explicit canonical camera and haze inputs', () => {

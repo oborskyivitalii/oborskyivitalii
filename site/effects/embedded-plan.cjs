@@ -10,9 +10,13 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
     thicknessMaxPx: 64,
     embeddedScale: 2.2,
     restExtrusion: 2.4,
+    chipRadiusMax: 0.9,
+    chipBranchRadius: 0.85,
+    chipThickness: 0.22,
     departureBreakup: 0.26,
     forwardLateralStop: 0.5,
     forwardOrientationStop: 0.65,
+    forwardGrowthStart: 0.35,
     returnStop: 0.4,
     contentVisibilityFloor: 1,
     textureErrorPx: 1,
@@ -31,6 +35,11 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
   const add = (a, b) => a.map((value, index) => value + b[index]);
   const sub = (a, b) => a.map((value, index) => value - b[index]);
   const dot = (a, b) => a.reduce((sum, value, index) => sum + value * b[index], 0);
+  const cross = (a, b) => [
+    a[1] * b[2] - a[2] * b[1],
+    a[2] * b[0] - a[0] * b[2],
+    a[0] * b[1] - a[1] * b[0],
+  ];
   const scale = (a, amount) => a.map((value) => value * amount);
   const normalize = (a) => {
     const length = Math.hypot(...a);
@@ -182,6 +191,19 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
     }
     return area > 1e-6;
   }
+  function validSurface(member) {
+    if (member.radius === undefined && member.surfaceAxes === undefined) return true;
+    const axes = member.surfaceAxes;
+    return (
+      Number.isFinite(member.radius) &&
+      member.radius > 0 &&
+      Array.isArray(axes) &&
+      axes.length === 3 &&
+      axes.every((axis) => vector(axis, 3) && Math.abs(Math.hypot(...axis) - 1) < 1e-6) &&
+      Math.abs(dot(axes[0], axes[1])) < 1e-6 &&
+      dot(cross(axes[0], axes[1]), axes[2]) > 1 - 1e-6
+    );
+  }
   const validMembers = (members, count) =>
     typeof loopTransform === 'function' &&
     Array.isArray(members) &&
@@ -193,7 +215,8 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
         vector(member.rootCenter, 3) &&
         vector(member.attachment, 3) &&
         Number.isFinite(member.phase) &&
-        Number.isFinite(member.root)
+        Number.isFinite(member.root) &&
+        validSurface(member)
     );
   const copyMember = (member) =>
     member
@@ -205,6 +228,14 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
           attachment: Object.freeze([...member.attachment]),
           root: member.root,
           phase: member.phase,
+          ...(member.surfaceAxes
+            ? {
+                radius: member.radius,
+                surfaceAxes: Object.freeze(
+                  member.surfaceAxes.map((axis) => Object.freeze([...axis]))
+                ),
+              }
+            : {}),
         })
       : null;
 
@@ -245,6 +276,37 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
       state.transforms.set(key, result);
     }
     return result;
+  }
+
+  function restShape(uv, centroid, rect, depth, camera, member, thickness) {
+    const size = [rect.width, rect.height].map(
+      (value) => (value * depth * settings.embeddedScale) / camera.focal
+    );
+    if (!member?.surfaceAxes) return { size, thickness: thickness * settings.restExtrusion };
+    const radius = Math.min(settings.chipRadiusMax, member.radius * settings.chipBranchRadius);
+    const restThickness = Math.min(
+      thickness * settings.restExtrusion,
+      radius * settings.chipThickness
+    );
+    const faceRadius = Math.sqrt(radius * radius - restThickness * restThickness);
+    const extent = Math.max(
+      ...uv.map(([u, v]) => Math.hypot((u - centroid[0]) * size[0], (centroid[1] - v) * size[1]))
+    );
+    return { size: scale(size, faceRadius / extent), thickness: restThickness, radius };
+  }
+  function branchMotion(shard, time, state, layout) {
+    const key = layout.member === shard.member ? layout.memberKey : shard.member;
+    const transformed = memberTransform(shard.member, time, state, key);
+    const transform = transformed?.transform;
+    if (transform && !transformed.orientation)
+      transformed.orientation = quaternion(
+        [
+          [transform.matrix[0], transform.matrix[3], transform.matrix[6]],
+          [transform.matrix[1], transform.matrix[4], transform.matrix[7]],
+          [transform.matrix[2], transform.matrix[5], transform.matrix[8]],
+        ].map((column) => scale(column, 1 / transform.scale))
+      );
+    return transformed;
   }
 
   function prepare({
@@ -320,7 +382,8 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
         (0.5 - centroid[1]) * 7 + (fraction(71) - 0.5) * 2,
         (fraction(83) - 0.5) * 7,
       ];
-      const restOrientation = quaternion(restAxes);
+      const member = members?.[index];
+      const restOrientation = quaternion(member?.surfaceAxes || restAxes);
       const restCenter = (members ? members[index].attachment : restAnchor).map(
         (value, coordinate) =>
           value +
@@ -337,9 +400,8 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
         Math.max(settings.thicknessMinPx, span * (0.18 + fraction(97) * 0.2))
       );
       const thickness = (thicknessPx * depth) / camera.focal;
-      const contact = members
-        ? turn([0, 0, thickness * settings.restExtrusion], restOrientation)
-        : [0, 0, 0];
+      const rest = restShape(uv, centroid, rect, depth, camera, member, thickness);
+      const contact = members ? turn([0, 0, rest.thickness], restOrientation) : [0, 0, 0];
       const shard = {
         id: `${id}:${index}`,
         uv,
@@ -347,7 +409,9 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
         centroid,
         restCenter: add(restCenter, contact),
         restOrientation,
-        restSize: [(rect.width * depth) / camera.focal, (rect.height * depth) / camera.focal],
+        restSize: rest.size,
+        restThickness: rest.thickness,
+        chipRadius: rest.radius || null,
         thickness,
         departureOffset: [
           (centroid[0] - 0.5) * 9 + (fraction(113) - 0.5) * 2,
@@ -465,18 +529,34 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
       // collapse toward a previous room behind the source camera.
       const breakup = smooth(Math.min(1, (1 - progress) / settings.departureBreakup));
       const axes = [camera.right, camera.up, camera.forward];
+      const transformed = branchMotion(shard, time, frame, layout);
+      const transform = transformed?.transform;
+      const loopOffset = transform
+        ? sub(transform(shard.member.attachment), shard.member.attachment)
+        : [0, 0, 0];
       origin = add(
         targetCenter,
-        axes[0].map((_, coordinate) =>
-          shard.departureOffset.reduce(
-            (sum, distance, axis) => sum + distance * axes[axis][coordinate] * breakup,
-            0
-          )
+        axes[0].map(
+          (_, coordinate) =>
+            shard.departureOffset.reduce(
+              (sum, distance, axis) => sum + distance * axes[axis][coordinate] * breakup,
+              0
+            ) +
+            loopOffset[coordinate] * breakup
         )
       );
-      rotation = orientation(frame.orientation, shard.restOrientation, breakup);
-      size = frame.size;
-      extrusion = 1 + (settings.restExtrusion - 1) * breakup;
+      rotation = orientation(
+        frame.orientation,
+        compose(transformed?.orientation || [0, 0, 0, 1], shard.restOrientation),
+        breakup
+      );
+      size = blend(
+        frame.size,
+        shard.restSize.map((value) => value * (transform?.scale || 1)),
+        breakup
+      );
+      extrusion =
+        1 + ((shard.restThickness / shard.thickness) * (transform?.scale || 1) - 1) * breakup;
     } else if (progress === 1) {
       // The native endpoint is independent of branch motion or return paths.
       origin = targetCenter;
@@ -484,19 +564,10 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
       size = frame.size;
       extrusion = 1;
     } else {
-      const key = layout.member === shard.member ? layout.memberKey : shard.member;
-      const transformed = memberTransform(shard.member, time, frame, key);
+      const transformed = branchMotion(shard, time, frame, layout);
       const transform = transformed?.transform;
       const restCenter = transform ? transform(shard.restCenter) : shard.restCenter;
       const worldCenter = add(restCenter, [0, 0, shard.hostOffset || 0]);
-      if (transform && !transformed.orientation)
-        transformed.orientation = quaternion(
-          [
-            [transform.matrix[0], transform.matrix[3], transform.matrix[6]],
-            [transform.matrix[1], transform.matrix[4], transform.matrix[7]],
-            [transform.matrix[2], transform.matrix[5], transform.matrix[8]],
-          ].map((column) => scale(column, 1 / transform.scale))
-        );
       const motion = transformed?.orientation || [0, 0, 0, 1];
       const waypoint =
         returnPath && shard.returnMember ? returnCenter(shard, time, frame, layout) : null;
@@ -505,6 +576,14 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
         : amount;
       const rotationAmount = forwardPath
         ? smooth(Math.min(1, progress / settings.forwardOrientationStop))
+        : amount;
+      const growthAmount = forwardPath
+        ? smooth(
+            Math.max(
+              0,
+              (progress - settings.forwardGrowthStart) / (1 - settings.forwardGrowthStart)
+            )
+          )
         : amount;
       origin = arrivalCenter(shard, camera, worldCenter, targetCenter, {
         forwardPath,
@@ -519,13 +598,13 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
         rotationAmount
       );
       size = blend(
-        shard.restSize.map((value) => value * settings.embeddedScale * (transform?.scale || 1)),
+        shard.restSize.map((value) => value * (transform?.scale || 1)),
         frame.size,
-        lateralAmount
+        growthAmount
       );
       extrusion =
-        (settings.restExtrusion * (1 - amount) + amount) *
-        ((transform?.scale || 1) * (1 - amount) + amount);
+        ((shard.restThickness / shard.thickness) * (1 - growthAmount) + growthAmount) *
+        ((transform?.scale || 1) * (1 - growthAmount) + growthAmount);
     }
     const front = layout.offsets.map(([x, y]) =>
       add(origin, turn([x * size[0], y * size[1], 0], rotation))
@@ -603,7 +682,7 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
     // the complete solid's projected bounds. This uses the same viewport test
     // as each face, so it only skips solids whose every face is invisible.
     if (points.every((point) => vector(point, 2)) && !camera.visible(points)) return null;
-    return { world, vertices, points };
+    return { world, vertices, points, nearest: Math.min(...vertices.map((point) => point[2])) };
   }
 
   function projectFace(face, projected, camera, limit) {
@@ -622,7 +701,7 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
       cameraPoints: vertices,
       normal,
       depth: center(vertices)[2],
-      nearest: Math.min(...vertices.map((point) => point[2])),
+      nearest: projected.nearest,
     };
   }
   function faceVisibility(face, depth, nearest, progress) {
@@ -730,8 +809,9 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
 
   function path(ctx, points) {
     ctx.beginPath();
-    ctx.moveTo(...points[0]);
-    for (let index = 1; index < points.length; index++) ctx.lineTo(...points[index]);
+    ctx.moveTo(points[0][0], points[0][1]);
+    for (let index = 1; index < points.length; index++)
+      ctx.lineTo(points[index][0], points[index][1]);
     ctx.closePath();
   }
 
@@ -752,7 +832,7 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
     try {
       // The outer face clip remains exact. A small internal overlap avoids
       // antialiased hairlines between adjacent samples of this one solid.
-      const middle = center(points);
+      const middle = seam ? center(points) : null;
       const clip = seam
         ? points.map((point) => {
             const distance = Math.hypot(...sub(point, middle));
@@ -764,16 +844,10 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
       ctx.transform(a, b, c, d, P[0] - a * p[0] - c * p[1], P[1] - b * p[0] - d * p[1]);
       // Submit only the shard's source bounding rectangle, with a one-pixel
       // filter neighbourhood; all shards reuse the one bounded owner bitmap.
-      const left = Math.max(0, Math.floor(Math.min(...source.map((point) => point[0]))) - 1);
-      const top = Math.max(0, Math.floor(Math.min(...source.map((point) => point[1]))) - 1);
-      const right = Math.min(
-        surface.width,
-        Math.ceil(Math.max(...source.map((point) => point[0]))) + 1
-      );
-      const bottom = Math.min(
-        surface.height,
-        Math.ceil(Math.max(...source.map((point) => point[1]))) + 1
-      );
+      const left = Math.max(0, Math.floor(Math.min(p[0], q[0], r[0])) - 1);
+      const top = Math.max(0, Math.floor(Math.min(p[1], q[1], r[1])) - 1);
+      const right = Math.min(surface.width, Math.ceil(Math.max(p[0], q[0], r[0])) + 1);
+      const bottom = Math.min(surface.height, Math.ceil(Math.max(p[1], q[1], r[1])) + 1);
       if (right > left && bottom > top)
         ctx.drawImage(
           surface,
@@ -791,6 +865,41 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
     }
   }
 
+  function textureTriangle(vertices) {
+    let edge = -1;
+    let error = settings.textureErrorPx;
+    let point = null;
+    for (let index = 0; index < 3; index++) {
+      const a = vertices[index];
+      const b = vertices[(index + 1) % 3];
+      const depthSum = a.depth + b.depth;
+      const x = (a.point[0] * a.depth + b.point[0] * b.depth) / depthSum;
+      const y = (a.point[1] * a.depth + b.point[1] * b.depth) / depthSum;
+      const difference = Math.hypot(
+        x - (a.point[0] + (b.point[0] - a.point[0]) * 0.5),
+        y - (a.point[1] + (b.point[1] - a.point[1]) * 0.5)
+      );
+      if (difference > error) {
+        edge = index;
+        error = difference;
+        point = [x, y];
+      }
+    }
+    if (edge === -1) return { vertices, error, edge, middle: null };
+    const a = vertices[edge];
+    const b = vertices[(edge + 1) % 3];
+    return {
+      vertices,
+      error,
+      edge,
+      middle: {
+        source: blend(a.source, b.source, 0.5),
+        point,
+        depth: (a.depth + b.depth) / 2,
+      },
+    };
+  }
+
   function textureTriangles(shape, surface) {
     const source = shape.uv.map(([u, v]) => [u * surface.width, v * surface.height]);
     const vertices = source.map((point, index) => ({
@@ -805,38 +914,39 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
       return triangles;
     const depths = vertices.map((vertex) => vertex.depth);
     if (Math.max(...depths) - Math.min(...depths) < 1e-8) return triangles;
-    const midpoint = (a, b) => ({
-      source: blend(a.source, b.source, 0.5),
-      // Project an actual midpoint on this world plane. An affine screen
-      // midpoint would bend the captured glyphs on a tilted face.
-      point: a.point.map(
-        (value, index) => (value * a.depth + b.point[index] * b.depth) / (a.depth + b.depth)
-      ),
-      depth: (a.depth + b.depth) / 2,
-    });
-    while (triangles.length < settings.textureTriangles) {
+    if (triangles.length >= settings.textureTriangles) return triangles;
+    // A triangle's projected edge errors do not change during this paint.
+    // Cache them until that triangle is split instead of rescanning every
+    // surviving edge at each refinement. Midpoints remain projective.
+    const candidates = triangles.map(textureTriangle);
+    while (candidates.length < settings.textureTriangles) {
       let selected = null;
-      for (const [triangleIndex, triangle] of triangles.entries())
-        for (let edge = 0; edge < 3; edge++) {
-          const a = triangle[edge];
-          const b = triangle[(edge + 1) % 3];
-          const middle = midpoint(a, b);
-          const error = Math.hypot(...sub(middle.point, blend(a.point, b.point, 0.5)));
-          if (error > (selected?.error || settings.textureErrorPx))
-            selected = { triangleIndex, edge, middle, error };
+      let triangleIndex = -1;
+      for (let index = 0; index < candidates.length; index++) {
+        const candidate = candidates[index];
+        if (candidate.error > (selected?.error || settings.textureErrorPx)) {
+          selected = candidate;
+          triangleIndex = index;
         }
+      }
       if (!selected) break;
-      const triangle = triangles[selected.triangleIndex];
+      const triangle = selected.vertices;
       const a = triangle[selected.edge];
       const b = triangle[(selected.edge + 1) % 3];
       const c = triangle[(selected.edge + 2) % 3];
-      triangles.splice(selected.triangleIndex, 1, [a, selected.middle, c], [selected.middle, b, c]);
+      candidates.splice(
+        triangleIndex,
+        1,
+        textureTriangle([a, selected.middle, c]),
+        textureTriangle([selected.middle, b, c])
+      );
     }
-    return triangles;
+    return candidates.map((candidate) => candidate.vertices);
   }
 
   function paint(ctx, shape, surface, colors) {
     if (shape.kind !== 'embedded-face') return false;
+    if (shape.alpha === 0) return true;
     const key = `${colors.paper}:${colors.cyan}:${colors.amber}`;
     if (key !== paletteKey) {
       paletteKey = key;

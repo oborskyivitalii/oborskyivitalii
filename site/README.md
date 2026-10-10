@@ -164,6 +164,13 @@ retain ordinary native navigation.
 side faces, target-camera endpoints and immutable membership in existing fractal
 branches. Their resting geometry uses the exact shared `loopTransform` and room
 offset under the existing ambient clock; real content textures remain visible.
+The actual branch radius and selected facet normal/edge tangent own chip scale
+and orientation. Each fourth chip selects a real depth-one branch; the others
+select depth-two branches, distributed across the same three roots without
+duplicate membership. Prepared resting radius is bounded by0.85 of its branch
+and0.9 world units before the existing shared breathing pulse. UV cells retain
+their native partition and uniformly shrink into
+these solids; they do not derive their resting size from the page plane.
 Textured fronts and rears remain opaque before near-plane fading; closed sides
 keep canonical depth fog. Broken fragments have a palette substrate beneath
 transparent native atlas pixels, so captured paper and ink remain on solid
@@ -172,13 +179,16 @@ Tilted texture faces refine actual projected midpoints when their affine error
 exceeds one CSS pixel, up to eight triangle submissions per face, using bounded
 source rectangles and existing triangle clips. This bounded approximation
 reduces affine bending of glyphs; it adds no bitmap, decode or scene clock.
+Adaptive refinement caches unchanged edge errors only within that paint. Every
+face shares the whole solid's nearest-depth fade before its existing near cull,
+and zero-alpha faces submit no texture work.
 Reverse collection can traverse a second genuine branch in the destination room
 before reaching its native plane, so a retreating camera sees partial geometry
 while both resting contact and the final endpoint remain exact. This world path
 uses the existing cached room descriptors and shared transform.
 The reconciled visual rework distributes stable content-field identities across
 three successive actual fractal roots with their canonical branch loop. Closed
-shards have deeper beveled sides and captured paint on both faces. Forward breakup
+shards have beveled sides and captured paint on both faces. Forward breakup
 begins on the native reading plane, then leaves detached pieces at fixed source-world
 positions for the camera to cross; reverse departure retains the canonical host
 trajectory. Incoming pieces converge at staggered phases during that flight.
@@ -188,6 +198,9 @@ retain seeded depth spread, finish their rotation early and approach the native
 plane chiefly through depth. The live camera cannot advance their assembly
 phase or carry that corridor along its near plane. Resting branch contact,
 native endpoints and reverse paths retain their original geometry.
+Forward width, height and thickness grow together from phase0.35 toward the
+exact native plane. Outgoing breakup shrinks the same solid toward its branch
+scale as the camera crosses it.
 Neighbor preparation also captures the settled current viewport before a click,
 within the same abort, matching, retention, pixel and absolute deadline rules.
 `embedded-scene.cjs` attaches collection/paint to the current travel effect;
@@ -225,6 +238,10 @@ clock, including first-load or deferred post-handoff captures. Actual navigation
 uses its admitted field at full visibility. Cancellation aborts the separately
 signalled warm task; ordinary completed handoff may let it finish within the same
 capture deadlines and shared resource caps.
+Settled fields paint only with their actual host room. Other cached fields keep
+their identities and textures for reverse travel, fading over the existing180ms
+handoff before their absent-host contribution stops; this includes skipped
+reverse departures. Host-matched Research remains continuous after Home arrival.
 
 Large inline titles retain native wrapping while their cloned backgrounds
 extend0.16em around each fragment. An inner positioned ink span paints the

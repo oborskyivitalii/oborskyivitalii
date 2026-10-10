@@ -1135,6 +1135,18 @@
       "role": "draft",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-49/2026-10-10-fractal-evidence.tar.gz": {
+      "kind": "file",
+      "purpose": "Frozen raw issue49 before/new and paired diagnostic reports, four actual forward JPEGs and inert helper snapshots with byte manifest; native traces are in the companion archive. Not runtime or admission evidence.",
+      "role": "history",
+      "owner": "review/issue-49/2026-10-08-analysis.md"
+    },
+    "review/issue-49/2026-10-10-fractal-traces.tar.gz": {
+      "kind": "file",
+      "purpose": "Frozen raw24 native CDP traces for the issue49 same-artifact cost diagnostic; separate bounded archive with original hashes and observed bindings. Missing RunTask remains unavailable, not admission.",
+      "role": "history",
+      "owner": "review/issue-49/2026-10-08-analysis.md"
+    },
     "review/issue-49/2026-10-10-performance.json": {
       "kind": "file",
       "purpose": "Issue49 raw bounded synthetic texture/geometry paired timing and parity evidence; excludes browser/FPS/native-device acceptance.",

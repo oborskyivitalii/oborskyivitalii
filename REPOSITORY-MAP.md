@@ -666,6 +666,8 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [review/issue-49/2026-10-08-analysis.md](review/issue-49/2026-10-08-analysis.md) | Consolidated issue48/49 AC crosswalk, source-backed stationary/two-sided fragment execution, bounded prototype/admission tasks, original budgets and current test dispositions. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-49/2026-10-10-fractal-evidence.tar.gz](review/issue-49/2026-10-10-fractal-evidence.tar.gz) | Frozen raw issue49 before/new and paired diagnostic reports, four actual forward JPEGs and inert helper snapshots with byte manifest; native traces are in the companion archive. Not runtime or admission evidence. | history | [review/issue-49/2026-10-08-analysis.md](review/issue-49/2026-10-08-analysis.md) |
+| [review/issue-49/2026-10-10-fractal-traces.tar.gz](review/issue-49/2026-10-10-fractal-traces.tar.gz) | Frozen raw24 native CDP traces for the issue49 same-artifact cost diagnostic; separate bounded archive with original hashes and observed bindings. Missing RunTask remains unavailable, not admission. | history | [review/issue-49/2026-10-08-analysis.md](review/issue-49/2026-10-08-analysis.md) |
 | [review/issue-49/2026-10-10-performance.json](review/issue-49/2026-10-10-performance.json) | Issue49 raw bounded synthetic texture/geometry paired timing and parity evidence; excludes browser/FPS/native-device acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 ## review/issue-54/

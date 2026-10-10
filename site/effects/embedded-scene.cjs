@@ -226,27 +226,96 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
   function hostFor(route) {
     return api.routeOrder[Math.max(0, api.routeOrder.indexOf(route) - 1)];
   }
+  function branchSurface(branch, world, position) {
+    if (!Number.isFinite(branch.radius) || branch.radius <= 0 || !branch.faceCount) return null;
+    let best = null;
+    for (const face of world.faces.slice(branch.firstFace, branch.firstFace + branch.faceCount)) {
+      const points = face.points;
+      if (
+        face.object !== branch.name ||
+        points.length < 3 ||
+        !points.every(
+          (point) => Array.isArray(point) && point.length === 3 && point.every(Number.isFinite)
+        )
+      )
+        continue;
+      const plane = api.facePlane(points).slice(0, 3);
+      if (Math.hypot(...plane) < 1e-9) continue;
+      let normal = api.normalize(plane);
+      const center = points[0].map((_, axis) =>
+        points.reduce((sum, point) => sum + point[axis] / points.length, 0)
+      );
+      const facing = api.dot(normal, api.normalize(api.sub(position, center)));
+      if (best && facing <= best.facing) continue;
+      let tangent = null;
+      let longest = 0;
+      for (let index = 0; index < points.length; index++) {
+        const edge = api.sub(points[(index + 1) % points.length], points[index]);
+        const alongNormal = api.dot(edge, normal);
+        const projected = edge.map((value, axis) => value - normal[axis] * alongNormal);
+        const length = Math.hypot(...projected);
+        if (length > longest) {
+          longest = length;
+          tangent = projected;
+        }
+      }
+      if (longest < 1e-9) continue;
+      tangent = api.normalize(tangent);
+      // The actual facet owns the orientation. Only its front/back choice
+      // follows the host view; no camera-facing or seeded substitute plane.
+      if (facing < 0) normal = normal.map((value) => -value);
+      best = {
+        points,
+        facing,
+        axes: [tangent, api.normalize(api.cross(normal, tangent)), normal],
+      };
+    }
+    return best;
+  }
   function branchMembers(host, cells, seed, root = null) {
     const world = api.worldForRoom?.(host);
     const objects = world?.objects || [];
-    let branches = objects.filter(
+    const position = api.poses[api.initialPoses[host]]?.position;
+    if (!position || !world?.faces) return null;
+    const candidates = objects.filter(
       (object) =>
-        object.depth === 2 &&
+        (object.depth === 1 || object.depth === 2) &&
         (root === null ? object.root <= 2 : object.root === root) &&
-        object.points?.length
+        object.points?.length &&
+        object.faceCount
     );
-    if (!branches.length)
-      branches = objects.filter((object) => object.points?.length && object.rootCenter);
-    if (!branches.length) return null;
-    return cells.map((_, index) => {
+    const pools = new Map();
+    for (const branch of candidates) {
+      const surface = branchSurface(branch, world, position);
+      if (!surface) continue;
+      const key = `${branch.depth}:${branch.root}`;
+      if (!pools.has(key)) pools.set(key, { members: [], used: 0 });
+      pools.get(key).members.push({ branch, surface });
+    }
+    const divisor = (a, b) => {
+      while (b) [a, b] = [b, a % b];
+      return a;
+    };
+    for (const pool of pools.values()) {
+      let stride = Math.max(1, Math.floor(pool.members.length * 0.618));
+      while (divisor(stride, pool.members.length) !== 1) stride++;
+      pool.stride = stride;
+    }
+    const members = [];
+    for (let index = 0; index < cells.length; index++) {
       // Repeated branches at three actual tunnel depths form the content
-      // structure. A single ring gives even thick meshes the look of a sheet.
+      // structure. Every fourth chip uses its actual larger parent level;
+      // a coprime stride spreads each pool without duplicating attachments.
       const level = root === null ? index % 3 : root;
-      const levelBranches = branches.filter((branch) => branch.root === level);
-      const candidates = levelBranches.length ? levelBranches : branches;
-      const branch = candidates[(seed + Math.floor(index / 3) * 7) % candidates.length];
-      const attachment = branch.points[(seed + index * 11) % branch.points.length];
-      return {
+      const depth = index % 4 === 3 ? 1 : 2;
+      const pool = pools.get(`${depth}:${level}`);
+      if (!pool || pool.used >= pool.members.length) return null;
+      const { branch, surface } =
+        pool.members[
+          (seed + level * 11 + depth * 17 + pool.used++ * pool.stride) % pool.members.length
+        ];
+      const attachment = surface.points[(seed + index * 11) % surface.points.length];
+      members.push({
         name: branch.name,
         parent: branch.parent || null,
         center: [...branch.center],
@@ -254,8 +323,11 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
         root: branch.root,
         phase: branch.phase,
         attachment: [...attachment],
-      };
-    });
+        radius: branch.radius,
+        surfaceAxes: surface.axes.map((axis) => [...axis]),
+      });
+    }
+    return members;
   }
   function sourceMetadata(asset) {
     return (
@@ -726,6 +798,9 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
         parent: shard.member?.parent,
         root: shard.member?.root,
         rootCenter: shard.member?.rootCenter,
+        attachment: shard.member?.attachment,
+        radius: shard.member?.radius,
+        surfaceAxes: shard.member?.surfaceAxes,
         hostOffset: shard.hostOffset,
         worldCenter: shard.member
           ? api
@@ -949,6 +1024,14 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
     if (amount === 1) entry.residentReveal = null;
     return amount * amount * (3 - 2 * amount);
   }
+  function applyFieldVisibility(entry, shapes) {
+    if (entry.residentVisibility < 1)
+      for (const shape of shapes) shape.alpha *= entry.residentVisibility;
+    if (phase && entry === incoming && handoff > 0)
+      for (const shape of shapes) shape.alpha *= 1 - handoff;
+    else if (phase === 'assembling' && entry !== incoming && entry.host !== context.to)
+      for (const shape of shapes) shape.alpha *= 1 - handoff;
+  }
   function publishStatus() {
     if (!statusOwner?.dataset) return;
     const routes = [...bank.keys()].join(' ');
@@ -998,16 +1081,17 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
       advanceHandoff(frame);
       const native = document.body.dataset.page;
       for (const entry of paintedEntries) {
+        // Settled chips belong to the fractal room that is actually painted.
+        // Retention still serves reverse flights without painting a distant
+        // page field over a host that is absent from the current reading room.
+        if (!phase && entry.host !== frame.page) continue;
         let amount = 0;
         if (phase && entry === incoming) amount = progress;
         else if (phase && entry === outgoing) amount = 1 - travelProgress;
         else if (entry.route === native) continue;
         const shapes = sample(entry, frame, amount);
         entry.residentVisibility = residentVisibility(entry, frame);
-        if (entry.residentVisibility < 1)
-          for (const shape of shapes) shape.alpha *= entry.residentVisibility;
-        if (phase && entry === incoming && handoff > 0)
-          for (const shape of shapes) shape.alpha *= 1 - handoff;
+        applyFieldVisibility(entry, shapes);
         if (phase && entry === outgoing) departureFaces = shapes;
         faces.push(...shapes);
       }

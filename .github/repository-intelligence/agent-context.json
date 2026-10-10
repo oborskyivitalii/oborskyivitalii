@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "4e46e2295eaaa593265286d396f34312f644b08380e2c1c3e0234fc56e5f03b9",
+    "digest": "edda6f6f213be69c30e2666a7eb7e52cac7410d20cd960f68a02debac2d99851",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -141,12 +141,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "db762e520a24627a9eee190f4f253beef2fee79caddbfdbd90df2ff875c57969"
+        "sha256": "9209465007edb64df1729b3081e205eb1d43b22f462badef29b7cd06a31cc8ff"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "4ffc41096009375dd85f70210f1de7cc1bd3cf0952b0f37e777711f218c8d0ef"
+        "sha256": "be67a27b666944d60915c3142f3edc0c4158b158f9dbae9b07a1ea58b31ddfe1"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -241,7 +241,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "bdb2dfe7a9bf160ebb4be0480122331903a5f7acafe5c96f07f7a24f61531634"
+        "sha256": "9c5c24398a976462d247a381ae798abcc6d121d80822b23d6b6c9cca5b090460"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -755,12 +755,22 @@
       {
         "path": "review/issue-49/2026-10-08-analysis.md",
         "identity_mode": "content",
-        "sha256": "827d6321e1bc4878b901a2ef75512e42c8424300ac2b7071b274b77ba8fd3872"
+        "sha256": "8c46964eb4bc39d1d00a07113d41858e915b45bfd3a58b056a692b4301549c30"
+      },
+      {
+        "path": "review/issue-49/2026-10-10-fractal-evidence.tar.gz",
+        "identity_mode": "content",
+        "sha256": "5ab36ae26bb508c703004a24942efa5737e7403554643959da445f754debac6b"
+      },
+      {
+        "path": "review/issue-49/2026-10-10-fractal-traces.tar.gz",
+        "identity_mode": "content",
+        "sha256": "6be20a36fb290d98ba673dab7f1457d20fe7b7ecd1dcf42851743a8fe9a720f0"
       },
       {
         "path": "review/issue-49/2026-10-10-performance.json",
         "identity_mode": "content",
-        "sha256": "9a59e484b886cf5eb9913726c814c8fc6dc67d5efdbc7c00b06245cfc4e0c6bf"
+        "sha256": "799e67c7737217b2d2752d9eac50ae7de5a8063304513961614f2c857c4751c7"
       },
       {
         "path": "review/issue-54/2026-10-08-analysis.md",
@@ -4460,7 +4470,7 @@
       {
         "path": "site/README.md",
         "identity_mode": "content",
-        "sha256": "6126df916ba5216783261191f648d2030ee5bdebc807b43e55757ae2b22730ef"
+        "sha256": "3b89e019452cf62d718f4e8954e3d11e05d1c1780fc706202c3d677388463955"
       },
       {
         "path": "site/analytics.json",
@@ -4645,12 +4655,12 @@
       {
         "path": "site/effects/embedded-plan.cjs",
         "identity_mode": "content",
-        "sha256": "8f9d994518d4ca1bf53487a957e3ad909860c248ecfbca44bc4511dbce2c5c74"
+        "sha256": "5df4198e160cd18bd959c50319cae76d23738c93a18781c42bd84046f9885b91"
       },
       {
         "path": "site/effects/embedded-scene.cjs",
         "identity_mode": "content",
-        "sha256": "c8d871b0145a774c2fd519d292db98bfaedb7789d08dc4807c732028a5ba41fb"
+        "sha256": "ae953716d0f5af7f305a62153769a558f5c927499c3edbcf8c605e36b77ed48f"
       },
       {
         "path": "site/effects/embedded-texture.cjs",
@@ -5090,12 +5100,12 @@
       {
         "path": "tests/embedded-plan.test.cjs",
         "identity_mode": "content",
-        "sha256": "fc21cdce4acff91005a90acf9dd02e0f6118fbe90529cf999db109483346caf0"
+        "sha256": "a9a0b8c54a5b46df58246afd9987f90c8e141f49395f8656afb0972e295afca7"
       },
       {
         "path": "tests/embedded-scene.test.cjs",
         "identity_mode": "content",
-        "sha256": "85d8d51807311fc23629ec0a8d0939878f6798e4f41eef53df067ca3bc469b83"
+        "sha256": "fb30b3aa65568a9dced389b970b4c2a0c290b40ad2315a947abbbe053ee260f3"
       },
       {
         "path": "tests/embedded-texture.test.cjs",
@@ -7869,6 +7879,28 @@
         "AGENTS.md"
       ],
       "title": "Issue 49 — 2026-10-08 consolidated execution and Sol handoff"
+    },
+    {
+      "path": "review/issue-49/2026-10-10-fractal-evidence.tar.gz",
+      "kind": "file",
+      "purpose": "Frozen raw issue49 before/new and paired diagnostic reports, four actual forward JPEGs and inert helper snapshots with byte manifest; native traces are in the companion archive. Not runtime or admission evidence.",
+      "role": "history",
+      "owner": "review/issue-49/2026-10-08-analysis.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-10-fractal-evidence.tar.gz"
+    },
+    {
+      "path": "review/issue-49/2026-10-10-fractal-traces.tar.gz",
+      "kind": "file",
+      "purpose": "Frozen raw24 native CDP traces for the issue49 same-artifact cost diagnostic; separate bounded archive with original hashes and observed bindings. Missing RunTask remains unavailable, not admission.",
+      "role": "history",
+      "owner": "review/issue-49/2026-10-08-analysis.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-10-fractal-traces.tar.gz"
     },
     {
       "path": "review/issue-49/2026-10-10-performance.json",
