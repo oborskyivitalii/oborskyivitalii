@@ -4,113 +4,55 @@ Dated continuity, not live authority. Last verified: **2026-10-09**.
 
 ## Snapshot
 
-- Checked main `9da2476c9269345a242c7524374a645b0a21c2d4`, tree
-  `a1426cdf9ca1f740f56a6a66bd8f555d8820ddd6`: PR60 merged after the explicit
-  maintainer decision. [Issue58](https://github.com/oborskyivitalii/oborskyivitalii/issues/58)
-  is closed with all ten global and seven phase boxes checked. Main navigation
-  CI37835350431 and clean actual-main local acceptance15/15 passed; raw report
-  and final evidence are in [PR60](https://github.com/oborskyivitalii/oborskyivitalii/pull/60#issuecomment-6067959337).
-- Refactoring preserves PMDay recording and active Color ribbon removal.
-  Canonical runtime/effects/build/content/CSS ownership is current; edit `site/`
-  and generate public/offline renditions. The old active review prototype is history.
-- [Issue49](https://github.com/oborskyivitalii/oborskyivitalii/issues/49) and
-  [Draft PR53](https://github.com/oborskyivitalii/oborskyivitalii/pull/53) are now the
-  sole consolidated content/theory/formula and fragment-flight execution route.
-  Issue48 is superseded after its full acceptance transfer, not completed or an
-  identical duplicate. Merged PR51 remains historical delivery. Issue50/PR52
-  remain duplicate/superseded history.
-- Latest explicit instruction consolidates48/49 and their PR routes, then implements.
-  It supersedes the earlier plan-only request. The [single execution handoff](review/issue-49/2026-10-08-analysis.md)
-  owns the AC crosswalk and the9October all-route amendment. All five routes
-  share bidirectional Color preview fragments, enabled by default unless stored
-  Off. Depth/fidelity/device/paired-cost gates remain; read live PR53 for exact head.
-- Published prototype11252e0 has desktop Night fixed-camera/native-scroll and
-  temporary-fragment/native-handoff observations in the same handoff. First CI
-  retained two tooling/probe failures; correct policy49 locked dependencies and
-  shared Color paint observation before using the new exact-head CI evidence.
-- Incoming refinement follows the maintainer's 9 October preview feedback:
-  visibly stagger text/block construction for 1–2seconds from the real fractal.
-  Continue the same issue49/PR53; other outstanding visual concerns stay open.
-  Read live PR53 for the refined exact head, checks and immutable preview.
-- Next9October refinement fixes native heading padding/line geometry, adds seeded
-  convex shard masks, projected rear facets and camera-depth opacity. Original
-  caps/clock/timing remain; projected side bounds are enforced before paint.
-  Latest source/CI/preview and remaining visual gates belong in live PR53.
-- Whole-block previewcb9fb026 passed its exact two-width smoke; historical evidence
-  remains in PR53. New embedded AC15 prototype060480ff is published in the same PR.
-  One Research intro paragraph becomes persistent textured closed solids in Home.
-  T15.1–T15.5 source work and151 contracts passed; T15.6/browser remains open.
-- Recovery found060480ff Basic37942601340 and preview37942601038 failed on one
-  stale color-build assertion rejecting all scene hooks. The correction preserves
-  no-ribbon guards and exercises canonical emitted embedded collect/paint hooks.
-  Fetch live PR53 for corrected-head browser/check/deployment evidence.
+- Main revalidated at `338e3ff341dc35b64cba7854289e1385cbaf1562`: approved
+  harness simplification PR #66 merged; #65 is closed. Revalidate live state.
+- [#58](https://github.com/oborskyivitalii/oborskyivitalii/issues/58) is closed and
+  [PR #60](https://github.com/oborskyivitalii/oborskyivitalii/pull/60) merged; detailed
+  checkpoints remain in [its handoff](review/issue-58/2026-10-08-handoff.md).
+- PMDay update [#61](https://github.com/oborskyivitalii/oborskyivitalii/issues/61)
+  was delivered through [PR #63](https://github.com/oborskyivitalii/oborskyivitalii/pull/63).
+- [#49](https://github.com/oborskyivitalii/oborskyivitalii/issues/49) and
+  [Draft PR #53](https://github.com/oborskyivitalii/oborskyivitalii/pull/53) own
+  the embedded AC15 prototype: one real Research paragraph becomes persistent
+  closed solid shards in Home and assembles on forward travel. Read its
+  [single handoff](review/issue-49/2026-10-08-analysis.md) and live PR for evidence.
+- Head9245b2a passed Basic/acceptance/navigation and the two-width preview smoke.
+  Recovery completes45 exact public checksum dispositions for main issue65
+  artifacts; fetch live PR for the final source-bound security/preview record.
 
 ## Decisions
 
-- Stay bound to issue49/PR53 across implementation, fixes, phases and model handoffs.
-  Append dated scope/criteria; do not create another phase owner. Preserve one
-  complete `Refs #49` line and link historical issues as dependencies/evidence.
-- Issue49 AC01-AC08 remain; new AC09-AC14 map original48 AC01-AC06 respectively.
-  AC01 and inheritedAC11-AC14 are checked for accepted design/historical scope.
-  FeatureAC02-AC08, inherited visualAC09-AC10 and embeddedAC15 remain open. Preserve
-  original issue-qualified IDs, exact source evidence and actual checkboxes.
-- PR51 accepted head `3e8944af`, merge `a06b530e`, tree `ca02b382` and its stable-stage
-  evidence remain historical. They do not admit fragments or authorize new staging.
-- Fixed settled poses and two-sided native fragments use the painted camera/clock
-  and router serial. Latest user scope adds Credits, all navigation entries and
-  arbitrary-scroll/in-flight retargets, shared small shards and both directions.
-  DOM fragments remain provisional; only AC15's bounded paragraph joins Canvas
-  depth sorting, with approximate painter occlusion rather than a GPU depth buffer.
-- Replace every scroll/topic/layout/history camera consumer while preserving
-  ambient fractal phase, actual native Y/filters/anchors, focus/history, edge intent,
-  freeze modes and finite room/cache bounds. Retain reverse Back/top-edge travel;
-  always-forward Back is a separate choreography choice.
-- Preserve formula/book/fractal world geometry and active no-ribbons composition.
-  Validate stationary Writing framing and inherited narrow Day/Night formula
-  visibility; moving geometry or turning Motion off cannot hide a defect.
-- Measure fragment overhead against the same-source stationary-camera legacy
-  presentation at identical quality/cache/landing conditions. Use one shared
-  departure/arrival cap, original budgets and retained raw failures.
-- Incoming assembly uses1.8seconds with piece-local staggering and a finite tail
-  on the existing painted callback. Camera travel geometry/duration stays fixed.
-  Off/hidden/print/failure/device hold must finish native handoff immediately;
-  settled offscreen anchors use fallback rather than retain a waiting transaction.
-- The issue49 policy selects current fragment-plan/DOM/space/navigation contracts
-  and individually reuses meaningful inherited source checks. Issue48's whole
-  policy and frozen unrelated task snapshots remain historical, not second owners.
-- CS01-CS10, pinned formatting and actual complete source lint/security remain.
-  New behavior needs meaningful negatives and independent implementation review.
-  Writing stays within its100000-byte limit; shared runtime has canonical owners.
-- Final merge, stable promotion, production/native/device/rights/domain and public
-  release retain separate applicable decisions. Green prototype tests cannot admit
-  visual depth/fidelity or browser performance.
+- [#65](https://github.com/oborskyivitalii/oborskyivitalii/issues/65) owns harness
+  verification/compaction; preserve evidence guarantees and existing caps.
+  [Analysis and execution handoff](review/issue-65/2026-10-09-analysis.md).
+- Harness #65 excluded site/runtime/generated changes; fragment work stays in #49.
+- AC01 and historical AC11–AC14 retain accepted scope. AC02–AC10 and embedded
+  AC15 remain open for current visual/device/accessibility/paired-cost decisions.
+  Keep one scene/camera/clock and original caps; irregular panels/all-route
+  embedding remain later scope. Preview authorization does not authorize merge/release.
+- A user-supplied issue stays bound across phases/model handoffs; consolidation
+  transfers original ACs, evidence and open gates before superseding an owner.
 
 ## Open work
 
-| Issue | Remaining intent |
+| Owner | Next acceptance route |
 | --- | --- |
-| #49 / Draft PR53 | Embedded AC15 preview/browser observation; visual/device/paired-cost and AC02-AC10/AC15 remain open, preserving historicalAC11-AC14. |
-| #61 | Separate content/editorial owner; fetch live issue/PR before editing accepted prose. |
-| #45 / #36 / #41 | Historical source-bound visual/editorial evidence and remaining release gates. |
-| #1 / #13 | First release, physical devices and production/recovery acceptance. |
-| #8 / #39 | Production URL/indexability, domains and analytics activation. |
-| #7 | License and editorial/third-party rights. |
-| #5 / #6 | Article HTML/PDF edition and cross-repository adapter. |
-| #2 / #11 | PMDay edition and post-launch buyer-intent guides. |
+| #49 / Draft PR #53 | Embedded prototype current-source preview/browser checks and remaining visual/device/paired-cost acceptance. |
+| #39 / Draft PR #40 | GitHub Pages/custom-domain preparation; retain domain/production decisions. |
+| #45 / #36 / #41 | Check original visual/editorial/device/release gates in the live owners. |
+| #1 / #13 / #8 | First release, devices, recovery, URL/indexability and analytics activation. |
+| #7 / #5 / #6 / #2 / #11 | Rights, accepted editions, cross-repository adapter and post-launch guides. |
 
 ## Next session
 
-1. Fetch actual main, issue49 and PR53; revalidate bound source, decisions and checks.
-2. Read the consolidation/execution section and ordered tasks in the same handoff.
-3. Check the corrected color-build source contract and exact new preview. Inspect
-   AC15 native texture/glyphs, persistent shard IDs, closed faces and aligned handoff.
-4. Inspect all-five forward/reverse flights, native seams and interruption coverage;
-   paired-cost/device/full visual admission remains open. Retain raw failures.
-5. Refresh policy/catalog/profile/RI/CI and exact current generated/scanner evidence;
-   independently review, update actual boxes and retain final merge/main gates.
+1. Fetch main and live #49/#39 issues and linked PRs; reconcile heads/ACs.
+2. Read #49's embedded prototype checkpoint; inspect current native texture,
+   solid faces, persistent IDs, shared scene and exact native handoff evidence.
+3. Use required current-source checks and honest review/gate evidence; update AC boxes.
+4. Refresh this handoff after a material state change; merge/release only by maintainer decision.
 
 ## Maintenance
 
-Keep these five sections within120lines; rebuild RI after changes. Detailed
-source/run/review history belongs in its issue/PR artifact. Never store private
-correspondence, credentials or inferred approvals.
+Keep five sections within 120 lines; rebuild RI after changes. Detailed logs,
+measurements and historical checkpoints belong in their owning issue/PR/review.
+Never store private correspondence, credentials or inferred approvals.
