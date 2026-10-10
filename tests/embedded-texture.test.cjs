@@ -1692,46 +1692,157 @@ test('actual border strips leave native child ink observable within their larger
   field.dispose();
 });
 
-test('adjacent one-pixel border owners retain exclusive native ink without a synthetic halo', async () => {
-  const f = pageFixture();
-  for (const [tag, top, side] of [
-    ['nav', 0, 'bottom'],
-    ['section', 100, 'top'],
-  ]) {
-    f.main.append(
-      new f.Node(
-        tag,
-        '',
-        {
-          ['border-' + side + '-width']: '1px',
-          ['border-' + side + '-style']: 'solid',
-          ['border-' + side]: '1px solid rgb(20, 30, 40)',
-        },
-        { left: 0, top, width: 100, height: 100 }
-      )
-    );
-  }
-  f.context.getImageData = (x, y, width, height) => {
-    const data = new Uint8ClampedArray(width * height * 4);
-    for (let row = 0; row < height; row++)
-      for (let column = 0; column < width; column++) data[(row * width + column) * 4 + 3] = 255;
+function adjacentBorderFixture(boundary, options = {}) {
+  const f = pageFixture(options);
+  const width = options.width ?? 100;
+  const contentTop = options.contentTop ?? 200;
+  const contentHeight = options.contentHeight ?? 20.25;
+  const border = {
+    'border-top-width': '1px',
+    'border-top-style': 'solid',
+    'border-top': '1px solid rgb(51, 70, 76)',
+  };
+  const nav = new f.Node(
+    'nav',
+    '',
+    {
+      ...border,
+      'border-bottom-width': '1px',
+      'border-bottom-style': 'solid',
+      'border-bottom': '1px solid rgb(51, 70, 76)',
+    },
+    { left: 0, top: 0, width, height: boundary }
+  );
+  const section = new f.Node('section', '', border, { left: 0, top: boundary, width, height: 750 });
+  section.append(
+    new f.Node(
+      'h1',
+      'Independent native section heading',
+      {},
+      { left: 0, top: contentTop, width, height: contentHeight }
+    )
+  );
+  f.main.append(nav, section);
+  f.context.getImageData = (x, y, pixelWidth, pixelHeight) => {
+    const data = new Uint8ClampedArray(pixelWidth * pixelHeight * 4);
+    if (f.context.lastDraw.image !== f.images[0]) {
+      if (!options.blankSection)
+        for (let index = 3; index < data.length; index += 4) data[index] = 255;
+      return { data };
+    }
+    const scaleY = pixelHeight / (contentTop + contentHeight);
+    const bands = [
+      [0, 1],
+      [boundary - 1, boundary],
+    ];
+    if (!options.blankSection) bands.push([boundary, boundary + 1]);
+    if (!options.blankHeading) bands.push([contentTop, contentTop + contentHeight]);
+    for (let row = 0; row < pixelHeight; row++) {
+      if (!bands.some(([top, bottom]) => row < bottom * scaleY && row + 1 > top * scaleY)) continue;
+      for (let column = 0; column < pixelWidth; column++)
+        data[(row * pixelWidth + column) * 4 + 3] = 255;
+    }
     return { data };
   };
-  const field = await embeddedTexture().captureField(f.root, { ...pageOptions, dpr: 1 });
+  return f;
+}
+
+test('touching native borders retain owner-only alpha at integer and fractional pixel boundaries', async () => {
+  for (const boundary of [100, 100.359375]) {
+    for (const dpr of [1, 1.5, 2]) {
+      const f = adjacentBorderFixture(boundary);
+      const field = await embeddedTexture().captureField(f.root, { ...pageOptions, dpr });
+      assert.ok(field, `boundary ${boundary} at DPR ${dpr}`);
+      assert.equal(field.decorations.length, 2);
+      assert.equal(field.sourceOwners.length, 1);
+      assert.match(f.sources[0], /<svg[^>]*preserveAspectRatio="none"/);
+      assert.equal(f.images.length, 1);
+      field.dispose();
+    }
+  }
+});
+
+test('touching peer border alpha cannot prove a missing section border or heading', async () => {
+  for (const missing of ['blankSection', 'blankHeading']) {
+    for (const dpr of [1, 1.5, 2]) {
+      const f = adjacentBorderFixture(100.359375, { [missing]: true });
+      const failures = [];
+      assert.equal(
+        await embeddedTexture().captureField(f.root, {
+          ...pageOptions,
+          dpr,
+          onReject: (detail) => failures.push(detail),
+        }),
+        null,
+        `${missing} at DPR ${dpr}`
+      );
+      assert.deepEqual(failures, [
+        {
+          reason: missing === 'blankSection' ? 'native-raster-blank' : 'native-owner-raster-blank',
+          path: missing === 'blankSection' ? [0, 1] : [0, 1, 0],
+          tag: missing === 'blankSection' ? 'section' : 'h1',
+        },
+      ]);
+      assert.ok(f.canvases.every((canvas) => canvas.width === 0 && canvas.height === 0));
+    }
+  }
+});
+
+test('a capped adjoining border without an independent pixel requires actual isolated native ink', async () => {
+  const f = adjacentBorderFixture(100.3, { width: 1440, contentTop: 880, contentHeight: 20 });
+  const failures = [];
+  const field = await embeddedTexture().captureField(f.root, {
+    ...pageOptions,
+    dpr: 1,
+    onReject: (detail) => failures.push(detail),
+  });
   assert.ok(field);
   assert.equal(field.decorations.length, 2);
-  assert.equal(field.canvas.height, 2);
+  assert.equal(f.images.length, 2);
+  assert.deepEqual(failures, []);
   field.dispose();
+  assert.ok(f.canvases.every((canvas) => canvas.width === 0 && canvas.height === 0));
+});
+
+test('rounded SVG dimensions use the same paint axes as fractional peer exclusion', async () => {
+  const f = pageFixture();
+  f.main.append(
+    new f.Node('p', 'Visible fractional peer', {}, { left: 0, top: 0, width: 100.7, height: 10.9 }),
+    new f.Node(
+      'h1',
+      'Missing native heading',
+      {},
+      { left: 0, top: 10.9, width: 100.7, height: 10 }
+    ),
+    new f.Node('p', 'Independent bottom owner', {}, { left: 0, top: 80, width: 100.7, height: 20 })
+  );
   f.context.getImageData = (x, y, width, height) => {
     const data = new Uint8ClampedArray(width * height * 4);
-    for (let column = 0; column < width; column++) data[column * 4 + 3] = 255;
+    const separateAxes = /<svg[^>]*preserveAspectRatio="none"/.test(f.sources[0]);
+    // SVG's default xMidYMid meet shifts this peer's bottom beyond row 11.
+    // A separately scaled viewport ends it at 10.9, leaving row 11 untouched.
+    const scale = separateAxes ? height / 100 : Math.min(width / 100.7, height / 100);
+    const offset = separateAxes ? 0 : (height - 100 * scale) / 2;
+    for (let row = 0; row < height; row++) {
+      const peerInk = row < offset + 10.9 * scale && row + 1 > offset;
+      const bottomInk = row < offset + 100 * scale && row + 1 > offset + 80 * scale;
+      if (!peerInk && !bottomInk) continue;
+      for (let column = 0; column < width; column++) data[(row * width + column) * 4 + 3] = 255;
+    }
     return { data };
   };
+  const failures = [];
   assert.equal(
-    await embeddedTexture().captureField(f.root, { ...pageOptions, dpr: 1 }),
-    null,
-    'the first border still cannot supply ink for the missing adjacent border'
+    await embeddedTexture().captureField(f.root, {
+      ...pageOptions,
+      dpr: 1,
+      onReject: (detail) => failures.push(detail),
+    }),
+    null
   );
+  assert.deepEqual(failures, [{ reason: 'native-owner-raster-blank', path: [0, 1], tag: 'h1' }]);
+  assert.match(f.sources[0], /<svg[^>]*width="100" height="100" preserveAspectRatio="none"/);
+  assert.ok(f.canvases.every((canvas) => canvas.width === 0 && canvas.height === 0));
 });
 
 test('fractional adjoining borders require isolated native proof within the same pixel and time caps', async () => {
@@ -1783,6 +1894,152 @@ test('fractional adjoining borders require isolated native proof within the same
     );
     assert.equal(f.canvases.length, before);
   }
+});
+
+test('isolated border proof cannot admit coincident decoration or semantic cover with an adjoining peer', async () => {
+  for (const semanticCover of [false, true]) {
+    const f = pageFixture();
+    const border = {
+      'border-top-width': '1px',
+      'border-top-style': 'solid',
+      'border-top': '1px solid rgb(20, 30, 40)',
+    };
+    const section = new f.Node('section', '', border, {
+      left: 0,
+      top: 100.4,
+      width: 100,
+      height: 100,
+    });
+    const cover = semanticCover
+      ? new f.Node(
+          'h1',
+          'Covered native heading',
+          {},
+          {
+            left: 0,
+            top: 100.4,
+            width: 100,
+            height: 1,
+          }
+        )
+      : new f.Node('nav', '', border, { left: 0, top: 100.4, width: 100, height: 100 });
+    const adjoining = new f.Node('nav', '', border, {
+      left: 0,
+      top: 101.4,
+      width: 100,
+      height: 100,
+    });
+    f.main.append(section, cover, adjoining);
+    const failures = [];
+    assert.equal(
+      await embeddedTexture().captureField(f.root, {
+        ...pageOptions,
+        dpr: 1,
+        onReject: (detail) => failures.push(detail),
+      }),
+      null
+    );
+    assert.deepEqual(failures, [
+      { reason: 'native-owner-raster-blank', path: [0, 0], tag: 'section' },
+    ]);
+    assert.equal(f.images.length, 1, 'true native overlap never receives isolated proof');
+    assert.ok(f.canvases.every((canvas) => canvas.width === 0 && canvas.height === 0));
+  }
+});
+
+test('abort during an isolated border decode releases both rasters and ignores its late load', async () => {
+  const f = adjacentBorderFixture(100.3, {
+    width: 1440,
+    contentTop: 880,
+    contentHeight: 20,
+    autoLoad: false,
+  });
+  f.view.performance = { now: () => 0 };
+  const controller = new AbortController();
+  const failures = [];
+  const pending = embeddedTexture().captureField(f.root, {
+    ...pageOptions,
+    dpr: 1,
+    signal: controller.signal,
+    onReject: (detail) => failures.push(detail),
+  });
+  const fieldLoad = f.images[0].onload();
+  assert.equal(f.images.length, 2);
+  const lateProofLoad = f.images[1].onload;
+  controller.abort();
+  assert.equal(await pending, null);
+  await fieldLoad;
+  assert.deepEqual(failures, [{ reason: 'capture-aborted', path: [], tag: 'div' }]);
+  assert.ok(f.canvases.every((canvas) => canvas.width === 0 && canvas.height === 0));
+  assert.ok(f.images.every((image) => image.onload === null && image.onerror === null));
+  assert.equal(f.timers.size, 0);
+  const draws = f.counts.draws;
+  await lateProofLoad();
+  assert.equal(f.counts.draws, draws);
+});
+
+test('isolated border readback that crosses the shared deadline rejects and releases all surfaces', async () => {
+  const f = adjacentBorderFixture(100.3, {
+    width: 1440,
+    contentTop: 880,
+    contentHeight: 20,
+    autoLoad: false,
+  });
+  let elapsed = 0;
+  f.view.performance = { now: () => elapsed };
+  const readback = f.context.getImageData;
+  f.context.getImageData = (...args) => {
+    const result = readback(...args);
+    if (f.context.lastDraw.image !== f.images[0]) elapsed = 161;
+    return result;
+  };
+  const failures = [];
+  const pending = embeddedTexture().captureField(f.root, {
+    ...pageOptions,
+    dpr: 1,
+    onReject: (detail) => failures.push(detail),
+  });
+  const fieldLoad = f.images[0].onload();
+  assert.equal(f.images.length, 2);
+  await f.images[1].onload();
+  assert.equal(await pending, null);
+  await fieldLoad;
+  assert.deepEqual(failures, [{ reason: 'preparation-deadline', path: [], tag: 'div' }]);
+  assert.ok(f.canvases.every((canvas) => canvas.width === 0 && canvas.height === 0));
+  assert.equal(f.timers.size, 0);
+});
+
+test('the outer field timeout cancels a pending isolated proof before returning failure', async () => {
+  const f = adjacentBorderFixture(100.3, {
+    width: 1440,
+    contentTop: 880,
+    contentHeight: 20,
+    autoLoad: false,
+  });
+  let elapsed = 0;
+  f.view.performance = { now: () => elapsed };
+  const failures = [];
+  const pending = embeddedTexture().captureField(f.root, {
+    ...pageOptions,
+    dpr: 1,
+    onReject: (detail) => failures.push(detail),
+  });
+  const outerTimeout = [...f.timers.values()][0];
+  const fieldLoad = f.images[0].onload();
+  assert.equal(f.images.length, 2);
+  const lateProofLoad = f.images[1].onload;
+  assert.equal(f.timers.size, 2);
+  elapsed = 161;
+  outerTimeout();
+  assert.equal(await pending, null);
+  assert.deepEqual(failures, [{ reason: 'preparation-deadline', path: [], tag: 'div' }]);
+  assert.ok(f.canvases.every((canvas) => canvas.width === 0 && canvas.height === 0));
+  assert.ok(f.images.every((image) => image.onload === null && image.onerror === null));
+  assert.equal(f.timers.size, 0);
+  const draws = f.counts.draws;
+  await lateProofLoad();
+  await fieldLoad;
+  assert.equal(f.counts.draws, draws);
 });
 
 test('single field decoding retains all native temporary-owner admission limits', async () => {

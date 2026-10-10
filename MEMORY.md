@@ -19,6 +19,11 @@ Dated continuity, not live authority. Last verified: **2026-10-09**.
   fractional border pixels; isolated bounded native proof corrects that ambiguity.
   Final exact-source hosted proof remains required; retain every failed run.
 
+  Exact68004bc published ec1eae9f but failed cold Research capture: extra pixel
+  dilation erased the exclusive proof of its touching section border. Correct
+  that false rejection and the private Writing diagnostic's missing footer
+  argument; require new exact-head source/browser evidence before delivery.
+
 - Main revalidated at `338e3ff341dc35b64cba7854289e1385cbaf1562`: approved
   harness simplification PR #66 merged; #65 is closed. Revalidate live state.
 - [#58](https://github.com/oborskyivitalii/oborskyivitalii/issues/58) is closed and

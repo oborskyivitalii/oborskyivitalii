@@ -391,6 +391,19 @@ test('edge bypass retains serialized controls but does not register their hooks;
   };
   assert.equal(load(nav), 2);
   assert.equal(load(patched), 1, 'content preference still initializes, edge hooks do not');
+  const footer = require('../site/effects/flight.cjs').prepareEndScrollFooter.toString(),
+    withoutFooter = nav.replace(',' + footer, '');
+  assert.notEqual(withoutFooter, nav, 'the drift fixture removes the serialized footer argument');
+  for (const changed of [
+    withoutFooter,
+    nav.replace('function prepareEndScrollFooter(', 'function driftedFooter('),
+    nav + '\n' + nav,
+  ])
+    assert.throws(
+      () => diagnostic.patchRuntime({ 'navigation.js': changed }, 'edge-bypass'),
+      /exactly once/,
+      'a missing, drifted or duplicated edge-scroll invocation fails closed'
+    );
   assert.throws(
     () => diagnostic.patchRuntime({ 'space.js': 'no matching source' }, 'no-ribbons'),
     /exactly once/

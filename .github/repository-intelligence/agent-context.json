@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "ba896b9006b23cd5fc04543f78227829195960ed192e9fb9da9d7979bb88b085",
+    "digest": "a0a92f5a65ecbe10ce34b05a84a2988988edfe19fd9aad03ff05a52d5c32e91a",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -241,7 +241,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "c4ef305e89bc491d64b0e29cfdf0485049b505ada5ef306c8fdc16cfbcef3622"
+        "sha256": "d1adaf2662f70fd8b0da2a6ad17d5d0faed4d01b93e9f56ecfecf58e45fa7b66"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -705,7 +705,7 @@
       {
         "path": "review/issue-49/2026-10-08-analysis.md",
         "identity_mode": "content",
-        "sha256": "a43cdca9f36ebdadd5e5f31c70153a9ddbeb42d3c20d6079996ea834c41d00e8"
+        "sha256": "957bca8b65ed990794fe3fe222cd66ef248bc6003a5f1ac0b7b5c19366c0cd8c"
       },
       {
         "path": "review/issue-54/2026-10-08-analysis.md",
@@ -4600,7 +4600,7 @@
       {
         "path": "site/effects/embedded-texture.cjs",
         "identity_mode": "content",
-        "sha256": "a4bfdc919011104333b33cb142eb77e469b2486ea10a483fa89595c25b545fc8"
+        "sha256": "f9c8aae41a6feb326ed4d862dd4aa32c40709a475e3df8c9f4b0990165b6cc3d"
       },
       {
         "path": "site/effects/flight.cjs",
@@ -5045,7 +5045,7 @@
       {
         "path": "tests/embedded-texture.test.cjs",
         "identity_mode": "content",
-        "sha256": "07a1b6079cd3d47c59f491344d700bbb71348abadd3610816be3d67ae30fc65c"
+        "sha256": "d57d490d911c88bb73567fd5821f67932240c69eb2bfc0f3197a237bdae7deb6"
       },
       {
         "path": "tests/endpoint-fixtures.test.cjs",
@@ -5365,7 +5365,7 @@
       {
         "path": "tests/writing-variants.test.cjs",
         "identity_mode": "content",
-        "sha256": "4d55894c2a0535773a22bbdf0c8d9ed26c50d8cefefee344400a6872c23f104f"
+        "sha256": "308a905a42c05b6048b8cca48b29149d46250d7d370eeb2af77a5328077c1b8c"
       },
       {
         "path": "tools/RI-LICENSE.md",

@@ -1032,12 +1032,14 @@ module.exports = function () {
   function nativeSVG(measured, markup) {
     const { envelope, pixelWidth, pixelHeight } = measured;
     const { content, css } = markup;
+    // Rounded pixel dimensions have independent X/Y sampling. The SVG must
+    // use those same axes rather than introduce default centered letterboxing.
     return (
       '<svg xmlns="http://www.w3.org/2000/svg" width="' +
       pixelWidth +
       '" height="' +
       pixelHeight +
-      '" viewBox="0 0 ' +
+      '" preserveAspectRatio="none" viewBox="0 0 ' +
       envelope.width +
       ' ' +
       envelope.height +
@@ -1566,8 +1568,10 @@ module.exports = function () {
       if (other === owner) continue;
       for (const cover of other.paintRects) {
         if (options.clock() > options.deadline) return null;
-        // Outward floor/ceil already includes every pixel touched by the exact
-        // owner clip. An extra halo erases adjacent one-pixel native borders.
+        // The shared SVG is drawn at its exact pixel dimensions, and every
+        // owner is clipped to its native envelope. Outward floor/ceil already
+        // excludes every pixel a peer can touch, including a fractional edge.
+        // An extra halo would erase adjacent one-pixel native border strips.
         const pixels = fieldPixelBox(cover, measured);
         boxes = boxes.flatMap((box) => subtractFieldBox(box, pixels));
       }
@@ -1582,21 +1586,29 @@ module.exports = function () {
   }
   function ambiguousDecoration(owner, measured) {
     if (!owner.decoration) return false;
-    return measured.fieldOwners.some(
+    const others = measured.fieldOwners.filter((other) => other !== owner);
+    function overlaps(first, second) {
+      return (
+        first.left < second.right &&
+        first.right > second.left &&
+        first.top < second.bottom &&
+        first.bottom > second.top
+      );
+    }
+    // Isolation can resolve rounding at adjoining borders. It cannot prove
+    // which native owner contributed ink inside genuinely overlapping paint.
+    if (
+      others.some((other) =>
+        owner.paintRects.some((rect) => other.paintRects.some((cover) => overlaps(rect, cover)))
+      )
+    )
+      return false;
+    return others.some(
       (other) =>
-        other !== owner &&
         other.decoration &&
         owner.paintRects.some((rect) => {
           const box = fieldPixelBox(rect, measured);
-          return other.paintRects.some((rect) => {
-            const cover = fieldPixelBox(rect, measured);
-            return (
-              box.left < cover.right &&
-              box.right > cover.left &&
-              box.top < cover.bottom &&
-              box.bottom > cover.top
-            );
-          });
+          return other.paintRects.some((cover) => overlaps(box, fieldPixelBox(cover, measured)));
         })
     );
   }
@@ -1626,6 +1638,8 @@ module.exports = function () {
           if (proof) {
             proof.dispose();
             if (!options.signal?.aborted && options.clock() <= options.deadline) continue;
+            rejectNative(options, 'preparation-deadline', measured.owner.localName);
+            return false;
           }
         }
         rejectNative(
@@ -1727,6 +1741,7 @@ module.exports = function () {
     let context;
     let image;
     let source;
+    let proofController;
     const nativeOptions = { ...options, ownerPath: measured.ownerPath };
     try {
       canvas = measured.document.createElement('canvas');
@@ -1735,6 +1750,7 @@ module.exports = function () {
       context = canvas.getContext('2d');
       source = context && serializer(measured, context);
       if (source) image = new measured.view.Image();
+      if (source && measured.fieldOwners) proofController = new measured.view.AbortController();
     } catch {
       source = null;
     }
@@ -1763,6 +1779,9 @@ module.exports = function () {
         image.removeAttribute?.('src');
         if (!success) {
           rejectNative(nativeOptions, code || 'native-raster-failed', measured.owner.localName);
+          // A failed field must cancel its pending isolated proof before the
+          // caller can begin another capture against the same pixel capacity.
+          proofController?.abort();
           canvas.width = 0;
           canvas.height = 0;
           resolve(null);
@@ -1804,7 +1823,10 @@ module.exports = function () {
           context.drawImage(image, 0, 0, canvas.width, canvas.height);
           if (measured.fieldOwners)
             return finish(
-              await fieldHasNativeInk(context, measured, options),
+              await fieldHasNativeInk(context, measured, {
+                ...options,
+                signal: proofController.signal,
+              }),
               'native-raster-blank'
             );
           // A loaded image may silently omit foreignObject on an unsupported engine.
