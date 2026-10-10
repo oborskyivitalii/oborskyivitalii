@@ -676,9 +676,27 @@ function createPresentation(content) {
     },
     async prepareNext(data, signal) {
       if (!contentFlight || !fragmentPreview) return;
+      // First-load capture must not compete with the initial layout and scene
+      // build. This is one cancellable idle task, not another animation clock;
+      // the adapter still owns its unchanged acquisition/decode deadlines.
+      if (window.requestIdleCallback) {
+        await new Promise((resolve) => {
+          let ticket;
+          const finish = () => {
+            window.cancelIdleCallback?.(ticket);
+            signal?.removeEventListener('abort', finish);
+            resolve();
+          };
+          ticket = window.requestIdleCallback(finish, { timeout: 500 });
+          signal?.addEventListener('abort', finish, { once: true });
+          if (signal?.aborted) finish();
+        });
+      }
+      if (signal?.aborted || !contentFlight || !fragmentPreview) return;
       const embedded = window.SiteEffects.embedded;
       if (await embedded?.prime(data, content.offsetTop, null, { signal })) {
-        if (!signal?.aborted) await embedded.prepareDeparture?.(content, { signal });
+        if (!signal?.aborted)
+          await embedded.prepareDeparture?.(content, { signal, cacheOnly: true });
       }
     },
   };

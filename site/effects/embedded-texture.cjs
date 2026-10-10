@@ -1051,8 +1051,8 @@ module.exports = function () {
           );
         })()
     );
-    if (!images.length) return Promise.resolve(true);
-    if (images.some((image) => typeof image.decode !== 'function')) return Promise.resolve(false);
+    if (!images.length) return true;
+    if (images.some((image) => typeof image.decode !== 'function')) return false;
     return new Promise((resolve) => {
       let finished = false;
       let timeout;
@@ -1310,7 +1310,8 @@ module.exports = function () {
       options.signal?.addEventListener('abort', externalAbort, { once: true });
       normalized.signal = controller.signal;
       if (options.signal?.aborted) controller.abort();
-      if (!(await decodeNativeImages(root, view, normalized)))
+      const decoded = decodeNativeImages(root, view, normalized);
+      if (!(typeof decoded === 'boolean' ? decoded : await decoded))
         return rejectNative(normalized, 'native-media-decode-failed', 'img');
       normalized.acquisitionDeadline = Math.min(
         normalized.deadline,

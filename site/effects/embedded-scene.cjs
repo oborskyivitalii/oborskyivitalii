@@ -499,8 +499,10 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
     }
     const cached = bank.get(route);
     if (cached && matching(cached, content)) {
-      outgoing = cached;
-      for (const group of cached.groups) group.native = content;
+      if (!options.cacheOnly) {
+        outgoing = cached;
+        for (const group of cached.groups) group.native = content;
+      }
       touch(cached);
       return true;
     }
@@ -523,9 +525,11 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
         search: window.location?.search || '',
         hash: window.location?.hash || '',
       });
-      for (const group of entry.groups) group.native = content;
+      if (!options.cacheOnly) {
+        for (const group of entry.groups) group.native = content;
+        outgoing = entry;
+      }
       bank.set(route, entry);
-      outgoing = entry;
       assets = null;
       return true;
     } catch {

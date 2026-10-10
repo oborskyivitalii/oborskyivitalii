@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "74d318f2066a71f4f19e550fcd8c45b1885243c4a69b35cbaa3d13e62c67ad2f",
+    "digest": "d4f15ae523ca113a6853e24183d920d30598730bac9505597bbbf518b4888dc6",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -241,7 +241,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "8e7523ef4b49ea3da5cbc0e049eaa715ea91c0f8f6c1bd531430e895a9654c23"
+        "sha256": "ea855a5635a549a7069689d080c308a47f45956b5b2181d7e070b31270784bdd"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -705,7 +705,7 @@
       {
         "path": "review/issue-49/2026-10-08-analysis.md",
         "identity_mode": "content",
-        "sha256": "266b09cc0c5250b2973851c1baa7271c09d8346fdb60245a5180257857890313"
+        "sha256": "4d51a460c33f48b243da7a84393e1300253e9d4f0c932f0dba7ea859b4997dc2"
       },
       {
         "path": "review/issue-54/2026-10-08-analysis.md",
@@ -4595,17 +4595,17 @@
       {
         "path": "site/effects/embedded-scene.cjs",
         "identity_mode": "content",
-        "sha256": "054bdd05f21e60f3b7d1c5c53269ef1df82c30b27e9858cf2aee48ed57392b22"
+        "sha256": "ed5ed58b60e85f22ab89582ab854523be082d5fee1e4d931f8753ee91fda3e15"
       },
       {
         "path": "site/effects/embedded-texture.cjs",
         "identity_mode": "content",
-        "sha256": "999007531a3fd8476710bfe27873a40668f7af17b5bfab7238d31f51624101f3"
+        "sha256": "8015192ac60e198d4e0b681c69f49615ab34af722617a6745a877a60f409d0a8"
       },
       {
         "path": "site/effects/flight.cjs",
         "identity_mode": "content",
-        "sha256": "f9bc74573cad4b71fdddcf437b8c09668bc23a3c30230a9fa4334558cc3943d0"
+        "sha256": "c6a123ec905dc9ccf82e2ae147027a6457d21a2c1986f94d6a5fcc82465cc33e"
       },
       {
         "path": "site/effects/flight.css",
@@ -5040,7 +5040,7 @@
       {
         "path": "tests/embedded-scene.test.cjs",
         "identity_mode": "content",
-        "sha256": "872735410fcb190345b28f4f52396bd84668e78c88837bd7c0ae9c028abec86c"
+        "sha256": "9dc3fcdaa41450bef6728f58374ce3dd4381217b0396d43c7a47b71c3bafa11f"
       },
       {
         "path": "tests/embedded-texture.test.cjs",
@@ -5070,7 +5070,7 @@
       {
         "path": "tests/flight.test.cjs",
         "identity_mode": "content",
-        "sha256": "ab00887395dc3202624f60a019820353f585307e7e68a8431ee93377715bb9a9"
+        "sha256": "e7c1dbd5a016e7535ab5f3a3ff7384750f19bae916363984052834c05e99135e"
       },
       {
         "path": "tests/format-parity.test.cjs",

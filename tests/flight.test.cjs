@@ -85,6 +85,7 @@ function presentationFixture(options = {}) {
       innerHeight: 800,
       SiteEffects: effects,
       CSS: { supports: () => true },
+      ...options.window,
     },
     fragmentPlan(input) {
       calls.push({ name: 'plan' });
@@ -190,6 +191,43 @@ test('world preparation shares landing context, stages intermediate rooms and re
     controller.signal
   );
   assert.equal(calls.at(-1).name, 'prime', 'an aborted preparation cannot acquire outgoing paint');
+});
+
+test('speculative capture waits for startup idle and navigation cancels its queued work', async () => {
+  const calls = [];
+  const tasks = new Map();
+  let serial = 0;
+  const fixture = presentationFixture({
+    window: {
+      requestIdleCallback(callback) {
+        tasks.set(++serial, callback);
+        return serial;
+      },
+      cancelIdleCallback: (ticket) => tasks.delete(ticket),
+    },
+    embedded: {
+      async prime(data) {
+        calls.push(data.page);
+        return true;
+      },
+      async prepareDeparture() {
+        calls.push('departure');
+      },
+    },
+  });
+  const controller = new AbortController();
+  const stale = fixture.presentation.prepareNext({ page: 'research' }, controller.signal);
+  assert.deepEqual(calls, []);
+  assert.equal(tasks.size, 1);
+  controller.abort();
+  await stale;
+  assert.equal(tasks.size, 0);
+  assert.deepEqual(calls, [], 'cancelled warm-up never captures or hides content');
+  const fresh = fixture.presentation.prepareNext({ page: 'writing' });
+  tasks.values().next().value();
+  await fresh;
+  assert.deepEqual(calls, ['writing', 'departure']);
+  assert.equal(tasks.size, 0);
 });
 
 test('solid-owned native handoff stays at native opacity and transform while Canvas assembles', () => {

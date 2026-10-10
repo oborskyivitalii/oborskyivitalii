@@ -314,6 +314,22 @@ const plain = (value) => JSON.parse(JSON.stringify(value));
 const journeyPose = (h, from, to, amount) =>
   math.mix(h.pose(from), h.pose(to), amount * amount * (3 - 2 * amount));
 
+test('warming current paint retains a reusable field without activating a departure session', async () => {
+  const h = harness();
+  h.collect('index', 100);
+  await h.bridge.prime(h.data('research'), 78);
+  const content = h.native('index');
+  await h.bridge.prepareDeparture(content, { cacheOnly: true });
+  const count = h.captures.length;
+  assert.equal(h.bridge.diagnostics().bank.length, 2);
+  assert.equal(h.bridge.diagnostics().departure.ready, false);
+  assert.equal(h.bridge.active(), false);
+  assert.equal(h.bridge.owners().length, 0);
+  await h.bridge.prepareDeparture(content);
+  assert.equal(h.captures.length, count, 'click reuses the validated captured paint');
+  assert.equal(h.bridge.diagnostics().departure.ready, true);
+});
+
 test('idle next-page field retains real branch membership, readable paint and the existing periodic breathing', async () => {
   const h = harness();
   assert.equal(await h.bridge.prime(h.data('research'), 78), false);
