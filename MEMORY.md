@@ -17,6 +17,9 @@ Dated continuity, not live authority. Last verified: **2026-10-09**.
   preserves resident fields until actual navigation requests a different landing.
   Reconciled1b09fac preserves remote68004bc. Manual cold capture exposed shared
   fractional border pixels; isolated bounded native proof corrects that ambiguity.
+  Exact121dca9 passes source CI but fails hosted Color after core journeys.
+  Correct last-painted owner diagnostics and interrupted compact fallback's
+  retained-bank starvation; preserve strict portrait/caps and failed raw evidence.
   Final exact-source hosted proof remains required; retain every failed run.
 
   Exact68004bc published ec1eae9f but failed cold Research capture: extra pixel

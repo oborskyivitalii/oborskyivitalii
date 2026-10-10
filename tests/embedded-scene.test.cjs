@@ -200,6 +200,8 @@ function harness({
         decorations: [{ ownerPath: [0], paintFingerprint: 'native-divider' }],
         dispose() {
           this.disposeCount++;
+          this.canvas.width = 0;
+          this.canvas.height = 0;
         },
       };
       assets.push(asset);
@@ -462,6 +464,8 @@ test('Home to Writing crosses the real Research host field while keeping the int
   await h.bridge.prime(h.data('research'), 78);
   const researchIds = plain(h.bridge.diagnostics().ids);
   await h.prepare('index', 'writing');
+  assert.equal(h.bridge.diagnostics().residentRoutes.length, 3);
+  h.collect('index', 100);
   const before = h.bridge.diagnostics();
   assert.equal(before.bank.length, 3);
   assert.equal(before.bank.find((entry) => entry.route === 'writing').host, 'research');
@@ -857,6 +861,113 @@ test('fourth route evicts only the unprotected oldest field and never expands th
     0
   );
   assert.ok(h.bridge.reservation().pieces <= 96);
+});
+
+test('an eviction between paints keeps every reported face bound to its actual painted bank', async () => {
+  for (const compact of [false, true]) {
+    const h = harness({ compact, deferred: true });
+    h.collect('index', 100);
+    for (const route of ['research', 'writing']) {
+      const warming = h.bridge.prime(h.data(route), 78);
+      h.captures.at(-1).resolve();
+      assert.equal(await warming, true);
+    }
+    const departure = h.bridge.prepareDeparture(h.native('index'), { cacheOnly: true });
+    h.captures.at(-1).resolve();
+    assert.equal(await departure, true);
+    h.collect('index', 500);
+    const painted = plain(h.bridge.diagnostics());
+    assert.ok(painted.faces.some((face) => face.id.startsWith('research:')));
+    const warming = h.bridge.prime(h.data('talks'), 78);
+    assert.equal(h.assets[0].disposeCount, 1, 'eviction releases its bitmap before acquisition');
+    assert.equal(h.assets[0].canvas.width, 0);
+    assert.equal(h.assets[0].canvas.height, 0);
+    assert.equal(h.bridge.reservation().owners, 2, 'live admission excludes the released bitmap');
+    const betweenPaints = plain(h.bridge.diagnostics());
+    assert.deepEqual(
+      betweenPaints.faces,
+      painted.faces,
+      'all actual painted faces remain reported'
+    );
+    assert.deepEqual(betweenPaints.bank, painted.bank);
+    assert.equal(betweenPaints.texturePixels, painted.texturePixels);
+    assert.deepEqual(betweenPaints.residentUsage, plain(h.bridge.reservation()));
+    assert.ok(!betweenPaints.residentRoutes.includes('research'));
+    const ids = new Set(
+      betweenPaints.bank.flatMap((entry) => entry.groups.flatMap((group) => group.ids))
+    );
+    assert.ok(betweenPaints.faces.every((face) => ids.has(face.id)));
+    h.captures.at(-1).resolve();
+    assert.equal(await warming, true);
+    h.collect('index', 600);
+    const repainted = plain(h.bridge.diagnostics());
+    assert.ok(repainted.bank.some((entry) => entry.route === 'talks'));
+    assert.ok(repainted.bank.every((entry) => entry.route !== 'research'));
+    assert.ok(repainted.faces.every((face) => !face.id.startsWith('research:')));
+    assert.equal(repainted.texturePixels, h.bridge.reservation().layerPixels);
+    assert.ok(h.bridge.reservation().pieces <= (compact ? 40 : 96));
+    h.bridge.cancel();
+    assert.deepEqual(plain(h.bridge.diagnostics().faces), []);
+    assert.deepEqual(
+      plain(h.bridge.diagnostics().bank.map((entry) => entry.route)),
+      plain(h.bridge.diagnostics().residentRoutes)
+    );
+    h.bridge.invalidate();
+    assert.deepEqual(plain(h.bridge.diagnostics().bank), []);
+    assert.deepEqual(plain(h.bridge.diagnostics().faces), []);
+    assert.equal(h.bridge.diagnostics().texturePixels, 0);
+  }
+});
+
+test('a failed destination recapture cannot start a flight with its disposed prior field', async () => {
+  const h = harness({ deferred: true });
+  h.collect('index', 100);
+  const warming = h.bridge.prime(h.data('research'), 78);
+  h.captures[0].resolve();
+  assert.equal(await warming, true);
+  const departure = h.bridge.prepareDeparture(h.native('index'));
+  h.captures[1].resolve();
+  assert.equal(await departure, true);
+  const recapture = h.bridge.prime(h.data('research'), 78, { position: [0, 600] });
+  assert.equal(h.assets[0].disposeCount, 1);
+  h.captures[2].resolve(null);
+  assert.equal(await recapture, false);
+  assert.equal(
+    h.bridge.begin({ from: 'index', to: 'research', landing: { position: [0, 0] } }),
+    false,
+    'old landing metadata cannot authorize a flight after its field was disposed'
+  );
+  assert.equal(h.bridge.active(), false);
+  assert.equal(h.bridge.diagnostics().ready, false);
+  assert.equal(await h.bridge.prepareDeparture(h.native('index')), false);
+  assert.deepEqual(plain(h.bridge.diagnostics().residentRoutes), ['index']);
+  assert.equal(h.bridge.owners().length, 0);
+});
+
+test('a failed source recapture cannot hide native content using its disposed departure field', async () => {
+  const h = harness({ deferred: true });
+  h.collect('index', 100);
+  const warming = h.bridge.prime(h.data('research'), 78);
+  h.captures[0].resolve();
+  assert.equal(await warming, true);
+  const content = h.native('index');
+  const departure = h.bridge.prepareDeparture(content);
+  h.captures[1].resolve();
+  assert.equal(await departure, true);
+  content.owners[0].paintFingerprint = 'changed-native-paint';
+  const recapture = h.bridge.prepareDeparture(content);
+  assert.equal(h.assets[1].disposeCount, 1);
+  h.captures[2].resolve(null);
+  assert.equal(await recapture, false);
+  assert.equal(
+    h.bridge.begin({ from: 'index', to: 'research', landing: { position: [0, 0] } }),
+    false
+  );
+  assert.equal(h.bridge.active(), false);
+  assert.equal(h.bridge.diagnostics().departure.ready, false);
+  assert.notEqual(content.style.visibility, 'hidden');
+  assert.deepEqual(plain(h.bridge.diagnostics().residentRoutes), ['research']);
+  assert.equal(h.bridge.owners().length, 0);
 });
 
 test('one mismatched captured block prevents native hide while retaining the valid resident pool', async () => {

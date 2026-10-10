@@ -2339,6 +2339,67 @@ test('persistent field pair requires real bound native text, breathing fractals 
   }
 });
 
+test('live resident resources stay bounded independently of the last painted atlas bank', () => {
+  const { validateEmbeddedPrototype } = require('../tools/quality/color-browser.cjs');
+  const observed = embeddedPrototypeFixture();
+  for (const frame of [observed.initial, ...observed.frames, observed.final]) {
+    const { diagnostics } = frame;
+    diagnostics.residentRoutes = diagnostics.bank.map((entry) => entry.route);
+    diagnostics.residentUsage = Object.fromEntries(
+      Object.keys(diagnostics.caps).map((key) => [key, 0])
+    );
+    for (const entry of diagnostics.bank) {
+      for (const group of entry.groups) {
+        const usage = diagnostics.residentUsage;
+        usage.pieces += group.pieces;
+        usage.owners++;
+        usage.descendants += group.descendants;
+        usage.textBytes += group.textBytes;
+        usage.layerPixels += group.pixels;
+      }
+    }
+  }
+  assert.equal(validateEmbeddedPrototype(observed, 'light').frames, 12);
+  const changing = structuredClone(observed);
+  changing.frames[0].diagnostics.residentRoutes = ['index', 'writing', 'talks'];
+  assert.equal(validateEmbeddedPrototype(changing, 'light').frames, 12);
+  changing.frames[0].diagnostics.residentRoutes = [];
+  changing.frames[0].diagnostics.residentUsage = null;
+  assert.equal(validateEmbeddedPrototype(changing, 'light').frames, 12);
+  const mutations = [
+    (diagnostics) => delete diagnostics.residentRoutes,
+    (diagnostics) => delete diagnostics.residentUsage,
+    (diagnostics) => (diagnostics.residentUsage = null),
+    (diagnostics) => (diagnostics.residentRoutes = ['index', 'index']),
+    (diagnostics) => (diagnostics.residentRoutes = ['index', 'research', 'writing', 'talks']),
+    (diagnostics) => (diagnostics.residentRoutes = ['unknown']),
+    (diagnostics) => (diagnostics.residentRoutes = []),
+    (diagnostics) => (diagnostics.residentUsage.owners = 0),
+    (diagnostics) => (diagnostics.residentUsage.pieces = 0),
+    (diagnostics) => (diagnostics.residentUsage.layerPixels = 0),
+  ];
+  for (const key of Object.keys(observed.initial.diagnostics.caps)) {
+    mutations.push(
+      (diagnostics) => (diagnostics.residentUsage[key] = diagnostics.caps[key] + 1),
+      (diagnostics) => (diagnostics.residentUsage[key] = -1),
+      (diagnostics) => (diagnostics.residentUsage[key] = 0.5),
+      (diagnostics) => (diagnostics.residentUsage[key] = Infinity),
+      (diagnostics) => (diagnostics.residentUsage[key] = '1'),
+      (diagnostics) => delete diagnostics.residentUsage[key]
+    );
+  }
+  for (const mutate of mutations) {
+    const changed = structuredClone(observed);
+    mutate(changed.frames[0].diagnostics);
+    assert.throws(
+      () => validateEmbeddedPrototype(changed, 'light'),
+      /live resident|live route|live routes|empty live bank/,
+      String(mutate)
+    );
+  }
+  assert.equal(validateEmbeddedPrototype(embeddedPrototypeFixture(), 'light').frames, 12);
+});
+
 test('native world handoff uses the canonical clock across its 24 second rollover', () => {
   const { validateEmbeddedPrototype } = require('../tools/quality/color-browser.cjs');
   const observed = embeddedPrototypeFixture();

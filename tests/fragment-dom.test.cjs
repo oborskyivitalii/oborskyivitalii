@@ -1976,6 +1976,131 @@ test('long offscreen archives preserve captured viewport paint inside the acquis
   assertDisposed(h);
 });
 
+test('failed world admission releases resident capacity before complete native DOM fallback', async () => {
+  for (const compact of [true, false]) {
+    for (const failedPhase of ['depart', 'arrive']) {
+      const h = fixture({ storage: { 'vo.fragment-preview': 'on' } });
+      const { figure, vector, polygons } = portraitFigure(h);
+      const caps = fragmentPlan(math).settings.caps[compact ? 'compact' : 'full'];
+      const residentPieces = compact ? caps.pieces - 1 : caps.pieces;
+      let reservedPieces = residentPieces;
+      let active = false;
+      let released = 0;
+      const camera = JSON.stringify({
+        position: [6, 4, 23.73],
+        target: [0, 0, -5.26],
+      });
+      const scene = new h.Node('section');
+      scene.dataset.camera = camera;
+      h.body.append(scene);
+      const embedded = {
+        reservation: () => ({ pieces: reservedPieces }),
+        owners: () => (active ? [h.content] : []),
+        begin() {
+          active = failedPhase === 'arrive';
+          if (active) h.content.style.visibility = 'hidden';
+          return active;
+        },
+        land() {
+          active = false;
+        },
+        active: () => active,
+        complete: () => true,
+        invalidate() {
+          assert.equal(h.tiles().length, 0, 'resident release precedes DOM acquisition');
+          reservedPieces = 0;
+          active = false;
+          released++;
+          h.content.style.removeProperty('visibility');
+          h.content.style.removeProperty('opacity');
+        },
+        cancel() {
+          active = false;
+        },
+        async prime() {
+          reservedPieces = Math.floor(caps.pieces / 3);
+          return true;
+        },
+        async prepareDeparture() {},
+      };
+      vm.runInContext(flight.descriptor().code, h.context);
+      h.window.SiteEffects.registerView(math.cameraView);
+      h.window.SiteEffects.embedded = embedded;
+      const presentation = h.window.SiteEffects.navigation(h.content);
+      const departure = { opacity: 1, z: 0 };
+      const position = JSON.parse(camera).position;
+      const snapshot = (progress) =>
+        h.snapshot(position, {
+          direction: 'backward',
+          progress,
+          compact,
+          width: compact ? 390 : 1440,
+          height: 844,
+          projection: math.cameraView(
+            { position, target: [position[0], position[1], position[2] - 10] },
+            compact ? 390 : 1440,
+            844
+          ),
+        });
+      presentation.begin(true, {
+        from: 'index',
+        to: 'index',
+        direction: 'backward',
+      });
+      assert.equal(scene.dataset.camera, camera, 'retarget preserves the displayed camera');
+      if (failedPhase === 'arrive') {
+        assert.equal(reservedPieces, residentPieces, 'accepted world departure retains its bank');
+        assert.equal(released, 0);
+        presentation.prepareMount();
+        presentation.mounted();
+      }
+      assert.equal(reservedPieces, 0);
+      assert.equal(released, 1);
+      assert.notEqual(h.content.style.visibility, 'hidden', 'failed world restores native paint');
+      presentation.present(
+        failedPhase === 'depart' ? 0.1 : 0.7,
+        'backward',
+        departure,
+        snapshot(failedPhase === 'depart' ? 0.1 : 0.7)
+      );
+      assert.equal(
+        h.content.dataset.fragmentOwners,
+        '3',
+        'heading, paragraph and portrait all fly'
+      );
+      assert.ok(h.tiles().length >= 3 && h.tiles().length <= caps.pieces);
+      for (const owner of [h.heading, h.paragraph, figure])
+        assert.equal(owner.style.visibility, 'hidden');
+      const portraitTiles = h.tiles().filter((tile) => tile.children[0].matches('figure'));
+      assert.ok(portraitTiles.length > 0);
+      assertPaintCoverage(portraitTiles, figure, {
+        left: 326,
+        top: 130,
+        width: compact ? 128 : 164,
+        height: 164,
+      });
+      for (const tile of portraitTiles) {
+        const copy = tile.children[0];
+        const copiedVector = copy.querySelector('svg');
+        const copiedImage = copy.querySelector('img');
+        assert.equal(copiedVector.getAttribute('viewBox'), vector.getAttribute('viewBox'));
+        assert.equal(copiedVector.namespaceURI, vector.namespaceURI);
+        assert.equal(copy.querySelectorAll('polygon').length, polygons.length);
+        assert.equal(copiedImage.complete, true);
+        assert.ok(copiedImage.naturalWidth > 0);
+        assert.equal(copiedImage.src, h.image.currentSrc);
+      }
+      assert.equal(scene.dataset.camera, camera);
+      presentation.clear();
+      assertDisposed(h);
+      assert.notEqual(figure.style.visibility, 'hidden');
+      await presentation.prepareNext({ page: 'research' });
+      assert.ok(reservedPieces > 0, 'settled native fallback permits renewed world warming');
+      assert.equal(scene.dataset.camera, camera);
+    }
+  }
+});
+
 test('unavailable scene completes the serialized arrival tail without waiting for another paint', () => {
   const h = fixture({ storage: { 'vo.fragment-preview': 'on' } });
   vm.runInContext(flight.descriptor().code, h.context);

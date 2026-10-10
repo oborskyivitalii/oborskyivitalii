@@ -403,6 +403,36 @@ function validateEmbeddedPrototype(observation, expectedTheme, expected = {}) {
       expectedCaps,
       'persistent bank changed original resource caps'
     );
+    if (
+      Object.hasOwn(diagnostics, 'residentUsage') ||
+      Object.hasOwn(diagnostics, 'residentRoutes')
+    ) {
+      const routes = diagnostics.residentRoutes;
+      assert.ok(
+        Array.isArray(routes) &&
+          routes.length <= 3 &&
+          routes.every((route) => order.includes(route)),
+        'missing or unbounded live resident routes'
+      );
+      assert.equal(new Set(routes).size, routes.length, 'duplicate live resident routes');
+      const usage = diagnostics.residentUsage;
+      assert.ok(
+        (usage === null && routes.length === 0) ||
+          (usage && typeof usage === 'object' && !Array.isArray(usage)),
+        'missing live resident resource counts'
+      );
+      for (const key of Object.keys(expectedCaps)) {
+        const count = usage === null ? 0 : usage[key];
+        assert.ok(Number.isInteger(count) && count >= 0, 'invalid live resident ' + key);
+        assert.ok(count <= expectedCaps[key], 'live resident bank exceeds ' + key);
+        if (!routes.length) assert.equal(count, 0, 'empty live bank retains ' + key);
+      }
+      if (routes.length) {
+        assert.ok(usage.owners >= routes.length, 'live route lacks a native atlas owner');
+        assert.ok(usage.pieces >= routes.length * 3, 'live route lacks closed atlas shards');
+        assert.ok(usage.layerPixels > 0, 'live routes lack native bitmap pixels');
+      }
+    }
     assert.ok(
       Array.isArray(diagnostics.bank) &&
         diagnostics.bank.length > 0 &&

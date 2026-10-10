@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "a0a92f5a65ecbe10ce34b05a84a2988988edfe19fd9aad03ff05a52d5c32e91a",
+    "digest": "b8b7693f96c8bcbd358e799657087f0f37286e0b965b0d83a2a0cf34efc8795e",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -146,7 +146,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "db071b0e8326305eecc992dd432fc6cc2b13277663c20411d49bec734dd31492"
+        "sha256": "2717b477a3c8cf8781ba6fc575ae2cf608e956f203ebb222cb57e96596e57e03"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -241,7 +241,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "d1adaf2662f70fd8b0da2a6ad17d5d0faed4d01b93e9f56ecfecf58e45fa7b66"
+        "sha256": "091e87a53e0d002d8599635a26c6f41fe54926ba63b0a330894176310d6a6c7d"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -705,7 +705,7 @@
       {
         "path": "review/issue-49/2026-10-08-analysis.md",
         "identity_mode": "content",
-        "sha256": "957bca8b65ed990794fe3fe222cd66ef248bc6003a5f1ac0b7b5c19366c0cd8c"
+        "sha256": "5086f96a1ce8285dc593d168451b978261ca54d227247ca7db6a5747da01698b"
       },
       {
         "path": "review/issue-54/2026-10-08-analysis.md",
@@ -4595,7 +4595,7 @@
       {
         "path": "site/effects/embedded-scene.cjs",
         "identity_mode": "content",
-        "sha256": "e0ae0e0e806a8bc8349d456b94d3441695a4019c437decf0d0d9be7f78a5890b"
+        "sha256": "9feea0c8464b8a205fd33cf2807b4a0787facddbececeeb40bd9b9f80ddf513d"
       },
       {
         "path": "site/effects/embedded-texture.cjs",
@@ -4605,7 +4605,7 @@
       {
         "path": "site/effects/flight.cjs",
         "identity_mode": "content",
-        "sha256": "8eb51935f349f3a35682c4deb40214e14a1c0e41fce0d41cc4339671f4de835c"
+        "sha256": "20b5c5bbc62ab20a8817899a224c74ca65aab50d7fad48a08911a583ac60db2b"
       },
       {
         "path": "site/effects/flight.css",
@@ -5040,7 +5040,7 @@
       {
         "path": "tests/embedded-scene.test.cjs",
         "identity_mode": "content",
-        "sha256": "ed8540ea896733ad8c65a9f865783796509e4e1e25804f301f27ee600f0861e5"
+        "sha256": "824968b865464ad7afb70f43e2fa868cdf8ef83a023649357b2feef8757b195f"
       },
       {
         "path": "tests/embedded-texture.test.cjs",
@@ -5085,7 +5085,7 @@
       {
         "path": "tests/fragment-dom.test.cjs",
         "identity_mode": "content",
-        "sha256": "5582da52dd636037f9c467a3bf6339c0fd28209732303a680bbc426dfecbb9e2"
+        "sha256": "19876169b2ab04d560add68921055ed3e68796a99d2bf6c623066fdb36ef595a"
       },
       {
         "path": "tests/fragment-plan.test.cjs",
@@ -5200,7 +5200,7 @@
       {
         "path": "tests/staging-regression.test.cjs",
         "identity_mode": "content",
-        "sha256": "bbaabbe87903ef266d2c65914d7e97574633d77867c26c06e2160cca13a52008"
+        "sha256": "a2f6430bbf85dc3d42cc7e8b9d98b33d586718c637a0a94c62fbf12111d5cc40"
       },
       {
         "path": "tests/staging-reporting.test.cjs",
@@ -5505,7 +5505,7 @@
       {
         "path": "tools/quality/color-browser.cjs",
         "identity_mode": "content",
-        "sha256": "c1494cb91da80de0e124ede810bad8f4caaeb060f52f3cf926a6ffc1320daea0"
+        "sha256": "308b4218b31114a69fde63f642ed5cebdbe111f3d39c5f554e0833ff34f0c750"
       },
       {
         "path": "tools/quality/common.cjs",

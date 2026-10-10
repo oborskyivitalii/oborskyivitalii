@@ -492,6 +492,9 @@ function createPresentation(content) {
     else content.style.removeProperty('transform');
   }
   function beginFragments() {
+    // Failed world admission must release its resident bank before DOM paint
+    // acquires the same shared budget. Invalidation restores native owners too.
+    window.SiteEffects.embedded?.invalidate();
     fragments ||= fragmentDOM(
       content,
       fragmentPlan({ cameraView: (...args) => window.SiteEffects.cameraView(...args) }),

@@ -34,6 +34,7 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
   let hidden = [];
   let faces = [];
   let departureFaces = [];
+  let paintedEntries = [];
   let lastFailure = null;
   let publishedStatus = null;
   const clamp = (amount) => Math.max(0, Math.min(1, amount));
@@ -101,6 +102,7 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
     tailStarted = null;
     faces = [];
     departureFaces = [];
+    paintedEntries = [];
   }
   function invalidate() {
     cancel();
@@ -120,14 +122,21 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
     }
     return result;
   }
-  function reservation() {
-    if (!bank.size) return null;
+  function totalUsage(entries) {
     const total = Object.fromEntries(Object.keys(caps()).map((key) => [key, 0]));
-    for (const entry of bank.values()) {
-      const own = usage(entry);
+    let count = 0;
+    for (const entry of entries) {
+      count++;
+      const own = entry.paintedUsage || usage(entry);
       for (const key of Object.keys(total)) total[key] += own[key];
     }
-    return total;
+    return count ? total : null;
+  }
+  function reservation() {
+    return totalUsage(bank.values());
+  }
+  function resident(entry) {
+    return !!entry && !entry.disposed && bank.get(entry.route) === entry;
   }
   function touch(entry) {
     bank.delete(entry.route);
@@ -135,8 +144,26 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
   }
   function remove(route) {
     const entry = bank.get(route);
-    if (entry) dispose(entry);
+    if (entry) {
+      // An evicted field still owns pixels in the last Canvas paint. Preserve
+      // only its diagnostic record, releasing its full model and bitmap now.
+      paintedEntries = paintedEntries.map((painted) =>
+        painted === entry
+          ? {
+              paintedBank: {
+                route: entry.route,
+                host: entry.host,
+                groups: groupDiagnostics(entry),
+              },
+              paintedUsage: usage(entry),
+            }
+          : painted
+      );
+      dispose(entry);
+    }
     bank.delete(route);
+    if (incoming === entry) incoming = null;
+    if (outgoing === entry) outgoing = null;
   }
   function makeRoom(route, protectedRoutes) {
     remove(route);
@@ -495,7 +522,7 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
   }
   async function prepareDeparture(content, options = {}) {
     const route = document.body.dataset.page;
-    if (!incoming || phase || pending || options.signal?.aborted) {
+    if (!resident(incoming) || phase || pending || options.signal?.aborted) {
       reject('departure', route, 'source-not-ready');
       return false;
     }
@@ -556,8 +583,8 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
   }
   function begin(next) {
     if (
-      !incoming ||
-      !outgoing ||
+      !resident(incoming) ||
+      !resident(outgoing) ||
       incoming.route !== next.to ||
       outgoing.route !== next.from ||
       next.from === next.to ||
@@ -683,17 +710,25 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
       arrivalStart: arrivalStart(),
       handoff,
       clock: state?.ambientTime || 0,
-      texturePixels: reservation()?.layerPixels || 0,
+      // These faces describe the last Canvas paint. An asynchronous acquisition
+      // may already have evicted a bitmap; its painted ownership remains until
+      // the existing scene clock replaces those pixels. Admission stays live.
+      texturePixels: totalUsage(faces.length ? paintedEntries : bank.values())?.layerPixels || 0,
+      residentUsage: reservation(),
+      residentRoutes: [...bank.keys()],
       nativeRect: incoming?.groups[0]?.asset.rect || null,
       nativeLines: incoming?.groups[0]?.asset.lines || [],
       envelope: incoming?.groups[0]?.asset.envelope || null,
       ids: incoming?.groups.flatMap(({ model }) => model.shards.map(({ id }) => id)) || [],
       groups: groupDiagnostics(incoming),
-      bank: [...bank.values()].map((entry) => ({
-        route: entry.route,
-        host: entry.host,
-        groups: groupDiagnostics(entry),
-      })),
+      bank: (faces.length ? paintedEntries : [...bank.values()]).map(
+        (entry) =>
+          entry.paintedBank || {
+            route: entry.route,
+            host: entry.host,
+            groups: groupDiagnostics(entry),
+          }
+      ),
       coverage: {
         expected: incoming?.groups.reduce((sum, group) => sum + group.sources.length, 0) || 0,
         selected: incoming?.groups.reduce((sum, group) => sum + group.sources.length, 0) || 0,
@@ -838,10 +873,11 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
       }
       faces = [];
       departureFaces = [];
+      paintedEntries = [...bank.values()];
       if (phase) progress = arrivalAmount();
       advanceHandoff(frame);
       const native = document.body.dataset.page;
-      for (const entry of bank.values()) {
+      for (const entry of paintedEntries) {
         let amount = 0;
         if (phase && entry === incoming) amount = progress;
         else if (phase && entry === outgoing) amount = 1 - travelProgress;
