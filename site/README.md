@@ -124,14 +124,16 @@ paints for camera/journey diagnostics. It uses the existing clock and constructs
 no frame evidence when the probe is absent; no independent loop is added.
 Historical ribbon material/phase evidence remains attached to its prior edition.
 
-Issue49's embedded extension prototypes only Research's introductory paragraph
-with its canonical reading backdrop on Home-to-Research travel. The router may
-prewarm that exact pinned destination through its existing verified route cache;
-an inert, inaccessible staging copy measures one native block at the target width.
-`embedded-texture.cjs` admits a bounded local texture only when the native font,
-paint and image-decoding capabilities can preserve it. Unsupported paint,
-capture/decode failure, invalidation or a different landing retains the existing
-shared fragments or native fallback. This is not an all-page rasterization path.
+Issue49's embedded extension covers supported visible Home and Research content
+on travel in both directions. The router may prewarm the exact pinned destination
+through its existing verified route cache; an inert, inaccessible staging copy
+measures the destination viewport at the target width. `embedded-texture.cjs`
+captures native headings, text, reading paper, links, lists, decoded local images
+and supported static SVG as bounded texture owners. Departure and arrival share
+the original piece, pixel, owner, descendant and text limits. Unsupported paint,
+capture/decode failure, invalidation or an unsupported landing retains the existing
+shared fragments or native fallback. Capture follows the visible viewport rather
+than allocating the full scrollable document.
 
 `embedded-plan.cjs` gives those same identified shards closed front, rear and
 side faces, target-camera endpoints and a persistent world anchor.
@@ -140,15 +142,15 @@ the existing scene composition sorts its faces with the fractal. It owns no
 runtime dependency, second renderer or animation clock. Preparation, native
 owner hiding, texture lifetime, cancellation and disposal remain bounded and
 reserve resources against the shared departure/arrival caps. Arrival returns
-the ordinary HTML paragraph for reading, selection and interaction. The final
-180ms of the same 1.8-second assembly clock may blend the native paragraph in
+ordinary semantic HTML for reading, selection and interaction. The final
+180ms of the same 1.8-second assembly clock may blend each native owner in
 as the corresponding Canvas faces fade out, only after the shared camera reaches
 its exact target pose. This preserves the ordinary scene atmosphere overlay
 without a hard color seam between Canvas texture and foreground HTML; it adds
 no independent clock or generic content-plane fade. Source
 fixtures do not establish native texture fidelity or perceived depth: the
 explicit AC15 embedded visual gate and existing fidelity/performance/device
-gates remain pending before expansion or release admission.
+gates remain pending before visual acceptance or release admission.
 
 Large inline titles retain native wrapping while their cloned backgrounds
 extend0.16em around each fragment. An inner positioned ink span paints the
