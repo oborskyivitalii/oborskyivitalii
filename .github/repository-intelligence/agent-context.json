@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "70b6c5c44dd17ac006bac25d08cb919245f6c64e52823e25cd4adb3d82b760e9",
+    "digest": "b218b5db0de2d943ac47015949adcdc457d0518b495734323212d82b236a3c7b",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -705,7 +705,7 @@
       {
         "path": "review/issue-49/2026-10-08-analysis.md",
         "identity_mode": "content",
-        "sha256": "6c6e8fec2f3643934985a38f31a31a0e7a36cf46520feb660f1a67d2b3f364a2"
+        "sha256": "b06c6567e93a7038ad752c61281dc4d1cbbb71f2f2be3adec8bd3877a05f6d93"
       },
       {
         "path": "review/issue-54/2026-10-08-analysis.md",
@@ -5135,7 +5135,7 @@
       {
         "path": "tests/preview-smoke.test.cjs",
         "identity_mode": "content",
-        "sha256": "2daa05ee76905e38a5124e3e76f09bca7bf655667146e10d5f5a54146a82ef73"
+        "sha256": "7e775c89ec1735f2c9e5b0d47bf19ac48a5fd8a8d09b617b887fec3a63a3286a"
       },
       {
         "path": "tests/preview.test.cjs",
@@ -5365,7 +5365,7 @@
       {
         "path": "tests/writing-variants.test.cjs",
         "identity_mode": "content",
-        "sha256": "2584fe38a33813e9c5697e217e2a469768181d7a8c80b4415c7549829ed5d222"
+        "sha256": "a4a29ebe63fb63c09d2f2a662aa3026c05cd590dfda2e66af64044988e3ef542"
       },
       {
         "path": "tools/RI-LICENSE.md",
@@ -5505,7 +5505,7 @@
       {
         "path": "tools/quality/color-browser.cjs",
         "identity_mode": "content",
-        "sha256": "8c741c18cadd461bcbdfc1716d1233e77c7897e249a5f4b9876173cdc8682d63"
+        "sha256": "ea19a11bda47b84823feab345e78d2bf620ea82f6f15f5343c926cbe75487ac6"
       },
       {
         "path": "tools/quality/common.cjs",
@@ -5610,7 +5610,7 @@
       {
         "path": "tools/quality/local-browser.cjs",
         "identity_mode": "content",
-        "sha256": "8671284d66f18c714a0643dfe8139199659ab60fd1aaf9ad5293b25f268df206"
+        "sha256": "8078447570b9bf8eb6b3f47e6becd04b024b8dbae9536c3d0396a28180721491"
       },
       {
         "path": "tools/quality/local.cjs",
@@ -5815,7 +5815,7 @@
       {
         "path": "tools/quality/writing-variants.cjs",
         "identity_mode": "content",
-        "sha256": "76bae5a6e185f4f4bafc9bee52884e97fbfc957f304a895d01017529e8bce24f"
+        "sha256": "188bc4f2acbf90210cc93e684d310c4d5cd41b3edb47e653f2ab826e404b59d1"
       },
       {
         "path": "tools/repository_intelligence.py",

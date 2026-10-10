@@ -7,8 +7,87 @@ const {
   verifyResponse,
   identity,
   verifyRuntimeIdentity,
+  state,
+  routeSelector,
+  researchControls,
+  responseNames,
 } = require('../tools/quality/local-browser.cjs');
 const { validate } = require('../tools/quality/flight-detail.cjs');
+test('preview heading measurements count the native page while a separate warm stage is present', async () => {
+  const vm = require('node:vm');
+  let nativeHeadings = 1;
+  const page = {
+    evaluate: async (callback) =>
+      vm.runInNewContext('(' + callback.toString() + ')()', {
+        document: {
+          body: { dataset: { page: 'research' } },
+          documentElement: { scrollWidth: 1440 },
+          getElementById: () => ({ hidden: false, disabled: false, textContent: 'Motion: on' }),
+          querySelectorAll: (selector) =>
+            Array.from({
+              length: selector === '#site-content h1' ? nativeHeadings : nativeHeadings + 1,
+            }),
+          querySelector: (selector) => ({
+            dataset: { ready: 'true', travel: 'settled', phase: '0.5' },
+            content: selector.includes('site-variant') ? 'color' : 'a'.repeat(64),
+          }),
+        },
+        innerWidth: 1440,
+        getComputedStyle: () => ({ visibility: 'hidden' }),
+      }),
+  };
+  assert.equal((await state(page)).h1, 1, 'warm heading is outside the current native page');
+  nativeHeadings = 2;
+  assert.equal((await state(page)).h1, 2, 'duplicate native headings remain a failed measurement');
+});
+test('preview native cards, footer and Credits link stay strict when a warm page duplicates them', async () => {
+  const catalog = require('../site/content/catalog.json');
+  let nativeFooters = 1;
+  const warmFooters = 1;
+  const selected = ['Arkadiy Dobkin', 'Matthew Skelton', 'Markus Kopko'];
+  const resolve = (selector) => {
+    const native = selector.startsWith('#site-content ');
+    const bare = selector.replace(/^#site-content /, '');
+    if (bare === '.site-footer')
+      return Array(native ? nativeFooters : nativeFooters + warmFooters).fill({
+        y: 800,
+        height: 80,
+      });
+    if (bare === 'footer a[href="credits.html"]')
+      return Array(native ? 1 : 2).fill({ href: 'credits.html' });
+    if (bare === '.discussion-row')
+      return Array(Object.keys(catalog.discussions).length * (native ? 1 : 2)).fill({});
+    if (bare === '.advisor-role') return Array(native ? 2 : 4).fill({});
+    if (bare === '#acknowledgements .ack-leads article h3 a')
+      return native ? selected : [...selected, 'Warm stage response'];
+    if (bare === '#acknowledgements article')
+      return Array(native ? selected.length : selected.length + 1).fill({});
+    assert.fail('unexpected preview selector ' + selector);
+  };
+  const page = {
+    evaluate: async () => {},
+    viewportSize: () => ({ width: 1440, height: 900 }),
+    locator: (selector) => ({
+      count: async () => resolve(selector).length,
+      allTextContents: async () => resolve(selector),
+      boundingBox: async () => {
+        const matches = resolve(selector);
+        assert.equal(matches.length, 1, 'strict native footer resolution');
+        return matches[0];
+      },
+      getAttribute: async (name) => {
+        const matches = resolve(selector);
+        assert.equal(matches.length, 1, 'strict native navigation resolution');
+        return matches[0][name];
+      },
+    }),
+  };
+  await researchControls(page, 'no-canvas', 1440);
+  assert.deepEqual(await responseNames(page, 'index'), selected);
+  assert.equal(await page.locator(routeSelector('credits')).getAttribute('href'), 'credits.html');
+  nativeFooters = 2;
+  await assert.rejects(researchControls(page, 'no-canvas', 1440), /strict native footer/);
+});
 test('preview identity preserves real base descriptor and Color runtime fingerprints with exact bindings', (t) => {
   const fs = require('node:fs'),
     path = require('node:path'),

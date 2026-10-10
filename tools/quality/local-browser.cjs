@@ -102,7 +102,7 @@ async function ready(page, id) {
 }
 function routeSelector(id) {
   return id === 'credits'
-    ? 'footer a[href="credits.html"]'
+    ? '#site-content footer a[href="credits.html"]'
     : '.site-header nav a[href="' + (id === 'index' ? './' : id + '.html') + '"]';
 }
 async function state(page) {
@@ -116,7 +116,7 @@ async function state(page) {
       travel: scene.dataset.travel || null,
       phase: scene.dataset.phase,
       fallback: getComputedStyle(fallback).visibility !== 'hidden',
-      h1: document.querySelectorAll('h1').length,
+      h1: document.querySelectorAll('#site-content h1').length,
       overflow: document.documentElement.scrollWidth > innerWidth + 1,
       motion: { hidden: button.hidden, disabled: button.disabled, label: button.textContent },
       engine: document.querySelector('meta[name="site-engine"]').content,
@@ -138,8 +138,8 @@ async function routeBytes(context, url, manifest) {
 async function responseNames(page, route) {
   const selector =
     route === 'index'
-      ? '#acknowledgements .ack-leads article h3 a'
-      : '#acknowledgements .ack-grid article h3 a';
+      ? '#site-content #acknowledgements .ack-leads article h3 a'
+      : '#site-content #acknowledgements .ack-grid article h3 a';
   const names = await page.locator(selector).allTextContents();
   assert.deepEqual(
     names,
@@ -147,7 +147,7 @@ async function responseNames(page, route) {
     route + ' public-response names and order'
   );
   assert.equal(
-    await page.locator('#acknowledgements article').count(),
+    await page.locator('#site-content #acknowledgements article').count(),
     names.length,
     route + ' no additional discussion cards'
   );
@@ -161,7 +161,7 @@ async function discussionAnchor(page) {
   );
   await page.waitForFunction(
     () => {
-      const heading = document.querySelector('#acknowledgements .section-heading'),
+      const heading = document.querySelector('#site-content #acknowledgements .section-heading'),
         rect = heading.getBoundingClientRect();
       return rect.top >= -1 && rect.top < innerHeight;
     },
@@ -173,7 +173,7 @@ async function discussionNavigation(page, url) {
   await page.locator(routeSelector('index')).evaluate((el) => el.click());
   await ready(page, 'index');
   const home = await responseNames(page, 'index'),
-    cta = page.locator('#acknowledgements > a.text-link');
+    cta = page.locator('#site-content #acknowledgements > a.text-link');
   assert.equal(await cta.getAttribute('href'), 'research.html#acknowledgements');
   assert.equal(await cta.textContent(), 'Full discussion & source context ↗');
   await cta.evaluate((el) => el.click());
@@ -186,18 +186,20 @@ async function discussionNavigation(page, url) {
   await page.goForward();
   await ready(page, 'research');
   await discussionAnchor(page);
-  const nav = page.locator('nav[aria-label="Research sections"] a[href="#acknowledgements"]');
+  const nav = page.locator(
+    '#site-content nav[aria-label="Research sections"] a[href="#acknowledgements"]'
+  );
   assert.equal(await nav.textContent(), 'Advisors & responses');
   await page.locator(routeSelector('index')).evaluate((el) => el.click());
   await ready(page, 'index');
   await page
-    .locator('#acknowledgements a[href="research.html#ua-advisors"]')
+    .locator('#site-content #acknowledgements a[href="research.html#ua-advisors"]')
     .evaluate((el) => el.click());
   await ready(page, 'research');
   assert.equal(new URL(page.url()).hash, '#ua-advisors');
   await page.waitForFunction(
     () => {
-      const r = document.getElementById('ua-advisors').getBoundingClientRect();
+      const r = document.querySelector('#site-content #ua-advisors').getBoundingClientRect();
       return r.top >= -1 && r.top < innerHeight;
     },
     null,
@@ -213,38 +215,42 @@ async function discussionNavigation(page, url) {
   return { home, research, cta: true, localNavigation: true, history: true, directAnchor: true };
 }
 async function writingControls(page) {
-  await page.locator('#archive-topic').selectOption('systems');
+  await page.locator('#site-content #archive-topic').selectOption('systems');
   assert.ok(
-    (await page.locator('li.publication:visible').count()) > 0,
+    (await page.locator('#site-content li.publication:visible').count()) > 0,
     'Writing filter has results'
   );
   await page.evaluate(() => window.dispatchEvent(new Event('beforeprint')));
   await page.emulateMedia({ media: 'print' });
   assert.equal(
-    await page.locator('li.publication:visible').count(),
+    await page.locator('#site-content li.publication:visible').count(),
     primaryCount,
     'print shows all primary records and their edition links'
   );
   assert.match(
-    await page.locator('#archive-count').textContent(),
+    await page.locator('#site-content #archive-count').textContent(),
     /their linked platform editions shown for printing/
   );
   await page.emulateMedia({ media: 'screen' });
   await page.evaluate(() => window.dispatchEvent(new Event('afterprint')));
-  await page.locator('.filter-reset').evaluate((el) => el.click());
+  await page.locator('#site-content .filter-reset').evaluate((el) => el.click());
   assert.equal(
-    await page.locator('li.publication:visible').count(),
+    await page.locator('#site-content li.publication:visible').count(),
     primaryCount,
     'Writing Reset retains every primary record'
   );
 }
 async function researchControls(page, mode, width) {
   assert.equal(
-    await page.locator('.discussion-row').count(),
+    await page.locator('#site-content .discussion-row').count(),
     Object.keys(catalog.discussions).length,
     'discussion rows match the canonical catalog'
   );
-  assert.equal(await page.locator('.advisor-role').count(), 2, 'two project advisors');
+  assert.equal(
+    await page.locator('#site-content .advisor-role').count(),
+    2,
+    'two project advisors'
+  );
   if (mode === 'normal' && width === 390) {
     await page.locator('.appearance summary').click();
     await page.locator('#space-motion').click();
@@ -254,7 +260,7 @@ async function researchControls(page, mode, width) {
   await page.evaluate(() =>
     scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' })
   );
-  const footer = await page.locator('.site-footer').boundingBox();
+  const footer = await page.locator('#site-content .site-footer').boundingBox();
   assert.ok(
     footer && footer.y < page.viewportSize().height && footer.y + footer.height > 0,
     'Research bottom remains reachable'
@@ -324,8 +330,8 @@ async function scenario(browser, url, manifest, variant, width, mode) {
       );
     await page.evaluate(() => {
       window.__previewShell = {
-        header: document.querySelector('header'),
-        canvas: document.querySelector('canvas'),
+        header: document.querySelector('body > .site-header'),
+        canvas: document.getElementById('space-canvas'),
       };
     });
     for (const id of routes) {
@@ -343,8 +349,8 @@ async function scenario(browser, url, manifest, variant, width, mode) {
       assert.equal(
         await page.evaluate(
           () =>
-            window.__previewShell.header === document.querySelector('header') &&
-            window.__previewShell.canvas === document.querySelector('canvas')
+            window.__previewShell.header === document.querySelector('body > .site-header') &&
+            window.__previewShell.canvas === document.getElementById('space-canvas')
         ),
         true,
         id + ' persistent header and canvas'
@@ -361,10 +367,10 @@ async function scenario(browser, url, manifest, variant, width, mode) {
       if (mode === 'normal' && id === 'index') {
         await page.locator('#space-motion').click();
         await page.waitForTimeout(150);
-        const frozen = await page.locator('canvas').evaluate((el) => el.toDataURL());
+        const frozen = await page.locator('#space-canvas').evaluate((el) => el.toDataURL());
         await page.waitForTimeout(150);
         assert.equal(
-          await page.locator('canvas').evaluate((el) => el.toDataURL()),
+          await page.locator('#space-canvas').evaluate((el) => el.toDataURL()),
           frozen,
           'Motion Off freezes the rendered bitmap'
         );
@@ -502,6 +508,9 @@ module.exports = {
   scenario,
   ready,
   state,
+  routeSelector,
+  researchControls,
+  responseNames,
   artifactFile,
   verifyResponse,
 };

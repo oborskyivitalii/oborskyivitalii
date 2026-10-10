@@ -1009,7 +1009,7 @@ async function embeddedPrototype(page, theme, expected = { from: 'index', to: 'r
     if (expected.from === 'index') await embeddedScreenshot(page, evidence, 'idle-research');
     await page
       .locator(
-        '.site-header nav a[href="' +
+        'body > .site-header nav a[href="' +
           (expected.to === 'index' ? './' : expected.to + '.html') +
           '"]'
       )
@@ -2116,8 +2116,8 @@ async function settled(page, route) {
 async function travel(page, route) {
   const selector =
     route === 'credits'
-      ? 'footer a[href="credits.html"]'
-      : '.site-header nav a[href="' + (route === 'index' ? './' : route + '.html') + '"]';
+      ? '#site-content footer a[href="credits.html"]'
+      : 'body > .site-header nav a[href="' + (route === 'index' ? './' : route + '.html') + '"]';
   await page.locator(selector).click();
   await settled(page, route);
 }
@@ -2138,7 +2138,7 @@ async function state(page) {
   });
 }
 async function forwardFlight(page) {
-  await page.locator('.site-header nav a[href="research.html"]').click();
+  await page.locator('body > .site-header nav a[href="research.html"]').click();
   const samples = [];
   for (let i = 0; i < 200; i++) {
     const row = await state(page);
@@ -2221,8 +2221,8 @@ async function fragmentAssembly(page) {
     await preferences(page, 'fragment-flight-preview', false);
     await travel(page, 'index');
     await preferences(page, 'fragment-flight-preview', true);
-    await page.locator('.appearance summary').click();
-    await page.locator('.site-header nav a[href="research.html"]').click();
+    await page.locator('body > .site-header .appearance summary').click();
+    await page.locator('body > .site-header nav a[href="research.html"]').click();
     await page.waitForFunction(
       () =>
         document.getElementById('site-content').dataset.fragmentPhase === 'arrive' ||
@@ -2230,7 +2230,7 @@ async function fragmentAssembly(page) {
       null,
       { polling: 20, timeout: 5000 }
     );
-    await page.locator('#space-motion').click();
+    await page.locator('body > .site-header #space-motion').click();
     // Off preserves the displayed camera and pauses any remaining journey.
     // Native route readiness and cleanup complete without a camera arrival.
     await page.waitForFunction(fragmentCancellationReady, 'research', {
@@ -2258,9 +2258,9 @@ async function fragmentAssembly(page) {
     const after = await page.evaluate(fragmentFrozenState);
     assert.deepEqual(after, before, 'Off must preserve the displayed camera and ambient phase');
     evidence.offFreeze = { before, after };
-    await page.locator('#space-motion').click();
+    await page.locator('body > .site-header #space-motion').click();
     await settled(page, 'research');
-    await page.locator('.appearance summary').click();
+    await page.locator('body > .site-header .appearance summary').click();
     await preferences(page, 'fragment-flight-preview', false);
     await travel(page, 'index');
     return evidence;
@@ -2294,14 +2294,14 @@ async function triggerFragmentTrip(page, trip, direction) {
     return;
   }
   const selectors = {
-    wordmark: '.site-header .wordmark',
-    'footer-home': 'footer a[href="./#about"]',
-    footer: 'footer a[href="credits.html"]',
+    wordmark: 'body > .site-header .wordmark',
+    'footer-home': '#site-content footer a[href="./#about"]',
+    footer: '#site-content footer a[href="credits.html"]',
     'cross-link': '#site-content main a[href="' + trip.to + '.html"]',
-    header: '.site-header nav a[href="' + trip.to + '.html"]',
+    header: 'body > .site-header nav a[href="' + trip.to + '.html"]',
   };
   const link = page.locator(selectors[trip.trigger]);
-  if (trip.trigger === 'cross-link') await link.first().evaluate((element) => element.click());
+  if (trip.trigger === 'cross-link') await link.evaluate((element) => element.click());
   else await link.click();
   await settled(page, trip.to);
 }
@@ -2363,7 +2363,7 @@ async function fragmentRouteCoverage(page) {
     const departureStart = await state(page);
     await page.evaluate(embeddedPrototypeState, 'install');
     await page.evaluate(observeFragmentFlight);
-    await page.locator('.site-header nav a[href="research.html"]').click();
+    await page.locator('body > .site-header nav a[href="research.html"]').click();
     await page.waitForFunction(
       (initialCamera) =>
         (document.getElementById('site-content').dataset.fragmentPhase === 'depart' ||
@@ -2386,7 +2386,7 @@ async function fragmentRouteCoverage(page) {
     const retarget = await page.evaluate(() => {
       const scene = document.querySelector('.space-scene'),
         before = scene.dataset.camera;
-      document.querySelector('.site-header .wordmark').click();
+      document.querySelector('body > .site-header .wordmark').click();
       return {
         before,
         after: scene.dataset.camera,
@@ -2540,7 +2540,7 @@ async function scenario(browser, url, artifact, engine, width, theme) {
       'retired reading effect has no controls'
     );
     const backdropBlur = await page.evaluate(() =>
-      [...document.querySelectorAll('main *')].some((element) => {
+      [...document.querySelectorAll('#site-content main *')].some((element) => {
         const css = getComputedStyle(element, '::before');
         return css.backdropFilter && css.backdropFilter !== 'none';
       })

@@ -421,3 +421,48 @@ test('edge bypass retains serialized controls but does not register their hooks;
         'a missing or duplicated formula-aware world contract fails closed'
       );
 });
+test('no-ribbons preserves the canonical room cache API and rejects ambiguous or drifted scene initializers', () => {
+  const initializer = `const sceneEffects = effects?.scene?.({
+    ...api,
+    // Shared room cache must remain available to unrelated effects.
+    worldForRoom: (route) => roomFor(route).world,
+  });`;
+  const run = (source) => {
+    const received = [];
+    const context = {
+      api: { contract: 1 },
+      roomFor: (route) => ({ world: { route, cached: true } }),
+      effects: {
+        scene: (value) => {
+          received.push(value);
+          return { retained: true };
+        },
+      },
+    };
+    vm.runInNewContext(source, context);
+    return received;
+  };
+  const control = run(initializer);
+  const patched = diagnostic.patchRuntime({ 'space.js': initializer }, 'no-ribbons');
+  assert.equal(patched.patches.length, 1);
+  assert.equal(patched.patches[0].matches, 1);
+  const retained = run(patched.scripts['space.js']);
+  assert.equal(retained.length, 1, 'unrelated scene factory remains active');
+  assert.equal(retained[0].contract, control[0].contract);
+  assert.deepEqual(retained[0].worldForRoom('writing'), control[0].worldForRoom('writing'));
+  const historical = 'const ribbonGeometry=null;const createRibbonMaterials=null;\n' + initializer;
+  assert.equal(
+    run(diagnostic.patchRuntime({ 'space.js': historical }, 'no-ribbons').scripts['space.js'])
+      .length,
+    0
+  );
+  for (const changed of [
+    initializer + '\n' + initializer,
+    initializer + '\nconst sceneEffects=effects?.scene?.(api);',
+    initializer.replace('worldForRoom', 'uncachedWorld'),
+  ])
+    assert.throws(
+      () => diagnostic.patchRuntime({ 'space.js': changed }, 'no-ribbons'),
+      /exactly once/
+    );
+});

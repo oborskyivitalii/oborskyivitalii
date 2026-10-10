@@ -124,6 +124,15 @@ function hasRibbonFactory(source) {
     hasScriptAnchor(source, 'const createRibbonMaterials=')
   );
 }
+function sceneEffectInitializer(source) {
+  const anchors = [
+    'const sceneEffects=effects?.scene?.({...api,worldForRoom:(route)=>roomFor(route).world,});',
+    'const sceneEffects=effects?.scene?.(api);',
+  ];
+  const matches = anchors.filter((anchor) => hasScriptAnchor(source, anchor));
+  assert.equal(matches.length, 1, 'diagnostic scene initializer must match exactly once');
+  return require('./writing-models.cjs').javascriptAnchor(source, matches[0]).needle;
+}
 function patchBrowserGate(patch, label, source) {
   assert.equal(
     source.includes('__browserGateScheduler'),
@@ -240,14 +249,16 @@ function patchRuntime(scripts, label) {
   };
   if (diagnosticLabels.includes(label)) patchBrowserGate(patch, label, result['space.js']);
   patchColdNative(patch, label);
-  if (label === 'no-ribbons')
+  if (label === 'no-ribbons') {
+    const initializer = sceneEffectInitializer(result['space.js']);
     patch(
       'space.js',
-      'const sceneEffects=effects?.scene?.(api);',
+      initializer,
       hasRibbonFactory(result['space.js'])
         ? 'const sceneEffects=null; // Private Writing diagnostic: historical ribbons omitted.'
-        : 'const sceneEffects=effects?.scene?.(api); // Private no-ribbons control: unrelated scene retained.'
+        : initializer + ' // Private no-ribbons control: unrelated scene retained.'
     );
+  }
   if (label === 'no-canvas-draw')
     patch(
       'space.js',
