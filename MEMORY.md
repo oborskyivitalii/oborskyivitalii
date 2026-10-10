@@ -1,63 +1,53 @@
 # Session memory
 
-Dated continuity, not live authority. Last verified: **2026-10-09**.
+Dated continuity, not live authority. Last verified: **2026-10-10**.
 
 ## Snapshot
 
-- Main inspected at `338e3ff341dc35b64cba7854289e1385cbaf1562`; revalidate live state.
-- [#58](https://github.com/oborskyivitalii/oborskyivitalii/issues/58) is closed and
-  [PR #60](https://github.com/oborskyivitalii/oborskyivitalii/pull/60) merged; detailed
-  checkpoints remain in [its handoff](review/issue-58/2026-10-08-handoff.md).
-- PMDay update [#61](https://github.com/oborskyivitalii/oborskyivitalii/issues/61)
-  was delivered through [PR #63](https://github.com/oborskyivitalii/oborskyivitalii/pull/63).
+- Main inspected at `93a818dbc3239b97b47b7d56edb83f5a7ebf65fc`;
+  PR67 merged with accepted stable staging. Revalidate live refs/checks next time.
+- #58/PR60 and #65/PR66 are closed/merged; PMDay #61 delivered via PR63.
+- #41 continues on `work/issue-41-arkadiy-scroll-20261010`; current Draft PR and
+  exact CI/preview/evaluation pointers are maintained in its live issue.
 
 ## Decisions
 
-- [#65](https://github.com/oborskyivitalii/oborskyivitalii/issues/65) owns harness
-  verification/compaction is merged through PR66 and closed; retain its evidence.
-  [Analysis](review/issue-65/2026-10-09-analysis.md).
-- [#41](https://github.com/oborskyivitalii/oborskyivitalii/issues/41) now also owns
-  the maintainer's practical-positioning brief, implemented in
-  [PR #67](https://github.com/oborskyivitalii/oborskyivitalii/pull/67).
-  [Current source review](review/issue-41/2026-10-09-positioning.md) and
-  [CI follow-up](review/issue-41/2026-10-09-ci-followup.md) record separate evidence.
-  No invented management case; record missing facts in the issue. Keep graphics,
-  runtime, routes and production outside the content continuation.
-  The same issue/PR also owns the compact AI-assisted delivery case, AC17–26:
-  [source/history analysis](review/issue-41/2026-10-09-sitecase.md), About→Credits
-  evidence links, explicit human/AI/enterprise boundaries. Its
-  [independent review](review/issue-41/2026-10-09-sitecase-review.md) and
-  [focused preview observations](review/issue-41/2026-10-09-sitecase-browser.md)
-  retain exact source/public-byte identities and observation limits; current-head
-  CI and whole-AC reconciliation live in the issue/PR. The maintainer authorized
-  merge and stable staging on 9 October. The first stage failed on untriaged
-  checksum candidates; its browser profile passed. The exact follow-up is in
-  [staging security review](review/issue-41/2026-10-09-staging-security.md).
-  Revalidate its final source, current gate, stable alias and merge in the live
-  issue/PR; original issue/release obligations remain open.
-- A user-supplied issue stays bound across phases/model handoffs; consolidation
-  transfers original ACs, evidence and open gates before superseding an owner.
+- [#41](https://github.com/oborskyivitalii/oborskyivitalii/issues/41) retains the
+  public-discussion/content owner. [10October task/results](review/issue-41/2026-10-10-arkadiy-content.md)
+  and [scroll behavior](review/issue-41/2026-10-10-scroll-camera.md) own this change.
+- Exact revised Arkadiy Home/Research cards are review-only snapshots under
+  `review/issue-41/arkadiy-review/`. New consent has not been confirmed. Default
+  launch composition omits both cards and their two old retained HTML snapshots;
+  article/provenance/other people stay intact. No private messages are stored.
+- All routes now keep a steady opening camera during native scroll, filters,
+  reflow and history/anchor landings. Existing navigation flight/fade/movement
+  and passive fractal motion remain. Current source contract supersedes old
+  scroll-camera mapping; prior pure model tests remain historical model checks.
+- No merge, stable promotion or production launch is authorized for this task.
+  Ordinary PR preview and a separate supported offline review candidate only.
+- Source contracts, original budgets and profile/device/release boundaries remain.
+  AD01–06/SC01–03 map to AC27–35; original AC02–06 remain pending.
 
 ## Open work
 
 | Owner | Next acceptance route |
 | --- | --- |
-| #41 / PR #67 | Authorized merge/staging: verify the security follow-up, exact current CI, successful staging promotion and actual merge; keep original full-intent work distinct. |
-| #49 / Draft PR #53 | Consolidated fragment-flight work; revalidate its current head and visual acceptance. |
-| #39 / Draft PR #40 | GitHub Pages/custom-domain preparation; retain domain/production decisions. |
-| #45 / #36 | Check original visual/editorial/device/release gates in the live owners. |
-| #1 / #13 / #8 | First release, devices, recovery, URL/indexability and analytics activation. |
-| #7 / #5 / #6 / #2 / #11 | Rights, accepted editions, cross-repository adapter and post-launch guides. |
+| #41 / current Draft PR | Exact current required CI/smoke, independent/code/editorial/layout evidence and actual criterion checkboxes; consent before including review cards. |
+| #49 / Draft PR53 | Separate persistent fragment-flight work; revalidate current head and performance/visual gate. |
+| #39 / Draft PR40 | Domain/Pages preparation; preserve production/settings/release decisions. |
+| #45 / #36 | Original visual/editorial/device/release gates. |
+| #1 / #13 / #8 | First release, devices, recovery, origin/indexability and analytics. |
+| #7 / #5 / #6 / #2 / #11 | Rights, editions, adapter and post-launch guides. |
 
 ## Next session
 
-1. Fetch main and live #41/#49/#39 issues and linked PRs; reconcile heads/ACs.
-2. Read #41's current source review and exact PR/issue evidence before continuing.
-3. Use required current-source checks and honest review/gate evidence; update AC boxes.
-4. Refresh this handoff after a material state change; merge/release only by maintainer decision.
+1. Fetch current main and #41/linked Draft PR; distinguish review and launch-safe compositions.
+2. Inspect exact current CI/smoke and versioned10October independent/rendered evidence.
+3. Keep original pending/release gates separate and update actual issue checkboxes.
+4. Include cards only after new explicit owner consent confirmation; merge/release by decision.
 
 ## Maintenance
 
-Keep five sections within 120 lines; rebuild RI after changes. Detailed logs,
-measurements and historical checkpoints belong in their owning issue/PR/review.
+Keep five sections within120 lines; rebuild RI after changes. Full logs and
+source/viewport/access limits belong in their versioned issue/PR evidence.
 Never store private correspondence, credentials or inferred approvals.

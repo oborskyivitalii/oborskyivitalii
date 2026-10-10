@@ -6,10 +6,6 @@
     "T002": "How others have engaged",
     "T003": "with the work.",
     "T004": "A selection of public responses to Uncertainty Architecture.",
-    "T005": "Arkadiy Dobkin",
-    "T006": "EPAM · Principal Founder & Executive Chairman",
-    "T007": "Recommended reading Thinking Systems and extended its argument toward bounded architecture\n        and runtime control.",
-    "T008": "Public record ↗",
     "T009": "Matthew Skelton",
     "T010": "Co-author of Team Topologies",
     "T011": "Reshared Michael Risch’s discussion of my AI governance article and highlighted governance\n        as bringing business intent back into the system.",
@@ -19,12 +15,11 @@
     "T015": "Connected UA’s control-theory framing with CPMAI practices, roles and governance gates.",
     "T016": "Public record ↗",
     "T017": "UA advisors: Markus Kopko — governance and alignment; Otman Basir — academic.",
-    "T018": "Full discussion & source context ↗"
+    "T018": "Full discussion & source context ↗",
+    "T021": "These entries document public discussions and specific contributions to the research. They do not imply endorsement, adoption, or formal involvement by the individuals’ organizations."
   },
   "attributes": {},
   "urls": {
-    "U001": "https://www.linkedin.com/in/arkadiydobkin/",
-    "U002": "https://www.linkedin.com/posts/arkadiydobkin_uncertainty-architecture-thinking-systems-activity-7500661925790240768--I1H",
     "U003": "https://www.linkedin.com/in/matthewskelton/",
     "U004": "https://www.linkedin.com/posts/matthewskelton_uncertainty-architecture-why-ai-governance-activity-7455172623409430528-MI9x",
     "U005": "https://www.linkedin.com/in/markuskleinpmp/",

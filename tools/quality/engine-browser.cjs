@@ -205,21 +205,13 @@ async function writingGestures(page) {
         await page.locator('#archive-' + key).selectOption(filter[i]);
     if (filter) assert.equal(await page.locator('li.publication:visible').count(), 1);
     await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
-    // Capture a real settled endpoint after distinct paints, including slower
-    // WebKit layout/scroll delivery. A fixed 260ms could retain a transient pose.
+    // Distinct paints prove the scene keeps breathing at its steady route view.
     const start = await settledCamera(page),
       phase = await page.locator('.space-scene').getAttribute('data-phase');
-    let previous = start;
     for (const y of [100, 200, 400]) {
       await page.evaluate((y) => scrollTo({ top: y, behavior: 'instant' }), y);
-      await page.waitForFunction(
-        (previous) => document.querySelector('.space-scene').dataset.camera !== previous,
-        previous,
-        { polling: 50, timeout: 2000 }
-      );
-      const next = await camera(page);
-      previous = next;
-      assert.notEqual(next, start, 'Writing first gesture ' + y);
+      const next = await settledCamera(page);
+      assert.equal(next, start, 'Writing scroll keeps its route camera at ' + y);
       observations.push({ filter: filter ? 'single' : 'all', y, camera: next });
     }
     await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));

@@ -57,25 +57,25 @@
     },
     ".github/acceptance/issue-31.json": {
       "kind": "file",
-      "purpose": "Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates.",
+      "purpose": "Cleanup AC01\u2013AC11 mapped to source-bound deterministic tests and separate readiness gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-33.json": {
       "kind": "file",
-      "purpose": "Bootstrap/root optimization AC01–AC06 mapped to source-bound assertions and separate review, merge and linkage gates.",
+      "purpose": "Bootstrap/root optimization AC01\u2013AC06 mapped to source-bound assertions and separate review, merge and linkage gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-35.json": {
       "kind": "file",
-      "purpose": "Test optimization AC01–AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates.",
+      "purpose": "Test optimization AC01\u2013AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-36.json": {
       "kind": "file",
-      "purpose": "Writing formula AC01–AC05 mapped to canonical asset, native cache/integration, source-bound browser and paired performance evidence, with remaining human/release gates explicit.",
+      "purpose": "Writing formula AC01\u2013AC05 mapped to canonical asset, native cache/integration, source-bound browser and paired performance evidence, with remaining human/release gates explicit.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -105,13 +105,13 @@
     },
     ".github/acceptance/issue-56.json": {
       "kind": "file",
-      "purpose": "Issue56 AC01–AC06 source-bound R1 extraction/tool coverage policy with independent/live delivery gates.",
+      "purpose": "Issue56 AC01\u2013AC06 source-bound R1 extraction/tool coverage policy with independent/live delivery gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-58.json": {
       "kind": "file",
-      "purpose": "Shared issue58 AC01–AC10 mapping: frozen R2 checkpoint and current content/CSS/cohesion/resource contracts with final review/live/merge gates.",
+      "purpose": "Shared issue58 AC01\u2013AC10 mapping: frozen R2 checkpoint and current content/CSS/cohesion/resource contracts with final review/live/merge gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -123,7 +123,7 @@
     },
     ".github/acceptance/issue-61.json": {
       "kind": "file",
-      "purpose": "PMDay recording AC01–AC03 mapped to existing current-source content/semantic/RI checks and explicit review/CI/linkage gates.",
+      "purpose": "PMDay recording AC01\u2013AC03 mapped to existing current-source content/semantic/RI checks and explicit review/CI/linkage gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -433,42 +433,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/bf00029e91c5bfd7177ca04fd7eb32dc4348e57b227c201a8652b87bad0519b9": {
-      "kind": "directory",
-      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/bf00029e91c5bfd7177ca04fd7eb32dc4348e57b227c201a8652b87bad0519b9/archive.js": {
-      "kind": "file",
-      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/bf00029e91c5bfd7177ca04fd7eb32dc4348e57b227c201a8652b87bad0519b9/navigation.js": {
-      "kind": "file",
-      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/bf00029e91c5bfd7177ca04fd7eb32dc4348e57b227c201a8652b87bad0519b9/space.js": {
-      "kind": "file",
-      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/bf00029e91c5bfd7177ca04fd7eb32dc4348e57b227c201a8652b87bad0519b9/styles.css": {
-      "kind": "file",
-      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/bf00029e91c5bfd7177ca04fd7eb32dc4348e57b227c201a8652b87bad0519b9/theme.js": {
-      "kind": "file",
-      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62": {
       "kind": "directory",
       "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
@@ -505,6 +469,42 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/runtime/eedff4e2ad0f8301315b1dab7ed9a6d44fe8dcf53fe15f23dc408fc3a4777ffa": {
+      "kind": "directory",
+      "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/eedff4e2ad0f8301315b1dab7ed9a6d44fe8dcf53fe15f23dc408fc3a4777ffa/archive.js": {
+      "kind": "file",
+      "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/eedff4e2ad0f8301315b1dab7ed9a6d44fe8dcf53fe15f23dc408fc3a4777ffa/navigation.js": {
+      "kind": "file",
+      "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/eedff4e2ad0f8301315b1dab7ed9a6d44fe8dcf53fe15f23dc408fc3a4777ffa/space.js": {
+      "kind": "file",
+      "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/eedff4e2ad0f8301315b1dab7ed9a6d44fe8dcf53fe15f23dc408fc3a4777ffa/styles.css": {
+      "kind": "file",
+      "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/eedff4e2ad0f8301315b1dab7ed9a6d44fe8dcf53fe15f23dc408fc3a4777ffa/theme.js": {
+      "kind": "file",
+      "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/site-revision.json": {
       "kind": "file",
       "purpose": "Generated public rendition: site-revision.json; regenerate from site sources with tools/site/build.cjs.",
@@ -517,39 +517,27 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/e55fd3050b029c0f57e73ad50d58cf857a6f9ee3ca8318a9dbe14aa72783241b": {
+    "docs/snapshots/212d9a42fc25004e884c89acc955956acb7deab688903e380e38d72af89ca2a8": {
       "kind": "directory",
-      "purpose": "Generated immutable route snapshot for the current content edition.",
+      "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/e55fd3050b029c0f57e73ad50d58cf857a6f9ee3ca8318a9dbe14aa72783241b/index.html": {
+    "docs/snapshots/212d9a42fc25004e884c89acc955956acb7deab688903e380e38d72af89ca2a8/credits.html": {
       "kind": "file",
-      "purpose": "Generated exact-source public route snapshot; regenerate from canonical site content/templates.",
+      "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/13cacc74bef65a345dfa1604153bce5575bd922f5fd78c4222dfab334782184b": {
+    "docs/snapshots/4be7c0f702d82d60bac713d0cb4c948e27985b9f845d31d53872f914368e1473": {
       "kind": "directory",
-      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
+      "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/13cacc74bef65a345dfa1604153bce5575bd922f5fd78c4222dfab334782184b/research.html": {
+    "docs/snapshots/4be7c0f702d82d60bac713d0cb4c948e27985b9f845d31d53872f914368e1473/index.html": {
       "kind": "file",
-      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/032db9409f685170c57d33d3c8cc3593854eed74ac9286f60387d24156c88ee4": {
-      "kind": "directory",
-      "purpose": "Generated immutable route snapshot for the current content edition.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/032db9409f685170c57d33d3c8cc3593854eed74ac9286f60387d24156c88ee4/credits.html": {
-      "kind": "file",
-      "purpose": "Generated exact-source public route snapshot; regenerate from canonical site content/templates.",
+      "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -560,6 +548,18 @@
       "owner": "site/README.md"
     },
     "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html": {
+      "kind": "file",
+      "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/6a2a86ab09787acdcade090189cb49fef64103cc4e3f69adce02886d1cf8f4f4": {
+      "kind": "directory",
+      "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/6a2a86ab09787acdcade090189cb49fef64103cc4e3f69adce02886d1cf8f4f4/talks.html": {
       "kind": "file",
       "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
@@ -589,51 +589,27 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946": {
+    "docs/snapshots/d2bc7acebcc1b6849eb32053a5194ef8aa18971be47d644d4b5e73966f6745a7": {
       "kind": "directory",
       "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html": {
+    "docs/snapshots/d2bc7acebcc1b6849eb32053a5194ef8aa18971be47d644d4b5e73966f6745a7/writing.html": {
       "kind": "file",
       "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7": {
+    "docs/snapshots/f7f4cd904e0ddb4b533967418dd9a6bd4307ed60ed1502e5bbf0cd100a8834c5": {
       "kind": "directory",
       "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html": {
+    "docs/snapshots/f7f4cd904e0ddb4b533967418dd9a6bd4307ed60ed1502e5bbf0cd100a8834c5/research.html": {
       "kind": "file",
       "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/be195546aed16e6358e4555a1781631ebb2455ccbf05e48da811d9f37898d524": {
-      "kind": "directory",
-      "purpose": "Generated immutable route snapshot for the current content edition.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/be195546aed16e6358e4555a1781631ebb2455ccbf05e48da811d9f37898d524/writing.html": {
-      "kind": "file",
-      "purpose": "Generated exact-source public route snapshot; regenerate from canonical site content/templates.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/f1a98c7f2749db4eaf26f0a698e6cdb23e9941cb10a7f2ede26ac9754d158c36": {
-      "kind": "directory",
-      "purpose": "Generated immutable route snapshot for the current content edition.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/f1a98c7f2749db4eaf26f0a698e6cdb23e9941cb10a7f2ede26ac9754d158c36/talks.html": {
-      "kind": "file",
-      "purpose": "Generated exact-source public route snapshot; regenerate from canonical site content/templates.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1057,6 +1033,216 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-41/2026-10-09-staging-security.md": {
+      "kind": "file",
+      "purpose": "Issue41 exact staging failure, bounded public-checksum triage and offline-generation correction; current-source independent review and deployment evidence remain linked from the same PR.",
+      "role": "history",
+      "owner": "guides/SITE-RELEASE-GATES.md"
+    },
+    "review/issue-41/2026-10-10-arkadiy-amendment.json": {
+      "kind": "file",
+      "purpose": "Issue41 review-only consent-pending content sources, visual captures and dated exact-source evidence; excluded from public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/2026-10-10-arkadiy-browser.md": {
+      "kind": "file",
+      "purpose": "Issue41 exact-source review and rendered evidence, excluded from default public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/2026-10-10-arkadiy-content.md": {
+      "kind": "file",
+      "purpose": "Issue41 review-only consent-pending content sources, visual captures and dated exact-source evidence; excluded from public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/2026-10-10-review.md": {
+      "kind": "file",
+      "purpose": "Issue41 exact-source review and rendered evidence, excluded from default public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/2026-10-10-scroll-camera.md": {
+      "kind": "file",
+      "purpose": "Issue41 authored fixed-camera reading behavior, exact source and focused check evidence.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review": {
+      "kind": "directory",
+      "purpose": "Issue41 review-only consent-pending content sources, visual captures and dated exact-source evidence; excluded from public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures": {
+      "kind": "directory",
+      "purpose": "Issue41 exact-source review and rendered evidence, excluded from default public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/browser-observations.json": {
+      "kind": "file",
+      "purpose": "Issue41 exact-source review and rendered evidence, excluded from default public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/launch-safe-index-day-1440.webp": {
+      "kind": "file",
+      "purpose": "Issue41 exact-source review and rendered evidence, excluded from default public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/launch-safe-index-day-390.webp": {
+      "kind": "file",
+      "purpose": "Issue41 exact-source review and rendered evidence, excluded from default public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/launch-safe-index-night-1440.webp": {
+      "kind": "file",
+      "purpose": "Issue41 exact-source review and rendered evidence, excluded from default public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/launch-safe-index-night-390.webp": {
+      "kind": "file",
+      "purpose": "Issue41 exact-source review and rendered evidence, excluded from default public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/launch-safe-research-day-1440.webp": {
+      "kind": "file",
+      "purpose": "Issue41 exact-source review and rendered evidence, excluded from default public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/launch-safe-research-day-390.webp": {
+      "kind": "file",
+      "purpose": "Issue41 exact-source review and rendered evidence, excluded from default public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/launch-safe-research-night-1440.webp": {
+      "kind": "file",
+      "purpose": "Issue41 exact-source review and rendered evidence, excluded from default public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/launch-safe-research-night-390.webp": {
+      "kind": "file",
+      "purpose": "Issue41 exact-source review and rendered evidence, excluded from default public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/review-index-day-1440.webp": {
+      "kind": "file",
+      "purpose": "Issue41 exact-source review and rendered evidence, excluded from default public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/review-index-day-390.webp": {
+      "kind": "file",
+      "purpose": "Issue41 exact-source review and rendered evidence, excluded from default public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/review-index-night-1440.webp": {
+      "kind": "file",
+      "purpose": "Issue41 exact-source review and rendered evidence, excluded from default public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/review-index-night-390.webp": {
+      "kind": "file",
+      "purpose": "Issue41 exact-source review and rendered evidence, excluded from default public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/review-research-day-1440-card.webp": {
+      "kind": "file",
+      "purpose": "Issue41 exact-source review and rendered evidence, excluded from default public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/review-research-day-1440.webp": {
+      "kind": "file",
+      "purpose": "Issue41 exact-source review and rendered evidence, excluded from default public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/review-research-day-390-card.webp": {
+      "kind": "file",
+      "purpose": "Issue41 exact-source review and rendered evidence, excluded from default public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/review-research-day-390.webp": {
+      "kind": "file",
+      "purpose": "Issue41 exact-source review and rendered evidence, excluded from default public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/review-research-night-1440-card.webp": {
+      "kind": "file",
+      "purpose": "Issue41 exact-source review and rendered evidence, excluded from default public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/review-research-night-1440.webp": {
+      "kind": "file",
+      "purpose": "Issue41 exact-source review and rendered evidence, excluded from default public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/review-research-night-390-card.webp": {
+      "kind": "file",
+      "purpose": "Issue41 exact-source review and rendered evidence, excluded from default public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/review-research-night-390.webp": {
+      "kind": "file",
+      "purpose": "Issue41 exact-source review and rendered evidence, excluded from default public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/index": {
+      "kind": "directory",
+      "purpose": "Issue41 review-only consent-pending content sources, visual captures and dated exact-source evidence; excluded from public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/index/acknowledgements.html": {
+      "kind": "file",
+      "purpose": "Issue41 review-only consent-pending content sources, visual captures and dated exact-source evidence; excluded from public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/index/acknowledgements.json": {
+      "kind": "file",
+      "purpose": "Issue41 review-only consent-pending content sources, visual captures and dated exact-source evidence; excluded from public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/research": {
+      "kind": "directory",
+      "purpose": "Issue41 review-only consent-pending content sources, visual captures and dated exact-source evidence; excluded from public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/research/acknowledgements.html": {
+      "kind": "file",
+      "purpose": "Issue41 review-only consent-pending content sources, visual captures and dated exact-source evidence; excluded from public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/research/acknowledgements.json": {
+      "kind": "file",
+      "purpose": "Issue41 review-only consent-pending content sources, visual captures and dated exact-source evidence; excluded from public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
     "review/issue-41/content-amendment.json": {
       "kind": "file",
       "purpose": "Issue41 hashed exact before/after authored-content and primary schema deltas layered onto the historical SEO comparison; editorial acceptance remains separate.",
@@ -1137,7 +1323,7 @@
     },
     "review/issue-58": {
       "kind": "directory",
-      "purpose": "Single R2–R6 refactoring handoff, immutable phase observations and integrated evidence under continuing DraftPR60.",
+      "purpose": "Single R2\u2013R6 refactoring handoff, immutable phase observations and integrated evidence under continuing DraftPR60.",
       "role": "history",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -6159,7 +6345,7 @@
     },
     "site/engine/lifecycle.cjs": {
       "kind": "file",
-      "purpose": "Single scene lifecycle/RAF, displayed-phase freeze and native-scroll progress.",
+      "purpose": "Single scene lifecycle/RAF, fixed route reading camera and separate page-to-page flights.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -6350,30 +6536,6 @@
       "owner": "site/README.md"
     },
     "site/retained/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html": {
-      "kind": "file",
-      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
-      "role": "history",
-      "owner": "site/README.md"
-    },
-    "site/retained/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946": {
-      "kind": "directory",
-      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
-      "role": "history",
-      "owner": "site/README.md"
-    },
-    "site/retained/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html": {
-      "kind": "file",
-      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
-      "role": "history",
-      "owner": "site/README.md"
-    },
-    "site/retained/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7": {
-      "kind": "directory",
-      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
-      "role": "history",
-      "owner": "site/README.md"
-    },
-    "site/retained/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html": {
       "kind": "file",
       "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
       "role": "history",
@@ -6927,7 +7089,7 @@
     },
     "tests/space.test.cjs": {
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for space.",
+      "purpose": "Behavioral fixed-camera native reading, route flights and lifecycle/freeze tests.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -7854,12 +8016,6 @@
       "purpose": "Protected source/artifact/controller/PR lease validation before hosted action.",
       "role": "source",
       "owner": "guides/SITE-STAGING.md"
-    },
-    "review/issue-41/2026-10-09-staging-security.md": {
-      "kind": "file",
-      "purpose": "Issue41 exact staging failure, bounded public-checksum triage and offline-generation correction; current-source independent review and deployment evidence remain linked from the same PR.",
-      "role": "history",
-      "owner": "guides/SITE-RELEASE-GATES.md"
     }
   }
 }

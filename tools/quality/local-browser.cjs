@@ -16,12 +16,11 @@ const flightDetail = require('./flight-detail.cjs');
 const routes = ['index', 'research', 'writing', 'talks', 'credits'];
 const catalog = require('../../site/content/catalog.json'),
   primaryCount = Object.keys(catalog.records).length;
-const selectedResponses = ['Arkadiy Dobkin', 'Matthew Skelton', 'Markus Kopko'];
+const selectedResponses = ['Matthew Skelton', 'Markus Kopko'];
 const completeResponses = [
   'Markus Kopko',
   'Otman Basir, Ph.D.',
   'Maximiliano Armesto',
-  'Arkadiy Dobkin',
   'Christophe Kolb & Taller',
   'Rod Montgomery',
   'Michael Risch',
@@ -136,10 +135,7 @@ async function routeBytes(context, url, manifest) {
   );
 }
 async function responseNames(page, route) {
-  const selector =
-    route === 'index'
-      ? '#acknowledgements .ack-leads article h3 a'
-      : '#acknowledgements .ack-grid article h3 a';
+  const selector = '#acknowledgements article h3 a';
   const names = await page.locator(selector).allTextContents();
   assert.deepEqual(
     names,

@@ -397,7 +397,7 @@
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
-      "disposition": "retain enduring edition/semantic failure checks; issue41 positioning removes stale visible unknown-language assertions, adds catalog-count mutation coverage and exact successor amendment negatives; no new browser/performance suite",
+      "disposition": "retain enduring edition/semantic failure checks; issue41 positioning removes stale visible unknown-language assertions, adds catalog-count mutation coverage and exact successor amendment negatives; no new browser/performance suite; 10October #41 preserves exact earlier semantic evidence while admitting review-only Arkadiy sources and card-free launch composition; existing scope check admits only stationary reading camera",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
         "tests/content.test.cjs",
@@ -408,7 +408,9 @@
         "review/issue-48/content-amendment.json",
         "review/issue-48/source-inventory.json",
         "review/issue-41/2026-10-09-positioning-amendment.json",
-        "review/issue-41/2026-10-09-sitecase-amendment.json"
+        "review/issue-41/2026-10-09-sitecase-amendment.json",
+        "review/issue-41/2026-10-10-arkadiy-amendment.json",
+        "review/issue-41/arkadiy-review/**"
       ]
     },
     {
@@ -440,7 +442,7 @@
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
-      "disposition": "retain enduring edition/semantic failure checks; issue41 positioning removes stale visible unknown-language assertions, adds catalog-count mutation coverage and exact successor amendment negatives; no new browser/performance suite; same-issue sitecase layers exact About/Credits restoration and extends existing claim/evidence-link negatives rather than adding a new suite",
+      "disposition": "retain enduring edition/semantic failure checks; issue41 positioning removes stale visible unknown-language assertions, adds catalog-count mutation coverage and exact successor amendment negatives; no new browser/performance suite; same-issue sitecase layers exact About/Credits restoration and extends existing claim/evidence-link negatives rather than adding a new suite; 10October #41 preserves exact earlier semantic evidence while admitting review-only Arkadiy sources and card-free launch composition; existing scope check admits only stationary reading camera",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
         "tests/executive.test.cjs",
@@ -454,7 +456,8 @@
         "review/issue-41/content-amendment.json",
         "review/issue-48/content-amendment.json",
         "review/issue-41/2026-10-09-positioning-amendment.json",
-        "review/issue-41/2026-10-09-sitecase-amendment.json"
+        "review/issue-41/2026-10-09-sitecase-amendment.json",
+        "review/issue-41/2026-10-10-arkadiy-amendment.json"
       ]
     },
     {
@@ -715,11 +718,11 @@
     {
       "path": "tests/scroll-sync.test.cjs",
       "language": "javascript",
-      "purpose": "Runtime semantic stops cover real content/footer, final native gestures and anchored reflow without early completion",
+      "purpose": "Finite historical path helpers and immediate native scroll restoration contract; current camera is fixed during reading",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
-      "disposition": "retain current independent contract",
+      "disposition": "Preserve pure model/scroll restoration failure surfaces; active scroll-to-camera behavior is explicitly removed by #41 on10October",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
         "tests/scroll-sync.test.cjs",
@@ -777,11 +780,11 @@
     {
       "path": "tests/space.test.cjs",
       "language": "javascript",
-      "purpose": "Current scene/runtime displayed-camera route and layout retarget continuity, native scrolling, flight preparation, CSS/failure, adaptive detail/cadence/quality and bounded atmosphere invariants",
+      "purpose": "Fixed route camera under native scroll, archive filters and layout changes; retained route flights, clock and freeze lifecycle",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
-      "disposition": "retain current independent contract",
+      "disposition": "10October #41 explicitly supersedes active scroll-driven camera movement; meaningful fixed-pose/route-flight assertions replace prior active mapping expectations; budgets and scheduling preserved",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
         "tests/space.test.cjs",
@@ -1151,11 +1154,12 @@
       "owner": ".github/ACCEPTANCE.md",
       "lifecycle": "task-snapshot",
       "profiles": ["issue-policy"],
-      "disposition": "owning issue41 policy only; AC01–AC06 and manual gates preserved, AC07–AC16 append positioning checks; current permanent content/executive and ordinary PR smoke own enduring failure surfaces; AC17–AC26 add one bounded fragment/hash/link check and reuse existing gates/checks; no new staging/performance infrastructure",
+      "disposition": "owning issue41 policy only; AC01\u2013AC06 and manual gates preserved, AC07\u2013AC16 append positioning checks; current permanent content/executive and ordinary PR smoke own enduring failure surfaces; AC17\u2013AC26 add one bounded fragment/hash/link check and reuse existing gates/checks; no new staging/performance infrastructure; 10October #41 preserves exact earlier semantic evidence while admitting review-only Arkadiy sources and card-free launch composition; existing scope check admits only stationary reading camera",
       "surviving_route": ".github/acceptance/issue-41.json",
       "inputs": [
         "tests/test_issue41_acceptance.py",
-        "review/issue-41/2026-10-09-sitecase-amendment.json"
+        "review/issue-41/2026-10-09-sitecase-amendment.json",
+        "review/issue-41/2026-10-10-arkadiy-amendment.json"
       ]
     },
     {

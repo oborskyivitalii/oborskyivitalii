@@ -337,44 +337,42 @@ function visit(options = {}) {
   };
   return api;
 }
-test('native-scroll camera is reversible while the bounded ambient loop continues at idle', () => {
-  const p = visit();
-  p.settle();
-  const start = p.trace(),
-    phase = p.phase();
-  p.scroll(1400);
-  p.scroll(1750);
-  assert.equal(p.pending.size, 1);
-  p.settle();
-  assert.notEqual(p.trace(), start);
-  p.scroll(0);
-  p.settle();
-  assert.equal(p.trace(), start);
-  assert.ok(p.phase() > phase);
-  assert.equal(p.pending.size, 1);
-  const fixed = p.trace();
-  p.frame(60);
-  assert.equal(p.trace(), fixed);
-  assert.equal(p.canvas.width, 2160);
+test('native scroll keeps each route camera steady while bounded ambient motion continues', () => {
+  for (const page of Object.keys(model.initialPoses)) {
+    for (const narrow of [false, true]) {
+      const p = visit({ page, narrow, scrollY: 6000 });
+      p.settle();
+      const start = p.trace(),
+        phase = p.phase();
+      assert.deepEqual(
+        JSON.parse(start),
+        model.routePose(page, model.poses[model.initialPoses[page]])
+      );
+      for (const y of [0, 100, 200, 1400, 6000, 14100, 0]) {
+        p.scroll(y);
+        p.settle();
+        assert.equal(p.trace(), start, `${page}/${narrow}/${y} retains its steady view`);
+      }
+      assert.ok(p.phase() > phase, 'ambient motion continues during native scrolling');
+      assert.equal(p.pending.size, 1, 'the same ambient RAF remains bounded');
+    }
+  }
 });
-test('continuous gestures move immediately; pointer events never influence the camera', () => {
+test('continuous gestures and pointer events never influence the camera', () => {
   const p = visit();
   p.settle();
-  let last = p.trace();
+  const start = p.trace();
   for (let i = 0; i < 8; i++) {
     p.scroll(200 + i * 140);
     p.frame(65);
-    assert.notEqual(p.trace(), last);
-    last = p.trace();
+    assert.equal(p.trace(), start);
   }
-  p.settle();
-  last = p.trace();
   for (const type of ['pointermove', 'pointerout', 'mouseover', 'mouseenter', 'focus']) {
     p.event(type, { clientX: 12 });
     assert.equal(p.events[type], undefined);
   }
   p.frame(60);
-  assert.equal(p.trace(), last);
+  assert.equal(p.trace(), start);
   assert.equal(p.pending.size, 1);
 });
 test('Off freezes the exact displayed camera and phase through theme, resize, layout, hidden and print', () => {
@@ -493,13 +491,13 @@ test('short/degenerate pages keep their camera and still breathe without manufac
     const start = p.trace();
     p.scroll(1200);
     p.settle();
-    assert.notEqual(p.trace(), start);
+    assert.equal(p.trace(), start);
     p.scroll(0);
     p.settle();
     assert.equal(p.trace(), start);
   }
 });
-test('Writing topic travel, reflow, empty restoration and unchanged scroll preserve local progress', () => {
+test('Writing filters and reflow preserve the steady route view', () => {
   const p = visit({ page: 'writing' });
   p.event('site:scene-focus', { focus: 'systems', reason: 'initial' });
   p.settle();
@@ -524,10 +522,11 @@ test('Writing topic travel, reflow, empty restoration and unchanged scroll prese
   assert.equal(p.trace(), fixed);
   p.scroll(1450);
   p.settle();
-  assert.notEqual(p.trace(), fixed);
+  assert.equal(p.trace(), fixed);
   p.event('site:scene-focus', { focus: 'delivery', reason: 'filter' });
   p.settle();
   const changed = p.trace();
+  assert.equal(changed, fixed);
   for (const focus of ['__proto__', 'verification', 'unknown'])
     p.event('site:scene-focus', { focus });
   p.settle();
@@ -778,7 +777,7 @@ test('camera traverses multiple structures, is continuous/reversible and clips s
   }
 });
 
-test('rapid reversal clears obsolete targets on every route', () => {
+test('rapid scroll reversal cannot move a steady camera on any route', () => {
   for (const page of Object.keys(model.initialPoses)) {
     const p = visit({ page });
     p.settle();
@@ -845,8 +844,8 @@ test('direct boot waits for deferred archive/navigation setup and measures the f
     p.settle();
     assert.deepEqual(
       JSON.parse(p.trace()),
-      model.routePose('writing', model.journeyPose(model.topicPaths.leadership, 0, false)),
-      'initial archive focus survives the deferred initialization'
+      model.routePose('writing', model.poses.library),
+      'initial archive focus preserves the route steady view'
     );
     p.domReady();
     p.stylesheetLoad();
@@ -1061,7 +1060,7 @@ test('camera convergence depends on elapsed time, not the RAF frequency', () => 
       for (let i = 0; i < 3; i++) assert.ok(Math.abs(p[key][i] - poses[0][key][i]) < 1e-10);
   assert.deepEqual(model.followCamera(from, target, 0), from);
 });
-test('the live RAF camera uses actual elapsed time from its first scroll frame', () => {
+test('scroll gestures cannot change the live RAF camera at different frame rates', () => {
   const reference = visit();
   reference.settle();
   reference.scroll(1800);
@@ -1353,7 +1352,7 @@ function reverseEndpointFlight(from, to, narrow) {
     assert.deepEqual(
       paints.at(-1).journey.to,
       target,
-      'the native bottom is the flight target before incoming DOM exists'
+      'the steady route view is the flight target before incoming DOM exists'
     );
     p.scroll(0);
     advanceUntil(
@@ -1402,7 +1401,7 @@ test('departure scroll events cannot retarget a flight through source page geome
   assert.equal(progress, 1);
   assertFlightDepths(paints, sourceZ, target.position[2]);
 });
-test('reverse endpoint flights target the destination bottom before content mount and retain depth direction', () => {
+test('reverse native-bottom flights target the fixed destination view and retain depth direction', () => {
   for (const narrow of [false, true])
     for (const [from, to] of [
       ['credits', 'talks'],
@@ -1412,7 +1411,7 @@ test('reverse endpoint flights target the destination bottom before content moun
     ])
       reverseEndpointFlight(from, to, narrow);
 });
-test('unknown history and fragment landings hold the displayed camera until destination mount', () => {
+test('history and fragment landings fly to the steady route view independently of native offset', () => {
   const cases = [
     ['research', { position: [0, 7050], hash: '' }, 7050, null],
     ['research', { position: null, hash: '#topics' }, 2200, null],
@@ -1439,10 +1438,10 @@ test('unknown history and fragment landings hold the displayed camera until dest
       'an unresolved landing still reaches the hidden content mount',
       20
     );
-    assert.equal(
+    assert.notEqual(
       p.trace(),
       displayed,
-      'unknown native geometry must not cause a speculative camera departure'
+      'native landing geometry cannot delay the requested route flight'
     );
     assert.ok(p.phase() > phase, 'holding the camera does not stop the shared ambient clock');
     const target = nativeReadingPose(to, y, { height: 700, focus });
@@ -1461,7 +1460,7 @@ test('unknown history and fragment landings hold the displayed camera until dest
       assertInstantLanding(to, landing, options);
 });
 
-test('midflight destination layout retargeting preserves the displayed camera and shared ribbon clock', () => {
+test('midflight destination reflow preserves the fixed target, displayed camera and shared ambient clock', () => {
   const paints = [],
     p = visit({ ribbonProbe: (state) => paints.push(state) });
   p.settle();
@@ -1489,13 +1488,13 @@ test('midflight destination layout retargeting preserves the displayed camera an
   assert.equal(
     p.trace(),
     mountedCamera,
-    'a destination bottom/history landing rebases rather than snapping the camera'
+    'a destination native-bottom landing cannot snap the camera'
   );
   assert.equal(p.phase(), mountedPhase);
   assert.equal(records.at(-1), mountedProgress);
   const retained = paints.at(-1).journey;
-  assert.deepEqual(JSON.parse(p.trace()), retained.from);
-  assert.ok(retained.duration > 0 && retained.duration < 1300);
+  assert.deepEqual(retained.to, model.routePose('research', model.poses.researchOverview));
+  assert.deepEqual(retained.from, JSON.parse(before), 'layout never rebases a steady target');
   // A skipped RAF can advance the solver without painting. Cancellation must
   // preserve actual displayed progress, not that newer unseen solver state.
   p.frame(80);
@@ -1513,7 +1512,10 @@ test('midflight destination layout retargeting preserves the displayed camera an
   assert.equal(p.phase(), displayedPhase);
   assert.equal(records.at(-1), displayedProgress);
   for (let i = 0; i < 30; i++) p.frame(80);
-  assert.deepEqual(JSON.parse(p.trace()), model.routePose('research', model.poses.closing));
+  assert.deepEqual(
+    JSON.parse(p.trace()),
+    model.routePose('research', model.poses.researchOverview)
+  );
   assert.equal(records.at(-1), 1);
   assert.ok(
     records.every((value, index) => index === 0 || value >= records[index - 1]),
@@ -1561,8 +1563,8 @@ test('a route chosen before the reduced-motion change event paints its static ar
   assert.equal(p.pending.size, 0);
 });
 
-// User-visible regression: archive-bound progress formerly stayed zero here.
-test('Writing responds to the first small gestures before the archive, including after route arrival', () => {
+// Native archive scrolling retains the route view even after a page flight.
+test('Writing keeps its view during small native gestures, including after route arrival', () => {
   for (const arrival of [false, true])
     for (const single of [false, true]) {
       const p = visit({ page: arrival ? 'index' : 'writing', single });
@@ -1581,7 +1583,7 @@ test('Writing responds to the first small gestures before the archive, including
       for (const y of [100, 200, 400]) {
         p.scroll(y);
         p.settle();
-        assert.notEqual(p.trace(), last, `first gesture at ${y}px`);
+        assert.equal(p.trace(), last, `first gesture at ${y}px`);
         last = p.trace();
       }
       p.scroll(0);

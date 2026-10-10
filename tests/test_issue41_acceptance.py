@@ -4,6 +4,8 @@ The explicit 2026-10-07 implementation phase supersedes the preparation-only
 byte assertion. Its original evidence remains pinned at d7ce5d3. The approved
 2026-10-09 positioning phase reverses its exact new content delta before those
 historical assertions and preserves the current protected-main runtime bytes.
+The dated 2026-10-10 decision admits only the recorded acknowledgements and
+scroll-camera successor; pending Arkadiy cards remain in a separate review input.
 Source reading, editorial/independent review, browser observations and merge
 are separate gates; structural copy assertions do not prove factual truth.
 """
@@ -28,6 +30,14 @@ RUNTIME_BASE = '338e3ff341dc35b64cba7854289e1385cbaf1562'
 POSITIONING = 'review/issue-41/2026-10-09-positioning-amendment.json'
 SITECASE = 'review/issue-41/2026-10-09-sitecase-amendment.json'
 SITECASE_BASE = 'da36ccf03e1d749a540aa6bb39fe7b4083f1ef66'
+ARKADIY = 'review/issue-41/2026-10-10-arkadiy-amendment.json'
+ARKADIY_BASE = '93a818dbc3239b97b47b7d56edb83f5a7ebf65fc'
+ARKADIY_PROFILE = 'https://www.linkedin.com/in/arkadiydobkin/'
+PUBLIC_RESPONSES_NOTE = (
+    'These entries document public discussions and specific contributions to the research. '
+    'They do not imply endorsement, adoption, or formal involvement by the individuals’ '
+    'organizations.'
+)
 INVENTORY = 'review/issue-41/source-inventory.json'
 INPUT_SHA256 = '2483f7f9d70e38ffcaf3c9eb4f2bdc8f75ce6dda0d87d37ae40815f2fa2e3968'
 UNCHANGED = [
@@ -277,8 +287,8 @@ def validate_reddit_metrics(data, catalog):
     )
 
 
-def base_json(path):
-    return json.loads(subprocess.check_output(['git', 'show', f'{BASE}:{path}'], cwd=ROOT))
+def base_json(path, source=BASE):
+    return json.loads(subprocess.check_output(['git', 'show', f'{source}:{path}'], cwd=ROOT))
 
 
 def validate_admissions(data, catalog, baseline):
@@ -365,6 +375,11 @@ def schema(html):
 
 def node_checks(names):
     """Select fixed existing content cases; missing/failed/skipped is never pass."""
+    node_suite_checks('tests/content.test.cjs', names)
+
+
+def node_suite_checks(owner, names):
+    """Run maintained behavioral cases without reviving a broad historical matrix."""
     pattern = '^(?:' + '|'.join(re.escape(name) for name in names) + ')$'
     result = subprocess.run(
         [
@@ -372,7 +387,7 @@ def node_checks(names):
             '--test',
             '--test-reporter=tap',
             '--test-name-pattern=' + pattern,
-            'tests/content.test.cjs',
+            owner,
         ],
         cwd=ROOT,
         text=True,
@@ -402,10 +417,12 @@ const {normalizeHTML,restoreContentAmendment} = require('./tools/check_site_seo.
 const {sourceForPreview} = require('./tools/build_site_previews.cjs');
 const record = require('./'+process.argv[1]);
 const sitecase = require('./review/issue-41/2026-10-09-sitecase-amendment.json');
+const arkadiy = require('./review/issue-41/2026-10-10-arkadiy-amendment.json');
 const normalize = html => normalizeHTML(sourceForPreview(html));
 const pages = {}, baseline = {};
 for (const page of ['index','research','writing','talks','credits']) {
   pages[page] = normalize(fs.readFileSync('docs/'+page+'.html','utf8'));
+  pages[page] = restoreContentAmendment(pages[page],page,arkadiy);
   if(process.argv[2] === 'true') pages[page] = restoreContentAmendment(pages[page],page,sitecase);
   baseline[page] = normalize(cp.execFileSync('git',['show',record.base+':docs/'+page+'.html'],{encoding:'utf8'}));
 }
@@ -416,6 +433,90 @@ process.stdout.write(JSON.stringify({pages,baseline,changes:record.changes.map(c
             ["node", "-e", script, record_path, str(restore_sitecase).lower()], cwd=ROOT
         )
     )
+
+
+def arkadiy_projection():
+    """Render both bounded source states through the existing pure renderer."""
+    script = r"""
+const fs = require('node:fs');
+const cp = require('node:child_process');
+const {normalizeHTML} = require('./tools/check_site_seo.cjs');
+const {renderSlots,documentTemplate} = require('./tools/site/render-content.cjs');
+const {stableTagEndings} = require('./tools/site/html.cjs');
+const catalog = require('./site/content/catalog.json');
+const states = {public:{},review:{},baseline:{},generated:{}};
+for (const page of ['index','research']) {
+  for (const state of ['public','review']) {
+    const file = state === 'public'
+      ? 'site/content/pages/'+page+'/acknowledgements.json'
+      : 'review/issue-41/arkadiy-review/'+page+'/acknowledgements.json';
+    const content = JSON.parse(fs.readFileSync(file,'utf8'));
+    const template = state === 'public'
+      ? documentTemplate(content,file)
+      : 'review/issue-41/arkadiy-review/'+page+'/acknowledgements.html';
+    documentTemplate(content,file);
+    states[state][page] = normalizeHTML(stableTagEndings(
+      renderSlots(fs.readFileSync(template,'utf8'),content,catalog,file)));
+  }
+  const html = cp.execFileSync('git',[
+    'show',process.argv[1]+':docs/'+page+'.html'
+  ],{encoding:'utf8'});
+  states.baseline[page] = normalizeHTML(
+    html.match(/<section[^>]*\bid="acknowledgements"[\s\S]*?<\/section>/)[0]);
+  states.generated[page] = normalizeHTML(fs.readFileSync('docs/'+page+'.html','utf8')
+    .match(/<section[^>]*\bid="acknowledgements"[\s\S]*?<\/section>/)[0]);
+}
+process.stdout.write(JSON.stringify(states));
+"""
+    return json.loads(subprocess.check_output(['node', '-e', script, ARKADIY_BASE], cwd=ROOT))
+
+
+def plain_text(html):
+    inline_free = re.sub(r'</?(?:a|em|span|strong)\b[^>]*>', '', html)
+    return re.sub(r'\s+', ' ', re.sub(r'<[^>]*>', ' ', unescape(inline_free))).strip()
+
+
+def validate_arkadiy_states(states):
+    """Reject leaked pending cards, changed relationships and fabricated consent."""
+    for page, public_count, review_count in [('index', 2, 3), ('research', 7, 8)]:
+        previous = re.findall(r'<article>[\s\S]*?</article>', states['baseline'][page])
+        expected_profiles = [re.search(r'<h3><a href="([^"]+)"', card)[1] for card in previous]
+        for state, count in [('public', public_count), ('review', review_count)]:
+            html = states[state][page]
+            cards = re.findall(r'<article>[\s\S]*?</article>', html)
+            profiles = [re.search(r'<h3><a href="([^"]+)"', card)[1] for card in cards]
+            expected = expected_profiles.copy()
+            if state == 'public':
+                expected.remove(ARKADIY_PROFILE)
+                require(
+                    not re.search(r'Arkadiy|arkadiydobkin|arkadiy-dobkin', html),
+                    'pending card leak',
+                )
+            require(
+                len(cards) == count and profiles == expected, 'changed card count/order/identity'
+            )
+            require(
+                html.count(PUBLIC_RESPONSES_NOTE) == 1, 'one readable section-level explanation'
+            )
+            require(
+                all(PUBLIC_RESPONSES_NOTE not in card for card in cards),
+                'explanation is not per person',
+            )
+            for profile, card in zip(profiles, cards):
+                old = next(row for row in previous if f'href="{profile}"' in row)
+                require(
+                    re.findall(r'href="([^"]+)"', card) == re.findall(r'href="([^"]+)"', old),
+                    'changed exact public/provenance destination',
+                )
+                if profile != ARKADIY_PROFILE:
+                    require(card == old, 'unrelated person card changed')
+            if page == 'research':
+                advisors, responses = html.split(
+                    '<h3 class="context-heading">Public responses</h3>'
+                )
+                require(advisors.count('<article>') == 2, 'UA advisor grouping changed')
+                require(ARKADIY_PROFILE not in advisors, 'public response promoted to advisor')
+                require(responses.count('<article>') == count - 2, 'response grouping changed')
 
 
 class Issue41ImplementationTests(unittest.TestCase):
@@ -514,29 +615,14 @@ class Issue41ImplementationTests(unittest.TestCase):
                 validate_admissions(self.inventory, data, baseline)
 
     def test_advisor_grouping_preserves_people_sources_and_compact_home(self):
-        for page, count in [('index', 3), ('research', 8)]:
-            current = section(self.pages[page], 'acknowledgements')
-            old = section(
-                subprocess.check_output(
-                    ['git', 'show', f'{RUNTIME_BASE}:docs/{page}.html'], cwd=ROOT
-                ).decode(),
-                'acknowledgements',
-            )
-            articles = re.findall(r'<article>[\s\S]*?</article>', current)
-            self.assertEqual(len(articles), count)
-            profiles = re.findall(r'<h3><a href="([^"]+)"', current)
-            self.assertEqual(len(set(profiles)), count)
-            for original in re.findall(r'<article>[\s\S]*?</article>', old):
-                profile = re.search(r'<h3><a href="([^"]+)"', original)[1]
-                replacement = next(a for a in articles if f'href="{profile}"' in a)
-                self.assertEqual(
-                    re.findall(r'href="([^"]+)"', replacement),
-                    re.findall(r'href="([^"]+)"', original),
-                )
+        # 10 October explicitly withdraws only Arkadiy's pending public cards.
+        # The review state preserves every prior profile and exact destination;
+        # both states keep all unrelated cards byte-equivalent after HTML normalization.
+        validate_arkadiy_states(arkadiy_projection())
         research = section(self.pages['research'], 'acknowledgements')
         advisors, responses = research.split('<h3 class="context-heading">Public responses</h3>')
         self.assertEqual(advisors.count('<article>'), 2)
-        self.assertEqual(responses.count('<article>'), 6)
+        self.assertEqual(responses.count('<article>'), 5)
         self.assertIn('Strategic Advisor on Governance and Alignment', advisors)
         self.assertIn('Professor of Intelligent Systems at the University of Waterloo', advisors)
         self.assertIn('Academic Advisor', advisors)
@@ -621,6 +707,10 @@ class Issue41ImplementationTests(unittest.TestCase):
                 )
 
     def test_runtime_and_hosting_mechanics_remain_unchanged(self):
+        amendment = json.loads((ROOT / ARKADIY).read_text())
+        changes = amendment['runtimeChanges']
+        self.assertEqual([row['path'] for row in changes], ['site/engine/lifecycle.cjs'])
+        admitted = {row['path']: row for row in changes}
         entries = subprocess.check_output(
             ['git', 'ls-tree', '-r', '-z', RUNTIME_BASE, '--', *UNCHANGED], cwd=ROOT
         )
@@ -637,6 +727,14 @@ class Issue41ImplementationTests(unittest.TestCase):
         for path in files:
             current = (ROOT / path).read_bytes()
             expected = subprocess.check_output(['git', 'show', f'{RUNTIME_BASE}:{path}'], cwd=ROOT)
+            if path in admitted:
+                change = admitted[path]
+                self.assertEqual(hashlib.sha256(expected).hexdigest(), change['beforeSHA256'])
+                self.assertEqual(hashlib.sha256(current).hexdigest(), change['afterSHA256'])
+                self.assertNotEqual(
+                    current, expected, 'authorized scroll removal must be substantive'
+                )
+                continue
             if path == '.github/workflows/issue-acceptance.yml':
                 # Raw-head CI initially failed with ENOENT for the existing
                 # format-parity Python owner: only issue58 installed its tools.
@@ -656,6 +754,199 @@ class Issue41ImplementationTests(unittest.TestCase):
                 self.assertEqual(expected.count(before), 1, 'one immutable setup selector')
                 expected = expected.replace(before, after)
             self.assertEqual(current, expected, path)
+
+    def test_arkadiy_review_copy_preserves_specific_contributions_and_exact_sources(self):
+        states = arkadiy_projection()
+        validate_arkadiy_states(states)
+        expected_home = (
+            'In a public response to Thinking Systems, Arkadiy recommended reading the paper '
+            'and extended the discussion with two propositions: AI could expand the range of '
+            'problems software can address, while domain-specific control architectures may '
+            'become a lasting source of differentiation.'
+        )
+        expected_research = [
+            'Public discussion · Thinking Systems',
+            'Arkadiy publicly recommended reading Thinking Systems and contributed two further '
+            'perspectives to the discussion.',
+            'First, model-mediated systems may expand the range of problems that software can '
+            'address, rather than merely replace existing solutions.',
+            'Second, as foundation models and generic agent infrastructure commoditize, domain- '
+            'and client-specific control architectures may remain a significant source of '
+            'differentiation.',
+            'These perspectives extend the discussion beyond runtime engineering into market '
+            'opportunities, enterprise capabilities, and long-term competitive advantage.',
+            'Formulation provenance: The terminology used in Thinking Systems was influenced '
+            'by an earlier conversation with Arkadiy. His contribution to the formulation is '
+            'acknowledged separately in the research record.',
+        ]
+        for page in ['index', 'research']:
+            card = next(
+                row
+                for row in re.findall(r'<article>[\s\S]*?</article>', states['review'][page])
+                if ARKADIY_PROFILE in row
+            )
+            text = plain_text(card)
+            self.assertIn('Principal Founder & Executive Chairman, EPAM', text)
+            self.assertNotRegex(text, r'\b(?:endorsed|validated|backed by|partner|advisor)\b')
+            self.assertNotRegex(card, r'<(?:blockquote|img|svg)\b|\bstyle=')
+            if page == 'index':
+                self.assertIn(expected_home, text)
+                self.assertIn('Read the original discussion ↗', text)
+            else:
+                for paragraph in expected_research:
+                    self.assertIn(paragraph, text)
+                self.assertIn('Read Arkadiy’s original post ↗', text)
+                self.assertIn('Read the formulation provenance ↗', text)
+                provenance = card.index('Formulation provenance:')
+                self.assertGreater(provenance, card.index('Read Arkadiy’s original post'))
+                self.assertNotIn('<q>', card, 'editorial synthesis is not a direct quote')
+        self.assertEqual(
+            (ROOT / 'site/content/catalog.json').read_bytes(),
+            subprocess.check_output(
+                ['git', 'show', f'{ARKADIY_BASE}:site/content/catalog.json'], cwd=ROOT
+            ),
+            'published editions and their source records stay exact',
+        )
+        for page in ['index', 'research', 'writing', 'talks', 'credits']:
+            path = f'site/content/pages/{page}/metadata.json'
+            self.assertEqual(
+                (ROOT / path).read_bytes(),
+                subprocess.check_output(['git', 'show', f'{ARKADIY_BASE}:{path}'], cwd=ROOT),
+                path,
+            )
+
+    def test_arkadiy_pending_cards_do_not_leak_into_public_payload_or_retained_pages(self):
+        for path in (ROOT / 'docs').rglob('*'):
+            if path.is_file() and path.suffix in {'.html', '.json', '.js'}:
+                self.assertNotRegex(
+                    path.read_text(),
+                    r'Arkadiy Dobkin|arkadiydobkin|arkadiy-dobkin',
+                    str(path.relative_to(ROOT)),
+                )
+        amendment = json.loads((ROOT / ARKADIY).read_text())
+        self.assertEqual(
+            amendment['publication'],
+            {'reviewOnly': True, 'productionCards': False, 'consentConfirmed': False},
+        )
+        previous = base_json('site/retained/manifest.json', ARKADIY_BASE)
+        current = json.loads((ROOT / 'site/retained/manifest.json').read_text())
+        withdrawn = amendment['withdrawnRetained']
+        expected_paths = [
+            'snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html',
+            'snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html',
+        ]
+        self.assertEqual([row['path'] for row in withdrawn], expected_paths)
+        for row in withdrawn:
+            path = 'site/retained/' + row['path']
+            old_bytes = subprocess.check_output(['git', 'show', f'{ARKADIY_BASE}:{path}'], cwd=ROOT)
+            self.assertEqual(hashlib.sha256(old_bytes).hexdigest(), row['beforeSHA256'])
+            self.assertEqual(previous['files'].pop(row['path']), row['beforeSHA256'])
+            self.assertFalse((ROOT / path).exists(), 'old card is withdrawn from publishing inputs')
+            self.assertFalse((ROOT / 'docs' / row['path']).exists(), 'old card is not downloadable')
+        self.assertEqual(current, previous, 'all unrelated retained records remain exact')
+        for path, digest in current['files'].items():
+            self.assertEqual(
+                hashlib.sha256((ROOT / 'site/retained' / path).read_bytes()).hexdigest(), digest
+            )
+
+    def test_arkadiy_amendment_binds_current_public_and_separate_review_fragments(self):
+        record = json.loads((ROOT / ARKADIY).read_text())
+        self.assertEqual((record['schema'], record['issue'], record['base']), (1, 41, ARKADIY_BASE))
+        self.assertEqual(
+            [(row['page'], row['id']) for row in record['changes']],
+            [('index', 'arkadiy-home'), ('research', 'arkadiy-research')],
+        )
+        states = arkadiy_projection()
+        validate_arkadiy_states(states)
+        self.assertEqual(
+            states['generated'], states['public'], 'current generated public composition'
+        )
+        for change in record['changes']:
+            self.assertTrue(change['intent'])
+            for version in ['before', 'after', 'reviewAfter']:
+                self.assertEqual(
+                    hashlib.sha256(change[version].encode()).hexdigest(), change[version + 'SHA256']
+                )
+            for version, state in [
+                ('before', 'baseline'),
+                ('after', 'public'),
+                ('reviewAfter', 'review'),
+            ]:
+                script = (
+                    "const fs=require('node:fs');"
+                    "const {normalizeHTML}=require('./tools/check_site_seo.cjs');"
+                    "process.stdout.write(normalizeHTML(fs.readFileSync(0,'utf8')));"
+                )
+                normalized = subprocess.check_output(
+                    ['node', '-e', script], input=change[version], text=True, cwd=ROOT
+                )
+                self.assertEqual(normalized, states[state][change['page']], version)
+            self.assertNotEqual(change['before'], change['after'])
+            self.assertNotEqual(change['reviewAfter'], change['after'])
+
+    def test_arkadiy_leaks_advisory_promotion_wrong_sources_and_other_card_edits_fail(self):
+        original = arkadiy_projection()
+        mutations = [
+            lambda states: states['public'].update(index=states['review']['index']),
+            lambda states: states['public'].update(
+                research=states['public']['research'].replace(PUBLIC_RESPONSES_NOTE, '')
+            ),
+            lambda states: states['review'].update(
+                research=states['review']['research'].replace(
+                    'Public responses</h3>', 'Public responses renamed</h3>'
+                )
+            ),
+            lambda states: states['review'].update(
+                index=states['review']['index'].replace(
+                    'activity-7500661925790240768--I1H', 'feed/'
+                )
+            ),
+            lambda states: states['public'].update(
+                index=states['public']['index'].replace(
+                    'Co-author of Team Topologies', 'Validated UA'
+                )
+            ),
+        ]
+        for index, mutate in enumerate(mutations):
+            states = copy.deepcopy(original)
+            mutate(states)
+            with self.subTest(mutation=index), self.assertRaises((ValueError, KeyError)):
+                validate_arkadiy_states(states)
+
+    def test_scroll_camera_stays_fixed_on_every_route_and_after_writing_reflow(self):
+        node_suite_checks(
+            'tests/space.test.cjs',
+            [
+                'native scroll keeps each route camera steady while bounded ambient motion continues',
+                'Writing filters and reflow preserve the steady route view',
+            ],
+        )
+
+    def test_route_flight_content_fade_and_passive_motion_remain_bounded(self):
+        node_suite_checks(
+            'tests/space.test.cjs',
+            [
+                'route flights use one canvas and global space; retarget, Off and hidden preserve the painted pose',
+                'history and fragment landings fly to the steady route view independently of native offset',
+            ],
+        )
+        node_suite_checks(
+            'tests/navigation.test.cjs',
+            [
+                'animated Color yields the completed camera paint before native mount, with no second animation clock',
+            ],
+        )
+
+    def test_steady_camera_preserves_motion_controls_failure_and_scroll_reversal(self):
+        node_suite_checks(
+            'tests/space.test.cjs',
+            [
+                'Off freezes the exact displayed camera and phase through theme, resize, layout, hidden and print',
+                'reduced overrides saved On; Off persists; hidden and print pause without elapsed-time catch-up',
+                'delayed CSS cannot partially activate; post-activation draw failure stops once',
+                'rapid scroll reversal cannot move a steady camera on any route',
+            ],
+        )
 
     def test_positioning_amendment_binds_exact_current_and_immutable_fragments(self):
         amendment = json.loads((ROOT / POSITIONING).read_text())

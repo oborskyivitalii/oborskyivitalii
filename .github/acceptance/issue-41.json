@@ -14,7 +14,7 @@
     {
       "id": "AC02",
       "intent": "Confident bounded advisory and response presentation without overcrowding.",
-      "automated_scope": "Generated three Home cards, two UA advisors and six other Research responses; unique profiles, all existing source links, exact bounded roles and declared copy delta. Automated structure is not editorial or independent acceptance.",
+      "automated_scope": "Generated three Home cards, two UA advisors and six other Research responses; unique profiles, all existing source links, exact bounded roles and declared copy delta. Automated structure is not editorial or independent acceptance. The explicit 10 October amendment keeps all cards in a separate review rendition while production omits only the pending Arkadiy card: two Home cards, two UA advisors and five Research responses; all remaining identities, destinations and prose stay exact.",
       "checks": ["ADVISORS", "SEO"],
       "gates": ["EDITORIAL"]
     },
@@ -35,7 +35,7 @@
     {
       "id": "AC05",
       "intent": "Preserve SEO, semantics, original editions and runtime behavior.",
-      "automated_scope": "All five pages reconcile to the immutable SEO baseline after the exact reviewed Issue41/48/61 deltas and the explicit 9 October positioning amendment. Metadata, original edition identities and unrelated semantics remain exact. Original catalog/edition comparisons stay at c4539ad; this new content phase preserves runtime, scenes, routes and build architecture against the protected-main starting source 338e3ff. Workflows remain byte-exact except the single existing acceptance-tool installation step name/selector: issue41 now receives the same pinned toolchain already installed for issue58, repairing the observed format-parity Python ENOENT. Tool versions, commands, actions, triggers and gates stay unchanged. Earlier joint-staging evidence and its 73020e8 companion remain historical, not a claim that later accepted runtime work never occurred. Enduring SEO mutation cases and normal preview smoke complement this task snapshot; no ranking or release claim. The same-issue AI-assisted site case adds only its separately hashed two-fragment successor, reversed before the unchanged six-fragment positioning record; its immutable starting source is da36ccf.",
+      "automated_scope": "All five pages reconcile to the immutable SEO baseline after the exact reviewed Issue41/48/61 deltas and the explicit 9 October positioning amendment. Metadata, original edition identities and unrelated semantics remain exact. Original catalog/edition comparisons stay at c4539ad; this new content phase preserves runtime, scenes, routes and build architecture against the protected-main starting source 338e3ff. Workflows remain byte-exact except the single existing acceptance-tool installation step name/selector: issue41 now receives the same pinned toolchain already installed for issue58, repairing the observed format-parity Python ENOENT. Tool versions, commands, actions, triggers and gates stay unchanged. Earlier joint-staging evidence and its 73020e8 companion remain historical, not a claim that later accepted runtime work never occurred. Enduring SEO mutation cases and normal preview smoke complement this task snapshot; no ranking or release claim. The same-issue AI-assisted site case adds only its separately hashed two-fragment successor, reversed before the unchanged six-fragment positioning record; its immutable starting source is da36ccf. The dated 10 October maintainer instruction now admits only the exact hashed lifecycle successor removing scroll-driven camera travel; route flights, fade, passive scene motion and every other frozen runtime/build/route owner remain protected. Pending Arkadiy cards are excluded from production and two exact retained prior page snapshots are withdrawn from publishing inputs; immutable prior evidence remains in Git.",
       "checks": ["SEO", "ADMISSIONS", "CATALOG-SCHEMA", "RUNTIME-SCOPE"],
       "gates": ["EDITORIAL", "BROWSER"]
     },
@@ -112,7 +112,7 @@
     {
       "id": "AC16",
       "intent": "Preserve graphics, animation, routes and rendering architecture with applicable source style.",
-      "automated_scope": "Exact protected-main engine/effects/assets/scenes/routes/build bytes remain unchanged. The workflow comparison admits only the exact existing acceptance installation-step name/selector repair for issue41; all other workflow bytes, pinned tools/actions, triggers and gates remain protected; the bounded current repository style guard is reused. New templates/content/checks follow applicable CS01/02/03/05/08/09/10. Formatter/lint/architecture CI and unautomated source/readability review remain external evidence, not inferred from guard success.",
+      "automated_scope": "Exact protected-main engine/effects/assets/scenes/routes/build bytes remain unchanged. The workflow comparison admits only the exact existing acceptance installation-step name/selector repair for issue41; all other workflow bytes, pinned tools/actions, triggers and gates remain protected; the bounded current repository style guard is reused. New templates/content/checks follow applicable CS01/02/03/05/08/09/10. Formatter/lint/architecture CI and unautomated source/readability review remain external evidence, not inferred from guard success. The dated 10 October maintainer instruction now admits only the exact hashed lifecycle successor removing scroll-driven camera travel; route flights, fade, passive scene motion and every other frozen runtime/build/route owner remain protected. Pending Arkadiy cards are excluded from production and two exact retained prior page snapshots are withdrawn from publishing inputs; immutable prior evidence remains in Git.",
       "checks": ["RUNTIME-SCOPE", "CODE-STYLE"],
       "gates": ["POSITIONING-REVIEW"]
     },
@@ -161,14 +161,14 @@
     {
       "id": "AC23",
       "intent": "Keep Home compact and avoid duplicating Research or repository documentation.",
-      "automated_scope": "Only the exact About paragraph and existing Credits main fragment are admitted. Research and all other page semantics remain protected by the whole-page comparator. Editorial review checks the short reader-facing rationale and four evidence paragraphs.",
+      "automated_scope": "Only the exact About paragraph and existing Credits main fragment are admitted. Research and all other page semantics remain protected by the whole-page comparator. Editorial review checks the short reader-facing rationale and four evidence paragraphs. The dated 10 October acknowledgements amendment is an explicitly accepted two-section successor; all other Research semantics remain frozen.",
       "checks": ["SITECASE-PROVENANCE", "SEO"],
       "gates": ["EDITORIAL"]
     },
     {
       "id": "AC24",
       "intent": "Preserve structure, navigation, SEO URLs and visual behavior with applicable style.",
-      "automated_scope": "Current engine/effects/assets/scenes/routes/build bytes remain protected by the unchanged runtime baseline and existing exact workflow-selector exception. Full metadata/semantic reconciliation and maintained page-link checks run; source/template/readability review assesses CS01/02/03/05/08/09/10 without inferring broad compliance from one guard.",
+      "automated_scope": "Current engine/effects/assets/scenes/routes/build bytes remain protected by the unchanged runtime baseline and existing exact workflow-selector exception. Full metadata/semantic reconciliation and maintained page-link checks run; source/template/readability review assesses CS01/02/03/05/08/09/10 without inferring broad compliance from one guard. The dated 10 October maintainer instruction now admits only the exact hashed lifecycle successor removing scroll-driven camera travel; route flights, fade, passive scene motion and every other frozen runtime/build/route owner remain protected. Pending Arkadiy cards are excluded from production and two exact retained prior page snapshots are withdrawn from publishing inputs; immutable prior evidence remains in Git.",
       "checks": ["SEO", "RUNTIME-SCOPE", "CONTENT-LINKS", "CODE-STYLE"],
       "gates": ["POSITIONING-REVIEW"]
     },
@@ -185,6 +185,69 @@
       "automated_scope": "The new exact fragment/proof destination check and current policy retain stable AC01–AC16 and append AC17–AC26. Independent review must inspect criterion-to-evidence mapping and actual issue checkbox reconciliation after matching CI/preview observations. This content-phase gate supplies no merge decision or issue closure.",
       "checks": ["SITECASE-PROVENANCE"],
       "gates": ["POSITIONING-REVIEW"]
+    },
+    {
+      "id": "AC27",
+      "intent": "AD01 — Preserve the requested Home and Research copy in the separate review candidate.",
+      "automated_scope": "The bounded renderer checks every supplied sentence, qualified propositions, exact roles and separate public response/formulation provenance. Exact dated before/public-after/review-after fragments bind the current sources; copy structure does not establish factual truth or consent.",
+      "checks": ["AD-COPY", "AD-AMENDMENT"],
+      "gates": ["AD-EDITORIAL"]
+    },
+    {
+      "id": "AC28",
+      "intent": "AD02 — Bound public discussions without personal or organizational endorsement.",
+      "automated_scope": "One section-level explanation appears on each Home/Research rendition; Arkadiy remains outside UA advisors, with no endorsement/advisory claim or testimonial markup. All unrelated person cards and exact source destinations remain preserved; meaningful mutation cases reject omissions, promotion, changed sources and unrelated edits.",
+      "checks": ["AD-COPY", "AD-NEGATIVES", "ADVISORS"],
+      "gates": ["AD-EDITORIAL"]
+    },
+    {
+      "id": "AC29",
+      "intent": "AD03 — Preserve exact public sources and earlier publication/provenance identities.",
+      "automated_scope": "Every prior profile/post/provenance destination survives in the review rendition, and active catalog/metadata bytes match immutable starting main. No private correspondence is a publishing input; source/editorial review separately verifies rights and provenance boundaries.",
+      "checks": ["AD-COPY", "AD-AMENDMENT", "ADVISORS"],
+      "gates": ["AD-EDITORIAL"]
+    },
+    {
+      "id": "AC30",
+      "intent": "AD04 — Keep pending cards out of all production payloads until consent is confirmed.",
+      "automated_scope": "Active authored content excludes the old and revised Arkadiy cards. Every generated HTML/JSON/JS payload, including current and retained snapshots, is checked for their identity/profile/post/provenance leakage; exactly two obsolete retained page inputs are withdrawn and all other retained bytes remain exact. Review inputs are separate and cannot imply production approval. The current record declares consent unconfirmed; this test neither obtains consent nor authorizes launch.",
+      "checks": ["AD-PUBLICATION", "AD-AMENDMENT", "AD-NEGATIVES"],
+      "gates": []
+    },
+    {
+      "id": "AC31",
+      "intent": "AD05 — Keep both page renditions readable and scrollable in Day/Night on desktop/mobile.",
+      "automated_scope": "Existing page link/resource/anchor checks and all-route fixed-camera/reflow checks run. Actual same-source desktop/mobile Day/Night layouts, longer review copy, natural card height, bottom reach and routes require targeted browser evidence; source assertions do not prove readability.",
+      "checks": ["CONTENT-LINKS", "SCROLL-CAMERA"],
+      "gates": ["AD-BROWSER"]
+    },
+    {
+      "id": "AC32",
+      "intent": "AD06 — Reconcile generated outputs, checks and actual issue evidence in the existing owner.",
+      "automated_scope": "Current dated fragments, production exclusion, frozen-scope comparison, SEO and bounded code-style checks execute through the owning policy. Actual current-source mandatory Basic/navigation/hosted light-profile evidence, independent review and real issue checkbox reconciliation remain explicit review obligations. No merge or production launch occurs in this task.",
+      "checks": ["AD-AMENDMENT", "AD-PUBLICATION", "SEO", "RUNTIME-SCOPE", "CODE-STYLE"],
+      "gates": ["AD-REVIEW"]
+    },
+    {
+      "id": "AC33",
+      "intent": "SC01 — Remove camera travel caused by native scrolling on all routes.",
+      "automated_scope": "Maintained lifecycle tests exercise all five routes at desktop/narrow widths, arbitrary initial offsets, scroll/reversal and Writing filter/reflow; they require one stable per-route camera while ambient motion keeps its existing bounded clock. Native bottom/anchor/history browser fixtures still verify reading/navigation; no scroll-driven camera mapping remains active.",
+      "checks": ["SCROLL-CAMERA", "RUNTIME-SCOPE"],
+      "gates": ["AD-BROWSER"]
+    },
+    {
+      "id": "AC34",
+      "intent": "SC02 — Preserve route-to-route camera flight, content fade/motion and passive fractal animation.",
+      "automated_scope": "Maintained current flight tests retain a single global scene/canvas, midpoint/arrival behavior, retargeting and matching completed camera paint before native mount. All effects/navigation/scenes bytes remain frozen; the only runtime admission is lifecycle scroll removal. Exact-source hosted targeted observation separately confirms the visible transition and passive motion.",
+      "checks": ["ROUTE-FLIGHT", "SCROLL-CAMERA", "RUNTIME-SCOPE"],
+      "gates": ["AD-BROWSER"]
+    },
+    {
+      "id": "AC35",
+      "intent": "SC03 — Preserve accessibility, failure, history and bounded lifecycle behavior with applicable style.",
+      "automated_scope": "Current lifecycle tests exercise Off/reduced/hidden/print, delayed CSS, Canvas failure and rapid scroll reversal without moving the steady view or creating a new loop. Existing route-flight/history contracts and CS01/04/05/06/07/08/09/10 checks remain applicable. Human review covers unautomated architecture/readability and actual current-source profile evidence; guard success does not establish all style or release requirements.",
+      "checks": ["STEADY-LIFECYCLE", "ROUTE-FLIGHT", "CODE-STYLE"],
+      "gates": ["AD-REVIEW", "AD-BROWSER"]
     }
   ],
   "checks": {
@@ -259,6 +322,34 @@
     "SITECASE-PROVENANCE": {
       "kind": "unittest",
       "test": "test_issue41_acceptance.Issue41ImplementationTests.test_site_case_amendment_binds_fragments_and_public_evidence_destinations"
+    },
+    "AD-COPY": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_arkadiy_review_copy_preserves_specific_contributions_and_exact_sources"
+    },
+    "AD-AMENDMENT": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_arkadiy_amendment_binds_current_public_and_separate_review_fragments"
+    },
+    "AD-PUBLICATION": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_arkadiy_pending_cards_do_not_leak_into_public_payload_or_retained_pages"
+    },
+    "AD-NEGATIVES": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_arkadiy_leaks_advisory_promotion_wrong_sources_and_other_card_edits_fail"
+    },
+    "SCROLL-CAMERA": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_scroll_camera_stays_fixed_on_every_route_and_after_writing_reflow"
+    },
+    "ROUTE-FLIGHT": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_route_flight_content_fade_and_passive_motion_remain_bounded"
+    },
+    "STEADY-LIFECYCLE": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_steady_camera_preserves_motion_controls_failure_and_scroll_reversal"
     }
   },
   "gates": {
@@ -285,6 +376,18 @@
     "POSITIONING-BROWSER": {
       "kind": "human",
       "description": "Inspect matching exact-source ordinary PR hosted smoke at registry widths 1440/390, including normal/no-Canvas routes and existing theme/control/navigation contracts, plus actual hosted desktop/narrow readability of the changed Home/Writing/Talks/Credits copy and its existing links/contact transitions. Record actual manual viewport dimensions or named mobile preset, observed themes, browser capabilities and access limits. Manual review may use the available desktop and mobile viewports; do not invent four exact 1440/390 Day/Night manual combinations or claim native-device, physical-device or performance acceptance from these observations. Preserve source/public-digest/run binding. Historical Research/archive/physical-device/release requirements remain with the original BROWSER and separate owners; this focused content gate does not satisfy or remove them. For the current case extension, inspect the matching updated immutable preview’s About mention, About-to-Credits built-with-ai anchor, Credits evidence link destinations and compact block readability at actual desktop/narrow viewports; preserve previous unaffected content evidence as historical rather than asserting old captures show this addition."
+    },
+    "AD-EDITORIAL": {
+      "kind": "human",
+      "description": "Review the exact requested Arkadiy prose, qualified propositions and separate formulation attribution against the public-source context. Treat the final analytic paragraph as editorial synthesis; keep UA advisors separate and the organizational explanation at section level. Preserve historical article/provenance identities and private-correspondence boundaries. Owner review and preview do not establish new consent; production stays without either old or revised cards until the owner explicitly confirms consent."
+    },
+    "AD-BROWSER": {
+      "kind": "human",
+      "description": "Record exact-source targeted Home and Research review and production observations on desktop/mobile in Day/Night: natural wrapping/card height, no clipping/smaller type/internal scroll, preserved links/anchors, bottom reach and route history. Observe a steady camera while native scrolling, preserved route flight with content fade/motion and ongoing passive fractal movement; also Off/reduced/failure states. Use ordinary required PR hosted profile and scoped checks, preserving budgets; no full production regression or native-device/release claim is supplied."
+    },
+    "AD-REVIEW": {
+      "kind": "human",
+      "description": "Independently review the exact dated authorized scope, explicit AC27–35 aliases to AD01–06/SC01–03, fragment/runtime/retained hashes, current source contract and CS rules, canonical output regeneration, current mandatory gates and actual issue checkbox reconciliation. Verify the two prior pages are withdrawn only from publishing inputs while exact historical evidence remains in Git; review payload cannot become production content by accident. Record current PR/preview/source identities and access limits. This task forbids merge and production launch, so this gate supplies neither decision and cannot satisfy the original issue merge/closure gate."
     }
   }
 }

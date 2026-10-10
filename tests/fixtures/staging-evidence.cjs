@@ -182,10 +182,11 @@ function navigationRow(selected) {
     scrollArrivals: budgets.routes.slice(1).map((route) => ({
       route,
       end: 1000,
+      start: require('../../tools/quality/scroll-browser.cjs').expectedCamera(route),
       samples: [0.9, 0.95, 0.99, 1].map((fraction) => ({
         fraction,
         y: 1000 * fraction,
-        camera: 'camera-' + fraction,
+        camera: require('../../tools/quality/scroll-browser.cjs').expectedCamera(route),
       })),
     })),
   };

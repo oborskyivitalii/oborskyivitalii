@@ -20,11 +20,11 @@ function checks(mode, route) {
     syncFixture = (label) => ({
       label,
       end: 1000,
-      start: 'opening',
+      start: contract.expectedCamera(route),
       samples: [0.9, 0.95, 0.99, 1].map((fraction) => ({
         fraction,
         y: fraction * 1000,
-        camera: 'camera-' + fraction,
+        camera: contract.expectedCamera(route),
       })),
     });
   if (mode === 'normal')
@@ -35,7 +35,7 @@ function checks(mode, route) {
       syntheticVisibility: true,
       keyboard: true,
       reverse: true,
-      forward: 'camera changed',
+      forward: 'camera fixed',
       archive: route === 'writing' ? true : 'not applicable',
       zoom: true,
       axePasses: 1,
@@ -47,8 +47,8 @@ function checks(mode, route) {
           id: 'semantic-stop',
           y: 100,
           distance: 0,
-          actual: { position: [0, 0, 0], target: [0, 0, -1] },
-          expected: { position: [0, 0, 0], target: [0, 0, -1] },
+          actual: JSON.parse(contract.expectedCamera(route)),
+          expected: JSON.parse(contract.expectedCamera(route)),
         },
         checks: Object.fromEntries(
           contract.checks.map((k) => [
@@ -122,10 +122,11 @@ function fixture() {
         scrollArrivals: ['research', 'writing', 'talks', 'credits'].map((route) => ({
           route,
           end: 1000,
+          start: require('../tools/quality/scroll-browser.cjs').expectedCamera(route),
           samples: [0.9, 0.95, 0.99, 1].map((fraction) => ({
             fraction,
             y: fraction * 1000,
-            camera: 'arrival-' + fraction,
+            camera: require('../tools/quality/scroll-browser.cjs').expectedCamera(route),
           })),
         })),
         checks: Object.fromEntries(
@@ -213,9 +214,7 @@ test('complete source-bound PR evidence passes; missing and controlled failures 
     (x) => delete x.reports[3].rows[0].checks.scrollSync.checks.contentGrowth,
     (x) => delete x.reports[3].rows[0].checks.scrollSync.waypoint,
     (x) => (x.reports[3].rows[0].checks.scrollSync.waypoint.actual.position[0] = 1),
-    (x) =>
-      (x.reports[3].rows[0].checks.scrollSync.fixtures[0].samples[3].camera =
-        x.reports[3].rows[0].checks.scrollSync.fixtures[0].samples[2].camera),
+    (x) => (x.reports[3].rows[0].checks.scrollSync.fixtures[0].samples[3].camera = 'moved-camera'),
     (x) => (x.reports[3].rows[0].checks.scrollSync.fixtures[0].samples[3].y = 990),
     (x) =>
       x.reports[3].rows

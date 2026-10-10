@@ -121,9 +121,9 @@ test('explicit adaptive hold settles only after native position, pose and measur
       assert.notEqual(
         evidence.samples.at(-1).camera,
         'opening',
-        'caller still requires native scrolling to map to its target'
+        'caller must reject any camera movement from its steady route view'
       ),
-    'a held opening pose cannot satisfy downstream target assertions'
+    'an unexpected changed pose remains a downstream failure'
   );
 });
 test('a frozen live scene or invalid hold cannot satisfy camera settling and retains all timeout samples', async () => {

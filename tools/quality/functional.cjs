@@ -149,7 +149,7 @@ function forwardCameraResponded(expected) {
   };
   probe.samples.push(sample);
   const responded =
-    Math.abs(scrollY - expected.target) <= 1 && scene.dataset.camera !== expected.baseline;
+    Math.abs(scrollY - expected.target) <= 1 && scene.dataset.camera === expected.baseline;
   if (responded) {
     probe.status = 'responded';
     probe.elapsedMs = sample.time;
@@ -439,7 +439,7 @@ async function normal(page, scenario) {
   const forward = await forwardCamera(page, a.camera, travel);
   if (travel.range > 1 && travel.target > 1) {
     assert.ok(forward.scrollY > 0, 'native scroll reaches the visible journey');
-    assert.notEqual(forward.camera, a.camera, 'native forward scroll moves camera');
+    assert.equal(forward.camera, a.camera, 'native forward scroll keeps the steady camera');
   } else assert.equal(forward.camera, a.camera, 'short page keeps camera');
   assert.equal((await atStart(page, a.camera)).camera, a.camera, 'midflight reverse endpoint');
   await freezeControls(page);
@@ -480,7 +480,7 @@ async function normal(page, scenario) {
     keyboard: true,
     keyboardShortcut,
     reverse: true,
-    forward: travel.range > 1 && travel.target > 1 ? 'camera changed' : 'short page',
+    forward: travel.range > 1 && travel.target > 1 ? 'camera fixed' : 'short page',
     travel: { ...travel, settledY: forward.scrollY },
     archive: scenario.route === 'writing' ? true : 'not applicable',
     scrollSync,
