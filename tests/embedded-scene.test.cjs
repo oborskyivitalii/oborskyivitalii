@@ -56,6 +56,7 @@ function harness({
   const statusOwner = { dataset: {} };
   const worlds = new Map();
   let canTravel = true;
+  let deferCapture = deferred;
   let theme;
   const document = {
     ...eventTarget(),
@@ -212,7 +213,7 @@ function harness({
         reject = no;
       });
       captures.push({ root, options, asset, resolve: (result = asset) => resolve(result), reject });
-      if (!deferred) resolve(asset);
+      if (!deferCapture) resolve(asset);
       return promise;
     },
     matchesField(root, sources, options) {
@@ -306,6 +307,9 @@ function harness({
     finish,
     setTravel(value) {
       canTravel = value;
+    },
+    setDeferred(value) {
+      deferCapture = value;
     },
     theme: () => theme(),
   };
@@ -919,7 +923,7 @@ test('an eviction between paints keeps every reported face bound to its actual p
   }
 });
 
-test('a failed destination recapture cannot start a flight with its disposed prior field', async () => {
+test('a failed destination recapture retains prior pixels without authorizing its mismatched landing', async () => {
   const h = harness({ deferred: true });
   h.collect('index', 100);
   const warming = h.bridge.prime(h.data('research'), 78);
@@ -928,23 +932,26 @@ test('a failed destination recapture cannot start a flight with its disposed pri
   const departure = h.bridge.prepareDeparture(h.native('index'));
   h.captures[1].resolve();
   assert.equal(await departure, true);
+  const retainedIds = plain(h.bridge.diagnostics().ids);
   const recapture = h.bridge.prime(h.data('research'), 78, { position: [0, 600] });
-  assert.equal(h.assets[0].disposeCount, 1);
+  assert.equal(h.assets[0].disposeCount, 0);
+  assert.ok(h.captures[2].options.caps.layerPixels <= 8000000 - h.assets[0].pixelCount);
+  assert.deepEqual(plain(h.bridge.diagnostics().ids), retainedIds);
   h.captures[2].resolve(null);
   assert.equal(await recapture, false);
   assert.equal(
-    h.bridge.begin({ from: 'index', to: 'research', landing: { position: [0, 0] } }),
+    h.bridge.begin({ from: 'index', to: 'research', landing: { position: [0, 600] } }),
     false,
-    'old landing metadata cannot authorize a flight after its field was disposed'
+    'retained landing metadata cannot authorize a different destination viewport'
   );
   assert.equal(h.bridge.active(), false);
   assert.equal(h.bridge.diagnostics().ready, false);
   assert.equal(await h.bridge.prepareDeparture(h.native('index')), false);
-  assert.deepEqual(plain(h.bridge.diagnostics().residentRoutes), ['index']);
+  assert.deepEqual(plain(h.bridge.diagnostics().residentRoutes), ['research', 'index']);
   assert.equal(h.bridge.owners().length, 0);
 });
 
-test('a failed source recapture cannot hide native content using its disposed departure field', async () => {
+test('a failed source recapture retains prior pixels but disarms stale departure authorization', async () => {
   const h = harness({ deferred: true });
   h.collect('index', 100);
   const warming = h.bridge.prime(h.data('research'), 78);
@@ -956,7 +963,8 @@ test('a failed source recapture cannot hide native content using its disposed de
   assert.equal(await departure, true);
   content.owners[0].paintFingerprint = 'changed-native-paint';
   const recapture = h.bridge.prepareDeparture(content);
-  assert.equal(h.assets[1].disposeCount, 1);
+  assert.equal(h.assets[1].disposeCount, 0);
+  assert.ok(h.captures[2].options.caps.layerPixels <= 8000000 - h.assets[1].pixelCount);
   h.captures[2].resolve(null);
   assert.equal(await recapture, false);
   assert.equal(
@@ -966,7 +974,7 @@ test('a failed source recapture cannot hide native content using its disposed de
   assert.equal(h.bridge.active(), false);
   assert.equal(h.bridge.diagnostics().departure.ready, false);
   assert.notEqual(content.style.visibility, 'hidden');
-  assert.deepEqual(plain(h.bridge.diagnostics().residentRoutes), ['research']);
+  assert.deepEqual(plain(h.bridge.diagnostics().residentRoutes), ['research', 'index']);
   assert.equal(h.bridge.owners().length, 0);
 });
 
@@ -1200,4 +1208,92 @@ test('native handoff uses one frozen or wrapped clock and waits for exact camera
   assert.equal(h.bridge.nativeOpacity(), 0.5);
   h.collect('research', 120, exact);
   assert.equal(h.bridge.complete(), true);
+});
+
+test('successful replacement swaps bitmap ownership only after bounded acquisition completes', async () => {
+  for (const compact of [false, true]) {
+    const h = harness({ compact, deferred: true });
+    h.collect('index', 100);
+    const warm = h.bridge.prime(h.data('research'), 78);
+    h.captures[0].resolve();
+    assert.equal(await warm, true);
+    const old = h.assets[0];
+    const recapture = h.bridge.prime(h.data('research'), 78, { position: [0, 600] });
+    assert.equal(old.disposeCount, 0);
+    assert.ok(old.canvas.width > 0);
+    assert.equal(h.bridge.diagnostics().residentUsage.layerPixels, old.pixelCount);
+    assert.ok(
+      h.captures[1].options.caps.layerPixels <= (compact ? 3000000 : 8000000) - old.pixelCount
+    );
+    h.captures[1].resolve();
+    assert.equal(await recapture, true);
+    assert.equal(old.disposeCount, 1);
+    assert.equal(h.assets[1].disposeCount, 0);
+    assert.deepEqual(plain(h.bridge.diagnostics().residentRoutes), ['research']);
+    const shapes = h.collect('index', 300);
+    const draws = [];
+    const ctx = new Proxy(
+      {},
+      {
+        get(target, property) {
+          if (property === 'drawImage') return (surface) => draws.push(surface);
+          return target[property] || (() => {});
+        },
+      }
+    );
+    for (const shape of shapes) h.effect.paint(ctx, shape);
+    assert.ok(draws.length > 0, 'the replacement still has a registered native texture');
+    assert.ok(draws.every((surface) => surface === h.assets[1].canvas && surface.width > 0));
+    h.bridge.invalidate();
+    assert.equal(h.assets[1].disposeCount, 1);
+  }
+});
+
+test('neighbor warming after reverse Home arrival cannot erase its current field on failed recapture', async () => {
+  const h = harness({ compact: true });
+  await h.prepare('credits', 'index');
+  const native = h.finish('index', 1000);
+  const home = h.assets[0];
+  const ids = plain(
+    h.bridge.diagnostics().bank.find((entry) => entry.route === 'index').groups[0].ids
+  );
+  assert.equal(await h.bridge.prime(h.data('research'), 78), true);
+  native.owners[0].paintFingerprint = 'changed-after-arrival';
+  // A rejected replacement leaves the current Home pixels and identity resident.
+  h.setDeferred(true);
+  const capture = h.bridge.prepareDeparture(native, { cacheOnly: true });
+  h.captures.at(-1).reject(new Error('cold capture exceeded its unchanged deadline'));
+  assert.equal(await capture, false);
+  assert.equal(home.disposeCount, 0);
+  assert.deepEqual(
+    plain(h.bridge.diagnostics().bank.find((entry) => entry.route === 'index').groups[0].ids),
+    ids
+  );
+  assert.ok(home.canvas.width > 0);
+  assert.notEqual(native.style.visibility, 'hidden');
+  assert.ok(h.bridge.diagnostics().residentUsage.pieces <= 40);
+});
+
+test('pending same-route replacement cannot authorize a flight using its retained prior landing', async () => {
+  const h = harness({ deferred: true });
+  h.collect('index', 100);
+  const warm = h.bridge.prime(h.data('research'), 78);
+  h.captures[0].resolve();
+  assert.equal(await warm, true);
+  const native = h.native('index');
+  const departure = h.bridge.prepareDeparture(native);
+  h.captures[1].resolve();
+  assert.equal(await departure, true);
+  const replacing = h.bridge.prime(h.data('research'), 78, { position: [0, 600] });
+  assert.equal(
+    h.bridge.begin({ from: 'index', to: 'research', landing: { position: [0, 0] } }),
+    false
+  );
+  h.captures[2].resolve();
+  assert.equal(await replacing, false, 'begin cancellation rejects stale async replacement');
+  assert.equal(h.assets[0].disposeCount, 0);
+  assert.equal(h.assets[1].disposeCount, 0);
+  assert.equal(h.assets[2].disposeCount, 1);
+  assert.notEqual(native.style.visibility, 'hidden');
+  assert.equal(h.bridge.active(), false);
 });

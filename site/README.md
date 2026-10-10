@@ -146,7 +146,9 @@ Recorded subowner paths, geometry and text remain the native coverage and landin
 Capture follows the visible viewport rather than allocating the full scrollable
 document. Temporary captures, retained textures and solid geometry share the
 original piece, pixel, owner, descendant and text limits; unsupported capture or
-an unadmittable landing retains shared fragments or ordinary native navigation.
+an unadmittable landing uses the existing native `flightPose` fade, with no DOM
+fragment acquisition or scatter. Motion Off/reduced and unsupported scene travel
+retain ordinary native navigation.
 
 `embedded-plan.cjs` gives those same identified shards closed front, rear and
 side faces, target-camera endpoints and immutable membership in existing fractal
@@ -172,7 +174,12 @@ the existing scene composition sorts its faces with the fractal. It owns no
 runtime dependency, second renderer or animation clock. Preparation, native
 owner hiding, texture lifetime, cancellation and disposal remain bounded and
 reserve resources against the shared departure/arrival caps across at most three
-retained page fields. Forward convergence starts during camera travel. A skipped
+retained page fields. Same-route replacement keeps the prior field and charges its
+resident resources until a successful atomic swap; failed warming cannot erase
+the current native field. Static face topology and UV offsets are reused, while
+branch transforms remain scoped to one sampled frame. Native ownership pixel
+bounds and font-family eligibility are shared only inside one bounded acquisition;
+per-text font checks and owner raster proof remain strict. Forward convergence starts during camera travel. A skipped
 Research native page remains a pass-through content structure on Home-to-Writing
 travel; the router mounts only Writing. Reverse travel detaches the same Research
 objects into their Home host, preserving them there after arrival. Native mount

@@ -136,18 +136,27 @@ module.exports = function () {
     };
     return finiteRect(box) ? box : null;
   }
-  function fontsReady(document, style, text) {
+  function fontsReady(document, style, text, cache) {
     if (!document.fonts || document.fonts.status !== 'loaded') return false;
     const families = value(style, 'font-family');
     // SVG image documents cannot borrow a page's web-font resources.
-    if (typeof document.fonts[Symbol.iterator] === 'function') {
-      for (const face of document.fonts) {
-        const name = String(face.family)
-          .replace(/^['"]|['"]$/g, '')
-          .toLowerCase();
-        if (systemFamilies.has(name)) return false;
+    let eligible = cache?.facesEligible;
+    if (eligible === undefined) {
+      eligible = true;
+      if (typeof document.fonts[Symbol.iterator] === 'function') {
+        for (const face of document.fonts) {
+          const name = String(face.family)
+            .replace(/^['"]|['"]$/g, '')
+            .toLowerCase();
+          if (systemFamilies.has(name)) {
+            eligible = false;
+            break;
+          }
+        }
       }
+      if (cache) cache.facesEligible = eligible;
     }
+    if (!eligible) return false;
     return document.fonts.check(value(style, 'font-size') + ' ' + families, text);
   }
   function measure(root, options) {
@@ -656,12 +665,13 @@ module.exports = function () {
       (['none', ''].includes(value(style, 'outline-style')) || number(style, 'outline-width') === 0)
     );
   }
-  function nativeFontSupported(document, style, text) {
-    return (
-      fontsReady(document, style, text) &&
-      value(style, 'font-family')
-        .split(',')
-        .every((family) =>
+  function nativeFontSupported(document, style, text, options) {
+    const families = value(style, 'font-family');
+    const cache = options.fontCache;
+    if (!cache.families.has(families))
+      cache.families.set(
+        families,
+        families.split(',').every((family) =>
           systemFamilies.has(
             family
               .trim()
@@ -669,7 +679,10 @@ module.exports = function () {
               .toLowerCase()
           )
         )
-    );
+      );
+    // Only the synchronous acquisition shares family/face eligibility. The
+    // browser still checks every actual text independently, including pseudos.
+    return cache.families.get(families) && fontsReady(document, style, text, cache);
   }
   function rejectNative(options, code, tag, extra = {}) {
     try {
@@ -692,7 +705,7 @@ module.exports = function () {
     if (material) extendBounds(bounds, material, pseudo);
     if (inactive(pseudo)) return 0;
     const content = value(pseudo, 'content');
-    if (content.length > 2 && !nativeFontSupported(document, pseudo, content.slice(1, -1)))
+    if (content.length > 2 && !nativeFontSupported(document, pseudo, content.slice(1, -1), options))
       return rejectNative(options, 'unsupported-pseudo-font', tag);
     return Math.max(0, content.length - 2) * 3;
   }
@@ -721,7 +734,7 @@ module.exports = function () {
     const hasDirectText = [...node.childNodes].some(
       (child) => child.nodeType === 3 && child.textContent.trim()
     );
-    if (hasDirectText && !nativeFontSupported(document, style, node.textContent))
+    if (hasDirectText && !nativeFontSupported(document, style, node.textContent, options))
       return rejectNative(options, 'unsupported-native-font', node.localName);
     if (
       node.localName === 'img' &&
@@ -1130,6 +1143,7 @@ module.exports = function () {
     // before this snapshot, and later captures always read fresh native styles.
     normalized.styleCache = new WeakMap();
     normalized.rectCache = new WeakMap();
+    normalized.fontCache = { families: new Map() };
     const measured = [];
     const usage = { owners: 0, descendants: 0, textBytes: 0, layerPixels: 0 };
     const semantic = new Set([
@@ -1562,18 +1576,40 @@ module.exports = function () {
       { left: right, right: box.right, top, bottom },
     ].filter((part) => part.left < part.right && part.top < part.bottom);
   }
-  function exclusiveFieldBoxes(owner, measured, options) {
-    let boxes = owner.paintRects.map((box) => fieldPixelBox(box, measured));
-    for (const other of measured.fieldOwners) {
-      if (other === owner) continue;
-      for (const cover of other.paintRects) {
+  function fieldBoxesOverlap(first, second) {
+    return (
+      first.left < second.right &&
+      first.right > second.left &&
+      first.top < second.bottom &&
+      first.bottom > second.top
+    );
+  }
+  function fieldInkOwners(measured) {
+    return measured.fieldOwners.map((owner) => {
+      const boxes = owner.paintRects.map((box) => fieldPixelBox(box, measured));
+      return {
+        owner,
+        boxes,
+        bounds: {
+          left: Math.min(...boxes.map((box) => box.left)),
+          top: Math.min(...boxes.map((box) => box.top)),
+          right: Math.max(...boxes.map((box) => box.right)),
+          bottom: Math.max(...boxes.map((box) => box.bottom)),
+        },
+      };
+    });
+  }
+  function exclusiveFieldBoxes(item, owners, options) {
+    let boxes = item.boxes;
+    for (const other of owners) {
+      if (options.clock() > options.deadline) return null;
+      if (other === item || !fieldBoxesOverlap(item.bounds, other.bounds)) continue;
+      for (const cover of other.boxes) {
         if (options.clock() > options.deadline) return null;
-        // The shared SVG is drawn at its exact pixel dimensions, and every
-        // owner is clipped to its native envelope. Outward floor/ceil already
-        // excludes every pixel a peer can touch, including a fractional edge.
-        // An extra halo would erase adjacent one-pixel native border strips.
-        const pixels = fieldPixelBox(cover, measured);
-        boxes = boxes.flatMap((box) => subtractFieldBox(box, pixels));
+        if (!boxes.some((box) => fieldBoxesOverlap(box, cover))) continue;
+        // Outward floor/ceil excludes all peer pixels, including fractional
+        // edges. Keep an adjacent one-pixel native border observable.
+        boxes = boxes.flatMap((box) => subtractFieldBox(box, cover));
       }
     }
     return boxes;
@@ -1584,32 +1620,25 @@ module.exports = function () {
         if (pixels[(y * width + x) * 4 + 3] > 0) return true;
     return false;
   }
-  function ambiguousDecoration(owner, measured) {
-    if (!owner.decoration) return false;
-    const others = measured.fieldOwners.filter((other) => other !== owner);
-    function overlaps(first, second) {
-      return (
-        first.left < second.right &&
-        first.right > second.left &&
-        first.top < second.bottom &&
-        first.bottom > second.top
-      );
-    }
+  function ambiguousDecoration(item, owners) {
+    if (!item.owner.decoration) return false;
+    const others = owners.filter(
+      (other) => other !== item && fieldBoxesOverlap(item.bounds, other.bounds)
+    );
     // Isolation can resolve rounding at adjoining borders. It cannot prove
     // which native owner contributed ink inside genuinely overlapping paint.
     if (
       others.some((other) =>
-        owner.paintRects.some((rect) => other.paintRects.some((cover) => overlaps(rect, cover)))
+        item.owner.paintRects.some((rect) =>
+          other.owner.paintRects.some((cover) => fieldBoxesOverlap(rect, cover))
+        )
       )
     )
       return false;
     return others.some(
       (other) =>
-        other.decoration &&
-        owner.paintRects.some((rect) => {
-          const box = fieldPixelBox(rect, measured);
-          return other.paintRects.some((cover) => overlaps(box, fieldPixelBox(cover, measured)));
-        })
+        other.owner.decoration &&
+        item.boxes.some((box) => other.boxes.some((cover) => fieldBoxesOverlap(box, cover)))
     );
   }
   async function fieldHasNativeInk(context, measured, options) {
@@ -1618,8 +1647,10 @@ module.exports = function () {
       return false;
     }
     const pixels = context.getImageData(0, 0, measured.pixelWidth, measured.pixelHeight).data;
-    for (const owner of measured.fieldOwners) {
-      const boxes = exclusiveFieldBoxes(owner, measured, options);
+    const owners = fieldInkOwners(measured);
+    for (const item of owners) {
+      const owner = item.owner;
+      const boxes = exclusiveFieldBoxes(item, owners, options);
       if (!boxes || options.signal?.aborted || options.clock() > options.deadline) {
         rejectNative(options, 'preparation-deadline', measured.owner.localName);
         return false;
@@ -1629,10 +1660,8 @@ module.exports = function () {
         // Prove that owner's native paint in isolation instead of borrowing
         // its neighbour's alpha. Both the composite and isolated paint need ink.
         if (
-          ambiguousDecoration(owner, measured) &&
-          owner.paintRects.some((rect) =>
-            fieldBoxHasInk(fieldPixelBox(rect, measured), pixels, measured.pixelWidth)
-          )
+          ambiguousDecoration(item, owners) &&
+          item.boxes.some((box) => fieldBoxHasInk(box, pixels, measured.pixelWidth))
         ) {
           const proof = await raster(owner, options, serializeNative);
           if (proof) {

@@ -34,7 +34,13 @@ function presentationFixture(options = {}) {
       failed: false,
     },
     effects = {
-      embedded: options.embedded,
+      embedded: options.embedded && {
+        cancel() {},
+        invalidate() {},
+        land() {},
+        refresh() {},
+        ...options.embedded,
+      },
       cameraView(...args) {
         calls.push({ name: 'cameraView', args });
         return options.view;
@@ -272,26 +278,37 @@ test('serialized preview is available before DOMReady and confines changes to it
   assert.equal(preview(stage, 'invalid'), null);
 });
 
-test('fragments apply by default, with explicit preferences and inactive travel respected', () => {
+test('solid preview remains default, while unavailable scenes use native fade without DOM capture', () => {
   for (const storageUnavailable of [false, true]) {
     const fixture = presentationFixture({ storageUnavailable });
     assert.equal(fixture.presentation.fragmentPreview(), true);
     fixture.presentation.begin(true, { from: 'index', to: 'research', direction: 'forward' });
-    assert.equal(fixture.called('begin').length, 1);
+    fixture.presentation.present(0.12, 'forward', undefined, paintedSnapshot());
+    assert.equal(fixture.called('dom').length, 0);
+    assert.equal(fixture.called('prepare').length, 0);
+    assert.equal(fixture.content.dataset.flightMode, 'fade');
+    assert.ok(Number(fixture.content.style.opacity) > 0);
+    assert.ok(Number(fixture.content.style.opacity) < 1);
   }
   for (const preferences of [{ 'vo.fragment-preview': 'off' }, { 'vo.content-flight': 'off' }]) {
-    const fixture = presentationFixture({ preferences });
+    let acquisitions = 0;
+    const fixture = presentationFixture({
+      preferences,
+      embedded: { begin: () => ++acquisitions },
+    });
     fixture.presentation.begin(true);
+    assert.equal(acquisitions, 0);
     assert.equal(fixture.called('dom').length, 0);
   }
-  const inactive = presentationFixture();
+  let acquisitions = 0;
+  const inactive = presentationFixture({ embedded: { begin: () => ++acquisitions } });
   inactive.presentation.begin(false);
-  assert.equal(inactive.called('dom').length, 0);
+  assert.equal(acquisitions, 0);
   const optedOut = presentationFixture({ preferences: { 'vo.fragment-preview': 'off' } });
   optedOut.presentation.fragmentPreview(true);
   assert.equal(optedOut.stored.get('vo.fragment-preview'), 'on');
   optedOut.presentation.begin(true);
-  assert.equal(optedOut.called('begin').length, 1);
+  assert.equal(optedOut.called('dom').length, 0);
 });
 
 test('world preparation shares landing context, stages intermediate rooms and respects Off', async () => {
@@ -479,190 +496,169 @@ test('page-owned solids preserve their native crossfade and avoid a second DOM r
   assert.equal(fixture.presentation.present(1, 'forward', undefined, paintedSnapshot()), true);
 });
 
-test('one session locks the route direction and forwards the current camera projection', () => {
+test('native fallback locks the original route direction during retargeted caller updates', () => {
   for (const direction of ['forward', 'backward']) {
-    const view = {},
-      fixture = presentationFixture({ view }),
+    const fixture = presentationFixture(),
       context = { from: 'writing', to: 'research', direction };
     fixture.presentation.begin(true, context);
     context.direction = direction === 'forward' ? 'backward' : 'forward';
-    assert.deepEqual(
-      { ...fixture.called('begin')[0].context },
-      {
-        from: 'writing',
-        to: 'research',
-        direction,
-      }
+    fixture.presentation.present(0.3, context.direction, undefined, paintedSnapshot());
+    assert.equal(
+      Math.sign(Number(fixture.content.dataset.flightDepth)),
+      direction === 'forward' ? 1 : -1
     );
-    fixture.presentation.present(
-      0.12,
-      context.direction,
-      undefined,
-      paintedSnapshot({
-        direction: context.direction,
-      })
-    );
-    const prepared = fixture.called('prepare')[0];
-    assert.equal(prepared.snapshot.direction, direction);
-    assert.equal(fixture.called('present')[0].snapshot.direction, direction);
-    const pose = { x: 1, y: 2, z: 3 };
-    assert.equal(fixture.cameraView(pose, 1200, 800, false), view);
-    assert.deepEqual(fixture.called('cameraView')[0].args, [pose, 1200, 800, false]);
-    const nextView = {};
-    fixture.effects.cameraView = () => nextView;
-    assert.equal(fixture.cameraView(pose, 390, 844, true), nextView);
+    assert.equal(fixture.content.dataset.flightMode, 'fade');
+    assert.equal(fixture.called('dom').length, 0);
   }
 });
 
-test('fragment acquisition waits for painted departure and ready arrival frames', () => {
-  const fixture = presentationFixture();
-  fixture.presentation.begin(true, { direction: 'forward' });
-  fixture.presentation.present(0, 'forward', undefined, paintedSnapshot({ painted: false }));
-  assert.equal(fixture.called('prepare').length, 0);
-  fixture.presentation.present(0.12, 'forward', undefined, paintedSnapshot());
-  fixture.presentation.present(0.2, 'forward', undefined, paintedSnapshot({ frameId: 2 }));
-  assert.deepEqual(
-    fixture.called('prepare').map(({ phase }) => phase),
-    ['depart']
-  );
-  fixture.presentation.prepareMount();
-  fixture.presentation.mounted();
-  fixture.states.arrivalStatus = 'wait';
-  fixture.presentation.present(0.55, 'forward', undefined, paintedSnapshot({ progress: 0.55 }));
-  assert.equal(fixture.content.style.opacity, '0');
-  assert.equal(fixture.content.style.transform, 'none');
-  assert.deepEqual(
-    fixture.called('prepare').map(({ phase }) => phase),
-    ['depart']
-  );
-  fixture.states.arrivalStatus = 'ready';
-  fixture.presentation.present(0.7, 'forward', undefined, paintedSnapshot({ progress: 0.7 }));
-  fixture.presentation.present(0.8, 'forward', undefined, paintedSnapshot({ progress: 0.8 }));
-  assert.deepEqual(
-    fixture.called('prepare').map(({ phase }) => phase),
-    ['depart', 'arrive']
-  );
-});
-
-test('a sticky local departure failure resets for arrival while retaining the route session', () => {
-  const fixture = presentationFixture({ stickyFailure: true }),
-    context = { from: 'credits', to: 'index', direction: 'backward' };
-  fixture.states.departureReady = false;
-  fixture.presentation.begin(true, context);
-  fixture.presentation.present(0.12, 'backward', undefined, paintedSnapshot());
-  assert.equal(fixture.called('present').length, 0);
+test('rejected world admission retains the native plane on both legs and never reacquires DOM paint', () => {
+  let attempts = 0,
+    mounts = 0;
+  const fixture = presentationFixture({
+    embedded: {
+      begin() {
+        attempts++;
+        return false;
+      },
+      land() {
+        mounts++;
+      },
+      active: () => false,
+    },
+  });
+  fixture.presentation.begin(true, { from: 'index', to: 'research', direction: 'forward' });
+  fixture.presentation.present(0.2, 'forward', undefined, paintedSnapshot());
   assert.equal(fixture.content.dataset.flightStage, 'depart');
-  assert.equal(fixture.states.failed, true);
-  context.from = 'index';
-  context.to = 'research';
-  context.direction = 'forward';
+  assert.ok(Number(fixture.content.style.opacity) > 0);
+  assert.ok(Number(fixture.content.style.opacity) < 1);
   fixture.presentation.prepareMount();
   fixture.presentation.mounted();
-  assert.equal(fixture.states.failed, false, 'new native content gets fresh local admission');
-  fixture.presentation.present(0.65, 'backward', undefined, paintedSnapshot({ progress: 0.65 }));
-  assert.deepEqual(
-    fixture.called('prepare').map(({ phase }) => phase),
-    ['depart', 'arrive']
-  );
-  assert.equal(fixture.called('present').length, 1);
-  assert.equal(fixture.called('dom').length, 1, 'one controller owns both presentation legs');
-  assert.deepEqual(
-    fixture.called('begin').map(({ context: session }) => ({ ...session })),
-    [
-      { from: 'credits', to: 'index', direction: 'backward' },
-      { from: 'credits', to: 'index', direction: 'backward' },
-    ],
-    'arrival retains the original session context despite external mutation'
-  );
+  assert.equal(fixture.content.style.opacity, '0');
+  fixture.presentation.present(0.7, 'forward', undefined, paintedSnapshot({ progress: 0.7 }));
+  assert.equal(fixture.content.dataset.flightStage, 'arrive');
+  assert.ok(Number(fixture.content.style.opacity) > 0);
+  assert.ok(Number(fixture.content.style.opacity) < 1);
+  fixture.presentation.present(1, 'forward', undefined, paintedSnapshot({ progress: 1 }));
+  assert.equal(fixture.content.style.opacity, '1');
+  assert.equal(attempts, 1);
+  assert.equal(mounts, 0);
+  assert.equal(fixture.called('dom').length, 0);
+  assert.equal(fixture.called('prepare').length, 0);
 });
 
-test('terminal handoff follows painted shard readiness without creating another clock', () => {
-  const fixture = presentationFixture();
-  fixture.presentation.begin(true, { direction: 'backward' });
+test('a failed solid landing resumes native fade without a second capture or shard controller', () => {
+  let active = true,
+    attempts = 0,
+    mounts = 0;
+  const fixture = presentationFixture({
+    embedded: {
+      begin() {
+        attempts++;
+        return true;
+      },
+      land() {
+        mounts++;
+        active = false;
+      },
+      active: () => active,
+    },
+  });
+  fixture.presentation.begin(true, { from: 'index', to: 'research' });
+  assert.equal(fixture.content.dataset.flightMode, 'solids');
   fixture.presentation.prepareMount();
   fixture.presentation.mounted();
-  const first = paintedSnapshot({ progress: 1, frameId: 7, capturedAt: 1700 });
-  assert.equal(fixture.presentation.present(1, 'forward', undefined, first), false);
+  fixture.presentation.present(0.7, 'forward', undefined, paintedSnapshot({ progress: 0.7 }));
+  assert.equal(fixture.content.dataset.flightMode, 'fade');
+  assert.ok(Number(fixture.content.style.opacity) > 0 && Number(fixture.content.style.opacity) < 1);
+  assert.equal(attempts, 1);
+  assert.equal(mounts, 1);
+  assert.equal(fixture.called('dom').length, 0);
+});
+
+test('solid readiness owns the terminal handoff while fallback settles at the camera endpoint', () => {
+  let active = true,
+    complete = false;
+  const fixture = presentationFixture({
+    embedded: {
+      begin: () => true,
+      active: () => active,
+      complete: () => complete,
+      nativeOpacity: () => (complete ? 1 : 0),
+    },
+  });
+  fixture.presentation.begin(true, { direction: 'backward' });
   assert.equal(
-    fixture.content.style.opacity,
-    '0',
-    'native content stays hidden until shards settle'
+    fixture.presentation.present(1, 'forward', undefined, paintedSnapshot({ progress: 1 })),
+    false
   );
-  fixture.states.complete = true;
-  const last = paintedSnapshot({ progress: 1, frameId: 8, capturedAt: 1800 });
-  assert.equal(fixture.presentation.present(1, 'forward', undefined, last), true);
-  assert.deepEqual(
-    fixture.called('present').map(({ snapshot }) => snapshot.frameId),
-    [7, 8]
+  assert.equal(fixture.content.style.opacity, '0');
+  complete = true;
+  assert.equal(
+    fixture.presentation.present(1, 'forward', undefined, paintedSnapshot({ progress: 1 })),
+    true
   );
-  assert.deepEqual(
-    fixture.called('present').map(({ snapshot }) => snapshot.capturedAt),
-    [1700, 1800]
-  );
-  fixture.presentation.clear();
+  assert.equal(fixture.content.style.opacity, '1');
+  active = false;
   fixture.presentation.present(1, 'backward', undefined, paintedSnapshot({ active: false }));
   assert.equal(fixture.content.style.opacity, '1');
   assert.equal(fixture.content.dataset.flightDepth, '0');
   assert.equal(fixture.content.dataset.flightStage, 'settled');
+  assert.equal(fixture.called('dom').length, 0);
 });
 
-test('cancelled camera travel clears fragments and cannot prepare a stale arrival', () => {
-  const fixture = presentationFixture();
+test('cancelled camera travel restores the native endpoint and clears presentation state', () => {
+  let invalidations = 0;
+  const fixture = presentationFixture({
+    embedded: {
+      begin: () => true,
+      active: () => true,
+      invalidate() {
+        invalidations++;
+      },
+    },
+  });
   fixture.presentation.begin(true, { direction: 'forward' });
   fixture.presentation.present(0.12, 'forward', undefined, paintedSnapshot());
   fixture.presentation.prepareMount();
   fixture.presentation.mounted();
-  const cleared = fixture.called('clear').length;
   fixture.presentation.present(1, 'forward', undefined, paintedSnapshot({ active: false }));
-  assert.equal(fixture.called('clear').length, cleared + 1);
-  assert.deepEqual(
-    fixture.called('prepare').map(({ phase }) => phase),
-    ['depart']
-  );
-  fixture.presentation.present(1, 'forward', undefined, paintedSnapshot());
-  assert.deepEqual(
-    fixture.called('prepare').map(({ phase }) => phase),
-    ['depart']
-  );
+  assert.equal(invalidations, 1);
   assert.equal(fixture.content.style.opacity, '1');
+  assert.equal(fixture.content.dataset.flightMode, 'fade');
   fixture.presentation.clear();
   assert.equal(fixture.content.dataset.flightStage, undefined);
   assert.equal(fixture.content.dataset.flightDepth, undefined);
+  assert.equal(fixture.content.dataset.flightMode, undefined);
   assert.equal(fixture.content.style.transformOrigin, undefined);
-  fixture.presentation.begin(true, { direction: 'backward' });
-  fixture.presentation.present(0.12, 'forward', undefined, paintedSnapshot());
-  assert.deepEqual(
-    fixture.called('prepare').map(({ phase }) => phase),
-    ['depart', 'depart']
-  );
+  assert.equal(fixture.called('dom').length, 0);
 });
 
-test('disabling either flight control cleans up and prevents pending fragment acquisition', () => {
+test('disabling either flight control releases solid ownership and keeps fallback free of shards', () => {
   for (const control of ['contentFlight', 'fragmentPreview']) {
-    const fixture = presentationFixture();
+    let invalidations = 0;
+    const fixture = presentationFixture({
+      embedded: {
+        begin: () => true,
+        active: () => true,
+        invalidate() {
+          invalidations++;
+        },
+      },
+    });
     fixture.presentation.begin(true, { direction: 'forward' });
     fixture.presentation.present(0.12, 'forward', undefined, paintedSnapshot());
-    fixture.presentation.prepareMount();
-    fixture.presentation.mounted();
-    const cleared = fixture.called('clear').length;
     fixture.presentation[control](false);
-    assert.equal(fixture.called('clear').length, cleared + 1);
+    assert.equal(invalidations, 1);
     fixture.presentation.present(1, 'forward', undefined, paintedSnapshot());
-    assert.deepEqual(
-      fixture.called('prepare').map(({ phase }) => phase),
-      ['depart']
-    );
     assert.equal(fixture.content.style.opacity, '1');
+    assert.equal(fixture.content.dataset.flightMode, 'fade');
     if (control === 'contentFlight') assert.equal(fixture.content.style.transform, undefined);
-    fixture.presentation[control](true);
-    fixture.presentation.begin(true, { direction: 'backward' });
-    fixture.presentation.present(0.12, 'forward', undefined, paintedSnapshot());
-    assert.deepEqual(
-      fixture.called('prepare').map(({ phase }) => phase),
-      ['depart', 'depart']
-    );
+    assert.equal(fixture.called('dom').length, 0);
+    assert.equal(fixture.called('prepare').length, 0);
   }
 });
+
 test('forward passes the current page toward the viewer; reverse sends it into distance', () => {
   for (const direction of ['forward', 'backward']) {
     for (let i = 0; i <= 100; i++) {

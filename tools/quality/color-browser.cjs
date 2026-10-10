@@ -1509,6 +1509,10 @@ function observeFragmentFlight() {
           tile.style.transform.startsWith('matrix3d(')
       ).length,
       nativeOpacity: Number(content.style.opacity || 1),
+      flightMode: content.dataset.flightMode || null,
+      flightStage: content.dataset.flightStage || null,
+      flightDepth: Number(content.dataset.flightDepth || 0),
+      nativeTransform: content.style.transform,
       nativeHidden: [...content.querySelectorAll('[style*="visibility"]')].filter(
         (owner) => owner.style.visibility === 'hidden'
       ).length,
@@ -1580,8 +1584,84 @@ function observeFragmentFlight() {
   };
   sample();
 }
-function validateFragmentAssembly(observation, measured) {
+function validateNativeFade(observation, measured, expected = {}) {
+  const active = observation.samples.filter(
+      (sample) => sample.flightMode === 'fade' && sample.busy
+    ),
+    final = observation.samples.at(-1),
+    departure = active.filter((sample) => sample.flightStage === 'depart'),
+    arrival = active.filter((sample) => sample.flightStage === 'arrive'),
+    from = expected.from || departure[0]?.page,
+    to = expected.to || arrival[0]?.page,
+    direction = expected.direction || departure[0]?.direction;
+  assert.ok(from && to && ['forward', 'backward'].includes(direction), 'fade lacks route context');
+  for (const [phase, samples, route] of [
+    ['depart', departure, from],
+    ['arrive', arrival, to],
+  ]) {
+    assert.ok(
+      samples.some((sample) => sample.nativeOpacity > 0 && sample.nativeOpacity < 1),
+      'missing progressive native ' + phase + ' fade'
+    );
+    assert.ok(
+      samples.every((sample) => sample.page === route),
+      'fade mounts the wrong native route'
+    );
+    assert.ok(
+      samples.every((sample) => sample.direction === direction),
+      'fade changes route direction'
+    );
+  }
+  for (const sample of observation.samples) {
+    assert.equal(sample.pieces, 0, 'native fade allocates DOM shards');
+    assert.equal(sample.layers, 0, 'native fade allocates a fragment layer');
+    assert.equal(sample.phase, null, 'native fade acquires fragment paint');
+    assert.equal(sample.nativeHidden, 0, 'native fade omits native owners');
+    assert.deepEqual(sample.fragmentFields, [], 'native fade retains fragment state');
+    assert.ok(
+      Number.isFinite(sample.nativeOpacity) &&
+        sample.nativeOpacity >= 0 &&
+        sample.nativeOpacity <= 1,
+      'native fade opacity is unbounded'
+    );
+  }
+  assert.ok(
+    active.some((sample) => sample.nativeOpacity === 0),
+    'native mount lacks an empty fade frame'
+  );
+  assert.ok(
+    active.some((sample) => sample.nativeTransform?.includes('translateZ(')),
+    'native fade loses the existing plane trajectory'
+  );
+  assert.equal(final.page, to);
+  assert.equal(final.nativeOpacity, 1);
+  assert.equal(final.busy, false);
+  assert.equal(final.inert, false);
+  assert.equal(final.flightMode, null, 'native fade mode remains after cleanup');
+  assert.equal(final.flightStage, null, 'native fade stage remains after cleanup');
+  assert.equal(final.nativeTransform, '', 'native fade transform remains after cleanup');
+  const sourceCamera = JSON.parse(expected.sourceCamera || active[0].camera),
+    targetCamera = JSON.parse(final.camera);
+  for (const camera of [sourceCamera, targetCamera])
+    for (const vector of [camera.position, camera.target])
+      assert.ok(Array.isArray(vector) && vector.length === 3 && vector.every(Number.isFinite));
+  if (sourceCamera.position[2] !== targetCamera.position[2])
+    assert.equal(
+      direction,
+      targetCamera.position[2] < sourceCamera.position[2] ? 'forward' : 'backward'
+    );
+  validateFragmentTiming(measured);
+  return {
+    from,
+    to,
+    direction,
+    departureSamples: departure.length,
+    arrivalSamples: arrival.length,
+  };
+}
+function validateFragmentAssembly(observation, measured, { requireEmbedded = false } = {}) {
   const embedded = embeddedFragmentObservation(observation);
+  if (requireEmbedded) assert.ok(embedded, 'required world assembly fell back to native fade');
   if (embedded) {
     const to = embedded.frames.find((frame) => frame.diagnostics?.phase === 'assembling')
       .diagnostics.groups[0].route;
@@ -1597,6 +1677,12 @@ function validateFragmentAssembly(observation, measured) {
     validateFragmentTiming(measured);
     return { nativeHandoff: embedded.final, measured, embedded: accepted };
   }
+  if (observation.samples.some((sample) => sample.flightMode === 'fade'))
+    return {
+      nativeHandoff: observation.samples.at(-1),
+      measured,
+      fade: validateNativeFade(observation, measured),
+    };
   const arriving = observation.samples.filter((row) => row.phase === 'arrive');
   assert.ok(arriving.length >= 8, 'missing painted incoming fragment samples');
   const first = arriving[0],
@@ -2083,6 +2169,8 @@ function validateFragmentBackdrops(observation, phase) {
 }
 function validateFragmentRoute(observation, measured, expected) {
   const embedded = embeddedFragmentObservation(observation);
+  if (expected.requireEmbedded)
+    assert.ok(embedded, 'required world route fell back to native fade');
   if (embedded) {
     const accepted = validateEmbeddedPrototype(embedded, embedded.initial.theme, {
       ...expected,
@@ -2111,6 +2199,14 @@ function validateFragmentRoute(observation, measured, expected) {
       observation,
     };
   }
+  if (observation.samples.some((sample) => sample.flightMode === 'fade'))
+    return {
+      ...expected,
+      fade: validateNativeFade(observation, measured, expected),
+      nativeHandoff: observation.samples.at(-1),
+      measured,
+      observation,
+    };
   const active = observation.samples.filter((sample) => sample.phase),
     final = observation.samples.at(-1),
     backdrops = {},
@@ -2309,23 +2405,28 @@ async function fragmentAssembly(page, requireEmbedded = false) {
     await travel(page, 'research');
     evidence.observation = await page.evaluate(() => window.__finishFragmentFlight());
     evidence.measured = motion.summarize(evidence.observation, 'flight');
-    Object.assign(evidence, validateFragmentAssembly(evidence.observation, evidence.measured));
-    evidence.backdrops = evidence.embedded
-      ? null
-      : Object.fromEntries(
-          ['depart', 'arrive'].map((phase) => [
-            phase,
-            validateFragmentBackdrops(evidence.observation, phase),
-          ])
-        );
-    evidence.vectors = evidence.embedded
-      ? null
-      : Object.fromEntries(
-          ['depart', 'arrive'].map((phase) => [
-            phase,
-            validateFragmentVectors(evidence.observation, phase),
-          ])
-        );
+    Object.assign(
+      evidence,
+      validateFragmentAssembly(evidence.observation, evidence.measured, { requireEmbedded })
+    );
+    evidence.backdrops =
+      evidence.embedded || evidence.fade
+        ? null
+        : Object.fromEntries(
+            ['depart', 'arrive'].map((phase) => [
+              phase,
+              validateFragmentBackdrops(evidence.observation, phase),
+            ])
+          );
+    evidence.vectors =
+      evidence.embedded || evidence.fade
+        ? null
+        : Object.fromEntries(
+            ['depart', 'arrive'].map((phase) => [
+              phase,
+              validateFragmentVectors(evidence.observation, phase),
+            ])
+          );
 
     // Keep the same forward route for the established Off cancellation check.
     // All-route and reverse choreography have their own focused observations.
@@ -2337,7 +2438,9 @@ async function fragmentAssembly(page, requireEmbedded = false) {
     await page.waitForFunction(
       () =>
         document.getElementById('site-content').dataset.fragmentPhase === 'arrive' ||
-        window.SiteEffects?.embedded?.diagnostics().phase === 'assembling',
+        window.SiteEffects?.embedded?.diagnostics().phase === 'assembling' ||
+        (document.getElementById('site-content').dataset.flightMode === 'fade' &&
+          document.getElementById('site-content').dataset.flightStage === 'arrive'),
       null,
       { polling: 20, timeout: 5000 }
     );
@@ -2422,13 +2525,16 @@ function interruptFragmentDeparture(initialCamera) {
   const scene = document.querySelector('.space-scene');
   const diagnostics = window.SiteEffects?.embedded?.diagnostics();
   const departing =
-    content.dataset.fragmentPhase === 'depart' || diagnostics?.phase === 'departing';
+    content.dataset.fragmentPhase === 'depart' ||
+    diagnostics?.phase === 'departing' ||
+    (content.dataset.flightMode === 'fade' && content.dataset.flightStage === 'depart');
   const visible =
     [...document.querySelectorAll('.fragment-piece')].some(
       (piece) => Number(piece.style.opacity) > 0
     ) ||
     (diagnostics?.phase === 'departing' &&
-      diagnostics.departure.faces.some((face) => face.alpha > 0.01));
+      diagnostics.departure.faces.some((face) => face.alpha > 0.01)) ||
+    (content.dataset.flightMode === 'fade' && Number(content.style.opacity || 1) > 0);
   if (
     document.body.dataset.page !== 'index' ||
     !departing ||
@@ -2501,6 +2607,7 @@ async function fragmentRouteCoverage(page, requireEmbedded = false) {
           sourceY: before.y,
           sourceMax: before.max,
           sourceCamera: before.scene.camera,
+          requireEmbedded,
         })
       );
       delete evidence.pending;
@@ -2543,6 +2650,7 @@ async function fragmentRouteCoverage(page, requireEmbedded = false) {
         direction: 'backward',
         trigger: 'wordmark-interruption',
         sourceCamera: retarget.before,
+        requireEmbedded: false,
       }),
       retarget,
       interrupted,
@@ -2829,6 +2937,7 @@ module.exports = {
   observeFragmentFlight,
   interruptFragmentDeparture,
   validateFragmentAssembly,
+  validateNativeFade,
   fragmentAssembly,
   fragmentCancellationReady,
   validateFragmentRoute,

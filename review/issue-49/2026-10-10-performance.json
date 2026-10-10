@@ -1,0 +1,710 @@
+{
+  "schema": 1,
+  "kind": "bounded-embedded-work-diagnostics",
+  "date": "2026-10-10",
+  "owner": "https://github.com/oborskyivitalii/oborskyivitalii/issues/49",
+  "fullGate": false,
+  "browserPerformanceAcceptance": false,
+  "limitations": "Synthetic native-paint/SVG fixture and pure Node geometry timings; no browser Canvas draw, GPU, native-device or FPS acceptance. Original deadlines and shared caps unchanged. Paired browser gate remains open.",
+  "texture": {
+    "workload": "32 disjoint 400x20 native text owners, 100 unrelated FontFaces; original caps, one full field readback, synthetic SVG decoder",
+    "pairedRuns": 25,
+    "warmupPairs": 5,
+    "summary": {
+      "before": {
+        "median_ms": 11.906554999999969,
+        "p95_ms": 16.877444999999966,
+        "counters": {
+          "floor": 2114,
+          "ceil": 2048,
+          "faceScans": 32,
+          "facesRead": 3200,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        }
+      },
+      "after": {
+        "median_ms": 7.346715000000017,
+        "p95_ms": 11.924462000000005,
+        "counters": {
+          "floor": 130,
+          "ceil": 64,
+          "faceScans": 1,
+          "facesRead": 100,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        }
+      }
+    },
+    "samples": {
+      "before": [
+        {
+          "milliseconds": 23.845588,
+          "floor": 2114,
+          "ceil": 2048,
+          "faceScans": 32,
+          "facesRead": 3200,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 14.237963000000008,
+          "floor": 2114,
+          "ceil": 2048,
+          "faceScans": 32,
+          "facesRead": 3200,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 10.370756999999998,
+          "floor": 2114,
+          "ceil": 2048,
+          "faceScans": 32,
+          "facesRead": 3200,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 17.63930400000001,
+          "floor": 2114,
+          "ceil": 2048,
+          "faceScans": 32,
+          "facesRead": 3200,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 13.348501000000027,
+          "floor": 2114,
+          "ceil": 2048,
+          "faceScans": 32,
+          "facesRead": 3200,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 16.371280999999982,
+          "floor": 2114,
+          "ceil": 2048,
+          "faceScans": 32,
+          "facesRead": 3200,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 18.120851000000016,
+          "floor": 2114,
+          "ceil": 2048,
+          "faceScans": 32,
+          "facesRead": 3200,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 16.07417300000003,
+          "floor": 2114,
+          "ceil": 2048,
+          "faceScans": 32,
+          "facesRead": 3200,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 14.09083099999998,
+          "floor": 2114,
+          "ceil": 2048,
+          "faceScans": 32,
+          "facesRead": 3200,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 15.257730999999978,
+          "floor": 2114,
+          "ceil": 2048,
+          "faceScans": 32,
+          "facesRead": 3200,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 10.555115999999998,
+          "floor": 2114,
+          "ceil": 2048,
+          "faceScans": 32,
+          "facesRead": 3200,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 12.162551000000008,
+          "floor": 2114,
+          "ceil": 2048,
+          "faceScans": 32,
+          "facesRead": 3200,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 11.906554999999969,
+          "floor": 2114,
+          "ceil": 2048,
+          "faceScans": 32,
+          "facesRead": 3200,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 15.437220999999965,
+          "floor": 2114,
+          "ceil": 2048,
+          "faceScans": 32,
+          "facesRead": 3200,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 8.492423999999971,
+          "floor": 2114,
+          "ceil": 2048,
+          "faceScans": 32,
+          "facesRead": 3200,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 10.21948900000001,
+          "floor": 2114,
+          "ceil": 2048,
+          "faceScans": 32,
+          "facesRead": 3200,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 11.049552000000006,
+          "floor": 2114,
+          "ceil": 2048,
+          "faceScans": 32,
+          "facesRead": 3200,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 9.188112999999987,
+          "floor": 2114,
+          "ceil": 2048,
+          "faceScans": 32,
+          "facesRead": 3200,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 16.877444999999966,
+          "floor": 2114,
+          "ceil": 2048,
+          "faceScans": 32,
+          "facesRead": 3200,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 12.30170099999998,
+          "floor": 2114,
+          "ceil": 2048,
+          "faceScans": 32,
+          "facesRead": 3200,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 10.23401100000001,
+          "floor": 2114,
+          "ceil": 2048,
+          "faceScans": 32,
+          "facesRead": 3200,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 9.129726000000005,
+          "floor": 2114,
+          "ceil": 2048,
+          "faceScans": 32,
+          "facesRead": 3200,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 9.121551999999951,
+          "floor": 2114,
+          "ceil": 2048,
+          "faceScans": 32,
+          "facesRead": 3200,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 9.082142999999974,
+          "floor": 2114,
+          "ceil": 2048,
+          "faceScans": 32,
+          "facesRead": 3200,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 10.101350999999909,
+          "floor": 2114,
+          "ceil": 2048,
+          "faceScans": 32,
+          "facesRead": 3200,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        }
+      ],
+      "after": [
+        {
+          "milliseconds": 9.982662000000005,
+          "floor": 130,
+          "ceil": 64,
+          "faceScans": 1,
+          "facesRead": 100,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 8.009924999999996,
+          "floor": 130,
+          "ceil": 64,
+          "faceScans": 1,
+          "facesRead": 100,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 7.378872999999999,
+          "floor": 130,
+          "ceil": 64,
+          "faceScans": 1,
+          "facesRead": 100,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 8.278581000000003,
+          "floor": 130,
+          "ceil": 64,
+          "faceScans": 1,
+          "facesRead": 100,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 10.09698499999999,
+          "floor": 130,
+          "ceil": 64,
+          "faceScans": 1,
+          "facesRead": 100,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 8.49890400000001,
+          "floor": 130,
+          "ceil": 64,
+          "faceScans": 1,
+          "facesRead": 100,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 14.960813000000002,
+          "floor": 130,
+          "ceil": 64,
+          "faceScans": 1,
+          "facesRead": 100,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 8.663912000000039,
+          "floor": 130,
+          "ceil": 64,
+          "faceScans": 1,
+          "facesRead": 100,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 10.002612,
+          "floor": 130,
+          "ceil": 64,
+          "faceScans": 1,
+          "facesRead": 100,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 11.924462000000005,
+          "floor": 130,
+          "ceil": 64,
+          "faceScans": 1,
+          "facesRead": 100,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 7.477891999999997,
+          "floor": 130,
+          "ceil": 64,
+          "faceScans": 1,
+          "facesRead": 100,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 7.043477999999993,
+          "floor": 130,
+          "ceil": 64,
+          "faceScans": 1,
+          "facesRead": 100,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 6.573999000000015,
+          "floor": 130,
+          "ceil": 64,
+          "faceScans": 1,
+          "facesRead": 100,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 6.678377000000012,
+          "floor": 130,
+          "ceil": 64,
+          "faceScans": 1,
+          "facesRead": 100,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 7.688620999999955,
+          "floor": 130,
+          "ceil": 64,
+          "faceScans": 1,
+          "facesRead": 100,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 5.383933000000013,
+          "floor": 130,
+          "ceil": 64,
+          "faceScans": 1,
+          "facesRead": 100,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 11.186046999999974,
+          "floor": 130,
+          "ceil": 64,
+          "faceScans": 1,
+          "facesRead": 100,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 7.761440999999991,
+          "floor": 130,
+          "ceil": 64,
+          "faceScans": 1,
+          "facesRead": 100,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 6.050969000000009,
+          "floor": 130,
+          "ceil": 64,
+          "faceScans": 1,
+          "facesRead": 100,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 5.934093999999959,
+          "floor": 130,
+          "ceil": 64,
+          "faceScans": 1,
+          "facesRead": 100,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 7.346715000000017,
+          "floor": 130,
+          "ceil": 64,
+          "faceScans": 1,
+          "facesRead": 100,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 6.095998000000009,
+          "floor": 130,
+          "ceil": 64,
+          "faceScans": 1,
+          "facesRead": 100,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 5.793972000000053,
+          "floor": 130,
+          "ceil": 64,
+          "faceScans": 1,
+          "facesRead": 100,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 6.190710999999965,
+          "floor": 130,
+          "ceil": 64,
+          "faceScans": 1,
+          "facesRead": 100,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        },
+        {
+          "milliseconds": 6.072211999999922,
+          "floor": 130,
+          "ceil": 64,
+          "faceScans": 1,
+          "facesRead": 100,
+          "fontChecks": 32,
+          "decodes": 1,
+          "pixelCount": 318000,
+          "canvases": 1
+        }
+      ]
+    }
+  },
+  "geometry": {
+    "node": "v24.19.0",
+    "hashes": {
+      "baseline": {
+        "file": "site/effects/embedded-plan.cjs at pre-rebase PR53 source 7b1a796",
+        "bytes": 24595,
+        "sha256": "242cf320ffe2912e0ded7079bd0f9e55105e020a48e6d6958b7e56807923cc5c"
+      },
+      "candidate": {
+        "file": "site/effects/embedded-plan.cjs at this candidate",
+        "bytes": 27949,
+        "sha256": "9b0b5ff9ae8c0cb812f38e1d9650496781aa496685f268e3d63dc642b468a3d2"
+      }
+    },
+    "snapshots": 272,
+    "facesCompared": 11219,
+    "bitExactDigest": "b506777e762554e8291c5ab8027c1ddae45e88c01928b46fa4f1151793fdbb2a",
+    "results": [
+      {
+        "label": "index->research/1440",
+        "samplesPerRound": 544,
+        "baselineMs": [
+          225.6184290000001,
+          187.08008100000006,
+          181.01008300000012,
+          181.53160900000012,
+          175.57412999999997
+        ],
+        "candidateMs": [
+          137.54104600000005,
+          122.96079699999996,
+          116.27881400000001,
+          119.39568800000006,
+          135.18089400000008
+        ],
+        "baselineMedian": 181.53160900000012,
+        "candidateMedian": 122.96079699999996,
+        "speedup": 1.4763372833375517
+      },
+      {
+        "label": "research->writing/1440",
+        "samplesPerRound": 544,
+        "baselineMs": [
+          189.54438899999968,
+          189.72147700000005,
+          190.64510999999993,
+          184.85256899999968,
+          183.20986700000003
+        ],
+        "candidateMs": [
+          120.6093990000004,
+          129.27094699999998,
+          130.2644750000004,
+          124.97970299999997,
+          141.11701600000015
+        ],
+        "baselineMedian": 189.54438899999968,
+        "candidateMedian": 129.27094699999998,
+        "speedup": 1.4662566756008968
+      },
+      {
+        "label": "index->research/390",
+        "samplesPerRound": 544,
+        "baselineMs": [
+          79.7986920000003,
+          76.61239300000034,
+          78.00893199999973,
+          68.75438499999927,
+          75.58754700000009
+        ],
+        "candidateMs": [
+          48.608954999999696,
+          48.49649500000032,
+          50.23310599999968,
+          50.5929329999999,
+          45.848870000000716
+        ],
+        "baselineMedian": 76.61239300000034,
+        "candidateMedian": 48.608954999999696,
+        "speedup": 1.5760962769103104
+      },
+      {
+        "label": "research->writing/390",
+        "samplesPerRound": 544,
+        "baselineMs": [
+          73.11610800000017,
+          73.39158300000054,
+          73.58675800000037,
+          76.91227100000015,
+          86.90360899999996
+        ],
+        "candidateMs": [
+          46.21216800000002,
+          45.41697799999929,
+          47.326278999999886,
+          47.092226000000664,
+          44.07408099999975
+        ],
+        "baselineMedian": 73.58675800000037,
+        "candidateMedian": 46.21216800000002,
+        "speedup": 1.592367577301293
+      }
+    ]
+  },
+  "fallbackPayload": {
+    "measurement": "Travel descriptor comparison using the same current geometry/scene/texture sources; old flight adapter versus fade adapter",
+    "beforeBytes": 199323,
+    "afterBytes": 160515,
+    "savedBytes": 38808
+  }
+}

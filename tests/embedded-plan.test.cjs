@@ -49,6 +49,7 @@ function livingPlate({
   hostOffset = 0,
   host = 'index',
   returnRoom = null,
+  planner = plan,
 } = {}) {
   const width = compact ? 390 : 1440;
   const height = compact ? 844 : 900;
@@ -91,7 +92,7 @@ function livingPlate({
         };
       })
     : null;
-  return plan.prepare({
+  return planner.prepare({
     id: 'index:field',
     rect,
     cells,
@@ -106,6 +107,121 @@ function livingPlate({
 }
 const pointCenter = (points) =>
   points[0].map((_, index) => points.reduce((sum, point) => sum + point[index] / points.length, 0));
+
+test('prepared solid topology cannot be corrupted or accumulate changes between samples', () => {
+  const prepared = plate();
+  const shard = prepared.shards[0];
+  const view = plan.view(research, prepared.width, prepared.height);
+  const options = { view, rect: prepared.rect, depth: prepared.depth, progress: 0.37 };
+  const original = plan.geometry(shard, options);
+  const expected = JSON.parse(JSON.stringify(original));
+  assert.ok(Object.isFrozen(original.faces));
+  assert.ok(original.faces.every((face) => Object.isFrozen(face) && Object.isFrozen(face.indices)));
+  assert.ok(Object.isFrozen(shard.uv) && shard.uv.every(Object.isFrozen));
+  assert.ok(Object.isFrozen(shard.centroid));
+  assert.throws(() => original.faces[0].indices.push(1000), TypeError);
+  assert.throws(() => (shard.uv[0][0] += 1), TypeError);
+  original.vertices[0][0] += 1000;
+  const repeated = plan.geometry(shard, options);
+  assert.equal(repeated.faces, original.faces);
+  assert.deepEqual(repeated, expected);
+});
+
+test('shared branch transforms are bounded to one sample and match uncached paths after changes', () => {
+  const calls = [];
+  const measured = factory({
+    ...math,
+    loopTransform(member, time) {
+      calls.push([member, time]);
+      return projection.loopTransform(member, time);
+    },
+  });
+  for (const compact of [false, true]) {
+    const prepared = livingPlate({ compact, returnRoom: 'research', planner: measured });
+    const branchKey = (member) =>
+      [member.center, member.rootCenter, member.root, member.phase].join(':');
+    const branches = new Set(
+      prepared.shards.flatMap((shard) => [shard.member, shard.returnMember]).map(branchKey)
+    );
+    for (const [time, progress] of [
+      [0, 0.23],
+      [839.75, 0.63],
+      [math.LOOP_MS, 0.23],
+    ]) {
+      const options = {
+        pose: math.mix(home, research, progress),
+        width: prepared.width,
+        height: prepared.height,
+        rect: { ...prepared.rect, y: prepared.rect.y + 13.75 },
+        time,
+        progress,
+        returnPath: true,
+        clearance: true,
+      };
+      const reference = JSON.parse(JSON.stringify(prepared));
+      const expected = measured.sample(reference, options);
+      calls.length = 0;
+      assert.deepEqual(measured.sample(prepared, options), expected);
+      assert.equal(calls.length, branches.size);
+      assert.equal(new Set(calls.map(([member]) => branchKey(member))).size, branches.size);
+      assert.ok(calls.every(([, sampleTime]) => sampleTime === time));
+    }
+    // Replacement inputs deliberately bypass the immutable prepared cache.
+    const shard = prepared.shards[0];
+    shard.uv = shard.uv.map(([u, v]) => [u + 0.0001, v]);
+    shard.centroid = [shard.centroid[0] + 0.0001, shard.centroid[1]];
+    shard.member = { ...shard.member, phase: shard.member.phase + 0.1 };
+    const options = {
+      pose: home,
+      width: prepared.width,
+      height: prepared.height,
+      time: 9000,
+      progress: 0.37,
+      returnPath: true,
+    };
+    assert.deepEqual(
+      measured.sample(prepared, options),
+      measured.sample(JSON.parse(JSON.stringify(prepared)), options)
+    );
+  }
+});
+
+test('whole-solid viewport culling preserves every grazing, reverse and near-plane face', () => {
+  const uncropped = factory({
+    ...math,
+    loopTransform: projection.loopTransform,
+    cameraView(pose, width, height) {
+      return { ...math.cameraView(pose, width, height), visible: () => true };
+    },
+  });
+  for (const compact of [false, true]) {
+    const prepared = livingPlate({ compact, returnRoom: 'research' });
+    for (let index = 0; index <= 20; index++) {
+      const progress = index / 20;
+      const source = math.mix(home, research, progress);
+      const offset = (index - 10) * (compact ? 3 : 7);
+      const pose = {
+        position: source.position.map((value, axis) => value + (axis === 0 ? offset : 0)),
+        target: source.target.map((value, axis) => value + (axis === 0 ? offset : 0)),
+      };
+      const camera = math.cameraView(pose, prepared.width, prepared.height);
+      for (const mode of [{}, { departing: true }, { returnPath: true, clearance: true }]) {
+        const options = {
+          ...mode,
+          pose,
+          width: prepared.width,
+          height: prepared.height,
+          time: index * 839.75,
+          progress,
+        };
+        const expected = uncropped
+          .sample(prepared, options)
+          .filter((shape) => camera.visible(shape.points));
+        assert.deepEqual(plan.sample(prepared, options), expected);
+      }
+    }
+  }
+});
 
 test('each reused canonical cell is a closed nonzero prism throughout assembly', () => {
   const prepared = plate();

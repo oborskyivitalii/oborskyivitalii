@@ -1,6 +1,5 @@
 'use strict';
 const fragmentPlan = require('./fragment-plan.cjs');
-const fragmentDOM = require('./fragment-dom.cjs');
 const embeddedPlan = require('./embedded-plan.cjs');
 const embeddedTexture = require('./embedded-texture.cjs');
 const embeddedScene = require('./embedded-scene.cjs');
@@ -460,15 +459,8 @@ function installEndScroll(gateFactory, isEnd, isStart, prepareFooter) {
 function createPresentation(content) {
   let contentFlight = true,
     fragmentPreview = true,
-    useFragments = false,
     useSolids = false,
-    phaseFragments = false,
-    capturing = false,
-    waitingArrival = false,
-    fragments = null,
-    lastPose = null,
-    journeyDirection = 'forward',
-    journeyContext = {};
+    journeyDirection = 'forward';
   try {
     contentFlight = localStorage.getItem('vo.content-flight') !== 'off';
     fragmentPreview = localStorage.getItem('vo.fragment-preview') !== 'off';
@@ -487,30 +479,13 @@ function createPresentation(content) {
     }
     content.dataset.flightStage = pose.stage;
     content.dataset.flightDepth = String(pose.z);
+    content.dataset.flightMode = 'fade';
     content.style.opacity = String(pose.opacity);
     if (contentFlight) content.style.transform = 'perspective(1200px) translateZ(' + pose.z + 'px)';
     else content.style.removeProperty('transform');
   }
-  function beginFragments() {
-    // Failed world admission must release its resident bank before DOM paint
-    // acquires the same shared budget. Invalidation restores native owners too.
-    window.SiteEffects.embedded?.invalidate();
-    fragments ||= fragmentDOM(
-      content,
-      fragmentPlan({ cameraView: (...args) => window.SiteEffects.cameraView(...args) }),
-      () => {
-        phaseFragments = false;
-        setPlane(lastPose);
-      },
-      {
-        exclude: () =>
-          window.SiteEffects.embedded?.owners?.() || window.SiteEffects.embedded?.owner(),
-        reserve: () => window.SiteEffects.embedded?.reservation(),
-      }
-    );
-    fragments.begin(journeyContext);
-  }
   function nativeSolidPlane() {
+    content.dataset.flightMode = 'solids';
     content.style.opacity = String(window.SiteEffects.embedded?.nativeOpacity?.() ?? 1);
     content.style.transform = 'none';
   }
@@ -526,15 +501,11 @@ function createPresentation(content) {
     canTravel: () => window.CSS?.supports?.('overflow', 'clip') === true,
     clear() {
       window.SiteEffects.embedded?.cancel();
-      fragments?.clear();
-      useFragments = false;
       useSolids = false;
-      phaseFragments = false;
-      capturing = false;
-      waitingArrival = false;
       content.style.removeProperty('transform-origin');
       delete content.dataset.flightStage;
       delete content.dataset.flightDepth;
+      delete content.dataset.flightMode;
     },
     departure: () => ({
       opacity: Number(content.style.opacity || 1),
@@ -546,8 +517,6 @@ function createPresentation(content) {
       content.inert = departure.opacity < 1;
     },
     prepareMount() {
-      fragments?.clear();
-      phaseFragments = false;
       content.style.transform = 'none';
       content.style.opacity = '0';
       content.style.removeProperty('transform-origin');
@@ -555,96 +524,49 @@ function createPresentation(content) {
     },
     begin(animate, context = {}) {
       journeyDirection = context?.direction || 'forward';
-      journeyContext = { ...context, direction: journeyDirection };
-      useFragments = animate && contentFlight && fragmentPreview;
-      useSolids = false;
-      phaseFragments = false;
-      capturing = useFragments;
-      waitingArrival = false;
-      if (useFragments) useSolids = window.SiteEffects.embedded?.begin(context) === true;
-      else window.SiteEffects.embedded?.invalidate();
-      if (useSolids) {
-        capturing = false;
-        nativeSolidPlane();
-      }
-      if (useFragments && !useSolids) {
-        beginFragments();
-      }
+      const enabled = animate && contentFlight && fragmentPreview;
+      useSolids =
+        enabled &&
+        window.SiteEffects.embedded?.begin({ ...context, direction: journeyDirection }) === true;
+      if (!enabled) window.SiteEffects.embedded?.invalidate();
+      // Only a fully admitted world session owns native paint. A failed or
+      // unsupported capture uses the existing plane fade, with no DOM shards
+      // or second capture attempt while the camera is travelling.
+      if (useSolids) nativeSolidPlane();
+      else content.dataset.flightMode = 'fade';
     },
     mounted() {
-      capturing = false;
-      phaseFragments = false;
-      // A newly mounted native page gets a fresh local admission attempt even
-      // when departure's clone/deadline fallback rejected its old paint.
-      if (useFragments) {
-        window.SiteEffects.embedded?.land(content);
-        if (useSolids && window.SiteEffects.embedded?.active?.()) {
-          nativeSolidPlane();
-          waitingArrival = false;
-          return;
-        }
-        useSolids = false;
-        beginFragments();
+      if (!useSolids) return;
+      window.SiteEffects.embedded?.land(content);
+      if (window.SiteEffects.embedded?.active?.() !== false) {
+        nativeSolidPlane();
+        return;
       }
-      waitingArrival = useFragments;
+      useSolids = false;
+      content.dataset.flightMode = 'fade';
     },
     present(progress, direction, departure, snapshot) {
       const painted = snapshot && { ...snapshot, direction: journeyDirection };
       window.SiteEffects.embedded?.present?.(progress, painted);
-      lastPose = flightPose(progress, journeyDirection, departure);
+      const lastPose = flightPose(progress, journeyDirection, departure);
       if (snapshot?.active === false) {
         window.SiteEffects.embedded?.invalidate();
-        fragments?.clear();
-        useFragments = false;
         useSolids = false;
-        phaseFragments = false;
-        capturing = false;
-        waitingArrival = false;
       }
+      if (useSolids && window.SiteEffects.embedded?.active?.() === false) useSolids = false;
       if (useSolids) {
         nativeSolidPlane();
         if (progress === 1) return window.SiteEffects.embedded?.complete() !== false;
         return;
       }
-      if (useFragments && waitingArrival) {
-        const status = fragments.arrivalStatus(painted);
-        if (status === 'wait') {
-          content.style.opacity = '0';
-          content.style.transform = 'none';
-          return;
-        }
-        waitingArrival = false;
-        phaseFragments = status === 'ready' && fragments.prepare('arrive', painted);
-      }
-      if (useFragments && capturing && painted?.painted) {
-        capturing = false;
-        phaseFragments = fragments.prepare('depart', painted);
-      }
-      if (phaseFragments && fragments.present(progress, painted)) {
-        if (window.SiteEffects.embedded?.active?.()) {
-          content.style.opacity = '1';
-          content.style.transform = 'none';
-        }
-        const embeddedDone = window.SiteEffects.embedded?.complete() !== false;
-        return progress === 1 ? fragments.complete() && embeddedDone : undefined;
-      }
-      if (phaseFragments && fragments.active() === false) phaseFragments = false;
       setPlane(lastPose);
-      if (window.SiteEffects.embedded?.active?.()) {
-        content.style.opacity = '1';
-        content.style.transform = 'none';
-      }
-      if (progress === 1 && window.SiteEffects.embedded?.complete() === false) return false;
     },
     contentFlight(value) {
       if (typeof value === 'boolean') {
         contentFlight = value;
         if (!value) {
           window.SiteEffects.embedded?.invalidate();
-          fragments?.clear();
-          useFragments = false;
           useSolids = false;
-          phaseFragments = false;
         } else window.SiteEffects.embedded?.refresh();
         if (content.dataset.flightStage)
           setPlane({
@@ -660,10 +582,7 @@ function createPresentation(content) {
         fragmentPreview = value;
         if (!value) {
           window.SiteEffects.embedded?.invalidate();
-          fragments?.clear();
-          useFragments = false;
           useSolids = false;
-          phaseFragments = false;
         } else window.SiteEffects.embedded?.refresh();
         try {
           localStorage.setItem('vo.fragment-preview', value ? 'on' : 'off');
@@ -732,7 +651,7 @@ function measurePlane(read) {
   }
 }
 function descriptor() {
-  const code = `const flightPose=${flightPose.toString()};\nconst fragmentPlan=${fragmentPlan.toString()};\nconst fragmentDOM=${fragmentDOM.toString()};\nconst embeddedPlan=${embeddedPlan.toString()};\nconst embeddedTexture=${embeddedTexture.toString()};\nconst embeddedScene=${embeddedScene.toString()};\nwindow.SiteEffects.scene=(api)=>embeddedScene(api,{fragmentPlan,embeddedPlan,embeddedTexture});\nwindow.SiteEffects.registerView=(view)=>{window.SiteEffects.cameraView=view;};\nwindow.SiteEffects.navigation=${createPresentation.toString()};\nwindow.SiteEffects.measure=${measurePlane.toString()};`;
+  const code = `const flightPose=${flightPose.toString()};\nconst fragmentPlan=${fragmentPlan.toString()};\nconst embeddedPlan=${embeddedPlan.toString()};\nconst embeddedTexture=${embeddedTexture.toString()};\nconst embeddedScene=${embeddedScene.toString()};\nwindow.SiteEffects.scene=(api)=>embeddedScene(api,{fragmentPlan,embeddedPlan,embeddedTexture});\nwindow.SiteEffects.registerView=(view)=>{window.SiteEffects.cameraView=view;};\nwindow.SiteEffects.navigation=${createPresentation.toString()};\nwindow.SiteEffects.measure=${measurePlane.toString()};`;
   const controls =
     '(' +
     installFlightPreference.toString() +

@@ -27,11 +27,6 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
   const add = (a, b) => a.map((value, index) => value + b[index]);
   const sub = (a, b) => a.map((value, index) => value - b[index]);
   const dot = (a, b) => a.reduce((sum, value, index) => sum + value * b[index], 0);
-  const cross = (a, b) => [
-    a[1] * b[2] - a[2] * b[1],
-    a[2] * b[0] - a[0] * b[2],
-    a[0] * b[1] - a[1] * b[0],
-  ];
   const scale = (a, amount) => a.map((value) => value * amount);
   const normalize = (a) => {
     const length = Math.hypot(...a);
@@ -47,6 +42,7 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
   const light = normalize([-0.55, 0.85, 1]);
   let paletteKey = '';
   let palette = null;
+  const layouts = new WeakMap();
 
   function faceNormal(points) {
     // Convex canonical cells may begin with collinear boundary vertices.
@@ -130,9 +126,14 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
   }
 
   function turn(point, q) {
-    const axis = q.slice(0, 3);
-    const doubled = scale(cross(axis, point), 2);
-    return add(point, add(scale(doubled, q[3]), cross(axis, doubled)));
+    const x = (q[1] * point[2] - q[2] * point[1]) * 2;
+    const y = (q[2] * point[0] - q[0] * point[2]) * 2;
+    const z = (q[0] * point[1] - q[1] * point[0]) * 2;
+    return [
+      point[0] + (x * q[3] + (q[1] * z - q[2] * y)),
+      point[1] + (y * q[3] + (q[2] * x - q[0] * z)),
+      point[2] + (z * q[3] + (q[0] * y - q[1] * x)),
+    ];
   }
 
   function orientation(from, to, progress) {
@@ -192,16 +193,55 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
     );
   const copyMember = (member) =>
     member
-      ? {
+      ? Object.freeze({
           name: member.name,
           parent: member.parent,
-          center: [...member.center],
-          rootCenter: [...member.rootCenter],
-          attachment: [...member.attachment],
+          center: Object.freeze([...member.center]),
+          rootCenter: Object.freeze([...member.rootCenter]),
+          attachment: Object.freeze([...member.attachment]),
           root: member.root,
           phase: member.phase,
-        }
+        })
       : null;
+
+  function layoutFor(shard) {
+    const count = shard.uv.length;
+    const faces = [
+      { face: 'front', indices: Array.from({ length: count }, (_, index) => count - index - 1) },
+      { face: 'back', indices: Array.from({ length: count }, (_, index) => count + index) },
+      ...shard.uv.map((_, index) => {
+        const next = (index + 1) % count;
+        return { face: 'side', indices: [index, next, count + next, count + index] };
+      }),
+    ];
+    return {
+      uv: shard.uv,
+      centroid: shard.centroid,
+      offsets: shard.uv.map(([u, v]) => [u - shard.centroid[0], shard.centroid[1] - v]),
+      faces: Object.freeze(
+        faces.map((face) => Object.freeze({ ...face, indices: Object.freeze(face.indices) }))
+      ),
+    };
+  }
+
+  function sampleState(camera, rect, depth) {
+    return {
+      orientation: quaternion(basis(camera)),
+      size: [(rect.width * depth) / camera.focal, (rect.height * depth) / camera.focal],
+      transforms: new Map(),
+    };
+  }
+
+  function memberTransform(member, time, state, key = member) {
+    if (!member) return null;
+    if (!state) return { transform: loopTransform(member, time) };
+    let result = state.transforms.get(key);
+    if (!result) {
+      result = { transform: loopTransform(member, time) };
+      state.transforms.set(key, result);
+    }
+    return result;
+  }
 
   function prepare({
     id,
@@ -238,6 +278,15 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
     const camera = view(pose, width, height);
     if (!camera || cells.some((cell) => !validCell(cell, rect))) return null;
     const axes = basis(camera);
+    const branches = new Map();
+    const branchKey = (member) => {
+      if (!member) return null;
+      // Attachments differ between shards. The shared loop depends only on
+      // this exact immutable branch descriptor, and lives for one sample.
+      const key = [member.center, member.rootCenter, member.root, member.phase].join(':');
+      if (!branches.has(key)) branches.set(key, member);
+      return branches.get(key);
+    };
     const shards = cells.map((cell, index) => {
       const uv = cell.polygon.map(([x, y]) => [
         (x - rect.x) / rect.width,
@@ -287,7 +336,7 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
       const contact = members
         ? turn([0, 0, thickness * settings.restExtrusion], restOrientation)
         : [0, 0, 0];
-      return {
+      const shard = {
         id: `${id}:${index}`,
         uv,
         rearUv: uv.map(([u, v]) => [rearAxis - u, v]),
@@ -307,6 +356,17 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
         returnOffset,
         color: index % 3 === 0 ? 'amber' : 'cyan',
       };
+      shard.uv.forEach(Object.freeze);
+      Object.freeze(shard.uv);
+      Object.freeze(shard.centroid);
+      layouts.set(shard, {
+        ...layoutFor(shard),
+        member: shard.member,
+        memberKey: branchKey(shard.member),
+        returnMember: shard.returnMember,
+        returnKey: branchKey(shard.returnMember),
+      });
+      return shard;
     });
     return {
       id,
@@ -319,16 +379,15 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
     };
   }
 
-  function returnCenter(shard, time) {
-    return add(loopTransform(shard.returnMember, time)(shard.returnMember.attachment), [
-      0,
-      0,
-      shard.returnOffset,
-    ]);
+  function returnCenter(shard, time, state = null, layout = null) {
+    const key = layout?.returnMember === shard.returnMember ? layout.returnKey : shard.returnMember;
+    const { transform } = memberTransform(shard.returnMember, time, state, key);
+    return add(transform(shard.returnMember.attachment), [0, 0, shard.returnOffset]);
   }
   function geometry(
     shard,
-    { view: camera, rect, depth, progress = 0, time = 0, returnPath = false, departing = false }
+    { view: camera, rect, depth, progress = 0, time = 0, returnPath = false, departing = false },
+    state = null
   ) {
     if (
       !shard ||
@@ -341,47 +400,22 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
       depth <= settings.near
     )
       return null;
+    const storedLayout = layouts.get(shard);
+    const layout =
+      storedLayout?.uv === shard.uv && storedLayout.centroid === shard.centroid
+        ? storedLayout
+        : layoutFor(shard);
+    const frame = state || sampleState(camera, rect, depth);
     const amount = smooth(progress);
     const targetCenter = unproject(
       camera,
       [rect.x + rect.width * shard.centroid[0], rect.y + rect.height * shard.centroid[1]],
       depth
     );
-    const transform = shard.member ? loopTransform(shard.member, time) : null;
-    const restCenter = transform ? transform(shard.restCenter) : shard.restCenter;
-    const worldCenter = add(restCenter, [0, 0, shard.hostOffset || 0]);
-    const motion = transform
-      ? quaternion(
-          [
-            [transform.matrix[0], transform.matrix[3], transform.matrix[6]],
-            [transform.matrix[1], transform.matrix[4], transform.matrix[7]],
-            [transform.matrix[2], transform.matrix[5], transform.matrix[8]],
-          ].map((column) => scale(column, 1 / transform.scale))
-        )
-      : [0, 0, 0, 1];
-    const waypoint = returnPath && shard.returnMember ? returnCenter(shard, time) : null;
-    let origin = waypoint
-      ? progress <= settings.returnStop
-        ? blend(worldCenter, waypoint, smooth(progress / settings.returnStop))
-        : blend(
-            waypoint,
-            targetCenter,
-            smooth((progress - settings.returnStop) / (1 - settings.returnStop))
-          )
-      : blend(worldCenter, targetCenter, amount);
-    let rotation = orientation(
-      compose(motion, shard.restOrientation),
-      quaternion(basis(camera)),
-      amount
-    );
-    let size = blend(
-      shard.restSize.map((value) => value * settings.embeddedScale * (transform?.scale || 1)),
-      [(rect.width * depth) / camera.focal, (rect.height * depth) / camera.focal],
-      amount
-    );
-    let extrusion =
-      (settings.restExtrusion * (1 - amount) + amount) *
-      ((transform?.scale || 1) * (1 - amount) + amount);
+    let origin;
+    let rotation;
+    let size;
+    let extrusion;
     if (departing) {
       // Break at the source plane, then leave the solids in world space. The
       // advancing camera crosses them; they never chase its near plane or
@@ -397,57 +431,82 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
           )
         )
       );
-      rotation = orientation(quaternion(basis(camera)), shard.restOrientation, breakup);
-      size = [(rect.width * depth) / camera.focal, (rect.height * depth) / camera.focal];
+      rotation = orientation(frame.orientation, shard.restOrientation, breakup);
+      size = frame.size;
       extrusion = 1 + (settings.restExtrusion - 1) * breakup;
-    }
-    const front = shard.uv.map(([u, v]) =>
-      add(
-        origin,
-        turn([(u - shard.centroid[0]) * size[0], (shard.centroid[1] - v) * size[1], 0], rotation)
-      )
-    );
-    const back = shard.uv.map(([u, v]) =>
-      add(
-        origin,
-        turn(
+    } else if (progress === 1) {
+      // The native endpoint is independent of branch motion or return paths.
+      origin = targetCenter;
+      rotation = frame.orientation;
+      size = frame.size;
+      extrusion = 1;
+    } else {
+      const key = layout.member === shard.member ? layout.memberKey : shard.member;
+      const transformed = memberTransform(shard.member, time, frame, key);
+      const transform = transformed?.transform;
+      const restCenter = transform ? transform(shard.restCenter) : shard.restCenter;
+      const worldCenter = add(restCenter, [0, 0, shard.hostOffset || 0]);
+      if (transform && !transformed.orientation)
+        transformed.orientation = quaternion(
           [
-            (u - shard.centroid[0]) * size[0] * 0.9,
-            (shard.centroid[1] - v) * size[1] * 0.9,
-            -shard.thickness * extrusion,
-          ],
-          rotation
-        )
+            [transform.matrix[0], transform.matrix[3], transform.matrix[6]],
+            [transform.matrix[1], transform.matrix[4], transform.matrix[7]],
+            [transform.matrix[2], transform.matrix[5], transform.matrix[8]],
+          ].map((column) => scale(column, 1 / transform.scale))
+        );
+      const motion = transformed?.orientation || [0, 0, 0, 1];
+      const waypoint =
+        returnPath && shard.returnMember ? returnCenter(shard, time, frame, layout) : null;
+      origin = waypoint
+        ? progress <= settings.returnStop
+          ? blend(worldCenter, waypoint, smooth(progress / settings.returnStop))
+          : blend(
+              waypoint,
+              targetCenter,
+              smooth((progress - settings.returnStop) / (1 - settings.returnStop))
+            )
+        : blend(worldCenter, targetCenter, amount);
+      rotation = orientation(compose(motion, shard.restOrientation), frame.orientation, amount);
+      size = blend(
+        shard.restSize.map((value) => value * settings.embeddedScale * (transform?.scale || 1)),
+        frame.size,
+        amount
+      );
+      extrusion =
+        (settings.restExtrusion * (1 - amount) + amount) *
+        ((transform?.scale || 1) * (1 - amount) + amount);
+    }
+    const front = layout.offsets.map(([x, y]) =>
+      add(origin, turn([x * size[0], y * size[1], 0], rotation))
+    );
+    const back = layout.offsets.map(([x, y]) =>
+      add(
+        origin,
+        turn([x * size[0] * 0.9, y * size[1] * 0.9, -shard.thickness * extrusion], rotation)
       )
     );
-    const count = front.length;
-    const faces = [
-      { face: 'front', indices: Array.from({ length: count }, (_, index) => count - index - 1) },
-      { face: 'back', indices: Array.from({ length: count }, (_, index) => count + index) },
-      ...front.map((_, index) => {
-        const next = (index + 1) % count;
-        return { face: 'side', indices: [index, next, count + next, count + index] };
-      }),
-    ];
-    return { id: shard.id, vertices: [...front, ...back], faces };
+    return { id: shard.id, vertices: [...front, ...back], faces: layout.faces };
   }
 
   function phaseForClearance(
     shard,
-    { view: target, camera, rect, depth, progress, time = 0, returnPath = false }
+    { view: target, camera, rect, depth, progress, time = 0, returnPath = false },
+    state = null
   ) {
     if (!Number.isFinite(progress) || progress < 0 || progress > 1) return NaN;
     if (progress === 0) return 0;
-    const moving = shard.member
-      ? loopTransform(shard.member, time)(shard.restCenter)
-      : shard.restCenter;
+    const layout = layouts.get(shard);
+    const key = layout?.member === shard.member ? layout.memberKey : shard.member;
+    const transform = memberTransform(shard.member, time, state, key)?.transform;
+    const moving = transform ? transform(shard.restCenter) : shard.restCenter;
     const rest = add(moving, [0, 0, shard.hostOffset || 0]);
     const endpoint = unproject(
       target,
       [rect.x + rect.width * shard.centroid[0], rect.y + rect.height * shard.centroid[1]],
       depth
     );
-    const waypoint = returnPath && shard.returnMember ? returnCenter(shard, time) : null;
+    const waypoint =
+      returnPath && shard.returnMember ? returnCenter(shard, time, state, layout) : null;
     const first = waypoint && progress <= settings.returnStop;
     const start = waypoint && !first ? settings.returnStop : 0;
     const span = waypoint ? (first ? settings.returnStop : 1 - settings.returnStop) : 1;
@@ -478,7 +537,12 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
     // Cull a complete solid before any vertex enters the near plane. Texture
     // clips cannot stretch through a near intersection or submit huge bitmaps.
     if (vertices.some((point) => !vector(point, 3) || point[2] <= settings.near)) return null;
-    return { world, vertices };
+    const points = vertices.map(camera.project);
+    // With every vertex in front of the near plane, a face cannot extend past
+    // the complete solid's projected bounds. This uses the same viewport test
+    // as each face, so it only skips solids whose every face is invisible.
+    if (points.every((point) => vector(point, 2)) && !camera.visible(points)) return null;
+    return { world, vertices, points };
   }
 
   function projectFace(face, projected, camera, limit) {
@@ -486,7 +550,7 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
     const normal = faceNormal(world);
     if (!normal || dot(normal, sub(camera.position, world[0])) <= 1e-9) return null;
     const vertices = face.indices.map((index) => projected.vertices[index]);
-    const points = vertices.map(camera.project);
+    const points = face.indices.map((index) => projected.points[index]);
     if (
       points.some((point) => !vector(point, 2) || point.some((value) => Math.abs(value) > limit)) ||
       !camera.visible(points)
@@ -537,31 +601,40 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
     const camera = view(pose, width, height);
     const targetView = view(targetPose, width, height);
     if (!camera || !targetView) return [];
+    const state = sampleState(targetView, rect, prepared.depth);
     const shapes = [];
     const limit = Math.max(width, height) * 8;
     for (const [index, shard] of prepared.shards.entries()) {
       const requested = progresses ? progresses[index] : progress;
       const amount =
         clearance && !departing
-          ? phaseForClearance(shard, {
-              view: targetView,
-              camera,
-              rect,
-              depth: prepared.depth,
-              progress: requested,
-              returnPath,
-              time,
-            })
+          ? phaseForClearance(
+              shard,
+              {
+                view: targetView,
+                camera,
+                rect,
+                depth: prepared.depth,
+                progress: requested,
+                returnPath,
+                time,
+              },
+              state
+            )
           : requested;
-      const solid = geometry(shard, {
-        view: targetView,
-        rect,
-        depth: prepared.depth,
-        progress: amount,
-        time,
-        returnPath,
-        departing,
-      });
+      const solid = geometry(
+        shard,
+        {
+          view: targetView,
+          rect,
+          depth: prepared.depth,
+          progress: amount,
+          time,
+          returnPath,
+          departing,
+        },
+        state
+      );
       if (!solid) return [];
       const projected = projectSolid(solid, camera);
       if (!projected) continue;

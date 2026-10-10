@@ -166,13 +166,35 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
     if (outgoing === entry) outgoing = null;
   }
   function makeRoom(route, protectedRoutes) {
-    remove(route);
+    // A replacement temporarily shares capacity with its resident predecessor.
+    // Failed acquisition must never erase an already painted native field.
+    const protectedFields = new Set([
+      route,
+      document.body.dataset.page,
+      ...(phase ? [incoming?.route, outgoing?.route] : []),
+      ...protectedRoutes,
+    ]);
     while (bank.size >= settings.entries) {
-      const oldest = [...bank.keys()].find((name) => !protectedRoutes.includes(name));
+      const oldest = [...bank.keys()].find((name) => !protectedFields.has(name));
       if (!oldest) return false;
       remove(oldest);
     }
     return true;
+  }
+  function commit(entry) {
+    const previous = bank.get(entry.route);
+    const wasIncoming = incoming === previous;
+    const wasOutgoing = outgoing === previous;
+    // Surface keys are route-owned. Release old keys before installing their
+    // replacement, and retain its last-painted diagnostic record until repaint.
+    remove(entry.route);
+    for (const group of entry.groups) {
+      surfaces.set(group.key, group.asset.canvas);
+      group.asset.owner = null;
+    }
+    bank.set(entry.route, entry);
+    if (wasIncoming) incoming = entry;
+    if (wasOutgoing) outgoing = entry;
   }
   function remainingBudget() {
     const retained = reservation() || {};
@@ -320,11 +342,6 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
       });
       return null;
     }
-    for (const group of groups) {
-      surfaces.set(group.key, group.asset.canvas);
-      // A bitmap bank must not retain a detached full-page DOM through its owner.
-      group.asset.owner = null;
-    }
     return entry;
   }
   const landingKey = (landing) =>
@@ -443,7 +460,7 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
       const entry = build(assets, data.page, limits, 'incoming');
       if (!entry) return false;
       entry.landingKey = key;
-      bank.set(entry.route, entry);
+      commit(entry);
       incoming = entry;
       assets = null;
       return true;
@@ -522,6 +539,9 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
   }
   async function prepareDeparture(content, options = {}) {
     const route = document.body.dataset.page;
+    // A failed revalidation may retain old pixels, but cannot authorize hiding
+    // changed native content for a new departure.
+    if (!options.cacheOnly) outgoing = null;
     if (!resident(incoming) || phase || pending || options.signal?.aborted) {
       reject('departure', route, 'source-not-ready');
       return false;
@@ -561,11 +581,11 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
         search: window.location?.search || '',
         hash: window.location?.hash || '',
       });
+      commit(entry);
       if (!options.cacheOnly) {
         for (const group of entry.groups) group.native = content;
         outgoing = entry;
       }
-      bank.set(route, entry);
       assets = null;
       return true;
     } catch {
@@ -583,6 +603,7 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
   }
   function begin(next) {
     if (
+      pending ||
       !resident(incoming) ||
       !resident(outgoing) ||
       incoming.route !== next.to ||

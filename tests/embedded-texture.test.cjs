@@ -2166,3 +2166,103 @@ test('a zero-area pseudo cannot bypass unresolved geometry, generated ink or out
     assert.equal(f.canvases.length, 0);
   }
 });
+
+test('native font eligibility scans once per acquisition while every real text keeps its own browser check', async () => {
+  const f = pageFixture();
+  let faceScans = 0;
+  let facesRead = 0;
+  const checkedText = [];
+  f.document.fonts[Symbol.iterator] = function* () {
+    faceScans++;
+    for (let index = 0; index < 100; index++) {
+      facesRead++;
+      yield { family: 'Unrelated local face ' + index };
+    }
+  };
+  f.document.fonts.check = (query, text) => {
+    checkedText.push({ query, text });
+    return true;
+  };
+  const texts = [];
+  for (let index = 0; index < pageCaps.owners; index++) {
+    const text = 'Distinct native text ' + index;
+    texts.push(text);
+    f.main.append(new f.Node('p', text, {}, { left: 20, top: index * 25, width: 400, height: 20 }));
+  }
+  const textures = embeddedTexture();
+  const field = await textures.captureField(f.root, { ...pageOptions, dpr: 1 });
+  assert.ok(field);
+  assert.equal(faceScans, 1);
+  assert.equal(facesRead, 100);
+  assert.deepEqual(
+    checkedText.map(({ text }) => text),
+    texts
+  );
+  assert.equal(textures.matchesField(f.root, field.sourceOwners, pageOptions), true);
+  assert.equal(faceScans, 2, 'handoff checks reacquire the current FontFace set');
+  assert.equal(facesRead, 200);
+  assert.deepEqual(
+    checkedText.slice(texts.length).map(({ text }) => text),
+    texts
+  );
+  field.dispose();
+});
+
+test('family reuse cannot borrow a successful font check for different native or generated text', async () => {
+  for (const pseudo of [false, true]) {
+    const f = pageFixture();
+    const first = new f.Node('p', 'Supported native text');
+    const second = new f.Node('p', 'Missing native glyphs', {}, { top: 200 });
+    if (pseudo) {
+      second.childNodes = [];
+      second.pseudos['::before'] = {
+        content: '"Missing generated glyphs"',
+        display: 'inline',
+        'font-family': 'system-ui, sans-serif',
+        'font-size': '16px',
+      };
+    }
+    const checkedText = [];
+    f.document.fonts.check = (query, text) => {
+      checkedText.push(text);
+      return !text.startsWith('Missing');
+    };
+    f.main.append(first, second);
+    const failures = [];
+    assert.equal(
+      await embeddedTexture().captureField(f.root, {
+        ...pageOptions,
+        onReject: (detail) => failures.push(detail),
+      }),
+      null
+    );
+    assert.deepEqual(checkedText, [
+      'Supported native text',
+      pseudo ? 'Missing generated glyphs' : 'Missing native glyphs',
+    ]);
+    assert.equal(
+      failures[0].reason,
+      pseudo ? 'unsupported-pseudo-font' : 'unsupported-native-font'
+    );
+    assert.equal(f.images.length, 0);
+    assert.equal(f.canvases.length, 0);
+  }
+});
+
+test('capture and handoff invalidate previous family eligibility when a colliding web font appears', async () => {
+  const f = pageFixture();
+  const faces = [];
+  f.document.fonts[Symbol.iterator] = function* () {
+    yield* faces;
+  };
+  f.main.append(new f.Node('p', 'Previously safe native content'));
+  const textures = embeddedTexture();
+  const field = await textures.captureField(f.root, pageOptions);
+  assert.ok(field);
+  const allocations = f.canvases.length;
+  faces.push({ family: '"Segoe UI"' });
+  assert.equal(textures.matchesField(f.root, field.sourceOwners, pageOptions), false);
+  assert.equal(await textures.captureField(f.root, pageOptions), null);
+  assert.equal(f.canvases.length, allocations, 'newly unsupported font fails before allocation');
+  field.dispose();
+});
