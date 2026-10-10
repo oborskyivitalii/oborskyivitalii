@@ -15,7 +15,9 @@ Dated continuity, not live authority. Last verified: **2026-10-09**.
   rear UV, strict native landing and original-response draining; verify live proof.
   e806 exposed speculative replacement of returned scrolled content; the follow-up
   preserves resident fields until actual navigation requests a different landing.
-  This is reconciled above remote68004bc; final hosted/source proof remains required.
+  Reconciled1b09fac preserves remote68004bc. Manual cold capture exposed shared
+  fractional border pixels; isolated bounded native proof corrects that ambiguity.
+  Final exact-source hosted proof remains required; retain every failed run.
 
 - Main revalidated at `338e3ff341dc35b64cba7854289e1385cbaf1562`: approved
   harness simplification PR #66 merged; #65 is closed. Revalidate live state.

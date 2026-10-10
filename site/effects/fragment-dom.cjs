@@ -112,6 +112,29 @@ module.exports = function (content, geometry, onFallback = null, shared = {}) {
     if (pseudo && ['none', 'normal', ''].includes(value('content'))) return false;
     if (value('display') === 'none' || value('visibility') === 'hidden' || value('opacity') === '0')
       return false;
+    if (
+      pseudo &&
+      ['""', "''"].includes(value('content')) &&
+      value('position') === 'absolute' &&
+      ['none', ''].includes(value('box-shadow')) &&
+      ['none', ''].includes(value('outline-style')) &&
+      ['none', ''].includes(value('filter')) &&
+      ['none', ''].includes(value('backdrop-filter')) &&
+      [
+        ['width', 'left', 'right'],
+        ['height', 'top', 'bottom'],
+      ].some(
+        ([size, first, last]) =>
+          parseFloat(value(size)) === 0 &&
+          (value('box-sizing') === 'border-box' ||
+            [first, last].every(
+              (side) =>
+                (parseFloat(value('padding-' + side)) || 0) === 0 &&
+                (parseFloat(value('border-' + side + '-width')) || 0) === 0
+            ))
+      )
+    )
+      return false;
     const color = value('background-color');
     return (
       (color && !['transparent', 'rgba(0, 0, 0, 0)'].includes(color)) ||

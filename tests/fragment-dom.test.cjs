@@ -936,6 +936,34 @@ test('SVG geometry bytes bound atomic cloning while ordinary sibling paint remai
   );
 });
 
+test('zero-area empty footer underlines do not claim paper while outward shadow remains paint', () => {
+  for (const shadow of ['none', '0px 0px 3px rgb(20, 40, 60)']) {
+    const h = fixture();
+    h.heading.pseudoComputed['::after'] = {
+      content: '""',
+      position: 'absolute',
+      left: '0px',
+      top: '24px',
+      width: '0px',
+      height: '2px',
+      'box-sizing': 'border-box',
+      'background-color': 'rgb(20, 40, 60)',
+      'box-shadow': shadow,
+    };
+    assert.equal(h.adapter.prepare('depart', h.snapshot()), true);
+    const copies = h
+      .tiles()
+      .map((tile) => tile.children[0])
+      .filter((copy) => copy.matches('h1'));
+    assert.ok(copies.length > 0);
+    assert.ok(
+      copies.every((copy) => copy.matches('.fragment-surface-after') === (shadow !== 'none'))
+    );
+    h.adapter.clear();
+    assertDisposed(h);
+  }
+});
+
 test('painted wrapper background, grid text and decoded image fly as one complete owner', () => {
   for (const phase of ['depart', 'arrive']) {
     const h = fixture();

@@ -1580,7 +1580,27 @@ module.exports = function () {
         if (pixels[(y * width + x) * 4 + 3] > 0) return true;
     return false;
   }
-  function fieldHasNativeInk(context, measured, options) {
+  function ambiguousDecoration(owner, measured) {
+    if (!owner.decoration) return false;
+    return measured.fieldOwners.some(
+      (other) =>
+        other !== owner &&
+        other.decoration &&
+        owner.paintRects.some((rect) => {
+          const box = fieldPixelBox(rect, measured);
+          return other.paintRects.some((rect) => {
+            const cover = fieldPixelBox(rect, measured);
+            return (
+              box.left < cover.right &&
+              box.right > cover.left &&
+              box.top < cover.bottom &&
+              box.bottom > cover.top
+            );
+          });
+        })
+    );
+  }
+  async function fieldHasNativeInk(context, measured, options) {
     if (options.signal?.aborted || options.clock() > options.deadline) {
       rejectNative(options, 'preparation-deadline', measured.owner.localName);
       return false;
@@ -1593,6 +1613,21 @@ module.exports = function () {
         return false;
       }
       if (!boxes.some((box) => fieldBoxHasInk(box, pixels, measured.pixelWidth))) {
+        // Fractional adjacent borders may legitimately share one raster pixel.
+        // Prove that owner's native paint in isolation instead of borrowing
+        // its neighbour's alpha. Both the composite and isolated paint need ink.
+        if (
+          ambiguousDecoration(owner, measured) &&
+          owner.paintRects.some((rect) =>
+            fieldBoxHasInk(fieldPixelBox(rect, measured), pixels, measured.pixelWidth)
+          )
+        ) {
+          const proof = await raster(owner, options, serializeNative);
+          if (proof) {
+            proof.dispose();
+            if (!options.signal?.aborted && options.clock() <= options.deadline) continue;
+          }
+        }
         rejectNative(
           { ...options, ownerPath: owner.ownerPath },
           'native-owner-raster-blank',
@@ -1639,7 +1674,13 @@ module.exports = function () {
       const pixelCount = dimensions.width * dimensions.height;
       // One SVG decode, its destination canvas, and the bounded ownership-alpha
       // readback coexist. PNG decode and sequential encoding surfaces remain charged.
-      const peak = nativeTransientPixels(fieldOwners, pixelCount) + pixelCount;
+      const borderProofPixels = Math.max(
+        0,
+        ...fieldOwners
+          .filter((owner) => owner.decoration)
+          .map((owner) => owner.pixelWidth * owner.pixelHeight * 3)
+      );
+      const peak = nativeTransientPixels(fieldOwners, pixelCount) + pixelCount + borderProofPixels;
       if (peak > normalized.caps.layerPixels)
         return rejectNative(normalized, 'field-peak-capacity', root.localName, {
           limit: 'layerPixels',
@@ -1755,14 +1796,17 @@ module.exports = function () {
       function abort() {
         finish(false, options.signal?.aborted ? 'capture-aborted' : 'raster-decode-failed');
       }
-      image.onload = () => {
+      image.onload = async () => {
         if (finished) return;
         try {
           if (!image.naturalWidth || !image.naturalHeight)
             return finish(false, 'native-raster-empty');
           context.drawImage(image, 0, 0, canvas.width, canvas.height);
           if (measured.fieldOwners)
-            return finish(fieldHasNativeInk(context, measured, options), 'native-raster-blank');
+            return finish(
+              await fieldHasNativeInk(context, measured, options),
+              'native-raster-blank'
+            );
           // A loaded image may silently omit foreignObject on an unsupported engine.
           const sample = context.getImageData(
             Math.floor(canvas.width / 2),

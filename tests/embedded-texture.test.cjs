@@ -1734,6 +1734,57 @@ test('adjacent one-pixel border owners retain exclusive native ink without a syn
   );
 });
 
+test('fractional adjoining borders require isolated native proof within the same pixel and time caps', async () => {
+  for (const blankProof of [false, true]) {
+    const f = pageFixture();
+    f.view.performance = { now: () => 0 };
+    for (const [tag, top, side] of [
+      ['nav', 0.4, 'bottom'],
+      ['section', 100.4, 'top'],
+    ]) {
+      f.main.append(
+        new f.Node(
+          tag,
+          '',
+          {
+            ['border-' + side + '-width']: '1px',
+            ['border-' + side + '-style']: 'solid',
+            ['border-' + side]: '1px solid rgb(20, 30, 40)',
+          },
+          { left: 0, top, width: 100, height: 100 }
+        )
+      );
+    }
+    f.context.getImageData = (x, y, width, height) => {
+      const data = new Uint8ClampedArray(width * height * 4);
+      if (!blankProof || f.images.length === 1)
+        for (let column = 0; column < width; column++) data[column * 4 + 3] = 255;
+      return { data };
+    };
+    const field = await embeddedTexture().captureField(f.root, { ...pageOptions, dpr: 0.5 });
+    if (blankProof) assert.equal(field, null, 'adjacent paint cannot replace isolated owner proof');
+    else {
+      assert.ok(field);
+      assert.equal(field.decorations.length, 2);
+      field.dispose();
+    }
+    assert.ok(f.images.length > 1, 'ambiguous pixel receives a separate native decode');
+    assert.ok(f.canvases.every((canvas) => canvas.width === 0 && canvas.height === 0));
+    assert.equal(f.timers.size, 0);
+    const before = f.canvases.length;
+    assert.equal(
+      await embeddedTexture().captureField(f.root, {
+        ...pageOptions,
+        dpr: 0.5,
+        caps: { ...pageCaps, layerPixels: 150 },
+      }),
+      null,
+      'isolated proof surfaces are reserved before any allocation'
+    );
+    assert.equal(f.canvases.length, before);
+  }
+});
+
 test('single field decoding retains all native temporary-owner admission limits', async () => {
   for (const cap of ['owners', 'descendants', 'textBytes', 'layerPixels']) {
     const f = pageFixture();
